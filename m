@@ -2,284 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91B662EA4ED
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 06:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AE202EA53E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 07:09:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725862AbhAEFhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 00:37:23 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:45456 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725298AbhAEFhX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 00:37:23 -0500
-X-UUID: fe73d6b7e03a4f2fa1bf4111bdada69c-20210105
-X-UUID: fe73d6b7e03a4f2fa1bf4111bdada69c-20210105
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <nick.fan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1879944897; Tue, 05 Jan 2021 13:36:35 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 5 Jan 2021 13:36:33 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 5 Jan 2021 13:36:33 +0800
-From:   Nick Fan <Nick.Fan@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <nick.fan@mediatek.com>,
-        Nick Fan <Nick.Fan@mediatek.com>
-Subject: [PATCH v2 2/2] arm64: dts: mt8192: Add node for the Mali GPU
-Date:   Tue, 5 Jan 2021 13:36:32 +0800
-Message-ID: <20210105053632.5476-2-Nick.Fan@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210105053632.5476-1-Nick.Fan@mediatek.com>
-References: <20210105053632.5476-1-Nick.Fan@mediatek.com>
+        id S1727552AbhAEGJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 01:09:27 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:32962 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725778AbhAEGJ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 01:09:27 -0500
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A32603D7;
+        Tue,  5 Jan 2021 07:08:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1609826923;
+        bh=k/JBWUln97pXxLNozC0mrLlPsnZZtSHeYPo3vG1jYAY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=LUcFnm+LG+JYtfQnJbIgXXv4RoJvJ2z6SKE4VHert/x7+rKt6b2WuYmu6CjRtpsn+
+         h/B7iTxCf1CE1J9YdTBUShM6GqG8DwjcaoRGJQOsQapfpeqXY6pMjc0t2DAagrFZmc
+         AyuPwDCQCY+IWfZG6CGy9NNE9W4mwvMGhnKShjhs=
+From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sandy Huang <hjc@rock-chips.com>, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Yao <markyao0591@gmail.com>
+Subject: [PATCH v3 0/6] dt-bindings: display: Convert DWC HDMI TX bindings to YAML
+Date:   Tue,  5 Jan 2021 08:08:12 +0200
+Message-Id: <20210105060818.24158-1-laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic GPU node for mt8192.
+Hello,
 
-Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
----
-This patch depends on Mediatek power and regulator support.
+This patch series attempts a conversion of the DWC HDMI TX DT bindings
+to YAML. It's mostly identical to v2, with Mark Yao's e-mail address
+updated, tags picked, a small MAINTAINERS updated, and the series now
+sent to the devicetree@vger.kernel.org mailing list.
 
-Listed as following.
+The DWC HDMI TX is an HDMI transmitter IP core from Synopsys, integrated
+in various SoCs with different glue layers. As such, some properties are
+defined in a common document, but sometimes need to be overridden by
+platform-specific bindings.
 
-[1]https://lore.kernel.org/patchwork/patch/1336293/
-[2]https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
-[3]https://lore.kernel.org/patchwork/patch/1356037/
-[4]https://patchwork.kernel.org/project/linux-mediatek/list/?series=405777
-[5]https://lore.kernel.org/patchwork/patch/1356175/
-[6]https://patchwork.kernel.org/project/linux-mediatek/patch/1605700894-32699-6-git-send-email-hsin-hsiung.wang@mediatek.com/
-[7]https://patchwork.kernel.org/project/linux-mediatek/patch/1608104827-7937-10-git-send-email-hsin-hsiung.wang@mediatek.com/
----
----
- arch/arm64/boot/dts/mediatek/mt8192-evb.dts |   7 +
- arch/arm64/boot/dts/mediatek/mt8192.dtsi    | 176 ++++++++++++++++++++
- 2 files changed, 183 insertions(+)
+Patch 1/6 adds a base schema for the common properties, based on the
+existing dw_hdmi.txt document. Patches 2/6 to 4/6 then convert the
+platform-specific bindings for Renesas, NXP and Rockchip SoCs. Patch 5/6
+replaces the reference to dw_hdmi.txt in the Allwinner bindings with a
+reference to the YAML base schema, and patch 6/6 drops dw_hdmi.txt.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-index 6c1e2b3e8a60..48c0e240dd92 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-@@ -5,6 +5,7 @@
-  */
- /dts-v1/;
- #include "mt8192.dtsi"
-+#include "mt6359.dtsi"
- 
- / {
- 	model = "MediaTek MT8192 evaluation board";
-@@ -70,6 +71,12 @@
- 	};
- };
- 
-+&gpu {
-+	supply-names = "mali","sram";
-+	mali-supply = <&mt6315_7_vbuck1>;
-+	sram-supply = <&mt6359_vsram_others_ldo_reg>;
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index d6a4ad242a33..de166ea750af 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -822,6 +822,182 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		gpu: mali@13000000 {
-+			compatible = "mediatek,mt8192-mali", "arm,mali-valhall";
-+			reg = <0 0x13000000 0 0x4000>;
-+			interrupts =
-+				<GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH 0>;
-+			interrupt-names =
-+				"GPU",
-+				"MMU",
-+				"JOB",
-+				"EVENT",
-+				"PWR";
-+
-+			clocks =
-+				<&apmixedsys CLK_APMIXED_MFGPLL>,
-+				<&topckgen CLK_TOP_MFG_PLL_SEL>,
-+				<&topckgen CLK_TOP_MFG_REF_SEL>,
-+				<&mfgcfg CLK_MFG_BG3D>;
-+			clock-names =
-+				"clk_main_parent",
-+				"clk_mux",
-+				"clk_sub_parent",
-+				"subsys_mfg_cg";
-+
-+			power-domains =
-+				<&scpsys MT8192_POWER_DOMAIN_MFG2>,
-+				<&scpsys MT8192_POWER_DOMAIN_MFG3>,
-+				<&scpsys MT8192_POWER_DOMAIN_MFG4>,
-+				<&scpsys MT8192_POWER_DOMAIN_MFG5>,
-+				<&scpsys MT8192_POWER_DOMAIN_MFG6>;
-+			power-domain-names = "core0",
-+					     "core1",
-+					     "core2",
-+					     "core3",
-+					     "core4";
-+
-+			operating-points-v2 = <&gpu_opp_table>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		gpu_opp_table: opp_table0 {
-+			compatible = "operating-points-v2";
-+			opp-shared;
-+
-+			opp-358000000 {
-+				opp-hz = /bits/ 64 <358000000>;
-+				opp-hz-real = /bits/ 64 <358000000>,
-+					      /bits/ 64 <358000000>;
-+				opp-microvolt = <606250>,
-+						<750000>;
-+			};
-+
-+			opp-399000000 {
-+				opp-hz = /bits/ 64 <399000000>;
-+				opp-hz-real = /bits/ 64 <399000000>,
-+					      /bits/ 64 <399000000>;
-+				opp-microvolt = <618750>,
-+						<750000>;
-+			};
-+
-+			opp-440000000 {
-+				opp-hz = /bits/ 64 <440000000>;
-+				opp-hz-real = /bits/ 64 <440000000>,
-+					      /bits/ 64 <440000000>;
-+				opp-microvolt = <631250>,
-+						<750000>;
-+			};
-+
-+			opp-482000000 {
-+				opp-hz = /bits/ 64 <482000000>;
-+				opp-hz-real = /bits/ 64 <482000000>,
-+					      /bits/ 64 <482000000>;
-+				opp-microvolt = <643750>,
-+						<750000>;
-+			};
-+
-+			opp-523000000 {
-+				opp-hz = /bits/ 64 <523000000>;
-+				opp-hz-real = /bits/ 64 <523000000>,
-+					      /bits/ 64 <523000000>;
-+				opp-microvolt = <656250>,
-+						<750000>;
-+			};
-+
-+			opp-564000000 {
-+				opp-hz = /bits/ 64 <564000000>;
-+				opp-hz-real = /bits/ 64 <564000000>,
-+					      /bits/ 64 <564000000>;
-+				opp-microvolt = <668750>,
-+						<750000>;
-+			};
-+
-+			opp-605000000 {
-+				opp-hz = /bits/ 64 <605000000>;
-+				opp-hz-real = /bits/ 64 <605000000>,
-+					      /bits/ 64 <605000000>;
-+				opp-microvolt = <681250>,
-+						<750000>;
-+			};
-+
-+			opp-647000000 {
-+				opp-hz = /bits/ 64 <647000000>;
-+				opp-hz-real = /bits/ 64 <647000000>,
-+					      /bits/ 64 <647000000>;
-+				opp-microvolt = <693750>,
-+						<750000>;
-+			};
-+
-+			opp-688000000 {
-+				opp-hz = /bits/ 64 <688000000>;
-+				opp-hz-real = /bits/ 64 <688000000>,
-+					      /bits/ 64 <688000000>;
-+				opp-microvolt = <706250>,
-+						<750000>;
-+			};
-+
-+			opp-724000000 {
-+				opp-hz = /bits/ 64 <724000000>;
-+				opp-hz-real = /bits/ 64 <724000000>,
-+					      /bits/ 64 <724000000>;
-+				opp-microvolt = <725000>,
-+						<750000>;
-+			};
-+
-+			opp-760000000 {
-+				opp-hz = /bits/ 64 <760000000>;
-+				opp-hz-real = /bits/ 64 <760000000>,
-+					      /bits/ 64 <760000000>;
-+				opp-microvolt = <743750>,
-+						<750000>;
-+			};
-+
-+			opp-795000000 {
-+				opp-hz = /bits/ 64 <795000000>;
-+				opp-hz-real = /bits/ 64 <795000000>,
-+					      /bits/ 64 <795000000>;
-+				opp-microvolt = <762500>,
-+						<762500>;
-+			};
-+
-+			opp-831000000 {
-+				opp-hz = /bits/ 64 <831000000>;
-+				opp-hz-real = /bits/ 64 <831000000>,
-+					      /bits/ 64 <831000000>;
-+				opp-microvolt = <781250>,
-+						<781250>;
-+			};
-+
-+			opp-855000000 {
-+				opp-hz = /bits/ 64 <855000000>;
-+				opp-hz-real = /bits/ 64 <855000000>,
-+					      /bits/ 64 <855000000>;
-+				opp-microvolt = <793750>,
-+						<793750>;
-+			};
-+
-+			opp-902000000 {
-+				opp-hz = /bits/ 64 <902000000>;
-+				opp-hz-real = /bits/ 64 <902000000>,
-+					      /bits/ 64 <902000000>;
-+				opp-microvolt = <818750>,
-+						<818750>;
-+			};
-+
-+			opp-950000000 {
-+				opp-hz = /bits/ 64 <950000000>;
-+				opp-hz-real = /bits/ 64 <950000000>,
-+					      /bits/ 64 <950000000>;
-+				opp-microvolt = <843750>,
-+						<843750>;
-+			};
-+		};
-+
- 		mfgcfg: syscon@13fbf000 {
- 			compatible = "mediatek,mt8192-mfgcfg", "syscon";
- 			reg = <0 0x13fbf000 0 0x1000>;
+Compared to v1 (sent as an RFC), the base schema now works properly on
+all three platforms, and the schemas have been converted to use the OF
+graph schema. A more detailed changelog is available in individual
+patches.
+
+I have volunteered Philipp Zabel and Mark Yao as maintainers for the
+i.MX6 and Rockchip bindings respectively. Please let me know if you
+would prefer a different maintainer, or ack the respective patch if this
+is fine with you.
+
+Laurent Pinchart (6):
+  dt-bindings: display: bridge: Add YAML schema for Synopsys DW-HDMI
+  dt-bindings: display: bridge: renesas,dw-hdmi: Convert binding to YAML
+  dt-bindings: display: imx: hdmi: Convert binding to YAML
+  dt-bindings: display: rockchip: dw-hdmi: Convert binding to YAML
+  dt-bindings: display: sun8i-a83t-dw-hdmi: Reference dw-hdmi YAML
+    schema
+  dt-bindings: display: bridge: Remove deprecated dw_hdmi.txt
+
+ .../display/allwinner,sun8i-a83t-dw-hdmi.yaml |   4 +-
+ .../bindings/display/bridge/dw_hdmi.txt       |  33 ----
+ .../display/bridge/renesas,dw-hdmi.txt        |  88 ----------
+ .../display/bridge/renesas,dw-hdmi.yaml       | 128 ++++++++++++++
+ .../display/bridge/synopsys,dw-hdmi.yaml      |  58 +++++++
+ .../bindings/display/imx/fsl,imx6-hdmi.yaml   | 130 ++++++++++++++
+ .../devicetree/bindings/display/imx/hdmi.txt  |  65 -------
+ .../display/rockchip/dw_hdmi-rockchip.txt     |  74 --------
+ .../display/rockchip/rockchip,dw-hdmi.yaml    | 158 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 10 files changed, 477 insertions(+), 263 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/imx/hdmi.txt
+ delete mode 100644 Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+
 -- 
-2.18.0
+Regards,
+
+Laurent Pinchart
 
