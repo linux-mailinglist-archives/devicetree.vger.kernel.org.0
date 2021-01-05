@@ -2,98 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C7242EAECE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6FA2EAEF3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:42:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728567AbhAEPiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 10:38:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:32778 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728412AbhAEPiP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 10:38:15 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C783322B4B;
-        Tue,  5 Jan 2021 15:37:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609861055;
-        bh=VYJOAU7Jrcu6b/Sxpo7mSnkYTF6/uHBd9GZO8euKJWg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FvXSSbd/abOAsmavT974MXjpaP02LheOs4SyeS95w6Jyd84xXCdao48r+NNUUs7Fn
-         1VNtfZZRSXQu/e2iMLtSFOdk3lQtesmGQRiZy9uyfdxnx9F3yop+/UvKL1icG+6xQW
-         H490oo00P2gkM6vANeZ1sDEbits30d+85Mw8v+AW42NI5dAIM7xWr40itE1gqB5/4X
-         jELrdjUEyA4EdHZZQqEhbvfmauuPwTFnnJpAfvjiTYLPJrJ5/+o4QB598QlnmIR4Qf
-         CGI2K/Toz5mbWRDQbf37TBdg/a5W4mIg237KkUHoe/gRh4vzsOelnQg8lH4VYMg326
-         rxCA9k/eiS/rw==
-Received: by mail-ej1-f41.google.com with SMTP id b9so373828ejy.0;
-        Tue, 05 Jan 2021 07:37:34 -0800 (PST)
-X-Gm-Message-State: AOAM5310rL4KnfO3CtoI86ik+1zf3Lgp6XNgjqA9t3IrXLXpdS2q8wCI
-        9cCUvsD227Uv/ilsuYVQ4dxliqmt+HxraKlUBw==
-X-Google-Smtp-Source: ABdhPJz9dm4i1z1a2T2dsyBLuctZXpsj7Cv6KR4XDCBN+VEUmRMeCkVfPFFwGtQ9jHe90fkOIIRCNd3IGQ5Rbs0GbsQ=
-X-Received: by 2002:a17:906:d87:: with SMTP id m7mr69910226eji.108.1609861053429;
- Tue, 05 Jan 2021 07:37:33 -0800 (PST)
+        id S1728897AbhAEPlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 10:41:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728829AbhAEPlQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:41:16 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 224CCC061793
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 07:40:36 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id h22so73640216lfu.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 07:40:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8Izau05cqCVuspLwen2iXN40K1vFFwnjcmg+GBN87/4=;
+        b=n4aOGrqLYsUxHvSNfaVQ0n17PnnxNEO3CyeRdPHqF3WaAzn2l3eHx0rdg4pHSYpacS
+         sK3xG+7yZvT8JmUbiaaaIJcJ8tPZc+AjCWFoIKM71arnkQTEs3YzZZUu0VedvRSe5DDQ
+         jRPqXC5dOB6jhlxKgVJDX8NXW3IrU2DHHddugkKcnHCAKmXX41qg5v2fVkbumQ5QEZpR
+         56yhijf05Ugp5A2d4VJ0VQxwD1LDjTnR3B5cdB964NZx1tnaBbcIjl1KcYbnTzZ9eZda
+         BQ/s5UHM6nw2KysL6ud6BMSgNIQsKsaTh+yCWUW2JoiGMr3jYTVrbSJRaQ2KYP+N9RQo
+         juIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8Izau05cqCVuspLwen2iXN40K1vFFwnjcmg+GBN87/4=;
+        b=JY8qOXjGsU55ZCg6XnZV8GiGfVRJEeDwVIJngDjYD7qooAHJG9IoBBtnWa6fVkj/8p
+         SFEoRcCaAWgHFJMMMeRorMtKKvb3HbVlDxfUT6dhpiEzxF6ztnLf+AvOa+FjrndpwtOs
+         pyqVcubpgeNAMk+CnCzIdHM+l7eNIowSbHguTX4YYVAFNGFcai2kpmvhMY9rsrJIUoQC
+         vkVpbuyVBVYADb7Omo9Gv2HvCo619CjhuzptFnXBJ/xZxDElw5JTQ0hEa1ELeAlLNB7U
+         2058xWLmY2RPsKqDHSDEkQjxdtM1lVPyvc40PgW/YtmKt18nTidqKO/cv53O2csRIaUB
+         9Rtg==
+X-Gm-Message-State: AOAM5316+NFi0xgsSPiFlf5TQ0JNz9zHfB5+Ei5/bxOpWSFXkZk5Z8av
+        orXvomLkK0aOcbgF+UpK6TORDK5mHsEUkn6Teo2AcA==
+X-Google-Smtp-Source: ABdhPJyrHSZvc9Zm994DoD7/LF3CdtsRP5OW7X7zvRIRc8zB9qsQVSjTN8n4X4p8c31MzoIh8MZJCoXrXLt3QL6qXOY=
+X-Received: by 2002:a05:6512:3f3:: with SMTP id n19mr37174018lfq.586.1609861234575;
+ Tue, 05 Jan 2021 07:40:34 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1609844956.git.viresh.kumar@linaro.org> <7aa70809eff3f32d821761d2a763e4fb72ecc8fb.1609844956.git.viresh.kumar@linaro.org>
-In-Reply-To: <7aa70809eff3f32d821761d2a763e4fb72ecc8fb.1609844956.git.viresh.kumar@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 5 Jan 2021 08:37:21 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+0dL=LHo8r9mY_weBP_bQ97UOBnt596J3JoVHwGNinHA@mail.gmail.com>
-Message-ID: <CAL_Jsq+0dL=LHo8r9mY_weBP_bQ97UOBnt596J3JoVHwGNinHA@mail.gmail.com>
-Subject: Re: [RFC 2/2] scripts: dtc: Handle outform dtbo
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
+References: <20201230214918.17133-1-festevam@gmail.com> <20201230214918.17133-2-festevam@gmail.com>
+In-Reply-To: <20201230214918.17133-2-festevam@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 5 Jan 2021 16:40:23 +0100
+Message-ID: <CACRpkdZvOcQ3Xcxa-iguHhamh5KZWtrobhhcsYe_fA499LfUpg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] gpio: 74x164: Introduce the 'registers-default' property
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, sandor.yu@nxp.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 5, 2021 at 4:24 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+On Wed, Dec 30, 2020 at 10:49 PM Fabio Estevam <festevam@gmail.com> wrote:
+
+> From: Sandor Yu <sandor.yu@nxp.com>
 >
-> Update dtc compiler to accept dtbo as an outform.
+> On the imx7d-sdb board, there is one output pin of the 74x164 that
+> controls all peripherals power supply (PERI_3V).
 >
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> This pin should be at high voltage level when the 74x164 is probed,
+> otherwise the modules dependent on PERI_3V3 will not be powered.
+
+This seems like a usecase for a fixed GPIO regulator.
+Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+drivers/regulator/fixed.c
+
+> Add a new optional property called 'registers-default' that allows
+> describing the default output value for each shift register.
 >
+> Signed-off-by: Sandor Yu <sandor.yu@nxp.com>
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 > ---
-> I feel that this needs to go directly to
-> https://git.kernel.org/pub/scm/utils/dtc/dtc.git
->
-> Right ? I will send it separately if the idea is accepted here.
+> Changes since v2:
+> -Add Sandor's Signed-off-by tag.
 
-Yes, needs to go to devicetree-compiler list. I think this came up
-before and IIRC David wasn't completely in agreement. I looked briefly
-and couldn't find the thread though...
+Again while poking some defaults into some registers does indeed
+solve the problem, what we really want is to assign initial values
+to GPIO lines for cases where there are no consumers.
 
-We really don't need a different extension because we could just
-examine the dtb to determine if it is an overlay or not. That's less
-obvious. We could also add meta-data to overlays defining what base
-they apply to. If we had that, a tool could just list all overlays
-that should apply to a base and we could use that info for build time
-applying overlays. Of course, that and a dtbo extension/format are not
-mutually exclusive.
+If there are actually no device drivers on the GPIO line you can
+use GPIO hogs.
+Documentation/devicetree/bindings/gpio/gpio.txt
 
-> ---
->  scripts/dtc/dtc.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/scripts/dtc/dtc.c b/scripts/dtc/dtc.c
-> index bdb3f5945699..40fa7128b3d6 100644
-> --- a/scripts/dtc/dtc.c
-> +++ b/scripts/dtc/dtc.c
-> @@ -357,6 +357,8 @@ int main(int argc, char *argv[])
->  #endif
->         } else if (streq(outform, "dtb")) {
->                 dt_to_blob(outf, dti, outversion);
-> +       } else if (streq(outform, "dtbo")) {
-> +               dt_to_blob(outf, dti, outversion);
->         } else if (streq(outform, "asm")) {
->                 dt_to_asm(outf, dti, outversion);
->         } else if (streq(outform, "null")) {
+Otherwise e.g. properly obtain reset or GPIO regulator etc.
 
-You also need to extend guess_type_by_name().
+Deferred probe will sort things out,
 
+If you just need the line to go to a certain level for the short
+period between initializing the GPIO driver and the proper device
+driver taking control of the line, we need initial GPIO line
+values, which was discussed in my previous mail.
 
-Rob
+Yours,
+Linus Walleij
