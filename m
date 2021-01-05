@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE962EA701
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 10:11:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01D3B2EA738
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 10:25:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725800AbhAEJLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 04:11:13 -0500
-Received: from mga07.intel.com ([134.134.136.100]:29675 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725789AbhAEJLM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 04:11:12 -0500
-IronPort-SDR: 7BFXAPgowt6F1qzfRF7X0x0dfceWR68oYAZXfvLt7IErLvxSTw/vPSc+n0T1hT9kyq3b49PjjC
- GcbzWDXEwOuw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9854"; a="241160344"
-X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; 
-   d="scan'208";a="241160344"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2021 01:09:26 -0800
-IronPort-SDR: OJstUvai6uTrf/tAQsQMDyNtKkiDITzatLeNyTPnszEXk+IUi4lSFDSPyQgnQIoeESoCKWV5nF
- WoxoNk4ZN8Rg==
-X-IronPort-AV: E=Sophos;i="5.78,476,1599548400"; 
-   d="scan'208";a="386981017"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2021 01:09:23 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 80BE4206FD; Tue,  5 Jan 2021 11:09:21 +0200 (EET)
-Date:   Tue, 5 Jan 2021 11:09:21 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
-        Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: media: Use graph and
- video-interfaces schemas
-Message-ID: <20210105090921.GP11878@paasikivi.fi.intel.com>
-References: <20210104165808.2166686-1-robh@kernel.org>
- <20210104165808.2166686-3-robh@kernel.org>
+        id S1725860AbhAEJZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 04:25:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37594 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725831AbhAEJZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 04:25:13 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F348DC061574
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 01:24:32 -0800 (PST)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kwiZo-0006Ez-Fw; Tue, 05 Jan 2021 10:24:28 +0100
+Received: from mfe by dude02.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kwiZn-0005hV-L7; Tue, 05 Jan 2021 10:24:27 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     shawnguo@kernel.org, festevam@gmail.com, linux-imx@nxp.com
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: [PATCH] ARM: dts: imx6qdl-kontron-samx6i: fix i2c_lcd/cam default status
+Date:   Tue,  5 Jan 2021 10:24:07 +0100
+Message-Id: <20210105092406.21852-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210104165808.2166686-3-robh@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Fix typo so the gpio i2c busses are really disabled.
 
-On Mon, Jan 04, 2021 at 09:58:08AM -0700, Rob Herring wrote:
-> Now that we have graph and video-interfaces schemas, rework the media
-> related schemas to use them.
-> 
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Jacopo Mondi <jacopo@jmondi.org>
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Fixes: 2125212785c9 ("ARM: dts: imx6qdl-kontron-samx6i: add Kontron SMARC SoM Support")
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+ arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Thanks, this really cleans things up!
-
-Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-
+diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+index 36c2f0d9ce16..b167b33bd108 100644
+--- a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+@@ -167,7 +167,7 @@
+ 		i2c-gpio,delay-us = <2>; /* ~100 kHz */
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		status = "disabld";
++		status = "disabled";
+ 	};
+ 
+ 	i2c_cam: i2c-gpio-cam {
+@@ -179,7 +179,7 @@
+ 		i2c-gpio,delay-us = <2>; /* ~100 kHz */
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		status = "disabld";
++		status = "disabled";
+ 	};
+ };
+ 
 -- 
-Sakari Ailus
+2.20.1
+
