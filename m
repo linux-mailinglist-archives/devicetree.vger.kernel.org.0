@@ -2,103 +2,387 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA6FA2EAEF3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:42:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2CF22EAF1E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:46:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728897AbhAEPlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 10:41:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39556 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728829AbhAEPlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:41:16 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 224CCC061793
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 07:40:36 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id h22so73640216lfu.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 07:40:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8Izau05cqCVuspLwen2iXN40K1vFFwnjcmg+GBN87/4=;
-        b=n4aOGrqLYsUxHvSNfaVQ0n17PnnxNEO3CyeRdPHqF3WaAzn2l3eHx0rdg4pHSYpacS
-         sK3xG+7yZvT8JmUbiaaaIJcJ8tPZc+AjCWFoIKM71arnkQTEs3YzZZUu0VedvRSe5DDQ
-         jRPqXC5dOB6jhlxKgVJDX8NXW3IrU2DHHddugkKcnHCAKmXX41qg5v2fVkbumQ5QEZpR
-         56yhijf05Ugp5A2d4VJ0VQxwD1LDjTnR3B5cdB964NZx1tnaBbcIjl1KcYbnTzZ9eZda
-         BQ/s5UHM6nw2KysL6ud6BMSgNIQsKsaTh+yCWUW2JoiGMr3jYTVrbSJRaQ2KYP+N9RQo
-         juIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8Izau05cqCVuspLwen2iXN40K1vFFwnjcmg+GBN87/4=;
-        b=JY8qOXjGsU55ZCg6XnZV8GiGfVRJEeDwVIJngDjYD7qooAHJG9IoBBtnWa6fVkj/8p
-         SFEoRcCaAWgHFJMMMeRorMtKKvb3HbVlDxfUT6dhpiEzxF6ztnLf+AvOa+FjrndpwtOs
-         pyqVcubpgeNAMk+CnCzIdHM+l7eNIowSbHguTX4YYVAFNGFcai2kpmvhMY9rsrJIUoQC
-         vkVpbuyVBVYADb7Omo9Gv2HvCo619CjhuzptFnXBJ/xZxDElw5JTQ0hEa1ELeAlLNB7U
-         2058xWLmY2RPsKqDHSDEkQjxdtM1lVPyvc40PgW/YtmKt18nTidqKO/cv53O2csRIaUB
-         9Rtg==
-X-Gm-Message-State: AOAM5316+NFi0xgsSPiFlf5TQ0JNz9zHfB5+Ei5/bxOpWSFXkZk5Z8av
-        orXvomLkK0aOcbgF+UpK6TORDK5mHsEUkn6Teo2AcA==
-X-Google-Smtp-Source: ABdhPJyrHSZvc9Zm994DoD7/LF3CdtsRP5OW7X7zvRIRc8zB9qsQVSjTN8n4X4p8c31MzoIh8MZJCoXrXLt3QL6qXOY=
-X-Received: by 2002:a05:6512:3f3:: with SMTP id n19mr37174018lfq.586.1609861234575;
- Tue, 05 Jan 2021 07:40:34 -0800 (PST)
+        id S1728023AbhAEPoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 10:44:24 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:38284 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727989AbhAEPoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:44:24 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BA34B3D7;
+        Tue,  5 Jan 2021 16:43:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1609861421;
+        bh=nhstVHHWOEEMLzQ92yAPy5JAoJxo1w88iRoV9MIBG7Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O0py2Qd1NANGjVgcDchvk8WzIIS65uvtVReUAHWjDdS7UYSXWXITTI1Pok4Jn0eHg
+         /CdaFESQzMnvtWh3oy2QfU3uUZjxi5WKeeoq97tJ4NhvUn5rgTVP2tq233IVmTyOXl
+         +ecIjcmWuzepSu6OfLXW9FfTDoU/0WlWdP34BGas=
+Date:   Tue, 5 Jan 2021 17:43:29 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     linux-media@vger.kernel.org
+Cc:     Rui Miguel Silva <rmfrfs@gmail.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 57/75] dt-bindings: media: Convert i.MX7 MIPI CSI-2
+ receiver binding to YAML
+Message-ID: <X/SJIU7+pw91ZIAM@pendragon.ideasonboard.com>
+References: <20210105152852.5733-1-laurent.pinchart@ideasonboard.com>
+ <20210105152852.5733-58-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-References: <20201230214918.17133-1-festevam@gmail.com> <20201230214918.17133-2-festevam@gmail.com>
-In-Reply-To: <20201230214918.17133-2-festevam@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 5 Jan 2021 16:40:23 +0100
-Message-ID: <CACRpkdZvOcQ3Xcxa-iguHhamh5KZWtrobhhcsYe_fA499LfUpg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] gpio: 74x164: Introduce the 'registers-default' property
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, sandor.yu@nxp.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210105152852.5733-58-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 30, 2020 at 10:49 PM Fabio Estevam <festevam@gmail.com> wrote:
+This isn't applicable anymore as Rui had already converted the DT
+bindings. Sorry for the noise.
 
-> From: Sandor Yu <sandor.yu@nxp.com>
->
-> On the imx7d-sdb board, there is one output pin of the 74x164 that
-> controls all peripherals power supply (PERI_3V).
->
-> This pin should be at high voltage level when the 74x164 is probed,
-> otherwise the modules dependent on PERI_3V3 will not be powered.
+(I may however send additional patches, for instance to add descriptions
+for the clocks).
 
-This seems like a usecase for a fixed GPIO regulator.
-Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-drivers/regulator/fixed.c
-
-> Add a new optional property called 'registers-default' that allows
-> describing the default output value for each shift register.
->
-> Signed-off-by: Sandor Yu <sandor.yu@nxp.com>
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+On Tue, Jan 05, 2021 at 05:28:34PM +0200, Laurent Pinchart wrote:
+> Convert the DT binding for the i.MX7 MIPI CSI-2 receiver to YAML. Add
+> Rui to the maintainers list as he's the original author of the binding.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
-> Changes since v2:
-> -Add Sandor's Signed-off-by tag.
+>  .../bindings/media/fsl,imx7-mipi-csi2.yaml    | 204 ++++++++++++++++++
+>  .../bindings/media/imx7-mipi-csi2.txt         |  90 --------
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 205 insertions(+), 91 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/fsl,imx7-mipi-csi2.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/media/fsl,imx7-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/fsl,imx7-mipi-csi2.yaml
+> new file mode 100644
+> index 000000000000..2df997293780
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/fsl,imx7-mipi-csi2.yaml
+> @@ -0,0 +1,204 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/fsl,imx7-mipi-csi2.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX7 MIPI CSI-2 receiver
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +  - Rui Miguel Silva <rui.silva@linaro.org>
+> +
+> +description: |-
+> +  The NXP i.MX7 SoC family includes a MIPI CSI-2 receiver IP core, documented
+> +  as "CSIS V3.3". The IP core seems to originate from Samsung, and may be
+> +  compatible with some of the Exynos4 ad S5P SoCs.
+> +
+> +  While the CSI-2 receiver is separate from the MIPI D-PHY IP core, the PHY is
+> +  completely wrapped by the CSIS and doesn't expose a control interface of its
+> +  own. This binding thus covers both IP cores.
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx7-mipi-csi2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: The peripheral clock (a.k.a. APB clock)
+> +      - description: The external clock (optionally used as the pixel clock)
+> +      - description: The MIPI D-PHY clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: wrap
+> +      - const: phy
+> +
+> +  resets:
+> +    items:
+> +      - description: MIPI D-PHY slave reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: mrst
+> +
+> +  power-domains: true
+> +
+> +  phy-supply:
+> +    description: The MIPI D-PHY digital power supply
+> +
+> +  clock-frequency:
+> +    description: The desired external clock ("wrap") frequency, in Hz
+> +    default: 166000000
+> +
+> +  fsl,csis-hs-settle:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: HS-SETTLE time (unit unknown)
+> +
+> +  ports:
+> +    # See ./video-interfaces.txt for details
+> +    type: object
+> +
+> +    properties:
+> +      "#address-cells":
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        const: 0
+> +
+> +      port@0:
+> +        type: object
+> +        description: The input port, connected to the CSI-2 source
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+> +
+> +          endpoint:
+> +            type: object
+> +
+> +            properties:
+> +              data-lanes:
+> +                $ref: /schemas/types.yaml#/definitions/uint32-array
+> +                items:
+> +                  minItems: 1
+> +                  maxItems: 2
+> +                  items:
+> +                    - const: 1
+> +                    - const: 2
+> +
+> +              remote-endpoint:
+> +                $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +            required:
+> +              - data-lanes
+> +              - remote-endpoint
+> +
+> +            additionalProperties: false
+> +
+> +        required:
+> +          - reg
+> +
+> +        additionalProperties: false
+> +
+> +      port@1:
+> +        type: object
+> +        description: The output port
+> +
+> +        properties:
+> +          reg:
+> +            const: 1
+> +
+> +          endpoint:
+> +            type: object
+> +
+> +            properties:
+> +              remote-endpoint:
+> +                $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +            required:
+> +              - remote-endpoint
+> +
+> +            additionalProperties: false
+> +
+> +        required:
+> +          - reg
+> +
+> +        additionalProperties: false
+> +
+> +    required:
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +      - port@0
+> +      - port@1
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - power-domains
+> +  - phy-supply
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx7d-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/reset/imx7-reset.h>
+> +
+> +    mipi_csi: mipi-csi@30750000 {
+> +        compatible = "fsl,imx7-mipi-csi2";
+> +        reg = <0x30750000 0x10000>;
+> +        interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clks IMX7D_IPG_ROOT_CLK>,
+> +                 <&clks IMX7D_MIPI_CSI_ROOT_CLK>,
+> +                 <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
+> +        clock-names = "pclk", "wrap", "phy";
+> +        clock-frequency = <166000000>;
+> +        power-domains = <&pgc_mipi_phy>;
+> +        phy-supply = <&reg_1p0d>;
+> +        resets = <&src IMX7_RESET_MIPI_PHY_MRST>;
+> +        reset-names = "mrst";
+> +        fsl,csis-hs-settle = <3>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +
+> +                mipi_csi_in: endpoint {
+> +                    remote-endpoint = <&ov2680_out>;
+> +                    data-lanes = <1>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +
+> +                mipi_csi_out: endpoint {
+> +                    remote-endpoint = <&csi_mux_from_mipi_vc0>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt b/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+> deleted file mode 100644
+> index 71fd74ed3ec8..000000000000
+> --- a/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+> +++ /dev/null
+> @@ -1,90 +0,0 @@
+> -Freescale i.MX7 Mipi CSI2
+> -=========================
+> -
+> -mipi_csi2 node
+> ---------------
+> -
+> -This is the device node for the MIPI CSI-2 receiver core in i.MX7 SoC. It is
+> -compatible with previous version of Samsung D-phy.
+> -
+> -Required properties:
+> -
+> -- compatible    : "fsl,imx7-mipi-csi2";
+> -- reg           : base address and length of the register set for the device;
+> -- interrupts    : should contain MIPI CSIS interrupt;
+> -- clocks        : list of clock specifiers, see
+> -        Documentation/devicetree/bindings/clock/clock-bindings.txt for details;
+> -- clock-names   : must contain "pclk", "wrap" and "phy" entries, matching
+> -                  entries in the clock property;
+> -- power-domains : a phandle to the power domain, see
+> -          Documentation/devicetree/bindings/power/power_domain.txt for details.
+> -- reset-names   : should include following entry "mrst";
+> -- resets        : a list of phandle, should contain reset entry of
+> -                  reset-names;
+> -- phy-supply    : from the generic phy bindings, a phandle to a regulator that
+> -	          provides power to MIPI CSIS core;
+> -
+> -Optional properties:
+> -
+> -- clock-frequency : The IP's main (system bus) clock frequency in Hz, default
+> -		    value when this property is not specified is 166 MHz;
+> -- fsl,csis-hs-settle : differential receiver (HS-RX) settle time;
+> -
+> -The device node should contain two 'port' child nodes with one child 'endpoint'
+> -node, according to the bindings defined in:
+> - Documentation/devicetree/bindings/ media/video-interfaces.txt.
+> - The following are properties specific to those nodes.
+> -
+> -port node
+> ----------
+> -
+> -- reg		  : (required) can take the values 0 or 1, where 0 shall be
+> -                     related to the sink port and port 1 shall be the source
+> -                     one;
+> -
+> -endpoint node
+> --------------
+> -
+> -- data-lanes    : (required) an array specifying active physical MIPI-CSI2
+> -		    data input lanes and their mapping to logical lanes; this
+> -                    shall only be applied to port 0 (sink port), the array's
+> -                    content is unused only its length is meaningful,
+> -                    in this case the maximum length supported is 2;
+> -
+> -example:
+> -
+> -        mipi_csi: mipi-csi@30750000 {
+> -                #address-cells = <1>;
+> -                #size-cells = <0>;
+> -
+> -                compatible = "fsl,imx7-mipi-csi2";
+> -                reg = <0x30750000 0x10000>;
+> -                interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> -                clocks = <&clks IMX7D_IPG_ROOT_CLK>,
+> -                                <&clks IMX7D_MIPI_CSI_ROOT_CLK>,
+> -                                <&clks IMX7D_MIPI_DPHY_ROOT_CLK>;
+> -                clock-names = "pclk", "wrap", "phy";
+> -                clock-frequency = <166000000>;
+> -                power-domains = <&pgc_mipi_phy>;
+> -                phy-supply = <&reg_1p0d>;
+> -                resets = <&src IMX7_RESET_MIPI_PHY_MRST>;
+> -                reset-names = "mrst";
+> -                fsl,csis-hs-settle = <3>;
+> -
+> -                port@0 {
+> -                        reg = <0>;
+> -
+> -                        mipi_from_sensor: endpoint {
+> -                                remote-endpoint = <&ov2680_to_mipi>;
+> -                                data-lanes = <1>;
+> -                        };
+> -                };
+> -
+> -                port@1 {
+> -                        reg = <1>;
+> -
+> -                        mipi_vc0_to_csi_mux: endpoint {
+> -                                remote-endpoint = <&csi_mux_from_mipi_vc0>;
+> -                        };
+> -                };
+> -        };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 970d9cee509d..584ea2116c38 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10842,8 +10842,8 @@ L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  T:	git git://linuxtv.org/media_tree.git
+>  F:	Documentation/admin-guide/media/imx7.rst
+> +F:	Documentation/devicetree/bindings/media/fsl,imx7-mipi-csi2.yaml
+>  F:	Documentation/devicetree/bindings/media/imx7-csi.txt
+> -F:	Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+>  F:	drivers/staging/media/imx/imx7-media-csi.c
+>  F:	drivers/staging/media/imx/imx7-mipi-csis.c
+>  
 
-Again while poking some defaults into some registers does indeed
-solve the problem, what we really want is to assign initial values
-to GPIO lines for cases where there are no consumers.
+-- 
+Regards,
 
-If there are actually no device drivers on the GPIO line you can
-use GPIO hogs.
-Documentation/devicetree/bindings/gpio/gpio.txt
-
-Otherwise e.g. properly obtain reset or GPIO regulator etc.
-
-Deferred probe will sort things out,
-
-If you just need the line to go to a certain level for the short
-period between initializing the GPIO driver and the proper device
-driver taking control of the line, we need initial GPIO line
-values, which was discussed in my previous mail.
-
-Yours,
-Linus Walleij
+Laurent Pinchart
