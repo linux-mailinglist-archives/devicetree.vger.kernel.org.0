@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9438B2EA59E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 07:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E93892EA5CD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 08:20:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726224AbhAEGz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 01:55:26 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:49874 "EHLO
+        id S1725797AbhAEHTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 02:19:55 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56048 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725843AbhAEGz0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 01:55:26 -0500
+        with ESMTP id S1725778AbhAEHTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 02:19:55 -0500
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1056rhgh014887;
-        Tue, 5 Jan 2021 00:53:43 -0600
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1057J7P8024438;
+        Tue, 5 Jan 2021 01:19:07 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609829623;
-        bh=LTOT+YRmvhkR78Ae74i29OdJCgRYMyZk9XPXTNgWqKU=;
+        s=ti-com-17Q1; t=1609831147;
+        bh=NyeCcrw60zdtcaezb7V+VqqvmQCelbxdT171ochlhqI=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=PcADxtvm+lP2pE7vhuMw+X7OXkvFhp7TD0IiK9c8WksUveDr/Rhl+ckM73k5LNC2y
-         ho1dZpMSGdVaP9F81qST96Wa4naMXV23ixRFKdOKg2m/xhKSQvrZm5WsiT6LfTkFUI
-         Y3o+pW+0TiISMdUEQ2OOhnxN8Tgx3SsOwa421xms=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1056rhWK054587
+        b=ZWgtpwc1jSw7qOcw/Lxv3GKX6AZlhHS53Y3m1fGWzCMLBR02a0uIVI7fheDAbAW+R
+         HWgPp5pA+qz7+yykAtvcZKdgXO9KplCJVbXlCwV0mpy4u/nHrttm+VEsZui61nP/ED
+         eKfzBd9LkdoQptbOl/eG01xQFOOl+u7V/b4zdLOE=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1057J7ZD091657
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 5 Jan 2021 00:53:43 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 5 Jan
- 2021 00:53:43 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+        Tue, 5 Jan 2021 01:19:07 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
  (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 5 Jan
+ 2021 01:19:06 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 5 Jan 2021 00:53:43 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1056rcGq126926;
-        Tue, 5 Jan 2021 00:53:39 -0600
-Subject: Re: [PATCH 1/2] Documentation: devicetree: Add new compatible string
- for eeprom microchip 93LC46B
-To:     Rob Herring <robh@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Pratyush Yadav <p.yadav@ti.com>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20201218140815.9501-1-a-govindraju@ti.com>
- <20201218140815.9501-2-a-govindraju@ti.com>
- <20201231191732.GA2198038@robh.at.kernel.org>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <fbcc277c-c8aa-1252-4e9f-ba8a4f5fd00a@ti.com>
-Date:   Tue, 5 Jan 2021 12:23:37 +0530
+ Frontend Transport; Tue, 5 Jan 2021 01:19:06 -0600
+Received: from [10.250.233.179] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1057J2YO034359;
+        Tue, 5 Jan 2021 01:19:03 -0600
+Subject: Re: [PATCH 2/3] arm64: dts: ti: Add Support for AM642 SoC
+To:     Dave Gerlach <d-gerlach@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+References: <20201125052004.17823-1-d-gerlach@ti.com>
+ <20201125052004.17823-3-d-gerlach@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <4f797382-e8dc-9e22-26b8-1a9b904a7cb7@ti.com>
+Date:   Tue, 5 Jan 2021 12:49:02 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201231191732.GA2198038@robh.at.kernel.org>
+In-Reply-To: <20201125052004.17823-3-d-gerlach@ti.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -64,41 +62,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Dave,
 
-On 01/01/21 12:47 am, Rob Herring wrote:
-> On Fri, Dec 18, 2020 at 07:38:10PM +0530, Aswath Govindraju wrote:
->> Add a new compatible string for eeprom microchip 93LC46B in eeprom-93xx46
->> dt-binding file as it belongs to the 93xx46 family of devices.
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>  Documentation/devicetree/bindings/misc/eeprom-93xx46.txt | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
->> index a8ebb4621f79..9f272361f117 100644
->> --- a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
->> +++ b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
->> @@ -4,6 +4,7 @@ Required properties:
->>  - compatible : shall be one of:
->>      "atmel,at93c46d"
->>      "eeprom-93xx46"
->> +    "microchip,93LC46B"
-> 
-> Generally, we use lowercase and that's the existing pattern here.
+On 11/25/20 10:50 AM, Dave Gerlach wrote:
+> +	cbass_main: bus@f4000 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x00600000 0x00 0x00600000 0x00 0x00001100>, /* GPIO */
+> +			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* Timesync router */
+> +			 <0x00 0x01000000 0x00 0x01000000 0x00 0x02330400>, /* First peripheral window */
+> +			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* Main CPSW */
+> +			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIE_CORE */
+> +			 <0x00 0x0f000000 0x00 0x0f000000 0x00 0x00c44200>, /* Second peripheral window */
+> +			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
+> +			 <0x00 0x30000000 0x00 0x30000000 0x00 0x000bc100>, /* ICSSG0/1 */
+> +			 <0x00 0x37000000 0x00 0x37000000 0x00 0x00040000>, /* TIMERMGR0 TIMERS */
+> +			 <0x00 0x39000000 0x00 0x39000000 0x00 0x00000400>, /* CPTS0 */
+> +			 <0x00 0x3b000000 0x00 0x3b000000 0x00 0x00000400>, /* GPMC0_CFG */
+> +			 <0x00 0x3cd00000 0x00 0x3cd00000 0x00 0x00000200>, /* TIMERMGR0_CONFIG */
+> +			 <0x00 0x3f004000 0x00 0x3f004000 0x00 0x00000400>, /* GICSS0_REGS */
+> +			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>, /* CTRL_MMR0 */
+> +			 <0x00 0x48000000 0x00 0x48000000 0x00 0x06400000>, /* DMASS */
+> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x08000000>, /* GPMC0 DATA */
 
-ohh ok. I was trying to match the compatible string exactly with the the
-device name. I will make this change in the respin.
+Could you please include OSPI DAT0 region:
 
-Thanks,
-Aswath
++                        <0x00 0x60000000 0x00 0x60000000 0x00 0x08000000>, /* FSS0 DAT1 */
 
-> 
->>  - data-size : number of data bits per word (either 8 or 16)
->>  
->>  Optional properties:
->> -- 
->> 2.17.1
->>
+This will be used by R5 SPL to access OSPI (OSPI data region within 32 bit addressable space)
 
+> +			 <0x00 0x000f4000 0x00 0x000f4000 0x00 0x000002e4>, /* PINCTRL */
+> +			 <0x00 0x68000000 0x00 0x68000000 0x00 0x08000000>, /* PCIe DAT0 */
+> +			 <0x06 0x00000000 0x06 0x00000000 0x01 0x00000000>, /* PCIe DAT1 */
+> +			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS0 DAT3 */
+> +
+> +			 /* MCU Domain Range */
+> +			 <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>;
+> +
+> +		cbass_mcu: bus@4000000 {
+> +			compatible = "simple-bus";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>; /* Peripheral window */
+> +		};
+> +	};
+> +};
+> +
