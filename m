@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67ACA2EB608
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 00:19:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C49B32EB623
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 00:27:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726151AbhAEXTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 18:19:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725817AbhAEXTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 18:19:22 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DCAC061574
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 15:18:42 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id h205so2451696lfd.5
-        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 15:18:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=f1kIGsmlZWUnm0eNGp2YOwyYVCXEP678oYFzp03SZFI=;
-        b=rnHdyyVftcEE7l7n8QrU0td4/OZrwidg5QjguzxzL+t8RKl/3VPiOzvTNZ2BoKvWUf
-         0oxXbwipp5JliKi76dXXNv/pSOUpi0HSeKdxGq/99f6rmeLB9vVx8D70QVFZg7kDTLse
-         f4g0p/PVckCZod9ikA9zvAXf0egHHKIpQRzbghxSX2vclcjBPKgMHngQZgArP4gQGPHd
-         GA89XBQTfvpgw3a4rF4geFNVMU418Q/mY7zqALXO9oWkS2LoHpVhf1v4VfmstuMUE3WE
-         LJhtYTGElft+/FldH7rg6iUHqvtpnXqJKIJd3Dtcj8xxwH+mKlXa6Q46TcuEknGHL8OP
-         Z0lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f1kIGsmlZWUnm0eNGp2YOwyYVCXEP678oYFzp03SZFI=;
-        b=mXx/uekL5nZ/I1itgOaR6kmbB/gXIxZUwDWdwp8dfmnoryira6ZD7UKZaSxmRVqoyC
-         AwAz/hEymL5HlyrqLtawUegZoMwHFWObevBuP8Kw186gwappQrxKAHQfOKH+ombPhylC
-         qSqXEqh3NvpYXUUf2CMhUmn8cCT3cYx6gqUAC/dGfLz/DA6ElxRL2sTTay8hpVGr+cOU
-         /wUpvgOypFSW246CRN4VMQfeFxJVfatklBa+TMCz/RlRLxy9oZJm4QlI2JJ/k3qkoAN9
-         eCLvaSH4iLQh+gSEs4UJEFvZxBLlB73G7NO/fsO3sr4A4ar1OpmgSatdKrlQqyJgES9K
-         /wPg==
-X-Gm-Message-State: AOAM530KCk3GlcxvUypgWAHMU0PVpF+3NkiSMMsWG/Y/QsB/8FMccwCE
-        uo45v2+q6C4mP5cQBh8DKONsJfk8uOmvizukDyUs9Z0rxD8=
-X-Google-Smtp-Source: ABdhPJwl1fDf3fY4Y+gWKMuQwKAvot59gPqwZ5QoeTO2q/OZcfomVBoDui6Gw4od7ko0KnEExWCilAT9V5Mr25TxCtE=
-X-Received: by 2002:ac2:5597:: with SMTP id v23mr614391lfg.649.1609888720651;
- Tue, 05 Jan 2021 15:18:40 -0800 (PST)
+        id S1726215AbhAEX1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 18:27:51 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37964 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725813AbhAEX1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 18:27:50 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 105NR8ch057044;
+        Tue, 5 Jan 2021 17:27:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1609889228;
+        bh=Km5CbpCjxLmK9wY5OvYyeRmL6BqdoqFVQADK+YJyQvI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=E+FoVCKVqp7RAVWeRNfUv/dzWd5R0TH5Hzuh5leREsnFryBJJRPQbTXXM/eOm4Yqt
+         0jCXwZW8vNjQfK7GbaUbMQQdG608sERqP47EsjZwZQCehnUeVr+XkJ6/Kx5A5Xzyz/
+         mhS6mM6jrAfJqpt6AJMiekOnZiwqPKuG27VHL1sI=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 105NR8bO010852
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 5 Jan 2021 17:27:08 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 5 Jan
+ 2021 17:27:08 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 5 Jan 2021 17:27:08 -0600
+Received: from [10.250.36.125] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 105NR8ss063291;
+        Tue, 5 Jan 2021 17:27:08 -0600
+Subject: Re: [EXTERNAL] Re: [PATCH v9 2/2] power: supply: bq256xx: Introduce
+ the BQ256XX charger driver
+To:     Sebastian Reichel <sre@kernel.org>
+CC:     <robh+dt@kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmurphy@ti.com>
+References: <20210105202949.14677-1-r-rivera-matos@ti.com>
+ <20210105202949.14677-3-r-rivera-matos@ti.com>
+ <20210105212631.2meujp37e5jqp7eu@earth.universe>
+From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+Message-ID: <430133d5-6a30-8cfd-2483-f4b849bf90bd@ti.com>
+Date:   Tue, 5 Jan 2021 17:27:08 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201208085748.3684670-1-vkoul@kernel.org> <20201210135253.GA2405508@robh.at.kernel.org>
- <X/NgUp/pm9T0JlTw@builder.lan> <20210105061415.GA2771@vkoul-mobl>
-In-Reply-To: <20210105061415.GA2771@vkoul-mobl>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 6 Jan 2021 00:18:29 +0100
-Message-ID: <CACRpkdZWRjNt+fRbF2uO8sg551kytM+ZH5Zs_6QUrhRX0a5ATQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl bindings
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210105212631.2meujp37e5jqp7eu@earth.universe>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 5, 2021 at 7:14 AM Vinod Koul <vkoul@kernel.org> wrote:
-> On 04-01-21, 12:37, Bjorn Andersson wrote:
->
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: qcom,sm8350-pinctrl
-> > >
-> > > If this block is called TLMM, then I'd expect that to be in the
-> > > compatible string. But I guess this is consistent with the others.
-> > >
-> >
-> > This is my mistake 7 years ago and it bothers me every time we write a
-> > new one of these - in particular since we now support a few different
-> > "Qualcomm pinctrl" blocks.
-> >
-> > It would be ugly for a while, but I'm in favor of naming these
-> > "qcom,<platform>-tlmm" going forward.
-> >
-> > PS. And we can solve the ugliness by introducing the "proper" naming
-> > (and keeping the old one for backwards compatibility) as we migrate the
-> > binding documents to yaml.
->
-> Okay I will update this one to qcom,sm8350-tlmm. Also we use
-> sm8350_pinctrl few places in the driver, will update that to sm8350_tlmm
-> as well
+Sebastian,
 
-Go for it, it's a much better to the point name.
-
-Yours,
-Linus Walleij
+On 1/5/21 3:26 PM, Sebastian Reichel wrote:
+> Hi,
+>
+> On Tue, Jan 05, 2021 at 02:29:49PM -0600, Ricardo Rivera-Matos wrote:
+>> The BQ256XX family of devices are highly integrated buck chargers
+>> for single cell batteries.
+>>
+>> Signed-off-by: Ricardo Rivera-Matos <r-rivera-matos@ti.com>
+>>
+>> v9 - resolves two warnings issued by kernel test robot
+> changelog needs to be below --- btw.
+> (so that git am does not pick it up :))
+ACK
+>
+>> ---
+>> [...]
+>> +	ret = bq256xx_parse_dt(bq, psy_cfg, dev);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to read device tree properties%d\n", ret);
+>> +		return ret;
+>> +	}
+>> [...]
+> If you want to change psy_cfg, you need to pass it by reference
+> and not by value (i.e. use &psy_cfg here and a pointer as argument
+> of bq256xx_parse_dt). Providing psy_cfg like this creates a copy
+> of the struct.
+ACK, understood.
+>
+> Did you runtime test this version? It should crash when accessing
+> the properties because of psy_cfg.drv_data being NULL.
+ACK, I did not, my mistake. v10 will get tested on the actual hardware.
+>
+>> [...]
+>> +	ret = bq256xx_power_supply_init(bq, psy_cfg, dev);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to register power supply\n");
+>> +		return ret;
+>> +	}
+> Here it's also better to just provide the address of psy_cfg
+> (but not strictly necessary).
+>
+> -- Sebastian
+Thanks,
+Ricardo
