@@ -2,52 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 755EA2EA3A5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 04:07:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A975A2EA3AA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 04:09:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728155AbhAEDGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Jan 2021 22:06:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:32908 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728001AbhAEDGz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Jan 2021 22:06:55 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 90B1622573;
-        Tue,  5 Jan 2021 03:06:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609815974;
-        bh=Kgg+A/cVZgamKmVdDfqWZcSREjjfaILflFi12eb+eP4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IvxTs1ftobRSHLgO0a8KeodTQYxTfCdir31Gb9ZXKEYSB6O5nR3ca+RHQVvJQTLqX
-         IuPL/erDQRRSdvKnjyWPuq1+45E2GfBy9eDowgF1A8s0dAljXy1Gm6i4hLGisNz7/c
-         a+ZTfue6+gwkzv8Dy//P9pgptfE460jjCu552leF0ir/yaSpYdA1fINcOodPgCp7fc
-         2XQagmWXRWGYZnUCdAUwkZdDR3fF5dFy0LcfLPZxwZuORCDgQTELNkDHmTbCb992z6
-         XrDlFEaDUMNpniaCQClZaLeStTLVeLgT95YP5G92FpzjHx1UwWBw3aRf3tIm7a6uG2
-         6C2F7juGgOqMA==
-Date:   Tue, 5 Jan 2021 11:06:09 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, festevam@gmail.com,
-        u.kleine-koenig@pengutronix.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: Re: [PATCH] ARM: dts: imx6qdl-kontron-samx6i: fix pwms for
- lcd-backlight
-Message-ID: <20210105030608.GL4142@dragon>
-References: <20201202180558.14541-1-m.felsch@pengutronix.de>
+        id S1728049AbhAEDH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Jan 2021 22:07:29 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:60805 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726124AbhAEDH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Jan 2021 22:07:29 -0500
+X-UUID: 1c003dd616d646fbb09f1ded75daf66b-20210105
+X-UUID: 1c003dd616d646fbb09f1ded75daf66b-20210105
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 314839861; Tue, 05 Jan 2021 11:06:42 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 5 Jan 2021 11:06:41 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 5 Jan 2021 11:06:38 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH v4, 00/10] soc: mediatek: mmsys: Use function call for setting the routing registers
+Date:   Tue, 5 Jan 2021 11:06:23 +0800
+Message-ID: <1609815993-22744-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201202180558.14541-1-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 02, 2020 at 07:05:58PM +0100, Marco Felsch wrote:
-> The pwms property have to specify the no-/inverted flag since
-> commit fa28d8212ede ("ARM: dts: imx: default to #pwm-cells = <3>
-> in the SoC dtsi files").
-> 
-> Fixes: fa28d8212ede ("ARM: dts: imx: default to #pwm-cells = <3> in the SoC dtsi files")
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+The following series are intended to prepare the mtk-mmsys driver to
+allow different DDP (Data Display Path) function call per SoC.
 
-Applied, thanks.
+base 5.11-rc1
+
+change since v3:
+- move register operation into mmsys path select function
+
+Yongqiang Niu (10):
+  soc: mediatek: mmsys: create mmsys folder
+  soc: mediatek: mmsys: Create struct mtk_mmsys to store context data
+  soc: mediatek: mmsys: move register operation into mmsys path select
+    function
+  soc: mediatek: mmsys: Use function call for setting the routing
+    registers
+  soc: mediatek: mmsys: add mt8183 function call for setting the routing
+    registers
+  soc: mediatek: mmsys: add component OVL_2L2
+  soc: mediatek: mmsys: add component POSTMASK
+  soc: mediatek: mmsys: add component RDMA4
+  soc: mediatek: mmsys: Use function call for setting mmsys ovl mout
+    register
+  soc: mediatek: mmsys: add mt8192 mmsys support
+
+ drivers/soc/mediatek/Makefile             |   2 +-
+ drivers/soc/mediatek/mmsys/Makefile       |   5 +
+ drivers/soc/mediatek/mmsys/mt2701-mmsys.c | 254 ++++++++++++++++++++
+ drivers/soc/mediatek/mmsys/mt8183-mmsys.c | 110 +++++++++
+ drivers/soc/mediatek/mmsys/mt8192-mmsys.c | 149 ++++++++++++
+ drivers/soc/mediatek/mmsys/mtk-mmsys.c    | 180 ++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c          | 373 ------------------------------
+ include/linux/soc/mediatek/mtk-mmsys.h    |  25 ++
+ 8 files changed, 724 insertions(+), 374 deletions(-)
+ create mode 100644 drivers/soc/mediatek/mmsys/Makefile
+ create mode 100644 drivers/soc/mediatek/mmsys/mt2701-mmsys.c
+ create mode 100644 drivers/soc/mediatek/mmsys/mt8183-mmsys.c
+ create mode 100644 drivers/soc/mediatek/mmsys/mt8192-mmsys.c
+ create mode 100644 drivers/soc/mediatek/mmsys/mtk-mmsys.c
+ delete mode 100644 drivers/soc/mediatek/mtk-mmsys.c
+
+-- 
+1.8.1.1.dirty
+
