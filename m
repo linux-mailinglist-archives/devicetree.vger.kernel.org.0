@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 188EF2EA7E2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 10:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53B902EA7E7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 10:50:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728422AbhAEJsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 04:48:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41108 "EHLO
+        id S1728398AbhAEJsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 04:48:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728397AbhAEJsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 04:48:06 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE0AC06179E
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 01:46:55 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id l23so1393249pjg.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 01:46:55 -0800 (PST)
+        with ESMTP id S1728547AbhAEJsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 04:48:09 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B2AC0617A4
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 01:47:01 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id t22so18085040pfl.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 01:47:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=X6ZtUI4Q1Kv9KoNZEzoxKYY3jMlU4aqhIrm/Qzwt2c4=;
-        b=IqfZ+0JlcPO/0fdghcVD5HMjwJRSj3ILQCXHtqVd3MsXiOgcBW79R1FU9U+RCrUzuL
-         o6qefTTjpGjlCBXdr+DIfWfqPQ1ln6ANDE4Kr0/TXvH0rUBRRJowRP4dROoRAwTN5k1M
-         5DrP7iFvZXRpEUdpMnwIQ/Qg6r91KkRTYnte/uMEyw/U4Iv+szIFp7ZL/s3DTmAHd7Qa
-         9UuNkzgBbkhN25Sg1cZy63BafrYzoyks385n5TJFnIgqz/scMZ+BQ7Z8YhM9Dx/HsNJP
-         hNqU1hzRtOr9JQ96V8dIQQcoV8FMjqqV1H1iIZjEB1+U5eqSEzi2NYDDp1rYy7qlBF7M
-         uqqQ==
+        bh=BVgPs4UTz0m97kkGkS/Y+gkUiFLrmZrneiZz02HakNw=;
+        b=DutPUSfG8OBa3zh4wMs3OtN5nFmdZp84ZWZtn2s/43mh03TekL7sIELi32Gfh/an4U
+         a71ePpilxScpeFmCia8JYpyliB0SUhXY/pJ5shyv29d6L8cMUxyHL5mbSzboLSSbN92B
+         srP/QXTLujFiSv06DhW9jFqoisN8ICnmfp1+J7vIQvj5Npl6tpIK+A9veQiNOzwy+JTl
+         xX0AdcDN8e6RH26rkXjNsBGx3lIoQbmxpwuLK8yRsmV5fY4/5xstnmNSwRKJ4l6YX2i8
+         a63r2Sec4pgNAFAJXs7z+vaj2KkmIe1cFOsewJ8SniwaBOrqR5oo++8cOhEUrqrzPFsF
+         AYUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=X6ZtUI4Q1Kv9KoNZEzoxKYY3jMlU4aqhIrm/Qzwt2c4=;
-        b=KeSJljegEb4xWjTyH7bR+O7Od51PuPhyG8Sf+5H09MMB5H2e6rOIdrMlEpUyZnYYDf
-         Qu/jzDFrvkiLh4ToxmZys56dFR0OIysCteqS+nSYcOO3OAnjwsVn3PYt+8fEKasmp5IM
-         nHbKMDitU6wu47EP2K6I7aBDWO9BG8uywhXGmFizpG8VHEeVD37+7sZIyeyZa6N5Q2aY
-         vzPaUtXs7Ck1QbkLzxy7yCsh7rTAEbM630xLNktFAEbM6FKZWxKctI7NFJUDZSSl8wgG
-         q5+mVsv3ZfXMnmfEiXU1ni9T43oyGwJe0x50qpQaAHJxKzQ2Z2vjkH7Fia2oPzBhq/7h
-         E+Uw==
-X-Gm-Message-State: AOAM5336WdzCRXa8sc/+tMh6RHwTZu6+cznXd64A1Mjccg3qCzZgfp/5
-        uHI3imDhfsEYXXse2adMnm4H
-X-Google-Smtp-Source: ABdhPJwdjtf7ZxrFvOutgpEuMZ/Fbn0O2zhvjfCj2mZbSvhf7tqZ/2tBGg2gBBXspakdgD+yLNisnw==
-X-Received: by 2002:a17:90a:77c1:: with SMTP id e1mr3326064pjs.141.1609840014897;
-        Tue, 05 Jan 2021 01:46:54 -0800 (PST)
+        bh=BVgPs4UTz0m97kkGkS/Y+gkUiFLrmZrneiZz02HakNw=;
+        b=p+Ah2Y5BjZSPYQ3aPTi5oGHNRKV3Ox3e7OViLVpmvvECfAEtuV+ox6tVssc4elREor
+         TYwxw2Uyv7uc1Mx4HVX69uiwIuoL9nYLWJ6XJUiZVrV1Z4Cxs8LTD8PsuZa/6LbYeKu5
+         o7/s82Pa1Xh2E2/iYiVN86UhtqQfKVfKaVPyvF8lEG0oO36PMf7ztx2AMGSLCKsouuvq
+         R+fsbKaHxb8aVFinQtwVThENPDpCBsw4eTDnVOa+XxBVO2Ct/p/W4T5vdiQ5gRFci4Pv
+         GIs9UCM5o633v1aYEe85zGhE61iflVcRtb88osae2n033AnkEg1ag/UPj8WzuqDFl8Eb
+         dY4A==
+X-Gm-Message-State: AOAM530QQDQNyXn4P0VBLbsA/kcQ3TJ9+cIdV2C81qhDAMkLsaQNwjcm
+        hoYHo4B9bGSnpNDMeZWcBcxM
+X-Google-Smtp-Source: ABdhPJyTRo1OjTtA/7Ns0m0WHPZzpudFVa+4Q6SGnm8+dLFZcqWH083kUE4VHfUJqmxJUIdbZwSDOA==
+X-Received: by 2002:a63:3086:: with SMTP id w128mr39020040pgw.227.1609840021316;
+        Tue, 05 Jan 2021 01:47:01 -0800 (PST)
 Received: from localhost.localdomain ([103.77.37.191])
-        by smtp.gmail.com with ESMTPSA id f64sm60073921pfb.146.2021.01.05.01.46.51
+        by smtp.gmail.com with ESMTPSA id f64sm60073921pfb.146.2021.01.05.01.46.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 01:46:54 -0800 (PST)
+        Tue, 05 Jan 2021 01:47:00 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 03/18] dt-bindings: mmc: sdhci-msm: Document the SDX55 compatible
-Date:   Tue,  5 Jan 2021 15:16:21 +0530
-Message-Id: <20210105094636.10301-4-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 05/18] dt-bindings: arm-smmu: Add binding for Qcom SDX55 SMMU
+Date:   Tue,  5 Jan 2021 15:16:23 +0530
+Message-Id: <20210105094636.10301-6-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210105094636.10301-1-manivannan.sadhasivam@linaro.org>
 References: <20210105094636.10301-1-manivannan.sadhasivam@linaro.org>
@@ -64,28 +64,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SDHCI controller on SDX55 is based on MSM SDHCI v5 IP. Hence,
-document the compatible with "qcom,sdhci-msm-v5" as the fallback.
+Add devicetree binding for Qualcomm SDX55 SMMU.
 
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-index 3b602fd6180b..31f4a5628595 100644
---- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-@@ -21,6 +21,7 @@ Required properties:
- 		"qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
- 		"qcom,qcs404-sdhci", "qcom,sdhci-msm-v5"
- 		"qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
-+		"qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
- 	NOTE that some old device tree files may be floating around that only
- 	have the string "qcom,sdhci-msm-v4" without the SoC compatible string
- 	but doing that should be considered a deprecated practice.
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index 3b63f2ae24db..cc48d90de5fe 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -37,6 +37,7 @@ properties:
+               - qcom,sdm845-smmu-500
+               - qcom,sm8150-smmu-500
+               - qcom,sm8250-smmu-500
++              - qcom,sdx55-smmu-500
+           - const: arm,mmu-500
+       - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
+         items:
 -- 
 2.25.1
 
