@@ -2,70 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C949F2EAD1A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 15:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA8F62EAD3A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 15:17:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730705AbhAEOGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 09:06:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43728 "EHLO mail.kernel.org"
+        id S1726666AbhAEOQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 09:16:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45370 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730701AbhAEOGr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 09:06:47 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 67E0422AAA;
-        Tue,  5 Jan 2021 14:06:05 +0000 (UTC)
+        id S1726504AbhAEOQp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Jan 2021 09:16:45 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 87DFA22AAB;
+        Tue,  5 Jan 2021 14:16:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609855567;
-        bh=ds/A3dn2QTSnI2EnAJ6qjxF6P6z+cjHawd5N+6nR5rE=;
+        s=k20201202; t=1609856165;
+        bh=CLVMjissewD5ZdHzTYCaSNI7ZR8xFCiUY8G4oTJC+V8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TCW041t/X6L/j8EDNUySxuYw/MNF78ioMvKDL/70NDrCvND9CSNicPKAWWUAFv/pY
-         tUuAepV7pAOnX4PldTn+gvDfk34QfyjmMZ0S8R0Iul9bTQ/xM9hRnKrVQ6kAcGQ0xx
-         HpRugeKcv/bXUI/Pl3Phpxa8xOe1j25Wnj5WcY3LablC8jq/EyzBe0PKEf2bPLODib
-         QbT78WibWDOyjRj/J3lIm5qqtdsg+hNXQpghYAjPQXw8T6tPGKQdrDwmCiOqulYOp+
-         cv8mWqAGz9+13vatOt3m840VKn+crffi+8QLDYDcavobClNlFqO4+JdmtPrSSmM424
-         gug8wihm4+Cmw==
-Date:   Tue, 5 Jan 2021 22:06:00 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mm-beacon: Fix WiFi Pinmuxing
-Message-ID: <20210105140555.GO4142@dragon>
-References: <20201202135950.22164-1-aford173@gmail.com>
- <20210105030308.GK4142@dragon>
- <CAHCN7xJV11LqTwsJ=3Xz9gxHAjRg0B37RnMWgcx3CWDT+DiJHg@mail.gmail.com>
+        b=l5lPIZw0Y4PQa+oyffi7WVuBTNZIJYMbhOb0Xx+wZv3DqMSjDes4Fvm1TfTlOr9YI
+         zTJTAO6G4SWFU0DL0XiFt5lbevHWdxg2kx/6uAh1XX+3zRR0rn5IxCbUwJpqg7//Hs
+         z/SlKPtkx7xRwYx20L6JNvYrwSkVnvBdCu8q6bJ4BXkvhZOV19lwmMeqXvuwlSncGb
+         O7Z9cdOZaM4aFeRVNTppg3vBFlkbSvhXIxblsyxB6qYYt6gILPfcYO/3+5+fIffX8/
+         JKkKCeMq3Ulym3Erl4yVuK1LzjONq49nMI0qKIBbfLSZLweklMMhtmFtBqgNLqG0JB
+         NM1G9qJJwVkzA==
+Date:   Tue, 5 Jan 2021 14:15:36 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Qing Zhang <zhangqing@loongson.cn>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        ThomasBogendoerfer <tsbogend@alpha.franken.de>,
+        linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>, yangtiezhu@loongson.cn,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] spi: LS7A: Add Loongson LS7A SPI controller
+ driver support
+Message-ID: <20210105141536.GD4487@sirena.org.uk>
+References: <1609124381-9107-1-git-send-email-zhangqing@loongson.cn>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mSxgbZZZvrAyzONB"
 Content-Disposition: inline
-In-Reply-To: <CAHCN7xJV11LqTwsJ=3Xz9gxHAjRg0B37RnMWgcx3CWDT+DiJHg@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <1609124381-9107-1-git-send-email-zhangqing@loongson.cn>
+X-Cookie: I'm ANN LANDERS!!  I can SHOPLIFT!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 05, 2021 at 06:48:13AM -0600, Adam Ford wrote:
-> On Mon, Jan 4, 2021 at 9:03 PM Shawn Guo <shawnguo@kernel.org> wrote:
-> >
-> > On Wed, Dec 02, 2020 at 07:59:50AM -0600, Adam Ford wrote:
-> > > The WiFi chip is capable of communication at SDR104 speeds, and
-> > > the pinmux was configured to support this, but the sdhc1 controller
-> > > didn't properly reference the pinmux.  Enable 100Mhz and 200MHz pinmux
-> > > as was originally intended.
-> > >
-> > > Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
-> >
-> > This looks more like an improvement than bug fix.
-> 
-> Do you want me to resubmit without the fixes tag?
 
-Yes, please.  Also, update patch subject like below maybe.
+--mSxgbZZZvrAyzONB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-  arm64: dts: imx8mm-beacon: add more pinctrl states for usdhc1
+On Mon, Dec 28, 2020 at 10:59:38AM +0800, Qing Zhang wrote:
 
-Shawn
+> +	if (!!(spi->mode & SPI_CS_HIGH) == enable)
+> +		ls7a_spi_write_reg(ls7a_spi, SFC_SOFTCS, (0x1 << spi->chip_select) | cs);
+> +	else
+> +		ls7a_spi_write_reg(ls7a_spi, SFC_SOFTCS, (0x11 << spi->chip_select) | cs);
+> +}
+
+The core will handle inverting the chip select for the driver when
+SIP_CS_HIGH so doing it again here will cause bugs.  Just use the value
+of enable directly.  Otherwise this looks good.
+
+--mSxgbZZZvrAyzONB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/0dIcACgkQJNaLcl1U
+h9CFWAf8Drd3eCKlYj8r2/7Zu+rzTEA+cCKsN1h5sKGJ2+iTvwEnRJQoEMUE0LTc
+iFwyukIuELaVLbZRBfa2LkrMxxSG1gvkAFIEKRDTQ6SuWwSZeHNGNfZe0hv6hfhi
+K2ES8w+MDmqHYU3kQ/cOAZw2IhqTYk3f9VYT63Zk37xEl4osSEDhNy3St0k/yK8N
+4CW/xVqxR3wkjJnPWVvcLMlzlz6kf7Np4VXSMpXKXDuRXJ/hbucJR7HPr6WCe3ZG
+9A5DZ5siMMQegDGi78pZ/J4m76GIjMDUzHQ2d9hCgObTovmqVAZdUOU70MTgJN8S
+IAXXy5kaSjg8VQNZ7ObNzjvooudarg==
+=2jt+
+-----END PGP SIGNATURE-----
+
+--mSxgbZZZvrAyzONB--
