@@ -2,85 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F62E2EAC51
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 14:50:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA8E82EAC65
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 14:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726076AbhAENsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 08:48:25 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39784 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727667AbhAENsZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 08:48:25 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 249C5229C4;
-        Tue,  5 Jan 2021 13:47:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609854464;
-        bh=gyD3KQsl/AH0kP2J/k+P8mYvYMg3e/UjEIFD6A8fcvg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GSa3SxhMtQZX4I4QN+P9vlGTpDtlaMd0kAhgiI4Xg5NudWKM4YTEtA+yAsyePqL2E
-         a5TrYWlX3wEipkE6kvVYHuKGP/hFOs4JGSloH+8WJ5UcLnLmkajcaMY6TgdyUaHVSQ
-         2/3BQH/4Paqie6W6Ow2OjI5iUInSSmk4W8klSN+CoRyjn0bZ67quO2yTzyrYqmphV8
-         4fy0ScZ8kGM8Y1lgPITWDqDfkaRmYEpRGkhJKYl571Zc8DC899tvYr/L6sPV6X9vMT
-         HuMK1OFnId9k/ak3R6ZDnRN89wIhU0VGEdh4a/pi5qqkCpVFQ3pvMz11zdbjghMBXQ
-         AywMuXT0STKOQ==
-Date:   Tue, 5 Jan 2021 13:47:17 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Bert Vermeulen <bert@biot.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: spi: Realtek RTL838x/RTL839x SPI
- controller
-Message-ID: <20210105134717.GB4487@sirena.org.uk>
-References: <20210101132432.2785663-1-bert@biot.com>
- <20210101132432.2785663-2-bert@biot.com>
- <20210104213131.GL5645@sirena.org.uk>
- <121d9dc6-7993-d43b-291f-74dd943f4fc6@biot.com>
+        id S1729000AbhAENyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 08:54:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51284 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729003AbhAENyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 08:54:44 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EC83C061798
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 05:54:04 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id q18so36313752wrn.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 05:54:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=to:cc:references:from:subject:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=WeMaF7TAVDOEIygomZnq05mZMvBNk5xAGXnGkwP4VxM=;
+        b=ye5X2VuG3ou5wXNFk5tCMRRCWTPYTJ0gR4UGwUrMrOUE9rOMVq1fn7BEQ7Qv9ZUe0f
+         T52GJNGyEMCs4wOPnymnhwaZita24pCfV2GaE7K76S5eLmBdmPeZI9XHx5xmXsxKp3Kd
+         p9uVsXsss0OXMxuo0BC/GGdWySBMsv5SEQGte5AK5UFq7oREC1oS4GO6Q1yG1KFQwRnq
+         LEDpFxRk5r5JCTI20JAIPALpeI2upYM+47VQVhMKoBNj/nUY8Sgdo353APdpf3WtF9sU
+         A56HDIiyET1lXVEKGyaEQRD+R8KKgfEwuFA3tZZD88P19IWECm1EovZhOlHJ8IXlg/mo
+         K6Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=WeMaF7TAVDOEIygomZnq05mZMvBNk5xAGXnGkwP4VxM=;
+        b=HFmcM8R/gc9bskBrvALykUQZPwrMWpPMfiyc/Yyj9hX8aXBDCeaA6loDWZiOwz+yM9
+         QyjkVvnFcCRXE6BPZopekUPV1zLVIXbQ0yeyVQ8+AkkgArFEPDiJK2io7AowRx8w6ed8
+         RLNkBi+3nst0WOMzicLfE/nBfTs3qepGzJqnYJkOX7Mf1e85drslA8yfFzhisjylf16E
+         8uTz+md9YJfwhRKrU/KZLrvx96PxN1ptYn1pPqzsbpgzxhZT4pdADwN7JNytGqbunSl1
+         AOnSy/yK2bg6uJSD01X+5v+vZ5MaLV/JSXkcwuAAWv7gtawFluJzsIacxWsgkpYNoWMA
+         WL+w==
+X-Gm-Message-State: AOAM533ol6uVRuPz9oJ+M0BhqI4to3yTVGuWkyYS7KCslshKdyhsDUZc
+        PpENQt0JH9vPaEqC/KOA1kZqRQ==
+X-Google-Smtp-Source: ABdhPJyD5a1x18fxXMG+4Mcx13Pev1iFYLAfK9YgIqd+kZ7o7mQ6A/yXNqdPNWouLSe9UlACDrP1xQ==
+X-Received: by 2002:adf:dd09:: with SMTP id a9mr84076235wrm.90.1609854843150;
+        Tue, 05 Jan 2021 05:54:03 -0800 (PST)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id i11sm4154410wmd.47.2021.01.05.05.54.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Jan 2021 05:54:02 -0800 (PST)
+To:     Vincent Knecht <vincent.knecht@mailoo.org>,
+        Jun Nie <jun.nie@linaro.org>, devicetree@vger.kernel.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh@kernel.org
+Cc:     shawn.guo@linaro.org
+References: <20201204075345.5161-1-jun.nie@linaro.org>
+ <20201204075345.5161-6-jun.nie@linaro.org>
+ <d869ea94b3b1c73800a5c3b855cb6f280be6c185.camel@mailoo.org>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH v2 5/5] interconnect: qcom: Add MSM8939 interconnect
+ provider driver
+Message-ID: <a88b39dd-1c50-8aff-f85e-27086db9b040@linaro.org>
+Date:   Tue, 5 Jan 2021 15:54:04 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="OwLcNYc0lM97+oe1"
-Content-Disposition: inline
-In-Reply-To: <121d9dc6-7993-d43b-291f-74dd943f4fc6@biot.com>
-X-Cookie: I'm ANN LANDERS!!  I can SHOPLIFT!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <d869ea94b3b1c73800a5c3b855cb6f280be6c185.camel@mailoo.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 1/2/21 13:08, Vincent Knecht wrote:
+> Le vendredi 04 décembre 2020 à 15:53 +0800, Jun Nie a écrit :
+>> Add driver for the Qualcomm interconnect buses found in MSM8939 based
+>> platforms. The topology consists of four NoCs that are controlled by
+>> a remote processor that collects the aggregated bandwidth for each
+>> master-slave pairs.
+>>
+>> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> 
+> Shouldn't some rpm ids be changed like they were for msm8916 in the following patch ?
+> c497f9322af9 ("interconnect: qcom: msm8916: Remove rpm-ids from non-RPM nodes")
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20201112105140.10092-1-georgi.djakov@linaro.org/
 
---OwLcNYc0lM97+oe1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Maybe they should. I don't have the hardware to try it, but the test will be
+to just add the NoC DT nodes, enable the driver and inspect the boot log for
+messages like:
+[    2.926647] qcom_icc_rpm_smd_send mas X error -6
 
-On Tue, Jan 05, 2021 at 09:43:59AM +0100, Bert Vermeulen wrote:
-> On 1/4/21 10:31 PM, Mark Brown wrote:
-
-> > This is still just using rtl-spi as the compatible string, please
-> > address the feedback on the previous version.
-
-> The rtl prefix really is as close as it gets. This is being developed on
-> RTL838x and RTL839x, but the driver very likely also works on RTL8196C and
-> RTL93xx series. There's no difference to the SPI block in those SoCs.
-
-> Do you really want a different per-series compatible when the "IP block" was
-> just copy-pasted between series in hardware?
-
-Yes.
-
---OwLcNYc0lM97+oe1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/0beQACgkQJNaLcl1U
-h9CzbggAgtHmArcCO+zD5/jomt+uuZzBWmKO40hICk9ya9e58s2nPiLdcG64gf0z
-8qM/Q7wnRH6J2Hs/0Gaz8+3yqetgAeAX2cYCnxX8ONS3GmkVhwb7TJc8RH6WyxdY
-/Kq+kS6bzJw8swB4kIj3dOKDPNXjMPZWwrp1IfcJ5UFbxJqgrd9T3VBcjJbN5U2I
-IQBwNqWah7X6+tvTsWl44D1tgihjdS5SU537y9SNOi+uWm636qjBSlTIKK6PDlUe
-ufgLQmiHHj9vm+jA/PaXD1Q7nOENIoty9xwHaZFMlxd4zU4X0G7xj2R38EoqT7nS
-uGvqYC9o4iyHI+uHP2IZis1UNSPmow==
-=yxIH
------END PGP SIGNATURE-----
-
---OwLcNYc0lM97+oe1--
+Thanks,
+Georgi
