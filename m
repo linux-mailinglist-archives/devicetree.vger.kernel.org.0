@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D94E2EA8CB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 11:34:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27A4D2EA919
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 11:45:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729029AbhAEKbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 05:31:45 -0500
-Received: from bmail1.ministro.hu ([5.249.150.236]:56066 "EHLO
+        id S1729197AbhAEKpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 05:45:05 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:58944 "EHLO
         bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728249AbhAEKbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 05:31:45 -0500
+        with ESMTP id S1728699AbhAEKpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 05:45:04 -0500
 Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id A71D011F850;
-        Tue,  5 Jan 2021 11:31:02 +0100 (CET)
+        by bmail1.ministro.hu (Postfix) with ESMTP id F240E11F850;
+        Tue,  5 Jan 2021 11:44:21 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1609842662;
+        s=201804; t=1609843462;
         bh=MUjJfk9WqP/192z0Yhwfz2yDLEpbXsF5/dNm7cec5Qc=;
         h=Date:From:To:Subject:From;
-        b=5GvGgbecUobd6zKEPXIp48h7ar+ES1N/egSVP1g8Bkfrj2/x87pkcXdh+7XKS5aHr
-         lbgkaATbXmANQrQtkSiT7+megamFgCgAZkznffwLXVIDoutUeV0q3j2MdfGfsNe1pW
-         w+OXQwewLTPFSjMLGCCL8b6OSTrhdIw/x5YdRs0ZwCtii4VoZDCbidlyIvGgp4KAkB
-         S7NdMybW0yc6irt9Khz+S4+eCqORpGHuXgAEZnq2edXywciVfoD7ROCx955A0ImURV
-         r3oSTN8B8vQnKCTkMFKXxFzprjHEgWpv2vCP7GhfBoYGd1A1OexKitXQPzX2bsrPcq
-         mzQaONha8VZeQ==
+        b=pNKaIDv3mH4tfXwMO3e2ns0/2uBc1WuMjOW7HUt2V0EMSd8e1MKvxkfLqeqdgIIAx
+         9B3aEoHB9qNBlpI5R3qV5baA1FkgTPD1kiFo0LirNvkMJ5vrisCvpP/CN0HuqOZTdo
+         J8FP4rlucCcfYTlghQSFm5c2zf/ntsLpAA196rhPG1iRlXWvnKQ9+uzLaW3fUCKQz4
+         IAY2Z4n3tPd0S+NK5cy/Y4UNnE3N87wSAGLYyOxXJCD60O90ZMuNnCnHO6i//kLjZ/
+         5msqBlMHp94aFCv8wHfbTFVjnB5hss3fPJWjydL9gSFoLu2RRKZ4bs7Pp4t44NPGri
+         aBjJMUiffhXTg==
 X-Virus-Scanned: Debian amavisd-new at ministro.hu
 Received: from bmail1.ministro.hu ([127.0.0.1])
         by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id r4ytmN6nC2QI; Tue,  5 Jan 2021 11:30:31 +0100 (CET)
+        with ESMTP id 0SvJM_mBQCFY; Tue,  5 Jan 2021 11:43:52 +0100 (CET)
 Received: from dev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id 0211311F84E;
-        Tue,  5 Jan 2021 11:30:30 +0100 (CET)
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id 70DA011F84E;
+        Tue,  5 Jan 2021 11:43:51 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1609842631;
+        s=201804; t=1609843432;
         bh=MUjJfk9WqP/192z0Yhwfz2yDLEpbXsF5/dNm7cec5Qc=;
         h=Date:From:To:Subject:From;
-        b=rXnXbZKbdxOUGd9Oq+UTUvKIMI2fB6ZFprpsw6cJ+MDFe+BFUuNe07V68AdCrYzDR
-         miMAXsrIcazYnnhSWYufCXrRUoYp1hcljdetDZQwA/MH+FFz6LKukq2iUBQMfRNXqE
-         eHQz69cJuAqsVVfhsiGFhu3jCJNI61ajnpxi3xLXyrRWfUgoOoPvzlmctTSz4bW2Kp
-         6ECV8SdRUQBWHBVLirBdSQlNsZpLhRRxSF+gf54MDZb/EAem1L8Kx7I6AUoOfpOk+o
-         U7HUgmVkaiYQOxMG9O5j0etYVg0wUJvry+pEgZpMT0e1MG36R4rQMnE5wLXstwUFBd
-         mc6jLUB0/UZDg==
-Date:   Tue, 5 Jan 2021 10:30:29 +0000
+        b=gl6sUBf9Hhf0AobIBw6c8dvq+V6+VT3buC2KAiZaKe7InKK+TGKncksVnQaaSCpPx
+         wYLqMppQsbP1palQBY907WeodxCZfGfDDFMhZ+ypHK7Tv1qiobDMXJI3qtVfkrRr/8
+         xcgcUOY4y6MGsuWgajwLkOF5zZ6r4ge7xMGNSDfTt9r2D4omQMf7wl3oyMvAgNfvGR
+         Fv0RKZ77lH182xMSWSNU1MSdj4zWYZQQCtHgHHvfD1bdqrKN/X6CGEfsEfx3m3Srv2
+         UJNgz03Z09AvQnKJIVloeKPGE8lsDHOTPVFFHeh9w+3x3KNIRNbk8KH9b+GKxp271C
+         03yvPD6RkVhqA==
+Date:   Tue, 5 Jan 2021 10:43:49 +0000
 From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
 To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
         'Rob Herring' <robh+dt@kernel.org>,
@@ -49,8 +49,8 @@ To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
         =?iso-8859-1?Q?'J=F3zsef_Horv=E1th'?= <info@ministro.hu>,
         linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v7,2/2] dt: bindings: add silabs,si4455 schema
-Message-ID: <20210105103027.GA15137@dev>
+Subject: [PATCH v7,2/2] Serial: silabs si4455 serial driver
+Message-ID: <20210105104347.GA18688@dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
