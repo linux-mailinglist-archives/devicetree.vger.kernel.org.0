@@ -2,97 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE3E32EA9D0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 12:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 534162EA9D8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 12:27:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729514AbhAELZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 06:25:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
+        id S1729606AbhAEL0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 06:26:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726224AbhAELZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 06:25:53 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F99DC06179F
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 03:24:37 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id v3so16182946plz.13
-        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 03:24:37 -0800 (PST)
+        with ESMTP id S1729318AbhAEL0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 06:26:09 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 002B3C061793
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 03:25:28 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id h205so71735100lfd.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 03:25:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RLWf2fFx1cy5EK+fZBXuAuxCvBkN0R7iJP0DH7tZe9g=;
-        b=zetW+zTjdJu12fd74lr5e4RRjfbmu8PI4SolhsR42pguy3d5gX/TVL0c8ZQ/idamFj
-         PFgv8cHzrOElJ/nz92E/bV4qYnvaBbHhi9aEky1qJTfxnjTVYtU0qJai53aiF4AsGVuB
-         f91DJvfGVaOfRgey9kMWdVOPU7uPocSLIUShslcHpfCu42LGi5HBQFi55nDPEV3atZE4
-         lCACEuFpsC24iNgT2E5rPJPCnnMVeslzwpaklNKYLz8/wBi7/Ftb+X26WLP5EgMoqclt
-         YH23CreRWMe/6ZA0EkZyLYYDo1I+5n49xDWw4/7JdyndjJDJ5kpNbtwJhzbROcnTgU2l
-         Ix8w==
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hjZ/0WcAaB7nd5drpvsqUaYdHBWyehQvrygbYW5v7xY=;
+        b=dTxzWqeihvhN5HaLbEHaMANFr/Uc0Q6j7hsR6BLXMwiX43VNxsItgZXmPx/kQguS7Y
+         2kGu1hQ5KjAhGGUo9tMJ8H0iXQSxbWhV/O+93uhq0aK1nxSrQY+II09z8xqu/2DafVz3
+         5i9rjhEKC2Dm/PA3HjtTGA74YCWsyM+B2kXPlMjcwBPHI/29qqBq8gdzDBK0LgwLqkii
+         ufpnn7DUHXIRYVISJpfZoyNBVzb3XLy7jo9U6TPL9ZTIxXwBxhLnJDck6lFcoQ+m61Ya
+         s9HPihJRNKZkIWCzyAvT21ciexOpSWKSNgUoenFkAd348b5dQPZ+ojXubVPcWlHmJP0w
+         nTtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RLWf2fFx1cy5EK+fZBXuAuxCvBkN0R7iJP0DH7tZe9g=;
-        b=GCtgCVw/VbqHlkQzoO9MPTsLDTcC4thS0LybmkI3OkEeZj0k3x3z7xXHackwIiN2Lw
-         3R39+yV8aSEYC5Oe27N+6CxTeQC0fqk1zvWNSst9Q0jT2xaxkLn7LCffrhuih0M1gpdX
-         mRNFXFjlhNit4GEIYVBY7PTgGHoF0YnhZwhBmkShyZhrOxOhMbCr0macfWcri/gLXREP
-         fJdni1cVk+cG5hmRZMPEZ/Fe4fSBkqGtHwOWrDv0Mb3oIY73dijbpqQEViHWkSjYu4E5
-         2YZ30lOYx3SqgZ55ldhdyD1yO3L6VhCgHFCk9lpn1TcksxtXLQKHhtr3a0MCMbX31hzo
-         O5Tg==
-X-Gm-Message-State: AOAM5318ASWdXN4E7+fLQSAkkHTIVB4T64boFqJojDtDBGoLPbNQ3O8l
-        AjQCNalWXVQyNzXc0uU8IBYX6w==
-X-Google-Smtp-Source: ABdhPJw02OCUGTpHRRYI2C9tQQQ1oADxysvci8SMJAXynHIlon/KDN7jgwDeIiAm+9EiUJJd9FHzQA==
-X-Received: by 2002:a17:902:a983:b029:dc:2564:91f2 with SMTP id bh3-20020a170902a983b02900dc256491f2mr48248465plb.46.1609845877204;
-        Tue, 05 Jan 2021 03:24:37 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id o123sm56762264pfd.197.2021.01.05.03.24.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 05 Jan 2021 03:24:36 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
-Subject: [RFC 2/2] scripts: dtc: Handle outform dtbo
-Date:   Tue,  5 Jan 2021 16:54:17 +0530
-Message-Id: <7aa70809eff3f32d821761d2a763e4fb72ecc8fb.1609844956.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <cover.1609844956.git.viresh.kumar@linaro.org>
-References: <cover.1609844956.git.viresh.kumar@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hjZ/0WcAaB7nd5drpvsqUaYdHBWyehQvrygbYW5v7xY=;
+        b=lMlDtrdY67Pz9yhLu3OaGWqrvwZZoj/jD374o27VyWnLvUuCpzUDRbcVc2wXucfukm
+         XSBG9emK5U6+5t6D883tRQ7jgn0OKLXOIw2uD6lsDGC5cFMdbKcoAAB/swTVaEMx/qqL
+         g2o1zC0YX0ZcNFSONoD5BJWx3D6ry/O1Pdv11jKHkyM7MqbWVNZPBUXBzgf9G5MM8Kxr
+         cZ4FpmEXvcdrxyRDbv0UDc96YJt4dCCHURuxYOK21oUfXfMqMIFeT7fgiVj2OnuKTYrk
+         TYEW2Rgps2LOyi+wOeD4bl3RDSne6ut73WJIDzKWMQXJ0s8wtC63q0H9TQxsbtogq1dC
+         CO4Q==
+X-Gm-Message-State: AOAM5332k3h4SLKhyjSpoXBAUWvePCUCqAfvrqFvQd0pKlR+ix9czqxf
+        Qnowqj2gX/SsfYMjdJWCysuPqEgJ92yYlmxpgAyeHA==
+X-Google-Smtp-Source: ABdhPJyAM5SLslHbDuU6oBuwZTfmdAwPNjAK+nPky/kIgx/sFvYRdz7DjTMbC66MWX9yUvElKiaR8eyQ+0wwVy0BCsA=
+X-Received: by 2002:a05:6512:34c5:: with SMTP id w5mr32780407lfr.214.1609845927414;
+ Tue, 05 Jan 2021 03:25:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210104124314.7489-1-vitaly.wool@konsulko.com>
+In-Reply-To: <20210104124314.7489-1-vitaly.wool@konsulko.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 5 Jan 2021 16:55:14 +0530
+Message-ID: <CAAhSdy08ujtYCrSr-O0Me-UbqQTa9N6vjtqgUV3NZofnkOjFwg@mail.gmail.com>
+Subject: Re: [PATCH v2] riscv: add BUILTIN_DTB support for MMU-enabled targets
+To:     Vitaly Wool <vitaly.wool@konsulko.com>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Bin Meng <bin.meng@windriver.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update dtc compiler to accept dtbo as an outform.
+On Mon, Jan 4, 2021 at 6:15 PM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
+>
+> Sometimes, especially in a production system we may not want to
+> use a "smart bootloader" like u-boot to load kernel, ramdisk and
+> device tree from a filesystem on eMMC, but rather load the kernel
+> from a NAND partition and just run it as soon as we can, and in
+> this case it is convenient to have device tree compiled into the
+> kernel binary. Since this case is not limited to MMU-less systems,
+> let's support it for these which have MMU enabled too.
+>
+> Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
+> ---
+> Changelog from v1:
+> * no direct initial_boot_params assignment
+> * skips the temporary mapping for DT if BUILTIN_DTB=y
+>
+>  arch/riscv/Kconfig   |  1 -
+>  arch/riscv/mm/init.c | 15 +++++++++++++--
+>  2 files changed, 13 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 81b76d44725d..07a8bdcc423f 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -416,7 +416,6 @@ endmenu
+>
+>  config BUILTIN_DTB
+>         def_bool n
+> -       depends on RISCV_M_MODE
+>         depends on OF
+>
+>  menu "Power management options"
+> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> index 13ba533f462b..04aeee276817 100644
+> --- a/arch/riscv/mm/init.c
+> +++ b/arch/riscv/mm/init.c
+> @@ -191,10 +191,13 @@ void __init setup_bootmem(void)
+>  #endif /* CONFIG_BLK_DEV_INITRD */
+>
+>         /*
+> -        * Avoid using early_init_fdt_reserve_self() since __pa() does
+> +        * If DTB is built in, no need to reserve its memblock.
+> +        * Otherwise, do reserve it but avoid using
+> +        * early_init_fdt_reserve_self() since __pa() does
+>          * not work for DTB pointers that are fixmap addresses
+>          */
+> -       memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
+> +       if (!IS_ENABLED(CONFIG_BUILTIN_DTB))
+> +               memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
+>
+>         early_init_fdt_scan_reserved_mem();
+>         dma_contiguous_reserve(dma32_phys_limit);
+> @@ -499,6 +502,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>         /* Setup early PMD for DTB */
+>         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
+>                            (uintptr_t)early_dtb_pmd, PGDIR_SIZE, PAGE_TABLE);
+> +#ifndef CONFIG_BUILTIN_DTB
+>         /* Create two consecutive PMD mappings for FDT early scan */
+>         pa = dtb_pa & ~(PMD_SIZE - 1);
+>         create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA,
+> @@ -506,7 +510,11 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>         create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA + PMD_SIZE,
+>                            pa + PMD_SIZE, PMD_SIZE, PAGE_KERNEL);
+>         dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PMD_SIZE - 1));
+> +#else /* CONFIG_BUILTIN_DTB */
+> +       dtb_early_va = __va(dtb_pa);
+> +#endif /* CONFIG_BUILTIN_DTB */
+>  #else
+> +#ifndef CONFIG_BUILTIN_DTB
+>         /* Create two consecutive PGD mappings for FDT early scan */
+>         pa = dtb_pa & ~(PGDIR_SIZE - 1);
+>         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
+> @@ -514,6 +522,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA + PGDIR_SIZE,
+>                            pa + PGDIR_SIZE, PGDIR_SIZE, PAGE_KERNEL);
+>         dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PGDIR_SIZE - 1));
+> +#else /* CONFIG_BUILTIN_DTB */
+> +       dtb_early_va = __va(dtb_pa);
+> +#endif /* CONFIG_BUILTIN_DTB */
+>  #endif
+>         dtb_early_pa = dtb_pa;
+>
+> --
+> 2.20.1
+>
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+Looks good to me.
 
----
-I feel that this needs to go directly to
-https://git.kernel.org/pub/scm/utils/dtc/dtc.git
+Reviewed-by: Anup Patel <anup@brainfault.org>
 
-Right ? I will send it separately if the idea is accepted here.
----
- scripts/dtc/dtc.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/scripts/dtc/dtc.c b/scripts/dtc/dtc.c
-index bdb3f5945699..40fa7128b3d6 100644
---- a/scripts/dtc/dtc.c
-+++ b/scripts/dtc/dtc.c
-@@ -357,6 +357,8 @@ int main(int argc, char *argv[])
- #endif
- 	} else if (streq(outform, "dtb")) {
- 		dt_to_blob(outf, dti, outversion);
-+	} else if (streq(outform, "dtbo")) {
-+		dt_to_blob(outf, dti, outversion);
- 	} else if (streq(outform, "asm")) {
- 		dt_to_asm(outf, dti, outversion);
- 	} else if (streq(outform, "null")) {
--- 
-2.25.0.rc1.19.g042ed3e048af
-
+Regards,
+Anup
