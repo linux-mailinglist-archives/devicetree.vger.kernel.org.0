@@ -2,82 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 650452EB0FC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 18:07:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 324102EB102
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 18:07:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730258AbhAERFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 12:05:35 -0500
-Received: from mail-io1-f51.google.com ([209.85.166.51]:42578 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729505AbhAERFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 12:05:34 -0500
-Received: by mail-io1-f51.google.com with SMTP id q137so28783109iod.9;
-        Tue, 05 Jan 2021 09:05:19 -0800 (PST)
+        id S1729813AbhAERGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 12:06:50 -0500
+Received: from mail-wm1-f42.google.com ([209.85.128.42]:51390 "EHLO
+        mail-wm1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729683AbhAERGt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 12:06:49 -0500
+Received: by mail-wm1-f42.google.com with SMTP id v14so215471wml.1;
+        Tue, 05 Jan 2021 09:06:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=sxTRWEC8MOpnTMUesMj6I4isC8VAjw1tkHEHI23HMOY=;
-        b=Yp1OlFAVVJr3/SYx7XsxB0clQ0uvqbYVBkDG7WshR4D0AeJ/UGMerce1rP3WlF+sTj
-         xBkjHmQXaDF/k3SFdE4dNMbsyi7Znuiraa0bWvulNKmhFoj6Ug3YEvvdXM8j/OYP+FZe
-         sZ3H83u5Ju/yWvWp5yynXuDr3EsCMzNTcPtGldnCqiqwSk7GRybIzrYQH2OXE5dvvhpK
-         bwq/DEva1vXPCbTEga6tSDsQdnaT2qK6WaKlDMgMv/BEB0l11/+mQb5FKTBo5HJR5D1R
-         tPzZmXvktmC0ClDyNWu97kaHfEvYxKRCwlVF0kpCR5xNYAAdo8A0GGfBOZD1ovGANkAv
-         e1Pg==
-X-Gm-Message-State: AOAM531EL6tGFA8Pt87aD89FIUPRtDDAk1cfVEVa4rR1qCTcF10UJw1n
-        JCMB+nrlpHJbwH7gqAPQVw==
-X-Google-Smtp-Source: ABdhPJyv0RgKbg7aFtr2sDhxf/W4b4hYcZ75/Cv55V8/TksMzERWMcHIKqT2VRvHjbZ5WhzqUSHWPA==
-X-Received: by 2002:a6b:4f13:: with SMTP id d19mr56135iob.121.1609866293433;
-        Tue, 05 Jan 2021 09:04:53 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 9sm57733iob.28.2021.01.05.09.04.51
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9YAAdpyFMqA6anlcQcter/Q+CJMEzgthAR/tnl6sjtA=;
+        b=Af9IoeI60Y03TBjvjRHmLKPALC8N+soWiO6dfZ2fXWazV62NFezarL24/LwoJMMkUt
+         9a0neKDEpUOWtVuDR3bP1C9XcoZQA7QbI8mdwjNSPQZDeWiV8kSczo3877Y+1ViGI2Nf
+         APHQpwNlVrb7lrosIUWvO+C1dE8imAbaLRFeP6STp4uh0J5fQyCP3v0ZWcyz4ogvbbBL
+         bcWqxg7u87fjO++q1cKBf6EiBw5o6UH3e8R8Gi9+kgGMGaEhsEIcitOUGR5hKWaEXPmQ
+         f/16U5tbtCkeT3R64rjNU2YAtrZeQPeDXSnS6bqZgJ9t43EjGLh6YUo/15ynhZJG2u6B
+         C0Mw==
+X-Gm-Message-State: AOAM530YNuclOQheXmEu323yAl06bEYuo9h5AeK4RwUTMs4gdhNCoq/v
+        y1peea13Fv2AR+FUuYVHYc4=
+X-Google-Smtp-Source: ABdhPJwAzn5n1uY0WAYpYglCpjpQ7wTQ2gVf/5VxObDSAC0+0hOeTHM7OsV/cLPDVW8XqRYVcBYVCQ==
+X-Received: by 2002:a1c:9e86:: with SMTP id h128mr81485wme.171.1609866367532;
+        Tue, 05 Jan 2021 09:06:07 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id l8sm137946wmf.35.2021.01.05.09.06.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 09:04:52 -0800 (PST)
-Received: (nullmailer pid 372421 invoked by uid 1000);
-        Tue, 05 Jan 2021 17:04:48 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     rjw@rjwysocki.net, robh+dt@kernel.org,
+        Tue, 05 Jan 2021 09:06:06 -0800 (PST)
+Date:   Tue, 5 Jan 2021 18:06:04 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-renesas-soc@vger.kernel.org, aford@beaconembedded.com,
+        biju.das.jz@bp.renesas.com, Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, viresh.kumar@linaro.org
-In-Reply-To: <1609842147-8161-2-git-send-email-claudiu.beznea@microchip.com>
-References: <1609842147-8161-1-git-send-email-claudiu.beznea@microchip.com> <1609842147-8161-2-git-send-email-claudiu.beznea@microchip.com>
-Subject: Re: [PATCH 1/3] dt-bindings: cpufreq: sama7g5-cpufreq: add dt bindings documentation
-Date:   Tue, 05 Jan 2021 10:04:48 -0700
-Message-Id: <1609866288.037184.372420.nullmailer@robh.at.kernel.org>
+        linux-spi@vger.kernel.org
+Subject: Re: [PATCH V2 1/4] dt-bindings: memory: Renesas RPC-IF: Add support
+ for RZ/G2 Series
+Message-ID: <20210105170604.GA26301@kozik-lap>
+References: <20210102115412.3402059-1-aford173@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210102115412.3402059-1-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Jan 2021 12:22:25 +0200, Claudiu Beznea wrote:
-> Add DT bindings documentation for SAMA7G5 CPUFreq driver.
+On Sat, Jan 02, 2021 at 05:54:09AM -0600, Adam Ford wrote:
+> The RZ/G2 Series has the RPC-IF interface.
+> Update bindings to support: r8a774a1, r8a774b1, r8a774c0, and r8a774e1
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > ---
->  .../bindings/cpufreq/cpufreq-sama7g5.yaml          | 80 ++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-sama7g5.yaml
+>  .../bindings/memory-controllers/renesas,rpc-if.yaml         | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 > 
+> V2:  Updated renesas,rcar-gen3-rpc-if to include RZ/G2
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Thanks, applied.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-sama7g5.yaml: properties:cpu-supply: '$ref' is not one of ['description', 'deprecated']
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-sama7g5.yaml: ignoring, error in schema: properties: cpu-supply
-warning: no schema found in file: ./Documentation/devicetree/bindings/cpufreq/cpufreq-sama7g5.yaml
-
-See https://patchwork.ozlabs.org/patch/1422407
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+Best regards,
+Krzysztof
 
