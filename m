@@ -2,211 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A4D2EA919
+	by mail.lfdr.de (Postfix) with ESMTP id 94C652EA91A
 	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 11:45:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729197AbhAEKpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 05:45:05 -0500
-Received: from bmail1.ministro.hu ([5.249.150.236]:58944 "EHLO
-        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728699AbhAEKpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 05:45:04 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id F240E11F850;
-        Tue,  5 Jan 2021 11:44:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1609843462;
-        bh=MUjJfk9WqP/192z0Yhwfz2yDLEpbXsF5/dNm7cec5Qc=;
-        h=Date:From:To:Subject:From;
-        b=pNKaIDv3mH4tfXwMO3e2ns0/2uBc1WuMjOW7HUt2V0EMSd8e1MKvxkfLqeqdgIIAx
-         9B3aEoHB9qNBlpI5R3qV5baA1FkgTPD1kiFo0LirNvkMJ5vrisCvpP/CN0HuqOZTdo
-         J8FP4rlucCcfYTlghQSFm5c2zf/ntsLpAA196rhPG1iRlXWvnKQ9+uzLaW3fUCKQz4
-         IAY2Z4n3tPd0S+NK5cy/Y4UNnE3N87wSAGLYyOxXJCD60O90ZMuNnCnHO6i//kLjZ/
-         5msqBlMHp94aFCv8wHfbTFVjnB5hss3fPJWjydL9gSFoLu2RRKZ4bs7Pp4t44NPGri
-         aBjJMUiffhXTg==
-X-Virus-Scanned: Debian amavisd-new at ministro.hu
-Received: from bmail1.ministro.hu ([127.0.0.1])
-        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 0SvJM_mBQCFY; Tue,  5 Jan 2021 11:43:52 +0100 (CET)
-Received: from dev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id 70DA011F84E;
-        Tue,  5 Jan 2021 11:43:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1609843432;
-        bh=MUjJfk9WqP/192z0Yhwfz2yDLEpbXsF5/dNm7cec5Qc=;
-        h=Date:From:To:Subject:From;
-        b=gl6sUBf9Hhf0AobIBw6c8dvq+V6+VT3buC2KAiZaKe7InKK+TGKncksVnQaaSCpPx
-         wYLqMppQsbP1palQBY907WeodxCZfGfDDFMhZ+ypHK7Tv1qiobDMXJI3qtVfkrRr/8
-         xcgcUOY4y6MGsuWgajwLkOF5zZ6r4ge7xMGNSDfTt9r2D4omQMf7wl3oyMvAgNfvGR
-         Fv0RKZ77lH182xMSWSNU1MSdj4zWYZQQCtHgHHvfD1bdqrKN/X6CGEfsEfx3m3Srv2
-         UJNgz03Z09AvQnKJIVloeKPGE8lsDHOTPVFFHeh9w+3x3KNIRNbk8KH9b+GKxp271C
-         03yvPD6RkVhqA==
-Date:   Tue, 5 Jan 2021 10:43:49 +0000
-From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        =?iso-8859-1?Q?'J=F3zsef_Horv=E1th'?= <info@ministro.hu>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v7,2/2] Serial: silabs si4455 serial driver
-Message-ID: <20210105104347.GA18688@dev>
+        id S1729272AbhAEKpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 05:45:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729271AbhAEKpK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 05:45:10 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8CB0C061795
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 02:44:29 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id b5so1464625pjk.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 02:44:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=BwSbyQm79HhY13p/o1BQvjNVGauzp0nHoLkaQ4+ZdHg=;
+        b=ja6fAvIj+76NbGkR+F/kvrIPBBW5nYDAeAnrguXjrrrcNrRf5Rku9S4gCvv04L4Ere
+         1VPYkkBDH8YwBOd3FMIFqwd86/AGzGse02dCPp6JYkTH11ZepeuRAzEDn5bLXlCL1ycf
+         270I0GKzrNEvoCoXNWr4jL4CbYcUT+O4SCH6E5pzvtdJCMObYo2nKuahOwUn0/AGdnkQ
+         CnaJd34ZA8Q3D9ennAWg2P9e+M+J/YVxHqlWXnvZ2hvxOCiFqmQutraWPxL7/atQGqYG
+         gGpJTW3I3MrjpEPERkGhRX3onufur5N3TquSvHBms62cvos5G6FNdojAd+aSQedToB0t
+         DffA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=BwSbyQm79HhY13p/o1BQvjNVGauzp0nHoLkaQ4+ZdHg=;
+        b=AJlw4nq2fjSMMDHhKlEpaGjtyVr86B6qriEHvsPETQdtIiokjJ7FkjVgBxGYofVYHM
+         miHlAR2HXRzCZ6Tg8WcAmKHrNWPooR+JgyiPAl/FkwEN6PYCocN1dbHPGSBNB5x8/rCf
+         MYGQQVpnBhtKg+bYZoOiu5z1dSz+4m7qJLkOCmod3vSC2a5na60K3pk/ojdPtSRJiVCs
+         x8hSzSeP1PZZDS8Ha6rnxxXsn7I1m1JGdPMijlQGfb92yH6jy91vZnJ3hIGzn0eW2Bpo
+         7VSNYSdeFM58H/uUkBNq96HntnMNdTBKBcXS/+4Qq1fvYpZPjlY0IYObxl499Kc4Jpqo
+         9m6A==
+X-Gm-Message-State: AOAM530aEBpGlQ0Jf5W0zmSnkSyEcJZnAMQZrVrwHJcdW5SWYVIItXwq
+        VHpEMBwSwkKX3uqiy6qt0EKu3A==
+X-Google-Smtp-Source: ABdhPJxE5ryz7tO+u7OHjKIxWIWZ9lt7SQVbebjpyThfUiSI2FFOBGIV4tZUJjkh1yyR78nqEQkKAg==
+X-Received: by 2002:a17:902:9681:b029:db:fd65:d10e with SMTP id n1-20020a1709029681b02900dbfd65d10emr77236181plp.6.1609843469119;
+        Tue, 05 Jan 2021 02:44:29 -0800 (PST)
+Received: from localhost ([122.172.20.109])
+        by smtp.gmail.com with ESMTPSA id w200sm60641821pfc.14.2021.01.05.02.44.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 05 Jan 2021 02:44:28 -0800 (PST)
+Date:   Tue, 5 Jan 2021 16:14:26 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     rjw@rjwysocki.net, robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] cpufreq: sama7g5: add cpufreq driver
+Message-ID: <20210105104426.4tmgc2l3vyicwedd@vireshk-i7>
+References: <1609842147-8161-1-git-send-email-claudiu.beznea@microchip.com>
+ <1609842147-8161-3-git-send-email-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <1609842147-8161-3-git-send-email-claudiu.beznea@microchip.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a device tree schema for serial port driver for
- Silicon Labs Si4455 Sub-GHz transciver.
+On 05-01-21, 12:22, Claudiu Beznea wrote:
+> Microchip SAMA7G5 devices supports runtime changes of CPU frequency.
+> This is doable by changing CPUPLL frequency along with MCK0 frequency.
+> Along with this CPU's regulator must be changed to accommodate new
+> frequencies.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  drivers/cpufreq/Kconfig.arm          |   9 +
+>  drivers/cpufreq/Makefile             |   1 +
+>  drivers/cpufreq/cpufreq-dt-platdev.c |   2 +
+>  drivers/cpufreq/sama7g5-cpufreq.c    | 371 +++++++++++++++++++++++++++++++++++
+>  4 files changed, 383 insertions(+)
+>  create mode 100644 drivers/cpufreq/sama7g5-cpufreq.c
 
-Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
+Did you try to reuse cpufreq-dt driver? It already handles most of
+this stuff, the only thing you need to do is to make sure
+clk_set_rate() for a CPU needs to handle all the clk stuff behind the
+scene.
 
-Guide: https://github.com/dministro/linux-serial-si4455
+We haven't been accepting new implementations of the drivers which can
+work just fine with cpufreq-dt, please try to adapt to it.
 
-Signed-off-by: Jozsef Horvath <info@ministro.hu>
----
+Thanks.
 
-changes v1:
- - fixed: dt: bindings: rename sdn-gpios to shutdown-gpios
-
-changes v3:
- - fixed: dt: bindings: silabs,si4455: more detailed description
- - added: dt: bindings: silabs,si4455: properties silabs,package-size,
-   silabs,tx-channel, silabs,rx-channel, silabs,ez-config
-
-changes v4:
- - fixed: dt: bindings: silabs,si4455: $id
-   from http://devicetree.org/schemas/serial/silabs,si4455.yaml
-   to http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
-
-changes v5:
- - fixed: dt: bindings: silabs,si4455: $id
-   from http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
-   to http://devicetree.org/schemas/serial/silabs,si4455.yaml
- - fixed: dt: bindings: silabs,si4455: serial.yaml reference added
-
-changes v7:
- - added: dt: bindings: silabs,si4455: silabs,tx-timeout property definition
----
- .../bindings/serial/silabs,si4455.yaml        | 105 ++++++++++++++++++
- 1 file changed, 105 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/serial/silabs,si4455.yaml
-
-diff --git a/Documentation/devicetree/bindings/serial/silabs,si4455.yaml b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
-new file mode 100644
-index 000000000000..8ba4956064b4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/serial/silabs,si4455.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Silicon Labs Si4455 device tree bindings
-+
-+maintainers:
-+  - József Horváth <info@ministro.hu>
-+
-+description:
-+  This document is for describing the required device tree parameters for si4455 serial driver.
-+  The si4455 driver tries to represent the Silicon Labs Si4455 sub-GHz transceiver device
-+  like a serial port. The required parameters for proper operation are described below.
-+  https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
-+
-+allOf:
-+  - $ref: "serial.yaml#"
-+
-+properties:
-+  compatible:
-+    const: silabs,si4455
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    description: maximum clock frequency on SPI port
-+    maximum: 500000
-+
-+  shutdown-gpios:
-+    description: gpio pin for SDN
-+    maxItems: 1
-+
-+  silabs,package-size:
-+    description:
-+      Radio payload length, variable packet length is not supported by driver.
-+      This value should equal with EZConfig payload length.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 64
-+    minimum: 1
-+
-+  silabs,tx-channel:
-+    description:
-+      Radio transmit channel selection.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 255
-+    minimum: 0
-+
-+  silabs,rx-channel:
-+    description:
-+      Radio receive channel selection.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 255
-+    minimum: 0
-+
-+  silabs,tx-timeout:
-+    description:
-+      Radio transmit timeout(ms)
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 1000
-+    minimum: 1
-+
-+  firmware-name:
-+    description:
-+      Radio configuration data file name.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    items:
-+      pattern: ^[0-9a-z\._\-]{1,255}$
-+
-+required:
-+  - reg
-+  - interrupts
-+  - spi-max-frequency
-+  - shutdown-gpios
-+  - silabs,package-size
-+  - silabs,tx-channel
-+  - silabs,rx-channel
-+  - firmware-name
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      si4455_0: serial@0 {
-+        compatible = "silabs,si4455";
-+        reg = <0>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <7 2>;
-+        shutdown-gpios = <&gpio 26 1>;
-+        spi-max-frequency = <300000>;
-+        silabs,package-size = <30>;
-+        silabs,tx-channel = <1>;
-+        silabs,rx-channel = <2>;
-+        firmware-name = "si4455_spi0_0.ez.bin";
-+      };
-+    };
-+...
 -- 
-2.17.1
-
+viresh
