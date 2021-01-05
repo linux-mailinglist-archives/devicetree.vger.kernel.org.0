@@ -2,169 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD72C2EB2E8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 20:01:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A242EB348
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 20:07:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730521AbhAETB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 14:01:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729916AbhAETB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 14:01:26 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E912C061796
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 11:00:46 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id k78so409288ybf.12
-        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 11:00:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uF/4LaeUyb8iKxy4J4BmNUtHWLHQ8yMthImd//+SmJA=;
-        b=g2Uhz2bNLOMoOeOTDBK9thf+qnv8HYYmjI9pnDDAx+QwG7MXmt+a4DCpJEKidNiFtM
-         G5NkzSBum+g+5nLtuz1wQ+5XheRxvpFW/GmqtDbpduYXqFDKCxjAM80Lv6ZDn6eab6Eo
-         Mim6pqGAuRnwlnIApB+DQ7p0rTMn0OuBgdodA2IfDex0Sjl7EJdL7GenmhwcgQEXsonj
-         i95hbJtp1ECSHtpFnpgwF4qhamDO9wTztxnkVNvPgssrn0icI9v3GsPy4tgjuUNd6YEO
-         E4Pj8G5rLjiEU9pGzUOBye/o4NEYLPPJgtW1tn0SqjLvl7KaklhqOPqp2cpbm9pmxohT
-         3qwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uF/4LaeUyb8iKxy4J4BmNUtHWLHQ8yMthImd//+SmJA=;
-        b=gjhcsetlp2YDIRRjszhhMk/5lvm5sBx67D69b1cbMCVprqwxaWAPbeVtqVr5rHgdQD
-         U6Px29R6Jceb/4Ugi0lXoCDTlC/2iaD3CmYq75iryh7C0UDUcEtYLSAnBnf7g9Eq+lVO
-         tONFwFHg6k1PhK4q73DRD/SgCNzLOVglTv1wzvN0zRsh0mz4OPa8JNjz8Hj7CslRrVR6
-         dxM9XJ00B5PgLxhXv24JTJ/L51GklNbrf0zFM9zvXg0DQHDPz81jG7TCfoLhyzJwuL+S
-         CL1qmHq994Jui7Oj67zExruzyhc5K80MwN1sFYfeQdbkjecdi8pPmnBImK0wgT9llmGR
-         iqVQ==
-X-Gm-Message-State: AOAM533dKybqhXbnPkguAIjCjx80GgqbqCZXDXOkUAEMojoxK/GRiQ/a
-        zi+6ulSkGkwOjCtT4+9XZRPuqr/NeJlz2qXtzN1+rg==
-X-Google-Smtp-Source: ABdhPJyAyXibDQ02ZsQC7ZubGoSuYI00ndZv0PCCp3ayM1xT86rVHO69xsy8p+rq9cj4srouMFcjc7GpareLYaI3v3E=
-X-Received: by 2002:a25:4f55:: with SMTP id d82mr1187587ybb.466.1609873244896;
- Tue, 05 Jan 2021 11:00:44 -0800 (PST)
+        id S1728066AbhAETEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 14:04:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35038 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727718AbhAETEv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Jan 2021 14:04:51 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5906D22D57;
+        Tue,  5 Jan 2021 19:04:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609873451;
+        bh=m7F7jxxf4ap/Rx2gdRXtLy9isGEOULchCtP0u2gWK0k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=eFrrIermqvjQT7gdpmnWlTaCTAW7UEa0q5L1WN0EmY3+dW2gbfgscP1wPQNB0q9tM
+         dAI8Cv+4LtIXV8T7aTlMG5XVr+C5eM2o6M0HUI3x2xq+Z2a3W6xa8chZVopTejg9HC
+         4NunOXY1nNyNw3l0ix4ebnb+mgRRZVmUA/dyZmqczWNLxhX/mDtOUD9y+L2/LY6Xy9
+         UPtuCYOXMfKyDAasHxFJ+HIvAQ2brV/kVe4YGXZuIGn1gGU/BjddYdVpj/QF4B29D1
+         IvWctyMH4iz5kCcgFdF87rQVl00JSz+OmtwYS8Oc6qL2HTCgUQ452y2EVcDGMPBGTg
+         0eXV1hLYR7JCQ==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     dinguyen@kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: [PATCH] arm64: dts: n5x: Add support for Intel's eASIC N5X platform
+Date:   Tue,  5 Jan 2021 13:04:03 -0600
+Message-Id: <20210105190403.2054948-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-References: <20201121020232.908850-17-saravanak@google.com> <20201229033440.32142-1-michael@walle.cc>
-In-Reply-To: <20201229033440.32142-1-michael@walle.cc>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 5 Jan 2021 11:00:08 -0800
-Message-ID: <CAGETcx8BNkvz=F7Z6HGRZyEcPcQGyJ1hneVMZ=mOeJ8hdbGt1A@mail.gmail.com>
-Subject: Re: [PATCH v2 16/17] driver core: Refactor fw_devlink feature
-To:     Michael Walle <michael@walle.cc>
-Cc:     Ard Biesheuvel <ardb@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Len Brown <lenb@kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 28, 2020 at 7:35 PM Michael Walle <michael@walle.cc> wrote:
->
-> > The current implementation of fw_devlink is very inefficient because it
-> > tries to get away without creating fwnode links in the name of saving
-> > memory usage. Past attempts to optimize runtime at the cost of memory
-> > usage were blocked with request for data showing that the optimization
-> > made significant improvement for real world scenarios.
-> >
-> > We have those scenarios now. There have been several reports of boot
-> > time increase in the order of seconds in this thread [1]. Several OEMs
-> > and SoC manufacturers have also privately reported significant
-> > (350-400ms) increase in boot time due to all the parsing done by
-> > fw_devlink.
-> >
-> > So this patch uses all the setup done by the previous patches in this
-> > series to refactor fw_devlink to be more efficient. Most of the code has
-> > been moved out of firmware specific (DT mostly) code into driver core.
-> >
-> > This brings the following benefits:
-> > - Instead of parsing the device tree multiple times during bootup,
-> >   fw_devlink parses each fwnode node/property only once and creates
-> >   fwnode links. The rest of the fw_devlink code then just looks at these
-> >   fwnode links to do rest of the work.
-> >
-> > - Makes it much easier to debug probe issue due to fw_devlink in the
-> >   future. fw_devlink=on blocks the probing of devices if they depend on
-> >   a device that hasn't been added yet. With this refactor, it'll be very
-> >   easy to tell what that device is because we now have a reference to
-> >   the fwnode of the device.
-> >
-> > - Much easier to add fw_devlink support to ACPI and other firmware
-> >   types. A refactor to move the common bits from DT specific code to
-> >   driver core was in my TODO list as a prerequisite to adding ACPI
-> >   support to fw_devlink. This series gets that done.
-> >
-> > [1] - https://lore.kernel.org/linux-omap/ea02f57e-871d-cd16-4418-c1da4bbc4696@ti.com/
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Tested-by: Grygorii Strashko <grygorii.strashko@ti.com>
->
-> git bisect show that this commit broke my board in 5.11-rc1:
->
-> [    2.294375] sysfs: cannot create duplicate filename '/devices/virtual/devlink/0000:00:00.1--0000:00:00.1'
-> [    2.303999] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.11.0-rc1-00016-ga0fb284b267 #267
-> [    2.312125] Hardware name: Kontron SMARC-sAL28 (4 Lane) (DT)
-> [    2.317804] Call trace:
-> [    2.320253]  dump_backtrace+0x0/0x1b8
-> [    2.323936]  show_stack+0x20/0x70
-> [    2.327263]  dump_stack+0xd8/0x134
-> [    2.330677]  sysfs_warn_dup+0x6c/0x88
-> [    2.334351]  sysfs_create_dir_ns+0xe8/0x100
-> [    2.338547]  kobject_add_internal+0x9c/0x290
-> [    2.342833]  kobject_add+0xa0/0x108
-> [    2.346331]  device_add+0xfc/0x798
-> [    2.349746]  device_link_add+0x454/0x5e0
-> [    2.353682]  fw_devlink_create_devlink+0xb8/0xc8
-> [    2.358316]  __fw_devlink_link_to_suppliers+0x84/0x180
-> [    2.363474]  __fw_devlink_link_to_suppliers+0x134/0x180
-> [    2.368718]  device_add+0x778/0x798
-> [    2.372217]  device_register+0x28/0x38
-> [    2.375979]  __mdiobus_register+0x94/0x340
-> [    2.380089]  of_mdiobus_register+0xb4/0x380
-> [    2.384285]  enetc_pf_probe+0x73c/0xb10
-> [    2.388132]  local_pci_probe+0x48/0xb8
-> [    2.391896]  pci_device_probe+0x120/0x1c0
-> [    2.395920]  really_probe+0xec/0x3c0
-> [    2.399505]  driver_probe_device+0x60/0xc0
-> [    2.403614]  device_driver_attach+0x7c/0x88
-> [    2.407810]  __driver_attach+0x60/0xe8
-> [    2.411570]  bus_for_each_dev+0x7c/0xd0
-> [    2.415419]  driver_attach+0x2c/0x38
-> [    2.419004]  bus_add_driver+0x194/0x1f8
-> [    2.422851]  driver_register+0x6c/0x128
-> [    2.426698]  __pci_register_driver+0x4c/0x58
-> [    2.430983]  enetc_pf_driver_init+0x2c/0x38
-> [    2.435181]  do_one_initcall+0x54/0x2d8
-> [    2.439029]  kernel_init_freeable+0x1fc/0x268
-> [    2.443403]  kernel_init+0x1c/0x120
-> [    2.446904]  ret_from_fork+0x10/0x30
-> [    2.450502] kobject_add_internal failed for 0000:00:00.1--0000:00:00.1 with -EEXIST, don't try to register things with the same name in the same directory.
->
-> Looks like it will generate that link twice? Let me know if I can help
-> testing.
->
-> See also: https://lavalab.kontron.com/scheduler/job/3894#L831
+The Intel eASIC N5X platform shares the same register map as the Agilex
+platform, thus, we can re-use the socfpga_agilex.dtsi as the base
+DTSI.
 
-I'll look into this this week. Is the DT for this board in upstream?
-If so, can you point me to the DT file(s)?
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ arch/arm64/Kconfig.platforms                  |  5 ++
+ arch/arm64/boot/dts/intel/Makefile            |  1 +
+ .../boot/dts/intel/socfpga_n5x_socdk.dts      | 53 +++++++++++++++++++
+ 3 files changed, 59 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
 
-Also, can you give me the output of this?
-find /sys/devices -type d | grep "0000:00:00.1"
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index 6eecdef538bd..c20eacd9a931 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -13,6 +13,11 @@ config ARCH_AGILEX
+ 	help
+ 	  This enables support for Intel's Agilex SoCFPGA Family.
+ 
++config ARCH_N5X
++	bool "Intel's eASIC N5X SoCFPGA Family"
++	help
++	  This enables support for Intel's eASIC N5X SoCFPGA Family.
++
+ config ARCH_SUNXI
+ 	bool "Allwinner sunxi 64-bit SoC Family"
+ 	select ARCH_HAS_RESET_CONTROLLER
+diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+index 296eceec4276..3a052540605b 100644
+--- a/arch/arm64/boot/dts/intel/Makefile
++++ b/arch/arm64/boot/dts/intel/Makefile
+@@ -2,3 +2,4 @@
+ dtb-$(CONFIG_ARCH_AGILEX) += socfpga_agilex_socdk.dtb \
+ 			     socfpga_agilex_socdk_nand.dtb
+ dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
++dtb-$(CONFIG_ARCH_N5X) += socfpga_n5x_socdk.dtb
+diff --git a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
+new file mode 100644
+index 000000000000..5f56e2697fee
+--- /dev/null
++++ b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier:     GPL-2.0
++/*
++ * Copyright (C) 2021, Intel Corporation
++ */
++#include "socfpga_agilex.dtsi"
++
++/ {
++	model = "eASIC N5X SoCDK";
++
++	aliases {
++		serial0 = &uart0;
++		ethernet0 = &gmac0;
++		ethernet1 = &gmac1;
++		ethernet2 = &gmac2;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory {
++		device_type = "memory";
++		/* We expect the bootloader to fill in the reg */
++		reg = <0 0 0 0>;
++	};
++
++	soc {
++		clocks {
++			osc1 {
++				clock-frequency = <25000000>;
++			};
++		};
++	};
++};
++
++&clkmgr {
++	compatible = "intel,easic-n5x-clkmgr";
++};
++
++&mmc {
++	status = "okay";
++	cap-sd-highspeed;
++	broken-cd;
++	bus-width = <4>;
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&watchdog0 {
++	status = "okay";
++};
+-- 
+2.30.0
 
-Thanks,
-Saravana
