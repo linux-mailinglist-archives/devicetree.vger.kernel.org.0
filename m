@@ -2,85 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F69D2EB003
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 17:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D38102EB017
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 17:30:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727036AbhAEQ1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 11:27:55 -0500
-Received: from www.zeus03.de ([194.117.254.33]:36370 "EHLO mail.zeus03.de"
+        id S1728180AbhAEQac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 11:30:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40682 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726571AbhAEQ1z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 11:27:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=ItCqiLHQl9A4Ym1BH/ajMtYAHSq0
-        U0IE+c+ElmC9zT4=; b=ao0skGe6I0CoQ6Q+jg/ry3yvCr0rMFK96RGUIS94b2lR
-        jhoVwKHTULh6gctCFaacUhhPpj6QXDSjw6UgagdpH6KoCsT7F1neZdvp7wgpdR45
-        I8lVk7ub/gqvVaUegHaBf2SaAWFxU/rVFjjIF+ekxqhrDQUM14/iaKcSiFnwfI4=
-Received: (qmail 121856 invoked from network); 5 Jan 2021 17:27:13 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Jan 2021 17:27:13 +0100
-X-UD-Smtp-Session: l3s3148p1@M9HVrSm4zuUgAwDPXyX1AEdA8SGgn5QT
-Date:   Tue, 5 Jan 2021 17:27:13 +0100
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Tho Vu <tho.vu.wh@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/5] arm64: dts: renesas: falcon: Add Ethernet-AVB support
-Message-ID: <20210105162713.GH1842@ninjato>
-References: <20201227130407.10991-1-wsa+renesas@sang-engineering.com>
- <20201227130407.10991-5-wsa+renesas@sang-engineering.com>
- <CAMuHMdWSZ7Fw2fX6aYhqavDDV01qkYJmXrAUWv8Rud9hKVEBZQ@mail.gmail.com>
+        id S1727036AbhAEQab (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Jan 2021 11:30:31 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 705C422CA0;
+        Tue,  5 Jan 2021 16:29:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609864191;
+        bh=rntfB7C5mBvVXgliBl2U7ngampY/9LrSTvoo5JN6PHE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S88AqmoJInnEWhe9qFDxHx5FvAYHSp2+rb+N2gfbHNDqaltI/vzxj97J0i6Zl4ZSo
+         FrMnv1h7c5jq1+J/SA2CzP53dUx9Ic5a226yVsQDL87Z/TQTi0ydw0WX0Gj6bWEpff
+         Bpyl/Wv92pZ60y5kZU+mTkDBRRw0n5k3Pfp6MyjOURgVKFyTCYlDKpmW+92zkIrrio
+         AiabCKPbajE3T7uFKNjPkX05HK+As0UcALR8Cs2/Crq2Iy/CX0hUrt7kpGlUCUKYks
+         Y3fP0co3+5kMdsvFM/c9iGlnTGd3Eki1+zbIW6H6Q7OPVStS8Z9lIf0SRS6tjSj6fW
+         QaCVt0a72co2w==
+Date:   Tue, 5 Jan 2021 17:29:46 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 18/21] dt-bindings: allwinner: Add H616 compatible
+ strings
+Message-ID: <20210105162946.GI1842@ninjato>
+References: <20201211011934.6171-1-andre.przywara@arm.com>
+ <20201211011934.6171-19-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="UKNXkkdQCYZ6W5l3"
+        protocol="application/pgp-signature"; boundary="WIIRZ1HQ6FgrlPgb"
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdWSZ7Fw2fX6aYhqavDDV01qkYJmXrAUWv8Rud9hKVEBZQ@mail.gmail.com>
+In-Reply-To: <20201211011934.6171-19-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---UKNXkkdQCYZ6W5l3
+--WIIRZ1HQ6FgrlPgb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Geert,
+On Fri, Dec 11, 2020 at 01:19:31AM +0000, Andre Przywara wrote:
+> Add simple "allwinner,sun50i-h616-xxx" compatible names to existing
+> bindings, and pair them with an existing fallback compatible string,
+> as the devices are compatible.
+> This covers I2C, infrared, RTC and SPI.
+>=20
+> Use enums to group all compatible devices together.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-thank you for the reviews!
-
-> breakout-board, while AVB1-5 are wired to 88Q2110 PHYs connected to a
-> 5port MATEnet connector on the Ethernet sub board.  So all PHYs are
-> present?
-
-I was under the assumption that we don't have the ethernet sub board in
-the lab. Sorry if I was wrong. Then I was probably just missing the
-correct Marvell driver for the phys when I tried to fire the interface
-up. I will retry (with your other suggestions, too).
+Acked-by: Wolfram Sang <wsa@kernel.org> # for I2C
 
 
---UKNXkkdQCYZ6W5l3
+--WIIRZ1HQ6FgrlPgb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl/0k10ACgkQFA3kzBSg
-Kbaggw/+KsCF8MM60YIdpFFEwPseBHo8giyrpaPyVr7YL58wbfBHZIhT8UieP7CE
-V7XV79AgAhucfaajRifa9A2PcfdHiGWXVx6TdjgEfTtoIRfVoZKFfiUJSzitQJH9
-cckmDhzMUhULJf9C2LwOqx97c1KTYrUpjzgW/w4IjsPUOqo/IDkDkJDQFElne+nI
-0CuJuDscuo6UcLeMbYIvO+jrNfzeNsmh9FMdYDx1veFXQtlcXGCLjPGSOuRVRCk2
-NmO65oiS7uS7ZMwaHUcWHQZgTip/UOpgj+QVnDOba2zTsOe6qNBlZtGNnyxdpGiU
-5qxI23fSnwtS8HcqQQVRIe79aNDN4ccgv4abWWZMvvhl3RnBYibdbP9t9dq+raci
-+g0VteK/eY9wh23auP8qwx+KWKYIidjqguD9ogG1T5c+a8mGMyUtum4fBbDgQvz0
-y+2wiQtM+hgOJ0pZRs3e4eHLZh4mxm2MC0ZEwwc9bIGVs/wdzevnCGJR2vtdbjrv
-MhfgeMQ94KyljL5aTGity7o69g2Z/yR0yGbMK4q4SoEIpLDhqbos5+JlEzuEAEs0
-PIBrc4nnuG+0uQP8jeIpVCD87enVwOnSKFVjYNz2BuD1Xst2BqEtcWVrLScYvybD
-WPIC+WoMVZhQQv5jJUAxfkAiNnP2qxQOrUqbWF8hWwc0puK/kvA=
-=D7lI
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl/0k/oACgkQFA3kzBSg
+KbYcAA//fxeNSjKkeAsUP+tmVP+6UOmYGFWuzggJQKr5y0aThBUNYPfWWF/lDRa/
+wuzgurDJZhsKyb8BxhgY2Bc/EoPsxWZi30fz2l6YdTLi3NfYoky2LhUECl+JYGjV
+MgMCCNdVyLZ8uU39J/PuCBH4oN2gBcuLxmOsiVnXcfkbbWjI6c1DNOxRDJdXx9WU
+4YDBk98pbmW7Bxik+11pmF9nncF1HvMQ4MYU+Z7fDvQfwGV74dogLu4Psr0q30o+
+zNgU/BPvf/U7DLlkcTz18ChX+v9++OZe0AnEPKMtugTZW1rI28SYvNSGhE3QDXcW
+otfDp2FvmbilDX5CtK14mlIi+0mVqu0xx6o20pNVAmx4QTjuDr2zAh+EHJ11kP6O
+KEKQRZIP7Wj0NBbaSi/mAieeF/DvH8lK9FNKUFMj8108wNF05NB00KuZ4DFvhpDA
+M1IgSiSLqJOokZw9Kbw1coKROsYZcWuCrY4tCLVe3m7u0mE9wHIgXsnDtEKLajqL
+Vd7GLY60FVPoF9OMlz2Q2liy4D+gz/NIwKYsrFU87FrMag9Lw0JZQVeH9eqw1akl
+ACSHHN3JNDJUIH5g1Yiem+VGAOQSBrz4Lr0sTTHm+OAo6b9q8k7DJtyuwUrUajG9
+s26hNzxVo+c5AbLTltlCd9esoPiHr4/zia2oKz8kM6WYsDLwKMU=
+=9MjQ
 -----END PGP SIGNATURE-----
 
---UKNXkkdQCYZ6W5l3--
+--WIIRZ1HQ6FgrlPgb--
