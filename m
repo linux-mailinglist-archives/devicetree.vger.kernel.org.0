@@ -2,92 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 310052EA8B6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 11:31:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D94E2EA8CB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 11:34:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729134AbhAEKaV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 5 Jan 2021 05:30:21 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:46181 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729133AbhAEKaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 05:30:20 -0500
-Received: by mail-ot1-f50.google.com with SMTP id w3so28826156otp.13;
-        Tue, 05 Jan 2021 02:30:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=TDV5ld2/gAWUMe2e3Urs0OVOKaSoQnRn0I/4UgQMJgM=;
-        b=kJXXWY9xHnbjkA1R3T8m+le/OFWnOoCfWn9a68vHYI4ZZS2PT6fjUpLIw1xBbrxCGE
-         PqX4QtlTztB5ewMYCqlNXpE7xiWkcnNHUPZcxpgikUV7d2eThBKqYnTfHCQYAs3H0aEi
-         tu+iajzxtA5MW/vJS7212k1HEvoZKXIcIe4H0HddUu62Wjx4wtOYj5gVLv7E3oXU0qU7
-         Vp7ajp9CRK7ItYcw3giPpKMI6FlTgYrG4puRROZt9HjEtvenX5KRA20BbMZU1z9Poo83
-         YZ3dgrbiyl9j8ceXmP6ISculcpf4+jSy0EXhFWYHMymNoAZOmd4iFYqvuDF8tjd5NN/B
-         0GCg==
-X-Gm-Message-State: AOAM532UEBl0CDFE6Jvy848UOKVxXAuZFj5rsQmUQQvsPZbt7QAJ7hZJ
-        4W/pswmayxXn4wfBogz+Lxr3/ZE68Avn7kZ2Z3c=
-X-Google-Smtp-Source: ABdhPJwNA6QGouDzm+wcuKIn/tlwSG85mL6qx+xf5/iIHI5prpE/grOjRPnL80sz12/MCWPpayowKKXHWLBMGrKTw5g=
-X-Received: by 2002:a9d:c01:: with SMTP id 1mr40558293otr.107.1609842579594;
- Tue, 05 Jan 2021 02:29:39 -0800 (PST)
+        id S1729029AbhAEKbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 05:31:45 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:56066 "EHLO
+        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728249AbhAEKbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 05:31:45 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTP id A71D011F850;
+        Tue,  5 Jan 2021 11:31:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1609842662;
+        bh=MUjJfk9WqP/192z0Yhwfz2yDLEpbXsF5/dNm7cec5Qc=;
+        h=Date:From:To:Subject:From;
+        b=5GvGgbecUobd6zKEPXIp48h7ar+ES1N/egSVP1g8Bkfrj2/x87pkcXdh+7XKS5aHr
+         lbgkaATbXmANQrQtkSiT7+megamFgCgAZkznffwLXVIDoutUeV0q3j2MdfGfsNe1pW
+         w+OXQwewLTPFSjMLGCCL8b6OSTrhdIw/x5YdRs0ZwCtii4VoZDCbidlyIvGgp4KAkB
+         S7NdMybW0yc6irt9Khz+S4+eCqORpGHuXgAEZnq2edXywciVfoD7ROCx955A0ImURV
+         r3oSTN8B8vQnKCTkMFKXxFzprjHEgWpv2vCP7GhfBoYGd1A1OexKitXQPzX2bsrPcq
+         mzQaONha8VZeQ==
+X-Virus-Scanned: Debian amavisd-new at ministro.hu
+Received: from bmail1.ministro.hu ([127.0.0.1])
+        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id r4ytmN6nC2QI; Tue,  5 Jan 2021 11:30:31 +0100 (CET)
+Received: from dev (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id 0211311F84E;
+        Tue,  5 Jan 2021 11:30:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1609842631;
+        bh=MUjJfk9WqP/192z0Yhwfz2yDLEpbXsF5/dNm7cec5Qc=;
+        h=Date:From:To:Subject:From;
+        b=rXnXbZKbdxOUGd9Oq+UTUvKIMI2fB6ZFprpsw6cJ+MDFe+BFUuNe07V68AdCrYzDR
+         miMAXsrIcazYnnhSWYufCXrRUoYp1hcljdetDZQwA/MH+FFz6LKukq2iUBQMfRNXqE
+         eHQz69cJuAqsVVfhsiGFhu3jCJNI61ajnpxi3xLXyrRWfUgoOoPvzlmctTSz4bW2Kp
+         6ECV8SdRUQBWHBVLirBdSQlNsZpLhRRxSF+gf54MDZb/EAem1L8Kx7I6AUoOfpOk+o
+         U7HUgmVkaiYQOxMG9O5j0etYVg0wUJvry+pEgZpMT0e1MG36R4rQMnE5wLXstwUFBd
+         mc6jLUB0/UZDg==
+Date:   Tue, 5 Jan 2021 10:30:29 +0000
+From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        =?iso-8859-1?Q?'J=F3zsef_Horv=E1th'?= <info@ministro.hu>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7,2/2] dt: bindings: add silabs,si4455 schema
+Message-ID: <20210105103027.GA15137@dev>
 MIME-Version: 1.0
-References: <20201126223028.3119044-1-niklas.soderlund+renesas@ragnatech.se> <20201126223028.3119044-4-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20201126223028.3119044-4-niklas.soderlund+renesas@ragnatech.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 5 Jan 2021 11:29:28 +0100
-Message-ID: <CAMuHMdUm-1Tv11z_--+h+LiU=0OggpYfK=oTsDwx6dT=KmuBKQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] thermal: rcar_gen3_thermal: Add r8a779a0 support
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
+This is a device tree schema for serial port driver for
+ Silicon Labs Si4455 Sub-GHz transciver.
 
-On Thu, Nov 26, 2020 at 11:30 PM Niklas SÃ¶derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Add support for R-Car V3U. The new THCODE values are taken from the
-> example in the datasheet.
->
-> Signed-off-by: Niklas SÃ¶derlund <niklas.soderlund+renesas@ragnatech.se>
+Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
 
-Thanks for your patch!
+Guide: https://github.com/dministro/linux-serial-si4455
 
-> --- a/drivers/thermal/rcar_gen3_thermal.c
-> +++ b/drivers/thermal/rcar_gen3_thermal.c
-> @@ -60,13 +60,14 @@
->  #define MCELSIUS(temp) ((temp) * 1000)
->  #define GEN3_FUSE_MASK 0xFFF
->
-> -#define TSC_MAX_NUM    3
-> +#define TSC_MAX_NUM    4
+Signed-off-by: Jozsef Horvath <info@ministro.hu>
+---
 
-As pointed out by Shimoda-san in response to the DT binding update,
-R-Car V3U has 5 sensors.
+changes v1:
+ - fixed: dt: bindings: rename sdn-gpios to shutdown-gpios
 
->
->  /* default THCODE values if FUSEs are missing */
->  static const int thcodes[TSC_MAX_NUM][3] = {
->         { 3397, 2800, 2221 },
->         { 3393, 2795, 2216 },
->         { 3389, 2805, 2237 },
-> +       { 3415, 2694, 2195 },
+changes v3:
+ - fixed: dt: bindings: silabs,si4455: more detailed description
+ - added: dt: bindings: silabs,si4455: properties silabs,package-size,
+   silabs,tx-channel, silabs,rx-channel, silabs,ez-config
 
-No idea what the missing fifth entry should be...
+changes v4:
+ - fixed: dt: bindings: silabs,si4455: $id
+   from http://devicetree.org/schemas/serial/silabs,si4455.yaml
+   to http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
 
-Gr{oetje,eeting}s,
+changes v5:
+ - fixed: dt: bindings: silabs,si4455: $id
+   from http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
+   to http://devicetree.org/schemas/serial/silabs,si4455.yaml
+ - fixed: dt: bindings: silabs,si4455: serial.yaml reference added
 
-                        Geert
+changes v7:
+ - added: dt: bindings: silabs,si4455: silabs,tx-timeout property definition
+---
+ .../bindings/serial/silabs,si4455.yaml        | 105 ++++++++++++++++++
+ 1 file changed, 105 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/silabs,si4455.yaml
 
+diff --git a/Documentation/devicetree/bindings/serial/silabs,si4455.yaml b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+new file mode 100644
+index 000000000000..8ba4956064b4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/serial/silabs,si4455.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Silicon Labs Si4455 device tree bindings
++
++maintainers:
++  - József Horváth <info@ministro.hu>
++
++description:
++  This document is for describing the required device tree parameters for si4455 serial driver.
++  The si4455 driver tries to represent the Silicon Labs Si4455 sub-GHz transceiver device
++  like a serial port. The required parameters for proper operation are described below.
++  https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
++
++allOf:
++  - $ref: "serial.yaml#"
++
++properties:
++  compatible:
++    const: silabs,si4455
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  spi-max-frequency:
++    description: maximum clock frequency on SPI port
++    maximum: 500000
++
++  shutdown-gpios:
++    description: gpio pin for SDN
++    maxItems: 1
++
++  silabs,package-size:
++    description:
++      Radio payload length, variable packet length is not supported by driver.
++      This value should equal with EZConfig payload length.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 64
++    minimum: 1
++
++  silabs,tx-channel:
++    description:
++      Radio transmit channel selection.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 255
++    minimum: 0
++
++  silabs,rx-channel:
++    description:
++      Radio receive channel selection.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 255
++    minimum: 0
++
++  silabs,tx-timeout:
++    description:
++      Radio transmit timeout(ms)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 1000
++    minimum: 1
++
++  firmware-name:
++    description:
++      Radio configuration data file name.
++    $ref: /schemas/types.yaml#/definitions/string
++    items:
++      pattern: ^[0-9a-z\._\-]{1,255}$
++
++required:
++  - reg
++  - interrupts
++  - spi-max-frequency
++  - shutdown-gpios
++  - silabs,package-size
++  - silabs,tx-channel
++  - silabs,rx-channel
++  - firmware-name
++
++additionalProperties: false
++
++examples:
++  - |
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      si4455_0: serial@0 {
++        compatible = "silabs,si4455";
++        reg = <0>;
++        interrupt-parent = <&gpio>;
++        interrupts = <7 2>;
++        shutdown-gpios = <&gpio 26 1>;
++        spi-max-frequency = <300000>;
++        silabs,package-size = <30>;
++        silabs,tx-channel = <1>;
++        silabs,rx-channel = <2>;
++        firmware-name = "si4455_spi0_0.ez.bin";
++      };
++    };
++...
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
