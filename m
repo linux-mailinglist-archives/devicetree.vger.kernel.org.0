@@ -2,109 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15B252EB0AB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 17:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8666F2EB0F8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 18:07:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729457AbhAEQ4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 11:56:15 -0500
-Received: from mail-wr1-f45.google.com ([209.85.221.45]:46150 "EHLO
-        mail-wr1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729334AbhAEQ4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 11:56:14 -0500
-Received: by mail-wr1-f45.google.com with SMTP id d13so36811715wrc.13;
-        Tue, 05 Jan 2021 08:55:58 -0800 (PST)
+        id S1729950AbhAERFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 12:05:32 -0500
+Received: from mail-il1-f178.google.com ([209.85.166.178]:41334 "EHLO
+        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729505AbhAERFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 12:05:31 -0500
+Received: by mail-il1-f178.google.com with SMTP id w17so315131ilj.8;
+        Tue, 05 Jan 2021 09:05:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3lly2danYiTb182H8D8avthszPR0+tG65HNd1JQEsbI=;
-        b=HCkl2FtFY5FNxod7qZtBctkCHsuOzup68d7IP2GeF6z9dd+p5B2gmS978t4vzAGdIF
-         wDRoD1bZ0N5aUyl4SvgbjRIRreTxXj3kWZ06RZtvIR9Ce5ZA9cID5Ol+YTjKFD8aS7Ah
-         sPz2WPkqUDrLS+VItLsMWorYVw7h/dD543rk4hfdGLPvU9u7JsnfcU+UNi3o3ED7MRzo
-         hCD6lBZhA6M5DadzoVEdTA5XsFtZuniO/ltffwfC4sj3FxgwfTA5nWHHtu2UN23fYIHP
-         GJ9ccU2wsszmmcPQ8rQwSAUoAdYGRKsP8vBXGtpbAyAPl6GVbQ2YCY5TFLry43C+OJ+c
-         xTMg==
-X-Gm-Message-State: AOAM530BA+GYe+vJYSXYO6sFmnVkKIn1en5V5dwjeKJqa45Zucax/snP
-        +iS23rTZBxJ9GV/WYUhiGlc=
-X-Google-Smtp-Source: ABdhPJzX4fvNgU7hZQaXgWYzHyNSexu7jTttqQRxXT2CO39QS18z96tCMzayhO0xxYI//56QjYAo1A==
-X-Received: by 2002:adf:ec8c:: with SMTP id z12mr500791wrn.208.1609865732300;
-        Tue, 05 Jan 2021 08:55:32 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id o125sm118260wmo.30.2021.01.05.08.55.30
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=szjyrLYwaZaHX4vAXZif2q9yEP3V/qNPGTizVqWHU30=;
+        b=o7NQvheEo5/aLClIIY16Y0ORBZe+sf8ohLKJRvBT1RE0ZPQp0xKrMpbIPyPYPi1d1v
+         X8BLw3YBANcU1oIBDWfXILJtxoFxTCwQafcVx2YjM0MMHAcJAComR2zHo3p300JMgLvu
+         1jscqoFfEm6K97+XowLdXXq+bMnfPRrbo9+BaEDOxevlcpgVfwWR9Lvojk3JrpsRVdFn
+         CrzEbd3QwCycJFioRGgxFrid3lDN7bI5APqGbbkveaq11AJ84yLQovR8T8x4xCKlQ8xr
+         /Z4Bh0MVlIuVYCUanS8rkDgy3yWEtyrhyZ+ph6XoTLTv1YxEKUmuinMYcy85VEVv2Nmi
+         fZUA==
+X-Gm-Message-State: AOAM531pU9tvHowhhKe7mVZE4UzWFte+vUI87+uVk02f/rm/mZOoCf/8
+        8qXxSQ6rgFq/B2AxRvsBWg==
+X-Google-Smtp-Source: ABdhPJyOvIBC1VtDlm9f8CAH2CirusT8UNwTgPnnqrgUs2zeNid9UusFz2jWO51pCmduXoGkABoTGQ==
+X-Received: by 2002:a92:7b07:: with SMTP id w7mr589022ilc.78.1609866290356;
+        Tue, 05 Jan 2021 09:04:50 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id k5sm64436ioa.27.2021.01.05.09.04.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 08:55:31 -0800 (PST)
-Date:   Tue, 5 Jan 2021 17:55:29 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Timon Baetz <timon.baetz@protonmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic
- nodes
-Message-ID: <20210105165529.GB20401@kozik-lap>
-References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
- <20201230205139.1812366-2-timon.baetz@protonmail.com>
- <20210104135156.GB5645@sirena.org.uk>
- <20210104181825.GB27043@kozik-lap>
- <20210104182734.GH5645@sirena.org.uk>
- <20210104183821.GA29033@kozik-lap>
- <20210104212449.GJ5645@sirena.org.uk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210104212449.GJ5645@sirena.org.uk>
+        Tue, 05 Jan 2021 09:04:49 -0800 (PST)
+Received: (nullmailer pid 372418 invoked by uid 1000);
+        Tue, 05 Jan 2021 17:04:48 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Bert Vermeulen <bert@biot.com>
+Cc:     devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20210104131755.2979203-2-bert@biot.com>
+References: <20210104131755.2979203-1-bert@biot.com> <20210104131755.2979203-2-bert@biot.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: Add Realtek RTL838x/RTL839x support
+Date:   Tue, 05 Jan 2021 10:04:48 -0700
+Message-Id: <1609866288.019144.372417.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 04, 2021 at 09:24:49PM +0000, Mark Brown wrote:
-> On Mon, Jan 04, 2021 at 07:38:21PM +0100, Krzysztof Kozlowski wrote:
-> > On Mon, Jan 04, 2021 at 06:27:34PM +0000, Mark Brown wrote:
+On Mon, 04 Jan 2021 14:17:54 +0100, Bert Vermeulen wrote:
+> Signed-off-by: Bert Vermeulen <bert@biot.com>
+> ---
+>  .../realtek,rtl-intc.yaml                     | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
 > 
-> > > We can indicate the presence of features without adding new compatible
-> > > strings, that's just encoding the way Linux currently divides things up
-> > > into the bindings.  For example having an extcon property seems like it
-> > > should be enough to figure out if we're using extcon.
-> 
-> > It won't be enough because MFD will create device for extcon and bind
-> > the driver. The same for the charger. We have a board where max8997 is
-> > used only as PMIC (providing regulators) without battery and USB
-> > connectivity.
-> 
-> I'm not sure I follow, sorry?  Either the core driver can parse the
-> bindings enough to know what children it has or (probably better) it can
-> instantiate the children unconditionally and then the function drivers
-> can figure out if they need to do anything.
 
-Currently the MFD parent/core driver will instantiate children
-unconditionally.  It would have to be adapted. With proposed bindings -
-nothing to change.  MFD core already does the thing.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-The point is that function drivers should not be even bound, should not
-start to probe. Otherwise if they probe and fail, they will pollute the
-dmesg/probe log with failure. With the failure coming from looking for
-missing of_node or any other condition from parent/core driver.
+yamllint warnings/errors:
 
-> > Another point, is that this reflects the real hardware. The same as we
-> > model entire SoC as multiple children of soc node (with their own
-> > properties), here we represent smaller chip which also has
-> > sub-components.
-> 
-> Components we're calling things like "extcon"...
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml: properties: 'interrupt-map-mask' is a dependency of 'interrupt-map'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml: ignoring, error in schema: properties
+warning: no schema found in file: ./Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+Error: Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.example.dts:30.5-6 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.example.dt.yaml] Error 1
+make: *** [Makefile:1370: dt_binding_check] Error 2
 
-I am rather thinking about charger, but yes, extcon as well. Either you
-have USB socket (and want to use associated logic) or not.
+See https://patchwork.ozlabs.org/patch/1422078
 
-Best regards,
-Krzysztof
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
