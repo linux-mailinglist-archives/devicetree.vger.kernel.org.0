@@ -2,105 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A7812EADEF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A555F2EADFE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:15:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726745AbhAEPKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 10:10:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34746 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726743AbhAEPKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:10:13 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3578DC061574;
-        Tue,  5 Jan 2021 07:09:33 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id t22so18515968pfl.3;
-        Tue, 05 Jan 2021 07:09:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=B59L1dFJQpmm6U2tlwyxFjjl6hJUIu0OW27SvrE0oos=;
-        b=oyOckUZXtx9AQwQBWUKccCcj191MuBzPQolSutSz9Y0Ul6GN0HMi1jPI/YhgvLMVcC
-         roCrsWzfLsPny8VDJ4eMsf5jIy1/RHJZtLO1jGQvr8yvrUrvT7O+trHihvOFEufE3feN
-         +xcEm8yyOSxtcRzUQ/WVN56XdjvXE+7a7IF/VH4Iav5Y6si4+D8vXRqpg/0XUCaHeoSi
-         xvs5ACLF2pQUuF82kYz3VJqUzlzUv/MEaDEa3TVOpLRZ2y4r7m7P439pEmWDQh4kems2
-         pI+Yf7F3mill4iq22IrKtL5YDQW8m0DKVONOfQubm/kScpHP78doSKJCBcrIHKxcwQ0s
-         PXiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=B59L1dFJQpmm6U2tlwyxFjjl6hJUIu0OW27SvrE0oos=;
-        b=QPFdZP4PFXel36OxqWfrcXXiboDBVVf9p/eAc/xh/OYE3u8CT4jylGLkm8VPbYHsVx
-         NXccqNphK5H1ZuZAIZcs5j5gU07x0n3GAoVkzCxO2CdnoRRJgdQEu4TYek/EW4SG4oZc
-         M3EsCe5r/7lTTsIF345PMQBN7cN9p0DLQLxarGWkPlAwQxHr6u1IF3XlkF/blNek6/QV
-         ZCbZ+jafOghpZCG0fWVEa12gXmo0hW0idY1//q4+uFu/7S9vQ66sF5Y6yML1hLy95xkJ
-         HahIQWrgA0H8GLvyetGEZeLJ0gXzcNITXZiASpp9lTXRMD4bKDUsT3mXA+v8+jZf1VZT
-         BINA==
-X-Gm-Message-State: AOAM533Nojtcc8PascuM2OiIDjJjnVg+V66q1McR1E+VZfidGPQr5qvg
-        XFBSvraDJoxi1ZvKib7HSg8pwvCj+ZpccUtXyDg=
-X-Google-Smtp-Source: ABdhPJwfp6jodFZyv1Neb9BHMx5OCcTv9aS6Lx3BAZWVHMmeKBXVbLxSxZ012O4y0PyTpRqMolmxj+eTfkMAL9APlp8=
-X-Received: by 2002:a62:528c:0:b029:19e:4a39:d9ea with SMTP id
- g134-20020a62528c0000b029019e4a39d9eamr65120pfb.20.1609859372655; Tue, 05 Jan
- 2021 07:09:32 -0800 (PST)
-MIME-Version: 1.0
-References: <20201130211145.3012-1-james.quinlan@broadcom.com>
- <20201130211145.3012-2-james.quinlan@broadcom.com> <20201209140122.GA331678@robh.at.kernel.org>
- <CANCKTBsFALwF8Hy-=orH8D-nd-qyXqFDopATmKCvbqPbUTC7Sw@mail.gmail.com> <20210105140128.GC4487@sirena.org.uk>
-In-Reply-To: <20210105140128.GC4487@sirena.org.uk>
-From:   Jim Quinlan <jim2101024@gmail.com>
-Date:   Tue, 5 Jan 2021 10:09:21 -0500
-Message-ID: <CANCKTBtNgyBTNwwtbtMkR9nFwq+AZyAZmGX9XXfhwf27zwjG_Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        id S1725838AbhAEPOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 10:14:06 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:39602 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725936AbhAEPOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:14:05 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 105FCMQn012022;
+        Tue, 5 Jan 2021 09:12:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1609859542;
+        bh=mEd6uiP7ZJTbYDLPwiYXQLyxW/qQsfNO7uWM61UIuqk=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=sMgDQUGtTm9DGwd1dqUY74OxvPLszViG8lp2ax++b9ZvV9XvfcNSkPn0TO42dmmkW
+         VpUxpsz6+/l1i9tgPHekLAuIVJVDS0HNN6HGM7+jfS+DvyFMzFIONSr/28qxDnPUBu
+         ta87y5W6lA7XYGcmlnHuic8YNlhA13t43y0x5Uyw=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 105FCMf4037322
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 5 Jan 2021 09:12:22 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 5 Jan
+ 2021 09:12:22 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 5 Jan 2021 09:12:22 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 105FCL8R002667;
+        Tue, 5 Jan 2021 09:12:21 -0600
+Date:   Tue, 5 Jan 2021 09:12:20 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Dave Gerlach <d-gerlach@ti.com>
+CC:     Suman Anna <s-anna@ti.com>, Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: Add Support for AM642 SoC
+Message-ID: <20210105151220.vy42nw7uwv5ax3z6@library>
+References: <20201125052004.17823-1-d-gerlach@ti.com>
+ <20201125052004.17823-3-d-gerlach@ti.com>
+ <9ef76d15-46e5-884d-2b00-3228c46a73ac@ti.com>
+ <d62d6ce5-b346-d734-0bda-d2dd0d360d5c@ti.com>
+ <c8df15fa-a41f-72b2-6b9d-9e27cc449e31@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c8df15fa-a41f-72b2-6b9d-9e27cc449e31@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 5, 2021 at 9:01 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Mon, Jan 04, 2021 at 05:12:11PM -0500, Jim Quinlan wrote:
->
-> > For us, the supplies are for the EP chip's power.  We have the PCIe
-> > controller turning them "on" for power-on/resume and "off" for
-> > power-off/suspend.  We need the "xxx-supply" property in the
-> > controller's DT node because of the chicken-and-egg situation: if the
-> > property was in the EP's DT node, the RC  will never discover the EP
-> > to see that there is a regulator to turn on.   We would be happy with
-> > a single supply name, something like "ep-power".  We would be ecstatic
-> > to have two (ep0-power, ep1-power).
->
-> Why can't the controller look at the nodes describing devices for
-> standard properties?
-Hi Mark,
+On 22:02-20210104, Dave Gerlach wrote:
+> >> This is atleast missing the ranges for On-Chip SRAM and the R5FSS, but those can
+> >> always be added incrementally as well.
+> 
+> Yes, I think they should be added incrementally once a user is present.
+> 
 
-It just feels wrong for the driver (RC) of one DT node to be acting on
-a property of another driver's (EP) node, even though it is a subnode.
-There is also the possibility of the EP driver acting upon the
-property simultaneously; we don't really have control of what EP
-device and drivers are paired with our SOCs.
-In addition, this just pushes the binding name issue down a level --
-what should these power supplies be called?  They are not slot power
-supplies.  Can the  Broadcom STB PCIe RC driver's binding document
-specify and define the properties of EP sub-nodes?
 
+Most of the driver dependencies are resolved in v5.11-rc1. So, you
+should be able to add a lot of devices (aka users) instead of making
+this a barebones dts as the first introduction - I see no benefit of
+things coming in piece meal - other than creating all kind of dependency
+mayhem that I don't want to deal with.
+
+Please make sure that all nodes for all peripherals that can be
+introduced in v5.11-rc1 is part of this introduction of device.
+
+-- 
 Regards,
-Jim Quinlan
-Broadcom STB
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
