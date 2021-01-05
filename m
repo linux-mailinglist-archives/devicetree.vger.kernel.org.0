@@ -2,94 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF79A2EA6D7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 10:00:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 509CD2EA6F5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 10:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbhAEJAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 04:00:25 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:49047 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727056AbhAEJAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 04:00:20 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 9BA5B757;
-        Tue,  5 Jan 2021 03:59:28 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 05 Jan 2021 03:59:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=sYiyZnNaw9vrvutD44uZuAX9Zub
-        ELOu1wtvHaq29vxU=; b=bWoWgCLRb/06NCzWaEDsGxmpYRhcvDXJRQq3xD+h3C4
-        udQZi9Mfv4t+3tr8d45cg32FS5uGtZT8ZqUEBBlrIpnpC1EeCdydbjVXsZ7UJzbj
-        v/uMtKP+q44uzZW5ch13OghGvNsWz53e+Lx/bNj4kUstv7tcs5ZRvIohrF88AXDD
-        mMXjk7Xv66mp876hQeGmnbhwa8C0VNo8TCqDcKKXtDKKn3a6qwwXInHhj8sIcVHS
-        +Vs6iaytKJ6i0E+MfmxpHOfx+s12d0Vbyq1HVwrP+1P194i/ojsSMvz6BUddk3oF
-        zhMRY4Hr9OGSn5faTzIZxYu2aBH9s4ZhZ+BoyMR6rfA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=sYiyZn
-        Naw9vrvutD44uZuAX9ZubELOu1wtvHaq29vxU=; b=OikiACw2mkv0WriVEXKQMG
-        Rsh+/Kuqg3tAEpe8R4UZR8EmDHEVqg7sX9MTNChfYTs3OW1l3hcub3mji4Hm0Bzd
-        IesPR4mSpwA33RiMuQ8LYA4/jaffD0/l48qaePYJrYFwKkeut/DZoH/sI0D74XT1
-        CZHCNtjnZq4rRcno4vOhxy3Y1bnafJDIdOc5mKDne07G8ExBafhOjZhjM9z336pA
-        xUovufkBLLOMZBdcB215FZHBJSXgF46FHelw+vYJDS5i5FbVuOkK1IznaocM2Mbp
-        ovNbq3gUh/znSQ04bNh3MC+mV6j4YpnmLLCtU/OeHOQk9lqfKFZrHqi4T8OkKDJQ
-        ==
-X-ME-Sender: <xms:bir0X4WULSFCtzO6HdLI_UnqP0gs2y5H7PAW7S84FcYdeq9LwEC1Dw>
-    <xme:bir0X8nWaZzAIV6PHvvjtW2rNEBnceC8xDqtI69-UjQ2hHB7SO914PeAO2orpwRUH
-    bEFjU2Ii6lz2e7u3jk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdefgedguddvgecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeeujefgiedvgfeifeeuveegjeehtddtheegleeghedvgefhtddvgfdvjeek
-    vdefueenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:byr0X8ZhtfYW5_gHCaygOTp2YGY6pcY4JfE86ZxtWbGgCJP27OOuYA>
-    <xmx:byr0X3XxfRwsWPhaNizTQ4UCz_GqTHfIQddAoXXbMFgm9k1y9Uwkeg>
-    <xmx:byr0XymxrpJ-Ycnir-EMe1IiKLLCghOO_lSmHVsTUW4PyonfQS566w>
-    <xmx:cCr0X0WlCjCQSoBNBJK9G2uq3yLUqmaq4PbT8d1fHWzFjOiMqNRHdg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id B944324005B;
-        Tue,  5 Jan 2021 03:59:26 -0500 (EST)
-Date:   Tue, 5 Jan 2021 09:59:24 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
-        Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: media: Use graph and
- video-interfaces schemas
-Message-ID: <20210105085924.pfkjnaks47dw5gtw@gilmour>
-References: <20210104165808.2166686-1-robh@kernel.org>
- <20210104165808.2166686-3-robh@kernel.org>
+        id S1727709AbhAEJGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 04:06:43 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:8860 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727658AbhAEJGa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 04:06:30 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10593qwo012400;
+        Tue, 5 Jan 2021 10:05:34 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=O140SVpPX52EvSpVTor2Elkzvf+rEN1U4v684qmVLoY=;
+ b=PvK3OvbOtFQ0yUNjOpkKI+9CE+OeBi67C8GjeW3ObL0jQvPpksRcCIEWo0Pr7cdpxPcv
+ iU3KLx9xHe8gosx8L1NvEZ3W0EQmUcCO3Nnf2vSH4t58sLiQsvUBABtizhhTgyrAfvz2
+ L2LL7syqqfF+SryntfV4OOxfPnJ9EgARUhYZjYCVAdy+GJ/IGQKiIH0A8z/HOEnMoMId
+ K/DKWCIEix7Xp4VdDCm/XKxKMqayiRthnw5hjQ4/T01IsYWWR/ATc/gGjYJOR65TC9Zv
+ CDoVfrBVgfOdLEmfdhCxzDJopoCSvoDw41QVyGbXmq3OpvaLB5RqRXrzqNaqxqW5KCbI Nw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 35teuuywx6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 05 Jan 2021 10:05:34 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 44094100034;
+        Tue,  5 Jan 2021 10:05:33 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2D52322AA5B;
+        Tue,  5 Jan 2021 10:05:33 +0100 (CET)
+Received: from localhost (10.75.127.44) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 5 Jan 2021 10:05:32
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH v2 0/6] STM32 USBPHYC PLL management rework
+Date:   Tue, 5 Jan 2021 10:05:19 +0100
+Message-ID: <20210105090525.23164-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210104165808.2166686-3-robh@kernel.org>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-05_01:2021-01-05,2021-01-05 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 04, 2021 at 09:58:08AM -0700, Rob Herring wrote:
-> Now that we have graph and video-interfaces schemas, rework the media
-> related schemas to use them.
-> 
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Jacopo Mondi <jacopo@jmondi.org>
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+STM32 USBPHYC controls the USB PLL. PLL requires to be powered with 1v1 and 1v8
+supplies. To ensure a good behavior of the PLL, during boot, runtime and
+suspend/resume sequences, this series reworks its management to fix regulators
+issues and improve PLL status reliability.
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+---
+Changes in v2:
+- Move author mail address from @st.com to @foss.st.com
+- Add Rob's Reviewed-by on bindings patch 1/6
 
-Thanks!
-Maxime
+Amelie Delaunay (6):
+  dt-bindings: phy: phy-stm32-usbphyc: move PLL supplies to parent node
+  phy: stm32: manage 1v1 and 1v8 supplies at pll activation/deactivation
+  phy: stm32: replace regulator_bulk* by multiple regulator_*
+  phy: stm32: ensure pll is disabled before phys creation
+  phy: stm32: ensure phy are no more active when removing the driver
+  phy: stm32: rework PLL Lock detection
+
+ .../bindings/phy/phy-stm32-usbphyc.yaml       |  22 +-
+ drivers/phy/st/phy-stm32-usbphyc.c            | 222 +++++++++++-------
+ 2 files changed, 153 insertions(+), 91 deletions(-)
+
+-- 
+2.17.1
+
