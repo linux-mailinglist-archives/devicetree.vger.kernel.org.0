@@ -2,387 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E812EB2DF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 19:57:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD72C2EB2E8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 20:01:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726703AbhAESzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 13:55:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42286 "EHLO
+        id S1730521AbhAETB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 14:01:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728648AbhAESzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 13:55:47 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EADB9C061798
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 10:55:06 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id d8so682824otq.6
-        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 10:55:06 -0800 (PST)
+        with ESMTP id S1729916AbhAETB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 14:01:26 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E912C061796
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 11:00:46 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id k78so409288ybf.12
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 11:00:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+2rmJ7rO2uS2hBmyj+YzKv9yfpBQq9dsoeHnIPlFvL0=;
-        b=ER6jP+3xUTRXUs5XMtJGCq7c2fOPisokSs6cY/tiRt+TLtUBsv9eXNx02wpNyr+7iT
-         N/VYrWOnbH3OoBxp9NRoBDgO8PIQjeFQrNrZ24dksdLekiswnmPYMH0REZXeFAuRDNXg
-         YfdcGr6mPPB+7zNrShW8o7dikqkhSprMbwvdFT00iKazT/YboEJExVg0/eB6woDR2lnu
-         BFYb+bzh3uHu2yARgQuqC07TVBWYo5QCWgWa6IpT0fLwtEr2o9XGnPPt4AIV2yBvPNtT
-         aQ7jJGd5KP1wyKVByKItjjZAWbiQyD7lGnP1EqgJnn5eHycsHcseuN4a7KXpsDyRnp2f
-         9SIg==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uF/4LaeUyb8iKxy4J4BmNUtHWLHQ8yMthImd//+SmJA=;
+        b=g2Uhz2bNLOMoOeOTDBK9thf+qnv8HYYmjI9pnDDAx+QwG7MXmt+a4DCpJEKidNiFtM
+         G5NkzSBum+g+5nLtuz1wQ+5XheRxvpFW/GmqtDbpduYXqFDKCxjAM80Lv6ZDn6eab6Eo
+         Mim6pqGAuRnwlnIApB+DQ7p0rTMn0OuBgdodA2IfDex0Sjl7EJdL7GenmhwcgQEXsonj
+         i95hbJtp1ECSHtpFnpgwF4qhamDO9wTztxnkVNvPgssrn0icI9v3GsPy4tgjuUNd6YEO
+         E4Pj8G5rLjiEU9pGzUOBye/o4NEYLPPJgtW1tn0SqjLvl7KaklhqOPqp2cpbm9pmxohT
+         3qwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+2rmJ7rO2uS2hBmyj+YzKv9yfpBQq9dsoeHnIPlFvL0=;
-        b=G2+acaVWMbeoejFq4G83C6SdSlMSajfff2NDKFMBb7kAralM7a/fw1Qb/KYyz29bRx
-         fA2Gz4ViRi6np4mcGzjOO91jzqjdsCLsyWWsLHJnwxbQxqtu1t/OvvGyHFgP1wjuAO2F
-         S59Q0Dmz+NYWFrQyeUYzd8B0gG0kP+J7eqBCv0NddfCXIbfWc016tkld84TzkiN7UjQL
-         G8JMPri4vXTjRvkMYNwWnav+5KN5iy64UqtoL5IyZuV9hZ4hJmLMvskOxKejpciRlCgx
-         en7NHCwVenV3mHwvr1TYrxaF2r/qMvYVN9LJ6x7Zmz3F5BawjeuoPXDDrFbYCKYmln9u
-         nRcw==
-X-Gm-Message-State: AOAM531RzvrCcfsOd/gebS67RTSqfPIFk7ducDp/YFEWqk33h7Mi9evh
-        Tt6nI/1UpvqYqpt3euViL8LokLZqPZKqUg==
-X-Google-Smtp-Source: ABdhPJyNjwP47POIj0FHQbuOix0/540C0CI1ZQ5RQ8zhgdhqr5aDnyUpcIGhTI16w4f+pIJuZM4pvA==
-X-Received: by 2002:a9d:224:: with SMTP id 33mr705506otb.98.1609872906029;
-        Tue, 05 Jan 2021 10:55:06 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c14sm17589otp.19.2021.01.05.10.55.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Jan 2021 10:55:05 -0800 (PST)
-Date:   Tue, 5 Jan 2021 12:55:03 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Varadarajan Narayanan <varada@codeaurora.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        nsekar@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, sricharan@codeaurora.org
-Subject: Re: [PATCH 6/7] arm64: dts: Add ipq5018 SoC and MP03 board support
-Message-ID: <X/S2B8HkWkFUWuUl@builder.lan>
-References: <1601270140-4306-1-git-send-email-varada@codeaurora.org>
- <1601270140-4306-7-git-send-email-varada@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uF/4LaeUyb8iKxy4J4BmNUtHWLHQ8yMthImd//+SmJA=;
+        b=gjhcsetlp2YDIRRjszhhMk/5lvm5sBx67D69b1cbMCVprqwxaWAPbeVtqVr5rHgdQD
+         U6Px29R6Jceb/4Ugi0lXoCDTlC/2iaD3CmYq75iryh7C0UDUcEtYLSAnBnf7g9Eq+lVO
+         tONFwFHg6k1PhK4q73DRD/SgCNzLOVglTv1wzvN0zRsh0mz4OPa8JNjz8Hj7CslRrVR6
+         dxM9XJ00B5PgLxhXv24JTJ/L51GklNbrf0zFM9zvXg0DQHDPz81jG7TCfoLhyzJwuL+S
+         CL1qmHq994Jui7Oj67zExruzyhc5K80MwN1sFYfeQdbkjecdi8pPmnBImK0wgT9llmGR
+         iqVQ==
+X-Gm-Message-State: AOAM533dKybqhXbnPkguAIjCjx80GgqbqCZXDXOkUAEMojoxK/GRiQ/a
+        zi+6ulSkGkwOjCtT4+9XZRPuqr/NeJlz2qXtzN1+rg==
+X-Google-Smtp-Source: ABdhPJyAyXibDQ02ZsQC7ZubGoSuYI00ndZv0PCCp3ayM1xT86rVHO69xsy8p+rq9cj4srouMFcjc7GpareLYaI3v3E=
+X-Received: by 2002:a25:4f55:: with SMTP id d82mr1187587ybb.466.1609873244896;
+ Tue, 05 Jan 2021 11:00:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1601270140-4306-7-git-send-email-varada@codeaurora.org>
+References: <20201121020232.908850-17-saravanak@google.com> <20201229033440.32142-1-michael@walle.cc>
+In-Reply-To: <20201229033440.32142-1-michael@walle.cc>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 5 Jan 2021 11:00:08 -0800
+Message-ID: <CAGETcx8BNkvz=F7Z6HGRZyEcPcQGyJ1hneVMZ=mOeJ8hdbGt1A@mail.gmail.com>
+Subject: Re: [PATCH v2 16/17] driver core: Refactor fw_devlink feature
+To:     Michael Walle <michael@walle.cc>
+Cc:     Ard Biesheuvel <ardb@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Len Brown <lenb@kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 28 Sep 00:15 CDT 2020, Varadarajan Narayanan wrote:
+On Mon, Dec 28, 2020 at 7:35 PM Michael Walle <michael@walle.cc> wrote:
+>
+> > The current implementation of fw_devlink is very inefficient because it
+> > tries to get away without creating fwnode links in the name of saving
+> > memory usage. Past attempts to optimize runtime at the cost of memory
+> > usage were blocked with request for data showing that the optimization
+> > made significant improvement for real world scenarios.
+> >
+> > We have those scenarios now. There have been several reports of boot
+> > time increase in the order of seconds in this thread [1]. Several OEMs
+> > and SoC manufacturers have also privately reported significant
+> > (350-400ms) increase in boot time due to all the parsing done by
+> > fw_devlink.
+> >
+> > So this patch uses all the setup done by the previous patches in this
+> > series to refactor fw_devlink to be more efficient. Most of the code has
+> > been moved out of firmware specific (DT mostly) code into driver core.
+> >
+> > This brings the following benefits:
+> > - Instead of parsing the device tree multiple times during bootup,
+> >   fw_devlink parses each fwnode node/property only once and creates
+> >   fwnode links. The rest of the fw_devlink code then just looks at these
+> >   fwnode links to do rest of the work.
+> >
+> > - Makes it much easier to debug probe issue due to fw_devlink in the
+> >   future. fw_devlink=on blocks the probing of devices if they depend on
+> >   a device that hasn't been added yet. With this refactor, it'll be very
+> >   easy to tell what that device is because we now have a reference to
+> >   the fwnode of the device.
+> >
+> > - Much easier to add fw_devlink support to ACPI and other firmware
+> >   types. A refactor to move the common bits from DT specific code to
+> >   driver core was in my TODO list as a prerequisite to adding ACPI
+> >   support to fw_devlink. This series gets that done.
+> >
+> > [1] - https://lore.kernel.org/linux-omap/ea02f57e-871d-cd16-4418-c1da4bbc4696@ti.com/
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Tested-by: Grygorii Strashko <grygorii.strashko@ti.com>
+>
+> git bisect show that this commit broke my board in 5.11-rc1:
+>
+> [    2.294375] sysfs: cannot create duplicate filename '/devices/virtual/devlink/0000:00:00.1--0000:00:00.1'
+> [    2.303999] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.11.0-rc1-00016-ga0fb284b267 #267
+> [    2.312125] Hardware name: Kontron SMARC-sAL28 (4 Lane) (DT)
+> [    2.317804] Call trace:
+> [    2.320253]  dump_backtrace+0x0/0x1b8
+> [    2.323936]  show_stack+0x20/0x70
+> [    2.327263]  dump_stack+0xd8/0x134
+> [    2.330677]  sysfs_warn_dup+0x6c/0x88
+> [    2.334351]  sysfs_create_dir_ns+0xe8/0x100
+> [    2.338547]  kobject_add_internal+0x9c/0x290
+> [    2.342833]  kobject_add+0xa0/0x108
+> [    2.346331]  device_add+0xfc/0x798
+> [    2.349746]  device_link_add+0x454/0x5e0
+> [    2.353682]  fw_devlink_create_devlink+0xb8/0xc8
+> [    2.358316]  __fw_devlink_link_to_suppliers+0x84/0x180
+> [    2.363474]  __fw_devlink_link_to_suppliers+0x134/0x180
+> [    2.368718]  device_add+0x778/0x798
+> [    2.372217]  device_register+0x28/0x38
+> [    2.375979]  __mdiobus_register+0x94/0x340
+> [    2.380089]  of_mdiobus_register+0xb4/0x380
+> [    2.384285]  enetc_pf_probe+0x73c/0xb10
+> [    2.388132]  local_pci_probe+0x48/0xb8
+> [    2.391896]  pci_device_probe+0x120/0x1c0
+> [    2.395920]  really_probe+0xec/0x3c0
+> [    2.399505]  driver_probe_device+0x60/0xc0
+> [    2.403614]  device_driver_attach+0x7c/0x88
+> [    2.407810]  __driver_attach+0x60/0xe8
+> [    2.411570]  bus_for_each_dev+0x7c/0xd0
+> [    2.415419]  driver_attach+0x2c/0x38
+> [    2.419004]  bus_add_driver+0x194/0x1f8
+> [    2.422851]  driver_register+0x6c/0x128
+> [    2.426698]  __pci_register_driver+0x4c/0x58
+> [    2.430983]  enetc_pf_driver_init+0x2c/0x38
+> [    2.435181]  do_one_initcall+0x54/0x2d8
+> [    2.439029]  kernel_init_freeable+0x1fc/0x268
+> [    2.443403]  kernel_init+0x1c/0x120
+> [    2.446904]  ret_from_fork+0x10/0x30
+> [    2.450502] kobject_add_internal failed for 0000:00:00.1--0000:00:00.1 with -EEXIST, don't try to register things with the same name in the same directory.
+>
+> Looks like it will generate that link twice? Let me know if I can help
+> testing.
+>
+> See also: https://lavalab.kontron.com/scheduler/job/3894#L831
 
-> Add initial device tree support for the Qualcomm IPQ5018 SoC and
-> MP03.1-C2 board.
-> 
-> Signed-off-by: Varadarajan Narayanan <varada@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml |   7 +
->  arch/arm64/boot/dts/qcom/Makefile               |   1 +
->  arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts  |  30 ++++
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi           | 201 ++++++++++++++++++++++++
->  4 files changed, 239 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 6031aee..694063f 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -28,6 +28,7 @@ description: |
->          apq8074
->          apq8084
->          apq8096
-> +        ipq5018
->          ipq6018
->          ipq8074
->          mdm9615
-> @@ -49,6 +50,7 @@ description: |
->          hk01
->          idp
->          liquid
-> +        mp03
->          mtp
->          qrd
->          sbc
-> @@ -142,6 +144,11 @@ properties:
->  
->        - items:
->            - enum:
-> +              - qcom,ipq5018-mp03
-> +          - const: qcom,ipq5018
-> +
-> +      - items:
-> +          - enum:
->                - qcom,ipq8064-ap148
->            - const: qcom,ipq8064
->  
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index d8f1466..3873970 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->  dtb-$(CONFIG_ARCH_QCOM) += apq8096-ifc6640.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-mp03.1-c2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8150.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a3u-eur.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
-> new file mode 100644
-> index 00000000..41bb3b3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
-> @@ -0,0 +1,30 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * IPQ5018 CP01 board device tree source
-> + *
-> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "ipq5018.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. IPQ5018/AP-MP03-C2";
-> +	compatible = "qcom,ipq5018-mp03", "qcom,ipq5018";
-> +
-> +	aliases {
-> +		serial0 = &blsp1_uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +		bootargs-append = " swiotlb=1";
-> +	};
-> +};
-> +
-> +&blsp1_uart1 {
-> +	pinctrl-0 = <&serial_1_pins>;
-> +	pinctrl-names = "default";
-> +	status = "ok";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> new file mode 100644
-> index 00000000..12492a4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -0,0 +1,201 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * IPQ5018 SoC device tree source
-> + *
-> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/qcom,gcc-ipq5018.h>
-> +#include <dt-bindings/reset/qcom,gcc-ipq5018.h>
-> +
-> +/ {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +	interrupt-parent = <&intc>;
-> +
-> +	clocks {
-> +		sleep_clk: sleep-clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <32000>;
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		xo: xo {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <24000000>;
-> +			#clock-cells = <0>;
-> +		};
-> +	};
-> +
-> +	cpus: cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		CPU0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +
-> +		CPU1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			enable-method = "psci";
-> +			reg = <0x1>;
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +
-> +		L2_0: l2-cache {
-> +			compatible = "cache";
-> +			cache-level = <0x2>;
-> +		};
-> +	};
-> +
-> +	pmuv8: pmu {
-> +		compatible = "arm,cortex-a53-pmu";
-> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) |
-> +					 IRQ_TYPE_LEVEL_HIGH)>;
-> +	};
-> +
-> +	psci: psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		tz: tz@4ac00000 {
-> +			reg = <0x0 0x4ac00000 0x0 0x00400000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	soc: soc {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0 0 0xffffffff>;
-> +		dma-ranges;
+I'll look into this this week. Is the DT for this board in upstream?
+If so, can you point me to the DT file(s)?
 
-You can't have an empty dma-ranges when the bus and the parent node has
-different #address/size-cells.
-
-See 77e9c198b155 ("arm64: dts: qcom: clear the warnings caused by empty dma-ranges")
-
-> +		compatible = "simple-bus";
-> +
-> +		tlmm: pinctrl@1000000 {
-> +			compatible = "qcom,ipq5018-pinctrl";
-> +			reg = <0x01000000 0x300000>;
-> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&tlmm 0 80>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +
-> +			serial_1_pins: serial1-pinmux {
-> +				pins = "gpio31", "gpio32", "gpio33", "gpio34";
-> +				function = "blsp1_uart1";
-> +				drive-strength = <8>;
-> +				bias-pull-down;
-> +			};
-> +		};
-> +
-> +		gcc: gcc@1800000 {
-> +			compatible = "qcom,gcc-ipq5018";
-> +			reg = <0x01800000 0x80000>;
-> +			clocks = <&xo>, <&sleep_clk>;
-> +			clock-names = "xo", "sleep_clk";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
-> +		blsp1_uart1: serial@78af000 {
-> +			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
-> +			reg = <0x078af000 0x200>;
-> +			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&gcc GCC_BLSP1_UART1_APPS_CLK>,
-> +				<&gcc GCC_BLSP1_AHB_CLK>;
-> +			clock-names = "core", "iface";
-> +			status = "disabled";
-> +		};
-> +
-> +		intc: interrupt-controller@b000000 {
-> +			compatible = "qcom,msm-qgic2";
-> +			interrupt-controller;
-> +			#interrupt-cells = <0x3>;
-> +			reg =   <0x0b000000 0x1000>,  /*GICD*/
-> +				<0x0b002000 0x1000>,  /*GICC*/
-> +				<0x0b001000 0x1000>,  /*GICH*/
-> +				<0x0b004000 0x1000>;  /*GICV*/
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		timer {
-
-This isn't a mmio device, so move it outside /soc
+Also, can you give me the output of this?
+find /sys/devices -type d | grep "0000:00:00.1"
 
 Thanks,
-Bjorn
-
-> +			compatible = "arm,armv8-timer";
-> +			interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +				     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +				     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +				     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> +		};
-> +
-> +		timer@b120000 {
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +			compatible = "arm,armv7-timer-mem";
-> +			reg = <0x0b120000 0x1000>;
-> +			clock-frequency = <19200000>;
-> +
-> +			frame@b120000 {
-> +				frame-number = <0>;
-> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0b121000 0x1000>,
-> +				      <0x0b122000 0x1000>;
-> +			};
-> +
-> +			frame@b123000 {
-> +				frame-number = <1>;
-> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0xb123000 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@b124000 {
-> +				frame-number = <2>;
-> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0b124000 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@b125000 {
-> +				frame-number = <3>;
-> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0b125000 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@b126000 {
-> +				frame-number = <4>;
-> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0b126000 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@b127000 {
-> +				frame-number = <5>;
-> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0b127000 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@b128000 {
-> +				frame-number = <6>;
-> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0b128000 0x1000>;
-> +				status = "disabled";
-> +			};
-> +		};
-> +	};
-> +};
-> -- 
-> 2.7.4
-> 
+Saravana
