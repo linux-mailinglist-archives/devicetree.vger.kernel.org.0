@@ -2,72 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 874A12EA6B4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 09:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C612EA6C6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 09:57:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727610AbhAEIop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 03:44:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59596 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726202AbhAEIoo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 03:44:44 -0500
-Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 680EFC061794
-        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 00:44:04 -0800 (PST)
-Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1kwhwg-00Bkrr-PV
-        for devicetree@vger.kernel.org; Tue, 05 Jan 2021 09:44:02 +0100
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
+        id S1725978AbhAEI4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 03:56:19 -0500
+Received: from m43-15.mailgun.net ([69.72.43.15]:59997 "EHLO
+        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725914AbhAEI4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 03:56:18 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1609836960; h=In-Reply-To: Content-Type: MIME-Version:
+ References: Message-ID: Subject: Cc: To: From: Date: Sender;
+ bh=KuJNnND9gNxn87Ys5RVKbNSQ/froZkWCUykAcB4+ZmA=; b=VER/6SgbdPFc27ziWZG0Y+lhqq+POXSd9hy6e5iXCs6C+ZitNp1X1jikHmW0B2RGwJJOtxE6
+ EG/8DML409zmNCyXq1Ry5LEDpO4Mw4X6QlxGcBvmfOeWYQAxtoCbxQZGtCDvTwUu1srVAjf8
+ infUuQdSKP9RzoGTg+bzjB2q2/4=
+X-Mailgun-Sending-Ip: 69.72.43.15
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n08.prod.us-west-2.postgun.com with SMTP id
+ 5ff42980b73be0303d4c5426 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Jan 2021 08:55:28
+ GMT
+Sender: varada=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 37917C43464; Tue,  5 Jan 2021 08:55:28 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,HELO_MISC_IP,
-        RDNS_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
-Received: from [85.234.217.28] (helo=[10.0.1.5])
-        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1kwhwd-00Bkrb-M4; Tue, 05 Jan 2021 09:43:59 +0100
-Subject: Re: [PATCH v3 1/2] dt-bindings: spi: Realtek RTL838x/RTL839x SPI
- controller
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210101132432.2785663-1-bert@biot.com>
- <20210101132432.2785663-2-bert@biot.com>
- <20210104213131.GL5645@sirena.org.uk>
-From:   Bert Vermeulen <bert@biot.com>
-Message-ID: <121d9dc6-7993-d43b-291f-74dd943f4fc6@biot.com>
-Date:   Tue, 5 Jan 2021 09:43:59 +0100
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from codeaurora.org (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: varada)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4A7D5C433C6;
+        Tue,  5 Jan 2021 08:55:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4A7D5C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=varada@codeaurora.org
+Date:   Tue, 5 Jan 2021 14:25:16 +0530
+From:   Varadarajan Narayanan <varada@codeaurora.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de, nsekar@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        sricharan@codeaurora.org
+Subject: Re: [PATCH 1/7] clk: qcom: clk-alpha-pll: Add support for Stromer
+ PLLs
+Message-ID: <20210105085515.GA30147@codeaurora.org>
+References: <1601270140-4306-1-git-send-email-varada@codeaurora.org>
+ <1601270140-4306-2-git-send-email-varada@codeaurora.org>
+ <51544129-a04e-16a2-64e5-e004ea19bf8c@somainline.org>
 MIME-Version: 1.0
-In-Reply-To: <20210104213131.GL5645@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <51544129-a04e-16a2-64e5-e004ea19bf8c@somainline.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/4/21 10:31 PM, Mark Brown wrote:
-> On Fri, Jan 01, 2021 at 02:24:31PM +0100, Bert Vermeulen wrote:
-> 
->> +  compatible:
->> +    const: realtek,rtl-spi
-> 
-> This is still just using rtl-spi as the compatible string, please
-> address the feedback on the previous version.
+On Sat, Dec 26, 2020 at 01:51:28AM +0100, Konrad Dybcio wrote:
 
-Mark,
+Konrad,
 
-The rtl prefix really is as close as it gets. This is being developed on 
-RTL838x and RTL839x, but the driver very likely also works on RTL8196C and 
-RTL93xx series. There's no difference to the SPI block in those SoCs.
+> Hi, are you going to resubmit this patch? Looks like
+> MDM9607 uses Stromer PLL for its CPU clocks and could
+> benefit from it.
 
-Do you really want a different per-series compatible when the "IP block" was 
-just copy-pasted between series in hardware?
+Yes. But will take some time since we are held up with
+additional activities.
 
+Thanks
+Varada
 
--- 
-Bert Vermeulen
-bert@biot.com
+--
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
