@@ -2,119 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB7F82EAE99
-	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D77E2EAEA9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Jan 2021 16:36:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728180AbhAEPe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 10:34:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60388 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727924AbhAEPez (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 10:34:55 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 605DF22AAB;
-        Tue,  5 Jan 2021 15:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609860854;
-        bh=6LNNf9Ps64nYPsfS29WeXyehMYYqGfzkFag3C65Fpwk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dY6lqOTpyS3rKOArMrV8ZwHksktSKfjnNUUxbI/Qrj1LvMqRYJ6j1IM9x9tDCoAVK
-         ctVqyJcovX11sb+f6f4WurSnS+pohg9I+/Ba1MfDnIO+asbbJYBPIA9h0nwvscK7iA
-         q7eYQ8SxKADgNMpxuh5A9eIZt+uy31I7LZNMTdGVGaHltSVizOfKqo0NAWYY6o7JDH
-         adw6jajHlxM7S269fdKIT4UD1bFOHjQCCcHwjRECEbErYBSxfFvYN8AuCUr1rQs0aM
-         i7/JnbGi3Qu+QhaK3cvx3sLyTaRNN7A8ogd5CIb2R86H6W/2LENxH55+XKebV8QRng
-         +loyTKjGdw+Tg==
-Date:   Tue, 5 Jan 2021 15:33:47 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-Message-ID: <20210105153347.GE4487@sirena.org.uk>
-References: <20201130211145.3012-1-james.quinlan@broadcom.com>
- <20201130211145.3012-2-james.quinlan@broadcom.com>
- <20201209140122.GA331678@robh.at.kernel.org>
- <CANCKTBsFALwF8Hy-=orH8D-nd-qyXqFDopATmKCvbqPbUTC7Sw@mail.gmail.com>
- <20210105140128.GC4487@sirena.org.uk>
- <CANCKTBtNgyBTNwwtbtMkR9nFwq+AZyAZmGX9XXfhwf27zwjG_Q@mail.gmail.com>
+        id S1728003AbhAEPfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 10:35:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38714 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727981AbhAEPfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 10:35:50 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9447C061795
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 07:35:09 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id h205so73504194lfd.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 07:35:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=n9ywhnkKl+8ibGFk6x/w4vD3KrzTNdzxRk/xz3CiXrI=;
+        b=G5INoog9FncFklZTcFfFeYnQ953tRmn/YZ5304migaJ7GQECN5N5BHIEPH+5+8UkwW
+         zjA+UnVa/n7UWLVM6jvtgXx63iWz4Kgtdf2zsV8LFUwGL5jgWQ7JGjuU/PQysJRvVL9z
+         2g0N8tn7FpNXXXXcj2e+W4AHYWfaQeAIsodH7vOBWAwES7nxLn8799VrbaI/iHHRX5x7
+         CjT2xD5fzjBTffFmgtpwY2SkpU+/w7gVl2SYy2sEkZs/AM6sORbT0YZSt3I0vzIhmlgA
+         IX+lwh+7Wzq6UM3750IyW1UhcnEgv4+MzRWZSff7zYglzHhUKC767vM1Flop91YW0Q0y
+         nzJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=n9ywhnkKl+8ibGFk6x/w4vD3KrzTNdzxRk/xz3CiXrI=;
+        b=iNGWeOZhlveH+oHI/EiAztWN/HZeFmBclOXtyh7RebO7VFn8mLpXKe9R1tZxcaFNhx
+         xuZjAN7LreaWKPam53Fmqhw6Ebrmqh7lDBRHOoRSnIhbABechrcCldKJVuF5AOYJYhML
+         NXGmf9FkyRvu15gI+RktM5u08mBG+xNyrsH9I5qa85ULmp3y9KXOJwDcE1l5cKdyjoza
+         d/Btac4+cKYb8p51cWCWPaXWILUIfc2KOk5W9Gut4nSLKhMxmOOUqNOCliy//belGiHb
+         GGsfblDS9yESQELWaJRdCEh8i3IKdEurA1SgHR57eONie1DaIbyyF4Yxo8IlPFqgUGxR
+         qjgA==
+X-Gm-Message-State: AOAM530Sr4ayk2pujwO2GLiDn+XYGGfZHq3m3sWYUhxawoKYtTVhzxWT
+        qm6xNdUvBbOGagK0smRHlYE1kPIuaOWftbe55/IaRA==
+X-Google-Smtp-Source: ABdhPJwS/ugJjp0NHwgEkQVOeiSMidQXGzCH5Ti61fwr4Um/lKyqn1LqGe7XzDjRgvV/2fVh3MubVhgBUOT/Q68yrDk=
+X-Received: by 2002:a05:6512:74e:: with SMTP id c14mr37687128lfs.529.1609860908349;
+ Tue, 05 Jan 2021 07:35:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VdOwlNaOFKGAtAAV"
-Content-Disposition: inline
-In-Reply-To: <CANCKTBtNgyBTNwwtbtMkR9nFwq+AZyAZmGX9XXfhwf27zwjG_Q@mail.gmail.com>
-X-Cookie: I'm ANN LANDERS!!  I can SHOPLIFT!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20201230214918.17133-1-festevam@gmail.com>
+In-Reply-To: <20201230214918.17133-1-festevam@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 5 Jan 2021 16:34:57 +0100
+Message-ID: <CACRpkdatsW79FMfN2qZQdYSrz1wmHz82zSLZwxrh5am1pWgebg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: 74x164: Introduce the
+ 'registers-default' property
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, sandor.yu@nxp.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Dec 30, 2020 at 10:49 PM Fabio Estevam <festevam@gmail.com> wrote:
 
---VdOwlNaOFKGAtAAV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> There are cases where a certain default output value in the 74x164
+> output is needed.
+>
+> For example: the imx6ul-evk board has the Ethernet PHY reset controlled
+> by the 74x164 chip.
+>
+> After enabling the OE pin, the output pins of the 74x164 chip go to
+> zero by default, which makes the Ethernet PHY not to be detected.
 
-On Tue, Jan 05, 2021 at 10:09:21AM -0500, Jim Quinlan wrote:
-> On Tue, Jan 5, 2021 at 9:01 AM Mark Brown <broonie@kernel.org> wrote:
+So should the ethernet PHY not just have some reset-gpios
+that it obtain and de-assert as part of probing?
 
-> > > For us, the supplies are for the EP chip's power.  We have the PCIe
-> > > controller turning them "on" for power-on/resume and "off" for
-> > > power-off/suspend.  We need the "xxx-supply" property in the
-> > > controller's DT node because of the chicken-and-egg situation: if the
-> > > property was in the EP's DT node, the RC  will never discover the EP
-> > > to see that there is a regulator to turn on.   We would be happy with
+For example drivers/net/phy/mdio_bus.c has this:
 
-> > Why can't the controller look at the nodes describing devices for
-> > standard properties?
+        /* de-assert bus level PHY GPIO reset */
+        gpiod = devm_gpiod_get_optional(&bus->dev, "reset", GPIOD_OUT_LOW);
 
-> It just feels wrong for the driver (RC) of one DT node to be acting on
-> a property of another driver's (EP) node, even though it is a subnode.
+Other drivers can do the same.
 
-This is something we do for other buses, for example where there's
-device specific tuning that is actually implemented in the controller
-hardware.
+Deferred probe should ascertain that this GPIO driver gets
+loaded before the ethernet phy driver.
 
-> There is also the possibility of the EP driver acting upon the
-> property simultaneously; we don't really have control of what EP
-> device and drivers are paired with our SOCs.
+> Add a new optional property called 'registers-default' that allows
+> describing the default output value for each shift register.
+>
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+(...)
+>  Optional properties:
+>  - enable-gpios: GPIO connected to the OE (Output Enable) pin.
+> +- registers-default: An array of 8-bit values describing the default output
+> +value of each shift registers.
 
-If the device is trying to do something with a supply that's a standard
-part of the bus outside of the bus it seems like that's going to lead to
-problems no matter what, due to the discovery issues the device must be
-coordinating with the bus somehow.
+What this does is to set up several of the GPIO lines to default
+values, right?
 
-> In addition, this just pushes the binding name issue down a level --
-> what should these power supplies be called?  They are not slot power
-> supplies.  Can the  Broadcom STB PCIe RC driver's binding document
-> specify and define the properties of EP sub-nodes?
+I think this is a hack, there have again and again been proposed
+to have a way to set up initial values of GPIO lines. I think we
+need to fix that instead.
 
-I assume the supplies have some name in the PCI specs, whatever names
-are used there would probably be appropriate.
+I am sorry that initial values just stalemate all the time.
 
---VdOwlNaOFKGAtAAV
-Content-Type: application/pgp-signature; name="signature.asc"
+I imagine that codewise it should just be some lines in
+of_gpiochip_scan_gpios() in gpiolib-of.c (which can later be
+made into generic device properties if ACPI needs this too).
 
------BEGIN PGP SIGNATURE-----
+The format of the OF bindings is what people have been
+discussing for too long, whether gpio-initial-values, etc.
+I would just implement what the DT people want and will ACK
+so it solves your problem.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/0htoACgkQJNaLcl1U
-h9CY8wf9HuKx8WrUVOm/JnM4g7BRzRrN0zbKNo27TY0gXTi97ROAnd+1hDclFSnn
-N5C2FGBEeTzpc2zyUyiyMO7iiqFC1NJ1bPp0vXFaVN4g1nBBTAt9bMdIbKAGiWmt
-sJGRDPZtrc67RCH9PDcGOqiXqxy+p4nuBZl9GgLGcr/FLpNe8WISnLmXW0KTGMgf
-6KEkVTTHqMuJzrcj5NlDMQZKjcdJ3tmKDXDYMj4CV+PJPbnJStKpdFxzi3aueDE5
-K5z8O/3iAm3690g40V4jQBRGT/SlEMpsdc+bQx+9AEoMGZ3Q2EZfIXs8y3OqhPU6
-enmqPZx9J+0Dn/hn4g4l1iyAoOfG+w==
-=7I/C
------END PGP SIGNATURE-----
+I will try to look up references to earlier discussions on this.
 
---VdOwlNaOFKGAtAAV--
+Yours,
+Linus Walleij
