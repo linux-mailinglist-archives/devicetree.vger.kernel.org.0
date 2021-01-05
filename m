@@ -2,166 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC4752EB5F6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 00:11:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67ACA2EB608
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 00:19:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728071AbhAEXKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Jan 2021 18:10:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58566 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728019AbhAEXKV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Jan 2021 18:10:21 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CDC1023100;
-        Tue,  5 Jan 2021 23:09:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609888180;
-        bh=fed5XlKEYP7XWtaTDihJhGMdXSKuB5tSlmnJYeJp5tA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=XTorqmmoQFo45G1nbewWbvP/CAvceHKlyXWurSrvetkZZc/6Kuavisei2FTiVpZ13
-         vVx27/Msk/wjDmCKaBFSV0xmyQ1R1rqj2S7HfSDf8rBdcUKh/FQjukqWHttxrImIBq
-         i7q5eRq119nsRWEku8jfaeNm38AvuH8WI7exdD4y6oWj3Ej4qsbuUfrm1RUNEA4xuv
-         d0qy0RR9uo3rbPxZ46uOG2qGaE9/oRYGdygF/B5cMKUXGNBrO3woliFM7wKvJ5/D4X
-         goorMZ2I8ptX/nwdRzzsyYXqV7eAxwoDems14MOxsH0kTfIanPc6Nk6EINA1WNwL93
-         YLgNEr/YXSuEw==
-Received: by mail-ed1-f46.google.com with SMTP id r5so2552566eda.12;
-        Tue, 05 Jan 2021 15:09:39 -0800 (PST)
-X-Gm-Message-State: AOAM531y8+kAKzvNrnMc66NbVhJsDfGV55j7vZRwEejY/7cmNCa2VStj
-        6NkbSeg11CMmeZwNHdrisKEZ3dXBcx4HIR6x6Q==
-X-Google-Smtp-Source: ABdhPJzIhUlEvoUVEDqvgDDYC9VWDoT47pLXuX5VmL//f0UtuCznywGNVW5rGOqFAhZlyQJoJHGegCDvr8Y5OwVO8xU=
-X-Received: by 2002:a50:fc96:: with SMTP id f22mr2120443edq.162.1609888178364;
- Tue, 05 Jan 2021 15:09:38 -0800 (PST)
+        id S1726151AbhAEXTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Jan 2021 18:19:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725817AbhAEXTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Jan 2021 18:19:22 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DCAC061574
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 15:18:42 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id h205so2451696lfd.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Jan 2021 15:18:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=f1kIGsmlZWUnm0eNGp2YOwyYVCXEP678oYFzp03SZFI=;
+        b=rnHdyyVftcEE7l7n8QrU0td4/OZrwidg5QjguzxzL+t8RKl/3VPiOzvTNZ2BoKvWUf
+         0oxXbwipp5JliKi76dXXNv/pSOUpi0HSeKdxGq/99f6rmeLB9vVx8D70QVFZg7kDTLse
+         f4g0p/PVckCZod9ikA9zvAXf0egHHKIpQRzbghxSX2vclcjBPKgMHngQZgArP4gQGPHd
+         GA89XBQTfvpgw3a4rF4geFNVMU418Q/mY7zqALXO9oWkS2LoHpVhf1v4VfmstuMUE3WE
+         LJhtYTGElft+/FldH7rg6iUHqvtpnXqJKIJd3Dtcj8xxwH+mKlXa6Q46TcuEknGHL8OP
+         Z0lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f1kIGsmlZWUnm0eNGp2YOwyYVCXEP678oYFzp03SZFI=;
+        b=mXx/uekL5nZ/I1itgOaR6kmbB/gXIxZUwDWdwp8dfmnoryira6ZD7UKZaSxmRVqoyC
+         AwAz/hEymL5HlyrqLtawUegZoMwHFWObevBuP8Kw186gwappQrxKAHQfOKH+ombPhylC
+         qSqXEqh3NvpYXUUf2CMhUmn8cCT3cYx6gqUAC/dGfLz/DA6ElxRL2sTTay8hpVGr+cOU
+         /wUpvgOypFSW246CRN4VMQfeFxJVfatklBa+TMCz/RlRLxy9oZJm4QlI2JJ/k3qkoAN9
+         eCLvaSH4iLQh+gSEs4UJEFvZxBLlB73G7NO/fsO3sr4A4ar1OpmgSatdKrlQqyJgES9K
+         /wPg==
+X-Gm-Message-State: AOAM530KCk3GlcxvUypgWAHMU0PVpF+3NkiSMMsWG/Y/QsB/8FMccwCE
+        uo45v2+q6C4mP5cQBh8DKONsJfk8uOmvizukDyUs9Z0rxD8=
+X-Google-Smtp-Source: ABdhPJwl1fDf3fY4Y+gWKMuQwKAvot59gPqwZ5QoeTO2q/OZcfomVBoDui6Gw4od7ko0KnEExWCilAT9V5Mr25TxCtE=
+X-Received: by 2002:ac2:5597:: with SMTP id v23mr614391lfg.649.1609888720651;
+ Tue, 05 Jan 2021 15:18:40 -0800 (PST)
 MIME-Version: 1.0
-References: <1607591262-21736-1-git-send-email-yongqiang.niu@mediatek.com>
- <1607591262-21736-6-git-send-email-yongqiang.niu@mediatek.com>
- <CAAOTY_-aYFz1Xg6r2ur+BF_k_35F3qNLLb16_2c0MaMsYre-+w@mail.gmail.com>
- <1607647514.12750.5.camel@mhfsdcap03> <CAAOTY__HA95WLNppOKainvsZCxA6Wv3edLyvOW6FxAjUos=afQ@mail.gmail.com>
- <1609828577.1574.5.camel@mhfsdcap03>
-In-Reply-To: <1609828577.1574.5.camel@mhfsdcap03>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 6 Jan 2021 07:09:27 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-AGNuwwCv-A_GWy7gDO8csXenJGciLsP7mRAUuUKWUKA@mail.gmail.com>
-Message-ID: <CAAOTY_-AGNuwwCv-A_GWy7gDO8csXenJGciLsP7mRAUuUKWUKA@mail.gmail.com>
-Subject: Re: [PATCH v8, 5/6] drm/mediatek: add RDMA fifo size error handle
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20201208085748.3684670-1-vkoul@kernel.org> <20201210135253.GA2405508@robh.at.kernel.org>
+ <X/NgUp/pm9T0JlTw@builder.lan> <20210105061415.GA2771@vkoul-mobl>
+In-Reply-To: <20210105061415.GA2771@vkoul-mobl>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 6 Jan 2021 00:18:29 +0100
+Message-ID: <CACRpkdZWRjNt+fRbF2uO8sg551kytM+ZH5Zs_6QUrhRX0a5ATQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl bindings
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
-
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
-=885=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:36=E5=AF=AB=E9=81=93=
-=EF=BC=9A
+On Tue, Jan 5, 2021 at 7:14 AM Vinod Koul <vkoul@kernel.org> wrote:
+> On 04-01-21, 12:37, Bjorn Andersson wrote:
 >
-> On Mon, 2020-12-14 at 22:54 +0800, Chun-Kuang Hu wrote:
-> > Hi, Yongqiang:
-> >
-> > Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B412=E6=
-=9C=8811=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=888:45=E5=AF=AB=E9=81=
-=93=EF=BC=9A
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: qcom,sm8350-pinctrl
 > > >
-> > > On Thu, 2020-12-10 at 23:50 +0800, Chun-Kuang Hu wrote:
-> > > > Hi, Yongqiang:
-> > > >
-> > > > Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2020=E5=B9=B41=
-2=E6=9C=8810=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:08=E5=AF=AB=E9=
-=81=93=EF=BC=9A
-> > > > >
-> > > > > This patch add RDMA fifo size error handle
-> > > > > rdma fifo size will not always bigger than the calculated thresho=
-ld
-> > > > > if that case happened, we need set fifo size as the threshold
-> > > > >
-> > > > > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/mediatek/mtk_disp_rdma.c | 4 ++++
-> > > > >  1 file changed, 4 insertions(+)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/g=
-pu/drm/mediatek/mtk_disp_rdma.c
-> > > > > index 794acc5..0508392 100644
-> > > > > --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> > > > > +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> > > > > @@ -151,6 +151,10 @@ static void mtk_rdma_config(struct mtk_ddp_c=
-omp *comp, unsigned int width,
-> > > > >          * account for blanking, and with a pixel depth of 4 byte=
-s:
-> > > > >          */
-> > > > >         threshold =3D width * height * vrefresh * 4 * 7 / 1000000=
-;
-> > > > > +
-> > > > > +       if (threshold > rdma_fifo_size)
-> > > > > +               threshold =3D rdma_fifo_size;
-> > > >
-> > > > If the formula is not correct, you should fix the formula not work =
-around.
-> > > >
-> > > > Regards,
-> > > > Chun-Kuang.
+> > > If this block is called TLMM, then I'd expect that to be in the
+> > > compatible string. But I guess this is consistent with the others.
 > > >
-> > > how about this:
-> > > threshold =3D max(width * height * vrefresh * 4 * 7 / 1000000,
-> > > rdma_fifo_size);
 > >
-> > When I use width =3D 1920, height =3D 1080, vrefresh =3D 60 to calculat=
-e, I
-> > get threshold =3D 2985.
-> > So I think set threshold to half of fifo size is OK for MAX_WIDTH,
-> > MAX_HEIGHT, MAX_VREFRESH (these three may be different in each SoC)
+> > This is my mistake 7 years ago and it bothers me every time we write a
+> > new one of these - in particular since we now support a few different
+> > "Qualcomm pinctrl" blocks.
 > >
-> > threshold =3D RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) / 2;
+> > It would be ugly for a while, but I'm in favor of naming these
+> > "qcom,<platform>-tlmm" going forward.
 > >
-> > But I worry half fifo size is too big for small resolution and let
-> > small resolution too easy to trigger burst read DRAM. So let the
-> > formula to be this:
-> >
-> > threshold =3D RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) * width * height *
-> > vrefresh / 2 / MAX_WIDTH / MAX_HEIGHT / MAX_VREFRESH;
-> >
-> > How do you think about this?
-> >
-> > Regards,
-> > Chun-Kuang.
+> > PS. And we can solve the ugliness by introducing the "proper" naming
+> > (and keeping the old one for backwards compatibility) as we migrate the
+> > binding documents to yaml.
 >
-> how about remove this formula, and set threshold =3D rdma_fifo_size
+> Okay I will update this one to qcom,sm8350-tlmm. Also we use
+> sm8350_pinctrl few places in the driver, will update that to sm8350_tlmm
+> as well
 
-This means that RDMA would always trigger burst read. In normal case,
-I think no hardware would trigger burst read. Only the emergency
-occur, the hardware trigger burst read. RDMA always triggering burst
-read is good for RDMA, but it may hurt other hardware to read DRAM. So
-I think RDMA should trigger burst read only when fifo data is under a
-emergency threshold.
+Go for it, it's a much better to the point name.
 
-Regards,
-Chun-Kuang.
-
-> >
-> > > >
-> > > > > +
-> > > > >         reg =3D RDMA_FIFO_UNDERFLOW_EN |
-> > > > >               RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) |
-> > > > >               RDMA_OUTPUT_VALID_FIFO_THRESHOLD(threshold);
-> > > > > --
-> > > > > 1.8.1.1.dirty
-> > > > > _______________________________________________
-> > > > > Linux-mediatek mailing list
-> > > > > Linux-mediatek@lists.infradead.org
-> > > > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
-> > >
->
+Yours,
+Linus Walleij
