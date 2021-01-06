@@ -2,85 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 405D42EBA9D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 08:40:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1604A2EBAAE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 08:52:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726323AbhAFHif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 02:38:35 -0500
-Received: from guitar.tcltek.co.il ([192.115.133.116]:36299 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726217AbhAFHif (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Jan 2021 02:38:35 -0500
-Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id DB64D4409D4;
-        Wed,  6 Jan 2021 09:37:51 +0200 (IST)
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Baruch Siach <baruch@tkos.co.il>, Rob Herring <robh@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
-        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v6 4/4] dt-bindings: ap806: document gpio marvell,pwm-offset property
-Date:   Wed,  6 Jan 2021 09:37:40 +0200
-Message-Id: <2c6ca62ad42e08dcf308f91a8da8124749d44308.1609917364.git.baruch@tkos.co.il>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1609917364.git.baruch@tkos.co.il>
-References: <cover.1609917364.git.baruch@tkos.co.il>
+        id S1725903AbhAFHus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 02:50:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33948 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725788AbhAFHus (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Jan 2021 02:50:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7129D2070C;
+        Wed,  6 Jan 2021 07:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1609919407;
+        bh=Piu5gusr/UGLicaCqANy6GNdwM1M9LXLgq30KLvh2D4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=STtQBirTvMJHJfy3BDpBJr1nF4y3j9P09tA52QukFa2+zVDJOvZxlpH0YuQb1dKaI
+         tkZ/1YHajtxpOZBb2tYYK9x5sW39V1FMN5v9MY2fd4frFWPosjKHysaj5P3pqOj5H4
+         cLt1ndn2T4gOT+l7NViKlEBYi94u2sh/OTHke2vk=
+Date:   Wed, 6 Jan 2021 08:50:03 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Claire Chang <tientzu@chromium.org>
+Cc:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, joro@8bytes.org, will@kernel.org,
+        frowand.list@gmail.com, konrad.wilk@oracle.com,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        sstabellini@kernel.org, hch@lst.de, m.szyprowski@samsung.com,
+        robin.murphy@arm.com, grant.likely@arm.com, xypron.glpk@gmx.de,
+        treding@nvidia.com, mingo@kernel.org, bauerman@linux.ibm.com,
+        peterz@infradead.org, saravanak@google.com,
+        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
+        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
+        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
+        xen-devel@lists.xenproject.org, tfiga@chromium.org,
+        drinkcat@chromium.org
+Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
+Message-ID: <X/VrqxcaAMi65CF0@kroah.com>
+References: <20210106034124.30560-1-tientzu@chromium.org>
+ <20210106034124.30560-3-tientzu@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210106034124.30560-3-tientzu@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the example as well. Add the '#pwm-cells' and 'clocks' properties
-for a complete working example.
+On Wed, Jan 06, 2021 at 11:41:20AM +0800, Claire Chang wrote:
+> Add the initialization function to create restricted DMA pools from
+> matching reserved-memory nodes in the device tree.
+> 
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> ---
+>  include/linux/device.h  |   4 ++
+>  include/linux/swiotlb.h |   7 +-
+>  kernel/dma/Kconfig      |   1 +
+>  kernel/dma/swiotlb.c    | 144 ++++++++++++++++++++++++++++++++++------
+>  4 files changed, 131 insertions(+), 25 deletions(-)
+> 
+> diff --git a/include/linux/device.h b/include/linux/device.h
+> index 89bb8b84173e..ca6f71ec8871 100644
+> --- a/include/linux/device.h
+> +++ b/include/linux/device.h
+> @@ -413,6 +413,7 @@ struct dev_links_info {
+>   * @dma_pools:	Dma pools (if dma'ble device).
+>   * @dma_mem:	Internal for coherent mem override.
+>   * @cma_area:	Contiguous memory area for dma allocations
+> + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Baruch Siach <baruch@tkos.co.il>
----
- .../bindings/arm/marvell/ap80x-system-controller.txt      | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Why does this have to be added here?  Shouldn't the platform-specific
+code handle it instead?
 
-diff --git a/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt b/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
-index e31511255d8e..052a967c1f28 100644
---- a/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
-+++ b/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
-@@ -80,6 +80,11 @@ Required properties:
- 
- - offset: offset address inside the syscon block
- 
-+Optional properties:
-+
-+- marvell,pwm-offset: offset address of PWM duration control registers inside
-+  the syscon block
-+
- Example:
- ap_syscon: system-controller@6f4000 {
- 	compatible = "syscon", "simple-mfd";
-@@ -101,6 +106,9 @@ ap_syscon: system-controller@6f4000 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		gpio-ranges = <&ap_pinctrl 0 0 19>;
-+		marvell,pwm-offset = <0x10c0>;
-+		#pwm-cells = <2>;
-+		clocks = <&ap_clk 3>;
- 	};
- };
- 
--- 
-2.29.2
+thanks,
 
+greg k-h
