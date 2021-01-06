@@ -2,153 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 789442EBF26
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 14:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A97F72EC002
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:01:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726509AbhAFNrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 08:47:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50854 "EHLO mail.kernel.org"
+        id S1726206AbhAFPAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 10:00:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35376 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726195AbhAFNrH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Jan 2021 08:47:07 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9553223121;
-        Wed,  6 Jan 2021 13:46:26 +0000 (UTC)
+        id S1725800AbhAFPAY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Jan 2021 10:00:24 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F05FC22B45;
+        Wed,  6 Jan 2021 14:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609940786;
-        bh=zxCR5IPMVyUtLgw9iNAvhL1NSsx2Ep3Yv/Co5D5pP1o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WfIA1I7JwmXFyLWbQfb1NMwLZkm/cTbJZ2IDXvHEDEXQtU5mGhKhO2Djrq/abFzw7
-         YNLgMAmHaFEX+YimPat/a9qBoFM5q3U9CYQzWgCTcE31H143GIHu/qnmFexPHkYvl3
-         dBTijGo8jBTEe2Hl+RYxZoTHKyr2U+SCxZv1uW8RxKjsjFzIOcSUpnfmCrvOcAu1rv
-         vz7HctMfKC5mjNRMUcG384HE+4kVUImguBmFej2tqrkUSRmQQea5Vb1QVRzXrSaY/L
-         VSeglprmcdDyMzDubZOWYNcSqN9JlM1ChTSyoQqRNJ6QsNo9Ad4ugb3gT0j5dcmLHc
-         58EPdukbI/+3w==
-Received: by wens.tw (Postfix, from userid 1000)
-        id 757B35FBCC; Wed,  6 Jan 2021 21:46:24 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Robin Murphy <robin.murphy@arm.com>,
-        Johan Jonker <jbx6244@gmail.com>, linux-pci@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: rockchip: rk3399: Add NanoPi M4B
-Date:   Wed,  6 Jan 2021 21:46:17 +0800
-Message-Id: <20210106134617.391-5-wens@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210106134617.391-1-wens@kernel.org>
-References: <20210106134617.391-1-wens@kernel.org>
+        s=k20201202; t=1609945183;
+        bh=9N8TfJsEA7J2oir+XxY6pt6ih2/gDFppXOSBqjRFQOs=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=LQs3UkTF5XQpfKOdKGHBK3cwfbvmsE0Ls7v4mQkI4g4TSuZFkqTfWOpneqE5DLMDJ
+         BrKEH8mGCJkLuIwswM8W5kkgRZikYv8MOWSPASgB4CkKd1wtRtRLv6X3FpOEwLNz97
+         h8FtG0cbhqHEHKTVvU0cecybvehPnYzC1VwsEiIsh7Q7UFsGDO1xn7PJv8ffJES8Mo
+         D3S4PGchojs+uFaWGgdJ9kigr54BsB6cymwSPv3NyaynRkXQTZ2qqDpYzym6zKke15
+         yD2qaCWdx52rKAQEQnfZKpSim0y1eCmpNilRiAZQV+B9JO2MFn3xi5PCfipmJePwJO
+         Yusqz6Qij+OvA==
+From:   Mark Brown <broonie@kernel.org>
+To:     thierry.reding@gmail.com, lukas@wunner.de, robh+dt@kernel.org,
+        jonathanh@nvidia.com, Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     devicetree@vger.kernel.org, tudor.ambarus@microchip.com,
+        bbrezillon@kernel.org, linux-tegra@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.yadav@ti.com
+In-Reply-To: <1608585459-17250-1-git-send-email-skomatineni@nvidia.com>
+References: <1608585459-17250-1-git-send-email-skomatineni@nvidia.com>
+Subject: Re: (subset) [PATCH v5 0/9] Add Tegra Quad SPI driver
+Message-Id: <160994515510.52247.6457410235851345560.b4-ty@kernel.org>
+Date:   Wed, 06 Jan 2021 14:59:15 +0000
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+On Mon, 21 Dec 2020 13:17:30 -0800, Sowjanya Komatineni wrote:
+> This series adds Tegra210, Tegra186, and Tegra194 Quad SPI driver and
+> enables Quad SPI on Jetson Nano and Jetson Xavier NX.
+> 
+> QSPI controller is available on Tegra210, Tegra186 and Tegra194.
+> 
+> Tegra186 and Tegra194 has additional feature of combined sequence mode
+> where command, address and data can all be transferred in a single transfer.
+> Combined sequence mode is useful only when using DMA mode transfer.
+> 
+> [...]
 
-The NanoPi M4B is a minor revision of the original M4.
+Applied to
 
-The differences against the original Nanopi M4 that are common with the
-other M4V2 revision include:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-  - microphone header removed
-  - power button added
-  - recovery button added
+Thanks!
 
-Additional changes specific to the M4B:
+[1/9] dt-bindings: clock: tegra: Add clock ID TEGRA210_CLK_QSPI_PM
+      commit: b499779761278d6f5339daa230938211d98861ef
+[2/9] dt-bindings: spi: Add Tegra Quad SPI device tree binding
+      commit: 9684752e5fe3989b45f686a4e0202a683038be4a
+[3/9] MAINTAINERS: Add Tegra Quad SPI driver section
+      commit: e5c92bb924ce4bda9c4312b8596cf62ad7b07e2e
+[4/9] spi: tegra210-quad: Add support for Tegra210 QSPI controller
+      commit: 921fc1838fb036f690b8ba52e6a6d3644b475cbb
+[5/9] spi: spi-mem: Mark dummy transfers by setting dummy_data bit
+      commit: 98621ed011c57ba6e52e01a5982b221c9943b6d9
+[6/9] spi: tegra210-quad: Add support for hardware dummy cycles transfer
+      commit: 6a8a8b51703c69fa2d6adbbcbf731ce9b991c696
 
-  - USB 3.0 hub removed; board now has 2x USB 3.0 type-A ports and 2x
-    USB 2.0 ports
-  - ADB toggle switch added; this changes the top USB 3.0 host port to
-    a peripheral port
-  - Type-C port no longer supports data or PD
-  - WiFi/Bluetooth combo chip switched to AP6256, which supports BT 5.0
-    but only 1T1R (down from 2T2R) for WiFi
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Add a new dts file for the new board revision that shows the difference
-against the original.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3399-nanopi-m4b.dts   | 52 +++++++++++++++++++
- 2 files changed, 53 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 1ab55a124a87..622d320ddd13 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -33,6 +33,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-kobol-helios64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-leez-p710.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopc-t4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinebook-pro.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts
-new file mode 100644
-index 000000000000..72182c58cc46
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * FriendlyElec NanoPi M4B board device tree source
-+ *
-+ * Copyright (c) 2020 Chen-Yu Tsai <wens@csie.org>
-+ */
-+
-+/dts-v1/;
-+#include "rk3399-nanopi-m4.dts"
-+
-+/ {
-+	model = "FriendlyElec NanoPi M4B";
-+	compatible = "friendlyarm,nanopi-m4b", "rockchip,rk3399";
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1500000>;
-+		poll-interval = <100>;
-+
-+		recovery {
-+			label = "Recovery";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <18000>;
-+		};
-+	};
-+};
-+
-+/* No USB type-C PD power manager */
-+/delete-node/ &fusb0;
-+
-+&i2c4 {
-+	status = "disabled";
-+};
-+
-+&u2phy0_host {
-+	phy-supply = <&vcc5v0_usb2>;
-+};
-+
-+&u2phy0_otg {
-+	phy-supply = <&vbus_typec>;
-+};
-+
-+&u2phy1_otg {
-+	phy-supply = <&vcc5v0_usb1>;
-+};
-+
-+&vbus_typec {
-+	enable-active-high;
-+	gpios = <&gpio4 RK_PD2 GPIO_ACTIVE_HIGH>;
-+};
--- 
-2.29.2
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
+Thanks,
+Mark
