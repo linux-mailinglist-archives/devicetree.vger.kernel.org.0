@@ -2,117 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AF432EBE93
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 14:23:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 780EF2EBF07
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 14:49:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727226AbhAFNXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 08:23:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46580 "EHLO
+        id S1727134AbhAFNox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 08:44:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727220AbhAFNXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 08:23:24 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7105DC061357;
-        Wed,  6 Jan 2021 05:22:43 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id o13so6509511lfr.3;
-        Wed, 06 Jan 2021 05:22:43 -0800 (PST)
+        with ESMTP id S1726498AbhAFNox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 08:44:53 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A715CC061357;
+        Wed,  6 Jan 2021 05:44:12 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id g25so3167227wmh.1;
+        Wed, 06 Jan 2021 05:44:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1kQKlYjkEsXTqfe1rTtXK6ODUo/QOHx815FNAJpR+HA=;
-        b=CWBkig62PfZI4rnc4SEiLV9zMROmn+DFZ8GmGinkuRf8fTPBKSmJjmsM9KDfe5Fj7B
-         Q2NSeHVxUtU+AKWE6FE06nWbHqU1urnPvAcIquo1G9IgJ1Q+Hk8UmMAVXjZxAtxOgC5W
-         G7RgxfF7V0Fi11gIw50ywSF8hoXljij+7HP3DGW7uEx27MO0bar1tJXFw0pj7UmsdcK7
-         3vP31/jh74G7NvUwFbE+bYFsSxvmnmmrmorxlwl36FCbNbawCl8Oxyst+kg+xz9epDsz
-         T6bbi+RH0R0xs8SeBe4c9KtamN06mB72XE5Ixeh2laSk2vRCOoegpkXbeGkrO0Vpm4B9
-         38GQ==
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ha0RqpxHzOQ0pvIyiJg1GgWJJZaQkrZa3GihzND5+Tc=;
+        b=gXZO9E3+Bo8/wtmOuO5hX7P/oAkL2d7vhmffJTfjNC11HxoNJlV8TmmBUhvQ+n5esf
+         +0dzxryyVtfs3AOIdWDXmT0PO+Znxl0SFd4N+uUwQOeaDzyN0AQEgPq1JXEnlGiNd4+R
+         F7fjylQG9RO67MOilxfUzfefSDvr8LaXSTODazo/IGhC0yxINqMTYc5Uv2JVD22q/ISo
+         xBfjJQBZxixiL2+ihLsJAoUz/OmU3UkUm1PsrLiQoSWRlWW8hEq/Yufs5m0R/0VL5RK/
+         hEmbdqUw/efYc3l+e/Ru4NQdPXq9WL+Fr3lmGR7rg5vh7U3h7Ppblt5o2/DZdlBkHmYU
+         WZAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1kQKlYjkEsXTqfe1rTtXK6ODUo/QOHx815FNAJpR+HA=;
-        b=NE3ulo9fj+U/OoQx3YZRbhr0AL7gHCYEiKziG5mfcIEgzimfePp3i4tbVYAh9Gbcvd
-         Os2WTXfQgFHXr9qHAsqZZ2s+4TQR/RurVCP0nuPNnV9IOq0Vea1dFhbBmeDP/++oVW7U
-         aL9olXoR9nSXWM4yte167BMmU0fZbClqVh0RynKv1rlB0n0Jh1KizBm/DtkjS/VRG0Qn
-         sWtj2VCrDijzVF2WP/uUxyajoveqAdvIeI3QogCe8Jj+dDPI411vfquq4f5B4X5lxb2t
-         HiVUz+gehpWG8PIiFhtSEUhDlQmM5K2rnbIgs6iLyYvMlB4CSVN6vMN/SZtJj2BGPUzf
-         MO7g==
-X-Gm-Message-State: AOAM530yozEZOE5iaCmPP79bJYM7UQDLPC4HqE93LgvLXVHFwQTHtXKv
-        cMJEEr6B5o9HLUEOlVzLeiM=
-X-Google-Smtp-Source: ABdhPJygA16yJH4CB8TGW2vKBapSc7buDn/Xh4hf37PvVIUQ1akyW4JZjWmzi4+kGYxLmSIf2gUing==
-X-Received: by 2002:a05:651c:30f:: with SMTP id a15mr1923152ljp.503.1609939361196;
-        Wed, 06 Jan 2021 05:22:41 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id j12sm361118lfc.99.2021.01.06.05.22.40
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ha0RqpxHzOQ0pvIyiJg1GgWJJZaQkrZa3GihzND5+Tc=;
+        b=DKBZxDGc1Op6xqaCT/3ppBDPJ81kRjCqlbHs3QmHHQ+Fz0qfWoDMzIbREiL+bsHYlX
+         cgzygo8SuvACrKfHkpxtxvxKdXZs97eIVSy1SotFsmD8EYQ+mHASI0INLIlwkfAJ3yp+
+         MT3/uU2WbUJFHQGWhRhh78MyTxfI70wX/oM1QQ8/9TiiXDnskOciQGt3iLHJRB25Xw1E
+         TfPOmz2TNa7WwcCWYeGP+R+TizJ5NEVHpDXq2rCaHWiwDVSwiFFTq0+tMyLAbQLN72nQ
+         t+NQwoupkeb8gNM9BkOrtRY+iVQfpwL7X+flkToaDeTJzxBto7wkOlXr3cjneYxYqs/1
+         FagA==
+X-Gm-Message-State: AOAM530QfkBgVuDonNBbx1VYlA0e0Q+bnLYgQKb0f3bvDN0Av/WYjInE
+        cud8EMZW9pXY5Q8f5eQCtSs=
+X-Google-Smtp-Source: ABdhPJwxWUeDofAW2lIQtZGRWb6JL7E6MBExqSgbYhCt8WxoZJQvSo9h4veqeoHyk/FVnuUv8npbKw==
+X-Received: by 2002:a7b:c4d5:: with SMTP id g21mr3791629wmk.92.1609940649823;
+        Wed, 06 Jan 2021 05:44:09 -0800 (PST)
+Received: from localhost.localdomain (p200300f13711ec00428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:3711:ec00:428d:5cff:feb9:9db8])
+        by smtp.googlemail.com with ESMTPSA id f14sm3085351wme.14.2021.01.06.05.44.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jan 2021 05:22:40 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V3 3/3] phy: phy-brcm-usb: support PHY on the BCM4908
-Date:   Wed,  6 Jan 2021 14:22:25 +0100
-Message-Id: <20210106132225.21215-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210106132225.21215-1-zajec5@gmail.com>
-References: <20210106132225.21215-1-zajec5@gmail.com>
+        Wed, 06 Jan 2021 05:44:09 -0800 (PST)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        andrew@lunn.ch, f.fainelli@gmail.com, jianxin.pan@amlogic.com,
+        narmstrong@baylibre.com, khilman@baylibre.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jbrunet@baylibre.com,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v4 0/5] dwmac-meson8b: picosecond precision RX delay support
+Date:   Wed,  6 Jan 2021 14:42:46 +0100
+Message-Id: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hello,
 
-BCM4908 seems to have slightly different registers but works when
-programmed just like the STB one.
+with the help of Jianxin Pan (many thanks!) the meaning of the "new"
+PRG_ETH1[19:16] register bits on Amlogic Meson G12A, G12B and SM1 SoCs
+are finally known. These SoCs allow fine-tuning the RGMII RX delay in
+200ps steps (contrary to what I have thought in the past [0] these are
+not some "calibration" values).
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Update Kconfig as well
----
- drivers/phy/broadcom/Kconfig        | 3 ++-
- drivers/phy/broadcom/phy-brcm-usb.c | 4 ++++
- 2 files changed, 6 insertions(+), 1 deletion(-)
+The vendor u-boot has code to automatically detect the best RX/TX delay
+settings. For now we keep it simple and add a device-tree property with
+200ps precision to select the "right" RX delay for each board.
 
-diff --git a/drivers/phy/broadcom/Kconfig b/drivers/phy/broadcom/Kconfig
-index a1f1a9c90d0d..09256339bd04 100644
---- a/drivers/phy/broadcom/Kconfig
-+++ b/drivers/phy/broadcom/Kconfig
-@@ -91,10 +91,11 @@ config PHY_BRCM_SATA
- 
- config PHY_BRCM_USB
- 	tristate "Broadcom STB USB PHY driver"
--	depends on ARCH_BRCMSTB || COMPILE_TEST
-+	depends on ARCH_BCM4908 || ARCH_BRCMSTB || COMPILE_TEST
- 	depends on OF
- 	select GENERIC_PHY
- 	select SOC_BRCMSTB
-+	default ARCH_BCM4908
- 	default ARCH_BRCMSTB
- 	help
- 	  Enable this to support the Broadcom STB USB PHY.
-diff --git a/drivers/phy/broadcom/phy-brcm-usb.c b/drivers/phy/broadcom/phy-brcm-usb.c
-index 99fbc7e4138b..63f922a5f29b 100644
---- a/drivers/phy/broadcom/phy-brcm-usb.c
-+++ b/drivers/phy/broadcom/phy-brcm-usb.c
-@@ -285,6 +285,10 @@ static const struct match_chip_info chip_info_7445 = {
- };
- 
- static const struct of_device_id brcm_usb_dt_ids[] = {
-+	{
-+		.compatible = "brcm,bcm4908-usb-phy",
-+		.data = &chip_info_7445,
-+	},
- 	{
- 		.compatible = "brcm,bcm7216-usb-phy",
- 		.data = &chip_info_7216,
+While here, deprecate the "amlogic,rx-delay-ns" property as it's not
+used on any upstream .dts (yet). The driver is backwards compatible.
+
+I have tested this on an X96 Air 4GB board (not upstream yet). Testing
+with iperf3 gives 938 Mbits/sec in both directions (RX and TX). The
+following network settings were used in the .dts (2ns TX delay
+generated by the PHY, 800ps RX delay generated by the MAC as the PHY
+only supports 0ns or 2ns RX delays):
+        &ext_mdio {
+                external_phy: ethernet-phy@0 {
+                        /* Realtek RTL8211F (0x001cc916) */
+                        reg = <0>;
+                        eee-broken-1000t;
+
+                        reset-assert-us = <10000>;
+                        reset-deassert-us = <30000>;
+                        reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW |
+                                                GPIO_OPEN_DRAIN)>;
+
+                        interrupt-parent = <&gpio_intc>;
+                        /* MAC_INTR on GPIOZ_14 */
+                        interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+                };
+        };
+
+        &ethmac {
+                status = "okay";
+
+                pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
+                pinctrl-names = "default";
+
+                phy-mode = "rgmii-txid";
+                phy-handle = <&external_phy>;
+
+                amlogic,rgmii-rx-delay-ps = <800>;
+        };
+
+To use the same settings from vendor u-boot (which in my case has broken
+Ethernet) the following commands can be used:
+  mw.l 0xff634540 0x1621
+  mw.l 0xff634544 0x30000
+  phyreg w 0x0 0x1040
+  phyreg w 0x1f 0xd08
+  phyreg w 0x11 0x9
+  phyreg w 0x15 0x11
+  phyreg w 0x1f 0x0
+  phyreg w 0x0 0x9200
+
+Also I have tested this on a X96 Max board without any .dts changes
+to confirm that other boards with the same IP block still work fine
+with these changes.
+
+
+Changes since v3 at [3].
+- added Florian's Reviewed-by to patch 1 (thank you!)
+- rebased on top of net-next
+
+Changes since v2 at [2]:
+- use the generic property name "rx-internal-delay-ps" as suggested by
+  Rob (thanks!). This affects patches #1 and #3. The biggest change is
+  is in patch #1 which is why I didn't add Florian's and Andrew's
+  Reviewed-by
+- added Andrew's and Florian's Reviewed-by to patches 2, 3, 4, 5 (many
+  thanks to both!). I decided to do this despite renaming the property
+  to the generic name "rx-internal-delay-ps" as it only affects the
+  patch description and one line of code
+- updated patch description of patch #3 to explain why there's not a
+  lot of validation when parsing the old device-tree property (in
+  nanosecond precision)
+- dropped RFC status
+
+Changes since v1 at [1]:
+- updated patch 1 by making it more clear when the RX delay is applied.
+  Thanks to Andrew for the suggestion!
+- added a fix to enabling the timing-adjustment clock only when really
+  needed. Found by Andrew - thanks!
+- added testing not about X96 Max
+- v1 did not go to the netdev mailing list, v2 fixes this
+
+
+[0] https://lore.kernel.org/netdev/CAFBinCATt4Hi9rigj52nMf3oygyFbnopZcsakGL=KyWnsjY3JA@mail.gmail.com/
+[1] https://patchwork.kernel.org/project/linux-amlogic/list/?series=384279&state=%2A&archive=both
+[2] https://patchwork.kernel.org/project/linux-amlogic/list/?series=384491&state=%2A&archive=both
+[3] https://patchwork.kernel.org/project/linux-amlogic/list/?series=406005&state=%2A&archive=both
+
+Martin Blumenstingl (5):
+  dt-bindings: net: dwmac-meson: use picoseconds for the RGMII RX delay
+  net: stmmac: dwmac-meson8b: fix enabling the timing-adjustment clock
+  net: stmmac: dwmac-meson8b: use picoseconds for the RGMII RX delay
+  net: stmmac: dwmac-meson8b: move RGMII delays into a separate function
+  net: stmmac: dwmac-meson8b: add support for the RGMII RX delay on G12A
+
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 55 +++++++++--
+ .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 91 +++++++++++++++----
+ 2 files changed, 120 insertions(+), 26 deletions(-)
+
 -- 
-2.26.2
+2.30.0
 
