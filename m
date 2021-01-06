@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C1232EBD86
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 13:13:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8EB52EBD8B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 13:15:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725792AbhAFMNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 07:13:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35736 "EHLO
+        id S1726223AbhAFMPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 07:15:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725789AbhAFMNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 07:13:19 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C9FC06134C;
-        Wed,  6 Jan 2021 04:12:39 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id f6so2547862ybq.13;
-        Wed, 06 Jan 2021 04:12:39 -0800 (PST)
+        with ESMTP id S1725822AbhAFMPN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 07:15:13 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 339D3C06134D;
+        Wed,  6 Jan 2021 04:14:33 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id o144so2646242ybc.0;
+        Wed, 06 Jan 2021 04:14:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=IbmnpdtDMofYt9r9PreFEY+jECTRLDnRGKyuIas7p/U=;
-        b=vQVMe4amxBe4sHm26L0WZFx8mDPo8zrOczpKhC1CSm/mYNkqOGqltMXFrEigDKfURG
-         HItAnVB/gFV3jRcbg83Nc3wbvrL+GlAY9sZ3wYtga5Av6YsmZQE3DurYcleziZQ6PQ8h
-         +HwzpCbP4x8lL7VkIc3Et5KqROwuQBoPyjsJVJKwtbnC6ahvJS8EwMlXqngH1xe+qafb
-         hKiyOo9olaQxi2Fv5/ZKKeT0u1LhucTaPnAFsiSlHnYI1JTr0XcKx1HlIK8fQQSRcQ6m
-         3581kDKGWADFkWEe6cDL2bhYqX9bqxU/HbNYT0I8WVru5idDW3i3mOLwpZFHCVm2jq/n
-         Zr4Q==
+        bh=yU0fjTRPNfy6gMCoPVRsHQ5omWHH9PCG0sYyXVtfyK4=;
+        b=Zo2go7CILB7vNmklrz0/Lflug73zqhlisF2XtVFfANnurl4nWDfQToYPw1HB1onw1k
+         CQeyhWLj7F3PoyEDxZH5Boj2OG8fblLHWoB/xDLgjiQQh7GD1QYn2EBJTHVcyGLbM3za
+         wF/uWOYX9vjp1h5A/q3rfHrFFOoG9zH3jIceCY6lqUgIEwhDPWhcL9ULv3+WtrbJTzzK
+         OSz03gF/nj8Yr2B45AaK8ULODR9X0B2iHQwLFg/RloaaSP3Ys8FyQqCT5LiZ6uSAiDqn
+         Vx+dCsL68vB3NrAMfpD6XFjCsF3gQo2k0x1zmZry+06S587X4CQoOb/WpHDQsf3So9pg
+         erhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=IbmnpdtDMofYt9r9PreFEY+jECTRLDnRGKyuIas7p/U=;
-        b=Lc4GGNBGyROaaATF6NafNKs1nDbm7AHoGt/SQmD9/X652ejt5xP7hGiNblQe0OgaQ4
-         IuyeymJHlh3Ng8Ww/8bocF/MBrfCwfrW0YlIDL8vsPcC6RF6305SDDTWt+TAnX/wkbwN
-         L1i7eO6+o9+ezGkrKOyaVNDen6f1Px7C2kVffmNwOOXczhDJaUNJZG+YSj6pa5KzPHit
-         BI7/B/9KVgOR+Quag9G/al6SaSPOIqyLEZfEahHjrSLlcw6EYeM+n4+7VSvwN0MtpUfO
-         0IvCd78KKPf/LB2MgCbFqOKrnLtwJhDbDxVuWML7dwVzOBtUJQFWEzSRfUedb9/piTfV
-         ZD1g==
-X-Gm-Message-State: AOAM5331EZYg0FZbW6GqC2cm0HJr0xlJfrsIYW0hAHZhoa5pZEYTskdo
-        VxiasVAakE7BoYuUx7juRzTGdz71nBSI9PCaHs4=
-X-Google-Smtp-Source: ABdhPJyTPWduArhwO9IMGYwEaU3otOQlBQlMn9onmfFN6egdEBR/v4nIQ6FASgODPy5qHwA541JSk498BCrUuV0c4co=
-X-Received: by 2002:a25:538a:: with SMTP id h132mr5393839ybb.247.1609935158689;
- Wed, 06 Jan 2021 04:12:38 -0800 (PST)
+        bh=yU0fjTRPNfy6gMCoPVRsHQ5omWHH9PCG0sYyXVtfyK4=;
+        b=EBEq7m3O5kPJ4BrBVvhPwmCD1JerUaCdr0xatNwXFchgW/88GvnNgLfkBGj2kBAzvx
+         8tPLjrCXcqnKXusBUl32+1x33fyg/kbaqn9e4d6y8snDFt16NMSM9oKR+/7f+f7kGiHQ
+         I37j7yP3rC1HA5Vq/WeZ49qMkU+NPbrAzQ9kD/nirWqU7Ct/Z/YGUmoAIiXZjTw4RA7u
+         F7cXZ+Is5AUZCMCYmQaUPiDxcK8lAUttzlviWfkuLxePQPm4EUd/m/EavzMC17qoCeJA
+         ex1Xay7qEMeXvf4OWitLc8eyGTwkRpzf5MxqY9Lf0fJj4nSaE7REd8rjJQgTYKzbf7Pw
+         wDqQ==
+X-Gm-Message-State: AOAM531CQmvZQhO5iMfcDt8qSz6NQbihagmIKit6GP3Q5Y0MXmFr991X
+        5gK6k3XRfbJnAu2ARa66ZxQc5B9NsCG1/p7tMHE=
+X-Google-Smtp-Source: ABdhPJyHVcVHVEIxytag6D1qsrIQKdh99VoiPfNCHbrssvb4yY5ajzOjKwX7Fmi0L360EDpeCGXd+SVBoxCs6y6rZsY=
+X-Received: by 2002:a25:50a:: with SMTP id 10mr5753848ybf.115.1609935272629;
+ Wed, 06 Jan 2021 04:14:32 -0800 (PST)
 MIME-Version: 1.0
-References: <20210106113730.k5qveshjgcd57kgx@runtux.com>
-In-Reply-To: <20210106113730.k5qveshjgcd57kgx@runtux.com>
+References: <20210106113730.k5qveshjgcd57kgx@runtux.com> <CANiq72nTkw_6-5u4V8c9ZSGxjCSTZ1cM26xtJjZHrgJKCxcQ0w@mail.gmail.com>
+In-Reply-To: <CANiq72nTkw_6-5u4V8c9ZSGxjCSTZ1cM26xtJjZHrgJKCxcQ0w@mail.gmail.com>
 From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date:   Wed, 6 Jan 2021 13:12:28 +0100
-Message-ID: <CANiq72nTkw_6-5u4V8c9ZSGxjCSTZ1cM26xtJjZHrgJKCxcQ0w@mail.gmail.com>
+Date:   Wed, 6 Jan 2021 13:14:21 +0100
+Message-ID: <CANiq72nstrtYxTyJzk6kXjWZ_UOsPYLw=Lni4kLP1uGYLR5k=g@mail.gmail.com>
 Subject: Re: [PATCH 0/1] auxdisplay: Add I2C gpio expander example
 To:     Ralf Schlatterbeck <rsc@runtux.com>
 Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
         Willy Tarreau <w@1wt.eu>, Lars Poeschel <poeschel@lemonage.de>,
         Linus Walleij <linus.walleij@linaro.org>,
         Geert Uytterhoeven <geert@linux-m68k.org>,
-        devicetree@vger.kernel.org
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 6, 2021 at 12:37 PM Ralf Schlatterbeck <rsc@runtux.com> wrote:
+On Wed, Jan 6, 2021 at 1:12 PM Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> wrote:
 >
-> The Hitachi HD44780 is often used together with a PCF8574 based I2C
-> I/O expander. It was non-obvious to me that the existing parallel
-> connected version of the auxdisplay driver can already handle this
-> configuration with appropriate device tree magic. This patch documents
-> the necessary incantations in an example.
->
-> That this is not only non-obvious to me is documented by at least two
-> I2C kernel implementations for the display out there.
->
-> Thanks to Geert Uytterhoeven for pointing out how this is done.
-> Thanks to Miguel Ojeda for extensively commenting on my previous patch.
+>   - Normally, you will want to use scripts/get_maintainer.pl to know
+> to whom send a given change. In this case, I am Cc'ing Rob, Geert and
+> the devicetree mailing list which were missing.
 
-You're welcome!
-
-A couple tips:
-  - Normally, you will want to use scripts/get_maintainer.pl to know
-to whom send a given change. In this case, I am Cc'ing Rob, Geert and
-the devicetree mailing list which were missing.
-  - Also, for single patches, typically you would want to send the
-patch without a cover letter. If you want to put comments that
-shouldn't go into the commit, you can write them just below the "---"
-line.
-
-Thank you for contributing to the kernel and welcome!
+(Actually Cc'ing Rob.)
 
 Cheers,
 Miguel
