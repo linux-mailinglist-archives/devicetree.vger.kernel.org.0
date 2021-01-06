@@ -2,109 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67BBF2EC009
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:02:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B2812EC017
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:06:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726700AbhAFPB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 10:01:59 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:36225 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726680AbhAFPB7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:01:59 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 63103580598;
-        Wed,  6 Jan 2021 10:01:13 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 06 Jan 2021 10:01:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=pq8hbaVaGOc5OfRuGXlFeZiorUD
-        Bn36VjDYOTFbKyxs=; b=ShorEpq6Yy/xlS5QvMGkj+VfDauayX3AdBUr1HljprH
-        epgaFW4HMvXaU2fu/f4XvWkSl7WdtKSZ4vM6vgzLQGhMhv+jfigzIs78kLH3KZnA
-        8GiFsnbb3VoKHbh8vV1B5VKSDGa9Dq9WGAe5hrYOQpjTMNyjRM598D0xRrwtKAYY
-        pyc3Byv2GEC/G1is55ynRXo18eQHBrFbtCyODpd+IExfrBd82tffr8lMJPIVSNRE
-        LUmpvtYBmRaN4buNBJBlyPY3E7NeBnc2a+XVfoZDmZqIcDO1PQ5YVEeVAtqymKXD
-        DkvX8hITuI6W7EoN9i962AkZNhE2Ghp6zeU2SJJyMRA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=pq8hba
-        VaGOc5OfRuGXlFeZiorUDBn36VjDYOTFbKyxs=; b=G2+/xdgGTg+7Sb7rGZlocO
-        WELj2rOd0jxhZESLpr2idKjVFSpNX+VDdTSrcge64TtopX1VwY4dbEXhg3PoU1BD
-        6VUNVYZ6sSe1OC7eye6YnPU/GFzOqKcrBpmkYoTsQSHby3t/9e6z6h8KDa2illXt
-        fxGG5KYR/Ubt/XKs4yjJdU4/mtopFR/0iNKXrcT4imw8eL3DpOh+4H4GtVbE5JSp
-        djl4fPO7c01hpjfoNI9lpzUkCKTtQ0WgAZ21mb4xuGFhc9DINe/PjYVGLDo66nUO
-        QLjt5jIvY7ASaUeKOS1VvTwqBI15dGNEdpxK+YmBOd7hIyAdQJqPrFzfLAPmRNPg
-        ==
-X-ME-Sender: <xms:ttD1X6DuimkHB60BlhDYf2Kx883cy5xRN-1AAf-yBoF9WgPa_ZOn_g>
-    <xme:ttD1X0h2AcYf0LyeV6my4J48yRpLTVvT3-bvHAJO25R6T9MDjrniW-rVdLMItihow
-    wZ1upqMtkoyi1ipZls>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdefledgjeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:ttD1X9lkpBBbiHitDcxmiFduqUaKPEon7-5KIsw_nkro4S_XFnPDJw>
-    <xmx:ttD1X4xSiTOqPMceL4g2WaOdhoTu1fw1MebvYOP-ddFQ2r9S_AJKtg>
-    <xmx:ttD1X_Sx9Q42PxnPp-eI8qgLlWhuKJsV8P2KWAN27artatgz0DLSpw>
-    <xmx:udD1X6E1isxixEyjuMJrjLeRlHORYUcCpiZS2qLNX6btlbvyJ329ig>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 999F0240066;
-        Wed,  6 Jan 2021 10:01:10 -0500 (EST)
-Date:   Wed, 6 Jan 2021 16:01:08 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Eric Anholt <eric@anholt.net>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: bcm2835-vec: Add power-domains property
-Message-ID: <20210106150108.cjb35gbbystmgnhe@gilmour>
-References: <1608751473-12343-1-git-send-email-stefan.wahren@i2se.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dezckgshvmtg3jl4"
-Content-Disposition: inline
-In-Reply-To: <1608751473-12343-1-git-send-email-stefan.wahren@i2se.com>
+        id S1726074AbhAFPGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 10:06:38 -0500
+Received: from foss.arm.com ([217.140.110.172]:42190 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726011AbhAFPGh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Jan 2021 10:06:37 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C0DCD6E;
+        Wed,  6 Jan 2021 07:05:52 -0800 (PST)
+Received: from localhost.localdomain (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C4F6A3F719;
+        Wed,  6 Jan 2021 07:05:50 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
+Subject: [PATCH 0/7] arm64: dts: allwinner: Various DT fixes
+Date:   Wed,  6 Jan 2021 15:05:18 +0000
+Message-Id: <20210106150525.15403-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.14.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---dezckgshvmtg3jl4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+a collection of DT fixes I gathered over time:
 
-On Wed, Dec 23, 2020 at 08:24:33PM +0100, Stefan Wahren wrote:
-> Adding the missing property power-domains to the bcm2835-vec schema to fix
-> the following dtbs_check issue:
->=20
-> vec@7e806000: 'power-domains' does not match any of the regexes: ...
->=20
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+- Adding usbphy references to [EO]HCI0 nodes (A64, H6)
+- Adding Pine64-LTS status LED
+- Dropping non-removable from SoPine/Pine64-LTS SD card
+- Enabling HS200 @ 150 MHz on Pine H64 (H6)
+- Enabling HS200 @ 150 MHz on Pine64-LTS
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+For details please see the individual patches!
 
-Thanks!
-Maxime
+Thanks,
+Andre
 
---dezckgshvmtg3jl4
-Content-Type: application/pgp-signature; name="signature.asc"
+Andre Przywara (7):
+  arm64: dts: allwinner: H6/A64: properly connect USB PHY to port 0
+  arm64: dts: allwinner: Pine64-LTS: Add status LED
+  arm64: dts: allwinner: Drop non-removable from SoPine/LTS SD card
+  arm64: dts: allwinner: H6: Allow up to 150 MHz MMC bus frequency
+  arm64: dts: allwinner: A64: Limit MMC2 bus frequency to 150 MHz
+  arm64: dts: allwinner: Pine64-LTS/SoPine: Enable HS200 eMMC mode
+  arm64: dts: allwinner: Pine H64: Enable HS200 eMMC mode
 
------BEGIN PGP SIGNATURE-----
+ .../boot/dts/allwinner/sun50i-a64-pine64-lts.dts      | 11 +++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts |  5 +----
+ .../dts/allwinner/sun50i-a64-sopine-baseboard.dts     |  1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64-sopine.dtsi  |  1 -
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi         |  6 +++++-
+ arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts  |  1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi          |  7 +++++++
+ 7 files changed, 26 insertions(+), 6 deletions(-)
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/XQtAAKCRDj7w1vZxhR
-xYwJAQCFCpfWlhu2SNIDx7JiCMtTUmYbKRmrMFZyFMWDRnbUnAEA/L1wi9hHHfaU
-2PEhQ+98gvY1IRnS+Qe0CplsaAWh2AY=
-=iFbb
------END PGP SIGNATURE-----
+-- 
+2.17.5
 
---dezckgshvmtg3jl4--
