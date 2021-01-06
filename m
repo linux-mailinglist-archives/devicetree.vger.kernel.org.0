@@ -2,91 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B972EBDF4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 13:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A042A2EBE14
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 13:59:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbhAFMzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 07:55:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42208 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726590AbhAFMzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 07:55:08 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F8BDC061362
-        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 04:54:00 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id y8so1497569plp.8
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 04:54:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UMuTgmfW7boX1iQQTydlfmLnxOmK9dbluKSLAHWL4GA=;
-        b=W30c9RmPScXo3q0goOcwJhd6NjCM6Q+lW11AkU8W8tUCT7CFl9KTIsrgJr6ChYnt1D
-         ZtnUx8boLsW0bTpy0ftealN8CgS0g6M4cVEfbkPDav1Tomu6fwS1OD3YcjgwhtZ4NXH6
-         3jgS5Cq9NRET7DPlBZVRRgnJ20STsF2EvnR0xgvkje6Ra8xc6P1L0xoHN8xJGfVpCLRh
-         spazQzx0UGbAqOaxpyn3Dnl3V0sbstzi00q7Y45YTPSLmuXIboVlDUsMBGryrgmm4qXl
-         tv6tbSRofYqtLtb6KFP2Q6kr/M0WsqE0WxPlluw7zB3iP8O+SscIbVL0bRE3ZMyjDNZ8
-         a5Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UMuTgmfW7boX1iQQTydlfmLnxOmK9dbluKSLAHWL4GA=;
-        b=BzGKVAJDeHpC42ayZwanZWwqxcQ+MZNgLUDVfm8KI98cwkbst7W8mPCxPZF99GACoZ
-         T3Tv86BJIrn2mnwhDlQgcbY/IGdHAgbvK+RyM5rQEsDDDXqG4Yvs5DNBHRURv4ZxKl64
-         5LKArFZzK6p8KMT0ePH9wpW4BcggLQ8yuIOrkoWPrgdkVCerodUac5fAZfvmIPZ72498
-         oiwhJRiOTm8EuRzWLr1fVASo+A33W3tUtSxG40QrVwLeXSErBdbB+13ihWEmlnEvXkCZ
-         LgSNettLPpkequw1Wcf7wUJLtV9P/hxVKCPNPOEDe5Wq7+aRx6i2amHBOgiFv9pYx0eT
-         zYVQ==
-X-Gm-Message-State: AOAM532EKR8l99xv/yO+lOX1M6dMFK9DzIeDGY+MbrVwO0RAJ5CcFh03
-        jgg63yL1U7l3Tzbz9wCdx36M
-X-Google-Smtp-Source: ABdhPJxA2CzevUlx4wNHH1PbrquYizwRNpaG8kaHQlPr2k23vk1HJB8rObcUHJgzAo+I6UsKmDVPMw==
-X-Received: by 2002:a17:90a:cb8b:: with SMTP id a11mr4149333pju.3.1609937640016;
-        Wed, 06 Jan 2021 04:54:00 -0800 (PST)
-Received: from localhost.localdomain ([2409:4072:6102:e7a2:51f0:bf72:bf80:ec88])
-        by smtp.gmail.com with ESMTPSA id n128sm2918182pga.55.2021.01.06.04.53.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jan 2021 04:53:59 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH v3 05/18] dt-bindings: arm-smmu: Add binding for Qcom SDX55 SMMU
-Date:   Wed,  6 Jan 2021 18:23:09 +0530
-Message-Id: <20210106125322.61840-6-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210106125322.61840-1-manivannan.sadhasivam@linaro.org>
-References: <20210106125322.61840-1-manivannan.sadhasivam@linaro.org>
+        id S1726614AbhAFM6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 07:58:45 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37364 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726571AbhAFM6p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Jan 2021 07:58:45 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 20EF5229EF;
+        Wed,  6 Jan 2021 12:58:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609937884;
+        bh=HSMx8d9zy+tZkY9keTyJN0MxqU4glFmqhX63BZf7qyI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=f93pOZYmLaNT4qGfs8aJ7j9C7Y7hvOgFgp0N8HFPrG76q8mQboC2kzKhkH4i/fWDP
+         c9te+0IBQw7P40nSPWAyi0tdXab7QVdGf23Ws3+k1146ZDKPChFyXpdTTvnpGCBTPK
+         M+KUT6WmZt0L0x5UL3sSzg+/1ku1kxs6T01dIWIDi3zkGp8iqBo+f2T3WBBbCDS9L6
+         gx+nYD1d9vjWaHrfIYGK8Cfir48CUCFgS30hqbDwTtnK3rHZtw2xSZHZ5ZdK20/Lj1
+         9xrE7bIx4CEJjISblFjKTDMrLvYKt5vl/em8DFFrcAxYkREVrG7nxHMmmRLkBrR4CO
+         ID/cxOJmDQg7w==
+Date:   Wed, 6 Jan 2021 12:57:35 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Bert Vermeulen <bert@biot.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: spi: Realtek RTL838x/RTL839x SPI
+ controller
+Message-ID: <20210106125735.GB4752@sirena.org.uk>
+References: <20210105232815.3218063-1-bert@biot.com>
+ <20210105232815.3218063-2-bert@biot.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="98e8jtXdkpgskNou"
+Content-Disposition: inline
+In-Reply-To: <20210105232815.3218063-2-bert@biot.com>
+X-Cookie: Happy feast of the pig!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree binding for Qualcomm SDX55 SMMU.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
----
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
- 1 file changed, 1 insertion(+)
+--98e8jtXdkpgskNou
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 3b63f2ae24db..3a1cefce8bc4 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -35,6 +35,7 @@ properties:
-           - enum:
-               - qcom,sc7180-smmu-500
-               - qcom,sdm845-smmu-500
-+              - qcom,sdx55-smmu-500
-               - qcom,sm8150-smmu-500
-               - qcom,sm8250-smmu-500
-           - const: arm,mmu-500
--- 
-2.25.1
+On Wed, Jan 06, 2021 at 12:28:14AM +0100, Bert Vermeulen wrote:
 
+> +    oneOf:
+> +      - const: realtek,rtl838x-spi
+> +      - const: realtek,rtl839x-spi
+
+These should list exact models, not wildcards.
+
+--98e8jtXdkpgskNou
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/1s78ACgkQJNaLcl1U
+h9BWEQf+NleJ5fXZOwgfeBGDb7tGHF0T9waVgNLaLZ1hg/wrDNi9cw40Y0EieKhm
+2UceJlnz4L8BSh+4RyojYk6G9sKLsqRgl2YV6Glb4RYtTxlbfAqi7RwLLz8DFlFs
+o251gz9g05/+TxIaK07LBNSuZAq15MuyRX+j2f+AWDzHm1lyV5lNmTvoXVVaHc8Y
+ksYYot0SBsvHJ8zS8ZVvY8dfb2EpYKE91K0YbPkFxe30Nna61oQvV8Dllt601Wwm
+t8qMnk8Fp/UUmevV7+35vswn9DCOUxVpd/NGNIrtUlcCCuh0UYjfmx2FXvPlmERX
+5Dfr1HoX4FdQbODlEIx6urt/wRUv3w==
+=4t1j
+-----END PGP SIGNATURE-----
+
+--98e8jtXdkpgskNou--
