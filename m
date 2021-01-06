@@ -2,130 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 997692EC394
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 19:59:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ABB22EC3D6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 20:21:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725890AbhAFS7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 13:59:32 -0500
-Received: from aserp2120.oracle.com ([141.146.126.78]:49432 "EHLO
-        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725800AbhAFS7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 13:59:32 -0500
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 106It0hC028017;
-        Wed, 6 Jan 2021 18:58:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=qgEi3Qa2hyF376sE4mh5A9+MilrONCFfI4KMkx2vQvA=;
- b=XbcsGl1XP/I/qKOicRYCGWl0CuALE4QAftUapu+rjN2oKyJJpd+mgeDnQE+VIjaegTwc
- pNVgp9Vf/szLcDU/3px/SNSlkRITzlqpN4PEHWvg+8ncgKpYIz2ge7iUcezzo8adAy/F
- XSujrBZctl3KJu+bPMJKe2wqb4lfcl9nb+kJ5pDapf38ZZzP/V5SQScw1EdT8j/INqKG
- EZMqn7KHrhXf7jC+64G57UpWXyce+gDU/LD+A4DWyRIOWyFTqi2POu42+olRuP/J3fRw
- R5UyKH8ecQNJZaBlrfmJp5ZwD86IDgwyhop2LHAMXqeJoeg2qokq0H36JsvvmgDo/4Tz Hg== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by aserp2120.oracle.com with ESMTP id 35wepm9cyr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 06 Jan 2021 18:58:07 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 106IoQod159497;
-        Wed, 6 Jan 2021 18:58:06 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
-        by userp3020.oracle.com with ESMTP id 35w3qsd0gy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 06 Jan 2021 18:58:06 +0000
-Received: from abhmp0001.oracle.com (abhmp0001.oracle.com [141.146.116.7])
-        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 106Iw1TS006276;
-        Wed, 6 Jan 2021 18:58:01 GMT
-Received: from localhost.localdomain (/209.6.208.110)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Wed, 06 Jan 2021 10:58:01 -0800
-Date:   Wed, 6 Jan 2021 13:57:57 -0500
-From:   Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-To:     Claire Chang <tientzu@chromium.org>
-Cc:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
-        paulus@samba.org, joro@8bytes.org, will@kernel.org,
-        frowand.list@gmail.com, boris.ostrovsky@oracle.com,
-        jgross@suse.com, sstabellini@kernel.org, hch@lst.de,
-        m.szyprowski@samsung.com, robin.murphy@arm.com,
-        grant.likely@arm.com, xypron.glpk@gmx.de, treding@nvidia.com,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        gregkh@linuxfoundation.org, saravanak@google.com,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
-        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
-        xen-devel@lists.xenproject.org, tfiga@chromium.org,
-        drinkcat@chromium.org
-Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
-Message-ID: <20210106185757.GB109735@localhost.localdomain>
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-6-tientzu@chromium.org>
+        id S1726315AbhAFTUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 14:20:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39042 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725822AbhAFTUi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Jan 2021 14:20:38 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 482AC23123;
+        Wed,  6 Jan 2021 19:19:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609960797;
+        bh=fg6pKGCbfBbQ402UIRKUbM2oI8qZIamYYsqXNBiukQ8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=sGK+cYJlUHsapV/ZeJ0er60257V0UsPOE1A+oHNgcB8WogiQppHa6WS14fI00AWJZ
+         BK3jfE2hwzrepJzf6Si7wcK8CRhFD+/nwYnjJHvtAaRV9XRLYj1/tGRjPFzVYRUBOD
+         IOJylOyt7o5gQXXUMfah/tyWZuFQIavJvXlf9VSU6kYWoaKPMFNry55dZhHMipMn96
+         63dzFYuLXRzYt7n5kbsWNWXJWjhaQCB5wbD1MGOmybcmLVrQTp/smibpXJr3GcIcdb
+         ffWP8WNeUeLTSzioUrHoUl51yY8VLyKydSCodx0cLDZ/xtqJBCqbvJas5z47qfGRtT
+         s6fgcFrjWuyDQ==
+Date:   Wed, 6 Jan 2021 13:19:56 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        broonie@kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 0/6] brcmstb: add EP regulators and panic handler
+Message-ID: <20210106191956.GA1328485@bjorn-Precision-5520>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210106034124.30560-6-tientzu@chromium.org>
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9856 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 malwarescore=0 mlxscore=0
- spamscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101060106
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9856 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 spamscore=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 clxscore=1015 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101060106
+In-Reply-To: <20201130211145.3012-1-james.quinlan@broadcom.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 06, 2021 at 11:41:23AM +0800, Claire Chang wrote:
-> Introduce the new compatible string, restricted-dma-pool, for restricted
-> DMA. One can specify the address and length of the restricted DMA memory
-> region by restricted-dma-pool in the device tree.
+On Mon, Nov 30, 2020 at 04:11:37PM -0500, Jim Quinlan wrote:
+> v2 -- Use regulator bulk API rather than multiple calls (MarkB).
 > 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> ---
->  .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
+> v1 -- Bindings are added for fixed regulators that may power the EP device.
+>    -- The brcmstb RC driver is modified to control these regulators
+>       during probe, suspend, and resume.
+>    -- 7216 type SOCs have additional error reporting HW and a
+>       panic handler is added to dump its info.
+>    -- A missing return value check is added.
 > 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> index e8d3096d922c..44975e2a1fd2 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> @@ -51,6 +51,20 @@ compatible (optional) - standard definition
->            used as a shared pool of DMA buffers for a set of devices. It can
->            be used by an operating system to instantiate the necessary pool
->            management subsystem if necessary.
-> +        - restricted-dma-pool: This indicates a region of memory meant to be
-> +          used as a pool of restricted DMA buffers for a set of devices. The
-> +          memory region would be the only region accessible to those devices.
-> +          When using this, the no-map and reusable properties must not be set,
-> +          so the operating system can create a virtual mapping that will be used
-> +          for synchronization. The main purpose for restricted DMA is to
-> +          mitigate the lack of DMA access control on systems without an IOMMU,
-> +          which could result in the DMA accessing the system memory at
-> +          unexpected times and/or unexpected addresses, possibly leading to data
-> +          leakage or corruption. The feature on its own provides a basic level
-> +          of protection against the DMA overwriting buffer contents at
-> +          unexpected times. However, to protect against general data leakage and
-> +          system memory corruption, the system needs to provide way to restrict
-> +          the DMA to a predefined memory region.
+> 
+> Jim Quinlan (6):
+>   dt-bindings: PCI: Add bindings for Brcmstb EP voltage regulators
+>   PCI: brcmstb: Add control of EP voltage regulator(s)
+>   PCI: brcmstb: Do not turn off regulators if EP can wake up
+>   PCI: brcmstb: Give 7216 SOCs their own config type
+>   PCI: brcmstb: Add panic/die handler to RC driver
+>   PCI: brcmstb: check return value of clk_prepare_enable()
 
-Heya!
+If/when you repost this, capitalize the subjects consistently.
 
-I think I am missing something obvious here so please bear with my
-questions:
+>  .../bindings/pci/brcm,stb-pcie.yaml           |  12 +
+>  drivers/pci/controller/pcie-brcmstb.c         | 219 +++++++++++++++++-
+>  2 files changed, 228 insertions(+), 3 deletions(-)
+> 
+> -- 
+> 2.17.1
+> 
 
- - This code adds the means of having the SWIOTLB pool tied to a specific
-   memory correct?
 
- - Nothing stops the physical device from bypassing the SWIOTLB buffer.
-   That is if an errant device screwed up the length or DMA address, the
-   SWIOTLB would gladly do what the device told it do?
-
- - This has to be combined with SWIOTLB-force-ish to always use the
-   bounce buffer, otherwise you could still do DMA without using
-   SWIOTLB (by not hitting the criteria for needing to use SWIOTLB)?
