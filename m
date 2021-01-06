@@ -2,129 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D8B2EC0C6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 17:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2832E2EC0C7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 17:03:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727134AbhAFQCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 11:02:21 -0500
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:58413 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725925AbhAFQCV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 11:02:21 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id ED5C25C0032;
-        Wed,  6 Jan 2021 11:01:34 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Wed, 06 Jan 2021 11:01:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=Ro7u8km8dNjBTGeXwqG+yIyxKUi
-        3p3pFGi7jtUDxThs=; b=HAZM2aop8NS49fn62Gj+rfxRXDNlNLPtkx0osY3EOiy
-        IXXH9tVahFpeNaJ6ptTUGDpDQrhBq58CrZM0ssbGdRnH8LLY/pEY3uDxpbNH7XKc
-        S1A0gUUbt+KEWFvMKv45JNLVt2D2W43x9OnrhLspKDyeMe2xnEYQomIzHE6YV9he
-        +BlVSWWtrdKYqPVgswTJGVefiDHhFH3ZDOGNtRfouSJcUycRTcff5OlJzQrhvL2d
-        082114geCcpid9dL4mUrvVo2cI0Uwbm2W70dW4M7/JftLLlJjPBw0KEa3zrWrhHR
-        KtqWcrdI7VrU4gDS3qzXKkEAP9Bq/5TGoIEYtW2Kafw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Ro7u8k
-        m8dNjBTGeXwqG+yIyxKUi3p3pFGi7jtUDxThs=; b=EmJpA0mVrKfBPcuZ5JMYXE
-        bI1MXjLSCIYXJDDqTOpjMMEeVJx7KJCch32RI149uMqfF3b11ujxSpKlXKYfDrol
-        JeylWJ+PUQucIxT1poKYQ6AkHJCOHWmBdnZFYYc9GSHRgV3P0CZJdjoN6hWdbeat
-        TjABW51NJb7MY774j1EiwPq4WS5ptkRVt2C5vx3n+ubrnU0JdN2UPYPKtzXXsB9J
-        twwI1MBUJD09jLe1sKaTDMPtu0rO+ulLyC86ml/CONjO00htKI3Ljn7pSzYv2aWa
-        w/bhg42ARtbRlqTrIvzmUs8AGfo0TfFq85kl+JoQOG+Hjm2kU4zfq3WN1Ljfxkvg
-        ==
-X-ME-Sender: <xms:3d71XzYJ-MFVDKSh5fgN-w3v70xtz6CBLR4ggUfoYcelkEZgeWyZtw>
-    <xme:3d71X72l620Ye8lH_IdBy9v03oGLejNsykizvpjzsmdDOFyvRICb5x3Nv4AExjbYw
-    Gvl4ln1o6pR5NfgRvA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdefledgjeefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:3d71X1itD4Me5d9Hj4x0VXh7N1WkB1Z-BUSC6eJFUBbb8voo_HeFHQ>
-    <xmx:3d71X_bxdIgecF1k6X7wnJs6zJOYRqQY4BOA_NVjRmebWmjDtF3liA>
-    <xmx:3d71X1TwIqnPYbpe7aA24Cem84h6m5NmYNjAW8EmIpke0wiBPHZFVQ>
-    <xmx:3t71X_T4uUFpCupnSNHDa3xGriHXUOhbsrfiyO30LGghKhNuuntofw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 08DDD240057;
-        Wed,  6 Jan 2021 11:01:32 -0500 (EST)
-Date:   Wed, 6 Jan 2021 17:01:30 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 2/7] arm64: dts: allwinner: Pine64-LTS: Add status LED
-Message-ID: <20210106160130.xjgsh3kb5xy3z63m@gilmour>
-References: <20210106150525.15403-1-andre.przywara@arm.com>
- <20210106150525.15403-3-andre.przywara@arm.com>
+        id S1726165AbhAFQCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 11:02:35 -0500
+Received: from mail-vk1-f174.google.com ([209.85.221.174]:46627 "EHLO
+        mail-vk1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725925AbhAFQCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 11:02:35 -0500
+Received: by mail-vk1-f174.google.com with SMTP id d6so879237vkb.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 08:02:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3BYH7mTXp3bDNRdEqNabPGl/UPdludaZAvWSypPfgFI=;
+        b=mONFrkIku6CgqOWZyAsF8dLzKvniIowE8CoiMbmA4T0nLqvGQW4C8ZFrnDv3UhMYZU
+         3WFEYzeEa/tJ3fQx8j+AUD1L2W/c4AAKsAjAeVLUvFLZjwAr6Gw4uTCgZVQn6wPmCdY4
+         P/9caHPijZ/DrUk/HASYQOliQKhNxrtrwy8RvnmLfbHMy+sdyrE+jtzYvtDu0C6BJXbY
+         U7M4RNT06JFr0G4P2K/OB58qOz4unqX/HLSZ96iJSwxo1wYayGGP8ifoo8iQwdDg4Cwb
+         7oJN1QZM6+24ZrD/8hW0m+hWVp3GloS8b0XaQfftI5OQV4x7UgNJA78UfFNJJA96FIcc
+         LONA==
+X-Gm-Message-State: AOAM530etd9dfFhrCyfyPLFh5EU7AiNTj0N+2hS6rFOWmN/gr7W5QRkJ
+        A5jwxJWPIRf0Kd+pFJB2RYui4WmSRRSAPw==
+X-Google-Smtp-Source: ABdhPJybJsnSlVLMF1G3570vBnwBY2sfsXUwg6nRQIed6bym5GLiU0tKycK6dyRNOdFu26vrqWFWag==
+X-Received: by 2002:a1f:900f:: with SMTP id s15mr4157459vkd.5.1609948913567;
+        Wed, 06 Jan 2021 08:01:53 -0800 (PST)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id q23sm398138vsm.27.2021.01.06.08.01.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jan 2021 08:01:53 -0800 (PST)
+Received: by mail-ua1-f46.google.com with SMTP id y21so1237447uag.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 08:01:52 -0800 (PST)
+X-Received: by 2002:ab0:6512:: with SMTP id w18mr3942393uam.55.1609948912641;
+ Wed, 06 Jan 2021 08:01:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5xzxya7l4d3ybad2"
-Content-Disposition: inline
-In-Reply-To: <20210106150525.15403-3-andre.przywara@arm.com>
+References: <20210106150525.15403-1-andre.przywara@arm.com> <20210106150525.15403-5-andre.przywara@arm.com>
+In-Reply-To: <20210106150525.15403-5-andre.przywara@arm.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Thu, 7 Jan 2021 00:01:42 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64NM9iyYG1x1gvBZ8biwTG-=p1a=WPidyX17sjZTVjt6Q@mail.gmail.com>
+Message-ID: <CAGb2v64NM9iyYG1x1gvBZ8biwTG-=p1a=WPidyX17sjZTVjt6Q@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH 4/7] arm64: dts: allwinner: H6: Allow up to
+ 150 MHz MMC bus frequency
+To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 6, 2021 at 11:06 PM Andre Przywara <andre.przywara@arm.com> wrote:
+>
+> The H6 manual explicitly lists a frequency limit of 150 MHz for the bus
+> frequency of the MMC controllers. So far we had no explicit limits in the
+> DT, which limited eMMC to a rather conservative 52 MHz.
 
---5xzxya7l4d3ybad2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'd say this is implementation specific. FreeBSD might have other defaults?
 
-On Wed, Jan 06, 2021 at 03:05:20PM +0000, Andre Przywara wrote:
-> The Pine64-LTS board features a blue status LED on pin PL7.
->=20
-> Describe it in the DT.
->=20
+> Put those maximum frequencies in the SoC .dtsi, to allow higher speed
+> modes (which still would need to be explicitly enabled, per board).
+>
+> Tested with an eMMC using HS-200 on a Pine H64. Running at the spec'ed
+> 200 MHz indeed fails with I/O errors, but 150 MHz seems to work stably.
+>
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../boot/dts/allwinner/sun50i-a64-pine64-lts.dts      | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts b/ar=
-ch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> index 302e24be0a31..55bf4a0fc31c 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> @@ -1,10 +1,21 @@
->  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->  // Copyright (c) 2018 ARM Ltd.
-> =20
-> +#include <dt-bindings/leds/common.h>
->  #include "sun50i-a64-sopine-baseboard.dts"
-> =20
->  / {
->  	model =3D "Pine64 LTS";
->  	compatible =3D "pine64,pine64-lts", "allwinner,sun50i-r18",
->  		     "allwinner,sun50i-a64";
-> +
-> +	leds {
-> +		compatible =3D "gpio-leds";
-> +
-> +		status {
 
-In addition to Chen-Yu comments, the node name should be led
+Fixes tag?
 
-Maxime
 
---5xzxya7l4d3ybad2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/Xe2gAKCRDj7w1vZxhR
-xTIxAQCUMMa6tpcZiP896p3BqhjxfcKiplMm8tS3Ie8eGf3XsQD/Q/Gw6O+Tgi9u
-aK7SKmoD9dsg3BjVHlM1/HuEkgcGlQM=
-=FZyz
------END PGP SIGNATURE-----
-
---5xzxya7l4d3ybad2--
+Thanks
+ChenYu
