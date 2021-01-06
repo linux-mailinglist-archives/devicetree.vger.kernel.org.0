@@ -2,93 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3AFE2EC048
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:20:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7D7C2EC06A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:32:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726794AbhAFPUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 10:20:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40040 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726663AbhAFPUY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Jan 2021 10:20:24 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 068C32311D;
-        Wed,  6 Jan 2021 15:19:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1609946383;
-        bh=u/iJ2yg1n0QdcVgVvjTf284lvZQ11lam/cryS8nLa+Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WotmtCzjWxb2CAu2KAtsKTJqh9iCxeOMgicnKsFyUrueNxBBcVCCmpWMJbg8PY8SO
-         VFt7v5v95F3h4lF7UoXFeabAeqZHgU866dLUQQrZGu0jdI9RZPELcSdjK+OoEvW37U
-         q0mdbZDCAzvwLFBCun8X7E9ZgDEt8NFeSCvFas0qa3f/4K3XPVwl1lsjP+t6l5pJhA
-         SROujlVC3B1fXZGLceKzxvi7TQ727HRqhu9pKNB7rcomm3nMWJVGR1utKmSrS7+NR5
-         lH1EYBshQUWRi4+1RJmbENh1kBUWaVTGKiMLhpqvzthK/KzcB3xdc0qFVMdk2eVMrp
-         CRIZb2wQnRAIg==
-Received: by mail-ej1-f42.google.com with SMTP id x16so5495813ejj.7;
-        Wed, 06 Jan 2021 07:19:42 -0800 (PST)
-X-Gm-Message-State: AOAM533zkV39EsVMBHq76NgypnulOxwz225Y3H8GGq3XcKbeJu/Vphjk
-        og8es/ZLkyWIdnCQBrhldGBFDw82mxvEU9BlLg==
-X-Google-Smtp-Source: ABdhPJwPL16fykEpX2fD9d2FVv1igr6adK+Y9++9zCcaas+Y0dkpBkV43bpwEX//uW/IjRj0aVqrCnagC5484H8w9Ew=
-X-Received: by 2002:a17:906:d87:: with SMTP id m7mr3151012eji.108.1609946381645;
- Wed, 06 Jan 2021 07:19:41 -0800 (PST)
-MIME-Version: 1.0
-References: <20210104131755.2979203-1-bert@biot.com> <20210104131755.2979203-2-bert@biot.com>
- <1609866288.019144.372417.nullmailer@robh.at.kernel.org> <f5333394-8141-64ed-de30-d3b095ef579e@biot.com>
-In-Reply-To: <f5333394-8141-64ed-de30-d3b095ef579e@biot.com>
+        id S1725800AbhAFPcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 10:32:48 -0500
+Received: from mail-io1-f41.google.com ([209.85.166.41]:45695 "EHLO
+        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726077AbhAFPcr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:32:47 -0500
+Received: by mail-io1-f41.google.com with SMTP id n4so3061694iow.12;
+        Wed, 06 Jan 2021 07:32:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=t80RrQIP9pcWO65dqznFuyn9d1RG+MW1J0H6Xs08o5Q=;
+        b=VgebxhUgSIFbPZXPTVu7VCAaeN8Fp/HAOY37qvMM26MC67knywFbrGPV/th8wUQGs1
+         itL2skiAy0u8a7XM2KsD7dO22eXytekojEziQl4C2TYNva8qAc7H3gsDvjN2yLjS2miv
+         Z3c7iawVoPeL0okCisZsoNd/Mgq6nQY5zZdJczX/iSspZL8MXT3D4h5vJa4/97vVCqRP
+         ERYD5E0R1+18n3mgN/DwhYBlN7C5eqojkM6ey5tt4gPwgyrxtDG97k0BPPWsDMgdBQD0
+         nyG9jfgW4kETyL8GlGc3Jc3hXb5jBL1QM9OS0Lfyy6I28/zUwUl+mXACGxU34xm9uQY2
+         IE3g==
+X-Gm-Message-State: AOAM532umtMvBSC4U2hSBBtBREOFlWGomVZ9uWN81fmBTf9g1iAQ8jK8
+        b1Raf2kV8/ioSmN1OdICow==
+X-Google-Smtp-Source: ABdhPJyz6kf7fccUgN42Q21kf9oT8emUqUG0qvmMQDGTyBYyMTKFCZbUVC4pPwY/vKQfpxrz6D+Cnw==
+X-Received: by 2002:a02:b709:: with SMTP id g9mr4250778jam.90.1609947126638;
+        Wed, 06 Jan 2021 07:32:06 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id n10sm2371751ila.69.2021.01.06.07.32.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Jan 2021 07:32:05 -0800 (PST)
+Received: (nullmailer pid 2267272 invoked by uid 1000);
+        Wed, 06 Jan 2021 15:32:02 -0000
+Date:   Wed, 6 Jan 2021 08:32:02 -0700
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 6 Jan 2021 08:19:30 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+o+27V9DzDnShpWt+oLz38qF+a8a8eMi-qKr+nqJWSxw@mail.gmail.com>
-Message-ID: <CAL_Jsq+o+27V9DzDnShpWt+oLz38qF+a8a8eMi-qKr+nqJWSxw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: Add Realtek
- RTL838x/RTL839x support
-To:     Bert Vermeulen <bert@biot.com>
-Cc:     devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
-        Marc Zyngier <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        Thomas Gleixner <tglx@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
+Cc:     joel@jms.id.au, andrew@aj.id.au, tglx@linutronix.de,
+        maz@kernel.org, p.zabel@pengutronix.de,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
+Subject: Re: [PATCH 5/6] soc: aspeed: Add eSPI driver
+Message-ID: <20210106153202.GA2258036@robh.at.kernel.org>
+References: <20210106055939.19386-1-chiawei_wang@aspeedtech.com>
+ <20210106055939.19386-6-chiawei_wang@aspeedtech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210106055939.19386-6-chiawei_wang@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 6, 2021 at 2:55 AM Bert Vermeulen <bert@biot.com> wrote:
->
-> On 1/5/21 6:04 PM, Rob Herring wrote:
-> > On Mon, 04 Jan 2021 14:17:54 +0100, Bert Vermeulen wrote:
-> >> Signed-off-by: Bert Vermeulen <bert@biot.com>
-> >> ---
-> >>  .../realtek,rtl-intc.yaml                     | 57 +++++++++++++++++++
-> >>  1 file changed, 57 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
-> >>
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
->
-> I fixed the syntax error that caused this to fail. But running the test now
-> produces some errors that are not so obvious:
->
->    interrupt-controller@3000: interrupt-map: [[31, 4294967295, 2], [30,
-> 4294967295, 1], [29, 4294967295, 5]] is too short
->
-> Not sure where this comes from, but running dt-validate -v gives this:
->
->    Failed validating 'minItems' in schema['properties']['interrupt-map']:
->      {'maxItems': 24, 'minItems': 24}
->
-> Where did that 24 come from? I don't even have 24 initerrupts to map :-)
+On Wed, Jan 06, 2021 at 01:59:38PM +0800, Chia-Wei, Wang wrote:
+> The Aspeed eSPI controller is slave device to communicate with
+> the master through the Enhanced Serial Peripheral Interface (eSPI).
+> All of the four eSPI channels, namely peripheral, virtual wire,
+> out-of-band, and flash are supported.
+> 
+> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+> ---
+>  drivers/soc/aspeed/Kconfig                  |  49 ++
+>  drivers/soc/aspeed/Makefile                 |   5 +
+>  drivers/soc/aspeed/aspeed-espi-ctrl.c       | 197 ++++++
+>  drivers/soc/aspeed/aspeed-espi-flash.c      | 490 ++++++++++++++
+>  drivers/soc/aspeed/aspeed-espi-oob.c        | 706 ++++++++++++++++++++
+>  drivers/soc/aspeed/aspeed-espi-peripheral.c | 613 +++++++++++++++++
+>  drivers/soc/aspeed/aspeed-espi-vw.c         | 211 ++++++
+>  include/uapi/linux/aspeed-espi.h            | 160 +++++
+>  8 files changed, 2431 insertions(+)
+>  create mode 100644 drivers/soc/aspeed/aspeed-espi-ctrl.c
+>  create mode 100644 drivers/soc/aspeed/aspeed-espi-flash.c
+>  create mode 100644 drivers/soc/aspeed/aspeed-espi-oob.c
+>  create mode 100644 drivers/soc/aspeed/aspeed-espi-peripheral.c
+>  create mode 100644 drivers/soc/aspeed/aspeed-espi-vw.c
 
-If you don't define minItems, then the default is the same as
-maxItems. So you need to set 'minItems'.
+drivers/spi/ is the correct location for a SPI controller.
 
->
-> Another error is this:
->
->    interrupt-controller@3000: 'interrupt-map-mask' is a dependency of
-> 'interrupt-map'
->
-> I can see this in your dtschema package's schemas/interrupt-controller.yaml
-> where it's defined as a dependency, but why? I don't need that property.
+>  create mode 100644 include/uapi/linux/aspeed-espi.h
 
-This should be the other way around. I'll fix it.
+This userspace interface is not going to be accepted upstream.
+
+I'd suggest you look at similar SPI flash capable SPI controller drivers 
+upstream and model your driver after them. This looks like it needs 
+major reworking.
 
 Rob
