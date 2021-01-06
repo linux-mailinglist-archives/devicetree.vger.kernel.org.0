@@ -2,92 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EA522EC6E1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 00:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FCE52EC6DE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 00:29:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727134AbhAFX3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 18:29:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56784 "EHLO
+        id S1727700AbhAFX1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 18:27:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726449AbhAFX3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 18:29:36 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D80D2C061786
-        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 15:28:55 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id w1so3159317pjc.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 15:28:55 -0800 (PST)
+        with ESMTP id S1727677AbhAFX1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 18:27:48 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6627C06179C
+        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 15:27:07 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id p12so268971pju.5
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 15:27:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mplvAp8whw34LAYnqeklV/5vxdb+fGvzxnYtKABvplo=;
-        b=FT4+sdO5OvqVz04X9n8jVLvb/B56M4PZkQraMSPep8YVlihjlVOOdRrwRlp58wT0rR
-         j2XvfT/Xs5M/3OxP2D9Hszw6n9Y8/W7hREbETL+VaOZA4wj/KFHjHDp9BHbujJuqYSXD
-         AZ0BXhC3CA8KWz1gGIFMh+fTDTZHXckIPYglU=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=RX6WvXc9AdwHUQos8gbpGpnxsoO0I2OI1Qb4Cxsnhfs=;
+        b=C1JjlS48c7PMuu0up5KPTWHWKkwWM3CxSUzlsARcAX2zwRrUOl3NXWPug0XayiG3TN
+         HkTywr/VNukyH/ept/yAe8PdTcCgbHjF1pQhWvwufWFGi9oIiTVb6MgbKMqwDI0pQwzJ
+         F0qO/yFgvPeFiksqYo9VtqY43WoIFaotDxLvpSMDF666JAHsoZJbWXen2kK81xya1RQe
+         7mLTw9rW4afFqCXYIPsB1gk8hmOyZ+eJQCeI6qxzHh2LDhSALeZbh8a8jI2pPKXvGNdY
+         3XHMoOmN4x43gNucpmR0cBDt0fAZnNuZhSPplsZUvSzbi+AzBJPfydCybTkSbZKzJaQR
+         3Wlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mplvAp8whw34LAYnqeklV/5vxdb+fGvzxnYtKABvplo=;
-        b=YIRlmb55xT11pYnkacdiOv+P2Zl53PFdS+WlUSAz4eKGzfdznmR+XWjF37FOCfAxLt
-         4jAYVjNvLzQx2Gs9bWG4ZvY+3XOaUygad7w9fq86scAo4syW66vf4Tsal5v9FFRGQ/yV
-         o3IN9Tw6XgVDGv92YSK8eOk25UMOZA1CftgjCnKsOrXZ0TDBMMccdSljM5vkWkhD96Qo
-         u/RvCT48T0o1yBMJc8n5NAG3J+UvZfvxSTdz9Ls5zBSPuTkGsNEdZzlQax9FKA750J3K
-         lwNDA24sl6DAQTREM4qujTqPK4pzAde/SBFyVojKkI/AbUlKaWg5nJm7O3YEZopCugJU
-         957g==
-X-Gm-Message-State: AOAM5334aCjvW+WJtwXxbUT+x1KHpDjrd9uCedOXy97/fg1PtudwLgDx
-        u0c/UJOCh1pbs1ppcDcp1T+3wQ==
-X-Google-Smtp-Source: ABdhPJxVSvw3Gj/2eOyJ6wAlHtuPkcaee+9YCZ0VJbk/bY+sCD54K0MoV2ieN/FeCRk9e+vlA0Ap5g==
-X-Received: by 2002:a17:90a:6f01:: with SMTP id d1mr6539613pjk.155.1609975735433;
-        Wed, 06 Jan 2021 15:28:55 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id a18sm3686047pfg.107.2021.01.06.15.28.54
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RX6WvXc9AdwHUQos8gbpGpnxsoO0I2OI1Qb4Cxsnhfs=;
+        b=mne6P37MbAR8q7t/GCU+ly4TlSgWL1V0geIiLxPz5IbCaMOGXkftf+YpHV800nCMZx
+         wUjbyYq9refd0al5MPRmlZAw6qft/YIZyFcekjUKoidC/HBOywURqk1GgL7sLor8Le/C
+         LtNhZ3X140VBw9u9AwXZ/GHnvwtEiD4OZX/ZSAZusjgP4Dh41KApnGQmCkURF+3olwhD
+         ox0/jbMmhGY/12fb4Olnd5Wk0OJTJ5W3XB/qNLGT2KInn4Eakkw5BqGYQRjRsS6/2YMV
+         zU10B+OMdcSoXe8pTsEUpy5VQeLCgn1eoLrSUtKBcrr8HLEvxOnWSlzc1OOzN5To8prS
+         5pCg==
+X-Gm-Message-State: AOAM530M7jsWeIEemdJIfrwtDqrK0qGzNE0q836VbtPk14sB/TU4VX2v
+        Ik8UEh3ZJqzqq4nOaaiQXF7U+g==
+X-Google-Smtp-Source: ABdhPJw1ywKCDyITNA3oNlsUFCtMTlY9Q9nKPwJYsOoi8XO0B46laGMkGJXfHAd11wYXgIiGTpVq9Q==
+X-Received: by 2002:a17:90a:ec0e:: with SMTP id l14mr6563400pjy.123.1609975627034;
+        Wed, 06 Jan 2021 15:27:07 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id i67sm3790692pfc.153.2021.01.06.15.27.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jan 2021 15:28:54 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7180: Add "dp_hot_plug_det" pinconf for trogdor
-Date:   Wed,  6 Jan 2021 15:25:49 -0800
-Message-Id: <20210106152537.1.Ib4b5b0e88fdc825c0e2662bab982dda8af2297b2@changeid>
-X-Mailer: git-send-email 2.29.2.729.g45daf8777d-goog
+        Wed, 06 Jan 2021 15:27:06 -0800 (PST)
+Date:   Wed, 6 Jan 2021 16:27:04 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        s-anna@ti.com, ssantosh@kernel.org,
+        linux-remoteproc@vger.kernel.org, lee.jones@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        praneeth@ti.com, rogerq@ti.com, t-kristo@ti.com
+Subject: Re: [PATCH v2 0/5] Introduce PRU remoteproc consumer API
+Message-ID: <20210106232704.GE9149@xps15>
+References: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have an external pull on this line, so disable the internal pull.
+On Wed, Dec 16, 2020 at 05:52:34PM +0100, Grzegorz Jaszczyk wrote:
+> Hi All,
+> 
+> The Programmable Real-Time Unit and Industrial Communication Subsystem
+> (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+> RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
+> 
+> There are 3 foundation components for PRUSS subsystem: the PRUSS platform
+> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
+> already merged and can be found under:
+> 1) drivers/soc/ti/pruss.c
+>    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> 2) drivers/irqchip/irq-pruss-intc.c
+>    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+> 3) drivers/remoteproc/pru_rproc.c
+>    Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> 
+> The programmable nature of the PRUs provide flexibility to implement custom
+> peripheral interfaces, fast real-time responses, or specialized data handling.
+> Example of a PRU consumer drivers will be:
+>   - Software UART over PRUSS
+>   - PRU-ICSS Ethernet EMAC
+> 
+> In order to make usage of common PRU resources and allow the consumer drivers to
+> configure the PRU hardware for specific usage the PRU API is introduced.
+> 
+> Patch #3 of this series depends on one not merged remteproc related patch [1].
+> 
+> Please see the individual patches for exact changes in each patch, following is
+> the only change from v1:
+>  - Change the 'prus' property name to 'ti,prus' as suggested by Rob Herring,
+>  which influences patch #1 and patch #2
+> 
+> [1] https://patchwork.kernel.org/project/linux-remoteproc/patch/20201121030156.22857-3-s-anna@ti.com/
+> 
+> Best regards,
+> Grzegorz
+> 
+> Roger Quadros (1):
+>   remoteproc: pru: Add pru_rproc_set_ctable() function
+> 
+> Suman Anna (2):
+>   dt-bindings: remoteproc: Add PRU consumer bindings
+>   remoteproc: pru: Deny rproc sysfs ops for PRU client driven boots
+> 
+> Tero Kristo (2):
+>   remoteproc: pru: Add APIs to get and put the PRU cores
+>   remoteproc: pru: Configure firmware based on client setup
+> 
+>  .../bindings/remoteproc/ti,pru-consumer.yaml  |  64 +++++
+>  drivers/remoteproc/pru_rproc.c                | 221 +++++++++++++++++-
+>  include/linux/pruss.h                         |  78 +++++++
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+This patchset is giving checkpatch.pl errors and as such will not go further
+with this revision.
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index d76200d2b373..e3a3d809448f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -936,6 +936,13 @@ wifi-firmware {
- 
- /* PINCTRL - additions to nodes defined in sc7180.dtsi */
- 
-+&dp_hot_plug_det {
-+	pinconf {
-+		pins = "gpio117";
-+		bias-disable;
-+	};
-+};
-+
- &qspi_cs0 {
- 	pinconf {
- 		pins = "gpio68";
--- 
-2.29.2.729.g45daf8777d-goog
-
+>  3 files changed, 360 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+>  create mode 100644 include/linux/pruss.h
+> 
+> -- 
+> 2.29.0
+> 
