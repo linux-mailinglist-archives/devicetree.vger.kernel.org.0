@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 820A52EC3FA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 20:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5199C2EC3FE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 20:36:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727051AbhAFTfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 14:35:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48458 "EHLO
+        id S1726932AbhAFTfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 14:35:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726948AbhAFTfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 14:35:04 -0500
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A041CC06134C;
-        Wed,  6 Jan 2021 11:34:23 -0800 (PST)
-Received: by mail-pf1-x434.google.com with SMTP id d2so2292721pfq.5;
-        Wed, 06 Jan 2021 11:34:23 -0800 (PST)
+        with ESMTP id S1726712AbhAFTfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 14:35:17 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A48C061357;
+        Wed,  6 Jan 2021 11:34:37 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id n10so2915350pgl.10;
+        Wed, 06 Jan 2021 11:34:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=0wA4WwSF4KQFp0kGCsvSxTZYHbqZVVTge4NyoiQeyKY=;
-        b=DehmWqqR4wvkdwq//hy+OzyPgxwbeFVOtq3wcpn5jqafqjbKkT+FkOlPYNL8Zi6gua
-         1m4z/qYgIDl9C398nK+EGVTnYsmbHYDdd3OnzzTrVOWzsdpBWHa9r8nKI/2es/SoSVrJ
-         w6dqxCTMpUauWQwWJN8/BgLZRVJxQSzGoINCGkCY3IIVeBOd13OryH8gICfBAw8k+QSn
-         idXbW+m0KfQ6PcSEDM/Bfbof19WxmvjIMIKcgPM3BRyqhIfOVb/4buwkhXjzqAN7MlcF
-         TijJCX83/gMC9gzdT0iFOVMG3XyBKcQA3rRWssT9YNdBRec1DLWYTj+RjXUQay+O+aDn
-         c8SQ==
+        bh=+Jq9nFpw6pxIeMIxCgp07/JG5gJb/sXZYEtSvxe7S8E=;
+        b=SDkkkbYNi5PYWZT3dXERMeWN8749sq+E7mKRiPf7yJB4TWPr2um3XFVXGVR5GLAFk2
+         4mbCFKyTJ/0xvShYs8YajUWG5MLKmLYM3ViquTEgUfq2KHBIz7xy8AXJj54oesApHlv/
+         Pof64rhxSnFU0kbgKbZ6A8+wAhlqIX7gCQ4seYFs9xuClOdb81XZKfCmgJjCAdraIg06
+         QVGzp9C7ZMre9AyKMl3Nylb0J0/mg+sWKQMqVV9l9jKdv4D3BulTciQxl7o1WDto3DL7
+         QnGtFcJI6vZAFcKvrrra7ayEuzL26FFGxtXKXMHaqovZ40JHjK93bEfAVERRSv1k8ewG
+         mlww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=0wA4WwSF4KQFp0kGCsvSxTZYHbqZVVTge4NyoiQeyKY=;
-        b=UiwmFT+RMXwq8T6Z2aImFwBiU/OG3NOU0ASdCm5VRyRoGvH1rzl591vCBTVxMH0QMy
-         Ottpy7b2Yp5G6evMtkPzI0g6xcK/k37rpkdycHDlvPIAeYPES3hdhu+vUizYud67osQq
-         /eSds0Okt0piGXrO9Ep/q0PBdZ0MBEcTJUzu/dSd0CwsGWSbbbDcVgpPyHrfWWCYuSSR
-         XSxvSz7x0tR4FQpqfnBEj5UQDUIiZP7Fk/02vOGubExA+0u6U3XCrAq/zDKKXg56WRGp
-         ayFCYbmOOyiS3zaRkXcudbQPlcjb/EXHukYhN1yqUhuDgK9wG+tiwuwYrndaFDPC/Bs8
-         cvEg==
-X-Gm-Message-State: AOAM533l1i/l4T/6Zz5/17zTzqReCZaUC0M2a/aF5Ri4dE4xXdQk251P
-        I3LTa17DJJmwwl7I3SzkZ2k=
-X-Google-Smtp-Source: ABdhPJybrpLtOTjH9vvjUpRK3GyCTDr2XW3rLhfOoa4pebBdbOPjq1e1CTO/otlzaR4EAsPIl+MEEg==
-X-Received: by 2002:a63:480f:: with SMTP id v15mr6016433pga.341.1609961663201;
-        Wed, 06 Jan 2021 11:34:23 -0800 (PST)
+        bh=+Jq9nFpw6pxIeMIxCgp07/JG5gJb/sXZYEtSvxe7S8E=;
+        b=lYY2SKyNMeYP5OzbloUkRnmNTRKXBske0Klxaq2od54JcNKh5HC4D55IYjMG/TBmge
+         GsAvEJ5WR4rgtN9PuEwUasUqRDGG33mmuJozVRsW65/GmBkTaUrkPxfK3hzS7QXAESF3
+         7Zl/gftb/42Q6/2rgbvFDLXfclKBR3Zyu94TirmiwA94juYBhdgnof5UHaeCEyTZYC/c
+         DauWeCUtaS5b9Z09Dv2esG2McF2CCnM8OZODOrOQ4/+ULQCn9S/slX3fnBOzZyQKjxSS
+         OlEMZzOFmCnnwI834OdVqPrt/9U5Lez39yZeFym4d4n00++bpFJbFJuWE7vlDREbSzNs
+         kZBQ==
+X-Gm-Message-State: AOAM532ZOPW5cgnJflTRZ73m6/D3yzFOpu8UHg9TAWCCYw1V8pnWcNHv
+        vsYvHaA6r5V6/jI0rPytJlg=
+X-Google-Smtp-Source: ABdhPJxdzzLk12IoayRY+Dd731md7OdetqOghEBnwWlBMcK1h90d9LpMqIpSpb2S8gCtIlDyZYj7Pg==
+X-Received: by 2002:a63:e1b:: with SMTP id d27mr6091076pgl.441.1609961676922;
+        Wed, 06 Jan 2021 11:34:36 -0800 (PST)
 Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id d4sm2811444pjz.28.2021.01.06.11.34.20
+        by smtp.googlemail.com with ESMTPSA id v15sm3293372pfn.217.2021.01.06.11.34.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jan 2021 11:34:22 -0800 (PST)
-Subject: Re: [PATCH net-next 3/3] net: dsa: bcm_sf2: support BCM4908's
- integrated switch
+        Wed, 06 Jan 2021 11:34:36 -0800 (PST)
+Subject: Re: [PATCH net-next 2/3] dt-bindings: net: dsa: sf2: add BCM4908
+ switch binding
 To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
         "David S . Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
@@ -61,7 +61,7 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
         =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 References: <20210106120711.630-1-zajec5@gmail.com>
- <20210106120711.630-3-zajec5@gmail.com>
+ <20210106120711.630-2-zajec5@gmail.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
@@ -117,12 +117,12 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <ecc574e1-a7d1-7a60-abe1-4b408b958a45@gmail.com>
-Date:   Wed, 6 Jan 2021 11:34:18 -0800
+Message-ID: <9091613f-bf4e-0660-91a8-1c52d4d69156@gmail.com>
+Date:   Wed, 6 Jan 2021 11:34:34 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210106120711.630-3-zajec5@gmail.com>
+In-Reply-To: <20210106120711.630-2-zajec5@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -133,15 +133,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 1/6/21 4:07 AM, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> BCM4908 family SoCs come with integrated Starfighter 2 switch. Its
-> registers layout it a mix of BCM7278 and BCM7445. It has 5 integrated
-> PHYs and 8 ports. It also supports RGMII and SerDes.
+> BCM4908 family SoCs have integrated Starfighter 2 switch.
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
 Acked-by: Florian Fainelli <f.fainelli@gmail.com>
-
-I cannot find right now how many CFP entries does this switch have, you
-probably won't make use of them so sticking with 0 is fine.
 -- 
 Florian
