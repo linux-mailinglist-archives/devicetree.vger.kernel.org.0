@@ -2,143 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8995B2EC040
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:19:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F12042EC045
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726074AbhAFPSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 10:18:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36516 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726011AbhAFPSj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:18:39 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 398C8C06134D;
-        Wed,  6 Jan 2021 07:17:59 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id g24so4675539edw.9;
-        Wed, 06 Jan 2021 07:17:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=s7ucDQgsYb+XUALcOQxMNfW1nWITQF3JeTH0dCH4M34=;
-        b=f7DW9BojkCrHwq32HIzyeXm1FqfVamIKljSnelV+8uptq8fI9iDq+6/XTkMLW35BJ0
-         2E5bMKNYcwRMGPUbPHGDoeda49R9y1NbATAZPKxy3vWDWQCZtnhasMzOnh90borkVEp5
-         Pyq9eM1aF4QsGHymgblggrakODREFyQ3VTY7ljmpTWqT1bmrGBE1eFci1PpRUQaTMbHZ
-         o7RqyFZISQa8+zXkQoaBzOIG7wGs+dY8YGF+AV2P/BmFMOosL2poxE9GGWocmDMZ8NmP
-         Zj3y4SNWMkD+ALX8cyEGP8B1EGbULtPw21rD+252v4GAbzduGC+OXJCZY6mhEi1vYgXc
-         zeeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=s7ucDQgsYb+XUALcOQxMNfW1nWITQF3JeTH0dCH4M34=;
-        b=fa9cQJ+HH/7/08s4l6cDYG0Zp0qWe1ZP00O7bnLlEZYXR3CXs7nH5AATf2urZkQsXC
-         +k7k+IUkeSrsnlSiH0UwSgYSI6xR8KIoXB0liduiDkeCvdKkkcW6S50qj+D5VVsr1pdK
-         MDaI1Oykbdcqze9HODNAf3Ht6UvuNiQ53BMgy/nCiYW0RwusTUzTVg+pbrcnGPk+UmEc
-         mDAJVE40A7/KFgaQmFF0QkStW7PE0c/9wRayu6vHrI6JQssEwzSIjMtPXD/gtDkhiG+Q
-         0kILbSxYVC+mukJE2oK7ox6wefzMAfWVT9L+l+soiLhgGXEAMbgF5bhU1ir/QwHBYFNp
-         LN/Q==
-X-Gm-Message-State: AOAM532zCuZPtQBdSFzGPPoywy1kmMWOAvz9lhnOCnp9ycesA9qMPxD+
-        f2YOo6sAUAwcfwaUiwj93S2g5VwnNOpCI46XjJRMsKh10KM=
-X-Google-Smtp-Source: ABdhPJwEoX+GE9TNyG6zQHdCSgd0e8rufnX3/nPdrrDVUu8sr3Jc5LcoctiwQrl2Yg7vztRVPUQWxIPjmljgCEJtWFE=
-X-Received: by 2002:a50:d80c:: with SMTP id o12mr4124786edj.338.1609946277927;
- Wed, 06 Jan 2021 07:17:57 -0800 (PST)
+        id S1726636AbhAFPSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 10:18:51 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:53412 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725803AbhAFPSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:18:51 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DD1BA878;
+        Wed,  6 Jan 2021 16:18:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1609946288;
+        bh=6Mbpshc2s926symhXWx345xx90B3Cra5PtgDj9FiqdA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C6JMRL/n2Qd7l9lfx527Y2Ktoyn9a3/c+aBLBvW3g1JnCHJey0qA//ZOg+ZLHcrX9
+         i/Fyo8mhUAg1qj8hoNcomGOvi9mk2+o0/J/hBvIXUeFpD0y+UuCc7Ho+B6ZVMoCAn2
+         ScfZDX2dbKpm5PgFPvWpPXQ2FPqW5/NER4Rx5Jyk=
+Date:   Wed, 6 Jan 2021 17:17:55 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-renesas-soc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Mark Yao <markyao0591@gmail.com>
+Subject: Re: [PATCH v3 4/6] dt-bindings: display: rockchip: dw-hdmi: Convert
+ binding to YAML
+Message-ID: <X/XUow/ku/bsDXvr@pendragon.ideasonboard.com>
+References: <20210105060818.24158-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20210105060818.24158-5-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
-References: <20201004162908.3216898-1-martin.blumenstingl@googlemail.com>
- <20201004162908.3216898-4-martin.blumenstingl@googlemail.com>
- <CACRpkdZo-U_cAhbKb4E+d+p+5FenXkGYW0RXxyk4M5uyEPCpzw@mail.gmail.com>
- <CAFBinCCLubmDvxfabQHx2-ucgAsm1NArMUrtPx-UA2nX5xoFFA@mail.gmail.com>
- <CAFBinCAZXJ2=fTQuAUyW1hNeJDHY3_pxo4UhxUaOZC=i1bpFxw@mail.gmail.com> <CACRpkdbKQaT61w6r9Hx40Qvy+7qyLNm-fx-BpL_wdGcB=tmcqQ@mail.gmail.com>
-In-Reply-To: <CACRpkdbKQaT61w6r9Hx40Qvy+7qyLNm-fx-BpL_wdGcB=tmcqQ@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 6 Jan 2021 16:17:47 +0100
-Message-ID: <CAFBinCBCYZ3bzvvn==CFZyVh8E7TiGvW9PnqmK-Qd=y4X2HgNw@mail.gmail.com>
-Subject: Re: [RFC PATCH 3/3] gpio: ej1x8: Add GPIO driver for Etron Tech Inc. EJ168/EJ188/EJ198
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        linux-usb <linux-usb@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210105060818.24158-5-laurent.pinchart+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Hi Rob,
 
-On Tue, Jan 5, 2021 at 11:23 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Mon, Dec 21, 2020 at 4:28 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> > On Wed, Oct 7, 2020 at 9:44 PM Martin Blumenstingl
-> > <martin.blumenstingl@googlemail.com> wrote:
-> > [...]
-> > > > As noted on the earlier patches I think this should be folded into the
-> > > > existing XHCI USB driver in drivers/usb/host/xhci-pci.c or, if that
-> > > > gets messy, as a separate bolt-on, something like
-> > > > xhci-pci-gpio.[c|h] in the drivers/usb/host/* directory.
-> > > > You can use a Kconfig symbol for the GPIO portions or not.
-> > > OK, I will do that if there are no objections from other developers
-> > > I am intending to place the relevant code in xhci-pci-etron.c, similar
-> > > to what we already have with xhci-pci-renesas.c
-> >
-> > I tried this and unfortunately there's a catch.
-> > the nice thing about having a separate GPIO driver means that the
-> > xhci-pci driver doesn't need to know about it.
->
-> Since PCI devices have device-wide power management and things
-> like that I think that is a really dangerous idea.
->
-> What if the GPIO driver starts poking around in this PCI device
-> when the main driver is also probed and has put the device
-> into sleep state?
-that is asking for trouble, indeed.
+Given that the maintainers property is mandatory in the schema, what's
+the procedure when no maintainer steps up for a converter YAML binding ?
 
-[...]
-> > I implemented xhci-pci-etron.c and gave it a Kconfig option.
-> > xhci-pci is then calling into xhci-pci-etron (through some
-> > etron_xhci_pci_probe function).
->
-> This sounds about right.
->
-> > unfortunately this means that xhci-pci now depends on xhci-pci-etron.
-> > for xhci-pci-renesas this is fine (I think) because that part of the
-> > code is needed to get the xHCI controller going
-> > but for xhci-pci-etron this is a different story: the GPIO controller
-> > is entirely optional and only used on few devices
->
-> I might be naive but should it not be the other way around?
-> That xhci-pci-etron is dependent on xhci-pci? I imagine
-> it would be an optional add-on.
-the only way to achieve this that I can think of is to basically have
-xhci-pci-etron implement it's own pci_driver and then call
-xhci_pci_probe, xhci_pci_remove, etc.
-but then it depends on the driver load order if the GPIO controller is exposed
+On Tue, Jan 05, 2021 at 08:08:16AM +0200, Laurent Pinchart wrote:
+> Convert the Rockchip HDMI TX text binding to YAML.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> ---
+> Changes since v2:
+> 
+> - Use Mark's @gmail.com e-mail address as the @rock-chips.com address
+>   bounces
+> 
+> Changes since v1:
+> 
+> - Drop pinctrl-0 and pinctrl-1
+> - Use unevaluatedProperties instead of additionalProperties
+> - Drop reg and interrupts as they're checked in the base schema
+> - Rebase on top of OF graph schema, dropped redundant properties
+> - Fix identation for enum entries
+> - Tidy up clock names
+> ---
+>  .../display/rockchip/dw_hdmi-rockchip.txt     |  74 --------
+>  .../display/rockchip/rockchip,dw-hdmi.yaml    | 158 ++++++++++++++++++
+>  2 files changed, 158 insertions(+), 74 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+> deleted file mode 100644
+> index 3d32ce137e7f..000000000000
+> --- a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+> +++ /dev/null
+> @@ -1,74 +0,0 @@
+> -Rockchip DWC HDMI TX Encoder
+> -============================
+> -
+> -The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
+> -with a companion PHY IP.
+> -
+> -These DT bindings follow the Synopsys DWC HDMI TX bindings defined in
+> -Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt with the
+> -following device-specific properties.
+> -
+> -
+> -Required properties:
+> -
+> -- compatible: should be one of the following:
+> -		"rockchip,rk3228-dw-hdmi"
+> -		"rockchip,rk3288-dw-hdmi"
+> -		"rockchip,rk3328-dw-hdmi"
+> -		"rockchip,rk3399-dw-hdmi"
+> -- reg: See dw_hdmi.txt.
+> -- reg-io-width: See dw_hdmi.txt. Shall be 4.
+> -- interrupts: HDMI interrupt number
+> -- clocks: See dw_hdmi.txt.
+> -- clock-names: Shall contain "iahb" and "isfr" as defined in dw_hdmi.txt.
+> -- ports: See dw_hdmi.txt. The DWC HDMI shall have a single port numbered 0
+> -  corresponding to the video input of the controller. The port shall have two
+> -  endpoints, numbered 0 and 1, connected respectively to the vopb and vopl.
+> -- rockchip,grf: Shall reference the GRF to mux vopl/vopb.
+> -
+> -Optional properties
+> -
+> -- ddc-i2c-bus: The HDMI DDC bus can be connected to either a system I2C master
+> -  or the functionally-reduced I2C master contained in the DWC HDMI. When
+> -  connected to a system I2C master this property contains a phandle to that
+> -  I2C master controller.
+> -- clock-names: See dw_hdmi.txt. The "cec" clock is optional.
+> -- clock-names: May contain "cec" as defined in dw_hdmi.txt.
+> -- clock-names: May contain "grf", power for grf io.
+> -- clock-names: May contain "vpll", external clock for some hdmi phy.
+> -- phys: from general PHY binding: the phandle for the PHY device.
+> -- phy-names: Should be "hdmi" if phys references an external phy.
+> -
+> -Optional pinctrl entry:
+> -- If you have both a "unwedge" and "default" pinctrl entry, dw_hdmi
+> -  will switch to the unwedge pinctrl state for 10ms if it ever gets an
+> -  i2c timeout.  It's intended that this unwedge pinctrl entry will
+> -  cause the SDA line to be driven low to work around a hardware
+> -  errata.
+> -
+> -Example:
+> -
+> -hdmi: hdmi@ff980000 {
+> -	compatible = "rockchip,rk3288-dw-hdmi";
+> -	reg = <0xff980000 0x20000>;
+> -	reg-io-width = <4>;
+> -	ddc-i2c-bus = <&i2c5>;
+> -	rockchip,grf = <&grf>;
+> -	interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+> -	clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
+> -	clock-names = "iahb", "isfr";
+> -	ports {
+> -		hdmi_in: port {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -			hdmi_in_vopb: endpoint@0 {
+> -				reg = <0>;
+> -				remote-endpoint = <&vopb_out_hdmi>;
+> -			};
+> -			hdmi_in_vopl: endpoint@1 {
+> -				reg = <1>;
+> -				remote-endpoint = <&vopl_out_hdmi>;
+> -			};
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> new file mode 100644
+> index 000000000000..d3b2f87f152a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> @@ -0,0 +1,158 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip DWC HDMI TX Encoder
+> +
+> +maintainers:
+> +  - Mark Yao <markyao0591@gmail.com>
+> +
+> +description: |
+> +  The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
+> +  with a companion PHY IP.
+> +
+> +allOf:
+> +  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3228-dw-hdmi
+> +      - rockchip,rk3288-dw-hdmi
+> +      - rockchip,rk3328-dw-hdmi
+> +      - rockchip,rk3399-dw-hdmi
+> +
+> +  reg-io-width:
+> +    const: 4
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 5
+> +    items:
+> +      - {}
+> +      - {}
+> +      # The next three clocks are all optional, but shall be specified in this
+> +      # order when present.
+> +      - description: The HDMI CEC controller main clock
+> +      - description: Power for GRF IO
+> +      - description: External clock for some HDMI PHY
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 5
+> +    items:
+> +      - {}
+> +      - {}
+> +      - enum:
+> +          - cec
+> +          - grf
+> +          - vpll
+> +      - enum:
+> +          - grf
+> +          - vpll
+> +      - const: vpll
+> +
+> +  ddc-i2c-bus:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The HDMI DDC bus can be connected to either a system I2C master or the
+> +      functionally-reduced I2C master contained in the DWC HDMI. When connected
+> +      to a system I2C master this property contains a phandle to that I2C
+> +      master controller.
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: The HDMI PHY
+> +
+> +  phy-names:
+> +    const: hdmi
+> +
+> +  pinctrl-names:
+> +    description:
+> +      The unwedge pinctrl entry shall drive the DDC SDA line low. This is
+> +      intended to work around a hardware errata that can cause the DDC I2C
+> +      bus to be wedged.
+> +    items:
+> +      - const: default
+> +      - const: unwedge
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Input of the DWC HDMI TX
+> +
+> +        properties:
+> +          endpoint@0:
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            unevaluatedProperties: false
+> +            description: Connection to the VOPB
+> +
+> +          endpoint@1:
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            unevaluatedProperties: false
+> +            description: Connection to the VOPL
+> +
+> +        required:
+> +          - endpoint@0
+> +          - endpoint@1
+> +
+> +    required:
+> +      - port
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to the GRF to mux vopl/vopb.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-io-width
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - ports
+> +  - rockchip,grf
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3288-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    hdmi: hdmi@ff980000 {
+> +        compatible = "rockchip,rk3288-dw-hdmi";
+> +        reg = <0xff980000 0x20000>;
+> +        reg-io-width = <4>;
+> +        ddc-i2c-bus = <&i2c5>;
+> +        rockchip,grf = <&grf>;
+> +        interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
+> +        clock-names = "iahb", "isfr";
+> +
+> +        ports {
+> +            port {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                hdmi_in_vopb: endpoint@0 {
+> +                    reg = <0>;
+> +                    remote-endpoint = <&vopb_out_hdmi>;
+> +                };
+> +                hdmi_in_vopl: endpoint@1 {
+> +                    reg = <1>;
+> +                    remote-endpoint = <&vopl_out_hdmi>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
 
-what structure did you have in mind to achieve this?
+-- 
+Regards,
 
-> > my goal is (at some point in the future) to have the GPIO driver in OpenWrt.
-> > I am not sure if they would accept a patch where xhci-pci would then
-> > pull in the dependencies for that Etron controller, even though most
-> > boards don't need it.
->
-> Make sure the etron part is an additional module that can be
-> loaded after xhci-pci.
-my approach from above unfortunately would not achieve this
-so if you have an idea how to achieve this (or have any other driver
-in mind that I can use as reference, even if not related to
-GPIO/USB/PCI then please let me know)
-
-> OpenWrt support optional modules to be compiled per-system.
-that I already found out. That's why I think that I need to get the
-driver part "right" and then get the OpenWrt part done in just a few
-lines of their build-system
-
-
-Best regards,
-Martin
+Laurent Pinchart
