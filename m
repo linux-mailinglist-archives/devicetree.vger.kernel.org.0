@@ -2,75 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD2F42EBC49
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 11:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EC9D2EBC80
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 11:38:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725952AbhAFKYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 05:24:39 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:34110 "EHLO
+        id S1726803AbhAFKgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 05:36:40 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:35928 "EHLO
         mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725926AbhAFKYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 05:24:39 -0500
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB5G6JlrU="
+        with ESMTP id S1726216AbhAFKgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 05:36:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1609929225;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Subject:Sender;
+        bh=VHvBsxIKSNU5fNhaS0a1jYOPZjucfhkakHCcFPo8UKU=;
+        b=GiUvBTJJwbEpIIls444a6HxyGH/4QlJFjb5s6/7yH5ZY2F1FBJH4HyAdNCRPTbvIbu
+        salyLHlTSezsc8Xs0zP0EM+6h2ajNwh0GUXaDITDruTZ1DZREc4PH+oG1cr1231knXA1
+        MaTK9mS7hodn7RBKY8+SVc2VgoWUSDQBSCotif41tfv/K4Xy6mXh+cjwCIpwfT163/Ih
+        RthsPqMSripZ1X2rqylvGFidtlLQn0QxWH+I5iUj24cbwlEb/q9iK9k2/k2sIla1NZxl
+        aZPP+I03J4hH5bAqx4ybJYhJXB9PVzEml+gO/wGbi8cHN8bNBjNq7A7MkbF+Ee3SL6GU
+        GlcQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j+IcvGBg=="
 X-RZG-CLASS-ID: mo00
-Received: from droid..
+Received: from gerhold.net
         by smtp.strato.de (RZmta 47.10.7 DYNA|AUTH)
-        with ESMTPSA id e09c6dx06ALk5DZ
+        with ESMTPSA id e09c6dx06AXb5N0
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
         (Client did not present a certificate);
-        Wed, 6 Jan 2021 11:21:46 +0100 (CET)
+        Wed, 6 Jan 2021 11:33:37 +0100 (CET)
+Date:   Wed, 6 Jan 2021 11:33:31 +0100
 From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8916-samsung-a5u: Fix iris compatible
-Date:   Wed,  6 Jan 2021 11:21:34 +0100
-Message-Id: <20210106102134.59801-4-stephan@gerhold.net>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210106102134.59801-1-stephan@gerhold.net>
-References: <20210106102134.59801-1-stephan@gerhold.net>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 2/4] iio: magnetometer: bmc150: Add rudimentary regulator
+ support
+Message-ID: <X/WR+/PDhLRk7Yek@gerhold.net>
+References: <20201202093322.77114-1-stephan@gerhold.net>
+ <20201202093322.77114-2-stephan@gerhold.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201202093322.77114-2-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Unlike most MSM8916 boards, samsung-a5u uses WCN3660B instead of
-WCN3620 to support the 5 GHz band additionally.
+Hi Jonathan,
 
-WCN3660B has similar requirements as WCN3620, but it needs the XO
-clock to run at 48 MHz instead of 19.2 MHz. So far it was possible
-to describe that configuration using the qcom,wcn3680 compatible.
+On Wed, Dec 02, 2020 at 10:33:20AM +0100, Stephan Gerhold wrote:
+> BMC150 needs VDD and VDDIO regulators that might need to be explicitly
+> enabled. Add some rudimentary support to obtain and enable these
+> regulators during probe() and disable them during remove()
+> or on the error path.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-However, as of commit 8490987bdb9a ("wcn36xx: Hook and identify RF_IRIS_WCN3680"),
-the wcn36xx driver will now use the qcom,wcn3680 compatible
-to enable functionality specific to WCN3680. In particular,
-WCN3680 supports 802.11ac, which is not available in WCN3660B.
+I think we forgot about the bmc150_magn part of this patch series. :)
 
-Use the new qcom,wcn3660b compatible to describe the chip properly.
+This is likely my mistake - I only sent a v2 for the bmg160 part of this
+patch series, but not for the bmc150_magn part (since it's not affected
+by the problem you mentioned for the bmg160 patch). Sorry for the confusion!
 
-Fixes: 0d7051999175 ("arm64: dts: msm8916-samsung-a5u: Override iris compatible")
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Should I re-send the bmc150_magn part (with or without some changes)?
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-index e39c04d977c2..dd35c3344358 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-@@ -38,7 +38,7 @@ touchscreen@48 {
- 
- &pronto {
- 	iris {
--		compatible = "qcom,wcn3680";
-+		compatible = "qcom,wcn3660b";
- 	};
- };
- 
--- 
-2.30.0
+Thanks!
+Stephan
 
+> ---
+> This is mostly copy-paste of
+> 079c1c3f2082 ("iio: accel: bmc150-accel: Add rudimentary regulator support")
+> from Linus Walleij but for the BMC150 magnetometer driver.
+> ---
+>  drivers/iio/magnetometer/bmc150_magn.c | 26 +++++++++++++++++++++++++-
+>  1 file changed, 25 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/magnetometer/bmc150_magn.c b/drivers/iio/magnetometer/bmc150_magn.c
+> index fa09fcab620a..b2f3129e1b4f 100644
+> --- a/drivers/iio/magnetometer/bmc150_magn.c
+> +++ b/drivers/iio/magnetometer/bmc150_magn.c
+> @@ -25,6 +25,7 @@
+>  #include <linux/iio/trigger_consumer.h>
+>  #include <linux/iio/triggered_buffer.h>
+>  #include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+>  
+>  #include "bmc150_magn.h"
+>  
+> @@ -135,6 +136,7 @@ struct bmc150_magn_data {
+>  	 */
+>  	struct mutex mutex;
+>  	struct regmap *regmap;
+> +	struct regulator_bulk_data regulators[2];
+>  	struct iio_mount_matrix orientation;
+>  	/* 4 x 32 bits for x, y z, 4 bytes align, 64 bits timestamp */
+>  	s32 buffer[6];
+> @@ -692,12 +694,24 @@ static int bmc150_magn_init(struct bmc150_magn_data *data)
+>  	int ret, chip_id;
+>  	struct bmc150_magn_preset preset;
+>  
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
+> +				    data->regulators);
+> +	if (ret < 0) {
+> +		dev_err(data->dev, "Failed to enable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +	/*
+> +	 * 3ms power-on time according to datasheet, let's better
+> +	 * be safe than sorry and set this delay to 5ms.
+> +	 */
+> +	msleep(5);
+> +
+>  	ret = bmc150_magn_set_power_mode(data, BMC150_MAGN_POWER_MODE_SUSPEND,
+>  					 false);
+>  	if (ret < 0) {
+>  		dev_err(data->dev,
+>  			"Failed to bring up device from suspend mode\n");
+> -		return ret;
+> +		goto err_regulator_disable;
+>  	}
+>  
+>  	ret = regmap_read(data->regmap, BMC150_MAGN_REG_CHIP_ID, &chip_id);
+> @@ -752,6 +766,8 @@ static int bmc150_magn_init(struct bmc150_magn_data *data)
+>  
+>  err_poweroff:
+>  	bmc150_magn_set_power_mode(data, BMC150_MAGN_POWER_MODE_SUSPEND, true);
+> +err_regulator_disable:
+> +	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
+>  	return ret;
+>  }
+>  
+> @@ -867,6 +883,13 @@ int bmc150_magn_probe(struct device *dev, struct regmap *regmap,
+>  	data->irq = irq;
+>  	data->dev = dev;
+>  
+> +	data->regulators[0].supply = "vdd";
+> +	data->regulators[1].supply = "vddio";
+> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(data->regulators),
+> +				      data->regulators);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get regulators\n");
+> +
+>  	ret = iio_read_mount_matrix(dev, "mount-matrix",
+>  				&data->orientation);
+>  	if (ret)
+> @@ -984,6 +1007,7 @@ int bmc150_magn_remove(struct device *dev)
+>  	bmc150_magn_set_power_mode(data, BMC150_MAGN_POWER_MODE_SUSPEND, true);
+>  	mutex_unlock(&data->mutex);
+>  
+> +	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(bmc150_magn_remove);
+> -- 
+> 2.29.2
+> 
