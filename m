@@ -2,163 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE84E2EC283
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 18:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5264B2EC28C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 18:42:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727192AbhAFRkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 12:40:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58458 "EHLO
+        id S1726740AbhAFRlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 12:41:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728018AbhAFRkB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 12:40:01 -0500
-Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986CEC06134C;
-        Wed,  6 Jan 2021 09:39:21 -0800 (PST)
-Received: by mail-il1-x12d.google.com with SMTP id n9so4003753ili.0;
-        Wed, 06 Jan 2021 09:39:21 -0800 (PST)
+        with ESMTP id S1726638AbhAFRlY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 12:41:24 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F70C061575;
+        Wed,  6 Jan 2021 09:40:44 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id x126so2110284pfc.7;
+        Wed, 06 Jan 2021 09:40:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=EekwCiDptoxEoXvmyyK8hndNw/3aHN9snXxLo/3Gy9g=;
-        b=fLOIfh9aBZspzg6BrSydswXwW8B/wkIN+Bt2rcHRj6g9oRWKoRHr/0ECB1NufL1Gk1
-         ZrmjuhPLwFjfeS8+JHGLWE7vn0Gj8FA/8VJ9rFYwWOHLZHOiKNMNMLq53E0XuOEfY7X1
-         Y01CqVbl4ea6eWkFei7A0N7GcmWMblacGBjijQkNLgJxUXluEaCREWMumn1b3j2ljZvf
-         qbOYNnV9KbGa3xQPsmJCKarESk5iWakcGJ5Joa0t8nuS4tKEYKN+0m9aIWCAzMXPwqLl
-         28TrjlM3nAG2NAiBqU5DrCktZKJ9mQ1bnDHZfUxDAFW9hum52ZmpKa4M6HE9AvJscF07
-         9F2g==
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=yl+h0rj1nrLbjjUcHqnyvmKEx525gvg8GBbwgnR2f/A=;
+        b=uY3eoAkL3Z4mfl5Rprx/AzSq1walc8MbU6wzd9uzC3BBuPAQGhdmLBkJd/Uxetij37
+         H3t06F2mf0VnWfzzBkOH4Mv291C9lGhcGkXij+K3SzFrlxU0Rsn6yBU8+42LMiXbGmpG
+         IZjd/fzhkdbEnO9YsXj8ehxrmUJpYqbqe5IfLwNGhEBYbLDEUAr17U53X22J8nRxPAkg
+         1o2L693ryvgIzbMW/lMvVSsBRSgLADJPWLTrWWhx9OVn+V4seAjd6/ln1ncQR23w7MDK
+         8KkRbmhgPlA/prAdyy+J/38awXZ8mqTv+Ccqcvg+56apJnP/aH6m6xh6o3HNUrd3FUAZ
+         fJ3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=EekwCiDptoxEoXvmyyK8hndNw/3aHN9snXxLo/3Gy9g=;
-        b=BNbnes6sgzedxe1HfXgpmKi1aORw9wVMdpD0kPcMiTMkbVB0NwQb1PXe/yQy44mzN7
-         1kyjPQj58if2+VHS8gwBmpI1NOl0ay1dqLc+hXsyiRksWLdpUBv+2F04GJ0Dq1Bm7qiT
-         6VqHpV0w5vFp8xoTQcSPTfPk6ssSDhjcAfidt07y7orzXGMxSoSfSEs1wXswSpN8SLfq
-         ruLwWdKu0floT0Pw5WvrNWaFI7YR6HLynxEITQHcYW9EXnvCzkmvAz5J5xfiM8pTfzwW
-         qTsiIMsm6FW3HIB0ZBYvkjVCuVK9z/OEGSQh/pH0LB814Pq6cRXJIGjIp7mhF1FN+TsT
-         lwHw==
-X-Gm-Message-State: AOAM533+mmYfsOuxw6X4erI5dc2WwoNXhMqMgYKMzEFabShh0YOZgYGq
-        jzqAiWK3CxaEb/ZyplKy1H4ZYr2c2Yt2EQ==
-X-Google-Smtp-Source: ABdhPJwmlQ48CXKbwgYz7ywrC1vziQZCByLAXtrDFSB0MBp49YFGWfIlD2yDO/QfNWgly9uj5dl9Tg==
-X-Received: by 2002:a92:d2ce:: with SMTP id w14mr5655421ilg.182.1609954760230;
-        Wed, 06 Jan 2021 09:39:20 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:71d3:d2c6:eb48:76be])
-        by smtp.gmail.com with ESMTPSA id y5sm2461132ilh.24.2021.01.06.09.39.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Jan 2021 09:39:19 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-clk@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RFC 2/2] clk: vc5: Add support for optional load capacitance
-Date:   Wed,  6 Jan 2021 11:39:00 -0600
-Message-Id: <20210106173900.388758-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210106173900.388758-1-aford173@gmail.com>
-References: <20210106173900.388758-1-aford173@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=yl+h0rj1nrLbjjUcHqnyvmKEx525gvg8GBbwgnR2f/A=;
+        b=Wee5iZYymNOqCnXKmr+ctnUbi4CJPt3U9nNK9nFC27oQLFqVKyl4SRRKrfEJW1l7Gm
+         BCRQA0moMgJD20dzG28QnR4sOvv1O6dSAO7HpB36wDo+R9uZ+HJilj5WvujI4gvuzUP6
+         t7PtOKhqSQ5VMHA/7hhLSTdkL2h0GDp5GwCW/op90hTlUrmLI1FfCBjkWcpZDb4G44wM
+         dGYZREwKcP/eluqHvlhAVod01Bjpgq5PBNwazj6EVBK6DiG8xGGg6yB3tCLpABCeZ0KM
+         n7a4keCy8OTBSHNSsQY5PEhkC/3XSf3zQVTFroBGI988al6paqfi1Jr3KmApxq7CH6Rg
+         t5dA==
+X-Gm-Message-State: AOAM531MnAgInfE9oyJ9eqNA1HN141dntogJdJsOHPYGJa8qs8NaZGrj
+        U4fj8NolLQvg6ai5EAo6voY=
+X-Google-Smtp-Source: ABdhPJxlKX9+m53d9maRXGNeud4YyW5mrV/MsYfgi80xfaUVgK8hjTJfLlNthoQijBBBSJOD8VcJZQ==
+X-Received: by 2002:a63:f249:: with SMTP id d9mr5523318pgk.109.1609954844154;
+        Wed, 06 Jan 2021 09:40:44 -0800 (PST)
+Received: from [10.67.48.230] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id a12sm3533241pgq.5.2021.01.06.09.40.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Jan 2021 09:40:43 -0800 (PST)
+Subject: Re: [PATCH V3 3/3] phy: phy-brcm-usb: support PHY on the BCM4908
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20210106132225.21215-1-zajec5@gmail.com>
+ <20210106132225.21215-3-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <cf631fc9-1039-18bb-9558-a5d3e6ec6a5d@gmail.com>
+Date:   Wed, 6 Jan 2021 09:40:42 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20210106132225.21215-3-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are two registers which can set the load capacitance for
-XTAL1 and XTAL2. These are optional registers when using an
-external crystal.  Parse the device tree and set the
-corresponding registers accordingly.
+On 1/6/21 5:22 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> BCM4908 seems to have slightly different registers but works when
+> programmed just like the STB one.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
- drivers/clk/clk-versaclock5.c | 64 +++++++++++++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
-
-diff --git a/drivers/clk/clk-versaclock5.c b/drivers/clk/clk-versaclock5.c
-index 43db67337bc0..445abc3731fb 100644
---- a/drivers/clk/clk-versaclock5.c
-+++ b/drivers/clk/clk-versaclock5.c
-@@ -759,6 +759,63 @@ static int vc5_update_power(struct device_node *np_output,
- 	return 0;
- }
- 
-+static int vc5_map_cap_value(u32 femtofarads)
-+{
-+	int mapped_value;
-+
-+	/* The datasheet explicitly states 9000 - 25000 */
-+	if ((femtofarads < 9000) || (femtofarads > 25000))
-+		return -EINVAL;
-+
-+	/* The lowest target we can hit is 9430, so exit if it's less */
-+	if (femtofarads < 9430)
-+		return 0;
-+
-+	/*
-+	 * According to VersaClock 6E Programming Guide, there are 6
-+	 * bits which translate to 64 entries in XTAL registers 12 and
-+	 * 13. Because bits 0 and 1 increase the capacitance the
-+	 * same, some of the values can be repeated.  Plugging this
-+	 * into a spreadsheet and generating a trendline, the output
-+	 * equation becomes x = (y-9098.29) / 216.44, where 'y' is
-+	 * the desired capacitance in femtofarads, and x is the value
-+	 * of XTAL[5:0].
-+	 * To help with rounding, do fixed point math
-+	 */
-+	femtofarads *= 100;
-+	mapped_value = (femtofarads - 909829) / 21644;
-+
-+	/*
-+	 * The datasheet states, the maximum capacitance is 25000,
-+	 * but the programmer guide shows a max value is 22832,
-+	 * so values higher values could overflow, so cap it.
-+	 */
-+	mapped_value = max(mapped_value/100, 0x3f);
-+
-+	return mapped_value;
-+}
-+static int vc5_update_cap_load(struct device_node *node, struct vc5_driver_data *vc5)
-+{
-+	u32 value, mapped_value;
-+
-+	if (!of_property_read_u32(node, "idt,xtal1-load-femtofarads", &value)) {
-+		mapped_value = vc5_map_cap_value(value);
-+		if (mapped_value < 0)
-+			return mapped_value;
-+
-+		regmap_write(vc5->regmap, VC5_XTAL_X1_LOAD_CAP, (mapped_value << 2));
-+	}
-+
-+	if (!of_property_read_u32(node, "idt,xtal2-load-femtofarads", &value)) {
-+		mapped_value = vc5_map_cap_value(value);
-+		if (mapped_value < 0)
-+			return mapped_value;
-+		regmap_write(vc5->regmap, VC5_XTAL_X2_LOAD_CAP, (mapped_value << 2));
-+	}
-+
-+	return 0;
-+}
-+
- static int vc5_update_slew(struct device_node *np_output,
- 			   struct vc5_out_data *clk_out)
- {
-@@ -884,6 +941,13 @@ static int vc5_probe(struct i2c_client *client, const struct i2c_device_id *id)
- 		return -EINVAL;
- 	}
- 
-+	/* Configure Optional Loading Capacitance for external XTAL */
-+	if (!(vc5->chip_info->flags & VC5_HAS_INTERNAL_XTAL)) {
-+		ret = vc5_update_cap_load(client->dev.of_node, vc5);
-+		if (ret)
-+			goto err_clk_register;
-+	}
-+
- 	init.name = kasprintf(GFP_KERNEL, "%pOFn.mux", client->dev.of_node);
- 	init.ops = &vc5_mux_ops;
- 	init.flags = 0;
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-2.25.1
-
+Florian
