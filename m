@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B652D2EC0B1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:54:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE252EC0B9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:58:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726220AbhAFPx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 10:53:59 -0500
-Received: from mail-vs1-f44.google.com ([209.85.217.44]:40668 "EHLO
-        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725800AbhAFPx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:53:58 -0500
-Received: by mail-vs1-f44.google.com with SMTP id x4so1993271vsp.7
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 07:53:43 -0800 (PST)
+        id S1726251AbhAFP52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 10:57:28 -0500
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:40810 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726165AbhAFP52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:57:28 -0500
+Received: by mail-ua1-f53.google.com with SMTP id y25so1218103uaq.7
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 07:57:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=8ND1E+ytxvU1+JHKxbNVD1gZTf9vXvLvS5uIHqOdni4=;
-        b=k5RFN68JwO0DlnGDDtN8XOXE9EuYuZj+IiPNfQtlVfG9J4U7Jp4UMGHcGVaj4qJnnp
-         VcgUIRqAaHpw5PgPaZlQ1b06mMAdLDWplJn1bYI8YcgSeVAioprMLfS8vFTb1F4W7ZDx
-         JqUPn9SpCugTD8fpeV80P18zO6P/SStlvd3IW+JMP2xeFDlkFMGXzAAqaHsnUeFKnkYi
-         sHS87ndCBW5rfHsgd5lTnRNPzgMdabd45/jzeXaL9a45Xiz3wBUod1AOFGMRiEosw5/f
-         jD8Bj64NX8gFedqPH/oVvZwXSQv2+jn1tL/UWL4X12DEo57DLmqpkr5qe02Tz4WoUCu+
-         kqww==
-X-Gm-Message-State: AOAM531n6tANYPofxxWRlpXehaELaEnspefvCf8S+5LZgRKhFGO8eDcE
-        2lJSlSahi/MnvQWnrYvP++sOwtx4dVFs+Q==
-X-Google-Smtp-Source: ABdhPJybRQPiJYGi1Gt7wzf5EMi+SPG5y6JlTarEk5egm8RHg45iW1PE0+GOq3XZSRSIjKiJfpdHHw==
-X-Received: by 2002:a05:6102:7ca:: with SMTP id y10mr3803744vsg.34.1609948397637;
-        Wed, 06 Jan 2021 07:53:17 -0800 (PST)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id 30sm376770uab.18.2021.01.06.07.53.16
+        bh=WqJEA5A9+1HtdFimi36OEIS/xg9B9vogCkxtOJDl7Ik=;
+        b=P28TYRFB2T86uwEIq3+7Zl544UaGMPlZn0v6qOkTCglSG1Tm6DHNxiPryOiaygNACc
+         oXqM57Y0EQ7/+8ZJU+elIWuAPunMW1bmKWNQwbDTdDosxVHYhw1mR/i3+HEgLz8KgyFu
+         cOyGHfLzp7h31nk+m5TLDCBYpbqmRiz+Br9BZFn1FJxXBkXjhw9KFdlckumJA4hjOT9X
+         ssHf7SDTIFfWlfcYpyUWqCsDjTMvjd3ni2/E4NGabgE/lzNb0/HhEssz6Zni55HmQp5A
+         D35HqjeCEhV3na1Q+w9KVhKNstP39aK4W4lzkuWI4myto1gWOqX7aHKrJSOJ0fOL2mrr
+         apvA==
+X-Gm-Message-State: AOAM533C62OPTdSLL4/YwufyN9JPJdFniCVhvznrjy/0Wxv5Diloay5g
+        Hmqd7eZ9sJtnSL9BGfYGLYXQVtUnWUV83g==
+X-Google-Smtp-Source: ABdhPJxp9+v/zlXRPe9V634/e54CdQJJGSy9VaWxWepDin6LHssqqfLIs5ABGfKa9FLYqzVSHuVBHQ==
+X-Received: by 2002:ab0:3c8f:: with SMTP id a15mr4094099uax.127.1609948606623;
+        Wed, 06 Jan 2021 07:56:46 -0800 (PST)
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com. [209.85.221.176])
+        by smtp.gmail.com with ESMTPSA id x75sm354540vsc.11.2021.01.06.07.56.45
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Jan 2021 07:53:17 -0800 (PST)
-Received: by mail-vs1-f47.google.com with SMTP id b23so1982589vsp.9
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 07:53:16 -0800 (PST)
-X-Received: by 2002:a67:fd88:: with SMTP id k8mr3678704vsq.17.1609948396828;
- Wed, 06 Jan 2021 07:53:16 -0800 (PST)
+        Wed, 06 Jan 2021 07:56:46 -0800 (PST)
+Received: by mail-vk1-f176.google.com with SMTP id a6so879999vkb.8
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 07:56:45 -0800 (PST)
+X-Received: by 2002:a1f:1bcc:: with SMTP id b195mr4153112vkb.5.1609948605755;
+ Wed, 06 Jan 2021 07:56:45 -0800 (PST)
 MIME-Version: 1.0
-References: <20210106150525.15403-1-andre.przywara@arm.com> <20210106150525.15403-3-andre.przywara@arm.com>
-In-Reply-To: <20210106150525.15403-3-andre.przywara@arm.com>
+References: <20210106150525.15403-1-andre.przywara@arm.com> <20210106150525.15403-2-andre.przywara@arm.com>
+In-Reply-To: <20210106150525.15403-2-andre.przywara@arm.com>
 From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Wed, 6 Jan 2021 23:53:06 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65oDBjO2dgcTfhe5Dephc6KBN9-epBieQ4mV0cwMizNvw@mail.gmail.com>
-Message-ID: <CAGb2v65oDBjO2dgcTfhe5Dephc6KBN9-epBieQ4mV0cwMizNvw@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH 2/7] arm64: dts: allwinner: Pine64-LTS: Add
- status LED
+Date:   Wed, 6 Jan 2021 23:56:35 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66V6=jeLuLCvOENhuwXfPAMd1nYcMor3K7FToHT9grTTA@mail.gmail.com>
+Message-ID: <CAGb2v66V6=jeLuLCvOENhuwXfPAMd1nYcMor3K7FToHT9grTTA@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH 1/7] arm64: dts: allwinner: H6/A64: properly
+ connect USB PHY to port 0
 To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
 Cc:     Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
@@ -63,59 +63,105 @@ Hi,
 
 On Wed, Jan 6, 2021 at 11:05 PM Andre Przywara <andre.przywara@arm.com> wrote:
 >
-> The Pine64-LTS board features a blue status LED on pin PL7.
-
-I'd like some clarification about this.
-
-My Pine64-LTS was a used unit personally given to me by TL Lim, which came
-with LEDs that I assume were soldered on by hand as their mounting angles
-are slightly off. My Pine64+ (the original from the Kickstarter campaign)
-and SoPine baseboard (a new unit, also given to me by TL Lim) came without
-LEDs soldered on.
-
-I'm OK with adding the LED to the device tree. I'm just not sure about the
-color.
-
-
-ChenYu
-
-> Describe it in the DT.
+> In recent Allwinner SoCs the first USB host controller (HCI0) shares
+> the first PHY with the MUSB controller. Probably to make this sharing
+> work, we were avoiding to declare this in the DT. This has two
+> shortcomings:
+> - U-Boot (which uses the same .dts) cannot use this port in host mode
+>   without a PHY linked, so we were loosing one USB port there.
+> - It requires the MUSB driver to be enabled and loaded, although we
+>   don't actually use it.
+>
+> To avoid those issues, let's add this PHY link to the A64 and H6 .dtsi
+> files. After all PHY port 0 *is* connected to HCI0, so we should describe
+> it as this. Remove the part from the boards which were already doing
+> that.
+>
+> This makes it work in U-Boot, also improves compatiblity when no MUSB
+> driver is loaded (for instance in distribution installers).
 >
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  .../boot/dts/allwinner/sun50i-a64-pine64-lts.dts      | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>  arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts | 4 ----
+>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi         | 4 ++++
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi          | 4 ++++
+
+It would be better if the H6 parts were separated out.
+
+Please also add a fixes tag, which helps with backporting.
+
+>  3 files changed, 8 insertions(+), 4 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> index 302e24be0a31..55bf4a0fc31c 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> @@ -1,10 +1,21 @@
->  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->  // Copyright (c) 2018 ARM Ltd.
->
-> +#include <dt-bindings/leds/common.h>
->  #include "sun50i-a64-sopine-baseboard.dts"
->
->  / {
->         model = "Pine64 LTS";
->         compatible = "pine64,pine64-lts", "allwinner,sun50i-r18",
->                      "allwinner,sun50i-a64";
-> +
-> +       leds {
-> +               compatible = "gpio-leds";
-> +
-> +               status {
-> +                       function = LED_FUNCTION_STATUS;
-> +                       color = <LED_COLOR_ID_BLUE>;
-> +                       gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
-> +               };
-> +       };
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
+> index 896f34fd9fc3..d07cf05549c3 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
+> @@ -126,8 +126,6 @@
 >  };
+>
+>  &ehci0 {
+> -       phys = <&usbphy 0>;
+> -       phy-names = "usb";
+>         status = "okay";
+>  };
+>
+> @@ -177,8 +175,6 @@
+>  };
+>
+>  &ohci0 {
+> -       phys = <&usbphy 0>;
+> -       phy-names = "usb";
+>         status = "okay";
+>  };
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> index 51cc30e84e26..19e9b8ca8432 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> @@ -593,6 +593,8 @@
+>                                  <&ccu CLK_USB_OHCI0>;
+>                         resets = <&ccu RST_BUS_OHCI0>,
+>                                  <&ccu RST_BUS_EHCI0>;
+> +                       phys = <&usbphy 0>;
+> +                       phy-names = "usb";
+>                         status = "disabled";
+>                 };
+>
+> @@ -603,6 +605,8 @@
+>                         clocks = <&ccu CLK_BUS_OHCI0>,
+>                                  <&ccu CLK_USB_OHCI0>;
+>                         resets = <&ccu RST_BUS_OHCI0>;
+> +                       phys = <&usbphy 0>;
+> +                       phy-names = "usb";
+>                         status = "disabled";
+>                 };
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> index 8a62a9fbe347..f593cfeaecc9 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> @@ -680,6 +680,8 @@
+>                                  <&ccu CLK_USB_OHCI0>;
+>                         resets = <&ccu RST_BUS_OHCI0>,
+>                                  <&ccu RST_BUS_EHCI0>;
+> +                       phys = <&usb2phy 0>;
+> +                       phy-names = "usb";
+>                         status = "disabled";
+>                 };
+>
+> @@ -690,6 +692,8 @@
+>                         clocks = <&ccu CLK_BUS_OHCI0>,
+>                                  <&ccu CLK_USB_OHCI0>;
+>                         resets = <&ccu RST_BUS_OHCI0>;
+> +                       phys = <&usb2phy 0>;
+> +                       phy-names = "usb";
+>                         status = "disabled";
+>                 };
+>
 > --
 > 2.17.5
 >
 > --
 > You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
 > To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20210106150525.15403-3-andre.przywara%40arm.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20210106150525.15403-2-andre.przywara%40arm.com.
