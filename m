@@ -2,79 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1604A2EBAAE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 08:52:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 402282EBACB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 08:56:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725903AbhAFHus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 02:50:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33948 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725788AbhAFHus (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Jan 2021 02:50:48 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7129D2070C;
-        Wed,  6 Jan 2021 07:50:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1609919407;
-        bh=Piu5gusr/UGLicaCqANy6GNdwM1M9LXLgq30KLvh2D4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=STtQBirTvMJHJfy3BDpBJr1nF4y3j9P09tA52QukFa2+zVDJOvZxlpH0YuQb1dKaI
-         tkZ/1YHajtxpOZBb2tYYK9x5sW39V1FMN5v9MY2fd4frFWPosjKHysaj5P3pqOj5H4
-         cLt1ndn2T4gOT+l7NViKlEBYi94u2sh/OTHke2vk=
-Date:   Wed, 6 Jan 2021 08:50:03 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Claire Chang <tientzu@chromium.org>
-Cc:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
-        paulus@samba.org, joro@8bytes.org, will@kernel.org,
-        frowand.list@gmail.com, konrad.wilk@oracle.com,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org, hch@lst.de, m.szyprowski@samsung.com,
-        robin.murphy@arm.com, grant.likely@arm.com, xypron.glpk@gmx.de,
-        treding@nvidia.com, mingo@kernel.org, bauerman@linux.ibm.com,
-        peterz@infradead.org, saravanak@google.com,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
-        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
-        xen-devel@lists.xenproject.org, tfiga@chromium.org,
-        drinkcat@chromium.org
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
-Message-ID: <X/VrqxcaAMi65CF0@kroah.com>
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-3-tientzu@chromium.org>
+        id S1726789AbhAFHwJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 6 Jan 2021 02:52:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51314 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726788AbhAFHwI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 02:52:08 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DD4BC061357
+        for <devicetree@vger.kernel.org>; Tue,  5 Jan 2021 23:51:28 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kx3bJ-0008WM-Ld; Wed, 06 Jan 2021 08:51:25 +0100
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kx3bI-0006db-0A; Wed, 06 Jan 2021 08:51:24 +0100
+Date:   Wed, 6 Jan 2021 08:51:23 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] ARM: dts: add Protonic MVT board
+Message-ID: <20210106075123.dkutuzcycokox2xr@pengutronix.de>
+References: <20201201074125.11806-1-o.rempel@pengutronix.de>
+ <20201201074125.11806-3-o.rempel@pengutronix.de>
+ <20210105023515.GH4142@dragon>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210106034124.30560-3-tientzu@chromium.org>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20210105023515.GH4142@dragon>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:32:25 up 34 days, 21:38, 28 users,  load average: 0.07, 0.02,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 06, 2021 at 11:41:20AM +0800, Claire Chang wrote:
-> Add the initialization function to create restricted DMA pools from
-> matching reserved-memory nodes in the device tree.
+Hi Shawn,
+
+On Tue, Jan 05, 2021 at 10:35:17AM +0800, Shawn Guo wrote:
+> On Tue, Dec 01, 2020 at 08:41:25AM +0100, Oleksij Rempel wrote:
+> > PRTMVT is the reference platform for Protonic industrial touchscreen terminals.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+
+> > ---
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_gpiokeys>;
+> > +		autorepeat;
+> > +
+> > +		power {
+> > +			label = "Power Button";
+> > +			gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <116>; /* KEY_POWER */
 > 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> ---
->  include/linux/device.h  |   4 ++
->  include/linux/swiotlb.h |   7 +-
->  kernel/dma/Kconfig      |   1 +
->  kernel/dma/swiotlb.c    | 144 ++++++++++++++++++++++++++++++++++------
->  4 files changed, 131 insertions(+), 25 deletions(-)
+> Why not just using defines?
+
+Uff, I didn't noticed there are existing defines. Thx, done.
+
+> > +			wakeup-source;
+> > +		};
+> > +
+
+> > +	panel {
+> > +		compatible = "kyo,tcg070wvlq", "lg,lb070wv8";
 > 
-> diff --git a/include/linux/device.h b/include/linux/device.h
-> index 89bb8b84173e..ca6f71ec8871 100644
-> --- a/include/linux/device.h
-> +++ b/include/linux/device.h
-> @@ -413,6 +413,7 @@ struct dev_links_info {
->   * @dma_pools:	Dma pools (if dma'ble device).
->   * @dma_mem:	Internal for coherent mem override.
->   * @cma_area:	Contiguous memory area for dma allocations
-> + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
+> Why do you need two compatibles for a panel?  The first one seems
+> undocumented.
 
-Why does this have to be added here?  Shouldn't the platform-specific
-code handle it instead?
+kyo,tcg070wvlq seems to be compatible with lg,lb070wv8. Currently there
+is no need for driver modification.
+The kyo,tcg070wvlq documentation should be added with the patch:
+"dt-bindings: display: simple: Add Kyocera tcg070wvlq panel"
+https://lkml.org/lkml/2020/12/7/591
 
-thanks,
+> > +		backlight = <&backlight>;
+> > +		power-supply = <&reg_3v3>;
+> > +	video@5c {
+> > +		compatible = "ti,tvp5150";
+> > +		reg = <0x5c>;
+> > +
+> 
+> Unnecessary newline.
 
-greg k-h
+done
+
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		port@0 {
+> > +			reg = <0>;
+> 
+> Have a newline between properties and child node.
+
+done
+
+> > +			tvp5150_comp0_in: endpoint {
+> > +				remote-endpoint = <&comp0_out>;
+> > +			};
+> > +		};
+> > +
+> > +		/* Output port 2 is video output pad */
+> > +		port@2 {
+> > +			reg = <2>;
+> > +			tvp5151_to_ipu1_csi0_mux: endpoint {
+> > +				remote-endpoint = <&ipu1_csi0_mux_from_parallel_sensor>;
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	gpio_pca: gpio@74 {
+> > +		#gpio-cells = <2>;
+> 
+> We usually begin with 'compatible'.  Can you move this line after
+> 'gpio-controller' maybe?
+
+done
+
+Regards,
+Oleksij
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
