@@ -2,124 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BE192EBC20
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 11:10:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6DE12EBC34
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 11:15:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725925AbhAFKKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 05:10:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44852 "EHLO
+        id S1726589AbhAFKOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 05:14:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725960AbhAFKKj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 05:10:39 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14787C061357
-        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 02:09:59 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id n3so2364536pjm.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 02:09:59 -0800 (PST)
+        with ESMTP id S1726432AbhAFKOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 05:14:19 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A758C061359
+        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 02:13:28 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id i24so3878856edj.8
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 02:13:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vIPKS1Ft1bWawzU3/HUFP2aGC5QczgfahJgd1GFd2V8=;
-        b=HuZzNThi4I4FEVGN1LjeeYcLmlyA9zRyzkYwh6z0pQArRBn5gQTFbX+zxOr8VvBrM8
-         tsn37JvixzZWCFZ6cO4ed7m/5px53d3FYnYsKwx4nMSMfHTy2Z5jaCkjpa4kAsNvKzDu
-         G4hLTWMJDkTJzQMp0Q8nCWlbDUTHHYyYA+0+ZpnfruNziicJZugML6UNlV99g0Ux35Fo
-         JWV6Ad8/VnoGclUIIgQd8ILfQYekax5wabVOd/HOnbt/m00t7s2C4ABWcIBkspV/u0pj
-         i4D3FH+qYUokDcg1ynW8EMcSthUeysVjdxl81fYvfcDXsRRqSbQ/rby4xgqsn39Wzlq5
-         1AdQ==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=u9+zWz1kXRm/cG2cWAgMkQ3WnJC2Q0wvNPxDG1IsJRY=;
+        b=t0i1tE0VsgVWdosywvgtuPJTw8ZFzWEFB563jvDU1p+PQAzzjCn6kSbLa8DCY9lfVa
+         MtX5wlfGKFEnx6zXlF5k02QFLgLFL/tvtous90FlA1Uxk1QgdvHg6PV+pJFwKwUKYWmf
+         bWbPzkMJucAWMH3x2i499LokFG5k5nPFo6OWluYr/OPQJrLMPhbjXJPvJJgGaXK684f1
+         Xt67vZNGlIb2zfnFuw5TdYTfsbBuUe/xTKmCKLtBISpqUmSxb119vfBEvCHpHFyLmKLJ
+         lv/uqze5LePeLQG36N/wyzjqKkW4HKhCcL2tcxaUNJEi0AE5A2HeHeQmMbKzIbNoPsns
+         j9fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vIPKS1Ft1bWawzU3/HUFP2aGC5QczgfahJgd1GFd2V8=;
-        b=Oi5wmzgI4dannecjVCC5mmZWuIJQuysJShW7JEuc+DheI0PiAvoNY6mf3pP0lVTyfb
-         9orV4TbJH8SFI3JMUwkuKQcagV5OMk4FqNM410hqMKP2+uZo7cUt/nKEN64p+tqHMAyN
-         +s6HHtiXuW4lk1e6DzNGGVCyn7PNdZ5NxlXH5PmFITeSunTFyRIQwyXvtXiGOxwVlW0y
-         tr7BYHPFS8yl6JPD4vAClRo27JcxAv0aNdMJREWfQywrmyKdR/IVAOT7zU4tXiFq9vu5
-         Wb8ftok9QSxU+jGghPpOXmx+V8tTjPS3YSSzA4SPrwjRGrPUjxCPgjG8tpB7fDtGD3my
-         j3Ig==
-X-Gm-Message-State: AOAM5317d2YjbATSUkqplroTQbIMqknrAROh895t8RPCk07IWFRnTRVl
-        4iFuMmjrUx4jqBrkHypDf7fQEQ==
-X-Google-Smtp-Source: ABdhPJzCRzLUZqQowponcfuqWMNEC5oXk04OGaRFuzNpwECNaByg+0Mo8ruXng9IX0iAez1tNxA5UQ==
-X-Received: by 2002:a17:902:7887:b029:dc:20e:47ff with SMTP id q7-20020a1709027887b02900dc020e47ffmr3830047pll.65.1609927798615;
-        Wed, 06 Jan 2021 02:09:58 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id j14sm1809400pjm.10.2021.01.06.02.09.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 06 Jan 2021 02:09:57 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
-Subject: [PATCH] scripts: dtc: Start building fdtoverlay and fdtdump
-Date:   Wed,  6 Jan 2021 15:39:31 +0530
-Message-Id: <5a416b44155409e45b99c5624d66992a2138cd4c.1609927722.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <CAL_JsqJMr3vfz2B29vzvFALCt_5-J__eJv2TZHJ0sR9nM=xXaw@mail.gmail.com>
-References: <CAL_JsqJMr3vfz2B29vzvFALCt_5-J__eJv2TZHJ0sR9nM=xXaw@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=u9+zWz1kXRm/cG2cWAgMkQ3WnJC2Q0wvNPxDG1IsJRY=;
+        b=UoEnP7nJtAhVgcHPl98Ds4HID8AuuRnsQtX3Jx13+Y8TOL8GAl9T76/beIT9OhXXjc
+         q1b6l1U9bknqXCKGXIGccqqnR1V9IvzNcBS8Qlnw+xzgib4t1kQDOybwemvXGaoJ4koP
+         05jEljUTGD00kBWC60ReWIZrv7gId+Mm/MCCUL6ptvuXkaiPe8A8DXiq7yPNWjdxpWbG
+         80U17rmkFlV9Ap62SMCZfm0H8LrBe2ySehk1RkbjBIZGncl/WUwm5P45KS4tjs0y1bGA
+         N3GTT0+fjyuwVN1w/e0WbsIho2qoDiiDAbY5oTMSlGVQ+6DtyPPFfMdDmiMnt9q+0RRE
+         6UHQ==
+X-Gm-Message-State: AOAM5312MBaV9qHTpqLjvgp3NYjoiVahG3eKJaN9SV2+lRAk2DVq1UeR
+        g2M2a/sbQjjXzaTDJUfvSI+qOaR068bWbZ1QpAz/TQ==
+X-Google-Smtp-Source: ABdhPJy9vQU5trn9/gA9F9gMhDlU7Llm1TbqOosLtrOozkoW63EjRjx7GOmQkTWN8hpszTJK2fWQ6766sBY+W/AT+kg=
+X-Received: by 2002:aa7:cc15:: with SMTP id q21mr3484642edt.213.1609928007198;
+ Wed, 06 Jan 2021 02:13:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201217144338.3129140-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20201217144338.3129140-3-nobuhiro1.iwamatsu@toshiba.co.jp> <CACRpkdZeqqH_tev3USrC5BzX_w1rsjFQA=uGDZLPXZDG6jooKg@mail.gmail.com>
+In-Reply-To: <CACRpkdZeqqH_tev3USrC5BzX_w1rsjFQA=uGDZLPXZDG6jooKg@mail.gmail.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 6 Jan 2021 11:13:16 +0100
+Message-ID: <CAMpxmJUuby1ujg6WeO=4A483_GbyCSGL3aQ6m==oUFxSykQ+0w@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] gpio: visconti: Add Toshiba Visconti GPIO support
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Rob Herring <robh+dt@kernel.org>,
+        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
+        yuji2.ishikawa@toshiba.co.jp,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We will start building overlays for platforms soon in the kernel and
-would need these tools going forward. Lets fetch and build these.
+On Mon, Jan 4, 2021 at 3:58 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Thu, Dec 17, 2020 at 6:45 AM Nobuhiro Iwamatsu
+> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+>
+> > Add the GPIO driver for Toshiba Visconti ARM SoCs.
+> >
+> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+>
+> This version is perfect!
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> Bartosz: this hits pinctrl but it's fine to merge to the GPIO tree, should
+> not cause any problems.
+>
+> Yours,
+> Linus Walleij
 
-Note that a copy of fdtdump.c was already copied back in the year 2012,
-but it was never updated or built for some reason.
+I would have seen this series before had I not been ignored by the author... :(
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
----
- scripts/dtc/Makefile             | 8 +++++++-
- scripts/dtc/update-dtc-source.sh | 6 +++---
- 2 files changed, 10 insertions(+), 4 deletions(-)
-
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index 4852bf44e913..c607980a5c17 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -1,12 +1,18 @@
- # SPDX-License-Identifier: GPL-2.0
- # scripts/dtc makefile
- 
--hostprogs-always-$(CONFIG_DTC)		+= dtc
-+hostprogs-always-$(CONFIG_DTC)		+= dtc fdtdump fdtoverlay
- hostprogs-always-$(CHECK_DT_BINDING)	+= dtc
- 
- dtc-objs	:= dtc.o flattree.o fstree.o data.o livetree.o treesource.o \
- 		   srcpos.o checks.o util.o
- dtc-objs	+= dtc-lexer.lex.o dtc-parser.tab.o
-+fdtdump-objs	:= fdtdump.o util.o
-+
-+libfdt_dir	= libfdt
-+libfdt-objs	:= fdt.o fdt_ro.o fdt_wip.o fdt_sw.o fdt_rw.o fdt_strerror.o fdt_empty_tree.o fdt_addresses.o fdt_overlay.o
-+libfdt		= $(addprefix $(libfdt_dir)/,$(libfdt-objs))
-+fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
- 
- # Source files need to get at the userspace version of libfdt_env.h to compile
- HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
-diff --git a/scripts/dtc/update-dtc-source.sh b/scripts/dtc/update-dtc-source.sh
-index bc704e2a6a4a..9bc4afb71415 100755
---- a/scripts/dtc/update-dtc-source.sh
-+++ b/scripts/dtc/update-dtc-source.sh
-@@ -31,9 +31,9 @@ set -ev
- DTC_UPSTREAM_PATH=`pwd`/../dtc
- DTC_LINUX_PATH=`pwd`/scripts/dtc
- 
--DTC_SOURCE="checks.c data.c dtc.c dtc.h flattree.c fstree.c livetree.c srcpos.c \
--		srcpos.h treesource.c util.c util.h version_gen.h yamltree.c \
--		dtc-lexer.l dtc-parser.y"
-+DTC_SOURCE="checks.c data.c dtc.c dtc.h fdtdump.c fdtoverlay.c flattree.c \
-+		fstree.c livetree.c srcpos.c srcpos.h treesource.c util.c \
-+		util.h version_gen.h yamltree.c dtc-lexer.l dtc-parser.y"
- LIBFDT_SOURCE="fdt.c fdt.h fdt_addresses.c fdt_empty_tree.c \
- 		fdt_overlay.c fdt_ro.c fdt_rw.c fdt_strerror.c fdt_sw.c \
- 		fdt_wip.c libfdt.h libfdt_env.h libfdt_internal.h"
--- 
-2.25.0.rc1.19.g042ed3e048af
-
+Bart
