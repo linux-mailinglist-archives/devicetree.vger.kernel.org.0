@@ -2,193 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 997DD2EC45D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 21:01:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DD482EC485
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 21:12:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726707AbhAFUAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 15:00:32 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57336 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726398AbhAFUAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 15:00:32 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 106JwsGX017998;
-        Wed, 6 Jan 2021 13:58:54 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609963134;
-        bh=XgtpbLhV0AFYHHO3bXyXcXKJWBeBc+4sMOwO3+zTCHg=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=E9X2ZoKlM14xJ8Tes29P0n0ZdZMhhZxhmBnAyUNZl0voqF3bNuDyaArNrb+FjRFA3
-         RZyiJjjxI58/jSGmbJHPO5/bVoUAlyx1rhoIUf7Nw3SIwKQ16A4R1N167ASjMPXbwS
-         kXnndNhAM1YqCESnAt7kxKagsjgjA8fZoBYMe37Y=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 106JwsbK059234
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 6 Jan 2021 13:58:54 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 6 Jan
- 2021 13:58:54 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 6 Jan 2021 13:58:54 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 106JwrDj097096;
-        Wed, 6 Jan 2021 13:58:53 -0600
-From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-To:     <sre@kernel.org>, <robh+dt@kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <dmurphy@ti.com>, Ricardo Rivera-Matos <r-rivera-matos@ti.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v10 1/2] dt-bindings: power: Add the bq256xx dt bindings
-Date:   Wed, 6 Jan 2021 13:58:48 -0600
-Message-ID: <20210106195849.9489-2-r-rivera-matos@ti.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210106195849.9489-1-r-rivera-matos@ti.com>
-References: <20210106195849.9489-1-r-rivera-matos@ti.com>
+        id S1727294AbhAFULZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 15:11:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727035AbhAFULY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 15:11:24 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3ECAC061575
+        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 12:10:43 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id m12so9381903lfo.7
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 12:10:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5fTYl7dFnUNDY76/N/FBKgt5PJcqYVGl1YeIAp29Cb4=;
+        b=Qbc+93ieH0Q8qihFPzMggAa8SmXbcWkUTomxAJiIG6B/pDM/RLyfRbEoarG3AzELxh
+         ac30doK/+KYIllKtltVEdgGmnZKW+ZjWJxWDXlbsBugbUU+UuX0QC0rY29Z+787Ph3CT
+         U2kc1mjPOoxCMRFPNVPNkm5RwMWfF/QpOMoLuBo2IiKQFv8qyOqizq+T7yCZ1urOntmR
+         ri1Az6AjLSp3G98+YHSP07VY0oSRQyOJvzCOLyHehs4ef5aALgU1KwDLwVNHdP6u0yVy
+         4UzmdtSmfQD/5+7pA36yDyzmXqYw3DhndSkgqu3YcYcWmAJRv+tanx03kFiRManEoxja
+         YH0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5fTYl7dFnUNDY76/N/FBKgt5PJcqYVGl1YeIAp29Cb4=;
+        b=X0HEeHyFlS65muwb/D5Jr2ji1R6WXHQU5BlJt9UwjLidHROKZePrJB5IYAphFemgav
+         wtOFBViBZb+5YhAqd+60xvzJMXX+iyN0KcEqYDqcmZXBeBc74udnTtIu3ckHyfNmcYyl
+         t2aEEXPvu11J0jeZOSUFvvzT88yy5wy1/TcIcjnX7gItgTLDe7+tQQpwUVQAtK3LuSLy
+         /I2BluxfM0bWBTlVYrNOH6dDKA3Bqx+fZX9k+5xvDlhQ32/2fpQkp33o9MFrrJPURDYK
+         I5JEwenKUeTjtnlKfQMcpQWC775CtCEnSZffqgVI8Be84z5R2ARwiJepnz61f0AFPjdj
+         ZVgA==
+X-Gm-Message-State: AOAM531GhBZjAAdzayEpzo+HMeQ/sYJWd3b48aCxUXSiR6/ia0h3wz1r
+        pRwLBg3dYkgIKsVfiE3Sdtzk4G74lY4P3NVP8A1S3w==
+X-Google-Smtp-Source: ABdhPJyMV/qRlwhsED4wqR63/+mBwb2d/XZZAMB8W7cpRjr16ansOu5Csx6k8LuW95AIPpjuzVysr5H9Fl1Aln+7iaU=
+X-Received: by 2002:a05:651c:205b:: with SMTP id t27mr2776550ljo.368.1609963842431;
+ Wed, 06 Jan 2021 12:10:42 -0800 (PST)
 MIME-Version: 1.0
+References: <20210103100007.32867-1-samuel@sholland.org> <20210103100007.32867-3-samuel@sholland.org>
+In-Reply-To: <20210103100007.32867-3-samuel@sholland.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 6 Jan 2021 21:10:31 +0100
+Message-ID: <CACRpkdagu9Sj9AEcGQYrnAAxUJWZKGZ2zina4XWubQ7WXYU-0A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] pinctrl: sunxi: h6-r: Add s_rsb pin functions
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andre Przywara <andre.przywara@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the bindings for the bq256xx series of battery charging ICs.
+On Sun, Jan 3, 2021 at 11:00 AM Samuel Holland <samuel@sholland.org> wrote:
 
-Datasheets:
-- https://www.ti.com/lit/ds/symlink/bq25600.pdf
-- https://www.ti.com/lit/ds/symlink/bq25601.pdf
-- https://www.ti.com/lit/ds/symlink/bq25600d.pdf
-- https://www.ti.com/lit/ds/symlink/bq25601d.pdf
-- https://www.ti.com/lit/ds/symlink/bq25611d.pdf
-- https://www.ti.com/lit/ds/symlink/bq25618.pdf
-- https://www.ti.com/lit/ds/symlink/bq25619.pdf
+> As there is an RSB controller in the H6 SoC, there should be some pin
+> configuration for it. While no such configuration is documented, the
+> "s_i2c" pins are suspiciously on the "alternate" function 3, with no
+> primary function 2 given. This suggests the primary function for these
+> pins is actually RSB, and that is indeed the case.
+>
+> Add the "s_rsb" pin functions so the RSB controller can be used.
+>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Ricardo Rivera-Matos <r-rivera-matos@ti.com>
----
- .../bindings/power/supply/bq256xx.yaml        | 110 ++++++++++++++++++
- 1 file changed, 110 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+This patch applied to the pinctrl tree.
 
-diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-new file mode 100644
-index 000000000000..18b54783e11a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# Copyright (C) 2020 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/power/supply/bq256xx.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: TI bq256xx Switch Mode Buck Charger
-+
-+maintainers:
-+  - Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-+
-+description: |
-+  The bq256xx devices are a family of highly-integrated battery charge
-+  management and system power management ICs for single cell Li-ion and Li-
-+  polymer batteries.
-+
-+  Datasheets:
-+    - https://www.ti.com/lit/ds/symlink/bq25600.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25601.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25600d.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25601d.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25611d.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25618.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25619.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,bq25600
-+      - ti,bq25601
-+      - ti,bq25600d
-+      - ti,bq25601d
-+      - ti,bq25611d
-+      - ti,bq25618
-+      - ti,bq25619
-+
-+  reg:
-+    maxItems: 1
-+
-+  ti,watchdog-timeout-ms:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    description: |
-+      Watchdog timer in ms. 0 (default) disables the watchdog
-+    minimum: 0
-+    maximum: 160000
-+    enum: [ 0, 40000, 80000, 160000]
-+
-+  input-voltage-limit-microvolt:
-+    description: |
-+       Minimum input voltage limit in µV with a 100000 µV step
-+    minimum: 3900000
-+    maximum: 5400000
-+
-+  input-current-limit-microamp:
-+    description: |
-+       Maximum input current limit in µA with a 100000 µA step
-+    minimum: 100000
-+    maximum: 3200000
-+
-+  monitored-battery:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to the battery node being monitored
-+
-+  interrupts:
-+    maxItems: 1
-+    description: |
-+      Interrupt sends an active low, 256 μs pulse to host to report the charger
-+      device status and faults.
-+
-+required:
-+  - compatible
-+  - reg
-+  - monitored-battery
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bat: battery {
-+      compatible = "simple-battery";
-+      constant-charge-current-max-microamp = <2040000>;
-+      constant-charge-voltage-max-microvolt = <4352000>;
-+      precharge-current-microamp = <180000>;
-+      charge-term-current-microamp = <180000>;
-+    };
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+
-+      clock-frequency = <400000>;
-+
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      charger@6b {
-+        compatible = "ti,bq25601";
-+        reg = <0x6b>;
-+        monitored-battery = <&bat>;
-+
-+        interrupt-parent = <&gpio1>;
-+        interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
-+        ti,watchdog-timeout-ms = <40000>;
-+
-+        input-voltage-limit-microvolt = <4500000>;
-+        input-current-limit-microamp = <2400000>;
-+       };
-+    };
-+...
--- 
-2.30.0
-
+Yours,
+Linus Walleij
