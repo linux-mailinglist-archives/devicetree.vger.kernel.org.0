@@ -2,218 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F29C2EC031
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8995B2EC040
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:19:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726143AbhAFPNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 10:13:22 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:37015 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726109AbhAFPNV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:13:21 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 860F05C00FE;
-        Wed,  6 Jan 2021 10:12:35 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 06 Jan 2021 10:12:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=P5/Tb7LCaQ16J1NVwYWbEViIiEf
-        m9aUGJePzAFUKyxU=; b=e+fdxNwrL9Mkdbm3OSoQB4EZOWDfLAzCF5AMwr3SaYE
-        3cOlgBiXyNMuLC1hoeH5i3dDSPFIK0sVblM6f5irtZiOS5FDdiVnOFJ8sEt7uGVt
-        Gkaaxc9JQtqvHUELb8dW1E0YAHUzMjG8ZbUZ5yhGiJXrQLmHlSnc9Ep7/N7f4sAd
-        HPxm1B+er9ptFe523Rmo56B/CPNWMsyTnGyDFXDZ4iN2mJ3CCvw2/vL52Kwp6KN2
-        Phak5i8PXj3OWhJve0JTFY0uZyboL/NLfwts93PcpsBzBxv6TJuJ289iIL9RgJKO
-        ++d2HK0/a9FuLbo5MmRjQRutHE8ihQaO/caRQ8clXIQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=P5/Tb7
-        LCaQ16J1NVwYWbEViIiEfm9aUGJePzAFUKyxU=; b=ZuY1KCgGGjy0ebo7b46DGb
-        7E9nufoQwxfcZIYaquXX0T31VAOZyHTbkCxMDWIl9GiVgv4M9O6nuSsRK2BejNR0
-        0mU3dTr3xzIzsEyRUZdle2Vl05Sr77y8oT7e/nxG3dQX7MdwNo0sXdDdJ1ymC/WO
-        jU0HB09C5V/HTYMnE5Ap5pzqw3VI9xYakb28UvhFabfrctHKNChG4QgutX5/BdWN
-        Mitk3j7zfdEP6iOvHebG/jtosfM1v5Kv6HKU4k2pympTNs4xMoG5ZR5oReMWfyyg
-        Z1NEfGuq70zWQ5vgZUxPZtUDz9+Rk8lHNKT5p5QyWrFRKUD/dch0l36aoCPeshTg
-        ==
-X-ME-Sender: <xms:YdP1X77a4RrYOyYAQGUpvYjfOT8wBuSbu1LK7Ii-q1jxT73N4N_lQQ>
-    <xme:YdP1Xw7zzg-6TEpo8F1-vfatGO_tXeAglh5Xx-yIuwWjdYTFvQGgRCFdljetVCJLo
-    DTVpUfPvPBJi-cRcfI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdefledgjeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepffetteevieejteeuhfffgeektefghfeileehhedtuddutefhhfejtddvtddu
-    ledvnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkphepledtrdekle
-    drieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
-    ohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:YdP1XydpxNUxLVuTgagLoNP03nKpBgN4Rsz7RzS8rLnhJHsarWlv8Q>
-    <xmx:YdP1X8I78YGqY_LXm-nim-Cc20K-LssyBk70PnxlKPFN4UfbppR4Lw>
-    <xmx:YdP1X_KBgp4Fv6qxzseJiEqGip_qskxjcWZfJYRxLuXaEYSzCPQ5ug>
-    <xmx:Y9P1X39rk6B8bDcmGk5I6LDTup43gonX3pfP7SRRK0mpbbpdSfiH0g>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 576AD240066;
-        Wed,  6 Jan 2021 10:12:33 -0500 (EST)
-Date:   Wed, 6 Jan 2021 16:12:32 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Eric Anholt <eric@anholt.net>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V2 4/4] dt-bindings: gpu: Convert v3d to json-schema
-Message-ID: <20210106151232.egv2d33rtw462iiw@gilmour>
-References: <1608755714-18233-1-git-send-email-stefan.wahren@i2se.com>
- <1608755714-18233-5-git-send-email-stefan.wahren@i2se.com>
+        id S1726074AbhAFPSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 10:18:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36516 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726011AbhAFPSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:18:39 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 398C8C06134D;
+        Wed,  6 Jan 2021 07:17:59 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id g24so4675539edw.9;
+        Wed, 06 Jan 2021 07:17:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=s7ucDQgsYb+XUALcOQxMNfW1nWITQF3JeTH0dCH4M34=;
+        b=f7DW9BojkCrHwq32HIzyeXm1FqfVamIKljSnelV+8uptq8fI9iDq+6/XTkMLW35BJ0
+         2E5bMKNYcwRMGPUbPHGDoeda49R9y1NbATAZPKxy3vWDWQCZtnhasMzOnh90borkVEp5
+         Pyq9eM1aF4QsGHymgblggrakODREFyQ3VTY7ljmpTWqT1bmrGBE1eFci1PpRUQaTMbHZ
+         o7RqyFZISQa8+zXkQoaBzOIG7wGs+dY8YGF+AV2P/BmFMOosL2poxE9GGWocmDMZ8NmP
+         Zj3y4SNWMkD+ALX8cyEGP8B1EGbULtPw21rD+252v4GAbzduGC+OXJCZY6mhEi1vYgXc
+         zeeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=s7ucDQgsYb+XUALcOQxMNfW1nWITQF3JeTH0dCH4M34=;
+        b=fa9cQJ+HH/7/08s4l6cDYG0Zp0qWe1ZP00O7bnLlEZYXR3CXs7nH5AATf2urZkQsXC
+         +k7k+IUkeSrsnlSiH0UwSgYSI6xR8KIoXB0liduiDkeCvdKkkcW6S50qj+D5VVsr1pdK
+         MDaI1Oykbdcqze9HODNAf3Ht6UvuNiQ53BMgy/nCiYW0RwusTUzTVg+pbrcnGPk+UmEc
+         mDAJVE40A7/KFgaQmFF0QkStW7PE0c/9wRayu6vHrI6JQssEwzSIjMtPXD/gtDkhiG+Q
+         0kILbSxYVC+mukJE2oK7ox6wefzMAfWVT9L+l+soiLhgGXEAMbgF5bhU1ir/QwHBYFNp
+         LN/Q==
+X-Gm-Message-State: AOAM532zCuZPtQBdSFzGPPoywy1kmMWOAvz9lhnOCnp9ycesA9qMPxD+
+        f2YOo6sAUAwcfwaUiwj93S2g5VwnNOpCI46XjJRMsKh10KM=
+X-Google-Smtp-Source: ABdhPJwEoX+GE9TNyG6zQHdCSgd0e8rufnX3/nPdrrDVUu8sr3Jc5LcoctiwQrl2Yg7vztRVPUQWxIPjmljgCEJtWFE=
+X-Received: by 2002:a50:d80c:: with SMTP id o12mr4124786edj.338.1609946277927;
+ Wed, 06 Jan 2021 07:17:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tnol5fwcnhnynxmr"
-Content-Disposition: inline
-In-Reply-To: <1608755714-18233-5-git-send-email-stefan.wahren@i2se.com>
+References: <20201004162908.3216898-1-martin.blumenstingl@googlemail.com>
+ <20201004162908.3216898-4-martin.blumenstingl@googlemail.com>
+ <CACRpkdZo-U_cAhbKb4E+d+p+5FenXkGYW0RXxyk4M5uyEPCpzw@mail.gmail.com>
+ <CAFBinCCLubmDvxfabQHx2-ucgAsm1NArMUrtPx-UA2nX5xoFFA@mail.gmail.com>
+ <CAFBinCAZXJ2=fTQuAUyW1hNeJDHY3_pxo4UhxUaOZC=i1bpFxw@mail.gmail.com> <CACRpkdbKQaT61w6r9Hx40Qvy+7qyLNm-fx-BpL_wdGcB=tmcqQ@mail.gmail.com>
+In-Reply-To: <CACRpkdbKQaT61w6r9Hx40Qvy+7qyLNm-fx-BpL_wdGcB=tmcqQ@mail.gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Wed, 6 Jan 2021 16:17:47 +0100
+Message-ID: <CAFBinCBCYZ3bzvvn==CFZyVh8E7TiGvW9PnqmK-Qd=y4X2HgNw@mail.gmail.com>
+Subject: Re: [RFC PATCH 3/3] gpio: ej1x8: Add GPIO driver for Etron Tech Inc. EJ168/EJ188/EJ198
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        linux-usb <linux-usb@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Linus,
 
---tnol5fwcnhnynxmr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Jan 5, 2021 at 11:23 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Mon, Dec 21, 2020 at 4:28 PM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> > On Wed, Oct 7, 2020 at 9:44 PM Martin Blumenstingl
+> > <martin.blumenstingl@googlemail.com> wrote:
+> > [...]
+> > > > As noted on the earlier patches I think this should be folded into the
+> > > > existing XHCI USB driver in drivers/usb/host/xhci-pci.c or, if that
+> > > > gets messy, as a separate bolt-on, something like
+> > > > xhci-pci-gpio.[c|h] in the drivers/usb/host/* directory.
+> > > > You can use a Kconfig symbol for the GPIO portions or not.
+> > > OK, I will do that if there are no objections from other developers
+> > > I am intending to place the relevant code in xhci-pci-etron.c, similar
+> > > to what we already have with xhci-pci-renesas.c
+> >
+> > I tried this and unfortunately there's a catch.
+> > the nice thing about having a separate GPIO driver means that the
+> > xhci-pci driver doesn't need to know about it.
+>
+> Since PCI devices have device-wide power management and things
+> like that I think that is a really dangerous idea.
+>
+> What if the GPIO driver starts poking around in this PCI device
+> when the main driver is also probed and has put the device
+> into sleep state?
+that is asking for trouble, indeed.
 
-On Wed, Dec 23, 2020 at 09:35:14PM +0100, Stefan Wahren wrote:
-> This converts the v3d bindings to yaml format.
->=20
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->  .../devicetree/bindings/gpu/brcm,bcm-v3d.txt       | 33 ----------
->  .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 76 ++++++++++++++++=
-++++++
->  2 files changed, 76 insertions(+), 33 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
->  create mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.ya=
-ml
->=20
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt b/Doc=
-umentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-> deleted file mode 100644
-> index b2df82b..0000000
-> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -Broadcom V3D GPU
-> -
-> -Only the Broadcom V3D 3.x and newer GPUs are covered by this binding.
-> -For V3D 2.x, see brcm,bcm-vc4.txt.
-> -
-> -Required properties:
-> -- compatible:	Should be "brcm,7268-v3d" or "brcm,7278-v3d"
-> -- reg:		Physical base addresses and lengths of the register areas
-> -- reg-names:	Names for the register areas.  The "hub" and "core0"
-> -		  register areas are always required.  The "gca" register area
-> -		  is required if the GCA cache controller is present.  The
-> -		  "bridge" register area is required if an external reset
-> -		  controller is not present.
-> -- interrupts:	The interrupt numbers.  The first interrupt is for the hub,
-> -		  while the following interrupts are separate interrupt lines
-> -		  for the cores (if they don't share the hub's interrupt).
-> -		  See bindings/interrupt-controller/interrupts.txt
-> -
-> -Optional properties:
-> -- clocks:	The core clock the unit runs on
-> -- resets:	The reset line for v3d, if not using a mapping of the bridge
-> -		  See bindings/reset/reset.txt
-> -
-> -v3d {
-> -	compatible =3D "brcm,7268-v3d";
-> -	reg =3D <0xf1204000 0x100>,
-> -	      <0xf1200000 0x4000>,
-> -	      <0xf1208000 0x4000>,
-> -	      <0xf1204100 0x100>;
-> -	reg-names =3D "bridge", "hub", "core0", "gca";
-> -	interrupts =3D <0 78 4>,
-> -		     <0 77 4>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Do=
-cumentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> new file mode 100644
-> index 0000000..a2b06d42
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom V3D GPU Bindings
-> +
-> +maintainers:
-> +  - Eric Anholt <eric@anholt.net>
-> +  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^gpu@[a-f0-9]+$'
-> +
-> +  compatible:
-> +    enum:
-> +      - brcm,7268-v3d
-> +      - brcm,7278-v3d
-> +
-> +  reg:
-> +    items:
-> +      - description: hub register
-> +      - description: core0 register
-> +      - description: GCA cache controller register (if GCA controller)
-> +      - description: bridge register (if no external reset controller)
-> +    minItems: 2
-> +    maxItems: 4
-> +
-> +  reg-names:
-> +    items:
-> +      enum: [ bridge, core0, gca, hub ]
-> +    minItems: 2
-> +    maxItems: 4
+[...]
+> > I implemented xhci-pci-etron.c and gave it a Kconfig option.
+> > xhci-pci is then calling into xhci-pci-etron (through some
+> > etron_xhci_pci_probe function).
+>
+> This sounds about right.
+>
+> > unfortunately this means that xhci-pci now depends on xhci-pci-etron.
+> > for xhci-pci-renesas this is fine (I think) because that part of the
+> > code is needed to get the xHCI controller going
+> > but for xhci-pci-etron this is a different story: the GPIO controller
+> > is entirely optional and only used on few devices
+>
+> I might be naive but should it not be the other way around?
+> That xhci-pci-etron is dependent on xhci-pci? I imagine
+> it would be an optional add-on.
+the only way to achieve this that I can think of is to basically have
+xhci-pci-etron implement it's own pci_driver and then call
+xhci_pci_probe, xhci_pci_remove, etc.
+but then it depends on the driver load order if the GPIO controller is exposed
 
-It's not really clear here what interrupts are expected. I assume that
-bridge and core0 are always supposed to be here, but gca and hub are
-optional?
+what structure did you have in mind to achieve this?
 
-It would be a bit cumbersome to get it to check properly, but we can at
-least make it obvious in the binding with a comment or the description
+> > my goal is (at some point in the future) to have the GPIO driver in OpenWrt.
+> > I am not sure if they would accept a patch where xhci-pci would then
+> > pull in the dependencies for that Etron controller, even though most
+> > boards don't need it.
+>
+> Make sure the etron part is an additional module that can be
+> loaded after xhci-pci.
+my approach from above unfortunately would not achieve this
+so if you have an idea how to achieve this (or have any other driver
+in mind that I can use as reference, even if not related to
+GPIO/USB/PCI then please let me know)
 
-> +
-> +  interrupts:
-> +    items:
-> +      - description: hub interrupt
-> +      - description: core interrupt (if it doesn't share the hub's inter=
-rupt)
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    maxItems: 1
+> OpenWrt support optional modules to be compiled per-system.
+that I already found out. That's why I think that I need to get the
+driver part "right" and then get the OpenWrt part done in just a few
+lines of their build-system
 
-This property wasn't in the previous binding?
 
-Maxime
-
---tnol5fwcnhnynxmr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/XTYAAKCRDj7w1vZxhR
-xeX5AP9AviPTqeBta4BqK7rpLkhbLmluVMjvq1x/qNn1nKXXRwD+JlpAS4gfPcmh
-zcmHc6mNlGhVfxLdgD+Zp5v+4b0fJws=
-=Yix0
------END PGP SIGNATURE-----
-
---tnol5fwcnhnynxmr--
+Best regards,
+Martin
