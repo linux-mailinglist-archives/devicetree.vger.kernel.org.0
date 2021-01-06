@@ -2,322 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F12042EC045
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:19:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3AFE2EC048
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 16:20:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726636AbhAFPSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 10:18:51 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:53412 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725803AbhAFPSv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 10:18:51 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DD1BA878;
-        Wed,  6 Jan 2021 16:18:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1609946288;
-        bh=6Mbpshc2s926symhXWx345xx90B3Cra5PtgDj9FiqdA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C6JMRL/n2Qd7l9lfx527Y2Ktoyn9a3/c+aBLBvW3g1JnCHJey0qA//ZOg+ZLHcrX9
-         i/Fyo8mhUAg1qj8hoNcomGOvi9mk2+o0/J/hBvIXUeFpD0y+UuCc7Ho+B6ZVMoCAn2
-         ScfZDX2dbKpm5PgFPvWpPXQ2FPqW5/NER4Rx5Jyk=
-Date:   Wed, 6 Jan 2021 17:17:55 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-renesas-soc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Mark Yao <markyao0591@gmail.com>
-Subject: Re: [PATCH v3 4/6] dt-bindings: display: rockchip: dw-hdmi: Convert
- binding to YAML
-Message-ID: <X/XUow/ku/bsDXvr@pendragon.ideasonboard.com>
-References: <20210105060818.24158-1-laurent.pinchart+renesas@ideasonboard.com>
- <20210105060818.24158-5-laurent.pinchart+renesas@ideasonboard.com>
+        id S1726794AbhAFPUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 10:20:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40040 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726663AbhAFPUY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Jan 2021 10:20:24 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 068C32311D;
+        Wed,  6 Jan 2021 15:19:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609946383;
+        bh=u/iJ2yg1n0QdcVgVvjTf284lvZQ11lam/cryS8nLa+Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WotmtCzjWxb2CAu2KAtsKTJqh9iCxeOMgicnKsFyUrueNxBBcVCCmpWMJbg8PY8SO
+         VFt7v5v95F3h4lF7UoXFeabAeqZHgU866dLUQQrZGu0jdI9RZPELcSdjK+OoEvW37U
+         q0mdbZDCAzvwLFBCun8X7E9ZgDEt8NFeSCvFas0qa3f/4K3XPVwl1lsjP+t6l5pJhA
+         SROujlVC3B1fXZGLceKzxvi7TQ727HRqhu9pKNB7rcomm3nMWJVGR1utKmSrS7+NR5
+         lH1EYBshQUWRi4+1RJmbENh1kBUWaVTGKiMLhpqvzthK/KzcB3xdc0qFVMdk2eVMrp
+         CRIZb2wQnRAIg==
+Received: by mail-ej1-f42.google.com with SMTP id x16so5495813ejj.7;
+        Wed, 06 Jan 2021 07:19:42 -0800 (PST)
+X-Gm-Message-State: AOAM533zkV39EsVMBHq76NgypnulOxwz225Y3H8GGq3XcKbeJu/Vphjk
+        og8es/ZLkyWIdnCQBrhldGBFDw82mxvEU9BlLg==
+X-Google-Smtp-Source: ABdhPJwPL16fykEpX2fD9d2FVv1igr6adK+Y9++9zCcaas+Y0dkpBkV43bpwEX//uW/IjRj0aVqrCnagC5484H8w9Ew=
+X-Received: by 2002:a17:906:d87:: with SMTP id m7mr3151012eji.108.1609946381645;
+ Wed, 06 Jan 2021 07:19:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210105060818.24158-5-laurent.pinchart+renesas@ideasonboard.com>
+References: <20210104131755.2979203-1-bert@biot.com> <20210104131755.2979203-2-bert@biot.com>
+ <1609866288.019144.372417.nullmailer@robh.at.kernel.org> <f5333394-8141-64ed-de30-d3b095ef579e@biot.com>
+In-Reply-To: <f5333394-8141-64ed-de30-d3b095ef579e@biot.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 6 Jan 2021 08:19:30 -0700
+X-Gmail-Original-Message-ID: <CAL_Jsq+o+27V9DzDnShpWt+oLz38qF+a8a8eMi-qKr+nqJWSxw@mail.gmail.com>
+Message-ID: <CAL_Jsq+o+27V9DzDnShpWt+oLz38qF+a8a8eMi-qKr+nqJWSxw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: Add Realtek
+ RTL838x/RTL839x support
+To:     Bert Vermeulen <bert@biot.com>
+Cc:     devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Marc Zyngier <maz@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Thomas Gleixner <tglx@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, Jan 6, 2021 at 2:55 AM Bert Vermeulen <bert@biot.com> wrote:
+>
+> On 1/5/21 6:04 PM, Rob Herring wrote:
+> > On Mon, 04 Jan 2021 14:17:54 +0100, Bert Vermeulen wrote:
+> >> Signed-off-by: Bert Vermeulen <bert@biot.com>
+> >> ---
+> >>  .../realtek,rtl-intc.yaml                     | 57 +++++++++++++++++++
+> >>  1 file changed, 57 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+> >>
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+>
+> I fixed the syntax error that caused this to fail. But running the test now
+> produces some errors that are not so obvious:
+>
+>    interrupt-controller@3000: interrupt-map: [[31, 4294967295, 2], [30,
+> 4294967295, 1], [29, 4294967295, 5]] is too short
+>
+> Not sure where this comes from, but running dt-validate -v gives this:
+>
+>    Failed validating 'minItems' in schema['properties']['interrupt-map']:
+>      {'maxItems': 24, 'minItems': 24}
+>
+> Where did that 24 come from? I don't even have 24 initerrupts to map :-)
 
-Given that the maintainers property is mandatory in the schema, what's
-the procedure when no maintainer steps up for a converter YAML binding ?
+If you don't define minItems, then the default is the same as
+maxItems. So you need to set 'minItems'.
 
-On Tue, Jan 05, 2021 at 08:08:16AM +0200, Laurent Pinchart wrote:
-> Convert the Rockchip HDMI TX text binding to YAML.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> ---
-> Changes since v2:
-> 
-> - Use Mark's @gmail.com e-mail address as the @rock-chips.com address
->   bounces
-> 
-> Changes since v1:
-> 
-> - Drop pinctrl-0 and pinctrl-1
-> - Use unevaluatedProperties instead of additionalProperties
-> - Drop reg and interrupts as they're checked in the base schema
-> - Rebase on top of OF graph schema, dropped redundant properties
-> - Fix identation for enum entries
-> - Tidy up clock names
-> ---
->  .../display/rockchip/dw_hdmi-rockchip.txt     |  74 --------
->  .../display/rockchip/rockchip,dw-hdmi.yaml    | 158 ++++++++++++++++++
->  2 files changed, 158 insertions(+), 74 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-> deleted file mode 100644
-> index 3d32ce137e7f..000000000000
-> --- a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-> +++ /dev/null
-> @@ -1,74 +0,0 @@
-> -Rockchip DWC HDMI TX Encoder
-> -============================
-> -
-> -The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
-> -with a companion PHY IP.
-> -
-> -These DT bindings follow the Synopsys DWC HDMI TX bindings defined in
-> -Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt with the
-> -following device-specific properties.
-> -
-> -
-> -Required properties:
-> -
-> -- compatible: should be one of the following:
-> -		"rockchip,rk3228-dw-hdmi"
-> -		"rockchip,rk3288-dw-hdmi"
-> -		"rockchip,rk3328-dw-hdmi"
-> -		"rockchip,rk3399-dw-hdmi"
-> -- reg: See dw_hdmi.txt.
-> -- reg-io-width: See dw_hdmi.txt. Shall be 4.
-> -- interrupts: HDMI interrupt number
-> -- clocks: See dw_hdmi.txt.
-> -- clock-names: Shall contain "iahb" and "isfr" as defined in dw_hdmi.txt.
-> -- ports: See dw_hdmi.txt. The DWC HDMI shall have a single port numbered 0
-> -  corresponding to the video input of the controller. The port shall have two
-> -  endpoints, numbered 0 and 1, connected respectively to the vopb and vopl.
-> -- rockchip,grf: Shall reference the GRF to mux vopl/vopb.
-> -
-> -Optional properties
-> -
-> -- ddc-i2c-bus: The HDMI DDC bus can be connected to either a system I2C master
-> -  or the functionally-reduced I2C master contained in the DWC HDMI. When
-> -  connected to a system I2C master this property contains a phandle to that
-> -  I2C master controller.
-> -- clock-names: See dw_hdmi.txt. The "cec" clock is optional.
-> -- clock-names: May contain "cec" as defined in dw_hdmi.txt.
-> -- clock-names: May contain "grf", power for grf io.
-> -- clock-names: May contain "vpll", external clock for some hdmi phy.
-> -- phys: from general PHY binding: the phandle for the PHY device.
-> -- phy-names: Should be "hdmi" if phys references an external phy.
-> -
-> -Optional pinctrl entry:
-> -- If you have both a "unwedge" and "default" pinctrl entry, dw_hdmi
-> -  will switch to the unwedge pinctrl state for 10ms if it ever gets an
-> -  i2c timeout.  It's intended that this unwedge pinctrl entry will
-> -  cause the SDA line to be driven low to work around a hardware
-> -  errata.
-> -
-> -Example:
-> -
-> -hdmi: hdmi@ff980000 {
-> -	compatible = "rockchip,rk3288-dw-hdmi";
-> -	reg = <0xff980000 0x20000>;
-> -	reg-io-width = <4>;
-> -	ddc-i2c-bus = <&i2c5>;
-> -	rockchip,grf = <&grf>;
-> -	interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> -	clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
-> -	clock-names = "iahb", "isfr";
-> -	ports {
-> -		hdmi_in: port {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -			hdmi_in_vopb: endpoint@0 {
-> -				reg = <0>;
-> -				remote-endpoint = <&vopb_out_hdmi>;
-> -			};
-> -			hdmi_in_vopl: endpoint@1 {
-> -				reg = <1>;
-> -				remote-endpoint = <&vopl_out_hdmi>;
-> -			};
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> new file mode 100644
-> index 000000000000..d3b2f87f152a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> @@ -0,0 +1,158 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip DWC HDMI TX Encoder
-> +
-> +maintainers:
-> +  - Mark Yao <markyao0591@gmail.com>
-> +
-> +description: |
-> +  The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
-> +  with a companion PHY IP.
-> +
-> +allOf:
-> +  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3228-dw-hdmi
-> +      - rockchip,rk3288-dw-hdmi
-> +      - rockchip,rk3328-dw-hdmi
-> +      - rockchip,rk3399-dw-hdmi
-> +
-> +  reg-io-width:
-> +    const: 4
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 5
-> +    items:
-> +      - {}
-> +      - {}
-> +      # The next three clocks are all optional, but shall be specified in this
-> +      # order when present.
-> +      - description: The HDMI CEC controller main clock
-> +      - description: Power for GRF IO
-> +      - description: External clock for some HDMI PHY
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    maxItems: 5
-> +    items:
-> +      - {}
-> +      - {}
-> +      - enum:
-> +          - cec
-> +          - grf
-> +          - vpll
-> +      - enum:
-> +          - grf
-> +          - vpll
-> +      - const: vpll
-> +
-> +  ddc-i2c-bus:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      The HDMI DDC bus can be connected to either a system I2C master or the
-> +      functionally-reduced I2C master contained in the DWC HDMI. When connected
-> +      to a system I2C master this property contains a phandle to that I2C
-> +      master controller.
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description: The HDMI PHY
-> +
-> +  phy-names:
-> +    const: hdmi
-> +
-> +  pinctrl-names:
-> +    description:
-> +      The unwedge pinctrl entry shall drive the DDC SDA line low. This is
-> +      intended to work around a hardware errata that can cause the DDC I2C
-> +      bus to be wedged.
-> +    items:
-> +      - const: default
-> +      - const: unwedge
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Input of the DWC HDMI TX
-> +
-> +        properties:
-> +          endpoint@0:
-> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +            unevaluatedProperties: false
-> +            description: Connection to the VOPB
-> +
-> +          endpoint@1:
-> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +            unevaluatedProperties: false
-> +            description: Connection to the VOPL
-> +
-> +        required:
-> +          - endpoint@0
-> +          - endpoint@1
-> +
-> +    required:
-> +      - port
-> +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to the GRF to mux vopl/vopb.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-io-width
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - ports
-> +  - rockchip,grf
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3288-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    hdmi: hdmi@ff980000 {
-> +        compatible = "rockchip,rk3288-dw-hdmi";
-> +        reg = <0xff980000 0x20000>;
-> +        reg-io-width = <4>;
-> +        ddc-i2c-bus = <&i2c5>;
-> +        rockchip,grf = <&grf>;
-> +        interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
-> +        clock-names = "iahb", "isfr";
-> +
-> +        ports {
-> +            port {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                hdmi_in_vopb: endpoint@0 {
-> +                    reg = <0>;
-> +                    remote-endpoint = <&vopb_out_hdmi>;
-> +                };
-> +                hdmi_in_vopl: endpoint@1 {
-> +                    reg = <1>;
-> +                    remote-endpoint = <&vopl_out_hdmi>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
+>
+> Another error is this:
+>
+>    interrupt-controller@3000: 'interrupt-map-mask' is a dependency of
+> 'interrupt-map'
+>
+> I can see this in your dtschema package's schemas/interrupt-controller.yaml
+> where it's defined as a dependency, but why? I don't need that property.
 
--- 
-Regards,
+This should be the other way around. I'll fix it.
 
-Laurent Pinchart
+Rob
