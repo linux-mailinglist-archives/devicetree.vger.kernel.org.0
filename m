@@ -2,147 +2,372 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B6632EBCAD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 11:49:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 540EF2EBCE7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Jan 2021 12:00:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726074AbhAFKt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 05:49:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50890 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726063AbhAFKt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 05:49:26 -0500
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A584C06134D
-        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 02:48:57 -0800 (PST)
-Received: by mail-vs1-xe2a.google.com with SMTP id r24so1534362vsg.10
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 02:48:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=65bthvYlj9KKIS5KK6JhxNYJMD8s4MDQLZpfgKqd4vM=;
-        b=X7GGMa423pBbYfE4+HR39/XGdoDcfr3nbm8+IarZvID4Pf5pRICqedHoV1eEljrqvh
-         1wjAGleOvGRLUtM2TA6SjwweF91aOSKSAHJQ+VWXnmcAOjDSGBetJbOtEXmvkzoISqnO
-         gun7Yry+f4793b7Iq7Mmya8p7nFGc8lI/3GsE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=65bthvYlj9KKIS5KK6JhxNYJMD8s4MDQLZpfgKqd4vM=;
-        b=pgVkJTrCgiBuQqMUTpSWlT7DhG9W5uW5KypsexUPKLksGx8/dYZ6+hYJFAIhXpNbNR
-         Urht9x6TPn4fTcxTE4cyXXysLvu0PV5emxJM590yXMojqYc+VJ02vdo47zclhw0MycFW
-         hXRQHTHFLO7Od+CFf2v/XplBrRplq242gaIsL41oZW6EF02yaPxqsahK/EHHFwQTl4BC
-         TpNNApaBoq7Tyb0VW6RJihK0Qp+05bQPDX+DXXtlkfPq3j3IbIxtQOOSQ0SCyJjkbZfA
-         cU+B9jzByCi5ws4Mz0MCIUe2uVIK7FUfbatwrz0r/GC7vCbqwv/p9eKhTQAF2iO1bSWS
-         oucg==
-X-Gm-Message-State: AOAM531f9nSnSwYWxbLFLeJlk4aVKZ+q/C7czc6pS2wNb6GlCBK0cUCv
-        8RK21EwVDWnfmIyfewGO3AaPC2LzBqBpjvxyoEgeEQ==
-X-Google-Smtp-Source: ABdhPJz9ON8BwWq+VaecVefOOUeLpjkYUuNp9NU/OAWS/f/jzOReQa42tBRohJ5XkaU0WXUWBPttXpWvspWnaIv70xQ=
-X-Received: by 2002:a67:5c03:: with SMTP id q3mr2560878vsb.47.1609930136255;
- Wed, 06 Jan 2021 02:48:56 -0800 (PST)
+        id S1726631AbhAFLAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 06:00:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36670 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726433AbhAFLAJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Jan 2021 06:00:09 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2B16222C9F;
+        Wed,  6 Jan 2021 10:59:28 +0000 (UTC)
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kx6XG-005cMk-0h; Wed, 06 Jan 2021 10:59:26 +0000
 MIME-Version: 1.0
-References: <20210106084626.2181286-1-hsinyi@chromium.org> <CANMq1KAoboK45uOhKMYZ-=TvBBQRZhEeij=ha6MqSKZiYx64eQ@mail.gmail.com>
-In-Reply-To: <CANMq1KAoboK45uOhKMYZ-=TvBBQRZhEeij=ha6MqSKZiYx64eQ@mail.gmail.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Wed, 6 Jan 2021 18:48:45 +0800
-Message-ID: <CANMq1KDGUSGE5Vb3WQMhgECkBL_PTMHnS+8wTP6W0Uhhv9RJJQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: mt8183: config dsi node
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 06 Jan 2021 10:59:25 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
+Cc:     robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        tglx@linutronix.de, p.zabel@pengutronix.de,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
+Subject: Re: [PATCH 4/6] irqchip/aspeed: Add Aspeed eSPI interrupt controller
+In-Reply-To: <20210106055939.19386-5-chiawei_wang@aspeedtech.com>
+References: <20210106055939.19386-1-chiawei_wang@aspeedtech.com>
+ <20210106055939.19386-5-chiawei_wang@aspeedtech.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <123bc25c72b3b17c0c4154d8bd8ce3b0@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: chiawei_wang@aspeedtech.com, robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au, tglx@linutronix.de, p.zabel@pengutronix.de, linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 6, 2021 at 6:47 PM Nicolas Boichat <drinkcat@chromium.org> wrote:
->
-> On Wed, Jan 6, 2021 at 4:46 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> >
-> > Config dsi node for mt8183 kukui. Set panel and ports.
-> >
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > ---
-> >  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 38 +++++++++++++++++++
-> >  1 file changed, 38 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > index bf2ad1294dd30..4cfb3560e5d11 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > @@ -249,6 +249,36 @@ &cpu7 {
-> >         proc-supply = <&mt6358_vproc11_reg>;
-> >  };
-> >
-> > +&dsi0 {
-> > +       status = "okay";
-> > +       #address-cells = <1>;
-> > +       #size-cells = <0>;
-> > +       panel: panel@0 {
-> > +               compatible = "boe,tv101wum-nl6";
->
-> We're going to have many panels in the kukui family, so I think I'd
-> prefer it if you moved the compatible string to krane-sku0 dts: it
-> makes it easier to figure out what's different with sku0.
+On 2021-01-06 05:59, Chia-Wei, Wang wrote:
+> The eSPI interrupt controller acts as a SW IRQ number
+> decoder to correctly control/dispatch interrupts of
+> the eSPI peripheral, virtual wire, out-of-band, and
+> flash channels.
+> 
+> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+> ---
+>  drivers/irqchip/Makefile             |   2 +-
+>  drivers/irqchip/irq-aspeed-espi-ic.c | 251 ++++++++++++++++++++++++
+>  include/soc/aspeed/espi.h            | 279 +++++++++++++++++++++++++++
+>  3 files changed, 531 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/irqchip/irq-aspeed-espi-ic.c
+>  create mode 100644 include/soc/aspeed/espi.h
+> 
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index 0ac93bfaec61..56da4a3123f8 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -86,7 +86,7 @@ obj-$(CONFIG_MVEBU_PIC)			+= irq-mvebu-pic.o
+>  obj-$(CONFIG_MVEBU_SEI)			+= irq-mvebu-sei.o
+>  obj-$(CONFIG_LS_EXTIRQ)			+= irq-ls-extirq.o
+>  obj-$(CONFIG_LS_SCFG_MSI)		+= irq-ls-scfg-msi.o
+> -obj-$(CONFIG_ARCH_ASPEED)		+= irq-aspeed-vic.o irq-aspeed-i2c-ic.o
+> irq-aspeed-scu-ic.o
+> +obj-$(CONFIG_ARCH_ASPEED)		+= irq-aspeed-vic.o irq-aspeed-i2c-ic.o
+> irq-aspeed-scu-ic.o irq-aspeed-espi-ic.o
+>  obj-$(CONFIG_STM32_EXTI) 		+= irq-stm32-exti.o
+>  obj-$(CONFIG_QCOM_IRQ_COMBINER)		+= qcom-irq-combiner.o
+>  obj-$(CONFIG_IRQ_UNIPHIER_AIDET)	+= irq-uniphier-aidet.o
+> diff --git a/drivers/irqchip/irq-aspeed-espi-ic.c
+> b/drivers/irqchip/irq-aspeed-espi-ic.c
+> new file mode 100644
+> index 000000000000..8a5cc8fe3f0c
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-aspeed-espi-ic.c
+> @@ -0,0 +1,251 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (c) 2020 Aspeed Technology Inc.
+> + */
+> +#include <linux/bitops.h>
+> +#include <linux/module.h>
+> +#include <linux/irq.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/regmap.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +
+> +#include <soc/aspeed/espi.h>
+> +#include <dt-bindings/interrupt-controller/aspeed-espi-ic.h>
+> +
+> +#define DEVICE_NAME	"aspeed-espi-ic"
+> +#define IRQCHIP_NAME	"eSPI-IC"
+> +
+> +#define ESPI_IC_IRQ_NUM	7
+> +
+> +struct aspeed_espi_ic {
+> +	struct regmap *map;
+> +	int irq;
+> +	int gpio_irq;
+> +	struct irq_domain *irq_domain;
+> +};
+> +
+> +static void aspeed_espi_ic_gpio_isr(struct irq_desc *desc)
+> +{
+> +	unsigned int irq;
+> +	struct aspeed_espi_ic *espi_ic = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	irq = irq_find_mapping(espi_ic->irq_domain,
+> +				   ASPEED_ESPI_IC_CTRL_RESET);
+> +	generic_handle_irq(irq);
+> +
+> +	irq = irq_find_mapping(espi_ic->irq_domain,
+> +				   ASPEED_ESPI_IC_CHAN_RESET);
+> +	generic_handle_irq(irq);
 
-I meant sku176 (since you are adding sku0 with a different panel
-compatible later).
+So for each mux interrupt, you generate two endpoints interrupt,
+without even checking whether they are pending? That's no good.
 
->
-> Then maybe leave all the other properties in this file, as it seems
-> like all MIPI panels use the exact same pin/supplies?
->
-> (And add a comment here saying that the compatible needs to be set in
-> board dts?)
->
-> > +               reg = <0>;
-> > +               enable-gpios = <&pio 45 0>;
-> > +               pinctrl-names = "default";
-> > +               pinctrl-0 = <&panel_pins_default>;
-> > +               avdd-supply = <&ppvarn_lcd>;
-> > +               avee-supply = <&ppvarp_lcd>;
-> > +               pp1800-supply = <&pp1800_lcd>;
-> > +               status = "okay";
-> > +               port {
-> > +                       panel_in: endpoint {
-> > +                               remote-endpoint = <&dsi_out>;
-> > +                       };
-> > +               };
-> > +       };
-> > +
-> > +       ports {
-> > +               port {
-> > +                       dsi_out: endpoint {
-> > +                               remote-endpoint = <&panel_in>;
-> > +                       };
-> > +               };
-> > +       };
-> > +};
-> > +
-> >  &i2c0 {
-> >         pinctrl-names = "default";
-> >         pinctrl-0 = <&i2c0_pins>;
-> > @@ -547,6 +577,14 @@ pins_clk {
-> >                 };
-> >         };
-> >
-> > +       panel_pins_default: panel_pins_default {
-> > +               panel_reset {
-> > +                       pinmux = <PINMUX_GPIO45__FUNC_GPIO45>;
-> > +                       output-low;
-> > +                       bias-pull-up;
-> > +               };
-> > +       };
-> > +
-> >         pwm0_pin_default: pwm0_pin_default {
-> >                 pins1 {
-> >                         pinmux = <PINMUX_GPIO176__FUNC_GPIO176>;
-> > --
-> > 2.29.2.729.g45daf8777d-goog
-> >
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void aspeed_espi_ic_isr(struct irq_desc *desc)
+> +{
+> +	unsigned int sts;
+> +	unsigned int irq;
+> +	struct aspeed_espi_ic *espi_ic = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	regmap_read(espi_ic->map, ESPI_INT_STS, &sts);
+> +
+> +	if (sts & ESPI_INT_STS_PERIF_BITS) {
+> +		irq = irq_find_mapping(espi_ic->irq_domain,
+> +				       ASPEED_ESPI_IC_PERIF_EVENT);
+> +		generic_handle_irq(irq);
+> +	}
+> +
+> +	if (sts & ESPI_INT_STS_VW_BITS) {
+> +		irq = irq_find_mapping(espi_ic->irq_domain,
+> +				       ASPEED_ESPI_IC_VW_EVENT);
+> +		generic_handle_irq(irq);
+> +	}
+> +
+> +	if (sts & ESPI_INT_STS_OOB_BITS) {
+> +		irq = irq_find_mapping(espi_ic->irq_domain,
+> +				       ASPEED_ESPI_IC_OOB_EVENT);
+> +		generic_handle_irq(irq);
+> +	}
+> +
+> +	if (sts & ESPI_INT_STS_FLASH_BITS) {
+> +		irq = irq_find_mapping(espi_ic->irq_domain,
+> +				       ASPEED_ESPI_IC_FLASH_EVENT);
+> +		generic_handle_irq(irq);
+> +	}
+> +
+> +	if (sts & ESPI_INT_STS_HW_RST_DEASSERT) {
+> +		irq = irq_find_mapping(espi_ic->irq_domain,
+> +				       ASPEED_ESPI_IC_CTRL_EVENT);
+> +		generic_handle_irq(irq);
+> +	}
+
+This is horrible. Why can't you just use fls() in a loop?
+
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void aspeed_espi_ic_irq_disable(struct irq_data *data)
+> +{
+> +	struct aspeed_espi_ic *espi_ic = irq_data_get_irq_chip_data(data);
+> +
+> +	switch (data->hwirq) {
+> +	case ASPEED_ESPI_IC_CTRL_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_HW_RST_DEASSERT,
+> +				   0);
+> +		break;
+> +	case ASPEED_ESPI_IC_PERIF_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_PERIF_BITS, 0);
+> +		break;
+> +	case ASPEED_ESPI_IC_VW_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_VW_BITS, 0);
+> +		break;
+> +	case ASPEED_ESPI_IC_OOB_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_OOB_BITS, 0);
+> +		break;
+> +	case ASPEED_ESPI_IC_FLASH_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_FLASH_BITS, 0);
+> +		break;
+> +	}
+
+Most of these are masking multiple events at once, which makes me
+think that it really doesn't belong here...
+
+> +}
+> +
+> +static void aspeed_espi_ic_irq_enable(struct irq_data *data)
+> +{
+> +	struct aspeed_espi_ic *espi_ic = irq_data_get_irq_chip_data(data);
+> +
+> +	switch (data->hwirq) {
+> +	case ASPEED_ESPI_IC_CTRL_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_HW_RST_DEASSERT,
+> +				   ESPI_INT_EN_HW_RST_DEASSERT);
+> +		break;
+> +	case ASPEED_ESPI_IC_PERIF_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_PERIF_BITS,
+> +				   ESPI_INT_EN_PERIF_BITS);
+> +		break;
+> +	case ASPEED_ESPI_IC_VW_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_VW_BITS,
+> +				   ESPI_INT_EN_VW_BITS);
+> +		break;
+> +	case ASPEED_ESPI_IC_OOB_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_OOB_BITS,
+> +				   ESPI_INT_EN_OOB_BITS);
+> +		break;
+> +	case ASPEED_ESPI_IC_FLASH_EVENT:
+> +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> +				   ESPI_INT_EN_FLASH_BITS,
+> +				   ESPI_INT_EN_FLASH_BITS);
+> +		break;
+> +	}
+> +}
+> +
+> +static struct irq_chip aspeed_espi_ic_chip = {
+> +	.name = IRQCHIP_NAME,
+> +	.irq_enable = aspeed_espi_ic_irq_enable,
+> +	.irq_disable = aspeed_espi_ic_irq_disable,
+> +};
+> +
+> +static int aspeed_espi_ic_map(struct irq_domain *domain, unsigned int 
+> irq,
+> +			     irq_hw_number_t hwirq)
+> +{
+> +	irq_set_chip_and_handler(irq, &aspeed_espi_ic_chip, 
+> handle_simple_irq);
+> +	irq_set_chip_data(irq, domain->host_data);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops aspeed_espi_ic_domain_ops = {
+> +	.map = aspeed_espi_ic_map,
+> +};
+> +
+> +static int aspeed_espi_ic_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev;
+> +	struct aspeed_espi_ic *espi_ic;
+> +
+> +	dev = &pdev->dev;
+> +
+> +	espi_ic = devm_kzalloc(dev, sizeof(*espi_ic), GFP_KERNEL);
+> +	if (!espi_ic)
+> +		return -ENOMEM;
+> +
+> +	espi_ic->map = syscon_node_to_regmap(dev->parent->of_node);
+> +	if (IS_ERR(espi_ic->map)) {
+> +		dev_err(dev, "cannot get regmap\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	espi_ic->irq = platform_get_irq(pdev, 0);
+> +	if (espi_ic->irq < 0)
+> +		return espi_ic->irq;
+> +
+> +	espi_ic->gpio_irq = platform_get_irq(pdev, 1);
+> +	if (espi_ic->gpio_irq < 0)
+> +		return espi_ic->gpio_irq;
+> +
+> +	espi_ic->irq_domain = irq_domain_add_linear(dev->of_node, 
+> ESPI_IC_IRQ_NUM,
+> +						    &aspeed_espi_ic_domain_ops,
+> +						    espi_ic);
+> +	if (!espi_ic->irq_domain) {
+> +		dev_err(dev, "cannot to add irq domain\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	irq_set_chained_handler_and_data(espi_ic->irq,
+> +					 aspeed_espi_ic_isr,
+> +					 espi_ic);
+> +
+> +	irq_set_chained_handler_and_data(espi_ic->gpio_irq,
+> +					 aspeed_espi_ic_gpio_isr,
+> +					 espi_ic);
+> +
+> +	dev_set_drvdata(dev, espi_ic);
+> +
+> +	dev_info(dev, "eSPI IRQ controller initialized\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int aspeed_espi_ic_remove(struct platform_device *pdev)
+> +{
+> +	struct aspeed_espi_ic *espi_ic = platform_get_drvdata(pdev);
+> +
+> +	irq_domain_remove(espi_ic->irq_domain);
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id aspeed_espi_ic_of_matches[] = {
+> +	{ .compatible = "aspeed,ast2600-espi-ic" },
+> +	{ },
+> +};
+> +
+> +static struct platform_driver aspeed_espi_ic_driver = {
+> +	.driver = {
+> +		.name = DEVICE_NAME,
+> +		.of_match_table = aspeed_espi_ic_of_matches,
+> +	},
+> +	.probe = aspeed_espi_ic_probe,
+> +	.remove = aspeed_espi_ic_remove,
+> +};
+> +
+> +module_platform_driver(aspeed_espi_ic_driver);
+> +
+> +MODULE_AUTHOR("Chia-Wei Wang <chiawei_wang@aspeedtech.com>");
+> +MODULE_AUTHOR("Ryan Chen <ryan_chen@aspeedtech.com>");
+> +MODULE_DESCRIPTION("Aspeed eSPI interrupt controller");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/include/soc/aspeed/espi.h b/include/soc/aspeed/espi.h
+> new file mode 100644
+> index 000000000000..c9a4f51737ee
+> --- /dev/null
+> +++ b/include/soc/aspeed/espi.h
+> @@ -0,0 +1,279 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2020 Aspeed Technology Inc.
+> + * Author: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> + */
+> +#ifndef _ASPEED_ESPI_H_
+> +#define _ASPEED_ESPI_H_
+
+[...]
+
+If nothing else uses the data here, move it to the irqchip driver.
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
