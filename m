@@ -2,164 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52BBA2EE92D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 23:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A052EE9A5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 00:14:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728419AbhAGWvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 17:51:13 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50948 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727722AbhAGWvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 17:51:12 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 107MnUtN023753;
-        Thu, 7 Jan 2021 16:49:30 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610059770;
-        bh=51yABxhCeAmEePY6q8Lluk9jwTGYnWzQRyoK2i9Ziv8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=d/fCjMt0G30a1P6t/yUjo+j0I6KfhUGU3eixrTlkiNrNIdgH8rWlFHP4ir01EDSsM
-         6GJeb2hVM4fw61KS4pSpGcgIM0a1BOWb0v+vZtbbYshESRrq8z99p9TvABzRj5myGQ
-         wQUZ+2R2EB5LGsUPUoVIO3TLbTGUDOBVcoaCj4nQ=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 107MnUDK083642
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 7 Jan 2021 16:49:30 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 7 Jan
- 2021 16:49:29 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 7 Jan 2021 16:49:29 -0600
-Received: from [10.250.33.36] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 107MnTKk110118;
-        Thu, 7 Jan 2021 16:49:29 -0600
-Subject: Re: [PATCH v2 0/5] Introduce PRU remoteproc consumer API
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-CC:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        <ohad@wizery.com>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <ssantosh@kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <lee.jones@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <praneeth@ti.com>,
-        <rogerq@kernel.org>
-References: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
- <20210106232704.GE9149@xps15> <11303a1b-5ab4-def5-77b1-c500894c9c87@ti.com>
- <20210107224448.GB43045@xps15>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <75365443-57e3-e2e0-5865-f78af9d5890b@ti.com>
-Date:   Thu, 7 Jan 2021 16:49:29 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728423AbhAGXO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 18:14:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54052 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727738AbhAGXO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 18:14:26 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B4CC0612F8
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 15:13:46 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id v67so7736170ybi.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 15:13:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ma8dmHfcNup9f2l6KiI5aUKrS0zBSPZz4JeC2fHhEeg=;
+        b=dDB7m+6M5qRLNvBOVXpbKeRt4krh9Ey+Ax1NsJ02ZAiFTN5zcObWAiHNQtoIDP3k0h
+         QB+VsvGJr2/HqE7IEH7iBn9ES3r2EtncS3YhenGDA0RVepWqw2xylEt7wAAk+kQmnRsL
+         oJfjsMzwHWXpnej/WSiW6gmf6vwckM5TbaTQSZh4U5V10U9hw+MXxzi8OgkAs50UCqjG
+         2oqBFTJX1h0EgPbXnHrsXK6F741vMlq2zjHxCUxSSO0F7ml8WqN9+SJqDpCvumb/nAOG
+         9FhVNULHc+XE8z9J8E27PBxbUR+x7OZdXcgCRSb+1qZdSBHWoDE1cs5zM8pGjCUQaLul
+         2p+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ma8dmHfcNup9f2l6KiI5aUKrS0zBSPZz4JeC2fHhEeg=;
+        b=Q4yngzi7izlkcCFLq18I7blUwZYaajRbn6xrsmr8Kpjpw9YOYP3P6esv0S0BPSCMWq
+         B57OhcL8OWb3/jk5Z1HBUn3b2NpdLOvjzPuGmZbetobFzw1baUjZOzEdClXkXr/GfVak
+         L+gSJEvqib1MB+piujWBWf1zeC13C7lMNqRxDqm7AmOEoIpRZbsDGOs1B6pBo9X6bT87
+         UuM+F2ZQewaF6UgGCTt84FWBnZeUm9Pg5vtV3ZSbNUQez2ijWeCT/2M3YS2SkZb+0cqE
+         AxmA9K+Us6ZBEu6wBmUNhhVT9Oc2t9FonVKVcEyM1FESnR0O4fI8mp1aL+ZMztOYYQsw
+         mFhg==
+X-Gm-Message-State: AOAM531tT2aq/XnsNQqdKEqFF1E0w9UkymcNgq8QSRt9kpAEIJRGrR3n
+        sL5NLBA+3Vvhh8sOqhIcCemTox6lu2rGoPt21CABaQ==
+X-Google-Smtp-Source: ABdhPJzQxkg9rjd5HmkGmFUmyyb8YFizrn/9J62upZOBfX65Ww5bdLnFf9DQbUWCgPIE5PG3FRJYii+nHiCyxKY07hA=
+X-Received: by 2002:a25:4f55:: with SMTP id d82mr1751139ybb.466.1610061225334;
+ Thu, 07 Jan 2021 15:13:45 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210107224448.GB43045@xps15>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201218210750.3455872-1-saravanak@google.com>
+ <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
+ <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
+ <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com>
+ <CAGETcx_4n951Fx-Gn14ikDDxgWtv6QqQtNno9pcPJyiiGynWHQ@mail.gmail.com> <CAL_Jsq+mavViUqWDVTAYB5p1j5h7FUNCzM9hg-ttJzLuJazZFQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+mavViUqWDVTAYB5p1j5h7FUNCzM9hg-ttJzLuJazZFQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 7 Jan 2021 15:13:08 -0800
+Message-ID: <CAGETcx-PwEt58S24N-2dhnXavtyzdCd_F332npQXA6Czuf1hWQ@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Add device link support for interrupts
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/7/21 4:44 PM, Mathieu Poirier wrote:
-> On Wed, Jan 06, 2021 at 06:03:25PM -0600, Suman Anna wrote:
->> Hi Mathieu,
->>
->> On 1/6/21 5:27 PM, Mathieu Poirier wrote:
->>> On Wed, Dec 16, 2020 at 05:52:34PM +0100, Grzegorz Jaszczyk wrote:
->>>> Hi All,
->>>>
->>>> The Programmable Real-Time Unit and Industrial Communication Subsystem
->>>> (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
->>>> RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
->>>>
->>>> There are 3 foundation components for PRUSS subsystem: the PRUSS platform
->>>> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
->>>> already merged and can be found under:
->>>> 1) drivers/soc/ti/pruss.c
->>>>    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>> 2) drivers/irqchip/irq-pruss-intc.c
->>>>    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
->>>> 3) drivers/remoteproc/pru_rproc.c
->>>>    Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
->>>>
->>>> The programmable nature of the PRUs provide flexibility to implement custom
->>>> peripheral interfaces, fast real-time responses, or specialized data handling.
->>>> Example of a PRU consumer drivers will be:
->>>>   - Software UART over PRUSS
->>>>   - PRU-ICSS Ethernet EMAC
->>>>
->>>> In order to make usage of common PRU resources and allow the consumer drivers to
->>>> configure the PRU hardware for specific usage the PRU API is introduced.
->>>>
->>>> Patch #3 of this series depends on one not merged remteproc related patch [1].
->>>>
->>>> Please see the individual patches for exact changes in each patch, following is
->>>> the only change from v1:
->>>>  - Change the 'prus' property name to 'ti,prus' as suggested by Rob Herring,
->>>>  which influences patch #1 and patch #2
->>>>
->>>> [1] https://patchwork.kernel.org/project/linux-remoteproc/patch/20201121030156.22857-3-s-anna@ti.com/
->>>>
->>>> Best regards,
->>>> Grzegorz
->>>>
->>>> Roger Quadros (1):
->>>>   remoteproc: pru: Add pru_rproc_set_ctable() function
->>>>
->>>> Suman Anna (2):
->>>>   dt-bindings: remoteproc: Add PRU consumer bindings
->>>>   remoteproc: pru: Deny rproc sysfs ops for PRU client driven boots
->>>>
->>>> Tero Kristo (2):
->>>>   remoteproc: pru: Add APIs to get and put the PRU cores
->>>>   remoteproc: pru: Configure firmware based on client setup
->>>>
->>>>  .../bindings/remoteproc/ti,pru-consumer.yaml  |  64 +++++
->>>>  drivers/remoteproc/pru_rproc.c                | 221 +++++++++++++++++-
->>>>  include/linux/pruss.h                         |  78 +++++++
->>>
->>> This patchset is giving checkpatch.pl errors and as such will not go further
->>> with this revision.
->>
->> Yeah, I am aware of those. Greg has intentionally skipped the checkpatch
->> warnings around ENOTSUPP, based on some similar discussion on a different patch,
->> https://lkml.org/lkml/2020/11/10/764.
-> 
-> I only see input from Andy and Lars in the thread you point out, nothing from
-> Greg.  I have also taken a look at the patch [1] that made checkpatch complain
-> about ENOTSUPP.  From what I see in that commit log the goal is to prevent new
-> additions of ENOTSUPP to the kernel.
-> 
-> Please modify and resend, otherwise I'm sure someone will send another patch to
-> fix it before the end of the cycle.
+On Thu, Jan 7, 2021 at 11:33 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Jan 7, 2021 at 12:09 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Thu, Jan 7, 2021 at 10:39 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Wed, Jan 6, 2021 at 11:53 AM Saravana Kannan <saravanak@google.com> wrote:
+> > > >
+> > > > On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
+> > > > >
+> > > > > On Thu, 31 Dec 2020 21:12:40 +0000,
+> > > > > Rob Herring <robh@kernel.org> wrote:
+> > > > > >
+> > > > > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
+> > > > > > > On 2020-12-18 21:07, Saravana Kannan wrote:
+> > > > > > > > Add support for creating device links out of interrupts property.
+> > > > > > > >
+> > > > > > > > Cc: Marc Zyngier <maz@kernel.org>
+> > > > > > > > Cc: Kevin Hilman <khilman@baylibre.com>
+> > > > > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > > > > ---
+> > > > > > > > Rob/Greg,
+> > > > > > > >
+> > > > > > > > This might need to go into driver-core to avoid conflict
+> > > > > > > > due to fw_devlink refactor series that merged there.
+> > > > > > > >
+> > > > > > > > Thanks,
+> > > > > > > > Saravana
+> > > > > > > >
+> > > > > > > >
+> > > > > > > >  drivers/of/property.c | 17 +++++++++++++++++
+> > > > > > > >  1 file changed, 17 insertions(+)
+> > > > > > > >
+> > > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
+> > > > > > > > --- a/drivers/of/property.c
+> > > > > > > > +++ b/drivers/of/property.c
+> > > > > > > > @@ -1271,6 +1271,22 @@ static struct device_node
+> > > > > > > > *parse_iommu_maps(struct device_node *np,
+> > > > > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
+> > > > > > > >  }
+> > > > > > > >
+> > > > > > > > +static struct device_node *parse_interrupts(struct device_node *np,
+> > > > > > > > +                                     const char *prop_name, int index)
+> > > > > > > > +{
+> > > > > > > > + struct device_node *sup;
+> > > > > > > > +
+> > > > > > > > + if (strcmp(prop_name, "interrupts") || index)
+> > > > > > > > +         return NULL;
+> > > > > > > > +
+> > > > > > > > + of_node_get(np);
+> > > > > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
+> > > > > > > > +         np = of_get_next_parent(np);
+> > > > > > > > + of_node_put(np);
+> > > > > > > > +
+> > > > > > > > + return sup;
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
+> > > > > > > >   { .parse_prop = parse_clocks, },
+> > > > > > > >   { .parse_prop = parse_interconnects, },
+> > > > > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
+> > > > > > > > of_supplier_bindings[] = {
+> > > > > > > >   { .parse_prop = parse_pinctrl6, },
+> > > > > > > >   { .parse_prop = parse_pinctrl7, },
+> > > > > > > >   { .parse_prop = parse_pinctrl8, },
+> > > > > > > > + { .parse_prop = parse_interrupts, },
+> > > > > > > >   { .parse_prop = parse_regulators, },
+> > > > > > > >   { .parse_prop = parse_gpio, },
+> > > > > > > >   { .parse_prop = parse_gpios, },
+> > > > > > >
+> > > > > > > You don't really describe what this is for so I'm only guessing
+> > > > > > > from the context. If you want to follow the interrupt hierarchy,
+> > > > > > > "interrupt-parent" isn't enough. You also need to track
+> > > > > > > things like interrupt-map, or anything that carries a phandle
+> > > > > > > to an interrupt controller.
+> > > > > >
+> > > > > > We don't need to follow the hierarchy, we just need the immediate
+> > > > > > dependencies.
+> > > > >
+> > > > > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
+> > > >
+> > > > Thanks Rob for explaining it.
+> > > >
+> > > > Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
+> > > > Also, I'm trying to keep of/property.c independent of the framework
+> > > > code for now. The long term goal is to see if I can move out most of
+> > > > this into the frameworks. But I want to do that after I sort of some
+> > > > of the larger problems (like getting fw_devlink=on to work on all
+> > > > devices  first). Let me know if you have a strong preference for right
+> > > > now, if not, I'd rather keep property.c independent for now.
+> > > >
+> > > > I wasn't aware of interrupt-map until a few weeks ago and didn't know
+> > > > it carried phandles. I can add support for that too. There's no reason
+> > > > for all of them to go in one patch though.
+> > > >
+> > > > >
+> > > > > > But you are right that 'interrupt-map' also needs to be tracked.
+> > > > >
+> > > > > And 'interrupts-extended', while we're at it.
+> > > >
+> > > > This is already handled.
+> > > >
+> > > > > >
+> > > > > > I also noticed that we define 'interrupt-parent' as a dependency to
+> > > > > > parse, but that's wrong. The dependency is where 'interrupts' appears
+> > > > > > and where 'interrupt-parent' appears is irrelevant.
+> > > >
+> > > > No, the interrupt-parent parsing is correct and it's needed for
+> > > > interrupt controllers to probe in the right order. But
+> > > > interrupt-parent is also needs to be looked at for parsing
+> > > > "interrupts".
+> > >
+> > > If you parse 'interrupts' for interrupt controllers (which in turn
+> > > will use 'interrupt-parent'), then you aren't going to need to track
+> > > 'interrupt-parent' by itself.
+> >
+> > Do all interrupt controllers (that are not the root interrupt
+> > controller) need to have "interrupts" property? If yes, then yeah,
+> > that makes sense. But I vaguely remember that this wasn't the case for
+> > some DT I saw.
+>
+> There are some cases of stacked controllers where it's implicit.
 
-Yeah ok. I will send out a v3.
+In that case, I think it's good to track interrupt-parent explicitly.
+Doesn't really hurt anything. We already protect for stuff like making
+sure a parent doesn't depend on its child, etc.
 
-regards
-Suman
+> >
+> > Ah, here's one I found.
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/mt2701.dtsi#n209
+>
+> Right, so this is one of several cases of custom interrupt mapping
+> properties (mediatek,ext-irq-range). Really, 'interrupts' or
+> 'interrupt-map' should have been used here, but 'interrupt-map'
+> doesn't really scale well if you have large ranges of interrupts.
+>
+> To handle the dependency with just 'interrupt-parent', you need to
+> find nodes that are themselves an 'interrupt-parent' and then find
+> their 'interrupt-parent'.
 
-> 
-> Thanks,
-> Mathieu
-> 
-> [1]. 6b9ea5ff5abd checkpatch: warn about uses of ENOTSUPP
->>
->> Let me know if you prefer that we change these to EOPNOTSUPP.
->>
->> regards
->> Suman
->>
->>>
->>>>  3 files changed, 360 insertions(+), 3 deletions(-)
->>>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->>>>  create mode 100644 include/linux/pruss.h
->>>>
->>>> -- 
->>>> 2.29.0
->>>>
->>
+Not sure I understand this.
 
+On a side note, if I'm adding device links between a device and the
+"interrupt-parent" it's pointing to, at worst, I'm having it depend on
+an interrupt controller its child devices would depend on. This
+combined with the fact that "weird" links like "parent depending on
+child", "non-device node having interrupt-parent", etc are already
+ignored, seems safe to leave in "interrupt-parent" to catch these
+cases where interrupt controllers don't specify "interrupts" or
+"interrupt-map"? I don't mind removing it, but maybe we can wait till
+we get fw_devlink=on and then remove it to see if anything breaks? If
+nothing breaks, we can remove explicit interrupt-parent parsing?
+
+Going back to interrupt-map, I understand the syntax now. I'm trying
+to see if I can break up of_irq_parse_raw() into smaller pieces and
+reuse (call into) some of that code. While doing that I see that when
+"address-cells" isn't present, the "addrsize" is initialized to 2 [1]
+but when "address-cells" isn't present, the "newaddrsize" is
+initialized to 0 [1]. Why is the default value of #address-cells two
+different numbers?
+
+Thanks,
+Saravana
+
+[1] - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/of/irq.c#n141
+[2] - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/of/irq.c#n226
