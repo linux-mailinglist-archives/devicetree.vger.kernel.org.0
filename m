@@ -2,166 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F1522EC7B6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 02:27:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F6282EC7C7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 02:36:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726498AbhAGB0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 20:26:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47024 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726231AbhAGB0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 20:26:49 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F644C0612EF
-        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 17:26:09 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id y128so4618473ybf.10
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 17:26:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+Q3ISD9lk+iyEMVjautQ2BP91e+OXNI/7EQGZw2zmBA=;
-        b=kXTXHfEKQ73/mo9oyzafshtxpx+SFtovx9OgM9m53qzvmnTKW/UJrdSt9lXl5xeu+j
-         K4U34rsRwU00ghxDMIXdtWuSqjInH6Fs6EpnlwptjPnPq8A9c8rCMZSefm10Zk0lPOGI
-         DMtD9HUx/OIqFZHDkzAH1ymWYfT9ZhiXMwZZawRUCNy8CWe92DrPLSdyzuQrAb7fBgDL
-         2iQ8xstc0d/rfcbemElL5xwCWIqj7Ie9FPGythfjKpmOqweHcRHHO6ZJRabeTmDth/u4
-         b/eXeLKY4SblaTp5ljio5OxisckstSoJuf1BQkrecKpKnKjb8Y3mgqcRwIVdu+7nWkzo
-         CqIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+Q3ISD9lk+iyEMVjautQ2BP91e+OXNI/7EQGZw2zmBA=;
-        b=IfVdyUFbbRxA8LUrq9Ux6IXhcjn72rDGr/NdBMSek7FlVvE9ejBLnSH4gA8IvHVvuB
-         y4WmWHHAyd2q0nyWxzCFHwYPsW+hxjNHZPBWlS8VLY04GkDunHxiJFb3t70bJRK6hR7D
-         BGKNgZGopXcc48txscy3PxZfRHYzMWuk3J01Ez/aiuZrW/WbyF86DAjLBT3kycFTG5sK
-         xLl+zr2MEg1wXZHMxm1ZCK38m/DOcY6TaYcMB3UmIWw7bWzXG0Fn0aNQeO0P+28/M0Jd
-         PejNht/6ggJwUd0kHZSa16PATb8tcraNR0V25H4RNdZ0nQMAGzFmkAyJqumbFfZD2kSY
-         qJeg==
-X-Gm-Message-State: AOAM5330UfU1pEJ6jLAXWIAi+2XD0IRtejl1Q/JOpRm3rvBr1LBQH7Qx
-        x/zojLa7/a4qr8syLVuTU1NQbKW7Kd5u/AOvprTiOA==
-X-Google-Smtp-Source: ABdhPJxGvAuJ8UWOzecyVj/LYSXmdqjwby6wjLe+OCX4j8PTQ6cv0HsvKl+Mhj4jggRIlJvDTA8OQlk2j2zZAaylpiE=
-X-Received: by 2002:a25:6604:: with SMTP id a4mr10119739ybc.412.1609982768103;
- Wed, 06 Jan 2021 17:26:08 -0800 (PST)
+        id S1726352AbhAGBgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 20:36:31 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41682 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726341AbhAGBgb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 20:36:31 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1071Yo85003428;
+        Wed, 6 Jan 2021 19:34:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1609983290;
+        bh=K6kjDaGHe+BTTW8SJQNpbcxlMlxyIG2kWiogvic5Qnw=;
+        h=Date:From:To:CC:In-Reply-To:References:Subject;
+        b=B/610Bf2sApgbhLZpBFgxNPi1dRfY7A30koI8jZHwFZQBPfclDC79sc+KqtyH5Z5h
+         AhR5LWAQA8f5TBtsSwOSapfTpXf0DiDRnsho4QAbpTT8lpSIbINAeiqyBf9G80vivz
+         x146qe022ssAilGsDJt3NfrUndmW1lBiNvgwb5cI=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1071YoTk098697
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 Jan 2021 19:34:50 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 6 Jan
+ 2021 19:34:50 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 6 Jan 2021 19:34:50 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1071YoL3000440;
+        Wed, 6 Jan 2021 19:34:50 -0600
+Date:   Wed, 6 Jan 2021 19:34:50 -0600
+From:   Gowtham A Tammana <g-tammana@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Gowtham Tammana <g-tammana@ti.com>
+CC:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Message-ID: <5ff6653a50f17_7e672b1c8bc1b0b0b9@uda0271916b.notmuch>
+In-Reply-To: <20201218140725.6ierioowdufl52bv@unfilled>
+References: <20201217000716.11091-1-g-tammana@ti.com>
+ <20201217000716.11091-3-g-tammana@ti.com>
+ <20201218140725.6ierioowdufl52bv@unfilled>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j7200-main: Add main domain
+ watchdog entries
 MIME-Version: 1.0
-References: <20201218210750.3455872-1-saravanak@google.com>
- <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
- <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
-In-Reply-To: <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 6 Jan 2021 17:25:31 -0800
-Message-ID: <CAGETcx_y6pj-8xEUfMi164iFTiDLVcdATofkOTjvFBCSAQY3sw@mail.gmail.com>
-Subject: Re: [PATCH] of: property: Add device link support for interrupts
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 6, 2021 at 10:52 AM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > On Thu, 31 Dec 2020 21:12:40 +0000,
-> > Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
-> > > > On 2020-12-18 21:07, Saravana Kannan wrote:
-> > > > > Add support for creating device links out of interrupts property.
-> > > > >
-> > > > > Cc: Marc Zyngier <maz@kernel.org>
-> > > > > Cc: Kevin Hilman <khilman@baylibre.com>
-> > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > > > ---
-> > > > > Rob/Greg,
-> > > > >
-> > > > > This might need to go into driver-core to avoid conflict
-> > > > > due to fw_devlink refactor series that merged there.
-> > > > >
-> > > > > Thanks,
-> > > > > Saravana
-> > > > >
-> > > > >
-> > > > >  drivers/of/property.c | 17 +++++++++++++++++
-> > > > >  1 file changed, 17 insertions(+)
-> > > > >
-> > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
-> > > > > --- a/drivers/of/property.c
-> > > > > +++ b/drivers/of/property.c
-> > > > > @@ -1271,6 +1271,22 @@ static struct device_node
-> > > > > *parse_iommu_maps(struct device_node *np,
-> > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
-> > > > >  }
-> > > > >
-> > > > > +static struct device_node *parse_interrupts(struct device_node *np,
-> > > > > +                                     const char *prop_name, int index)
-> > > > > +{
-> > > > > + struct device_node *sup;
-> > > > > +
-> > > > > + if (strcmp(prop_name, "interrupts") || index)
-> > > > > +         return NULL;
-> > > > > +
-> > > > > + of_node_get(np);
-> > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
-> > > > > +         np = of_get_next_parent(np);
-> > > > > + of_node_put(np);
-> > > > > +
-> > > > > + return sup;
-> > > > > +}
-> > > > > +
-> > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
-> > > > >   { .parse_prop = parse_clocks, },
-> > > > >   { .parse_prop = parse_interconnects, },
-> > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
-> > > > > of_supplier_bindings[] = {
-> > > > >   { .parse_prop = parse_pinctrl6, },
-> > > > >   { .parse_prop = parse_pinctrl7, },
-> > > > >   { .parse_prop = parse_pinctrl8, },
-> > > > > + { .parse_prop = parse_interrupts, },
-> > > > >   { .parse_prop = parse_regulators, },
-> > > > >   { .parse_prop = parse_gpio, },
-> > > > >   { .parse_prop = parse_gpios, },
-> > > >
-> > > > You don't really describe what this is for so I'm only guessing
-> > > > from the context. If you want to follow the interrupt hierarchy,
-> > > > "interrupt-parent" isn't enough. You also need to track
-> > > > things like interrupt-map, or anything that carries a phandle
-> > > > to an interrupt controller.
-> > >
-> > > We don't need to follow the hierarchy, we just need the immediate
-> > > dependencies.
-> >
-> > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
->
-> Thanks Rob for explaining it.
->
-> Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
-> Also, I'm trying to keep of/property.c independent of the framework
-> code for now. The long term goal is to see if I can move out most of
-> this into the frameworks. But I want to do that after I sort of some
-> of the larger problems (like getting fw_devlink=on to work on all
-> devices  first). Let me know if you have a strong preference for right
-> now, if not, I'd rather keep property.c independent for now.
->
-> I wasn't aware of interrupt-map until a few weeks ago and didn't know
-> it carried phandles. I can add support for that too. There's no reason
-> for all of them to go in one patch though.
+Nishanth Menon wrote:
+> On 18:07-20201216, Gowtham Tammana wrote:
+> > Add DT entries for main domain watchdog instances.
+> 
+> Please add a note to indicate that these are the only watchdogs that
+> are visible to Linux and ARMv8 systems.
 
-Hmm... I looked at
-Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-and it has no documentation for interrupt-map. There's a bunch of
-references to it in device specific DT binding documentation but I
-don't want to rely on those for correctness.
+Will update in v2.
+> 
+> You may need to repost the dts patch once you have the 
+> > 
+> > Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> > index 72d6496e88dd..de430d44c2a6 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> > @@ -303,6 +303,24 @@ main_uart9: serial@2890000 {
+> >  		clock-names = "fclk";
+> >  	};
+> >  
+> > +	watchdog0: watchdog@2200000 {
+> 
+> If you are going to strengthen the node-names up (recommend we
+> do that), you might want to use a regex and lock things down.
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation//devicetree/bindings/watchdog/ti,rti-wdt.yaml#n26
+> 
+> That is much better option that expecting people to read the example and
+> follow the convention.
 
-Marc, can you explain the interrupt-map format here or add
-documentation for it please?
+there's one defined in [1] which is listed as included schema.
 
--Saravana
+[1]:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/watchdog/watchdog.yaml#19
+
+> 
+> > +		compatible = "ti,j7-rti-wdt";
+> > +		reg = <0x0 0x2200000 0x0 0x100>;
+> we try and keep 0x00 instead of 0x0 -> see other places in the dtsi
+
+Do see them now, will fix them in v2.
+
+Thanks for the review,
+Gowtham
+
+> > +		clocks = <&k3_clks 252 1>;
+> > +		power-domains = <&k3_pds 252 TI_SCI_PD_EXCLUSIVE>;
+> > +		assigned-clocks = <&k3_clks 252 1>;
+> > +		assigned-clock-parents = <&k3_clks 252 5>;
+> > +	};
+> > +
+> > +	watchdog1: watchdog@2210000 {
+> > +		compatible = "ti,j7-rti-wdt";
+> > +		reg = <0x0 0x2210000 0x0 0x100>;
+> > +		clocks = <&k3_clks 253 1>;
+> > +		power-domains = <&k3_pds 253 TI_SCI_PD_EXCLUSIVE>;
+> > +		assigned-clocks = <&k3_clks 253 1>;
+> > +		assigned-clock-parents = <&k3_clks 253 5>;
+> > +	};
+> > +
+> >  	main_i2c0: i2c@2000000 {
+> >  		compatible = "ti,j721e-i2c", "ti,omap4-i2c";
+> >  		reg = <0x00 0x2000000 0x00 0x100>;
+> 
+> -- 
+> Regards,
+> Nishanth Menon
+> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+
