@@ -2,183 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00F6F2EE8BC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 23:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 307E32EE910
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 23:48:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727669AbhAGWcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 17:32:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42896 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727107AbhAGWcI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Jan 2021 17:32:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E84223609;
-        Thu,  7 Jan 2021 22:31:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610058687;
-        bh=xqP7nlN10qlLZWYC6/slW68hsvWo6XqMEBM86vXA8PE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SEtDWiETVgcWKJelDtg/DLCmeXACklrk2otAdX9sTUYhhWvnOEPEmr698f2skfryg
-         4bF7SzGoXHwoLXAQY1kt2u5Vtnsyw5bzwBNQNwTE/r0w8XopBfZ8dQHtdz+JKC7XWK
-         33DZZWTgUENvFkX6zUBo1tOJqbPE4CZMu+knqNoQgGPDAVVP46e0doY8t8gp0FwMK6
-         JGR4hR4fpNWG/mwhAtJXw6c0C8/qu0xZFl9hSsobUmX1n5nULwaICDX1G5sX6z4OJo
-         Ujmx3RZXCnrymIDmgUmadIKku4LqSxZcH5m7LwUjPKg5scsT2iQGsNwDVzmmix0QE6
-         8hrQc9gSa3N4g==
-Received: by mail-ej1-f46.google.com with SMTP id lt17so11970896ejb.3;
-        Thu, 07 Jan 2021 14:31:27 -0800 (PST)
-X-Gm-Message-State: AOAM5307d4FQAWYI7VxDLFcyFPE5AOL59+A65BA7AwGbSQ3bw5Dma8A2
-        mRqhym6abDGcM/hHnc96qjE5nzpzhSNvZw+N8g==
-X-Google-Smtp-Source: ABdhPJxnu6dyOFmZT8UWWTmOntUJrh4NuvNqwX+ajT8EPvM5XfOIQFMoxWh7cN1XA2tLvNXzv8+fT+OgRjTVfE2v4+E=
-X-Received: by 2002:a17:906:1197:: with SMTP id n23mr684003eja.359.1610058685598;
- Thu, 07 Jan 2021 14:31:25 -0800 (PST)
+        id S1728698AbhAGWpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 17:45:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49530 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728557AbhAGWpc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 17:45:32 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E37CC0612F9
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 14:44:52 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id iq13so2567786pjb.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 14:44:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Xy+0Wf/XBKC2krvhyfRiZMGzAb4maQJy3OQAnfkQkMU=;
+        b=hsnk/TljudfgBTilsXRtE3DyqLWx19RlNt7pJrmtbueV5GV1Ol6lZqtMn79gZQFcdF
+         qpR5VxBsznA9PSdPyzr/wSNR+UlPuM50yZ8aUWD2n2E44rmQ4CWAWM3sstdfpPziiHW+
+         zZNQGQGfiUJT5NvXsz4Z34VS2CH4a7sRvV2SZsvlhIi3bGZpe11E6TFpp4BP03jGkoJ1
+         aVOBqP8jCjtiVSIYZFTUpSu341pFEjG9/hyuyFQPa9DiJ3XgluQTek4f4583q9I/xewQ
+         H1bDHgMpRnCU7RQibL8P/EBqv2lj5auT9LzNGuZuWLZ0DMTNM3ANJZ6Ba4d97aPvuCns
+         v8Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Xy+0Wf/XBKC2krvhyfRiZMGzAb4maQJy3OQAnfkQkMU=;
+        b=E/u8eyVuBrpbWIQuT1beEjlR6GLf2BBdY8TtIPmSWIfzjZkY0NwUUwm0DxtO6W1snE
+         XAaF7ufoowBvIYKiaz4sQv3wuINpwvzG8rdRcO0H3AdGq6eJV79xkLKonwX/rtSlPEGQ
+         pu0ufgph5A2rCETxL/dCJQpyvospYbOYbvPCUbyyKvOV4CqD0CbWlv/0PXniqp9PGV8N
+         Izv0VZw1cngHQ6sSr7LmizmZrZa5Rk0bbiwYp4G9S1Nw1+S7oLOpv8o+URCMoe6Tcax5
+         Bs+s6iYKgHMpNme5I1tFwtM1YeUUgHdPDnRka7dHuOFPRwyhoXAxoEM7uByfREFbg+iY
+         wy5A==
+X-Gm-Message-State: AOAM5334619j5Qe33DIKsgMtGi0lU5f/ZbkaepUA3DcCKZz0gA6BZQS9
+        LZYU2HyUwE4yfvDJYR+cHcz4sw==
+X-Google-Smtp-Source: ABdhPJzAQ9RA9JKB0gtITGbuYddKSMfQtTts02BCc6DMDF0Q74OZgPLC/3M7ibTt9QMmJu8uU0l8Sg==
+X-Received: by 2002:a17:90a:8a8b:: with SMTP id x11mr685794pjn.54.1610059491904;
+        Thu, 07 Jan 2021 14:44:51 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id x5sm5776179pjr.38.2021.01.07.14.44.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 14:44:50 -0800 (PST)
+Date:   Thu, 7 Jan 2021 15:44:48 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>, ohad@wizery.com,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        ssantosh@kernel.org, linux-remoteproc@vger.kernel.org,
+        lee.jones@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
+        rogerq@kernel.org
+Subject: Re: [PATCH v2 0/5] Introduce PRU remoteproc consumer API
+Message-ID: <20210107224448.GB43045@xps15>
+References: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
+ <20210106232704.GE9149@xps15>
+ <11303a1b-5ab4-def5-77b1-c500894c9c87@ti.com>
 MIME-Version: 1.0
-References: <20201130211145.3012-1-james.quinlan@broadcom.com>
- <20201130211145.3012-2-james.quinlan@broadcom.com> <20201209140122.GA331678@robh.at.kernel.org>
- <CANCKTBsFALwF8Hy-=orH8D-nd-qyXqFDopATmKCvbqPbUTC7Sw@mail.gmail.com>
-In-Reply-To: <CANCKTBsFALwF8Hy-=orH8D-nd-qyXqFDopATmKCvbqPbUTC7Sw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 7 Jan 2021 15:31:13 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqKPKk3cPO8DG3FQVSHrKnO+Zed1R=PV7n7iAC+qJKgHcw@mail.gmail.com>
-Message-ID: <CAL_JsqKPKk3cPO8DG3FQVSHrKnO+Zed1R=PV7n7iAC+qJKgHcw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     Jim Quinlan <james.quinlan@broadcom.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <11303a1b-5ab4-def5-77b1-c500894c9c87@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 4, 2021 at 3:12 PM Jim Quinlan <jim2101024@gmail.com> wrote:
->
-> On Wed, Dec 9, 2020 at 10:07 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, Nov 30, 2020 at 04:11:38PM -0500, Jim Quinlan wrote:
-> > > Quite similar to the regulator bindings found in "rockchip-pcie-host.txt",
-> > > this allows optional regulators to be attached and controlled by the
-> > > PCIe RC driver.
-> > >
-> > > Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> > > ---
-> > >  .../devicetree/bindings/pci/brcm,stb-pcie.yaml       | 12 ++++++++++++
-> > >  1 file changed, 12 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > index 807694b4f41f..baacc3d7ec87 100644
-> > > --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > @@ -85,6 +85,18 @@ properties:
-> > >        minItems: 1
-> > >        maxItems: 3
-> > >
-> > > +  vpcie12v-supply:
-> > > +    description: 12v regulator phandle for the endpoint device
-> > > +
-> > > +  vpcie3v3-supply:
-> > > +    description: 3.3v regulator phandle for the endpoint device
-> >
-> > 12V and 3.3V are standard slot supplies, can you add them to
-> > pci-bus.yaml. Then some day maybe we can have common slot handling code.
-> >
-> > With that, here you just need:
-> >
-> > vpcie3v3-supply: true
->
-> Hi Rob,
->
-> Sorry for the delay in responding -- I just came back from vacation.
+On Wed, Jan 06, 2021 at 06:03:25PM -0600, Suman Anna wrote:
+> Hi Mathieu,
+> 
+> On 1/6/21 5:27 PM, Mathieu Poirier wrote:
+> > On Wed, Dec 16, 2020 at 05:52:34PM +0100, Grzegorz Jaszczyk wrote:
+> >> Hi All,
+> >>
+> >> The Programmable Real-Time Unit and Industrial Communication Subsystem
+> >> (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+> >> RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
+> >>
+> >> There are 3 foundation components for PRUSS subsystem: the PRUSS platform
+> >> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
+> >> already merged and can be found under:
+> >> 1) drivers/soc/ti/pruss.c
+> >>    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> >> 2) drivers/irqchip/irq-pruss-intc.c
+> >>    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+> >> 3) drivers/remoteproc/pru_rproc.c
+> >>    Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> >>
+> >> The programmable nature of the PRUs provide flexibility to implement custom
+> >> peripheral interfaces, fast real-time responses, or specialized data handling.
+> >> Example of a PRU consumer drivers will be:
+> >>   - Software UART over PRUSS
+> >>   - PRU-ICSS Ethernet EMAC
+> >>
+> >> In order to make usage of common PRU resources and allow the consumer drivers to
+> >> configure the PRU hardware for specific usage the PRU API is introduced.
+> >>
+> >> Patch #3 of this series depends on one not merged remteproc related patch [1].
+> >>
+> >> Please see the individual patches for exact changes in each patch, following is
+> >> the only change from v1:
+> >>  - Change the 'prus' property name to 'ti,prus' as suggested by Rob Herring,
+> >>  which influences patch #1 and patch #2
+> >>
+> >> [1] https://patchwork.kernel.org/project/linux-remoteproc/patch/20201121030156.22857-3-s-anna@ti.com/
+> >>
+> >> Best regards,
+> >> Grzegorz
+> >>
+> >> Roger Quadros (1):
+> >>   remoteproc: pru: Add pru_rproc_set_ctable() function
+> >>
+> >> Suman Anna (2):
+> >>   dt-bindings: remoteproc: Add PRU consumer bindings
+> >>   remoteproc: pru: Deny rproc sysfs ops for PRU client driven boots
+> >>
+> >> Tero Kristo (2):
+> >>   remoteproc: pru: Add APIs to get and put the PRU cores
+> >>   remoteproc: pru: Configure firmware based on client setup
+> >>
+> >>  .../bindings/remoteproc/ti,pru-consumer.yaml  |  64 +++++
+> >>  drivers/remoteproc/pru_rproc.c                | 221 +++++++++++++++++-
+> >>  include/linux/pruss.h                         |  78 +++++++
+> > 
+> > This patchset is giving checkpatch.pl errors and as such will not go further
+> > with this revision.
+> 
+> Yeah, I am aware of those. Greg has intentionally skipped the checkpatch
+> warnings around ENOTSUPP, based on some similar discussion on a different patch,
+> https://lkml.org/lkml/2020/11/10/764.
 
-NP, me too.
+I only see input from Andy and Lars in the thread you point out, nothing from
+Greg.  I have also taken a look at the patch [1] that made checkpatch complain
+about ENOTSUPP.  From what I see in that commit log the goal is to prevent new
+additions of ENOTSUPP to the kernel.
 
-> The problem we have is that these regulators are not "slot" supplies
-> -- our HW does not support PCI slots, so if and when general slot
-> power-handling code came along it would probably screw us up.   If you
-> don't think there is a problem then I will submit the two supply-names
-> you OKed, even though they may not match the voltages we are using for
-> the EPs.
+Please modify and resend, otherwise I'm sure someone will send another patch to
+fix it before the end of the cycle.
 
-Maybe no slots, but you defined the voltages here and they look like
-standard voltages. Given this is at least the 2nd usage of these
-properties, it seemed like they should be common. Slot or no physical
-slot.
+Thanks,
+Mathieu
 
-> For us, the supplies are for the EP chip's power.  We have the PCIe
-> controller turning them "on" for power-on/resume and "off" for
-> power-off/suspend.  We need the "xxx-supply" property in the
-> controller's DT node because of the chicken-and-egg situation: if the
-> property was in the EP's DT node, the RC  will never discover the EP
-> to see that there is a regulator to turn on.   We would be happy with
-> a single supply name, something like "ep-power".  We would be ecstatic
-> to have two (ep0-power, ep1-power).
-
-The chicken-and-egg problem is nothing new. The same thing has come up
-for USB, MDIO, MMC/SD to name a few. If devices on a discoverable bus
-are not discoverable, then they need to be described in DT. I've given
-suggestions many times how to fix the kernel side.
-
-As Mark said, there's no reason you can't look at other nodes for your
-data. The data a driver needs isn't always nicely packaged up into a
-single node. The DT structure should match the h/w. The EP is a
-different device from the PCI host and its supplies belong in its
-node.
-
-Not that if we really wanted to have complete slot support, we'd
-probably end up having slot nodes in DT. That's generally where we've
-ended up at for other cases.
-
-Now there's a second problem here. If this is not standard PCIe rails
-which have a defined power sequencing, then you really need to
-describe the EP device in DT. Otherwise, we don't know what the power
-sequencing is. I will reject any properties such as delays which try
-to poorly describe power sequencing in DT.
-
->
-> I'm not sure if you remember but FlorianF talked to you about this
-> situation and concluded that something like the above was the way to
-> go forward.
-
-Unless it was last week, assume I don't remember.
-
->  For the latest pullreq I  just copied Rockchip's bindings
-> since you reviewed their bindings commit but it looks like you've
-> changed your mind.
-
-Well, no. First, it takes more than one to see a pattern. So yes, how
-we describe something might evolve. Second, I didn't ask for anything
-different from Rockchip here. Just move what Rockchip had to a common
-location to reuse. But your reply has convinced me you need an EP
-node.
-
->   Given the constraints I have described, what is
-> the best path forward?
->
-> Thanks,
-> Jim Quinlan
-> Broadcom STB
-> >
-> > > +
-> > > +  vpcie1v8-supply:
-> > > +    description: 1.8v regulator phandle for the endpoint device
-> > > +
-> > > +  vpcie0v9-supply:
-> > > +    description: 0.9v regulator phandle for the endpoint device
-> >
-> > These are not standard. They go to a soldered down device or
-> > non-standard connector? For the former, the device should really be
-> > described in DT and the supplies added there.
-> >
-> > Mini PCIe connector also has 1.5V supply.
-> >
-> > Rob
+[1]. 6b9ea5ff5abd checkpatch: warn about uses of ENOTSUPP
+> 
+> Let me know if you prefer that we change these to EOPNOTSUPP.
+> 
+> regards
+> Suman
+> 
+> > 
+> >>  3 files changed, 360 insertions(+), 3 deletions(-)
+> >>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> >>  create mode 100644 include/linux/pruss.h
+> >>
+> >> -- 
+> >> 2.29.0
+> >>
+> 
