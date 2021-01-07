@@ -2,84 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E3762ECE1C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:49:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B6AD2ECE27
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:51:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727416AbhAGKrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 05:47:35 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:11639 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726326AbhAGKrf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 05:47:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1610016455; x=1641552455;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=yHSXn6PNaIM5VUt6eMTv9SHPBhxQB6kktLgSWl4aL3g=;
-  b=HeN2JZ7n5VIffX3yOY3npFLjkxV/o9IYMk7fp5bnL60wlyrzJzufiV4d
-   rhS5TJJEgEB1c9BfQ8ImZ7wUnbU8QWt9kUFdzKmbiBasFADfTQIHcv0Zw
-   TsJu+9QuJvVlTeXyIpFLyNRkS4V4qEtANmIaSt4OQZ5yzd08jCU9p4sFC
-   vSZKN+umCjlQ07HCK+VNOuw8awkFZiXgNOtbtFWqrE4Q2XJyM8EZbLY1W
-   WBHKWK0OdNTMnSY602YAHHodoep2DhqbTvZtLLwPjcpinqPdWAOkZ7bS3
-   coSmrZeuNYbHWuvyYAFk4sf+VrZMQrvX8vuibRd/Wx7QkHCil5li8VvT+
-   w==;
-IronPort-SDR: Lafo0b6nQZ9shAR+tKcmHkRIMxFsKrM/bE0rLbdP03aiYdSI1Nk74HUIhar3XWYuHLKPUFrQ/n
- j07pw1WeQ/5ksxfOjfW0FgAv/VrwTkyLokpKqx+t4vLtar4XU6oI9GsLnxZTQa8Gq0EVlt/O6m
- YGVKxnVcj0KyaBmDu/CnN/XQ8qvlFnS0s0DriO/G7yaRh5vCGff075xQu+918CY4TNY/kA6gB7
- /d2JYFyJn/aATrUPjTd3VM5QUCNhILkUeWC2rO3PTNsjiLduzlqElt7+/bTC8CjTBt++I32HdV
- wIw=
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; 
-   d="scan'208";a="110118444"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jan 2021 03:46:19 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 7 Jan 2021 03:46:19 -0700
-Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 7 Jan 2021 03:46:14 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <nicolas.ferre@microchip.com>, <ludovic.desroches@microchip.com>
-CC:     <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH] dt-bindings: rtc: at91rm9200: add sama7g5 compatible
-Date:   Thu, 7 Jan 2021 12:46:12 +0200
-Message-ID: <1610016372-31784-1-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726326AbhAGKuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 05:50:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50322 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725974AbhAGKuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 05:50:09 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB29C0612F5
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 02:49:23 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id n7so4591465pgg.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 02:49:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fHuzJX3AXMDyR6q3I0Hp62ensb6x58xwS1/Acc8orx4=;
+        b=ixT3pGH/0DXIroqi6tiSTr5sWzG5Iei4XLapjaZ+piLGLPbsnkkOIFu4h1K/bDrWw4
+         1BD70hpC7J7IMlAQQlgAFucYkfptwu84CbbdQ62bth3y9ceK0oYxOF2s0XCLwp2FbIB5
+         sPrsVrz183b0a8zzev0uZO8x/gHlvTbfYT66Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fHuzJX3AXMDyR6q3I0Hp62ensb6x58xwS1/Acc8orx4=;
+        b=OXMiW+0SdECm4lWyahef+rOYKl96SnsZlM8tEXrRCG//+yFKBkpOZR721vk1ZNCG7J
+         Ksl3ozFuXJQ2hZisU3Q6B3yL2zcfc/0CmmPwS8F93+t/DYFLAQph0KIpBbUCvYVsTquq
+         7xKJLWY0/SFJ0Ssk4NMaHeBQHt8xG5R2/fiTFy+03KCyed/zbrnqL4TM7GZXqeE75Xcu
+         vCB5Z82oLahJAdsVL6YWYM+gr11hf1RxHZAc6Qyr+jp20XhkE0AHJ2GfXo0LI/jY4hme
+         Z/zt/B4ws4GyP7LYYoPH6NiQobVq/0J7dWCjNAQhHiS1EQ6gpb6cChUcCCmUu0bh5AFe
+         flMQ==
+X-Gm-Message-State: AOAM531hUV9byEsSRsOxtJgqdiBFy8hnIEyW3OdVNcMy6PqCLhWJoKh5
+        dGDEugr4go3hAnRTcRLxRZt1SA==
+X-Google-Smtp-Source: ABdhPJx7bXQ1sTDWZrRM55QgfTlZnWkr93l8D9TzllVk/mmwNj/Wmaw0FUNbVpOLrfiWKTlbg+EWMw==
+X-Received: by 2002:a63:f111:: with SMTP id f17mr1255707pgi.287.1610016563437;
+        Thu, 07 Jan 2021 02:49:23 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:1a60:24ff:fe89:3e93])
+        by smtp.gmail.com with ESMTPSA id n10sm5381974pfu.176.2021.01.07.02.49.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 02:49:22 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Mark Brown <broonie@kernel.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: [PATCH 0/3] Add domain supply for mtk power domains
+Date:   Thu,  7 Jan 2021 18:49:12 +0800
+Message-Id: <20210107104915.2888408-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.29.2.729.g45daf8777d-goog
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for SAMA7G5 RTC. At the moment the driver is falling
-back on SAM9X60's compatible but SAMA7G5 doesn't have the tamper mode
-register and tamper debounce period register thus the need for a new
-compatible to differentiate b/w these two in case tamper feature will
-be implemented in future.
+Some power domains (eg. mfg on mt8183) needs to turn on its domain
+power supply before power on.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Otherwise readx_poll_timeout() in scpsys_power_on() would timeout.
 
-diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-index 02bbfe726c62..994de43d17fa 100644
---- a/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-@@ -20,6 +20,7 @@ properties:
-       - atmel,sama5d4-rtc
-       - atmel,sama5d2-rtc
-       - microchip,sam9x60-rtc
-+      - microchip,sama7g5-rtc
- 
-   reg:
-     maxItems: 1
+Hsin-Yi Wang (3):
+  dt-bindings: power: Add domain regulator supply
+  soc: mediatek: pm-domains: Add domain regulator supply
+  arm64: dts: mediatek: mt8183: Add domain supply for mfg
+
+ .../power/mediatek,power-controller.yaml      |  9 +++++
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  4 +++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  2 +-
+ drivers/soc/mediatek/mt8183-pm-domains.h      |  1 +
+ drivers/soc/mediatek/mtk-pm-domains.c         | 36 ++++++++++++++++++-
+ drivers/soc/mediatek/mtk-pm-domains.h         |  1 +
+ 6 files changed, 51 insertions(+), 2 deletions(-)
+
 -- 
-2.7.4
+2.29.2.729.g45daf8777d-goog
 
