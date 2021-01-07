@@ -2,131 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68B372ECDD5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C00B62ECE01
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:38:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726110AbhAGKbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 05:31:53 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:57360 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727714AbhAGKbx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 05:31:53 -0500
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 107AUXEe013148;
-        Thu, 7 Jan 2021 05:30:57 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 35wsv6gwmb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Jan 2021 05:30:57 -0500
-Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 107AUtBu041856
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Thu, 7 Jan 2021 05:30:55 -0500
-Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
- SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Thu, 7 Jan 2021 02:30:54 -0800
-Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by
- SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.721.2;
- Thu, 7 Jan 2021 02:30:54 -0800
-Received: from zeus.spd.analog.com (10.66.68.11) by scsqmbx10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server id 15.2.721.2 via Frontend Transport;
- Thu, 7 Jan 2021 02:30:53 -0800
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 107AUhsl013109;
-        Thu, 7 Jan 2021 05:30:51 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <linux@roeck-us.net>, <jdelvare@suse.com>,
-        <mark.thoren@analog.com>, <ardeleanalex@gmail.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v3 4/4] dt-bindings: hwmon: ltc2945: add device tree doc for ltc2945
-Date:   Thu, 7 Jan 2021 12:34:17 +0200
-Message-ID: <20210107103417.16010-5-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210107103417.16010-1-alexandru.ardelean@analog.com>
-References: <20210107103417.16010-1-alexandru.ardelean@analog.com>
+        id S1727801AbhAGKhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 05:37:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48378 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727772AbhAGKhe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 05:37:34 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6657AC0612F6
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 02:36:53 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id m12so13457923lfo.7
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 02:36:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nFfGlH5hXwbuaYUBsZBOfb6uPO2NVxjByxMtfTjhGZ4=;
+        b=OvqgYG5GfLnUWMDVt7fwGeXDObUORXSH+iOnzildwroxSkzsO/YzNGjGRmbA7SYLPV
+         x8nxD4BNfcPV6O2VQ+H2sXHcBagqd3oT5/cSajzlk/tGpxe5DIt7+J21on5fSDkjwPBE
+         je997Wma6HpOQpxEn74aFuJskTFroRdqupPPP1RoadoStwgVfKrRXLnEMJg0nXKpjFb+
+         thRNzVOAUQJk/fJDOvb08chmTAZOJx1FawgClXTTJ56ubJsL96r4ruCXLe076I2FlDey
+         l3Uyye8Vb8lv6IQvas953SreICCTijWTJEp7H8IMUn+A6U4qpQbflPXJ5xuWSeugoT+N
+         nk3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nFfGlH5hXwbuaYUBsZBOfb6uPO2NVxjByxMtfTjhGZ4=;
+        b=Ts401kg/omG8wSSwfBHlohVCSvvBylQHTCWmjBC3Tu+pKMU1pc3bk+zI+vyArCFV7q
+         KafIqOfjzOkZ5VBe3S6A6xI/nfsCOAGGVhvCr43Clk0/Iccx96NJep8jpqadr5EfNgym
+         soVtraKwri+xzYGFBFMidxWYdTDwWmFfF7TNoTliO/wxoBO9Ep9W7xnoRZLFe8369hrt
+         x/k2sRPAmt/IjAmuHyDqwbMldgcCYir4Nqja4faLmh8qvLZK3cuT3rZRZLHdw4hPPK4T
+         PqRxVXR1+sk74DsVjhmVnH5OISKUtqZgDOE3B3LhWy3jwSo9Q206hlUY1hdR82/cp1jk
+         t7ww==
+X-Gm-Message-State: AOAM530jIvywZBPRMMdb2482+bvF7j8G/4mbAHsbXCJulfEz0aWzw5yB
+        Vc0oN8kqgFdQIlq2Tultd3tsTihTo2siJauhOsX2tW1XV56UOA==
+X-Google-Smtp-Source: ABdhPJyfAnEcXOXLY4xTmk1dpmDhjGS0UtzXooi8t4a+PiMBAIP9rKiFMYgT/OAB+huqAHSbFRl1FEjWiqnjm8x/c0g=
+X-Received: by 2002:a05:6512:74e:: with SMTP id c14mr4116363lfs.529.1610015811936;
+ Thu, 07 Jan 2021 02:36:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-07_05:2021-01-07,2021-01-07 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- impostorscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0 adultscore=0
- suspectscore=0 bulkscore=0 spamscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2101070063
+References: <20201004162908.3216898-1-martin.blumenstingl@googlemail.com>
+ <20201004162908.3216898-4-martin.blumenstingl@googlemail.com>
+ <CACRpkdZo-U_cAhbKb4E+d+p+5FenXkGYW0RXxyk4M5uyEPCpzw@mail.gmail.com>
+ <CAFBinCCLubmDvxfabQHx2-ucgAsm1NArMUrtPx-UA2nX5xoFFA@mail.gmail.com>
+ <CAFBinCAZXJ2=fTQuAUyW1hNeJDHY3_pxo4UhxUaOZC=i1bpFxw@mail.gmail.com>
+ <CACRpkdbKQaT61w6r9Hx40Qvy+7qyLNm-fx-BpL_wdGcB=tmcqQ@mail.gmail.com> <CAFBinCBCYZ3bzvvn==CFZyVh8E7TiGvW9PnqmK-Qd=y4X2HgNw@mail.gmail.com>
+In-Reply-To: <CAFBinCBCYZ3bzvvn==CFZyVh8E7TiGvW9PnqmK-Qd=y4X2HgNw@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 7 Jan 2021 11:36:40 +0100
+Message-ID: <CACRpkdbs_ddxrGWeDrj9MOZXuuTT-DPYibaiTcCKjfFyL9tDww@mail.gmail.com>
+Subject: Re: [RFC PATCH 3/3] gpio: ej1x8: Add GPIO driver for Etron Tech Inc. EJ168/EJ188/EJ198
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        linux-usb <linux-usb@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds a device-tree binding documentation for the Linear
-Technology (now Analog Devices) LTC2945 Wide Range I2C Power Monitor.
+On Wed, Jan 6, 2021 at 4:17 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/hwmon/adi,ltc2945.yaml           | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
+> > > unfortunately this means that xhci-pci now depends on xhci-pci-etron.
+> > > for xhci-pci-renesas this is fine (I think) because that part of the
+> > > code is needed to get the xHCI controller going
+> > > but for xhci-pci-etron this is a different story: the GPIO controller
+> > > is entirely optional and only used on few devices
+> >
+> > I might be naive but should it not be the other way around?
+> > That xhci-pci-etron is dependent on xhci-pci? I imagine
+> > it would be an optional add-on.
+>
+> the only way to achieve this that I can think of is to basically have
+> xhci-pci-etron implement it's own pci_driver and then call
+> xhci_pci_probe, xhci_pci_remove, etc.
+> but then it depends on the driver load order if the GPIO controller is exposed
+>
+> what structure did you have in mind to achieve this?
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
-new file mode 100644
-index 000000000000..e49d7da09f74
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/adi,ltc2945.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Linear Technology LTC2945 Wide Range I2C Power Monitor
-+
-+maintainers:
-+  - Guenter Roeck <linux@roeck-us.net>
-+
-+description: |
-+  The LTC2945  is a rail-to-rail system monitor that measures current, voltage,
-+  and power consumption.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ltc2945
-+
-+  reg:
-+    maxItems: 1
-+
-+  shunt-resistor-micro-ohms:
-+    description:
-+      The value of curent sense resistor in microohms. If not provided,
-+      a default value of 1000 microohms is used.
-+    default: 1000
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+           #address-cells = <1>;
-+           #size-cells = <0>;
-+
-+           ltc2945_i2c: ltc2945@6f {
-+                   compatible = "adi,ltc2945";
-+                   reg = <0x6f>;
-+
-+                   shunt-resistor-micro-ohms = <20000>;
-+           };
-+    };
-+...
--- 
-2.17.1
+Something that is compiled and called conditionally with
+stubs in the local .h file.
 
+
+Kconfig:
+
+config FOO
+   tristate "Main matter"
+
+config FOO_ADD_ON
+    tristate "Optional on"
+    depends on FOO
+
+
+Makefile:
+
+obj-$(CONFIG_FOO) += foo.o
+obj-$(CONFIG_FOO_ADD_ON) += foo-add-on.o
+
+
+foo.h:
+
+struct foo {
+...
+};
+
+#if IS_ENABLED(CONFIG_FOO_ADD_ON)
+int foo_add_on_init(struct foo *);
+#else /* No CONFIG_FOO_ADD_ON */
+static int foo_add_on_init(struct foo *)
+{
+    return 0;
+}
+#endif
+
+
+foo.c:
+
+#include "foo.h"
+
+ret = foo_add_on_init(foo);
+(...)
+
+
+foo-add-on.c:
+
+int foo_add_on_init(struct foo *)
+{
+(...)
+}
+EXPORT_SYMBOL_GPL(foo_add_on_init);
+
+> > Make sure the etron part is an additional module that can be
+> > loaded after xhci-pci.
+>
+> my approach from above unfortunately would not achieve this
+> so if you have an idea how to achieve this (or have any other driver
+> in mind that I can use as reference, even if not related to
+> GPIO/USB/PCI then please let me know)
+
+See per above. I don't see any problem with this, it will be an additional
+module that does not feature a probe() call and device driver bind.
+
+I think it is also possible to link both files into the same object if
+the optional add on is enabled, so it is part of the main module
+when modprobing. The foo.h stubs are still needed, then the
+binary will just be smaller if the add-on is not enabled. There are
+solutions like this in the kernel, I just don't remember one right
+now so grep around.
+
+Yours,
+Linus Walleij
