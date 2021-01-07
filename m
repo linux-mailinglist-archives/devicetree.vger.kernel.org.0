@@ -2,83 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 684E12ED213
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:27:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 236812ED277
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:37:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728060AbhAGO0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 09:26:30 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:55122 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725974AbhAGO0a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Jan 2021 09:26:30 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kxWET-00GgMj-PS; Thu, 07 Jan 2021 15:25:45 +0100
-Date:   Thu, 7 Jan 2021 15:25:45 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S1729581AbhAGOdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 09:33:23 -0500
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:43222 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729567AbhAGOdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 09:33:23 -0500
+Received: from relay13.mail.gandi.net (unknown [217.70.178.233])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id AD20E3B1D00;
+        Thu,  7 Jan 2021 14:25:26 +0000 (UTC)
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay13.mail.gandi.net (Postfix) with ESMTPSA id A88428000D;
+        Thu,  7 Jan 2021 14:24:23 +0000 (UTC)
+Date:   Thu, 7 Jan 2021 15:24:23 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jacob Chen <jacob-chen@iotwrt.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Sandor Yu <sandor.yu@nxp.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Bruno Thomsen <bruno.thomsen@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: 74x164: Introduce the
- 'registers-default' property
-Message-ID: <X/cZ6QguhQr3c2XH@lunn.ch>
-References: <20201230214918.17133-1-festevam@gmail.com>
- <CACRpkdatsW79FMfN2qZQdYSrz1wmHz82zSLZwxrh5am1pWgebg@mail.gmail.com>
- <CAOMZO5C3mSbOV_4MOUQb30SofF2tdCue+-yhSf3gJPHncXZF+A@mail.gmail.com>
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/5] arm64: dts: rockchip: Add RGA support to the PX30
+Message-ID: <X/cZlxkQUKRY4Hf+@aptenodytes>
+References: <20210107134101.195426-1-paul.kocialkowski@bootlin.com>
+ <20210107134101.195426-3-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="IppPXotpNrpDAaCR"
 Content-Disposition: inline
-In-Reply-To: <CAOMZO5C3mSbOV_4MOUQb30SofF2tdCue+-yhSf3gJPHncXZF+A@mail.gmail.com>
+In-Reply-To: <20210107134101.195426-3-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 07, 2021 at 09:16:31AM -0300, Fabio Estevam wrote:
-> Hi Linus,
-> 
-> On Tue, Jan 5, 2021 at 12:35 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> 
-> > So should the ethernet PHY not just have some reset-gpios
-> > that it obtain and de-assert as part of probing?
-> >
-> > For example drivers/net/phy/mdio_bus.c has this:
-> >
-> >         /* de-assert bus level PHY GPIO reset */
-> >         gpiod = devm_gpiod_get_optional(&bus->dev, "reset", GPIOD_OUT_LOW);
-> >
-> > Other drivers can do the same.
-> >
-> > Deferred probe should ascertain that this GPIO driver gets
-> > loaded before the ethernet phy driver.
-> 
-> Thanks for your review. I investigated this further and it seems to me
-> that the issue is in drivers/net/phy/mdio_bus.c, so I am adding some
-> netdev folks.
-> 
-> The driver drivers/net/phy/mdio_bus.c and the yaml description says
-> that it only supports one bus level PHY GPIO reset via reset-gpios
-> property.
-> 
-> On the imx6ul-evk, there are two KSZ8081 PHYs in the same mdio bus, so
-> this is how I described it in dts:
 
-There are two different GPIO supported. There is the bus GPIO you have
-found, which is intended to reset all devices on the MDIO bus.
+--IppPXotpNrpDAaCR
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-And there is a per device GPIO reset and reset controller. However, in
-order to use these, you need to be able to 'discover' the PHY,
-potentially when the device is held in reset. Some devices will
-respond to MDIO while held in reset, some don't. If you PHYs don't you
-need to add a compatible of the form
-ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$ with the PHY ID. The PHY
-will then be probed, independent of if it can be found on the bus or
-not, and that probing will enable the GPIO.
+On Thu 07 Jan 21, 14:40, Paul Kocialkowski wrote:
+> The PX30 features a RGA block: add the necessary node to support it.
+>=20
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/px30.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts=
+/rockchip/px30.dtsi
+> index 2695ea8cda14..e056d1c32cc8 100644
+> --- a/arch/arm64/boot/dts/rockchip/px30.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+> @@ -1106,6 +1106,17 @@ vopl_mmu: iommu@ff470f00 {
+>  		status =3D "disabled";
+>  	};
+> =20
+> +	rga: rga@ff480000 {
+> +		compatible =3D "rockchip,px30-rga", "rockchip,rk3288-rga";
+> +		reg =3D <0x0 0xff480000 0x0 0x10000>;
+> +		interrupts =3D <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH 0>;
 
-     Andrew
+Looks like this trailing 0 shouldn't be here. Will fix in v2.
+
+Cheers,
+
+Paul
+
+> +		clocks =3D <&cru ACLK_RGA>, <&cru HCLK_RGA>, <&cru SCLK_RGA_CORE>;
+> +		clock-names =3D "aclk", "hclk", "sclk";
+> +		power-domains =3D <&power PX30_PD_VO>;
+> +		resets =3D <&cru SRST_RGA>, <&cru SRST_RGA_A>, <&cru SRST_RGA_H>;
+> +		reset-names =3D "core", "axi", "ahb";
+> +	};
+> +
+>  	qos_gmac: qos@ff518000 {
+>  		compatible =3D "syscon";
+>  		reg =3D <0x0 0xff518000 0x0 0x20>;
+> --=20
+> 2.30.0
+>=20
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--IppPXotpNrpDAaCR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/3GZcACgkQ3cLmz3+f
+v9Gt2gf/arpDpZLEP4HaikNA893L8x+KyyjlaREZnnG5cbWbSWcvqi7dA/EpQPr1
+PzVNIOV0cGyeW7niPdksrjZ6TW6ZrbjzjsujtBg4Pk/o06AAnXvJavNSXJRwlxy3
+ges/kOzUgpIaDow+4TVMUFZaF5OfvrPI4fldt4kTEhgdWWAmi+JqkMusHt4PY8/s
+O92fjtV/VbPQKsTdXz/wUvw4u9dbWCiCLmN+2VQmWAgXrkh4QwZ43P3iRtUCmwBB
+F59EiFpXhCw2z0s/uedGkDp5M2SY+ENEXGCwFLSIv/FkS28kMmSjmO7D2QtnCDsE
+MDisahYUzr1e9YvbPgmCDn0i7GyyUg==
+=+GZK
+-----END PGP SIGNATURE-----
+
+--IppPXotpNrpDAaCR--
