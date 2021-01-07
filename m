@@ -2,107 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 985D82ECCFF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 10:42:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFC892ECD1A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 10:49:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726338AbhAGJl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 04:41:27 -0500
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:56049 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726326AbhAGJlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 04:41:25 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id EB4401777;
-        Thu,  7 Jan 2021 04:40:18 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Thu, 07 Jan 2021 04:40:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=ybcTpLLw971gG6bm22uSBpkTBJi
-        WuhFBQpGPZAtT1gQ=; b=BT+EjLDd6fxDLG25nQwWepRvzsbP/oqezXlb4pwXcPh
-        SdbSxV4H6JmSBlhAT3KrrrM2nrzeQIbULBl4R8l+JkN7Ieut7Vb2OkWWXTngRz12
-        Xymj8bV2niklzruOcFVMgEkD8oWunVRWr0GXYAabMJ31AbGl8oVN3ZeetIjVUOi/
-        O8KFjOpXggw1xiY+7ZNkBKhLQM6XRdr7cuKLwKbnvNpohI+Gm6i1WeM459WyLPlK
-        UN4Dt39XcRe3m5JmRIU+oosVf8T9Sl+wa1hmuEkzOq2KJ1H+m9EdHrdl/Jrg7UK1
-        2NvM991GWT954kHpA/RRWKs3T4lGLjS0JyeV9UPkkmA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ybcTpL
-        Lw971gG6bm22uSBpkTBJiWuhFBQpGPZAtT1gQ=; b=FgblouXUXHddn7tEfUtAy7
-        Z55r/Kk/9fSIPMp1ltzSnQFWV1W6RracNipCo+y+tSY3ePVuW5AV1nhrAUwZCyL4
-        8auoGD8yJ+az6nn/G32+GbqM5WDoW5wiDr80xmpOG6n0fVf0ymFpsabGr1zpSS6x
-        8TehjgPDeH7WNhAeDWn7rVbua3AjkvOtzi3547M4syBY4cY5OojVwl1AdwsOHLJU
-        ju/Bn7HKxtEvCIoFBBOvRcHudfl24/niEVFemjWCjFBgi/cKAOS7mJzkGUn5ZuW4
-        sT0DuUd86YvHv25CdhXCCDpIPDXtJOdN2MsXNzdRUWVIqVGEyK3MW+g02mkNK9Vg
-        ==
-X-ME-Sender: <xms:Atf2Xw-5AHfjV1_RwmsYdUpnIcC4pBhoU0T0A1jM6Mjms0z8B5upFw>
-    <xme:Atf2X4thXDVQ-4q86ypf8oaQAh20vxzbm2bJmEw0xOkVfMGASKQDvfmsD_soQome3
-    c1U8atp0ohVXbh3hOU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdegvddgtdeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:Atf2X2DCfCURsdeF7-k4b7jR5MCpOxDBcqVUOSRMIL5-tQzSc1a5nQ>
-    <xmx:Atf2XwdvJMJUcXZY9D032uiU25mPXh0Nr4Nb2mXMZjjmf6yvdTph0A>
-    <xmx:Atf2X1NU-w2XLUbYlImtoCVLdQGYQlKmo3BepyY9rNx2N4HbBA_jsg>
-    <xmx:Atf2X41hTo428NWQv4WvV7T_li-5IDg0N7dnMFDLR1ipn8-JVEFhDQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 3066224005E;
-        Thu,  7 Jan 2021 04:40:18 -0500 (EST)
-Date:   Thu, 7 Jan 2021 10:40:16 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     robh+dt@kernel.org, wens@csie.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] arm64: dts: allwinner: h5: Add deinterlace node
-Message-ID: <20210107094016.6km73lb3waek76vu@gilmour>
-References: <20210106182523.1325796-1-jernej.skrabec@siol.net>
+        id S1726171AbhAGJst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 04:48:49 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:7024 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725900AbhAGJss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 04:48:48 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5ff6d8d80001>; Thu, 07 Jan 2021 01:48:08 -0800
+Received: from [10.26.72.150] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 7 Jan
+ 2021 09:48:06 +0000
+Subject: Re: [PATCH] arm64: tegra: Add power-domain for Tegra210 HDA
+To:     Sameer Pujar <spujar@nvidia.com>, <thierry.reding@gmail.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
+References: <1609995970-12256-1-git-send-email-spujar@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <1dfc080c-f587-d19f-65c9-b3220b3202a0@nvidia.com>
+Date:   Thu, 7 Jan 2021 09:48:04 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="u3wdxctky4ofhyc3"
-Content-Disposition: inline
-In-Reply-To: <20210106182523.1325796-1-jernej.skrabec@siol.net>
+In-Reply-To: <1609995970-12256-1-git-send-email-spujar@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1610012888; bh=IjN25z+yWpSbbGI53L+67ScDv4QXQ/8Bbz0TLdhRyYY=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=qznrjEdnM+8mWavbGJf3rO0LQ3iotUPiNeuxvyJx46Ish8/Wf5e57/u6S51anRH9i
+         8yIa+4+SPIIBprmZJUC/rDpPY6iVoqLxqzhdw3NQtL89llzVTR4LbCjAp9CH3Xp/cq
+         OvtvdlzUYz7eq7KWiSwaQ2M++oDC5IECF8OK6C84HMIm9E5n2VGqF1IrkvEeBX9eis
+         Us9XxNEj5e7OHPF6GW+204NzUKzX+nQGuK5Z1RwTHWco0vtipJMI78rOd/UBtijxmH
+         pNLL8NQO0PWTiXsb7MRt94yRntPVg3bplOcEi8k9iAVRvPDu7sjJtwUl7s1Yfgh5VP
+         Xmh/wDGucEdUw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---u3wdxctky4ofhyc3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jan 06, 2021 at 07:25:23PM +0100, Jernej Skrabec wrote:
-> Deinterlace core is completely compatible to H3.
->=20
-> Add a node for it.
->=20
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+On 07/01/2021 05:06, Sameer Pujar wrote:
+> HDA initialization is failing occasionally on Tegra210 and following
+> print is observed in the boot log. Because of this probe() fails and
+> no sound card is registered.
+> 
+>   [16.800802] tegra-hda 70030000.hda: no codecs found!
+> 
+> Codecs request a state change and enumeration by the controller. In
+> failure cases this does not seem to happen as STATETS register reads 0.
+> 
+> The problem seems to be related to the HDA codec dependency on SOR
+> power domain. If it is gated during HDA probe then the failure is
+> observed. Building Tegra HDA driver into kernel image avoids this
+> failure but does not completely address the dependency part. Fix this
+> problem by adding 'power-domains' DT property for Tegra210 HDA. Note
+> that Tegra186 and Tegra194 HDA do this already.
+> 
+> Fixes: 742af7e7a0a1 ("arm64: tegra: Add Tegra210 support")
+> Depends-on: 96d1f078ff0 ("arm64: tegra: Add SOR power-domain for Tegra210")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
 > ---
-> Note: I didn't add H5 fallback, since the only reason why this node
-> is not in common H3/H5 dtsi is that it's located on different addresses.
->=20
-> If anyone feel fallback compatible is needed, I'll add it in next revisio=
-n.
+>  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> index 4fbf8c1..fd33b4d 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> @@ -997,6 +997,7 @@
+>  			 <&tegra_car 128>, /* hda2hdmi */
+>  			 <&tegra_car 111>; /* hda2codec_2x */
+>  		reset-names = "hda", "hda2hdmi", "hda2codec_2x";
+> +		power-domains = <&pd_sor>;
+>  		status = "disabled";
+>  	};
 
-Applied, thanks
-Maxime
+Thanks!
 
---u3wdxctky4ofhyc3
-Content-Type: application/pgp-signature; name="signature.asc"
+Acked-by: Jon Hunter <jonathanh@nvidia.com>
 
------BEGIN PGP SIGNATURE-----
+Cheers
+Jon
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/bXAAAKCRDj7w1vZxhR
-xbjsAQDNU//6B/49Rgc+kWpBX2ZwWQCk5xAX2IJBBgkWN7prOAEA9A4Ey8erbT0E
-EaQhTs22Y3FhZiA2PP6iaYrWrokThgA=
-=aHF6
------END PGP SIGNATURE-----
-
---u3wdxctky4ofhyc3--
+-- 
+nvpublic
