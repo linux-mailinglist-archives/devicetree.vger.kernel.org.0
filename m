@@ -2,669 +2,432 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37EC92EC84A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 03:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0912EC878
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 04:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727186AbhAGCpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 21:45:12 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:35745 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727056AbhAGCpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 21:45:01 -0500
-X-UUID: 82900b7f76de432ba8c9100391d01e3a-20210107
-X-UUID: 82900b7f76de432ba8c9100391d01e3a-20210107
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 163325610; Thu, 07 Jan 2021 10:44:00 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 7 Jan 2021 10:43:59 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 7 Jan 2021 10:44:00 +0800
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
-        <devicetree@vger.kernel.org>,
+        id S1727241AbhAGDBD convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 6 Jan 2021 22:01:03 -0500
+Received: from mail-eopbgr1300114.outbound.protection.outlook.com ([40.107.130.114]:22457
+        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726326AbhAGDBC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Jan 2021 22:01:02 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Wlt5abQNpFmp0wCndsDJ1q/OkEUYzPQB/r2/RZixhyk9nBxLydo3am586a6ll0gLB6rgBwVenXoZSeSyCS9GjdpTUOcQuATNOXZNB29jWJz+8JNO9UvZ8bC0fsCL1+kzqOKFCaaeVPViyvcFBD7S4dV68SuoJ8GkciVV+YKxpa8A2x5BdgWeUNFj6n4WKFOdAvoJIFoP1UcSHpchCSXtl4z/xLFWMdGxzOQh9RD2ofQhnHToC4sMceKKrynnTYDogCnC81Ro1X29/8ir5xBnemhJSAGJpx6+2OziVzHVeinEi7WV6Qbns1YO9q90rywddOC3M7pp394ndIzATjX2rQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Sdtdsbn554L3rFaS36XfZF+hJ4ydBzn7hX446ZStvOo=;
+ b=HWB4bJ74wQjAYbsgmINA9276iRMWoSgNAe+jjbx7TIMJXc+kuypesPjnEw5r8Kwit+Lq0t2yZ/nfcjiShByvHV7WaK+1aU3RbwFMaD0e9Wv1oTZsZYURxJI8+qlbvVlDkVouPVJ2m1tgg2geuavuzJCrfXkUEIcKMv/8JlR9FnAbUg09q/yWmB4yFjmnXBzFyS6i30ozbS6D2Y/oM74fOwTcnVSr6+XHvPFuV+S8PIF6diq+t3hWHbCYZOvC8nKVsHubs3ItuxdTN6Qy2x5+4h0aVX9emb4MEnbKYmOKZsfxQ5RNCjf3UHOWnzZ/2/sA54UaHBxs4QDvNt30qPmN0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
+ by HK0PR06MB2114.apcprd06.prod.outlook.com (2603:1096:203:49::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Thu, 7 Jan
+ 2021 02:59:23 +0000
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::7061:73d9:50ae:b35e]) by HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::7061:73d9:50ae:b35e%7]) with mapi id 15.20.3721.024; Thu, 7 Jan 2021
+ 02:59:23 +0000
+From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
+To:     Marc Zyngier <maz@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Subject: [PATCH v11 7/7] soc: mediatek: SVS: add mt8192 SVS GPU driver
-Date:   Thu, 7 Jan 2021 10:43:56 +0800
-Message-ID: <20210107024356.583-8-roger.lu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210107024356.583-1-roger.lu@mediatek.com>
-References: <20210107024356.583-1-roger.lu@mediatek.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Subject: RE: [PATCH 4/6] irqchip/aspeed: Add Aspeed eSPI interrupt controller
+Thread-Topic: [PATCH 4/6] irqchip/aspeed: Add Aspeed eSPI interrupt controller
+Thread-Index: AQHW4/EFDPfA39yS00+qPo9RMp545KoabhuAgAEH4eA=
+Date:   Thu, 7 Jan 2021 02:59:23 +0000
+Message-ID: <HK0PR06MB377957C33FDD43C5A7F5EA1691AF0@HK0PR06MB3779.apcprd06.prod.outlook.com>
+References: <20210106055939.19386-1-chiawei_wang@aspeedtech.com>
+ <20210106055939.19386-5-chiawei_wang@aspeedtech.com>
+ <123bc25c72b3b17c0c4154d8bd8ce3b0@kernel.org>
+In-Reply-To: <123bc25c72b3b17c0c4154d8bd8ce3b0@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=aspeedtech.com;
+x-originating-ip: [211.20.114.70]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c9913f1c-a344-403b-8f16-08d8b2b83cc3
+x-ms-traffictypediagnostic: HK0PR06MB2114:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HK0PR06MB2114622A5DF838A0FF54B64491AF0@HK0PR06MB2114.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: NkfXmbt3lOTbSny+Rqb/7Gz1Ra2Wl/Hjlwqur/ynaWGceYNoVA89yq2o3m4J8zSyCt3M4L9YSPypxTKsvlVDbvJiceRB9henoJB6JdMoAhVhCSxRmgStxIxj+ViBrs4Uq6oeYhxo3MBSkEFNERZu1bPC/HuSzJOBoLYBTPpPodiLqErWYNo93/JxlSeiJvs5dh7x2cFGqqKHNI8CqJkf5a8Kewm/K4rpTm46I2gfqGsd1q8YW7Dlns8JBoVLXdVSvBohQ88WFiuPWHPPyKTXXwb8sopNCrLoWDY2UBaAzV9oY7LziGkvGt50bn10pEeWeHxoh4FLtbrftiuif1RgQ5E8AoNaLZEomMqZl6tWYC57kEMQ4IIYf5ueyn72xaJtL+Xv+CSJ4EPtEJaYqjZtiQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(136003)(39840400004)(366004)(376002)(396003)(6916009)(5660300002)(186003)(52536014)(478600001)(6506007)(8936002)(53546011)(7696005)(86362001)(4326008)(7416002)(55236004)(2906002)(8676002)(83380400001)(54906003)(33656002)(26005)(71200400001)(66476007)(66946007)(64756008)(66446008)(76116006)(316002)(66556008)(55016002)(107886003)(9686003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?ErrijoRayLFi3ii1wYCjwkxHTt/ib7RV5p45JSNdRpxV1EmbU0/RunE22p8u?=
+ =?us-ascii?Q?e/i7XkuvKMkrJLjHvOQ0m6cbs87syChl2TixwTbkZqCBW5XwGYJ0usWaio/o?=
+ =?us-ascii?Q?eiBJwKOEAUIIdtAwrZEqwFv7nTlQVIYxeDC7uEekUvz/JPdtKbZTzyXJhG2z?=
+ =?us-ascii?Q?mYt0qyjJetE6dlOGZXGyJeqmXzVNvKys1YDWpfDC6Ix/7Y/146abI9sjkLPQ?=
+ =?us-ascii?Q?LmUj+RYZyQUBuT+5QitC8fNBjmBdU3EhY1eCn6ZUZ0sk5LgJ47fiE2QH3Elo?=
+ =?us-ascii?Q?y54fCWFh5gFmW3OU/hJby6oWMTY9A8MmjF2ViO6ON0l74x73h/ig59aupkS6?=
+ =?us-ascii?Q?7/us/nn/+41reuuzRLP/GI3YJa2a0RClTmV6KHvxJPdy9VL7b2dcEzttNWb+?=
+ =?us-ascii?Q?KBPsPBWMqJJJ1oWp7fg9PbITdPeT261Uzfx1nzNcs/yOekFiQ0Tw7ykA3yzQ?=
+ =?us-ascii?Q?Wn18xdXJ9sczokvyHAWMprjHrjYqerIcJchN0LfS88jxLcMYMUo4tGCgudaA?=
+ =?us-ascii?Q?HKVutBrZkmzi52zG//IPJRrziNBWqsmLuuznPcDOKbfCCqjoo1OEa5D6JMoZ?=
+ =?us-ascii?Q?2r0KTDdB6fkfgiQbRxu6LRbkhO4s0nNbX3FO/298BxUt1n6kJRPcPdJ6MThL?=
+ =?us-ascii?Q?n+sjFF3WG4ddFXAPBJtiLmFRzMc/fvKTu6WBXZMSr2QJrviHfwfN/VaG3zeg?=
+ =?us-ascii?Q?8B9MtAqbzo6/6cc3keWUo0IjQxJp+nqKLdexAJr/Kd7yhvqknLOPQIdgJl2s?=
+ =?us-ascii?Q?Vqr8dGoLz7wzwtg20lsMffbnATN90G1zKUIdxPM74UXIISuFG2T4tfH+6Xl3?=
+ =?us-ascii?Q?fFAJZV+k/Bh0MwOnw1ugXdCdYILyHSyc80STh2CGPfwrtXgEF9WW87oB4LmY?=
+ =?us-ascii?Q?nga74b70455Lt/PWCOTSJ90rI/MZHGiRnw1y6P4SOlTRlH53KMv0Ql4gnpC7?=
+ =?us-ascii?Q?sfuOkVXJc2y3x7H25mfGBow77eANEoJdv/bm1zMwdvI=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9913f1c-a344-403b-8f16-08d8b2b83cc3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jan 2021 02:59:23.4191
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ht88/n4rCj+QtqGm0QstyVB0Eb276pwuQ0HNvCn9T1Ilrlw6y+owecwmqSHRXe0AjbXfJki4D5EdFZr72mujwtekO/i6HZuQrQUDeBpegqg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB2114
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Roger Lu <roger.lu@mediatek.com>
----
- drivers/soc/mediatek/mtk-svs.c | 477 ++++++++++++++++++++++++++++++++-
- 1 file changed, 471 insertions(+), 6 deletions(-)
+Hi Marc,
 
-diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index 5c315467747d..17e61acce868 100644
---- a/drivers/soc/mediatek/mtk-svs.c
-+++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -36,6 +36,10 @@
- #define SVSB_CCI			BIT(2)
- #define SVSB_GPU			BIT(3)
- 
-+/* svs bank 2-line type */
-+#define SVSB_LOW			BIT(4)
-+#define SVSB_HIGH			BIT(5)
-+
- /* svs bank mode support */
- #define SVSB_MODE_ALL_DISABLE		0
- #define SVSB_MODE_INIT01		BIT(1)
-@@ -279,6 +283,7 @@ struct thermal_parameter {
-  * @volts: bank voltages
-  * @reg_data: bank register data of each phase
-  * @freq_base: reference frequency for bank init
-+ * @turn_freq_base: refenrece frequency for turn point
-  * @vboot: voltage request for bank init01 stage only
-  * @volt_step: bank voltage step
-  * @volt_base: bank voltage base
-@@ -299,6 +304,8 @@ struct thermal_parameter {
-  * @hw_id: bank hardware identification
-  * @ctl0: bank thermal sensor selection
-  * @cpu_id: cpu core id for SVS CPU only
-+ * @turn_pt: turn point informs which opp_volt calculated by high/low bank.
-+ * @type: bank type to represent it is 2-line (high/low) bank or 1-line bank.
-  *
-  * Other structure members which are not listed above are svs platform
-  * efuse data for bank init
-@@ -324,6 +331,7 @@ struct svs_bank {
- 	u32 volts[16];
- 	u32 reg_data[3][SVS_REG_NUM];
- 	u32 freq_base;
-+	u32 turn_freq_base;
- 	u32 vboot;
- 	u32 volt_step;
- 	u32 volt_base;
-@@ -363,6 +371,8 @@ struct svs_bank {
- 	u32 hw_id;
- 	u32 ctl0;
- 	u32 cpu_id;
-+	u32 turn_pt;
-+	u32 type;
- };
- 
- /*
-@@ -440,6 +450,37 @@ static u32 svs_bank_volt_to_opp_volt(u32 svsb_volt, u32 svsb_volt_step,
- 	return (svsb_volt * svsb_volt_step) + svsb_volt_base;
- }
- 
-+static u32 svs_opp_volt_to_bank_volt(u32 opp_u_volt, u32 svsb_volt_step,
-+				     u32 svsb_volt_base)
-+{
-+	return (opp_u_volt - svsb_volt_base) / svsb_volt_step;
-+}
-+
-+static int svs_sync_bank_volts_from_opp(struct svs_bank *svsb)
-+{
-+	struct dev_pm_opp *opp;
-+	u32 i, opp_u_volt;
-+
-+	for (i = 0; i < svsb->opp_count; i++) {
-+		opp = dev_pm_opp_find_freq_exact(svsb->opp_dev,
-+						 svsb->opp_freqs[i],
-+						 true);
-+		if (IS_ERR(opp)) {
-+			dev_err(svsb->dev, "cannot find freq = %u (%ld)\n",
-+				svsb->opp_freqs[i], PTR_ERR(opp));
-+			return PTR_ERR(opp);
-+		}
-+
-+		opp_u_volt = dev_pm_opp_get_voltage(opp);
-+		svsb->volts[i] = svs_opp_volt_to_bank_volt(opp_u_volt,
-+							   svsb->volt_step,
-+							   svsb->volt_base);
-+		dev_pm_opp_put(opp);
-+	}
-+
-+	return 0;
-+}
-+
- static int svs_get_bank_zone_temperature(const char *tzone_name,
- 					 int *tzone_temp)
- {
-@@ -455,7 +496,7 @@ static int svs_get_bank_zone_temperature(const char *tzone_name,
- static int svs_adjust_pm_opp_volts(struct svs_bank *svsb, bool force_update)
- {
- 	int tzone_temp, ret = -EPERM;
--	u32 i, svsb_volt, opp_volt, temp_offset = 0;
-+	u32 i, svsb_volt, opp_volt, temp_offset = 0, opp_start, opp_stop;
- 
- 	mutex_lock(&svsb->lock);
- 
-@@ -469,6 +510,21 @@ static int svs_adjust_pm_opp_volts(struct svs_bank *svsb, bool force_update)
- 		goto unlock_mutex;
- 	}
- 
-+	/*
-+	 * 2-line bank updates its corresponding opp volts.
-+	 * 1-line bank updates all opp volts.
-+	 */
-+	if (svsb->type == SVSB_HIGH) {
-+		opp_start = 0;
-+		opp_stop = svsb->turn_pt;
-+	} else if (svsb->type == SVSB_LOW) {
-+		opp_start = svsb->turn_pt;
-+		opp_stop = svsb->opp_count;
-+	} else {
-+		opp_start = 0;
-+		opp_stop = svsb->opp_count;
-+	}
-+
- 	/* Get thermal effect */
- 	if (svsb->phase == SVSB_PHASE_MON) {
- 		if (svsb->temp > svsb->temp_upper_bound &&
-@@ -490,10 +546,16 @@ static int svs_adjust_pm_opp_volts(struct svs_bank *svsb, bool force_update)
- 			temp_offset += svsb->tzone_high_temp_offset;
- 		else if (tzone_temp <= svsb->tzone_low_temp)
- 			temp_offset += svsb->tzone_low_temp_offset;
-+
-+		/* 2-line bank takes thermal factor to update all opp volts */
-+		if (svsb->type == SVSB_HIGH || svsb->type == SVSB_LOW) {
-+			opp_start = 0;
-+			opp_stop = svsb->opp_count;
-+		}
- 	}
- 
- 	/* vmin <= svsb_volt (opp_volt) <= signed-off (default) voltage */
--	for (i = 0; i < svsb->opp_count; i++) {
-+	for (i = opp_start; i < opp_stop; i++) {
- 		if (svsb->phase == SVSB_PHASE_MON) {
- 			svsb_volt = max(svsb->volts[i] + svsb->volt_offset +
- 					temp_offset, svsb->vmin);
-@@ -544,6 +606,181 @@ static u32 interpolate(u32 f0, u32 f1, u32 v0, u32 v1, u32 fx)
- 	return DIV_ROUND_UP(vy, 100);
- }
- 
-+static void svs_get_vops_v3(struct svs_platform *svsp)
-+{
-+	struct svs_bank *svsb = svsp->pbank;
-+	u32 i, vop_i, *vop, vop74, vop30, mask7_0 = GENMASK(7, 0);
-+	u32 b_sft, bits8 = 8, shift_byte = 0, reg_4bytes = 4;
-+	u32 middle_index = (svsb->opp_count / 2);
-+	u32 opp_start = 0, opp_stop = 0, turn_pt = svsb->turn_pt;
-+
-+	/* get vops v3 doesn't use mon mode voltages */
-+	if (svsb->phase == SVSB_PHASE_MON)
-+		return;
-+
-+	vop74 = svs_readl(svsp, VOP74);
-+	vop30 = svs_readl(svsp, VOP30);
-+
-+	if (turn_pt < middle_index) {
-+		if (svsb->type == SVSB_HIGH) {
-+			/* We attain volts[0 ~ (turn_pt - 1)] */
-+			for (i = 0; i < turn_pt; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				vop = (shift_byte < reg_4bytes) ? &vop30 :
-+								  &vop74;
-+				svsb->volts[i] = (*vop >> b_sft) & mask7_0;
-+				shift_byte++;
-+			}
-+		} else if (svsb->type == SVSB_LOW) {
-+			/*
-+			 * We attain volts[turn_pt] +
-+			 * volts[vop_i ~ (opp_count - 1)]
-+			 */
-+			vop_i = svsb->opp_count - 7;
-+			svsb->volts[turn_pt] = vop30 & mask7_0;
-+			shift_byte++;
-+			for (i = vop_i; i < svsb->opp_count; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				vop = (shift_byte < reg_4bytes) ? &vop30 :
-+								  &vop74;
-+				svsb->volts[i] = (*vop >> b_sft) & mask7_0;
-+				shift_byte++;
-+			}
-+
-+			/*
-+			 * We attain volts[turn_pt + 1 ~ (vop_i - 1)]
-+			 * by interpolate
-+			 */
-+			for (i = turn_pt + 1; i < vop_i; i++)
-+				svsb->volts[i] =
-+					interpolate(svsb->freqs_pct[turn_pt],
-+						    svsb->freqs_pct[vop_i],
-+						    svsb->volts[turn_pt],
-+						    svsb->volts[vop_i],
-+						    svsb->freqs_pct[i]);
-+		}
-+	} else {
-+		if (svsb->type == SVSB_HIGH) {
-+			/* We attain volts[0] + volts[vop_i ~ (turn_pt - 1)] */
-+			vop_i = turn_pt - 7;
-+			svsb->volts[0] = vop30 & mask7_0;
-+			shift_byte++;
-+			for (i = vop_i; i < turn_pt; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				vop = (shift_byte < reg_4bytes) ? &vop30 :
-+								  &vop74;
-+				svsb->volts[i] = (*vop >> b_sft) & mask7_0;
-+				shift_byte++;
-+			}
-+
-+			/* We attain volts[1 ~ (vop_i - 1)] by interpolate */
-+			for (i = 1; i < vop_i; i++)
-+				svsb->volts[i] =
-+					interpolate(svsb->freqs_pct[0],
-+						    svsb->freqs_pct[vop_i],
-+						    svsb->volts[0],
-+						    svsb->volts[vop_i],
-+						    svsb->freqs_pct[i]);
-+		} else if (svsb->type == SVSB_LOW) {
-+			/* We attain volts[turn_pt ~ (opp_count - 1)] */
-+			for (i = turn_pt; i < svsb->opp_count; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				vop = (shift_byte < reg_4bytes) ? &vop30 :
-+								  &vop74;
-+				svsb->volts[i] = (*vop >> b_sft) & mask7_0;
-+				shift_byte++;
-+			}
-+		}
-+	}
-+
-+	if (svsb->type == SVSB_HIGH) {
-+		opp_start = 0;
-+		opp_stop = svsb->turn_pt;
-+	} else if (svsb->type == SVSB_LOW) {
-+		opp_start = svsb->turn_pt;
-+		opp_stop = svsb->opp_count;
-+	}
-+
-+	for (i = opp_start; i < opp_stop; i++)
-+		svsb->volts[i] -= svsb->dvt_fixed;
-+}
-+
-+static void svs_set_freqs_pct_v3(struct svs_platform *svsp)
-+{
-+	struct svs_bank *svsb = svsp->pbank;
-+	u32 i, freq_i, *freq_pct, freq_pct74 = 0, freq_pct30 = 0;
-+	u32 b_sft, bits8 = 8, shift_byte = 0, reg_4bytes = 4;
-+	u32 middle_index = (svsb->opp_count / 2), mask7_0 = GENMASK(7, 0);
-+	u32 turn_pt = middle_index;
-+
-+	for (i = 0; i < svsb->opp_count; i++) {
-+		if (svsb->opp_freqs[i] <= svsb->turn_freq_base) {
-+			svsb->turn_pt = i;
-+			break;
-+		}
-+	}
-+
-+	turn_pt = svsb->turn_pt;
-+
-+	/* Target is to fill out freq_pct74 / freq_pct30 */
-+	if (turn_pt < middle_index) {
-+		if (svsb->type == SVSB_HIGH) {
-+			/* We select freqs_pct[0 ~ (turn_pt - 1)] */
-+			for (i = 0; i < turn_pt; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				freq_pct = (shift_byte < reg_4bytes) ?
-+					   &freq_pct30 : &freq_pct74;
-+				*freq_pct |= (svsb->freqs_pct[i] << b_sft);
-+				shift_byte++;
-+			}
-+		} else if (svsb->type == SVSB_LOW) {
-+			/*
-+			 * We select freqs_pct[turn_pt] +
-+			 * freqs_pct[(opp_count - 7) ~ (opp_count -1)]
-+			 */
-+			freq_pct30 = svsb->freqs_pct[turn_pt] & mask7_0;
-+			shift_byte++;
-+			freq_i = svsb->opp_count - 7;
-+			for (i = freq_i; i < svsb->opp_count; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				freq_pct = (shift_byte < reg_4bytes) ?
-+					   &freq_pct30 : &freq_pct74;
-+				*freq_pct |= (svsb->freqs_pct[i] << b_sft);
-+				shift_byte++;
-+			}
-+		}
-+	} else {
-+		if (svsb->type == SVSB_HIGH) {
-+			/*
-+			 * We select freqs_pct[0] +
-+			 * freqs_pct[(turn_pt - 7) ~ (turn_pt - 1)]
-+			 */
-+			freq_pct30 = svsb->freqs_pct[0] & mask7_0;
-+			shift_byte++;
-+			freq_i = turn_pt - 7;
-+			for (i = freq_i; i < turn_pt; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				freq_pct = (shift_byte < reg_4bytes) ?
-+					   &freq_pct30 : &freq_pct74;
-+				*freq_pct |= (svsb->freqs_pct[i] << b_sft);
-+				shift_byte++;
-+			}
-+		} else if (svsb->type == SVSB_LOW) {
-+			/* We select freqs_pct[turn_pt ~ (opp_count - 1)] */
-+			for (i = turn_pt; i < svsb->opp_count; i++) {
-+				b_sft = bits8 * (shift_byte % reg_4bytes);
-+				freq_pct = (shift_byte < reg_4bytes) ?
-+					   &freq_pct30 : &freq_pct74;
-+				*freq_pct |= (svsb->freqs_pct[i] << b_sft);
-+				shift_byte++;
-+			}
-+		}
-+	}
-+
-+	svs_writel(svsp, freq_pct74, FREQPCT74);
-+	svs_writel(svsp, freq_pct30, FREQPCT30);
-+}
-+
- static void svs_get_vops_v2(struct svs_platform *svsp)
- {
- 	struct svs_bank *svsb = svsp->pbank;
-@@ -855,6 +1092,25 @@ static int svs_init02(struct svs_platform *svsp)
- 		}
- 	}
- 
-+	/*
-+	 * 2-line high/low bank update its corresponding opp voltages only.
-+	 * Therefore, we sync voltages from opp for high/low bank voltages
-+	 * consistency.
-+	 */
-+	for (idx = 0; idx < svsp->bank_num; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (!(svsb->mode_support & SVSB_MODE_INIT02))
-+			continue;
-+
-+		if (svsb->type == SVSB_HIGH || svsb->type == SVSB_LOW) {
-+			if (svs_sync_bank_volts_from_opp(svsb)) {
-+				dev_err(svsb->dev, "sync volt fail\n");
-+				return -EPERM;
-+			}
-+		}
-+	}
-+
- 	return 0;
- }
- 
-@@ -1098,7 +1354,12 @@ static int svs_resource_setup(struct svs_platform *svsp)
- 			svsb->name = "SVSB_CCI";
- 			break;
- 		case SVSB_GPU:
--			svsb->name = "SVSB_GPU";
-+			if (svsb->type == SVSB_HIGH)
-+				svsb->name = "SVSB_GPU_HIGH";
-+			else if (svsb->type == SVSB_LOW)
-+				svsb->name = "SVSB_GPU_LOW";
-+			else
-+				svsb->name = "SVSB_GPU";
- 			break;
- 		default:
- 			WARN_ON(1);
-@@ -1160,6 +1421,88 @@ static int svs_resource_setup(struct svs_platform *svsp)
- 	return 0;
- }
- 
-+static bool svs_mt8192_efuse_parsing(struct svs_platform *svsp)
-+{
-+	struct svs_bank *svsb;
-+	struct nvmem_cell *cell;
-+	u32 idx, i, ft_pgm, vmin, golden_temp;
-+
-+	for (i = 0; i < svsp->efuse_num; i++)
-+		if (svsp->efuse[i])
-+			dev_info(svsp->dev, "M_HW_RES%d: 0x%08x\n",
-+				 i, svsp->efuse[i]);
-+
-+	/* Svs efuse parsing */
-+	ft_pgm = svsp->efuse[0] & GENMASK(7, 0);
-+	vmin = (svsp->efuse[19] >> 4) & GENMASK(1, 0);
-+
-+	for (idx = 0; idx < svsp->bank_num; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (svsb->sw_id != SVSB_GPU)
-+			return false;
-+
-+		if (vmin == 0x1)
-+			svsb->vmin = 0x1e;
-+
-+		if (ft_pgm == 0)
-+			svsb->init01_volt_flag = SVSB_INIT01_VOLT_IGNORE;
-+
-+		if (svsb->type == SVSB_LOW) {
-+			svsb->mtdes = svsp->efuse[10] & GENMASK(7, 0);
-+			svsb->bdes = (svsp->efuse[10] >> 16) & GENMASK(7, 0);
-+			svsb->mdes = (svsp->efuse[10] >> 24) & GENMASK(7, 0);
-+			svsb->dcbdet = (svsp->efuse[17]) & GENMASK(7, 0);
-+			svsb->dcmdet = (svsp->efuse[17] >> 8) & GENMASK(7, 0);
-+			svsb->vmax += svsb->dvt_fixed;
-+		} else if (svsb->type == SVSB_HIGH) {
-+			svsb->mtdes = svsp->efuse[9] & GENMASK(7, 0);
-+			svsb->bdes = (svsp->efuse[9] >> 16) & GENMASK(7, 0);
-+			svsb->mdes = (svsp->efuse[9] >> 24) & GENMASK(7, 0);
-+			svsb->dcbdet = (svsp->efuse[17] >> 16) & GENMASK(7, 0);
-+			svsb->dcmdet = (svsp->efuse[17] >> 24) & GENMASK(7, 0);
-+			svsb->vmax += svsb->dvt_fixed;
-+		}
-+	}
-+
-+	/* Thermal efuse parsing */
-+	cell = nvmem_cell_get(svsp->dev, "t-calibration-data");
-+	if (IS_ERR_OR_NULL(cell)) {
-+		dev_err(svsp->dev, "no thermal cell, no mon mode\n");
-+		for (idx = 0; idx < svsp->bank_num; idx++) {
-+			svsb = &svsp->banks[idx];
-+			svsb->mode_support &= ~SVSB_MODE_MON;
-+		}
-+
-+		return true;
-+	}
-+
-+	svsp->tefuse = nvmem_cell_read(cell, &svsp->tefuse_num);
-+	svsp->tefuse_num /= sizeof(u32);
-+	nvmem_cell_put(cell);
-+
-+	for (i = 0; i < svsp->tefuse_num; i++)
-+		if (svsp->tefuse[i] != 0)
-+			break;
-+
-+	if (i == svsp->tefuse_num)
-+		golden_temp = 50; /* All thermal efuse data are 0 */
-+	else
-+		golden_temp = (svsp->tefuse[0] >> 24) & GENMASK(7, 0);
-+
-+	for (idx = 0; idx < svsp->bank_num; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (svsb->sw_id != SVSB_GPU)
-+			return false;
-+
-+		svsb->mts = 500;
-+		svsb->bts = (((500 * golden_temp + 250460) / 1000) - 25) * 4;
-+	}
-+
-+	return true;
-+}
-+
- static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
- {
- 	struct thermal_parameter tp;
-@@ -1580,10 +1923,11 @@ static int svs_status_debug_show(struct seq_file *m, void *v)
- 
- 	ret = svs_get_bank_zone_temperature(svsb->tzone_name, &tzone_temp);
- 	if (ret)
--		seq_printf(m, "%s: no \"%s\" zone?\n", svsb->name,
--			   svsb->tzone_name);
-+		seq_printf(m, "%s: no \"%s\" zone? turn_pt = %u\n",
-+			   svsb->name, svsb->tzone_name, svsb->turn_pt);
- 	else
--		seq_printf(m, "%s: temperature = %d\n", svsb->name, tzone_temp);
-+		seq_printf(m, "%s: temperature = %d, turn_pt = %u\n",
-+			   svsb->name, tzone_temp, svsb->turn_pt);
- 
- 	for (i = 0; i < svsb->opp_count; i++) {
- 		opp = dev_pm_opp_find_freq_exact(svsb->opp_dev,
-@@ -1716,6 +2060,82 @@ static int svs_create_svs_debug_cmds(struct svs_platform *svsp)
- 	return 0;
- }
- 
-+static struct svs_bank svs_mt8192_banks[2] = {
-+	{
-+		.sw_id			= SVSB_GPU,
-+		.hw_id			= 0,
-+		.tzone_name		= "gpu1",
-+		.buck_name		= "mali",
-+		.mode_support		= SVSB_MODE_INIT02,
-+		.opp_count		= 16,
-+		.freq_base		= 688000000,
-+		.turn_freq_base		= 688000000,
-+		.vboot			= 0x38,
-+		.volt_step		= 6250,
-+		.volt_base		= 400000,
-+		.volt_offset		= 0,
-+		.vmax			= 0x60,
-+		.vmin			= 0x1a,
-+		.dthi			= 0x1,
-+		.dtlo			= 0xfe,
-+		.det_window		= 0xa28,
-+		.det_max		= 0xffff,
-+		.age_config		= 0x555555,
-+		.agem			= 0,
-+		.dc_config		= 0x1,
-+		.dvt_fixed		= 0x1,
-+		.vco			= 0x18,
-+		.chk_shift		= 0x87,
-+		.temp_upper_bound	= 0x64,
-+		.temp_lower_bound	= 0xb2,
-+		.tzone_high_temp	= 85000,
-+		.tzone_high_temp_offset	= 0,
-+		.tzone_low_temp		= 25000,
-+		.tzone_low_temp_offset	= 7,
-+		.core_sel		= 0x0fff0100,
-+		.int_st			= BIT(0),
-+		.ctl0			= 0x00540003,
-+		.type			= SVSB_LOW,
-+	},
-+	{
-+		.sw_id			= SVSB_GPU,
-+		.hw_id			= 1,
-+		.tzone_name		= "gpu1",
-+		.buck_name		= "mali",
-+		.pd_req			= false,
-+		.mode_support		= SVSB_MODE_INIT02 | SVSB_MODE_MON,
-+		.opp_count		= 16,
-+		.freq_base		= 902000000,
-+		.turn_freq_base		= 688000000,
-+		.vboot			= 0x38,
-+		.volt_step		= 6250,
-+		.volt_base		= 400000,
-+		.volt_offset		= 0,
-+		.vmax			= 0x60,
-+		.vmin			= 0x1a,
-+		.dthi			= 0x1,
-+		.dtlo			= 0xfe,
-+		.det_window		= 0xa28,
-+		.det_max		= 0xffff,
-+		.age_config		= 0x555555,
-+		.agem			= 0,
-+		.dc_config		= 0x1,
-+		.dvt_fixed		= 0x6,
-+		.vco			= 0x18,
-+		.chk_shift		= 0x87,
-+		.temp_upper_bound	= 0x64,
-+		.temp_lower_bound	= 0xb2,
-+		.tzone_high_temp	= 85000,
-+		.tzone_high_temp_offset	= 0,
-+		.tzone_low_temp		= 25000,
-+		.tzone_low_temp_offset	= 7,
-+		.core_sel		= 0x0fff0101,
-+		.int_st			= BIT(1),
-+		.ctl0			= 0x00540003,
-+		.type			= SVSB_HIGH,
-+	},
-+};
-+
- static struct svs_bank svs_mt8183_banks[4] = {
- 	{
- 		.sw_id			= SVSB_CPU_LITTLE,
-@@ -1862,6 +2282,48 @@ static struct svs_bank svs_mt8183_banks[4] = {
- 	},
- };
- 
-+static int svs_get_svs_mt8192_platform_data(struct svs_platform *svsp)
-+{
-+	struct device *dev;
-+	struct svs_bank *svsb;
-+	u32 idx;
-+
-+	svsp->name = "mt8192-svs",
-+	svsp->banks = svs_mt8192_banks,
-+	svsp->efuse_parsing = svs_mt8192_efuse_parsing,
-+	svsp->set_freqs_pct = svs_set_freqs_pct_v3,
-+	svsp->get_vops = svs_get_vops_v3,
-+	svsp->regs = svs_regs_v2,
-+	svsp->irqflags = IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-+	svsp->bank_num = 2,
-+	svsp->efuse_check = 9,
-+
-+	svsp->rst = devm_reset_control_get_optional(svsp->dev, "svs_rst");
-+	if (IS_ERR(svsp->rst)) {
-+		dev_err_probe(svsp->dev, PTR_ERR(svsp->rst),
-+			      "cannot get svs reset control\n");
-+		return PTR_ERR(svsp->rst);
-+	}
-+
-+	dev = svs_add_device_link(svsp, "lvts");
-+	if (IS_ERR(dev))
-+		return PTR_ERR(dev);
-+
-+	for (idx = 0; idx < svsp->bank_num; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (svsb->type == SVSB_HIGH)
-+			svsb->opp_dev = svs_add_device_link(svsp, "mali");
-+		else if (svsb->type == SVSB_LOW)
-+			svsb->opp_dev = svs_get_subsys_device(svsp, "mali");
-+
-+		if (IS_ERR(svsb->opp_dev))
-+			return PTR_ERR(svsb->opp_dev);
-+	}
-+
-+	return 0;
-+}
-+
- static int svs_get_svs_mt8183_platform_data(struct svs_platform *svsp)
- {
- 	struct device *dev;
-@@ -1917,6 +2379,9 @@ static const struct of_device_id mtk_svs_of_match[] = {
- 	{
- 		.compatible = "mediatek,mt8183-svs",
- 		.data = &svs_get_svs_mt8183_platform_data,
-+	}, {
-+		.compatible = "mediatek,mt8192-svs",
-+		.data = &svs_get_svs_mt8192_platform_data,
- 	}, {
- 		/* Sentinel */
- 	},
--- 
-2.18.0
+> -----Original Message-----
+> From: Marc Zyngier <maz@kernel.org>
+> Sent: Wednesday, January 6, 2021 6:59 PM
+> To: ChiaWei Wang <chiawei_wang@aspeedtech.com>
+> Subject: Re: [PATCH 4/6] irqchip/aspeed: Add Aspeed eSPI interrupt controller
+> 
+> On 2021-01-06 05:59, Chia-Wei, Wang wrote:
+> > The eSPI interrupt controller acts as a SW IRQ number decoder to
+> > correctly control/dispatch interrupts of the eSPI peripheral, virtual
+> > wire, out-of-band, and flash channels.
+> >
+> > Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+> > ---
+> >  drivers/irqchip/Makefile             |   2 +-
+> >  drivers/irqchip/irq-aspeed-espi-ic.c | 251 ++++++++++++++++++++++++
+> >  include/soc/aspeed/espi.h            | 279
+> +++++++++++++++++++++++++++
+> >  3 files changed, 531 insertions(+), 1 deletion(-)  create mode 100644
+> > drivers/irqchip/irq-aspeed-espi-ic.c
+> >  create mode 100644 include/soc/aspeed/espi.h
+> >
+> > diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile index
+> > 0ac93bfaec61..56da4a3123f8 100644
+> > --- a/drivers/irqchip/Makefile
+> > +++ b/drivers/irqchip/Makefile
+> > @@ -86,7 +86,7 @@ obj-$(CONFIG_MVEBU_PIC)			+=
+> irq-mvebu-pic.o
+> >  obj-$(CONFIG_MVEBU_SEI)			+= irq-mvebu-sei.o
+> >  obj-$(CONFIG_LS_EXTIRQ)			+= irq-ls-extirq.o
+> >  obj-$(CONFIG_LS_SCFG_MSI)		+= irq-ls-scfg-msi.o
+> > -obj-$(CONFIG_ARCH_ASPEED)		+= irq-aspeed-vic.o irq-aspeed-i2c-ic.o
+> > irq-aspeed-scu-ic.o
+> > +obj-$(CONFIG_ARCH_ASPEED)		+= irq-aspeed-vic.o irq-aspeed-i2c-ic.o
+> > irq-aspeed-scu-ic.o irq-aspeed-espi-ic.o
+> >  obj-$(CONFIG_STM32_EXTI) 		+= irq-stm32-exti.o
+> >  obj-$(CONFIG_QCOM_IRQ_COMBINER)		+= qcom-irq-combiner.o
+> >  obj-$(CONFIG_IRQ_UNIPHIER_AIDET)	+= irq-uniphier-aidet.o
+> > diff --git a/drivers/irqchip/irq-aspeed-espi-ic.c
+> > b/drivers/irqchip/irq-aspeed-espi-ic.c
+> > new file mode 100644
+> > index 000000000000..8a5cc8fe3f0c
+> > --- /dev/null
+> > +++ b/drivers/irqchip/irq-aspeed-espi-ic.c
+> > @@ -0,0 +1,251 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Copyright (c) 2020 Aspeed Technology Inc.
+> > + */
+> > +#include <linux/bitops.h>
+> > +#include <linux/module.h>
+> > +#include <linux/irq.h>
+> > +#include <linux/irqchip.h>
+> > +#include <linux/irqchip/chained_irq.h> #include <linux/irqdomain.h>
+> > +#include <linux/interrupt.h> #include <linux/mfd/syscon.h> #include
+> > +<linux/regmap.h> #include <linux/of.h> #include <linux/of_platform.h>
+> > +
+> > +#include <soc/aspeed/espi.h>
+> > +#include <dt-bindings/interrupt-controller/aspeed-espi-ic.h>
+> > +
+> > +#define DEVICE_NAME	"aspeed-espi-ic"
+> > +#define IRQCHIP_NAME	"eSPI-IC"
+> > +
+> > +#define ESPI_IC_IRQ_NUM	7
+> > +
+> > +struct aspeed_espi_ic {
+> > +	struct regmap *map;
+> > +	int irq;
+> > +	int gpio_irq;
+> > +	struct irq_domain *irq_domain;
+> > +};
+> > +
+> > +static void aspeed_espi_ic_gpio_isr(struct irq_desc *desc) {
+> > +	unsigned int irq;
+> > +	struct aspeed_espi_ic *espi_ic = irq_desc_get_handler_data(desc);
+> > +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> > +
+> > +	chained_irq_enter(chip, desc);
+> > +
+> > +	irq = irq_find_mapping(espi_ic->irq_domain,
+> > +				   ASPEED_ESPI_IC_CTRL_RESET);
+> > +	generic_handle_irq(irq);
+> > +
+> > +	irq = irq_find_mapping(espi_ic->irq_domain,
+> > +				   ASPEED_ESPI_IC_CHAN_RESET);
+> > +	generic_handle_irq(irq);
+> 
+> So for each mux interrupt, you generate two endpoints interrupt, without even
+> checking whether they are pending? That's no good.
 
+As the eSPI IC driver is chained to Aspeed GPIO IC, the pending is checked in the gpio-aspeed.c
+
+> > +
+> > +	chained_irq_exit(chip, desc);
+> > +}
+> > +
+> > +static void aspeed_espi_ic_isr(struct irq_desc *desc) {
+> > +	unsigned int sts;
+> > +	unsigned int irq;
+> > +	struct aspeed_espi_ic *espi_ic = irq_desc_get_handler_data(desc);
+> > +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> > +
+> > +	chained_irq_enter(chip, desc);
+> > +
+> > +	regmap_read(espi_ic->map, ESPI_INT_STS, &sts);
+> > +
+> > +	if (sts & ESPI_INT_STS_PERIF_BITS) {
+> > +		irq = irq_find_mapping(espi_ic->irq_domain,
+> > +				       ASPEED_ESPI_IC_PERIF_EVENT);
+> > +		generic_handle_irq(irq);
+> > +	}
+> > +
+> > +	if (sts & ESPI_INT_STS_VW_BITS) {
+> > +		irq = irq_find_mapping(espi_ic->irq_domain,
+> > +				       ASPEED_ESPI_IC_VW_EVENT);
+> > +		generic_handle_irq(irq);
+> > +	}
+> > +
+> > +	if (sts & ESPI_INT_STS_OOB_BITS) {
+> > +		irq = irq_find_mapping(espi_ic->irq_domain,
+> > +				       ASPEED_ESPI_IC_OOB_EVENT);
+> > +		generic_handle_irq(irq);
+> > +	}
+> > +
+> > +	if (sts & ESPI_INT_STS_FLASH_BITS) {
+> > +		irq = irq_find_mapping(espi_ic->irq_domain,
+> > +				       ASPEED_ESPI_IC_FLASH_EVENT);
+> > +		generic_handle_irq(irq);
+> > +	}
+> > +
+> > +	if (sts & ESPI_INT_STS_HW_RST_DEASSERT) {
+> > +		irq = irq_find_mapping(espi_ic->irq_domain,
+> > +				       ASPEED_ESPI_IC_CTRL_EVENT);
+> > +		generic_handle_irq(irq);
+> > +	}
+> 
+> This is horrible. Why can't you just use fls() in a loop?
+
+The bits in the interrupt status register for a eSPI channel are not sequentially arranged.
+Using fls() may invoke an eSPI channel ISR multiple times.
+So I collected the bitmap for each channel, respectively, and call the ISR at once.
+
+> 
+> > +
+> > +	chained_irq_exit(chip, desc);
+> > +}
+> > +
+> > +static void aspeed_espi_ic_irq_disable(struct irq_data *data) {
+> > +	struct aspeed_espi_ic *espi_ic = irq_data_get_irq_chip_data(data);
+> > +
+> > +	switch (data->hwirq) {
+> > +	case ASPEED_ESPI_IC_CTRL_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_HW_RST_DEASSERT,
+> > +				   0);
+> > +		break;
+> > +	case ASPEED_ESPI_IC_PERIF_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_PERIF_BITS, 0);
+> > +		break;
+> > +	case ASPEED_ESPI_IC_VW_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_VW_BITS, 0);
+> > +		break;
+> > +	case ASPEED_ESPI_IC_OOB_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_OOB_BITS, 0);
+> > +		break;
+> > +	case ASPEED_ESPI_IC_FLASH_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_FLASH_BITS, 0);
+> > +		break;
+> > +	}
+> 
+> Most of these are masking multiple events at once, which makes me think that
+> it really doesn't belong here...
+> 
+> > +}
+> > +
+> > +static void aspeed_espi_ic_irq_enable(struct irq_data *data) {
+> > +	struct aspeed_espi_ic *espi_ic = irq_data_get_irq_chip_data(data);
+> > +
+> > +	switch (data->hwirq) {
+> > +	case ASPEED_ESPI_IC_CTRL_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_HW_RST_DEASSERT,
+> > +				   ESPI_INT_EN_HW_RST_DEASSERT);
+> > +		break;
+> > +	case ASPEED_ESPI_IC_PERIF_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_PERIF_BITS,
+> > +				   ESPI_INT_EN_PERIF_BITS);
+> > +		break;
+> > +	case ASPEED_ESPI_IC_VW_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_VW_BITS,
+> > +				   ESPI_INT_EN_VW_BITS);
+> > +		break;
+> > +	case ASPEED_ESPI_IC_OOB_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_OOB_BITS,
+> > +				   ESPI_INT_EN_OOB_BITS);
+> > +		break;
+> > +	case ASPEED_ESPI_IC_FLASH_EVENT:
+> > +		regmap_update_bits(espi_ic->map, ESPI_INT_EN,
+> > +				   ESPI_INT_EN_FLASH_BITS,
+> > +				   ESPI_INT_EN_FLASH_BITS);
+> > +		break;
+> > +	}
+> > +}
+> > +
+> > +static struct irq_chip aspeed_espi_ic_chip = {
+> > +	.name = IRQCHIP_NAME,
+> > +	.irq_enable = aspeed_espi_ic_irq_enable,
+> > +	.irq_disable = aspeed_espi_ic_irq_disable, };
+> > +
+> > +static int aspeed_espi_ic_map(struct irq_domain *domain, unsigned int
+> > irq,
+> > +			     irq_hw_number_t hwirq)
+> > +{
+> > +	irq_set_chip_and_handler(irq, &aspeed_espi_ic_chip,
+> > handle_simple_irq);
+> > +	irq_set_chip_data(irq, domain->host_data);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct irq_domain_ops aspeed_espi_ic_domain_ops = {
+> > +	.map = aspeed_espi_ic_map,
+> > +};
+> > +
+> > +static int aspeed_espi_ic_probe(struct platform_device *pdev) {
+> > +	struct device *dev;
+> > +	struct aspeed_espi_ic *espi_ic;
+> > +
+> > +	dev = &pdev->dev;
+> > +
+> > +	espi_ic = devm_kzalloc(dev, sizeof(*espi_ic), GFP_KERNEL);
+> > +	if (!espi_ic)
+> > +		return -ENOMEM;
+> > +
+> > +	espi_ic->map = syscon_node_to_regmap(dev->parent->of_node);
+> > +	if (IS_ERR(espi_ic->map)) {
+> > +		dev_err(dev, "cannot get regmap\n");
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	espi_ic->irq = platform_get_irq(pdev, 0);
+> > +	if (espi_ic->irq < 0)
+> > +		return espi_ic->irq;
+> > +
+> > +	espi_ic->gpio_irq = platform_get_irq(pdev, 1);
+> > +	if (espi_ic->gpio_irq < 0)
+> > +		return espi_ic->gpio_irq;
+> > +
+> > +	espi_ic->irq_domain = irq_domain_add_linear(dev->of_node,
+> > ESPI_IC_IRQ_NUM,
+> > +						    &aspeed_espi_ic_domain_ops,
+> > +						    espi_ic);
+> > +	if (!espi_ic->irq_domain) {
+> > +		dev_err(dev, "cannot to add irq domain\n");
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	irq_set_chained_handler_and_data(espi_ic->irq,
+> > +					 aspeed_espi_ic_isr,
+> > +					 espi_ic);
+> > +
+> > +	irq_set_chained_handler_and_data(espi_ic->gpio_irq,
+> > +					 aspeed_espi_ic_gpio_isr,
+> > +					 espi_ic);
+> > +
+> > +	dev_set_drvdata(dev, espi_ic);
+> > +
+> > +	dev_info(dev, "eSPI IRQ controller initialized\n");
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int aspeed_espi_ic_remove(struct platform_device *pdev) {
+> > +	struct aspeed_espi_ic *espi_ic = platform_get_drvdata(pdev);
+> > +
+> > +	irq_domain_remove(espi_ic->irq_domain);
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct of_device_id aspeed_espi_ic_of_matches[] = {
+> > +	{ .compatible = "aspeed,ast2600-espi-ic" },
+> > +	{ },
+> > +};
+> > +
+> > +static struct platform_driver aspeed_espi_ic_driver = {
+> > +	.driver = {
+> > +		.name = DEVICE_NAME,
+> > +		.of_match_table = aspeed_espi_ic_of_matches,
+> > +	},
+> > +	.probe = aspeed_espi_ic_probe,
+> > +	.remove = aspeed_espi_ic_remove,
+> > +};
+> > +
+> > +module_platform_driver(aspeed_espi_ic_driver);
+> > +
+> > +MODULE_AUTHOR("Chia-Wei Wang <chiawei_wang@aspeedtech.com>");
+> > +MODULE_AUTHOR("Ryan Chen <ryan_chen@aspeedtech.com>");
+> > +MODULE_DESCRIPTION("Aspeed eSPI interrupt controller");
+> > +MODULE_LICENSE("GPL v2");
+> > diff --git a/include/soc/aspeed/espi.h b/include/soc/aspeed/espi.h new
+> > file mode 100644 index 000000000000..c9a4f51737ee
+> > --- /dev/null
+> > +++ b/include/soc/aspeed/espi.h
+> > @@ -0,0 +1,279 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +/*
+> > + * Copyright (c) 2020 Aspeed Technology Inc.
+> > + * Author: Chia-Wei Wang <chiawei_wang@aspeedtech.com>  */ #ifndef
+> > +_ASPEED_ESPI_H_ #define _ASPEED_ESPI_H_
+> 
+> [...]
+> 
+> If nothing else uses the data here, move it to the irqchip driver.
+
+The header will be used by other eSPI driver files. 
+
+Chiawei.
