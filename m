@@ -2,172 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08EAC2ED6C9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B6072ED6CC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:40:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728257AbhAGSj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 13:39:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38076 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728088AbhAGSj7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Jan 2021 13:39:59 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CE2A923403;
-        Thu,  7 Jan 2021 18:39:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610044758;
-        bh=6+kQE334J9SbW0yM3NlWxvaes7U9CBgIgTENrhIeApQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WecSKvLqEpXuq1LKLnwc0qdwdS5RlfZwGoW594uX0owQE+g7C9vXHhXFs4y1p/NX1
-         C+NaaQCnKioFWCwoQVdYzzGT9m6K4KsmmLLAPGEK6KmU9I+8Cgw40IKAkAR30hOkPO
-         Kg9h/CngluYr8fUkR050c8cjEVhX1Cu/ZPQ1HAi277Pf7f79lQBCw7cjCX+Qb9pL5d
-         vdpqoJaz6ykdW7pHTQ9AgWTx6hY4TTl1rl8zbVJFl0EZVgzCXNf4Xriws+FCc41qbb
-         i9fXRtbfjUiacCvnH5MZfpTtBVF0OIP/kb4oryys3LqLmLcM5W7J+Y/L197JLWVuWA
-         NcLBrLictgEgQ==
-Received: by mail-ej1-f49.google.com with SMTP id d17so11042992ejy.9;
-        Thu, 07 Jan 2021 10:39:17 -0800 (PST)
-X-Gm-Message-State: AOAM530szlXwcUcxjc2zoT870G667EGRoaz6PSvP3pSk0B5j/Q+kAXBi
-        QVoKsRHNNUhfW8Ofr+E1OYY5SF98bddxgyXuEA==
-X-Google-Smtp-Source: ABdhPJw2T/nYP8wCSKP9LM1NhNkUO/a7gkRrME4qq0kUTYpXK6H/AVboPr3+a/BiQcPdXbZu9rLcKNTraNnwIHLWrz8=
-X-Received: by 2002:a17:906:d87:: with SMTP id m7mr128297eji.108.1610044756363;
- Thu, 07 Jan 2021 10:39:16 -0800 (PST)
+        id S1726165AbhAGSkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 13:40:16 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47596 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726064AbhAGSkQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:40:16 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 107IdYPR064723;
+        Thu, 7 Jan 2021 12:39:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1610044774;
+        bh=eyuoLwqnbZ1AoqR4Il55QPI6bOBY6jgGmTXRSZjpz70=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=icidc0wsMqkEcKmA3d7WSmgrC4om34Qtmt95q3PLsOIx6Pa2TcguaUJ7Yy6mYU3TO
+         aOcUKI4e2z5iW6qV1piiUwmFhofWiGaCrw40aRNx9wZ2mcXVXf8IBEmD3UMMCjVAyA
+         R2XVc0IaGLY46Z4RJzOAUL0BzgSI4yfG217s85YM=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 107IdYxi032422
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 7 Jan 2021 12:39:34 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 7 Jan
+ 2021 12:39:34 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 7 Jan 2021 12:39:34 -0600
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 107IdYqd096610;
+        Thu, 7 Jan 2021 12:39:34 -0600
+Received: from localhost ([10.250.33.36])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 107IdXOd128891;
+        Thu, 7 Jan 2021 12:39:33 -0600
+From:   Suman Anna <s-anna@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 3/5] arm64: dts: ti: k3-j7200-som-p0: Add mailboxes to R5Fs
+Date:   Thu, 7 Jan 2021 12:39:05 -0600
+Message-ID: <20210107183907.6545-4-s-anna@ti.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210107183907.6545-1-s-anna@ti.com>
+References: <20210107183907.6545-1-s-anna@ti.com>
 MIME-Version: 1.0
-References: <20201218210750.3455872-1-saravanak@google.com>
- <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
- <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
-In-Reply-To: <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 7 Jan 2021 11:39:04 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com>
-Message-ID: <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com>
-Subject: Re: [PATCH] of: property: Add device link support for interrupts
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 6, 2021 at 11:53 AM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > On Thu, 31 Dec 2020 21:12:40 +0000,
-> > Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
-> > > > On 2020-12-18 21:07, Saravana Kannan wrote:
-> > > > > Add support for creating device links out of interrupts property.
-> > > > >
-> > > > > Cc: Marc Zyngier <maz@kernel.org>
-> > > > > Cc: Kevin Hilman <khilman@baylibre.com>
-> > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > > > ---
-> > > > > Rob/Greg,
-> > > > >
-> > > > > This might need to go into driver-core to avoid conflict
-> > > > > due to fw_devlink refactor series that merged there.
-> > > > >
-> > > > > Thanks,
-> > > > > Saravana
-> > > > >
-> > > > >
-> > > > >  drivers/of/property.c | 17 +++++++++++++++++
-> > > > >  1 file changed, 17 insertions(+)
-> > > > >
-> > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
-> > > > > --- a/drivers/of/property.c
-> > > > > +++ b/drivers/of/property.c
-> > > > > @@ -1271,6 +1271,22 @@ static struct device_node
-> > > > > *parse_iommu_maps(struct device_node *np,
-> > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
-> > > > >  }
-> > > > >
-> > > > > +static struct device_node *parse_interrupts(struct device_node *np,
-> > > > > +                                     const char *prop_name, int index)
-> > > > > +{
-> > > > > + struct device_node *sup;
-> > > > > +
-> > > > > + if (strcmp(prop_name, "interrupts") || index)
-> > > > > +         return NULL;
-> > > > > +
-> > > > > + of_node_get(np);
-> > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
-> > > > > +         np = of_get_next_parent(np);
-> > > > > + of_node_put(np);
-> > > > > +
-> > > > > + return sup;
-> > > > > +}
-> > > > > +
-> > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
-> > > > >   { .parse_prop = parse_clocks, },
-> > > > >   { .parse_prop = parse_interconnects, },
-> > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
-> > > > > of_supplier_bindings[] = {
-> > > > >   { .parse_prop = parse_pinctrl6, },
-> > > > >   { .parse_prop = parse_pinctrl7, },
-> > > > >   { .parse_prop = parse_pinctrl8, },
-> > > > > + { .parse_prop = parse_interrupts, },
-> > > > >   { .parse_prop = parse_regulators, },
-> > > > >   { .parse_prop = parse_gpio, },
-> > > > >   { .parse_prop = parse_gpios, },
-> > > >
-> > > > You don't really describe what this is for so I'm only guessing
-> > > > from the context. If you want to follow the interrupt hierarchy,
-> > > > "interrupt-parent" isn't enough. You also need to track
-> > > > things like interrupt-map, or anything that carries a phandle
-> > > > to an interrupt controller.
-> > >
-> > > We don't need to follow the hierarchy, we just need the immediate
-> > > dependencies.
-> >
-> > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
->
-> Thanks Rob for explaining it.
->
-> Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
-> Also, I'm trying to keep of/property.c independent of the framework
-> code for now. The long term goal is to see if I can move out most of
-> this into the frameworks. But I want to do that after I sort of some
-> of the larger problems (like getting fw_devlink=on to work on all
-> devices  first). Let me know if you have a strong preference for right
-> now, if not, I'd rather keep property.c independent for now.
->
-> I wasn't aware of interrupt-map until a few weeks ago and didn't know
-> it carried phandles. I can add support for that too. There's no reason
-> for all of them to go in one patch though.
->
-> >
-> > > But you are right that 'interrupt-map' also needs to be tracked.
-> >
-> > And 'interrupts-extended', while we're at it.
->
-> This is already handled.
->
-> > >
-> > > I also noticed that we define 'interrupt-parent' as a dependency to
-> > > parse, but that's wrong. The dependency is where 'interrupts' appears
-> > > and where 'interrupt-parent' appears is irrelevant.
->
-> No, the interrupt-parent parsing is correct and it's needed for
-> interrupt controllers to probe in the right order. But
-> interrupt-parent is also needs to be looked at for parsing
-> "interrupts".
+Add the required 'mboxes' property to all the R5F processors for the
+TI J7200 common processor board. The mailboxes and some shared memory
+are required for running the Remote Processor Messaging (RPMsg) stack
+between the host processor and each of the R5Fs. The nodes are therefore
+added in the common k3-j7200-som-p0.dtsi file so that all of these can
+be co-located.
 
-If you parse 'interrupts' for interrupt controllers (which in turn
-will use 'interrupt-parent'), then you aren't going to need to track
-'interrupt-parent' by itself.
+The chosen sub-mailboxes match the values used in the current firmware
+images. This can be changed, if needed, as per the system integration
+needs after making appropriate changes on the firmware side as well.
 
-To look at it another way, 'interrupt-parent' can appear in any
-ancestor node. Which node the dts author arbitrarily decided to put it
-in does not matter at all. It could be at the DT root or duplicated in
-every single node with 'interrupts'. Those are logically the same. The
-node(s) with the dependency are the ones with 'interrupts'.
+Note that any R5F Core1 resources are needed and used only when that
+R5F cluster is configured for Split-mode.
 
-Rob
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+index 7b5e9aa0324e..3a82982902c8 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+- * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
+  */
+ 
+ /dts-v1/;
+@@ -141,6 +141,22 @@ &mailbox0_cluster11 {
+ 	status = "disabled";
+ };
+ 
++&mcu_r5fss0_core0 {
++	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
++};
++
++&mcu_r5fss0_core1 {
++	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core1>;
++};
++
++&main_r5fss0_core0 {
++	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core0>;
++};
++
++&main_r5fss0_core1 {
++	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core1>;
++};
++
+ &main_i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_i2c0_pins_default>;
+-- 
+2.29.2
+
