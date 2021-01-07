@@ -2,116 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD332ED61A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 18:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 711252ED636
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:00:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726438AbhAGRyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 12:54:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60214 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728965AbhAGRyw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 12:54:52 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C21FC0612FC
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 09:54:07 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id d2so4324325pfq.5
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 09:54:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=IWDaWvFgIj6PDvmAQcUMKtpRMVpX3sfMWCsGoHCRRMU=;
-        b=zQLv9ng9eOHhK1e/h86+a9yh/LgrUGqObWfOKQ/BUlm1mbjrcEhbhfEibCjnX29o1t
-         ttatKOq6oj/9QocQzsB5mfszuFViFwv1Jntdk6CaNo8ow8jS7r4Ofts2jdkZlddlsw7m
-         1XF3MEUE0pEOCFwYwfZtWgXTGprOvTMRP5yS+7qRfM9nRFqpQDVW5pdEQJOpvCJX7dBe
-         pjlGfjFc7bBZfGXEZgJYiCER3PT7Y8UatpbnpcCqFTns9aP2AX+u5A0UdpC/i9SZ8k5W
-         m8OaSYPivBJnZLVzEOY4Y0+VadcxU5qOtTUkAhGBsoILN+ZhHeBRFcJYVhKMmILkkCHk
-         cvMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IWDaWvFgIj6PDvmAQcUMKtpRMVpX3sfMWCsGoHCRRMU=;
-        b=BGBqlgu9PdFs4Uu8O64cFhQ0IZxM2yfunDHbmEX3Rhvhu0NJdEIPqcvNPI/GbPBpBJ
-         pXSaGjfiUFi+Jt65tmR6K+aKYTDfgy+cmtDfCG1uuUA7/royngafICjh5Aiukkz65WUY
-         3MyFJidPZTx0v7BCovdo2+5Oa6dEEL/nEJwRy5OcT1xA7oDYhN5B/NGA8B8i/DgcFT9y
-         sRkxmGddqEyrn1LeUU/eHoh18YPRCGMOhXp/FKaL5csjxW9/DePPwMS36jHzLYLhgv1p
-         Pvd4K3NiFgEzbVi+ZbU8jmtPCZKPrHGgDbqN2UkWJXGnSY5TK8ia9d3QxXgUUtuCKnh0
-         +i3Q==
-X-Gm-Message-State: AOAM533e9K78NfNEd1289XmSIl4YO7WzXgDYPFnPsCFK1dvCOoh+x2fM
-        Kp5mK8mekJ7WHwC1kHlPVZKgQw==
-X-Google-Smtp-Source: ABdhPJxCfrjEXiW33j6eEsIDc7kOPI8fuEpZoFk+csDEAoECb4+ggDNJWA6uJddxVoP2HXVARmd61Q==
-X-Received: by 2002:a62:fc4f:0:b029:19d:d060:27ca with SMTP id e76-20020a62fc4f0000b029019dd06027camr9499492pfh.66.1610042046636;
-        Thu, 07 Jan 2021 09:54:06 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id b12sm6364417pft.114.2021.01.07.09.54.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jan 2021 09:54:05 -0800 (PST)
-Date:   Thu, 7 Jan 2021 10:54:04 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] remoteproc/mediatek: support L1TCM
-Message-ID: <20210107175404.GA33624@xps15>
-References: <20201214050521.845396-1-tzungbi@google.com>
- <20201214050521.845396-3-tzungbi@google.com>
- <20210106231513.GC9149@xps15>
- <CA+Px+wXEV9GDCMjR8inbQ89tNV9n7RedeAOGJL_yATmeCLjXJw@mail.gmail.com>
+        id S1726386AbhAGR7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 12:59:52 -0500
+Received: from aserp2130.oracle.com ([141.146.126.79]:43182 "EHLO
+        aserp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726319AbhAGR7v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 12:59:51 -0500
+Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
+        by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 107HsvN8089524;
+        Thu, 7 Jan 2021 17:58:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=kvAvwbOOeMZscVufplocdrmX5bmXMbY8zl2FvlMlnz0=;
+ b=c2pjUMyOuFSlsI0qTgNl9X2BTN0fwdZV5CjgZLw/fK5pJGjqgudnCOrZXdgkYHh00CxF
+ LiFA0a++EWjmEAnNdlWfNpXXZz6ITazKwFJmmLt90OS5obpTmGor0Edc3an16aV6cPrq
+ BuZjy4lLXobdVm82Y4aeL6YU21ZsSRHrYPmEkl7OXFIOkrzzFmym3rhxU7m0zFdXRJ9J
+ 7G3IFUyGpFK3HKmg0T9vQqyw4vf9WJsuWCiEWBtSqE/lg7w8qHbcX6uwbYJqRhlTzP3U
+ r9MbFlxO7AMNgXzkKQ9sIxqWZq9w0c4dYQTdzU1G7jk7cpsQeLvms3CnkhfW0q8cELG1 lg== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by aserp2130.oracle.com with ESMTP id 35wcuxwy8k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 07 Jan 2021 17:58:15 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 107HuSg5055718;
+        Thu, 7 Jan 2021 17:58:14 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+        by userp3020.oracle.com with ESMTP id 35w3qu1hjs-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 07 Jan 2021 17:58:14 +0000
+Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
+        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 107Hvwcu012048;
+        Thu, 7 Jan 2021 17:57:58 GMT
+Received: from char.us.oracle.com (/10.152.32.25)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Thu, 07 Jan 2021 17:57:43 +0000
+Received: by char.us.oracle.com (Postfix, from userid 1000)
+        id DE3C86A00C3; Thu,  7 Jan 2021 12:57:40 -0500 (EST)
+Date:   Thu, 7 Jan 2021 12:57:40 -0500
+From:   Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+To:     Claire Chang <tientzu@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <joro@8bytes.org>, will@kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        rdunlap@infradead.org, dan.j.williams@intel.com,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        xen-devel@lists.xenproject.org, Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
+Message-ID: <20210107175740.GA16519@char.us.oracle.com>
+References: <20210106034124.30560-1-tientzu@chromium.org>
+ <20210106034124.30560-3-tientzu@chromium.org>
+ <20210106185241.GA109735@localhost.localdomain>
+ <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CA+Px+wXEV9GDCMjR8inbQ89tNV9n7RedeAOGJL_yATmeCLjXJw@mail.gmail.com>
+In-Reply-To: <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
+User-Agent: Mutt/1.9.1 (2017-09-22)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9857 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 malwarescore=0 mlxscore=0
+ spamscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101070105
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9857 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 bulkscore=0
+ clxscore=1015 spamscore=0 impostorscore=0 priorityscore=1501 mlxscore=0
+ adultscore=0 mlxlogscore=999 lowpriorityscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101070105
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 07, 2021 at 09:50:21AM +0800, Tzung-Bi Shih wrote:
-> On Thu, Jan 7, 2021 at 7:15 AM Mathieu Poirier
-> <mathieu.poirier@linaro.org> wrote:
-> >
-> > >  static void mt8183_scp_stop(struct mtk_scp *scp)
-> > >  {
-> > >       /* Disable SCP watchdog */
-> > > @@ -714,6 +749,19 @@ static int scp_probe(struct platform_device *pdev)
-> > >               goto free_rproc;
-> > >       }
-> > >       scp->sram_size = resource_size(res);
-> > > +     scp->sram_phys = res->start;
-> > > +
-> > > +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-> > > +     if (res) {
-> >
-> > As far as I can tell the if() condition isn't needed since
-> > platform_get_resource_byname() returns NULL on error and devm_ioremap_resource()
-> > is capable of handling that condition.  As such the code to parse "l1tcm" can be
-> > the same as what is done for "sram".
+On Fri, Jan 08, 2021 at 01:39:18AM +0800, Claire Chang wrote:
+> Hi Greg and Konrad,
 > 
-> The "l1tcm" memory region is optional.  The if() condition is for: if
-> DTS doesn't provide the memory region, kernel can skip the code block.
+> This change is intended to be non-arch specific. Any arch that lacks DMA access
+> control and has devices not behind an IOMMU can make use of it. Could you share
+> why you think this should be arch specific?
+
+The idea behind non-arch specific code is it to be generic. The devicetree
+is specific to PowerPC, Sparc, and ARM, and not to x86 - hence it should
+be in arch specific code.
+
 > 
-
-Very well - thanks for the clarification.
-
-> >
-> > With the above:
-> >
-> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> >
-> > > +             scp->l1tcm_base = devm_ioremap_resource(dev, res);
-> > > +             if (IS_ERR((__force void *)scp->l1tcm_base)) {
-> > > +                     dev_err(dev, "Failed to parse and map l1tcm memory\n");
-> > > +                     ret = PTR_ERR((__force void *)scp->l1tcm_base);
-> > > +                     goto free_rproc;
-> > > +             }
-> > > +             scp->l1tcm_size = resource_size(res);
-> > > +             scp->l1tcm_phys = res->start;
-> > > +     }
+> Thanks!
