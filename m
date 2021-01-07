@@ -2,135 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 525432ECAF0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 08:29:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A218A2ECB3B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 08:55:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726298AbhAGH15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 02:27:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46806 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725929AbhAGH15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 02:27:57 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCE1C0612F4
-        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 23:27:16 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id z21so4254354pgj.4
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 23:27:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=vTGhjHR1vsg+Mr43HN4cyueuEjB0/vHkOdTIvdJMuEI=;
-        b=N33IJmbkbnKTgBru1x+Bc6gzjJkYSr4kISEarysGplTh5RD8yJhsRm+T+a0RXU98lh
-         iItU7n6DmJGPUikqEuuIxWJXIFayZK9DM977/7K1ChuWeyDUgQTzNncPVDbcpr7jxLhb
-         yzJW24grUhNRXERPvP/FmMdVBSe6SvOONqQu644NxxibMpUiKAUoWt7h/Cc1+MGEOEH2
-         lT4kYtJykr08jOA39hiYKmdPD58tKFfGboJOs5UsK4XJuYKs6xhkgj/pIGwy2CI5P87p
-         UlCyoSOGozI9H54eesz5b8IlLKG225aw6AZ9uEgAoLkkE2NS6ULVhpzJ1vTtkN9/bgE9
-         PHrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vTGhjHR1vsg+Mr43HN4cyueuEjB0/vHkOdTIvdJMuEI=;
-        b=lds4mrcE4abDnNH91FxnL1ejjGBqikinWQnGbScWXZ3SIZZf7Fjghbd4YKZsYBVxp7
-         c0VTyR8503oqSvY4c2kNB9Ir0YhbkSjXj/9Lck4kUA4nBzzHugFv+kZnIckt2ggbWE2B
-         hBPoB7yrxEof8Td6xkt6kyQo/izy7pV97QYnrzJGKY3Tm2kY1KFEsd6ps3hbgq2Pbw+3
-         6X3AJjEekGUMMkgDPCDPpt3V4nHfyWZT0bbtukacsYy+qs3T2smVUKEZHQ6uTna1wfwj
-         k7ABT540vqNGQh2mzctRWz7AQVkh0RMg0H7zoCsahUFbkvgo1xBqS29ZXi/t1RzKymd6
-         sOKw==
-X-Gm-Message-State: AOAM5327GM9eMaKsMGwp8eGYUWhGPjBhjCi4wfCHkk1e/kAL2iCherEF
-        dKFGhqboCGTGdyUSDHi8L4uH0Q==
-X-Google-Smtp-Source: ABdhPJwWCXkCtc9Ql0FAXoIcgCxNwxWJcNJRgjQZQ3Djqh8Dx1vdHZm2bTzQIVbLeDk7XK8/WxnxCg==
-X-Received: by 2002:a63:2b42:: with SMTP id r63mr552559pgr.316.1610004436040;
-        Wed, 06 Jan 2021 23:27:16 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id c10sm4182974pjn.22.2021.01.06.23.27.14
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 06 Jan 2021 23:27:15 -0800 (PST)
-Date:   Thu, 7 Jan 2021 12:57:12 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
-Subject: Re: [RFC 0/2] kbuild: Add support to build overlays (%.dtbo)
-Message-ID: <20210107072712.si2pdaatbqkpizhb@vireshk-i7>
-References: <cover.1609844956.git.viresh.kumar@linaro.org>
- <CAL_JsqJMr3vfz2B29vzvFALCt_5-J__eJv2TZHJ0sR9nM=xXaw@mail.gmail.com>
- <CAK7LNAR9fdjZ7iWKSWvJ9etGZkd+n87cmXKN-Hah8DBDYbuAwA@mail.gmail.com>
+        id S1726326AbhAGHyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 02:54:01 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:36045 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727396AbhAGHyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 02:54:00 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id B4DE923078;
+        Thu,  7 Jan 2021 08:53:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1610005998;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=WRJxPCoYY1H+X4Bfb0nP87rLPUenjBlcO2PCfMDSqRY=;
+        b=HLraEko9bHXT/CPT9zsiAhmh2dJbi/vEPDx+ep1UDmjPSuBoDC5UMWpnRDv3gwslzxQD7w
+        yOncpYzTaN9shDTqiQV9yb7Ju5/3fgMRpvAkIJIsoj40I8HzShwLijVV0bcSrsTf0g3WSI
+        3DJKghXr9WuIraAR/W7eKNRHylvwjwI=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK7LNAR9fdjZ7iWKSWvJ9etGZkd+n87cmXKN-Hah8DBDYbuAwA@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 07 Jan 2021 08:53:14 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Sudhanshu Gupta <sudhanshu.gupta@nxp.com>,
+        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
+        Rai Harninder <harninder.rai@nxp.com>
+Subject: Re: [PATCH] arm64: dts: ls1028a: fix the offset of the reset register
+In-Reply-To: <20210107064046.GF28365@dragon>
+References: <20201215212622.717-1-michael@walle.cc>
+ <20210107064046.GF28365@dragon>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <502fecda4d7f0d85e3417d16748e22f5@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-01-21, 14:28, Masahiro Yamada wrote:
-> On Wed, Jan 6, 2021 at 12:21 AM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Tue, Jan 5, 2021 at 4:24 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > >
-> > > Hello,
-> > >
-> > > Here is an attempt to make some changes in the kernel to allow building
-> > > of device tree overlays.
-> > >
-> > > While at it, I would also like to discuss about how we should mention
-> > > the base DT blobs in the Makefiles for the overlays, so they can be
-> > > build tested to make sure the overlays apply properly.
-> > >
-> > > A simple way is to mention that with -base extension, like this:
-> > >
-> > > $(overlay-file)-base := platform-base.dtb
-> > >
-> > > Any other preference ?
-> 
-> Viresh's patch is not enough.
-> 
-> We will need to change .gitignore
-> and scripts/Makefile.dtbinst as well.
+Hi Shawn,
 
-Thanks.
- 
-> In my understanding, the build rule is completely the same
-> between .dtb and .dtbo
+Am 2021-01-07 07:40, schrieb Shawn Guo:
+> On Tue, Dec 15, 2020 at 10:26:22PM +0100, Michael Walle wrote:
+>> The offset of the reset request register is 0, the absolute address is
+>> 0x1e60000. Boards without PSCI support will fail to perform a reset:
+>> 
+>> [   26.734700] reboot: Restarting system
+>> [   27.743259] Unable to restart system
+>> [   27.746845] Reboot failed -- System halted
+>> 
+>> Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+> 
+> Out of curiosity, how did you get it fixed with your commit 
+> 3f0fb37b22b4
+> ("arm64: dts: ls1028a: fix reboot node") in the first place?
 
-Right.
+I simply must have missed it. There is also a fallback reset method
+via the watchdog in the chain, which kicks in if this wasn't successful.
+So if you test it, it is easy to think its working although its not.
 
-> As Rob mentioned, I am not sure if we really need/want
-> a separate extension.
-> 
-> 
-> A counter approach is to use an extension like '.ovl.dtb'
-> It clarifies it is an overlay fragment without changing
-> anything in our build system or the upstream DTC project.
-> 
-> We use chained extension in some places, for example,
-> .dt.yaml for schema yaml files.
-> 
-> 
-> 
-> dtb-$(CONFIG_ARCH_FOO) += \
->     foo-board.dtb \
->     foo-overlay1.ovl.dtb \
->     foo-overlay2.ovl.dtb
-> 
-> 
-> Overlay DT source file names must end with '.ovl.dts'
-
-I am fine with any approach that you guys feel is better, .dts or .ovl.dts. I
-wanted to start a discussion where we can resolve this and be done with it.
-
-Thanks.
-
--- 
-viresh
+-michael
