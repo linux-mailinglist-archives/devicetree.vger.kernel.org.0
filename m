@@ -2,124 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB04D2ECDCD
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:30:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7212E2ECDD6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:32:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726340AbhAGKaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 05:30:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57166 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725974AbhAGKaK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Jan 2021 05:30:10 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AD82923142;
-        Thu,  7 Jan 2021 10:29:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610015370;
-        bh=13M5zIZH8BYdSgLHcSiUssuxy7aGnL0zsfUTM4vT+Pc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PhzyKeH/omMWDkne6YDBSmYzC952k4TKrqQ+OcU3RWV226x+kfHocirL+sOZ1Ec1I
-         L6FYpSbXcq2asi3sfqgBi0QnTs03QoC98IdxSzGWTO41n/JYWqaq0o4k86z7HrC8Ie
-         ilPmplMJtIaIQ3XygqQIoEY2Hyr24EGZ914HsqxKeELf1D8HedliDW2sGcd4JtwV2f
-         vhoiv7NnQ9Sr4DIB5ghdCSrOkw132MTxao0h77BnA1+creB8OzggJAtOWa+zzsJxlD
-         YyErySULnK2ZXXY8Pl9n4joMIK9fxLbho21bcscMsaf3/9mZzdDdy0IOYt5tLzvHwp
-         9lKjVFeYW7w2w==
-Received: by mail-ej1-f48.google.com with SMTP id n26so8989389eju.6;
-        Thu, 07 Jan 2021 02:29:29 -0800 (PST)
-X-Gm-Message-State: AOAM533wEY4tge11YQP7IYg/wb8UlLuPZUAr3DQCPfLrq4kxRi0tP/7j
-        +1sGTKdnnyWzDGdUy3LJny4mjxceW6NBGjAiQA==
-X-Google-Smtp-Source: ABdhPJz05+dsxcv5R7wZF5woSln0ppvl0ASJjVM3ts6esC2GEruDIYNAngku7nUd4kbjmo3tFkzNSYPUlVOCGP5KdM4=
-X-Received: by 2002:a17:907:9627:: with SMTP id gb39mr5843470ejc.267.1610015368212;
- Thu, 07 Jan 2021 02:29:28 -0800 (PST)
+        id S1726522AbhAGKbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 05:31:46 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:48818 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726110AbhAGKbq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 05:31:46 -0500
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 107ATiCJ007408;
+        Thu, 7 Jan 2021 05:30:49 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com with ESMTP id 35wnkjhdt4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 07 Jan 2021 05:30:48 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 107AUl37041841
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 7 Jan 2021 05:30:47 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.721.2; Thu, 7 Jan 2021
+ 05:30:46 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.721.2 via Frontend Transport;
+ Thu, 7 Jan 2021 05:30:46 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 107AUhsh013109;
+        Thu, 7 Jan 2021 05:30:44 -0500
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <linux@roeck-us.net>, <jdelvare@suse.com>,
+        <mark.thoren@analog.com>, <ardeleanalex@gmail.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: [PATCH v3 0/4] hwmon: (ltc2945): add support for sense resistor
+Date:   Thu, 7 Jan 2021 12:34:13 +0200
+Message-ID: <20210107103417.16010-1-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <1609989081-29353-1-git-send-email-yongqiang.niu@mediatek.com> <1609989081-29353-9-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1609989081-29353-9-git-send-email-yongqiang.niu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 7 Jan 2021 18:29:16 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8Gvk_tR-omr0ObbdB68kvjXR9rcri_ADSHvhGeFdOiHA@mail.gmail.com>
-Message-ID: <CAAOTY_8Gvk_tR-omr0ObbdB68kvjXR9rcri_ADSHvhGeFdOiHA@mail.gmail.com>
-Subject: Re: [PATCH v9, 08/11] drm/mediatek: add has_dither private data for gamma
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-07_05:2021-01-07,2021-01-07 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ suspectscore=0 clxscore=1011 phishscore=0 mlxscore=0 adultscore=0
+ mlxlogscore=999 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101070063
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+Changeset adds support for sense resistor.
 
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
-=887=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:12=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> not all SoC has dither function in gamma module
-> dd private data to control this function setting
+Changelog v2 -> v3:
+* https://lore.kernel.org/linux-hwmon/20201111091259.46773-1-alexandru.ardelean@analog.com/
+* dropped patch 'docs: hwmon: (ltc2945): change type of val to ULL in ltc2945_val_to_reg()'
+* add patch 'hwmon: (ltc2945): clamp values before converting'
+* for patch 'hwmon: (ltc2945): add support for sense resistor'
+  - sense-resistor is represented in milli-ohms internally; this
+    risks of any other potential overflows with the multiplication to
+    1000; the scaling in the driver becomes simpler, but we can't allow
+    a lower resistor value that 1 mOhm, and all resistor values
+    need to be integer in mOhm.
+  - added max power and max amps limits, adjusted to sense resistor
+* for patch 'dt-bindings: hwmon: ltc2945: add device tree doc for ltc2945 '
+  added 'Reviewed-by: Rob Herring <robh@kernel.org>'
 
-'add' ?
+Alexandru Ardelean (4):
+  hwmon: (ltc2945): wrap regmap into an ltc2945_state struct
+  hwmon: (ltc2945): clamp values before converting
+  hwmon: (ltc2945): add support for sense resistor
+  dt-bindings: hwmon: ltc2945: add device tree doc for ltc2945
 
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_disp_gamma.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c b/drivers/gpu/drm/=
-mediatek/mtk_disp_gamma.c
-> index 8501821..4eab82a 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-> @@ -24,7 +24,7 @@
->  #define LUT_10BIT_MASK                         0x03ff
->
->  struct mtk_disp_gamma_data {
-> -       u32 reserved;
-> +       bool has_dither;
->  };
->
->  /**
-> @@ -72,7 +72,8 @@ static void mtk_gamma_config(struct mtk_ddp_comp *comp,=
- unsigned int w,
->
->         mtk_ddp_write(cmdq_pkt, h << 16 | w, comp, DISP_GAMMA_SIZE);
->
-> -       mtk_dither_set(comp, bpc, DISP_GAMMA_CFG, cmdq_pkt);
-> +       if (gamma->data && gamma->data->has_dither)
-> +               mtk_dither_set(comp, bpc, DISP_GAMMA_CFG, cmdq_pkt);
->  }
->
->  static void mtk_gamma_start(struct mtk_ddp_comp *comp)
-> @@ -168,8 +169,13 @@ static int mtk_disp_gamma_remove(struct platform_dev=
-ice *pdev)
->         return 0;
->  }
->
-> +static const struct mtk_disp_gamma_data mt8173_gamma_driver_data =3D {
-> +       .has_dither =3D true,
-> +};
-> +
->  static const struct of_device_id mtk_disp_gamma_driver_dt_match[] =3D {
-> -       { .compatible =3D "mediatek,mt8173-disp-gamma"},
-> +       { .compatible =3D "mediatek,mt8173-disp-gamma",
-> +         .data =3D &mt8173_gamma_driver_data},
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_disp_gamma_driver_dt_match);
-> --
-> 1.8.1.1.dirty
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+ .../bindings/hwmon/adi,ltc2945.yaml           |  49 +++++++
+ drivers/hwmon/ltc2945.c                       | 128 +++++++++++++++---
+ 2 files changed, 156 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
+
+-- 
+2.17.1
+
