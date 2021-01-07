@@ -2,155 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C22FB2ECD9D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:16:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 940702ECDA8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:19:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727362AbhAGKQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 05:16:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45128 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726925AbhAGKQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 05:16:45 -0500
-Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC338C0612F4
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 02:16:04 -0800 (PST)
-Received: by mail-ua1-x936.google.com with SMTP id f16so2063967uav.12
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 02:16:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nN6dQuyXA1cgqaEtX0AA7VlQcXxY7DKXUbiyQ5ub41M=;
-        b=xxwLJ3IPnOXtSUDE2Gdlx0SJdkSqovTBp91M9E5FKZrmUHw7dCEQpFQ98RF8o+WrNH
-         knhaOrLGzOD18xACwcCw3gdpBpZPNfYkIONNySlqOmnSvz7fovgFMKGIPGEsQYFQnhaI
-         TtXkgMJCLQU51RNodvDwQij/Fvv2ynhYSkqKL1b6JTczfv1/EJfPH2MxEpD5u/JR4jyG
-         OxjGKGtcsRuVnyq5PIrLySxYaoOFSVYUd1PlUvQci7rFzjWQcubgc8kH6ei0IZ8h9AWj
-         DS5Dckqu4klEKtI1eU/AsegRJViuVjJfseycLxpMvEUTJZtpdUVWzWvRbV5EvtCEI03K
-         Yl+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nN6dQuyXA1cgqaEtX0AA7VlQcXxY7DKXUbiyQ5ub41M=;
-        b=Q0CNu7L0ssg022PKaGENpXVED7om+xPYnbnkzMRTMKNoE7jrXtacy1c6oJdU3tCp9e
-         d2mw5E368XbbKJ3yZeULSNkIRnD2ZsSuQL7Tn5x3AK07N8sBNnW4COkfOOyaDCJe+KmZ
-         zjPVrXjPRL4U7hu21hMCI1GaxO9Q9lcTW1yYDuVtXaOnZpjaJN/0L8nhSP+Y9rfSgejA
-         LvaTZs0H+ovS7RuamH2blVoXjFn2Zon3hkbNZT21bF0p0u1zKkF4SGjZzhPdpDBdC3z4
-         1og9tW794UgIa1bzIT0CmHbQxhaLaI7/U+U7U859NX1VTQ+PXGJXv0vZhzjhV46PdIJa
-         wLvA==
-X-Gm-Message-State: AOAM530AU1ObVN16W/AJ7I+Viq+BWGZk73x/33J5yKIG2rV/3hzmeFlN
-        nfIrtVdgOfMhNnoa3Wp8TjRtKAZMz9bAZLu5CtCt1g==
-X-Google-Smtp-Source: ABdhPJxu0lBxj9SXRgJDA/FBzEbFglx8xUdGm7WcmhHVlZDFqUon4K67vqgtMxOm7nKooSMq+yMOs6LAlI1VBW6Nbt8=
-X-Received: by 2002:ab0:78d:: with SMTP id c13mr6731978uaf.129.1610014563793;
- Thu, 07 Jan 2021 02:16:03 -0800 (PST)
+        id S1727536AbhAGKS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 05:18:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54416 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725974AbhAGKS2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Jan 2021 05:18:28 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AFE2923341;
+        Thu,  7 Jan 2021 10:17:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610014668;
+        bh=6sb108ac5UVxYYGp+wjKpmn1DM3i6z83ytBYRl9cEg0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hH6B8lh70ZD1mRAhDD95qQrPQi2eJCkyxPUKdRaHXGFWvk5kWwkOpr8JGcMmr4J9g
+         tu2A3ECZvMyoWTbpWGwp5BHqUdchbi6Q8GBZRvQ+0trW3ZhHIs1eYG4zlYmkXC5KeE
+         I344mDb8l3ZW5ICrBovpiJY73YrVHCsP9U4pmfCyvSS6uI3S3mgYxOphgWLsTeu4+d
+         CM42hJyJ7xFqID70fcHXWW4UYMb3L5Xqwq2aiQgj91ICb0b+4oYHRXa178czbrZy99
+         RIXe8jg0ozfDjyn/YJtnFll+VCC8dHpma9ZlgM0xLu4JMBp+meDvvoawSCOZQb4Ypa
+         1/yiKd1F/Q0ag==
+Received: by mail-ed1-f45.google.com with SMTP id c7so7227855edv.6;
+        Thu, 07 Jan 2021 02:17:47 -0800 (PST)
+X-Gm-Message-State: AOAM533wcOX5i1xP2motWBCUpiANf/gO5tuhWOKVeUtpCDe7qD0Fttqk
+        ycS3tY8+WgNhNcdgQbDlx5U9wyR6FCP/RT1avQ==
+X-Google-Smtp-Source: ABdhPJwFY76DPb4xZJOUEweB/1qZGG9xebnYuDZQduz4K7shnS7SUrqlKleXXx7W6MP7D9rlLuURfDRF0VERLMbkyZY=
+X-Received: by 2002:a50:c3c5:: with SMTP id i5mr1159187edf.166.1610014666156;
+ Thu, 07 Jan 2021 02:17:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20201112194011.103774-1-ebiggers@kernel.org> <X7gQ9Y44iIgkiM64@sol.localdomain>
- <CAPDyKFrXtqqj3RXJ4m666e_danpp2neRD_M+FCaMWPC+Ow2jsA@mail.gmail.com> <X/N+ouEtmMPYT0Qa@sol.localdomain>
-In-Reply-To: <X/N+ouEtmMPYT0Qa@sol.localdomain>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 7 Jan 2021 11:15:26 +0100
-Message-ID: <CAPDyKFpjwen156VyR8HTLb579Npr=ocT8RGBcZb-i82bfi1gwQ@mail.gmail.com>
-Subject: Re: [PATCH 0/8] eMMC inline encryption support
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
-        Satya Tangirala <satyat@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ritesh Harjani <riteshh@codeaurora.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
+References: <1609989081-29353-1-git-send-email-yongqiang.niu@mediatek.com> <1609989081-29353-3-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1609989081-29353-3-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Thu, 7 Jan 2021 18:17:34 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_85Ks5pa244K_G2Lp-XwmMFvK74X6M4vdM-M5Et_9Y9sQ@mail.gmail.com>
+Message-ID: <CAAOTY_85Ks5pa244K_G2Lp-XwmMFvK74X6M4vdM-M5Et_9Y9sQ@mail.gmail.com>
+Subject: Re: [PATCH v9, 02/11] dt-bindings: mediatek: add description for
+ mt8183 display
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 4 Jan 2021 at 21:46, Eric Biggers <ebiggers@kernel.org> wrote:
+Hi, Yongqiang:
+
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
+=887=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:11=E5=AF=AB=E9=81=93=
+=EF=BC=9A
 >
-> On Wed, Nov 25, 2020 at 10:56:42AM +0100, Ulf Hansson wrote:
-> > On Fri, 20 Nov 2020 at 19:54, Eric Biggers <ebiggers@kernel.org> wrote:
-> > >
-> > > On Thu, Nov 12, 2020 at 11:40:03AM -0800, Eric Biggers wrote:
-> > > > Hello,
-> > > >
-> > > > This patchset adds support for eMMC inline encryption, as specified by
-> > > > the upcoming version of the eMMC specification and as already
-> > > > implemented and used on many devices.  Building on that, it then adds
-> > > > Qualcomm ICE support and wires it up for the Snapdragon 630 SoC.
-> > > >
-> > > > Inline encryption hardware improves the performance of storage
-> > > > encryption and reduces power usage.  See
-> > > > Documentation/block/inline-encryption.rst for more information about
-> > > > inline encryption and the blk-crypto framework (upstreamed in v5.8)
-> > > > which supports it.  Most mobile devices already use UFS or eMMC inline
-> > > > encryption hardware; UFS support was already upstreamed in v5.9.
-> > > >
-> > > > Patches 1-3 add support for the standard eMMC inline encryption.
-> > > >
-> > > > However, as with UFS, host controller-specific patches are needed on top
-> > > > of the standard support.  Therefore, patches 4-8 add Qualcomm ICE
-> > > > (Inline Crypto Engine) support and wire it up on the Snapdragon 630 SoC.
-> > > >
-> > > > To test this I took advantage of the recently upstreamed support for the
-> > > > Snapdragon 630 SoC, plus work-in-progress patches from the SoMainline
-> > > > project (https://github.com/SoMainline/linux/tree/konrad/v5.10-rc3).  In
-> > > > particular, I was able to run the fscrypt xfstests for ext4 and f2fs in
-> > > > a Debian chroot.  Among other things, these tests verified that the
-> > > > correct ciphertext is written to disk (the same as software encryption).
-> > > >
-> > > > It will also be possible to add support for Mediatek eMMC inline
-> > > > encryption hardware in mtk-sd, and it should be easier than the Qualcomm
-> > > > hardware since the Mediatek hardware follows the standard more closely.
-> > > > I.e., patches 1-3 should be almost enough for the Mediatek hardware.
-> > > > However, I don't have the hardware to do this yet.
-> > > >
-> > > > This patchset is based on v5.10-rc3, and it can also be retrieved from
-> > > > tag "mmc-crypto-v1" of
-> > > > https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
-> > > >
-> > > > Note: the fscrypt inline encryption support is partially broken in
-> > > > v5.10-rc3, so for testing a fscrypt fix needs to be applied too:
-> > > > https://lkml.kernel.org/r/20201111015224.303073-1-ebiggers@kernel.org
-> > > >
-> > > > Eric Biggers (8):
-> > > >   mmc: add basic support for inline encryption
-> > > >   mmc: cqhci: rename cqhci.c to cqhci-core.c
-> > > >   mmc: cqhci: add support for inline encryption
-> > > >   mmc: cqhci: add cqhci_host_ops::program_key
-> > > >   firmware: qcom_scm: update comment for ICE-related functions
-> > > >   dt-bindings: mmc: sdhci-msm: add ICE registers and clock
-> > > >   arm64: dts: qcom: sdm630: add ICE registers and clocks
-> > > >   mmc: sdhci-msm: add Inline Crypto Engine support
-> > >
-> > > Any comments on this patchset?
-> >
-> > I have been busy, but just wanted to let you know that I am moving to
-> > start reviewing this series shortly.
-> >
-> > I also need to catch up on the eMMC spec a bit, before I can provide
-> > you with comments.
-> >
-> > Kind regards
-> > Uffe
+> add description for mt8183 display
+
+Applied to mediatek-drm-next [1], thanks.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
 >
-> Ulf, are you still planning to review this patchset?  I just sent out v4 of this
-> patchset based on v5.11-rc2, but not a lot has changed from previous versions,
-> since people have generally seemed happy with it.  Any chance that you will
-> apply it for 5.12?  Thanks!
-
-My apologies for the delay. I certainly appreciate the review that's
-been done by people and I intend to have a look myself within the
-coming week.
-
-I definitely think it should be possible to get this queued for v5.12,
-unless I find some very weird things, which I doubt.
-
-Kind regards
-Uffe
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 2=
+ +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp=
+.txt
+> index b07881e..c562cda 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx=
+t
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx=
+t
+> @@ -43,7 +43,7 @@ Required properties (all function blocks):
+>         "mediatek,<chip>-dpi"                   - DPI controller, see med=
+iatek,dpi.txt
+>         "mediatek,<chip>-disp-mutex"            - display mutex
+>         "mediatek,<chip>-disp-od"               - overdrive
+> -  the supported chips are mt2701, mt7623, mt2712, mt8167 and mt8173.
+> +  the supported chips are mt2701, mt7623, mt2712, mt8167, mt8173 and mt8=
+183.
+>  - reg: Physical base address and length of the function block register s=
+pace
+>  - interrupts: The interrupt signal from the function block (required, ex=
+cept for
+>    merge and split function blocks).
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
