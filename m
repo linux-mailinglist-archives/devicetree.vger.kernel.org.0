@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C72B92ED66D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:10:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC182ED67F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:16:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbhAGSJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 13:09:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34360 "EHLO
+        id S1728894AbhAGSPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 13:15:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725944AbhAGSJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:09:58 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFDC4C0612F4;
-        Thu,  7 Jan 2021 10:09:18 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id q4so3953596plr.7;
-        Thu, 07 Jan 2021 10:09:18 -0800 (PST)
+        with ESMTP id S1728131AbhAGSPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:15:49 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB183C0612F5;
+        Thu,  7 Jan 2021 10:15:08 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id 4so3963849plk.5;
+        Thu, 07 Jan 2021 10:15:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=vw+3fRUkfsBW4QbvQXU0qs0vfRYiwwo/FP9gAc8ddJM=;
-        b=YZm7VyoGVhqHtD1FsmJ/k39LqGH3CzXZDAPcNPkuO69ds5omJ3no6GgI7/xQM878yH
-         79dDv+LBBMHcj6uk3FYEwQ3pT8yJF7xn+BfZE+PQT60r4Lui6xikZO+W4fl4aYpmym66
-         5hkhMFywFQPUAJ1ygS0VFd8zxUlyCk9YnpM0oVd8fu2hkvEa/Rq/FpCp4U5avTd+Sogf
-         TTB5LgMS/c6r+Xsk+6+e0Sbj1F+ND0+arqcCA9xYxjOF/cu8Z9lZmhmsHLVus+fkbk0p
-         tC+tYdwsHfWipxuj11enoTlGiF/M1XGCl7Eh0SQNInPpcaJC3PTQs376g2qUfHCytPZA
-         oyOA==
+        bh=GPXiFjMF8fWndZATnzyHcSdqJ5FPFuQpQwMD+TwmAO8=;
+        b=H5VFNkBXv9CPh04t38BxTR2JzV402cjEBPUI/b1EZSosxY03LkYvfGEA5gyxCPeUzF
+         w4N3KbaXcFr8yhBDxXLTtU1PlCM5YYdCj5y+Mfv4avOhEXtwk1PQxBDpxj6+xvK9P+wU
+         l3PRW1F27YLXc7Ck4f9YukrhKT8o/KgxXtLvdYD03cvmqv+wLdhniiszT/8Gfb+PJvaO
+         x+lzY4kb7UaslIOiWkyi6y5XE22zWtAtX4DxXGqp58tx0mfFao1W+rcLmgepMgIzEVAY
+         MN+Wo2ZbdaFWh3A4aywl9F0nb/b8BtRtwy+AqvlNjbTMAGFf+c/B/mAJU9BFLmLJJNY7
+         yLTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=vw+3fRUkfsBW4QbvQXU0qs0vfRYiwwo/FP9gAc8ddJM=;
-        b=XUWOyMLt3C0/zmDbbeU0bbwAcKnQDARdj1ek4v8Eql0m5j/2WNEXybJuA6dBUMleGa
-         wV+k4eq/hAaZ5rmRme5rA2aFSQ8cfTSh//4UgYtExa85nzkdcykvoCCyCKavSplPK5J3
-         AclTjrC75y+Nhts3RWUX4n/KLB+GRV+zPzjeK7NsnsFJWkqTyfOvps7czoNkpOkwVCyN
-         6dO7i8J7XiTBaixSKbb5MkqmTaucvWd67DrMeUMn9GltYi14Cl6aPb9lOcHvDiouDFlF
-         mADwaL18MA0tZuoT5AwpMaMwFMxWQ8Qq0vSQ1ad8ALovUcwXdnPRAV5PF77StR4wEpBg
-         /xDA==
-X-Gm-Message-State: AOAM532NXX4LZN7OOVcz0S0M9FvOj4IWV69i74HSBlVV7TSdntdcVzkw
-        lGveVSRR5iblIlitxexd678=
-X-Google-Smtp-Source: ABdhPJx1xoy1ym4Tw7x4gRoJsL4200DE01Znf0lWr3Vuy9ojCIaAyzQSqEaRuQMdpfdFepL4c54dig==
-X-Received: by 2002:a17:90a:398d:: with SMTP id z13mr10369314pjb.1.1610042958180;
-        Thu, 07 Jan 2021 10:09:18 -0800 (PST)
+        bh=GPXiFjMF8fWndZATnzyHcSdqJ5FPFuQpQwMD+TwmAO8=;
+        b=A5Pp7nlBgYP3YuHLf7fbvCqiuS2SCyPEpEkSgGHs7kdmAzdxlvhcia1T9Kt45NCeAL
+         VnLvxEk5CdkcbH21F1ZqwEKzSAY70N3oLdYN4QlUWrBz3s1nU320umGZ76fF0d7qhkoO
+         m4lQRMrpe4GQ/uyYpCsm0j9zFkMvRoD7FKtyAFwi+/7u1EA5iHPAmehGqUJeytnmM1J4
+         Dz3jTLg5MeqO9FPAkNFUM9tFTJG2JsK53dK6Ffu+mv3sI2TrX4ajjZe2k/I3Kcnh56xp
+         cMsLyJJYQ39Ezn3laDO9Uc7CQOu3JpxjOV7nyIUHkyv6mju7hqdmBQTQRHQHcw90vTPm
+         Gqqw==
+X-Gm-Message-State: AOAM532D1+7RekFWQp1HGR6WXhyAEBiBoa//DU0GcnK0TirslfhckQxg
+        zsKC/z3PCz+B9zfJIGAse3o=
+X-Google-Smtp-Source: ABdhPJwZ7i4xy5938TdwenlmcCb1DmPgeI8SUnHvQTgcl5VwtBOB44uc0fGSo2cH3NjCWADPyGPZQw==
+X-Received: by 2002:a17:902:ed45:b029:da:c274:d7ac with SMTP id y5-20020a170902ed45b02900dac274d7acmr77396plb.69.1610043308449;
+        Thu, 07 Jan 2021 10:15:08 -0800 (PST)
 Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id 73sm6854065pga.26.2021.01.07.10.09.15
+        by smtp.googlemail.com with ESMTPSA id z11sm2922783pjn.5.2021.01.07.10.14.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Jan 2021 10:09:17 -0800 (PST)
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
+        Thu, 07 Jan 2021 10:15:07 -0800 (PST)
+Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
 To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
         Claire Chang <tientzu@chromium.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
@@ -77,10 +77,10 @@ Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         Tomasz Figa <tfiga@chromium.org>,
         Nicolas Boichat <drinkcat@chromium.org>
 References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-3-tientzu@chromium.org>
- <20210106185241.GA109735@localhost.localdomain>
- <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
- <20210107175740.GA16519@char.us.oracle.com>
+ <20210106034124.30560-6-tientzu@chromium.org>
+ <20210106185757.GB109735@localhost.localdomain>
+ <CALiNf2_dV13jbHqLt-r1eK+dtOcAKBGcWQCVMQn+eL6MuOrETQ@mail.gmail.com>
+ <20210107180032.GB16519@char.us.oracle.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
@@ -136,12 +136,12 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <aa5af7d1-779e-f0f6-e6ba-8040e603523f@gmail.com>
-Date:   Thu, 7 Jan 2021 10:09:14 -0800
+Message-ID: <4cce7692-7184-9b25-70f2-b821065f3b25@gmail.com>
+Date:   Thu, 7 Jan 2021 10:14:50 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210107175740.GA16519@char.us.oracle.com>
+In-Reply-To: <20210107180032.GB16519@char.us.oracle.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -149,28 +149,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/7/21 9:57 AM, Konrad Rzeszutek Wilk wrote:
-> On Fri, Jan 08, 2021 at 01:39:18AM +0800, Claire Chang wrote:
->> Hi Greg and Konrad,
+On 1/7/21 10:00 AM, Konrad Rzeszutek Wilk wrote:
+>>>
+>>>
+>>>  - Nothing stops the physical device from bypassing the SWIOTLB buffer.
+>>>    That is if an errant device screwed up the length or DMA address, the
+>>>    SWIOTLB would gladly do what the device told it do?
 >>
->> This change is intended to be non-arch specific. Any arch that lacks DMA access
->> control and has devices not behind an IOMMU can make use of it. Could you share
->> why you think this should be arch specific?
+>> So the system needs to provide a way to lock down the memory access, e.g. MPU.
 > 
-> The idea behind non-arch specific code is it to be generic. The devicetree
-> is specific to PowerPC, Sparc, and ARM, and not to x86 - hence it should
-> be in arch specific code.
+> OK! Would it be prudent to have this in the description above perhaps?
 
-In premise the same code could be used with an ACPI enabled system with
-an appropriate service to identify the restricted DMA regions and unlock
-them.
-
-More than 1 architecture requiring this function (ARM and ARM64 are the
-two I can think of needing this immediately) sort of calls for making
-the code architecture agnostic since past 2, you need something that scales.
-
-There is already code today under kernel/dma/contiguous.c that is only
-activated on a CONFIG_OF=y && CONFIG_OF_RESERVED_MEM=y system, this is
-no different.
+Yes this is something that must be documented as a requirement for the
+restricted DMA pool users, otherwise attempting to do restricted DMA
+pool is no different than say, using a device private CMA region.
+Without the enforcement, this is just a best effort.
 -- 
 Florian
