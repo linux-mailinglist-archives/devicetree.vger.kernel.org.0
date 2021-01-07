@@ -2,124 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E274D2EE9BD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 00:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBB042EE9E4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 00:43:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728691AbhAGX1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 18:27:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55122 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728289AbhAGX1p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Jan 2021 18:27:45 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3F96F23715;
-        Thu,  7 Jan 2021 23:27:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610062024;
-        bh=m7RW9HBtqQnfdINbdCHqEB+pyy8sssGGLdn1klRTWl4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gT80uxAxXHcdu8ANm4X/DEVzQeUX4d9Xzi4EyFcd2Ykoyn1JnHjE6IUi73B7hwBng
-         TniP8Jqu0BEvWq+jm3pKWDRd6eBQmKFdPSEmOHGAGo2ugRzzb+p2Hb8CjG1b3AE7ZF
-         6p9ClqBeZO/di4+CpDsIeM4MtyiX1e99RbIuKAHypqNG0rmplxPbOWGg9/bcOVr0Sj
-         yNOuBTaAQJcrCcPmKCdXKmuh3+7tVEmMPGwACG7S4zhdeNtZb+QnVlXhU+tQ5a5XDm
-         +KPOF84EebCj/bdCaRm0oIinNJd8WO8rIszZ0UDn/GQlU+mefjg2g7g6N/VOLwAGhG
-         8Wr8IeoPANQKg==
-Received: by mail-wm1-f53.google.com with SMTP id 3so6912502wmg.4;
-        Thu, 07 Jan 2021 15:27:04 -0800 (PST)
-X-Gm-Message-State: AOAM533I3sF6/CPG+IyPE5nxV57CfSwh8ZaSVJTqMpaVb+Z8tc4Os1qm
-        5Qr1bmeNg/No7wy5pdIS4U3LzNGpxru0feBVMg==
-X-Google-Smtp-Source: ABdhPJzS3UQ0x/poF8FnNPQV3fPhB+gtHlyJACLspO4RjxuVplYpY3mxzHHqv7Jv/wY6lB6d7fYsmOrLxCypguDO4Us=
-X-Received: by 2002:a7b:cb93:: with SMTP id m19mr663344wmi.45.1610062022818;
- Thu, 07 Jan 2021 15:27:02 -0800 (PST)
+        id S1729250AbhAGXnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 18:43:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726720AbhAGXnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 18:43:03 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D06C0612FA
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 15:42:14 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id x126so5063632pfc.7
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 15:42:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=F5v4P5OpFzV6txdYAKpaZWpOyrHHIe3zcVp3Rukxxyc=;
+        b=Sb4QUpYXJYB3MxUccAbxoLT60+fhUPaDc9jzWhqd+btYg+/EXUlC94hh8E+UVfzVeG
+         4uDEuZSZwlF9dLau98IGiSBYK17qYj4OjYNk7Ld9hFkJml8wYn1kqs1kZjV/l0FvIqdQ
+         ySBnxgmbI49OObsvXhvQowgx8/5uT+g0MGgsk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=F5v4P5OpFzV6txdYAKpaZWpOyrHHIe3zcVp3Rukxxyc=;
+        b=lMxVlzmrG8AUeQj4/HA84C58FiRwzRUSUalTTW9bVAayPG1XjXcyM5C2HPPMPnPMZ0
+         5W8fYU4FfGU9+t6HUfynXqXXtTE5Q/gwXJAaxGcQuuHRDUVjYviEjl1G0dr8Snev22/3
+         EYwIeICzPtu3a6Q+4+FQ+J1dZ+wA5MHGirjWl+s9nf/AGBMBJdOU/U4Delgdak4gWtdB
+         k2IjJYxjdCS2nzU6w3FBYtsVE9gAUhznhFFAPLpQ79/kABq94eKZ7TDlicjYP+nGFZcI
+         nCde0CWjTFvEIi1z8ItLfqGvML+ZMt7vg6GzBOtdc+X6PPHkJ2m8gz3QUu9O/L7xVkLg
+         bIkg==
+X-Gm-Message-State: AOAM531aYPafYncCYlb7o7Bs+tIzFjrHnG6ugC7zScqQ9CX3q2JNlT7a
+        Fprla8jYyYjHU+Y0cqWbAbRrhg==
+X-Google-Smtp-Source: ABdhPJyzdeewliRoHZ8WITDN6ypLVV0dl1cubmfzDl+xHifecx0A5pXaGRh+E1Om9wMFyWYEFO7Rkg==
+X-Received: by 2002:aa7:8649:0:b029:19e:16df:e5f8 with SMTP id a9-20020aa786490000b029019e16dfe5f8mr944645pfo.41.1610062933987;
+        Thu, 07 Jan 2021 15:42:13 -0800 (PST)
+Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:a6ae:11ff:fe11:fd59])
+        by smtp.gmail.com with ESMTPSA id h8sm7376487pjc.2.2021.01.07.15.42.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 15:42:13 -0800 (PST)
+From:   Philip Chen <philipchen@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>, dmitry.torokhov@gmail.com
+Cc:     swboyd@chromium.org, dianders@chromium.org,
+        Philip Chen <philipchen@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+Subject: [PATCH v4 1/2] dt-bindings: input: cros-ec-keyb: Add a new property
+Date:   Thu,  7 Jan 2021 15:42:08 -0800
+Message-Id: <20210107154200.v4.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20210107143352.50090-1-jitao.shi@mediatek.com>
-In-Reply-To: <20210107143352.50090-1-jitao.shi@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Fri, 8 Jan 2021 07:26:50 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-7PiBGPE57OiAVDbq5hRLFunKX-v-h5UUS4v9Q7SuH=g@mail.gmail.com>
-Message-ID: <CAAOTY_-7PiBGPE57OiAVDbq5hRLFunKX-v-h5UUS4v9Q7SuH=g@mail.gmail.com>
-Subject: Re: [PATCH] drm/mediatek: dsi: Fix EoTp flag
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        huijuan.xie@mediatek.com, stonea168@163.com,
-        cawa.cheng@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, yingjoe.chen@mediatek.com,
-        eddie.huang@mediatek.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
+This patch adds a new property `function-row-physmap` to the
+device tree for the custom keyboard top row design.
 
-Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=887=E6=97=
-=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8810:34=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> SoC will transmit the EoTp (End of Transmission packet) when
-> MIPI_DSI_MODE_EOT_PACKET flag is set.
->
-> Enabling EoTp will make the line time larger, so the hfp and
-> hbp should be reduced to keep line time.
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
-k/mtk_dsi.c
-> index 65fd99c528af..8c70ec39bfe1 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -401,8 +401,11 @@ static void mtk_dsi_rxtx_control(struct mtk_dsi *dsi=
-)
->                 break;
->         }
->
-> -       tmp_reg |=3D (dsi->mode_flags & MIPI_DSI_CLOCK_NON_CONTINUOUS) <<=
- 6;
-> -       tmp_reg |=3D (dsi->mode_flags & MIPI_DSI_MODE_EOT_PACKET) >> 3;
-> +       if (dsi->mode_flags & MIPI_DSI_CLOCK_NON_CONTINUOUS)
-> +               tmp_reg |=3D HSTX_CKLP_EN;
-> +
-> +       if (!(dsi->mode_flags & MIPI_DSI_MODE_EOT_PACKET))
-> +               tmp_reg |=3D DIS_EOT;
+The property describes the rows/columns of the top row keys
+from left to right.
 
-This part is not related to line time, so separate this part to another pat=
-ch.
+Signed-off-by: Philip Chen <philipchen@chromium.org>
+---
 
-Regards,
-Chun-Kuang.
+(no changes since v2)
 
->
->         writel(tmp_reg, dsi->regs + DSI_TXRX_CTRL);
->  }
-> @@ -478,6 +481,7 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi =
-*dsi)
->                           timing->da_hs_zero + timing->da_hs_exit + 3;
->
->         delta =3D dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST ? 18 : 12;
-> +       delta +=3D dsi->mode_flags & MIPI_DSI_MODE_EOT_PACKET ? 2 : 0;
->
->         horizontal_frontporch_byte =3D vm->hfront_porch * dsi_tmp_buf_bpp=
-;
->         horizontal_front_back_byte =3D horizontal_frontporch_byte + horiz=
-ontal_backporch_byte;
-> --
-> 2.25.1
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Changes in v2:
+- add `function-row-physmap` instead of `google,custom-keyb-top-row`
+
+ .../devicetree/bindings/input/google,cros-ec-keyb.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+index 8e50c14a9d778..7acdb33781d30 100644
+--- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
++++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+@@ -31,6 +31,16 @@ properties:
+       if the EC does not have its own logic or hardware for this.
+     type: boolean
+ 
++  function-row-physmap:
++    $ref: '/schemas/types.yaml#/definitions/uint32-array'
++    description: |
++      An ordered u32 array describing the rows/columns (in the scan matrix)
++      of top row keys from physical left (KEY_F1) to right. Each entry
++      encodes the row/column as:
++      (((row) & 0xFF) << 24) | (((column) & 0xFF) << 16)
++      where the lower 16 bits are reserved. This property is specified only
++      when the keyboard has a custom design for the top row keys.
++
+ required:
+   - compatible
+ 
+-- 
+2.26.2
+
