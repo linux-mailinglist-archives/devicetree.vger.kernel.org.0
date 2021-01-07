@@ -2,177 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 160882ED65D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:06:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E4802ED64F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:04:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727673AbhAGSF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 13:05:59 -0500
-Received: from userp2130.oracle.com ([156.151.31.86]:37992 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727058AbhAGSF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:05:59 -0500
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 107HrhgY122489;
-        Thu, 7 Jan 2021 18:02:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=ONFAFUzWR9/dYKX6R5UPSmvsMe/XM4yxSwwcXYnlluo=;
- b=k3kFeIEgW4vzaR4ZfvPTjVDuH82iItpQcMeLnIZSpNlBXO/nlBJ/2BedFegemuW7x/n9
- 5T6zuoIODh1nvQIYNbV9vtdd0rkp3MUUvbNymJpULPQWthCaupOJ61QzYsXDU2hvVRhn
- qSOhtKNsApENoFNmZMg9EGRXgSsWsgqbyJEs0W+O4pQl3q7wgB3x2Tc1NIu0vNPjaYLF
- ahKo9px5Rnbgx2GNFk96Gn3MxndBpVBPpEgZqrkAzR0w7bYROrVdVAjXFF1piDy5oe49
- 6/Q4bDILkejn3BnDHnJupHVRcGxIzzKa+mHpAQh45hxoZjVrh8Rc5ocBK4sOtLZhDO5Y lQ== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-        by userp2130.oracle.com with ESMTP id 35wftxd6hd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 07 Jan 2021 18:02:40 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 107HsxJ2096626;
-        Thu, 7 Jan 2021 18:00:39 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
-        by aserp3020.oracle.com with ESMTP id 35v1fbhu8s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 07 Jan 2021 18:00:39 +0000
-Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
-        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 107I0YBv019522;
-        Thu, 7 Jan 2021 18:00:34 GMT
-Received: from char.us.oracle.com (/10.152.32.25)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Thu, 07 Jan 2021 18:00:33 +0000
-Received: by char.us.oracle.com (Postfix, from userid 1000)
-        id 56A6B6A00C3; Thu,  7 Jan 2021 13:00:32 -0500 (EST)
-Date:   Thu, 7 Jan 2021 13:00:32 -0500
-From:   Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-To:     Claire Chang <tientzu@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <joro@8bytes.org>, will@kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        rdunlap@infradead.org, dan.j.williams@intel.com,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        xen-devel@lists.xenproject.org, Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
-Message-ID: <20210107180032.GB16519@char.us.oracle.com>
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-6-tientzu@chromium.org>
- <20210106185757.GB109735@localhost.localdomain>
- <CALiNf2_dV13jbHqLt-r1eK+dtOcAKBGcWQCVMQn+eL6MuOrETQ@mail.gmail.com>
+        id S1726650AbhAGSDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 13:03:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33336 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726073AbhAGSDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:03:20 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06D4C0612F5
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 10:02:40 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id d20so7147054otl.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 10:02:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=nQ6Ok2qv3kfguUtTE5w7jI9nGycF4ZB8N3EBEUPDAj8=;
+        b=GwN3LcQd554wGKPgJZjH1S7VHyf+0nrBX7wmPn3JVgqimfAzoUPQLhWHotgOQe7ajF
+         6De7OUFvPfIMGE4dDVzXUKNrYKlmP9OyvJ8fg+47iV01+hf3T+w+TiwAtX3U8MmqxRZr
+         LI01MTRfxwQb5EfDfTtAyMCPzm8bkI/S4dL793hljuLJg1vRMtn9lFeX/geK8/3fKbr7
+         y8TEAdTkxnpOBjIjtoinf6V66xDyy4CXMzlh2NNGIqf4XUY3tONryrCf35zsvB2lfp2W
+         hiu+wCzN8jMKi7gWx391yzyIV6X3ZpdltVMG1arUX114ausrADiHORtjP1XY7AzorT6p
+         wVsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=nQ6Ok2qv3kfguUtTE5w7jI9nGycF4ZB8N3EBEUPDAj8=;
+        b=eC0KUbUNx3w2agXiEblvs5KNWL/lhWQos3XMbJO7Zpf7K7s4O+/67YPGqCUrstzTzF
+         Idc6P9BSN2SPogjGHgCTbEaGV+7ZFCLHIRPYpxxOPnufFzrLR21k4WgIYUfcxd8Bt9UU
+         sM43ogt56Qz7DyNHVHUpZmXBbN9PshqFGpCDNDdsbj5ev6Yg1HRp3CJMNbLk4j/1DYaq
+         FNF3j4sWv1ktbMhYjXpPatJ8DZ2n4dxMJk4fzIUnkI2Wvly423UWQ6x62SYAano+E1oJ
+         WPrnwcICrdX9LB1JW7LyUZpMyHjP5t9uHStdKDWEJbWsFGJKHf2JmJQJEADrLlsAczf7
+         xJUA==
+X-Gm-Message-State: AOAM530DBYMf/E7mSN2FbQsYQOL1uVrvJr8yNRpVFX55dxRpdsINaZRc
+        uOGisnEnTAj3dRrOYBgEdTGDjQ==
+X-Google-Smtp-Source: ABdhPJw0C/3EMOrNHLY5ELywjkiY+brXvZR5p3DxYWimDV92myKzXZGMLQS8FRc3/VYO9pYkAA4nZQ==
+X-Received: by 2002:a05:6830:204b:: with SMTP id f11mr7177993otp.372.1610042559828;
+        Thu, 07 Jan 2021 10:02:39 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t186sm1438689oif.1.2021.01.07.10.02.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 10:02:39 -0800 (PST)
+Date:   Thu, 7 Jan 2021 12:02:37 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] remoteproc/mediatek: support L1TCM
+Message-ID: <X/dMvWdwVfnjsUXM@builder.lan>
+References: <20201214050521.845396-1-tzungbi@google.com>
+ <20201214050521.845396-3-tzungbi@google.com>
+ <20210106231513.GC9149@xps15>
+ <CA+Px+wXEV9GDCMjR8inbQ89tNV9n7RedeAOGJL_yATmeCLjXJw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CALiNf2_dV13jbHqLt-r1eK+dtOcAKBGcWQCVMQn+eL6MuOrETQ@mail.gmail.com>
-User-Agent: Mutt/1.9.1 (2017-09-22)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9857 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 phishscore=0
- suspectscore=0 spamscore=0 bulkscore=0 adultscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2101070105
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9857 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 suspectscore=0 mlxscore=0
- bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
- lowpriorityscore=0 mlxlogscore=999 malwarescore=0 spamscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101070105
+In-Reply-To: <CA+Px+wXEV9GDCMjR8inbQ89tNV9n7RedeAOGJL_yATmeCLjXJw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 08, 2021 at 01:39:43AM +0800, Claire Chang wrote:
-> On Thu, Jan 7, 2021 at 2:58 AM Konrad Rzeszutek Wilk
-> <konrad.wilk@oracle.com> wrote:
-> >
-> > On Wed, Jan 06, 2021 at 11:41:23AM +0800, Claire Chang wrote:
-> > > Introduce the new compatible string, restricted-dma-pool, for restricted
-> > > DMA. One can specify the address and length of the restricted DMA memory
-> > > region by restricted-dma-pool in the device tree.
-> > >
-> > > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > > ---
-> > >  .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
-> > >  1 file changed, 24 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > > index e8d3096d922c..44975e2a1fd2 100644
-> > > --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > > +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > > @@ -51,6 +51,20 @@ compatible (optional) - standard definition
-> > >            used as a shared pool of DMA buffers for a set of devices. It can
-> > >            be used by an operating system to instantiate the necessary pool
-> > >            management subsystem if necessary.
-> > > +        - restricted-dma-pool: This indicates a region of memory meant to be
-> > > +          used as a pool of restricted DMA buffers for a set of devices. The
-> > > +          memory region would be the only region accessible to those devices.
-> > > +          When using this, the no-map and reusable properties must not be set,
-> > > +          so the operating system can create a virtual mapping that will be used
-> > > +          for synchronization. The main purpose for restricted DMA is to
-> > > +          mitigate the lack of DMA access control on systems without an IOMMU,
-> > > +          which could result in the DMA accessing the system memory at
-> > > +          unexpected times and/or unexpected addresses, possibly leading to data
-> > > +          leakage or corruption. The feature on its own provides a basic level
-> > > +          of protection against the DMA overwriting buffer contents at
-> > > +          unexpected times. However, to protect against general data leakage and
-> > > +          system memory corruption, the system needs to provide way to restrict
-> > > +          the DMA to a predefined memory region.
-> >
-> > Heya!
-> >
-> > I think I am missing something obvious here so please bear with my
-> > questions:
-> >
-> >  - This code adds the means of having the SWIOTLB pool tied to a specific
-> >    memory correct?
-> 
-> It doesn't affect the existing SWIOTLB. It just utilizes the existing SWIOTLB
-> code to create another DMA pool tied to a specific memory region for a given set
-> of devices. It bounces the streaming DMA (map/unmap) in and out of that region
-> and does the memory allocation (dma_direct_alloc) from the same region.
+On Wed 06 Jan 19:50 CST 2021, Tzung-Bi Shih wrote:
 
-Right, so why can't it follow the same mechanism that Xen SWIOTLB does - which
-had exactly the same problem (needed special handling on the pool) - and do
-a similar code?
+> On Thu, Jan 7, 2021 at 7:15 AM Mathieu Poirier
+> <mathieu.poirier@linaro.org> wrote:
+> >
+> > >  static void mt8183_scp_stop(struct mtk_scp *scp)
+> > >  {
+> > >       /* Disable SCP watchdog */
+> > > @@ -714,6 +749,19 @@ static int scp_probe(struct platform_device *pdev)
+> > >               goto free_rproc;
+> > >       }
+> > >       scp->sram_size = resource_size(res);
+> > > +     scp->sram_phys = res->start;
+> > > +
+> > > +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
+> > > +     if (res) {
+> >
+> > As far as I can tell the if() condition isn't needed since
+> > platform_get_resource_byname() returns NULL on error and devm_ioremap_resource()
+> > is capable of handling that condition.  As such the code to parse "l1tcm" can be
+> > the same as what is done for "sram".
+> 
+> The "l1tcm" memory region is optional.  The if() condition is for: if
+> DTS doesn't provide the memory region, kernel can skip the code block.
+> 
 
-> 
-> >
-> >
-> >  - Nothing stops the physical device from bypassing the SWIOTLB buffer.
-> >    That is if an errant device screwed up the length or DMA address, the
-> >    SWIOTLB would gladly do what the device told it do?
-> 
-> So the system needs to provide a way to lock down the memory access, e.g. MPU.
+People are actively looking for platform_get_resource_byname +
+devm_ioremap_resource() pairs to replace with
+devm_platform_ioremap_resource_byname(), so we're probably going to have
+someone try to patch this soon...
 
-OK! Would it be prudent to have this in the description above perhaps?
-> 
+So please change the pair to devm_platform_ioremap_resource_byname() and
+treat a returned -EINVAL as the memory isn't specified and other
+IS_ERR() as errors.
+
+Thanks,
+Bjorn
+
 > >
-> >  - This has to be combined with SWIOTLB-force-ish to always use the
-> >    bounce buffer, otherwise you could still do DMA without using
-> >    SWIOTLB (by not hitting the criteria for needing to use SWIOTLB)?
-> 
-> Since restricted DMA is for the devices that are not behind an IOMMU, I change
-> the criteria
-> `if (unlikely(swiotlb_force == SWIOTLB_FORCE))`
-> to
-> `if (unlikely(swiotlb_force == SWIOTLB_FORCE) || dev->dma_io_tlb_mem)`
-> in dma_direct_map_page().
-> 
-> Also, even if SWIOTLB=force, the restricted DMA pool is preferred if available
-> (get_io_tlb_mem in https://lore.kernel.org/patchwork/patch/1360995/).
-> 
-> Thanks!
+> > With the above:
+> >
+> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> >
+> > > +             scp->l1tcm_base = devm_ioremap_resource(dev, res);
+> > > +             if (IS_ERR((__force void *)scp->l1tcm_base)) {
+> > > +                     dev_err(dev, "Failed to parse and map l1tcm memory\n");
+> > > +                     ret = PTR_ERR((__force void *)scp->l1tcm_base);
+> > > +                     goto free_rproc;
+> > > +             }
+> > > +             scp->l1tcm_size = resource_size(res);
+> > > +             scp->l1tcm_phys = res->start;
+> > > +     }
