@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 461682ED5EF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 18:46:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 163ED2ED60B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 18:51:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728821AbhAGRqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 12:46:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58804 "EHLO
+        id S1728081AbhAGRuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 12:50:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726650AbhAGRqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 12:46:19 -0500
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DD8FC0612F4
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 09:45:39 -0800 (PST)
-Received: by mail-il1-x12e.google.com with SMTP id t3so3425217ilh.9
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 09:45:39 -0800 (PST)
+        with ESMTP id S1726436AbhAGRuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 12:50:09 -0500
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30EBFC0612F9
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 09:49:38 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id t22so4321933pfl.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 09:49:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+0HS3c+10kITlDelN9sS9O+z0w2Ups5kLpisbgPnIuQ=;
-        b=TmrbFqeMmnksB1vaMhBMwmgHvojsvOdZ6TLQjSgGvlt9aJwr9bFzrlNmZkoEKaXZrA
-         BzhRl+J0o1KlSCMk8lZODbp2N6pkKBO2ZLOdx2Na4jfQSKA1o8yFNpUtcIwDAMJ6DBdH
-         07WtF3X92be4zrXT7ssItC8OK2EEQXGttgp4E=
+        bh=6Eoqk68P1Bcb0VR3W1zmVx5ceWjyA10pZm4KhVQJdAs=;
+        b=GM+iTlQ3BQkvH1ob8TdUxcmAsi46pi2mtWELHUgZFyyPO+EndHkxYi6Efkg3O18Tku
+         edQt8UB0Llti6Epm5pi7gQD7Rvjj2XwfVndg2ehauNbNVLy3PAXR8NhD8ppHMDSgrEjB
+         eTe/tAn9d2RFhHsPSUNMdpOJeoKvJtOqJ4IiU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+0HS3c+10kITlDelN9sS9O+z0w2Ups5kLpisbgPnIuQ=;
-        b=tN4jWcUCUhQJwx8GXdGUJ2PEdDpfIvqfEGROHg127NmACEBBx8JRbVGA+IeSOAPSn0
-         r3lJIU9LuDsQFYAMWHH46M90c3/hbP1bj6LP0tG1a0CM7UCufYAQ2WuwiBqYnRGodZR7
-         GBjzeavD2OFnKyLl8dA+nScMlFzGD/5DwFRyDk8/WhKGPqWJ5KuOyA9Bxy2YqgYQTNfr
-         kBpA+HM+q2GDLjtRbtgvCvVYxQ5/OMeQKi5nbE2hbGOfXdDtnTwmOl2Vul6W0s1uQasx
-         ejsOCzY22F0neNP5MaWOeHl+RQuv5SJVwOlEqVbVjQHYWYbQDVA/30a7yCU79cyR0cf6
-         hKTA==
-X-Gm-Message-State: AOAM531MXqXb4Bd+LETAzAaRSqkMqrg/qX/9YSPvTcsmhSJcUOKRyHyq
-        05YT8JKOVGxfpixK+JqfOEDx8rdz3/m5fsS8
-X-Google-Smtp-Source: ABdhPJzdkVxuZsRvS+SPlxjcZWDR0aY6cWQhAD0GLQPEydFMs9yLJxi14qkX8/9PvL87A1Zo8UgdWQ==
-X-Received: by 2002:a92:cb44:: with SMTP id f4mr9920097ilq.131.1610041538376;
-        Thu, 07 Jan 2021 09:45:38 -0800 (PST)
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com. [209.85.166.174])
-        by smtp.gmail.com with ESMTPSA id s1sm3855767iot.0.2021.01.07.09.45.37
+        bh=6Eoqk68P1Bcb0VR3W1zmVx5ceWjyA10pZm4KhVQJdAs=;
+        b=UEvxCnST4zdv/cDavt7bkM2FTDNeFW0T49Smlho0mOERGjh/s3l0ujsyDFA/gh3z1w
+         KHRS47INh7OqCWtRx1QqzSaGUXPeAi8Z8PfDIWANzWpsxJodTCObicF10N9oOEVkH2zW
+         Watuu6hj3SLfiy7A7eISpbC5TGWhfD7bqEF6eMeFSPlD4Mxy75oGycXUPuJTju7j/Ywu
+         KN4Dt4yooCLsxpCyx46i2hqkw0YimrQ2t1goCdLZQHy6zQ3f1OlngY7iwrtQBf7qbcMI
+         R0Cls9zhqPIF4ANLgH2FEC9Hn48g9VZH0o/fpjeVtrdRBWg/ACFOvDjqWhYjedeHV2oK
+         H7gg==
+X-Gm-Message-State: AOAM530wM1CG+CkvDMujdgT9nvfZXLrQELsDaY/2I3N56bTYMWHd1CBP
+        dxypwnM3j9PY3GqoKFRNo2BkaFzcgpJOvrXd
+X-Google-Smtp-Source: ABdhPJwIeq5dUSyo0oUWTcAsisgWEZ7Oj8Q669C0oaw/v6hDW2RO6VHw9U+IMcsQD367qr2AjmpMVQ==
+X-Received: by 2002:a63:c441:: with SMTP id m1mr2898007pgg.353.1610041777436;
+        Thu, 07 Jan 2021 09:49:37 -0800 (PST)
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com. [209.85.210.181])
+        by smtp.gmail.com with ESMTPSA id q23sm7337084pgm.89.2021.01.07.09.49.36
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Jan 2021 09:45:38 -0800 (PST)
-Received: by mail-il1-f174.google.com with SMTP id x15so7571814ilq.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 09:45:37 -0800 (PST)
-X-Received: by 2002:a92:9ada:: with SMTP id c87mr10270546ill.5.1610041194703;
- Thu, 07 Jan 2021 09:39:54 -0800 (PST)
+        Thu, 07 Jan 2021 09:49:37 -0800 (PST)
+Received: by mail-pf1-f181.google.com with SMTP id 11so4311949pfu.4
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 09:49:36 -0800 (PST)
+X-Received: by 2002:a92:d592:: with SMTP id a18mr8620iln.64.1610041335740;
+ Thu, 07 Jan 2021 09:42:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-6-tientzu@chromium.org>
- <20210106185757.GB109735@localhost.localdomain>
-In-Reply-To: <20210106185757.GB109735@localhost.localdomain>
+References: <20210106034124.30560-1-tientzu@chromium.org> <d7043239-12cf-3636-4726-2e3b90917dc6@gmail.com>
+In-Reply-To: <d7043239-12cf-3636-4726-2e3b90917dc6@gmail.com>
 From:   Claire Chang <tientzu@chromium.org>
-Date:   Fri, 8 Jan 2021 01:39:43 +0800
-X-Gmail-Original-Message-ID: <CALiNf2_dV13jbHqLt-r1eK+dtOcAKBGcWQCVMQn+eL6MuOrETQ@mail.gmail.com>
-Message-ID: <CALiNf2_dV13jbHqLt-r1eK+dtOcAKBGcWQCVMQn+eL6MuOrETQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
-To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+Date:   Fri, 8 Jan 2021 01:42:04 +0800
+X-Gmail-Original-Message-ID: <CALiNf28sU1VtGB7LeTXExkMwQiCeg8N5arqyEjw0CPZP72R4dg@mail.gmail.com>
+Message-ID: <CALiNf28sU1VtGB7LeTXExkMwQiCeg8N5arqyEjw0CPZP72R4dg@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 0/6] Restricted DMA
+To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         benh@kernel.crashing.org, paulus@samba.org,
         "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
         Roedel <joro@8bytes.org>," <joro@8bytes.org>, will@kernel.org,
         Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
         boris.ostrovsky@oracle.com, jgross@suse.com,
         sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
         Marek Szyprowski <m.szyprowski@samsung.com>,
@@ -82,82 +82,102 @@ Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
         Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
         xen-devel@lists.xenproject.org, Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 7, 2021 at 2:58 AM Konrad Rzeszutek Wilk
-<konrad.wilk@oracle.com> wrote:
+On Thu, Jan 7, 2021 at 2:48 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
 >
-> On Wed, Jan 06, 2021 at 11:41:23AM +0800, Claire Chang wrote:
-> > Introduce the new compatible string, restricted-dma-pool, for restricted
-> > DMA. One can specify the address and length of the restricted DMA memory
-> > region by restricted-dma-pool in the device tree.
+> Hi,
+>
+> First of all let me say that I am glad that someone is working on a
+> upstream solution for this issue, would appreciate if you could CC and
+> Jim Quinlan on subsequent submissions.
+
+Sure!
+
+>
+> On 1/5/21 7:41 PM, Claire Chang wrote:
+> > This series implements mitigations for lack of DMA access control on
+> > systems without an IOMMU, which could result in the DMA accessing the
+> > system memory at unexpected times and/or unexpected addresses, possibly
+> > leading to data leakage or corruption.
 > >
-> > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > ---
-> >  .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
+> > For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
+> > not behind an IOMMU. As PCI-e, by design, gives the device full access to
+> > system memory, a vulnerability in the Wi-Fi firmware could easily escalate
+> > to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
+> > full chain of exploits; [2], [3]).
 > >
-> > diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > index e8d3096d922c..44975e2a1fd2 100644
-> > --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > @@ -51,6 +51,20 @@ compatible (optional) - standard definition
-> >            used as a shared pool of DMA buffers for a set of devices. It can
-> >            be used by an operating system to instantiate the necessary pool
-> >            management subsystem if necessary.
-> > +        - restricted-dma-pool: This indicates a region of memory meant to be
-> > +          used as a pool of restricted DMA buffers for a set of devices. The
-> > +          memory region would be the only region accessible to those devices.
-> > +          When using this, the no-map and reusable properties must not be set,
-> > +          so the operating system can create a virtual mapping that will be used
-> > +          for synchronization. The main purpose for restricted DMA is to
-> > +          mitigate the lack of DMA access control on systems without an IOMMU,
-> > +          which could result in the DMA accessing the system memory at
-> > +          unexpected times and/or unexpected addresses, possibly leading to data
-> > +          leakage or corruption. The feature on its own provides a basic level
-> > +          of protection against the DMA overwriting buffer contents at
-> > +          unexpected times. However, to protect against general data leakage and
-> > +          system memory corruption, the system needs to provide way to restrict
-> > +          the DMA to a predefined memory region.
+> > To mitigate the security concerns, we introduce restricted DMA. Restricted
+> > DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
+> > specially allocated region and does memory allocation from the same region.
+> > The feature on its own provides a basic level of protection against the DMA
+> > overwriting buffer contents at unexpected times. However, to protect
+> > against general data leakage and system memory corruption, the system needs
+> > to provide a way to restrict the DMA to a predefined memory region (this is
+> > usually done at firmware level, e.g. in ATF on some ARM platforms).
 >
-> Heya!
->
-> I think I am missing something obvious here so please bear with my
-> questions:
->
->  - This code adds the means of having the SWIOTLB pool tied to a specific
->    memory correct?
+> Can you explain how ATF gets involved and to what extent it does help,
+> besides enforcing a secure region from the ARM CPU's perpsective? Does
+> the PCIe root complex not have an IOMMU but can somehow be denied access
+> to a region that is marked NS=0 in the ARM CPU's MMU? If so, that is
+> still some sort of basic protection that the HW enforces, right?
 
-It doesn't affect the existing SWIOTLB. It just utilizes the existing SWIOTLB
-code to create another DMA pool tied to a specific memory region for a given set
-of devices. It bounces the streaming DMA (map/unmap) in and out of that region
-and does the memory allocation (dma_direct_alloc) from the same region.
+We need the ATF support for memory MPU (memory protection unit).
+Restricted DMA (with reserved-memory in dts) makes sure the predefined memory
+region is for PCIe DMA only, but we still need MPU to locks down PCIe access to
+that specific regions.
 
 >
+> On Broadcom STB SoCs we have had something similar for a while however
+> and while we don't have an IOMMU for the PCIe bridge, we do have a a
+> basic protection mechanism whereby we can configure a region in DRAM to
+> be PCIe read/write and CPU read/write which then gets used as the PCIe
+> inbound region for the PCIe EP. By default the PCIe bridge is not
+> allowed access to DRAM so we must call into a security agent to allow
+> the PCIe bridge to access the designated DRAM region.
 >
->  - Nothing stops the physical device from bypassing the SWIOTLB buffer.
->    That is if an errant device screwed up the length or DMA address, the
->    SWIOTLB would gladly do what the device told it do?
+> We have done this using a private CMA area region assigned via Device
+> Tree, assigned with a and requiring the PCIe EP driver to use
+> dma_alloc_from_contiguous() in order to allocate from this device
+> private CMA area. The only drawback with that approach is that it
+> requires knowing how much memory you need up front for buffers and DMA
+> descriptors that the PCIe EP will need to process. The problem is that
+> it requires driver modifications and that does not scale over the number
+> of PCIe EP drivers, some we absolutely do not control, but there is no
+> need to bounce buffer. Your approach scales better across PCIe EP
+> drivers however it does require bounce buffering which could be a
+> performance hit.
 
-So the system needs to provide a way to lock down the memory access, e.g. MPU.
+Only the streaming DMA (map/unmap) needs bounce buffering.
+I also added alloc/free support in this series
+(https://lore.kernel.org/patchwork/patch/1360995/), so dma_direct_alloc() will
+try to allocate memory from the predefined memory region.
 
->
->  - This has to be combined with SWIOTLB-force-ish to always use the
->    bounce buffer, otherwise you could still do DMA without using
->    SWIOTLB (by not hitting the criteria for needing to use SWIOTLB)?
+As for the performance hit, it should be similar to the default swiotlb.
+Here are my experiment results. Both SoCs lack IOMMU for PCIe.
 
-Since restricted DMA is for the devices that are not behind an IOMMU, I change
-the criteria
-`if (unlikely(swiotlb_force == SWIOTLB_FORCE))`
-to
-`if (unlikely(swiotlb_force == SWIOTLB_FORCE) || dev->dma_io_tlb_mem)`
-in dma_direct_map_page().
+PCIe wifi vht80 throughput -
 
-Also, even if SWIOTLB=force, the restricted DMA pool is preferred if available
-(get_io_tlb_mem in https://lore.kernel.org/patchwork/patch/1360995/).
+  MTK SoC                  tcp_tx     tcp_rx    udp_tx   udp_rx
+  w/o Restricted DMA  244.1     134.66   312.56   350.79
+  w/ Restricted DMA    246.95   136.59   363.21   351.99
+
+  Rockchip SoC           tcp_tx     tcp_rx    udp_tx   udp_rx
+  w/o Restricted DMA  237.87   133.86   288.28   361.88
+  w/ Restricted DMA    256.01   130.95   292.28   353.19
+
+The CPU usage doesn't increase too much either.
+Although I didn't measure the CPU usage very precisely, it's ~3% with a single
+big core (Cortex-A72) and ~5% with a single small core (Cortex-A53).
 
 Thanks!
+
+>
+> Thanks!
+> --
+> Florian
