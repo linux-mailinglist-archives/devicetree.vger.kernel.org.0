@@ -2,141 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53C892EC734
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 01:04:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36BE22EC75B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 01:36:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727429AbhAGAEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 19:04:14 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:48708 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726293AbhAGAEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 19:04:14 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10703Q2G098696;
-        Wed, 6 Jan 2021 18:03:26 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1609977806;
-        bh=tQrVlUnNzpbNpbVX/IO4V0JvoJkj7OSMnP+9H9h9UJA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ZwjmnLknoQ8Ahwzpf1rRAvCFiXzyQFMEGeD8+4EYe1FIDZh4MuVMBFfKb1JF8DYBL
-         G6swATQ9kJsfej/rWjyegqWjUbOg1KSiJ7nrmmDsWZ6DLuACvXo0g1gPd4T97zJ4K7
-         UXsDanqiAXESMCyYF250A3EkqJXIxX6mQ79MgxHw=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10703Qpx127037
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 6 Jan 2021 18:03:26 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 6 Jan
- 2021 18:03:26 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 6 Jan 2021 18:03:26 -0600
-Received: from [10.250.66.86] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10703PVP035418;
-        Wed, 6 Jan 2021 18:03:25 -0600
-Subject: Re: [PATCH v2 0/5] Introduce PRU remoteproc consumer API
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-CC:     <ohad@wizery.com>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <ssantosh@kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <lee.jones@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <praneeth@ti.com>,
-        <rogerq@kernel.org>
-References: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
- <20210106232704.GE9149@xps15>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <11303a1b-5ab4-def5-77b1-c500894c9c87@ti.com>
-Date:   Wed, 6 Jan 2021 18:03:25 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1725978AbhAGAga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 19:36:30 -0500
+Received: from mo-csw1114.securemx.jp ([210.130.202.156]:56018 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725860AbhAGAga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 19:36:30 -0500
+Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 1070Y2wf017046; Thu, 7 Jan 2021 09:34:02 +0900
+X-Iguazu-Qid: 2wHHcVEABewtERwmYc
+X-Iguazu-QSIG: v=2; s=0; t=1609979642; q=2wHHcVEABewtERwmYc; m=5gtMXf5aLkUuriQQt8s5+yfCz8lBKP4ioKHpSxI6VE0=
+Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
+        by relay.securemx.jp (mx-mr1112) id 1070Y0qC028747;
+        Thu, 7 Jan 2021 09:34:01 +0900
+Received: from enc02.toshiba.co.jp ([61.202.160.51])
+        by imx12.toshiba.co.jp  with ESMTP id 1070Y0IO015064;
+        Thu, 7 Jan 2021 09:34:00 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 1070Y0tr015175;
+        Thu, 7 Jan 2021 09:34:00 +0900
+Date:   Thu, 7 Jan 2021 09:33:58 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        punit1.agrawal@toshiba.co.jp,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, yuji2.ishikawa@toshiba.co.jp,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 0/4] gpio: visconti: Add Toshiba Visconti GPIO support
+X-TSB-HOP: ON
+Message-ID: <20210107003358.rlwdta7jkkyyzbzu@toshiba.co.jp>
+References: <20201201181406.2371881-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CAMRc=MeV8+rpoLkdbqzsqOmcsTY1g++B+cqDmSAWQP=gGGduWQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210106232704.GE9149@xps15>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMRc=MeV8+rpoLkdbqzsqOmcsTY1g++B+cqDmSAWQP=gGGduWQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mathieu,
+Hi Bartosz,
 
-On 1/6/21 5:27 PM, Mathieu Poirier wrote:
-> On Wed, Dec 16, 2020 at 05:52:34PM +0100, Grzegorz Jaszczyk wrote:
->> Hi All,
->>
->> The Programmable Real-Time Unit and Industrial Communication Subsystem
->> (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
->> RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
->>
->> There are 3 foundation components for PRUSS subsystem: the PRUSS platform
->> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
->> already merged and can be found under:
->> 1) drivers/soc/ti/pruss.c
->>    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->> 2) drivers/irqchip/irq-pruss-intc.c
->>    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
->> 3) drivers/remoteproc/pru_rproc.c
->>    Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
->>
->> The programmable nature of the PRUs provide flexibility to implement custom
->> peripheral interfaces, fast real-time responses, or specialized data handling.
->> Example of a PRU consumer drivers will be:
->>   - Software UART over PRUSS
->>   - PRU-ICSS Ethernet EMAC
->>
->> In order to make usage of common PRU resources and allow the consumer drivers to
->> configure the PRU hardware for specific usage the PRU API is introduced.
->>
->> Patch #3 of this series depends on one not merged remteproc related patch [1].
->>
->> Please see the individual patches for exact changes in each patch, following is
->> the only change from v1:
->>  - Change the 'prus' property name to 'ti,prus' as suggested by Rob Herring,
->>  which influences patch #1 and patch #2
->>
->> [1] https://patchwork.kernel.org/project/linux-remoteproc/patch/20201121030156.22857-3-s-anna@ti.com/
->>
->> Best regards,
->> Grzegorz
->>
->> Roger Quadros (1):
->>   remoteproc: pru: Add pru_rproc_set_ctable() function
->>
->> Suman Anna (2):
->>   dt-bindings: remoteproc: Add PRU consumer bindings
->>   remoteproc: pru: Deny rproc sysfs ops for PRU client driven boots
->>
->> Tero Kristo (2):
->>   remoteproc: pru: Add APIs to get and put the PRU cores
->>   remoteproc: pru: Configure firmware based on client setup
->>
->>  .../bindings/remoteproc/ti,pru-consumer.yaml  |  64 +++++
->>  drivers/remoteproc/pru_rproc.c                | 221 +++++++++++++++++-
->>  include/linux/pruss.h                         |  78 +++++++
+On Wed, Jan 06, 2021 at 11:33:49AM +0100, Bartosz Golaszewski wrote:
+> On Tue, Dec 1, 2020 at 10:16 AM Nobuhiro Iwamatsu
+> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
+> >
+> > Hi,
+> >
+> > This series is the GPIO driver for Toshiba's ARM SoC, Visconti[0].
+> > This provides DT binding documentation, device driver, MAINTAINER files, and updates to DT files.
+> >
+> > Update:
+> >
+> >   dt-bindings: gpio: Add bindings for Toshiba Visconti GPIO Controller:
+> >     v2 -> v3: Fix dtschema/dtc warnings.
+> >       dtschema/dtc warnings/errors:
+> >         Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.example.dt.yaml: gpio@28020000: interrupts: [[0, 24, 4], [0, 25, 4], [0, 26, 4], [0, 27, 4], [0, 28, 4], [0, 29, 4], [0, 30, 4], [0, 31, 4], [0, 32, 4], [0, 33, 4], [0, 34, 4], [0, 35, 4], [0, 36, 4], [0, 37, 4], [0, 38, 4], [0, 39, 4]] is too short
+> >           From schema: Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+> >     v1 -> v2: Fix typo.
+> >
+> >   gpio: visoconti: Add Toshiba Visconti GPIO support:
+> >     v2 -> v3: Add select GPIO_GENERIC
+> >               Use genric MMIO GPIO library
+> >               Use bgpio_init() as initialized the generic helpers.
+> >               Use irqchip template instead of gpiochip_irqchip_add().
+> >     v1 -> v2: No update
+> >
+> >   MAINTAINERS: Add entries for Toshiba Visconti GPIO controller:
+> >     v2 -> v3: No update
+> >     v1 -> v2: No update
+> >
+> >   arm: dts: visconti: Add DT support for Toshiba Visconti5 GPIO driver:
+> >     v2 -> v3: Fix compatible string.
+> >     v1 -> v2: No update
+> >
+> > Best regards,
+> >   Nobuhiro
+> >
 > 
-> This patchset is giving checkpatch.pl errors and as such will not go further
-> with this revision.
-
-Yeah, I am aware of those. Greg has intentionally skipped the checkpatch
-warnings around ENOTSUPP, based on some similar discussion on a different patch,
-https://lkml.org/lkml/2020/11/10/764.
-
-Let me know if you prefer that we change these to EOPNOTSUPP.
-
-regards
-Suman
-
+> Nobuhiro,
 > 
->>  3 files changed, 360 insertions(+), 3 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->>  create mode 100644 include/linux/pruss.h
->>
->> -- 
->> 2.29.0
->>
+> In the future please use the get_maintainers.pl script - I have never
+> been Cc'ed on this series and I would have ignored it if Linus W
+> hadn't brought it to my attention.
+> 
 
+Sorry, I'll use it next time.
+
+Best regards,
+  Nobuhiro
