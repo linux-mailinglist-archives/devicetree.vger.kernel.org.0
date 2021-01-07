@@ -2,73 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A218A2ECB3B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 08:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 055092ECBB8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 09:28:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726326AbhAGHyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 02:54:01 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:36045 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727396AbhAGHyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 02:54:00 -0500
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id B4DE923078;
-        Thu,  7 Jan 2021 08:53:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1610005998;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=WRJxPCoYY1H+X4Bfb0nP87rLPUenjBlcO2PCfMDSqRY=;
-        b=HLraEko9bHXT/CPT9zsiAhmh2dJbi/vEPDx+ep1UDmjPSuBoDC5UMWpnRDv3gwslzxQD7w
-        yOncpYzTaN9shDTqiQV9yb7Ju5/3fgMRpvAkIJIsoj40I8HzShwLijVV0bcSrsTf0g3WSI
-        3DJKghXr9WuIraAR/W7eKNRHylvwjwI=
+        id S1726705AbhAGI1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 03:27:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56056 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726254AbhAGI1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 03:27:44 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EA82C0612F6
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 00:27:04 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id n7so4360571pgg.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 00:27:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TEpfUC6SSuCT9kZJdE2Ig06/CQbJ0RWivjJUsV8Lfw4=;
+        b=keJrF5bJ/TAruJLytWQ5e4qbzCcZE4wqWogRJhz9KK6RehvGdGP37siDsg8IROV5ue
+         GWOoANiKd1b7dVNcfN9sLFf6eJHhOe/SNYlei2d3rapZBNLYd3IBPZFeq3zf52VcYW8J
+         AMiVHEC29PKd/bWG1EpaOPVzUURnMOPHKNj5M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TEpfUC6SSuCT9kZJdE2Ig06/CQbJ0RWivjJUsV8Lfw4=;
+        b=ij7S8hluC/Jy9BwhyW8d7oiPV6HaUPmCA3cxd3+l0rlkaKCG7SIcPc8Jlv08U4bPHj
+         kEQrtKoA9tDwCbkjS2ScqbUoHpHbtoRZ8aWNR40zHJrbiemP9c5g2xJCzUqj01CM8W24
+         +Ji86QA7zRihnP5j0O2+3jXxN1uRTH/+Xe3SJfOy9VRuutxphZZxu7bzFz1+0beuV7ji
+         nk8Q4GXxrOFmDkupBxZa87PiXv/WvQ6GaWeL41vyKbwanhEz8kDQnv3HC5Dx2Xhca1iz
+         qTs6z0BHqzheKLUXZcsvRay5yR6L+5y2I4OSPMzPXrpUCr22Odh4Zz6DzrxvKoYzTIiB
+         g3PQ==
+X-Gm-Message-State: AOAM532TzDEuSSf/BY9Ul5Jl0FkIpZswVvf3mgncrY8rWdzhdpP3awns
+        Mb2jfHRYSaRrK3SxfLqfOCMlyA==
+X-Google-Smtp-Source: ABdhPJzJschmke2ee3zxGdTwh3Txk5dMJ25wnI3dFDHvLFWeRJtUCGcJ5Xt19DXHGfLKgciROYSl/A==
+X-Received: by 2002:a63:e151:: with SMTP id h17mr775830pgk.120.1610008023863;
+        Thu, 07 Jan 2021 00:27:03 -0800 (PST)
+Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:7220:84ff:fe09:41dc])
+        by smtp.gmail.com with ESMTPSA id o14sm5825580pgr.44.2021.01.07.00.27.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 00:27:03 -0800 (PST)
+From:   Nicolas Boichat <drinkcat@chromium.org>
+To:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     hoegsberg@chromium.org, fshao@chromium.org, hsinyi@chromium.org,
+        boris.brezillon@collabora.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v7 0/4] drm/panfrost: Add support for mt8183 GPU
+Date:   Thu,  7 Jan 2021 16:26:49 +0800
+Message-Id: <20210107082653.3519337-1-drinkcat@chromium.org>
+X-Mailer: git-send-email 2.29.2.729.g45daf8777d-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 07 Jan 2021 08:53:14 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Sudhanshu Gupta <sudhanshu.gupta@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
-        Rai Harninder <harninder.rai@nxp.com>
-Subject: Re: [PATCH] arm64: dts: ls1028a: fix the offset of the reset register
-In-Reply-To: <20210107064046.GF28365@dragon>
-References: <20201215212622.717-1-michael@walle.cc>
- <20210107064046.GF28365@dragon>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <502fecda4d7f0d85e3417d16748e22f5@walle.cc>
-X-Sender: michael@walle.cc
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+Hi!
 
-Am 2021-01-07 07:40, schrieb Shawn Guo:
-> On Tue, Dec 15, 2020 at 10:26:22PM +0100, Michael Walle wrote:
->> The offset of the reset request register is 0, the absolute address is
->> 0x1e60000. Boards without PSCI support will fail to perform a reset:
->> 
->> [   26.734700] reboot: Restarting system
->> [   27.743259] Unable to restart system
->> [   27.746845] Reboot failed -- System halted
->> 
->> Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
->> Signed-off-by: Michael Walle <michael@walle.cc>
-> 
-> Out of curiosity, how did you get it fixed with your commit 
-> 3f0fb37b22b4
-> ("arm64: dts: ls1028a: fix reboot node") in the first place?
+Follow-up on the v5 [1], things have gotten significantly
+better in the last 9 months, thanks to the efforts on Bifrost
+support by the Collabora team (and probably others I'm not
+aware of).
 
-I simply must have missed it. There is also a fallback reset method
-via the watchdog in the chain, which kicks in if this wasn't successful.
-So if you test it, it is easy to think its working although its not.
+I've been testing this series on a MT8183/kukui device, with a
+chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
+mesa 20.3.2 (lots of artifacts though).
 
--michael
+devfreq is currently not supported, as we'll need:
+ - Clock core support for switching the GPU core clock (see 2/4).
+ - Platform-specific handling of the 2-regulator (see 3/4).
+
+Since the latter is easy to detect, patch 3/4 just disables
+devfreq if the more than one regulator is specified in the
+compatible matching table.
+
+[1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
+[2] https://crrev.com/c/2608070
+
+Changes in v7:
+ - Fix GPU ID in commit message
+
+Changes in v6:
+ - Rebased, actually tested with recent mesa driver.
+
+Nicolas Boichat (4):
+  dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+  arm64: dts: mt8183: Add node for the Mali GPU
+  drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
+  drm/panfrost: Add mt8183-mali compatible string
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        |  25 +++++
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   6 +
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   6 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
+ 6 files changed, 161 insertions(+)
+
+-- 
+2.29.2.729.g45daf8777d-goog
+
