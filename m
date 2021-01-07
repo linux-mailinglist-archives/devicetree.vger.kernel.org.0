@@ -2,84 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 408B12EC9D4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 06:08:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F32E62EC9E0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 06:13:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726683AbhAGFHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 00:07:08 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:13366 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726051AbhAGFHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 00:07:07 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5ff696d30000>; Wed, 06 Jan 2021 21:06:27 -0800
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 7 Jan
- 2021 05:06:26 +0000
-Received: from audio.nvidia.com (172.20.145.6) by mail.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Thu, 7 Jan 2021 05:06:24 +0000
-From:   Sameer Pujar <spujar@nvidia.com>
-To:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>
-CC:     <jonathanh@nvidia.com>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sameer Pujar <spujar@nvidia.com>, <stable@vger.kernel.org>
-Subject: [PATCH] arm64: tegra: Add power-domain for Tegra210 HDA
-Date:   Thu, 7 Jan 2021 10:36:10 +0530
-Message-ID: <1609995970-12256-1-git-send-email-spujar@nvidia.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726352AbhAGFNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 00:13:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40912 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725916AbhAGFNi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Jan 2021 00:13:38 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C200D225AC;
+        Thu,  7 Jan 2021 05:12:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1609996377;
+        bh=ErN54kxZTm8lZUalspRnGSyijSi97JU0sRRnNxeJrvY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nljmi6aTkFBa0rPNe89gwF8J1A6HOYBueNCVXr3u/O3Yf6SzkqK7O8XDZ/jG99gxx
+         1h0MsUN01WVG/YpH7f0ApPRgRQRi1LBRKUzMNly2CkhRF1I2LSJK6hNDZRwV/rnBSG
+         qsriMqFnf0xk/NaPvrRuEEHrC3mnUekB9Px6hT7m8lvcojjMR+MoXK4S4aXcliWHpP
+         yMECHvKeTIGAtSA4YuUrdN9Tg2LC1LfcYM3lvxqo5g38hj/IJgUT9eqnkYY7m8qqi2
+         5bethOrnJE7bRaqU3nzEoMehHbPUv+sJLdJ9mGjkfOroZv+HzTfvXe8Jc6mnHjqXY/
+         wrgNVmkesfNaQ==
+Date:   Thu, 7 Jan 2021 13:12:50 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     robh@kernel.org, festevam@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org, georgi.djakov@linaro.org, cdleonard@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Leonard Crestez <leonard.crestez@nxp.com>
+Subject: Re: [PATCH v3 1/6] arm64: dts: imx8mq: Add NOC node
+Message-ID: <20210107051250.GD28365@dragon>
+References: <20201210100906.18205-1-martin.kepplinger@puri.sm>
+ <20201210100906.18205-2-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1609995987; bh=t8ctQ0xfU/UJdQS/7XQux5m6y8DB4xnSoWfObOddjrM=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
-         Content-Type;
-        b=Xgt2NewP12LlsMekKGON5NTmYOsNnFgHBatUDhVlwPiCgL3/Ch7GOX8MylhRBNJ5E
-         nkZozKvJsx4R0VDtMhrYwD2aXHGB0plClg43e5DX5c8amhaufXuU7iASBmqTLEWmdk
-         MgCdrchSjmYJseZQXWoQPTOQ30TmFJFzajW5uJsCcVC0BCc162CVrITWFrheI2atsN
-         kTKVRbQPLIFLjzfKD9ZUqxErBw2h6go2qMj/6HXuAaXrqai5a1adQyy8vvgC1yQjIC
-         rJMUNHGLcN2ogLB8WfxDL4gmKbZrtpBkguv+EffFYm9MM99GsWhzrzE/JGJBTkSdnE
-         mfOexJmjuCSMA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201210100906.18205-2-martin.kepplinger@puri.sm>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HDA initialization is failing occasionally on Tegra210 and following
-print is observed in the boot log. Because of this probe() fails and
-no sound card is registered.
+On Thu, Dec 10, 2020 at 11:09:01AM +0100, Martin Kepplinger wrote:
+> From: Leonard Crestez <leonard.crestez@nxp.com>
+> 
+> Add initial support for dynamic frequency scaling of the main NOC
+> on imx8mq.
+> 
+> Make DDRC the parent of the NOC (using passive governor) so that the
+> main NOC is automatically scaled together with DDRC by default.
+> 
+> Support for proactive scaling via interconnect will come on top.
+> 
+> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index a841a023e8e0..9c9d68a14e69 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -1158,6 +1158,28 @@
+>  			};
+>  		};
+>  
+> +		noc: interconnect@32700000 {
+> +			compatible = "fsl,imx8mq-noc", "fsl,imx8m-noc";
+> +			reg = <0x32700000 0x100000>;
+> +			clocks = <&clk IMX8MQ_CLK_NOC>;
+> +			fsl,ddrc = <&ddrc>;
+> +			operating-points-v2 = <&noc_opp_table>;
+> +
+> +			noc_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-133M {
+> +					opp-hz = /bits/ 64 <133333333>;
+> +				};
 
-  [16.800802] tegra-hda 70030000.hda: no codecs found!
+Please have a newline between nodes.
 
-Codecs request a state change and enumeration by the controller. In
-failure cases this does not seem to happen as STATETS register reads 0.
+Shawn
 
-The problem seems to be related to the HDA codec dependency on SOR
-power domain. If it is gated during HDA probe then the failure is
-observed. Building Tegra HDA driver into kernel image avoids this
-failure but does not completely address the dependency part. Fix this
-problem by adding 'power-domains' DT property for Tegra210 HDA. Note
-that Tegra186 and Tegra194 HDA do this already.
-
-Fixes: 742af7e7a0a1 ("arm64: tegra: Add Tegra210 support")
-Depends-on: 96d1f078ff0 ("arm64: tegra: Add SOR power-domain for Tegra210")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index 4fbf8c1..fd33b4d 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -997,6 +997,7 @@
- 			 <&tegra_car 128>, /* hda2hdmi */
- 			 <&tegra_car 111>; /* hda2codec_2x */
- 		reset-names = "hda", "hda2hdmi", "hda2codec_2x";
-+		power-domains = <&pd_sor>;
- 		status = "disabled";
- 	};
- 
--- 
-2.7.4
-
+> +				opp-400M {
+> +					opp-hz = /bits/ 64 <400000000>;
+> +				};
+> +				opp-800M {
+> +					opp-hz = /bits/ 64 <800000000>;
+> +				};
+> +			};
+> +		};
+> +
+>  		bus@32c00000 { /* AIPS4 */
+>  			compatible = "fsl,aips-bus", "simple-bus";
+>  			reg = <0x32c00000 0x400000>;
+> -- 
+> 2.20.1
+> 
