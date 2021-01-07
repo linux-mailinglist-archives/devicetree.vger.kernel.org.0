@@ -2,191 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B71F2ED783
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 20:34:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 789782EE648
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 20:40:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725944AbhAGTeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 14:34:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47436 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725903AbhAGTeL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Jan 2021 14:34:11 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3A86123441;
-        Thu,  7 Jan 2021 19:33:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610048010;
-        bh=4bn6yrlNvnbi+YyRMhYO2OyDFdanqHEUkfN+HZD+QxI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nRtzzkzzacHPgFIcgMNDkAKFt/d///MMlN1lCQQDXYsQk4zXJSY2WFNAK1sKmOEQX
-         D90k6NiwzD/oFlquNxY5nU+CcUA6aQOzWcJ1TAyqp1hYLKiM3BiZ6Mztg3eU7U5GE2
-         SZDBHJJDOs2X+LdswYEdyCnL5qsNuwb8RDFEzvGmKKMuQQ/qxz6kZ4dUWZlTRb5+pL
-         D/dlVkuNFNXWt31jZQGWQEA8nTnuJzh6U1CAS7wSPsS8wEtYaxEW88WGejx+gDxPQ+
-         BiN8EwGWZbe5rFe2ETijUuJkMLSZkQkfHJzO3Kquru6t3yL6HECekAn8/OUfknWL0P
-         zs0t3fZ+GTIhA==
-Received: by mail-ed1-f48.google.com with SMTP id c7so8865646edv.6;
-        Thu, 07 Jan 2021 11:33:30 -0800 (PST)
-X-Gm-Message-State: AOAM533PrScXQtKlTMtE7LexjtK2FnuAjkW+37+HSIXbvSj5LIK/kOHx
-        XcD84HScp/52RxuRx7moV1AhY/soAZdh4lOnqA==
-X-Google-Smtp-Source: ABdhPJxquLlQfooOFatSc92RuKQ92hFcMIbT2KZ8GWY/wEGrrhoa+oN4Jp/b/i92uaCCsUVYslh83UkBAbGOq04S4+s=
-X-Received: by 2002:a50:f404:: with SMTP id r4mr2800429edm.62.1610048008818;
- Thu, 07 Jan 2021 11:33:28 -0800 (PST)
+        id S1729189AbhAGTjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 14:39:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48374 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725903AbhAGTjw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 14:39:52 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B20FC0612F5;
+        Thu,  7 Jan 2021 11:39:12 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id a12so17349519lfl.6;
+        Thu, 07 Jan 2021 11:39:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ffFy7U5GHTO2EDTarXBfsvng3yi/U0HlVmDD4XbAyvk=;
+        b=Wyed8+zva/LYFJ10gJQ7x+ViNyXTsElCtmMUOpgTb/1YDegkPcwMsRWfb6bnPT+iKb
+         yyIaGP48HD/upBYUEQjlmhnaGmrTDy9me1CdAxCQI1Rt9cCh1vfk83W55UpQWTrfx4fq
+         on3q+XX+gRqs1lF4J6Dzk0wEr9tXNiH+ySbd07plWndwWUiv4F0ykGda/gBwJEg5vYOK
+         ATsgATXXNyU6xMDyYcnyAnQ213ZoX/ZXl6yf3ac43tSt0qdPngmmF29bG1+eUDSwgUw1
+         AzFECZcWDk9At66ZrGB8CFVrd2+qabP6np+CVOMLQJhpLToWrA6wWVQzNGJpmAyDhR53
+         AsKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ffFy7U5GHTO2EDTarXBfsvng3yi/U0HlVmDD4XbAyvk=;
+        b=nnkPIL+qmU7Pn9VV85Gqtyn9aDzojv5jm4mgl6ANhcy2fERHVf6LQo8NHnwL1lfCbD
+         dMs8CrczlWd7oi5j8NB4zKMhVUdIIKzOVtfQ0ETx7WItg++NOOQAwDosj4qkKziOaRkv
+         wpNWmJ0ObPp4xf3BNE/m1+vcxZQpIZho0kERmhuzSQSuue50e0Y4jq1AoikyqDD48JfM
+         Krb/Sl5qB9gIeHDV3iAOFWkt7tt7Pq/n1148mz6J3N6jpmbuigGv6QsVB9b/HsBBQIvU
+         kPJLRwi9T59wJL0ZJAOUaXfbEh+wGJruL16ePbzxcUnV7IUJ1nhaXEAejgTKncLruCZx
+         7SNg==
+X-Gm-Message-State: AOAM532uG5IfBPQJvyjteKNSU+30/4nF46zgIxRQMZs5dkQconHHP2PZ
+        o3fbMMZj3rWyOZMNuGcDwFDn91MM8Og=
+X-Google-Smtp-Source: ABdhPJwcjsVwi672lMyB3VRDqyLku+RskEcHu3FcswkJW1KB+hkV/1FIv9p7umOsoz2IRKSWh6yzhA==
+X-Received: by 2002:a19:230d:: with SMTP id j13mr148331lfj.378.1610048350619;
+        Thu, 07 Jan 2021 11:39:10 -0800 (PST)
+Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
+        by smtp.googlemail.com with ESMTPSA id q21sm1369032lff.280.2021.01.07.11.39.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Jan 2021 11:39:09 -0800 (PST)
+Subject: Re: [PATCH v2 00/48] Introduce core voltage scaling for NVIDIA
+ Tegra20/30 SoCs
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20201217180638.22748-1-digetx@gmail.com>
+ <20210105171111.GC26301@kozik-lap>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <988cf951-ff81-4b48-6baf-b393bd1613d2@gmail.com>
+Date:   Thu, 7 Jan 2021 22:39:09 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-References: <20201218210750.3455872-1-saravanak@google.com>
- <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
- <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
- <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com> <CAGETcx_4n951Fx-Gn14ikDDxgWtv6QqQtNno9pcPJyiiGynWHQ@mail.gmail.com>
-In-Reply-To: <CAGETcx_4n951Fx-Gn14ikDDxgWtv6QqQtNno9pcPJyiiGynWHQ@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 7 Jan 2021 12:33:16 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+mavViUqWDVTAYB5p1j5h7FUNCzM9hg-ttJzLuJazZFQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+mavViUqWDVTAYB5p1j5h7FUNCzM9hg-ttJzLuJazZFQ@mail.gmail.com>
-Subject: Re: [PATCH] of: property: Add device link support for interrupts
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210105171111.GC26301@kozik-lap>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 7, 2021 at 12:09 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Thu, Jan 7, 2021 at 10:39 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Wed, Jan 6, 2021 at 11:53 AM Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
-> > > >
-> > > > On Thu, 31 Dec 2020 21:12:40 +0000,
-> > > > Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
-> > > > > > On 2020-12-18 21:07, Saravana Kannan wrote:
-> > > > > > > Add support for creating device links out of interrupts property.
-> > > > > > >
-> > > > > > > Cc: Marc Zyngier <maz@kernel.org>
-> > > > > > > Cc: Kevin Hilman <khilman@baylibre.com>
-> > > > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > > > > > ---
-> > > > > > > Rob/Greg,
-> > > > > > >
-> > > > > > > This might need to go into driver-core to avoid conflict
-> > > > > > > due to fw_devlink refactor series that merged there.
-> > > > > > >
-> > > > > > > Thanks,
-> > > > > > > Saravana
-> > > > > > >
-> > > > > > >
-> > > > > > >  drivers/of/property.c | 17 +++++++++++++++++
-> > > > > > >  1 file changed, 17 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
-> > > > > > > --- a/drivers/of/property.c
-> > > > > > > +++ b/drivers/of/property.c
-> > > > > > > @@ -1271,6 +1271,22 @@ static struct device_node
-> > > > > > > *parse_iommu_maps(struct device_node *np,
-> > > > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
-> > > > > > >  }
-> > > > > > >
-> > > > > > > +static struct device_node *parse_interrupts(struct device_node *np,
-> > > > > > > +                                     const char *prop_name, int index)
-> > > > > > > +{
-> > > > > > > + struct device_node *sup;
-> > > > > > > +
-> > > > > > > + if (strcmp(prop_name, "interrupts") || index)
-> > > > > > > +         return NULL;
-> > > > > > > +
-> > > > > > > + of_node_get(np);
-> > > > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
-> > > > > > > +         np = of_get_next_parent(np);
-> > > > > > > + of_node_put(np);
-> > > > > > > +
-> > > > > > > + return sup;
-> > > > > > > +}
-> > > > > > > +
-> > > > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
-> > > > > > >   { .parse_prop = parse_clocks, },
-> > > > > > >   { .parse_prop = parse_interconnects, },
-> > > > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
-> > > > > > > of_supplier_bindings[] = {
-> > > > > > >   { .parse_prop = parse_pinctrl6, },
-> > > > > > >   { .parse_prop = parse_pinctrl7, },
-> > > > > > >   { .parse_prop = parse_pinctrl8, },
-> > > > > > > + { .parse_prop = parse_interrupts, },
-> > > > > > >   { .parse_prop = parse_regulators, },
-> > > > > > >   { .parse_prop = parse_gpio, },
-> > > > > > >   { .parse_prop = parse_gpios, },
-> > > > > >
-> > > > > > You don't really describe what this is for so I'm only guessing
-> > > > > > from the context. If you want to follow the interrupt hierarchy,
-> > > > > > "interrupt-parent" isn't enough. You also need to track
-> > > > > > things like interrupt-map, or anything that carries a phandle
-> > > > > > to an interrupt controller.
-> > > > >
-> > > > > We don't need to follow the hierarchy, we just need the immediate
-> > > > > dependencies.
-> > > >
-> > > > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
-> > >
-> > > Thanks Rob for explaining it.
-> > >
-> > > Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
-> > > Also, I'm trying to keep of/property.c independent of the framework
-> > > code for now. The long term goal is to see if I can move out most of
-> > > this into the frameworks. But I want to do that after I sort of some
-> > > of the larger problems (like getting fw_devlink=on to work on all
-> > > devices  first). Let me know if you have a strong preference for right
-> > > now, if not, I'd rather keep property.c independent for now.
-> > >
-> > > I wasn't aware of interrupt-map until a few weeks ago and didn't know
-> > > it carried phandles. I can add support for that too. There's no reason
-> > > for all of them to go in one patch though.
-> > >
-> > > >
-> > > > > But you are right that 'interrupt-map' also needs to be tracked.
-> > > >
-> > > > And 'interrupts-extended', while we're at it.
-> > >
-> > > This is already handled.
-> > >
-> > > > >
-> > > > > I also noticed that we define 'interrupt-parent' as a dependency to
-> > > > > parse, but that's wrong. The dependency is where 'interrupts' appears
-> > > > > and where 'interrupt-parent' appears is irrelevant.
-> > >
-> > > No, the interrupt-parent parsing is correct and it's needed for
-> > > interrupt controllers to probe in the right order. But
-> > > interrupt-parent is also needs to be looked at for parsing
-> > > "interrupts".
-> >
-> > If you parse 'interrupts' for interrupt controllers (which in turn
-> > will use 'interrupt-parent'), then you aren't going to need to track
-> > 'interrupt-parent' by itself.
->
-> Do all interrupt controllers (that are not the root interrupt
-> controller) need to have "interrupts" property? If yes, then yeah,
-> that makes sense. But I vaguely remember that this wasn't the case for
-> some DT I saw.
+05.01.2021 20:11, Krzysztof Kozlowski пишет:
+> On Thu, Dec 17, 2020 at 09:05:50PM +0300, Dmitry Osipenko wrote:
+>> Introduce core voltage scaling for NVIDIA Tegra20/30 SoCs, which reduces
+>> power consumption and heating of the Tegra chips. Tegra SoC has multiple
+>> hardware units which belong to a core power domain of the SoC and share
+>> the core voltage. The voltage must be selected in accordance to a minimum
+>> requirement of every core hardware unit.
+>>
+>> The minimum core voltage requirement depends on:
+>>
+>>   1. Clock enable state of a hardware unit.
+>>   2. Clock frequency.
+>>   3. Unit's internal idling/active state.
+>>
+>> This series is tested on Acer A500 (T20), AC100 (T20), Nexus 7 (T30),
+>> Ouya (T30), TK1 (T124) and some others. I also added voltage scaling to
+>> the Ventana (T20) and Cardhu (T30) boards which are tested by NVIDIA's CI
+>> farm. Tegra30 is now couple degrees cooler on Nexus 7 and stays cool on
+>> Ouya (instead of becoming burning hot) while system is idling. It should
+>> be possible to improve this further by implementing a more advanced power
+>> management features for the kernel drivers.
+>>
+>> The DVFS support is opt-in for all boards, meaning that older DTBs will
+>> continue to work like they did it before this series. It should be possible
+>> to easily add the core voltage scaling support for Tegra114+ SoCs based on
+>> this grounding work later on, if anyone will want to implement it.
+> 
+> The same comment as for your interconnect work: for sets touching
+> multiple systems please mention the dependencies between patches in the
+> cover letter. Not as a reply to such remark like I make here, but as a
+> separate entry in the cover letter.
 
-There are some cases of stacked controllers where it's implicit.
-
->
-> Ah, here's one I found.
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/mt2701.dtsi#n209
-
-Right, so this is one of several cases of custom interrupt mapping
-properties (mediatek,ext-irq-range). Really, 'interrupts' or
-'interrupt-map' should have been used here, but 'interrupt-map'
-doesn't really scale well if you have large ranges of interrupts.
-
-To handle the dependency with just 'interrupt-parent', you need to
-find nodes that are themselves an 'interrupt-parent' and then find
-their 'interrupt-parent'.
-
-Rob
+I'll describe all the dependencies in the next revision, thanks.
