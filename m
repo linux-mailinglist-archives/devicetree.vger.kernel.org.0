@@ -2,97 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F6B2ED151
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:03:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E687A2ED165
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:09:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728026AbhAGODS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 09:03:18 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:55270 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728567AbhAGODR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 09:03:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1610028197; x=1641564197;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=mcRMdEN1K8IoLzsHqYPEqDBiMpf//jkQglwwKYdNyCE=;
-  b=aVA5y10JERRZ2iJDY60+tqigcFPDK5s0WlAfDG36kdaQ/RQvpGfPu1RV
-   qHL3Uz3P7/Oc3elKeLVaZFoP0zjm/4XgVpAI6U/CEFOEEbylnTbMJo1Mz
-   8A55qQrz9ZzOhjKuoWkjn1LYJOqVEHG0XkR6WWARbB0slTZ22AHPHaFn8
-   XvpVzjX873fpf5WceyUoxj5iaq7fCkJ8Xl0dpN4BIldpxsfn5aDrq3uJ0
-   cgKWlpzNZe+k/vz/dutQM4kw2h55qWu5sjZBg6D6m4AdzdNM7TBdjXgHM
-   Gc7R16LGjm8ziiAjFN2lk1mz6D0hZHQUxfOrT4rNSeUBEUht/h4517X//
-   g==;
-IronPort-SDR: SbVy0+20I7CmmDQRGpzefrnDe36TK8h+u7wnLqqfyi3k32SBCrt5pO3y79EGNq39jIR7p7j0o9
- E67tayNnI/ctlZqZMKlZC90EuD8suyTc1kIa+vbtU7kPA4xXRg0eM+ysrDXSBXh+t70Vwhm2Ci
- ifcQ28LoOCk4oDksR9VA1aoqg5UuIshs5HEYuadbdpfYY/tS0LN51dUT1X0QRxLtJIsZgEUCHH
- VEM1GxDXgYfVtzR2MGfvjkiTGsxRPbP0GOHhTWsZNLifu7sixPiN/waN9ifNqtnxAT6iJkyKGq
- ss4=
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; 
-   d="scan'208";a="102090366"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jan 2021 07:02:01 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 7 Jan 2021 07:02:01 -0700
-Received: from [10.205.29.52] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 7 Jan 2021 07:01:57 -0700
-Subject: Re: [PATCH] dt-bindings: rtc: at91rm9200: add sama7g5 compatible
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <ludovic.desroches@microchip.com>
-CC:     <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1610016372-31784-1-git-send-email-claudiu.beznea@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <9ed4f784-8b7a-ec7e-fba6-63329631f703@microchip.com>
-Date:   Thu, 7 Jan 2021 15:01:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728469AbhAGOGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 09:06:43 -0500
+Received: from foss.arm.com ([217.140.110.172]:33306 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727711AbhAGOGn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Jan 2021 09:06:43 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD7F1D6E;
+        Thu,  7 Jan 2021 06:05:57 -0800 (PST)
+Received: from [10.57.37.195] (unknown [10.57.37.195])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2EE9C3F70D;
+        Thu,  7 Jan 2021 06:05:54 -0800 (PST)
+Subject: Re: [PATCH 11/11] dts: bindings: Document device tree binding for Arm
+ TRBE
+To:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        linux-kernel@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Linu Cherian <lcherian@marvell.com>, devicetree@vger.kernel.org
+References: <1608717823-18387-1-git-send-email-anshuman.khandual@arm.com>
+ <1608717823-18387-12-git-send-email-anshuman.khandual@arm.com>
+ <20210103170540.GA4055084@robh.at.kernel.org>
+ <21536a1c-0878-a390-aff3-fc2300be6941@arm.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <d384e24f-f218-a207-ef8d-0857393277fc@arm.com>
+Date:   Thu, 7 Jan 2021 14:05:48 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <1610016372-31784-1-git-send-email-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
+In-Reply-To: <21536a1c-0878-a390-aff3-fc2300be6941@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2021 at 11:46, Claudiu Beznea wrote:
-> Add compatible for SAMA7G5 RTC. At the moment the driver is falling
-> back on SAM9X60's compatible but SAMA7G5 doesn't have the tamper mode
-> register and tamper debounce period register thus the need for a new
-> compatible to differentiate b/w these two in case tamper feature will
-> be implemented in future.
+On 1/4/21 3:44 AM, Anshuman Khandual wrote:
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-> ---
->   Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml | 1 +
->   1 file changed, 1 insertion(+)
+> On 1/3/21 10:35 PM, Rob Herring wrote:
+>> On Wed, Dec 23, 2020 at 03:33:43PM +0530, Anshuman Khandual wrote:
+>>> This patch documents the device tree binding in use for Arm TRBE.
+>>>
+>>> Cc: devicetree@vger.kernel.org
+>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>> Cc: Mike Leach <mike.leach@linaro.org>
+>>> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>>> ---
+>>> Changes in V1:
+>>>
+>>> - TRBE DT entry has been renamed as 'arm, trace-buffer-extension'
+>>>
+>>>   Documentation/devicetree/bindings/arm/trbe.txt | 20 ++++++++++++++++++++
+>>>   1 file changed, 20 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/arm/trbe.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/trbe.txt b/Documentation/devicetree/bindings/arm/trbe.txt
+>>> new file mode 100644
+>>> index 0000000..001945d
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/trbe.txt
+>>> @@ -0,0 +1,20 @@
+>>> +* Trace Buffer Extension (TRBE)
+>>> +
+>>> +Trace Buffer Extension (TRBE) is used for collecting trace data generated
+>>> +from a corresponding trace unit (ETE) using an in memory trace buffer.
+>>> +
+>>> +** TRBE Required properties:
+>>> +
+>>> +- compatible : should be one of:
+>>> +	       "arm,trace-buffer-extension"
+>>> +
+>>> +- interrupts : Exactly 1 PPI must be listed. For heterogeneous systems where
+>>> +	       TRBE is only supported on a subset of the CPUs, please consult
+>>> +	       the arm,gic-v3 binding for details on describing a PPI partition.
+>>> +
+>>> +** Example:
+>>> +
+>>> +trbe {
+>>> +	compatible = "arm,trace-buffer-extension";
+>>> +	interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
+>>
+>> If only an interrupt, then could just be part of ETE? If not, how is
+>> this hardware block accessed? An interrupt alone is not enough unless
+>> there's some architected way to access.
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-> index 02bbfe726c62..994de43d17fa 100644
-> --- a/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
-> @@ -20,6 +20,7 @@ properties:
->         - atmel,sama5d4-rtc
->         - atmel,sama5d2-rtc
->         - microchip,sam9x60-rtc
-> +      - microchip,sama7g5-rtc
->   
->     reg:
->       maxItems: 1
-> 
+> TRBE hardware block is accessed via respective new system registers but the
+> PPI number where the IRQ will be triggered for various buffer events, would
+> depend on the platform as defined in the SBSA.
 
+That is correct. TRBE is accessed via CPU system registers. The IRQ is specifically
+for the TRBE unit to handle buffer overflow situations and other errors in the
+buffer handling. Please include this information in the description section of
+the bindings.
 
--- 
-Nicolas Ferre
+Also, it may be worth switching this to yaml format.
+
+Suzuki
