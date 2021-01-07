@@ -2,117 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1D732ECA81
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 07:26:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4F452ECA9D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 07:43:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726482AbhAGG0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 01:26:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725893AbhAGG0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 01:26:15 -0500
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6ADAC0612F5
-        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 22:25:35 -0800 (PST)
-Received: by mail-pf1-x434.google.com with SMTP id s21so3225203pfu.13
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 22:25:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=v2Yn25XHl+ymzY6Sqqp8UyYBl8VsyNvH90saFA5KVqE=;
-        b=CFWiH0vHlQlCWzZ6uoudGfqkjTG6FuRGE+oehRL8JLVPg5kEFaayNmKPJDaKYSepwx
-         asWdl+k4sLZZUf40Llz/JCQQbEIZVILztGZmUoEPJRvHLGIYlulJg3hv1GdYzibEYH3+
-         OL8cdUaVgPMbhN/hBw+MDKfIgOPdsVzbOCeuuPMPpxRCcyqr3hAGRsVesIs1HYQ8gP8p
-         dZz7FsHBlYNDXRuARxZNoRr4lznWhNGrTPuhbBAHugkyY4IwOPZO+LJh8qzCFusu39eD
-         XcDUUvVWe2uiJ52FRDUv8/T0Hurmx+uAHKsQU3s5RMbVBpCP3vOUQGtxMNFrDRf9yCXL
-         dBVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=v2Yn25XHl+ymzY6Sqqp8UyYBl8VsyNvH90saFA5KVqE=;
-        b=XtJh5mJjSd1ayO7R7UJHQzzUa2w915rtQjeIfi7IG6pASMreNMJQDKrbiApkNsh2PL
-         ybEfRlHJG9mtAxLRqtNsTq+wTkmusOMtAULgeWKe8ogrS5GmMFSyhshjzGCSk1Qlsrfq
-         z5LKh1q+gKIv9gkJTz7ewPjjOHMt3BzzhCp5rF67U41iWSZBXmL6HypGv57oUYzqQNBd
-         D/GBn+VKJC97N16EgKcKE40Z4l8bjrPwFk0/I5wkVwJPIuxps+I7/Z7XxmaZDVp09y0p
-         RYL8UWLdvdXZHkxkeS34XQ4qBvLzbQ7wx4JnldWU+wHwO499JQRrKeDw1lMHWBtch7qV
-         5PRA==
-X-Gm-Message-State: AOAM533hmDQQJyA7uheT9Av2LviRjS/psU/9lQ2AIuQezyVuHJVFWaCk
-        H/+vcstpGci4PrMhild/lzC0/g==
-X-Google-Smtp-Source: ABdhPJx+9DCdLWEGE2j0i/7q95jblzmahtAd7GMBvwYIilUL0Sl5xhOn5xANSXK9MFPrau1CKWxiUA==
-X-Received: by 2002:a63:8c15:: with SMTP id m21mr355344pgd.396.1610000735086;
-        Wed, 06 Jan 2021 22:25:35 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id n4sm4326020pfu.150.2021.01.06.22.25.33
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 06 Jan 2021 22:25:34 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH V3 2/2] scripts: dtc: Build fdtoverlay and fdtdump tools
-Date:   Thu,  7 Jan 2021 11:55:10 +0530
-Message-Id: <72c3a4f63dde3c172c11153e9a5b19fb6cdb4498.1610000585.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <CAK7LNAQT5nVHGAZDhj4dct0v8UMzQ+-mdfBXJsfedR-7mZTnyA@mail.gmail.com>
-References: <CAK7LNAQT5nVHGAZDhj4dct0v8UMzQ+-mdfBXJsfedR-7mZTnyA@mail.gmail.com>
+        id S1725916AbhAGGld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 01:41:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51588 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725763AbhAGGld (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Jan 2021 01:41:33 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D6DC222E00;
+        Thu,  7 Jan 2021 06:40:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610001652;
+        bh=EXQtTGtOrAJ6507/SRQiTHdd0MLo4maxbEmNq6/kO2w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r0Eegwt1Xsz5OpjUZBOUJAUD+ftFK3B6IigZ64H1HJAEhLXdVADQFPNQImjXsV1kB
+         tlNgwMlQ/VRutKJF5YGnObtI0FgtMfCPsXHr3mxZXGzX8sb3aKCn70s68js680atrI
+         impL9SefkOBqEmr1Sus+YTOydo0K9OJJC0Y+a46rlJGKNXCxKmEMX34pr8fhSmaTEQ
+         /OJBXSW4coXq5IOpN5gG+06XiU1yzn6yCpaYxvKuk5wFhXMYIVS9mPaQ+l+u1zpOsZ
+         re7VrjXMMK9DBEs7Ab2xHi6WdHI2iBQOgjpMcd6VntNtrdLCozOcn7aLiFUHt9hdOh
+         eOt0v6XsUU9rw==
+Date:   Thu, 7 Jan 2021 14:40:47 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Sudhanshu Gupta <sudhanshu.gupta@nxp.com>,
+        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
+        Rai Harninder <harninder.rai@nxp.com>
+Subject: Re: [PATCH] arm64: dts: ls1028a: fix the offset of the reset register
+Message-ID: <20210107064046.GF28365@dragon>
+References: <20201215212622.717-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201215212622.717-1-michael@walle.cc>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We will start building overlays for platforms soon in the kernel and
-would need these tools going forward. Lets start building them.
+On Tue, Dec 15, 2020 at 10:26:22PM +0100, Michael Walle wrote:
+> The offset of the reset request register is 0, the absolute address is
+> 0x1e60000. Boards without PSCI support will fail to perform a reset:
+> 
+> [   26.734700] reboot: Restarting system
+> [   27.743259] Unable to restart system
+> [   27.746845] Reboot failed -- System halted
+> 
+> Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-The fdtoverlay program applies (or merges) one ore more overlay dtb
-blobs to a base dtb blob. The kernel build system would later use
-fdtoverlay to generate the overlaid blobs based on platform specific
-configurations.
+Out of curiosity, how did you get it fixed with your commit 3f0fb37b22b4
+("arm64: dts: ls1028a: fix reboot node") in the first place?
 
-The fdtdump program prints a readable version of a flat device-tree
-file. This is a very useful tool to analyze the details of the overlay's
-dtb and the final dtb produced by fdtoverlay after applying the
-overlay's dtb to a base dtb.
+Shawn
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
----
-V3:
-- Updated log
-- Remove libfdt_dir
-
- scripts/dtc/Makefile | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index 4852bf44e913..472ab8cd590c 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -1,12 +1,17 @@
- # SPDX-License-Identifier: GPL-2.0
- # scripts/dtc makefile
- 
--hostprogs-always-$(CONFIG_DTC)		+= dtc
-+hostprogs-always-$(CONFIG_DTC)		+= dtc fdtdump fdtoverlay
- hostprogs-always-$(CHECK_DT_BINDING)	+= dtc
- 
- dtc-objs	:= dtc.o flattree.o fstree.o data.o livetree.o treesource.o \
- 		   srcpos.o checks.o util.o
- dtc-objs	+= dtc-lexer.lex.o dtc-parser.tab.o
-+fdtdump-objs	:= fdtdump.o util.o
-+
-+libfdt-objs	:= fdt.o fdt_ro.o fdt_wip.o fdt_sw.o fdt_rw.o fdt_strerror.o fdt_empty_tree.o fdt_addresses.o fdt_overlay.o
-+libfdt		= $(addprefix libfdt/,$(libfdt-objs))
-+fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
- 
- # Source files need to get at the userspace version of libfdt_env.h to compile
- HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
--- 
-2.25.0.rc1.19.g042ed3e048af
-
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 045739dbcb17..0a5923e96d7f 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -102,7 +102,7 @@
+>  	reboot {
+>  		compatible ="syscon-reboot";
+>  		regmap = <&rst>;
+> -		offset = <0xb0>;
+> +		offset = <0>;
+>  		mask = <0x02>;
+>  	};
+>  
+> -- 
+> 2.20.1
+> 
