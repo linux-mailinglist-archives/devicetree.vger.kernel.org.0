@@ -2,96 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 774AA2ED247
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A26072ED2E8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:43:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729308AbhAGOcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 09:32:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56798 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729304AbhAGOcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 09:32:22 -0500
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1372C0612F8
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 06:31:41 -0800 (PST)
-Received: by mail-pg1-x533.google.com with SMTP id c132so5056861pga.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 06:31:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RsDTMrWv7jSxdT5ji0Wdtt9x9xjaZ1j3PSJSmTMWzAg=;
-        b=LFmqRtkapVLHAIwS9SwEiH0wOugFQUWyHlXt409uUhmVadFEvWL+UTSux0ywaxjTIL
-         qPGwDIR8l3xvvhPvKZqcH81QyML6nYN2gQ9PlLPbicKSgn3g6y4FyFG21l83GjqbxFe/
-         Y1SvEhPYdyHVTiS8T8D9nyKiD9/MCS7bvruMES2BHC5yfq3VUobOa8bSsSPj9OBNHphi
-         0pT0vA85FIZSzzv6NdOBukjatPxyL1xaGfO6w3hP56XSg5w6L2x4efpfRXfiX+eFPCz3
-         S+g1ZPdGLmmGNpUQZsA7ZWNeagdfXw8PVAHujJ6k33M6Huy4auqTVqMquaILFD8WTImK
-         sRKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RsDTMrWv7jSxdT5ji0Wdtt9x9xjaZ1j3PSJSmTMWzAg=;
-        b=kQjnCxDNTnP57IOpeoRBfGFjr56JiBqBqrnQJLbDDHqhH8GZekeFdx4HVsQC4xWS0B
-         QvP0rv5fwukvqRBlhC2yG/C3OoG90o7c4D2LZP9E9Q2/jE6NIXWBp7+mlF0NgRW+XohZ
-         wILuFyWf3MmstCYmqhLuQRaP2mrvl80/f61SPCXQgKi3/yg/NJOKHd+uk2mPxM4s8QDv
-         +BIHrn3gW9gqKPbJ87nUN+FHP3Y0ax0W5zooa7WFszt2732h1QyhO3ixop6R1qmT9/kM
-         FiUjVCKGeRGmJsOoA0bYNru4S72EBPFoZDQmEu/fWPh0gg96Ye0tNBzJrMyKtrt0ODXu
-         iPRA==
-X-Gm-Message-State: AOAM533cNhR7Sists/tQBE653c2G9LOTVUbH6RuQzjzhzqIP21Zk2qBD
-        Oa2jZmhMi/OUXHOhiJEyYGlt
-X-Google-Smtp-Source: ABdhPJzSG7+An9o4M0cfAK/FdgBFCAQmBgulcSq3UwEZdeNDf3A/qo5+aNub8hfE5ryNYIOPDwVeNg==
-X-Received: by 2002:a62:7fc1:0:b029:19f:1dab:5029 with SMTP id a184-20020a627fc10000b029019f1dab5029mr8813824pfd.13.1610029901346;
-        Thu, 07 Jan 2021 06:31:41 -0800 (PST)
-Received: from localhost.localdomain ([103.77.37.128])
-        by smtp.gmail.com with ESMTPSA id 19sm6096465pfu.85.2021.01.07.06.31.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jan 2021 06:31:40 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     bjorn.andersson@linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        iommu@lists.linux-foundation.org, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH 2/2] dt-bindings: arm-smmu: Add binding for Qcom SDX55 SMMU
-Date:   Thu,  7 Jan 2021 20:01:18 +0530
-Message-Id: <20210107143118.2386-2-manivannan.sadhasivam@linaro.org>
+        id S1728291AbhAGOkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 09:40:15 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:19472 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728471AbhAGOkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 09:40:14 -0500
+X-UUID: a23034cb734a4bfdb76265a66aa04d02-20210107
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=3yme2n6hj99TgRI5yAnQj8gNXTYS1bdd9oJBVcgH2/E=;
+        b=fjIQfgMu01NdzkfT99zAdbrEbwGBBSDGhiN5HMadNQOZsJmG08JL9KlQUbj6JQqtMFvuTMvkpUdg8D6obZfzRCVC9yBaemCixqn3jP2APusUFSFUB3MMFCrTWIBNL2HVmSbTW3Hkt/PJeKVdIqhtRE8a7uNedIs+nNqS8SqssaE=;
+X-UUID: a23034cb734a4bfdb76265a66aa04d02-20210107
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1817510195; Thu, 07 Jan 2021 22:33:59 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33DR.mediatek.inc
+ (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 7 Jan
+ 2021 22:33:56 +0800
+Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
+ MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Thu, 7 Jan 2021 22:33:55 +0800
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+CC:     <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
+        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
+        <bibby.hsieh@mediatek.com>, <ck.hu@mediatek.com>,
+        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
+        Jitao Shi <jitao.shi@mediatek.com>
+Subject: [PATCH] drm/mediatek: dsi: Fix EoTp flag
+Date:   Thu, 7 Jan 2021 22:33:52 +0800
+Message-ID: <20210107143352.50090-1-jitao.shi@mediatek.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210107143118.2386-1-manivannan.sadhasivam@linaro.org>
-References: <20210107143118.2386-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: A377759D8A87949403261110186934E8B2642D92B1452A4748E1BCD43F073B582000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree binding for Qualcomm SDX55 SMMU.
-
-Cc: Will Deacon <will@kernel.org>
-Cc: Robin Murphy <robin.murphy@arm.com>
-Cc: Joerg Roedel <joro@8bytes.org>
-Cc: iommu@lists.linux-foundation.org
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
----
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 3b63f2ae24db..3a1cefce8bc4 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -35,6 +35,7 @@ properties:
-           - enum:
-               - qcom,sc7180-smmu-500
-               - qcom,sdm845-smmu-500
-+              - qcom,sdx55-smmu-500
-               - qcom,sm8150-smmu-500
-               - qcom,sm8250-smmu-500
-           - const: arm,mmu-500
--- 
-2.25.1
+U29DIHdpbGwgdHJhbnNtaXQgdGhlIEVvVHAgKEVuZCBvZiBUcmFuc21pc3Npb24gcGFja2V0KSB3
+aGVuDQpNSVBJX0RTSV9NT0RFX0VPVF9QQUNLRVQgZmxhZyBpcyBzZXQuDQoNCkVuYWJsaW5nIEVv
+VHAgd2lsbCBtYWtlIHRoZSBsaW5lIHRpbWUgbGFyZ2VyLCBzbyB0aGUgaGZwIGFuZA0KaGJwIHNo
+b3VsZCBiZSByZWR1Y2VkIHRvIGtlZXAgbGluZSB0aW1lLg0KDQpTaWduZWQtb2ZmLWJ5OiBKaXRh
+byBTaGkgPGppdGFvLnNoaUBtZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL2dwdS9kcm0vbWVk
+aWF0ZWsvbXRrX2RzaS5jIHwgOCArKysrKystLQ0KIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlv
+bnMoKyksIDIgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVk
+aWF0ZWsvbXRrX2RzaS5jIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kc2kuYw0KaW5k
+ZXggNjVmZDk5YzUyOGFmLi44YzcwZWMzOWJmZTEgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vbWVkaWF0ZWsvbXRrX2RzaS5jDQorKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
+X2RzaS5jDQpAQCAtNDAxLDggKzQwMSwxMSBAQCBzdGF0aWMgdm9pZCBtdGtfZHNpX3J4dHhfY29u
+dHJvbChzdHJ1Y3QgbXRrX2RzaSAqZHNpKQ0KIAkJYnJlYWs7DQogCX0NCiANCi0JdG1wX3JlZyB8
+PSAoZHNpLT5tb2RlX2ZsYWdzICYgTUlQSV9EU0lfQ0xPQ0tfTk9OX0NPTlRJTlVPVVMpIDw8IDY7
+DQotCXRtcF9yZWcgfD0gKGRzaS0+bW9kZV9mbGFncyAmIE1JUElfRFNJX01PREVfRU9UX1BBQ0tF
+VCkgPj4gMzsNCisJaWYgKGRzaS0+bW9kZV9mbGFncyAmIE1JUElfRFNJX0NMT0NLX05PTl9DT05U
+SU5VT1VTKQ0KKwkJdG1wX3JlZyB8PSBIU1RYX0NLTFBfRU47DQorDQorCWlmICghKGRzaS0+bW9k
+ZV9mbGFncyAmIE1JUElfRFNJX01PREVfRU9UX1BBQ0tFVCkpDQorCQl0bXBfcmVnIHw9IERJU19F
+T1Q7DQogDQogCXdyaXRlbCh0bXBfcmVnLCBkc2ktPnJlZ3MgKyBEU0lfVFhSWF9DVFJMKTsNCiB9
+DQpAQCAtNDc4LDYgKzQ4MSw3IEBAIHN0YXRpYyB2b2lkIG10a19kc2lfY29uZmlnX3Zkb190aW1p
+bmcoc3RydWN0IG10a19kc2kgKmRzaSkNCiAJCQkgIHRpbWluZy0+ZGFfaHNfemVybyArIHRpbWlu
+Zy0+ZGFfaHNfZXhpdCArIDM7DQogDQogCWRlbHRhID0gZHNpLT5tb2RlX2ZsYWdzICYgTUlQSV9E
+U0lfTU9ERV9WSURFT19CVVJTVCA/IDE4IDogMTI7DQorCWRlbHRhICs9IGRzaS0+bW9kZV9mbGFn
+cyAmIE1JUElfRFNJX01PREVfRU9UX1BBQ0tFVCA/IDIgOiAwOw0KIA0KIAlob3Jpem9udGFsX2Zy
+b250cG9yY2hfYnl0ZSA9IHZtLT5oZnJvbnRfcG9yY2ggKiBkc2lfdG1wX2J1Zl9icHA7DQogCWhv
+cml6b250YWxfZnJvbnRfYmFja19ieXRlID0gaG9yaXpvbnRhbF9mcm9udHBvcmNoX2J5dGUgKyBo
+b3Jpem9udGFsX2JhY2twb3JjaF9ieXRlOw0KLS0gDQoyLjI1LjENCg==
 
