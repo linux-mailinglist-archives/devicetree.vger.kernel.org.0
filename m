@@ -2,103 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 398D52EC9EA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 06:16:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B2672EC9F3
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 06:24:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726489AbhAGFQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 00:16:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54580 "EHLO
+        id S1726113AbhAGFWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 00:22:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbhAGFQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 00:16:13 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E75C0612F6
-        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 21:15:30 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id q4so2890143plr.7
-        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 21:15:30 -0800 (PST)
+        with ESMTP id S1725956AbhAGFWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 00:22:51 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51EA7C0612F0
+        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 21:22:11 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id h10so3156606pfo.9
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 21:22:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=veLiPLptQPatfIKZ55m17NpOdTlfTsyV4zGOGB1KjD0=;
-        b=GZTm+0fKGDN75n1VaB2xqy6SPEh0CpZxMX24JMwAozI8QJGbQb/ygcQ8W34NCvbqTt
-         MGv90E8rxhdjg9hkTpAOxMwF234gOE2ooYEtQdzBLgcVxBD3Hz/O8zWpyxLQu3WWrmDT
-         AXBWgG3/SlPMT7O5TyRom38Dq6hbZrtDRxZ20Mp0I2jZzVwYqBLl2nJeEs3GHHmv7bi8
-         GMlLC3c1I6OReyi2bulptuGc58ZZAsHgwjZsWywZM1ZB+G5Ru60Db0ij/0dwUu9b9yhv
-         JMAJim0oOWFFS+5jDvFQjO0Rxpz+XSSwk/n+K1qRGumeIZA3Wku4qW97jyyezfa0jtsa
-         gfSw==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eLE93hpiBdRKt3WPBHOIxpy0yVp5ANcOQ4KAWXhz31Y=;
+        b=Br2fUK5aQXEQnNF2FL1dWIM9oohchhmsLPeZY1u7dDH6KCIXjWouGqEdPHCo2bEsbj
+         egUPgfFtUqJoYxOlC0VJTE4TE6pcc7/y4e7P6d1wZutvDlBUMthu6ImFhapt7FJVTl97
+         SBso3chUoEzWTIJN2Y+NI9mYwJ81XAXeTFhII=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=veLiPLptQPatfIKZ55m17NpOdTlfTsyV4zGOGB1KjD0=;
-        b=c14J/g78oRVG6tCmNnf9gLajb7mpSg18ufTIQGfvfNW+Ca8SPoB2xm/7sJ03Wr1cPT
-         aIO/PeDSF070alKlaUgtWSF8VCdQi9TFoo3YJLV9CYze5BxKNCaM6/YOeCwAtKD0Ch/J
-         2Ln212GWP7ZIaAIfvpTrjugkIOKTSttGz2Ns2qRhc+r1KJLhRPZHBFrphIyT6xQS8Ec0
-         73Us6XLM+JKW0E8+z/VwLxx5EQRYS/yKJ3N6KK+SfHBZZJe9Peay+e8UvQEQ7RYknsWT
-         l97jRH1GXtTzUaKRKoks/ZMJk+RmFmmVtANcs4gPO1HLJcXjwzRcqSM2CwuvSl8NsiBw
-         r0AQ==
-X-Gm-Message-State: AOAM53045xE537vPUz4kx5OUSoGOulLimuYZUQCjw5naDTSEUMFh3qel
-        7T6iC1cfYvV72ewjviQmGrTF7g==
-X-Google-Smtp-Source: ABdhPJwEaQDf/oNyjrW67E9uvdaxm0yeBtQtn0qsc5+sZVNaVTHprnnAaiUlR/CS3sa0MkhiDQCGww==
-X-Received: by 2002:a17:903:22ca:b029:dc:9882:1f79 with SMTP id y10-20020a17090322cab02900dc98821f79mr7383369plg.33.1609996530149;
-        Wed, 06 Jan 2021 21:15:30 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id ds24sm3559263pjb.30.2021.01.06.21.15.29
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 06 Jan 2021 21:15:29 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
-Subject: [PATCH V2 2/2] scripts: dtc: Build fdtoverlay and fdtdump tools
-Date:   Thu,  7 Jan 2021 10:45:20 +0530
-Message-Id: <d6e4edd213433d24a2a5c7e6a816bc40b0ada32d.1609996381.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
-References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eLE93hpiBdRKt3WPBHOIxpy0yVp5ANcOQ4KAWXhz31Y=;
+        b=MA6sBD3hcY6+w9HhODTMIYeSBE83pyPQLM/FhH0p71B5hd5Csd7+tVo4jpARIJGN0T
+         Fl34UsIjnRG4cDDOFw7e+Oy90IMrgiiayO4SyooZ/sckK2D7nT+9k3dd1p3TmYDsAJPO
+         DgJmsDwohzUOqx5E7rSXLDQHcoZ0Ba5hCDVwMOjUPFDgutbrcVcGhAEPBch61GgCTnUt
+         5Nf5g98dx86mC0YHt3HvRVvznXuzxoLwQfaj2rizz8+wUSfzM+yRiudBqx+14vbFTs2w
+         qpnNMK2U6kei+zWhc8ACCKDmUvL409k8aGYt7L41pHugpwhef0G0GcvximGpevzKbkoi
+         GGBw==
+X-Gm-Message-State: AOAM532YjztzQAamAyxnDKbudaXJeqPNsiMAvKQ9WfDfvoB+Tag4JCqz
+        25fJGhQ15em2RUAmZsVkUuHRIg==
+X-Google-Smtp-Source: ABdhPJxJqLa/QJi+BCyVXEoST+A+b/gUGY6Xzc5D/qYc5FFQDs9oz+sKkoXWsQZWFRRhap+t+tKBLw==
+X-Received: by 2002:a65:68c9:: with SMTP id k9mr131095pgt.328.1609996930794;
+        Wed, 06 Jan 2021 21:22:10 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:1a60:24ff:fe89:3e93])
+        by smtp.gmail.com with ESMTPSA id c5sm4824479pgt.73.2021.01.06.21.22.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Jan 2021 21:22:10 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] arm64: dts: mt8183: config dsi node
+Date:   Thu,  7 Jan 2021 13:22:05 +0800
+Message-Id: <20210107052206.2599844-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.29.2.729.g45daf8777d-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We will start building overlays for platforms soon in the kernel and
-would need these tools going forward. Lets start building them.
+Config dsi node for mt8183 kukui. Set panel and ports.
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+Several kukui boards share the same panel property and only compatible
+is different. So compatible will be set in board dts for comparison
+convenience.
+
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- scripts/dtc/Makefile | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Change:
+v2: move compatible to board dts
+---
+ .../mediatek/mt8183-kukui-krane-sku176.dts    |  5 +++
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 37 +++++++++++++++++++
+ 2 files changed, 42 insertions(+)
 
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index 4852bf44e913..c607980a5c17 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -1,12 +1,18 @@
- # SPDX-License-Identifier: GPL-2.0
- # scripts/dtc makefile
- 
--hostprogs-always-$(CONFIG_DTC)		+= dtc
-+hostprogs-always-$(CONFIG_DTC)		+= dtc fdtdump fdtoverlay
- hostprogs-always-$(CHECK_DT_BINDING)	+= dtc
- 
- dtc-objs	:= dtc.o flattree.o fstree.o data.o livetree.o treesource.o \
- 		   srcpos.o checks.o util.o
- dtc-objs	+= dtc-lexer.lex.o dtc-parser.tab.o
-+fdtdump-objs	:= fdtdump.o util.o
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+index 47113e275cb52..721d16f9c3b4f 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+@@ -16,3 +16,8 @@ / {
+ 	model = "MediaTek krane sku176 board";
+ 	compatible = "google,krane-sku176", "google,krane", "mediatek,mt8183";
+ };
 +
-+libfdt_dir	= libfdt
-+libfdt-objs	:= fdt.o fdt_ro.o fdt_wip.o fdt_sw.o fdt_rw.o fdt_strerror.o fdt_empty_tree.o fdt_addresses.o fdt_overlay.o
-+libfdt		= $(addprefix $(libfdt_dir)/,$(libfdt-objs))
-+fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
++&panel {
++        status = "okay";
++        compatible = "boe,tv101wum-nl6";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index bf2ad1294dd30..d3d20e4773cf1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -249,6 +249,35 @@ &cpu7 {
+ 	proc-supply = <&mt6358_vproc11_reg>;
+ };
  
- # Source files need to get at the userspace version of libfdt_env.h to compile
- HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
++&dsi0 {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	panel: panel@0 {
++		// compatible will be set in board dts
++		reg = <0>;
++		enable-gpios = <&pio 45 0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&panel_pins_default>;
++		avdd-supply = <&ppvarn_lcd>;
++		avee-supply = <&ppvarp_lcd>;
++		pp1800-supply = <&pp1800_lcd>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&dsi_out>;
++			};
++		};
++	};
++
++	ports {
++		port {
++			dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++};
++
+ &i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c0_pins>;
+@@ -547,6 +576,14 @@ pins_clk {
+ 		};
+ 	};
+ 
++	panel_pins_default: panel_pins_default {
++		panel_reset {
++			pinmux = <PINMUX_GPIO45__FUNC_GPIO45>;
++			output-low;
++			bias-pull-up;
++		};
++	};
++
+ 	pwm0_pin_default: pwm0_pin_default {
+ 		pins1 {
+ 			pinmux = <PINMUX_GPIO176__FUNC_GPIO176>;
 -- 
-2.25.0.rc1.19.g042ed3e048af
+2.29.2.729.g45daf8777d-goog
 
