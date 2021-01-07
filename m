@@ -2,437 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D944A2ECC0C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 09:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 893272ECC21
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 10:01:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725959AbhAGIx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 03:53:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60114 "EHLO
+        id S1727175AbhAGJBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 04:01:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725900AbhAGIx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 03:53:28 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F7FC0612F4
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 00:52:48 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kxR23-00026q-72; Thu, 07 Jan 2021 09:52:35 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kxR22-000456-DG; Thu, 07 Jan 2021 09:52:34 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S1725974AbhAGJBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 04:01:09 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624C4C0612F6
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 01:00:29 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id 11so3461295pfu.4
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 01:00:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=A38XEG2bxzvR12086jQpwTTb/g0iT6/kG6TCSTQMuF8=;
+        b=HJnCLAsRHKWwLhQ7mKp+58XMFdmWbGx2dCO0jxV1ALEGSO6wf10jAomB5O+3gmuBHB
+         CTPoWHFdcP5Go3ofX1hhjyQDEi0/327NPX2VSj+mZcNIK2gvbIFO94nb2C70wwBJNaZ0
+         GsavQVH6iJa2B0zmPjPsSTxSS4hW7wytRLe9U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=A38XEG2bxzvR12086jQpwTTb/g0iT6/kG6TCSTQMuF8=;
+        b=tLy/b8IjTceeZB0m+tuKzjQnlW1GR2OMwElEqMasWFdGDeB73B1W6WIXYMyFtJol+k
+         tkcIh9kVdmIX6tiEQ4qnFSwzYAekF0tpaYoPqWajhZbBjbGYyQEZN5HSNZPD7pbhtM50
+         9QSvs6wB/FW+9RvTRUzbPudLAfXB82M0jDM+5feEUKCBL7V62BY6+DqzV79fqoc7LZGc
+         H7Ye7Uvo8HWfG7gvwHqhp05W8R/myRUpbZm3vklPeSU2XiWncVwgnvMIoxF9sNaQ2+or
+         sHxC5q0Tn+i2TpSDOEk7BZSHT9WG/ndWS8G0DsJ2EifKmViaa4wttpIvnonn24juxk/r
+         qoTA==
+X-Gm-Message-State: AOAM533Xhd0C9r+7jIY6QESwsN4X3knq0mqSkm9aL7ubX/yQQVRL5cQt
+        iwXb2eMS5vM5nfqpSYTGpLTdCg==
+X-Google-Smtp-Source: ABdhPJw9Ssl8Yb7I2NbXzQGWuVjK6p28ej36nNEL2Q2+nQZhP5RGtaadDnQqTtmMvEnuKGhzm6xJnA==
+X-Received: by 2002:a62:e30c:0:b029:19d:932b:a1e2 with SMTP id g12-20020a62e30c0000b029019d932ba1e2mr7918416pfh.78.1610010028859;
+        Thu, 07 Jan 2021 01:00:28 -0800 (PST)
+Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:7220:84ff:fe09:41dc])
+        by smtp.gmail.com with ESMTPSA id a29sm5022421pfr.73.2021.01.07.01.00.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 01:00:28 -0800 (PST)
+From:   Nicolas Boichat <drinkcat@chromium.org>
+To:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     hsinyi@chromium.org, hoegsberg@chromium.org,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        boris.brezillon@collabora.com, fshao@chromium.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: [PATCH v2 2/2] ARM: dts: add Protonic PRTI6G board
-Date:   Thu,  7 Jan 2021 09:52:33 +0100
-Message-Id: <20210107085233.15619-3-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210107085233.15619-1-o.rempel@pengutronix.de>
-References: <20210107085233.15619-1-o.rempel@pengutronix.de>
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v8 0/4] drm/panfrost: Add support for mt8183 GPU
+Date:   Thu,  7 Jan 2021 17:00:18 +0800
+Message-Id: <20210107090022.3536550-1-drinkcat@chromium.org>
+X-Mailer: git-send-email 2.29.2.729.g45daf8777d-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Protonic PRTI6G is a reference platform for industrial, safety critical
-applications
+Hi!
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/Makefile          |   1 +
- arch/arm/boot/dts/imx6ul-prti6g.dts | 356 ++++++++++++++++++++++++++++
- 2 files changed, 357 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6ul-prti6g.dts
+Follow-up on the v5 [1], things have gotten significantly
+better in the last 9 months, thanks to the efforts on Bifrost
+support by the Collabora team (and probably others I'm not
+aware of).
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index b727542c105b..2f217f4d9732 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -638,6 +638,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ul-pico-pi.dtb \
- 	imx6ul-phytec-segin-ff-rdk-emmc.dtb \
- 	imx6ul-phytec-segin-ff-rdk-nand.dtb \
-+	imx6ul-prti6g.dtb \
- 	imx6ul-tx6ul-0010.dtb \
- 	imx6ul-tx6ul-0011.dtb \
- 	imx6ul-tx6ul-mainboard.dtb \
-diff --git a/arch/arm/boot/dts/imx6ul-prti6g.dts b/arch/arm/boot/dts/imx6ul-prti6g.dts
-new file mode 100644
-index 000000000000..d62015701d0a
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ul-prti6g.dts
-@@ -0,0 +1,356 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) 2016 Protonic Holland
-+ * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-+ */
-+
-+/dts-v1/;
-+#include "imx6ul.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Protonic PRTI6G Board";
-+	compatible = "prt,prti6g", "fsl,imx6ul";
-+
-+	chosen {
-+		stdout-path = &uart1;
-+	};
-+
-+	clock_ksz8081_in: clock-ksz8081-in {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <25000000>;
-+	};
-+
-+	clock_ksz8081_out: clock-ksz8081-out {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		led-0 {
-+			label = "debug0";
-+			gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	reg_3v2: regulator-3v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v2";
-+		regulator-min-microvolt = <3200000>;
-+		regulator-max-microvolt = <3200000>;
-+	};
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1>;
-+	status = "okay";
-+};
-+
-+&can2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can2>;
-+	status = "okay";
-+};
-+
-+&ecspi1 {
-+	cs-gpios = <&gpio4 26 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&ecspi2 {
-+	cs-gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi2>;
-+	status = "okay";
-+
-+	spi@0 {
-+		compatible = "spidev";
-+		reg = <0>;
-+		spi-max-frequency = <1000000>;
-+	};
-+};
-+
-+&fec1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eth1>;
-+	phy-mode = "rmii";
-+	phy-handle = <&rmii_phy>;
-+	clocks = <&clks IMX6UL_CLK_ENET>,
-+		 <&clks IMX6UL_CLK_ENET_AHB>,
-+		 <&clks IMX6UL_CLK_ENET_PTP>,
-+		 <&clock_ksz8081_out>;
-+	clock-names = "ipg", "ahb", "ptp",
-+		      "enet_clk_ref";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Microchip KSZ8081RNA PHY */
-+		rmii_phy: ethernet-phy@0 {
-+			reg = <0>;
-+			interrupts-extended = <&gpio5 1 IRQ_TYPE_LEVEL_LOW>;
-+			reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <300>;
-+			clocks = <&clock_ksz8081_in>;
-+			clock-names = "rmii-ref";
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	/* additional i2c devices are added automatically by the boot loader */
-+};
-+
-+&i2c2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	adc@49 {
-+		compatible = "ti,ads1015";
-+		reg = <0x49>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@4 {
-+			reg = <4>;
-+			ti,gain = <3>;
-+			ti,datarate = <3>;
-+		};
-+
-+		channel@5 {
-+			reg = <5>;
-+			ti,gain = <3>;
-+			ti,datarate = <3>;
-+		};
-+
-+		channel@6 {
-+			reg = <6>;
-+			ti,gain = <3>;
-+			ti,datarate = <3>;
-+		};
-+
-+		channel@7 {
-+			reg = <7>;
-+			ti,gain = <3>;
-+			ti,datarate = <3>;
-+		};
-+	};
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+
-+	temperature-sensor@70 {
-+		compatible = "ti,tmp103";
-+		reg = <0x70>;
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	cd-gpios = <&gpio4 12 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_3v2>;
-+	no-1-8-v;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	bus-width = <8>;
-+	no-1-8-v;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_can1: can1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX		0x0b0b0
-+			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX		0x0b0b0
-+			/* SR */
-+			MX6UL_PAD_SNVS_TAMPER3__GPIO5_IO03		0x0b0b0
-+			/* TERM */
-+			MX6UL_PAD_SNVS_TAMPER4__GPIO5_IO04		0x0b0b0
-+			/* nSMBALERT */
-+			MX6UL_PAD_SNVS_TAMPER2__GPIO5_IO02		0x0b0b0
-+		>;
-+	};
-+
-+	pinctrl_can2: can2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART2_CTS_B__FLEXCAN2_TX		0x0b0b0
-+			MX6UL_PAD_UART2_RTS_B__FLEXCAN2_RX		0x0b0b0
-+			/* SR */
-+			MX6UL_PAD_SNVS_TAMPER5__GPIO5_IO05		0x0b0b0
-+		>;
-+	};
-+
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_CSI_DATA04__ECSPI1_SCLK		0x0b0b0
-+			MX6UL_PAD_CSI_DATA05__GPIO4_IO26		0x000b1
-+			MX6UL_PAD_CSI_DATA06__ECSPI1_MOSI		0x0b0b0
-+			MX6UL_PAD_CSI_DATA07__ECSPI1_MISO		0x0b0b0
-+		>;
-+	};
-+
-+	pinctrl_ecspi2: ecspi2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_CSI_DATA00__ECSPI2_SCLK		0x0b0b0
-+			MX6UL_PAD_CSI_DATA01__GPIO4_IO22		0x000b1
-+			MX6UL_PAD_CSI_DATA02__ECSPI2_MOSI		0x0b0b0
-+			MX6UL_PAD_CSI_DATA03__ECSPI2_MISO		0x0b0b0
-+		>;
-+	};
-+
-+	pinctrl_eth1: eth1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_GPIO1_IO07__ENET1_MDC			0x1b0b0
-+			MX6UL_PAD_GPIO1_IO06__ENET1_MDIO		0x100b0
-+			MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00		0x1b0b0
-+			MX6UL_PAD_ENET1_RX_DATA1__ENET1_RDATA01		0x1b0b0
-+			MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN		0x100b0
-+			MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER		0x1b0b0
-+			MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN		0x1b0b0
-+			MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00		0x1b0b0
-+			MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01		0x1b0b0
-+			MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1		0x1b000
-+			/* PHY ENET1_RST */
-+			MX6UL_PAD_SNVS_TAMPER0__GPIO5_IO00		0x00880
-+			/* PHY ENET1_IRQ */
-+			MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01		0x00880
-+		>;
-+	};
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			/* HW revision detect */
-+			/* REV_ID0 */
-+			MX6UL_PAD_ENET2_RX_DATA0__GPIO2_IO08		0x1b0b0
-+			/* REV_ID1 */
-+			MX6UL_PAD_ENET2_RX_DATA1__GPIO2_IO09		0x1b0b0
-+			/* REV_ID2 */
-+			MX6UL_PAD_ENET2_RX_EN__GPIO2_IO10		0x1b0b0
-+			/* REV_ID3 */
-+			MX6UL_PAD_ENET2_TX_DATA0__GPIO2_IO11		0x1b0b0
-+			/* BOARD_ID0 */
-+			MX6UL_PAD_ENET2_TX_EN__GPIO2_IO13		0x1b0b0
-+			/* BOARD_ID1 */
-+			MX6UL_PAD_ENET2_TX_CLK__GPIO2_IO14		0x1b0b0
-+			/* BOARD_ID2 */
-+			MX6UL_PAD_ENET2_RX_ER__GPIO2_IO15		0x1b0b0
-+			/* BOARD_ID3 */
-+			MX6UL_PAD_ENET2_TX_DATA1__GPIO2_IO12		0x1b0b0
-+			/* Safety controller IO */
-+			/* WAKE_SC */
-+			MX6UL_PAD_SNVS_TAMPER6__GPIO5_IO06		0x1b0b0
-+			/* PROGRAM_SC */
-+			MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001b8b0
-+			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001b8b0
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_CSI_VSYNC__I2C2_SDA		0x4001b8b0
-+			MX6UL_PAD_CSI_HSYNC__I2C2_SCL		0x4001b8b0
-+		>;
-+	};
-+
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_DQS__GPIO4_IO16			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX		0x1b0b1
-+			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_SD1_CMD__USDHC1_CMD			0x070b1
-+			MX6UL_PAD_SD1_CLK__USDHC1_CLK			0x07099
-+			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0		0x070b1
-+			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1		0x070b1
-+			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2		0x070b1
-+			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3		0x070b1
-+			/* SD1 CD */
-+			MX6UL_PAD_NAND_READY_B__GPIO4_IO12		0x170b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD			0x170f9
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK			0x100f9
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0		0x170f9
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1		0x170f9
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2		0x170f9
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3		0x170f9
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4		0x170f9
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5		0x170f9
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6		0x170f9
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7		0x170f9
-+			MX6UL_PAD_NAND_ALE__USDHC2_RESET_B		0x170b0
-+		>;
-+	};
-+};
+I've been testing this series on a MT8183/kukui device, with a
+chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
+mesa 20.3.2 (lots of artifacts though).
+
+devfreq is currently not supported, as we'll need:
+ - Clock core support for switching the GPU core clock (see 2/4).
+ - Platform-specific handling of the 2-regulator (see 3/4).
+
+Since the latter is easy to detect, patch 3/4 just disables
+devfreq if the more than one regulator is specified in the
+compatible matching table.
+
+[1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
+[2] https://crrev.com/c/2608070
+
+Changes in v8:
+ - Use DRM_DEV_INFO instead of ERROR
+
+Changes in v7:
+ - Fix GPU ID in commit message
+ - Fix GPU ID in commit message
+
+Changes in v6:
+ - Rebased, actually tested with recent mesa driver.
+
+Nicolas Boichat (4):
+  dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+  arm64: dts: mt8183: Add node for the Mali GPU
+  drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
+  drm/panfrost: Add mt8183-mali compatible string
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        |  25 +++++
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   6 +
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   6 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
+ 6 files changed, 161 insertions(+)
+
 -- 
-2.30.0
+2.29.2.729.g45daf8777d-goog
 
