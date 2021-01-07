@@ -2,97 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36BE22EC75B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 01:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F1522EC7B6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 02:27:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725978AbhAGAga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Jan 2021 19:36:30 -0500
-Received: from mo-csw1114.securemx.jp ([210.130.202.156]:56018 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725860AbhAGAga (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 19:36:30 -0500
-Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 1070Y2wf017046; Thu, 7 Jan 2021 09:34:02 +0900
-X-Iguazu-Qid: 2wHHcVEABewtERwmYc
-X-Iguazu-QSIG: v=2; s=0; t=1609979642; q=2wHHcVEABewtERwmYc; m=5gtMXf5aLkUuriQQt8s5+yfCz8lBKP4ioKHpSxI6VE0=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1112) id 1070Y0qC028747;
-        Thu, 7 Jan 2021 09:34:01 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 1070Y0IO015064;
-        Thu, 7 Jan 2021 09:34:00 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 1070Y0tr015175;
-        Thu, 7 Jan 2021 09:34:00 +0900
-Date:   Thu, 7 Jan 2021 09:33:58 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        punit1.agrawal@toshiba.co.jp,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, yuji2.ishikawa@toshiba.co.jp,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 0/4] gpio: visconti: Add Toshiba Visconti GPIO support
-X-TSB-HOP: ON
-Message-ID: <20210107003358.rlwdta7jkkyyzbzu@toshiba.co.jp>
-References: <20201201181406.2371881-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <CAMRc=MeV8+rpoLkdbqzsqOmcsTY1g++B+cqDmSAWQP=gGGduWQ@mail.gmail.com>
+        id S1726498AbhAGB0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Jan 2021 20:26:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47024 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726231AbhAGB0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Jan 2021 20:26:49 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F644C0612EF
+        for <devicetree@vger.kernel.org>; Wed,  6 Jan 2021 17:26:09 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id y128so4618473ybf.10
+        for <devicetree@vger.kernel.org>; Wed, 06 Jan 2021 17:26:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+Q3ISD9lk+iyEMVjautQ2BP91e+OXNI/7EQGZw2zmBA=;
+        b=kXTXHfEKQ73/mo9oyzafshtxpx+SFtovx9OgM9m53qzvmnTKW/UJrdSt9lXl5xeu+j
+         K4U34rsRwU00ghxDMIXdtWuSqjInH6Fs6EpnlwptjPnPq8A9c8rCMZSefm10Zk0lPOGI
+         DMtD9HUx/OIqFZHDkzAH1ymWYfT9ZhiXMwZZawRUCNy8CWe92DrPLSdyzuQrAb7fBgDL
+         2iQ8xstc0d/rfcbemElL5xwCWIqj7Ie9FPGythfjKpmOqweHcRHHO6ZJRabeTmDth/u4
+         b/eXeLKY4SblaTp5ljio5OxisckstSoJuf1BQkrecKpKnKjb8Y3mgqcRwIVdu+7nWkzo
+         CqIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+Q3ISD9lk+iyEMVjautQ2BP91e+OXNI/7EQGZw2zmBA=;
+        b=IfVdyUFbbRxA8LUrq9Ux6IXhcjn72rDGr/NdBMSek7FlVvE9ejBLnSH4gA8IvHVvuB
+         y4WmWHHAyd2q0nyWxzCFHwYPsW+hxjNHZPBWlS8VLY04GkDunHxiJFb3t70bJRK6hR7D
+         BGKNgZGopXcc48txscy3PxZfRHYzMWuk3J01Ez/aiuZrW/WbyF86DAjLBT3kycFTG5sK
+         xLl+zr2MEg1wXZHMxm1ZCK38m/DOcY6TaYcMB3UmIWw7bWzXG0Fn0aNQeO0P+28/M0Jd
+         PejNht/6ggJwUd0kHZSa16PATb8tcraNR0V25H4RNdZ0nQMAGzFmkAyJqumbFfZD2kSY
+         qJeg==
+X-Gm-Message-State: AOAM5330UfU1pEJ6jLAXWIAi+2XD0IRtejl1Q/JOpRm3rvBr1LBQH7Qx
+        x/zojLa7/a4qr8syLVuTU1NQbKW7Kd5u/AOvprTiOA==
+X-Google-Smtp-Source: ABdhPJxGvAuJ8UWOzecyVj/LYSXmdqjwby6wjLe+OCX4j8PTQ6cv0HsvKl+Mhj4jggRIlJvDTA8OQlk2j2zZAaylpiE=
+X-Received: by 2002:a25:6604:: with SMTP id a4mr10119739ybc.412.1609982768103;
+ Wed, 06 Jan 2021 17:26:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMRc=MeV8+rpoLkdbqzsqOmcsTY1g++B+cqDmSAWQP=gGGduWQ@mail.gmail.com>
+References: <20201218210750.3455872-1-saravanak@google.com>
+ <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
+ <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
+In-Reply-To: <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 6 Jan 2021 17:25:31 -0800
+Message-ID: <CAGETcx_y6pj-8xEUfMi164iFTiDLVcdATofkOTjvFBCSAQY3sw@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Add device link support for interrupts
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bartosz,
+On Wed, Jan 6, 2021 at 10:52 AM Saravana Kannan <saravanak@google.com> wrote:
+>
+> On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > On Thu, 31 Dec 2020 21:12:40 +0000,
+> > Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
+> > > > On 2020-12-18 21:07, Saravana Kannan wrote:
+> > > > > Add support for creating device links out of interrupts property.
+> > > > >
+> > > > > Cc: Marc Zyngier <maz@kernel.org>
+> > > > > Cc: Kevin Hilman <khilman@baylibre.com>
+> > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > ---
+> > > > > Rob/Greg,
+> > > > >
+> > > > > This might need to go into driver-core to avoid conflict
+> > > > > due to fw_devlink refactor series that merged there.
+> > > > >
+> > > > > Thanks,
+> > > > > Saravana
+> > > > >
+> > > > >
+> > > > >  drivers/of/property.c | 17 +++++++++++++++++
+> > > > >  1 file changed, 17 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
+> > > > > --- a/drivers/of/property.c
+> > > > > +++ b/drivers/of/property.c
+> > > > > @@ -1271,6 +1271,22 @@ static struct device_node
+> > > > > *parse_iommu_maps(struct device_node *np,
+> > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
+> > > > >  }
+> > > > >
+> > > > > +static struct device_node *parse_interrupts(struct device_node *np,
+> > > > > +                                     const char *prop_name, int index)
+> > > > > +{
+> > > > > + struct device_node *sup;
+> > > > > +
+> > > > > + if (strcmp(prop_name, "interrupts") || index)
+> > > > > +         return NULL;
+> > > > > +
+> > > > > + of_node_get(np);
+> > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
+> > > > > +         np = of_get_next_parent(np);
+> > > > > + of_node_put(np);
+> > > > > +
+> > > > > + return sup;
+> > > > > +}
+> > > > > +
+> > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
+> > > > >   { .parse_prop = parse_clocks, },
+> > > > >   { .parse_prop = parse_interconnects, },
+> > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
+> > > > > of_supplier_bindings[] = {
+> > > > >   { .parse_prop = parse_pinctrl6, },
+> > > > >   { .parse_prop = parse_pinctrl7, },
+> > > > >   { .parse_prop = parse_pinctrl8, },
+> > > > > + { .parse_prop = parse_interrupts, },
+> > > > >   { .parse_prop = parse_regulators, },
+> > > > >   { .parse_prop = parse_gpio, },
+> > > > >   { .parse_prop = parse_gpios, },
+> > > >
+> > > > You don't really describe what this is for so I'm only guessing
+> > > > from the context. If you want to follow the interrupt hierarchy,
+> > > > "interrupt-parent" isn't enough. You also need to track
+> > > > things like interrupt-map, or anything that carries a phandle
+> > > > to an interrupt controller.
+> > >
+> > > We don't need to follow the hierarchy, we just need the immediate
+> > > dependencies.
+> >
+> > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
+>
+> Thanks Rob for explaining it.
+>
+> Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
+> Also, I'm trying to keep of/property.c independent of the framework
+> code for now. The long term goal is to see if I can move out most of
+> this into the frameworks. But I want to do that after I sort of some
+> of the larger problems (like getting fw_devlink=on to work on all
+> devices  first). Let me know if you have a strong preference for right
+> now, if not, I'd rather keep property.c independent for now.
+>
+> I wasn't aware of interrupt-map until a few weeks ago and didn't know
+> it carried phandles. I can add support for that too. There's no reason
+> for all of them to go in one patch though.
 
-On Wed, Jan 06, 2021 at 11:33:49AM +0100, Bartosz Golaszewski wrote:
-> On Tue, Dec 1, 2020 at 10:16 AM Nobuhiro Iwamatsu
-> <nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
-> >
-> > Hi,
-> >
-> > This series is the GPIO driver for Toshiba's ARM SoC, Visconti[0].
-> > This provides DT binding documentation, device driver, MAINTAINER files, and updates to DT files.
-> >
-> > Update:
-> >
-> >   dt-bindings: gpio: Add bindings for Toshiba Visconti GPIO Controller:
-> >     v2 -> v3: Fix dtschema/dtc warnings.
-> >       dtschema/dtc warnings/errors:
-> >         Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.example.dt.yaml: gpio@28020000: interrupts: [[0, 24, 4], [0, 25, 4], [0, 26, 4], [0, 27, 4], [0, 28, 4], [0, 29, 4], [0, 30, 4], [0, 31, 4], [0, 32, 4], [0, 33, 4], [0, 34, 4], [0, 35, 4], [0, 36, 4], [0, 37, 4], [0, 38, 4], [0, 39, 4]] is too short
-> >           From schema: Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> >     v1 -> v2: Fix typo.
-> >
-> >   gpio: visoconti: Add Toshiba Visconti GPIO support:
-> >     v2 -> v3: Add select GPIO_GENERIC
-> >               Use genric MMIO GPIO library
-> >               Use bgpio_init() as initialized the generic helpers.
-> >               Use irqchip template instead of gpiochip_irqchip_add().
-> >     v1 -> v2: No update
-> >
-> >   MAINTAINERS: Add entries for Toshiba Visconti GPIO controller:
-> >     v2 -> v3: No update
-> >     v1 -> v2: No update
-> >
-> >   arm: dts: visconti: Add DT support for Toshiba Visconti5 GPIO driver:
-> >     v2 -> v3: Fix compatible string.
-> >     v1 -> v2: No update
-> >
-> > Best regards,
-> >   Nobuhiro
-> >
-> 
-> Nobuhiro,
-> 
-> In the future please use the get_maintainers.pl script - I have never
-> been Cc'ed on this series and I would have ignored it if Linus W
-> hadn't brought it to my attention.
-> 
+Hmm... I looked at
+Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+and it has no documentation for interrupt-map. There's a bunch of
+references to it in device specific DT binding documentation but I
+don't want to rely on those for correctness.
 
-Sorry, I'll use it next time.
+Marc, can you explain the interrupt-map format here or add
+documentation for it please?
 
-Best regards,
-  Nobuhiro
+-Saravana
