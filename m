@@ -2,173 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D5602ED52F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 18:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66ECC2ED54F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 18:18:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728674AbhAGRJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 12:09:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53026 "EHLO
+        id S1726294AbhAGRSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 12:18:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728624AbhAGRJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 12:09:32 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C01BC0612F4
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 09:08:52 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id x2so6715823ybt.11
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 09:08:52 -0800 (PST)
+        with ESMTP id S1728226AbhAGRSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 12:18:05 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F79C0612F9
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 09:17:25 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id l207so8158912oib.4
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 09:17:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SS3DM2iEdyFUgDhuSMZ8Sz2/zsciyLMLy6hexAt6XHw=;
-        b=XTHrAcEoXL6NXFTI6YYLlkcFJ4JYiZA4lZ2r4NlQbR4yvEwd0rHwLuvjtc8A9FzMoo
-         jcXJ8ooo9EFzkUpdS0YKUiFO8/nzr1PuZ2ww4DlVtU8gdatYwpdyGTaXpN4UJj40TIxM
-         fHfvmH89gtb50EutYmZlN4ElLGQ/7S/z8HJUUuPmjnbr7QjuPrcfeilv+oAL3+7dhfZ9
-         g6lIGNSVHK0qg2XOIRtmCIgdkKIIcRZBXzKoA7y0bHNTIBEjxKBRXQO6K0yx8hW30nwQ
-         Eygxda6iS+fW1hIMbCXnBhfHKME/Jz/GzGSiKjnTcYUkJuQiMk108d1I2wnyHPuabIrC
-         cFIg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=y0b32X4SCSQW4ZyWSqBJZ7gE3D/FLBK0/PnLsSA/kDo=;
+        b=iFZBxcINm4NcJ4GzA0htrQ1YNQO9+Xa8zaWCTXqusc3yELttivb/svo9bOBQv5wCwU
+         Twrmlc7cAbS+irWpBW5j976lssLbI+/dKST1tZx/DS5RHnWrzpkQmSS6kFWmD3rKSkHH
+         rHrLUaCW92FgBRZUM47aXZe1ymhd19CHHKALMJoSR2DAYJt6Is16xa9LhVlOOht51vID
+         zgbIrWzpPYqmyMyJh9uQ1aWyPdZCZaD6jqSTbVInDZOfDpXBtCsgpCO3zVZugwxten0M
+         /qmL/TslKIVLI6yqRhsKaof+atdMdGyVjjnZ6ADlb1+5uLGsn74k984zij7/JKk/hhdK
+         31xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SS3DM2iEdyFUgDhuSMZ8Sz2/zsciyLMLy6hexAt6XHw=;
-        b=WIDyRWLryJIn+VlYxxTX+qViqUsLbNIjIb+80CH4m54sGo9TchJmtpWnJ8csjMKxZo
-         D6I0xMxNrurPM9wApmKaeuau4XeQktWeeDiIqJGE9Q+agC2CMn375eeq/6KItIRGMWPL
-         H7XmTQjRAn9se9mKwSktboW5rWwjmnQUTN36Vz+a5l6w31K520mAEJYE809zGyTtCNmr
-         sFdKSmo8DKhi1QpqxIjqaqkBB91LNyj9ypJ3ChQeVu2x/bNMiRf40IjyULg4h9mY0xkJ
-         ZVJzhzX1TyM0e8OA4pQgOWVhmAyTHRhJAeb0crn9ODOieqv5fCrZDgeX2Y02TXtRM/mN
-         WPfg==
-X-Gm-Message-State: AOAM531L+Ds9EFUIeu0EU23HHt2RCjy8xP9Dlca1IXVostr2YTfuB634
-        sldkzZ9IJnolGKS7uYIpKG3tAATON02hqYbEZG4Llw==
-X-Google-Smtp-Source: ABdhPJzdHxcYJZiIF6rorYMgkdsqh3rdIFCGsiyDWZpYkaXLuNAk04h6SjasWV00BvCK9RRiHoYYc1NDa7zYUoraEns=
-X-Received: by 2002:a25:d7d7:: with SMTP id o206mr14472508ybg.228.1610039331469;
- Thu, 07 Jan 2021 09:08:51 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=y0b32X4SCSQW4ZyWSqBJZ7gE3D/FLBK0/PnLsSA/kDo=;
+        b=eggtV3wDkOLo7GjTht/P8sVBWQKnjG7G2KNrczvhtT8BKro4f82UEVWlRCcKfVWSKp
+         FpCmh/FDcgL5IYqDvmsYAWp3LBGTHVjhqIwOoIuwuTb617jyxrcEFfH/dwYVqBC1Ccp9
+         lz98a99882l/cPtBfFwPh7yJFjd2xme65kgEOTMpfzZjmkLqJ7SXTIU7/kZ+2TeyxBRl
+         7tPXY+JVhNsLj8ZEhEfS5smpqtVvWwLHyB/lZY3UZ0GPnu0YERMcmL2XwgNaJws40VzF
+         DHCxvlx3UttATeYG1PV8pNjrYdhfj4fTdhE+7DH3VNzBMs8rcKBSbBVE7aSn07SDKuwU
+         SLNA==
+X-Gm-Message-State: AOAM530eVz4a6tjqGBnDOMNEqCpXoEO+vRa1Jr05CWcSz3Ls1azZ9eQM
+        SXY8QkX6HDXXKc4AWpSEyk5grw==
+X-Google-Smtp-Source: ABdhPJzRRmW36uQ+skMh0nkic0qhC58gTdp5qyWT1IhJrztmvIepafMnqRRJtZ2hZyzfiMrDmy6EYA==
+X-Received: by 2002:aca:3192:: with SMTP id x140mr2010483oix.172.1610039844452;
+        Thu, 07 Jan 2021 09:17:24 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u141sm1382809oie.46.2021.01.07.09.17.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 09:17:23 -0800 (PST)
+Date:   Thu, 7 Jan 2021 11:17:22 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl
+ bindings
+Message-ID: <X/dCIuUR/El8Gxaa@builder.lan>
+References: <20210106054950.303244-1-vkoul@kernel.org>
+ <20210106054950.303244-2-vkoul@kernel.org>
 MIME-Version: 1.0
-References: <20201218210750.3455872-1-saravanak@google.com>
- <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
- <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
- <CAGETcx_y6pj-8xEUfMi164iFTiDLVcdATofkOTjvFBCSAQY3sw@mail.gmail.com> <CAL_JsqJX_eWEU=0STW0rjxO=0NVgpuV5rD-5utD7Yzd6otPFvw@mail.gmail.com>
-In-Reply-To: <CAL_JsqJX_eWEU=0STW0rjxO=0NVgpuV5rD-5utD7Yzd6otPFvw@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 7 Jan 2021 09:08:15 -0800
-Message-ID: <CAGETcx8D6Q7XojOnRCPNAZWcxhNt5ebFCp6gyh-cuKeaKfS2Bw@mail.gmail.com>
-Subject: Re: [PATCH] of: property: Add device link support for interrupts
-To:     Rob Herring <robh@kernel.org>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210106054950.303244-2-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 7, 2021 at 8:48 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Jan 6, 2021 at 6:26 PM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > On Wed, Jan 6, 2021 at 10:52 AM Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
-> > > >
-> > > > On Thu, 31 Dec 2020 21:12:40 +0000,
-> > > > Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
-> > > > > > On 2020-12-18 21:07, Saravana Kannan wrote:
-> > > > > > > Add support for creating device links out of interrupts property.
-> > > > > > >
-> > > > > > > Cc: Marc Zyngier <maz@kernel.org>
-> > > > > > > Cc: Kevin Hilman <khilman@baylibre.com>
-> > > > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > > > > > ---
-> > > > > > > Rob/Greg,
-> > > > > > >
-> > > > > > > This might need to go into driver-core to avoid conflict
-> > > > > > > due to fw_devlink refactor series that merged there.
-> > > > > > >
-> > > > > > > Thanks,
-> > > > > > > Saravana
-> > > > > > >
-> > > > > > >
-> > > > > > >  drivers/of/property.c | 17 +++++++++++++++++
-> > > > > > >  1 file changed, 17 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
-> > > > > > > --- a/drivers/of/property.c
-> > > > > > > +++ b/drivers/of/property.c
-> > > > > > > @@ -1271,6 +1271,22 @@ static struct device_node
-> > > > > > > *parse_iommu_maps(struct device_node *np,
-> > > > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
-> > > > > > >  }
-> > > > > > >
-> > > > > > > +static struct device_node *parse_interrupts(struct device_node *np,
-> > > > > > > +                                     const char *prop_name, int index)
-> > > > > > > +{
-> > > > > > > + struct device_node *sup;
-> > > > > > > +
-> > > > > > > + if (strcmp(prop_name, "interrupts") || index)
-> > > > > > > +         return NULL;
-> > > > > > > +
-> > > > > > > + of_node_get(np);
-> > > > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
-> > > > > > > +         np = of_get_next_parent(np);
-> > > > > > > + of_node_put(np);
-> > > > > > > +
-> > > > > > > + return sup;
-> > > > > > > +}
-> > > > > > > +
-> > > > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
-> > > > > > >   { .parse_prop = parse_clocks, },
-> > > > > > >   { .parse_prop = parse_interconnects, },
-> > > > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
-> > > > > > > of_supplier_bindings[] = {
-> > > > > > >   { .parse_prop = parse_pinctrl6, },
-> > > > > > >   { .parse_prop = parse_pinctrl7, },
-> > > > > > >   { .parse_prop = parse_pinctrl8, },
-> > > > > > > + { .parse_prop = parse_interrupts, },
-> > > > > > >   { .parse_prop = parse_regulators, },
-> > > > > > >   { .parse_prop = parse_gpio, },
-> > > > > > >   { .parse_prop = parse_gpios, },
-> > > > > >
-> > > > > > You don't really describe what this is for so I'm only guessing
-> > > > > > from the context. If you want to follow the interrupt hierarchy,
-> > > > > > "interrupt-parent" isn't enough. You also need to track
-> > > > > > things like interrupt-map, or anything that carries a phandle
-> > > > > > to an interrupt controller.
-> > > > >
-> > > > > We don't need to follow the hierarchy, we just need the immediate
-> > > > > dependencies.
-> > > >
-> > > > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
-> > >
-> > > Thanks Rob for explaining it.
-> > >
-> > > Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
-> > > Also, I'm trying to keep of/property.c independent of the framework
-> > > code for now. The long term goal is to see if I can move out most of
-> > > this into the frameworks. But I want to do that after I sort of some
-> > > of the larger problems (like getting fw_devlink=on to work on all
-> > > devices  first). Let me know if you have a strong preference for right
-> > > now, if not, I'd rather keep property.c independent for now.
-> > >
-> > > I wasn't aware of interrupt-map until a few weeks ago and didn't know
-> > > it carried phandles. I can add support for that too. There's no reason
-> > > for all of them to go in one patch though.
-> >
-> > Hmm... I looked at
-> > Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-> > and it has no documentation for interrupt-map. There's a bunch of
-> > references to it in device specific DT binding documentation but I
-> > don't want to rely on those for correctness.
->
-> See the DT spec and there's also details on elinux.org. It's only
-> existed since the 1990s.
+On Tue 05 Jan 23:49 CST 2021, Vinod Koul wrote:
 
-Thanks :) Will try to find it there.
+> Add device tree binding Documentation details for Qualcomm SM8350
+> pinctrl driver.
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  .../bindings/pinctrl/qcom,sm8350-tlmm.yaml    | 149 ++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> new file mode 100644
+> index 000000000000..abdafd25bfc2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> @@ -0,0 +1,149 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8350-tlmm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. SM8350 TLMM block
+> +
+> +maintainers:
+> +  - Vinod Koul <vkoul@kernel.org>
+> +
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer block found in the
+> +  SM8350 platform.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8350-tlmm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    description: Specifies the PIN numbers and Flags, as defined in
+> +      include/dt-bindings/interrupt-controller/irq.h
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    description: Specifying the pin number and flags, as defined in
+> +      include/dt-bindings/gpio/gpio.h
+> +    const: 2
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +
+> +  gpio-reserved-ranges:
+> +    maxItems: 1
+> +
+> +#PIN CONFIGURATION NODES
+> +patternProperties:
+> +  '-pinmux$':
 
--Saravana
+I believe that what Rob was asking for was the matter of describing the
+mux and config subnodes under this one. But I don't know really how to
+express this, because the following are all valid:
+
+default_state: default-state {
+	pins = "gpio1";
+	bias-disable;
+};
+
+default_state: default-state {
+	rx {
+		pins = "gpio1";
+		function = "gpio";
+		bias-disable;
+	};
+};
+
+default_state: default-state {
+	pinmux {
+		pins = "gpio1";
+		function = "gpio";
+	};
+
+	pinconf {
+		pins = "gpio1";
+		bias-disable;
+	};
+};
+
+I.e. the properties described here applies either to this node directly,
+or any subnodes (1 level) down.
+
+
+Also we've been using different "patternProperties" for this node since
+the introduction of the binding 7 years ago. But to be "-state$" seems
+to best represent what the node actually describes.
+
+Regards,
+Bjorn
+
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-3])$"
+> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
+> +        minItems: 1
+> +        maxItems: 36
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins. Functions are only valid for gpio pins.
+> +        enum: [ atest_char, atest_usb, audio_ref, cam_mclk, cci_async,
+> +                cci_i2c, cci_timer, cmu_rng, coex_uart1, coex_uart2, cri_trng,
+> +                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
+> +                ddr_pxi2, ddr_pxi3, dp_hot, dp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
+> +                gpio, ibi_i3c, jitter_bist, lpass_slimbus, mdp_vsync, mdp_vsync0,
+> +                mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s0_data0, mi2s0_data1,
+> +                mi2s0_sck, mi2s0_ws, mi2s1_data0, mi2s1_data1, mi2s1_sck,
+> +                mi2s1_ws, mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws,
+> +                mss_grfc0, mss_grfc1, mss_grfc10, mss_grfc11, mss_grfc12,
+> +                mss_grfc2, mss_grfc3, mss_grfc4, mss_grfc5, mss_grfc6,
+> +                mss_grfc7, mss_grfc8, mss_grfc9, nav_gpio, pa_indicator,
+> +                pcie0_clkreqn, pcie1_clkreqn, phase_flag, pll_bist, pll_clk,
+> +                pri_mi2s, prng_rosc, qdss_cti, qdss_gpio, qlink0_enable,
+> +                qlink0_request, qlink0_wmss, qlink1_enable, qlink1_request,
+> +                qlink1_wmss, qlink2_enable, qlink2_request, qlink2_wmss, qspi0,
+> +                qspi1, qspi2, qspi3, qspi_clk, qspi_cs, qup0, qup1, qup10,
+> +                qup11, qup12, qup13, qup14, qup15, qup16, qup17, qup18, qup19,
+> +                qup2, qup3, qup4, qup5, qup6, qup7, qup8, qup9, qup_l4, qup_l5,
+> +                qup_l6, sd_write, sdc40, sdc41, sdc42, sdc43, sdc4_clk,
+> +                sdc4_cmd, sec_mi2s, tb_trig, tgu_ch0, tgu_ch1, tgu_ch2,
+> +                tgu_ch3, tsense_pwm1, tsense_pwm2, uim0_clk, uim0_data,
+> +                uim0_present, uim0_reset, uim1_clk, uim1_data, uim1_present,
+> +                uim1_reset, usb2phy_ac, usb_phy, vfr_0, vfr_1, vsense_trigger ]
+> +
+> +
+> +      drive-strength:
+> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> +        default: 2
+> +        description:
+> +          Selects the drive strength for the specified pins, in mA.
+> +
+> +      bias-pull-down: true
+> +
+> +      bias-pull-up: true
+> +
+> +      bias-disable: true
+> +
+> +      output-high: true
+> +
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +      - function
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - gpio-ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +        tlmm: pinctrl@f000000 {
+> +          compatible = "qcom,sm8350-tlmm";
+> +          reg = <0x0f100000 0x300000>;
+> +          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +          gpio-controller;
+> +          #gpio-cells = <2>;
+> +          interrupt-controller;
+> +          #interrupt-cells = <2>;
+> +          gpio-ranges = <&tlmm 0 0 203>;
+> +          serial-pinmux {
+> +            pins = "gpio18", "gpio19";
+> +            function = "qup3";
+> +            drive-strength = <8>;
+> +            bias-disable;
+> +          };
+> +        };
+> +
+> +...
+> -- 
+> 2.26.2
+> 
