@@ -2,87 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC7D42ED1BC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1AC12ED1E2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:21:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728954AbhAGORC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 09:17:02 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:16454 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728943AbhAGORC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 09:17:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1610029021; x=1641565021;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=4QhHyeujT+lb+gqqtezm3Ek1N0lMijNnWzOwgiYQ6aw=;
-  b=wVvkAl9Z2CgA3x7EtI+vJRoWNmP05D6WoFAdy9Ck16OmVKquZyXX3SNK
-   YBsaqFWTw5qVHyhCuteY7MQ2Pk9B0y+EDTuMu4maINF7awdthlL3RTi9z
-   fOa+UVX7Qis34Fm1SBrq5p5/a3+Uhu9bbdn7g3opCYpznAsvihiKpKdh7
-   6pSRKaxVgtnoz9sDWjBNAxYN5kmPlrQtuNV308cp/hsp94IaVcUd16rlm
-   z/rQsC+h68xX8A+qTBV5p9ULZUsQAOisKb6r9R9kZplKrpnight5fYqEt
-   rL6Ymb/bNGjZpYPRnHM9WVca7/kJD0Tl5wVq1uoWGuE3Hju+1U9frPcaR
-   g==;
-IronPort-SDR: MDVW/CHkblbwjqyN+JUvhkMuSLkzJ0tGMxlH8dz0yxa+j+asTh7/LJujfhSo7W2Z8SZpH8RDFe
- CoDW/YFy6JSzJQDkPGp5RSB4yubaygNKBaGOvNpiVrYBhWcF7OyLLlqcL70dXn8/WA8//8cv7F
- 04woakvam5HcGIKJdATWOo8gSylc9jyZC54dBk+PMmNgWekUJqeRVaDAyfHP1Pn++nsEU883So
- yrkZdxzQd+b3cnzh7HZJTCTgFtRjkn++lpXTL79Q6Hx5g9MplToCoLboDg7uA/zhc00eHoIo+B
- 6rI=
-X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; 
-   d="scan'208";a="39654793"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jan 2021 07:15:45 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 7 Jan 2021 07:15:45 -0700
-Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 7 Jan 2021 07:15:42 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH 3/3] MAINTAINERS: add myself as maintainer for mcp16502
-Date:   Thu, 7 Jan 2021 16:15:27 +0200
-Message-ID: <1610028927-9842-4-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1610028927-9842-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1610028927-9842-1-git-send-email-claudiu.beznea@microchip.com>
+        id S1728262AbhAGOS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 09:18:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54652 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729365AbhAGOSr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 09:18:47 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED8F5C0612F5
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 06:18:06 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id o13so14946967lfr.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 06:18:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WWdGOoyElKTAIa/MsUJRr8gfTIrASkheJYHyIrrUlZU=;
+        b=Y7xvknu3uIQbVmMO/lfSBQwQJvR8qyy2EJr2uGB7oXxD84HpEYu3BEwSE3FEh6uysa
+         2luFHBLbyOffWvRJAn+BvvVuzQKUvlEJRGpqnwTKraPOVc/1iGFx4S0c2fVuaHcqVlh5
+         raVYWSZZ7M3Yq+xs+aEVEyIjKN30OHW11XF7G6OyC8U+eYUZ695RE0NnbKQSdVUq7Fo5
+         N8UHJSolOE/7ReESAmJ6fqWxGgCAOCXpL8NDSCIdlmwFXopmk46ip8gSTQWmT8V2OhRd
+         lWCIE0Jg24P4TTEpWdhCopEJyAdNZ7AJIEjcbIgawQp95lQsaPFiB4Iu8ZHHgdVTJnf5
+         axVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WWdGOoyElKTAIa/MsUJRr8gfTIrASkheJYHyIrrUlZU=;
+        b=lbBPxTrX7V8oDiU3cqdXofAx3gqwi+uzCYhQYam5AT1tByr/qTH0W9frd2hhVLj0Yi
+         GCIkjcFe8KuUur7TlgxGYtHlp6n1pAWK3SI0vaQkgEyhKmlwefM9WqwYK+fhLZMSWKdm
+         Drj10STTb0TcjTx/WQwKF+oPuiFlDMdzwGu4iiltA3sUSJGUO8EMYd7cXiQqCI0Mo8QP
+         kvG7s2yQkMfjEJzaZ/ryOnU+17hd/yyHkJzFHu9d5I4wy4kHu2j4dXyrLoxR7AL6ztvn
+         xts4WRBTviZ2iCjOYi56ldxwQ21r4yANFBTDwblpfTkZ48RNy38pskqaWeBzuxe8u2cx
+         2vUQ==
+X-Gm-Message-State: AOAM533j2be1wna6bI30xD8sX3T6kkVYjSnJEw2O0kufF2q6AGgTeEWu
+        C7kJkM1IQ4xj5TGYjMX3cYDgF17VeBasKfL4fDzwVg==
+X-Google-Smtp-Source: ABdhPJw0vT/va3bVsMxFijWgSTwF09HnaC5Sdtu2dTbMahKK0smI1io+PZxPmKfjl63eZqv2CkBfba+WbrxfH3DaZJU=
+X-Received: by 2002:a05:651c:1312:: with SMTP id u18mr4250570lja.200.1610029085432;
+ Thu, 07 Jan 2021 06:18:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20201230214918.17133-1-festevam@gmail.com> <CACRpkdatsW79FMfN2qZQdYSrz1wmHz82zSLZwxrh5am1pWgebg@mail.gmail.com>
+ <CAOMZO5C3mSbOV_4MOUQb30SofF2tdCue+-yhSf3gJPHncXZF+A@mail.gmail.com>
+In-Reply-To: <CAOMZO5C3mSbOV_4MOUQb30SofF2tdCue+-yhSf3gJPHncXZF+A@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 7 Jan 2021 15:17:54 +0100
+Message-ID: <CACRpkdYtjXMOv+G3_hXAiS4J51FKC4kcuDCmqr_kivuh61udPw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: 74x164: Introduce the
+ 'registers-default' property
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Sandor Yu <sandor.yu@nxp.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Bruno Thomsen <bruno.thomsen@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andrei is no longer with Microchip. Add myself as maintainer for
-MCP16502. Along with this change the status from maintained to
-supported.
+On Thu, Jan 7, 2021 at 1:16 PM Fabio Estevam <festevam@gmail.com> wrote:
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- MAINTAINERS | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> The driver drivers/net/phy/mdio_bus.c and the yaml description says
+> that it only supports one bus level PHY GPIO reset via reset-gpios
+> property.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6eff4f720c72..1cd9914b95eb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11690,9 +11690,9 @@ F:	drivers/video/fbdev/atmel_lcdfb.c
- F:	include/video/atmel_lcdc.h
- 
- MICROCHIP MCP16502 PMIC DRIVER
--M:	Andrei Stefanescu <andrei.stefanescu@microchip.com>
-+M:	Claudiu Beznea <claudiu.beznea@microchip.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--S:	Maintained
-+S:	Supported
- F:	Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
- F:	drivers/regulator/mcp16502.c
- 
--- 
-2.7.4
+I suppose it's this binding:
+Documentation/devicetree/bindings/net/ethernet-phy.yaml
 
+> On the imx6ul-evk, there are two KSZ8081 PHYs in the same mdio bus, so
+> this is how I described it in dts:
+>
+> https://pastebin.com/raw/xLjYUHdN
+>
+> but the 'reset-gpios' properties are not found in this case. I think
+> we need to let drivers/net/phy/mdio_bus.c to search for 'reset-gpios'
+> also inside the mdio children.
+
+This driver gives me headache.
+
+The bindings say that it should populate devices from the compatible
+of the subnodes with names like "ethernet-phy-id0141.0e90"
+and stuff like that.
+
+Indeed, but I don't understand why the phy in this example does not
+have a compatible string?
+
+There is some hackery going on to probe the driver from the bus
+level since
+commit 46abc02175b3c246dd5141d878f565a8725060c9
+"phylib: give mdio buses a device tree presence"
+
+But as far as I read the code this driver should be probing
+devices inidividually for ther reset-gpios, I think the problem is
+maybe that no proper devices (mdiodev) are added for these
+devices, does mdiobus_register_device() even get called
+for them? Does of_mdiobus_register_phy() get called?
+If this is the problem I think you need to add
+compatible for your phy devices and make sure there is
+some code to probe them as well?
+
+of_mdiobus_register() must be called by the MDIO bus master/host
+driver. This is what traverses the children with
+for_each_available_child_of_node().
+Does your host driver properly call this function?
+
+Sorry if I sound a bit confused.
+
+Yours,
+Linus Walleij
