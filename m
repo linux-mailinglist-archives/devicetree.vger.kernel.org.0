@@ -2,163 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C00B62ECE01
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E3762ECE1C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 11:49:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727801AbhAGKhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 05:37:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48378 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727772AbhAGKhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 05:37:34 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6657AC0612F6
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 02:36:53 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id m12so13457923lfo.7
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 02:36:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nFfGlH5hXwbuaYUBsZBOfb6uPO2NVxjByxMtfTjhGZ4=;
-        b=OvqgYG5GfLnUWMDVt7fwGeXDObUORXSH+iOnzildwroxSkzsO/YzNGjGRmbA7SYLPV
-         x8nxD4BNfcPV6O2VQ+H2sXHcBagqd3oT5/cSajzlk/tGpxe5DIt7+J21on5fSDkjwPBE
-         je997Wma6HpOQpxEn74aFuJskTFroRdqupPPP1RoadoStwgVfKrRXLnEMJg0nXKpjFb+
-         thRNzVOAUQJk/fJDOvb08chmTAZOJx1FawgClXTTJ56ubJsL96r4ruCXLe076I2FlDey
-         l3Uyye8Vb8lv6IQvas953SreICCTijWTJEp7H8IMUn+A6U4qpQbflPXJ5xuWSeugoT+N
-         nk3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nFfGlH5hXwbuaYUBsZBOfb6uPO2NVxjByxMtfTjhGZ4=;
-        b=Ts401kg/omG8wSSwfBHlohVCSvvBylQHTCWmjBC3Tu+pKMU1pc3bk+zI+vyArCFV7q
-         KafIqOfjzOkZ5VBe3S6A6xI/nfsCOAGGVhvCr43Clk0/Iccx96NJep8jpqadr5EfNgym
-         soVtraKwri+xzYGFBFMidxWYdTDwWmFfF7TNoTliO/wxoBO9Ep9W7xnoRZLFe8369hrt
-         x/k2sRPAmt/IjAmuHyDqwbMldgcCYir4Nqja4faLmh8qvLZK3cuT3rZRZLHdw4hPPK4T
-         PqRxVXR1+sk74DsVjhmVnH5OISKUtqZgDOE3B3LhWy3jwSo9Q206hlUY1hdR82/cp1jk
-         t7ww==
-X-Gm-Message-State: AOAM530jIvywZBPRMMdb2482+bvF7j8G/4mbAHsbXCJulfEz0aWzw5yB
-        Vc0oN8kqgFdQIlq2Tultd3tsTihTo2siJauhOsX2tW1XV56UOA==
-X-Google-Smtp-Source: ABdhPJyfAnEcXOXLY4xTmk1dpmDhjGS0UtzXooi8t4a+PiMBAIP9rKiFMYgT/OAB+huqAHSbFRl1FEjWiqnjm8x/c0g=
-X-Received: by 2002:a05:6512:74e:: with SMTP id c14mr4116363lfs.529.1610015811936;
- Thu, 07 Jan 2021 02:36:51 -0800 (PST)
+        id S1727416AbhAGKrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 05:47:35 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:11639 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726326AbhAGKrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 05:47:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1610016455; x=1641552455;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=yHSXn6PNaIM5VUt6eMTv9SHPBhxQB6kktLgSWl4aL3g=;
+  b=HeN2JZ7n5VIffX3yOY3npFLjkxV/o9IYMk7fp5bnL60wlyrzJzufiV4d
+   rhS5TJJEgEB1c9BfQ8ImZ7wUnbU8QWt9kUFdzKmbiBasFADfTQIHcv0Zw
+   TsJu+9QuJvVlTeXyIpFLyNRkS4V4qEtANmIaSt4OQZ5yzd08jCU9p4sFC
+   vSZKN+umCjlQ07HCK+VNOuw8awkFZiXgNOtbtFWqrE4Q2XJyM8EZbLY1W
+   WBHKWK0OdNTMnSY602YAHHodoep2DhqbTvZtLLwPjcpinqPdWAOkZ7bS3
+   coSmrZeuNYbHWuvyYAFk4sf+VrZMQrvX8vuibRd/Wx7QkHCil5li8VvT+
+   w==;
+IronPort-SDR: Lafo0b6nQZ9shAR+tKcmHkRIMxFsKrM/bE0rLbdP03aiYdSI1Nk74HUIhar3XWYuHLKPUFrQ/n
+ j07pw1WeQ/5ksxfOjfW0FgAv/VrwTkyLokpKqx+t4vLtar4XU6oI9GsLnxZTQa8Gq0EVlt/O6m
+ YGVKxnVcj0KyaBmDu/CnN/XQ8qvlFnS0s0DriO/G7yaRh5vCGff075xQu+918CY4TNY/kA6gB7
+ /d2JYFyJn/aATrUPjTd3VM5QUCNhILkUeWC2rO3PTNsjiLduzlqElt7+/bTC8CjTBt++I32HdV
+ wIw=
+X-IronPort-AV: E=Sophos;i="5.79,329,1602572400"; 
+   d="scan'208";a="110118444"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jan 2021 03:46:19 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Thu, 7 Jan 2021 03:46:19 -0700
+Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Thu, 7 Jan 2021 03:46:14 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <nicolas.ferre@microchip.com>, <ludovic.desroches@microchip.com>
+CC:     <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH] dt-bindings: rtc: at91rm9200: add sama7g5 compatible
+Date:   Thu, 7 Jan 2021 12:46:12 +0200
+Message-ID: <1610016372-31784-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20201004162908.3216898-1-martin.blumenstingl@googlemail.com>
- <20201004162908.3216898-4-martin.blumenstingl@googlemail.com>
- <CACRpkdZo-U_cAhbKb4E+d+p+5FenXkGYW0RXxyk4M5uyEPCpzw@mail.gmail.com>
- <CAFBinCCLubmDvxfabQHx2-ucgAsm1NArMUrtPx-UA2nX5xoFFA@mail.gmail.com>
- <CAFBinCAZXJ2=fTQuAUyW1hNeJDHY3_pxo4UhxUaOZC=i1bpFxw@mail.gmail.com>
- <CACRpkdbKQaT61w6r9Hx40Qvy+7qyLNm-fx-BpL_wdGcB=tmcqQ@mail.gmail.com> <CAFBinCBCYZ3bzvvn==CFZyVh8E7TiGvW9PnqmK-Qd=y4X2HgNw@mail.gmail.com>
-In-Reply-To: <CAFBinCBCYZ3bzvvn==CFZyVh8E7TiGvW9PnqmK-Qd=y4X2HgNw@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 7 Jan 2021 11:36:40 +0100
-Message-ID: <CACRpkdbs_ddxrGWeDrj9MOZXuuTT-DPYibaiTcCKjfFyL9tDww@mail.gmail.com>
-Subject: Re: [RFC PATCH 3/3] gpio: ej1x8: Add GPIO driver for Etron Tech Inc. EJ168/EJ188/EJ198
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        linux-usb <linux-usb@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 6, 2021 at 4:17 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+Add compatible for SAMA7G5 RTC. At the moment the driver is falling
+back on SAM9X60's compatible but SAMA7G5 doesn't have the tamper mode
+register and tamper debounce period register thus the need for a new
+compatible to differentiate b/w these two in case tamper feature will
+be implemented in future.
 
-> > > unfortunately this means that xhci-pci now depends on xhci-pci-etron.
-> > > for xhci-pci-renesas this is fine (I think) because that part of the
-> > > code is needed to get the xHCI controller going
-> > > but for xhci-pci-etron this is a different story: the GPIO controller
-> > > is entirely optional and only used on few devices
-> >
-> > I might be naive but should it not be the other way around?
-> > That xhci-pci-etron is dependent on xhci-pci? I imagine
-> > it would be an optional add-on.
->
-> the only way to achieve this that I can think of is to basically have
-> xhci-pci-etron implement it's own pci_driver and then call
-> xhci_pci_probe, xhci_pci_remove, etc.
-> but then it depends on the driver load order if the GPIO controller is exposed
->
-> what structure did you have in mind to achieve this?
+Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+---
+ Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Something that is compiled and called conditionally with
-stubs in the local .h file.
+diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
+index 02bbfe726c62..994de43d17fa 100644
+--- a/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/atmel,at91rm9200-rtc.yaml
+@@ -20,6 +20,7 @@ properties:
+       - atmel,sama5d4-rtc
+       - atmel,sama5d2-rtc
+       - microchip,sam9x60-rtc
++      - microchip,sama7g5-rtc
+ 
+   reg:
+     maxItems: 1
+-- 
+2.7.4
 
-
-Kconfig:
-
-config FOO
-   tristate "Main matter"
-
-config FOO_ADD_ON
-    tristate "Optional on"
-    depends on FOO
-
-
-Makefile:
-
-obj-$(CONFIG_FOO) += foo.o
-obj-$(CONFIG_FOO_ADD_ON) += foo-add-on.o
-
-
-foo.h:
-
-struct foo {
-...
-};
-
-#if IS_ENABLED(CONFIG_FOO_ADD_ON)
-int foo_add_on_init(struct foo *);
-#else /* No CONFIG_FOO_ADD_ON */
-static int foo_add_on_init(struct foo *)
-{
-    return 0;
-}
-#endif
-
-
-foo.c:
-
-#include "foo.h"
-
-ret = foo_add_on_init(foo);
-(...)
-
-
-foo-add-on.c:
-
-int foo_add_on_init(struct foo *)
-{
-(...)
-}
-EXPORT_SYMBOL_GPL(foo_add_on_init);
-
-> > Make sure the etron part is an additional module that can be
-> > loaded after xhci-pci.
->
-> my approach from above unfortunately would not achieve this
-> so if you have an idea how to achieve this (or have any other driver
-> in mind that I can use as reference, even if not related to
-> GPIO/USB/PCI then please let me know)
-
-See per above. I don't see any problem with this, it will be an additional
-module that does not feature a probe() call and device driver bind.
-
-I think it is also possible to link both files into the same object if
-the optional add on is enabled, so it is part of the main module
-when modprobing. The foo.h stubs are still needed, then the
-binary will just be smaller if the add-on is not enabled. There are
-solutions like this in the kernel, I just don't remember one right
-now so grep around.
-
-Yours,
-Linus Walleij
