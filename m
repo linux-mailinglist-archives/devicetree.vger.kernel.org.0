@@ -2,127 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E4802ED64F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:04:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C72B92ED66D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:10:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726650AbhAGSDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 13:03:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33336 "EHLO
+        id S1726386AbhAGSJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 13:09:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726073AbhAGSDU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:03:20 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06D4C0612F5
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 10:02:40 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id d20so7147054otl.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 10:02:40 -0800 (PST)
+        with ESMTP id S1725944AbhAGSJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:09:58 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFDC4C0612F4;
+        Thu,  7 Jan 2021 10:09:18 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id q4so3953596plr.7;
+        Thu, 07 Jan 2021 10:09:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nQ6Ok2qv3kfguUtTE5w7jI9nGycF4ZB8N3EBEUPDAj8=;
-        b=GwN3LcQd554wGKPgJZjH1S7VHyf+0nrBX7wmPn3JVgqimfAzoUPQLhWHotgOQe7ajF
-         6De7OUFvPfIMGE4dDVzXUKNrYKlmP9OyvJ8fg+47iV01+hf3T+w+TiwAtX3U8MmqxRZr
-         LI01MTRfxwQb5EfDfTtAyMCPzm8bkI/S4dL793hljuLJg1vRMtn9lFeX/geK8/3fKbr7
-         y8TEAdTkxnpOBjIjtoinf6V66xDyy4CXMzlh2NNGIqf4XUY3tONryrCf35zsvB2lfp2W
-         hiu+wCzN8jMKi7gWx391yzyIV6X3ZpdltVMG1arUX114ausrADiHORtjP1XY7AzorT6p
-         wVsg==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=vw+3fRUkfsBW4QbvQXU0qs0vfRYiwwo/FP9gAc8ddJM=;
+        b=YZm7VyoGVhqHtD1FsmJ/k39LqGH3CzXZDAPcNPkuO69ds5omJ3no6GgI7/xQM878yH
+         79dDv+LBBMHcj6uk3FYEwQ3pT8yJF7xn+BfZE+PQT60r4Lui6xikZO+W4fl4aYpmym66
+         5hkhMFywFQPUAJ1ygS0VFd8zxUlyCk9YnpM0oVd8fu2hkvEa/Rq/FpCp4U5avTd+Sogf
+         TTB5LgMS/c6r+Xsk+6+e0Sbj1F+ND0+arqcCA9xYxjOF/cu8Z9lZmhmsHLVus+fkbk0p
+         tC+tYdwsHfWipxuj11enoTlGiF/M1XGCl7Eh0SQNInPpcaJC3PTQs376g2qUfHCytPZA
+         oyOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nQ6Ok2qv3kfguUtTE5w7jI9nGycF4ZB8N3EBEUPDAj8=;
-        b=eC0KUbUNx3w2agXiEblvs5KNWL/lhWQos3XMbJO7Zpf7K7s4O+/67YPGqCUrstzTzF
-         Idc6P9BSN2SPogjGHgCTbEaGV+7ZFCLHIRPYpxxOPnufFzrLR21k4WgIYUfcxd8Bt9UU
-         sM43ogt56Qz7DyNHVHUpZmXBbN9PshqFGpCDNDdsbj5ev6Yg1HRp3CJMNbLk4j/1DYaq
-         FNF3j4sWv1ktbMhYjXpPatJ8DZ2n4dxMJk4fzIUnkI2Wvly423UWQ6x62SYAano+E1oJ
-         WPrnwcICrdX9LB1JW7LyUZpMyHjP5t9uHStdKDWEJbWsFGJKHf2JmJQJEADrLlsAczf7
-         xJUA==
-X-Gm-Message-State: AOAM530DBYMf/E7mSN2FbQsYQOL1uVrvJr8yNRpVFX55dxRpdsINaZRc
-        uOGisnEnTAj3dRrOYBgEdTGDjQ==
-X-Google-Smtp-Source: ABdhPJw0C/3EMOrNHLY5ELywjkiY+brXvZR5p3DxYWimDV92myKzXZGMLQS8FRc3/VYO9pYkAA4nZQ==
-X-Received: by 2002:a05:6830:204b:: with SMTP id f11mr7177993otp.372.1610042559828;
-        Thu, 07 Jan 2021 10:02:39 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t186sm1438689oif.1.2021.01.07.10.02.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jan 2021 10:02:39 -0800 (PST)
-Date:   Thu, 7 Jan 2021 12:02:37 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] remoteproc/mediatek: support L1TCM
-Message-ID: <X/dMvWdwVfnjsUXM@builder.lan>
-References: <20201214050521.845396-1-tzungbi@google.com>
- <20201214050521.845396-3-tzungbi@google.com>
- <20210106231513.GC9149@xps15>
- <CA+Px+wXEV9GDCMjR8inbQ89tNV9n7RedeAOGJL_yATmeCLjXJw@mail.gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=vw+3fRUkfsBW4QbvQXU0qs0vfRYiwwo/FP9gAc8ddJM=;
+        b=XUWOyMLt3C0/zmDbbeU0bbwAcKnQDARdj1ek4v8Eql0m5j/2WNEXybJuA6dBUMleGa
+         wV+k4eq/hAaZ5rmRme5rA2aFSQ8cfTSh//4UgYtExa85nzkdcykvoCCyCKavSplPK5J3
+         AclTjrC75y+Nhts3RWUX4n/KLB+GRV+zPzjeK7NsnsFJWkqTyfOvps7czoNkpOkwVCyN
+         6dO7i8J7XiTBaixSKbb5MkqmTaucvWd67DrMeUMn9GltYi14Cl6aPb9lOcHvDiouDFlF
+         mADwaL18MA0tZuoT5AwpMaMwFMxWQ8Qq0vSQ1ad8ALovUcwXdnPRAV5PF77StR4wEpBg
+         /xDA==
+X-Gm-Message-State: AOAM532NXX4LZN7OOVcz0S0M9FvOj4IWV69i74HSBlVV7TSdntdcVzkw
+        lGveVSRR5iblIlitxexd678=
+X-Google-Smtp-Source: ABdhPJx1xoy1ym4Tw7x4gRoJsL4200DE01Znf0lWr3Vuy9ojCIaAyzQSqEaRuQMdpfdFepL4c54dig==
+X-Received: by 2002:a17:90a:398d:: with SMTP id z13mr10369314pjb.1.1610042958180;
+        Thu, 07 Jan 2021 10:09:18 -0800 (PST)
+Received: from [10.67.48.230] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id 73sm6854065pga.26.2021.01.07.10.09.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Jan 2021 10:09:17 -0800 (PST)
+Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
+To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        Claire Chang <tientzu@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Joerg Roedel <joro@8bytes.org>, joro@8bytes.org,
+        will@kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        rdunlap@infradead.org, dan.j.williams@intel.com,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        iommu@lists.linux-foundation.org, xen-devel@lists.xenproject.org,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+References: <20210106034124.30560-1-tientzu@chromium.org>
+ <20210106034124.30560-3-tientzu@chromium.org>
+ <20210106185241.GA109735@localhost.localdomain>
+ <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
+ <20210107175740.GA16519@char.us.oracle.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <aa5af7d1-779e-f0f6-e6ba-8040e603523f@gmail.com>
+Date:   Thu, 7 Jan 2021 10:09:14 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+Px+wXEV9GDCMjR8inbQ89tNV9n7RedeAOGJL_yATmeCLjXJw@mail.gmail.com>
+In-Reply-To: <20210107175740.GA16519@char.us.oracle.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 06 Jan 19:50 CST 2021, Tzung-Bi Shih wrote:
-
-> On Thu, Jan 7, 2021 at 7:15 AM Mathieu Poirier
-> <mathieu.poirier@linaro.org> wrote:
-> >
-> > >  static void mt8183_scp_stop(struct mtk_scp *scp)
-> > >  {
-> > >       /* Disable SCP watchdog */
-> > > @@ -714,6 +749,19 @@ static int scp_probe(struct platform_device *pdev)
-> > >               goto free_rproc;
-> > >       }
-> > >       scp->sram_size = resource_size(res);
-> > > +     scp->sram_phys = res->start;
-> > > +
-> > > +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-> > > +     if (res) {
-> >
-> > As far as I can tell the if() condition isn't needed since
-> > platform_get_resource_byname() returns NULL on error and devm_ioremap_resource()
-> > is capable of handling that condition.  As such the code to parse "l1tcm" can be
-> > the same as what is done for "sram".
+On 1/7/21 9:57 AM, Konrad Rzeszutek Wilk wrote:
+> On Fri, Jan 08, 2021 at 01:39:18AM +0800, Claire Chang wrote:
+>> Hi Greg and Konrad,
+>>
+>> This change is intended to be non-arch specific. Any arch that lacks DMA access
+>> control and has devices not behind an IOMMU can make use of it. Could you share
+>> why you think this should be arch specific?
 > 
-> The "l1tcm" memory region is optional.  The if() condition is for: if
-> DTS doesn't provide the memory region, kernel can skip the code block.
-> 
+> The idea behind non-arch specific code is it to be generic. The devicetree
+> is specific to PowerPC, Sparc, and ARM, and not to x86 - hence it should
+> be in arch specific code.
 
-People are actively looking for platform_get_resource_byname +
-devm_ioremap_resource() pairs to replace with
-devm_platform_ioremap_resource_byname(), so we're probably going to have
-someone try to patch this soon...
+In premise the same code could be used with an ACPI enabled system with
+an appropriate service to identify the restricted DMA regions and unlock
+them.
 
-So please change the pair to devm_platform_ioremap_resource_byname() and
-treat a returned -EINVAL as the memory isn't specified and other
-IS_ERR() as errors.
+More than 1 architecture requiring this function (ARM and ARM64 are the
+two I can think of needing this immediately) sort of calls for making
+the code architecture agnostic since past 2, you need something that scales.
 
-Thanks,
-Bjorn
-
-> >
-> > With the above:
-> >
-> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> >
-> > > +             scp->l1tcm_base = devm_ioremap_resource(dev, res);
-> > > +             if (IS_ERR((__force void *)scp->l1tcm_base)) {
-> > > +                     dev_err(dev, "Failed to parse and map l1tcm memory\n");
-> > > +                     ret = PTR_ERR((__force void *)scp->l1tcm_base);
-> > > +                     goto free_rproc;
-> > > +             }
-> > > +             scp->l1tcm_size = resource_size(res);
-> > > +             scp->l1tcm_phys = res->start;
-> > > +     }
+There is already code today under kernel/dma/contiguous.c that is only
+activated on a CONFIG_OF=y && CONFIG_OF_RESERVED_MEM=y system, this is
+no different.
+-- 
+Florian
