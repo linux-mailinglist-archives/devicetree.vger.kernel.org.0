@@ -2,51 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EDC02ED6CB
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:40:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC22D2ED6CF
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:41:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729046AbhAGSkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 13:40:02 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:47458 "EHLO
+        id S1726406AbhAGSlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 13:41:01 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47488 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726427AbhAGSkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:40:02 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 107IdI4S064580;
-        Thu, 7 Jan 2021 12:39:18 -0600
+        with ESMTP id S1726386AbhAGSlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:41:01 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 107IdNr9064632;
+        Thu, 7 Jan 2021 12:39:23 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610044758;
-        bh=eZ46Wm24Ue8Tm+8wYOTq1vMn30AME+VL5j1nRdEmEik=;
-        h=From:To:CC:Subject:Date;
-        b=AHNvmklLmYqn3Mb52t8u4Srzy0BRB83aGAunJ7hAGXd2ZZRo8XmVVw9t2CZWBopQS
-         U1fBCrhykqC55VIfXrHMUawiYsI++eoSfsoPTbvRq5y23LK+qyCvQMWuwPfPnwTzoX
-         gmUhIQKfJqIpQo4JD3SPeLUTp6tNKoXjDLj/jg7k=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 107IdIRN091901
+        s=ti-com-17Q1; t=1610044763;
+        bh=QWZGWPWqs3jX5y2y7j3r4yDNVyVBpG7F28POgA8/wLI=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=LeKYLPmgefnpcmQQbO1nHmTCPfjBgB6pyiXqoxzYA8+vnejhadhoJ+/uM6aY9wynY
+         F9JxtnCCl9DaUdhJpEuSby9DptIaa8h3gQPC7OBMHluWYLfOq3OYy7VCYOMQXN23BI
+         j1p42u5CgSQDw9YV8UmIW6pkkE5aZgycv6VwMMDA=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 107IdNQ8015274
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 7 Jan 2021 12:39:18 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 7 Jan 2021 12:39:23 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 7 Jan
- 2021 12:39:17 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 12:39:23 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 7 Jan 2021 12:39:17 -0600
+ Frontend Transport; Thu, 7 Jan 2021 12:39:23 -0600
 Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 107IdH2e015688;
-        Thu, 7 Jan 2021 12:39:17 -0600
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 107IdNkk096452;
+        Thu, 7 Jan 2021 12:39:23 -0600
 Received: from localhost ([10.250.33.36])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 107IdHSI016452;
-        Thu, 7 Jan 2021 12:39:17 -0600
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 107IdMmc016461;
+        Thu, 7 Jan 2021 12:39:23 -0600
 From:   Suman Anna <s-anna@ti.com>
 To:     Nishanth Menon <nm@ti.com>
 CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 0/5] Add R5F nodes on TI K3 J7200 SoCs
-Date:   Thu, 7 Jan 2021 12:39:02 -0600
-Message-ID: <20210107183907.6545-1-s-anna@ti.com>
+Subject: [PATCH 1/5] arm64: dts: ti: k3-j7200-mcu: Add MCU domain R5F cluster node
+Date:   Thu, 7 Jan 2021 12:39:03 -0600
+Message-ID: <20210107183907.6545-2-s-anna@ti.com>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210107183907.6545-1-s-anna@ti.com>
+References: <20210107183907.6545-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -55,42 +57,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+The J7200 SoCs have 2 dual-core Arm Cortex-R5F processor (R5FSS)
+subsystems/clusters. One R5F cluster is present within the MCU
+domain (MCU_R5FSS0), and the other one is present within the MAIN
+domain (MAIN_R5FSS0). Each of these can be configured at boot time
+to be either run in a LockStep mode or in an Asymmetric Multi
+Processing (AMP) fashion in Split-mode. These subsystems have 64 KB
+each Tightly-Coupled Memory (TCM) internal memories for each core
+split between two banks - ATCM and BTCM (further interleaved into
+two banks). The TCMs of both Cores are combined in LockStep-mode
+to provide a larger 128 KB of memory, but otherwise are functionally
+similar to those on J721E SoCs.
 
-The TI K3 R5F remoteproc driver support for the R5F instances on J7200
-SoCs is merged in 5.11-rc1, and this series adds the follow-on base
-dt nodes for the R5F remote processors on TI K3 J7200 SoCs. The R5F
-nodes on J7200 slightly differ from those on J721E SoCs highlighted
-in the driver changes [1]. Additional memory nodes were also added to
-boot these processors successfully on applicable TI K3 J7200 EVM boards.
-The series uses previously merged mailbox nodes.
+Add the DT node for the MCU domain R5F cluster/subsystem, the two
+R5F cores are added as child nodes to the main cluster/subsystem node.
+The cluster is configured to run in LockStep mode by default, with
+the ATCMs enabled to allow the R5 cores to execute code from DDR with
+boot-strapping code from ATCM. The inter-processor communication
+between the main A72 cores and these processors is achieved through
+shared memory and Mailboxes.
 
-The patches follow the same style to similar patches added for J721E
-SoCs [2]. Patches are on top of the latest v5.11-rc2 tag.
+The following firmware names are used by default for these cores, and
+can be overridden in a board dts file if desired:
+   MCU R5FSS0 Core0: j7200-mcu-r5f0_0-fw (both in LockStep and Split modes)
+   MCU R5FSS0 Core1: j7200-mcu-r5f0_1-fw (needed only in Split mode)
 
-I have validated the IPC functionality using System Firmware
-v2020.07-rc3 and corresponding IPC example firmwares.
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 42 ++++++++++++++++++-
+ 1 file changed, 41 insertions(+), 1 deletion(-)
 
-regards
-Suman
-
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20201119010531.21083-1-s-anna@ti.com/
-[2] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=372749&state=%2A&archive=both
-
-Suman Anna (5):
-  arm64: dts: ti: k3-j7200-mcu: Add MCU domain R5F cluster node
-  arm64: dts: ti: k3-j7200-main: Add MAIN domain R5F cluster node
-  arm64: dts: ti: k3-j7200-som-p0: Add mailboxes to R5Fs
-  arm64: dts: ti: k3-j7200-som-p0: Add DDR carveout memory nodes for
-    R5Fs
-  arm64: dts: ti: k3-j7200-som-p0: Reserve memory for IPC between RTOS
-    cores
-
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 42 +++++++++-
- .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 42 +++++++++-
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 80 ++++++++++++++++++-
- 3 files changed, 161 insertions(+), 3 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+index bb1fe9c12e44..359e3e8a8cd0 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * Device Tree Source for J7200 SoC Family MCU/WAKEUP Domain peripherals
+  *
+- * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
+  */
+ 
+ &cbass_mcu_wakeup {
+@@ -289,4 +289,44 @@ adc {
+ 			compatible = "ti,am3359-adc";
+ 		};
+ 	};
++
++	mcu_r5fss0: r5fss@41000000 {
++		compatible = "ti,j7200-r5fss";
++		ti,cluster-mode = <1>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x41000000 0x00 0x41000000 0x20000>,
++			 <0x41400000 0x00 0x41400000 0x20000>;
++		power-domains = <&k3_pds 249 TI_SCI_PD_EXCLUSIVE>;
++
++		mcu_r5fss0_core0: r5f@41000000 {
++			compatible = "ti,j7200-r5f";
++			reg = <0x41000000 0x00010000>,
++			      <0x41010000 0x00010000>;
++			reg-names = "atcm", "btcm";
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <250>;
++			ti,sci-proc-ids = <0x01 0xff>;
++			resets = <&k3_reset 250 1>;
++			firmware-name = "j7200-mcu-r5f0_0-fw";
++			ti,atcm-enable = <1>;
++			ti,btcm-enable = <1>;
++			ti,loczrama = <1>;
++		};
++
++		mcu_r5fss0_core1: r5f@41400000 {
++			compatible = "ti,j7200-r5f";
++			reg = <0x41400000 0x00008000>,
++			      <0x41410000 0x00008000>;
++			reg-names = "atcm", "btcm";
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <251>;
++			ti,sci-proc-ids = <0x02 0xff>;
++			resets = <&k3_reset 251 1>;
++			firmware-name = "j7200-mcu-r5f0_1-fw";
++			ti,atcm-enable = <1>;
++			ti,btcm-enable = <1>;
++			ti,loczrama = <1>;
++		};
++	};
+ };
 -- 
 2.29.2
 
