@@ -2,89 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C45B42ED2E4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:43:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AABBE2ED316
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 15:57:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727785AbhAGOj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 09:39:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57904 "EHLO
+        id S1727213AbhAGO4c convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 7 Jan 2021 09:56:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727736AbhAGOj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 09:39:28 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8681FC0612F4;
-        Thu,  7 Jan 2021 06:38:47 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id a12so15052278lfl.6;
-        Thu, 07 Jan 2021 06:38:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lJS9/CNsxFahXO0MUi9+DuCRjAZn2AqFu2JrET2ceT8=;
-        b=VCEfU+y6pCmU88hayZZQc8/tOi/+HcnnZzryU/WzmOERgMFE/BBVr635ayEcUwAE9P
-         jNk8ce4HT3MZmbd6C41i9UEGVh2iXN132kgQGij/sy/drHgSnmcTxy+eSwCrDNMNIIW1
-         2mn8RRhHEYk7ih3TYzpdbMO/76VMf+1p8esXcRWPhfrPgIZtG7BFFFmqdcBbJERJ43Pz
-         HElAWOOHcUfOIalimSNfJjjOeitjM6D5b5SbJly8g0VCH9SyT9Yy1StP5e+lCTe2AYOz
-         tbxHn4F0VMpALNJmBExpTdvqfjMrySR1OHgwK3B/32ijphUgjiGyDAHuOlQCwtAp331f
-         /eGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lJS9/CNsxFahXO0MUi9+DuCRjAZn2AqFu2JrET2ceT8=;
-        b=UT08LSSrhxvFZJ873CcgGaFdmtZ6H/PgHCcGyB05MYiGcTb8C2gO0rmsGkTq+1pcQI
-         ujweFhRRTgBswbfafMTeA29N/dQyT37oFrcriPXRtHTCveM+8r9cgdxIuaUKJvoemYKC
-         Uuw5EUG9IkpRlVmdUfkG6i1WG3hYaxmRdxQGQJd9NkSwb+3WErcj/idc/SYDH5WXJ7i8
-         bVSSZ8Hn7Ssj0g+3NHXVgbSBtadT+9JQW5+CiX1HJ2DPyZVKMybgnf7dlGY8+QQI7JyR
-         Hasiy0OsZVLSmOXSTHL4yYntaW5mPbmPyioBhgtRoqTcfZx5AHHQfywdhl722GOYbP+/
-         GA7w==
-X-Gm-Message-State: AOAM530YpCssUqjRZwrVJS9JctFQxGMcsVB2ODPaoRvKz2uw69MSTTCN
-        V+reAiKg2KNtpXuixH7CGpepOP5mz8nTuwSJcciqu2Z3nLc=
-X-Google-Smtp-Source: ABdhPJy/+R0QYAZeZjxNPLd24LCIjdCWhwnFPxzBElE2lugaT1hxZ+mqlHiqmXO7BgA3mpmu58svn409zo6e1agitEs=
-X-Received: by 2002:a2e:8416:: with SMTP id z22mr4485553ljg.347.1610030326063;
- Thu, 07 Jan 2021 06:38:46 -0800 (PST)
-MIME-Version: 1.0
-References: <20201230214918.17133-1-festevam@gmail.com> <CACRpkdatsW79FMfN2qZQdYSrz1wmHz82zSLZwxrh5am1pWgebg@mail.gmail.com>
- <CAOMZO5C3mSbOV_4MOUQb30SofF2tdCue+-yhSf3gJPHncXZF+A@mail.gmail.com> <X/cZ6QguhQr3c2XH@lunn.ch>
-In-Reply-To: <X/cZ6QguhQr3c2XH@lunn.ch>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 7 Jan 2021 11:38:33 -0300
-Message-ID: <CAOMZO5Cd_UYm5qFQGCA7NOYznZKmPbae6ktJu0FDRTMbudzP-w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: 74x164: Introduce the
- 'registers-default' property
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S1725894AbhAGO4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 09:56:32 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E972EC0612F5
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 06:55:51 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kxWhV-0006TA-EU; Thu, 07 Jan 2021 15:55:45 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kxWhP-0003zw-Fm; Thu, 07 Jan 2021 15:55:39 +0100
+Message-ID: <a23ab40e50a761bd2127df6bc8b2a91e99a1617c.camel@pengutronix.de>
+Subject: Re: [PATCH 3/5] dt-bindings: media: rockchip-vpu: Add PX30
+ compatible
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jacob Chen <jacob-chen@iotwrt.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Sandor Yu <sandor.yu@nxp.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Bruno Thomsen <bruno.thomsen@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
+        Heiko Stuebner <heiko@sntech.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Date:   Thu, 07 Jan 2021 15:55:39 +0100
+In-Reply-To: <20210107134101.195426-4-paul.kocialkowski@bootlin.com>
+References: <20210107134101.195426-1-paul.kocialkowski@bootlin.com>
+         <20210107134101.195426-4-paul.kocialkowski@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi Paul,
 
-On Thu, Jan 7, 2021 at 11:25 AM Andrew Lunn <andrew@lunn.ch> wrote:
+On Thu, 2021-01-07 at 14:40 +0100, Paul Kocialkowski wrote:
+> The Rockchip PX30 SoC has a Hantro VPU that features a decoder (VDPU2)
+> and an encoder (VEPU2). It is similar to the RK3399's VPU but takes an
+> extra clock (SCLK).
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>  .../bindings/media/rockchip-vpu.yaml          | 25 +++++++++++++------
+>  1 file changed, 17 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> index c81dbc3e8960..c446b9ead21b 100644
+> --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> @@ -15,10 +15,13 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - rockchip,rk3288-vpu
+> -      - rockchip,rk3328-vpu
+> -      - rockchip,rk3399-vpu
+> +    oneOf:
+> +      - const: rockchip,rk3288-vpu
+> +      - const: rockchip,rk3328-vpu
+> +      - const: rockchip,rk3399-vpu
+> +      - items:
+> +        - const: rockchip,px30-vpu
+> +        - const: rockchip,rk3399-vpu
+>  
+>    reg:
+>      maxItems: 1
+> @@ -35,12 +38,18 @@ properties:
+>            - const: vdpu
+>  
+>    clocks:
+> -    maxItems: 2
+> +    minItems: 2
+> +    maxItems: 3
+>  
+>    clock-names:
+> -    items:
+> -      - const: aclk
+> -      - const: hclk
+> +    oneOf:
+> +      - items:
+> +        - const: aclk
+> +        - const: hclk
+> +      - items:
+> +        - const: aclk
+> +        - const: hclk
+> +        - const: sclk
 
-> There are two different GPIO supported. There is the bus GPIO you have
-> found, which is intended to reset all devices on the MDIO bus.
->
-> And there is a per device GPIO reset and reset controller. However, in
-> order to use these, you need to be able to 'discover' the PHY,
-> potentially when the device is held in reset. Some devices will
-> respond to MDIO while held in reset, some don't. If you PHYs don't you
-> need to add a compatible of the form
-> ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$ with the PHY ID. The PHY
-> will then be probed, independent of if it can be found on the bus or
-> not, and that probing will enable the GPIO.
+You could make this:
 
-It works after following your suggestion :-)
+    clock-names:
+      minItems: 2
+      items:
+        - const: aclk
+        - const: hclk
+        - const: sclk
 
-I will submit the dts patches shortly.
+And then:
 
-Thanks a lot for your help, really appreciate it!
+allOf:
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: rockchip,px30-vpu
+    then:
+      properties:
+        clock-names:
+          minItems: 3
+
+to make sure each variant has the correct clocks set.
+
+regards
+Philipp
