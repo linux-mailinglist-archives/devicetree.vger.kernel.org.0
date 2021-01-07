@@ -2,129 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C22872EE79B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 22:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BBCE2EE81B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 23:06:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726720AbhAGVY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 16:24:28 -0500
-Received: from userp2130.oracle.com ([156.151.31.86]:42494 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726666AbhAGVY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 16:24:27 -0500
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 107L9qUN157941;
-        Thu, 7 Jan 2021 21:21:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=c9kjhiPaRcgOzWstQJHEKUIH/U+Km3Fjzp7KkmlSZjc=;
- b=rKYVHRBU6NO1rtuG37bqZjZCK6xmxGbYy0AsyG/XUttowywJr9+V7ezApjVzpWtJ13Y5
- 3G9p/wvcTEewjEr/2DCY1Yf6AVruqXotBoUQgjKYun298vJlx2gRKh1u7lGAwbac4rLd
- BYWr2fcfuqXZDIGaafVjEG6mz8GDnxVIm5kAAtxIMvLa+4GNYE3gnRv6RwMFs4ZX1tcD
- fi4NOxKKyN47kdzcafOqy2rEvxswHIxc67dH2oD2nIc655e6a+1QpeXN26qBzNIRAApc
- CNcwaIbofYPZxp/INyde860tR49n8Bh9IDhLdaIW7LGk47AmYuhdzr9+mGRHjfQSevdx PQ== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by userp2130.oracle.com with ESMTP id 35wftxdyp9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 07 Jan 2021 21:21:52 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 107LASx6174620;
-        Thu, 7 Jan 2021 21:19:51 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by userp3020.oracle.com with ESMTP id 35w3qu9kyc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 07 Jan 2021 21:19:51 +0000
-Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 107LJcni003821;
-        Thu, 7 Jan 2021 21:19:38 GMT
-Received: from char.us.oracle.com (/10.152.32.25)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Thu, 07 Jan 2021 21:19:38 +0000
-Received: by char.us.oracle.com (Postfix, from userid 1000)
-        id 3F3FD6A010C; Thu,  7 Jan 2021 16:19:37 -0500 (EST)
-Date:   Thu, 7 Jan 2021 16:19:37 -0500
-From:   Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <joro@8bytes.org>, will@kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        rdunlap@infradead.org, dan.j.williams@intel.com,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
-Message-ID: <20210107211937.GA19460@char.us.oracle.com>
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-3-tientzu@chromium.org>
- <20210106185241.GA109735@localhost.localdomain>
- <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
- <20210107175740.GA16519@char.us.oracle.com>
- <aa5af7d1-779e-f0f6-e6ba-8040e603523f@gmail.com>
+        id S1727767AbhAGWFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 17:05:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43160 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725944AbhAGWFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 17:05:48 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A2BC0612F5;
+        Thu,  7 Jan 2021 14:05:07 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id o17so18272717lfg.4;
+        Thu, 07 Jan 2021 14:05:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=JQNiO2Mnj6QxwX1KOBemH+gofG2EOUwTUr4JeDXvjvk=;
+        b=jgw+CU1Q5PZmru7wKEP4suIgDUIZgoXFY6oAGUeETSt3z6gUwm9UKspKZpb1nO8/Ag
+         tPGxXtiV9S/qr0zbBLdE5X23OjABwUyrDRCzhFE5gIW3H8/pnCYGVJJ7TGwIIxx2kmjp
+         J8UOvbmVaHdhStxm/2Looa/gR4Wx0Yfzy+0C5JqTd0v5aAPV4B8bYDrHCtVzXMtqaojd
+         O74nNncQCLwjvxpr2UbkEeyVFlJ69fCRz8KSTPXMqxgqQzJnWEvKKfiG0yj+8Ne/wcgd
+         IYOdgGItsHSB5pOVN9N2rxUDvl0qEFuvstdsVLkKWfL9zJaU78K7leiRzC+4waChx+j8
+         rFuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=JQNiO2Mnj6QxwX1KOBemH+gofG2EOUwTUr4JeDXvjvk=;
+        b=HME2otYDn28QTZs1BbXj+SGWYqO0iUamisocPIzDVWHbNS29gTLpxG2RM5SnsI/hs4
+         O1iTqB1h3gxcBg9yZJKl9rBU1pwFZfVBzjcXldU4L+KKKpvsXcJp+VYg9leUtixoGPi0
+         ziqm2I9vTaRU0DcZopZMhCsSxkwhFGBDceXBI2RYWSW073kwEpxI8dnL8+iP6puDmw4S
+         gh7c/RSXpAdVi7Qb635Sl0iaMdGztNy3u4azZVtrFX2OhtW0lg5udKyl/Z8SW4DXn7XS
+         ekfa0Mv1pbMnRNBf0YZ21uBsyEg/YNE+nRy9WiGS7LIPbcxPAYY2zMvaT2bibY7n92K4
+         v8Ig==
+X-Gm-Message-State: AOAM530pHlPOUiGfR66Uw79fGixZ13hzYLbo0Z3rhbfCOKVnnCnLvBxc
+        k2ze4tjNPbz0ojIM9hE9qV9CF5ZdMdQ=
+X-Google-Smtp-Source: ABdhPJyKqM9KoMtCnGj//sZ+f2Zm5WBIE6fUHYwgGxtsGuMPhEBZqVCWR5E9Tbuml69jadxCYBYxLA==
+X-Received: by 2002:a2e:93d6:: with SMTP id p22mr225896ljh.169.1610057105955;
+        Thu, 07 Jan 2021 14:05:05 -0800 (PST)
+Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
+        by smtp.googlemail.com with ESMTPSA id f27sm1433917lfk.293.2021.01.07.14.05.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Jan 2021 14:05:05 -0800 (PST)
+Subject: Re: [PATCH v3 0/3] Support wakeup methods of Atmel maXTouch
+ controllers
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Nick Dyer <nick@shmanahar.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jiada Wang <jiada_wang@mentor.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201206212217.6857-1-digetx@gmail.com>
+ <X9QuTuGEicUnlaJp@google.com>
+ <3577ed5b-feff-5915-7d70-5fa8fe4a0a82@gmail.com>
+ <X9WblR19HZPZ5XtY@google.com>
+ <6b515373-e7b3-4700-7d34-4413a630c461@gmail.com>
+Message-ID: <508585f7-6c2b-3b33-ada8-91cc15ed683e@gmail.com>
+Date:   Fri, 8 Jan 2021 01:05:04 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aa5af7d1-779e-f0f6-e6ba-8040e603523f@gmail.com>
-User-Agent: Mutt/1.9.1 (2017-09-22)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9857 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 malwarescore=0 mlxscore=0
- spamscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101070123
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9857 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 suspectscore=0 mlxscore=0
- bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1011
- lowpriorityscore=0 mlxlogscore=999 malwarescore=0 spamscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101070123
+In-Reply-To: <6b515373-e7b3-4700-7d34-4413a630c461@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 07, 2021 at 10:09:14AM -0800, Florian Fainelli wrote:
-> On 1/7/21 9:57 AM, Konrad Rzeszutek Wilk wrote:
-> > On Fri, Jan 08, 2021 at 01:39:18AM +0800, Claire Chang wrote:
-> >> Hi Greg and Konrad,
-> >>
-> >> This change is intended to be non-arch specific. Any arch that lacks DMA access
-> >> control and has devices not behind an IOMMU can make use of it. Could you share
-> >> why you think this should be arch specific?
-> > 
-> > The idea behind non-arch specific code is it to be generic. The devicetree
-> > is specific to PowerPC, Sparc, and ARM, and not to x86 - hence it should
-> > be in arch specific code.
+13.12.2020 12:26, Dmitry Osipenko пишет:
+> 13.12.2020 07:41, Dmitry Torokhov пишет:
+>> Thank you for the logs. I am confused where these calls to put the
+>> controller into deep sleep are coming from. Does something constantly
+>> open and close input device?
 > 
-> In premise the same code could be used with an ACPI enabled system with
-> an appropriate service to identify the restricted DMA regions and unlock
-> them.
-
-Which this patchset is not.
-
+> Input devices are re-opened multiple times during Linux distro boot-up,
+> a regular Ubuntu 20.10 in this case.
 > 
-> More than 1 architecture requiring this function (ARM and ARM64 are the
-> two I can think of needing this immediately) sort of calls for making
-> the code architecture agnostic since past 2, you need something that scales.
-
-I believe the use-case is for ARM64 at this moment.
-
+>> Do you have any additional patches?
 > 
-> There is already code today under kernel/dma/contiguous.c that is only
-> activated on a CONFIG_OF=y && CONFIG_OF_RESERVED_MEM=y system, this is
-> no different.
-> -- 
-> Florian
+> No, I'm using next-20201211 + this "wakeup methods" patchset.
+> 
+>> We definitely do not issue deep sleep request in mxt_start(). Do you mind
+>> putting dump_stack() into mxt_set_t7_power_cfg() to see where the calls
+>> are coming from?
+> 
+> Please see the log below, I added it like this:
+> 
+> diff --git a/drivers/input/touchscreen/atmel_mxt_ts.c
+> b/drivers/input/touchscreen/atmel_mxt_ts.c
+> index e3342fdfe9f3..bbc5a5ee158a 100644
+> --- a/drivers/input/touchscreen/atmel_mxt_ts.c
+> +++ b/drivers/input/touchscreen/atmel_mxt_ts.c
+> @@ -2271,6 +2271,8 @@ static int mxt_set_t7_power_cfg(struct mxt_data
+> *data, u8 sleep)
+>  	dev_dbg(dev, "Set T7 ACTV:%d IDLE:%d\n",
+>  		new_config->active, new_config->idle);
+> 
+> +	dump_stack();
+> +
+>  	return 0;
+>  }
+> 
+>> I also do not see additional "waking up controller" messages after
+>> requesting the chip via T7 to be configured to be active, which I'd
+>> expected to see if we indeed needed to wake it up again for T6 to
+>> succeed.
+> 
+> I'm not familiar with what controller does internally, hence no clue.
+> 
+> 
+> [ 1.195295] Family: 160 Variant: 0 Firmware V1.0.AA Objects: 18
+> [ 1.195468] T37 Start:118 Size:130 Instances:1 Report IDs:0-0
+...
+Dmitry Torokhov, do you have any more comments? Are you okay with v3? If
+yes, could you please pick up patches into -next?
