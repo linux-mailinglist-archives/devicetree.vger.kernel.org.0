@@ -2,146 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B4EA2ED740
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 20:10:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B2A42ED743
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 20:11:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728997AbhAGTJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 14:09:02 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:42928 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727177AbhAGTJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 14:09:01 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 1F0991F4662A
-Message-ID: <f7291b83fe39d71c3192ea58ebf71e3909bd38af.camel@collabora.com>
-Subject: Re: [PATCH 5/5] media: hantro: Add support for the Rockchip PX30
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jacob Chen <jacob-chen@iotwrt.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Date:   Thu, 07 Jan 2021 16:08:10 -0300
-In-Reply-To: <20210107134101.195426-6-paul.kocialkowski@bootlin.com>
-References: <20210107134101.195426-1-paul.kocialkowski@bootlin.com>
-         <20210107134101.195426-6-paul.kocialkowski@bootlin.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        id S1728783AbhAGTKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 14:10:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43838 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726386AbhAGTKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 14:10:30 -0500
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE79C0612F4
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 11:09:49 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id k4so7103318ybp.6
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 11:09:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mKGkFmm6dM/AAYIANDqWrJzHUmWC0POy+3cbbrpsiKY=;
+        b=SgPLVDN6cTkiMRRQPbLMl6hNHvL4IFv26gvrZSA4Sr5VrOJDVHtdovZEnIo9jT8ieK
+         3ZZqYJmuATrdEUJDhxkQ3ys5Nhlw4LirtwPrhTGB7IPZJFR+DYOMm3oRDP2k1bS27vsF
+         YQzqjKpfwsLHVdRbT2AZnLMliAtQtshpgN8whBFzGgGPaxufLV9t0dIHDJ8glD6evnzt
+         E6haf9UzYTjmqG6ymcZrJloD6zrurTO4ZkkmsBTE/gPCHISt9fP6frpOECgjzN7odUVL
+         6jOF7KHHZSG0tPMrxqVLdDq49EZQS61QE7Qc5UgG+U46Jnv+OR5wnTVjYjMI9//ty2uU
+         P73g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mKGkFmm6dM/AAYIANDqWrJzHUmWC0POy+3cbbrpsiKY=;
+        b=tFo/ihUBbQ5/nEnEIrh3Z82GbHO3Q64LCO2cnFaARdOAZibt421RIiAnbI8ZQFlitV
+         JREqpkRSL4cd0hLjXvtnk0HLSox9NqDeC06U0VLtLwdlXdQ//FqMNs3eBp8B28Jay8HG
+         Q0q2ZxYMAo4lTV6nfgPannAQNK/ibTnJ9U+CGt21e9A5ZyRNa2BL1ZYGgw0TfEGaHZvw
+         gnFbRUKEAfsEkWmI8pdqLj0zFIWisK/JuvrhGm7Q7pdADRZ/KVMCYoZOJ0VL4X3ac8mz
+         95tMqXM7/uefGfcIqntpmarFnhWKK9R9rEkpjLna7Q6q7BLbh15EG+rJ/CaiwQIQOVuE
+         29Tw==
+X-Gm-Message-State: AOAM533tyM6Spwup5xr0HYdPaKy8FTeEkoMF9dlAfAYJrTkpRGE0X2DC
+        OXuJTTY5G/cf7AMDZGaIwCllozc6+JlS/w/esoBvbQ==
+X-Google-Smtp-Source: ABdhPJw65HlNw5Ta5xSHJ/boxx023/D1yb8PW6AMfxFFa5G+tFXQNBhdk57pg9FzZhYcsRHrZfdjnfPHqsaDPXWzTEM=
+X-Received: by 2002:a25:6604:: with SMTP id a4mr414212ybc.412.1610046588981;
+ Thu, 07 Jan 2021 11:09:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201218210750.3455872-1-saravanak@google.com>
+ <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
+ <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
+ <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 7 Jan 2021 11:09:12 -0800
+Message-ID: <CAGETcx_4n951Fx-Gn14ikDDxgWtv6QqQtNno9pcPJyiiGynWHQ@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Add device link support for interrupts
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Thu, Jan 7, 2021 at 10:39 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Jan 6, 2021 at 11:53 AM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
+> > >
+> > > On Thu, 31 Dec 2020 21:12:40 +0000,
+> > > Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
+> > > > > On 2020-12-18 21:07, Saravana Kannan wrote:
+> > > > > > Add support for creating device links out of interrupts property.
+> > > > > >
+> > > > > > Cc: Marc Zyngier <maz@kernel.org>
+> > > > > > Cc: Kevin Hilman <khilman@baylibre.com>
+> > > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > > ---
+> > > > > > Rob/Greg,
+> > > > > >
+> > > > > > This might need to go into driver-core to avoid conflict
+> > > > > > due to fw_devlink refactor series that merged there.
+> > > > > >
+> > > > > > Thanks,
+> > > > > > Saravana
+> > > > > >
+> > > > > >
+> > > > > >  drivers/of/property.c | 17 +++++++++++++++++
+> > > > > >  1 file changed, 17 insertions(+)
+> > > > > >
+> > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
+> > > > > > --- a/drivers/of/property.c
+> > > > > > +++ b/drivers/of/property.c
+> > > > > > @@ -1271,6 +1271,22 @@ static struct device_node
+> > > > > > *parse_iommu_maps(struct device_node *np,
+> > > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
+> > > > > >  }
+> > > > > >
+> > > > > > +static struct device_node *parse_interrupts(struct device_node *np,
+> > > > > > +                                     const char *prop_name, int index)
+> > > > > > +{
+> > > > > > + struct device_node *sup;
+> > > > > > +
+> > > > > > + if (strcmp(prop_name, "interrupts") || index)
+> > > > > > +         return NULL;
+> > > > > > +
+> > > > > > + of_node_get(np);
+> > > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
+> > > > > > +         np = of_get_next_parent(np);
+> > > > > > + of_node_put(np);
+> > > > > > +
+> > > > > > + return sup;
+> > > > > > +}
+> > > > > > +
+> > > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
+> > > > > >   { .parse_prop = parse_clocks, },
+> > > > > >   { .parse_prop = parse_interconnects, },
+> > > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
+> > > > > > of_supplier_bindings[] = {
+> > > > > >   { .parse_prop = parse_pinctrl6, },
+> > > > > >   { .parse_prop = parse_pinctrl7, },
+> > > > > >   { .parse_prop = parse_pinctrl8, },
+> > > > > > + { .parse_prop = parse_interrupts, },
+> > > > > >   { .parse_prop = parse_regulators, },
+> > > > > >   { .parse_prop = parse_gpio, },
+> > > > > >   { .parse_prop = parse_gpios, },
+> > > > >
+> > > > > You don't really describe what this is for so I'm only guessing
+> > > > > from the context. If you want to follow the interrupt hierarchy,
+> > > > > "interrupt-parent" isn't enough. You also need to track
+> > > > > things like interrupt-map, or anything that carries a phandle
+> > > > > to an interrupt controller.
+> > > >
+> > > > We don't need to follow the hierarchy, we just need the immediate
+> > > > dependencies.
+> > >
+> > > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
+> >
+> > Thanks Rob for explaining it.
+> >
+> > Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
+> > Also, I'm trying to keep of/property.c independent of the framework
+> > code for now. The long term goal is to see if I can move out most of
+> > this into the frameworks. But I want to do that after I sort of some
+> > of the larger problems (like getting fw_devlink=on to work on all
+> > devices  first). Let me know if you have a strong preference for right
+> > now, if not, I'd rather keep property.c independent for now.
+> >
+> > I wasn't aware of interrupt-map until a few weeks ago and didn't know
+> > it carried phandles. I can add support for that too. There's no reason
+> > for all of them to go in one patch though.
+> >
+> > >
+> > > > But you are right that 'interrupt-map' also needs to be tracked.
+> > >
+> > > And 'interrupts-extended', while we're at it.
+> >
+> > This is already handled.
+> >
+> > > >
+> > > > I also noticed that we define 'interrupt-parent' as a dependency to
+> > > > parse, but that's wrong. The dependency is where 'interrupts' appears
+> > > > and where 'interrupt-parent' appears is irrelevant.
+> >
+> > No, the interrupt-parent parsing is correct and it's needed for
+> > interrupt controllers to probe in the right order. But
+> > interrupt-parent is also needs to be looked at for parsing
+> > "interrupts".
+>
+> If you parse 'interrupts' for interrupt controllers (which in turn
+> will use 'interrupt-parent'), then you aren't going to need to track
+> 'interrupt-parent' by itself.
 
-Happy to see this patch. It was on my TODO list,
-but I hadn't had time to bringup my rk3326 device.
+Do all interrupt controllers (that are not the root interrupt
+controller) need to have "interrupts" property? If yes, then yeah,
+that makes sense. But I vaguely remember that this wasn't the case for
+some DT I saw.
 
-A few comments.
+Ah, here's one I found.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/mt2701.dtsi#n209
 
-On Thu, 2021-01-07 at 14:41 +0100, Paul Kocialkowski wrote:
-> The PX30 SoC includes both the VDPU2 and VEPU2 blocks which are similar
-> to the RK3399 (Hantro G1/H1 with shuffled registers).
-> 
-> Besides taking an extra clock, it also shares an interrupt with the IOMMU
-> so it's necessary to request the interrupt shared.
-> 
-
-Could you clarify on the commit description which iommu device interrupt
-line is being shared?
-
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  drivers/staging/media/hantro/hantro_drv.c    |  5 +++--
->  drivers/staging/media/hantro/hantro_hw.h     |  1 +
->  drivers/staging/media/hantro/rk3399_vpu_hw.c | 21 ++++++++++++++++++++
->  3 files changed, 25 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index e5f200e64993..076a7782b476 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -472,6 +472,7 @@ static const struct v4l2_file_operations hantro_fops = {
->  
->  static const struct of_device_id of_hantro_match[] = {
->  #ifdef CONFIG_VIDEO_HANTRO_ROCKCHIP
-> +       { .compatible = "rockchip,px30-vpu", .data = &px30_vpu_variant, },
->         { .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
->         { .compatible = "rockchip,rk3328-vpu", .data = &rk3328_vpu_variant, },
->         { .compatible = "rockchip,rk3288-vpu", .data = &rk3288_vpu_variant, },
-> @@ -796,8 +797,8 @@ static int hantro_probe(struct platform_device *pdev)
->                         return -ENXIO;
->  
->                 ret = devm_request_irq(vpu->dev, irq,
-> -                                      vpu->variant->irqs[i].handler, 0,
-> -                                      dev_name(vpu->dev), vpu);
-> +                                      vpu->variant->irqs[i].handler,
-> +                                      IRQF_SHARED, dev_name(vpu->dev), vpu);
-
-Maybe this irq flag should be part of vpu->variant? It sounds like an IP block
-integration specific thing.
-
-Also, you will need a px30-specific interrupt handler now,
-since the rk3399 one is not shared-friendly.
-
->                 if (ret) {
->                         dev_err(vpu->dev, "Could not request %s IRQ.\n",
->                                 irq_name);
-> diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
-> index 34c9e4649a25..07f516fd7a2e 100644
-> --- a/drivers/staging/media/hantro/hantro_hw.h
-> +++ b/drivers/staging/media/hantro/hantro_hw.h
-> @@ -148,6 +148,7 @@ enum hantro_enc_fmt {
->         RK3288_VPU_ENC_FMT_UYVY422 = 3,
->  };
->  
-> +extern const struct hantro_variant px30_vpu_variant;
->  extern const struct hantro_variant rk3399_vpu_variant;
->  extern const struct hantro_variant rk3328_vpu_variant;
->  extern const struct hantro_variant rk3288_vpu_variant;
-> diff --git a/drivers/staging/media/hantro/rk3399_vpu_hw.c b/drivers/staging/media/hantro/rk3399_vpu_hw.c
-> index 7a7962cf771e..4112f98baa60 100644
-> --- a/drivers/staging/media/hantro/rk3399_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/rk3399_vpu_hw.c
-
-Perhaps it's time to rename this to rockchip_vpu_hw.c,
-and merge rk3288 and rk3399? It's a nitpick, though.
-
-> @@ -220,3 +220,24 @@ const struct hantro_variant rk3328_vpu_variant = {
->         .clk_names = rk3399_clk_names,
->         .num_clocks = ARRAY_SIZE(rk3399_clk_names),
->  };
-> +
-> +static const char * const px30_clk_names[] = {
-> +       "aclk", "hclk", "sclk"
-> +};
-> +
-> +const struct hantro_variant px30_vpu_variant = {
-> +       .enc_offset = 0x0,
-> +       .enc_fmts = rk3399_vpu_enc_fmts,
-> +       .num_enc_fmts = ARRAY_SIZE(rk3399_vpu_enc_fmts),
-> +       .dec_offset = 0x400,
-> +       .dec_fmts = rk3399_vpu_dec_fmts,
-> +       .num_dec_fmts = ARRAY_SIZE(rk3399_vpu_dec_fmts),
-> +       .codec = HANTRO_JPEG_ENCODER | HANTRO_MPEG2_DECODER |
-> +                HANTRO_VP8_DECODER,
-> +       .codec_ops = rk3399_vpu_codec_ops,
-> +       .irqs = rk3399_irqs,
-> +       .num_irqs = ARRAY_SIZE(rk3399_irqs),
-> +       .init = rk3399_vpu_hw_init,
-> +       .clk_names = px30_clk_names,
-> +       .num_clocks = ARRAY_SIZE(px30_clk_names)
-> +};
-
-Thanks,
-Ezequiel
-
+-Saravana
