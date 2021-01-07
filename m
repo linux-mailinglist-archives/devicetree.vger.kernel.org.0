@@ -2,149 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48FF32ED6D2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:41:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08EAC2ED6C9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 19:40:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729081AbhAGSlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 13:41:10 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:47558 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726427AbhAGSlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 13:41:07 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 107IdTrO064674;
-        Thu, 7 Jan 2021 12:39:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610044769;
-        bh=MQTqffJ/BEngP+DKCiaYecjDKfUr1TbLNIh28LwlU2M=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=cELavhLTvFqwURPD0Iqn17Z2dT/Ck6kkR+cI4RN3Za9jqqM15tMCNEl+b5Hb+ld+I
-         RV2UJzIehI+46uiFgPSklJGu9rUm1mOD3ldbxpSz1vpz0pP01ddlkFV2e3+m7+G45g
-         +7tdTey7cGRJ0z/tkj1FBcZs3szO3htJj7eO+K8Y=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 107IdT3U092089
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 7 Jan 2021 12:39:29 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 7 Jan
- 2021 12:39:28 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 7 Jan 2021 12:39:28 -0600
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 107IdS7R049466;
-        Thu, 7 Jan 2021 12:39:28 -0600
-Received: from localhost ([10.250.33.36])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 107IdSQp128871;
-        Thu, 7 Jan 2021 12:39:28 -0600
-From:   Suman Anna <s-anna@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 2/5] arm64: dts: ti: k3-j7200-main: Add MAIN domain R5F cluster node
-Date:   Thu, 7 Jan 2021 12:39:04 -0600
-Message-ID: <20210107183907.6545-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210107183907.6545-1-s-anna@ti.com>
-References: <20210107183907.6545-1-s-anna@ti.com>
+        id S1728257AbhAGSj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 13:39:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728088AbhAGSj7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Jan 2021 13:39:59 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CE2A923403;
+        Thu,  7 Jan 2021 18:39:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610044758;
+        bh=6+kQE334J9SbW0yM3NlWxvaes7U9CBgIgTENrhIeApQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WecSKvLqEpXuq1LKLnwc0qdwdS5RlfZwGoW594uX0owQE+g7C9vXHhXFs4y1p/NX1
+         C+NaaQCnKioFWCwoQVdYzzGT9m6K4KsmmLLAPGEK6KmU9I+8Cgw40IKAkAR30hOkPO
+         Kg9h/CngluYr8fUkR050c8cjEVhX1Cu/ZPQ1HAi277Pf7f79lQBCw7cjCX+Qb9pL5d
+         vdpqoJaz6ykdW7pHTQ9AgWTx6hY4TTl1rl8zbVJFl0EZVgzCXNf4Xriws+FCc41qbb
+         i9fXRtbfjUiacCvnH5MZfpTtBVF0OIP/kb4oryys3LqLmLcM5W7J+Y/L197JLWVuWA
+         NcLBrLictgEgQ==
+Received: by mail-ej1-f49.google.com with SMTP id d17so11042992ejy.9;
+        Thu, 07 Jan 2021 10:39:17 -0800 (PST)
+X-Gm-Message-State: AOAM530szlXwcUcxjc2zoT870G667EGRoaz6PSvP3pSk0B5j/Q+kAXBi
+        QVoKsRHNNUhfW8Ofr+E1OYY5SF98bddxgyXuEA==
+X-Google-Smtp-Source: ABdhPJw2T/nYP8wCSKP9LM1NhNkUO/a7gkRrME4qq0kUTYpXK6H/AVboPr3+a/BiQcPdXbZu9rLcKNTraNnwIHLWrz8=
+X-Received: by 2002:a17:906:d87:: with SMTP id m7mr128297eji.108.1610044756363;
+ Thu, 07 Jan 2021 10:39:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201218210750.3455872-1-saravanak@google.com>
+ <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
+ <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
+In-Reply-To: <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 7 Jan 2021 11:39:04 -0700
+X-Gmail-Original-Message-ID: <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com>
+Message-ID: <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Add device link support for interrupts
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The J7200 SoCs have 2 dual-core Arm Cortex-R5F processor (R5FSS)
-subsystems/clusters. One R5F cluster is present within the MCU
-domain (MCU_R5FSS0), and the other one is present within the MAIN
-domain (MAIN_R5FSS0). Each of these can be configured at boot time
-to be either run in a LockStep mode or in an Asymmetric Multi
-Processing (AMP) fashion in Split-mode. These subsystems have 64 KB
-each Tightly-Coupled Memory (TCM) internal memories for each core
-split between two banks - ATCM and BTCM (further interleaved into
-two banks). The TCMs of both Cores are combined in LockStep-mode
-to provide a larger 128 KB of memory, , but otherwise are functionally
-similar to those on J721E SoCs.
+On Wed, Jan 6, 2021 at 11:53 AM Saravana Kannan <saravanak@google.com> wrote:
+>
+> On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > On Thu, 31 Dec 2020 21:12:40 +0000,
+> > Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
+> > > > On 2020-12-18 21:07, Saravana Kannan wrote:
+> > > > > Add support for creating device links out of interrupts property.
+> > > > >
+> > > > > Cc: Marc Zyngier <maz@kernel.org>
+> > > > > Cc: Kevin Hilman <khilman@baylibre.com>
+> > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > ---
+> > > > > Rob/Greg,
+> > > > >
+> > > > > This might need to go into driver-core to avoid conflict
+> > > > > due to fw_devlink refactor series that merged there.
+> > > > >
+> > > > > Thanks,
+> > > > > Saravana
+> > > > >
+> > > > >
+> > > > >  drivers/of/property.c | 17 +++++++++++++++++
+> > > > >  1 file changed, 17 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
+> > > > > --- a/drivers/of/property.c
+> > > > > +++ b/drivers/of/property.c
+> > > > > @@ -1271,6 +1271,22 @@ static struct device_node
+> > > > > *parse_iommu_maps(struct device_node *np,
+> > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
+> > > > >  }
+> > > > >
+> > > > > +static struct device_node *parse_interrupts(struct device_node *np,
+> > > > > +                                     const char *prop_name, int index)
+> > > > > +{
+> > > > > + struct device_node *sup;
+> > > > > +
+> > > > > + if (strcmp(prop_name, "interrupts") || index)
+> > > > > +         return NULL;
+> > > > > +
+> > > > > + of_node_get(np);
+> > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
+> > > > > +         np = of_get_next_parent(np);
+> > > > > + of_node_put(np);
+> > > > > +
+> > > > > + return sup;
+> > > > > +}
+> > > > > +
+> > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
+> > > > >   { .parse_prop = parse_clocks, },
+> > > > >   { .parse_prop = parse_interconnects, },
+> > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
+> > > > > of_supplier_bindings[] = {
+> > > > >   { .parse_prop = parse_pinctrl6, },
+> > > > >   { .parse_prop = parse_pinctrl7, },
+> > > > >   { .parse_prop = parse_pinctrl8, },
+> > > > > + { .parse_prop = parse_interrupts, },
+> > > > >   { .parse_prop = parse_regulators, },
+> > > > >   { .parse_prop = parse_gpio, },
+> > > > >   { .parse_prop = parse_gpios, },
+> > > >
+> > > > You don't really describe what this is for so I'm only guessing
+> > > > from the context. If you want to follow the interrupt hierarchy,
+> > > > "interrupt-parent" isn't enough. You also need to track
+> > > > things like interrupt-map, or anything that carries a phandle
+> > > > to an interrupt controller.
+> > >
+> > > We don't need to follow the hierarchy, we just need the immediate
+> > > dependencies.
+> >
+> > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
+>
+> Thanks Rob for explaining it.
+>
+> Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
+> Also, I'm trying to keep of/property.c independent of the framework
+> code for now. The long term goal is to see if I can move out most of
+> this into the frameworks. But I want to do that after I sort of some
+> of the larger problems (like getting fw_devlink=on to work on all
+> devices  first). Let me know if you have a strong preference for right
+> now, if not, I'd rather keep property.c independent for now.
+>
+> I wasn't aware of interrupt-map until a few weeks ago and didn't know
+> it carried phandles. I can add support for that too. There's no reason
+> for all of them to go in one patch though.
+>
+> >
+> > > But you are right that 'interrupt-map' also needs to be tracked.
+> >
+> > And 'interrupts-extended', while we're at it.
+>
+> This is already handled.
+>
+> > >
+> > > I also noticed that we define 'interrupt-parent' as a dependency to
+> > > parse, but that's wrong. The dependency is where 'interrupts' appears
+> > > and where 'interrupt-parent' appears is irrelevant.
+>
+> No, the interrupt-parent parsing is correct and it's needed for
+> interrupt controllers to probe in the right order. But
+> interrupt-parent is also needs to be looked at for parsing
+> "interrupts".
 
-Add the DT node for the MAIN domain R5F cluster/subsystem, the two
-R5F cores are added as child nodes to the R5F cluster/subsystem node.
-The cluster is configured to run in LockStep mode by default, with
-the ATCMs enabled to allow the R5 cores to execute code from DDR with
-boot-strapping code from ATCM. The inter-processor communication
-between the main A72 cores and these processors is achieved through
-shared memory and Mailboxes.
+If you parse 'interrupts' for interrupt controllers (which in turn
+will use 'interrupt-parent'), then you aren't going to need to track
+'interrupt-parent' by itself.
 
-The following firmware names are used by default for these cores, and
-can be overridden in a board dts file if desired:
-   MAIN R5FSS0 Core0: j7200-main-r5f0_0-fw (both in LockStep & Split modes)
-   MAIN R5FSS0 Core1: j7200-main-r5f0_1-fw (needed only in Split mode)
+To look at it another way, 'interrupt-parent' can appear in any
+ancestor node. Which node the dts author arbitrarily decided to put it
+in does not matter at all. It could be at the DT root or duplicated in
+every single node with 'interrupts'. Those are logically the same. The
+node(s) with the dependency are the ones with 'interrupts'.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 42 ++++++++++++++++++++++-
- 1 file changed, 41 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index b0094212aa82..c825e1c88cf8 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -2,7 +2,7 @@
- /*
-  * Device Tree Source for J7200 SoC Family Main Domain peripherals
-  *
-- * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- &cbass_main {
-@@ -560,4 +560,44 @@ usb0: usb@6000000 {
- 			dr_mode = "otg";
- 		};
- 	};
-+
-+	main_r5fss0: r5fss@5c00000 {
-+		compatible = "ti,j7200-r5fss";
-+		ti,cluster-mode = <1>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x5c00000 0x00 0x5c00000 0x20000>,
-+			 <0x5d00000 0x00 0x5d00000 0x20000>;
-+		power-domains = <&k3_pds 243 TI_SCI_PD_EXCLUSIVE>;
-+
-+		main_r5fss0_core0: r5f@5c00000 {
-+			compatible = "ti,j7200-r5f";
-+			reg = <0x5c00000 0x00010000>,
-+			      <0x5c10000 0x00010000>;
-+			reg-names = "atcm", "btcm";
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <245>;
-+			ti,sci-proc-ids = <0x06 0xff>;
-+			resets = <&k3_reset 245 1>;
-+			firmware-name = "j7200-main-r5f0_0-fw";
-+			ti,atcm-enable = <1>;
-+			ti,btcm-enable = <1>;
-+			ti,loczrama = <1>;
-+		};
-+
-+		main_r5fss0_core1: r5f@5d00000 {
-+			compatible = "ti,j7200-r5f";
-+			reg = <0x5d00000 0x00008000>,
-+			      <0x5d10000 0x00008000>;
-+			reg-names = "atcm", "btcm";
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <246>;
-+			ti,sci-proc-ids = <0x07 0xff>;
-+			resets = <&k3_reset 246 1>;
-+			firmware-name = "j7200-main-r5f0_1-fw";
-+			ti,atcm-enable = <1>;
-+			ti,btcm-enable = <1>;
-+			ti,loczrama = <1>;
-+		};
-+	};
- };
--- 
-2.29.2
-
+Rob
