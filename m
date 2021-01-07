@@ -2,43 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80B582ECD5D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 10:56:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0332ECD63
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 10:59:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727265AbhAGJzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 04:55:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50282 "EHLO mail.kernel.org"
+        id S1726748AbhAGJ7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 04:59:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50862 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726997AbhAGJzL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Jan 2021 04:55:11 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AD20923341;
-        Thu,  7 Jan 2021 09:54:30 +0000 (UTC)
+        id S1726338AbhAGJ7G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Jan 2021 04:59:06 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 259042312F;
+        Thu,  7 Jan 2021 09:58:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610013271;
-        bh=9pBng+AVEqLNZFQoFpUKzynC7ullL0lxTHI0rs1FDo4=;
+        s=k20201202; t=1610013505;
+        bh=/IoyTbDRYdITqQ/ehLHHAr5zNu/uV79exeCn/3qbm4w=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=b0kXrzJiWBzfthx6ighlPCQeNzGK0Pjy47IRrfuWCSaFdvt/ETQWsIzFhfsXP/V8S
-         JncbvQ0z5n/yWSgDWiq8AEsqDuNc2TXiySr14pHtRqhHdCictbQzGcUNXlp3Rfm/nq
-         nOlKbli2L0u0KTePIWH2+645lgunZZVMGLuNXopE5Z46p5usG0WWaY/8V/kHeKK8f7
-         s84kWEt2r3xxQhVudPfVBQuszn0+QzOdM0iO6m/LPUfHdTr1U7i0QMJTMk93DpW95u
-         bJmUp66tpgHr/guasp8OfTGLavYtFuGm77fmr5utx0+a/HCUnsdEzucf3qNM7CvZB6
-         aQx4LSR5JNNhQ==
-Received: by mail-ej1-f53.google.com with SMTP id w1so8759589ejf.11;
-        Thu, 07 Jan 2021 01:54:30 -0800 (PST)
-X-Gm-Message-State: AOAM533u6goVsYZRcgJ1f+isalL0OjAsWMGPhxGq6wKYw570USxU6TBT
-        9/HHHNGQAh1EcbSCvG/2iW3EPJnFj1v43nHchg==
-X-Google-Smtp-Source: ABdhPJwb3idVQRWQCrmNfDclIJoa1CSuPbDunAFSX4HX9CXgW142tjcm1t3p9B86xQsdcyQdWANVKIAM8+nvB3sqyHY=
-X-Received: by 2002:a17:906:fb1a:: with SMTP id lz26mr5714887ejb.194.1610013269189;
- Thu, 07 Jan 2021 01:54:29 -0800 (PST)
+        b=FhvFdx7YQqNX76DDQy8bm+QZG3FlLsKv+uvGJTWd+AYLs9DhEmarC2ooCBsWQoMj4
+         d/ovB12fQV1lTPXUgTj82hkh4qH+KoDC8BgkjGzKR+hFWJNKdL/CfhtgcXA9RtTgf/
+         f1yk/U/8+LQYLbF3rQjfmtKEuKS+p3voXHeiqfmU1LgwgqeG+g+iFrg64bjrgrCn6C
+         AllCy1ilu5q5qviydFwac88yWMU4pu99tBPXhHaA4+OK0gEOLgMEJB6yYq9zvUPgKv
+         UWamxX+fyPJoLqK5EAc0hjic7m0+L+B7PJDi3c6k88s/UcS2+PuJCH8l79jeiye57I
+         cheAhGLJtsMBw==
+Received: by mail-ed1-f52.google.com with SMTP id b2so7216417edm.3;
+        Thu, 07 Jan 2021 01:58:25 -0800 (PST)
+X-Gm-Message-State: AOAM533JCNEY0MvWKIFtANNJBwNYFSFL7gHl+L0EWiaGKUt31YTTFEk3
+        f5Yok8687i2KYO6FzbFN5AaD7mqTnMq9xkQl7g==
+X-Google-Smtp-Source: ABdhPJzuagogH0mSid9kt6qBlxG0IYM9hSJgtHkS+RyfrWE+l+JBeR+fcJikBQGl7vUlVHVFXv4wKYgD3LkjJMNaChA=
+X-Received: by 2002:a05:6402:3048:: with SMTP id bu8mr1091459edb.49.1610013503677;
+ Thu, 07 Jan 2021 01:58:23 -0800 (PST)
 MIME-Version: 1.0
-References: <1609989081-29353-1-git-send-email-yongqiang.niu@mediatek.com> <1609989081-29353-2-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1609989081-29353-2-git-send-email-yongqiang.niu@mediatek.com>
+References: <1609989081-29353-1-git-send-email-yongqiang.niu@mediatek.com> <1609989081-29353-4-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1609989081-29353-4-git-send-email-yongqiang.niu@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 7 Jan 2021 17:54:17 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9FdLrZyKpgAsuJQxORh7uHhjYBn8Acu_1B0vQ0Uv_Nzw@mail.gmail.com>
-Message-ID: <CAAOTY_9FdLrZyKpgAsuJQxORh7uHhjYBn8Acu_1B0vQ0Uv_Nzw@mail.gmail.com>
-Subject: Re: [PATCH v9, 01/11] dt-bindings: mediatek: add rdma-fifo-size
- description for mt8183 display
+Date:   Thu, 7 Jan 2021 17:58:12 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9aD1ZjVMZbQxL17HTz5fCP7-paZbx-ybMVAJ7QLrVydg@mail.gmail.com>
+Message-ID: <CAAOTY_9aD1ZjVMZbQxL17HTz5fCP7-paZbx-ybMVAJ7QLrVydg@mail.gmail.com>
+Subject: Re: [PATCH v9, 03/11] arm64: dts: mt8183: rename rdma fifo size
 To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
 Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
@@ -63,54 +62,44 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hi, Yongqiang:
 
 Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
-=887=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:11=E5=AF=AB=E9=81=93=
+=887=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:12=E5=AF=AB=E9=81=93=
 =EF=BC=9A
 >
-> rdma fifo size may be different even in same SOC, add this
-> property to the corresponding rdma
+> property name must include only lowercase and '-'
 
 Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
 >
 > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  .../devicetree/bindings/display/mediatek/mediatek,disp.txt       | 9 +++=
-++++++
->  1 file changed, 9 insertions(+)
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp=
-.txt
-> index 33977e1..b07881e 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx=
-t
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx=
-t
-> @@ -66,6 +66,14 @@ Required properties (DMA function blocks):
->    argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.t=
-xt
->    for details.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8183.dtsi
+> index 5b782a4..6c84ccb7 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1011,7 +1011,7 @@
+>                         clocks =3D <&mmsys CLK_MM_DISP_RDMA0>;
+>                         iommus =3D <&iommu M4U_PORT_DISP_RDMA0>;
+>                         mediatek,larb =3D <&larb0>;
+> -                       mediatek,rdma_fifo_size =3D <5120>;
+> +                       mediatek,rdma-fifo-size =3D <5120>;
+>                         mediatek,gce-client-reg =3D <&gce SUBSYS_1400XXXX=
+ 0xb000 0x1000>;
+>                 };
 >
-> +Optional properties (RDMA function blocks):
-> +- mediatek,rdma-fifo-size: rdma fifo size may be different even in same =
-SOC, add this
-> +  property to the corresponding rdma
-> +  the value is the Max value which defined in hardware data sheet.
-> +  mediatek,rdma-fifo-size of mt8173-rdma0 is 8K
-> +  mediatek,rdma-fifo-size of mt8183-rdma0 is 5K
-> +  mediatek,rdma-fifo-size of mt8183-rdma1 is 2K
-> +
->  Examples:
+> @@ -1023,7 +1023,7 @@
+>                         clocks =3D <&mmsys CLK_MM_DISP_RDMA1>;
+>                         iommus =3D <&iommu M4U_PORT_DISP_RDMA1>;
+>                         mediatek,larb =3D <&larb0>;
+> -                       mediatek,rdma_fifo_size =3D <2048>;
+> +                       mediatek,rdma-fifo-size =3D <2048>;
+>                         mediatek,gce-client-reg =3D <&gce SUBSYS_1400XXXX=
+ 0xc000 0x1000>;
+>                 };
 >
->  mmsys: clock-controller@14000000 {
-> @@ -103,6 +111,7 @@ rdma0: rdma@1400e000 {
->         clocks =3D <&mmsys CLK_MM_DISP_RDMA0>;
->         iommus =3D <&iommu M4U_PORT_DISP_RDMA0>;
->         mediatek,larb =3D <&larb0>;
-> +       mediatek,rdma-fifosize =3D <8192>;
->  };
->
->  rdma1: rdma@1400f000 {
 > --
 > 1.8.1.1.dirty
 > _______________________________________________
