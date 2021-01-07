@@ -2,134 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56B1F2ECC5D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 10:11:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E8932ECC70
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 10:13:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726420AbhAGJLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 04:11:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34684 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725974AbhAGJLA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 04:11:00 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B1DAC0612F5
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 01:10:20 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id a12so12948591lfl.6
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 01:10:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=T+iZKNW1gmpT+HQqIiqmRRpQMcaG8pgogUVWa/pKYOM=;
-        b=cyz7QwbTfHcC+qnorIFVkv7DnbL/oyA5L+VJJAN8XWkNMg42oKdig8X5tU4xa7X7pN
-         01zspKzmEcVvu5fY2nzlSr3geA/q2812tr8Wz0sUieGMHhvg1aGrsz+m0J4b8Wmr2jr4
-         Bxuqd5E5gXQb8ARkFssKYAOK0W62M412pmNUBd9NwRQD04zf23syAxjzcLmFBod8VeLt
-         Wkczn2W4OJkxg0o6mQ3tRUOpKTABRCCUpHtxAiPQFjxJEJCf/WQ1QzYZHEZTgGgMtnu2
-         jNC0bNdR63+2S3cfHE4fDoxHLsYIWb3l6Ja+q5Vt8aM4kBs1TbyhYMIEDY91gB4GZfH3
-         2CvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=T+iZKNW1gmpT+HQqIiqmRRpQMcaG8pgogUVWa/pKYOM=;
-        b=ImaaVkwU6EO2V+2CLsExUwaxCWZdgJIp3NsZwz92jMBkMWH8jNt7esEru1qdhS9EiJ
-         JUvhjPTVMD83cgMC4Vs0Wycv9fhSWXQEs1LuR3qh4204OrwKxcIHeXEPwxGY8ux6je9f
-         PWWVghsYueSk2XsvbFOKzkKzIsGEY2dzcGnXYn/NFEeTzs1K1xky6cGCw084oSzYdkPy
-         +5vEEn7xAnJhX3xf2Vu6WL3Z6AhaOsd09kRtO/NraSHKW7JaCIwlVzVrltYczW98MZrR
-         tM7h9iIv4hG2Im2+exZMFSWGkYi8Bw/of4DWxb6edjjnWfEJYY6puYi/5oiXi8/uo8mh
-         ZbGw==
-X-Gm-Message-State: AOAM531GfzDUU9MrxHYbOuj5vD6aXL87YdfCLcK6Dc+j4RNS7WJw2+Lc
-        zBsBkhPLjjTpmvqEGfKixwoLwTJ1Ir5K7pQG4u0PUg==
-X-Google-Smtp-Source: ABdhPJz6FNuZKYGADUxlk9Tv8Rh/lJVu/2CmZBJO3UIrMaB/edLmB9ZlsVBcuBoQ7GbjgHsRrGXCE/gOnIldpK4OwK0=
-X-Received: by 2002:a19:495d:: with SMTP id l29mr3392190lfj.465.1610010618615;
- Thu, 07 Jan 2021 01:10:18 -0800 (PST)
-MIME-Version: 1.0
-References: <20210104230253.2805217-1-robh@kernel.org>
-In-Reply-To: <20210104230253.2805217-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 7 Jan 2021 10:10:07 +0100
-Message-ID: <CACRpkdZVC8RE-DTes+p6g-1EAHxQWpu2u+sBCX2ei32cvaCrDA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Add missing array size constraints
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jens Axboe <axboe@kernel.dk>, Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>, linux-clk <linux-clk@vger.kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-remoteproc@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-usb <linux-usb@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726890AbhAGJMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 04:12:54 -0500
+Received: from mickerik.phytec.de ([195.145.39.210]:60278 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727153AbhAGJMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 04:12:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1610010732; x=1612602732;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=WUiyXaZ3kCntMKEIcO80kK6GTqvTz/YAun/9tx8RSmQ=;
+        b=ezObaDf/fjUGPQfMS6b2U2FMnel/XXKwJVa0WFXA2kkWHIVa8mxKN6ykP8YZFo51
+        4kQEz8ZxWYHL8Ko4iPDFNZWm4Tx1cNN+T8P3rxvIrxfI2kl/r5ywHc146P1DjSLC
+        fYLy0KB5XYRwKzoxrfy6X+DgEnzyGXnen95bhDheQ3Y=;
+X-AuditID: c39127d2-0c7b670000001c86-0d-5ff6d06c51f1
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 57.B1.07302.C60D6FF5; Thu,  7 Jan 2021 10:12:12 +0100 (CET)
+Received: from augenblix2.phytec.de ([172.16.0.56])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2021010710121202-64470 ;
+          Thu, 7 Jan 2021 10:12:12 +0100 
+From:   Teresa Remmet <t.remmet@phytec.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexander Dahl <ada@thorsis.com>
+Subject: [PATCH v4 0/4] Initial support for phyBOARD-Pollux i.MX8MP 
+Date:   Thu, 7 Jan 2021 10:12:07 +0100
+Message-Id: <1610010731-44779-1-git-send-email-t.remmet@phytec.de>
+X-Mailer: git-send-email 2.7.4
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 07.01.2021 10:12:12,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 07.01.2021 10:12:12,
+        Serialize complete at 07.01.2021 10:12:12
+X-TNEFEvaluated: 1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnluLIzCtJLcpLzFFi42JZI8DApZtz4Vu8wdL9ghZ9B5ks3i/rYbSY
+        f+Qcq8XDq/4W589vYLfY9Pgaq0Xr3iPsFn+3b2KxeLFF3IHTY828NYweO2fdZffYtKqTzWPz
+        knqP/r8GHuvmvmf3+LxJLoA9issmJTUnsyy1SN8ugSuj+fpCxoInvBVTbv5gbmCczN3FyMkh
+        IWAicf7RK7YuRi4OIYGtjBKNX1uhnLOMEl8edTODVLEJaEg8XXGaCcQWEXCR2DzhGRNIEbNA
+        C5PEzfmL2UASwkCJs9O3s3YxcnCwCKhIrLvADxLmFXCSuHd1EzvENjmJm+c6mUF6JQQamSSu
+        X/7LBpEQkji9+CzzBEaeBYwMqxiFcjOTs1OLMrP1CjIqS1KT9VJSNzECA+vwRPVLOxj75ngc
+        YmTiYDzEKMHBrCTCa3HsS7wQb0piZVVqUX58UWlOavEhRmkOFiVx3g28JWFCAumJJanZqakF
+        qUUwWSYOTqkGRmXm+S1am1YentHtPE/TfOEVQaNu1yOCz2+17Mkw0VG0Uo7M674stUx/64a1
+        75Q09onulJJo3Lb83pNrIU0ex98223JkSG47GLbMNeE595f9OhIRjxpus4kycKcbxB9f+VR+
+        h9DltNr4zOk7Ntd7qcus1/h7bofqRoMH4SXf1/utfPzlZ2e0uRJLcUaioRZzUXEiABP3WS4a
+        AgAA
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 5, 2021 at 12:03 AM Rob Herring <robh@kernel.org> wrote:
+Fourth version for the initial support for the SoM phyCORE-i.MX8MP
+and the carrier board phyBOARD-Pollux.
 
-> DT properties which can have multiple entries need to specify what the
-> entries are and define how many entries there can be. In the case of
-> only a single entry, just 'maxItems: 1' is sufficient.
->
-> Add the missing entry constraints. These were found with a modified
-> meta-schema. Unfortunately, there are a few cases where the size
-> constraints are not defined such as common bindings, so the meta-schema
-> can't be part of the normal checks.
->
-> Cc: Jens Axboe <axboe@kernel.dk>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: MyungJoo Ham <myungjoo.ham@samsung.com>
-> Cc: Chanwoo Choi <cw00.choi@samsung.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Ohad Ben-Cohen <ohad@wizery.com>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Changes in v4:
+- resolved defconfig conflict adding PCA9532 during rebase to v5.11-rc2
+- removed unneeded status properties in device trees
+- removed upstream not available i2c rtc property
+- fixed i2c rtc trickle-resistor value
 
-This is good. The stricter the better.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Changes in v3:
+- removed deprecated led label property
+- added Reviewed-by and Acked-by tags
 
-Yours,
-Linus Walleij
+Changes in v2:
+- add rv3028 as module instead of buildin in defconfig
+- updated commit message of rv3028 accordingly
+- changed entries of device tree binding documentation to "const" 
+  and fixed order
+- fixed led dimmer node name
+- removed rtc clock node
+- fixed pmic node name
+- removed reg entries in pmic regulator nodes
+- removed clock entry from rtc node
+- moved muxing of enable gpio for sd-card regulator to the proper node
+- squashed imx8mp-phyboard-pollux.dtsi into imx8mp-phyboard-pollux-rdk.dts
+
+Teresa
+
+Teresa Remmet (4):
+  arm64: defconfig: Enable rv3028 i2c rtc driver
+  arm64: defconfig: Enable PCA9532 support
+  bindings: arm: fsl: Add PHYTEC i.MX8MP devicetree bindings
+  arm64: dts: freescale: Add support for phyBOARD-Pollux-i.MX8MP
+
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   6 +
+ arch/arm64/boot/dts/freescale/Makefile             |   1 +
+ .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 161 +++++++++++
+ .../boot/dts/freescale/imx8mp-phycore-som.dtsi     | 293 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |   2 +
+ 5 files changed, 463 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi
+
+-- 
+2.7.4
+
