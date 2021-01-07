@@ -2,551 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 855692ED771
-	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 20:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B71F2ED783
+	for <lists+devicetree@lfdr.de>; Thu,  7 Jan 2021 20:34:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726064AbhAGT06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 14:26:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46374 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725835AbhAGT05 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 14:26:57 -0500
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90902C0612F5
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 11:26:17 -0800 (PST)
-Received: by mail-io1-xd34.google.com with SMTP id u26so7283176iof.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 11:26:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=R9ec2rorXNKpnB5tpr0X0coC8E+Od//lfBeIjHtucUw=;
-        b=pxXetlPiVN82xE9Utf2DOeuVkOUHkb5PYQc5m2LypbJEFviN56Xg3SZLkjEI6wOaeH
-         9dwZoCz6hO/sjs3RBoCQwSvbVERozi+jq4q0/Afk1nhVDyu5ekCQfGCAzscsEkPAS2Pl
-         +FQCrFrTN4pBNcvA8eCe728iBQSPDnS6qpXks=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=R9ec2rorXNKpnB5tpr0X0coC8E+Od//lfBeIjHtucUw=;
-        b=jH02TaOhn9gyv5EV0W8JLiVnmAcNSNE+vZeiJVX5LsrNU4zz9wuUkzJJ6AU2zXSvNQ
-         Z7WBjtNV4NBAKfn2DVMxnrDzN04uOZKGtoGUPFdhwLmQAdlOJ/iDn9ln9ZVk18Y1uMyU
-         +OYtbgPBB5gzgkA8jrab0XGA7T9/joUaiH9OedLIzATe4WTa4P4ZMQtKCOnlMvgLLTEZ
-         HMbwqJdFMlF4Uf8wfpxM0YAXgBQXaRSL+o0iIilr7Hq6MV35YiGT8Q/MfP2dKl/18r0W
-         DPin63IJ1gpSN9htuTJh/U30+lncNoWWgc/5zTnYPs3ACM5XhjRMAkLn/5sH01v7DgZA
-         bnuA==
-X-Gm-Message-State: AOAM530eVKadYu/lpBHIlj9PtJLcEUraXEeJw99R/qGNlcLK8e++Q7bz
-        0u4I4DMpHoVsmIZZI/RnDmxLKJhi9xTv/lc4yZZ5
-X-Google-Smtp-Source: ABdhPJwKo2RBLquH5L0hmkYQd7dKygceqZfrhZIYn3DOjHOnBNzT/Lrjc4dDYo/97VNS147443mS5MBdvvmroK0dvpM=
-X-Received: by 2002:a02:cd84:: with SMTP id l4mr35876jap.141.1610047576807;
- Thu, 07 Jan 2021 11:26:16 -0800 (PST)
+        id S1725944AbhAGTeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 14:34:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47436 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725903AbhAGTeL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Jan 2021 14:34:11 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3A86123441;
+        Thu,  7 Jan 2021 19:33:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610048010;
+        bh=4bn6yrlNvnbi+YyRMhYO2OyDFdanqHEUkfN+HZD+QxI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nRtzzkzzacHPgFIcgMNDkAKFt/d///MMlN1lCQQDXYsQk4zXJSY2WFNAK1sKmOEQX
+         D90k6NiwzD/oFlquNxY5nU+CcUA6aQOzWcJ1TAyqp1hYLKiM3BiZ6Mztg3eU7U5GE2
+         SZDBHJJDOs2X+LdswYEdyCnL5qsNuwb8RDFEzvGmKKMuQQ/qxz6kZ4dUWZlTRb5+pL
+         D/dlVkuNFNXWt31jZQGWQEA8nTnuJzh6U1CAS7wSPsS8wEtYaxEW88WGejx+gDxPQ+
+         BiN8EwGWZbe5rFe2ETijUuJkMLSZkQkfHJzO3Kquru6t3yL6HECekAn8/OUfknWL0P
+         zs0t3fZ+GTIhA==
+Received: by mail-ed1-f48.google.com with SMTP id c7so8865646edv.6;
+        Thu, 07 Jan 2021 11:33:30 -0800 (PST)
+X-Gm-Message-State: AOAM533PrScXQtKlTMtE7LexjtK2FnuAjkW+37+HSIXbvSj5LIK/kOHx
+        XcD84HScp/52RxuRx7moV1AhY/soAZdh4lOnqA==
+X-Google-Smtp-Source: ABdhPJxquLlQfooOFatSc92RuKQ92hFcMIbT2KZ8GWY/wEGrrhoa+oN4Jp/b/i92uaCCsUVYslh83UkBAbGOq04S4+s=
+X-Received: by 2002:a50:f404:: with SMTP id r4mr2800429edm.62.1610048008818;
+ Thu, 07 Jan 2021 11:33:28 -0800 (PST)
 MIME-Version: 1.0
-References: <20201204085835.2406541-1-atish.patra@wdc.com> <20201204085835.2406541-4-atish.patra@wdc.com>
- <3d13a678-f804-245b-696e-400f128658c5@microchip.com>
-In-Reply-To: <3d13a678-f804-245b-696e-400f128658c5@microchip.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Thu, 7 Jan 2021 11:26:05 -0800
-Message-ID: <CAOnJCUKz-5hFBL1_XEUOdfnvpgMmBFKJHVEJ_vwx_+puHa483A@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] RISC-V: Initial DTS for Microchip ICICLE board
-To:     Cyril.Jean@microchip.com
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Daire McNamara <Daire.McNamara@microchip.com>,
-        Bin Meng <bin.meng@windriver.com>, Conor.Dooley@microchip.com,
-        Rob Herring <robh+dt@kernel.org>, Ivan.Griffin@microchip.com,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>
+References: <20201218210750.3455872-1-saravanak@google.com>
+ <2a6dbcc83d5aca7a3340e0cf4d751cdc@kernel.org> <20201231211240.GA2333246@robh.at.kernel.org>
+ <877dovlgdl.wl-maz@kernel.org> <CAGETcx9WJdYkQcwJLTF4j9jR4kyrDpXG8ZMuCecK2Hv-HXFgBg@mail.gmail.com>
+ <CAL_Jsq+0DdS+F_NZEyP2ajG5g6a_Q543Yp5ReWXGp8qA+25F=g@mail.gmail.com> <CAGETcx_4n951Fx-Gn14ikDDxgWtv6QqQtNno9pcPJyiiGynWHQ@mail.gmail.com>
+In-Reply-To: <CAGETcx_4n951Fx-Gn14ikDDxgWtv6QqQtNno9pcPJyiiGynWHQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 7 Jan 2021 12:33:16 -0700
+X-Gmail-Original-Message-ID: <CAL_Jsq+mavViUqWDVTAYB5p1j5h7FUNCzM9hg-ttJzLuJazZFQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+mavViUqWDVTAYB5p1j5h7FUNCzM9hg-ttJzLuJazZFQ@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Add device link support for interrupts
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 7, 2021 at 3:44 AM <Cyril.Jean@microchip.com> wrote:
+On Thu, Jan 7, 2021 at 12:09 PM Saravana Kannan <saravanak@google.com> wrote:
 >
-> Hi Atish,
+> On Thu, Jan 7, 2021 at 10:39 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Jan 6, 2021 at 11:53 AM Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > On Sat, Jan 2, 2021 at 3:37 AM Marc Zyngier <maz@kernel.org> wrote:
+> > > >
+> > > > On Thu, 31 Dec 2020 21:12:40 +0000,
+> > > > Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > > On Mon, Dec 21, 2020 at 09:30:45AM +0000, Marc Zyngier wrote:
+> > > > > > On 2020-12-18 21:07, Saravana Kannan wrote:
+> > > > > > > Add support for creating device links out of interrupts property.
+> > > > > > >
+> > > > > > > Cc: Marc Zyngier <maz@kernel.org>
+> > > > > > > Cc: Kevin Hilman <khilman@baylibre.com>
+> > > > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > > > ---
+> > > > > > > Rob/Greg,
+> > > > > > >
+> > > > > > > This might need to go into driver-core to avoid conflict
+> > > > > > > due to fw_devlink refactor series that merged there.
+> > > > > > >
+> > > > > > > Thanks,
+> > > > > > > Saravana
+> > > > > > >
+> > > > > > >
+> > > > > > >  drivers/of/property.c | 17 +++++++++++++++++
+> > > > > > >  1 file changed, 17 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > > > > index 5f9eed79a8aa..e56a5eae0a0b 100644
+> > > > > > > --- a/drivers/of/property.c
+> > > > > > > +++ b/drivers/of/property.c
+> > > > > > > @@ -1271,6 +1271,22 @@ static struct device_node
+> > > > > > > *parse_iommu_maps(struct device_node *np,
+> > > > > > >   return of_parse_phandle(np, prop_name, (index * 4) + 1);
+> > > > > > >  }
+> > > > > > >
+> > > > > > > +static struct device_node *parse_interrupts(struct device_node *np,
+> > > > > > > +                                     const char *prop_name, int index)
+> > > > > > > +{
+> > > > > > > + struct device_node *sup;
+> > > > > > > +
+> > > > > > > + if (strcmp(prop_name, "interrupts") || index)
+> > > > > > > +         return NULL;
+> > > > > > > +
+> > > > > > > + of_node_get(np);
+> > > > > > > + while (np && !(sup = of_parse_phandle(np, "interrupt-parent", 0)))
+> > > > > > > +         np = of_get_next_parent(np);
+> > > > > > > + of_node_put(np);
+> > > > > > > +
+> > > > > > > + return sup;
+> > > > > > > +}
+> > > > > > > +
+> > > > > > >  static const struct supplier_bindings of_supplier_bindings[] = {
+> > > > > > >   { .parse_prop = parse_clocks, },
+> > > > > > >   { .parse_prop = parse_interconnects, },
+> > > > > > > @@ -1296,6 +1312,7 @@ static const struct supplier_bindings
+> > > > > > > of_supplier_bindings[] = {
+> > > > > > >   { .parse_prop = parse_pinctrl6, },
+> > > > > > >   { .parse_prop = parse_pinctrl7, },
+> > > > > > >   { .parse_prop = parse_pinctrl8, },
+> > > > > > > + { .parse_prop = parse_interrupts, },
+> > > > > > >   { .parse_prop = parse_regulators, },
+> > > > > > >   { .parse_prop = parse_gpio, },
+> > > > > > >   { .parse_prop = parse_gpios, },
+> > > > > >
+> > > > > > You don't really describe what this is for so I'm only guessing
+> > > > > > from the context. If you want to follow the interrupt hierarchy,
+> > > > > > "interrupt-parent" isn't enough. You also need to track
+> > > > > > things like interrupt-map, or anything that carries a phandle
+> > > > > > to an interrupt controller.
+> > > > >
+> > > > > We don't need to follow the hierarchy, we just need the immediate
+> > > > > dependencies.
+> > > >
+> > > > Indeed. I also wonder why this isn't just a irq_find_parent() call, TBH.
+> > >
+> > > Thanks Rob for explaining it.
+> > >
+> > > Marc, I wasn't sure if Rob would be okay with including of_irq.h here.
+> > > Also, I'm trying to keep of/property.c independent of the framework
+> > > code for now. The long term goal is to see if I can move out most of
+> > > this into the frameworks. But I want to do that after I sort of some
+> > > of the larger problems (like getting fw_devlink=on to work on all
+> > > devices  first). Let me know if you have a strong preference for right
+> > > now, if not, I'd rather keep property.c independent for now.
+> > >
+> > > I wasn't aware of interrupt-map until a few weeks ago and didn't know
+> > > it carried phandles. I can add support for that too. There's no reason
+> > > for all of them to go in one patch though.
+> > >
+> > > >
+> > > > > But you are right that 'interrupt-map' also needs to be tracked.
+> > > >
+> > > > And 'interrupts-extended', while we're at it.
+> > >
+> > > This is already handled.
+> > >
+> > > > >
+> > > > > I also noticed that we define 'interrupt-parent' as a dependency to
+> > > > > parse, but that's wrong. The dependency is where 'interrupts' appears
+> > > > > and where 'interrupt-parent' appears is irrelevant.
+> > >
+> > > No, the interrupt-parent parsing is correct and it's needed for
+> > > interrupt controllers to probe in the right order. But
+> > > interrupt-parent is also needs to be looked at for parsing
+> > > "interrupts".
+> >
+> > If you parse 'interrupts' for interrupt controllers (which in turn
+> > will use 'interrupt-parent'), then you aren't going to need to track
+> > 'interrupt-parent' by itself.
 >
-> On 12/4/20 8:58 AM, Atish Patra wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > Add initial DTS for Microchip ICICLE board having only
-> > essential devices (clocks, sdhci, ethernet, serial, etc).
-> > The device tree is based on the U-Boot patch.
-> >
-> > https://patchwork.ozlabs.org/project/uboot/patch/20201110103414.10142-6-padmarao.begari@microchip.com/
-> >
-> > Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> > ---
-> >   arch/riscv/boot/dts/Makefile                  |   1 +
-> >   arch/riscv/boot/dts/microchip/Makefile        |   2 +
-> >   .../microchip/microchip-mpfs-icicle-kit.dts   |  72 ++++
-> >   .../boot/dts/microchip/microchip-mpfs.dtsi    | 331 ++++++++++++++++++
-> >   4 files changed, 406 insertions(+)
-> >   create mode 100644 arch/riscv/boot/dts/microchip/Makefile
-> >   create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> >   create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> >
-> > diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> > index ca1f8cbd78c0..3ea94ea0a18a 100644
-> > --- a/arch/riscv/boot/dts/Makefile
-> > +++ b/arch/riscv/boot/dts/Makefile
-> > @@ -1,5 +1,6 @@
-> >   # SPDX-License-Identifier: GPL-2.0
-> >   subdir-y += sifive
-> >   subdir-y += kendryte
-> > +subdir-y += microchip
-> >
-> >   obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
-> > diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
-> > new file mode 100644
-> > index 000000000000..622b12771fd3
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/microchip/Makefile
-> > @@ -0,0 +1,2 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += microchip-mpfs-icicle-kit.dtb
-> > diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> > new file mode 100644
-> > index 000000000000..5b51dad13c72
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> > @@ -0,0 +1,72 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/* Copyright (c) 2020 Microchip Technology Inc */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "microchip-mpfs.dtsi"
-> > +
-> > +/* Clock frequency (in Hz) of the rtcclk */
-> > +#define RTCCLK_FREQ            1000000
-> > +
-> > +/ {
-> > +       #address-cells = <2>;
-> > +       #size-cells = <2>;
-> > +       model = "Microchip PolarFire-SoC Icicle Kit";
-> > +       compatible = "microchip,mpfs-icicle-kit", "microchip,polarfire-soc";
-> > +
-> > +       chosen {
-> > +               stdout-path = &serial0;
-> > +       };
-> > +
-> > +       cpus {
-> > +               timebase-frequency = <RTCCLK_FREQ>;
-> > +       };
-> > +
-> > +       memory@80000000 {
-> > +               device_type = "memory";
-> > +               reg = <0x0 0x80000000 0x0 0x40000000>;
-> > +               clocks = <&clkcfg 26>;
-> > +       };
-> > +
-> > +       soc {
-> > +       };
-> > +};
-> > +
-> > +&serial0 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&serial1 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&serial2 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&serial3 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&sdcard {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&emac0 {
-> > +       phy-mode = "sgmii";
-> > +       phy-handle = <&phy0>;
-> > +       phy0: ethernet-phy@8 {
-> > +               reg = <8>;
-> > +               ti,fifo-depth = <0x01>;
-> > +       };
-> > +};
-> > +
-> > +&emac1 {
-> > +       status = "okay";
-> > +       phy-mode = "sgmii";
-> > +       phy-handle = <&phy1>;
-> > +       phy1: ethernet-phy@9 {
-> > +               reg = <9>;
-> > +               ti,fifo-depth = <0x01>;
-> > +       };
-> > +};
-> > diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> > new file mode 100644
-> > index 000000000000..7a076aa4c78d
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> > @@ -0,0 +1,331 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/* Copyright (c) 2020 Microchip Technology Inc */
-> > +
-> > +/dts-v1/;
-> > +
-> > +/ {
-> > +       #address-cells = <2>;
-> > +       #size-cells = <2>;
-> > +       model = "Microchip PolarFire-SoC";
-> > +       compatible = "microchip,polarfire-soc";
-> > +
-> > +       chosen {
-> > +       };
-> > +
-> > +       cpus {
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               cpu@0 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <128>;
-> > +                       i-cache-size = <16384>;
-> > +                       reg = <0>;
-> > +                       riscv,isa = "rv64imac";
-> > +                       status = "disabled";
-> > +
-> > +                       cpu0_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +
-> > +               cpu@1 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       d-cache-block-size = <64>;
-> > +                       d-cache-sets = <64>;
-> > +                       d-cache-size = <32768>;
-> > +                       d-tlb-sets = <1>;
-> > +                       d-tlb-size = <32>;
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <64>;
-> > +                       i-cache-size = <32768>;
-> > +                       i-tlb-sets = <1>;
-> > +                       i-tlb-size = <32>;
-> > +                       mmu-type = "riscv,sv39";
-> > +                       reg = <1>;
-> > +                       riscv,isa = "rv64imafdc";
-> > +                       tlb-split;
-> > +                       status = "okay";
-> > +
-> > +                       cpu1_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +
-> > +               cpu@2 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       d-cache-block-size = <64>;
-> > +                       d-cache-sets = <64>;
-> > +                       d-cache-size = <32768>;
-> > +                       d-tlb-sets = <1>;
-> > +                       d-tlb-size = <32>;
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <64>;
-> > +                       i-cache-size = <32768>;
-> > +                       i-tlb-sets = <1>;
-> > +                       i-tlb-size = <32>;
-> > +                       mmu-type = "riscv,sv39";
-> > +                       reg = <2>;
-> > +                       riscv,isa = "rv64imafdc";
-> > +                       tlb-split;
-> > +                       status = "okay";
-> > +
-> > +                       cpu2_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +
-> > +               cpu@3 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       d-cache-block-size = <64>;
-> > +                       d-cache-sets = <64>;
-> > +                       d-cache-size = <32768>;
-> > +                       d-tlb-sets = <1>;
-> > +                       d-tlb-size = <32>;
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <64>;
-> > +                       i-cache-size = <32768>;
-> > +                       i-tlb-sets = <1>;
-> > +                       i-tlb-size = <32>;
-> > +                       mmu-type = "riscv,sv39";
-> > +                       reg = <3>;
-> > +                       riscv,isa = "rv64imafdc";
-> > +                       tlb-split;
-> > +                       status = "okay";
-> > +
-> > +                       cpu3_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +
-> > +               cpu@4 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       d-cache-block-size = <64>;
-> > +                       d-cache-sets = <64>;
-> > +                       d-cache-size = <32768>;
-> > +                       d-tlb-sets = <1>;
-> > +                       d-tlb-size = <32>;
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <64>;
-> > +                       i-cache-size = <32768>;
-> > +                       i-tlb-sets = <1>;
-> > +                       i-tlb-size = <32>;
-> > +                       mmu-type = "riscv,sv39";
-> > +                       reg = <4>;
-> > +                       riscv,isa = "rv64imafdc";
-> > +                       tlb-split;
-> > +                       status = "okay";
-> > +                       cpu4_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +       };
-> > +
-> > +       soc {
-> > +               #address-cells = <2>;
-> > +               #size-cells = <2>;
-> > +               compatible = "simple-bus";
-> > +               ranges;
-> > +
-> > +               cache-controller@2010000 {
-> > +                       compatible = "sifive,fu540-c000-ccache", "cache";
-> > +                       cache-block-size = <64>;
-> > +                       cache-level = <2>;
-> > +                       cache-sets = <1024>;
-> > +                       cache-size = <2097152>;
-> > +                       cache-unified;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <1 2 3>;
-> > +                       reg = <0x0 0x2010000 0x0 0x1000>;
-> > +               };
-> > +
-> > +               clint@2000000 {
-> > +                       compatible = "riscv,clint0";
-> > +                       reg = <0x0 0x2000000 0x0 0xC000>;
-> > +                       interrupts-extended = <&cpu0_intc 3 &cpu0_intc 7
-> > +                                               &cpu1_intc 3 &cpu1_intc 7
-> > +                                               &cpu2_intc 3 &cpu2_intc 7
-> > +                                               &cpu3_intc 3 &cpu3_intc 7
-> > +                                               &cpu4_intc 3 &cpu4_intc 7>;
-> > +               };
-> > +
-> > +               plic: interrupt-controller@c000000 {
-> > +                       #interrupt-cells = <1>;
-> > +                       compatible = "sifive,plic-1.0.0";
-> > +                       reg = <0x0 0xc000000 0x0 0x4000000>;
-> > +                       riscv,ndev = <186>;
-> > +                       interrupt-controller;
-> > +                       interrupts-extended = <&cpu0_intc 11
-> > +                                       &cpu1_intc 11 &cpu1_intc 9
-> > +                                       &cpu2_intc 11 &cpu2_intc 9
-> > +                                       &cpu3_intc 11 &cpu3_intc 9
-> > +                                       &cpu4_intc 11 &cpu4_intc 9>;
-> > +               };
-> > +
-> > +               dma@3000000 {
-> > +                       compatible = "sifive,fu540-c000-pdma";
-> > +                       reg = <0x0 0x3000000 0x0 0x8000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <23 24 25 26 27 28 29 30>;
-> > +                       #dma-cells = <1>;
-> > +               };
-> > +
-> > +               refclk: refclk {
-> > +                       compatible = "fixed-clock";
-> > +                       #clock-cells = <0>;
-> > +                       clock-frequency = <600000000>;
-> > +                       clock-output-names = "msspllclk";
-> > +               };
-> > +
-> > +               clkcfg: clkcfg@20002000 {
-> > +                       compatible = "microchip,pfsoc-clkcfg";
->
-> Can you please change "microchip,pfsoc-clkcfg" to
-> "microchip,mpfs-clkcfg" to align with the v2 clock driver?
->
+> Do all interrupt controllers (that are not the root interrupt
+> controller) need to have "interrupts" property? If yes, then yeah,
+> that makes sense. But I vaguely remember that this wasn't the case for
+> some DT I saw.
 
-Sure.
+There are some cases of stacked controllers where it's implicit.
 
 >
-> > +                       reg = <0x0 0x20002000 0x0 0x1000>;
-> > +                       reg-names = "mss_sysreg";
-> > +                       clocks = <&refclk>;
-> > +                       #clock-cells = <1>;
-> > +                       clock-output-names = "cpu", "axi", "ahb", "envm",       /* 0-3   */
-> > +                                "mac0", "mac1", "mmc", "timer",                /* 4-7   */
-> > +                               "mmuart0", "mmuart1", "mmuart2", "mmuart3",     /* 8-11  */
-> > +                               "mmuart4", "spi0", "spi1", "i2c0",              /* 12-15 */
-> > +                               "i2c1", "can0", "can1", "usb",                  /* 16-19 */
-> > +                               "rsvd", "rtc", "qspi", "gpio0",                 /* 20-23 */
-> > +                               "gpio1", "gpio2", "ddrc", "fic0",               /* 24-27 */
-> > +                               "fic1", "fic2", "fic3", "athena", "cfm";        /* 28-32 */
-> > +               };
-> > +
-> > +               serial0: serial@20000000 {
-> > +                       compatible = "ns16550a";
-> > +                       reg = <0x0 0x20000000 0x0 0x400>;
-> > +                       reg-io-width = <4>;
-> > +                       reg-shift = <2>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <90>;
-> > +                       current-speed = <115200>;
-> > +                       clocks = <&clkcfg 8>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               serial1: serial@20100000 {
-> > +                       compatible = "ns16550a";
-> > +                       reg = <0x0 0x20100000 0x0 0x400>;
-> > +                       reg-io-width = <4>;
-> > +                       reg-shift = <2>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <91>;
-> > +                       current-speed = <115200>;
-> > +                       clocks = <&clkcfg 9>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               serial2: serial@20102000 {
-> > +                       compatible = "ns16550a";
-> > +                       reg = <0x0 0x20102000 0x0 0x400>;
-> > +                       reg-io-width = <4>;
-> > +                       reg-shift = <2>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <92>;
-> > +                       current-speed = <115200>;
-> > +                       clocks = <&clkcfg 10>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               serial3: serial@20104000 {
-> > +                       compatible = "ns16550a";
-> > +                       reg = <0x0 0x20104000 0x0 0x400>;
-> > +                       reg-io-width = <4>;
-> > +                       reg-shift = <2>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <93>;
-> > +                       current-speed = <115200>;
-> > +                       clocks = <&clkcfg 11>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               emmc: mmc@20008000 {
-> > +                       compatible = "cdns,sd4hc";
-> > +                       reg = <0x0 0x20008000 0x0 0x1000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <88 89>;
-> > +                       pinctrl-names = "default";
-> > +                       clocks = <&clkcfg 6>;
-> > +                       bus-width = <4>;
-> > +                       cap-mmc-highspeed;
-> > +                       mmc-ddr-3_3v;
-> > +                       max-frequency = <200000000>;
-> > +                       non-removable;
-> > +                       no-sd;
-> > +                       no-sdio;
-> > +                       voltage-ranges = <3300 3300>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               sdcard: sdhc@20008000 {
-> > +                       compatible = "cdns,sd4hc";
-> > +                       reg = <0x0 0x20008000 0x0 0x1000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <88>;
-> > +                       pinctrl-names = "default";
-> > +                       clocks = <&clkcfg 6>;
-> > +                       bus-width = <4>;
-> > +                       disable-wp;
-> > +                       no-1-8-v;
-> > +                       cap-mmc-highspeed;
-> > +                       cap-sd-highspeed;
-> > +                       card-detect-delay = <200>;
-> > +                       sd-uhs-sdr12;
-> > +                       sd-uhs-sdr25;
-> > +                       sd-uhs-sdr50;
-> > +                       sd-uhs-sdr104;
-> > +                       max-frequency = <200000000>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               emac0: ethernet@20110000 {
-> > +                       compatible = "cdns,macb";
-> > +                       reg = <0x0 0x20110000 0x0 0x2000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <64 65 66 67>;
-> > +                       local-mac-address = [00 00 00 00 00 00];
-> > +                       clocks = <&clkcfg 5>, <&clkcfg 2>;
-> > +                       clock-names = "pclk", "hclk";
-> > +                       status = "disabled";
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <0>;
-> > +               };
-> > +
-> > +               emac1: ethernet@20112000 {
-> > +                       compatible = "cdns,macb";
-> > +                       reg = <0x0 0x20112000 0x0 0x2000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <70 71 72 73>;
-> > +                       mac-address = [00 00 00 00 00 00];
-> > +                       clocks = <&clkcfg 5>, <&clkcfg 2>;
-> > +                       status = "disabled";
-> > +                       clock-names = "pclk", "hclk";
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <0>;
-> > +               };
-> > +
-> > +       };
-> > +};
-> > --
-> > 2.25.1
-> >
-> Regards,
->
-> Cyril
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Ah, here's one I found.
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/mt2701.dtsi#n209
 
+Right, so this is one of several cases of custom interrupt mapping
+properties (mediatek,ext-irq-range). Really, 'interrupts' or
+'interrupt-map' should have been used here, but 'interrupt-map'
+doesn't really scale well if you have large ranges of interrupts.
 
+To handle the dependency with just 'interrupt-parent', you need to
+find nodes that are themselves an 'interrupt-parent' and then find
+their 'interrupt-parent'.
 
--- 
-Regards,
-Atish
+Rob
