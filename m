@@ -2,191 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCECE2EF4FB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 16:41:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF3F2EF54C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 17:00:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726430AbhAHPk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 10:40:57 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:44163 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725926AbhAHPk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 10:40:57 -0500
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 8C7655809F4;
-        Fri,  8 Jan 2021 10:40:10 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Fri, 08 Jan 2021 10:40:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=w
-        zE4Xrlr85o2LDUmxu12BY27nXBk/vs8oX2BctH7gpY=; b=OB05wj/N36tgoDEj+
-        Y6gTPjheckq8pegEU+T12Z0y5uqZaWOPQMKW0X8cLovE0woRVIOVv4qI5GjHZ7tN
-        SpCAi9Vlg5qGgpVYpTiXcuzEM4NHMLzENMOKdCAYCACzcmoXv8AMZYOR93gkbXgl
-        NzmCsAxwIS7svajZhBXPC0nQe7tJVQ+uQ8I4bb7nYYopm1zK9IGvDY0x8stShqzy
-        yJ7H4BJyi1t3PGL5XL9ZI/cj/7XxXovMETI8X9znOYrO1P2566SGcDzfXdNBSsQV
-        8pljzSaOn4MM+c9w6t++ugNZsvM/8sm8/aV952CxiZB33324ii+6GhlCdxUDzcFK
-        o/0fw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=wzE4Xrlr85o2LDUmxu12BY27nXBk/vs8oX2BctH7g
-        pY=; b=DxYZeLybui59agxGluKta8KblDIDCo0PjgGOOitFWGEwEu3LrAortWgPa
-        l1an28jNfBiK/tzzfTOsf0dFAh8vWRCDQXfV9009hKDlVQDpcrXROLHkiza5f5vd
-        eXzZ01ZNRiQ5Ca5HPHrXTiovKSx6jJbbQn1AUHWLaq1Iunv5IzlHMUuyUQFjUUV5
-        GlGrqRm6e8raBB3VUxm7tn8FLbTO3e9+6qJyIsPHkvCedP65Q64Oy32DwQYslL8c
-        e82VEQI0LwgMccp8qa2Vkrhu24HDc5UhQz7DDlLYOZh5tH+blbWUkBKHD9GreIDC
-        EZPQwTBxvp78kbmDo9OIQQ9EGGc9Q==
-X-ME-Sender: <xms:2Hz4Xyygb5ALVC2zRLGetqstJAQq3tS35weGdtGX4sAL0d7mduVtWA>
-    <xme:2Hz4X8MCOPAcDIe_gDYLSX_iJXyVBbZZ96s1pKCcZovEmzC5WmFyK9TCqL93eMWBr
-    NGJh6v2WmmAcNb6PA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeghedgudduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
-    hedtfeevuedvnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
-    nhgurdhorhhg
-X-ME-Proxy: <xmx:2Hz4X2qgiTcaEwvYw6uVla6NUcEx8I-_kvGBPC1YZ4z1v6zIk8MGhg>
-    <xmx:2Hz4X9HjM2I1uPAeUucN3pEJ_zHVUCzN3AtvqEyc9T9pqdLYWo1mIg>
-    <xmx:2Hz4X7o1X5Vf0qYr4A991OBIpA1R1aANgrv_rTsrm4PFU66fGuOR1g>
-    <xmx:2nz4X4W9LV3y_UKja-NN2IDrw06VPxZcXzWv1PKyhoBIfCgVb1TyQw>
-Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id AD8F11080059;
-        Fri,  8 Jan 2021 10:40:07 -0500 (EST)
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-References: <20210103103101.33603-1-samuel@sholland.org>
- <20210103103101.33603-2-samuel@sholland.org>
- <20210108094453.7uk5lj6j6gdmydiw@gilmour>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v3 01/10] dt-bindings: irq: sun6i-r: Split the binding
- from sun7i-nmi
-Message-ID: <e6ab1926-e69d-1e66-32d8-19870625ee17@sholland.org>
-Date:   Fri, 8 Jan 2021 09:40:09 -0600
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1727885AbhAHP7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 10:59:12 -0500
+Received: from foss.arm.com ([217.140.110.172]:53472 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727910AbhAHP7M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Jan 2021 10:59:12 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA76331B;
+        Fri,  8 Jan 2021 07:58:26 -0800 (PST)
+Received: from [192.168.1.179] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4C6F83F70D;
+        Fri,  8 Jan 2021 07:58:25 -0800 (PST)
+Subject: Re: [PATCH v2 2/2] arm64: dts: mt8192: Add node for the Mali GPU
+To:     Nick Fan <Nick.Fan@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20210105053632.5476-1-Nick.Fan@mediatek.com>
+ <20210105053632.5476-2-Nick.Fan@mediatek.com>
+From:   Steven Price <steven.price@arm.com>
+Message-ID: <3d3bf91a-92b0-385c-b7c1-35af7732f05f@arm.com>
+Date:   Fri, 8 Jan 2021 15:58:24 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210108094453.7uk5lj6j6gdmydiw@gilmour>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210105053632.5476-2-Nick.Fan@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/8/21 3:44 AM, Maxime Ripard wrote:
-> Hi Samuel,
+On 05/01/2021 05:36, Nick Fan wrote:
+> Add a basic GPU node for mt8192.
 > 
-> Thanks a lot for working on this
+> Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
+> ---
+> This patch depends on Mediatek power and regulator support.
 > 
-> I'm fine with the rest of the work, but I have a couple of questions
+> Listed as following.
 > 
-> On Sun, Jan 03, 2021 at 04:30:52AM -0600, Samuel Holland wrote:
->> The R_INTC in the A31 and newer sun8i/sun50i SoCs has additional
->> functionality compared to the sun7i/sun9i NMI controller. Among other
->> things, it multiplexes up to 128 interrupts corresponding to (and in
->> parallel to) the first 128 GIC SPIs. This means the NMI is no longer the
->> lowest-numbered interrupt, since it is SPI 32 or 96 (depending on SoC).
->>
->> To allow access to all multiplexed IRQs, the R_INTC requires a new
->> binding where the interrupt number matches the GIC interrupt number.
->> For simplicity, copy the three-cell GIC binding; this disambiguates
->> interrupt 0 in the old binding (the NMI) from interrupt 0 in the new
->> binding (SPI 0) by the number of cells.
+> [1]https://lore.kernel.org/patchwork/patch/1336293/
+> [2]https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
+> [3]https://lore.kernel.org/patchwork/patch/1356037/
+> [4]https://patchwork.kernel.org/project/linux-mediatek/list/?series=405777
+> [5]https://lore.kernel.org/patchwork/patch/1356175/
+> [6]https://patchwork.kernel.org/project/linux-mediatek/patch/1605700894-32699-6-git-send-email-hsin-hsiung.wang@mediatek.com/
+> [7]https://patchwork.kernel.org/project/linux-mediatek/patch/1608104827-7937-10-git-send-email-hsin-hsiung.wang@mediatek.com/
+> ---
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192-evb.dts |   7 +
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi    | 176 ++++++++++++++++++++
+>   2 files changed, 183 insertions(+)
 > 
-> It's not really clear to me what the ambiguity is between the NMI and
-> the SPI 0 interrupt?
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
+> index 6c1e2b3e8a60..48c0e240dd92 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
+> @@ -5,6 +5,7 @@
+>    */
+>   /dts-v1/;
+>   #include "mt8192.dtsi"
+> +#include "mt6359.dtsi"
+>   
+>   / {
+>   	model = "MediaTek MT8192 evaluation board";
+> @@ -70,6 +71,12 @@
+>   	};
+>   };
+>   
+> +&gpu {
+> +	supply-names = "mali","sram";
+> +	mali-supply = <&mt6315_7_vbuck1>;
+> +	sram-supply = <&mt6359_vsram_others_ldo_reg>;
+> +};
+> +
+>   &uart0 {
+>   	status = "okay";
+>   };
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index d6a4ad242a33..de166ea750af 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -822,6 +822,182 @@
+>   			#clock-cells = <1>;
+>   		};
+>   
+> +		gpu: mali@13000000 {
+> +			compatible = "mediatek,mt8192-mali", "arm,mali-valhall";
+> +			reg = <0 0x13000000 0 0x4000>;
+> +			interrupts =
+> +				<GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				<GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				<GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				<GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				<GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			interrupt-names =
+> +				"GPU",
+> +				"MMU",
+> +				"JOB",
+> +				"EVENT",
+> +				"PWR";
 
-Here's the ASCII art I will include in v4:
+These interrupt names don't match the binding you've posted (GPU, MMU, 
+JOB are upper case here, lower case in the binding). Also EVENT and PWR 
+are not mentioned in the binding - should they be?
 
-            NMI IRQ               DIRECT IRQs          MUXED IRQs
-             bit 0                 bits 1-18           bits 19-31
+I know there are differences here between kbase's requirements and the 
+existing upstream bindings (case specifically), but I haven't seen a 
+binding containing EVENT and PWR before.
 
-  +---------+                     +---------+   +---------+  +---------+
-  | NMI Pad |                     |  IRQ d  |   |  IRQ m  |  | IRQ m+7 |
-  +---------+                     +---------+   +---------+  +---------+
-       |                            |     |        |    |      |    |
-       |                            |     |        |    |......|    |
-+------V------+ +-------------+     |     |        | +--V------V--+ |
-|   Invert/   | |    Write    |     |     |        | |  AND with  | |
-| Edge Detect | |  PENDING[0] |     |     |        | |  MUX[m/8]  | |
-+-------------+ +-------------+     |     |        | +------------+ |
-           |       |                |     |        |       |        |
-        +--V-------V--+          +--V--+  |     +--V--+    |     +--V--+
-        | Set    Reset|          | GIC |  |     | GIC |    |     | GIC |
-        |    Latch    |          | SPI |  |     | SPI |... |  ...| SPI |
-        +-------------+          | N+d |  |     |  m  |    |     | m+7 |
-            |     |              +-----+  |     +-----+    |     +-----+
-            |     |                       |                |
-    +-------V-+ +-V-----------+ +---------V---+  +---------V----------+
-    | GIC SPI | |   AND with  | |   AND with  |  |      AND with      |
-    | N (=32) | |  ENABLE[0]  | |  ENABLE[d]  |  |   ENABLE[19+m/8]   |
-    +---------+ +-------------+ +-------------+  +--------------------+
-                       |               |                   |
-                +------V------+ +------V------+  +---------V----------+
-                |    Read     | |    Read     |  |       Read         |
-                |  PENDING[0] | |  PENDING[d] |  |   PENDING[19+m/8]  |
-                +-------------+ +-------------+  +--------------------+
+Steve
 
-There are two overlapping ranges of IRQs supported by the controller,
-and so there are two different IRQs you could call "IRQ 0":
-  - Bit 0 of PENDING/ENABLE/MASK, aka d==0, the NMI
-    - This maps to bit 32 of the MUX register range (SPI 32)
-    - This is what the old binding calls "IRQ 0"
-  - Bit 0 of MUX, aka m==0, aka SPI 0, the UART0 IRQ
-    - This maps to bit 19 of PENDING/ENABLE/MASK
-    - This is what the new binding calls "IRQ 0"
-
-You can see this insertion in the middle of the MUX range when looking
-at the mask of implemented MUX bits in the A31 variant:
-  0xffffffff,
-  0xfff80000, <<< this gap here is for the 19 direct IRQs
-  0xffffffff,
-  0x0000000f,
-
-If you call the NMI "IRQ 0", then there is no way to specify the muxed
-IRQs. SPI 0 maps to bit 19, but so do SPI 1-7. So if I was to specify
-"IRQ 19", you wouldn't know which of those 8 muxed SPIs I am referring to.
-
-On the other hand, if you call the first muxed IRQ "IRQ 0", then there
-is an unambiguous number for every interrupt supported by this driver.
-
-> In general, it looks like switching to a 3-cell binding with the GIC SPI
-> value looks weird to me, since the GIC isn't the parent at all of these
-> interrupts.
-
-The GIC is *a* parent of all of these interrupts, and is *the* parent of
-the NMI.
-
-> If the ambiguity is that a stacked irqchip driver needs to have the same
-> interrupt number than the GIC, and that the 0 interrupt for the NMI
-> controller (used by the PMIC) and is actually the 32 (or 96) GIC
-> interrupt and thus breaks that requirement, can't we fix this in the
-> driver based on the compatible?
-
-No, while the NMI is direct "IRQ 0" at this irqchip, it is *also* muxed
-"IRQ 32" at this same irqchip.
-
-> Something like if the interrupt number is 0, with a A31 or newer
-> compatible, then add the proper offset in sun6i_r_intc_domain_alloc?
-
-If you translate 0 to 32, then you cannot represent muxed IRQ 0 (the
-UART0 IRQ) at all.
-
-> Maxime
-
-Cheers,
-Samuel
+> +
+> +			clocks =
+> +				<&apmixedsys CLK_APMIXED_MFGPLL>,
+> +				<&topckgen CLK_TOP_MFG_PLL_SEL>,
+> +				<&topckgen CLK_TOP_MFG_REF_SEL>,
+> +				<&mfgcfg CLK_MFG_BG3D>;
+> +			clock-names =
+> +				"clk_main_parent",
+> +				"clk_mux",
+> +				"clk_sub_parent",
+> +				"subsys_mfg_cg";
+> +
+> +			power-domains =
+> +				<&scpsys MT8192_POWER_DOMAIN_MFG2>,
+> +				<&scpsys MT8192_POWER_DOMAIN_MFG3>,
+> +				<&scpsys MT8192_POWER_DOMAIN_MFG4>,
+> +				<&scpsys MT8192_POWER_DOMAIN_MFG5>,
+> +				<&scpsys MT8192_POWER_DOMAIN_MFG6>;
+> +			power-domain-names = "core0",
+> +					     "core1",
+> +					     "core2",
+> +					     "core3",
+> +					     "core4";
+> +
+> +			operating-points-v2 = <&gpu_opp_table>;
+> +			#cooling-cells = <2>;
+> +		};
+> +
+> +		gpu_opp_table: opp_table0 {
+> +			compatible = "operating-points-v2";
+> +			opp-shared;
+> +
+> +			opp-358000000 {
+> +				opp-hz = /bits/ 64 <358000000>;
+> +				opp-hz-real = /bits/ 64 <358000000>,
+> +					      /bits/ 64 <358000000>;
+> +				opp-microvolt = <606250>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-399000000 {
+> +				opp-hz = /bits/ 64 <399000000>;
+> +				opp-hz-real = /bits/ 64 <399000000>,
+> +					      /bits/ 64 <399000000>;
+> +				opp-microvolt = <618750>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-440000000 {
+> +				opp-hz = /bits/ 64 <440000000>;
+> +				opp-hz-real = /bits/ 64 <440000000>,
+> +					      /bits/ 64 <440000000>;
+> +				opp-microvolt = <631250>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-482000000 {
+> +				opp-hz = /bits/ 64 <482000000>;
+> +				opp-hz-real = /bits/ 64 <482000000>,
+> +					      /bits/ 64 <482000000>;
+> +				opp-microvolt = <643750>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-523000000 {
+> +				opp-hz = /bits/ 64 <523000000>;
+> +				opp-hz-real = /bits/ 64 <523000000>,
+> +					      /bits/ 64 <523000000>;
+> +				opp-microvolt = <656250>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-564000000 {
+> +				opp-hz = /bits/ 64 <564000000>;
+> +				opp-hz-real = /bits/ 64 <564000000>,
+> +					      /bits/ 64 <564000000>;
+> +				opp-microvolt = <668750>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-605000000 {
+> +				opp-hz = /bits/ 64 <605000000>;
+> +				opp-hz-real = /bits/ 64 <605000000>,
+> +					      /bits/ 64 <605000000>;
+> +				opp-microvolt = <681250>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-647000000 {
+> +				opp-hz = /bits/ 64 <647000000>;
+> +				opp-hz-real = /bits/ 64 <647000000>,
+> +					      /bits/ 64 <647000000>;
+> +				opp-microvolt = <693750>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-688000000 {
+> +				opp-hz = /bits/ 64 <688000000>;
+> +				opp-hz-real = /bits/ 64 <688000000>,
+> +					      /bits/ 64 <688000000>;
+> +				opp-microvolt = <706250>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-724000000 {
+> +				opp-hz = /bits/ 64 <724000000>;
+> +				opp-hz-real = /bits/ 64 <724000000>,
+> +					      /bits/ 64 <724000000>;
+> +				opp-microvolt = <725000>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-760000000 {
+> +				opp-hz = /bits/ 64 <760000000>;
+> +				opp-hz-real = /bits/ 64 <760000000>,
+> +					      /bits/ 64 <760000000>;
+> +				opp-microvolt = <743750>,
+> +						<750000>;
+> +			};
+> +
+> +			opp-795000000 {
+> +				opp-hz = /bits/ 64 <795000000>;
+> +				opp-hz-real = /bits/ 64 <795000000>,
+> +					      /bits/ 64 <795000000>;
+> +				opp-microvolt = <762500>,
+> +						<762500>;
+> +			};
+> +
+> +			opp-831000000 {
+> +				opp-hz = /bits/ 64 <831000000>;
+> +				opp-hz-real = /bits/ 64 <831000000>,
+> +					      /bits/ 64 <831000000>;
+> +				opp-microvolt = <781250>,
+> +						<781250>;
+> +			};
+> +
+> +			opp-855000000 {
+> +				opp-hz = /bits/ 64 <855000000>;
+> +				opp-hz-real = /bits/ 64 <855000000>,
+> +					      /bits/ 64 <855000000>;
+> +				opp-microvolt = <793750>,
+> +						<793750>;
+> +			};
+> +
+> +			opp-902000000 {
+> +				opp-hz = /bits/ 64 <902000000>;
+> +				opp-hz-real = /bits/ 64 <902000000>,
+> +					      /bits/ 64 <902000000>;
+> +				opp-microvolt = <818750>,
+> +						<818750>;
+> +			};
+> +
+> +			opp-950000000 {
+> +				opp-hz = /bits/ 64 <950000000>;
+> +				opp-hz-real = /bits/ 64 <950000000>,
+> +					      /bits/ 64 <950000000>;
+> +				opp-microvolt = <843750>,
+> +						<843750>;
+> +			};
+> +		};
+> +
+>   		mfgcfg: syscon@13fbf000 {
+>   			compatible = "mediatek,mt8192-mfgcfg", "syscon";
+>   			reg = <0 0x13fbf000 0 0x1000>;
+> 
 
