@@ -2,82 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3DE32EEB1B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 02:49:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C24542EEB3C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:24:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730023AbhAHBs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 20:48:57 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:37108 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729812AbhAHBs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 20:48:56 -0500
-X-UUID: 729c725f5e6242db9551a4ee653bd7bd-20210108
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=NPP5jpMnteAgsJpkoNqsMUTLM/8AlhOp/XPWd4WayzM=;
-        b=aupKRcA3tCWLDs1A4m1gsP2wep+Lkr9qQ7DtVqvjgrg+uMwDFXNFg+0K28SyvrMW5FgFJXfFsi2Aiw04lRp13IxGKiPTbyvTQRKDuZp7kJf9jtCoJSF6OKJc71au9cChr/0wMNUZRkaeJuJuoO65wq68p5JE9MXTisQoLz6H2OA=;
-X-UUID: 729c725f5e6242db9551a4ee653bd7bd-20210108
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 488800082; Fri, 08 Jan 2021 09:48:09 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs08n2.mediatek.inc
- (172.21.101.56) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 8 Jan
- 2021 09:48:06 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 8 Jan 2021 09:48:05 +0800
-Message-ID: <1610070485.1574.10.camel@mhfsdcap03>
-Subject: Re: [PATCH v2] soc: mediatek: cmdq: add address shift in jump
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        id S1726477AbhAHCYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 21:24:09 -0500
+Received: from mail-io1-f49.google.com ([209.85.166.49]:43717 "EHLO
+        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726323AbhAHCYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:24:09 -0500
+Received: by mail-io1-f49.google.com with SMTP id o6so8262877iob.10;
+        Thu, 07 Jan 2021 18:23:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=46COOYJFwiikLQxeBamcVbHyY1w+rFmKpta5G7UHgSs=;
+        b=PxcLwIFPq1bgoubYyAoEcfw4i+5RnttlbpE+mw8NauP73vyyDA0fTn7Tw5HZu0VW5V
+         PfBS4crt8QtIXmupcVBXiZNNv17dO9gw+U9LJtzGR2QmqCF9lGWLuy4EvMsWcZ1hsvB9
+         PgE3YnLX4wgGHOg38vcO4a23JxEukVXUkQ+3TIbkhNpX6IpInGSDQEhrAxWUNPAAGCzR
+         DrL9L9258Q7pPXy1Kvsnr8r8tJ0oqYujTBRhL6GVBNaSVgqrrGyrhWZ53ByrEc9emscD
+         OO1Wdrrgcnzt1JH3MBp8coVsxlstQR5Rk53gZTD8iU81JouD28+l0wjOKUoCKK8qrT8g
+         W5UQ==
+X-Gm-Message-State: AOAM533lV9eoIAVWJXrEVcXSXdXzP0lx/lX4P/WxWEKvwit7UW/R/6j/
+        NGosZycAkWH7DiHIAO9tSA==
+X-Google-Smtp-Source: ABdhPJyn6H73R/SbxXAgrTxveLGEo9Z73WV8lfXf6/RMmobdcn+6WbTVkzvVZqS+ilzx8Vu/ATWZfA==
+X-Received: by 2002:a5d:9e41:: with SMTP id i1mr3734219ioi.104.1610072608333;
+        Thu, 07 Jan 2021 18:23:28 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id b13sm4467219ils.54.2021.01.07.18.23.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 18:23:27 -0800 (PST)
+Received: (nullmailer pid 1743696 invoked by uid 1000);
+        Fri, 08 Jan 2021 02:23:23 -0000
+Date:   Thu, 7 Jan 2021 19:23:23 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        <damon.chu@mediatek.com>, <dennis-yc.hsieh@mediatek.com>
-Date:   Fri, 8 Jan 2021 09:48:05 +0800
-In-Reply-To: <1608712499-24956-2-git-send-email-yongqiang.niu@mediatek.com>
-References: <1608712499-24956-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1608712499-24956-2-git-send-email-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        David Jander <david@protonic.nl>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/5] dt-bindings: vendor-prefixes: Add an entry for
+ Kverneland Group
+Message-ID: <20210108022323.GA1742887@robh.at.kernel.org>
+References: <20210107100831.30389-1-o.rempel@pengutronix.de>
+ <20210107100831.30389-2-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 68847612D0C798759DAC2DE39BDF7DDFAD4EDA6D3284292B08F310D98A8DC2A62000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210107100831.30389-2-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIwLTEyLTIzIGF0IDE2OjM0ICswODAwLCBZb25ncWlhbmcgTml1IHdyb3RlOg0K
-PiBBZGQgYWRkcmVzcyBzaGlmdCB3aGVuIGNvbXBvc2UganVtcCBpbnN0cnVjdGlvbg0KPiB0byBj
-b21wYXRpYmxlIHdpdGggMzViaXQgZm9ybWF0Lg0KPiANCj4gRml4ZXM6IDA4NThmZGU0OTZmOCAo
-Im1haWxib3g6IGNtZHE6IHZhcmlhYmxpemUgYWRkcmVzcyBzaGlmdCBpbiBwbGF0Zm9ybSIpDQo+
-IA0KPiBTaWduZWQtb2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVr
-LmNvbT4NCj4gUmV2aWV3ZWQtYnk6IE5pY29sYXMgQm9pY2hhdCA8ZHJpbmtjYXRAY2hyb21pdW0u
-b3JnPg0KPiAtLS0NCj4gIGRyaXZlcnMvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmMgfCAzICsr
-LQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiAN
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmMgYi9kcml2
-ZXJzL21haWxib3gvbXRrLWNtZHEtbWFpbGJveC5jDQo+IGluZGV4IDU2NjViNmUuLjc1Mzc4ZTMg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmMNCj4gKysr
-IGIvZHJpdmVycy9tYWlsYm94L210ay1jbWRxLW1haWxib3guYw0KPiBAQCAtMTY4LDcgKzE2OCw4
-IEBAIHN0YXRpYyB2b2lkIGNtZHFfdGFza19pbnNlcnRfaW50b190aHJlYWQoc3RydWN0IGNtZHFf
-dGFzayAqdGFzaykNCj4gIAlkbWFfc3luY19zaW5nbGVfZm9yX2NwdShkZXYsIHByZXZfdGFzay0+
-cGFfYmFzZSwNCj4gIAkJCQlwcmV2X3Rhc2stPnBrdC0+Y21kX2J1Zl9zaXplLCBETUFfVE9fREVW
-SUNFKTsNCj4gIAlwcmV2X3Rhc2tfYmFzZVtDTURRX05VTV9DTUQocHJldl90YXNrLT5wa3QpIC0g
-MV0gPQ0KPiAtCQkodTY0KUNNRFFfSlVNUF9CWV9QQSA8PCAzMiB8IHRhc2stPnBhX2Jhc2U7DQo+
-ICsJCSh1NjQpQ01EUV9KVU1QX0JZX1BBIDw8IDMyIHwNCj4gKwkJKHRhc2stPnBhX2Jhc2UgPj4g
-dGFzay0+Y21kcS0+c2hpZnRfcGEpOw0KPiAgCWRtYV9zeW5jX3NpbmdsZV9mb3JfZGV2aWNlKGRl
-diwgcHJldl90YXNrLT5wYV9iYXNlLA0KPiAgCQkJCSAgIHByZXZfdGFzay0+cGt0LT5jbWRfYnVm
-X3NpemUsIERNQV9UT19ERVZJQ0UpOw0KPiAgDQoNCmhpIGphc3NpDQoNCnBsZWFzZSBjb25maXJt
-IGlzIHRoZXJlIGFueSBxdWVzdGlvbiBhYm91dCB0aGlzIHBhdGNoLg0KaWYgbm90LCBwbGVhc2Ug
-YXBwbHkgdGhpcyBpbnRvIG5leHQgdmVyc2lvbiwgdGtzDQo=
+On Thu, 07 Jan 2021 11:08:27 +0100, Oleksij Rempel wrote:
+> Add "kvg" entry for Kverneland Group: https://ien.kvernelandgroup.com/
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
 
