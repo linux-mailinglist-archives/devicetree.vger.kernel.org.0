@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 900E72EF267
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 13:19:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 844AB2EF25E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 13:19:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727895AbhAHMRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 07:17:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34284 "EHLO
+        id S1728082AbhAHMST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 07:18:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727760AbhAHMRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 07:17:07 -0500
-Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C3DC061240
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 04:15:57 -0800 (PST)
-Received: by mail-qk1-x749.google.com with SMTP id e25so9162955qka.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 04:15:57 -0800 (PST)
+        with ESMTP id S1728086AbhAHMRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 07:17:32 -0500
+Received: from mail-wr1-x44a.google.com (mail-wr1-x44a.google.com [IPv6:2a00:1450:4864:20::44a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B0FC061242
+        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 04:16:00 -0800 (PST)
+Received: by mail-wr1-x44a.google.com with SMTP id n11so4070910wro.7
+        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 04:15:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=Qr6fo9oQ1pXE+2ggRpUPc27A93CFNZ1q8V/bSIAa7vQ=;
-        b=Lgsjd8FEXR/txZoyV8WuF4f0d4YJhY9e1uIwY2ZKBxuqtEnQJg33daGu1ILE6X1yVm
-         3bmI+xMaWKSUxl2SagC/g4n5Md9L7G3vxikeo+mdAU7BfccT5W+kxzU5S7UG3feLKbme
-         ERxijuVD+57qQr/KtwpIs8VkMV1mg6FWqyYzHjswMh2hCX94sLdVeK/2UtrPFh000pBo
-         Wat+4kpdcMUp41zMURoOa/5m18zhBYzly85HHjcR5ZjnghiaHqmXLElzNX1WkR3dAuv3
-         zJfl09gvrPAlyBaybMTEqu+Yz+UH5M+Wv3AdrSOkrKLW83DqbiuFH6Ipyx6juV7+q36G
-         PnNA==
+        bh=7wQIE5XecZh/pAi+A9ahJ0JiP2BIW9kKktEGdKjk9KE=;
+        b=A8PxRTnMwBpbyy3mjy7HcZVKT4lcOkB6tCxDtqR0LOEWgzLXSW1lJKcuTnVfX5uu1/
+         jEpCOtIwnUA6Uui3Zv+q3w+TGLuWznDsE+qg8r9wx5p29uGmwnaWocLUmC/y6c+VyPQR
+         JXTLKVSCPBeri30E44X4gWfFGk6vhc8hUAWuFi91Y/XmSgxFa9zzwfapa5aRNyF0pqcX
+         W+FbQGjkGPLb6qITvlNZvexo7Qlg1gJ/bFXZdVD0DPrawILRu3CDrLNQmjmLAQBP+SE7
+         aXSaZX+KY+NRDYk5QN4FYmPthdCftGMPdExRyClSUnhfXCNXEl/a/ZGyv9b8Z98mpNJ/
+         y2aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=Qr6fo9oQ1pXE+2ggRpUPc27A93CFNZ1q8V/bSIAa7vQ=;
-        b=HVyU3hkfoLiqUUa2WDyjzi8mfqfJxR2Tun3dP9hHi5OLJAZrP/SLZn6rnbR1oy0tlQ
-         zAYwOfanCl9zJzvRUyqEipbTR8G90sgerrSwocjrNSv59eRNwLC4GYuwxUSq9zvsz6DS
-         rUtGNW29bc6nYtjqhPjYxPHV/VdvOUhaNYotRLBU2El9HMnz6q392z1zwyXNai73PSOV
-         VO1H+3VgRXld7EaFc8oP7H90q23dzBIhCAfk7yC9xmJN9Y0bXk5fAoqzvwR4rOeiiDYi
-         hL7GL3kzAXPPtoOJHq3j9gTmgijOAvRKer0uMZQOOSWpnTo5PvOOUFpu+lnFcc8kA0Y/
-         4sIw==
-X-Gm-Message-State: AOAM533EK38GxFVh1d961Gmk3yndeW37nwI+fOdD5BbXNB1qiUarM9X3
-        kY2AkgVORxL+g+9NbpGYiAlmXflxmsOT
-X-Google-Smtp-Source: ABdhPJzRr7svgpB722+nCLZgCDSVanauE2weLVt/XbLAdLhD6Eu5KBqqXCwGoYrf6841yPmBUrW5blfOV65g
+        bh=7wQIE5XecZh/pAi+A9ahJ0JiP2BIW9kKktEGdKjk9KE=;
+        b=OAhNCYGfAL3y9zFmVyLznK3y61hzc5H5ThfSzc7xL+gJkucAYx9uBG4SfHKm/JCybA
+         A+0ZWg5wFZTleOAjYjhEpJg7yhcFHeGl8HvsbtV/sSeW9UVTv9IoCCwr9mEOKyWpmBoA
+         ffKZqLkZx8JEUNXGGQGoJhiQhy3aWwINJLY7nGjbOAoI+3gF4kG8G/x7U0biUwCoyiSq
+         Ko/aZn9SVzsjvHGwAAHyh/Em1ZenmSqt2hix4JMk58PeFAz06o7MZiBVWoILTq9AMuDK
+         VPH/dVJb7MaxPs8fKIkGEEa0kGkuWuR7MC6DIxb68c3CplvuC/I3lMittp8B2vU5xEON
+         eWOQ==
+X-Gm-Message-State: AOAM531uDq2WgOuqEFWfo4lmE61DJXlq2ScuocTp/atOydJSZJFcKrLA
+        QUgL5JxtrWJOUjUaPyn75xbdV6zyC3Ut
+X-Google-Smtp-Source: ABdhPJzSE1Qnh3bmoUiNpT3+OMdMwVfkpG80eqm+sA8SoXeBjeN9dqGurdaqfhYzIGM73v4r+iFahg4hIkFI
 Sender: "qperret via sendgmr" <qperret@r2d2-qp.c.googlers.com>
 X-Received: from r2d2-qp.c.googlers.com ([fda3:e722:ac3:10:28:9cb1:c0a8:1652])
- (user=qperret job=sendgmr) by 2002:a0c:edab:: with SMTP id
- h11mr3057028qvr.23.1610108156221; Fri, 08 Jan 2021 04:15:56 -0800 (PST)
-Date:   Fri,  8 Jan 2021 12:15:12 +0000
+ (user=qperret job=sendgmr) by 2002:a7b:c044:: with SMTP id
+ u4mr1783959wmc.1.1610108158307; Fri, 08 Jan 2021 04:15:58 -0800 (PST)
+Date:   Fri,  8 Jan 2021 12:15:13 +0000
 In-Reply-To: <20210108121524.656872-1-qperret@google.com>
-Message-Id: <20210108121524.656872-15-qperret@google.com>
+Message-Id: <20210108121524.656872-16-qperret@google.com>
 Mime-Version: 1.0
 References: <20210108121524.656872-1-qperret@google.com>
 X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
-Subject: [RFC PATCH v2 14/26] KVM: arm64: Factor out vector address calculation
+Subject: [RFC PATCH v2 15/26] of/fdt: Introduce early_init_dt_add_memory_hyp()
 From:   Quentin Perret <qperret@google.com>
 To:     Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
@@ -71,57 +71,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to re-map the guest vectors at EL2 when pKVM is enabled,
-refactor __kvm_vector_slot2idx() and kvm_init_vector_slot() to move all
-the address calculation logic in a static inline function.
+Introduce early_init_dt_add_memory_hyp() to allow KVM to conserve a copy
+of the memory regions parsed from DT. This will be needed in the context
+of the protected nVHE feature of KVM/arm64 where the code running at EL2
+will be cleanly separated from the host kernel during boot, and will
+need its own representation of memory.
 
 Signed-off-by: Quentin Perret <qperret@google.com>
 ---
- arch/arm64/include/asm/kvm_mmu.h | 8 ++++++++
- arch/arm64/kvm/arm.c             | 9 +--------
- 2 files changed, 9 insertions(+), 8 deletions(-)
+ drivers/of/fdt.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/include/asm/kvm_mmu.h b/arch/arm64/include/asm/kvm_mmu.h
-index e52d82aeadca..d7ebd73ec86f 100644
---- a/arch/arm64/include/asm/kvm_mmu.h
-+++ b/arch/arm64/include/asm/kvm_mmu.h
-@@ -195,6 +195,14 @@ phys_addr_t kvm_mmu_get_httbr(void);
- phys_addr_t kvm_get_idmap_vector(void);
- int kvm_mmu_init(void);
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 4602e467ca8b..af2b5a09c5b4 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1099,6 +1099,10 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+ #define MAX_MEMBLOCK_ADDR	((phys_addr_t)~0)
+ #endif
  
-+static inline void *__kvm_vector_slot2addr(void *base,
-+					   enum arm64_hyp_spectre_vector slot)
++void __init __weak early_init_dt_add_memory_hyp(u64 base, u64 size)
 +{
-+	int idx = slot - (slot != HYP_VECTOR_DIRECT);
-+
-+	return base + (idx * SZ_2K);
 +}
 +
- struct kvm;
- 
- #define kvm_flush_dcache_to_poc(a,l)	__flush_dcache_area((a), (l))
-diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-index 9fd769349e9e..6af9204bcd5b 100644
---- a/arch/arm64/kvm/arm.c
-+++ b/arch/arm64/kvm/arm.c
-@@ -1346,16 +1346,9 @@ static unsigned long nvhe_percpu_order(void)
- /* A lookup table holding the hypervisor VA for each vector slot */
- static void *hyp_spectre_vector_selector[BP_HARDEN_EL2_SLOTS];
- 
--static int __kvm_vector_slot2idx(enum arm64_hyp_spectre_vector slot)
--{
--	return slot - (slot != HYP_VECTOR_DIRECT);
--}
--
- static void kvm_init_vector_slot(void *base, enum arm64_hyp_spectre_vector slot)
+ void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
  {
--	int idx = __kvm_vector_slot2idx(slot);
--
--	hyp_spectre_vector_selector[slot] = base + (idx * SZ_2K);
-+	hyp_spectre_vector_selector[slot] = __kvm_vector_slot2addr(base, slot);
+ 	const u64 phys_offset = MIN_MEMBLOCK_ADDR;
+@@ -1139,6 +1143,7 @@ void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
+ 		base = phys_offset;
+ 	}
+ 	memblock_add(base, size);
++	early_init_dt_add_memory_hyp(base, size);
  }
  
- static int kvm_init_vector_slots(void)
+ int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
 -- 
 2.30.0.284.gd98b1dd5eaa7-goog
 
