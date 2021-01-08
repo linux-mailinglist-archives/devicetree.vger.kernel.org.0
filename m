@@ -2,101 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B232EF2A3
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 13:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DECBB2EF2B6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 13:58:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725836AbhAHMsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 07:48:32 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:40734 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725817AbhAHMsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 07:48:32 -0500
-Received: by mail-ot1-f43.google.com with SMTP id j12so9505421ota.7;
-        Fri, 08 Jan 2021 04:48:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X1+MciefbFYchiFVRX8BkaWe9O4pIYQazrMh5q9VfEQ=;
-        b=km/inHl3mXa2SHdJAcdslkH6kh+ioyVZuNdxXYZ+Y25QiwCDJuDIqN9Pl2VYB/MRpi
-         Jg/z9WWFS/XsqRLZMEtb6sHc+HJevp4q1wgkezIp+6R4PMlZKUJVjHVz/oxs79lJI9gz
-         +tGg15fcv6IEB7AhLYNDRLA0nLYlRTaTRfV7L/jk5vIo8+aaCsDQn/rqWTJ+BzRlrVMR
-         7ChW6AzkkhfJmK5U9dervrumLK5R9jCb4nWNq/C/An2X/BkiqeUYAwxitoZi+BjZ2UDU
-         yiL22ZPQly5/QSvwir1+FzMvwGWy+cS/sLuL48pfXxa/oWIKy9DRhhG/czRBThZRb89V
-         IVDg==
-X-Gm-Message-State: AOAM532AuzOGu2iDn+z0XF7SgIxr3u6jUeIQutM9xzpt4Sz8wcnWfF0J
-        ZA6x6aE8wSqnl7y/OKEJ/pgURNaqq58q7Uk46pg=
-X-Google-Smtp-Source: ABdhPJy84uDYp1M3oPhW4hWuXypttMIU3cvbZFCKQX9IeU4EMR0zmIXnG0Whg5oAqRyF4bXOZzof7q1874d0uQX4RPE=
-X-Received: by 2002:a9d:c01:: with SMTP id 1mr2392614otr.107.1610110071606;
- Fri, 08 Jan 2021 04:47:51 -0800 (PST)
+        id S1726720AbhAHM54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 07:57:56 -0500
+Received: from honk.sigxcpu.org ([24.134.29.49]:44914 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725816AbhAHM54 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Jan 2021 07:57:56 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 73AE8FB07;
+        Fri,  8 Jan 2021 13:57:13 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id h7VCpUe-W-dd; Fri,  8 Jan 2021 13:57:11 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 8C0B640885; Fri,  8 Jan 2021 13:57:10 +0100 (CET)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Martin Kepplinger <martink@posteo.de>,
+        Angus Ainslie <angus@akkea.ca>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Vinod Koul <vkoul@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org
+Subject: [PATCH v3 0/4] Config and device tree updates for the Librem 5 development kit
+Date:   Fri,  8 Jan 2021 13:57:06 +0100
+Message-Id: <cover.1610110514.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20201227174202.40834-1-wsa+renesas@sang-engineering.com> <20201227174202.40834-6-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20201227174202.40834-6-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 8 Jan 2021 13:47:40 +0100
-Message-ID: <CAMuHMdUDm72KH+Bwub1VWoq_F2MwG2uzE7=rwg2yN_z9d=Nx7A@mail.gmail.com>
-Subject: Re: [PATCH 5/6] arm64: dts: renesas: r8a779a0: Add MMC node
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Takeshi Saito <takeshi.saito.xv@renesas.com>,
-        Koji Matsuoka <koji.matsuoka.xm@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+This enables more components to get a working display, panel, audio and
+sensors. It also updates some device tree bits to make mainline boot.
 
-On Sun, Dec 27, 2020 at 6:42 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> From: Takeshi Saito <takeshi.saito.xv@renesas.com>
->
-> Add a device node for MMC.
->
-> Signed-off-by: Koji Matsuoka <koji.matsuoka.xm@renesas.com>
-> [wsa: double checked & rebased]
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+I've skipped wifi (which needs some more driver work) and devfreq (since Martin
+is working on that).
 
-Thanks for your patch!
+The config changes don't depend on the DT parts so could be applied
+independently. The series was tested against next-20200108 and i made sure the
+defconfig changes also apply on top of Shawn's /imx/defconfig and the DT
+changes to Shawn's imx/dt64.
 
-> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> @@ -667,6 +667,18 @@ dmac1: dma-controller@e7350000 {
->                         /* placeholder */
->                 };
->
-> +               mmc0: mmc@ee140000 {
+changes from v2:
+- Add Reviewed-by from Krzysztof Kozlowski, thanks!
+- Add NXP PTN5110HQZ to defconfig
 
-Hmm, seems we use the mmc0 label on all V3[HMU] SoCs, but sdhiX on all
-other R-Car Gen3 SoCs...
+changes from v1:
+- as per review comments by Krzysztof Kozlowski <krzk@kernel.org>
+  https://lore.kernel.org/linux-arm-kernel/20201215091729.GC29321@kozik-lap/
+  - describe hardware parts not config options
+  - rework commit messages to give more details
+- don't keep buck3 always on but rather make sure the board
+  doesn't hang when resuming the gpu power domain.
+  There's a generic fix pending for that helps all boards
+  https://lore.kernel.org/lkml/beba25e85db20649aa040fc0ae549895c9265f6f.camel@fi.rohmeurope.com/
 
-> +                       compatible = "renesas,sdhi-r8a779a0",
-> +                                    "renesas,rcar-gen3-sdhi";
-> +                       reg = <0 0xee140000 0 0x2000>;
-> +                       interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cpg CPG_MOD 706>;
-> +                       power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-> +                       resets = <&cpg 706>;
-> +                       max-frequency = <200000000>;
-> +                       status = "disabled";
-> +               };
-> +
+Guido Günther (4):
+  arm64: defconfig: Enable Librem 5 devkit components
+  arm64: dts: imx8mq-librem5-devkit: Tweak pmic regulators
+  arm64: dts: imx8mq-librem5-devkit: Disable snvs_rtc
+  arm64: dts: imx8mq-librem5-devkit: Drop custom clock settings
 
-Anyway:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../dts/freescale/imx8mq-librem5-devkit.dts   | 20 ++++++++++++++-----
+ arch/arm64/configs/defconfig                  |  9 +++++++++
+ 2 files changed, 24 insertions(+), 5 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.29.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
