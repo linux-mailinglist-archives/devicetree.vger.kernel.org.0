@@ -2,86 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 717142EEF56
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D52B82EEF6F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:23:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727706AbhAHJTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 04:19:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34964 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726120AbhAHJTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:19:42 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083C8C0612F4;
-        Fri,  8 Jan 2021 01:19:02 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id t8so9094780iov.8;
-        Fri, 08 Jan 2021 01:19:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=K0UzHOd3okV0qpJMc682hFBfathXKjKul5nXUx2yUFc=;
-        b=F8f7tTd5RCkx2C4eh3Qvv9dClv2bZtMk3yyiFQQx74z0WQqkC3TBDn8Yf4geL8cTaF
-         ndytfDet/nngjB6Wis7vk27FHZ8mNuUHlTVii2bpCDGq8MrM8Flknior7qEVgvIzlqDf
-         Y96Z9QwPlV2dI16gKEMzFOdAIuS4VAkPBpj9pmYaV3/Npky3HQ5yqar+A0tDU+6lmQ88
-         pYGuA6e3bTSZOEqOjEcSYwppb/8mdcTiso6KDjtlPlwSCB1hTyJTSwxNkVxprH9iO+pd
-         tqNDFhjh7kpAYWRgePSKmB6YgS+v8Z8+WUNPBZk3mBBh+arxrnE77wCAwxnH63n/Y0DC
-         5C7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=K0UzHOd3okV0qpJMc682hFBfathXKjKul5nXUx2yUFc=;
-        b=jKTuXexB6CA6lFzc9OYijHwFSiP1UE/GzUeIJjLZmRWceBnCZ8/PwW0/lXO3QDUZN9
-         DSYGFTT55nPfwNeD6f/j4+ae2hYIvc3++q/ORlIKOxjeIWZOK9LrHMedZFSVqj02aezC
-         f1pyAl6GDvz1Gxg+qA4AMfUMxGhdXp82p7laoDirSylpT4xnut/L7bt3r+ymMGT/6LtP
-         9z04UIai/b1qPgPmD+f49MshU2dbeqWGWuajIgGOFwzyp1ZbBCCxx3MvLX7cQUI+Ox5y
-         CmhP8u5LVCfWGsMTGAQpfstuMWRQ4AqTGAxZFIOnmGmBzfLeHHTW9D4KKg3yVVUKBv5C
-         ZgLQ==
-X-Gm-Message-State: AOAM5332ED25lCByUWub96Mf2R6lJPBkJPbYJHL/KTRDfgfnlTn3lHJq
-        +bomgjXz0zoc6EComz7Rtfe/VfvHAqQ0Xupxa7w=
-X-Google-Smtp-Source: ABdhPJyfjLwgvHCGe6CncF0auRwlIUDRFyy4qz1UYNc+B5B0sgSfo5G7aPXzeVtJYm+wsjlb0rJtWZX+RmqLQs2yFpA=
-X-Received: by 2002:a02:3f62:: with SMTP id c34mr2662497jaf.16.1610097541408;
- Fri, 08 Jan 2021 01:19:01 -0800 (PST)
+        id S1728183AbhAHJWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 04:22:42 -0500
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:37433 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728257AbhAHJWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:22:41 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id C01D31B55;
+        Fri,  8 Jan 2021 04:21:34 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Fri, 08 Jan 2021 04:21:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=aTbOXuiszOWK+PVLT36NcDavTc+
+        N+zlBAaGYmMKAq8g=; b=oeHXY06LDa29KyrOMRC7of/X4CfczAgDO2S0DgNPcQ/
+        BIF1C1I+sgk38sTGknI19b09qK1+MVVjJEEovL2WcFMh0A0vKXZncC15Oa9vzaEX
+        jxZO5uEASWFfY8230XDfGMB3qNXB8mAGDh87qPkpODLZ41ivUqr+5dRNqOFMqi8o
+        LGr1O/cIgp/LaUI/XUCzxK8IPGwb+qVlr768zNKapUv7qmeX9+f3gdHRp3I4k/IB
+        Q6sLpL1nJ5caHPB+kZNQKf3Zudo9cl88Dj99clVAC4Mzm7wtpMEq9YFyJTo2r5fu
+        Q9RGYFYNTXQHQ7+U9rBuwdqYgIp13n28TNm3hs/3IFQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=aTbOXu
+        iszOWK+PVLT36NcDavTc+N+zlBAaGYmMKAq8g=; b=bkdD/WHqLTimi1e2eVLLaj
+        NZv403UCxbP1208GcKMN6ncs+Pw5bjbFQAeULXQ7MuLxd271BwHrIfeLUhJ8YTks
+        1wxbTYZXWm4CXlzUMjP6x+2L4sdSP2l4E2trqhdHSCaKr8ZqTyF3KQfYBgQh9+5K
+        kN/uo9SwGwnXq//3dh7Bq06PQLz2itmmCxUO6yHuJbPCMGS0nMtQb+19WcT5vSQy
+        ij3vlojmtu0hf1qMVNghb1iUCX3OuLoXMBwJFu/2ee/M9CyHtMLa5W3L7wwWRSsi
+        HWZTSoPYUiQf5kDnbbmGZWt5KsNCGvDaat8RoJ7pfA9og4vUROnuAMBjPw2owEbw
+        ==
+X-ME-Sender: <xms:HST4XxZZEyJqxYRaQjO80QIgxRhy6HkIkjsnSkFgTI5JZxz2nbd8ww>
+    <xme:HST4X4bOhGD09-oBbQohhN6Xy5BPWgdMqL1VR4j2xK21pFw_F4EZJY06qRCprAxID
+    Hv4xBl4FsqLapIaauk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgtddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepueejgfeivdfgieefueevgeejhedttdehgeelgeehvdeghfdtvdfgvdejkedv
+    feeunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:HST4Xz-rAPncyjE3NMrLXvHIM08LK7oiElDH0EPrLk4xnxE2QmN-bQ>
+    <xmx:HST4X_rvGmRYnzRPy9J96aVhAoTj75bAx1qMNoUq9FZ4FJVUJOJifA>
+    <xmx:HST4X8qNzhW9Z-cxS7Vju6gynTSkawIXKN8vhoXJg1Yh2c_-NVfljA>
+    <xmx:HiT4X1lmDkpjnmxYfHwhoNchgGaM3Dy0EoNKbs3r1AxE6WVgFIrWSw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 0B0FC108005B;
+        Fri,  8 Jan 2021 04:21:32 -0500 (EST)
+Date:   Fri, 8 Jan 2021 10:21:31 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Sergio Sota <sergiosota@fanamoel.com>
+Cc:     robh+dt@kernel.org, wens@csie.org, jernej.skrabec@siol.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun5i: add A10s/A13 mali gpu support fallback
+Message-ID: <20210108092131.2jxfazj65usfhlu3@gilmour>
+References: <20210107110035.2815260-1-sergiosota@fanamoel.com>
 MIME-Version: 1.0
-References: <20210107103417.16010-1-alexandru.ardelean@analog.com>
- <20210107103417.16010-4-alexandru.ardelean@analog.com> <20210107152538.GC13040@roeck-us.net>
- <CA+U=Dspo0aovB4M76FoUaPpfYN-ZiCkCUc1Am24Mq7VSHRStEQ@mail.gmail.com> <20210107173548.GA49383@roeck-us.net>
-In-Reply-To: <20210107173548.GA49383@roeck-us.net>
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-Date:   Fri, 8 Jan 2021 11:18:49 +0200
-Message-ID: <CA+U=Dsr+AZrn8MBkYbXzQqhYxph1tiU1ja5GaSeZSsy5m=55Gw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] hwmon: (ltc2945): add support for sense resistor
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        linux-hwmon@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, jdelvare@suse.com,
-        "Thoren, Mark" <mark.thoren@analog.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210107110035.2815260-1-sergiosota@fanamoel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 7, 2021 at 7:35 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Thu, Jan 07, 2021 at 05:44:33PM +0200, Alexandru Ardelean wrote:
-> > >
-> > > Note that this patch doesn't compile on 32-bit targets.
-> >
-> > Yeah, my bad.
-> > I only tested with  make allmodconfig, and that doesn't do a good job
-> > at providing linker issues.
-> >
-> The problem is the 64-bit divide operation introduced with your patch.
-> You'd see that if you build allmodconfig with ARCH=i386.
+On Thu, Jan 07, 2021 at 12:00:35PM +0100, Sergio Sota wrote:
+> The A10s/A13 mali gpu was not defined in device tree
+> Add A10 mali gpu as a fallback for A10s/A13
+> Tested with Olimex-A13-SOM / Olimex-A13-OlinuXino-MICRO
+> "kmscube" 3d cube on screen (60fps / 10%cpu)
 
-Oh, right.
-That thought actually escaped me.
+With Lima or the ARM blob, if so which version?
 
-Thanks for the tip
-Alex
-
->
-> Guenter
+Thanks!
+Maxime
