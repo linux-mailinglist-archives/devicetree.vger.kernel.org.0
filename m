@@ -2,110 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E98B22EF368
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 14:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A94112EF370
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 14:49:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727524AbhAHNrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 08:47:32 -0500
-Received: from mail-lf1-f51.google.com ([209.85.167.51]:34385 "EHLO
-        mail-lf1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725816AbhAHNrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 08:47:32 -0500
-Received: by mail-lf1-f51.google.com with SMTP id o19so23069653lfo.1;
-        Fri, 08 Jan 2021 05:47:15 -0800 (PST)
+        id S1726954AbhAHNtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 08:49:03 -0500
+Received: from mail-qk1-f179.google.com ([209.85.222.179]:35093 "EHLO
+        mail-qk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726829AbhAHNtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 08:49:02 -0500
+Received: by mail-qk1-f179.google.com with SMTP id n142so8462315qkn.2;
+        Fri, 08 Jan 2021 05:48:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+x0U9gnubjMksUUz9hbmIwV7xJqnGYTXvOaJN2bErmc=;
-        b=QG3ty2PCDxRtOR2mxkp/NGnoe26zPqsmA5kkWGedHeaGzmdTUrLbUdZtVVYcyqwCip
-         gg6RV48Bl1X8XrMGsW0damjOVgLLLDmVMNfH49ttE5DoNRmFycKFar5/f9rLzsYS32sT
-         tQOsbbwPnFLZN3f4alhPYP4GvgaW8/RiZkvpKEitSXNUTvI1sOSEc8lYdrqkVfRLGnel
-         uaoe/MTg0mZzdTrCzf8jqFwxDEQAID0Ms5kzHeqMYprazA/GvcXqm2VAwPgickJ/vWEx
-         KIZd7Docgb0OmlvGZA4S9cEKt53adx64m04ci70qiDxWOaWTSud49kdl094SQ+4b/+tO
-         p4rQ==
-X-Gm-Message-State: AOAM530ltY2jstDqqbSIlLZ24sd836/Xj1WDxgg0cwjqg+luRx7wdBWg
-        BQmnntfpUvSRPcGcaIM08FQ=
-X-Google-Smtp-Source: ABdhPJzmVghMpIe305ILIR0E7GrTBajPwttVkPIpoBA4YIcTQBEZ6Tl2OPTRdU85zO0Mb2fyzVU3rg==
-X-Received: by 2002:a19:381c:: with SMTP id f28mr1593368lfa.339.1610113609383;
-        Fri, 08 Jan 2021 05:46:49 -0800 (PST)
-Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id j20sm2149802ljc.47.2021.01.08.05.46.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jan 2021 05:46:48 -0800 (PST)
-Date:   Fri, 8 Jan 2021 15:46:42 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: [PATCH 15/15] MAINTAINERS: Add ROHM BD71815AGW
-Message-ID: <8b2cbbb783607500af5bbc529e3b17411027f1ad.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dsWlo1zvyIlqHcMyjUDRI2wxTIK9nGJHgxOSincESNo=;
+        b=mJmLzqms6f2t1q808VhY2IBbnrdalltuFU85fNGbEPWD0SHd0Nbm6sN8AgEC96//JY
+         h4ePL58x9IJ6ldpW6cMke3yiQBFAV8SH+nhjS0fRyKU2smGxEM3DzmpouD6FzNtbAHvU
+         n4VdlkbT6fgLXNRfIjCuXb9H9Wc3g71+m/dFObbFpGAUemoPv3VPX7lErpweMZ5on/c1
+         J7IM1fW3riYfgO032woqav/ROqk/E0iUBMYtZrgUtMA+Y4UsQxIr/hSWtUu1FqV1gcYD
+         e/NU7TXAIp7iHQIINCJFGY4UsCN+GxBGfctm8pnNCkOBg2c/2Oyr8PIgqPhBWyPhTfl3
+         ntMw==
+X-Gm-Message-State: AOAM530QivjzuE3+pSDYvM20qLgAOhEQ0Jz2iylzoKALJJFf3/o2pxue
+        RjAb6EV8MUD9TStHZC1t630N3jxF7P4tDVLHVNDAnQrs
+X-Google-Smtp-Source: ABdhPJzdxGzfJwat198rymz5ud2yr9A1pPdGTaJp4KL9PrpPBr6TSgOk95fSlc1AoTd30hb9iUOyw+Yhy6YytyFRY5o=
+X-Received: by 2002:a05:620a:531:: with SMTP id h17mr3955686qkh.428.1610113700546;
+ Fri, 08 Jan 2021 05:48:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
+References: <20201224170502.2254683-1-aford173@gmail.com> <20201224170502.2254683-6-aford173@gmail.com>
+In-Reply-To: <20201224170502.2254683-6-aford173@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 8 Jan 2021 14:48:08 +0100
+Message-ID: <CAMuHMdWE6XfKGdkAoXN_KMNK9ZrSoTTjLP6MN2j+1P5V-KmAPg@mail.gmail.com>
+Subject: Re: [PATCH V2 6/9] arm64: dts: renesas: beacon-rzg2m-kit: Rearange
+ SoC unique functions
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer entries for ROHM BD71815AGW drivers.
-New regulator and GPIO drivers were introduced for these PMICs.
+On Thu, Dec 24, 2020 at 6:05 PM Adam Ford <aford173@gmail.com> wrote:
+> In preparation for adding new dev kits, move anything specific to the
+> RZ/G2M from the SOM-level and baseboard-levels and move them to the
+> kit-level.  This allows the SOM and baseboard to be reused with
+> other SoC's.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
- MAINTAINERS | 3 +++
- 1 file changed, 3 insertions(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.12.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 281de213ef47..eac1875ec788 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15102,18 +15102,21 @@ F:	Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
- F:	Documentation/devicetree/bindings/regulator/rohm,bd70528-regulator.txt
- F:	drivers/clk/clk-bd718x7.c
- F:	drivers/gpio/gpio-bd70528.c
-+F:	drivers/gpio/gpio-bd71815.c
- F:	drivers/gpio/gpio-bd71828.c
- F:	drivers/mfd/rohm-bd70528.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
- F:	drivers/power/supply/bd70528-charger.c
- F:	drivers/regulator/bd70528-regulator.c
-+F:	drivers/regulator/bd71815-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
- F:	drivers/watchdog/bd70528_wdt.c
- F:	include/linux/mfd/rohm-bd70528.h
-+F:	include/linux/mfd/rohm-bd71815.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
- F:	include/linux/mfd/rohm-generic.h
--- 
-2.25.4
+Gr{oetje,eeting}s,
 
+                        Geert
 
 -- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
