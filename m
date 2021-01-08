@@ -2,91 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C9302EEAF9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 02:37:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3DE32EEB1B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 02:49:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729466AbhAHBhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 20:37:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728105AbhAHBhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 20:37:00 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2528C0612F6
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 17:36:19 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id 4so4834530plk.5
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 17:36:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y1J3DUdWcOQx0bVUfuDnHN7QMPqvsEtCtXv4CCI/gFU=;
-        b=We21GKe5c5ppvnQ5+V38BX7N59HJaXyZsmnSGyVb9vsePRAy0GYDEpFLfzJV2P/64U
-         G1LQ4IfjlcpaNkahgKsq/VBl8dJvlvTT9W55gtIhXSDT1SlLL6ULEs/6Xb9ifjQVfmZ3
-         W+XsaM+OCL/DBmLRMvmvn8hJSLGSZj4fi9b91Q6CHepgQn+dpF98gLfBykCvZNA5aByP
-         lhDkvbNxaYcTQgnBJdE3HHi2jHDSdXnYfR9mNdTfIKBHwSI3ypZFvvtFFzK0k/XDsq9r
-         V+auQg9QfQtpGJ4Rb5m2mMZFWFDMVqaPUgerlEf7WLVzZ3NUTIVkrgCc1CayrVy/lpVJ
-         fcwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=Y1J3DUdWcOQx0bVUfuDnHN7QMPqvsEtCtXv4CCI/gFU=;
-        b=gLRGchnCo09AYGN9/mlzPNNnJu9T1nhNQiq8iDw8CTuf3uMVdLcAhVMrCUGqK5KwYy
-         KDg9DDh8tG6ur6FYLUPnePRFrNnpHcESNFUAkfLnJksAjDo3Y12AWPyFpVl6Th98C7Tm
-         tvKR3ziS1kk94grqUKqZr7hUFuivBiyBBKWBhnNRiJu0DGT5tnFkkgt0opegYoQCl8hY
-         d3axrgrUD24OIYt973AL6/T3t6p6QRM68IPN/R9pb+FZu6hfwuIIMR4kVd2rrKI32sfJ
-         LTIvbnAxjMl4SioTpToORpkohhjcrmuK5HoRNSCQhZVcfWJlE0MkwsYHs32lL8RcYMtI
-         A6oA==
-X-Gm-Message-State: AOAM530ZOzxnKUQn2XvL3do3UKNnIzJyyNfqVe/WepaxZjeV4N31U3Ye
-        awOWiXrb6q10iidKiDYoiek4Ig==
-X-Google-Smtp-Source: ABdhPJwTQMFJXBOd42SE6blUoubNT5H3NxGBzcRFMuHBbDHQRNAJzbKlAUEqkL9CnagoK8T0LCnxRA==
-X-Received: by 2002:a17:90a:5793:: with SMTP id g19mr1274178pji.32.1610069779086;
-        Thu, 07 Jan 2021 17:36:19 -0800 (PST)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id c18sm6735984pfj.200.2021.01.07.17.36.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jan 2021 17:36:18 -0800 (PST)
-Date:   Thu, 07 Jan 2021 17:36:18 -0800 (PST)
-X-Google-Original-Date: Thu, 07 Jan 2021 17:28:44 PST (-0800)
-Subject:     Re: [PATCH v3 0/2] riscv: sifive_l2_cache: Add support for SiFive FU740 SoC
-In-Reply-To: <1607596083-81480-1-git-send-email-yash.shah@sifive.com>
-CC:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, bp@suse.de, anup@brainfault.org,
-        Jonathan.Cameron@huawei.com, wsa@kernel.org, sam@ravnborg.org,
-        aou@eecs.berkeley.edu, Paul Walmsley <paul.walmsley@sifive.com>,
-        robh+dt@kernel.org, sagar.kadam@sifive.com,
-        sachin.ghadi@sifive.com, yash.shah@sifive.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     yash.shah@sifive.com
-Message-ID: <mhng-18249e76-3632-4347-b9f1-73e1cc39683a@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1730023AbhAHBs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 20:48:57 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:37108 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729812AbhAHBs4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 20:48:56 -0500
+X-UUID: 729c725f5e6242db9551a4ee653bd7bd-20210108
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=NPP5jpMnteAgsJpkoNqsMUTLM/8AlhOp/XPWd4WayzM=;
+        b=aupKRcA3tCWLDs1A4m1gsP2wep+Lkr9qQ7DtVqvjgrg+uMwDFXNFg+0K28SyvrMW5FgFJXfFsi2Aiw04lRp13IxGKiPTbyvTQRKDuZp7kJf9jtCoJSF6OKJc71au9cChr/0wMNUZRkaeJuJuoO65wq68p5JE9MXTisQoLz6H2OA=;
+X-UUID: 729c725f5e6242db9551a4ee653bd7bd-20210108
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 488800082; Fri, 08 Jan 2021 09:48:09 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs08n2.mediatek.inc
+ (172.21.101.56) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 8 Jan
+ 2021 09:48:06 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 8 Jan 2021 09:48:05 +0800
+Message-ID: <1610070485.1574.10.camel@mhfsdcap03>
+Subject: Re: [PATCH v2] soc: mediatek: cmdq: add address shift in jump
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, Jassi Brar <jassisinghbrar@gmail.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        <damon.chu@mediatek.com>, <dennis-yc.hsieh@mediatek.com>
+Date:   Fri, 8 Jan 2021 09:48:05 +0800
+In-Reply-To: <1608712499-24956-2-git-send-email-yongqiang.niu@mediatek.com>
+References: <1608712499-24956-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1608712499-24956-2-git-send-email-yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 68847612D0C798759DAC2DE39BDF7DDFAD4EDA6D3284292B08F310D98A8DC2A62000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Dec 2020 02:28:01 PST (-0800), yash.shah@sifive.com wrote:
-> Add support for additional interrupt present in SiFive FU740 chip.
->
-> Changes:
-> v3:
-> - Rename the subject line of dt-binding patch
-> - Add the additional interrupt "DirFail" as the last entry so as to keep
->   the order of all previous index same.
->
-> v2:
-> - Changes as per Rob Herring's request on v1
->
-> Yash Shah (2):
->   dt-bindings: riscv: Update l2 cache DT documentation to add support
->     for SiFive FU740
->   RISC-V: sifive_l2_cache: Update L2 cache driver to support SiFive
->     FU740
->
->  .../devicetree/bindings/riscv/sifive-l2-cache.yaml | 34 +++++++++++++++++++---
->  drivers/soc/sifive/sifive_l2_cache.c               | 27 +++++++++++++++--
->  2 files changed, 54 insertions(+), 7 deletions(-)
+T24gV2VkLCAyMDIwLTEyLTIzIGF0IDE2OjM0ICswODAwLCBZb25ncWlhbmcgTml1IHdyb3RlOg0K
+PiBBZGQgYWRkcmVzcyBzaGlmdCB3aGVuIGNvbXBvc2UganVtcCBpbnN0cnVjdGlvbg0KPiB0byBj
+b21wYXRpYmxlIHdpdGggMzViaXQgZm9ybWF0Lg0KPiANCj4gRml4ZXM6IDA4NThmZGU0OTZmOCAo
+Im1haWxib3g6IGNtZHE6IHZhcmlhYmxpemUgYWRkcmVzcyBzaGlmdCBpbiBwbGF0Zm9ybSIpDQo+
+IA0KPiBTaWduZWQtb2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVr
+LmNvbT4NCj4gUmV2aWV3ZWQtYnk6IE5pY29sYXMgQm9pY2hhdCA8ZHJpbmtjYXRAY2hyb21pdW0u
+b3JnPg0KPiAtLS0NCj4gIGRyaXZlcnMvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmMgfCAzICsr
+LQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiAN
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmMgYi9kcml2
+ZXJzL21haWxib3gvbXRrLWNtZHEtbWFpbGJveC5jDQo+IGluZGV4IDU2NjViNmUuLjc1Mzc4ZTMg
+MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmMNCj4gKysr
+IGIvZHJpdmVycy9tYWlsYm94L210ay1jbWRxLW1haWxib3guYw0KPiBAQCAtMTY4LDcgKzE2OCw4
+IEBAIHN0YXRpYyB2b2lkIGNtZHFfdGFza19pbnNlcnRfaW50b190aHJlYWQoc3RydWN0IGNtZHFf
+dGFzayAqdGFzaykNCj4gIAlkbWFfc3luY19zaW5nbGVfZm9yX2NwdShkZXYsIHByZXZfdGFzay0+
+cGFfYmFzZSwNCj4gIAkJCQlwcmV2X3Rhc2stPnBrdC0+Y21kX2J1Zl9zaXplLCBETUFfVE9fREVW
+SUNFKTsNCj4gIAlwcmV2X3Rhc2tfYmFzZVtDTURRX05VTV9DTUQocHJldl90YXNrLT5wa3QpIC0g
+MV0gPQ0KPiAtCQkodTY0KUNNRFFfSlVNUF9CWV9QQSA8PCAzMiB8IHRhc2stPnBhX2Jhc2U7DQo+
+ICsJCSh1NjQpQ01EUV9KVU1QX0JZX1BBIDw8IDMyIHwNCj4gKwkJKHRhc2stPnBhX2Jhc2UgPj4g
+dGFzay0+Y21kcS0+c2hpZnRfcGEpOw0KPiAgCWRtYV9zeW5jX3NpbmdsZV9mb3JfZGV2aWNlKGRl
+diwgcHJldl90YXNrLT5wYV9iYXNlLA0KPiAgCQkJCSAgIHByZXZfdGFzay0+cGt0LT5jbWRfYnVm
+X3NpemUsIERNQV9UT19ERVZJQ0UpOw0KPiAgDQoNCmhpIGphc3NpDQoNCnBsZWFzZSBjb25maXJt
+IGlzIHRoZXJlIGFueSBxdWVzdGlvbiBhYm91dCB0aGlzIHBhdGNoLg0KaWYgbm90LCBwbGVhc2Ug
+YXBwbHkgdGhpcyBpbnRvIG5leHQgdmVyc2lvbiwgdGtzDQo=
 
-Thanks, these are on for-next.
