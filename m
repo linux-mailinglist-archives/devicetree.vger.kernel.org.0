@@ -2,100 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A9F42EF48F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 16:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACAD02EF4AD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 16:19:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726251AbhAHPLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 10:11:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33146 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727457AbhAHPLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 10:11:22 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 598C5C0612EA;
-        Fri,  8 Jan 2021 07:10:42 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id t16so14833870ejf.13;
-        Fri, 08 Jan 2021 07:10:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vZOTFs+GSq43b4H42olR+ZkGo+YlvQdilb2TDtquzLE=;
-        b=vVxqQk3bdtJksJdwvzMXejO7m0yN1/Vx06weqhblC8MsNr1fEMmK/oVBrLjmXxrsSV
-         ml1MbGS+hBeV+J1lK6OcnabQwC6LOBbykCTlRDWuwUOUiJKvJSGl7hh4G32F8VNtwjl9
-         fdCCtQO46S+2xgO0e6fSBh60PDVUvAZRtFhM8mr/jRey+wg/MsOWLP/p0i9tZqX0AA86
-         TKP/B4jE1hsj4jkjnQ8U9GVvGBNcZ7DJsvmZ5TlTlkHMxk0afwfsd52IrqF43GAAdm+A
-         bmBaerGtM7CRDiDcj73vAeMzht8XUCHsvXTA97bTYLyOnRdPQtK9mt89YOIgxwhJiMWe
-         7zEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vZOTFs+GSq43b4H42olR+ZkGo+YlvQdilb2TDtquzLE=;
-        b=Jo4vXoG9jXk+EDHx4qC8k8GFjf07C7zwijwGsC7zuDzvJDlHIyoxjZ/RoKgYbCYorn
-         1FJ5ie7/C6/kEk+Hg1k7CJNnh+9b5ArGwZ5ib6tnhnvYoVaIf/BmyYo24zHHP5r4mrxP
-         nxVqKfb235+tliOvYS7C9I7Y8CaFoGB5meg2hTTCorH4gBj0N1swjbAt1MHylVDnIOUD
-         LwtC9naCb6Bj5TXHk4YffWkbdN9ixMdHmwIk5GboU7Z+vVJYATUSTqfVNk/QWQevR0L3
-         NBUC1e+q7La0Ngs46Q1jE2cQe+Ubj73fdFaHyd6FTW76VH2u6CAaFIIRjXXGl6MnXvia
-         XO5g==
-X-Gm-Message-State: AOAM530qM5/37P7MN95+SMZYZ4xzNQb0iIYNJV8Xss5nyj/xrUlu2rJG
-        9ijuGsBpIBbeze4gp15n/A==
-X-Google-Smtp-Source: ABdhPJz236p0cdxk+4FzSFD+agoDp6O23F/mFGHfnmO5aftxpFsarP5XYeqVtFafYZ+n1yntMdagzg==
-X-Received: by 2002:a17:906:81d6:: with SMTP id e22mr3026604ejx.476.1610118641153;
-        Fri, 08 Jan 2021 07:10:41 -0800 (PST)
-Received: from demetris-TA770E3.lan ([212.50.117.154])
-        by smtp.gmail.com with ESMTPSA id oq7sm3669286ejb.63.2021.01.08.07.10.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jan 2021 07:10:40 -0800 (PST)
-From:   Demetris Ierokipides <ierokipides.dem@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        id S1726312AbhAHPRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 10:17:39 -0500
+Received: from mail-40134.protonmail.ch ([185.70.40.134]:48943 "EHLO
+        mail-40134.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726650AbhAHPRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 10:17:39 -0500
+Date:   Fri, 08 Jan 2021 15:16:48 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1610119016;
+        bh=nTvFORzb1bf2GhxFAnJcMjuDAmjBfj16QbcnGKmQQN8=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=I3etT1bVJJGG6EmNOlOKiyuMd9VujUvYRzGxE60kGx0AXi0dA8XeUIIGWXYLxRAfJ
+         DvU62wDrGEyiH8DuYssDVuJ4t5139c5U3Gbz1gfMg+Jy+qYrh7t4cNju86CvimuKbO
+         59pR8dRcakP+eFG72Q3elh57SfTrSYFBbiBdvoQ8=
+To:     Mark Brown <broonie@kernel.org>
+From:   Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Demetris Ierokipides <ierokipides.dem@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: rockchip: add extra cpu opp points to rk3288-miqi
-Date:   Fri,  8 Jan 2021 17:10:36 +0200
-Message-Id: <20210108151036.36434-3-ierokipides.dem@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210108151036.36434-1-ierokipides.dem@gmail.com>
-References: <20210108151036.36434-1-ierokipides.dem@gmail.com>
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: Timon Baetz <timon.baetz@protonmail.com>
+Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic nodes
+Message-ID: <20210108161635.1b9303c8.timon.baetz@protonmail.com>
+In-Reply-To: <20210106145931.GE4752@sirena.org.uk>
+References: <20201230205139.1812366-1-timon.baetz@protonmail.com> <20201230205139.1812366-2-timon.baetz@protonmail.com> <20210104135156.GB5645@sirena.org.uk> <20210104181825.GB27043@kozik-lap> <20210104182734.GH5645@sirena.org.uk> <20210104183821.GA29033@kozik-lap> <20210104212449.GJ5645@sirena.org.uk> <20210105165529.GB20401@kozik-lap> <20210106145931.GE4752@sirena.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add extra 1.7GHz and 1.8GHz opp points to the MiQi device-tree to improve
-performance.
+On Wed, 6 Jan 2021 14:59:31 +0000, Mark Brown wrote:
+> On Tue, Jan 05, 2021 at 05:55:29PM +0100, Krzysztof Kozlowski wrote:
+> > On Mon, Jan 04, 2021 at 09:24:49PM +0000, Mark Brown wrote: =20
+>=20
+> > > I'm not sure I follow, sorry?  Either the core driver can parse the
+> > > bindings enough to know what children it has or (probably better) it =
+can
+> > > instantiate the children unconditionally and then the function driver=
+s
+> > > can figure out if they need to do anything. =20
+>=20
+> > Currently the MFD parent/core driver will instantiate children
+> > unconditionally.  It would have to be adapted. With proposed bindings -
+> > nothing to change.  MFD core already does the thing. =20
+>=20
+> We're not talking massive amounts of code here, but we are talking ABI
+> for a DT update.
+>=20
+> > The point is that function drivers should not be even bound, should not
+> > start to probe. Otherwise if they probe and fail, they will pollute the
+> > dmesg/probe log with failure. With the failure coming from looking for
+> > missing of_node or any other condition from parent/core driver. =20
+>=20
+> There will only be an error message if one is printed, if we can do a
+> definitive -ENODEV there should be no need to print an error.
+>=20
+> > > > Another point, is that this reflects the real hardware. The same as=
+ we
+> > > > model entire SoC as multiple children of soc node (with their own
+> > > > properties), here we represent smaller chip which also has
+> > > > sub-components. =20
+>=20
+> > > Components we're calling things like "extcon"... =20
+>=20
+> > I am rather thinking about charger, but yes, extcon as well. Either you
+> > have USB socket (and want to use associated logic) or not. =20
+>=20
+> Right, I'm just saying we don't need to add new device nodes reflecting
+> implementation details into the DT to do that.
 
-Signed-off-by: Demetris Ierokipides <ierokipides.dem@gmail.com>
----
- arch/arm/boot/dts/rk3288-miqi.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm/boot/dts/rk3288-miqi.dts b/arch/arm/boot/dts/rk3288-miqi.dts
-index 713f55e143c6..1b48855db6ff 100644
---- a/arch/arm/boot/dts/rk3288-miqi.dts
-+++ b/arch/arm/boot/dts/rk3288-miqi.dts
-@@ -96,6 +96,18 @@ &cpu3 {
- 	cpu-supply = <&vdd_cpu>;
- };
- 
-+&cpu_opp_table {
-+	opp-1704000000 {
-+		opp-hz = /bits/ 64 <1704000000>;
-+		opp-microvolt = <1350000>;
-+	};
-+
-+	opp-1800000000 {
-+		opp-hz = /bits/ 64 <1800000000>;
-+		opp-microvolt = <1350000>;
-+	};
-+};
-+
- &emmc {
- 	bus-width = <8>;
- 	cap-mmc-highspeed;
--- 
-2.25.1
+I'm not sure I can contribute that much to this discussion (this is my
+first proper kernel patch, also I don't really understand the argument).
+FWIW I looked at other MFD devices while implementing this like max77836,=
+=20
+max77693, max77650, max77843 (just to name a few).=20
+Assigning of_node to sub-devices using sub-nodes with compatible strings=20
+seemed to be a common pattern for MFD devices.
+Muic needs a node to be used with extcon_get_edev_by_phandle().
+Charger needs a node to reference a regulator.
 
