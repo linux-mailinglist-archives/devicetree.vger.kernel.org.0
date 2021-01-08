@@ -2,97 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD6D2EF3AF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 15:08:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CADB32EF3BC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 15:11:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726189AbhAHOHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 09:07:37 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36238 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725793AbhAHOHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 09:07:37 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 108E5o22091577;
-        Fri, 8 Jan 2021 08:05:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610114750;
-        bh=7QUxdJubf6npHB6XXysEgpQV+ARRLTU9YbZ45EDawGs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Wx+e8zAn/GaP9GFC8ofyKGFEDS1CiHHIFKyNMQmTjWyh7OD73Vmc2BVwqK/Z3iX78
-         otxF3oxkoc7ZZI3Lz4+WomzE6vCpwyi5TOXkaIGU9VPRICE2JZv6Ci2rjvyOVBvqdN
-         9+y3tHs3yLZWJP3jtdiRlCWMm1473CaLeTTyPzzc=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 108E5oh1058228
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 8 Jan 2021 08:05:50 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 8 Jan
- 2021 08:05:50 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 8 Jan 2021 08:05:50 -0600
-Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 108E5lEi108720;
-        Fri, 8 Jan 2021 08:05:48 -0600
-Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3: squelch warnings regarding no
- #address-cells for interrupt-controller
-To:     Nishanth Menon <nm@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Faiz Abbas <faiz_abbas@ti.com>,
-        Andre Przywara <andre.przywara@arm.com>
-References: <20201117161942.38754-1-nsekhar@ti.com>
- <20201117161942.38754-3-nsekhar@ti.com>
- <ab9658ef-c8a7-155b-acb1-effa872132ca@ti.com>
- <20201118151259.kpag44djji4ssiup@eldest>
- <18e41dba-a3dd-308a-605e-63b76ca638e5@ti.com>
- <20201119132829.sr435jf6s4275q4i@boxlike>
- <313a9cd5-7411-4ae1-cde4-42a2c18d11e6@ti.com>
- <20201124012100.fq7w7bjxvewuhbt2@shirt>
- <8885dd79-061b-82e3-1aeb-a318f7d8256d@ti.com>
- <20201127142340.ei7o4zkg5trwcspy@chevron>
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <2c6df02e-e7a8-fa48-27bc-140bfa500360@ti.com>
-Date:   Fri, 8 Jan 2021 19:35:46 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        id S1726925AbhAHOLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 09:11:31 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:44643 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726869AbhAHOLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 09:11:30 -0500
+Received: by mail-ot1-f49.google.com with SMTP id r9so9686475otk.11;
+        Fri, 08 Jan 2021 06:11:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QeYk3Oi14lctPirOqDY+dvPIpxoFv7o5eCISNkjrmKg=;
+        b=EVmRBgqVIrCZ7Y1mtQG4+eAQpyejtbZ7IxegXIphV+XT7fQNnh9571Au708Rp29CFJ
+         1wHEW7J7ivb3qey5AGQySCdAzJS71v7MgYQm852jW1CLkcu1OdpUFLwARTWc7SapVhS9
+         ZHJ1BBQB9m0RekXIvp+5ydsvUaFW8+zwK/qE5XSkufMZyzqd0uv5/sBJYEn4puPd1vTr
+         yghHnGyrapWbiVT+w5nUfB7+YiqDpHJx9aWJ1Zt3SMilTBSfp3DM4/M9vYHjmzli1ExL
+         LTzwhHK3NgRRQLZO9pqPKmnQx4ZC+0A8gQmT+vd2q7du/XAMwwItJ+PETSBwvzJy+S/W
+         8uRQ==
+X-Gm-Message-State: AOAM532tA7DFJnpTPz4FAjF8tuEUiiPo7Ms485dEycKnjMDgPuSTI0My
+        eTA/m4mBiUFch35LWeyqunYzyk682WoFuIbWLG8=
+X-Google-Smtp-Source: ABdhPJzHiZt1utq1lccdOWmQYnL5Mc5DUdRNRxrJnu6txh7Iz61gKp+GH0w1UAnnj6w0XkTZhpWlZ1+O0WK8wCXdHY8=
+X-Received: by 2002:a9d:c01:: with SMTP id 1mr2664713otr.107.1610115049556;
+ Fri, 08 Jan 2021 06:10:49 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201127142340.ei7o4zkg5trwcspy@chevron>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201228202221.2327468-1-aford173@gmail.com> <20201228202221.2327468-2-aford173@gmail.com>
+In-Reply-To: <20201228202221.2327468-2-aford173@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 8 Jan 2021 15:10:38 +0100
+Message-ID: <CAMuHMdUz_Vi7AoM-3co3BvYW6ojEx5=1vg4X-=JGMpHkDFzocg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: Add usb2_clksel to RZ/G2 M/N/H
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, Grygorii,
+On Mon, Dec 28, 2020 at 9:22 PM Adam Ford <aford173@gmail.com> wrote:
+> Per the reference manal for the RZ/G Series, 2nd Generation,
 
-On 27/11/20 7:53 pm, Nishanth Menon wrote:
-> On 09:46-20201124, Sekhar Nori wrote:
->> On 24/11/20 6:51 AM, Nishanth Menon wrote:
->>> On 09:45-20201123, Sekhar Nori wrote:
->>>>>> The main reason I commented - is hope to get some clarification from DT maintainers.
->>>>>> 90% of interrupt-controller nodes do not have #address-cells and I never seen in in GPIO nodes
->>>>>> (most often is present in PCI and GIC nodes).
->>>>>> and nobody seems fixing it. So, if we are going to move this direction it's reasonable to get clarification to be sure.
->>>>>>
->>>>>> And there is no "never" here - #address-cells always can be added if really required.
->>>>>
->>>>>
->>>>> OK - as a GPIO node, but as an interrupt-controller node, I was
->>>>> looking at [1] and wondering if that was the precedence.
->>>>>
->>>>> Yes, will be good to get direction from the DT maintainers on this
->>>>> topic.
->>>>
+manual
 
-Is there a conclusion on this topic?  Without adding address-cells for interrupt
-controller we will be introducing new warning for all the new nodes we are adding.
+> the RZ/G2M, RZ/G2N, and RZ/G2H have a bit that can be set to
+> choose between a crystal oscillator and an external oscillator.
+>
+> Because only boards that need this should enable it, it's marked
+> as disabled by default for backwards compatibility with existing
+> boards.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Thanks and regards,
-Lokesh
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.12 (with the typo fixed).
+
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
