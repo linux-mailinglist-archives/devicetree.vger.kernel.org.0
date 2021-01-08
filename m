@@ -2,91 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8362A2EF5A4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 17:18:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D2C42EF5C1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 17:32:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727992AbhAHQSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 11:18:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37262 "EHLO mail.kernel.org"
+        id S1728061AbhAHQbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 11:31:50 -0500
+Received: from mout.gmx.net ([212.227.17.20]:47127 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727884AbhAHQSE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Jan 2021 11:18:04 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C2A6D2333E;
-        Fri,  8 Jan 2021 16:17:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610122643;
-        bh=9fRyQu8uYFa7h3cUZz3MMpHk6GCetpc3R4IJdyxZytI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rGlBTzuo4+3lbmj5uzGwUyA9RiJ+oXV7++NC+iKEtjOMkrO3J/xVM6cjBI1nghCFq
-         sm+bhdfvyXiWq0jvyUsgOpqMDI/u5JByMoQcUh+TKwlc8CHbqfIQeiz49x7MHrP5uw
-         xRxQZtyGo2behH4Z1kAeUjKBdIkRz1yw5Af0cyV0iTidmAMv3zsPXKJgOZlxkUlCbL
-         KY1H+ng88THoLRia4zT9T17xJrpDjeqiZB8LGOXilPiZQaAyLoFX7D7XM7p5BAvSrs
-         jNv7jgtsYd4m5O0t0Tc4YF1b+YzCOLBEq5ZFmAotzg5w8MZPutANKY61Mu3JxeKAMP
-         iZBcr7nJL+9wg==
-Date:   Fri, 8 Jan 2021 16:16:53 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic
- nodes
-Message-ID: <20210108161653.GA4554@sirena.org.uk>
-References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
- <20201230205139.1812366-2-timon.baetz@protonmail.com>
- <20210104135156.GB5645@sirena.org.uk>
- <20210104181825.GB27043@kozik-lap>
- <20210104182734.GH5645@sirena.org.uk>
- <20210104183821.GA29033@kozik-lap>
- <20210104212449.GJ5645@sirena.org.uk>
- <20210105165529.GB20401@kozik-lap>
- <20210106145931.GE4752@sirena.org.uk>
- <20210108161635.1b9303c8.timon.baetz@protonmail.com>
+        id S1728114AbhAHQbu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Jan 2021 11:31:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1610123410;
+        bh=ABABhJ8gg5BskkIme0zJhOFkjtC3oPm+1iSMQmPnbPs=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=b59ioWr32lP2YxWwcp0CrwfNm9voWN/R0PMUMygXSKWf3J3qozOUZ8BGz/t/eguyl
+         C/SedCbWZNQpwd8bxLrwyWvxcvss34AnUjsgvI0QaPWHDWu4pJk3sRxKlJTHAGHtbX
+         CInZLeGSi450inumpfwd07l6JdaUDnqDfI2Fz2Qs=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.57]) by mail.gmx.com (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MCsUC-1kp9E21VB2-008qab; Fri, 08
+ Jan 2021 17:30:10 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     devicetree@vger.kernel.org
+Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: timer: nuvoton: Clarify that interrupt of timer 0 should be specified
+Date:   Fri,  8 Jan 2021 17:30:04 +0100
+Message-Id: <20210108163004.492649-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jRHKVT23PllUwdXP"
-Content-Disposition: inline
-In-Reply-To: <20210108161635.1b9303c8.timon.baetz@protonmail.com>
-X-Cookie: Should I do my BOBBIE VINTON medley?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:ZUagBJ3y6lRGhVMX0qfEZglo9lmo1tL07iQMwbZgRlDDKqBI4Mg
+ VuHEnE9oF/qREDlcMH+KfdOGUSAzbMWmoY8Hs6q+p+o/65XA+3kk5uYXw+T0dxnLlofdypp
+ AKAEU02rvynvbTNAjZax0XjVaI5CEIEH5711Z91ixyTI5ugGeXxDvTXeTJcQHsOmu8hY/oB
+ g5SlfQ5zCTCuwaxSVnuPQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:0X2iKvwzbzI=:3lOo2UlFWs2/bM+zkozVfd
+ +RqObHgnKkyo1QHxVErMB+dBJJpRthKzbLtH1lD9S4wxbLPTb28DUDvHOoNEFBsOVPbJzxaXG
+ 8MXWiYERGXMgLwy0kLjHuZF5rSiC4bwpAXB/SrmhtH8exSorEi9EhoxWfCCgtq5/cwJ9gI+PT
+ d5GoMo0vagAy5CUMVtcqwGKX7Ur93+kZ7R49KrZMg+X+4DF5iswuwLUAoDYLk8HEVSGZwa1XM
+ eNQAvyY/N9JhgGqYo7xswBKmxiHbobES/2F3M36zfVi28AnDMelpUs9DS++V0fGwLWUxhAu1Q
+ Nqxgx1H0QO71I9cD7WQLMJh9SLNb8g5/scr/8nzMFHwDQAV8MeEnkl1kb7Dvk59G4QTpL4qKL
+ Igfkzx7kaOQsVMbxWiTFq5ZH6FPUJ0hYT4xwkhtES5TNjafANWxiVE0Qcs5nCCmOKuRFs1Kge
+ yuNCfXC3l7x3O7H/bJgwVTYZs7g60UXI4aPQvbv7phvO79NzZrK5tk/2DQouSvpStutMoV0Vw
+ 8b2TPeW61qkaVgpS+oJAYGL809xlrWuX87ngTaqCUwNlzYIqdzyYjORMTYRVXP2qU52Cf4Nk3
+ inmWkGXioKamLwn1wKzKBc1F2thWN4GEMcRHEtAE+wpVOYhjEnX4H8tqcbow5ynD4To9LhP7A
+ QdHysaUS8Q9ZSX1iHhzO8CupGES2PQ3ZaOpV/CLlCMkeipnLORYqOy/MU/tLzZVjHxhLlWRwm
+ XZwI0cajhPv7nr79kQUFGi0vxmtwzUFhBtUt8owIx34/Ft/eePzRU14AdBpYIkJSA3Kk5/bn7
+ nYAGi9NuJQY8xUPPiIXG3Gtw8xQ9DAc1VISVIlumvwAQ/lomGztpbu7Dp7og5aK7WHNf1lMOY
+ dUYwI55/AjSUZi37ZHuQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The NPCM750 Timer/Watchdog Controller has multiple interrupt lines,
+connected to multiple timers. The driver uses timer 0 for timer
+interrupts, so the interrupt line corresponding to timer 0 should be
+specified in DT.
 
---jRHKVT23PllUwdXP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I removed the mention of "flags for falling edge", because the timer
+controller uses high-level interrupts rather than falling-edge
+interrupts, and whether flags should be specified is up the interrupt
+controller's DT binding.
 
-On Fri, Jan 08, 2021 at 03:16:48PM +0000, Timon Baetz wrote:
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
 
-> Muic needs a node to be used with extcon_get_edev_by_phandle().
-> Charger needs a node to reference a regulator.
+v2:
+- Fix a typo in the word "watchdog"
+=2D--
+ .../devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt        | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-The pattern is to use the parent device's node.
+diff --git a/Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer=
+.txt b/Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt
+index ea22dfe485bee..97258f1a1505b 100644
+=2D-- a/Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt
++++ b/Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt
+@@ -6,8 +6,7 @@ timer counters.
+ Required properties:
+ - compatible      : "nuvoton,npcm750-timer" for Poleg NPCM750.
+ - reg             : Offset and length of the register set for the device.
+=2D- interrupts      : Contain the timer interrupt with flags for
+-                    falling edge.
++- interrupts      : Contain the timer interrupt of timer 0.
+ - clocks          : phandle of timer reference clock (usually a 25 MHz cl=
+ock).
 
---jRHKVT23PllUwdXP
-Content-Type: application/pgp-signature; name="signature.asc"
+ Example:
+=2D-
+2.29.2
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/4hXQACgkQJNaLcl1U
-h9D1Kgf9FdFEaCB21a+mhIY1QWeD08qM2lyq1/GCIzsj4p/ssGdqVnpGAJhLWZqn
-nf9Uvf3q/dHc8o07Wvwh9s0zWde4kF56AyBrBbUdBwVONek4vGgb7tTfMIyTbZUR
-O/SW1Uj9CodqLzfJz/5Z+zhsa+HXi5Jeroi7oGHe57U+2SGv/gYIfx/aLBIMbz3s
-85OyLGL2c41FOTtB4IZYAsdag/eDCAC9B0UfvP2vu3Winr9RHIQlAKs4KZ/wGnQ3
-4JTI7pCAlao2ZIKUAuwNvGLAnCIxqNWAvTUfwc0SMGnZkYGpNWB59vhrEd35jiYN
-uWvieVoEAZtYG/ygcGXyN/uIcN1w4Q==
-=pp/6
------END PGP SIGNATURE-----
-
---jRHKVT23PllUwdXP--
