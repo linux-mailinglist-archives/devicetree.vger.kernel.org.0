@@ -2,141 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6ACC2EEEB9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 09:42:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95F382EEEBD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 09:44:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727741AbhAHImN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 03:42:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725816AbhAHImN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 03:42:13 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE78AC0612F4
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 00:41:32 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id r4so5295753pls.11
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 00:41:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5YW50Ah03cn2qpITNLfaRsXD4PDGBQyXlcG2G1/LKtg=;
-        b=CvsP4jxX8IdJOfZqoADc6APWHfTrnbb4YDQ8/D9XHeFZTvFrPC6BQURCTw8A/MdFxt
-         xwxrQX9aGXqNpW5FDCmpb4h/2txCkELIINMpfXkv7JfnJDd60a1Jcij7JMpEVQdjBmOE
-         R0ylNEbBYp9Uiyey3dutCWTdpGHPulnnNdHy3rkUJgu8U0nwB9aziLcqODRoIccQjHtM
-         xFLL3OYcjF0ZP3unUG8fmK3XL0DxqfoE1dR0k2k5VdpRWMSvYz7tO1QYBhRee7UMdljP
-         Coz4z0j8lBzMuoaX/h/LDHeXxqcC9B9qenOEfovKY8FPeW15E0rbhMHRH1fBxLhdzCIj
-         V/kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=5YW50Ah03cn2qpITNLfaRsXD4PDGBQyXlcG2G1/LKtg=;
-        b=O6PMmQ1JUIYY0n7s6oTcKbnAW0wJV+XowmJiz3GEbxK7h5se8C8uvVWAZ6BlBA5qOO
-         FuexoHeoS6cDDzHzrPpL1s3oRVxlMr+qZEhzwgzaRFD7o60MA+VZzDH5U+I0MkgFmcsJ
-         FR1aMpSJC75dmKdIKXHeC5OS7sgIrsm7g9LqMSoDbawqEU3P6Q/w6R3Zw0zDAD492hJL
-         ZswuegtmwzHzKGJbL+b45SJs5Zkxlp4jxVm9QFXBeb9/qcTYosRQrWY8O3WujMVPCJEs
-         ZSpXP/cWXlvhbhbpruSlRnhw5xWirwRtXe1FYAk/ZBikwGSlNZPRYNogja2bTbL1qsL6
-         xfHg==
-X-Gm-Message-State: AOAM530kn2wEZjSyBg22B6ieBNay/wEoQCO09P9eRnBAdrzqcdzebTDr
-        qRnRcA5ySATnMVf6XXII1mbfRg==
-X-Google-Smtp-Source: ABdhPJxURUQK4OfLPAV2tJmJ/OaEPV8xqk6SEh+SIZHFSg3frcbKUp34+oZhmVq913w3ZytX4WXxeA==
-X-Received: by 2002:a17:90a:450c:: with SMTP id u12mr2715278pjg.93.1610095292255;
-        Fri, 08 Jan 2021 00:41:32 -0800 (PST)
-Received: from localhost ([122.172.20.109])
-        by smtp.gmail.com with ESMTPSA id m15sm8393768pfa.72.2021.01.08.00.41.30
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 08 Jan 2021 00:41:31 -0800 (PST)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
-Date:   Fri,  8 Jan 2021 14:11:20 +0530
-Message-Id: <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
-References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
+        id S1727146AbhAHIoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 03:44:32 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:48918 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725793AbhAHIoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 03:44:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1610095472; x=1641631472;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=wPUU4hxGZftqzKMbOXy5+qbuH+mXG/oBGd8Kkh7MHRw=;
+  b=s3+fNSC7H+l9W/Jtd8y2qy2FCwtDfy4l9+U02/YJzxIok6s9PLwSUDO/
+   GHdqQ9RNAoezC+zPGriyn8I98YCgx3I54+rA8YVk9EDSvf0bNvypCaScG
+   ZZXiruq4QnfuIbqzsrDwn7fGYo3+AruaoUIaP84G5fpb89CH39IkQNdE9
+   sg7mqqEm7gX2UFU3gR6dKpTE4P3xDCAxK/3w9fIBfkSF7FBODz76Fvban
+   3mbaTQ5KEm1ZoCuNSqXZXqvGTr0ksFxuMuVZTo+ARqqGMBypxkAoF15he
+   CUFNHGokABRWqPyN3qDJ8DSK6SseyuSYs9Yx5rZaqSDqa03Qpf3mWZl4f
+   w==;
+IronPort-SDR: I3KEiww94MEM0CgiaavhMTAjweX4p814HED3ZZmPd6QkGZaMUVTuUFLxRIzJb2MpzgJtnPI9+9
+ YsDx2eEJ0vMMS6AJeWcMC5F2HnCJ0gMOOysPEJ+yrpT6XmH+st4XnJkmksZKQpr7Un5oIb823b
+ 7m8muL47OK96I2NWOsL6eqpEa4ssJmjV6sxgJPU206LfvgHAcnGQ2mo2JB/6UuEzdjlsSadtwJ
+ ydooDX+SIo0Y3Jml0ZJlcv+Tk/zkeVZcxytp0judAFQSIwYYThLFP+oLm2p7wSbQly0B5ppRSz
+ el0=
+X-IronPort-AV: E=Sophos;i="5.79,330,1602572400"; 
+   d="scan'208";a="39761463"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Jan 2021 01:43:15 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 8 Jan 2021 01:43:10 -0700
+Received: from [10.171.246.100] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Fri, 8 Jan 2021 01:43:07 -0700
+Subject: Re: [PATCH 3/3] MAINTAINERS: add myself as maintainer for mcp16502
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <1610028927-9842-1-git-send-email-claudiu.beznea@microchip.com>
+ <1610028927-9842-4-git-send-email-claudiu.beznea@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <922dcaa0-b845-7f91-6c5a-5aad1b4341c3@microchip.com>
+Date:   Fri, 8 Jan 2021 09:43:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1610028927-9842-4-git-send-email-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that fdtoverlay is part of the kernel build, start using it to test
-the unitest overlays we have by applying them statically.
+On 07/01/2021 at 15:15, Claudiu Beznea wrote:
+> Andrei is no longer with Microchip. Add myself as maintainer for
+> MCP16502. Along with this change the status from maintained to
+> supported.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 
-The file overlay_base.dtb have symbols of its own and we need to apply
-overlay.dtb to overlay_base.dtb alone first to make it work, which gives
-us intermediate-overlay.dtb file.
+For the record:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-The intermediate-overlay.dtb file along with all other overlays is them
-applied to testcases.dtb to generate the master.dtb file.
+Thanks Claudiu!
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+Regards,
+   Nicolas
 
----
-Depends on:
+> ---
+>   MAINTAINERS | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6eff4f720c72..1cd9914b95eb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11690,9 +11690,9 @@ F:	drivers/video/fbdev/atmel_lcdfb.c
+>   F:	include/video/atmel_lcdc.h
+>   
+>   MICROCHIP MCP16502 PMIC DRIVER
+> -M:	Andrei Stefanescu <andrei.stefanescu@microchip.com>
+> +M:	Claudiu Beznea <claudiu.beznea@microchip.com>
+>   L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> -S:	Maintained
+> +S:	Supported
+>   F:	Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
+>   F:	drivers/regulator/mcp16502.c
+>   
+> 
 
-https://lore.kernel.org/lkml/be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org/
 
-I have kept the .dtb naming for overlays for now, lets see how we do it
-eventually.
-
-Rob/Frank, this doesn't work properly right now. Maybe I missed how
-these overlays must be applied or there is a bug in fdtoverlay.
-
-The master.dtb doesn't include any nodes from overlay_base.dtb or
-overlay.dtb probably because 'testcase-data-2' node isn't present in
-testcases.dtb and fdtoverlay doesn't allow applying new nodes to the
-root node, i.e. allows new sub-nodes once it gets phandle to the parent
-but nothing can be added to the root node itself. Though I get a feel
-that it works while applying the nodes dynamically and it is expected to
-work here as well.
-
-(And yeah, this is my first serious attempt at updating Makefiles, I am
-sure there is a scope of improvement here :))
-
----
- drivers/of/unittest-data/Makefile | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
-index 009f4045c8e4..f17bce85f65f 100644
---- a/drivers/of/unittest-data/Makefile
-+++ b/drivers/of/unittest-data/Makefile
-@@ -38,3 +38,26 @@ DTC_FLAGS_testcases += -@
- 
- # suppress warnings about intentional errors
- DTC_FLAGS_testcases += -Wno-interrupts_property
-+
-+# Apply overlays statically with fdtoverlay
-+intermediate-overlay	:= overlay.dtb
-+master			:= overlay_0.dtb overlay_1.dtb overlay_2.dtb \
-+			   overlay_3.dtb overlay_4.dtb overlay_5.dtb \
-+			   overlay_6.dtb overlay_7.dtb overlay_8.dtb \
-+			   overlay_9.dtb overlay_10.dtb overlay_11.dtb \
-+			   overlay_12.dtb overlay_13.dtb overlay_15.dtb \
-+			   overlay_gpio_01.dtb overlay_gpio_02a.dtb \
-+			   overlay_gpio_02b.dtb overlay_gpio_03.dtb \
-+			   overlay_gpio_04a.dtb overlay_gpio_04b.dtb \
-+			   intermediate-overlay.dtb
-+
-+quiet_cmd_fdtoverlay = fdtoverlay $@
-+      cmd_fdtoverlay = $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $^
-+
-+$(obj)/intermediate-overlay.dtb: $(obj)/overlay_base.dtb $(addprefix $(obj)/,$(intermediate-overlay))
-+	$(call if_changed,fdtoverlay)
-+
-+$(obj)/master.dtb: $(obj)/testcases.dtb $(addprefix $(obj)/,$(master))
-+	$(call if_changed,fdtoverlay)
-+
-+always-$(CONFIG_OF_OVERLAY) += intermediate-overlay.dtb master.dtb
 -- 
-2.25.0.rc1.19.g042ed3e048af
-
+Nicolas Ferre
