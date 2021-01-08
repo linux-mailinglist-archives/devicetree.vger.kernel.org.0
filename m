@@ -2,217 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F200E2EEB4A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:30:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77F192EEB4E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:34:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726370AbhAHC27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 21:28:59 -0500
-Received: from mail-il1-f170.google.com ([209.85.166.170]:46109 "EHLO
-        mail-il1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726113AbhAHC26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:28:58 -0500
-Received: by mail-il1-f170.google.com with SMTP id 75so8815949ilv.13;
-        Thu, 07 Jan 2021 18:28:42 -0800 (PST)
+        id S1726666AbhAHCcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 21:32:10 -0500
+Received: from mail-il1-f173.google.com ([209.85.166.173]:43854 "EHLO
+        mail-il1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726593AbhAHCcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:32:10 -0500
+Received: by mail-il1-f173.google.com with SMTP id q5so8829982ilc.10
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 18:31:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=4v0yXGMtjVzg0GR4VJAcMxCAi3C/k0/sDlzwVx/HuwA=;
-        b=luowqDt1GljuRW+HqVhWSMjWF6Pe8EcAJYamJCX0tfLoBmIXGWd5/21goBKgRdG+Yt
-         j3q33B5m1IC+NAnL398C1Z2C9OTdwJ3Tab11Ie39HJCJ1tc5M+N/i41CFu9e3m7LwBqV
-         VeoJIGuSC9Uu/GhfPFKpgxxMsAZ0mWcruvRIEl/1+4bKtebeFgM5hzRF8qA2P4o3YQ/S
-         UxKiVriCb5QlKX/rxcx4W/2J3FJ9DxbLWnzYfu4YyBeHD9R1y0fEX+LOs02M5oA+xmU8
-         ynDuVUhliI9ZikUFPZyAMh/YCd8Dr6d/x2g2W9rbUJcl2q9iCpzmh6eZ9iHGjj6Kqq5U
-         4cUw==
-X-Gm-Message-State: AOAM530cf7wznbrK5DJk6olqf2sHSDCnEXp0u/8QDdMK3nbNgSY1VwwE
-        bgBuEEXpcQpSy5EiKNaWOs8LfnCWyA==
-X-Google-Smtp-Source: ABdhPJyb+2E6oPfTxbL0DlUunHkJR+PHkbpVAfqM8TZJ7y8fTIKJGU5mLf/lOpFwyffXDH0xl2JHsA==
-X-Received: by 2002:a92:d6cb:: with SMTP id z11mr1791226ilp.169.1610072897059;
-        Thu, 07 Jan 2021 18:28:17 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=GIfcW+WHG8z7SGoqdIufDckI3aByw7oe2X21FXOjtJQ=;
+        b=gUbZ+OMkqS7Gyot9YfLN5H/VRWCgTScVGHx7lgCTTDf8A2hTkz6PKPiN/SYV7FVLrd
+         0HXkEJyeXBfsGheBkqgnfUhhn22wMl+49pBIQ4B/VutZ9CCuv5YYUYb84RUg9OBtpbzl
+         j0R500mUh8B1tjPZmuftsHbANPCWPgpeqq1EUjg0crNy3QUQOeBGG0xk9JyiCNQCUMxA
+         LuQ7FL5fETTSPyZyGSWIx1rb6P7DXh4TFeX9SaZvnGJCtIUnhvifumC9ggliMPZeDvPD
+         a2UsUE0nZyG0veyyrpz6eiGgfo9w9qVjldIF9H6WNlqc0Ckza8zGHXUfYrywd6uA9RDP
+         CyMQ==
+X-Gm-Message-State: AOAM531bbgewNSVy+nZd1Acy1BqSSUe6PxjuEs/UEflQ3ZIet+MB8s1p
+        xOIXDrz6ya/JfsH1LRWTfg==
+X-Google-Smtp-Source: ABdhPJyFcS7+aInokqTq8EtfzmBKUMB1ryb+seTpqDPUc43EMh10DSiYgbqHNjvNanGBoF110kVGRA==
+X-Received: by 2002:a92:a1da:: with SMTP id b87mr1818408ill.111.1610073083650;
+        Thu, 07 Jan 2021 18:31:23 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id s25sm1419581ioe.27.2021.01.07.18.28.14
+        by smtp.gmail.com with ESMTPSA id m75sm6155114ill.15.2021.01.07.18.31.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jan 2021 18:28:16 -0800 (PST)
-Received: (nullmailer pid 1750590 invoked by uid 1000);
-        Fri, 08 Jan 2021 02:28:13 -0000
-Date:   Thu, 7 Jan 2021 19:28:13 -0700
+        Thu, 07 Jan 2021 18:31:22 -0800 (PST)
+Received: (nullmailer pid 1754724 invoked by uid 1000);
+        Fri, 08 Jan 2021 02:31:21 -0000
+Date:   Thu, 7 Jan 2021 19:31:21 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v4 02/24] dt-bindings: introduce silabs,wfx.yaml
-Message-ID: <20210108022813.GA1747586@robh.at.kernel.org>
-References: <20201223153925.73742-1-Jerome.Pouiller@silabs.com>
- <20201223153925.73742-3-Jerome.Pouiller@silabs.com>
+To:     conor.dooley@microchip.com
+Cc:     damien.lemoal@wdc.com, jassisinghbrar@gmail.com,
+        aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, lewis.hanly@microchip.com,
+        cyril.jean@microchip.com, daire.mcnamara@microchip.com,
+        atish.patra@wdc.com, anup.patel@wdc.com,
+        david.abdurachmanov@gmail.com, j.neuschaefer@gmx.net
+Subject: Re: [PATCH v3 4/5] dt-bindings: add bindings for polarfire soc
+ system controller
+Message-ID: <20210108023121.GA1750857@robh.at.kernel.org>
+References: <20201223163316.29186-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201223153925.73742-3-Jerome.Pouiller@silabs.com>
+In-Reply-To: <20201223163316.29186-1-conor.dooley@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 23, 2020 at 04:39:03PM +0100, Jerome Pouiller wrote:
-> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
-
-Commit message?
-
-checkpatch.pl reports trailing whitespace errors.
-
+On Wed, Dec 23, 2020 at 04:33:16PM +0000, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> Add device tree bindings for the MSS system controller on
+> the Microchip PolarFire SoC.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../bindings/net/wireless/silabs,wfx.yaml     | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+>  .../microchip,mpfs_sys_controller.yaml        | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml
 > new file mode 100644
-> index 000000000000..487d46c5fdc0
+> index 000000000000..60fde1925910
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-> @@ -0,0 +1,133 @@
+> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml
+> @@ -0,0 +1,34 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2020, Silicon Laboratories, Inc.
 > +%YAML 1.2
 > +---
+> +$id: "http://devicetree.org/schemas/soc/microchip/microchip,mpfs_sys_controller.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +$id: http://devicetree.org/schemas/net/wireless/silabs,wfx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Silicon Labs WFxxx devicetree bindings
+> +title: Microchip PolarFire SoC (MPFS) system controller
 > +
 > +maintainers:
-> +  - Jérôme Pouiller <jerome.pouiller@silabs.com>
-> +
-> +description: >
-> +  Support for the Wifi chip WFxxx from Silicon Labs. Currently, the only device
-> +  from the WFxxx series is the WF200 described here:
-> +     https://www.silabs.com/documents/public/data-sheets/wf200-datasheet.pdf
-> +  
-> +  The WF200 can be connected via SPI or via SDIO.
-> +  
-> +  For SDIO:
-> +  
-> +    Declaring the WFxxx chip in device tree is mandatory (usually, the VID/PID is
-> +    sufficient for the SDIO devices).
-> +  
-> +    It is recommended to declare a mmc-pwrseq on SDIO host above WFx. Without
-> +    it, you may encounter issues during reboot. The mmc-pwrseq should be
-> +    compatible with mmc-pwrseq-simple. Please consult
-> +    Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.txt for more
-> +    information.
-> +  
-> +  For SPI:
-> +  
-> +    In add of the properties below, please consult
-> +    Documentation/devicetree/bindings/spi/spi-controller.yaml for optional SPI
-> +    related properties.
+> +  - Conor Dooley <conor.dooley@microchip.com>
+
+'description'?
+
+Perhaps including some info about what this block does and how it is 
+accessed.
+
 > +
 > +properties:
 > +  compatible:
-> +    const: silabs,wf200
+> +    const: microchip,polarfire-soc-sys-controller
 > +
-> +  reg:
-> +    description:
-> +      When used on SDIO bus, <reg> must be set to 1. When used on SPI bus, it is
-> +      the chip select address of the device as defined in the SPI devices
-> +      bindings.
+> +  mboxes:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    description: |
+> +      phandle and index of the mailbox controller device node.
+> +      See: ../mailbox/mailbox.txt for more information.
+
+All this is defined already in the common binding schema, drop.
+
 > +    maxItems: 1
-> +
-> +  spi-max-frequency: true
-> +
-> +  interrupts:
-> +    description: The interrupt line. Triggers IRQ_TYPE_LEVEL_HIGH and
-> +      IRQ_TYPE_EDGE_RISING are both supported by the chip and the driver. When
-> +      SPI is used, this property is required. When SDIO is used, the "in-band"
-> +      interrupt provided by the SDIO bus is used unless an interrupt is defined
-> +      in the Device Tree.
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: (SPI only) Phandle of gpio that will be used to reset chip
-> +      during probe. Without this property, you may encounter issues with warm
-> +      boot. (For legacy purpose, the gpio in inverted when compatible ==
-> +      "silabs,wfx-spi")
-> +
-> +      For SDIO, the reset gpio should declared using a mmc-pwrseq.
-> +    maxItems: 1
-> +
-> +  wakeup-gpios:
-> +    description: Phandle of gpio that will be used to wake-up chip. Without this
-> +      property, driver will disable most of power saving features.
-> +    maxItems: 1
-> +
-> +  silabs,antenna-config-file:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: Use an alternative file for antenna configuration (aka
-> +      "Platform Data Set" in Silabs jargon). Default is 'wf200.pds'.
-> +
-> +  local-mac-address: true
-> +
-> +  mac-address: true
-> +
-> +additionalProperties: false
 > +
 > +required:
 > +  - compatible
-> +  - reg
+> +  - "mboxes"
+
+Don't need quotes.
+
+> +
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        wifi@0 {
-> +            compatible = "silabs,wf200";
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&wfx_irq &wfx_gpios>;
-> +            reg = <0>;
-> +            interrupts-extended = <&gpio 16 IRQ_TYPE_EDGE_RISING>;
-> +            wakeup-gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
-> +            reset-gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
-> +            spi-max-frequency = <42000000>;
-> +        };
+> +    syscontroller: syscontroller {
+> +      compatible = "microchip,polarfire-soc-sys-controller";
+> +      mboxes = <&mbox 0>;
 > +    };
-> +
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    wfx_pwrseq: wfx_pwrseq {
-> +        compatible = "mmc-pwrseq-simple";
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&wfx_reset>;
-> +        reset-gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
-> +    };
-> +
-> +    mmc0 {
-> +        mmc-pwrseq = <&wfx_pwrseq>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        wifi@1 {
-> +            compatible = "silabs,wf200";
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&wfx_wakeup>;
-> +            reg = <1>;
-> +            wakeup-gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
-> +        };
-> +    };
-> +...
 > -- 
-> 2.29.2
+> 2.17.1
 > 
