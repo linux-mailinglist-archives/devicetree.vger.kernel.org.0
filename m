@@ -2,38 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F6FA2EF0C0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 11:36:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D3BB2EF0C6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 11:39:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727258AbhAHKgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 05:36:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726754AbhAHKgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 05:36:07 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61062C0612F5
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 02:35:27 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by michel.telenet-ops.be with bizsmtp
-        id EAbR2400c4C55Sk06AbR1R; Fri, 08 Jan 2021 11:35:26 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kxp77-001zoy-FQ; Fri, 08 Jan 2021 11:35:25 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kxp77-008V2G-0f; Fri, 08 Jan 2021 11:35:25 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] spi: renesas,sh-msiof: Add r8a779a0 support
-Date:   Fri,  8 Jan 2021 11:35:22 +0100
-Message-Id: <20210108103522.2025880-1-geert+renesas@glider.be>
+        id S1727047AbhAHKjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 05:39:32 -0500
+Received: from server.20disenoweb.com ([185.195.98.159]:57122 "EHLO
+        server.20disenoweb.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727016AbhAHKjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 05:39:32 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by server.20disenoweb.com (Postfix) with ESMTP id 5FD67F60;
+        Fri,  8 Jan 2021 11:38:49 +0100 (CET)
+X-Virus-Scanned: amavisd-new at server.20disenoweb.com
+Received: from server.20disenoweb.com ([127.0.0.1])
+        by localhost (server.20disenoweb.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 0fNMQ4-cCF3b; Fri,  8 Jan 2021 11:38:48 +0100 (CET)
+Received: from localhost.localdomain (195.red-95-124-155.dynamicip.rima-tde.net [95.124.155.195])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sergiosota@fanamoel.com)
+        by server.20disenoweb.com (Postfix) with ESMTPSA id 2E4D2F5E;
+        Fri,  8 Jan 2021 11:38:31 +0100 (CET)
+From:   Sergio Sota <sergiosota@fanamoel.com>
+To:     robh+dt@kernel.org
+Cc:     mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Sergio Sota <sergiosota@fanamoel.com>
+Subject: [PATCH v2] ARM: dts: sun5i: add A10s/A13 mali gpu support fallback
+Date:   Fri,  8 Jan 2021 11:38:19 +0100
+Message-Id: <20210108103819.322901-1-sergiosota@fanamoel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -41,31 +40,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+The A10s/A13 mali gpu was not defined in device tree
+Add A10 mali gpu as a fallback for A10s/A13
+Tested with Olimex-A13-SOM / Olimex-A13-OlinuXino-MICRO
+"kmscube" 3d cube on screen (60fps / 10%cpu)
+Versions: Lima:1.1.0 EGL:1.4 OpenGLES:2.0 Mesa:20.2.2
 
-Document R-Car V3U (R8A779A0) SoC bindings.
-
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Sergio Sota <sergiosota@fanamoel.com>
 ---
-v2:
-  - Improve patch description.
----
- Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v2:
+ - Add testing versions to changelog
 
-diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-index 44c7ddb4b1098e15..b104899205f6d2da 100644
---- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-+++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-@@ -47,6 +47,7 @@ properties:
-               - renesas,msiof-r8a77980      # R-Car V3H
-               - renesas,msiof-r8a77990      # R-Car E3
-               - renesas,msiof-r8a77995      # R-Car D3
-+              - renesas,msiof-r8a779a0      # R-Car V3U
-           - const: renesas,rcar-gen3-msiof  # generic R-Car Gen3 and RZ/G2
-                                             # compatible device
-       - items:
+ arch/arm/boot/dts/sun5i.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun5i.dtsi b/arch/arm/boot/dts/sun5i.dtsi
+index 4ef14a8695ef..b4d46ecdf7ad 100644
+--- a/arch/arm/boot/dts/sun5i.dtsi
++++ b/arch/arm/boot/dts/sun5i.dtsi
+@@ -726,6 +726,18 @@ i2c2: i2c@1c2b400 {
+ 			#size-cells = <0>;
+ 		};
+ 
++		mali: gpu@1c40000 {
++			compatible = "allwinner,sun4i-a10-mali", "arm,mali-400";
++			reg = <0x01c40000 0x10000>;
++			interrupts = <69>, <70>, <71>, <72>,  <73>;
++			interrupt-names = "gp", "gpmmu", "pp0", "ppmmu0", "pmu";
++			clocks = <&ccu CLK_AHB_GPU>, <&ccu CLK_GPU>;
++			clock-names = "bus", "core";
++			resets = <&ccu RST_GPU>;
++			assigned-clocks = <&ccu CLK_GPU>;
++			assigned-clock-rates = <320000000>;
++		};
++
+ 		timer@1c60000 {
+ 			compatible = "allwinner,sun5i-a13-hstimer";
+ 			reg = <0x01c60000 0x1000>;
 -- 
 2.25.1
 
