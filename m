@@ -2,217 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A60AE2EEE78
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 09:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6ACC2EEEB9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 09:42:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727265AbhAHITS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 03:19:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53854 "EHLO
+        id S1727741AbhAHImN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 03:42:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727169AbhAHITS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 03:19:18 -0500
-Received: from mail-qt1-x84a.google.com (mail-qt1-x84a.google.com [IPv6:2607:f8b0:4864:20::84a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF707C0612FF
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 00:18:08 -0800 (PST)
-Received: by mail-qt1-x84a.google.com with SMTP id h7so7707103qtn.21
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 00:18:08 -0800 (PST)
+        with ESMTP id S1725816AbhAHImN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 03:42:13 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE78AC0612F4
+        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 00:41:32 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id r4so5295753pls.11
+        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 00:41:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=LPy4kNss0vjaYMzm9yB8ZiYIGPp2YbxLPVEf6yAWf0E=;
-        b=svCkAik61y2tqlI8QaAncQGfiqLGdx5ZK5/6jZwHf12GHTZ4tQSTP+82FWBOi0RfRY
-         kHHnn5asv2m5TUtnsm/WXAjaf7y6sC8QUobHAXRKLBePbWoFeANyfK4fSDYosMcDQN3q
-         fHABjoi4xqsrNzSpz61bjhugyeGHkYg+gxbvjouet+cJsMxu/clNaKRgSaUWSv4Au7nW
-         Netk0E+Vw8siXB+M+rQ5K6CWnhaHYi3tdI/64hm9ShUzdauoHMijY/7rtEDf3wBk8yCj
-         HyEHrnn1umGjn4zYtKv/ZRXHBTPy7eLsLbsIO/8pfpR4fR/aKzvwk/G7qH49x5i+slcM
-         3F0A==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=5YW50Ah03cn2qpITNLfaRsXD4PDGBQyXlcG2G1/LKtg=;
+        b=CvsP4jxX8IdJOfZqoADc6APWHfTrnbb4YDQ8/D9XHeFZTvFrPC6BQURCTw8A/MdFxt
+         xwxrQX9aGXqNpW5FDCmpb4h/2txCkELIINMpfXkv7JfnJDd60a1Jcij7JMpEVQdjBmOE
+         R0ylNEbBYp9Uiyey3dutCWTdpGHPulnnNdHy3rkUJgu8U0nwB9aziLcqODRoIccQjHtM
+         xFLL3OYcjF0ZP3unUG8fmK3XL0DxqfoE1dR0k2k5VdpRWMSvYz7tO1QYBhRee7UMdljP
+         Coz4z0j8lBzMuoaX/h/LDHeXxqcC9B9qenOEfovKY8FPeW15E0rbhMHRH1fBxLhdzCIj
+         V/kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=LPy4kNss0vjaYMzm9yB8ZiYIGPp2YbxLPVEf6yAWf0E=;
-        b=Hzrc5S9hg4rMoTOFVhkxZsIMClBhR99SpAfi/xX0kwDjNiM4kshMpyuijplw61WKug
-         9r0qnEmKcOO6VqsJGo/Pby5ocWPXkw8cMLnKzKLCtynWV5hF3PaGtlL21CB2FfwHvqaF
-         2OsM0iXHUGkH9zRu0nXK9v9cltmXIN46kiD3l/6oMqHj61zn1lUWBY4gJ1n/xO5NY7Gq
-         HkuqXb2fURXTq7F4m93/vO++bMwRnquwqiel1LAF6pSH9OC4QUDI1tpgrvvOiJYD0kC4
-         JnoO+7CyedTM64V1pstevosCzRCWEO/kzl3hPlSRa3wAk0mAiGQrAINY0MWNkmI4AmGe
-         tr7w==
-X-Gm-Message-State: AOAM531cXfWlVwrgyXVOa0zL/4b+hyhmc+O6d8JbL/iSIqp4BrR6S946
-        /nvEcr3alM6ONuL+SSRd427Prt2Ng6vs
-X-Google-Smtp-Source: ABdhPJwCuBbyszBJxL/WGIggEGfWdYN2ks6dq347se1rJMLcshWX3ZB6Svohs/cFLFVUi1NxZfF6HQDb5DBm
-Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
-X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:725a:fff:fe41:c6a5])
- (user=tzungbi job=sendgmr) by 2002:a0c:8445:: with SMTP id
- l63mr2381601qva.60.1610093887875; Fri, 08 Jan 2021 00:18:07 -0800 (PST)
-Date:   Fri,  8 Jan 2021 16:17:38 +0800
-In-Reply-To: <20210108081738.2175224-1-tzungbi@google.com>
-Message-Id: <20210108081738.2175224-5-tzungbi@google.com>
-Mime-Version: 1.0
-References: <20210108081738.2175224-1-tzungbi@google.com>
-X-Mailer: git-send-email 2.29.2.729.g45daf8777d-goog
-Subject: [PATCH v2 4/4] remoteproc/mediatek: support L1TCM
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, mathieu.poirier@linaro.org,
-        devicetree@vger.kernel.org, tzungbi@google.com
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=5YW50Ah03cn2qpITNLfaRsXD4PDGBQyXlcG2G1/LKtg=;
+        b=O6PMmQ1JUIYY0n7s6oTcKbnAW0wJV+XowmJiz3GEbxK7h5se8C8uvVWAZ6BlBA5qOO
+         FuexoHeoS6cDDzHzrPpL1s3oRVxlMr+qZEhzwgzaRFD7o60MA+VZzDH5U+I0MkgFmcsJ
+         FR1aMpSJC75dmKdIKXHeC5OS7sgIrsm7g9LqMSoDbawqEU3P6Q/w6R3Zw0zDAD492hJL
+         ZswuegtmwzHzKGJbL+b45SJs5Zkxlp4jxVm9QFXBeb9/qcTYosRQrWY8O3WujMVPCJEs
+         ZSpXP/cWXlvhbhbpruSlRnhw5xWirwRtXe1FYAk/ZBikwGSlNZPRYNogja2bTbL1qsL6
+         xfHg==
+X-Gm-Message-State: AOAM530kn2wEZjSyBg22B6ieBNay/wEoQCO09P9eRnBAdrzqcdzebTDr
+        qRnRcA5ySATnMVf6XXII1mbfRg==
+X-Google-Smtp-Source: ABdhPJxURUQK4OfLPAV2tJmJ/OaEPV8xqk6SEh+SIZHFSg3frcbKUp34+oZhmVq913w3ZytX4WXxeA==
+X-Received: by 2002:a17:90a:450c:: with SMTP id u12mr2715278pjg.93.1610095292255;
+        Fri, 08 Jan 2021 00:41:32 -0800 (PST)
+Received: from localhost ([122.172.20.109])
+        by smtp.gmail.com with ESMTPSA id m15sm8393768pfa.72.2021.01.08.00.41.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 08 Jan 2021 00:41:31 -0800 (PST)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
+Date:   Fri,  8 Jan 2021 14:11:20 +0530
+Message-Id: <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
+In-Reply-To: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
+References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-L1TCM is a high performance memory region in MT8192 SCP.
+Now that fdtoverlay is part of the kernel build, start using it to test
+the unitest overlays we have by applying them statically.
 
-Reads L1TCM memory region from DTS to determine if the machine supports.
-Loads L1TCM memory region to SCP sys if the firmware provides.
+The file overlay_base.dtb have symbols of its own and we need to apply
+overlay.dtb to overlay_base.dtb alone first to make it work, which gives
+us intermediate-overlay.dtb file.
 
-Starts from MT8192 SCP, the firmware contains physical addresses for
-each memory region, for instance:
+The intermediate-overlay.dtb file along with all other overlays is them
+applied to testcases.dtb to generate the master.dtb file.
 
-Program Headers:
-  Type   Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
-  LOAD   0xXXXXXX 0xXXXXXXXX 0x10500000 0xXXXXX 0xXXXXX XXX 0xXXXX
-  LOAD   0xXXXXXX 0xXXXXXXXX 0x10700000 0xXXXXX 0xXXXXX XXX 0xXXXX
-  LOAD   0xXXXXXX 0xXXXXXXXX 0x50000000 0xXXXXX 0xXXXXX XXX 0xXXXX
+Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-Kernel driver can use the "PhysAddr" (i.e. da in the da_to_va callbacks)
-to know the ELF segment belongs to which region.
-
-To backward compatible to MT8183 SCP, separates the da_to_va callbacks
-for new and legacy version.
-
-Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 ---
-Changes from v1[1]:
-- Uses -EINVAL to determine the memory region isn't specified to make
-  the intent more clear.
+Depends on:
 
-[1]: https://patchwork.kernel.org/project/linux-remoteproc/patch/20201214050521.845396-3-tzungbi@google.com/
+https://lore.kernel.org/lkml/be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org/
 
- drivers/remoteproc/mtk_common.h |  5 +++
- drivers/remoteproc/mtk_scp.c    | 56 +++++++++++++++++++++++++++++++--
- 2 files changed, 59 insertions(+), 2 deletions(-)
+I have kept the .dtb naming for overlays for now, lets see how we do it
+eventually.
 
-diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-index 661c998288d7..5f7cd2336cef 100644
---- a/drivers/remoteproc/mtk_common.h
-+++ b/drivers/remoteproc/mtk_common.h
-@@ -76,6 +76,7 @@ struct mtk_scp_of_data {
- 	void (*scp_reset_assert)(struct mtk_scp *scp);
- 	void (*scp_reset_deassert)(struct mtk_scp *scp);
- 	void (*scp_stop)(struct mtk_scp *scp);
-+	void *(*scp_da_to_va)(struct mtk_scp *scp, u64 da, size_t len);
+Rob/Frank, this doesn't work properly right now. Maybe I missed how
+these overlays must be applied or there is a bug in fdtoverlay.
+
+The master.dtb doesn't include any nodes from overlay_base.dtb or
+overlay.dtb probably because 'testcase-data-2' node isn't present in
+testcases.dtb and fdtoverlay doesn't allow applying new nodes to the
+root node, i.e. allows new sub-nodes once it gets phandle to the parent
+but nothing can be added to the root node itself. Though I get a feel
+that it works while applying the nodes dynamically and it is expected to
+work here as well.
+
+(And yeah, this is my first serious attempt at updating Makefiles, I am
+sure there is a scope of improvement here :))
+
+---
+ drivers/of/unittest-data/Makefile | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
+index 009f4045c8e4..f17bce85f65f 100644
+--- a/drivers/of/unittest-data/Makefile
++++ b/drivers/of/unittest-data/Makefile
+@@ -38,3 +38,26 @@ DTC_FLAGS_testcases += -@
  
- 	u32 host_to_scp_reg;
- 	u32 host_to_scp_int_bit;
-@@ -90,6 +91,10 @@ struct mtk_scp {
- 	void __iomem *reg_base;
- 	void __iomem *sram_base;
- 	size_t sram_size;
-+	phys_addr_t sram_phys;
-+	void __iomem *l1tcm_base;
-+	size_t l1tcm_size;
-+	phys_addr_t l1tcm_phys;
- 
- 	const struct mtk_scp_of_data *data;
- 
-diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-index c33c41fe54cd..96ee61bf9245 100644
---- a/drivers/remoteproc/mtk_scp.c
-+++ b/drivers/remoteproc/mtk_scp.c
-@@ -461,9 +461,8 @@ static int scp_start(struct rproc *rproc)
- 	return ret;
- }
- 
--static void *scp_da_to_va(struct rproc *rproc, u64 da, size_t len)
-+static void *mt8183_scp_da_to_va(struct mtk_scp *scp, u64 da, size_t len)
- {
--	struct mtk_scp *scp = (struct mtk_scp *)rproc->priv;
- 	int offset;
- 
- 	if (da < scp->sram_size) {
-@@ -479,6 +478,42 @@ static void *scp_da_to_va(struct rproc *rproc, u64 da, size_t len)
- 	return NULL;
- }
- 
-+static void *mt8192_scp_da_to_va(struct mtk_scp *scp, u64 da, size_t len)
-+{
-+	int offset;
+ # suppress warnings about intentional errors
+ DTC_FLAGS_testcases += -Wno-interrupts_property
 +
-+	if (da >= scp->sram_phys &&
-+	    (da + len) <= scp->sram_phys + scp->sram_size) {
-+		offset = da - scp->sram_phys;
-+		return (void __force *)scp->sram_base + offset;
-+	}
++# Apply overlays statically with fdtoverlay
++intermediate-overlay	:= overlay.dtb
++master			:= overlay_0.dtb overlay_1.dtb overlay_2.dtb \
++			   overlay_3.dtb overlay_4.dtb overlay_5.dtb \
++			   overlay_6.dtb overlay_7.dtb overlay_8.dtb \
++			   overlay_9.dtb overlay_10.dtb overlay_11.dtb \
++			   overlay_12.dtb overlay_13.dtb overlay_15.dtb \
++			   overlay_gpio_01.dtb overlay_gpio_02a.dtb \
++			   overlay_gpio_02b.dtb overlay_gpio_03.dtb \
++			   overlay_gpio_04a.dtb overlay_gpio_04b.dtb \
++			   intermediate-overlay.dtb
 +
-+	/* optional memory region */
-+	if (scp->l1tcm_size &&
-+	    da >= scp->l1tcm_phys &&
-+	    (da + len) <= scp->l1tcm_phys + scp->l1tcm_size) {
-+		offset = da - scp->l1tcm_phys;
-+		return (void __force *)scp->l1tcm_base + offset;
-+	}
++quiet_cmd_fdtoverlay = fdtoverlay $@
++      cmd_fdtoverlay = $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $^
 +
-+	/* optional memory region */
-+	if (scp->dram_size &&
-+	    da >= scp->dma_addr &&
-+	    (da + len) <= scp->dma_addr + scp->dram_size) {
-+		offset = da - scp->dma_addr;
-+		return scp->cpu_addr + offset;
-+	}
++$(obj)/intermediate-overlay.dtb: $(obj)/overlay_base.dtb $(addprefix $(obj)/,$(intermediate-overlay))
++	$(call if_changed,fdtoverlay)
 +
-+	return NULL;
-+}
++$(obj)/master.dtb: $(obj)/testcases.dtb $(addprefix $(obj)/,$(master))
++	$(call if_changed,fdtoverlay)
 +
-+static void *scp_da_to_va(struct rproc *rproc, u64 da, size_t len)
-+{
-+	struct mtk_scp *scp = (struct mtk_scp *)rproc->priv;
-+
-+	return scp->data->scp_da_to_va(scp, da, len);
-+}
-+
- static void mt8183_scp_stop(struct mtk_scp *scp)
- {
- 	/* Disable SCP watchdog */
-@@ -717,6 +752,21 @@ static int scp_probe(struct platform_device *pdev)
- 		goto free_rproc;
- 	}
- 	scp->sram_size = resource_size(res);
-+	scp->sram_phys = res->start;
-+
-+	/* l1tcm is an optional memory region */
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
-+	scp->l1tcm_base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR((__force void *)scp->l1tcm_base)) {
-+		ret = PTR_ERR((__force void *)scp->l1tcm_base);
-+		if (ret != -EINVAL) {
-+			dev_err(dev, "Failed to map l1tcm memory\n");
-+			goto free_rproc;
-+		}
-+	} else {
-+		scp->l1tcm_size = resource_size(res);
-+		scp->l1tcm_phys = res->start;
-+	}
- 
- 	mutex_init(&scp->send_lock);
- 	for (i = 0; i < SCP_IPI_MAX; i++)
-@@ -805,6 +855,7 @@ static const struct mtk_scp_of_data mt8183_of_data = {
- 	.scp_reset_assert = mt8183_scp_reset_assert,
- 	.scp_reset_deassert = mt8183_scp_reset_deassert,
- 	.scp_stop = mt8183_scp_stop,
-+	.scp_da_to_va = mt8183_scp_da_to_va,
- 	.host_to_scp_reg = MT8183_HOST_TO_SCP,
- 	.host_to_scp_int_bit = MT8183_HOST_IPC_INT_BIT,
- 	.ipi_buf_offset = 0x7bdb0,
-@@ -816,6 +867,7 @@ static const struct mtk_scp_of_data mt8192_of_data = {
- 	.scp_reset_assert = mt8192_scp_reset_assert,
- 	.scp_reset_deassert = mt8192_scp_reset_deassert,
- 	.scp_stop = mt8192_scp_stop,
-+	.scp_da_to_va = mt8192_scp_da_to_va,
- 	.host_to_scp_reg = MT8192_GIPC_IN_SET,
- 	.host_to_scp_int_bit = MT8192_HOST_IPC_INT_BIT,
- };
++always-$(CONFIG_OF_OVERLAY) += intermediate-overlay.dtb master.dtb
 -- 
-2.29.2.729.g45daf8777d-goog
+2.25.0.rc1.19.g042ed3e048af
 
