@@ -2,106 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBB042EE9E4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 00:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FE892EEA26
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 01:11:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729250AbhAGXnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 18:43:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726720AbhAGXnD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 18:43:03 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D06C0612FA
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 15:42:14 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id x126so5063632pfc.7
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 15:42:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F5v4P5OpFzV6txdYAKpaZWpOyrHHIe3zcVp3Rukxxyc=;
-        b=Sb4QUpYXJYB3MxUccAbxoLT60+fhUPaDc9jzWhqd+btYg+/EXUlC94hh8E+UVfzVeG
-         4uDEuZSZwlF9dLau98IGiSBYK17qYj4OjYNk7Ld9hFkJml8wYn1kqs1kZjV/l0FvIqdQ
-         ySBnxgmbI49OObsvXhvQowgx8/5uT+g0MGgsk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F5v4P5OpFzV6txdYAKpaZWpOyrHHIe3zcVp3Rukxxyc=;
-        b=lMxVlzmrG8AUeQj4/HA84C58FiRwzRUSUalTTW9bVAayPG1XjXcyM5C2HPPMPnPMZ0
-         5W8fYU4FfGU9+t6HUfynXqXXtTE5Q/gwXJAaxGcQuuHRDUVjYviEjl1G0dr8Snev22/3
-         EYwIeICzPtu3a6Q+4+FQ+J1dZ+wA5MHGirjWl+s9nf/AGBMBJdOU/U4Delgdak4gWtdB
-         k2IjJYxjdCS2nzU6w3FBYtsVE9gAUhznhFFAPLpQ79/kABq94eKZ7TDlicjYP+nGFZcI
-         nCde0CWjTFvEIi1z8ItLfqGvML+ZMt7vg6GzBOtdc+X6PPHkJ2m8gz3QUu9O/L7xVkLg
-         bIkg==
-X-Gm-Message-State: AOAM531aYPafYncCYlb7o7Bs+tIzFjrHnG6ugC7zScqQ9CX3q2JNlT7a
-        Fprla8jYyYjHU+Y0cqWbAbRrhg==
-X-Google-Smtp-Source: ABdhPJyzdeewliRoHZ8WITDN6ypLVV0dl1cubmfzDl+xHifecx0A5pXaGRh+E1Om9wMFyWYEFO7Rkg==
-X-Received: by 2002:aa7:8649:0:b029:19e:16df:e5f8 with SMTP id a9-20020aa786490000b029019e16dfe5f8mr944645pfo.41.1610062933987;
-        Thu, 07 Jan 2021 15:42:13 -0800 (PST)
-Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:a6ae:11ff:fe11:fd59])
-        by smtp.gmail.com with ESMTPSA id h8sm7376487pjc.2.2021.01.07.15.42.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jan 2021 15:42:13 -0800 (PST)
-From:   Philip Chen <philipchen@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>, dmitry.torokhov@gmail.com
-Cc:     swboyd@chromium.org, dianders@chromium.org,
-        Philip Chen <philipchen@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: [PATCH v4 1/2] dt-bindings: input: cros-ec-keyb: Add a new property
-Date:   Thu,  7 Jan 2021 15:42:08 -0800
-Message-Id: <20210107154200.v4.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
-X-Mailer: git-send-email 2.26.2
+        id S1729301AbhAHAKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 19:10:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59058 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728416AbhAHAKu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Jan 2021 19:10:50 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPS id 489F02368A;
+        Fri,  8 Jan 2021 00:10:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610064609;
+        bh=/bl+dbUQLW5CaBdvmpIzjWmsxh0p83ugF1Vo+dLtI4U=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=uWzA7PeycjLb4035QydEmCtOyAkyifDY/SsgqIUFsomS6J7UBqdsVuhT7C3Ddj5tR
+         yY4gKO/61/At/fOU2qBQh5pD8nFZm4ERxwL54dFGACjsk2oRISOpXicVvVAPImBEvc
+         H71k+VFK4S4nG8LnFBvf9yt1gV+byg5WD/iiCZfRjsRAY8aI5Ge4AAL007OIqsO05A
+         ApUt982gsAZYSALR6kYs/ov7Etpc3uzON+g8PGbt+ZrDnTBKSYOfNIsqzoOJ9HGphp
+         0VH8jrPkOttw9p+a7+eLmRW8Xl0uEOpG7rsWMikL6yZeiLz2hZAidvMKwfoCIMm4BL
+         6vF0kUunGfpOg==
+Received: from pdx-korg-docbuild-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-1.ci.codeaurora.org (Postfix) with ESMTP id 3807E605AC;
+        Fri,  8 Jan 2021 00:10:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 0/5] dwmac-meson8b: picosecond precision RX delay support
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161006460922.17100.14707302007622685350.git-patchwork-notify@kernel.org>
+Date:   Fri, 08 Jan 2021 00:10:09 +0000
+References: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
+        jianxin.pan@amlogic.com, narmstrong@baylibre.com,
+        khilman@baylibre.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a new property `function-row-physmap` to the
-device tree for the custom keyboard top row design.
+Hello:
 
-The property describes the rows/columns of the top row keys
-from left to right.
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-Signed-off-by: Philip Chen <philipchen@chromium.org>
----
+On Wed,  6 Jan 2021 14:42:46 +0100 you wrote:
+> Hello,
+> 
+> with the help of Jianxin Pan (many thanks!) the meaning of the "new"
+> PRG_ETH1[19:16] register bits on Amlogic Meson G12A, G12B and SM1 SoCs
+> are finally known. These SoCs allow fine-tuning the RGMII RX delay in
+> 200ps steps (contrary to what I have thought in the past [0] these are
+> not some "calibration" values).
+> 
+> [...]
 
-(no changes since v2)
+Here is the summary with links:
+  - [v4,1/5] dt-bindings: net: dwmac-meson: use picoseconds for the RGMII RX delay
+    https://git.kernel.org/netdev/net-next/c/6b5903f58df4
+  - [v4,2/5] net: stmmac: dwmac-meson8b: fix enabling the timing-adjustment clock
+    https://git.kernel.org/netdev/net-next/c/025822884a4f
+  - [v4,3/5] net: stmmac: dwmac-meson8b: use picoseconds for the RGMII RX delay
+    https://git.kernel.org/netdev/net-next/c/140ddf0633df
+  - [v4,4/5] net: stmmac: dwmac-meson8b: move RGMII delays into a separate function
+    https://git.kernel.org/netdev/net-next/c/7985244d10ea
+  - [v4,5/5] net: stmmac: dwmac-meson8b: add support for the RGMII RX delay on G12A
+    https://git.kernel.org/netdev/net-next/c/de94fc104d58
 
-Changes in v2:
-- add `function-row-physmap` instead of `google,custom-keyb-top-row`
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
- .../devicetree/bindings/input/google,cros-ec-keyb.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-index 8e50c14a9d778..7acdb33781d30 100644
---- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-+++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-@@ -31,6 +31,16 @@ properties:
-       if the EC does not have its own logic or hardware for this.
-     type: boolean
- 
-+  function-row-physmap:
-+    $ref: '/schemas/types.yaml#/definitions/uint32-array'
-+    description: |
-+      An ordered u32 array describing the rows/columns (in the scan matrix)
-+      of top row keys from physical left (KEY_F1) to right. Each entry
-+      encodes the row/column as:
-+      (((row) & 0xFF) << 24) | (((column) & 0xFF) << 16)
-+      where the lower 16 bits are reserved. This property is specified only
-+      when the keyboard has a custom design for the top row keys.
-+
- required:
-   - compatible
- 
--- 
-2.26.2
 
