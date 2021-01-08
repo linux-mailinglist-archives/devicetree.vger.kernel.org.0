@@ -2,161 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63AF42EF7DD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 20:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 474B02EF817
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 20:27:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728572AbhAHTIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 14:08:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41830 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728521AbhAHTIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 14:08:01 -0500
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A59E2C061381
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 11:07:21 -0800 (PST)
-Received: by mail-ot1-x32f.google.com with SMTP id 11so10654572oty.9
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 11:07:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZUAethWNhH5AHx5KYoc6HZtfXoHcLGcf1uweSJlTtuQ=;
-        b=HIYSnkY6Q7NycBEnnzZTwlknao8S/k+ofvs35eTg12dgKAGFrf4QPFQxMY6E1SIgnx
-         v4QZHpNSykgXpIWURlxkqeUK+hK5WQe6/LeKsJ03BpDbXhaO4a17+4ebdvVbKCiei8+m
-         JRobCWgFbKwMMrEso6/h1ZN86HrDAtZk0ChgT/gJ2CuWElTkCZXLfIclf20+pmdTLNZb
-         DwrZOyqNMlzbEEcyV+DKY27yQ31lDOQ6h0BSDNM0/OBmo5kVHt/ka4zs2MaXzl4PjhW6
-         +vhP23PRPuv2xZvwZTpuEeKehk58fssuGFnMH6UurAqg/Aa2T10znWt0sirPaDukiYHv
-         V5Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZUAethWNhH5AHx5KYoc6HZtfXoHcLGcf1uweSJlTtuQ=;
-        b=HWU9JNm+uqhg84bmy/VypfvYcCX2aoDcua6nvLYRpShNcVPxKWasVeKjhvKCCb96xw
-         JcnkadrB05yxBuKDTHLxPDOmcc/6NKlh/dhxEuiFlXY5QRaOlxgiPnx/8bpDdxlDuxTV
-         R8Eu689LFBY9QiLy+jj31xtxziVPbY6bvqjQhAD1uKRu9goF5cWVU3PQjSt2QoDTT+Eb
-         uLb1G54a9JhhLoMV0P0Ga10wPuQLhrsyWY27jop2EktanZ0/QDsJU6FCsu/12Mt43dRg
-         NGFECrM3on+xf5xr+/joUDvo10cGyWfeAe6JvXVg8xGQXvzoxKhHateykK7Z8X+W6E7U
-         8pnQ==
-X-Gm-Message-State: AOAM531mfeRXWnhcxmiDrwp2ZsGb3qxLFPQKUhEGJHc7I3iaYVxJHsXv
-        dbrfe9mNH1cPTiv2iNKlyRxnkw==
-X-Google-Smtp-Source: ABdhPJwN6edFPoEXuLXbsc15EfSSsy2/6NGLVvzgZzPWVaB9Jywig4wbVCFey3P93N2p9vvNRyHHTg==
-X-Received: by 2002:a9d:d6b:: with SMTP id 98mr3578384oti.227.1610132840865;
-        Fri, 08 Jan 2021 11:07:20 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id q18sm1890780ood.35.2021.01.08.11.07.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jan 2021 11:07:19 -0800 (PST)
-Date:   Fri, 8 Jan 2021 13:07:17 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     agross@kernel.org, todor.too@gmail.com, mchehab@kernel.org,
-        robh+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, leoyang.li@nxp.com, geert+renesas@glider.be,
-        arnd@arndb.de, Anson.Huang@nxp.com, michael@walle.cc,
-        agx@sigxcpu.org, max.oss.09@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v1 04/17] media: camss: Make ISPIF subdevice optional
-Message-ID: <X/itZVFeM0XeV9Sx@builder.lan>
-References: <20210108120429.895046-1-robert.foss@linaro.org>
- <20210108120429.895046-5-robert.foss@linaro.org>
+        id S1728823AbhAHT0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 14:26:53 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:10294 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728647AbhAHT0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 14:26:53 -0500
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB6m6Efvw="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+        by smtp.strato.de (RZmta 47.12.1 DYNA|AUTH)
+        with ESMTPSA id R0a218x08JNkLk1
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Fri, 8 Jan 2021 20:23:46 +0100 (CET)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Simon Budig <simon.budig@kernelconcepts.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Ondrej Jirman <megous@megous.com>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Subject: [PATCH 1/2] dt-bindings: input: touchscreen: edt-ft5x06: add iovcc-supply
+Date:   Fri,  8 Jan 2021 20:23:36 +0100
+Message-Id: <20210108192337.563679-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210108120429.895046-5-robert.foss@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 08 Jan 06:04 CST 2021, Robert Foss wrote:
+At the moment, the edt-ft5x06 driver can control a single regulator
+("vcc"). However, some FocalTech touch controllers have an additional
+IOVCC pin that should be supplied with the digital I/O voltage.
 
-> This driver supports multiple architecture versions of the Qualcomm ISP.
-> The CAMSS architecure which this driver is name after, and with the
-> introduction of this series, the Titan architecture.
-> 
-> The ISPIF is IP-block that is only present in the CAMSS architecture.
+The I/O voltage might be provided by another regulator that should also
+be kept on. Otherwise, the touchscreen can randomly stop functioning if
+the regulator is turned off because no other components still require it.
 
-"is an IP-block"
+Document (optional) support for controlling the regulator for IOVCC
+using "iovcc-supply".
 
-> In order to support the Titan architecture, make the ISPIF an optional
-> subdevice.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
->  .../media/platform/qcom/camss/camss-ispif.c   | 144 ++++++++++--------
->  .../media/platform/qcom/camss/camss-ispif.h   |   3 +-
->  drivers/media/platform/qcom/camss/camss.c     | 113 +++++++++-----
->  drivers/media/platform/qcom/camss/camss.h     |   2 +-
->  4 files changed, 160 insertions(+), 102 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/camss/camss-ispif.c b/drivers/media/platform/qcom/camss/camss-ispif.c
-[..]
-> -int msm_ispif_subdev_init(struct ispif_device *ispif,
-> +int msm_ispif_subdev_init(struct camss *camss,
->  			  const struct resources_ispif *res)
->  {
-> -	struct device *dev = to_device(ispif);
-> -	struct platform_device *pdev = to_platform_device(dev);
-> +	struct ispif_device *ispif = camss->ispif;
-> +	struct platform_device *pdev = to_platform_device(camss->dev);
+Cc: Ondrej Jirman <megous@megous.com>
+Cc: Marco Felsch <m.felsch@pengutronix.de>
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+ .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml        | 1 +
+ 1 file changed, 1 insertion(+)
 
-It seems like several of the changes in this function is replacing
-dev with camss->dev. If you retained a struct device *dev = camss->dev;
-you would avoid this.
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+index bfc3a8b5e118..2e8da7470513 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+@@ -56,6 +56,7 @@ properties:
+   wakeup-source: true
+ 
+   vcc-supply: true
++  iovcc-supply: true
+ 
+   gain:
+     description: Allows setting the sensitivity in the range from 0 to 31.
+-- 
+2.30.0
 
->  	struct resource *r;
->  	int i;
->  	int ret;
->  
-> +	if (res == NULL && ispif == NULL)
-
-Afaict this function is called conditional on camss->ispif != NULL, and
-I don't see anything that would cause res to becomes NULL if is hasn't
-been before this change.
-
-So I think this check is unnecessary?
-
-> +		return 0;
-> +
-> +	ispif->camss = camss;
-> +
->  	/* Number of ISPIF lines - same as number of CSID hardware modules */
-> -	if (to_camss(ispif)->version == CAMSS_8x16)
-> +	if (camss->version == CAMSS_8x16)
->  		ispif->line_num = 2;
-> -	else if (to_camss(ispif)->version == CAMSS_8x96 ||
-> -		 to_camss(ispif)->version == CAMSS_660)
-> +	else if (camss->version == CAMSS_8x96 ||
-> +		 camss->version == CAMSS_660)
->  		ispif->line_num = 4;
->  	else
->  		return -EINVAL;
->  
-> -	ispif->line = devm_kcalloc(dev, ispif->line_num, sizeof(*ispif->line),
-> -				   GFP_KERNEL);
-> +	ispif->line = devm_kcalloc(camss->dev, ispif->line_num,
-> +			sizeof(*ispif->line), GFP_KERNEL);
->  	if (!ispif->line)
->  		return -ENOMEM;
->  
-[..]
-> @@ -1393,6 +1410,9 @@ void msm_ispif_unregister_entities(struct ispif_device *ispif)
->  {
->  	int i;
->  
-> +	if (!ispif)
-> +		return;
-
-I like this, but later in the patch you make the calls to this function
-conditional on ispif != NULL. You should only need one of the checks.
-
-Regards,
-Bjorn
