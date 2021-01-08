@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15AC12EF472
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 16:04:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F8F2EF46E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 16:04:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727283AbhAHPDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 10:03:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60212 "EHLO
+        id S1726735AbhAHPDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 10:03:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727380AbhAHPDv (ORCPT
+        with ESMTP id S1726935AbhAHPDv (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 10:03:51 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 887AAC0612A6
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 07:02:40 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id a6so8039287wmc.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 07:02:40 -0800 (PST)
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E367BC0612A9
+        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 07:02:41 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id q18so9348857wrn.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 07:02:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=glgQFW7kM8hmWXtoybiQQhFk+nRduu62qvfDCI4eUuo=;
-        b=MG97V7CT/lZ/B9evctCewK363gKZ+3KiM85e7mwnaEFFhfvdmANNctUZMCkWea6m2c
-         y9JbDyd83+QZWNebbFl1XohTEAfiymYtPnr8I5QXFNso7vxshtjN+2Kr9XX7XfxRGoVF
-         kdqbMiLyEnhELcyFWL33dIF+Z2j3VGFTU9ZwXiiuOzGxVt+wKTfopNOQMbOXSrcuq4G7
-         +6zWzaEl3bBn0BXKGW/dKkLgc/pnTUQcYL7XdWY4dOlRa7cMWQLTLb/aivovSNEunw9Y
-         iaVGDOQ9FEpEiOktUQU70rzBN9DAl+JxI8MySkT7XOjWQz3KypPDtDfUJFGenPxpQMV9
-         XOiA==
+        bh=M6xu+NZsefpfo8WqjQL32PlY8NL0QuBVkGqSt5snD+A=;
+        b=kxuUCMV1WAqpwwvoibNUsWYrlPgddFb1B3XDtYKriSKJqhZ7YxBdz7idYeFiPEusdj
+         oSxwzMXDVtdAhRbiUIPtiWxDXm3EOdY0B1oZ4RFYK1eN63WYymsf6s1QMgxe1Fp+XJLm
+         7MYSyOGWzgv+FVOhkD8wVISPR0VlGxk9zmYIDuW8ATAmQ8SghsBmSoZJE31MhRs/IXU7
+         jcMsXHSkhBXTuv9sJLCqbDDqfbxZnhaRfmDInXFrql1M/HVbnCpK9DeM9XJWQDFfFBiX
+         CVAh4zvNMBGGzxZ42Xa9GLW4zEO7yuaspaFGL8sBAQLWZMjutowtPglRsb0G7rH8euGW
+         4JKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=glgQFW7kM8hmWXtoybiQQhFk+nRduu62qvfDCI4eUuo=;
-        b=qElkVjg/mqrk3rXryLKNEsrpULvnE0Wz8MPSWRNY1nKPOFwmI+PQAlnL23UF/gT/Sa
-         O2OxqoRO8P80P04Bvz9CEnvvujQE8RGKZToaSxbuSJ7jZAev7xoe3/WSyWv8qYYCWLBa
-         DvHP+ikHm3ml4Ci9jxDr+9hJMxzGBu+lpeqh4Bpgkye29OTThuURJjNVT57EQbrBN5RK
-         e4v/ODU/m26EGG4mRvvbUyJjHTo+YLjssAMm5pIF5RgBoKSiM45DXB4LQIYc2LioGs7Q
-         MHZW5/2LzU/VaiE2qQIf+2lBPZSGYdMub4sAuk6Hf5sFYj4/9SAsz2Vu79Gx4rInchHe
-         Xi2w==
-X-Gm-Message-State: AOAM532DJVMKQlHZIPGZB3E+wm1fqOHXSTDLluFgvdRfGOoGP1QycKsV
-        Q7sH+OAdlz6iVgpsBTH6zsgInw==
-X-Google-Smtp-Source: ABdhPJzqMQ5/Vme0bjJMr2Logxq8jK6Q7oFlWy2kXgzfP9ZlVTQt7eKTUQpSXxby55CCipER5aZqrw==
-X-Received: by 2002:a1c:2d6:: with SMTP id 205mr3469208wmc.60.1610118159297;
-        Fri, 08 Jan 2021 07:02:39 -0800 (PST)
+        bh=M6xu+NZsefpfo8WqjQL32PlY8NL0QuBVkGqSt5snD+A=;
+        b=lER3TcNY6nbqW91napMgiPEJAShCxyrBIXFLyvXg6LBbM3XzIpDudRT5JSqU3z5fqE
+         F7l0mZ4JjjIy7xPmFLhL42BI3JOK+vZVcxHcjwqTNkufzdbbakYFXLoQupSaXpy3egXl
+         i6eOHEpPN7QaaZajmHkjaandjckZjBEuKMxlHWO6AfWdfQ2GokgYJ3QKDhhBdGpBpTf7
+         9NVtBCP4pRkDKkZ+GzgBAvB6R2LNK9EpBO0G1RFjfCsal2cLyxIet2LQABd0SHKmInu7
+         Un7xu0yZ8DGz7R53zgZLF26u8YZw2/i2FMmIAtKjnGVWlQpiJngOty0KMLyPaeMG/awN
+         Eveg==
+X-Gm-Message-State: AOAM531076Vu53KwLn8YwgU8+rED5GhCA9ITbDbRS4reNqHak5E7Sjdz
+        JhhKjv42UnvR0hqoCidIVbjBgA==
+X-Google-Smtp-Source: ABdhPJxXGloEPafSPINGJsoqaUcfHJIL8u06StaksnduujJItHcYtBuA/olK4ECauRMs3Zhmv7TwtA==
+X-Received: by 2002:a05:6000:c9:: with SMTP id q9mr3946567wrx.259.1610118160590;
+        Fri, 08 Jan 2021 07:02:40 -0800 (PST)
 Received: from localhost.localdomain ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id s13sm14258464wra.53.2021.01.08.07.02.37
+        by smtp.gmail.com with ESMTPSA id s13sm14258464wra.53.2021.01.08.07.02.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Jan 2021 07:02:38 -0800 (PST)
+        Fri, 08 Jan 2021 07:02:39 -0800 (PST)
 From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
 To:     joro@8bytes.org, will@kernel.org
 Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
@@ -58,11 +58,10 @@ Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
         linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
         vdumpa@nvidia.com, zhangfei.gao@linaro.org,
         shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v9 08/10] dt-bindings: document stall property for IOMMU masters
-Date:   Fri,  8 Jan 2021 15:52:16 +0100
-Message-Id: <20210108145217.2254447-9-jean-philippe@linaro.org>
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v9 09/10] ACPI/IORT: Enable stall support for platform devices
+Date:   Fri,  8 Jan 2021 15:52:17 +0100
+Message-Id: <20210108145217.2254447-10-jean-philippe@linaro.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210108145217.2254447-1-jean-philippe@linaro.org>
 References: <20210108145217.2254447-1-jean-philippe@linaro.org>
@@ -72,45 +71,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On ARM systems, some platform devices behind an IOMMU may support stall,
-which is the ability to recover from page faults. Let the firmware tell us
-when a device supports stall.
+Copy the "Stall supported" bit, that tells whether a named component
+supports stall, into the dma-can-stall device property.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 ---
- .../devicetree/bindings/iommu/iommu.txt        | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+v9: dropped fwspec member in favor of device properties
+---
+ drivers/acpi/arm64/iort.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/iommu/iommu.txt b/Documentation/devicetree/bindings/iommu/iommu.txt
-index 3c36334e4f94..26ba9e530f13 100644
---- a/Documentation/devicetree/bindings/iommu/iommu.txt
-+++ b/Documentation/devicetree/bindings/iommu/iommu.txt
-@@ -92,6 +92,24 @@ Optional properties:
-   tagging DMA transactions with an address space identifier. By default,
-   this is 0, which means that the device only has one address space.
+diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+index c9a8bbb74b09..42820d7eb869 100644
+--- a/drivers/acpi/arm64/iort.c
++++ b/drivers/acpi/arm64/iort.c
+@@ -968,13 +968,15 @@ static int iort_pci_iommu_init(struct pci_dev *pdev, u16 alias, void *data)
+ static void iort_named_component_init(struct device *dev,
+ 				      struct acpi_iort_node *node)
+ {
+-	struct property_entry props[2] = {};
++	struct property_entry props[3] = {};
+ 	struct acpi_iort_named_component *nc;
  
-+- dma-can-stall: When present, the master can wait for a transaction to
-+  complete for an indefinite amount of time. Upon translation fault some
-+  IOMMUs, instead of aborting the translation immediately, may first
-+  notify the driver and keep the transaction in flight. This allows the OS
-+  to inspect the fault and, for example, make physical pages resident
-+  before updating the mappings and completing the transaction. Such IOMMU
-+  accepts a limited number of simultaneous stalled transactions before
-+  having to either put back-pressure on the master, or abort new faulting
-+  transactions.
-+
-+  Firmware has to opt-in stalling, because most buses and masters don't
-+  support it. In particular it isn't compatible with PCI, where
-+  transactions have to complete before a time limit. More generally it
-+  won't work in systems and masters that haven't been designed for
-+  stalling. For example the OS, in order to handle a stalled transaction,
-+  may attempt to retrieve pages from secondary storage in a stalled
-+  domain, leading to a deadlock.
-+
+ 	nc = (struct acpi_iort_named_component *)node->node_data;
+ 	props[0] = PROPERTY_ENTRY_U32("pasid-num-bits",
+ 				      FIELD_GET(ACPI_IORT_NC_PASID_BITS,
+ 						nc->node_flags));
++	if (nc->node_flags & ACPI_IORT_NC_STALL_SUPPORTED)
++		props[1] = PROPERTY_ENTRY_BOOL("dma-can-stall");
  
- Notes:
- ======
+ 	if (device_add_properties(dev, props))
+ 		dev_warn(dev, "Could not add device properties\n");
 -- 
 2.29.2
 
