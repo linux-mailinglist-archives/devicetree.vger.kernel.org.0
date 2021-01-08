@@ -2,103 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95F382EEEBD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 09:44:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEEF72EEF17
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:06:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727146AbhAHIoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 03:44:32 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:48918 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725793AbhAHIoc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 03:44:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1610095472; x=1641631472;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=wPUU4hxGZftqzKMbOXy5+qbuH+mXG/oBGd8Kkh7MHRw=;
-  b=s3+fNSC7H+l9W/Jtd8y2qy2FCwtDfy4l9+U02/YJzxIok6s9PLwSUDO/
-   GHdqQ9RNAoezC+zPGriyn8I98YCgx3I54+rA8YVk9EDSvf0bNvypCaScG
-   ZZXiruq4QnfuIbqzsrDwn7fGYo3+AruaoUIaP84G5fpb89CH39IkQNdE9
-   sg7mqqEm7gX2UFU3gR6dKpTE4P3xDCAxK/3w9fIBfkSF7FBODz76Fvban
-   3mbaTQ5KEm1ZoCuNSqXZXqvGTr0ksFxuMuVZTo+ARqqGMBypxkAoF15he
-   CUFNHGokABRWqPyN3qDJ8DSK6SseyuSYs9Yx5rZaqSDqa03Qpf3mWZl4f
-   w==;
-IronPort-SDR: I3KEiww94MEM0CgiaavhMTAjweX4p814HED3ZZmPd6QkGZaMUVTuUFLxRIzJb2MpzgJtnPI9+9
- YsDx2eEJ0vMMS6AJeWcMC5F2HnCJ0gMOOysPEJ+yrpT6XmH+st4XnJkmksZKQpr7Un5oIb823b
- 7m8muL47OK96I2NWOsL6eqpEa4ssJmjV6sxgJPU206LfvgHAcnGQ2mo2JB/6UuEzdjlsSadtwJ
- ydooDX+SIo0Y3Jml0ZJlcv+Tk/zkeVZcxytp0judAFQSIwYYThLFP+oLm2p7wSbQly0B5ppRSz
- el0=
-X-IronPort-AV: E=Sophos;i="5.79,330,1602572400"; 
-   d="scan'208";a="39761463"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Jan 2021 01:43:15 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Fri, 8 Jan 2021 01:43:10 -0700
-Received: from [10.171.246.100] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Fri, 8 Jan 2021 01:43:07 -0700
-Subject: Re: [PATCH 3/3] MAINTAINERS: add myself as maintainer for mcp16502
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <1610028927-9842-1-git-send-email-claudiu.beznea@microchip.com>
- <1610028927-9842-4-git-send-email-claudiu.beznea@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <922dcaa0-b845-7f91-6c5a-5aad1b4341c3@microchip.com>
-Date:   Fri, 8 Jan 2021 09:43:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1725791AbhAHJGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 04:06:04 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:41297 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726120AbhAHJGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:06:03 -0500
+X-Originating-IP: 93.29.109.196
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 2EB9C60005;
+        Fri,  8 Jan 2021 09:05:16 +0000 (UTC)
+Date:   Fri, 8 Jan 2021 10:05:16 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Jacob Chen <jacob-chen@iotwrt.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 5/5] media: hantro: Add support for the Rockchip PX30
+Message-ID: <X/ggTOOTBhGoFDpW@aptenodytes>
+References: <20210107134101.195426-1-paul.kocialkowski@bootlin.com>
+ <20210107134101.195426-6-paul.kocialkowski@bootlin.com>
+ <f7291b83fe39d71c3192ea58ebf71e3909bd38af.camel@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <1610028927-9842-4-git-send-email-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="etmhCrDwxUeORcrG"
+Content-Disposition: inline
+In-Reply-To: <f7291b83fe39d71c3192ea58ebf71e3909bd38af.camel@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2021 at 15:15, Claudiu Beznea wrote:
-> Andrei is no longer with Microchip. Add myself as maintainer for
-> MCP16502. Along with this change the status from maintained to
-> supported.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 
-For the record:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+--etmhCrDwxUeORcrG
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks Claudiu!
+Hi Ezequiel,
 
-Regards,
-   Nicolas
+On Thu 07 Jan 21, 16:08, Ezequiel Garcia wrote:
+> Happy to see this patch. It was on my TODO list,
+> but I hadn't had time to bringup my rk3326 device.
 
-> ---
->   MAINTAINERS | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6eff4f720c72..1cd9914b95eb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11690,9 +11690,9 @@ F:	drivers/video/fbdev/atmel_lcdfb.c
->   F:	include/video/atmel_lcdc.h
->   
->   MICROCHIP MCP16502 PMIC DRIVER
-> -M:	Andrei Stefanescu <andrei.stefanescu@microchip.com>
-> +M:	Claudiu Beznea <claudiu.beznea@microchip.com>
->   L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> -S:	Maintained
-> +S:	Supported
->   F:	Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
->   F:	drivers/regulator/mcp16502.c
->   
-> 
+Same here, I just had an occasion to use it again these days so I jumped
+on it!
 
+> A few comments.
+>=20
+> On Thu, 2021-01-07 at 14:41 +0100, Paul Kocialkowski wrote:
+> > The PX30 SoC includes both the VDPU2 and VEPU2 blocks which are similar
+> > to the RK3399 (Hantro G1/H1 with shuffled registers).
+> >=20
+> > Besides taking an extra clock, it also shares an interrupt with the IOM=
+MU
+> > so it's necessary to request the interrupt shared.
+> >=20
+>=20
+> Could you clarify on the commit description which iommu device interrupt
+> line is being shared?
 
--- 
-Nicolas Ferre
+Sure! It's IRQ 79 of the GIC that's shared with vopl_mmu.
+It's not very obvious in the dt commit.
+
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > ---
+> > =C2=A0drivers/staging/media/hantro/hantro_drv.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 5 +++--
+> > =C2=A0drivers/staging/media/hantro/hantro_hw.h=C2=A0=C2=A0=C2=A0=C2=A0 =
+|=C2=A0 1 +
+> > =C2=A0drivers/staging/media/hantro/rk3399_vpu_hw.c | 21 +++++++++++++++=
++++++
+> > =C2=A03 files changed, 25 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/stagin=
+g/media/hantro/hantro_drv.c
+> > index e5f200e64993..076a7782b476 100644
+> > --- a/drivers/staging/media/hantro/hantro_drv.c
+> > +++ b/drivers/staging/media/hantro/hantro_drv.c
+> > @@ -472,6 +472,7 @@ static const struct v4l2_file_operations hantro_fop=
+s =3D {
+> > =C2=A0
+> > =C2=A0static const struct of_device_id of_hantro_match[] =3D {
+> > =C2=A0#ifdef CONFIG_VIDEO_HANTRO_ROCKCHIP
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "rockchip,=
+px30-vpu", .data =3D &px30_vpu_variant, },
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "rock=
+chip,rk3399-vpu", .data =3D &rk3399_vpu_variant, },
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "rock=
+chip,rk3328-vpu", .data =3D &rk3328_vpu_variant, },
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "rock=
+chip,rk3288-vpu", .data =3D &rk3288_vpu_variant, },
+> > @@ -796,8 +797,8 @@ static int hantro_probe(struct platform_device *pde=
+v)
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+return -ENXIO;
+> > =C2=A0
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D devm_request_irq(vpu->dev, irq,
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 vpu->variant->irqs[i].handler, 0,
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 dev_name(vpu->dev), vpu);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 vpu->variant->irqs[i].handler,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 IRQF_SHARED, dev_name(vpu->dev), vpu);
+>=20
+> Maybe this irq flag should be part of vpu->variant? It sounds like an IP =
+block
+> integration specific thing.
+
+Ah right, I agree that it would be justified. But it would also be simple to
+just fix the irq handlers and assume this can generally be the case, becaus=
+e it
+feels like a bit of a detail to justify a flag.
+
+Do you think this could be a safe/workable assumption?
+
+> Also, you will need a px30-specific interrupt handler now,
+> since the rk3399 one is not shared-friendly.
+
+Yeah I realize I haven't been very careful there and didn't really check th=
+at
+the IOMMU driver is really safe to handle shared interrupts either. I'll ta=
+ke
+a look a that when crafting v2.
+
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret) {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+dev_err(vpu->dev, "Could not request %s IRQ.\n",
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0irq_name);
+> > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging=
+/media/hantro/hantro_hw.h
+> > index 34c9e4649a25..07f516fd7a2e 100644
+> > --- a/drivers/staging/media/hantro/hantro_hw.h
+> > +++ b/drivers/staging/media/hantro/hantro_hw.h
+> > @@ -148,6 +148,7 @@ enum hantro_enc_fmt {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0RK3288_VPU_ENC_FMT_UYVY=
+422 =3D 3,
+> > =C2=A0};
+> > =C2=A0
+> > +extern const struct hantro_variant px30_vpu_variant;
+> > =C2=A0extern const struct hantro_variant rk3399_vpu_variant;
+> > =C2=A0extern const struct hantro_variant rk3328_vpu_variant;
+> > =C2=A0extern const struct hantro_variant rk3288_vpu_variant;
+> > diff --git a/drivers/staging/media/hantro/rk3399_vpu_hw.c b/drivers/sta=
+ging/media/hantro/rk3399_vpu_hw.c
+> > index 7a7962cf771e..4112f98baa60 100644
+> > --- a/drivers/staging/media/hantro/rk3399_vpu_hw.c
+> > +++ b/drivers/staging/media/hantro/rk3399_vpu_hw.c
+>=20
+> Perhaps it's time to rename this to rockchip_vpu_hw.c,
+> and merge rk3288 and rk3399? It's a nitpick, though.
+
+Haha, I was thinking the exact same thing but wasn't sure it would be welco=
+me!
+
+I was thinking of rockchip_vpu2_hw.c or rockchip_vdpu2_hw.c since that's
+apparently how it's called in Rockchip terminology: VDPU2 and VEPU2 for the
+Hantro G1 and H1 with the shuffled register layout. The rk3288 stuff is
+probably VDPU1/VEPU1 and we might want to rename it accordingly as well.
+
+Cheers and thanks for the review!
+
+Paul
+
+> > @@ -220,3 +220,24 @@ const struct hantro_variant rk3328_vpu_variant =3D=
+ {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.clk_names =3D rk3399_c=
+lk_names,
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.num_clocks =3D ARRAY_S=
+IZE(rk3399_clk_names),
+> > =C2=A0};
+> > +
+> > +static const char * const px30_clk_names[] =3D {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0"aclk", "hclk", "sclk"
+> > +};
+> > +
+> > +const struct hantro_variant px30_vpu_variant =3D {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.enc_offset =3D 0x0,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.enc_fmts =3D rk3399_vpu_enc=
+_fmts,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.num_enc_fmts =3D ARRAY_SIZE=
+(rk3399_vpu_enc_fmts),
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.dec_offset =3D 0x400,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.dec_fmts =3D rk3399_vpu_dec=
+_fmts,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.num_dec_fmts =3D ARRAY_SIZE=
+(rk3399_vpu_dec_fmts),
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.codec =3D HANTRO_JPEG_ENCOD=
+ER | HANTRO_MPEG2_DECODER |
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 HANTRO_VP8_DECODER,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.codec_ops =3D rk3399_vpu_co=
+dec_ops,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.irqs =3D rk3399_irqs,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.num_irqs =3D ARRAY_SIZE(rk3=
+399_irqs),
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.init =3D rk3399_vpu_hw_init,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.clk_names =3D px30_clk_name=
+s,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.num_clocks =3D ARRAY_SIZE(p=
+x30_clk_names)
+> > +};
+>=20
+> Thanks,
+> Ezequiel
+>=20
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--etmhCrDwxUeORcrG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/4IEwACgkQ3cLmz3+f
+v9Hs7ggAli/nDnFiLhQROx7nOkd1bYcdjuc05TrCrv37+O+iX6wZ4jS2EtWhQFEw
+wkGmbDO3VAg3IqnAa+yDg4Dt7NCEew0NYa7r141wokwJ9CNj0lrqb09rMZLOwEJa
+khdJUQbQkvu09A+6lIORDDRK1nbKKkuPkvnBTmKw0SmUOcno0k1yfn9SIUjjFxu7
+d9wlMa/gu/ERxZqCd5mJldAngR6R65nbnwFrPzVY1QXw+N/UxcwY4DC4DDw5fk4w
+wCSgCk6VpquyYw1bNBOrGUJyy6dxJvclnYiOcIihGucSiPn3FgXuNvCrvfxLDuNq
+hRs2ktu3Xd2L9A3JR02euKHHGdZyMQ==
+=kxiS
+-----END PGP SIGNATURE-----
+
+--etmhCrDwxUeORcrG--
