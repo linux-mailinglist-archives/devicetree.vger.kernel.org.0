@@ -2,80 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE892EEA26
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 01:11:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D15E12EEAB9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 02:12:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729301AbhAHAKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 19:10:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59058 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728416AbhAHAKu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Jan 2021 19:10:50 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPS id 489F02368A;
-        Fri,  8 Jan 2021 00:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610064609;
-        bh=/bl+dbUQLW5CaBdvmpIzjWmsxh0p83ugF1Vo+dLtI4U=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=uWzA7PeycjLb4035QydEmCtOyAkyifDY/SsgqIUFsomS6J7UBqdsVuhT7C3Ddj5tR
-         yY4gKO/61/At/fOU2qBQh5pD8nFZm4ERxwL54dFGACjsk2oRISOpXicVvVAPImBEvc
-         H71k+VFK4S4nG8LnFBvf9yt1gV+byg5WD/iiCZfRjsRAY8aI5Ge4AAL007OIqsO05A
-         ApUt982gsAZYSALR6kYs/ov7Etpc3uzON+g8PGbt+ZrDnTBKSYOfNIsqzoOJ9HGphp
-         0VH8jrPkOttw9p+a7+eLmRW8Xl0uEOpG7rsWMikL6yZeiLz2hZAidvMKwfoCIMm4BL
-         6vF0kUunGfpOg==
-Received: from pdx-korg-docbuild-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-1.ci.codeaurora.org (Postfix) with ESMTP id 3807E605AC;
-        Fri,  8 Jan 2021 00:10:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S1729570AbhAHBK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 20:10:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44106 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727634AbhAHBK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 20:10:58 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DE25C0612F4
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 17:10:18 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id v1so2758295pjr.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 17:10:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rYVPFVXtXxwvNRbtCD49/nQPeoSTTbcvrlAIBfpayjY=;
+        b=Vas4zMIdsNvM0u536DKqys62KF2xTfpQ0ZWY6fwnSuQw7fKhSWR1CI8VwUfSh8a2xf
+         4S+xpJ6a+3l2mfJIeFOS8n0YOUme3v1Pi46O/BFdljtv5DjnTBvFTRSmXoJFKWSZZtb/
+         najymQKiyfjs6S22oBZVuJfcoVijZPcdtb7io=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rYVPFVXtXxwvNRbtCD49/nQPeoSTTbcvrlAIBfpayjY=;
+        b=lTkFtEQWcSYuIhQepkGmPEVJyNdhMPBXuzUDnR9BUPB8D0P/P/e8Ze2Tpmi9BD9s37
+         NUu9yr6jf4xtCRD0gA5qXvXhI3qYTwZhY6CXgMeg32HoTgeA/V29DkAK4PZnW/qtrNpW
+         85VSJaWL1anGGklCT3sAY50ePnwo45zYIzRxD+1uUbwtNKD6xP4+fPyOeXBaUnviVzXp
+         anQDPsu3fWE0dLYKOU+vEv9X+PPmdJTJZ2hPsqXruZYNiMu9QL5INIloFX0tK4LMwmcR
+         75Si/QdRpWRLtAd2oKYtFWLc8keYgWqAEAqm+4m7MpsDeacg4wkifQI6N/2W5Mbfbv/S
+         YqtA==
+X-Gm-Message-State: AOAM532v0k6bYcH/gV5fIloQ0aO3wocdjnwrZjDm6eO/jvY/gcRsgYII
+        aHu97KKC4yJuSbrx5v/bcxR8Lg==
+X-Google-Smtp-Source: ABdhPJywkmrUoz1GUuww7nlVAg7zrHLNiwitqiedS0hUNTEgnRVlRbzJl1+nrX5fUAnpxtQ9hvkRyA==
+X-Received: by 2002:a17:90b:691:: with SMTP id m17mr1139326pjz.73.1610068217903;
+        Thu, 07 Jan 2021 17:10:17 -0800 (PST)
+Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:7220:84ff:fe09:41dc])
+        by smtp.gmail.com with ESMTPSA id s1sm6400083pfb.103.2021.01.07.17.10.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 17:10:17 -0800 (PST)
+From:   Nicolas Boichat <drinkcat@chromium.org>
+To:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     fshao@chromium.org, hoegsberg@chromium.org, hsinyi@chromium.org,
+        boris.brezillon@collabora.com,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v9 0/4] drm/panfrost: Add support for mt8183 GPU
+Date:   Fri,  8 Jan 2021 09:10:07 +0800
+Message-Id: <20210108011011.4061575-1-drinkcat@chromium.org>
+X-Mailer: git-send-email 2.29.2.729.g45daf8777d-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/5] dwmac-meson8b: picosecond precision RX delay support
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161006460922.17100.14707302007622685350.git-patchwork-notify@kernel.org>
-Date:   Fri, 08 Jan 2021 00:10:09 +0000
-References: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20210106134251.45264-1-martin.blumenstingl@googlemail.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
-        jianxin.pan@amlogic.com, narmstrong@baylibre.com,
-        khilman@baylibre.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi!
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Follow-up on the v5 [1], things have gotten significantly
+better in the last 9 months, thanks to the efforts on Bifrost
+support by the Collabora team (and probably others I'm not
+aware of).
 
-On Wed,  6 Jan 2021 14:42:46 +0100 you wrote:
-> Hello,
-> 
-> with the help of Jianxin Pan (many thanks!) the meaning of the "new"
-> PRG_ETH1[19:16] register bits on Amlogic Meson G12A, G12B and SM1 SoCs
-> are finally known. These SoCs allow fine-tuning the RGMII RX delay in
-> 200ps steps (contrary to what I have thought in the past [0] these are
-> not some "calibration" values).
-> 
-> [...]
+I've been testing this series on a MT8183/kukui device, with a
+chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
+mesa 20.3.2 (lots of artifacts though).
 
-Here is the summary with links:
-  - [v4,1/5] dt-bindings: net: dwmac-meson: use picoseconds for the RGMII RX delay
-    https://git.kernel.org/netdev/net-next/c/6b5903f58df4
-  - [v4,2/5] net: stmmac: dwmac-meson8b: fix enabling the timing-adjustment clock
-    https://git.kernel.org/netdev/net-next/c/025822884a4f
-  - [v4,3/5] net: stmmac: dwmac-meson8b: use picoseconds for the RGMII RX delay
-    https://git.kernel.org/netdev/net-next/c/140ddf0633df
-  - [v4,4/5] net: stmmac: dwmac-meson8b: move RGMII delays into a separate function
-    https://git.kernel.org/netdev/net-next/c/7985244d10ea
-  - [v4,5/5] net: stmmac: dwmac-meson8b: add support for the RGMII RX delay on G12A
-    https://git.kernel.org/netdev/net-next/c/de94fc104d58
+devfreq is currently not supported, as we'll need:
+ - Clock core support for switching the GPU core clock (see 2/4).
+ - Platform-specific handling of the 2-regulator (see 3/4).
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Since the latter is easy to detect, patch 3/4 just disables
+devfreq if the more than one regulator is specified in the
+compatible matching table.
 
+[1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
+[2] https://crrev.com/c/2608070
+
+Changes in v9:
+ - Explain why devfreq needs to be disabled for GPUs with >1
+   regulators.
+
+Changes in v8:
+ - Use DRM_DEV_INFO instead of ERROR
+
+Changes in v7:
+ - Fix GPU ID in commit message
+ - Fix GPU ID in commit message
+
+Changes in v6:
+ - Rebased, actually tested with recent mesa driver.
+
+Nicolas Boichat (4):
+  dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+  arm64: dts: mt8183: Add node for the Mali GPU
+  drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
+  drm/panfrost: Add mt8183-mali compatible string
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        |  25 +++++
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   6 +
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   6 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
+ 6 files changed, 161 insertions(+)
+
+-- 
+2.29.2.729.g45daf8777d-goog
 
