@@ -2,128 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33C5C2EEFC6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CED02EEFFC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:46:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727614AbhAHJke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 04:40:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38226 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727396AbhAHJkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:40:33 -0500
-Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1368FC0612F6
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 01:39:53 -0800 (PST)
-Received: by mail-ua1-x92a.google.com with SMTP id f16so3223673uav.12
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 01:39:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MKIqx1+T0s1Uz0l5lnlu8sHB7ChPsrqsSGBnv7F9PHA=;
-        b=UBXFpKBPQH3ou6FxAvLQLc27q5ERw+zDe12JgeEF0sc1yNF5yd8c8SKpHNRNRBvrHE
-         Ujl/yKitGr6inPulvKBnpcvgvMiJj5MgM6fTHHoJJKGyi1RxmEJEoweFLnwuAmeGOTcr
-         q55XMeoeroQzwVquOumpNkBczYuG6X1H3plxHx78ZX6F0enhhVfWKgcssOcgxp8Og7ok
-         XLAoN43AJuYjR60BMZRzVfWlgj4tfUSSo6zgyzlo49F+YFhXpTZE98gbnWEAggHU8N3N
-         6dwT+PoQZHJaWEMzmO7mSboGqOb/d+Jn8MX1JzBu2sov7DP4U6qXpZEsvnnUhvd8YL+J
-         BXsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MKIqx1+T0s1Uz0l5lnlu8sHB7ChPsrqsSGBnv7F9PHA=;
-        b=Yney0Ovzk3AmMaiARe+4THjO5rhZvEUq8NGonq4VJ/rRLk/BLRCLw3yLvdJU44IGkx
-         uR/G63iZNdr3Qi02bU2j1PkNaKsXwKuxjNvGtiawMkE5LF4nto0orjTGMwUTOyVSo+75
-         dpMMdVthh0AqWSIfSRcUlWs53zuFDU1cUzgkaXP6OYaKIVsLB/9WB4/qjSe4A7LX7NP+
-         E+mMs/5+An3Cb1jBjRE+bG70y5Vt4mqZLHwUT/2GhLBdYs+bo8BDiZ5GMeOd7GlrPaPN
-         P2qBXptDs4+iSy8Fri9rYyvOQ36lP4KH3j+ygtSn2/5glCnEYLldJb/SZVuHr6S78ivO
-         CE+g==
-X-Gm-Message-State: AOAM532lFftQSSikigNjGpiV1MNZCJH/DJKlRhJj1fqY6aIpuIdnSBM2
-        Yu9JXzCxnH6/Q1tj+q6PLvZRtiXQCQ2gaeZo+hDq3A==
-X-Google-Smtp-Source: ABdhPJyO9MNZw7maYb1cVWdBXnv9cfRCWkRHXPDTUPH7WUCo66etmetwEj+m+TRNoV3tGPk704BJrjZLHzt3rOmWixU=
-X-Received: by 2002:ab0:4597:: with SMTP id u23mr2241423uau.100.1610098792062;
- Fri, 08 Jan 2021 01:39:52 -0800 (PST)
+        id S1727294AbhAHJqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 04:46:04 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:37869 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727661AbhAHJqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:46:04 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id D9012580561;
+        Fri,  8 Jan 2021 04:44:57 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Fri, 08 Jan 2021 04:44:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=t
+        TtMNGskLOtyD7vtLn+5d15eH73b6jHQkp3x9E3BXt4=; b=mpQj9E0ih0BacLBI9
+        EyBqDyEi4/siFyN3iiI6PUpfUI2mkQz58BL4xQhZI+eSDYt6/jLRbpcA1oBMp5D9
+        rX+pMiQtqt5iMcxiha+qpQCX/4oTiIwX7Iqvswmd0gSpDE/oocyMHiiExgGM8bsD
+        L8dLLBuhPcuBQMQpuMZfWcHH4Ni7S4FuW12lgc8dimOfd3WbwpUTWCbc8GoEm3SD
+        K63Gtk4msfaZ2EOPuFI7ZGKo1xeEzBZ3ypYPj1mVfUDbZhv4legn/2Gq+W61+hFk
+        2bfRgjYNaB1/MXl4GL+FaNsb0NBI1qkULH4yN4/qfumijfdrf2ZSUSRL/o4XNMiL
+        Qhj+Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=tTtMNGskLOtyD7vtLn+5d15eH73b6jHQkp3x9E3BX
+        t4=; b=UCn/KRtAmfT8TzrqE3VWYSPzJe5sSsc8mYA7qz9H/Y2f8VaXVCZdzBuqF
+        aAs2bAQ7S1xYORf2L6IPA87Ei6Ad/AWx0nOEXYfL6oXWT9aFhmvjEZoMZofwljAY
+        eFrY8rt9yjx79KIMehFj8NGI4EnwACaVZqjVhGw66nxvW7A78MR4B84qaBuOQikJ
+        cZyO8hBUPO8kTwDTJgYaQz3stFNjBZl7qdPRnfTd5/arUzQ9/vqBkdh3bs9vPwrl
+        6EQfi6SSpRfJ4Wp/gxN1j1gZvpCxFjMOnbq/oxj/rnUXRhvxXnwoNoPSAnHheTpU
+        h/0MIsJt4i8zZdHf5GlSZ7BU7w3ZQ==
+X-ME-Sender: <xms:lyn4X-wnFz6wg11q9hv3PncZtk39Jx2wOJWxhC9i9iaPlPHWZF_FXQ>
+    <xme:lyn4X6QjQPtgOV06Di7o9sDPzV4Y76zNnx3k2LdCm5dW4h1lMS_G5XWNwcGrRQqPe
+    2mplMhVWt4CSOEjiUo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgtdeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
+    gedvudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:lyn4XwXd5KRLowX-BX3xDL0fqXnsggYrvPJWc8mWEgvdVbTJJ_ahDQ>
+    <xmx:lyn4X0gFhC8IRXGlF0eNYw1QY8bpHccykgkuTw_AKX8nE2x4WySuQA>
+    <xmx:lyn4XwC0mGIfn9iHK7vu7oZImIr1vf3r_8dQIfgjgcJboTVQHdzB9A>
+    <xmx:mSn4X5ILsnD77hT3KMeg3GmckIX8l2N3wys1M9RheFs5NBtLAR7rSw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 0807324005E;
+        Fri,  8 Jan 2021 04:44:54 -0500 (EST)
+Date:   Fri, 8 Jan 2021 10:44:53 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v3 01/10] dt-bindings: irq: sun6i-r: Split the binding
+ from sun7i-nmi
+Message-ID: <20210108094453.7uk5lj6j6gdmydiw@gilmour>
+References: <20210103103101.33603-1-samuel@sholland.org>
+ <20210103103101.33603-2-samuel@sholland.org>
 MIME-Version: 1.0
-References: <20201224111210.1214-1-rojay@codeaurora.org> <20201224111210.1214-2-rojay@codeaurora.org>
- <20201231154929.GA1846089@robh.at.kernel.org>
-In-Reply-To: <20201231154929.GA1846089@robh.at.kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 8 Jan 2021 10:39:15 +0100
-Message-ID: <CAPDyKFp_mZOW45RFN6_2P8skjY4_1PfVun6YZ_6a+edKHmBOeg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: power: Introduce 'assigned-performance-states'
- property
-To:     Rob Herring <robh@kernel.org>
-Cc:     Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
-        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210103103101.33603-2-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Dec 2020 at 16:49, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Dec 24, 2020 at 04:42:08PM +0530, Roja Rani Yarubandi wrote:
-> > While most devices within power-domains which support performance states,
-> > scale the performance state dynamically, some devices might want to
-> > set a static/default performance state while the device is active.
-> > These devices typically would also run off a fixed clock and not support
-> > dynamically scaling the device's performance, also known as DVFS
-> > techniques.
-> >
-> > Add a property 'assigned-performance-states' which client devices can
-> > use to set this default performance state on their power-domains.
-> >
-> > Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> > ---
-> >  .../bindings/power/power-domain.yaml          | 49 +++++++++++++++++++
-> >  1 file changed, 49 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/power/power-domain.yaml b/Documentation/devicetree/bindings/power/power-domain.yaml
-> > index aed51e9dcb11..a42977a82d06 100644
-> > --- a/Documentation/devicetree/bindings/power/power-domain.yaml
-> > +++ b/Documentation/devicetree/bindings/power/power-domain.yaml
-> > @@ -66,6 +66,18 @@ properties:
-> >        by the given provider should be subdomains of the domain specified
-> >        by this binding.
-> >
-> > +  assigned-performance-states:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    description:
-> > +       Some devices might need to configure their power domains in a default
-> > +       performance state while the device is active. These devices typcially
-> > +       would also run off a fixed clock and not support dynamically scaling
-> > +       the device's performance, also known as DVFS techniques. Each cell in
-> > +       performance state value corresponds to one power domain specified as
-> > +       part of the power-domains property. Performance state value can be an
-> > +       opp-level inside an OPP table of the power-domain and need not match
-> > +       with any OPP table performance state.
->
-> Couldn't this just be an additional cell in 'power-domains'?
+Hi Samuel,
 
-Right. Some SoCs already use the cell to specify per device SoC
-specific data [1].
+Thanks a lot for working on this
 
-Although, I am wondering if we shouldn't consider
-"assigned-performance-states" as a more generic binding. I think it
-would be somewhat comparable with the existing "assigned-clock-rates"
-binding, don't you think?
+I'm fine with the rest of the work, but I have a couple of questions
 
-[...]
+On Sun, Jan 03, 2021 at 04:30:52AM -0600, Samuel Holland wrote:
+> The R_INTC in the A31 and newer sun8i/sun50i SoCs has additional
+> functionality compared to the sun7i/sun9i NMI controller. Among other
+> things, it multiplexes up to 128 interrupts corresponding to (and in
+> parallel to) the first 128 GIC SPIs. This means the NMI is no longer the
+> lowest-numbered interrupt, since it is SPI 32 or 96 (depending on SoC).
+>=20
+> To allow access to all multiplexed IRQs, the R_INTC requires a new
+> binding where the interrupt number matches the GIC interrupt number.
+> For simplicity, copy the three-cell GIC binding; this disambiguates
+> interrupt 0 in the old binding (the NMI) from interrupt 0 in the new
+> binding (SPI 0) by the number of cells.
 
-Kind regards
-Uffe
+It's not really clear to me what the ambiguity is between the NMI and
+the SPI 0 interrupt?
 
-[1]
-Documentation/devicetree/bindings/soc/ti/sci-pm-domain.txt
+In general, it looks like switching to a 3-cell binding with the GIC SPI
+value looks weird to me, since the GIC isn't the parent at all of these
+interrupts.
+
+If the ambiguity is that a stacked irqchip driver needs to have the same
+interrupt number than the GIC, and that the 0 interrupt for the NMI
+controller (used by the PMIC) and is actually the 32 (or 96) GIC
+interrupt and thus breaks that requirement, can't we fix this in the
+driver based on the compatible?
+
+Something like if the interrupt number is 0, with a A31 or newer
+compatible, then add the proper offset in sun6i_r_intc_domain_alloc?
+
+Maxime
