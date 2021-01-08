@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 505762EEB6F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:43:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 613672EEB7E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:53:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726410AbhAHCmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 21:42:54 -0500
-Received: from mail-io1-f49.google.com ([209.85.166.49]:43219 "EHLO
-        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725959AbhAHCmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:42:53 -0500
-Received: by mail-io1-f49.google.com with SMTP id o6so8301261iob.10
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 18:42:38 -0800 (PST)
+        id S1726776AbhAHCxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 21:53:15 -0500
+Received: from mail-io1-f54.google.com ([209.85.166.54]:36351 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726832AbhAHCxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:53:15 -0500
+Received: by mail-io1-f54.google.com with SMTP id u26so8380610iof.3;
+        Thu, 07 Jan 2021 18:53:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wPiCz3MJAup9q9l5CzZP+3XdihV7IrCQNfuDIuI0X8I=;
-        b=VmDgRk6bRat7a97KPaJRvBmm99WdwniJ7rcO2pyuH/4/fEobG0ELlyaSuDmeZRl0YM
-         Guh4c3iFE8hwV7QLO1yuhD+8u+u8JtEEFVpvjEF7wUMy9YjN5yNBx3jM/UwahCoo6ywg
-         DUOEU10gkluJvsxuND2s1qDpt+Lyhq8MA1Igw5VDhCPH8g3Hi8CD3eKHdkeGIgOOpzAR
-         7MIvu+UG7WPeQ1in8bv5rDr/N6I2t5PDf/p7Rp2REkr9BODSnQ9FIMxUQNEJKFzcZptz
-         EsNOI/qCfJPMVq2yXWjnI1O9TTan15ppazya4XeYBtE2jMbIwnpqT1MPkV+VuqJT76er
-         Ling==
-X-Gm-Message-State: AOAM532NqsEMu1g3LRaCN8iGFfEGowtxEK/p+cp4hz028id8P7qGBdbr
-        YDTRAgJk2Eg3ubfilhfVpg==
-X-Google-Smtp-Source: ABdhPJxQVjRZ0Wrjwd2ZJy8DocUyhqLv7WcP1cYZBrXrZQi4aW6pgorSpt9y84Tg2abze2DctZ3tyg==
-X-Received: by 2002:a5e:dd0d:: with SMTP id t13mr3866409iop.132.1610073733311;
-        Thu, 07 Jan 2021 18:42:13 -0800 (PST)
+        bh=j9BJOm6Gyl9YhJRZvOpzUQv+7D7nE5zdeZRpcSuRRBI=;
+        b=nHvSzXXNmC1EHWbEHPHEdXyP/qNfgNYYBB1ydgAKByLINvCkR/lCWurTvp/7RLAZ5O
+         4u/a/KJhpg+6AbIqu3QpaV0pABedjXcG6ezZRT6X6kDKa7+g7VIPKAfBg7wb5QHHxgre
+         U74EpbSGHCTCEJwGCyFyOdAAllmYVFhrc/F5RjQOplnoq+jyyv8oLYo12fIbRWIhN4/j
+         OTfGoHA78XfjUVF6YIlcaLJUgOCZavjdxDHFYw5nDdwhEEElz8AXJnUgSsrRR0khGwjy
+         0zv0qeIOzFpckt3GAKct8PiSB0SsnPNyjzFErDfQXKpkeqQ5uTvKpTYNnODArXr3RK1U
+         lQsA==
+X-Gm-Message-State: AOAM530fJR+bENNMxOOQzjG7o/IlA4CqsPtFuYSanhBRmBNftTDfyP2t
+        y7LgNzrjQ+pe0WBoa2R9NA==
+X-Google-Smtp-Source: ABdhPJxSj3GS6b8u4lJrqSge/6GnqMxaAVuJHdUXCdgq9UGMMZClQFUGQc3VppY2A5kzN6A5IQaUGQ==
+X-Received: by 2002:a05:6638:1a:: with SMTP id z26mr1500734jao.52.1610074354559;
+        Thu, 07 Jan 2021 18:52:34 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id j15sm6072781ile.1.2021.01.07.18.42.10
+        by smtp.gmail.com with ESMTPSA id b13sm4525239ils.54.2021.01.07.18.52.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jan 2021 18:42:12 -0800 (PST)
-Received: (nullmailer pid 1769172 invoked by uid 1000);
-        Fri, 08 Jan 2021 02:42:09 -0000
-Date:   Thu, 7 Jan 2021 19:42:09 -0700
+        Thu, 07 Jan 2021 18:52:33 -0800 (PST)
+Received: (nullmailer pid 1782876 invoked by uid 1000);
+        Fri, 08 Jan 2021 02:52:31 -0000
+Date:   Thu, 7 Jan 2021 19:52:31 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     dri-devel@lists.freedesktop.org, Eric Anholt <eric@anholt.net>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        bcm-kernel-feedback-list@broadcom.com,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: bcm2835-vec: Add power-domains property
-Message-ID: <20210108024209.GA1769120@robh.at.kernel.org>
-References: <1608751473-12343-1-git-send-email-stefan.wahren@i2se.com>
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        CK Hu <ck.hu@mediatek.com>, David Airlie <airlied@linux.ie>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v2, 1/3] dt-binding: gce: add gce header file for mt8192
+Message-ID: <20210108025231.GA1782839@robh.at.kernel.org>
+References: <1608770889-9403-1-git-send-email-yongqiang.niu@mediatek.com>
+ <1608770889-9403-2-git-send-email-yongqiang.niu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1608751473-12343-1-git-send-email-stefan.wahren@i2se.com>
+In-Reply-To: <1608770889-9403-2-git-send-email-yongqiang.niu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Dec 2020 20:24:33 +0100, Stefan Wahren wrote:
-> Adding the missing property power-domains to the bcm2835-vec schema to fix
-> the following dtbs_check issue:
+On Thu, 24 Dec 2020 08:48:07 +0800, Yongqiang Niu wrote:
+> Add documentation for the mt8192 gce.
 > 
-> vec@7e806000: 'power-domains' does not match any of the regexes: ...
+> Add gce header file defined the gce hardware event,
+> subsys number and constant for mt8192.
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/display/brcm,bcm2835-vec.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/mailbox/mtk-gce.txt        |   7 +-
+>  include/dt-bindings/gce/mt8192-gce.h               | 419 +++++++++++++++++++++
+>  2 files changed, 423 insertions(+), 3 deletions(-)
+>  create mode 100644 include/dt-bindings/gce/mt8192-gce.h
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
