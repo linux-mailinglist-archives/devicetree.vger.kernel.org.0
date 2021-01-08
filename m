@@ -2,91 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57F3C2EFB45
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 23:42:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A2622EFB60
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 23:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725791AbhAHWl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 17:41:58 -0500
-Received: from mout.gmx.net ([212.227.15.15]:47547 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725763AbhAHWl5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Jan 2021 17:41:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1610145621;
-        bh=zoPbxKl7/h63Lb9FVRa59Ce+siBolFFjisZwdmEdKTM=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=UzFum2fGUDHoGZoFso450mnTY/alpDyBq3w47ne4HC8CI825F6TSqT5UwpNeRygUL
-         1XJ7IjQ9m282trM0VDWCzPpRe/ik8jvUJ6QXJ5LHoFMgmSSrifCrZd2NDOvA32zApo
-         yAuZc5i4+PwGsGF6vKcNfdktH+TM8oOi7S8ECqzQ=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.57]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MoO6M-1k9HTh0jKi-00okPe; Fri, 08
- Jan 2021 23:40:21 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     devicetree@vger.kernel.org
-Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        id S1725835AbhAHWuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 17:50:13 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:44721 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725775AbhAHWuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 17:50:13 -0500
+Received: from [77.244.183.192] (port=64828 helo=[192.168.178.24])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1ky0ZW-00DrLE-Eb; Fri, 08 Jan 2021 23:49:30 +0100
+Subject: Re: [RFC 1/2] dt-bindings: clk: versaclock5: Add load capacitance
+ properties
+To:     Adam Ford <aford173@gmail.com>, linux-clk@vger.kernel.org
+Cc:     aford@beaconembedded.com,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: Add board-specific compatible string to npcm750-evb devicetree
-Date:   Fri,  8 Jan 2021 23:40:07 +0100
-Message-Id: <20210108224008.705687-2-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210108224008.705687-1-j.neuschaefer@gmx.net>
-References: <20210108224008.705687-1-j.neuschaefer@gmx.net>
+References: <20210106173900.388758-1-aford173@gmail.com>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <833e228f-6fb5-ae98-a367-9566cf5fcf69@lucaceresoli.net>
+Date:   Fri, 8 Jan 2021 23:49:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:BhfwAak8K6CjNf+mZXSVTbn7VQ7sg+KrjOvjneGvzbDUST8rpwy
- ICs1qJJHjO+5CopzxrfyT/AhGBBtjE8BTzm2GqBOt7Tvd6bgZ70Dx4nP6Wr+Epghln7fRI9
- nLTLyKpdakNxCyAC7OBkJyjROdkv5lq+HQZ56hjN04caCEUNAHVwiaBVCEz2ND783Aqgn0g
- vbS340YVp0ihxUpbhSpww==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:NoMWTY70s50=:lHz2McS2sj8PnBtG1DnL7r
- E13SqSfiCJ35zDFvTEd8sZG1Z1ruXBIz2LdJzVJEvHXGRt3njloPegEha1SncHuLfM5JC+rsk
- jdd0brladGXztdECekFtaTPUdl6uIcFPluVtvKhbEjuo2HpB5SggC9XVH3KB7U9wZk9Og7z0n
- uUln4oiT3pEQ0NIPJVXYTalMM4m3hb7CETQv+6Par1CxhYUfJb4VMEYL8evr/CTFtbKWKc9sD
- 8E/PQyTGzV1cdTyra4oXn19b/t/dJEKmzifEIZkkJcqUIauZEhuAlwqA37A6ItaWWa/t6aaOD
- 20PCQD39o/pZBnrOFrEHEAYP/d/NXxl4308n0Wm69KTKjxwPZsaJihiVzF02/9XrL08b14Xt8
- jgiKerij3tkx8404FWC1eMsjsOTX5y05PHejMAgyvkWVBG1qhsIo0jWvLlJuOECjUl7kPN2nr
- Z0kwFy4oyV836UjkvvRKLCpC8/cyj5hZpx5oPImIRje6AdvRifS67zpV4J27IvyFXEq9p54Tb
- /TjwB45Wzjhy1VlOCmyuwDRuvKs07rqDSmVoOIh33RZS72zIMFYh7Yw1FpnLSMphbHxhGi7dK
- lg6gF2FIpk96iAGP3jRkYjh4hD8pWx7dVK/KBp79Yvdu6ggnm1b1TQenXz5Ts37sMlQ1v1RXL
- NCeRssIcYg7CKmqApcS50h0eAZdbjXopeIqZftIDpr0ytTcZJyPbvlv2n9a721u0KaSnYZ9jv
- ZT5IHVggY1CuJmdt+E/tsdKflzbwoQioc2geFGA4j5TkBohhEx4BDDVz61jlR4eUnsTBb2NEy
- x01qLHei3zaDe9TFLhQFZb+8l1t/Yhh06qGwOpYvNbLIxL9kpcQUTgBy7C3BHyaqM0DBqyQuh
- K204ho3PGmagv2qq3y8w==
+In-Reply-To: <20210106173900.388758-1-aford173@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the revised binding, the devicetree needs a board-specific
-compatible string.
+Hi Adam,
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
- arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 06/01/21 18:38, Adam Ford wrote:
+> There are two registers which can set the load capacitance for
+> XTAL1 and XTAL2. These are optional registers when using an
+> external crystal.  Update the bindings to support them.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+>  .../devicetree/bindings/clock/idt,versaclock5.yaml   | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> index 2ac1131fd922..e5e55ffb266e 100644
+> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> @@ -59,6 +59,18 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  idt,xtal1-load-femtofarads:
 
-diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts=
-/nuvoton-npcm750-evb.dts
-index 9f13d08f5804e..dea3dbc4a6a52 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-@@ -9,7 +9,7 @@
+I wonder whether we should have a common, vendor independent property.
+In mainline we have xtal-load-pf (ti,cdce925.txt bindings) which has no
+vendor prefix. However I don't know how much common it is to need
+different loads for x1 and x2. Any hardware engineer around?
 
- / {
- 	model =3D "Nuvoton npcm750 Development Board (Device Tree)";
--	compatible =3D "nuvoton,npcm750";
-+	compatible =3D "nuvoton,npcm750-evb", "nuvoton,npcm750";
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 9000
+> +    maximum: 25000
+> +    description: Optional loading capacitor for XTAL1
 
- 	aliases {
- 		ethernet2 =3D &gmac0;
-=2D-
-2.29.2
+Nit: I think the common wording is "load capacitor", not "loading
+capacitor".
 
+-- 
+Luca
