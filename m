@@ -2,290 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EF3F2EF54C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 17:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B74B2EF576
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 17:07:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727885AbhAHP7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 10:59:12 -0500
-Received: from foss.arm.com ([217.140.110.172]:53472 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727910AbhAHP7M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Jan 2021 10:59:12 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA76331B;
-        Fri,  8 Jan 2021 07:58:26 -0800 (PST)
-Received: from [192.168.1.179] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4C6F83F70D;
-        Fri,  8 Jan 2021 07:58:25 -0800 (PST)
-Subject: Re: [PATCH v2 2/2] arm64: dts: mt8192: Add node for the Mali GPU
-To:     Nick Fan <Nick.Fan@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20210105053632.5476-1-Nick.Fan@mediatek.com>
- <20210105053632.5476-2-Nick.Fan@mediatek.com>
-From:   Steven Price <steven.price@arm.com>
-Message-ID: <3d3bf91a-92b0-385c-b7c1-35af7732f05f@arm.com>
-Date:   Fri, 8 Jan 2021 15:58:24 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727974AbhAHQGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 11:06:09 -0500
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:31032 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727957AbhAHQGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 11:06:07 -0500
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 108G23sQ011489;
+        Fri, 8 Jan 2021 10:05:07 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=tqQw790delcllXWLBK7BIW10l+6uB+lTE/LLtib25BM=;
+ b=UQHMooUk3DyqjBnXFwJ2yqrnLuwGrAfDvtQIwDmJQYdI6Bl+rty2FA87al0J+13ky+nw
+ mvf3pZ6K4unOCo5TqZF8fjJNG3uZT1kvJGjyBAO4CXebK7FMfb79lEIbGmP4XrvjuCHn
+ w0eQtq3/sijHGdBT5aUX2nf6cF/pelkA8McaEBaHOY9ouQU3TzV/17DseOPhY35erQrc
+ EfTi5hq7+3XyANG/rUATjjFxNk1NIosGlQuAduvBj6HlKl8WCtlMQy1AVjgMmC5+Y3y6
+ 3lwfUiZu3bQazLGTi2/IlSUUtuZqVBPjCChEBLzH18Vrzq4ZZD0E93C7pG4V6yRQl4yD eg== 
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 35wqjka90s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 08 Jan 2021 10:05:07 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 8 Jan 2021
+ 16:05:06 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Fri, 8 Jan 2021 16:05:06 +0000
+Received: from AUSNPC0LSNW1-debian.cirrus.com (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.226])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 4E80C45;
+        Fri,  8 Jan 2021 16:05:05 +0000 (UTC)
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <kuninori.morimoto.gx@renesas.com>, <nsaenzjulienne@suse.de>,
+        <f.fainelli@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>
+Subject: [PATCH v4 0/6] Add support for Rpi4b + Cirrus Lochnagar2 and CS47L15
+Date:   Fri, 8 Jan 2021 16:04:55 +0000
+Message-ID: <20210108160501.7638-1-rf@opensource.cirrus.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20210105053632.5476-2-Nick.Fan@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 malwarescore=0
+ spamscore=0 clxscore=1015 bulkscore=0 phishscore=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101080091
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/01/2021 05:36, Nick Fan wrote:
-> Add a basic GPU node for mt8192.
-> 
-> Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
-> ---
-> This patch depends on Mediatek power and regulator support.
-> 
-> Listed as following.
-> 
-> [1]https://lore.kernel.org/patchwork/patch/1336293/
-> [2]https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
-> [3]https://lore.kernel.org/patchwork/patch/1356037/
-> [4]https://patchwork.kernel.org/project/linux-mediatek/list/?series=405777
-> [5]https://lore.kernel.org/patchwork/patch/1356175/
-> [6]https://patchwork.kernel.org/project/linux-mediatek/patch/1605700894-32699-6-git-send-email-hsin-hsiung.wang@mediatek.com/
-> [7]https://patchwork.kernel.org/project/linux-mediatek/patch/1608104827-7937-10-git-send-email-hsin-hsiung.wang@mediatek.com/
-> ---
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192-evb.dts |   7 +
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi    | 176 ++++++++++++++++++++
->   2 files changed, 183 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-> index 6c1e2b3e8a60..48c0e240dd92 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-> @@ -5,6 +5,7 @@
->    */
->   /dts-v1/;
->   #include "mt8192.dtsi"
-> +#include "mt6359.dtsi"
->   
->   / {
->   	model = "MediaTek MT8192 evaluation board";
-> @@ -70,6 +71,12 @@
->   	};
->   };
->   
-> +&gpu {
-> +	supply-names = "mali","sram";
-> +	mali-supply = <&mt6315_7_vbuck1>;
-> +	sram-supply = <&mt6359_vsram_others_ldo_reg>;
-> +};
-> +
->   &uart0 {
->   	status = "okay";
->   };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index d6a4ad242a33..de166ea750af 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -822,6 +822,182 @@
->   			#clock-cells = <1>;
->   		};
->   
-> +		gpu: mali@13000000 {
-> +			compatible = "mediatek,mt8192-mali", "arm,mali-valhall";
-> +			reg = <0 0x13000000 0 0x4000>;
-> +			interrupts =
-> +				<GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH 0>,
-> +				<GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH 0>,
-> +				<GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH 0>,
-> +				<GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH 0>,
-> +				<GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			interrupt-names =
-> +				"GPU",
-> +				"MMU",
-> +				"JOB",
-> +				"EVENT",
-> +				"PWR";
+This set of patches provides support for using the Raspberry Pi 4b with
+a Cirrus Logic Lochnagar 2 audio development platform plus Cirrus Logic
+CS47L15 codec.
 
-These interrupt names don't match the binding you've posted (GPU, MMU, 
-JOB are upper case here, lower case in the binding). Also EVENT and PWR 
-are not mentioned in the binding - should they be?
+Patches are needed to audio-graph-card to enable support for setting the
+component sysclks and plls. These are not specific to CS47L15 - several
+Cirrus and non-Cirrus codecs also require component clock setup, typically
+for larger codecs with multiple internal clocking options and clock domains.
 
-I know there are differences here between kbase's requirements and the 
-existing upstream bindings (case specifically), but I haven't seen a 
-binding containing EVENT and PWR before.
+The codec sysclks and plls cannot be placed under the clock framework because
+they are typically I2C/SPI/Soundwire-connected peripherals and access to the
+registers would cause a nested get of the bus clock. The clock framework does
+not support this and it would result in a deadlock.
 
-Steve
+Richard Fitzgerald (6):
+  of: base: Add of_count_phandle_with_fixed_args()
+  dt-bindings: audio-graph-card: Add plls and sysclks properties
+  ASoC: audio-graph-card: Support setting component plls and sysclks
+  ASoC: madera: Allow codecs to be selected from kernel config
+  ASoC: madera: Export clock config defines to dt-bindings
+  ARM: dts: Add dts for RPi4b + Cirrus Logic Lochnagar2 + CS47L15
 
-> +
-> +			clocks =
-> +				<&apmixedsys CLK_APMIXED_MFGPLL>,
-> +				<&topckgen CLK_TOP_MFG_PLL_SEL>,
-> +				<&topckgen CLK_TOP_MFG_REF_SEL>,
-> +				<&mfgcfg CLK_MFG_BG3D>;
-> +			clock-names =
-> +				"clk_main_parent",
-> +				"clk_mux",
-> +				"clk_sub_parent",
-> +				"subsys_mfg_cg";
-> +
-> +			power-domains =
-> +				<&scpsys MT8192_POWER_DOMAIN_MFG2>,
-> +				<&scpsys MT8192_POWER_DOMAIN_MFG3>,
-> +				<&scpsys MT8192_POWER_DOMAIN_MFG4>,
-> +				<&scpsys MT8192_POWER_DOMAIN_MFG5>,
-> +				<&scpsys MT8192_POWER_DOMAIN_MFG6>;
-> +			power-domain-names = "core0",
-> +					     "core1",
-> +					     "core2",
-> +					     "core3",
-> +					     "core4";
-> +
-> +			operating-points-v2 = <&gpu_opp_table>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		gpu_opp_table: opp_table0 {
-> +			compatible = "operating-points-v2";
-> +			opp-shared;
-> +
-> +			opp-358000000 {
-> +				opp-hz = /bits/ 64 <358000000>;
-> +				opp-hz-real = /bits/ 64 <358000000>,
-> +					      /bits/ 64 <358000000>;
-> +				opp-microvolt = <606250>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-399000000 {
-> +				opp-hz = /bits/ 64 <399000000>;
-> +				opp-hz-real = /bits/ 64 <399000000>,
-> +					      /bits/ 64 <399000000>;
-> +				opp-microvolt = <618750>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-440000000 {
-> +				opp-hz = /bits/ 64 <440000000>;
-> +				opp-hz-real = /bits/ 64 <440000000>,
-> +					      /bits/ 64 <440000000>;
-> +				opp-microvolt = <631250>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-482000000 {
-> +				opp-hz = /bits/ 64 <482000000>;
-> +				opp-hz-real = /bits/ 64 <482000000>,
-> +					      /bits/ 64 <482000000>;
-> +				opp-microvolt = <643750>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-523000000 {
-> +				opp-hz = /bits/ 64 <523000000>;
-> +				opp-hz-real = /bits/ 64 <523000000>,
-> +					      /bits/ 64 <523000000>;
-> +				opp-microvolt = <656250>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-564000000 {
-> +				opp-hz = /bits/ 64 <564000000>;
-> +				opp-hz-real = /bits/ 64 <564000000>,
-> +					      /bits/ 64 <564000000>;
-> +				opp-microvolt = <668750>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-605000000 {
-> +				opp-hz = /bits/ 64 <605000000>;
-> +				opp-hz-real = /bits/ 64 <605000000>,
-> +					      /bits/ 64 <605000000>;
-> +				opp-microvolt = <681250>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-647000000 {
-> +				opp-hz = /bits/ 64 <647000000>;
-> +				opp-hz-real = /bits/ 64 <647000000>,
-> +					      /bits/ 64 <647000000>;
-> +				opp-microvolt = <693750>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-688000000 {
-> +				opp-hz = /bits/ 64 <688000000>;
-> +				opp-hz-real = /bits/ 64 <688000000>,
-> +					      /bits/ 64 <688000000>;
-> +				opp-microvolt = <706250>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-724000000 {
-> +				opp-hz = /bits/ 64 <724000000>;
-> +				opp-hz-real = /bits/ 64 <724000000>,
-> +					      /bits/ 64 <724000000>;
-> +				opp-microvolt = <725000>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-760000000 {
-> +				opp-hz = /bits/ 64 <760000000>;
-> +				opp-hz-real = /bits/ 64 <760000000>,
-> +					      /bits/ 64 <760000000>;
-> +				opp-microvolt = <743750>,
-> +						<750000>;
-> +			};
-> +
-> +			opp-795000000 {
-> +				opp-hz = /bits/ 64 <795000000>;
-> +				opp-hz-real = /bits/ 64 <795000000>,
-> +					      /bits/ 64 <795000000>;
-> +				opp-microvolt = <762500>,
-> +						<762500>;
-> +			};
-> +
-> +			opp-831000000 {
-> +				opp-hz = /bits/ 64 <831000000>;
-> +				opp-hz-real = /bits/ 64 <831000000>,
-> +					      /bits/ 64 <831000000>;
-> +				opp-microvolt = <781250>,
-> +						<781250>;
-> +			};
-> +
-> +			opp-855000000 {
-> +				opp-hz = /bits/ 64 <855000000>;
-> +				opp-hz-real = /bits/ 64 <855000000>,
-> +					      /bits/ 64 <855000000>;
-> +				opp-microvolt = <793750>,
-> +						<793750>;
-> +			};
-> +
-> +			opp-902000000 {
-> +				opp-hz = /bits/ 64 <902000000>;
-> +				opp-hz-real = /bits/ 64 <902000000>,
-> +					      /bits/ 64 <902000000>;
-> +				opp-microvolt = <818750>,
-> +						<818750>;
-> +			};
-> +
-> +			opp-950000000 {
-> +				opp-hz = /bits/ 64 <950000000>;
-> +				opp-hz-real = /bits/ 64 <950000000>,
-> +					      /bits/ 64 <950000000>;
-> +				opp-microvolt = <843750>,
-> +						<843750>;
-> +			};
-> +		};
-> +
->   		mfgcfg: syscon@13fbf000 {
->   			compatible = "mediatek,mt8192-mfgcfg", "syscon";
->   			reg = <0 0x13fbf000 0 0x1000>;
-> 
+ .../bindings/sound/audio-graph.yaml           |  46 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/bcm2711-rpi-4-b-lochnagar-cs47l15.dts | 186 ++++++++++++++
+ .../boot/dts/bcm2711-rpi-4-b-lochnagar.dtsi   | 201 +++++++++++++++
+ drivers/of/base.c                             |  73 ++++--
+ include/dt-bindings/sound/madera.h            |  60 +++++
+ include/linux/of.h                            |   9 +
+ include/sound/simple_card_utils.h             |  25 ++
+ sound/soc/codecs/Kconfig                      |  10 +-
+ sound/soc/codecs/madera.h                     |  56 +----
+ sound/soc/generic/audio-graph-card.c          |  13 +
+ sound/soc/generic/simple-card-utils.c         | 238 ++++++++++++++++++
+ 13 files changed, 836 insertions(+), 83 deletions(-)
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi-4-b-lochnagar-cs47l15.dts
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi-4-b-lochnagar.dtsi
+
+-- 
+2.20.1
 
