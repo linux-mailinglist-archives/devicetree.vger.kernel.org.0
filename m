@@ -2,76 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D9692EEB84
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:56:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 838282EEB89
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:59:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726987AbhAHCyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 21:54:14 -0500
-Received: from mail-il1-f178.google.com ([209.85.166.178]:42722 "EHLO
-        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726281AbhAHCyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:54:14 -0500
-Received: by mail-il1-f178.google.com with SMTP id t3so4793442ilh.9;
-        Thu, 07 Jan 2021 18:53:52 -0800 (PST)
+        id S1726410AbhAHC4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 21:56:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60504 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726358AbhAHC4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:56:24 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73B85C0612F4
+        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 18:55:44 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id w1so4912579pjc.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 18:55:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EG9c/QrlglkgwfRJUmQKNCPIJwJMfMxdpeBqAUmgOZk=;
+        b=E9WhvDhXJQdf3y2rdal5JO3AXwTEwU1jVVEuc6F2eI+a/CgUB9710YFUxBN3Epz9rt
+         CtM/qYL5hG734uFnQcymzO78uKgcphlwoNlsTILgh27HKID2rMlfyd8oPx3tpV/mdzkE
+         3yafqJfaAPYHbZQHlO01JWTBvwtXn3LZetnYT6+j0JAHqbV4UAsPqu/yNzikLwxMth33
+         ifC67tCL2PAHvZtVjx8hCdrU/uQHC1YFbP0CUIditJKqGAhMn9Lzz/dPsb6ESBgiSs26
+         lOMDcpeinmxpMsB+H6bJXl1kXwgaq5Gb8znKenjfqGyVAhUGJBiW0fhT6weUEDrNfctJ
+         yNMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=69Ai8HKbknhZURPxIt5QF+kZu4eC3CxPN2pRYOgxhpE=;
-        b=ZM3eg6xyszTRVYu8fsn1OdWGUDxIDk0Cuyrz11C72V1LwEUDUG7aZjnze2ajEXa1Xb
-         DQvvnC95ewNdCHrPEDKrU+ti6LUDxeOiYkJ2xaZ6BV7ISepuW47XpPyftYjT9QXJY18v
-         v4b7GkCMGSgdtBRaPZBZdWlamrgKdyTxZUYBCzkeRi4i0U5SWAUU1ho4UaNrr9RXaOh/
-         EuJkKKB/x2GHrHVmY4oZLmpSJ4wZwm6hVR/2B17ZNuF/czFszc9HxijcQ1vZDl9saTHN
-         X+6QJ+ej3WjJPmr/iUu6h+x60LWZSbbyP6GLdg6st3iviZn15h/IydaJ/Xne/OYgrCgR
-         QE9Q==
-X-Gm-Message-State: AOAM532Y2U+Bdf0+PV1VuIxuxtWMG/zrCXRTQAgffctont+Cs2FnSTeq
-        zKcGCnFzY0N3HV8KJwpcPA==
-X-Google-Smtp-Source: ABdhPJz0n8Ax1fYCmyGE1t0YnZvd+uYz6siGhRJeWz7gpuf0/CLxB7RETkZBZu7XV0Njtaia8G2Wzg==
-X-Received: by 2002:a92:d8c1:: with SMTP id l1mr1893601ilo.178.1610074407262;
-        Thu, 07 Jan 2021 18:53:27 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id a4sm3110909ild.5.2021.01.07.18.53.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Jan 2021 18:53:26 -0800 (PST)
-Received: (nullmailer pid 1784130 invoked by uid 1000);
-        Fri, 08 Jan 2021 02:53:24 -0000
-Date:   Thu, 7 Jan 2021 19:53:24 -0700
-From:   Rob Herring <robh@kernel.org>
-To:     Henry Chen <henryc.chen@mediatek.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EG9c/QrlglkgwfRJUmQKNCPIJwJMfMxdpeBqAUmgOZk=;
+        b=hRc+RTk5qAh8l9pfNQ5KRSK7fGfVmGwizBEDrM5smdU2vj3hWtPZkLvfIp5FXPMMC3
+         LUcRDfE1ruLF4PqrggLYhYBuBp0xvqEdlj/uJMWEw12FrzxbwSotOe1hKvlgjaDqrWqq
+         ZVrRfar769/K8pDpS8wS1r6RswvMTVxz1vBlnfazr8VtqQivrsmuM5i8Mh4iVrr5Ixgg
+         oSktVEQcS4Wdt39+yHJS2F+8e98+V3uC+7OLbVAnswApZ7wYTEFigBM5YLle5ML0rR2k
+         MjbYzMH93tSSK3CMo4wmrjK9G5qUR5H3+0MDWZL6q1KaEFHAcYDXz7gxwi0CrSdjUc1i
+         lwXQ==
+X-Gm-Message-State: AOAM5319UbYIdvEy0/E6NvWZgylqoFa0XKiIGY8L7ELjPD2MkxeEnEOT
+        sFeVVS8Z+QW639Z98ewxbE4=
+X-Google-Smtp-Source: ABdhPJzug/UItPAiUdNY4Kcu74DHwKQvsoTGi0xD0+uXuBVy+3GMxnsh5FcV6z+mzzlH7pdExirSpg==
+X-Received: by 2002:a17:90a:394f:: with SMTP id n15mr1498276pjf.121.1610074543889;
+        Thu, 07 Jan 2021 18:55:43 -0800 (PST)
+Received: from [10.230.29.29] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id q4sm8166487pgr.39.2021.01.07.18.55.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Jan 2021 18:55:42 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: bcm2835-vec: Add power-domains property
+To:     Rob Herring <robh@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     dri-devel@lists.freedesktop.org, Eric Anholt <eric@anholt.net>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        bcm-kernel-feedback-list@broadcom.com,
+        David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Fan Chen <fan.chen@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, Ryan Case <ryandcase@chromium.org>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        devicetree@vger.kernel.org, Arvin Wang <arvin.wang@mediatek.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Nicolas Boichat <drinkcat@google.com>
-Subject: Re: [PATCH V6 06/13] dt-bindings: interconnect: add MT8183
- interconnect dt-bindings
-Message-ID: <20210108025324.GA1784095@robh.at.kernel.org>
-References: <1608790134-27425-1-git-send-email-henryc.chen@mediatek.com>
- <1608790134-27425-7-git-send-email-henryc.chen@mediatek.com>
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <1608751473-12343-1-git-send-email-stefan.wahren@i2se.com>
+ <20210108024209.GA1769120@robh.at.kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <623a71eb-ac4e-7b75-db96-5dbbca98c4b2@gmail.com>
+Date:   Thu, 7 Jan 2021 18:55:39 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1608790134-27425-7-git-send-email-henryc.chen@mediatek.com>
+In-Reply-To: <20210108024209.GA1769120@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Dec 2020 14:08:47 +0800, Henry Chen wrote:
-> Add interconnect provider dt-bindings for MT8183.
+
+
+On 1/7/2021 6:42 PM, Rob Herring wrote:
+> On Wed, 23 Dec 2020 20:24:33 +0100, Stefan Wahren wrote:
+>> Adding the missing property power-domains to the bcm2835-vec schema to fix
+>> the following dtbs_check issue:
+>>
+>> vec@7e806000: 'power-domains' does not match any of the regexes: ...
+>>
+>> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+>> ---
+>>  Documentation/devicetree/bindings/display/brcm,bcm2835-vec.yaml | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
 > 
-> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
-> ---
->  include/dt-bindings/interconnect/mtk,mt8183-emi.h | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
->  create mode 100644 include/dt-bindings/interconnect/mtk,mt8183-emi.h
+> Acked-by: Rob Herring <robh@kernel.org>
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I thought you were going to apply this directly?
+-- 
+Florian
