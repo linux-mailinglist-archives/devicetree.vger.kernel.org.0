@@ -2,206 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC5E62EEE33
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 08:58:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 038E12EEE70
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 09:18:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727476AbhAHH6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 02:58:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54096 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727463AbhAHH6c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Jan 2021 02:58:32 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EA59D2343F;
-        Fri,  8 Jan 2021 07:57:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610092670;
-        bh=VMgcTa9UQyuYxcm5rW2+nfQAw6U+ZXe9qiG0wkd8OOE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QWxSIX+B82Sg2oEvqcJzp9gxiGpQ7y3ihZ5kxR6JtI6vywYp3/YYVmig2MjC1+lAM
-         +SRVMf/2H5l9f+qc55BqWliaYsKBSkyN2sfRPv1hCMR5I77pbHIaZCDyjdcrTnoXJO
-         G6rEMJhLGDI3YvBjGQjpCneSBsRUuUkw69YJxHlGCgsT8Sbdio92v6x0PmLdPBXgwa
-         1JrUTy3asUuMKEQZwQRRyLtZSvHK/xkWRw64AS3A97gTWfSOXgumVrJsj2hx+nS6w6
-         3FXsRfXqfz4aV1Smf/9a6YZItzsuEW0j71dGmCy3Snbpb9IruHhAqfWQ0u1yosaXQ+
-         HBtfcMEqjCDuw==
-Date:   Fri, 8 Jan 2021 13:27:46 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl
- bindings
-Message-ID: <20210108075746.GV2771@vkoul-mobl>
-References: <20210106054950.303244-1-vkoul@kernel.org>
- <20210106054950.303244-2-vkoul@kernel.org>
- <X/dCIuUR/El8Gxaa@builder.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <X/dCIuUR/El8Gxaa@builder.lan>
+        id S1726294AbhAHISe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 03:18:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53726 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725965AbhAHISe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 03:18:34 -0500
+Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACCAC0612F5
+        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 00:17:53 -0800 (PST)
+Received: by mail-qk1-x749.google.com with SMTP id p21so8682264qke.6
+        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 00:17:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=h/f0Sezv5E7gowm2IVkdW/Hc+xS2w4KSaSPNUtJ3G4s=;
+        b=NdP6wNH+93ntnELzijpUGrug3vc8TILMasJEq8bChHTeLhS9+UCzjJK/7ml/Y3BCI6
+         zwBOso7tmkzW9SJtT4qx3fX3ljnozs0XQ1q/2McWW/WODq81JIxFWFgCbe3dDCwP3QIi
+         SVMvmPLsmJCtAjPYWk/dife/BGsLOzS566JmI/Uxr6RaMPiPrY4GD4WLmn6QEVKSYFCl
+         ukm0Ax08crXpSFYtS2HYyvSdt9sV+D+zjDgcBDmx3kLwSa6XrvnnWGiMOOSZFGre0rvW
+         CxMpYZRAeTn69paSaaIVBTtLawZWZ7vOvACeG78GcYI0nUKAcTFboARmlbyz24/Skk2o
+         XKPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=h/f0Sezv5E7gowm2IVkdW/Hc+xS2w4KSaSPNUtJ3G4s=;
+        b=UbNZC1i6zowiyAySQD4GKswOttidu8XJ54qjE2HozmckQVpbPH066RpnzvjciZM5S9
+         zsGo7OPf3qvzoyoU9bRVdd85F0+8ce2S5dn9pU+26sP3ycFExZr8W6XitPjudxGUunfW
+         /6QC4cQZy8SdD+fmCUjdYI/+Q689NoMVJftsDj+jtahgZnYDqApluMAIw9hER7ZZhFiy
+         /S32LwusxmbwxS21a/HTVdndU/+dshK1G5s+SaB8SXeWOy3mlnNB50ViLBe6lESyBJLo
+         GBGJS+lrQEO1k110EG/NHan/Zh/m28ylvNMN5oD8A4S9amu3JCru6mUGv0UXJi+E2tsQ
+         xGkg==
+X-Gm-Message-State: AOAM532n71YseW8fRS5zjcnmMcc/z5EnRxsfzbBbgaHZupFZCKoLILpH
+        hjIE0suGdGbabHbbX87mKBRaTV2+jfWT
+X-Google-Smtp-Source: ABdhPJxH+xzloJvfPk+mEmyk1fhEyLc3F/iKaV5CFbzljxIu7V5/Ld0yM+l56aUf/z1P6Lnk5AWbn2pG4FLo
+Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
+X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:725a:fff:fe41:c6a5])
+ (user=tzungbi job=sendgmr) by 2002:a05:6214:cb:: with SMTP id
+ f11mr2346237qvs.15.1610093872893; Fri, 08 Jan 2021 00:17:52 -0800 (PST)
+Date:   Fri,  8 Jan 2021 16:17:34 +0800
+Message-Id: <20210108081738.2175224-1-tzungbi@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.29.2.729.g45daf8777d-goog
+Subject: [PATCH v2 0/4] remoteproc/mediatek: support L1TCM for MT8192 SCP
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, mathieu.poirier@linaro.org,
+        devicetree@vger.kernel.org, tzungbi@google.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+The series supports L1TCM which is a high performance memory region in
+MT8192 SCP.
 
-On 07-01-21, 11:17, Bjorn Andersson wrote:
-> On Tue 05 Jan 23:49 CST 2021, Vinod Koul wrote:
-> > +#PIN CONFIGURATION NODES
-> > +patternProperties:
-> > +  '-pinmux$':
-> 
-> I believe that what Rob was asking for was the matter of describing the
-> mux and config subnodes under this one. But I don't know really how to
-> express this, because the following are all valid:
+The 1st patch replaces platform_get_resource_byname() and
+devm_ioremap_resource() pairs per [1] suggested.
 
-I looked at the pinmux-node.yaml which describes subnodes with function
-and groups, this is a generic description and should be in
-pinmux-node.yaml not in every device description.. said that I am not
-sure why else should we add here :)
+The 2nd patch enables MPU for all memory regions.  The patch was
+independent but merged to this series per [2] suggested.
 
-> 
-> default_state: default-state {
-> 	pins = "gpio1";
-> 	bias-disable;
-> };
-> 
-> default_state: default-state {
-> 	rx {
-> 		pins = "gpio1";
-> 		function = "gpio";
-> 		bias-disable;
-> 	};
-> };
-> 
-> default_state: default-state {
-> 	pinmux {
-> 		pins = "gpio1";
-> 		function = "gpio";
-> 	};
-> 
-> 	pinconf {
-> 		pins = "gpio1";
-> 		bias-disable;
-> 	};
-> };
-> 
-> I.e. the properties described here applies either to this node directly,
-> or any subnodes (1 level) down.
-> 
-> 
-> Also we've been using different "patternProperties" for this node since
-> the introduction of the binding 7 years ago. But to be "-state$" seems
-> to best represent what the node actually describes.
-> 
-> Regards,
-> Bjorn
-> 
-> > +    type: object
-> > +    description:
-> > +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> > +      Client device subnodes use below standard properties.
-> > +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
-> > +
-> > +    properties:
-> > +      pins:
-> > +        description:
-> > +          List of gpio pins affected by the properties specified in this subnode.
-> > +        items:
-> > +          oneOf:
-> > +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-3])$"
-> > +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
-> > +        minItems: 1
-> > +        maxItems: 36
-> > +
-> > +      function:
-> > +        description:
-> > +          Specify the alternative function to be configured for the specified
-> > +          pins. Functions are only valid for gpio pins.
-> > +        enum: [ atest_char, atest_usb, audio_ref, cam_mclk, cci_async,
-> > +                cci_i2c, cci_timer, cmu_rng, coex_uart1, coex_uart2, cri_trng,
-> > +                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
-> > +                ddr_pxi2, ddr_pxi3, dp_hot, dp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
-> > +                gpio, ibi_i3c, jitter_bist, lpass_slimbus, mdp_vsync, mdp_vsync0,
-> > +                mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s0_data0, mi2s0_data1,
-> > +                mi2s0_sck, mi2s0_ws, mi2s1_data0, mi2s1_data1, mi2s1_sck,
-> > +                mi2s1_ws, mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws,
-> > +                mss_grfc0, mss_grfc1, mss_grfc10, mss_grfc11, mss_grfc12,
-> > +                mss_grfc2, mss_grfc3, mss_grfc4, mss_grfc5, mss_grfc6,
-> > +                mss_grfc7, mss_grfc8, mss_grfc9, nav_gpio, pa_indicator,
-> > +                pcie0_clkreqn, pcie1_clkreqn, phase_flag, pll_bist, pll_clk,
-> > +                pri_mi2s, prng_rosc, qdss_cti, qdss_gpio, qlink0_enable,
-> > +                qlink0_request, qlink0_wmss, qlink1_enable, qlink1_request,
-> > +                qlink1_wmss, qlink2_enable, qlink2_request, qlink2_wmss, qspi0,
-> > +                qspi1, qspi2, qspi3, qspi_clk, qspi_cs, qup0, qup1, qup10,
-> > +                qup11, qup12, qup13, qup14, qup15, qup16, qup17, qup18, qup19,
-> > +                qup2, qup3, qup4, qup5, qup6, qup7, qup8, qup9, qup_l4, qup_l5,
-> > +                qup_l6, sd_write, sdc40, sdc41, sdc42, sdc43, sdc4_clk,
-> > +                sdc4_cmd, sec_mi2s, tb_trig, tgu_ch0, tgu_ch1, tgu_ch2,
-> > +                tgu_ch3, tsense_pwm1, tsense_pwm2, uim0_clk, uim0_data,
-> > +                uim0_present, uim0_reset, uim1_clk, uim1_data, uim1_present,
-> > +                uim1_reset, usb2phy_ac, usb_phy, vfr_0, vfr_1, vsense_trigger ]
-> > +
-> > +
-> > +      drive-strength:
-> > +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> > +        default: 2
-> > +        description:
-> > +          Selects the drive strength for the specified pins, in mA.
-> > +
-> > +      bias-pull-down: true
-> > +
-> > +      bias-pull-up: true
-> > +
-> > +      bias-disable: true
-> > +
-> > +      output-high: true
-> > +
-> > +      output-low: true
-> > +
-> > +    required:
-> > +      - pins
-> > +      - function
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-controller
-> > +  - '#interrupt-cells'
-> > +  - gpio-controller
-> > +  - '#gpio-cells'
-> > +  - gpio-ranges
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +        tlmm: pinctrl@f000000 {
-> > +          compatible = "qcom,sm8350-tlmm";
-> > +          reg = <0x0f100000 0x300000>;
-> > +          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> > +          gpio-controller;
-> > +          #gpio-cells = <2>;
-> > +          interrupt-controller;
-> > +          #interrupt-cells = <2>;
-> > +          gpio-ranges = <&tlmm 0 0 203>;
-> > +          serial-pinmux {
-> > +            pins = "gpio18", "gpio19";
-> > +            function = "qup3";
-> > +            drive-strength = <8>;
-> > +            bias-disable;
-> > +          };
-> > +        };
-> > +
-> > +...
-> > -- 
-> > 2.26.2
-> > 
+The 3rd patch adds a new reg-name "l1tcm" for L1TCM.
+
+The 4th patch supports L1TCM in the firmware loader.  Note that MT8192
+SCP is still under development.  The patch breaks early MT8192 SCP
+firmware which should only break our own development environment.
+
+Changes from v1[3]:
+- Adds 2 patches at beginning of the series.
+
+[1]: https://patchwork.kernel.org/project/linux-remoteproc/patch/20201214050521.845396-3-tzungbi@google.com/#23879113
+[2]: https://patchwork.kernel.org/project/linux-remoteproc/patch/20210107023020.3224002-1-tzungbi@google.com/#23879623
+[3]: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=401287
+
+Tzung-Bi Shih (4):
+  remoteproc/mediatek: use devm_platform_ioremap_resource_byname
+  remoteproc/mediatek: enable MPU for all memory regions in MT8192 SCP
+  dt-bindings: remoteproc: mediatek: add L1TCM memory region
+  remoteproc/mediatek: support L1TCM
+
+ .../bindings/remoteproc/mtk,scp.txt           |  8 +--
+ drivers/remoteproc/mtk_common.h               |  6 ++
+ drivers/remoteproc/mtk_scp.c                  | 62 +++++++++++++++++--
+ 3 files changed, 68 insertions(+), 8 deletions(-)
 
 -- 
-~Vinod
+2.29.2.729.g45daf8777d-goog
+
