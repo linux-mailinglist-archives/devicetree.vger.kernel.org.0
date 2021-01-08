@@ -2,109 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BEEC2EEF7D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:25:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7030C2EEF97
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:28:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728410AbhAHJX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 04:23:59 -0500
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:56807 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728408AbhAHJX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:23:56 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 8713F1B55;
-        Fri,  8 Jan 2021 04:22:50 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Fri, 08 Jan 2021 04:22:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=C
-        cLW3YrDUWfQV+M9LUTFqkM9jX0hR+fDKHKNjmd4z6s=; b=LnEkdg5LCAbBJB/Ze
-        hKGzh7aucUDO3u0GGw0rwD9654J55od0myUtPm+h6R5blLhnIvjuDACZXUrvlUb2
-        DU4jdH/fff5YfEfdVcuDfolMAFNPXJJObrsd1uRQpNLnjdfOdd3XfjwFTeK44yX0
-        auAIIjXB/KFh/oH+m44kVfzUJzuUYpu79QHG9oByr6786ausg5Lhmh8LlD3dFDAJ
-        UAlAogBScHORkwsasfMHHr++5TrGJDEzF+wgEEcMrKntyFM2z6VM4GMd18Z79CdM
-        uWfAsHV/pkpk1IO3HVAcypqv0tRTsuvbRB9ainUkjY+ALZWnEIEKcd6mdIL0+c12
-        3bJGQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=CcLW3YrDUWfQV+M9LUTFqkM9jX0hR+fDKHKNjmd4z
-        6s=; b=kIKRePrmbybVJoadIfFsiGiqH2Um115HLdMNK1bjUZXACfyMUIzFzzY2M
-        eV3yR+kAk3Mpbsqn3lnU7/bDEJMQnI+MtUfSywIEQ4/NHvUtMH2a5t/wV9lcp1Fj
-        3kJVtaMJ0gI2aUzppkzXnzsZ6zFDV0s9QBHM/iAvtUgjTsbPlRh/EapFPoEsCxqb
-        BuZ5Zfu6jZd88Db6kxllP2fqa9GgjoS7cMDOGNiF+ZhUv3C9+zJ/jA7lM9d7r77b
-        ZdS1sWzBNuzYXv1npgndgxxlYut8CA6LWn2vw23c/MPORtuPOZd1hMzHshjl5J8S
-        vneJ114+/HvCb0SccOw/RF6Alo54g==
-X-ME-Sender: <xms:aST4X_OI3lbF3nTL26I_FJT11ur-aX7lzmfv0FwF_N0pMaHIT1tkBA>
-    <xme:aST4X5-9xC1G0G7gxPHtZiTqaGerorHD-vowtkh4pHDH3kvzHa2x5jb21dMzp3oQO
-    H11PNbLHh9B4O7ItUM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgtddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
-    gedvudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:aiT4X-TuFefcuUV6ENB7WC7udKNOdrluKZRik0X8137IXnuqiQm9UQ>
-    <xmx:aiT4Xzv7ClB4WN6eudzqE26CQA35V5ysuvF-mTMeyVG6IzBwoE9biA>
-    <xmx:aiT4X3e-C_NMSKqpIHyd9Uj8FPG2iwkB_veg1JXt5rnCthASE9gGdA>
-    <xmx:aiT4X-5oLgfO0PGGatf8XzVaTi0p5OF7hb3PhNc5OrDty0O6VPnYoA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id BE12C24005A;
-        Fri,  8 Jan 2021 04:22:49 -0500 (EST)
-Date:   Fri, 8 Jan 2021 10:22:48 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Sergio Sota <sergiosota@fanamoel.com>
-Cc:     robh+dt@kernel.org, wens@csie.org, jernej.skrabec@siol.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: sun5i: add A10s/A13 display frontend support
- fallback
-Message-ID: <20210108092248.c3pmjrextonnf33q@gilmour>
-References: <20210107105927.2815198-1-sergiosota@fanamoel.com>
+        id S1727416AbhAHJ2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 04:28:16 -0500
+Received: from mail-eopbgr80071.outbound.protection.outlook.com ([40.107.8.71]:61006
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728267AbhAHJ2O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Jan 2021 04:28:14 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BwEVeVChonCnQiFNsyUwhdH2Qjf452Byr65jV6ZyDysBnntmSXC05FsVRUpzvAHJBcJ3wSepV4K5VFMBTaWHbYv0zDGdevu40ZEtY3XIgPyG7Cp1tNG/poJuRquGdT5krX6i1gflsMp4A4yr/mBG/GuFiauMqIhjsklIRDB47WEJDTu/gfbmtUyjdUo2Ion0S9nBdmFybNmxsjj7KexxiNx92QE7bgm8kMyLn1otudrIAMFWg8MSlHpcvZFPHOpmUBVVOdiA5MvJGOW/TjsH1HfV5MvmgsuQZq+Y9yuuR3UMKi+epQIADUleOkCm99oSXlhW5qUD/Ht+bDjwvyeBpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zEDIeGc2J338to9wJLaNFMxFFkKi0V8i1t18JtsTxNs=;
+ b=R/JG7xAQm78fMmSrYsY4Df7YlnHe4bNz3wvsXf0W6utVXdgLx4ltyYl0Pm2X4U4l2juxlm+gd+FRF6UhDGVk5HccMFzB003l/Secii2vGVcWzvQSsab333PWPWgWOhbRaDxK3a1WMXtxBz+rfyRThxXlXmEqs7AQ1ziMNGisYqB9gCfvSyl0ZfoHf+ZjryMPRuWMwFm+0l8Y/N2SEJohpRpn1o2k23jMd3ctTPD0p9Qrfu+J534nEgxrMrwoltgLtFXL70v5/6UlLBfKo2o9Cp82o0psc6icZCSepJoz2F3hj7kk2wtaFaPeFgqR3o2/+InRWGibdI4btEN/Avz0iQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zEDIeGc2J338to9wJLaNFMxFFkKi0V8i1t18JtsTxNs=;
+ b=aJipFkg4ugadrnsiHDelhRkoqbi/yyopEdplq0YUTiyYthxhVlcyLO6W1irgjA2ETwNBBk46dKToQAs4CFZV1MF10wQSE+TBNfP9FB9ldr4ZbSsw0d+yiJ6OVc/b7tyNbBThYhl8RYq56Xw9UvtGiJs78A9VU0R19ZyOBz3WkFE=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com (2603:10a6:7:85::27)
+ by HE1PR0401MB2652.eurprd04.prod.outlook.com (2603:10a6:3:83::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.20; Fri, 8 Jan
+ 2021 09:27:23 +0000
+Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com
+ ([fe80::3194:64d6:5a70:a91d]) by HE1PR0402MB3371.eurprd04.prod.outlook.com
+ ([fe80::3194:64d6:5a70:a91d%4]) with mapi id 15.20.3721.024; Fri, 8 Jan 2021
+ 09:27:22 +0000
+From:   Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
+To:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org, bhelgaas@google.com,
+        shawnguo@kernel.org, leoyang.li@nxp.com,
+        gustavo.pimentel@synopsys.com
+Cc:     minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: [PATCHv3 0/7] PCI: layerscape: Add power management support
+Date:   Fri,  8 Jan 2021 17:36:03 +0800
+Message-Id: <20210108093610.28595-1-Zhiqiang.Hou@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.73]
+X-ClientProxiedBy: MAXPR0101CA0019.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:c::29) To HE1PR0402MB3371.eurprd04.prod.outlook.com
+ (2603:10a6:7:85::27)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210107105927.2815198-1-sergiosota@fanamoel.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.73) by MAXPR0101CA0019.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:c::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6 via Frontend Transport; Fri, 8 Jan 2021 09:27:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: a54c75f9-acb2-4187-faa8-08d8b3b79a6d
+X-MS-TrafficTypeDiagnostic: HE1PR0401MB2652:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <HE1PR0401MB2652E60D5FB765F1B7501E4184AE0@HE1PR0401MB2652.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uYU2BujIadtlep5Aqjbq/N1hOK1Q5PmncI9QAw6PlnZRyfQDhsaadkAyocEQ9PQlTY3d6Qb1gxt6loOMINPx0bOzsmgkuWcFzpUR0wfO5AwMTh7qBHXMCPX1KupvKiW7dEr7Tvtb/bziMFN15IzbIREhe6R+fNXpgtM82yMYI3MnjxtVCjoQxB3A3WTrk9Ye1HH+ppxna8feOh/2Gp9ZyyPO4BaQNhRef/lOAguLbyVXLllB7JosZW2F0MebYOC1Ujjuja/EQJRfTpYQmso80IbgGSkjjil/uMbdtRXEV/A+CnTsHXxCPE/jtjPy47eoWP0UikeuSNA0/jvbbvWClb52TkcYBUBQUGCotgpODceuFKZ63HzLXeYx9B6aPIZaaR6AhkBNmdNA+JLERwv3vvKXMKrZlq1xRA2UVXQLxOYLYm8wRAPl91SfbSjyXQ3aHSYijTQyQOvuTVbXP1JJhw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0402MB3371.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(39860400002)(366004)(396003)(316002)(478600001)(6506007)(6486002)(4326008)(52116002)(2616005)(36756003)(69590400011)(8936002)(66556008)(956004)(921005)(6512007)(1076003)(66476007)(5660300002)(66946007)(26005)(2906002)(6666004)(16526019)(8676002)(83380400001)(186003)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?GiexpPvLUFgrL1wlwYpBPuihkhP4oPN+HXC/LbgR3C7ty+zIWkbtkr1aoDez?=
+ =?us-ascii?Q?tJjDyCbcAIwHmFisbLyJSgz/350g3gRwHSXgSTvWGTENFtkGhUftH7Wb78ZZ?=
+ =?us-ascii?Q?KUxH4MVxizGTgOnGQ6nDIee4/gcVL5vgIWujK4KTDqJemtCe92B48Dfv65SB?=
+ =?us-ascii?Q?fHanT78iKSDgLN9hTo8TFC2mu5a/7o//P3hxzCSRtp99mCeX0JCwAWF0OlsY?=
+ =?us-ascii?Q?kNV0GyCw4fhfmTGgIKUaqTRuQEwmjvtCr0N9es9qSYL8GW816/SZMOR8OOWO?=
+ =?us-ascii?Q?WxzdzEZzEZzeVm2F6jdoZ47Hid4pR7y+7dRxOOGGrTl18G0DCryCvYVbwjpB?=
+ =?us-ascii?Q?gqiE4nXE4HA6veFtlwVtq3GLIB7DawPbtrBw5ik89YSRlVtNHzS4J8vdDbvP?=
+ =?us-ascii?Q?DA/4rd9YQpz+pQkEUJlwpW8PEu0LCxmEfo9oHCJXpdACo57xSV25kCWlX7tI?=
+ =?us-ascii?Q?5mlaDzNkmy9HiUsfPVStSz0vnFooaiVZ3L82K1ygDd/gsbazCS/yoninnzn1?=
+ =?us-ascii?Q?ZkmQB8eWajPVwJWaQE1Ko9AlSF/Lbi+eYa1WsNtlTai81A7lqJKpYLDmW3Mn?=
+ =?us-ascii?Q?ZO72dTn8BHohTlRcLjb/bSRBQWjBEvyKoxeNzhA6cNU20iO+cs+ceniQMUyQ?=
+ =?us-ascii?Q?n9ZviKnRJrWs0kPFOlUkGfBb7aKAZ++ZyCVuSz5oATumy7lY3DfYgTJN1D10?=
+ =?us-ascii?Q?Xrn6Lpz0hdt+bq7Paz8BROcxwToKY8tdI84VWYbLDj8E0MSpKm401hWS+jvc?=
+ =?us-ascii?Q?p05F++0d6sJsy+O43BzllsRY/7VkzqOFGOVVlT7zIgvlLbcthHZ/wOYCINCA?=
+ =?us-ascii?Q?StUxaYUIGoLqyOkTu1feEHRfLdU7WR1KG/1eAZG72rlUHaRN3UYYftjvXzLn?=
+ =?us-ascii?Q?0+BMPM3HGqBFHTfzp/FAuf9OLskoQptI61AAcrb1Sh6ocS5TsPPeM2id1PHH?=
+ =?us-ascii?Q?zPQgo1liuG+leR8i9cGBQt5VOHtZgBa1D9Ypmy0vhC0u+loAJIJFHw8ry5rA?=
+ =?us-ascii?Q?xY5Z?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0402MB3371.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2021 09:27:22.2582
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Network-Message-Id: a54c75f9-acb2-4187-faa8-08d8b3b79a6d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gwdlAfF1ue7ugSmw8Z/uVL6xY+xBngcEWux+YLglO5Ar7CvOV5Md9Iq8VJNHXe+GFBnBDg1luNrw4FNO0fcYLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0401MB2652
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 
-On Thu, Jan 07, 2021 at 11:59:27AM +0100, Sergio Sota wrote:
-> The A10s/A13 display frontend driver is not implemented
-> Set A10 display frontend driver as a fallback for A10s/A13
-> Tested with Olimex-A13-SOM / Olimex-A13-OlinuXino-MICRO
-> "modetest -M sun4i-drm -s 49@47:800x480-60"  ( 7.0" tft lcd)
-> "modetest -M sun4i-drm -s 49@47:1024x600-60" (10.1" tft lcd)
->=20
-> Signed-off-by: Sergio Sota <sergiosota@fanamoel.com>
-> ---
+This patch series is to add PCIe power management support for NXP
+Layerscape platfroms.
 
-You should mention the version number (using -v in git send-email or
-format-patch), and add a changelog here
+Hou Zhiqiang (7):
+  PCI: dwc: Fix a bug of the case dw_pci->ops is NULL
+  PCI: layerscape: Change to use the DWC common link-up check function
+  dt-bindings: pci: layerscape-pci: Add a optional property big-endian
+  arm64: dts: layerscape: Add big-endian property for PCIe nodes
+  dt-bindings: pci: layerscape-pci: Update the description of SCFG
+    property
+  arm64: dts: ls1043a: Add SCFG phandle for PCIe nodes
+  PCI: layerscape: Add power management support
 
->  arch/arm/boot/dts/sun5i.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm/boot/dts/sun5i.dtsi b/arch/arm/boot/dts/sun5i.dtsi
-> index c2b4fbf552a3..4ef14a8695ef 100644
-> --- a/arch/arm/boot/dts/sun5i.dtsi
-> +++ b/arch/arm/boot/dts/sun5i.dtsi
-> @@ -734,7 +734,8 @@ timer@1c60000 {
->  		};
-> =20
->  		fe0: display-frontend@1e00000 {
-> -			compatible =3D "allwinner,sun5i-a13-display-frontend";
-> +			compatible =3D "allwinner,sun5i-a13-display-frontend",
-> +				     "allwinner,sun4i-a10-display-frontend";
+ .../bindings/pci/layerscape-pci.txt           |   6 +-
+ .../arm64/boot/dts/freescale/fsl-ls1012a.dtsi |   1 +
+ .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi |   6 +
+ .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi |   3 +
+ drivers/pci/controller/dwc/pci-layerscape.c   | 448 ++++++++++++++----
+ .../pci/controller/dwc/pcie-designware-host.c |   2 +-
+ drivers/pci/controller/dwc/pcie-designware.c  |  14 +-
+ drivers/pci/controller/dwc/pcie-designware.h  |   1 +
+ 8 files changed, 376 insertions(+), 105 deletions(-)
 
-The comment on the first version still apply here, even more so with the
-additional details you provided in the commit message
+-- 
+2.17.1
 
-Maxime
