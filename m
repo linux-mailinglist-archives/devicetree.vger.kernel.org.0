@@ -2,150 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9B42EF0D7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 11:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E08CE2EF0D9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 11:49:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbhAHKq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 05:46:59 -0500
-Received: from mail-eopbgr30129.outbound.protection.outlook.com ([40.107.3.129]:23463
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726752AbhAHKq6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Jan 2021 05:46:58 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KGYxlV81NTo3m1SU+meKM07GZg+b77ppUg/12dWbyWMbj6cSi+eaqgs/kTK/vYu8f26JO/Pl5jc6SV8p8RWtfVqsTtw0+GhpmLziQyrkfXXB+IW1Ds0sexum3egrKdOGvTin+89MvIPPjwKdVDT+eSVyDUs1ffuNnFg086+ySYdcHO5iaMrOQrBLr7rMZVUy2O9ZhdSt49i0/YCLd19tmI350zdc/JKgVxpXcTckXMvFdCTRfRRIB6CU5M5x1fXLTyqaAmpCer+tVgyKTsGUNQoPzqg0A4zIBjc+f7R5rhnrTGNvTAAu27d0/S9bUjU5fdfG0XbAKSnyAY4Xx1u7Ng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UO/aCiXdxMzWTyk9oDBCnkAaDye+mkd073k2w0ngrIY=;
- b=LDMBO5auX4XD4loAJtQqKS2Yf1R5o5vNqa+DREH0h/Hz4QSsuWPhMlcQCttsn8PPLAxwD5shFYq9jcn3jRUTrPTVmKTxXmVUD2h6WtvG3bld8LGo/QgkIxBJiyOLkoa/MpA9u93dtuOiCAaGoeU2Coc9l8uVmpyvq7mNSVhpkx+JQ6Nohw4aB97e2nH+vR49JQVB8D92kdlnoWHeUtrZDz9BRdByXTLGteksUKG59L3VuiB9/HT5Aptdtcp/n77rZsQsdYoP6warZyo7N8Y3REanlRwgfr0dJ4UiDjw7ZPFABhlG2mPrt9YEBCebh/SYJl3/LRAIXXcKQDNMSrsXoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UO/aCiXdxMzWTyk9oDBCnkAaDye+mkd073k2w0ngrIY=;
- b=ZJKBiodxxddZePebG7iQ8m8nLS2MNAbsbIgWFC/9L8AFr83/OyQNUkO8sGJyW14ydw6QaT4fNGjP7FfDs4ZsCrPTkKJdROpgiSeglkHNcN32AhhFRqjFwjrhdMNpjsRtS+oZ9OSfiS642cs7W2mtaCy3mzwlVJTBSoAA2YtGwPM=
-Authentication-Results: lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=none action=none
- header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DBAPR02MB5992.eurprd02.prod.outlook.com (2603:10a6:10:187::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6; Fri, 8 Jan
- 2021 10:46:09 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7975:bb50:c24:9e4f]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7975:bb50:c24:9e4f%6]) with mapi id 15.20.3742.009; Fri, 8 Jan 2021
- 10:46:09 +0000
-Subject: Re: [PATCH 4/7] dt-bindings: ti-serdes-mux: Add defines for AM64 SoC
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Swapnil Jakhade <sjakhade@cadence.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20201224114250.1083-1-kishon@ti.com>
- <20201224114250.1083-5-kishon@ti.com>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-Message-ID: <cb53a07e-98ed-71df-7e0c-acd78484ab6e@axentia.se>
-Date:   Fri, 8 Jan 2021 11:46:05 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
-In-Reply-To: <20201224114250.1083-5-kishon@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: sv-SE
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [85.229.94.233]
-X-ClientProxiedBy: HE1PR0402CA0013.eurprd04.prod.outlook.com
- (2603:10a6:3:d0::23) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
+        id S1727471AbhAHKtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 05:49:20 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:56286 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726752AbhAHKtU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Jan 2021 05:49:20 -0500
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1kxpJl-0002Jc-KQ; Fri, 08 Jan 2021 11:48:29 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Ezequiel Garcia <ezequiel@collabora.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Jacob Chen <jacob-chen@iotwrt.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 5/5] media: hantro: Add support for the Rockchip PX30
+Date:   Fri, 08 Jan 2021 11:48:26 +0100
+Message-ID: <11669141.O9o76ZdvQC@diego>
+In-Reply-To: <X/ggTOOTBhGoFDpW@aptenodytes>
+References: <20210107134101.195426-1-paul.kocialkowski@bootlin.com> <f7291b83fe39d71c3192ea58ebf71e3909bd38af.camel@collabora.com> <X/ggTOOTBhGoFDpW@aptenodytes>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.13.3] (85.229.94.233) by HE1PR0402CA0013.eurprd04.prod.outlook.com (2603:10a6:3:d0::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6 via Frontend Transport; Fri, 8 Jan 2021 10:46:08 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b7a6513c-d111-43f0-5371-08d8b3c29bbf
-X-MS-TrafficTypeDiagnostic: DBAPR02MB5992:
-X-Microsoft-Antispam-PRVS: <DBAPR02MB5992422500E091E55C9C1ADABCAE0@DBAPR02MB5992.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iGIaitB8PVKMdtjQx4m6GJQ3u7H1GaCJTZG33vh/+0QK3UHRmJZ3fmZfnMix8gcLgyiuxfmMyCrnnL99lBywgtqEup8VgQRdzf1o40PKtf3nf9SWAPSGn4GAPRqjTN6a6JG6osIaWRdxR67kSUB4Wq57+GUt7WT1+Rhw1SePrGpoUEgnWlrzbBPWkQ8DvC7nYzqU9RmZ3OjLIp3rQtiD1V9h03sTvE5Cb9caeq2rrWdXPBpBfkiF9SR7GI8u2FUcW9ZQhiGEmg0Sjw+6/NOaHgNQ2ncveCjOTbiUmKLI4JhfUT89+OzdMjxL566/FrCmYCS1L/zF9bdtJbGH3YHAzlshm1RB7BGayzxRF6/BtMQTC7L0qpWZSRj22PdHDBzziubeiKfIUPfLFFCkRPNQHnhOYYSdWwXolFjw4VcAvVm4gmW1N/fU+knR599HxBem2LOWPzaJjgson7KGWa5i2Khym0PcIxRapsocbXknj98=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39830400003)(346002)(396003)(136003)(376002)(2906002)(16526019)(956004)(8676002)(4001150100001)(6486002)(26005)(53546011)(31696002)(2616005)(5660300002)(36916002)(66556008)(6666004)(316002)(66476007)(66946007)(16576012)(31686004)(186003)(8936002)(4326008)(478600001)(110136005)(36756003)(86362001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?UndLTElObk9ld3pMTERKSkgzeTdvUk5ML21YODQ1TW9hVTZNeE42dlc0alM1?=
- =?utf-8?B?WUpHekp6R1lmYjFpTzd3K3Z5b1pRU1NVNnNTcWZVNm5TaWc4bGE5dm1qUHRl?=
- =?utf-8?B?eC8xT1FWOVI4SVFuTFpVWWk1aW5IVWdlcVFYQjNoV1diWkI5REh5NVRnV25z?=
- =?utf-8?B?aWZCaHBPcXNOQmQ1djZjNjFzZ2IvUUtsU1NDWVlWL0ZVNFRpaWNKTk9NYk95?=
- =?utf-8?B?V3Rla0dqanRnVkVwL0VPakNUVEJpN1lyS3ZJK203WGhOcWVJb1NEWnRwY2gw?=
- =?utf-8?B?UThPdzlIc2dPRmVPM2NWblFpcmZmTEhKc3JxdUlyY2ppZjAvaDUzQVd5N0JX?=
- =?utf-8?B?b2VhR2dZYTUrOE9XRlFFZ011TzNaRDlPSTgwZ3JERjQyenRzNlNWNCtFOTky?=
- =?utf-8?B?TkVHVzBCTmdpSWpaUXBDaUhpcWc2c25DbUoyRzM3U1R0TmJmOWJDUXFSUXhG?=
- =?utf-8?B?ZlM0dmZFcTh5cjljMW1qaGp6TUwxZis4SVZyZzlZMEtXdFlBM2xrRllQYWZC?=
- =?utf-8?B?K2RLbVo5NHFkSFJPUVcrQmZVZERoT1cvVWVnRDRRaE5UM2dmeUpzSHZuQzNn?=
- =?utf-8?B?UUFGbGxvVk9ZWHlRYTh1VFBCeW84NE1ObFA1TzFmeFFrcHViMkZ5WXZrcTlU?=
- =?utf-8?B?QUQvYjg2NnNjNjUyQndBM3ZqRVZhaTE1NmF6RWxsN0RFSUNIN0pYVitkYTNN?=
- =?utf-8?B?RmJheS9XYjFWWExyODRpZVk0VEhnb3JLSmtSQzh1ZHUzWVRLQjJRWi8wNGpS?=
- =?utf-8?B?K2lxeUVGLzZvQnpSZWpaeUJKRzhuYUNJTWh1ZjliWjRUR1l4NnIvYVU1MkdJ?=
- =?utf-8?B?S1p2UjhmTU0xeFJPY0VNWWtTSlovT2RVU210bmlPR0ltOGoxNHRsemFvRVBK?=
- =?utf-8?B?QlVxaHpPNTRHZ1hTS0lGMTE0bkVreldVTzd5M1JBdGlDM1pYaGhaR1l3dUlO?=
- =?utf-8?B?VFRYVjRwcWlMRmZwbVBvQ254dU56NVQzSEdDWHRKWkFEWE00ei9RT2VvWUZ0?=
- =?utf-8?B?NE5DaUFWYUJMaUpaT0JhT1pXOWlaMzdWd0NQeGNOS2JiZW41WmVubnJUUFlT?=
- =?utf-8?B?R0ZLekVOVmcwSU5oL0tIWCtUNXlsQ1lIUEI1R0dweG9rMmlNNzVUTGN3Uitj?=
- =?utf-8?B?cmVyRXl1d2RpcmJaSEVFaHcyZEVSRXhGUXExNmQ1SVJDUElnUFBrSHRSODgy?=
- =?utf-8?B?UjdXL0FXWWpBUWtNNjQ4NzFPYzJCYjZ3N0N6SG1LeDg4VFgyVjNZbHlFR3E3?=
- =?utf-8?B?dURtSHVkMitxdXJaaTFJdFNHWDdvNkJ0ek5XNzZEZDJTOXdacUIxY3RxZlg5?=
- =?utf-8?Q?xSjP7lpTlqF/yXLOt8Icp4pC22cyGWDxfY?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2021 10:46:09.0080
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7a6513c-d111-43f0-5371-08d8b3c29bbf
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Cp0WuvvNt6BvZXEAMF3VlonQEDsgd6p9S0rLRRROaavvDPbYjIiakpzuNQZZXJOx
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR02MB5992
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
-
-On 2020-12-24 12:42, Kishon Vijay Abraham I wrote:
-> AM64 has a single lane SERDES which can be configured to be used
-> with either PCIe or USB. Define the possilbe values for the SERDES
-> function in AM64 SoC here.
+Am Freitag, 8. Januar 2021, 10:05:16 CET schrieb Paul Kocialkowski:
+> Hi Ezequiel,
 > 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  include/dt-bindings/mux/ti-serdes.h | 4 ++++
->  1 file changed, 4 insertions(+)
+> On Thu 07 Jan 21, 16:08, Ezequiel Garcia wrote:
+> > Happy to see this patch. It was on my TODO list,
+> > but I hadn't had time to bringup my rk3326 device.
 > 
-> diff --git a/include/dt-bindings/mux/ti-serdes.h b/include/dt-bindings/mux/ti-serdes.h
-> index 9047ec6bd3cf..68e0f76deed1 100644
-> --- a/include/dt-bindings/mux/ti-serdes.h
-> +++ b/include/dt-bindings/mux/ti-serdes.h
-> @@ -90,4 +90,8 @@
->  #define J7200_SERDES0_LANE3_USB			0x2
->  #define J7200_SERDES0_LANE3_IP4_UNUSED		0x3
->  
-> +/* AM64 */
-
-In case you end up keeping these defines, despite the comment by Rob...
-
-Nitpick, the J721E and J7200 sections have a blank line here, between the
-header comment and the actual defines. But mehh...
-
-Acked-by: Peter Rosin <peda@axentia.se>
-
-Cheers,
-Peter
-
-> +#define AM64_SERDES0_LANE0_PCIE0		0x0
-> +#define AM64_SERDES0_LANE0_USB			0x1
-> +
->  #endif /* _DT_BINDINGS_MUX_TI_SERDES */
+> Same here, I just had an occasion to use it again these days so I jumped
+> on it!
 > 
+> > A few comments.
+> > 
+> > On Thu, 2021-01-07 at 14:41 +0100, Paul Kocialkowski wrote:
+> > > The PX30 SoC includes both the VDPU2 and VEPU2 blocks which are similar
+> > > to the RK3399 (Hantro G1/H1 with shuffled registers).
+> > > 
+> > > Besides taking an extra clock, it also shares an interrupt with the IOMMU
+> > > so it's necessary to request the interrupt shared.
+> > > 
+> > 
+> > Could you clarify on the commit description which iommu device interrupt
+> > line is being shared?
+> 
+> Sure! It's IRQ 79 of the GIC that's shared with vopl_mmu.
+> It's not very obvious in the dt commit.
+
+Having looked through the docs again, I think that the vopl_mmu using
+irq 79 is just a mistake:
+
+(1) in general vop and vop-mmu use the same irq (78 in that case)
+(2) Rockchip does seem to have fixed that in their 4.19 tree as well:
+https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/px30.dtsi#L1598
+
+So to me it looks like this doesn't need to be shared and instead
+"simply" the px30 dtsi fixed ;-)
+
+
+Heiko
+
+
+> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > ---
+> > >  drivers/staging/media/hantro/hantro_drv.c    |  5 +++--
+> > >  drivers/staging/media/hantro/hantro_hw.h     |  1 +
+> > >  drivers/staging/media/hantro/rk3399_vpu_hw.c | 21 ++++++++++++++++++++
+> > >  3 files changed, 25 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> > > index e5f200e64993..076a7782b476 100644
+> > > --- a/drivers/staging/media/hantro/hantro_drv.c
+> > > +++ b/drivers/staging/media/hantro/hantro_drv.c
+> > > @@ -472,6 +472,7 @@ static const struct v4l2_file_operations hantro_fops = {
+> > >  
+> > >  static const struct of_device_id of_hantro_match[] = {
+> > >  #ifdef CONFIG_VIDEO_HANTRO_ROCKCHIP
+> > > +       { .compatible = "rockchip,px30-vpu", .data = &px30_vpu_variant, },
+> > >         { .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
+> > >         { .compatible = "rockchip,rk3328-vpu", .data = &rk3328_vpu_variant, },
+> > >         { .compatible = "rockchip,rk3288-vpu", .data = &rk3288_vpu_variant, },
+> > > @@ -796,8 +797,8 @@ static int hantro_probe(struct platform_device *pdev)
+> > >                         return -ENXIO;
+> > >  
+> > >                 ret = devm_request_irq(vpu->dev, irq,
+> > > -                                      vpu->variant->irqs[i].handler, 0,
+> > > -                                      dev_name(vpu->dev), vpu);
+> > > +                                      vpu->variant->irqs[i].handler,
+> > > +                                      IRQF_SHARED, dev_name(vpu->dev), vpu);
+> > 
+> > Maybe this irq flag should be part of vpu->variant? It sounds like an IP block
+> > integration specific thing.
+> 
+> Ah right, I agree that it would be justified. But it would also be simple to
+> just fix the irq handlers and assume this can generally be the case, because it
+> feels like a bit of a detail to justify a flag.
+> 
+> Do you think this could be a safe/workable assumption?
+> 
+> > Also, you will need a px30-specific interrupt handler now,
+> > since the rk3399 one is not shared-friendly.
+> 
+> Yeah I realize I haven't been very careful there and didn't really check that
+> the IOMMU driver is really safe to handle shared interrupts either. I'll take
+> a look a that when crafting v2.
+> 
+> > >                 if (ret) {
+> > >                         dev_err(vpu->dev, "Could not request %s IRQ.\n",
+> > >                                 irq_name);
+> > > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
+> > > index 34c9e4649a25..07f516fd7a2e 100644
+> > > --- a/drivers/staging/media/hantro/hantro_hw.h
+> > > +++ b/drivers/staging/media/hantro/hantro_hw.h
+> > > @@ -148,6 +148,7 @@ enum hantro_enc_fmt {
+> > >         RK3288_VPU_ENC_FMT_UYVY422 = 3,
+> > >  };
+> > >  
+> > > +extern const struct hantro_variant px30_vpu_variant;
+> > >  extern const struct hantro_variant rk3399_vpu_variant;
+> > >  extern const struct hantro_variant rk3328_vpu_variant;
+> > >  extern const struct hantro_variant rk3288_vpu_variant;
+> > > diff --git a/drivers/staging/media/hantro/rk3399_vpu_hw.c b/drivers/staging/media/hantro/rk3399_vpu_hw.c
+> > > index 7a7962cf771e..4112f98baa60 100644
+> > > --- a/drivers/staging/media/hantro/rk3399_vpu_hw.c
+> > > +++ b/drivers/staging/media/hantro/rk3399_vpu_hw.c
+> > 
+> > Perhaps it's time to rename this to rockchip_vpu_hw.c,
+> > and merge rk3288 and rk3399? It's a nitpick, though.
+> 
+> Haha, I was thinking the exact same thing but wasn't sure it would be welcome!
+> 
+> I was thinking of rockchip_vpu2_hw.c or rockchip_vdpu2_hw.c since that's
+> apparently how it's called in Rockchip terminology: VDPU2 and VEPU2 for the
+> Hantro G1 and H1 with the shuffled register layout. The rk3288 stuff is
+> probably VDPU1/VEPU1 and we might want to rename it accordingly as well.
+> 
+> Cheers and thanks for the review!
+> 
+> Paul
+> 
+> > > @@ -220,3 +220,24 @@ const struct hantro_variant rk3328_vpu_variant = {
+> > >         .clk_names = rk3399_clk_names,
+> > >         .num_clocks = ARRAY_SIZE(rk3399_clk_names),
+> > >  };
+> > > +
+> > > +static const char * const px30_clk_names[] = {
+> > > +       "aclk", "hclk", "sclk"
+> > > +};
+> > > +
+> > > +const struct hantro_variant px30_vpu_variant = {
+> > > +       .enc_offset = 0x0,
+> > > +       .enc_fmts = rk3399_vpu_enc_fmts,
+> > > +       .num_enc_fmts = ARRAY_SIZE(rk3399_vpu_enc_fmts),
+> > > +       .dec_offset = 0x400,
+> > > +       .dec_fmts = rk3399_vpu_dec_fmts,
+> > > +       .num_dec_fmts = ARRAY_SIZE(rk3399_vpu_dec_fmts),
+> > > +       .codec = HANTRO_JPEG_ENCODER | HANTRO_MPEG2_DECODER |
+> > > +                HANTRO_VP8_DECODER,
+> > > +       .codec_ops = rk3399_vpu_codec_ops,
+> > > +       .irqs = rk3399_irqs,
+> > > +       .num_irqs = ARRAY_SIZE(rk3399_irqs),
+> > > +       .init = rk3399_vpu_hw_init,
+> > > +       .clk_names = px30_clk_names,
+> > > +       .num_clocks = ARRAY_SIZE(px30_clk_names)
+> > > +};
+> > 
+> > Thanks,
+> > Ezequiel
+> > 
+> 
+> 
+
+
+
+
