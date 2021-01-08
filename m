@@ -2,173 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C66462EF033
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:56:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC4192EF045
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:57:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728282AbhAHJzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 04:55:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40554 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727396AbhAHJzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:55:37 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D180C0612F4
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 01:54:57 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id v26so1640749eds.13
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 01:54:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IK+44CzzfVfOGuAwRFDtWTWEbsmnaUyfEbndc+LLII0=;
-        b=g5gIR+DZeDOkUgh3bwbifA/QvR8Xca1KXNdDaE6fShDjJgoMxK33BxMUJ56GfRGQUu
-         0RBWDEtQW/NL3kY1bH/fXuGS2/yEn8TdrlH9B+UIBprw0cgqUonLVtCVSQrCRz4P6+XY
-         pDUnYebAcRC+MTAkyoyGQBgZxuGydzUdulvgo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IK+44CzzfVfOGuAwRFDtWTWEbsmnaUyfEbndc+LLII0=;
-        b=XJRjCJWKVxyxIqEmd2QUZ2vb3WFSHFDJs9ojdAGtTj4rvXD9+mMznOJZJfDxPhFhMh
-         Fo4/PWmLW3yD4rT594bZb8v7d/l4OZjDywhGsQLeXbuzzB9/R6FdEBKTr8Krv3VyXrhJ
-         Loi+D5nBhDFIBc5Rpdp096K6QqajtcimugbOaez9XHVJB6CMNXBSceDtBQLS08UtMF+a
-         3pZPyrGafQD2X4dhi4uQ8UfJm87RtvqoNB4RubYIzQVeIattoUznOYEAfDLRiA/wnAbJ
-         fbSBBttngVZFO498+qrfSfblQ66Ubm9zSC/rXTAG4OUA2fiCtNfWnW5azWbf5+dljyNx
-         iAaQ==
-X-Gm-Message-State: AOAM5319bX5krPfJwsbtQefFUze2suSIP2O9JEzMeAq9TjsyVvtuP6vR
-        I4J+xsxyOXFTbRUKbbsXsXpMua0O8Qn55g==
-X-Google-Smtp-Source: ABdhPJw+ULsSDuiMs4aUxMGIadnvAUTQW4+Ckp93t591lD7B3Kc2eAk8UHbPW6nE6qSAvSq7GuFTPw==
-X-Received: by 2002:a50:f299:: with SMTP id f25mr4643691edm.133.1610099695660;
-        Fri, 08 Jan 2021 01:54:55 -0800 (PST)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com. [209.85.128.41])
-        by smtp.gmail.com with ESMTPSA id s1sm3372825ejx.25.2021.01.08.01.54.54
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Jan 2021 01:54:54 -0800 (PST)
-Received: by mail-wm1-f41.google.com with SMTP id n16so6400653wmc.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 01:54:54 -0800 (PST)
-X-Received: by 2002:a7b:c92b:: with SMTP id h11mr2296894wml.99.1610099693765;
- Fri, 08 Jan 2021 01:54:53 -0800 (PST)
+        id S1727838AbhAHJ5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 04:57:25 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:38971 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727898AbhAHJ5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:57:24 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 62B455805B5;
+        Fri,  8 Jan 2021 04:56:18 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Fri, 08 Jan 2021 04:56:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=nhNnfGpgrsijY/Ccu+y8p0GNRzv
+        B/ZDbp2P5o/E9YYI=; b=mCu2BkvuJ60N05UHH3NFsoh91nOK914AIlpEVkz6P7N
+        Tv3MtQExaE4iycqINncj+4/U8eo/flDASas8AGjU3HR1NP6almnLr2wwTLjQYoxJ
+        sHUvgBhFkQ8+KfjlTfYaSAFVrvjMn5qgAUL+RuGQ3JGo7Zyv9GnA1Er0qgLKwdnw
+        T8Wag3E81PpRErhMagM0hUmwDK0UEl9sSBippaadqvIRW82EoaDT0BBPwXP3aKaC
+        sm0mzPadNHg4gd4Qmo2xznsyx9p0L7nBLXHNnBzlfMPj9p4copwQYp0TkIVYjUxo
+        S5LyJVPlkyNe50WyY1DcsfuW2pvsmu8ZouUr0L9X6Nw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=nhNnfG
+        pgrsijY/Ccu+y8p0GNRzvB/ZDbp2P5o/E9YYI=; b=FypFiIH8/HMzVMOKvJ6cNK
+        03GOdjTrcdipr8QmsLbs0koleqvV58rkjUdjfSBuvYUjoRzS8xrsocCOtDqCeBas
+        FkFat+dPalXcssOOA3Lq83HYFi/Una2HebqQ3lEkZu7e6+X82S11YL33v3Md0gQ9
+        y7sOQ7rHwop6/wg9F3c6tXMDiWaOQzYnEQl1dmNfOcANWy+K/iMLy0dPHhU5HFzt
+        54zP2ZMuosr2kQap6tvAFyF45v4GqzIKh8MgnIi+zw4P5NTE7Ln773mPpWYWYnqO
+        VpYHFBZ3dWGSW907UWLiPbROS2ZEocGDRNCJK1+EJTVTufHMrZygJGvU7NU35hmg
+        ==
+X-ME-Sender: <xms:Qiz4XzVXczHUGtWkxxUSpJzht1sSKgO83Nh_91PmIihTPVFQ40Lz2w>
+    <xme:Qiz4X7nbR1FJUS_T7zjlxjIHBowTLFMmj9UhxJF164sAr4jFYWCiXNrnq6RCkH8fX
+    3zOU92jbFjWpjczlaY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgtdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
+    gfevnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:Qiz4X_Yb7R6wfHUdYRv9VVqWql5ANEVGFiTs_nLEc7cmdA_hQpjTMg>
+    <xmx:Qiz4X-VXv5EAm95r6c89-UjXxsgKv0BJPm1SYqLyPmqBu7nK7lYroQ>
+    <xmx:Qiz4X9nuz9AeEAO4hz3TNMTqsl9s6npywTQeCmkm3V6iNHH0UYi--g>
+    <xmx:Qiz4X3v_yzueyTaMUQG_WvCF8OKC4oqeZ96GeaNdkgKUjNtnU4s0xw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id C7057240057;
+        Fri,  8 Jan 2021 04:56:17 -0500 (EST)
+Date:   Fri, 8 Jan 2021 10:56:16 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        kevin.lhopital@hotmail.com
+Subject: Re: [PATCH v4 13/15] media: sunxi: Add support for the A83T MIPI
+ CSI-2 controller
+Message-ID: <20210108095616.fy5oaslwnyumv3if@gilmour>
+References: <20201231142948.3241780-1-paul.kocialkowski@bootlin.com>
+ <20201231142948.3241780-14-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-References: <20201209080102.26626-1-yong.wu@mediatek.com> <X+MBcmzQn9iQWlVZ@chromium.org>
- <1609239977.26323.292.camel@mhfsdcap03>
-In-Reply-To: <1609239977.26323.292.camel@mhfsdcap03>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Fri, 8 Jan 2021 18:54:41 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5Cz5X5_pm3Vef0HcuARXrZPx9FGxeuxtQeqe9vmWcxZzQ@mail.gmail.com>
-Message-ID: <CAAFQd5Cz5X5_pm3Vef0HcuARXrZPx9FGxeuxtQeqe9vmWcxZzQ@mail.gmail.com>
-Subject: Re: [PATCH v5 18/27] iommu/mediatek: Add power-domain operation
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, youlin.pei@mediatek.com,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        chao.hao@mediatek.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>, anan.sun@mediatek.com,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="tc6l3ymxpbqq47df"
+Content-Disposition: inline
+In-Reply-To: <20201231142948.3241780-14-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 29, 2020 at 8:06 PM Yong Wu <yong.wu@mediatek.com> wrote:
->
-> On Wed, 2020-12-23 at 17:36 +0900, Tomasz Figa wrote:
-> > On Wed, Dec 09, 2020 at 04:00:53PM +0800, Yong Wu wrote:
-> > > In the previous SoC, the M4U HW is in the EMI power domain which is
-> > > always on. the latest M4U is in the display power domain which may be
-> > > turned on/off, thus we have to add pm_runtime interface for it.
-> > >
-> > > When the engine work, the engine always enable the power and clocks for
-> > > smi-larb/smi-common, then the M4U's power will always be powered on
-> > > automatically via the device link with smi-common.
-> > >
-> > > Note: we don't enable the M4U power in iommu_map/unmap for tlb flush.
-> > > If its power already is on, of course it is ok. if the power is off,
-> > > the main tlb will be reset while M4U power on, thus the tlb flush while
-> > > m4u power off is unnecessary, just skip it.
-> > >
-> > > There will be one case that pm runctime status is not expected when tlb
-> > > flush. After boot, the display may call dma_alloc_attrs before it call
-> > > pm_runtime_get(disp-dev), then the m4u's pm status is not active inside
-> > > the dma_alloc_attrs. Since it only happens after boot, the tlb is clean
-> > > at that time, I also think this is ok.
-> > >
-> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > ---
-> > >  drivers/iommu/mtk_iommu.c | 41 +++++++++++++++++++++++++++++++++------
-> > >  1 file changed, 35 insertions(+), 6 deletions(-)
-> > >
-> > > diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> > > index 6fe3ee2b2bf5..0e9c03cbab32 100644
-> > > --- a/drivers/iommu/mtk_iommu.c
-> > > +++ b/drivers/iommu/mtk_iommu.c
-> > > @@ -184,6 +184,8 @@ static void mtk_iommu_tlb_flush_all(void *cookie)
-> > >     struct mtk_iommu_data *data = cookie;
-> > >
-> > >     for_each_m4u(data) {
-> > > +           if (!pm_runtime_active(data->dev))
-> > > +                   continue;
-> >
-> > Is it guaranteed that the status is active in the check above, but then
-> > the process is preempted and it goes down here?
-> >
-> > Shouldn't we do something like below?
-> >
-> >         ret = pm_runtime_get_if_active();
-> >         if (!ret)
-> >                 continue;
-> >         if (ret < 0)
-> >                 // handle error
-> >
-> >         // Flush
-> >
-> >         pm_runtime_put();
->
-> Make sense. Thanks. There is a comment in arm_smmu.c "avoid touching
-> dev->power.lock in fastpaths". To avoid this here too(we have many SoC
-> don't have power-domain). then the code will be like:
->
->         bool has_pm = !!data->dev->pm_domain;
->
->         if (has_pm) {
->                 if (pm_runtime_get_if_in_use(data->dev) <= 0)
->                         continue;
->         }
->
->         xxxx
->
->         if (has_pm)
->                 pm_runtime_put(data->dev);
 
-Looks good to me, thanks.
+--tc6l3ymxpbqq47df
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> >
-> > Similar comment to the other places being changed by this patch.
-> >
-> > >             writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
-> > >                            data->base + data->plat_data->inv_sel_reg);
-> > >             writel_relaxed(F_ALL_INVLD, data->base + REG_MMU_INVALIDATE);
-> > > @@ -200,6 +202,10 @@ static void mtk_iommu_tlb_flush_range_sync(unsigned long iova, size_t size,
-> > >     u32 tmp;
-> > >
-> > >     for_each_m4u(data) {
-> > > +           /* skip tlb flush when pm is not active. */
-> > > +           if (!pm_runtime_active(data->dev))
-> > > +                   continue;
-> > > +
-> > >             spin_lock_irqsave(&data->tlb_lock, flags);
-> > >             writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
-> > >                            data->base + data->plat_data->inv_sel_reg);
-> [snip]
+Hi,
+
+On Thu, Dec 31, 2020 at 03:29:46PM +0100, Paul Kocialkowski wrote:
+> The A83T supports MIPI CSI-2 with a composite controller, covering
+> both the protocol logic and the D-PHY implementation. This controller
+> seems to be found on the A83T only and probably was abandoned since.
+>=20
+> This implementation splits the protocol and D-PHY registers and
+> uses the PHY framework internally. The D-PHY is not registered as a
+> standalone PHY driver since it cannot be used with any other
+> controller.
+>=20
+> There are a few notable points about the controller:
+> - The initialisation sequence involes writing specific magic init
+>   values that do not seem to make any particular sense given the
+>   concerned register fields;
+> - Interrupts appear to be hitting regardless of the interrupt mask
+>   registers, which can cause a serious flood when transmission errors
+>   occur.
+>=20
+> Only 8-bit and 10-bit Bayer formats are currently supported.
+> While up to 4 internal channels to the CSI controller exist, only one
+> is currently supported by this implementation.
+>=20
+> This work is based on the first version of the driver submitted by
+> K=E9vin L'h=F4pital, which was adapted to mainline from the Allwinner BSP.
+> This version integrates MIPI CSI-2 support as a standalone V4L2 subdev
+> instead of merging it in the sun6i-csi driver.
+>=20
+> It was tested on a Banana Pi M3 board with an OV8865 sensor in a 4-lane
+> configuration.
+>=20
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+
+There's a couple of checkpatch --strict warnings here as well
+
+Once fixed,
+Acked-by: Maxime Ripard <mripard@kernel.org>
+
+Thanks!
+Maxime
+
+--tc6l3ymxpbqq47df
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/gsQAAKCRDj7w1vZxhR
+xa6vAQDzxq7wGkrr8cxK3zTV9vzdO+lsvVdg8AtqesAmrp2IVAD+JY8cLaoGu8C1
+tfK38n0rbE9wxRSIDnEtIQ3OENiefwk=
+=GD9h
+-----END PGP SIGNATURE-----
+
+--tc6l3ymxpbqq47df--
