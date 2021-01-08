@@ -2,98 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 838282EEB89
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:59:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D850D2EEB8C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 03:59:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726410AbhAHC4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Jan 2021 21:56:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60504 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726358AbhAHC4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:56:24 -0500
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73B85C0612F4
-        for <devicetree@vger.kernel.org>; Thu,  7 Jan 2021 18:55:44 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id w1so4912579pjc.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Jan 2021 18:55:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EG9c/QrlglkgwfRJUmQKNCPIJwJMfMxdpeBqAUmgOZk=;
-        b=E9WhvDhXJQdf3y2rdal5JO3AXwTEwU1jVVEuc6F2eI+a/CgUB9710YFUxBN3Epz9rt
-         CtM/qYL5hG734uFnQcymzO78uKgcphlwoNlsTILgh27HKID2rMlfyd8oPx3tpV/mdzkE
-         3yafqJfaAPYHbZQHlO01JWTBvwtXn3LZetnYT6+j0JAHqbV4UAsPqu/yNzikLwxMth33
-         ifC67tCL2PAHvZtVjx8hCdrU/uQHC1YFbP0CUIditJKqGAhMn9Lzz/dPsb6ESBgiSs26
-         lOMDcpeinmxpMsB+H6bJXl1kXwgaq5Gb8znKenjfqGyVAhUGJBiW0fhT6weUEDrNfctJ
-         yNMQ==
+        id S1726683AbhAHC6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Jan 2021 21:58:53 -0500
+Received: from mail-io1-f52.google.com ([209.85.166.52]:34629 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726528AbhAHC6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Jan 2021 21:58:52 -0500
+Received: by mail-io1-f52.google.com with SMTP id i18so8404764ioa.1;
+        Thu, 07 Jan 2021 18:58:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EG9c/QrlglkgwfRJUmQKNCPIJwJMfMxdpeBqAUmgOZk=;
-        b=hRc+RTk5qAh8l9pfNQ5KRSK7fGfVmGwizBEDrM5smdU2vj3hWtPZkLvfIp5FXPMMC3
-         LUcRDfE1ruLF4PqrggLYhYBuBp0xvqEdlj/uJMWEw12FrzxbwSotOe1hKvlgjaDqrWqq
-         ZVrRfar769/K8pDpS8wS1r6RswvMTVxz1vBlnfazr8VtqQivrsmuM5i8Mh4iVrr5Ixgg
-         oSktVEQcS4Wdt39+yHJS2F+8e98+V3uC+7OLbVAnswApZ7wYTEFigBM5YLle5ML0rR2k
-         MjbYzMH93tSSK3CMo4wmrjK9G5qUR5H3+0MDWZL6q1KaEFHAcYDXz7gxwi0CrSdjUc1i
-         lwXQ==
-X-Gm-Message-State: AOAM5319UbYIdvEy0/E6NvWZgylqoFa0XKiIGY8L7ELjPD2MkxeEnEOT
-        sFeVVS8Z+QW639Z98ewxbE4=
-X-Google-Smtp-Source: ABdhPJzug/UItPAiUdNY4Kcu74DHwKQvsoTGi0xD0+uXuBVy+3GMxnsh5FcV6z+mzzlH7pdExirSpg==
-X-Received: by 2002:a17:90a:394f:: with SMTP id n15mr1498276pjf.121.1610074543889;
-        Thu, 07 Jan 2021 18:55:43 -0800 (PST)
-Received: from [10.230.29.29] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id q4sm8166487pgr.39.2021.01.07.18.55.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Jan 2021 18:55:42 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: bcm2835-vec: Add power-domains property
-To:     Rob Herring <robh@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     dri-devel@lists.freedesktop.org, Eric Anholt <eric@anholt.net>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        bcm-kernel-feedback-list@broadcom.com,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <1608751473-12343-1-git-send-email-stefan.wahren@i2se.com>
- <20210108024209.GA1769120@robh.at.kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <623a71eb-ac4e-7b75-db96-5dbbca98c4b2@gmail.com>
-Date:   Thu, 7 Jan 2021 18:55:39 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.6.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kdwvcSQe/BsoYAGJeSvP+ZzZ58dAp5TIxQnH80/cM+U=;
+        b=FTwa6W3SiMwA9y4r6y1rrIB4H5XMKpLuTsHSYvuCRKGeYPN28wjxHceYiCT1AvyZx9
+         RiYfKfCJCenoPkGjxVyGM/Dykf5JLUbFl2YClAgkz/hp2/OXQmzApC7YokWa/3Pjwexd
+         6V1KSADyCP45bxZnvCNoxEIAgEytmNdx7UoTJeCX6EZUS31RqqihNKqOgzeQt4ddwUVf
+         VhCGmJKwM+7yKJkps6keKSg89dLXI4wydkr22HhIzbvk/tr29JpEpNFk3dL6y94jhyiv
+         m/98Tg3x9DUsorpSgjd5zWvFeOokkZMkST3pxqmRFCy+lAlLdJ1IssiFT93x/SrgGx7A
+         uxgA==
+X-Gm-Message-State: AOAM530mKEHviR8nAwdG/HSJ6k7Tn2RxLazVTNFYD+1GoCWaSFV5oRc+
+        MTN8f9tvykfGPhwPG6xPFg==
+X-Google-Smtp-Source: ABdhPJzlRgt30XO/nkuOW39uOtokST2Sb2dRPM9GTcV/24xif96JYMGwg8NGprhFyFY6jGkcCZmkZw==
+X-Received: by 2002:a6b:7a09:: with SMTP id h9mr3778656iom.167.1610074691608;
+        Thu, 07 Jan 2021 18:58:11 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id p25sm4599947ioj.21.2021.01.07.18.58.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Jan 2021 18:58:10 -0800 (PST)
+Received: (nullmailer pid 1790366 invoked by uid 1000);
+        Fri, 08 Jan 2021 02:58:08 -0000
+Date:   Thu, 7 Jan 2021 19:58:08 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Peter Rosin <peda@axentia.se>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/7] dt-bindings: phy: ti,phy-j721e-wiz: Add bindings for
+ AM64 SERDES Wrapper
+Message-ID: <20210108025808.GA1787492@robh.at.kernel.org>
+References: <20201224114250.1083-1-kishon@ti.com>
+ <20201224114250.1083-2-kishon@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210108024209.GA1769120@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201224114250.1083-2-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1/7/2021 6:42 PM, Rob Herring wrote:
-> On Wed, 23 Dec 2020 20:24:33 +0100, Stefan Wahren wrote:
->> Adding the missing property power-domains to the bcm2835-vec schema to fix
->> the following dtbs_check issue:
->>
->> vec@7e806000: 'power-domains' does not match any of the regexes: ...
->>
->> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
->> ---
->>  Documentation/devicetree/bindings/display/brcm,bcm2835-vec.yaml | 3 +++
->>  1 file changed, 3 insertions(+)
->>
+On Thu, Dec 24, 2020 at 05:12:44PM +0530, Kishon Vijay Abraham I wrote:
+> Add bindings for AM64 SERDES Wrapper.
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml      | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+> index c33e9bc79521..4a1f9c27b5f0 100644
+> --- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+> +++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+> @@ -12,9 +12,13 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - ti,j721e-wiz-16g
+> -      - ti,j721e-wiz-10g
+> +    oneOf:
+> +      - const: ti,j721e-wiz-16g
+> +      - const: ti,j721e-wiz-10g
 
-I thought you were going to apply this directly?
--- 
-Florian
+Pick one. This:
+
+> +      - const: ti,am64-wiz-10g
+
+Or this:
+
+> +      - items:
+> +          - const: ti,am64-wiz-10g
+> +          - const: ti,j721e-wiz-10g
+
+No reason to support both for ti,am64-wiz-10g.
+
+>  
+>    power-domains:
+>      maxItems: 1
+> -- 
+> 2.17.1
+> 
