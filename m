@@ -2,104 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF92D2EFA8E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 22:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 252802EFAFA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 23:17:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729882AbhAHV3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 16:29:24 -0500
-Received: from mga07.intel.com ([134.134.136.100]:22454 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729874AbhAHV3W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Jan 2021 16:29:22 -0500
-IronPort-SDR: VgW9qu1Lv0GMC/7gJfMMYxozmlV5FQVmk0uSw6T4VfxKH4Wj8D/htTBRLk+RFXsUyDdfSwMPX1
- BXvVZJZ/9IEQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9858"; a="241732875"
-X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; 
-   d="scan'208";a="241732875"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2021 13:26:04 -0800
-IronPort-SDR: bON76ihHiY5Nk3TducXRgJJS6UThINuMenxwewxiBJ6B4oPQJK8MOwFjKWgMOXuVaEPGt9/BxS
- 4tML0uo9ji7Q==
-X-IronPort-AV: E=Sophos;i="5.79,332,1602572400"; 
-   d="scan'208";a="362470724"
-Received: from smtp.ostc.intel.com ([10.54.29.231])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2021 13:26:05 -0800
-Received: from mtg-dev (mtg-dev.jf.intel.com [10.54.74.10])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtp.ostc.intel.com (Postfix) with ESMTPS id 1D7026365;
-        Fri,  8 Jan 2021 13:26:05 -0800 (PST)
-Received: from mgross by mtg-dev with local (Exim 4.90_1)
-        (envelope-from <mgross@linux.intel.com>)
-        id 1kxzGm-0009cZ-W5; Fri, 08 Jan 2021 13:26:05 -0800
-From:   mgross@linux.intel.com
-To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
-        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
-        gregkh@linuxfoundation.org, corbet@lwn.net,
-        leonard.crestez@nxp.com, palmerdabbelt@google.com,
-        paul.walmsley@sifive.com, peng.fan@nxp.com, robh+dt@kernel.org,
-        shawnguo@kernel.org, jassisinghbrar@gmail.com
-Cc:     linux-kernel@vger.kernel.org,
-        Seamus Kelly <seamus.kelly@intel.com>,
-        devicetree@vger.kernel.org,
-        Ryan Carnaghi <ryan.r.carnaghi@intel.com>
-Subject: [PATCH v2 19/34] xlink-core: Add xlink core device tree bindings
-Date:   Fri,  8 Jan 2021 13:25:45 -0800
-Message-Id: <20210108212600.36850-20-mgross@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210108212600.36850-1-mgross@linux.intel.com>
-References: <20210108212600.36850-1-mgross@linux.intel.com>
+        id S1726477AbhAHWRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 17:17:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726469AbhAHWRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 17:17:48 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA5FC061757
+        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 14:17:08 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id b5so6974158pjk.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 14:17:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bjEIPfAVcs3gvKNx7qo/y+ZN6/GFQFUSelSnLMyBbKM=;
+        b=AHOfCa3KDAvwViNbxGSDxxAEgeRhouqgX/PnG194y1JB8/hlqJT2sBVOkexcvvxXHg
+         lWVfTKnaqBo0JKM6AUisnmPsB76AQd1mL/M849kfaiaVxapEYrmszE10dsJ+TbIeAH6U
+         QWjU8qubuFuC2qmfuuCWEFNykB1U9PzNWOM44=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bjEIPfAVcs3gvKNx7qo/y+ZN6/GFQFUSelSnLMyBbKM=;
+        b=fu8OZaeE1oKhnfpuaN+1c1QHhRfZskXuGgmUlg3odOAYlxt+Lye0OJ8bPu60ayIelq
+         0DUAqgMBPDvpQCF4Ecskj6jgWoPtwmx7liByGQ5WwYKqLsYG0IYC9OOUtc9O8IJd2lQN
+         GsfRPqUE7Ryl6zGajsY2DrPOy1AanARDtV5qmtWUhyeZ1vTXV6iV17sB1XFe/9D8Q3GU
+         AAVSS1gGktF30HH+f9UybQPBYFKOEQYCEmebu8Ty4KYFyiVA8/yATiexymUXvGEcGpXN
+         T/aQqY3POAzvqRmeRY2j7e7EtisOoQS/nNgxb6BblslVtjStQ4kCuDjpkYWBaVtL+fFw
+         G6Pg==
+X-Gm-Message-State: AOAM531IzcivfwC1nr9xMxk5gxk7IG+3u21q3vsUnt0JCL0HTPDmzhJo
+        Bi0EmK/Fjhq04JKEc35hbSTh/A==
+X-Google-Smtp-Source: ABdhPJzAHLjnmF4GvlVRhrnonjX1EETvvJY+osxKXojwVbp7pymJ+bXYDRr8La8qPkZy8RzFscLVDw==
+X-Received: by 2002:a17:90b:11d7:: with SMTP id gv23mr5978542pjb.2.1610144228367;
+        Fri, 08 Jan 2021 14:17:08 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id k7sm9638595pfh.201.2021.01.08.14.17.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Jan 2021 14:17:07 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH] arm64: dts: qcom: sc7180: Add labels for cpuN-thermal nodes
+Date:   Fri,  8 Jan 2021 14:16:50 -0800
+Message-Id: <20210108141648.1.Ia8019b8b303ca31a06752ed6ceb5c3ac50bd1d48@changeid>
+X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Seamus Kelly <seamus.kelly@intel.com>
+Add labels to the cpuN-thermal nodes to allow board files to use
+a phandle instead replicating the node hierarchy when adjusting
+certain properties.
 
-Add device tree bindings for keembay-xlink.
+Due to the 'sustainable-power' property CPU thermal zones are
+more likely to need property updates than other SC7180 zones,
+hence only labels for CPU zones are added for now.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Mark Gross <mgross@linux.intel.com>
-Signed-off-by: Seamus Kelly <seamus.kelly@intel.com>
-Signed-off-by: Ryan Carnaghi <ryan.r.carnaghi@intel.com>
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
- .../bindings/misc/intel,keembay-xlink.yaml    | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
 
-diff --git a/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
-new file mode 100644
-index 000000000000..89c34018fa04
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/intel,keembay-xlink.yaml
-@@ -0,0 +1,27 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (c) Intel Corporation. All rights reserved.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/misc/intel,keembay-xlink.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel Keem Bay xlink
-+
-+maintainers:
-+  - Seamus Kelly <seamus.kelly@intel.com>
-+
-+description: |
-+  The Keem Bay xlink driver enables the communication/control sub-system
-+  for internal and external communications to the Intel Keem Bay SoC.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+        - const: intel,keembay-xlink
-+
-+examples:
-+  - |
-+    xlink {
-+        compatible = "intel,keembay-xlink";
-+    };
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 22b832fc62e3..b5c0eead935d 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3596,7 +3596,7 @@ lpass_hm: clock-controller@63000000 {
+ 	};
+ 
+ 	thermal-zones {
+-		cpu0-thermal {
++		cpu0_thermal: cpu0-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -3645,7 +3645,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu1-thermal {
++		cpu1_thermal: cpu1-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -3694,7 +3694,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu2-thermal {
++		cpu2_thermal: cpu2-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -3743,7 +3743,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu3-thermal {
++		cpu3_thermal: cpu3-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -3792,7 +3792,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu4-thermal {
++		cpu4_thermal: cpu4-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -3841,7 +3841,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu5-thermal {
++		cpu5_thermal: cpu5-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -3890,7 +3890,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu6-thermal {
++		cpu6_thermal: cpu6-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -3931,7 +3931,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu7-thermal {
++		cpu7_thermal: cpu7-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -3972,7 +3972,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu8-thermal {
++		cpu8_thermal: cpu8-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+@@ -4013,7 +4013,7 @@ map1 {
+ 			};
+ 		};
+ 
+-		cpu9-thermal {
++		cpu9_thermal: cpu9-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
 -- 
-2.17.1
+2.30.0.284.gd98b1dd5eaa7-goog
 
