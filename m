@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CED02EEFFC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:46:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC392EF005
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 10:49:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727294AbhAHJqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 04:46:04 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:37869 "EHLO
+        id S1727649AbhAHJtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 04:49:41 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:48347 "EHLO
         new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727661AbhAHJqE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:46:04 -0500
+        by vger.kernel.org with ESMTP id S1726683AbhAHJtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 04:49:40 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id D9012580561;
-        Fri,  8 Jan 2021 04:44:57 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Fri, 08 Jan 2021 04:44:57 -0500
+        by mailnew.nyi.internal (Postfix) with ESMTP id 32FB75805D1;
+        Fri,  8 Jan 2021 04:48:34 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Fri, 08 Jan 2021 04:48:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=t
-        TtMNGskLOtyD7vtLn+5d15eH73b6jHQkp3x9E3BXt4=; b=mpQj9E0ih0BacLBI9
-        EyBqDyEi4/siFyN3iiI6PUpfUI2mkQz58BL4xQhZI+eSDYt6/jLRbpcA1oBMp5D9
-        rX+pMiQtqt5iMcxiha+qpQCX/4oTiIwX7Iqvswmd0gSpDE/oocyMHiiExgGM8bsD
-        L8dLLBuhPcuBQMQpuMZfWcHH4Ni7S4FuW12lgc8dimOfd3WbwpUTWCbc8GoEm3SD
-        K63Gtk4msfaZ2EOPuFI7ZGKo1xeEzBZ3ypYPj1mVfUDbZhv4legn/2Gq+W61+hFk
-        2bfRgjYNaB1/MXl4GL+FaNsb0NBI1qkULH4yN4/qfumijfdrf2ZSUSRL/o4XNMiL
-        Qhj+Q==
+        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=T
+        ytH3TW5ntRxZ1LpTYSljem0k/W8jkP4F1c3fUJ+HnI=; b=W3F2qLClKz+EIUHj1
+        pv70rfj99kjHw5cSQWbB+HijiNCWpzhjGi5yptuS//finB4rRnYVI0LrJ8SvHTr2
+        +5MGi5cR+C4GWr5anRTBVMif4V3TfDelToTBfAfeLKMXaF8HHA3VUKHhLbsfwp/c
+        xqoOT+jB7EIMAoWSWuHfdQ3G96SOepw8okwkDXI5F+mcPr5yGgJ2jxXDfIZSzurt
+        v7RU568SvVs2/kckacscI/Y8816G7pIqGywlrAyxBZIXRKijQ+gXnAed/K/Sfd/M
+        UuPeCCL/XXliHSR/mg4Z6UL2Z04aZhG+vKYIN0fvQQXCiahlKovIOZZJYJQtfGkl
+        3D1Ug==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:content-type
         :date:from:in-reply-to:message-id:mime-version:references
         :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=tTtMNGskLOtyD7vtLn+5d15eH73b6jHQkp3x9E3BX
-        t4=; b=UCn/KRtAmfT8TzrqE3VWYSPzJe5sSsc8mYA7qz9H/Y2f8VaXVCZdzBuqF
-        aAs2bAQ7S1xYORf2L6IPA87Ei6Ad/AWx0nOEXYfL6oXWT9aFhmvjEZoMZofwljAY
-        eFrY8rt9yjx79KIMehFj8NGI4EnwACaVZqjVhGw66nxvW7A78MR4B84qaBuOQikJ
-        cZyO8hBUPO8kTwDTJgYaQz3stFNjBZl7qdPRnfTd5/arUzQ9/vqBkdh3bs9vPwrl
-        6EQfi6SSpRfJ4Wp/gxN1j1gZvpCxFjMOnbq/oxj/rnUXRhvxXnwoNoPSAnHheTpU
-        h/0MIsJt4i8zZdHf5GlSZ7BU7w3ZQ==
-X-ME-Sender: <xms:lyn4X-wnFz6wg11q9hv3PncZtk39Jx2wOJWxhC9i9iaPlPHWZF_FXQ>
-    <xme:lyn4X6QjQPtgOV06Di7o9sDPzV4Y76zNnx3k2LdCm5dW4h1lMS_G5XWNwcGrRQqPe
-    2mplMhVWt4CSOEjiUo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgtdeiucetufdoteggodetrfdotf
+        :x-sasl-enc; s=fm1; bh=TytH3TW5ntRxZ1LpTYSljem0k/W8jkP4F1c3fUJ+H
+        nI=; b=dvLWvQnc+tGYtY5Ktw5Nv60Z2gEzvnYGdAeKcKrfgM3yB0w1DA2nMjMWb
+        87srFgfXi0KPy/XIT2aFkW+L2SNm0UO3lz4BjhcurLhQMwpuD4EUdtEd6iEGgF0X
+        aPcwwkj5NoRVDyJglif8E3HUsqDq5EkWSvqqbi8kjF+FaZfGZ/GzlmQMOTB9iuf7
+        Iabaou+nUWZ9bVn/a4iXu+A7H+b6l7St8dJJleUVEAWRwqroAegdVyD6ePS4RvuV
+        MjReMwNCOdoP+2sDSFGbrQn87RBWVB9fIjnKFcjeL71kds928Rsb33eOagBzUTuC
+        XQDT0VVEKD9Rhc1p6UtSWcMQiUOhQ==
+X-ME-Sender: <xms:cCr4XwXj0PKIWNmqVR-oTuQrqqORN9LX6e4Hojg1sTDdHlVc8TObMw>
+    <xme:cCr4X0lDefX2fYgiqmmwkHM515jroZ62sabD940CHyxLYIW3_QQ82ovwyV5HZmd3r
+    Sc3wZcZV17SVBsrhLY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgtdekucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
@@ -48,73 +48,72 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeggedgtdeiucetufdoteggod
     htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
     gedvudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
     curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:lyn4XwXd5KRLowX-BX3xDL0fqXnsggYrvPJWc8mWEgvdVbTJJ_ahDQ>
-    <xmx:lyn4X0gFhC8IRXGlF0eNYw1QY8bpHccykgkuTw_AKX8nE2x4WySuQA>
-    <xmx:lyn4XwC0mGIfn9iHK7vu7oZImIr1vf3r_8dQIfgjgcJboTVQHdzB9A>
-    <xmx:mSn4X5ILsnD77hT3KMeg3GmckIX8l2N3wys1M9RheFs5NBtLAR7rSw>
+X-ME-Proxy: <xmx:cCr4X0aUwcPPWAHJ5z4rzpXyY02ZK-FVieH81hLxeY748HZ74uu9sw>
+    <xmx:cCr4X_VxDu4MnTytDOB-yCRgYACgQDwv7llt5mu0Xyn54_mTIHLrUg>
+    <xmx:cCr4X6lnqBbTcRkSwR3kgpGeVMsAJwmEce1NWD34avV_Amz-rXXO3A>
+    <xmx:cir4X8XjlFasr4jNuf3X53We_AZ3OUI6qRjSHA9nQ--7odUbviF99A>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 0807324005E;
-        Fri,  8 Jan 2021 04:44:54 -0500 (EST)
-Date:   Fri, 8 Jan 2021 10:44:53 +0100
+        by mail.messagingengine.com (Postfix) with ESMTPA id AF09D108005C;
+        Fri,  8 Jan 2021 04:48:31 -0500 (EST)
+Date:   Fri, 8 Jan 2021 10:48:30 +0100
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v3 01/10] dt-bindings: irq: sun6i-r: Split the binding
- from sun7i-nmi
-Message-ID: <20210108094453.7uk5lj6j6gdmydiw@gilmour>
-References: <20210103103101.33603-1-samuel@sholland.org>
- <20210103103101.33603-2-samuel@sholland.org>
+        Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        kevin.lhopital@hotmail.com, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 06/15] dt-bindings: media: sun6i-a31-csi: Add MIPI
+ CSI-2 input port
+Message-ID: <20210108094830.6cmuelnraxjpgmaf@gilmour>
+References: <20201231142948.3241780-1-paul.kocialkowski@bootlin.com>
+ <20201231142948.3241780-7-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210103103101.33603-2-samuel@sholland.org>
+In-Reply-To: <20201231142948.3241780-7-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Samuel,
-
-Thanks a lot for working on this
-
-I'm fine with the rest of the work, but I have a couple of questions
-
-On Sun, Jan 03, 2021 at 04:30:52AM -0600, Samuel Holland wrote:
-> The R_INTC in the A31 and newer sun8i/sun50i SoCs has additional
-> functionality compared to the sun7i/sun9i NMI controller. Among other
-> things, it multiplexes up to 128 interrupts corresponding to (and in
-> parallel to) the first 128 GIC SPIs. This means the NMI is no longer the
-> lowest-numbered interrupt, since it is SPI 32 or 96 (depending on SoC).
+On Thu, Dec 31, 2020 at 03:29:39PM +0100, Paul Kocialkowski wrote:
+> The A31 CSI controller supports two distinct input interfaces:
+> parallel and an external MIPI CSI-2 bridge. The parallel interface
+> is often connected to a set of hardware pins while the MIPI CSI-2
+> bridge is an internal FIFO-ish link. As a result, these two inputs
+> are distinguished as two different ports.
 >=20
-> To allow access to all multiplexed IRQs, the R_INTC requires a new
-> binding where the interrupt number matches the GIC interrupt number.
-> For simplicity, copy the three-cell GIC binding; this disambiguates
-> interrupt 0 in the old binding (the NMI) from interrupt 0 in the new
-> binding (SPI 0) by the number of cells.
+> Note that only one of the two may be present on a controller instance.
+> For example, the V3s has one controller dedicated to MIPI-CSI2 and one
+> dedicated to parallel.
+>=20
+> Update the binding with an explicit ports node that holds two distinct
+> port nodes: one for parallel input and one for MIPI CSI-2.
+>=20
+> This is backward-compatible with the single-port approach that was
+> previously taken for representing the parallel interface port, which
+> stays enumerated as fwnode port 0.
+>=20
+> Note that additional ports may be added in the future, especially to
+> support feeding the CSI controller's output to the ISP.
+>=20
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-It's not really clear to me what the ambiguity is between the NMI and
-the SPI 0 interrupt?
-
-In general, it looks like switching to a 3-cell binding with the GIC SPI
-value looks weird to me, since the GIC isn't the parent at all of these
-interrupts.
-
-If the ambiguity is that a stacked irqchip driver needs to have the same
-interrupt number than the GIC, and that the 0 interrupt for the NMI
-controller (used by the PMIC) and is actually the 32 (or 96) GIC
-interrupt and thus breaks that requirement, can't we fix this in the
-driver based on the compatible?
-
-Something like if the interrupt number is 0, with a A31 or newer
-compatible, then add the proper offset in sun6i_r_intc_domain_alloc?
+Reviewed-by: Maxime Ripard <mripard@kernel.org>
 
 Maxime
