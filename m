@@ -2,93 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DFA82EF2BE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 13:58:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73CB62EF2C7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Jan 2021 14:01:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727069AbhAHM6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 07:58:00 -0500
-Received: from honk.sigxcpu.org ([24.134.29.49]:45014 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726987AbhAHM6A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Jan 2021 07:58:00 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 0878CFB05;
-        Fri,  8 Jan 2021 13:57:18 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Wwej6S-ZTS-3; Fri,  8 Jan 2021 13:57:16 +0100 (CET)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 033834088A; Fri,  8 Jan 2021 13:57:10 +0100 (CET)
-From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Martin Kepplinger <martink@posteo.de>,
-        Angus Ainslie <angus@akkea.ca>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vinod Koul <vkoul@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: imx8mq-librem5-devkit: Drop custom clock settings
-Date:   Fri,  8 Jan 2021 13:57:10 +0100
-Message-Id: <d23c2a52374ac357d6946266a9fbf260abcd4d5f.1610110514.git.agx@sigxcpu.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1610110514.git.agx@sigxcpu.org>
-References: <cover.1610110514.git.agx@sigxcpu.org>
+        id S1726834AbhAHNAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 08:00:22 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:46174 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726011AbhAHNAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 08:00:20 -0500
+Received: by mail-ot1-f41.google.com with SMTP id w3so9501560otp.13;
+        Fri, 08 Jan 2021 05:00:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nK3cWo1amowhiwULtOouzGk6luz5/qofhSkKlFioO3k=;
+        b=cC8Qj2ffdr8c7tAD151+DWsrnMgb1ABfrDQnZN+v8SHha04UHz/KTRLgLlaVN19PYI
+         AwCQp87dY6MY94GXJ+osY0egjWx22Sw2QzZ3c2/ulTfPmUdjQXZ/wxpAb/tCJ7xJjPch
+         gwGCkCCM+yPWR4flL/8UKB/zVsQdQQyNqDKtBksZbWmqt+MVTfO1u3aKQrQMFOaPFgDm
+         l2ikKvTxv3gtoQa3f9auCnDoGbEMtT1f+fxXZ7L6kHPC5ORJ0TiHv6pv1kPlRvzuVPHy
+         b7+hZwTM88NOtI55bLUJchi0cIJOlbsF6CjKFezboNdlSFBeAG3e4tO0GdcLm8WVwevW
+         FQXg==
+X-Gm-Message-State: AOAM531W3HHDoWJ3oAHVhliMZwofkAG5ms7uKmIQUbqcaxuj53HSEQI2
+        AQPiRaFKjQGvA/8hyAIVAZvfKJ6WLOC53iYtM7k=
+X-Google-Smtp-Source: ABdhPJyXHMuGda2nzp/UaHZmPhb9ahjx0nuAZYkHw7x/W8zRv3eJhC3BNCFyRSG1LicuLkDVg1Wbdz1MAZSPnwe6YJU=
+X-Received: by 2002:a9d:c01:: with SMTP id 1mr2419145otr.107.1610110778895;
+ Fri, 08 Jan 2021 04:59:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20201227174202.40834-1-wsa+renesas@sang-engineering.com> <20201227174202.40834-7-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20201227174202.40834-7-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 8 Jan 2021 13:59:27 +0100
+Message-ID: <CAMuHMdWs5SWUpDkcX4m9MqVKa4KJvAfXSsRt=Fq3c9=2JtdwHQ@mail.gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: renesas: falcon: Enable MMC
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Takeshi Saito <takeshi.saito.xv@renesas.com>,
+        Koji Matsuoka <koji.matsuoka.xm@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Otherwise the boot hangs early on and the resulting clock tree without
-this already closely matches the selected rates (722534400 and
-786432000).
+Hi Wolfram,
 
-  audio_pll2                  0        0        0   722534397          0     0  50000
-     audio_pll2_bypass        0        0        0   722534397          0     0  50000
-        audio_pll2_out        0        0        0   722534397          0     0  50000
-  audio_pll1                  1        1        0   786431998          0     0  50000
-     audio_pll1_bypass        1        1        0   786431998          0     0  50000
-        audio_pll1_out        1        1        0   786431998          0     0  50000
-           sai2               1        1        0    24576000          0     0  50000
-              sai2_root_clk       1        1        0    24576000          0     0  50000
-           sai6               0        0        0    24576000          0     0  50000
-              sai6_root_clk       0        0        0    24576000          0     0  50000
+On Sun, Dec 27, 2020 at 6:42 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Takeshi Saito <takeshi.saito.xv@renesas.com>
+>
+> Enable MMC on the Falcon board.
+>
+> Signed-off-by: Koji Matsuoka <koji.matsuoka.xm@renesas.com>
+> [wsa: double checked & rebased]
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 5 -----
- 1 file changed, 5 deletions(-)
+Thanks for your patch!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index 05a43ee6d051..dd217a0760e9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -244,11 +244,6 @@ &A53_3 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
--&clk {
--	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL2>;
--	assigned-clock-rates = <786432000>, <722534400>;
--};
--
- &dphy {
- 	status = "okay";
- };
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> @@ -20,6 +20,24 @@ aliases {
+>         chosen {
+>                 stdout-path = "serial0:115200n8";
+>         };
+> +
+> +       reg_1p8v: regulator0 {
+
+Please use a better node name, to avoid accidental duplicates, cfr. commit
+45f5d5a9e34d3fe4 ("arm64: dts: renesas: r8a77995: draak: Fix backlight
+regulator name")
+
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "fixed-1.8V";
+> +               regulator-min-microvolt = <1800000>;
+> +               regulator-max-microvolt = <1800000>;
+> +               regulator-boot-on;
+> +               regulator-always-on;
+> +       };
+> +
+> +       reg_3p3v: regulator1 {
+
+Likewise
+
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "fixed-3.3V";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +               regulator-boot-on;
+> +               regulator-always-on;
+> +       };
+>  };
+>
+>  &avb0 {
+> @@ -169,6 +187,23 @@ &i2c6 {
+>         clock-frequency = <100000>;
+>  };
+>
+> +&mmc0 {
+> +       pinctrl-0 = <&mmc_pins>;
+> +       pinctrl-1 = <&mmc_pins>;
+> +       pinctrl-names = "default", "state_uhs";
+> +
+> +       vmmc-supply = <&reg_3p3v>;
+> +       vqmmc-supply = <&reg_1p8v>;
+> +       mmc-hs200-1_8v;
+> +       mmc-hs400-1_8v;
+> +       bus-width = <8>;
+> +       no-sd;
+> +       no-sdio;
+
+I'm no expert on the no-sd{,io} properties.
+Just wondering if we need them on other R-Car gen3 boards with eMMC, too/
+
+> +       non-removable;
+> +       full-pwr-cycle-in-suspend;
+> +       status = "okay";
+> +};
+
+With the node names fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.29.2
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
