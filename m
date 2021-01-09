@@ -2,74 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7707C2EFC28
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 01:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 761C22EFCA1
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 02:13:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726366AbhAIAa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 19:30:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36078 "EHLO
+        id S1726415AbhAIBMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 20:12:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726300AbhAIAa3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 19:30:29 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EBB2C0613D6
-        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 16:29:45 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id m25so27007495lfc.11
-        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 16:29:45 -0800 (PST)
+        with ESMTP id S1726410AbhAIBMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 20:12:37 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB46BC061573
+        for <devicetree@vger.kernel.org>; Fri,  8 Jan 2021 17:11:56 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id v1so4585051pjr.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Jan 2021 17:11:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3i+smjmiZrNQ6ALVjxaHxw8JP/5oUykBsdW5QSoLV4Q=;
-        b=DIBrcFXPMWyQtndHES5B0IT5fUM7nKlkvQmsLP2vicNIOuDc1bO1qSaI2VdGz5NCGt
-         itkkOgfHRWE5G3scDGm5mqFpNGxOLfspxcERbeL78sjeKfzz/RGr7Wxzbs/7B5d71uVK
-         PH4nBRakTr1/vtQGskDGIuyAY6jehtpgQjljTVeCFBuNzRQGIZMtXOYnyMaALJHEKILF
-         tXYPXF/3Df8I3jmGCOs2ehp8Ehr7LS3dBe3pcV0a/u9/6rJYXjZ1gLr/T1SRaPKqFDnt
-         5Dy8rwY8EomRfteq9HEy3suKiN6InDIo8n9GnBUZwn8a+MvCpuPdF+Lxch82fK7G4Ge1
-         WULg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ywqlXS0DMFG48gu1pC9iNZc0yRyZGXmZHZluYtDfIDk=;
+        b=VsLN0H4YgDYoWi4ylibEvc+JIkpCOAowFIw1QXIzGjQGkid76NBl+AhmgiAJOaZZvL
+         ZylBylxOJ07zVQA/bSmqr11s/WMdZ3dfioHQ/E5V1royCQ5ZgqyTRMBcpTaEEqhK+kQm
+         8HTS+FmSEerj8PfUyJRDQYZtvJ0VyDix9m/Uk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3i+smjmiZrNQ6ALVjxaHxw8JP/5oUykBsdW5QSoLV4Q=;
-        b=GiTPoNyZCW3nuU9/OcbZsYQ+TYbGAyjuIPUziZQGi6LPFdVME0/YRSeJbzjF29KkYL
-         VNvEHnR3Z60RQh3t5UoSeDNmFLvNthZj5AqC7HHjoRydJWyK0VClll8QoUDDxoD5LzWC
-         Lv/R6SCigKlmzZzWRyCPVgnZ2I4W8mxoePWZgL+a0l/PJZHH5Zhyj8aIBH3hjh2zUZ29
-         9C9vs9o3pkdqc9hLFipsF/vNZLBKHajkR2VJge4bz1FC+ZCD4HlmQb5ZjcA0nuJuJjpL
-         N0ulCPSEO+VB6jgnW4d/fLk3qnJnsRlKv82Tv4iPsAdYfJrHt/ozBJNu8m3777kdtQUR
-         X/Mw==
-X-Gm-Message-State: AOAM530UlTNnNxdeU8SNP+YNEHKC5MYvfGKVPh5dZyFs7OZfcZ3uq7pd
-        piIBD+liO2BFcta3ORjwby9a8MI0y+jMgpxT+AKkNw==
-X-Google-Smtp-Source: ABdhPJzEd6w8RKjS33WFED5vM0qHKxre8zXpgFG2b+4qL8JcvPAzjP5+2E8fbqEhhYoJBSMi5C/GSRxL7jBujiofSC4=
-X-Received: by 2002:a05:6512:74e:: with SMTP id c14mr2878100lfs.529.1610152183785;
- Fri, 08 Jan 2021 16:29:43 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ywqlXS0DMFG48gu1pC9iNZc0yRyZGXmZHZluYtDfIDk=;
+        b=M4FZgt+cWuhFtHv6c5nzzg6PBsKmSiH+s3qRmGtZ/uhVPcp8osZZ3kFwrfzcXzSDye
+         PAjWLlcf9xCyHU7NFqKEchLbm4zDztAWNUDpn2wIgFZKNEownB5DY8g4Gm0WUdnNVFj0
+         bN39PMOJBiBOhVHV4VNCfNrJn2N0P6CxWVPKqVHDqvTchTCSFuwbuIVD9r3w4w+Ff98B
+         vd7gO4UApCP2qJmbB+42T7VhKTZ/8pZ3OT1qSZbHY8t5wCOSYEqEFrLCT29+o8l7vQVq
+         V9SFyrCqMA4m47oiINQKGq3k5/dj6lQ+DJJ7K1AfDOEWNjJlY19P+vjb5pkePHZlEGNN
+         wDqQ==
+X-Gm-Message-State: AOAM531JDU9dbpwaM1S6/QSfSjFQrurGxVBsuUowj9o2DRCeDFsmR03V
+        GgngOrg4fU13d/EBepoWy/7JIA==
+X-Google-Smtp-Source: ABdhPJyiFmoWSP8OrQb6mc4LR7nVKFsfyYnp+eP7fJiP4C7VhghWR+ymviK0EP3oB2DybLyZHgv+/Q==
+X-Received: by 2002:a17:90a:4096:: with SMTP id l22mr6440214pjg.114.1610154716454;
+        Fri, 08 Jan 2021 17:11:56 -0800 (PST)
+Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:a6ae:11ff:fe11:fd59])
+        by smtp.gmail.com with ESMTPSA id 82sm10329606pfv.117.2021.01.08.17.11.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Jan 2021 17:11:55 -0800 (PST)
+From:   Philip Chen <philipchen@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>, dmitry.torokhov@gmail.com
+Cc:     dianders@chromium.org, swboyd@chromium.org,
+        Philip Chen <philipchen@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: input: Create macros for cros-ec keymap
+Date:   Fri,  8 Jan 2021 17:11:50 -0800
+Message-Id: <20210108171140.v3.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20210108102026.2024478-1-geert+renesas@glider.be>
-In-Reply-To: <20210108102026.2024478-1-geert+renesas@glider.be>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 9 Jan 2021 01:29:33 +0100
-Message-ID: <CACRpkdb38a5kTdbt2ZXueJjqVp0LbuRqWTgYNZoxrWnFZPAe-A@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] gpio: rcar: Add R-Car V3U support
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 8, 2021 at 11:20 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+In Chrome OS, the keyboard matrix can be split to two groups:
 
-> This patch series adds support for GPIOs on the R-Car V3U (r8a779a0)
-> SoC, to both DT bindings and the gpio-rcar driver.
+The keymap for the top row keys can be customized based on OEM
+preference, while the keymap for the other keys is generic/fixed
+across boards.
 
-These all look good to me. The series:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+This patch creates marcos for the keymaps of these two groups, making
+it easier to reuse the generic portion of keymap when we override the
+keymap in the board-specific dts for custom top row design.
 
-Yours,
-Linus Walleij
+Signed-off-by: Philip Chen <philipchen@chromium.org>
+---
+
+(no changes since v2)
+
+Changes in v2:
+- Rename CROS_STD_NON_TOP_ROW_KEYMAP to CROS_STD_MAIN_KEYMAP
+
+ include/dt-bindings/input/cros-ec-keyboard.h | 103 +++++++++++++++++++
+ 1 file changed, 103 insertions(+)
+ create mode 100644 include/dt-bindings/input/cros-ec-keyboard.h
+
+diff --git a/include/dt-bindings/input/cros-ec-keyboard.h b/include/dt-bindings/input/cros-ec-keyboard.h
+new file mode 100644
+index 0000000000000..a37a8c5701219
+--- /dev/null
++++ b/include/dt-bindings/input/cros-ec-keyboard.h
+@@ -0,0 +1,103 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * This header provides the constants of the standard Chrome OS key matrix
++ * for cros-ec keyboard-controller bindings.
++ *
++ * Copyright (c) 2021 Google, Inc
++ */
++
++#ifndef _CROS_EC_KEYBOARD_H
++#define _CROS_EC_KEYBOARD_H
++
++#define CROS_STD_TOP_ROW_KEYMAP	\
++	MATRIX_KEY(0x00, 0x02, KEY_F1)	\
++	MATRIX_KEY(0x03, 0x02, KEY_F2)	\
++	MATRIX_KEY(0x02, 0x02, KEY_F3)	\
++	MATRIX_KEY(0x01, 0x02, KEY_F4)	\
++	MATRIX_KEY(0x03, 0x04, KEY_F5)	\
++	MATRIX_KEY(0x02, 0x04, KEY_F6)	\
++	MATRIX_KEY(0x01, 0x04, KEY_F7)	\
++	MATRIX_KEY(0x02, 0x09, KEY_F8)	\
++	MATRIX_KEY(0x01, 0x09, KEY_F9)	\
++	MATRIX_KEY(0x00, 0x04, KEY_F10)	\
++	MATRIX_KEY(0x03, 0x09, KEY_F13)
++
++#define CROS_STD_MAIN_KEYMAP	\
++	MATRIX_KEY(0x00, 0x01, KEY_LEFTMETA)	\
++	MATRIX_KEY(0x00, 0x03, KEY_B)		\
++	MATRIX_KEY(0x00, 0x05, KEY_RO)		\
++	MATRIX_KEY(0x00, 0x06, KEY_N)		\
++	MATRIX_KEY(0x00, 0x08, KEY_EQUAL)	\
++	MATRIX_KEY(0x00, 0x0a, KEY_RIGHTALT)	\
++	MATRIX_KEY(0x01, 0x01, KEY_ESC)		\
++	MATRIX_KEY(0x01, 0x03, KEY_G)		\
++	MATRIX_KEY(0x01, 0x06, KEY_H)		\
++	MATRIX_KEY(0x01, 0x08, KEY_APOSTROPHE)	\
++	MATRIX_KEY(0x01, 0x0b, KEY_BACKSPACE)	\
++	MATRIX_KEY(0x01, 0x0c, KEY_HENKAN)	\
++						\
++	MATRIX_KEY(0x02, 0x00, KEY_LEFTCTRL)	\
++	MATRIX_KEY(0x02, 0x01, KEY_TAB)		\
++	MATRIX_KEY(0x02, 0x03, KEY_T)		\
++	MATRIX_KEY(0x02, 0x05, KEY_RIGHTBRACE)	\
++	MATRIX_KEY(0x02, 0x06, KEY_Y)		\
++	MATRIX_KEY(0x02, 0x07, KEY_102ND)	\
++	MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)	\
++	MATRIX_KEY(0x02, 0x0a, KEY_YEN)		\
++						\
++	MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)	\
++	MATRIX_KEY(0x03, 0x01, KEY_GRAVE)	\
++	MATRIX_KEY(0x03, 0x03, KEY_5)		\
++	MATRIX_KEY(0x03, 0x06, KEY_6)		\
++	MATRIX_KEY(0x03, 0x08, KEY_MINUS)	\
++	MATRIX_KEY(0x03, 0x0b, KEY_BACKSLASH)	\
++	MATRIX_KEY(0x03, 0x0c, KEY_MUHENKAN)	\
++						\
++	MATRIX_KEY(0x04, 0x00, KEY_RIGHTCTRL)	\
++	MATRIX_KEY(0x04, 0x01, KEY_A)		\
++	MATRIX_KEY(0x04, 0x02, KEY_D)		\
++	MATRIX_KEY(0x04, 0x03, KEY_F)		\
++	MATRIX_KEY(0x04, 0x04, KEY_S)		\
++	MATRIX_KEY(0x04, 0x05, KEY_K)		\
++	MATRIX_KEY(0x04, 0x06, KEY_J)		\
++	MATRIX_KEY(0x04, 0x08, KEY_SEMICOLON)	\
++	MATRIX_KEY(0x04, 0x09, KEY_L)		\
++	MATRIX_KEY(0x04, 0x0a, KEY_BACKSLASH)	\
++	MATRIX_KEY(0x04, 0x0b, KEY_ENTER)	\
++						\
++	MATRIX_KEY(0x05, 0x01, KEY_Z)		\
++	MATRIX_KEY(0x05, 0x02, KEY_C)		\
++	MATRIX_KEY(0x05, 0x03, KEY_V)		\
++	MATRIX_KEY(0x05, 0x04, KEY_X)		\
++	MATRIX_KEY(0x05, 0x05, KEY_COMMA)	\
++	MATRIX_KEY(0x05, 0x06, KEY_M)		\
++	MATRIX_KEY(0x05, 0x07, KEY_LEFTSHIFT)	\
++	MATRIX_KEY(0x05, 0x08, KEY_SLASH)	\
++	MATRIX_KEY(0x05, 0x09, KEY_DOT)		\
++	MATRIX_KEY(0x05, 0x0b, KEY_SPACE)	\
++						\
++	MATRIX_KEY(0x06, 0x01, KEY_1)		\
++	MATRIX_KEY(0x06, 0x02, KEY_3)		\
++	MATRIX_KEY(0x06, 0x03, KEY_4)		\
++	MATRIX_KEY(0x06, 0x04, KEY_2)		\
++	MATRIX_KEY(0x06, 0x05, KEY_8)		\
++	MATRIX_KEY(0x06, 0x06, KEY_7)		\
++	MATRIX_KEY(0x06, 0x08, KEY_0)		\
++	MATRIX_KEY(0x06, 0x09, KEY_9)		\
++	MATRIX_KEY(0x06, 0x0a, KEY_LEFTALT)	\
++	MATRIX_KEY(0x06, 0x0b, KEY_DOWN)	\
++	MATRIX_KEY(0x06, 0x0c, KEY_RIGHT)	\
++						\
++	MATRIX_KEY(0x07, 0x01, KEY_Q)		\
++	MATRIX_KEY(0x07, 0x02, KEY_E)		\
++	MATRIX_KEY(0x07, 0x03, KEY_R)		\
++	MATRIX_KEY(0x07, 0x04, KEY_W)		\
++	MATRIX_KEY(0x07, 0x05, KEY_I)		\
++	MATRIX_KEY(0x07, 0x06, KEY_U)		\
++	MATRIX_KEY(0x07, 0x07, KEY_RIGHTSHIFT)	\
++	MATRIX_KEY(0x07, 0x08, KEY_P)		\
++	MATRIX_KEY(0x07, 0x09, KEY_O)		\
++	MATRIX_KEY(0x07, 0x0b, KEY_UP)		\
++	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)
++
++#endif /* _CROS_EC_KEYBOARD_H */
+-- 
+2.26.2
+
