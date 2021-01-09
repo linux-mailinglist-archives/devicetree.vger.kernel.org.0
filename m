@@ -2,86 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AA2A2F01B1
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 17:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94F282F01C3
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 17:40:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726090AbhAIQde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 11:33:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43510 "EHLO
+        id S1725978AbhAIQkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 11:40:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726073AbhAIQde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 11:33:34 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78D7C061786;
-        Sat,  9 Jan 2021 08:32:53 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id g20so18793905ejb.1;
-        Sat, 09 Jan 2021 08:32:53 -0800 (PST)
+        with ESMTP id S1725966AbhAIQka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 11:40:30 -0500
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848B7C0617A2;
+        Sat,  9 Jan 2021 08:39:50 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id u26so13139710iof.3;
+        Sat, 09 Jan 2021 08:39:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=v2XVnS8ztNajGPJmvpAHjx4FkY4pw8QExaQyyNzjhpo=;
-        b=WjrHdbm//44Rsd7SKMKSW6nvwg/g0baienGkeiwF4X6sY4eTs1xgok6DmuMMthc4bq
-         9zyX2eAMmphqK4uK+tP89S7JBOiDhZLolXgzamF4Ws8JaxBeC2ShyUyO5v7wj0U7+7mg
-         CA95LVFVPktgTQzsb17N2bcAgBBNYwAfTWyouXD5JVXbgRGyiJ31pLJQNNl0qdzzHkX6
-         LUPU0P+DN3nqv0e+jI7OvmCc7qh1kJiYVPqXJAgHrtPhhgTA1r3eBUQ0yFjFEVPI3Kys
-         zALovUtaQBVW547F8f0spZDk3BKRsAPEwXrGOwCt2xctoM+9xyvRtrTz/Upg9FxMRy/7
-         h0Zg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eJ9VvavqLAh7LXtHJl0lzGMU6JrL5/C3qz8ESIw9VPY=;
+        b=JNCp70DS0a3G2bHL1bsdxhYkd3A25cBo3cFpGsfsCIN360Ca0CVPQOqtvv/7chZZQ8
+         2moagB9rYXCO/4v5TX/y8UStP+jeOf2349BylE6g60/QOOSNfe6i+h4QhBASqkPSfpWg
+         kA7X9jW4SQaf7cK60VPmnBnk93cGOkxcrDfsVKVcDRzCwRyeqVDyRvevwaEM7ue1EWHO
+         RV/rVE2q569tCSlAGLdCiuk1sQZNSMOQ9aHJgeTGqT4KcSR09hib+18I6OMCbV5KgrWg
+         WwH2uI27mOFJeeJRXBrTGHthnPSt8y8Kor4dK9A220JDQ63NHdm32THamlNlSFhv+nid
+         zK4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=v2XVnS8ztNajGPJmvpAHjx4FkY4pw8QExaQyyNzjhpo=;
-        b=eNFnDw0xS4E55JDVmWMwRYBE7Ny66s3zJN5u2+lzef4r+gqFI9k76jnS14F7n2nSV9
-         w0pxcDh3xX1Mp8n6sgfASUIpWcM6x0fX6EbPVPD6gCX6mgWXvEXC2OEPZYniiB5gE23B
-         1WKAS2yPmiaXOHNYfX84q1uPAE0dkgLExPoIJsnpWcf0e8t5mc5SJh3Odq9NFFGzeolJ
-         EiyT90I+NbeSBXdjFYwD06Xi5ha3xbx96RFfvGLEsbi0mi9QszucN5vPxpXkGLlG5f6X
-         kLO3xseL97pZIDw/qnhxJCZT1/bH0pMYUt8ftT580Voxl9tEb5t04vYP2U2bs5ZdYmUC
-         T+hA==
-X-Gm-Message-State: AOAM530udgy06cVti5/T5FiAhDBys+JKBJu//YEaVrOnyWtH0WsocOXl
-        z9r4kd/Ex2bngDNUN8MwdZ8=
-X-Google-Smtp-Source: ABdhPJzinRGvACC+fEhtGI9deX5pGMBvBVO587hC53sGreyyUiThtFCQA4qn/mOV26WKA07jnYyfbA==
-X-Received: by 2002:a17:906:3a55:: with SMTP id a21mr6084350ejf.516.1610209972501;
-        Sat, 09 Jan 2021 08:32:52 -0800 (PST)
-Received: from BV030612LT ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id s15sm4759364eja.36.2021.01.09.08.32.51
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eJ9VvavqLAh7LXtHJl0lzGMU6JrL5/C3qz8ESIw9VPY=;
+        b=V3LcDroFnlAc7w0KszG9r+kUqAntEoPsX3hwUkamWNJZsuZaaQ4EWZ8YzKr0NINtT1
+         15KON0NorDd8s/MIH1HZQTWrw165vFwaxkCEddT20/33MhjQOZTHrhA+dLWvO7hDyMG5
+         4ewzpWR1G0NKH3zja/H0lHIhOJyFNNN07EzaQ6ydfOI0BJ1gJ6HvtW8iqbfwVYZBhxNV
+         5sxkl6bK0I+p2MfphgiZ+CaT7/DxVupDY0zH5TUURXNm6lh8vdH3ENKp8ebUVqer18h/
+         9I4tM3gWGo454NtN/VmvbZjnrB4Rys8S1EEDQw87Xub3kfiOmZHCOGaKbq5qYKwNy9SJ
+         pC3A==
+X-Gm-Message-State: AOAM531THr8fxn5sWwU4oi+sHe6D65l9p2bb0gJaVCTvKHZMiY4m7kaE
+        8KBicLOw6Ch0Zo55r6ltvKqUSMkQaYUM+LbApWM=
+X-Google-Smtp-Source: ABdhPJwzB3xum2lVGlbMAH9lqf9/GqRLNdMFjnsf6weM/2XSjcXDWU46LyxWZXojxlIM/c55CdwY3Q==
+X-Received: by 2002:a05:6602:2b01:: with SMTP id p1mr9523361iov.156.1610210389430;
+        Sat, 09 Jan 2021 08:39:49 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:798:54b8:18cb:ae74])
+        by smtp.gmail.com with ESMTPSA id a17sm717005ilc.77.2021.01.09.08.39.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Jan 2021 08:32:51 -0800 (PST)
-Date:   Sat, 9 Jan 2021 18:32:49 +0200
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Matheus Castello <matheus@castello.eng.br>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 01/13] arm: dts: owl-s500: Add Clock Management Unit
-Message-ID: <20210109163249.GA462782@BV030612LT>
-References: <cover.1609263738.git.cristian.ciocaltea@gmail.com>
- <d05d2d0907ffcd090b36e17918039867780b8355.1609263738.git.cristian.ciocaltea@gmail.com>
- <50c0be54-bcce-5c59-4749-a47d69271e6a@castello.eng.br>
+        Sat, 09 Jan 2021 08:39:48 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-omap@vger.kernel.org
+Cc:     hns@goldelico.com, aford@beaconembedded.com,
+        Adam Ford <aford173@gmail.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: omap36xx: Remove turbo mode for 1GHz variants
+Date:   Sat,  9 Jan 2021 10:39:16 -0600
+Message-Id: <20210109163916.1247431-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <50c0be54-bcce-5c59-4749-a47d69271e6a@castello.eng.br>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 09, 2021 at 12:38:13AM -0300, Matheus Castello wrote:
-> 
-> 
-> Em 12/29/2020 6:17 PM, Cristian Ciocaltea escreveu:
-> > Add Clock Management Unit for Actions Semi S500 SoC.
-> > 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Previously, the 1GHz variants were marked as a turbo,
+because that variant has reduced thermal operating range.
 
-[...]
+Now that the thermal throttling is in place, it should be
+safe to remove the turbo-mode from the 1GHz variants, because
+the CPU will automatically slow if the thermal limit is reached.
 
-> Tested-by: Matheus Castello <matheus@castello.eng.br>
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Thanks for testing this patch series!
+diff --git a/arch/arm/boot/dts/logicpd-torpedo-som.dtsi b/arch/arm/boot/dts/logicpd-torpedo-som.dtsi
+index 3a5228562b0d..3451f9be104e 100644
+--- a/arch/arm/boot/dts/logicpd-torpedo-som.dtsi
++++ b/arch/arm/boot/dts/logicpd-torpedo-som.dtsi
+@@ -70,6 +70,7 @@ nand@0,0 {
+ 		gpmc,device-width = <2>;
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
++		status = "disabled";
+ 	};
+ };
+ 
+-- 
+2.25.1
 
-Regards,
-Cristi
