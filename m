@@ -2,63 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B56AB2F008E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 15:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C1DA2F00D2
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 16:28:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725893AbhAIOnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 09:43:45 -0500
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:57601 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725826AbhAIOnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 09:43:45 -0500
-X-Originating-IP: 82.255.60.242
-Received: from [192.168.1.150] (lns-bzn-39-82-255-60-242.adsl.proxad.net [82.255.60.242])
-        (Authenticated sender: hadess@hadess.net)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 3BBDC6004A;
-        Sat,  9 Jan 2021 14:37:40 +0000 (UTC)
-Message-ID: <5c923458ee8f86efed2ab1c49906dd89789f663b.camel@hadess.net>
-Subject: Re: [PATCH 0/2] Add support for Goodix GT9286 chip
-From:   Bastien Nocera <hadess@hadess.net>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        linux-input@vger.kernel.org
-Cc:     konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmitry.torokhov@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Date:   Sat, 09 Jan 2021 15:37:40 +0100
-In-Reply-To: <20210109135512.149032-1-angelogioacchino.delregno@somainline.org>
-References: <20210109135512.149032-1-angelogioacchino.delregno@somainline.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2 (3.38.2-1.fc33) 
+        id S1726844AbhAIP07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 10:26:59 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:32202 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726522AbhAIP06 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 10:26:58 -0500
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB5W6NRVg="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+        by smtp.strato.de (RZmta 47.12.1 DYNA|AUTH)
+        with ESMTPSA id R0a218x09FO3UP3
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Sat, 9 Jan 2021 16:24:03 +0100 (CET)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: iio: magnetometer: bmc150: Document regulator supplies
+Date:   Sat,  9 Jan 2021 16:23:26 +0100
+Message-Id: <20210109152327.512538-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2021-01-09 at 14:55 +0100, AngeloGioacchino Del Regno wrote:
-> Add support for the GT9286 chip, tested on F(x)Tec Pro1 (MSM8998).
+BMC150 needs VDD and VDDIO regulators that might need to be explicitly
+enabled. Document support for vdd/vddio-supply to implement this.
 
-Can you please add this test information to the commit message for the
-goodix.c patch?
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+Changes in v2: Picked up Reviewed-by:, split patch series from bmg160
+---
+ .../bindings/iio/magnetometer/bosch,bmc150_magn.yaml           | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Feel free to add my:
-Reviewed-by: Bastien Nocera <hadess@hadess.net>
-to both patches when you send a v2.
-
-Cheers
-
-> 
-> AngeloGioacchino Del Regno (2):
->   input: goodix: Add support for Goodix GT9286 chip
->   dt-bindings: ts: goodix: Add binding for GT9286 IC
-> 
->  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 1
-> +
->  drivers/input/touchscreen/goodix.c                              | 2
-> ++
->  2 files changed, 3 insertions(+)
-> 
-
+diff --git a/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml b/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
+index cdef7aeba708..2867ab6bf9b0 100644
+--- a/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
++++ b/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
+@@ -30,6 +30,9 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  vdd-supply: true
++  vddio-supply: true
++
+   interrupts:
+     maxItems: 1
+ 
+-- 
+2.30.0
 
