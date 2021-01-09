@@ -2,76 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B1912F0328
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 20:27:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF3F2F032F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 20:31:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726005AbhAIT07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 14:26:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50288 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725978AbhAIT07 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Jan 2021 14:26:59 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D9CFF23A31;
-        Sat,  9 Jan 2021 19:26:16 +0000 (UTC)
-Date:   Sat, 9 Jan 2021 19:26:13 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: magnetometer: bmc150: Document
- regulator supplies
-Message-ID: <20210109192613.602ffe88@archlinux>
-In-Reply-To: <20210109152327.512538-1-stephan@gerhold.net>
-References: <20210109152327.512538-1-stephan@gerhold.net>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1726006AbhAITas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 14:30:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53102 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726005AbhAITas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 14:30:48 -0500
+X-Greylist: delayed 532 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 09 Jan 2021 11:30:03 PST
+Received: from mxwww.masterlogin.de (mxwww.masterlogin.de [IPv6:2a03:2900:1:1::a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06F58C061786;
+        Sat,  9 Jan 2021 11:30:02 -0800 (PST)
+Received: from mxout2.routing.net (unknown [192.168.10.82])
+        by backup.mxwww.masterlogin.de (Postfix) with ESMTPS id 3E49F2C48D;
+        Sat,  9 Jan 2021 19:10:39 +0000 (UTC)
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+        by mxout2.routing.net (Postfix) with ESMTP id A41B25FC9E;
+        Sat,  9 Jan 2021 19:09:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1610219389;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=XpgzSghv0Wxw9asdQngnpZPIOGMcIgZPVkLOdIlJRYI=;
+        b=vvlHvtUklHiCwxZdUWM0dthY+wn4Bmk4BSTUcbVWYnbHPyXiNKSoxoCz5QPu+i/Fja/jj1
+        EksCKjwXI5JDkMR+Bu3Fg+AdAjsuG2UD0O8Bwlc5TOVFJBELBG+sGF52V+Q2yDmHFJrBl9
+        yNob0BBAx8Wk4Utycq9hfVUXm8jTm6w=
+Received: from localhost.localdomain (fttx-pool-185.76.99.44.bambit.de [185.76.99.44])
+        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 8C57940093;
+        Sat,  9 Jan 2021 19:09:48 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Jimin Wang <jimin.wang@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        sin_wenjiehu <sin_wenjiehu@mediatek.com>, Wenbin.Mei@mediatek.com
+Subject: [PATCH] dts64: mt7622: fix slow sd card access
+Date:   Sat,  9 Jan 2021 20:09:37 +0100
+Message-Id: <20210109190937.42409-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: cff539b1-4803-4f04-9e43-eb68cec062bb
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  9 Jan 2021 16:23:26 +0100
-Stephan Gerhold <stephan@gerhold.net> wrote:
+From: Frank Wunderlich <frank-w@public-files.de>
 
-> BMC150 needs VDD and VDDIO regulators that might need to be explicitly
-> enabled. Document support for vdd/vddio-supply to implement this.
-> 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+- change sdcard (mmc1) to uhs by change vqmmc-supply to 1V8 because driver
+  maps pinctrl depending on this
+- add reset-control for mmc1 like it's done for mmc0/emmc
 
-Thanks for the quick resend!
+Fixes: 2c002a3049f7 ("arm64: dts: mt7622: add mmc related device nodes")
+Fixes: 0b6286dd96c0 ("arm64: dts: mt7622: add bananapi BPI-R64 board")
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+ arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 3 ++-
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi                 | 2 ++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-Series applied to the togreg branch of iio.git and pushed out as testing for
-the autobuilders to poke at it and see if they can find anything we missed.
-
-Jonathan
-> ---
-> Changes in v2: Picked up Reviewed-by:, split patch series from bmg160
-> ---
->  .../bindings/iio/magnetometer/bosch,bmc150_magn.yaml           | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml b/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
-> index cdef7aeba708..2867ab6bf9b0 100644
-> --- a/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
-> +++ b/Documentation/devicetree/bindings/iio/magnetometer/bosch,bmc150_magn.yaml
-> @@ -30,6 +30,9 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  vdd-supply: true
-> +  vddio-supply: true
-> +
->    interrupts:
->      maxItems: 1
->  
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+index 2f77dc40b9b8..916ca89ab8eb 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+@@ -232,10 +232,11 @@ &mmc1 {
+ 	bus-width = <4>;
+ 	max-frequency = <50000000>;
+ 	cap-sd-highspeed;
++	mmc-hs200-1_8v;
+ 	r_smpl = <1>;
+ 	cd-gpios = <&pio 81 GPIO_ACTIVE_LOW>;
+ 	vmmc-supply = <&reg_3p3v>;
+-	vqmmc-supply = <&reg_3p3v>;
++	vqmmc-supply = <&reg_1p8v>;
+ 	assigned-clocks = <&topckgen CLK_TOP_MSDC30_1_SEL>;
+ 	assigned-clock-parents = <&topckgen CLK_TOP_UNIV48M>;
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+index 5b9ec032ce8d..7c6d871538a6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+@@ -698,6 +698,8 @@ mmc1: mmc@11240000 {
+ 		clocks = <&pericfg CLK_PERI_MSDC30_1_PD>,
+ 			 <&topckgen CLK_TOP_AXI_SEL>;
+ 		clock-names = "source", "hclk";
++		resets = <&pericfg MT7622_PERI_MSDC1_SW_RST>;
++		reset-names = "hrst";
+ 		status = "disabled";
+ 	};
+ 
+-- 
+2.25.1
 
