@@ -2,78 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C470E2F0032
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 14:51:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 327D52F0052
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 14:56:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725915AbhAINu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 08:50:29 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:35890 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725872AbhAINu2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Jan 2021 08:50:28 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kyEcX-0000Ht-R5; Sat, 09 Jan 2021 14:49:33 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     robh+dt@kernel.org, mchehab@kernel.org, jacob-chen@iotwrt.com,
-        ezequiel@collabora.com, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Hans Verkuil <hverkuil@xs4all.nl>
-Subject: Re: [RFC PATCH v1 1/4] media: dt-bindings: rockchip-rga: add more rga compatible properties
-Date:   Sat, 09 Jan 2021 14:49:32 +0100
-Message-ID: <1863232.usQuhbGJ8B@diego>
-In-Reply-To: <20201219112653.10705-1-jbx6244@gmail.com>
-References: <20201219112653.10705-1-jbx6244@gmail.com>
+        id S1726254AbhAINz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 08:55:56 -0500
+Received: from relay03.th.seeweb.it ([5.144.164.164]:59917 "EHLO
+        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726062AbhAINz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 08:55:56 -0500
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id B4F351F4EA;
+        Sat,  9 Jan 2021 14:55:13 +0100 (CET)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     linux-input@vger.kernel.org
+Cc:     konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hadess@hadess.net,
+        dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH 0/2] Add support for Goodix GT9286 chip
+Date:   Sat,  9 Jan 2021 14:55:10 +0100
+Message-Id: <20210109135512.149032-1-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 19. Dezember 2020, 12:26:50 CET schrieb Johan Jonker:
-> Add more rga compatible properties.
-> 
-> "rockchip,px30-rga", "rockchip,rk3288-rga"
-> "rockchip,rk3328-rga", "rockchip,rk3288-rga"
-> "rockchip,rk3368-rga", "rockchip,rk3288-rga"
-> 
-> make ARCH=arm64 dt_binding_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/rockchip-rga.yaml
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Add support for the GT9286 chip, tested on F(x)Tec Pro1 (MSM8998).
 
-this patch1 should probably go through the media-tree.
-So hopefully media-people will notice this series?
+AngeloGioacchino Del Regno (2):
+  input: goodix: Add support for Goodix GT9286 chip
+  dt-bindings: ts: goodix: Add binding for GT9286 IC
 
+ Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 1 +
+ drivers/input/touchscreen/goodix.c                              | 2 ++
+ 2 files changed, 3 insertions(+)
 
-> ---
->  Documentation/devicetree/bindings/media/rockchip-rga.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip-rga.yaml b/Documentation/devicetree/bindings/media/rockchip-rga.yaml
-> index dd645ddcc..a609b63bb 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip-rga.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip-rga.yaml
-> @@ -21,7 +21,11 @@ properties:
->        - const: rockchip,rk3288-rga
->        - const: rockchip,rk3399-rga
->        - items:
-> -          - const: rockchip,rk3228-rga
-> +          - enum:
-> +              - rockchip,px30-rga
-> +              - rockchip,rk3228-rga
-> +              - rockchip,rk3328-rga
-> +              - rockchip,rk3368-rga
->            - const: rockchip,rk3288-rga
->  
->    reg:
-> 
-
-
-
+-- 
+2.29.2
 
