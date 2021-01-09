@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C85B2F0403
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 23:12:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE7972F0406
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 23:13:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726080AbhAIWMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 17:12:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59280 "EHLO
+        id S1726346AbhAIWNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 17:13:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726005AbhAIWMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 17:12:01 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E56C061786
-        for <devicetree@vger.kernel.org>; Sat,  9 Jan 2021 14:11:21 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id o19so31829988lfo.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Jan 2021 14:11:21 -0800 (PST)
+        with ESMTP id S1726245AbhAIWNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 17:13:21 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E96C061786
+        for <devicetree@vger.kernel.org>; Sat,  9 Jan 2021 14:12:41 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id v67so3539025lfa.0
+        for <devicetree@vger.kernel.org>; Sat, 09 Jan 2021 14:12:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=o/AluPNxu0OaUyy4lJzQ9rAkNaPgJTnmmCPCZeigOkA=;
-        b=sx+TaFYccdWb+J9GprLxLgF/OxdtToL8Z+4bcv36maGH0xwjLf0ioI1ABFOyqb1HY4
-         vEQeq4lztKRTvvCZX9mIfhNiyPIMjfoMzvIhTgR7bvDDG7CRhWWfMNyArWdvSHepasDJ
-         erYmNzodCex8Nujg3Xy1C9iRCcaJg18rl+58WaBAs/hVS8FQJriga1dQV7VlQIM4U5EQ
-         gjMDo49X5y7HuVbxEkYJlQhABDqGGc2OBKWzJZeeeWY5KJNVWj2/XJ2Ssp4wX5cBRF7Y
-         w2FbeAE4XCF3E609tGBD/cZqM0XD/PqRHiZzSiAWDV0ZebBVVyYTBI+7oNnY/ZL53W4o
-         UyGA==
+        bh=pWNdgAB7F54905PSxndcuizQFvWz899oT1UF8mQCigE=;
+        b=VoWkuuaRzIcof6rg6fCj8gUuVQmk4mX+M7w5MsOegPHy0wlbZN0g5y31EVEOCG+JFc
+         nZe3HayAOiuIRSWyGrg3Kw+lXX5mzU42uxaKbudkmwFyjtUHFjFsAk3586c4vTmyCImp
+         AArWIZlmcpjQVnfPPRFpfGGDDoh5ITf8qYBeLNtsIamK0ewbrxav5lk/vDozVEbyrT2q
+         iQ3QcUfMyEmh5m4HCZzaEhesRxcdlPDbuHZlNQwNxNIJ2dQmaPdt4YzwwF/YqMC9vP7+
+         vXN8AE3jK+j2PoFDezpL6samXXmDbIJLhf4vK2s/Z3jvdmUoiZPiZEhpnxMqDUvtpBO3
+         YpQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=o/AluPNxu0OaUyy4lJzQ9rAkNaPgJTnmmCPCZeigOkA=;
-        b=r0Yhb7xt/Gv1I0J0uzp/MPpzspD+1kHAl3OMJX7BImHtfmLATpiDGCdmx8liyKFJfd
-         TI+/SYHj3GmIT/G99MEwkbfkf3TpGpNFVJkIAgsb1Ed5EbpJtooZM7i42MVS4fy3XyGC
-         0k9oNoNfyZJ3o10XaWGAWKltgQKwLKyHWkIOdrLhPhVWIPNHVrtfD/7+lidtFhTxjDOQ
-         g5O5fp8bchWz+DEHadwzuLk8zw9lPXMVKRWoa1eWKtwsE0lzgafZBBCzUG+KCtHMEKsu
-         aj421T6Q415l/G3GVRm8DOL7fOXsl0mgjIhxRvAoaCE+hFE4w3/u6tj2SMAaiefO7cX8
-         KOSQ==
-X-Gm-Message-State: AOAM532pYXAB8wU3Da2jRB47+CwoAEtHdVqwGzZ7x11rSf0Iedq3jVuS
-        5Sc2GIuyIqsjsV1Efcseq+TBXWx/r2Gh/KQ4kLDyJC9kY7nZVw==
-X-Google-Smtp-Source: ABdhPJxHiLCH8q+VrCtd+o/721uwSWe9N1K/suzwlG9JHZg8I+Jda+M1dyXa/GxE+ZRFs5ZY9PZwQNqQGQ/ovlsgWx4=
-X-Received: by 2002:a19:495d:: with SMTP id l29mr4014703lfj.465.1610230279595;
- Sat, 09 Jan 2021 14:11:19 -0800 (PST)
+        bh=pWNdgAB7F54905PSxndcuizQFvWz899oT1UF8mQCigE=;
+        b=V93XO909+IfHbgZ4SA6lxhkckCQjVfxEjeg2e8LhT4+JZ9JSI5SYZZKYv9jihKVJ5g
+         2XqVVyuEcCB4CXkvdWfM2TseTJQeha7BzlWa7+WymcSYtkATqTt52VrXnykigEhUcfn0
+         qn8apgg/GvqoBZTT9pb2ucYof69iKj0vYCZXstj4CkQnh1XSLxa+wy+FYynmj8IRZVbx
+         9gYk9wNHY3JhHW2vZGaDhZwskoMpmDbpSJV8jjlmvYyJU0j2+hqN3Jvj51+I13v5csX8
+         MOVbYNIH7UY3/xTE3bnFByuPr/H7IDM2sTvpfxthvvv/sMLE5opIbQGCKjzairzWLmge
+         E1bw==
+X-Gm-Message-State: AOAM532+uaLdUaKBukBN811IYEyVAYLb0BC8+G1H0fhfiW50SL8uZB1K
+        3fKuzDQN5LDFofdvJfwJN6tUpIN/f+D5xN8C8L551w==
+X-Google-Smtp-Source: ABdhPJxACc9VPGH/iTwCxT+Lt9jPUgWD6ypR+Dmax5NfonZfuWTmjtMwb90HF88pUYCiu4Mx2CiDj4k+fDhIva0v5qw=
+X-Received: by 2002:a2e:85d1:: with SMTP id h17mr4095505ljj.438.1610230360062;
+ Sat, 09 Jan 2021 14:12:40 -0800 (PST)
 MIME-Version: 1.0
-References: <20210109140204.151340-1-angelogioacchino.delregno@somainline.org> <20210109140204.151340-2-angelogioacchino.delregno@somainline.org>
-In-Reply-To: <20210109140204.151340-2-angelogioacchino.delregno@somainline.org>
+References: <20210109140204.151340-2-angelogioacchino.delregno@somainline.org> <202101100151.3ojnIrPg-lkp@intel.com>
+In-Reply-To: <202101100151.3ojnIrPg-lkp@intel.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 9 Jan 2021 23:11:08 +0100
-Message-ID: <CACRpkdbETKnhgR2-T+s3ChY4v-C5ErdPEp2WcMSZHzJ=O-fHig@mail.gmail.com>
+Date:   Sat, 9 Jan 2021 23:12:29 +0100
+Message-ID: <CACRpkdbT6tv5ArKRLPh3hE-3fuYHotqG5tNwkF4vftSQ1T=wNA@mail.gmail.com>
 Subject: Re: [PATCH 1/2] pinctrl: Add driver for Awinic AW9523/B I2C GPIO Expander
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, phone-devel@vger.kernel.org,
+To:     kernel test robot <lkp@intel.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        kbuild-all@lists.01.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        phone-devel@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
@@ -63,227 +65,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 9, 2021 at 3:02 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@somainline.org> wrote:
+On Sat, Jan 9, 2021 at 6:24 PM kernel test robot <lkp@intel.com> wrote:
 
-> The Awinic AW9523(B) is a multi-function I2C gpio expander in a
-> TQFN-24L package, featuring PWM (max 37mA per pin, or total max
-> power 3.2Watts) for LED driving capability.
->
-> It has two ports with 8 pins per port (for a total of 16 pins),
-> configurable as either PWM with 1/256 stepping or GPIO input/output,
-> 1.8V logic input; each GPIO can be configured as input or output
-> independently from each other.
->
-> This IC also has an internal interrupt controller, which is capable
-> of generating an interrupt for each GPIO, depending on the
-> configuration, and will raise an interrupt on the INTN pin to
-> advertise this to an external interrupt controller.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>  > 880          gpioirq->parent_domain = NULL;
 
-Okay!
-
-Overall this driver is in good shape.
-
-The major review comment is that it'd be nice if you look into
-using regmaps register cache instead of rolling your own,
-and also possibly using regmaps locking rather than your own
-as a result of that.
-
-> +config PINCTRL_AW9523
-> +       bool "Awinic AW9523/AW9523B I2C GPIO expander pinctrl driver"
-> +       depends on OF && I2C
-> +       select PINMUX
-> +       select PINCONF
-> +       select GENERIC_PINCONF
-> +       select GPIOLIB
-> +       select GPIOLIB_IRQCHIP
-> +       select REGMAP
-> +       help
-> +         The Awinic AW9523/AW9523B is a multi-function I2C GPIO
-> +         expander with PWM functionality. This driver bundles a
-> +         pinctrl driver to select the function muxing and a GPIO
-> +         driver to handle GPIO, when the GPIO function is selected.
-> +
-> +         Say yes to enable pinctrl and GPIO support for the AW9523(B).
-
-This:
-
-+       DECLARE_BITMAP(old_masked[AW9523_NUM_PORTS], AW9523_PINS_PER_PORT);
-+       DECLARE_BITMAP(masked[AW9523_NUM_PORTS], AW9523_PINS_PER_PORT)
-(...)
-+       DECLARE_BITMAP(direction_in[AW9523_NUM_PORTS], AW9523_PINS_PER_PORT);
-
-And this looks like a reimplementation of the existing register cache
-in regmap. So use regmaps regcache instead. (More notes on that
-below.)
-
-This looks good. Right dependencies and helpers.
-
-> +       int hw_pin = pin % AW9523_PINS_PER_PORT;
-
-This makes me a bit wary.
-
-Is that really the "hardware pin" as it looks? It looks more like
-the bit number 0..7 in the register for that port. I would just name these
-"regbit" or just "n" like you do in the irq code.
-
-> +/*
-> + * __aw9523_gpio_get_direction - Get pin direction
-> + * @regmap: Regmap structure
-> + * @pin: gpiolib pin number
-> + * @hwp: pin index in port register
-> + *
-> + * Return: Pin direction for success or negative number for error
-> + */
-> +static int __aw9523_gpio_get_direction(struct regmap *regmap, u8 pin, u8 hwp)
-
-Nitpick: I kind of dislike __underscore functions because they have
-ambiguous semantics. Sometimes it is a compiler thing. Sometimes
-it is an inner function from something wrapped, i.e. it depends on
-context what these underscores
-mean. What about finding a better name that says what the function
-is doing?
-
-> +static int __aw9523_get_port_state(struct regmap *regmap, u8 pin,
-> +                                  u8 hw_pin, unsigned int *state)
-
-Same.
-
-> +static int aw9523_gpio_irq_type(struct irq_data *d, unsigned int type)
-> +{
-> +       switch (type) {
-> +       case IRQ_TYPE_NONE:
-> +       case IRQ_TYPE_LEVEL_MASK:
-> +       case IRQ_TYPE_LEVEL_HIGH:
-> +       case IRQ_TYPE_LEVEL_LOW:
-> +       case IRQ_TYPE_EDGE_BOTH:
-> +       case IRQ_TYPE_EDGE_RISING:
-> +       case IRQ_TYPE_EDGE_FALLING:
-> +               return 0;
-
-Does this hardware really support all these edge types without any
-software configuration whatsoever. That looks weird.
-
-> +static irqreturn_t aw9523_irq_thread_func(int irq, void *dev_id)
-> +{
-> +       struct aw9523 *awi = (struct aw9523 *)dev_id;
-> +       unsigned long n, val = 0;
-> +       unsigned long changed_gpio;
-> +       unsigned int tmp, port_pin, i, ret;
-> +
-> +       for (i = 0; i < AW9523_NUM_PORTS; i++) {
-> +               port_pin = i * AW9523_PINS_PER_PORT;
-> +               ret = regmap_read(awi->regmap,
-> +                                 AW9523_REG_IN_STATE(port_pin),
-> +                                 &tmp);
-> +               if (ret)
-> +                       return ret;
-> +
-> +               val |= (u8)tmp << (i * 8);
-> +       }
-
-Can you convince me that these are not just consecutive registers
-that could be read in one go with regmap_bulk_read()?
-(I could not unwind the macros in my head, and you have the
-datasheet I suppose.)
-
-> +/*
-> + * aw9523_irq_bus_sync_unlock - Synchronize state and unlock
-> + * @d: irq data
-> + *
-> + * Writes the interrupt mask bits (found in the bit map) to the
-> + * hardware, then unlocks the bus.
-> + */
-> +static void aw9523_irq_bus_sync_unlock(struct irq_data *d)
-> +{
-> +       struct aw9523 *awi = gpiochip_get_data(irq_data_get_irq_chip_data(d));
-> +       int i;
-> +
-> +       for (i = 0; i < AW9523_NUM_PORTS; i++) {
-> +               if (bitmap_equal(awi->irq->masked[i], awi->irq->old_masked[i],
-> +                                AW9523_PINS_PER_PORT))
-> +                       continue;
-> +               regmap_write(awi->regmap,
-> +                            AW9523_REG_INTR_DIS(AW9523_PINS_PER_PORT * i),
-> +                            *awi->irq->masked[i]);
-> +               bitmap_copy(awi->irq->old_masked[i], awi->irq->masked[i],
-> +                           AW9523_PINS_PER_PORT);
-> +       }
-> +       mutex_unlock(&awi->irq->lock);
-> +}
-
-These copies in the state that you write out at sync unlock.
-
-Can this not be done using the async facility in regmap?
-
-regmap_write_async()/regcache_mark_dirty() in all the IRQ
-config etc functions, followed by a simple
-regcache_sync() here makes it unnecessary to keep your
-own register cache I believe?
-
-At least that is how I always thought it was supposed to be
-used.
-
-> +static int aw9523_direction_input(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +       struct aw9523 *awi = gpiochip_get_data(chip);
-> +       u8 hw_pin = offset % AW9523_PINS_PER_PORT;
-> +       int port = AW9523_PIN_TO_PORT(offset);
-> +
-> +       set_bit(offset, awi->direction_in[port]);
-
-This direction_in state seems to be another reimplementation of regmaps
-register cache.
-
-> +static int aw9523_hw_reset(struct aw9523 *awi)
-> +{
-> +       int ret, max_retries = 2;
-> +
-> +       /* Sometimes the chip needs more than one reset cycle */
-> +       do {
-> +               ret = __aw9523_hw_reset(awi);
-
-Please give a better name to the inner function. Like
-aw9523_drive_reset_gpio() or so.
-
-> +       for (i = 0; i < AW9523_NUM_PORTS; i++) {
-> +               bitmap_fill(awi->irq->masked[i], AW9523_PINS_PER_PORT);
-> +               bitmap_fill(awi->irq->old_masked[i], AW9523_PINS_PER_PORT);
-> +       }
-
-This is another of these complications of reimplementing regmaps
-register cache.
-
-> +static const struct regmap_config aw9523_regmap = {
-> +       .reg_bits = 8,
-> +       .val_bits = 8,
-> +
-> +       .cache_type = REGCACHE_NONE,
-
-By using some elaborate caching here instead of implementing
-your own, the driver can be simplified.
-
-> +       .disable_locking = true,
-
-Are you sure you are not just reimplementing this locking
-with your mutex?
-
-> +static struct i2c_driver aw9523_driver = {
-> +       .driver = {
-> +               .name = "aw9523-pinctrl",
-> +               .of_match_table = of_aw9523_i2c_match,
-> +       },
-> +       .probe = aw9523_probe,
-
-A lot of people (especially on Qualcomm platforms, which is used in the
-DT binding example) are working to modularize pin controllers.
-
-This controller on a slow bus should be able to support .remove() I
-think?
-
-You should even be able to insmod/rmmod it at runtime for testing.
+The autobuilder is complaining because your irq chip is not
+hierarchical and this is only used for hierarchical irqchips.
+I think you can just delete this line.
 
 Yours,
 Linus Walleij
