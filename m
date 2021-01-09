@@ -2,183 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77D322EFF19
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 11:53:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7072EFFEA
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 14:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726062AbhAIKxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 05:53:43 -0500
-Received: from mout.kundenserver.de ([212.227.126.131]:58697 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725956AbhAIKxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 05:53:43 -0500
-Received: from localhost.localdomain ([37.4.249.194]) by
- mrelayeu.kundenserver.de (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1N32y5-1jxBIV0NZN-013JIJ; Sat, 09 Jan 2021 11:50:58 +0100
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Eric Anholt <eric@anholt.net>, Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH V3] dt-bindings: gpu: Convert v3d to json-schema
-Date:   Sat,  9 Jan 2021 11:50:32 +0100
-Message-Id: <1610189433-29985-1-git-send-email-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.7.4
-X-Provags-ID: V03:K1:imqKG2uiaQo+o2R33iawuqIPeJETqoF5GAJTQGv6dQvlrXg7mfs
- VKaf1e5dU3aTGxCy74JIepxcIscjph8olbvhsGoVU6MoGshLhitbTHTRjPztGBc+QdiuX3l
- qhJ43U5RicGj3KpFrNMTkzXurH7pwuHxHTO7hhJTtpFrkOeA3b8yEHYPd192mr+qPeYFMnM
- qHdgMfdiFsFZVPJkD/zHw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:wnqIwCKaMRE=:zwFuUE1p1zGYuSqyiBBZvj
- haVgEuZzeRhhNPbH+nIydsXSGrXUCCnuZ0FKb3I6EOv9jmbZf+qqvUEOrzIMN08Gx6ovBQ/jT
- NJQq0s0rqUPLCLC1dBMpurGsLOmnZvGucaXhD7AM/D0RcCb4xw924X46Qa4WtRh2XmrL2B09L
- GkIwaHNkVl+tHbf+qeg9GXB3wEQVfCr+eyMD14vEWhVzswmP/sr0/4CnpXRq1OMW9qBmPfvng
- Jgwqew3a+5m2gQpG/YokcrfURr34Vp5wOvwwFDZShqjgQdE97nI1ccOEvJgqTFo4aozJTHdLB
- gkJMMOZv/poPjDre9wgnSMOHyd/rQeVo6QJd+TeAIpehFOmrVJ1j1LPsSHBSHhp63hTQrt1aq
- 0tE8WqLofHsgRxxl9H2yhAfmA6H/xDPB6lvWKEj/e+9+gn8Jqr7hWk3Ej36vgnwFBn/fjdf8Q
- xgrZR8FKwg==
+        id S1725896AbhAINb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 08:31:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726523AbhAINb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 08:31:28 -0500
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ED62C0617AB
+        for <devicetree@vger.kernel.org>; Sat,  9 Jan 2021 05:30:27 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id A3A781F557;
+        Sat,  9 Jan 2021 14:29:43 +0100 (CET)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH 0/7] Really implement Qualcomm LAB/IBB regulators
+Date:   Sat,  9 Jan 2021 14:29:14 +0100
+Message-Id: <20210109132921.140932-1-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the v3d bindings to yaml format.
+Okay, the title may be a little "aggressive"? However, the qcom-labibb
+driver wasn't really .. doing much.
+The current form of this driver is only taking care of enabling or
+disabling the regulators, which is pretty useless if they were not
+pre-set from the bootloader, which sets them only if continuous
+splash is enabled.
+Moreover, some bootloaders are setting a higher voltage and/or a higher
+current limit compared to what's actually required by the attached
+hardware (which is, in 99.9% of the cases, a display) and this produces
+a higher power consumption, higher heat output and a risk of actually
+burning the display if kept up for a very long time: for example, this
+is true on at least some Sony Xperia MSM8998 (Yoshino platform) and
+especially on some Sony Xperia SDM845 (Tama platform) smartphones.
 
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
+In any case, the main reason why this change was necessary for us is
+that, during the bringup of Sony Xperia MSM8998 phones, we had an issue
+with the bootloader not turning on the display and not setting the lab
+and ibb regulators before booting the kernel, making it impossible to
+powerup the display.
 
-Changes in V3:
-- drop redundant maxItems in case we already have items defined
-- fix order of reg-names enum
-- tag required items in description
-- add reg-names to required properties
-- drop clock-names
+With this said, this patchset enables setting voltage, current limiting,
+overcurrent and short-circuit protection.. and others, on the LAB/IBB
+regulators.
+Each commit in this patch series provides as many informations as
+possible about what's going on and testing methodology.
 
- .../devicetree/bindings/gpu/brcm,bcm-v3d.txt       | 33 ----------
- .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 72 ++++++++++++++++++++++
- 2 files changed, 72 insertions(+), 33 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
- create mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+AngeloGioacchino Del Regno (7):
+  regulator: qcom-labibb: Implement voltage selector ops
+  regulator: qcom-labibb: Implement current limiting
+  regulator: qcom-labibb: Implement pull-down, softstart, active
+    discharge
+  dt-bindings: regulator: qcom-labibb: Document soft start properties
+  regulator: qcom-labibb: Implement short-circuit and over-current IRQs
+  dt-bindings: regulator: qcom-labibb: Document SCP/OCP interrupts
+  arm64: dts: pmi8998: Add the right interrupts for LAB/IBB SCP and OCP
 
-diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-deleted file mode 100644
-index b2df82b..0000000
---- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--Broadcom V3D GPU
--
--Only the Broadcom V3D 3.x and newer GPUs are covered by this binding.
--For V3D 2.x, see brcm,bcm-vc4.txt.
--
--Required properties:
--- compatible:	Should be "brcm,7268-v3d" or "brcm,7278-v3d"
--- reg:		Physical base addresses and lengths of the register areas
--- reg-names:	Names for the register areas.  The "hub" and "core0"
--		  register areas are always required.  The "gca" register area
--		  is required if the GCA cache controller is present.  The
--		  "bridge" register area is required if an external reset
--		  controller is not present.
--- interrupts:	The interrupt numbers.  The first interrupt is for the hub,
--		  while the following interrupts are separate interrupt lines
--		  for the cores (if they don't share the hub's interrupt).
--		  See bindings/interrupt-controller/interrupts.txt
--
--Optional properties:
--- clocks:	The core clock the unit runs on
--- resets:	The reset line for v3d, if not using a mapping of the bridge
--		  See bindings/reset/reset.txt
--
--v3d {
--	compatible = "brcm,7268-v3d";
--	reg = <0xf1204000 0x100>,
--	      <0xf1200000 0x4000>,
--	      <0xf1208000 0x4000>,
--	      <0xf1204100 0x100>;
--	reg-names = "bridge", "hub", "core0", "gca";
--	interrupts = <0 78 4>,
--		     <0 77 4>;
--};
-diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-new file mode 100644
-index 0000000..3b543d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom V3D GPU Bindings
-+
-+maintainers:
-+  - Eric Anholt <eric@anholt.net>
-+  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-+
-+properties:
-+  $nodename:
-+    pattern: '^gpu@[a-f0-9]+$'
-+
-+  compatible:
-+    enum:
-+      - brcm,7268-v3d
-+      - brcm,7278-v3d
-+
-+  reg:
-+    items:
-+      - description: hub register (required)
-+      - description: core0 register (required)
-+      - description: GCA cache controller register (if GCA controller present)
-+      - description: bridge register (if no external reset controller)
-+    minItems: 2
-+
-+  reg-names:
-+    items:
-+      enum: [ hub, core0, bridge, gca ]
-+    minItems: 2
-+    maxItems: 4
-+
-+  interrupts:
-+    items:
-+      - description: hub interrupt (required)
-+      - description: core interrupts (if it doesn't share the hub's interrupt)
-+    minItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpu@f1200000 {
-+      compatible = "brcm,7268-v3d";
-+      reg = <0xf1204000 0x100>,
-+            <0xf1200000 0x4000>,
-+            <0xf1208000 0x4000>,
-+            <0xf1204100 0x100>;
-+      reg-names = "bridge", "hub", "core0", "gca";
-+      interrupts = <0 78 4>,
-+                   <0 77 4>;
-+    };
-+
-+...
+ .../regulator/qcom-labibb-regulator.yaml      |  28 +-
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |   8 +-
+ drivers/regulator/qcom-labibb-regulator.c     | 636 +++++++++++++++++-
+ 3 files changed, 660 insertions(+), 12 deletions(-)
+
 -- 
-2.7.4
+2.29.2
 
