@@ -2,54 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C2D92F00E9
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 16:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 577EB2F015C
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 17:10:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726367AbhAIPkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 10:40:41 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:36728 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726457AbhAIPkk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Jan 2021 10:40:40 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kyGLO-0000jX-2W; Sat, 09 Jan 2021 16:39:58 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     sigmaris@gmail.com, jbx6244@gmail.com, t.schramm@manjaro.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, smoch@web.de,
-        linux-rockchip@lists.infradead.org,
-        Simon South <simon@simonsouth.net>, katsuhiro@katsuster.net,
-        robh+dt@kernel.org
-Cc:     Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH] arm64: dts: rockchip: Pinebook Pro: Use supported PCIe link speed
-Date:   Sat,  9 Jan 2021 16:39:53 +0100
-Message-Id: <161020678303.3482489.12367815944017835659.b4-ty@sntech.de>
+        id S1726410AbhAIQJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 11:09:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726395AbhAIQJ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 11:09:28 -0500
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C96C061786
+        for <devicetree@vger.kernel.org>; Sat,  9 Jan 2021 08:08:48 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 914EA3EF2C;
+        Sat,  9 Jan 2021 17:08:46 +0100 (CET)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH] arm64: dts: msm8998: Use rpmpd definitions for opp table levels
+Date:   Sat,  9 Jan 2021 17:07:59 +0100
+Message-Id: <20210109160759.186990-1-angelogioacchino.delregno@somainline.org>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20200930185627.5918-1-simon@simonsouth.net>
-References: <20200930185627.5918-1-simon@simonsouth.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Sep 2020 14:56:27 -0400, Simon South wrote:
-> On Pinebook Pro laptops with an NVMe SSD installed, prevent random
-> crashes in the NVMe driver by not attempting to use a PCIe link speed
-> higher than that supported by the RK3399 SoC.
-> 
-> See commit 712fa1777207 ("arm64: dts: rockchip: add max-link-speed for
-> rk3399").
+The dt-bindings/power/qcom-rpmpd.h header is being included in this
+DT but the RPMPD OPP table declarations were using open-coded values:
+use the definitions found in the aforementioned header.
 
-Applied, thanks!
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+---
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-[1/1] arm64: dts: rockchip: Pinebook Pro: Use supported PCIe link speed
-      commit: 642fb2795290c4abe629ca34fb8ff6d78baa9fd3
-
-Best regards,
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index c45870600909..807fad2b14f0 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -379,43 +379,43 @@ rpmpd_opp_table: opp-table {
+ 					compatible = "operating-points-v2";
+ 
+ 					rpmpd_opp_ret: opp1 {
+-						opp-level = <16>;
++						opp-level = <RPM_SMD_LEVEL_RETENTION>;
+ 					};
+ 
+ 					rpmpd_opp_ret_plus: opp2 {
+-						opp-level = <32>;
++						opp-level = <RPM_SMD_LEVEL_RETENTION_PLUS>;
+ 					};
+ 
+ 					rpmpd_opp_min_svs: opp3 {
+-						opp-level = <48>;
++						opp-level = <RPM_SMD_LEVEL_MIN_SVS>;
+ 					};
+ 
+ 					rpmpd_opp_low_svs: opp4 {
+-						opp-level = <64>;
++						opp-level = <RPM_SMD_LEVEL_LOW_SVS>;
+ 					};
+ 
+ 					rpmpd_opp_svs: opp5 {
+-						opp-level = <128>;
++						opp-level = <RPM_SMD_LEVEL_SVS>;
+ 					};
+ 
+ 					rpmpd_opp_svs_plus: opp6 {
+-						opp-level = <192>;
++						opp-level = <RPM_SMD_LEVEL_SVS_PLUS>;
+ 					};
+ 
+ 					rpmpd_opp_nom: opp7 {
+-						opp-level = <256>;
++						opp-level = <RPM_SMD_LEVEL_NOM>;
+ 					};
+ 
+ 					rpmpd_opp_nom_plus: opp8 {
+-						opp-level = <320>;
++						opp-level = <RPM_SMD_LEVEL_NOM_PLUS>;
+ 					};
+ 
+ 					rpmpd_opp_turbo: opp9 {
+-						opp-level = <384>;
++						opp-level = <RPM_SMD_LEVEL_TURBO>;
+ 					};
+ 
+ 					rpmpd_opp_turbo_plus: opp10 {
+-						opp-level = <512>;
++						opp-level = <RPM_SMD_LEVEL_BINNING>;
+ 					};
+ 				};
+ 			};
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.29.2
+
