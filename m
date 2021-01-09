@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4728B2F00E4
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 16:41:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 614492F00E2
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 16:41:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726407AbhAIPki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726381AbhAIPki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 9 Jan 2021 10:40:38 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:36644 "EHLO gloria.sntech.de"
+Received: from gloria.sntech.de ([185.11.138.130]:36616 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726370AbhAIPki (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1726364AbhAIPki (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Sat, 9 Jan 2021 10:40:38 -0500
 Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1kyGLL-0000jX-PQ; Sat, 09 Jan 2021 16:39:55 +0100
+        id 1kyGLM-0000jX-Ed; Sat, 09 Jan 2021 16:39:56 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Demetris Ierokipides <ierokipides.dem@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Heiko Stuebner <heiko@sntech.de>
-Subject: Re: (subset) [PATCH 0/2] ARM: dts: rockchip: minor tweaks for rk3288-miqi.This series adds a missing mali GPU node and two additional CPU opp points
-Date:   Sat,  9 Jan 2021 16:39:46 +0100
-Message-Id: <161020678303.3482489.15547780514120849790.b4-ty@sntech.de>
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: assign a fixed index to mmc devices on rk3328 boards
+Date:   Sat,  9 Jan 2021 16:39:48 +0100
+Message-Id: <161020678303.3482489.12512122590216902227.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210108151036.36434-1-ierokipides.dem@gmail.com>
-References: <20210108151036.36434-1-ierokipides.dem@gmail.com>
+In-Reply-To: <20201219210500.3855-1-jbx6244@gmail.com>
+References: <20201219210500.3855-1-jbx6244@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -35,18 +35,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Jan 2021 17:10:34 +0200, Demetris Ierokipides wrote:
-> Demetris Ierokipides (2):
->   ARM: dts: rockchip: add gpu node to rk3288-miqi
->   ARM: dts: rockchip: add extra cpu opp points to rk3288-miqi
+On Sat, 19 Dec 2020 22:05:00 +0100, Johan Jonker wrote:
+> Recently introduced async probe on mmc devices can shuffle block IDs.
+> Pin them to fixed values to ease booting in environments where UUIDs
+> are not practical. Use newly introduced aliases for mmcblk devices from [1].
 > 
->  arch/arm/boot/dts/rk3288-miqi.dts | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+> [1] https://patchwork.kernel.org/patch/11747669/
 
 Applied, thanks!
 
-[1/2] ARM: dts: rockchip: add gpu node to rk3288-miqi
-      commit: 36948ec3d4d0d1b9260d87b550a56fab8d86d17d
+[1/1] arm64: dts: rockchip: assign a fixed index to mmc devices on rk3328 boards
+      commit: 221c6c042fa004b73b10780fa2aaf177085e2f3f
 
 Best regards,
 -- 
