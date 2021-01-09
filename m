@@ -2,108 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D38A32EFCD6
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 02:48:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7432EFD2D
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 03:49:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726357AbhAIBs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Jan 2021 20:48:28 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:46040 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725836AbhAIBs2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 20:48:28 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 91E4A878;
-        Sat,  9 Jan 2021 02:47:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1610156865;
-        bh=95zOMPXu02VDLC3VMMhJ0HQxsSOz+U9XLN+9JPdGx+0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aV+3dPprm9lrkuuSjHbqky0xjg60b6D+am2+DcSjoOU2ZRpqNOGNelorW7HI0hS2s
-         Gb6bLHnY7jgPxGuid5Qw8VPPqZQPW4ElipQVnAyIFnBg2vpAQf7ZgPzFSHQ89aodiD
-         +2pWpkdxQKXLxNvAEFdnBKp7l+V35zrpgIx0B1Fw=
-Date:   Sat, 9 Jan 2021 03:47:32 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, todor.too@gmail.com,
-        mchehab@kernel.org, robh+dt@kernel.org, catalin.marinas@arm.com,
-        will@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
-        geert+renesas@glider.be, arnd@arndb.de, Anson.Huang@nxp.com,
-        michael@walle.cc, agx@sigxcpu.org, max.oss.09@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>
-Subject: Re: [PATCH v1 16/17] arm64: dts: sdm845-db845c: Add CAMSS ISP node
-Message-ID: <X/kLNCOjvTmANYbr@pendragon.ideasonboard.com>
-References: <20210108120429.895046-1-robert.foss@linaro.org>
- <20210108120429.895046-17-robert.foss@linaro.org>
+        id S1726013AbhAICtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Jan 2021 21:49:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725970AbhAICtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Jan 2021 21:49:36 -0500
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B05C061573;
+        Fri,  8 Jan 2021 18:48:55 -0800 (PST)
+Received: by mail-il1-x133.google.com with SMTP id h3so4642483ils.4;
+        Fri, 08 Jan 2021 18:48:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4QxjVHH/k2EEheDURmsY7RVs3TpbxjnXeiCn/55GgY8=;
+        b=jv3Exx/ZPs37gY4yPcfBCzxcInUqxq76J3hRtGGDgHlB5Gjkcl+9go8ek7xlMjTR24
+         btCZGxszuFYXAevC0wWj/wXyyNTz1HiQcZoj6VIXamk62ayhc+A30jsGKGvlba5pdtzS
+         d/E4ALC0YWHS0MqHIB0MBeFfORXafXUYt+vGd32LGGZhCTNaGJFwb7Cnvra2R+JA86A4
+         tjWqX8YNe2f/E3D7A6oN1flOeLbWdWgi/nf744o/PkVh9yWe2ItHibMjjZTi4Tka41pq
+         zF0I+xAlj+Up5NIlq2USP/qxqgwpVP3wmLA6ekNP4EL1zOGQ4ZMCn3vd9EKeVmwzwyVx
+         v75A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4QxjVHH/k2EEheDURmsY7RVs3TpbxjnXeiCn/55GgY8=;
+        b=JahkpEjxTT36rvo7KKkBKL5/N2CSt/tBizqXR8JFqZWwiElcEIlHkncpPW37+MsKqy
+         sC7ATFweTFPBme4Nri5ecpQRF2Q/bMGqRhk3V3wmfyaKMNUaWOeOdPl7/ZuCAMPlKTbR
+         IpT65rgmMuJxB/z11c7Bqc0r8LA/D3jNgv2DMzbcqCSXBG0IAgViLop7rw/FN9YGify+
+         +7qiCRSkKA530tn9pu8xWUR1OL8lCcc0/begrJ4Wdi1/TO6mrVngFJdEaldrdRYZZ2QH
+         voIP52u1k9z2/bAkCPoaEqSJK1D5/tk1Yp3clCjcExJ0BxukQe9/yKfdU860GXbhri+Y
+         XSwA==
+X-Gm-Message-State: AOAM531G/7aaQWlP/OWPoFQ92jHYeQnU2DDKV74dzrFRt4OaSxpfZrL0
+        RiKL2khXWKvbOzCyWDPiw9wPPrq9Tn0oiZjjhaI=
+X-Google-Smtp-Source: ABdhPJxS+9A57zLwR8bsRSnfqQl46R/uDEFOCJ8/ycwNV+IYQdMu9xqsIA8C2sOBHOQlxrCbPQwOWS7582sgHxIs+K8=
+X-Received: by 2002:a92:c081:: with SMTP id h1mr6487153ile.46.1610160534190;
+ Fri, 08 Jan 2021 18:48:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210108120429.895046-17-robert.foss@linaro.org>
+References: <20210106173900.388758-1-aford173@gmail.com> <833e228f-6fb5-ae98-a367-9566cf5fcf69@lucaceresoli.net>
+In-Reply-To: <833e228f-6fb5-ae98-a367-9566cf5fcf69@lucaceresoli.net>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 8 Jan 2021 20:48:42 -0600
+Message-ID: <CAHCN7x+57x4WLbq0+7OCPhJs-1=7SJidVHD2jYjdbqn_F+d3dA@mail.gmail.com>
+Subject: Re: [RFC 1/2] dt-bindings: clk: versaclock5: Add load capacitance properties
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, Jan 8, 2021 at 4:49 PM Luca Ceresoli <luca@lucaceresoli.net> wrote:
+>
+> Hi Adam,
+>
+> On 06/01/21 18:38, Adam Ford wrote:
+> > There are two registers which can set the load capacitance for
+> > XTAL1 and XTAL2. These are optional registers when using an
+> > external crystal.  Update the bindings to support them.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> >  .../devicetree/bindings/clock/idt,versaclock5.yaml   | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > index 2ac1131fd922..e5e55ffb266e 100644
+> > --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> > @@ -59,6 +59,18 @@ properties:
+> >      minItems: 1
+> >      maxItems: 2
+> >
+> > +  idt,xtal1-load-femtofarads:
+>
+> I wonder whether we should have a common, vendor independent property.
 
-Thank you for the patch.
+That would be nice.
 
-The subject line doesn't match the patch.
+> In mainline we have xtal-load-pf (ti,cdce925.txt bindings) which has no
+> vendor prefix. However I don't know how much common it is to need
 
-On Fri, Jan 08, 2021 at 01:04:28PM +0100, Robert Foss wrote:
-> Add regulators and camss DT node.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index a943b3f353ce..7bad0515345e 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -294,6 +294,9 @@ vreg_s7a_1p025: smps7 {
->  			regulator-max-microvolt = <1028000>;
->  		};
->  
-> +		vdda_mipi_csi0_0p9:
-> +		vdda_mipi_csi1_0p9:
-> +		vdda_mipi_csi2_0p9:
+rtc-pcf85063.c uses  quartz-load-femtofarads, so there is already some
+discrepancy.
 
-No need for new labels, you can simply use vreg_l1a_0p875 below.
+Since the unit of measure here is femtofarads, using pF in the name seems wrong.
+We need to read the data as a u32, so femtofarads works better than
+pF, which would require a decimal point.
 
->  		vreg_l1a_0p875: ldo1 {
->  			regulator-min-microvolt = <880000>;
->  			regulator-max-microvolt = <880000>;
-> @@ -1106,6 +1109,15 @@ &cci {
->  	status = "okay";
->  };
->  
-> +&camss {
-> +	vdda-csi0-supply = <&vdda_mipi_csi0_0p9>;
-> +	vdda-csi1-supply = <&vdda_mipi_csi1_0p9>;
-> +	vdda-csi2-supply = <&vdda_mipi_csi2_0p9>;
-> +
-> +	status = "disabled";
+> different loads for x1 and x2. Any hardware engineer around?
 
-This isn't needed.
+I talked to a hardware engineer where I work, and he said it makes
+sense to keep them the same.  I only separated them because there are
+two registers, and I assumed there might be a reason to have X1 and X2
+be different, but I'm ok with reading one value and writing it to two
+different registers.
 
-> +
-
-Extra blank line.
-
-> +};
-> +
->  &cci_i2c0 {
->  	camera@10 {
->  		compatible = "ovti,ov8856";
-
--- 
-Regards,
-
-Laurent Pinchart
+adam
+>
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 9000
+> > +    maximum: 25000
+> > +    description: Optional loading capacitor for XTAL1
+>
+> Nit: I think the common wording is "load capacitor", not "loading
+> capacitor".
+>
+> --
+> Luca
