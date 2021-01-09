@@ -2,364 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63C6D2F03E5
-	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 22:52:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C85B2F0403
+	for <lists+devicetree@lfdr.de>; Sat,  9 Jan 2021 23:12:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726223AbhAIVuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 16:50:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37882 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726001AbhAIVuq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Jan 2021 16:50:46 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B9EBD23AA8;
-        Sat,  9 Jan 2021 21:50:03 +0000 (UTC)
-Date:   Sat, 9 Jan 2021 21:49:59 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-iio@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] iio: st-sensors: Update ST Sensor bindings
-Message-ID: <20210109214959.6020a578@archlinux>
-In-Reply-To: <20210104093343.2134410-1-linus.walleij@linaro.org>
-References: <20210104093343.2134410-1-linus.walleij@linaro.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1726080AbhAIWMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 17:12:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59280 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726005AbhAIWMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 17:12:01 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E56C061786
+        for <devicetree@vger.kernel.org>; Sat,  9 Jan 2021 14:11:21 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id o19so31829988lfo.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Jan 2021 14:11:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=o/AluPNxu0OaUyy4lJzQ9rAkNaPgJTnmmCPCZeigOkA=;
+        b=sx+TaFYccdWb+J9GprLxLgF/OxdtToL8Z+4bcv36maGH0xwjLf0ioI1ABFOyqb1HY4
+         vEQeq4lztKRTvvCZX9mIfhNiyPIMjfoMzvIhTgR7bvDDG7CRhWWfMNyArWdvSHepasDJ
+         erYmNzodCex8Nujg3Xy1C9iRCcaJg18rl+58WaBAs/hVS8FQJriga1dQV7VlQIM4U5EQ
+         gjMDo49X5y7HuVbxEkYJlQhABDqGGc2OBKWzJZeeeWY5KJNVWj2/XJ2Ssp4wX5cBRF7Y
+         w2FbeAE4XCF3E609tGBD/cZqM0XD/PqRHiZzSiAWDV0ZebBVVyYTBI+7oNnY/ZL53W4o
+         UyGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=o/AluPNxu0OaUyy4lJzQ9rAkNaPgJTnmmCPCZeigOkA=;
+        b=r0Yhb7xt/Gv1I0J0uzp/MPpzspD+1kHAl3OMJX7BImHtfmLATpiDGCdmx8liyKFJfd
+         TI+/SYHj3GmIT/G99MEwkbfkf3TpGpNFVJkIAgsb1Ed5EbpJtooZM7i42MVS4fy3XyGC
+         0k9oNoNfyZJ3o10XaWGAWKltgQKwLKyHWkIOdrLhPhVWIPNHVrtfD/7+lidtFhTxjDOQ
+         g5O5fp8bchWz+DEHadwzuLk8zw9lPXMVKRWoa1eWKtwsE0lzgafZBBCzUG+KCtHMEKsu
+         aj421T6Q415l/G3GVRm8DOL7fOXsl0mgjIhxRvAoaCE+hFE4w3/u6tj2SMAaiefO7cX8
+         KOSQ==
+X-Gm-Message-State: AOAM532pYXAB8wU3Da2jRB47+CwoAEtHdVqwGzZ7x11rSf0Iedq3jVuS
+        5Sc2GIuyIqsjsV1Efcseq+TBXWx/r2Gh/KQ4kLDyJC9kY7nZVw==
+X-Google-Smtp-Source: ABdhPJxHiLCH8q+VrCtd+o/721uwSWe9N1K/suzwlG9JHZg8I+Jda+M1dyXa/GxE+ZRFs5ZY9PZwQNqQGQ/ovlsgWx4=
+X-Received: by 2002:a19:495d:: with SMTP id l29mr4014703lfj.465.1610230279595;
+ Sat, 09 Jan 2021 14:11:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210109140204.151340-1-angelogioacchino.delregno@somainline.org> <20210109140204.151340-2-angelogioacchino.delregno@somainline.org>
+In-Reply-To: <20210109140204.151340-2-angelogioacchino.delregno@somainline.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 9 Jan 2021 23:11:08 +0100
+Message-ID: <CACRpkdbETKnhgR2-T+s3ChY4v-C5ErdPEp2WcMSZHzJ=O-fHig@mail.gmail.com>
+Subject: Re: [PATCH 1/2] pinctrl: Add driver for Awinic AW9523/B I2C GPIO Expander
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, phone-devel@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  4 Jan 2021 10:33:43 +0100
-Linus Walleij <linus.walleij@linaro.org> wrote:
+On Sat, Jan 9, 2021 at 3:02 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@somainline.org> wrote:
 
-> This adjusts the ST Sensor bindings with the more fine-grained
-> syntax checks that were proposed late in the last kernel cycle
-> and colliding with parallel work.
-> 
-> Cc: devicetree@vger.kernel.org
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> The Awinic AW9523(B) is a multi-function I2C gpio expander in a
+> TQFN-24L package, featuring PWM (max 37mA per pin, or total max
+> power 3.2Watts) for LED driving capability.
+>
+> It has two ports with 8 pins per port (for a total of 16 pins),
+> configurable as either PWM with 1/256 stepping or GPIO input/output,
+> 1.8V logic input; each GPIO can be configured as input or output
+> independently from each other.
+>
+> This IC also has an internal interrupt controller, which is capable
+> of generating an interrupt for each GPIO, depending on the
+> configuration, and will raise an interrupt on the INTN pin to
+> advertise this to an external interrupt controller.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 
-Hi Linus,
+Okay!
 
-Thanks for doing this.  A few really small things inline.
+Overall this driver is in good shape.
 
-Jonathan
+The major review comment is that it'd be nice if you look into
+using regmaps register cache instead of rolling your own,
+and also possibly using regmaps locking rather than your own
+as a result of that.
 
-> ---
->  .../bindings/iio/st,st-sensors.yaml           | 252 ++++++++++++------
->  1 file changed, 174 insertions(+), 78 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> index db291a9390b7..aba8dc4275a9 100644
-> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> @@ -6,7 +6,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: STMicroelectronics MEMS sensors
->  
-> -description: |
-> +description: The STMicroelectronics sensor devices are pretty straight-forward
-> +  I2C or SPI devices, all sharing the same device tree descriptions no matter
-> +  what type of sensor it is.
->    Note that whilst this covers many STMicro MEMs sensors, some more complex
->    IMUs need their own bindings.
->    The STMicroelectronics sensor devices are pretty straight-forward I2C or
-> @@ -15,89 +17,181 @@ description: |
->  
->  maintainers:
->    - Denis Ciocca <denis.ciocca@st.com>
-> +  - Linus Walleij <linus.walleij@linaro.org>
->  
->  properties:
->    compatible:
-> -    description: |
-> -      Some values are deprecated.
-> -      st,lis3lv02d (deprecated, use st,lis3lv02dl-accel)
-> -      st,lis302dl-spi (deprecated, use st,lis3lv02dl-accel)
-> -    enum:
-> -        # Accelerometers
-> -      - st,lis3lv02d
-> -      - st,lis302dl-spi
-> -      - st,lis3lv02dl-accel
-> -      - st,lsm303dlh-accel
-> -      - st,lsm303dlhc-accel
-> -      - st,lis3dh-accel
-> -      - st,lsm330d-accel
-> -      - st,lsm330dl-accel
-> -      - st,lsm330dlc-accel
-> -      - st,lis331dl-accel
-> -      - st,lis331dlh-accel
-> -      - st,lsm303dl-accel
-> -      - st,lsm303dlm-accel
-> -      - st,lsm330-accel
-> -      - st,lsm303agr-accel
-> -      - st,lis2dh12-accel
-> -      - st,h3lis331dl-accel
-> -      - st,lng2dm-accel
-> -      - st,lis3l02dq
-> -      - st,lis2dw12
-> -      - st,lis3dhh
-> -      - st,lis3de
-> -      - st,lis2de12
-> -      - st,lis2hh12
-> -        # Gyroscopes
-> -      - st,l3g4200d-gyro
-> -      - st,lsm330d-gyro
-> -      - st,lsm330dl-gyro
-> -      - st,lsm330dlc-gyro
-> -      - st,l3gd20-gyro
-> -      - st,l3gd20h-gyro
-> -      - st,l3g4is-gyro
-> -      - st,lsm330-gyro
-> -      - st,lsm9ds0-gyro
-> -        # Magnetometers
-> -      - st,lsm303agr-magn
-> -      - st,lsm303dlh-magn
-> -      - st,lsm303dlhc-magn
-> -      - st,lsm303dlm-magn
-> -      - st,lis3mdl-magn
-> -      - st,lis2mdl
-> -      - st,lsm9ds1-magn
-> -        # Pressure sensors
-> -      - st,lps001wp-press
-> -      - st,lps25h-press
-> -      - st,lps331ap-press
-> -      - st,lps22hb-press
-> -      - st,lps33hw
-> -      - st,lps35hw
-> -      - st,lps22hh
-> +    oneOf:
-> +      - description: STMicroelectronics Accelerometers
-> +        enum:
-> +          - st,h3lis331dl-accel
-> +          - st,lis2de12
-> +          - st,lis2dw12
-> +          - st,lis2hh12
-> +          - st,lis2dh12-accel
-> +          - st,lis331dl-accel
-> +          - st,lis331dlh-accel
-> +          - st,lis3de
-> +          - st,lis3dh-accel
-> +          - st,lis3dhh
-> +          - st,lis3l02dq
-> +          - st,lis3lv02dl-accel
-> +          - st,lng2dm-accel
-> +          - st,lsm303agr-accel
-> +          - st,lsm303dl-accel
-> +          - st,lsm303dlh-accel
-> +          - st,lsm303dlhc-accel
-> +          - st,lsm303dlm-accel
-> +          - st,lsm330-accel
-> +          - st,lsm330d-accel
-> +          - st,lsm330dl-accel
-> +          - st,lsm330dlc-accel
-> +      - description: STMicroelectronics Gyroscopes
-> +        enum:
-> +          - st,l3g4200d-gyro
-> +          - st,l3g4is-gyro
-> +          - st,l3gd20-gyro
-> +          - st,l3gd20h-gyro
-> +          - st,lsm330-gyro
-> +          - st,lsm330d-gyro
-> +          - st,lsm330dl-gyro
-> +          - st,lsm330dlc-gyro
-> +          - st,lsm9ds0-gyro
-> +      - description: STMicroelectronics Magnetometers
-> +        enum:
-> +          - st,lis2mdl
-> +          - st,lis3mdl-magn
-> +          - st,lsm303agr-magn
-> +          - st,lsm303dlh-magn
-> +          - st,lsm303dlhc-magn
-> +          - st,lsm303dlm-magn
-> +          - st,lsm9ds1-magn
-> +      - description: STMicroelectronics Pressure Sensors
-> +        enum:
-> +          - st,lps001wp-press
-> +          - st,lps22hb-press
-> +          - st,lps22hh
-> +          - st,lps25h-press
-> +          - st,lps331ap-press
-> +          - st,lps33hw
-> +          - st,lps35hw
-> +      - description: Deprecated bindings
-> +        enum:
-> +          - st,lis302dl-spi
-> +          - st,lis3lv02d
-> +        deprecated: true
->  
->    reg:
->      maxItems: 1
->  
->    interrupts:
-> +    description: interrupt line(s) connected to the DRDY line(s) and/or the
-> +      Intertial interrupt lines INT1 and INT2 if these exist. This means up to
-> +      three interrupts, and the DRDY must be the first one if it exists on
-> +      the package. The trigger edge of the interrupts is sometimes software
-> +      configurable in the hardware so the operating system should parse this
-> +      flag and set up the trigger edge as indicated in the device tree.
->      minItems: 1
-> +    maxItems: 2
->  
->    vdd-supply: true
->    vddio-supply: true
->  
->    st,drdy-int-pin:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> -    description:
-> -      Some sensors have multiple possible pins via which they can provide
-> -      a data ready interrupt.  This selects which one.
-> -    enum:
-> -      - 1
-> -      - 2
-> +    maxItems: 1
-> +    description: the pin on the package that will be used to signal
-> +      "data ready" (valid values 1 or 2). This property is not configurable
-> +      on all sensors.
-> +    items:
-> +      minimum: 1
-> +      maximum: 2
-
-Why not use the simpler enum approach, or even the [1, 2] form of that for
-more compactness?
-
->  
->    drive-open-drain:
-> -    $ref: /schemas/types.yaml#/definitions/flag
-> -    description: |
-> -      The interrupt/data ready line will be configured as open drain, which
-> -      is useful if several sensors share the same interrupt line.
-> +    type: boolean
-> +    description: the interrupt/data ready line will be configured
-> +      as open drain, which is useful if several sensors share the same
-> +      interrupt line. (This binding is taken from pinctrl.)
+> +config PINCTRL_AW9523
+> +       bool "Awinic AW9523/AW9523B I2C GPIO expander pinctrl driver"
+> +       depends on OF && I2C
+> +       select PINMUX
+> +       select PINCONF
+> +       select GENERIC_PINCONF
+> +       select GPIOLIB
+> +       select GPIOLIB_IRQCHIP
+> +       select REGMAP
+> +       help
+> +         The Awinic AW9523/AW9523B is a multi-function I2C GPIO
+> +         expander with PWM functionality. This driver bundles a
+> +         pinctrl driver to select the function muxing and a GPIO
+> +         driver to handle GPIO, when the GPIO function is selected.
 > +
-> +  mount-matrix:
-> +    description: an optional 3x3 mounting rotation matrix.
+> +         Say yes to enable pinctrl and GPIO support for the AW9523(B).
+
+This:
+
++       DECLARE_BITMAP(old_masked[AW9523_NUM_PORTS], AW9523_PINS_PER_PORT);
++       DECLARE_BITMAP(masked[AW9523_NUM_PORTS], AW9523_PINS_PER_PORT)
+(...)
++       DECLARE_BITMAP(direction_in[AW9523_NUM_PORTS], AW9523_PINS_PER_PORT);
+
+And this looks like a reimplementation of the existing register cache
+in regmap. So use regmaps regcache instead. (More notes on that
+below.)
+
+This looks good. Right dependencies and helpers.
+
+> +       int hw_pin = pin % AW9523_PINS_PER_PORT;
+
+This makes me a bit wary.
+
+Is that really the "hardware pin" as it looks? It looks more like
+the bit number 0..7 in the register for that port. I would just name these
+"regbit" or just "n" like you do in the irq code.
+
+> +/*
+> + * __aw9523_gpio_get_direction - Get pin direction
+> + * @regmap: Regmap structure
+> + * @pin: gpiolib pin number
+> + * @hwp: pin index in port register
+> + *
+> + * Return: Pin direction for success or negative number for error
+> + */
+> +static int __aw9523_gpio_get_direction(struct regmap *regmap, u8 pin, u8 hwp)
+
+Nitpick: I kind of dislike __underscore functions because they have
+ambiguous semantics. Sometimes it is a compiler thing. Sometimes
+it is an inner function from something wrapped, i.e. it depends on
+context what these underscores
+mean. What about finding a better name that says what the function
+is doing?
+
+> +static int __aw9523_get_port_state(struct regmap *regmap, u8 pin,
+> +                                  u8 hw_pin, unsigned int *state)
+
+Same.
+
+> +static int aw9523_gpio_irq_type(struct irq_data *d, unsigned int type)
+> +{
+> +       switch (type) {
+> +       case IRQ_TYPE_NONE:
+> +       case IRQ_TYPE_LEVEL_MASK:
+> +       case IRQ_TYPE_LEVEL_HIGH:
+> +       case IRQ_TYPE_LEVEL_LOW:
+> +       case IRQ_TYPE_EDGE_BOTH:
+> +       case IRQ_TYPE_EDGE_RISING:
+> +       case IRQ_TYPE_EDGE_FALLING:
+> +               return 0;
+
+Does this hardware really support all these edge types without any
+software configuration whatsoever. That looks weird.
+
+> +static irqreturn_t aw9523_irq_thread_func(int irq, void *dev_id)
+> +{
+> +       struct aw9523 *awi = (struct aw9523 *)dev_id;
+> +       unsigned long n, val = 0;
+> +       unsigned long changed_gpio;
+> +       unsigned int tmp, port_pin, i, ret;
 > +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            # These have no interrupts
-> +            - st,lps001wp
-> +    then:
-> +      properties:
-> +        interrupts: false
-> +        st,drdy-int-pin: false
-> +        drive-open-drain: false
+> +       for (i = 0; i < AW9523_NUM_PORTS; i++) {
+> +               port_pin = i * AW9523_PINS_PER_PORT;
+> +               ret = regmap_read(awi->regmap,
+> +                                 AW9523_REG_IN_STATE(port_pin),
+> +                                 &tmp);
+> +               if (ret)
+> +                       return ret;
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            # These have only DRDY
-> +            - st,lis2mdl
-> +            - st,lis3l02dq
-> +            - st,lis3lv02dl-accel
-> +            - st,lps22hb-press
-> +            - st,lps22hh
-> +            - st,lps25h-press
-> +            - st,lps33hw
-> +            - st,lps35hw
-> +            - st,lsm303agr-magn
-> +            - st,lsm303dlh-magn
-> +            - st,lsm303dlhc-magn
-> +            - st,lsm303dlm-magn
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +        st,drdy-int-pin: false
+> +               val |= (u8)tmp << (i * 8);
+> +       }
+
+Can you convince me that these are not just consecutive registers
+that could be read in one go with regmap_bulk_read()?
+(I could not unwind the macros in my head, and you have the
+datasheet I suppose.)
+
+> +/*
+> + * aw9523_irq_bus_sync_unlock - Synchronize state and unlock
+> + * @d: irq data
+> + *
+> + * Writes the interrupt mask bits (found in the bit map) to the
+> + * hardware, then unlocks the bus.
+> + */
+> +static void aw9523_irq_bus_sync_unlock(struct irq_data *d)
+> +{
+> +       struct aw9523 *awi = gpiochip_get_data(irq_data_get_irq_chip_data(d));
+> +       int i;
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            # Two intertial interrupts i.e. accelerometer/gyro interrupts
-> +            - st,h3lis331dl-accel
-> +            - st,l3g4200d-gyro
-> +            - st,l3g4is-gyro
-> +            - st,l3gd20-gyro
-> +            - st,l3gd20h-gyro
-> +            - st,lis2de12
-> +            - st,lis2dw12
-> +            - st,lis2hh12
-> +            - st,lis2dh12-accel
-> +            - st,lis331dl-accel
-> +            - st,lis331dlh-accel
-> +            - st,lis3de
-> +            - st,lis3dh-accel
-> +            - st,lis3dhh
-> +            - st,lis3mdl-magn
-> +            - st,lng2dm-accel
-> +            - st,lps331ap-press
-> +            - st,lsm303agr-accel
-> +            - st,lsm303dlh-accel
-> +            - st,lsm303dlhc-accel
-> +            - st,lsm303dlm-accel
-> +            - st,lsm330-accel
-> +            - st,lsm330-gyro
-> +            - st,lsm330d-accel
-> +            - st,lsm330d-gyro
-> +            - st,lsm330dl-accel
-> +            - st,lsm330dl-gyro
-> +            - st,lsm330dlc-accel
-> +            - st,lsm330dlc-gyro
-> +            - st,lsm9ds0-gyro
-> +            - st,lsm9ds1-magn
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
->  
->  required:
->    - compatible
-> @@ -108,16 +202,18 @@ additionalProperties: false
->  examples:
->    - |
->      #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
+> +       for (i = 0; i < AW9523_NUM_PORTS; i++) {
+> +               if (bitmap_equal(awi->irq->masked[i], awi->irq->old_masked[i],
+> +                                AW9523_PINS_PER_PORT))
+> +                       continue;
+> +               regmap_write(awi->regmap,
+> +                            AW9523_REG_INTR_DIS(AW9523_PINS_PER_PORT * i),
+> +                            *awi->irq->masked[i]);
+> +               bitmap_copy(awi->irq->old_masked[i], awi->irq->masked[i],
+> +                           AW9523_PINS_PER_PORT);
+> +       }
+> +       mutex_unlock(&awi->irq->lock);
+> +}
 
-why gpio.h?
+These copies in the state that you write out at sync unlock.
 
->      i2c {
-> -        #address-cells = <1>;
-> -        #size-cells = <0>;
-> -        accelerometer@1d {
-> -            compatible = "st,lis3lv02dl-accel";
-> -            reg = <0x1d>;
-> -            interrupt-parent = <&gpio2>;
-> -            interrupts = <18 IRQ_TYPE_EDGE_RISING>;
-> -            pinctrl-0 = <&lis3lv02dl_nhk_mode>;
-> -            pinctrl-names = "default";
-> -        };
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
+Can this not be done using the async facility in regmap?
+
+regmap_write_async()/regcache_mark_dirty() in all the IRQ
+config etc functions, followed by a simple
+regcache_sync() here makes it unnecessary to keep your
+own register cache I believe?
+
+At least that is how I always thought it was supposed to be
+used.
+
+> +static int aw9523_direction_input(struct gpio_chip *chip, unsigned int offset)
+> +{
+> +       struct aw9523 *awi = gpiochip_get_data(chip);
+> +       u8 hw_pin = offset % AW9523_PINS_PER_PORT;
+> +       int port = AW9523_PIN_TO_PORT(offset);
 > +
-> +      accelerometer@1c {
-> +        compatible = "st,lis331dl-accel";
-> +        reg = <0x1c>;
+> +       set_bit(offset, awi->direction_in[port]);
 
-Whilst one example that covers i2c and spi would be good, its
-a bit of a stretch to have a chipselect of 1c.
+This direction_in state seems to be another reimplementation of regmaps
+register cache.
 
-Perhaps we should just add a second example for spi?
+> +static int aw9523_hw_reset(struct aw9523 *awi)
+> +{
+> +       int ret, max_retries = 2;
+> +
+> +       /* Sometimes the chip needs more than one reset cycle */
+> +       do {
+> +               ret = __aw9523_hw_reset(awi);
 
-> +        st,drdy-int-pin = <1>;
-> +        vdd-supply = <&ldo1>;
-> +        vddio-supply = <&ldo2>;
-> +        interrupt-parent = <&gpio>;
-> +        interrupts = <18 IRQ_TYPE_EDGE_RISING>, <19 IRQ_TYPE_EDGE_RISING>;
-> +      };
->      };
-> -...
+Please give a better name to the inner function. Like
+aw9523_drive_reset_gpio() or so.
 
+> +       for (i = 0; i < AW9523_NUM_PORTS; i++) {
+> +               bitmap_fill(awi->irq->masked[i], AW9523_PINS_PER_PORT);
+> +               bitmap_fill(awi->irq->old_masked[i], AW9523_PINS_PER_PORT);
+> +       }
+
+This is another of these complications of reimplementing regmaps
+register cache.
+
+> +static const struct regmap_config aw9523_regmap = {
+> +       .reg_bits = 8,
+> +       .val_bits = 8,
+> +
+> +       .cache_type = REGCACHE_NONE,
+
+By using some elaborate caching here instead of implementing
+your own, the driver can be simplified.
+
+> +       .disable_locking = true,
+
+Are you sure you are not just reimplementing this locking
+with your mutex?
+
+> +static struct i2c_driver aw9523_driver = {
+> +       .driver = {
+> +               .name = "aw9523-pinctrl",
+> +               .of_match_table = of_aw9523_i2c_match,
+> +       },
+> +       .probe = aw9523_probe,
+
+A lot of people (especially on Qualcomm platforms, which is used in the
+DT binding example) are working to modularize pin controllers.
+
+This controller on a slow bus should be able to support .remove() I
+think?
+
+You should even be able to insmod/rmmod it at runtime for testing.
+
+Yours,
+Linus Walleij
