@@ -2,106 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D612F0852
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 17:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B0F2F087D
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 17:56:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726250AbhAJQOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 11:14:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35270 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726080AbhAJQOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 11:14:35 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 769BAC061786;
-        Sun, 10 Jan 2021 08:13:54 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id j16so16373091edr.0;
-        Sun, 10 Jan 2021 08:13:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=9WjpRCnbLbQ2Qdf1Ey7F64blCszjEFXqOTBiRnYedL0=;
-        b=SMKlMbuqjzvtxtYijXzls96rJU0t4WXEMmwzYeVxqBuyiJ8PlaCv2wsO5sqOSeoor2
-         ghCYvoqh8M4WyAeBFz32qLhoZhdXEHgKQYSm40IdNnH5GmQRl1uTNDQ4/Boc2LTi431C
-         eNQL5ap39rTBtnUMoHjvF+46dCGOOjcG0thjL5IxZkxa3/c8A7DxhqB+KFHtjlIq0Hqw
-         ZpeRMmghQ/NUGnZ2xoe1JujCrLc+l8veD5ip1HXyE9ZzO4t1skDzM7klQHez7UCE9htt
-         cd8mza93Q0Q2q6J4LUUd7QgJqzHu3bKbGcq3TU7wXTMPLf4hQRrJBp5nPkuSQvF3ppjJ
-         Sc1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=9WjpRCnbLbQ2Qdf1Ey7F64blCszjEFXqOTBiRnYedL0=;
-        b=PAXEBM9bRFXf1q3XmqkZhG/CQd15crZxaz9x2XxqKRfixbX9y9KTohYRW0w6QPN4UY
-         f/N4fQVUR3KF1N7Tg7Az/gmvkVYfHr4VJST5QOZmmOb6yxwG0w4qqpdtZ4XsF0Kq9amR
-         a+4gX+H1VxuKsm8llyFjRPyms9IUG/S+MDyu4bK+XwRu1Viy5/bEkVBi72vpZUtACtFX
-         Ghk/ZQ88mNpNYmfKVwk66K8Vvb3L24/V3haSXEpogFCkaELe6AicZ3+3EUE1vZmknp4m
-         nGjFVwmnCHmGRjwYhZx1bt9LT9/2kqznXtPYENvBP36LeSQBfHNQw75nXRaNlufiHbeY
-         PDkw==
-X-Gm-Message-State: AOAM531QKZGY5udNhHf3voOyprPf7qzqFz4GbaIkv+jeGW1Ek1Z8F11q
-        VyZRkAJceYDjcksR5SeUvZo=
-X-Google-Smtp-Source: ABdhPJyT4RC/TvecS75T/1igAQOGHhid8OTzo1ImT6ZcTc3p9fl1qqjkLXl43jSNNy1rYnDF/Rp1Nw==
-X-Received: by 2002:a05:6402:1102:: with SMTP id u2mr11718664edv.18.1610295233183;
-        Sun, 10 Jan 2021 08:13:53 -0800 (PST)
-Received: from localhost (ip1f10d3e8.dynamic.kabel-deutschland.de. [31.16.211.232])
-        by smtp.gmail.com with ESMTPSA id j25sm5896536ejx.125.2021.01.10.08.13.52
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 10 Jan 2021 08:13:52 -0800 (PST)
-Date:   Sun, 10 Jan 2021 17:13:43 +0100
-From:   Oliver Graute <oliver.graute@gmail.com>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Neil Armstrong <narmstrong@baylibre.com>, parthitce@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726418AbhAJQ4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 11:56:35 -0500
+Received: from honk.sigxcpu.org ([24.134.29.49]:35348 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726415AbhAJQ4f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Jan 2021 11:56:35 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id DB287FB03;
+        Sun, 10 Jan 2021 17:55:52 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ZM3TsJHU2O_u; Sun, 10 Jan 2021 17:55:51 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 3C0AD40885; Sun, 10 Jan 2021 17:55:51 +0100 (CET)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Michael Walle <michael@walle.cc>,
-        Robert Jones <rjones@gateworks.com>,
-        =?iso-8859-1?Q?S=E9bastien?= Szymanski 
-        <sebastien.szymanski@armadeus.com>, Li Yang <leoyang.li@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 3/3] dt-bindings: arm: fsl: Add Variscite i.MX6UL
- compatibles
-Message-ID: <20210110161343.GC7264@ripley>
-References: <1610144511-19018-1-git-send-email-oliver.graute@gmail.com>
- <1610144511-19018-4-git-send-email-oliver.graute@gmail.com>
- <CAOMZO5CD2GBroqf+c4vLwDmDEhU3ScGt8b7pxC+YuZK_aKS3nQ@mail.gmail.com>
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: imx8mq: Add clock parents for mipi dphy
+Date:   Sun, 10 Jan 2021 17:55:51 +0100
+Message-Id: <bc2da4ab8322d5e8a44018633e0220e08d70e72e.1610297714.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOMZO5CD2GBroqf+c4vLwDmDEhU3ScGt8b7pxC+YuZK_aKS3nQ@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/21, Fabio Estevam wrote:
-> On Fri, Jan 8, 2021 at 7:23 PM Oliver Graute <oliver.graute@gmail.com> wrote:
-> 
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 05906e2..5f74d78 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -240,6 +240,7 @@ properties:
-> >                - technexion,imx6ul-pico-dwarf   # TechNexion i.MX6UL Pico-Dwarf
-> >                - technexion,imx6ul-pico-hobbit  # TechNexion i.MX6UL Pico-Hobbit
-> >                - technexion,imx6ul-pico-pi      # TechNexion i.MX6UL Pico-Pi
-> > +              - variscite,imx6ul-var-6ulcustomboard # i.MX UltraLite Carrier-board
-> 
-> You missed to add a "6" in the description: i.MX6 UltraLite Carrier-board
+This makes sure the clock tree setup for the dphy is not dependent on
+other components.
 
-I will add it.
+Without this change bringing up the display can fail like
 
-thx
+  kernel: phy phy-30a00300.dphy.2: Invalid CM/CN/CO values: 165/217/1
+  kernel: phy phy-30a00300.dphy.2: for hs_clk/ref_clk=451656000/593999998 ~ 165/217
 
-Best regards,
+if LCDIF doesn't set up that part of the clock tree first. This was
+noticed when testing the Librem 5 devkit with defconfig. It doesn't
+happen when modules are built in.
 
-Oliver
+Signed-off-by: Guido Günther <agx@sigxcpu.org>
+
+---
+Changes from v1:
+- as per review comment from Shawn Guo
+  https://lore.kernel.org/linux-arm-kernel/20210110124629.GO28365@dragon/
+  Set clock rate for IMX8MQ_VIDEO_PLL1 too. Otherwise we end up with
+  a close but not exact clock rate.
+
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index a841a023e8e0..50ae17f65a51 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -1016,9 +1016,14 @@ dphy: dphy@30a00300 {
+ 				reg = <0x30a00300 0x100>;
+ 				clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
+ 				clock-names = "phy_ref";
+-				assigned-clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
+-				assigned-clock-parents = <&clk IMX8MQ_VIDEO_PLL1_OUT>;
+-				assigned-clock-rates = <24000000>;
++				assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
++						  <&clk IMX8MQ_VIDEO_PLL1_BYPASS>,
++						  <&clk IMX8MQ_CLK_DSI_PHY_REF>,
++						  <&clk IMX8MQ_VIDEO_PLL1>;
++				assigned-clock-parents = <&clk IMX8MQ_CLK_25M>,
++						  <&clk IMX8MQ_VIDEO_PLL1>,
++						  <&clk IMX8MQ_VIDEO_PLL1_OUT>;
++				assigned-clock-rates = <0>, <0>, <24000000>, <594000000>;
+ 				#phy-cells = <0>;
+ 				power-domains = <&pgc_mipi>;
+ 				status = "disabled";
+-- 
+2.29.2
+
