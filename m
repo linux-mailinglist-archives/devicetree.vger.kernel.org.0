@@ -2,70 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D84E2F0A1F
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 23:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2347A2F0A5C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 00:25:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726954AbhAJWvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 17:51:11 -0500
-Received: from foss.arm.com ([217.140.110.172]:39080 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727327AbhAJWu6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Jan 2021 17:50:58 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 09DFC1597;
-        Sun, 10 Jan 2021 14:49:43 -0800 (PST)
-Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 70F733F719;
-        Sun, 10 Jan 2021 14:49:41 -0800 (PST)
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     coresight@lists.linaro.org, mathieu.poirier@linaro.org,
-        anshuman.khandual@arm.com, mike.leach@linaro.org,
-        leo.yan@linaro.org, linux-kernel@vger.kernel.org,
-        jonathan.zhouwen@huawei.com, catalin.marinas@arm.com,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 26/28] dts: bindings: coresight: ETM system register access only units
-Date:   Sun, 10 Jan 2021 22:48:48 +0000
-Message-Id: <20210110224850.1880240-27-suzuki.poulose@arm.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20210110224850.1880240-1-suzuki.poulose@arm.com>
-References: <20210110224850.1880240-1-suzuki.poulose@arm.com>
+        id S1726635AbhAJXY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 18:24:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41914 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726525AbhAJXY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 18:24:58 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C58C061786;
+        Sun, 10 Jan 2021 15:24:17 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id w5so14550572wrm.11;
+        Sun, 10 Jan 2021 15:24:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eRV+tTZsokJBmC4k80B5YRBHZdMT1XvGOuhlbjJDpTQ=;
+        b=DONpPGQSGTn2BYYxRpi3nsL3xsF1cHfUl/NZ/hpZiae+jTLdwZkpM5fD1swiW0L1nM
+         +n7zcmRYO+5xtIROArafLV/cOpdMwPYye3uLVnthxfYcRmXHsIlXvWt1mPtATKI2mBSo
+         oKyDTcZVaLwVFGreMAXYsY/8b2AqI8Pf/jQpbKn9VV3LpwKByZAD9UnnbWuJ6XVOiKof
+         i6X6vhG1L+i2ZDF+X5W7Jv2veHL17F8GqglVNsF4TWMDihC2XW5ZiqbyqgUjm/OT9WoC
+         Daf1QOxqTNvf+m7mN42/YXKFl1xKHBx7SoSPRQzmjJfj+9UFL3I0te0rEqYlgil4MnYB
+         tj0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eRV+tTZsokJBmC4k80B5YRBHZdMT1XvGOuhlbjJDpTQ=;
+        b=TR0n1WGjNbxd2AubpL2lD19x12KmDkvN+37i0ojGM5sSS0cCNo7Z2nyCjFhFmXn6Pn
+         imFealFLyLDjfbgiU8cB2AP4y4fkT8ToROcu3IoT44ku/mwvnxXMw2OAMEDvZ7QOXBLz
+         DwEoFnmCF9P+MX3qAQy8MHa6cdQ9OmWSnT0+aVS7DgFblcas/lSZQkcYVtlEtxhoGvhU
+         B+0ZXvDKuzWOQxG6UjDKROO4HASY5knK+Dp2i7QlQE+0B8T3P/jhQyUOaE3LtZ/47TMC
+         pVZQWNgD40Oyp3F68rjpusD8d9IG90v6bJ3TGY6PdwUQjolQnG3Xyxyz3Zx8MupGPUUY
+         d0kQ==
+X-Gm-Message-State: AOAM5333HuxcjU2NTljR8N9M+5O32WiI4Bb4QFy3c5lreuaK0bYfVLNw
+        ToNrgSJdz4T7+juNxT32KEm8VHJjm18=
+X-Google-Smtp-Source: ABdhPJyUNN10Os95AKcQvRBspamDtsfo4gneUiWbtg9odxRx6M0RYoyLwae46b/aOmlTbU7PBogjMg==
+X-Received: by 2002:a5d:58fb:: with SMTP id f27mr13324479wrd.22.1610321056705;
+        Sun, 10 Jan 2021 15:24:16 -0800 (PST)
+Received: from adgra-XPS-15-9570.home (2a01cb0008bd270029536a450755141e.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:2953:6a45:755:141e])
+        by smtp.gmail.com with ESMTPSA id a12sm23426104wrh.71.2021.01.10.15.24.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Jan 2021 15:24:15 -0800 (PST)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH 0/3] Add support for Boundary Nitrogen8M Mini SBC
+Date:   Mon, 11 Jan 2021 00:24:04 +0100
+Message-Id: <20210110232407.1666059-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the bindings for ETMs with system register accesses.
+Hello,
 
-Cc: devicetree@vger.kernel.org
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Mike Leach <mike.leach@linaro.org>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
----
- Documentation/devicetree/bindings/arm/coresight.txt | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+This patch set aims is to add the support of the Nitrogen8M Mini SBC
+from Boundary Devices.
 
-diff --git a/Documentation/devicetree/bindings/arm/coresight.txt b/Documentation/devicetree/bindings/arm/coresight.txt
-index d711676b4a51..7f9c1ca87487 100644
---- a/Documentation/devicetree/bindings/arm/coresight.txt
-+++ b/Documentation/devicetree/bindings/arm/coresight.txt
-@@ -34,9 +34,12 @@ its hardware characteristcs.
- 					Program Flow Trace Macrocell:
- 			"arm,coresight-etm3x", "arm,primecell";
- 
--		- Embedded Trace Macrocell (version 4.x):
-+		- Embedded Trace Macrocell (version 4.x), with memory mapped access.
- 			"arm,coresight-etm4x", "arm,primecell";
- 
-+		- Embedded Trace Macrocell (version 4.x), with system register access only.
-+			"arm,coresight-etm4x-sysreg";
-+
- 		- Coresight programmable Replicator :
- 			"arm,coresight-dynamic-replicator", "arm,primecell";
- 
+Thanks,
+
+Adrien Grassein (3):
+  dt-bindings: arm: imx: add imx8mm nitrogen support
+  arm64: dts: imx: Add i.mx8mm nitrogen8mm basic dts support
+  arm64: defconfig: Enable PF8x00 as builtin
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mm-nitrogen8mm_rev2.dts | 657 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 4 files changed, 660 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
+
 -- 
-2.24.1
+2.25.1
 
