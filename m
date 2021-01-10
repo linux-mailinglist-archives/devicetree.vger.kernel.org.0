@@ -2,84 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCCA32F089B
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 18:19:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAA852F08A5
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 18:22:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726410AbhAJRT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 12:19:29 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:37845 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726394AbhAJRT3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 12:19:29 -0500
-Received: by mail-oi1-f172.google.com with SMTP id l207so17706734oib.4;
-        Sun, 10 Jan 2021 09:19:13 -0800 (PST)
+        id S1726915AbhAJRTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 12:19:37 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:34773 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726394AbhAJRTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 12:19:37 -0500
+Received: by mail-oi1-f169.google.com with SMTP id s75so17722344oih.1;
+        Sun, 10 Jan 2021 09:19:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=F//JdTlnoCOz7aCw0BOV3Lcolb8sAFjfgFTOj6tIyNo=;
-        b=Tb3u2hhpwVU9x2NATdtYvOxF6G5MovABdkawTmBq3/aNg3JcjOYVdT9B8ghYgOCiLe
-         VufOKYxW63QxUqGpUgAdaRSECG7IPC4BdcIshVHm0RyGQ3JjuPftocUTzMEfxaRg/b7w
-         ophMhs47bzydL5C4s1Velvtm/JMVi3rITc1w9uG5XICMavBu2rMuS6gw0e6qlsjrBqZr
-         1BZlFhW1jBXzGDp66EGtud61pgxLhPmUksPXRuCJQl0gJ6mv3m7UlLwCZU2FRLxdW5eM
-         ERbTnbzkqGNaF2JAzH5TPQ8dV22cgJO86n6SFtQnHXLB7rMujn2n78ArCSWjdjSlMIZ8
-         lkIg==
-X-Gm-Message-State: AOAM530vgULDbr7B4QRKLPelKRo1oTWDI2/yBLq/ODr37W7nRpFw19Ov
-        yWkzB63xwbrTwO0oBBeP5Q==
-X-Google-Smtp-Source: ABdhPJz1YITLmeT/RQJhbDMQMgO2iA+7o7KWdVgS0dt73PQj2h5m3tHklZB+11wAOUhsqnKL3pP2Pg==
-X-Received: by 2002:aca:a9c8:: with SMTP id s191mr8410224oie.11.1610299128243;
-        Sun, 10 Jan 2021 09:18:48 -0800 (PST)
+        bh=gieP8eMMhIwuDhb0Vl0swuQVI2c1HXJ0Uk0fu04gagQ=;
+        b=skRTs6T2k99yA6OTJnSqsF8ahec5LZW00XErd7PZ3foSvs20epx9IoAWq2IDncL3RN
+         1GoXRl7V8yFb7cjT7YYzuKqJ0AU/TfY9nLFAsXl3ssxg6MptswQObh+G+2jycmv6I1pO
+         X0rWE3C3bt78htLeMIpBVDjgSPzEou3vnyyJFZIBDudyWr6XVhIU9NAhESYiAJ/g2Xaf
+         sBUwzgbDr/gbN0D64oAEXInA+XyWtkT0EWM2AfGebyyCA+a2suKFhRSvkrBhFi4yR3G8
+         xDyF9dF1sIqJN/0/yiK+RhxbJluBvObRHoBHinror2t7C+Zv0e3X5sHTtb9hi5JEcend
+         52jA==
+X-Gm-Message-State: AOAM532M1af5UCrNlUlEm42EHov/PopWJSAd3Euc3Y3n+b24J6HQh5U5
+        05W3mBs+fFqr/N/ZMZZggw==
+X-Google-Smtp-Source: ABdhPJzLxtszYVeUrCOzKty8zftKIo/Vu35XEp81Bhe4mSudgRYg+tdhVx3ypM+/82ZLFWYvrDIQwQ==
+X-Received: by 2002:a05:6808:4cf:: with SMTP id a15mr8301191oie.147.1610299136149;
+        Sun, 10 Jan 2021 09:18:56 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m7sm2827924ool.29.2021.01.10.09.18.46
+        by smtp.gmail.com with ESMTPSA id w9sm3125675otq.44.2021.01.10.09.18.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Jan 2021 09:18:47 -0800 (PST)
-Received: (nullmailer pid 785270 invoked by uid 1000);
-        Sun, 10 Jan 2021 17:18:45 -0000
+        Sun, 10 Jan 2021 09:18:55 -0800 (PST)
+Received: (nullmailer pid 785283 invoked by uid 1000);
+        Sun, 10 Jan 2021 17:18:46 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     mgross@linux.intel.com
-Cc:     markgross@kernel.org, dragan.cvetic@xilinx.com, bp@suse.de,
-        Paul Murphy <paul.j.murphy@intel.com>,
-        paul.walmsley@sifive.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, damien.lemoal@wdc.com,
-        leonard.crestez@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        linux-kernel@vger.kernel.org, palmerdabbelt@google.com,
-        corbet@lwn.net, peng.fan@nxp.com, gregkh@linuxfoundation.org,
-        jassisinghbrar@gmail.com
-In-Reply-To: <20210108212600.36850-7-mgross@linux.intel.com>
-References: <20210108212600.36850-1-mgross@linux.intel.com> <20210108212600.36850-7-mgross@linux.intel.com>
-Subject: Re: [PATCH v2 06/34] dt-bindings: Add bindings for Keem Bay VPU IPC driver
-Date:   Sun, 10 Jan 2021 11:18:45 -0600
-Message-Id: <1610299125.992252.785269.nullmailer@robh.at.kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     robh+dt@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        nks@flawful.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        devicetree@vger.kernel.org, konrad.dybcio@somainline.org,
+        manivannan.sadhasivam@linaro.org, linux-pm@vger.kernel.org,
+        martin.botka@somainline.org, viresh.kumar@linaro.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, marijn.suijten@somainline.org
+In-Reply-To: <20210109180359.236098-9-angelogioacchino.delregno@somainline.org>
+References: <20210109180359.236098-1-angelogioacchino.delregno@somainline.org> <20210109180359.236098-9-angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH v2 08/15] dt-bindings: avs: cpr: Convert binding to YAML schema
+Date:   Sun, 10 Jan 2021 11:18:46 -0600
+Message-Id: <1610299126.051571.785282.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Jan 2021 13:25:32 -0800, mgross@linux.intel.com wrote:
-> From: Paul Murphy <paul.j.murphy@intel.com>
+On Sat, 09 Jan 2021 19:03:52 +0100, AngeloGioacchino Del Regno wrote:
+> Convert the qcom,cpr.txt document to YAML schema and place it in the
+> appropriate directory, since this driver was moved from power/avs
+> to soc/qcom, but forgets to move the documentation.
 > 
-> Add DT bindings documentation for the Keem Bay VPU IPC driver.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Reviewed-by: Mark Gross <mgross@linux.intel.com>
-> Signed-off-by: Paul Murphy <paul.j.murphy@intel.com>
-> Co-developed-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Fixes: a7305e684fcf ("PM: AVS: qcom-cpr: Move the driver to the qcom specific drivers")
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > ---
->  .../soc/intel/intel,keembay-vpu-ipc.yaml      | 153 ++++++++++++++++++
->  1 file changed, 153 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+>  .../bindings/power/avs/qcom,cpr.txt           | 131 +-----------------
+>  .../bindings/soc/qcom/qcom,cpr.yaml           | 116 ++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 118 insertions(+), 131 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml:21:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml:36:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
 
 dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,cpr.example.dt.yaml: power-controller@b018000: nvmem-cells: [[4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,cpr.example.dt.yaml: power-controller@b018000: nvmem-cell-names: ['cpr_quotient_offset1', 'cpr_quotient_offset2', 'cpr_quotient_offset3', 'cpr_init_voltage1', 'cpr_init_voltage2', 'cpr_init_voltage3', 'cpr_quotient1', 'cpr_quotient2', 'cpr_quotient3', 'cpr_ring_osc1', 'cpr_ring_osc2', 'cpr_ring_osc3', 'cpr_fuse_revision'] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml
 
-See https://patchwork.ozlabs.org/patch/1423960
+See https://patchwork.ozlabs.org/patch/1424131
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
