@@ -2,111 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 356882F0886
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 18:04:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F5502F0896
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 18:16:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726228AbhAJREF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 12:04:05 -0500
-Received: from honk.sigxcpu.org ([24.134.29.49]:35500 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726250AbhAJREF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Jan 2021 12:04:05 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 19E31FB03;
-        Sun, 10 Jan 2021 18:03:23 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id j46i6NiFsSWV; Sun, 10 Jan 2021 18:03:22 +0100 (CET)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id A9B3A40885; Sun, 10 Jan 2021 18:03:21 +0100 (CET)
-Date:   Sun, 10 Jan 2021 18:03:21 +0100
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1726769AbhAJRPC convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 10 Jan 2021 12:15:02 -0500
+Received: from guitar.tcltek.co.il ([192.115.133.116]:42430 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726228AbhAJRPB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Jan 2021 12:15:01 -0500
+Received: from tarshish (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id DD3584400C5;
+        Sun, 10 Jan 2021 19:14:17 +0200 (IST)
+References: <cover.1609917364.git.baruch@tkos.co.il>
+ <22d1fe7b2137e3a2660ab2e6f1f127d41493fb16.1609917364.git.baruch@tkos.co.il>
+ <20210107142953.ifg5yuy3dsblgsju@pengutronix.de>
+User-agent: mu4e 1.4.13; emacs 27.1
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mq: Add clock parents for mipi dphy
-Message-ID: <20210110170321.GA30072@bogon.m.sigxcpu.org>
-References: <dd135fa55084d886bd6daf777d76677f232c53c6.1608313793.git.agx@sigxcpu.org>
- <20210110124629.GO28365@dragon>
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] gpio: mvebu: fix pwm get_state period calculation
+In-reply-to: <20210107142953.ifg5yuy3dsblgsju@pengutronix.de>
+Date:   Sun, 10 Jan 2021 19:14:17 +0200
+Message-ID: <87wnwkyas6.fsf@tarshish>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210110124629.GO28365@dragon>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Sun, Jan 10, 2021 at 08:46:29PM +0800, Shawn Guo wrote:
-> On Fri, Dec 18, 2020 at 06:50:05PM +0100, Guido Günther wrote:
-> > This makes sure the clock tree setup for the dphy is not dependent on
-> > other components.
-> > 
-> > Without this change bringing up the display can fail like
-> > 
-> >   kernel: phy phy-30a00300.dphy.2: Invalid CM/CN/CO values: 165/217/1
-> >   kernel: phy phy-30a00300.dphy.2: for hs_clk/ref_clk=451656000/593999998 ~ 165/217
-> > 
-> > if LCDIF doesn't set up that part of the clock tree first. This was
-> > noticed when testing the Librem 5 devkit with defconfig. It doesn't
-> > happen when modules are built in.
-> > 
-> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 11 ++++++++---
-> >  1 file changed, 8 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > index a841a023e8e0..ca0847e8f13c 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > @@ -1016,9 +1016,14 @@ dphy: dphy@30a00300 {
-> >  				reg = <0x30a00300 0x100>;
-> >  				clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> >  				clock-names = "phy_ref";
-> > -				assigned-clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> > -				assigned-clock-parents = <&clk IMX8MQ_VIDEO_PLL1_OUT>;
-> > -				assigned-clock-rates = <24000000>;
-> > +				assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
-> > +						  <&clk IMX8MQ_VIDEO_PLL1_BYPASS>,
-> > +						  <&clk IMX8MQ_CLK_DSI_PHY_REF>,
-> > +						  <&clk IMX8MQ_VIDEO_PLL1>;
-> 
-> You do not seem to set parent or rate on IMX8MQ_VIDEO_PLL1.  Why do you
-> have it here?
+Hi Uwe,
 
-Good point. I've added a clock rate for IMX8MQ_VIDEO_PLL1 since
-then the clock tree reproduces exactly with and with the DSI host
-controller disabled in DT (otherwise we end up with a rate of 22MHz
-instead of 24Mhz).
+Thanks for your review comments.
 
-Cheers,
- -- Guido
+On Thu, Jan 07 2021, Uwe Kleine-KÃ¶nig wrote:
+> On Wed, Jan 06, 2021 at 09:37:37AM +0200, Baruch Siach wrote:
+>> The period is the sum of on and off values.
+>> 
+>> Reported-by: Russell King <linux@armlinux.org.uk>
+>> Fixes: 757642f9a584e ("gpio: mvebu: Add limited PWM support")
+>> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+>> ---
+>> v6: divide (on + off) sum to reduce rounding error (RMK)
+>> ---
+>>  drivers/gpio/gpio-mvebu.c | 19 ++++++++-----------
+>>  1 file changed, 8 insertions(+), 11 deletions(-)
+>> 
+>> diff --git a/drivers/gpio/gpio-mvebu.c b/drivers/gpio/gpio-mvebu.c
+>> index 672681a976f5..a912a8fed197 100644
+>> --- a/drivers/gpio/gpio-mvebu.c
+>> +++ b/drivers/gpio/gpio-mvebu.c
+>> @@ -676,20 +676,17 @@ static void mvebu_pwm_get_state(struct pwm_chip *chip,
+>>  	else
+>>  		state->duty_cycle = 1;
+>>  
+>> +	val = (unsigned long long) u; /* on duration */
+>>  	regmap_read(mvpwm->regs, mvebu_pwmreg_blink_off_duration(mvpwm), &u);
+>> -	val = (unsigned long long) u * NSEC_PER_SEC;
+>> +	val += (unsigned long long) u; /* period = on + off duration */
+>> +	val *= NSEC_PER_SEC;
+>>  	do_div(val, mvpwm->clk_rate);
+>> -	if (val < state->duty_cycle) {
+>> +	if (val > UINT_MAX)
+>> +		state->period = UINT_MAX;
+>
+> state->period is an u64, so there is no reason to not use values greater
+> than UINT_MAX.
 
-> 
-> Shawn
-> 
-> > +				assigned-clock-parents = <&clk IMX8MQ_CLK_25M>,
-> > +						  <&clk IMX8MQ_VIDEO_PLL1>,
-> > +						  <&clk IMX8MQ_VIDEO_PLL1_OUT>;
-> > +				assigned-clock-rates = <0>, <0>, <24000000>;
-> >  				#phy-cells = <0>;
-> >  				power-domains = <&pgc_mipi>;
-> >  				status = "disabled";
-> > -- 
-> > 2.29.2
-> > 
-> 
+I'll post a patch for that.
+
+>> +	else if (val)
+>> +		state->period = val;
+>> +	else
+>>  		state->period = 1;
+>
+> This case assigning 1 looks strange. An explanation in a comment would
+> be great. I wonder if this is a hardware property or if it is only used
+> to not report 0 in case that mvpwm->clk_rate is high.
+
+I guess that this is because 0 period does not make sense for pwm. It is
+like a zero divisor. What is the common behavior?
+
+> I found a few further shortcommings in the mvebu_pwm implementation while
+> looking through it:
+>
+>  a) The rounding problem that RMK found is also present in .apply
+>
+>     There we have:
+>
+>     	val = clk_rate * (period - duty_cycle) / NSEC_PER_SEC
+>
+>     while
+>
+>     	val = clk_rate * period / NSEC_PER_SEC - on
+>
+>     would be more exact.
+
+I'll post a patch for that.
+
+>  b) To make
+>
+>  	pwm_get_state(pwm, &state);
+> 	pwm_apply_state(pwm, &state);
+>
+>     idempotent .get_state should round up the division results.
+
+I'll post a patch for that as well.
+
+>  c) .apply also has a check for val being zero and configures at least 1
+>     cycle for the on and off intervals. Is this a hardware imposed
+>     limitation? 
+
+Not sure what was the original intention. Maybe Andrew can explain.
+
+On my hardware (Armada 8040), zero 'on' value does not work as
+expected. There is a blink once in a long while. Maybe this is the
+reason?
+
+As I understand, all these issues should not block this patch, right?
+
+BTW, the key you used to sign your message is expired since 2020-01-10
+on the key server I use (keys.gnupg.net). Where can I find your updated
+key?
+
+Thanks,
+baruch
+
+-- 
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
