@@ -2,118 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 705472F0662
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 11:21:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 474A12F06B2
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 12:39:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726377AbhAJKVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 05:21:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44750 "EHLO
+        id S1726346AbhAJLjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 06:39:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726303AbhAJKVO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 05:21:14 -0500
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C618BC061786;
-        Sun, 10 Jan 2021 02:20:33 -0800 (PST)
-Received: by mail-il1-x129.google.com with SMTP id t3so11083651ilh.9;
-        Sun, 10 Jan 2021 02:20:33 -0800 (PST)
+        with ESMTP id S1726228AbhAJLjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 06:39:19 -0500
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4716CC06179F;
+        Sun, 10 Jan 2021 03:38:39 -0800 (PST)
+Received: by mail-il1-x12b.google.com with SMTP id e7so73994ili.2;
+        Sun, 10 Jan 2021 03:38:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=s2e3i6ekxjqpU6/uYaJIRv9nQC6V3zhYxhm4oqeJjAM=;
-        b=s0Q4jUgXrr7RDyOyccXZM+LpdpxQbPp7MO9SMPskkzLjtRZ+6vRpKUvhCGP5sn6V5n
-         9HRe/hfl9wuTN5lhB/ZbJZ7kZ0R888lcj7kbk5YQC/U43PhXDnaFzStaYKQWNNoULrx7
-         X11SlQTD06dYe/cQaEs9PPWwZbiLWzctra8eIJZ5LVOkdWQntAT6fbMfGEE+hqueC3Pw
-         ehBY5MuuVPHI4WEwAppDg7Hv/3kCZ4dEPYGsxoZDRnBHQbyIEnu4AtxTYSsEZkz8DOnZ
-         /ZGzLVLZjDJ9/ppEVkfxR/kjRsTRB0XCtcO966+NS1Ig1aM59Ht/daTBbKyi2Jud6Oa4
-         WAyw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aiVkZdx785Za+C8kdKVbVCz+LRIKha9Es2RMYP4mnFE=;
+        b=OW2wO5tS7j6itiIX8wCsOzfJeFvRJyNWFVk7TrM5FLrZ/GX5YwQ1BCEGcmI/jgsAGi
+         pUVYo45d/4dj/g801rEpt2GWjUndKgDF743zxHuPHQ2EL+1ImwV6b1PKuhnCjmPavZS+
+         ZkDgseHawdyvj3+7SoJ/LuwLe8V+Un6bb54FQ0CX1lx98lMMdbvFane3dysIVI7fkUgg
+         jd2raJe4anaL42C+uHwRTxBxPxU4WUo4NHmZ/iHMglBMgaakP+rh+vWftnzVzzTI9lPV
+         D/UwSUXYPXjgOECyLMyY779um0ZtBmkpVsobe5+YbgRxOLITMNC4EonaTwfEKbjxizTz
+         5E0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=s2e3i6ekxjqpU6/uYaJIRv9nQC6V3zhYxhm4oqeJjAM=;
-        b=nJkxZAPCvhk8+/+luc/yVca+xHncqSfcpMYHvdC6vAKQA3BABGjlpF9vE3pjJOYjg5
-         zhYNetL62XaHSuQ9c1zR6FqjGDhN+YuITKwLV4cbnUxKH5wWyEejgcCPNpopUjIQ60Fq
-         HSxhnbCF/3UtjpstypDVn3h/XzDVDBYG73+6S/5EsX6emWNUtSjtzzyBIzrxM2z/04ZK
-         K68ii6kcHz/eIdA7vlSRkEVuI2j4zJDcMHDUEFLWfMV/2/T5iLlTnikn7fxJXv6D10ab
-         cxBqJ/8vEJbDYr4PQ7ltXT1VEOgloWpyP7cfI6ELEe0UQ5BVwUR8VP9FqrEB8qb9rdFe
-         QjFg==
-X-Gm-Message-State: AOAM532DHc0kq9LYIDSPdG2gxE8YDdz3rQoDNbYOU8Y5TjZ63zA58Fvi
-        llsUOIcl6TZ8jDNs+a0SX3Lvwu/ftFN+VJzkhA==
-X-Google-Smtp-Source: ABdhPJxpAMRH1U7W5ODkByqNOQv/TK3JjpYyqjXOM5f3V5yVKUAJYIiXwpbaDWICmirUML3j/AdxTIxbWpmsctpgzM0=
-X-Received: by 2002:a92:6512:: with SMTP id z18mr11172342ilb.220.1610274032127;
- Sun, 10 Jan 2021 02:20:32 -0800 (PST)
-MIME-Version: 1.0
-References: <20210108163004.492649-1-j.neuschaefer@gmx.net>
-In-Reply-To: <20210108163004.492649-1-j.neuschaefer@gmx.net>
-From:   Avi Fishman <avifishman70@gmail.com>
-Date:   Sun, 10 Jan 2021 12:19:55 +0200
-Message-ID: <CAKKbWA7Zx-Jq8c=ExE5SY_H--vk5+TqhTRCJig=7xq1smnKS-Q@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: timer: nuvoton: Clarify that interrupt of
- timer 0 should be specified
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aiVkZdx785Za+C8kdKVbVCz+LRIKha9Es2RMYP4mnFE=;
+        b=PSunUuxu0JTG4hmHBVpa3J5CzYiZYae08L1Bpl4JKjzUgRIza69ggek/z08ZlIUWq6
+         d7LgBZFp5uS0id6NXvUItKf2P9ZD0WKVthpQ8kWQgdLhV3s7+02d/ZmJZlkOHup+dsH9
+         NivP7fWyAaixxiEBpbK1WPQwAVuH4ZbLLSXKz4Wxf8lVdKqU4t/nQcXBJzuVDwwjUHV1
+         dfPNcpHRjPwJVWsPH2E8sRTr128SzECsTHBX/DmDUMlQvY696zGnqGQq27Ri4wx/ggAI
+         kNLyWKXlSt/DfN9nrVKYlYh3rv2OQ99CEMeKyf3LKVME8PA1l2UYrjIaxKsy0zeEXsI6
+         nidw==
+X-Gm-Message-State: AOAM533/nGRmDQFBkMXWw/9D8dy7YvlmQopUDaHYjmgyUy2OwLj3mBnL
+        pfieXfl7s6z1qEW7NP7KWcI=
+X-Google-Smtp-Source: ABdhPJzPA2hMxXMj/qJ6jODlrDcBwV0h+yZaTKHszgc2tbi2+VxiJzwr0toPImBd3kc0Kj9vih+mYw==
+X-Received: by 2002:a92:c692:: with SMTP id o18mr11946048ilg.215.1610278718651;
+        Sun, 10 Jan 2021 03:38:38 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:4119:2ef1:4993:8ada])
+        by smtp.gmail.com with ESMTPSA id e9sm6221298ill.60.2021.01.10.03.38.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Jan 2021 03:38:38 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-beacon: add more pinctrl states for usdhc1
+Date:   Sun, 10 Jan 2021 05:38:26 -0600
+Message-Id: <20210110113826.1257293-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 8, 2021 at 6:30 PM Jonathan Neusch=C3=A4fer
-<j.neuschaefer@gmx.net> wrote:
->
-> The NPCM750 Timer/Watchdog Controller has multiple interrupt lines,
-> connected to multiple timers. The driver uses timer 0 for timer
-> interrupts, so the interrupt line corresponding to timer 0 should be
-> specified in DT.
->
-> I removed the mention of "flags for falling edge", because the timer
-> controller uses high-level interrupts rather than falling-edge
-> interrupts, and whether flags should be specified is up the interrupt
-> controller's DT binding.
->
-> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-Reviewed-by Avi Fishman <avifishman70@gmail.com>
-> ---
->
-> v2:
-> - Fix a typo in the word "watchdog"
-> ---
->  .../devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt        | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-time=
-r.txt b/Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt
-> index ea22dfe485bee..97258f1a1505b 100644
-> --- a/Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt
-> +++ b/Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt
-> @@ -6,8 +6,7 @@ timer counters.
->  Required properties:
->  - compatible      : "nuvoton,npcm750-timer" for Poleg NPCM750.
->  - reg             : Offset and length of the register set for the device=
-.
-> -- interrupts      : Contain the timer interrupt with flags for
-> -                    falling edge.
-> +- interrupts      : Contain the timer interrupt of timer 0.
->  - clocks          : phandle of timer reference clock (usually a 25 MHz c=
-lock).
->
->  Example:
-> --
-> 2.29.2
->
+The WiFi chip is capable of communication at SDR104 speeds.
+Enable 100Mhz and 200MHz pinmux to support this.
 
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
---=20
-Regards,
-Avi
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+index d897913537ca..988f8ab679ad 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+@@ -256,8 +256,10 @@ bluetooth {
+ &usdhc1 {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+-	pinctrl-names = "default";
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+ 	pinctrl-0 = <&pinctrl_usdhc1>;
++	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+ 	bus-width = <4>;
+ 	non-removable;
+ 	cap-power-off-card;
+-- 
+2.25.1
+
