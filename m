@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B86D02F09CB
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 22:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D84E2F0A1F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 23:51:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726841AbhAJVQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 16:16:54 -0500
-Received: from mailoutvs35.siol.net ([185.57.226.226]:46142 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726432AbhAJVQy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 16:16:54 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTP id 90C3C521798;
-        Sun, 10 Jan 2021 22:16:12 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id Pcl9tw4YCoIO; Sun, 10 Jan 2021 22:16:12 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTPS id 507F05218D9;
-        Sun, 10 Jan 2021 22:16:12 +0100 (CET)
-Received: from kista.localdomain (cpe-86-58-58-53.static.triera.net [86.58.58.53])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Zimbra) with ESMTPSA id 0A881521798;
-        Sun, 10 Jan 2021 22:16:11 +0100 (CET)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, jernej.skrabec@siol.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: [PATCH] arm64: dts: allwinner: h6: PineH64 model B: Add bluetooth
-Date:   Sun, 10 Jan 2021 22:16:06 +0100
-Message-Id: <20210110211606.3733056-1-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.30.0
+        id S1726954AbhAJWvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 17:51:11 -0500
+Received: from foss.arm.com ([217.140.110.172]:39080 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727327AbhAJWu6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Jan 2021 17:50:58 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 09DFC1597;
+        Sun, 10 Jan 2021 14:49:43 -0800 (PST)
+Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 70F733F719;
+        Sun, 10 Jan 2021 14:49:41 -0800 (PST)
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     coresight@lists.linaro.org, mathieu.poirier@linaro.org,
+        anshuman.khandual@arm.com, mike.leach@linaro.org,
+        leo.yan@linaro.org, linux-kernel@vger.kernel.org,
+        jonathan.zhouwen@huawei.com, catalin.marinas@arm.com,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v7 26/28] dts: bindings: coresight: ETM system register access only units
+Date:   Sun, 10 Jan 2021 22:48:48 +0000
+Message-Id: <20210110224850.1880240-27-suzuki.poulose@arm.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20210110224850.1880240-1-suzuki.poulose@arm.com>
+References: <20210110224850.1880240-1-suzuki.poulose@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PineH64 model B has wifi+bt combo module. Wifi is already supported, so
-lets add also bluetooth node.
+Document the bindings for ETMs with system register accesses.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Cc: devicetree@vger.kernel.org
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Mike Leach <mike.leach@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 ---
- .../dts/allwinner/sun50i-h6-pine-h64-model-b.dts  | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ Documentation/devicetree/bindings/arm/coresight.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts=
- b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-index 7fea1e4e2d49..645bd8761eb5 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts
-@@ -34,3 +34,18 @@ &mmc1 {
- 	non-removable;
- 	status =3D "okay";
- };
+diff --git a/Documentation/devicetree/bindings/arm/coresight.txt b/Documentation/devicetree/bindings/arm/coresight.txt
+index d711676b4a51..7f9c1ca87487 100644
+--- a/Documentation/devicetree/bindings/arm/coresight.txt
++++ b/Documentation/devicetree/bindings/arm/coresight.txt
+@@ -34,9 +34,12 @@ its hardware characteristcs.
+ 					Program Flow Trace Macrocell:
+ 			"arm,coresight-etm3x", "arm,primecell";
+ 
+-		- Embedded Trace Macrocell (version 4.x):
++		- Embedded Trace Macrocell (version 4.x), with memory mapped access.
+ 			"arm,coresight-etm4x", "arm,primecell";
+ 
++		- Embedded Trace Macrocell (version 4.x), with system register access only.
++			"arm,coresight-etm4x-sysreg";
 +
-+&uart1 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status =3D "okay";
-+
-+	bluetooth {
-+		compatible =3D "realtek,rtl8723bs-bt";
-+		device-wakeup-gpios =3D <&r_pio 1 2 GPIO_ACTIVE_HIGH>; /* PM2 */
-+		host-wakeup-gpios =3D <&r_pio 1 1 GPIO_ACTIVE_HIGH>; /* PM1 */
-+		enable-gpios =3D <&r_pio 1 4 GPIO_ACTIVE_HIGH>; /* PM4 */
-+		max-speed =3D <1500000>;
-+	};
-+};
---=20
-2.30.0
+ 		- Coresight programmable Replicator :
+ 			"arm,coresight-dynamic-replicator", "arm,primecell";
+ 
+-- 
+2.24.1
 
