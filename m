@@ -2,82 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D50302F08B0
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 18:22:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 401A72F089F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 18:22:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727004AbhAJRTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 12:19:44 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:32906 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726394AbhAJRTn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 12:19:43 -0500
-Received: by mail-oi1-f172.google.com with SMTP id d203so17759042oia.0;
-        Sun, 10 Jan 2021 09:19:28 -0800 (PST)
+        id S1726673AbhAJRTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 12:19:32 -0500
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:46929 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726394AbhAJRTb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 12:19:31 -0500
+Received: by mail-oi1-f173.google.com with SMTP id q205so17642861oig.13;
+        Sun, 10 Jan 2021 09:19:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=dpRmxYlnzoK4Lg6qNYsLrabnqdmAajbzQvyDJX0Sah8=;
-        b=lSTAfPZ8ldEvDWRDiGt6CZ8Temh1k6D3iy0fi4V8e/HEQTyG0GxW2mpcFq92oAbCMY
-         A4TQuF6yrpog7BcKmRImitC0/9jZ2FBXg2YgTxYZy2V7BPgRtc0cA2s6WegM522UlVFx
-         ljLzJWm5NAx5z4YosHksres36ZjfpAt4jEfpE5S27U/4bpoxD+dawfdaH6DFMsuGHbdo
-         qqNjEBeu+cc8hNlvGfSUpLj0E1r6qWCbR+s6D94621KRWoyHkc0PshvM4OryB8zRYlMl
-         5u9qjiks6waU0C62kqA6ELZ2MIzD0IG5630lVYAZBowJ3SG2x17PBys5MBqtGsS7kP1v
-         xHZQ==
-X-Gm-Message-State: AOAM532HxDmL2VR1rd8Egytjm0+rHeg0iZyuvXvvAt5ItsSrB/td1Y/5
-        9RekOMuUmiMlf9f48rSClg==
-X-Google-Smtp-Source: ABdhPJwLUuMmsbYJA5pNeqvmXXoVg51UlNhmRIQluJbm9TYeOig/e6tOEclqP/USGyTB9k81oNqCEw==
-X-Received: by 2002:a54:4785:: with SMTP id o5mr8249939oic.139.1610299142715;
-        Sun, 10 Jan 2021 09:19:02 -0800 (PST)
+        bh=0atvGl4wyF8gi+A5MyTDj8dXxWkRMttxRAM1sDUE6l8=;
+        b=UICCvcxNu04v3OW0k8x5B2cvv2I7rf0x2mPo6Sy9eYaYF4QHcKKfQtj6arJn8+2odY
+         46KfOj0nt3fBjapeN92kSkH0okJpxhgBmE7Hm7NBTcOb3th4GyXDGQGdSwRiNTpoApj1
+         z6C+RaFjMBFfhKyHCe8U5lR58XnV+r+V7bYuvPvEBez0Yo80Fu1Ye/wdQeLOMoSW+Wk0
+         e3rUZk02+/KlSdPxapQdz3DT1NCtyddflXf1vyM2SYynZ48jCxHiEZ6Hjn/MUxCSnCKN
+         63WFiZBnsAOK7AMllPxar8FpMrYTK1/IXGjGF7eYgvxtp9R5OkZlsIywpzLOz1R945Lp
+         paXw==
+X-Gm-Message-State: AOAM532dXPHpQUGcsB03t7s+nlrWbbeCAWwModDdKfWsN1eFiqTEP7ef
+        y3dvlX7bkjzABJpIZgP6qg==
+X-Google-Smtp-Source: ABdhPJxNu1nnwAhVK/0IWOQRUYRUBa7d2NcHd/qwEnyubX3gyHaAdZejLXM3kxeqo9P6SAVOH57WwQ==
+X-Received: by 2002:a05:6808:b26:: with SMTP id t6mr8361584oij.169.1610299130054;
+        Sun, 10 Jan 2021 09:18:50 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g5sm3128772otq.43.2021.01.10.09.19.00
+        by smtp.gmail.com with ESMTPSA id o135sm2827330ooo.38.2021.01.10.09.18.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Jan 2021 09:19:01 -0800 (PST)
-Received: (nullmailer pid 785285 invoked by uid 1000);
+        Sun, 10 Jan 2021 09:18:49 -0800 (PST)
+Received: (nullmailer pid 785277 invoked by uid 1000);
         Sun, 10 Jan 2021 17:18:46 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     marijn.suijten@somainline.org, linux-arm-msm@vger.kernel.org,
-        manivannan.sadhasivam@linaro.org, phone-devel@vger.kernel.org,
-        martin.botka@somainline.org, linux-pm@vger.kernel.org,
-        bjorn.andersson@linaro.org, nks@flawful.org,
-        viresh.kumar@linaro.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
-        konrad.dybcio@somainline.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org
-In-Reply-To: <20210109180359.236098-16-angelogioacchino.delregno@somainline.org>
-References: <20210109180359.236098-1-angelogioacchino.delregno@somainline.org> <20210109180359.236098-16-angelogioacchino.delregno@somainline.org>
-Subject: Re: [PATCH v2 15/15] dt-bindings: cpufreq: qcom-hw: Add bindings for 8998
+To:     =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, Nancy Yuen <yuenn@google.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        linux-kernel@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>,
+        Patrick Venture <venture@google.com>, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org,
+        Benjamin Fair <benjaminfair@google.com>,
+        Avi Fishman <avifishman70@gmail.com>
+In-Reply-To: <20210108224008.705687-1-j.neuschaefer@gmx.net>
+References: <20210108224008.705687-1-j.neuschaefer@gmx.net>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Convert nuvoton,npcm750 binding to YAML
 Date:   Sun, 10 Jan 2021 11:18:46 -0600
-Message-Id: <1610299126.062379.785284.nullmailer@robh.at.kernel.org>
+Message-Id: <1610299126.020227.785276.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 09 Jan 2021 19:03:59 +0100, AngeloGioacchino Del Regno wrote:
-> The OSM programming addition has been done under the
-> qcom,cpufreq-hw-8998 compatible name: specify the requirement
-> of two additional register spaces for this functionality.
-> This implementation, with the same compatible, has been
-> tested on MSM8998 and SDM630.
+On Fri, 08 Jan 2021 23:40:06 +0100, Jonathan Neuschäfer wrote:
+> The general trend is to have devicetree bindings in YAML format, to
+> allow automatic validation of bindings and devicetrees.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> Convert the NPCM SoC family's binding to YAML before it accumulates more
+> entries.
+> 
+> The nuvoton,npcm750-evb compatible string is introduced to keep the
+> structure of the binding a little simpler.
+> 
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
 > ---
->  .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 44 ++++++++++++++++---
->  1 file changed, 39 insertions(+), 5 deletions(-)
+> 
+> If someone else wants to be listed as the maintainer, please let me
+> know.
+> ---
+>  .../devicetree/bindings/arm/npcm/npcm.txt     |  6 -----
+>  .../devicetree/bindings/arm/npcm/npcm.yaml    | 23 +++++++++++++++++++
+>  2 files changed, 23 insertions(+), 6 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/npcm/npcm.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/npcm/npcm.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml:73:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+./Documentation/devicetree/bindings/arm/npcm/npcm.yaml:20:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dt.yaml: cpufreq@17d43000: reg: [[399781888, 5120], [399792128, 5120]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+./Documentation/devicetree/bindings/arm/npcm/npcm.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/arm/npcm/npcm.yaml#
 
-See https://patchwork.ozlabs.org/patch/1424138
+See https://patchwork.ozlabs.org/patch/1423975
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
