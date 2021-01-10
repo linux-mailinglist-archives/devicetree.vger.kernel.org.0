@@ -2,86 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2D0B2F0462
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 00:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DCDE2F0491
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 01:28:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726262AbhAIXSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Jan 2021 18:18:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48934 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726267AbhAIXSp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Jan 2021 18:18:45 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 47D342399A;
-        Sat,  9 Jan 2021 23:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610234284;
-        bh=ZFBoTC2mgipz/tgDN/qvYeH+VFW/sGoZi+34KvlR5+k=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=I0KT9ebP3JYEkZCpjp8Yn4cMRbh/Feck/qXNCJS+aTmq9tumgUGPUtVvSAqLFKqvD
-         E2ODj/RkFLRTFUetrLComg+T4uVqjtxWfn4z9xXYalgujMJkCsAWkl+NvtnNvQVeVW
-         +v9vBnNirkqWBynaUflKvMnVGPYT7LNA4xspiEH/xJmHgqvoYUGc0hcAh+qMT8+3j/
-         o1H9f0Wc9Z5S8s3+cKA51+IvA+/vqX0fEpK7LJsavQjgz96MXieGlia/z0RdNtrVjy
-         JgJ69hstuGTzFpWOP3RV+Vq2jQeb7CbUixMTF9VMwIgBzuORKsLSMunbrNOrHL/a1k
-         BYA4pZm0yJGhw==
-Received: by mail-ej1-f50.google.com with SMTP id ce23so19488482ejb.8;
-        Sat, 09 Jan 2021 15:18:04 -0800 (PST)
-X-Gm-Message-State: AOAM532brzDgqVI85gU1w7pnm7HG7/Ctipkg7aLgYwA1X1t3sZ9C3xyG
-        Fa+LHAdYOG8ucLUC7TH7s9lk4LdSIfLXUC6CLA==
-X-Google-Smtp-Source: ABdhPJyEdhJ/KO2Xrmr62wf3DDgLFM9nN3Ypr87VG4/eQLxzqqdHSDQinUf89iOl+Vr/SOlXv2uOuoYRofTdbtYL3xI=
-X-Received: by 2002:a17:906:a106:: with SMTP id t6mr6745897ejy.63.1610234282909;
- Sat, 09 Jan 2021 15:18:02 -0800 (PST)
+        id S1726238AbhAJAZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Jan 2021 19:25:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59460 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726132AbhAJAZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Jan 2021 19:25:31 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8502BC061786
+        for <devicetree@vger.kernel.org>; Sat,  9 Jan 2021 16:24:49 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id h205so32206536lfd.5
+        for <devicetree@vger.kernel.org>; Sat, 09 Jan 2021 16:24:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MaNjSrG8taLJEzXd4CfVhlhv+S87fFrkBRWdE4GXbNU=;
+        b=G8CJ6yX91fKSLE4hDDwBLWMD7zoM/coT9SC/zm9kWRyySwDSMvvyHUFNWSMzgok6SO
+         Lxn5dJDH31e0i0pe1U/qnjX/hiAuZbs90ZAqY53pPMVzmMtdgDerq08JTffI9NWSBSZB
+         IfDutdLr9GtspwSxrBNesP1zKWI00tRSii4fBGexW6C4Ohc2o38OTrpecKWH23DWz6i2
+         bowTwVCAvxljAKg9BdqEjSeu2IgVTWok6FxoKbkoB5v6Icvu5MCHgA0lOGkOWlts6Tpe
+         NpwdN2lgiOrjYeo1D8JDG442LUnAaM5m2E4VpvSD8San20rdGlIh90BG+347KxbSHL+X
+         m1iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MaNjSrG8taLJEzXd4CfVhlhv+S87fFrkBRWdE4GXbNU=;
+        b=jJRHH4rEudU1MCWV2wFMlrWJ2SrubfChIE9g0ewgJJqmgsHh6ny3DkSqrUY0CXQRgu
+         Pcy56phsxN6N/szjZ7p6Jhtot+k3BNIC7Uji86+bImA1Nz5XnxkEyUMJPXITh9q6RDTK
+         3llO+PGiPCqY7RLOA33LxUM8nrODUNMQ6z3tOwyNvVSkSiiEXy9UAI7EF6D3K6bX27m8
+         UOwGIz7knKditjWxD4nyGxz/LG6yTyv0Nhtx/Q2HUnJIPYJCbL2+IHqqNgd1BILtlWh5
+         +nLZpouTPgPt8OrpwF5kplj+/v/PG0AxI4M0/t2kQojGKpasQ7/g197DUJVw59MKEP7W
+         zO5w==
+X-Gm-Message-State: AOAM532YUXaXOBaavuqiwaECK5J3YczIx3KMBP78QOBarPP0V/eRNqfw
+        KPuecTc0Jy++MVsjPuws5enBd5xXwD5rtq5d/MlUmQ==
+X-Google-Smtp-Source: ABdhPJzWhUb8OaCqZ+wGW3wghfI4OfSe4HcyYD2SElJtQEE0jHkfmLE53PIQAkoRBbNxCjll818U9BU6+WvJ1RvEg5U=
+X-Received: by 2002:a19:6557:: with SMTP id c23mr4137115lfj.157.1610238288101;
+ Sat, 09 Jan 2021 16:24:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20201027160631.608503-1-fparent@baylibre.com> <20201030191714.GA4171611@bogus>
-In-Reply-To: <20201030191714.GA4171611@bogus>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sun, 10 Jan 2021 07:17:50 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8LwVDxZnSQAdK7mS8MAFZ1y_0EnSzj3UqeCxq-Tc5FuQ@mail.gmail.com>
-Message-ID: <CAAOTY_8LwVDxZnSQAdK7mS8MAFZ1y_0EnSzj3UqeCxq-Tc5FuQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mediatek: mmsys: add mt1867 binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20210109140204.151340-1-angelogioacchino.delregno@somainline.org>
+ <20210109140204.151340-2-angelogioacchino.delregno@somainline.org>
+ <CACRpkdbETKnhgR2-T+s3ChY4v-C5ErdPEp2WcMSZHzJ=O-fHig@mail.gmail.com> <111b918d-2b43-be81-2dbf-e984750b0ef7@somainline.org>
+In-Reply-To: <111b918d-2b43-be81-2dbf-e984750b0ef7@somainline.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 10 Jan 2021 01:24:37 +0100
+Message-ID: <CACRpkdZXgN91jKBDvf=P5_6ObOaacQa2PGL3-jP1gBW__ZyOaA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] pinctrl: Add driver for Awinic AW9523/B I2C GPIO Expander
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, phone-devel@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Matthias:
+On Sun, Jan 10, 2021 at 12:11 AM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@somainline.org> wrote:
+> Il 09/01/21 23:11, Linus Walleij ha scritto:
 
-Rob Herring <robh@kernel.org> =E6=96=BC 2020=E5=B9=B410=E6=9C=8831=E6=97=A5=
- =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=883:17=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Tue, 27 Oct 2020 17:06:29 +0100, Fabien Parent wrote:
-> > Add binding documentation for MT8167 SoC.
-
-Even though the title need to change to 'mt8167', this patch looks
-good to me. How do you think about this patch? One drm patch [1]
-depend on this patch, if you like this patch, could you applied this
-patch first?
-
-[1] https://patchwork.kernel.org/project/linux-mediatek/patch/2020102313313=
-0.194140-6-fparent@baylibre.com/
-
-Regards,
-Chun-Kuang.
-
+> > The major review comment is that it'd be nice if you look into
+> > using regmaps register cache instead of rolling your own,
+> > and also possibly using regmaps locking rather than your own
+> > as a result of that.
 > >
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > ---
-> >  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt          | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
->
-> Acked-by: Rob Herring <robh@kernel.org>
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> Actually, I really tried to use regmap's FLAT register cache and after
+> many, many tries... I had to give up. I just couldn't get it working. :(
+
+This needs to be root-caused. The register cache in regmap is for
+using not for decoration.
+
+What is the problems you are seeing?
+
+If it is fundamentally so that regmap has limitations that is one thing,
+but I want to rule out that we're just not using it wrong or that there
+is a bug in it that we should fix.
+
+Looping in Mark Brown the regmap maintainer.
+
+Yours,
+Linus Walleij
