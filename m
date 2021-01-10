@@ -2,102 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ECF42F074D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 13:47:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A9F72F0765
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 14:24:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726281AbhAJMrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 07:47:17 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55388 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726267AbhAJMrQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Jan 2021 07:47:16 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3606122D75;
-        Sun, 10 Jan 2021 12:46:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610282795;
-        bh=ojFfiqYWu4ZeUxsxB2S5tHsWT12OD2vCODDjdqUYBE4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qBWlKr/8ApkTGYv7N3QIV7dataShT0y/OopKRrMaupSt9P9b36cnmWQNSubeZGyy0
-         72jmHDZUzAICkD/Vd7swlOfu9CYwpsEgtTexow811b2qN4zSVZcXaIRZw2gkOX1JNp
-         iPkpiww7NMa/pu6//Tbeg0bDVMgc32oUVS22h8FeL/SQcpBz/zw6+d3XA8Y6811lPE
-         p+L9WhxVcXaBEv/fq0aj3Jff4GDDEi3Zsp7CgiJrUzGE8D/wPKkLLkkFKG9bgivY6l
-         x5yjsyEM+PAod/85/Jefkhid8nv330H7RoP0OSfyd7yGA3nXLI4LeSz91/gNiqfhJu
-         dZqOUk/C+a1QQ==
-Date:   Sun, 10 Jan 2021 20:46:29 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mq: Add clock parents for mipi dphy
-Message-ID: <20210110124629.GO28365@dragon>
-References: <dd135fa55084d886bd6daf777d76677f232c53c6.1608313793.git.agx@sigxcpu.org>
+        id S1726395AbhAJNX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 08:23:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55316 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726250AbhAJNX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 08:23:28 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11061C061786
+        for <devicetree@vger.kernel.org>; Sun, 10 Jan 2021 05:22:48 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id u25so13217474lfc.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Jan 2021 05:22:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=T+1outtETtZjRjzvwQTdPzowcd6mc+qqf6CEYFLYHa0=;
+        b=Vfb6yh14sCm++aLM0sZeiCRVffPYN3LeJ7OqP1SRRlF/ANcOkeL0KVW/ReAQe2yFdP
+         sZy/X5uDKdZkrAPdH3g+yUsN5qnGnGU5GyNxBECuC3qJlZBkcjC5r4bLJjIVzboVjcv6
+         jTvTXKeLcWf60aZyEMgbbdk8ryIQrTHcT5vkQ3kOhwOBOvCYy6yhrjGKNezhWfoDSWy7
+         /1JAQ8OWDW5kG1tls0yLdqZpKmrB4nMwnGEInamrOmsZs6qnz6xQrzamjr6h1NNKgv67
+         iVRSb/E0+r0XJ9HGPBRgRlsSotixfv0NCvAh5QBj/DiquY4IXiEqLNnbx6R0P5f0dlYb
+         qcLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=T+1outtETtZjRjzvwQTdPzowcd6mc+qqf6CEYFLYHa0=;
+        b=pSY/4/mRR3AMIvZTJ/Cpi9psfA8dvLo+3RUf3+kcqIU2P/CNWeTzHPvTPQ7vPCV65I
+         e2NnJZiiNM2rib10Us/d5CxylSTVt6BCrhc7QQ9bFxW7k9EZjry1YqFqJ4AiXZFB9Uv+
+         pHNrOW05l32WPs/JkonRwMadl9TVvelDuvnVQYzZNXs3JC/ovHKxl0b9NDXyUFOUK04Y
+         tp6Nxl5UcveYktIgvEp50AMqUjj6XcLQS71bkMsD4QJ0KBh85tIJTGuMcMK2T6FPuHSh
+         XsTf2blzSeoqs2Qe4TH++ncNMH90DRr1HmF1QJcsdGegA86MvjPondQEMaEhxYgMo2wA
+         Oksw==
+X-Gm-Message-State: AOAM530ML0QAaTVPQUCNVDZJUDeH5vyfatTqWkkefBYj7SbngEIuBVhb
+        mdcRqiE6plF+6dDzHOnwOTXQjU6v03gcCvY9fUw=
+X-Google-Smtp-Source: ABdhPJyKAYqZVmeTIN7dV171LG0Stq6i0m29Vj/TLk7zNSqUpoVVBkBUEuNoM4/hE1XmNKt2r79jKawhUzVypEDF4hQ=
+X-Received: by 2002:ac2:504e:: with SMTP id a14mr4974490lfm.524.1610284966542;
+ Sun, 10 Jan 2021 05:22:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dd135fa55084d886bd6daf777d76677f232c53c6.1608313793.git.agx@sigxcpu.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Reply-To: afringawa@gmail.com
+Sender: mohammedabdulsalam317@gmail.com
+Received: by 2002:a2e:8786:0:0:0:0:0 with HTTP; Sun, 10 Jan 2021 05:22:46
+ -0800 (PST)
+From:   Afrin Gawa <afringawa6@gmail.com>
+Date:   Sun, 10 Jan 2021 13:22:46 +0000
+X-Google-Sender-Auth: jckIhMGGBoaIBEswNDtvbEZkFHY
+Message-ID: <CAMFrTEX8Z8yyU3x3SO8B_cSKJtmi_n5DArHPS=E_2NpBp=RhPA@mail.gmail.com>
+Subject: Please respond urgently
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 06:50:05PM +0100, Guido Günther wrote:
-> This makes sure the clock tree setup for the dphy is not dependent on
-> other components.
-> 
-> Without this change bringing up the display can fail like
-> 
->   kernel: phy phy-30a00300.dphy.2: Invalid CM/CN/CO values: 165/217/1
->   kernel: phy phy-30a00300.dphy.2: for hs_clk/ref_clk=451656000/593999998 ~ 165/217
-> 
-> if LCDIF doesn't set up that part of the clock tree first. This was
-> noticed when testing the Librem 5 devkit with defconfig. It doesn't
-> happen when modules are built in.
-> 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index a841a023e8e0..ca0847e8f13c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -1016,9 +1016,14 @@ dphy: dphy@30a00300 {
->  				reg = <0x30a00300 0x100>;
->  				clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
->  				clock-names = "phy_ref";
-> -				assigned-clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> -				assigned-clock-parents = <&clk IMX8MQ_VIDEO_PLL1_OUT>;
-> -				assigned-clock-rates = <24000000>;
-> +				assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
-> +						  <&clk IMX8MQ_VIDEO_PLL1_BYPASS>,
-> +						  <&clk IMX8MQ_CLK_DSI_PHY_REF>,
-> +						  <&clk IMX8MQ_VIDEO_PLL1>;
+Greetings,
 
-You do not seem to set parent or rate on IMX8MQ_VIDEO_PLL1.  Why do you
-have it here?
+I know that this mail will come to you as a surprise as we have never
+met before, but need not to worry as I am contacting you independently
+of my investigation and no one is informed of this communication. I
+need your urgent assistance in transferring the sum of $11,300,000.00
+USD immediately to your private account.The money has been here in our
+Bank lying dormant for years now without anybody coming for the claim
+of it.
 
-Shawn
+I want to release the money to you as the relative to our deceased
+customer (the account owner) who died a long with his supposed NEXT OF
+KIN since 16th October 2005. The Banking laws here does not allow such
+money to stay more than 16 years, because the money will be recalled
+to the Bank treasury account as unclaimed fund.
 
-> +				assigned-clock-parents = <&clk IMX8MQ_CLK_25M>,
-> +						  <&clk IMX8MQ_VIDEO_PLL1>,
-> +						  <&clk IMX8MQ_VIDEO_PLL1_OUT>;
-> +				assigned-clock-rates = <0>, <0>, <24000000>;
->  				#phy-cells = <0>;
->  				power-domains = <&pgc_mipi>;
->  				status = "disabled";
-> -- 
-> 2.29.2
-> 
+By indicating your interest I will send you the full details on how
+the business will be executed.
+
+Please respond urgently and delete if you are not interested.
+
+Best Regards,
+Mr. Afrin Gawa
