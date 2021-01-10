@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A42532F05B0
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 07:20:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAA1F2F0600
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 09:38:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726518AbhAJGTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 01:19:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49826 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725267AbhAJGTI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 01:19:08 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C3DC061786;
-        Sat,  9 Jan 2021 22:18:28 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id 15so10455680pgx.7;
-        Sat, 09 Jan 2021 22:18:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=66gZx177cKctl75cI6KyQcdZOqrIj9vdFaNqN2D+LWg=;
-        b=mxJiYnRDU0gJ0TsoGBT0KAB5gqzTGQcb1jauJkqNFBTH8QkW6LKOW2f8VVMyF5bM4x
-         xlhfric7q/hmTyVQHBDQj6ph1XKi0OiHFZsEMM2IheX4v7klqhVMAKh1jpiddkm9wIG4
-         mwqHWGfGY4w+o6Oo0UKRAIRt/eg4O8DBxk5O/z12IVe5HsKJriG6hvc+bB08V21tyxTz
-         mU4UJ6SdhHuws0tRoR9Cbt6Xk08XJJ0k9Xo/YhVgAztJ41MFt6IPfaTrARCw2iyfU0X3
-         7wqqvcYl8HOxPqFxtgikoyZr+MTWVqKYzE0SBu9ZRqzcRuGv645yXeZMSyJM/m2XhXO1
-         /vUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=66gZx177cKctl75cI6KyQcdZOqrIj9vdFaNqN2D+LWg=;
-        b=X+ieQEDLzGcxv7lYjYGrSgB3M2yDqkJ9wXlDCNoWY8oYAwjUo7MTocEAW7bEdOTdNJ
-         WE/tjMt7DdgNV2Mpfd2lYJ3KWFvAz1i7obkkAEBL3tAyzK3OQPRsrm3qW442i3XX4sH6
-         3y5G/kTlh+hZzskd3ojamdCsGBpjTOvGkpJ5eAS6HPectiELvb8lNIn1X/SCYUuPMd7I
-         /hqodEeXc8cDGsh3qfoLLyh1DxzywZVosgha0+4DOAj9mSetJOzUTPJIJSgOtzKX9nYO
-         +cLwo0xsuf4+qbX3JTr3QmTWonukuKdoiF2N/puVFiuy3p69a3KcH8crf9zclICvDgO8
-         uMEg==
-X-Gm-Message-State: AOAM531czXyt3xcl0j+MALM2abYB3MzJ75j+0rgHEyvAk5tsLwydf1o4
-        ulXINdJrpb+DfZh/sjgBjKM=
-X-Google-Smtp-Source: ABdhPJy3jQO476dT1xhNvJI2x+SYhOTQk78YpnA5ZxULs3f7vjAZfL/x+5/iG6QC2CTtIxIGIJQITA==
-X-Received: by 2002:aa7:97bc:0:b029:19e:18c7:76b with SMTP id d28-20020aa797bc0000b029019e18c7076bmr11303253pfq.23.1610259507720;
-        Sat, 09 Jan 2021 22:18:27 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id x125sm15448575pgb.35.2021.01.09.22.18.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Jan 2021 22:18:27 -0800 (PST)
-Date:   Sat, 9 Jan 2021 22:18:24 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     linux-input@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
-        hadess@hadess.net, devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: ts: goodix: Add binding for GT9286 IC
-Message-ID: <X/qcMF5mYblMHpw6@google.com>
-References: <20210109135512.149032-1-angelogioacchino.delregno@somainline.org>
- <20210109135512.149032-3-angelogioacchino.delregno@somainline.org>
+        id S1726228AbhAJIiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 03:38:02 -0500
+Received: from mout.gmx.net ([212.227.15.18]:49369 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725956AbhAJIiC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Jan 2021 03:38:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1610267754;
+        bh=AYGpEcijaxGgdxbHWEgk3QAzVtE4/IoirszuB5L1Bg8=;
+        h=X-UI-Sender-Class:Date:In-Reply-To:References:Subject:Reply-to:To:
+         CC:From;
+        b=NLVbQKG+bN4Ab6kgHvSTJhNmmD6otHEk+C2OaUQv6VmltDkud/gIWgNPb6X7skMRS
+         pInDmCIm76nvQORNgRawWFUAhXKhvgAfHA+nAXqJ3Z0RurXD6FaFDxnMmsJA/8LAqJ
+         g9BxEfkFA6/v2gNNtYh5nFr9SW915NrvFoSrXvwg=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from frank-s9 ([80.208.211.2]) by mail.gmx.com (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N7zFZ-1ju8AT26vT-0155dp; Sun, 10
+ Jan 2021 09:35:54 +0100
+Date:   Sun, 10 Jan 2021 09:35:46 +0100
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20210109190937.42409-1-linux@fw-web.de>
+References: <20210109190937.42409-1-linux@fw-web.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210109135512.149032-3-angelogioacchino.delregno@somainline.org>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] dts64: mt7622: fix slow sd card access
+Reply-to: frank-w@public-files.de
+To:     linux-mediatek@lists.infradead.org,
+        Frank Wunderlich <linux@fw-web.de>
+CC:     devicetree@vger.kernel.org, Ryder Lee <ryder.lee@mediatek.com>,
+        Wenbin.Mei@mediatek.com, sin_wenjiehu <sin_wenjiehu@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jimin Wang <jimin.wang@mediatek.com>
+From:   Frank Wunderlich <frank-w@public-files.de>
+Message-ID: <059279A9-8530-41AB-9997-04B2D22BB11B@public-files.de>
+X-Provags-ID: V03:K1:K7/234lirOc+CxkHbj/O/PQPi9gMldKz2CdoGZCHu/nKXvcwLkl
+ /EyLYvTxEmDgvO1BI9AiWIPmPVPqzAGIBRlPKDJuzrHceT2YUrG+VLm90SsZjp/1AfnA9xG
+ KmSphA73sAc4MuMo+/B9ee8C4o9m8ORoNa2O2xACMfrOjArUtLD4iqPEHpw2B9ADnK2xLYo
+ eDaJtWzGbe6GkGVA0TUiA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:JXg5R0fSKYU=:PhAQb/VURv9Qd6VcAQG3eR
+ X9P+X4bJdTsSJxO7v/0gVGgiJExZVHLaVr0S1CnXkB74WN+qJtbQRs+xcsdZw4Img0pyQ0KEj
+ vGjej3oVjtIaRlRmg/e5imcvsLgvDT5Im/npPJl+XxZ621g4V6sSbgXAQREFMm4SRARwc7IJ0
+ poRRx8zZSCoLBh5NqYwlQzteAXfyGg8aVzmC7/nU29Qj6jnZnaV/hbNngn0sU62f0Esqeqtdn
+ kR5W8WY7G5xHd+C442nfwqLUKoQIL3zNA5q2EK/BDoiNSU2CUOPTStH6dKOpRN/aaSG7f6jHP
+ 7+0oSxIlqIWWUnECVOFlJ6WaMWSizgYu4BvJqaxclioYY0Y9e4/Xn8fQ5LOAE0bLS2+VRAUPX
+ 0o+gSumt1IAlx89VtsIKDcr0xfcZG33w45qUMpq2WNRMIq5F+tuVLU5BVquFZZYVCmHM7sqzM
+ NFs2GLFN/owfekiCpzPWo3/PycY8APa2dVHcz4e16NHkXk0UOZJWWhjBnN5pfDt+x+KrMFCqa
+ eVr8jblw2cxxlhSQj2EkaReHh2/ndM9cAEBNIiU/YMrFA/VCz/Lpt2/HrNRiR2uM3oR5Cia78
+ eBQDooEvnsFJwcBuZqM2MCqO+TC3B5AGZuJWlXF5oE+lJVsaCHeaQpJ+ngRcefK7+9BmHW6Qd
+ GYQxRZu0KtIzo73feLbFjMMN9ezcRjrVuo4h2hZlj4oKf3a+nlAzxbUZpTwJcqGS+sLEicZXi
+ XpJMgnwzB1qsN3m8+ay0t1nP5TG1Az43vs2uSCLJNSeyn2DrX7iXGIWin8Dq8x+gfZnRfRC1y
+ XOACaU3I7TMRW2TFitnJqU0AjAHcl8bpBBigGDCt2iTJbLKDKM9LHt8FbjwyhRyAsF7EgVy1Z
+ PR41u3dEmU9GjmZysfzw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 09, 2021 at 02:55:12PM +0100, AngeloGioacchino Del Regno wrote:
-> Support for this chip was added to the goodix driver: add the
-> DT binding for it.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+I guess issue is caused by incompatible setting in uboot,but have not found=
+ which exactly so i handled it like emmc=2E
 
-Applied, thank you.
+If patch is ready to be applied please add=20
 
--- 
-Dmitry
+Cc: stable@vger=2Ekernel=2Eorg
+
+because all kernel versions are affected (tested at least in 5=2E4 and 5=
+=2E9)=2E If i need to create a v2,i will add it
+
+@sean/ryder/wenbin can you tell me if sd on mt7622/bpi-r64 is maybe capabl=
+e of hs400?
+regards Frank
