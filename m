@@ -2,112 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E23CB2F0966
-	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 20:51:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DD4A2F098E
+	for <lists+devicetree@lfdr.de>; Sun, 10 Jan 2021 20:56:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726447AbhAJTvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 14:51:11 -0500
-Received: from mout.gmx.net ([212.227.15.15]:38233 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726267AbhAJTvL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Jan 2021 14:51:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1610308171;
-        bh=4jedAEiq6gILXUEMM6V3DYxQgpNYeIULCAh8llHg6Hs=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=QY57g+zO4IOGmroPE7IQ2TJM1C0Noi1Ptf5hL2144n0S1BWewkqf1V/+O58LPmRi3
-         eyTqVCZQmdUe0VbQx0Vna9ieLW7L1+O7vV/lKJ7DzufXcaMR5mxXtFjU2nFUT9aCAl
-         E9EY/XebFX+AH6a9NW7k+r43jyFHTe662QJjIN6k=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.57]) by mail.gmx.com (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M7Jza-1ktAPP0glI-007jUs; Sun, 10
- Jan 2021 20:49:31 +0100
-Date:   Sun, 10 Jan 2021 20:49:29 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        devicetree@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Patrick Venture <venture@google.com>, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, Tali Perry <tali.perry1@gmail.com>,
+        id S1726919AbhAJTzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 14:55:52 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:33175 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726841AbhAJTzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 14:55:52 -0500
+Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 81AA422173;
+        Sun, 10 Jan 2021 20:55:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1610308510;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=xxgr1U2SPitktG1AOG/i/NYvIJpQy1DOR0GalCHtc/E=;
+        b=liAJRdhLENn7CI+/y2c9vewRC2wF2QsN1bYf97JPlfNrUH98KZiHaxM1xAa6CR06/NjbQ5
+        aIxaD4uTFC6z3aUEvGSNLn84JfLW5RcLbvR2Ti7UH8qZL+tV+Yquk9+Db/FXqb1MGYvql0
+        p/3evR0nqhVr5pZ0poENWvzYidu57j4=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: Convert nuvoton, npcm750 binding
- to YAML
-Message-ID: <X/taSbQ2emVZpQ1R@latitude>
-References: <20210108224008.705687-1-j.neuschaefer@gmx.net>
- <1610299126.020227.785276.nullmailer@robh.at.kernel.org>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Michael Walle <michael@walle.cc>
+Subject: [PATCH 0/2] arm64: small Kontron K-Box A-230-LS fixes
+Date:   Sun, 10 Jan 2021 20:54:52 +0100
+Message-Id: <20210110195454.27808-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mp887TxO4rsrDQEV"
-Content-Disposition: inline
-In-Reply-To: <1610299126.020227.785276.nullmailer@robh.at.kernel.org>
-X-Provags-ID: V03:K1:3BlkdPGCxzQH3HH+T2AfqriaBKfUsuB41nYoCaxxghKbJZkAoQT
- Yyqy4Ad4xZpXKCmEF6wEdq7rpfYWsR93Gf4QuU8bpaXWh3zt5kZn1Yj3o2okxuZgdti+Kw1
- r+WbmV2UkyCJiQOrm4wxZ/0B4VRc+oDMzk3yjCUxFoSVhpzGV/+ifYG2/wRDXvtP34iKIiD
- x5Bn0aWwX0rNXH8gzajqA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:FwtleX0Z/cE=:KnBP9HuUJ5ybQFYbwalZbu
- SS5QA2006ZIuQZgYMA0kjlCASl6VilSQZxQWNWEKzaOTtMa0zqdpzsEQi0HV+0N1nGAglDDfZ
- +5Ec/k6zG2GSCiKPY5iwxRqNTYLXIDU/pIERgSq9nF7Fv7HSBrTzET9vf1fPOkTWCXWKqcjJb
- jAnXdRU3MABrE8mrz3z3x6acWnMvb5jQkUMxNIU+oMhshXTcJR8n6MaW29JPH1IDjf/p7PTZp
- wz7/wEz5r4XViR/hEm8PBaEUrrDYEqsOtKwArpxSVkPjyS5RypaNamNAyaFfHxImVUc1Gjb7t
- lEA0HM2gwttv7cI76lJ2bMpO9m4iMhk0c0ViX+5PCOAjSbz0sH9qRaJaixl+sRdkBmDPwOJwQ
- p/za4M28nKTcpNdnsx8Nj268PUBSxP9sWuyBOu7Fu79R/wbh5bc3Q2f66ZtDdHQkH8RC6R5o0
- siNhDcRGUKhu6KXs26OalteuJDudpx82Pwq6D6neA8SmInLM4MI78j+stlTNZu6k2LjAIepc8
- KHFwz/BGo0l6t3eTkS47jOWkV0cPkxZlx397ZPsCt8OGkjsqU6owtKyPIHgLdyK3hYknpWyp2
- e4VjbVHjkYv9aEZGJOWqTIqXC+HS2bBQUh9934j3zCk/V4Xo8GuQ/NWDSeD2gNgySubiyEaR+
- 7RnVohQc88lbUPnAIbfSFQcQNs4xrbw0QwqMBq5e5mizuE1MmNlutwNT97B65n67MhdkbF1UZ
- 8L77GKBHMbzRGU5plkHMDzU1yYwrrSdDNMFA2yETxiYDBGlqhgduB9f7I0t9ZAbiC4qi0rrHE
- JFyYH0CFl85Su88eoDqxcSOj636MawlXPtGb/NW+cqgWQk/w8CnS/dZHjvgRFmS5SIADtZdLz
- IJiIn2aRI29hDUa25DAg==
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This will enable the driver for the PHY found on this board as well as
+add SATA support.
 
---mp887TxO4rsrDQEV
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Michael Walle (2):
+  arm64: defconfig: Enable Broadcom BCM54140 PHY
+  arm64: dts: freescale: sl28: enable SATA support
 
-On Sun, Jan 10, 2021 at 11:18:46AM -0600, Rob Herring wrote:
-[...]
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/arm/npcm/npcm.yaml:20:13: [warning] w=
-rong indentation: expected 14 but found 12 (indentation)
->=20
-> dtschema/dtc warnings/errors:
-> ./Documentation/devicetree/bindings/arm/npcm/npcm.yaml: $id: relative pat=
-h/filename doesn't match actual path or filename
-> 	expected: http://devicetree.org/schemas/arm/npcm/npcm.yaml#
+ .../boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts  | 4 ++++
+ arch/arm64/configs/defconfig                                  | 1 +
+ 2 files changed, 5 insertions(+)
 
-Sorry for missing those. I'll fix them in version 2.
+-- 
+2.20.1
 
-
-Best regards,
-Jonathan Neusch=C3=A4fer
-
---mp887TxO4rsrDQEV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl/7WkAACgkQCDBEmo7z
-X9sd4xAAuq5sPwkoYc3oIsalhvbmdmotFlhUcI6LokfTRpIsYBqMNxHGwpHC6cOB
-piN/lWL0fddGIfhDX8xd6D4JM00fU7j2BVfiSNAMsFY/DwzzamA6tsYwbaJGP7AN
-DQXt3XbA+G6jYurEu71zyoXvqlWyvoJ208RzSqS8VfC2Ijwhx9+F/h5cNUSsEp3d
-JoU3FHOieOaHmoxteyIgXRVSbiKEPOPNDi0XRP323SMp5yCKx0WwulfTcBu9Qp+t
-6AKXhovI9KUgSyScUKmtFaEcYXOShzNY2Xz/bIKz68DRPUbqzumHWganiTIVo1rT
-7W0kwz5kktSIHwJNKOzUoid7+g3jX+ZyrRBQOCY582NIBHrOsX2WbLTephN9PRsW
-lrO66TD/Ky+ynLhBwtWrwxnSHwV6y1ACbrHBeSNrUxF8leFwjs3J9vnIlcC4xY1G
-5htvxsWvZV1HVmdiwtSUDduihGqatd0jACQugaQyJsGasrfeA9/Fgp2nRUiRteM9
-uRP7K2pQuWekkLAwnToGOFl8mIAhV4KqkbxPighlRjf07jxRvmMq2a6fh9foO2km
-X6+0Z3WHte8tWJavcMVMzDAgeKMNkdUdrKmzlMH7Dez4Rrnh0Jxh/ET6gz07eF7K
-QXlMZm1b1TeOUtASl6SYBN58swg3wh7vWIj/Nv7Gn5jnDddVg3g=
-=1Get
------END PGP SIGNATURE-----
-
---mp887TxO4rsrDQEV--
