@@ -2,115 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 589C12F222B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 22:51:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F0822F2259
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 23:01:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728923AbhAKVup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 16:50:45 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:37508 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727380AbhAKVuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 16:50:44 -0500
-Received: by mail-ot1-f43.google.com with SMTP id o11so350980ote.4;
-        Mon, 11 Jan 2021 13:50:29 -0800 (PST)
+        id S1726499AbhAKWAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 17:00:04 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:41898 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727484AbhAKWAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 17:00:03 -0500
+Received: by mail-oi1-f178.google.com with SMTP id 15so193732oix.8;
+        Mon, 11 Jan 2021 13:59:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qZB7YFnYmK5pmVyjaf+FA297zYveGF4/mkcj6q7QOss=;
-        b=KzzdNZ6Atd3vBpENJVNI0RJlHFY4HrjV+UMAXXdX00Rah+o4Fl1mJCK/L9LhydwEGD
-         UBkdr1YSw5din4zzw9jg3kI+rDjFEZMR1eV/eKMCa9J+bT7fdxH3G1IyqP4ZZH91OjG0
-         BHQOsgyKaJpl4/BV9D8HDdFc6C6tflQUSNhEzlXKsm0kvIdG/0IdXWk4cQAPmkUbQt8L
-         eAtQ1FV5acmEQGkjaebMlD01hygS9bIlXx0pTbPipZ2k1aJ4irsHg25X0Drp2Rjyr9xJ
-         zlvb8VaqbZH77Au1hgxblZnIYAn8POm9FuNekOSEZV58gqGoP6zDGTk8vj32l8mCR2ZF
-         JXXg==
-X-Gm-Message-State: AOAM53088rib++/Yfr0VEHejVfTiIWtEYfyhsXKZo1UIk/udhHTNwNhs
-        Kv4w46R3+5BYL3ew65PalQ==
-X-Google-Smtp-Source: ABdhPJx4sESqsRtj0tIKhFssBKghbCoKpOR5OcYFGX1jMiDvJvhAgfB0xNG4OTZoj71kNHt+15hP5w==
-X-Received: by 2002:a05:6830:1343:: with SMTP id r3mr753075otq.344.1610401803679;
-        Mon, 11 Jan 2021 13:50:03 -0800 (PST)
+        bh=neicyE0bmSE7XtEGiUy5qH5sWNhjeDoJxOGTdmqaB5g=;
+        b=A5rlfS88l+t/TslAWGH2LClpkIp4Z/7FlsZSUZhqTrG7SZqVLSg4r3XmpX+mLJ4cTx
+         BKPkZQWkQ114jd3o0QRoRG4WsZfGu9/7wSrlmlu1v77+uIMieUjlpqOorDmmanryzTm0
+         JYTvZalnmlpvEalJeSYIggPBHajn14ebtg5WRH1+8FGLoD0tuL5R2AzhC/YMnVo/Feqn
+         /5g9aesn6fB8ABFdJN4RTiTrBaYWqBriD8WDn1wkV4DDR8xVvx4Vti3zlylS4P9hQlHt
+         j35Qv9IwKJBxXJNp+XHmgEdJ9QqAopSptBWB+YKhg5hpEonYLQRq8pJY8/GscybINhlt
+         Dxug==
+X-Gm-Message-State: AOAM533MpUZm9PSg7oLbY3wfj8TcvdkdMCFQF/PkQ+uYSp9DUlbAWZXs
+        nJviF+NYopbkHFVM1qHx1Q==
+X-Google-Smtp-Source: ABdhPJzevo/CCNCRYdP94NcRED0kgTA26btwhv9nQvKZQhV5gp1VX1y6C2fHL6jbfju5LVVZpCFwjw==
+X-Received: by 2002:aca:b656:: with SMTP id g83mr559390oif.6.1610402362661;
+        Mon, 11 Jan 2021 13:59:22 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f18sm214594otf.55.2021.01.11.13.50.02
+        by smtp.gmail.com with ESMTPSA id 73sm227750otv.26.2021.01.11.13.59.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 13:50:02 -0800 (PST)
-Received: (nullmailer pid 3120427 invoked by uid 1000);
-        Mon, 11 Jan 2021 21:50:01 -0000
-Date:   Mon, 11 Jan 2021 15:50:01 -0600
+        Mon, 11 Jan 2021 13:59:21 -0800 (PST)
+Received: (nullmailer pid 3132674 invoked by uid 1000);
+        Mon, 11 Jan 2021 21:59:20 -0000
+Date:   Mon, 11 Jan 2021 15:59:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic
- nodes
-Message-ID: <20210111215001.GA3111856@robh.at.kernel.org>
-References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
- <20201230205139.1812366-2-timon.baetz@protonmail.com>
+To:     Bert Vermeulen <bert@biot.com>
+Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Sander Vanheule <sander@svanheule.net>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        John Crispin <john@phrozen.org>
+Subject: Re: [PATCH v3 1/4] Add support for Realtek RTL838x/RTL839x switch
+ SoCs
+Message-ID: <20210111215920.GA3121911@robh.at.kernel.org>
+References: <20201230212205.2605383-1-bert@biot.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201230205139.1812366-2-timon.baetz@protonmail.com>
+In-Reply-To: <20201230212205.2605383-1-bert@biot.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 30, 2020 at 08:52:07PM +0000, Timon Baetz wrote:
-> Add maxim,max8997-battery and maxim,max8997-muic optional nodes.
+On Wed, Dec 30, 2020 at 10:22:02PM +0100, Bert Vermeulen wrote:
+> The RTL838x/839x family of SoCs are Realtek switches with an embedded
+> MIPS core.
 > 
-> Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> * RTL838x - 500MHz 4kce single core - 1Gbit ports and L2 features
+> * RTL839x - 700MHz 34Kc single core - 1Gbit ports and L2 features
+> 
+> These switches, depending on the exact part number, will have anywhere
+> between 8 and 50 ports. The MIPS core is wired to a switch cpu port which
+> has a tagging feature allowing us to make use of the DSA subsystem.
+> The SoCs are somewhat basic in certain areas, getting better with more
+> advanced features on newer series.
+> 
+> The switch functionality is MMIO-mapped via a large MFD region.
+> 
+> The SoCs have the following peripherals
+> * ethernet
+> * switch
+> * uart - ns16550a
+> * spi-flash interface
+> * gpio
+> * wdt
+> * led
+> 
+> The code was derived from various vendor SDKs based on Linux v2.6
+> kernels.
+> 
+> This patchset allows us to boot RTL838x/RTL839x units with basic support.
+> Most of the other drivers are already written and functional, and work to
+> get them upstream is already in progress.
+> 
+> Signed-off-by: Birger Koblitz <mail@birger-koblitz.de>
+> Signed-off-by: Bert Vermeulen <bert@biot.com>
+> Signed-off-by: John Crispin <john@phrozen.org>
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
 > ---
-> v6: No change.
-> v5: No change.
-> v4: Make extcon and charger-supply optional.
-> v3: Reorder patch, no change.
-> v2: Add patch.
-> 
->  .../bindings/regulator/max8997-regulator.txt         | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  .../devicetree/bindings/mips/realtek-rtl.yaml | 24 ++++++
 
-This exceeds my threshold of changes for please convert this to schema 
-first. However, I agree with what Mark has said already, so maybe some 
-of this isn't needed.
+Generally, this should be a separate patch.
 
+>  arch/mips/boot/dts/Makefile                   |  1 +
+>  arch/mips/boot/dts/realtek/rtl838x.dtsi       | 21 +++++
+>  arch/mips/boot/dts/realtek/rtl839x.dtsi       | 21 +++++
+>  arch/mips/boot/dts/realtek/rtl83xx.dtsi       | 83 +++++++++++++++++++
+>  5 files changed, 150 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mips/realtek-rtl.yaml
+>  create mode 100644 arch/mips/boot/dts/realtek/rtl838x.dtsi
+>  create mode 100644 arch/mips/boot/dts/realtek/rtl839x.dtsi
+>  create mode 100644 arch/mips/boot/dts/realtek/rtl83xx.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/max8997-regulator.txt b/Documentation/devicetree/bindings/regulator/max8997-regulator.txt
-> index 6fe825b8ac1b..faaf2bbf0272 100644
-> --- a/Documentation/devicetree/bindings/regulator/max8997-regulator.txt
-> +++ b/Documentation/devicetree/bindings/regulator/max8997-regulator.txt
-> @@ -53,6 +53,18 @@ Additional properties required if either of the optional properties are used:
->  - max8997,pmic-buck125-dvs-gpios: GPIO specifiers for three host gpio's used
->    for dvs. The format of the gpio specifier depends in the gpio controller.
+> diff --git a/Documentation/devicetree/bindings/mips/realtek-rtl.yaml b/Documentation/devicetree/bindings/mips/realtek-rtl.yaml
+> new file mode 100644
+> index 000000000000..aadff8ce0f49
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/realtek-rtl.yaml
+> @@ -0,0 +1,24 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mips/realtek-rtl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek RTL83xx/93xx SoC series device tree bindings
+> +
+> +maintainers:
+> +  - Bert Vermeulen <bert@biot.com>
+> +  - Sander Vanheule <sander@svanheule.net>
+> +
+> +properties:
+> +  $nodename:
+> +    const: "/"
+> +  compatible:
+> +    oneOf:
+> +      # RTL8382-based boards
+> +      - items:
+> +          - enum:
+> +              - cisco,sg220-26
+> +          - const: realtek,rtl8382-soc
+> +
+> +additionalProperties: true
+> diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
+> index 0259238d7a2e..60bd7d2a9ad8 100644
+> --- a/arch/mips/boot/dts/Makefile
+> +++ b/arch/mips/boot/dts/Makefile
+> @@ -14,6 +14,7 @@ subdir-$(CONFIG_FIT_IMAGE_FDT_NI169445)	+= ni
+>  subdir-$(CONFIG_MACH_PIC32)		+= pic32
+>  subdir-$(CONFIG_ATH79)			+= qca
+>  subdir-$(CONFIG_RALINK)			+= ralink
+> +subdir-$(CONFIG_MACH_REALTEK_RTL)	+= realtek
+>  subdir-$(CONFIG_FIT_IMAGE_FDT_XILFPGA)	+= xilfpga
 >  
-> +Optional nodes:
-> +- charger: Node for configuring the charger driver.
-> +  Required properties:
-> +  - compatible: "maxim,max8997-battery"
-> +  Optional properties:
-> +  - extcon: extcon specifier for charging events
-
-Don't use 'extcon' for new bindings. Define a connector node. USB I 
-suppose?
-
-> +  - charger-supply: regulator node for charging current
+>  obj-$(CONFIG_BUILTIN_DTB)	:= $(addsuffix /, $(subdir-y))
+> diff --git a/arch/mips/boot/dts/realtek/rtl838x.dtsi b/arch/mips/boot/dts/realtek/rtl838x.dtsi
+> new file mode 100644
+> index 000000000000..6cc4ff5c0d19
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/realtek/rtl838x.dtsi
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
 > +
-> +- muic: Node used only by extcon consumers.
-> +  Required properties:
-> +  - compatible: "maxim,max8997-muic"
+> +/ {
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 > +
->  Regulators: The regulators of max8997 that have to be instantiated should be
->  included in a sub-node named 'regulators'. Regulator nodes included in this
->  sub-node should be of the format as listed below.
+> +		cpu@0 {
+> +			compatible = "mips,mips4KEc";
+> +			reg = <0>;
+> +			clocks = <&baseclk 0>;
+> +			clock-names = "cpu";
+> +		};
+> +	};
+> +
+> +	baseclk: baseclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <500000000>;
+> +	};
+> +};
+> diff --git a/arch/mips/boot/dts/realtek/rtl839x.dtsi b/arch/mips/boot/dts/realtek/rtl839x.dtsi
+> new file mode 100644
+> index 000000000000..2b5bad8fcf2f
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/realtek/rtl839x.dtsi
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +
+> +/ {
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu@0 {
+> +			compatible = "mips,mips34Kc";
+> +			reg = <0>;
+> +			clocks = <&baseclk 0>;
+> +			clock-names = "cpu";
+> +		};
+> +	};
+> +
+> +	baseclk: baseclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <500000000>;
+> +	};
+> +};
+> diff --git a/arch/mips/boot/dts/realtek/rtl83xx.dtsi b/arch/mips/boot/dts/realtek/rtl83xx.dtsi
+> new file mode 100644
+> index 000000000000..17fa90002e00
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/realtek/rtl83xx.dtsi
+> @@ -0,0 +1,83 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +
+> +/ {
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +	};
+> +
+> +	cpuintc: cpuintc {
+> +		compatible = "mti,cpu-interrupt-controller";
+> +		#address-cells = <0>;
+> +		#interrupt-cells = <1>;
+> +		interrupt-controller;
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x0 0xb8000000 0x10000>;
+> +
+> +		spi: spi@1200 {
+> +			compatible = "realtek,rtl-spi";
+
+Not documented. Needs to have an SoC specific compatible.
+
+> +			reg = <0x1200 0x100>;
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		uart0: uart@2000 {
+
+serial@2000
+
+Build the dtb with W=1 and run 'make dtbs_check' and fix any warnings. 
+The above issue should show up.
+
+> +			compatible = "ns16550a";
+
+No quirks for this? Best to have a more specific compatible in case you 
+do.
+
+> +			reg = <0x2000 0x100>;
+> +
+> +			clock-frequency = <200000000>;
+> +
+> +			interrupt-parent = <&intc>;
+> +			interrupts = <31>;
+> +
+> +			reg-io-width = <1>;
+> +			reg-shift = <2>;
+> +			fifo-size = <1>;
+> +			no-loopback-test;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		uart1: uart@2100 {
+> +			compatible = "ns16550a";
+> +			reg = <0x2100 0x100>;
+> +
+> +			clock-frequency = <200000000>;
+> +
+> +			interrupt-parent = <&intc>;
+> +			interrupts = <30>;
+> +
+> +			reg-io-width = <1>;
+> +			reg-shift = <2>;
+> +			fifo-size = <1>;
+> +			no-loopback-test;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		intc: interrupt-controller@3000 {
+> +			compatible = "realtek,rtl-intc";
+
+Not documented.
+
+> +			#interrupt-cells = <1>;
+> +			interrupt-controller;
+> +			reg = <0x3000 0x20>;
+> +		};
+> +	};
+> +
+> +	switch_bus: switch-bus@bb000000 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x0 0xbb000000 0x10000>;
+> +	};
+> +};
 > -- 
 > 2.25.1
-> 
 > 
