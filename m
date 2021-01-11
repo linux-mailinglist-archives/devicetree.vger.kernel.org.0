@@ -2,143 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7465A2F201D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 20:55:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDBAD2F206A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 21:10:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388832AbhAKTzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 14:55:38 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:45517 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731772AbhAKTzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 14:55:38 -0500
-Received: by mail-oi1-f180.google.com with SMTP id f132so557199oib.12;
-        Mon, 11 Jan 2021 11:55:22 -0800 (PST)
+        id S2390137AbhAKUKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 15:10:16 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:41572 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404070AbhAKUJE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 15:09:04 -0500
+Received: by mail-oi1-f179.google.com with SMTP id 15so624152oix.8
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 12:08:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qR6xjSYWtd3EsSkIf1CxDTXBXyGhzlf0FC2Q2cekedo=;
-        b=aaOtU8vR7uhhCqXb0+UuiOExZhg2pFp+n4FWB4Xeh5Gnhk9tcAq9rJrNk8BnYZXHvr
-         PtP/iApoOPtmOgKE6TLT/DnDx9L3zgdOoUKkDXp4WQrlkTgZ7qjgpbqF9GCSqCtTW4U/
-         V5o3WoGBflt+BEtMueS95UCY/W9Zfid7zpkPKGKeHl6e5ACl8ohmfWnRXC0GXWLTzE5Z
-         b4iY5l7cGJR1hpTLfuy5v055qvOiC5fHnsFyocFE822PoJd3VGSCzFdZEH68z3PqMkab
-         7oRYbhSBKqDLw3StpwNq9P8EgkrXyld2wkvuJ3cUuMJsBqO88U7qC9c6HOvYDjYVvDM6
-         tSXg==
-X-Gm-Message-State: AOAM5326/Fz62kTdq6u3YKNrlEdMoEr1DHuz1+T00OyYRm9ZLIEhph0J
-        jKHE7dtdg7EmrSaEFcz/yg==
-X-Google-Smtp-Source: ABdhPJy5+Ux5GltdZmyc2cZ8Eg2KSJPAtUt4Xud4Xxz2Nabf8ZEF3ce6lP7EfCpR7KPdjP8SrYJm/g==
-X-Received: by 2002:aca:ef46:: with SMTP id n67mr274586oih.103.1610394896874;
-        Mon, 11 Jan 2021 11:54:56 -0800 (PST)
+        bh=NQOSC8PaC1kKsvf/PmL9aKJMx+ll+VvCy4f+MBuP6YU=;
+        b=tdT4u4Zg/2LpPlwu7lIaWxTKA9CrhEABukH+blPKk9UYs/acd68UG7XWIYzIDaSSZa
+         /oG84bv11dwfzacjjIGPqAXQVF+Bf9PVRKeOx1i2OYc6O6jrvRZ/l5CpLNdZ0xMms0fe
+         WBq9v73W67bnSd4BdgsWpVX+aBGVBeRtUa1NUl4LyAVQr57wW3R+EehD1/OXtQhye7c/
+         RB7NWPlRE3y0UVPBRZ/RT2G/yflvZTyxLkgqtUhzlQM4LlDmE+vp3jtOioBc5l1xVCaX
+         U3c0uinSMbVi+hAKGMNusaGXBqfznYbobOTJnIadK3fj2s7Oa7nHFiRX9bcCe8OsRQ3f
+         t15Q==
+X-Gm-Message-State: AOAM530Zk0ABMOGbBbqysNu/0gnOhRVzcINm+ophLMlztQ7oEMcq0KuM
+        OZtsR5TeuYA4ggoDPtRtlg==
+X-Google-Smtp-Source: ABdhPJwtEp1qleZAeMJpwHW6TlxIvCt4o9ThpnLaiv1LRJBVFVtVSWE0gkro2j9lbgQI1dou0vVvcQ==
+X-Received: by 2002:aca:fd0d:: with SMTP id b13mr314332oii.27.1610395703905;
+        Mon, 11 Jan 2021 12:08:23 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o21sm163507otj.1.2021.01.11.11.54.55
+        by smtp.gmail.com with ESMTPSA id t19sm172347otp.36.2021.01.11.12.08.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 11:54:55 -0800 (PST)
-Received: (nullmailer pid 2966688 invoked by uid 1000);
-        Mon, 11 Jan 2021 19:54:54 -0000
-Date:   Mon, 11 Jan 2021 13:54:54 -0600
+        Mon, 11 Jan 2021 12:08:23 -0800 (PST)
+Received: (nullmailer pid 2985245 invoked by uid 1000);
+        Mon, 11 Jan 2021 20:08:21 -0000
+Date:   Mon, 11 Jan 2021 14:08:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jic23@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: iio: dac: AD5766 yaml documentation
-Message-ID: <20210111195454.GA2960719@robh.at.kernel.org>
-References: <20210108183739.27634-1-cristian.pop@analog.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-i3c@lists.infradead.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Conor Culhane <conor.culhane@silvaco.com>,
+        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>,
+        Nicolas Pitre <nico@fluxnic.net>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: i3c: Describe Silvaco master binding
+Message-ID: <20210111200821.GA2978830@robh.at.kernel.org>
+References: <20201228161107.11804-1-miquel.raynal@bootlin.com>
+ <20201228161107.11804-3-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210108183739.27634-1-cristian.pop@analog.com>
+In-Reply-To: <20201228161107.11804-3-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 08, 2021 at 08:37:37PM +0200, Cristian Pop wrote:
-> This adds device tree bindings for the AD5766 DAC.
+On Mon, Dec 28, 2020 at 05:11:05PM +0100, Miquel Raynal wrote:
+> Silvaco provide a dual-role I3C master.
 > 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+> Description is rather simple: it needs a register mapping, three
+> clocks and an interrupt.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
-> Changelog v5:                                                              
->         -rename to property to "output-range-voltage"
->  .../bindings/iio/dac/adi,ad5766.yaml          | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
+>  .../bindings/i3c/silvaco,i3c-master.yaml      | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
+> diff --git a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
 > new file mode 100644
-> index 000000000000..1deace7c48b2
+> index 000000000000..509de48455b0
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2020 Analog Devices Inc.
+> +++ b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/iio/dac/adi,ad5766.yaml#
+> +$id: http://devicetree.org/schemas/i3c/silvaco,i3c-master.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Analog Devices AD5766 DAC device driver
+> +title: Silvaco I3C master
 > +
 > +maintainers:
-> +  - Cristian Pop <cristian.pop@analog.com>
-> +
-> +description: |
-> +  Bindings for the Analog Devices AD5766 current DAC device. Datasheet can be
-> +  found here:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad5766-5767.pdf
+> +  - Conor Culhane <conor.culhane@silvaco.com>
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - adi,ad5766
-> +      - adi,ad5767
-> +
-> +  output-range-volts:
+> +    const: silvaco,i3c-master
 
-Use a unit defined in property-units.txt (-microvolt).
+Kind of generic. Only 1 version?
 
-> +    description: Select converter output range.
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  spi-max-frequency:
-> +    maximum: 1000000
-> +
-> +  spi-cpol: true
-> +
-> +  reset-gpios:
-> +    description: GPIO spec for the RESET pin. If specified, it will be asserted
-> +      during driver probe. As the line is active low, it should be marked
-> +      GPIO_ACTIVE_LOW.
-
-'asserted during driver probe' is a Linux implementation detail not 
-relevant to the binding.
-
+> +  interrupts:
 > +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: pclk, the system clock
+> +      - description: fast_clk, for the bus
+> +      - description: slow_clk, for other events
+
+The names of the clocks go...
+
+> +
+> +  clock-names:
+> +    minItems: 3
+> +    maxItems: 3
+
+here.
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+
+This 2 should be defined by a bus binding. Care to convert i3c.txt?
+
 > +
 > +required:
 > +  - compatible
-> +  - output-range-volts
 > +  - reg
-> +  - spi-max-frequency
-> +  - spi-cpol
+> +  - interrupts
+> +  - clock-names
+> +  - clocks
+> +  - "#address-cells"
+> +  - "#size-cells"
 > +
 > +additionalProperties: false
+
+No, don't you need child nodes?
+
 > +
 > +examples:
 > +  - |
-> +    spi {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          
-> +          ad5766@0 {
-> +              compatible = "adi,ad5766";
-> +              output-range-volts = <(-5) 5>;
-> +              reg = <0>;
-> +              spi-cpol;
-> +              spi-max-frequency = <1000000>;
-> +              reset-gpios = <&gpio 22 0>;
-> +            };
-> +      };
+> +    i3c-master@a0000000 {
+> +        compatible = "silvaco,i3c-master";
+> +        clocks = <&zynqmp_clk 71>, <&fclk>, <&sclk>;
+> +        clock-names = "pclk", "fast_clk", "slow_clk";
+> +        interrupt-parent = <&gic>;
+> +        interrupts = <0 89 4>;
+> +        reg = <0xa0000000 0x1000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +    };
 > -- 
-> 2.17.1
+> 2.20.1
 > 
