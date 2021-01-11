@@ -2,90 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C308C2F0A5F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 00:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AFD62F0A88
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 01:03:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727112AbhAJXZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 18:25:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41944 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727055AbhAJXZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Jan 2021 18:25:05 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 613CEC0617A2;
-        Sun, 10 Jan 2021 15:24:25 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id y23so13435133wmi.1;
-        Sun, 10 Jan 2021 15:24:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=JIOSC/i/0EBgHvOloOEK1Z2ZW040Bk9xwSmCAqjjzc0=;
-        b=pN4l2zjiHx3I1otNZR1Cx4RRRm2yHPeAALH831CLMhdm9eU3PstpdxxnCknwGVWoY9
-         N6XHEi6idUHipPcSckBztAV9WZhyUOmxvTOJo9er/wI8pJJKIx63cukxWQ8pbkUtQIz/
-         PuMWR190c4u1WHehgsXY2XaSbMeHXpy2QLDCem0tlCYcxQeNnYHTQXUEbcgfbB3nvr5h
-         vlpynfnLaMItEp8ZmS010sK9GbsExXXC0JSisu1qsKxnJ8AC+pt+BTsbh6ViET95hDYR
-         uKi7T6DqTzfD5XcBoLioPxIy1dahQjt83jUiDM1kpaSTTOs8ctUij6/pk9wXx2aJs7zL
-         jIOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JIOSC/i/0EBgHvOloOEK1Z2ZW040Bk9xwSmCAqjjzc0=;
-        b=W9Eka0zqvNMNhYDuYhNQ2uMGJNM8w7ngV1My6lcxnj5bBnp6V2EBBlqsyXkxFa9+jj
-         X5e6TOtbBTy6tlYiNdp0ugtrHOmHPmou784T8vqbwED9Kspu3Qvj6vyw3VlAqRDkWbc3
-         guHTfFP6wgV0Gtjn52JfAfXiA+CIdd4sx7XJu7lEo5Rqy4mrmippdSbsLvloN0HXzWw1
-         jIJYZSrCfdpHTQ9uJDCmL3Zzo0cElk4XWHgYVELHvkYgGLnJJrILCMnr+mUp/hTcld8G
-         k112TEcYOHkdSsi5vgUTaOaIT4fmVF282QpV3XpwXif66F4xCsg4v6mburXayJs6y+0v
-         MAgA==
-X-Gm-Message-State: AOAM531K8xq+m0im9G+hNSsUvTzB5VlxqidtyuYGowIKX2ZI3a9V5k7V
-        w/rs0SBVZZFpkTNmR5bkT2g=
-X-Google-Smtp-Source: ABdhPJzSj9MOscC45PoOFZmRkWyoG2JuVCAe0IIV7jATCH5mJuZZeJ3L43kaJ3o52+TySl14yjEtpQ==
-X-Received: by 2002:a05:600c:208:: with SMTP id 8mr12457537wmi.146.1610321063691;
-        Sun, 10 Jan 2021 15:24:23 -0800 (PST)
-Received: from adgra-XPS-15-9570.home (2a01cb0008bd270029536a450755141e.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:2953:6a45:755:141e])
-        by smtp.gmail.com with ESMTPSA id a12sm23426104wrh.71.2021.01.10.15.24.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Jan 2021 15:24:23 -0800 (PST)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH 3/3] arm64: defconfig: Enable PF8x00 as builtin
-Date:   Mon, 11 Jan 2021 00:24:07 +0100
-Message-Id: <20210110232407.1666059-4-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210110232407.1666059-1-adrien.grassein@gmail.com>
-References: <20210110232407.1666059-1-adrien.grassein@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+        id S1726049AbhAKAD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 19:03:27 -0500
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:36779 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725936AbhAKAD0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Jan 2021 19:03:26 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 3A5AB5C0066;
+        Sun, 10 Jan 2021 19:02:39 -0500 (EST)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Sun, 10 Jan 2021 19:02:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=YHDGpMsoVWO7Mu0PPN8KuDaFtz6Yykc
+        CQ780RW5/qxw=; b=ZaAILfvy5ecridk++cJ0nJ4K/Oni0M8gbBt8H5IDOnlfeNj
+        Mo8nq31+IJ6ROeQTNBMDqquGNuY+ixPvPF/EfCRvnYbi+StHMb5u4owS1IbLcwaJ
+        fGuGk6UTarTg8YOaqBC7OK8njZueBAATPZn/Gyy/IkKAKR6i1BztxNwh4uaR0kVm
+        3k+cccwP4SAMBs/Y8qD11DGqN7BN7OJVic/ai9BRuSvucrBpykivqaZOFos9k7pK
+        zX2TylMK/eIBVoJ34tdtJMQiUgeyMXIMTuXUX6mZs5bV1y1r699ghSY3Xqw8VaqL
+        vOFflD7nbINSIZWHwpJZotyTrA3elFBJrzie/XA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=YHDGpM
+        soVWO7Mu0PPN8KuDaFtz6YykcCQ780RW5/qxw=; b=pF4fPa/UWkHXKr5pNhdG9q
+        vBaanS0z8zTNwimmVCAM2By+ADYxx9v48FWNh7Fr/Rtgbug5jGsRqdaiRUWH7/jB
+        6I52/g8iDiUMS1yihvqSerhNlGvHsYF4+exRfoAAr7d09yjJ6WlDaFBEZ7Y0XSS6
+        xflDyUncnOYvA2k20kdwUKXVKPKO5+11/cNiRTI+59gTAfYM96auf0uLGmplIQxH
+        eTXKvAOMrB1bn1Xdn6Tg/DcHjiZughf2N5wi5bKhv0OogEjnboCcOSpyyZxYcOBn
+        55vSjGv+SzYB4a+48+TSXdPuZKRmcAqFGZkx1piqJGMpHhwp6VsUQ45bYfDREAmQ
+        ==
+X-ME-Sender: <xms:nJX7X0-vTH81zuNKvqIMJPtxcq9IN0WMIHhgscQ3qY7G-WaKCAzv1w>
+    <xme:nJX7X8u68X-9gWWX2O_IguwwioHT99hLFYB0D1zxpIJBU3qXRR7pRfTl4IvBPreiv
+    TY_f-eVW-AEjLdqgQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdehtddgudegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
+    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:nZX7X6BCQ9yklg5W8vmuA_Eq76fAZ8EZcbkMVa3AwaIzKtEkWHn5rg>
+    <xmx:nZX7X0eK4qbgMcgJz9T8-pH0nH1bPGM0A5lXwDgkgxnFSjxnDBmYhQ>
+    <xmx:nZX7X5NuaN6KlHOkhyqIsFOYmhrTo4B9dzRlXBkZFmDCgsDLGrqIyA>
+    <xmx:n5X7X8eNOxauqVlg4v-yio38sT6_ingLbCRm6UHN9NpRF0-O5_nNSw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id D610CE00BF; Sun, 10 Jan 2021 19:02:36 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-45-g4839256-fm-20210104.001-g48392560
+Mime-Version: 1.0
+Message-Id: <6f341a22-f5ce-4c38-9f42-358124468821@www.fastmail.com>
+In-Reply-To: <ff588027-0fbb-100e-05a9-4a804662d838@intel.com>
+References: <20201218035338.1130849-1-andrew@aj.id.au>
+ <20201218035338.1130849-5-andrew@aj.id.au>
+ <ff588027-0fbb-100e-05a9-4a804662d838@intel.com>
+Date:   Mon, 11 Jan 2021 10:32:15 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Adrian Hunter" <adrian.hunter@intel.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>
+Cc:     "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v6_4/6]_mmc:_sdhci-of-aspeed:_Add_KUnit_tests_for_p?=
+ =?UTF-8?Q?hase_calculations?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver is mandatory for the nitrogen8m mini board
-when booting from the sdcard slot.
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 3ca9d03d5cb3..bd6ac11ad6fc 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -603,6 +603,7 @@ CONFIG_REGULATOR_HI655X=y
- CONFIG_REGULATOR_MAX77620=y
- CONFIG_REGULATOR_MAX8973=y
- CONFIG_REGULATOR_PCA9450=y
-+CONFIG_REGULATOR_PF8X00=y
- CONFIG_REGULATOR_PFUZE100=y
- CONFIG_REGULATOR_PWM=y
- CONFIG_REGULATOR_QCOM_RPMH=y
--- 
-2.25.1
+On Wed, 6 Jan 2021, at 00:17, Adrian Hunter wrote:
+> On 18/12/20 5:53 am, Andrew Jeffery wrote:
+> > Converting degrees of phase to logic delays is irritating to test on
+> > hardware, so lets exercise the function using KUnit.
+> > 
+> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> > ---
+> >  drivers/mmc/host/Kconfig                |  14 ++++
+> >  drivers/mmc/host/Makefile               |   1 +
+> >  drivers/mmc/host/sdhci-of-aspeed-test.c | 100 ++++++++++++++++++++++++
+> >  3 files changed, 115 insertions(+)
+> >  create mode 100644 drivers/mmc/host/sdhci-of-aspeed-test.c
+> > 
+> > diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> > index 596f32637315..d6f00d1d6251 100644
+> > --- a/drivers/mmc/host/Kconfig
+> > +++ b/drivers/mmc/host/Kconfig
+> > @@ -168,6 +168,20 @@ config MMC_SDHCI_OF_ASPEED
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config MMC_SDHCI_OF_ASPEED_TEST
+> > +	bool "Tests for the ASPEED SDHCI driver"
+> > +	depends on MMC_SDHCI_OF_ASPEED && KUNIT=y
+> > +	help
+> > +	  Enable KUnit tests for the ASPEED SDHCI driver. Select this
+> > +	  option only if you will boot the kernel for the purpose of running
+> > +	  unit tests (e.g. under UML or qemu).
+> > +
+> > +	  The KUnit tests generally exercise parts of the driver that do not
+> > +	  directly touch the hardware, for example, the phase correction
+> > +	  calculations.
+> > +
+> > +	  If unsure, say N.
+> > +
+> >  config MMC_SDHCI_OF_AT91
+> >  	tristate "SDHCI OF support for the Atmel SDMMC controller"
+> >  	depends on MMC_SDHCI_PLTFM
+> > diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> > index 451c25fc2c69..3ee59d5802cf 100644
+> > --- a/drivers/mmc/host/Makefile
+> > +++ b/drivers/mmc/host/Makefile
+> > @@ -90,6 +90,7 @@ obj-$(CONFIG_MMC_SDHCI_DOVE)		+= sdhci-dove.o
+> >  obj-$(CONFIG_MMC_SDHCI_TEGRA)		+= sdhci-tegra.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_ARASAN)	+= sdhci-of-arasan.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_ASPEED)	+= sdhci-of-aspeed.o
+> > +obj-$(CONFIG_MMC_SDHCI_OF_ASPEED_TEST)	+= sdhci-of-aspeed-test.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_AT91)		+= sdhci-of-at91.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_ESDHC)	+= sdhci-of-esdhc.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_HLWD)		+= sdhci-of-hlwd.o
+> > diff --git a/drivers/mmc/host/sdhci-of-aspeed-test.c b/drivers/mmc/host/sdhci-of-aspeed-test.c
+> > new file mode 100644
+> > index 000000000000..fb79b278fb81
+> > --- /dev/null
+> > +++ b/drivers/mmc/host/sdhci-of-aspeed-test.c
+> > @@ -0,0 +1,100 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/* Copyright (C) 2020 IBM Corp. */
+> > +
+> > +#include <kunit/test.h>
+> > +
+> > +#include "sdhci-of-aspeed.c"
+> 
+> I am not sure including like that is advisable.
 
+Yeah I wasn't convinced by it either, but I was just running the tests under 
+qemu and they did what I expected.
+
+> Did you consider instead
+> doing it the other way around i.e. adding an include to the bottom of
+> sdhci-of-aspeed.c?
+
+No, I didn't. I'll switch to this approach.
+
+Thanks!
+
+Andrew
