@@ -2,192 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C3B12F1181
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 12:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E64972F11C8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 12:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729674AbhAKLbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 06:31:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55774 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729655AbhAKLbl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 06:31:41 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3843C0617A6
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 03:30:29 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id q4so9354276plr.7
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 03:30:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BefZOjOjUvUJJ/zRqRM/0iBjrv3xJ+KOmu5Ty3XqHVM=;
-        b=idza/9KIWTYrN7VE/r+f7Z9wK7oIy9NjoPCoY6O0zdd5+QLPAPnxaPerx9pI8+omAp
-         TBPAVa/nKDTVzcKnLVbIxUHR88BDoAi3Ru2wytrmCOL/N3OiznOhCX/7X/321O6I6P2s
-         /0oa7cXPAnN2Rq9jyPKGiE4OaoQ0BLczIdQAvwfI+EDx8CWAXM/BjBL39A56pgK46VYr
-         BtCEVFxs4FJggf2PQA3BjkkZ3mc4lqwc/KOyBUc80Mb6trqtDvfvmONK79sWV583Vx7c
-         qKWsPlgZ9Zpnsujc3tVKo11qVwv7xhm2HIdeRYI1tb25WmeuwIqFDbaErPjg4404wbXn
-         9nMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BefZOjOjUvUJJ/zRqRM/0iBjrv3xJ+KOmu5Ty3XqHVM=;
-        b=fs+M8SNxsYAnHPcoLBlykyDBKLFTZsFz8f83DI1nojlq1WQai4tnjiyOIHvpkEt32y
-         NkHvySGx38R5gD5esX6peEYvc85R8eLu0UUCQhMsg/X0PRXr3vADiUU8DREyqrVMgPsi
-         M8fOtVwhEDRUifAnwdc5wJCpYJwClZ8JLzVBYx3aFwhnPEMuOsK7XbrUeP25pbdcEFTG
-         6AmJf1mY6ROu1llX2KneJsSTbPcAm3tAdcl6qLnGe4EPREqZAmTm75MFVTBiyNRJjmOX
-         nnNCf9RaFKVckrrNx7ehfaaW6EZEAV3dCYHY4NYaseRwG32mVSE430BeOSiCnzp6aA8d
-         QM6w==
-X-Gm-Message-State: AOAM530DEu1ZUicmqsQN3il1AfoU1odjxyjTjbYW7nvF8HcbU9+m2RYA
-        +svuwQekDlfRIh/LuZVaXFDl
-X-Google-Smtp-Source: ABdhPJxd2t6U3V8dAIXX1Jr1YQcGv2khLn69CvzbPc2sYJfR241wyw241+hw5TgJp1hMAlsvaYBVqw==
-X-Received: by 2002:a17:90a:c082:: with SMTP id o2mr17922221pjs.197.1610364629538;
-        Mon, 11 Jan 2021 03:30:29 -0800 (PST)
-Received: from localhost.localdomain ([103.77.37.160])
-        by smtp.gmail.com with ESMTPSA id x20sm18803134pfc.3.2021.01.11.03.30.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 03:30:28 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 2/2] phy: qcom-qmp: Add support for SDX55 QMP PHY
-Date:   Mon, 11 Jan 2021 17:00:10 +0530
-Message-Id: <20210111113010.32056-3-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210111113010.32056-1-manivannan.sadhasivam@linaro.org>
-References: <20210111113010.32056-1-manivannan.sadhasivam@linaro.org>
+        id S1730119AbhAKLqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 06:46:52 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:42329 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729892AbhAKLqw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 06:46:52 -0500
+Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id DE42723E4A;
+        Mon, 11 Jan 2021 12:46:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1610365570;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=D5g8T7+ZpKplsj2ntYskL6wMxURRtOLCbLA2e3+ppjI=;
+        b=THHpSn2aoROHYHixeJt3f6tgXVG8KsnXr0w4V9c6ujOkzOsiwn0OvBpDlwebxwUpWC+zOL
+        XAFSpEh4/fM4OVag9yaJMViCFcq1ndjdoCJkZMji9pDXmFsQRT/TZMzfySF7mfHCSdzQ1K
+        IIqLbLm40JdrMaKyO2391I8aY4KuCqg=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH RESEND v3] arm64: dts: ls1028a: fix FlexSPI clock
+Date:   Mon, 11 Jan 2021 12:45:55 +0100
+Message-Id: <20210111114555.28903-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for USB3 QMP PHY found in SDX55 platform. SDX55 uses
-version 4.0.0 of the QMP PHY IP and doesn't make use of "com_aux" clock.
+Now that we have a proper driver for the FlexSPI interface use it. This
+will fix SCK frequency switching on Layerscape SoCs.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+This was tested on the Kontron sl28 board.
+
+Signed-off-by: Michael Walle <michael@walle.cc>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp.c | 83 +++++++++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
+Hi Shawn,
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index 0939a9e9d448..bdcb8bf6225d 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -1974,6 +1974,53 @@ static const struct qmp_phy_init_tbl sm8250_qmp_gen3x2_pcie_pcs_misc_tbl[] = {
- 	QMP_PHY_INIT_CFG(QPHY_V4_PCS_PCIE_POWER_STATE_CONFIG4, 0x07),
- };
+this is the last remaining piece of my previous series [1]. Now with the
+actual clock driver in v5.11 and the clockgen constants patches in your
+for-next branch, there are no further dependencies.
+
+[1] https://lore.kernel.org/lkml/20201108185113.31377-1-michael@walle.cc/
+
+Changlog from the old series:
+Changes since v2:
+ - use device tree constants for clockgen
+ - also use &fspi_clk for fspi_en clock
+
+Changes since v1:
+ - none
+
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index e00acad9a5c1..0a5923e96d7f 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -206,9 +206,20 @@
+ 		};
  
-+static const struct qmp_phy_init_tbl sdx55_usb3_uniphy_tx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_RCV_DETECT_LVL_2, 0x12),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_LANE_MODE_1, 0xd5),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_LANE_MODE_2, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PI_QEC_CTRL, 0x20),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_RES_CODE_LANE_OFFSET_TX, 0x08),
-+};
+ 		dcfg: syscon@1e00000 {
+-			compatible = "fsl,ls1028a-dcfg", "syscon";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			compatible = "fsl,ls1028a-dcfg", "syscon", "simple-mfd";
+ 			reg = <0x0 0x1e00000 0x0 0x10000>;
++			ranges = <0x0 0x0 0x1e00000 0x10000>;
+ 			little-endian;
 +
-+static const struct qmp_phy_init_tbl sdx55_usb3_uniphy_rx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH4, 0x26),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH3, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH2, 0xbf),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_LOW, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH4, 0xb4),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH3, 0x7b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH2, 0x5c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH, 0xdc),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_LOW, 0xdc),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CONTROLS, 0x99),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SB2_THRESH1, 0x048),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SB2_THRESH2, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SB2_GAIN1, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SB2_GAIN2, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_FO_GAIN, 0x2f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_COUNT_LOW, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_COUNT_HIGH, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FO_GAIN, 0x09),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_VGA_CAL_CNTRL1, 0x54),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_VGA_CAL_CNTRL2, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL2, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL3, 0x4a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL4, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DFE_EN_TIMER, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x47),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_CNTRL, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_DEGLITCH_CNTRL, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_HIGH, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_LOW, 0xc0),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DFE_CTLE_POST_CAL_OFFSET, 0x38),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_GAIN, 0x05),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DCC_CTRL1, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_GM_CAL, 0x1f),
-+};
-+
- /* struct qmp_phy_cfg - per-PHY initialization config */
- struct qmp_phy_cfg {
- 	/* phy-type - PCIE/UFS/USB */
-@@ -2183,6 +2230,11 @@ static const char * const sdm845_ufs_phy_clk_l[] = {
- 	"ref", "ref_aux",
- };
++			fspi_clk: clock-controller@900 {
++				compatible = "fsl,ls1028a-flexspi-clk";
++				reg = <0x900 0x4>;
++				#clock-cells = <0>;
++				clocks = <&clockgen QORIQ_CLK_HWACCEL 0>;
++				clock-output-names = "fspi_clk";
++			};
+ 		};
  
-+/* usb3 phy on sdx55 doesn't have com_aux clock */
-+static const char * const qmp_v4_sdx55_usbphy_clk_l[] = {
-+	"aux", "cfg_ahb", "ref"
-+};
-+
- /* list of resets */
- static const char * const msm8996_pciephy_reset_l[] = {
- 	"phy", "common", "cfg",
-@@ -2824,6 +2876,34 @@ static const struct qmp_phy_cfg sm8250_usb3_uniphy_cfg = {
- 	.pwrdn_delay_max	= POWER_DOWN_DELAY_US_MAX,
- };
- 
-+static const struct qmp_phy_cfg sdx55_usb3_uniphy_cfg = {
-+	.type			= PHY_TYPE_USB3,
-+	.nlanes			= 1,
-+
-+	.serdes_tbl		= sm8150_usb3_uniphy_serdes_tbl,
-+	.serdes_tbl_num		= ARRAY_SIZE(sm8150_usb3_uniphy_serdes_tbl),
-+	.tx_tbl			= sdx55_usb3_uniphy_tx_tbl,
-+	.tx_tbl_num		= ARRAY_SIZE(sdx55_usb3_uniphy_tx_tbl),
-+	.rx_tbl			= sdx55_usb3_uniphy_rx_tbl,
-+	.rx_tbl_num		= ARRAY_SIZE(sdx55_usb3_uniphy_rx_tbl),
-+	.pcs_tbl		= sm8250_usb3_uniphy_pcs_tbl,
-+	.pcs_tbl_num		= ARRAY_SIZE(sm8250_usb3_uniphy_pcs_tbl),
-+	.clk_list		= qmp_v4_sdx55_usbphy_clk_l,
-+	.num_clks		= ARRAY_SIZE(qmp_v4_sdx55_usbphy_clk_l),
-+	.reset_list		= msm8996_usb3phy_reset_l,
-+	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs			= qmp_v4_usb3_uniphy_regs_layout,
-+
-+	.start_ctrl		= SERDES_START | PCS_START,
-+	.pwrdn_ctrl		= SW_PWRDN,
-+
-+	.has_pwrdn_delay	= true,
-+	.pwrdn_delay_min	= POWER_DOWN_DELAY_US_MIN,
-+	.pwrdn_delay_max	= POWER_DOWN_DELAY_US_MAX,
-+};
-+
- static void qcom_qmp_phy_configure_lane(void __iomem *base,
- 					const unsigned int *regs,
- 					const struct qmp_phy_init_tbl tbl[],
-@@ -4173,6 +4253,9 @@ static const struct of_device_id qcom_qmp_phy_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,sm8250-qmp-modem-pcie-phy",
- 		.data = &sm8250_qmp_gen3x2_pciephy_cfg,
-+	}, {
-+		.compatible = "qcom,sdx55-qmp-usb3-uni-phy",
-+		.data = &sdx55_usb3_uniphy_cfg,
- 	},
- 	{ },
- };
+ 		rst: syscon@1e60000 {
+@@ -326,8 +337,7 @@
+ 			      <0x0 0x20000000 0x0 0x10000000>;
+ 			reg-names = "fspi_base", "fspi_mmap";
+ 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&clockgen QORIQ_CLK_HWACCEL 0>,
+-				 <&clockgen QORIQ_CLK_HWACCEL 0>;
++			clocks = <&fspi_clk>, <&fspi_clk>;
+ 			clock-names = "fspi_en", "fspi";
+ 			status = "disabled";
+ 		};
 -- 
-2.25.1
+2.20.1
 
