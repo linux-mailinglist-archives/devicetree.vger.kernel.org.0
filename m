@@ -2,168 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77C832F1E0D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 19:31:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E39F2F1E17
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 19:32:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390554AbhAKSaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 13:30:14 -0500
-Received: from relay01.th.seeweb.it ([5.144.164.162]:45955 "EHLO
-        relay01.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390534AbhAKSaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 13:30:13 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 86B9F1F9DB;
-        Mon, 11 Jan 2021 19:29:30 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     linus.walleij@linaro.org
-Cc:     linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        phone-devel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v2 2/2] dt-bindings: pinctrl: Add bindings for Awinic AW9523/AW9523B
-Date:   Mon, 11 Jan 2021 19:29:28 +0100
-Message-Id: <20210111182928.587285-2-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210111182928.587285-1-angelogioacchino.delregno@somainline.org>
-References: <20210111182928.587285-1-angelogioacchino.delregno@somainline.org>
+        id S2390416AbhAKSbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 13:31:37 -0500
+Received: from foss.arm.com ([217.140.110.172]:34360 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389276AbhAKSbg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Jan 2021 13:31:36 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 89AD9101E;
+        Mon, 11 Jan 2021 10:30:50 -0800 (PST)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 636243F70D;
+        Mon, 11 Jan 2021 10:30:49 -0800 (PST)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     james.quinlan@broadcom.com, Jim Quinlan <jim2101024@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        "open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE Mes..." 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 0/2] firmware: arm_scmi: Augment SMC/HVC to allow optional interrupt
+Date:   Mon, 11 Jan 2021 18:30:43 +0000
+Message-Id: <161038967783.12198.12858396515657491931.b4-ty@arm.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201222145603.40192-1-jim2101024@gmail.com>
+References: <20201222145603.40192-1-jim2101024@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the Awinic AW9523/AW9523B I2C GPIO Expander driver.
+On Tue, 22 Dec 2020 09:56:01 -0500, Jim Quinlan wrote:
+> v4 -- s/message-serviced/a2p/ in the bindings commit message.
+>    -- Changed author/s-o-b/committer email address as my company is now
+>       appending boilerplate text to all outgoing emails.
+> 
+> v3 -- Changed interrupt name from "message-serviced" to "a2p" (RobH)
+> 
+> v2 -- Correct commit message, s/msg/message/, and remove extra WS on
+>       "dt-bindings" commit (Sudeep)
+>    -- Change interrupt name to "message-serviced", move irq assignent to end
+>       of function. (Sudeep)
+> 
+> [...]
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- .../pinctrl/awinic,aw9523-pinctrl.yaml        | 112 ++++++++++++++++++
- 1 file changed, 112 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/awinic,aw9523-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/awinic,aw9523-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/awinic,aw9523-pinctrl.yaml
-new file mode 100644
-index 000000000000..a705c05bb5a2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/awinic,aw9523-pinctrl.yaml
-@@ -0,0 +1,112 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/awinic,aw9523-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Awinic AW9523/AW9523B I2C GPIO Expander
-+
-+maintainers:
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-+
-+description: |
-+  The Awinic AW9523/AW9523B I2C GPIO Expander featuring 16 multi-function
-+  I/O, 256 steps PWM mode and interrupt support.
-+
-+properties:
-+  compatible:
-+    const: awinic,aw9523-pinctrl
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#gpio-cells':
-+    description: |
-+      Specifying the pin number and flags, as defined in
-+      include/dt-bindings/gpio/gpio.h
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  interrupts:
-+    maxItems: 1
-+    description: Specifies the INTN pin IRQ.
-+
-+  '#interrupt-cells':
-+    description:
-+      Specifies the PIN numbers and Flags, as defined in defined in
-+      include/dt-bindings/interrupt-controller/irq.h
-+    const: 2
-+
-+#PIN CONFIGURATION NODES
-+patternProperties:
-+  '^.*$':
-+    if:
-+      type: object
-+      $ref: "/schemas/pinctrl/pincfg-node.yaml"
-+    then:
-+      properties:
-+        pins:
-+          description:
-+            List of gpio pins affected by the properties specified in
-+            this subnode.
-+          items:
-+            pattern: "^gpio([0-9]|1[0-5])$"
-+          minItems: 1
-+          maxItems: 16
-+
-+        function:
-+          description:
-+            Specify the alternative function to be configured for the
-+            specified pins.
-+
-+          enum: [ gpio, pwm ]
-+
-+        bias-disable: true
-+        bias-pull-down: true
-+        bias-pull-up: true
-+        drive-open-drain: true
-+        drive-push-pull: true
-+        input-enable: true
-+        output-high: true
-+        output-low: true
-+
-+      required:
-+        - pins
-+        - function
-+
-+      additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c_node {
-+        gpio-expander@58 {
-+                compatible = "awinic,aw9523-pinctrl";
-+                reg = <0x58>;
-+                interrupt-parent = <&tlmm>;
-+                interrupts = <50 IRQ_TYPE_EDGE_FALLING>;
-+                gpio-controller;
-+                #gpio-cells = <2>;
-+                gpio-ranges = <&tlmm 0 0 16>;
-+                interrupt-controller;
-+                #interrupt-cells = <2>;
-+                reset-gpios = <&tlmm 51 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
--- 
-2.29.2
+Applied to sudeep.holla/linux (for-next/scmi), thanks!
+
+[1/2] dt-bindings: arm: Add optional interrupt to smc/hvc SCMI transport
+      https://git.kernel.org/sudeep.holla/c/99a064fb3a
+[2/2] firmware: arm_scmi: Augment SMC/HVC to allow optional interrupt
+      https://git.kernel.org/sudeep.holla/c/dd820ee21d
+
+--
+Regards,
+Sudeep
 
