@@ -2,61 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E3E2F15C4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 14:45:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3908E2F16AF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 14:56:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387598AbhAKNog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 08:44:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56018 "EHLO
+        id S2387997AbhAKN4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 08:56:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731796AbhAKNoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 08:44:34 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73FC3C061786;
-        Mon, 11 Jan 2021 05:43:53 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id jx16so24741983ejb.10;
-        Mon, 11 Jan 2021 05:43:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=TqQMMmVG//s097FZcK6S1d+MUdnJBT3N8IWJdlGCSdY=;
-        b=vQ7xg/NMs8B/jW9COLAiIpNiEJ+21BdjvoLnazkLt9/lR13If2ikF5RZJksFN0Dkoo
-         C0zqtI4JCm9GWfi/CnjsDhI23DQE22A6bgR9PF4vRW7MkpPcJj/AfIk/3yfLeBcsdnrl
-         Yxa9K6+wwF493HZ7SArizr69FpCLfQl6lpgliMFGI+kKl21Gl8bYrR6g9FSUpBY5PsE3
-         tGUj1wkuFyjj1ZdM3ORq7/uzV+J+9E46Sk41CqgvwrUGYV7JHTTfAzR2DYg1oKwxXg5l
-         95cO6WK6GrEoNp+J3zEoxppuEPX80yVLWxK08AgEQL/vFBuUgkRl+BMTYNyireUNYVig
-         F/YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TqQMMmVG//s097FZcK6S1d+MUdnJBT3N8IWJdlGCSdY=;
-        b=dA886S/8gKGJScICiiMhsQDVcDs7yXMRws7AodAdW6A34rnzYKHqBAPeMc1OnbSxIN
-         /y8w0V5f23i2OV/eqi96ipfpildcKQjqrx3Cq44UmCADUdkDoqKE0NtUorPL1apoYAvm
-         vPqeaSevdY1ZuV6hTcYqDB+7vgyxrf8Q05zOTo/lbaA1c0WkBODsuWRpwfBuLiGe/wQT
-         s7ddCkFscOyvLccnb+6zvpKNR8kRrZrpw/aO0nB1Hl5j8hH+b3jyYHe+MfWtZ1FLcJQF
-         04mBDeZ/vqP5H8ocYZezmzTmHxM01ihtQECiG9YxqpR4RXBs3WSCOCNiGz8LRQJ53aSK
-         eamg==
-X-Gm-Message-State: AOAM532/2G4h2sMoeaAjxhcE9Rq5fZ+Z0TQEVqv09bvUporakHisUWXT
-        6rn/hdi8c5GxqC4ExXReOV0=
-X-Google-Smtp-Source: ABdhPJxqhexf4kPL914wqbd3XhrF0WLk2Dmhk3wPJ0oFcVMccX9vwvzyZgV6p+0xwhhjVShAmlSr8g==
-X-Received: by 2002:a17:906:7689:: with SMTP id o9mr5102315ejm.324.1610372632156;
-        Mon, 11 Jan 2021 05:43:52 -0800 (PST)
-Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
-        by smtp.gmail.com with ESMTPSA id t26sm7120228eji.22.2021.01.11.05.43.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 05:43:51 -0800 (PST)
-Date:   Mon, 11 Jan 2021 15:43:49 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     DENG Qingfang <dqfext@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-gpio@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>, linux-leds@vger.kernel.org
+        with ESMTP id S1728969AbhAKN4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 08:56:04 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A21DC061786;
+        Mon, 11 Jan 2021 05:55:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=4EFw0oAHCpZpwVi8T4aoUbYDN24+hywjYSLIVVld9J8=; b=1tDsVBAhI42EDyWVShCkITD09
+        5gsmbTgQIYURjcVuc1Isfmu68ZdyDspCYKlGDC5fDQWsyGNE/gCiHjpJ5Dcant/EvaOMcKpu9DjRG
+        2bAhhvy9q82+Of3Plq46F0ZUZMYK8aKjc/59aMgueg+FX4lc6QiBRUVZ5yvy725VQGQVwsI16OHtI
+        rsusLQLXigiKXDEqIIwnK6pDhrwG06Uh7wSE47s6Dx1Ct5FE85TSq6EAX9JdiZ6AtN0gFPl2rKv3y
+        zAk3/yZva5xb/yMSWWCMz+6g080Vc/w9dUq4vC6Fybu48pULyvHfEuEWqotb7JJCE+x1Wwm0qRBK9
+        wsykURg5A==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46612)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1kyxf7-00076T-Or; Mon, 11 Jan 2021 13:55:13 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1kyxf3-0005Hw-AD; Mon, 11 Jan 2021 13:55:09 +0000
+Date:   Mon, 11 Jan 2021 13:55:09 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     DENG Qingfang <dqfext@gmail.com>
 Cc:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -64,37 +48,51 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         Sean Wang <sean.wang@mediatek.com>,
         Landen Chao <Landen.Chao@mediatek.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?utf-8?B?UmVuw6k=?= van Dorst <opensource@vdorst.com>
-Subject: Re: [PATCH net-next 0/2] dsa: add MT7530 GPIO support
-Message-ID: <20210111134349.vdhyebdllbaakukk@skbuf>
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-kernel@vger.kernel.org,
+        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Subject: Re: [PATCH net-next 2/2] drivers: net: dsa: mt7530: MT7530 optional
+ GPIO support
+Message-ID: <20210111135509.GT1551@shell.armlinux.org.uk>
 References: <20210111054428.3273-1-dqfext@gmail.com>
+ <20210111054428.3273-3-dqfext@gmail.com>
+ <20210111110407.GR1551@shell.armlinux.org.uk>
+ <CALW65jaqciOiRxJxzPiEADgpmKa7-q2QfQnBdaVMcOa5YDHjRA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210111054428.3273-1-dqfext@gmail.com>
+In-Reply-To: <CALW65jaqciOiRxJxzPiEADgpmKa7-q2QfQnBdaVMcOa5YDHjRA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 01:44:26PM +0800, DENG Qingfang wrote:
-> MT7530's LED controller can be used as GPIO controller. Add support for
-> it.
+On Mon, Jan 11, 2021 at 09:40:00PM +0800, DENG Qingfang wrote:
+> On Mon, Jan 11, 2021 at 7:04 PM Russell King - ARM Linux admin
+> <linux@armlinux.org.uk> wrote:
+> >
+> > FYI, Documentation/driver-api/gpio/consumer.rst says:
+> >
+> >   For output GPIOs, the value provided becomes the initial output value.
+> >   This helps avoid signal glitching during system startup.
+> >
+> > Setting the pin to be an output, and then setting its initial value
+> > does not avoid the glitch. You may wish to investigate whether you
+> > can set the value before setting the pin as an output to avoid this
+> > issue.
+> >
 > 
-> DENG Qingfang (2):
->   dt-bindings: net: dsa: add MT7530 GPIO controller binding
->   drivers: net: dsa: mt7530: MT7530 optional GPIO support
-> 
->  .../devicetree/bindings/net/dsa/mt7530.txt    |  6 ++
->  drivers/net/dsa/mt7530.c                      | 96 +++++++++++++++++++
->  drivers/net/dsa/mt7530.h                      | 20 ++++
->  3 files changed, 122 insertions(+)
-> 
-> -- 
-> 2.25.1
+> So, setting the Output Enable bit _after_ setting the direction and
+> initial value should avoid this issue. Right?
 
-Adding GPIO and LED maintainers to also have a look.
-https://patchwork.kernel.org/project/netdevbpf/cover/20210111054428.3273-1-dqfext@gmail.com/
+It depends on the hardware. I don't know how your hardware works, so
+I can't say whether doing anything will result in correct behaviour,
+or even work.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
