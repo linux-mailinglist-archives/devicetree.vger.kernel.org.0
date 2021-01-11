@@ -2,109 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B6C2F22EA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 23:38:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7ED32F22F3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 23:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390139AbhAKWif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 17:38:35 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:42425 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389720AbhAKWie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 17:38:34 -0500
-Received: by mail-ot1-f44.google.com with SMTP id x5so116705otp.9;
-        Mon, 11 Jan 2021 14:38:18 -0800 (PST)
+        id S2387685AbhAKWkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 17:40:32 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:33435 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727019AbhAKWkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 17:40:32 -0500
+Received: by mail-oi1-f169.google.com with SMTP id d203so352150oia.0;
+        Mon, 11 Jan 2021 14:40:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fLMj84hkUp5+4mSadplRSQZF7rQJLNm76i5JIfHTAL8=;
-        b=i64VkvcIZQKROOie31EaeSBSMkw83z6POeGNxNbo2lfAoW7HhiyPtqG9k8C2T9qC5M
-         DtOPSlHwi5Obdp9fVyHzagnh9kuz516MYVnxSnYpcNbG3GHfafW121hKI5iXv9HwCh3t
-         7dseXeuEXpjMIH+6r72TpY/5hB8m4Yz6hU9rvOBlUlrDd7nkU3cESGeYJSRQbOvVkl6X
-         wC5Kx3lgt3pKFL9upaY4o5biQbwuTh3iNeKIz2Zr4BNYxn4KV70pK4n+UTNNgMXAWCz3
-         nQ9IBEh6foCV0fVYs+cOMGQh0/H9RY8fD+kjbYdjhp8ZECOVkpd89qpJ1jk8ewplTLOu
-         k/lg==
-X-Gm-Message-State: AOAM532rHX3rCRd6IfuOSSbiYylxNJ3/L5gQTNsmBstBwI0OeJzn0ewO
-        N9xtS0JiO23RkgKbBcXoNg==
-X-Google-Smtp-Source: ABdhPJx9xq6P6glabPHmo4SavGc3OTfs/lhS2g2fLFMmAgMDmpH6KWLvkZWD/hqD8l6UME/txyE6zA==
-X-Received: by 2002:a05:6830:2397:: with SMTP id l23mr841766ots.357.1610404672925;
-        Mon, 11 Jan 2021 14:37:52 -0800 (PST)
+        bh=OGa/l2jJYoY5GgRVS4CJNgnmY7MLFON8bENGc4FBO+o=;
+        b=EVFpTZFulBq7edkSo/CZHTep3ZMl2fYF3Z5uM0BVitFKxQPsBSwXLPvAqjvGBBrPPx
+         iScQa+fRtwd96Y38IBCx+agD0Tq3brsphkqJSdsqUdmfKh9MExydvdE5lP+lnpA56/ab
+         fPXflnkM9AJ1PYy0juktkkL70J/GC3q2K+7ZDEtDo7Zf/S0CooKGNPp8/4V6MZ5w1lr1
+         KbR5ei6hV2cNH1m0avCj+aAZVLxEtK2Nwc9Lf6AB289pLrQ8wvWksVqoxLa5Lrbq/eZA
+         R3uJOOZlCFxmSFyjk86sxjqRRP27Bw1nSZuBg1dKxaoXc5gtO4Rkf/PPHFgWvd7m9o7u
+         PMVQ==
+X-Gm-Message-State: AOAM530ogx2M9/g54paVei+3f4N6UyQvJ9mr3WmYTKRZBzlNmd0+ASSM
+        VCj8rJw5O/WaYvksJGH1ZA==
+X-Google-Smtp-Source: ABdhPJwEhGFMFZwjuW6fhm6a6OIkYBhybEZH9+vyWRgWcjO4HOXxL5FopEtJgLWJQws2Ww1Z1rVtwg==
+X-Received: by 2002:aca:30cf:: with SMTP id w198mr630768oiw.118.1610404791458;
+        Mon, 11 Jan 2021 14:39:51 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e10sm236515otr.73.2021.01.11.14.37.51
+        by smtp.gmail.com with ESMTPSA id c18sm255549oib.31.2021.01.11.14.39.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 14:37:51 -0800 (PST)
-Received: (nullmailer pid 3185487 invoked by uid 1000);
-        Mon, 11 Jan 2021 22:37:50 -0000
-Date:   Mon, 11 Jan 2021 16:37:50 -0600
+        Mon, 11 Jan 2021 14:39:50 -0800 (PST)
+Received: (nullmailer pid 3188580 invoked by uid 1000);
+        Mon, 11 Jan 2021 22:39:49 -0000
+Date:   Mon, 11 Jan 2021 16:39:49 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Nadeem Athani <nadeem@cadence.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: pci: ti,j721e: Add host mode
- dt-bindings for TI's AM64 SoC
-Message-ID: <20210111223750.GA3177728@robh.at.kernel.org>
-References: <20210104124103.30930-1-kishon@ti.com>
- <20210104124103.30930-3-kishon@ti.com>
+To:     David Lechner <david@lechnology.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org, Sekhar Nori <nsekhar@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: ti,pruss: add ti,am1806-pruss
+Message-ID: <20210111223949.GA3188532@robh.at.kernel.org>
+References: <20210104183021.330112-1-david@lechnology.com>
+ <20210104183021.330112-2-david@lechnology.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210104124103.30930-3-kishon@ti.com>
+In-Reply-To: <20210104183021.330112-2-david@lechnology.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 04, 2021 at 06:11:01PM +0530, Kishon Vijay Abraham I wrote:
-> Add host mode dt-bindings for TI's AM64 SoC. This is the same IP used in
-> J7200, however AM64 is a non-coherent architecture.
+On Mon, 04 Jan 2021 12:30:20 -0600, David Lechner wrote:
+> This adds a "ti,am1806-pruss" compatible type for the PRUSS found in
+> TI AM18xx/OMAP-L138 SoCs.
 > 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> Signed-off-by: David Lechner <david@lechnology.com>
 > ---
->  .../devicetree/bindings/pci/ti,j721e-pci-host.yaml     | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> index 7607018a115b..77118dba415e 100644
-> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> @@ -16,12 +16,17 @@ allOf:
->  properties:
->    compatible:
->      oneOf:
-> -      - description: PCIe controller in J7200
-> +      - const: ti,am64-pcie-host
 
-No, either you have fallback or you don't. 
-
-> +      - const: ti,j7200-pcie-host
-> +      - const: ti,j721e-pcie-host
-> +      - description: PCIe controller in AM64
->          items:
-> +          - const: ti,am64-pcie-host
->            - const: ti,j7200-pcie-host
->            - const: ti,j721e-pcie-host
-
-2 fallbacks is probably not too useful. Do those really enable 
-anything?
-
-> -      - description: PCIe controller in J721E
-> +      - description: PCIe controller in J7200
->          items:
-> +          - const: ti,j7200-pcie-host
->            - const: ti,j721e-pcie-host
->  
->    reg:
-> @@ -87,7 +92,6 @@ required:
->    - vendor-id
->    - device-id
->    - msi-map
-> -  - dma-coherent
->    - dma-ranges
->    - ranges
->    - reset-gpios
-> -- 
-> 2.17.1
-> 
+Acked-by: Rob Herring <robh@kernel.org>
