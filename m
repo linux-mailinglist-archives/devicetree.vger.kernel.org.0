@@ -2,89 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9DB22F0D86
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 08:51:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 216362F0D91
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 09:02:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727666AbhAKHvV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 Jan 2021 02:51:21 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:46496 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727652AbhAKHvV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Jan 2021 02:51:21 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kyryE-0004Eb-3j; Mon, 11 Jan 2021 08:50:34 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: rk3328: Add Radxa ROCK Pi E
-Date:   Mon, 11 Jan 2021 08:50:33 +0100
-Message-ID: <2633022.BEx9A2HvPv@diego>
-In-Reply-To: <CAGb2v67h3v4DdEY68BmHy263=L1tB0DuJnf_exHrLi57SiRjUA@mail.gmail.com>
-References: <20210110035846.9155-1-wens@kernel.org> <2241380.NG923GbCHz@diego> <CAGb2v67h3v4DdEY68BmHy263=L1tB0DuJnf_exHrLi57SiRjUA@mail.gmail.com>
+        id S1727403AbhAKIB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 03:01:26 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:58257 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726573AbhAKIB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 03:01:26 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 26C4F22ED8;
+        Mon, 11 Jan 2021 09:00:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1610352041;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=KShO+OFfKKxbrDChHYBQdJKbcsRMQPuSF+8nsNYYzeQ=;
+        b=CjekFt5AWYyoS6JfaFe3H9DIb00mR42DgedR4rNSwnJ4QtiUGOQ4TKA/Rqe5UljApaGq4K
+        vm8aYjV5u2cof8HBK0WZDD6qDaKC6lQ9sK9y5lGM8bw55681FiRtB39IM4uE17zoc/Wtd2
+        2FeDzjEnyaJuXUmlCGvymugbXMjAWZQ=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 11 Jan 2021 09:00:37 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: sl28: add variant 1
+In-Reply-To: <20210111013442.GU28365@dragon>
+References: <20201229120321.17103-1-michael@walle.cc>
+ <20201229120321.17103-2-michael@walle.cc> <20210111013442.GU28365@dragon>
+User-Agent: Roundcube Webmail/1.4.10
+Message-ID: <838c9860e19dcfb18d35cffde773ad93@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 11. Januar 2021, 04:27:47 CET schrieb Chen-Yu Tsai:
-> On Mon, Jan 11, 2021 at 4:06 AM Heiko Stübner <heiko@sntech.de> wrote:
-> >
-> > Hi,
-> >
-> > Am Sonntag, 10. Januar 2021, 16:37:15 CET schrieb Chen-Yu Tsai:
-> > > > > +     vcc_sd: sdmmc-regulator {
-> > > > > +             compatible = "regulator-fixed";
-> > > > > +             gpio = <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
-> > > > > +             pinctrl-names = "default";
-> > > > > +             pinctrl-0 = <&sdmmc0m1_pin>;
-> > > >
-> > > > > +             regulator-boot-on;
-> > > > > +             regulator-name = "vcc_sd";
-> > > >
-> > > > regulator-name above other regulator properties
-> > >
-> > > That is actually what I was used to, but some other rockchip dts files
-> > > have all the properties sorted alphabetically. So I stuck with what I
-> > > saw.
-> >
-> > I try to keep it alphabetical except for the exceptions :-D .
-> >
-> > regulator-name is such an exception. Similar to compatibles, the
-> > regulator-name is an entry needed to see if you're at the right node,
-> > so I really like it being the topmost regulator-foo property - just makes
-> > reading easier.
-> >
-> > (same for the compatible first, then regs, interrupts parts, as well
-> > as "status-last")
-> >
-> > But oftentimes, I just fix the ordering when applying - but seem to have
-> > missed this somewhere in those "other Rockchip dts files" ;-) .
+Am 2021-01-11 02:34, schrieb Shawn Guo:
+> On Tue, Dec 29, 2020 at 01:03:21PM +0100, Michael Walle wrote:
+>> There is a new variant 1 of this board available. It features up to 
+>> four
+>> SerDes lanes for customer use. Add a new device tree which features 
+>> just
+>> the basic peripherals. A customer will then have to modify or append 
+>> to
+>> this device tree.
+>> 
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+>> ---
+>>  arch/arm64/boot/dts/freescale/Makefile        |  1 +
+>>  .../fsl-ls1028a-kontron-sl28-var1.dts         | 61 
+>> +++++++++++++++++++
+>>  2 files changed, 62 insertions(+)
+>>  create mode 100644 
+>> arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
+>> 
+>> diff --git a/arch/arm64/boot/dts/freescale/Makefile 
+>> b/arch/arm64/boot/dts/freescale/Makefile
+>> index 6f0777ee6cd6..79cb0025fcc6 100644
+>> --- a/arch/arm64/boot/dts/freescale/Makefile
+>> +++ b/arch/arm64/boot/dts/freescale/Makefile
+>> @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-qds.dtb
+>>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-rdb.dtb
+>>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += 
+>> fsl-ls1028a-kontron-kbox-a-230-ls.dtb
+>>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28.dtb
+>> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var1.dtb
+>>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var2.dtb
+>>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += 
+>> fsl-ls1028a-kontron-sl28-var3-ads2.dtb
+>>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var4.dtb
+>> diff --git 
+>> a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts 
+>> b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
+>> new file mode 100644
+>> index 000000000000..52f2f3ffdce1
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
+>> @@ -0,0 +1,61 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Device Tree file for the Kontron SMARC-sAL28 board.
+>> + *
+>> + * This is for the network variant 1 which has one ethernet port. It 
+>> is
+>> + * different than the base variant, which also has one port, but here 
+>> the
+>> + * port is connected via RGMII. This port is not TSN aware.
+>> + * None of the  four SerDes lanes are used by the module, instead 
+>> they are
+>> + * all led out to the carrier for customer use.
+>> + *
+>> + * Copyright (C) 2020 Michael Walle <michael@walle.cc>
+>> + *
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include "fsl-ls1028a-kontron-sl28.dts"
+>> +#include <dt-bindings/net/qca-ar803x.h>
+>> +
+>> +/ {
+>> +	model = "Kontron SMARC-sAL28 (4 Lanes)";
+>> +	compatible = "kontron,sl28-var1", "kontron,sl28", "fsl,ls1028a";
+>> +};
+>> +
+>> +&enetc_port0 {
+>> +	status = "disabled";
+>> +	/delete-property/ phy-handle;
+>> +	/delete-node/ mdio;
 > 
-> I was slightly confused. I looked again and yes regulator-name is always the
-> first regulator related property. What's off is that in some cases min/max
-> voltage comes before always-on/boot-on, and in others vice versa.
+> As it's disabled anyway, why do we bother to delete the property and
+> child node?
+
+Because beneath that node is also the old phy0 label. So you'd be 
+getting
+arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts:38.24-55.5: 
+ERROR (duplicate_label): 
+/soc/pcie@1f0000000/ethernet@0,1/mdio/ethernet-phy@4: Duplicate label 
+'phy0' on /soc/pcie@1f0000000/ethernet@0,1/mdio/ethernet-phy@4 and 
+/soc/pcie@1f0000000/ethernet@0,0/mdio/ethernet-phy@5
+
+>> +};
+>> +
+>> +
 > 
-> For example in the Rock64 and ROC-RK3328-CC device trees, in the fixed
-> regulators, always-on/boot-on come before min/max voltage, while in the
-> PMIC the other order is used.
+> One newline is enough.
+> 
+>> +&enetc_port1 {
+>> +	phy-handle = <&phy0>;
+>> +	phy-connection-type = "rgmii-id";
+>> +	status = "okay";
+>> +
+>> +	mdio {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		phy0: ethernet-phy@4 {
+>> +			reg = <0x4>;
+>> +			eee-broken-1000t;
+>> +			eee-broken-100tx;
+>> +
+> 
+> Unnecessary newline.
+> 
+>> +			qca,clk-out-frequency = <125000000>;
+>> +			qca,clk-out-strength = <AR803X_STRENGTH_FULL>;
+>> +
+> 
+> Ditto
+> 
+> Shawn
+> 
+>> +			vddio-supply = <&vddh>;
+>> +
+>> +			vddio: vddio-regulator {
+>> +				regulator-name = "VDDIO";
+>> +				regulator-min-microvolt = <1800000>;
+>> +				regulator-max-microvolt = <1800000>;
+>> +			};
+>> +
+>> +			vddh: vddh-regulator {
+>> +				regulator-name = "VDDH";
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> --
+>> 2.20.1
+>> 
 
-That's likely undecidednes on my part ;-)
-
-There could be an argument for a "name, voltages, flags" sorting, but on
-the other hand just keeping it alphabetical with the naming on top
-creates less special cases.
-
-
-Heiko
-
-
+-- 
+-michael
