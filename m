@@ -2,80 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0603F2F19FF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 16:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1C702F1A07
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 16:49:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732002AbhAKPrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 10:47:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59592 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731838AbhAKPrD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Jan 2021 10:47:03 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 69B0A20897;
-        Mon, 11 Jan 2021 15:46:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610379983;
-        bh=Vb4EWJGhtPIfUX19jNXMSL+D+Wx8b6XEpNClUK+58ko=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=omf8WyqzAdFiNBENs6FDTp9dRwmDGFd7toldLz8gPhXncb+6VzD6JuWiCmSB63EbX
-         2hGoxcFQ+P+dgxd43gmBFKm7BzyzYP3WPdiydrAughKwpyHeAwEqRxrLgdbuYv9CF4
-         JAQMCjUr2lv6eCzoXhq8KVh3VwnIdY9FT2H7Ym1c1PwPPQPN3Z5Z9fX6B5NS7atdu8
-         X/8JB8BJTVrsa0o7A7X5RJNbLMvEeLfaomqDHW4x8j/GUuERevKI6LqK4jof5fz5jx
-         GpP8UWC6McyCY+kkqzIGMUuL2umI5S7EpSjyyfpDbmQVKSQkWHZ1y7WVfseDhiQJMr
-         aif/UEIZZHTog==
-Date:   Mon, 11 Jan 2021 16:46:16 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     DENG Qingfang <dqfext@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?B?UmVuw6k=?= van Dorst <opensource@vdorst.com>
-Subject: Re: [PATCH net-next 0/2] dsa: add MT7530 GPIO support
-Message-ID: <20210111164616.1947d779@kernel.org>
-In-Reply-To: <20210111054428.3273-1-dqfext@gmail.com>
-References: <20210111054428.3273-1-dqfext@gmail.com>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1730287AbhAKPta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 10:49:30 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:18920 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727089AbhAKPta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 10:49:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1610379998;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Subject:Sender;
+        bh=vLyYz99L0YavfYACFiH1Ov36RMm83JVQzIoH1waUWPg=;
+        b=ZnRCHC6aHrdgahAQdomtz7jA2BcAlgD3P3QpuCG7yP5gwHgLC3biKEVvhh6N2tyPLN
+        qkYckysNrS7asTsT5Suswd8czlHGGoljzVkyPLndINukrzrcE62UlRjEN1JXa0qVezta
+        Qql+OPiC02Edbj7htE1pNu0Koze+6z0nsvP9vKfDuOwyKVORHkZIjDh/L66ODf0WOSWG
+        HzYsDCMxyQ+sd26a/zdiFkIV6eVcm1Veaxz/PgD1hIYRzKYTUZV3OUpv5OSnQnsObcXa
+        Vs3GWRImtTANObKYsy50lzqxqu/3ychjgzHZ+aGGt6CxdTTmO+gKb7vbc0C3YlIFAzoM
+        mx0Q==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8jxIcvGBg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 47.12.1 DYNA|AUTH)
+        with ESMTPSA id R0a218x0BFkUwAg
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Mon, 11 Jan 2021 16:46:30 +0100 (CET)
+Date:   Mon, 11 Jan 2021 16:46:25 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Simon Budig <simon.budig@kernelconcepts.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ondrej Jirman <megous@megous.com>
+Subject: Re: [PATCH 2/2] Input: edt-ft5x06 - add support for iovcc-supply
+Message-ID: <X/xy0fIvIcD36Ab1@gerhold.net>
+References: <20210108192337.563679-1-stephan@gerhold.net>
+ <20210108192337.563679-2-stephan@gerhold.net>
+ <20210111083612.swe2bu7mvjzjromg@pengutronix.de>
+ <X/wZqiRbx6nmrj0e@gerhold.net>
+ <20210111094538.yg3otwgesgyemktp@pengutronix.de>
+ <X/wj+bxe/IlznCj6@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <X/wj+bxe/IlznCj6@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qingfang,
+Hi,
 
-what modes does the LED support? Does it support blinking on rx/tx?
-What about link status?
-I'd like to know because I am still working on patches which add
-ethernet PHY/switch LEDs, with transparent offloading of netdev trigger.
-
-Marek
-
-On Mon, 11 Jan 2021 13:44:26 +0800
-DENG Qingfang <dqfext@gmail.com> wrote:
-
-> MT7530's LED controller can be used as GPIO controller. Add support for
-> it.
+On Mon, Jan 11, 2021 at 11:10:16AM +0100, Stephan Gerhold wrote:
+> On Mon, Jan 11, 2021 at 10:45:38AM +0100, Marco Felsch wrote:
+> > On 21-01-11 10:26, Stephan Gerhold wrote:
+> > > On Mon, Jan 11, 2021 at 09:36:12AM +0100, Marco Felsch wrote:
+> > > > On 21-01-08 20:23, Stephan Gerhold wrote:
+> > > > > diff --git a/drivers/input/touchscreen/edt-ft5x06.c b/drivers/input/touchscreen/edt-ft5x06.c
+> > > > > index 2eefbc2485bc..bf2e208112fe 100644
+> > > > > --- a/drivers/input/touchscreen/edt-ft5x06.c
+> > > > > +++ b/drivers/input/touchscreen/edt-ft5x06.c
+> > > > > @@ -103,7 +103,7 @@ struct edt_ft5x06_ts_data {
+> > > > >  	struct touchscreen_properties prop;
+> > > > >  	u16 num_x;
+> > > > >  	u16 num_y;
+> > > > > -	struct regulator *vcc;
+> > > > > +	struct regulator_bulk_data regulators[2];
+> > > > 
+> > > > Is there an enabling order we must follow?
+> > > > 
+> > > 
+> > > I don't know, sadly. The datasheets I was able to find do not mention
+> > > anything about this; the power-on sequence only includes the VDD line.
+> > 
+> > I've goolged a bit :)
+> > 
+> > Check this: https://focuslcds.com/content/FT5X26.pdf, page 12 of 32
+> > 
 > 
-> DENG Qingfang (2):
->   dt-bindings: net: dsa: add MT7530 GPIO controller binding
->   drivers: net: dsa: mt7530: MT7530 optional GPIO support
+> Thanks! I looked at several datasheets, that's probably one of the few I
+> did not look at. :(
 > 
->  .../devicetree/bindings/net/dsa/mt7530.txt    |  6 ++
->  drivers/net/dsa/mt7530.c                      | 96 +++++++++++++++++++
->  drivers/net/dsa/mt7530.h                      | 20 ++++
->  3 files changed, 122 insertions(+)
+> > There it is mentioned that we need to enable it first and add a 10us
+> > delay till we can enable the vdd line. So unfortunately the bulk_api
+> > can't be used as it is today. Another solution could be to extended the
+> > bulk api to respect on/off delays.
+> > 
+> 
+> I think for two regulators like here it's still manageable to
+> get/enable/disable/put them separately, so I will just revert the bulk
+> API change in v2.
 > 
 
+While implementing this I noticed that the power-up sequence in probe()
+does not quite seem right. The power-up sequence implemented by Marco in
+edt_ft5x06_ts_resume() seems to match the datasheet(s) but in probe() we
+enable VCC before doing anything with the reset line.
+
+So before I add the IOVCC regulator I will try to refactor the code a
+bit to make this consistent. :)
+
+Thanks,
+Stephan
