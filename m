@@ -2,69 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7ED32F22F3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 23:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 350932F2355
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 01:26:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387685AbhAKWkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 17:40:32 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:33435 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727019AbhAKWkc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 17:40:32 -0500
-Received: by mail-oi1-f169.google.com with SMTP id d203so352150oia.0;
-        Mon, 11 Jan 2021 14:40:16 -0800 (PST)
+        id S2403943AbhALAZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 19:25:49 -0500
+Received: from mail-oo1-f53.google.com ([209.85.161.53]:46989 "EHLO
+        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389073AbhAKWqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 17:46:37 -0500
+Received: by mail-oo1-f53.google.com with SMTP id n127so134314ooa.13;
+        Mon, 11 Jan 2021 14:46:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=OGa/l2jJYoY5GgRVS4CJNgnmY7MLFON8bENGc4FBO+o=;
-        b=EVFpTZFulBq7edkSo/CZHTep3ZMl2fYF3Z5uM0BVitFKxQPsBSwXLPvAqjvGBBrPPx
-         iScQa+fRtwd96Y38IBCx+agD0Tq3brsphkqJSdsqUdmfKh9MExydvdE5lP+lnpA56/ab
-         fPXflnkM9AJ1PYy0juktkkL70J/GC3q2K+7ZDEtDo7Zf/S0CooKGNPp8/4V6MZ5w1lr1
-         KbR5ei6hV2cNH1m0avCj+aAZVLxEtK2Nwc9Lf6AB289pLrQ8wvWksVqoxLa5Lrbq/eZA
-         R3uJOOZlCFxmSFyjk86sxjqRRP27Bw1nSZuBg1dKxaoXc5gtO4Rkf/PPHFgWvd7m9o7u
-         PMVQ==
-X-Gm-Message-State: AOAM530ogx2M9/g54paVei+3f4N6UyQvJ9mr3WmYTKRZBzlNmd0+ASSM
-        VCj8rJw5O/WaYvksJGH1ZA==
-X-Google-Smtp-Source: ABdhPJwEhGFMFZwjuW6fhm6a6OIkYBhybEZH9+vyWRgWcjO4HOXxL5FopEtJgLWJQws2Ww1Z1rVtwg==
-X-Received: by 2002:aca:30cf:: with SMTP id w198mr630768oiw.118.1610404791458;
-        Mon, 11 Jan 2021 14:39:51 -0800 (PST)
+        bh=TWzR02te5uk5MCjIEEArzIEPWl3rL9lGlci+NkzFFu0=;
+        b=VYRSIIjbB+2Y/fu+jTwfKoydgPSJaPJ+QAS96bFeNj/aNgdOUDVHpGURyNUiXmpnoT
+         S6qmeW0qWmDmwCCh3A4P/XQj9Wu6mzEjZZGmmnLavtaYEcPO15GMpRNDseFKFfy+sU9s
+         /fXLjHkHMDPZhhdfbnNUNjHxUU6LDtZDZLE/Pl29jxvFdvYCXAddgTON93miFL4r7eF3
+         u/KVqJMgNwW/EGCJplUjNDunklgzaMiv6ukn/K6ES6Elo1YMh97KRl4KAzNFxDiY4br+
+         BK6cJZpz6r2wImDhKyV7SIVZPLKFwAKJ38eLzd6gQW5F9MvHAIkn0P9WirS65suCuLqQ
+         RoQw==
+X-Gm-Message-State: AOAM530MVS4zKXt0mkCb4wCrlL23deIFBT4wMaFGNtGc3ZUnYAuhN47i
+        ZNx1ZlFzH+TINkpbAY1Cdg==
+X-Google-Smtp-Source: ABdhPJxp3aLQjXnU6rPP97yT5iEdgQlltxbQWg8hftjInKb4DwHZB4Jv6tWnqIddgIZhK92E4lmH3w==
+X-Received: by 2002:a4a:751a:: with SMTP id j26mr971798ooc.68.1610405155736;
+        Mon, 11 Jan 2021 14:45:55 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c18sm255549oib.31.2021.01.11.14.39.50
+        by smtp.gmail.com with ESMTPSA id d10sm196490ooh.32.2021.01.11.14.45.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 14:39:50 -0800 (PST)
-Received: (nullmailer pid 3188580 invoked by uid 1000);
-        Mon, 11 Jan 2021 22:39:49 -0000
-Date:   Mon, 11 Jan 2021 16:39:49 -0600
+        Mon, 11 Jan 2021 14:45:54 -0800 (PST)
+Received: (nullmailer pid 3197463 invoked by uid 1000);
+        Mon, 11 Jan 2021 22:45:53 -0000
+Date:   Mon, 11 Jan 2021 16:45:53 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     David Lechner <david@lechnology.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org, Sekhar Nori <nsekhar@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: ti,pruss: add ti,am1806-pruss
-Message-ID: <20210111223949.GA3188532@robh.at.kernel.org>
-References: <20210104183021.330112-1-david@lechnology.com>
- <20210104183021.330112-2-david@lechnology.com>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Yao <markyao0591@gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: display: bridge: Add YAML schema for
+ Synopsys DW-HDMI
+Message-ID: <20210111224553.GA3192268@robh.at.kernel.org>
+References: <20210105060818.24158-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20210105060818.24158-2-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210104183021.330112-2-david@lechnology.com>
+In-Reply-To: <20210105060818.24158-2-laurent.pinchart+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 04 Jan 2021 12:30:20 -0600, David Lechner wrote:
-> This adds a "ti,am1806-pruss" compatible type for the PRUSS found in
-> TI AM18xx/OMAP-L138 SoCs.
+On Tue, Jan 05, 2021 at 08:08:13AM +0200, Laurent Pinchart wrote:
+> Add a .yaml schema containing the common properties for the Synopsys
+> DesignWare HDMI TX controller. This isn't a full device tree binding
+> specification, but is meant to be referenced by platform-specific
+> bindings for the IP core.
 > 
-> Signed-off-by: David Lechner <david@lechnology.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 > ---
->  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Changes since v1:
 > 
+> - Add default to reg-io-width property
+> - Add additionalProperties
+> - Rebase on top of OF graph schema, dropped redundant properties
+> - Drop cec clock as it's device-specific
+> - Increase max clocks to 5 to accommodate the Rockchip DW-HDMI
+> ---
+>  .../display/bridge/synopsys,dw-hdmi.yaml      | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+> new file mode 100644
+> index 000000000000..96c4bc06dbe7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/synopsys,dw-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common Properties for Synopsys DesignWare HDMI TX Controller
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> +
+> +description: |
+> +  This document defines device tree properties for the Synopsys DesignWare HDMI
+> +  TX controller (DWC HDMI TX) IP core. It doesn't constitute a full device tree
+> +  binding specification by itself but is meant to be referenced by device tree
+> +  bindings for the platform-specific integrations of the DWC HDMI TX.
+> +
+> +  When referenced from platform device tree bindings the properties defined in
+> +  this document are defined as follows. The platform device tree bindings are
+> +  responsible for defining whether each property is required or optional.
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-io-width:
+> +    description:
+> +      Width (in bytes) of the registers specified by the reg property.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [1, 4]
+> +    default: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 5
+> +    items:
+> +      - description: The bus clock for either AHB and APB
+> +      - description: The internal register configuration clock
+> +    additionalItems: true
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 5
+> +    items:
+> +      - const: iahb
+> +      - const: isfr
+> +    additionalItems: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
 
-Acked-by: Rob Herring <robh@kernel.org>
+'ports' should probably be dropped if what each 'port' is is not defined 
+here. Any users will have to define 'ports' and the child nodes.
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +
+> +additionalProperties: true
+> +
+> +...
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
