@@ -2,148 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E30562F1F39
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 20:25:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 305EC2F1F3E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 20:25:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390792AbhAKTYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 14:24:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44648 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390796AbhAKTYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 14:24:06 -0500
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D8ADC061786;
-        Mon, 11 Jan 2021 11:23:10 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 416893E859;
-        Mon, 11 Jan 2021 20:23:09 +0100 (CET)
-Subject: Re: [PATCH 5/7] regulator: qcom-labibb: Implement short-circuit and
- over-current IRQs
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, sumit.semwal@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org
-References: <20210109132921.140932-1-angelogioacchino.delregno@somainline.org>
- <20210109132921.140932-6-angelogioacchino.delregno@somainline.org>
- <20210111135745.GC4728@sirena.org.uk>
- <6dee36e4-fc78-c21b-daf8-120ee44535a3@somainline.org>
-Message-ID: <8115a574-ad43-d3c6-70d4-28c8a2f4a5f6@somainline.org>
-Date:   Mon, 11 Jan 2021 20:23:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S2390993AbhAKTYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 14:24:54 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:45693 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390986AbhAKTYx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 14:24:53 -0500
+Received: by mail-ot1-f49.google.com with SMTP id n42so736020ota.12;
+        Mon, 11 Jan 2021 11:24:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lAthSiAq7J3RcLV6EaiwcZWNg7iBMPB+BIcB8NuQCQQ=;
+        b=KKVmIp86L7hI495LDmgPDxoDQFp9RM/3x0Mp1Z5meXnnPmmQC71+/BBvQizlJfNy3G
+         tXuaIKtzSZTmXX4moP1LO7/PZCf6IV6kDAvSqwt8DkNWDAd7la//0067k4zVsIPabnrb
+         M4n9kmT8v/XXbm51Aly55mry88quvw1OqgWyOPBhEbKSOu12snVU6eLlSb+/ge79QGno
+         9AEsN6EGlvMZJ0U6XAkfBC1UjOuSMa3sHzwvDPKsCeAUSeApoDOOErdafum9QC4Zq13j
+         o2ywNhOZyPvJN0v0CiYw9oYHt5Z61jd9OqY5kMQ+/Hl33V7XTDtewevJeoAmA7T9T7YW
+         H7ew==
+X-Gm-Message-State: AOAM532S+g4Iy2Wa0Wq/wYWp+ZvfOWuiSOUWye68kRWTnaJKYkKYNjYW
+        v7qn2RFNJie+0Zjr7ZnXOA==
+X-Google-Smtp-Source: ABdhPJxMj9HLfCnfHJ8XDV/zKpg0cfFnBYcX+UWn5fOjVCIsKjwQiF2ng1fDDxTOFgWHoSYUK5IxNA==
+X-Received: by 2002:a05:6830:12cf:: with SMTP id a15mr461586otq.217.1610393052159;
+        Mon, 11 Jan 2021 11:24:12 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z3sm136125ota.80.2021.01.11.11.24.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jan 2021 11:24:11 -0800 (PST)
+Received: (nullmailer pid 2920901 invoked by uid 1000);
+        Mon, 11 Jan 2021 19:24:10 -0000
+Date:   Mon, 11 Jan 2021 13:24:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     mgross@linux.intel.com
+Cc:     markgross@kernel.org, arnd@arndb.de, bp@suse.de,
+        damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
+        gregkh@linuxfoundation.org, corbet@lwn.net,
+        leonard.crestez@nxp.com, palmerdabbelt@google.com,
+        paul.walmsley@sifive.com, peng.fan@nxp.com, shawnguo@kernel.org,
+        jassisinghbrar@gmail.com, linux-kernel@vger.kernel.org,
+        Paul Murphy <paul.j.murphy@intel.com>,
+        devicetree@vger.kernel.org,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Subject: Re: [PATCH v2 06/34] dt-bindings: Add bindings for Keem Bay VPU IPC
+ driver
+Message-ID: <20210111192410.GA2906041@robh.at.kernel.org>
+References: <20210108212600.36850-1-mgross@linux.intel.com>
+ <20210108212600.36850-7-mgross@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <6dee36e4-fc78-c21b-daf8-120ee44535a3@somainline.org>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210108212600.36850-7-mgross@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/01/21 20:14, AngeloGioacchino Del Regno ha scritto:
-> Il 11/01/21 14:57, Mark Brown ha scritto:
->> On Sat, Jan 09, 2021 at 02:29:19PM +0100, AngeloGioacchino Del Regno 
->> wrote:
->>
->>> +    /* If the regulator is not enabled, this is a fake event */
->>> +    if (!ops->is_enabled(vreg->rdev))
->>> +        return 0;
->>
->> Or handling the interrupt raced with a disable initiated from elsewhere.
->> Does the hardware actually have a problem with reporting spurious errors?
->>
-Sorry, I forgot to answer to this one in the previous email.
+On Fri, Jan 08, 2021 at 01:25:32PM -0800, mgross@linux.intel.com wrote:
+> From: Paul Murphy <paul.j.murphy@intel.com>
+> 
+> Add DT bindings documentation for the Keem Bay VPU IPC driver.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Reviewed-by: Mark Gross <mgross@linux.intel.com>
+> Signed-off-by: Paul Murphy <paul.j.murphy@intel.com>
+> Co-developed-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 
-Yes, apparently the hardware has this issue: when the current draw is 
-very high and you disable the regulator while the attached device is 
-still drawing a lot of current (like on the Xperia XZ2 smartphone, but I 
-don't want to comment on that phone's HW quirks...) then the OCP 
-interrupt fires *after* disabling the LAB/IBB regulators.
+Needs your Sob.
 
-This doesn't seem to happen if the current draw is low in the exact 
-moment the regulator gets disabled, but that's not always possible since 
-it depends on external HW design / board design sometimes...
+> ---
+>  .../soc/intel/intel,keembay-vpu-ipc.yaml      | 153 ++++++++++++++++++
 
+This doesn't fit somewhere else?
 
->>> +    return ret ? IRQ_NONE : IRQ_HANDLED;
->>
->> Here and elsewhere please write normal conditional statements to improve
->> legibility.
->>
-> No problem. Will do.
+>  1 file changed, 153 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
 > 
->>> +    /* This function should be called only once, anyway. */
->>> +    if (unlikely(vreg->ocp_irq_requested))
->>> +        return 0;
->>
->> If this is not a fast path it doesn't need an unlikely() annotation;
->> indeed it sounds more like there should be a warning printed if this
->> isn't supposed to be called multiple times.
->>
-> That was extra-paranoid safety, looking at this one again, that should 
-> be totally unnecessary.
-> I think that removing this check entirely would be just fine also 
-> because.. anyway.. writing to these registers more than once won't do 
-> any harm, nor break functionality: I mean, even if it happens for 
-> whatever reason, there's *no real need* to avoid it from the hw 
-> perspective.
-> 
->>> +    /* IRQ polarities - LAB: trigger-low, IBB: trigger-high */
->>> +    if (vreg->type == QCOM_LAB_TYPE) {
->>> +        irq_flags |= IRQF_TRIGGER_LOW;
->>> +        irq_trig_low = 1;
->>> +    } else {
->>> +        irq_flags |= IRQF_TRIGGER_HIGH;
->>> +        irq_trig_low = 0;
->>> +    }
->>
->> This would be more clearly written as a switch statement.
->>
-> A switch statement looked like being a bit "too much" for just two cases 
-> where vreg->type cannot be anything else but QCOM_LAB_TYPE or 
-> QCOM_IBB_TYPE... but okay, let's write a switch statement in place of that.
-> 
->>> +    return devm_request_threaded_irq(vreg->dev, vreg->ocp_irq, NULL,
->>> +                     qcom_labibb_ocp_isr, irq_flags,
->>> +                     ocp_irq_name, vreg);
->>
->> Are you *sure* that devm_ is appropriate here and the interrupt handler
->> won't attempt to use things that will be deallocated before devm gets
->> round to freeing the interrupt?
->>
-> Yeah, I'm definitely sure.
-> 
->>> +        if (!!(val & LABIBB_CONTROL_ENABLE)) {
->>
->> The !! is redundant here and makes things less clear.
->>
-> My bad, I forgot to clean this one up before sending.
-> 
->>> @@ -166,8 +560,37 @@ static int qcom_labibb_of_parse_cb(struct 
->>> device_node *np,
->>>                      struct regulator_config *config)
->>>   {
->>>       struct labibb_regulator *vreg = config->driver_data;
->>> +    char *sc_irq_name;
->>
->> I really, really wouldn't expect to see interrupts being requested in
->> the DT parsing callback - apart from anything else the device is going
->> to have the physical interrupts with or without DT binding information.
->> These callbacks are for regulator specific properties, not basic probing.
->> Just request the interrupts in the main probe function, this also means
->> you can avoid using all the DT specific APIs which are generally a
->> warning sign.
->>
-> 
-> ...And I even wrote a comment saying "The Short Circuit interrupt is 
-> critical: fail if not found"!!! Whoa! That was bad.
-> Yeah, I'm definitely moving that to the appropriate place.
+> diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+> new file mode 100644
+> index 000000000000..cd1c4abe8bc9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-vpu-ipc.yaml
+> @@ -0,0 +1,153 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (c) Intel Corporation. All rights reserved.
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-vpu-ipc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Intel Keem Bay VPU IPC
+> +
+> +maintainers:
+> +  - Paul Murphy <paul.j.murphy@intel.com>
+> +
+> +description:
+> +  The VPU IPC driver facilitates loading of firmware, control, and communication
+> +  with the VPU over the IPC FIFO in the Intel Keem Bay SoC.
 
+VPU is never defined. 
+
+Bindings are for h/w blocks, not drivers.
+
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +        - const: intel,keembay-vpu-ipc
+> +
+> +  reg:
+> +    items:
+> +      - description: NCE WDT registers
+> +      - description: NCE TIM_GEN_CONFIG registers
+> +      - description: MSS WDT registers
+> +      - description: MSS TIM_GEN_CONFIG registers
+> +
+> +  reg-names:
+> +    items:
+> +      - const: nce_wdt
+> +      - const: nce_tim_cfg
+> +      - const: mss_wdt
+> +      - const: mss_tim_cfg
+> +
+> +  memory-region:
+> +    items:
+> +      - description: reference to the VPU reserved memory region
+> +      - description: reference to the X509 reserved memory region
+> +      - description: reference to the MSS IPC area
+> +
+> +  clocks:
+> +    items:
+> +      - description: cpu clock
+> +      - description: pll 0 out 0 rate
+> +      - description: pll 0 out 1 rate
+> +      - description: pll 0 out 2 rate
+> +      - description: pll 0 out 3 rate
+> +      - description: pll 1 out 0 rate
+> +      - description: pll 1 out 1 rate
+> +      - description: pll 1 out 2 rate
+> +      - description: pll 1 out 3 rate
+> +      - description: pll 2 out 0 rate
+> +      - description: pll 2 out 1 rate
+> +      - description: pll 2 out 2 rate
+> +      - description: pll 2 out 3 rate
+> +
+> +  clock-names:
+> +    items:
+> +      - const: cpu_clock
+> +      - const: pll_0_out_0
+> +      - const: pll_0_out_1
+> +      - const: pll_0_out_2
+> +      - const: pll_0_out_3
+> +      - const: pll_1_out_0
+> +      - const: pll_1_out_1
+> +      - const: pll_1_out_2
+> +      - const: pll_1_out_3
+> +      - const: pll_2_out_0
+> +      - const: pll_2_out_1
+> +      - const: pll_2_out_2
+> +      - const: pll_2_out_3
+> +
+> +  interrupts:
+> +    items:
+> +      - description: number of NCE sub-system WDT timeout IRQ
+> +      - description: number of MSS sub-system WDT timeout IRQ
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: nce_wdt
+> +      - const: mss_wdt
+> +
+> +  intel,keembay-vpu-ipc-nce-wdt-redirect:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description:
+> +      Number to which we will request that the NCE sub-system
+> +      re-directs it's WDT timeout IRQ
+> +
+> +  intel,keembay-vpu-ipc-mss-wdt-redirect:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description:
+> +      Number to which we will request that the MSS sub-system
+> +      re-directs it's WDT timeout IRQ
+
+These look like the same value as the interrupt numbers?
+
+> +
+> +  intel,keembay-vpu-ipc-imr:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description:
+> +      IMR (isolated memory region) number which we will request
+> +      the runtime service uses to protect the VPU memory region
+> +      before authentication
+> +
+> +  intel,keembay-vpu-ipc-id:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    description: The VPU ID to be passed to the VPU firmware.
+> +
+> +additionalProperties: False
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    vpu-ipc@3f00209c {
+> +        compatible = "intel,keembay-vpu-ipc";
+> +        reg = <0x3f00209c 0x10>,
+> +              <0x3f003008 0x4>,
+> +              <0x2082009c 0x10>,
+> +              <0x20821008 0x4>;
+> +        reg-names = "nce_wdt",
+> +                    "nce_tim_cfg",
+> +                    "mss_wdt",
+> +                    "mss_tim_cfg";
+> +        memory-region = <&vpu_reserved>,
+> +                        <&vpu_x509_reserved>,
+> +                        <&mss_ipc_reserved>;
+> +        clocks = <&scmi_clk 0>,
+> +                 <&scmi_clk 0>,
+> +                 <&scmi_clk 1>,
+> +                 <&scmi_clk 2>,
+> +                 <&scmi_clk 3>,
+> +                 <&scmi_clk 4>,
+> +                 <&scmi_clk 5>,
+> +                 <&scmi_clk 6>,
+> +                 <&scmi_clk 7>,
+> +                 <&scmi_clk 8>,
+> +                 <&scmi_clk 9>,
+> +                 <&scmi_clk 10>,
+> +                 <&scmi_clk 11>;
+> +        clock-names = "cpu_clock",
+> +                      "pll_0_out_0", "pll_0_out_1",
+> +                      "pll_0_out_2", "pll_0_out_3",
+> +                      "pll_1_out_0", "pll_1_out_1",
+> +                      "pll_1_out_2", "pll_1_out_3",
+> +                      "pll_2_out_0", "pll_2_out_1",
+> +                      "pll_2_out_2", "pll_2_out_3";
+> +        interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "nce_wdt", "mss_wdt";
+> +        intel,keembay-vpu-ipc-nce-wdt-redirect = <63>;
+> +        intel,keembay-vpu-ipc-mss-wdt-redirect = <47>;
+> +        intel,keembay-vpu-ipc-imr = <9>;
+> +        intel,keembay-vpu-ipc-id = <0>;
+> +    };
+> -- 
+> 2.17.1
+> 
