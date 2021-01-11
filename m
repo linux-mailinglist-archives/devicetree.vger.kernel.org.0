@@ -2,59 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 765E02F1E33
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 19:44:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA232F1E38
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 19:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390458AbhAKSop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 13:44:45 -0500
-Received: from relay07.th.seeweb.it ([5.144.164.168]:49621 "EHLO
-        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389472AbhAKSop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 13:44:45 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 6F5FB3E909;
-        Mon, 11 Jan 2021 19:43:47 +0100 (CET)
-Subject: Re: [PATCH 1/7] regulator: qcom-labibb: Implement voltage selector
- ops
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, sumit.semwal@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org
-References: <20210109132921.140932-1-angelogioacchino.delregno@somainline.org>
- <20210109132921.140932-2-angelogioacchino.delregno@somainline.org>
- <20210111131642.GB4728@sirena.org.uk>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <4158afa4-d28d-baf6-e26e-ef0e349d0596@somainline.org>
-Date:   Mon, 11 Jan 2021 19:43:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S2389746AbhAKSrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 13:47:15 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:46304 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389492AbhAKSrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 13:47:15 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10BIkLUA000815;
+        Mon, 11 Jan 2021 12:46:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1610390781;
+        bh=4099dAK98IF3h4AU7/WfejIaW+zDEZHZXESwwYl22Ik=;
+        h=From:To:CC:Subject:Date;
+        b=CgYyxhd4+U2p1i0VRmeyLFRv7aihxpMIheI9JJ7k2kD5d4dGpc1SDGSOi8TwstJvF
+         kVJz9WXfNkMIpc5O1G5h3FS8j1GoFYk1gS5JoGCehYj+osQI4CTLTPL0r8mmOu6dgW
+         QXZkOk15ekjjBK3g+BB77qv3Uz3IMTDi88Bo9VVA=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10BIkL28040524
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 11 Jan 2021 12:46:21 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 11
+ Jan 2021 12:46:21 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 11 Jan 2021 12:46:21 -0600
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10BIkLRn059612;
+        Mon, 11 Jan 2021 12:46:21 -0600
+Received: from localhost ([10.250.67.236])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 10BIkL5O004116;
+        Mon, 11 Jan 2021 12:46:21 -0600
+From:   Suman Anna <s-anna@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH v2 0/3] Add R5F nodes on TI K3 J7200 SoCs
+Date:   Mon, 11 Jan 2021 12:45:51 -0600
+Message-ID: <20210111184554.6748-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210111131642.GB4728@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/01/21 14:16, Mark Brown ha scritto:
-> On Sat, Jan 09, 2021 at 02:29:15PM +0100, AngeloGioacchino Del Regno wrote:
-> 
->> +	.linear_ranges		= (struct linear_range[]) {
->> +		REGULATOR_LINEAR_RANGE(4600000, 0, 15, 100000),
->> +	},
->> +	.n_linear_ranges	= 1,
-> 
-> If there's a single range that's just a simple linear mapping and should
-> use regulator_map_voltage_linear().
-> 
+Hi Nishanth,
 
-Yeah... that's.. my brain playing jokes on me, I think...
-Thank you, will fix in V2!
+This is v2 of the R5F DT node patches, and is a minor revision of the 
+previous series [1] with couple of patches squashed in. There is no
+change in overall delta. Please see the v1 cover-letter for details
+and the individual patches for exact delta.
+
+regards
+Suman
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210107183907.6545-1-s-anna@ti.com/
+
+Suman Anna (3):
+  arm64: dts: ti: k3-j7200: Add R5F cluster nodes
+  arm64: dts: ti: k3-j7200-som-p0: Add mailboxes to R5Fs
+  arm64: dts: ti: k3-j7200-som-p0: Add DDR carveout memory nodes for
+    R5Fs
+
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 42 +++++++++-
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 42 +++++++++-
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 80 ++++++++++++++++++-
+ 3 files changed, 161 insertions(+), 3 deletions(-)
+
+-- 
+2.29.2
+
