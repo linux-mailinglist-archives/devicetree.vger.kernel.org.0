@@ -2,194 +2,314 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60E672F1E39
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 19:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B0932F1E9A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 20:08:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390094AbhAKSsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 13:48:07 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:46290 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390054AbhAKSsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 13:48:07 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10BIkPh9000836;
-        Mon, 11 Jan 2021 12:46:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610390785;
-        bh=kNqSrnNci/GAWyk+sGVAHtqQdgneK4ESyhviLVJ/TXI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=zNB1mtpj8MU+ujwCP5hZem39nIspm4cWuw5VkEB8OH9xMwrFtXPvnZGvrU37SbDTk
-         iJPw+vghsq6nK6NC5+c6tZUTc+2+YSDfkHmNOiiYE9E+19LuigM4DyCs4lU14WHz/G
-         ivxN0QvWTDEESpJ5NMW+OgxvWU0pTwK7C3s/t5oo=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10BIkPEN046606
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Jan 2021 12:46:25 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 11
- Jan 2021 12:46:25 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 11 Jan 2021 12:46:24 -0600
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10BIkPdi125294;
-        Mon, 11 Jan 2021 12:46:25 -0600
-Received: from localhost ([10.250.67.236])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 10BIkOJI004129;
-        Mon, 11 Jan 2021 12:46:24 -0600
-From:   Suman Anna <s-anna@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 3/3] arm64: dts: ti: k3-j7200-som-p0: Add DDR carveout memory nodes for R5Fs
-Date:   Mon, 11 Jan 2021 12:45:54 -0600
-Message-ID: <20210111184554.6748-4-s-anna@ti.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210111184554.6748-1-s-anna@ti.com>
-References: <20210111184554.6748-1-s-anna@ti.com>
+        id S2390752AbhAKTHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 14:07:38 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:44155 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732114AbhAKTHi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 14:07:38 -0500
+Received: by mail-oi1-f175.google.com with SMTP id d189so402316oig.11;
+        Mon, 11 Jan 2021 11:07:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=doYN/VTU/LMbcW85QKFBZ+DDV5pHYxLu7RvwDrqh2aM=;
+        b=ZoKDg5ylqtcnUZWlUDxkri2rcyM/d+aBJqdAeWHFpTZp66DfimRWxWo1V+rdmE2HJv
+         sAg1AswYFGSlDHlZWlHM7YDjzngQxKzMsMZhotuOIh5FOYZYgbfh8X02I3+4i7xBZ0fk
+         3ZeA6O2wwYf5d0rFtx909RyiNSzDgRRsF5qltkavstuGydubt3EVxhFQpu1uvn445iVR
+         dWcnDBOeXWOtgybnlsr07vSi2kNgbPcgryvKlHcSUCvGXXxgOTF0x0WgQJ4Hkoq5ifAD
+         djpcgje8k2Q6kqMRD/uWnOWfkVRkFMDB0g3J8h1Np6tkXN2ae2O+P8Y1q+7DxjIjvZaq
+         TR6w==
+X-Gm-Message-State: AOAM532euW1woNHzyyui5UFA8ytKN7fUYDuaITr7var6jkMgT0lrt1Jb
+        r4KRqp5GdtPCUZlerpgLbHUZJx2iTQ==
+X-Google-Smtp-Source: ABdhPJypeXLMwwFCBoQ1yFh3Fox9trSbxovSrkjmyFz1Ahh3jeRWL51l+U7Pv4le1HBI+MdqElQItA==
+X-Received: by 2002:aca:f48b:: with SMTP id s133mr180148oih.59.1610392016097;
+        Mon, 11 Jan 2021 11:06:56 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u3sm134292otk.31.2021.01.11.11.06.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jan 2021 11:06:55 -0800 (PST)
+Received: (nullmailer pid 2897458 invoked by uid 1000);
+        Mon, 11 Jan 2021 19:06:53 -0000
+Date:   Mon, 11 Jan 2021 13:06:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     mazziesaccount@gmail.com, Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH 05/15] dt_bindings: mfd: Add ROHM BD71815 PMIC
+Message-ID: <20210111190653.GA2890911@robh.at.kernel.org>
+References: <cover.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
+ <4b3a868c07312d630de32e85d31dee7501627b73.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4b3a868c07312d630de32e85d31dee7501627b73.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two carveout reserved memory nodes each have been added for each of the
-R5F remote processor devices within both the MCU and MAIN domains on the
-TI J7200 EVM boards. These nodes are assigned to the respective rproc
-device nodes as well. The first region will be used as the DMA pool for
-the rproc device, and the second region will furnish the static carveout
-regions for the firmware memory.
+On Fri, Jan 08, 2021 at 03:34:52PM +0200, Matti Vaittinen wrote:
+> Document DT bindings for ROHM BD71815.
+> 
+> BD71815 is a single-chip power management IC mainly for battery-powered
+> portable devices. The IC integrates 5 bucks, 7 LDOs, a boost driver for
+> LED, a battery charger with a Coulomb counter, a real-time clock, a 32kHz
+> clock and two general-purpose outputs although only one is documented by
+> the data-sheet.
+> 
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> ---
+>  .../bindings/mfd/rohm,bd71815-pmic.yaml       | 198 ++++++++++++++++++
+>  1 file changed, 198 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
+> new file mode 100644
+> index 000000000000..2206b2008acd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
+> @@ -0,0 +1,198 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/rohm,bd71815-pmic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ROHM BD71815 Power Management Integrated Circuit bindings
+> +
+> +maintainers:
+> +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> +
+> +description: |
+> +  BD71815AGW is a single-chip power management ICs for battery-powered
+> +  portable devices. It integrates 5 buck converters, 8 LDOs, a boost driver
+> +  for LED and a 500 mA single-cell linear charger. Also included is a Coulomb
+> +  counter, a real-time clock (RTC), and a 32.768 kHz clock gate and two GPOs.
+> +
+> +properties:
+> +  compatible:
+> +    const: rohm,bd71815
+> +
+> +  reg:
+> +    description:
+> +      I2C slave address.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
 
-An additional reserved memory node is also added to reserve a portion of
-the DDR memory to be used for performing inter-processor communication
-between all the remote processors running RTOS. 8 MB of memory is reserved
-for this purpose, and this accounts for all the vrings and vring buffers
-between all the possible pairs of remote processors.
+Add a blank line here.
 
-The current carveout addresses and sizes are defined statically for each
-device. The R5F processors do not have an MMU, and as such require the
-exact memory used by the firmwares to be set-aside. The firmware images
-do not require any RSC_CARVEOUT entries in their resource tables either
-to allocate the memory for firmware memory segments.
+> +  "#gpio-cells":
+> +    const: 2
+> +    description: |
+> +      The first cell is the pin number and the second cell is used to specify
+> +      flags. See ../gpio/gpio.txt for more information.
+> +
+> +  clocks:
+> +    maxItems: 1
 
-NOTE:
-1. The R5F1 carveouts are needed only if the R5F cluster is running in
-   Split (non-LockStep) mode. The reserved memory nodes can be disabled
-   later on if there is no use-case defined to use the corresponding
-   remote processor.
-2. The J7200 SoCs have no DSPs and one less R5F cluster compared to J721E
-   SoCs. So, while the carveout memories reserved for the R5F clusters
-   present on the SoC match to those on J721E, the overall memory map
-   reserved for firmwares is quite different.
+And here.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-v2:
- - Squashed in Patch 5 from v1
- - Updated patch description
-v1: 
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210107183907.6545-5-s-anna@ti.com/
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210107183907.6545-6-s-anna@ti.com/
+> +  "#clock-cells":
+> +    const: 0
 
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 62 +++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+And here.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-index 3a82982902c8..a988e2ab2ba1 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -25,6 +25,60 @@ secure_ddr: optee@9e800000 {
- 			alignment = <0x1000>;
- 			no-map;
- 		};
-+
-+		mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_memory_region: r5f-memory@a0100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core1_dma_memory_region: r5f-dma-memory@a1000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core1_memory_region: r5f-memory@a1100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_dma_memory_region: r5f-dma-memory@a2000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_memory_region: r5f-memory@a2100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core1_dma_memory_region: r5f-dma-memory@a3000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core1_memory_region: r5f-memory@a3100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		rtos_ipc_memory_region: ipc-memories@a4000000 {
-+			reg = <0x00 0xa4000000 0x00 0x00800000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
- 	};
- };
- 
-@@ -143,18 +197,26 @@ &mailbox0_cluster11 {
- 
- &mcu_r5fss0_core0 {
- 	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
- };
- 
- &mcu_r5fss0_core1 {
- 	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core1>;
-+	memory-region = <&mcu_r5fss0_core1_dma_memory_region>,
-+			<&mcu_r5fss0_core1_memory_region>;
- };
- 
- &main_r5fss0_core0 {
- 	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core0>;
-+	memory-region = <&main_r5fss0_core0_dma_memory_region>,
-+			<&main_r5fss0_core0_memory_region>;
- };
- 
- &main_r5fss0_core1 {
- 	mboxes = <&mailbox0_cluster1 &mbox_main_r5fss0_core1>;
-+	memory-region = <&main_r5fss0_core1_dma_memory_region>,
-+			<&main_r5fss0_core1_memory_region>;
- };
- 
- &main_i2c0 {
--- 
-2.29.2
+> +  clock-output-names:
+> +    const: bd71815-32k-out
+> +
+> +  rohm,clkout-mode:
+> +    description: clk32kout mode. Can be set to "open-drain" or "cmos".
+> +    $ref: "/schemas/types.yaml#/definitions/string"
+> +    enum:
+> +      - open-drain
+> +      - cmos
+> +
+> +  rohm,charger-sense-resistor-ohms:
+> +    minimum: 10000000
+> +    maximum: 50000000
+> +    description: |
+> +      BD71827 and BD71828 have SAR ADC for measuring charging currents.
+> +      External sense resistor (RSENSE in data sheet) should be used. If some
+> +      other but 30MOhm resistor is used the resistance value should be given
 
+'something other'
+
+Though this can be expressed as 'default: 30000000'
+
+> +      here in Ohms.
+> +
+> +  regulators:
+> +    $ref: ../regulator/rohm,bd71815-regulator.yaml
+
+This file needs to come first.
+
+> +    description:
+> +      List of child nodes that specify the regulators.
+> +
+> +  gpio-reserved-ranges:
+> +    description: |
+> +      Usage of BD71828 GPIO pins can be changed via OTP. This property can be
+> +      used to mark the pins which should not be configured for GPIO. Please see
+> +      the ../gpio/gpio.txt for more information.
+> +
+> +  rohm,enable-hidden-gpo:
+> +    description: |
+> +      The BD71815 has undocumented GPO at pin E5. Pin is marked as GND at the
+> +      data-sheet as it's location in the middle of GND pins makes it hard to
+> +      use on PCB. If your board has managed to use this pin you can enable the
+> +      second GPO by defining this property. Dont enable this if you are unsure
+> +      about how the E5 pin is connected on your board.
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - "#clock-cells"
+> +  - regulators
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/leds/common.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        pmic: pmic@4b {
+> +            compatible = "rohm,bd71815";
+> +            reg = <0x4b>;
+> +
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +            clocks = <&osc 0>;
+> +            #clock-cells = <0>;
+> +            clock-output-names = "bd71815-32k-out";
+> +
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +
+> +            rohm,charger-sense-resistor-ohms = <10000000>;
+> +
+> +            regulators {
+> +                buck1: buck1 {
+> +                    regulator-name = "buck1";
+> +                    regulator-min-microvolt = <800000>;
+> +                    regulator-max-microvolt = <2000000>;
+> +                    regulator-always-on;
+> +                    regulator-ramp-delay = <1250>;
+> +                    rohm,dvs-run-voltage = <1150000>;
+> +                    rohm,dvs-suspend-voltage = <950000>;
+> +                };
+> +                buck2: buck2 {
+> +                    regulator-name = "buck2";
+> +                    regulator-min-microvolt = <800000>;
+> +                    regulator-max-microvolt = <2000000>;
+> +                    regulator-always-on;
+> +                    regulator-ramp-delay = <1250>;
+> +                    rohm,dvs-run-voltage = <1150000>;
+> +                    rohm,dvs-suspend-voltage = <950000>;
+> +                };
+> +                buck3: buck3 {
+> +                    regulator-name = "buck3";
+> +                    regulator-min-microvolt = <1200000>;
+> +                    regulator-max-microvolt = <2700000>;
+> +                    regulator-always-on;
+> +                };
+> +                buck4: buck4 {
+> +                    regulator-name = "buck4";
+> +                    regulator-min-microvolt = <1100000>;
+> +                    regulator-max-microvolt = <1850000>;
+> +                    regulator-always-on;
+> +                };
+> +                buck5: buck5 {
+> +                    regulator-name = "buck5";
+> +                    regulator-min-microvolt = <1800000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +                ldo1: ldo1 {
+> +                    regulator-name = "ldo1";
+> +                    regulator-min-microvolt = <800000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +                ldo2: ldo2 {
+> +                    regulator-name = "ldo2";
+> +                    regulator-min-microvolt = <800000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +                ldo3: ldo3 {
+> +                    regulator-name = "ldo3";
+> +                    regulator-min-microvolt = <800000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +                ldo4: ldo4 {
+> +                    regulator-name = "ldo4";
+> +                    regulator-min-microvolt = <800000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +                ldo5: ldo5 {
+> +                    regulator-name = "ldo5";
+> +                    regulator-min-microvolt = <800000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +                ldo6: ldodvref {
+> +                    regulator-name = "ldodvref";
+> +                    regulator-always-on;
+> +                };
+> +                ldo7: ldolpsr {
+> +                    regulator-name = "ldolpsr";
+> +                    regulator-always-on;
+> +                };
+> +
+> +                boost: wled {
+> +                    regulator-name = "wled";
+> +                    regulator-min-microamp = <10>;
+> +                    regulator-max-microamp = <25000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.25.4
+> 
+> 
+> -- 
+> Matti Vaittinen, Linux device drivers
+> ROHM Semiconductors, Finland SWDC
+> Kiviharjunlenkki 1E
+> 90220 OULU
+> FINLAND
+> 
+> ~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+> Simon says - in Latin please.
+> ~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+> Thanks to Simon Glass for the translation =] 
