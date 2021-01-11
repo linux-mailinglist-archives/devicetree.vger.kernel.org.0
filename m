@@ -2,113 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CC642F194A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 16:14:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D862F1959
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 16:17:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730163AbhAKPOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 10:14:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47214 "EHLO
+        id S1730854AbhAKPQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 10:16:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727957AbhAKPOb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 10:14:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09942C0617A2
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 07:13:51 -0800 (PST)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1kyyt1-0006K4-Sw; Mon, 11 Jan 2021 16:13:39 +0100
-Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1kyyt1-0007RJ-2T; Mon, 11 Jan 2021 16:13:39 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     linux-usb@vger.kernel.org
-Cc:     Minas Harutyunyan <hminas@synopsys.com>,
-        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 2/2] usb: dwc2: use clk bulk API for supporting additional clocks
-Date:   Mon, 11 Jan 2021 16:13:37 +0100
-Message-Id: <20210111151337.5643-3-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210111151337.5643-1-s.hauer@pengutronix.de>
-References: <20210111151337.5643-1-s.hauer@pengutronix.de>
+        with ESMTP id S1729275AbhAKPQr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 10:16:47 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C529EC061786;
+        Mon, 11 Jan 2021 07:16:06 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id r5so34364eda.12;
+        Mon, 11 Jan 2021 07:16:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tWKprXggvOuTBCM4ux6Fy6I4JWY3k6KRYP7cItmISrw=;
+        b=nPNH3n7FKLUaawD3t1ZaV7MF/1GDeKXfru7Y4wFAG2BExLhOk0eX46Mb2ipJkY1j2U
+         gXLSuHy3rjxPUwREAmBX8qPzuBSjFpu7HGPyabIpKJrXGkzuU1eDR55ewu/N/yRtaUvS
+         axJupyiFuS5dFZu9LRLDnumnclaPrmWGGuGMpRtW5cChFgV4tvd792EZMS0LaeS2xDiW
+         Rj99qP7nkj/P2E8IRjToFwdNbjDw6i7oAHTc1EbR+HV9YSGRqpbTugKP6zpuoqvNxWYo
+         UEbxm5IJhd4BjrLZRinbdWwxmxBfsDzOeGnL0hIMhM0ox5mGC5hzI5TLrkFVip48MhRf
+         kHOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tWKprXggvOuTBCM4ux6Fy6I4JWY3k6KRYP7cItmISrw=;
+        b=oAdpUSrsxgxFqMUReXB3yNuGhwJ73FEhAU9Ol7i9/CfhMWd3dgRg7yEzu/OxsH1pPt
+         fTBMd8cfTICCAM8DQO76tLQ2516D+42JY4SHfCUJCw8XKARfY8NLU3P3fY4+TLKpH9BD
+         dNKEVOjasiWQI91MeiHai9boudhxVXwrPUORDxDOwyTk7oW1zjdaxVDHvnqCa9NnFq27
+         O2XAdSesySwCVXv8gquAjzKdVS9RoetuBqC4ZamzCqMvIW/LPeJ8vklJ0bWoSNqNEXgt
+         VrrxMKE1fNauYquixAggw3ufNbOx2Vq8ggES7p036Ee6xBQxOMte2X/jFy9NNEbdRZO8
+         DzHA==
+X-Gm-Message-State: AOAM532fKFVo5rYlaWJtUAPV7FrOYS3zNDRDJphOsdQEmTCjGiDAzZPC
+        +O/AL5Qu/XKvetp32ICehIsKL/i2m/mwgrnW
+X-Google-Smtp-Source: ABdhPJzRbDlLMCtaSfmcNX//58RW+X6+3SRKczh2vcxrOvdxiWtNnLsedmlXGpgju7ULpQA8Ww78vw==
+X-Received: by 2002:aa7:c891:: with SMTP id p17mr14532386eds.309.1610378165283;
+        Mon, 11 Jan 2021 07:16:05 -0800 (PST)
+Received: from xps13.lan (3e6b100e.rev.stofanet.dk. [62.107.16.14])
+        by smtp.gmail.com with ESMTPSA id j7sm7223269ejj.27.2021.01.11.07.16.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jan 2021 07:16:04 -0800 (PST)
+From:   Bruno Thomsen <bruno.thomsen@gmail.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Bruno Thomsen <bruno.thomsen@gmail.com>,
+        Bruno Thomsen <bth@kamstrup.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: [PATCH] ARM: dts: imx7d-flex-concentrator: fix pcf2127 reset
+Date:   Mon, 11 Jan 2021 16:15:37 +0100
+Message-Id: <20210111151537.12530-1-bruno.thomsen@gmail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This switches to the clk bulk API for the dwc2 driver. With this
-additional clocks can be supported.
+RTC pcf2127 device driver has changed default behaviour of the watchdog
+feature in v5.11-rc1. Now you need to explicitly enable it with a
+device tree property, "reset-source", when used in the board design.
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+Fixes: 71ac13457d9d ("rtc: pcf2127: only use watchdog when explicitly available")
+
+Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+Cc: Bruno Thomsen <bth@kamstrup.com>
+Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Cc: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
 ---
- drivers/usb/dwc2/core.h     |  2 ++
- drivers/usb/dwc2/platform.c | 18 ++++++++----------
- 2 files changed, 10 insertions(+), 10 deletions(-)
+ arch/arm/boot/dts/imx7d-flex-concentrator.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/usb/dwc2/core.h b/drivers/usb/dwc2/core.h
-index 7161344c6522..4c9e2c75f3dd 100644
---- a/drivers/usb/dwc2/core.h
-+++ b/drivers/usb/dwc2/core.h
-@@ -1075,6 +1075,8 @@ struct dwc2_hsotg {
- 	spinlock_t lock;
- 	void *priv;
- 	int     irq;
-+	struct clk_bulk_data *clocks;
-+	int num_clocks;
- 	struct clk *clk;
- 	struct reset_control *reset;
- 	struct reset_control *reset_ecc;
-diff --git a/drivers/usb/dwc2/platform.c b/drivers/usb/dwc2/platform.c
-index 5f18acac7406..d4a1a26103da 100644
---- a/drivers/usb/dwc2/platform.c
-+++ b/drivers/usb/dwc2/platform.c
-@@ -143,11 +143,9 @@ static int __dwc2_lowlevel_hw_enable(struct dwc2_hsotg *hsotg)
- 	if (ret)
- 		return ret;
+diff --git a/arch/arm/boot/dts/imx7d-flex-concentrator.dts b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+index 84b095279e65..bd6b5285aa8d 100644
+--- a/arch/arm/boot/dts/imx7d-flex-concentrator.dts
++++ b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+@@ -115,6 +115,7 @@ pcf2127: rtc@0 {
+ 		compatible = "nxp,pcf2127";
+ 		reg = <0>;
+ 		spi-max-frequency = <2000000>;
++		reset-source;
+ 	};
+ };
  
--	if (hsotg->clk) {
--		ret = clk_prepare_enable(hsotg->clk);
--		if (ret)
--			return ret;
--	}
-+	ret = clk_bulk_prepare_enable(hsotg->num_clocks, hsotg->clocks);
-+	if (ret)
-+		return ret;
- 
- 	if (hsotg->uphy) {
- 		ret = usb_phy_init(hsotg->uphy);
-@@ -195,8 +193,7 @@ static int __dwc2_lowlevel_hw_disable(struct dwc2_hsotg *hsotg)
- 	if (ret)
- 		return ret;
- 
--	if (hsotg->clk)
--		clk_disable_unprepare(hsotg->clk);
-+	clk_bulk_disable_unprepare(hsotg->num_clocks, hsotg->clocks);
- 
- 	return 0;
- }
-@@ -281,11 +278,12 @@ static int dwc2_lowlevel_hw_init(struct dwc2_hsotg *hsotg)
- 	hsotg->plat = dev_get_platdata(hsotg->dev);
- 
- 	/* Clock */
--	hsotg->clk = devm_clk_get_optional(hsotg->dev, "otg");
--	if (IS_ERR(hsotg->clk)) {
-+	ret = devm_clk_bulk_get_all(hsotg->dev, &hsotg->clocks);
-+	if (ret < 0) {
- 		dev_err(hsotg->dev, "cannot get otg clock\n");
--		return PTR_ERR(hsotg->clk);
-+		return ret;
- 	}
-+	hsotg->num_clocks = ret;
- 
- 	/* Regulators */
- 	for (i = 0; i < ARRAY_SIZE(hsotg->supplies); i++)
+
+base-commit: 7c53f6b671f4aba70ff15e1b05148b10d58c2837
 -- 
-2.20.1
+2.29.2
 
