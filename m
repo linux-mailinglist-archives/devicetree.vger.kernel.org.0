@@ -2,179 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CA6F2F1AAC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 17:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2E252F1ACB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 17:20:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733305AbhAKQOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 11:14:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46020 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733195AbhAKQOV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Jan 2021 11:14:21 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 10E4322B30;
-        Mon, 11 Jan 2021 16:13:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610381620;
-        bh=Urfi7MuRhpUGvVyUz/7tHdR5Pc8foT1YLXVK04grcPw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FUkxZVko6R4B8OZL/LcJ4ziS9Rg3RtGjxiuL/FwgtkuQJuEK82TqdoD9P43saVScv
-         AVlA41qIFoegqW+caPtCCEBnWNUI1AhvgaapeEpufBVqOW2bvBlCoTFeq1fCjUJdY/
-         j8dCTQ74YRR/roq4poMVd+iY+GK3PxLNYIT2u+vWve/+nCVHKAVRlgWUocj8YFMNdl
-         urXh48m2JtDsb//ysP2avRfTahHCmwamaPHj6nncN4geoj8Tr6oqPMcB0Ds8Sz5h47
-         ZDd5ASM14XnkoMXhnPUEEi+ECqZw4PzA3yy4baaATIC7Ug2ipFwsfhKE0IPFD03z3c
-         HKUOdkaSM2ofQ==
-Received: by mail-ed1-f47.google.com with SMTP id i24so279343edj.8;
-        Mon, 11 Jan 2021 08:13:39 -0800 (PST)
-X-Gm-Message-State: AOAM533BO+5NTUdeJUlcjdwSECo538bGLkLerfei8cvaXpZFVMh55he7
-        gf2b6p5Kuq//slrQjGm8JINbEJRN/n/UG41T9Q==
-X-Google-Smtp-Source: ABdhPJw3c24e6XlhnbwSziA36wFuxQ1NccGshiVNtFSYA/nBEpCNmyhnpRmoijksjLsuhy3dxE3S9ZYziuy47Kt4DkA=
-X-Received: by 2002:aa7:d154:: with SMTP id r20mr106799edo.258.1610381618452;
- Mon, 11 Jan 2021 08:13:38 -0800 (PST)
+        id S1729200AbhAKQUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 11:20:17 -0500
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:43286 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728344AbhAKQUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 11:20:16 -0500
+Received: by mail-oi1-f173.google.com with SMTP id q25so20636655oij.10;
+        Mon, 11 Jan 2021 08:20:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BFRalSTc2wBo0cjIlCJKWiZkEC3SzoZK2JeTxyOUuJs=;
+        b=AaCAjCQEwMuKCqiUtsegOlEkQZuXJ6w7r+s+Y4g3RI++7z1ki0r62nR/xLwnFn0VL9
+         Zlw+pqiPCAn2fkwDLPN3sbqND1QdLQ84iCmmCPC1LK6G5tuzZ/FXcbY7EVpb3fRkvUPG
+         5MDc+bH4OXzDxuqQEXCT5SWhhHTaLUVCzX/eesa+4cK1ECI7vGhKH5FxOq2AeyPg+Wzj
+         k7p5FksoQF0ZTvI7GqF6iLFzHS5hnfgVF1sbG/Ts200ks6ZWWE8dfYJx9slBJYnH3TzJ
+         MSG5fXRx2XG0zccDrO/lgeKkyhtmtWBesjydfgy0JsP/vSc9rvhB5BA38wooEp058Sb/
+         RnYA==
+X-Gm-Message-State: AOAM530VdKHEYg7mxCNzzUWPu3vmsAH8whf5lvq4xxxEUQ75KtR+WIbY
+        zsARaZ3RmEFfR2HpsVm1oJhFpIP1aG32h69fmjs=
+X-Google-Smtp-Source: ABdhPJyQ9MgCNkZG99CLyMwk8G+4+Wi5pRSaAwZiC4QYOnEzSbRnRNcvip5iNWPwzUX4n68zw8j7mHtn/tg8YSqDprs=
+X-Received: by 2002:aca:4b16:: with SMTP id y22mr92589oia.148.1610381975695;
+ Mon, 11 Jan 2021 08:19:35 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1609844956.git.viresh.kumar@linaro.org> <CAL_JsqJMr3vfz2B29vzvFALCt_5-J__eJv2TZHJ0sR9nM=xXaw@mail.gmail.com>
- <CAK7LNAR9fdjZ7iWKSWvJ9etGZkd+n87cmXKN-Hah8DBDYbuAwA@mail.gmail.com>
- <20210111111711.r2xesydzhq5js2nf@vireshk-i7> <CAK7LNASViCOTGR7yDTfh0O+PAu+X-P2NwdY4oPMuXrr51awafA@mail.gmail.com>
-In-Reply-To: <CAK7LNASViCOTGR7yDTfh0O+PAu+X-P2NwdY4oPMuXrr51awafA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 11 Jan 2021 10:13:24 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+HiPv1x8B8ZdM2yjFLyiCwzcRR79SVsHCk80asySWp4w@mail.gmail.com>
-Message-ID: <CAL_Jsq+HiPv1x8B8ZdM2yjFLyiCwzcRR79SVsHCk80asySWp4w@mail.gmail.com>
-Subject: Re: [RFC 0/2] kbuild: Add support to build overlays (%.dtbo)
-To:     Masahiro Yamada <masahiroy@kernel.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        DTML <devicetree@vger.kernel.org>,
+References: <20210104130111.1269694-1-geert+renesas@glider.be> <CACRpkdZyV-tye0b6Pxf6s_SSEy1sq=Hqr_xXUopJrCkXsu9m9g@mail.gmail.com>
+In-Reply-To: <CACRpkdZyV-tye0b6Pxf6s_SSEy1sq=Hqr_xXUopJrCkXsu9m9g@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 11 Jan 2021 17:19:24 +0100
+Message-ID: <CAMuHMdVK+iYu-mEPfcNK0OwpFMs8re2uC7YAYzt5_CYvo_8BQg@mail.gmail.com>
+Subject: Re: [PATCH v12] ARM: uncompress: Validate start of physical memory
+ against passed DTB
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Eric Miao <eric.miao@nvidia.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Lukasz Stelmach <l.stelmach@samsung.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
+        Grant Likely <grant.likely@linaro.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+David Gibson
+Hi Linus,
 
-On Mon, Jan 11, 2021 at 9:40 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
->
-> On Mon, Jan 11, 2021 at 8:17 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+CC Rob, Grant, Michael, Heinrich, DT
+
+On Sat, Jan 9, 2021 at 12:57 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Mon, Jan 4, 2021 at 2:01 PM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> > Currently, the start address of physical memory is obtained by masking
+> > the program counter with a fixed mask of 0xf8000000.  This mask value
+> > was chosen as a balance between the requirements of different platforms.
+> > However, this does require that the start address of physical memory is
+> > a multiple of 128 MiB, precluding booting Linux on platforms where this
+> > requirement is not fulfilled.
 > >
-> > On 07-01-21, 14:28, Masahiro Yamada wrote:
-> > > Viresh's patch is not enough.
-> > >
-> > > We will need to change .gitignore
-> > > and scripts/Makefile.dtbinst as well.
-> > >
-> > > In my understanding, the build rule is completely the same
-> > > between .dtb and .dtbo
-> > > As Rob mentioned, I am not sure if we really need/want
-> > > a separate extension.
-> > >
-> > > A counter approach is to use an extension like '.ovl.dtb'
-> > > It clarifies it is an overlay fragment without changing
-> > > anything in our build system or the upstream DTC project.
+> > Fix this limitation by validating the masked address against the memory
+> > information in the passed DTB.  Only use the start address
+> > from DTB when masking would yield an out-of-range address, prefer the
+> > traditional method in all other cases.  Note that this applies only to the
+> > explicitly passed DTB on modern systems, and not to a DTB appended to
+> > the kernel, or to ATAGS.  The appended DTB may need to be augmented by
+> > information from ATAGS, which may need to rely on knowledge of the start
+> > address of physical memory itself.
 > >
-> > By the time you gave feedback, I have already sent the dtbo change for
-> > DTC to the device-tree-compiler list (based on Rob's suggestion).
+> > This allows to boot Linux on r7s9210/rza2mevb using the 64 MiB of SDRAM
+> > on the RZA2MEVB sub board, which is located at 0x0C000000 (CS3 space),
+> > i.e. not at a multiple of 128 MiB.
 > >
-> > And it got merged today by David:
-> >
-> > https://github.com/dgibson/dtc/commit/163f0469bf2ed8b2fe5aa15bc796b93c70243ddc
-> >
-> > Can we please finalize what we need to do with naming here and be done
-> > with it, so I can rework my patches and get going ?
-> >
-> > Thanks.
-> >
-> > --
-> > viresh
+> > Suggested-by: Nicolas Pitre <nico@fluxnic.net>
+> > Suggested-by: Ard Biesheuvel <ardb@kernel.org>
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Reviewed-by: Ard Biesheuvel <ardb@kernel.org>
+> > Acked-by: Nicolas Pitre <nico@fluxnic.net>
 >
+> Sorry for the long delay in reading the patch :(
 >
->
-> It is unfortunate to see such a patch merged
-> before getting agreement about how it should work
-> as a whole.
+> I really like the looks of this now, moreover it is very useful.
+> I suppose it is already in the patch tracker, but for the record:
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Given the feedback that dtbo is already a standard, I'd suggest we
-just stick with dts->dtbo.
+Thanks a lot!
 
-> >+# enable creation of __symbols__ node
-> >+ifneq ($(dtbo-y),)
-> >+DTC_FLAGS += -@
-> >+endif
+> > +               reg = fdt_getprop(fdt, offset, "linux,usable-memory", &len);
 >
-> I am not convinced with this code.
->
-> A single user of the dtbo-y syntax gives -@ to all
-> device trees in the same directory.
->
-> This is not a solution since Rob already stated -@ should be
-> given per board (or per platform, at least).
+> I suppose we already had a discussion of why this property
+> is undocumented? Or should we document it? Obviously
+> it is already in widespread use.
 
-Agreed.
+This comes from commit 51975db0b7333cf3 ("of/flattree: merge
+early_init_dt_scan_memory() common code"), which combined existing
+practises on Microblaze (commit 12e8414263f47352 ("microblaze_v8: Open
+firmware files")) and PowerPC (ba7594852f4e7121 ("[PATCH] powerpc: Add
+support for "linux,usable-memory" on memory nodes")), with the former
+obviously just copying the latter.
+Unfortunately none of this is documented in The DeviceTree
+Specification, ePAPR, or P1275.
 
-> I still do not understand why adding the new syntax dtbo-y
-> is helpful.
-
-I think we should stick with 'dtb-y' here.
+Heinrich tried to document it, but his patch was ignored:
+[PATCH] Documentation: devicetree: "linux,usable-memory" property
+https://lore.kernel.org/linux-devicetree/20161223161747.9986-1-xypron.glpk@gmx.de/
+https://lkml.org/lkml/2016/12/23/175
+https://lore.kernel.org/patchwork/patch/745784/
+Note that Heinrichs address is mangled in lore (imported from gmane?,
+but lkml and patchwork have it right.
 
 
-> Have we already decided to use separate ".dtb" and ".dtbo" for blobs?
->
-> Will we use ".dts" for all source files?
-> Or, will we use ".dtso" for overlay source files?
->
-> How should the build system determine the targets
-> that should have -@ option?
+Gr{oetje,eeting}s,
 
-The way it does already. Either:
+                        Geert
 
-DTC_FLAGS += -@
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-in a directory of dts files. Or on a per file basis like:
-
-DTC_FLAGS_foo_base += -@
-
-> For consistency, will we need a patch like follows?
->
->
-> diff --git a/dtc.c b/dtc.c
-> index bdb3f59..474401e 100644
-> --- a/dtc.c
-> +++ b/dtc.c
-> @@ -120,6 +120,8 @@ static const char *guess_type_by_name(const char
-> *fname, const char *fallback)
->                 return fallback;
->         if (!strcasecmp(s, ".dts"))
->                 return "dts";
-> +       if (!strcasecmp(s, ".dtso"))
-> +               return "dts";
->         if (!strcasecmp(s, ".yaml"))
->                 return "yaml";
->         if (!strcasecmp(s, ".dtb"))
-> @@ -349,6 +351,8 @@ int main(int argc, char *argv[])
->
->         if (streq(outform, "dts")) {
->                 dt_to_source(outf, dti);
-> +       else if (streq(outform, "dtso")) {
-> +               dt_to_source(outf, dti);
->  #ifndef NO_YAML
->         } else if (streq(outform, "yaml")) {
->                 if (!streq(inform, "dts"))
->
->
->
-> Overall solution looks unclear to me.
->
->
-> Again, it is unfortunate that we did not take enough time
-> (in spite of the RFC prefix) before proceeding.
-
-I should have added David here from the start. Honestly, I expected
-some discussion there.
-
-Rob
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
