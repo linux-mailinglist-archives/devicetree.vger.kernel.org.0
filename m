@@ -2,88 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 626252F0D2D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 08:29:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAB472F0D46
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 08:40:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727455AbhAKH2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 02:28:14 -0500
-Received: from comms.puri.sm ([159.203.221.185]:57824 "EHLO comms.puri.sm"
+        id S1727236AbhAKHjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 02:39:54 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:46478 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727450AbhAKH2N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Jan 2021 02:28:13 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id E80BCE124F;
-        Sun, 10 Jan 2021 23:27:02 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id VsKND9w91ELS; Sun, 10 Jan 2021 23:27:01 -0800 (PST)
-Subject: Re: [PATCH v4 0/5] imx8mq: updates for the interconnect fabric
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     robh@kernel.org, festevam@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org, georgi.djakov@linaro.org, cdleonard@gmail.com,
-        gregkh@linuxfoundation.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, kernel@puri.sm, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20210107121754.3295-1-martin.kepplinger@puri.sm>
- <20210111045103.GH28365@dragon>
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-Message-ID: <3c50b545-b4d5-f65a-7994-c97e7e80d508@puri.sm>
-Date:   Mon, 11 Jan 2021 08:26:54 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
-In-Reply-To: <20210111045103.GH28365@dragon>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1725536AbhAKHjy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Jan 2021 02:39:54 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E097D1A0202;
+        Mon, 11 Jan 2021 08:39:07 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 938CA1A00B1;
+        Mon, 11 Jan 2021 08:39:05 +0100 (CET)
+Received: from lsv03124.swis.in-blr01.nxp.com (lsv03124.swis.in-blr01.nxp.com [92.120.146.121])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 787654029B;
+        Mon, 11 Jan 2021 08:39:02 +0100 (CET)
+From:   Kuldeep Singh <kuldeep.singh@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+Subject: [PATCH 0/3] Enable flexcan support in LS1028A/LX2160A
+Date:   Mon, 11 Jan 2021 13:08:46 +0530
+Message-Id: <1610350729-21287-1-git-send-email-kuldeep.singh@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.01.21 05:51, Shawn Guo wrote:
-> On Thu, Jan 07, 2021 at 01:17:49PM +0100, Martin Kepplinger wrote:
->> revision history:
->> v4: (thanks Shawn, Georgi and Greg)
->>   * reorder to have dt-bindings doc before code addition
->>   * add newline between dt nodes
->>   * removed "interconnect: imx8mq: Use icc_sync_state" from the patchset
->>     since it's part of gregkh/char-misc.git
->>   * Add acks
->>
->> v3: (thanks Krysztof and Georgi)
->>   * drop the defconfig cycling patch and fix the interconnect enable config
->>   * add the noc node to imx8mq only
->>   * add missing signed-off-by
->>   * https://lore.kernel.org/linux-arm-kernel/20201210100906.18205-1-martin.kepplinger@puri.sm/T/#t
->>
->> v2: (thanks Lucas)
->>   * reorder and clean up defconfig changes
->>   * use "dram" for the interconnect path name and document it
->>   * https://lore.kernel.org/linux-arm-kernel/20201201123932.12312-1-martin.kepplinger@puri.sm/T/#t
->>
->> v1:
->>   * https://lore.kernel.org/linux-arm-kernel/20201201100124.4676-1-martin.kepplinger@puri.sm/T/#t
->>
->> thanks,
->>                          martin
->>
->>
->> Leonard Crestez (1):
->>    arm64: dts: imx8mq: Add NOC node
->>
->> Martin Kepplinger (4):
->>    arm64: dts: imx8mq: Add interconnect provider property
->>    dt-bindings: mxsfb: Add interconnect bindings for LCDIF path
->>    arm64: dts: imx8mq: Add interconnect for lcdif
->>    arm64: defconfig: Enable interconnect for imx8mq
-> 
-> I only received 3 patches, 1/5, 4/5 and 5/5.
-> 
-> Shawn
-> 
+This patch set adds device-tree support for LX2160A-RDB/QDS.
 
-strange as they made it to the lists, see 
-https://lore.kernel.org/linux-arm-kernel/20210107121754.3295-1-martin.kepplinger@puri.sm/ 
-but I can resend into this thread.
+Also, update flexcan entry for LS1028A and enable support further for
+LS1028A-RDB/QDS.
 
-                              martin
+Patch1: Add dtsi and dts properties for LX2160A
+Patch2: Update dtsi properties for LS1028A
+Patch3: Add dts properties for LS1028A.
+
+Kuldeep Singh (3):
+  arm64: dts: lx2160a: Add flexcan support
+  arm64: dtsi: ls1028a: Update flexcan properties
+  arm64: dts: ls1028a: Enable flexcan support for LS1028A-RDB/QDS
+
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts |  8 ++++++++
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 16 ++++++++++++++++
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    |  8 ++++----
+ arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dts |  8 ++++++++
+ arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts | 16 ++++++++++++++++
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi    | 20 ++++++++++++++++++++
+ 6 files changed, 72 insertions(+), 4 deletions(-)
+
+-- 
+2.7.4
+
