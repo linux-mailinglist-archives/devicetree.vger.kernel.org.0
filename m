@@ -2,126 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF6C2F10C9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 12:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E482F10C4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 12:05:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729602AbhAKLFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 06:05:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50114 "EHLO
+        id S1728408AbhAKLFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 06:05:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728242AbhAKLFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 06:05:16 -0500
-Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1F9C06179F;
-        Mon, 11 Jan 2021 03:04:36 -0800 (PST)
-Received: by ozlabs.org (Postfix, from userid 1007)
-        id 4DDrSc72Mcz9sjD; Mon, 11 Jan 2021 22:04:32 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-        d=gibson.dropbear.id.au; s=201602; t=1610363072;
-        bh=QjrIJsy+sDTV8RqXTwVI4hjuHj+8s1FwQRQGdWnyhLY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IT2R5xfnNEn4LD7qbZZRnHCkajV+dxR1J/c6bSj4gX8I5OrDOeS4KAfEAypzwFWqo
-         aaHnGl9NBIjCKjxo2poXyVeU3GbxLQtKT2rGP2v3CmUtmUvpJDtEX8m545HEoK3m/1
-         LfNdbkR8UHiy/UD7wD2GUbPsQkLtY62gyrT11dTQ=
-Date:   Mon, 11 Jan 2021 21:56:11 +1100
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     devicetree-compiler@vger.kernel.org,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
-Subject: Re: [PATCH] dtc: Allow overlays to have .dtbo extension
-Message-ID: <20210111105611.GD3051@yekko.fritz.box>
-References: <30fd0e5f2156665c713cf191c5fea9a5548360c0.1609926856.git.viresh.kumar@linaro.org>
+        with ESMTP id S1728387AbhAKLFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 06:05:03 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB1A5C061786;
+        Mon, 11 Jan 2021 03:04:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=L+GBxSxQTI4Xb+fBuV7rsaceskolDWPmYIZDlSCrKEA=; b=Sb6+uLCnIDe9NNSGTDhKzutUR
+        3XCa5whm7rOxRR2NqRXfjjnuMhKhz2ginjFbvJi/KOEwMYKQnkby0iYFFyVCayFxgrXbSoMdYUeV6
+        tmD562vzE6D9MZp/yRnWkbzGbjHzv90Haeejy9+IRa/plE6JHMM7ZFF7ExcVtAr+Pa/F1de836+79
+        2pLD9tOzsHgdMbVvoxq9jydHrE/N3CMs96arbO/hEI0LLvSbHSMhJX65fS+I35XiZO05y4XTGbXFj
+        EsUTwkmUBuZ1zWjWu8C6OUA5u/gmQ7cssfqiftQLA1J3MD2cLhpgj+7yRoxjWQSBEQ0wugwRfKcO8
+        TB485TmFg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46558)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1kyuzb-0006rM-1o; Mon, 11 Jan 2021 11:04:11 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1kyuzX-0005At-T2; Mon, 11 Jan 2021 11:04:07 +0000
+Date:   Mon, 11 Jan 2021 11:04:07 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     DENG Qingfang <dqfext@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Subject: Re: [PATCH net-next 2/2] drivers: net: dsa: mt7530: MT7530 optional
+ GPIO support
+Message-ID: <20210111110407.GR1551@shell.armlinux.org.uk>
+References: <20210111054428.3273-1-dqfext@gmail.com>
+ <20210111054428.3273-3-dqfext@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Km1U/tdNT/EmXiR1"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <30fd0e5f2156665c713cf191c5fea9a5548360c0.1609926856.git.viresh.kumar@linaro.org>
+In-Reply-To: <20210111054428.3273-3-dqfext@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jan 11, 2021 at 01:44:28PM +0800, DENG Qingfang wrote:
+> +static int
+> +mt7530_gpio_direction_output(struct gpio_chip *gc, unsigned int offset, int value)
+> +{
+> +	struct mt7530_priv *priv = gpiochip_get_data(gc);
+> +	u32 bit = mt7530_gpio_to_bit(offset);
+> +
+> +	mt7530_set(priv, MT7530_LED_GPIO_DIR, bit);
+> +	mt7530_set(priv, MT7530_LED_GPIO_OE, bit);
+> +	mt7530_gpio_set(gc, offset, value);
 
---Km1U/tdNT/EmXiR1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+FYI, Documentation/driver-api/gpio/consumer.rst says:
 
-On Wed, Jan 06, 2021 at 03:26:08PM +0530, Viresh Kumar wrote:
-> Allow the overlays to have .dtbo extension instead of just .dtb. This
-> allows them to be identified easily by tools as well as humans.
->=20
-> Allow the dtbo outform in dtc.c for the same.
->=20
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+  For output GPIOs, the value provided becomes the initial output value.
+  This helps avoid signal glitching during system startup.
 
-Seems reasonable.  Applied.
+Setting the pin to be an output, and then setting its initial value
+does not avoid the glitch. You may wish to investigate whether you
+can set the value before setting the pin as an output to avoid this
+issue.
 
->=20
-> ---
-> Hello,
->=20
-> This was earlier posted for the Linux Kernel and here is the thread
-> where Rob gave his feedback:
->=20
-> https://lore.kernel.org/lkml/CAL_Jsq+0dL=3DLHo8r9mY_weBP_bQ97UOBnt596J3Jo=
-VHwGNinHA@mail.gmail.com/
-> ---
->  dtc.c | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/dtc.c b/dtc.c
-> index bdb3f5945699..838c5df96c00 100644
-> --- a/dtc.c
-> +++ b/dtc.c
-> @@ -122,6 +122,8 @@ static const char *guess_type_by_name(const char *fna=
-me, const char *fallback)
->  		return "dts";
->  	if (!strcasecmp(s, ".yaml"))
->  		return "yaml";
-> +	if (!strcasecmp(s, ".dtbo"))
-> +		return "dtb";
->  	if (!strcasecmp(s, ".dtb"))
->  		return "dtb";
->  	return fallback;
-> @@ -357,6 +359,8 @@ int main(int argc, char *argv[])
->  #endif
->  	} else if (streq(outform, "dtb")) {
->  		dt_to_blob(outf, dti, outversion);
-> +	} else if (streq(outform, "dtbo")) {
-> +		dt_to_blob(outf, dti, outversion);
->  	} else if (streq(outform, "asm")) {
->  		dt_to_asm(outf, dti, outversion);
->  	} else if (streq(outform, "null")) {
-
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
-
---Km1U/tdNT/EmXiR1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAl/8LskACgkQbDjKyiDZ
-s5LJRxAAyZuKDfckgaD4VT7+dn1SApdLNnYU/KlgjI4dU/PdBoTJefdZw0oncDn0
-dTk1LawxDTmNpJUXR/Q587Y7aFWqYrVhc5Xb4SGKhCCH/MsEOYHKrgh3N2ffE1JG
-KnZC6Cvze8pEzIZxn/Umqo90GRr561i1G0n+H8fZsgwfbVAR0j953Np6LJsfJUVn
-9a6tRPuwPLR1IHZuNdd6aFa5N/XYSALmKr3CPHeuaE1BFfRUXdIaF7JTnZM3xMlw
-/3Bc23x7BKlOml0epR9zdG4HHYRNdXCyrAzSdE5HonBiuRfTI2oZ5r+nb5hUQAP1
-57aPfub2zrsgQMTxKQs6YnCsOyBLJHJaqzGy+DS1Ki1sH3pdbEi56TDe82oZeoGh
-1/bEoRGx16gv9CatY63wyM7E31Du3l7XJC9lR/NwITuxMcVr/ywyKzrkw235KcA7
-yjnJz5+fqCTHhMZ0VatGeeSuBzKAUhsBeyc3FU9EGhLB+hS2BXLwjuti37G+0wd3
-38u5WWF/HVewxsFatLSQ1+Ivn8LDOHjMli/UUloYKuS6UzTYJddYsT5HL/sI6qO1
-Ie1KYlnObcxXrMqwRftBO7ife9pfygQna+cBX6xbBFWM0+WgUYbvAwh3Usf0CTEH
-nVFSURLCy3sALfkBd5S8cujqJq27//01JF1gHONWtNdMpVg1Co0=
-=riIS
------END PGP SIGNATURE-----
-
---Km1U/tdNT/EmXiR1--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
