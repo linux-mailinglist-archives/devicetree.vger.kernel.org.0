@@ -2,92 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53E482F10C4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 12:05:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 598D32F10F0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 12:18:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728408AbhAKLFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 06:05:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50064 "EHLO
+        id S1728874AbhAKLRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 06:17:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728387AbhAKLFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 06:05:03 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB1A5C061786;
-        Mon, 11 Jan 2021 03:04:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=L+GBxSxQTI4Xb+fBuV7rsaceskolDWPmYIZDlSCrKEA=; b=Sb6+uLCnIDe9NNSGTDhKzutUR
-        3XCa5whm7rOxRR2NqRXfjjnuMhKhz2ginjFbvJi/KOEwMYKQnkby0iYFFyVCayFxgrXbSoMdYUeV6
-        tmD562vzE6D9MZp/yRnWkbzGbjHzv90Haeejy9+IRa/plE6JHMM7ZFF7ExcVtAr+Pa/F1de836+79
-        2pLD9tOzsHgdMbVvoxq9jydHrE/N3CMs96arbO/hEI0LLvSbHSMhJX65fS+I35XiZO05y4XTGbXFj
-        EsUTwkmUBuZ1zWjWu8C6OUA5u/gmQ7cssfqiftQLA1J3MD2cLhpgj+7yRoxjWQSBEQ0wugwRfKcO8
-        TB485TmFg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46558)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1kyuzb-0006rM-1o; Mon, 11 Jan 2021 11:04:11 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1kyuzX-0005At-T2; Mon, 11 Jan 2021 11:04:07 +0000
-Date:   Mon, 11 Jan 2021 11:04:07 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     DENG Qingfang <dqfext@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
-        Frank Wunderlich <frank-w@public-files.de>
-Subject: Re: [PATCH net-next 2/2] drivers: net: dsa: mt7530: MT7530 optional
- GPIO support
-Message-ID: <20210111110407.GR1551@shell.armlinux.org.uk>
-References: <20210111054428.3273-1-dqfext@gmail.com>
- <20210111054428.3273-3-dqfext@gmail.com>
+        with ESMTP id S1728731AbhAKLRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 06:17:55 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57A3AC06179F
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 03:17:15 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id x18so9340101pln.6
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 03:17:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=vBU9e6qyBvT5ZyCJomv4xriQsn7W38v5x67CwrScjsY=;
+        b=nYSrbnM/SnogBIYP8F8QIZmbgrUADTNeZxHozvUNmjqEjOIqHbwP6EdZageFoUCpbp
+         RlFDS1YbJSKKIYteN71fcaSAxssopABgaek9Dp7ZuCaQLYrnB2Bbw+SN/q7uTDK5kP6U
+         WIZ64yWIGwm+vYX2Gh3d8diTBeb46C7C4HhNWm5eNMPpcKJPMnsQ3w9k+/tFlmGlpcsO
+         ubmPWOj6PNYow3oURddjaOKgO1moyoGDB5fM2F5jjMRHZyfDad0nN0n9YUYNmYDEbP9U
+         9AQ3LQqPleAHxKEzp2N4ouXkCvhywR+I05n5ohiQbmYi6u4c68wvJ0J/A+uU5f2NwwmN
+         +dtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vBU9e6qyBvT5ZyCJomv4xriQsn7W38v5x67CwrScjsY=;
+        b=n7df9ortDdEg5fS0c0fLjUF6kK4kMVgqg/EDZnWASADQZXWUF2PQ/ipgBj5SmEKRvg
+         ewyVtelGcpjLsoG7ue69nNCiQeBRo+ZX+0yvdMFdUMPOO2BfwR+zgeZ2RcDNXGBrt4Bj
+         Ga0rO1u5eaPzM7d5CpILjQYj5AIZ/Q0xEP/U7zPIONbR+BKdCtWCtV77DlVS1aWCw3I8
+         LeGSrlyMOOpqei+UNLE3Nxp5X35Zmfut+oWOjLSW7j8FbgBrJpiFVrjNEvlVStJAICHl
+         o5ZiLYspmcSZrPyPoUwdIjfug5z2pLDgUY67bmapTRBTIR8ID5gGv/TQho/zgwX7Ldak
+         2XRw==
+X-Gm-Message-State: AOAM532Vncg9UUfFU9/IeXfM5n2pKPlCxC29lnXFD71zBPjGNFkSsVX9
+        ZGFfRCYSuMnM6xzy/rPEmIGdPw==
+X-Google-Smtp-Source: ABdhPJxt34tCOBXDfUJk3pPZ0yxAGN7NW92b+4hhJvRSg1GMXrG/sPu4+TJ2kUlBUKmqgX1XaFfS3w==
+X-Received: by 2002:a17:902:9a90:b029:da:ba07:efdc with SMTP id w16-20020a1709029a90b02900daba07efdcmr16068115plp.1.1610363834824;
+        Mon, 11 Jan 2021 03:17:14 -0800 (PST)
+Received: from localhost ([122.172.85.111])
+        by smtp.gmail.com with ESMTPSA id y21sm20500535pfr.90.2021.01.11.03.17.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 11 Jan 2021 03:17:14 -0800 (PST)
+Date:   Mon, 11 Jan 2021 16:47:11 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
+Subject: Re: [RFC 0/2] kbuild: Add support to build overlays (%.dtbo)
+Message-ID: <20210111111711.r2xesydzhq5js2nf@vireshk-i7>
+References: <cover.1609844956.git.viresh.kumar@linaro.org>
+ <CAL_JsqJMr3vfz2B29vzvFALCt_5-J__eJv2TZHJ0sR9nM=xXaw@mail.gmail.com>
+ <CAK7LNAR9fdjZ7iWKSWvJ9etGZkd+n87cmXKN-Hah8DBDYbuAwA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210111054428.3273-3-dqfext@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+In-Reply-To: <CAK7LNAR9fdjZ7iWKSWvJ9etGZkd+n87cmXKN-Hah8DBDYbuAwA@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 01:44:28PM +0800, DENG Qingfang wrote:
-> +static int
-> +mt7530_gpio_direction_output(struct gpio_chip *gc, unsigned int offset, int value)
-> +{
-> +	struct mt7530_priv *priv = gpiochip_get_data(gc);
-> +	u32 bit = mt7530_gpio_to_bit(offset);
-> +
-> +	mt7530_set(priv, MT7530_LED_GPIO_DIR, bit);
-> +	mt7530_set(priv, MT7530_LED_GPIO_OE, bit);
-> +	mt7530_gpio_set(gc, offset, value);
+On 07-01-21, 14:28, Masahiro Yamada wrote:
+> Viresh's patch is not enough.
+> 
+> We will need to change .gitignore
+> and scripts/Makefile.dtbinst as well.
+> 
+> In my understanding, the build rule is completely the same
+> between .dtb and .dtbo
+> As Rob mentioned, I am not sure if we really need/want
+> a separate extension.
+> 
+> A counter approach is to use an extension like '.ovl.dtb'
+> It clarifies it is an overlay fragment without changing
+> anything in our build system or the upstream DTC project.
 
-FYI, Documentation/driver-api/gpio/consumer.rst says:
+By the time you gave feedback, I have already sent the dtbo change for
+DTC to the device-tree-compiler list (based on Rob's suggestion).
 
-  For output GPIOs, the value provided becomes the initial output value.
-  This helps avoid signal glitching during system startup.
+And it got merged today by David:
 
-Setting the pin to be an output, and then setting its initial value
-does not avoid the glitch. You may wish to investigate whether you
-can set the value before setting the pin as an output to avoid this
-issue.
+https://github.com/dgibson/dtc/commit/163f0469bf2ed8b2fe5aa15bc796b93c70243ddc
+
+Can we please finalize what we need to do with naming here and be done
+with it, so I can rework my patches and get going ?
+
+Thanks.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+viresh
