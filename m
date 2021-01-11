@@ -2,101 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6678F2F1899
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 15:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 447F82F1948
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 16:14:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731102AbhAKOqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 09:46:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44016 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727304AbhAKOqD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Jan 2021 09:46:03 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BF3FB229C4;
-        Mon, 11 Jan 2021 14:45:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610376322;
-        bh=l6ToqVwqm3E7ql9O4XRtENEPRhqlUUCrKobd4xM3lgg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=uZZApSfe3FBkwQ18jphBQE5TJf9VCYIcQg1oER0tBBAyxp29dxOxPD2ljGcZiwXvb
-         QisYFN8GIZkXjZMiKHlRGvFQQJEjYRAFn9JDenRW8Kwcn0XE4cuPc1xasD9RFWdLCZ
-         rEpzO7GRrDHPDyIkZ0TND+BTEwx39IlCN3wmZ0sBzwV6F6nqbwkA/ovLdCtGuozEBd
-         dlmaNpQSDPgkq96V2JO3lBcHV8CdHNP8D18tz6LrkF7L9V56DMhVZ4yCokdo/G1F6Z
-         L2/aA4Hu1SWwVage5ZwkLSzXgMq1OdlaUENqFCM4kKga+DZFq3vfMk2Sdtgb2FqlBH
-         xzP5UFzB1v3uQ==
-Received: by mail-qv1-f43.google.com with SMTP id d11so7450756qvo.11;
-        Mon, 11 Jan 2021 06:45:22 -0800 (PST)
-X-Gm-Message-State: AOAM530i5E+8oWFkFRKkiS8guv1MSCAaGSiN+Grbo35FH91A0E0BzYJL
-        0Py0QCQGoFnjXLK3Nu54BEShQqXW0SU7pkPnIg==
-X-Google-Smtp-Source: ABdhPJymgMsMHFwjNXskq64kJCyaSLMJ3Do+hKilu0I/FvQeFX2WQUWySyGObrImhXuZnCRNVT6HEOiCX2LEoJH6Aqs=
-X-Received: by 2002:a0c:fe47:: with SMTP id u7mr13111qvs.4.1610376321947; Mon,
- 11 Jan 2021 06:45:21 -0800 (PST)
+        id S1728511AbhAKPOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 10:14:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47180 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727917AbhAKPOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 10:14:23 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8A0FC061795
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 07:13:42 -0800 (PST)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1kyyt1-0006K2-Sw; Mon, 11 Jan 2021 16:13:39 +0100
+Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1kyyt1-0007R5-1j; Mon, 11 Jan 2021 16:13:39 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     linux-usb@vger.kernel.org
+Cc:     Minas Harutyunyan <hminas@synopsys.com>,
+        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH 0/2] usb: dwc2: Use clk bulk API for supporting multiple clocks
+Date:   Mon, 11 Jan 2021 16:13:35 +0100
+Message-Id: <20210111151337.5643-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20210108121524.656872-1-qperret@google.com> <20210108121524.656872-16-qperret@google.com>
-In-Reply-To: <20210108121524.656872-16-qperret@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 11 Jan 2021 08:45:10 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLmzFWmTc=6JSRMofSEVRx9GCrwGxEsYog9dC16EMGdvQ@mail.gmail.com>
-Message-ID: <CAL_JsqLmzFWmTc=6JSRMofSEVRx9GCrwGxEsYog9dC16EMGdvQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 15/26] of/fdt: Introduce early_init_dt_add_memory_hyp()
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 8, 2021 at 6:16 AM Quentin Perret <qperret@google.com> wrote:
->
-> Introduce early_init_dt_add_memory_hyp() to allow KVM to conserve a copy
-> of the memory regions parsed from DT. This will be needed in the context
-> of the protected nVHE feature of KVM/arm64 where the code running at EL2
-> will be cleanly separated from the host kernel during boot, and will
-> need its own representation of memory.
+Currently the dwc2 driver only supports a single clock. I have a board
+here which has a dwc2 controller with a somewhat special clock routing
+to the phy. Both the dwc2 controller and the ULPI phy get their phy
+clock from a SI5351 clock generator. This clock generator has multiple
+clock outputs which each is modelled as a separate clk in Linux.
+Unfortunately the clock to the phy and the clock to the dwc2 core are on
+two different output pins of the SI5351, so we have two clocks which
+must be enabled.  The phy is driven by the usb-nop-xceiver driver which
+supports a single clock. My first approach was to add support for a
+second clock to that driver, but technically the other clock is
+connected to the dwc2 core, so instead I added support for a second
+clock to the dwc2 driver.  This can easily be archieved with the clk
+bulk API as done in this series.
 
-What happened to doing this with memblock?
+Sascha
 
-> Signed-off-by: Quentin Perret <qperret@google.com>
-> ---
->  drivers/of/fdt.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 4602e467ca8b..af2b5a09c5b4 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1099,6 +1099,10 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
->  #define MAX_MEMBLOCK_ADDR      ((phys_addr_t)~0)
->  #endif
->
-> +void __init __weak early_init_dt_add_memory_hyp(u64 base, u64 size)
-> +{
-> +}
-> +
->  void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
->  {
->         const u64 phys_offset = MIN_MEMBLOCK_ADDR;
-> @@ -1139,6 +1143,7 @@ void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
->                 base = phys_offset;
->         }
->         memblock_add(base, size);
-> +       early_init_dt_add_memory_hyp(base, size);
->  }
->
->  int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
-> --
-> 2.30.0.284.gd98b1dd5eaa7-goog
->
+Sascha Hauer (2):
+  dt-bindings: usb: dwc2: Add support for additional clock
+  usb: dwc2: use clk bulk API for supporting additional clocks
+
+ .../devicetree/bindings/usb/dwc2.yaml          |  3 ++-
+ drivers/usb/dwc2/core.h                        |  2 ++
+ drivers/usb/dwc2/platform.c                    | 18 ++++++++----------
+ 3 files changed, 12 insertions(+), 11 deletions(-)
+
+-- 
+2.20.1
+
