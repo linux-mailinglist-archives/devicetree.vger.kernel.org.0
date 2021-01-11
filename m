@@ -2,84 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E7932F0BF9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 05:52:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C03C2F0C9A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 06:46:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727251AbhAKEvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 23:51:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50276 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727130AbhAKEvw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Jan 2021 23:51:52 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 80110224D2;
-        Mon, 11 Jan 2021 04:51:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610340671;
-        bh=cExgHqE0WYAUy4mnP4ABwqH1JofZJfZZeZzaAbA8cCs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=klTAcy+2ts8/X0gGLmIHsLzqjAEEqtt8DtFjGgNmeUXA9UmhpdJDsDpPFLiPq4HwS
-         XbI/OiwkJfmo1O5DZI6JhhYr01aCokXOcZYQdjuXwPQ5kSuRauk7wVuyLC2ZlMQAzU
-         SZlSW1kph92ZAEYIXGgBzgMyxOYH7wZIKkemGWStJPiBJ9Ti5siFCe1DK1pW9Lmepl
-         /SvY5YTqdYD0FotyhGVZnFiqOJvqEDLYxKGECotyT4RfFP7Sasvwcov6MtTtH4VG+Y
-         TRWyGaIte2L9vi5vrPrBuIcCvXGADH4MUrlmOQHzXf5xmwV1ZgTe565/JDRZREi32f
-         g9x5xOTgbFlvw==
-Date:   Mon, 11 Jan 2021 12:51:04 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, festevam@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org, georgi.djakov@linaro.org, cdleonard@gmail.com,
-        gregkh@linuxfoundation.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, kernel@puri.sm, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 0/5] imx8mq: updates for the interconnect fabric
-Message-ID: <20210111045103.GH28365@dragon>
-References: <20210107121754.3295-1-martin.kepplinger@puri.sm>
+        id S1726760AbhAKFpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 00:45:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38180 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726544AbhAKFpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 00:45:34 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0068C061786;
+        Sun, 10 Jan 2021 21:44:53 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id 11so10294779pfu.4;
+        Sun, 10 Jan 2021 21:44:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=88GcoNGL/AXgeCjNvngovwMr6/msxp3BLQE6/faGv1E=;
+        b=h4+cG8LBG4mJ2vwsd0js8PfV+47sXFW4md16+AhwPXwgU9YZmmW2Lbaanew5uI+efR
+         zxNOSQz+NPgRzUZN54kj7M4CTyLAeDMQ4sI8MlJaKA6U28f5X1Ttwhlvn6ke5ccL99bV
+         IhZ0wc4vjAW+v0aiYBZscmF0Hg5up2X/8PWzw1QVEx2emEkzgZ0isVk5GQuCHEjDh+Au
+         mTjoRy8bwfYWPmGnaPczlFMa5fPx7oQD8HJdtlJki8doIr1dyB0vwKO4zcaRR+nFpvnU
+         kiJOLyZdXC4wL862hDu6srQ8LXH2o98c2u1m2wnEqj2kHNZNPJh4m8P6LZZtKEpgyoQL
+         8EDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=88GcoNGL/AXgeCjNvngovwMr6/msxp3BLQE6/faGv1E=;
+        b=LNKdUuUuQCcQ5wcUU5aJ4Tj+po9sICDBVO8lTdyczJiT8fpS8QZJUAxTjh09FfHjPJ
+         EqJVbL15Sv6N3rmQWjo10AdNvDcbTaOfFc9b7DV6vrGSSC95u+20cT0CETPCuHmCxn/q
+         3/r4Q83FZVvl0SsRJ3Ymnv+5axh5efwjKfeA6GKtcjY0fAoYOPIpcv9DwaJh5zvW7126
+         t5HWCBvvjrsnAjsR+KFU28PlbopKdkZ7PRSXY2QuCY9Vgjn5VEK1WrohLvmGjrXVD1J9
+         Ntq9YUj74GcDNsU+2Fkv/7vMlTdwHmv84Ipctmw7dQwslcorkwIGY0pyCa1VwDXx332p
+         qLVg==
+X-Gm-Message-State: AOAM53158Kwex2hRgZrNckAG+kFTj3lgK06S9A3f51tOkkWbp4V6B+6o
+        xhKXwcPcaq1SLT7i+XH0rsI=
+X-Google-Smtp-Source: ABdhPJxglMNH6WCUJJua0ObPzfzCa/AOfasQge6NqUl2igBLSmJcdZvEEwFVOyUKepzuXmQCloQ5tA==
+X-Received: by 2002:a63:1d59:: with SMTP id d25mr18119366pgm.259.1610343893413;
+        Sun, 10 Jan 2021 21:44:53 -0800 (PST)
+Received: from container-ubuntu.lan ([218.89.163.70])
+        by smtp.gmail.com with ESMTPSA id q16sm17548005pfg.139.2021.01.10.21.44.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Jan 2021 21:44:52 -0800 (PST)
+From:   DENG Qingfang <dqfext@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>
+Subject: [PATCH net-next 0/2] dsa: add MT7530 GPIO support
+Date:   Mon, 11 Jan 2021 13:44:26 +0800
+Message-Id: <20210111054428.3273-1-dqfext@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210107121754.3295-1-martin.kepplinger@puri.sm>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 07, 2021 at 01:17:49PM +0100, Martin Kepplinger wrote:
-> revision history:
-> v4: (thanks Shawn, Georgi and Greg)
->  * reorder to have dt-bindings doc before code addition
->  * add newline between dt nodes
->  * removed "interconnect: imx8mq: Use icc_sync_state" from the patchset
->    since it's part of gregkh/char-misc.git
->  * Add acks
-> 
-> v3: (thanks Krysztof and Georgi)
->  * drop the defconfig cycling patch and fix the interconnect enable config
->  * add the noc node to imx8mq only
->  * add missing signed-off-by
->  * https://lore.kernel.org/linux-arm-kernel/20201210100906.18205-1-martin.kepplinger@puri.sm/T/#t
-> 
-> v2: (thanks Lucas)
->  * reorder and clean up defconfig changes
->  * use "dram" for the interconnect path name and document it
->  * https://lore.kernel.org/linux-arm-kernel/20201201123932.12312-1-martin.kepplinger@puri.sm/T/#t
-> 
-> v1:
->  * https://lore.kernel.org/linux-arm-kernel/20201201100124.4676-1-martin.kepplinger@puri.sm/T/#t
-> 
-> thanks,
->                         martin
-> 
-> 
-> Leonard Crestez (1):
->   arm64: dts: imx8mq: Add NOC node
-> 
-> Martin Kepplinger (4):
->   arm64: dts: imx8mq: Add interconnect provider property
->   dt-bindings: mxsfb: Add interconnect bindings for LCDIF path
->   arm64: dts: imx8mq: Add interconnect for lcdif
->   arm64: defconfig: Enable interconnect for imx8mq
+MT7530's LED controller can be used as GPIO controller. Add support for
+it.
 
-I only received 3 patches, 1/5, 4/5 and 5/5.
+DENG Qingfang (2):
+  dt-bindings: net: dsa: add MT7530 GPIO controller binding
+  drivers: net: dsa: mt7530: MT7530 optional GPIO support
 
-Shawn
+ .../devicetree/bindings/net/dsa/mt7530.txt    |  6 ++
+ drivers/net/dsa/mt7530.c                      | 96 +++++++++++++++++++
+ drivers/net/dsa/mt7530.h                      | 20 ++++
+ 3 files changed, 122 insertions(+)
+
+-- 
+2.25.1
