@@ -2,107 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 065B62F1E28
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 19:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 765E02F1E33
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 19:44:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389990AbhAKSka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 13:40:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35282 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389750AbhAKSk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 13:40:29 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9EBC061794
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 10:39:49 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id l23so72421pjg.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 10:39:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=9lAT4gKX4N+kdUDda1+JDYp8tK350gAlBUTh8cpLiXQ=;
-        b=Ml5QXNX0McUZcH/qRcQsL68Omvcbc/J5ypXbrpMdc82fn1kt+R0oaoU+PLwar+pdbF
-         C2zZqo2Jp7HUR1bR0q0Tiyy8GdeyZMFcC1nGizmtEBr0eHHKSP2keKuE5LV+tlKyLAy4
-         DwdNpx8mM20lfufWJBq543oGdIqjpfInocEZVPtaZ5j9XuubyzgQD8N1o93YIKsbtFUU
-         /oON46rmpCkoyYy4XI8RpG4bR+1UJozwcqnKiuHzI2ehoLCH19AWqiklMkKuHeN9oNRZ
-         dsB6Cd0CQ2CibVQY9v55BRTBvR0sHM18rhGr3gI7pXfIaFDqxRzQTyWAlhmIj0HdlP60
-         r4Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9lAT4gKX4N+kdUDda1+JDYp8tK350gAlBUTh8cpLiXQ=;
-        b=EIMp2u0vhssMpoGX7R3Ku5nMTdKxlW3/D80DHEl6JD4nQ+rA36YL6Bk3dWiv3rJG7r
-         Noa/8r1MVaZYz62VJq7QQC/gQDTj+TCmLYQoby/9B6tffVB6u06AeU8bjkrNgMkP2Ihl
-         EhIUav7YaSEiGjppZtcLvzKVnXDyS+TAptQwCKN5jr/LXDt7fOrpv5SMhzrq4YsHixRq
-         LLXaQknuSusPnOcSvhFC6jVjjAk4apREw3LMZwlBXRlDzJITFreV3n0YW2G0/N8bfxaL
-         sPwGEgErzNbHap1pO3/7J9JTVrYkRTOMKx/DoerSziNvJ/2fOHUkMy/dEesFigFCeDwU
-         Qa3Q==
-X-Gm-Message-State: AOAM531kHX9XxkTsXbWc1IVcIzy9eWfLN7Qu/rMSei+nf7W8gSJYOMs4
-        UMfiXinjGq4n6Si/HbhXqxQj0g==
-X-Google-Smtp-Source: ABdhPJxe1wECB4rRLTdTsDQ2iih4uD9koBgZY0kmmOINViCN2trk/kywbpYH6QpBzsTWZSxuSj6aJQ==
-X-Received: by 2002:a17:902:aa45:b029:de:2fb:995 with SMTP id c5-20020a170902aa45b02900de02fb0995mr1020149plr.81.1610390389026;
-        Mon, 11 Jan 2021 10:39:49 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id v1sm410339pga.63.2021.01.11.10.39.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 10:39:48 -0800 (PST)
-Date:   Mon, 11 Jan 2021 11:39:46 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] remoteproc/mediatek: support L1TCM for MT8192 SCP
-Message-ID: <20210111183946.GC144935@xps15>
-References: <20210108081738.2175224-1-tzungbi@google.com>
+        id S2390458AbhAKSop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 13:44:45 -0500
+Received: from relay07.th.seeweb.it ([5.144.164.168]:49621 "EHLO
+        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389472AbhAKSop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 13:44:45 -0500
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 6F5FB3E909;
+        Mon, 11 Jan 2021 19:43:47 +0100 (CET)
+Subject: Re: [PATCH 1/7] regulator: qcom-labibb: Implement voltage selector
+ ops
+To:     Mark Brown <broonie@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org
+References: <20210109132921.140932-1-angelogioacchino.delregno@somainline.org>
+ <20210109132921.140932-2-angelogioacchino.delregno@somainline.org>
+ <20210111131642.GB4728@sirena.org.uk>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <4158afa4-d28d-baf6-e26e-ef0e349d0596@somainline.org>
+Date:   Mon, 11 Jan 2021 19:43:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210108081738.2175224-1-tzungbi@google.com>
+In-Reply-To: <20210111131642.GB4728@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 08, 2021 at 04:17:34PM +0800, Tzung-Bi Shih wrote:
-> The series supports L1TCM which is a high performance memory region in
-> MT8192 SCP.
+Il 11/01/21 14:16, Mark Brown ha scritto:
+> On Sat, Jan 09, 2021 at 02:29:15PM +0100, AngeloGioacchino Del Regno wrote:
 > 
-> The 1st patch replaces platform_get_resource_byname() and
-> devm_ioremap_resource() pairs per [1] suggested.
+>> +	.linear_ranges		= (struct linear_range[]) {
+>> +		REGULATOR_LINEAR_RANGE(4600000, 0, 15, 100000),
+>> +	},
+>> +	.n_linear_ranges	= 1,
 > 
-> The 2nd patch enables MPU for all memory regions.  The patch was
-> independent but merged to this series per [2] suggested.
+> If there's a single range that's just a simple linear mapping and should
+> use regulator_map_voltage_linear().
 > 
-> The 3rd patch adds a new reg-name "l1tcm" for L1TCM.
-> 
-> The 4th patch supports L1TCM in the firmware loader.  Note that MT8192
-> SCP is still under development.  The patch breaks early MT8192 SCP
-> firmware which should only break our own development environment.
-> 
-> Changes from v1[3]:
-> - Adds 2 patches at beginning of the series.
-> 
-> [1]: https://patchwork.kernel.org/project/linux-remoteproc/patch/20201214050521.845396-3-tzungbi@google.com/#23879113
-> [2]: https://patchwork.kernel.org/project/linux-remoteproc/patch/20210107023020.3224002-1-tzungbi@google.com/#23879623
-> [3]: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=401287
-> 
-> Tzung-Bi Shih (4):
->   remoteproc/mediatek: use devm_platform_ioremap_resource_byname
->   remoteproc/mediatek: enable MPU for all memory regions in MT8192 SCP
->   dt-bindings: remoteproc: mediatek: add L1TCM memory region
->   remoteproc/mediatek: support L1TCM
-> 
->  .../bindings/remoteproc/mtk,scp.txt           |  8 +--
->  drivers/remoteproc/mtk_common.h               |  6 ++
->  drivers/remoteproc/mtk_scp.c                  | 62 +++++++++++++++++--
->  3 files changed, 68 insertions(+), 8 deletions(-)
 
-For this set:
-
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-
-> 
-> -- 
-> 2.29.2.729.g45daf8777d-goog
-> 
+Yeah... that's.. my brain playing jokes on me, I think...
+Thank you, will fix in V2!
