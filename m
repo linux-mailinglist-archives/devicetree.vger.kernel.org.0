@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30DAD2F228E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 23:20:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC1D12F2294
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 23:21:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389720AbhAKWTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 17:19:32 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:46343 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728062AbhAKWTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 17:19:31 -0500
-Received: by mail-oi1-f172.google.com with SMTP id q205so222466oig.13;
-        Mon, 11 Jan 2021 14:19:15 -0800 (PST)
+        id S1732206AbhAKWUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 17:20:51 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:35496 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389420AbhAKWUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 17:20:49 -0500
+Received: by mail-ot1-f45.google.com with SMTP id i6so435232otr.2;
+        Mon, 11 Jan 2021 14:20:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=r+tmV/HBE7uvTKOaiU4bCpEVibry1LGggSkZA4twfVk=;
-        b=is7zgTdDcFekY6QQWslMKxT+mUb4QawNi11+JtBG1y5zuGrBqGTge65YinVnCAm6ed
-         l3o4zd4vCLMy6vADrBAMYQnzLgs9nC7dvldKbZcxS3fjtgAZKS7SHnp2KBeW0m2krj4S
-         HJ8xOTxg98GpoVSqDAIeEXlWVSipxImaWmA0n2svTZGlFz2LklX12wSqiqai0oleWw1j
-         xZn3Z1lJyMwxahsW1HYLu+q+gDIPiEasWPj4fLvjKtSy43XqKhZ+yh2iQV4bA9+55nwM
-         6Y4EMe1wpnbssA1wakNmp8Z5a8VfpJ7DWB/S97HUayzSk7bKX9AvbXGfn6csBw2FWa3/
-         xSnQ==
-X-Gm-Message-State: AOAM531Iqb0eRk47CMJA0nHjx+H2QW1x3XlXvD9Nrb5lGGV9HHyT2WVE
-        56uRsmKTDhT5BC2Edq7Ktg==
-X-Google-Smtp-Source: ABdhPJx6w+uHHGH/dYGvw2E1r1efDZ2c8whHnqNdln7J+fJUx/JnpHJRNKK6nctuMwXsLFFuEMvurw==
-X-Received: by 2002:aca:4dc3:: with SMTP id a186mr551653oib.107.1610403530201;
-        Mon, 11 Jan 2021 14:18:50 -0800 (PST)
+        bh=VyFCFff7hYJpxW+Rad4By7LUlx7N6qhPoYPEaO1tJps=;
+        b=NxtbbNjHq6wTCHvDZqGd7CCrZuktBH1DDLrVUUMM1eCbueN18rWYeATbjloawk95CZ
+         VlUmjyKBTrZQyKO4VErMMZ41Fi3j0uMOnW1pBenVgTDCXPdqONPXXUoLLvnqnfgecS0e
+         /Rz/n2OqoWnY9KTPxoHoDtmsGD28haLssjkgdhuUrzoKubQCP0tYXFy6IS9jt+LdNh7J
+         le2CZf/xTQlMgSwiRyR3MRs+Oq354cU7TCb/w/BK5Xt7cOaCFGBDDB8p8mAyKvqBIrvF
+         XOIouR8lgxfjT8U2mO4gwVEexLu5ie8+oll8cSebexyi7uoSSkuxK+yzxktVslUrL1Z4
+         WrMw==
+X-Gm-Message-State: AOAM531KjYYU6rV9MFIK1F7uLScHrvo3A3AYSITXXGcPDMvt1fEmcCqg
+        ix9B0peSA4A+jFXa6MCXFw==
+X-Google-Smtp-Source: ABdhPJwU6Becx7jAKNM9/tRzPRBw1eNYiQOnEXAerdi4abgkEPy3hpSEyntlUQKR5I5QMiNGp8R4gg==
+X-Received: by 2002:a9d:5f9a:: with SMTP id g26mr843215oti.241.1610403608789;
+        Mon, 11 Jan 2021 14:20:08 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m15sm235364otl.11.2021.01.11.14.18.48
+        by smtp.gmail.com with ESMTPSA id p10sm67054otp.43.2021.01.11.14.20.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 14:18:49 -0800 (PST)
-Received: (nullmailer pid 3158498 invoked by uid 1000);
-        Mon, 11 Jan 2021 22:18:48 -0000
-Date:   Mon, 11 Jan 2021 16:18:48 -0600
+        Mon, 11 Jan 2021 14:20:07 -0800 (PST)
+Received: (nullmailer pid 3160469 invoked by uid 1000);
+        Mon, 11 Jan 2021 22:20:05 -0000
+Date:   Mon, 11 Jan 2021 16:20:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hongtao Wu <wuht06@gmail.com>
-Cc:     Baolin Wang <baolin.wang7@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        devicetree@vger.kernel.org, Hongtao Wu <billows.wu@unisoc.com>,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: PCI: sprd: Document Unisoc PCIe RC
- host controller
-Message-ID: <20210111221848.GA3158447@robh.at.kernel.org>
-References: <1609409905-30721-1-git-send-email-wuht06@gmail.com>
- <1609409905-30721-2-git-send-email-wuht06@gmail.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Chen-Yu Tsai <wens@csie.org>, Vinod Koul <vkoul@kernel.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yong Deng <yong.deng@magewell.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        devel@driverdev.osuosl.org, kevin.lhopital@hotmail.com,
+        Maxime Ripard <mripard@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-sunxi@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org,
+        Helen Koike <helen.koike@collabora.com>
+Subject: Re: [PATCH v4 08/15] dt-bindings: media: Add A31 MIPI CSI-2 bindings
+ documentation
+Message-ID: <20210111222005.GA3160418@robh.at.kernel.org>
+References: <20201231142948.3241780-1-paul.kocialkowski@bootlin.com>
+ <20201231142948.3241780-9-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1609409905-30721-2-git-send-email-wuht06@gmail.com>
+In-Reply-To: <20201231142948.3241780-9-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Dec 2020 18:18:24 +0800, Hongtao Wu wrote:
-> From: Hongtao Wu <billows.wu@unisoc.com>
+On Thu, 31 Dec 2020 15:29:41 +0100, Paul Kocialkowski wrote:
+> This introduces YAML bindings documentation for the A31 MIPI CSI-2
+> controller.
 > 
-> This series adds PCIe bindings for Unisoc SoCs.
-> This controller is based on DesignWare PCIe IP.
-> 
-> Signed-off-by: Hongtao Wu <billows.wu@unisoc.com>
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 > ---
->  .../devicetree/bindings/pci/sprd-pcie.yaml         | 93 ++++++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/sprd-pcie.yaml
+>  .../media/allwinner,sun6i-a31-mipi-csi2.yaml  | 149 ++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
