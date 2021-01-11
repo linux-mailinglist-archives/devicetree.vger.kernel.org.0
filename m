@@ -2,81 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D46192F145A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 14:24:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C4B2F157A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 14:41:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730652AbhAKNXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 08:23:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35444 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732514AbhAKNRb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Jan 2021 08:17:31 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 014282229C;
-        Mon, 11 Jan 2021 13:17:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610371035;
-        bh=CmkRPkyW+CATZH9bzTVu39t6lVrMI3J3IbU932DutAk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TzJh0gBf47sx2RbCpMXf+TfAdv1Flwn9Ae44A9KJf+tM498ABXQvqgLhyH1zYE3cu
-         ZWVAf4NyLBmPLkFViDyXAtfqtdkd67K7A8vsMUt63JaA/mYr/rlGj+yM/usbcG2hAw
-         qIpAe4lQ+GkuDAmEVRQSB9g+KBywqaFB9oKjx1RhcRBcqX4DzZJaelEgwYX8j9kcAT
-         rr0FE7yWyXXZKyziKsETzzyvZBtfS8sFsREndoZDpvbuRkCCBkqkamIF8hRzsyajWa
-         MdiNPzek4HrZ5LOo7hxb62asOoJfY2VNR+9rUIPbZTDE/gTSHpvN5LpVB1bYuLUn3a
-         ApW4/7FbJuZOQ==
-Date:   Mon, 11 Jan 2021 13:16:42 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, sumit.semwal@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org
-Subject: Re: [PATCH 1/7] regulator: qcom-labibb: Implement voltage selector
- ops
-Message-ID: <20210111131642.GB4728@sirena.org.uk>
-References: <20210109132921.140932-1-angelogioacchino.delregno@somainline.org>
- <20210109132921.140932-2-angelogioacchino.delregno@somainline.org>
+        id S1732078AbhAKNkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 08:40:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731984AbhAKNkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 08:40:41 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6FCC061786;
+        Mon, 11 Jan 2021 05:40:01 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id 81so17761534ioc.13;
+        Mon, 11 Jan 2021 05:40:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VPX+TWLUVWMLDjFiSnhOZGL+SWYosAkfqkHnqdSxUAM=;
+        b=oYpWOHIwy6XftMFufPxgO9fchZbGj2sitlgT6yrncOYW3o+rDnEaoDdEBgXbnIkNeX
+         BRgMVzfxXtPehTLtxH6/A+/pCGEJ3rhhXAiCTmRByGxtCcl8HuLLDc4BXZpAV55H3biZ
+         0yDuJ/sOHEfW0HPXS5Fkcy+xtw+eO8Vz+ABu8n7XEudo17TUNCRfI2C5ZA6PpHF0HWLe
+         Lx7Pjc40cr4XA321nE1pFq1IE4Pg7cHaco2k4hd0nh2MkbN3i8tPv7ypcjFqWMR7xBRv
+         c3Bd9zDm7FaaHKwWj0GVydeK7Us4jjDSjh2RO7254w2P/sPOk9WCkIF5XTrXgUCTwGu8
+         z98g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VPX+TWLUVWMLDjFiSnhOZGL+SWYosAkfqkHnqdSxUAM=;
+        b=ExQYTm2mjN9pDwKXVoFR7DGfblCYkkdZkc4f9UaQ7+fkxpHeXRVhVMvENp7hSN/Y8S
+         YqUc8vgAPYotsIiKOg9iFsSYqxpYIKm2wiIjaRdiwANVdVXqHXXTN59t82ZfYmaieIEj
+         K4mmHeSN2h65tGQV/b5UFf1KXRowRtJBN0ctomcpdecmkzITic1BnaSv4lxEmltu+ybB
+         RK0PngNCKnciaKKu1mHbyZpj4TojRH7Tbz9BpHHvpp3AOvFvquPT/SUoS0rVEMfmFmhE
+         oyExkAKPDRtAfPagJWpA/d6ZicvTE9R4tl9Wr9+oy/yr7c3onK+sHs4vTWTST+gnkJQ5
+         T2RA==
+X-Gm-Message-State: AOAM532w/nemwmpkAXu4NksVBYPXr34KoLkKWZcFfvLtKUYx0u7WCE9r
+        pLCxSViWjNhEen45aRq3XBPuJTLt7bj0QUMNKwU=
+X-Google-Smtp-Source: ABdhPJxdIHd1jmADjrtYp3Zsp0l/yfn12bjpz+qSZpWV+XVteUVCntZjcfHonB6Q9MK8aoe7wB6LwfSgeU+sRkaghGs=
+X-Received: by 2002:a02:c8c7:: with SMTP id q7mr14527159jao.7.1610372400687;
+ Mon, 11 Jan 2021 05:40:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="St7VIuEGZ6dlpu13"
-Content-Disposition: inline
-In-Reply-To: <20210109132921.140932-2-angelogioacchino.delregno@somainline.org>
-X-Cookie: Too much is not enough.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210111054428.3273-1-dqfext@gmail.com> <20210111054428.3273-3-dqfext@gmail.com>
+ <20210111110407.GR1551@shell.armlinux.org.uk>
+In-Reply-To: <20210111110407.GR1551@shell.armlinux.org.uk>
+From:   DENG Qingfang <dqfext@gmail.com>
+Date:   Mon, 11 Jan 2021 21:40:00 +0800
+Message-ID: <CALW65jaqciOiRxJxzPiEADgpmKa7-q2QfQnBdaVMcOa5YDHjRA@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/2] drivers: net: dsa: mt7530: MT7530 optional
+ GPIO support
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jan 11, 2021 at 7:04 PM Russell King - ARM Linux admin
+<linux@armlinux.org.uk> wrote:
+>
+> FYI, Documentation/driver-api/gpio/consumer.rst says:
+>
+>   For output GPIOs, the value provided becomes the initial output value.
+>   This helps avoid signal glitching during system startup.
+>
+> Setting the pin to be an output, and then setting its initial value
+> does not avoid the glitch. You may wish to investigate whether you
+> can set the value before setting the pin as an output to avoid this
+> issue.
+>
 
---St7VIuEGZ6dlpu13
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Sat, Jan 09, 2021 at 02:29:15PM +0100, AngeloGioacchino Del Regno wrote:
-
-> +	.linear_ranges		= (struct linear_range[]) {
-> +		REGULATOR_LINEAR_RANGE(4600000, 0, 15, 100000),
-> +	},
-> +	.n_linear_ranges	= 1,
-
-If there's a single range that's just a simple linear mapping and should
-use regulator_map_voltage_linear().
-
---St7VIuEGZ6dlpu13
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/8T7oACgkQJNaLcl1U
-h9AkPAf+MAVILl2ffHOGp2fVUT5aN8gdBqK8rfxbiQEm6bDV5yFx+sLu7vuCGki5
-PjBq8BF088Hj2i6TY9OCaYPhtoSMiQ21gcZTdFWt7zZ5dFk1oCWKxkEhVSMdsjOp
-mHxAhQb1Eek8AA2R0+hMpp1D8+44DFEHE3gQnph+N8mHxXPXi23bdoUSZRF1nZeB
-bAx9ojeQ5+sv1un7mNIUMl2auDlGtjJOO2m62VJovgP0CIDfP9KNCoBDgXEPf8Qb
-4A5bN1oFeqkk3k9LP0LyRyzYsvnP/tn4KawgJI1kbVi/4xLdLGJTk08w0jluwN/N
-q1Obh6BUqc3IRbHqDSrlITHYI9Ovtw==
-=/6OF
------END PGP SIGNATURE-----
-
---St7VIuEGZ6dlpu13--
+So, setting the Output Enable bit _after_ setting the direction and
+initial value should avoid this issue. Right?
