@@ -2,71 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB532F2380
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 01:33:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A678F2F237F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 01:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403945AbhALAZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2405547AbhALAZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 11 Jan 2021 19:25:52 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:44415 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404137AbhAKXib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 18:38:31 -0500
-Received: by mail-ot1-f44.google.com with SMTP id r9so553291otk.11;
-        Mon, 11 Jan 2021 15:38:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9s5Q5x35iMmb8mRRkeqa901ka66QlLDIEbKbIA8D9iQ=;
-        b=FLvOtbe5yX0OkeJ+Uv+kuKSgByrojEM18jEC5uKLMV+csmilOslrZMBfGAyY2d2ona
-         YaC2gTxHXZfotWtOIhaMw23umw6Tmtb06NfAMGR1h2JDQ7+hnJ9Wsp7B2ykxnBjhX2pu
-         k4/XFJ4PVM2bykrDNsShJUfV8VYFG+pqWWY5hgpv/MOQ6JNOBl+VuCMyThF+Vi0oBpeu
-         UKr4TxxJOEBJ1Eoobo8qSoLfMn9zDA//E1yWoQ9LPl8dUWl3dTdZyi2uKYBAFYMigtWq
-         AZOlrMu8pXGjou9ra6T48NWBc/pzRBLz+KpmnCxzGcYcyCJgY6KLof4r7gJxSgdz9jA0
-         V9XQ==
-X-Gm-Message-State: AOAM532gRjmj6ADxwMewjHmEvEJctMHDeqRWUjgdHGVHRxS7YfWTNACQ
-        8HlGPtHNv8FPhPBeseoL9g==
-X-Google-Smtp-Source: ABdhPJyQMGlXniemdA078EsVaBrrRNlRHILOkRlvB83XJYriNIGEICcAlXfBbgOLBk1iv0TFKYN0Vw==
-X-Received: by 2002:a9d:e91:: with SMTP id 17mr976906otj.237.1610408270503;
-        Mon, 11 Jan 2021 15:37:50 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n5sm295459oif.27.2021.01.11.15.37.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 15:37:49 -0800 (PST)
-Received: (nullmailer pid 3267061 invoked by uid 1000);
-        Mon, 11 Jan 2021 23:37:48 -0000
-Date:   Mon, 11 Jan 2021 17:37:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Taniya Das <tdas@codeaurora.org>
-Subject: Re: [PATCH 3/4] dt-bindings: clock: Add SM8350 GCC clock bindings
-Message-ID: <20210111233748.GA3267006@robh.at.kernel.org>
-References: <20210105154645.217998-1-vkoul@kernel.org>
- <20210105154645.217998-4-vkoul@kernel.org>
+Received: from mail.kernel.org ([198.145.29.99]:34914 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404151AbhAKXjo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Jan 2021 18:39:44 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A37E22D2B;
+        Mon, 11 Jan 2021 23:39:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610408343;
+        bh=ImN5jLoMpV7boZcvXV6X2xFzUxBg7YjK0wzAZTPMTOo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Yjoyr33QEpYjtIlCdsiQUXu4whXKIMPNHK89fV1kcxxTqujoMs2KfbY4S37h67IVr
+         BhsVeGcN0xvH9RHapnW95yV3D/NB0x/TD9qUbGphFClT3A2qraKjQNwa2kxsr1G8ir
+         Wp/n+3ScD1Yd9SR4vh9KcT6nKizBqh6V/k1pqO3kTyPFmgxd9sTeSKtiQUSlwE0ynJ
+         sTRBxWhQhaMOvYs4Wavkb1GOKodnTwg/mJWMiZcSaxSEBSAIy67Dik0K2FtmnvWZve
+         DA6O+lP0O4BTT14h6gQ1/SZfJMDUNuVXm9xYRPqqKCj/W04ua5o5K+gSwcnJ65PB+l
+         Tvrg0cwH3Xp0w==
+Received: by mail-ej1-f48.google.com with SMTP id jx16so829249ejb.10;
+        Mon, 11 Jan 2021 15:39:03 -0800 (PST)
+X-Gm-Message-State: AOAM532RhvTAJ7SllI05CiG2xEPgDTkvpt3Ps7b6jddFkkPjn2Cyn60N
+        GnJQdLtI6Aw92rKnZyoD6m3IqLM55t8kvZE9LA==
+X-Google-Smtp-Source: ABdhPJy/dRRtjyiguVKGN6URlDjTkflvFuAKGUvO8vIkqPv4u5JUwlzC7aIBS7vVPptg4aVgIAS4eFcEK9Odp0d+3c8=
+X-Received: by 2002:a17:906:4146:: with SMTP id l6mr1203195ejk.341.1610408342000;
+ Mon, 11 Jan 2021 15:39:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210105154645.217998-4-vkoul@kernel.org>
+References: <20210105110839.5436-1-tomislav.denis@avl.com> <20210105110839.5436-3-tomislav.denis@avl.com>
+In-Reply-To: <20210105110839.5436-3-tomislav.denis@avl.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 11 Jan 2021 17:38:50 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKK_t3d-TiNP_3FHLs82OdVMv+meVEdqrHyZX4uaKKd2w@mail.gmail.com>
+Message-ID: <CAL_JsqKK_t3d-TiNP_3FHLs82OdVMv+meVEdqrHyZX4uaKKd2w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] bindings: iio: adc: Add documentation for
+ ADS131E0x ADC driver
+To:     tomislav.denis@avl.com
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Jan 2021 21:16:44 +0530, Vinod Koul wrote:
-> Add device tree bindings for global clock controller on SM8350 SoCs.
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+On Tue, Jan 5, 2021 at 5:26 AM <tomislav.denis@avl.com> wrote:
+>
+> From: Tomislav Denis <tomislav.denis@avl.com>
+>
+> Add a device tree binding documentation for Texas Instruments
+> ADS131E0x ADC family driver.
+>
+> Signed-off-by: Tomislav Denis <tomislav.denis@avl.com>
 > ---
->  .../bindings/clock/qcom,gcc-sm8350.yaml       |  96 +++++++
->  include/dt-bindings/clock/qcom,gcc-sm8350.h   | 261 ++++++++++++++++++
->  2 files changed, 357 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,gcc-sm8350.h
-> 
+>  .../devicetree/bindings/iio/adc/ti,ads131e08.yaml  | 181 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 182 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
 
 Reviewed-by: Rob Herring <robh@kernel.org>
