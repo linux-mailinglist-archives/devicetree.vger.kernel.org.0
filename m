@@ -2,142 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBEE42F1C41
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 18:24:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0792F1C4D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 18:28:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389314AbhAKRX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 12:23:59 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:50355 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726952AbhAKRX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 12:23:59 -0500
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 926CBC0005;
-        Mon, 11 Jan 2021 17:23:14 +0000 (UTC)
-Date:   Mon, 11 Jan 2021 18:23:13 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Jacob Chen <jacob-chen@iotwrt.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 5/5] media: hantro: Add support for the Rockchip PX30
-Message-ID: <X/yJgRXToYvYlapj@aptenodytes>
-References: <20210107134101.195426-1-paul.kocialkowski@bootlin.com>
- <20210107134101.195426-6-paul.kocialkowski@bootlin.com>
- <f7291b83fe39d71c3192ea58ebf71e3909bd38af.camel@collabora.com>
- <X/ggTOOTBhGoFDpW@aptenodytes>
- <f9a163675ae05cc77b2d527ea5d68064fbbeead9.camel@collabora.com>
+        id S2389533AbhAKR2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 12:28:22 -0500
+Received: from conssluserg-05.nifty.com ([210.131.2.90]:21638 "EHLO
+        conssluserg-05.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732924AbhAKR2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 12:28:22 -0500
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172]) (authenticated)
+        by conssluserg-05.nifty.com with ESMTP id 10BHRJjA021933;
+        Tue, 12 Jan 2021 02:27:20 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com 10BHRJjA021933
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1610386040;
+        bh=zHsgjQ+d0Jh9QA9SxHCmXDhgqkszADIFlqp7wpTZyFU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=efqhad3rgWDVbhuqRNstJOLSSePdYG684zoKuQ4ft+kVT5N+HTXbejJ4HJFr95g/Z
+         /6880+z3HytUwLegtIEZGp2vCpP1OFI4THl9KqNiXbnzWxlDMLbHPfcYd7lMGifMvT
+         DxrysMA+QHNSQbOzGOfDX7a50cbliquxsZhoZFiUwASkOXWkFQ2nSixLFdAzmpnmBr
+         bVE4FljHZKSmZ7RSmtGpu6hCeWUAG/EmUD7pmY+sCTENYxhtyv4mCYPWQ8WQxyQGkn
+         vPwjQsfmoIjrCqMaai9ZCKLaRd50qvrT833zHHVcgaLXyehsvYY+RcCiObbvxZopxh
+         VGJIrd9qEHGPg==
+X-Nifty-SrcIP: [209.85.215.172]
+Received: by mail-pg1-f172.google.com with SMTP id g15so90522pgu.9;
+        Mon, 11 Jan 2021 09:27:20 -0800 (PST)
+X-Gm-Message-State: AOAM53121AnML1JqZrqBVzgvkdzEBZwAl1LfWaHKnibmTBC1giysOh+I
+        I106zgj37cYoQsmbXSnyGM9bgEWFtYPPJSinR0I=
+X-Google-Smtp-Source: ABdhPJwCHFfCjtdNSGA/7Wf9BJPLiWnZBTudc7GDzA7ko9n2DbU++QgJDyhybdeBstxXcnxsUZ0d61nz647CQvbRPA0=
+X-Received: by 2002:a63:eb0c:: with SMTP id t12mr556694pgh.7.1610386039159;
+ Mon, 11 Jan 2021 09:27:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="1emMtAQaK8QkpPQv"
-Content-Disposition: inline
-In-Reply-To: <f9a163675ae05cc77b2d527ea5d68064fbbeead9.camel@collabora.com>
+References: <cover.1609844956.git.viresh.kumar@linaro.org> <CAL_JsqJMr3vfz2B29vzvFALCt_5-J__eJv2TZHJ0sR9nM=xXaw@mail.gmail.com>
+ <CAK7LNAR9fdjZ7iWKSWvJ9etGZkd+n87cmXKN-Hah8DBDYbuAwA@mail.gmail.com> <CAL_Jsq+DFF0tRv61XCAGLJYYu=ow8Ah8prd6su=6dpoU_AyMXw@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+DFF0tRv61XCAGLJYYu=ow8Ah8prd6su=6dpoU_AyMXw@mail.gmail.com>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 12 Jan 2021 02:26:41 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASVb6k9CZ+5Y4zzoRasqU7av193Jvv-aX0uD4=y4V8t9A@mail.gmail.com>
+Message-ID: <CAK7LNASVb6k9CZ+5Y4zzoRasqU7av193Jvv-aX0uD4=y4V8t9A@mail.gmail.com>
+Subject: Re: [RFC 0/2] kbuild: Add support to build overlays (%.dtbo)
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 8, 2021 at 4:02 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Wed, Jan 6, 2021 at 10:35 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
+> >
+> > On Wed, Jan 6, 2021 at 12:21 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > >
+> > > On Tue, Jan 5, 2021 at 4:24 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > > >
+> > > > Hello,
+> > > >
+> > > > Here is an attempt to make some changes in the kernel to allow building
+> > > > of device tree overlays.
+> > > >
+> > > > While at it, I would also like to discuss about how we should mention
+> > > > the base DT blobs in the Makefiles for the overlays, so they can be
+> > > > build tested to make sure the overlays apply properly.
+> > > >
+> > > > A simple way is to mention that with -base extension, like this:
+> > > >
+> > > > $(overlay-file)-base := platform-base.dtb
+> > > >
+> > > > Any other preference ?
+> >
+> >
+> >
+> > Viresh's patch is not enough.
+> >
+> > We will need to change .gitignore
+> > and scripts/Makefile.dtbinst as well.
+> >
+> >
+> > In my understanding, the build rule is completely the same
+> > between .dtb and .dtbo
+> > As Rob mentioned, I am not sure if we really need/want
+> > a separate extension.
+> >
+> >
+> > A counter approach is to use an extension like '.ovl.dtb'
+> > It clarifies it is an overlay fragment without changing
+> > anything in our build system or the upstream DTC project.
+> >
+> > We use chained extension in some places, for example,
+> > .dt.yaml for schema yaml files.
+> >
+> >
+> >
+> > dtb-$(CONFIG_ARCH_FOO) += \
+> >     foo-board.dtb \
+> >     foo-overlay1.ovl.dtb \
+> >     foo-overlay2.ovl.dtb
+> >
+> >
+> > Overlay DT source file names must end with '.ovl.dts'
+>
+> I like that suggestion as then it's also clear looking at the source
+> files which ones are overlays. Or we'd need .dtso to be consistent.
+>
+>
+> > > I think we'll want something similar to how '-objs' works for modules:
+> > >
+> > > foo-board-1-dtbs := foo-board.dtb foo-overlay1.dtbo
+> > > foo-board-2-dtbs := foo-board.dtb foo-overlay2.dtbo
+> > > foo-board-1-2-dtbs := foo-board.dtb foo-overlay1.dtbo foo-overlay2.dtbo
+> > > dtbs-y += foo-board-1.dtb foo-board-2.dtb foo-board-1-2.dtb
+> > >
+> > > (One difference here is we will want all the intermediate targets
+> > > unlike .o files.)
+> > >
+> > > You wouldn't necessarily have all the above combinations, but you have
+> > > to allow for them. I'm not sure how we'd handle applying any common
+> > > overlays where the base and overlay are in different directories.
+> >
+> >
+> > I guess the motivation for supporting -dtbs is to
+> > add per-board -@ option only when it contains *.dtbo pattern.
+>
+> I hadn't thought that far, but yeah, that would be good. Really, I
+> just want it to be controlled per SoC family at least.
+>
+> > But, as you notice, if the overlay files are located
+> > under drivers/, it is difficult to add -@ per board.
+>
+> Generally, they shouldn't be. The exceptions are what we already have
+> there which are old dt fixups and unittests.
+>
+> We want the stripped DT repo (devicetree-rebasing) to have all this
+> and drivers/ is stripped out. (Which reminds me, the DT repo will need
+> some work to support all this. It's a different build sys.)
+>
+> > Another scenario is, some people may want to compile
+> > downstream overlay files (i.e. similar concept as external modules),
+> > then we have no idea which base board should be given with the -@ flag.
+> >
+> >
+> > I'd rather be tempted to add it globally
+> >
+> >
+> > ifdef CONFIG_OF_OVERLAY
+> > DTC_FLAGS += -@
+> > endif
+>
+> We've already rejected doing that. Turning on '-@' can grow the dtb
+> size by a significant amount which could be problematic for some
+> boards.
+>
+>
+> > > Another thing here is adding all the above is not really going to
+> > > scale on arm32 where we have a single dts directory. We need to move
+> > > things to per vendor/soc family directories. I have the script to do
+> > > this. We just need to agree on the vendor names and get Arnd/Olof to
+> > > run it. I also want that so we can enable schema checks by default
+> > > once a vendor is warning free (the whole tree is going to take
+> > > forever).
+> >
+> >
+> > If this is a big churn, perhaps we could make it extreme
+> > to decouple DT and Linux-arch.
+>
+> I would be fine with that, but I don't think we'll get agreement
+> there. With that amount of change, we'll be discussing git submodule
+> again.
+>
+> Rereading the thread on vendor directories[1], we may just move boards
+> one vendor at a time. We could just make that a prerequisite for
+> vendor supporting overlays.
+>
+> > arch/*/boot/dts/*.dts
+> >  ->  dts/<vendor>/*.dts
+> >
+> > Documentation/devicetree/bindings
+> >  -> dts/Bindings/
+> >
+> > include/dt-bindings/
+> >  -> dts/include/dt-bindings/
+> >
+> >
+> >
+> > Then, other project can take dts/
+> > to reuse for them.
+>
+> This is already possible with devicetree-rebasing.git. Though it is
+> still by arch.
 
---1emMtAQaK8QkpPQv
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Yes, I know this project.
 
-On Fri 08 Jan 21, 10:13, Ezequiel Garcia wrote:
-> On Fri, 2021-01-08 at 10:05 +0100, Paul Kocialkowski wrote:
-> > Hi Ezequiel,
-> >=20
-> > On Thu 07 Jan 21, 16:08, Ezequiel Garcia wrote:
-> > > Happy to see this patch. It was on my TODO list,
-> > > but I hadn't had time to bringup my rk3326 device.
-> >=20
-> > Same here, I just had an occasion to use it again these days so I jumped
-> > on it!
-> >=20
-> > > A few comments.
-> > >=20
-> > > On Thu, 2021-01-07 at 14:41 +0100, Paul Kocialkowski wrote:
-> > > > The PX30 SoC includes both the VDPU2 and VEPU2 blocks which are sim=
-ilar
-> > > > to the RK3399 (Hantro G1/H1 with shuffled registers).
-> > > >=20
-> > > > Besides taking an extra clock, it also shares an interrupt with the=
- IOMMU
-> > > > so it's necessary to request the interrupt shared.
-> > > >=20
-> > >=20
-> [..]
-> > > > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/sta=
-ging/media/hantro/hantro_hw.h
-> > > > index 34c9e4649a25..07f516fd7a2e 100644
-> > > > --- a/drivers/staging/media/hantro/hantro_hw.h
-> > > > +++ b/drivers/staging/media/hantro/hantro_hw.h
-> > > > @@ -148,6 +148,7 @@ enum hantro_enc_fmt {
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0RK3288_VPU_ENC_FMT_=
-UYVY422 =3D 3,
-> > > > =C2=A0};
-> > > > =C2=A0
-> > > > +extern const struct hantro_variant px30_vpu_variant;
-> > > > =C2=A0extern const struct hantro_variant rk3399_vpu_variant;
-> > > > =C2=A0extern const struct hantro_variant rk3328_vpu_variant;
-> > > > =C2=A0extern const struct hantro_variant rk3288_vpu_variant;
-> > > > diff --git a/drivers/staging/media/hantro/rk3399_vpu_hw.c b/drivers=
-/staging/media/hantro/rk3399_vpu_hw.c
-> > > > index 7a7962cf771e..4112f98baa60 100644
-> > > > --- a/drivers/staging/media/hantro/rk3399_vpu_hw.c
-> > > > +++ b/drivers/staging/media/hantro/rk3399_vpu_hw.c
-> > >=20
-> > > Perhaps it's time to rename this to rockchip_vpu_hw.c,
-> > > and merge rk3288 and rk3399? It's a nitpick, though.
-> >=20
-> > Haha, I was thinking the exact same thing but wasn't sure it would be w=
-elcome!
-> >=20
-> > I was thinking of rockchip_vpu2_hw.c or rockchip_vdpu2_hw.c since that's
-> > apparently how it's called in Rockchip terminology: VDPU2 and VEPU2 for=
- the
-> > Hantro G1 and H1 with the shuffled register layout. The rk3288 stuff is
-> > probably VDPU1/VEPU1 and we might want to rename it accordingly as well.
-> >=20
->=20
-> I'd rather keep it simple as rockchip_vpu_hw.c and just throw in there
-> all the rockchip stuff.
+There are still cross-references between arm and arm64.
 
-Do you also mean merging all the rk*_vpu_hw.c files into one or just coveri=
-ng
-the general helpers (and not the platform-specific structures)?
+Associating DT with Linux-arch is not good
+because it is possible to boot the 32-bit kernel (arch/arm/)
+on the 64-bit boards (arch/arm64/boot/dts/).
 
-Cheers,
 
-Paul
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
 
---1emMtAQaK8QkpPQv
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl/8iYEACgkQ3cLmz3+f
-v9Go3wf8CY2beRCaepip+ySAr3f0rsAttGwT8TjAqe+dBrzZTyFhjEDEi2azyUgp
-bA49M4gc6+nCMtbfoGmOUrgffYiFy2SJqyTeICeTQviFY9I6xDjUprn5SSO40ohA
-Hh762PMKF47CXeC6mYAQ9Np2merbDP4kqNcUmCNctOKy4mSGec94BgdHIx8ABlBW
-exWvVw8AS0TzMoeIJALRzGV5BMTqKpwb5yHnTdwfN2UtiKJDl2J8GIP2koHTpSDw
-OE6ZVsY7ksYjvu7Kzs8RGjWksHNTViiCHygSrdSIYMYV22H6l5Gj2pgKMWpMs7hR
-I/F/7cVY0gP+RMFIVzTALLgvQWhFIA==
-=fdgl
------END PGP SIGNATURE-----
+> Rob
+>
+> [1] https://lore.kernel.org/linux-devicetree/20181204183649.GA5716@bogus/
 
---1emMtAQaK8QkpPQv--
+
+
+-- 
+Best Regards
+Masahiro Yamada
