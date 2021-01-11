@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C1912F0B7F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 04:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E70392F0B80
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 04:36:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726362AbhAKDfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Jan 2021 22:35:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58230 "EHLO mail.kernel.org"
+        id S1725824AbhAKDgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Jan 2021 22:36:51 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58514 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726224AbhAKDfG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Jan 2021 22:35:06 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 39135206D6;
-        Mon, 11 Jan 2021 03:34:24 +0000 (UTC)
+        id S1725797AbhAKDgu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Jan 2021 22:36:50 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3F8B422225;
+        Mon, 11 Jan 2021 03:36:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610336065;
-        bh=mdMbte40M7QwVzJsnpART/08lVB28sP+AUZG25M4YBY=;
+        s=k20201202; t=1610336170;
+        bh=efAlBowgesJsF4Gecc/ocDjmkDbo6LfEashvo0YlL5U=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q7Qk784UPtMaCPh6UDEE1QZF51gcS7c18dfBR8Zg35hQXsPFjrXRdzthcQqYZfTXZ
-         bqWwssuIJNWHehnJ882TQSBgiC0/n3Wxvr1b9yK7EDCBoke+lDUwERIxzVD49zMvTs
-         aMYB+jHEVVZ24L6hmjbe99vAPnMC+m/uqUQtzES4uJyqsOQP7GycitiIqY1OtFaLJx
-         WLNezyH7hYgjZOQJdu9+Fq0Xk94FQKg89tFMUSe/OjDRLOsttbYt4FrR+lcDvkonHs
-         yGh1N0vQY5eo/mw4ggrLCMXOZ3ySVXJbfDj2LvoZuubCmvJH0/p3BnkGRnHLInYzFe
-         UbiKbOC/bckMw==
-Date:   Mon, 11 Jan 2021 11:34:21 +0800
+        b=ieN2tIlwd5ITa0n1t5Eb/xEJa32WC1WbonIEupcSbMS1LWB/ZomONbLkBAnp7KBG+
+         rAt4rdAw/0AKiIAW/BJFNjA6SUi50MXjWrvUW3U1IFyPJtOj++gQj/5tkbQ5rB0ZjD
+         KwFeTgMYm4QCNJM6S1YzrCNijVSmEAZ5h7OTt5ePAIljbnYF+d0eKVZ9T400pNgiub
+         e00eDogeH34898ZE6uMeq+Q+YEH4pa87A7PM2qTdGUHR3KIQqiYWC50TcBkMAitINO
+         WqjVY6YAWneRORLVdU9bjraynafRduj9GSv23Q0V1/EMfCzNgqit93Di8e5iTXsbQz
+         EnnbYONXXFqAw==
+Date:   Mon, 11 Jan 2021 11:36:04 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH] ARM: dts: imx6q(dl): Move 'port' nodes under 'ports' for
- HDMI encoder
-Message-ID: <20210111033420.GB28365@dragon>
-References: <20210106150851.8480-1-laurent.pinchart+renesas@ideasonboard.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v2 0/2] mainline Protonic PRTI6G board
+Message-ID: <20210111033604.GC28365@dragon>
+References: <20210107085233.15619-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210106150851.8480-1-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <20210107085233.15619-1-o.rempel@pengutronix.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 06, 2021 at 05:08:51PM +0200, Laurent Pinchart wrote:
-> In preparation for the conversion of the DWC HDMI TX device tree
-> bindings to YAML, move the HDMI encoder's 'port' nodes under a 'ports'
-> node. The 'ports' node is optional in the OF graph implementation, but
-> YAML bindings require it.
+On Thu, Jan 07, 2021 at 09:52:31AM +0100, Oleksij Rempel wrote:
+> changes v2:
+> - reorder pinctls
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Oleksij Rempel (2):
+>   dt-bindings: arm: fsl: add Protonic PRTI6G board
+>   ARM: dts: add Protonic PRTI6G board
 
-Applied, thanks.
+Applied both, thanks.
