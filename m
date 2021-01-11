@@ -2,199 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93E162F216B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 22:04:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ACAD2F2185
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 22:08:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729971AbhAKVDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 16:03:32 -0500
-Received: from mx2.suse.de ([195.135.220.15]:45088 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728396AbhAKVDb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Jan 2021 16:03:31 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 01C45AB7F;
-        Mon, 11 Jan 2021 21:02:49 +0000 (UTC)
-Message-ID: <47b4dbc7a70d8f900789608e753be6faa36cebeb.camel@suse.de>
-Subject: Re: [PATCH v6 00/11] Raspberry Pi PoE HAT fan support
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org,
-        gregkh <gregkh@linuxfoundation.org>
-Cc:     f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wahrenst@gmx.net, linux-input@vger.kernel.org,
-        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
-        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
-        andy.shevchenko@gmail.com, Eric Anholt <eric@anholt.net>
-Date:   Mon, 11 Jan 2021 22:02:46 +0100
-In-Reply-To: <20201211164801.7838-1-nsaenzjulienne@suse.de>
-References: <20201211164801.7838-1-nsaenzjulienne@suse.de>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-638U3w+irQodfqeZCK9N"
-User-Agent: Evolution 3.38.2 
+        id S1732325AbhAKVHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 16:07:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731502AbhAKVHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 16:07:16 -0500
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AAD8C061786
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 13:06:20 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id E39D03E8CF;
+        Mon, 11 Jan 2021 22:06:18 +0100 (CET)
+Subject: Re: [PATCH 5/7] regulator: qcom-labibb: Implement short-circuit and
+ over-current IRQs
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org
+References: <20210109132921.140932-1-angelogioacchino.delregno@somainline.org>
+ <20210109132921.140932-6-angelogioacchino.delregno@somainline.org>
+ <20210111135745.GC4728@sirena.org.uk>
+ <6dee36e4-fc78-c21b-daf8-120ee44535a3@somainline.org>
+ <8115a574-ad43-d3c6-70d4-28c8a2f4a5f6@somainline.org>
+Message-ID: <09d70d24-5d0d-f1cd-d99e-5c213c8ea98c@somainline.org>
+Date:   Mon, 11 Jan 2021 22:06:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
+In-Reply-To: <8115a574-ad43-d3c6-70d4-28c8a2f4a5f6@somainline.org>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 11/01/21 20:23, AngeloGioacchino Del Regno ha scritto:
+> Il 11/01/21 20:14, AngeloGioacchino Del Regno ha scritto:
+>> Il 11/01/21 14:57, Mark Brown ha scritto:
+>>> On Sat, Jan 09, 2021 at 02:29:19PM +0100, AngeloGioacchino Del Regno 
+>>> wrote:
+>>>
+>>>> +    /* If the regulator is not enabled, this is a fake event */
+>>>> +    if (!ops->is_enabled(vreg->rdev))
+>>>> +        return 0;
+>>>
+>>> Or handling the interrupt raced with a disable initiated from elsewhere.
+>>> Does the hardware actually have a problem with reporting spurious 
+>>> errors?
+>>>
+> Sorry, I forgot to answer to this one in the previous email.
+> 
+> Yes, apparently the hardware has this issue: when the current draw is 
+> very high and you disable the regulator while the attached device is 
+> still drawing a lot of current (like on the Xperia XZ2 smartphone, but I 
+> don't want to comment on that phone's HW quirks...) then the OCP 
+> interrupt fires *after* disabling the LAB/IBB regulators.
+> 
+> This doesn't seem to happen if the current draw is low in the exact 
+> moment the regulator gets disabled, but that's not always possible since 
+> it depends on external HW design / board design sometimes...
+> 
+> 
+>>>> +    return ret ? IRQ_NONE : IRQ_HANDLED;
+>>>
+>>> Here and elsewhere please write normal conditional statements to improve
+>>> legibility.
+>>>
+>> No problem. Will do.
+>>
+>>>> +    /* This function should be called only once, anyway. */
+>>>> +    if (unlikely(vreg->ocp_irq_requested))
+>>>> +        return 0;
+>>>
+>>> If this is not a fast path it doesn't need an unlikely() annotation;
+>>> indeed it sounds more like there should be a warning printed if this
+>>> isn't supposed to be called multiple times.
+>>>
+>> That was extra-paranoid safety, looking at this one again, that should 
+>> be totally unnecessary.
+>> I think that removing this check entirely would be just fine also 
+>> because.. anyway.. writing to these registers more than once won't do 
+>> any harm, nor break functionality: I mean, even if it happens for 
+>> whatever reason, there's *no real need* to avoid it from the hw 
+>> perspective.
+>>
+>>>> +    /* IRQ polarities - LAB: trigger-low, IBB: trigger-high */
+>>>> +    if (vreg->type == QCOM_LAB_TYPE) {
+>>>> +        irq_flags |= IRQF_TRIGGER_LOW;
+>>>> +        irq_trig_low = 1;
+>>>> +    } else {
+>>>> +        irq_flags |= IRQF_TRIGGER_HIGH;
+>>>> +        irq_trig_low = 0;
+>>>> +    }
+>>>
+>>> This would be more clearly written as a switch statement.
+>>>
+>> A switch statement looked like being a bit "too much" for just two 
+>> cases where vreg->type cannot be anything else but QCOM_LAB_TYPE or 
+>> QCOM_IBB_TYPE... but okay, let's write a switch statement in place of 
+>> that.
+>>
+>>>> +    return devm_request_threaded_irq(vreg->dev, vreg->ocp_irq, NULL,
+>>>> +                     qcom_labibb_ocp_isr, irq_flags,
+>>>> +                     ocp_irq_name, vreg);
+>>>
+>>> Are you *sure* that devm_ is appropriate here and the interrupt handler
+>>> won't attempt to use things that will be deallocated before devm gets
+>>> round to freeing the interrupt?
+>>>
+>> Yeah, I'm definitely sure.
+>>
+>>>> +        if (!!(val & LABIBB_CONTROL_ENABLE)) {
+>>>
+>>> The !! is redundant here and makes things less clear.
+>>>
+>> My bad, I forgot to clean this one up before sending.
+>>
+>>>> @@ -166,8 +560,37 @@ static int qcom_labibb_of_parse_cb(struct 
+>>>> device_node *np,
+>>>>                      struct regulator_config *config)
+>>>>   {
+>>>>       struct labibb_regulator *vreg = config->driver_data;
+>>>> +    char *sc_irq_name;
+>>>
+>>> I really, really wouldn't expect to see interrupts being requested in
+>>> the DT parsing callback - apart from anything else the device is going
+>>> to have the physical interrupts with or without DT binding information.
+>>> These callbacks are for regulator specific properties, not basic 
+>>> probing.
+>>> Just request the interrupts in the main probe function, this also means
+>>> you can avoid using all the DT specific APIs which are generally a
+>>> warning sign.
+>>>
+>>
+>> ...And I even wrote a comment saying "The Short Circuit interrupt is 
+>> critical: fail if not found"!!! Whoa! That was bad.
+>> Yeah, I'm definitely moving that to the appropriate place.
+> 
 
---=-638U3w+irQodfqeZCK9N
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I'm sorry for the triple e-mail... but I've just acknowledged that using 
+platform_get_irq is actually impossible with the current schema.
+As you can see in the dt-bindings documentation, the driver is supposed 
+to be declared in DT as
 
-On Fri, 2020-12-11 at 17:47 +0100, Nicolas Saenz Julienne wrote:
-> The aim of this series is to add support to the fan found on RPi's PoE
-> HAT. Some commentary on the design can be found below. But the imporant
-> part to the people CC'd here not involved with PWM is that, in order to
-> achieve this properly, we also have to fix the firmware interface the
-> driver uses to communicate with the PWM bus (and many other low level
-> functions). Specifically, we have to make sure the firmware interface
-> isn't unbound while consumers are still up. So, patch #1 & #2 introduce
-> reference counting in the firwmware interface driver and patches #3 to
-> #8 update all firmware users. Patches #9 to #11 introduce the new PWM
-> driver.
->=20
-> I sent everything as a single series as the final version of the PWM
-> drivers depends on the firwmare fixes, but I'll be happy to split this
-> into two separate series if you think it's better.
->=20
-> --- Original cover letter below ---
->=20
-> This series aims at adding support to RPi's official PoE HAT fan[1].
->=20
-> The HW setup is the following:
->=20
-> > Raspberry Pi                               | PoE HAT                   =
- |
-> =C2=A0arm core -> Mailbox -> RPi co-processor -> I2C -> Atmel MCU -> PWM =
--> FAN
->=20
-> The arm cores have only access to the mailbox interface, as i2c0, even if
-> physically accessible, is to be used solely by the co-processor
-> (VideoCore 4/6).
->=20
-> This series implements a PWM bus, and has pwm-fan sitting on top of it as=
- per
-> this discussion: https://lkml.org/lkml/2018/9/2/486. Although this design=
- has a
-> series of shortcomings:
->=20
-> - It depends on a DT binding: it's not flexible if a new hat shows up wit=
-h new
-> =C2=A0=C2=A0functionality, we're not 100% sure we'll be able to expand it=
- without
-> =C2=A0=C2=A0breaking backwards compatibility. But without it we can't mak=
-e use of DT
-> =C2=A0=C2=A0thermal-zones, which IMO is overkill.
->=20
-> - We're using pwm-fan, writing a hwmon driver would, again, give us more
-> =C2=A0=C2=A0flexibility, but it's not really needed at the moment.
->=20
-> I personally think that it's not worth the effort, it's unlikely we'll ge=
-t
-> things right in advance. And ultimately, if the RPi people come up with
-> something new, we can always write a new driver/bindings from scratch (as=
- in
-> not reusing previous code).
->=20
-> That said, I'm more than happy to change things if there is a consensus t=
-hat
-> another design will do the trick.
->=20
-> [1] https://www.raspberrypi.org/blog/introducing-power-over-ethernet-poe-=
-hat/
->=20
-> ---
+		labibb {
 
-I'd say at this point the series is pretty clean and, AFAIK, there aren't a=
-ny
-objections. I'm not so sure who should take it, given that it covers numero=
-us
-subsystems. Any suggestions on how to handle it?
-
-Regards,
-Nicolas
-
-> Changes since v5:
-> =C2=A0- Small cleanups
-> =C2=A0- Add extra code comments
->=20
-> Changes since v4:
-> =C2=A0- Cleanup devm calls
-> =C2=A0- Rename compatible string so it's unique to the PoE HAT
->=20
-> Changes since v3:
-> =C2=A0- Split first patch, #1 introduces refcount, then #2 the devm funct=
-ion
-> =C2=A0- Fix touchscreen function
-> =C2=A0- Use kref
->=20
-> Changes since v2:
-> =C2=A0- Introduce devm_rpi_firmware_get()
-> =C2=A0- Small cleanups in PWM driver
->=20
-> Changes since v1:
-> =C2=A0- Address PWM driver changes
-> =C2=A0- Fix binding, now with 2 cells
->=20
-> Nicolas Saenz Julienne (11):
-> =C2=A0=C2=A0firmware: raspberrypi: Keep count of all consumers
-> =C2=A0=C2=A0firmware: raspberrypi: Introduce devm_rpi_firmware_get()
-> =C2=A0=C2=A0clk: bcm: rpi: Release firmware handle on unbind
-> =C2=A0=C2=A0gpio: raspberrypi-exp: Release firmware handle on unbind
-> =C2=A0=C2=A0reset: raspberrypi: Release firmware handle on unbind
-> =C2=A0=C2=A0soc: bcm: raspberrypi-power: Release firmware handle on unbin=
-d
-> =C2=A0=C2=A0staging: vchiq: Release firmware handle on unbind
-> =C2=A0=C2=A0input: raspberrypi-ts: Release firmware handle when not neede=
-d
-> =C2=A0=C2=A0dt-bindings: pwm: Add binding for RPi firmware PWM bus
-> =C2=A0=C2=A0DO NOT MERGE: ARM: dts: Add RPi's official PoE hat support
-> =C2=A0=C2=A0pwm: Add Raspberry Pi Firmware based PWM bus
->=20
-> =C2=A0.../arm/bcm/raspberrypi,bcm2835-firmware.yaml |  20 ++
-> =C2=A0arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  54 +++++
-> =C2=A0drivers/clk/bcm/clk-raspberrypi.c             |   2 +-
-> =C2=A0drivers/firmware/raspberrypi.c                |  69 +++++-
-> =C2=A0drivers/gpio/gpio-raspberrypi-exp.c           |   2 +-
-> =C2=A0drivers/input/touchscreen/raspberrypi-ts.c    |   2 +-
-> =C2=A0drivers/pwm/Kconfig                           |   9 +
-> =C2=A0drivers/pwm/Makefile                          |   1 +
-> =C2=A0drivers/pwm/pwm-raspberrypi-poe.c             | 216 +++++++++++++++=
-+++
-> =C2=A0drivers/reset/reset-raspberrypi.c             |   2 +-
-> =C2=A0drivers/soc/bcm/raspberrypi-power.c           |   2 +-
-> =C2=A0.../interface/vchiq_arm/vchiq_arm.c           |   2 +-
-> =C2=A0.../pwm/raspberrypi,firmware-poe-pwm.h        |  13 ++
-> =C2=A0include/soc/bcm2835/raspberrypi-firmware.h    |  10 +
-> =C2=A014 files changed, 395 insertions(+), 9 deletions(-)
-> =C2=A0create mode 100644 drivers/pwm/pwm-raspberrypi-poe.c
-> =C2=A0create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-poe=
--pwm.h
->=20
+			compatible = "qcom,pmi8998-lab-ibb";
 
 
 
---=-638U3w+irQodfqeZCK9N
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+			ibb: ibb {
 
------BEGIN PGP SIGNATURE-----
+				interrupts = <0x3 0xdc 0x2 IRQ_TYPE_EDGE_RISING>,
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl/8vPcACgkQlfZmHno8
-x/4R5Af/YvMUXETi3hHekSRpuPNb4Zm1CBsYK+FRbnRq8W4gTWSDtIaawje7j3Lk
-HR+/zx0QY/qW8xM8LkPlr4xgheQ/OK1J73ZQ8Wzcq0D1R1p+uynGzLy3eaRmCfcC
-N80kvtAArsEkYJsOqkzGNoWlCZrTJmvPPwjS48SiAQlq2o2SWApcWvcmzGe5R08c
-3fa4RLG2DVuLx39Np4NxWaTy/2S2cVNW0T+PZe+SA6NKsfbhe3Cj+cn4fSmJQgsF
-7yPw9UaMw17oXRcDJrfof5nwva6uVun4I4B9oiVHFqmk5y+jkjTPFul+xewqA2w9
-L5Nb5j/qHTSFJa23gghq7Zct1OjgWA==
-=ioOp
------END PGP SIGNATURE-----
+					     <0x3 0xdc 0x0 IRQ_TYPE_LEVEL_HIGH>;
 
---=-638U3w+irQodfqeZCK9N--
+				interrupt-names = "sc-err", "ocp";
 
+			};
+
+
+
+			lab: lab {
+
+				interrupts = <0x3 0xde 0x1 IRQ_TYPE_EDGE_RISING>,
+
+					     <0x3 0xde 0x0 IRQ_TYPE_LEVEL_LOW>;
+
+				interrupt-names = "sc-err", "ocp";
+
+			};
+
+		};
+
+...which was already a requirement before I touched it.
+Now, this leaves two options here:
+1. Keep the of_get_irq way, or
+2. Move the interrupts, change the documentation (currently, only 
+pmi8998.dtsi) and also fix pmi8998.dtsi to reflect the new changes.
+
+I am asking before proceeding because I know that changing a schema that 
+is already set sometimes gets "negated".
+
+How should I proceed?
+
+-- Angelo
