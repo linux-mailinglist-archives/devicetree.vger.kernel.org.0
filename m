@@ -2,341 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76DAE2F2379
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 01:33:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FAA32F2377
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 01:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389073AbhALAZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2390770AbhALAZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 11 Jan 2021 19:25:51 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:44351 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403907AbhAKXNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 18:13:41 -0500
-Received: by mail-ot1-f50.google.com with SMTP id r9so504434otk.11;
-        Mon, 11 Jan 2021 15:13:25 -0800 (PST)
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404114AbhAKX1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 18:27:42 -0500
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78BC6C061795
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 15:27:01 -0800 (PST)
+Received: by mail-oo1-xc2f.google.com with SMTP id n127so156611ooa.13
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 15:27:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tB2rgSrZ0/TN4TUmobV6789IGZfS+D3eOVRdkbfIw4A=;
+        b=gLmdMP3rM3QqdYNwjCiq7RPeQJQwO1RTUW+XGOknX/BO81E17X9dd/cwFCFK0IFJz6
+         BHupfxdBF6V+FBN7l9b+BbxOjrF9mXKxOv4tK99+6n2YGXNiCeltKdD9D3Jnopar7bfR
+         3+4PqIVuTG+NTS/oBPnmqKVTxr2Hw5cui7BQn6wCzuC4e3Tx1eGAww3zGXdXtWIQ72ON
+         9+xC9HjEN3oo+0td5z1O1XM6b1b605Mv5slYsI/I40YM7ImUH0V93aSgTqIG7HWgYJxC
+         Cs7wnkiOGQKmVFEo54gNpH5bLF/AxjHxWDKne+v2WH8E2Qn+mq6YvyYTOq72Ib8m0qOq
+         4gfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=lfN+qTKskmJPjXOJA0FotReLErhTl35ZsEZRKlKmdZg=;
-        b=ccatR43iO8us0M2N0Rr21szj7J6MA42HZmaCZwFSxTTY0EtoRaM3JBYEfJd73UeJ0X
-         fCEE6Cb9GPtfCwOLp/ZU2orMZIHhksowUd34xMz4C+ZamRcFHso1/eQm0sVxggBVXjxs
-         rpnI3CHFtQ0IBcVbh5DMGM0bYm7lo5P+jng3HHHtc3bmMmGPx3Hgjj7di/tokcGElr25
-         2VoxV56vuuutUF8vqdq6QhtWMfL45dIgDOOMRNC6xzHJTmNJwUDd36vQT2APIUDxsaZE
-         iPzmKkTuCllkXGtDG9JRFU60XT9+K1uNsu6CHcV2dZ3nje45VHnGkzRH6Yz9vaBdpSPy
-         i2cg==
-X-Gm-Message-State: AOAM531zi23gbFHGAED8q0X2qmCZCB4pRbpDROGSBF+doa8pduTXCsU4
-        A18t2tg1K7PkVn9O/Es6ZA==
-X-Google-Smtp-Source: ABdhPJx5s5VGLmfbOd9eVkXM2Fgx6gEjOf+uPBnlXObWQUf814wMfJ6+mWznJ50kdDRmFAjBJ7pIPw==
-X-Received: by 2002:a05:6830:1517:: with SMTP id k23mr966793otp.348.1610406780006;
-        Mon, 11 Jan 2021 15:13:00 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w9sm267684otq.44.2021.01.11.15.12.58
+        bh=tB2rgSrZ0/TN4TUmobV6789IGZfS+D3eOVRdkbfIw4A=;
+        b=R6+3qVJz5IUUIv6vM7UvE9z9Pa4x6QEGLkNQp4t85OU8ZVa57+f0UyQyWecXgMjYlq
+         7fTmPbqR5OLr2H56j2fGzAOUP4YZ6zVyINxAsXw8fjxD8z1n8NJ2B82uNE3w+K2prUm8
+         KQERbpQF6XAoXlw8S2f5ol4H3J5xC8R+4M3bh68qQP7BZuaJjBLYinW2+ywcODQ6ozd6
+         NEFHvdrBAxBzRjJvX1FjUXXFhwNjMkYyT/zm52QQOMXSi79KG/repyDEqnKw+ZHUY6cC
+         hRQhat1HajMx/6Dq7329qF1qJudOFmwYrdWXlYlVBeNjhQiFD4WNRHAMunySGFnIYHTc
+         787g==
+X-Gm-Message-State: AOAM533aAucRur/wecSfHHQw+RhPrpeY18N2prtO9SVSv9XbJQS83vfL
+        yEKZtLQ3eBahsR30A418gZ/yOA==
+X-Google-Smtp-Source: ABdhPJw1CpfHZNtMFEYLL3Yz46P5y3QE+7nQ4Mgndu1jaANrtE4iVOkerk7U1IzWBdwjv2vGuBzR/A==
+X-Received: by 2002:a4a:ddd2:: with SMTP id i18mr1065136oov.10.1610407620599;
+        Mon, 11 Jan 2021 15:27:00 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id v23sm262849otj.68.2021.01.11.15.26.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 15:12:59 -0800 (PST)
-Received: (nullmailer pid 3233598 invoked by uid 1000);
-        Mon, 11 Jan 2021 23:12:58 -0000
-Date:   Mon, 11 Jan 2021 17:12:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Yao <markyao0591@gmail.com>
-Subject: Re: [PATCH v3 4/6] dt-bindings: display: rockchip: dw-hdmi: Convert
- binding to YAML
-Message-ID: <20210111231258.GB3214205@robh.at.kernel.org>
-References: <20210105060818.24158-1-laurent.pinchart+renesas@ideasonboard.com>
- <20210105060818.24158-5-laurent.pinchart+renesas@ideasonboard.com>
+        Mon, 11 Jan 2021 15:26:59 -0800 (PST)
+Date:   Mon, 11 Jan 2021 17:26:57 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: Clean up sc7180-trogdor voltage rails
+Message-ID: <X/zewUR8Dc2Jf/MM@builder.lan>
+References: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
+ <CAD=FV=VWEEP7xsD5-wBjtToB+Ke69vFXzvPoAoocWPyREdjjhw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210105060818.24158-5-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <CAD=FV=VWEEP7xsD5-wBjtToB+Ke69vFXzvPoAoocWPyREdjjhw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 05, 2021 at 08:08:16AM +0200, Laurent Pinchart wrote:
-> Convert the Rockchip HDMI TX text binding to YAML.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> ---
-> Changes since v2:
-> 
-> - Use Mark's @gmail.com e-mail address as the @rock-chips.com address
->   bounces
-> 
-> Changes since v1:
-> 
-> - Drop pinctrl-0 and pinctrl-1
-> - Use unevaluatedProperties instead of additionalProperties
-> - Drop reg and interrupts as they're checked in the base schema
-> - Rebase on top of OF graph schema, dropped redundant properties
-> - Fix identation for enum entries
-> - Tidy up clock names
-> ---
->  .../display/rockchip/dw_hdmi-rockchip.txt     |  74 --------
->  .../display/rockchip/rockchip,dw-hdmi.yaml    | 158 ++++++++++++++++++
->  2 files changed, 158 insertions(+), 74 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-> deleted file mode 100644
-> index 3d32ce137e7f..000000000000
-> --- a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-> +++ /dev/null
-> @@ -1,74 +0,0 @@
-> -Rockchip DWC HDMI TX Encoder
-> -============================
-> -
-> -The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
-> -with a companion PHY IP.
-> -
-> -These DT bindings follow the Synopsys DWC HDMI TX bindings defined in
-> -Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt with the
-> -following device-specific properties.
-> -
-> -
-> -Required properties:
-> -
-> -- compatible: should be one of the following:
-> -		"rockchip,rk3228-dw-hdmi"
-> -		"rockchip,rk3288-dw-hdmi"
-> -		"rockchip,rk3328-dw-hdmi"
-> -		"rockchip,rk3399-dw-hdmi"
-> -- reg: See dw_hdmi.txt.
-> -- reg-io-width: See dw_hdmi.txt. Shall be 4.
-> -- interrupts: HDMI interrupt number
-> -- clocks: See dw_hdmi.txt.
-> -- clock-names: Shall contain "iahb" and "isfr" as defined in dw_hdmi.txt.
-> -- ports: See dw_hdmi.txt. The DWC HDMI shall have a single port numbered 0
-> -  corresponding to the video input of the controller. The port shall have two
-> -  endpoints, numbered 0 and 1, connected respectively to the vopb and vopl.
-> -- rockchip,grf: Shall reference the GRF to mux vopl/vopb.
-> -
-> -Optional properties
-> -
-> -- ddc-i2c-bus: The HDMI DDC bus can be connected to either a system I2C master
-> -  or the functionally-reduced I2C master contained in the DWC HDMI. When
-> -  connected to a system I2C master this property contains a phandle to that
-> -  I2C master controller.
-> -- clock-names: See dw_hdmi.txt. The "cec" clock is optional.
-> -- clock-names: May contain "cec" as defined in dw_hdmi.txt.
-> -- clock-names: May contain "grf", power for grf io.
-> -- clock-names: May contain "vpll", external clock for some hdmi phy.
-> -- phys: from general PHY binding: the phandle for the PHY device.
-> -- phy-names: Should be "hdmi" if phys references an external phy.
-> -
-> -Optional pinctrl entry:
-> -- If you have both a "unwedge" and "default" pinctrl entry, dw_hdmi
-> -  will switch to the unwedge pinctrl state for 10ms if it ever gets an
-> -  i2c timeout.  It's intended that this unwedge pinctrl entry will
-> -  cause the SDA line to be driven low to work around a hardware
-> -  errata.
-> -
-> -Example:
-> -
-> -hdmi: hdmi@ff980000 {
-> -	compatible = "rockchip,rk3288-dw-hdmi";
-> -	reg = <0xff980000 0x20000>;
-> -	reg-io-width = <4>;
-> -	ddc-i2c-bus = <&i2c5>;
-> -	rockchip,grf = <&grf>;
-> -	interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> -	clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
-> -	clock-names = "iahb", "isfr";
-> -	ports {
-> -		hdmi_in: port {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -			hdmi_in_vopb: endpoint@0 {
-> -				reg = <0>;
-> -				remote-endpoint = <&vopb_out_hdmi>;
-> -			};
-> -			hdmi_in_vopl: endpoint@1 {
-> -				reg = <1>;
-> -				remote-endpoint = <&vopl_out_hdmi>;
-> -			};
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> new file mode 100644
-> index 000000000000..d3b2f87f152a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> @@ -0,0 +1,158 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip DWC HDMI TX Encoder
-> +
-> +maintainers:
-> +  - Mark Yao <markyao0591@gmail.com>
-> +
-> +description: |
-> +  The HDMI transmitter is a Synopsys DesignWare HDMI 1.4 TX controller IP
-> +  with a companion PHY IP.
-> +
-> +allOf:
-> +  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3228-dw-hdmi
-> +      - rockchip,rk3288-dw-hdmi
-> +      - rockchip,rk3328-dw-hdmi
-> +      - rockchip,rk3399-dw-hdmi
-> +
-> +  reg-io-width:
-> +    const: 4
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 5
-> +    items:
-> +      - {}
-> +      - {}
-> +      # The next three clocks are all optional, but shall be specified in this
-> +      # order when present.
-> +      - description: The HDMI CEC controller main clock
-> +      - description: Power for GRF IO
-> +      - description: External clock for some HDMI PHY
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    maxItems: 5
-> +    items:
-> +      - {}
-> +      - {}
-> +      - enum:
-> +          - cec
-> +          - grf
-> +          - vpll
-> +      - enum:
-> +          - grf
-> +          - vpll
-> +      - const: vpll
-> +
-> +  ddc-i2c-bus:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      The HDMI DDC bus can be connected to either a system I2C master or the
-> +      functionally-reduced I2C master contained in the DWC HDMI. When connected
-> +      to a system I2C master this property contains a phandle to that I2C
-> +      master controller.
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description: The HDMI PHY
-> +
-> +  phy-names:
-> +    const: hdmi
-> +
-> +  pinctrl-names:
-> +    description:
-> +      The unwedge pinctrl entry shall drive the DDC SDA line low. This is
-> +      intended to work around a hardware errata that can cause the DDC I2C
-> +      bus to be wedged.
-> +    items:
-> +      - const: default
-> +      - const: unwedge
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
+On Mon 11 Jan 15:48 CST 2021, Doug Anderson wrote:
 
-In this case, this is correct since you have endpoint definitions.
-
-> +        unevaluatedProperties: false
-> +        description: Input of the DWC HDMI TX
-> +
-> +        properties:
-> +          endpoint@0:
-> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-
-#/properties/endpoint
-
-> +            unevaluatedProperties: false
-> +            description: Connection to the VOPB
-
-Oh good, we've done muxing both ways...
-
-> +
-> +          endpoint@1:
-> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +            unevaluatedProperties: false
-> +            description: Connection to the VOPL
-> +
-> +        required:
-> +          - endpoint@0
-> +          - endpoint@1
-> +
-> +    required:
-> +      - port
-> +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to the GRF to mux vopl/vopb.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-io-width
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - ports
-> +  - rockchip,grf
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3288-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    hdmi: hdmi@ff980000 {
-> +        compatible = "rockchip,rk3288-dw-hdmi";
-> +        reg = <0xff980000 0x20000>;
-> +        reg-io-width = <4>;
-> +        ddc-i2c-bus = <&i2c5>;
-> +        rockchip,grf = <&grf>;
-> +        interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
-> +        clock-names = "iahb", "isfr";
-> +
-> +        ports {
-> +            port {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                hdmi_in_vopb: endpoint@0 {
-> +                    reg = <0>;
-> +                    remote-endpoint = <&vopb_out_hdmi>;
-> +                };
-> +                hdmi_in_vopl: endpoint@1 {
-> +                    reg = <1>;
-> +                    remote-endpoint = <&vopl_out_hdmi>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> Regards,
+> Hi Bjorn,
 > 
-> Laurent Pinchart
+> On Mon, Dec 7, 2020 at 2:33 PM Douglas Anderson <dianders@chromium.org> wrote:
+> >
+> > For a bunch of rails we really don't do anything with them in Linux.
+> > These are things like modem voltage rails that the modem manages these
+> > itself and core rails (like IO rails) that are setup to just
+> > automagically do the right thing by the firmware.
+> >
+> > Let's stop even listing those rails in our device tree.
+> >
+> > The net result of this is that some of these rails might be able to go
+> > down to a lower voltage or perhaps transition to LPM (low power mode)
+> > sometimes.
+> >
+> > Here's a list of what we're doing and why:
+> >
+> > * L1A - only goes to SoC and doesn't seem associated with any
+> >   particular peripheral. Kernel isn't doing anything with
+> >   this. Removing from dts. NET IMPACT: rail might drop from 1.2V to
+> >   1.178V and switch to LPM in some cases depending on firmware.
+> > * L2A - only goes to SoC and doesn't seem associated with any
+> >   particular peripheral. Kernel isn't doing anything with
+> >   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+> >   some cases depending on firmware.
+> > * L3A - only goes to SoC and doesn't seem associated with any
+> >   particular peripheral. Kernel isn't doing anything with
+> >   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+> >   some cases depending on firmware.
+> > * L5A - seems to be totally unused as far as I can tell and doesn't
+> >   even come off QSIP. Removing from dts.
+> > * L6A - only goes to SoC and doesn't seem associated with any
+> >   particular peripheral (I think?). Kernel isn't doing anything with
+> >   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+> >   some cases depending on firmware.
+> > * L16A - Looks like this is only used for internal RF stuff. Removing
+> >   from dts. NET IMPACT: rail might switch to LPM in some cases
+> >   depending on firmware.
+> > * L1C - Just goes to WiFi / Bluetooth. Trust how IDP has this set and
+> >   put this back at 1.616V min.
+> > * L4C - This goes out to the eSIM among other places. This looks like
+> >   it's intended to be for SIM card and modem manages. NET IMPACT:
+> >   rail might switch to LPM in some cases depending on firmware.
+> > * L5C - This goes to the physical SIM.  This looks like it's intended
+> >   to be for SIM card and modem manages. NET IMPACT: rail might drop
+> >   from 1.8V to 1.648V and switch to LPM in some cases depending on
+> >   firmware.
+> >
+> > NOTE: in general for anything which is supposed to be managed by Linux
+> > I still left it all forced to HPM since I'm not 100% sure that all the
+> > needed calls to regulator_set_load() are in place and HPM is safer.
+> > Switching more things to LPM can happen in a future patch.
+> >
+> > ALSO NOTE: Power measurements showed no measurable difference after
+> > applying this patch, so perhaps it should be viewed more as a cleanup
+> > than any power savings.
+> >
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> >
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 82 ++------------------
+> >  1 file changed, 7 insertions(+), 75 deletions(-)
 > 
+> We've been running with this in the downstream tree since December 8th
+> and nobody has yelled.  You can see <https://crrev.com/c/2573506>.  Is
+> it a good time for it to land upstream?
+> 
+
+Sure thing, I will pick it up. Thanks for the ping!
+
+Regards,
+Bjorn
