@@ -2,222 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE4A2F1B71
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 17:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6194B2F1BB9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 18:04:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389050AbhAKQui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 11:50:38 -0500
-Received: from m43-15.mailgun.net ([69.72.43.15]:20948 "EHLO
-        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387534AbhAKQui (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 11:50:38 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1610383818; h=In-Reply-To: Content-Type: MIME-Version:
- References: Message-ID: Subject: Cc: To: From: Date: Sender;
- bh=GeKQBSvm16uBcOW8jt6ITq1dX8vDsA8GA+3O+W3S6VE=; b=h3XGJVRcKhqIiL4ix3uuJKH3HsPJOBBOP9rED5i6IYsiUyvekWSGN5DHFyHGUmCUP1dXzwm/
- wtv2Okpf4vxk0VanVCPRavu4Cv3hXfqLb/eTflvbmpaGim8kV/hTN276gHRynoTxgUd6Yiy+
- VZcs9a2SEQ+Vf47nV1MJZEqF5Sg=
-X-Mailgun-Sending-Ip: 69.72.43.15
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n08.prod.us-west-2.postgun.com with SMTP id
- 5ffc81a82a47972bcc466bd0 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 11 Jan 2021 16:49:44
- GMT
-Sender: jcrouse=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 63E11C43463; Mon, 11 Jan 2021 16:49:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from jcrouse1-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jcrouse)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 983FAC43462;
-        Mon, 11 Jan 2021 16:49:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 983FAC43462
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jcrouse@codeaurora.org
-Date:   Mon, 11 Jan 2021 09:49:39 -0700
-From:   Jordan Crouse <jcrouse@codeaurora.org>
-To:     Akhil P Oommen <akhilpo@codeaurora.org>
-Cc:     freedreno@lists.freedesktop.org, dri-devel@freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robdclark@gmail.com, mka@chromium.org
-Subject: Re: [PATCH v4 1/2] drm/msm: Add speed-bin support to a618 gpu
-Message-ID: <20210111164939.GC29638@jcrouse1-lnx.qualcomm.com>
-Mail-Followup-To: Akhil P Oommen <akhilpo@codeaurora.org>,
-        freedreno@lists.freedesktop.org, dri-devel@freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robdclark@gmail.com, mka@chromium.org
-References: <1610129731-4875-1-git-send-email-akhilpo@codeaurora.org>
+        id S1729064AbhAKREi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 12:04:38 -0500
+Received: from conssluserg-04.nifty.com ([210.131.2.83]:44092 "EHLO
+        conssluserg-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727882AbhAKREi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 12:04:38 -0500
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170]) (authenticated)
+        by conssluserg-04.nifty.com with ESMTP id 10BH3U0G032490;
+        Tue, 12 Jan 2021 02:03:30 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com 10BH3U0G032490
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1610384611;
+        bh=xMJfVSshWgEj0lAcfWPBo8KWgtflf02LM4k6kBZa15U=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=kaT+42xO4dFBEec3CudgE1dh/SUOSLoqX7ghFIucj0iYivP7tVDmCwxbcZgxuYy40
+         qaI1b2iwPKhkQ329RV/DIJSOJD/SBrxQ7gixBwwPuN0CGwKi4cssd/gEXwvkzul6WA
+         JD9hVL0rUdXCWZ8wgEx2/AqFuQLDRDmLSFNY7XN2r83baNSUdXV+LnxituaXhmIhnm
+         MkyTakUP+74DbAL6v/3bfoLnb+NgecLmTLa80/YFaMVvKtgj8Nmj51GZD2BOfocM+I
+         bXNGKi+rSuGREh/AzyLnfD2CV5Wa0eUWJAFucxfePqRiWTge34f9Z3bxyu6sijtHQ9
+         xa/bQ8A2x3tTw==
+X-Nifty-SrcIP: [209.85.214.170]
+Received: by mail-pl1-f170.google.com with SMTP id be12so161310plb.4;
+        Mon, 11 Jan 2021 09:03:30 -0800 (PST)
+X-Gm-Message-State: AOAM530oZsA80kDfAC2B+LEZiyIM7vbac/qOO+M7KNoQv8qmA6nbq9C9
+        JVLD13UeXHCpvv83hf1+QHTaIApf4XF6SkP08S0=
+X-Google-Smtp-Source: ABdhPJyUA5+oxQkL5skgzW9ZWfhX7RWwI9VtRGRsokXYuQyDJip+D4jAHc26m+eGa0c9JDlXONDuzKnF4DhngoDziG8=
+X-Received: by 2002:a17:902:9b91:b029:db:f003:c5eb with SMTP id
+ y17-20020a1709029b91b02900dbf003c5ebmr660291plp.1.1610384609949; Mon, 11 Jan
+ 2021 09:03:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1610129731-4875-1-git-send-email-akhilpo@codeaurora.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+References: <cover.1609844956.git.viresh.kumar@linaro.org> <CAL_JsqJMr3vfz2B29vzvFALCt_5-J__eJv2TZHJ0sR9nM=xXaw@mail.gmail.com>
+ <CAK7LNAR9fdjZ7iWKSWvJ9etGZkd+n87cmXKN-Hah8DBDYbuAwA@mail.gmail.com>
+ <20210111111711.r2xesydzhq5js2nf@vireshk-i7> <CAK7LNASViCOTGR7yDTfh0O+PAu+X-P2NwdY4oPMuXrr51awafA@mail.gmail.com>
+ <CAL_Jsq+HiPv1x8B8ZdM2yjFLyiCwzcRR79SVsHCk80asySWp4w@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+HiPv1x8B8ZdM2yjFLyiCwzcRR79SVsHCk80asySWp4w@mail.gmail.com>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 12 Jan 2021 02:02:52 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAS4V0ohZM+V5xJypejb6Powx2bj_6_kvAGU9L5EnRF=Bw@mail.gmail.com>
+Message-ID: <CAK7LNAS4V0ohZM+V5xJypejb6Powx2bj_6_kvAGU9L5EnRF=Bw@mail.gmail.com>
+Subject: Re: [RFC 0/2] kbuild: Add support to build overlays (%.dtbo)
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     David Gibson <david@gibson.dropbear.id.au>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 08, 2021 at 11:45:30PM +0530, Akhil P Oommen wrote:
-> Some GPUs support different max frequencies depending on the platform.
-> To identify the correct variant, we should check the gpu speedbin
-> fuse value. Add support for this speedbin detection to a6xx family
-> along with the required fuse details for a618 gpu.
+On Tue, Jan 12, 2021 at 1:13 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> +David Gibson
+>
+> On Mon, Jan 11, 2021 at 9:40 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+> >
+> > On Mon, Jan 11, 2021 at 8:17 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > >
+> > > On 07-01-21, 14:28, Masahiro Yamada wrote:
+> > > > Viresh's patch is not enough.
+> > > >
+> > > > We will need to change .gitignore
+> > > > and scripts/Makefile.dtbinst as well.
+> > > >
+> > > > In my understanding, the build rule is completely the same
+> > > > between .dtb and .dtbo
+> > > > As Rob mentioned, I am not sure if we really need/want
+> > > > a separate extension.
+> > > >
+> > > > A counter approach is to use an extension like '.ovl.dtb'
+> > > > It clarifies it is an overlay fragment without changing
+> > > > anything in our build system or the upstream DTC project.
+> > >
+> > > By the time you gave feedback, I have already sent the dtbo change for
+> > > DTC to the device-tree-compiler list (based on Rob's suggestion).
+> > >
+> > > And it got merged today by David:
+> > >
+> > > https://github.com/dgibson/dtc/commit/163f0469bf2ed8b2fe5aa15bc796b93c70243ddc
+> > >
+> > > Can we please finalize what we need to do with naming here and be done
+> > > with it, so I can rework my patches and get going ?
+> > >
+> > > Thanks.
+> > >
+> > > --
+> > > viresh
+> >
+> >
+> >
+> > It is unfortunate to see such a patch merged
+> > before getting agreement about how it should work
+> > as a whole.
+>
+> Given the feedback that dtbo is already a standard, I'd suggest we
+> just stick with dts->dtbo.
 
-Reviewed-by: Jordan Crouse <jcrouse@codeaurora.org>
+OK.
+dtbo seems a stanrdard already...
 
-> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
-> ---
-> Changes from v2:
-> 	1. Made the changes a6xx specific to save space.
-> Changes from v1:
-> 	1. Added the changes to support a618 sku to the series.
-> 	2. Avoid failing probe in case of an unsupported sku. (Rob)
-> Changes from v3:
-> 	1. Replace a618_speedbins[] with a function. (Jordan)
-> 
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 83 +++++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.h |  2 +
->  2 files changed, 85 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> index 1306618..499d134 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> @@ -10,6 +10,7 @@
->  
->  #include <linux/bitfield.h>
->  #include <linux/devfreq.h>
-> +#include <linux/nvmem-consumer.h>
->  #include <linux/soc/qcom/llcc-qcom.h>
->  
->  #define GPU_PAS_ID 13
-> @@ -1208,6 +1209,10 @@ static void a6xx_destroy(struct msm_gpu *gpu)
->  	a6xx_gmu_remove(a6xx_gpu);
->  
->  	adreno_gpu_cleanup(adreno_gpu);
-> +
-> +	if (a6xx_gpu->opp_table)
-> +		dev_pm_opp_put_supported_hw(a6xx_gpu->opp_table);
-> +
->  	kfree(a6xx_gpu);
->  }
->  
-> @@ -1264,6 +1269,78 @@ static uint32_t a6xx_get_rptr(struct msm_gpu *gpu, struct msm_ringbuffer *ring)
->  	return ring->memptrs->rptr = gpu_read(gpu, REG_A6XX_CP_RB_RPTR);
->  }
->  
-> +static u32 a618_get_speed_bin(u32 fuse)
-> +{
-> +	if (fuse == 0)
-> +		return 0;
-> +	else if (fuse == 169)
-> +		return 1;
-> +	else if (fuse == 174)
-> +		return 2;
-> +
-> +	return UINT_MAX;
-> +}
-> +
-> +static u32 fuse_to_supp_hw(struct device *dev, u32 revn, u32 fuse)
-> +{
-> +	u32 val = UINT_MAX;
-> +
-> +	if (revn == 618)
-> +		val = a618_get_speed_bin(fuse);
-> +
-> +	if (val == UINT_MAX) {
-> +		DRM_DEV_ERROR(dev,
-> +			"missing support for speed-bin: %u. Some OPPs may not be supported by hardware",
-> +			fuse);
-> +		return UINT_MAX;
-> +	}
-> +
-> +	return (1 << val);
-> +}
-> +
-> +static int a6xx_set_supported_hw(struct device *dev, struct a6xx_gpu *a6xx_gpu,
-> +		u32 revn)
-> +{
-> +	struct opp_table *opp_table;
-> +	struct nvmem_cell *cell;
-> +	u32 supp_hw = UINT_MAX;
-> +	void *buf;
-> +
-> +	cell = nvmem_cell_get(dev, "speed_bin");
-> +	/*
-> +	 * -ENOENT means that the platform doesn't support speedbin which is
-> +	 * fine
-> +	 */
-> +	if (PTR_ERR(cell) == -ENOENT)
-> +		return 0;
-> +	else if (IS_ERR(cell)) {
-> +		DRM_DEV_ERROR(dev,
-> +				"failed to read speed-bin. Some OPPs may not be supported by hardware");
-> +		goto done;
-> +	}
-> +
-> +	buf = nvmem_cell_read(cell, NULL);
-> +	if (IS_ERR(buf)) {
-> +		nvmem_cell_put(cell);
-> +		DRM_DEV_ERROR(dev,
-> +				"failed to read speed-bin. Some OPPs may not be supported by hardware");
-> +		goto done;
-> +	}
-> +
-> +	supp_hw = fuse_to_supp_hw(dev, revn, *((u32 *) buf));
-> +
-> +	kfree(buf);
-> +	nvmem_cell_put(cell);
-> +
-> +done:
-> +	opp_table = dev_pm_opp_set_supported_hw(dev, &supp_hw, 1);
-> +	if (IS_ERR(opp_table))
-> +		return PTR_ERR(opp_table);
-> +
-> +	a6xx_gpu->opp_table = opp_table;
-> +	return 0;
-> +}
-> +
->  static const struct adreno_gpu_funcs funcs = {
->  	.base = {
->  		.get_param = adreno_get_param,
-> @@ -1325,6 +1402,12 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
->  
->  	a6xx_llc_slices_init(pdev, a6xx_gpu);
->  
-> +	ret = a6xx_set_supported_hw(&pdev->dev, a6xx_gpu, info->revn);
-> +	if (ret) {
-> +		a6xx_destroy(&(a6xx_gpu->base.base));
-> +		return ERR_PTR(ret);
-> +	}
-> +
->  	ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs, 1);
->  	if (ret) {
->  		a6xx_destroy(&(a6xx_gpu->base.base));
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
-> index e793d32..ce0610c 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
-> @@ -33,6 +33,8 @@ struct a6xx_gpu {
->  	void *llc_slice;
->  	void *htw_llc_slice;
->  	bool have_mmu500;
-> +
-> +	struct opp_table *opp_table;
->  };
->  
->  #define to_a6xx_gpu(x) container_of(x, struct a6xx_gpu, base)
-> -- 
-> 2.7.4
-> 
+
+
+> > >+# enable creation of __symbols__ node
+> > >+ifneq ($(dtbo-y),)
+> > >+DTC_FLAGS += -@
+> > >+endif
+> >
+> > I am not convinced with this code.
+> >
+> > A single user of the dtbo-y syntax gives -@ to all
+> > device trees in the same directory.
+> >
+> > This is not a solution since Rob already stated -@ should be
+> > given per board (or per platform, at least).
+>
+> Agreed.
+>
+> > I still do not understand why adding the new syntax dtbo-y
+> > is helpful.
+>
+> I think we should stick with 'dtb-y' here.
+>
+>
+> > Have we already decided to use separate ".dtb" and ".dtbo" for blobs?
+> >
+> > Will we use ".dts" for all source files?
+> > Or, will we use ".dtso" for overlay source files?
+> >
+> > How should the build system determine the targets
+> > that should have -@ option?
+>
+> The way it does already. Either:
+>
+> DTC_FLAGS += -@
+>
+> in a directory of dts files. Or on a per file basis like:
+>
+> DTC_FLAGS_foo_base += -@
+
+
+Ah yes.  I like this.
+
+
+
+
+We do not need the dtbo-y syntax.
+
+
+We can simply use dtb-y for
+base boards and overlay fragments:
+
+
+
+dtb-$(CONFIG_ARCH_FOO) += \
+     foo-base.dtb \
+     foo-overlay1.dtbo \
+     foo-overlay2.dtbo
+
+DTB_FLAGS_foo-base += -@
+
+
+
+
+
+
+
+>
+> > For consistency, will we need a patch like follows?
+> >
+> >
+> > diff --git a/dtc.c b/dtc.c
+> > index bdb3f59..474401e 100644
+> > --- a/dtc.c
+> > +++ b/dtc.c
+> > @@ -120,6 +120,8 @@ static const char *guess_type_by_name(const char
+> > *fname, const char *fallback)
+> >                 return fallback;
+> >         if (!strcasecmp(s, ".dts"))
+> >                 return "dts";
+> > +       if (!strcasecmp(s, ".dtso"))
+> > +               return "dts";
+> >         if (!strcasecmp(s, ".yaml"))
+> >                 return "yaml";
+> >         if (!strcasecmp(s, ".dtb"))
+> > @@ -349,6 +351,8 @@ int main(int argc, char *argv[])
+> >
+> >         if (streq(outform, "dts")) {
+> >                 dt_to_source(outf, dti);
+> > +       else if (streq(outform, "dtso")) {
+> > +               dt_to_source(outf, dti);
+> >  #ifndef NO_YAML
+> >         } else if (streq(outform, "yaml")) {
+> >                 if (!streq(inform, "dts"))
+> >
+> >
+> >
+> > Overall solution looks unclear to me.
+> >
+> >
+> > Again, it is unfortunate that we did not take enough time
+> > (in spite of the RFC prefix) before proceeding.
+>
+> I should have added David here from the start. Honestly, I expected
+> some discussion there.
+>
+> Rob
+
+
+
 
 -- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Best Regards
+Masahiro Yamada
