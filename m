@@ -2,96 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F18B2F0FC5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 11:13:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B10B2F0FF3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 11:22:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728725AbhAKKNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 05:13:16 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:16708 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726246AbhAKKNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 05:13:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1610359823;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Subject:Sender;
-        bh=WCsdo+NoLvVlHPZJrjReX6gwiFzt49I9QwB5UUBmnE4=;
-        b=SnnjR7BjNXbzyFEJwdHC90XIiDBo+wxIpWyYlzR+1oCLxap5PrNjBsTQvj7/jwchID
-        xblT/ptzaRDEgid7v4P5sBmhZm0c/nRlYwBqcqBXsniDzul9rPFIoOhjpFMooufwktsi
-        52E58cLPQgHKPBD4Fn1aimKN2Tb1GaLrKVTRzmHqCTym4yWvD9bFO9NkPvPa0b1rNW18
-        AibdxfnXRP66yVJJolB4TkNZEStG6alObCkbow/sP2NYklQ4Dd/NFQaR2jzc3ZzQc4zY
-        Uvt9MIndbostg3NQZ1ngPDQ1RCY09kHatFe08NdwoX1sgtXNZJcM0PLxW/1cBmzl8MFh
-        9Y+w==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8jxIcvGBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 47.12.1 DYNA|AUTH)
-        with ESMTPSA id R0a218x0BAAFrFh
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Mon, 11 Jan 2021 11:10:15 +0100 (CET)
-Date:   Mon, 11 Jan 2021 11:10:01 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Simon Budig <simon.budig@kernelconcepts.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ondrej Jirman <megous@megous.com>
-Subject: Re: [PATCH 2/2] Input: edt-ft5x06 - add support for iovcc-supply
-Message-ID: <X/wj+bxe/IlznCj6@gerhold.net>
-References: <20210108192337.563679-1-stephan@gerhold.net>
- <20210108192337.563679-2-stephan@gerhold.net>
- <20210111083612.swe2bu7mvjzjromg@pengutronix.de>
- <X/wZqiRbx6nmrj0e@gerhold.net>
- <20210111094538.yg3otwgesgyemktp@pengutronix.de>
+        id S1729009AbhAKKUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 05:20:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40458 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729004AbhAKKUa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 05:20:30 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA898C0617A4
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 02:19:30 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kyuHu-0008UC-6h; Mon, 11 Jan 2021 11:19:02 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kyuHt-0000pM-70; Mon, 11 Jan 2021 11:19:01 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: [PATCH v7 0/5] mainline Kverneland boards 
+Date:   Mon, 11 Jan 2021 11:18:50 +0100
+Message-Id: <20210111101855.3121-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210111094538.yg3otwgesgyemktp@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 10:45:38AM +0100, Marco Felsch wrote:
-> On 21-01-11 10:26, Stephan Gerhold wrote:
-> > On Mon, Jan 11, 2021 at 09:36:12AM +0100, Marco Felsch wrote:
-> > > On 21-01-08 20:23, Stephan Gerhold wrote:
-> > > > diff --git a/drivers/input/touchscreen/edt-ft5x06.c b/drivers/input/touchscreen/edt-ft5x06.c
-> > > > index 2eefbc2485bc..bf2e208112fe 100644
-> > > > --- a/drivers/input/touchscreen/edt-ft5x06.c
-> > > > +++ b/drivers/input/touchscreen/edt-ft5x06.c
-> > > > @@ -103,7 +103,7 @@ struct edt_ft5x06_ts_data {
-> > > >  	struct touchscreen_properties prop;
-> > > >  	u16 num_x;
-> > > >  	u16 num_y;
-> > > > -	struct regulator *vcc;
-> > > > +	struct regulator_bulk_data regulators[2];
-> > > 
-> > > Is there an enabling order we must follow?
-> > > 
-> > 
-> > I don't know, sadly. The datasheets I was able to find do not mention
-> > anything about this; the power-on sequence only includes the VDD line.
-> 
-> I've goolged a bit :)
-> 
-> Check this: https://focuslcds.com/content/FT5X26.pdf, page 12 of 32
-> 
+changes v7:
+- add Acked-by: Rob Herring to the firs patch
+- imx6qdl-vicut1.dtsi: add missing KEY_POWER
+- imx6dl-victgo.dts: add missing gpio flags to rotary-encoder 
+- imx6dl-victgo.dts: rename video@5c to video-decoder@5c 
+- imx6dl-victgo.dts: sort out some spaces 
 
-Thanks! I looked at several datasheets, that's probably one of the few I
-did not look at. :(
+changes v6:
+- move startup-delay-us close to gpio property
+- imx6qdl-vicut1.dtsi: rename video@5c to video-decoder@5c
+- imx6qdl-vicut1.dtsi: sort out some spaces
+- use defines for linux,code and linux,axis
 
-> There it is mentioned that we need to enable it first and add a 10us
-> delay till we can enable the vdd line. So unfortunately the bulk_api
-> can't be used as it is today. Another solution could be to extended the
-> bulk api to respect on/off delays.
-> 
+changes v5:
+- reorder kvg prefix
+- add Acked-by: Rob Herring.. 
 
-I think for two regulators like here it's still manageable to
-get/enable/disable/put them separately, so I will just revert the bulk
-API change in v2.
+changes v4:
+- fix active level of SPI CS GPIOs
 
-Thanks again!
-Stephan
+changes v3:
+- add vicutp board
+- change tvnorm to sdtv-standards
+- change linux,default-trigger "mmc" to  "disk-activity";
+- add power-supply property to the panel node
+
+changes v2:
+- add victgo board
+- diff fixes for vicut1.dtsi
+
+Oleksij Rempel (5):
+  dt-bindings: vendor-prefixes: Add an entry for Kverneland Group
+  dt-bindings: arm: fsl: add Kverneland UT1, UT1Q and UI1P boards
+  ARM: dts: add Kverneland UT1, UT1Q and UT1P
+  dt-bindings: arm: fsl: add Kverneland TGO board
+  ARM: dts: add Kverneland TGO board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   4 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   4 +
+ arch/arm/boot/dts/imx6dl-victgo.dts           | 852 ++++++++++++++++++
+ arch/arm/boot/dts/imx6dl-vicut1.dts           |  13 +
+ arch/arm/boot/dts/imx6q-vicut1.dts            |  17 +
+ arch/arm/boot/dts/imx6qdl-vicut1.dtsi         | 803 +++++++++++++++++
+ arch/arm/boot/dts/imx6qp-vicutp.dts           |  13 +
+ 8 files changed, 1708 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6dl-victgo.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-vicut1.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-vicut1.dts
+ create mode 100644 arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6qp-vicutp.dts
+
+-- 
+2.30.0
+
