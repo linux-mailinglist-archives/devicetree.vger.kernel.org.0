@@ -2,201 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6086F2F20B3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 21:24:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC20D2F20F5
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 21:40:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404215AbhAKUYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 15:24:32 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:42287 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403977AbhAKUY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 15:24:27 -0500
-Received: by mail-oi1-f180.google.com with SMTP id l200so667997oig.9;
-        Mon, 11 Jan 2021 12:24:11 -0800 (PST)
+        id S1733211AbhAKUje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 15:39:34 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:39796 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730894AbhAKUje (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 15:39:34 -0500
+Received: by mail-ot1-f48.google.com with SMTP id d8so155094otq.6;
+        Mon, 11 Jan 2021 12:39:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=N+l7oEoC2Gtdd3tsUSXfbCD3VNBOdwhPR2for7AGSP0=;
-        b=BfeH9dnmszit+bA8pGswZrF7E/0dltNYlKrH7qRsb9tK8JYOlhSOZgcA3jaQY9IUJK
-         8GdZYRW0bCFRk2lCdstkkAUZf6RbpSb05/VpxBfr9soFUnYCAG1HNttS7AWVJFvmstgi
-         /klIi7UG2VoEfpNzfFrbJ3cYCvKBw4rD0Ngt+oJpqxT2SMiQKWGzRWMe6FrsIXLlEVnr
-         my3QBk6LnzX1KrSFs5jqdPmdXcBAdspNmOIEIYy0+Teo6QeUg62MM5LDNxzmp2/bNykG
-         96y5lnGH78/t0WNPXsY0fdgW2JfPZDpnpuYbEWTly+0fNESMhd4Obck/tNz0FAwh7tS2
-         r2BQ==
-X-Gm-Message-State: AOAM531UHItUO4sNLoEl2TBX++V3yfSbE9kzAxKT80ODd2e0aD5ooibM
-        GHmNRvYku2HofybdZb16LQ==
-X-Google-Smtp-Source: ABdhPJwWxknOlQUQyjNGUH3P7COKkSvblU0b4yZxPrYfjVei7f813EPmKrrInAQ0BrcWWGXpSQEl5g==
-X-Received: by 2002:a05:6808:8f0:: with SMTP id d16mr344964oic.47.1610396626307;
-        Mon, 11 Jan 2021 12:23:46 -0800 (PST)
+        bh=CuduTLZlbG35ugDeNBQcYjINyRmKUeAkNe31I9bczWo=;
+        b=asMuTe0uocr9SEqNnzcnSO2QKwsmrL4IJj10rkBoiNIHr5Y5Lq5wKYYZjmWh+6SzsU
+         RW+eetiAZPnZdubeOne0UN2889CvVfm2by4Ec8tNHTO3ZBeVQO1lyDIMa1CfKZsqhG/4
+         K+bYMHwSebgUz+mMT6TJOhwT11TsfxB5YUpFtgC05++rfW8s6ZEV1CB2Ilw7SS30SrjJ
+         gf8MbAvSykbmcyZFq6Z2xzvpDrDuu8JZWzbX7C9ZQUMJdvqrBCZ3llTfzdtuwAASNZEc
+         WRiS2MoF88NXDTRSsk1x2Ze7d04azI3ZIn30eILkh1Q2UrBt9jKI1N2npp/k0BVnBing
+         nVNQ==
+X-Gm-Message-State: AOAM533noXsDlkmrYi40EHEKuJr4eljp53J79rqS0TCIxF3waK8mYahg
+        H+FfglqjVVmBo+TEDtxrBw==
+X-Google-Smtp-Source: ABdhPJxTRSLja0Ho46/iFyMEhN0kc2ToJeDnvK9Ayi6Oy07tXCHtANqvw5CXVDBAtyMzqOaEojN1Mg==
+X-Received: by 2002:a9d:2a86:: with SMTP id e6mr611496otb.313.1610397532905;
+        Mon, 11 Jan 2021 12:38:52 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v4sm171269otk.50.2021.01.11.12.23.44
+        by smtp.gmail.com with ESMTPSA id p132sm182478oia.41.2021.01.11.12.38.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 12:23:45 -0800 (PST)
-Received: (nullmailer pid 3005685 invoked by uid 1000);
-        Mon, 11 Jan 2021 20:23:44 -0000
-Date:   Mon, 11 Jan 2021 14:23:44 -0600
+        Mon, 11 Jan 2021 12:38:52 -0800 (PST)
+Received: (nullmailer pid 3026340 invoked by uid 1000);
+        Mon, 11 Jan 2021 20:38:50 -0000
+Date:   Mon, 11 Jan 2021 14:38:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wsd_upstream@mediatek.com
-Subject: Re: [PATCH v10 2/2] dt-bindings: cpufreq: add bindings for MediaTek
- cpufreq HW
-Message-ID: <20210111202344.GA2999777@robh.at.kernel.org>
-References: <1609222629-2979-1-git-send-email-hector.yuan@mediatek.com>
- <1609222629-2979-3-git-send-email-hector.yuan@mediatek.com>
+To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
+Cc:     lee.jones@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        linus.walleij@linaro.org, minyard@acm.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, BMC-SW@aspeedtech.com,
+        haiyue.wang@linux.intel.com, cyrilbur@gmail.com,
+        rlippert@google.com
+Subject: Re: [PATCH v4 1/5] dt-bindings: aspeed-lpc: Remove LPC partitioning
+Message-ID: <20210111203850.GA3022469@robh.at.kernel.org>
+References: <20201229063157.3587-1-chiawei_wang@aspeedtech.com>
+ <20201229063157.3587-2-chiawei_wang@aspeedtech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1609222629-2979-3-git-send-email-hector.yuan@mediatek.com>
+In-Reply-To: <20201229063157.3587-2-chiawei_wang@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 29, 2020 at 02:17:09PM +0800, Hector Yuan wrote:
-> From: "Hector.Yuan" <hector.yuan@mediatek.com>
+On Tue, Dec 29, 2020 at 02:31:53PM +0800, Chia-Wei, Wang wrote:
+> The LPC controller has no concept of the BMC and the Host partitions.
+> This patch fixes the documentation by removing the description on LPC
+> partitions. The register offsets illustrated in the DTS node examples
+> are also fixed to adapt to the LPC DTS change.
 > 
-> Add devicetree bindings for MediaTek HW driver.
-> 
-> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
 > ---
->  .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |  116 ++++++++++++++++++++
->  1 file changed, 116 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+>  .../devicetree/bindings/mfd/aspeed-lpc.txt    | 99 ++++---------------
+>  1 file changed, 21 insertions(+), 78 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-> new file mode 100644
-> index 0000000..53e0eb3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek-hw.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek's CPUFREQ Bindings
-> +
-> +maintainers:
-> +  - Hector Yuan <hector.yuan@mediatek.com>
-> +
-> +description:
-> +  CPUFREQ HW is a hardware engine used by MediaTek
-> +  SoCs to manage frequency in hardware. It is capable of controlling frequency
-> +  for multiple clusters.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,cpufreq-hw
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      Addresses and sizes for the memory of the
-> +      HW bases in each frequency domain.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: true
+> diff --git a/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt b/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
+> index d0a38ba8b9ce..90eb0ecc95d1 100644
+> --- a/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
+> +++ b/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
+> @@ -9,13 +9,7 @@ primary use case of the Aspeed LPC controller is as a slave on the bus
+>  conditions it can also take the role of bus master.
+>  
+>  The LPC controller is represented as a multi-function device to account for the
+> -mix of functionality it provides. The principle split is between the register
+> -layout at the start of the I/O space which is, to quote the Aspeed datasheet,
+> -"basically compatible with the [LPC registers from the] popular BMC controller
+> -H8S/2168[1]", and everything else, where everything else is an eclectic
+> -collection of functions with a esoteric register layout. "Everything else",
+> -here labeled the "host" portion of the controller, includes, but is not limited
+> -to:
+> +mix of functionality, which includes, but is not limited to:
+>  
+>  * An IPMI Block Transfer[2] Controller
+>  
+> @@ -44,80 +38,29 @@ Required properties
+>  ===================
+>  
+>  - compatible:	One of:
+> -		"aspeed,ast2400-lpc", "simple-mfd"
+> -		"aspeed,ast2500-lpc", "simple-mfd"
+> -		"aspeed,ast2600-lpc", "simple-mfd"
+> +		"aspeed,ast2400-lpc-v2", "simple-mfd", "syscon"
+> +		"aspeed,ast2500-lpc-v2", "simple-mfd", "syscon"
+> +		"aspeed,ast2600-lpc-v2", "simple-mfd", "syscon"
+>  
+>  - reg:		contains the physical address and length values of the Aspeed
+>                  LPC memory region.
+>  
+>  - #address-cells: <1>
+>  - #size-cells:	<1>
+> -- ranges: 	Maps 0 to the physical address and length of the LPC memory
+> -                region
+> -
+> -Required LPC Child nodes
+> -========================
+> -
+> -BMC Node
+> ---------
+> -
+> -- compatible:	One of:
+> -		"aspeed,ast2400-lpc-bmc"
+> -		"aspeed,ast2500-lpc-bmc"
+> -		"aspeed,ast2600-lpc-bmc"
+> -
+> -- reg:		contains the physical address and length values of the
+> -                H8S/2168-compatible LPC controller memory region
+> -
+> -Host Node
+> ----------
+> -
+> -- compatible:   One of:
+> -		"aspeed,ast2400-lpc-host", "simple-mfd", "syscon"
+> -		"aspeed,ast2500-lpc-host", "simple-mfd", "syscon"
+> -		"aspeed,ast2600-lpc-host", "simple-mfd", "syscon"
+> -
+> -- reg:		contains the address and length values of the host-related
+> -                register space for the Aspeed LPC controller
+> -
+> -- #address-cells: <1>
+> -- #size-cells:	<1>
+> -- ranges: 	Maps 0 to the address and length of the host-related LPC memory
+> +- ranges:	Maps 0 to the physical address and length of the LPC memory
+>                  region
+>  
+>  Example:
+>  
+>  lpc: lpc@1e789000 {
+> -	compatible = "aspeed,ast2500-lpc", "simple-mfd";
+> +	compatible = "aspeed,ast2500-lpc-v2", "simple-mfd", "syscon";
+>  	reg = <0x1e789000 0x1000>;
+>  
+>  	#address-cells = <1>;
+>  	#size-cells = <1>;
+>  	ranges = <0x0 0x1e789000 0x1000>;
 
-This is only correct on common bindings which are incomplete. You need 
-to define '#performance-domain-cells'.
+No child nodes? Then you don't need 'ranges', '#size-cells', nor 
+'#address-cells'.
 
-And this is all dependent on performance-domains binding being accepted.
-
+> -
+> -	lpc_bmc: lpc-bmc@0 {
+> -		compatible = "aspeed,ast2500-lpc-bmc";
+> -		reg = <0x0 0x80>;
+> -	};
+> -
+> -	lpc_host: lpc-host@80 {
+> -		compatible = "aspeed,ast2500-lpc-host", "simple-mfd", "syscon";
+> -		reg = <0x80 0x1e0>;
+> -		reg-io-width = <4>;
+> -
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		ranges = <0x0 0x80 0x1e0>;
+> -	};
+>  };
+>  
+> -BMC Node Children
+> -==================
+> -
+> -
+> -Host Node Children
+> -==================
+>  
+>  LPC Host Interface Controller
+>  -------------------
+> @@ -149,14 +92,12 @@ Optional properties:
+>  
+>  Example:
+>  
+> -lpc-host@80 {
+> -	lpc_ctrl: lpc-ctrl@0 {
+> -		compatible = "aspeed,ast2500-lpc-ctrl";
+> -		reg = <0x0 0x80>;
+> -		clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
+> -		memory-region = <&flash_memory>;
+> -		flash = <&spi>;
+> -	};
+> +lpc_ctrl: lpc-ctrl@80 {
+> +	compatible = "aspeed,ast2500-lpc-ctrl";
+> +	reg = <0x80 0x80>;
+> +	clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
+> +	memory-region = <&flash_memory>;
+> +	flash = <&spi>;
+>  };
+>  
+>  LPC Host Controller
+> @@ -179,9 +120,9 @@ Required properties:
+>  
+>  Example:
+>  
+> -lhc: lhc@20 {
+> +lhc: lhc@a0 {
+>  	compatible = "aspeed,ast2500-lhc";
+> -	reg = <0x20 0x24 0x48 0x8>;
+> +	reg = <0xa0 0x24 0xc8 0x8>;
+>  };
+>  
+>  LPC reset control
+> @@ -192,16 +133,18 @@ state of the LPC bus. Some systems may chose to modify this configuration.
+>  
+>  Required properties:
+>  
+> - - compatible:		"aspeed,ast2600-lpc-reset" or
+> -			"aspeed,ast2500-lpc-reset"
+> -			"aspeed,ast2400-lpc-reset"
+> + - compatible:		One of:
+> +			"aspeed,ast2600-lpc-reset";
+> +			"aspeed,ast2500-lpc-reset";
+> +			"aspeed,ast2400-lpc-reset";
 > +
-> +examples:
-> +  - |
-> +    cpus {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            cpu0: cpu@0 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 0>;
-> +                reg = <0x000>;
-> +            };
-> +
-> +            cpu1: cpu@100 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 0>;
-> +                reg = <0x100>;
-> +            };
-> +
-> +            cpu2: cpu@200 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 0>;
-> +                reg = <0x200>;
-> +            };
-> +
-> +            cpu3: cpu@300 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 0>;
-> +                reg = <0x300>;
-> +            };
-> +
-> +            cpu4: cpu@400 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 1>;
-> +                reg = <0x400>;
-> +            };
-> +
-> +            cpu5: cpu@500 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a55";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 1>;
-> +                reg = <0x500>;
-> +            };
-> +
-> +            cpu6: cpu@600 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a75";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 1>;
-> +                reg = <0x600>;
-> +            };
-> +
-> +            cpu7: cpu@700 {
-> +                device_type = "cpu";
-> +                compatible = "arm,cortex-a75";
-> +                enable-method = "psci";
-> +                performance-domains = <&performance 1>;
-> +                reg = <0x700>;
-> +            };
-> +    };
-> +
-> +    /* ... */
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        performance: performance-controller@11bc00 {
-> +            compatible = "mediatek,cpufreq-hw";
-> +            reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-> +            #performance-domain-cells = <1>;
-> +        };
-> +    };
+>   - reg:			offset and length of the IP in the LHC memory region
+>   - #reset-controller	indicates the number of reset cells expected
+>  
+>  Example:
+>  
+> -lpc_reset: reset-controller@18 {
+> +lpc_reset: reset-controller@98 {
+>          compatible = "aspeed,ast2500-lpc-reset";
+> -        reg = <0x18 0x4>;
+> +        reg = <0x98 0x4>;
+>          #reset-cells = <1>;
+>  };
 > -- 
-> 1.7.9.5
+> 2.17.1
 > 
