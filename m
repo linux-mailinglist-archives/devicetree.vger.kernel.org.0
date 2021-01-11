@@ -2,85 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D1312F1171
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 12:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C92A32F117D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 12:31:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729698AbhAKLZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 06:25:09 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:47325 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729380AbhAKLZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 06:25:08 -0500
-X-UUID: a3e1ade7cc2c4cdd9e2160a007f97ba8-20210111
-X-UUID: a3e1ade7cc2c4cdd9e2160a007f97ba8-20210111
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 269927699; Mon, 11 Jan 2021 19:24:24 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 11 Jan 2021 19:24:22 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 11 Jan 2021 19:24:22 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-CC:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>
-Subject: [PATCH v6 33/33] MAINTAINERS: Add entry for MediaTek IOMMU
-Date:   Mon, 11 Jan 2021 19:19:14 +0800
-Message-ID: <20210111111914.22211-34-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210111111914.22211-1-yong.wu@mediatek.com>
-References: <20210111111914.22211-1-yong.wu@mediatek.com>
+        id S1728830AbhAKLbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 06:31:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55620 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728552AbhAKLbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 06:31:01 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB05CC061795
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 03:30:20 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id p18so12333367pgm.11
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 03:30:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tZdSKPUdg0QDGbFaZYrIFu/bQSIpB+rjwg75CQ25njY=;
+        b=stW3b9K44fBkgtMxHAsx4+skDu2pczIBN/RBBD5gu8f1NY4hdD+XpY+8nvyThDoXZV
+         n8CZPQp3M7Slv6ZZNy6ShfxL3RExBrmZxv3FAFwLBLfkptq4aLwXM4lwvFKCTENPGpfN
+         6TnIJUlWiWHNcPRTjPkhUkFeYycIhSL+SE/1i+ik7bDReNVN7grjfyL5R/VE4VvvbYhd
+         vN0gTKOBxwphTOrrKSzS0F7GBGl3z9w3Nypw51h+WuIidKVfKXFjmzsQXNqCQ7vmU2Ei
+         96dCxtHwEZywzxzcg1uR92UZ8JFFW5jmMFtHzg0fHHA/iAjDOrdwo21+WU7Uip8KAWDx
+         FiwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tZdSKPUdg0QDGbFaZYrIFu/bQSIpB+rjwg75CQ25njY=;
+        b=jttOiVnxA2F0LJ823vGW99c3kxxFui87KTGSkqSu0A+hzV0gRwHh8yCMhAkxN96Kp1
+         KbQhjd9Z/IvKNsbEyapTSV9j4yj4d8TrEndVvf/6N0JFKYkZGAgOqmXMz3k6J6qH7PG5
+         13qABMNweMs4yYJEGY819Yrc57lYvQJsnuOzUohMJpXfEbdfFHGzU5uX115TXy0Z68fz
+         6lVoC1KBz3X47cyd/EWiXBjLF/seuEETQrSWG8UgM32hCUwV2sJDprL4iVXNBjp75NJI
+         UX4fqWBndzTNe9mT3XM+l4RzJx7QwhlGLOTzCA+NOtlBMRYQar91U1PosvKTjK53K1Ld
+         T8Ng==
+X-Gm-Message-State: AOAM530Fu1xAgmyMrGK0e3hekLRFxl0tFW/B8wnKDwey2Dyl0EVcmJHk
+        7OAST53rsX8dR+VznIQaoLDf
+X-Google-Smtp-Source: ABdhPJy/7FFip09dmwvAlcJzDdJIghXS9SqEMJGUquhj5O/vw+3PSk5AfCKrmnYylJHlOp/JFIYDkg==
+X-Received: by 2002:a63:2009:: with SMTP id g9mr19171155pgg.219.1610364619921;
+        Mon, 11 Jan 2021 03:30:19 -0800 (PST)
+Received: from localhost.localdomain ([103.77.37.160])
+        by smtp.gmail.com with ESMTPSA id x20sm18803134pfc.3.2021.01.11.03.30.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jan 2021 03:30:18 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 0/2] Add support for USB3 PHY on SDX55
+Date:   Mon, 11 Jan 2021 17:00:08 +0530
+Message-Id: <20210111113010.32056-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am the author of MediaTek iommu driver, and will to maintain and
-develop it further.
-Add myself to cover these items.
+Hello,
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+This series adds USB3 PHY support for SDX55 platform. The USB3 PHY is of
+type QMP and revision 4.0.0. In this revision, "com_aux" clock is not
+utilized.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 546aa66428c9..35bc20398139 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11182,6 +11182,15 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
- F:	drivers/i2c/busses/i2c-mt65xx.c
- 
-+MEDIATEK IOMMU DRIVER
-+M:	Yong Wu <yong.wu@mediatek.com>
-+L:	iommu@lists.linux-foundation.org
-+L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
-+S:	Supported
-+F:	Documentation/devicetree/bindings/iommu/mediatek*
-+F:	drivers/iommu/mtk-iommu*
-+F:	include/dt-bindings/memory/mt*-port.h
-+
- MEDIATEK JPEG DRIVER
- M:	Rick Chang <rick.chang@mediatek.com>
- M:	Bin Liu <bin.liu@mediatek.com>
+This series has been tested on SDX55-MTP along with the relevant DT node.
+
+Thanks,
+Mani
+
+Changes in v2:
+
+* Fixed the binding to use only 3 clocks
+
+Manivannan Sadhasivam (2):
+  dt-bindings: phy: qcom,qmp: Add SDX55 USB PHY binding
+  phy: qcom-qmp: Add support for SDX55 QMP PHY
+
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml | 27 ++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.c           | 83 +++++++++++++++++++
+ 2 files changed, 110 insertions(+)
+
 -- 
-2.18.0
+2.25.1
 
