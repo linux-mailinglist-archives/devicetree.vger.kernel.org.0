@@ -2,141 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4C92F2103
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 21:43:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93E162F216B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 22:04:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389490AbhAKUmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 15:42:43 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:38598 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387768AbhAKUmn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 15:42:43 -0500
-Received: by mail-oi1-f172.google.com with SMTP id x13so752867oic.5;
-        Mon, 11 Jan 2021 12:42:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=aGgwNrRCg33BLJ97oko34wtt2smAT8qIYrmBDpmvMvQ=;
-        b=YAaKUmwc9BVYWtldUvtOQPsbGZnQUGLWDj8sK/GPYk74nvi1JO6eRGQFtU8nlxMBoo
-         RYP1zkkCpvUNOjfVtnXEtwcSA7gqnNyfLpJ/0n4Yw7t35UIEcfW3eTPmejzmSxwUOjEK
-         Z4/ME3ueG96VvqMskHBVNa+E1yqVVHMRJw3cXKZNy2iaeV5gEZ7sA3T/K6z2yguBGFH2
-         d6CcBXugw7dL+pwXGVMMWirY5KXvhQ0Za2cYCaGsB60hxnnS4NGPJA+zZ3bvNEeqppgN
-         4N15NeA0H+YaxVpNHwspym0PLCaxILab1uwPO6rcXv5SYR44YqDKlA52xKzDNqtXtmVV
-         oeyg==
-X-Gm-Message-State: AOAM530iHFcHwRS93qBGWeGe5xP9oPHlxfoFTnaXNk/jPGpB7yG/PAUR
-        w/QRJuTedrj+KOz8CO7FkQ==
-X-Google-Smtp-Source: ABdhPJyvp3/nIKDHi+VOblaZxyMgmOzRu9UWU+8wUs+0W397pXkerxPJvF6QmD0QEsz/vfz33nCPsA==
-X-Received: by 2002:a05:6808:4cf:: with SMTP id a15mr371482oie.147.1610397722190;
-        Mon, 11 Jan 2021 12:42:02 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e17sm185589otf.32.2021.01.11.12.42.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 12:42:01 -0800 (PST)
-Received: (nullmailer pid 3030625 invoked by uid 1000);
-        Mon, 11 Jan 2021 20:42:00 -0000
-Date:   Mon, 11 Jan 2021 14:42:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Charles Hsu <hsu.yungteng@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: (hwmon/pm6764tr) Add PM6764TR hwmon driver
- bindings
-Message-ID: <20210111204200.GA3026535@robh.at.kernel.org>
-References: <20201229071723.2219360-1-hsu.yungteng@gmail.com>
+        id S1729971AbhAKVDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 16:03:32 -0500
+Received: from mx2.suse.de ([195.135.220.15]:45088 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728396AbhAKVDb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Jan 2021 16:03:31 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 01C45AB7F;
+        Mon, 11 Jan 2021 21:02:49 +0000 (UTC)
+Message-ID: <47b4dbc7a70d8f900789608e753be6faa36cebeb.camel@suse.de>
+Subject: Re: [PATCH v6 00/11] Raspberry Pi PoE HAT fan support
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org,
+        gregkh <gregkh@linuxfoundation.org>
+Cc:     f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
+        andy.shevchenko@gmail.com, Eric Anholt <eric@anholt.net>
+Date:   Mon, 11 Jan 2021 22:02:46 +0100
+In-Reply-To: <20201211164801.7838-1-nsaenzjulienne@suse.de>
+References: <20201211164801.7838-1-nsaenzjulienne@suse.de>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-638U3w+irQodfqeZCK9N"
+User-Agent: Evolution 3.38.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201229071723.2219360-1-hsu.yungteng@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 29, 2020 at 03:17:23PM +0800, Charles Hsu wrote:
-> Document device tree bindings for STMicroelectronics PM6764tr Voltage
-> Regulator.
 
-Subject space is valuable and you have 'hwmon', 'pm6764tr', and 
-'bindings' twice.
+--=-638U3w+irQodfqeZCK9N
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
+On Fri, 2020-12-11 at 17:47 +0100, Nicolas Saenz Julienne wrote:
+> The aim of this series is to add support to the fan found on RPi's PoE
+> HAT. Some commentary on the design can be found below. But the imporant
+> part to the people CC'd here not involved with PWM is that, in order to
+> achieve this properly, we also have to fix the firmware interface the
+> driver uses to communicate with the PWM bus (and many other low level
+> functions). Specifically, we have to make sure the firmware interface
+> isn't unbound while consumers are still up. So, patch #1 & #2 introduce
+> reference counting in the firwmware interface driver and patches #3 to
+> #8 update all firmware users. Patches #9 to #11 introduce the new PWM
+> driver.
+>=20
+> I sent everything as a single series as the final version of the PWM
+> drivers depends on the firwmare fixes, but I'll be happy to split this
+> into two separate series if you think it's better.
+>=20
+> --- Original cover letter below ---
+>=20
+> This series aims at adding support to RPi's official PoE HAT fan[1].
+>=20
+> The HW setup is the following:
+>=20
+> > Raspberry Pi                               | PoE HAT                   =
+ |
+> =C2=A0arm core -> Mailbox -> RPi co-processor -> I2C -> Atmel MCU -> PWM =
+-> FAN
+>=20
+> The arm cores have only access to the mailbox interface, as i2c0, even if
+> physically accessible, is to be used solely by the co-processor
+> (VideoCore 4/6).
+>=20
+> This series implements a PWM bus, and has pwm-fan sitting on top of it as=
+ per
+> this discussion: https://lkml.org/lkml/2018/9/2/486. Although this design=
+ has a
+> series of shortcomings:
+>=20
+> - It depends on a DT binding: it's not flexible if a new hat shows up wit=
+h new
+> =C2=A0=C2=A0functionality, we're not 100% sure we'll be able to expand it=
+ without
+> =C2=A0=C2=A0breaking backwards compatibility. But without it we can't mak=
+e use of DT
+> =C2=A0=C2=A0thermal-zones, which IMO is overkill.
+>=20
+> - We're using pwm-fan, writing a hwmon driver would, again, give us more
+> =C2=A0=C2=A0flexibility, but it's not really needed at the moment.
+>=20
+> I personally think that it's not worth the effort, it's unlikely we'll ge=
+t
+> things right in advance. And ultimately, if the RPi people come up with
+> something new, we can always write a new driver/bindings from scratch (as=
+ in
+> not reusing previous code).
+>=20
+> That said, I'm more than happy to change things if there is a consensus t=
+hat
+> another design will do the trick.
+>=20
+> [1] https://www.raspberrypi.org/blog/introducing-power-over-ethernet-poe-=
+hat/
+>=20
 > ---
->  .../bindings/hwmon/pmbus/st,pm6764tr.yaml     | 47 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  2 +
->  2 files changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
-> new file mode 100644
-> index 000000000000..b4b0d5614d8d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/st,pm6764tr.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/st,pm6764tr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PM6764TR voltage regulator
-> +
-> +maintainers:
-> +  - Charles Hsu <hsu.yungteng@gmail.com>
-> +
-> +description: |
-> +  The PM6764/66 is a high performance digital controller designed to power
-> +  Intel’s VR12.5 processors (PM6766) and memories (PM6764): all required
-> +  parameters are programmable through a PMBus™ interface.
-> +  The device utilizes digital technology to implement all control and
-> +  power management functions to provide maximum flexibility and performance.
-> +  The NVM is embedded to store custom configurations.
-> +
-> +  https://www.st.com/resource/en/data_brief/pm6764.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,pm6764tr
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pm6764tr@68 {
-> +            compatible = "st,pm6764tr";
-> +            reg = <0x68>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index bdc2dc318178..0a2dcd03220b 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -260,6 +260,8 @@ properties:
->            - socionext,synquacer-tpm-mmio
->              # i2c serial eeprom  (24cxx)
->            - st,24c256
-> +            # STMicroelectronics Voltage Regulator
-> +          - st,pm6764tr
 
-It should be either in trivial-devices or its own schema file, not both.
+I'd say at this point the series is pretty clean and, AFAIK, there aren't a=
+ny
+objections. I'm not so sure who should take it, given that it covers numero=
+us
+subsystems. Any suggestions on how to handle it?
 
->              # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
->            - taos,tsl2550
->              # Temperature Monitoring and Fan Control
-> -- 
-> 2.25.1
-> 
+Regards,
+Nicolas
+
+> Changes since v5:
+> =C2=A0- Small cleanups
+> =C2=A0- Add extra code comments
+>=20
+> Changes since v4:
+> =C2=A0- Cleanup devm calls
+> =C2=A0- Rename compatible string so it's unique to the PoE HAT
+>=20
+> Changes since v3:
+> =C2=A0- Split first patch, #1 introduces refcount, then #2 the devm funct=
+ion
+> =C2=A0- Fix touchscreen function
+> =C2=A0- Use kref
+>=20
+> Changes since v2:
+> =C2=A0- Introduce devm_rpi_firmware_get()
+> =C2=A0- Small cleanups in PWM driver
+>=20
+> Changes since v1:
+> =C2=A0- Address PWM driver changes
+> =C2=A0- Fix binding, now with 2 cells
+>=20
+> Nicolas Saenz Julienne (11):
+> =C2=A0=C2=A0firmware: raspberrypi: Keep count of all consumers
+> =C2=A0=C2=A0firmware: raspberrypi: Introduce devm_rpi_firmware_get()
+> =C2=A0=C2=A0clk: bcm: rpi: Release firmware handle on unbind
+> =C2=A0=C2=A0gpio: raspberrypi-exp: Release firmware handle on unbind
+> =C2=A0=C2=A0reset: raspberrypi: Release firmware handle on unbind
+> =C2=A0=C2=A0soc: bcm: raspberrypi-power: Release firmware handle on unbin=
+d
+> =C2=A0=C2=A0staging: vchiq: Release firmware handle on unbind
+> =C2=A0=C2=A0input: raspberrypi-ts: Release firmware handle when not neede=
+d
+> =C2=A0=C2=A0dt-bindings: pwm: Add binding for RPi firmware PWM bus
+> =C2=A0=C2=A0DO NOT MERGE: ARM: dts: Add RPi's official PoE hat support
+> =C2=A0=C2=A0pwm: Add Raspberry Pi Firmware based PWM bus
+>=20
+> =C2=A0.../arm/bcm/raspberrypi,bcm2835-firmware.yaml |  20 ++
+> =C2=A0arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  54 +++++
+> =C2=A0drivers/clk/bcm/clk-raspberrypi.c             |   2 +-
+> =C2=A0drivers/firmware/raspberrypi.c                |  69 +++++-
+> =C2=A0drivers/gpio/gpio-raspberrypi-exp.c           |   2 +-
+> =C2=A0drivers/input/touchscreen/raspberrypi-ts.c    |   2 +-
+> =C2=A0drivers/pwm/Kconfig                           |   9 +
+> =C2=A0drivers/pwm/Makefile                          |   1 +
+> =C2=A0drivers/pwm/pwm-raspberrypi-poe.c             | 216 +++++++++++++++=
++++
+> =C2=A0drivers/reset/reset-raspberrypi.c             |   2 +-
+> =C2=A0drivers/soc/bcm/raspberrypi-power.c           |   2 +-
+> =C2=A0.../interface/vchiq_arm/vchiq_arm.c           |   2 +-
+> =C2=A0.../pwm/raspberrypi,firmware-poe-pwm.h        |  13 ++
+> =C2=A0include/soc/bcm2835/raspberrypi-firmware.h    |  10 +
+> =C2=A014 files changed, 395 insertions(+), 9 deletions(-)
+> =C2=A0create mode 100644 drivers/pwm/pwm-raspberrypi-poe.c
+> =C2=A0create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-poe=
+-pwm.h
+>=20
+
+
+
+--=-638U3w+irQodfqeZCK9N
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl/8vPcACgkQlfZmHno8
+x/4R5Af/YvMUXETi3hHekSRpuPNb4Zm1CBsYK+FRbnRq8W4gTWSDtIaawje7j3Lk
+HR+/zx0QY/qW8xM8LkPlr4xgheQ/OK1J73ZQ8Wzcq0D1R1p+uynGzLy3eaRmCfcC
+N80kvtAArsEkYJsOqkzGNoWlCZrTJmvPPwjS48SiAQlq2o2SWApcWvcmzGe5R08c
+3fa4RLG2DVuLx39Np4NxWaTy/2S2cVNW0T+PZe+SA6NKsfbhe3Cj+cn4fSmJQgsF
+7yPw9UaMw17oXRcDJrfof5nwva6uVun4I4B9oiVHFqmk5y+jkjTPFul+xewqA2w9
+L5Nb5j/qHTSFJa23gghq7Zct1OjgWA==
+=ioOp
+-----END PGP SIGNATURE-----
+
+--=-638U3w+irQodfqeZCK9N--
+
