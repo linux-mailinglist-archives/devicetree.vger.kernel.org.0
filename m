@@ -2,65 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD99B2F2210
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 22:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0B9C2F2228
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 22:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731436AbhAKVoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 16:44:13 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:38160 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730091AbhAKVoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 16:44:12 -0500
-Received: by mail-ot1-f48.google.com with SMTP id j20so326604otq.5;
-        Mon, 11 Jan 2021 13:43:57 -0800 (PST)
+        id S1730269AbhAKVtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 16:49:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47952 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728324AbhAKVtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 16:49:32 -0500
+Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E5CC061786
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 13:48:52 -0800 (PST)
+Received: by mail-vs1-xe30.google.com with SMTP id x26so373414vsq.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 13:48:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ycqBvUr+Vo1t/GTBf1XQxI/E70FpV4LReNsXCXbr5zA=;
+        b=nDvz71VFC7tuExZBjZ0HwnGETlX8M+pA/S4N1kUA7Xo5KvS/0On9BO73dX46znIGQf
+         /fDiqU4VVcK4XWrBMXMxE9g5GK95XEptJ/ZLmdUb71YX4pjVvWSpBhiFqyz7WdJAmHNj
+         s1chUaCF8la6b8wswV0IVk70pgz0dwX+zfAUg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YYDJmyTvCMUq876NjFDCcLGbzfPkkSf05NMN8BoG/ug=;
-        b=EVRfzsE38Xvhl2cBZe3FXyZH6vBDNrBv5TcHrtsPF7PK78wxFQabJ1D8/9JdVlZfQ+
-         xF7QT7LZxwj9BM4ZVh2FIaAqG1wr/7SMrZDl6o7X/82gdEpXjA3F83+8NXwlu4q/577d
-         5PqmLb3U9QFhVhT06knFk4Mi+RFxtMN8K9FxViovi6+yqe816ABWb2xFJTlkctb6JTEn
-         DMENDQvvEr4pl0oWF38iUajXwV6dyFW3Nv7YFO4WC5SCai3DslLdRZO3Oft/VmgPC4O2
-         ZPnLcLNPFu+USovCc3MBS5AyCRZVF+y/q0d6OLpLmVodvwkBd3Ee9uwJX8EdSkaRh2px
-         g6kg==
-X-Gm-Message-State: AOAM532S/NETklQwpZeWTXUKh5keInVH4UC0IkorEK5+TorJ9ELEc8nd
-        /v8EpLvR6AaNHLqu4tDmURPG1PitPQ==
-X-Google-Smtp-Source: ABdhPJwQu4ByJW5KvBlFIwF5mH1nnxnkWAxvkLskgCP+LxP3RFiR9dfxI8CSLfyucz/ViPFezsnpow==
-X-Received: by 2002:a05:6830:15c1:: with SMTP id j1mr748036otr.211.1610401412079;
-        Mon, 11 Jan 2021 13:43:32 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g12sm217692otg.10.2021.01.11.13.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Jan 2021 13:43:31 -0800 (PST)
-Received: (nullmailer pid 3111702 invoked by uid 1000);
-        Mon, 11 Jan 2021 21:43:30 -0000
-Date:   Mon, 11 Jan 2021 15:43:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>
-Subject: Re: [PATCH 1/2] dt-bindings: panel-simple: add samsung,s6e3fa2 panel
-Message-ID: <20210111214330.GA3111653@robh.at.kernel.org>
-References: <20201230151711.3619846-1-iskren.chernev@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ycqBvUr+Vo1t/GTBf1XQxI/E70FpV4LReNsXCXbr5zA=;
+        b=sHMCNCZ0U8CqUb1b3N/qleU3Je4syvfXylOQnCDmBwWJAli3v5m2N6/CgKKyR2H9I2
+         Tt0CF/E5A8jx5tQvzGV3Kd8bMiJHhZlR08ONJhQzdGlCEIOEfo1MfsYlzM7VMydegExe
+         OSg2m3B+h+l4olKTZm5D3QWcJLbdSUx19DzDHfeyQ7f/V4TRtJectqLksYQwrzqnJrrF
+         iD0Yys8capJHngBBWdUFb8fuUy+vl0Xy3W+KQt4uYug/2eE/2B9D3EYg8JlrECjEYr9q
+         2idXPELoy6XBMiwuiVPrRW5hlHNBUv+V4fuEzFIJvxJ0o2Ku3YnHOtM8XbEJT+mIn4UI
+         qsRw==
+X-Gm-Message-State: AOAM533iUfqxiVXiQYgR33SInYm6uJBWrhdYVoniU6qWswltYhAbSCKF
+        YWePrxlifiemEMY8oH5MJQcUqjpvtz8kwA==
+X-Google-Smtp-Source: ABdhPJyYrZiIFU4/VGBTYCP21oAdcACOugoG/xJJ+BNXZuphcFLpjliu6k+roVOJ9jT/Sn9HKWp8Yg==
+X-Received: by 2002:a67:2f15:: with SMTP id v21mr1598211vsv.1.1610401730466;
+        Mon, 11 Jan 2021 13:48:50 -0800 (PST)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id a2sm159680vkc.41.2021.01.11.13.48.48
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jan 2021 13:48:49 -0800 (PST)
+Received: by mail-vs1-f42.google.com with SMTP id q10so326803vsr.13
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 13:48:48 -0800 (PST)
+X-Received: by 2002:a67:bd01:: with SMTP id y1mr1578141vsq.49.1610401728440;
+ Mon, 11 Jan 2021 13:48:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201230151711.3619846-1-iskren.chernev@gmail.com>
+References: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
+In-Reply-To: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 11 Jan 2021 13:48:37 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=VWEEP7xsD5-wBjtToB+Ke69vFXzvPoAoocWPyREdjjhw@mail.gmail.com>
+Message-ID: <CAD=FV=VWEEP7xsD5-wBjtToB+Ke69vFXzvPoAoocWPyREdjjhw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Clean up sc7180-trogdor voltage rails
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Dec 2020 17:17:10 +0200, Iskren Chernev wrote:
-> Add samsung,s6e3fa2 in the allowed simple-panel compat strings.
-> 
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Hi Bjorn,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Mon, Dec 7, 2020 at 2:33 PM Douglas Anderson <dianders@chromium.org> wrote:
+>
+> For a bunch of rails we really don't do anything with them in Linux.
+> These are things like modem voltage rails that the modem manages these
+> itself and core rails (like IO rails) that are setup to just
+> automagically do the right thing by the firmware.
+>
+> Let's stop even listing those rails in our device tree.
+>
+> The net result of this is that some of these rails might be able to go
+> down to a lower voltage or perhaps transition to LPM (low power mode)
+> sometimes.
+>
+> Here's a list of what we're doing and why:
+>
+> * L1A - only goes to SoC and doesn't seem associated with any
+>   particular peripheral. Kernel isn't doing anything with
+>   this. Removing from dts. NET IMPACT: rail might drop from 1.2V to
+>   1.178V and switch to LPM in some cases depending on firmware.
+> * L2A - only goes to SoC and doesn't seem associated with any
+>   particular peripheral. Kernel isn't doing anything with
+>   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+>   some cases depending on firmware.
+> * L3A - only goes to SoC and doesn't seem associated with any
+>   particular peripheral. Kernel isn't doing anything with
+>   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+>   some cases depending on firmware.
+> * L5A - seems to be totally unused as far as I can tell and doesn't
+>   even come off QSIP. Removing from dts.
+> * L6A - only goes to SoC and doesn't seem associated with any
+>   particular peripheral (I think?). Kernel isn't doing anything with
+>   this. Removing from dts. NET IMPACT: rail might switch to LPM in
+>   some cases depending on firmware.
+> * L16A - Looks like this is only used for internal RF stuff. Removing
+>   from dts. NET IMPACT: rail might switch to LPM in some cases
+>   depending on firmware.
+> * L1C - Just goes to WiFi / Bluetooth. Trust how IDP has this set and
+>   put this back at 1.616V min.
+> * L4C - This goes out to the eSIM among other places. This looks like
+>   it's intended to be for SIM card and modem manages. NET IMPACT:
+>   rail might switch to LPM in some cases depending on firmware.
+> * L5C - This goes to the physical SIM.  This looks like it's intended
+>   to be for SIM card and modem manages. NET IMPACT: rail might drop
+>   from 1.8V to 1.648V and switch to LPM in some cases depending on
+>   firmware.
+>
+> NOTE: in general for anything which is supposed to be managed by Linux
+> I still left it all forced to HPM since I'm not 100% sure that all the
+> needed calls to regulator_set_load() are in place and HPM is safer.
+> Switching more things to LPM can happen in a future patch.
+>
+> ALSO NOTE: Power measurements showed no measurable difference after
+> applying this patch, so perhaps it should be viewed more as a cleanup
+> than any power savings.
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+>
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 82 ++------------------
+>  1 file changed, 7 insertions(+), 75 deletions(-)
+
+We've been running with this in the downstream tree since December 8th
+and nobody has yelled.  You can see <https://crrev.com/c/2573506>.  Is
+it a good time for it to land upstream?
+
+Thanks!
+
+-Doug
