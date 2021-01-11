@@ -2,144 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0B9C2F2228
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 22:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 589C12F222B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 22:51:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730269AbhAKVtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 16:49:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728324AbhAKVtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 16:49:32 -0500
-Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E5CC061786
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 13:48:52 -0800 (PST)
-Received: by mail-vs1-xe30.google.com with SMTP id x26so373414vsq.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 13:48:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ycqBvUr+Vo1t/GTBf1XQxI/E70FpV4LReNsXCXbr5zA=;
-        b=nDvz71VFC7tuExZBjZ0HwnGETlX8M+pA/S4N1kUA7Xo5KvS/0On9BO73dX46znIGQf
-         /fDiqU4VVcK4XWrBMXMxE9g5GK95XEptJ/ZLmdUb71YX4pjVvWSpBhiFqyz7WdJAmHNj
-         s1chUaCF8la6b8wswV0IVk70pgz0dwX+zfAUg=
+        id S1728923AbhAKVup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 16:50:45 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:37508 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727380AbhAKVuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 16:50:44 -0500
+Received: by mail-ot1-f43.google.com with SMTP id o11so350980ote.4;
+        Mon, 11 Jan 2021 13:50:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ycqBvUr+Vo1t/GTBf1XQxI/E70FpV4LReNsXCXbr5zA=;
-        b=sHMCNCZ0U8CqUb1b3N/qleU3Je4syvfXylOQnCDmBwWJAli3v5m2N6/CgKKyR2H9I2
-         Tt0CF/E5A8jx5tQvzGV3Kd8bMiJHhZlR08ONJhQzdGlCEIOEfo1MfsYlzM7VMydegExe
-         OSg2m3B+h+l4olKTZm5D3QWcJLbdSUx19DzDHfeyQ7f/V4TRtJectqLksYQwrzqnJrrF
-         iD0Yys8capJHngBBWdUFb8fuUy+vl0Xy3W+KQt4uYug/2eE/2B9D3EYg8JlrECjEYr9q
-         2idXPELoy6XBMiwuiVPrRW5hlHNBUv+V4fuEzFIJvxJ0o2Ku3YnHOtM8XbEJT+mIn4UI
-         qsRw==
-X-Gm-Message-State: AOAM533iUfqxiVXiQYgR33SInYm6uJBWrhdYVoniU6qWswltYhAbSCKF
-        YWePrxlifiemEMY8oH5MJQcUqjpvtz8kwA==
-X-Google-Smtp-Source: ABdhPJyYrZiIFU4/VGBTYCP21oAdcACOugoG/xJJ+BNXZuphcFLpjliu6k+roVOJ9jT/Sn9HKWp8Yg==
-X-Received: by 2002:a67:2f15:: with SMTP id v21mr1598211vsv.1.1610401730466;
-        Mon, 11 Jan 2021 13:48:50 -0800 (PST)
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
-        by smtp.gmail.com with ESMTPSA id a2sm159680vkc.41.2021.01.11.13.48.48
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jan 2021 13:48:49 -0800 (PST)
-Received: by mail-vs1-f42.google.com with SMTP id q10so326803vsr.13
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 13:48:48 -0800 (PST)
-X-Received: by 2002:a67:bd01:: with SMTP id y1mr1578141vsq.49.1610401728440;
- Mon, 11 Jan 2021 13:48:48 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qZB7YFnYmK5pmVyjaf+FA297zYveGF4/mkcj6q7QOss=;
+        b=KzzdNZ6Atd3vBpENJVNI0RJlHFY4HrjV+UMAXXdX00Rah+o4Fl1mJCK/L9LhydwEGD
+         UBkdr1YSw5din4zzw9jg3kI+rDjFEZMR1eV/eKMCa9J+bT7fdxH3G1IyqP4ZZH91OjG0
+         BHQOsgyKaJpl4/BV9D8HDdFc6C6tflQUSNhEzlXKsm0kvIdG/0IdXWk4cQAPmkUbQt8L
+         eAtQ1FV5acmEQGkjaebMlD01hygS9bIlXx0pTbPipZ2k1aJ4irsHg25X0Drp2Rjyr9xJ
+         zlvb8VaqbZH77Au1hgxblZnIYAn8POm9FuNekOSEZV58gqGoP6zDGTk8vj32l8mCR2ZF
+         JXXg==
+X-Gm-Message-State: AOAM53088rib++/Yfr0VEHejVfTiIWtEYfyhsXKZo1UIk/udhHTNwNhs
+        Kv4w46R3+5BYL3ew65PalQ==
+X-Google-Smtp-Source: ABdhPJx4sESqsRtj0tIKhFssBKghbCoKpOR5OcYFGX1jMiDvJvhAgfB0xNG4OTZoj71kNHt+15hP5w==
+X-Received: by 2002:a05:6830:1343:: with SMTP id r3mr753075otq.344.1610401803679;
+        Mon, 11 Jan 2021 13:50:03 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f18sm214594otf.55.2021.01.11.13.50.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jan 2021 13:50:02 -0800 (PST)
+Received: (nullmailer pid 3120427 invoked by uid 1000);
+        Mon, 11 Jan 2021 21:50:01 -0000
+Date:   Mon, 11 Jan 2021 15:50:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic
+ nodes
+Message-ID: <20210111215001.GA3111856@robh.at.kernel.org>
+References: <20201230205139.1812366-1-timon.baetz@protonmail.com>
+ <20201230205139.1812366-2-timon.baetz@protonmail.com>
 MIME-Version: 1.0
-References: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
-In-Reply-To: <20201207143255.1.Ib92ec35163682dec4b2fbb4bde0785cb6e6dde27@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 11 Jan 2021 13:48:37 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VWEEP7xsD5-wBjtToB+Ke69vFXzvPoAoocWPyREdjjhw@mail.gmail.com>
-Message-ID: <CAD=FV=VWEEP7xsD5-wBjtToB+Ke69vFXzvPoAoocWPyREdjjhw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Clean up sc7180-trogdor voltage rails
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201230205139.1812366-2-timon.baetz@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On Mon, Dec 7, 2020 at 2:33 PM Douglas Anderson <dianders@chromium.org> wrote:
->
-> For a bunch of rails we really don't do anything with them in Linux.
-> These are things like modem voltage rails that the modem manages these
-> itself and core rails (like IO rails) that are setup to just
-> automagically do the right thing by the firmware.
->
-> Let's stop even listing those rails in our device tree.
->
-> The net result of this is that some of these rails might be able to go
-> down to a lower voltage or perhaps transition to LPM (low power mode)
-> sometimes.
->
-> Here's a list of what we're doing and why:
->
-> * L1A - only goes to SoC and doesn't seem associated with any
->   particular peripheral. Kernel isn't doing anything with
->   this. Removing from dts. NET IMPACT: rail might drop from 1.2V to
->   1.178V and switch to LPM in some cases depending on firmware.
-> * L2A - only goes to SoC and doesn't seem associated with any
->   particular peripheral. Kernel isn't doing anything with
->   this. Removing from dts. NET IMPACT: rail might switch to LPM in
->   some cases depending on firmware.
-> * L3A - only goes to SoC and doesn't seem associated with any
->   particular peripheral. Kernel isn't doing anything with
->   this. Removing from dts. NET IMPACT: rail might switch to LPM in
->   some cases depending on firmware.
-> * L5A - seems to be totally unused as far as I can tell and doesn't
->   even come off QSIP. Removing from dts.
-> * L6A - only goes to SoC and doesn't seem associated with any
->   particular peripheral (I think?). Kernel isn't doing anything with
->   this. Removing from dts. NET IMPACT: rail might switch to LPM in
->   some cases depending on firmware.
-> * L16A - Looks like this is only used for internal RF stuff. Removing
->   from dts. NET IMPACT: rail might switch to LPM in some cases
->   depending on firmware.
-> * L1C - Just goes to WiFi / Bluetooth. Trust how IDP has this set and
->   put this back at 1.616V min.
-> * L4C - This goes out to the eSIM among other places. This looks like
->   it's intended to be for SIM card and modem manages. NET IMPACT:
->   rail might switch to LPM in some cases depending on firmware.
-> * L5C - This goes to the physical SIM.  This looks like it's intended
->   to be for SIM card and modem manages. NET IMPACT: rail might drop
->   from 1.8V to 1.648V and switch to LPM in some cases depending on
->   firmware.
->
-> NOTE: in general for anything which is supposed to be managed by Linux
-> I still left it all forced to HPM since I'm not 100% sure that all the
-> needed calls to regulator_set_load() are in place and HPM is safer.
-> Switching more things to LPM can happen in a future patch.
->
-> ALSO NOTE: Power measurements showed no measurable difference after
-> applying this patch, so perhaps it should be viewed more as a cleanup
-> than any power savings.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+On Wed, Dec 30, 2020 at 08:52:07PM +0000, Timon Baetz wrote:
+> Add maxim,max8997-battery and maxim,max8997-muic optional nodes.
+> 
+> Signed-off-by: Timon Baetz <timon.baetz@protonmail.com>
+> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 82 ++------------------
->  1 file changed, 7 insertions(+), 75 deletions(-)
+> v6: No change.
+> v5: No change.
+> v4: Make extcon and charger-supply optional.
+> v3: Reorder patch, no change.
+> v2: Add patch.
+> 
+>  .../bindings/regulator/max8997-regulator.txt         | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 
-We've been running with this in the downstream tree since December 8th
-and nobody has yelled.  You can see <https://crrev.com/c/2573506>.  Is
-it a good time for it to land upstream?
+This exceeds my threshold of changes for please convert this to schema 
+first. However, I agree with what Mark has said already, so maybe some 
+of this isn't needed.
 
-Thanks!
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/max8997-regulator.txt b/Documentation/devicetree/bindings/regulator/max8997-regulator.txt
+> index 6fe825b8ac1b..faaf2bbf0272 100644
+> --- a/Documentation/devicetree/bindings/regulator/max8997-regulator.txt
+> +++ b/Documentation/devicetree/bindings/regulator/max8997-regulator.txt
+> @@ -53,6 +53,18 @@ Additional properties required if either of the optional properties are used:
+>  - max8997,pmic-buck125-dvs-gpios: GPIO specifiers for three host gpio's used
+>    for dvs. The format of the gpio specifier depends in the gpio controller.
+>  
+> +Optional nodes:
+> +- charger: Node for configuring the charger driver.
+> +  Required properties:
+> +  - compatible: "maxim,max8997-battery"
+> +  Optional properties:
+> +  - extcon: extcon specifier for charging events
 
--Doug
+Don't use 'extcon' for new bindings. Define a connector node. USB I 
+suppose?
+
+> +  - charger-supply: regulator node for charging current
+> +
+> +- muic: Node used only by extcon consumers.
+> +  Required properties:
+> +  - compatible: "maxim,max8997-muic"
+> +
+>  Regulators: The regulators of max8997 that have to be instantiated should be
+>  included in a sub-node named 'regulators'. Regulator nodes included in this
+>  sub-node should be of the format as listed below.
+> -- 
+> 2.25.1
+> 
+> 
