@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E6092F0D6E
+	by mail.lfdr.de (Postfix) with ESMTP id C9FD12F0D6F
 	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 08:48:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727791AbhAKHpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 02:45:14 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51727 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727683AbhAKHpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 02:45:13 -0500
-X-UUID: 5df89e4f6cf74cd5902066ec0ee15107-20210111
-X-UUID: 5df89e4f6cf74cd5902066ec0ee15107-20210111
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        id S1727813AbhAKHpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 02:45:15 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:36036 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727669AbhAKHpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 02:45:15 -0500
+X-UUID: 096091ece4744d42bc83a839f72ac26d-20210111
+X-UUID: 096091ece4744d42bc83a839f72ac26d-20210111
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
         (envelope-from <yongqiang.niu@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1697341937; Mon, 11 Jan 2021 15:44:02 +0800
+        with ESMTP id 403095666; Mon, 11 Jan 2021 15:44:03 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
  15.0.1497.2; Mon, 11 Jan 2021 15:44:01 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 11 Jan 2021 15:44:00 +0800
+ Transport; Mon, 11 Jan 2021 15:44:01 +0800
 From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
 To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
@@ -36,9 +36,9 @@ CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>,
         Hsin-Yi Wang <hsinyi@chromium.org>,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v3, 06/15] drm/mediatek: add component RDMA4
-Date:   Mon, 11 Jan 2021 15:43:42 +0800
-Message-ID: <1610351031-21133-7-git-send-email-yongqiang.niu@mediatek.com>
+Subject: [PATCH v3, 07/15] drm/mediatek: enable OVL_LAYER_SMI_ID_EN for multi-layer usecase
+Date:   Mon, 11 Jan 2021 15:43:43 +0800
+Message-ID: <1610351031-21133-8-git-send-email-yongqiang.niu@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1610351031-21133-1-git-send-email-yongqiang.niu@mediatek.com>
 References: <1610351031-21133-1-git-send-email-yongqiang.niu@mediatek.com>
@@ -49,25 +49,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add component RDMA4
+enable OVL_LAYER_SMI_ID_EN for multi-layer usecase
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-index bc6b10a..fc01fea 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-@@ -392,6 +392,7 @@ struct mtk_ddp_comp_match {
- 	[DDP_COMPONENT_RDMA0]	= { MTK_DISP_RDMA,	0, NULL },
- 	[DDP_COMPONENT_RDMA1]	= { MTK_DISP_RDMA,	1, NULL },
- 	[DDP_COMPONENT_RDMA2]	= { MTK_DISP_RDMA,	2, NULL },
-+	[DDP_COMPONENT_RDMA4]	= { MTK_DISP_RDMA,	4, NULL },
- 	[DDP_COMPONENT_UFOE]	= { MTK_DISP_UFOE,	0, &ddp_ufoe },
- 	[DDP_COMPONENT_WDMA0]	= { MTK_DISP_WDMA,	0, NULL },
- 	[DDP_COMPONENT_WDMA1]	= { MTK_DISP_WDMA,	1, NULL },
+diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+index b47c238..4934bee 100644
+--- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
++++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+@@ -23,6 +23,7 @@
+ #define DISP_REG_OVL_RST			0x0014
+ #define DISP_REG_OVL_ROI_SIZE			0x0020
+ #define DISP_REG_OVL_DATAPATH_CON		0x0024
++#define OVL_LAYER_SMI_ID_EN				BIT(0)
+ #define OVL_BGCLR_SEL_IN				BIT(2)
+ #define DISP_REG_OVL_ROI_BGCLR			0x0028
+ #define DISP_REG_OVL_SRC_CON			0x002c
+@@ -61,6 +62,7 @@ struct mtk_disp_ovl_data {
+ 	unsigned int gmc_bits;
+ 	unsigned int layer_nr;
+ 	bool fmt_rgb565_is_0;
++	bool smi_id_en;
+ };
+ 
+ /**
+@@ -116,7 +118,17 @@ static void mtk_ovl_disable_vblank(struct mtk_ddp_comp *comp)
+ 
+ static void mtk_ovl_start(struct mtk_ddp_comp *comp)
+ {
++	struct mtk_disp_ovl *ovl = comp_to_ovl(comp);
++
+ 	writel_relaxed(0x1, comp->regs + DISP_REG_OVL_EN);
++
++	if(ovl->data->smi_id_en) {
++		unsigned int reg;
++
++		reg = readl(comp->regs + DISP_REG_OVL_DATAPATH_CON);
++		reg = reg | OVL_LAYER_SMI_ID_EN;
++		writel_relaxed(reg, comp->regs + DISP_REG_OVL_DATAPATH_CON);
++	}
+ }
+ 
+ static void mtk_ovl_stop(struct mtk_ddp_comp *comp)
 -- 
 1.8.1.1.dirty
 
