@@ -2,89 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E896B2F0F9C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 11:01:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D762F0FBC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 11:11:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728773AbhAKKAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 05:00:25 -0500
-Received: from mail-ej1-f53.google.com ([209.85.218.53]:40746 "EHLO
-        mail-ej1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725897AbhAKKAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 05:00:25 -0500
-Received: by mail-ej1-f53.google.com with SMTP id x16so23809327ejj.7;
-        Mon, 11 Jan 2021 02:00:09 -0800 (PST)
+        id S1728866AbhAKKJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 05:09:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728532AbhAKKJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 05:09:58 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E532C061794
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 02:09:12 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id u19so18201915edx.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 02:09:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3K0MpZVfZ4qA+deXtIfoeZlGXrSGVuIknlVGq29zqxQ=;
+        b=JlIVTeLfWTLcy1lOjF8lhG+U2nO45hk96tlPN2muNjc18yd9pXXvCcIvGZTA64u2S9
+         hao2vyhCFvg+gQQUz7p7z1O7/SmuEsbv5iRLQwsGqXLUMUfyUTGuV6tL1aodjwHdxaBm
+         5k6Y1kgy0aQ6bxyjK+FYPWltKXUWmVKaeds/xLfkhJ/C3dFor4hl7SAv2/PvLM4enQiX
+         bllQyG/kW6kn93uKa43F08JSe6XqpEbM6VFAiituDHdbeozxgXW5L1vBijbTLDSHy8po
+         J08Q7DxTg4ctb4qFUewoOTCb6sLbyjqTaaO0Gul1y0hGwKrGzmwsfasz0AnSWWdUQRKg
+         mzsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=T8T/O0ZlTJGLCjZbDX0PD9JZEkqddMeqh2KTM2iKu8k=;
-        b=ohT8YdtKk17FeFIR3YugMEE+o0rMNpoeCKtgp1L89IIHmX/h2jqSLhA05VD164kZwL
-         s6e6zJjxZIFEISQb3bxM6F5FhMQYIjTerx5Ahm2KVd9y7Yf9hZ+PltDFtjygTCvAd/C6
-         jDfOGnCLgva7uqenqhLXqUkJ9+CVt5x01ATWnz+Xb0XRDTnCpgVWY8425FEbE1w2BU16
-         wQZW6p10/4/X/nJwquj0YMt+1HF/lepwo+yUnrqanDFglknkiWW+suF/pkmrRuYdXOB8
-         J0OuIxzq8SW9m62obE6DdxGUqTtsGRhQ57Z1j+aYw2tsVjrDOR4JmG32xDiuIDgcD24a
-         MFIg==
-X-Gm-Message-State: AOAM530c4rPrJM4VGJAY/PW8F6AuYh2RaFVxb8ZOcjVzxuFfhEcYwPaN
-        WzIeCy8is5Z9kehmqaexf5g=
-X-Google-Smtp-Source: ABdhPJznV8Dt+uZrNWIQOGNosnX8IcpJUXUdaTHl1pHDy/ueH99EE7egorYvLE83L8+vlNI0OoPEEQ==
-X-Received: by 2002:a17:906:4c55:: with SMTP id d21mr10257637ejw.116.1610359183463;
-        Mon, 11 Jan 2021 01:59:43 -0800 (PST)
-Received: from ?IPv6:2a0b:e7c0:0:107::70f? ([2a0b:e7c0:0:107::70f])
-        by smtp.gmail.com with ESMTPSA id a6sm7483946edv.74.2021.01.11.01.59.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jan 2021 01:59:42 -0800 (PST)
-Subject: Re: [PATCH v2 4/8] serial: stm32: add author
-To:     Erwan Le Ray <erwan.leray@foss.st.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Valentin Caron <valentin.caron@foss.st.com>
-References: <20210106162203.28854-1-erwan.leray@foss.st.com>
- <20210106162203.28854-5-erwan.leray@foss.st.com>
-From:   Jiri Slaby <jirislaby@kernel.org>
-Message-ID: <e1d17cb6-a057-f427-dc77-6be139d39624@kernel.org>
-Date:   Mon, 11 Jan 2021 10:59:41 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3K0MpZVfZ4qA+deXtIfoeZlGXrSGVuIknlVGq29zqxQ=;
+        b=R/8Xm2fq/KoPektdQjzeHD6+pfLM58ADmDBwc2OqcdjpxQa5lkH2LbEUlVArVeIG6u
+         VXmruCeTo1wD/AJQqR/1vCrmyVd0ITv+y5juo0MtytFt9VdAOKljJM/Ar+yA3ubOo+j9
+         PTmDNRcPaAOVjk5gjOERiLP/dFxi1awvWSr05vE7mmzCAKz1+Lh4DF1rJVh4NnDJbN3f
+         hmM35+3dRYN6M9vbYiG6IhsVAWB+ybZfPZ6dRbyglYZpHuwICN7X9xeKQm55t3yujatQ
+         5tc4wTidHitNR8SAl036OMkxSypZwkMVnN8ZqsikX5AuWYAUsAPMwdvEmAjv2HcGplYZ
+         d0RA==
+X-Gm-Message-State: AOAM530DVlvbrXrBxqGCTjeKqhyEv+1zifdJ2+vIy71DBkuRq7o6Yxyt
+        U/I08ZXsMjHOMu2jw6W/pzQ5mDAgUs45kybQfvvLCg==
+X-Google-Smtp-Source: ABdhPJwD7a4C5TCwgNuaYm1Y3CaAEaB74ZsK7DSwWR6bjHtbH4dP04JQh/VEKHHOxR3bV1VGcgOfJU9w8Y+Czx3SFTk=
+X-Received: by 2002:a05:6402:307c:: with SMTP id bs28mr13630886edb.186.1610359751075;
+ Mon, 11 Jan 2021 02:09:11 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210106162203.28854-5-erwan.leray@foss.st.com>
-Content-Type: text/plain; charset=iso-8859-2; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210108102026.2024478-1-geert+renesas@glider.be>
+In-Reply-To: <20210108102026.2024478-1-geert+renesas@glider.be>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Mon, 11 Jan 2021 11:09:00 +0100
+Message-ID: <CAMpxmJXagq7X5_CdB3XfGzr7roSYDHPEzJNb7e4G2b9YFAFKDw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] gpio: rcar: Add R-Car V3U support
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06. 01. 21, 17:21, Erwan Le Ray wrote:
-> Update email address add new author in authors list.
+On Fri, Jan 8, 2021 at 11:20 AM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+>         Hi Linus, Bartosz, Rob,
+>
+> This patch series adds support for GPIOs on the R-Car V3U (r8a779a0)
+> SoC, to both DT bindings and the gpio-rcar driver.
+>
+> Changes compared to v2:
+>   - Add Reviewed-by, Tested-by,
+>   - Fix SoC part number in oneline summary,
+>   - Reformat comment block to match coding style,
+>   - Rebase on top of commit 3a57026a83ba363e ("gpio: rcar: Remove
+>     redundant compatible values"),
+>
+> Changes compared to v1:
+>   - Optimize GPIO pin state read on R-Car Gen3,
+>   - Enable input unconditionally in probe and resume, instead of during
+>     GPIO line configuration and depending on GPIO line direction,
+>   - Assumed authorship, as this patch is very different from v1, written
+>     by Phong Hoang,
+>   - Add Reviewed-by.
+>
+> Thanks!
+>
 
-Parsing error :).
+All three applied, thanks!
 
-> Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
-> 
-> diff --git a/drivers/tty/serial/stm32-usart.c b/drivers/tty/serial/stm32-usart.c
-> index 717a97759928..938d2c4aeaed 100644
-> --- a/drivers/tty/serial/stm32-usart.c
-> +++ b/drivers/tty/serial/stm32-usart.c
-> @@ -3,7 +3,8 @@
->    * Copyright (C) Maxime Coquelin 2015
->    * Copyright (C) STMicroelectronics SA 2017
->    * Authors:  Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> - *	     Gerald Baeza <gerald.baeza@st.com>
-> + *	     Gerald Baeza <gerald.baeza@foss.st.com>
-> + *	     Erwan Le Ray <erwan.leray@foss.st.com>
->    *
->    * Inspired by st-asc.c from STMicroelectronics (c)
->    */
-> 
-
-
--- 
-js
-suse labs
+Bartosz
