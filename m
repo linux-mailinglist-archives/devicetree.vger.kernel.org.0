@@ -2,108 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 000932F1804
-	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 15:23:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6678F2F1899
+	for <lists+devicetree@lfdr.de>; Mon, 11 Jan 2021 15:46:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732825AbhAKOXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 09:23:08 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:46732 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732824AbhAKOXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 09:23:08 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10BEMPp4034887;
-        Mon, 11 Jan 2021 08:22:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610374945;
-        bh=DME9XORExNjNrwApyDZ4ui75afAeH4B61CwZ4kIZ+po=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=myIpT0hvXZCQ+pjVHUShP0V6uLWvNnMGLwf4uLqhQLiMY9JU8tNrNtGGWZCuTgbO3
-         OrgaJ7svo2ISXqIiBBSgaFnLFW+aTfPF6GL1fXOXz7rWWZTu0OQSEHHBSy3aQ786J2
-         PHMuChmQavRsjXvdQH3lexXZd1Rq5QZnpaPm4v10=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10BEMPVI031018
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Jan 2021 08:22:25 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 11
- Jan 2021 08:22:25 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 11 Jan 2021 08:22:25 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10BEMOMV019519;
-        Mon, 11 Jan 2021 08:22:25 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 0/6] PCI: J7200/J721E PCIe bindings
-Date:   Mon, 11 Jan 2021 08:22:24 -0600
-Message-ID: <161037479685.21603.17479522264383929681.b4-ty@ti.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210105151421.23237-1-kishon@ti.com>
-References: <20210105151421.23237-1-kishon@ti.com>
+        id S1731102AbhAKOqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 09:46:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44016 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727304AbhAKOqD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Jan 2021 09:46:03 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BF3FB229C4;
+        Mon, 11 Jan 2021 14:45:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610376322;
+        bh=l6ToqVwqm3E7ql9O4XRtENEPRhqlUUCrKobd4xM3lgg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=uZZApSfe3FBkwQ18jphBQE5TJf9VCYIcQg1oER0tBBAyxp29dxOxPD2ljGcZiwXvb
+         QisYFN8GIZkXjZMiKHlRGvFQQJEjYRAFn9JDenRW8Kwcn0XE4cuPc1xasD9RFWdLCZ
+         rEpzO7GRrDHPDyIkZ0TND+BTEwx39IlCN3wmZ0sBzwV6F6nqbwkA/ovLdCtGuozEBd
+         dlmaNpQSDPgkq96V2JO3lBcHV8CdHNP8D18tz6LrkF7L9V56DMhVZ4yCokdo/G1F6Z
+         L2/aA4Hu1SWwVage5ZwkLSzXgMq1OdlaUENqFCM4kKga+DZFq3vfMk2Sdtgb2FqlBH
+         xzP5UFzB1v3uQ==
+Received: by mail-qv1-f43.google.com with SMTP id d11so7450756qvo.11;
+        Mon, 11 Jan 2021 06:45:22 -0800 (PST)
+X-Gm-Message-State: AOAM530i5E+8oWFkFRKkiS8guv1MSCAaGSiN+Grbo35FH91A0E0BzYJL
+        0Py0QCQGoFnjXLK3Nu54BEShQqXW0SU7pkPnIg==
+X-Google-Smtp-Source: ABdhPJymgMsMHFwjNXskq64kJCyaSLMJ3Do+hKilu0I/FvQeFX2WQUWySyGObrImhXuZnCRNVT6HEOiCX2LEoJH6Aqs=
+X-Received: by 2002:a0c:fe47:: with SMTP id u7mr13111qvs.4.1610376321947; Mon,
+ 11 Jan 2021 06:45:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210108121524.656872-1-qperret@google.com> <20210108121524.656872-16-qperret@google.com>
+In-Reply-To: <20210108121524.656872-16-qperret@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 11 Jan 2021 08:45:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLmzFWmTc=6JSRMofSEVRx9GCrwGxEsYog9dC16EMGdvQ@mail.gmail.com>
+Message-ID: <CAL_JsqLmzFWmTc=6JSRMofSEVRx9GCrwGxEsYog9dC16EMGdvQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 15/26] of/fdt: Introduce early_init_dt_add_memory_hyp()
+To:     Quentin Perret <qperret@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Jan 2021 20:44:15 +0530, Kishon Vijay Abraham I wrote:
-> Patch series adds DT nodes in order to get PCIe working in J7200.
-> Also includes couple of fixes for J721e.
-> 
-> v1 of the patch series can be found @ [1]
-> v2 of the patch series can be found @ [2]
-> v3 of the patch series can be found @ [3]
-> 
-> [...]
+On Fri, Jan 8, 2021 at 6:16 AM Quentin Perret <qperret@google.com> wrote:
+>
+> Introduce early_init_dt_add_memory_hyp() to allow KVM to conserve a copy
+> of the memory regions parsed from DT. This will be needed in the context
+> of the protected nVHE feature of KVM/arm64 where the code running at EL2
+> will be cleanly separated from the host kernel during boot, and will
+> need its own representation of memory.
 
-Hi Kishon Vijay Abraham I,
+What happened to doing this with memblock?
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-[1/6] arm64: dts: ti: k3-j721e-main: Fix supported max outbound regions
-      commit: 0e3cfb868137cf7ced91d7dc709961000c0dae29
-[2/6] arm64: dts: ti: k3-j721e-main: Remove "syscon" nodes added for pcieX_ctrl
-      commit: edb96779f3bcbe348f82b458077de0fb96118233
-[3/6] arm64: dts: ti: k3-j7200-main: Add SERDES and WIZ device tree node
-      commit: 4c1b22a953d9f8af4d5c2f238fb74dc190d92f04
-[4/6] arm64: dts: ti: k3-j7200-main: Add PCIe device tree node
-      commit: 3276d9f53cf660f8ed60d98918170670d0ca6e54
-[5/6] arm64: dts: ti: k3-j7200-common-proc-board: Enable SERDES0
-      commit: 429c0259f17f4fdf9c0beb5423b0c8f6c2ea2e8c
-[6/6] arm64: dts: ti: k3-j7200-common-proc-board: Enable PCIe
-      commit: 3a6319df506f1a821abad2c71a580a2f7b78a304
-
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+> Signed-off-by: Quentin Perret <qperret@google.com>
+> ---
+>  drivers/of/fdt.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 4602e467ca8b..af2b5a09c5b4 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1099,6 +1099,10 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+>  #define MAX_MEMBLOCK_ADDR      ((phys_addr_t)~0)
+>  #endif
+>
+> +void __init __weak early_init_dt_add_memory_hyp(u64 base, u64 size)
+> +{
+> +}
+> +
+>  void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
+>  {
+>         const u64 phys_offset = MIN_MEMBLOCK_ADDR;
+> @@ -1139,6 +1143,7 @@ void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
+>                 base = phys_offset;
+>         }
+>         memblock_add(base, size);
+> +       early_init_dt_add_memory_hyp(base, size);
+>  }
+>
+>  int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
+> --
+> 2.30.0.284.gd98b1dd5eaa7-goog
+>
