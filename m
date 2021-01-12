@@ -2,127 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCB62F2C88
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F1BC2F2CA2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:24:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404160AbhALKUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 05:20:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48538 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404149AbhALKUg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 05:20:36 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5E206224BD;
-        Tue, 12 Jan 2021 10:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610446795;
-        bh=FNpEb72c5pqR6E4bU7eT/lMCgosF1SZkjNrLmosOVMc=;
+        id S2392785AbhALKX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 05:23:27 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:42984 "EHLO
+        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730233AbhALKX0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 05:23:26 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTP id 6025011FFA6;
+        Tue, 12 Jan 2021 11:22:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1610446964;
+        bh=6ZmQ4K4IK4r/5AhzLPeguGG1gL7UqmrMEnjNlnN7NDQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Lyr68qWFnk6McHbvp0iBrUhJPYvZH3JNCC7U130LFsoOxSZIa/DRHWGZYnKNpvTRO
-         HXS9pA5fLb2PakTj2XWAz+fsojSU77W+ATKJpVuKZO3nroFI9TVgWqmAsUtoCWapnS
-         KMeLFDDOwxvjn8Ctb6EJQpTo00Wbpn/ZOfoGVMEyW5vrlJdR3SOWM1JH7RyDVslyjT
-         32rjTvVq9vuVUTs7uVLA8nT2LtYTFJL5vzHTdgn4LA8tq2dRdZGgs2IHYlX+rdFgpz
-         Utup91WfQTeFU6mq2cCp32hxvJ/9J5vyepLB5aVCKIvUPfMKZDJERQxF2CNFdirEKY
-         wgBPWVffYV0NA==
-Date:   Tue, 12 Jan 2021 15:49:50 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Phong Hoang <phong.hoang.wz@renesas.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        b=nk1ka4EAG4sgjzLsGcKbRwkh5mLBl7A3el1Db1+YTR3cLEyZJ8EC2D79cg2h87L1W
+         qAy41W5/4r09PpUA4QS1+LtLuAlTyeb+8gLiOzal9zGj3If3wR/fnX0Of652oegVcd
+         GP8hZRSm+8Rf9w7a8rMf7Kitu4cXQfXMGxToCqcVhOlqyTL0t39JrmbEFOY8pwoAWf
+         HgS5gISj6c/ny03/Rt4SxijSaM3LuYwT+sW3ARIW8IogSkz/c+1gjScDmkwPG/3CXi
+         Gv/zQIptQR8DpI2SoN/aBrKVDpfPEHTS7iXPcB4N9Wim9FjJCUtDhm8IqO/LEtpwMi
+         vNCsssDg0PCyA==
+X-Virus-Scanned: Debian amavisd-new at ministro.hu
+Received: from bmail1.ministro.hu ([127.0.0.1])
+        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id DtMLH2blwxaI; Tue, 12 Jan 2021 11:22:17 +0100 (CET)
+Received: from dev (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id 166AD11FFA3;
+        Tue, 12 Jan 2021 11:22:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1610446937;
+        bh=6ZmQ4K4IK4r/5AhzLPeguGG1gL7UqmrMEnjNlnN7NDQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Q9ZRbowxzbNmq9Clk37PT8/DS/WZK4S81KcWpRrk6PVTEkM6G5agaSSwKFzaXjm7T
+         d/ghdCnNH3r4/KNDMYZdjaaDd1lSiLHn5td+nR+sPi6a7X2R2vb70+sOd8IJMClX57
+         0NOGgAUJ7csIbOoaWW5IynD4sgAOl9kd8XdsaDeMBgCwsjjzREUc4CKYGFYAq3B+2g
+         x0tDoKlWz/65oIq8If/KA/C5v0kntQkxiSgS7p3t9i5M3Ig4kYdvvVJFZjOliCgLdQ
+         WqCjVvXYXP/ML2dmAMNavJKdkp/7kBhHXP4sx/hfm9pT4PMpDkyVLPYX3g5UT2rwLf
+         NxM8nI5aajYCA==
+Date:   Tue, 12 Jan 2021 10:22:15 +0000
+From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+To:     Rob Herring <robh@kernel.org>
+Cc:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dmaengine: rcar-dmac: Add for_each_rcar_dmac_chan()
- helper
-Message-ID: <20210112101950.GK2771@vkoul-mobl>
-References: <20210107181524.1947173-1-geert+renesas@glider.be>
- <20210107181524.1947173-3-geert+renesas@glider.be>
+Subject: Re: [PATCH v7,2/2] dt: bindings: add silabs,si4455 schema
+Message-ID: <20210112102215.GA14292@dev>
+References: <20210105103027.GA15137@dev>
+ <20210111233048.GA3252430@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210107181524.1947173-3-geert+renesas@glider.be>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210111233048.GA3252430@robh.at.kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-01-21, 19:15, Geert Uytterhoeven wrote:
-> Add and helper macro for iterating over all DMAC channels, taking into
-> account the channel mask.  Use it where appropriate, to simplify code.
+On Mon, Jan 11, 2021 at 05:30:48PM -0600, Rob Herring wrote:
+> On Tue, Jan 05, 2021 at 10:30:29AM +0000, József Horváth wrote:
+> > This is a device tree schema for serial port driver for
+> >  Silicon Labs Si4455 Sub-GHz transciver.
+> > 
+> > Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
+> > 
+> > Guide: https://github.com/dministro/linux-serial-si4455
+> > 
+> > Signed-off-by: Jozsef Horvath <info@ministro.hu>
+> > ---
+> > 
+> > changes v1:
+> >  - fixed: dt: bindings: rename sdn-gpios to shutdown-gpios
+> > 
+> > changes v3:
+> >  - fixed: dt: bindings: silabs,si4455: more detailed description
+> >  - added: dt: bindings: silabs,si4455: properties silabs,package-size,
+> >    silabs,tx-channel, silabs,rx-channel, silabs,ez-config
+> > 
+> > changes v4:
+> >  - fixed: dt: bindings: silabs,si4455: $id
+> >    from http://devicetree.org/schemas/serial/silabs,si4455.yaml
+> >    to http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
+> > 
+> > changes v5:
+> >  - fixed: dt: bindings: silabs,si4455: $id
+> >    from http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
+> >    to http://devicetree.org/schemas/serial/silabs,si4455.yaml
+> >  - fixed: dt: bindings: silabs,si4455: serial.yaml reference added
+> > 
+> > changes v7:
+> >  - added: dt: bindings: silabs,si4455: silabs,tx-timeout property definition
+> > ---
+> >  .../bindings/serial/silabs,si4455.yaml        | 105 ++++++++++++++++++
+> >  1 file changed, 105 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/serial/silabs,si4455.yaml b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+> > new file mode 100644
+> > index 000000000000..8ba4956064b4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
+> > @@ -0,0 +1,105 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/serial/silabs,si4455.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Silicon Labs Si4455 device tree bindings
+> > +
+> > +  silabs,rx-channel:
+> > +    description:
+> > +      Radio receive channel selection.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    maximum: 255
+> > +    minimum: 0
+> > +
+> > +  silabs,tx-timeout:
+> > +    description:
+> > +      Radio transmit timeout(ms)
 > 
-> Restore "reverse Christmas tree" order of local variables while adding a
-> new variable.
+> Use a unit suffix as defined in property-units.txt.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  drivers/dma/sh/rcar-dmac.c | 23 +++++++++++------------
->  1 file changed, 11 insertions(+), 12 deletions(-)
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
 > 
-> diff --git a/drivers/dma/sh/rcar-dmac.c b/drivers/dma/sh/rcar-dmac.c
-> index a57705356e8bb796..71cdaf446fcaeba5 100644
-> --- a/drivers/dma/sh/rcar-dmac.c
-> +++ b/drivers/dma/sh/rcar-dmac.c
-> @@ -209,6 +209,11 @@ struct rcar_dmac {
->  
->  #define to_rcar_dmac(d)		container_of(d, struct rcar_dmac, engine)
->  
-> +#define for_each_rcar_dmac_chan(i, chan, dmac)				 \
-> +	for (i = 0, chan = &(dmac)->channels[0]; i < (dmac)->n_channels; \
-> +	     i++, chan++)						 \
+> With that, you can drop the type.
+>
 
-single line to make it more readable? we have limit of 100 now :)
+Thank you for suggestion.
+ 
+> > +    maximum: 1000
+> > +    minimum: 1
+> > +
+> > +  firmware-name:
+> > +    description:
+> > +      Radio configuration data file name.
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    items:
+> > +      pattern: ^[0-9a-z\._\-]{1,255}$
+> > +
+> > +    };
+> > +...
+> > -- 
+> > 2.17.1
+> > 
 
+Üdvözlettel / Best regards:
+József Horváth
 
-> +		if (!((dmac)->channels_mask & BIT(i))) continue; else
-> +
->  /*
->   * struct rcar_dmac_of_data - This driver's OF data
->   * @chan_offset_base: DMAC channels base offset
-> @@ -817,15 +822,11 @@ static void rcar_dmac_chan_reinit(struct rcar_dmac_chan *chan)
->  
->  static void rcar_dmac_stop_all_chan(struct rcar_dmac *dmac)
->  {
-> +	struct rcar_dmac_chan *chan;
->  	unsigned int i;
->  
->  	/* Stop all channels. */
-> -	for (i = 0; i < dmac->n_channels; ++i) {
-> -		struct rcar_dmac_chan *chan = &dmac->channels[i];
-> -
-> -		if (!(dmac->channels_mask & BIT(i)))
-> -			continue;
-> -
-> +	for_each_rcar_dmac_chan(i, chan, dmac) {
->  		/* Stop and reinitialize the channel. */
->  		spin_lock_irq(&chan->lock);
->  		rcar_dmac_chan_halt(chan);
-> @@ -1828,9 +1829,10 @@ static int rcar_dmac_probe(struct platform_device *pdev)
->  		DMA_SLAVE_BUSWIDTH_2_BYTES | DMA_SLAVE_BUSWIDTH_4_BYTES |
->  		DMA_SLAVE_BUSWIDTH_8_BYTES | DMA_SLAVE_BUSWIDTH_16_BYTES |
->  		DMA_SLAVE_BUSWIDTH_32_BYTES | DMA_SLAVE_BUSWIDTH_64_BYTES;
-> +	const struct rcar_dmac_of_data *data;
-> +	struct rcar_dmac_chan *chan;
->  	struct dma_device *engine;
->  	struct rcar_dmac *dmac;
-> -	const struct rcar_dmac_of_data *data;
->  	unsigned int i;
->  	int ret;
->  
-> @@ -1916,11 +1918,8 @@ static int rcar_dmac_probe(struct platform_device *pdev)
->  
->  	INIT_LIST_HEAD(&engine->channels);
->  
-> -	for (i = 0; i < dmac->n_channels; ++i) {
-> -		if (!(dmac->channels_mask & BIT(i)))
-> -			continue;
-> -
-> -		ret = rcar_dmac_chan_probe(dmac, &dmac->channels[i], data, i);
-> +	for_each_rcar_dmac_chan(i, chan, dmac) {
-> +		ret = rcar_dmac_chan_probe(dmac, chan, data, i);
->  		if (ret < 0)
->  			goto error;
->  	}
-> -- 
-> 2.25.1
-
--- 
-~Vinod
