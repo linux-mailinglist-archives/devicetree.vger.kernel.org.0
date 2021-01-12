@@ -2,158 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7734A2F282D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 07:04:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 289042F2837
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 07:11:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391016AbhALGBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 01:01:51 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:59301 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2390803AbhALGBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 01:01:47 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id BD3C658056D;
-        Tue, 12 Jan 2021 00:59:56 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 12 Jan 2021 00:59:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=mnmbcjyB8pD2d
-        0MXqgq3tgrNYPFuBBvPX326wBo9HV8=; b=S4gub/MbeVJx0SuypsAA1Ez8GopcJ
-        YC6h3MNwrGXD4HVkD62L1Va7DCamYt42FHYiyWT2n2/oDONqT7xjHD1cXTkrU2iT
-        V6gugfwqVeiEGE5PaCSfuWEy11+XFC4fzyCrWjOEK1UYjmReLJxO+2NI5fnv2BXI
-        mlDgvK1vXCEEGsTOfaYZHXzxpe+pZCM+FbuAb8+PiQSVsJdv5fLW6yOLeDUi79i3
-        9ntTZsWiGYCzm4NlkjThouukecJa0gScZhk/Ttur9lEgtrKrF+TSglB3DSrMxFv1
-        p0UAvalCk1QLLuSQuhLhY9zk5VFYlxSbPm1sWL8AF6Q2ffG/8NhoDumSA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=mnmbcjyB8pD2d0MXqgq3tgrNYPFuBBvPX326wBo9HV8=; b=AQ3ssDBe
-        UxJC/1z5NKKTxaeoIAXXymuH3u1evLujtl8+XPLiB8kw2THM7VUCkH+HjQ/EWoBj
-        GF4Va3xHfArUH6psizwmRfR4zPv0Y6t036ozLFroAhvJFfZeu/VU4zQlbGa5gWsV
-        DFbz9zrd5FYQ2/7oBtX5msgPFVZtBJ9YpzFNi4Qv5hckjryNOoagsHc0c7ORzW86
-        qscspCUf+tdjts/SJnw58T8MK91z5whTKdXU95Hs0a+HdEQpAAhmcWlJkY+TFbzC
-        rLVnOzT4b176l2DerRlpeddhjcxA11uAZ5zaAeJIYDOwU7IxT2twQh2ySQj8fQeF
-        YhgABOOt7ot+CQ==
-X-ME-Sender: <xms:3Dr9XzrsDkajJOgcppkbivMz4VPjyh0hMr9tvc41JlgdR68obU9h8w>
-    <xme:3Dr9X9rMBJYMSYp7mcikecPXQXj8tpNnbtdVIehNT6luerdvdKuMquz1A5jlNt-er
-    qBFZ9LjDtpXkX9NVw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdehvddgleduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeduhfejfedvhffgfeehtefghfeiiefgfeehgfdvvdevfeegjeehjedv
-    gfejheeuieenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgepfeenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:3Dr9XwNtbwy4K8IFTFpSBemsBm7LOXIY7zSPYdMO7k824smokwSdSA>
-    <xmx:3Dr9X26ICcV7NDU0oMqCWTlW2Z0h3vVSXKfFivYFPAojPgahtAkioA>
-    <xmx:3Dr9Xy6vTdsNMiE71jk0DWf4jdAxDgNN6uEvg9PRE2Qzrd8HrNtoHg>
-    <xmx:3Dr9X0ucL8Tf1o6QE-NqGp_bQRoBzLcZnYnZWwrgBDuUsng6U6AQtA>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 1B2FE24005B;
-        Tue, 12 Jan 2021 00:59:56 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v4 10/10] arm64: dts: allwinner: Move wakeup-capable IRQs to r_intc
-Date:   Mon, 11 Jan 2021 23:59:50 -0600
-Message-Id: <20210112055950.21209-11-samuel@sholland.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210112055950.21209-1-samuel@sholland.org>
-References: <20210112055950.21209-1-samuel@sholland.org>
+        id S1731020AbhALGLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 01:11:00 -0500
+Received: from mail-lf1-f51.google.com ([209.85.167.51]:43144 "EHLO
+        mail-lf1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731262AbhALGLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 01:11:00 -0500
+Received: by mail-lf1-f51.google.com with SMTP id 23so1578544lfg.10;
+        Mon, 11 Jan 2021 22:10:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
+         :in-reply-to:references:mime-version:date:user-agent
+         :content-transfer-encoding;
+        bh=oRVO+BDWKpeCueQ+kzarXJUcBI/yOauyA0mzezFi66I=;
+        b=kM3TDsoOH/egdTuJtSvE1q2GmFDoxbRgA7Juklwl/5spNN0woOvNjRH4Gy91hP/2E4
+         5CIZCFfuMQfvYSnrS+9xGBeQPLvgdwRyu6xMikARBHftOlIwOdFhAOld3xUBLk6o9Eqo
+         obZhk0QKLH5P88P9VdqL7prxAHy+qA5xlHjiU7g4D4QeIXwgJf4J3f+C7t8TfYI5DgVt
+         sYgnSvSZDMHI892lefcsMmk4l6+eYc0ANmAppdLYcg1/aLKZYAAoOl1HXsOIDAnkWAok
+         b7dScXwg2qJRngTp71e+mAuddmR5Y3YUutkrFJsV46hveZxGigcoZX4OzihezbWxvGjK
+         LkqA==
+X-Gm-Message-State: AOAM530iQXgb34yLl8LG7E2QpJx17HIqWciPl0N9liTQLqIf1tNcLzwf
+        Ps80Gps33GsNppMv97baZ+I=
+X-Google-Smtp-Source: ABdhPJzDhEVzVXXU/b+VKdX3lqsnfNFQEOnx3T+2A4v45B3y+lJ4XjfZoQ2sXonGchrBl8jduy9LNw==
+X-Received: by 2002:a19:6c7:: with SMTP id 190mr1497073lfg.614.1610431818955;
+        Mon, 11 Jan 2021 22:10:18 -0800 (PST)
+Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id f26sm224806ljg.137.2021.01.11.22.10.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jan 2021 22:10:18 -0800 (PST)
+Message-ID: <c953405d630efba5377b89931ae4e0aa1abfa4dd.camel@fi.rohmeurope.com>
+Subject: Re: [PATCH 06/15] dt_bindings: regulator: Add ROHM BD71815 PMIC
+ regulators
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Reply-To: matti.vaittinen@fi.rohmeurope.com
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-gpio@vger.kernel.org
+In-Reply-To: <20210111190953.GB2890911@robh.at.kernel.org>
+References: <cover.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
+         <3ca03c3b76d6898c46ee645ddb5fa25cbfc62367.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
+         <20210111190953.GB2890911@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date:   Tue, 12 Jan 2021 08:10:14 +0200
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All IRQs that can be used to wake up the system must be routed through
-r_intc, so they are visible to firmware while the system is suspended.
 
-In addition to the external NMI input, which is already routed through
-r_intc, these include PIO and R_PIO (gpio-keys), the LRADC, and the RTC.
+On Mon, 2021-01-11 at 13:09 -0600, Rob Herring wrote:
+> On Fri, Jan 08, 2021 at 03:36:38PM +0200, Matti Vaittinen wrote:
+> > Add binding documentation for regulators on ROHM BD71815 PMIC.
+> > 5 bucks, 7 LDOs and a boost for LED.
+> > 
+> > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > ---
+> >  .../regulator/rohm,bd71815-regulator.yaml     | 104
+> > ++++++++++++++++++
+> >  1 file changed, 104 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/regulator/rohm,bd71815-
+> > regulator.yaml
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/regulator/rohm,bd71815-
+> > regulator.yaml
+> > b/Documentation/devicetree/bindings/regulator/rohm,bd71815-
+> > regulator.yaml
+> > new file mode 100644
+> > index 000000000000..2aa21603698c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/rohm,bd71815-
+> > regulator.yaml
+> > @@ -0,0 +1,104 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > http://devicetree.org/schemas/regulator/rohm,bd71815-regulator.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ROHM BD71815 Power Management Integrated Circuit regulators
+> > +
+> > +maintainers:
+> > +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > +
+> > +description: |
+> > +  This module is part of the ROHM BD718215 MFD device. For more
+> > details
+> > +  see Documentation/devicetree/bindings/mfd/rohm,bd71815-
+> > pmic.yaml.
+> > +
+> > +  The regulator controller is represented as a sub-node of the
+> > PMIC node
+> > +  on the device tree.
+> > +
+> > +  The valid names for BD71815 regulator nodes are
+> > +  buck1, buck2, buck3, buck4, buck5,
+> > +  ldo1, ldo2, ldo3, ldo4, ldo5,
+> > +  ldodvref, ldolpsr, wled
+> 
+> No schema for the last 3?
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 4 ++++
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 3 +++
- 2 files changed, 7 insertions(+)
+Thanks Rob. I'm unsure what I have been thinking of :( I'll fix this
+for next version.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index fd4bf90163d5..b8697e84342e 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -644,6 +644,7 @@ ccu: clock@1c20000 {
- 		pio: pinctrl@1c20800 {
- 			compatible = "allwinner,sun50i-a64-pinctrl";
- 			reg = <0x01c20800 0x400>;
-+			interrupt-parent = <&r_intc>;
- 			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
-@@ -814,6 +815,7 @@ lradc: lradc@1c21800 {
- 			compatible = "allwinner,sun50i-a64-lradc",
- 				     "allwinner,sun8i-a83t-r-lradc";
- 			reg = <0x01c21800 0x400>;
-+			interrupt-parent = <&r_intc>;
- 			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -1204,6 +1206,7 @@ rtc: rtc@1f00000 {
- 			compatible = "allwinner,sun50i-a64-rtc",
- 				     "allwinner,sun8i-h3-rtc";
- 			reg = <0x01f00000 0x400>;
-+			interrupt-parent = <&r_intc>;
- 			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-output-names = "osc32k", "osc32k-out", "iosc";
-@@ -1275,6 +1278,7 @@ r_pwm: pwm@1f03800 {
- 		r_pio: pinctrl@1f02c00 {
- 			compatible = "allwinner,sun50i-a64-r-pinctrl";
- 			reg = <0x01f02c00 0x400>;
-+			interrupt-parent = <&r_intc>;
- 			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&r_ccu CLK_APB0_PIO>, <&osc24M>, <&osc32k>;
- 			clock-names = "apb", "hosc", "losc";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index 93b8456f3b49..d467fe1bc566 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -294,6 +294,7 @@ pwm: pwm@300a000 {
- 		pio: pinctrl@300b000 {
- 			compatible = "allwinner,sun50i-h6-pinctrl";
- 			reg = <0x0300b000 0x400>;
-+			interrupt-parent = <&r_intc>;
- 			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>,
-@@ -895,6 +896,7 @@ tcon_tv_out_tcon_top: endpoint@1 {
- 		rtc: rtc@7000000 {
- 			compatible = "allwinner,sun50i-h6-rtc";
- 			reg = <0x07000000 0x400>;
-+			interrupt-parent = <&r_intc>;
- 			interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-output-names = "osc32k", "osc32k-out", "iosc";
-@@ -930,6 +932,7 @@ r_intc: interrupt-controller@7021000 {
- 		r_pio: pinctrl@7022000 {
- 			compatible = "allwinner,sun50i-h6-r-pinctrl";
- 			reg = <0x07022000 0x400>;
-+			interrupt-parent = <&r_intc>;
- 			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&r_ccu CLK_R_APB1>, <&osc24M>, <&rtc 0>;
--- 
-2.26.2
+> 
+> > +
+> > +patternProperties:
+> > +  "^(ldo|buck)[1-5]$":
+> > +    type: object
+> > +    description:
+> > +      Properties for single LDO/BUCK regulator.
+> > +    $ref: regulator.yaml#
+> > +
+> > +    properties:
+> > +      regulator-name:
+> > +        pattern: "^(ldo|buck)[1-5]$"
+> > +        description:
+> > +          should be "ldo1", ..., "ldo5" and "buck1", ..., "buck5"
+> > +
+> > +      rohm,vsel-gpios:
+> > +        description:
+> > +          GPIO used to control ldo4 state (when ldo4 is controlled
+> > by GPIO).
+> > +
+> > +      rohm,dvs-run-voltage:
+> 
+> These should have a unit suffix.
+
+I know but these are existing properties. I'd like to re-use them as
+they have exported parser helpers - and I am unsure what kind of
+breakages changing them would cause. (The BD71837/BD71847 which
+introduced these properties are one of the PMICs which are pretty
+widely used.)
+
+Best Regards
+	Matti Vaittinen
+
 
