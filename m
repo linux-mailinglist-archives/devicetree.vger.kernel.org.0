@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BF602F3013
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 14:05:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F4F32F2FF3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 14:05:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728014AbhALNCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 08:02:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54586 "EHLO mail.kernel.org"
+        id S1726503AbhALNAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 08:00:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53816 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405510AbhALM6s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 07:58:48 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B70E72312E;
-        Tue, 12 Jan 2021 12:58:21 +0000 (UTC)
+        id S2405552AbhALM6w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 07:58:52 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BFFF923134;
+        Tue, 12 Jan 2021 12:58:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610456302;
+        s=k20201202; t=1610456315;
         bh=wBuEtDlE34cZvhKg94tf1u3hkx6HmvCvGAV4hgroIIM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ejxUsZ35SZwLH0gM/0aJxWH13nksZ8nLskziN8jkoYivijwCwofS4bDlnvPqXPclF
-         tj8djOfTbc+WbloVB08qtXzC2DDg1/3ooKBym1qvgDaQywoTQaVQU4Pl1/lIlBPLVs
-         iFdDJzHJkUe5NlKnoBsEX68QOHVTEpKr36ZNSYtyBL7RAE/TNqB5R4rqRwN7BmpziV
-         yfnO2BGlelMfnbJelDo/rxcvMFQGrELIU3/Y7wB1FmuakHKUTBI4YhUwWiFMAEhT+z
-         O3l0SD4pn+gfNE+zqLDZ0KlkK7ZKIQZzmzLkKHoy1VbeNdpR2CQBBt9ogdplbd13Cs
-         mczJZzsXzwhGA==
+        b=oUF679jwdPtSRVm9sKawnTicaIns5dvvV49nSdO32BKFW1I/eY8oGQ7DraPNGNY/C
+         uvm7ES1ZhVHLjS6LP8mvCc4XDUQkWqwQ7vS4OwMH93KmSc5KJCHl8GaVhtEZJ3SJnK
+         pmOS1H+EU2l0XErUGhvcvwU6702Xhb0AloxV0Q4wOjECGEQvJARdwx4lLkFtxTV6xd
+         0iMwoVjUvCSOs5kRYwexIrriQF8zNR2sUr8YC9lWGFjuEW76kOZabIK3GvSrylrECD
+         WyyofTA/iofAijHf6K+EswHBIpr8ROdkbJ90MWjplqHm+46nt+FO0jv38/smL7s5mu
+         2AS30o22lqhlQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Arnd Bergmann <arnd@arndb.de>, Jamie Iles <jamie@jamieiles.com>,
         Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 8/8] ARM: picoxcell: fix missing interrupt-parent properties
-Date:   Tue, 12 Jan 2021 07:58:09 -0500
-Message-Id: <20210112125810.71348-8-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.4 8/8] ARM: picoxcell: fix missing interrupt-parent properties
+Date:   Tue, 12 Jan 2021 07:58:23 -0500
+Message-Id: <20210112125823.71463-8-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210112125810.71348-1-sashal@kernel.org>
-References: <20210112125810.71348-1-sashal@kernel.org>
+In-Reply-To: <20210112125823.71463-1-sashal@kernel.org>
+References: <20210112125823.71463-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
