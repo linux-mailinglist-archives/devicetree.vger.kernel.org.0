@@ -2,316 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE012F2B20
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 10:22:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 755722F2B50
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 10:33:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731326AbhALJTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 04:19:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392563AbhALJTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 04:19:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E36C061795
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 01:18:50 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kzFp7-0000pF-8e; Tue, 12 Jan 2021 10:18:45 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kzFp4-0006Im-L6; Tue, 12 Jan 2021 10:18:42 +0100
-Date:   Tue, 12 Jan 2021 10:18:42 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, f.fainelli@gmail.com,
-        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wahrenst@gmx.net, linux-input@vger.kernel.org,
-        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
-        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
-        andy.shevchenko@gmail.com
-Subject: Re: [PATCH v6 11/11] pwm: Add Raspberry Pi Firmware based PWM bus
-Message-ID: <20210112091842.3th64ardbqjafvuq@pengutronix.de>
-References: <20201211164801.7838-1-nsaenzjulienne@suse.de>
- <20201211164801.7838-12-nsaenzjulienne@suse.de>
+        id S2392477AbhALJcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 04:32:10 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:43136 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732913AbhALJcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 04:32:09 -0500
+Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 680743E;
+        Tue, 12 Jan 2021 10:31:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1610443886;
+        bh=w/RME/A/vtYy04QIxoMQWC8wQsmS1+uobHcAheZpcSo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=m1LenvGL8VkyWAEe1C2t86aRtX6kQ9iZIGhH0cFd2uxZzfI9bgV9IAXQMEduGwxTG
+         KIibKblM22uvDaZxFfaNj6+Ber4zzSgp84XeUDTQI6W4OoJew7wa2A4oHMQjdZENQW
+         7jI6VqI9G6nYnD2rp2epPA0yjo0+mQxnf02tq4zo=
+Subject: Re: [PATCH 1/2] dt-bindings: media: Add bindings for OmniVision
+ OV1063x sensors
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benoit Parrot <bparrot@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20210104053945.12409-1-laurent.pinchart@ideasonboard.com>
+ <20210104053945.12409-2-laurent.pinchart@ideasonboard.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+Message-ID: <e6e7d925-4806-cecf-a0ff-e7852ce720b2@ideasonboard.com>
+Date:   Tue, 12 Jan 2021 11:31:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="r23z722cpflr6wgz"
-Content-Disposition: inline
-In-Reply-To: <20201211164801.7838-12-nsaenzjulienne@suse.de>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210104053945.12409-2-laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
 
---r23z722cpflr6wgz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Nicolas,
-
-On Fri, Dec 11, 2020 at 05:48:00PM +0100, Nicolas Saenz Julienne wrote:
-> diff --git a/drivers/pwm/pwm-raspberrypi-poe.c b/drivers/pwm/pwm-raspberr=
-ypi-poe.c
+On 04/01/2021 07:39, Laurent Pinchart wrote:
+> From: Benoit Parrot <bparrot@ti.com>
+> 
+> Add device tree bindings for the OmniVision OV10633 and OV10635 camera
+> sensors.
+> 
+> Signed-off-by: Benoit Parrot <bparrot@ti.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  .../bindings/media/i2c/ov1063x.yaml           | 97 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml b/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
 > new file mode 100644
-> index 000000000000..24b498839fcc
+> index 000000000000..b5e08dd2f496
 > --- /dev/null
-> +++ b/drivers/pwm/pwm-raspberrypi-poe.c
-> @@ -0,0 +1,216 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2020 Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> + * For more information on Raspberry Pi's PoE hat see:
-> + * https://www.raspberrypi.org/products/poe-hat/
-> + *
-> + * Limitations:
-> + *  - No disable bit, so a disabled PWM is simulated by duty_cycle 0
-> + *  - Only normal polarity
-> + *  - Fixed 12.5 kHz period
-> + *
-> + * The current period is completed when HW is reconfigured.
-> + */
+> +++ b/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ov1063x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
+> +title: OmniVision OV10633/OV1035 Camera Sensor
 > +
-> +#include <soc/bcm2835/raspberrypi-firmware.h>
-> +#include <dt-bindings/pwm/raspberrypi,firmware-poe-pwm.h>
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > +
-> +#define RPI_PWM_MAX_DUTY		255
-> +#define RPI_PWM_PERIOD_NS		80000 /* 12.5 kHz */
+> +description: |-
+> +  The OmniVision OV1063x is a 720p camera sensor which supports resolutions up
+> +  to 1280x800 and 8- and 10-bit YUV output formats.
 > +
-> +#define RPI_PWM_CUR_DUTY_REG		0x0
-> +#define RPI_PWM_DEF_DUTY_REG		0x1
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ovti,ov10633
+> +      - ovti,ov10635
 > +
-> +struct raspberrypi_pwm {
-> +	struct rpi_firmware *firmware;
-> +	struct pwm_chip chip;
-> +	unsigned int duty_cycle;
-> +};
+> +  reg:
+> +    maxItems: 1
 > +
-> +struct raspberrypi_pwm_prop {
-> +	__le32 reg;
-> +	__le32 val;
-> +	__le32 ret;
-> +} __packed;
+> +  clocks:
+> +    maxItems: 1
 > +
-> +static inline struct raspberrypi_pwm *to_raspberrypi_pwm(struct pwm_chip=
- *chip)
+> +  clocks-names:
 
-I'd like to see this function use the same prefix as the other
-functions. I suggest "raspberrypi_pwm_from_chip".
+"clock-names". The same error is repeated a few times later in the patch.
 
-> +{
-> +	return container_of(chip, struct raspberrypi_pwm, chip);
-> +}
-> +
-> +static int raspberrypi_pwm_set_property(struct rpi_firmware *firmware,
-> +					u32 reg, u32 val)
-> +{
-> +	struct raspberrypi_pwm_prop msg =3D {
-> +		.reg =3D cpu_to_le32(reg),
-> +		.val =3D cpu_to_le32(val),
-> +	};
-> +	int ret;
-> +
-> +	ret =3D rpi_firmware_property(firmware, RPI_FIRMWARE_SET_POE_HAT_VAL,
-> +				    &msg, sizeof(msg));
-> +	if (ret)
-> +		return ret;
-> +	if (msg.ret)
-> +		return -EIO;
-> +
-> +	return 0;
-> +}
-> +
-> +static int raspberrypi_pwm_get_property(struct rpi_firmware *firmware,
-> +					u32 reg, u32 *val)
-> +{
-> +	struct raspberrypi_pwm_prop msg =3D {
-> +		.reg =3D reg
-> +	};
-> +	int ret;
-> +
-> +	ret =3D rpi_firmware_property(firmware, RPI_FIRMWARE_GET_POE_HAT_VAL,
-> +				    &msg, sizeof(msg));
-> +	if (ret)
-> +		return ret;
-> +	if (msg.ret)
-> +		return -EIO;
-> +
-> +	*val =3D le32_to_cpu(msg.val);
-> +
-> +	return 0;
-> +}
-> +
-> +static void raspberrypi_pwm_get_state(struct pwm_chip *chip,
-> +				      struct pwm_device *pwm,
-> +				      struct pwm_state *state)
-> +{
-> +	struct raspberrypi_pwm *rpipwm =3D to_raspberrypi_pwm(chip);
-> +
-> +	state->period =3D RPI_PWM_PERIOD_NS;
-> +	state->duty_cycle =3D DIV_ROUND_CLOSEST(rpipwm->duty_cycle * RPI_PWM_PE=
-RIOD_NS,
-> +					      RPI_PWM_MAX_DUTY);
-
-Please round up here ...
-
-> +	state->enabled =3D !!(rpipwm->duty_cycle);
-> +	state->polarity =3D PWM_POLARITY_NORMAL;
-> +}
-> +
-> +static int raspberrypi_pwm_apply(struct pwm_chip *chip, struct pwm_devic=
-e *pwm,
-> +			         const struct pwm_state *state)
-> +{
-> +	struct raspberrypi_pwm *rpipwm =3D to_raspberrypi_pwm(chip);
-> +	unsigned int duty_cycle;
-> +	int ret;
-> +
-> +        if (state->period < RPI_PWM_PERIOD_NS ||
-> +            state->polarity !=3D PWM_POLARITY_NORMAL)
-> +                return -EINVAL;
-> +
-> +        if (!state->enabled)
-> +                duty_cycle =3D 0;
-> +        else if (state->duty_cycle < RPI_PWM_PERIOD_NS)
-> +                duty_cycle =3D DIV_ROUND_CLOSEST_ULL(state->duty_cycle *=
- RPI_PWM_MAX_DUTY,
-> +					           RPI_PWM_PERIOD_NS);
-
-=2E.. and round down here.
-
-Just to be sure: writing RPI_PWM_MAX_DUTY (i.e. 255) yields 100% duty
-cycle, right?
-
-> +        else
-> +                duty_cycle =3D RPI_PWM_MAX_DUTY;
-> +
-> +	if (duty_cycle =3D=3D rpipwm->duty_cycle)
-> +		return 0;
-> +
-> +	ret =3D raspberrypi_pwm_set_property(rpipwm->firmware, RPI_PWM_CUR_DUTY=
-_REG,
-> +					   duty_cycle);
-> +	if (ret) {
-> +		dev_err(chip->dev, "Failed to set duty cycle: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * This sets the default duty cycle after resetting the board, we
-> +	 * updated it every time to mimic Raspberry Pi's downstream's driver
-> +	 * behaviour.
-> +	 */
-> +	ret =3D raspberrypi_pwm_set_property(rpipwm->firmware, RPI_PWM_DEF_DUTY=
-_REG,
-> +					   duty_cycle);
-> +	if (ret) {
-> +		dev_err(chip->dev, "Failed to set default duty cycle: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +        rpipwm->duty_cycle =3D duty_cycle;
-
-Please use tabs for indention. (The general hint is to use checkpatch
-which (I hope) tells you about problems like this.)
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct pwm_ops raspberrypi_pwm_ops =3D {
-> +	.get_state =3D raspberrypi_pwm_get_state,
-> +	.apply =3D raspberrypi_pwm_apply,
-> +	.owner =3D THIS_MODULE,
-> +};
-> +
-> +static int raspberrypi_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *firmware_node;
-> +	struct device *dev =3D &pdev->dev;
-> +	struct rpi_firmware *firmware;
-> +	struct raspberrypi_pwm *rpipwm;
-> +	int ret;
-> +
-> +	firmware_node =3D of_get_parent(dev->of_node);
-> +	if (!firmware_node) {
-> +		dev_err(dev, "Missing firmware node\n");
-> +		return -ENOENT;
-> +	}
-> +
-> +	firmware =3D devm_rpi_firmware_get(&pdev->dev, firmware_node);
-> +	of_node_put(firmware_node);
-> +	if (!firmware)
-> +		return -EPROBE_DEFER;
-
-Please use dev_err_probe to benefit from recording an error message in
-this case.
-
-> +	rpipwm =3D devm_kzalloc(&pdev->dev, sizeof(*rpipwm), GFP_KERNEL);
-> +	if (!rpipwm)
-> +		return -ENOMEM;
-> +
-> +	rpipwm->firmware =3D firmware;
-> +	rpipwm->chip.dev =3D dev;
-> +	rpipwm->chip.ops =3D &raspberrypi_pwm_ops;
-> +	rpipwm->chip.base =3D -1;
-> +	rpipwm->chip.npwm =3D RASPBERRYPI_FIRMWARE_PWM_NUM;
-> +
-> +	platform_set_drvdata(pdev, rpipwm);
-> +
-> +	ret =3D raspberrypi_pwm_get_property(rpipwm->firmware, RPI_PWM_CUR_DUTY=
-_REG,
-> +					   &rpipwm->duty_cycle);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to get duty cycle: %d\n", ret);
-
-Please use %pe for the error codes (directly or still better by using
-dev_err_probe here, too).
-
-> +		return ret;
-> +	}
-> +
-> +	return pwmchip_add(&rpipwm->chip);
-> +}
-> [...]
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---r23z722cpflr6wgz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl/9aW8ACgkQwfwUeK3K
-7AkKmAf/X43HuzDS2E9bHa7KzzW9+7rOPBmL3wmZt/Ab01mgp1yRp2gC+qtv7BPT
-0n138wPi5O+rOAxm/iC9Uc4Y1s0bpvndj05noMRAK2X+XLXxwWhLARqf63uCvxIr
-sa6Dl6PDQsOj9ucrNUJPWFNYkjm4YGLmKJQrqjr8lEyydl7j8S4e2IGryiMs+sSV
-nL9CkhaIA0cFiritdv3THxRfhxnzMLkcG2E3ePHA2eq91FuV1DHqfZpgYwSd0eDf
-w1egR/8M6Lup6AxF7B5IzSzaBf+XFZi5k5Wj0LuRXNSpUBcL7nv81l0e+A8+fCF5
-ZmpW6QOoovobVNxANzKLcZ4hfKwybw==
-=J/5G
------END PGP SIGNATURE-----
-
---r23z722cpflr6wgz--
+ Tomi
