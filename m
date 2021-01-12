@@ -2,92 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0EE82F3729
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 18:32:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E75962F3725
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 18:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392774AbhALRae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 12:30:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34084 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392771AbhALRad (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 12:30:33 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2BCE222AED;
-        Tue, 12 Jan 2021 17:29:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610472592;
-        bh=/okVfTyIj/1mLwVi8GFdAvJo0sfLP8xwmTZIQcrLdeM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C2SF9Uqr2+SKWfy7pcG1YN9iKQ38GXT50DMyyDI2jNVqN34HNYQ67oYh5pcCW9DB7
-         QDVpgd5uO1GTuiHMAuSLP0koYJ3Fqv6CsIuOT1JZaxvEmH8BCl27rDWEiiXvEmLP+D
-         nQG2NoGqi7UxLXDkf0+1AzjAGCX0/Mp1jN0ScvW+36IHz0aWJIiKnuBqK3EvNpxdNk
-         WZMuiXKwXeBCM+M0P5vc5HaTpFXqqZkaGMKK5m+15t8XaPfsM4gggwn37zVpRSXEyo
-         XKHbn+F+h2muoqx+q9hClctvzD7lGQSlyZLrVsPZZPsvUO91hZQ8GEwmL3r3zQzxF0
-         j1JHf5SR/UZKw==
-Date:   Tue, 12 Jan 2021 17:29:19 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, sumit.semwal@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org
-Subject: Re: [PATCH 5/7] regulator: qcom-labibb: Implement short-circuit and
- over-current IRQs
-Message-ID: <20210112172919.GD4646@sirena.org.uk>
-References: <20210109132921.140932-1-angelogioacchino.delregno@somainline.org>
- <20210109132921.140932-6-angelogioacchino.delregno@somainline.org>
- <20210111135745.GC4728@sirena.org.uk>
- <6dee36e4-fc78-c21b-daf8-120ee44535a3@somainline.org>
- <8115a574-ad43-d3c6-70d4-28c8a2f4a5f6@somainline.org>
- <09d70d24-5d0d-f1cd-d99e-5c213c8ea98c@somainline.org>
+        id S2392333AbhALRab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 12:30:31 -0500
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:45783 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388033AbhALRab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 12:30:31 -0500
+X-Originating-IP: 86.202.109.140
+Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id A87CF40015;
+        Tue, 12 Jan 2021 17:29:48 +0000 (UTC)
+Date:   Tue, 12 Jan 2021 18:29:48 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Bruno Thomsen <bruno.thomsen@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Bruno Thomsen <bth@kamstrup.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Subject: Re: [PATCH] ARM: dts: imx7d-flex-concentrator: fix pcf2127 reset
+Message-ID: <20210112172948.GI3654@piout.net>
+References: <20210111151537.12530-1-bruno.thomsen@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="n2Pv11Ogg/Ox8ay5"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <09d70d24-5d0d-f1cd-d99e-5c213c8ea98c@somainline.org>
-X-Cookie: Stay away from hurricanes for a while.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210111151537.12530-1-bruno.thomsen@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/01/2021 16:15:37+0100, Bruno Thomsen wrote:
+> RTC pcf2127 device driver has changed default behaviour of the watchdog
+> feature in v5.11-rc1. Now you need to explicitly enable it with a
+> device tree property, "reset-source", when used in the board design.
+> 
+> Fixes: 71ac13457d9d ("rtc: pcf2127: only use watchdog when explicitly available")
+> 
+> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+> Cc: Bruno Thomsen <bth@kamstrup.com>
+> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Cc: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
---n2Pv11Ogg/Ox8ay5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> ---
+>  arch/arm/boot/dts/imx7d-flex-concentrator.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx7d-flex-concentrator.dts b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+> index 84b095279e65..bd6b5285aa8d 100644
+> --- a/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+> +++ b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+> @@ -115,6 +115,7 @@ pcf2127: rtc@0 {
+>  		compatible = "nxp,pcf2127";
+>  		reg = <0>;
+>  		spi-max-frequency = <2000000>;
+> +		reset-source;
+>  	};
+>  };
+>  
+> 
+> base-commit: 7c53f6b671f4aba70ff15e1b05148b10d58c2837
+> -- 
+> 2.29.2
+> 
 
-On Mon, Jan 11, 2021 at 10:06:18PM +0100, AngeloGioacchino Del Regno wrote:
-
-> ...which was already a requirement before I touched it.
-> Now, this leaves two options here:
-> 1. Keep the of_get_irq way, or
-> 2. Move the interrupts, change the documentation (currently, only
-> pmi8998.dtsi) and also fix pmi8998.dtsi to reflect the new changes.
-
-> I am asking before proceeding because I know that changing a schema that is
-> already set sometimes gets "negated".
-
-Well, if the binding isn't actually used changing it is a possibility.
-If we keep the current binding you can still continue to use
-of_get_irq() even from within the probe function, you know the name of
-the node it's supposed to be in so you don't need to iterate or anything
-to get it so not really any reason to use the callback.
-
---n2Pv11Ogg/Ox8ay5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/93G4ACgkQJNaLcl1U
-h9CCJQf/XQpVoAeBxaPWks++Bdxf1rAlHECDuS/el7BrR98BEMGZ65QEz1Pi1fO7
-4+abqstgMzY3phe3BzzS/Qf0FpwoSAW71k+L2RWNa1K+5an2uiCbQhW1UvXjqhwy
-VRmurbOyG1RmmNfg9r+q3GnRwqmdZK7f2Uip0OQTQq/PRFZkW/cQfuFg6HWebaSb
-trUCLU81jUQLuyBJF/Cc7na4+PaIbhNPIDfuxzcsV7fVVdebtXADHPU+7thHbnw5
-3BgSpSBfYVdkHnEU1Zix/c67tJXRqOSAf5WujVnOXNG5XJL7eCGwUgrPOnjRo3sZ
-xf7/xKVSKeZQhSNTgjcEbvasnE2GKw==
-=sGHd
------END PGP SIGNATURE-----
-
---n2Pv11Ogg/Ox8ay5--
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
