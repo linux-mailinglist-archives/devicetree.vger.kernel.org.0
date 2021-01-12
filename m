@@ -2,142 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 755722F2B50
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 10:33:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C439B2F2B80
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 10:42:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392477AbhALJcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 04:32:10 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:43136 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732913AbhALJcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 04:32:09 -0500
-Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 680743E;
-        Tue, 12 Jan 2021 10:31:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1610443886;
-        bh=w/RME/A/vtYy04QIxoMQWC8wQsmS1+uobHcAheZpcSo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=m1LenvGL8VkyWAEe1C2t86aRtX6kQ9iZIGhH0cFd2uxZzfI9bgV9IAXQMEduGwxTG
-         KIibKblM22uvDaZxFfaNj6+Ber4zzSgp84XeUDTQI6W4OoJew7wa2A4oHMQjdZENQW
-         7jI6VqI9G6nYnD2rp2epPA0yjo0+mQxnf02tq4zo=
-Subject: Re: [PATCH 1/2] dt-bindings: media: Add bindings for OmniVision
- OV1063x sensors
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Benoit Parrot <bparrot@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20210104053945.12409-1-laurent.pinchart@ideasonboard.com>
- <20210104053945.12409-2-laurent.pinchart@ideasonboard.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- mQINBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
- wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
- Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
- eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
- LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
- G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
- DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
- 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
- rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
- Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABtDBUb21pIFZhbGtl
- aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT6JAk4EEwEIADgWIQTEOAw+
- ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
- PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
- VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
- 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
- uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
- R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
- sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
- Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
- PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
- dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
- qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENbkCDQROprNHARAAx0aat8GU
- hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
- DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
- KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
- 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
- xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
- UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
- /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
- 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
- 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
- mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAYkCHwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
- 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
- suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
- xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
- m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
- CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
- CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
- 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
- ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
- yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
- 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
-Message-ID: <e6e7d925-4806-cecf-a0ff-e7852ce720b2@ideasonboard.com>
-Date:   Tue, 12 Jan 2021 11:31:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728241AbhALJlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 04:41:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59590 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726693AbhALJls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 04:41:48 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40581C061794
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 01:41:08 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id n10so1065133pgl.10
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 01:41:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=N5gPe6VICAF23DO3VFw8snxPpNxb7Xk5ic4+s7znuoc=;
+        b=lvmNCoLr1rN0OCsKFG6UZCCbtUCiKHx12DRxXuWRO/i35blG1TsBWoPQeptEFgEpIN
+         8/D8nvAwNL0mw8ajCKfQTTO5Y3OlsNuJY4foZHrWpJH1M3Gb7MWr1BKBYkIW0S9PRwGn
+         ulhnslLxEz4mqjARlDMI3HOuqXT+lZoIiMx3uFOz6xhTPzpc64uLSp49x2rOo/a8Ujlr
+         +HsdDlcs1nTK8SgWS4MfWcg/UywAlrvTXFze8BAg1p0GaHacEFnZUDai/o/uQ2Hh5LVH
+         8jp+1pBAUAPraNXN6fJSgdCcZtO9R3vWGyZrCuaIvJCugE8+kfQ1cYfOrqAx768+RFIX
+         ie/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=N5gPe6VICAF23DO3VFw8snxPpNxb7Xk5ic4+s7znuoc=;
+        b=ZcJUenE2JWC0DIvc0Gd4ZX3XqWwuTchxl3DS+mBhRCMmmppOZKH/eXyQKnoLI3ENAu
+         UVOPuWf1FrSdpnF10Uz7JE2+mA6KBImMSmBMohnV1KlzZSGiz5pJospk9Ni0vwYA2lhu
+         FgRR6scVtLLDihx9ZwpvT5l45qkBhzFEGY8JRg60me5TS4gw8RjTyUKcLd7r1gQx/taT
+         FYvBVL69tCJbr9cUy/nDwnfz70VmiijEJZgMsc1sAK6D3kpGx556SJocYKMCfWH8ruC/
+         1F8H3fphr545daFaGyMk6NcwiiL1cu6Y7xrwDVeqU2FPak+h5GGFrnnAN/+fAzDki1MG
+         A3vw==
+X-Gm-Message-State: AOAM5325WqoSGvMHlIVX/YVL41aR4xdnQ2HMdMp9bper0ouw4oDIHGjx
+        QGYX2mHIKboPIeYwC4b6kwWyfA==
+X-Google-Smtp-Source: ABdhPJyQeQsHFfo9WD/97PYe0+LVzJEsfG9mBwqV5UrXNRUxqX3VYywjolxEoJ7o/WuYX7uGTwpoFw==
+X-Received: by 2002:aa7:8517:0:b029:19d:d70f:86ec with SMTP id v23-20020aa785170000b029019dd70f86ecmr3823661pfn.19.1610444467625;
+        Tue, 12 Jan 2021 01:41:07 -0800 (PST)
+Received: from localhost ([122.172.85.111])
+        by smtp.gmail.com with ESMTPSA id 68sm2362475pfe.33.2021.01.12.01.41.06
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 12 Jan 2021 01:41:06 -0800 (PST)
+Date:   Tue, 12 Jan 2021 15:11:04 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, tero.kristo@gmail.com
+Subject: Re: [RFC 0/2] kbuild: Add support to build overlays (%.dtbo)
+Message-ID: <20210112094104.k3425nr5t4dbogns@vireshk-i7>
+References: <cover.1609844956.git.viresh.kumar@linaro.org>
+ <CAL_JsqJMr3vfz2B29vzvFALCt_5-J__eJv2TZHJ0sR9nM=xXaw@mail.gmail.com>
+ <CAK7LNAR9fdjZ7iWKSWvJ9etGZkd+n87cmXKN-Hah8DBDYbuAwA@mail.gmail.com>
+ <20210111111711.r2xesydzhq5js2nf@vireshk-i7>
+ <CAK7LNASViCOTGR7yDTfh0O+PAu+X-P2NwdY4oPMuXrr51awafA@mail.gmail.com>
+ <CAL_Jsq+HiPv1x8B8ZdM2yjFLyiCwzcRR79SVsHCk80asySWp4w@mail.gmail.com>
+ <CAK7LNAS4V0ohZM+V5xJypejb6Powx2bj_6_kvAGU9L5EnRF=Bw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210104053945.12409-2-laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK7LNAS4V0ohZM+V5xJypejb6Powx2bj_6_kvAGU9L5EnRF=Bw@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On 12-01-21, 02:02, Masahiro Yamada wrote:
+> On Tue, Jan 12, 2021 at 1:13 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > On Mon, Jan 11, 2021 at 9:40 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+> We do not need the dtbo-y syntax.
 
-On 04/01/2021 07:39, Laurent Pinchart wrote:
-> From: Benoit Parrot <bparrot@ti.com>
-> 
-> Add device tree bindings for the OmniVision OV10633 and OV10635 camera
-> sensors.
-> 
-> Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../bindings/media/i2c/ov1063x.yaml           | 97 +++++++++++++++++++
->  MAINTAINERS                                   |  7 ++
->  2 files changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml b/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
-> new file mode 100644
-> index 000000000000..b5e08dd2f496
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov1063x.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ov1063x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OV10633/OV1035 Camera Sensor
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +
-> +description: |-
-> +  The OmniVision OV1063x is a 720p camera sensor which supports resolutions up
-> +  to 1280x800 and 8- and 10-bit YUV output formats.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ovti,ov10633
-> +      - ovti,ov10635
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clocks-names:
++1
 
-"clock-names". The same error is repeated a few times later in the patch.
+And we are left with much simpler diff with what we agreed on. Does
+this look okay now ?
 
- Tomi
+---
+ .gitignore               | 3 +--
+ Makefile                 | 4 ++--
+ scripts/Makefile.dtbinst | 3 +++
+ scripts/Makefile.lib     | 4 +++-
+ 4 files changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/.gitignore b/.gitignore
+index d01cda8e1177..0458c36f3cb2 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -17,8 +17,7 @@
+ *.bz2
+ *.c.[012]*.*
+ *.dt.yaml
+-*.dtb
+-*.dtb.S
++*.dtb*
+ *.dwo
+ *.elf
+ *.gcno
+diff --git a/Makefile b/Makefile
+index 9e73f82e0d86..b84f5e0b46ab 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1334,7 +1334,7 @@ endif
+ 
+ ifneq ($(dtstree),)
+ 
+-%.dtb: include/config/kernel.release scripts_dtc
++%.dtb %.dtbo: include/config/kernel.release scripts_dtc
+ 	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+ 
+ PHONY += dtbs dtbs_install dtbs_check
+@@ -1816,7 +1816,7 @@ clean: $(clean-dirs)
+ 	@find $(if $(KBUILD_EXTMOD), $(KBUILD_EXTMOD), .) $(RCS_FIND_IGNORE) \
+ 		\( -name '*.[aios]' -o -name '*.ko' -o -name '.*.cmd' \
+ 		-o -name '*.ko.*' \
+-		-o -name '*.dtb' -o -name '*.dtb.S' -o -name '*.dt.yaml' \
++		-o -name '*.dtb' -o -name '*.dtbo' -o -name '*.dtb.S' -o -name '*.dt.yaml' \
+ 		-o -name '*.dwo' -o -name '*.lst' \
+ 		-o -name '*.su' -o -name '*.mod' \
+ 		-o -name '.*.d' -o -name '.*.tmp' -o -name '*.mod.c' \
+diff --git a/scripts/Makefile.dtbinst b/scripts/Makefile.dtbinst
+index 50d580d77ae9..ba01f5ba2517 100644
+--- a/scripts/Makefile.dtbinst
++++ b/scripts/Makefile.dtbinst
+@@ -29,6 +29,9 @@ quiet_cmd_dtb_install = INSTALL $@
+ $(dst)/%.dtb: $(obj)/%.dtb
+ 	$(call cmd,dtb_install)
+ 
++$(dst)/%.dtbo: $(obj)/%.dtbo
++	$(call cmd,dtb_install)
++
+ PHONY += $(subdirs)
+ $(subdirs):
+ 	$(Q)$(MAKE) $(dtbinst)=$@ dst=$(patsubst $(obj)/%,$(dst)/%,$@)
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index 213677a5ed33..30bc0a8e0087 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -86,7 +86,9 @@ extra-$(CONFIG_OF_ALL_DTBS)	+= $(dtb-)
+ 
+ ifneq ($(CHECK_DTBS),)
+ extra-y += $(patsubst %.dtb,%.dt.yaml, $(dtb-y))
++extra-y += $(patsubst %.dtbo,%.dt.yaml, $(dtb-y))
+ extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtb,%.dt.yaml, $(dtb-))
++extra-$(CONFIG_OF_ALL_DTBS) += $(patsubst %.dtbo,%.dt.yaml, $(dtb-))
+ endif
+ 
+ # Add subdir path
+@@ -324,7 +326,7 @@ cmd_dtc = $(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ;
+ 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
+ 	cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
+ 
+-$(obj)/%.dtb: $(src)/%.dts $(DTC) FORCE
++$(obj)/%.dtb $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
+ 	$(call if_changed_dep,dtc)
+ 
+ DT_CHECKER ?= dt-validate
