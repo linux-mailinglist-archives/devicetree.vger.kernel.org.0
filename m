@@ -2,202 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37B9F2F2A74
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 10:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 335932F2A86
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 10:02:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387781AbhALI6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 03:58:40 -0500
-Received: from mail-dm6nam12on2107.outbound.protection.outlook.com ([40.107.243.107]:43169
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727916AbhALI6j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 03:58:39 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CEk20uS7ho1XfRGvatXq1kwoxlPHIPTwcB5Ku+WmH9YsUv92n1+8v0PY3qYsWTh2xa4wk6ZvMkFoj8ib0C3Dmv7ZZqGcfj287W3wz68ok1GOttxIWpmx4iEASMJjR613p73Wle+mjKORnn7zVaAbtkaVtnqpXA6KNPufm9NY+qaMQoN7+H6M1BITmM/jUtEj2tNzeyYFCjObc9g9SznpAGWow5JGeUQbJkkYYU31FLW4ug3dJKpcWCSpumJhHQ9m4GaLL2EUc4ZpjrLIXNS1D7zaGlUsgBt1QD5pBvVnK7iY5fy7A+za5t98qZ8q//xj7/swhIEowf7DGiCBDvxhdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2o2xK03t4sqDgpWZYk3HgHRyqmFDJ+1zILwkNrjEyKE=;
- b=HgUscuojrxv+kAKHUh4hhgD0gvJJDpOsURLLttHhwty2ktpP4Ed8LYB3qKA/i0iOZRJuktyQJiU/QFwQ6eAfmRkYAGdI5a6e+SN8aWsjPQeJiuWFA9Xc1oYMj/L4/v2uZwTnUYg4vbknhopzWWpIaqk/78W/lziSbzCanRNrJQ+dm1bo9JEWWf+NXHMlENdQm5pGvudL7yu9vkvMZqfaxTttSjmSRrshGm1+Q6tNvkKoxQPPeFdqQNkZTleMJDJTBaLg05J/q56mUAekjsXB8a+dM9STJ1jXO7SSRRFdv+n1IComXwBXajBVegsFD2KGDgni1jBiXkDZlGJ4WnabPA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2o2xK03t4sqDgpWZYk3HgHRyqmFDJ+1zILwkNrjEyKE=;
- b=vq7umOqJPzMN+PVp6h+iadp2oC2jN1xS/+JgFqk/XNAkmdEW21ggovAH4VHtRyjvykKzXxNkUpK+isY1NTYRkUsf2+gP3M+KkYUdbMowLvY8Tu61aS/+YxFQb4zr0AgtuISmejQU04jhRQJyUIGqvhQchtW/926sDUf+WJbKxt8=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by BYAPR04MB4744.namprd04.prod.outlook.com (2603:10b6:a03:16::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.12; Tue, 12 Jan
- 2021 08:57:43 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::b59c:9ae:6e98:5e1e]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::b59c:9ae:6e98:5e1e%8]) with mapi id 15.20.3742.012; Tue, 12 Jan 2021
- 08:57:42 +0000
-Date:   Tue, 12 Jan 2021 16:57:37 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag
- and swing setting
-Message-ID: <20210112085737.GC5827@pc-user>
-References: <cover.1609380663.git.xji@analogixsemi.com>
- <d13442f84fefccc992d6c5e48ac1e6129882af31.1609380663.git.xji@analogixsemi.com>
- <20210111221435.GA3138373@robh.at.kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210111221435.GA3138373@robh.at.kernel.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [61.148.116.10]
-X-ClientProxiedBy: HK0PR01CA0066.apcprd01.prod.exchangelabs.com
- (2603:1096:203:a6::30) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
+        id S2405801AbhALJCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 04:02:03 -0500
+Received: from mail-lj1-f171.google.com ([209.85.208.171]:35620 "EHLO
+        mail-lj1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405799AbhALJCD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 04:02:03 -0500
+Received: by mail-lj1-f171.google.com with SMTP id p13so2021199ljg.2;
+        Tue, 12 Jan 2021 01:01:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=haCXkiEdHtQn5zcL0eeYqZrMblZ/rhEiT3dh2wlTt4U=;
+        b=sYcwzjav/fBkwBvxLlTLdjkPWbCvlRweeQ/WV7IQALoRgJaKglrw6QbkIZhX2ioWbM
+         +NP8tf+aFdeTcpe7wvGOiUt81LDFO4rGoLl3Qkb3sU8XUcc7ivQfoz2bUwq2sqqvbU75
+         ZTqSnGOEHmFjfj4621yI1dYYoApWkBB2cNVPc1exgn6Fk6VcablSXGE0jTOXukWaS4sq
+         c6fXClviYHSMGS/xHR0yHIPRFJe3T9Q1qSdjPlFs08USsoQafTDfzTpDo7lfr84eKSvi
+         7A2P+AkMNjf1dWk26wlWSyW0AkMlD4y+KGQACsKGXB+W9yLvEFfWgkxY3uOtx7Opy571
+         qygg==
+X-Gm-Message-State: AOAM531V5WbljG7Qz9xd1IWbhX2FD9CU1R30JeLg9344HvcGv4BxblLe
+        h8yq+HC8n6H4cxvilwqNeDx8r7d+dv3cpw==
+X-Google-Smtp-Source: ABdhPJzEBGdx89BKmB8bHuXXvLUiH6SB24L853o2jEqMjVRy/Ew7V1ZW7ayyhebCIrjUC82DPP8toQ==
+X-Received: by 2002:a2e:9d95:: with SMTP id c21mr1620526ljj.51.1610442080558;
+        Tue, 12 Jan 2021 01:01:20 -0800 (PST)
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
+        by smtp.gmail.com with ESMTPSA id l84sm310130lfd.75.2021.01.12.01.01.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jan 2021 01:01:19 -0800 (PST)
+Received: by mail-lf1-f46.google.com with SMTP id u25so2232066lfc.2;
+        Tue, 12 Jan 2021 01:01:19 -0800 (PST)
+X-Received: by 2002:a19:c783:: with SMTP id x125mr1692517lff.303.1610442079205;
+ Tue, 12 Jan 2021 01:01:19 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pc-user (61.148.116.10) by HK0PR01CA0066.apcprd01.prod.exchangelabs.com (2603:1096:203:a6::30) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3742.6 via Frontend Transport; Tue, 12 Jan 2021 08:57:42 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e5d8db33-a72c-429d-86d0-08d8b6d81f56
-X-MS-TrafficTypeDiagnostic: BYAPR04MB4744:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR04MB4744B7061B3251BC8B727862C7AA0@BYAPR04MB4744.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YhaAjRz82v+nsHZvtIlxYk8e2APMl3S4uHxxNRonMYAGrtIXlS9N8TkUGuxeMkmGKRrS6Lz7t5trL6qQ1rCPNedZjxpk0gpnzQFNhYyqFoASXRCTMBt5GcHx+2Y8zaN9JHCU46/rhvkVita6UWjWvBoAWSHg0YNDjTks2Y5aFdNv2O65ERQYqo/YFE78nN3EzNrQOn9RUpZvumzAAD+hqaTZjknM2k+0CwzTtB3vNCmKON9AaE6NQGcvfnCrji/c+nFQTiO7BoKNJE/hUr0Vx/Ci1KY8S74Re6Rr5A98mq3bVvFvgXr1loGUrRSt813HoExSCsy+xkKDlaqbmDm3BwBtJZbMPrGXfjVpM9l3v2SUNIp0rjEYLXU32RNgcvmGCHzL4Vmofc9B28KZ7iGr0Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(376002)(366004)(346002)(396003)(136003)(66476007)(9686003)(66556008)(6666004)(478600001)(55016002)(16526019)(54906003)(186003)(8936002)(4326008)(83380400001)(86362001)(6496006)(52116002)(33716001)(1076003)(316002)(6916009)(8676002)(26005)(7416002)(5660300002)(2906002)(956004)(66946007)(33656002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?2Y+igmaKLGLR3OOUMF7vy+nDkpznNS7ItLGZEGrp+Ta2904bmA7OP2udvC28?=
- =?us-ascii?Q?fPR5eStiICGBnVQPyTNwnx3u21p3/KpYoXT4O4pAqQ0wtOhPNckTUvN7/q8x?=
- =?us-ascii?Q?MjLZwkuGSL+1782NTqiaMXMxdkgRzD1opZ5LVwUN3NFxfXiEvWJ5lMxpzl2y?=
- =?us-ascii?Q?s2iNsB94SzD0LZ5Z6ELm8414C9mMJtJbwfPyxQoOxXAVbovEriAbR9bNVnjg?=
- =?us-ascii?Q?WfyA0vP1n/3jzGPeYnHkWKYT2aylLRELen+i4y/4nBivJ5NAH1CIYDQ59SK/?=
- =?us-ascii?Q?EHi954u+dRGVeNlxkGKxUKCNOAROVtyVe/BUNiVOlseTZXdY/ObTNC7lU80X?=
- =?us-ascii?Q?/Lbar7ed7oIq3EvbFRYSRK1WtBsIw+9dx/KC+osHLBZ7yFa4gVckk5uDgqqi?=
- =?us-ascii?Q?P9UPdiTYS+eLcJKTYQqIkfxjYaNlGL65iWT7Iqro7W3GfX0Kio6SxhiQulDh?=
- =?us-ascii?Q?CZb/X21qeNaB+cix1l3hLVLLPW8LhglfNkVmGu00rXiyfwo5FlO/B8fMUEPi?=
- =?us-ascii?Q?N+9Ca2Cl5uIvfl7fWaUk8iwPwjhtlMMIA9Ljt5V6HSSOmxdGfaQZR7HleSxE?=
- =?us-ascii?Q?1MT3Lyq/RDNl9kB4dsbMQY2mKgJiNvqkLfWt144dIybWH+8228II1pWlSliq?=
- =?us-ascii?Q?rdz0fu0ydz8TWpuczA28/ilskjd4ahgSl1BonQkccpaMhzkjDDIFxFPWUol9?=
- =?us-ascii?Q?C9Nmid1NeFRAOJIhaKwaMmQpyH+V9czUYqQgJ54M/mvL6yXAF5vw/ZMV085C?=
- =?us-ascii?Q?4coG0rdkxvNzrtUHc9PEspMhD7K/fy8ronrtbEe4uXKHoJTQpcGsk4lFm2Lu?=
- =?us-ascii?Q?IuaGJyiuErLmDTKD08hfjZnmDByD7yXqW9EbBkWeDiNWBuKXBUJt6wnCxO4w?=
- =?us-ascii?Q?D2r2lXByuNI+TwJjrKMylpvWRm64wJhX7sHrZj+n0Woa2kt6rRggGcZMMZOv?=
- =?us-ascii?Q?EhDz/DuZInNnApbP25XKXQsnhDv775ySsVR7+UaBijXDaa26U56xSS/KWkp1?=
- =?us-ascii?Q?XzdK?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2021 08:57:42.6128
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-Network-Message-Id: e5d8db33-a72c-429d-86d0-08d8b6d81f56
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C++vXsUIa5eXaE2UKV2JiYQONLENSCDbhaVgtVY7OuZd7KCwXqMtmM5v2J0krwXVcKJ0/5jqWq5Dje7ndILw+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4744
+References: <20210106134617.391-1-wens@kernel.org> <20210106134617.391-3-wens@kernel.org>
+In-Reply-To: <20210106134617.391-3-wens@kernel.org>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Tue, 12 Jan 2021 17:01:07 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67qXN1FX7cupTvVZrM8XRA4LWxVkfFbWh220CWrU7tyAg@mail.gmail.com>
+Message-ID: <CAGb2v67qXN1FX7cupTvVZrM8XRA4LWxVkfFbWh220CWrU7tyAg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: arm: rockchip: Add FriendlyARM NanoPi M4B
+To:     Chen-Yu Tsai <wens@kernel.org>
+Cc:     Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob Herring, thanks for the comments.
+On Wed, Jan 6, 2021 at 9:46 PM Chen-Yu Tsai <wens@kernel.org> wrote:
+>
+> From: Chen-Yu Tsai <wens@csie.org>
+>
+> The NanoPi M4B is a minor revision of the original M4.
+>
+> The differences against the original Nanopi M4 that are common with the
+> other M4V2 revision include:
+>
+>   - microphone header removed
+>   - power button added
+>   - recovery button added
+>
+> Additional changes specific to the M4B:
+>
+>   - USB 3.0 hub removed; board now has 2x USB 3.0 type-A ports and 2x
+>     USB 2.0 ports
+>   - ADB toggle switch added; this changes the top USB 3.0 host port to
+>     a peripheral port
+>   - Type-C port no longer supports data or PD
+>   - WiFi/Bluetooth combo chip switched to AP6256, which supports BT 5.0
+>     but only 1T1R (down from 2T2R) for WiFi
+>
+> Add a compatible string for the new board revision.
+>
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-On Mon, Jan 11, 2021 at 04:14:35PM -0600, Rob Herring wrote:
-> On Thu, Dec 31, 2020 at 10:21:12AM +0800, Xin Ji wrote:
-> > Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
-> > swing setting for adjusting DP tx PHY swing
-> > 
-> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > ---
-> >  .../bindings/display/bridge/analogix,anx7625.yaml  | 25 ++++++++++++++++++++--
-> >  1 file changed, 23 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > index 60585a4..4eb0ea3 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > @@ -34,6 +34,16 @@ properties:
-> >      description: used for reset chip control, RESET_N pin B7.
-> >      maxItems: 1
-> >  
-> > +  analogix,swing-setting:
-> > +    type: uint8-array
-> 
-> Humm, this should have be rejected by the meta-schema.
-We needs define an array to adjust DP tx PHY swing, the developer hopes these
-settings are changeable, so I moved the register data to DT. Can you
-give me some suggestion if it is rejected by the meta-schema?
-> 
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> 
-> This is how types are defined other than boolean or nodes (object).
-> 
-> > +    description: an array of swing register setting for DP tx PHY
-> > +
-> > +  analogix,mipi-dpi-in:
-> > +    type: int
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: indicate the MIPI rx signal type is DPI or DSI
-> 
-> Why does this need to be in DT, you should be able to determine this 
-> based on what you are connected to.
-As the anx7625 can receive MIPI DSI and DPI data (depends on hardware
-implement, we have a project which have two anx7625, one is DSI input,
-the other is DPI input), we needs to let driver know what kind of MIPI
-rx signal input. And there is no other way to tell driver the MIPI rx
-signal type, we needs define this flag.
-> 
-> > +
-> >    ports:
-> >      type: object
-> >  
-> > @@ -49,8 +59,8 @@ properties:
-> >            Video port for panel or connector.
-> >  
-> >      required:
-> > -        - port@0
-> > -        - port@1
-> > +      - port@0
-> > +      - port@1
-> >  
-> >  required:
-> >    - compatible
-> > @@ -72,6 +82,17 @@ examples:
-> >              reg = <0x58>;
-> >              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-> >              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
-> > +            analogix,swing-setting = <0x00 0x14>, <0x01 0x54>,
-> > +                <0x02 0x64>, <0x03 0x74>, <0x04 0x29>,
-> > +                <0x05 0x7b>, <0x06 0x77>, <0x07 0x5b>,
-> > +                <0x08 0x7f>, <0x0c 0x20>, <0x0d 0x60>,
-> > +                <0x10 0x60>, <0x12 0x40>, <0x13 0x60>,
-> > +                <0x14 0x14>, <0x15 0x54>, <0x16 0x64>,
-> > +                <0x17 0x74>, <0x18 0x29>, <0x19 0x7b>,
-> > +                <0x1a 0x77>, <0x1b 0x5b>, <0x1c 0x7f>,
-> > +                <0x20 0x20>, <0x21 0x60>, <0x24 0x60>,
-> > +                <0x26 0x40>, <0x27 0x60>;
-> 
-> This is a matrix, which is different from an array type.
-OK, I'll change to array if this vendor define has been accepted.
-> 
-> > +            analogix,mipi-dpi-in = <0>;
-> >  
-> >              ports {
-> >                  #address-cells = <1>;
-> > -- 
-> > 2.7.4
-> > 
+This was
+
+Acked-by: Rob Herring <robh@kernel.org>
+
+back in v2.
