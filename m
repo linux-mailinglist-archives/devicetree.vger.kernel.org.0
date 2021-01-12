@@ -2,71 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF84B2F408E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 01:56:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3622F4099
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 01:56:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393578AbhAMAm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 19:42:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45406 "EHLO
+        id S2393587AbhAMAm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 19:42:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391721AbhALXtP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 18:49:15 -0500
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CC1DC0617A3;
-        Tue, 12 Jan 2021 15:48:28 -0800 (PST)
-Received: by mail-pg1-x532.google.com with SMTP id v19so233134pgj.12;
-        Tue, 12 Jan 2021 15:48:28 -0800 (PST)
+        with ESMTP id S2392015AbhALXxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 18:53:04 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E04C061575;
+        Tue, 12 Jan 2021 15:52:23 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id b5so7192pjl.0;
+        Tue, 12 Jan 2021 15:52:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZruxYcBQXCXWok/YmCXjga0Z3PUTOQ6pNhSzq4bpJR4=;
-        b=g0a+XeY1WpelCJ57IOHLZ5ClC3bxDfY0fE91b/U+a2JYIHKaMmcVwduCeAlYvDQQoL
-         xjVCiINgK4qb5c/LcNp+C22h/uUgi0vdQ2TGhNzY6s+CaSrHxAQGfwwzQ0rH8W+88b31
-         +XIJb8l5Nq1FsvPziTU9NZKAoS+c5TQjnwVX/6Eb1twaMPfwDQB6B2io0xNovCRZS7Ij
-         F7Je6GW1bm2Mx6XSiUeKYKWTmiprOX72+CStoB8qTs5qJrO8vTUdnJMoWGnoJdNzQpBe
-         moohYHc39LCcIAkyfVB+kDMXKifn7ejJk+tALEXkSKv8wCTdSj3tqESBUNBzgPdtMQj4
-         jzPw==
+        bh=MGKtVppVEFe28L6FHuDZ+KXC/KQUieJpXieI89QBq84=;
+        b=IJQOFIMT3nopzu5tpGieKI5azx9Y0NH8Vhc2K59m4HhkC/m3oEAcrRYKlNYQsJeEkK
+         zP7eMmny6mAVPcoNorjivTXPpDujTFpzqCpQ9id/XL5Ceg9EwJGYx6ESFXkRY/ONim8w
+         Un7cc0LO4YpbvY/dAE7zeXmdQcdFUDj9KUSRIifjRk0lFFREb/mD+2H/zBfkU4cfy5k2
+         sDPmSUtFCg9gGGVsWrwuH3YDuaE+4fYg9dn6Ow9lsTujOw+kIHhQX9WjYOmoaACKDs5K
+         m/VTzIIU8JjmYiTY6EUtIFD18hj+JVVpk+Rd1rayW3K4ik+vA0P1BtLE6njaiudNCh3R
+         5ipw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=ZruxYcBQXCXWok/YmCXjga0Z3PUTOQ6pNhSzq4bpJR4=;
-        b=pN1DEjLzqoCJXIudS/KGii4ZkjJ6TL7QGFGFjjC++CXDfL5NmbYkuHLOHCmLx55EW+
-         XOqZwc8nFnf7HZ3wqnOBSjc+o8dFZHLdrgFo1IRIalZKxl1/swPqt26mXr6L0YNf8mZ5
-         CM4pPHxC2SF129F6tQwlVWei9awAP9ftwOMgCvKGogmAkBY/Dw+tBRHG736FXAAMbgUQ
-         jtuh5ZbttJdLSJw96BPzySgmwtbm+06nZ8EZQeTEUgN7ejO4ZsElR4LtsjZwcxva9cZo
-         q2BVg0WHjj+bb73ZATGtRHhkgZA6ajd9L7rFe/wnakShCF7qBjUjsXF2fDi0FVEWxLmv
-         yVBg==
-X-Gm-Message-State: AOAM531CNO1hZLa1gIpC0naC4abaKb3ck22SsG46esZnydvBFwjYdqE4
-        IBReM21zSfJFoDltd4acMDE=
-X-Google-Smtp-Source: ABdhPJzcsesZOG8VoM+izCkYUl4yjaLgepIotHJQF1QgVivbf7byOhsDdoAO8dQh9VGDhIePy7ZM6A==
-X-Received: by 2002:a63:1865:: with SMTP id 37mr1523162pgy.206.1610495307478;
-        Tue, 12 Jan 2021 15:48:27 -0800 (PST)
+        bh=MGKtVppVEFe28L6FHuDZ+KXC/KQUieJpXieI89QBq84=;
+        b=Vhex7uNupqxHoSEjqaOWOvSE+6lB+wRaZIqf5L37ZNERagvsmudKbbvGu9uDhsccty
+         +xtab3H92L68Rxlqr7iNjocs98AHm+SYZK3ghjIdIL1UtWsu4/bIONiJn2KEHneM0IYc
+         YhxnBytkj4vCpsPuH2jR0MkTbr2DjnuT52vWHXh07a4oaJxjuVHVlJarTpP0qNSVRurQ
+         0FeGM6bc2RcUe6d7jqw1by4cDsr/mV4EcKCr2Ae/Raazd9Rat+jKYF9gnvpvArnu62cb
+         9FVcRypu/98ebxv7M5JCuOLMZMTNohjNwZEbEwo6mvdVb6PhmCf7ThlNF+i+594ZHIiH
+         QT1w==
+X-Gm-Message-State: AOAM5312eBl+nua0XcrySfMbamEdmWKMGlWA0XgwKQInRQkDJkqSF/c1
+        BtQjhRO7BSSkKCMj9WDr5hmzjYwUiJ0=
+X-Google-Smtp-Source: ABdhPJy/60v+IQ3/cilUlX0Bj9E3m068HNwymQXPaKD3vpsxumTJ8rKuRYQYOicISQFL+EQw1gn6ww==
+X-Received: by 2002:a17:902:c1cc:b029:da:dd7c:2ac7 with SMTP id c12-20020a170902c1ccb02900dadd7c2ac7mr1401040plc.25.1610495543441;
+        Tue, 12 Jan 2021 15:52:23 -0800 (PST)
 Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id k3sm57763pgm.94.2021.01.12.15.48.24
+        by smtp.googlemail.com with ESMTPSA id a136sm234808pfd.149.2021.01.12.15.52.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jan 2021 15:48:26 -0800 (PST)
-Subject: Re: [RFC PATCH v3 6/6] of: Add plumbing for restricted DMA pool
-To:     Claire Chang <tientzu@chromium.org>, robh+dt@kernel.org,
-        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
-        joro@8bytes.org, will@kernel.org, frowand.list@gmail.com,
-        konrad.wilk@oracle.com, boris.ostrovsky@oracle.com,
-        jgross@suse.com, sstabellini@kernel.org, hch@lst.de,
-        m.szyprowski@samsung.com, robin.murphy@arm.com
-Cc:     grant.likely@arm.com, xypron.glpk@gmx.de, treding@nvidia.com,
+        Tue, 12 Jan 2021 15:52:22 -0800 (PST)
+Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
+To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+Cc:     Claire Chang <tientzu@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Joerg Roedel <joro@8bytes.org>, will@kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
         mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        gregkh@linuxfoundation.org, saravanak@google.com,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
         rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
-        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
-        xen-devel@lists.xenproject.org, tfiga@chromium.org,
-        drinkcat@chromium.org
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        rdunlap@infradead.org, dan.j.williams@intel.com,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
 References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-7-tientzu@chromium.org>
+ <20210106034124.30560-3-tientzu@chromium.org>
+ <20210106185241.GA109735@localhost.localdomain>
+ <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
+ <20210107175740.GA16519@char.us.oracle.com>
+ <aa5af7d1-779e-f0f6-e6ba-8040e603523f@gmail.com>
+ <20210107211937.GA19460@char.us.oracle.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
@@ -122,105 +135,59 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <95e6dd76-5e18-e445-c351-19fba18f36de@gmail.com>
-Date:   Tue, 12 Jan 2021 15:48:24 -0800
+Message-ID: <bb25fac5-94ee-ff61-9afb-0024b5047f94@gmail.com>
+Date:   Tue, 12 Jan 2021 15:52:16 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210106034124.30560-7-tientzu@chromium.org>
+In-Reply-To: <20210107211937.GA19460@char.us.oracle.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/5/21 7:41 PM, Claire Chang wrote:
-> If a device is not behind an IOMMU, we look up the device node and set
-> up the restricted DMA when the restricted-dma-pool is presented.
+On 1/7/21 1:19 PM, Konrad Rzeszutek Wilk wrote:
+> On Thu, Jan 07, 2021 at 10:09:14AM -0800, Florian Fainelli wrote:
+>> On 1/7/21 9:57 AM, Konrad Rzeszutek Wilk wrote:
+>>> On Fri, Jan 08, 2021 at 01:39:18AM +0800, Claire Chang wrote:
+>>>> Hi Greg and Konrad,
+>>>>
+>>>> This change is intended to be non-arch specific. Any arch that lacks DMA access
+>>>> control and has devices not behind an IOMMU can make use of it. Could you share
+>>>> why you think this should be arch specific?
+>>>
+>>> The idea behind non-arch specific code is it to be generic. The devicetree
+>>> is specific to PowerPC, Sparc, and ARM, and not to x86 - hence it should
+>>> be in arch specific code.
+>>
+>> In premise the same code could be used with an ACPI enabled system with
+>> an appropriate service to identify the restricted DMA regions and unlock
+>> them.
 > 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> ---
+> Which this patchset is not.
 
-[snip]
+ACPI is not included, but the comment about Device Tree being specific
+to PowerPC, SPARC and ARM is x86 is not quite correct. There is an
+architecture specific part to obtaining where the Device Tree lives in
+memory, but the implementation itself is architecture agnostic (with
+some early SPARC/OpenFirmware shenanigans), and x86 does, or rather did
+support Device Tree to a very small extent with the CE4100 platform.
 
-> +int of_dma_set_restricted_buffer(struct device *dev)
-> +{
-> +	struct device_node *node;
-> +	int count, i;
-> +
-> +	if (!dev->of_node)
-> +		return 0;
-> +
-> +	count = of_property_count_elems_of_size(dev->of_node, "memory-region",
-> +						sizeof(phandle));
+Would you prefer that an swiotlb_of.c file be created instead or
+something along those lines to better encapsulate where the OF specific
+code lives?
 
-You could have an early check for count < 0, along with an error
-message, if that is deemed useful.
-
-> +	for (i = 0; i < count; i++) {
-> +		node = of_parse_phandle(dev->of_node, "memory-region", i);
-> +		if (of_device_is_compatible(node, "restricted-dma-pool"))
-
-And you may want to add here an of_device_is_available(node). A platform
-that provides the Device Tree firmware and try to support multiple
-different SoCs may try to determine if an IOMMU is present, and if it
-is, it could be marking the restriced-dma-pool region with a 'status =
-"disabled"' property, or any variant of that scheme.
-
-> +			return of_reserved_mem_device_init_by_idx(
-> +				dev, dev->of_node, i);
-
-This does not seem to be supporting more than one memory region, did not
-you want something like instead:
-
-		ret = of_reserved_mem_device_init_by_idx(...);
-		if (ret)
-			return ret;
-
-> +	}
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/of/device.c b/drivers/of/device.c
-> index aedfaaafd3e7..e2c7409956ab 100644
-> --- a/drivers/of/device.c
-> +++ b/drivers/of/device.c
-> @@ -182,6 +182,10 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
->  	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
->  
->  	dev->dma_range_map = map;
-> +
-> +	if (!iommu)
-> +		return of_dma_set_restricted_buffer(dev);
-> +
->  	return 0;
->  }
->  EXPORT_SYMBOL_GPL(of_dma_configure_id);
-> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-> index d9e6a324de0a..28a2dfa197ba 100644
-> --- a/drivers/of/of_private.h
-> +++ b/drivers/of/of_private.h
-> @@ -161,12 +161,17 @@ struct bus_dma_region;
->  #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
->  int of_dma_get_range(struct device_node *np,
->  		const struct bus_dma_region **map);
-> +int of_dma_set_restricted_buffer(struct device *dev);
->  #else
->  static inline int of_dma_get_range(struct device_node *np,
->  		const struct bus_dma_region **map)
->  {
->  	return -ENODEV;
->  }
-> +static inline int of_dma_get_restricted_buffer(struct device *dev)
-> +{
-> +	return -ENODEV;
-> +}
->  #endif
->  
->  #endif /* _LINUX_OF_PRIVATE_H */
 > 
+>>
+>> More than 1 architecture requiring this function (ARM and ARM64 are the
+>> two I can think of needing this immediately) sort of calls for making
+>> the code architecture agnostic since past 2, you need something that scales.
+> 
+> I believe the use-case is for ARM64 at this moment.
 
-
+For the platforms that Claire uses, certainly for the ones we use, ARM
+and ARM64 are in scope.
 -- 
 Florian
