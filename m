@@ -2,280 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1006D2F288A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 07:51:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D482F289F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 08:00:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388271AbhALGu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 01:50:27 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:34811 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2387809AbhALGuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 01:50:23 -0500
-X-UUID: 53ad132c3bbd4df2a672afda0b4b230e-20210112
-X-UUID: 53ad132c3bbd4df2a672afda0b4b230e-20210112
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <nick.fan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1963451269; Tue, 12 Jan 2021 14:49:36 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 12 Jan 2021 14:49:35 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 12 Jan 2021 14:49:36 +0800
-From:   Nick Fan <Nick.Fan@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <nick.fan@mediatek.com>,
-        Nick Fan <Nick.Fan@mediatek.com>
-Subject: [PATCH v4 2/2] arm64: dts: mt8192: Add node for the Mali GPU
-Date:   Tue, 12 Jan 2021 14:49:33 +0800
-Message-ID: <20210112064933.12951-2-Nick.Fan@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210112064933.12951-1-Nick.Fan@mediatek.com>
-References: <20210112064933.12951-1-Nick.Fan@mediatek.com>
+        id S1728131AbhALHAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 02:00:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53042 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726815AbhALHAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 02:00:01 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C13C061575;
+        Mon, 11 Jan 2021 22:59:20 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id s26so1746229lfc.8;
+        Mon, 11 Jan 2021 22:59:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jnp0py2XfXRV0FW9+wJqG1Xqe5HVlb5LAeXT35Y7mN0=;
+        b=IgwdvO6tMDacVa3SiHWu/TjA3iAHNWcRPa+jawaFDXO8AYs5RIWQI90Z+O2q29bvTp
+         jxS4RaHqrmbLtwYjbz2fncA4AF8sUMzUPvPzL4Rubz7WoJ97U+PGdYot/LTNxxsBRViG
+         cxqzicApETLDrTGMfLF37HRg7qmVfKjreN2eYKOzLcE4VBWvUlWlN6/Kac0Ooi4zJU3Q
+         8oTD/VpC79o+E1v/khV75oraSQAhNQKgLLl2aupKhGoaot3CyD4eiDjJUoziHZVWUQG2
+         Z95suwK6oBRedgJqH2TJr+3+I/ksTNIVc2R0YgOr/mF8f1h9hfRaHCScHWbyxv5vYr7N
+         u0BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jnp0py2XfXRV0FW9+wJqG1Xqe5HVlb5LAeXT35Y7mN0=;
+        b=gVV609rwUCFlkDfABiRQGk5moTa4YG7aUgTesXgAiqm+R0MqUoLJm2lrJ35YRvLRf6
+         8zz/tid9cJeNyoCJx7UItJpfqt652btUYLwr0cJerFQruQBaiNgWanOjYh/ZKLyOYABI
+         28fuCViyJS7Gnj7hDwgV9XEQA7M9yv0Mi0AtQQMw1PItAoIdKJqU4jHZzj2rR7mWzPmd
+         f16a2gW+AyBF9zITTNsGvrCtCFaEJyMl/2DSR+vcrQfLsNi+ctf5QyJKOKCqE1cOXB5n
+         igZWZLhdPXTvOQ8jpsQj+jekQBmWCeQrbVgr6HMfbC6QsOnt5/KsJ31LHj4mlmi/YO/G
+         2YBg==
+X-Gm-Message-State: AOAM530tM2lzLVX7EpRh0mlSkvzSQVZ4x/cX/cvqfKK+huuo41whPiwP
+        ornBIgaJEJUqKjvNqev4yDRrHyhhpVo=
+X-Google-Smtp-Source: ABdhPJxyewPbnBPNbOq99xW/1Q38pnSTbJiqFKEfHz/WM8dITgwPrn7IrliG3U2e6g0WLs3rT67BBw==
+X-Received: by 2002:a05:6512:33a4:: with SMTP id i4mr1605987lfg.520.1610434758991;
+        Mon, 11 Jan 2021 22:59:18 -0800 (PST)
+Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
+        by smtp.googlemail.com with ESMTPSA id c136sm268561lfg.306.2021.01.11.22.59.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jan 2021 22:59:18 -0800 (PST)
+Subject: Re: [PATCH v8 0/3] Introduce Embedded Controller driver for Acer A500
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Dan Murphy <dmurphy@ti.com>, Sebastian Reichel <sre@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201228160547.30562-1-digetx@gmail.com>
+Message-ID: <c9bc0096-44df-2fd6-804b-856751f3185f@gmail.com>
+Date:   Tue, 12 Jan 2021 09:59:17 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <20201228160547.30562-1-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic GPU node for mt8192.
+28.12.2020 19:05, Dmitry Osipenko пишет:
+> This series adds support for the Embedded Controller which is found on
+> Acer Iconia Tab A500 (Android tablet device).
+> 
+> The Embedded Controller is ENE KB930 and it's running firmware customized
+> for the A500. The firmware interface may be reused by some other sibling
+> Acer tablets, although none of those tablets are supported in upstream yet.
+> 
+> Changelog:
+> 
+> v8: - This series partially missed v5.11 kernel release, hence resending
+>       for v5.12.
 
-Signed-off-by: Nick Fan <Nick.Fan@mediatek.com>
----
-This patch depends on Mediatek power and regulator support.
+Hello Lee,
 
-Listed as following.
+Could you please take a look at the MFD patch? If it's good to you, then
+please apply this whole series via MFD tree.
 
-[1]https://lore.kernel.org/patchwork/patch/1336293/
-[2]https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
-[3]https://lore.kernel.org/patchwork/patch/1356037/
-[4]https://patchwork.kernel.org/project/linux-mediatek/list/?series=405777
-[5]https://lore.kernel.org/patchwork/patch/1356175/
-[6]https://patchwork.kernel.org/project/linux-mediatek/patch/1605700894-32699-6-git-send-email-hsin-hsiung.wang@mediatek.com/
-[7]https://patchwork.kernel.org/project/linux-mediatek/patch/1608104827-7937-10-git-send-email-hsin-hsiung.wang@mediatek.com/
----
----
- arch/arm64/boot/dts/mediatek/mt8192-evb.dts |   7 +
- arch/arm64/boot/dts/mediatek/mt8192.dtsi    | 172 ++++++++++++++++++++
- 2 files changed, 179 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-index 6c1e2b3e8a60..48c0e240dd92 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-@@ -5,6 +5,7 @@
-  */
- /dts-v1/;
- #include "mt8192.dtsi"
-+#include "mt6359.dtsi"
- 
- / {
- 	model = "MediaTek MT8192 evaluation board";
-@@ -70,6 +71,12 @@
- 	};
- };
- 
-+&gpu {
-+	supply-names = "mali","sram";
-+	mali-supply = <&mt6315_7_vbuck1>;
-+	sram-supply = <&mt6359_vsram_others_ldo_reg>;
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index d6a4ad242a33..9abba13df68e 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -822,6 +822,178 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		gpu: mali@13000000 {
-+			compatible = "mediatek,mt8192-mali", "arm,mali-valhall";
-+			reg = <0 0x13000000 0 0x4000>;
-+			interrupts =
-+				<GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH 0>,
-+				<GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH 0>;
-+			interrupt-names =
-+				"gpu",
-+				"mmu",
-+				"job";
-+
-+			clocks =
-+				<&apmixedsys CLK_APMIXED_MFGPLL>,
-+				<&topckgen CLK_TOP_MFG_PLL_SEL>,
-+				<&topckgen CLK_TOP_MFG_REF_SEL>,
-+				<&mfgcfg CLK_MFG_BG3D>;
-+			clock-names =
-+				"clk_main_parent",
-+				"clk_mux",
-+				"clk_sub_parent",
-+				"subsys_mfg_cg";
-+
-+			power-domains =
-+				<&spm MT8192_POWER_DOMAIN_MFG2>,
-+				<&spm MT8192_POWER_DOMAIN_MFG3>,
-+				<&spm MT8192_POWER_DOMAIN_MFG4>,
-+				<&spm MT8192_POWER_DOMAIN_MFG5>,
-+				<&spm MT8192_POWER_DOMAIN_MFG6>;
-+			power-domain-names = "core0",
-+					     "core1",
-+					     "core2",
-+					     "core3",
-+					     "core4";
-+
-+			operating-points-v2 = <&gpu_opp_table>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		gpu_opp_table: opp_table0 {
-+			compatible = "operating-points-v2";
-+			opp-shared;
-+
-+			opp-358000000 {
-+				opp-hz = /bits/ 64 <358000000>;
-+				opp-hz-real = /bits/ 64 <358000000>,
-+					      /bits/ 64 <358000000>;
-+				opp-microvolt = <606250>,
-+						<750000>;
-+			};
-+
-+			opp-399000000 {
-+				opp-hz = /bits/ 64 <399000000>;
-+				opp-hz-real = /bits/ 64 <399000000>,
-+					      /bits/ 64 <399000000>;
-+				opp-microvolt = <618750>,
-+						<750000>;
-+			};
-+
-+			opp-440000000 {
-+				opp-hz = /bits/ 64 <440000000>;
-+				opp-hz-real = /bits/ 64 <440000000>,
-+					      /bits/ 64 <440000000>;
-+				opp-microvolt = <631250>,
-+						<750000>;
-+			};
-+
-+			opp-482000000 {
-+				opp-hz = /bits/ 64 <482000000>;
-+				opp-hz-real = /bits/ 64 <482000000>,
-+					      /bits/ 64 <482000000>;
-+				opp-microvolt = <643750>,
-+						<750000>;
-+			};
-+
-+			opp-523000000 {
-+				opp-hz = /bits/ 64 <523000000>;
-+				opp-hz-real = /bits/ 64 <523000000>,
-+					      /bits/ 64 <523000000>;
-+				opp-microvolt = <656250>,
-+						<750000>;
-+			};
-+
-+			opp-564000000 {
-+				opp-hz = /bits/ 64 <564000000>;
-+				opp-hz-real = /bits/ 64 <564000000>,
-+					      /bits/ 64 <564000000>;
-+				opp-microvolt = <668750>,
-+						<750000>;
-+			};
-+
-+			opp-605000000 {
-+				opp-hz = /bits/ 64 <605000000>;
-+				opp-hz-real = /bits/ 64 <605000000>,
-+					      /bits/ 64 <605000000>;
-+				opp-microvolt = <681250>,
-+						<750000>;
-+			};
-+
-+			opp-647000000 {
-+				opp-hz = /bits/ 64 <647000000>;
-+				opp-hz-real = /bits/ 64 <647000000>,
-+					      /bits/ 64 <647000000>;
-+				opp-microvolt = <693750>,
-+						<750000>;
-+			};
-+
-+			opp-688000000 {
-+				opp-hz = /bits/ 64 <688000000>;
-+				opp-hz-real = /bits/ 64 <688000000>,
-+					      /bits/ 64 <688000000>;
-+				opp-microvolt = <706250>,
-+						<750000>;
-+			};
-+
-+			opp-724000000 {
-+				opp-hz = /bits/ 64 <724000000>;
-+				opp-hz-real = /bits/ 64 <724000000>,
-+					      /bits/ 64 <724000000>;
-+				opp-microvolt = <725000>,
-+						<750000>;
-+			};
-+
-+			opp-760000000 {
-+				opp-hz = /bits/ 64 <760000000>;
-+				opp-hz-real = /bits/ 64 <760000000>,
-+					      /bits/ 64 <760000000>;
-+				opp-microvolt = <743750>,
-+						<750000>;
-+			};
-+
-+			opp-795000000 {
-+				opp-hz = /bits/ 64 <795000000>;
-+				opp-hz-real = /bits/ 64 <795000000>,
-+					      /bits/ 64 <795000000>;
-+				opp-microvolt = <762500>,
-+						<762500>;
-+			};
-+
-+			opp-831000000 {
-+				opp-hz = /bits/ 64 <831000000>;
-+				opp-hz-real = /bits/ 64 <831000000>,
-+					      /bits/ 64 <831000000>;
-+				opp-microvolt = <781250>,
-+						<781250>;
-+			};
-+
-+			opp-855000000 {
-+				opp-hz = /bits/ 64 <855000000>;
-+				opp-hz-real = /bits/ 64 <855000000>,
-+					      /bits/ 64 <855000000>;
-+				opp-microvolt = <793750>,
-+						<793750>;
-+			};
-+
-+			opp-902000000 {
-+				opp-hz = /bits/ 64 <902000000>;
-+				opp-hz-real = /bits/ 64 <902000000>,
-+					      /bits/ 64 <902000000>;
-+				opp-microvolt = <818750>,
-+						<818750>;
-+			};
-+
-+			opp-950000000 {
-+				opp-hz = /bits/ 64 <950000000>;
-+				opp-hz-real = /bits/ 64 <950000000>,
-+					      /bits/ 64 <950000000>;
-+				opp-microvolt = <843750>,
-+						<843750>;
-+			};
-+		};
-+
- 		mfgcfg: syscon@13fbf000 {
- 			compatible = "mediatek,mt8192-mfgcfg", "syscon";
- 			reg = <0 0x13fbf000 0 0x1000>;
--- 
-2.18.0
-
+Thanks in advance.
