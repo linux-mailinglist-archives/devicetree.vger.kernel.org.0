@@ -2,121 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A71FF2F2CA7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:24:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 574FB2F2CA4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404972AbhALKXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 05:23:50 -0500
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:1590 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2405053AbhALKXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 05:23:50 -0500
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10CAMmHR018269;
-        Tue, 12 Jan 2021 04:22:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=OupojVahqqyY5lVkMconfNlsBdRPPIj670tlMIkeqSA=;
- b=F6O2oVM+kN3gmqHvoV70TTQtsXlbp4eDtmPYJbY9NOpqCIFUwxnApIUN9Kh+ycoRorOO
- 5syvvkYC+j+NHIW5C3clSxlPmoMLXrEjHsHYjWgcZp8FCjupzFhVpgtpb31SYoTBf0Lh
- TkycOzAYwWkmj0FoA0dlwekgjuQeT8pwprZzM9kdgxUf1jDc2UNP7SvigIshVkQJMICj
- 4zSV99QYRlI7f8OGtF3mt+MW5+PerI7vxtpO+VLQhcz76LLZ+8PGdNoToo2D792g55Ix
- P6pBJoz4E/G/4nVuPCNWfUQ8JN1zYDmuOTZfO/5XDM1/6LGdadMXROL1bIhXhGZ2uss9 zQ== 
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 35y9sru8tj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 12 Jan 2021 04:22:48 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Tue, 12 Jan
- 2021 10:22:46 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Tue, 12 Jan 2021 10:22:46 +0000
-Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.57])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 1B80045;
-        Tue, 12 Jan 2021 10:22:46 +0000 (UTC)
-Subject: Re: [PATCH v4 3/6] ASoC: audio-graph-card: Support setting component
- plls and sysclks
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <nsaenzjulienne@suse.de>, <f.fainelli@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210108160501.7638-1-rf@opensource.cirrus.com>
- <20210108160501.7638-4-rf@opensource.cirrus.com>
- <87y2gzymc5.wl-kuninori.morimoto.gx@renesas.com>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-Message-ID: <762d798c-bd75-e24a-40fd-263f68f1a5f1@opensource.cirrus.com>
-Date:   Tue, 12 Jan 2021 10:22:46 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S2404975AbhALKXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 05:23:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49204 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730233AbhALKXn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 05:23:43 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E2A8224BD;
+        Tue, 12 Jan 2021 10:23:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1610446983;
+        bh=sZ83tp3PCWrezXxnJ9F+Y/33Czn075FuyrVU0k6CVFA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vSm3spjITRpP9whrZzotRPbJT/X/LjPI6w3tx2Osaz0GFVUZUOX56I6vUOaY24WPn
+         4zpRrPxcZbOsnC+WrzQ5jGmfKngz4O2YQUou6v412Dq+eMeTO2TyixzBAOr7Rl+T6t
+         SX3l9RvpUz6mGN3hlj+957ys9s0L7wHNvz9f739k=
+Date:   Tue, 12 Jan 2021 11:24:12 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Erwan LE RAY <erwan.leray@foss.st.com>
+Cc:     Jiri Slaby <jirislaby@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>
+Subject: Re: [PATCH v2 2/8] serial: stm32: fix code cleaning warnings and
+ checks
+Message-ID: <X/14zOkg/NpFjyR/@kroah.com>
+References: <20210106162203.28854-1-erwan.leray@foss.st.com>
+ <20210106162203.28854-3-erwan.leray@foss.st.com>
+ <72c81157-4bd1-6a3e-2415-92a2fb29ab6d@kernel.org>
+ <667eb6bd-b612-fd78-0b09-d61eff72d139@foss.st.com>
 MIME-Version: 1.0
-In-Reply-To: <87y2gzymc5.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 priorityscore=1501
- phishscore=0 spamscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0
- adultscore=0 mlxlogscore=899 impostorscore=0 clxscore=1015 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101120056
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <667eb6bd-b612-fd78-0b09-d61eff72d139@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/01/2021 01:35, Kuninori Morimoto wrote:
+On Tue, Jan 12, 2021 at 11:02:43AM +0100, Erwan LE RAY wrote:
+> Hello Greg,
 > 
-> Hi Richard
-> 
->> Some codecs need plls and/or sysclks to be configured using the
->> snd_soc_component_set_[sysclk|pll] functions. These drivers cannot
->> necessarily be converted to use the clock framework. If the codec is on
->> a I2C/SPI bus, a nested clk_get would be needed to enable the bus clock.
->> But the clock framework does not support nested operations and this would
->> deadlock.
->>
->> This patch adds new dt properties that list phandles of components with
->> the pll/sysclk settings to be applied. Multiple settings can be given for
->> the same phandle to allow for components with multiple clocks and plls.
->> The plls and sysclks are enabled when the card bias level moves to STANDBY
->> and disabled when it moves to OFF.
->>
->> The implementation does not attempt to handle specifying complex clock
->> ordering interdependencies between components. The plls and sysclks are
->> applied to a component as it is passed to the card set_bias_level/
->> set_bias_level_post callbacks. It follows from this that the order
->> components are configured is the order that they are passed to those
->> callbacks.
->>
->> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
->> ---
-> 
-> As I mentioned in v3, adding *general* pll to common card driver is
-> maybe difficult.
+> As the V2 is already in your tty-next branch, how do want me to proceed to
+> deliver the fix for Jiri remark ?
+> Do you expect a V3 or a new fix ?
 
-You did say that. But you did not say why.
-Can you be more specific about what problem you see with adding it
-to the generic driver?
+Patches on top of that tree please, I can't drop something in a public
+tree.
 
-> Using your own customized audio-graph-card driver is better idea,
-> instead of adding code to common driver.
+thanks,
 
-I just don't want to duplicate code without good reason.
-
-> 
-> I think Sameer's Tegra driver (= [3/6]) is good sample for you ?
-> 
-> 	https://lore.kernel.org/r/1606413823-19885-1-git-send-email-spujar@nvidia.com
-> 
-> Thank you for your help !!
-> 
-> Best regards
-> ---
-> Kuninori Morimoto
-> 
+greg k-h
