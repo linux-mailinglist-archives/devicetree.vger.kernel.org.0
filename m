@@ -2,151 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C07F2F38AB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 19:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE80F2F38BD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 19:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392032AbhALSXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 13:23:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59162 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389601AbhALSXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 13:23:06 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2691C061383;
-        Tue, 12 Jan 2021 10:21:43 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id A4FC33EEEB;
-        Tue, 12 Jan 2021 19:21:03 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rjw@rjwysocki.net, viresh.kumar@linaro.org, nks@flawful.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        daniel.lezcano@linaro.org, manivannan.sadhasivam@linaro.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v3 15/15] dt-bindings: cpufreq: qcom-hw: Add bindings for 8998
-Date:   Tue, 12 Jan 2021 19:20:52 +0100
-Message-Id: <20210112182052.481888-16-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210112182052.481888-1-angelogioacchino.delregno@somainline.org>
-References: <20210112182052.481888-1-angelogioacchino.delregno@somainline.org>
+        id S2406564AbhALSXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 13:23:46 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:34538 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406562AbhALSXo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 13:23:44 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id A918D20B6C40;
+        Tue, 12 Jan 2021 10:23:01 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A918D20B6C40
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1610475782;
+        bh=Mlkm80b1f8WhkhKW/H3c/Y4XQPYYHF6vKJ3RtWh8Y0w=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=V562zflJfRe3jaD/HTEifNXj5laof02eB2huBdBAMJ0x1CFhujbrGFcpof3oBoHb3
+         nAjuo1l1FSwpGj74KTO6fjNZnc/SWfozEOPCiQZAvtmcQw6DLO9PZVgoiGKjXH9b3F
+         ef+zWPe16tSjZbbw5jIoJL8N3xEJ71/IFMSWOjpo=
+Subject: Re: [PATCH v14 0/6] Carry forward IMA measurement log on kexec on
+ ARM64
+To:     Rob Herring <robh@kernel.org>
+Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au,
+        james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20210104192602.10131-1-nramas@linux.microsoft.com>
+ <20210112144248.GA256955@robh.at.kernel.org>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <c661ce17-a5a6-0aa0-ed9d-eab99020d98a@linux.microsoft.com>
+Date:   Tue, 12 Jan 2021 10:23:01 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210112144248.GA256955@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OSM programming addition has been done under the
-qcom,cpufreq-hw-8998 compatible name: specify the requirement
-of two additional register spaces for this functionality.
-This implementation, with the same compatible, has been
-tested on MSM8998 and SDM630.
+On 1/12/21 6:42 AM, Rob Herring wrote:
+> On Mon, Jan 04, 2021 at 11:25:56AM -0800, Lakshmi Ramasubramanian wrote:
+>> On kexec file load Integrity Measurement Architecture (IMA) subsystem
+>> may verify the IMA signature of the kernel and initramfs, and measure
+>> it. The command line parameters passed to the kernel in the kexec call
+>> may also be measured by IMA. A remote attestation service can verify
+>> a TPM quote based on the TPM event log, the IMA measurement list, and
+>> the TPM PCR data. This can be achieved only if the IMA measurement log
+>> is carried over from the current kernel to the next kernel across
+>> the kexec call.
+>>
+>> powerpc already supports carrying forward the IMA measurement log on
+>> kexec. This patch set adds support for carrying forward the IMA
+>> measurement log on kexec on ARM64.
+>>
+>> This patch set moves the platform independent code defined for powerpc
+>> such that it can be reused for other platforms as well. A chosen node
+>> "linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
+>> the address and the size of the memory reserved to carry
+>> the IMA measurement log.
+>>
+>> This patch set has been tested for ARM64 platform using QEMU.
+>> I would like help from the community for testing this change on powerpc.
+>> Thanks.
+>>
+>> This patch set is based on
+>> commit a29a64445089 ("powerpc: Use common of_kexec_setup_new_fdt()")
+>> in https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+>> "dt/kexec" branch.
+> 
+> This all looks good to me. I'd suggest you send the above patches out as
+> part of this series because I don't plan to do so.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 66 +++++++++++++++----
- 1 file changed, 52 insertions(+), 14 deletions(-)
+Thanks for reviewing the patches Rob.
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-index bc81b6203e27..17fd6a6cefb0 100644
---- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-+++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-@@ -18,6 +18,10 @@ description: |
- properties:
-   compatible:
-     oneOf:
-+      - description: Non-secure v1 of CPUFREQ HW
-+        items:
-+          - const: qcom,cpufreq-hw-8998
-+
-       - description: v1 of CPUFREQ HW
-         items:
-           - const: qcom,cpufreq-hw
-@@ -28,21 +32,9 @@ properties:
-               - qcom,sm8250-cpufreq-epss
-           - const: qcom,cpufreq-epss
- 
--  reg:
--    minItems: 2
--    maxItems: 3
--    items:
--      - description: Frequency domain 0 register region
--      - description: Frequency domain 1 register region
--      - description: Frequency domain 2 register region
-+  reg: {}
- 
--  reg-names:
--    minItems: 2
--    maxItems: 3
--    items:
--      - const: freq-domain0
--      - const: freq-domain1
--      - const: freq-domain2
-+  reg-names: {}
- 
-   clocks:
-     items:
-@@ -57,6 +49,52 @@ properties:
-   '#freq-domain-cells':
-     const: 1
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: qcom,cpufreq-hw-8998
-+then:
-+  properties:
-+    reg:
-+      minItems: 2
-+      maxItems: 6
-+      items:
-+        - description: Frequency domain 0 register region
-+        - description: Operating State Manager domain 0 register region
-+        - description: Frequency domain 1 register region
-+        - description: Operating State Manager domain 1 register region
-+        - description: PLL ACD domain 0 register region (if ACD programming required)
-+        - description: PLL ACD domain 1 register region (if ACD programming required)
-+
-+    reg-names:
-+      minItems: 2
-+      maxItems: 6
-+      items:
-+        - const: "osm-domain0"
-+        - const: "freq-domain0"
-+        - const: "osm-domain1"
-+        - const: "freq-domain1"
-+        - const: "osm-acd0"
-+        - const: "osm-acd1"
-+
-+else:
-+  properties:
-+    reg:
-+      minItems: 2
-+      maxItems: 3
-+      items:
-+        - description: Frequency domain 0 register region
-+        - description: Frequency domain 1 register region
-+        - description: Frequency domain 2 register region
-+    reg-names:
-+      minItems: 2
-+      maxItems: 3
-+      items:
-+        - const: "freq-domain0"
-+        - const: "freq-domain1"
-+        - const: "freq-domain2"
-+
- required:
-   - compatible
-   - reg
--- 
-2.29.2
+Sure - I'll add your patches to this series.
+
+> I would like to also resolve the vmalloc vs. kmalloc difference for
+> allocating the FDT. Then we can further consolidate the DT kexec code.
+
+I think FDT allocation using vmalloc for ARM64 can be changed to 
+kmalloc. What are the other changes you'd like me to do in arm64/powerpc 
+DT kexec code in this patch series?
+
+@AKASHI Takahiro - could you please let me know if the above sounds right?
+
+> 
+> It all needs some acks from arm64 and powerpc maintainers. As far as
+> merging, I think via the integrity tree makes the most sense.
+
+I'll create the patch series in "next-integrity" branch.
+
+Thiago/Mimi have acked some of the patches. Please review the remaining 
+patches in this version.
+
+Could arm64 maintainers please review the patches and respond?
+
+thanks,
+  -lakshmi
+
 
