@@ -2,287 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2812F2CB0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:24:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A289A2F2C25
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:05:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404201AbhALKYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 05:24:21 -0500
-Received: from mx07-002cda01.pphosted.com ([185.132.180.122]:32136 "EHLO
-        mx07-002cda01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730230AbhALKYV (ORCPT
+        id S2392902AbhALKDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 05:03:40 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:60656 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725877AbhALKDk (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 05:24:21 -0500
-Received: from pps.filterd (m0135535.ppops.net [127.0.0.1])
-        by mx07-002cda01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10C9WOcL025322;
-        Tue, 12 Jan 2021 09:51:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=avl.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=28082020; bh=CLSVKytESToWr2Hvh62edIW6FTin2sJrYNFa6V+LO90=;
- b=VofvDICM8CQXr3MTe4BnuW1P1sgXUSJ3mWVMy1UXyj41nvGkvMp2cGVMvKXbxfEcow0X
- q3Fudu5KBDFhrNtlt3D8Y+66Hf8sT5JROYQRkxi/3hIGBh1SsSe7G1gySx0fB3YGJQFq
- AUnRiUyHTvMWFlXjZaKg3lvJuKiDURqujvS27V65CX9blGgcaQwbSOIXBVKs/h+c0e8C
- qh3FYd1sjZkxhJQB+WRkWZqA6sxc1D4HuOswWprVP87bBrXKAuSlA/6eH8VNEXQfG7FS
- nTHwQAWGKC7XOZ8hxKfLyRy9ChAQxNxPn+kX+h50EWAPbg3THaIWEoeL7mHDEAeit6IN nA== 
-Received: from atgrzso8133.avl01.avlcorp.lan ([192.102.17.76])
-        by mx07-002cda01.pphosted.com with ESMTP id 35y5smmdtj-1
+        Tue, 12 Jan 2021 05:03:40 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10C9wVex011901;
+        Tue, 12 Jan 2021 11:02:47 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=E546pFVq1ta2uBxokyZK/xre7E5ZXuq5jUCSw1MfC58=;
+ b=Y6hRWkg+NBgd9p/YBnc5aYcGBj8SOazNom2XLz6UjT5dZsCRpML6xGkCKcR7uxyikqCt
+ 0gEczWtKdLTpnUTV7Rc/gY+YnCQ1IY0bCGoedHt+CeoQlr6kh4x5Uj057yPjhO+lOcyz
+ txdAEejI3mMUo6fdP4eLMxYMimOcksWU+O5PIHQv2TxzXtlLCHqjQ6+9UqCa9eE9K5ko
+ V7cxz7MkPp4dUcOVgYrLZgtfudRn69OVx7bElHz4VCuUm56zYjXSHg2Q7mNW7FmEiOHK
+ N38FqA5hTo4NK45u7FSz2a/mU6S8eoJjmk7+oywUeeTSl5+qCwXxmb+Pu8LjwTpQx7W4 Ow== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 35y5kyfpxq-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 12 Jan 2021 09:51:32 +0000
-Received: from pps.filterd (atgrzso8133.avl01.avlcorp.lan [127.0.0.1])
-        by atgrzso8133.avl01.avlcorp.lan (8.16.0.42/8.16.0.42) with SMTP id 10C9XcXb031862;
-        Tue, 12 Jan 2021 10:51:31 +0100
-Received: from atgrzsw3760.avl01.avlcorp.lan ([10.13.100.86])
-        by atgrzso8133.avl01.avlcorp.lan with ESMTP id 35y3xps7ds-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 12 Jan 2021 10:51:31 +0100
-Received: from atgrzsw3763.avl01.avlcorp.lan (10.37.149.16) by
- atgrzsw3760.avl01.avlcorp.lan (10.37.149.13) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2044.4; Tue, 12 Jan 2021 10:51:31 +0100
-Received: from ATGRZWN210214.avl01.avlcorp.lan (10.12.100.12) by
- atgrzsw3763.avl01.avlcorp.lan (10.37.149.16) with Microsoft SMTP Server id
- 15.1.2044.4 via Frontend Transport; Tue, 12 Jan 2021 10:51:30 +0100
-From:   <tomislav.denis@avl.com>
-To:     <jic23@kernel.org>
-CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <tomislav.denis@avl.com>
-Subject: [PATCH v3 2/2] bindings: iio: adc: Add documentation for ADS131E0x ADC driver
-Date:   Tue, 12 Jan 2021 10:51:28 +0100
-Message-ID: <20210112095128.7112-3-tomislav.denis@avl.com>
-X-Mailer: git-send-email 2.10.1.windows.1
-In-Reply-To: <20210112095128.7112-1-tomislav.denis@avl.com>
-References: <20210112095128.7112-1-tomislav.denis@avl.com>
+        Tue, 12 Jan 2021 11:02:47 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 607BF100034;
+        Tue, 12 Jan 2021 11:02:45 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4E0F323770C;
+        Tue, 12 Jan 2021 11:02:45 +0100 (CET)
+Received: from lmecxl0566.lme.st.com (10.75.127.44) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 12 Jan
+ 2021 11:02:44 +0100
+Subject: Re: [PATCH v2 2/8] serial: stm32: fix code cleaning warnings and
+ checks
+To:     Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>
+References: <20210106162203.28854-1-erwan.leray@foss.st.com>
+ <20210106162203.28854-3-erwan.leray@foss.st.com>
+ <72c81157-4bd1-6a3e-2415-92a2fb29ab6d@kernel.org>
+From:   Erwan LE RAY <erwan.leray@foss.st.com>
+Message-ID: <667eb6bd-b612-fd78-0b09-d61eff72d139@foss.st.com>
+Date:   Tue, 12 Jan 2021 11:02:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: f9e74532-fb7d-4806-8539-2b9574eafa9a
+In-Reply-To: <72c81157-4bd1-6a3e-2415-92a2fb29ab6d@kernel.org>
+Content-Type: text/plain; charset="iso-8859-2"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
  definitions=2021-01-12_06:2021-01-11,2021-01-12 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- malwarescore=0 adultscore=0 bulkscore=0 spamscore=0 mlxlogscore=999
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2101120053
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-12_06:2021-01-11,2021-01-12 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 mlxscore=0 clxscore=1015 priorityscore=1501 phishscore=0
- spamscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2101120053
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tomislav Denis <tomislav.denis@avl.com>
+Hello Greg,
 
-Add a device tree binding documentation for Texas Instruments
-ADS131E0x ADC family driver.
+As the V2 is already in your tty-next branch, how do want me to proceed 
+to deliver the fix for Jiri remark ?
+Do you expect a V3 or a new fix ?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Tomislav Denis <tomislav.denis@avl.com>
----
- .../devicetree/bindings/iio/adc/ti,ads131e08.yaml  | 181 +++++++++++++++++++++
- MAINTAINERS                                        |   1 +
- 2 files changed, 182 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
+Best Regards, Erwan.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
-new file mode 100644
-index 0000000..e0670e3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
-@@ -0,0 +1,181 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,ads131e08.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments ADS131E0x 4-, 6- and 8-Channel ADCs
-+
-+maintainers:
-+  - Tomislav Denis <tomislav.denis@avl.com>
-+
-+description: |
-+  The ADS131E0x are a family of multichannel, simultaneous sampling,
-+  24-bit, delta-sigma, analog-to-digital converters (ADCs) with a
-+  built-in programmable gain amplifier (PGA), internal reference
-+  and an onboard oscillator.
-+  The communication with ADC chip is via the SPI bus (mode 1).
-+
-+  https://www.ti.com/lit/ds/symlink/ads131e08.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,ads131e04
-+      - ti,ads131e06
-+      - ti,ads131e08
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency: true
-+
-+  spi-cpha: true
-+
-+  clocks:
-+    description: |
-+      Device tree identifier to the clock source (2.048 MHz).
-+      Note: clock source is selected using CLKSEL pin.
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: adc-clk
-+
-+  interrupts:
-+    description: |
-+      IRQ line for the ADC data ready.
-+    maxItems: 1
-+
-+  vref-supply:
-+    description: |
-+      Optional external voltage reference. If not supplied, internal voltage
-+      reference is used.
-+
-+  ti,vref-internal:
-+    description: |
-+      Select the internal voltage reference value.
-+      0: 2.4V
-+      1: 4.0V
-+      If this field is left empty, 2.4V is selected.
-+      Note: internal voltage reference is used only if vref-supply is not supplied.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+    default: 0
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - spi-cpha
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+patternProperties:
-+  "^channel@([0-7])$":
-+    $ref: "adc.yaml"
-+    type: object
-+    description: |
-+      Represents the external channels which are connected to the ADC.
-+
-+    properties:
-+      reg:
-+        description: |
-+          The channel number.
-+          Up to 4 channels, numbered from 0 to 3 for ti,ads131e04.
-+          Up to 6 channels, numbered from 0 to 5 for ti,ads131e06.
-+          Up to 8 channels, numbered from 0 to 7 for ti,ads131e08.
-+        items:
-+          minimum: 0
-+          maximum: 7
-+
-+      ti,gain:
-+        description: |
-+          The PGA gain value for the channel.
-+          If this field is left empty, PGA gain 1 is used.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [1, 2, 4, 8, 12]
-+        default: 1
-+
-+      ti,mux:
-+        description: |
-+          Channel input selection(muliplexer).
-+          0: Normal input.
-+          1: Input shorted to (VREFP + VREFN) / 2 (for offset or noise measurements).
-+          3: MVDD (for supply measurement)
-+          4: Temperature sensor
-+          If this field is left empty, normal input is selected.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1, 3, 4]
-+        default: 0
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      adc@0 {
-+        compatible = "ti,ads131e08";
-+        reg = <0>;
-+        spi-max-frequency = <1000000>;
-+        spi-cpha;
-+        clocks = <&clk2048k>;
-+        clock-names = "adc-clk";
-+        interrupt-parent = <&gpio5>;
-+        interrupts = <28 IRQ_TYPE_EDGE_FALLING>;
-+        vref-supply = <&adc_vref>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+          reg = <0>;
-+        };
-+
-+        channel@1 {
-+          reg = <1>;
-+        };
-+
-+        channel@2 {
-+          reg = <2>;
-+          ti,gain = <2>;
-+        };
-+
-+        channel@3 {
-+          reg = <3>;
-+        };
-+
-+        channel@4 {
-+          reg = <4>;
-+        };
-+
-+        channel@5 {
-+          reg = <5>;
-+        };
-+
-+        channel@6 {
-+          reg = <6>;
-+        };
-+
-+        channel@7 {
-+          reg = <7>;
-+          ti,mux = <4>;
-+        };
-+      };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 167aabf..f6c5e47 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17371,6 +17371,7 @@ TI ADS131E0X ADC SERIES DRIVER
- M:	Tomislav Denis <tomislav.denis@avl.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
- F:	drivers/iio/adc/ti-ads131e08.c
- 
- TI AM437X VPFE DRIVER
--- 
-2.7.4
 
+On 1/11/21 10:58 AM, Jiri Slaby wrote:
+> On 06. 01. 21, 17:21, Erwan Le Ray wrote:
+>> --- a/drivers/tty/serial/stm32-usart.c
+>> +++ b/drivers/tty/serial/stm32-usart.c
+> ...
+>> @@ -973,18 +971,17 @@ static int stm32_init_port(struct stm32_port 
+>> *stm32port,
+>>       struct resource *res;
+>>       int ret;
+>> +    ret = platform_get_irq(pdev, 0);
+>> +    if (ret <= 0)
+>> +        return ret ? : -ENODEV;
+>> +
+>>       port->iotype    = UPIO_MEM;
+>>       port->flags    = UPF_BOOT_AUTOCONF;
+>>       port->ops    = &stm32_uart_ops;
+>>       port->dev    = &pdev->dev;
+>>       port->fifosize    = stm32port->info->cfg.fifosize;
+>>       port->has_sysrq = IS_ENABLED(CONFIG_SERIAL_STM32_CONSOLE);
+>> -
+>> -    ret = platform_get_irq(pdev, 0);
+>> -    if (ret <= 0)
+>> -        return ret ? : -ENODEV;
+>>       port->irq = ret;
+> 
+> I would move this set from ret above too. Or introduce a new variable, 
+> e.g. "irq".
+> 
+> thanks,
