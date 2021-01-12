@@ -2,154 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F1BC2F2CA2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A71FF2F2CA7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:24:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392785AbhALKX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 05:23:27 -0500
-Received: from bmail1.ministro.hu ([5.249.150.236]:42984 "EHLO
-        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730233AbhALKX0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 05:23:26 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id 6025011FFA6;
-        Tue, 12 Jan 2021 11:22:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1610446964;
-        bh=6ZmQ4K4IK4r/5AhzLPeguGG1gL7UqmrMEnjNlnN7NDQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nk1ka4EAG4sgjzLsGcKbRwkh5mLBl7A3el1Db1+YTR3cLEyZJ8EC2D79cg2h87L1W
-         qAy41W5/4r09PpUA4QS1+LtLuAlTyeb+8gLiOzal9zGj3If3wR/fnX0Of652oegVcd
-         GP8hZRSm+8Rf9w7a8rMf7Kitu4cXQfXMGxToCqcVhOlqyTL0t39JrmbEFOY8pwoAWf
-         HgS5gISj6c/ny03/Rt4SxijSaM3LuYwT+sW3ARIW8IogSkz/c+1gjScDmkwPG/3CXi
-         Gv/zQIptQR8DpI2SoN/aBrKVDpfPEHTS7iXPcB4N9Wim9FjJCUtDhm8IqO/LEtpwMi
-         vNCsssDg0PCyA==
-X-Virus-Scanned: Debian amavisd-new at ministro.hu
-Received: from bmail1.ministro.hu ([127.0.0.1])
-        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id DtMLH2blwxaI; Tue, 12 Jan 2021 11:22:17 +0100 (CET)
-Received: from dev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id 166AD11FFA3;
-        Tue, 12 Jan 2021 11:22:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1610446937;
-        bh=6ZmQ4K4IK4r/5AhzLPeguGG1gL7UqmrMEnjNlnN7NDQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Q9ZRbowxzbNmq9Clk37PT8/DS/WZK4S81KcWpRrk6PVTEkM6G5agaSSwKFzaXjm7T
-         d/ghdCnNH3r4/KNDMYZdjaaDd1lSiLHn5td+nR+sPi6a7X2R2vb70+sOd8IJMClX57
-         0NOGgAUJ7csIbOoaWW5IynD4sgAOl9kd8XdsaDeMBgCwsjjzREUc4CKYGFYAq3B+2g
-         x0tDoKlWz/65oIq8If/KA/C5v0kntQkxiSgS7p3t9i5M3Ig4kYdvvVJFZjOliCgLdQ
-         WqCjVvXYXP/ML2dmAMNavJKdkp/7kBhHXP4sx/hfm9pT4PMpDkyVLPYX3g5UT2rwLf
-         NxM8nI5aajYCA==
-Date:   Tue, 12 Jan 2021 10:22:15 +0000
-From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-To:     Rob Herring <robh@kernel.org>
-Cc:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
-        'Jiri Slaby' <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7,2/2] dt: bindings: add silabs,si4455 schema
-Message-ID: <20210112102215.GA14292@dev>
-References: <20210105103027.GA15137@dev>
- <20210111233048.GA3252430@robh.at.kernel.org>
+        id S2404972AbhALKXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 05:23:50 -0500
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:1590 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2405053AbhALKXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 05:23:50 -0500
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10CAMmHR018269;
+        Tue, 12 Jan 2021 04:22:48 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=OupojVahqqyY5lVkMconfNlsBdRPPIj670tlMIkeqSA=;
+ b=F6O2oVM+kN3gmqHvoV70TTQtsXlbp4eDtmPYJbY9NOpqCIFUwxnApIUN9Kh+ycoRorOO
+ 5syvvkYC+j+NHIW5C3clSxlPmoMLXrEjHsHYjWgcZp8FCjupzFhVpgtpb31SYoTBf0Lh
+ TkycOzAYwWkmj0FoA0dlwekgjuQeT8pwprZzM9kdgxUf1jDc2UNP7SvigIshVkQJMICj
+ 4zSV99QYRlI7f8OGtF3mt+MW5+PerI7vxtpO+VLQhcz76LLZ+8PGdNoToo2D792g55Ix
+ P6pBJoz4E/G/4nVuPCNWfUQ8JN1zYDmuOTZfO/5XDM1/6LGdadMXROL1bIhXhGZ2uss9 zQ== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 35y9sru8tj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 12 Jan 2021 04:22:48 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Tue, 12 Jan
+ 2021 10:22:46 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Tue, 12 Jan 2021 10:22:46 +0000
+Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.57])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 1B80045;
+        Tue, 12 Jan 2021 10:22:46 +0000 (UTC)
+Subject: Re: [PATCH v4 3/6] ASoC: audio-graph-card: Support setting component
+ plls and sysclks
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <nsaenzjulienne@suse.de>, <f.fainelli@gmail.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210108160501.7638-1-rf@opensource.cirrus.com>
+ <20210108160501.7638-4-rf@opensource.cirrus.com>
+ <87y2gzymc5.wl-kuninori.morimoto.gx@renesas.com>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+Message-ID: <762d798c-bd75-e24a-40fd-263f68f1a5f1@opensource.cirrus.com>
+Date:   Tue, 12 Jan 2021 10:22:46 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210111233048.GA3252430@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <87y2gzymc5.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 priorityscore=1501
+ phishscore=0 spamscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0
+ adultscore=0 mlxlogscore=899 impostorscore=0 clxscore=1015 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101120056
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 05:30:48PM -0600, Rob Herring wrote:
-> On Tue, Jan 05, 2021 at 10:30:29AM +0000, József Horváth wrote:
-> > This is a device tree schema for serial port driver for
-> >  Silicon Labs Si4455 Sub-GHz transciver.
-> > 
-> > Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
-> > 
-> > Guide: https://github.com/dministro/linux-serial-si4455
-> > 
-> > Signed-off-by: Jozsef Horvath <info@ministro.hu>
-> > ---
-> > 
-> > changes v1:
-> >  - fixed: dt: bindings: rename sdn-gpios to shutdown-gpios
-> > 
-> > changes v3:
-> >  - fixed: dt: bindings: silabs,si4455: more detailed description
-> >  - added: dt: bindings: silabs,si4455: properties silabs,package-size,
-> >    silabs,tx-channel, silabs,rx-channel, silabs,ez-config
-> > 
-> > changes v4:
-> >  - fixed: dt: bindings: silabs,si4455: $id
-> >    from http://devicetree.org/schemas/serial/silabs,si4455.yaml
-> >    to http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
-> > 
-> > changes v5:
-> >  - fixed: dt: bindings: silabs,si4455: $id
-> >    from http://devicetree.org/schemas/staging/serial/silabs,si4455.yaml
-> >    to http://devicetree.org/schemas/serial/silabs,si4455.yaml
-> >  - fixed: dt: bindings: silabs,si4455: serial.yaml reference added
-> > 
-> > changes v7:
-> >  - added: dt: bindings: silabs,si4455: silabs,tx-timeout property definition
-> > ---
-> >  .../bindings/serial/silabs,si4455.yaml        | 105 ++++++++++++++++++
-> >  1 file changed, 105 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/serial/silabs,si4455.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/serial/silabs,si4455.yaml b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
-> > new file mode 100644
-> > index 000000000000..8ba4956064b4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/serial/silabs,si4455.yaml
-> > @@ -0,0 +1,105 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/serial/silabs,si4455.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Silicon Labs Si4455 device tree bindings
-> > +
-> > +  silabs,rx-channel:
-> > +    description:
-> > +      Radio receive channel selection.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    maximum: 255
-> > +    minimum: 0
-> > +
-> > +  silabs,tx-timeout:
-> > +    description:
-> > +      Radio transmit timeout(ms)
+On 12/01/2021 01:35, Kuninori Morimoto wrote:
 > 
-> Use a unit suffix as defined in property-units.txt.
+> Hi Richard
 > 
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
+>> Some codecs need plls and/or sysclks to be configured using the
+>> snd_soc_component_set_[sysclk|pll] functions. These drivers cannot
+>> necessarily be converted to use the clock framework. If the codec is on
+>> a I2C/SPI bus, a nested clk_get would be needed to enable the bus clock.
+>> But the clock framework does not support nested operations and this would
+>> deadlock.
+>>
+>> This patch adds new dt properties that list phandles of components with
+>> the pll/sysclk settings to be applied. Multiple settings can be given for
+>> the same phandle to allow for components with multiple clocks and plls.
+>> The plls and sysclks are enabled when the card bias level moves to STANDBY
+>> and disabled when it moves to OFF.
+>>
+>> The implementation does not attempt to handle specifying complex clock
+>> ordering interdependencies between components. The plls and sysclks are
+>> applied to a component as it is passed to the card set_bias_level/
+>> set_bias_level_post callbacks. It follows from this that the order
+>> components are configured is the order that they are passed to those
+>> callbacks.
+>>
+>> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+>> ---
 > 
-> With that, you can drop the type.
->
+> As I mentioned in v3, adding *general* pll to common card driver is
+> maybe difficult.
 
-Thank you for suggestion.
- 
-> > +    maximum: 1000
-> > +    minimum: 1
-> > +
-> > +  firmware-name:
-> > +    description:
-> > +      Radio configuration data file name.
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    items:
-> > +      pattern: ^[0-9a-z\._\-]{1,255}$
-> > +
-> > +    };
-> > +...
-> > -- 
-> > 2.17.1
-> > 
+You did say that. But you did not say why.
+Can you be more specific about what problem you see with adding it
+to the generic driver?
 
-Üdvözlettel / Best regards:
-József Horváth
+> Using your own customized audio-graph-card driver is better idea,
+> instead of adding code to common driver.
 
+I just don't want to duplicate code without good reason.
+
+> 
+> I think Sameer's Tegra driver (= [3/6]) is good sample for you ?
+> 
+> 	https://lore.kernel.org/r/1606413823-19885-1-git-send-email-spujar@nvidia.com
+> 
+> Thank you for your help !!
+> 
+> Best regards
+> ---
+> Kuninori Morimoto
+> 
