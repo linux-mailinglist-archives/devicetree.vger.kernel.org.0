@@ -2,120 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 857302F368C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 18:05:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0EE82F3729
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 18:32:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392204AbhALRFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 12:05:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48170 "EHLO mail.kernel.org"
+        id S2392774AbhALRae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 12:30:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34084 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392195AbhALRFC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 12:05:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BB7AD2311B;
-        Tue, 12 Jan 2021 17:04:20 +0000 (UTC)
+        id S2392771AbhALRad (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 12:30:33 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2BCE222AED;
+        Tue, 12 Jan 2021 17:29:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610471062;
-        bh=3zLZTJjl+cuqKALn9XVgoMNl2Si0kGfx+HWjg+6BsW8=;
+        s=k20201202; t=1610472592;
+        bh=/okVfTyIj/1mLwVi8GFdAvJo0sfLP8xwmTZIQcrLdeM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cA8e9J2Ta/8Zow76R90Gf5BL0OA6nZNVk+UnrY+OJ2C5mHzNz55DH0t1DiEn7iq5G
-         DpsDx9a0DXu6H1Dbbo5R1asGhuhHpXMy1lpa9JsxjV/dmysg1VEZwaCh5HJixD4p/N
-         ar2wEixOa34S9qt1uYLi5UpEHT1XNF+SPPvir71myHYLo7YvAFm3gNVEruJEsYTw5B
-         b0MVKE3/x6koT+bWHe5J8NYOPRYHWZIUJCeFh8CHrLa6gU3kOEh//RRohMgBzmPTfF
-         uIYt1ySIkGEtf4PKwBJADl8q60Rd11QWJJD4Ffz1STmryalvYUjljXh62DizRPZ/97
-         Pb9rpLih4uQWw==
-Date:   Tue, 12 Jan 2021 22:34:15 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Phong Hoang <phong.hoang.wz@renesas.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] dmaengine: rcar-dmac: Add support for R-Car V3U
-Message-ID: <20210112170415.GU2771@vkoul-mobl>
-References: <20210107181524.1947173-1-geert+renesas@glider.be>
- <20210107181524.1947173-5-geert+renesas@glider.be>
- <20210112103648.GL2771@vkoul-mobl>
- <CAMuHMdUiQkP4W17ovot29NGRPa0rYgpsDC7zVC2KxxxDfVsd+w@mail.gmail.com>
+        b=C2SF9Uqr2+SKWfy7pcG1YN9iKQ38GXT50DMyyDI2jNVqN34HNYQ67oYh5pcCW9DB7
+         QDVpgd5uO1GTuiHMAuSLP0koYJ3Fqv6CsIuOT1JZaxvEmH8BCl27rDWEiiXvEmLP+D
+         nQG2NoGqi7UxLXDkf0+1AzjAGCX0/Mp1jN0ScvW+36IHz0aWJIiKnuBqK3EvNpxdNk
+         WZMuiXKwXeBCM+M0P5vc5HaTpFXqqZkaGMKK5m+15t8XaPfsM4gggwn37zVpRSXEyo
+         XKHbn+F+h2muoqx+q9hClctvzD7lGQSlyZLrVsPZZPsvUO91hZQ8GEwmL3r3zQzxF0
+         j1JHf5SR/UZKw==
+Date:   Tue, 12 Jan 2021 17:29:19 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org
+Subject: Re: [PATCH 5/7] regulator: qcom-labibb: Implement short-circuit and
+ over-current IRQs
+Message-ID: <20210112172919.GD4646@sirena.org.uk>
+References: <20210109132921.140932-1-angelogioacchino.delregno@somainline.org>
+ <20210109132921.140932-6-angelogioacchino.delregno@somainline.org>
+ <20210111135745.GC4728@sirena.org.uk>
+ <6dee36e4-fc78-c21b-daf8-120ee44535a3@somainline.org>
+ <8115a574-ad43-d3c6-70d4-28c8a2f4a5f6@somainline.org>
+ <09d70d24-5d0d-f1cd-d99e-5c213c8ea98c@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="n2Pv11Ogg/Ox8ay5"
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdUiQkP4W17ovot29NGRPa0rYgpsDC7zVC2KxxxDfVsd+w@mail.gmail.com>
+In-Reply-To: <09d70d24-5d0d-f1cd-d99e-5c213c8ea98c@somainline.org>
+X-Cookie: Stay away from hurricanes for a while.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-01-21, 16:54, Geert Uytterhoeven wrote:
-> Hi Vinod,
-> 
-> On Tue, Jan 12, 2021 at 11:36 AM Vinod Koul <vkoul@kernel.org> wrote:
-> > On 07-01-21, 19:15, Geert Uytterhoeven wrote:
-> > > The DMACs (both SYS-DMAC and RT-DMAC) on R-Car V3U differ slightly from
-> > > the DMACs on R-Car Gen2 and other R-Car Gen3 SoCs:
-> > >   1. The per-channel registers are located in a second register block.
-> > >      Add support for mapping the second block, using the appropriate
-> > >      offsets and stride.
-> > >   2. The common Channel Clear Register (DMACHCLR) was replaced by a
-> > >      per-channel register.
-> > >      Update rcar_dmac_chan_clear{,_all}() to handle this.
-> > >      As rcar_dmac_init() needs to clear the status before the individual
-> > >      channels are probed, channel index and base address initialization
-> > >      are moved forward.
-> > >
-> > > Inspired by a patch in the BSP by Phong Hoang
-> > > <phong.hoang.wz@renesas.com>.
-> > >
-> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> > > --- a/drivers/dma/sh/rcar-dmac.c
-> > > +++ b/drivers/dma/sh/rcar-dmac.c
-> > > @@ -189,7 +189,7 @@ struct rcar_dmac_chan {
-> > >   * struct rcar_dmac - R-Car Gen2 DMA Controller
-> > >   * @engine: base DMA engine object
-> > >   * @dev: the hardware device
-> > > - * @iomem: remapped I/O memory base
-> > > + * @iomem: remapped I/O memory bases (second is optional)
-> > >   * @n_channels: number of available channels
-> > >   * @channels: array of DMAC channels
-> > >   * @channels_mask: bitfield of which DMA channels are managed by this driver
-> > > @@ -198,7 +198,7 @@ struct rcar_dmac_chan {
-> > >  struct rcar_dmac {
-> > >       struct dma_device engine;
-> > >       struct device *dev;
-> > > -     void __iomem *iomem;
-> > > +     void __iomem *iomem[2];
-> >
-> > do you forsee many more memory regions, if not then why not add second
-> 
-> No I don't. TBH, I didn't foresee this change either; you never know
-> what the hardware people have on their mind for the next SoC ;-)
-> 
-> > region, that way changes in this patch will be lesser..?
-> 
-> I did consider that option.  However, doing so would imply that (a) the
-> code to map the memory regions can no longer be a loop, but has to be
-> unrolled manually, and (b) rcar_dmac_of_data.chan_reg_block can no
-> longer be used to index iomem[], but needs a conditional expression or
-> statement.
-> 
-> > and it would be better to refer to a region by its name rather than
-> > iomem[1]..
-> 
->     - * @iomem: remapped I/O memory base
->     + * @common_base: remapped common or combined I/O memory base
->     + * @channel_base: remapped optional channel I/O memory base
-> 
->     -     void __iomem *iomem;
->     +     void __iomem *common_base;
->     +     void __iomem *channel_base;
-> 
-> If you still think this is worthwhile, I can make these changes.
 
-Either way suits me, TBH it is not a deal breaker, so i would leave it
-upto you :)
+--n2Pv11Ogg/Ox8ay5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-~Vinod
+On Mon, Jan 11, 2021 at 10:06:18PM +0100, AngeloGioacchino Del Regno wrote:
+
+> ...which was already a requirement before I touched it.
+> Now, this leaves two options here:
+> 1. Keep the of_get_irq way, or
+> 2. Move the interrupts, change the documentation (currently, only
+> pmi8998.dtsi) and also fix pmi8998.dtsi to reflect the new changes.
+
+> I am asking before proceeding because I know that changing a schema that is
+> already set sometimes gets "negated".
+
+Well, if the binding isn't actually used changing it is a possibility.
+If we keep the current binding you can still continue to use
+of_get_irq() even from within the probe function, you know the name of
+the node it's supposed to be in so you don't need to iterate or anything
+to get it so not really any reason to use the callback.
+
+--n2Pv11Ogg/Ox8ay5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/93G4ACgkQJNaLcl1U
+h9CCJQf/XQpVoAeBxaPWks++Bdxf1rAlHECDuS/el7BrR98BEMGZ65QEz1Pi1fO7
+4+abqstgMzY3phe3BzzS/Qf0FpwoSAW71k+L2RWNa1K+5an2uiCbQhW1UvXjqhwy
+VRmurbOyG1RmmNfg9r+q3GnRwqmdZK7f2Uip0OQTQq/PRFZkW/cQfuFg6HWebaSb
+trUCLU81jUQLuyBJF/Cc7na4+PaIbhNPIDfuxzcsV7fVVdebtXADHPU+7thHbnw5
+3BgSpSBfYVdkHnEU1Zix/c67tJXRqOSAf5WujVnOXNG5XJL7eCGwUgrPOnjRo3sZ
+xf7/xKVSKeZQhSNTgjcEbvasnE2GKw==
+=sGHd
+-----END PGP SIGNATURE-----
+
+--n2Pv11Ogg/Ox8ay5--
