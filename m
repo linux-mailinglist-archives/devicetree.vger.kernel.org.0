@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD9F2F2FC3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 14:04:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ED7E2F307C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 14:15:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404987AbhALM6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 07:58:15 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54588 "EHLO mail.kernel.org"
+        id S1727282AbhALNFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 08:05:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54586 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404803AbhALM6N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 07:58:13 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3FDC323135;
-        Tue, 12 Jan 2021 12:57:23 +0000 (UTC)
+        id S2405259AbhALM63 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 07:58:29 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DB26523134;
+        Tue, 12 Jan 2021 12:57:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610456244;
-        bh=OKHKLW+H7BzHM5Duu10K/E0yrBIzpBum/JLmYHirgLw=;
+        s=k20201202; t=1610456268;
+        bh=0fZrqeaQI5oNVvde9YUuw/gZzoU6MMBg+IyS7AGureM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tyE3vBuzdmM7KSSHwiGVsWY5BNTK680AJWm+RIdISt/a40u99KQLfhC+uPP9RVV66
-         ySOpVOn94xNroEv4bTNZLp3C92/4ntQ5UiQR5GOHj8yQoIj74UZw/Jy7oclkGdqlpm
-         p5w0/kLbPdW02r6haaCgd8ZWDSODTFI5jlUFPZda72wAf57zknNkbclB4w1yZdDC2e
-         mQojepcvPPAP2Cl0nzvEzZObpAY6kf+hlJKkFW0/0Z2LnsCvTD6HcP2gonKHxBWwBd
-         WCXEX/SFaUgM49ahDjyvLkGjN6eLTjCBfG2IkAds90jw0MidT8yvlgG65Us3jinyl5
-         25kTMpmwVVMhg==
+        b=fzI6a6cCJk8q4vkmbVVW0/WndLi21UuWvXeTrLcuaaPON61Gf8++wAMCvUzc4Q1wT
+         Wlk4xLYvp0hyYLMchoVmJGFpEYilqN32g3N/8DsN3Bls9oDqL+5OHhZfAnz0yTxsnW
+         8H99PUhDCFA/e7v48v33K+cICRXf+EZjJK9Gdi1mG8huBI2hizFI4YPH3LM6ryttl2
+         VmolHFZcxxHy9DLAjmhrDn2WbSPamjF936gGoJZ1jG4RtuoQEMCoZjSAOfdSV5EaZL
+         Y5qIeWr5OQ9RDewsRcwomek/xkKrZuehsMTqKlpoWhzrS6YNqV7y3RCGixhUVprL4z
+         yQQGGKYl1vSBQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Arnd Bergmann <arnd@arndb.de>, Jamie Iles <jamie@jamieiles.com>,
         Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 28/28] ARM: picoxcell: fix missing interrupt-parent properties
-Date:   Tue, 12 Jan 2021 07:56:44 -0500
-Message-Id: <20210112125645.70739-28-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 16/16] ARM: picoxcell: fix missing interrupt-parent properties
+Date:   Tue, 12 Jan 2021 07:57:25 -0500
+Message-Id: <20210112125725.71014-16-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210112125645.70739-1-sashal@kernel.org>
-References: <20210112125645.70739-1-sashal@kernel.org>
+In-Reply-To: <20210112125725.71014-1-sashal@kernel.org>
+References: <20210112125725.71014-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -67,10 +67,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 4 insertions(+)
 
 diff --git a/arch/arm/boot/dts/picoxcell-pc3x2.dtsi b/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
-index 5ae8607883395..3fcc86d7b735f 100644
+index a1266cf8776ce..8362c6a3bcd30 100644
 --- a/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
 +++ b/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
-@@ -45,18 +45,21 @@ paxi {
+@@ -54,18 +54,21 @@ paxi {
  		emac: gem@30000 {
  			compatible = "cadence,gem";
  			reg = <0x30000 0x10000>;
@@ -92,7 +92,7 @@ index 5ae8607883395..3fcc86d7b735f 100644
  			interrupts = <26>;
  		};
  
-@@ -234,6 +237,7 @@ ebi@50000000 {
+@@ -243,6 +246,7 @@ ebi@50000000 {
  		axi2pico@c0000000 {
  			compatible = "picochip,axi2pico-pc3x2";
  			reg = <0xc0000000 0x10000>;
