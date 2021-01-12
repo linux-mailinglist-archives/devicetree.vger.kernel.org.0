@@ -2,191 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7062F2578
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 02:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40BA92F258B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 02:48:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729413AbhALBX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 20:23:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728780AbhALBX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 20:23:29 -0500
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6099C061575
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 17:22:48 -0800 (PST)
-Received: by mail-il1-x133.google.com with SMTP id e7so1362635ili.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 17:22:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=X5i4D9jR11SBYz3y55+E1w1NYwNaVL+6Wk6o8NeIFEs=;
-        b=lSBCzUpfxCGa7fHd/UTfeQPT5ga5DbG8DzTHKak7OA+UatUuHUbB8sWSZgG6BlfOQp
-         35+y3AGXVvtmMpi1QuOmtjAMayUhpUxfUcawtw9WJdpp2EBcZg76jpFlro8esxgGCKcD
-         IKj+KZoDavhTfoTP5U7neLXHShCvo4R8uu9GcSNVmxwfPaxEqxNLo9sGzgdOfpAq48da
-         TlQyH7JlWOoE1FwVkm91+OJ24bqPhcwqc5fSCtkpvh7Ku1BH4n/zNN0/LcVIFP8PM9kc
-         hDqg5oFes7iiWsvZAWUovEYWT1hsHQcMNFL10QXNqcl/lO1hQT+ZWuDcL7bkviv+mZYb
-         7Epw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=X5i4D9jR11SBYz3y55+E1w1NYwNaVL+6Wk6o8NeIFEs=;
-        b=h3OPZP9GFc+qvBOPRRLOg8iP5WLFJiX8cRkQy+vYAc1/woyZ78DAp/y15CJAKI/Euo
-         2V5z9WgxmqqT9lu/IpHxDcVrbw2As1nTBdrlE8D30HWow7P2P4ydtst8TijMVl+HvN3c
-         Y1G/ZBe9UFp0sOEgfRLX1bl7PV+NGIMSbY3gCKnK+e4oTup3fMkMsU5HYmeOoAkP9kZ6
-         KWTOM5GREauqCgoI0Cp3SzFNJipT9QOyNrlkqDxhG3qswoErFtE5Wi9pmk26BECDXx1G
-         XTboiFJsJhgEbGMMXzngw19xJyjmfF2P34/M32ZEgC6fyTVHAaDxJ+AIbW0hKJMyvZvd
-         WQng==
-X-Gm-Message-State: AOAM532kC6j4OozjoihttjfqyKeewV7AScu/gp4kao295uJdK+2uYPBH
-        xFI25zFrbw3d4TSvXQatoJ7YKQ==
-X-Google-Smtp-Source: ABdhPJwGv4lqU6ZTGrC1I+ginL4JReSOkj1daCH+crR/WVqjpyr2z335yZXgwOyeWEWDiLcFlmQBWw==
-X-Received: by 2002:a05:6e02:1806:: with SMTP id a6mr1758251ilv.8.1610414568079;
-        Mon, 11 Jan 2021 17:22:48 -0800 (PST)
-Received: from ?IPv6:2601:144:4100:fd1:12bf:48ff:fed7:9537? ([2601:144:4100:fd1:12bf:48ff:fed7:9537])
-        by smtp.gmail.com with ESMTPSA id b6sm1021405ilv.79.2021.01.11.17.22.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jan 2021 17:22:47 -0800 (PST)
-Subject: Re: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        anmar.oueja@linaro.org, Masahiro Yamada <masahiroy@kernel.org>
-References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
- <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
- <23e16d20-36eb-87d9-4473-142504ad8a95@gmail.com>
-From:   Bill Mills <bill.mills@linaro.org>
-Message-ID: <31611390-eded-d290-36a7-0b1e8465f71e@linaro.org>
-Date:   Mon, 11 Jan 2021 20:22:46 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729543AbhALBcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 20:32:42 -0500
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:51381 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726837AbhALBcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Jan 2021 20:32:41 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.nyi.internal (Postfix) with ESMTP id 2FCF05C00E3;
+        Mon, 11 Jan 2021 20:31:50 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Mon, 11 Jan 2021 20:31:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kdrag0n.dev; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=SmWgOTC1ISTGfoipEcBc42lK31
+        SmIZzOe1MtblmDSoQ=; b=zOK5mRz2YeDbNhu/ZNzJNlfKXc4iNHYn+nksDWY+8K
+        40V43lNwQT5cu1Lt48oma1FOlC+sryPPmZhHbACYMn88d0EgCXyNEoZCJS1z8nCU
+        b5WRrwr+88dKD9+QbKVYbjG15vhTEcmdf/vVJ8eFVEBI9QzpjRSUBD6QyWvVJ4XS
+        XUSUd9QMFyqTXrhiYt61GKaGQOyZkhuHIsUTRBQAFlMgpfq3h6I2F3iF42bPZDy7
+        zS47yXKOHK7oha+PdCHa5kKyR/hZ4T1bvMOFWWarE0+0w3B320yT26Hbc/r2uZif
+        PbLMe2lqExaVzsn6SNw9SctczMn/hYjUdH6h+EEDcqzQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=SmWgOTC1ISTGfoipE
+        cBc42lK31SmIZzOe1MtblmDSoQ=; b=MoxXY0PAeHobBNoCZOhNRJDwvs+EtSNEH
+        AuZwmHk3yd1EPdpNYU6v0po2QVcbULfmmMBobMsqzeAvwjgZDOajiIsI0vS6Rx/t
+        m2CYgr7TS8hb8TquS7b8SntDcD4wwuCZ2mLhKkMyiWjKkLTnrAf87DLBcFInnFgq
+        YV6Hz/A4wWziFgrvFRigLkIvl8SPT5k4AqSq0DMyjGDBrHy38/tAw/oAhIBv4+Am
+        Eg1vhJVdEhU2ko/QoMiz/uAZHq23miU+LfmCeSb1S0s8+nOSr3ghxg+hFyb1OmJG
+        hV99dKcS63d3Ns6KEHBCD4F2v40FnMK3ac4b4p+9WKAHw1dXWloag==
+X-ME-Sender: <xms:Bfz8X_yNK96OpQBI0Mde7wALcRbJ4Uix-27C0SWalGPE2DmlQ6I5Hw>
+    <xme:Bfz8X3T4YW5vN9JmOV5my8R7k5pz8_v3b56UyBtsOoSNv0eo1Zx5FSFKT2JwQPs-p
+    S4ZLuGyzyLNkxTS0u4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdehvddgfeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    hmihhsshhinhhgucfvqfcufhhivghlugculdeftddmnegoteeftdduqddtudculdduhedm
+    necujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeffrghnnhihuc
+    fnihhnuceouggrnhhnhieskhgurhgrghdtnhdruggvvheqnecuggftrfgrthhtvghrnhep
+    kefgkeevgfejffekgeeiieefgeeiuddvtdekieeghfelgfekveevjeekgeefheeunecuff
+    homhgrihhnpehgihhthhhusgdrtghomhdpvggvmhgstgdrohhrghenucfkphepuddtgedr
+    vddttddruddvledrvdduvdenucfuphgrmhfkphfpvghtfihorhhkpedutdegrddvtddtrd
+    duvdelrddvuddvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhf
+    rhhomhepuggrnhhnhieskhgurhgrghdtnhdruggvvh
+X-ME-Proxy: <xmx:Bfz8X5VZP58STfHd0RKpJXLpURfvHLwM4zJNlwsWXuYB8Bd123riFA>
+    <xmx:Bfz8X5hutMjh0vOrFdooB-C2BYg1_O-yQHgbfHaV-4hugt4vBb51hA>
+    <xmx:Bfz8XxBrk5BiR2W6pNNyW1aGiS-eocOnYTIOIMa3j6SIsKjiFc5WhA>
+    <xmx:Bvz8X8-kg_xtUzQWN1pKXe5YV-tM2TyecVzYiWgRbWVJx1m7ascQ5A>
+Received: from pinwheel.localdomain (unknown [104.200.129.212])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 1CF3D1080066;
+        Mon, 11 Jan 2021 20:31:49 -0500 (EST)
+From:   Danny Lin <danny@kdrag0n.dev>
+Cc:     Danny Lin <danny@kdrag0n.dev>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sdm660: Fix CPU capacities
+Date:   Mon, 11 Jan 2021 17:31:26 -0800
+Message-Id: <20210112013127.414277-1-danny@kdrag0n.dev>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <23e16d20-36eb-87d9-4473-142504ad8a95@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+sdm660 has a big.LITTLE 4+4 CPU setup with CPUs 0-3 being little cores
+and CPUs 4-7 being big cores. The big cores have higher IPC, so they
+should have the higher capacity-dmips-mhz, not the other way around as
+the device tree currently describes it. Fix the incorrect CPU map to
+improve EAS scheduling behavior.
 
+While we're at it, let's replace the old DMIPS/MHz values with new
+measurements that reflect the exact IPC of the CPUs as reported by
+CoreMark.
 
-On 1/11/21 5:06 PM, Frank Rowand wrote:
-> On 1/8/21 2:41 AM, Viresh Kumar wrote:
->> Now that fdtoverlay is part of the kernel build, start using it to test
->> the unitest overlays we have by applying them statically.
->>
->> The file overlay_base.dtb have symbols of its own and we need to apply
->> overlay.dtb to overlay_base.dtb alone first to make it work, which gives
->> us intermediate-overlay.dtb file.
->>
->> The intermediate-overlay.dtb file along with all other overlays is them
->> applied to testcases.dtb to generate the master.dtb file.
->>
->> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-> 
-> NACK to this specific patch, in its current form.
-> 
-> There are restrictions on applying an overlay at runtime that do not apply
-> to applying an overlay to an FDT that will be loaded by the kernel during
-> early boot.  Thus the unittest overlays _must_ be applied using the kernel
-> overlay loading methods to test the kernel runtime overlay loading feature.
-> 
-> I agree that testing fdtoverlay is a good idea.  I have not looked at the
-> parent project to see how much testing of fdtoverlay occurs there, but I
-> would prefer that fdtoverlay tests reside in the parent project if practical
-> and reasonable.  If there is some reason that some fdtoverlay tests are
-> more practical in the Linux kernel repository then I am open to adding
-> them to the Linux kernel tree.
-> 
+Performance measurements were made using my freqbench [1]
+benchmark coordinator, which isolates, offlines, and disables the timer
+tick on test CPUs to maximize accuracy. It uses EEMBC CoreMark [2] as
+the workload and measures power usage using the PM660 PMIC's fuel
+gauge.
 
-Frank,
+Normalized DMIPS/MHz capacity scale values for each CPU were calculated
+from CoreMarks/MHz (CoreMark iterations per second per MHz), which
+serves the same purpose. For each CPU, the final capacity-dmips-mhz
+value is the C/MHz value of its maximum frequency normalized to
+SCHED_CAPACITY_SCALE (1024) for the fastest CPU in the system.
 
-I thought we were aligned that any new overlays into the kernel today 
-would only be for boot loader applied case.  Applying overlays at kernel 
-runtime was out of scope at your request.
+A Xiaomi Redmi Note 7 device running a downstream Qualcomm 4.4 kernel
+was used for benchmarking to ensure proper frequency scaling and other
+low-level controls.
 
-Rob had requested that the overlays be test applied at build time.  I 
-don't think there is any way to test the kernel runtime method at build 
-time correct?
+Raw benchmark results can be found in the freqbench repository [3].
+Below is a human-readable summary:
 
-Please clarify your concern and your suggested way forward.
+Frequency domains: cpu1 cpu4
+Offline CPUs: cpu1 cpu2 cpu3 cpu4 cpu5 cpu6 cpu7
+Baseline power usage: 1130 mW
 
-Thanks,
-Bill
+===== CPU 1 =====
+Frequencies: 633 902 1113 1401 1536 1747 1843
 
-> -Frank
-> 
-> 
->>
->> ---
->> Depends on:
->>
->> https://lore.kernel.org/lkml/be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org/
->>
->> I have kept the .dtb naming for overlays for now, lets see how we do it
->> eventually.
->>
->> Rob/Frank, this doesn't work properly right now. Maybe I missed how
->> these overlays must be applied or there is a bug in fdtoverlay.
->>
->> The master.dtb doesn't include any nodes from overlay_base.dtb or
->> overlay.dtb probably because 'testcase-data-2' node isn't present in
->> testcases.dtb and fdtoverlay doesn't allow applying new nodes to the
->> root node, i.e. allows new sub-nodes once it gets phandle to the parent
->> but nothing can be added to the root node itself. Though I get a feel
->> that it works while applying the nodes dynamically and it is expected to
->> work here as well.
->>
->> (And yeah, this is my first serious attempt at updating Makefiles, I am
->> sure there is a scope of improvement here :))
->>
->> ---
->>   drivers/of/unittest-data/Makefile | 23 +++++++++++++++++++++++
->>   1 file changed, 23 insertions(+)
->>
->> diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
->> index 009f4045c8e4..f17bce85f65f 100644
->> --- a/drivers/of/unittest-data/Makefile
->> +++ b/drivers/of/unittest-data/Makefile
->> @@ -38,3 +38,26 @@ DTC_FLAGS_testcases += -@
->>   
->>   # suppress warnings about intentional errors
->>   DTC_FLAGS_testcases += -Wno-interrupts_property
->> +
->> +# Apply overlays statically with fdtoverlay
->> +intermediate-overlay	:= overlay.dtb
->> +master			:= overlay_0.dtb overlay_1.dtb overlay_2.dtb \
->> +			   overlay_3.dtb overlay_4.dtb overlay_5.dtb \
->> +			   overlay_6.dtb overlay_7.dtb overlay_8.dtb \
->> +			   overlay_9.dtb overlay_10.dtb overlay_11.dtb \
->> +			   overlay_12.dtb overlay_13.dtb overlay_15.dtb \
->> +			   overlay_gpio_01.dtb overlay_gpio_02a.dtb \
->> +			   overlay_gpio_02b.dtb overlay_gpio_03.dtb \
->> +			   overlay_gpio_04a.dtb overlay_gpio_04b.dtb \
->> +			   intermediate-overlay.dtb
->> +
->> +quiet_cmd_fdtoverlay = fdtoverlay $@
->> +      cmd_fdtoverlay = $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $^
->> +
->> +$(obj)/intermediate-overlay.dtb: $(obj)/overlay_base.dtb $(addprefix $(obj)/,$(intermediate-overlay))
->> +	$(call if_changed,fdtoverlay)
->> +
->> +$(obj)/master.dtb: $(obj)/testcases.dtb $(addprefix $(obj)/,$(master))
->> +	$(call if_changed,fdtoverlay)
->> +
->> +always-$(CONFIG_OF_OVERLAY) += intermediate-overlay.dtb master.dtb
->>
-> 
+ 633:  2058     3.2 C/MHz     48 mW    5.9 J   42.6 I/mJ   121.5 s
+ 902:  2930     3.2 C/MHz     72 mW    6.2 J   40.6 I/mJ    85.3 s
+1113:  3616     3.2 C/MHz     79 mW    5.4 J   46.0 I/mJ    69.1 s
+1401:  4551     3.2 C/MHz    125 mW    6.9 J   36.3 I/mJ    54.9 s
+1536:  4988     3.2 C/MHz    134 mW    6.7 J   37.1 I/mJ    50.1 s
+1747:  5674     3.2 C/MHz    179 mW    7.9 J   31.7 I/mJ    44.1 s
+1843:  5986     3.2 C/MHz    228 mW    9.5 J   26.3 I/mJ    41.8 s
 
+===== CPU 4 =====
+Frequencies: 1113 1401 1747 1958 2150 2208
+
+1113:  5825     5.2 C/MHz    220 mW    9.4 J   26.5 I/mJ    42.9 s
+1401:  7324     5.2 C/MHz    317 mW   10.8 J   23.1 I/mJ    34.1 s
+1747:  9135     5.2 C/MHz    474 mW   13.0 J   19.2 I/mJ    27.4 s
+1958: 10247     5.2 C/MHz    578 mW   14.1 J   17.7 I/mJ    24.4 s
+2150: 11246     5.2 C/MHz    694 mW   15.4 J   16.2 I/mJ    22.2 s
+2208: 11551     5.2 C/MHz    736 mW   15.9 J   15.7 I/mJ    21.7 s
+
+[1] https://github.com/kdrag0n/freqbench
+[2] https://www.eembc.org/coremark/
+[3] https://github.com/kdrag0n/freqbench/tree/master/results/sdm660/main
+
+Signed-off-by: Danny Lin <danny@kdrag0n.dev>
+---
+ arch/arm64/boot/dts/qcom/sdm660.dtsi | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+index 4abbdd03d1e7..ca985c5429db 100644
+--- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+@@ -40,7 +40,7 @@ CPU0: cpu@100 {
+ 			compatible = "qcom,kryo260";
+ 			reg = <0x0 0x100>;
+ 			enable-method = "psci";
+-			capacity-dmips-mhz = <1024>;
++			capacity-dmips-mhz = <636>;
+ 			next-level-cache = <&L2_1>;
+ 			L2_1: l2-cache {
+ 				compatible = "cache";
+@@ -59,7 +59,7 @@ CPU1: cpu@101 {
+ 			compatible = "qcom,kryo260";
+ 			reg = <0x0 0x101>;
+ 			enable-method = "psci";
+-			capacity-dmips-mhz = <1024>;
++			capacity-dmips-mhz = <636>;
+ 			next-level-cache = <&L2_1>;
+ 			L1_I_101: l1-icache {
+ 				compatible = "cache";
+@@ -74,7 +74,7 @@ CPU2: cpu@102 {
+ 			compatible = "qcom,kryo260";
+ 			reg = <0x0 0x102>;
+ 			enable-method = "psci";
+-			capacity-dmips-mhz = <1024>;
++			capacity-dmips-mhz = <636>;
+ 			next-level-cache = <&L2_1>;
+ 			L1_I_102: l1-icache {
+ 				compatible = "cache";
+@@ -89,7 +89,7 @@ CPU3: cpu@103 {
+ 			compatible = "qcom,kryo260";
+ 			reg = <0x0 0x103>;
+ 			enable-method = "psci";
+-			capacity-dmips-mhz = <1024>;
++			capacity-dmips-mhz = <636>;
+ 			next-level-cache = <&L2_1>;
+ 			L1_I_103: l1-icache {
+ 				compatible = "cache";
+@@ -104,7 +104,7 @@ CPU4: cpu@0 {
+ 			compatible = "qcom,kryo260";
+ 			reg = <0x0 0x0>;
+ 			enable-method = "psci";
+-			capacity-dmips-mhz = <640>;
++			capacity-dmips-mhz = <1024>;
+ 			next-level-cache = <&L2_0>;
+ 			L2_0: l2-cache {
+ 				compatible = "cache";
+@@ -123,7 +123,7 @@ CPU5: cpu@1 {
+ 			compatible = "qcom,kryo260";
+ 			reg = <0x0 0x1>;
+ 			enable-method = "psci";
+-			capacity-dmips-mhz = <640>;
++			capacity-dmips-mhz = <1024>;
+ 			next-level-cache = <&L2_0>;
+ 			L1_I_1: l1-icache {
+ 				compatible = "cache";
+@@ -138,7 +138,7 @@ CPU6: cpu@2 {
+ 			compatible = "qcom,kryo260";
+ 			reg = <0x0 0x2>;
+ 			enable-method = "psci";
+-			capacity-dmips-mhz = <640>;
++			capacity-dmips-mhz = <1024>;
+ 			next-level-cache = <&L2_0>;
+ 			L1_I_2: l1-icache {
+ 				compatible = "cache";
+@@ -153,7 +153,7 @@ CPU7: cpu@3 {
+ 			compatible = "qcom,kryo260";
+ 			reg = <0x0 0x3>;
+ 			enable-method = "psci";
+-			capacity-dmips-mhz = <640>;
++			capacity-dmips-mhz = <1024>;
+ 			next-level-cache = <&L2_0>;
+ 			L1_I_3: l1-icache {
+ 				compatible = "cache";
 -- 
-Bill Mills
-Principal Technical Consultant, Linaro
-+1-240-643-0836
-TZ: US Eastern
-Work Schedule:  Tues/Wed/Thur
+2.29.2
+
