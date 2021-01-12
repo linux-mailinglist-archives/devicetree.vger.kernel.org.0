@@ -2,407 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB672F3407
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 16:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D7F82F343F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 16:36:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728150AbhALPSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 10:18:00 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:39650 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728045AbhALPR7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 10:17:59 -0500
-Received: by mail-oi1-f172.google.com with SMTP id w124so2658072oia.6;
-        Tue, 12 Jan 2021 07:17:43 -0800 (PST)
+        id S2391374AbhALPgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 10:36:10 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:38726 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389869AbhALPgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 10:36:10 -0500
+Received: by mail-oi1-f169.google.com with SMTP id x13so2726219oic.5;
+        Tue, 12 Jan 2021 07:35:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=U7LK4UzPdbNSe+Oygrvbhl0Tngy8RGFCOMYee0BjfHA=;
-        b=uArqxPaWXwPUA31Kq0Nh18grL+F2W9Nnqpq1XD4g7bSnCIMg7W7bFxAgsk44Eh2b/4
-         x/1r8a2+TtJX/pyGRZc6ePkuCnlW3h75PhRElQrneYcbxw4j8fGRFVdMAluL5v47VsFd
-         yPhb1PH/IeTbVGKFSA6ym+mDITpqtW6xB7NW1ovL5dhxFI8ZRjagXDA7Ed0Hs+yNUsUc
-         ImP1LeSpBerIV/YaSfMXXFZQ/JDyZrYDKeDZxKFTZEjAM0R/B02qJa+cmJELyvtV4q/k
-         rHIWEsgt8FVlFs3UoAvGwD/ugzFEJjQPIAuYCZ/SXa5QjrXEcenOyvEPn7MvjY6q5wGE
-         kNlA==
-X-Gm-Message-State: AOAM533GyX3l0t0VykPsAJYo5r57+nrjyh3546PYgRQi/V4llVWw1yWy
-        FehTKrb3tj6LANoIjt3hXg==
-X-Google-Smtp-Source: ABdhPJy7og7K5vQTgkYvnb6VatKPn/a/pJ2fdNDVuTbkLT7qh9eTfyeAJZZ3a88SS/SVyOCAPN3/UA==
-X-Received: by 2002:aca:b343:: with SMTP id c64mr2676923oif.156.1610464637944;
-        Tue, 12 Jan 2021 07:17:17 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b15sm679413otj.15.2021.01.12.07.17.16
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rwndpzB2NMxD4+GOuIBXubpnWUZBzuaIoFb33FQ113Y=;
+        b=SiALvPp6Vdu3gFgx//b/GmdJ8EVCIivkbs3AAZVIVvFoeg4eJkJlxGyTeezVUNPBt/
+         rxnjpgIfj+UJmujEyJUQKHEpozqVNvgPLa4zAMD+AZwZqMUDLFSKjaks0kkIoyhOnakA
+         Ar0f+UK2/iWwlOIAHem8NjTos6mmDEplaTgUcz33Os7g8KYUNmeWrB3eGkGfKDxngyOW
+         Hf06NczkYlGxn3+9lK/As9/1g6RL51n5jVGP6aTISeWONk9G8d+130gRwozbAc+wU7rv
+         XXi7G8MD8JqB6nttTrwSr0PK21cDj9GGlH5bKj4LTNqUCaihXjowa7mPCiPpHuIWz6fa
+         K6gw==
+X-Gm-Message-State: AOAM532FKif/xtHFqhfJlOYB3YjWniVSYfYZ/6xfgEp33/Og+RB/GlEd
+        zbxhABDy5CPzzR4ot76jOJsdrfKIVg==
+X-Google-Smtp-Source: ABdhPJypxGLxfXjDkpFHCGBfMBtLwUu1uYus11CwgPlFBBa0poSrwGenkMIILzHt8XBb6MrqLhHaNA==
+X-Received: by 2002:a54:4694:: with SMTP id k20mr2695873oic.64.1610465729069;
+        Tue, 12 Jan 2021 07:35:29 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id i1sm708075otr.81.2021.01.12.07.35.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 07:17:16 -0800 (PST)
-Received: (nullmailer pid 366629 invoked by uid 1000);
-        Tue, 12 Jan 2021 15:17:15 -0000
-Date:   Tue, 12 Jan 2021 09:17:15 -0600
+        Tue, 12 Jan 2021 07:35:28 -0800 (PST)
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Lee Jones <lee.jones@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v8 1/4] dt-bindings: display: Document the Xylon LogiCVC
- display controller
-Message-ID: <20210112151715.GA354038@robh.at.kernel.org>
-References: <20201223212947.160565-1-paul.kocialkowski@bootlin.com>
- <20201223212947.160565-2-paul.kocialkowski@bootlin.com>
+To:     devicetree@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-usb@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: Use OF graph schema
+Date:   Tue, 12 Jan 2021 09:35:27 -0600
+Message-Id: <20210112153527.391232-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201223212947.160565-2-paul.kocialkowski@bootlin.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 23, 2020 at 10:29:44PM +0100, Paul Kocialkowski wrote:
-> The Xylon LogiCVC is a display controller implemented as programmable
-> logic in Xilinx FPGAs.
-> 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
->  .../display/xylon,logicvc-display.yaml        | 313 ++++++++++++++++++
->  1 file changed, 313 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml b/Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml
-> new file mode 100644
-> index 000000000000..aca78334ad2c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml
-> @@ -0,0 +1,313 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 Bootlin
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/display/xylon,logicvc-display.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Xylon LogiCVC display controller
-> +
-> +maintainers:
-> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> +
-> +description: |
-> +  The Xylon LogiCVC is a display controller that supports multiple layers.
-> +  It is usually implemented as programmable logic and was optimized for use
-> +  with Xilinx Zynq-7000 SoCs and Xilinx FPGAs.
-> +
-> +  Because the controller is intended for use in a FPGA, most of the
-> +  configuration of the controller takes place at logic configuration bitstream
-> +  synthesis time. As a result, many of the device-tree bindings are meant to
-> +  reflect the synthesis configuration and must not be configured differently.
-> +  Matching synthesis parameters are provided when applicable.
-> +
-> +  Layers are declared in the "layers" sub-node and have dedicated configuration.
-> +  In version 3 of the controller, each layer has fixed memory offset and address
-> +  starting from the video memory base address for its framebuffer. In version 4,
-> +  framebuffers are configured with a direct memory address instead.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - xylon,logicvc-3.02.a-display
-> +      - xylon,logicvc-4.01.a-display
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 4
-> +    items:
-> +      # vclk is required and must be provided as first item.
-> +      - const: vclk
-> +      # Other clocks are optional and can be provided in any order.
-> +      - enum:
-> +          - vclk2
-> +          - lvdsclk
-> +          - lvdsclkn
-> +      - enum:
-> +          - vclk2
-> +          - lvdsclk
-> +          - lvdsclkn
-> +      - enum:
-> +          - vclk2
-> +          - lvdsclk
-> +          - lvdsclkn
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +
-> +  xylon,display-interface:
-> +    enum:
-> +      # Parallel RGB interface (C_DISPLAY_INTERFACE == 0)
-> +      - parallel-rgb
-> +      # ITU-T BR656 interface (C_DISPLAY_INTERFACE == 1)
-> +      - bt656
-> +      # 4-bit LVDS interface (C_DISPLAY_INTERFACE == 2)
-> +      - lvds-4bits
-> +      # 3-bit LVDS interface (C_DISPLAY_INTERFACE == 4)
-> +      - lvds-3bits
-> +      # DVI interface (C_DISPLAY_INTERFACE == 5)
-> +      - dvi
-> +    description: Display output interface (C_DISPLAY_INTERFACE).
+Now that we have a graph schema, rework the USB related schemas to use
+it. Mostly this is adding a reference to graph.yaml and dropping duplicate
+parts from schemas.
 
-As I mentioned before, we have standard properties for these or you know 
-the setting based on the panel/bridge attached. 
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: linux-usb@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/usb/renesas,usb3-peri.yaml        | 7 ++++---
+ Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml   | 8 ++++----
+ 2 files changed, 8 insertions(+), 7 deletions(-)
 
-> +
-> +  xylon,display-colorspace:
-> +    enum:
-> +      # RGB colorspace (C_DISPLAY_COLOR_SPACE == 0)
-> +      - rgb
-> +      # YUV 4:2:2 colorspace (C_DISPLAY_COLOR_SPACE == 1)
-> +      - yuv422
-> +      # YUV 4:4:4 colorspace (C_DISPLAY_COLOR_SPACE == 2)
-> +      - yuv444
-> +    description: Display output colorspace (C_DISPLAY_COLOR_SPACE).
-> +
-> +  xylon,display-depth:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: Display output depth (C_PIXEL_DATA_WIDTH).
-> +
-> +  xylon,row-stride:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: Fixed number of pixels in a framebuffer row (C_ROW_STRIDE).
-> +
-> +  xylon,syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Syscon phandle representing the top-level logicvc instance, useful when
-> +      the parent node is not the top-level logicvc instance.
+diff --git a/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
+index 929a3f413b44..9fcf54b10b07 100644
+--- a/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
++++ b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
+@@ -54,18 +54,19 @@ properties:
+     description: phandle of a companion.
+ 
+   ports:
++    $ref: /schemas/graph.yaml#/properties/ports
+     description: |
+       any connector to the data bus of this controller should be modelled
+       using the OF graph bindings specified, if the "usb-role-switch"
+       property is used.
+-    type: object
++
+     properties:
+       port@0:
+-        type: object
++        $ref: /schemas/graph.yaml#/properties/port
+         description: High Speed (HS) data bus.
+ 
+       port@1:
+-        type: object
++        $ref: /schemas/graph.yaml#/properties/port
+         description: Super Speed (SS) data bus.
+ 
+     required:
+diff --git a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
+index 52ceb07294a3..b86bf6bc9cd6 100644
+--- a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
+@@ -26,17 +26,17 @@ properties:
+     maxItems: 1
+ 
+   ports:
++    $ref: /schemas/graph.yaml#/properties/ports
+     description: OF graph bindings (specified in bindings/graph.txt) that model
+       SS data bus to the SS capable connector.
+-    type: object
++
+     properties:
+       port@0:
+-        type: object
++        $ref: /schemas/graph.yaml#/properties/port
+         description: Super Speed (SS) MUX inputs connected to SS capable connector.
+-        $ref: /connector/usb-connector.yaml#/properties/ports/properties/port@1
+ 
+       port@1:
+-        type: object
++        $ref: /schemas/graph.yaml#/properties/port
+         description: Output of 2:1 MUX connected to Super Speed (SS) data bus.
+ 
+     required:
+-- 
+2.27.0
 
-Why do you need to support both ways? Drop this and require it to be the 
-parent node.
-
-> +
-> +  xylon,dithering:
-> +    $ref: "/schemas/types.yaml#/definitions/flag"
-> +    description: Dithering module is enabled (C_XCOLOR)
-> +
-> +  xylon,background-layer:
-> +    $ref: "/schemas/types.yaml#/definitions/flag"
-> +    description: |
-> +      The last layer is used to display a black background (C_USE_BACKGROUND).
-> +      The layer must still be registered.
-> +
-> +  xylon,layers-configurable:
-> +    $ref: "/schemas/types.yaml#/definitions/flag"
-> +    description: |
-> +      Configuration of layers' size, position and offset is enabled
-> +      (C_USE_SIZE_POSITION).
-> +
-> +  layers:
-> +    type: object
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^layer@[0-9]+$":
-> +        type: object
-> +
-> +        properties:
-> +          reg:
-> +            maxItems: 1
-> +
-> +          xylon,layer-depth:
-> +            $ref: "/schemas/types.yaml#/definitions/uint32"
-> +            description: Layer depth (C_LAYER_X_DATA_WIDTH).
-> +
-> +          xylon,layer-colorspace:
-> +            enum:
-> +              # RGB colorspace (C_LAYER_X_TYPE == 0)
-> +              - rgb
-> +              # YUV packed colorspace (C_LAYER_X_TYPE == 0)
-> +              - yuv
-> +            description: Layer colorspace (C_LAYER_X_TYPE).
-> +
-> +          xylon,layer-alpha-mode:
-> +            enum:
-> +              # Alpha is configured layer-wide (C_LAYER_X_ALPHA_MODE == 0)
-> +              - layer
-> +              # Alpha is configured per-pixel (C_LAYER_X_ALPHA_MODE == 1)
-> +              - pixel
-> +            description: Alpha mode for the layer (C_LAYER_X_ALPHA_MODE).
-> +
-> +          xylon,layer-base-offset:
-> +            $ref: "/schemas/types.yaml#/definitions/uint32"
-> +            description: |
-> +              Offset in number of lines (C_LAYER_X_OFFSET) starting from the
-> +              video RAM base (C_VMEM_BASEADDR), only for version 3.
-> +
-> +          xylon,layer-buffer-offset:
-> +            $ref: "/schemas/types.yaml#/definitions/uint32"
-> +            description: |
-> +              Offset in number of lines (C_BUFFER_*_OFFSET) starting from the
-> +              layer base offset for the second buffer used in double-buffering.
-> +
-> +          xylon,layer-primary:
-> +            $ref: "/schemas/types.yaml#/definitions/flag"
-> +            description: |
-> +              Layer should be registered as a primary plane (exactly one is
-> +              required).
-> +
-> +        additionalProperties: false
-> +
-> +        required:
-> +          - reg
-> +          - xylon,layer-depth
-> +          - xylon,layer-colorspace
-> +          - xylon,layer-alpha-mode
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +      - layer@0
-> +
-> +    additionalProperties: false
-> +
-> +    description: |
-> +      The description of the display controller layers, containing layer
-> +      sub-nodes that each describe a registered layer.
-> +
-> +  ports:
-> +    type: object
-
-You have to define what each port is. If only 1, then use just 'port'.
-
-We now have graph.yaml (in dt-schema). You need to reference that here. 
-See drm-misc-next as everything has been converted.
-
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - xylon,display-interface
-> +  - xylon,display-colorspace
-> +  - xylon,display-depth
-> +  - xylon,row-stride
-> +  - layers
-> +  - ports
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    logicvc: logicvc@43c00000 {
-> +      compatible = "xylon,logicvc-3.02.a", "syscon", "simple-mfd";
-> +      reg = <0x43c00000 0x6000>;
-> +
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      logicvc_display: display@0 {
-> +        compatible = "xylon,logicvc-3.02.a-display";
-> +        reg = <0x0 0x6000>;
-> +
-> +        memory-region = <&logicvc_cma>;
-> +
-> +        clocks = <&logicvc_vclk 0>, <&logicvc_lvdsclk 0>;
-> +        clock-names = "vclk", "lvdsclk";
-> +
-> +        interrupt-parent = <&intc>;
-> +        interrupts = <0 34 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +        xylon,display-interface = "lvds-4bits";
-> +        xylon,display-colorspace = "rgb";
-> +        xylon,display-depth = <16>;
-> +        xylon,row-stride = <1024>;
-> +
-> +        xylon,layers-configurable;
-> +
-> +        layers {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          layer@0 {
-> +            reg = <0>;
-> +            xylon,layer-depth = <16>;
-> +            xylon,layer-colorspace = "rgb";
-> +            xylon,layer-alpha-mode = "layer";
-> +            xylon,layer-base-offset = <0>;
-> +            xylon,layer-buffer-offset = <480>;
-> +            xylon,layer-primary;
-> +          };
-> +
-> +          layer@1 {
-> +            reg = <1>;
-> +            xylon,layer-depth = <16>;
-> +            xylon,layer-colorspace = "rgb";
-> +            xylon,layer-alpha-mode = "layer";
-> +            xylon,layer-base-offset = <2400>;
-> +            xylon,layer-buffer-offset = <480>;
-> +          };
-> +
-> +          layer@2 {
-> +            reg = <2>;
-> +            xylon,layer-depth = <16>;
-> +            xylon,layer-colorspace = "rgb";
-> +            xylon,layer-alpha-mode = "layer";
-> +            xylon,layer-base-offset = <960>;
-> +            xylon,layer-buffer-offset = <480>;
-> +          };
-> +
-> +          layer@3 {
-> +            reg = <3>;
-> +            xylon,layer-depth = <16>;
-> +            xylon,layer-colorspace = "rgb";
-> +            xylon,layer-alpha-mode = "layer";
-> +            xylon,layer-base-offset = <480>;
-> +            xylon,layer-buffer-offset = <480>;
-> +          };
-> +
-> +          layer@4 {
-> +            reg = <4>;
-> +            xylon,layer-depth = <16>;
-> +            xylon,layer-colorspace = "rgb";
-> +            xylon,layer-alpha-mode = "layer";
-> +            xylon,layer-base-offset = <8192>;
-> +            xylon,layer-buffer-offset = <480>;
-> +          };
-> +        };
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          logicvc_out: port@1 {
-> +            reg = <1>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            logicvc_output: endpoint@0 {
-> +              reg = <0>;
-> +              remote-endpoint = <&panel_input>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.29.2
-> 
