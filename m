@@ -2,183 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E2DE2F2D01
+	by mail.lfdr.de (Postfix) with ESMTP id C9F812F2D02
 	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:38:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726444AbhALKh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 05:37:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726387AbhALKh0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 05:37:26 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2188C061575;
-        Tue, 12 Jan 2021 02:36:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=I1TOZTlIyWpJo6t+ktfKEwi2Grwz2ejbXpCqmeiGeoo=; b=bWaGhBd8PtoP/cQ7GvkqD3iEH
-        vbtnhNtL3/0sktfKOgWpaPiT+pa4W7eLRYzfxQVhYuklWvXGb+53tLKrcz+lKUW0XtbvUUWb5WUAl
-        Sij2k3/WNcOvU84Vyalstmgvz24Xij+13atBb0OhLQqE7zA7+n9T6Lda4J/jo6H599SLyMA3L7cL5
-        PdmqKfrR8d+Z4+6y6PWKp5Ar0Ppyi/3eVTl+mBqufomfvlF4fllM8k4QFD6QvswBusmlPLWAqm9nG
-        NP0SEHTXHAtAPTUp+YwEmsda2jvDNe/sWgNjvO8tJusxfBlibf0TJ4X7xq3dkRJC1/9Z5DKbw5DDU
-        tE5m40bzQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46984)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1kzH2J-000813-Ox; Tue, 12 Jan 2021 10:36:27 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1kzH2A-0006CA-6h; Tue, 12 Jan 2021 10:36:18 +0000
-Date:   Tue, 12 Jan 2021 10:36:18 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Baruch Siach <baruch@tkos.co.il>, Rob Herring <robh@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, linux-pwm@vger.kernel.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v7 3/3] dt-bindings: ap806: document gpio
- marvell,pwm-offset property
-Message-ID: <20210112103617.GB1551@shell.armlinux.org.uk>
-References: <cover.1610364681.git.baruch@tkos.co.il>
- <5e1b119a51df19ead32561e87ce2ee1441b67154.1610364681.git.baruch@tkos.co.il>
- <CACRpkdZAHpcgzXSJKZyQjBOriALZUoXbw_hBpPa_zxa27=F0hg@mail.gmail.com>
+        id S1726554AbhALKhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 05:37:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51826 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726387AbhALKhf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 05:37:35 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2FFB3222B3;
+        Tue, 12 Jan 2021 10:36:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610447814;
+        bh=me4VfGevELMQ1wDfalFTk9vfIzyJP8ihe4XFq/deiiM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hTeCcZWpMjgUUWmh27lAfMaApy1y5vIkzINXhL9py33nYqs2xFaO212lc1zPknXyi
+         LbiA04wX8XtKWw6/R1FQbweGMJlzTzUg6vSqrN9kDEAGk3mIZLd+E/z2or+LlrpVNh
+         RFM3jDCztHNUkYaM3qAIty5OHFLfzmeWV7b4F9AlW279xR77Np8n7pUTjZV7l8ItWA
+         fjnBjbfqCwa0KYqWNg7RrgOuz5TdFiGJs6S60DNJU6fM/RD+But/47aTc/BXGJAVI7
+         cJSL2cbmUiEPZzQrJxkNMheSkrsPXzVccm/Ifb80PANMqjjv9OFgO0e19FD9Vs51g3
+         hdEidid3tG9YQ==
+Date:   Tue, 12 Jan 2021 16:06:48 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Phong Hoang <phong.hoang.wz@renesas.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/4] dmaengine: rcar-dmac: Add support for R-Car V3U
+Message-ID: <20210112103648.GL2771@vkoul-mobl>
+References: <20210107181524.1947173-1-geert+renesas@glider.be>
+ <20210107181524.1947173-5-geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACRpkdZAHpcgzXSJKZyQjBOriALZUoXbw_hBpPa_zxa27=F0hg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+In-Reply-To: <20210107181524.1947173-5-geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 12, 2021 at 09:49:16AM +0100, Linus Walleij wrote:
-> Hi Baruch,
+On 07-01-21, 19:15, Geert Uytterhoeven wrote:
+> The DMACs (both SYS-DMAC and RT-DMAC) on R-Car V3U differ slightly from
+> the DMACs on R-Car Gen2 and other R-Car Gen3 SoCs:
+>   1. The per-channel registers are located in a second register block.
+>      Add support for mapping the second block, using the appropriate
+>      offsets and stride.
+>   2. The common Channel Clear Register (DMACHCLR) was replaced by a
+>      per-channel register.
+>      Update rcar_dmac_chan_clear{,_all}() to handle this.
+>      As rcar_dmac_init() needs to clear the status before the individual
+>      channels are probed, channel index and base address initialization
+>      are moved forward.
 > 
-> this caught my eye:
+> Inspired by a patch in the BSP by Phong Hoang
+> <phong.hoang.wz@renesas.com>.
 > 
-> On Mon, Jan 11, 2021 at 12:47 PM Baruch Siach <baruch@tkos.co.il> wrote:
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  drivers/dma/sh/rcar-dmac.c | 68 +++++++++++++++++++++++++++-----------
+>  1 file changed, 49 insertions(+), 19 deletions(-)
 > 
-> > Update the example as well. Add the '#pwm-cells' and 'clocks' properties
-> > for a complete working example.
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-> 
-> (...)
-> > +Optional properties:
-> > +
-> > +- marvell,pwm-offset: offset address of PWM duration control registers inside
-> > +  the syscon block
-> (...)
-> >  ap_syscon: system-controller@6f4000 {
-> >         compatible = "syscon", "simple-mfd";
-> > @@ -101,6 +106,9 @@ ap_syscon: system-controller@6f4000 {
-> >                 gpio-controller;
-> >                 #gpio-cells = <2>;
-> >                 gpio-ranges = <&ap_pinctrl 0 0 19>;
-> > +               marvell,pwm-offset = <0x10c0>;
-> 
-> This seems to be one of those cases where we start to encode things related
-> to the hardware variant into the device tree.
-> 
-> Is this just documenting ABI that was introduced in the past and we can not
-> do anything about now? In that case it is OK I suppose.
-> 
-> For a new binding we would certainly require that the system controller
-> provide a specific tertiary compatible string for this, lest we disguise
-> the not-so-simple system controller as "simple-mfd" so:
-> 
-> compatible = "syscon", "simple-mfd", "my-silicon-id";
-> 
-> Then detect the PWM offset by using
-> if(of_device_is_compatibe(np, "my-silicon-id"))
-> in the code rather than parsing any marvell,pwm-offset property.
+> diff --git a/drivers/dma/sh/rcar-dmac.c b/drivers/dma/sh/rcar-dmac.c
+> index 990d78849a7de704..c11e6255eba1fc6b 100644
+> --- a/drivers/dma/sh/rcar-dmac.c
+> +++ b/drivers/dma/sh/rcar-dmac.c
+> @@ -189,7 +189,7 @@ struct rcar_dmac_chan {
+>   * struct rcar_dmac - R-Car Gen2 DMA Controller
+>   * @engine: base DMA engine object
+>   * @dev: the hardware device
+> - * @iomem: remapped I/O memory base
+> + * @iomem: remapped I/O memory bases (second is optional)
+>   * @n_channels: number of available channels
+>   * @channels: array of DMAC channels
+>   * @channels_mask: bitfield of which DMA channels are managed by this driver
+> @@ -198,7 +198,7 @@ struct rcar_dmac_chan {
+>  struct rcar_dmac {
+>  	struct dma_device engine;
+>  	struct device *dev;
+> -	void __iomem *iomem;
+> +	void __iomem *iomem[2];
 
-I think it would be a good idea to describe the hardware more fully.
-For the CP110 and AP80x dies on Armada 8040:
+do you forsee many more memory regions, if not then why not add second
+region, that way changes in this patch will be lesser..?
 
-CP110	AP80x
-Offset	Offset
-00/40	5040	Data Out
-04/44	5044	Data Out Enable
-08/48	5048	Blink Enable
-0c/4c	504c	Data In polarity
-10/50	5050	Data In
-14/54	5054	IRQ Cause
-18/58	5058	IRQ Mask
-1c/5c	505c	IRQ Level mask
-20/60	5060	Blink Counter Select
-28/68	5068	Control Set
-2c/6c	506c	Control Clear
-30/70	5070	Data Out Set
-34/74	5074	Data Out Clear
-f0	50c0	Blink Counter A ON duration
-f4	50c4	Blink Counter A OFF duration
-f8	50c8	Blink Counter B ON duration
-fc	50cc	Blink Counter B OFF duration
-
-We identify both of these using a compatible of "marvell,armada-8k-gpio"
-which really only describes the first 64 bytes of the register set:
-
-			ap_gpio: gpio@1040 {
-				compatible = "marvell,armada-8k-gpio";
-				offset = <0x1040>;
-				...
-			};
-
-			CP11X_LABEL(gpio1): gpio@100 {
-				compatible = "marvell,armada-8k-gpio";
-				offset = <0x100>;
-				...
-			};
-
-			CP11X_LABEL(gpio2): gpio@140 {
-				compatible = "marvell,armada-8k-gpio";
-				offset = <0x140>;
-				...
-			};
-
-Note that on the CP11x dies, there are two GPIO controllers sharing the
-same set of blink counter registers - one at offset 0 the other at
-offset 0x40.
-
-However, the pwm-offset is the offset in the regmap of the parent node.
-
-It is possible to use a more specific compatible that would describe
-the PWM offset for the CP11x and AP806 (which would need two different
-ones) but that starts getting messy when you consider that we already
-describe an offset in regmap for the first 64 registers, and encoding
-the blink register offset in a compatible would partially end up
-encoding the "offset" we already have.
-
-In any case, these offsets are a function of how it was originally
-chosen to describe the hardware in DT, rather than anything about the
-hardware itself. The choice to use a syscon/regmap is purely an
-implementation decision rather than something from the hardware, so
-this DT description is already based around describing what is required
-for the Linux implementation, rather than purely being a hardware
-description.
+and it would be better to refer to a region by its name rather than
+iomem[1]..
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+~Vinod
