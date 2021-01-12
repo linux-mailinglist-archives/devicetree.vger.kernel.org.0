@@ -2,91 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BC172F2CC7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:28:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 123B32F2CC9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 11:28:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391654AbhALK1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 05:27:08 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:34068 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726533AbhALK1I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 05:27:08 -0500
-Received: by mail-oi1-f173.google.com with SMTP id s75so1849107oih.1;
-        Tue, 12 Jan 2021 02:26:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pNy54YvyEG+MmyMNSknqMIs/iaqY7Dt1qSoRryJi0OY=;
-        b=dYwfr/bLujGXNXs3qghhT/QW7ozFPQttyuD5yQExNqMYaDdrDOwGRXdzHPiOUWRZp0
-         OM21c4+p8Icly9q9APT2IzJ3Icbj/rdk1zJyBzcdeXWxXrSK/e1HLUXSRsiIb9mw3bRT
-         RfRMrbN2i7gYHYSE0QZjAxaI2l4o8u1P158iIj0b8aZ5+TfPUJRJO/VgAJPgtdEfIpTp
-         A+MTU7nNYLhA7knGofaYiSk0IbKMK6H9zccYc7oygCJxW6HrkQzjCu2EndhCzMS/bZAL
-         kXqXtKRyCfY4vHRmoAOnmhkaD0UOFNoTw1euxFrZ3XhtPc5V8AAPjSMr3l0WVH8aPG5u
-         9iqA==
-X-Gm-Message-State: AOAM53315c82KgvhR4KgsOASsJ1g2TVP6j3POei9m014gREL7I1QleGC
-        mbpcGFi7TKx+Wl/sRLkMe2JHMOT6Z59TYl2lcadi2g8xQaU=
-X-Google-Smtp-Source: ABdhPJzYHBdsX45B4kEd9SOIflChVmFlSmzttpTadGUOdiAChH3XKY+LK034WPAeAJPmyVOHHviE4aAisjNOz8AJayA=
-X-Received: by 2002:aca:4b16:: with SMTP id y22mr1881850oia.148.1610447187714;
- Tue, 12 Jan 2021 02:26:27 -0800 (PST)
+        id S2392985AbhALK1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 05:27:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50268 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726533AbhALK1O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 05:27:14 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BEA0123109;
+        Tue, 12 Jan 2021 10:26:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1610447194;
+        bh=ryhCQv8eVrVNeqK5clAMBRFTzJ4fSC4rPww2yGJmDSs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kmdVOqNnKfjR4p1cC+yIibA4jrFc6UxE983zY5Zc1KnzLGwHkiChODRcmvamELmlI
+         x5dkKVIi4fG7WTia4rKVgfiWry3bQOdmrZBff407TX80ShCfH9BwtusXqk/YL5zMuR
+         9Uuu/uFaK5x0RPvz9dLnRZHjaWn7HWadx8n8z2RA=
+Date:   Tue, 12 Jan 2021 11:27:43 +0100
+From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
+To:     Jozsef Horvath <info@ministro.hu>
+Cc:     'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] Serial: silabs si4455 serial driver
+Message-ID: <X/15n3lOU6F0GMPw@kroah.com>
+References: <20210112101857.GA13976@dev>
 MIME-Version: 1.0
-References: <20210107181524.1947173-1-geert+renesas@glider.be>
- <20210107181524.1947173-3-geert+renesas@glider.be> <20210112101950.GK2771@vkoul-mobl>
-In-Reply-To: <20210112101950.GK2771@vkoul-mobl>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 12 Jan 2021 11:26:16 +0100
-Message-ID: <CAMuHMdXhKpO4RLXVBzVezSnui3ZvgB5oX-n25Mcj7se0PaX78A@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dmaengine: rcar-dmac: Add for_each_rcar_dmac_chan() helper
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Phong Hoang <phong.hoang.wz@renesas.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210112101857.GA13976@dev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+On Tue, Jan 12, 2021 at 10:19:00AM +0000, Jozsef Horvath wrote:
+> This is a device tree schema for serial port driver for
+>  Silicon Labs Si4455 Sub-GHz transciver.
+> 
+> Datasheet: https://www.silabs.com/documents/public/data-sheets/Si4455.pdf
+> 
+> Guide: Documentation/driver-api/serial/si4455.rst
+> 
+> Signed-off-by: Jozsef Horvath <info@ministro.hu>
 
-On Tue, Jan 12, 2021 at 11:19 AM Vinod Koul <vkoul@kernel.org> wrote:
-> On 07-01-21, 19:15, Geert Uytterhoeven wrote:
-> > Add and helper macro for iterating over all DMAC channels, taking into
-> > account the channel mask.  Use it where appropriate, to simplify code.
-> >
-> > Restore "reverse Christmas tree" order of local variables while adding a
-> > new variable.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+You sent 2 different patches, that do different things, with the exact
+same subject line.  Please make your commit messages unique, we can't
+take this as-is.
 
-> > --- a/drivers/dma/sh/rcar-dmac.c
-> > +++ b/drivers/dma/sh/rcar-dmac.c
-> > @@ -209,6 +209,11 @@ struct rcar_dmac {
-> >
-> >  #define to_rcar_dmac(d)              container_of(d, struct rcar_dmac, engine)
-> >
-> > +#define for_each_rcar_dmac_chan(i, chan, dmac)                                \
-> > +     for (i = 0, chan = &(dmac)->channels[0]; i < (dmac)->n_channels; \
-> > +          i++, chan++)                                                \
->
-> single line to make it more readable? we have limit of 100 now :)
+thanks,
 
-Do we have to push the limits?
-
-BTW, the new punched cards are 96-column wide, not 100-column ;-)
-https://en.wikipedia.org/wiki/Punched_card#IBM_96-column_format
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+greg k-h
