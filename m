@@ -2,190 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 815E62F294C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 08:56:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92F262F298F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 08:59:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732673AbhALHz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 02:55:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36648 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731929AbhALHz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 02:55:27 -0500
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5572DC061786
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 23:54:47 -0800 (PST)
-Received: by mail-io1-xd34.google.com with SMTP id y19so2187855iov.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 23:54:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M6gti34JNoWz5z3B8Kij1up+0ymqSqmekx/99+4faKU=;
-        b=X6l/XLromsTlU6NHa0DWJ/v5avCPE+tbWy6cx1R1IpoHKfbhgU6MF+gZNi4A3oZMQA
-         aDXLX9RnsLGW3PS+TKQP3dv3P0XkS3dWXlHp8BVT2WpAIYitmTledVhp8sQu29+3epTn
-         3vsNGErl3t1pJGKPEpwPU9LYUv1Ianz/yayzo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M6gti34JNoWz5z3B8Kij1up+0ymqSqmekx/99+4faKU=;
-        b=ioxR91EdT+f7KjG22fPG1G1Dn6vWKIhxAAhUUh5ge3DxgGyxwCwA+Nkq4wx651LGIM
-         ZvRTuxujKXBOtiB349XRlAzqo+dbBgO8bkGaW2E8WrNAkKiY1FR55v5zB9C4Ss49BXJG
-         09DMaXeDYsDsKNc7zFumXBrV6G28CeeqUzfHxn67j6Wr4bsGWfn0St7JQaUU2I5SAwbU
-         tkF0CyIgkxpNI/a8uZ/D7LLJAxeInVGYgIfaRi/SXqdkYfauW2uMmp9IzILU4zdqXvBe
-         xVWpc1qhZwUQnOWQ9nckBdVk8mVkxpZBjdJhe7z2sdiubVwbVGgLKhqFTaL1osbQvn0M
-         fEwA==
-X-Gm-Message-State: AOAM532HqPdZTLsWYsQnlTXuhhSQyWfDh3yRvbWLb2GHWk9o/U4OeJjG
-        IYWgd63vQ8pTyRAoZ+AYTufdhJPQ2SsM1/q9
-X-Google-Smtp-Source: ABdhPJytGu1NAfrmtkfDCdOf31Pu+BNhYKTSVmrl8qiB3tl4jhYgksC9ZHkOZ/ChJUlHfIEeLe9TEg==
-X-Received: by 2002:a5e:dd0d:: with SMTP id t13mr2432094iop.132.1610438086464;
-        Mon, 11 Jan 2021 23:54:46 -0800 (PST)
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
-        by smtp.gmail.com with ESMTPSA id p13sm1533212iod.54.2021.01.11.23.54.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Jan 2021 23:54:46 -0800 (PST)
-Received: by mail-io1-f49.google.com with SMTP id y19so2187789iov.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 23:54:46 -0800 (PST)
-X-Received: by 2002:a6b:7f0b:: with SMTP id l11mr2402150ioq.34.1610437707606;
- Mon, 11 Jan 2021 23:48:27 -0800 (PST)
-MIME-Version: 1.0
-References: <20210106034124.30560-1-tientzu@chromium.org> <d7043239-12cf-3636-4726-2e3b90917dc6@gmail.com>
- <CALiNf28sU1VtGB7LeTXExkMwQiCeg8N5arqyEjw0CPZP72R4dg@mail.gmail.com> <78871151-947d-b085-db03-0d0bd0b55632@gmail.com>
-In-Reply-To: <78871151-947d-b085-db03-0d0bd0b55632@gmail.com>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Tue, 12 Jan 2021 15:48:16 +0800
-X-Gmail-Original-Message-ID: <CALiNf29_PmLJTVLksSHp3NFAaL52idqehSMOtatJ=jaM2Muq1g@mail.gmail.com>
-Message-ID: <CALiNf29_PmLJTVLksSHp3NFAaL52idqehSMOtatJ=jaM2Muq1g@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 0/6] Restricted DMA
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <joro@8bytes.org>, will@kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        rdunlap@infradead.org, dan.j.williams@intel.com,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>
+        id S2392194AbhALH6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 02:58:33 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:36154 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2387692AbhALH6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 02:58:32 -0500
+X-UUID: f297533def6b4cdda96ff3839445077d-20210112
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=MSCj26hBYC5yhFYlqz1zDqlpvUKDf/hx4JpIFhfQLI4=;
+        b=W16oFPTeJaN1RA97Wu0YZIKaA88aXNvJ7EUm4Ixma6NxFTB2TVNI3KWFd8Wf/yQHBeJfTVVabbqcYS7tPLbn7ock6OCnIovZ4XFok0xgUI3ffeSMuP9ctEggoZiaVVVbswBz4FpQivOwyMYMNTxsy1DhsgWJLfus87XjjoWFB7M=;
+X-UUID: f297533def6b4cdda96ff3839445077d-20210112
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <henryc.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 557589570; Tue, 12 Jan 2021 15:57:46 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 12 Jan 2021 15:57:44 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 12 Jan 2021 15:57:44 +0800
+Message-ID: <1610438264.31838.1.camel@mtksdaap41>
+Subject: Re: [PATCH V7 01/13] dt-bindings: soc: Add dvfsrc driver bindings
+From:   Henry Chen <henryc.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ryan Case <ryandcase@chromium.org>,
+        Arvin Wang <arvin.wang@mediatek.com>,
+        "Nicolas Boichat" <drinkcat@google.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "Mark Brown" <broonie@kernel.org>, <devicetree@vger.kernel.org>
+Date:   Tue, 12 Jan 2021 15:57:44 +0800
+In-Reply-To: <CAL_Jsq+W3UL4-s6ezFJrhUYko2EBPsO9nMOGzGR1nQT3x_VtdQ@mail.gmail.com>
+References: <1610092095-5113-1-git-send-email-henryc.chen@mediatek.com>
+         <1610092095-5113-2-git-send-email-henryc.chen@mediatek.com>
+         <1610163019.789930.3762037.nullmailer@robh.at.kernel.org>
+         <1610333553.2992.7.camel@mtksdaap41>
+         <CAL_Jsq+W3UL4-s6ezFJrhUYko2EBPsO9nMOGzGR1nQT3x_VtdQ@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: E12981678A47B5256F94D79B6C1A2E72C722F0897B9519C75472F6B9F7E0D2322000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 8, 2021 at 1:59 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> On 1/7/21 9:42 AM, Claire Chang wrote:
->
-> >> Can you explain how ATF gets involved and to what extent it does help,
-> >> besides enforcing a secure region from the ARM CPU's perpsective? Does
-> >> the PCIe root complex not have an IOMMU but can somehow be denied access
-> >> to a region that is marked NS=0 in the ARM CPU's MMU? If so, that is
-> >> still some sort of basic protection that the HW enforces, right?
-> >
-> > We need the ATF support for memory MPU (memory protection unit).
-> > Restricted DMA (with reserved-memory in dts) makes sure the predefined memory
-> > region is for PCIe DMA only, but we still need MPU to locks down PCIe access to
-> > that specific regions.
->
-> OK so you do have a protection unit of some sort to enforce which region
-> in DRAM the PCIE bridge is allowed to access, that makes sense,
-> otherwise the restricted DMA region would only be a hint but nothing you
-> can really enforce. This is almost entirely analogous to our systems then.
+T24gTW9uLCAyMDIxLTAxLTExIGF0IDA5OjQyIC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gU3VuLCBKYW4gMTAsIDIwMjEgYXQgODo1MiBQTSBIZW5yeSBDaGVuIDxoZW5yeWMuY2hlbkBt
+ZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gSGkgUm9iLA0KPiA+DQo+ID4gT24gRnJpLCAy
+MDIxLTAxLTA4IGF0IDIwOjMwIC0wNzAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4gPiA+IE9uIEZy
+aSwgMDggSmFuIDIwMjEgMTU6NDg6MDMgKzA4MDAsIEhlbnJ5IENoZW4gd3JvdGU6DQo+ID4gPiA+
+IERvY3VtZW50IHRoZSBiaW5kaW5nIGZvciBlbmFibGluZyBkdmZzcmMgb24gTWVkaWFUZWsgU29D
+Lg0KPiA+ID4gPg0KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBIZW5yeSBDaGVuIDxoZW5yeWMuY2hl
+bkBtZWRpYXRlay5jb20+DQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiAgLi4uL2RldmljZXRyZWUvYmlu
+ZGluZ3Mvc29jL21lZGlhdGVrL2R2ZnNyYy55YW1sICAgfCA2NyArKysrKysrKysrKysrKysrKysr
+KysrDQo+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgNjcgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gPiAg
+Y3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2Mv
+bWVkaWF0ZWsvZHZmc3JjLnlhbWwNCj4gPiA+ID4NCj4gPiA+DQo+ID4gPiBNeSBib3QgZm91bmQg
+ZXJyb3JzIHJ1bm5pbmcgJ21ha2UgZHRfYmluZGluZ19jaGVjaycgb24geW91ciBwYXRjaDoNCj4g
+PiA+DQo+ID4gPiB5YW1sbGludCB3YXJuaW5ncy9lcnJvcnM6DQo+ID4gPg0KPiA+ID4gZHRzY2hl
+bWEvZHRjIHdhcm5pbmdzL2Vycm9yczoNCj4gPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9zb2MvbWVkaWF0ZWsvZHZmc3JjLmV4YW1wbGUuZHRzOjE5OjE4OiBmYXRhbCBlcnJv
+cjogZHQtYmluZGluZ3MvaW50ZXJjb25uZWN0L210ayxtdDgxODMtZW1pLmg6IE5vIHN1Y2ggZmls
+ZSBvciBkaXJlY3RvcnkNCj4gPiA+ICAgIDE5IHwgICAgICAgICAjaW5jbHVkZSA8ZHQtYmluZGlu
+Z3MvaW50ZXJjb25uZWN0L210ayxtdDgxODMtZW1pLmg+DQo+ID4gPiAgICAgICB8ICAgICAgICAg
+ICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fg0KPiA+
+IFNvcnJ5LCBiZWNhdXNlIHRoaXMgaGVhZGVyIGZpbGUgaXMgYWRkZWQgb24gIltWNywwNy8xM10g
+ZHQtYmluZGluZ3M6DQo+ID4gaW50ZXJjb25uZWN0OiBhZGQgTVQ4MTgzIGludGVyY29ubmVjdCBk
+dC1iaW5kaW5ncyIuDQo+ID4gU2hvdWxkIEkgY2hhbmdlIHRoZSBvcmRlciBvZiB0aGUgcGF0Y2hz
+ZXQgKGxldCB0aGUgeWFtbCBwYXRoYyBiZWhpbmQgdGhlDQo+ID4gaGVhZGVyKSB0byBmaXhlZCB0
+aGF0ID8NCj4gDQo+IERUIGhlYWRlcnMgc2hvdWxkIGJlIHBhcnQgb2YgdGhlIGJpbmRpbmcgc2No
+ZW1hIHBhdGNoLiAoT3IgYXQgbGVhc3QgY29tZSBmaXJzdCkuDQpPSywgSSB3aWxsIG1lcmdlIERU
+IGhlYWRlciBhbmQgYmluZGluZyBzY2hlbWEgcGF0Y2ggaW50byBhIHNpbmdsZSBwYXRjaC4NCg0K
+SGVucnkNCj4gDQo+IFJvYg0KDQo=
 
-Here is the example of setting the MPU:
-https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
-
->
-> There may be some value in standardizing on an ARM SMCCC call then since
-> you already support two different SoC vendors.
->
-> >
-> >>
-> >> On Broadcom STB SoCs we have had something similar for a while however
-> >> and while we don't have an IOMMU for the PCIe bridge, we do have a a
-> >> basic protection mechanism whereby we can configure a region in DRAM to
-> >> be PCIe read/write and CPU read/write which then gets used as the PCIe
-> >> inbound region for the PCIe EP. By default the PCIe bridge is not
-> >> allowed access to DRAM so we must call into a security agent to allow
-> >> the PCIe bridge to access the designated DRAM region.
-> >>
-> >> We have done this using a private CMA area region assigned via Device
-> >> Tree, assigned with a and requiring the PCIe EP driver to use
-> >> dma_alloc_from_contiguous() in order to allocate from this device
-> >> private CMA area. The only drawback with that approach is that it
-> >> requires knowing how much memory you need up front for buffers and DMA
-> >> descriptors that the PCIe EP will need to process. The problem is that
-> >> it requires driver modifications and that does not scale over the number
-> >> of PCIe EP drivers, some we absolutely do not control, but there is no
-> >> need to bounce buffer. Your approach scales better across PCIe EP
-> >> drivers however it does require bounce buffering which could be a
-> >> performance hit.
-> >
-> > Only the streaming DMA (map/unmap) needs bounce buffering.
->
-> True, and typically only on transmit since you don't really control
-> where the sk_buff are allocated from, right? On RX since you need to
-> hand buffer addresses to the WLAN chip prior to DMA, you can allocate
-> them from a pool that already falls within the restricted DMA region, right?
->
-
-Right, but applying bounce buffering to RX will make it more secure.
-The device won't be able to modify the content after unmap. Just like what
-iommu_unmap does.
-
-> > I also added alloc/free support in this series
-> > (https://lore.kernel.org/patchwork/patch/1360995/), so dma_direct_alloc() will
-> > try to allocate memory from the predefined memory region.
-> >
-> > As for the performance hit, it should be similar to the default swiotlb.
-> > Here are my experiment results. Both SoCs lack IOMMU for PCIe.
-> >
-> > PCIe wifi vht80 throughput -
-> >
-> >   MTK SoC                  tcp_tx     tcp_rx    udp_tx   udp_rx
-> >   w/o Restricted DMA  244.1     134.66   312.56   350.79
-> >   w/ Restricted DMA    246.95   136.59   363.21   351.99
-> >
-> >   Rockchip SoC           tcp_tx     tcp_rx    udp_tx   udp_rx
-> >   w/o Restricted DMA  237.87   133.86   288.28   361.88
-> >   w/ Restricted DMA    256.01   130.95   292.28   353.19
->
-> How come you get better throughput with restricted DMA? Is it because
-> doing DMA to/from a contiguous region allows for better grouping of
-> transactions from the DRAM controller's perspective somehow?
-
-I'm not sure, but actually, enabling the default swiotlb for wifi also helps the
-throughput a little bit for me.
-
->
-> >
-> > The CPU usage doesn't increase too much either.
-> > Although I didn't measure the CPU usage very precisely, it's ~3% with a single
-> > big core (Cortex-A72) and ~5% with a single small core (Cortex-A53).
-> >
-> > Thanks!
-> >
-> >>
-> >> Thanks!
-> >> --
-> >> Florian
->
->
-> --
-> Florian
