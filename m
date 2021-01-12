@@ -2,108 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6335C2F2DD1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 12:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E0402F2E37
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 12:44:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726915AbhALLXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 06:23:30 -0500
-Received: from szxga03-in.huawei.com ([45.249.212.189]:2856 "EHLO
-        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726777AbhALLXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 06:23:30 -0500
-Received: from dggeme755-chm.china.huawei.com (unknown [172.30.72.57])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4DFSnk3NW1z59m7;
-        Tue, 12 Jan 2021 19:21:30 +0800 (CST)
-Received: from [10.140.157.68] (10.140.157.68) by
- dggeme755-chm.china.huawei.com (10.3.19.101) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2106.2; Tue, 12 Jan 2021 19:22:46 +0800
-Subject: Re: [PATCH v7 0/4] Enable Hi3559A SOC clock and HiSilicon Hiedma
- Controller
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <dan.j.williams@intel.com>,
-        <p.zabel@pengutronix.de>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>
-References: <20201215110947.41268-1-gengdongjiu@huawei.com>
- <20210112104010.GN2771@vkoul-mobl>
-From:   Dongjiu Geng <gengdongjiu@huawei.com>
-Message-ID: <cd34cdfd-eee5-b217-a151-9ff7290c112f@huawei.com>
-Date:   Tue, 12 Jan 2021 19:22:45 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
- Thunderbird/52.6.0
+        id S1730154AbhALLnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 06:43:20 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:33617 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730081AbhALLnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 06:43:20 -0500
+Received: by mail-oi1-f169.google.com with SMTP id d203so2040613oia.0;
+        Tue, 12 Jan 2021 03:43:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gvSXzvnGVXDaviH1zuRAMAGJuMaNfjyn5ekNZGjpQ50=;
+        b=tUl+664ChepvxMaoy81l8P/DDMc8C6lg081orKo75qi9pToDOZXopVfPtIOw9ug5lJ
+         2DYSN9+3whqA9WSCIBefP4I8CfZx18l4T9HU/RjOrq0kxBv2yN8TMcJBrw7l+n8tiBBU
+         PT1RbagQUkSxYagicKlnqk9Im6/T3eSa2xiX3s5R/RGAMhj6hyzW6HOKap+f8F5trFOS
+         tUmjVOSZ0nxOeeVs271XJNxLOpb1k1EjdQ4UIQQA5sqjY91z7W3SU6OPRgK93x/gmgFI
+         xvKoftIT3hcOSP66w/gaTHSTuhxjP+zPcYDyDVSbl72vm2MTbZqRgNfhpIfeT9Y3DFO9
+         4AsQ==
+X-Gm-Message-State: AOAM531YoivvXOeg/CIn8NBh8O+BnDAen2TmxoQNeez+w90izg40uxi3
+        AVem5Ua11qW/7W7YpFiQrymeQXScgsKepJcMKIA=
+X-Google-Smtp-Source: ABdhPJzGBEZ0VKoVq2/frzInDE9dRaRt+nGC6OvXRLt05DwD5bHCz9xBQJCBK9c/MB63RSKJoCPjhtWJVNIWpP/+Trw=
+X-Received: by 2002:aca:3cc5:: with SMTP id j188mr2054826oia.54.1610451759483;
+ Tue, 12 Jan 2021 03:42:39 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210112104010.GN2771@vkoul-mobl>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.140.157.68]
-X-ClientProxiedBy: dggeme713-chm.china.huawei.com (10.1.199.109) To
- dggeme755-chm.china.huawei.com (10.3.19.101)
-X-CFilter-Loop: Reflected
+References: <20201228112715.14947-1-wsa+renesas@sang-engineering.com>
+ <20201228112715.14947-3-wsa+renesas@sang-engineering.com> <CAMuHMdVzQVBvsUhpZF5A9qoijA=thVPq4tBiRnAVyFrX2aD+5w@mail.gmail.com>
+In-Reply-To: <CAMuHMdVzQVBvsUhpZF5A9qoijA=thVPq4tBiRnAVyFrX2aD+5w@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 12 Jan 2021 12:42:28 +0100
+Message-ID: <CAMuHMdUg44u_Tpg-4sVwTkOXVWQWBWrm08Vg__=u8-xBFnK9-g@mail.gmail.com>
+Subject: Re: [PATCH 2/6] arm64: dts: renesas: falcon: add SCIF0 nodes
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021/1/12 18:40, Vinod Koul wrote:
-> On 15-12-20, 11:09, Dongjiu Geng wrote:
->> v6->v7:
->> 1. rename hisi,misc-control to hisi,misc-control to hisilicon,misc-control
->>
->> v5->v6:
->> 1. Drop #size-cells and #address-cell in the hisilicon,hi3559av100-clock.yaml
->> 2. Add discription for #reset-cells in the hisilicon,hi3559av100-clock.yaml
->> 3. Remove #clock-cells in hisilicon,hiedmacv310.yaml 
->> 4. Merge property misc_ctrl_base and misc_regmap together for hiedmacv310 driver
->>
->> v4->v5:
->> 1. change the patch author mail name
->>
->> v3->v4:
->> 1. fix the 'make dt_binding_check' issues.
->> 2. Combine the 'Enable HiSilicon Hiedma Controller' series patches to this series.
->> 3. fix the 'make dt_binding_check' issues in 'Enable HiSilicon Hiedma Controller' patchset
->>
->> v2->v3:
->> 1. change dt-bindings documents from txt to yaml format.
->> 2. Add SHUB clock to access the devices of m7
->>
->> Dongjiu Geng (4):
->>   dt-bindings: Document the hi3559a clock bindings
->>   clk: hisilicon: Add clock driver for hi3559A SoC
->>   dt: bindings: dma: Add DT bindings for HiSilicon Hiedma Controller
->>   dmaengine: dma: Add Hiedma Controller v310 Device Driver
-> 
-> Is there a reason to have dma and clk drivers in a single series..? I am
-> sure I have skipping few versions thinking this is clock driver series..
-> 
-> Unless there is a dependency please split up.. If there is a dependency
-> please specify that
+Hi Wolfram,
 
-Thank you very much for your pointing out.  I will split up.
+On Tue, Jan 5, 2021 at 7:12 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Mon, Dec 28, 2020 at 12:27 PM Wolfram Sang
+> <wsa+renesas@sang-engineering.com> wrote:
+> > SCIF0 has been enabled by the firmware, so it worked already. Still, add
+> > the proper nodes to make it work in any case.
+> >
+> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> 
-> 
->>
->>  .../clock/hisilicon,hi3559av100-clock.yaml    |   59 +
->>  .../bindings/dma/hisilicon,hiedmacv310.yaml   |   94 ++
->>  drivers/clk/hisilicon/Kconfig                 |    7 +
->>  drivers/clk/hisilicon/Makefile                |    1 +
->>  drivers/clk/hisilicon/clk-hi3559a.c           |  865 ++++++++++
->>  drivers/dma/Kconfig                           |   14 +
->>  drivers/dma/Makefile                          |    1 +
->>  drivers/dma/hiedmacv310.c                     | 1442 +++++++++++++++++
->>  drivers/dma/hiedmacv310.h                     |  136 ++
->>  include/dt-bindings/clock/hi3559av100-clock.h |  165 ++
->>  10 files changed, 2784 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
->>  create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,hiedmacv310.yaml
->>  create mode 100644 drivers/clk/hisilicon/clk-hi3559a.c
->>  create mode 100644 drivers/dma/hiedmacv310.c
->>  create mode 100644 drivers/dma/hiedmacv310.h
->>  create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
->>
->> -- 
->> 2.17.1
-> 
+Upon second look, this should be added to r8a779a0-falcon-cpu.dtsi,
+which already extends the scif0 node.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
