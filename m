@@ -2,120 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D7F82F343F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 16:36:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8CBB2F347F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 16:46:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391374AbhALPgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 10:36:10 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:38726 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389869AbhALPgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 10:36:10 -0500
-Received: by mail-oi1-f169.google.com with SMTP id x13so2726219oic.5;
-        Tue, 12 Jan 2021 07:35:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rwndpzB2NMxD4+GOuIBXubpnWUZBzuaIoFb33FQ113Y=;
-        b=SiALvPp6Vdu3gFgx//b/GmdJ8EVCIivkbs3AAZVIVvFoeg4eJkJlxGyTeezVUNPBt/
-         rxnjpgIfj+UJmujEyJUQKHEpozqVNvgPLa4zAMD+AZwZqMUDLFSKjaks0kkIoyhOnakA
-         Ar0f+UK2/iWwlOIAHem8NjTos6mmDEplaTgUcz33Os7g8KYUNmeWrB3eGkGfKDxngyOW
-         Hf06NczkYlGxn3+9lK/As9/1g6RL51n5jVGP6aTISeWONk9G8d+130gRwozbAc+wU7rv
-         XXi7G8MD8JqB6nttTrwSr0PK21cDj9GGlH5bKj4LTNqUCaihXjowa7mPCiPpHuIWz6fa
-         K6gw==
-X-Gm-Message-State: AOAM532FKif/xtHFqhfJlOYB3YjWniVSYfYZ/6xfgEp33/Og+RB/GlEd
-        zbxhABDy5CPzzR4ot76jOJsdrfKIVg==
-X-Google-Smtp-Source: ABdhPJypxGLxfXjDkpFHCGBfMBtLwUu1uYus11CwgPlFBBa0poSrwGenkMIILzHt8XBb6MrqLhHaNA==
-X-Received: by 2002:a54:4694:: with SMTP id k20mr2695873oic.64.1610465729069;
-        Tue, 12 Jan 2021 07:35:29 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id i1sm708075otr.81.2021.01.12.07.35.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 07:35:28 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-usb@vger.kernel.org
-Subject: [PATCH] dt-bindings: usb: Use OF graph schema
-Date:   Tue, 12 Jan 2021 09:35:27 -0600
-Message-Id: <20210112153527.391232-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+        id S2405397AbhALPou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 10:44:50 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:50358 "EHLO
+        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405331AbhALPou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 10:44:50 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTP id D345411FFAC;
+        Tue, 12 Jan 2021 16:44:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1610466246;
+        bh=3TX/Z1vZrcZZBHoWafk0q6dH5DN3BAFkYepRrsCGr/o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=t8cbdjLQ89rbUgkVk9z8PkgZbbgYAW9vl0Dv86mTiCWcGPv/Dj+pjOqBi3NB0fTuF
+         /n//kQ/AnGo4DFvJBiCXlFTTcVcY0M6ri8+lXudkIgazZncXR/wCs52vhF3FiRnFPY
+         zO0b9jEl/fYuA+3fHGjCjvlaFThBs4uNzCxvQo/IDgNKOGx9OUF1YOYW+No0MDJCue
+         mLLCwlYmW3h2VjEdg7C39pTjCXrAPGd/dO4PMag3xn1jteZQG4qBroUMhkgmkBaIXO
+         tNdZHqgbBRsRGbNKs2cfhBfau/50277SpWg/XbEylRhYYRW4XrfEYuV51ljaH+JI88
+         gvjowQCXU4XxQ==
+X-Virus-Scanned: Debian amavisd-new at ministro.hu
+Received: from bmail1.ministro.hu ([127.0.0.1])
+        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id qA9P9RacV8pr; Tue, 12 Jan 2021 16:43:25 +0100 (CET)
+Received: from dev (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id 8D76A11FFA8;
+        Tue, 12 Jan 2021 16:43:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1610466205;
+        bh=3TX/Z1vZrcZZBHoWafk0q6dH5DN3BAFkYepRrsCGr/o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZvX6vEAsQW6sv3luqhPCO4dntvcSBoApIDmmhuOe/X2Pvd6adOcnL0p1V3hKnFxiL
+         YPXVKqXdWwEiJYsLD3S6qFcl9ZB8Hu24tkuo0PHJMWXSWuyBR2iZEXt1r3KWXwF3nY
+         Id4VIat0lElQKqr+9FZEGYgqLvYdNNC3LAzAsxqDvI0y3f96PoOZAzeercRqasHNgO
+         WExnH9NWMoZx6SUTg+Jez5Dw1kZWPFHfTyl87RXAxAgvf1GxirDaPLmRoi94XaajOA
+         ME9ddlIBh6AoNcM6CQQ4syNI75sZorCwDCKj9GVavBUsP9CPp3i2exlbO7E6/T3oyj
+         pZ4MF8hrdKdOg==
+Date:   Tue, 12 Jan 2021 15:43:22 +0000
+From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
+Cc:     'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] Serial: silabs si4455 serial driver
+Message-ID: <20210112154322.GA31198@dev>
+References: <20210112101831.GA12483@dev>
+ <X/15uOstG/7bj2Lm@kroah.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <X/15uOstG/7bj2Lm@kroah.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have a graph schema, rework the USB related schemas to use
-it. Mostly this is adding a reference to graph.yaml and dropping duplicate
-parts from schemas.
+On Tue, Jan 12, 2021 at 11:28:08AM +0100, 'Greg Kroah-Hartman' wrote:
+> On Tue, Jan 12, 2021 at 10:18:33AM +0000, Jozsef Horvath wrote:
+> > --- a/include/uapi/linux/serial_core.h
+> > +++ b/include/uapi/linux/serial_core.h
+> > @@ -279,4 +279,7 @@
+> >  /* Freescale LINFlexD UART */
+> >  #define PORT_LINFLEXUART	122
+> >  
+> > +/* Silicon Labs SI4455 */
+> > +#define PORT_SI4455     123
+> 
+> What userspace tool is going to need this value?
 
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: linux-usb@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/usb/renesas,usb3-peri.yaml        | 7 ++++---
- Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml   | 8 ++++----
- 2 files changed, 8 insertions(+), 7 deletions(-)
+The PORT_SI4455 is defined for using as port type value in struct uart_port.
+I checked other serial drivers under drivers/tty/serial and the port types
+used by serial drivers are defined in two places:
 
-diff --git a/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-index 929a3f413b44..9fcf54b10b07 100644
---- a/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-+++ b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-@@ -54,18 +54,19 @@ properties:
-     description: phandle of a companion.
- 
-   ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-     description: |
-       any connector to the data bus of this controller should be modelled
-       using the OF graph bindings specified, if the "usb-role-switch"
-       property is used.
--    type: object
-+
-     properties:
-       port@0:
--        type: object
-+        $ref: /schemas/graph.yaml#/properties/port
-         description: High Speed (HS) data bus.
- 
-       port@1:
--        type: object
-+        $ref: /schemas/graph.yaml#/properties/port
-         description: Super Speed (SS) data bus.
- 
-     required:
-diff --git a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
-index 52ceb07294a3..b86bf6bc9cd6 100644
---- a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
-+++ b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
-@@ -26,17 +26,17 @@ properties:
-     maxItems: 1
- 
-   ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-     description: OF graph bindings (specified in bindings/graph.txt) that model
-       SS data bus to the SS capable connector.
--    type: object
-+
-     properties:
-       port@0:
--        type: object
-+        $ref: /schemas/graph.yaml#/properties/port
-         description: Super Speed (SS) MUX inputs connected to SS capable connector.
--        $ref: /connector/usb-connector.yaml#/properties/ports/properties/port@1
- 
-       port@1:
--        type: object
-+        $ref: /schemas/graph.yaml#/properties/port
-         description: Output of 2:1 MUX connected to Super Speed (SS) data bus.
- 
-     required:
--- 
-2.27.0
+include/uapi/linux/serial_core.h
+include/uapi/linux/serial.h
+
+The port type is required by serial_core, and its value goes back to
+user space with TIOCGSERIAL ioctl call.
+
+I can't set port type value to 0(PORT_UNKNOWN).
+I think my drivers source is not the best place to defining PORT_SI4455,
+ but I can't find better place then include/uapi/linux/serial_core.h
+
+Could you please help me where is the correct location for this definition?
+
+
+> 
+> thanks,
+> 
+> greg k-h
+
+Üdvözlettel / Best regards:
+József Horváth
 
