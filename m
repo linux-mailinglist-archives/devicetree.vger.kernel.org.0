@@ -2,96 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 749162F32AF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 15:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 900872F32DA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 15:23:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726113AbhALOLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 09:11:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50312 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725957AbhALOLk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 09:11:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B5CD02311D;
-        Tue, 12 Jan 2021 14:10:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610460660;
-        bh=ENjvy0Q+qTvAHdvM+Qmza6RORATL3UTnpgk5t6Fv8PI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mphXnHHH/En5/hD5AimJ8saRejozTzE62sfESXc7Y2zl3e1De2wZO1IfoMwXpCkFY
-         De5L2nsnW3OXvxQdhWQiCnf39axqCTxl2sAyVR1XemnW6F2q4XY+FMm0HON9Mrlc+p
-         MMognZH2hB6+nF76s6yHRfk3sGjc+wdF3VlsXGF4G7535aJpjSDzwLAdQnXmEoITg3
-         +G9VPlEZBR9TbFJqySq6K24M8jj8wDCg058Ke8iUgtXaeZQzbFguFImH3kChDwPsEE
-         GwpZ3+juOsZbsVJV/PKK49oESCsOP8aBsjKL3peEvgSbTcz1+Nv1KANaZ0Yuo4Qsod
-         am+Nkrsc5HimA==
-Received: by mail-ej1-f50.google.com with SMTP id w1so3666966ejf.11;
-        Tue, 12 Jan 2021 06:10:59 -0800 (PST)
-X-Gm-Message-State: AOAM532kBUT4YRsq8YvydJixmCI7EgnmayaDoq0LN0P760GnFahhnKyH
-        NuZwearITMCFk7CW/3AGM+2YkNnUYLjO+Yz8Gg==
-X-Google-Smtp-Source: ABdhPJx6WBuO0b55qgrKmXulVdShGTlUCuYQZf9Q+loZi3a9rgL14J1g8duqmSuDSOBd2TTPv+EqXRc4W6wxFsUnUP4=
-X-Received: by 2002:a17:906:d784:: with SMTP id pj4mr3277745ejb.360.1610460658215;
- Tue, 12 Jan 2021 06:10:58 -0800 (PST)
+        id S1726439AbhALOXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 09:23:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726235AbhALOXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 09:23:32 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04FB5C061795
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 06:22:51 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id s2so2495159oij.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 06:22:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jb8rjsMM4lZHDV6AkHr3Gc22JovujP1aAnGakguP13Q=;
+        b=luvEn02nzHcSPhycLX3M3wtrM6EoHF1KJj9wYqgksxc97aXikA4KDmUZe614hIxk1u
+         S+CKzGtJOf/bSUFFt9RjOrN7DPMMC2pXj44d+KM2KNXABbkQyfDIoeMJpferd1TMbJxX
+         cTT9Q5DqoTh7UaigKtsmJ9LFRiyZAF5eDC7xOA3xXofcRAc5LohPaJOKLjDwQvMTD9iB
+         o46ZlVTX1a/d6uMEgwafeWSFnBU4FOM9d58hOxWP6/l0eazS8qPiT5U9A8RAPtPwCxOb
+         zUHxkYzOUH3pSBqs8FWwazFRgyhNsFAXu1Co2IwzMUkv+I2QkeFM7Nmk7EHgrLV8kts/
+         Y1dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jb8rjsMM4lZHDV6AkHr3Gc22JovujP1aAnGakguP13Q=;
+        b=qQmDBJHY7krg198eZG7bkJpc9W+lk8m3PmrnAUDUrT58nYQMYj3iRqkvw0bs/WWPko
+         BMmdumcxQXupt3n7ul8XmB+iqkHy36oi5kw67SYz4+jIJp9crYTXUjdg9QhNNOjftH8p
+         u6a4I/LidXD0kSoxkHMR2yWHbfpVEXUc/12vuK4uIN5vq+627X4YpsoJIsvd46cwk3LA
+         I4Cwjk57RNP5LnG8DvdtAE/dL2V5FTHkvEqSvidN+4XG2Xcqhgz1fyUY9JPkpWtC+8Gf
+         XGpK6pl4MpHCH8uU5nmervjHdDZ7KQrpugKaHqIBpBjMuYAN8nneYwVbwL1BoKe7v3zA
+         Enjg==
+X-Gm-Message-State: AOAM530s9qK5HOwD2EAb1V9t8LJ5Kgy52YFo8zz+XhHKSrEEiMj8YNAy
+        t7OKpNQfFzEpJO8DRm2hyCxjog==
+X-Google-Smtp-Source: ABdhPJyPqqPfXhYCxH5fOX5XjaFTVDexSRPqfbdA+S155X7ev3YJOYVoDfzgxIP1TqE+LDR7tRgr7g==
+X-Received: by 2002:aca:af8f:: with SMTP id y137mr1949137oie.135.1610461371208;
+        Tue, 12 Jan 2021 06:22:51 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 31sm651002otd.24.2021.01.12.06.22.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jan 2021 06:22:50 -0800 (PST)
+Date:   Tue, 12 Jan 2021 08:22:48 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Danny Lin <danny@kdrag0n.dev>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lina Iyer <ilina@codeaurora.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150: Add support for deep CPU
+ cluster idle
+Message-ID: <X/2wuPeaDYPBjVEd@builder.lan>
+References: <20210105201000.913183-1-danny@kdrag0n.dev>
+ <X/Tw13VgA5fOnlCV@ripper>
+ <CAPDyKFru7X1Wi3EUBoy-EVaxJ+-rTdhhtArJ9P5RC1ZMak9U+A@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210108121524.656872-1-qperret@google.com> <20210108121524.656872-16-qperret@google.com>
- <CAL_JsqLmzFWmTc=6JSRMofSEVRx9GCrwGxEsYog9dC16EMGdvQ@mail.gmail.com> <X/1xN2UxiUxkzAiN@google.com>
-In-Reply-To: <X/1xN2UxiUxkzAiN@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 12 Jan 2021 08:10:47 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+5d+Ox_-m_Rd83R9xoZb6e2cxCNfbL8YPzKdwj=y0M8Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+5d+Ox_-m_Rd83R9xoZb6e2cxCNfbL8YPzKdwj=y0M8Q@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 15/26] of/fdt: Introduce early_init_dt_add_memory_hyp()
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFru7X1Wi3EUBoy-EVaxJ+-rTdhhtArJ9P5RC1ZMak9U+A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 12, 2021 at 3:51 AM Quentin Perret <qperret@google.com> wrote:
->
-> On Monday 11 Jan 2021 at 08:45:10 (-0600), Rob Herring wrote:
-> > On Fri, Jan 8, 2021 at 6:16 AM Quentin Perret <qperret@google.com> wrote:
-> > >
-> > > Introduce early_init_dt_add_memory_hyp() to allow KVM to conserve a copy
-> > > of the memory regions parsed from DT. This will be needed in the context
-> > > of the protected nVHE feature of KVM/arm64 where the code running at EL2
-> > > will be cleanly separated from the host kernel during boot, and will
-> > > need its own representation of memory.
+On Tue 12 Jan 04:09 CST 2021, Ulf Hansson wrote:
+
+> + Lina
+> 
+> On Wed, 6 Jan 2021 at 00:05, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
 > >
-> > What happened to doing this with memblock?
->
-> I gave it a go, but as mentioned in v1, I ran into issues for nomap
-> regions. I want the hypervisor to know about these memory regions (it's
-> possible some of those will be given to protected guests for instance)
-> but these seem to be entirely removed from the memblocks when using DT:
->
-> https://elixir.bootlin.com/linux/latest/source/drivers/of/fdt.c#L1153
->
-> EFI appears to do things differently, though, as it 'just' uses
-> memblock_mark_nomap() instead of actively removing the memblock. And that
-> means I could actually use the memblock API for EFI, but I'd rather
-> have a common solution. I tried to understand why things are done
-> differently but couldn't find an answer and kept things simple and
-> working for now.
->
-> Is there a good reason for not using memblock_mark_nomap() with DT? If
-> not, I'm happy to try that.
+> > On Tue 05 Jan 12:10 PST 2021, Danny Lin wrote:
+> >
+> > > This commit adds support for deep idling of the entire unified DynamIQ
+> > > CPU cluster on sm8150. In this idle state, the LLCC (Last-Level Cache
+> > > Controller) is powered off and the AOP (Always-On Processor) enters a
+> > > low-power sleep state.
+> > >
+> > > I'm not sure what the per-CPU 0x400000f4 idle state previously
+> > > contributed by Qualcomm as the "cluster sleep" state is, but the
+> > > downstream kernel has no such state. The real deep cluster idle state
+> > > is 0x41000c244, composed of:
+> > >
+> > >     Cluster idle state: (0xc24) << 4 = 0xc240
+> > >     Is reset state: 1 << 30 = 0x40000000
+> > >     Affinity level: 1 << 24 = 0x1000000
+> > >     CPU idle state: 0x4 (power collapse)
+> > >
+> > > This setup can be replicated with the PSCI power domain cpuidle driver,
+> > > which utilizes OSI to enter cluster idle when the last active CPU
+> > > enters idle.
+> > >
+> > > The cluster idle state cannot be used as a plain cpuidle state because
+> > > it requires that all CPUs in the cluster are idling.
+> > >
+> >
+> > This looks quite reasonable to me.
+> >
+> > @Ulf, this seems to be the first attempt at wiring up the domain idle
+> > pieces upstream, would you mind having a look?
+> 
+> Certainly I can have a look, but I could find the original posted
+> patch. I had a look at the below changes and it looks good to me. Feel
+> free to add my reviewed-by tag for it.
+> 
 
-There were 2 patches to do that, but it never got resolved. See here[1].
+Thank you.
 
-Rob
+> Also note, the db410c was the first one to support this as introduced
+> in commit e37131556801 for v5.6. You may have a look at
+> arch/arm64/boot/dts/qcom/msm8916.dtsi.
+> 
 
-[1] https://lore.kernel.org/linux-devicetree/?q=s%3Ano-map
+For some reason I failed to find that commit while looking for your work
+on the subject, thanks for pointing it out!
+
+Regards,
+Bjorn
+
+> Kind regards
+> Uffe
+> 
+> >
+> > The SM8150 pretty much identical to RB3 in this regard.
+> >
+> > Regards,
+> > Bjorn
+> >
+> > > Signed-off-by: Danny Lin <danny@kdrag0n.dev>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 91 ++++++++++++++++++++++------
+> > >  1 file changed, 73 insertions(+), 18 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > > index 309e00b6fa44..8956c6986744 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > > @@ -52,10 +52,10 @@ CPU0: cpu@0 {
+> > >                       enable-method = "psci";
+> > >                       capacity-dmips-mhz = <488>;
+> > >                       dynamic-power-coefficient = <232>;
+> > > -                     cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> > > -                                        &CLUSTER_SLEEP_0>;
+> > >                       next-level-cache = <&L2_0>;
+> > >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> > > +                     power-domains = <&CPU_PD0>;
+> > > +                     power-domain-names = "psci";
+> > >                       #cooling-cells = <2>;
+> > >                       L2_0: l2-cache {
+> > >                               compatible = "cache";
+> > > @@ -73,10 +73,10 @@ CPU1: cpu@100 {
+> > >                       enable-method = "psci";
+> > >                       capacity-dmips-mhz = <488>;
+> > >                       dynamic-power-coefficient = <232>;
+> > > -                     cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> > > -                                        &CLUSTER_SLEEP_0>;
+> > >                       next-level-cache = <&L2_100>;
+> > >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> > > +                     power-domains = <&CPU_PD1>;
+> > > +                     power-domain-names = "psci";
+> > >                       #cooling-cells = <2>;
+> > >                       L2_100: l2-cache {
+> > >                               compatible = "cache";
+> > > @@ -92,10 +92,10 @@ CPU2: cpu@200 {
+> > >                       enable-method = "psci";
+> > >                       capacity-dmips-mhz = <488>;
+> > >                       dynamic-power-coefficient = <232>;
+> > > -                     cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> > > -                                        &CLUSTER_SLEEP_0>;
+> > >                       next-level-cache = <&L2_200>;
+> > >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> > > +                     power-domains = <&CPU_PD2>;
+> > > +                     power-domain-names = "psci";
+> > >                       #cooling-cells = <2>;
+> > >                       L2_200: l2-cache {
+> > >                               compatible = "cache";
+> > > @@ -110,10 +110,10 @@ CPU3: cpu@300 {
+> > >                       enable-method = "psci";
+> > >                       capacity-dmips-mhz = <488>;
+> > >                       dynamic-power-coefficient = <232>;
+> > > -                     cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> > > -                                        &CLUSTER_SLEEP_0>;
+> > >                       next-level-cache = <&L2_300>;
+> > >                       qcom,freq-domain = <&cpufreq_hw 0>;
+> > > +                     power-domains = <&CPU_PD3>;
+> > > +                     power-domain-names = "psci";
+> > >                       #cooling-cells = <2>;
+> > >                       L2_300: l2-cache {
+> > >                               compatible = "cache";
+> > > @@ -128,10 +128,10 @@ CPU4: cpu@400 {
+> > >                       enable-method = "psci";
+> > >                       capacity-dmips-mhz = <1024>;
+> > >                       dynamic-power-coefficient = <369>;
+> > > -                     cpu-idle-states = <&BIG_CPU_SLEEP_0
+> > > -                                        &CLUSTER_SLEEP_0>;
+> > >                       next-level-cache = <&L2_400>;
+> > >                       qcom,freq-domain = <&cpufreq_hw 1>;
+> > > +                     power-domains = <&CPU_PD4>;
+> > > +                     power-domain-names = "psci";
+> > >                       #cooling-cells = <2>;
+> > >                       L2_400: l2-cache {
+> > >                               compatible = "cache";
+> > > @@ -146,10 +146,10 @@ CPU5: cpu@500 {
+> > >                       enable-method = "psci";
+> > >                       capacity-dmips-mhz = <1024>;
+> > >                       dynamic-power-coefficient = <369>;
+> > > -                     cpu-idle-states = <&BIG_CPU_SLEEP_0
+> > > -                                        &CLUSTER_SLEEP_0>;
+> > >                       next-level-cache = <&L2_500>;
+> > >                       qcom,freq-domain = <&cpufreq_hw 1>;
+> > > +                     power-domains = <&CPU_PD5>;
+> > > +                     power-domain-names = "psci";
+> > >                       #cooling-cells = <2>;
+> > >                       L2_500: l2-cache {
+> > >                               compatible = "cache";
+> > > @@ -164,10 +164,10 @@ CPU6: cpu@600 {
+> > >                       enable-method = "psci";
+> > >                       capacity-dmips-mhz = <1024>;
+> > >                       dynamic-power-coefficient = <369>;
+> > > -                     cpu-idle-states = <&BIG_CPU_SLEEP_0
+> > > -                                        &CLUSTER_SLEEP_0>;
+> > >                       next-level-cache = <&L2_600>;
+> > >                       qcom,freq-domain = <&cpufreq_hw 1>;
+> > > +                     power-domains = <&CPU_PD6>;
+> > > +                     power-domain-names = "psci";
+> > >                       #cooling-cells = <2>;
+> > >                       L2_600: l2-cache {
+> > >                               compatible = "cache";
+> > > @@ -182,10 +182,10 @@ CPU7: cpu@700 {
+> > >                       enable-method = "psci";
+> > >                       capacity-dmips-mhz = <1024>;
+> > >                       dynamic-power-coefficient = <421>;
+> > > -                     cpu-idle-states = <&BIG_CPU_SLEEP_0
+> > > -                                        &CLUSTER_SLEEP_0>;
+> > >                       next-level-cache = <&L2_700>;
+> > >                       qcom,freq-domain = <&cpufreq_hw 2>;
+> > > +                     power-domains = <&CPU_PD7>;
+> > > +                     power-domain-names = "psci";
+> > >                       #cooling-cells = <2>;
+> > >                       L2_700: l2-cache {
+> > >                               compatible = "cache";
+> > > @@ -251,11 +251,13 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> > >                               min-residency-us = <4488>;
+> > >                               local-timer-stop;
+> > >                       };
+> > > +             };
+> > >
+> > > +             domain-idle-states {
+> > >                       CLUSTER_SLEEP_0: cluster-sleep-0 {
+> > > -                             compatible = "arm,idle-state";
+> > > +                             compatible = "domain-idle-state";
+> > >                               idle-state-name = "cluster-power-collapse";
+> > > -                             arm,psci-suspend-param = <0x400000F4>;
+> > > +                             arm,psci-suspend-param = <0x4100c244>;
+> > >                               entry-latency-us = <3263>;
+> > >                               exit-latency-us = <6562>;
+> > >                               min-residency-us = <9987>;
+> > > @@ -291,6 +293,59 @@ pmu {
+> > >       psci {
+> > >               compatible = "arm,psci-1.0";
+> > >               method = "smc";
+> > > +
+> > > +             CPU_PD0: cpu0 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     power-domains = <&CLUSTER_PD>;
+> > > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> > > +             };
+> > > +
+> > > +             CPU_PD1: cpu1 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     power-domains = <&CLUSTER_PD>;
+> > > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> > > +             };
+> > > +
+> > > +             CPU_PD2: cpu2 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     power-domains = <&CLUSTER_PD>;
+> > > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> > > +             };
+> > > +
+> > > +             CPU_PD3: cpu3 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     power-domains = <&CLUSTER_PD>;
+> > > +                     domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> > > +             };
+> > > +
+> > > +             CPU_PD4: cpu4 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     power-domains = <&CLUSTER_PD>;
+> > > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> > > +             };
+> > > +
+> > > +             CPU_PD5: cpu5 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     power-domains = <&CLUSTER_PD>;
+> > > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> > > +             };
+> > > +
+> > > +             CPU_PD6: cpu6 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     power-domains = <&CLUSTER_PD>;
+> > > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> > > +             };
+> > > +
+> > > +             CPU_PD7: cpu7 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     power-domains = <&CLUSTER_PD>;
+> > > +                     domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> > > +             };
+> > > +
+> > > +             CLUSTER_PD: cpu-cluster0 {
+> > > +                     #power-domain-cells = <0>;
+> > > +                     domain-idle-states = <&CLUSTER_SLEEP_0>;
+> > > +             };
+> > >       };
+> > >
+> > >       reserved-memory {
+> > > --
+> > > 2.29.2
+> > >
