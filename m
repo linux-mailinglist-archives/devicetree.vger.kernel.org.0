@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A92C2F313F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 14:25:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CCC62F30F1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 14:16:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389534AbhALM5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 07:57:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53894 "EHLO mail.kernel.org"
+        id S1732848AbhALNNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 08:13:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53842 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388706AbhALM5D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 07:57:03 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7D8DB2312F;
-        Tue, 12 Jan 2021 12:55:54 +0000 (UTC)
+        id S2404188AbhALM5t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 07:57:49 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E1FCF23358;
+        Tue, 12 Jan 2021 12:56:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610456155;
-        bh=qRABFwRk2dCFkpe08baA/CnbeKDSjGWKDP3jaT7zd7U=;
+        s=k20201202; t=1610456201;
+        bh=mFrxYh/RcHcUNyoG0AC+OfhmXjHtTiAKE5866xLe/Cw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OFKtk8NST0wkkz+LSgmeLnWTAEsuZxp5ibitO7+L678zKQuuPmcBiLpn3AH3yOboM
-         6VCZjrLH8Sm5CzCwSfCCvvOjTLoO1f3GKGCE7DWU4gTEzdo+Yzko6oSjxcOwatBKPo
-         jKrX9I0w8Dq8hypkZUn8WvCQoT3n2yd+eeXdFuKowZB6av6nIKV2dydAHi881si4dj
-         nMhAUtKn3H0wxADGJ2aIZwIg8PpEHtKQ1OMxsqal/7vP0aFbz/v4F+g7dc7nwK4rMe
-         ++RubA8Jth7qutND2D48VZ1+OAYgAExez2sg5EfS0l+ePxmig2En/8y/vb8jbvUiE7
-         tcTc/p14CDXUg==
+        b=jDqIKadpbUK0QN2ixHFts1FvbHE0UgsPyEilHlfUP5Oitj0oxDSBH/r5c3RzJ9Hx8
+         8E2hR20OT+FGJ6a61Jm1QXDwmgc+Wj9u3dmV6wxHDDn4MD4c2O+92ue0D8zR21H3c5
+         WoLJq5k+QXepR3Z/2qOsF21/QhRosEd8gWQnDoZnyU15HmeRXqnF+rTyZ2QOL6bklz
+         nJdlHg1y3TQrVqJmdqKkBJ5vrj4BWm2XDcFhM42ziApWm5wdEYZSkbbzTlFbW85Thf
+         WngOuTXFW7TywrbSDqeQSPUjG/NkCWH3ZW+fBfkhuUYkwcnGqZajQvVQUoJ9b0ET8Q
+         Q/DXircVAo+Bg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
+Cc:     Arnd Bergmann <arnd@arndb.de>, Jamie Iles <jamie@jamieiles.com>,
+        Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 15/51] ARM: dts: ux500/golden: Set display max brightness
-Date:   Tue, 12 Jan 2021 07:54:57 -0500
-Message-Id: <20210112125534.70280-15-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 50/51] ARM: picoxcell: fix missing interrupt-parent properties
+Date:   Tue, 12 Jan 2021 07:55:32 -0500
+Message-Id: <20210112125534.70280-50-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210112125534.70280-1-sashal@kernel.org>
 References: <20210112125534.70280-1-sashal@kernel.org>
@@ -43,34 +42,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Linus Walleij <linus.walleij@linaro.org>
+From: Arnd Bergmann <arnd@arndb.de>
 
-[ Upstream commit 7887cc89d5851cbdec49219e9614beec776af150 ]
+[ Upstream commit bac717171971176b78c72d15a8b6961764ab197f ]
 
-A too high brightness by default (default is max) makes the
-screen go blank. Set this to 15 as in the Vendor tree.
+dtc points out that the interrupts for some devices are not parsable:
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-Cc: Stephan Gerhold <stephan@gerhold.net>
-Link: https://lore.kernel.org/r/20201214223413.253893-1-linus.walleij@linaro.org'
+picoxcell-pc3x2.dtsi:45.19-49.5: Warning (interrupts_property): /paxi/gem@30000: Missing interrupt-parent
+picoxcell-pc3x2.dtsi:51.21-55.5: Warning (interrupts_property): /paxi/dmac@40000: Missing interrupt-parent
+picoxcell-pc3x2.dtsi:57.21-61.5: Warning (interrupts_property): /paxi/dmac@50000: Missing interrupt-parent
+picoxcell-pc3x2.dtsi:233.21-237.5: Warning (interrupts_property): /rwid-axi/axi2pico@c0000000: Missing interrupt-parent
+
+There are two VIC instances, so it's not clear which one needs to be
+used. I found the BSP sources that reference VIC0, so use that:
+
+https://github.com/r1mikey/meta-picoxcell/blob/master/recipes-kernel/linux/linux-picochip-3.0/0001-picoxcell-support-for-Picochip-picoXcell-SoC.patch
+
+Acked-by: Jamie Iles <jamie@jamieiles.com>
+Link: https://lore.kernel.org/r/20201230152010.3914962-1-arnd@kernel.org'
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/ste-ux500-samsung-golden.dts | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/picoxcell-pc3x2.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-golden.dts b/arch/arm/boot/dts/ste-ux500-samsung-golden.dts
-index a1093cb37dc7a..aed1f2d5f2467 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-golden.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-golden.dts
-@@ -326,6 +326,7 @@ dsi-controller@a0351000 {
- 				panel@0 {
- 					compatible = "samsung,s6e63m0";
- 					reg = <0>;
-+					max-brightness = <15>;
- 					vdd3-supply = <&panel_reg_3v0>;
- 					vci-supply = <&panel_reg_1v8>;
- 					reset-gpios = <&gpio4 11 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm/boot/dts/picoxcell-pc3x2.dtsi b/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
+index c4c6c7e9e37b6..5898879a3038e 100644
+--- a/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
++++ b/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
+@@ -45,18 +45,21 @@ paxi {
+ 		emac: gem@30000 {
+ 			compatible = "cadence,gem";
+ 			reg = <0x30000 0x10000>;
++			interrupt-parent = <&vic0>;
+ 			interrupts = <31>;
+ 		};
+ 
+ 		dmac1: dmac@40000 {
+ 			compatible = "snps,dw-dmac";
+ 			reg = <0x40000 0x10000>;
++			interrupt-parent = <&vic0>;
+ 			interrupts = <25>;
+ 		};
+ 
+ 		dmac2: dmac@50000 {
+ 			compatible = "snps,dw-dmac";
+ 			reg = <0x50000 0x10000>;
++			interrupt-parent = <&vic0>;
+ 			interrupts = <26>;
+ 		};
+ 
+@@ -233,6 +236,7 @@ ebi@50000000 {
+ 		axi2pico@c0000000 {
+ 			compatible = "picochip,axi2pico-pc3x2";
+ 			reg = <0xc0000000 0x10000>;
++			interrupt-parent = <&vic0>;
+ 			interrupts = <13 14 15 16 17 18 19 20 21>;
+ 		};
+ 	};
 -- 
 2.27.0
 
