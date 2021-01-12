@@ -2,306 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FBE82F264F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 03:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 858C62F2668
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 03:53:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732475AbhALCds convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 Jan 2021 21:33:48 -0500
-Received: from mail-eopbgr1300118.outbound.protection.outlook.com ([40.107.130.118]:63760
-        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732323AbhALCdr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Jan 2021 21:33:47 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nEEwgv4Qw4FT45OUgnbkirsjcw/UYUsllDEwgxAckIrfReG16jaYOMYs2/Hf1Ihu7iNuzoZzxywFgCXuC46TidRgDnp1aVDfP7yyow+EmMisaQuix91t572EMqlmcqUB2F7tdghFb4TOzO/HApxWsiE+H2r6vcdCfnZkr6/iyxJ37gwx1h1df1LU/KJH+P2Qjo7C1+0LMNAyiR0YQNo0cXzSjS0pOCU0zaOkZOdxAVgpZhGdP6QuzC2xifysU1rsSCGmObzilpZKTOAax2YMFvq0n1ye/BtbtPxtFinW3pPLDytwPUvUtkj0PaA/sGn3VtYl6O5HHbzzakd187pjtQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ly0vgqXQoxcgcmSG+8QBuugXbTb3wjJ1oPT5JtNMKjw=;
- b=FsLF2a+NqfLLmuqWHDpr9tPhaFBWA1n7YmZw2LrdDftCWH1Vss9vJ9YKGenW6kIHe/wM0FjwjVRawftg7XQU3v9QaTbH4qiM3OBeP7Gf04kAQWvEwqg6546e2sKyJvFZZh9qCIFlDT4pnEmI6S8ahuGk81jD3xheTwS/663It/1whGx+AKgx5+Hii1TvUuaXkT2sNytBPrGmGW+iLfwbz84Z+oCL8poiQxyWDJ9Kt67B4Nc9LIwUXvwlmUK5afIvSRAyRguSlM9LRmwaVUfMjnkWKAl/jU6AKtacXIW17N3DKe+ZObaOm9wB/gd7xvDO0zMrts2tDlhnin6Ft2z/zQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
- by HK0PR06MB2370.apcprd06.prod.outlook.com (2603:1096:203:42::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6; Tue, 12 Jan
- 2021 02:32:11 +0000
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::394c:29f2:cb4c:55ed]) by HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::394c:29f2:cb4c:55ed%3]) with mapi id 15.20.3742.012; Tue, 12 Jan 2021
- 02:32:11 +0000
-From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "minyard@acm.org" <minyard@acm.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>,
-        "haiyue.wang@linux.intel.com" <haiyue.wang@linux.intel.com>,
-        "cyrilbur@gmail.com" <cyrilbur@gmail.com>,
-        "rlippert@google.com" <rlippert@google.com>
-Subject: RE: [PATCH v4 1/5] dt-bindings: aspeed-lpc: Remove LPC partitioning
-Thread-Topic: [PATCH v4 1/5] dt-bindings: aspeed-lpc: Remove LPC partitioning
-Thread-Index: AQHW3axE0G2IuF3DG06FbgGmQw41XKoi+DAAgABh3IA=
-Date:   Tue, 12 Jan 2021 02:32:10 +0000
-Message-ID: <HK0PR06MB377970995D22F06259721AE091AA0@HK0PR06MB3779.apcprd06.prod.outlook.com>
-References: <20201229063157.3587-1-chiawei_wang@aspeedtech.com>
- <20201229063157.3587-2-chiawei_wang@aspeedtech.com>
- <20210111203850.GA3022469@robh.at.kernel.org>
-In-Reply-To: <20210111203850.GA3022469@robh.at.kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=aspeedtech.com;
-x-originating-ip: [211.20.114.70]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c4e389c3-b0b5-4043-7dae-08d8b6a243cb
-x-ms-traffictypediagnostic: HK0PR06MB2370:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK0PR06MB2370C3692B8BB8A9A1347F0091AA0@HK0PR06MB2370.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CzoBIXKeaH5qN9xbQSFw749B0QKCtV/Dp4L7E4yt6tbXKQB6pSAkj5E6qrNuU/ZhO69wFP1n2tkUaIchoSFuqF3SNrF4h5Bk8dBeDFAIi9s4yYqr3onhPvHBsa8Ted1UHW429qdlf2TKPjDMZOZ9YV53657I1MxiuNVcl8n7WLNUsdW2/WFYT33HIWBSUTog1eOOxA5o+b9EpV6wMl0P+0lQ6FDJFGYoV9BwT/5lyvfGh5liZFhu/VV0tRNGTELxVQ0wklb1Mtr75BIy+OVBcdHAI2VhUZK7KNpnR4pX44wWFLzXAQoQ6fM3UW2btIt/BkcE5Hwot4FzdFlYJrctG3OqzJR7Px1k9+dOi8FO9Tm6ZU4uFdg5zIYwVTWEw8DY
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(366004)(39840400004)(346002)(376002)(396003)(55016002)(5660300002)(7696005)(54906003)(66946007)(55236004)(71200400001)(8936002)(478600001)(9686003)(7416002)(4326008)(6916009)(6506007)(2906002)(83380400001)(76116006)(66446008)(26005)(64756008)(8676002)(66556008)(316002)(86362001)(186003)(66476007)(33656002)(52536014)(53546011);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?tqTg0Jxxpg9KRorvPQ+/A/W2x5iSGYf5ch/D6nfE7r8TZBW34j3Al58In1TI?=
- =?us-ascii?Q?Q/RFfwWJBLMRYssOg/gkS12UiO+T5f2B/iyZzRZ3w+oUWaVDUfUgHlmN3fSr?=
- =?us-ascii?Q?l1g7ARCeTDNpVMBoX6cgftb520w2b8WXhKEBobLko6HJwlMWGLTUJBgmM9cy?=
- =?us-ascii?Q?xvlvFvHMjRsmsxh31YblAiXHZpb9XEmJEGH3qG9Hy29BUt7ne301YBs+KFV9?=
- =?us-ascii?Q?N7+WNpFTiRCnHi6anOJcSgZRDBFylw2cr+Tu0tfZpq7nRA+IFQRcQsPhhTqH?=
- =?us-ascii?Q?372NvL37+fcuUGcxpqyf3AnwELWFvEO7N8Hf9Ydt44lcOZRMq/RAIN9pqaEd?=
- =?us-ascii?Q?PGQIb1IcbiJ+P2PFUgHz7hOE4pmI0ZWZ/Ere1TS5ZlGUhLX3YEWCjKVQrzhf?=
- =?us-ascii?Q?3ity9VtxaxHyxSO6k2FZKFl5PwTOnyZblcWfzN8cKr21/b/a06dv/8waL5wV?=
- =?us-ascii?Q?lC5m3qTtI5G4909w3x0Ch5H/XoiLi5ZELIF1trXRPaRJcGqQGj+l/KLP38oK?=
- =?us-ascii?Q?gZm19W+xwJgxwvoHrh/fdhJ+bOZfwoeRUX1SHOJF3v+52GnZOQewbTX9h8gy?=
- =?us-ascii?Q?uVQ6caCGsm3HtdMIFVCZNdka8fxSzve6BsNLNy78KIRqHFRwsJH4jviGeuNU?=
- =?us-ascii?Q?Pajt6EmPz+0Mj/Vy+J7shz7J8N6kAxfjvkXhdnr2M4qZUocrFkaTov7eem1a?=
- =?us-ascii?Q?yDT/oc5CGmuGpLLpdG+x1qYP7ZlYThWnhJ9bUAEOMmXPNfBZ+EBcJV2Nmymy?=
- =?us-ascii?Q?7CGPKKZIi0DgwfVPRar5k6ochLAe5OjckuQ0vFB6hePp+w24syzBQDrwq3C1?=
- =?us-ascii?Q?3tV/zfeKTOk4rajmgwx9ROVky3LYtIg7XDI5cZpQw4TyOgaSBnKVvIK/Dn1Q?=
- =?us-ascii?Q?62wxAafaMoYiAqkJKuLqmHou6L0FceceTiC8dlCdZYwFi2533ZmIigoBPemi?=
- =?us-ascii?Q?EDOGUp236r7vVDi/DxvVHnwZ8xu4KmOWKseiVeeAnFI=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        id S1729045AbhALCvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 21:51:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728044AbhALCvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 21:51:35 -0500
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36C12C061786;
+        Mon, 11 Jan 2021 18:50:55 -0800 (PST)
+Received: by mail-io1-xd2b.google.com with SMTP id u17so1027334iow.1;
+        Mon, 11 Jan 2021 18:50:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=5w78tzUXX0I8RLg/o+73uKu20yriP3eTMDkxoUSEBt8=;
+        b=NHJNCgjrOquzygHREJEL8tOelgSod+g5e14cUUQBq3m6q9Tz7J7kiFWgiqScncNVa7
+         VtHn9W+sU/HKdfD3qR7v5xRLrKMbfNHHzzpC+dPGuA6ZVNhDN5GiTHPAdTX/GWIgL7Zk
+         ZSqwdCu8uD4NTwENzTRv2gLX9uyzmLvoH+s958GGTh6A3pDLE5iw+rlFMt9azCpqzhPt
+         lQ7W1L010BxxiDvfV29HppOK5smgJ3xRPGWdLQrN4kexe7ZVHxZZ+rpTK43nSC51xLYg
+         6McdgrO73jIn+GCdIEab7GPB4pEvCTaXPLwtEnoISDVaBuXHuQH4eL9KDpTjz9lpejyx
+         VtMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=5w78tzUXX0I8RLg/o+73uKu20yriP3eTMDkxoUSEBt8=;
+        b=jakVDGrwAWHbvKgFHBJW98NmyNViYjAHmfsGXf7cKctsqlxWnCYsFIKxEc7lId9AUE
+         FFR10TKZhylYcp9ufYDu9vsLBOVoCwVUlTDT0YlNQmBhhl4+naFMD9kYeSk4sKW1Dtc3
+         eE7OvVvfLDar1S3VrkVSpwubC/Bc2zh1OeOLOQi40xqo97TfPdfXiM2T6JkPyAXVgjg5
+         0fszSPvoa0HatgdVj0zsLk0BHKa7LGChGrVVO4vcWB7MEp7omHvrGr4gitII5hy0Wwlm
+         A2clEtxNBrZFdG8gu3AOh5EMLTDeI0UZsCvIBSFFw3cDwoFP1iv2n0PSxj/pSpjrzvRb
+         X+Fg==
+X-Gm-Message-State: AOAM531v7zZ5M+sg1PB+nSJuxWW7w+uYtUYW+wk5AS0s/5uifHpAJuXr
+        6waRX/+QnrWX1ldOifi2k0ew1pL5pvAjotBzcwU=
+X-Google-Smtp-Source: ABdhPJz0j5BLfPgmG13n4HxFvJkNZxPuemZywJs7U1swOc8i0mMqZy/C2uAL4yRDpNC/M7qFtc/loQ/5mbS5Plf+tnI=
+X-Received: by 2002:a6b:b5d2:: with SMTP id e201mr1630874iof.111.1610419854594;
+ Mon, 11 Jan 2021 18:50:54 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4e389c3-b0b5-4043-7dae-08d8b6a243cb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jan 2021 02:32:10.8553
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8ExuxESVPKnZFlxT9BXKUnxbpyFwdTXYtNOqcf4DR9G/50uDyyhXMEZXzOV3PR16GKSUvcq/wmIdIv4nsylt2yxY2XaZ58tOMqwM9zkhjn0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB2370
+References: <20210111054428.3273-1-dqfext@gmail.com> <20210111164616.1947d779@kernel.org>
+In-Reply-To: <20210111164616.1947d779@kernel.org>
+From:   DENG Qingfang <dqfext@gmail.com>
+Date:   Tue, 12 Jan 2021 10:50:54 +0800
+Message-ID: <CALW65jboizW2J1S0BYBrOM_xNEzpFM-gdJ6OF33+65vMiJtmWg@mail.gmail.com>
+Subject: Re: [PATCH net-next 0/2] dsa: add MT7530 GPIO support
+To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-kernel@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Marek,
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Tuesday, January 12, 2021 4:39 AM
-> To: ChiaWei Wang <chiawei_wang@aspeedtech.com>
-> cyrilbur@gmail.com; rlippert@google.com
-> Subject: Re: [PATCH v4 1/5] dt-bindings: aspeed-lpc: Remove LPC partitioning
-> 
-> On Tue, Dec 29, 2020 at 02:31:53PM +0800, Chia-Wei, Wang wrote:
-> > The LPC controller has no concept of the BMC and the Host partitions.
-> > This patch fixes the documentation by removing the description on LPC
-> > partitions. The register offsets illustrated in the DTS node examples
-> > are also fixed to adapt to the LPC DTS change.
-> >
-> > Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
-> > ---
-> >  .../devicetree/bindings/mfd/aspeed-lpc.txt    | 99 ++++---------------
-> >  1 file changed, 21 insertions(+), 78 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
-> > b/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
-> > index d0a38ba8b9ce..90eb0ecc95d1 100644
-> > --- a/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
-> > +++ b/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
-> > @@ -9,13 +9,7 @@ primary use case of the Aspeed LPC controller is as a
-> > slave on the bus  conditions it can also take the role of bus master.
-> >
-> >  The LPC controller is represented as a multi-function device to
-> > account for the -mix of functionality it provides. The principle split
-> > is between the register -layout at the start of the I/O space which
-> > is, to quote the Aspeed datasheet, -"basically compatible with the
-> > [LPC registers from the] popular BMC controller -H8S/2168[1]", and
-> > everything else, where everything else is an eclectic -collection of
-> > functions with a esoteric register layout. "Everything else", -here
-> > labeled the "host" portion of the controller, includes, but is not
-> > limited
-> > -to:
-> > +mix of functionality, which includes, but is not limited to:
-> >
-> >  * An IPMI Block Transfer[2] Controller
-> >
-> > @@ -44,80 +38,29 @@ Required properties  ===================
-> >
-> >  - compatible:	One of:
-> > -		"aspeed,ast2400-lpc", "simple-mfd"
-> > -		"aspeed,ast2500-lpc", "simple-mfd"
-> > -		"aspeed,ast2600-lpc", "simple-mfd"
-> > +		"aspeed,ast2400-lpc-v2", "simple-mfd", "syscon"
-> > +		"aspeed,ast2500-lpc-v2", "simple-mfd", "syscon"
-> > +		"aspeed,ast2600-lpc-v2", "simple-mfd", "syscon"
-> >
-> >  - reg:		contains the physical address and length values of the Aspeed
-> >                  LPC memory region.
-> >
-> >  - #address-cells: <1>
-> >  - #size-cells:	<1>
-> > -- ranges: 	Maps 0 to the physical address and length of the LPC memory
-> > -                region
-> > -
-> > -Required LPC Child nodes
-> > -========================
-> > -
-> > -BMC Node
-> > ---------
-> > -
-> > -- compatible:	One of:
-> > -		"aspeed,ast2400-lpc-bmc"
-> > -		"aspeed,ast2500-lpc-bmc"
-> > -		"aspeed,ast2600-lpc-bmc"
-> > -
-> > -- reg:		contains the physical address and length values of the
-> > -                H8S/2168-compatible LPC controller memory region
-> > -
-> > -Host Node
-> > ----------
-> > -
-> > -- compatible:   One of:
-> > -		"aspeed,ast2400-lpc-host", "simple-mfd", "syscon"
-> > -		"aspeed,ast2500-lpc-host", "simple-mfd", "syscon"
-> > -		"aspeed,ast2600-lpc-host", "simple-mfd", "syscon"
-> > -
-> > -- reg:		contains the address and length values of the host-related
-> > -                register space for the Aspeed LPC controller
-> > -
-> > -- #address-cells: <1>
-> > -- #size-cells:	<1>
-> > -- ranges: 	Maps 0 to the address and length of the host-related LPC
-> memory
-> > +- ranges:	Maps 0 to the physical address and length of the LPC memory
-> >                  region
-> >
-> >  Example:
-> >
-> >  lpc: lpc@1e789000 {
-> > -	compatible = "aspeed,ast2500-lpc", "simple-mfd";
-> > +	compatible = "aspeed,ast2500-lpc-v2", "simple-mfd", "syscon";
-> >  	reg = <0x1e789000 0x1000>;
-> >
-> >  	#address-cells = <1>;
-> >  	#size-cells = <1>;
-> >  	ranges = <0x0 0x1e789000 0x1000>;
-> 
-> No child nodes? Then you don't need 'ranges', '#size-cells', nor '#address-cells'.
-> 
-There are child nodes in LPC, should I list all of them or just few for the example?
+On Mon, Jan 11, 2021 at 11:46 PM Marek Beh=C3=BAn <kabel@kernel.org> wrote:
+>
+> what modes does the LED support? Does it support blinking on rx/tx?
+> What about link status?
 
-Chiawei
+Yes. But unfortunately they cannot be controlled individually, unless
+on GPIO mode.
 
-> > -
-> > -	lpc_bmc: lpc-bmc@0 {
-> > -		compatible = "aspeed,ast2500-lpc-bmc";
-> > -		reg = <0x0 0x80>;
-> > -	};
-> > -
-> > -	lpc_host: lpc-host@80 {
-> > -		compatible = "aspeed,ast2500-lpc-host", "simple-mfd", "syscon";
-> > -		reg = <0x80 0x1e0>;
-> > -		reg-io-width = <4>;
-> > -
-> > -		#address-cells = <1>;
-> > -		#size-cells = <1>;
-> > -		ranges = <0x0 0x80 0x1e0>;
-> > -	};
-> >  };
-> >
-> > -BMC Node Children
-> > -==================
-> > -
-> > -
-> > -Host Node Children
-> > -==================
-> >
-> >  LPC Host Interface Controller
-> >  -------------------
-> > @@ -149,14 +92,12 @@ Optional properties:
-> >
-> >  Example:
-> >
-> > -lpc-host@80 {
-> > -	lpc_ctrl: lpc-ctrl@0 {
-> > -		compatible = "aspeed,ast2500-lpc-ctrl";
-> > -		reg = <0x0 0x80>;
-> > -		clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
-> > -		memory-region = <&flash_memory>;
-> > -		flash = <&spi>;
-> > -	};
-> > +lpc_ctrl: lpc-ctrl@80 {
-> > +	compatible = "aspeed,ast2500-lpc-ctrl";
-> > +	reg = <0x80 0x80>;
-> > +	clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
-> > +	memory-region = <&flash_memory>;
-> > +	flash = <&spi>;
-> >  };
-> >
-> >  LPC Host Controller
-> > @@ -179,9 +120,9 @@ Required properties:
-> >
-> >  Example:
-> >
-> > -lhc: lhc@20 {
-> > +lhc: lhc@a0 {
-> >  	compatible = "aspeed,ast2500-lhc";
-> > -	reg = <0x20 0x24 0x48 0x8>;
-> > +	reg = <0xa0 0x24 0xc8 0x8>;
-> >  };
-> >
-> >  LPC reset control
-> > @@ -192,16 +133,18 @@ state of the LPC bus. Some systems may chose to
-> modify this configuration.
-> >
-> >  Required properties:
-> >
-> > - - compatible:		"aspeed,ast2600-lpc-reset" or
-> > -			"aspeed,ast2500-lpc-reset"
-> > -			"aspeed,ast2400-lpc-reset"
-> > + - compatible:		One of:
-> > +			"aspeed,ast2600-lpc-reset";
-> > +			"aspeed,ast2500-lpc-reset";
-> > +			"aspeed,ast2400-lpc-reset";
-> > +
-> >   - reg:			offset and length of the IP in the LHC memory region
-> >   - #reset-controller	indicates the number of reset cells expected
-> >
-> >  Example:
-> >
-> > -lpc_reset: reset-controller@18 {
-> > +lpc_reset: reset-controller@98 {
-> >          compatible = "aspeed,ast2500-lpc-reset";
-> > -        reg = <0x18 0x4>;
-> > +        reg = <0x98 0x4>;
-> >          #reset-cells = <1>;
-> >  };
-> > --
-> > 2.17.1
-> >
+> I'd like to know because I am still working on patches which add
+> ethernet PHY/switch LEDs, with transparent offloading of netdev trigger.
+>
+> Marek
