@@ -2,120 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E05352F38F4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 19:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9115F2F3925
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 19:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388241AbhALSfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 13:35:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33652 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726110AbhALSfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 13:35:14 -0500
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83E39C061794;
-        Tue, 12 Jan 2021 10:34:34 -0800 (PST)
-Received: by mail-qt1-x82e.google.com with SMTP id g24so2225469qtq.12;
-        Tue, 12 Jan 2021 10:34:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/J2zRKmxDhbKwQ+cfEQ7FFvcXxU4+VcYyyS0jtn1t5w=;
-        b=hTmtqD49IHqYo6y9+uVUT5pF8sFes0PsFMkiwXMXGte4it0LnQe0hoHtnzVSs4P+to
-         0CMAU7e/u7QIIZe7u5FhiBVd/+akyn0m5RU0BDPBDb4EhJ3Dhu8lNZghw8s3q4YK+NVd
-         vEHU283U89Q1xMYp+VhOd76hy+pq96JfPqdQG5/dbX8qeDJrjv+fV2/h5Rs1iCGPwreV
-         MdU+G9gyzr6GJ/Rjm8jfhoydLlCgzjdsoVaoqcDKdQSYEhirQn6GFQ5Mwwl1VyIem0O7
-         3lWcgE9MLcki4KUoPGjD2V4FBpFAdmvPSGVv1Bug5uN81oLTAt4iODvTxz5L1H3tukMw
-         F2Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/J2zRKmxDhbKwQ+cfEQ7FFvcXxU4+VcYyyS0jtn1t5w=;
-        b=jOh2duqpP8sIbfcWFzvr+e824qgbxXQyrFLPefbZ3SNaPeZ6dVwQhl9zk2QRs/0pwX
-         RqsuB5FPeurezZPnC+JV5euSDPGuarOX9ZthyYsQAj1tum+7JXLS1ZKeNT4kZv2GWFVA
-         9Nhd/6bPVdr1ypzUvxrvpjrBdY9QYuvzuiCr/TRT6yCUDZolVOgDXwSI2UcpsSSdeJc2
-         KqZ4qth3cWBOitV+jAfZSH8NLTs8gFccw7j1RVzfP4pDJZODo0xoOSNEId2Yg7m0UFbE
-         OvmCdYDSz5g5arACiZzZoQ07vHEkmGB15+DDnJ/uUbAz3ey4GOnlGyQkcI9OL0pTe3yy
-         spuA==
-X-Gm-Message-State: AOAM531mSKKfFGQJzsBJ43IKcExVPVShxeVpUnTonV5WdaDBbzmKF8Hq
-        s4jiDRPEmMCOs4K7G6LNnIk=
-X-Google-Smtp-Source: ABdhPJz/vD5kjzn92FMPZ/llPyVvX8A0FIz2K1glfJREBebfwvWosIVccSoYynEfKa+j9US1MJefGQ==
-X-Received: by 2002:ac8:4cda:: with SMTP id l26mr298115qtv.213.1610476472849;
-        Tue, 12 Jan 2021 10:34:32 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id 70sm1779957qkk.10.2021.01.12.10.34.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jan 2021 10:34:32 -0800 (PST)
-Subject: Re: [PATCH V3 2/2] scripts: dtc: Build fdtoverlay and fdtdump tools
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-References: <CAK7LNAQT5nVHGAZDhj4dct0v8UMzQ+-mdfBXJsfedR-7mZTnyA@mail.gmail.com>
- <72c3a4f63dde3c172c11153e9a5b19fb6cdb4498.1610000585.git.viresh.kumar@linaro.org>
- <1d9369aa-b7aa-6d06-0d44-6ef21bc639e3@gmail.com>
- <20210112050818.s6ctvd6ihd2dt2d2@vireshk-i7>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <3f0c733a-641f-290f-41b8-62ca22e355b7@gmail.com>
-Date:   Tue, 12 Jan 2021 12:34:31 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2406192AbhALSqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 13:46:54 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:24518 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726636AbhALSqy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 13:46:54 -0500
+Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 10CIh4CD135115;
+        Tue, 12 Jan 2021 13:45:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=8dn5n5mw4OQtpzK0N/CimN+ip41q9EcXbMAGPd2ftlk=;
+ b=iExWTgecsIiGBmbNrC/PYfhGTtrXC/8EKM6P5HDKCDPQLWHvoIKiahPkjVV2EoA+jxGm
+ NDgJF/LXnP80Aqngd/zz11WRrxEr3xz/lSDhyNyd80W/0sOtNw1KzMrs6zpTfLlu+0Qu
+ M4POJJaw2qkJqY8Jps1A06eXPa/QGPczhovDzC6npQj88Tub9bCW4KT+BwLy/aajyvv0
+ bCV9GTxEeaEnvGqde4OdBPtMLnbusdsX3CApW1RX7crA2aZmtNSqFAmtj+A8rvy+fSrb
+ In5jw2rqezPJltGjvlDw924Z5szE2MkiKVqldnR9oUYivhyfKbYaU7fENWHJCMm1QJU9 Qw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 361h9pg1fr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Jan 2021 13:45:21 -0500
+Received: from m0098393.ppops.net (m0098393.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 10CIimKQ142380;
+        Tue, 12 Jan 2021 13:45:21 -0500
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 361h9pg1f0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Jan 2021 13:45:20 -0500
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+        by ppma03wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 10CIb8D2011352;
+        Tue, 12 Jan 2021 18:45:19 GMT
+Received: from b01cxnp22036.gho.pok.ibm.com (b01cxnp22036.gho.pok.ibm.com [9.57.198.26])
+        by ppma03wdc.us.ibm.com with ESMTP id 35y449031x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Jan 2021 18:45:19 +0000
+Received: from b01ledav006.gho.pok.ibm.com (b01ledav006.gho.pok.ibm.com [9.57.199.111])
+        by b01cxnp22036.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 10CIjIX19175636
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 12 Jan 2021 18:45:18 GMT
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A900EAC062;
+        Tue, 12 Jan 2021 18:45:18 +0000 (GMT)
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 3CC7BAC059;
+        Tue, 12 Jan 2021 18:45:11 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.85.136.171])
+        by b01ledav006.gho.pok.ibm.com (Postfix) with ESMTPS;
+        Tue, 12 Jan 2021 18:45:10 +0000 (GMT)
+References: <20210104192602.10131-1-nramas@linux.microsoft.com>
+ <20210112144248.GA256955@robh.at.kernel.org>
+ <601825013d67584b0d2de7a973b806ec3cbc05ca.camel@linux.ibm.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Mimi Zohar <zohar@linux.ibm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au,
+        james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v14 0/6] Carry forward IMA measurement log on kexec on
+ ARM64
+In-reply-to: <601825013d67584b0d2de7a973b806ec3cbc05ca.camel@linux.ibm.com>
+Date:   Tue, 12 Jan 2021 15:45:08 -0300
+Message-ID: <87eeiqro3v.fsf@manicouagan.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <20210112050818.s6ctvd6ihd2dt2d2@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-12_15:2021-01-12,2021-01-12 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 mlxlogscore=999 spamscore=0 clxscore=1015
+ adultscore=0 impostorscore=0 phishscore=0 mlxscore=0 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101120106
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/11/21 11:08 PM, Viresh Kumar wrote:
-> On 11-01-21, 18:44, Frank Rowand wrote:
->> On 1/7/21 12:25 AM, Viresh Kumar wrote:
->>> We will start building overlays for platforms soon in the kernel and
->>> would need these tools going forward. Lets start building them.
->>>
->>> The fdtoverlay program applies (or merges) one ore more overlay dtb
->>> blobs to a base dtb blob. The kernel build system would later use
->>> fdtoverlay to generate the overlaid blobs based on platform specific
->>> configurations.
->>>
->>> The fdtdump program prints a readable version of a flat device-tree
->>> file. This is a very useful tool to analyze the details of the overlay's
->>> dtb and the final dtb produced by fdtoverlay after applying the
->>> overlay's dtb to a base dtb.
->>
->> You can calso dump an FDT with:
->>
->>    dtc -O dts XXX.dtb
->>
->> Is this sufficient for the desired functionality, or is there something
->> additional in fdtdump that is needed?
-> 
 
-comment 1:
+Mimi Zohar <zohar@linux.ibm.com> writes:
 
-> Not for my usecase at least.
+> On Tue, 2021-01-12 at 08:42 -0600, Rob Herring wrote:
+>> On Mon, Jan 04, 2021 at 11:25:56AM -0800, Lakshmi Ramasubramanian wrote:
+>> > On kexec file load Integrity Measurement Architecture (IMA) subsystem
+>> > may verify the IMA signature of the kernel and initramfs, and measure
+>> > it. The command line parameters passed to the kernel in the kexec call
+>> > may also be measured by IMA. A remote attestation service can verify
+>> > a TPM quote based on the TPM event log, the IMA measurement list, and
+>> > the TPM PCR data. This can be achieved only if the IMA measurement log
+>> > is carried over from the current kernel to the next kernel across
+>> > the kexec call.
+>> > 
+>> > powerpc already supports carrying forward the IMA measurement log on
+>> > kexec. This patch set adds support for carrying forward the IMA
+>> > measurement log on kexec on ARM64. 
+>> > 
+>> > This patch set moves the platform independent code defined for powerpc
+>> > such that it can be reused for other platforms as well. A chosen node
+>> > "linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
+>> > the address and the size of the memory reserved to carry
+>> > the IMA measurement log.
+>> > 
+>> > This patch set has been tested for ARM64 platform using QEMU.
+>> > I would like help from the community for testing this change on powerpc.
+>> > Thanks.
+>> > 
+>> > This patch set is based on
+>> > commit a29a64445089 ("powerpc: Use common of_kexec_setup_new_fdt()")
+>> > in https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+>> > "dt/kexec" branch.
+>> 
+>> This all looks good to me. I'd suggest you send the above patches out as 
+>> part of this series because I don't plan to do so.
+>> 
+>> I would like to also resolve the vmalloc vs. kmalloc difference for 
+>> allocating the FDT. Then we can further consolidate the DT kexec code.
+>> 
+>> It all needs some acks from arm64 and powerpc maintainers. As far as 
+>> merging, I think via the integrity tree makes the most sense.
+>
+> Thanks, Rob.  Lakshmi,  please update Rob's patches to include patch
+> descriptions before re-posting.
 
-> 
->> If nothing additional needed, and there is no other justification for adding
->> another program, I would prefer to leave fdtdump out.
-> 
+Also please update the powerpc mailing list address to
+linuxppc-dev@lists.ozlabs.org
 
-comment 2:
-
-> Okay, then I will also remove the stale version of fdtdump which is
-> already there in kernel since a long time.
-> 
-
-I'm confused.  I read comment 1 as saying that fdtdump does provide a feature
-that you need to analyze the dtb created by fdtoverlay.  But I read comment 2
-as implying that you are accepting that fdtdump will not be added to the
-Linux kernel source.
-
--Frank
+-- 
+Thiago Jung Bauermann
+IBM Linux Technology Center
