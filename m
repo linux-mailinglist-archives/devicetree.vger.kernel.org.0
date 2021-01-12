@@ -2,363 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5B292F3AC1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 20:42:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18E8A2F3ACD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 20:42:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393059AbhALTj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 14:39:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47680 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392926AbhALTj4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 14:39:56 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90099C061575;
-        Tue, 12 Jan 2021 11:39:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=cS9C/2XYzsbjYTZ0aJ7zWNeNcxrmFX1E76BcBqiBK3c=; b=INxkXnT9LshF4+KSR5QhbpCd6w
-        lqtWX/XifPwQgxQuq2fAMh21xFNLj76YmfvJsRsFYZ4DyFI3WpdSfakUWFPqDMegLbF4l65eYcaoR
-        qpjCYCDtYybCUDwovkPsot+MueW/Ujjb59crkFGeS7GlicyC5fv/JPzuM1eKZXRIrXHY=;
-Received: from p200300ccff1586001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff15:8600:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1kzPVP-0003kv-Hc; Tue, 12 Jan 2021 20:39:03 +0100
-Date:   Tue, 12 Jan 2021 20:39:02 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v7 4/7] pwm: ntxec: Add driver for PWM function in
- Netronix EC
-Message-ID: <20210112203902.4e196d11@aktux>
-In-Reply-To: <20210109180220.121511-5-j.neuschaefer@gmx.net>
-References: <20210109180220.121511-1-j.neuschaefer@gmx.net>
-        <20210109180220.121511-5-j.neuschaefer@gmx.net>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2404683AbhALTmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 14:42:17 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55068 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2436543AbhALTmR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 14:42:17 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BE28A2310E;
+        Tue, 12 Jan 2021 19:41:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610480496;
+        bh=4Wxwoit4G6NqJNUR0MkSWA215CQPHEUvAJgqt10Do0U=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OERL1NohnxXParTdzW8Snr8u/u2wRJDeXIz9C37QZhoGA+lFvxhJMf9JIYVyJ3pNF
+         zL9jDLRxkGEKxgItAwQfFMKh5EMVRdBrQZTWZU9YYH+rx9+J2dYOJ+Nr2c9ZW8yPxK
+         YKh4FYj528CxEEFXtCTrcWBEK3AmLKLUaKqCaKuT5X7L5nIcct227rVg/8ST5P2EbY
+         y0YlyvCIZejZY5cp30jOTZhRxM20Q9isPav/DAYrhYanr2UFcDkcMQMDaA4HAg4Hhe
+         KzMyLLER/xktazDbJdBAeLeKzqwodg/eMavgPLhrI+eRfQ5IX3rJhMyX/NWKDRyrzS
+         NiOjTM56rv0+g==
+Received: by mail-ej1-f50.google.com with SMTP id jx16so5144922ejb.10;
+        Tue, 12 Jan 2021 11:41:35 -0800 (PST)
+X-Gm-Message-State: AOAM533vJj+gquhoYlN3bkBiFubgX+BTKOi1rtJd87EG8ojF0QbErdwC
+        PildWedU8/sdZwBPygPc0kv/xg57PxMGjRcO+A==
+X-Google-Smtp-Source: ABdhPJwGDgQ/s7m0yd+ozKdQqc6SBtrRFa23ETnLWXyZwBshtrjJcgF8HqkKa4ftaXza7D0MHz+pQ++KJJco/u37goI=
+X-Received: by 2002:a17:906:4146:: with SMTP id l6mr269918ejk.341.1610480494322;
+ Tue, 12 Jan 2021 11:41:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Score: -1.0 (-)
+References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
+ <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
+ <23e16d20-36eb-87d9-4473-142504ad8a95@gmail.com> <CAL_JsqKqSVGCjcue=ka2=bB1Os9pczNTCqDeaoFPFfRxnvsteQ@mail.gmail.com>
+ <e549c7ce-d01e-08a3-9ed0-7325a34e9c29@gmail.com>
+In-Reply-To: <e549c7ce-d01e-08a3-9ed0-7325a34e9c29@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 12 Jan 2021 13:41:22 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+W4X5H2myCzX1bGTEqJG9dpwLXdmqbpq6oGm5wpF7WMQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+W4X5H2myCzX1bGTEqJG9dpwLXdmqbpq6oGm5wpF7WMQ@mail.gmail.com>
+Subject: Re: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  9 Jan 2021 19:02:17 +0100
-Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> wrote:
+On Tue, Jan 12, 2021 at 1:06 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 1/12/21 8:04 AM, Rob Herring wrote:
+> > On Mon, Jan 11, 2021 at 4:06 PM Frank Rowand <frowand.list@gmail.com> wrote:
+> >>
+> >> On 1/8/21 2:41 AM, Viresh Kumar wrote:
+> >>> Now that fdtoverlay is part of the kernel build, start using it to test
+> >>> the unitest overlays we have by applying them statically.
+> >>>
+> >>> The file overlay_base.dtb have symbols of its own and we need to apply
+> >>> overlay.dtb to overlay_base.dtb alone first to make it work, which gives
+> >>> us intermediate-overlay.dtb file.
+> >>>
+> >>> The intermediate-overlay.dtb file along with all other overlays is them
+> >>> applied to testcases.dtb to generate the master.dtb file.
+> >>>
+> >>> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> >>
+> >> NACK to this specific patch, in its current form.
+> >>
+> >> There are restrictions on applying an overlay at runtime that do not apply
+> >> to applying an overlay to an FDT that will be loaded by the kernel during
+> >> early boot.  Thus the unittest overlays _must_ be applied using the kernel
+> >> overlay loading methods to test the kernel runtime overlay loading feature.
+> >
+> > This patch doesn't take away from any of that and it completely orthogonal.
+>
+> Mea culpa.  I took the patch header comment at face value, and read more into
+> the header comment than what was written there.  I then skimmed the patch
+> instead of actually reading what it was doing.
+>
+> I incorrectly _assumed_ (bad!) that the intent was to replace applying the
+> individual overlay dtb's with the master.dtb.  Reading more closely, I see
+> that the assumed final step of actually _using_ master.dtb does not exist.
+>
+> So, yes, I agree that the patch as written is orthogonal to my concern.
+>
+> My updated understanding is that this patch is attempting to use the existing
+> unittest overlay dts files as source to test fdtoverlay.  And that the resulting
+> dtb from fdtoverlay is not intended to be consumed by the kernel unittest.
 
-> The Netronix EC provides a PWM output which is used for the backlight
-> on some ebook readers. This patches adds a driver for the PWM output.
->=20
-> The .get_state callback is not implemented, because the PWM state can't
-> be read back from the hardware.
->=20
-> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> ---
-> v7:
-> - no changes
->=20
-> v6:
-> - https://lore.kernel.org/lkml/20201208011000.3060239-5-j.neuschaefer@gmx=
-.net/
-> - Move period / duty cycle setting code to a function
-> - Rename pwmchip_to_priv to ntxec_pwm_from_chip
-> - Set period and duty cycle only before enabling the output
-> - Mention that duty=3D0, enable=3D1 is assumed not to happen
-> - Interleave writes to the period and duty cycle registers, to minimize t=
-he
->   window of time that an inconsistent state is configured
->=20
-> v5:
-> - https://lore.kernel.org/lkml/20201201011513.1627028-5-j.neuschaefer@gmx=
-.net/
-> - Avoid truncation of period and duty cycle to 32 bits
-> - Make ntxec_pwm_ops const
-> - Use regmap_multi_reg_write
-> - Add comment about get_state to ntxec_pwm_ops
-> - Add comments about non-atomicity of (period, duty cycle) update
->=20
-> v4:
-> - https://lore.kernel.org/lkml/20201122222739.1455132-5-j.neuschaefer@gmx=
-.net/
-> - Document hardware/driver limitations
-> - Only accept normal polarity
-> - Fix a typo ("zone" -> "zero")
-> - change MAX_PERIOD_NS to 0xffff * 125
-> - Clamp period to the maximum rather than returning an error
-> - Rename private struct pointer to priv
-> - Rearrage control flow in _probe to save a few lines and a temporary var=
-iable
-> - Add missing MODULE_ALIAS line
-> - Spell out ODM
->=20
-> v3:
-> - https://lore.kernel.org/lkml/20200924192455.2484005-5-j.neuschaefer@gmx=
-.net/
-> - Relicense as GPLv2 or later
-> - Add email address to copyright line
-> - Remove OF compatible string and don't include linux/of_device.h
-> - Fix bogus ?: in return line
-> - Don't use a comma after sentinels
-> - Avoid ret |=3D ... pattern
-> - Move 8-bit register conversion to ntxec.h
->=20
-> v2:
-> - https://lore.kernel.org/lkml/20200905133230.1014581-6-j.neuschaefer@gmx=
-.net/
-> - Various grammar and style improvements, as suggested by Uwe Kleine-K=C3=
-=B6nig,
->   Lee Jones, and Alexandre Belloni
-> - Switch to regmap
-> - Prefix registers with NTXEC_REG_
-> - Add help text to the Kconfig option
-> - Use the .apply callback instead of the old API
-> - Add a #define for the time base (125ns)
-> - Don't change device state in .probe; this avoids multiple problems
-> - Rework division and overflow check logic to perform divisions in 32 bits
-> - Avoid setting duty cycle to zero, to work around a hardware quirk
-> ---
->  drivers/pwm/Kconfig     |   8 ++
->  drivers/pwm/Makefile    |   1 +
->  drivers/pwm/pwm-ntxec.c | 182 ++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 191 insertions(+)
->  create mode 100644 drivers/pwm/pwm-ntxec.c
->=20
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 0937e1c047acb..a2830b8832b97 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -393,6 +393,14 @@ config PWM_MXS
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-mxs.
->=20
-> +config PWM_NTXEC
-> +	tristate "Netronix embedded controller PWM support"
-> +	depends on MFD_NTXEC
-> +	help
-> +	  Say yes here if you want to support the PWM output of the embedded
-> +	  controller found in certain e-book readers designed by the original
-> +	  design manufacturer Netronix.
-> +
->  config PWM_OMAP_DMTIMER
->  	tristate "OMAP Dual-Mode Timer PWM support"
->  	depends on OF
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 18b89d7fd092a..7d97eb595bbef 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -35,6 +35,7 @@ obj-$(CONFIG_PWM_MESON)		+=3D pwm-meson.o
->  obj-$(CONFIG_PWM_MEDIATEK)	+=3D pwm-mediatek.o
->  obj-$(CONFIG_PWM_MTK_DISP)	+=3D pwm-mtk-disp.o
->  obj-$(CONFIG_PWM_MXS)		+=3D pwm-mxs.o
-> +obj-$(CONFIG_PWM_NTXEC)		+=3D pwm-ntxec.o
->  obj-$(CONFIG_PWM_OMAP_DMTIMER)	+=3D pwm-omap-dmtimer.o
->  obj-$(CONFIG_PWM_PCA9685)	+=3D pwm-pca9685.o
->  obj-$(CONFIG_PWM_PXA)		+=3D pwm-pxa.o
-> diff --git a/drivers/pwm/pwm-ntxec.c b/drivers/pwm/pwm-ntxec.c
-> new file mode 100644
-> index 0000000000000..1db30a6caa3ad
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-ntxec.c
-> @@ -0,0 +1,182 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * The Netronix embedded controller is a microcontroller found in some
-> + * e-book readers designed by the original design manufacturer Netronix,=
- Inc.
-> + * It contains RTC, battery monitoring, system power management, and PWM
-> + * functionality.
-> + *
-> + * This driver implements PWM output.
-> + *
-> + * Copyright 2020 Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> + *
-> + * Limitations:
-> + * - The get_state callback is not implemented, because the current stat=
-e of
-> + *   the PWM output can't be read back from the hardware.
-> + * - The hardware can only generate normal polarity output.
-> + * - The period and duty cycle can't be changed together in one atomic a=
-ction.
-> + */
-> +
-> +#include <linux/mfd/ntxec.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +#include <linux/types.h>
-> +
-> +struct ntxec_pwm {
-> +	struct device *dev;
-> +	struct ntxec *ec;
-> +	struct pwm_chip chip;
-> +};
-> +
-> +static struct ntxec_pwm *ntxec_pwm_from_chip(struct pwm_chip *chip)
-> +{
-> +	return container_of(chip, struct ntxec_pwm, chip);
-> +}
-> +
-> +#define NTXEC_REG_AUTO_OFF_HI	0xa1
-> +#define NTXEC_REG_AUTO_OFF_LO	0xa2
-> +#define NTXEC_REG_ENABLE	0xa3
-> +#define NTXEC_REG_PERIOD_LOW	0xa4
-> +#define NTXEC_REG_PERIOD_HIGH	0xa5
-> +#define NTXEC_REG_DUTY_LOW	0xa6
-> +#define NTXEC_REG_DUTY_HIGH	0xa7
-> +
-> +/*
-> + * The time base used in the EC is 8MHz, or 125ns. Period and duty cycle=
- are
-> + * measured in this unit.
-> + */
-> +#define TIME_BASE_NS 125
-> +
-> +/*
-> + * The maximum input value (in nanoseconds) is determined by the time ba=
-se and
-> + * the range of the hardware registers that hold the converted value.
-> + * It fits into 32 bits, so we can do our calculations in 32 bits as wel=
-l.
-> + */
-> +#define MAX_PERIOD_NS (TIME_BASE_NS * 0xffff)
-> +
-> +static int ntxec_pwm_set_raw_period_and_duty_cycle(struct pwm_chip *chip,
-> +						   int period, int duty)
-> +{
-> +	struct ntxec_pwm *priv =3D ntxec_pwm_from_chip(chip);
-> +
-> +	/*
-> +	 * Changes to the period and duty cycle take effect as soon as the
-> +	 * corresponding low byte is written, so the hardware may be configured
-> +	 * to an inconsistent state after the period is written and before the
-> +	 * duty cycle is fully written. If, in such a case, the old duty cycle
-> +	 * is longer than the new period, the EC may output 100% for a moment.
-> +	 *
-> +	 * To minimize the time between the changes to period and duty cycle
-> +	 * taking effect, the writes are interleaved.
-> +	 */
-> +
-> +	struct reg_sequence regs[] =3D {
-> +		{ NTXEC_REG_PERIOD_HIGH, ntxec_reg8(period >> 8) },
-> +		{ NTXEC_REG_DUTY_HIGH, ntxec_reg8(duty >> 8) },
-> +		{ NTXEC_REG_PERIOD_LOW, ntxec_reg8(period) },
-> +		{ NTXEC_REG_DUTY_LOW, ntxec_reg8(duty) },
-> +	};
-> +
-> +	return regmap_multi_reg_write(priv->ec->regmap, regs, ARRAY_SIZE(regs));
-> +}
-> +
-> +static int ntxec_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm=
-_dev,
-> +			   const struct pwm_state *state)
-> +{
-> +	struct ntxec_pwm *priv =3D ntxec_pwm_from_chip(chip);
-> +	unsigned int period, duty;
-> +	int res;
-> +
-> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
-> +		return -EINVAL;
-> +
-> +	period =3D min_t(u64, state->period, MAX_PERIOD_NS);
-> +	duty   =3D min_t(u64, state->duty_cycle, period);
-> +
-> +	period /=3D TIME_BASE_NS;
-> +	duty   /=3D TIME_BASE_NS;
-> +
-> +	/*
-> +	 * Writing a duty cycle of zero puts the device into a state where
-> +	 * writing a higher duty cycle doesn't result in the brightness that it
-> +	 * usually results in. This can be fixed by cycling the ENABLE register.
-> +	 *
-> +	 * As a workaround, write ENABLE=3D0 when the duty cycle is zero.
-> +	 * The case that something has previously set the duty cycle to zero
-> +	 * but ENABLE=3D1, is not handled.
-> +	 */
-> +	if (state->enabled && duty !=3D 0) {
-> +		res =3D ntxec_pwm_set_raw_period_and_duty_cycle(chip, period, duty);
-> +		if (res)
-> +			return res;
-> +
-> +		res =3D regmap_write(priv->ec->regmap, NTXEC_REG_ENABLE, ntxec_reg8(1)=
-);
-> +		if (res)
-> +			return res;
-> +
-> +		/* Disable the auto-off timer */
-> +		res =3D regmap_write(priv->ec->regmap, NTXEC_REG_AUTO_OFF_HI, ntxec_re=
-g8(0xff));
-> +		if (res)
-> +			return res;
-> +
-> +		return regmap_write(priv->ec->regmap, NTXEC_REG_AUTO_OFF_LO, ntxec_reg=
-8(0xff));
-> +	} else {
-> +		return regmap_write(priv->ec->regmap, NTXEC_REG_ENABLE, ntxec_reg8(0));
-> +	}
-> +}
-> +
-> +static const struct pwm_ops ntxec_pwm_ops =3D {
-> +	.owner =3D THIS_MODULE,
-> +	.apply =3D ntxec_pwm_apply,
-> +	/*
-> +	 * No .get_state callback, because the current state cannot be read
-> +	 * back from the hardware.
-> +	 */
-> +};
-> +
-> +static int ntxec_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct ntxec *ec =3D dev_get_drvdata(pdev->dev.parent);
-> +	struct ntxec_pwm *priv;
-> +	struct pwm_chip *chip;
-> +
-> +	priv =3D devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->ec =3D ec;
-> +	priv->dev =3D &pdev->dev;
-> +
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	chip =3D &priv->chip;
-> +	chip->dev =3D &pdev->dev;
+The goal is not to test fdtoverlay. dtc unittests do that. The goal is
+testing overlays we expect to be able to apply can actually apply and
+doing this at build time. That's also the goal for all the 'real'
+overlays which get added.
 
-Hmm, I needed
-chip->dev =3D &pdev->dev.parent to use the backlight example
-in patch 2/7.
-Not sure what the correct solution is. Maybe the pwm deserves its own
-devicetree node.
+> I do not agree that this is a good approach to testing fdtoverlay.  The
+> unittest overlay dts files are constructed specifically to test various
+> parts of the kernel overlay code and dynamic OF code.  Some of the content
+> of the overlays is constructed to trigger error conditions in that code,
+> and thus will not be able to be processed without error by fdtoverlay.
 
-Regards,
-Andreas
+Then those should be omitted.
+
+> Trying to use overlay dts files that are constructed to test runtime kernel
+> code as fdtoverlay input data mixes two different test environments and
+> objectives.  If fdtoverlay test cases are desired, then fdtoverlay specific
+> dts files should be created.
+>
+> >
+> >> I agree that testing fdtoverlay is a good idea.  I have not looked at the
+> >> parent project to see how much testing of fdtoverlay occurs there, but I
+> >> would prefer that fdtoverlay tests reside in the parent project if practical
+> >> and reasonable.  If there is some reason that some fdtoverlay tests are
+> >> more practical in the Linux kernel repository then I am open to adding
+> >> them to the Linux kernel tree.
+> >
+> > If you (or more importantly someone else sending us patches) make
+> > changes to the overlays, you can test that they apply at build time
+> > rather than runtime. I'll take it! So please help on fixing the issue
+> > because I want to apply this.
+>
+> If the tests can be added to the upstream project, I would much prefer
+> they reside there.  If there is some reason a certain test is more
+> suited to be in the Linux kernel source tree then I also would like
+> it to be accepted here.
+
+Again, this is just about doing sanity checks at build time rather
+than *only* rely on runtime.
+
+> >
+> > And yes, dtc has fdtoverlay tests. But this patch shows there's at
+> > least 2 issues,
+>
+>
+> > fdtoverlay can't apply overlays to the root
+>
+> A test of that definitely belongs in the upstream project.
+
+Yes, agreed.
+
+> > and using an overlay as the base tree in UML is odd IMO.
+>
+> Am I still not fully understanding the patch?  I'm missing how
+> this patch changes what dtb is used as the base tree in UML.
+
+This was more my theorising why Viresh is having problems in that
+perhaps fdtoverlay can't take an overlay as a base DT while the kernel
+can and does for UML. The fact that it works for UML seems wrong to
+me.
+
+Rob
