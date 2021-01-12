@@ -2,192 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC3622F4099
+	by mail.lfdr.de (Postfix) with ESMTP id 7F2392F4098
 	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 01:56:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393587AbhAMAm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2393591AbhAMAm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 12 Jan 2021 19:42:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46222 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392015AbhALXxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 18:53:04 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E04C061575;
-        Tue, 12 Jan 2021 15:52:23 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id b5so7192pjl.0;
-        Tue, 12 Jan 2021 15:52:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MGKtVppVEFe28L6FHuDZ+KXC/KQUieJpXieI89QBq84=;
-        b=IJQOFIMT3nopzu5tpGieKI5azx9Y0NH8Vhc2K59m4HhkC/m3oEAcrRYKlNYQsJeEkK
-         zP7eMmny6mAVPcoNorjivTXPpDujTFpzqCpQ9id/XL5Ceg9EwJGYx6ESFXkRY/ONim8w
-         Un7cc0LO4YpbvY/dAE7zeXmdQcdFUDj9KUSRIifjRk0lFFREb/mD+2H/zBfkU4cfy5k2
-         sDPmSUtFCg9gGGVsWrwuH3YDuaE+4fYg9dn6Ow9lsTujOw+kIHhQX9WjYOmoaACKDs5K
-         m/VTzIIU8JjmYiTY6EUtIFD18hj+JVVpk+Rd1rayW3K4ik+vA0P1BtLE6njaiudNCh3R
-         5ipw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=MGKtVppVEFe28L6FHuDZ+KXC/KQUieJpXieI89QBq84=;
-        b=Vhex7uNupqxHoSEjqaOWOvSE+6lB+wRaZIqf5L37ZNERagvsmudKbbvGu9uDhsccty
-         +xtab3H92L68Rxlqr7iNjocs98AHm+SYZK3ghjIdIL1UtWsu4/bIONiJn2KEHneM0IYc
-         YhxnBytkj4vCpsPuH2jR0MkTbr2DjnuT52vWHXh07a4oaJxjuVHVlJarTpP0qNSVRurQ
-         0FeGM6bc2RcUe6d7jqw1by4cDsr/mV4EcKCr2Ae/Raazd9Rat+jKYF9gnvpvArnu62cb
-         9FVcRypu/98ebxv7M5JCuOLMZMTNohjNwZEbEwo6mvdVb6PhmCf7ThlNF+i+594ZHIiH
-         QT1w==
-X-Gm-Message-State: AOAM5312eBl+nua0XcrySfMbamEdmWKMGlWA0XgwKQInRQkDJkqSF/c1
-        BtQjhRO7BSSkKCMj9WDr5hmzjYwUiJ0=
-X-Google-Smtp-Source: ABdhPJy/60v+IQ3/cilUlX0Bj9E3m068HNwymQXPaKD3vpsxumTJ8rKuRYQYOicISQFL+EQw1gn6ww==
-X-Received: by 2002:a17:902:c1cc:b029:da:dd7c:2ac7 with SMTP id c12-20020a170902c1ccb02900dadd7c2ac7mr1401040plc.25.1610495543441;
-        Tue, 12 Jan 2021 15:52:23 -0800 (PST)
-Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id a136sm234808pfd.149.2021.01.12.15.52.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jan 2021 15:52:22 -0800 (PST)
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
-To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <joro@8bytes.org>, will@kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        rdunlap@infradead.org, dan.j.williams@intel.com,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-3-tientzu@chromium.org>
- <20210106185241.GA109735@localhost.localdomain>
- <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
- <20210107175740.GA16519@char.us.oracle.com>
- <aa5af7d1-779e-f0f6-e6ba-8040e603523f@gmail.com>
- <20210107211937.GA19460@char.us.oracle.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <bb25fac5-94ee-ff61-9afb-0024b5047f94@gmail.com>
-Date:   Tue, 12 Jan 2021 15:52:16 -0800
+Received: from linux.microsoft.com ([13.77.154.182]:47212 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392043AbhALXzf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 18:55:35 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 61D1F20B6C40;
+        Tue, 12 Jan 2021 15:54:53 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 61D1F20B6C40
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1610495694;
+        bh=PPvEFYlKw1YG/P3Rr6NSYflDbfN80tOd8sdd+MreVdE=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=eamBIPdPY7NZ8L9C0P2dgoxOnkL/4nPiW47IusIGhqnc21MlvZ5cHj4A9tVcbC72I
+         O9Mcs4SFllqRz8v8FAM/VrSjMxL7728nI3eLZnDJXubZ1h1c0jyrKA+l2+YdXsYuoG
+         Foc5iFdU61xwKCJGamTAwRxxdHOARqnjByyGrQ3U=
+Subject: Re: [PATCH v14 6/6] arm64: Add IMA log information in kimage used for
+ kexec
+To:     Mimi Zohar <zohar@linux.ibm.com>, bauerman@linux.ibm.com,
+        robh@kernel.org, takahiro.akashi@linaro.org,
+        gregkh@linuxfoundation.org, will@kernel.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au
+Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@vger.kernel.org
+References: <20210104192602.10131-1-nramas@linux.microsoft.com>
+ <20210104192602.10131-7-nramas@linux.microsoft.com>
+ <4fef02cb3b330128e6d5d9bc9aab4d7e603d2945.camel@linux.ibm.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <45b60441-eb0d-4c02-6f6c-ea2f02bf1ee3@linux.microsoft.com>
+Date:   Tue, 12 Jan 2021 15:54:52 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210107211937.GA19460@char.us.oracle.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <4fef02cb3b330128e6d5d9bc9aab4d7e603d2945.camel@linux.ibm.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/7/21 1:19 PM, Konrad Rzeszutek Wilk wrote:
-> On Thu, Jan 07, 2021 at 10:09:14AM -0800, Florian Fainelli wrote:
->> On 1/7/21 9:57 AM, Konrad Rzeszutek Wilk wrote:
->>> On Fri, Jan 08, 2021 at 01:39:18AM +0800, Claire Chang wrote:
->>>> Hi Greg and Konrad,
->>>>
->>>> This change is intended to be non-arch specific. Any arch that lacks DMA access
->>>> control and has devices not behind an IOMMU can make use of it. Could you share
->>>> why you think this should be arch specific?
->>>
->>> The idea behind non-arch specific code is it to be generic. The devicetree
->>> is specific to PowerPC, Sparc, and ARM, and not to x86 - hence it should
->>> be in arch specific code.
+On 1/12/21 3:28 PM, Mimi Zohar wrote:
+> Hi Lakshmi,
+> 
+> On Mon, 2021-01-04 at 11:26 -0800, Lakshmi Ramasubramanian wrote:
+>> Address and size of the buffer containing the IMA measurement log need
+>> to be passed from the current kernel to the next kernel on kexec.
 >>
->> In premise the same code could be used with an ACPI enabled system with
->> an appropriate service to identify the restricted DMA regions and unlock
->> them.
-> 
-> Which this patchset is not.
-
-ACPI is not included, but the comment about Device Tree being specific
-to PowerPC, SPARC and ARM is x86 is not quite correct. There is an
-architecture specific part to obtaining where the Device Tree lives in
-memory, but the implementation itself is architecture agnostic (with
-some early SPARC/OpenFirmware shenanigans), and x86 does, or rather did
-support Device Tree to a very small extent with the CE4100 platform.
-
-Would you prefer that an swiotlb_of.c file be created instead or
-something along those lines to better encapsulate where the OF specific
-code lives?
-
-> 
+>> Any existing "linux,ima-kexec-buffer" property in the device tree
+>> needs to be removed and its corresponding memory reservation in
+>> the currently running kernel needs to be freed. The address and
+>> size of the current kernel's IMA measurement log need to be added
+>> to the device tree's IMA kexec buffer node and memory for the buffer
+>> needs to be reserved for the log to be carried over to the next kernel
+>> on the kexec call.
 >>
->> More than 1 architecture requiring this function (ARM and ARM64 are the
->> two I can think of needing this immediately) sort of calls for making
->> the code architecture agnostic since past 2, you need something that scales.
+>> Add address and size fields to "struct kimage_arch" for ARM64 platform
+>> to hold the address and size of the IMA measurement log buffer. Remove
+>> any existing "linux,ima-kexec-buffer" property in the device tree and
+>> free the corresponding memory reservation in the currently running
+>> kernel. Add "linux,ima-kexec-buffer" property to the device tree and
+>> reserve the memory for storing the IMA log that needs to be passed from
+>> the current kernel to the next one.
+>>
+>> Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC to indicate
+>> that the IMA measurement log information is present in the device tree
+>> for ARM64.
 > 
-> I believe the use-case is for ARM64 at this moment.
+> Perhaps for some previous version of this patch set, this patch
+> description was appropriate, but for the code below it's kind of
+> overkill.
+> 
 
-For the platforms that Claire uses, certainly for the ones we use, ARM
-and ARM64 are in scope.
--- 
-Florian
+I agree Mimi. Will edit the patch description.
+
+thanks,
+  -lakshmi
+
+>>
+>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>> ---
+>>   arch/arm64/Kconfig             | 1 +
+>>   arch/arm64/include/asm/kexec.h | 5 +++++
+>>   2 files changed, 6 insertions(+)
+>>
+>> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+>> index a6b5b7ef40ae..312b4d5ad232 100644
+>> --- a/arch/arm64/Kconfig
+>> +++ b/arch/arm64/Kconfig
+>> @@ -1095,6 +1095,7 @@ config KEXEC
+>>   config KEXEC_FILE
+>>   	bool "kexec file based system call"
+>>   	select KEXEC_CORE
+>> +	select HAVE_IMA_KEXEC if IMA
+>>   	help
+>>   	  This is new version of kexec system call. This system call is
+>>   	  file based and takes file descriptors as system call argument
+>> diff --git a/arch/arm64/include/asm/kexec.h b/arch/arm64/include/asm/kexec.h
+>> index d24b527e8c00..2bd19ccb6c43 100644
+>> --- a/arch/arm64/include/asm/kexec.h
+>> +++ b/arch/arm64/include/asm/kexec.h
+>> @@ -100,6 +100,11 @@ struct kimage_arch {
+>>   	void *elf_headers;
+>>   	unsigned long elf_headers_mem;
+>>   	unsigned long elf_headers_sz;
+>> +
+>> +#ifdef CONFIG_IMA_KEXEC
+>> +	phys_addr_t ima_buffer_addr;
+>> +	size_t ima_buffer_size;
+>> +#endif
+>>   };
+>>   
+>>   extern const struct kexec_file_ops kexec_image_ops;
+> 
+
