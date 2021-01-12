@@ -2,103 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B3CD2F2789
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 06:09:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD61C2F2821
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 07:04:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728065AbhALFJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 00:09:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727253AbhALFJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 00:09:02 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23AC5C061795
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 21:08:22 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id i5so677421pgo.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 21:08:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Sd4SGwEbhz9BejbXxxhTvp1jezaj6wrGznpvA69dFNM=;
-        b=FJbWFSIOzDLDXHpm+2p7dB9rOBqikORVq+WjR4YvYFVJUnyv7JFnr+pPbfKoyplaNm
-         A25p+ZadVEMbnaLgMrbpNoXB0a6DYVkfoaPq2en3qMUgPD93v2XecQtY5I9OcA/LJmi5
-         5eNKVafv1OjCkDGmB54ZYUVY3S1bt+9y1Y02NmUcxBdrKs9AzN1Q3lrlDmVeBRTggKAo
-         4AcydnlJ0jvnc7hlfaHp86JbgqmyvHIa9467lJvr7fddhbMHaIyRF6tc4V/rTZTPHp1h
-         21u2dHYGglkyb5wkdjXOF0/1EzXaVyk/kxjOUro6Suha2YUne1ntEn+4T9JnsokCBaAh
-         FQcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Sd4SGwEbhz9BejbXxxhTvp1jezaj6wrGznpvA69dFNM=;
-        b=cuoqEIr0eg67XsVAuYaQLePbx+ctEYvQO2ZbHHOp6eqkPMpp++cEMJPJspn7Z3sksR
-         kc+28vqAUmqecM7YO34hyKKZ4yoorG1ny5IKlNjLw8m6m3qXT+QfRkAE9tnLJOke8i1c
-         2TXpZ+pyCwks1VKH14vn9mABYS2oDa18fy2Guo6C2mr2m7vQJ87rTKBlRCVIQOo/ZliC
-         Kdsq3xYU55Ez6FF9rDAHJXls71evNT1NM7qcWEtyUSycTdZNH5+0WLDhZjm1yobwV3jg
-         WiE6hsGE+InAVoh1PF+6Ah2H8kvIKCIOy9p8S7pV+KqPDXHECtwjGGhQMO8h7+zo14v9
-         WUUA==
-X-Gm-Message-State: AOAM532v1LJ+rqjkutBXmYvxb0yVqyBjVfcdQLattB2W9qrf+3fGXLlS
-        jitRL9e2hlrnc78eF62m7yReZTe+VzA6yw==
-X-Google-Smtp-Source: ABdhPJw3HyNAMIKQrv5kZzTiCGKJplCtA3NLocDcpeShiHtImIa/ka1z27mK+6DyT04gjY/Z1lqyqw==
-X-Received: by 2002:a62:fc4b:0:b029:1a8:4d9b:9767 with SMTP id e72-20020a62fc4b0000b02901a84d9b9767mr3154035pfh.22.1610428101592;
-        Mon, 11 Jan 2021 21:08:21 -0800 (PST)
-Received: from localhost ([122.172.85.111])
-        by smtp.gmail.com with ESMTPSA id x125sm1736517pgb.35.2021.01.11.21.08.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 11 Jan 2021 21:08:20 -0800 (PST)
-Date:   Tue, 12 Jan 2021 10:38:18 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH V3 2/2] scripts: dtc: Build fdtoverlay and fdtdump tools
-Message-ID: <20210112050818.s6ctvd6ihd2dt2d2@vireshk-i7>
-References: <CAK7LNAQT5nVHGAZDhj4dct0v8UMzQ+-mdfBXJsfedR-7mZTnyA@mail.gmail.com>
- <72c3a4f63dde3c172c11153e9a5b19fb6cdb4498.1610000585.git.viresh.kumar@linaro.org>
- <1d9369aa-b7aa-6d06-0d44-6ef21bc639e3@gmail.com>
+        id S1731873AbhALGBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 01:01:00 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:39197 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726915AbhALGA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 01:00:59 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id BC460580553;
+        Tue, 12 Jan 2021 00:59:52 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Tue, 12 Jan 2021 00:59:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=DgffgHzhX8+NNBoKsojNfgMm2Z
+        Y9AEgUmTzKUChKMeQ=; b=qWsHUsgGQRO3aDz+ZvWLaTYEs2IGmSTL5uQgiogwBD
+        UrISh9HG0h94i2Yg8fm0ioRhFPNl7sNXIfnD02oGhzxYFAJx7T5es4Cr4+i+5tjX
+        RmsiWEI7a4txOlfOqFkqhopJj2iF3RXL3geE2zN6SshZNLxaI7peYTQtQlJYZwVa
+        DYmvi65C8oVUPG/jCLpTSovS2bxeBC6YITlwhg0spbKNmzFgdmksEabIPlyZqnzK
+        QRZNfBZ19AAUqnaJ2FUSyUddPr4XUXJ+Zb+ztwuQBgTzHkYAQd9CsHGO4qZ0yo85
+        NQGW9Oxh9z5KcScwiu+LBQ4jqdqhoFuHNqRv6Zc3jm/w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=DgffgHzhX8+NNBoKs
+        ojNfgMm2ZY9AEgUmTzKUChKMeQ=; b=S7Tic5mbQwLaaYxX6A2oGJoGScj3tixNZ
+        UxWYbIcVfRonLGrI7waC0eqg532rIZMo9IDj18apzZW//Gu24HuwmVEkPQwOCYu0
+        E9uIN4UIAK3yT/Tsc8pR769/Ste/G/uxt+wtPJL1b+rX/7aBvd/OQKn0wXtLxcfX
+        d2cxnU+ijC3Hiuj06yklvTs2TafkurvqdArtvX91ChlTgRHk5U8VBb+T1zbhEOcy
+        8HSf5q6Smp3SU1+Uj5WuLxOiQX+646Np/WEvTHdkwTGJX3GsIo+ZtbAs5FSkjtAM
+        STAI3w2t0xPSpjQb9ucth6UOLNE9MHdllmFkdbkxFqAjHKvZlB9Cg==
+X-ME-Sender: <xms:1zr9X49tRbFO_XRh1HHi6xglf4NfFLccqfTi9cpQ2auW2Bj1JNo8Yg>
+    <xme:1zr9Xws8yCTLEUc0RLnKw321XxS3AtoIM-EmlFpmpABqxV2MkkqvIxEHV46Ymmbsg
+    8usy8T7aLz8Qzjlww>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdehvddgleduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
+    vedtveenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdr
+    ohhrgh
+X-ME-Proxy: <xmx:1zr9X-DKt2o5gpSp_6oSGUY4EJRI2xbjZNWtWwnPhPrVu7ZLAay0Kw>
+    <xmx:1zr9X4cN6huEvqwKeh5S8JcZkZoMTnOUd3Wdy3GhuJttfkRHej3n4g>
+    <xmx:1zr9X9PQhvFk-ufYBFITuAXgywXBWOvW4FuBK65wnbNAnGYOeUmWow>
+    <xmx:2Dr9X2grb605xGDQSVZUDcREyw0dS-pVT_MT-TsUgiikkz16jiihSw>
+Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 70A3D24005A;
+        Tue, 12 Jan 2021 00:59:51 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v4 00/10] sunxi: Support IRQ wakeup from deep sleep
+Date:   Mon, 11 Jan 2021 23:59:40 -0600
+Message-Id: <20210112055950.21209-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1d9369aa-b7aa-6d06-0d44-6ef21bc639e3@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-01-21, 18:44, Frank Rowand wrote:
-> On 1/7/21 12:25 AM, Viresh Kumar wrote:
-> > We will start building overlays for platforms soon in the kernel and
-> > would need these tools going forward. Lets start building them.
-> > 
-> > The fdtoverlay program applies (or merges) one ore more overlay dtb
-> > blobs to a base dtb blob. The kernel build system would later use
-> > fdtoverlay to generate the overlaid blobs based on platform specific
-> > configurations.
-> > 
-> > The fdtdump program prints a readable version of a flat device-tree
-> > file. This is a very useful tool to analyze the details of the overlay's
-> > dtb and the final dtb produced by fdtoverlay after applying the
-> > overlay's dtb to a base dtb.
-> 
-> You can calso dump an FDT with:
-> 
->    dtc -O dts XXX.dtb
-> 
-> Is this sufficient for the desired functionality, or is there something
-> additional in fdtdump that is needed?
+Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
+controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC handles
+the external NMI pin, and provides 32+ IRQs to the ARISC. The first 16
+of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
+The last 13-16 multiplex the first (up to) 128 GIC SPIs.
 
-Not for my usecase at least.
+This series replaces the existing chained irqchip driver that could only
+control the NMI, with a stacked irqchip driver that also provides wakeup
+capability for those multiplexed SPI IRQs. The idea is to preconfigure
+the ARISC's IRQ controller, and then the ARISC firmware knows to wake up
+as soon as it receives an IRQ. It can also decide how deep it can
+suspend based on the enabled wakeup IRQs.
 
-> If nothing additional needed, and there is no other justification for adding
-> another program, I would prefer to leave fdtdump out.
+As future work, it may be useful to do the chained->stacked conversion
+on the sunxi-nmi driver as well.
 
-Okay, then I will also remove the stale version of fdtdump which is
-already there in kernel since a long time.
+Patches 1-2 add the new bindings.
+Patch 3 adds the new driver.
+Patch 4 adds wakeup capability.
+Remaining patches update the device trees to use R_INTC where beneficial.
+
+With appropriate firmware and configuration, this series allows waking
+from (and it has been tested with) the RTC, NMI/PMIC (power button, A/C
+plug, etc.), all GPIO ports (button, lid switch, modem, etc.), LRADC,
+and UARTs. I have tested this patch set on the H3, A64, H5, and H6 SoCs.
+
+---
+Changes from v3:
+ - Removed A31 fallback from H6 compatible.
+ - Switch to additionalProperties in binding.
+ - Replace wall of text with ASCII art.
+ - Added macros for NMI_SRC_TYPE constants.
+ - Renamed NR_IRQS to NR_TOP_LEVEL_IRQS to hopefully be more clear.
+ - Use non-relaxed writel in sun6i_r_intc_ack_nmi to fix spurious level
+   interrupts (reordering with gic_unmask_irq).
+ - Use a single irq_chip for edge and level NMI configurations.
+   - For edge, ack ASAP using handle_fasteoi_ack_irq.
+   - For level, ack in .irq_unmask if masked at EOI, else in .irq_eoi.
+ - Enforce that the R_INTC->GIC trigger is IRQ_TYPE_LEVEL_HIGH.
+ - Implement .irq_set_irqchip_state.
+ - Move other IRQs to a new irq_chip that only intercepts .irq_set_wake.
+ - Use radix instead of linear for the IRQ domain since only a handful
+   of the 128 hwirqs will ever be used.
+
+Changes from v2:
+ - Fix edge IRQs on GICv2 with EOImode == 0, as found on A83T and older.
+   - Replace .irq_ack callback with .irq_mask.
+   - Drop IRQCHIP_EOI_THREADED.
+   - This removes the dependency on IRQ_FASTEOI_HIERARCHY_HANDLERS.
+ - Move IRQ_DOMAIN_HIERARCHY selection to ARCH_SUNXI to fix A83T build.
+ - Add support for the second IRQ ENABLE/PENDING register on H6 and up.
+ - Add support for multiplexed IRQs beyond the initial 16.
+   - This requires a new binding, but keeps old binding compatibility.
+   - This requires a separate mux mapping for H6 and up.
+ - Rename parent_* => nmi_* because they only apply to the NMI.
+ - Merge code common to probe and resume functions.
+ - Also run suspend callback at syscore shutdown, for boards with no
+   PMIC where firmware is also responsible for poweroff/poweron.
+   - These two changes mean nothing is conditional on CONFIG_PM_SLEEP
+     anymore, since all code is used even without it.
+ - Since the binding changed, update all SoC DTs, A31 and up.
+ - Drop r_ir from inclusion (it needs more than an IRQ to wake) and
+   include pio (the main pin controller) and (r_)lradc.
+ - As there are significant changes, I did not carry forward Maxime's
+   Acked-by or Rob's Reviewed-by.
+
+Changes from v1:
+ - Use writel_relaxed() instead if writel().
+ - Remove use of the MASK register, as it doesn't affect the NMI as seen
+   by the GIC. It only affects the IRQs seen by the coprocessor.
+ - Leave NMI_HWIRQ enabled at all times, since it can be masked at the
+   GIC level (removed .irq_enable and .irq_disable).
+ - Use .irq_ack vs .irq_eoi depending on the trigger type, to avoid
+   missing interrupts or double interrupts.
+   - Because of this change, the driver needs two "irq_chip"s, one
+     with .irq_eoi set to our function and one without.
+   - Also because of this, we need IRQ_FASTEOI_HIERARCHY_HANDLERS for
+     handle_fasteoi_ack_irq(), so our .irq_ack function gets called
+     while the GIC driver works as if handle_fasteoi_irq() was used.
+ - Inline the SUNXI_SRC_TYPE_* enum into sun6i_r_intc_irq_set_type().
+ - Add a comment explaining how the trigger type is used.
+ - Don't call irqd_set_trigger_type().
+ - Set IRQCHIP_SET_TYPE_MASKED to match the GIC (since flags from this
+   driver mask flags from that one).
+ - Set IRQCHIP_EOI_THREADED to avoid doubled level interrupts, since the
+   latch will be set again as long as the trigger is met.
+ - Replace sun6i_r_intc_domain_translate() with
+   irq_domain_translate_twocell().
+ - Use an enum for the device tree binding.
+ - Update commit messages for accuracy and typos.
+
+Samuel Holland (10):
+  dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
+  dt-bindings: irq: sun6i-r: Add a compatible for the H3
+  irqchip/sun6i-r: Use a stacked irqchip driver
+  irqchip/sun6i-r: Add wakeup support
+  ARM: dts: sunxi: Rename nmi_intc to r_intc
+  ARM: dts: sunxi: Use the new r_intc binding
+  ARM: dts: sunxi: h3/h5: Add r_intc node
+  ARM: dts: sunxi: Move wakeup-capable IRQs to r_intc
+  arm64: dts: allwinner: Use the new r_intc binding
+  arm64: dts: allwinner: Move wakeup-capable IRQs to r_intc
+
+ .../allwinner,sun6i-a31-r-intc.yaml           |  67 ++++
+ .../allwinner,sun7i-a20-sc-nmi.yaml           |  10 -
+ arch/arm/boot/dts/sun6i-a31-hummingbird.dts   |   4 +-
+ arch/arm/boot/dts/sun6i-a31-m9.dts            |   4 +-
+ .../boot/dts/sun6i-a31-mele-a1000g-quad.dts   |   4 +-
+ arch/arm/boot/dts/sun6i-a31.dtsi              |   8 +-
+ arch/arm/boot/dts/sun6i-a31s-primo81.dts      |   4 +-
+ .../arm/boot/dts/sun6i-a31s-sina31s-core.dtsi |   4 +-
+ .../boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts   |   4 +-
+ .../sun6i-a31s-yones-toptech-bs1078-v2.dts    |   4 +-
+ .../dts/sun6i-reference-design-tablet.dtsi    |   4 +-
+ arch/arm/boot/dts/sun8i-a23-a33.dtsi          |   8 +-
+ arch/arm/boot/dts/sun8i-a33-olinuxino.dts     |   4 +-
+ .../arm/boot/dts/sun8i-a33-sinlinx-sina33.dts |   4 +-
+ .../dts/sun8i-a83t-allwinner-h8homlet-v2.dts  |   4 +-
+ arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts  |   4 +-
+ .../boot/dts/sun8i-a83t-cubietruck-plus.dts   |   4 +-
+ arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts     |   4 +-
+ arch/arm/boot/dts/sun8i-a83t.dtsi             |   5 +-
+ arch/arm/boot/dts/sun8i-r16-bananapi-m2m.dts  |   4 +-
+ arch/arm/boot/dts/sun8i-r16-parrot.dts        |   4 +-
+ .../dts/sun8i-reference-design-tablet.dtsi    |   4 +-
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  12 +
+ arch/arm/mach-sunxi/Kconfig                   |   2 +
+ arch/arm64/Kconfig.platforms                  |   2 +
+ .../allwinner/sun50i-a64-amarula-relic.dts    |   2 +-
+ .../dts/allwinner/sun50i-a64-bananapi-m64.dts |   2 +-
+ .../dts/allwinner/sun50i-a64-nanopi-a64.dts   |   2 +-
+ .../dts/allwinner/sun50i-a64-olinuxino.dts    |   2 +-
+ .../dts/allwinner/sun50i-a64-orangepi-win.dts |   2 +-
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts  |   2 +-
+ .../dts/allwinner/sun50i-a64-pinebook.dts     |   2 +-
+ .../dts/allwinner/sun50i-a64-pinephone.dtsi   |   2 +-
+ .../boot/dts/allwinner/sun50i-a64-pinetab.dts |   2 +-
+ .../boot/dts/allwinner/sun50i-a64-sopine.dtsi |   2 +-
+ .../boot/dts/allwinner/sun50i-a64-teres-i.dts |   2 +-
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |   6 +-
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |   2 +-
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |   2 +-
+ .../dts/allwinner/sun50i-h6-orangepi.dtsi     |   2 +-
+ .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |   4 +-
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |   8 +-
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-sun6i-r.c                 | 379 ++++++++++++++++++
+ drivers/irqchip/irq-sunxi-nmi.c               |  26 +-
+ 45 files changed, 542 insertions(+), 92 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun6i-a31-r-intc.yaml
+ create mode 100644 drivers/irqchip/irq-sun6i-r.c
 
 -- 
-viresh
+2.26.2
+
