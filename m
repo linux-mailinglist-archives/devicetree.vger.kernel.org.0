@@ -2,87 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40A782F34DA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 17:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE0782F3527
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 17:13:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392179AbhALP4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 10:56:44 -0500
-Received: from mail-oo1-f47.google.com ([209.85.161.47]:38722 "EHLO
-        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392046AbhALP4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 10:56:44 -0500
-Received: by mail-oo1-f47.google.com with SMTP id i18so695326ooh.5;
-        Tue, 12 Jan 2021 07:56:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u3QyPHhBiWRJNjfM9s/jAyHUyeZqNTdJKNXPpErhKvM=;
-        b=NijGxedDi4ACgPsr1Mrtm24Ajw2psFqUmDe+ssBMmIk+czQpH+lEDUJZlqfpUj4fnn
-         DKAc93vE1oeRCfNpO1+h2yxAaFs8Li6GhbNAfDBH6m7WSmXst9EEwKFsY6cWpY6OerNb
-         m/G4ixVPQhXP5gDm7tiWdQYxxkFRS8VO0GAKZy+TjBBMGIwFVUkwO+hc9CJF2C5YgKqd
-         hCnbqTC2C/qreCdRIVYRMBQiZ3GsnuQpLejLHS+Nh5/IDTTP/miWugHVMb8FEG7d6c+g
-         9k9stgb1vYsIR5x3zCj38EcR0d9J3RveloHGTKqAZiLUjQr0dNZO8LjqzDNBrDUOH5y+
-         eakA==
-X-Gm-Message-State: AOAM531fNuWrWFjqSTuROGI7REml/+oCWamNSN0pOfNb6Y8O5vpcq9Ey
-        BK7CtLcWfOfV+zNUF0kKHKVt3OTy4XufgiCGDtSu4lqQ
-X-Google-Smtp-Source: ABdhPJwWEMbTg8cxfcrGwJdhZIUPGXjnzNMp3WtST0PtCOCtlAHJyvLNgcwadD8bKb2gZHI0dgcoeeziNgkJC45CgZo=
-X-Received: by 2002:a4a:c191:: with SMTP id w17mr3240978oop.1.1610466963170;
- Tue, 12 Jan 2021 07:56:03 -0800 (PST)
+        id S2392514AbhALQMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 11:12:49 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:1791 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392470AbhALQMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 11:12:48 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5ffdca580002>; Tue, 12 Jan 2021 08:12:08 -0800
+Received: from [10.25.100.239] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 12 Jan
+ 2021 16:12:05 +0000
+Subject: Re: [PATCH] dt-bindings: Remove plain text OF graph binding
+To:     Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20210112154631.406250-1-robh@kernel.org>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <67a0141f-569c-9fce-d21e-4de41baeb8d9@nvidia.com>
+Date:   Tue, 12 Jan 2021 21:41:55 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20210107181524.1947173-1-geert+renesas@glider.be>
-In-Reply-To: <20210107181524.1947173-1-geert+renesas@glider.be>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 12 Jan 2021 16:55:52 +0100
-Message-ID: <CAMuHMdW9ca4xehcpd0yOOZPUumoebt5Jq5k5Shtm72Or45SHzg@mail.gmail.com>
-Subject: Re: [PATCH 0/4] dmaengine: rcar-dmac: Add support for R-Car V3U
-To:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Phong Hoang <phong.hoang.wz@renesas.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210112154631.406250-1-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1610467928; bh=pE1ckwOq4xU4jWcYirvlxe/6tr3etDsHPOoWVwGsw6k=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=ACf6r1TENo9KK91crXjfPgQAHb4C8jZAzRCa33IeejvldKrER37s0l/mfMtuGHfZ9
+         WluKv+SO2iTQv2o+pAp0WJBdxe90n17/+/k+tFHvru+hW1ZUf0LgyN8UvgqWPlJm/e
+         3sLlsa7tx5yLr6n0jvKWSyqTBANvFCy63bd/geeQYiv7EbOmlz9Hep/+ZvVV7PK5L2
+         f1L1TyTK1fU/0+5rOYB04+bdYWwbHXcht4xwKTk1CtkyHZW7su0S4/16UU1PRusSGx
+         TCrPeOybBp6S5pXLALRcLs3Cz0RvBsuyggPtYYyfkgQeLEWQ4HMqn92ceY3OFctWJj
+         Wf7YK1WCLWgBA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CC linux-renesas-soc
 
-On Thu, Jan 7, 2021 at 7:15 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> This patch series adds support for the Direct Memory Access Controller
-> variant in the Renesas R-Car V3U (R8A779A0) SoC, to both DT bindings and
-> driver.
+
+On 1/12/2021 9:16 PM, Rob Herring wrote:
+> External email: Use caution opening links or attachments
 >
-> This has been tested on the Renesas Falcon board, using external SPI
-> loopback (spi-loopback-test) on MSIOF1 and MSIOF2.
 >
-> Thanks for your comments!
+> From: Sameer Pujar <spujar@nvidia.com>
 >
-> Geert Uytterhoeven (4):
->   dt-bindings: renesas,rcar-dmac: Add r8a779a0 support
->   dmaengine: rcar-dmac: Add for_each_rcar_dmac_chan() helper
->   dmaengine: rcar-dmac: Add helpers for clearing DMA channel status
->   dmaengine: rcar-dmac: Add support for R-Car V3U
+> A schema for the OF graph binding has been added to the dt-schema repo
+> based on graph.txt contents. Let's replace graph.txt now duplicated
+> contents with a reference to the schema.
 >
->  .../bindings/dma/renesas,rcar-dmac.yaml       |  76 ++++++++-----
->  drivers/dma/sh/rcar-dmac.c                    | 100 ++++++++++++------
->  2 files changed, 118 insertions(+), 58 deletions(-)
+> For users of the graph binding, they should reference to the graph
+> schema from either 'ports' or 'port' property:
 >
-> --
-> 2.25.1
+> properties:
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
 >
-> Gr{oetje,eeting}s,
+>      properties:
+>        port@0:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description: What data this port has
 >
->                                                 Geert
+>        ...
 >
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> Or:
 >
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                                             -- Linus Torvalds
+> properties:
+>    port:
+>      description: What data this port has
+>      $ref: /schemas/graph.yaml#/properties/port
+>
+> Cc: Sameer Pujar <spujar@nvidia.com>
+> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> [robh: moved graph.yaml to dt-schema repo, expanded commit msg]
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>   Documentation/devicetree/bindings/graph.txt | 129 +-------------------
+>   1 file changed, 1 insertion(+), 128 deletions(-)
+
+Acked-by: Sameer Pujar <spujar@nvidia.com>
