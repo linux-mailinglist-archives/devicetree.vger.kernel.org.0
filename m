@@ -2,81 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E75962F3725
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 18:32:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A791C2F3796
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 18:49:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392333AbhALRab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 12:30:31 -0500
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:45783 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388033AbhALRab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 12:30:31 -0500
-X-Originating-IP: 86.202.109.140
-Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id A87CF40015;
-        Tue, 12 Jan 2021 17:29:48 +0000 (UTC)
-Date:   Tue, 12 Jan 2021 18:29:48 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Bruno Thomsen <bth@kamstrup.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Subject: Re: [PATCH] ARM: dts: imx7d-flex-concentrator: fix pcf2127 reset
-Message-ID: <20210112172948.GI3654@piout.net>
-References: <20210111151537.12530-1-bruno.thomsen@gmail.com>
+        id S2391761AbhALRr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 12:47:26 -0500
+Received: from bmail1.ministro.hu ([5.249.150.236]:47494 "EHLO
+        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389660AbhALRr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 12:47:26 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTP id E40B411FFB1;
+        Tue, 12 Jan 2021 18:46:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1610473602;
+        bh=//DIcFXDZIAYmFU2LDqtdLkGc3tYcmYhiwmP/GcTx3w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mv0LnyYFLowUG3bUX6y6qwcecYBu/ZTnMRD4vmpYc55ZESt3n4JMETbLiE7EYRGip
+         EFMIj7jzpTzb5bT0JxW1APTCEPjThwXqYKuv0L4MVsICsIjKX+Un4LQZawyHnYGB+n
+         ygPd3byxsTn/SeysROoq7+QTlkEJdqLeAgLBdd6tQApvWGXslf+0C/RWLcmZFilAb/
+         b8gR7c2EKZpGc07zwsjj9vI5WxDUq0wGTeQehQySa4pRVjKUS6k2JPC2Oln28T53Ez
+         xjVjH9I6eNhf4tW4/AHsTZiksZLwV39SvCEf1bgib55VU5lF3ZdxXGtgbqfMzAQCDK
+         ILBgRNZn5vwig==
+X-Virus-Scanned: Debian amavisd-new at ministro.hu
+Received: from bmail1.ministro.hu ([127.0.0.1])
+        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 2wTmrbJY3-u0; Tue, 12 Jan 2021 18:46:16 +0100 (CET)
+Received: from dev (localhost [127.0.0.1])
+        by bmail1.ministro.hu (Postfix) with ESMTPSA id 88B7C11FFAC;
+        Tue, 12 Jan 2021 18:46:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
+        s=201804; t=1610473576;
+        bh=//DIcFXDZIAYmFU2LDqtdLkGc3tYcmYhiwmP/GcTx3w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tig1Hp130I94YYjJ3L3vecbHhZfPopyLIwHPEs2A2BuGOjU3eBHsomv65WJUnhGZ1
+         GDXQAHBA5v3SJ0syJB++lRkcyTKe1PUoLxHc+aCrWViMgNYXhwhdTB+vJ7wNlAvSrs
+         h5EXQfBqmeLenBOsG2GtlzWYhr2ejUhdZI7lk9OJh40qPacYYC/wZTLlTENIFbzQYh
+         ZL235ajM+rkOyqBxdVbabcoK1ypkQeFsVkZoAdtHzd/KPvULQT7A7BF8m96pKQrnhf
+         8poKXE9lEvxVip/CkgdLe2ieuHOef4oc1VdwD7EEGkCY8yELL6r+RXMH3QQmhiWKU8
+         IINC7SEZqhbwg==
+Date:   Tue, 12 Jan 2021 17:46:13 +0000
+From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+To:     'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
+Cc:     'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] Serial: silabs si4455 serial driver
+Message-ID: <20210112174613.GA8782@dev>
+References: <20210112101831.GA12483@dev>
+ <X/15uOstG/7bj2Lm@kroah.com>
+ <20210112154322.GA31198@dev>
+ <X/3KnP3S4siAxTfG@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210111151537.12530-1-bruno.thomsen@gmail.com>
+In-Reply-To: <X/3KnP3S4siAxTfG@kroah.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2021 16:15:37+0100, Bruno Thomsen wrote:
-> RTC pcf2127 device driver has changed default behaviour of the watchdog
-> feature in v5.11-rc1. Now you need to explicitly enable it with a
-> device tree property, "reset-source", when used in the board design.
+On Tue, Jan 12, 2021 at 05:13:16PM +0100, 'Greg Kroah-Hartman' wrote:
+> On Tue, Jan 12, 2021 at 03:43:22PM +0000, József Horváth wrote:
+> > On Tue, Jan 12, 2021 at 11:28:08AM +0100, 'Greg Kroah-Hartman' wrote:
+> > > On Tue, Jan 12, 2021 at 10:18:33AM +0000, Jozsef Horvath wrote:
+> > > > --- a/include/uapi/linux/serial_core.h
+> > > > +++ b/include/uapi/linux/serial_core.h
+> > > > @@ -279,4 +279,7 @@
+> > > >  /* Freescale LINFlexD UART */
+> > > >  #define PORT_LINFLEXUART	122
+> > > >  
+> > > > +/* Silicon Labs SI4455 */
+> > > > +#define PORT_SI4455     123
+> > > 
+> > > What userspace tool is going to need this value?
+> > 
+> > The PORT_SI4455 is defined for using as port type value in struct uart_port.
+> > I checked other serial drivers under drivers/tty/serial and the port types
+> > used by serial drivers are defined in two places:
+> > 
+> > include/uapi/linux/serial_core.h
+> > include/uapi/linux/serial.h
+> > 
+> > The port type is required by serial_core, and its value goes back to
+> > user space with TIOCGSERIAL ioctl call.
 > 
-> Fixes: 71ac13457d9d ("rtc: pcf2127: only use watchdog when explicitly available")
+> What is it required for?  Who uses this?
 > 
-> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
-> Cc: Bruno Thomsen <bth@kamstrup.com>
-> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> Cc: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > I can't set port type value to 0(PORT_UNKNOWN).
+> 
+> Why not?
 
-> ---
->  arch/arm/boot/dts/imx7d-flex-concentrator.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm/boot/dts/imx7d-flex-concentrator.dts b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
-> index 84b095279e65..bd6b5285aa8d 100644
-> --- a/arch/arm/boot/dts/imx7d-flex-concentrator.dts
-> +++ b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
-> @@ -115,6 +115,7 @@ pcf2127: rtc@0 {
->  		compatible = "nxp,pcf2127";
->  		reg = <0>;
->  		spi-max-frequency = <2000000>;
-> +		reset-source;
->  	};
->  };
->  
-> 
-> base-commit: 7c53f6b671f4aba70ff15e1b05148b10d58c2837
-> -- 
-> 2.29.2
-> 
+In drivers/tty/serial/serial_core.c
+1784:	uart_port_activate(...)
+1799:		->	uart_startup(...)
+260:			->	uart_port_startup(...)
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+183:	static int uart_port_startup(struct tty_struct *tty, struct uart_state *state,
+184:			int init_hw)
+...
+191:		if (uport->type == PORT_UNKNOWN)
+192:			return 1;
+...
+221:		retval = uport->ops->startup(uport);	<--This is the reason. The drivers
+ startup function is not get called if type==PORT_UNKNOWN
+...
+
+> 
+> > I think my drivers source is not the best place to defining PORT_SI4455,
+> >  but I can't find better place then include/uapi/linux/serial_core.h
+> > 
+> > Could you please help me where is the correct location for this definition?
+> 
+> I ask as I am trying to figure out why we keep adding these ids, yet no
+> tool that i know of seems to actually use them.
+> 
+> If you don't have a tool that needs to use a new id, then I would
+> recommend not adding it, right?
+
+This definition is not my requirement, but I would avoid collision with other
+ drivers port type value.
+At this point as I understand your words, these definitions will be obsolete
+ or optional soon and I can choose any value for drivers port type.
+
+Right?
+
+I would ask you about dev name (ttySSi).
+Is it okay?
+
+I didnt find any similar.
+
+> 
+> thanks,
+> 
+> greg k-h
+
+Üdvözlettel / Best regards:
+József Horváth
+
