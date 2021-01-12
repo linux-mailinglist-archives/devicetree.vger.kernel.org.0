@@ -2,211 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2E832F3D9B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 01:44:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ABED2F3D9D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 01:44:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437147AbhALVhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2438010AbhALVhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 12 Jan 2021 16:37:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33254 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2436603AbhALUFY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 15:05:24 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9B16E22202;
-        Tue, 12 Jan 2021 20:04:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610481882;
-        bh=1o0zWRYsMorIJrlcWqTCOm9k7CjaC5powyIbGNDUSIc=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=AnopuI6J0LhWnmI8L1bEZ8ia+Vw3oUmaBznZXvhyfhSdtV/illGVxvcbfbO/kVOgo
-         +RcjCCvUvwIR6FB7QIDXbLzcq0NhSjk1oWj18FDYYqaucHmEEhG3TiJTBXaYYffvn7
-         AhThGRDDw35XMKzaTLdDYEd+8XJOiJuoJPKX3XgOr6po3ZKMIHFYosD8wwPAo1p6xk
-         Y8o5SwxOWvj7GUtYrJm3X0wdLbHzJ1EEnwFk+MxiPhiXUYx6ricL8n1zle8Qivz+p9
-         QN6qdpgPNThI/vaHSjIvm+knus3qOCHuRrKM/y5WXMKWp+IIbrbG+VPoDz3LpzrKIS
-         hQELyJbH1UI6g==
-Content-Type: text/plain; charset="utf-8"
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53446 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436627AbhALUGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 15:06:03 -0500
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 307C4C061575;
+        Tue, 12 Jan 2021 12:05:23 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id v126so3043989qkd.11;
+        Tue, 12 Jan 2021 12:05:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3Ek/S66n/YPIY8vj0Y9R0VXJUIiyn0553JvDZmdg604=;
+        b=iE9TOXX+pavnsc5a91+ztiZIY+jyc00AJWIOS24T9pMAovmK7q1zV/SWxH9EkA1X+q
+         cTdT1v/t2imk4Hmt7NNFvgHjTvj+Q97BhcB/bn3Wtp7OwbW15YWByaSrktnttYrJsgBC
+         Qsh+kkVeCzcehO0nldJ/i1iwukimzx24pkt6WcregveUBqpiIOABY8wJWBECLauZKTUL
+         FJ32CmHZndzsVmAF0gP4stKu6AV//721DMyuI8mLvvcANCboCGoAYfFWSz1YkKNZEV+O
+         v/6+8gfOeSiib0OkGhNCdWWg2YRDy4pGevx9f1LNGBlRO8H2HZfz/n5LqmwJpKmxMP0S
+         VxMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3Ek/S66n/YPIY8vj0Y9R0VXJUIiyn0553JvDZmdg604=;
+        b=Vewk6U5UstCEkBLbAePWH0Xz5D14xXqqsvQ2mc+9cJJLJ2nBda7Nrkz7LdKxbtCNqJ
+         qHE7YUEWJ4iBWWbI0sdPqkAi8zckJ6YYYw9Iw+kYWycpBUMuYeBryFxcHqrnOCUwEysl
+         AOUFFghRXFAA7uZsRXJFJ59RVSscC2azzIgAVG3l/E3m8puQ7VPHqeHCLeceBWgIYBWu
+         QbG15nwv2MG5OApJn7pJWk+NrVncFvjk/s4gOOcDJLnQO8TWQ7FnXj9LF003HYK1y7aN
+         4Z2ux19N7Vr6Xc6UndQTqVwt4w4du9rwKyhns4vm6jPCZHP221mSOM5KGdYZWMr/nFNl
+         F5ZQ==
+X-Gm-Message-State: AOAM530YUSvKJB0emFAGw2IZFcS8D6sS1WrBcZZeAkCcwQqHeElvKAIA
+        SFMD14QWm0zcKWSoFkzQDUUud6WrmclVvg==
+X-Google-Smtp-Source: ABdhPJy+URHHl6u2aHVYYDkyqNwaO+EWqI1St4w5BosBHt4oFQuobWz0wYacOIVGGtkzZdpGsd1jFQ==
+X-Received: by 2002:a37:9c07:: with SMTP id f7mr1152042qke.234.1610481922303;
+        Tue, 12 Jan 2021 12:05:22 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id x20sm1980715qkj.18.2021.01.12.12.05.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jan 2021 12:05:21 -0800 (PST)
+Subject: Re: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>
+References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
+ <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
+ <23e16d20-36eb-87d9-4473-142504ad8a95@gmail.com>
+ <CAL_JsqKqSVGCjcue=ka2=bB1Os9pczNTCqDeaoFPFfRxnvsteQ@mail.gmail.com>
+ <e549c7ce-d01e-08a3-9ed0-7325a34e9c29@gmail.com>
+ <CAL_Jsq+W4X5H2myCzX1bGTEqJG9dpwLXdmqbpq6oGm5wpF7WMQ@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <de50f7a5-d0d7-86b0-a1eb-84a91438b586@gmail.com>
+Date:   Tue, 12 Jan 2021 14:05:20 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1608058114-29025-3-git-send-email-tdas@codeaurora.org>
-References: <1608058114-29025-1-git-send-email-tdas@codeaurora.org> <1608058114-29025-3-git-send-email-tdas@codeaurora.org>
-Subject: Re: [PATCH v1 2/2] clk: qcom: Add Global Clock controller (GCC) driver for SC7280
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Taniya Das <tdas@codeaurora.org>
-Date:   Tue, 12 Jan 2021 12:04:41 -0800
-Message-ID: <161048188125.3661239.13161942092910464158@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <CAL_Jsq+W4X5H2myCzX1bGTEqJG9dpwLXdmqbpq6oGm5wpF7WMQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2020-12-15 10:48:34)
-> diff --git a/drivers/clk/qcom/gcc-sc7280.c b/drivers/clk/qcom/gcc-sc7280.c
-> new file mode 100644
-> index 0000000..74a3151
-> --- /dev/null
-> +++ b/drivers/clk/qcom/gcc-sc7280.c
-> @@ -0,0 +1,3361 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/clock/qcom,gcc-sc7280.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap-divider.h"
-> +#include "clk-regmap-mux.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +#include "reset.h"
-> +
-[...]
-> +static const struct freq_tbl ftbl_gcc_sdcc1_apps_clk_src[] =3D {
-> +       F(144000, P_BI_TCXO, 16, 3, 25),
-> +       F(400000, P_BI_TCXO, 12, 1, 4),
-> +       F(20000000, P_GCC_GPLL0_OUT_EVEN, 5, 1, 3),
-> +       F(25000000, P_GCC_GPLL0_OUT_EVEN, 12, 0, 0),
-> +       F(50000000, P_GCC_GPLL0_OUT_EVEN, 6, 0, 0),
-> +       F(100000000, P_GCC_GPLL0_OUT_EVEN, 3, 0, 0),
-> +       F(192000000, P_GCC_GPLL10_OUT_MAIN, 2, 0, 0),
-> +       F(384000000, P_GCC_GPLL10_OUT_MAIN, 1, 0, 0),
-> +       { }
-> +};
-> +
-> +static struct clk_rcg2 gcc_sdcc1_apps_clk_src =3D {
-> +       .cmd_rcgr =3D 0x7500c,
-> +       .mnd_width =3D 8,
-> +       .hid_width =3D 5,
-> +       .parent_map =3D gcc_parent_map_8,
-> +       .freq_tbl =3D ftbl_gcc_sdcc1_apps_clk_src,
-> +       .clkr.hw.init =3D &(struct clk_init_data){
-> +               .name =3D "gcc_sdcc1_apps_clk_src",
-> +               .parent_data =3D gcc_parent_data_8,
-> +               .num_parents =3D ARRAY_SIZE(gcc_parent_data_8),
-> +               .flags =3D CLK_SET_RATE_PARENT,
-> +               .ops =3D &clk_rcg2_ops,
+On 1/12/21 1:41 PM, Rob Herring wrote:
+> On Tue, Jan 12, 2021 at 1:06 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> On 1/12/21 8:04 AM, Rob Herring wrote:
+>>> On Mon, Jan 11, 2021 at 4:06 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>>>
+>>>> On 1/8/21 2:41 AM, Viresh Kumar wrote:
+>>>>> Now that fdtoverlay is part of the kernel build, start using it to test
+>>>>> the unitest overlays we have by applying them statically.
+>>>>>
+>>>>> The file overlay_base.dtb have symbols of its own and we need to apply
+>>>>> overlay.dtb to overlay_base.dtb alone first to make it work, which gives
+>>>>> us intermediate-overlay.dtb file.
+>>>>>
+>>>>> The intermediate-overlay.dtb file along with all other overlays is them
+>>>>> applied to testcases.dtb to generate the master.dtb file.
+>>>>>
+>>>>> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+>>>>
+>>>> NACK to this specific patch, in its current form.
+>>>>
+>>>> There are restrictions on applying an overlay at runtime that do not apply
+>>>> to applying an overlay to an FDT that will be loaded by the kernel during
+>>>> early boot.  Thus the unittest overlays _must_ be applied using the kernel
+>>>> overlay loading methods to test the kernel runtime overlay loading feature.
+>>>
+>>> This patch doesn't take away from any of that and it completely orthogonal.
+>>
+>> Mea culpa.  I took the patch header comment at face value, and read more into
+>> the header comment than what was written there.  I then skimmed the patch
+>> instead of actually reading what it was doing.
+>>
+>> I incorrectly _assumed_ (bad!) that the intent was to replace applying the
+>> individual overlay dtb's with the master.dtb.  Reading more closely, I see
+>> that the assumed final step of actually _using_ master.dtb does not exist.
+>>
+>> So, yes, I agree that the patch as written is orthogonal to my concern.
+>>
+>> My updated understanding is that this patch is attempting to use the existing
+>> unittest overlay dts files as source to test fdtoverlay.  And that the resulting
+>> dtb from fdtoverlay is not intended to be consumed by the kernel unittest.
+> 
+> The goal is not to test fdtoverlay. dtc unittests do that. The goal is
+> testing overlays we expect to be able to apply can actually apply and
+> doing this at build time. That's also the goal for all the 'real'
+> overlays which get added.
+> 
+>> I do not agree that this is a good approach to testing fdtoverlay.  The
+>> unittest overlay dts files are constructed specifically to test various
+>> parts of the kernel overlay code and dynamic OF code.  Some of the content
+>> of the overlays is constructed to trigger error conditions in that code,
+>> and thus will not be able to be processed without error by fdtoverlay.
+> 
+> Then those should be omitted.
+> 
+>> Trying to use overlay dts files that are constructed to test runtime kernel
+>> code as fdtoverlay input data mixes two different test environments and
+>> objectives.  If fdtoverlay test cases are desired, then fdtoverlay specific
+>> dts files should be created.
+>>
+>>>
+>>>> I agree that testing fdtoverlay is a good idea.  I have not looked at the
+>>>> parent project to see how much testing of fdtoverlay occurs there, but I
+>>>> would prefer that fdtoverlay tests reside in the parent project if practical
+>>>> and reasonable.  If there is some reason that some fdtoverlay tests are
+>>>> more practical in the Linux kernel repository then I am open to adding
+>>>> them to the Linux kernel tree.
+>>>
+>>> If you (or more importantly someone else sending us patches) make
+>>> changes to the overlays, you can test that they apply at build time
+>>> rather than runtime. I'll take it! So please help on fixing the issue
+>>> because I want to apply this.
+>>
+>> If the tests can be added to the upstream project, I would much prefer
+>> they reside there.  If there is some reason a certain test is more
+>> suited to be in the Linux kernel source tree then I also would like
+>> it to be accepted here.
+> 
+> Again, this is just about doing sanity checks at build time rather
+> than *only* rely on runtime.
 
-This needs to use floor clk ops?
+I'm fine with adding tests for applying overlays at build time (in
+other words, tests of fdtoverlay).
 
-> +       },
-> +};
-> +
-> +static const struct freq_tbl ftbl_gcc_sdcc1_ice_core_clk_src[] =3D {
-> +       F(100000000, P_GCC_GPLL0_OUT_EVEN, 3, 0, 0),
-> +       F(150000000, P_GCC_GPLL0_OUT_EVEN, 2, 0, 0),
-> +       F(300000000, P_GCC_GPLL0_OUT_EVEN, 1, 0, 0),
-> +       { }
-> +};
-> +
-> +static struct clk_rcg2 gcc_sdcc1_ice_core_clk_src =3D {
-> +       .cmd_rcgr =3D 0x7502c,
-> +       .mnd_width =3D 0,
-> +       .hid_width =3D 5,
-> +       .parent_map =3D gcc_parent_map_1,
-> +       .freq_tbl =3D ftbl_gcc_sdcc1_ice_core_clk_src,
-> +       .clkr.hw.init =3D &(struct clk_init_data){
-> +               .name =3D "gcc_sdcc1_ice_core_clk_src",
-> +               .parent_data =3D gcc_parent_data_1,
-> +               .num_parents =3D ARRAY_SIZE(gcc_parent_data_1),
-> +               .flags =3D CLK_SET_RATE_PARENT,
-> +               .ops =3D &clk_rcg2_ops,
+But the constraints on applying an overlay at build time are different
+than the runtime constraints.
 
-Same.
+The existing unittest overlay dts files are not designed to test applying
+overlays at build time.  Tests for fdtoverlay should be designed to test
+that overlays that meet the build time constraints can be applied
+properly by fdtoverlay, and that overlays that fail to meet those
+constraints are rejected by fdtoverlay.
 
-> +       },
-> +};
-> +
-> +static const struct freq_tbl ftbl_gcc_sdcc2_apps_clk_src[] =3D {
-> +       F(400000, P_BI_TCXO, 12, 1, 4),
-> +       F(19200000, P_BI_TCXO, 1, 0, 0),
-> +       F(25000000, P_GCC_GPLL0_OUT_EVEN, 12, 0, 0),
-> +       F(50000000, P_GCC_GPLL0_OUT_EVEN, 6, 0, 0),
-> +       F(100000000, P_GCC_GPLL0_OUT_EVEN, 3, 0, 0),
-> +       F(202000000, P_GCC_GPLL9_OUT_MAIN, 4, 0, 0),
-> +       { }
-> +};
-> +
-> +static struct clk_rcg2 gcc_sdcc2_apps_clk_src =3D {
-> +       .cmd_rcgr =3D 0x1400c,
-> +       .mnd_width =3D 8,
-> +       .hid_width =3D 5,
-> +       .parent_map =3D gcc_parent_map_9,
-> +       .freq_tbl =3D ftbl_gcc_sdcc2_apps_clk_src,
-> +       .clkr.hw.init =3D &(struct clk_init_data){
-> +               .name =3D "gcc_sdcc2_apps_clk_src",
-> +               .parent_data =3D gcc_parent_data_9,
-> +               .num_parents =3D ARRAY_SIZE(gcc_parent_data_9),
-> +               .flags =3D CLK_SET_RATE_PARENT,
-> +               .ops =3D &clk_rcg2_ops,
+Trying to use the same data (dts) files for tests that have different
+constraints is likely to make both tests more fragile when a data file
+is modified for one environment without careful consideration of the
+other environment.
 
-Same.
+> 
+>>>
+>>> And yes, dtc has fdtoverlay tests. But this patch shows there's at
+>>> least 2 issues,
+>>
+>>
+>>> fdtoverlay can't apply overlays to the root
+>>
+>> A test of that definitely belongs in the upstream project.
+> 
+> Yes, agreed.
+> 
+>>> and using an overlay as the base tree in UML is odd IMO.
+>>
+>> Am I still not fully understanding the patch?  I'm missing how
+>> this patch changes what dtb is used as the base tree in UML.
+> 
+> This was more my theorising why Viresh is having problems in that
+> perhaps fdtoverlay can't take an overlay as a base DT while the kernel
+> can and does for UML. The fact that it works for UML seems wrong to
+> me.
 
-> +       },
-> +};
-> +
-> +static const struct freq_tbl ftbl_gcc_sdcc4_apps_clk_src[] =3D {
-> +       F(400000, P_BI_TCXO, 12, 1, 4),
-> +       F(19200000, P_BI_TCXO, 1, 0, 0),
-> +       F(25000000, P_GCC_GPLL0_OUT_EVEN, 12, 0, 0),
-> +       F(50000000, P_GCC_GPLL0_OUT_EVEN, 6, 0, 0),
-> +       F(100000000, P_GCC_GPLL0_OUT_EVEN, 3, 0, 0),
-> +       { }
-> +};
-> +
-> +static struct clk_rcg2 gcc_sdcc4_apps_clk_src =3D {
-> +       .cmd_rcgr =3D 0x1600c,
-> +       .mnd_width =3D 8,
-> +       .hid_width =3D 5,
-> +       .parent_map =3D gcc_parent_map_1,
-> +       .freq_tbl =3D ftbl_gcc_sdcc4_apps_clk_src,
-> +       .clkr.hw.init =3D &(struct clk_init_data){
-> +               .name =3D "gcc_sdcc4_apps_clk_src",
-> +               .parent_data =3D gcc_parent_data_1,
-> +               .num_parents =3D ARRAY_SIZE(gcc_parent_data_1),
-> +               .flags =3D CLK_SET_RATE_PARENT,
-> +               .ops =3D &clk_rcg2_ops,
+I'll have to go back and look at UML.  I didn't recall that the base
+FDT for UML was an overlay.
 
-Same.
+-Frank
 
-> +       },
-> +};
-> +
-[...]
-> +static struct clk_branch gcc_cpuss_ahb_clk =3D {
-> +       .halt_reg =3D 0x48000,
-> +       .halt_check =3D BRANCH_HALT_VOTED,
-> +       .hwcg_reg =3D 0x48000,
-> +       .hwcg_bit =3D 1,
-> +       .clkr =3D {
-> +               .enable_reg =3D 0x52000,
-> +               .enable_mask =3D BIT(21),
-> +               .hw.init =3D &(struct clk_init_data){
-> +                       .name =3D "gcc_cpuss_ahb_clk",
-> +                       .parent_data =3D &(const struct clk_parent_data){
-> +                               .hw =3D &gcc_cpuss_ahb_postdiv_clk_src.cl=
-kr.hw,
-> +                       },
-> +                       .num_parents =3D 1,
-> +                       .flags =3D CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
+> 
+> Rob
+> 
 
-Why is it critical? Please add a comment like sc7180.
-
-> +                       .ops =3D &clk_branch2_ops,
-> +               },
-> +       },
-> +};
-> +
