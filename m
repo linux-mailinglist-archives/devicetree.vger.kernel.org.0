@@ -2,104 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F4F32F2FF3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 14:05:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B76C2F3111
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 14:16:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726503AbhALNAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 08:00:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53816 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405552AbhALM6w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 07:58:52 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BFFF923134;
-        Tue, 12 Jan 2021 12:58:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610456315;
-        bh=wBuEtDlE34cZvhKg94tf1u3hkx6HmvCvGAV4hgroIIM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oUF679jwdPtSRVm9sKawnTicaIns5dvvV49nSdO32BKFW1I/eY8oGQ7DraPNGNY/C
-         uvm7ES1ZhVHLjS6LP8mvCc4XDUQkWqwQ7vS4OwMH93KmSc5KJCHl8GaVhtEZJ3SJnK
-         pmOS1H+EU2l0XErUGhvcvwU6702Xhb0AloxV0Q4wOjECGEQvJARdwx4lLkFtxTV6xd
-         0iMwoVjUvCSOs5kRYwexIrriQF8zNR2sUr8YC9lWGFjuEW76kOZabIK3GvSrylrECD
-         WyyofTA/iofAijHf6K+EswHBIpr8ROdkbJ90MWjplqHm+46nt+FO0jv38/smL7s5mu
-         2AS30o22lqhlQ==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Arnd Bergmann <arnd@arndb.de>, Jamie Iles <jamie@jamieiles.com>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 8/8] ARM: picoxcell: fix missing interrupt-parent properties
-Date:   Tue, 12 Jan 2021 07:58:23 -0500
-Message-Id: <20210112125823.71463-8-sashal@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210112125823.71463-1-sashal@kernel.org>
-References: <20210112125823.71463-1-sashal@kernel.org>
+        id S1728686AbhALNPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 08:15:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49136 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731733AbhALNPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 08:15:35 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C72EC061786
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 05:14:55 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id a31so785074uae.11
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 05:14:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=wsIAAaJmhz/Kgz7MWbqUdWEb95rr1AFp+qZxEap7h7M=;
+        b=O69p2ecnXJaJLyc0kAIZxooLGMO+lDf9sqymqs+qWgc/YfXc/7tei+tAnu+PvYXW0J
+         BEZwCTxK0P4y/JaurvI52+8ztEl/+GIrzY+A6fXPTnoA0hsaJlfcfpfbGFYONfMqAGJS
+         EqJv6yIH0mD0pgdiZsTipHwrlNl/RJOfaLwwMdQlDDfIwgtLkc0wEYt4qC7h2438J/zY
+         1hTm3/cP9pWOsd79M1ryqV1nlJINS8hNlrk/WLueqTUiNHbHgSR5nmabGxf1hs8+ERZi
+         6vDDLIXFZKGCVnwkDMu9EQPBZ0ukqQ3AgulIjudEAGLPF2Slus7/2zR0Mj3lRfhn6gnq
+         RPDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wsIAAaJmhz/Kgz7MWbqUdWEb95rr1AFp+qZxEap7h7M=;
+        b=faxd6zkmFO6PXPcL1lMQXcrPANR6LhqMd0iHFUiSexcJFnOrQTrvpxRmPoWLcV+/RB
+         GYVYITmbBZztizcXVXAAx0ENuW9GEEDEoDOpKqAOBzjecRD/OQNLeufIx6EQZNMWeLIx
+         L5Efaw3VHl0dKuEMgf+oPqqKRnTtXJBucPNry02HDVZSHpXqNdWKYzI1X43B1Frjavms
+         hF15B/7+cOcODedr+8KWfe2eI1Ctc/tTqouOoD+hvfYtx5t6VEPPl9ejNMjt4Vi0H1RN
+         LjH/vcF7joZcvp40fGNDq2OLOVow/pH34HRTCUQC8L37wC0cI/bKmXK8Kd99gyl0FzuT
+         U1lw==
+X-Gm-Message-State: AOAM532qjz0U+HISQ6rIJopgT5H+q0MNQB6l7ddEhVyUjHHFSkW/o5ft
+        pPvGQ9n/BOUg2a7LnKh80+NGu1NaAmoNlobcI81EoQ==
+X-Google-Smtp-Source: ABdhPJwxPISSzqf3EW+/+hLpg/O5Ug7H7RCWxuCU3xGlx5Ix6IChIEDSkui97c+iJKJXTq7hvnNyBXXnjmzN/dgDmJI=
+X-Received: by 2002:ab0:2e99:: with SMTP id f25mr3470110uaa.104.1610457294428;
+ Tue, 12 Jan 2021 05:14:54 -0800 (PST)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+References: <20201214180743.14584-1-zajec5@gmail.com> <20201214180743.14584-2-zajec5@gmail.com>
+In-Reply-To: <20201214180743.14584-2-zajec5@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 12 Jan 2021 14:14:18 +0100
+Message-ID: <CAPDyKFphRU+zhM5G7C-PU_tK_3R9mj5HUvY4SUDRvTmZec4b+Q@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: power: document Broadcom's PMB binding
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arnd Bergmann <arnd@arndb.de>
+On Mon, 14 Dec 2020 at 19:08, Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> wr=
+ote:
+>
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> Broadcom's PMB is power controller used for disabling and enabling SoC
+> devices.
+>
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 
-[ Upstream commit bac717171971176b78c72d15a8b6961764ab197f ]
+Apologize for the delay!
 
-dtc points out that the interrupts for some devices are not parsable:
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-picoxcell-pc3x2.dtsi:45.19-49.5: Warning (interrupts_property): /paxi/gem@30000: Missing interrupt-parent
-picoxcell-pc3x2.dtsi:51.21-55.5: Warning (interrupts_property): /paxi/dmac@40000: Missing interrupt-parent
-picoxcell-pc3x2.dtsi:57.21-61.5: Warning (interrupts_property): /paxi/dmac@50000: Missing interrupt-parent
-picoxcell-pc3x2.dtsi:233.21-237.5: Warning (interrupts_property): /rwid-axi/axi2pico@c0000000: Missing interrupt-parent
+Kind regards
+Uffe
 
-There are two VIC instances, so it's not clear which one needs to be
-used. I found the BSP sources that reference VIC0, so use that:
-
-https://github.com/r1mikey/meta-picoxcell/blob/master/recipes-kernel/linux/linux-picochip-3.0/0001-picoxcell-support-for-Picochip-picoXcell-SoC.patch
-
-Acked-by: Jamie Iles <jamie@jamieiles.com>
-Link: https://lore.kernel.org/r/20201230152010.3914962-1-arnd@kernel.org'
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/picoxcell-pc3x2.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm/boot/dts/picoxcell-pc3x2.dtsi b/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
-index 533919e96eaee..f22a6b4363177 100644
---- a/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
-+++ b/arch/arm/boot/dts/picoxcell-pc3x2.dtsi
-@@ -54,18 +54,21 @@ paxi {
- 		emac: gem@30000 {
- 			compatible = "cadence,gem";
- 			reg = <0x30000 0x10000>;
-+			interrupt-parent = <&vic0>;
- 			interrupts = <31>;
- 		};
- 
- 		dmac1: dmac@40000 {
- 			compatible = "snps,dw-dmac";
- 			reg = <0x40000 0x10000>;
-+			interrupt-parent = <&vic0>;
- 			interrupts = <25>;
- 		};
- 
- 		dmac2: dmac@50000 {
- 			compatible = "snps,dw-dmac";
- 			reg = <0x50000 0x10000>;
-+			interrupt-parent = <&vic0>;
- 			interrupts = <26>;
- 		};
- 
-@@ -243,6 +246,7 @@ ebi@50000000 {
- 		axi2pico@c0000000 {
- 			compatible = "picochip,axi2pico-pc3x2";
- 			reg = <0xc0000000 0x10000>;
-+			interrupt-parent = <&vic0>;
- 			interrupts = <13 14 15 16 17 18 19 20 21>;
- 		};
- 	};
--- 
-2.27.0
-
+> ---
+>  .../bindings/power/brcm,bcm-pmb.yaml          | 50 +++++++++++++++++++
+>  include/dt-bindings/soc/bcm-pmb.h             | 11 ++++
+>  2 files changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/brcm,bcm-pmb.=
+yaml
+>  create mode 100644 include/dt-bindings/soc/bcm-pmb.h
+>
+> diff --git a/Documentation/devicetree/bindings/power/brcm,bcm-pmb.yaml b/=
+Documentation/devicetree/bindings/power/brcm,bcm-pmb.yaml
+> new file mode 100644
+> index 000000000000..40b08d83c80b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/brcm,bcm-pmb.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/brcm,bcm-pmb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom PMB (Power Management Bus) controller
+> +
+> +description: This document describes Broadcom's PMB controller. It suppo=
+rts
+> +  powering various types of connected devices (e.g. PCIe, USB, SATA).
+> +
+> +maintainers:
+> +  - Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - brcm,bcm4908-pmb
+> +
+> +  reg:
+> +    description: register space of one or more buses
+> +    maxItems: 1
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: Flag to use for block working in big endian mode.
+> +
+> +  "#power-domain-cells":
+> +    description: cell specifies device ID (see bcm-pmb.h)
+> +    const: 1
+> +
+> +required:
+> +  - reg
+> +  - "#power-domain-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/soc/bcm-pmb.h>
+> +
+> +    pmb: power-controller@802800e0 {
+> +        compatible =3D "brcm,bcm4908-pmb";
+> +        reg =3D <0x802800e0 0x40>;
+> +        #power-domain-cells =3D <1>;
+> +    };
+> +
+> +    foo {
+> +        power-domains =3D <&pmb BCM_PMB_PCIE0>;
+> +    };
+> diff --git a/include/dt-bindings/soc/bcm-pmb.h b/include/dt-bindings/soc/=
+bcm-pmb.h
+> new file mode 100644
+> index 000000000000..744dc3af4d41
+> --- /dev/null
+> +++ b/include/dt-bindings/soc/bcm-pmb.h
+> @@ -0,0 +1,11 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later OR MIT */
+> +
+> +#ifndef __DT_BINDINGS_SOC_BCM_PMB_H
+> +#define __DT_BINDINGS_SOC_BCM_PMB_H
+> +
+> +#define BCM_PMB_PCIE0                          0x01
+> +#define BCM_PMB_PCIE1                          0x02
+> +#define BCM_PMB_PCIE2                          0x03
+> +#define BCM_PMB_HOST_USB                       0x04
+> +
+> +#endif
+> --
+> 2.26.2
+>
