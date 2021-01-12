@@ -2,96 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE0782F3527
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 17:13:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1AF2F3524
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 17:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392514AbhALQMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 11:12:49 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:1791 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392470AbhALQMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 11:12:48 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5ffdca580002>; Tue, 12 Jan 2021 08:12:08 -0800
-Received: from [10.25.100.239] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 12 Jan
- 2021 16:12:05 +0000
-Subject: Re: [PATCH] dt-bindings: Remove plain text OF graph binding
-To:     Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20210112154631.406250-1-robh@kernel.org>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <67a0141f-569c-9fce-d21e-4de41baeb8d9@nvidia.com>
-Date:   Tue, 12 Jan 2021 21:41:55 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S2392180AbhALQMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 11:12:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49848 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387818AbhALQMs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 11:12:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 440E42087D;
+        Tue, 12 Jan 2021 16:12:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1610467927;
+        bh=gjilwnvLaoITN9YHzuSjRl6lvEZ8s9/dAZpCd/lhAvQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MVZtbb9iRp3VQXS3H1G+28LruF9gT+EHzkZiV80lKA6B+sz6uHoL7Zq/MzCFaWNkh
+         7mNQspcofW8890yFt6PJNEVNSxGCGb0Frv3hNTVyUZ6vSpYLsN1aGUkZj3U5PQH/cg
+         86476VJsutJn7aJe6ABJMyB9zs2c+0Yjpkx9AL0c=
+Date:   Tue, 12 Jan 2021 17:13:16 +0100
+From:   'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>
+To:     =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
+Cc:     'Rob Herring' <robh+dt@kernel.org>,
+        'Jiri Slaby' <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] Serial: silabs si4455 serial driver
+Message-ID: <X/3KnP3S4siAxTfG@kroah.com>
+References: <20210112101831.GA12483@dev>
+ <X/15uOstG/7bj2Lm@kroah.com>
+ <20210112154322.GA31198@dev>
 MIME-Version: 1.0
-In-Reply-To: <20210112154631.406250-1-robh@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1610467928; bh=pE1ckwOq4xU4jWcYirvlxe/6tr3etDsHPOoWVwGsw6k=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=ACf6r1TENo9KK91crXjfPgQAHb4C8jZAzRCa33IeejvldKrER37s0l/mfMtuGHfZ9
-         WluKv+SO2iTQv2o+pAp0WJBdxe90n17/+/k+tFHvru+hW1ZUf0LgyN8UvgqWPlJm/e
-         3sLlsa7tx5yLr6n0jvKWSyqTBANvFCy63bd/geeQYiv7EbOmlz9Hep/+ZvVV7PK5L2
-         f1L1TyTK1fU/0+5rOYB04+bdYWwbHXcht4xwKTk1CtkyHZW7su0S4/16UU1PRusSGx
-         TCrPeOybBp6S5pXLALRcLs3Cz0RvBsuyggPtYYyfkgQeLEWQ4HMqn92ceY3OFctWJj
-         Wf7YK1WCLWgBA==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210112154322.GA31198@dev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 12, 2021 at 03:43:22PM +0000, József Horváth wrote:
+> On Tue, Jan 12, 2021 at 11:28:08AM +0100, 'Greg Kroah-Hartman' wrote:
+> > On Tue, Jan 12, 2021 at 10:18:33AM +0000, Jozsef Horvath wrote:
+> > > --- a/include/uapi/linux/serial_core.h
+> > > +++ b/include/uapi/linux/serial_core.h
+> > > @@ -279,4 +279,7 @@
+> > >  /* Freescale LINFlexD UART */
+> > >  #define PORT_LINFLEXUART	122
+> > >  
+> > > +/* Silicon Labs SI4455 */
+> > > +#define PORT_SI4455     123
+> > 
+> > What userspace tool is going to need this value?
+> 
+> The PORT_SI4455 is defined for using as port type value in struct uart_port.
+> I checked other serial drivers under drivers/tty/serial and the port types
+> used by serial drivers are defined in two places:
+> 
+> include/uapi/linux/serial_core.h
+> include/uapi/linux/serial.h
+> 
+> The port type is required by serial_core, and its value goes back to
+> user space with TIOCGSERIAL ioctl call.
 
+What is it required for?  Who uses this?
 
-On 1/12/2021 9:16 PM, Rob Herring wrote:
-> External email: Use caution opening links or attachments
->
->
-> From: Sameer Pujar <spujar@nvidia.com>
->
-> A schema for the OF graph binding has been added to the dt-schema repo
-> based on graph.txt contents. Let's replace graph.txt now duplicated
-> contents with a reference to the schema.
->
-> For users of the graph binding, they should reference to the graph
-> schema from either 'ports' or 'port' property:
->
-> properties:
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->
->      properties:
->        port@0:
->          $ref: /schemas/graph.yaml#/properties/port
->          description: What data this port has
->
->        ...
->
-> Or:
->
-> properties:
->    port:
->      description: What data this port has
->      $ref: /schemas/graph.yaml#/properties/port
->
-> Cc: Sameer Pujar <spujar@nvidia.com>
-> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> [robh: moved graph.yaml to dt-schema repo, expanded commit msg]
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   Documentation/devicetree/bindings/graph.txt | 129 +-------------------
->   1 file changed, 1 insertion(+), 128 deletions(-)
+> I can't set port type value to 0(PORT_UNKNOWN).
 
-Acked-by: Sameer Pujar <spujar@nvidia.com>
+Why not?
+
+> I think my drivers source is not the best place to defining PORT_SI4455,
+>  but I can't find better place then include/uapi/linux/serial_core.h
+> 
+> Could you please help me where is the correct location for this definition?
+
+I ask as I am trying to figure out why we keep adding these ids, yet no
+tool that i know of seems to actually use them.
+
+If you don't have a tool that needs to use a new id, then I would
+recommend not adding it, right?
+
+thanks,
+
+greg k-h
