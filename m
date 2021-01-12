@@ -2,100 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAD542F2A47
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 09:48:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E4922F2A54
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 09:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392373AbhALIrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 03:47:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55008 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727057AbhALIrC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 03:47:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 130D022E01;
-        Tue, 12 Jan 2021 08:46:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610441181;
-        bh=Y1GzYRbQvrAPA/+w1mjAvZdM3kH7poVhJbFhssGvWnw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=EwRH1UUigmJkvLWs0zORnRvjcjGyy3vuh0jpp1r1H5YX2E522bpGtszkvGKx64m3X
-         Ymz/Q234SAv+7joy2teL8vX4xwjk4QDTsTjI3+D2AtLq+uts/A7DzkUPr7o2vmR99A
-         L5AN+fNkQ86GxcpqFSuGY4UftH0A+zK4E9XKCrYQZc6Lab7p0umIx8AWZcNwJXraPN
-         RQu6dHjhQT6otREr4uaNIkylbzTBrTrppJ5LobR7uSzuSa+UEZsuR/YeQwXpJAvYei
-         HedUcDEu53rfEX9lCcs6RIrEvAwB+G+KrMf/0ldyvCyDw4kV6/D/1AFvFZRnm0RjR8
-         +6ySg8ygZjWjQ==
-Received: by mail-ot1-f42.google.com with SMTP id i6so1587325otr.2;
-        Tue, 12 Jan 2021 00:46:21 -0800 (PST)
-X-Gm-Message-State: AOAM530oZ/ijjpN2jx8H2PsvHXy+dEB+xZR5N5+mNKMpASQZTN1kV6CM
-        xLlZoOzJCESBrQGFqwY0bPTRQ4RJDEGU1iEpfRo=
-X-Google-Smtp-Source: ABdhPJzM9ncpX519OYLH+0PC8S0hC9gQaClB61ZqP0E18csMrNH++9ADD1MzAIeMYrL667BHTQMz5f0adu6PvVREwuE=
-X-Received: by 2002:a05:6830:2413:: with SMTP id j19mr2191096ots.251.1610441180241;
- Tue, 12 Jan 2021 00:46:20 -0800 (PST)
+        id S2392420AbhALIuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 03:50:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48420 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388513AbhALIuK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 03:50:10 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6092BC061786
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 00:49:29 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id h205so2166210lfd.5
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 00:49:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FO2rHm6UIMBu9Ki7Nf6OHymZ0+n2eoWJ/J9V6P3/8h8=;
+        b=Gltf9TvRNOY0tSXrxiA4//zhOlERkD6r2FC2saFGS8t3sVaO5mcxegCfTZD0F5W+Ts
+         8jcW3Nn/LZYgx7pT9L5qHEYSn+ZgO8cjuieFlIfq/7Fw9l6Ycc68mGr+U9mSVfennApU
+         QHG6BQH6tL/5exf95jdd5lx+1pIc1Y8TSffGP+JxkGa0a7ZRAVklVOdGlHOXBlPIz6E/
+         tnuzBJzCPgW7gkttsauSu26m+t2ixMU8Qn/fmAlctF8UbDwkJl0P65oBiS99ZahFXu8F
+         gPDE+2CqbYla3vIJU4tbLTB1a4ckbCNhONdSmNqCHzc9jckjH45DzyQqd+Vlz1CSUMap
+         C5uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FO2rHm6UIMBu9Ki7Nf6OHymZ0+n2eoWJ/J9V6P3/8h8=;
+        b=j24m4td2WglnxRHp7+EspVJLyh5zRyulkpW8IQ7i+fIG9MBIWY1+yRXU4o9XK00Rvq
+         hG/ccnJmK/LhDpaVoKgp8eh/ggAM5A31ReQwL6kMRziz0MfIxGOvMrkEElTTvOLP/jlg
+         bgdKtGams4fDthVYMW9eUdyoDwdow0POL4w8j61Q/5sUb0qjZhRW7MPKDVmEMCqEvVk1
+         lJy4w8jscGZ/vJ3HtP/s8KHBV+9OK1Y9l/FGdVlUxeuPYyZMmdGB7FQzYwExO79Q9vj2
+         g/kdBO2hLfojpv9MOkfdWpIDH5CGHvU59TfOCzpT0VeWJvOyH3CuHeKhyGIM3eoBuYwY
+         H9BA==
+X-Gm-Message-State: AOAM530x8T2M5NrG5BU5vap8SbPOlP6asfEw5fabsMVg3KgU/KLW/jSS
+        VIGRyo25dTNhR2R+mJgPnB0r8OiJF3ZmUqFJjJhU5Q==
+X-Google-Smtp-Source: ABdhPJx8LV4CvQbya9pzC+Y865mc9FHowA10/ILhkSPbVdtQrtK5X8N9YI7+9he1ztb2VQ2P7WL2X6F4KIkvfb6LwpQ=
+X-Received: by 2002:ac2:5597:: with SMTP id v23mr1601550lfg.649.1610441367919;
+ Tue, 12 Jan 2021 00:49:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20210112015602.497-1-thunder.leizhen@huawei.com> <20210112015602.497-3-thunder.leizhen@huawei.com>
-In-Reply-To: <20210112015602.497-3-thunder.leizhen@huawei.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 12 Jan 2021 09:46:03 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0VcLtOrvXKEd2dDuP8HhKzU+uB0U6OiJXtefQQYjTheg@mail.gmail.com>
-Message-ID: <CAK8P3a0VcLtOrvXKEd2dDuP8HhKzU+uB0U6OiJXtefQQYjTheg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: hisilicon: Add binding for L3
- cache controller
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Russell King <rmk+kernel@arm.linux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Haojian Zhuang <haojian.zhuang@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <cover.1610364681.git.baruch@tkos.co.il> <5e1b119a51df19ead32561e87ce2ee1441b67154.1610364681.git.baruch@tkos.co.il>
+In-Reply-To: <5e1b119a51df19ead32561e87ce2ee1441b67154.1610364681.git.baruch@tkos.co.il>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 12 Jan 2021 09:49:16 +0100
+Message-ID: <CACRpkdZAHpcgzXSJKZyQjBOriALZUoXbw_hBpPa_zxa27=F0hg@mail.gmail.com>
+Subject: Re: [PATCH v7 3/3] dt-bindings: ap806: document gpio
+ marvell,pwm-offset property
+To:     Baruch Siach <baruch@tkos.co.il>, Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        linux-pwm@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 12, 2021 at 2:56 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
+Hi Baruch,
 
-> +---
-> +$id: http://devicetree.org/schemas/arm/hisilicon/l3cache.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+this caught my eye:
+
+On Mon, Jan 11, 2021 at 12:47 PM Baruch Siach <baruch@tkos.co.il> wrote:
+
+> Update the example as well. Add the '#pwm-cells' and 'clocks' properties
+> for a complete working example.
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+
+(...)
+> +Optional properties:
 > +
-> +title: Hisilicon L3 cache controller
-> +
-> +maintainers:
-> +  - Wei Xu <xuwei5@hisilicon.com>
-> +
-> +description: |
-> +  The Hisilicon L3 outer cache controller supports a maximum of 36-bit physical
-> +  addresses. The data cached in the L3 outer cache can be operated based on the
-> +  physical address range or the entire cache.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: hisilicon,l3cache
-> +
+> +- marvell,pwm-offset: offset address of PWM duration control registers inside
+> +  the syscon block
+(...)
+>  ap_syscon: system-controller@6f4000 {
+>         compatible = "syscon", "simple-mfd";
+> @@ -101,6 +106,9 @@ ap_syscon: system-controller@6f4000 {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>                 gpio-ranges = <&ap_pinctrl 0 0 19>;
+> +               marvell,pwm-offset = <0x10c0>;
 
-The compatible string needs to be a little more specific, I'm sure
-you cannot guarantee that this is the only L3 cache controller ever
-designed in the past or future by HiSilicon.
+This seems to be one of those cases where we start to encode things related
+to the hardware variant into the device tree.
 
-Normally when you have an IP block that is itself unnamed but that is specific
-to one or a few SoCs but that has no na, the convention is to include the name
-of the first SoC that contained it.
+Is this just documenting ABI that was introduced in the past and we can not
+do anything about now? In that case it is OK I suppose.
 
-Can you share which products actually use this L3 cache controller?
+For a new binding we would certainly require that the system controller
+provide a specific tertiary compatible string for this, lest we disguise
+the not-so-simple system controller as "simple-mfd" so:
 
-On a related note, what does the memory map look like on this chip?
-Do you support more than 4GB of total installed memory? If you
-do, this becomes a problem in the future as highmem support
-winds down. In fact  anything more than 1GB on a 32-bit system
-requires more work on the kernel to be completed before we remove
-highmem, and will incur a slowdown. If the total is under 4GB but the
-memory is not in a contiguous physical address range. See my
-Linaro connect presentation[1] for further information on the topic.
+compatible = "syscon", "simple-mfd", "my-silicon-id";
 
-       Arnd
+Then detect the PWM offset by using
+if(of_device_is_compatibe(np, "my-silicon-id"))
+in the code rather than parsing any marvell,pwm-offset property.
 
-[1] https://connect.linaro.org/resources/lvc20/lvc20-106/
+Yours,
+Linus Walleij
