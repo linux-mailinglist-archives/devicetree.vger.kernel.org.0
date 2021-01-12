@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36D522F2A06
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 09:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF1272F2A0C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 09:31:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405405AbhALI3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 03:29:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44032 "EHLO
+        id S2405122AbhALIaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 03:30:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725988AbhALI3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 03:29:49 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A91A9C061786
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 00:29:09 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id c12so947309pfo.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 00:29:09 -0800 (PST)
+        with ESMTP id S2405109AbhALIaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 03:30:06 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AACC9C0617A2
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 00:29:12 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id c79so967649pfc.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 00:29:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CrBTMwuCocMXNaZlBloj14p7TaV3dUqyAg3ZjdKSdtQ=;
-        b=SheSm7pPzbdgKTGIS5Wbrtm+EyLFpf3IdIFMHUhJjjd5RQsq61KHB9elZRuoTCC2Eu
-         LhpDn7kN9a6R63hOsxSvvK9hDTeYJ7SEtf4ru2381HGPyfNGlGMggNq+C+T5igUUdWu4
-         3AR0la2JlukQLl4bU9bpUeZiz/TW1WQ8YQ6KDxI2/405yKKJT4JB+qRx+zwCY+FDMvKM
-         8LQe6n459ZQlGeYxWMcdJBvgCrPcDPRqS0Uzgeh8X/lACZyHl2RjwmWzCdtqDCelh1qM
-         pidA75ympxCe2WCGm3+XyvVw2REGMrrOcPYYuF70ZbeLxzJGg3UX7qhSjISoshlYIikH
-         eNCg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=SfqrhXJQaqJjV61wcgC7ZOTiZJR50oZXFU0ulC256Rg=;
+        b=SSeKiG1+oGN18d1S1UvrOUNw2yc6VlsVtOpm9dV6u77sKiqJRN6MtpyEKvFQ91QWJL
+         VSWO9fxox36y9noWQm4jBkR2wlVkE72NXF1Sj45u0PJ/QLXcNyjRu5IeZWhsW1PZeQHG
+         YxwOhVc3+j79pyiiUhhPM3fL0EA2rubMm+3ff6PkJWTEv+dzC7dbisYrRF4d2lL4h+fY
+         rIm7X7BGkuywk+CNe+3jtWnEHslHChb4HFq9qJV3zEXEWtgrEjErf5OpOm7h8ltimaIR
+         jvgkLAIUuK6MiLiNrleVFOJTmGuxjI+zkIKeX1tRdtAWcO7PxZAMKcl/cCvLZhfmPUJt
+         2JZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CrBTMwuCocMXNaZlBloj14p7TaV3dUqyAg3ZjdKSdtQ=;
-        b=ICM4KKdKVaRkpui/PH/lyZnPEMKwCAK8lVvRBJy0tK8Cd8XkZxFiLGyQzMq5JmrlWS
-         RIw2kuy8mdKOf8u+oxt7HFV41NUqFfv8hMx02WdFP2f3dmPwqPDMulqen84waLxk/58c
-         7W7r5hmM85z5iAjdIwaC0H6t7SwfdhLMAyDXiylEN1aXqohNXxINMBPhSBemzuOv1tBP
-         RBfQxVtZvn49ZmdnuWGT2WskW5Pildv/ZEMrkduNluRVGjn+ib07FzC49PQlC6ZlGOYF
-         uOYREbRT5qTdPTKnD63uPWqYVsklHDiTLVCJzWv4MsiRhoTOZk8B7vhnz2HChKw+cwCO
-         nuDw==
-X-Gm-Message-State: AOAM530F4XjI3H4lpSFxWoTb9EDwWZ3nBM8biODGSyns8k9NtUdbwrGg
-        7ZpxSxuFpfDd5zJY0aYKQXg6kA==
-X-Google-Smtp-Source: ABdhPJweEioWpVtvQX71VyotDntXRJ0bZz1J7VJsaDO6OCrG4WuPO1/Yj0aac3RBFhQPfdcf3jYj+g==
-X-Received: by 2002:a63:d601:: with SMTP id q1mr3608947pgg.417.1610440149194;
-        Tue, 12 Jan 2021 00:29:09 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=SfqrhXJQaqJjV61wcgC7ZOTiZJR50oZXFU0ulC256Rg=;
+        b=rZyP1e1bjuA3Fci9ri/ECIIMJZ551w3F2CHcYg+SdVcs0CvqIYo0hUVCFf6Im0xF2+
+         sMgB8qIuedcx21T3/Q3J/oyCcyY+wIcFfBlZaBOD+3HSi0cIN//9ZBXjx7Y6eMsythhZ
+         KfNRtX0xrtRlkQBhfJMAFfSwVvCv1+2f/MQz3dB/5eSTkj8n32Hk+dpSMmBi04DuYbkW
+         ihRf4ETUbbeVa3Iwel/9jG6w1aNpwsK7sg/hR3nCD/BOA93D913sPwcwIzXOnViPV7lB
+         /FXVOdNCTPFkqWGpVDub+yIOjEjSbjcFOmFqedtS0VYQVYA1gL3MkzOw1ujn3194VkFW
+         mndw==
+X-Gm-Message-State: AOAM532ATXpvaf/rMRspVOCBryyDtP8Cl2StBUEmIu0/gedxu+dzEG7b
+        fUqMKhUxw+yb5i+ghLh8KJXg2A==
+X-Google-Smtp-Source: ABdhPJxFkHeC8OHW0Dxcc7ncPQ7CFcioS0xfREvooC1RtufXlqhwn8QMMerrJaJbijSvOERSCurUkQ==
+X-Received: by 2002:a63:1f18:: with SMTP id f24mr3684261pgf.133.1610440152283;
+        Tue, 12 Jan 2021 00:29:12 -0800 (PST)
 Received: from localhost ([122.172.85.111])
-        by smtp.gmail.com with ESMTPSA id r79sm2187433pfc.166.2021.01.12.00.29.07
+        by smtp.gmail.com with ESMTPSA id i2sm2244541pjd.21.2021.01.12.00.29.11
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 12 Jan 2021 00:29:08 -0800 (PST)
+        Tue, 12 Jan 2021 00:29:11 -0800 (PST)
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -56,10 +56,12 @@ Cc:     Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
         Vincent Guittot <vincent.guittot@linaro.org>,
         Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
         Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH V4 0/3] scripts: dtc: Build fdtoverlay
-Date:   Tue, 12 Jan 2021 13:58:59 +0530
-Message-Id: <cover.1610431620.git.viresh.kumar@linaro.org>
+Subject: [PATCH V4 1/3] scripts: dtc: Add fdtoverlay.c to DTC_SOURCE
+Date:   Tue, 12 Jan 2021 13:59:00 +0530
+Message-Id: <a1587678b2d5e23c4a3e6248825e285a403f3ad1.1610431620.git.viresh.kumar@linaro.org>
 X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
+In-Reply-To: <cover.1610431620.git.viresh.kumar@linaro.org>
+References: <cover.1610431620.git.viresh.kumar@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -67,26 +69,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 We will start building overlays for platforms soon in the kernel and
-would need fdtoverlay tool going forward. Lets start fetching and
-building it.
+would need fdtoverlay tool going forward. Lets start fetching it.
 
-While at it, also remove fdtdump.c file, which isn't used by the kernel.
+Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+---
+ scripts/dtc/update-dtc-source.sh | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-V4:
-- Don't fetch and build fdtdump.c
-- Remove fdtdump.c
-
-Viresh Kumar (3):
-  scripts: dtc: Add fdtoverlay.c to DTC_SOURCE
-  scripts: dtc: Build fdtoverlay tool
-  scripts: dtc: Remove the unused fdtdump.c file
-
- scripts/dtc/Makefile             |   6 +-
- scripts/dtc/fdtdump.c            | 163 -------------------------------
- scripts/dtc/update-dtc-source.sh |   6 +-
- 3 files changed, 8 insertions(+), 167 deletions(-)
- delete mode 100644 scripts/dtc/fdtdump.c
-
+diff --git a/scripts/dtc/update-dtc-source.sh b/scripts/dtc/update-dtc-source.sh
+index bc704e2a6a4a..f1c802011e1e 100755
+--- a/scripts/dtc/update-dtc-source.sh
++++ b/scripts/dtc/update-dtc-source.sh
+@@ -31,9 +31,9 @@ set -ev
+ DTC_UPSTREAM_PATH=`pwd`/../dtc
+ DTC_LINUX_PATH=`pwd`/scripts/dtc
+ 
+-DTC_SOURCE="checks.c data.c dtc.c dtc.h flattree.c fstree.c livetree.c srcpos.c \
+-		srcpos.h treesource.c util.c util.h version_gen.h yamltree.c \
+-		dtc-lexer.l dtc-parser.y"
++DTC_SOURCE="checks.c data.c dtc.c dtc.h fdtoverlay.c flattree.c fstree.c \
++		livetree.c srcpos.c srcpos.h treesource.c util.c \
++		util.h version_gen.h yamltree.c dtc-lexer.l dtc-parser.y"
+ LIBFDT_SOURCE="fdt.c fdt.h fdt_addresses.c fdt_empty_tree.c \
+ 		fdt_overlay.c fdt_ro.c fdt_rw.c fdt_strerror.c fdt_sw.c \
+ 		fdt_wip.c libfdt.h libfdt_env.h libfdt_internal.h"
 -- 
 2.25.0.rc1.19.g042ed3e048af
 
