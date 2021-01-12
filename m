@@ -2,90 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 858C62F2668
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 03:53:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 340A72F2739
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 05:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729045AbhALCvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 21:51:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56252 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728044AbhALCvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 21:51:35 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36C12C061786;
-        Mon, 11 Jan 2021 18:50:55 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id u17so1027334iow.1;
-        Mon, 11 Jan 2021 18:50:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=5w78tzUXX0I8RLg/o+73uKu20yriP3eTMDkxoUSEBt8=;
-        b=NHJNCgjrOquzygHREJEL8tOelgSod+g5e14cUUQBq3m6q9Tz7J7kiFWgiqScncNVa7
-         VtHn9W+sU/HKdfD3qR7v5xRLrKMbfNHHzzpC+dPGuA6ZVNhDN5GiTHPAdTX/GWIgL7Zk
-         ZSqwdCu8uD4NTwENzTRv2gLX9uyzmLvoH+s958GGTh6A3pDLE5iw+rlFMt9azCpqzhPt
-         lQ7W1L010BxxiDvfV29HppOK5smgJ3xRPGWdLQrN4kexe7ZVHxZZ+rpTK43nSC51xLYg
-         6McdgrO73jIn+GCdIEab7GPB4pEvCTaXPLwtEnoISDVaBuXHuQH4eL9KDpTjz9lpejyx
-         VtMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=5w78tzUXX0I8RLg/o+73uKu20yriP3eTMDkxoUSEBt8=;
-        b=jakVDGrwAWHbvKgFHBJW98NmyNViYjAHmfsGXf7cKctsqlxWnCYsFIKxEc7lId9AUE
-         FFR10TKZhylYcp9ufYDu9vsLBOVoCwVUlTDT0YlNQmBhhl4+naFMD9kYeSk4sKW1Dtc3
-         eE7OvVvfLDar1S3VrkVSpwubC/Bc2zh1OeOLOQi40xqo97TfPdfXiM2T6JkPyAXVgjg5
-         0fszSPvoa0HatgdVj0zsLk0BHKa7LGChGrVVO4vcWB7MEp7omHvrGr4gitII5hy0Wwlm
-         A2clEtxNBrZFdG8gu3AOh5EMLTDeI0UZsCvIBSFFw3cDwoFP1iv2n0PSxj/pSpjrzvRb
-         X+Fg==
-X-Gm-Message-State: AOAM531v7zZ5M+sg1PB+nSJuxWW7w+uYtUYW+wk5AS0s/5uifHpAJuXr
-        6waRX/+QnrWX1ldOifi2k0ew1pL5pvAjotBzcwU=
-X-Google-Smtp-Source: ABdhPJz0j5BLfPgmG13n4HxFvJkNZxPuemZywJs7U1swOc8i0mMqZy/C2uAL4yRDpNC/M7qFtc/loQ/5mbS5Plf+tnI=
-X-Received: by 2002:a6b:b5d2:: with SMTP id e201mr1630874iof.111.1610419854594;
- Mon, 11 Jan 2021 18:50:54 -0800 (PST)
+        id S1729988AbhALElU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 23:41:20 -0500
+Received: from mga02.intel.com ([134.134.136.20]:38784 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727047AbhALElU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Jan 2021 23:41:20 -0500
+IronPort-SDR: xEr0/NDN2P6P/Jqp6yRqn7i1dXVf4iz19IFmNU4IQRmYqrcZ/qq3t9A6lXr9ZtHU2TSeOtUZwV
+ C94qQbfGvHyg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9861"; a="165064784"
+X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; 
+   d="scan'208";a="165064784"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2021 20:39:32 -0800
+IronPort-SDR: rbtMIpU1AlGux/ENy6x92Hb2JJ7I19FCOibsAEwW3txKgPQT94r1a/Nk8Rt2IbZtTfttbufyMg
+ 6wmw9cE1hnAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,340,1602572400"; 
+   d="scan'208";a="464389805"
+Received: from allen-box.sh.intel.com (HELO [10.239.159.28]) ([10.239.159.28])
+  by fmsmga001.fm.intel.com with ESMTP; 11 Jan 2021 20:39:27 -0800
+Cc:     baolu.lu@linux.intel.com, lorenzo.pieralisi@arm.com,
+        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
+        rjw@rjwysocki.net, lenb@kernel.org, robin.murphy@arm.com,
+        Jonathan.Cameron@huawei.com, eric.auger@redhat.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, vdumpa@nvidia.com,
+        zhangfei.gao@linaro.org, shameerali.kolothum.thodi@huawei.com,
+        vivek.gautam@arm.com, Arnd Bergmann <arnd@arndb.de>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Zhou Wang <wangzhou1@hisilicon.com>,
+        "Tian, Kevin" <kevin.tian@intel.com>
+Subject: Re: [PATCH v9 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from
+ IOMMU_DEV_FEAT_SVA
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org
+References: <20210108145217.2254447-1-jean-philippe@linaro.org>
+ <20210108145217.2254447-4-jean-philippe@linaro.org>
+From:   Lu Baolu <baolu.lu@linux.intel.com>
+Message-ID: <4de8ef03-a2ed-316e-d3e3-6b8474e20113@linux.intel.com>
+Date:   Tue, 12 Jan 2021 12:31:23 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210111054428.3273-1-dqfext@gmail.com> <20210111164616.1947d779@kernel.org>
-In-Reply-To: <20210111164616.1947d779@kernel.org>
-From:   DENG Qingfang <dqfext@gmail.com>
-Date:   Tue, 12 Jan 2021 10:50:54 +0800
-Message-ID: <CALW65jboizW2J1S0BYBrOM_xNEzpFM-gdJ6OF33+65vMiJtmWg@mail.gmail.com>
-Subject: Re: [PATCH net-next 0/2] dsa: add MT7530 GPIO support
-To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, linux-kernel@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210108145217.2254447-4-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi Jean,
 
-On Mon, Jan 11, 2021 at 11:46 PM Marek Beh=C3=BAn <kabel@kernel.org> wrote:
->
-> what modes does the LED support? Does it support blinking on rx/tx?
-> What about link status?
+On 1/8/21 10:52 PM, Jean-Philippe Brucker wrote:
+> Some devices manage I/O Page Faults (IOPF) themselves instead of relying
+> on PCIe PRI or Arm SMMU stall. Allow their drivers to enable SVA without
+> mandating IOMMU-managed IOPF. The other device drivers now need to first
+> enable IOMMU_DEV_FEAT_IOPF before enabling IOMMU_DEV_FEAT_SVA.
+> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> ---
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: David Woodhouse <dwmw2@infradead.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Lu Baolu <baolu.lu@linux.intel.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+> Cc: Zhou Wang <wangzhou1@hisilicon.com>
+> ---
+>   include/linux/iommu.h | 20 +++++++++++++++++---
+>   1 file changed, 17 insertions(+), 3 deletions(-)
+> 
+> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+> index 583c734b2e87..701b2eeb0dc5 100644
+> --- a/include/linux/iommu.h
+> +++ b/include/linux/iommu.h
+> @@ -156,10 +156,24 @@ struct iommu_resv_region {
+>   	enum iommu_resv_type	type;
+>   };
+>   
+> -/* Per device IOMMU features */
+> +/**
+> + * enum iommu_dev_features - Per device IOMMU features
+> + * @IOMMU_DEV_FEAT_AUX: Auxiliary domain feature
+> + * @IOMMU_DEV_FEAT_SVA: Shared Virtual Addresses
+> + * @IOMMU_DEV_FEAT_IOPF: I/O Page Faults such as PRI or Stall. Generally using
+> + *			 %IOMMU_DEV_FEAT_SVA requires %IOMMU_DEV_FEAT_IOPF, but
+> + *			 some devices manage I/O Page Faults themselves instead
+> + *			 of relying on the IOMMU. When supported, this feature
+> + *			 must be enabled before and disabled after
+> + *			 %IOMMU_DEV_FEAT_SVA.
 
-Yes. But unfortunately they cannot be controlled individually, unless
-on GPIO mode.
+Is this only for SVA? We may see more scenarios of using IOPF. For
+example, when passing through devices to user level, the user's pages
+could be managed dynamically instead of being allocated and pinned
+statically.
 
-> I'd like to know because I am still working on patches which add
-> ethernet PHY/switch LEDs, with transparent offloading of netdev trigger.
->
-> Marek
+If @IOMMU_DEV_FEAT_IOPF is defined as generic iopf support, the current
+vendor IOMMU driver support may not enough.
+
+Best regards,
+baolu
+
+> + *
+> + * Device drivers query whether a feature is supported using
+> + * iommu_dev_has_feature(), and enable it using iommu_dev_enable_feature().
+> + */
+>   enum iommu_dev_features {
+> -	IOMMU_DEV_FEAT_AUX,	/* Aux-domain feature */
+> -	IOMMU_DEV_FEAT_SVA,	/* Shared Virtual Addresses */
+> +	IOMMU_DEV_FEAT_AUX,
+> +	IOMMU_DEV_FEAT_SVA,
+> +	IOMMU_DEV_FEAT_IOPF,
+>   };
+>   
+>   #define IOMMU_PASID_INVALID	(-1U)
+> 
