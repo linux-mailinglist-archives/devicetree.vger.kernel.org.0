@@ -2,295 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50A532F25FE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 03:03:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CF5F2F260C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 03:07:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731808AbhALCBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Jan 2021 21:01:38 -0500
-Received: from szxga05-in.huawei.com ([45.249.212.191]:11092 "EHLO
-        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730698AbhALCBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 21:01:37 -0500
-Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4DFDKR0Jr4zMJ6R;
-        Tue, 12 Jan 2021 09:59:39 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.176.220) by
- DGGEMS413-HUB.china.huawei.com (10.3.19.213) with Microsoft SMTP Server id
- 14.3.498.0; Tue, 12 Jan 2021 10:00:45 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Russell King <rmk+kernel@arm.linux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will.deacon@arm.com>,
-        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>
-Subject: [PATCH v3 3/3] ARM: Add Hisilicon L3 cache controller support
-Date:   Tue, 12 Jan 2021 09:56:02 +0800
-Message-ID: <20210112015602.497-4-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20210112015602.497-1-thunder.leizhen@huawei.com>
-References: <20210112015602.497-1-thunder.leizhen@huawei.com>
+        id S1727311AbhALCHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Jan 2021 21:07:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46872 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727284AbhALCHe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Jan 2021 21:07:34 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C5DC061786
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 18:06:53 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id t6so562894plq.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Jan 2021 18:06:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=GIDoXKYlEAG3wJcmSh2QD6Dl+3tRhU7sh26TJCJiovU=;
+        b=fZSrlQE5Czl6y24R37175v/ad/BWklRKIjVXH4w+C35U0KKt/WnmwSfBI7jJNBu0qJ
+         Td2sXj1BPeuugnPFaiSe/XgbV7FRoo9U//Ji0TpjGBr4Ahv6DAyVOC3MAZ9y8UiRNZyu
+         0w3HdvwlSIdphY5qKtZLMg0INCL11FTk3OffU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=GIDoXKYlEAG3wJcmSh2QD6Dl+3tRhU7sh26TJCJiovU=;
+        b=N8n7jZw7ogExz7/04fh89G52Awszc31qO+8zN++ON01Zk/w/GYVWAKSPTVRK8sW8VA
+         kbqmHcCf4Y8IZNIGYILxRiJ27KoCDX5m2lONExM47CbMjkDNMhImZO5COrWAAsFdi/TG
+         cn4mlYieu/vINfWdFdqtsuuKak/23Nd+n9AAEn8m1B4M80cW+BZl2r/hDufziA3pkJ3k
+         FpsqpKSjeQGFVLBZTrzwC8rKzbJa6dPVGkf0KwzgOxlI6fZm1a5QV3DBw8tMBWx5p4/S
+         TTxmotE8ncDb1N/5c4Ai3ojWQBU+x/mAA1GpQqjqx+3Iy8nf8ek+MN5/UPSRLlq5TJ6X
+         ezDQ==
+X-Gm-Message-State: AOAM531bcs8rqDrKJm477lOI7jFtaG6t/fE+VRyRUEsbBrtaR7NuGPds
+        pnrPjNEr1BaMS9ppWUKWOo/Hrg==
+X-Google-Smtp-Source: ABdhPJz8G0WHssT6pGTKBVu6ir2bZ5ULf2huQlGToUEv6IpvhCTE0xdj9eGku0Qjg8e4A4ploQPW6A==
+X-Received: by 2002:a17:902:9a86:b029:dc:104:1902 with SMTP id w6-20020a1709029a86b02900dc01041902mr2346259plp.50.1610417213356;
+        Mon, 11 Jan 2021 18:06:53 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id 7sm954053pfh.142.2021.01.11.18.06.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Jan 2021 18:06:52 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.176.220]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210108172316.v4.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
+References: <20210108172316.v4.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: Create macros for cros-ec keymap
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     dianders@chromium.org, Philip Chen <philipchen@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Philip Chen <philipchen@chromium.org>,
+        dmitry.torokhov@gmail.com
+Date:   Mon, 11 Jan 2021 18:06:50 -0800
+Message-ID: <161041721050.3661239.13956511794723234229@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support for the Hisilicon L3 cache controller as used with Hi1215 and
-Hi1381.
+Quoting Philip Chen (2021-01-08 17:23:31)
+> In Chrome OS, the keyboard matrix can be split to two groups:
+>=20
+> The keymap for the top row keys can be customized based on OEM
+> preference, while the keymap for the other keys is generic/fixed
+> across boards.
+>=20
+> This patch creates marcos for the keymaps of these two groups, making
+> it easier to reuse the generic portion of keymap when we override the
+> keymap in the board-specific dts for custom top row design.
+>=20
+> Signed-off-by: Philip Chen <philipchen@chromium.org>
+> ---
 
-These Hisilicon SoCs support LPAE, so the physical addresses is wider than
-32-bits, but the actual bit width does not exceed 36 bits. When the cache
-operation is performed based on the address range, the upper 30 bits of
-the physical address are recorded in registers L3_MAINT_START and
-L3_MAINT_END, and ignore the lower 6 bits cacheline offset.
-
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- arch/arm/mm/Kconfig         |   9 +++
- arch/arm/mm/Makefile        |   1 +
- arch/arm/mm/cache-hisi-l3.c | 153 ++++++++++++++++++++++++++++++++++++
- arch/arm/mm/cache-hisi-l3.h |  30 +++++++
- 4 files changed, 193 insertions(+)
- create mode 100644 arch/arm/mm/cache-hisi-l3.c
- create mode 100644 arch/arm/mm/cache-hisi-l3.h
-
-diff --git a/arch/arm/mm/Kconfig b/arch/arm/mm/Kconfig
-index 02692fbe2db5c59..73cd28419d731df 100644
---- a/arch/arm/mm/Kconfig
-+++ b/arch/arm/mm/Kconfig
-@@ -1070,6 +1070,15 @@ config CACHE_XSC3L2
- 	help
- 	  This option enables the L2 cache on XScale3.
- 
-+config CACHE_HISI_L3
-+	bool "Enable the L3 cache on Hisilicon SoCs"
-+	depends on ARCH_HISI && OF
-+	default y
-+	select OUTER_CACHE
-+	help
-+	  This option enables the L3 cache on Hisilicon SoCs. It supports a maximum
-+	  of 36-bit physical addresses.
-+
- config ARM_L1_CACHE_SHIFT_6
- 	bool
- 	default y if CPU_V7
-diff --git a/arch/arm/mm/Makefile b/arch/arm/mm/Makefile
-index 3510503bc5e688b..745d55ecb2ed4fd 100644
---- a/arch/arm/mm/Makefile
-+++ b/arch/arm/mm/Makefile
-@@ -112,6 +112,7 @@ obj-$(CONFIG_CACHE_L2X0_PMU)	+= cache-l2x0-pmu.o
- obj-$(CONFIG_CACHE_XSC3L2)	+= cache-xsc3l2.o
- obj-$(CONFIG_CACHE_TAUROS2)	+= cache-tauros2.o
- obj-$(CONFIG_CACHE_UNIPHIER)	+= cache-uniphier.o
-+obj-$(CONFIG_CACHE_HISI_L3)	+= cache-hisi-l3.o
- 
- KASAN_SANITIZE_kasan_init.o	:= n
- obj-$(CONFIG_KASAN)		+= kasan_init.o
-diff --git a/arch/arm/mm/cache-hisi-l3.c b/arch/arm/mm/cache-hisi-l3.c
-new file mode 100644
-index 000000000000000..7aa590f378a1ef3
---- /dev/null
-+++ b/arch/arm/mm/cache-hisi-l3.c
-@@ -0,0 +1,153 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021 Hisilicon Limited.
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/spinlock.h>
-+#include <linux/io.h>
-+#include <linux/of_address.h>
-+
-+#include <asm/cacheflush.h>
-+
-+#include "cache-hisi-l3.h"
-+
-+static DEFINE_SPINLOCK(l3cache_lock);
-+static void __iomem *l3_ctrl_base;
-+
-+
-+static void l3cache_maint_common(u32 range, u32 op_type)
-+{
-+	u32 reg;
-+
-+	reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
-+	reg &= ~(L3_MAINT_RANGE_MASK | L3_MAINT_TYPE_MASK);
-+	reg |= range | op_type;
-+	reg |= L3_MAINT_STATUS_START;
-+	writel(reg, l3_ctrl_base + L3_MAINT_CTRL);
-+
-+	/* Wait until the hardware maintenance operation is complete. */
-+	do {
-+		cpu_relax();
-+		reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
-+	} while ((reg & L3_MAINT_STATUS_MASK) != L3_MAINT_STATUS_END);
-+}
-+
-+static void l3cache_maint_range(phys_addr_t start, phys_addr_t end, u32 op_type)
-+{
-+	start = start >> L3_CACHE_LINE_SHITF;
-+	end = ((end - 1) >> L3_CACHE_LINE_SHITF) + 1;
-+
-+	writel(start, l3_ctrl_base + L3_MAINT_START);
-+	writel(end, l3_ctrl_base + L3_MAINT_END);
-+
-+	l3cache_maint_common(L3_MAINT_RANGE_ADDR, op_type);
-+}
-+
-+static inline void l3cache_flush_all_nolock(void)
-+{
-+	l3cache_maint_common(L3_MAINT_RANGE_ALL, L3_MAINT_TYPE_FLUSH);
-+}
-+
-+static void l3cache_flush_all(void)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_flush_all_nolock();
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static void l3cache_inv_range(phys_addr_t start, phys_addr_t end)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_maint_range(start, end, L3_MAINT_TYPE_INV);
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static void l3cache_clean_range(phys_addr_t start, phys_addr_t end)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_maint_range(start, end, L3_MAINT_TYPE_CLEAN);
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static void l3cache_flush_range(phys_addr_t start, phys_addr_t end)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_maint_range(start, end, L3_MAINT_TYPE_FLUSH);
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static void l3cache_disable(void)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_flush_all_nolock();
-+	writel(L3_CTRL_DISABLE, l3_ctrl_base + L3_CTRL);
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static const struct of_device_id l3cache_ids[] __initconst = {
-+	{.compatible = "hisilicon,l3cache", .data = NULL},
-+	{}
-+};
-+
-+static int __init l3cache_init(void)
-+{
-+	u32 reg;
-+	struct device_node *node;
-+
-+	node = of_find_matching_node(NULL, l3cache_ids);
-+	if (!node)
-+		return -ENODEV;
-+
-+	l3_ctrl_base = of_iomap(node, 0);
-+	if (!l3_ctrl_base) {
-+		pr_err("failed to map l3cache control registers\n");
-+		return -ENOMEM;
-+	}
-+
-+	reg = readl(l3_ctrl_base + L3_CTRL);
-+	if (!(reg & L3_CTRL_ENABLE)) {
-+		unsigned long flags;
-+
-+		spin_lock_irqsave(&l3cache_lock, flags);
-+
-+		/*
-+		 * Ensure that no L3 cache hardware maintenance operations are
-+		 * being performed before enabling the L3 cache. Wait for it to
-+		 * finish.
-+		 */
-+		do {
-+			cpu_relax();
-+			reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
-+		} while ((reg & L3_MAINT_STATUS_MASK) != L3_MAINT_STATUS_END);
-+
-+		reg = readl(l3_ctrl_base + L3_AUCTRL);
-+		reg |= L3_AUCTRL_EVENT_EN | L3_AUCTRL_ECC_EN;
-+		writel(reg, l3_ctrl_base + L3_AUCTRL);
-+
-+		writel(L3_CTRL_ENABLE, l3_ctrl_base + L3_CTRL);
-+
-+		spin_unlock_irqrestore(&l3cache_lock, flags);
-+	}
-+
-+	outer_cache.inv_range = l3cache_inv_range;
-+	outer_cache.clean_range = l3cache_clean_range;
-+	outer_cache.flush_range = l3cache_flush_range;
-+	outer_cache.flush_all = l3cache_flush_all;
-+	outer_cache.disable = l3cache_disable;
-+
-+	pr_info("Hisilicon l3cache controller enabled\n");
-+
-+	return 0;
-+}
-+arch_initcall(l3cache_init);
-diff --git a/arch/arm/mm/cache-hisi-l3.h b/arch/arm/mm/cache-hisi-l3.h
-new file mode 100644
-index 000000000000000..6ec3ee21ae01417
---- /dev/null
-+++ b/arch/arm/mm/cache-hisi-l3.h
-@@ -0,0 +1,30 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef __CACHE_HISI_L3_H
-+#define __CACHE_HISI_L3_H
-+
-+#define L3_CACHE_LINE_SHITF		6
-+
-+#define L3_CTRL				0x0
-+#define L3_CTRL_ENABLE			(1U << 0)
-+#define L3_CTRL_DISABLE			(0U << 0)
-+
-+#define L3_AUCTRL			0x4
-+#define L3_AUCTRL_EVENT_EN		BIT(23)
-+#define L3_AUCTRL_ECC_EN		BIT(8)
-+
-+#define L3_MAINT_CTRL			0x20
-+#define L3_MAINT_RANGE_MASK		GENMASK(3, 3)
-+#define L3_MAINT_RANGE_ALL		(0U << 3)
-+#define L3_MAINT_RANGE_ADDR		(1U << 3)
-+#define L3_MAINT_TYPE_MASK		GENMASK(2, 1)
-+#define L3_MAINT_TYPE_CLEAN		(1U << 1)
-+#define L3_MAINT_TYPE_INV		(2U << 1)
-+#define L3_MAINT_TYPE_FLUSH		(3U << 1)
-+#define L3_MAINT_STATUS_MASK		GENMASK(0, 0)
-+#define L3_MAINT_STATUS_START		(1U << 0)
-+#define L3_MAINT_STATUS_END		(0U << 0)
-+
-+#define L3_MAINT_START			0x24
-+#define L3_MAINT_END			0x28
-+
-+#endif
--- 
-2.26.0.106.g9fadedd
-
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
