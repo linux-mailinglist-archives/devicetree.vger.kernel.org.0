@@ -2,74 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07CCC2F333A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 15:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 026D62F3370
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 16:00:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730946AbhALOuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 09:50:05 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:43969 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726253AbhALOuE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 09:50:04 -0500
-Received: by mail-ot1-f42.google.com with SMTP id q25so2443899otn.10;
-        Tue, 12 Jan 2021 06:49:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IWLlMkimtheXRJNfeaVYATyzETTt3j5yVq4Hw+rVSck=;
-        b=gobj9zxpz9t7arVgdMPI2qHzCTfy7yZTygaMtpOQ6yaQliMbxdLQ96ITiPSqE93+Ig
-         b3EUeJn3u3y/udipJ94TYYC3+BC/38+cPcFqLxDX+EOC+DypyJPPUiGmT3S0BBX5ecHp
-         uhA2TrZdItZUR/a/yLzss/pobIlKd7ZlU4FHqg1I3CjNsQB70V0zUJdktp75hu5FBFwC
-         3DnTJhKNqMMMPfb8WQ69iQvfQYR6MnoduA6NWtZ3o0X1h1KpBzfWg8KgmaDYN41s0GkD
-         lurluk0Lbb0kOFtwoDlsFUr6oPVGls21qRUkTw12Ql/QLv7kD1o2RlG8s34GgRPFK0FZ
-         4H0Q==
-X-Gm-Message-State: AOAM533p56u8QjEle1lYNCqXmemG1lszTXKkudL3KcZAGtKu8ktrfjBs
-        CwHI52wgChCiKXw5qWnXdg==
-X-Google-Smtp-Source: ABdhPJy/6PT7DRQYGCTDug44TC+HCUic82SM9VAH6YLosWT87BKziW7GDMmDCgyuqvhV6ddUJ7BRzg==
-X-Received: by 2002:a9d:4b19:: with SMTP id q25mr3080599otf.124.1610462963625;
-        Tue, 12 Jan 2021 06:49:23 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m29sm607648oof.20.2021.01.12.06.49.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 06:49:22 -0800 (PST)
-Received: (nullmailer pid 330261 invoked by uid 1000);
-        Tue, 12 Jan 2021 14:49:21 -0000
-Date:   Tue, 12 Jan 2021 08:49:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-mediatek@lists.infradead.org, CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: Re: [PATCH v9, 01/11] dt-bindings: mediatek: add rdma-fifo-size
- description for mt8183 display
-Message-ID: <20210112144921.GA330210@robh.at.kernel.org>
-References: <1609989081-29353-1-git-send-email-yongqiang.niu@mediatek.com>
- <1609989081-29353-2-git-send-email-yongqiang.niu@mediatek.com>
+        id S2387812AbhALO7N convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 12 Jan 2021 09:59:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732459AbhALO7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 09:59:13 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63B79C061795
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 06:58:33 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kzL7j-00020s-4W; Tue, 12 Jan 2021 15:58:19 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kzL7h-0007qp-JE; Tue, 12 Jan 2021 15:58:17 +0100
+Message-ID: <c47df7713b41d2714a36c0c17b9d01aa90a72601.camel@pengutronix.de>
+Subject: Re: [PATCH v7 6/9] media: Add parsing for APP14 data segment in
+ jpeg helpers
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Mirela Rabulea <mirela.rabulea@oss.nxp.com>, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl, shawnguo@kernel.org, robh+dt@kernel.org
+Cc:     paul.kocialkowski@bootlin.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
+        daniel.baluta@nxp.com, robert.chiras@nxp.com,
+        laurentiu.palcu@nxp.com, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, ezequiel@collabora.com,
+        laurent.pinchart+renesas@ideasonboard.com,
+        niklas.soderlund+renesas@ragnatech.se,
+        dafna.hirschfeld@collabora.com
+Date:   Tue, 12 Jan 2021 15:58:17 +0100
+In-Reply-To: <20210111192822.12178-7-mirela.rabulea@oss.nxp.com>
+References: <20210111192822.12178-1-mirela.rabulea@oss.nxp.com>
+         <20210111192822.12178-7-mirela.rabulea@oss.nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1609989081-29353-2-git-send-email-yongqiang.niu@mediatek.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Jan 2021 11:11:11 +0800, Yongqiang Niu wrote:
-> rdma fifo size may be different even in same SOC, add this
-> property to the corresponding rdma
+On Mon, 2021-01-11 at 21:28 +0200, Mirela Rabulea wrote:
+> From: Mirela Rabulea <mirela.rabulea@nxp.com>
 > 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> According to Rec. ITU-T T.872 (06/2012) 6.5.3
+> APP14 segment is for color encoding, it contains a transform flag, which
+> may have values of 0, 1 and 2 and are interpreted as follows:
+> 0 - CMYK for images that are encoded with four components
+>   - RGB for images that are encoded with three components
+> 1 - An image encoded with three components using YCbCr colour encoding.
+> 2 - An image encoded with four components using YCCK colour encoding.
+> 
+> This is used in imx-jpeg decoder, to distinguish between
+> YUV444 and RGB24.
+> 
+> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
 > ---
->  .../devicetree/bindings/display/mediatek/mediatek,disp.txt       | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> Changes in v7:
+>   Check there are 6 bytes available in the stream before checking for "Adobe\0"
+>   Change jpeg_parse_app14_data function to differentiate between the 3 scenarios: app14 missing, or app14 present but with/without parsing errors:
+>     App14 missing => Added V4L2_JPEG_APP14_TF_UNKNOWN to the enum v4l2_jpeg_app14_tf, use it to indicate app14 & TF is missing
+> 	App14 present without parsing errors => Return the transform flag value as enum v4l2_jpeg_app14_tf (new paramater of jpeg_parse_app14_data function)
+>     App14 present with parsing errors => Return -EINVAL from jpeg_parse_app14_data, also return from calling function (v4l2_jpeg_parse_header) when this error is met.
+>
+>  drivers/media/v4l2-core/v4l2-jpeg.c | 47 +++++++++++++++++++++++++++--
+>  include/media/v4l2-jpeg.h           | 20 ++++++++++++
+>  2 files changed, 65 insertions(+), 2 deletions(-)
 > 
+> diff --git a/drivers/media/v4l2-core/v4l2-jpeg.c b/drivers/media/v4l2-core/v4l2-jpeg.c
+> index 8947fd95c6f1..8d5fedb136dd 100644
+> --- a/drivers/media/v4l2-core/v4l2-jpeg.c
+> +++ b/drivers/media/v4l2-core/v4l2-jpeg.c
+> @@ -45,6 +45,7 @@ MODULE_LICENSE("GPL");
+>  #define DHP	0xffde	/* hierarchical progression */
+>  #define EXP	0xffdf	/* expand reference */
+>  #define APP0	0xffe0	/* application data */
+> +#define APP14	0xffee	/* application data for colour encoding */
+>  #define APP15	0xffef
+>  #define JPG0	0xfff0	/* extensions */
+>  #define JPG13	0xfffd
+> @@ -444,8 +445,44 @@ static int jpeg_skip_segment(struct jpeg_stream *stream)
+>  	return jpeg_skip(stream, len - 2);
+>  }
+>  
+> +/* Rec. ITU-T T.872 (06/2012) 6.5.3 */
+> +static int jpeg_parse_app14_data(struct jpeg_stream *stream,
+> +				 enum v4l2_jpeg_app14_tf *tf)
+> +{
+> +	int ret;
+> +	int lp;
+> +	int skip;
+> +
+> +	lp = jpeg_get_word_be(stream);
+> +	if (lp < 0)
+> +		return lp;
+> +
+> +	/* Check for "Adobe\0" in Ap1..6 */
+> +	if (stream->curr + 6 > stream->end ||
+> +	    strncmp(stream->curr, "Adobe\0", 6))
+> +		return -EINVAL;
+> +
+> +	/* get to Ap12 */
+> +	ret = jpeg_skip(stream, 11);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = jpeg_get_byte(stream);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*tf = ret;
+> +
+> +	skip = lp - 2 - 11;
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> +	ret = jpeg_skip(stream, skip);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+
+This could be simplified to
+
+	return jpeg_skip(stream, skip);
+
+although it would be better style to move the *tf = ... assignment down
+past the last error return instead. Either way,
+
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+regards
+Philipp
