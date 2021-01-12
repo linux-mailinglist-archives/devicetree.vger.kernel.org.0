@@ -2,87 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D46D2F2AC3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 10:06:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE4BC2F2AC8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Jan 2021 10:09:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389028AbhALJGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 04:06:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51870 "EHLO
+        id S1731342AbhALJHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 04:07:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388845AbhALJF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 04:05:59 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D087C061794
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 01:05:18 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id r4so1046240pls.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 01:05:18 -0800 (PST)
+        with ESMTP id S1730301AbhALJHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 04:07:49 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 415D3C061786
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 01:07:09 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id s15so1054036plr.9
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 01:07:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Rc1myaDL5WFW+REXHt226CAPQ0iOGXEkXmasJfyDK0Q=;
-        b=zqbaYbq58L4E34SllLAdMubr1tyjZEmZJQAuBkexTNyrEMmlE1OjZizL6k3V+KxC1R
-         D/6gK1xcZfrnszUww+ys/qJzJ79o8NPZ7so/+u7cVjsu3om1pUaYnWJ5qn00sjyLhBnq
-         RppCcEWcXzTeCdxF4za7TxABUXRTf0LMO+PITrdyX3QshKS3DCcDqlyo1GyElVJEkuAQ
-         3VgJ6ZSxqBJhJNyW/FmNKJvEs0687rzePxjhBQrEmIAEDkjFa0xkC+ZcA0N05xQHJjUE
-         gZksKWKmgz9954Tql3rc3ysM3fvwlKdK0BsRjnOgAwc3wbki8wNaA6/MApuF7RpIjXji
-         rlTg==
+        h=from:to:cc:subject:date:message-id;
+        bh=bBQomZb0UZFDjs2bc2TvWJzjfPhcCc3dkaWs1twGd/o=;
+        b=r7iXwu2QQ1c5yRtRE7KBQu+niMjojECwm6XiPrBS+MgjOTC6FyTxvZ+PzVdGs7hczP
+         jAYObcx9baVJT/dlTgM442mpUCsxl4zL9C2MIQJThi+u6SWovAvNyY6biz6khP0YdJcz
+         1lVVih0O/EeEHc5TuSwPmfmjJ3HQdxtIq1+a8+wQ9ijGhZO99qLZ/ycUfp8PDglEotb7
+         sl+1+zfemfC9yYVZVuLObitwCLyHaOyW08SMFbilOk0G1R0lq5/caN/DTE4JOKOfTWDQ
+         YRALKgtNSmWbxPo1ZM4fTqBQXO1u58lzgLeizseRzXXThubLIVatTK+MdWsptL+y/r4S
+         zC6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Rc1myaDL5WFW+REXHt226CAPQ0iOGXEkXmasJfyDK0Q=;
-        b=WzV2E8hZ1/KJfXlKt43VhK+SMhVNhOmz6/OCTKz8Sgslt3bUeCuw1ezsuCISGfBd5I
-         5AOSC8X141Ltnt1dUXcwefru5IjsIxydUA7ul8Njpepfezq4lZ4+ByLbFSRb5fX6dn/x
-         ZpLf88IRIV6iszfnDT7VRhIf9JIZTJIjBLatZ9V76C/ZaAeTWgYONPEiWD70p+7fwE+r
-         jqB/Bye5jNE2CdYPdDXDLSMkO9aWtYto49HOE6nB0OMrfJLX2ZcDjFoAsOHLiptuOkOO
-         HzvI4/hBBIMHOskNck3ma2CuhNrLNNECfe2X8Fhp2vSHVBCSGI/7m8V+MweNht/7N9/b
-         V13A==
-X-Gm-Message-State: AOAM5301dpOX6zAx69L4VTtqRF7srUjQHIY+r0kM5rI0Tvy+RCihlIjs
-        bzojGn34cumogqeg4d0kUIxhkIbjUIgnRgJd
-X-Google-Smtp-Source: ABdhPJzQaofo66Ea8RXJ9ZwIj6GIOhVVRtOq9FtDHcBI2gqx9J6rjZq0AMRIWZvYTMhDNcTP21F6kg==
-X-Received: by 2002:a17:90b:ece:: with SMTP id gz14mr3704581pjb.158.1610442318165;
-        Tue, 12 Jan 2021 01:05:18 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id x10sm2161006pff.214.2021.01.12.01.05.15
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 12 Jan 2021 01:05:17 -0800 (PST)
-Date:   Tue, 12 Jan 2021 17:05:12 +0800
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=bBQomZb0UZFDjs2bc2TvWJzjfPhcCc3dkaWs1twGd/o=;
+        b=k89B+74dPcPncyjiXXC46A+tHeD9HdOxpejvvSBARNEKaTdXxMEXDntYExJJhOVWQe
+         m66B2tDDkGwAVxH2EZ8QP45Bz797agtTs9szu0ycwblkwk4S4BHXkTz1kizDNYHVnDg3
+         q3OIBuonaxMlN+tRC4fMaU+InXu8zvibqTZi46uzKIbEiv349Yr3xYqlrgRKRqS+eKy8
+         gFtKChQs7LEIFtZJBh9v1ZYDWN2GrnNT7aj6yFoU2dQntfc3PHZhCddl1tewj8sBMJHg
+         hyF7AmbGnxF0+KmfT9xT7QlnWlqTmJ0/DYefNafpk3r2Ztn5Qx73kXHUFd/0uG61/vg4
+         Wniw==
+X-Gm-Message-State: AOAM532A5FdZ9WZpINFjsY7Z12r0G1rK0u3kQ7eLL5Yttt0ckVWFBLwu
+        fnHlyHDwwP74W4dXr7tzshs1Jw==
+X-Google-Smtp-Source: ABdhPJxaRGG7rNBI/tZ0A01aIOpqnrB/2tE8nUNHFSDaq0W/dP30B2RN74o3v6NsEI2hPOPzh8j6fQ==
+X-Received: by 2002:a17:90b:8d8:: with SMTP id ds24mr3498383pjb.134.1610442428846;
+        Tue, 12 Jan 2021 01:07:08 -0800 (PST)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id m8sm2473272pjr.39.2021.01.12.01.07.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jan 2021 01:07:08 -0800 (PST)
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Andy Gross <agross@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Steev Klimaszewski <steev@kali.org>
-Subject: Re: [PATCH] arm64: dts: sdm850: Add OPP tables for 2.84 and 2.96GHz
-Message-ID: <20210112090455.GA2479@dragon>
-References: <20210112090140.19867-1-shawn.guo@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210112090140.19867-1-shawn.guo@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        linux-arm-msm@vger.kernel.org, Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH RESEND] arm64: dts: sdm850: Add OPP tables for 2.84 and 2.96GHz
+Date:   Tue, 12 Jan 2021 17:06:40 +0800
+Message-Id: <20210112090640.20062-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 12, 2021 at 05:01:40PM +0800, Shawn Guo wrote:
-> From: Steev Klimaszewski <steev@kali.org>
-> 
-> Running cpufreq-hw driver on Lenovo Yoga C630 laptop, the following
-> warning messages will be seen.
-> 
-> [    3.415340] cpu cpu4: Voltage update failed freq=2841600
-> [    3.418755] cpu cpu4: failed to update OPP for freq=2841600
-> [    3.422949] cpu cpu4: Voltage update failed freq=2956800
-> [    3.427086] cpu cpu4: failed to update OPP for freq=2956800
-> 
-> This is because the cpufreq-hw lookup table of SDM850 provides these two
-> set-points, but they are missing from OPP table in DT.  Let's create
-> sdm850.dtsi to add the OPP for them, so that the warning will be gone.
-> 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+From: Steev Klimaszewski <steev@kali.org>
 
-Ignore this one.  Some needed changes got lost.
+Running cpufreq-hw driver on Lenovo Yoga C630 laptop, the following
+warning messages will be seen.
 
-Shawn
+[    3.415340] cpu cpu4: Voltage update failed freq=2841600
+[    3.418755] cpu cpu4: failed to update OPP for freq=2841600
+[    3.422949] cpu cpu4: Voltage update failed freq=2956800
+[    3.427086] cpu cpu4: failed to update OPP for freq=2956800
+
+This is because the cpufreq-hw lookup table of SDM850 provides these two
+set-points, but they are missing from OPP table in DT.  Let's create
+sdm850.dtsi to add the OPP for them, so that the warning will be gone.
+
+Signed-off-by: Steev Klimaszewski <steev@kali.org>
+Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+---
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  2 +-
+ arch/arm64/boot/dts/qcom/sdm850.dtsi          | 21 +++++++++++++++++++
+ 2 files changed, 22 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm850.dtsi
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+index 7929665aeaee..94390ae630f3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
++++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+@@ -13,7 +13,7 @@
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include <dt-bindings/sound/qcom,q6afe.h>
+ #include <dt-bindings/sound/qcom,q6asm.h>
+-#include "sdm845.dtsi"
++#include "sdm850.dtsi"
+ #include "pm8998.dtsi"
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/sdm850.dtsi b/arch/arm64/boot/dts/qcom/sdm850.dtsi
+new file mode 100644
+index 000000000000..b1c2cf566c7a
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sdm850.dtsi
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * SDM850 SoC device tree source
++ *
++ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
++ */
++
++#include "sdm845.dtsi"
++
++&cpu4_opp_table {
++	cpu4_opp33: opp-2841600000 {
++		opp-hz = /bits/ 64 <2841600000>;
++		opp-peak-kBps = <7216000 25497600>;
++	};
++
++	cpu4_opp34: opp-2956800000 {
++		opp-hz = /bits/ 64 <2956800000>;
++		opp-peak-kBps = <7216000 25497600>;
++		turbo-mode;
++	};
++};
+-- 
+2.17.1
+
