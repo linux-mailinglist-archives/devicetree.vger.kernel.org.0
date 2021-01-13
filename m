@@ -2,158 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B77762F4E0B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:00:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 203C32F4E15
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:04:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726882AbhAMPAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 10:00:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43678 "EHLO
+        id S1727292AbhAMPDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 10:03:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726837AbhAMPA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:00:28 -0500
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E15C06179F;
-        Wed, 13 Jan 2021 06:59:47 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id q25so2110753otn.10;
-        Wed, 13 Jan 2021 06:59:47 -0800 (PST)
+        with ESMTP id S1726584AbhAMPDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:03:23 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67347C061575
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 07:02:43 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id p18so1635794pgm.11
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 07:02:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=dxs0NJvJmBAu/+s8TLnC3MeVApUdCV36QEczfzjAyAs=;
-        b=Etc7CczaK+zRgqYlHy0I9d278nKUDa+LXjO9jeA+hc2GVdmN0dd0thOwl5mU3aMJei
-         H5aquTe14HHr4jMdVqzthnK8bajy7K++KIClGCPFsx86hXh4tN3szIFh+hVksyVlL3H3
-         sbCGwfogWD7hrLbCxqV4QGQEQOnZs7pLk9XileMuYpC7njfbFJtqLJl3SfsiktCuq6UP
-         TfhzvnlXS0cUfKsOeJkDelRV7pXt+X/Bx9w3FQcOYlNh74ijnyU+XjSRXHIfiJxPAzu7
-         w+i3uOnXfvMEFEQG0W+AsFzty3btlBPSW/YyBEcRNAyPRD4foVqjr6QBAf6G5qG7ELJL
-         QnPQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=rPRSuHtzx2N5glmiiegQCcxitzlx/8sULN8vX19VzJM=;
+        b=piKPw7mULMlt99PLa5jQVh6jTydYvFgHT/lzqNvuW//U710cJT6VdSVcDiXLJbJiR7
+         zP+MvvJPdD5zeCY3k+bgN8M4jpWJQHdgIq7SdYobZsSVL5rqSH0Ql9okD8B5T+KGCq6j
+         jeGGrledgtgsNgqIDUrbbBM//0QQkW36Q+rEiiPdviDZf1IZOqImVewYWA9qhmPDvQpP
+         Qsti8e5BP1IyK3VtmpJyGi8E3j5A1riYg9863wHjFUVe3dOByopcI+TJTMIS+ELH2XA2
+         hvSlrBMB1PtkbufP5QUWJqShukXyp96akb+DAqMPO35FnsVLUBlTyDw/JBQwcmEpW7Vp
+         cz/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=dxs0NJvJmBAu/+s8TLnC3MeVApUdCV36QEczfzjAyAs=;
-        b=JUX741tDTC3qM6cGrTdUL5WCoUDc6kFt6M/yhqTMc4N/tRI0JBAHo8AWAZzyEK7qPA
-         HJpgE933E8bHvdbVntVwAHu04Ef6Wth1twg821Q8aGvh+rHDTHDT96rcQKl9GPpC4H9D
-         sAdMv9vos00ezlMwGRxzqnWHyYe+rVTpbFDi3oVzNRBv3mJ01XXxzjUvvXLL3N0Im5Av
-         fEgRZecEI8/2OKAHg3h7A6kJe0DdT6VTM2D7TCQhidhb6B4P8/BZzDXmEnf46nni+gzZ
-         XWWqbxL6UoeH+/jK1400imhQq+yDQHjnRdZo07uSyfjndfPSO/KpJuGKYjH4HT7accbS
-         5YsQ==
-X-Gm-Message-State: AOAM532aaOKL4XpNr5ID1U7ZceNnq+9zP43EYAhXMgtbVZ2fiDZ/QITh
-        zkNp8kI5hFIrj7bkO+HZmA==
-X-Google-Smtp-Source: ABdhPJzGT6yX+sn3TY+N84dyQvctxdfCn1JZx6Aona/JcuNQbnwrmB2JQqU5qDNxdRtlsGapD1us1Q==
-X-Received: by 2002:a9d:5c8b:: with SMTP id a11mr1477351oti.126.1610549986945;
-        Wed, 13 Jan 2021 06:59:46 -0800 (PST)
-Received: from threadripper.novatech-llc.local ([216.21.169.52])
-        by smtp.gmail.com with ESMTPSA id f25sm440719oou.39.2021.01.13.06.59.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 13 Jan 2021 06:59:45 -0800 (PST)
-From:   George McCollister <george.mccollister@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        George McCollister <george.mccollister@gmail.com>
-Subject: [PATCH net-next v4 3/3] dt-bindings: net: dsa: add bindings for xrs700x switches
-Date:   Wed, 13 Jan 2021 08:59:22 -0600
-Message-Id: <20210113145922.92848-4-george.mccollister@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210113145922.92848-1-george.mccollister@gmail.com>
-References: <20210113145922.92848-1-george.mccollister@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=rPRSuHtzx2N5glmiiegQCcxitzlx/8sULN8vX19VzJM=;
+        b=DHoRs8CLBVHD6e/2C/zxz0yc1oZ0r8iTn5EWXMN5GfgOv1cycDuv2lN+yw34CMaGeZ
+         9Dfkf0EaBe3mxWaNWBTg6A3FoS1gFiVbtmFwDchd7KfWsEoPqsRvRcEpTAgcmJaFGkUw
+         tMax3RNco/sxvBQ4wmAuewZ+vMnExN9aE1zwBb2+mxvrdoTOMCgGgHJ/fZwXDlIiq+KT
+         oZsbV64Fl2i+0Uj0308yA36oY6H+yAvtPcK1XbuUHBmyq5OeFbk2kk7e3xKJNZoSH1O/
+         gDAhHskcu48B5tiCFjrQ5zuigvaYh+62Bw7fmgu8m3LpfI0i9EarpIYFiVtJ97dqGbqs
+         HCdA==
+X-Gm-Message-State: AOAM533IQoX4jlxCgCmUJAbtYAh/7rCJKO6KEjybf3JGTs1tKtVkN6FG
+        TP9iLKHFZTmWrGGhXDZ0wz9myMZMo/LtaM6up5HN3A==
+X-Google-Smtp-Source: ABdhPJx73/ardZl0Utkhso9MLKEdBSvkEDbWEPITy7Dv8jQ7BtrCFi9cZAclHQrOS728/A3ALst1xa5Y1Zcwppi9jXU=
+X-Received: by 2002:a65:654e:: with SMTP id a14mr2415756pgw.265.1610550162411;
+ Wed, 13 Jan 2021 07:02:42 -0800 (PST)
+MIME-Version: 1.0
+References: <20210108120429.895046-1-robert.foss@linaro.org>
+ <20210108120429.895046-5-robert.foss@linaro.org> <X/itZVFeM0XeV9Sx@builder.lan>
+In-Reply-To: <X/itZVFeM0XeV9Sx@builder.lan>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Wed, 13 Jan 2021 16:02:31 +0100
+Message-ID: <CAG3jFyvVBFLX_1vobyBHtEnVkN0QFSRX3MdwtUnBCXbVwDQ4DQ@mail.gmail.com>
+Subject: Re: [PATCH v1 04/17] media: camss: Make ISPIF subdevice optional
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, catalin.marinas@arm.com,
+        will@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
+        geert+renesas@glider.be, arnd@arndb.de, Anson.Huang@nxp.com,
+        michael@walle.cc, agx@sigxcpu.org, max.oss.09@gmail.com,
+        linux-arm-msm@vger.kernel.org,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation and an example for Arrow SpeedChips XRS7000 Series
-single chip Ethernet switches.
+Thanks Bj=C3=B6rn!
 
-Signed-off-by: George McCollister <george.mccollister@gmail.com>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
----
- .../devicetree/bindings/net/dsa/arrow,xrs700x.yaml | 73 ++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+On Fri, 8 Jan 2021 at 20:07, Bjorn Andersson <bjorn.andersson@linaro.org> w=
+rote:
+>
+> On Fri 08 Jan 06:04 CST 2021, Robert Foss wrote:
+>
+> > This driver supports multiple architecture versions of the Qualcomm ISP=
+.
+> > The CAMSS architecure which this driver is name after, and with the
+> > introduction of this series, the Titan architecture.
+> >
+> > The ISPIF is IP-block that is only present in the CAMSS architecture.
+>
+> "is an IP-block"
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-new file mode 100644
-index 000000000000..3f01b65f3b22
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/arrow,xrs700x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Arrow SpeedChips XRS7000 Series Switch Device Tree Bindings
-+
-+allOf:
-+  - $ref: dsa.yaml#
-+
-+maintainers:
-+  - George McCollister <george.mccollister@gmail.com>
-+
-+description:
-+  The Arrow SpeedChips XRS7000 Series of single chip gigabit Ethernet switches
-+  are designed for critical networking applications. They have up to three
-+  RGMII ports and one RMII port and are managed via i2c or mdio.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - arrow,xrs7003e
-+          - arrow,xrs7003f
-+          - arrow,xrs7004e
-+          - arrow,xrs7004f
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        switch@8 {
-+            compatible = "arrow,xrs7004e";
-+            reg = <0x8>;
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                ethernet-port@1 {
-+                    reg = <1>;
-+                    label = "lan0";
-+                    phy-handle = <&swphy0>;
-+                    phy-mode = "rgmii-id";
-+                };
-+                ethernet-port@2 {
-+                    reg = <2>;
-+                    label = "lan1";
-+                    phy-handle = <&swphy1>;
-+                    phy-mode = "rgmii-id";
-+                };
-+                ethernet-port@3 {
-+                    reg = <3>;
-+                    label = "cpu";
-+                    ethernet = <&fec1>;
-+                    fixed-link {
-+                        speed = <1000>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
--- 
-2.11.0
+Ack
 
+I cleaned up the message a little bit further in order to be more
+clear about camss & titan being the names of architecture generations.
+
+>
+> > In order to support the Titan architecture, make the ISPIF an optional
+> > subdevice.
+> >
+> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> > ---
+> >  .../media/platform/qcom/camss/camss-ispif.c   | 144 ++++++++++--------
+> >  .../media/platform/qcom/camss/camss-ispif.h   |   3 +-
+> >  drivers/media/platform/qcom/camss/camss.c     | 113 +++++++++-----
+> >  drivers/media/platform/qcom/camss/camss.h     |   2 +-
+> >  4 files changed, 160 insertions(+), 102 deletions(-)
+> >
+> > diff --git a/drivers/media/platform/qcom/camss/camss-ispif.c b/drivers/=
+media/platform/qcom/camss/camss-ispif.c
+> [..]
+> > -int msm_ispif_subdev_init(struct ispif_device *ispif,
+> > +int msm_ispif_subdev_init(struct camss *camss,
+> >                         const struct resources_ispif *res)
+> >  {
+> > -     struct device *dev =3D to_device(ispif);
+> > -     struct platform_device *pdev =3D to_platform_device(dev);
+> > +     struct ispif_device *ispif =3D camss->ispif;
+> > +     struct platform_device *pdev =3D to_platform_device(camss->dev);
+>
+> It seems like several of the changes in this function is replacing
+> dev with camss->dev. If you retained a struct device *dev =3D camss->dev;
+> you would avoid this.
+
+Ack.
+
+>
+> >       struct resource *r;
+> >       int i;
+> >       int ret;
+> >
+> > +     if (res =3D=3D NULL && ispif =3D=3D NULL)
+>
+> Afaict this function is called conditional on camss->ispif !=3D NULL, and
+> I don't see anything that would cause res to becomes NULL if is hasn't
+> been before this change.
+>
+> So I think this check is unnecessary?
+
+Nice catch, thank you!
+
+>
+> > +             return 0;
+> > +
+> > +     ispif->camss =3D camss;
+> > +
+> >       /* Number of ISPIF lines - same as number of CSID hardware module=
+s */
+> > -     if (to_camss(ispif)->version =3D=3D CAMSS_8x16)
+> > +     if (camss->version =3D=3D CAMSS_8x16)
+> >               ispif->line_num =3D 2;
+> > -     else if (to_camss(ispif)->version =3D=3D CAMSS_8x96 ||
+> > -              to_camss(ispif)->version =3D=3D CAMSS_660)
+> > +     else if (camss->version =3D=3D CAMSS_8x96 ||
+> > +              camss->version =3D=3D CAMSS_660)
+> >               ispif->line_num =3D 4;
+> >       else
+> >               return -EINVAL;
+> >
+> > -     ispif->line =3D devm_kcalloc(dev, ispif->line_num, sizeof(*ispif-=
+>line),
+> > -                                GFP_KERNEL);
+> > +     ispif->line =3D devm_kcalloc(camss->dev, ispif->line_num,
+> > +                     sizeof(*ispif->line), GFP_KERNEL);
+> >       if (!ispif->line)
+> >               return -ENOMEM;
+> >
+> [..]
+> > @@ -1393,6 +1410,9 @@ void msm_ispif_unregister_entities(struct ispif_d=
+evice *ispif)
+> >  {
+> >       int i;
+> >
+> > +     if (!ispif)
+> > +             return;
+>
+> I like this, but later in the patch you make the calls to this function
+> conditional on ispif !=3D NULL. You should only need one of the checks.
+
+Ack, removing the external checks and keeping the internal one then.
