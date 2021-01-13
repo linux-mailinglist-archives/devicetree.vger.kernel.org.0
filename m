@@ -2,73 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 666392F53A6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 20:53:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6285E2F53CB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 21:03:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728245AbhAMTuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 14:50:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50310 "EHLO
+        id S1728772AbhAMUCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 15:02:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726599AbhAMTuv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 14:50:51 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1442DC061794
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 11:50:11 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kzm9c-0001yX-JU; Wed, 13 Jan 2021 20:50:04 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kzm9a-0001UX-QL; Wed, 13 Jan 2021 20:50:02 +0100
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: [PATCH 2/2] dt-bindings: gpio: pca953x: increase allowed length for gpio-line-names
-Date:   Wed, 13 Jan 2021 20:49:52 +0100
-Message-Id: <20210113194952.104734-2-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de>
-References: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de>
+        with ESMTP id S1728754AbhAMUCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 15:02:08 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A48EC061575;
+        Wed, 13 Jan 2021 12:01:28 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id E89E71F44C55
+Subject: Re: [PATCH 1/3] dt-bindings: power: Add domain regulator supply
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20210107104915.2888408-1-hsinyi@chromium.org>
+ <20210107104915.2888408-2-hsinyi@chromium.org>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <4824b486-79e7-a382-0168-8cf51e20f7c7@collabora.com>
+Date:   Wed, 13 Jan 2021 21:01:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210107104915.2888408-2-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some supported chips (e.g. pca9505) support 40 chips. To be able to give
-each line a name the length of the gpio-line-names property must be
-allowed to contain up to 40 entries.
+Hi Hsin-Yi,
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thank you for the patch.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-index cdd7744b8723..246bae53be8b 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-@@ -71,7 +71,7 @@ properties:
- 
-   gpio-line-names:
-     minItems: 1
--    maxItems: 32
-+    maxItems: 40
- 
-   interrupts:
-     maxItems: 1
--- 
-2.29.2
+On 7/1/21 11:49, Hsin-Yi Wang wrote:
+> Some power domains (eg. mfg) needs to turn on power supply before power
+> on.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+
+> ---
+>  .../bindings/power/mediatek,power-controller.yaml        | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> index d14cb9bac8497..e529586af5a12 100644
+> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> @@ -82,6 +82,9 @@ patternProperties:
+>            be specified by order, adding first the BASIC clocks followed by the
+>            SUSBSYS clocks.
+>  
+> +      domain-supply:
+> +        description: domain regulator supply.
+> +
+>        mediatek,infracfg:
+>          $ref: /schemas/types.yaml#/definitions/phandle
+>          description: phandle to the device containing the INFRACFG register range.
+> @@ -130,6 +133,9 @@ patternProperties:
+>                be specified by order, adding first the BASIC clocks followed by the
+>                SUSBSYS clocks.
+>  
+> +          domain-supply:
+> +            description: domain regulator supply.
+> +
+>            mediatek,infracfg:
+>              $ref: /schemas/types.yaml#/definitions/phandle
+>              description: phandle to the device containing the INFRACFG register range.
+> @@ -178,6 +184,9 @@ patternProperties:
+>                    be specified by order, adding first the BASIC clocks followed by the
+>                    SUSBSYS clocks.
+>  
+> +              domain-supply:
+> +                description: domain regulator supply.
+> +
+>                mediatek,infracfg:
+>                  $ref: /schemas/types.yaml#/definitions/phandle
+>                  description: phandle to the device containing the INFRACFG register range.
+> 
