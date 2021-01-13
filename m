@@ -2,170 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B002F4398
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 06:23:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D1582F439D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 06:24:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725887AbhAMFVc convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Jan 2021 00:21:32 -0500
-Received: from mail-wr1-f43.google.com ([209.85.221.43]:36055 "EHLO
-        mail-wr1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725870AbhAMFVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 00:21:32 -0500
-Received: by mail-wr1-f43.google.com with SMTP id t16so728797wra.3;
-        Tue, 12 Jan 2021 21:21:15 -0800 (PST)
+        id S1725857AbhAMFXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 00:23:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60900 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725849AbhAMFXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 00:23:50 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB5A7C061575
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 21:23:09 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id lt17so1312356ejb.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 21:23:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2NaZcbwSAFQ15OW65EbbMjqTmOC5Pf2iFjcyvx6UbnA=;
+        b=SkyiyzJ28uSjHS90XLoXBBlIMxeQbmNuAEQ8qW3qG/lEq4KSFJGvKCe2uo6om+eCht
+         oHNmuAbEj1wylSDgYYohrZowWD1TI2mPSkvtOcj1vM82/8Tsr+ruktT1iu//pIsXdvzB
+         +NLLMVs4Ps2w7DhXFnSO9Nbs5cVRzog+Vam+g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=ygvCn8fmZH80T0v+3u3CbzAAgsVPV7I6kSbF85AxYE8=;
-        b=jbE+s8Sx78HxPDXrtsukzSp6pvUQiSvWdAkKLiZgxNG7dyWhw8/qH8AY/Y2X+vljgW
-         aijdruuSY3sd69afkJyWDjFJJGncvkO3fgkUlQ9nYkdaousDoUCK6KHK4hgHmW5YvpKk
-         tUt0KzxPAmZz+ve5TbCuSMSY2/FqAh+zbs24j4aA2bxA2yVFb9pGAOO4O5oN4QotZ+k+
-         ByjthzY7GE5GFWViCoOE6lSNtxQryR1ThSxZctm6/5Sod+yyY4mm1Zwf+xP/sKUep6Im
-         pb8d7OBOpc1jqbJVt7nXyb5282l7YdQVjm3YSY0IO7eS4H7/lxNusDLnE0Dbxu2CD9rN
-         poqw==
-X-Gm-Message-State: AOAM532xBP+0t0Y3aN/mBTfAztnqhPICJzunQKIvll7Rz4iebTWyOjna
-        Gkcqz9mwZMnnjeUAftRm77w/qflDs14=
-X-Google-Smtp-Source: ABdhPJxhcefF2g4ghMWfcYGFz4p/mMcOTBXdkjHmHKC1b8cf1wmHKSyoSIrwjlD7D4mvHQU6xRhrZg==
-X-Received: by 2002:adf:fbc5:: with SMTP id d5mr587444wrs.82.1610515249819;
-        Tue, 12 Jan 2021 21:20:49 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id c11sm240840wmd.36.2021.01.12.21.20.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 21:20:48 -0800 (PST)
-Date:   Wed, 13 Jan 2021 06:20:47 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Danny Lin <danny@kdrag0n.dev>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: exynos: Add energy model for Exynos 5250
-Message-ID: <20210113052047.GC6486@kozik-lap>
-References: <20210111235717.321153-1-danny@kdrag0n.dev>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2NaZcbwSAFQ15OW65EbbMjqTmOC5Pf2iFjcyvx6UbnA=;
+        b=E3KA1MShz0y9lwqGW1B1v2KmzpTRo+7qt6rGjdoi6s4ggytJijmhpQ/q64T8XMWumC
+         LA9P2tV4CvKwj5HzKPAWGTklbuUUpyhsVkKbtweQWwyyN7FJmEMpB6tYIFLt7KMWQkt4
+         gXVJF5FP3L50sAhhvZGhXcvolsP04pwo5Kg2hHnuCeX8Y5uFoMvTnmx3Uoqwvo1KeVHd
+         ZsFpzjgXHQTdyM0VLWiiIS0YCycqM7tf8OU+E7spFvcvgHp9uvfG5aZOMiT7LbD7BDkd
+         zr91YT+GuHTtjZZPU72O+gwMwx2ebALvkNz2eJNrDNx76P+uYS2263jksJfZ5RY8/K9R
+         DEYA==
+X-Gm-Message-State: AOAM531h+V419l30/MRkZUP4xq2SLqdPQNZvUqr+4jcpvdIvMRpx8qUH
+        9vf9r/KaJxrcI41Vu6s8S5OvP0TzSHwyd0eZ
+X-Google-Smtp-Source: ABdhPJxGJJepEeoTIpWfvanT8Uy9eYSFtDlbb9V0MhhyfIYWT3JIJU1+XWytWwbp4Ue7k4vW9Gh3Sg==
+X-Received: by 2002:a17:906:7f83:: with SMTP id f3mr314739ejr.282.1610515388152;
+        Tue, 12 Jan 2021 21:23:08 -0800 (PST)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
+        by smtp.gmail.com with ESMTPSA id r21sm309523eds.91.2021.01.12.21.23.03
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Jan 2021 21:23:04 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id r4so419660wmh.5
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 21:23:03 -0800 (PST)
+X-Received: by 2002:a1c:c308:: with SMTP id t8mr409738wmf.22.1610515383125;
+ Tue, 12 Jan 2021 21:23:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20210111235717.321153-1-danny@kdrag0n.dev>
+References: <20201209080102.26626-1-yong.wu@mediatek.com> <20201209080102.26626-5-yong.wu@mediatek.com>
+ <X+L8qpO+T7+U2s5r@chromium.org> <1608809212.26323.258.camel@mhfsdcap03>
+In-Reply-To: <1608809212.26323.258.camel@mhfsdcap03>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Wed, 13 Jan 2021 14:22:50 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5CnnHwCUioH52VRWZW=f7V7Q=xBSfbhMM+qJVtaqSf8Pw@mail.gmail.com>
+Message-ID: <CAAFQd5CnnHwCUioH52VRWZW=f7V7Q=xBSfbhMM+qJVtaqSf8Pw@mail.gmail.com>
+Subject: Re: [PATCH v5 04/27] dt-bindings: memory: mediatek: Add domain definition
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, youlin.pei@mediatek.com,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        chao.hao@mediatek.com,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        "open list:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>, anan.sun@mediatek.com,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 03:57:16PM -0800, Danny Lin wrote:
-> This energy model enables the use of energy- and capacity-aware CPU
-> frequency scaling.
-> 
-> Power and performance measurements were made using my freqbench [1]
-> benchmark coordinator, which uses EEMBC CoreMark [2] as the workload
-> and measures power usage using the integrated PMIC's fuel gauge (DS2784
-> in this case).
+On Thu, Dec 24, 2020 at 8:27 PM Yong Wu <yong.wu@mediatek.com> wrote:
+>
+> On Wed, 2020-12-23 at 17:15 +0900, Tomasz Figa wrote:
+> > Hi Yong,
+> >
+> > On Wed, Dec 09, 2020 at 04:00:39PM +0800, Yong Wu wrote:
+> > > In the latest SoC, there are several HW IP require a sepecial iova
+> > > range, mainly CCU and VPU has this requirement. Take CCU as a example,
+> > > CCU require its iova locate in the range(0x4000_0000 ~ 0x43ff_ffff).
+> >
+> > Is this really a domain? Does the address range come from the design of
+> > the IOMMU?
+>
+> It is not a really a domain. The address range comes from CCU HW
+> requirement. That HW can only access this iova range. thus I create a
+> special iommu domain for it.
+>
 
-Thanks for the patch.
+I guess it's the IOMMU/DT maintainers who have the last word here, but
+shouldn't DT just specify the hardware characteristics and then the
+kernel configure the hardware appropriately, possibly based on some
+other configuration interface (e.g. command line parameters or sysfs)?
 
-The tested setup is not representative here. The Nexus 10 is not
-supported by mainline and it might use specific revision of Exynos5250,
-different than present on other mainlined boards. One could assume that
-ratio of dynamic power coefficient of the cores should be similar... but
-there is no ratio here, as this is not a big.LITTLE platform.
-
-Another problem is the v3.4 vendor kernel with a lot of out-of-tree
-code. This means it might use some different scheduler, different
-drivers, different voltages and a lot more of unknown differences.
-Vendor kernel should not matter that much in measurement of DPC but it
-makes the results not possible to reproduce.
-
-You were also measuring the power delivered to entire system, no to CPUs,
-so you included static power in the data. Static power of CPUs and of
-the entire system.
-
-> The energy model dynamic-power-coefficient values were calculated with
->     DPC = µW / MHz / V^2
-> for each OPP, and averaged across all OPPs within each cluster for the
-> final coefficient.
-> 
-> A Google Nexus 10 device running a downstream 3.4 kernel was used for
-> benchmarking to ensure proper frequency scaling and other low-level
-> controls.
-> 
-> Raw benchmark results can be found in the freqbench repository [3].
-> Below is a human-readable summary:
-> 
-> ===== CPU 1 =====
-> Frequencies: 200 300 400 500 600 700 800 900 1000 1100 1200 1300 1400 1500 1600 1700
->  200:   909     4.5 C/MHz    132 mW   36.2 J    6.9 I/mJ   275.0 s
-
-What are the columns here? I would expect that fuel gauge gives you the
-current, but it's not here.
-
->  300:  1366     4.6 C/MHz    212 mW   38.7 J    6.5 I/mJ   183.0 s
->  400:  1821     4.6 C/MHz    286 mW   39.3 J    6.4 I/mJ   137.3 s
->  500:  2253     4.5 C/MHz    375 mW   41.7 J    6.0 I/mJ   111.0 s
->  600:  2740     4.6 C/MHz    446 mW   40.7 J    6.1 I/mJ    91.2 s
->  700:  3199     4.6 C/MHz    513 mW   40.1 J    6.2 I/mJ    78.2 s
->  800:  3673     4.6 C/MHz    678 mW   46.1 J    5.4 I/mJ    68.1 s
->  900:  4090     4.5 C/MHz    764 mW   46.7 J    5.4 I/mJ    61.1 s
-> 1000:  4586     4.6 C/MHz    878 mW   47.9 J    5.2 I/mJ    54.5 s
-> 1100:  5060     4.6 C/MHz   1084 mW   53.6 J    4.7 I/mJ    49.4 s
-> 1200:  5515     4.6 C/MHz   1225 mW   55.5 J    4.5 I/mJ    45.3 s
-> 1300:  5933     4.6 C/MHz   1396 mW   58.9 J    4.2 I/mJ    42.1 s
-> 1400:  6395     4.6 C/MHz   1662 mW   65.0 J    3.8 I/mJ    39.1 s
-> 1500:  6897     4.6 C/MHz   1895 mW   68.7 J    3.6 I/mJ    36.3 s
-> 1600:  7332     4.6 C/MHz   2198 mW   75.0 J    3.3 I/mJ    34.1 s
-> 1700:  7826     4.6 C/MHz   2497 mW   79.8 J    3.1 I/mJ    31.9 s
-> 
-> [1] https://github.com/kdrag0n/freqbench
-> [2] https://www.eembc.org/coremark/
-> [3] https://github.com/kdrag0n/freqbench/tree/master/results/exynos5250/main
-> 
-> Signed-off-by: Danny Lin <danny@kdrag0n.dev>
-> ---
->  arch/arm/boot/dts/exynos5250.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/exynos5250.dtsi b/arch/arm/boot/dts/exynos5250.dtsi
-> index 2ea2caaca4e2..cc2fe0afcfc7 100644
-> --- a/arch/arm/boot/dts/exynos5250.dtsi
-> +++ b/arch/arm/boot/dts/exynos5250.dtsi
-> @@ -58,6 +58,8 @@ cpu0: cpu@0 {
->  			clock-names = "cpu";
->  			operating-points-v2 = <&cpu0_opp_table>;
->  			#cooling-cells = <2>; /* min followed by max */
-> +			capacity-dmips-mhz = <1024>;
-
-The origin of this 1024 value should be explained.
-
-> +			dynamic-power-coefficient = <800>;
->  		};
->  		cpu1: cpu@1 {
->  			device_type = "cpu";
-> @@ -67,6 +69,20 @@ cpu1: cpu@1 {
->  			clock-names = "cpu";
->  			operating-points-v2 = <&cpu0_opp_table>;
->  			#cooling-cells = <2>; /* min followed by max */
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <800>;
-> +		};
-> +
-> +		cpu-map {
-
-That's a second patch.
+How I'd do this is rather than enforcing those arbitrary decisions
+onto the DT bindings, I'd add properties to the master devices (e.g.
+CCU) that specify which IOVA range they can operate on. Then, the
+exact split of the complete address space would be done at runtime,
+based on kernel configuration, command line parameters and possibly
+sysfs attributes if things could be reconfigured dynamically.
 
 Best regards,
-Krzysztof
+Tomasz
 
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +			};
->  		};
->  	};
->  
-> -- 
-> 2.29.2
-> 
+> >
+> > Best regards,
+> > Tomasz
+> >
+> > >
+> > > In this patch we add a domain definition for the special port. In the
+> > > example of CCU, If we preassign CCU port in domain1, then iommu driver
+> > > will prepare a independent iommu domain of the special iova range for it,
+> > > then the iova got from dma_alloc_attrs(ccu-dev) will locate in its special
+> > > range.
+> > >
+> > > This is a preparing patch for multi-domain support.
+> > >
+> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > > Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > Acked-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  include/dt-bindings/memory/mtk-smi-larb-port.h | 9 ++++++++-
+> > >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/include/dt-bindings/memory/mtk-smi-larb-port.h b/include/dt-bindings/memory/mtk-smi-larb-port.h
+> > > index 7d64103209af..2d4c973c174f 100644
+> > > --- a/include/dt-bindings/memory/mtk-smi-larb-port.h
+> > > +++ b/include/dt-bindings/memory/mtk-smi-larb-port.h
+> > > @@ -7,9 +7,16 @@
+> > >  #define __DT_BINDINGS_MEMORY_MTK_MEMORY_PORT_H_
+> > >
+> > >  #define MTK_LARB_NR_MAX                    32
+> > > +#define MTK_M4U_DOM_NR_MAX         8
+> > > +
+> > > +#define MTK_M4U_DOM_ID(domid, larb, port)  \
+> > > +   (((domid) & 0x7) << 16 | (((larb) & 0x1f) << 5) | ((port) & 0x1f))
+> > > +
+> > > +/* The default dom id is 0. */
+> > > +#define MTK_M4U_ID(larb, port)             MTK_M4U_DOM_ID(0, larb, port)
+> > >
+> > > -#define MTK_M4U_ID(larb, port)             (((larb) << 5) | (port))
+> > >  #define MTK_M4U_TO_LARB(id)                (((id) >> 5) & 0x1f)
+> > >  #define MTK_M4U_TO_PORT(id)                ((id) & 0x1f)
+> > > +#define MTK_M4U_TO_DOM(id)         (((id) >> 16) & 0x7)
+> > >
+> > >  #endif
+> > > --
+> > > 2.18.0
+> > >
+> > > _______________________________________________
+> > > iommu mailing list
+> > > iommu@lists.linux-foundation.org
+> > > https://lists.linuxfoundation.org/mailman/listinfo/iommu
+>
