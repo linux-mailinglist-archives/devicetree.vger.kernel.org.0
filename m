@@ -2,71 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D462F4351
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:48:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 594342F4353
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:49:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725869AbhAMErN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 23:47:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53082 "EHLO
+        id S1725901AbhAMEss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 23:48:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725815AbhAMErN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 23:47:13 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D171FC061794;
-        Tue, 12 Jan 2021 20:46:32 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id l23so391048pjg.1;
-        Tue, 12 Jan 2021 20:46:32 -0800 (PST)
+        with ESMTP id S1725873AbhAMEss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 23:48:48 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1438EC061575
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 20:48:08 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id my11so1814734pjb.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 20:48:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wsH511uVTx8En12N2xkRYY/EWxwzRWT77TKtD0W9zkg=;
-        b=RIIJpECEt8DcW04/KRZRW3SbTyAg9O+VF7pyA6xxA0Y5ay2d1sujo/ylbdoUx+dwmN
-         oPlGWiy8pPqJXgwBrRwZUcDZesRmyc1Vul52/IhC3XbQFcCwJZbkmrDWB6h2OVcnXawB
-         Kaq0RkkcKgrt4NnjF40q1lENY9PgzVHlrD5mAg6Z2t5JRyHOpBej33u5uWIQhmHqL1pF
-         OQc67g47GZ96B15ivJMGhTa8tA6Z0uGz3z+ydLNNYvyua5zSCgVCMdh9dLgmY5jBxx6I
-         fdljdSb6I3U+pgAE4xsVLwe9Kh12TxI8c2o50gE2UhRpPMc2hXNKt3Kv9FTFFY0EaJd6
-         +cGw==
+        bh=gVA6+HCMYxNyUjPfnpF2KEVF6IiqbxaKVdh70dU028I=;
+        b=M4GXJNJfnTAOjVGn/7MbCKOJxy+BalSihHk7be4OShDH8j/UgvjxsqBP/FQSKyKPq9
+         al4vvGfMPjeT+ufPxvFpOyqlebyFuHkLtbjZL+m2rJWct1XBP8/16D586XJb5T4u4FaI
+         ARJY+8SMZf5esIZxK2PAmf8aM4AP3r2/yOb2Id7fajyju8DxD5agz8Rlv+/64KTHc+MM
+         DbLfByeybowacW2OgthY6F9f/dL5L8P2v932m3+kd4Q509G4Z7OUuzL6Cy/J7Vg9NuJR
+         avDnaii1954qPeeWEF/Y+3pU6iyBY+lsNc8Ykrn4U4SXUde9XH2w8sp2uOsbqDfln5YM
+         QArg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=wsH511uVTx8En12N2xkRYY/EWxwzRWT77TKtD0W9zkg=;
-        b=R6JHdDZw/eVaU9UXihNj26TrF14xpt5oNuU2BbLLRPIuCOogAFA7zS2P19/nc20pLn
-         j87QW7Vpc9+Mo5VBXJR6F57+AO4poM+jaRJJTutAsWWMBuRdy4qtSEplZGck5VwNOdGk
-         qXMfizySTlorA4eKxYKLqWwqMFPZsJBFkTXI/A/Z29pPvIBa0QmVw1AMno9E3UTxzjDZ
-         lHgZiUvYvcAyWJ54ZvZEAUeypf4grePBzoBRCOLXUuOzqVFr9SF46ndhhioJf8SdmD/x
-         QtyAiQtpJCYXOSkJd2aZgK9XWPJwXf1TCsFUF661UgUWaRRXsfzLLGVnEZAjeC5oxgXt
-         GcjQ==
-X-Gm-Message-State: AOAM531jC1ySBvwkjuuZquHSqJ9T01B7hRA9TsCEMSAx0/nrRWvdRpe8
-        VASAr2PhYBo90EaDhZiX57U=
-X-Google-Smtp-Source: ABdhPJyI66w3akbSvDIGrnXliV0dgKl1F16PHaZriZhZPtI7msewPjn1vOreijeTOlGX/364MbTrvQ==
-X-Received: by 2002:a17:902:426:b029:db:65c4:dbf7 with SMTP id 35-20020a1709020426b02900db65c4dbf7mr483076ple.3.1610513192383;
-        Tue, 12 Jan 2021 20:46:32 -0800 (PST)
+        bh=gVA6+HCMYxNyUjPfnpF2KEVF6IiqbxaKVdh70dU028I=;
+        b=f3tNWotkMIH+iFQOWnH/RVqg2efBDVyVzBLXMP8hoJNl8arszH4OA1RV8Ai2XYoyKS
+         tSQO7KFDfGanouEbrG9S1GCMIcPDica1mab+l84HXnGWfzcVZ1NQkJ8ZoRTOfliiaraH
+         HAgMcPTJkxiVNFKj+cbzKCTi1E448g8DfW/EiO3S0h2YruDGeNl6VQzSt5lYxtdEPIPl
+         U3AikSaFN+IzNMffQvZgXtFt/g9qnAzOTMAo7EN/GhSIcc0FujpaElZozU3PQ2Yc8vhz
+         gXdTRMJUnBRrNHX7RHBKeUP0MzittT6/Sy8WNC/6PDTv5HgpkZgi14haiySr9HUh9hG8
+         whTw==
+X-Gm-Message-State: AOAM5304FTrjFSoIC4Cu2FQHTynnujm/smDPVYxx/5aTMNgSGlpfBCKW
+        oqNhht1hjTR66CEVJKFMp8lwNOdan4Y=
+X-Google-Smtp-Source: ABdhPJw5hIyAI9V9NG01k8sfjbEP6leT+Gu9st77FaIBWuWVYh6rfNzHRM4w9OFyFd3XTkxeCUgT1w==
+X-Received: by 2002:a17:90a:6809:: with SMTP id p9mr253785pjj.112.1610513287595;
+        Tue, 12 Jan 2021 20:48:07 -0800 (PST)
 Received: from [10.230.29.29] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id w90sm737242pjw.10.2021.01.12.20.46.29
+        by smtp.gmail.com with ESMTPSA id w63sm800872pfc.20.2021.01.12.20.48.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jan 2021 20:46:31 -0800 (PST)
-Subject: Re: [PATCH V2 0/2] Broadcom's PMB (Power Management Bus) support
+        Tue, 12 Jan 2021 20:48:06 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: broadcom: bcm4908: describe internal switch
 To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201214180743.14584-1-zajec5@gmail.com>
+References: <20210112131727.19020-1-zajec5@gmail.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <b3836eff-ea33-1779-5e33-a569ae2d38e8@gmail.com>
-Date:   Tue, 12 Jan 2021 20:46:28 -0800
+Message-ID: <527f5414-6673-094f-84c3-2567383c63a9@gmail.com>
+Date:   Tue, 12 Jan 2021 20:48:04 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20201214180743.14584-1-zajec5@gmail.com>
+In-Reply-To: <20210112131727.19020-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -76,41 +72,194 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 12/14/2020 10:07 AM, Rafał Miłecki wrote:
+On 1/12/2021 5:17 AM, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> PMB is a hardware block used for powering SoC devices like PCIe, USB,
-> SATA. Initially I planned to treat it as a reset controller and Philipp
-> pointed out in review that PMB driver should use a power subsystem.
+> BCM4908 has internal switch with 5 GPHYs. Ports 0 - 3 are always
+> connected to the internal PHYs. Remaining ports depend on device setup.
 > 
-> This is my refactored support.
+> Asus GT-AC5300 has an extra switch with its PHYs accessible using the
+> internal MDIO.
 > 
-> ***
+> CPU port and Ethernet interface remain to be documented.
 > 
-> Please note one difference when compared to the initial reset attempt.
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../bcm4908/bcm4908-asus-gt-ac5300.dts        | 51 +++++++++++
+>  .../boot/dts/broadcom/bcm4908/bcm4908.dtsi    | 85 ++++++++++++++++++-
+>  2 files changed, 135 insertions(+), 1 deletion(-)
 > 
-> As I store info about SoC devices in the driver now, I had to put
-> support for multiple buses there. That's required to avoid things like:
-> 
-> compatible = "brcm,bcm4908-pmb-no-1";
-> compatible = "brcm,bcm4908-pmb-no-2";
-> 
-> So now a single "reg" covers bigger buses (e.g. 0x40) in size, see:
-> 
-> reg = <0x802800e0 0x40>;
-> 
-> Other SoCs my use something like:
-> 
-> reg = <0x802800e0 0x20>;
-> reg = <0x802800e0 0x60>;
-> 
-> ***
-> 
-> AFAIU this should go through Florian's tree. I based in on top of the
-> soc-arm64/next.
-> 
-> V2: Use drivers/soc/bcm/bcm63xx/ and add Kconfig help message
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+> index 13c6b86eef21..51305e96fbd6 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+> @@ -44,6 +44,57 @@ brightness {
+>  	};
+>  };
+>  
+> +&ports {
+> +	port@0 {
+> +		label = "lan2";
+> +	};
+> +
+> +	port@1 {
+> +		label = "lan1";
+> +	};
+> +
+> +	port@2 {
+> +		label = "lan6";
+> +	};
+> +
+> +	port@3 {
+> +		label = "lan5";
+> +	};
+> +
+> +	/* External BCM53134S switch */
+> +	port@7 {
+> +		label = "sw";
+> +		reg = <7>;
+> +
+> +		fixed-link {
+> +			speed = <1000>;
+> +			full-duplex;
+> +		};
+> +	};
+> +};
+> +
+> +&mdio {
+> +	/* lan8 */
+> +	phy@0 {
+> +		reg = <0>;
+> +	};
+> +
+> +	/* lan7 */
+> +	phy@1 {
+> +		reg = <1>;
+> +	};
+> +
+> +	/* lan4 */
+> +	phy@2 {
+> +		reg = <2>;
+> +	};
+> +
+> +	/* lan3 */
+> +	phy@3 {
+> +		reg = <3>;
+> +	};
+> +};
+> +
+>  &nandcs {
+>  	nand-ecc-strength = <4>;
+>  	nand-ecc-step-size = <512>;
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> index b5b772a9a51b..0b44f32fdef1 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> @@ -108,7 +108,7 @@ soc {
+>  		compatible = "simple-bus";
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+> -		ranges = <0x00 0x00 0x80000000 0x10000>;
+> +		ranges = <0x00 0x00 0x80000000 0xd0000>;
+>  
+>  		usb@c300 {
+>  			compatible = "generic-ehci";
+> @@ -130,6 +130,89 @@ usb@d000 {
+>  			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+>  			status = "disabled";
+>  		};
+> +
+> +		switch@80000 {
+> +			compatible = "simple-mfd";
 
-Series applied to drivers/next, thanks!
+Should not this be simple-bus instead? That is what I used in the 7445
+and 7278 Device Trees provided by the bootloader, and also what was in
+the sf2 example binding.
+
+> +			#size-cells = <1>;
+> +			#address-cells = <1>;
+> +			ranges = <0 0x80000 0x50000>;
+> +
+> +			switch@0 {
+> +				compatible = "brcm,bcm4908-switch";
+> +				reg = <0x0 0x40000>,
+> +				      <0x40000 0x110>,
+> +				      <0x40340 0x30>,
+> +				      <0x40380 0x30>,
+> +				      <0x40600 0x34>,
+> +				      <0x40800 0x208>;
+> +				reg-names = "core", "reg", "intrl2_0",
+> +					    "intrl2_1", "fcb", "acb";
+> +				interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
+> +				brcm,num-gphy = <5>;
+> +				brcm,num-rgmii-ports = <2>;
+> +
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				ports: ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						phy-mode = "internal";
+> +						phy-handle = <&phy8>;
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						phy-mode = "internal";
+> +						phy-handle = <&phy9>;
+> +					};
+> +
+> +					port@2 {
+> +						reg = <2>;
+> +						phy-mode = "internal";
+> +						phy-handle = <&phy10>;
+> +					};
+> +
+> +					port@3 {
+> +						reg = <3>;
+> +						phy-mode = "internal";
+> +						phy-handle = <&phy11>;
+> +					};
+> +				};
+> +			};
+> +
+> +			mdio: mdio@405c0 {
+> +				compatible = "brcm,unimac-mdio";
+> +				reg = <0x405c0 0x8>;
+> +				reg-names = "mdio";
+> +				#size-cells = <1>;
+> +				#address-cells = <0>;
+> +
+> +				phy8: phy@8 {
+> +					reg = <8>;
+> +				};
+> +
+> +				phy9: phy@9 {
+> +					reg = <9>;
+> +				};
+> +
+> +				phy10: phy@a {
+> +					reg = <10>;
+> +				};
+> +
+> +				phy11: phy@b {
+> +					reg = <11>;
+> +				};
+> +
+> +				phy12: phy@c {
+> +					reg = <12>;
+> +				};
+> +			};
+> +		};
+>  	};
+>  
+>  	bus@ff800000 {
+> 
+
 -- 
 Florian
