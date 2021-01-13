@@ -2,76 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3B592F511D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 18:29:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D9372F5122
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 18:30:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726379AbhAMR2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 12:28:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54590 "EHLO mail.kernel.org"
+        id S1727766AbhAMR3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 12:29:32 -0500
+Received: from muru.com ([72.249.23.125]:44732 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726996AbhAMR2c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 12:28:32 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A927520739;
-        Wed, 13 Jan 2021 17:27:51 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kzjvx-007JbX-Ip; Wed, 13 Jan 2021 17:27:49 +0000
+        id S1727265AbhAMR3c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 12:29:32 -0500
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 2AD4B80A7;
+        Wed, 13 Jan 2021 17:28:50 +0000 (UTC)
+Date:   Wed, 13 Jan 2021 19:28:47 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
+        <linux-omap@vger.kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Dave Gerlach <d-gerlach@ti.com>,
+        Roger Quadros <rogerq@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Subject: Re: [PATCH 13/18] ARM: dts: Use simple-pm-bus for genpd for am3
+ l4_wkup
+Message-ID: <X/8tz/2v4bnbF0TZ@atomide.com>
+References: <20201026112222.56894-1-tony@atomide.com>
+ <20201026112222.56894-14-tony@atomide.com>
+ <CAMuHMdWribr=eg1LkKce=Hamm+JwSz5UFEXLKUmKkqqz1RpL_w@mail.gmail.com>
+ <X/8ei0o9ULpRdx7T@atomide.com>
+ <CAMuHMdW+y5Y+0U1beebq7EGiarBKYdHszL+vW5r4xG6HBspVgQ@mail.gmail.com>
+ <X/8kDzoADvcnNHxC@atomide.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 13 Jan 2021 17:27:49 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 13/26] KVM: arm64: Enable access to sanitized CPU
- features at EL2
-In-Reply-To: <X/8FFKOLOVD9Ee2F@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-14-qperret@google.com>
- <d55643ea391f73a2297f499f3219ba8a@kernel.org> <X/8CR5eXGGccFjaL@google.com>
- <X/8FFKOLOVD9Ee2F@google.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <e09900ba30646cf23e1683a2ed16078f@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: qperret@google.com, catalin.marinas@arm.com, will@kernel.org, james.morse@arm.com, julien.thierry.kdev@gmail.com, suzuki.poulose@arm.com, robh+dt@kernel.org, frowand.list@gmail.com, devicetree@vger.kernel.org, android-kvm@google.com, linux-kernel@vger.kernel.org, kernel-team@android.com, kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org, tabba@google.com, mark.rutland@arm.com, dbrazdil@google.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <X/8kDzoADvcnNHxC@atomide.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-13 14:35, Quentin Perret wrote:
-> On Wednesday 13 Jan 2021 at 14:23:03 (+0000), Quentin Perret wrote:
->> Good point, that would be nice indeed. Can I use that from outside an
->> __init function?
+* Tony Lindgren <tony@atomide.com> [210113 16:48]:
+> * Geert Uytterhoeven <geert@linux-m68k.org> [210113 16:42]:
+> > On Wed, Jan 13, 2021 at 5:23 PM Tony Lindgren <tony@atomide.com> wrote:
+> > > Strange, bbb has been working for me with NFSroot, that's with
+> > > omap2plus_defconfig. Care to send your .config so I can give it a
+> > > try tomorrow?
+> > 
+> > Sent by private email.
 > 
-> Just gave it a go, and the answer to this appears to be yes,
-> surprisingly -- I was expecting a compile-time warning similar to what
-> we get when non-__init code calls into __init, but that doesn't seem to
-> trigger here. Anyways, I'll add the annotation in v3.
+> OK thanks.
+> 
+> > Just tried omap2plus_defconfig, and it also hangs during boot.
 
-That's surprising. I'd definitely expect something to explode...
-Do you have CONFIG_DEBUG_SECTION_MISMATCH=y?
+Hmm and I just tried and bbb still boots NFSroot for me at commit
+5a230524f879 ("ARM: dts: Use simple-pm-bus for genpd for am3 l4_wkup").
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+> Hmm OK. Will give it a try tomorrow.
+
+Later,
+
+Tony
