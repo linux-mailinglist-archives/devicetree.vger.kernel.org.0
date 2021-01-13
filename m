@@ -2,69 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A22532F423C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 04:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A0F72F424C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 04:17:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728823AbhAMDEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 22:04:53 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:38275 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728722AbhAMDEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 22:04:53 -0500
-Received: by mail-oi1-f176.google.com with SMTP id x13so644328oic.5;
-        Tue, 12 Jan 2021 19:04:38 -0800 (PST)
+        id S1728915AbhAMDQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 22:16:46 -0500
+Received: from mail-oo1-f45.google.com ([209.85.161.45]:38092 "EHLO
+        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728105AbhAMDQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 22:16:45 -0500
+Received: by mail-oo1-f45.google.com with SMTP id i18so178834ooh.5;
+        Tue, 12 Jan 2021 19:16:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cpiu9m+TCpQtSztTuCtXfLfCd/yaMGYzPysLOSNolt8=;
-        b=eap0R17hifdSw7lsvliLVoWVLO4YAK6AhgKeBUjc5c1gzIFfaOL8ZiBkzTfcivYIfz
-         418FIZSP8TUx7z5DdjVPepj4ViV/8or0vKay06LTL2+oeXt2Ma4peQhyFDNsLSTbUrTl
-         WT57VPcLE08XJzU4Iy8nwCNRwJP8mgj2NKGJNEjvNgmKbgAzZWBYVt/lMZhx3Flh5h9J
-         TSeUCKGqowNOoJK/YyhnoW42jSdsxsRjpQeuiYQ0grjGElJeKCVNIjr4VyUeLouWYpXG
-         l3OmeO+b1YST4SIUa20flcHON7d1O20r6Kp+XfjFXrN2O4hfRPS5NL52inRKAdS1v3Bo
-         h7aQ==
-X-Gm-Message-State: AOAM532WEXJ5Csf3PiWRN8GE1xGrEawEdUQ3fdqHcpMlJUI3zQecYBkv
-        JbLhuIg2+g3FCED2WEEMzA==
-X-Google-Smtp-Source: ABdhPJzpdekEcJU1YI4ImheDxEdc0Sl/eS68G0A6S2+Xtc2sC7L8KRd/lYjqVMZqw4+h0+RlwJMYow==
-X-Received: by 2002:aca:bac3:: with SMTP id k186mr75699oif.93.1610507052892;
-        Tue, 12 Jan 2021 19:04:12 -0800 (PST)
+        bh=Vxk5MOdtzou/F1fb9Y4udKZA5zOP9DO/LQOh+zLeug4=;
+        b=WWvBv7y+VEVe4PB6uRq1bnF0d6J9XEoilztp4rHYfzLvgzrLBGk6OtEE2iwWfPxxOp
+         T/6qnLcjs1zvnRKxkM//dhx1YY49MgmVPWm60WoqbTUtUM94KZW4hNkrpVPxqOiYbPx8
+         Fo2237KLSNcKxWfdSOnWU6PHN5wfVTquteychv9nYhhzTk16uq9pg6Q4zAoelxEGOOs7
+         nyWd+DiqMWMPNDotjRAJMstcBUVLsHXR3NgiIDrqjo+KPEFJWb+V8stetzjJk3wwDCv3
+         h7TOK8TC4RZuiiBCIMUYHxDwnQeKFvAXXVljZmi9z4DGPz86WVQtyj9tFkuIcQKY1UwA
+         uoXA==
+X-Gm-Message-State: AOAM5338Ski02CYlIIuF6K2o2oGqbQJJzguZBpXNza7xf0ICGU77pKZS
+        i6k/Gh614++GA8bhmiGrQY9JucUSDQ==
+X-Google-Smtp-Source: ABdhPJycc1IEtgj1+eyQPcsWs+pizJRNvXrFwG/iiHyFJk0I5S1AKHjVLa37RumE46vQOUc1izoWdw==
+X-Received: by 2002:a4a:bf14:: with SMTP id r20mr1401442oop.2.1610507764859;
+        Tue, 12 Jan 2021 19:16:04 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g200sm164542oib.19.2021.01.12.19.04.11
+        by smtp.gmail.com with ESMTPSA id 59sm154107oti.69.2021.01.12.19.16.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 19:04:12 -0800 (PST)
-Received: (nullmailer pid 1442971 invoked by uid 1000);
-        Wed, 13 Jan 2021 03:04:10 -0000
-Date:   Tue, 12 Jan 2021 21:04:10 -0600
+        Tue, 12 Jan 2021 19:16:03 -0800 (PST)
+Received: (nullmailer pid 1458550 invoked by uid 1000);
+        Wed, 13 Jan 2021 03:16:02 -0000
+Date:   Tue, 12 Jan 2021 21:16:02 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        phone-devel@vger.kernel.org, Ohad Ben-Cohen <ohad@wizery.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: qcom,wcnss-pil: Add
- qcom,wcn3660b compatible
-Message-ID: <20210113030410.GA1442924@robh.at.kernel.org>
-References: <20210106102134.59801-1-stephan@gerhold.net>
- <20210106102134.59801-2-stephan@gerhold.net>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-clk@vger.kernel.org, aford@beaconembedded.com,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC 1/2] dt-bindings: clk: versaclock5:  Add load capacitance
+ properties
+Message-ID: <20210113031602.GA1443816@robh.at.kernel.org>
+References: <20210106173900.388758-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210106102134.59801-2-stephan@gerhold.net>
+In-Reply-To: <20210106173900.388758-1-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Jan 2021 11:21:32 +0100, Stephan Gerhold wrote:
-> WCN3660B is a variant of WCN3660, but with the same regulator
-> requirements as WCN3620/WCN3680. Add a new qcom,wcn3660b compatible
-> to describe it from device trees.
+On Wed, Jan 06, 2021 at 11:38:59AM -0600, Adam Ford wrote:
+> There are two registers which can set the load capacitance for
+> XTAL1 and XTAL2. These are optional registers when using an
+> external crystal.  Update the bindings to support them.
 > 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > ---
->  Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/clock/idt,versaclock5.yaml   | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> index 2ac1131fd922..e5e55ffb266e 100644
+> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> @@ -59,6 +59,18 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  idt,xtal1-load-femtofarads:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Acked-by: Rob Herring <robh@kernel.org>
+Already has a type, so you can drop the $ref.
+
+> +    minimum: 9000
+> +    maximum: 25000
+> +    description: Optional loading capacitor for XTAL1
+> +
+> +  idt,xtal2-load-femtofarads:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 9000
+> +    maximum: 25000
+> +    description: Optional loading capacitor for XTAL2
+> +
+>  patternProperties:
+>    "^OUT[1-4]$":
+>      type: object
+> -- 
+> 2.25.1
+> 
