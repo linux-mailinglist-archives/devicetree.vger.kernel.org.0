@@ -2,156 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EF812F4CCF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 15:12:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE992F4CB0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 15:05:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725772AbhAMOKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 09:10:23 -0500
-Received: from mx.blih.net ([212.83.155.74]:62651 "EHLO mx.blih.net"
+        id S1725871AbhAMOE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 09:04:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42714 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725771AbhAMOKX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 09:10:23 -0500
-X-Greylist: delayed 398 seconds by postgrey-1.27 at vger.kernel.org; Wed, 13 Jan 2021 09:10:21 EST
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bidouilliste.com;
-        s=mx; t=1610546580;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CuqQ41+62E3abvZbC8uW3gX+FOM+gTQ2HpvaMFDLcLQ=;
-        b=OoJe4m2Exg8BfzoMcur+70eZU1JhnApLcVEzjZvp1KbcShn5wfjLdzV1ZzqxFv0MluuX5y
-        7zvxMiFRztmGufwEjHmWm7zohCl4YulKCUeQzLmu/viY3zuY4tuBvU0N25rxFBzrUmprmL
-        uLuLS1b5msA6zdMcQ5p/nI3ppdSsgYc=
-Received: from skull.home.blih.net (lfbn-idf2-1-745-114.w86-247.abo.wanadoo.fr [86.247.192.114])
-        by mx.blih.net (OpenSMTPD) with ESMTPSA id b98bc92a (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
-        Wed, 13 Jan 2021 14:03:00 +0000 (UTC)
-Date:   Wed, 13 Jan 2021 15:02:57 +0100
-From:   Emmanuel Vadot <manu@bidouilliste.com>
-To:     =?ISO-8859-1?Q?Andr=E9?= Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [linux-sunxi] [PATCH 2/7] arm64: dts: allwinner: Pine64-LTS:
- Add status LED
-Message-Id: <20210113150257.39cc69538ef4b4f09ebfabb2@bidouilliste.com>
-In-Reply-To: <93863b7a-27c5-d1bc-78e8-e02dfb583653@arm.com>
-References: <20210106150525.15403-1-andre.przywara@arm.com>
-        <20210106150525.15403-3-andre.przywara@arm.com>
-        <CAGb2v65oDBjO2dgcTfhe5Dephc6KBN9-epBieQ4mV0cwMizNvw@mail.gmail.com>
-        <93863b7a-27c5-d1bc-78e8-e02dfb583653@arm.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; amd64-portbld-freebsd13.0)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+        id S1725858AbhAMOE5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 09:04:57 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 85EEE23382;
+        Wed, 13 Jan 2021 14:04:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610546656;
+        bh=+1kxR8vH18rqeWixw2gVBw9HQWeNytBO0/nYFFbzJ/c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FfitW0nLrDbZU4DRMhAsrcPUK84kHTo99ipxUT+qTjxn8ukPBJ7l+0+rqT21iuo1G
+         40ukcqtzPgTVMVHaZNDqAWFEEU2bAZaHzJejOYPhwZ8EQIkQzjBYQo20DSFRjVKne9
+         35oaelCEtSmvuTGT9rXPC/Qg412RKbvSpOpDwLIOuuykpe9G3OKuVY7ZnTPMypDaw8
+         OB9JJP2UjVVQlLpUeE8jcVq+rnqwcZMnruhsFG2YA+T9INRTsBJKIe2nKCo6iXvFWd
+         /FaAVD8RjOU0QIda46vHsN/fxHGtEePEDIiCrnoIsrmQQPU19U8cnKfc5lhXiuhGtV
+         AP/pMNoXO+5TA==
+Date:   Wed, 13 Jan 2021 19:34:12 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Peter Rosin <peda@axentia.se>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 5/7] phy: ti: j721e-wiz: Configure full rate divider for
+ AM64
+Message-ID: <20210113140412.GP2771@vkoul-mobl>
+References: <20201224114250.1083-1-kishon@ti.com>
+ <20201224114250.1083-6-kishon@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201224114250.1083-6-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Jan 2021 16:08:30 +0000
-Andr=E9 Przywara <andre.przywara@arm.com> wrote:
+On 24-12-20, 17:12, Kishon Vijay Abraham I wrote:
+> The frequency of the txmclk between PCIe and SERDES has
+> changed to 250MHz from 500MHz. Configure full rate divider
+> for AM64 accordingly.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  drivers/phy/ti/phy-j721e-wiz.c | 43 +++++++++++++++++++++++++++++++---
+>  1 file changed, 40 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/phy/ti/phy-j721e-wiz.c b/drivers/phy/ti/phy-j721e-wiz.c
+> index 2a03191eac64..08acfab1ebe6 100644
+> --- a/drivers/phy/ti/phy-j721e-wiz.c
+> +++ b/drivers/phy/ti/phy-j721e-wiz.c
+> @@ -101,6 +101,13 @@ static const struct reg_field p_standard_mode[WIZ_MAX_LANES] = {
+>  	REG_FIELD(WIZ_LANECTL(3), 24, 25),
+>  };
+>  
+> +static const struct reg_field p0_fullrt_div[WIZ_MAX_LANES] = {
+> +	REG_FIELD(WIZ_LANECTL(0), 22, 23),
+> +	REG_FIELD(WIZ_LANECTL(1), 22, 23),
+> +	REG_FIELD(WIZ_LANECTL(2), 22, 23),
+> +	REG_FIELD(WIZ_LANECTL(3), 22, 23),
+> +};
+> +
+>  static const struct reg_field typec_ln10_swap =
+>  					REG_FIELD(WIZ_SERDES_TYPEC, 30, 30);
+>  
+> @@ -193,6 +200,7 @@ static struct wiz_clk_div_sel clk_div_sel[] = {
+>  enum wiz_type {
+>  	J721E_WIZ_16G,
+>  	J721E_WIZ_10G,
+> +	AM64_WIZ_10G,
+>  };
+>  
+>  #define WIZ_TYPEC_DIR_DEBOUNCE_MIN	100	/* ms */
+> @@ -210,6 +218,7 @@ struct wiz {
+>  	struct regmap_field	*p_align[WIZ_MAX_LANES];
+>  	struct regmap_field	*p_raw_auto_start[WIZ_MAX_LANES];
+>  	struct regmap_field	*p_standard_mode[WIZ_MAX_LANES];
+> +	struct regmap_field	*p0_fullrt_div[WIZ_MAX_LANES];
+>  	struct regmap_field	*pma_cmn_refclk_int_mode;
+>  	struct regmap_field	*pma_cmn_refclk_mode;
+>  	struct regmap_field	*pma_cmn_refclk_dig_div;
+> @@ -380,7 +389,7 @@ static int wiz_regfield_init(struct wiz *wiz)
+>  	}
+>  
+>  	clk_mux_sel = &wiz->clk_mux_sel[REFCLK_DIG];
+> -	if (wiz->type == J721E_WIZ_10G)
+> +	if (wiz->type == J721E_WIZ_10G || wiz->type == AM64_WIZ_10G)
+>  		clk_mux_sel->field =
+>  			devm_regmap_field_alloc(dev, regmap,
+>  						refclk_dig_sel_10g);
+> @@ -424,6 +433,14 @@ static int wiz_regfield_init(struct wiz *wiz)
+>  				i);
+>  			return PTR_ERR(wiz->p_standard_mode[i]);
+>  		}
+> +
+> +		wiz->p0_fullrt_div[i] =
+> +			devm_regmap_field_alloc(dev, regmap, p0_fullrt_div[i]);
+> +		if (IS_ERR(wiz->p0_fullrt_div[i])) {
+> +			dev_err(dev, "P%d_FULLRT_DIV reg field init failed\n",
+> +				i);
 
-> On 06/01/2021 15:53, Chen-Yu Tsai wrote:
->=20
-> Hi,
->=20
-> > On Wed, Jan 6, 2021 at 11:05 PM Andre Przywara <andre.przywara@arm.com>=
- wrote:
-> >>
-> >> The Pine64-LTS board features a blue status LED on pin PL7.
-> >=20
-> > I'd like some clarification about this.
-> >=20
-> > My Pine64-LTS was a used unit personally given to me by TL Lim, which c=
-ame
-> > with LEDs that I assume were soldered on by hand as their mounting angl=
-es
-> > are slightly off. My Pine64+ (the original from the Kickstarter campaig=
-n)
-> > and SoPine baseboard (a new unit, also given to me by TL Lim) came with=
-out
-> > LEDs soldered on.
->=20
-> The situation is similar here ;-), and that's why I checked the pictures
-> in the store. The LEDs look slightly different (not angled), but the
-> location of the pads is the same and I see two LEDs on the picture. The
-> schematic seems to confirm both the pins, the polarity and the colour.
-> Hence I am highly confident that it's a blue LED on PL7, active low.
->=20
-> But we can wait for other people to confirm.
->=20
-> Thanks!
-> Andre
+single line?
 
- I have three boards :
+> +			return PTR_ERR(wiz->p0_fullrt_div[i]);
+> +		}
+>  	}
+>  
+>  	wiz->typec_ln10_swap = devm_regmap_field_alloc(dev, regmap,
+> @@ -719,6 +736,19 @@ static int wiz_phy_reset_assert(struct reset_controller_dev *rcdev,
+>  	return ret;
+>  }
+>  
+> +static int wiz_phy_fullrt_div(struct wiz *wiz, int lane)
+> +{
+> +	int ret = 0;
 
- - Pine64, no led (bought after the kickstarter)
- - A64-LTS, blue color, and active low, no weird mounting angles here
-(don't remember if I bought this one or not)
- - Sopine Baseboard, no led (definitly bought this myself)
+drop the variable..
 
-> > I'm OK with adding the LED to the device tree. I'm just not sure about =
-the
-> > color.
-> >=20
-> >=20
-> > ChenYu
-> >=20
-> >> Describe it in the DT.
-> >>
-> >> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> >> ---
-> >>  .../boot/dts/allwinner/sun50i-a64-pine64-lts.dts      | 11 +++++++++++
-> >>  1 file changed, 11 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts b=
-/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> >> index 302e24be0a31..55bf4a0fc31c 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> >> @@ -1,10 +1,21 @@
-> >>  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> >>  // Copyright (c) 2018 ARM Ltd.
-> >>
-> >> +#include <dt-bindings/leds/common.h>
-> >>  #include "sun50i-a64-sopine-baseboard.dts"
-> >>
-> >>  / {
-> >>         model =3D "Pine64 LTS";
-> >>         compatible =3D "pine64,pine64-lts", "allwinner,sun50i-r18",
-> >>                      "allwinner,sun50i-a64";
-> >> +
-> >> +       leds {
-> >> +               compatible =3D "gpio-leds";
-> >> +
-> >> +               status {
-> >> +                       function =3D LED_FUNCTION_STATUS;
-> >> +                       color =3D <LED_COLOR_ID_BLUE>;
-> >> +                       gpios =3D <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7=
- */
-> >> +               };
-> >> +       };
-> >>  };
-> >> --
-> >> 2.17.5
-> >>
-> >> --
-> >> You received this message because you are subscribed to the Google Gro=
-ups "linux-sunxi" group.
-> >> To unsubscribe from this group and stop receiving emails from it, send=
- an email to linux-sunxi+unsubscribe@googlegroups.com.
-> >> To view this discussion on the web, visit https://groups.google.com/d/=
-msgid/linux-sunxi/20210106150525.15403-3-andre.przywara%40arm.com.
->=20
->=20
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> +
+> +	if (wiz->type != AM64_WIZ_10G)
+> +		return 0;
+> +
+> +	if (wiz->lane_phy_type[lane] == PHY_TYPE_PCIE)
+> +		ret = regmap_field_write(wiz->p0_fullrt_div[lane], 0x1);
 
+return regmap_
+> +
+> +	return ret;
 
---=20
-Emmanuel Vadot <manu@bidouilliste.com> <manu@freebsd.org>
+return 0
+
+> +}
+> +
+>  static int wiz_phy_reset_deassert(struct reset_controller_dev *rcdev,
+>  				  unsigned long id)
+>  {
+> @@ -742,6 +772,10 @@ static int wiz_phy_reset_deassert(struct reset_controller_dev *rcdev,
+>  		return ret;
+>  	}
+>  
+> +	ret = wiz_phy_fullrt_div(wiz, id - 1);
+> +	if (ret)
+> +		return ret;
+> +
+>  	if (wiz->lane_phy_type[id - 1] == PHY_TYPE_DP)
+>  		ret = regmap_field_write(wiz->p_enable[id - 1], P_ENABLE);
+>  	else
+> @@ -769,6 +803,9 @@ static const struct of_device_id wiz_id_table[] = {
+>  	{
+>  		.compatible = "ti,j721e-wiz-10g", .data = (void *)J721E_WIZ_10G
+>  	},
+> +	{
+> +		.compatible = "ti,am64-wiz-10g", .data = (void *)AM64_WIZ_10G
+> +	},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, wiz_id_table);
+> @@ -904,14 +941,14 @@ static int wiz_probe(struct platform_device *pdev)
+>  	wiz->dev = dev;
+>  	wiz->regmap = regmap;
+>  	wiz->num_lanes = num_lanes;
+> -	if (wiz->type == J721E_WIZ_10G)
+> +	if (wiz->type == J721E_WIZ_10G || wiz->type == AM64_WIZ_10G)
+>  		wiz->clk_mux_sel = clk_mux_sel_10g;
+>  	else
+>  		wiz->clk_mux_sel = clk_mux_sel_16g;
+>  
+>  	wiz->clk_div_sel = clk_div_sel;
+>  
+> -	if (wiz->type == J721E_WIZ_10G)
+> +	if (wiz->type == J721E_WIZ_10G || wiz->type == AM64_WIZ_10G)
+>  		wiz->clk_div_sel_num = WIZ_DIV_NUM_CLOCKS_10G;
+>  	else
+>  		wiz->clk_div_sel_num = WIZ_DIV_NUM_CLOCKS_16G;
+> -- 
+> 2.17.1
+
+-- 
+~Vinod
