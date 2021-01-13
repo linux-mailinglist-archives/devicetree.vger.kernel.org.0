@@ -2,92 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A0D12F4F0F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:46:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 409B62F4F27
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:50:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726828AbhAMPpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 10:45:47 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:38224 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726011AbhAMPpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:45:47 -0500
-Received: by mail-ot1-f41.google.com with SMTP id j20so2286237otq.5;
-        Wed, 13 Jan 2021 07:45:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=/OZYDMQOUVtActRUrxqdkowy5AXag3L8nzdkAFPXlHg=;
-        b=ahSWeiUTlZlM4gSc/S1CdvnUEJLPXUMrqdO81jnrpbhbJsq19nWlvxYIBLChzd/7yD
-         wKvESMYk22lklCzHObnEvg/kQ0xHBTn0btjWcSVDGSZDL6TrlkLc2X1o0UApSt2rYW3s
-         AezdbV43E8RllvYYbZ3c6mNhNWnlTST1vDHzCaNihVUfHmgImaQc+EpT8Fj6d4D4DhwH
-         Fxkt6TgMYbMXf1NKa7KbNsZU2Kn+we9iUfz6HG99vGEA1gc2odzSRNewe+mjmXAFgATC
-         X1jB51xmZwUksQNtCwaIuTp0kiUXQ64H0FmMRoMmlHbw63N+AVdg31xOpHaPlRWhCK9i
-         nGAg==
-X-Gm-Message-State: AOAM532MpXmB14i99U99E/NyW6HuWcPtLgCyHK/XWgzSmaHapPMc6REw
-        5RtFHPwnWBRXvEGcgH8GJg==
-X-Google-Smtp-Source: ABdhPJxhG9xx22koYrUiBE7xApayk8lzDcbuaua4K4mR7TmW9qeqOnJNnQjjpctbY/7o1KuqZJK3tQ==
-X-Received: by 2002:a9d:b90:: with SMTP id 16mr1727890oth.9.1610552706627;
-        Wed, 13 Jan 2021 07:45:06 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h7sm460329otq.21.2021.01.13.07.45.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 07:45:05 -0800 (PST)
-Received: (nullmailer pid 2506181 invoked by uid 1000);
-        Wed, 13 Jan 2021 15:45:04 -0000
+        id S1726956AbhAMPsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 10:48:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37098 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726612AbhAMPsy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 10:48:54 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5422823406;
+        Wed, 13 Jan 2021 15:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610552893;
+        bh=vl/j9fY04Q4QKepnlpWcEBboiOHtYd5YlcbSUw/UEiw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bG7zO7Kh5L+sFUiW/N1k3sqkVj2KQI6mrcwtvVmoV/3e9VmkRZ3M9HFNrxCijvu2V
+         pSv0ZCjR8hnC9LYXKv1DjwW5kxmKz91q+tNMi2+KnpPaHdvqx8qhkI4LdG8Php0ai2
+         gKA2AcaLeAvbV6TkDRvkMesJaNUY1sPbc86YX0ljutBurBMVLIQJKGW35mFdUbp/WR
+         P8zJSVcFRKRbmi30daabu7F/LFOBe3Suz+Nwp6X+P8kRF1XJBlyfxOraqVAH/N6YuN
+         N/EIr3qfB2bAdaMTaLlIi5LOWk2UV195bWLsJtN5+uf3rKg9X9i/D+7ASzyMcdfJeg
+         JACkTO1fV2s2Q==
+Received: by mail-ej1-f48.google.com with SMTP id n26so3727513eju.6;
+        Wed, 13 Jan 2021 07:48:13 -0800 (PST)
+X-Gm-Message-State: AOAM5331Vul+C4JnHIfma8Uhy187Zul5AdsnHDmm7BYQWxe8ev0nRCBl
+        Em+a7wkUMcgQ8+Iz9pwWT8WgK78IEtz8sRakcg==
+X-Google-Smtp-Source: ABdhPJzZZzBuNWt4zBP6oYChCdDAG8dOO3P0AP/b5Es8D36Y7ObsNG06lrcvG5s0YbH/HHYPqG29t3s3Un8yiIKd8P0=
+X-Received: by 2002:a17:906:dfdb:: with SMTP id jt27mr775014ejc.360.1610552891782;
+ Wed, 13 Jan 2021 07:48:11 -0800 (PST)
+MIME-Version: 1.0
+References: <cover.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
+ <3ca03c3b76d6898c46ee645ddb5fa25cbfc62367.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
+ <20210111190953.GB2890911@robh.at.kernel.org> <c953405d630efba5377b89931ae4e0aa1abfa4dd.camel@fi.rohmeurope.com>
+ <20210113135345.GA2332349@robh.at.kernel.org> <55d19aaa27522c06c1a34f2a6422b82d069117c8.camel@fi.rohmeurope.com>
+In-Reply-To: <55d19aaa27522c06c1a34f2a6422b82d069117c8.camel@fi.rohmeurope.com>
 From:   Rob Herring <robh@kernel.org>
-To:     Minchan Kim <minchan@kernel.org>
-Cc:     hyesoo.yu@samsung.com, hch@infradead.org, joaodias@google.com,
-        hridya@google.com, pullip.cho@samsung.com,
-        LKML <linux-kernel@vger.kernel.org>, mhocko@suse.com,
-        robh+dt@kernel.org, linaro-mm-sig@lists.linaro.org,
-        surenb@google.com, Andrew Morton <akpm@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-mm <linux-mm@kvack.org>,
-        sumit.semwal@linaro.org, john.stultz@linaro.org,
-        linux-media@vger.kernel.org, david@redhat.com
-In-Reply-To: <20210113012143.1201105-4-minchan@kernel.org>
-References: <20210113012143.1201105-1-minchan@kernel.org> <20210113012143.1201105-4-minchan@kernel.org>
-Subject: Re: [PATCH v3 3/4] dt-bindings: reserved-memory: Make DMA-BUF CMA heap DT-configurable
-Date:   Wed, 13 Jan 2021 09:45:04 -0600
-Message-Id: <1610552704.254587.2506180.nullmailer@robh.at.kernel.org>
+Date:   Wed, 13 Jan 2021 09:47:59 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJH4C31db4Q_D_pme1=YSK6nJCxucVc4MnrU9tvBirNYg@mail.gmail.com>
+Message-ID: <CAL_JsqJH4C31db4Q_D_pme1=YSK6nJCxucVc4MnrU9tvBirNYg@mail.gmail.com>
+Subject: Re: [PATCH 06/15] dt_bindings: regulator: Add ROHM BD71815 PMIC regulators
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     "broonie@kernel.org" <broonie@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Jan 2021 17:21:42 -0800, Minchan Kim wrote:
-> From: Hyesoo Yu <hyesoo.yu@samsung.com>
-> 
-> Document devicetree binding for chunk cma heap on dma heap framework.
-> 
-> The DMA chunk heap supports the bulk allocation of higher order pages.
-> 
-> Signed-off-by: Hyesoo Yu <hyesoo.yu@samsung.com>
-> Signed-off-by: Minchan Kim <minchan@kernel.org>
-> Signed-off-by: Hridya Valsaraju <hridya@google.com>
-> Change-Id: I8fb231e5a8360e2d8f65947e155b12aa664dde01
-> ---
->  .../reserved-memory/dma_heap_chunk.yaml       | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
-> 
+On Wed, Jan 13, 2021 at 8:23 AM Vaittinen, Matti
+<Matti.Vaittinen@fi.rohmeurope.com> wrote:
+>
+>
+> On Wed, 2021-01-13 at 07:53 -0600, Rob Herring wrote:
+> > On Tue, Jan 12, 2021 at 08:10:14AM +0200, Matti Vaittinen wrote:
+> > > On Mon, 2021-01-11 at 13:09 -0600, Rob Herring wrote:
+> > > > On Fri, Jan 08, 2021 at 03:36:38PM +0200, Matti Vaittinen wrote:
+> > > > > Add binding documentation for regulators on ROHM BD71815 PMIC.
+> > > > > 5 bucks, 7 LDOs and a boost for LED.
+> > > > >
+> > > > > Signed-off-by: Matti Vaittinen <
+> > > > > matti.vaittinen@fi.rohmeurope.com>
+> > > > > ---
+> > > > >  .../regulator/rohm,bd71815-regulator.yaml     | 104
+> > > > > ++++++++++++++++++
+> > > > >  1 file changed, 104 insertions(+)
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/regulator/rohm,bd71815-
+> > > > > regulator.yaml
+> > > > >
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/regulator/rohm,bd71815-
+> > > > > regulator.yaml
+> > > > > b/Documentation/devicetree/bindings/regulator/rohm,bd71815-
+> > > > > regulator.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..2aa21603698c
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/regulator/rohm,bd71815-
+> > > > > regulator.yaml
+> > > > > @@ -0,0 +1,104 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id:
+> > > > > http://devicetree.org/schemas/regulator/rohm,bd71815-regulator.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: ROHM BD71815 Power Management Integrated Circuit
+> > > > > regulators
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > > > > +
+> > > > > +description: |
+> > > > > +  This module is part of the ROHM BD718215 MFD device. For
+> > > > > more
+> > > > > details
+> > > > > +  see Documentation/devicetree/bindings/mfd/rohm,bd71815-
+> > > > > pmic.yaml.
+> > > > > +
+> > > > > +  The regulator controller is represented as a sub-node of the
+> > > > > PMIC node
+> > > > > +  on the device tree.
+> > > > > +
+> > > > > +  The valid names for BD71815 regulator nodes are
+> > > > > +  buck1, buck2, buck3, buck4, buck5,
+> > > > > +  ldo1, ldo2, ldo3, ldo4, ldo5,
+> > > > > +  ldodvref, ldolpsr, wled
+> > > >
+> > > > No schema for the last 3?
+> > >
+> > > Thanks Rob. I'm unsure what I have been thinking of :( I'll fix
+> > > this
+> > > for next version.
+> > >
+> > > > > +
+> > > > > +patternProperties:
+> > > > > +  "^(ldo|buck)[1-5]$":
+> > > > > +    type: object
+> > > > > +    description:
+> > > > > +      Properties for single LDO/BUCK regulator.
+> > > > > +    $ref: regulator.yaml#
+> > > > > +
+> > > > > +    properties:
+> > > > > +      regulator-name:
+> > > > > +        pattern: "^(ldo|buck)[1-5]$"
+> > > > > +        description:
+> > > > > +          should be "ldo1", ..., "ldo5" and "buck1", ...,
+> > > > > "buck5"
+> > > > > +
+> > > > > +      rohm,vsel-gpios:
+> > > > > +        description:
+> > > > > +          GPIO used to control ldo4 state (when ldo4 is
+> > > > > controlled
+> > > > > by GPIO).
+> > > > > +
+> > > > > +      rohm,dvs-run-voltage:
+> > > >
+> > > > These should have a unit suffix.
+> > >
+> > > I know but these are existing properties. I'd like to re-use them
+> > > as
+> > > they have exported parser helpers - and I am unsure what kind of
+> > > breakages changing them would cause. (The BD71837/BD71847 which
+> > > introduced these properties are one of the PMICs which are pretty
+> > > widely used.)
+> >
+> > Okay. Hopefully I remember next time I see this...
+>
+> Actually, I think I can add support for rohm,dvs-run-microvolt and
+> fellows to these same helpers so new devices can use appropriately
+> named properties. That would mean there is duplicate properties for
+> same purpose - but maybe it allows us to eventually deprecate the old
+> ones... Which of these options would you prefer?
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Just keep the existing ones.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml:58:1: [warning] too many blank lines (2 > 1) (empty-lines)
-
-dtschema/dtc warnings/errors:
-
-See https://patchwork.ozlabs.org/patch/1425577
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
