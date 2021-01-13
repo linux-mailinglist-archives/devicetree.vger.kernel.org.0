@@ -2,153 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F422F422A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 03:59:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A2E2F4221
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 03:57:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728715AbhAMC7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 21:59:11 -0500
-Received: from mga17.intel.com ([192.55.52.151]:16378 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726499AbhAMC7L (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 21:59:11 -0500
-IronPort-SDR: TpII4ceYavZO0OC7cRwSy5O3Tr135D+PRBPO7tP9sJzODP8f2tOoSg5g+SA5L8VU/ZvnAExlPk
- WWJntulckZ8w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="157917559"
-X-IronPort-AV: E=Sophos;i="5.79,343,1602572400"; 
-   d="scan'208";a="157917559"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2021 18:57:50 -0800
-IronPort-SDR: +X9T3MaFFO67nRlp0dxZ8TxMXkHxjJOAiOBc3En2s6MlrikQP6movdXK64uL82EtWckUi7GFJu
- VUrSsRsxGT6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,343,1602572400"; 
-   d="scan'208";a="464751072"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.28]) ([10.239.159.28])
-  by fmsmga001.fm.intel.com with ESMTP; 12 Jan 2021 18:57:44 -0800
-Cc:     baolu.lu@linux.intel.com, joro@8bytes.org, will@kernel.org,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
-        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
-        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, vdumpa@nvidia.com,
-        zhangfei.gao@linaro.org, shameerali.kolothum.thodi@huawei.com,
-        vivek.gautam@arm.com, Arnd Bergmann <arnd@arndb.de>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Zhou Wang <wangzhou1@hisilicon.com>,
-        "Tian, Kevin" <kevin.tian@intel.com>
-Subject: Re: [PATCH v9 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from
- IOMMU_DEV_FEAT_SVA
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-References: <20210108145217.2254447-1-jean-philippe@linaro.org>
- <20210108145217.2254447-4-jean-philippe@linaro.org>
- <4de8ef03-a2ed-316e-d3e3-6b8474e20113@linux.intel.com>
- <X/1o72DTmzdCMhDz@myrica>
-From:   Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <c88e5d74-098d-7f1d-a7bb-a89e40fb8fa4@linux.intel.com>
-Date:   Wed, 13 Jan 2021 10:49:39 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728303AbhAMC5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 21:57:10 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:37692 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726840AbhAMC5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 21:57:10 -0500
+Received: by mail-ot1-f43.google.com with SMTP id o11so593822ote.4;
+        Tue, 12 Jan 2021 18:56:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wxopvxGze0KrwrLh4CQC5oDamBjQANLUapKIcQO/MXE=;
+        b=k6zmwDG6uO4PvbyJeGNB4MAlXlTB72tL5tUnbUwI/WS+aZ+Fkjt1Yjd5DTUfl3IyKL
+         7GzEHkOrfnrmSAoPnAo7jTb2Ke3uyou6T9wl6AKK1l0kyI/8lqpMyEIWW27VDs1u7ndw
+         l9Y4nTD5flNzGMWUFzsnmB75Ah02L+dQjL8RJG7ORE1o+5SrXwqgXpOAsQTQK06h7M0k
+         b6Qrg+Hu5DCTwTYcaMP1KzTLRRdu1J9WeBNHxQ2JysqFQwN1zbLbwkOksPEinYvY8jEJ
+         dRHgCPYiwzTOxcAvZJRxoeccAPhm2vVclnQIPhn5Bs7E9vG4PcJbElEa9lv0mNC1pu3z
+         XVuw==
+X-Gm-Message-State: AOAM530uO+6ANV/EOEgx+v0jWvNSIr/U7dPg05cqFwtrBehqGbdk/1kY
+        5Vzmi7Ys4fjvp0hoQ7h2XA==
+X-Google-Smtp-Source: ABdhPJy3qIbJsSo8ZClFtqTOMi0u7CL9lXJnDxywdybq3O1RzBXWkRgzCxuBOC2FJyqihdK8Cbb3kA==
+X-Received: by 2002:a05:6830:784:: with SMTP id w4mr1602255ots.53.1610506589186;
+        Tue, 12 Jan 2021 18:56:29 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id h11sm146837ooj.36.2021.01.12.18.56.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jan 2021 18:56:28 -0800 (PST)
+Received: (nullmailer pid 1430607 invoked by uid 1000);
+        Wed, 13 Jan 2021 02:56:27 -0000
+Date:   Tue, 12 Jan 2021 20:56:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl
+ bindings
+Message-ID: <20210113025627.GA1414436@robh.at.kernel.org>
+References: <20210106054950.303244-1-vkoul@kernel.org>
+ <20210106054950.303244-2-vkoul@kernel.org>
+ <X/dCIuUR/El8Gxaa@builder.lan>
 MIME-Version: 1.0
-In-Reply-To: <X/1o72DTmzdCMhDz@myrica>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <X/dCIuUR/El8Gxaa@builder.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean,
-
-On 1/12/21 5:16 PM, Jean-Philippe Brucker wrote:
-> Hi Baolu,
+On Thu, Jan 07, 2021 at 11:17:22AM -0600, Bjorn Andersson wrote:
+> On Tue 05 Jan 23:49 CST 2021, Vinod Koul wrote:
 > 
-> On Tue, Jan 12, 2021 at 12:31:23PM +0800, Lu Baolu wrote:
->> Hi Jean,
->>
->> On 1/8/21 10:52 PM, Jean-Philippe Brucker wrote:
->>> Some devices manage I/O Page Faults (IOPF) themselves instead of relying
->>> on PCIe PRI or Arm SMMU stall. Allow their drivers to enable SVA without
->>> mandating IOMMU-managed IOPF. The other device drivers now need to first
->>> enable IOMMU_DEV_FEAT_IOPF before enabling IOMMU_DEV_FEAT_SVA.
->>>
->>> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
->>> ---
->>> Cc: Arnd Bergmann <arnd@arndb.de>
->>> Cc: David Woodhouse <dwmw2@infradead.org>
->>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->>> Cc: Joerg Roedel <joro@8bytes.org>
->>> Cc: Lu Baolu <baolu.lu@linux.intel.com>
->>> Cc: Will Deacon <will@kernel.org>
->>> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
->>> Cc: Zhou Wang <wangzhou1@hisilicon.com>
->>> ---
->>>    include/linux/iommu.h | 20 +++++++++++++++++---
->>>    1 file changed, 17 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
->>> index 583c734b2e87..701b2eeb0dc5 100644
->>> --- a/include/linux/iommu.h
->>> +++ b/include/linux/iommu.h
->>> @@ -156,10 +156,24 @@ struct iommu_resv_region {
->>>    	enum iommu_resv_type	type;
->>>    };
->>> -/* Per device IOMMU features */
->>> +/**
->>> + * enum iommu_dev_features - Per device IOMMU features
->>> + * @IOMMU_DEV_FEAT_AUX: Auxiliary domain feature
->>> + * @IOMMU_DEV_FEAT_SVA: Shared Virtual Addresses
->>> + * @IOMMU_DEV_FEAT_IOPF: I/O Page Faults such as PRI or Stall. Generally using
->>> + *			 %IOMMU_DEV_FEAT_SVA requires %IOMMU_DEV_FEAT_IOPF, but
->>> + *			 some devices manage I/O Page Faults themselves instead
->>> + *			 of relying on the IOMMU. When supported, this feature
->>> + *			 must be enabled before and disabled after
->>> + *			 %IOMMU_DEV_FEAT_SVA.
->>
->> Is this only for SVA? We may see more scenarios of using IOPF. For
->> example, when passing through devices to user level, the user's pages
->> could be managed dynamically instead of being allocated and pinned
->> statically.
+> > Add device tree binding Documentation details for Qualcomm SM8350
+> > pinctrl driver.
+> > 
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  .../bindings/pinctrl/qcom,sm8350-tlmm.yaml    | 149 ++++++++++++++++++
+> >  1 file changed, 149 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> > new file mode 100644
+> > index 000000000000..abdafd25bfc2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> > @@ -0,0 +1,149 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8350-tlmm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Technologies, Inc. SM8350 TLMM block
+> > +
+> > +maintainers:
+> > +  - Vinod Koul <vkoul@kernel.org>
+> > +
+> > +description: |
+> > +  This binding describes the Top Level Mode Multiplexer block found in the
+> > +  SM8350 platform.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,sm8350-tlmm
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  '#interrupt-cells':
+> > +    description: Specifies the PIN numbers and Flags, as defined in
+> > +      include/dt-bindings/interrupt-controller/irq.h
+> > +    const: 2
+> > +
+> > +  gpio-controller: true
+> > +
+> > +  '#gpio-cells':
+> > +    description: Specifying the pin number and flags, as defined in
+> > +      include/dt-bindings/gpio/gpio.h
+> > +    const: 2
+> > +
+> > +  gpio-ranges:
+> > +    maxItems: 1
+> > +
+> > +  gpio-reserved-ranges:
+> > +    maxItems: 1
+> > +
+> > +#PIN CONFIGURATION NODES
+> > +patternProperties:
+> > +  '-pinmux$':
 > 
-> Hm, isn't that precisely what SVA does?  I don't understand the
-> difference. That said FEAT_IOPF doesn't have to be only for SVA. It could
-> later be used as a prerequisite some another feature. For special cases
-> device drivers can always use the iommu_register_device_fault_handler()
-> API and handle faults themselves.
-
- From the perspective of IOMMU, there is a little difference between
-these two. For SVA, the page table is from CPU side, so IOMMU only needs
-to call handle_mm_fault(); For above pass-through case, the page table
-is from IOMMU side, so the device driver (probably VFIO) needs to
-register a fault handler and call iommu_map/unmap() to serve the page
-faults.
-
-If we think about the nested mode (or dual-stage translation), it's more
-complicated since the kernel (probably VFIO) handles the second level
-page faults, while the first level page faults need to be delivered to
-user-level guest. Obviously, this hasn't been fully implemented in any
-IOMMU driver.
-
+> I believe that what Rob was asking for was the matter of describing the
+> mux and config subnodes under this one. But I don't know really how to
+> express this, because the following are all valid:
 > 
->> If @IOMMU_DEV_FEAT_IOPF is defined as generic iopf support, the current
->> vendor IOMMU driver support may not enough.
+> default_state: default-state {
+> 	pins = "gpio1";
+> 	bias-disable;
+> };
 > 
-> IOMMU_DEV_FEAT_IOPF on its own doesn't do anything useful, it's mainly a
-> way for device drivers to probe the IOMMU capability. Granted in patch
-> 10 the SMMU driver registers the IOPF queue on enable() but that could be
-> done by FEAT_SVA enable() instead, if we ever repurpose FEAT_IOPF.
-
-I have no objection to split IOPF from SVA. Actually we must have this
-eventually. My concern is that at this stage, the IOMMU drivers only
-support SVA type of IOPF, a generic IOMMU_DEV_FEAT_IOPF feature might
-confuse the device drivers which want to add other types of IOPF usage.
-
+> default_state: default-state {
+> 	rx {
+> 		pins = "gpio1";
+> 		function = "gpio";
+> 		bias-disable;
+> 	};
+> };
 > 
-> Thanks,
-> Jean
+> default_state: default-state {
+> 	pinmux {
+> 		pins = "gpio1";
+> 		function = "gpio";
+> 	};
 > 
+> 	pinconf {
+> 		pins = "gpio1";
+> 		bias-disable;
+> 	};
+> };
+> 
+> I.e. the properties described here applies either to this node directly,
+> or any subnodes (1 level) down.
 
-Best regards,
-baolu
+Why!?
+
+You can create a definition and reuse it. Something like this:
+
+$defs:
+  pin-node:
+    type: object
+    properties:
+      ...
+
+patternProperties:
+  '-state$':
+    oneOf:
+      - $ref: #/$defs/pin-node
+
+      - patternProperties:
+          '.*':
+            $ref: #/$defs/pin-node
+
+
+Rob
