@@ -2,161 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFFDE2F51A4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6022F51FC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:28:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727946AbhAMSEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 13:04:14 -0500
-Received: from foss.arm.com ([217.140.110.172]:40062 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727893AbhAMSEN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 13:04:13 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A1C051FB;
-        Wed, 13 Jan 2021 10:03:27 -0800 (PST)
-Received: from [10.57.56.43] (unknown [10.57.56.43])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D66F23F66E;
-        Wed, 13 Jan 2021 10:03:18 -0800 (PST)
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Claire Chang <tientzu@chromium.org>, robh+dt@kernel.org,
-        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
-        joro@8bytes.org, will@kernel.org, frowand.list@gmail.com,
-        konrad.wilk@oracle.com, boris.ostrovsky@oracle.com,
-        jgross@suse.com, sstabellini@kernel.org, hch@lst.de,
-        m.szyprowski@samsung.com
-Cc:     drinkcat@chromium.org, devicetree@vger.kernel.org,
-        heikki.krogerus@linux.intel.com, saravanak@google.com,
-        peterz@infradead.org, xypron.glpk@gmx.de,
-        rafael.j.wysocki@intel.com, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com, bgolaszewski@baylibre.com,
-        iommu@lists.linux-foundation.org, grant.likely@arm.com,
-        rdunlap@infradead.org, gregkh@linuxfoundation.org,
-        xen-devel@lists.xenproject.org, dan.j.williams@intel.com,
-        treding@nvidia.com, linuxppc-dev@lists.ozlabs.org, mingo@kernel.org
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-3-tientzu@chromium.org>
- <95ae9c1e-c1f1-5736-fe86-12ced1f648f9@gmail.com>
- <7ed51025f051f65f3dfe10a88caeb648821994b1.camel@suse.de>
- <4c4989b5-f825-7e04-ca66-038cf6b9d5e9@arm.com>
- <9b4fe35f-a880-fcea-0591-b65406abbfa8@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <7cb70e95-f352-5fde-cc0a-b2a65b07ef29@arm.com>
-Date:   Wed, 13 Jan 2021 18:03:16 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1728366AbhAMS1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 13:27:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60428 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727896AbhAMS1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 13:27:04 -0500
+Received: from mxwww.masterlogin.de (mxwww.masterlogin.de [IPv6:2a03:2900:1:1::a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C923C061786;
+        Wed, 13 Jan 2021 10:26:18 -0800 (PST)
+Received: from mxout1.routing.net (unknown [192.168.10.81])
+        by backup.mxwww.masterlogin.de (Postfix) with ESMTPS id F1EFB2C42D;
+        Wed, 13 Jan 2021 18:10:36 +0000 (UTC)
+Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
+        by mxout1.routing.net (Postfix) with ESMTP id B79043FF07;
+        Wed, 13 Jan 2021 18:09:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1610561380;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=E2lk75BZSz27MihA13aYu0dHFwcD4S99yuODfKDmRY4=;
+        b=p7KbIaT2J3AJYD/JahEVLjPrQ4jj7GjomcnVJ1/fcmhVkIq5wT9Poun1UJTkfxPJgCRs2E
+        ZIwh4ylWARf/gJ8NRKEki06Nr2tg/vW8um66hjs/vhUbrUAh4m3HNYVjaLDlJI1z0NsXEj
+        pMpCAGQ/8uCMPo41Ebg8aqi654rZ5k4=
+Received: from localhost.localdomain (fttx-pool-185.75.74.15.bambit.de [185.75.74.15])
+        by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 884FD80AFA;
+        Wed, 13 Jan 2021 18:09:39 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Jimin Wang <jimin.wang@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        sin_wenjiehu <sin_wenjiehu@mediatek.com>,
+        Wenbin.Mei@mediatek.com, skylake.huang@mediatek.com,
+        stable@vger.kernel.org
+Subject: [PATCH v2] dts64: mt7622: fix slow sd card access
+Date:   Wed, 13 Jan 2021 19:09:19 +0100
+Message-Id: <20210113180919.49523-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <9b4fe35f-a880-fcea-0591-b65406abbfa8@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
+X-Mail-ID: a4fbb957-4fd1-4532-9841-53bdb81f3d8c
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-13 17:43, Florian Fainelli wrote:
-> On 1/13/21 7:27 AM, Robin Murphy wrote:
->> On 2021-01-13 13:59, Nicolas Saenz Julienne wrote:
->>> Hi All,
->>>
->>> On Tue, 2021-01-12 at 16:03 -0800, Florian Fainelli wrote:
->>>> On 1/5/21 7:41 PM, Claire Chang wrote:
->>>>> Add the initialization function to create restricted DMA pools from
->>>>> matching reserved-memory nodes in the device tree.
->>>>>
->>>>> Signed-off-by: Claire Chang <tientzu@chromium.org>
->>>>> ---
->>>>>    include/linux/device.h  |   4 ++
->>>>>    include/linux/swiotlb.h |   7 +-
->>>>>    kernel/dma/Kconfig      |   1 +
->>>>>    kernel/dma/swiotlb.c    | 144
->>>>> ++++++++++++++++++++++++++++++++++------
->>>>>    4 files changed, 131 insertions(+), 25 deletions(-)
->>>>>
->>>>> diff --git a/include/linux/device.h b/include/linux/device.h
->>>>> index 89bb8b84173e..ca6f71ec8871 100644
->>>>> --- a/include/linux/device.h
->>>>> +++ b/include/linux/device.h
->>>>> @@ -413,6 +413,7 @@ struct dev_links_info {
->>>>>     * @dma_pools:    Dma pools (if dma'ble device).
->>>>>     * @dma_mem:    Internal for coherent mem override.
->>>>>     * @cma_area:    Contiguous memory area for dma allocations
->>>>> + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
->>>>>     * @archdata:    For arch-specific additions.
->>>>>     * @of_node:    Associated device tree node.
->>>>>     * @fwnode:    Associated device node supplied by platform firmware.
->>>>> @@ -515,6 +516,9 @@ struct device {
->>>>>    #ifdef CONFIG_DMA_CMA
->>>>>        struct cma *cma_area;        /* contiguous memory area for dma
->>>>>                           allocations */
->>>>> +#endif
->>>>> +#ifdef CONFIG_SWIOTLB
->>>>> +    struct io_tlb_mem    *dma_io_tlb_mem;
->>>>>    #endif
->>>>>        /* arch specific additions */
->>>>>        struct dev_archdata    archdata;
->>>>> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
->>>>> index dd8eb57cbb8f..a1bbd7788885 100644
->>>>> --- a/include/linux/swiotlb.h
->>>>> +++ b/include/linux/swiotlb.h
->>>>> @@ -76,12 +76,13 @@ extern enum swiotlb_force swiotlb_force;
->>>>>     *
->>>>>     * @start:    The start address of the swiotlb memory pool. Used
->>>>> to do a quick
->>>>>     *        range check to see if the memory was in fact allocated
->>>>> by this
->>>>> - *        API.
->>>>> + *        API. For restricted DMA pool, this is device tree
->>>>> adjustable.
->>>>
->>>> Maybe write it as this is "firmware adjustable" such that when/if ACPI
->>>> needs something like this, the description does not need updating.
->>
->> TBH I really don't think this needs calling out at all. Even in the
->> regular case, the details of exactly how and where the pool is allocated
->> are beyond the scope of this code - architectures already have several
->> ways to control that and make their own decisions.
->>
->>>>
->>>> [snip]
->>>>
->>>>> +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
->>>>> +                    struct device *dev)
->>>>> +{
->>>>> +    struct io_tlb_mem *mem = rmem->priv;
->>>>> +    int ret;
->>>>> +
->>>>> +    if (dev->dma_io_tlb_mem)
->>>>> +        return -EBUSY;
->>>>> +
->>>>> +    if (!mem) {
->>>>> +        mem = kzalloc(sizeof(*mem), GFP_KERNEL);
->>>>> +        if (!mem)
->>>>> +            return -ENOMEM;
->>>>> +
->>>>> +        if (!memremap(rmem->base, rmem->size, MEMREMAP_WB)) {
->>>>
->>>> MEMREMAP_WB sounds appropriate as a default.
->>>
->>> As per the binding 'no-map' has to be disabled here. So AFAIU, this
->>> memory will
->>> be part of the linear mapping. Is this really needed then?
->>
->> More than that, I'd assume that we *have* to use the linear/direct map
->> address rather than anything that has any possibility of being a vmalloc
->> remap, otherwise we can no longer safely rely on
->> phys_to_dma/dma_to_phys, no?
-> 
-> I believe you are right, which means that if we want to make use of the
-> restricted DMA pool on a 32-bit architecture (and we do, at least, I do)
-> we should probably add some error checking/warning to ensure the
-> restricted DMA pool falls within the linear map.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Oh, good point - I'm so used to 64-bit that I instinctively just blanked 
-out the !PageHighMem() condition in try_ram_remap(). So maybe the 
-original intent here *was* to effectively just implement that check, but 
-if so it could still do with being a lot more explicit.
+Fix extreme slow speed (200MB takes ~20 min) on writing sdcard on
+bananapi-r64 by adding reset-control for mmc1 like it's done for mmc0/emmc.
 
-Cheers,
-Robin.
+Cc: stable@vger.kernel.org
+Fixes: 2c002a3049f7 ("arm64: dts: mt7622: add mmc related device nodes")
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+changes since v1:
+ - drop change to uhs-mode because mt7622 does not support it
+---
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+index 5b9ec032ce8d..7c6d871538a6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+@@ -698,6 +698,8 @@ mmc1: mmc@11240000 {
+ 		clocks = <&pericfg CLK_PERI_MSDC30_1_PD>,
+ 			 <&topckgen CLK_TOP_AXI_SEL>;
+ 		clock-names = "source", "hclk";
++		resets = <&pericfg MT7622_PERI_MSDC1_SW_RST>;
++		reset-names = "hrst";
+ 		status = "disabled";
+ 	};
+ 
+-- 
+2.25.1
+
