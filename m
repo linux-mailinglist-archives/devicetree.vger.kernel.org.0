@@ -2,166 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 409B62F4F27
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:50:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24E4E2F4F29
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:50:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726956AbhAMPsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 10:48:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37098 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726612AbhAMPsy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 10:48:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5422823406;
-        Wed, 13 Jan 2021 15:48:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610552893;
-        bh=vl/j9fY04Q4QKepnlpWcEBboiOHtYd5YlcbSUw/UEiw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bG7zO7Kh5L+sFUiW/N1k3sqkVj2KQI6mrcwtvVmoV/3e9VmkRZ3M9HFNrxCijvu2V
-         pSv0ZCjR8hnC9LYXKv1DjwW5kxmKz91q+tNMi2+KnpPaHdvqx8qhkI4LdG8Php0ai2
-         gKA2AcaLeAvbV6TkDRvkMesJaNUY1sPbc86YX0ljutBurBMVLIQJKGW35mFdUbp/WR
-         P8zJSVcFRKRbmi30daabu7F/LFOBe3Suz+Nwp6X+P8kRF1XJBlyfxOraqVAH/N6YuN
-         N/EIr3qfB2bAdaMTaLlIi5LOWk2UV195bWLsJtN5+uf3rKg9X9i/D+7ASzyMcdfJeg
-         JACkTO1fV2s2Q==
-Received: by mail-ej1-f48.google.com with SMTP id n26so3727513eju.6;
-        Wed, 13 Jan 2021 07:48:13 -0800 (PST)
-X-Gm-Message-State: AOAM5331Vul+C4JnHIfma8Uhy187Zul5AdsnHDmm7BYQWxe8ev0nRCBl
-        Em+a7wkUMcgQ8+Iz9pwWT8WgK78IEtz8sRakcg==
-X-Google-Smtp-Source: ABdhPJzZZzBuNWt4zBP6oYChCdDAG8dOO3P0AP/b5Es8D36Y7ObsNG06lrcvG5s0YbH/HHYPqG29t3s3Un8yiIKd8P0=
-X-Received: by 2002:a17:906:dfdb:: with SMTP id jt27mr775014ejc.360.1610552891782;
- Wed, 13 Jan 2021 07:48:11 -0800 (PST)
+        id S1727068AbhAMPtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 10:49:35 -0500
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:33175 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727053AbhAMPtf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 10:49:35 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id 01E6044C;
+        Wed, 13 Jan 2021 10:48:28 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Wed, 13 Jan 2021 10:48:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=QRTswYs8tX2TyPXmPO2ToC01g4a
+        8oT5uUxW18FHGQkw=; b=B4P7X8Z3+ZJypa7J7pHj+YFpd4fSKUAWbqsg3WcRQRm
+        dHZyeJD3xwpmn/5nNFhIssY+kikq1yf7C42AN1CuOr2jjV+4oaKQhZVC0m/4boNy
+        H5UB26R9Ihn00erEbXieYFPkzdJlxI0D67QAE2owW63VSON9bLvZ+jdyFDg75fuz
+        6G1vDRTpA7M2DinEdMcaPKmJkl99uXdLvK13BoNXHU3aZl2JSfibVjw77+uMJvHz
+        +1Fgp1Lh4CXJLsNR57lVsbK1KfFpesJCLu1P7TpKeXwDSX00JI3Yr0LqJU1CtDXO
+        tDAMtvA0Rci9b9EKZJ0yG/wQ82UeMhtOSpMjxiSP7mg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=QRTswY
+        s8tX2TyPXmPO2ToC01g4a8oT5uUxW18FHGQkw=; b=qlAC10s7ZoLqJxtzK8hkbG
+        C2G1WlRXGh0oagS/i48csXUQDl4j3121Tv7rOmkRO2/HF7TvAR5zSZRRbJOd9LDK
+        VAv0hiWdEIhUd87MVdp6WyNGXYI8gpGHot1zSoSUGkGTYDsFXigVH95VsP/CBjdF
+        jwIJCWXB69BN6wEI7JMb4ZJVljCp57mTlwpx15lVj7RBEz7ELjuLbeW353Jp5WM0
+        unv1a1epfqC66OWYDq4f1Rusk+H0llEgYR8Y/AK97RfusTcmmsIVB5mBHO2sdlWT
+        kGA0a6Hh5PTfPFcT76ZimohhJ2LkjuyGY5I+nyANF9xkA+54ydsveMK3N2Aap5mQ
+        ==
+X-ME-Sender: <xms:Sxb_X-xk1TOtkUOsWMmjOQddZu732hlZCzXmecab57phex2_vTYM_w>
+    <xme:Sxb_X6OBjeRhcen08uAjTxoA2aQnLATf7X6cOha38-D5kUaOQUb_IiCK04qPaRyAz
+    yU-QWBezQQyhwSJXbM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedukedrtdefgdektdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeejudduheeuffeigfduhfefjefhkeduudeihfefudeuueejheefteetueefgeej
+    heenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgpdhfrhgvvgguvghskhhtoh
+    hprdhorhhgpdhgihhthhhusgdrtghomhenucfkphepledtrdekledrieekrdejieenucev
+    lhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvg
+    estggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:Sxb_X9OZIfDTbLmU1Ks3p1VGuFZ6IDkfg_-_Vf9jnLFpr5KTJE0-Tg>
+    <xmx:Sxb_X8T9sPiz1A9yec_wTfBWVGvRbxOGC8Gn5PeB29b7_p-11FdL6w>
+    <xmx:Sxb_X_AtCd8dnWesQ36en035w4WUn3daYDPNzAq-W1H6jukAQIq0Ww>
+    <xmx:TBb_XxH6dQ1Y54P2KexbILXp-SqqKZHIXIJ7GuGEAaYYpn7Q65H6DA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id EDB39108005C;
+        Wed, 13 Jan 2021 10:48:26 -0500 (EST)
+Date:   Wed, 13 Jan 2021 16:48:25 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org, Eric Anholt <eric@anholt.net>,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: Re: [PATCH V3] dt-bindings: gpu: Convert v3d to json-schema
+Message-ID: <20210113154825.ekebwpbbdbafxy75@gilmour>
+References: <1610189433-29985-1-git-send-email-stefan.wahren@i2se.com>
+ <20210113091520.btk53z5mrhmaqd6h@gilmour>
+ <5d6daa40-9b30-5d8d-d363-fa44af21e81a@i2se.com>
 MIME-Version: 1.0
-References: <cover.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
- <3ca03c3b76d6898c46ee645ddb5fa25cbfc62367.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
- <20210111190953.GB2890911@robh.at.kernel.org> <c953405d630efba5377b89931ae4e0aa1abfa4dd.camel@fi.rohmeurope.com>
- <20210113135345.GA2332349@robh.at.kernel.org> <55d19aaa27522c06c1a34f2a6422b82d069117c8.camel@fi.rohmeurope.com>
-In-Reply-To: <55d19aaa27522c06c1a34f2a6422b82d069117c8.camel@fi.rohmeurope.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 13 Jan 2021 09:47:59 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJH4C31db4Q_D_pme1=YSK6nJCxucVc4MnrU9tvBirNYg@mail.gmail.com>
-Message-ID: <CAL_JsqJH4C31db4Q_D_pme1=YSK6nJCxucVc4MnrU9tvBirNYg@mail.gmail.com>
-Subject: Re: [PATCH 06/15] dt_bindings: regulator: Add ROHM BD71815 PMIC regulators
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "broonie@kernel.org" <broonie@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="j53skxk4isw6747q"
+Content-Disposition: inline
+In-Reply-To: <5d6daa40-9b30-5d8d-d363-fa44af21e81a@i2se.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 8:23 AM Vaittinen, Matti
-<Matti.Vaittinen@fi.rohmeurope.com> wrote:
->
->
-> On Wed, 2021-01-13 at 07:53 -0600, Rob Herring wrote:
-> > On Tue, Jan 12, 2021 at 08:10:14AM +0200, Matti Vaittinen wrote:
-> > > On Mon, 2021-01-11 at 13:09 -0600, Rob Herring wrote:
-> > > > On Fri, Jan 08, 2021 at 03:36:38PM +0200, Matti Vaittinen wrote:
-> > > > > Add binding documentation for regulators on ROHM BD71815 PMIC.
-> > > > > 5 bucks, 7 LDOs and a boost for LED.
-> > > > >
-> > > > > Signed-off-by: Matti Vaittinen <
-> > > > > matti.vaittinen@fi.rohmeurope.com>
-> > > > > ---
-> > > > >  .../regulator/rohm,bd71815-regulator.yaml     | 104
-> > > > > ++++++++++++++++++
-> > > > >  1 file changed, 104 insertions(+)
-> > > > >  create mode 100644
-> > > > > Documentation/devicetree/bindings/regulator/rohm,bd71815-
-> > > > > regulator.yaml
-> > > > >
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/regulator/rohm,bd71815-
-> > > > > regulator.yaml
-> > > > > b/Documentation/devicetree/bindings/regulator/rohm,bd71815-
-> > > > > regulator.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..2aa21603698c
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/regulator/rohm,bd71815-
-> > > > > regulator.yaml
-> > > > > @@ -0,0 +1,104 @@
-> > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id:
-> > > > > http://devicetree.org/schemas/regulator/rohm,bd71815-regulator.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: ROHM BD71815 Power Management Integrated Circuit
-> > > > > regulators
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> > > > > +
-> > > > > +description: |
-> > > > > +  This module is part of the ROHM BD718215 MFD device. For
-> > > > > more
-> > > > > details
-> > > > > +  see Documentation/devicetree/bindings/mfd/rohm,bd71815-
-> > > > > pmic.yaml.
-> > > > > +
-> > > > > +  The regulator controller is represented as a sub-node of the
-> > > > > PMIC node
-> > > > > +  on the device tree.
-> > > > > +
-> > > > > +  The valid names for BD71815 regulator nodes are
-> > > > > +  buck1, buck2, buck3, buck4, buck5,
-> > > > > +  ldo1, ldo2, ldo3, ldo4, ldo5,
-> > > > > +  ldodvref, ldolpsr, wled
-> > > >
-> > > > No schema for the last 3?
-> > >
-> > > Thanks Rob. I'm unsure what I have been thinking of :( I'll fix
-> > > this
-> > > for next version.
-> > >
-> > > > > +
-> > > > > +patternProperties:
-> > > > > +  "^(ldo|buck)[1-5]$":
-> > > > > +    type: object
-> > > > > +    description:
-> > > > > +      Properties for single LDO/BUCK regulator.
-> > > > > +    $ref: regulator.yaml#
-> > > > > +
-> > > > > +    properties:
-> > > > > +      regulator-name:
-> > > > > +        pattern: "^(ldo|buck)[1-5]$"
-> > > > > +        description:
-> > > > > +          should be "ldo1", ..., "ldo5" and "buck1", ...,
-> > > > > "buck5"
-> > > > > +
-> > > > > +      rohm,vsel-gpios:
-> > > > > +        description:
-> > > > > +          GPIO used to control ldo4 state (when ldo4 is
-> > > > > controlled
-> > > > > by GPIO).
-> > > > > +
-> > > > > +      rohm,dvs-run-voltage:
-> > > >
-> > > > These should have a unit suffix.
-> > >
-> > > I know but these are existing properties. I'd like to re-use them
-> > > as
-> > > they have exported parser helpers - and I am unsure what kind of
-> > > breakages changing them would cause. (The BD71837/BD71847 which
-> > > introduced these properties are one of the PMICs which are pretty
-> > > widely used.)
+
+--j53skxk4isw6747q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jan 13, 2021 at 01:53:38PM +0100, Stefan Wahren wrote:
+> Hi Maxime,
+>=20
+> Am 13.01.21 um 10:15 schrieb Maxime Ripard:
+> > Hi,
 > >
-> > Okay. Hopefully I remember next time I see this...
->
-> Actually, I think I can add support for rohm,dvs-run-microvolt and
-> fellows to these same helpers so new devices can use appropriately
-> named properties. That would mean there is duplicate properties for
-> same purpose - but maybe it allows us to eventually deprecate the old
-> ones... Which of these options would you prefer?
+> > On Sat, Jan 09, 2021 at 11:50:32AM +0100, Stefan Wahren wrote:
+> >> This converts the v3d bindings to yaml format.
+> >>
+> >> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> >> ---
+> ...
+> >> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b=
+/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+> >> new file mode 100644
+> >> index 0000000..3b543d4
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+> >> @@ -0,0 +1,72 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Broadcom V3D GPU Bindings
+> >> +
+> >> +maintainers:
+> >> +  - Eric Anholt <eric@anholt.net>
+> >> +  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> >> +
+> >> +properties:
+> >> +  $nodename:
+> >> +    pattern: '^gpu@[a-f0-9]+$'
+> >> +
+> >> +  compatible:
+> >> +    enum:
+> >> +      - brcm,7268-v3d
+> >> +      - brcm,7278-v3d
+> >> +
+> >> +  reg:
+> >> +    items:
+> >> +      - description: hub register (required)
+> >> +      - description: core0 register (required)
+> >> +      - description: GCA cache controller register (if GCA controller=
+ present)
+> >> +      - description: bridge register (if no external reset controller)
+> >> +    minItems: 2
+> > maxItems will be set to 2 in this case, while it would be 4 I guess?
+>=20
+> This confuses me. Based on this patch [1] by Rob, i would assume that
+> maxItems is derived from item list length.
+>=20
+> [1] -
+> https://lists.freedesktop.org/archives/dri-devel/2020-December/292309.html
 
-Just keep the existing ones.
+Yeah, you're right
 
-Rob
+My understanding was that maxItems was set to whatever minItems was if
+maxItems was missing, but dt-validate also checks for whether it's a
+list and will fill it like you said:
+
+https://github.com/devicetree-org/dt-schema/blob/master/dtschema/lib.py#L258
+
+Maxime
+
+--j53skxk4isw6747q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/8WSQAKCRDj7w1vZxhR
+xQyWAQCgG6eKLGmMcZlt8rZXoYmEZLi2/5edtkkbr0BfgLl1VAEAnnT0AFAo8tWU
+YOYDL7kMNr0q3IPLZNaNdslOAWgzGgg=
+=fmge
+-----END PGP SIGNATURE-----
+
+--j53skxk4isw6747q--
