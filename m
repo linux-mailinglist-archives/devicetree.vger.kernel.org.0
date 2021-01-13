@@ -2,94 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E47E2F4096
+	by mail.lfdr.de (Postfix) with ESMTP id 16A5E2F4095
 	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 01:56:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393595AbhAMAm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2393599AbhAMAm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 12 Jan 2021 19:42:59 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:47534 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392051AbhALX5z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 18:57:55 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 0A6F320B6C40;
-        Tue, 12 Jan 2021 15:57:14 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 0A6F320B6C40
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1610495834;
-        bh=lNpe7IskQFEOmsakv8BU89HVRn5nxdxVcG55vHbn+cc=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=rqEoGW20UwyEYyxDHZ4mIRCbIHh5mYjn7ckY0kCItkg5Zl42CKhDLZjuWTnT2eIzG
-         OPYCgGLX5pryjcgkzyqQPPteuJprA+iBUdHxqSrwc4xH9h7cM8roGYkHYDFTT+R2aa
-         aeA18lIlbMBrekMV+jOZ2x+qkT7FB+ceNNHakBl4=
-Subject: Re: [PATCH v14 4/6] powerpc: Delete unused functions
-To:     Mimi Zohar <zohar@linux.ibm.com>, bauerman@linux.ibm.com,
-        robh@kernel.org, takahiro.akashi@linaro.org,
-        gregkh@linuxfoundation.org, will@kernel.org,
-        catalin.marinas@arm.com, mpe@ellerman.id.au
-Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
-        paulus@samba.org, frowand.list@gmail.com,
-        vincenzo.frascino@arm.com, mark.rutland@arm.com,
-        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
-        pasha.tatashin@soleen.com, allison@lohutok.net,
-        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
-        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20210104192602.10131-1-nramas@linux.microsoft.com>
- <20210104192602.10131-5-nramas@linux.microsoft.com>
- <1f7db82ccf8e18306c9b51312b3e1f5d51f85cdb.camel@linux.ibm.com>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <05bb3c0b-2bd9-7353-d9a5-36d7a6e97f5c@linux.microsoft.com>
-Date:   Tue, 12 Jan 2021 15:57:13 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <1f7db82ccf8e18306c9b51312b3e1f5d51f85cdb.camel@linux.ibm.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: from relmlor2.renesas.com ([210.160.252.172]:49752 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2392078AbhAMABL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 19:01:11 -0500
+Date:   13 Jan 2021 09:00:19 +0900
+X-IronPort-AV: E=Sophos;i="5.79,342,1602514800"; 
+   d="scan'208";a="68582624"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 13 Jan 2021 09:00:19 +0900
+Received: from mercury.renesas.com (unknown [10.166.252.133])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id B10084009F78;
+        Wed, 13 Jan 2021 09:00:19 +0900 (JST)
+Message-ID: <87czy9r9ue.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <nsaenzjulienne@suse.de>, <f.fainelli@gmail.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4 3/6] ASoC: audio-graph-card: Support setting component plls and sysclks
+In-Reply-To: <762d798c-bd75-e24a-40fd-263f68f1a5f1@opensource.cirrus.com>
+References: <20210108160501.7638-1-rf@opensource.cirrus.com>
+        <20210108160501.7638-4-rf@opensource.cirrus.com>
+        <87y2gzymc5.wl-kuninori.morimoto.gx@renesas.com>
+        <762d798c-bd75-e24a-40fd-263f68f1a5f1@opensource.cirrus.com>
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/12/21 3:30 PM, Mimi Zohar wrote:
-> Hi Lakshmi,
-> 
-> On Mon, 2021-01-04 at 11:26 -0800, Lakshmi Ramasubramanian wrote:
-> 
->> diff --git a/arch/powerpc/kexec/file_load_64.c b/arch/powerpc/kexec/file_load_64.c
->> index a05c19b3cc60..3cab318aa3b9 100644
->> --- a/arch/powerpc/kexec/file_load_64.c
->> +++ b/arch/powerpc/kexec/file_load_64.c
->> @@ -17,6 +17,7 @@
->>   #include <linux/kexec.h>
->>   #include <linux/of_fdt.h>
->>   #include <linux/libfdt.h>
->> +#include <linux/of.h>
->>   #include <linux/of_device.h>
->>   #include <linux/memblock.h>
->>   #include <linux/slab.h>
->> @@ -944,7 +945,8 @@ int setup_new_fdt_ppc64(const struct kimage *image, void *fdt,
->>   	struct crash_mem *umem = NULL, *rmem = NULL;
->>   	int i, nr_ranges, ret;
->>   
->> -	ret = setup_new_fdt(image, fdt, initrd_load_addr, initrd_len, cmdline);
->> +	ret = of_kexec_setup_new_fdt(image, fdt, initrd_load_addr, initrd_len,
->> +				     cmdline);
->>   	if (ret)
->>   		goto out;
->>   
-> 
-> The "powerpc: Move arch independent ima kexec functions to
-> drivers/of/kexec.c" moved setup_ima_buffer() to
-> of_kexec_setup_new_fdt().  Defering making the change from
-> setup_new_fdt() to of_kexec_setup_new_fdt() here, is not bisect safe.
-> 
 
-Agreed - I will move this change to "powerpc: Move arch independent ima 
-kexec functions to drivers/of/kexec.c" patch.
+Hi Richard
 
-thanks,
-  -lakshmi
+> > As I mentioned in v3, adding *general* pll to common card driver is
+> > maybe difficult.
+> 
+> You did say that. But you did not say why.
+> Can you be more specific about what problem you see with adding it
+> to the generic driver?
+> 
+> > Using your own customized audio-graph-card driver is better idea,
+> > instead of adding code to common driver.
+> 
+> I just don't want to duplicate code without good reason.
+
+Ahh, sorry for my unclear comment.
+I think "PLL settings" is very board/platform specific,
+so, adding such code to common driver will be issue in the future.
+This is the reason why I don't want add it to audio-graph-card.
+
+But, as I mentioned above and Sameer is already doing,
+you can reuse audio-graph-card and customize it.
+
+	Reuse audio-graph-card + Use your own PLL code
+	= your own customized audio-graph-card
+
+You can reuse audio-graph-card code by calling graph_parse_of(),
+and customize before/after that.
+I think no duplicate code is needed.
+
+I hope it can help you.
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
