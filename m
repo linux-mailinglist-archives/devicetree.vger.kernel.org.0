@@ -2,206 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC352F48B7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 11:32:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 189162F48BE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 11:36:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727271AbhAMKbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 05:31:39 -0500
-Received: from foss.arm.com ([217.140.110.172]:33822 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727265AbhAMKbi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 05:31:38 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C5D511042;
-        Wed, 13 Jan 2021 02:30:52 -0800 (PST)
-Received: from [192.168.2.22] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9DE533F66E;
-        Wed, 13 Jan 2021 02:30:51 -0800 (PST)
-Subject: Re: [linux-sunxi] [PATCH 1/7] arm64: dts: allwinner: H6/A64: properly
- connect USB PHY to port 0
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-References: <20210106150525.15403-1-andre.przywara@arm.com>
- <20210106150525.15403-2-andre.przywara@arm.com>
- <CAGb2v66V6=jeLuLCvOENhuwXfPAMd1nYcMor3K7FToHT9grTTA@mail.gmail.com>
-From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
-Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
- 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
- i4aIXCH3Wv6K
-Organization: ARM Ltd.
-Message-ID: <e85c945a-f6b2-6c78-b577-f3705535ac22@arm.com>
-Date:   Wed, 13 Jan 2021 10:30:20 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1727052AbhAMKeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 05:34:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725949AbhAMKeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 05:34:08 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77749C061786;
+        Wed, 13 Jan 2021 02:33:28 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 9547A1F4102A
+Subject: Re: [PATCH v3 1/2] arm64: dts: mt8183: config dsi node
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20210113062834.4043956-1-hsinyi@chromium.org>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <6f4c11c7-ee1e-0308-2328-d71906a8c0c8@collabora.com>
+Date:   Wed, 13 Jan 2021 11:33:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-In-Reply-To: <CAGb2v66V6=jeLuLCvOENhuwXfPAMd1nYcMor3K7FToHT9grTTA@mail.gmail.com>
+In-Reply-To: <20210113062834.4043956-1-hsinyi@chromium.org>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2021 15:56, Chen-Yu Tsai wrote:
-> Hi,
+Hi Hsin-Yi,
+
+Thank you for the patch.
+
+On 13/1/21 7:28, Hsin-Yi Wang wrote:
+> Config dsi node for mt8183 kukui. Set panel and ports.
 > 
-> On Wed, Jan 6, 2021 at 11:05 PM Andre Przywara <andre.przywara@arm.com> wrote:
->>
->> In recent Allwinner SoCs the first USB host controller (HCI0) shares
->> the first PHY with the MUSB controller. Probably to make this sharing
->> work, we were avoiding to declare this in the DT. This has two
->> shortcomings:
->> - U-Boot (which uses the same .dts) cannot use this port in host mode
->>   without a PHY linked, so we were loosing one USB port there.
->> - It requires the MUSB driver to be enabled and loaded, although we
->>   don't actually use it.
->>
->> To avoid those issues, let's add this PHY link to the A64 and H6 .dtsi
->> files. After all PHY port 0 *is* connected to HCI0, so we should describe
->> it as this. Remove the part from the boards which were already doing
->> that.
->>
->> This makes it work in U-Boot, also improves compatiblity when no MUSB
->> driver is loaded (for instance in distribution installers).
->>
->> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
->> ---
->>  arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts | 4 ----
->>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi         | 4 ++++
->>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi          | 4 ++++
+> Several kukui boards share the same panel property and only compatible
+> is different. So compatible will be set in board dts for comparison
+> convenience.
 > 
-> It would be better if the H6 parts were separated out.
-
-Sure.
-
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
+> ---
+>  .../mediatek/mt8183-kukui-krane-sku176.dts    |  5 +++
+>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 37 +++++++++++++++++++
+>  2 files changed, 42 insertions(+)
 > 
-> Please also add a fixes tag, which helps with backporting.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+> index 47113e275cb52..721d16f9c3b4f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+> @@ -16,3 +16,8 @@ / {
+>  	model = "MediaTek krane sku176 board";
+>  	compatible = "google,krane-sku176", "google,krane", "mediatek,mt8183";
+>  };
+> +
+> +&panel {
+> +        status = "okay";
+> +        compatible = "boe,tv101wum-nl6";
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index bf2ad1294dd30..c5f41b94f154e 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -249,6 +249,35 @@ &cpu7 {
+>  	proc-supply = <&mt6358_vproc11_reg>;
+>  };
+>  
+> +&dsi0 {
+> +	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	panel: panel@0 {
+> +		/* compatible will be set in board dts */
+> +		reg = <0>;
+> +		enable-gpios = <&pio 45 0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&panel_pins_default>;
+> +		avdd-supply = <&ppvarn_lcd>;
+> +		avee-supply = <&ppvarp_lcd>;
+> +		pp1800-supply = <&pp1800_lcd>;
 
-The whole concept of DT backports raises some eyebrows here, but it's
-surely easy enough to do.
+It'd make sense to add also the backlight here?
 
-Thanks,
-Andre.
++               backlight = <&backlight_lcd0>;
 
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&dsi_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	ports {
+> +		port {
+> +			dsi_out: endpoint {
+> +				remote-endpoint = <&panel_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+
+I think you should enable the MIPI TX to have DSI and panel working?
+
++&mipi_tx0 {
++       status = "okay";
++};
+
+
+>  &i2c0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c0_pins>;
+> @@ -547,6 +576,14 @@ pins_clk {
+>  		};
+>  	};
+>  
+> +	panel_pins_default: panel_pins_default {
+> +		panel_reset {
+> +			pinmux = <PINMUX_GPIO45__FUNC_GPIO45>;
+> +			output-low;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+>  	pwm0_pin_default: pwm0_pin_default {
+>  		pins1 {
+>  			pinmux = <PINMUX_GPIO176__FUNC_GPIO176>;
 > 
->>  3 files changed, 8 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
->> index 896f34fd9fc3..d07cf05549c3 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
->> @@ -126,8 +126,6 @@
->>  };
->>
->>  &ehci0 {
->> -       phys = <&usbphy 0>;
->> -       phy-names = "usb";
->>         status = "okay";
->>  };
->>
->> @@ -177,8 +175,6 @@
->>  };
->>
->>  &ohci0 {
->> -       phys = <&usbphy 0>;
->> -       phy-names = "usb";
->>         status = "okay";
->>  };
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> index 51cc30e84e26..19e9b8ca8432 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> @@ -593,6 +593,8 @@
->>                                  <&ccu CLK_USB_OHCI0>;
->>                         resets = <&ccu RST_BUS_OHCI0>,
->>                                  <&ccu RST_BUS_EHCI0>;
->> +                       phys = <&usbphy 0>;
->> +                       phy-names = "usb";
->>                         status = "disabled";
->>                 };
->>
->> @@ -603,6 +605,8 @@
->>                         clocks = <&ccu CLK_BUS_OHCI0>,
->>                                  <&ccu CLK_USB_OHCI0>;
->>                         resets = <&ccu RST_BUS_OHCI0>;
->> +                       phys = <&usbphy 0>;
->> +                       phy-names = "usb";
->>                         status = "disabled";
->>                 };
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
->> index 8a62a9fbe347..f593cfeaecc9 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
->> @@ -680,6 +680,8 @@
->>                                  <&ccu CLK_USB_OHCI0>;
->>                         resets = <&ccu RST_BUS_OHCI0>,
->>                                  <&ccu RST_BUS_EHCI0>;
->> +                       phys = <&usb2phy 0>;
->> +                       phy-names = "usb";
->>                         status = "disabled";
->>                 };
->>
->> @@ -690,6 +692,8 @@
->>                         clocks = <&ccu CLK_BUS_OHCI0>,
->>                                  <&ccu CLK_USB_OHCI0>;
->>                         resets = <&ccu RST_BUS_OHCI0>;
->> +                       phys = <&usb2phy 0>;
->> +                       phy-names = "usb";
->>                         status = "disabled";
->>                 };
->>
->> --
->> 2.17.5
->>
->> --
->> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
->> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
->> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20210106150525.15403-2-andre.przywara%40arm.com.
-
