@@ -2,72 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B5E52F46E6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6B832F46F7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:59:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725949AbhAMIwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 03:52:25 -0500
-Received: from mail-vs1-f54.google.com ([209.85.217.54]:40789 "EHLO
-        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725865AbhAMIwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 03:52:25 -0500
-Received: by mail-vs1-f54.google.com with SMTP id x4so703048vsp.7;
-        Wed, 13 Jan 2021 00:52:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FxOjpIvjq4FtUsKB+JjsIoReLosXdu7ZabiRjS0D6o0=;
-        b=pyNcZ1HInMfkRzTSDD9i0iWP2d+dRUzUNDf3Qz6Kk4bXF5BizcFxGVM6HWB2QIGtL0
-         psl6ZqIx6j98ynsOUJk2O5+8N9jMiT2DozIQ5gBblxCKa7+d+2Vg+GGI6LB4CLicb//8
-         H4pbKEOUNU+cth6ODPRaw3E7MiHW/cLrJ1Er0SLXEsb/30ttrDAF2eT8F9f3Ua4G+KtQ
-         dVLi5/28VnKVJ+MdA1lLY6KLvw8xpda5cy9G/wsLF9SqDicMLnb9LuWb3nLNp6y7iXB9
-         HlCpSS1lENBdbvCTThnaAiNg0vLZOI3n5medNgovROOGy++F084XgmKfWgyazb1jd7ht
-         4M4w==
-X-Gm-Message-State: AOAM531fgcLShfd6mSm7v0qp7uKCvuPpKjNXAt6DXiRnzXeQbcSjPzMO
-        oWorcqfzuoaMySNpUbo/Za4nOpO7G+qOsA==
-X-Google-Smtp-Source: ABdhPJxW/KsR7OidRJNRnmYK5ufYsvuP6yMuvcfWq9U7pgK47+e9qtM8i3jwl20xMUngE+UKzY75tw==
-X-Received: by 2002:a67:d898:: with SMTP id f24mr1052008vsj.19.1610527903785;
-        Wed, 13 Jan 2021 00:51:43 -0800 (PST)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id q23sm161744vsm.27.2021.01.13.00.51.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Jan 2021 00:51:43 -0800 (PST)
-Received: by mail-vk1-f181.google.com with SMTP id t16so332658vkl.10;
-        Wed, 13 Jan 2021 00:51:42 -0800 (PST)
-X-Received: by 2002:a1f:2f81:: with SMTP id v123mr1054394vkv.24.1610527902050;
- Wed, 13 Jan 2021 00:51:42 -0800 (PST)
-MIME-Version: 1.0
-References: <20210110211606.3733056-1-jernej.skrabec@siol.net>
-In-Reply-To: <20210110211606.3733056-1-jernej.skrabec@siol.net>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Wed, 13 Jan 2021 16:51:29 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66NCu_GY9Yp=xBt=T6MLEjc81MFKmBSKj550OUaHYk9pA@mail.gmail.com>
-Message-ID: <CAGb2v66NCu_GY9Yp=xBt=T6MLEjc81MFKmBSKj550OUaHYk9pA@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH] arm64: dts: allwinner: h6: PineH64 model B:
- Add bluetooth
+        id S1727081AbhAMI6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 03:58:37 -0500
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:50919 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727019AbhAMI6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 03:58:37 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 387175C03E8;
+        Wed, 13 Jan 2021 03:57:31 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Wed, 13 Jan 2021 03:57:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=UOvpylTFBHcb6wV7RUAlGcRLgch
+        DGCCF4vrolkr/AD4=; b=shdc1Dq+AVihbve606zEZuyBUbTDzBdgA+7khMDUIAR
+        l0ssrTB2o3tChN+h4meLHlEMKMKdDeGohh/g3EPPaz7ItbETz1xb/f1ucNkH4AS4
+        BNM5LZhpsfG+HxCZwtAtfEwW0KS6yNKZZ+a7+C1Wy7h/ucks9NucUVto/AvfQuWp
+        zDojJ4094x/Zt7qUWpwSoU8A8mmRkN0uR32ZelaWQ6X0lfuu/jo8hHD9jebmiMKF
+        dqrhk4T2YeAs5Oc9pi2ZqWuZw5DJwY3/q4bRTQTvmNfSAAdmI6MzrIgAf5FiOrVV
+        SAvYL1Mi9jez5X1LAr7zA6c9LHjA+/8QQy+I37yAu3Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=UOvpyl
+        TFBHcb6wV7RUAlGcRLgchDGCCF4vrolkr/AD4=; b=a90wmmVUYx+Gf1XkaMnDLw
+        ZSmn/yZDMob4O3DGCzUDSJPpaV9Ra2UfF+eHQH5LHfqh5OmtuW+5zLn9XULjqAHj
+        AhRxGyPlJAIn+Gq+PDCIKbOx3dK+lfciPQI8N9h+dFMa8boTRVSMwngcc72b6v7x
+        oedxzHLfO4ZT/CLNa+Kxi7+7TTLTMXWTBBQ5pVsGfSwktAO5WR5wdWAIM70SnGj0
+        PKIkjbIjcVfk6qCk6kkmMeEZZYsnrY6SpDyWDCfKYSuTfku1QKe0ZjaaZdLnsR01
+        7mDBWmLK0fX87JBXYI/OTCly+YrQVj58w6XJOoITQO0EBfv4/M2M8/vmPMLhoUYg
+        ==
+X-ME-Sender: <xms:-rX-X_aIQmwMaC2L_oQ9GgijgL91sY5q6jh46wK_IVF0dGKlKdzyLA>
+    <xme:-rX-X-ZwH74qyZXMHT-Y5kcTkfIqhHCBe7ntr42ofEgn3JRwOE_VVpQIWf-kRJxPs
+    HH5pxLyftMo3t8qIBg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedukedrtddvgddtvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:-rX-Xx8OOrIDAlWHLBGfMLpRinLBhT8UtsMiQx3-DlxL-OpiPywUEA>
+    <xmx:-rX-X1pJ3zbgc_MgoUI_H6P-bE86XpXe2gcVzpH19Iyf6ujgfGe5bg>
+    <xmx:-rX-X6rbNOC3BSjtrUCEfmGhrUhCnND6UjdTZv57BVNboOGS3pkvEw>
+    <xmx:-7X-XzlTYP-x_c7A3cZBKRN7fcf8YzTukOHJXwBQdv3zE_XURwwbJw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 0A4C11080059;
+        Wed, 13 Jan 2021 03:57:29 -0500 (EST)
+Date:   Wed, 13 Jan 2021 09:57:28 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
 To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
+Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] arm64: dts: allwinner: h6: PineH64 model B: Add bluetooth
+Message-ID: <20210113085728.5zoyva2xgui2p6fb@gilmour>
+References: <20210110211606.3733056-1-jernej.skrabec@siol.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="uh3qaqwnoytcsyvw"
+Content-Disposition: inline
+In-Reply-To: <20210110211606.3733056-1-jernej.skrabec@siol.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 5:16 AM Jernej Skrabec <jernej.skrabec@siol.net> wrote:
->
+
+--uh3qaqwnoytcsyvw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Jan 10, 2021 at 10:16:06PM +0100, Jernej Skrabec wrote:
 > PineH64 model B has wifi+bt combo module. Wifi is already supported, so
 > lets add also bluetooth node.
->
+>=20
 > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Applied, thanks
+Maxime
 
-Looks good to me, though I couldn't find anything on the polarity
-of the interrupt lines.
+--uh3qaqwnoytcsyvw
+Content-Type: application/pgp-signature; name="signature.asc"
 
-ChenYu
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/61+AAKCRDj7w1vZxhR
+xbKIAQDPgxJaFmc9FuZRVPmO0Y0lJ4pVGKLNZ1f8XIXdU1yM6AD+NROKgl76wxKQ
+Pw24DuAe/1IWiHgSy3Km4lZ3jdbubAk=
+=38gt
+-----END PGP SIGNATURE-----
+
+--uh3qaqwnoytcsyvw--
