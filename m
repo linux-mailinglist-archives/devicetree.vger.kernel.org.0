@@ -2,108 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F3EA2F49FE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:29:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3B982F4A13
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:29:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725801AbhAMLWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 06:22:31 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33762 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725747AbhAMLWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:22:30 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10DBKrj0035137;
-        Wed, 13 Jan 2021 05:20:53 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610536853;
-        bh=havUQaE9Q8MtbPDZbuGxqyTauNzAHO2v8GAg9BET1bM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=gpIS2oaQbOWVftAnTf4UfVP3sdN6OJYxqFDVOjQPdyAietiR3yuM2hQzNAp696JLC
-         3Yc/ASmekjD8nn+vJRIgOY4IVLrShSMjVhFkXX83SbxB6g4AQ5n/uuvAPyMuTi9C6C
-         2j9nprkduy/NNi5Icipn08SEJbPdXwY+1uCpVwRU=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10DBKrSi095401
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 13 Jan 2021 05:20:53 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 13
- Jan 2021 05:20:53 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 13 Jan 2021 05:20:53 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10DBKnJo111139;
-        Wed, 13 Jan 2021 05:20:50 -0600
-Subject: Re: [PATCH] dt-bindings: mmc: sdhci-am654: Add compatible string for
- AM64 SoC
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+        id S1728365AbhAML05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 06:26:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727172AbhAML04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:26:56 -0500
+Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F57C0617AB
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:25:51 -0800 (PST)
+Received: by mail-ua1-x934.google.com with SMTP id p2so573568uac.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:25:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cttz/D2YdQLsR3C43ckdGIJQQ5YrOYDnbNf5IhNcLYI=;
+        b=LEcwabxJhci29cnamIgXuHBO/Z3LtbMfhlsaTAGsoL9g8zKCBLZxqcS0ebx87zsJH4
+         uy0zhjszBskdOKPTHR0OK4tdYaz1XJlzAREFfrO+9OW58rvWU+48/NSnwPq02leH4WCp
+         cE4wcDuFxuj4hhLXqbRlGDPpRggYUEB5DzVgCR6M0jnAHD7pNY3MGX0vjOg6ZgD8FnYE
+         qPo0cGJup4guB8Hwshd45R+sII1vauMATFhH1bBybUz64fCPzTizQvw7t5bCs0x8DGr2
+         83s7PBi+V6jdPZYmGjo8OJ+N7Y98lWtA8ijopW+CXpTrCY28bQwhz0IVk8bVfGZE9D0w
+         sJ+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cttz/D2YdQLsR3C43ckdGIJQQ5YrOYDnbNf5IhNcLYI=;
+        b=LNIESDOEV+DfQne50wiaNYKXJTkNQfMc9cj294RSgoFDErnJihZL/pwQ5qwJxiaJO0
+         dBq1XaG/ySLLghCnBcP6D+OVgeeOaBxrVUPVZ1WCQZxos/7akvBjo04Ti3pssntO0UB2
+         LzlNLFsZWQIf6Q4oMUf5cTo+noRhxM1lJdINanTzaTeCMZPcr9+3sfFtEd1LLhAN0+yD
+         45U0Tq1nOf0LAl14UbcoONKp0TDPRmkxQEyTQ8MJsj3KU6m0yg2ehbhWgpwNMFwDNdq9
+         eCe7T9Wmix6BCN8Sw9/jCbbmX7JlDvPjNnoVzsIKVKmR0Y5clcpXaaHQmIwLG2ifxpKQ
+         TfVQ==
+X-Gm-Message-State: AOAM5319OC2G8VSooQriB6c6U9FyfqddC1B8EhWHclAovWvc4ol2JFil
+        NgfHAzNfPgeKwoq+9NvodT+4fcxJnoPQmkcCjaLanQ==
+X-Google-Smtp-Source: ABdhPJwk9cikIsLvk8wBtOv80r3nN6Wd86Yx/Dl91r0NxtDJZtYZrmyEAcUkJnDivNztwQjpv9hIZjRVGl2XX+Dffxk=
+X-Received: by 2002:ab0:2e99:: with SMTP id f25mr1317060uaa.104.1610537150635;
+ Wed, 13 Jan 2021 03:25:50 -0800 (PST)
+MIME-Version: 1.0
+References: <20201227174202.40834-1-wsa+renesas@sang-engineering.com> <20201227174202.40834-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20201227174202.40834-2-wsa+renesas@sang-engineering.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 13 Jan 2021 12:25:14 +0100
+Message-ID: <CAPDyKFqBJNiV3M7MFTydLRtR7S+wok6OkLnKFrfzbi0TfPxiUQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: mmc: renesas,sdhi: Add r8a779a0 support
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
         DTML <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20210107055457.14948-1-a-govindraju@ti.com>
- <CAPDyKFp89zPwr-SS9wgR6C5RM+KhSLWbkXivxAttRqTxtiVGDQ@mail.gmail.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <9ad5f3a3-2175-8f43-2481-7bef17828ce2@ti.com>
-Date:   Wed, 13 Jan 2021 16:50:48 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <CAPDyKFp89zPwr-SS9wgR6C5RM+KhSLWbkXivxAttRqTxtiVGDQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uffe,
+On Sun, 27 Dec 2020 at 18:42, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-On 13/01/21 4:26 pm, Ulf Hansson wrote:
-> On Thu, 7 Jan 2021 at 06:55, Aswath Govindraju <a-govindraju@ti.com> wrote:
->>
->> Add compatible string for AM64 SoC in device tree binding of AM654 SDHCI
->> module as the same IP is used.
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> 
-> Do you have a corresponding patch for the driver as well? I would like
-> to apply them together.
-> 
+Applied for next, thanks!
 
-Yes, I do. Here is the link to the patch,
-https://lore.kernel.org/patchwork/patch/1364589/
+Kind regards
+Uffe
 
-Thanks,
-Aswath
 
-> Kind regards
-> Uffe
-> 
->> ---
->>  Documentation/devicetree/bindings/mmc/sdhci-am654.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
->> index 1ae945434c53..34e53db29428 100644
->> --- a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
->> +++ b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
->> @@ -21,6 +21,8 @@ properties:
->>        - ti,j721e-sdhci-4bit
->>        - ti,j7200-sdhci-8bit
->>        - ti,j721e-sdhci-4bit
->> +      - ti,am64-sdhci-8bit
->> +      - ti,am64-sdhci-4bit
->>
->>    reg:
->>      maxItems: 2
->> --
->> 2.17.1
->>
-
+> ---
+>  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> index 6bbf29b5c239..5908a717d2e8 100644
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> @@ -59,6 +59,7 @@ properties:
+>                - renesas,sdhi-r8a77980 # R-Car V3H
+>                - renesas,sdhi-r8a77990 # R-Car E3
+>                - renesas,sdhi-r8a77995 # R-Car D3
+> +              - renesas,sdhi-r8a779a0 # R-Car V3U
+>            - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
+>
+>    reg:
+> --
+> 2.28.0
+>
