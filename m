@@ -2,107 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 375762F4F41
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:55:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06EDF2F4F47
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:55:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726398AbhAMPxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 10:53:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37914 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725773AbhAMPxg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 10:53:36 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8F878233F8;
-        Wed, 13 Jan 2021 15:52:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610553174;
-        bh=xbCpQynJtv/c55NX+YOjuFWAG2HeEEWgKuhf0zK0ffg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lR78CUqETcnfsQ1fd4c/egZBAwNk1XRmy6o5GOX+ehUY6xcHjWJQ34/jc2x0IKWGp
-         VNs9bT5I3hqAARaiQru5wl4ybdqwydzpMcQ5sIoOFSASCLk+v/Udt23IhY8pgnqLDJ
-         qXFpMmz/5bAmnvXjHyqJz3PlFYZPpTLTu9ZNco5zQmHj+RaedmTdReMIqyzxj/NtWT
-         x7nEi9HDeVCBWYQrTMX6SaeDXOnpj33LXd/pKK8smm2jvleUOA55mOMPkW2iHDmIXu
-         Wp3rVv90s2BFw3ktQHAHSGr1lUbW4LDQzAhyBuD0Aj8cuBz7jimpyXBMF3+m1rTe/v
-         0fgc9IMqWoRAw==
-Received: by mail-ej1-f49.google.com with SMTP id 6so3766638ejz.5;
-        Wed, 13 Jan 2021 07:52:54 -0800 (PST)
-X-Gm-Message-State: AOAM533dfVsXOrOPIdHWFu3rm5jjtercHIP/ooTMSFsIE2oxdNOVk0du
-        xVVQ4btelms0cK8xA5uBQlJ1GapRHwBXhm02jQ==
-X-Google-Smtp-Source: ABdhPJzHoWcjN3cGo3TDvAIn07gWPu3Y5jJntVZNEw+dl8Csotad2ziZxBVxesABVdLkBRtWOY7vZe+PTyzkafubnNE=
-X-Received: by 2002:a17:906:25c4:: with SMTP id n4mr1844111ejb.359.1610553173207;
- Wed, 13 Jan 2021 07:52:53 -0800 (PST)
+        id S1727287AbhAMPyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 10:54:23 -0500
+Received: from frasgout.his.huawei.com ([185.176.79.56]:2336 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725747AbhAMPyX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:54:23 -0500
+Received: from fraeml702-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4DGBgN6WJSz67Q7x;
+        Wed, 13 Jan 2021 23:48:32 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml702-chm.china.huawei.com (10.206.15.51) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2106.2; Wed, 13 Jan 2021 16:53:41 +0100
+Received: from localhost (10.47.78.18) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Wed, 13 Jan
+ 2021 15:53:40 +0000
+Date:   Wed, 13 Jan 2021 15:53:02 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Michael Hennerich" <Michael.Hennerich@analog.com>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 23/24] dt-bindings:iio:adc: update adc.yaml reference
+Message-ID: <20210113155302.00005d4a@Huawei.com>
+In-Reply-To: <8e37dba8ae9099acd649bab8a1cf718caa4f3e6a.1610535350.git.mchehab+huawei@kernel.org>
+References: <cover.1610535349.git.mchehab+huawei@kernel.org>
+        <8e37dba8ae9099acd649bab8a1cf718caa4f3e6a.1610535350.git.mchehab+huawei@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-References: <cover.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
- <a91eb6288331bb80b30534a31049cde508307fc0.1610110144.git.matti.vaittinen@fi.rohmeurope.com>
- <20210113135201.GA2328369@robh.at.kernel.org> <629dbc81badc9facea538733bfa8ddc0842b1df7.camel@fi.rohmeurope.com>
-In-Reply-To: <629dbc81badc9facea538733bfa8ddc0842b1df7.camel@fi.rohmeurope.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 13 Jan 2021 09:52:41 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+N8dw82O-K6O53iogisgK2QZ=TEf7UCbBEbQGi9w4W9Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+N8dw82O-K6O53iogisgK2QZ=TEf7UCbBEbQGi9w4W9Q@mail.gmail.com>
-Subject: Re: [PATCH 04/15] dt_bindings: bd71828: Add clock output mode
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.78.18]
+X-ClientProxiedBy: lhreml742-chm.china.huawei.com (10.201.108.192) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 8:52 AM Matti Vaittinen
-<matti.vaittinen@fi.rohmeurope.com> wrote:
->
->
-> On Wed, 2021-01-13 at 07:52 -0600, Rob Herring wrote:
-> > On Fri, Jan 08, 2021 at 03:34:16PM +0200, Matti Vaittinen wrote:
-> > > The BD71828 allows configuring the clk32kout pin mode to CMOS or
-> > > open-drain. Add device-tree property for specifying the preferred
-> > > mode.
-> > >
-> > > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> > > ---
-> > >  .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml         | 7
-> > > +++++++
-> > >  1 file changed, 7 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71828-
-> > > pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71828-
-> > > pmic.yaml
-> > > index 3a6a1a26e2b3..cba085836bc0 100644
-> > > --- a/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> > > +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml
-> > > @@ -44,6 +44,13 @@ properties:
-> > >    clock-output-names:
-> > >      const: bd71828-32k-out
-> > >
-> > > +  rohm,clkout-mode:
-> > > +    description: clk32kout mode. Can be set to "open-drain" or
-> > > "cmos".
-> > > +    $ref: "/schemas/types.yaml#/definitions/string"
-> > > +    enum:
-> > > +      - open-drain
-> > > +      - cmos
-> > > +
-> >
-> > I think a boolean or tristate ((0/1/not present) if you need 'leave
-> > default') would be better.
->
-> I was thinking of boolean but I hit the exact problem of leaving the
-> default. (Booleans are so tempting for a lazy coder like me :] ) Do you
-> mean uint with allowed values of 0/1 with the tristated?
+On Wed, 13 Jan 2021 11:59:24 +0100
+Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
 
-Yes.
+> Changeset b70d154d6558 ("dt-bindings:iio:adc: convert adc.txt to yaml")
+> renamed: Documentation/devicetree/bindings/iio/adc/adc.txt
+> to: Documentation/devicetree/bindings/iio/adc/adc.yaml.
+> 
+> Update its cross-reference accordingly.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-> I can sure do
-> that - but wouldn't open-drain / cmos be more descriptive?
 
-You'd get at least half by naming it 'rohm,clkout-open-drain'. I think
-anyone that knows what open-drain means will know what !open-drain
-implies.
+> ---
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> index e0cc3b2e8957..22b7ed3723f6 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> @@ -80,7 +80,7 @@ properties:
+>      type: boolean
+>  
+>    bipolar:
+> -    description: see Documentation/devicetree/bindings/iio/adc/adc.txt
+> +    description: see Documentation/devicetree/bindings/iio/adc/adc.yaml
+>      type: boolean
+>  
+>  required:
 
-Rob
