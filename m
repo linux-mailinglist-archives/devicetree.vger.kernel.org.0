@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3B982F4A13
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:29:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BCE72F4A20
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:29:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728365AbhAML05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 06:26:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54166 "EHLO
+        id S1728410AbhAML1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 06:27:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727172AbhAML04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:26:56 -0500
-Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F57C0617AB
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:25:51 -0800 (PST)
-Received: by mail-ua1-x934.google.com with SMTP id p2so573568uac.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:25:51 -0800 (PST)
+        with ESMTP id S1728195AbhAML1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:27:32 -0500
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C64C0617BE
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:26:01 -0800 (PST)
+Received: by mail-vs1-xe2d.google.com with SMTP id m26so455556vsq.13
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:26:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=cttz/D2YdQLsR3C43ckdGIJQQ5YrOYDnbNf5IhNcLYI=;
-        b=LEcwabxJhci29cnamIgXuHBO/Z3LtbMfhlsaTAGsoL9g8zKCBLZxqcS0ebx87zsJH4
-         uy0zhjszBskdOKPTHR0OK4tdYaz1XJlzAREFfrO+9OW58rvWU+48/NSnwPq02leH4WCp
-         cE4wcDuFxuj4hhLXqbRlGDPpRggYUEB5DzVgCR6M0jnAHD7pNY3MGX0vjOg6ZgD8FnYE
-         qPo0cGJup4guB8Hwshd45R+sII1vauMATFhH1bBybUz64fCPzTizQvw7t5bCs0x8DGr2
-         83s7PBi+V6jdPZYmGjo8OJ+N7Y98lWtA8ijopW+CXpTrCY28bQwhz0IVk8bVfGZE9D0w
-         sJ+A==
+        bh=5+8zY4mAyzjmgjsrYvoqLVjDJOKDqaN1fkUOrBGLi4M=;
+        b=OiN+OkGx7489GZZh0hmDDLNJvwzokz7n7baE1dAg2JdPLXWQH+eyBoKVNNUmD/UHzl
+         LUtsej7UJpMuN3zRHOf/Pc6z0Dr/m/06kprtF/2UKtdvKV7hZS/NH57YOf7N89v5amU0
+         yEdmZGuuygp01KoL/S4EO0Z4+9wvZHUjv2LyUlNdXtPgGXw+mQMZYBWJu+YmKTzLfI24
+         +7esSdpJsGqkzAmrfqFg5NQyjUYW9q3jJ02mhTPW0dE6o9P9bJPzdSgqpzxS3IH/raUQ
+         H3dQ98j7/SmsuINw5DviiUGLSvG/MughwrzB49oNI/9i6zuxRJNplu3BbLtHwM2y+WgW
+         /DkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=cttz/D2YdQLsR3C43ckdGIJQQ5YrOYDnbNf5IhNcLYI=;
-        b=LNIESDOEV+DfQne50wiaNYKXJTkNQfMc9cj294RSgoFDErnJihZL/pwQ5qwJxiaJO0
-         dBq1XaG/ySLLghCnBcP6D+OVgeeOaBxrVUPVZ1WCQZxos/7akvBjo04Ti3pssntO0UB2
-         LzlNLFsZWQIf6Q4oMUf5cTo+noRhxM1lJdINanTzaTeCMZPcr9+3sfFtEd1LLhAN0+yD
-         45U0Tq1nOf0LAl14UbcoONKp0TDPRmkxQEyTQ8MJsj3KU6m0yg2ehbhWgpwNMFwDNdq9
-         eCe7T9Wmix6BCN8Sw9/jCbbmX7JlDvPjNnoVzsIKVKmR0Y5clcpXaaHQmIwLG2ifxpKQ
-         TfVQ==
-X-Gm-Message-State: AOAM5319OC2G8VSooQriB6c6U9FyfqddC1B8EhWHclAovWvc4ol2JFil
-        NgfHAzNfPgeKwoq+9NvodT+4fcxJnoPQmkcCjaLanQ==
-X-Google-Smtp-Source: ABdhPJwk9cikIsLvk8wBtOv80r3nN6Wd86Yx/Dl91r0NxtDJZtYZrmyEAcUkJnDivNztwQjpv9hIZjRVGl2XX+Dffxk=
-X-Received: by 2002:ab0:2e99:: with SMTP id f25mr1317060uaa.104.1610537150635;
- Wed, 13 Jan 2021 03:25:50 -0800 (PST)
+        bh=5+8zY4mAyzjmgjsrYvoqLVjDJOKDqaN1fkUOrBGLi4M=;
+        b=cdh4MIPJjk5Sv10w5dzsOvKD0PYE+yLRfhf8Wkwg/1rxpdVgy4qCUj5ACmeyWj9xQK
+         RR4pG4DEW0g1aKskRrAagPVnYmRDmd07XwZ1YtHAVSdwXPxX2Iz2ojUEpbL08cDes+kf
+         FdAb71sEfQdWKkgUktMM1x8ikikAH/cwq914z3ic/fEC69XVdZfBMivuPkoaeDKKL7Zb
+         lUrXoGN1kgFfz36a7p52Sm5KHj3CQIbgSnnuW7MHEFNYsik9XKVidAo90O9uXm7FkJ8+
+         c2iuCNuJ5NHgLNGTX2fuN9hmKBt1qlvWefbgA8rNzuK7ADB//pudFj5VPqTQRVSXTAun
+         jd2Q==
+X-Gm-Message-State: AOAM530KNTxtEOlXm/JUUGZE7nvCujSQV5MlyA4g7Xddzvg3sF+Os17M
+        w+LpHvZVI32rv3gYxCCSOCxEJUf3v2zlLzMvurH3JQ==
+X-Google-Smtp-Source: ABdhPJyEXS/qxGhlAHcgztCWad9kvXwLG1Ay9RD3A+8qxnVUMWamsOhdl/W7h+uvCfYzaoMIXQ1TJLpGt8dfvFUfVoE=
+X-Received: by 2002:a67:7f41:: with SMTP id a62mr1386085vsd.55.1610537160317;
+ Wed, 13 Jan 2021 03:26:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20201227174202.40834-1-wsa+renesas@sang-engineering.com> <20201227174202.40834-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20201227174202.40834-2-wsa+renesas@sang-engineering.com>
+References: <20210107143118.2386-1-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20210107143118.2386-1-manivannan.sadhasivam@linaro.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 13 Jan 2021 12:25:14 +0100
-Message-ID: <CAPDyKFqBJNiV3M7MFTydLRtR7S+wok6OkLnKFrfzbi0TfPxiUQ@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: mmc: renesas,sdhi: Add r8a779a0 support
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+Date:   Wed, 13 Jan 2021 12:25:23 +0100
+Message-ID: <CAPDyKFqFNq=GkcLS1dwx2rh5i2uMYP5Sum4Uu9udRkF8_-NbLg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: sdhci-msm: Document the SDX55 compatible
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Dec 2020 at 18:42, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
+On Thu, 7 Jan 2021 at 15:31, Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
 >
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> The SDHCI controller on SDX55 is based on MSM SDHCI v5 IP. Hence,
+> document the compatible with "qcom,sdhci-msm-v5" as the fallback.
+> While at it, let's also sort the compatibles in ascending order.
+>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: linux-mmc@vger.kernel.org
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
 Applied for next, thanks!
 
@@ -73,21 +82,27 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> index 6bbf29b5c239..5908a717d2e8 100644
-> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> @@ -59,6 +59,7 @@ properties:
->                - renesas,sdhi-r8a77980 # R-Car V3H
->                - renesas,sdhi-r8a77990 # R-Car E3
->                - renesas,sdhi-r8a77995 # R-Car D3
-> +              - renesas,sdhi-r8a779a0 # R-Car V3U
->            - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
->
->    reg:
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> index 3b602fd6180b..9fa8a24fbc97 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> @@ -17,10 +17,11 @@ Required properties:
+>                 "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4"
+>                 "qcom,msm8992-sdhci", "qcom,sdhci-msm-v4"
+>                 "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4"
+> -               "qcom,sm8250-sdhci", "qcom,sdhci-msm-v5"
+> -               "qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
+>                 "qcom,qcs404-sdhci", "qcom,sdhci-msm-v5"
+>                 "qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
+> +               "qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
+> +               "qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
+> +               "qcom,sm8250-sdhci", "qcom,sdhci-msm-v5"
+>         NOTE that some old device tree files may be floating around that only
+>         have the string "qcom,sdhci-msm-v4" without the SoC compatible string
+>         but doing that should be considered a deprecated practice.
 > --
-> 2.28.0
+> 2.25.1
 >
