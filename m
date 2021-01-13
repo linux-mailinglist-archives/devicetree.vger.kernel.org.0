@@ -2,106 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EACDF2F4E5D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:19:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D19812F4E74
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727017AbhAMPTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 10:19:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725943AbhAMPTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:19:21 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4739C061795;
-        Wed, 13 Jan 2021 07:18:40 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id d26so2491564wrb.12;
-        Wed, 13 Jan 2021 07:18:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=buvoavmYOHI9w2BN+lc90FsvqFASt4TOUzghq1I5hag=;
-        b=QeuzpIgEG4bzmJrxxKhg7bzeQXGNa4HJ7ZhKZI7UY0X+bcKUyvYb84npsgpuqLTNs2
-         Of4oMbzi8IHI0MsKwkTK1TfuwQKA7T3k8DPxkVP0WTBDzWZUGK04gaCZTNZUZeYP7Pvv
-         zRYLrmEglMjV0r6JJf+hU6ODwFPE4zeUf+LjeSjVLX+g5YJfpixwLqFdLF8KVc8zvIYD
-         LHbFEDAgvtnEX37/VRWmCfkz1U594xyDTMPt1o3cFFbcYv2BdDweMPQpahg1E4hTiJbf
-         jgaNPFHs5orGcXqCRwarcpF0uOJtneAeXc7P7VTcxh/e7/WhMLgxh2AvjdGMbVYrSDck
-         O5qQ==
+        id S1726523AbhAMPXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 10:23:09 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:44014 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725801AbhAMPXI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:23:08 -0500
+Received: by mail-ot1-f53.google.com with SMTP id q25so2188337otn.10;
+        Wed, 13 Jan 2021 07:22:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=buvoavmYOHI9w2BN+lc90FsvqFASt4TOUzghq1I5hag=;
-        b=isFZ6+SZM36oL5ZIcUnIMUi/1yfJ+ZVFtAjDeiaW0sRqygnjY/rUQNnc/T/RcaIuIb
-         /9G8/6LWwDgk32IeexPgGviwiiPsiFcI0zy2eevW6fO14vgrLoSnazYjle8mUb8jfvJ1
-         fK4MHz7iZggF6yXf4EuPBhuH5yOk9C+Slg1c/ue0pmnXkCcxtCi/3qtBdAW97TeYS3Bd
-         gDTzMUyvJa/71fM4BXpNJ6+0RNgLRDSTMRrHxps2DFsld1YbQElrxS52eAKjU5MmU7Hc
-         HVzowVGq8aejwdQPTHFGtSCBjuYK/oK4bXJ9hBQMMX4uTkb0iYRrAVs+DvQCdBom7iFs
-         fuWQ==
-X-Gm-Message-State: AOAM532PWjyM+SJVcmyIy6nC6o7QbBGRkwSHiNvaSPnH5vKrNXhF2Y/D
-        vISs2M2+jvLjKe9aavIXg9UHgdzSpat4AEs3
-X-Google-Smtp-Source: ABdhPJxma8ZGCirjJ6qTe6/JQexkVP7IPmDz9OamVHqmcsCQrOez94lfF3qdK4Uky5l7iDwJ/V++eA==
-X-Received: by 2002:adf:d20b:: with SMTP id j11mr3068088wrh.318.1610551119156;
-        Wed, 13 Jan 2021 07:18:39 -0800 (PST)
-Received: from jonathan-N53SV.station ([151.81.101.204])
-        by smtp.googlemail.com with ESMTPSA id w1sm3890553wrr.84.2021.01.13.07.18.38
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SE9am3kq8RjarWOXnd9kdCTvbTnepwR4fe9xga07N+k=;
+        b=r/VicUnQ5yw2wjSj7r9xoU+qkGFHn34sd4UBjOF6JIlEHEt9rF+xwjTZxnAV5ZeRaK
+         6Q4OztWVwzRruQM4ve8JUvkZ2N1NYSGp/ONWauok0WVYDy0lPkiteEqotL5H0BFYGOJr
+         xRlRGOsUKFL6Au3yeM6g3dxBO2juwKkZRBTCMBbBcDjJzDApes0CiBQRUvLAzrWe6pCT
+         fT7ZT+2DX9VEDL8Bl2kdns2f9FLOIrpDkkZqRvhbFLZgG8gXI56TiBfQMNGSziWHDNp5
+         RMWLaOrtH6tjQt9GRZGyRBe64oRDngMAQZ2G8hZLHeZrH04NmXTzPIhPDYH0bHCPK3E5
+         v+Hw==
+X-Gm-Message-State: AOAM531KIU3ZH65iPsLT3RJbc6+n274qu4M9r+vDriG8KVvw+8c9l8OF
+        0M6JSe1c0B9b6F834U0iTA==
+X-Google-Smtp-Source: ABdhPJyXSD7O2u+KLy4dCmhAaS4RrzejnZJ8LhZpdTnooicBMv0HLXKioHgADiNofONZ/RIUjKsn5g==
+X-Received: by 2002:a9d:470f:: with SMTP id a15mr1617646otf.62.1610551347611;
+        Wed, 13 Jan 2021 07:22:27 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e10sm437795otl.38.2021.01.13.07.22.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 07:18:38 -0800 (PST)
-From:   Jonathan Albrieux <jonathan.albrieux@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Jonathan Albrieux <jonathan.albrieux@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: pm8916: Add batt_id channel node
-Date:   Wed, 13 Jan 2021 16:18:08 +0100
-Message-Id: <20210113151808.4628-3-jonathan.albrieux@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210113151808.4628-1-jonathan.albrieux@gmail.com>
-References: <20210113151808.4628-1-jonathan.albrieux@gmail.com>
+        Wed, 13 Jan 2021 07:22:26 -0800 (PST)
+Received: (nullmailer pid 2470201 invoked by uid 1000);
+        Wed, 13 Jan 2021 15:22:25 -0000
+Date:   Wed, 13 Jan 2021 09:22:25 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     broonie@kernel.org, kuninori.morimoto.gx@renesas.com,
+        nsaenzjulienne@suse.de, f.fainelli@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/6] dt-bindings: audio-graph-card: Add plls and
+ sysclks properties
+Message-ID: <20210113152225.GA2334778@robh.at.kernel.org>
+References: <20210108160501.7638-1-rf@opensource.cirrus.com>
+ <20210108160501.7638-3-rf@opensource.cirrus.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210108160501.7638-3-rf@opensource.cirrus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Working on a battery charger and fuel gauge driver it happened to
-have the need to read from VADC_LR_MUX2_BAT_ID channel. Here is
-the declaration from downstream msm8916.dtsi:
+On Fri, Jan 08, 2021 at 04:04:57PM +0000, Richard Fitzgerald wrote:
+> The audio-graph-card driver has properties for configuring the clocking
+> for DAIs within a component, but is missing properties for setting
+> up the PLLs and sysclks of the component.
+> 
+> This patch adds the two new properties 'plls' and 'sysclks' so that the
+> audio-graph-driver can fully configure the component clocking.
 
-	chan@31 {
-		label = "batt_id";
-		reg = <0x31>;
-		qcom,decimation = <0>;
-		qcom,pre-div-channel-scaling = <0>;
-		qcom,calibration-type = "ratiometric";
-		qcom,scale-function = <0>;
-		qcom,hw-settle-time = <0xb>;
-		qcom,fast-avg-setup = <0>;
-	};
+I'm not sure this makes sense to be generic, but if so, we already have 
+the clock binding and should use (and possibly extend) that.
 
-Add VADC_LR_MUX2_BAT_ID accordingly.
+This appears to all be configuration of clocks within the codec, so 
+these properties belong in the codec or cpu nodes.
 
-Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
----
- arch/arm64/boot/dts/qcom/pm8916.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+> ---
+>  .../bindings/sound/audio-graph.yaml           | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph.yaml b/Documentation/devicetree/bindings/sound/audio-graph.yaml
+> index 4b46794e5153..9e0819205a17 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph.yaml
+> @@ -39,6 +39,52 @@ properties:
+>    mic-det-gpio:
+>      maxItems: 1
+>  
+> +  plls:
+> +    description: |
+> +      A list of component pll settings. There are 4 cells per PLL setting:
+> +        - phandle to the node of the codec or cpu component,
+> +        - component PLL id,
+> +        - component clock source id,
+> +        - frequency (in Hz) of the PLL output clock.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
-index a7663bf867ec..854e51883289 100644
---- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
-@@ -95,6 +95,11 @@
- 			adc-chan@f {
- 				reg = <VADC_VDD_VADC>;
- 			};
-+			adc-chan@g {
-+				reg = <VADC_LR_MUX2_BAT_ID>;
-+				qcom,hw-settle-time = <2000>;
-+				qcom,ratiometric;
-+			};
- 		};
- 
- 		rtc@6000 {
--- 
-2.17.1
+assigned-clocks binding can set frequencies and parent clocks.
 
+'pll' is too specific to the implementation. You may want to configure 
+the freq and parent of something that's not a pll.
+
+> +      The PLL id and clock source id are specific to the particular component
+> +      so see the relevant component driver for the ids. Typically the
+> +      clock source id indicates the pin the source clock is connected to.
+> +      The same phandle can appear in multiple entries so that several plls
+> +      can be set in the same component.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +
+> +  plls-clocks:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description: |
+> +      A list of clock names giving the source clock for each setting
+> +      in the plls property.
+> +
+> +  sysclks:
+> +    description: |
+> +      A list of component sysclk settings. There are 4 cells per sysclk
+> +      setting:
+> +        - phandle to the node of the codec or cpu component,
+> +        - component sysclk id,
+> +        - component clock source id,
+> +        - direction of the clock: 0 if the clock is an input to the component,
+> +          1 if it is an output.
+
+A clock provider and consumer would provide the direction.
+
+> +      The sysclk id and clock source id are specific to the particular
+> +      component so see the relevant component driver for the ids. Typically
+> +      the clock source id indicates the pin the source clock is connected to.
+> +      The same phandle can appear in multiple entries so that several sysclks
+> +      can be set in the same component.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +
+> +  sysclks-clocks:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description: |
+> +      A list of clock names giving the source clock for each setting
+> +      in the sysclks property.
+> +
+> +dependencies:
+> +  plls: [ plls-clocks ]
+> +  sysclks: [ sysclks-clocks ]
+> +
+>  required:
+>    - dais
+>  
+> -- 
+> 2.20.1
+> 
