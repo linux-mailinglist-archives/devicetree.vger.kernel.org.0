@@ -2,119 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7C822F512C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 18:34:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C18512F513A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 18:39:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727845AbhAMRcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 12:32:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48664 "EHLO
+        id S1727648AbhAMRjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 12:39:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726471AbhAMRcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 12:32:10 -0500
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21FEC061794
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 09:31:30 -0800 (PST)
-Received: by mail-qv1-xf2c.google.com with SMTP id l7so1122774qvt.4
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 09:31:30 -0800 (PST)
+        with ESMTP id S1727403AbhAMRjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 12:39:39 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12FF2C061575;
+        Wed, 13 Jan 2021 09:38:59 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id r3so3032577wrt.2;
+        Wed, 13 Jan 2021 09:38:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+V2Dr2muMkbk0Yt20+kBeKoC8rP7GJB7dLSdIgBdmPU=;
-        b=TGvsxQuiRgpoRSNCinvSnrvriBuQfwHVZFHfM1a1dybagvBAQuJXoAB6tesQINtW66
-         rZnAujCpdbZJiYkIikadqGylWKIlPfne/BLEPbWGrO57TszPd7LhSpHrbLH2QfZdjRNz
-         cPFkmXQJw1OKpOMpbye9/FjUn7KOY1E7gxAyo17gO01nP5cSxzETAzSQ9pPWr9qPdgyh
-         NdE/jLXnqXcK/psY1fmr9gqq9DpedoxySG1dpVSIp+FwCsQFtJrUhG3GiT2/yxFUA3Zg
-         5Yr74jWVXlHzqNfZYdrqAF/ehceTrb5qJOB1IRFgLFPysIaSyOFCpUyxKC1G+G0OPyBS
-         C5Fg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BBNPlAKB2NWZbiNd5NT4ykLdnGxCY+M9Q+QpLlu9ROg=;
+        b=Z9vk7GlZsfmUWclyViA0BjeYkpLttHjL2gtF/oitgLRBowSvvmGFCi3QcYaYmziof2
+         4GAxTO6UI1J1zCfF9VqQ2OkS0a+e92/po6ZsfdBqXvC9+b1tuqE5i5wNtqTgOEXTSGXu
+         AUdtxeeibchK4+ta84GhXhRo6VfdpEn39ygy+FAcCoxxCrDBJpcCI3Nl9XWU5HN6Lss+
+         Fc+uRh5IPoBOw1BdVFg3FaCWLv7Tqd5EraHg61L98vbURh08x6Wh/EH7OZtwM+BRYh2R
+         AQRgkEn05Ow44akexI1ieni/xXV7vR4FiGJiErwx3+qBMFPqJZisvqjOrzAfFk+r2ce6
+         fiUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+V2Dr2muMkbk0Yt20+kBeKoC8rP7GJB7dLSdIgBdmPU=;
-        b=HrjXlVjZb2h0o9BbqlcFH7I3xvRVEQ+jTW+rD7I+hMhWfNE+aH+RVwTpj68jrubVYL
-         9oKCsAI0bj34NUdVUb1QTeLr+kuyfBhDSGpB3Hg3ISngc0NX5zerRnZ955jdd/5n9tl4
-         C1/k/yP6Ys+ohIsQlYs2UFNkwQsVUpe4SYB2xM5ggZhG1LJttG2FiXWNtDmmWxjmHGpU
-         gjK0q0dNtVWZbpO7OW94B2lMeNn4+flEkb30siKdABBPwqmdc9ogQiwdJGJ1nXnvONgd
-         Ie6xL5Pk4U8K13r6a+JOkny3O/bX0H6maxCEyZFP0k4dy4voz6ignVzj4pKxP7tZNjzS
-         ruTw==
-X-Gm-Message-State: AOAM531MVmS1DpmveCo25pPpFYaF2RfdcBllIOzeoVRNulk78MuqiawF
-        n0LLwopsOCE5TjIYds4jRiMO1v3JPv3CmS9MKNJx+w==
-X-Google-Smtp-Source: ABdhPJz285kiLrApEti5WJgRA1E13XN480igK5w4hFcgkOLK8+pftJijGcF2r5qhv2NtQ+Bq2oR1dKlDUWJkPD/JeWo=
-X-Received: by 2002:a0c:8203:: with SMTP id h3mr3390601qva.0.1610559089537;
- Wed, 13 Jan 2021 09:31:29 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BBNPlAKB2NWZbiNd5NT4ykLdnGxCY+M9Q+QpLlu9ROg=;
+        b=ncnkY5MPSL0Zz2O2XcpbASgMvnxyGkvuJFuqEwva9wRANNywK/dD7uPA64lVOUPy0M
+         uC1buBpDWeK7bPSJH32PHG+4bZ/JBcJ5MfyqPDhgMMeW3azfHFdBFM+h+9LaTLRyw3Ez
+         rSZLe1RKHLHr999PW/rKXhrsWqgOZHRxuvl/REWVzgop4YtWkBaGGjPR+uFDSAQpzyjm
+         5WSg2gLnHvQkMy65bDXT6DNsembGqKK+OBAq4uz7jQ6cjgehV5kguJ2LmHe04eyZjZbh
+         /uI7tC2FqUCOkOFWixTMi26xXHvh6dPVKtzDdjOTWKiklvM1ZZhwuJ2biZMfHZC+EU/f
+         Mh0g==
+X-Gm-Message-State: AOAM533CZU76hrmNpQD5wBD9LuQhHaIIVubBF+0i/hMVcThE7SSJUOuB
+        pB6qp5ytxyJjo8VJuB6XaEY=
+X-Google-Smtp-Source: ABdhPJz5s22jrgZxtmgPIH+nibYorY1kAoixe/+LV1AZlK1HAnpz9V4f5/FQVwKnMGIr9Z2QVrSq6Q==
+X-Received: by 2002:a5d:660b:: with SMTP id n11mr3746879wru.407.1610559537767;
+        Wed, 13 Jan 2021 09:38:57 -0800 (PST)
+Received: from localhost.localdomain (2a01cb0008bd27000d88c7723353ad1a.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:d88:c772:3353:ad1a])
+        by smtp.gmail.com with ESMTPSA id w21sm3743843wmi.45.2021.01.13.09.38.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 09:38:57 -0800 (PST)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     krzk@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v3 0/3] Add support for Boundary Nitrogen8M Mini SBC
+Date:   Wed, 13 Jan 2021 18:38:52 +0100
+Message-Id: <20210113173855.1509417-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210113012143.1201105-1-minchan@kernel.org> <20210113012143.1201105-4-minchan@kernel.org>
- <1610552704.254587.2506180.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1610552704.254587.2506180.nullmailer@robh.at.kernel.org>
-From:   Hridya Valsaraju <hridya@google.com>
-Date:   Wed, 13 Jan 2021 09:30:53 -0800
-Message-ID: <CA+wgaPOwCWc+oYzzaLwUch32-vUMhma3UgFLWZTbOZ5jMuv6Ng@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: reserved-memory: Make DMA-BUF CMA
- heap DT-configurable
-To:     Rob Herring <robh@kernel.org>
-Cc:     Minchan Kim <minchan@kernel.org>,
-        Hyesoo Yu <hyesoo.yu@samsung.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        John Dias <joaodias@google.com>,
-        "pullip.cho" <pullip.cho@samsung.com>,
-        LKML <linux-kernel@vger.kernel.org>, mhocko@suse.com,
-        robh+dt@kernel.org, linaro-mm-sig@lists.linaro.org,
-        Suren Baghdasaryan <surenb@google.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-mm <linux-mm@kvack.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        linux-media@vger.kernel.org, david@redhat.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 7:45 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, 12 Jan 2021 17:21:42 -0800, Minchan Kim wrote:
-> > From: Hyesoo Yu <hyesoo.yu@samsung.com>
-> >
-> > Document devicetree binding for chunk cma heap on dma heap framework.
-> >
-> > The DMA chunk heap supports the bulk allocation of higher order pages.
-> >
-> > Signed-off-by: Hyesoo Yu <hyesoo.yu@samsung.com>
-> > Signed-off-by: Minchan Kim <minchan@kernel.org>
-> > Signed-off-by: Hridya Valsaraju <hridya@google.com>
-> > Change-Id: I8fb231e5a8360e2d8f65947e155b12aa664dde01
-> > ---
-> >  .../reserved-memory/dma_heap_chunk.yaml       | 58 +++++++++++++++++++
-> >  1 file changed, 58 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
-> >
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml:58:1: [warning] too many blank lines (2 > 1) (empty-lines)
->
-> dtschema/dtc warnings/errors:
->
-> See https://patchwork.ozlabs.org/patch/1425577
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
+Hello,
 
-Hi Rob,
-
-Sorry about that, I can see the warning after installing yamllint.
-Will fix it in the next version!
+This patch set aims is to add the support of the Nitrogen8M Mini SBC
+from Boundary Devices.
 
 Thanks,
-Hridya
+
+Update in v2:
+  - Rewrite the dts (Remove the unused wlan and audio);
+  - Remove useless definition;
+  - Take in account review.
+
+Update in v3:
+  - Take in account review.
+
+Adrien Grassein (3):
+  dt-bindings: arm: imx: add imx8mm nitrogen support
+  arm64: dts: imx: Add i.mx8mm nitrogen8mm basic dts support
+  arm64: defconfig: Enable PF8x00 as builtin
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mm-nitrogen8mm_rev2.dts | 417 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 4 files changed, 420 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
+
+-- 
+2.25.1
+
