@@ -2,98 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7659C2F4162
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 02:54:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2D1A2F4197
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 03:17:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725797AbhAMBx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 20:53:56 -0500
-Received: from foss.arm.com ([217.140.110.172]:56656 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725775AbhAMBxz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 20:53:55 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8E760101E;
-        Tue, 12 Jan 2021 17:53:09 -0800 (PST)
-Received: from [10.57.56.43] (unknown [10.57.56.43])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A2E913F719;
-        Tue, 12 Jan 2021 17:53:03 -0800 (PST)
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
-To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Claire Chang <tientzu@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <joro@8bytes.org>, joro@8bytes.org,
-        will@kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        rdunlap@infradead.org, dan.j.williams@intel.com,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        iommu@lists.linux-foundation.org, xen-devel@lists.xenproject.org,
-        Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-3-tientzu@chromium.org>
- <20210106185241.GA109735@localhost.localdomain>
- <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
- <20210107175740.GA16519@char.us.oracle.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <41b466d0-0271-2d84-0623-4c877fcffe32@arm.com>
-Date:   Wed, 13 Jan 2021 01:53:02 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1727766AbhAMCQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 21:16:18 -0500
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:4676 "EHLO
+        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726011AbhAMCQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 21:16:18 -0500
+Received: from pps.filterd (m0127361.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 10D2ClZb126584;
+        Tue, 12 Jan 2021 21:15:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=b33gMCYFoiY2cA7DlohE+j9s5rwIBiiXa3jsXsZw+dU=;
+ b=LPA0Jihqx013+hCofHhMLCHhTKGHn/cwFsrSpz3lL8nFmMPrOEvISeJBcy9Zq4Zrfw05
+ O9a5Vm6PAh275BV8ZWOZkTU5q253yWJBlgW568ur8UHvQpk1+w03zcL1jsn4h6w4AjFr
+ YXSEW4nRsh7dn2UBi4XiBtTPKTUtQyq0fzXXvZoh7d3vYBqs3tf+OsYKA9Hsj1RjnE5Q
+ VXW6IwA24G+xAlSIapG08xvQcraoGFsfZCYbB6MCmzt0CjudPayKGVkLuMUvZ5xH/lZN
+ n6ImG8/JAvPf1RUabeTf72X0PfVZLvD14xPC7DyxYh2M03nkUjBMl7ZSoItOITe/Og6M 7g== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 361qvn00tt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Jan 2021 21:15:04 -0500
+Received: from m0127361.ppops.net (m0127361.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 10D2D7bU126823;
+        Tue, 12 Jan 2021 21:15:03 -0500
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 361qvn00tc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Jan 2021 21:15:03 -0500
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+        by ppma02dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 10D2C42M017573;
+        Wed, 13 Jan 2021 02:15:02 GMT
+Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
+        by ppma02dal.us.ibm.com with ESMTP id 35y449gxdt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 13 Jan 2021 02:15:02 +0000
+Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
+        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 10D2F1k110289646
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 13 Jan 2021 02:15:01 GMT
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 579697805C;
+        Wed, 13 Jan 2021 02:15:01 +0000 (GMT)
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 4066678060;
+        Wed, 13 Jan 2021 02:14:53 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.80.217.205])
+        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTPS;
+        Wed, 13 Jan 2021 02:14:52 +0000 (GMT)
+References: <20210104192602.10131-1-nramas@linux.microsoft.com>
+ <20210104192602.10131-3-nramas@linux.microsoft.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, robh@kernel.org, takahiro.akashi@linaro.org,
+        gregkh@linuxfoundation.org, will@kernel.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
+        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
+        frowand.list@gmail.com, vincenzo.frascino@arm.com,
+        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
+        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@vger.kernel.org
+Subject: Re: [PATCH v14 2/6] powerpc: Move arch independent ima kexec
+ functions to drivers/of/kexec.c
+In-reply-to: <20210104192602.10131-3-nramas@linux.microsoft.com>
+Date:   Tue, 12 Jan 2021 23:14:50 -0300
+Message-ID: <87bldtshut.fsf@manicouagan.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <20210107175740.GA16519@char.us.oracle.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-12_21:2021-01-12,2021-01-12 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 spamscore=0 bulkscore=0 mlxlogscore=820 phishscore=0
+ malwarescore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ mlxscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101130005
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-07 17:57, Konrad Rzeszutek Wilk wrote:
-> On Fri, Jan 08, 2021 at 01:39:18AM +0800, Claire Chang wrote:
->> Hi Greg and Konrad,
->>
->> This change is intended to be non-arch specific. Any arch that lacks DMA access
->> control and has devices not behind an IOMMU can make use of it. Could you share
->> why you think this should be arch specific?
-> 
-> The idea behind non-arch specific code is it to be generic. The devicetree
-> is specific to PowerPC, Sparc, and ARM, and not to x86 - hence it should
-> be in arch specific code.
 
-Sorry, but that's an absurd argument. By the same token you'd equally 
-have to claim that bits of, say, the Broadcom WiFi driver (not to 
-mention dozens of others) should be split out into arch code, since not 
-all platforms use the devicetree parts, nor the ACPI parts, nor the PCI 
-parts...
+Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
 
-There is nothing architecture-specific about using devicetree as a 
-system description - AFAIK there *are* a handful of x86 platforms that 
-use it, besides even more architectures than you've listed above. It has 
-long been the policy that devicetree-related code for a particular 
-subsystem should just live within that subsystem. Sometimes if there's 
-enough of it it gets collected together into its own file - e.g. 
-drivers/pci/of.c - otherwise it tends to just get #ifdef'ed - e.g. 
-of_spi_parse_dt(), or the other DMA reserved-memory consumers that 
-already exist as Florian points out.
+> The functions defined in "arch/powerpc/kexec/ima.c" handle setting up
+> and freeing the resources required to carry over the IMA measurement
+> list from the current kernel to the next kernel across kexec system call.
+> These functions do not have architecture specific code, but are
+> currently limited to powerpc.
+>
+> Move setup_ima_buffer() call into of_kexec_setup_new_fdt() defined in
+> "drivers/of/kexec.c".
+>
+> Move the remaining architecture independent functions from
+> "arch/powerpc/kexec/ima.c" to "drivers/of/kexec.c".
+> Delete "arch/powerpc/kexec/ima.c" and "arch/powerpc/include/asm/ima.h".
+> Remove references to the deleted files in powerpc and in ima.
+>
+> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> ---
+>  arch/powerpc/Kconfig               |   2 +-
+>  arch/powerpc/include/asm/ima.h     |  27 ----
+>  arch/powerpc/kexec/Makefile        |   7 -
+>  arch/powerpc/kexec/file_load.c     |   7 -
+>  arch/powerpc/kexec/ima.c           | 202 ------------------------
+>  drivers/of/kexec.c                 | 240 +++++++++++++++++++++++++++++
+>  include/linux/of.h                 |   2 +
+>  security/integrity/ima/ima.h       |   4 -
+>  security/integrity/ima/ima_kexec.c |   1 +
+>  9 files changed, 244 insertions(+), 248 deletions(-)
+>  delete mode 100644 arch/powerpc/include/asm/ima.h
+>  delete mode 100644 arch/powerpc/kexec/ima.c
 
-Besides, there are far more platforms that enable CONFIG_OF than enable 
-CONFIG_SWIOTLB, so by that metric the whole of the SWIOTLB code itself 
-is even less "generic" than any DT parsing :P
+Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
 
-Robin.
+-- 
+Thiago Jung Bauermann
+IBM Linux Technology Center
