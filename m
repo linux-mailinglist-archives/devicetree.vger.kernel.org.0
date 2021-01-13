@@ -2,175 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2215A2F43E3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 06:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD3492F440E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 06:45:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726445AbhAMFbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 00:31:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34286 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726010AbhAMFbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 00:31:21 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66B1C061575
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 21:30:40 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id g24so541714edw.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 21:30:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3eSHLU0tsnB/8YZodS1JHYyVuvZP1q+Jh72EF+LlqTo=;
-        b=kH9y5HDmn14mKPIgiSh0+j61km8jiNYl7Jz2izQAcbV/5id9R9NlXd1WoPfZ4Cqp12
-         DC2YZgYFU3CAG0ZYQdxFQiMKzJqP8Q+nkXFfCI9yrpeJDZ6lzD4Ld6GCkOfgQtLnoGLA
-         KxDo2CyZ1EsNF43VAwEawZpbStfqt1FOzQm8I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3eSHLU0tsnB/8YZodS1JHYyVuvZP1q+Jh72EF+LlqTo=;
-        b=tHQaMjThGnptVVolwQTFnshUNH6AZzVRGY+y6Y8X2LXxPh1IQ9vSwGVwOVR4ZtknQ/
-         Qn3NPPi4maYygVkSAz9GvCPco+6ucg44nOQhYg+m6bw0T2RjFriT3AE0tr0jBnzr5cab
-         zb7SONrrMMc142m8CHmAC6l3DGEv1jPA0tjfppYnibirQxwdEgzxt8UvUWEJpGDTu+gO
-         GVw9Hk4s6fdPCNMF9yGsoCnaoeO8bOtkxbeBSc9m82wBjYsK/f16PIMwYXP46mnQ9ids
-         LXns72Xo1Rk8lE+A9A1fqxIYKVRReAwIzOc2e8a9OHqMHBwzokdSw9LVWq8dC0mT3DBz
-         13aQ==
-X-Gm-Message-State: AOAM532/aDxIA3/4w/dhQHTqckTHu8RPvE/WTX8bbVCfEdZIH9E3qkK6
-        Oj0exvW/Mo6T8GVONgpoVR4HY5BgMruBwFK6
-X-Google-Smtp-Source: ABdhPJx3asvP+fZKLbmYxSohtIybGNUCBU4ytrJs+s6rm+w2WSQPBS/Dz5c5HeXfCzzjDgHAyHrGCg==
-X-Received: by 2002:aa7:df0f:: with SMTP id c15mr426061edy.354.1610515839095;
-        Tue, 12 Jan 2021 21:30:39 -0800 (PST)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
-        by smtp.gmail.com with ESMTPSA id l22sm251973ejk.14.2021.01.12.21.30.37
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jan 2021 21:30:38 -0800 (PST)
-Received: by mail-wm1-f53.google.com with SMTP id 3so433507wmg.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 21:30:37 -0800 (PST)
-X-Received: by 2002:a7b:c773:: with SMTP id x19mr382042wmk.127.1610515837254;
- Tue, 12 Jan 2021 21:30:37 -0800 (PST)
+        id S1725774AbhAMFp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 00:45:27 -0500
+Received: from so254-31.mailgun.net ([198.61.254.31]:55812 "EHLO
+        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725601AbhAMFp1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 00:45:27 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1610516702; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=hFAIRvzSlkyR1XtFS2t0dRLU8b5o3JTm4z6bVI4XCEY=;
+ b=T4Q62e6bNNMI0V0dt825MzQrQsD0IahB+7hhpGQSLilHCBJV6x47+4aJNLNZZE4E5ZdL2CKX
+ 47xsntkUIBFt1TMGoWg0Zx4NQHu2HosGlQqbauKeMRltP3zqWvoGF4Ajv7+mbAAL/GPTyhpf
+ eGzPGZTrSKHegSNqUcPjFyMPSyo=
+X-Mailgun-Sending-Ip: 198.61.254.31
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 5ffe88c4415a6293c5531346 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 13 Jan 2021 05:44:36
+ GMT
+Sender: sanm=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 32643C43462; Wed, 13 Jan 2021 05:44:36 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sanm)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5B8C8C433C6;
+        Wed, 13 Jan 2021 05:44:35 +0000 (UTC)
 MIME-Version: 1.0
-References: <20201209080102.26626-1-yong.wu@mediatek.com> <20201209080102.26626-7-yong.wu@mediatek.com>
- <X+L9XpkoII7tw/tX@chromium.org> <1608809713.26323.262.camel@mhfsdcap03>
-In-Reply-To: <1608809713.26323.262.camel@mhfsdcap03>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Wed, 13 Jan 2021 14:30:24 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5CCJv=0q=V45Z7mtq7FSq1c5TcH6vyqfp3MWxaA=ZexJQ@mail.gmail.com>
-Message-ID: <CAAFQd5CCJv=0q=V45Z7mtq7FSq1c5TcH6vyqfp3MWxaA=ZexJQ@mail.gmail.com>
-Subject: Re: [PATCH v5 06/27] dt-bindings: mediatek: Add binding for mt8192 IOMMU
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 13 Jan 2021 11:14:35 +0530
+From:   sanm@codeaurora.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, youlin.pei@mediatek.com,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        chao.hao@mediatek.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        "open list:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>, anan.sun@mediatek.com,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>
+Subject: Re: [PATCH] usb: dwc3: qcom: Add shutdown callback for dwc3
+In-Reply-To: <1605162619-10064-1-git-send-email-sanm@codeaurora.org>
+References: <1605162619-10064-1-git-send-email-sanm@codeaurora.org>
+Message-ID: <d39144b6495db2d23466e76e509be0ed@codeaurora.org>
+X-Sender: sanm@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 24, 2020 at 8:35 PM Yong Wu <yong.wu@mediatek.com> wrote:
->
-> On Wed, 2020-12-23 at 17:18 +0900, Tomasz Figa wrote:
-> > On Wed, Dec 09, 2020 at 04:00:41PM +0800, Yong Wu wrote:
-> > > This patch adds decriptions for mt8192 IOMMU and SMI.
-> > >
-> > > mt8192 also is MTK IOMMU gen2 which uses ARM Short-Descriptor translation
-> > > table format. The M4U-SMI HW diagram is as below:
-> > >
-> > >                           EMI
-> > >                            |
-> > >                           M4U
-> > >                            |
-> > >                       ------------
-> > >                        SMI Common
-> > >                       ------------
-> > >                            |
-> > >   +-------+------+------+----------------------+-------+
-> > >   |       |      |      |       ......         |       |
-> > >   |       |      |      |                      |       |
-> > > larb0   larb1  larb2  larb4     ......      larb19   larb20
-> > > disp0   disp1   mdp    vdec                   IPE      IPE
-> > >
-> > > All the connections are HW fixed, SW can NOT adjust it.
-> > >
-> > > mt8192 M4U support 0~16GB iova range. we preassign different engines
-> > > into different iova ranges:
-> > >
-> > > domain-id  module     iova-range                  larbs
-> > >    0       disp        0 ~ 4G                      larb0/1
-> > >    1       vcodec      4G ~ 8G                     larb4/5/7
-> > >    2       cam/mdp     8G ~ 12G             larb2/9/11/13/14/16/17/18/19/20
-> >
-> > Why do we preassign these addresses in DT? Shouldn't it be a user's or
-> > integrator's decision to split the 16 GB address range into sub-ranges
-> > and define which larbs those sub-ranges are shared with?
->
-> The problem is that we can't split the 16GB range with the larb as unit.
-> The example is the below ccu0(larb13 port9/10) is a independent
-> range(domain), the others ports in larb13 is in another domain.
->
-> disp/vcodec/cam/mdp don't have special iova requirement, they could
-> access any range. vcodec also can locate 8G~12G. it don't care about
-> where its iova locate. here I preassign like this following with our
-> internal project setting.
+On 2020-11-12 12:00, Sandeep Maheswaram wrote:
+> This patch adds a shutdown callback to USB DWC QCOM driver to ensure 
+> that
+> it is properly shutdown in reboot/shutdown path. This is required
+> where SMMU address translation is enabled like on SC7180
+> SoC and few others. If the hardware is still accessing memory after
+> SMMU translation is disabled as part of SMMU shutdown callback in
+> system reboot or shutdown path, then IOVAs(I/O virtual address)
+> which it was using will go on the bus as the physical addresses which
+> might result in unknown crashes (NoC/interconnect errors).
+> 
+> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> ---
+>  drivers/usb/dwc3/dwc3-qcom.c | 26 ++++++++++++++++++++------
+>  1 file changed, 20 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c 
+> b/drivers/usb/dwc3/dwc3-qcom.c
+> index c703d55..a930e06 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -790,13 +790,11 @@ static int dwc3_qcom_probe(struct platform_device 
+> *pdev)
+>  	return ret;
+>  }
+> 
+> -static int dwc3_qcom_remove(struct platform_device *pdev)
+> +static void __dwc3_qcom_teardown(struct dwc3_qcom *qcom)
+>  {
+> -	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
+> -	struct device *dev = &pdev->dev;
+>  	int i;
+> 
+> -	of_platform_depopulate(dev);
+> +	of_platform_depopulate(qcom->dev);
+> 
+>  	for (i = qcom->num_clocks - 1; i >= 0; i--) {
+>  		clk_disable_unprepare(qcom->clks[i]);
+> @@ -807,12 +805,27 @@ static int dwc3_qcom_remove(struct 
+> platform_device *pdev)
+>  	dwc3_qcom_interconnect_exit(qcom);
+>  	reset_control_assert(qcom->resets);
+> 
+> -	pm_runtime_allow(dev);
+> -	pm_runtime_disable(dev);
+> +	pm_runtime_allow(qcom->dev);
+> +	pm_runtime_disable(qcom->dev);
+> +}
+> +
+> +static int dwc3_qcom_remove(struct platform_device *pdev)
+> +{
+> +	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
+> +
+> +	__dwc3_qcom_teardown(qcom);
+> 
+>  	return 0;
+>  }
+> 
+> +static void dwc3_qcom_shutdown(struct platform_device *pdev)
+> +{
+> +	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
+> +
+> +	__dwc3_qcom_teardown(qcom);
+> +
+> +}
+> +
+>  static int __maybe_unused dwc3_qcom_pm_suspend(struct device *dev)
+>  {
+>  	struct dwc3_qcom *qcom = dev_get_drvdata(dev);
+> @@ -887,6 +900,7 @@ MODULE_DEVICE_TABLE(acpi, dwc3_qcom_acpi_match);
+>  static struct platform_driver dwc3_qcom_driver = {
+>  	.probe		= dwc3_qcom_probe,
+>  	.remove		= dwc3_qcom_remove,
+> +	.shutdown	= dwc3_qcom_shutdown,
+>  	.driver		= {
+>  		.name	= "dwc3-qcom",
+>  		.pm	= &dwc3_qcom_dev_pm_ops,
 
-Let me try to understand this a bit more. Given the split you're
-proposing, is there actually any isolation enforced between particular
-domains? For example, if I program vcodec to with a DMA address from
-the 0-4G range, would the IOMMU actually generate a fault, even if
-disp had some memory mapped at that address?
+Hi Felipe,
 
->
-> Why set this in DT?, this is only for simplifying the code. Assume we
-> put it in the platform data. We have up to 32 larbs, each larb has up to
-> 32 ports, each port may be in different iommu domains. we should have a
-> big array for this..however we only use a macro to get the domain in the
-> DT method.
->
-> When replying this mail, I happen to see there is a "dev->dev_range_map"
-> which has "dma-range" information, I think I could use this value to get
-> which domain the device belong to. then no need put domid in DT. I will
-> test this.
+Can you please review this patch.
 
-My feeling is that the only part that needs to be enforced statically
-is the reserved IOVA range for CCUs. The other ranges should be
-determined dynamically, although I think I need to understand better
-how the hardware and your proposed design work to tell what would be
-likely the best choice here.
-
-Best regards,
-Tomasz
-
->
-> Thanks.
-> >
-> > Best regards,
-> > Tomasz
-> >
-> > >    3       CCU0    0x4000_0000 ~ 0x43ff_ffff     larb13: port 9/10
-> > >    4       CCU1    0x4400_0000 ~ 0x47ff_ffff     larb14: port 4/5
-> > >
-> > > The iova range for CCU0/1(camera control unit) is HW requirement.
-> > >
-> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  .../bindings/iommu/mediatek,iommu.yaml        |  18 +-
-> > >  include/dt-bindings/memory/mt8192-larb-port.h | 240 ++++++++++++++++++
-> > >  2 files changed, 257 insertions(+), 1 deletion(-)
-> > >  create mode 100644 include/dt-bindings/memory/mt8192-larb-port.h
-> > >
-> [snip]
+Regards
+Sandeep
