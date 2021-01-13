@@ -2,309 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 525EA2F4683
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:30:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A014E2F46AC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:42:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726723AbhAMIaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 03:30:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44294 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726680AbhAMIaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 03:30:06 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C946EC061795
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 00:29:25 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id n25so1053261pgb.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 00:29:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=l1GKa3x7ZNgVpRkmStUdrHjbkYZ9SQFyhIcPJwTf7mQ=;
-        b=mkqpTDKsvFlyxfobrl3O59d7IIHahU3PS8A71e5YzOZlHDWbI3MZUbGb7SzszcCOyu
-         ra2rQP1FSmDItU3qJfiNzVtBotM4pk1nDOdIWiocpHRFBWI+S0aBNwxNh1RwdCZZ+Rwp
-         vJpkXqohwYvayJKj2IWCmXCkacrtPqGcL2BHppSgchlP96jHviCQysvI7Xz+pku+moTs
-         atreTPYdyRmAfTwx9WIMJwNvu78nuz7zE27UOtTVp2scjPLS4OWyMWhXb7c69SVWsYrO
-         U2xkipy3HDuKbaGqqSaXPSGjU5KWEkqeeEva2ELwpPdqkTgVnAk9wEOkVC+9SXeY8dWj
-         nQsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=l1GKa3x7ZNgVpRkmStUdrHjbkYZ9SQFyhIcPJwTf7mQ=;
-        b=FHWBAKXKVGbLzaRGGXBc8tjkb56rZa2aGIV96+kJPtyS/EE1Tcd8DAy1Bbx4MITBfO
-         GXP7G//SVoD7n9wZGC9u4c+6eSD30egxG3tJF/PLJloGguwqf11faBITOrbk9tAqabtB
-         qV6itwGa2huN443ICRAiyALypf9GDux5B/e2Z4Jrzrsb5tRWrKCQZERaA/SSf6BnvQw+
-         YucyVAbkuQN7F5EzxDLT6N5D58+wZUjkroBzplx6OjH50SVVzT34grD6EkWBD3uXNKs3
-         iGH94bJJ0CGT8h7TjVyc0LbmmKgaBcPFEMyYlGu1BPBwce1RPVH+2j7JBxB/u6rAnLec
-         iU+A==
-X-Gm-Message-State: AOAM53157I1CamxJW7XeRxoTmi4qH+4DRE7iD1eNdeZX61cMmIQaK3tE
-        wSf0jUcVchAdKjUVwWgqeVrC
-X-Google-Smtp-Source: ABdhPJzhbChFX7E4odlTkqAVRn4oQYVX+m5ZecCHfZJcCca/kNL2kle2MNutGtYW7mRpy6pztpTV/w==
-X-Received: by 2002:a63:ef14:: with SMTP id u20mr1076416pgh.93.1610526565041;
-        Wed, 13 Jan 2021 00:29:25 -0800 (PST)
-Received: from thinkpad ([2409:4072:6199:4cc7:6c7e:de01:2568:5545])
-        by smtp.gmail.com with ESMTPSA id p15sm1705977pgl.19.2021.01.13.00.29.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 00:29:24 -0800 (PST)
-Date:   Wed, 13 Jan 2021 13:59:15 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     jassisinghbrar@gmail.com, mturquette@baylibre.com,
-        robh+dt@kernel.org, viresh.kumar@linaro.org,
-        ulf.hansson@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] clk: qcom: Add SDX55 APCS clock controller support
-Message-ID: <20210113082915.GB3763@thinkpad>
-References: <20210108113233.75418-1-manivannan.sadhasivam@linaro.org>
- <20210108113233.75418-6-manivannan.sadhasivam@linaro.org>
- <161052342416.3661239.16154742996506371048@swboyd.mtv.corp.google.com>
+        id S1726389AbhAMIlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 03:41:03 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:23722 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726273AbhAMIlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 03:41:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1610527176;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Wz/Vy/Cnya8aaX6TmCcBs5toJJRTuy9G5Pgif1Zbaps=;
+        b=h98sz9t6B5XlKDXYzMezig8mfJLuMuyHyw9EzYVLsOSfweWkJ0VPwX2lXNRFyXFFTbgxdK
+        e/wrHk5WNr3wur0LP0DjbMdyVQAgvAY057s/t4jBrj/refCFCLRKGkWVaJvSQE3zrrtfwj
+        vvkIeVPXF/W0Mm23X+ftAqqY4SihtmU=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-520-5ykmI9XhN-2xGAaPK57QBw-1; Wed, 13 Jan 2021 03:39:32 -0500
+X-MC-Unique: 5ykmI9XhN-2xGAaPK57QBw-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com [10.5.11.12])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2490115720;
+        Wed, 13 Jan 2021 08:39:30 +0000 (UTC)
+Received: from [10.36.114.135] (ovpn-114-135.ams2.redhat.com [10.36.114.135])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id F389560BF1;
+        Wed, 13 Jan 2021 08:39:26 +0000 (UTC)
+Subject: Re: [PATCH v3 2/4] mm: failfast mode with __GFP_NORETRY in
+ alloc_contig_range
+To:     Minchan Kim <minchan@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     linux-mm <linux-mm@kvack.org>, LKML <linux-kernel@vger.kernel.org>,
+        hyesoo.yu@samsung.com, mhocko@suse.com, surenb@google.com,
+        pullip.cho@samsung.com, joaodias@google.com, hridya@google.com,
+        john.stultz@linaro.org, sumit.semwal@linaro.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        hch@infradead.org, robh+dt@kernel.org,
+        linaro-mm-sig@lists.linaro.org
+References: <20210113012143.1201105-1-minchan@kernel.org>
+ <20210113012143.1201105-3-minchan@kernel.org>
+From:   David Hildenbrand <david@redhat.com>
+Organization: Red Hat GmbH
+Message-ID: <723e935f-3aa4-2c55-8d69-fcaf71f4eb4c@redhat.com>
+Date:   Wed, 13 Jan 2021 09:39:26 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <161052342416.3661239.16154742996506371048@swboyd.mtv.corp.google.com>
+In-Reply-To: <20210113012143.1201105-3-minchan@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 12, 2021 at 11:37:04PM -0800, Stephen Boyd wrote:
-> Quoting Manivannan Sadhasivam (2021-01-08 03:32:33)
-> > Add a driver for the SDX55 APCS clock controller. It is part of the APCS
-> > hardware block, which among other things implements also a combined mux
-> > and half integer divider functionality. The APCS clock controller has 3
-> > parent clocks:
-> > 
-> > 1. Board XO
-> > 2. Fixed rate GPLL0
-> > 3. A7 PLL
-> > 
-> > The source and the divider can be set both at the same time.
+On 13.01.21 02:21, Minchan Kim wrote:
+> Contiguous memory allocation can be stalled due to waiting
+> on page writeback and/or page lock which causes unpredictable
+> delay. It's a unavoidable cost for the requestor to get *big*
+> contiguous memory but it's expensive for *small* contiguous
+> memory(e.g., order-4) because caller could retry the request
+> in diffrent range where would have easy migratable pages
+> without stalling.
+
+s/diffrent/different/
+
 > 
-> I don't understand what that means. Presumably it's a mux/divider
-> combined?
+> This patch introduce __GFP_NORETRY as compaction gfp_mask in
+> alloc_contig_range so it will fail fast without blocking
+> when it encounters pages needed waitting.
+
+s/waitting/waiting/
+
+> 
+> Signed-off-by: Minchan Kim <minchan@kernel.org>
+> ---
+>  mm/page_alloc.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+> index 5b3923db9158..ff41ceb4db51 100644
+> --- a/mm/page_alloc.c
+> +++ b/mm/page_alloc.c
+> @@ -8489,12 +8489,16 @@ static int __alloc_contig_migrate_range(struct compact_control *cc,
+>  	unsigned int nr_reclaimed;
+>  	unsigned long pfn = start;
+>  	unsigned int tries = 0;
+> +	unsigned int max_tries = 5;
+>  	int ret = 0;
+>  	struct migration_target_control mtc = {
+>  		.nid = zone_to_nid(cc->zone),
+>  		.gfp_mask = GFP_USER | __GFP_MOVABLE | __GFP_RETRY_MAYFAIL,
+>  	};
+>  
+> +	if (cc->alloc_contig && cc->mode == MIGRATE_ASYNC)
+> +		max_tries = 1;
+> +
+>  	migrate_prep();
+>  
+>  	while (pfn < end || !list_empty(&cc->migratepages)) {
+> @@ -8511,7 +8515,7 @@ static int __alloc_contig_migrate_range(struct compact_control *cc,
+>  				break;
+>  			}
+>  			tries = 0;
+> -		} else if (++tries == 5) {
+> +		} else if (++tries == max_tries) {
+>  			ret = ret < 0 ? ret : -EBUSY;
+>  			break;
+>  		}
+> @@ -8562,7 +8566,7 @@ int alloc_contig_range(unsigned long start, unsigned long end,
+>  		.nr_migratepages = 0,
+>  		.order = -1,
+>  		.zone = page_zone(pfn_to_page(start)),
+> -		.mode = MIGRATE_SYNC,
+> +		.mode = gfp_mask & __GFP_NORETRY ? MIGRATE_ASYNC : MIGRATE_SYNC,
+>  		.ignore_skip_hint = true,
+>  		.no_set_skip_hint = true,
+>  		.gfp_mask = current_gfp_context(gfp_mask),
 > 
 
-Yeah, will make it clear.
+I'm fine with using gfp flags (e.g., __GFP_NORETRY) as long as they
+don't enable other implicit behavior (e.g., move draining X to the
+caller) that's hard to get from the flag name.
 
-> > 
-> > This is required for enabling CPU frequency scaling on SDX55-based
-> > platforms.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  drivers/clk/qcom/Kconfig      |   9 ++
-> >  drivers/clk/qcom/Makefile     |   1 +
-> >  drivers/clk/qcom/apcs-sdx55.c | 149 ++++++++++++++++++++++++++++++++++
-> >  3 files changed, 159 insertions(+)
-> >  create mode 100644 drivers/clk/qcom/apcs-sdx55.c
-> > 
-> > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> > index d6f4aee4427a..2c67fdfae913 100644
-> > --- a/drivers/clk/qcom/Kconfig
-> > +++ b/drivers/clk/qcom/Kconfig
-> > @@ -45,6 +45,15 @@ config QCOM_CLK_APCS_MSM8916
-> >           Say Y if you want to support CPU frequency scaling on devices
-> >           such as msm8916.
-> >  
-> > +config QCOM_CLK_APCS_SDX55
-> 
-> APCC comes before APCS
-> 
+IMHO, if we ever want to move draining to the caller, or change the
+behavior of alloc_contig_range() in different ways (e.g., disable PCP),
+we won't get around introducing a separate set of flags for
+alloc_contig_range().
 
-Okay
+Let's see what Michal thinks. Thanks!
 
-> > +       tristate "SDX55 APCS Clock Controller"
-> > +       depends on QCOM_APCS_IPC || COMPILE_TEST
-> > +       help
-> > +         Support for the APCS Clock Controller on SDX55 platform. The
-> > +         APCS is managing the mux and divider which feeds the CPUs.
-> > +         Say Y if you want to support CPU frequency scaling on devices
-> > +         such as SDX55.
-> > +
-> >  config QCOM_CLK_APCC_MSM8996
-> >         tristate "MSM8996 CPU Clock Controller"
-> >         select QCOM_KRYO_L2_ACCESSORS
-> > diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> > index e7e0ac382176..a9271f40916c 100644
-> > --- a/drivers/clk/qcom/Makefile
-> > +++ b/drivers/clk/qcom/Makefile
-> > @@ -46,6 +46,7 @@ obj-$(CONFIG_MSM_MMCC_8998) += mmcc-msm8998.o
-> >  obj-$(CONFIG_QCOM_A53PLL) += a53-pll.o
-> >  obj-$(CONFIG_QCOM_A7PLL) += a7-pll.o
-> >  obj-$(CONFIG_QCOM_CLK_APCS_MSM8916) += apcs-msm8916.o
-> > +obj-$(CONFIG_QCOM_CLK_APCS_SDX55) += apcs-sdx55.o
-> >  obj-$(CONFIG_QCOM_CLK_APCC_MSM8996) += clk-cpu-8996.o
-> >  obj-$(CONFIG_QCOM_CLK_RPM) += clk-rpm.o
-> >  obj-$(CONFIG_QCOM_CLK_RPMH) += clk-rpmh.o
-> > diff --git a/drivers/clk/qcom/apcs-sdx55.c b/drivers/clk/qcom/apcs-sdx55.c
-> > new file mode 100644
-> > index 000000000000..14413c957d83
-> > --- /dev/null
-> > +++ b/drivers/clk/qcom/apcs-sdx55.c
-> > @@ -0,0 +1,149 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Qualcomm SDX55 APCS clock controller driver
-> > + *
-> > + * Copyright (c) 2020, Linaro Limited
-> > + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/cpu.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_domain.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/slab.h>
-> > +
-> > +#include "clk-regmap.h"
-> > +#include "clk-regmap-mux-div.h"
-> > +#include "common.h"
-> 
-> Curious what common is needed for?
-> 
-
-Not needed, will remove.
-
-> > +
-> > +static const u32 apcs_mux_clk_parent_map[] = { 0, 1, 5 };
-> > +
-> > +static const struct clk_parent_data pdata[] = {
-> > +       { .fw_name = "ref", .name = "bi_tcxo", },
-> > +       { .fw_name = "aux", .name = "gpll0", },
-> > +       { .fw_name = "pll", .name = "a7pll", },
-> 
-> Please remove name from here. It shouldn't be necessary if the DT
-> describes things properly. Or there isn't DT for this device?
-> 
-
-Will remove.
-
-> > +};
-> > +
-> > +/*
-> > + * We use the notifier function for switching to a temporary safe configuration
-> > + * (mux and divider), while the A7 PLL is reconfigured.
-> > + */
-> > +static int a7cc_notifier_cb(struct notifier_block *nb, unsigned long event,
-> > +                           void *data)
-> > +{
-> > +       int ret = 0;
-> > +       struct clk_regmap_mux_div *md = container_of(nb,
-> > +                                                    struct clk_regmap_mux_div,
-> > +                                                    clk_nb);
-> > +       if (event == PRE_RATE_CHANGE)
-> > +               /* set the mux and divider to safe frequency (400mhz) */
-> > +               ret = mux_div_set_src_div(md, 1, 2);
-> > +
-> > +       return notifier_from_errno(ret);
-> > +}
-> > +
-> > +static int qcom_apcs_sdx55_clk_probe(struct platform_device *pdev)
-> > +{
-> > +       struct device *dev = &pdev->dev;
-> > +       struct device *parent = dev->parent;
-> > +       struct device *cpu_dev;
-> > +       struct clk_regmap_mux_div *a7cc;
-> > +       struct regmap *regmap;
-> > +       struct clk_init_data init = { };
-> > +       int ret = -ENODEV;
-> 
-> Drop assignement..
-> 
-> > +
-> > +       regmap = dev_get_regmap(parent, NULL);
-> > +       if (!regmap) {
-> > +               dev_err(dev, "Failed to get parent regmap: %d\n", ret);
-> > +               return ret;
-> 
-> .. and Just return -ENODEV?
-> 
-> > +       }
-> > +
-> > +       a7cc = devm_kzalloc(dev, sizeof(*a7cc), GFP_KERNEL);
-> > +       if (!a7cc)
-> > +               return -ENOMEM;
-> > +
-> > +       init.name = "a7mux";
-> > +       init.parent_data = pdata;
-> > +       init.num_parents = ARRAY_SIZE(pdata);
-> > +       init.ops = &clk_regmap_mux_div_ops;
-> > +
-> > +       a7cc->clkr.hw.init = &init;
-> > +       a7cc->clkr.regmap = regmap;
-> > +       a7cc->reg_offset = 0x8;
-> > +       a7cc->hid_width = 5;
-> > +       a7cc->hid_shift = 0;
-> > +       a7cc->src_width = 3;
-> > +       a7cc->src_shift = 8;
-> > +       a7cc->parent_map = apcs_mux_clk_parent_map;
-> > +
-> > +       a7cc->pclk = devm_clk_get(parent, "pll");
-> > +       if (IS_ERR(a7cc->pclk)) {
-> > +               ret = PTR_ERR(a7cc->pclk);
-> > +               if (ret != -EPROBE_DEFER)
-> > +                       dev_err(dev, "Failed to get PLL clk: %d\n", ret);
-> 
-> Use dev_err_probe() please.
-> 
-> > +               return ret;
-> > +       }
-> > +
-> > +       a7cc->clk_nb.notifier_call = a7cc_notifier_cb;
-> > +       ret = clk_notifier_register(a7cc->pclk, &a7cc->clk_nb);
-> > +       if (ret) {
-> > +               dev_err(dev, "Failed to register clock notifier: %d\n", ret);
-> > +               return ret;
-> > +       }
-> > +
-> > +       ret = devm_clk_register_regmap(dev, &a7cc->clkr);
-> > +       if (ret) {
-> > +               dev_err(dev, "Failed to register regmap clock: %d\n", ret);
-> > +               goto err;
-> > +       }
-> > +
-> > +       ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-> > +                                         &a7cc->clkr.hw);
-> > +       if (ret) {
-> > +               dev_err(dev, "Failed to add clock provider: %d\n", ret);
-> > +               goto err;
-> > +       }
-> > +
-> > +       platform_set_drvdata(pdev, a7cc);
-> > +
-> > +       /*
-> > +        * Attach the power domain to cpudev. There seems to be no better place
-> > +        * to do this, so do it here.
-> > +        */
-> > +       cpu_dev = get_cpu_device(0);
-> > +       dev_pm_domain_attach(cpu_dev, true);
-> 
-> I guess this works given that we don't have CPU drivers. The comment
-> says what the code is doing but doesn't say why it's doing it. Adding
-> why may help understand in the future and would be a better comment.
-> Why can't cpufreq-dt attach a power domain from DT for a cpu device? Is
-> that a bad idea?
-> 
-
-Yeah, I talked with Viresh about using cpufreq-dt for attaching the power
-domain but he said it isn't the appropriate place. Hence, I decided to use
-this driver.
-
-Will make the comment more elaborate.
-
+-- 
 Thanks,
-Mani
 
-> > +
-> > +       return 0;
-> > +
-> > +err:
-> > +       clk_notifier_unregister(a7cc->pclk, &a7cc->clk_nb);
-> > +       return ret;
-> > +}
+David / dhildenb
+
