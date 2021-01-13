@@ -2,77 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C35AB2F4A77
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:43:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3E92F4AB1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:57:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726780AbhAMLmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 06:42:02 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34849 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726657AbhAMLl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:41:59 -0500
-X-UUID: a423613a6b9f4d8fa9ce5db31ede0cf0-20210113
-X-UUID: a423613a6b9f4d8fa9ce5db31ede0cf0-20210113
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 829334068; Wed, 13 Jan 2021 19:41:02 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 13 Jan 2021 19:41:01 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 13 Jan 2021 19:40:59 +0800
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>, <maz@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
-        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
-        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
-        <anson.chuang@mediatek.com>
-Subject: [v7,7/7] MAINTAINERS: Add Jianjun Wang as MediaTek PCI co-maintainer
-Date:   Wed, 13 Jan 2021 19:40:01 +0800
-Message-ID: <20210113114001.5804-8-jianjun.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210113114001.5804-1-jianjun.wang@mediatek.com>
-References: <20210113114001.5804-1-jianjun.wang@mediatek.com>
+        id S1725823AbhAMLvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 06:51:17 -0500
+Received: from verein.lst.de ([213.95.11.211]:59750 "EHLO verein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725771AbhAMLvQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 06:51:16 -0500
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id AA26B68AFE; Wed, 13 Jan 2021 12:50:31 +0100 (CET)
+Date:   Wed, 13 Jan 2021 12:50:31 +0100
+From:   Christoph Hellwig <hch@lst.de>
+To:     Claire Chang <tientzu@chromium.org>
+Cc:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, joro@8bytes.org, will@kernel.org,
+        frowand.list@gmail.com, konrad.wilk@oracle.com,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        sstabellini@kernel.org, hch@lst.de, m.szyprowski@samsung.com,
+        robin.murphy@arm.com, grant.likely@arm.com, xypron.glpk@gmx.de,
+        treding@nvidia.com, mingo@kernel.org, bauerman@linux.ibm.com,
+        peterz@infradead.org, gregkh@linuxfoundation.org,
+        saravanak@google.com, rafael.j.wysocki@intel.com,
+        heikki.krogerus@linux.intel.com, andriy.shevchenko@linux.intel.com,
+        rdunlap@infradead.org, dan.j.williams@intel.com,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        iommu@lists.linux-foundation.org, xen-devel@lists.xenproject.org,
+        tfiga@chromium.org, drinkcat@chromium.org
+Subject: Re: [RFC PATCH v3 1/6] swiotlb: Add io_tlb_mem struct
+Message-ID: <20210113115031.GA29376@lst.de>
+References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-2-tientzu@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210106034124.30560-2-tientzu@chromium.org>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update entry for MediaTek PCIe controller, add Jianjun Wang
-as MediaTek PCI co-maintainer.
+On Wed, Jan 06, 2021 at 11:41:19AM +0800, Claire Chang wrote:
+> Added a new struct, io_tlb_mem, as the IO TLB memory pool descriptor and
+> moved relevant global variables into that struct.
+> This will be useful later to allow for restricted DMA pool.
 
-Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-Acked-by: Ryder Lee <ryder.lee@mediatek.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+I like where this is going, but a few comments.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..1a033812c7f9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13622,6 +13622,7 @@ F:	drivers/pci/controller/dwc/pcie-histb.c
- 
- PCIE DRIVER FOR MEDIATEK
- M:	Ryder Lee <ryder.lee@mediatek.com>
-+M:	Jianjun Wang <jianjun.wang@mediatek.com>
- L:	linux-pci@vger.kernel.org
- L:	linux-mediatek@lists.infradead.org
- S:	Supported
--- 
-2.25.1
+Mostly I'd love to be able to entirely hide io_tlb_default_mem
+and struct io_tlb_mem inside of swiotlb.c.
 
+> --- a/arch/powerpc/platforms/pseries/svm.c
+> +++ b/arch/powerpc/platforms/pseries/svm.c
+> @@ -55,8 +55,8 @@ void __init svm_swiotlb_init(void)
+>  	if (vstart && !swiotlb_init_with_tbl(vstart, io_tlb_nslabs, false))
+>  		return;
+>  
+> -	if (io_tlb_start)
+> -		memblock_free_early(io_tlb_start,
+> +	if (io_tlb_default_mem.start)
+> +		memblock_free_early(io_tlb_default_mem.start,
+>  				    PAGE_ALIGN(io_tlb_nslabs << IO_TLB_SHIFT));
+
+I think this should switch to use the local vstart variable in
+prep patch.
+
+>  	panic("SVM: Cannot allocate SWIOTLB buffer");
+>  }
+> diff --git a/drivers/xen/swiotlb-xen.c b/drivers/xen/swiotlb-xen.c
+> index 2b385c1b4a99..4d17dff7ffd2 100644
+> --- a/drivers/xen/swiotlb-xen.c
+> +++ b/drivers/xen/swiotlb-xen.c
+> @@ -192,8 +192,8 @@ int __ref xen_swiotlb_init(int verbose, bool early)
+>  	/*
+>  	 * IO TLB memory already allocated. Just use it.
+>  	 */
+> -	if (io_tlb_start != 0) {
+> -		xen_io_tlb_start = phys_to_virt(io_tlb_start);
+> +	if (io_tlb_default_mem.start != 0) {
+> +		xen_io_tlb_start = phys_to_virt(io_tlb_default_mem.start);
+>  		goto end;
+
+xen_io_tlb_start is interesting. It is used only in two functions:
+
+ 1) is_xen_swiotlb_buffer, where I think we should be able to just use
+    is_swiotlb_buffer instead of open coding it with the extra
+    phys_to_virt/virt_to_phys cycle.
+ 2) xen_swiotlb_init, where except for the assignment it only is used
+    locally for the case not touched above and could this be replaced
+    with a local variable.
+
+Konrad, does this make sense to you?
+
+>  static inline bool is_swiotlb_buffer(phys_addr_t paddr)
+>  {
+> -	return paddr >= io_tlb_start && paddr < io_tlb_end;
+> +	struct io_tlb_mem *mem = &io_tlb_default_mem;
+> +
+> +	return paddr >= mem->start && paddr < mem->end;
+
+We'd then have to move this out of line as well.
