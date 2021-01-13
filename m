@@ -2,90 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDE702F5390
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 20:44:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD3622F53A7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 20:53:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728660AbhAMTnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 14:43:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48714 "EHLO
+        id S1728325AbhAMTuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 14:50:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728873AbhAMTny (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 14:43:54 -0500
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AD32C0617B1
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 11:42:20 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id BFBC11FFC1;
-        Wed, 13 Jan 2021 20:42:18 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, sumit.semwal@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v2 7/7] arm64: dts: pmi8998: Add the right interrupts for LAB/IBB SCP and OCP
-Date:   Wed, 13 Jan 2021 20:42:14 +0100
-Message-Id: <20210113194214.522238-8-angelogioacchino.delregno@somainline.org>
+        with ESMTP id S1728260AbhAMTuv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 14:50:51 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 531E0C061795
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 11:50:11 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kzm9c-0001yW-JU; Wed, 13 Jan 2021 20:50:04 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kzm9a-0001US-JR; Wed, 13 Jan 2021 20:50:02 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [PATCH 1/2] gpio: pca953x: Add support for pca9506
+Date:   Wed, 13 Jan 2021 20:49:51 +0100
+Message-Id: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210113194214.522238-1-angelogioacchino.delregno@somainline.org>
-References: <20210113194214.522238-1-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In commit 208921bae696 ("arm64: dts: qcom: pmi8998: Add nodes for
-LAB and IBB regulators") bindings for the lab/ibb regulators were
-added to the pmi8998 dt, but the original committer has never
-specified what the interrupts were for.
-LAB and IBB regulators provide two interrupts, SC-ERR (short
-circuit error) and VREG-OK but, in that commit, the regulators
-were provided with two different types of interrupts;
-specifically, IBB had the SC-ERR interrupt, while LAB had the
-VREG-OK one, none of which were (luckily) used, since the driver
-didn't actually use these at all.
-Assuming that the original intention was to have the SC IRQ in
-both LAB and IBB, as per the names appearing in documentation,
-fix the SCP interrupt.
+According to the reference manual "The PCA9505 is identical to the
+PCA9506 except that it includes 100 kΩ internal pull-up resistors on all
+the I/Os." So the pca9506 device can be considered identical to the
+pca9505 for the gpio driver.
 
-While at it, also add the OCP interrupt in order to be able to
-enable the Over-Current Protection feature, if requested.
-
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 ---
- arch/arm64/boot/dts/qcom/pmi8998.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 1 +
+ drivers/gpio/gpio-pca953x.c                              | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-index d016b12967eb..d230c510d4b7 100644
---- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-@@ -30,11 +30,15 @@ labibb {
- 			compatible = "qcom,pmi8998-lab-ibb";
- 
- 			ibb: ibb {
--				interrupts = <0x3 0xdc 0x2 IRQ_TYPE_EDGE_RISING>;
-+				interrupts = <0x3 0xdc 0x2 IRQ_TYPE_EDGE_RISING>,
-+					     <0x3 0xdc 0x0 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "sc-err", "ocp";
- 			};
- 
- 			lab: lab {
--				interrupts = <0x3 0xde 0x0 IRQ_TYPE_EDGE_RISING>;
-+				interrupts = <0x3 0xde 0x1 IRQ_TYPE_EDGE_RISING>,
-+					     <0x3 0xde 0x0 IRQ_TYPE_LEVEL_LOW>;
-+				interrupt-names = "sc-err", "ocp";
- 			};
- 		};
- 	};
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+index f5ee23c2df60..cdd7744b8723 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
++++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+@@ -32,6 +32,7 @@ properties:
+       - maxim,max7327
+       - nxp,pca6416
+       - nxp,pca9505
++      - nxp,pca9506
+       - nxp,pca9534
+       - nxp,pca9535
+       - nxp,pca9536
+diff --git a/drivers/gpio/gpio-pca953x.c b/drivers/gpio/gpio-pca953x.c
+index 825b362eb4b7..5ea09fd01544 100644
+--- a/drivers/gpio/gpio-pca953x.c
++++ b/drivers/gpio/gpio-pca953x.c
+@@ -73,6 +73,7 @@
+ static const struct i2c_device_id pca953x_id[] = {
+ 	{ "pca6416", 16 | PCA953X_TYPE | PCA_INT, },
+ 	{ "pca9505", 40 | PCA953X_TYPE | PCA_INT, },
++	{ "pca9506", 40 | PCA953X_TYPE | PCA_INT, },
+ 	{ "pca9534", 8  | PCA953X_TYPE | PCA_INT, },
+ 	{ "pca9535", 16 | PCA953X_TYPE | PCA_INT, },
+ 	{ "pca9536", 4  | PCA953X_TYPE, },
+@@ -1236,6 +1237,7 @@ static int pca953x_resume(struct device *dev)
+ static const struct of_device_id pca953x_dt_ids[] = {
+ 	{ .compatible = "nxp,pca6416", .data = OF_953X(16, PCA_INT), },
+ 	{ .compatible = "nxp,pca9505", .data = OF_953X(40, PCA_INT), },
++	{ .compatible = "nxp,pca9506", .data = OF_953X(40, PCA_INT), },
+ 	{ .compatible = "nxp,pca9534", .data = OF_953X( 8, PCA_INT), },
+ 	{ .compatible = "nxp,pca9535", .data = OF_953X(16, PCA_INT), },
+ 	{ .compatible = "nxp,pca9536", .data = OF_953X( 4, 0), },
+
+base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
 -- 
 2.29.2
 
