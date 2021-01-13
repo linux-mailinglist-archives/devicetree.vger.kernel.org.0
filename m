@@ -2,117 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D56D2F5204
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:30:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C3B2F5208
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728197AbhAMS2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 13:28:24 -0500
-Received: from foss.arm.com ([217.140.110.172]:40292 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727984AbhAMS2Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 13:28:24 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 938921FB;
-        Wed, 13 Jan 2021 10:27:38 -0800 (PST)
-Received: from [10.57.56.43] (unknown [10.57.56.43])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 992EC3F66E;
-        Wed, 13 Jan 2021 10:27:09 -0800 (PST)
-Subject: Re: [RFC PATCH v3 4/6] swiotlb: Add restricted DMA alloc/free
- support.
-To:     Christoph Hellwig <hch@lst.de>, Claire Chang <tientzu@chromium.org>
-Cc:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
-        paulus@samba.org, joro@8bytes.org, will@kernel.org,
-        frowand.list@gmail.com, konrad.wilk@oracle.com,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org, m.szyprowski@samsung.com,
-        grant.likely@arm.com, xypron.glpk@gmx.de, treding@nvidia.com,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        gregkh@linuxfoundation.org, saravanak@google.com,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
-        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
-        xen-devel@lists.xenproject.org, tfiga@chromium.org,
-        drinkcat@chromium.org
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-5-tientzu@chromium.org> <20210113124847.GC1383@lst.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <82bb75bc-11e6-ac94-9d24-7c896e3aae98@arm.com>
-Date:   Wed, 13 Jan 2021 18:27:08 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1728350AbhAMS3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 13:29:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728330AbhAMS3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 13:29:32 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC11C061575
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 10:28:46 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id i9so3191478wrc.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 10:28:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=oCAeIb7ECFW6QlWgtdlZyS84pPretLI5vdf+tM6RJD4=;
+        b=Uibh+vbAZVnETjtRBAkiqx6q2IIG4VTxEpRIY6uh618odCokYJk2Rp/NUw7U3mbcW1
+         c0tPK4C6kRxMB8tg7NnAbADmglLr3wrGuVJd15fHX2E3d3aBfjULp3XBytVT9QuCf3ZD
+         9uMv+jG3r8lckQp7NEWv/Xv/fjoE1O1qB+K7aiudPgD1EWs9VA+Z5xvZyn5VUhOyei99
+         NezwTAoysxwKeO53Xew9XxWLRzfG30JNyCBZSVGL/z25EOMeB38vLAo0STXqBorTf20H
+         9+vSMtKPiCN2/fiXYM8SJ0jdTxSZS70B1MQr5SlM5E8Ly8x3Vyk36MYman3txbdX/h4N
+         xQWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oCAeIb7ECFW6QlWgtdlZyS84pPretLI5vdf+tM6RJD4=;
+        b=QtpT+848gEJCkIo066aTUbUinuCynhN9aSKhVBPpJKKWFQyL0uUZvABVIAMmqo7okQ
+         MJxVRIJNiumRuXvqa48kf0kMn2a+fxTH6FVKQcsX+Hdu+gu6mjZxkME24YGd3ppl94Ly
+         i4bLCNG7HrjHceIgu5bNKp+Eb3xzCgIxia/vyX6qHk9ZbTaj0FYoVlp9gBDBi+YrSVdR
+         X1ZInnXbqZXgCZ17NfyUqm+VDlYjWdDyC8B+InJ54amoz11MkxSxHHg1hPqk4HYgqgUg
+         9HnHCzDrX2EYRNfMV+kZpX6fqNLQGtwXyCYg8oI0afXJ6UJkou/cEw8O3w7/J0g4C5Y0
+         ThVg==
+X-Gm-Message-State: AOAM530q1/aLYbebG/vbXUTkoPDAxA7x0yaeTR0ZIk+Pf36ZT5DfL/St
+        ToiFJtf8G6EsqYHYz+ZhSYBTlQ==
+X-Google-Smtp-Source: ABdhPJw07pkMlp/wa7hOyU26GePo2LXD56vW96vj5Sk6xZIiiPoUrxPmL1/QeYsYtlYpnqzeZtt8VA==
+X-Received: by 2002:adf:97d2:: with SMTP id t18mr3944967wrb.228.1610562524885;
+        Wed, 13 Jan 2021 10:28:44 -0800 (PST)
+Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
+        by smtp.gmail.com with ESMTPSA id b14sm4485354wrx.77.2021.01.13.10.28.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 10:28:44 -0800 (PST)
+Date:   Wed, 13 Jan 2021 18:28:41 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, android-kvm@google.com,
+        linux-kernel@vger.kernel.org, kernel-team@android.com,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        Fuad Tabba <tabba@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Brazdil <dbrazdil@google.com>
+Subject: Re: [RFC PATCH v2 13/26] KVM: arm64: Enable access to sanitized CPU
+ features at EL2
+Message-ID: <X/872aaC/E4MwMa6@google.com>
+References: <20210108121524.656872-1-qperret@google.com>
+ <20210108121524.656872-14-qperret@google.com>
+ <d55643ea391f73a2297f499f3219ba8a@kernel.org>
+ <X/8CR5eXGGccFjaL@google.com>
+ <X/8FFKOLOVD9Ee2F@google.com>
+ <e09900ba30646cf23e1683a2ed16078f@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210113124847.GC1383@lst.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e09900ba30646cf23e1683a2ed16078f@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-13 12:48, Christoph Hellwig wrote:
->> +#ifdef CONFIG_SWIOTLB
->> +	if (unlikely(dev->dma_io_tlb_mem))
->> +		return swiotlb_alloc(dev, size, dma_handle, attrs);
->> +#endif
+On Wednesday 13 Jan 2021 at 17:27:49 (+0000), Marc Zyngier wrote:
+> On 2021-01-13 14:35, Quentin Perret wrote:
+> > On Wednesday 13 Jan 2021 at 14:23:03 (+0000), Quentin Perret wrote:
+> > > Good point, that would be nice indeed. Can I use that from outside an
+> > > __init function?
+> > 
+> > Just gave it a go, and the answer to this appears to be yes,
+> > surprisingly -- I was expecting a compile-time warning similar to what
+> > we get when non-__init code calls into __init, but that doesn't seem to
+> > trigger here. Anyways, I'll add the annotation in v3.
 > 
-> Another place where the dma_io_tlb_mem is useful to avoid the ifdef.
-> 
->> -phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
->> -		size_t mapping_size, size_t alloc_size,
->> -		enum dma_data_direction dir, unsigned long attrs)
->> +static int swiotlb_tbl_find_free_region(struct device *hwdev,
->> +					dma_addr_t tbl_dma_addr,
->> +					size_t alloc_size,
->> +					unsigned long attrs)
-> 
->> +static void swiotlb_tbl_release_region(struct device *hwdev, int index,
->> +				       size_t size)
-> 
-> This refactoring should be another prep patch.
-> 
-> 
->> +void *swiotlb_alloc(struct device *dev, size_t size, dma_addr_t *dma_handle,
->> +		    unsigned long attrs)
-> 
-> I'd rather have the names convey there are for the per-device bounce
-> buffer in some form.
-> 
->> +	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
-> 
-> While we're at it I wonder if the io_tlb is something we could change
-> while we're at it.  Maybe replace io_tlb_mem with struct swiotlb
-> and rename the field in struct device to dev_swiotlb?
-> 
->> +	int index;
->> +	void *vaddr;
->> +	phys_addr_t tlb_addr;
->> +
->> +	size = PAGE_ALIGN(size);
->> +	index = swiotlb_tbl_find_free_region(dev, mem->start, size, attrs);
->> +	if (index < 0)
->> +		return NULL;
->> +
->> +	tlb_addr = mem->start + (index << IO_TLB_SHIFT);
->> +	*dma_handle = phys_to_dma_unencrypted(dev, tlb_addr);
->> +
->> +	if (!dev_is_dma_coherent(dev)) {
->> +		unsigned long pfn = PFN_DOWN(tlb_addr);
->> +
->> +		/* remove any dirty cache lines on the kernel alias */
->> +		arch_dma_prep_coherent(pfn_to_page(pfn), size);
-> 
-> Can we hook in somewhat lower level in the dma-direct code so that all
-> the remapping in dma-direct can be reused instead of duplicated?  That
-> also becomes important if we want to use non-remapping uncached support,
-> e.g. on mips or x86, or the direct changing of the attributes that Will
-> planned to look into for arm64.
+> That's surprising. I'd definitely expect something to explode...
+> Do you have CONFIG_DEBUG_SECTION_MISMATCH=y?
 
-Indeed, AFAICS this ought to boil down to a direct equivalent of 
-__dma_direct_alloc_pages() - other than the address there should be no 
-conceptual difference between pages from the restricted pool and those 
-from the regular page allocator, so this probably deserves to be plumbed 
-in as an alternative to that.
+Yes I do, so, that doesn't seem to be it. Now, the plot thickens: I
+_do_ get a warning if I remove the 'const' qualifier. But interestingly,
+in both cases hyp_ftr_regs is placed in .init.data:
 
-Robin.
+  $ objdump -t vmlinux | grep hyp_ftr_regs
+  ffff8000116c17b0 g     O .init.data     0000000000000030 hyp_ftr_regs
+
+The warning is silenced only if I mark hyp_ftr_regs as const. modpost
+bug? I'll double check my findings and follow up in a separate series.
+
+Thanks,
+Quentin
