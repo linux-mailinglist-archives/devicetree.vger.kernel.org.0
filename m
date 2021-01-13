@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68D062F4B89
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 13:45:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 990682F4BA2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 13:50:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725613AbhAMMpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 07:45:01 -0500
-Received: from verein.lst.de ([213.95.11.211]:60054 "EHLO verein.lst.de"
+        id S1725912AbhAMMte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 07:49:34 -0500
+Received: from verein.lst.de ([213.95.11.211]:60093 "EHLO verein.lst.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725773AbhAMMpB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 07:45:01 -0500
+        id S1725857AbhAMMtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 07:49:33 -0500
 Received: by verein.lst.de (Postfix, from userid 2407)
-        id 5DAEB68AFE; Wed, 13 Jan 2021 13:44:16 +0100 (CET)
-Date:   Wed, 13 Jan 2021 13:44:16 +0100
+        id D787F68AFE; Wed, 13 Jan 2021 13:48:47 +0100 (CET)
+Date:   Wed, 13 Jan 2021 13:48:47 +0100
 From:   Christoph Hellwig <hch@lst.de>
 To:     Claire Chang <tientzu@chromium.org>
 Cc:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
@@ -31,35 +31,72 @@ Cc:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
         linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
         iommu@lists.linux-foundation.org, xen-devel@lists.xenproject.org,
         tfiga@chromium.org, drinkcat@chromium.org
-Subject: Re: [RFC PATCH v3 3/6] swiotlb: Use restricted DMA pool if
- available
-Message-ID: <20210113124416.GB1383@lst.de>
-References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-4-tientzu@chromium.org>
+Subject: Re: [RFC PATCH v3 4/6] swiotlb: Add restricted DMA alloc/free
+ support.
+Message-ID: <20210113124847.GC1383@lst.de>
+References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-5-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210106034124.30560-4-tientzu@chromium.org>
+In-Reply-To: <20210106034124.30560-5-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 > +#ifdef CONFIG_SWIOTLB
-> +	if (unlikely(swiotlb_force == SWIOTLB_FORCE) || dev->dma_io_tlb_mem)
->  		return swiotlb_map(dev, phys, size, dir, attrs);
+> +	if (unlikely(dev->dma_io_tlb_mem))
+> +		return swiotlb_alloc(dev, size, dma_handle, attrs);
 > +#endif
 
-Please provide a wrapper for the dev->dma_io_tlb_mem check that
-always returns false if the per-device swiotlb support is not enabled.
+Another place where the dma_io_tlb_mem is useful to avoid the ifdef.
 
-> index 7fb2ac087d23..1f05af09e61a 100644
-> --- a/kernel/dma/swiotlb.c
-> +++ b/kernel/dma/swiotlb.c
-> @@ -222,7 +222,6 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
->  		mem->orig_addr[i] = INVALID_PHYS_ADDR;
->  	}
->  	mem->index = 0;
-> -	no_iotlb_memory = false;
+> -phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
+> -		size_t mapping_size, size_t alloc_size,
+> -		enum dma_data_direction dir, unsigned long attrs)
+> +static int swiotlb_tbl_find_free_region(struct device *hwdev,
+> +					dma_addr_t tbl_dma_addr,
+> +					size_t alloc_size,
+> +					unsigned long attrs)
 
-How does this fit in here?
+> +static void swiotlb_tbl_release_region(struct device *hwdev, int index,
+> +				       size_t size)
 
+This refactoring should be another prep patch.
+
+
+> +void *swiotlb_alloc(struct device *dev, size_t size, dma_addr_t *dma_handle,
+> +		    unsigned long attrs)
+
+I'd rather have the names convey there are for the per-device bounce
+buffer in some form.
+
+> +	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
+
+While we're at it I wonder if the io_tlb is something we could change
+while we're at it.  Maybe replace io_tlb_mem with struct swiotlb
+and rename the field in struct device to dev_swiotlb?
+
+> +	int index;
+> +	void *vaddr;
+> +	phys_addr_t tlb_addr;
+> +
+> +	size = PAGE_ALIGN(size);
+> +	index = swiotlb_tbl_find_free_region(dev, mem->start, size, attrs);
+> +	if (index < 0)
+> +		return NULL;
+> +
+> +	tlb_addr = mem->start + (index << IO_TLB_SHIFT);
+> +	*dma_handle = phys_to_dma_unencrypted(dev, tlb_addr);
+> +
+> +	if (!dev_is_dma_coherent(dev)) {
+> +		unsigned long pfn = PFN_DOWN(tlb_addr);
+> +
+> +		/* remove any dirty cache lines on the kernel alias */
+> +		arch_dma_prep_coherent(pfn_to_page(pfn), size);
+
+Can we hook in somewhat lower level in the dma-direct code so that all
+the remapping in dma-direct can be reused instead of duplicated?  That
+also becomes important if we want to use non-remapping uncached support,
+e.g. on mips or x86, or the direct changing of the attributes that Will
+planned to look into for arm64.
