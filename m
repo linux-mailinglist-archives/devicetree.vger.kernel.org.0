@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF2502F4357
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:52:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AA4C2F4363
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:53:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726249AbhAMEud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 23:50:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53804 "EHLO
+        id S1726493AbhAMEwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 23:52:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725818AbhAMEud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 23:50:33 -0500
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CD2C061575
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 20:49:52 -0800 (PST)
-Received: by mail-pf1-x42e.google.com with SMTP id h10so471650pfo.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 20:49:52 -0800 (PST)
+        with ESMTP id S1726375AbhAMEwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 23:52:53 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5796FC061575;
+        Tue, 12 Jan 2021 20:52:13 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id y12so375704pji.1;
+        Tue, 12 Jan 2021 20:52:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=QX/ze9rolVE5iF8EAM67G7/PGvIWPosPnHzbR0maqi0=;
-        b=k6JhKHkm/INZ1FMjQ/e1svvSkQSSIFaydOGvjUgVjMEX/EHZwpilucrYULdNeq6ENv
-         fOvcNaSLiGRbauHfNP+fPeBUK5T+dpV3Tr46HTjKQB9XGUSck/zA5qgUR9l8eGr+Sezq
-         g7mWofMOL91RLQWIt+KS8s7vXjWM/OQ4gSdx2jUlAenHRyyOuXfLaK0uy5rGFcaLHkzC
-         KMyZCJWVX/eNktSYaDrod9hmEO2hoiA+0LfwLsKyCaJfOkyseQNNTDCtSKKP203uJaNV
-         RSSpTAVk80h+Nok9Aj3Qn9uqdeOzBAoq1xHwVBHm5PqLF/l/JVi3gbi5ehsok8I83UsG
-         x21w==
+        bh=nIPuJG/f1iSSi0S/53GdRrE2iJhHg51i8LMP+mddyMA=;
+        b=jSKe1uJroLlKt0wqGChfLjFAUxtPyB7mpxyQHsbEBAtGRoFQDXviA5yy1ENjBo9F77
+         ZxE1HtkVZu9zft6hh3+dJF5oocoEscdydAxLvHVcVxJJOAsIEQxWj3WktonLkm/BQlDS
+         mcfuoOlrea5bsgKcezg+8n4iOpLJjiwwboWYo9p2xnQc0TaCUdXDftPgPk+EQ+7Uh9Go
+         0R4Ip+cCeYzK7/Jvd5mHraJ5FOqe/OMgOe5CgOFf4DQEtVQ9AyP1tmrMJs35tj3tAIYp
+         L5HGFuy1YhhTI7KfPDnDV4pOo+etIlM7mlPULJSJ3r4w0odUMid0z9WTps4oHb76MMZX
+         3lig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=QX/ze9rolVE5iF8EAM67G7/PGvIWPosPnHzbR0maqi0=;
-        b=ITrGiNGswOZAmj7xXfC7BRZIoDfWpjL0wnh9wM9hB5LvnHWqN5YPGQllnUDzgOKTew
-         SntBRruNIqdHBpRgtdUOtQ51nydPqMm/QWt6GnX9ebHpziiS7i9Zzx4LdHKcbSrUUmoV
-         v5gwznzdCXzCB6pP3KmsE982TnzCmvKF/TdhXSx8RA/9xoszOD90UdRH+wxSxTMT2bLi
-         rhb6VzDY7FhqqTHpkwbkAgF3X2R9g8+4Xo++JQJXqDWl9+sIca+Gx5CxFCziOboj3uS1
-         YxcI6M113ffJwksMTTWAucRJEyyX+E0Rg3cdJTSh8cIogfXhc3Ju3spGTXHHbBq8dYZD
-         53/Q==
-X-Gm-Message-State: AOAM531q0p/sRcwEsJBUi+fYMTcvZn+1sH6W3QliFsDZIuqgiXAbbFj9
-        UwxMM3opeNe8BhLZ2tzq/YE=
-X-Google-Smtp-Source: ABdhPJxv5XsBIytgzBnoZeIJv0uAdBE93AeEP9LNmHY8iqLO+Jx7D1a/xluy8cO2FsNHLudcovz7vg==
-X-Received: by 2002:a63:c444:: with SMTP id m4mr364599pgg.420.1610513392353;
-        Tue, 12 Jan 2021 20:49:52 -0800 (PST)
+        bh=nIPuJG/f1iSSi0S/53GdRrE2iJhHg51i8LMP+mddyMA=;
+        b=CmwS2jqSYL60mSTJP5R2CIlLXEJ2auOnL5uBKdoOqnINoyQQGQG13t0mLNiQq6ya//
+         v9+NRy0ZXrkB5nNaeH1FLR1bqz8+GixxIhu9yRaC0+CSBjxLaAoI9PwAG/OvyYpK5Ulo
+         ERiFrppS3fLBoY8rUYcidLc752ipVz4TC87DDt68aT6ucT4+CzTCPtYfpRbgoucursBI
+         mnfgbEFUs/DYLshSZKB7YYw8tUHZdWhOtR3uDdn3xoagqLeNLrxc3/rjr50Y1xZcRHSp
+         1iAtmriDBcSK15ITsOliwf4wKLlAfl3JY8X2GdpTcwnQSxo6FiluZyefdXNs3FbkkL/h
+         XBow==
+X-Gm-Message-State: AOAM531w1nyflozmC4ZMiTc6gNdHLQfVPab3uKtl9AyfAfa22xlsVKmj
+        ovxmT+xvVecFDXdsLCIiegk=
+X-Google-Smtp-Source: ABdhPJz8iVmHS2KCF9/RjgOLy0eJ8KBHWbbBqr2aVIOs1YCiM5ytF/+GMgL3WRv1taZH12O5MJYQeA==
+X-Received: by 2002:a17:90a:ec10:: with SMTP id l16mr249353pjy.127.1610513532890;
+        Tue, 12 Jan 2021 20:52:12 -0800 (PST)
 Received: from [10.230.29.29] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x1sm832062pfj.95.2021.01.12.20.49.50
+        by smtp.gmail.com with ESMTPSA id g16sm753847pfh.187.2021.01.12.20.52.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jan 2021 20:49:51 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: broadcom: bcm4908: describe PMB block
+        Tue, 12 Jan 2021 20:52:11 -0800 (PST)
+Subject: Re: [PATCH V4 1/3] dt-bindings: phy: brcm,brcmstb-usb-phy: convert to
+ the json-schema
 To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20210112192723.751-1-zajec5@gmail.com>
+References: <20210106205838.10964-1-zajec5@gmail.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <a2b3a65e-ea16-13f4-d145-dac70c75fbed@gmail.com>
-Date:   Tue, 12 Jan 2021 20:49:49 -0800
+Message-ID: <d31b657f-6826-b276-d697-d8f8d5a711aa@gmail.com>
+Date:   Tue, 12 Jan 2021 20:52:09 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20210112192723.751-1-zajec5@gmail.com>
+In-Reply-To: <20210106205838.10964-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -72,43 +75,20 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 1/12/2021 11:27 AM, Rafał Miłecki wrote:
+On 1/6/2021 12:58 PM, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> PMB (Power Management Bus) controls powering connected devices (e.g.
-> PCIe, USB, SATA). In BCM4908 it's a part of the PROCMON block.
+> Changes that require mentioning:
+> 1. interrupt-names
+>    Name "wakeup" was changed to the "wake". It matches example and what
+>    Linux driver looks for in the first place
+> 2. brcm,ipp and brcm,ioc
+>    Both were described as booleans with 0 / 1 values. In examples they
+>    were integers and Linux checks for int as well. Both got uint32.
+> 3. Added minimal description
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> Florian: this patch is based on top of the
-> [PATCH] arm64: dts: broadcom: bcm4908: describe internal switch
-> one. Both modify "ranges".
-> ---
->  .../boot/dts/broadcom/bcm4908/bcm4908.dtsi      | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-> index 0b44f32fdef1..882953885bfc 100644
-> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-> @@ -108,7 +108,7 @@ soc {
->  		compatible = "simple-bus";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> -		ranges = <0x00 0x00 0x80000000 0xd0000>;
-> +		ranges = <0x00 0x00 0x80000000 0x281000>;
->  
->  		usb@c300 {
->  			compatible = "generic-ehci";
-> @@ -213,6 +213,21 @@ phy12: phy@c {
->  				};
->  			};
->  		};
-> +
-> +		procmon: syscon@280000 {
-> +			compatible = "simple-mfd";
 
-Likewise, I would use "simple-bus" here instead of "simple-mfd" even if
-this does not create a functional difference.
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
 Florian
