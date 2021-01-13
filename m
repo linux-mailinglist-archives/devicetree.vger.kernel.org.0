@@ -2,296 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 594912F47C4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 10:44:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B298A2F47F1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 10:50:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727288AbhAMJlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 04:41:35 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:10655 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726534AbhAMJlf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 04:41:35 -0500
-Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4DG2Ty0Qc6z15sJx;
-        Wed, 13 Jan 2021 17:39:50 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.176.220) by
- DGGEMS404-HUB.china.huawei.com (10.3.19.204) with Microsoft SMTP Server id
- 14.3.498.0; Wed, 13 Jan 2021 17:40:40 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Russell King <rmk+kernel@arm.linux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Will Deacon <will.deacon@arm.com>,
-        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>
-Subject: [PATCH v4 3/3] ARM: Add support for Hisilicon Kunpeng L3 cache controller
-Date:   Wed, 13 Jan 2021 17:39:42 +0800
-Message-ID: <20210113093942.809-4-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20210113093942.809-1-thunder.leizhen@huawei.com>
-References: <20210113093942.809-1-thunder.leizhen@huawei.com>
+        id S1727264AbhAMJo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 04:44:57 -0500
+Received: from foss.arm.com ([217.140.110.172]:33284 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727214AbhAMJo5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 04:44:57 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A20D41063;
+        Wed, 13 Jan 2021 01:44:11 -0800 (PST)
+Received: from bogus (unknown [10.57.35.27])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 59F233F66E;
+        Wed, 13 Jan 2021 01:44:10 -0800 (PST)
+Date:   Wed, 13 Jan 2021 09:44:08 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jens Wiklander <jens.wiklander@linaro.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
+        Andrew Walbran <qwandor@google.com>,
+        David Hartley <dhh@qti.qualcomm.com>,
+        Achin Gupta <Achin.Gupta@arm.com>,
+        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>
+Subject: Re: [PATCH v3 6/7] firmware: arm_ffa: Setup in-kernel users of FFA
+ partitions
+Message-ID: <20210113094408.pjkno4nalk5zizxa@bogus>
+References: <20201204121137.2966778-1-sudeep.holla@arm.com>
+ <20201204121137.2966778-7-sudeep.holla@arm.com>
+ <CAHUa44EfHeKgktefhH2nEM7E++Zap8Nw7kaSqVmYVoH01Zm1VQ@mail.gmail.com>
+ <CAHUa44HQJw=190MCphXecaQQn3HujHT6ZkSgG-PNARrKMQmQZw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.176.220]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHUa44HQJw=190MCphXecaQQn3HujHT6ZkSgG-PNARrKMQmQZw@mail.gmail.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Hisilicon Kunpeng L3 cache controller as used with
-Kunpeng506 and Kunpeng509 SoCs.
+On Fri, Dec 11, 2020 at 11:59:40AM +0100, Jens Wiklander wrote:
+> One more comment below.
+> 
+> On Fri, Dec 11, 2020 at 11:45 AM Jens Wiklander
+> <jens.wiklander@linaro.org> wrote:
+> >
+> > Hi Sudeep,
+> >
+> > Some more comments below.
+> >
+> > On Fri, Dec 4, 2020 at 1:11 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > >
+> > > Parse the FFA nodes from the device-tree and register all the partitions
+> > > whose services will be used in the kernel.
+> > >
+> > > In order to also enable in-kernel users of FFA interface, let us add
+> > > simple set of operations for such devices.
+> > >
+> > > The in-kernel users are registered without the character device interface.
+> > >
+> > > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> > > ---
+> > >  drivers/firmware/arm_ffa/common.h |   2 +
+> > >  drivers/firmware/arm_ffa/driver.c | 186 ++++++++++++++++++++++++++++++
+> > >  include/linux/arm_ffa.h           |  36 +++++-
+> > >  3 files changed, 223 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/firmware/arm_ffa/common.h b/drivers/firmware/arm_ffa/common.h
+> > > index d019348bf67d..eb1371c2b2b8 100644
+> > > --- a/drivers/firmware/arm_ffa/common.h
+> > > +++ b/drivers/firmware/arm_ffa/common.h
+> > > @@ -6,6 +6,7 @@
+> > >  #ifndef _FFA_COMMON_H
+> > >  #define _FFA_COMMON_H
+> > >
+> > > +#include <linux/arm_ffa.h>
+> > >  #include <linux/arm-smccc.h>
+> > >  #include <linux/err.h>
+> > >
+> > > @@ -17,6 +18,7 @@ typedef ffa_res_t
+> > >
+> > >  int __init arm_ffa_bus_init(void);
+> > >  void __exit arm_ffa_bus_exit(void);
+> > > +bool ffa_device_is_valid(struct ffa_device *ffa_dev);
+> > >
+> > >  #ifdef CONFIG_ARM_FFA_SMCCC
+> > >  int __init ffa_transport_init(ffa_fn **invoke_ffa_fn);
+> > > diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
+> > > index 257b331d781c..3e4ba841dbf8 100644
+> > > --- a/drivers/firmware/arm_ffa/driver.c
+> > > +++ b/drivers/firmware/arm_ffa/driver.c
+> > > @@ -24,9 +24,13 @@
+> > >
+> > >  #include <linux/arm_ffa.h>
+> > >  #include <linux/bitfield.h>
+> > > +#include <linux/device.h>
+> > >  #include <linux/io.h>
+> > > +#include <linux/kernel.h>
+> > >  #include <linux/module.h>
+> > > +#include <linux/of.h>
+> > >  #include <linux/slab.h>
+> > > +#include <linux/uuid.h>
+> > >
+> > >  #include "common.h"
+> > >
+> > > @@ -179,6 +183,20 @@ static int ffa_version_check(u32 *version)
+> > >         return 0;
+> > >  }
+> > >
+> > > +static int ffa_rx_release(void)
+> > > +{
+> > > +       ffa_res_t ret;
+> > > +
+> > > +       ret = invoke_ffa_fn(FFA_RX_RELEASE, 0, 0, 0, 0, 0, 0, 0);
+> > > +
+> > > +       if (ret.a0 == FFA_ERROR)
+> > > +               return ffa_to_linux_errno((int)ret.a2);
+> > > +
+> > > +       /* check for ret.a0 == FFA_RX_RELEASE ? */
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > >  static int ffa_rxtx_map(phys_addr_t tx_buf, phys_addr_t rx_buf, u32 pg_cnt)
+> > >  {
+> > >         ffa_res_t ret;
+> > > @@ -203,6 +221,50 @@ static int ffa_rxtx_unmap(u16 vm_id)
+> > >         return 0;
+> > >  }
+> > >
+> > > +static int __ffa_partition_info_get(u32 uuid0, u32 uuid1, u32 uuid2, u32 uuid3,
+> > > +                                   struct ffa_partition_info **buffer)
+> > > +{
+> > > +       int count;
+> > > +       ffa_res_t partition_info;
+> > > +
+> > > +       mutex_lock(&drv_info->rx_lock);
+> > > +       partition_info = invoke_ffa_fn(FFA_PARTITION_INFO_GET, uuid0, uuid1,
+> > > +                                      uuid2, uuid3, 0, 0, 0);
+> > > +
+> > > +       if (partition_info.a0 == FFA_ERROR)
+> > > +               return ffa_to_linux_errno((int)partition_info.a2);
+> > > +
+> > > +       count = partition_info.a2;
+> > > +
+> > > +       if (buffer)
+> > > +               memcpy(*buffer, drv_info->rx_buffer, sizeof(*buffer) * count);
+> > > +
+> > > +       ffa_rx_release();
+> > > +
+> > > +       mutex_unlock(&drv_info->rx_lock);
+> > > +
+> > > +       return count;
+> > > +}
+> > > +
+> > > +static int ffa_partition_probe(const char *uuid_str,
+> > > +                              struct ffa_partition_info *buffer)
+> > > +{
+> > > +       int count;
+> > > +       uuid_t uuid;
+> > > +       u32 uuid0_4[4] = { 0 };
+> > > +
+> > > +       if (uuid_parse(uuid_str, &uuid)) {
+> > > +               pr_err("invalid uuid (%s)\n", uuid_str);
+> > > +               return -ENODEV;
+> > > +       }
+> > > +
+> > > +       export_uuid((u8 *)uuid0_4, &uuid);
+> > > +       count = __ffa_partition_info_get(uuid0_4[0], uuid0_4[1], uuid0_4[2],
+> > > +                                        uuid0_4[3], &buffer);
+> Wrong byte order?
+> According to section 5.3 of the SMCCC, UUIDs are returned as a single
+> 128-bit value using the SMC32 calling convention. This value is mapped
+> to argument registers x0-x3 on AArch64 (resp. r0-r3 on AArch32). x0
+> for example shall hold bytes 0 to 3, with byte 0 in the low-order
+> bits.
+>
 
-These Hisilicon SoCs support LPAE, so the physical addresses is wider than
-32-bits, but the actual bit width does not exceed 36 bits. When the cache
-operation is performed based on the address range, the upper 30 bits of
-the physical address are recorded in registers L3_MAINT_START and
-L3_MAINT_END, and ignore the lower 6 bits cacheline offset.
+I need to spend some time to understand the concern here. Initially I agreed
+with your analysis and then a quick review make be realise it is all OK.
+I need to check if my understanding is correct again. I thought I will
+take example and check here itself.
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- arch/arm/mm/Kconfig            |  10 +++
- arch/arm/mm/Makefile           |   1 +
- arch/arm/mm/cache-kunpeng-l3.c | 153 +++++++++++++++++++++++++++++++++
- arch/arm/mm/cache-kunpeng-l3.h |  30 +++++++
- 4 files changed, 194 insertions(+)
- create mode 100644 arch/arm/mm/cache-kunpeng-l3.c
- create mode 100644 arch/arm/mm/cache-kunpeng-l3.h
+UUID: "fd02c9da-306c-48c7-a49c-bbd827ae86ee"
 
-diff --git a/arch/arm/mm/Kconfig b/arch/arm/mm/Kconfig
-index 02692fbe2db5c59..8cc16695a12fd2a 100644
---- a/arch/arm/mm/Kconfig
-+++ b/arch/arm/mm/Kconfig
-@@ -1070,6 +1070,16 @@ config CACHE_XSC3L2
- 	help
- 	  This option enables the L2 cache on XScale3.
- 
-+config CACHE_KUNPENG_L3
-+	bool "Enable the Hisilicon Kunpeng L3 cache controller"
-+	depends on ARCH_HISI && OF
-+	default y
-+	select OUTER_CACHE
-+	help
-+	  This option enables the Kunpeng L3 cache controller on Hisilicon
-+	  Kunpeng506 and Kunpeng509 SoCs. It supports a maximum of 36-bit
-+	  physical addresses.
-+
- config ARM_L1_CACHE_SHIFT_6
- 	bool
- 	default y if CPU_V7
-diff --git a/arch/arm/mm/Makefile b/arch/arm/mm/Makefile
-index 3510503bc5e688b..ececc5489e353eb 100644
---- a/arch/arm/mm/Makefile
-+++ b/arch/arm/mm/Makefile
-@@ -112,6 +112,7 @@ obj-$(CONFIG_CACHE_L2X0_PMU)	+= cache-l2x0-pmu.o
- obj-$(CONFIG_CACHE_XSC3L2)	+= cache-xsc3l2.o
- obj-$(CONFIG_CACHE_TAUROS2)	+= cache-tauros2.o
- obj-$(CONFIG_CACHE_UNIPHIER)	+= cache-uniphier.o
-+obj-$(CONFIG_CACHE_KUNPENG_L3)	+= cache-kunpeng-l3.o
- 
- KASAN_SANITIZE_kasan_init.o	:= n
- obj-$(CONFIG_KASAN)		+= kasan_init.o
-diff --git a/arch/arm/mm/cache-kunpeng-l3.c b/arch/arm/mm/cache-kunpeng-l3.c
-new file mode 100644
-index 000000000000000..cb81f15d26a0cf2
---- /dev/null
-+++ b/arch/arm/mm/cache-kunpeng-l3.c
-@@ -0,0 +1,153 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021 Hisilicon Limited.
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/spinlock.h>
-+#include <linux/io.h>
-+#include <linux/of_address.h>
-+
-+#include <asm/cacheflush.h>
-+
-+#include "cache-kunpeng-l3.h"
-+
-+static DEFINE_SPINLOCK(l3cache_lock);
-+static void __iomem *l3_ctrl_base;
-+
-+
-+static void l3cache_maint_common(u32 range, u32 op_type)
-+{
-+	u32 reg;
-+
-+	reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
-+	reg &= ~(L3_MAINT_RANGE_MASK | L3_MAINT_TYPE_MASK);
-+	reg |= range | op_type;
-+	reg |= L3_MAINT_STATUS_START;
-+	writel(reg, l3_ctrl_base + L3_MAINT_CTRL);
-+
-+	/* Wait until the hardware maintenance operation is complete. */
-+	do {
-+		cpu_relax();
-+		reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
-+	} while ((reg & L3_MAINT_STATUS_MASK) != L3_MAINT_STATUS_END);
-+}
-+
-+static void l3cache_maint_range(phys_addr_t start, phys_addr_t end, u32 op_type)
-+{
-+	start = start >> L3_CACHE_LINE_SHITF;
-+	end = ((end - 1) >> L3_CACHE_LINE_SHITF) + 1;
-+
-+	writel(start, l3_ctrl_base + L3_MAINT_START);
-+	writel(end, l3_ctrl_base + L3_MAINT_END);
-+
-+	l3cache_maint_common(L3_MAINT_RANGE_ADDR, op_type);
-+}
-+
-+static inline void l3cache_flush_all_nolock(void)
-+{
-+	l3cache_maint_common(L3_MAINT_RANGE_ALL, L3_MAINT_TYPE_FLUSH);
-+}
-+
-+static void l3cache_flush_all(void)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_flush_all_nolock();
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static void l3cache_inv_range(phys_addr_t start, phys_addr_t end)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_maint_range(start, end, L3_MAINT_TYPE_INV);
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static void l3cache_clean_range(phys_addr_t start, phys_addr_t end)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_maint_range(start, end, L3_MAINT_TYPE_CLEAN);
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static void l3cache_flush_range(phys_addr_t start, phys_addr_t end)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_maint_range(start, end, L3_MAINT_TYPE_FLUSH);
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static void l3cache_disable(void)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&l3cache_lock, flags);
-+	l3cache_flush_all_nolock();
-+	writel(L3_CTRL_DISABLE, l3_ctrl_base + L3_CTRL);
-+	spin_unlock_irqrestore(&l3cache_lock, flags);
-+}
-+
-+static const struct of_device_id l3cache_ids[] __initconst = {
-+	{.compatible = "hisilicon,kunpeng-l3cache", .data = NULL},
-+	{}
-+};
-+
-+static int __init l3cache_init(void)
-+{
-+	u32 reg;
-+	struct device_node *node;
-+
-+	node = of_find_matching_node(NULL, l3cache_ids);
-+	if (!node)
-+		return -ENODEV;
-+
-+	l3_ctrl_base = of_iomap(node, 0);
-+	if (!l3_ctrl_base) {
-+		pr_err("failed to map Kunpeng L3 cache controller registers\n");
-+		return -ENOMEM;
-+	}
-+
-+	reg = readl(l3_ctrl_base + L3_CTRL);
-+	if (!(reg & L3_CTRL_ENABLE)) {
-+		unsigned long flags;
-+
-+		spin_lock_irqsave(&l3cache_lock, flags);
-+
-+		/*
-+		 * Ensure that no L3 cache hardware maintenance operations are
-+		 * being performed before enabling the L3 cache. Wait for it to
-+		 * finish.
-+		 */
-+		do {
-+			cpu_relax();
-+			reg = readl(l3_ctrl_base + L3_MAINT_CTRL);
-+		} while ((reg & L3_MAINT_STATUS_MASK) != L3_MAINT_STATUS_END);
-+
-+		reg = readl(l3_ctrl_base + L3_AUCTRL);
-+		reg |= L3_AUCTRL_EVENT_EN | L3_AUCTRL_ECC_EN;
-+		writel(reg, l3_ctrl_base + L3_AUCTRL);
-+
-+		writel(L3_CTRL_ENABLE, l3_ctrl_base + L3_CTRL);
-+
-+		spin_unlock_irqrestore(&l3cache_lock, flags);
-+	}
-+
-+	outer_cache.inv_range = l3cache_inv_range;
-+	outer_cache.clean_range = l3cache_clean_range;
-+	outer_cache.flush_range = l3cache_flush_range;
-+	outer_cache.flush_all = l3cache_flush_all;
-+	outer_cache.disable = l3cache_disable;
-+
-+	pr_info("Hisilicon Kunpeng L3 cache controller enabled\n");
-+
-+	return 0;
-+}
-+arch_initcall(l3cache_init);
-diff --git a/arch/arm/mm/cache-kunpeng-l3.h b/arch/arm/mm/cache-kunpeng-l3.h
-new file mode 100644
-index 000000000000000..9ef6a53e7d4db49
---- /dev/null
-+++ b/arch/arm/mm/cache-kunpeng-l3.h
-@@ -0,0 +1,30 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef __CACHE_KUNPENG_L3_H
-+#define __CACHE_KUNPENG_L3_H
-+
-+#define L3_CACHE_LINE_SHITF		6
-+
-+#define L3_CTRL				0x0
-+#define L3_CTRL_ENABLE			(1U << 0)
-+#define L3_CTRL_DISABLE			(0U << 0)
-+
-+#define L3_AUCTRL			0x4
-+#define L3_AUCTRL_EVENT_EN		BIT(23)
-+#define L3_AUCTRL_ECC_EN		BIT(8)
-+
-+#define L3_MAINT_CTRL			0x20
-+#define L3_MAINT_RANGE_MASK		GENMASK(3, 3)
-+#define L3_MAINT_RANGE_ALL		(0U << 3)
-+#define L3_MAINT_RANGE_ADDR		(1U << 3)
-+#define L3_MAINT_TYPE_MASK		GENMASK(2, 1)
-+#define L3_MAINT_TYPE_CLEAN		(1U << 1)
-+#define L3_MAINT_TYPE_INV		(2U << 1)
-+#define L3_MAINT_TYPE_FLUSH		(3U << 1)
-+#define L3_MAINT_STATUS_MASK		GENMASK(0, 0)
-+#define L3_MAINT_STATUS_START		(1U << 0)
-+#define L3_MAINT_STATUS_END		(0U << 0)
-+
-+#define L3_MAINT_START			0x24
-+#define L3_MAINT_END			0x28
-+
-+#endif
--- 
-2.26.0.106.g9fadedd
+UUID[0]   UUID[1]  UUID[2]  UUID[3] (referring uuid0_4 above)
+dac902fd c7486c30 d8bb9ca4 ee86ae27
 
+It seems correct as per SMCCC convention to me, or am I missing something
+obvious ?
 
+--
+Regards,
+Sudeep
