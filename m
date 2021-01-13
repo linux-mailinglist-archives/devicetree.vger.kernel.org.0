@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 562E82F4259
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 04:22:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8F562F425C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 04:22:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728240AbhAMDW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 22:22:27 -0500
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:34372 "EHLO
-        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727502AbhAMDW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 22:22:27 -0500
-Received: by mail-oo1-f50.google.com with SMTP id x23so186788oop.1;
-        Tue, 12 Jan 2021 19:22:05 -0800 (PST)
+        id S1728968AbhAMDW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 22:22:56 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:39250 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727062AbhAMDWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 22:22:55 -0500
+Received: by mail-ot1-f47.google.com with SMTP id d8so626149otq.6;
+        Tue, 12 Jan 2021 19:22:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dCuXFamHqL8Ku2Wo/6BW1bsP8VAIVco/Vi8snebYSdw=;
-        b=QVA2JAEfLe9BnLHZvicMSOCtAOWvfxwfyfgGmXfiXoUljFDpNiRBddpz4TV1ex6DAI
-         QumcdpGFAQ7+/MvNdMwv0O1vqMHtGGZ+iBG2t/ZlW5aUL5qAC0e8s6ABXp3+btehAmgN
-         YzULweY3Hyk4JoPTnk9i0UXHd2q3wYxybzCZAF6fZZmuN+eBBgr1WS5LjT+xPPS4bYG4
-         +3ZcS3ZAi57hUJ2vPpG6Uf/trRpAwGOpWIQengva/8qXxwABka6+9HIkFQV9f42LJU2Z
-         ceTK+UB2XKE1rzklz+H3M0VjExFnkC9nB2Kdd6M3U59tsa4R5tnhZCsUNSrKXUi3dpOK
-         6Fxg==
-X-Gm-Message-State: AOAM53039cX9VPP0RTNEmle/rz35Fx0NJpNqnwo7a121tmyiwx56adA6
-        Qr+tT3czRFdbKwXVznXEg/l4HpqSjA==
-X-Google-Smtp-Source: ABdhPJxvPUHq7F5Yf0LRxZpN5QJmeXPpj175mCAikbYkaUkymgUk6owZoKstb8TsmiK/htdrcW6F2g==
-X-Received: by 2002:a4a:3e42:: with SMTP id t63mr1403771oot.32.1610508100443;
-        Tue, 12 Jan 2021 19:21:40 -0800 (PST)
+        bh=uwsL9FTbsc+Aps2F7O2luTmoMA47O3xHRLZuIayA+lE=;
+        b=bM6P5yDQKu9jS12xZhoPivHsQxo4f5Lf86S26h6O+EtqfvolFemap0L6qSaQKbu+oS
+         SINKx8ye+TfwlRv5b+C4iwGUZhu1JcaeviuAIXA1Ac3xMVliOjp6pCOJy+fFMlITvsLf
+         5BGwmIXAdWJbh2iPK2c6dakPv2T2dBnc3yFK8FBmjfZdfFff6EYn1Nkb7EmgPAELcrw+
+         uoMpIY5qtQK7L6sSPjhstBmzhlCHXo2lxe2vcPDebNfSLmPWxnJPeioIWCDecEiBmrSo
+         8S6eBiFRuqT3lPYT9H6d8CjmO9iTrR/YGoCMI8L8JYtVHPYLfvY9IQyTv8XPsBbSqgdx
+         5DHA==
+X-Gm-Message-State: AOAM532kO8sgNaeJt2E5bZ6P3hhempqZRn/c3dVY6+1Isp7oogYP+O6S
+        1NuMtpr+5Hcry8EofJv0kQ==
+X-Google-Smtp-Source: ABdhPJyD6Bxo1ssdtzEhPiQb8BvrHMnTnthfAoe59bCXez8CHaIv/mz8h8nyWCO9TJ+rt8XKxasBow==
+X-Received: by 2002:a9d:4b19:: with SMTP id q25mr11270otf.124.1610508134929;
+        Tue, 12 Jan 2021 19:22:14 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z189sm170866oia.28.2021.01.12.19.21.39
+        by smtp.gmail.com with ESMTPSA id e10sm162441otl.38.2021.01.12.19.22.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 19:21:39 -0800 (PST)
-Received: (nullmailer pid 1466404 invoked by uid 1000);
-        Wed, 13 Jan 2021 03:21:38 -0000
-Date:   Tue, 12 Jan 2021 21:21:38 -0600
+        Tue, 12 Jan 2021 19:22:14 -0800 (PST)
+Received: (nullmailer pid 1467229 invoked by uid 1000);
+        Wed, 13 Jan 2021 03:22:13 -0000
+Date:   Tue, 12 Jan 2021 21:22:13 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-Subject: Re: [PATCH 1/3] dt-bindings: power: Add domain regulator supply
-Message-ID: <20210113032138.GA1466354@robh.at.kernel.org>
-References: <20210107104915.2888408-1-hsinyi@chromium.org>
- <20210107104915.2888408-2-hsinyi@chromium.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     bjorn.andersson@linaro.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: sdhci-msm: Document the SDX55
+ compatible
+Message-ID: <20210113032213.GA1467169@robh.at.kernel.org>
+References: <20210107143118.2386-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210107104915.2888408-2-hsinyi@chromium.org>
+In-Reply-To: <20210107143118.2386-1-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Jan 2021 18:49:14 +0800, Hsin-Yi Wang wrote:
-> Some power domains (eg. mfg) needs to turn on power supply before power
-> on.
+On Thu, 07 Jan 2021 20:01:17 +0530, Manivannan Sadhasivam wrote:
+> The SDHCI controller on SDX55 is based on MSM SDHCI v5 IP. Hence,
+> document the compatible with "qcom,sdhci-msm-v5" as the fallback.
+> While at it, let's also sort the compatibles in ascending order.
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: linux-mmc@vger.kernel.org
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Reviewed-by: Vinod Koul <vkoul@kernel.org>
 > ---
->  .../bindings/power/mediatek,power-controller.yaml        | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
