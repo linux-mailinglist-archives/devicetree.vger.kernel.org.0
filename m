@@ -2,195 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A082F527F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:43:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08B682F5320
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 20:13:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728072AbhAMSlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 13:41:14 -0500
-Received: from relay08.th.seeweb.it ([5.144.164.169]:57835 "EHLO
-        relay08.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728245AbhAMSlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 13:41:14 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id F1C273F1F8;
-        Wed, 13 Jan 2021 19:40:31 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     linus.walleij@linaro.org
-Cc:     linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        phone-devel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v4 2/2] dt-bindings: pinctrl: Add bindings for Awinic AW9523/AW9523B
-Date:   Wed, 13 Jan 2021 19:40:30 +0100
-Message-Id: <20210113184030.448616-2-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210113184030.448616-1-angelogioacchino.delregno@somainline.org>
-References: <20210113184030.448616-1-angelogioacchino.delregno@somainline.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1728557AbhAMTLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 14:11:39 -0500
+Received: from mout.kundenserver.de ([212.227.17.13]:42187 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728555AbhAMTLj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 14:11:39 -0500
+Received: from localhost.localdomain ([37.4.249.194]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MkYsS-1kE66E3h8g-00lz2n; Wed, 13 Jan 2021 20:08:52 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Eric Anholt <eric@anholt.net>, Maxime Ripard <mripard@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH V4] dt-bindings: gpu: Convert v3d to json-schema
+Date:   Wed, 13 Jan 2021 20:08:37 +0100
+Message-Id: <1610564917-11559-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:iHvA9Y/sB5q3WE1S3ZUJR6kCt5z001K1LzszE2traPHzBDwN8BE
+ 6bwgVNJbRU2K0lQU2VS++uKV3eicxZ1xaCVXUOU4BUD9dbxIRDTNjlseMq55oTUluxoMb1J
+ q4/HKXYCUuHLFv38WXdgvfQUFZAZHscbsrxbZ6Mzqab0FHdRgY05TgN7b1e6yAtNoO8xcvc
+ XwXQmnjZZcUOLeF2cWRsw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dF6IekFQiwQ=:9ggfLAcmRmpENItzBhDCKM
+ LPzM6KcdMpvcJeutsCfIGyIMWcN9CoYP3czAIq9nl+bQP2XoetA/H0WxFiNT9VkznqOn17d9+
+ KcfLFvIpBbNAoGx69OBk+9s1mkI4/zj+B3h4HCO8ylebKguQcwtAbFUOX5EKZm6Dlrd4orPQF
+ 9DMtIS6deh3i4vz9KfAvegMtifWDsou40VebMmZMecGCHk08v4MtU9mGW2+TXpExCvEmWH160
+ rJ2tqXiZT5B4D7uHkJPtEO+fPhaNAkp/Oh2jMSLet6ub/Q7+wde9UnQfIuuNeyqZYiKC+yenT
+ SyrvdX+Nkd2fs3QqylFl+Ml5+QphdKkYTgS+DSajI5HwyH2liIwTmgpaiw9B3XsCIxxypbIxv
+ AAIoqAXMr1p27oi3IigEmCxkuM7t+87h9TaOKniwD7UZPvUmTK8on5P3SkYuAUjuUAsTr282g
+ 4x8OKWR1og==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the Awinic AW9523/AW9523B I2C GPIO Expander driver.
+This converts the v3d bindings to yaml format.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 ---
- .../pinctrl/awinic,aw9523-pinctrl.yaml        | 139 ++++++++++++++++++
- 1 file changed, 139 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/awinic,aw9523-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/awinic,aw9523-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/awinic,aw9523-pinctrl.yaml
+Changes in V4:
+- define order for required reg-names
+- adapt example
+
+Changes in V3:
+- drop redundant maxItems in case we already have items defined
+- fix order of reg-names enum
+- tag required items in description
+- add reg-names to required properties
+- drop clock-names
+
+ .../devicetree/bindings/gpu/brcm,bcm-v3d.txt       | 33 ----------
+ .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 75 ++++++++++++++++++++++
+ 2 files changed, 75 insertions(+), 33 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
+ create mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+
+diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
+deleted file mode 100644
+index b2df82b..0000000
+--- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-Broadcom V3D GPU
+-
+-Only the Broadcom V3D 3.x and newer GPUs are covered by this binding.
+-For V3D 2.x, see brcm,bcm-vc4.txt.
+-
+-Required properties:
+-- compatible:	Should be "brcm,7268-v3d" or "brcm,7278-v3d"
+-- reg:		Physical base addresses and lengths of the register areas
+-- reg-names:	Names for the register areas.  The "hub" and "core0"
+-		  register areas are always required.  The "gca" register area
+-		  is required if the GCA cache controller is present.  The
+-		  "bridge" register area is required if an external reset
+-		  controller is not present.
+-- interrupts:	The interrupt numbers.  The first interrupt is for the hub,
+-		  while the following interrupts are separate interrupt lines
+-		  for the cores (if they don't share the hub's interrupt).
+-		  See bindings/interrupt-controller/interrupts.txt
+-
+-Optional properties:
+-- clocks:	The core clock the unit runs on
+-- resets:	The reset line for v3d, if not using a mapping of the bridge
+-		  See bindings/reset/reset.txt
+-
+-v3d {
+-	compatible = "brcm,7268-v3d";
+-	reg = <0xf1204000 0x100>,
+-	      <0xf1200000 0x4000>,
+-	      <0xf1208000 0x4000>,
+-	      <0xf1204100 0x100>;
+-	reg-names = "bridge", "hub", "core0", "gca";
+-	interrupts = <0 78 4>,
+-		     <0 77 4>;
+-};
+diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
 new file mode 100644
-index 000000000000..640d4d7e4cab
+index 0000000..fbce844
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/awinic,aw9523-pinctrl.yaml
-@@ -0,0 +1,139 @@
++++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+@@ -0,0 +1,75 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pinctrl/awinic,aw9523-pinctrl.yaml#
++$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Awinic AW9523/AW9523B I2C GPIO Expander
++title: Broadcom V3D GPU Bindings
 +
 +maintainers:
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-+
-+description: |
-+  The Awinic AW9523/AW9523B I2C GPIO Expander featuring 16 multi-function
-+  I/O, 256 steps PWM mode and interrupt support.
++  - Eric Anholt <eric@anholt.net>
++  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 +
 +properties:
++  $nodename:
++    pattern: '^gpu@[a-f0-9]+$'
++
 +  compatible:
-+    const: awinic,aw9523-pinctrl
++    enum:
++      - brcm,7268-v3d
++      - brcm,7278-v3d
 +
 +  reg:
-+    maxItems: 1
++    items:
++      - description: hub register (required)
++      - description: core0 register (required)
++      - description: GCA cache controller register (if GCA controller present)
++      - description: bridge register (if no external reset controller)
++    minItems: 2
 +
-+  '#gpio-cells':
-+    description: |
-+      Specifying the pin number and flags, as defined in
-+      include/dt-bindings/gpio/gpio.h
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  interrupt-controller: true
++  reg-names:
++    items:
++      - const: hub
++      - const: core0
++      - enum: [ bridge, gca ]
++      - enum: [ bridge, gca ]
++    minItems: 2
++    maxItems: 4
 +
 +  interrupts:
-+    maxItems: 1
-+    description: Specifies the INTN pin IRQ.
++    items:
++      - description: hub interrupt (required)
++      - description: core interrupts (if it doesn't share the hub's interrupt)
++    minItems: 1
 +
-+  '#interrupt-cells':
-+    description:
-+      Specifies the PIN numbers and Flags, as defined in defined in
-+      include/dt-bindings/interrupt-controller/irq.h
-+    const: 2
-+
-+  reset-gpios:
++  clocks:
 +    maxItems: 1
 +
-+#PIN CONFIGURATION NODES
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    description:
-+      Pinctrl node's client devices use subnodes for desired pin configuration.
-+      Client device subnodes use below standard properties.
-+    $ref: "/schemas/pinctrl/pincfg-node.yaml"
++  resets:
++    maxItems: 1
 +
-+    properties:
-+      pins:
-+        description:
-+          List of gpio pins affected by the properties specified in
-+          this subnode.
-+        items:
-+          pattern: "^gpio([0-9]|1[0-5])$"
-+        minItems: 1
-+        maxItems: 16
-+
-+      function:
-+        description:
-+          Specify the alternative function to be configured for the
-+          specified pins.
-+
-+        enum: [ gpio, pwm ]
-+
-+      bias-disable: true
-+      bias-pull-down: true
-+      bias-pull-up: true
-+      drive-open-drain: true
-+      drive-push-pull: true
-+      input-enable: true
-+      input-disable: true
-+      output-high: true
-+      output-low: true
-+
-+    required:
-+      - pins
-+      - function
-+
-+    additionalProperties: false
++  power-domains:
++    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
++  - reg-names
++  - interrupts
 +
 +additionalProperties: false
 +
 +examples:
-+  # Example configuration to drive pins for a keyboard matrix
 +  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        aw9523: gpio-expander@58 {
-+                compatible = "awinic,aw9523-pinctrl";
-+                reg = <0x58>;
-+                interrupt-parent = <&tlmm>;
-+                interrupts = <50 IRQ_TYPE_EDGE_FALLING>;
-+                gpio-controller;
-+                #gpio-cells = <2>;
-+                gpio-ranges = <&tlmm 0 0 16>;
-+                interrupt-controller;
-+                #interrupt-cells = <2>;
-+                reset-gpios = <&tlmm 51 GPIO_ACTIVE_HIGH>;
-+
-+                keyboard-matrix-col-pins {
-+                        pins = "gpio8", "gpio9", "gpio10", "gpio11",
-+                               "gpio12", "gpio13", "gpio14", "gpio15";
-+                        function = "gpio";
-+                        input-disable;
-+                        output-low;
-+                };
-+
-+                keyboard-matrix-row-pins {
-+                        pins = "gpio0", "gpio1", "gpio2", "gpio3",
-+                               "gpio4", "gpio5", "gpio6", "gpio7";
-+                        function = "gpio";
-+                        bias-pull-up;
-+                        drive-open-drain;
-+                        input-enable;
-+                };
-+        };
++    gpu@f1200000 {
++      compatible = "brcm,7268-v3d";
++      reg = <0xf1200000 0x4000>,
++            <0xf1208000 0x4000>,
++            <0xf1204000 0x100>,
++            <0xf1204100 0x100>;
++      reg-names = "hub", "core0", "bridge", "gca";
++      interrupts = <0 78 4>,
++                   <0 77 4>;
 +    };
++
++...
 -- 
-2.29.2
+2.7.4
 
