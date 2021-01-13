@@ -2,76 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2F8B2F51F3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D56D2F5204
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:30:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728284AbhAMS0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 13:26:23 -0500
-Received: from relay06.th.seeweb.it ([5.144.164.167]:60945 "EHLO
-        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728273AbhAMS0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 13:26:23 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1B61C3F260;
-        Wed, 13 Jan 2021 19:25:26 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     agross@kernel.org
-Cc:     linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-i2c@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH 3/3] dt-bindings: i2c: qcom,i2c-qup: Document noise rejection properties
-Date:   Wed, 13 Jan 2021 19:25:22 +0100
-Message-Id: <20210113182522.443262-4-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210113182522.443262-1-angelogioacchino.delregno@somainline.org>
-References: <20210113182522.443262-1-angelogioacchino.delregno@somainline.org>
+        id S1728197AbhAMS2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 13:28:24 -0500
+Received: from foss.arm.com ([217.140.110.172]:40292 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727984AbhAMS2Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 13:28:24 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 938921FB;
+        Wed, 13 Jan 2021 10:27:38 -0800 (PST)
+Received: from [10.57.56.43] (unknown [10.57.56.43])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 992EC3F66E;
+        Wed, 13 Jan 2021 10:27:09 -0800 (PST)
+Subject: Re: [RFC PATCH v3 4/6] swiotlb: Add restricted DMA alloc/free
+ support.
+To:     Christoph Hellwig <hch@lst.de>, Claire Chang <tientzu@chromium.org>
+Cc:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org, joro@8bytes.org, will@kernel.org,
+        frowand.list@gmail.com, konrad.wilk@oracle.com,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        sstabellini@kernel.org, m.szyprowski@samsung.com,
+        grant.likely@arm.com, xypron.glpk@gmx.de, treding@nvidia.com,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        gregkh@linuxfoundation.org, saravanak@google.com,
+        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
+        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
+        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
+        xen-devel@lists.xenproject.org, tfiga@chromium.org,
+        drinkcat@chromium.org
+References: <20210106034124.30560-1-tientzu@chromium.org>
+ <20210106034124.30560-5-tientzu@chromium.org> <20210113124847.GC1383@lst.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <82bb75bc-11e6-ac94-9d24-7c896e3aae98@arm.com>
+Date:   Wed, 13 Jan 2021 18:27:08 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210113124847.GC1383@lst.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the new noise rejection properties "qcom,noise-reject-sda"
-and "qcom,noise-reject-scl".
+On 2021-01-13 12:48, Christoph Hellwig wrote:
+>> +#ifdef CONFIG_SWIOTLB
+>> +	if (unlikely(dev->dma_io_tlb_mem))
+>> +		return swiotlb_alloc(dev, size, dma_handle, attrs);
+>> +#endif
+> 
+> Another place where the dma_io_tlb_mem is useful to avoid the ifdef.
+> 
+>> -phys_addr_t swiotlb_tbl_map_single(struct device *hwdev, phys_addr_t orig_addr,
+>> -		size_t mapping_size, size_t alloc_size,
+>> -		enum dma_data_direction dir, unsigned long attrs)
+>> +static int swiotlb_tbl_find_free_region(struct device *hwdev,
+>> +					dma_addr_t tbl_dma_addr,
+>> +					size_t alloc_size,
+>> +					unsigned long attrs)
+> 
+>> +static void swiotlb_tbl_release_region(struct device *hwdev, int index,
+>> +				       size_t size)
+> 
+> This refactoring should be another prep patch.
+> 
+> 
+>> +void *swiotlb_alloc(struct device *dev, size_t size, dma_addr_t *dma_handle,
+>> +		    unsigned long attrs)
+> 
+> I'd rather have the names convey there are for the per-device bounce
+> buffer in some form.
+> 
+>> +	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
+> 
+> While we're at it I wonder if the io_tlb is something we could change
+> while we're at it.  Maybe replace io_tlb_mem with struct swiotlb
+> and rename the field in struct device to dev_swiotlb?
+> 
+>> +	int index;
+>> +	void *vaddr;
+>> +	phys_addr_t tlb_addr;
+>> +
+>> +	size = PAGE_ALIGN(size);
+>> +	index = swiotlb_tbl_find_free_region(dev, mem->start, size, attrs);
+>> +	if (index < 0)
+>> +		return NULL;
+>> +
+>> +	tlb_addr = mem->start + (index << IO_TLB_SHIFT);
+>> +	*dma_handle = phys_to_dma_unencrypted(dev, tlb_addr);
+>> +
+>> +	if (!dev_is_dma_coherent(dev)) {
+>> +		unsigned long pfn = PFN_DOWN(tlb_addr);
+>> +
+>> +		/* remove any dirty cache lines on the kernel alias */
+>> +		arch_dma_prep_coherent(pfn_to_page(pfn), size);
+> 
+> Can we hook in somewhat lower level in the dma-direct code so that all
+> the remapping in dma-direct can be reused instead of duplicated?  That
+> also becomes important if we want to use non-remapping uncached support,
+> e.g. on mips or x86, or the direct changing of the attributes that Will
+> planned to look into for arm64.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- .../devicetree/bindings/i2c/qcom,i2c-qup.yaml      | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Indeed, AFAICS this ought to boil down to a direct equivalent of 
+__dma_direct_alloc_pages() - other than the address there should be no 
+conceptual difference between pages from the restricted pool and those 
+from the regular page allocator, so this probably deserves to be plumbed 
+in as an alternative to that.
 
-diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
-index c5c7db3ac2a6..3f14dd65c6b9 100644
---- a/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
-+++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
-@@ -58,6 +58,20 @@ properties:
-   '#size-cells':
-     const: 0
- 
-+  qcom,noise-reject-sda:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Noise rejection level for the SDA line.
-+    minimum: 0
-+    maximum: 3
-+    default: 0
-+
-+  qcom,noise-reject-scl:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Noise rejection level for the SCL line.
-+    minimum: 0
-+    maximum: 3
-+    default: 0
-+
- required:
-   - compatible
-   - clocks
--- 
-2.29.2
-
+Robin.
