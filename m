@@ -2,86 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2552F46BD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:46:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 100722F46DD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:52:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726695AbhAMIn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 03:43:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47258 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726694AbhAMIn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 03:43:56 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE319C061575
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 00:43:15 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1kzbkI-0007Am-Jm; Wed, 13 Jan 2021 09:43:14 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1kzbkH-0007KO-AN; Wed, 13 Jan 2021 09:43:13 +0100
-Date:   Wed, 13 Jan 2021 09:43:13 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        Minas Harutyunyan <hminas@synopsys.com>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc2: Add support for additional
- clock
-Message-ID: <20210113084313.GD19063@pengutronix.de>
-References: <1610386869.406608.2784732.nullmailer@robh.at.kernel.org>
+        id S1727041AbhAMItN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 03:49:13 -0500
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:35805 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726962AbhAMItN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 03:49:13 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4A8AC5C03A6;
+        Wed, 13 Jan 2021 03:48:26 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Wed, 13 Jan 2021 03:48:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=54FC/UrhpoPn3dwBbob71WsFOF+
+        RG/zilAC6ndIFeJ4=; b=L7YQ88jSPHsL/s4rPZKDqgzSM2gfSRsNNuTWy7XXlhd
+        9EjF22n8DAhKKOdM3fnWSOAEhZVSqHuDUwJzDQKJT3iGw/DnkZlIL2rVRqJvDM4i
+        wdaHhfN/WFBrIV092d+NbPR/qVNm4udMSQX+O5VT+h+hVpPraXE/Gmi5er1fMOEb
+        +FtJfoRR+oOtGjpNt9PN9qxjpBhuW2lPM+ufD9F8YLbUoOZlDD83mF7y33IhOOw7
+        AKJJ8UOBGCTdLTuYYpAEJSaP+hNtqloCfZqrJFuUWHsyZD1A+pig8NxhrDtrSmSP
+        UpOj+pj4Zaf/74DJZ/sW8U5M4lLdlqEfK5nBhAscovA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=54FC/U
+        rhpoPn3dwBbob71WsFOF+RG/zilAC6ndIFeJ4=; b=mXEHiI89sGndK5hA5yvBFz
+        eUI/0EMjHhvuy7YX7G+NR3Q1E3qhGcH27F/6WbJVH4PCkpipMGw/DndwbKiApsEM
+        it+6Oh+0Ta90T4GiTrLsER1gJ8SGqIUXAqAP5qLxNj8Qy+RV+ntr8UPpFFuL/b9a
+        aFyPreWQP2uMWcR4bPuSxmDwTxgkMLE/JS3OUYDmgQ/LF85ukT4IvYji1ihKfL2k
+        8qP/IfWdJeQyOiakV99okrTw0c46t9uNOwhpztYyFjarl6Cues4RBaJutKY78IZq
+        15v5W7y49MjjzS90oeuS6PlUu33yhgXt1AQoVD9L96V5DhT5xZSbLSkuKA214jlQ
+        ==
+X-ME-Sender: <xms:2bP-X3lDszcVZIVkAIOUmFHxhFYdD9DT5xXF4XhIEy8a2U7T8k2rvQ>
+    <xme:2bP-X62MdC-M8B3TcyO0-TcjZUQi1bksQTea35ffYUVGyp8duE_-83zjufOzaS2OJ
+    Sc0h9aT-dYx_JUxYJ0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedukedrtddvucetufdoteggodetrfdotffvucfrrh
+    hofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgenuceurghi
+    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
+    epfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhmvgcutfhi
+    phgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnh
+    epleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieehgedunecu
+    kfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+    hmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:2bP-X9qr35cc5YDK8ndamD0soQU46HD2IPKJR68oYA1wZjzcoWYFTw>
+    <xmx:2bP-X_lzfVzvfl_SbUWDLUKCWz6nvYMQBoZRi7do7St1GUDqj6xPWA>
+    <xmx:2bP-X13baytSsObXiZAv78PPL2sfNyAEfxjfcARaYTNABd2PdveqWQ>
+    <xmx:2rP-XymcfobYvEEAMVGm6s-0dMAempdOxKVTim2bN5zTzBh6eibl_Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id E17ED240062;
+        Wed, 13 Jan 2021 03:48:24 -0500 (EST)
+Date:   Wed, 13 Jan 2021 09:48:22 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] ASoC: dt-bindings: sun8i-codec: Increase
+ #sound-dai-cells
+Message-ID: <20210113084822.4rx67gcgqnb63agu@gilmour>
+References: <20210113060615.53088-1-samuel@sholland.org>
+ <20210113060615.53088-2-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="voku56fj7iadly7o"
 Content-Disposition: inline
-In-Reply-To: <1610386869.406608.2784732.nullmailer@robh.at.kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:41:46 up 41 days, 21:08, 80 users,  load average: 0.15, 0.12,
- 0.10
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210113060615.53088-2-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 11:41:09AM -0600, Rob Herring wrote:
-> On Mon, 11 Jan 2021 16:13:36 +0100, Sascha Hauer wrote:
-> > This adds support for an additional clock for the dwc2 core in case
-> > there is another clock to the phy which must be enabled.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> >  Documentation/devicetree/bindings/usb/dwc2.yaml | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.example.dt.yaml: usb@ff400000: clocks: [[4294967295]] is too short
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/dwc2.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.example.dt.yaml: usb@ff400000: clock-names: ['otg'] is too short
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/dwc2.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/dwc2.example.dt.yaml: usb@101c0000: clocks: [[4294967295]] is too short
 
-Ok, this can be fixed by adding a "minItems" property to clocks and
-clock-names. Will do next round.
+--voku56fj7iadly7o
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Anything more to say to this series?
+Hi,
 
-Sascha
+On Wed, Jan 13, 2021 at 12:06:09AM -0600, Samuel Holland wrote:
+> Increase sound-dai-cells to 1 to allow using the DAIs in the codec
+> corresponding to AIF2 and AIF3.
+>=20
+> The generic ASoC OF code supports a #sound-dai-cells value of 0 or 1
+> with no impact to the driver, so this is a backward-compatible change.
+>=20
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+>  .../devicetree/bindings/sound/allwinner,sun8i-a33-codec.yaml  | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun8i-a33-=
+codec.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun8i-a33-co=
+dec.yaml
+> index 67405e6d8168..3e02baa1d9ce 100644
+> --- a/Documentation/devicetree/bindings/sound/allwinner,sun8i-a33-codec.y=
+aml
+> +++ b/Documentation/devicetree/bindings/sound/allwinner,sun8i-a33-codec.y=
+aml
+> @@ -12,7 +12,7 @@ maintainers:
+> =20
+>  properties:
+>    "#sound-dai-cells":
+> -    const: 0
+> +    const: 1
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+We should make it clearer that 0 is still ok, but is deprecated
+
+You can do it with:
+
+oneOf:
+  - const: 1
+  - const: 0
+    deprecated: true
+    description: >
+      Whatever
+
+Maxime
+
+--voku56fj7iadly7o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/6z1gAKCRDj7w1vZxhR
+xbcAAQD8BOXQ4mhrW8k34p2W/LdnOcWWWyDGx6stQULk2BU7VwD/X5vR9Bpz5gzT
+EYllDxi05aukw+nSebapy6q+jWFy/wk=
+=SsHU
+-----END PGP SIGNATURE-----
+
+--voku56fj7iadly7o--
