@@ -2,107 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C3B2F5208
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 853F22F5218
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:33:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728350AbhAMS3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 13:29:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60958 "EHLO
+        id S1728272AbhAMSak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 13:30:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728330AbhAMS3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 13:29:32 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC11C061575
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 10:28:46 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id i9so3191478wrc.4
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 10:28:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=oCAeIb7ECFW6QlWgtdlZyS84pPretLI5vdf+tM6RJD4=;
-        b=Uibh+vbAZVnETjtRBAkiqx6q2IIG4VTxEpRIY6uh618odCokYJk2Rp/NUw7U3mbcW1
-         c0tPK4C6kRxMB8tg7NnAbADmglLr3wrGuVJd15fHX2E3d3aBfjULp3XBytVT9QuCf3ZD
-         9uMv+jG3r8lckQp7NEWv/Xv/fjoE1O1qB+K7aiudPgD1EWs9VA+Z5xvZyn5VUhOyei99
-         NezwTAoysxwKeO53Xew9XxWLRzfG30JNyCBZSVGL/z25EOMeB38vLAo0STXqBorTf20H
-         9+vSMtKPiCN2/fiXYM8SJ0jdTxSZS70B1MQr5SlM5E8Ly8x3Vyk36MYman3txbdX/h4N
-         xQWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oCAeIb7ECFW6QlWgtdlZyS84pPretLI5vdf+tM6RJD4=;
-        b=QtpT+848gEJCkIo066aTUbUinuCynhN9aSKhVBPpJKKWFQyL0uUZvABVIAMmqo7okQ
-         MJxVRIJNiumRuXvqa48kf0kMn2a+fxTH6FVKQcsX+Hdu+gu6mjZxkME24YGd3ppl94Ly
-         i4bLCNG7HrjHceIgu5bNKp+Eb3xzCgIxia/vyX6qHk9ZbTaj0FYoVlp9gBDBi+YrSVdR
-         X1ZInnXbqZXgCZ17NfyUqm+VDlYjWdDyC8B+InJ54amoz11MkxSxHHg1hPqk4HYgqgUg
-         9HnHCzDrX2EYRNfMV+kZpX6fqNLQGtwXyCYg8oI0afXJ6UJkou/cEw8O3w7/J0g4C5Y0
-         ThVg==
-X-Gm-Message-State: AOAM530q1/aLYbebG/vbXUTkoPDAxA7x0yaeTR0ZIk+Pf36ZT5DfL/St
-        ToiFJtf8G6EsqYHYz+ZhSYBTlQ==
-X-Google-Smtp-Source: ABdhPJw07pkMlp/wa7hOyU26GePo2LXD56vW96vj5Sk6xZIiiPoUrxPmL1/QeYsYtlYpnqzeZtt8VA==
-X-Received: by 2002:adf:97d2:: with SMTP id t18mr3944967wrb.228.1610562524885;
-        Wed, 13 Jan 2021 10:28:44 -0800 (PST)
-Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
-        by smtp.gmail.com with ESMTPSA id b14sm4485354wrx.77.2021.01.13.10.28.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 10:28:44 -0800 (PST)
-Date:   Wed, 13 Jan 2021 18:28:41 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 13/26] KVM: arm64: Enable access to sanitized CPU
- features at EL2
-Message-ID: <X/872aaC/E4MwMa6@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-14-qperret@google.com>
- <d55643ea391f73a2297f499f3219ba8a@kernel.org>
- <X/8CR5eXGGccFjaL@google.com>
- <X/8FFKOLOVD9Ee2F@google.com>
- <e09900ba30646cf23e1683a2ed16078f@kernel.org>
+        with ESMTP id S1728234AbhAMSak (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 13:30:40 -0500
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E488C06179F
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 10:29:44 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 899FA3F279;
+        Wed, 13 Jan 2021 19:29:42 +0100 (CET)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     mchehab@kernel.org
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v4 0/2] Add support for the Sony Exmor-RS IMX300 camera sensor
+Date:   Wed, 13 Jan 2021 19:29:32 +0100
+Message-Id: <20210113182934.444727-1-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e09900ba30646cf23e1683a2ed16078f@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 13 Jan 2021 at 17:27:49 (+0000), Marc Zyngier wrote:
-> On 2021-01-13 14:35, Quentin Perret wrote:
-> > On Wednesday 13 Jan 2021 at 14:23:03 (+0000), Quentin Perret wrote:
-> > > Good point, that would be nice indeed. Can I use that from outside an
-> > > __init function?
-> > 
-> > Just gave it a go, and the answer to this appears to be yes,
-> > surprisingly -- I was expecting a compile-time warning similar to what
-> > we get when non-__init code calls into __init, but that doesn't seem to
-> > trigger here. Anyways, I'll add the annotation in v3.
-> 
-> That's surprising. I'd definitely expect something to explode...
-> Do you have CONFIG_DEBUG_SECTION_MISMATCH=y?
+This patch series adds support for the IMX300 camera sensor, (one of the)
+first Exmor-RS Stacked CMOS sensor(s), with support for both of the
+supported aspect ratios (4:3 and 16:9).
+This driver came out from reverse engineering of so called "userspace
+drivers" from Sony Xperia smartphones.
 
-Yes I do, so, that doesn't seem to be it. Now, the plot thickens: I
-_do_ get a warning if I remove the 'const' qualifier. But interestingly,
-in both cases hyp_ftr_regs is placed in .init.data:
+I tried to document all of my findings and giving a sense to the registers
+as much as possible, but that was only partially possible and resembles
+some names from the IMX219 public datasheet, even though the addresses are
+basically completely different.
 
-  $ objdump -t vmlinux | grep hyp_ftr_regs
-  ffff8000116c17b0 g     O .init.data     0000000000000030 hyp_ftr_regs
+This camera sensor driver was tested with all the resolutions declared in
+it on two phones: Sony Xperia XA2 and XA2 Ultra, on a SDM630 SoC and is
+working great.
 
-The warning is silenced only if I mark hyp_ftr_regs as const. modpost
-bug? I'll double check my findings and follow up in a separate series.
+- Changes in v4:
+  - My e-mail address was changed in all files to reflect the new one
+  - Fixed selection targets and out-of-bounds rectangles (thanks Jacopo!)
+  - Fixed a warning: changed do_div to div_s64 for 64-bit division
+  - Added one more register definition
 
-Thanks,
-Quentin
+- Changes in v3:
+  - Removed unneeded fallthrough statements
+  - Fixed double mode initialization at probe time
+  - Fixed typo in the dt-binding description (8->25MPixels)
+  - Fixed dt-binding data-lanes description, added to required properties
+
+- Changes in v2:
+  - Changed dt-binding name and fixed a misconception about lane
+    operation (sensor supports 2/4-Lane, driver supports 4-Lane only)
+  - Now using lowercase names for regulator supplies
+  - Fixed redefinition of clock-noncontinuous property
+  - Added informations about constraints on data bus frequencies
+  - Fixed MAINTAINERS: removed git tree
+
+AngeloGioacchino Del Regno (2):
+  media: i2c: Add driver for the Sony Exmor-RS IMX300 camera sensor
+  media: dt-bindings: media: i2c: Add IMX300 CMOS sensor binding
+
+ .../bindings/media/i2c/sony,imx300.yaml       |  112 +
+ MAINTAINERS                                   |    7 +
+ drivers/media/i2c/Kconfig                     |   13 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/imx300.c                    | 3084 +++++++++++++++++
+ 5 files changed, 3217 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+ create mode 100644 drivers/media/i2c/imx300.c
+
+-- 
+2.29.2
+
