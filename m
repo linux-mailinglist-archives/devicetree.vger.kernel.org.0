@@ -2,72 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E7B2F4FE9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 17:25:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D5DC2F5007
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 17:33:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727775AbhAMQYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 11:24:25 -0500
-Received: from muru.com ([72.249.23.125]:44700 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727561AbhAMQYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 11:24:24 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 9719280A7;
-        Wed, 13 Jan 2021 16:23:42 +0000 (UTC)
-Date:   Wed, 13 Jan 2021 18:23:39 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
-        <linux-omap@vger.kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Dave Gerlach <d-gerlach@ti.com>,
-        Roger Quadros <rogerq@ti.com>, Suman Anna <s-anna@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Subject: Re: [PATCH 13/18] ARM: dts: Use simple-pm-bus for genpd for am3
- l4_wkup
-Message-ID: <X/8ei0o9ULpRdx7T@atomide.com>
-References: <20201026112222.56894-1-tony@atomide.com>
- <20201026112222.56894-14-tony@atomide.com>
- <CAMuHMdWribr=eg1LkKce=Hamm+JwSz5UFEXLKUmKkqqz1RpL_w@mail.gmail.com>
+        id S1727338AbhAMQcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 11:32:55 -0500
+Received: from mail-wr1-f43.google.com ([209.85.221.43]:45057 "EHLO
+        mail-wr1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727296AbhAMQcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 11:32:55 -0500
+Received: by mail-wr1-f43.google.com with SMTP id d26so2762449wrb.12;
+        Wed, 13 Jan 2021 08:32:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=A/0YpXOLKzCymABC8q5K9YunqMSayJGkNXnIdHA1Xpw=;
+        b=QoeAJ7zWhYpcr80xyWL4fVNJNYPcaxL25mXmV+AdpY7M6cr4cIMSDMuJ/tTrvEoNhS
+         f4ZWRwuXzGCp9qfG43Ty34ybofDsyb4Fsm556Z62TQod0AaUsuFSsteL40PngkQW/JWv
+         c+w9D1w/9f2mkIh9mvCUE6qetWdASBw9at2S6iYLTKUvOU5MGkbTBpGnWM1Rpuy7C9Wh
+         bWjAZwUNZA34fV7u9RlH43lnR67p7bjTRJiZ3CnfE253/QxnuluFuj8FWYQ0VsTqbex0
+         cLQ0zMRe+UxfmAg2bdd7dtWcvmhuOUFfDPPQiPfSjUCbvv9Ulpj9uF2M39//tl+H3Kyq
+         gcyw==
+X-Gm-Message-State: AOAM532gswV8ouo+emNmwIDpIW4X66NYDv7n4EPKZuXtZlSCyPDTiMuK
+        F3epLLATyc0zlwRq4N6lAb4=
+X-Google-Smtp-Source: ABdhPJz6iBVrES/TG1frhHwf+3ytjT14b05yJODt6AFv6FpcEUjBlCxLJfnlooXuyr7dGGoxXzbdow==
+X-Received: by 2002:a5d:6486:: with SMTP id o6mr3558131wri.380.1610555533571;
+        Wed, 13 Jan 2021 08:32:13 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id u83sm3849606wmu.12.2021.01.13.08.32.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 08:32:12 -0800 (PST)
+Date:   Wed, 13 Jan 2021 17:32:11 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: imx: add imx8mm nitrogen support
+Message-ID: <20210113163211.GA5599@kozik-lap>
+References: <20210113143443.1148506-1-adrien.grassein@gmail.com>
+ <20210113143443.1148506-2-adrien.grassein@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdWribr=eg1LkKce=Hamm+JwSz5UFEXLKUmKkqqz1RpL_w@mail.gmail.com>
+In-Reply-To: <20210113143443.1148506-2-adrien.grassein@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Jan 13, 2021 at 03:34:41PM +0100, Adrien Grassein wrote:
+> The Nitrogen8M Mini is an ARM based single board computer (SBC).
+> 
+> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-* Geert Uytterhoeven <geert@linux-m68k.org> [210113 16:09]:
-> Hi Tony,
-> 
-> On Mon, Oct 26, 2020 at 1:57 PM Tony Lindgren <tony@atomide.com> wrote:
-> > We can now enable simple-pm-bus to use genpd.
-> >
-> > Signed-off-by: Tony Lindgren <tony@atomide.com>
-> 
-> Thanks for your patch, which is now commit 5a230524f87926f2 ("ARM:
-> dts: Use simple-pm-bus for genpd for am3 l4_wkup") in v5.11-rc1.
-> 
-> I have bisected a boot failure on BeagleBone Black to this commit.
-> Reverting this commit on top of a v5.11-rc3-based tree does not help.
-> 
-> With "earlycon keep_bootcon", I do get some output, the last line is
-> 
->     l4-wkup-clkctrl:00d4:0: failed to disable
-> 
-> I have attached the kernel output of the previous (good) commit,
-> and the failing one.
-> 
-> Do you have a clue?
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Strange, bbb has been working for me with NFSroot, that's with
-omap2plus_defconfig. Care to send your .config so I can give it a
-try tomorrow?
-
-Regards,
-
-Tony
+Best regards,
+Krzysztof
