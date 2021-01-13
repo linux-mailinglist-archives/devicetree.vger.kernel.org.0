@@ -2,66 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D6572F4EB3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:32:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 953692F4EC9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:32:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727356AbhAMP3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 10:29:24 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:42593 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727144AbhAMP3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:29:23 -0500
-Received: by mail-oi1-f180.google.com with SMTP id l200so2473398oig.9;
-        Wed, 13 Jan 2021 07:29:08 -0800 (PST)
+        id S1726952AbhAMPbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 10:31:17 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:38577 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726502AbhAMPbQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:31:16 -0500
+Received: by mail-oi1-f177.google.com with SMTP id x13so2513442oic.5;
+        Wed, 13 Jan 2021 07:31:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=h8hXqRRk++9NDE653QaONRW6uqUoBWwqg4Di3V2OUm0=;
-        b=MZLopDF+0+EL9bLGZEWoMdlaTqmTiWS7LshS8zWcgtM4W+qdJ5/oQDCA29quFeBoly
-         vKLe8plmbdWB0NnfIY6XfsDgWVMDcc/fvO/vsrk1Nwb3nNm7r98X9SfoFwTBYB2w3bps
-         +ePKV80gPKtacOApT+R06fqwOyzj7K87Q3z3oHWruQqwv/Nf6+PNpeohRYF7R/dAai11
-         pwHd9s6qM4kRqRvqd9yoHPKDmHD2qkf8D6vUiH1co1ls4pMuiOqFim+5DcnXwGltUL8+
-         ps8QjIl3sGyhVdTpmActexG3GLKKRu4kV4qBpS8xzklsA5RjNyQ7W2Jj2DkbMV6RbrvU
-         fyyw==
-X-Gm-Message-State: AOAM533xc0kNSx8dtTqCY79XiPgi0SmGw+gAyACMtopk4DgmtfhzRX2Q
-        HoPxvCElz9ncNx/zM6ZHgQ==
-X-Google-Smtp-Source: ABdhPJzCd43jLwbdMhQ1erq9DqNkk22l14VdoWTkVWmVh1igWCQTHjWMbNY5Cr19dCK3iI4QevK/6Q==
-X-Received: by 2002:aca:f5d3:: with SMTP id t202mr1553691oih.25.1610551722988;
-        Wed, 13 Jan 2021 07:28:42 -0800 (PST)
+        bh=HXeUcE0h/dzvnnqZWYVCwAZVkRO+AYa6kG7k/p+CyFA=;
+        b=qGDm2YKQa7DiaysFwnq8ue6MWXFY0RdQdBykHFEYkTWrbu6v4YyXeaO1QaETEfI+6M
+         ohjeCoysju8w91+F4LFdq5l95jOzywAh2VoJzqf+CpRchQZn1LlmRpX5Rp5DlgIQ1NBd
+         l6ffboJfDq962CCff9kDAb/Ksv50co7AXKDGLe2NC262d/iWIED7+0HN9Gr6+xhn8KmU
+         6BJTJsoIcFF+vMNfewM6RoRqO8CL/EXDxFhSmkSvMnD+Ym5Qbz1R48vC9MyO5PidhhRd
+         wsfLl6HXaSduYBiG7XUsCUSS5HDZCvQFxYlAi1b6R5U1naZcMl3dRhYzN7VQ/NswXOrZ
+         UKXA==
+X-Gm-Message-State: AOAM530psfcZx1Wt2CTa9184gKKVNiaPZkSuB/d1a95Hg9Jjv0TtrzmI
+        OdvMtQMsLpYpI6QloOOs3w==
+X-Google-Smtp-Source: ABdhPJwOgYfbGGuoFYtYPCMXJp2tGty9cCXvLQNHq7PwOOjKQOaX3FtPI7I2ccsJsZttW49KVkumaA==
+X-Received: by 2002:a54:4787:: with SMTP id o7mr1571234oic.113.1610551835778;
+        Wed, 13 Jan 2021 07:30:35 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u24sm458808otj.27.2021.01.13.07.28.41
+        by smtp.gmail.com with ESMTPSA id a15sm438043oii.50.2021.01.13.07.30.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 07:28:42 -0800 (PST)
-Received: (nullmailer pid 2480536 invoked by uid 1000);
-        Wed, 13 Jan 2021 15:28:41 -0000
-Date:   Wed, 13 Jan 2021 09:28:41 -0600
+        Wed, 13 Jan 2021 07:30:34 -0800 (PST)
+Received: (nullmailer pid 2483540 invoked by uid 1000);
+        Wed, 13 Jan 2021 15:30:33 -0000
+Date:   Wed, 13 Jan 2021 09:30:33 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, broonie@kernel.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] regulator: dt-bindings: pf8x00: fix
- nxp,phase-shift doc
-Message-ID: <20210113152841.GA2480475@robh.at.kernel.org>
-References: <20210108225006.153700-1-adrien.grassein@gmail.com>
- <20210108225006.153700-3-adrien.grassein@gmail.com>
+To:     Philip Chen <philipchen@chromium.org>
+Cc:     swboyd@chromium.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        dianders@chromium.org, dmitry.torokhov@gmail.com,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: Create macros for cros-ec
+ keymap
+Message-ID: <20210113153033.GA2483483@robh.at.kernel.org>
+References: <20210108172316.v4.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210108225006.153700-3-adrien.grassein@gmail.com>
+In-Reply-To: <20210108172316.v4.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Jan 2021 23:50:02 +0100, Adrien Grassein wrote:
-> nxp,phase-shift is an enum so use enum format to describe it.
-> Minimum and maximum values are also wrong.
+On Fri, 08 Jan 2021 17:23:31 -0800, Philip Chen wrote:
+> In Chrome OS, the keyboard matrix can be split to two groups:
 > 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> The keymap for the top row keys can be customized based on OEM
+> preference, while the keymap for the other keys is generic/fixed
+> across boards.
+> 
+> This patch creates marcos for the keymaps of these two groups, making
+> it easier to reuse the generic portion of keymap when we override the
+> keymap in the board-specific dts for custom top row design.
+> 
+> Signed-off-by: Philip Chen <philipchen@chromium.org>
 > ---
->  .../bindings/regulator/nxp,pf8x00-regulator.yaml   | 14 ++------------
->  1 file changed, 2 insertions(+), 12 deletions(-)
+> 
+> (no changes since v2)
+> 
+> Changes in v2:
+> - Rename CROS_STD_NON_TOP_ROW_KEYMAP to CROS_STD_MAIN_KEYMAP
+> 
+>  include/dt-bindings/input/cros-ec-keyboard.h | 103 +++++++++++++++++++
+>  1 file changed, 103 insertions(+)
+>  create mode 100644 include/dt-bindings/input/cros-ec-keyboard.h
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
