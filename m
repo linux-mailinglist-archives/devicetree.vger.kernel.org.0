@@ -2,70 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64D2E2F426C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 04:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50BE82F4270
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 04:25:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729065AbhAMDYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 22:24:10 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:37462 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729063AbhAMDYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 22:24:10 -0500
-Received: by mail-ot1-f45.google.com with SMTP id o11so641901ote.4;
-        Tue, 12 Jan 2021 19:23:54 -0800 (PST)
+        id S1729093AbhAMDYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 22:24:38 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:38660 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728279AbhAMDYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 22:24:38 -0500
+Received: by mail-ot1-f52.google.com with SMTP id j20so632379otq.5;
+        Tue, 12 Jan 2021 19:24:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wOZ1zcAtpG+j2m3YIJ5O/vEoXcdkINU14/EXzgqPb/s=;
-        b=aI+aPUM1+rIIpYw5zhWy8U1DrOGTu+T3okBxIzCXBu7ZJfMkRbWOv+re870o30GmYL
-         QlRHNl9hJqd9LmA/CZLj5cXSooifyvFxX0oAdjEJvR0RQAm1qMIheKykW4PJhZwyP+bv
-         jdOYVi7a966cp9ddd+y7qbojf9Ri2wpHAtjV24Jq2x0/ZN7dYhgJ55aQncxZXKsB6iK+
-         edG4t2sWbOkxrswkslL2hg91Qurd/+OwkutVJOpzGyYHQpEkv6g5y6zE8eGJCpUm8rJ0
-         nUXPQpW0kGiFxUtIJcTXb4/+FBBjB+LvQtpL9VphS+D1Kl2N2byamEFbPEECraSjRq7+
-         +n6g==
-X-Gm-Message-State: AOAM532apd1eqw0K58wYABvn4SFgNTcFHcYJHxkaRdOBP0UtcPCMuBME
-        SCSR1rcVz2b0cn5XuI4N8A==
-X-Google-Smtp-Source: ABdhPJywvsHp4TphcyeyZc84gPrga7TSNEfIrt+MLVAbbAYg5iPu6n+xMjpsbkkWU1c6iAkLnF1eQg==
-X-Received: by 2002:a05:6830:30b8:: with SMTP id g24mr16815ots.16.1610508209205;
-        Tue, 12 Jan 2021 19:23:29 -0800 (PST)
+        bh=ZSrpsNbcvEDxYIK+UaeOptgROJkkLzzVbandLpjStnE=;
+        b=JgGBBREU4Zh0KSxlXUvtMT/54/Nrts6m8DMMDyjahRZ1x2c0hsS+Cpcn0jZQmPPIUh
+         GWfA1hEOw0f5Tw8xxWiMmVfNph6Iasj9I5WjCVS7q2ANfj0o5FkxrYxsgCwWMxNrllZj
+         iE/jIlzhCzJpizyLe5HaWTvITqyPmZqulpxFIXGekJborbZsQ1reCC3axl7pxdrFRzBT
+         8/bMuHY1NWwUTMgaxaTW9DZ1NlfZ8LdhBRdtYQCv9otXOY+PI6jZll2sVrgRyHlmyEyc
+         3ggOqiq+zGIZdN0XSKCxqMxhOARYQD9AwaQyG2h+qYLujLvkjSarSGxma/Qt55fI8+zp
+         9HYQ==
+X-Gm-Message-State: AOAM532b1ZPZOsnpcYmZTm+TSqcWOxDg6xHhcpWpN2/USdWJZ/EmDFmM
+        BulBVx9OejfOmJRZA3H/i++pp7YdJA==
+X-Google-Smtp-Source: ABdhPJzl6eyEhSOnI+FuahOcamuGW0ZLvJd4i5sSkbt4f6CH0lH4bYMmBMSGu0yWFed1xQD3Fxe6+w==
+X-Received: by 2002:a05:6830:159a:: with SMTP id i26mr1561852otr.315.1610508237028;
+        Tue, 12 Jan 2021 19:23:57 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j22sm171059otp.45.2021.01.12.19.23.27
+        by smtp.gmail.com with ESMTPSA id p4sm175190oib.24.2021.01.12.19.23.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 19:23:28 -0800 (PST)
-Received: (nullmailer pid 1469094 invoked by uid 1000);
-        Wed, 13 Jan 2021 03:23:27 -0000
-Date:   Tue, 12 Jan 2021 21:23:27 -0600
+        Tue, 12 Jan 2021 19:23:56 -0800 (PST)
+Received: (nullmailer pid 1469790 invoked by uid 1000);
+        Wed, 13 Jan 2021 03:23:55 -0000
+Date:   Tue, 12 Jan 2021 21:23:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Phong Hoang <phong.hoang.wz@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        devicetree@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>
-Subject: Re: [PATCH 1/4] dt-bindings: renesas,rcar-dmac: Add r8a779a0 support
-Message-ID: <20210113032327.GA1469053@robh.at.kernel.org>
-References: <20210107181524.1947173-1-geert+renesas@glider.be>
- <20210107181524.1947173-2-geert+renesas@glider.be>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     mkl@pengutronix.de, linux-can@vger.kernel.org,
+        qiangqing.zhang@nxp.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: can: fsl,flexcan.yaml: introduce the
+ stb-gpios property
+Message-ID: <20210113032355.GA1469209@robh.at.kernel.org>
+References: <20210107205915.7602-1-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210107181524.1947173-2-geert+renesas@glider.be>
+In-Reply-To: <20210107205915.7602-1-festevam@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Jan 2021 19:15:21 +0100, Geert Uytterhoeven wrote:
-> Document the compatible value for the Direct Memory Access Controller
-> blocks in the Renesas R-Car V3U (R8A779A0) SoC.
+On Thu, Jan 07, 2021 at 05:59:14PM -0300, Fabio Estevam wrote:
+> It is very common to have an STB pin in CAN transceivers, which allows
+> putting the transceiver in standby or normal operation mode.
 > 
-> The most visible difference with DMAC blocks on other R-Car SoCs is the
-> move of the per-channel registers to a separate register block.
+> Add a new optional 'stb-gpios' property to describe this.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 > ---
->  .../bindings/dma/renesas,rcar-dmac.yaml       | 76 ++++++++++++-------
->  1 file changed, 48 insertions(+), 28 deletions(-)
+>  Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> index 0d2df30f19db..64f904c4b3d5 100644
+> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> @@ -66,6 +66,9 @@ properties:
+>    xceiver-supply:
+>      description: Regulator that powers the CAN transceiver.
+>  
+> +  stb-gpios:
+> +    description: GPIO that controls the STB CAN transceiver pin.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+maxItems: 1
+
+> +
+>    big-endian:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description: |
+> -- 
+> 2.17.1
+> 
