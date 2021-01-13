@@ -2,77 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 282072F54E0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 23:20:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA822F54E2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 23:23:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729132AbhAMWTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 17:19:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53444 "EHLO
+        id S1729279AbhAMWWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 17:22:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729283AbhAMWRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 17:17:24 -0500
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EEB9C0617A3
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 14:16:02 -0800 (PST)
-Received: by mail-qk1-x735.google.com with SMTP id v126so4384142qkd.11
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 14:16:02 -0800 (PST)
+        with ESMTP id S1725857AbhAMWVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 17:21:02 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77DCAC061786;
+        Wed, 13 Jan 2021 14:20:21 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id d26so3746255wrb.12;
+        Wed, 13 Jan 2021 14:20:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cTq9BZuyc2JWWvpzIlfxUaiFdXiEl1WBgsmk8mSJEMM=;
-        b=PWBTvEa5NbYEJopVdcXuVqQf/JjG5gACNCIYDMJBf9E0arp6TfC5oz66n3H0qWPk5Y
-         eIFJiuMlFk4kkQDNxi4FbKZIBmN3DV9l7kKrgeNB7g19C34zVdKIAEakRSerhIZjMkpI
-         MnK1rqQpnSHAYo7efBOciJbXp2r+lUNczmriQ=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=HCP+UiqivE5Sl8wYg29qb2EI1nN4FyBAZjFb96c2xmg=;
+        b=qB1AqFISSnQ4XVQAnERYtklKDmYAuzzTq3KK7dYax4/RSzrWXePRReHZTFP3kJc25q
+         wnafc1VxATDfLPHttUxPXKU0474oFoyLeb9nG/pn1UzNOnTY7ux/oW3KHCOsmLrSfZ98
+         Fy8RMdardHim/IcLYGDEJYKd7D3u7fJCOHoKSfZlsIgx7KDp3qBTcxF76+0vQ3yc8/nb
+         SIzsdffYzIxY0VxgPdGlzJng3RQzOzdvuFa+daKum/IYh3MLT8Vcsymg5FLx0oHeTBqI
+         UiNJTWjGngsEtJaI7b8bSp5zqWp/FptZDDWBzjdRRnDZJuemx8d6eKLHczWWFfUZEQCJ
+         n6vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cTq9BZuyc2JWWvpzIlfxUaiFdXiEl1WBgsmk8mSJEMM=;
-        b=MfeYrz3qc+T6rMirE1lFXveikVElTCfmeBk5Wiiqx/VWrGQC+irhEPbHkzJQtYtVl/
-         sLdSHbKFJ39U4NbNkJp+8lq2IzZ99q1UBu6Ukj9cOijN+aucX2M/UxstSef7BVNfRacE
-         YjsXCgMQu4qjd+0/6uQ9GjfjHhm9xS8jIpylkdtf3dHGSSe/Vmcq2EbuK7j2WJdsA9QJ
-         FJ6wpO05QtodCfHS46p4nE02MflE9BmWC4zCPR3HxRSR/6+hX9egkCvO7FZL8Nldm6YN
-         J1GZliZ+yvvTV0glNpJXZGPRVO0mrH8kkOsorGnlHQnyCWspel20u1+8/ZoFQRjOFJ4l
-         ksPg==
-X-Gm-Message-State: AOAM530N7HMuadB3if3YXkZyL2QGkBvzfPuQ6GxTpf+B92GxH/7RO071
-        AKmCfRQjDA4EEetQv/SSzsZBoeYp/z6yiYM/tifEPQ==
-X-Google-Smtp-Source: ABdhPJzvis3PmTgmiOX/slOAg9ePoXvVTAv2KB7aJml+JJUsZOkm0hVZBZSipGRrgHGHDf7EXVffIzsQRCNvzhvzvVw=
-X-Received: by 2002:a25:3d47:: with SMTP id k68mr6375160yba.415.1610576161387;
- Wed, 13 Jan 2021 14:16:01 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=HCP+UiqivE5Sl8wYg29qb2EI1nN4FyBAZjFb96c2xmg=;
+        b=YbyGz5RNYtJyOW/cU5DrXza0eMApMeoYYpbg3TjeAnHbr0Ku4h/nx2DunWAGRjTFzX
+         1QfIpksqjFtXeyK5gMEZHyWZakO7sQRXj91y9ouksSYV1T/owZR/7s8Up9GUd2zEEdvc
+         9nmL6Gay+60ydiD02gcLUfaBFEY9RQbncQkFy0W/nu4i1vdaH6u2g/G8jm5WY7qWbrCy
+         Y63aZe1qe0DiuMWbVczwFFRiRMgsuEQAbt/eDz/LJVlTXQUQYtoIxw7s+mpe0P3YyeOP
+         PwJ+PAuW/yeibNCW3CKmq0hau3kp8If4RCKR7UwxS1IfPjwi3G42V6hHL4dKS5esOQzv
+         QvBA==
+X-Gm-Message-State: AOAM530DtChOzfAIiDyVFsewbD9LTnovhmWkU1aK1ahO0JGq5jIh0Yqf
+        XUz+VN+cIGzt14AuWG9wajDRdDOawTM=
+X-Google-Smtp-Source: ABdhPJzlkwd4LnPR8AMzxeXYoNePumKZK7rPFnb4by2DgtM02PqWsNG2wPSXerYIG32W0nVXK+uqjw==
+X-Received: by 2002:a5d:4112:: with SMTP id l18mr4620379wrp.116.1610576420235;
+        Wed, 13 Jan 2021 14:20:20 -0800 (PST)
+Received: from localhost.localdomain (2a01cb0008bd27000d88c7723353ad1a.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:d88:c772:3353:ad1a])
+        by smtp.gmail.com with ESMTPSA id t1sm5594929wro.27.2021.01.13.14.20.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 14:20:19 -0800 (PST)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     broonie@kernel.org, jagan@amarulasolutions.com,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v4 1/6] regulator: pf8x00: add a doc for the module
+Date:   Wed, 13 Jan 2021 23:20:11 +0100
+Message-Id: <20210113222016.1915993-2-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210113222016.1915993-1-adrien.grassein@gmail.com>
+References: <20210113222016.1915993-1-adrien.grassein@gmail.com>
 MIME-Version: 1.0
-References: <20210108172316.v4.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
- <20210108172316.v4.2.I9ec9c3c61eded22a5f7fbff838d23fc95ec7cfe0@changeid> <161041725044.3661239.4848052699046966461@swboyd.mtv.corp.google.com>
-In-Reply-To: <161041725044.3661239.4848052699046966461@swboyd.mtv.corp.google.com>
-From:   Philip Chen <philipchen@chromium.org>
-Date:   Wed, 13 Jan 2021 14:15:50 -0800
-Message-ID: <CA+cxXhk-CKC-GguQEyYA-8Fnhdo98D8wvRrJKXvjmuisC1knkw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] ARM: dts: cros-ec-keyboard: Use keymap marcos
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 6:07 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> BTW, subject says 'marcos' when it should say 'macros'
-Thanks - I fixed it in v5.
->
-> Quoting Philip Chen (2021-01-08 17:23:32)
-> > The common cros-ec keymap has been defined as macros. This patch uses
-> > the macros to simply linux,keymap in cros-ec-keyboard.dtsi file.
-> >
-> > This patch also creates an alias for keyboard-controller to make it
-> > easier to override the keymap in board-specific dts later.
-> >
-> > Signed-off-by: Philip Chen <philipchen@chromium.org>
-> > ---
-> >
+pf8x00 module build was not documented.
+
+Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ drivers/regulator/Kconfig | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+index eafa13be6e3e..ba8c09d90701 100644
+--- a/drivers/regulator/Kconfig
++++ b/drivers/regulator/Kconfig
+@@ -846,6 +846,10 @@ config REGULATOR_PF8X00
+ 	  Say y here to support the regulators found on the NXP
+ 	  PF8100/PF8121A/PF8200 PMIC.
+ 
++	  Say M here if you want to support for the regulators found
++	  on the NXP PF8100/PF8121A/PF8200 PMIC. The module will be named
++	  "pf8x00-regulator".
++
+ config REGULATOR_PFUZE100
+ 	tristate "Freescale PFUZE100/200/3000/3001 regulator driver"
+ 	depends on I2C && OF
+-- 
+2.25.1
+
