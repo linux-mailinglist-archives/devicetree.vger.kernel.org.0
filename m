@@ -2,219 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F231D2F4A4E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:40:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA3A2F4A64
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:43:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726724AbhAMLd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 06:33:57 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47154 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726584AbhAMLd5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 06:33:57 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DA900233EF;
-        Wed, 13 Jan 2021 11:33:15 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kzeOn-007Epc-Ma; Wed, 13 Jan 2021 11:33:13 +0000
+        id S1725911AbhAMLlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 06:41:40 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:60713 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725372AbhAMLlk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:41:40 -0500
+X-UUID: 361aad17095448beb57661ef8259a9ca-20210113
+X-UUID: 361aad17095448beb57661ef8259a9ca-20210113
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 543828084; Wed, 13 Jan 2021 19:40:54 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 13 Jan 2021 19:40:53 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 13 Jan 2021 19:40:51 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>, <maz@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
+        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
+        <anson.chuang@mediatek.com>
+Subject: [v7,0/7] PCI: mediatek: Add new generation controller support
+Date:   Wed, 13 Jan 2021 19:39:54 +0800
+Message-ID: <20210113114001.5804-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 13 Jan 2021 11:33:13 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 13/26] KVM: arm64: Enable access to sanitized CPU
- features at EL2
-In-Reply-To: <20210108121524.656872-14-qperret@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-14-qperret@google.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <d55643ea391f73a2297f499f3219ba8a@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: qperret@google.com, catalin.marinas@arm.com, will@kernel.org, james.morse@arm.com, julien.thierry.kdev@gmail.com, suzuki.poulose@arm.com, robh+dt@kernel.org, frowand.list@gmail.com, devicetree@vger.kernel.org, android-kvm@google.com, linux-kernel@vger.kernel.org, kernel-team@android.com, kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org, tabba@google.com, mark.rutland@arm.com, dbrazdil@google.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Quentin,
+These series patches add pcie-mediatek-gen3.c and dt-bindings file to
+support new generation PCIe controller.
 
-On 2021-01-08 12:15, Quentin Perret wrote:
-> Introduce the infrastructure in KVM enabling to copy CPU feature
-> registers into EL2-owned data-structures, to allow reading sanitised
-> values directly at EL2 in nVHE.
-> 
-> Given that only a subset of these features are being read by the
-> hypervisor, the ones that need to be copied are to be listed under
-> <asm/kvm_cpufeature.h> together with the name of the nVHE variable that
-> will hold the copy.
-> 
-> While at it, introduce the first user of this infrastructure by
-> implementing __flush_dcache_area at EL2, which needs
-> arm64_ftr_reg_ctrel0.
-> 
-> Signed-off-by: Quentin Perret <qperret@google.com>
-> ---
->  arch/arm64/include/asm/cpufeature.h     |  1 +
->  arch/arm64/include/asm/kvm_cpufeature.h | 17 ++++++++++++++
->  arch/arm64/kernel/cpufeature.c          | 12 ++++++++++
->  arch/arm64/kvm/arm.c                    | 31 +++++++++++++++++++++++++
->  arch/arm64/kvm/hyp/nvhe/Makefile        |  3 ++-
->  arch/arm64/kvm/hyp/nvhe/cache.S         | 13 +++++++++++
->  arch/arm64/kvm/hyp/nvhe/cpufeature.c    |  8 +++++++
->  7 files changed, 84 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/include/asm/kvm_cpufeature.h
->  create mode 100644 arch/arm64/kvm/hyp/nvhe/cache.S
->  create mode 100644 arch/arm64/kvm/hyp/nvhe/cpufeature.c
-> 
-> diff --git a/arch/arm64/include/asm/cpufeature.h
-> b/arch/arm64/include/asm/cpufeature.h
-> index 16063c813dcd..742e9bcc051b 100644
-> --- a/arch/arm64/include/asm/cpufeature.h
-> +++ b/arch/arm64/include/asm/cpufeature.h
-> @@ -600,6 +600,7 @@ void __init setup_cpu_features(void);
->  void check_local_cpu_capabilities(void);
-> 
->  u64 read_sanitised_ftr_reg(u32 id);
-> +int copy_ftr_reg(u32 id, struct arm64_ftr_reg *dst);
-> 
->  static inline bool cpu_supports_mixed_endian_el0(void)
->  {
-> diff --git a/arch/arm64/include/asm/kvm_cpufeature.h
-> b/arch/arm64/include/asm/kvm_cpufeature.h
-> new file mode 100644
-> index 000000000000..d34f85cba358
-> --- /dev/null
-> +++ b/arch/arm64/include/asm/kvm_cpufeature.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2020 - Google LLC
-> + * Author: Quentin Perret <qperret@google.com>
-> + */
-> +
-> +#include <asm/cpufeature.h>
-> +
-> +#ifndef KVM_HYP_CPU_FTR_REG
-> +#if defined(__KVM_NVHE_HYPERVISOR__)
-> +#define KVM_HYP_CPU_FTR_REG(id, name) extern struct arm64_ftr_reg 
-> name;
-> +#else
-> +#define KVM_HYP_CPU_FTR_REG(id, name) DECLARE_KVM_NVHE_SYM(name);
-> +#endif
-> +#endif
-> +
-> +KVM_HYP_CPU_FTR_REG(SYS_CTR_EL0, arm64_ftr_reg_ctrel0)
-> diff --git a/arch/arm64/kernel/cpufeature.c 
-> b/arch/arm64/kernel/cpufeature.c
-> index bc3549663957..c2019aaaadc3 100644
-> --- a/arch/arm64/kernel/cpufeature.c
-> +++ b/arch/arm64/kernel/cpufeature.c
-> @@ -1113,6 +1113,18 @@ u64 read_sanitised_ftr_reg(u32 id)
->  }
->  EXPORT_SYMBOL_GPL(read_sanitised_ftr_reg);
-> 
-> +int copy_ftr_reg(u32 id, struct arm64_ftr_reg *dst)
-> +{
-> +	struct arm64_ftr_reg *regp = get_arm64_ftr_reg(id);
-> +
-> +	if (!regp)
-> +		return -EINVAL;
-> +
-> +	memcpy(dst, regp, sizeof(*regp));
-> +
-> +	return 0;
-> +}
-> +
->  #define read_sysreg_case(r)	\
->  	case r:		return read_sysreg_s(r)
-> 
-> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> index 51b53ca36dc5..9fd769349e9e 100644
-> --- a/arch/arm64/kvm/arm.c
-> +++ b/arch/arm64/kvm/arm.c
-> @@ -34,6 +34,7 @@
->  #include <asm/virt.h>
->  #include <asm/kvm_arm.h>
->  #include <asm/kvm_asm.h>
-> +#include <asm/kvm_cpufeature.h>
->  #include <asm/kvm_mmu.h>
->  #include <asm/kvm_emulate.h>
->  #include <asm/sections.h>
-> @@ -1697,6 +1698,29 @@ static void teardown_hyp_mode(void)
->  	}
->  }
-> 
-> +#undef KVM_HYP_CPU_FTR_REG
-> +#define KVM_HYP_CPU_FTR_REG(id, name) \
-> +	{ .sys_id = id, .dst = (struct arm64_ftr_reg *)&kvm_nvhe_sym(name) },
-> +static const struct __ftr_reg_copy_entry {
-> +	u32			sys_id;
-> +	struct arm64_ftr_reg	*dst;
+Changes in v7:
+1. Split the driver patch to core PCIe, INTx, MSI and PM patches;
+2. Reshape MSI init and handle flow, use msi_bottom_domain to cover all sets;
+3. Replace readl/writel with their relaxed version;
+4. Add MSI description in binding document;
+5. Add pl_250m clock in binding document.
 
-Why do we need the whole data structure? Can't we just live with 
-sys_val?
+Changes in v6:
+1. Export pci_pio_to_address() to support compiling as kernel module;
+2. Replace usleep_range(100 * 1000, 120 * 1000) with msleep(100);
+3. Replace dev_notice with dev_err;
+4. Fix MSI get hwirq flow;
+5. Fix warning for possible recursive locking in mtk_pcie_set_affinity.
 
-> +} hyp_ftr_regs[] = {
-> +	#include <asm/kvm_cpufeature.h>
-> +};
+Changes in v5:
+1. Remove unused macros
+2. Modify the config read/write callbacks, set the config byte field
+   in TLP header and use pci_generic_config_read32/write32
+   to access the config space
+3. Fix the settings of translation window, both MEM and IO regions
+   works properly
+4. Fix typos
 
-Can't this be made __initdata?
+Changes in v4:
+1. Fix PCIe power up/down flow
+2. Use "mac" and "phy" for reset names
+3. Add clock names
+4. Fix the variables type
 
-> +
-> +static int copy_cpu_ftr_regs(void)
-> +{
-> +	int i, ret;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(hyp_ftr_regs); i++) {
-> +		ret = copy_ftr_reg(hyp_ftr_regs[i].sys_id, hyp_ftr_regs[i].dst);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * Inits Hyp-mode on all online CPUs
->   */
-> @@ -1705,6 +1729,13 @@ static int init_hyp_mode(void)
->  	int cpu;
->  	int err = 0;
-> 
-> +	/*
-> +	 * Copy the required CPU feature register in their EL2 counterpart
-> +	 */
-> +	err = copy_cpu_ftr_regs();
-> +	if (err)
-> +		return err;
-> +
+Changes in v3:
+1. Remove standard property in binding document
+2. Return error number when get_optional* API throws an error
+3. Use the bulk clk APIs
 
-Just to keep things together, please move any sysreg manipulation into
-sys_regs.c, most probably into kvm_sys_reg_table_init().
+Changes in v2:
+1. Fix the typo of dt-bindings patch
+2. Remove the unnecessary properties in binding document
+3. dispos the irq mappings of msi top domain when irq teardown
 
-Thanks,
 
-         M.
+Jianjun Wang (7):
+  dt-bindings: PCI: mediatek-gen3: Add YAML schema
+  PCI: Export pci_pio_to_address() for module use
+  PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+  PCI: mediatek-gen3: Add INTx support
+  PCI: mediatek-gen3: Add MSI support
+  PCI: mediatek-gen3: Add system PM support
+  MAINTAINERS: Add Jianjun Wang as MediaTek PCI co-maintainer
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      | 172 ++++
+ MAINTAINERS                                   |   1 +
+ drivers/pci/controller/Kconfig                |  13 +
+ drivers/pci/controller/Makefile               |   1 +
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 965 ++++++++++++++++++
+ drivers/pci/pci.c                             |   1 +
+ 6 files changed, 1153 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+ create mode 100644 drivers/pci/controller/pcie-mediatek-gen3.c
+
 -- 
-Jazz is not dead. It just smells funny...
+2.25.1
+
