@@ -2,106 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3DA72F430C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:21:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74FE82F4310
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:23:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726589AbhAMEUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 23:20:04 -0500
-Received: from foss.arm.com ([217.140.110.172]:58008 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726481AbhAMEUD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Jan 2021 23:20:03 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 041ED1474;
-        Tue, 12 Jan 2021 20:18:58 -0800 (PST)
-Received: from p8cg001049571a15.blr.arm.com (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C4F723F719;
-        Tue, 12 Jan 2021 20:18:54 -0800 (PST)
-From:   Anshuman Khandual <anshuman.khandual@arm.com>
-To:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
-Cc:     mathieu.poirier@linaro.org, suzuki.poulose@arm.com,
-        mike.leach@linaro.org,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Linu Cherian <lcherian@marvell.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH V2 11/11] dts: bindings: Document device tree bindings for Arm TRBE
-Date:   Wed, 13 Jan 2021 09:48:18 +0530
-Message-Id: <1610511498-4058-12-git-send-email-anshuman.khandual@arm.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1610511498-4058-1-git-send-email-anshuman.khandual@arm.com>
-References: <1610511498-4058-1-git-send-email-anshuman.khandual@arm.com>
+        id S1726152AbhAMEWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 23:22:39 -0500
+Received: from mail-wr1-f49.google.com ([209.85.221.49]:36458 "EHLO
+        mail-wr1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725951AbhAMEWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 23:22:39 -0500
+Received: by mail-wr1-f49.google.com with SMTP id t16so648417wra.3;
+        Tue, 12 Jan 2021 20:22:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=t3HagmBJGovu0QvJZ9KkIGiFFpl5tBOZ8sPFd4qVoYI=;
+        b=TJFWOML7H/e22DV9zE09on7UBmd9cnPZTozwpOfRZW3gUus0a5+1+RdQ3zZG7FMiNm
+         YYrJ2yTT8K8gsevziG+Vja7JAokiO5RCgJAUc+bRgGFZTQ079RrmjLv/UI8OA81cen4D
+         pjT4+eR2t6lyaQr0i5o+MtSTD8mMhgwROt449cO0R73NiS7l8td9QX/dgHZvTg6jg5I2
+         ZFtJwU5CJw5DoGnz0bYfPVzWg85V99x8ZxbJmUNK7/PtZckVyqRWcMkFy04qexEOWHfk
+         /sMlfpZfIwZUNmeWhFmzmBY4iwigSXWeBeaFIPsniWqfZTpJxw2tCphN2pjZ3xlNAMty
+         AWXg==
+X-Gm-Message-State: AOAM532SW+So3rYC1sImrchQrXoS/JsgCT8Voiti454p6m7uhQFX5IaM
+        4qivewMFP27pUckCBq/jXV4=
+X-Google-Smtp-Source: ABdhPJzkaHrOeWdlGhY6q6jzcbNwiFHzkRhLH5KAuOzako6cSBOPHauedfAa1PwsFlvx0m3keAHPxw==
+X-Received: by 2002:a5d:4101:: with SMTP id l1mr413041wrp.196.1610511717435;
+        Tue, 12 Jan 2021 20:21:57 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id y11sm886936wmi.0.2021.01.12.20.21.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jan 2021 20:21:56 -0800 (PST)
+Date:   Wed, 13 Jan 2021 05:21:54 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-imx@nxp.com, catalin.marinas@arm.com,
+        will@kernel.org, kernel@puri.sm, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 8/9] arm64: dts: Add Librem5 Evergreen
+Message-ID: <20210113042154.GA6486@kozik-lap>
+References: <20210112095151.4995-1-martin.kepplinger@puri.sm>
+ <20210112095151.4995-9-martin.kepplinger@puri.sm>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210112095151.4995-9-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
+On Tue, Jan 12, 2021 at 10:51:50AM +0100, Martin Kepplinger wrote:
+> Add librem5-r4 with specifics to that revision like the near-level,
+> battery and charger properties. For schematics and more information,
+> see https://developer.puri.sm/Librem5/Hardware_Reference/Evergreen.html
+> 
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |  1 +
+>  .../boot/dts/freescale/imx8mq-librem5-r4.dts  | 35 +++++++++++++++++++
+>  2 files changed, 36 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
+>
 
-Document the device tree bindings for Trace Buffer Extension (TRBE).
+The bindings go before DTS change using them.
 
-Cc: Anshuman Khandual <anshuman.khandual@arm.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
----
- Documentation/devicetree/bindings/arm/trbe.yaml | 46 +++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/trbe.yaml
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/arm/trbe.yaml b/Documentation/devicetree/bindings/arm/trbe.yaml
-new file mode 100644
-index 0000000..2258595
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/trbe.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# Copyright 2021, Arm Ltd
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/arm/trbe.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: ARM Trace Buffer Extensions
-+
-+maintainers:
-+  - Anshuman Khandual <anshuman.khandual@arm.com>
-+
-+description: |
-+  Description of TRBE hw
-+
-+properties:
-+  $nodename:
-+    pattern: "trbe"
-+  compatible:
-+    items:
-+      - const: arm,trace-buffer-extension
-+
-+  interrupts:
-+    description: |
-+       Exactly 1 PPI must be listed. For heterogeneous systems where
-+       TRBE is only supported on a subset of the CPUs, please consult
-+       the arm,gic-v3 binding for details on describing a PPI partition.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - interrupts
-+
-+additionalProperties: false
-+
-+
-+examples:
-+
-+ - |
-+   #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+   trbe {
-+     compatible = "arm,trace-buffer-extension";
-+     interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+   };
-+...
--- 
-2.7.4
-
+Best regards,
+Krzysztof
