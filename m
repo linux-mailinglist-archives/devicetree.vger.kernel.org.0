@@ -2,178 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A2E2F4221
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 03:57:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A22532F423C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 04:05:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728303AbhAMC5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 21:57:10 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:37692 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726840AbhAMC5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 21:57:10 -0500
-Received: by mail-ot1-f43.google.com with SMTP id o11so593822ote.4;
-        Tue, 12 Jan 2021 18:56:54 -0800 (PST)
+        id S1728823AbhAMDEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 22:04:53 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:38275 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728722AbhAMDEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 22:04:53 -0500
+Received: by mail-oi1-f176.google.com with SMTP id x13so644328oic.5;
+        Tue, 12 Jan 2021 19:04:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wxopvxGze0KrwrLh4CQC5oDamBjQANLUapKIcQO/MXE=;
-        b=k6zmwDG6uO4PvbyJeGNB4MAlXlTB72tL5tUnbUwI/WS+aZ+Fkjt1Yjd5DTUfl3IyKL
-         7GzEHkOrfnrmSAoPnAo7jTb2Ke3uyou6T9wl6AKK1l0kyI/8lqpMyEIWW27VDs1u7ndw
-         l9Y4nTD5flNzGMWUFzsnmB75Ah02L+dQjL8RJG7ORE1o+5SrXwqgXpOAsQTQK06h7M0k
-         b6Qrg+Hu5DCTwTYcaMP1KzTLRRdu1J9WeBNHxQ2JysqFQwN1zbLbwkOksPEinYvY8jEJ
-         dRHgCPYiwzTOxcAvZJRxoeccAPhm2vVclnQIPhn5Bs7E9vG4PcJbElEa9lv0mNC1pu3z
-         XVuw==
-X-Gm-Message-State: AOAM530uO+6ANV/EOEgx+v0jWvNSIr/U7dPg05cqFwtrBehqGbdk/1kY
-        5Vzmi7Ys4fjvp0hoQ7h2XA==
-X-Google-Smtp-Source: ABdhPJy3qIbJsSo8ZClFtqTOMi0u7CL9lXJnDxywdybq3O1RzBXWkRgzCxuBOC2FJyqihdK8Cbb3kA==
-X-Received: by 2002:a05:6830:784:: with SMTP id w4mr1602255ots.53.1610506589186;
-        Tue, 12 Jan 2021 18:56:29 -0800 (PST)
+        bh=cpiu9m+TCpQtSztTuCtXfLfCd/yaMGYzPysLOSNolt8=;
+        b=eap0R17hifdSw7lsvliLVoWVLO4YAK6AhgKeBUjc5c1gzIFfaOL8ZiBkzTfcivYIfz
+         418FIZSP8TUx7z5DdjVPepj4ViV/8or0vKay06LTL2+oeXt2Ma4peQhyFDNsLSTbUrTl
+         WT57VPcLE08XJzU4Iy8nwCNRwJP8mgj2NKGJNEjvNgmKbgAzZWBYVt/lMZhx3Flh5h9J
+         TSeUCKGqowNOoJK/YyhnoW42jSdsxsRjpQeuiYQ0grjGElJeKCVNIjr4VyUeLouWYpXG
+         l3OmeO+b1YST4SIUa20flcHON7d1O20r6Kp+XfjFXrN2O4hfRPS5NL52inRKAdS1v3Bo
+         h7aQ==
+X-Gm-Message-State: AOAM532WEXJ5Csf3PiWRN8GE1xGrEawEdUQ3fdqHcpMlJUI3zQecYBkv
+        JbLhuIg2+g3FCED2WEEMzA==
+X-Google-Smtp-Source: ABdhPJzpdekEcJU1YI4ImheDxEdc0Sl/eS68G0A6S2+Xtc2sC7L8KRd/lYjqVMZqw4+h0+RlwJMYow==
+X-Received: by 2002:aca:bac3:: with SMTP id k186mr75699oif.93.1610507052892;
+        Tue, 12 Jan 2021 19:04:12 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h11sm146837ooj.36.2021.01.12.18.56.27
+        by smtp.gmail.com with ESMTPSA id g200sm164542oib.19.2021.01.12.19.04.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 18:56:28 -0800 (PST)
-Received: (nullmailer pid 1430607 invoked by uid 1000);
-        Wed, 13 Jan 2021 02:56:27 -0000
-Date:   Tue, 12 Jan 2021 20:56:27 -0600
+        Tue, 12 Jan 2021 19:04:12 -0800 (PST)
+Received: (nullmailer pid 1442971 invoked by uid 1000);
+        Wed, 13 Jan 2021 03:04:10 -0000
+Date:   Tue, 12 Jan 2021 21:04:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl
- bindings
-Message-ID: <20210113025627.GA1414436@robh.at.kernel.org>
-References: <20210106054950.303244-1-vkoul@kernel.org>
- <20210106054950.303244-2-vkoul@kernel.org>
- <X/dCIuUR/El8Gxaa@builder.lan>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        phone-devel@vger.kernel.org, Ohad Ben-Cohen <ohad@wizery.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: qcom,wcnss-pil: Add
+ qcom,wcn3660b compatible
+Message-ID: <20210113030410.GA1442924@robh.at.kernel.org>
+References: <20210106102134.59801-1-stephan@gerhold.net>
+ <20210106102134.59801-2-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <X/dCIuUR/El8Gxaa@builder.lan>
+In-Reply-To: <20210106102134.59801-2-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 07, 2021 at 11:17:22AM -0600, Bjorn Andersson wrote:
-> On Tue 05 Jan 23:49 CST 2021, Vinod Koul wrote:
+On Wed, 06 Jan 2021 11:21:32 +0100, Stephan Gerhold wrote:
+> WCN3660B is a variant of WCN3660, but with the same regulator
+> requirements as WCN3620/WCN3680. Add a new qcom,wcn3660b compatible
+> to describe it from device trees.
 > 
-> > Add device tree binding Documentation details for Qualcomm SM8350
-> > pinctrl driver.
-> > 
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  .../bindings/pinctrl/qcom,sm8350-tlmm.yaml    | 149 ++++++++++++++++++
-> >  1 file changed, 149 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
-> > new file mode 100644
-> > index 000000000000..abdafd25bfc2
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
-> > @@ -0,0 +1,149 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8350-tlmm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Technologies, Inc. SM8350 TLMM block
-> > +
-> > +maintainers:
-> > +  - Vinod Koul <vkoul@kernel.org>
-> > +
-> > +description: |
-> > +  This binding describes the Top Level Mode Multiplexer block found in the
-> > +  SM8350 platform.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,sm8350-tlmm
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  '#interrupt-cells':
-> > +    description: Specifies the PIN numbers and Flags, as defined in
-> > +      include/dt-bindings/interrupt-controller/irq.h
-> > +    const: 2
-> > +
-> > +  gpio-controller: true
-> > +
-> > +  '#gpio-cells':
-> > +    description: Specifying the pin number and flags, as defined in
-> > +      include/dt-bindings/gpio/gpio.h
-> > +    const: 2
-> > +
-> > +  gpio-ranges:
-> > +    maxItems: 1
-> > +
-> > +  gpio-reserved-ranges:
-> > +    maxItems: 1
-> > +
-> > +#PIN CONFIGURATION NODES
-> > +patternProperties:
-> > +  '-pinmux$':
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> I believe that what Rob was asking for was the matter of describing the
-> mux and config subnodes under this one. But I don't know really how to
-> express this, because the following are all valid:
-> 
-> default_state: default-state {
-> 	pins = "gpio1";
-> 	bias-disable;
-> };
-> 
-> default_state: default-state {
-> 	rx {
-> 		pins = "gpio1";
-> 		function = "gpio";
-> 		bias-disable;
-> 	};
-> };
-> 
-> default_state: default-state {
-> 	pinmux {
-> 		pins = "gpio1";
-> 		function = "gpio";
-> 	};
-> 
-> 	pinconf {
-> 		pins = "gpio1";
-> 		bias-disable;
-> 	};
-> };
-> 
-> I.e. the properties described here applies either to this node directly,
-> or any subnodes (1 level) down.
 
-Why!?
-
-You can create a definition and reuse it. Something like this:
-
-$defs:
-  pin-node:
-    type: object
-    properties:
-      ...
-
-patternProperties:
-  '-state$':
-    oneOf:
-      - $ref: #/$defs/pin-node
-
-      - patternProperties:
-          '.*':
-            $ref: #/$defs/pin-node
-
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
