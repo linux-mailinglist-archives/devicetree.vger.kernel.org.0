@@ -2,134 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EA262F46A9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2552F46BD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:46:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725873AbhAMIkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 03:40:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41016 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725843AbhAMIkx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 03:40:53 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D762320719;
-        Wed, 13 Jan 2021 08:40:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610527210;
-        bh=XcCuiJ1t9jecR1iasm+dpOPuMUTkNlkATUZZmTYh84g=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=ekx8KlMCJEAWd+0dWZ0WIKrXa+c64OSvb5Tv2VlMAuLsRt5Jumc6weGYU1aKFk3Vn
-         prdt4vtbYHdLsmw7GS86SQHK6ad5EDzz56KnDeB0O2ri5XxyGoAjg5YmkEA1Hsz9OD
-         On/PeioiHN/6m7c2/HG4uUqdepC0o+9P4k67DdonziiQdPS7CRlg34wuEV7vX03DuT
-         5+CdNSpwLAwZouKCwpXo5EYe/3NdzL3LrVl+tfl9A5tr2V9rI+cyxz2wezjxxshm3N
-         Rlji+Kg6+XhkZl4pQj2bKcLC7Unkj4HKbdaRC6MktwaYsjJpymRH/+Yh6DKWq7hMZ2
-         uVof5MKJFMr3A==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>
-Subject: Re: [PATCH] usb: dwc3: qcom: Add shutdown callback for dwc3
-In-Reply-To: <1605162619-10064-1-git-send-email-sanm@codeaurora.org>
-References: <1605162619-10064-1-git-send-email-sanm@codeaurora.org>
-Date:   Wed, 13 Jan 2021 10:40:01 +0200
-Message-ID: <87sg7544da.fsf@kernel.org>
+        id S1726695AbhAMIn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 03:43:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47258 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726694AbhAMIn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 03:43:56 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE319C061575
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 00:43:15 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1kzbkI-0007Am-Jm; Wed, 13 Jan 2021 09:43:14 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1kzbkH-0007KO-AN; Wed, 13 Jan 2021 09:43:13 +0100
+Date:   Wed, 13 Jan 2021 09:43:13 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        Minas Harutyunyan <hminas@synopsys.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc2: Add support for additional
+ clock
+Message-ID: <20210113084313.GD19063@pengutronix.de>
+References: <1610386869.406608.2784732.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1610386869.406608.2784732.nullmailer@robh.at.kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:41:46 up 41 days, 21:08, 80 users,  load average: 0.15, 0.12,
+ 0.10
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+On Mon, Jan 11, 2021 at 11:41:09AM -0600, Rob Herring wrote:
+> On Mon, 11 Jan 2021 16:13:36 +0100, Sascha Hauer wrote:
+> > This adds support for an additional clock for the dwc2 core in case
+> > there is another clock to the phy which must be enabled.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/usb/dwc2.yaml | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.example.dt.yaml: usb@ff400000: clocks: [[4294967295]] is too short
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/dwc2.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.example.dt.yaml: usb@ff400000: clock-names: ['otg'] is too short
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/dwc2.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/dwc2.example.dt.yaml: usb@101c0000: clocks: [[4294967295]] is too short
 
+Ok, this can be fixed by adding a "minItems" property to clocks and
+clock-names. Will do next round.
 
-Hi,
+Anything more to say to this series?
 
-Sandeep Maheswaram <sanm@codeaurora.org> writes:
-> This patch adds a shutdown callback to USB DWC QCOM driver to ensure that
-> it is properly shutdown in reboot/shutdown path. This is required
-> where SMMU address translation is enabled like on SC7180
-> SoC and few others. If the hardware is still accessing memory after
-> SMMU translation is disabled as part of SMMU shutdown callback in
-> system reboot or shutdown path, then IOVAs(I/O virtual address)
-> which it was using will go on the bus as the physical addresses which
-> might result in unknown crashes (NoC/interconnect errors).
->
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+Sascha
 
-sounds like this is fixing a bug. Do you have a Fixes tag for it? Should
-this go to stable?
-
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index c703d55..a930e06 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -790,13 +790,11 @@ static int dwc3_qcom_probe(struct platform_device *=
-pdev)
->  	return ret;
->  }
->=20=20
-> -static int dwc3_qcom_remove(struct platform_device *pdev)
-> +static void __dwc3_qcom_teardown(struct dwc3_qcom *qcom)
->  {
-> -	struct dwc3_qcom *qcom =3D platform_get_drvdata(pdev);
-> -	struct device *dev =3D &pdev->dev;
->  	int i;
->=20=20
-> -	of_platform_depopulate(dev);
-> +	of_platform_depopulate(qcom->dev);
->=20=20
->  	for (i =3D qcom->num_clocks - 1; i >=3D 0; i--) {
->  		clk_disable_unprepare(qcom->clks[i]);
-> @@ -807,12 +805,27 @@ static int dwc3_qcom_remove(struct platform_device =
-*pdev)
->  	dwc3_qcom_interconnect_exit(qcom);
->  	reset_control_assert(qcom->resets);
->=20=20
-> -	pm_runtime_allow(dev);
-> -	pm_runtime_disable(dev);
-> +	pm_runtime_allow(qcom->dev);
-> +	pm_runtime_disable(qcom->dev);
-> +}
-
-you can make the changes smaller by adding:
-
-	struct device *dev =3D qcom->dev;
-
-The nothing else needs to change in this function ;-)
-
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl/+seERHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzL64meEamQaHDw//VzCLAhbS2V8Dlea71pWG0Y3mHVJ7c8Iw
-D0UNsS4VetXQGi45dmY3O1aIjCpCvL9JANBpDk891MCzlrL0MHkrEmvLPJ3F4X/K
-VDWPVSISoX1m3SnAiI36PBQCMKMgxkyn7czKCur0moWKflzjgStfdYKccIZE0U+g
-6mSxUmmm1sl3cCMa9hcQ1SrwcuORP9bbZ5AlGk+M6xgbJoyKsrGUrPf4HV/PapKr
-FMcuDcpMv0UKghEeHg5qRy0u8+ox0rAViT9dV2vpkgNarePaLh9DM0W8oDDlQnWs
-Y0sNePKnFFab1zugfXAemrA+kotIq83WCejY4m0VTiilmuY6j0FBK0JGqGVNJ32j
-3+Hyr0XiSwEEFj0EOLqZdr5tWLvUve44rsHDhTFGYPLam01AuGqa9Q/fzm5cJgAj
-9LieeFX/ESST61egkrqGnP58NbhJM7rp4Pri6z2+mcZ+GX2TgskpYnLg2YCqfoLf
-dYxPfSzWAZGJz3xqNM2kL0tM23FWdqGyaUGsUvga/Wi2hwp8LtVrheF9RLOaeLwP
-fXdgFh73lsRbdaXWSF87nQHuYEqN+3nYsqo8TyAudOyzq6+hOy2I0lb86/iz/JpK
-az5Ao0QAFuywtWcnyjc4fuFuNEeFxekVHfE9tur19yP5uEpdoPpoo3FJXr1lMpse
-Klo+fcPmwB8=
-=7Ebv
------END PGP SIGNATURE-----
---=-=-=--
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
