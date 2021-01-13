@@ -2,219 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 620BE2F515C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 18:47:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFFDE2F51A4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 19:04:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728088AbhAMRqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 12:46:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51788 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728038AbhAMRqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 12:46:42 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6A5FC061794
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 09:46:01 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id my11so2657875pjb.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 09:46:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=3iJ38ruIk7vDL71qJFiUIRUA9bJmAk9UlAz1S6NGAfc=;
-        b=YgnDT4IW1ijR5NycAsyd9N4zOPqKouWELw5KlHJcjJUb7OtEsHiSFQxhItDgvEN0tj
-         kx/8O2NeX2hxTwttOdgWOdv3rSOeB4BEOR4spS4rnvadpcb0ev4eLO4zj/nL19kP3o0r
-         IbVdjJXuPEbZEc3oLS1e2uaI1+5EcLQGoK//w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to;
-        bh=3iJ38ruIk7vDL71qJFiUIRUA9bJmAk9UlAz1S6NGAfc=;
-        b=hqwZyjRKn/LGWnbredaDCT2LF4U7gXv+rQjDecikfgU4sAZpM7ia6DD7ebwnvFoOAm
-         nJ1FEiSZvZwG2l05AYTCU9YGnG/Vpvm4wp9QbRymqtuLfET/kLUtXNBfNGeNYR/Hqaxc
-         k4UpELHrjbDwjRasLLreSnMEAIgFTpC8NMkaonMA8I3TTNIdveXGrggRL1Bco4o9Wqrx
-         /HnajWr38p6csrdXEGJUM5W7yPiY7TVMvYOxqTKaz6DI7k69B8iNSaDptnJz7vHdQBnS
-         wGYGC+6b4luiE0oSOWzOswH50M+o0l5If0fiGWcoOBKYqH8du2up3k3jeYsSF6fYIZkF
-         e3Mw==
-X-Gm-Message-State: AOAM531+oxAe2vd1fMorg7Z3GdRnyhKaJ7CYg6ogscIcCUihCq39IWRo
-        UM0lEF7DVShm3Z8zYdUNKY4UQg==
-X-Google-Smtp-Source: ABdhPJyxtMzss9o4mxfwzPpLN7F8wZLkHdtZibVAAQ8QwIJ8ts0Ixe9QY6VktubICz8kX/4NuzQWjQ==
-X-Received: by 2002:a17:90b:23d6:: with SMTP id md22mr402598pjb.206.1610559961047;
-        Wed, 13 Jan 2021 09:46:01 -0800 (PST)
-Received: from [10.136.8.219] ([192.19.228.250])
-        by smtp.gmail.com with ESMTPSA id 68sm3210931pfe.33.2021.01.13.09.45.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Jan 2021 09:45:57 -0800 (PST)
-Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
- empty dma-ranges
+        id S1727946AbhAMSEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 13:04:14 -0500
+Received: from foss.arm.com ([217.140.110.172]:40062 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727893AbhAMSEN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 13:04:13 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A1C051FB;
+        Wed, 13 Jan 2021 10:03:27 -0800 (PST)
+Received: from [10.57.56.43] (unknown [10.57.56.43])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D66F23F66E;
+        Wed, 13 Jan 2021 10:03:18 -0800 (PST)
+Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
 To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Bharat Gooty <bharat.gooty@broadcom.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
- <20201016090833.1892-2-thunder.leizhen@huawei.com>
- <20201128045328.2411772-1-f.fainelli@gmail.com>
- <CAK8P3a1_5RgcPz+bgo1bbUBk8NTJd=1-Y5-=CsQYkFgLfTE3_A@mail.gmail.com>
- <9c6c6b7e-8c39-8c49-5c87-9b560c027841@broadcom.com>
- <CAK8P3a2XYk8D80XARrpUSBHk1yye3KHXOdaQge4HNSZZOC=xKw@mail.gmail.com>
- <CACvutz9v+TBUbrCo3X-u5ebbs04nR0y0yQN3qWfSAyZVy9RM2g@mail.gmail.com>
- <c38cf11a-ed1d-d150-52fb-e3b4a0a30712@gmail.com>
- <CAK8P3a1TViQopQNFE4+Dtac0v2CneGiy22WYu5BuYv8HX2r8Lg@mail.gmail.com>
- <18112862-a42e-95b1-39a3-2e414667f39b@broadcom.com>
- <CAK8P3a2+EfOKAo3HLb+_qd-gnqWD55dyW0juSw1TM8jHKiZYoQ@mail.gmail.com>
- <8aaa7bb9-a81e-cd0e-8e67-360515313748@broadcom.com>
- <3fc2b0174965ec6b911ab4bd73da1525@mail.gmail.com>
- <CAK8P3a3SdvOk=chp39-ypvHsqCJkuqFG1qn+tyJ3h71OrzgDWw@mail.gmail.com>
- <d97a0c4c-15b5-272a-adc5-152c41a6a212@gmail.com>
-From:   Ray Jui <ray.jui@broadcom.com>
-Message-ID: <6ed78167-44fe-7b6e-e442-adb70b0c0bb5@broadcom.com>
-Date:   Wed, 13 Jan 2021 09:45:54 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Claire Chang <tientzu@chromium.org>, robh+dt@kernel.org,
+        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        joro@8bytes.org, will@kernel.org, frowand.list@gmail.com,
+        konrad.wilk@oracle.com, boris.ostrovsky@oracle.com,
+        jgross@suse.com, sstabellini@kernel.org, hch@lst.de,
+        m.szyprowski@samsung.com
+Cc:     drinkcat@chromium.org, devicetree@vger.kernel.org,
+        heikki.krogerus@linux.intel.com, saravanak@google.com,
+        peterz@infradead.org, xypron.glpk@gmx.de,
+        rafael.j.wysocki@intel.com, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, bgolaszewski@baylibre.com,
+        iommu@lists.linux-foundation.org, grant.likely@arm.com,
+        rdunlap@infradead.org, gregkh@linuxfoundation.org,
+        xen-devel@lists.xenproject.org, dan.j.williams@intel.com,
+        treding@nvidia.com, linuxppc-dev@lists.ozlabs.org, mingo@kernel.org
+References: <20210106034124.30560-1-tientzu@chromium.org>
+ <20210106034124.30560-3-tientzu@chromium.org>
+ <95ae9c1e-c1f1-5736-fe86-12ced1f648f9@gmail.com>
+ <7ed51025f051f65f3dfe10a88caeb648821994b1.camel@suse.de>
+ <4c4989b5-f825-7e04-ca66-038cf6b9d5e9@arm.com>
+ <9b4fe35f-a880-fcea-0591-b65406abbfa8@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <7cb70e95-f352-5fde-cc0a-b2a65b07ef29@arm.com>
+Date:   Wed, 13 Jan 2021 18:03:16 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <d97a0c4c-15b5-272a-adc5-152c41a6a212@gmail.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000645ddc05b8cbb6ee"
+In-Reply-To: <9b4fe35f-a880-fcea-0591-b65406abbfa8@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000645ddc05b8cbb6ee
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-
-Hi Bharat,
-
-On 1/13/2021 8:55 AM, Florian Fainelli wrote:
-> On 1/13/21 12:05 AM, Arnd Bergmann wrote:
->> On Wed, Jan 13, 2021 at 4:42 AM Bharat Gooty <bharat.gooty@broadcom.com> wrote:
+On 2021-01-13 17:43, Florian Fainelli wrote:
+> On 1/13/21 7:27 AM, Robin Murphy wrote:
+>> On 2021-01-13 13:59, Nicolas Saenz Julienne wrote:
+>>> Hi All,
 >>>
->>> Hello Ray,
->>>
->>> I had cross checked with Design and integration team.
->>> Yes we can set the "dma-rages" to 40 bit DMA ranges. Tested, it is working.
->>>
->>> -----Original Message-----
->>> From: Ray Jui <ray.jui@broadcom.com>
->>>
->>> Bharat can correct me if I'm wrong, but I don't think we have a bug in
->>> the USB DMA engine that causes it can only address 32-bit. I believe we
->>> can set dma-ranges size to 40-bit here.
->>>
->>> The dma-range property is though required to be specified, instead of
->>> leaving it as empty, with the use of IOMMU. That seems to be a v5.10
->>> specific behavior as I described below.
+>>> On Tue, 2021-01-12 at 16:03 -0800, Florian Fainelli wrote:
+>>>> On 1/5/21 7:41 PM, Claire Chang wrote:
+>>>>> Add the initialization function to create restricted DMA pools from
+>>>>> matching reserved-memory nodes in the device tree.
+>>>>>
+>>>>> Signed-off-by: Claire Chang <tientzu@chromium.org>
+>>>>> ---
+>>>>>    include/linux/device.h  |   4 ++
+>>>>>    include/linux/swiotlb.h |   7 +-
+>>>>>    kernel/dma/Kconfig      |   1 +
+>>>>>    kernel/dma/swiotlb.c    | 144
+>>>>> ++++++++++++++++++++++++++++++++++------
+>>>>>    4 files changed, 131 insertions(+), 25 deletions(-)
+>>>>>
+>>>>> diff --git a/include/linux/device.h b/include/linux/device.h
+>>>>> index 89bb8b84173e..ca6f71ec8871 100644
+>>>>> --- a/include/linux/device.h
+>>>>> +++ b/include/linux/device.h
+>>>>> @@ -413,6 +413,7 @@ struct dev_links_info {
+>>>>>     * @dma_pools:    Dma pools (if dma'ble device).
+>>>>>     * @dma_mem:    Internal for coherent mem override.
+>>>>>     * @cma_area:    Contiguous memory area for dma allocations
+>>>>> + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
+>>>>>     * @archdata:    For arch-specific additions.
+>>>>>     * @of_node:    Associated device tree node.
+>>>>>     * @fwnode:    Associated device node supplied by platform firmware.
+>>>>> @@ -515,6 +516,9 @@ struct device {
+>>>>>    #ifdef CONFIG_DMA_CMA
+>>>>>        struct cma *cma_area;        /* contiguous memory area for dma
+>>>>>                           allocations */
+>>>>> +#endif
+>>>>> +#ifdef CONFIG_SWIOTLB
+>>>>> +    struct io_tlb_mem    *dma_io_tlb_mem;
+>>>>>    #endif
+>>>>>        /* arch specific additions */
+>>>>>        struct dev_archdata    archdata;
+>>>>> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+>>>>> index dd8eb57cbb8f..a1bbd7788885 100644
+>>>>> --- a/include/linux/swiotlb.h
+>>>>> +++ b/include/linux/swiotlb.h
+>>>>> @@ -76,12 +76,13 @@ extern enum swiotlb_force swiotlb_force;
+>>>>>     *
+>>>>>     * @start:    The start address of the swiotlb memory pool. Used
+>>>>> to do a quick
+>>>>>     *        range check to see if the memory was in fact allocated
+>>>>> by this
+>>>>> - *        API.
+>>>>> + *        API. For restricted DMA pool, this is device tree
+>>>>> adjustable.
+>>>>
+>>>> Maybe write it as this is "firmware adjustable" such that when/if ACPI
+>>>> needs something like this, the description does not need updating.
 >>
->> Ok, thanks for double-checking. I had misremembered the version
->> that actually went into the as the one that used 64-bit dma-ranges
->> and thought that was what broke, rather than the version without
->> dma-ranges.
+>> TBH I really don't think this needs calling out at all. Even in the
+>> regular case, the details of exactly how and where the pool is allocated
+>> are beyond the scope of this code - architectures already have several
+>> ways to control that and make their own decisions.
 >>
->> If any of you want to send me that bugfix directly, or have Florian
->> pick it up through his fixes branch, I'll make sure we get it into v5.11.
+>>>>
+>>>> [snip]
+>>>>
+>>>>> +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
+>>>>> +                    struct device *dev)
+>>>>> +{
+>>>>> +    struct io_tlb_mem *mem = rmem->priv;
+>>>>> +    int ret;
+>>>>> +
+>>>>> +    if (dev->dma_io_tlb_mem)
+>>>>> +        return -EBUSY;
+>>>>> +
+>>>>> +    if (!mem) {
+>>>>> +        mem = kzalloc(sizeof(*mem), GFP_KERNEL);
+>>>>> +        if (!mem)
+>>>>> +            return -ENOMEM;
+>>>>> +
+>>>>> +        if (!memremap(rmem->base, rmem->size, MEMREMAP_WB)) {
+>>>>
+>>>> MEMREMAP_WB sounds appropriate as a default.
+>>>
+>>> As per the binding 'no-map' has to be disabled here. So AFAIU, this
+>>> memory will
+>>> be part of the linear mapping. Is this really needed then?
+>>
+>> More than that, I'd assume that we *have* to use the linear/direct map
+>> address rather than anything that has any possibility of being a vmalloc
+>> remap, otherwise we can no longer safely rely on
+>> phys_to_dma/dma_to_phys, no?
 > 
-> I have another change for v5.11 that I would like to send, so please do
-> send a bugfix when you get a chance and we can lump those two changes
-> together, say, by the end of the week?
-> 
+> I believe you are right, which means that if we want to make use of the
+> restricted DMA pool on a 32-bit architecture (and we do, at least, I do)
+> we should probably add some error checking/warning to ensure the
+> restricted DMA pool falls within the linear map.
 
-Would you be able to help to send this out by the end of this week as
-Florian advised? Your previous patch with the extension to 40-bit in
-size plus a fixes-by tag should do!
+Oh, good point - I'm so used to 64-bit that I instinctively just blanked 
+out the !PageHighMem() condition in try_ram_remap(). So maybe the 
+original intent here *was* to effectively just implement that check, but 
+if so it could still do with being a lot more explicit.
 
-Thanks!
-
-Ray
-
-
---000000000000645ddc05b8cbb6ee
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-Gp3tsmw0Vz7IMJs6DQIm7T8CfIzeId1IIHcH02MbpO7m1Btzyz625FoBWF8CAwEAAaOCAcswggHH
-MA4GA1UdDwEB/wQEAwIFoDCBngYIKwYBBQUHAQEEgZEwgY4wTQYIKwYBBQUHMAKGQWh0dHA6Ly9z
-ZWN1cmUuZ2xvYmFsc2lnbi5jb20vY2FjZXJ0L2dzcGVyc29uYWxzaWduMnNoYTJnM29jc3AuY3J0
-MD0GCCsGAQUFBzABhjFodHRwOi8vb2NzcDIuZ2xvYmFsc2lnbi5jb20vZ3NwZXJzb25hbHNpZ24y
-c2hhMmczME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
-dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEQGA1UdHwQ9MDswOaA3oDWG
-M2h0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NwZXJzb25hbHNpZ24yc2hhMmczLmNybDAfBgNV
-HREEGDAWgRRyYXkuanVpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBRpcoJiMWeVRIV3kYDEBDZJnXsLYTAdBgNVHQ4EFgQUvUTLkCwFvnpejW/KGvdaDA31b+sw
-DQYJKoZIhvcNAQELBQADggEBACMny/9Y1OPK7qwiBKBMt478eBgXnTlJ0J0HNebYcxN/l7fKIKMb
-/eX/AQKIDsHeshmV2ekPU4yY/04veXx3QTgmE1bb4ksKEFEbU0LXlVPrnlgNn8M75cPymegn/2yU
-r1+htd2eve3obmKc5Lrl0GP+4m72XxAOL687Aw5vRa4Lf294s+x4d+VRwUjoFTj9zyLhexWQuJv/
-yX1HjSkrlIsRwi6DN0/ieL04O9aD1UNPlCC6akGnv4tgwlESh51M564qhonlfSW6La+L/aTIuQc0
-88lq8s/VMBBGdc7176/v5TbNwEC/c5QYbp2n76rAmKKjhjwWmBk64yLT7CoIxk0xggJvMIICawIB
-ATBtMF0xCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTMwMQYDVQQDEypH
-bG9iYWxTaWduIFBlcnNvbmFsU2lnbiAyIENBIC0gU0hBMjU2IC0gRzMCDCUMagLNLily51ao1jAN
-BglghkgBZQMEAgEFAKCB1DAvBgkqhkiG9w0BCQQxIgQgMrEO4WyC40d25f3svGhtLOO5X85pGOCw
-+D0FpavhEuUwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjEwMTEz
-MTc0NjAxWjBpBgkqhkiG9w0BCQ8xXDBaMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZI
-AWUDBAECMAoGCCqGSIb3DQMHMAsGCSqGSIb3DQEBCjALBgkqhkiG9w0BAQcwCwYJYIZIAWUDBAIB
-MA0GCSqGSIb3DQEBAQUABIIBAIa7OgxZxY9pz8oFcHnHA1bXaxygGhUCdNwXd0VLOZgpeyuAhYFq
-1DZLdNNzwvnfRrcDfeTU2iKps3N9EmpzqffTALKLil8BA8CoGDE322c13ErQS6C7BHx7TSE78QfZ
-AdnEb2DMuRhH/d3uDjjQLMdr0FclwgOWxj5QSnFFZzePNMNI1DWc8oA+yjLGh5ll2Fs06ZYC7i/H
-eGIVavsj6GYZYMgKwfXp2agk/0uxBQSEfWe/XrDrxd/Zlfg32Ba1ltQS6FDGWjfiqRj+zujqS+D+
-30oHkqB5FXqvL+LIV7ePF+fXt8x5bUVzfWA8SgE5nTVz2r6vv5n9H4uiqfrpxes=
---000000000000645ddc05b8cbb6ee--
+Cheers,
+Robin.
