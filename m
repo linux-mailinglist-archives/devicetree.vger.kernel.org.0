@@ -2,227 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 862182F57B5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 04:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEF902F57A4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 04:00:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729364AbhANCFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 21:05:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55436 "EHLO
+        id S1727030AbhANCDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 21:03:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729309AbhAMW0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 17:26:06 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C29C0617B1
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 14:24:53 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id t16so3775848wra.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 14:24:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lRxYEjgHGRKQJGTWgD8P0bRQPkdIAl462MhbH6w8fIU=;
-        b=BsekyHdH2erAZaQOFg5oBpvrJU4q3QQyWSK5EP8gAo2AV4ik5w+HeDmXXpY7i75Gbh
-         u4ZCoF42VFFKoGxYA/XNZrm6CkUZktgIS0H7AtzJspWhR+A1rPaNGmGscVJcij5WCCRL
-         +OyWhd0dbO2axwpBQsJWQ+aNs/iGnfoqNa5ufCHyRNAkCfa4+pXlFE3SxNMhMCvDo4We
-         zw/hXeW+BWXDu8gcibTYkyLNt1lQR8vlMTPzW40yUypRvRxldtEj+TdvpeiLQ2Buukoz
-         gCpnHoyezuNadre/90f69Em/DKdiRdGtMCcldNzkK2tP/25Kv2dHu/V+/sVV3RQ84Oh6
-         ZsNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lRxYEjgHGRKQJGTWgD8P0bRQPkdIAl462MhbH6w8fIU=;
-        b=l4MxUI15YsBORVDQQfx3Ibz9Dcisz2Q0CyMIvAnFKDjNq+ZV33f64pizj5P7UKNUhL
-         zZJ82CeXDOfPNYcHhsRV/upV4j8UcAMVXA12T0z44KVASXn0mQIfFdcwCvzsYo5lr4FQ
-         A6i4p8VH2fdXreXVygliYJYrgXBnzbBX4IFXeIZZkAiz07/enOFVwQtRjq+inkUqChYH
-         MpCi2z/B//TbDRS+ZrFYDoL6QCxuhQrX8m6/w7eU7W6uECEoXddi9KRv7bOYTSUZtbol
-         nIkXekYeUqbJmzJYYV2ijjv/oFuheBTHHNWWaU0SYZhygOkXfXdcr/9OtUD+7W6NM2aT
-         0L+Q==
-X-Gm-Message-State: AOAM530B5ovxt7K9WTmvw3NZVIDOgOgxJDolJ6wyIMlf0XimqSW7gUOv
-        ohOVL5TeMkLbSSnl7v4OWl364g==
-X-Google-Smtp-Source: ABdhPJxOzCfKgbthX8z87pSAA2z2oS1X3eWZiaMypRpcouk9CsbGHEdOnPnfUCuDJjCAwyPuoYVaJQ==
-X-Received: by 2002:adf:fd42:: with SMTP id h2mr4695380wrs.142.1610576691623;
-        Wed, 13 Jan 2021 14:24:51 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id u26sm4694782wmm.24.2021.01.13.14.24.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 13 Jan 2021 14:24:50 -0800 (PST)
-Subject: Re: [PATCH v11 0/7] Qualcomm's lpass-hdmi ASoC driver to support
- audio over dp port
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, plai@codeaurora.org, tiwai@suse.com,
-        agross@kernel.org, robh+dt@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, rohitkr@codeaurora.org,
-        bjorn.andersson@linaro.org, linux-kernel@vger.kernel.org
-References: <1602134223-2562-1-git-send-email-srivasam@codeaurora.org>
- <244e74f6-fa8c-692a-aa84-4677a0fd815b@linaro.org>
- <X/9TS6bQa3Zh+EXa@gerhold.net>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <4b34bd4f-e7bc-84f9-5e8a-b2348c17b7aa@linaro.org>
-Date:   Wed, 13 Jan 2021 22:24:49 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        with ESMTP id S1729390AbhAMWj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 17:39:57 -0500
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75D28C0617A5
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 14:39:07 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 8B6003F1E5;
+        Wed, 13 Jan 2021 23:39:03 +0100 (CET)
+Subject: Re: [PATCH 2/4] clk: qcom: clk-alpha-pll: Add support for Lucid 5LPE
+ PLL
+To:     Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vivek Aknurwar <viveka@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeevan Shriram <jshriram@codeaurora.org>,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org
+References: <20210105154645.217998-1-vkoul@kernel.org>
+ <20210105154645.217998-3-vkoul@kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <c1354fed-7887-f60f-e288-df7b64d419b7@somainline.org>
+Date:   Wed, 13 Jan 2021 23:39:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <X/9TS6bQa3Zh+EXa@gerhold.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210105154645.217998-3-vkoul@kernel.org>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
-
-On 13/01/2021 20:08, Stephan Gerhold wrote:
-> Hi Srinivas,
+Il 05/01/21 16:46, Vinod Koul ha scritto:
+> From: Vivek Aknurwar <viveka@codeaurora.org>
 > 
-> On Thu, Oct 08, 2020 at 06:37:40AM +0100, Srinivas Kandagatla wrote:
->> On 08/10/2020 06:16, Srinivasa Rao Mandadapu wrote:
->>> These patches are to support audio over DP port on Qualcomm's SC7180 LPASS
->>> Asoc. It includes machine driver, cpu driver, platform driver updates for
->>> HDMI path support, device tree documention, lpass variant structure
->>> optimization and configuration changes.
->>> These patches depends on the DP patch series
->>> https://patchwork.kernel.org/project/dri-devel/list/?series=332029
->>> https://lore.kernel.org/patchwork/project/lkml/list/?series=464856
->>>
->>> changes since V10:
->>>       -- Moved hdmi regmap functions from lpass-hdmi.c to lpass-cpu.c
->>>       -- Moved QCOM_REGMAP_FIELD_ALLOC macro from lpass-hdmi.c to lpass.h
->>> changes since V9:
->>>       -- Removed unused structures lpass_hdmi.h
->>> changes since V8:
->>>       -- Removed redundant structure wrapper for reg map field memebrs
->>>       -- Updated lpass_hdmi_regmap_volatile API with appropriate registers as true
->>>          and others as false.
->>> changes since V7:
->>>       -- Fixed typo errors
->>>       -- Created Separate patch for buffer size change
->>> changes since V6:
->>>       -- Removed compile time define flag, which used for enabling
->>>        HDMI code, based on corresponding config param is included.
->>>       -- Updated reg map alloc API with reg map bulk API.
->>>       -- Removed unnecessary line splits
->>> changes since V5:
->>>       -- Removed unused struct regmap *map in lpass_platform_alloc_hdmidmactl_fields.
->>>       -- DMA alloc and free API signature change in lpass-apq8016.c, lpass-ipq806x.c
->>>       -- Keeping API "irqreturn_t lpass_platform_hdmiif_irq" under ifdef macro
->>> Changes Since v4:
->>>       -- Updated with single compatible node for both I2S and HDMI.
->>> Changes Since v3:
->>>       -- Removed id in lpass variant structure and used snd_soc_dai_driver id.
->>> Changes Since v2:
->>>       -- Audio buffer size(i.e. LPASS_PLATFORM_BUFFER_SIZE) in lpass-platform.c increased.
->>> Changes Since v1:
->>>       -- Commit messages are updated
->>>       -- Addressed Rob Herring review comments
->>>
->>> V Sujith Kumar Reddy (7):
->>>     ASoC: Add sc7180-lpass binding header hdmi define
->>>     ASoC: dt-bindings: Add dt binding for lpass hdmi
->>>     Asoc:qcom:lpass-cpu:Update dts property read API
->>>     Asoc: qcom: lpass:Update lpaif_dmactl members order
->>>     ASoC: qcom: Add support for lpass hdmi driver
->>>     Asoc: qcom: lpass-platform : Increase buffer size
->>>     ASoC: qcom: sc7180: Add support for audio over DP
->>>
->>>    .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  74 ++--
->>>    include/dt-bindings/sound/sc7180-lpass.h           |   1 +
->>>    sound/soc/qcom/Kconfig                             |   5 +
->>>    sound/soc/qcom/Makefile                            |   2 +
->>>    sound/soc/qcom/lpass-apq8016.c                     |   4 +-
->>>    sound/soc/qcom/lpass-cpu.c                         | 249 ++++++++++++-
->>>    sound/soc/qcom/lpass-hdmi.c                        | 258 ++++++++++++++
->>>    sound/soc/qcom/lpass-hdmi.h                        | 102 ++++++
->>>    sound/soc/qcom/lpass-ipq806x.c                     |   4 +-
->>>    sound/soc/qcom/lpass-lpaif-reg.h                   |  49 ++-
->>>    sound/soc/qcom/lpass-platform.c                    | 395 +++++++++++++++++----
->>>    sound/soc/qcom/lpass-sc7180.c                      | 116 +++++-
->>>    sound/soc/qcom/lpass.h                             | 124 ++++++-
->>>    13 files changed, 1240 insertions(+), 143 deletions(-)
->>>    create mode 100644 sound/soc/qcom/lpass-hdmi.c
->>>    create mode 100644 sound/soc/qcom/lpass-hdmi.h
->>>
->>
->> Tested this series on DragonBoard 410c
->>
->> Tested-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Lucid 5LPE is a slightly different Lucid PLL with different offsets and
+> porgramming sequence so add support for these
 > 
-> I spent quite some time today trying to track down another regression
-> for MSM8916/DragonBoard 410c audio in 5.10 and identified this patch
-> series as the cause. So I'm very surprised that you successfully tested
-> this on DB410c.
+> Signed-off-by: Vivek Aknurwar <viveka@codeaurora.org>
+> Signed-off-by: Jeevan Shriram <jshriram@codeaurora.org>
+> [vkoul: rebase and tidy up for upstream]
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>   drivers/clk/qcom/clk-alpha-pll.c | 217 +++++++++++++++++++++++++++++++
+>   drivers/clk/qcom/clk-alpha-pll.h |   4 +
+>   2 files changed, 221 insertions(+)
 > 
-> Attempting to play HDMI audio results in:
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> index f7721088494c..843c43649a5a 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -156,6 +156,12 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
+>   /* LUCID PLL specific settings and offsets */
+>   #define LUCID_PCAL_DONE		BIT(27)
+>   
+> +/* LUCID 5LPE PLL specific settings and offsets */
+> +#define LUCID_5LPE_PCAL_DONE		BIT(11)
+> +#define LUCID_5LPE_ALPHA_PLL_ACK_LATCH	BIT(13)
+> +#define LUCID_5LPE_PLL_LATCH_INPUT	BIT(14)
+> +#define LUCID_5LPE_ENABLE_VOTE_RUN	BIT(21)
+> +
+>   #define pll_alpha_width(p)					\
+>   		((PLL_ALPHA_VAL_U(p) - PLL_ALPHA_VAL(p) == 4) ?	\
+>   				 ALPHA_REG_BITWIDTH : ALPHA_REG_16BIT_WIDTH)
+> @@ -1600,3 +1606,214 @@ const struct clk_ops clk_alpha_pll_agera_ops = {
+>   	.set_rate = clk_alpha_pll_agera_set_rate,
+>   };
+>   EXPORT_SYMBOL_GPL(clk_alpha_pll_agera_ops);
+> +
+> +static int alpha_pll_lucid_5lpe_enable(struct clk_hw *hw)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* If in FSM mode, just vote for it */
+> +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN) {
+> +		ret = clk_enable_regmap(hw);
+> +		if (ret)
+> +			return ret;
+> +		return wait_for_pll_enable_lock(pll);
+> +	}
+> +
+> +	/* Check if PLL is already enabled, return if enabled */
+> +	ret = trion_pll_is_enabled(pll, pll->clkr.regmap);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_RUN);
+> +
+> +	ret = wait_for_pll_enable_lock(pll);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable the PLL outputs */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, PLL_OUT_MASK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable the global PLL outputs */
+> +	return regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
+> +}
+> +
+> +static void alpha_pll_lucid_5lpe_disable(struct clk_hw *hw)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return;
+> +
+> +	/* If in FSM mode, just unvote it */
+> +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN) {
+> +		clk_disable_regmap(hw);
+> +		return;
+> +	}
+> +
+> +	/* Disable the global PLL output */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
+> +	if (ret)
+> +		return;
+> +
+> +	/* Disable the PLL outputs */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, 0);
+> +	if (ret)
+> +		return;
+> +
+> +	/* Place the PLL mode in STANDBY */
+> +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_STANDBY);
+> +}
+> +
+> +/*
+> + * The Lucid 5LPE PLL requires a power-on self-calibration which happens
+> + * when the PLL comes out of reset. Calibrate in case it is not completed.
+> + */
+> +static int alpha_pll_lucid_5lpe_prepare(struct clk_hw *hw)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	struct clk_hw *p;
+> +	u32 val;
+> +	int ret;
+> +
+> +	/* Return early if calibration is not needed. */
+> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
+> +	if (val & LUCID_5LPE_PCAL_DONE)
+> +		return 0;
+> +
+> +	p = clk_hw_get_parent(hw);
+> +	if (!p)
+> +		return -EINVAL;
+> +
+> +	ret = alpha_pll_lucid_5lpe_enable(hw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	alpha_pll_lucid_5lpe_disable(hw);
+> +
+> +	return 0;
+> +}
+> +
+> +static int alpha_pll_lucid_5lpe_set_rate(struct clk_hw *hw, unsigned long rate,
+> +					 unsigned long prate)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	unsigned long rrate;
+> +	u32 val, l;
+> +	u64 a;
+> +	int ret;
+> +
+> +	rrate = alpha_pll_round_rate(rate, prate, &l, &a, ALPHA_REG_16BIT_WIDTH);
+> +
+> +	/*
+> +	 * Due to a limited number of bits for fractional rate programming, the
+> +	 * rounded up rate could be marginally higher than the requested rate.
+> +	 */
+> +	ret = alpha_pll_check_rate_margin(hw, rrate, rate);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
+> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
+> +
+> +	/* Latch the PLL input */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll),
+> +				 LUCID_5LPE_PLL_LATCH_INPUT, LUCID_5LPE_PLL_LATCH_INPUT);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait for 2 reference cycles before checking the ACK bit. */
+> +	udelay(1);
+> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
+> +	if (!(val & LUCID_5LPE_ALPHA_PLL_ACK_LATCH)) {
+> +		pr_err("Lucid 5LPE PLL latch failed. Output may be unstable!\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Return the latch input to 0 */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), LUCID_5LPE_PLL_LATCH_INPUT, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (clk_hw_is_enabled(hw)) {
+> +		ret = wait_for_pll_enable_lock(pll);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	/* Wait for PLL output to stabilize */
+> +	udelay(100);
+> +	return 0;
+> +}
+> +
+
+This one looks exactly like alpha_pll_trion_set_rate() but:
+1. You are forcing ALPHA_REG_16BIT_WIDTH for the alpha_pll_round_rate
+    call: this is bad, you should actually use pll_alpha_width(pll) here,
+    unless you have a very good reason that I didn't understand...
+2. The only change between these two functions (trion and
+    lucid_5lpe_set_rate) is that PLL_UPDATE becomes
+    LUCID_5LPE_PLL_LATCH_INPUT, and that you check for
+    LUCID_5LPE_ALPHA_PLL_ACK_LATCH instead of ALPHA_PLL_ACK_LATCH: this
+    looks like being 95% code duplication.
+
+The best options here, in my opinion, would be to commonize the function
+alpha_pll_trion_set_rate: that will avoid this huge duplication.
+
+> +static int clk_lucid_5lpe_pll_postdiv_set_rate(struct clk_hw *hw, unsigned long rate,
+> +					       unsigned long parent_rate)
+> +{
+> +	struct clk_alpha_pll_postdiv *pll = to_clk_alpha_pll_postdiv(hw);
+> +	int i, val = 0, div, ret;
+> +	u32 mask;
+> +
+> +	/*
+> +	 * If the PLL is in FSM mode, then treat set_rate callback as a
+> +	 * no-operation.
+> +	 */
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN)
+> +		return 0;
+> +
+> +	div = DIV_ROUND_UP_ULL((u64)parent_rate, rate);
+> +	for (i = 0; i < pll->num_post_div; i++) {
+> +		if (pll->post_div_table[i].div == div) {
+> +			val = pll->post_div_table[i].val;
+> +			break;
+> +		}
+> +	}
+> +
+> +	mask = GENMASK(pll->width + pll->post_div_shift - 1, pll->post_div_shift);
+> +	return regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll),
+> +				  mask, val << pll->post_div_shift);
+> +}
+> +
+> +const struct clk_ops clk_alpha_pll_lucid_5lpe_ops = {
+> +	.prepare = alpha_pll_lucid_5lpe_prepare,
+> +	.enable = alpha_pll_lucid_5lpe_enable,
+> +	.disable = alpha_pll_lucid_5lpe_disable,
+> +	.is_enabled = clk_trion_pll_is_enabled,
+> +	.recalc_rate = clk_trion_pll_recalc_rate,
+> +	.round_rate = clk_alpha_pll_round_rate,
+> +	.set_rate = alpha_pll_lucid_5lpe_set_rate,
+> +};
+> +EXPORT_SYMBOL(clk_alpha_pll_lucid_5lpe_ops);
+> +
+> +const struct clk_ops clk_alpha_pll_fixed_lucid_5lpe_ops = {
+> +	.enable = alpha_pll_lucid_5lpe_enable,
+> +	.disable = alpha_pll_lucid_5lpe_disable,
+> +	.is_enabled = clk_trion_pll_is_enabled,
+> +	.recalc_rate = clk_trion_pll_recalc_rate,
+> +	.round_rate = clk_alpha_pll_round_rate,
+> +};
+> +EXPORT_SYMBOL(clk_alpha_pll_fixed_lucid_5lpe_ops);
+> +
+> +const struct clk_ops clk_alpha_pll_postdiv_lucid_5lpe_ops = {
+> +	.recalc_rate = clk_alpha_pll_postdiv_fabia_recalc_rate,
+> +	.round_rate = clk_alpha_pll_postdiv_fabia_round_rate,
+> +	.set_rate = clk_lucid_5lpe_pll_postdiv_set_rate,
+> +};
+> +EXPORT_SYMBOL(clk_alpha_pll_postdiv_lucid_5lpe_ops);
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+> index 0ea30d2f3da1..6943e933be0f 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.h
+> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+> @@ -144,6 +144,10 @@ extern const struct clk_ops clk_alpha_pll_lucid_ops;
+>   extern const struct clk_ops clk_alpha_pll_postdiv_lucid_ops;
+>   extern const struct clk_ops clk_alpha_pll_agera_ops;
+>   
+> +extern const struct clk_ops clk_alpha_pll_lucid_5lpe_ops;
+> +extern const struct clk_ops clk_alpha_pll_fixed_lucid_5lpe_ops;
+> +extern const struct clk_ops clk_alpha_pll_postdiv_lucid_5lpe_ops;
+> +
+>   void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>   			     const struct alpha_pll_config *config);
+>   void clk_fabia_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
 > 
->    ADV7533: lpass_platform_pcmops_hw_params: invalid  interface: 3
->    ADV7533: lpass_platform_pcmops_trigger: invalid 3 interface
->    apq8016-lpass-cpu 7708000.audio-controller: ASoC: error at soc_component_trigger on 7708000.audio-controller: -22
-> 
-> Attempting to record analog audio results in:
-> 
->    Unable to handle kernel NULL pointer dereference at virtual address 00000000000001e4
->    Internal error: Oops: 96000004 [#1] PREEMPT SMP
->    CPU: 1 PID: 1568 Comm: arecord Not tainted 5.11.0-rc3 #20
->    Hardware name: Qualcomm Technologies, Inc. APQ 8016 SBC (DT)
->    pc : regmap_write+0x14/0x80
->    lr : lpass_platform_pcmops_open+0xd8/0x210 [snd_soc_lpass_platform]
->    Call trace:
->     regmap_write+0x14/0x80
->     lpass_platform_pcmops_open+0xd8/0x210 [snd_soc_lpass_platform]
->     snd_soc_component_open+0x2c/0x94
->     ...
-> 
-> Looking at the changes in "ASoC: qcom: Add support for lpass hdmi driver"
-> there is a quite obvious mistake there. lpass.h now contains
->
 
-We did hit these two bugs recently while June was testing a platform 
-based of 410c.
-
-we had to these 2 fixes in his dev branch
-
-https://paste.ubuntu.com/p/MCbpBgH7JV/
-
-and a hack:
-https://paste.ubuntu.com/p/GYDSDmJt7Y/
-
-I got side tracked with other stuff, so I could not cleanup the lpass 
-hack patch to send it!
-
-With this two patches June was able to test all the usecases for 410c.
-
-> #include <dt-bindings/sound/sc7180-lpass.h>
-> 
-> and then the SC7810 DAI IDs are hardcoded all over lpass-cpu.c and
-> lpass-platform.c. But apq8016 and ipq806x have completely different
-> DAI IDs so now MI2S_QUATERNARY (HDMI) is invalid and
-> MI2S_TERTIARY (= LPASS_DP_RX in sc7180-lpass.h) is treated as HDMI port.
-> 
-Yes, this basically overwritten some of the defines. Specially 
-MI2S_TERTIARY and MI2S_QUATERNARY
-
-We should probably consolidate these defines to a single lpass.h file in 
-include/dt-bindings/ and not split them into soc specific.
-
-> Effectively LPASS is broken on all platforms except SC7810.
-> 
-> I have a patch prepared to fix this (will send it tomorrow),
-> but I wonder how you have tested this successfully on DB410c. :)
-My tests are pretty basic headset/speaker playback cases, this basically 
-tests PRIMARY and SECONDARY MI2S and not MI2S_TERTIARY or QUAT MI2S.
-
-June reported this to me some time during Christmas.
-
-Look forward to review your patches!
-
---srini
-
-> 
-> Stephan
-> 
