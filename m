@@ -2,173 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D817D2F482D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 11:03:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 277F62F4835
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 11:08:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726988AbhAMKBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 05:01:02 -0500
-Received: from foss.arm.com ([217.140.110.172]:33476 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727011AbhAMKBB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 05:01:01 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 817011042;
-        Wed, 13 Jan 2021 02:00:15 -0800 (PST)
-Received: from bogus (unknown [10.57.35.27])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ED18E3F66E;
-        Wed, 13 Jan 2021 02:00:13 -0800 (PST)
-Date:   Wed, 13 Jan 2021 10:00:11 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>
-Subject: Re: [PATCH v3 1/7] dt-bindings: Arm: Add Firmware Framework for
- Armv8-A (FF-A) binding
-Message-ID: <20210113100011.bnn75jogx22cgkk4@bogus>
-References: <20201204121137.2966778-1-sudeep.holla@arm.com>
- <20201204121137.2966778-2-sudeep.holla@arm.com>
- <20201214220107.GA2430387@robh.at.kernel.org>
- <20201216122408.2fhubdyqm2ofpgc3@bogus>
+        id S1726781AbhAMKEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 05:04:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36440 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726734AbhAMKEa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 05:04:30 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88440C061575
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 02:03:50 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id q4so781829plr.7
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 02:03:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AmZo7VgJXjRmnSZl7W/TJ1qpBr0chQ7R+L3VBawJmTc=;
+        b=JGDuRDNOkvmzK156ZE7/Oggx+P9XpMah8AVx3TJLo+2ZhEQZMGoL7D1+cw95X0C2Gt
+         jqE2V+TjyTQCaqYd6Q18nmpQZ6b+5q9CR8doPzh8+t6xzvzkiqpi+nw+LAfWIr4nrZLt
+         dBLQNtI7KRNywo9Mdd6mLuJ2QldzLeqP6MLD596+PwAGYNOFmmnsweKhae22Qm0e8iHo
+         QqLkBZscVVOfAtgx2szGRu4RgdeUXC1151C9dxSG8WvCxSbzViq8CNuiUNswcr3NzIBx
+         QgDnCL4TtqJ5ag5is0CLKMfySte/TLwUTzLj8hO6E+GplTu5r8Rqkxfnij5zOF/ymFCO
+         6T9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AmZo7VgJXjRmnSZl7W/TJ1qpBr0chQ7R+L3VBawJmTc=;
+        b=W9QXCdYcDdbtQ+wUQAkR5YlJdnsY2PTYVh5i3vA+hfUjFUlK04acCT8DssWtoZ+lvU
+         hVc06MXI9aB16f9crgliQi0R5/76AqwSVFO5kTQqQ7phQn74EhjuM06xu/2pzm2h3BHZ
+         SK2HnjsjOiQUr7XoQ8QQRSZZ6amcatdp7kUzJSncOJTf3zmpdue5a6iHggKfa5EfeTHy
+         478lJfGPf4Wk6UtRiKcTqLHX0o2extpgWPKj/DM90Rzpezf5+GkZQimgDtHn6XIK/Tv3
+         y19+Z2RfcS/HKaKuSvxUZ5K2eGGCvDwzj7Biq1H8gypKe/i3bFRVhmrzW1sKstM2L/y2
+         rzfA==
+X-Gm-Message-State: AOAM531v4ARbnnMWF++tuO1iXTZS6O/G+767jpNT2KFv8MolMseLGJIc
+        nsNgFqTgE8wKocdAOfu/mlorH5tdj0L1Z8q0zR+wLQ==
+X-Google-Smtp-Source: ABdhPJzBqt7y04vI2x8Q1N8EFIsu176B8e4JBQQLctvxNMygLlKg5bNoZmFSNziESzn9WUVFreMs8ATKeMqSQBNA7PM=
+X-Received: by 2002:a17:902:9a02:b029:dc:3481:3ff1 with SMTP id
+ v2-20020a1709029a02b02900dc34813ff1mr1506022plp.28.1610532229968; Wed, 13 Jan
+ 2021 02:03:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201216122408.2fhubdyqm2ofpgc3@bogus>
-User-Agent: NeoMutt/20171215
+References: <20210108120429.895046-1-robert.foss@linaro.org>
+ <20210108120429.895046-17-robert.foss@linaro.org> <X/kLNCOjvTmANYbr@pendragon.ideasonboard.com>
+In-Reply-To: <X/kLNCOjvTmANYbr@pendragon.ideasonboard.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Wed, 13 Jan 2021 11:03:39 +0100
+Message-ID: <CAG3jFysaGbXWtZNY=6s++NjNhimEANJZOoMXtN3udV-n3bOE=w@mail.gmail.com>
+Subject: Re: [PATCH v1 16/17] arm64: dts: sdm845-db845c: Add CAMSS ISP node
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, catalin.marinas@arm.com,
+        will@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
+        geert+renesas@glider.be, arnd@arndb.de, Anson.Huang@nxp.com,
+        michael@walle.cc, agx@sigxcpu.org, max.oss.09@gmail.com,
+        linux-arm-msm@vger.kernel.org,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 16, 2020 at 12:24:08PM +0000, Sudeep Holla wrote:
-> On Mon, Dec 14, 2020 at 04:01:07PM -0600, Rob Herring wrote:
-> > On Fri, Dec 04, 2020 at 12:11:31PM +0000, Sudeep Holla wrote:
-> > > Since the FF-A v1.0 specification doesn't list the UUID of all the
-> > > partitions in the discovery API, we need to specify the UUID of the
-> > > partitions that need to be accessed by drivers within the kernel.
-> > > 
-> > > This binding to provide the list of partitions that kernel drivers
-> > > may need to access.
-> > > 
-> > > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > > ---
-> > >  .../devicetree/bindings/arm/arm,ffa.yaml      | 58 +++++++++++++++++++
-> > >  1 file changed, 58 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/arm/arm,ffa.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/arm/arm,ffa.yaml b/Documentation/devicetree/bindings/arm/arm,ffa.yaml
-> > > new file mode 100644
-> > > index 000000000000..a014a5801c34
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/arm/arm,ffa.yaml
-> > > @@ -0,0 +1,58 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/arm/arm,ffa.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Arm Firmware Framework for Arm v8-A (in-kernel users)
-> > > +
-> > > +maintainers:
-> > > +  - Sudeep Holla <sudeep.holla@arm.com>
-> > > +
-> > > +description: |
-> > > +  Firmware frameworks implementing partition according to the FF-A
-> > > +  specification defined by ARM document number ARM DEN 0077A ("Arm Firmware
-> > > +  Framework for Arm v8-A") [0], providing services to be used by other
-> > > +  partitions.
-> > > +
-> > > +  [0] https://developer.arm.com/docs/den0077/latest
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    const: ffa
-> > > +
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - const: arm,ffa-1.0
-> > > +
-> > > +patternProperties:
-> > > +  "^ffa_partition[0-9]+$":
-> > > +    type: object
-> > > +    description: One or more child nodes, each describing an FFA partition.
-> > > +    properties:
-> > > +      $nodename:
-> > > +        const: ffa_partition
-> > > +
-> > > +      compatible:
-> > > +        oneOf:
-> > > +          - const: arm,ffa-1.0-partition
-> > > +
-> > > +      uuid:
-> > > +        $ref: '/schemas/types.yaml#definitions/string'
-> > > +        description: |
-> > > +          The 128-bit UUID [2] of the service implemented by this partition.
-> > > +
-> > > +          [2] https://tools.ietf.org/html/rfc4122
-> > 
-> > UUIDs are actually a known thing in json-schema with 'format: uuid'. 
-> > The meta-schema will probably reject that, so we'll need to add support 
-> > to dtschema. Maybe it should be a new definition to reference.
-> >
-> 
-> Ah OK, I will try that and ask for help if I am stuck as I am still trying
-> to learn these, not there yet 😄 
-> 
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    ffa {
-> > > +      compatible = "arm,ffa-1.0";
-> > > +
-> > > +      ffa_partition0 {
-> > > +        compatible = "arm,ffa-1.0-partition";
-> > > +        uuid = "12345678-9abc-def0-1234-56789abcdef0";
-> > > +      };
-> > > +    };
-> >
-> > This could all be simplified down to just a single property:
-> >
-> 
-> Thanks for the suggestion, I would love this to force spec authors to
-> stop relying on DT and add whatever needed in future to the spec as part
-> of discovery APIs.
-> 
-> > arm,ffa-partitions = "12345678-9abc-def0-1234-56789abcdef0", 
-> > 	"12345678-9abc-def0-1234-56789abcdef1"
-> > 	"12345678-9abc-def0-1234-56789abcdef2";
-> >
-> > Obviously, that's not extensible, but do we need it to be?
-> >
-> 
-> I prefer if we don't, but I will run this through spec authors so that
-> they are aware of what we will do in DT which means they *have* to
-> incorporate any future needs into the spec discovery apis.
-> 
+Thanks Laurent!
 
-OK we found some usecase which may require separate nodes. I am sure they
-could be alternative solution even with above style of array of UUID strings.
+On Sat, 9 Jan 2021 at 02:47, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Rob,
+>
+> Thank you for the patch.
+>
+> The subject line doesn't match the patch.
+>
+> On Fri, Jan 08, 2021 at 01:04:28PM +0100, Robert Foss wrote:
+> > Add regulators and camss DT node.
+> >
+> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> > index a943b3f353ce..7bad0515345e 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> > @@ -294,6 +294,9 @@ vreg_s7a_1p025: smps7 {
+> >                       regulator-max-microvolt = <1028000>;
+> >               };
+> >
+> > +             vdda_mipi_csi0_0p9:
+> > +             vdda_mipi_csi1_0p9:
+> > +             vdda_mipi_csi2_0p9:
+>
+> No need for new labels, you can simply use vreg_l1a_0p875 below.
 
-If you remember use of SMC/HVC as SCMI transport[1], it just provides one
-way(a2p) communication. P2A is not possible with that, i.e platform
-notifications to OSPM is not possible. FFA aims to replace native SMC/HVC
-transport there to provide bi-directional support. For such usecase,
-where one partition running SCMI server might provide multiple channels
-for SCMI communication and we may need to provide the link using phandle
-or something in DT.
+Ack
 
-Let me know your thoughts on those.
+>
+> >               vreg_l1a_0p875: ldo1 {
+> >                       regulator-min-microvolt = <880000>;
+> >                       regulator-max-microvolt = <880000>;
+> > @@ -1106,6 +1109,15 @@ &cci {
+> >       status = "okay";
+> >  };
+> >
+> > +&camss {
+> > +     vdda-csi0-supply = <&vdda_mipi_csi0_0p9>;
+> > +     vdda-csi1-supply = <&vdda_mipi_csi1_0p9>;
+> > +     vdda-csi2-supply = <&vdda_mipi_csi2_0p9>;
+> > +
+> > +     status = "disabled";
+>
+> This isn't needed.
 
---
-Regards,
-Sudeep
+Ack
 
-[1] https://lore.kernel.org/r/20201222145603.40192-2-jim2101024@gmail.com
+>
+> > +
+>
+> Extra blank line.
+
+Ack
+
+>
+> > +};
+> > +
+> >  &cci_i2c0 {
+> >       camera@10 {
+> >               compatible = "ovti,ov8856";
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
