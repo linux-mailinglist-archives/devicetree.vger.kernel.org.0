@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A7A2F4F63
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 17:02:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75AFE2F4F65
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 17:02:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726693AbhAMQBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727251AbhAMQBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 13 Jan 2021 11:01:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56812 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727245AbhAMQBk (ORCPT
+        with ESMTP id S1727244AbhAMQBk (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 11:01:40 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C49C0617A2
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B27DC061795
         for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 08:01:00 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id m25so3469217lfc.11
+Received: by mail-lj1-x22a.google.com with SMTP id u21so3158267lja.0
         for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 08:01:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/ANy3EnVb9IcVEdVPhsOA09k5SvZnXI3pFEuGXmbm50=;
-        b=c1pxpyWbQJe20ivyenYuC0y6Q17/Y4RY9UJUqXw9nMrCwO7yVkkZGT0qTY/lly9gjE
-         hNa2T6yByVeiZo5/ZvD2xicR/4LBWn+cs+Lhw/dAO1lJUSakFp78gF5XTtbSd1aE49iS
-         LEfU2Y/vYc40dtgiw2WCRTjgmA4NwHjXBfJO07lJTWu3Zs+zIi7qHXdzzT1/G81oQRu7
-         m2/JA4xwoIWdkWlafIMu0XOjI+1iow0SSyC3dnfrSEHptX5PDUxsQJvr7r3Nd1kP6X+o
-         SJCUgP9lzt81HDiDDYMVhSq2Az25H8iyAts1jwywv6sTOm30KWPMlpQGL0M6ZA/5h+FJ
-         hyWQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=7tp+yIknuWY62Mm5kLJz89RJjtUuXNij6I82RhlunuQ=;
+        b=sOD7qIhiA3NT2BuJw3KxbLqVE1mlgVsVUznc6NKranIoJzlZUaWuMN88sj7504tZyv
+         Ta3OmN3tYjKFYR9P1QU4bogwbdYMRjDfAQZ2r+tlci3DNEunmkMbyMVwgSMoaxRxSH3T
+         UInLgdLC/QQ88vUk5RsjvcUdPBlDQx4LvqBsf+M+O28Vj1LVhL5/mMznca4toF/oXgJd
+         3ts0bq68RVnEZsClGM2Ci+pQKW631bkXMovie7RjaCtrUAxayTKqLKg9V6DOqy/s2dKr
+         nJUNTr2GKEiASenvbmbAz+6OiF0vu7PEayiQhUWaEtOhKAnsmfqfYhFUzQteUdD2/nmZ
+         DEOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/ANy3EnVb9IcVEdVPhsOA09k5SvZnXI3pFEuGXmbm50=;
-        b=nsNg8qTi+pU+qJ35sggzVx26FZyGmFT01n3S35drUX90PvlB2QxTXyDE57PTegME/w
-         4eWQofW7zWbqFiGdfUx9i2jBVcdDVJtt2FpOczGXDoT95V7LR6nsQAOfmVeVwRegBdk/
-         g92yw/gLxGKStzURhs4cq6ebWsi/6skONv5dER2GX52Ohmyu7cQlXcjrHJC5Fx6Bvlbz
-         NU9VzPDCv999pvNM65wWhDD49y/Iezl8qlDNT5eW0k2mtt49wLElFHp0J+tkg4STsH8K
-         PdqZxuavBGxaGMMssIYE3EkIzYu9L/QrZ2VRq9nevRafxAA4he+Dz32CXKEGL/leIKcC
-         G55g==
-X-Gm-Message-State: AOAM533V4Y0GnCNfVjK3WtvBMPqYLrNzJRqzznAg1MxWs3eXVFnAN55s
-        46huSCO/wls9hDtcc2YzQ0R1hw==
-X-Google-Smtp-Source: ABdhPJzr7xv7uPwvJjnXkDimoBn/HMV/NKUGPVdgw6bbPBFkN8nK6lUh8dcyAXtf613fgxpASab2rg==
-X-Received: by 2002:a19:6553:: with SMTP id c19mr1261458lfj.266.1610553657378;
-        Wed, 13 Jan 2021 08:00:57 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=7tp+yIknuWY62Mm5kLJz89RJjtUuXNij6I82RhlunuQ=;
+        b=T0p+2oqc+uDFiToKe/szITgoWIaA09A69MqS8oob+gEK776PsEfvFcUYHSenr3EvMB
+         u1a1R2eHUznh2KLBQGeyEl3mZDIt7bcEkCwxppIxwHjmfyn7cHM465GGHQzpVxxYEq66
+         X7H6YXhKwHBuwV31otfokWrnccR/AjAK11W0+5LB6lusOLXgwmYvwBOSaRNCT/PqQ416
+         NLyiY4CCfEJJMFgaEOFQ1kA0bspElqrMyo64LOGcPwtHlB9iy47pm9siPoAzzV4jfgLl
+         y7L/8NRR6wZDdRwPUpzqFAZxHj0wHP+EJrkpT3VsKvxTWcVNwlhrr+ZNN8wyMU8BSjMb
+         SIuQ==
+X-Gm-Message-State: AOAM5321BlqmbLX4wcqjIfkIb+ByZRTCpQ+XszZweXlSF9N1D0cm1Izp
+        gc5Ce/x7lwhGrMF/r+nytxnKGA==
+X-Google-Smtp-Source: ABdhPJyK4uwb48EGWk++nnNdHRHtb4aHkQgCWvB3ZFSEfZefbUUFLDl1xXK7gWpde+hEbaregfQ/GA==
+X-Received: by 2002:a05:651c:11c4:: with SMTP id z4mr1253519ljo.443.1610553658857;
+        Wed, 13 Jan 2021 08:00:58 -0800 (PST)
 Received: from eriador.lumag.spb.ru ([94.25.228.189])
-        by smtp.gmail.com with ESMTPSA id m25sm248559lfb.144.2021.01.13.08.00.55
+        by smtp.gmail.com with ESMTPSA id m25sm248559lfb.144.2021.01.13.08.00.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 08:00:56 -0800 (PST)
+        Wed, 13 Jan 2021 08:00:58 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -56,32 +56,119 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] Add support for Qualcomm QCA639x chips family
-Date:   Wed, 13 Jan 2021 19:00:51 +0300
-Message-Id: <20210113160053.3974229-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 1/2] dt-bindings: misc: qcom,qca6390: add binding for QCA6390 device
+Date:   Wed, 13 Jan 2021 19:00:52 +0300
+Message-Id: <20210113160053.3974229-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210113160053.3974229-1-dmitry.baryshkov@linaro.org>
+References: <20210113160053.3974229-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm QCA639x is a family of WiFi + Bluetooth chips, with BT part
-being controlled through the UART and WiFi being present on PCIe
-bus. Both blocks share common power sources wich should be turned on
-before either of devices can be probed. Declare common 'qca639x' driver
-providing a power domain to be used by both BT and WiFi parts.
+Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
+being controlled through the UART and WiFi being present on PCIe bus.
+Both blocks share common power sources. Add binding to describe power
+sequencing required to power up this device.
 
-While it would be easy to just add power supplies to BT device tree
-node, for WiFi it is not that easy. The chip has to be powered on before
-the PCIe bus is probed (otherwise it will be left undetected). Adding
-power supplies to the PCIe device nodes would require changes to the
-host controller driver. Thus it is supposed to be simpler to provide
-power domain via separate driver.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../bindings/misc/qcom,qca6390.yaml           | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/qcom,qca6390.yaml
 
-Changes since v1:
- - Moved the driver from drivers/mfd to drivers/misc
- - Fixed compatibility string in device binding
- - Removed debug messages
-
+diff --git a/Documentation/devicetree/bindings/misc/qcom,qca6390.yaml b/Documentation/devicetree/bindings/misc/qcom,qca6390.yaml
+new file mode 100644
+index 000000000000..bb507eb6e0a3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/qcom,qca6390.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/mfd/qcom,qca6390.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm QCA6390 WiFi + Bluetoot SoC bindings
++
++maintainers:
++  - Andy Gross <agross@kernel.org>
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++description: |
++  This binding describes thes Qualcomm QCA6390 or QCA6391 power supplies and
++  enablement pins.
++
++properties:
++  compatible:
++    const: qcom,qca6390
++
++  '#power-domain-cells':
++    const: 0
++
++  pinctrl-0: true
++  pinctrl-1: true
++
++  pinctrl-names:
++    items:
++      - const: default
++      - const: active
++
++  vddaon-supply:
++    description:
++      0.95V always-on LDO power input
++
++  vddpmu-supply:
++    description:
++      0.95V LDO power input to PMU
++
++  vddrfa1-supply:
++    description:
++      0.95V LDO power input to RFA
++
++  vddrfa2-supply:
++    description:
++      1.25V LDO power input to RFA
++
++  vddrfa3-supply:
++    description:
++      2V LDO power input to RFA
++
++  vddpcie1-supply:
++    description:
++      1.25V LDO power input to PCIe part
++
++  vddpcie2-supply:
++    description:
++      2V LDO power input to PCIe part
++
++  vddio-supply:
++    description:
++      1.8V VIO input
++
++additionalProperties: false
++
++examples:
++  - |
++    qca6390: qca6390 {
++      compatible = "qcom,qca6390";
++      #power-domain-cells = <0>;
++
++      vddaon-supply = <&vreg_s6a_0p95>;
++      vddpmu-supply = <&vreg_s2f_0p95>;
++      vddrfa1-supply = <&vreg_s2f_0p95>;
++      vddrfa2-supply = <&vreg_s8c_1p3>;
++      vddrfa3-supply = <&vreg_s5a_1p9>;
++      vddpcie1-supply = <&vreg_s8c_1p3>;
++      vddpcie2-supply = <&vreg_s5a_1p9>;
++      vddio-supply = <&vreg_s4a_1p8>;
++      pinctrl-names = "default", "active";
++      pinctrl-0 = <&wlan_default_state &bt_default_state>;
++      pinctrl-1 = <&wlan_active_state &bt_active_state>;
++    };
++...
+-- 
+2.29.2
 
