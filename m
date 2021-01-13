@@ -2,125 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38DB82F4368
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:57:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B002F4398
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 06:23:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726278AbhAME4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 23:56:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726234AbhAME4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 23:56:24 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7521C061786
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 20:55:43 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id n25so743010pgb.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 20:55:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=mJKCusvpWtBfKn+y4mKbIiTTyEFF53qpNFGSZqmXVHU=;
-        b=AYTgJ9tRKgK3HRW4hrmMHj7DhGnGUEPMNrO18Lx+slvosqt5RDGqMOsTVNyNUVVTCo
-         v1pZVH7seXJuz8HaKjdXfJ0lu1ZsmXbEMoDxpSZ/JSrF1Xw0EeiP9M0EEIScTOoKzJG5
-         woivZntD0iYcGQ8Gid/i9jTxPu3iGVOMIjqIaSd367us82Nkt/bHZYjrWdKudDQ2CX3V
-         kaZyFOPTicOcFAZ5XTx/WGX9MV5XaLfCJOwcxELeXwitDZPj0xChg15Q6vTR5IiJbeZ9
-         YmoVMSLr+9m8EffMMzXJpT45GB4+QFPV1tXCSQGpCMDVnwlSKbsKzgXmkYu5caRB+gbe
-         oGZw==
+        id S1725887AbhAMFVc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Jan 2021 00:21:32 -0500
+Received: from mail-wr1-f43.google.com ([209.85.221.43]:36055 "EHLO
+        mail-wr1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbhAMFVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 00:21:32 -0500
+Received: by mail-wr1-f43.google.com with SMTP id t16so728797wra.3;
+        Tue, 12 Jan 2021 21:21:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mJKCusvpWtBfKn+y4mKbIiTTyEFF53qpNFGSZqmXVHU=;
-        b=mTeGizwq6MHe/HfZQ42aRee293ffHX6g7KPGx6P7TNi1iIMXm7ngeKxinX4MOkzjTY
-         JRrHcMc3GqtpLUXZdoXyH/FPMtUGF4Qx8lE4mIZHaqic7a7cBVN+JHeMOf9MRqtUoFGa
-         Js1jHzwKnW9Ypsn1G1iSMswokYaF6ZFAVDH0V380InrGp2j1j2s7jTEArcxe2SY09uNg
-         4tYRC3xXLHzkyI3wPzOgxaQ9lqRjaicXQ2NwvNgHt2qmE/Jxyvx+amIbaxYZd2v1xlRC
-         8JEyu9cY4ZHXxoDzSi+GNDrLUcgUqgPwlGMc1t2vkLnvpOsLi6ZtDrRitKaJZSmJA8Pi
-         Pmcw==
-X-Gm-Message-State: AOAM533py8uyHHVpvmcrDwAenGAoFJHS+c4eF39fdDsv8vh9J99zEXVM
-        COlez638IedAISF9SgOraZzYaw==
-X-Google-Smtp-Source: ABdhPJwTqmk4iglhe8G2D21L3QujLbLeXjPAv+epZYprG0ZGWLUyfbPvPghFsk9qSH1TBXR8r1PVFg==
-X-Received: by 2002:a63:e246:: with SMTP id y6mr383697pgj.412.1610513743224;
-        Tue, 12 Jan 2021 20:55:43 -0800 (PST)
-Received: from localhost ([122.172.85.111])
-        by smtp.gmail.com with ESMTPSA id a198sm820054pfa.7.2021.01.12.20.55.41
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 12 Jan 2021 20:55:42 -0800 (PST)
-Date:   Wed, 13 Jan 2021 10:25:40 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH V3 2/2] scripts: dtc: Build fdtoverlay and fdtdump tools
-Message-ID: <20210113045540.s2hg2dxldsyelzkd@vireshk-i7>
-References: <CAK7LNAQT5nVHGAZDhj4dct0v8UMzQ+-mdfBXJsfedR-7mZTnyA@mail.gmail.com>
- <72c3a4f63dde3c172c11153e9a5b19fb6cdb4498.1610000585.git.viresh.kumar@linaro.org>
- <1d9369aa-b7aa-6d06-0d44-6ef21bc639e3@gmail.com>
- <20210112050818.s6ctvd6ihd2dt2d2@vireshk-i7>
- <3f0c733a-641f-290f-41b8-62ca22e355b7@gmail.com>
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ygvCn8fmZH80T0v+3u3CbzAAgsVPV7I6kSbF85AxYE8=;
+        b=jbE+s8Sx78HxPDXrtsukzSp6pvUQiSvWdAkKLiZgxNG7dyWhw8/qH8AY/Y2X+vljgW
+         aijdruuSY3sd69afkJyWDjFJJGncvkO3fgkUlQ9nYkdaousDoUCK6KHK4hgHmW5YvpKk
+         tUt0KzxPAmZz+ve5TbCuSMSY2/FqAh+zbs24j4aA2bxA2yVFb9pGAOO4O5oN4QotZ+k+
+         ByjthzY7GE5GFWViCoOE6lSNtxQryR1ThSxZctm6/5Sod+yyY4mm1Zwf+xP/sKUep6Im
+         pb8d7OBOpc1jqbJVt7nXyb5282l7YdQVjm3YSY0IO7eS4H7/lxNusDLnE0Dbxu2CD9rN
+         poqw==
+X-Gm-Message-State: AOAM532xBP+0t0Y3aN/mBTfAztnqhPICJzunQKIvll7Rz4iebTWyOjna
+        Gkcqz9mwZMnnjeUAftRm77w/qflDs14=
+X-Google-Smtp-Source: ABdhPJxhcefF2g4ghMWfcYGFz4p/mMcOTBXdkjHmHKC1b8cf1wmHKSyoSIrwjlD7D4mvHQU6xRhrZg==
+X-Received: by 2002:adf:fbc5:: with SMTP id d5mr587444wrs.82.1610515249819;
+        Tue, 12 Jan 2021 21:20:49 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id c11sm240840wmd.36.2021.01.12.21.20.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Jan 2021 21:20:48 -0800 (PST)
+Date:   Wed, 13 Jan 2021 06:20:47 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Danny Lin <danny@kdrag0n.dev>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: exynos: Add energy model for Exynos 5250
+Message-ID: <20210113052047.GC6486@kozik-lap>
+References: <20210111235717.321153-1-danny@kdrag0n.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <3f0c733a-641f-290f-41b8-62ca22e355b7@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20210111235717.321153-1-danny@kdrag0n.dev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-01-21, 12:34, Frank Rowand wrote:
-> On 1/11/21 11:08 PM, Viresh Kumar wrote:
-> > On 11-01-21, 18:44, Frank Rowand wrote:
-> >> On 1/7/21 12:25 AM, Viresh Kumar wrote:
-> >>> We will start building overlays for platforms soon in the kernel and
-> >>> would need these tools going forward. Lets start building them.
-> >>>
-> >>> The fdtoverlay program applies (or merges) one ore more overlay dtb
-> >>> blobs to a base dtb blob. The kernel build system would later use
-> >>> fdtoverlay to generate the overlaid blobs based on platform specific
-> >>> configurations.
-> >>>
-> >>> The fdtdump program prints a readable version of a flat device-tree
-> >>> file. This is a very useful tool to analyze the details of the overlay's
-> >>> dtb and the final dtb produced by fdtoverlay after applying the
-> >>> overlay's dtb to a base dtb.
-> >>
-> >> You can calso dump an FDT with:
-> >>
-> >>    dtc -O dts XXX.dtb
-> >>
-> >> Is this sufficient for the desired functionality, or is there something
-> >> additional in fdtdump that is needed?
-> > 
+On Mon, Jan 11, 2021 at 03:57:16PM -0800, Danny Lin wrote:
+> This energy model enables the use of energy- and capacity-aware CPU
+> frequency scaling.
 > 
-> comment 1:
-> 
-> > Not for my usecase at least.
+> Power and performance measurements were made using my freqbench [1]
+> benchmark coordinator, which uses EEMBC CoreMark [2] as the workload
+> and measures power usage using the integrated PMIC's fuel gauge (DS2784
+> in this case).
 
-I answered this question here (and yes I could have been more clear):
+Thanks for the patch.
 
-"is there something additional in fdtdump that is needed?"
+The tested setup is not representative here. The Nexus 10 is not
+supported by mainline and it might use specific revision of Exynos5250,
+different than present on other mainlined boards. One could assume that
+ratio of dynamic power coefficient of the cores should be similar... but
+there is no ratio here, as this is not a big.LITTLE platform.
 
-> 
-> > 
-> >> If nothing additional needed, and there is no other justification for adding
-> >> another program, I would prefer to leave fdtdump out.
-> > 
-> 
-> comment 2:
-> 
-> > Okay, then I will also remove the stale version of fdtdump which is
-> > already there in kernel since a long time.
-> > 
-> 
-> I'm confused.  I read comment 1 as saying that fdtdump does provide a feature
-> that you need to analyze the dtb created by fdtoverlay.  But I read comment 2
-> as implying that you are accepting that fdtdump will not be added to the
-> Linux kernel source.
+Another problem is the v3.4 vendor kernel with a lot of out-of-tree
+code. This means it might use some different scheduler, different
+drivers, different voltages and a lot more of unknown differences.
+Vendor kernel should not matter that much in measurement of DPC but it
+makes the results not possible to reproduce.
 
--- 
-viresh
+You were also measuring the power delivered to entire system, no to CPUs,
+so you included static power in the data. Static power of CPUs and of
+the entire system.
+
+> The energy model dynamic-power-coefficient values were calculated with
+>     DPC = µW / MHz / V^2
+> for each OPP, and averaged across all OPPs within each cluster for the
+> final coefficient.
+> 
+> A Google Nexus 10 device running a downstream 3.4 kernel was used for
+> benchmarking to ensure proper frequency scaling and other low-level
+> controls.
+> 
+> Raw benchmark results can be found in the freqbench repository [3].
+> Below is a human-readable summary:
+> 
+> ===== CPU 1 =====
+> Frequencies: 200 300 400 500 600 700 800 900 1000 1100 1200 1300 1400 1500 1600 1700
+>  200:   909     4.5 C/MHz    132 mW   36.2 J    6.9 I/mJ   275.0 s
+
+What are the columns here? I would expect that fuel gauge gives you the
+current, but it's not here.
+
+>  300:  1366     4.6 C/MHz    212 mW   38.7 J    6.5 I/mJ   183.0 s
+>  400:  1821     4.6 C/MHz    286 mW   39.3 J    6.4 I/mJ   137.3 s
+>  500:  2253     4.5 C/MHz    375 mW   41.7 J    6.0 I/mJ   111.0 s
+>  600:  2740     4.6 C/MHz    446 mW   40.7 J    6.1 I/mJ    91.2 s
+>  700:  3199     4.6 C/MHz    513 mW   40.1 J    6.2 I/mJ    78.2 s
+>  800:  3673     4.6 C/MHz    678 mW   46.1 J    5.4 I/mJ    68.1 s
+>  900:  4090     4.5 C/MHz    764 mW   46.7 J    5.4 I/mJ    61.1 s
+> 1000:  4586     4.6 C/MHz    878 mW   47.9 J    5.2 I/mJ    54.5 s
+> 1100:  5060     4.6 C/MHz   1084 mW   53.6 J    4.7 I/mJ    49.4 s
+> 1200:  5515     4.6 C/MHz   1225 mW   55.5 J    4.5 I/mJ    45.3 s
+> 1300:  5933     4.6 C/MHz   1396 mW   58.9 J    4.2 I/mJ    42.1 s
+> 1400:  6395     4.6 C/MHz   1662 mW   65.0 J    3.8 I/mJ    39.1 s
+> 1500:  6897     4.6 C/MHz   1895 mW   68.7 J    3.6 I/mJ    36.3 s
+> 1600:  7332     4.6 C/MHz   2198 mW   75.0 J    3.3 I/mJ    34.1 s
+> 1700:  7826     4.6 C/MHz   2497 mW   79.8 J    3.1 I/mJ    31.9 s
+> 
+> [1] https://github.com/kdrag0n/freqbench
+> [2] https://www.eembc.org/coremark/
+> [3] https://github.com/kdrag0n/freqbench/tree/master/results/exynos5250/main
+> 
+> Signed-off-by: Danny Lin <danny@kdrag0n.dev>
+> ---
+>  arch/arm/boot/dts/exynos5250.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/exynos5250.dtsi b/arch/arm/boot/dts/exynos5250.dtsi
+> index 2ea2caaca4e2..cc2fe0afcfc7 100644
+> --- a/arch/arm/boot/dts/exynos5250.dtsi
+> +++ b/arch/arm/boot/dts/exynos5250.dtsi
+> @@ -58,6 +58,8 @@ cpu0: cpu@0 {
+>  			clock-names = "cpu";
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  			#cooling-cells = <2>; /* min followed by max */
+> +			capacity-dmips-mhz = <1024>;
+
+The origin of this 1024 value should be explained.
+
+> +			dynamic-power-coefficient = <800>;
+>  		};
+>  		cpu1: cpu@1 {
+>  			device_type = "cpu";
+> @@ -67,6 +69,20 @@ cpu1: cpu@1 {
+>  			clock-names = "cpu";
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  			#cooling-cells = <2>; /* min followed by max */
+> +			capacity-dmips-mhz = <1024>;
+> +			dynamic-power-coefficient = <800>;
+> +		};
+> +
+> +		cpu-map {
+
+That's a second patch.
+
+Best regards,
+Krzysztof
+
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +			};
+>  		};
+>  	};
+>  
+> -- 
+> 2.29.2
+> 
