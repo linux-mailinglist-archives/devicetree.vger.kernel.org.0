@@ -2,125 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E3FD2F467E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:30:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 525EA2F4683
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 09:30:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726024AbhAMI3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 03:29:46 -0500
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:42739 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725834AbhAMI3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 03:29:46 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 292A55C003F;
-        Wed, 13 Jan 2021 03:28:40 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Wed, 13 Jan 2021 03:28:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=TzU6WcM+BIQSy4nmgiJ5TPU0ge7
-        8zp+Iupe9d0GMyic=; b=USIsB8FCx2ut10qMVZojg5teN6Z+OE1ivil6ojt/wkK
-        Y61vL6i+vIoEWDZSUFXMsEjF6mGoOa9PEKzyjjVH4bdhe7KFTd2Fe7UMehPVH/z2
-        yePIED3L08YQtQ5ndVKzED2WWtfxnB8zdfi5/o3R75FiIeMgLFCe2VXTTZ8JQrTt
-        Ps8Q0AR1jyyyrs7pdUkwzNX7HcOg2dEXSW8j+xqfgizP2cKvTmYZHabmRE1nmqid
-        lyrdF9yRbt+s13dhq+3ngVTy41zSMa6M5Y1lH471OPKjcZHSOCY4mv3JwYDNudZc
-        Y+Ub8ZlGRsHTL7kA7nQ/LKoT4rpagMk8Gzjono8mDyQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=TzU6Wc
-        M+BIQSy4nmgiJ5TPU0ge78zp+Iupe9d0GMyic=; b=f+eRvpzLwJiv1ros6GwI1F
-        KUPPqbnHPYYIq5dId5jhyu/x+uzkRAnO65U6NNv1ouBlu5MLG8cWv1nF4xCqWold
-        qt+rTIpo64E3Ml0wNXdezEhU5Oko7E9iy+sy1DbdKiB3HBFE/ZdSxxSbDnDa4d6K
-        JnAArBuOtDn68xg1nkhEuq+htaxMjVv4F8q/Xnfqu0fOhgtgdGB038gtDzYqaV80
-        NrD+QBxDdF9jQwnAem049EUG9bnDKU4RP3vLtwFi39QSKqfwrOmVekUBajwO12Yz
-        twHvDSb2WRwuWrpacy7PckjNbSCcMnkqqMrAIhvCtVTwWq2AJlT63IphzI/wtEeA
-        ==
-X-ME-Sender: <xms:N6_-X3vfrWSJP2-GjWDl3GWKHyiZzUiNK9AWpBoB9mqd83fv6P_mmw>
-    <xme:N6_-X4fFKgw2-ekt31CMg4unA4PjeDmOVNqhJbWDXSzVgaizCpZ70Nh369MpPs-5K
-    7vvhgCEKgERjtEIIMg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedukedrtddugdduvdduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:N6_-X6y8gb1ChGqa5OoN7HlW288uQCwa1-giZnfMcKA2x-odwQtdsg>
-    <xmx:N6_-X2NJM5uHQrWrPfBWHD6W7rPKWBSAmKq3Z17avnLpZClcDCS-uQ>
-    <xmx:N6_-X3_1TOblX_b6Ny3hfzmAaZfwflpF5A-vZvxqiiE2YbVFPymu1w>
-    <xmx:OK_-X4O__H-k0tEDnNqoFEdy94wpaL6Jdwjb0Jg-7LeQqqrZ0KkEcA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 7D515108005F;
-        Wed, 13 Jan 2021 03:28:39 -0500 (EST)
-Date:   Wed, 13 Jan 2021 09:28:38 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Hans de Goede <hdegoede@redhat.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v2 0/3] PinePhone volume key (LRADC) wakeup support
-Message-ID: <20210113082838.kwwekwwsnpobk7bg@gilmour>
-References: <20210113040542.34247-1-samuel@sholland.org>
+        id S1726723AbhAMIaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 03:30:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44294 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726680AbhAMIaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 03:30:06 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C946EC061795
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 00:29:25 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id n25so1053261pgb.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 00:29:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=l1GKa3x7ZNgVpRkmStUdrHjbkYZ9SQFyhIcPJwTf7mQ=;
+        b=mkqpTDKsvFlyxfobrl3O59d7IIHahU3PS8A71e5YzOZlHDWbI3MZUbGb7SzszcCOyu
+         ra2rQP1FSmDItU3qJfiNzVtBotM4pk1nDOdIWiocpHRFBWI+S0aBNwxNh1RwdCZZ+Rwp
+         vJpkXqohwYvayJKj2IWCmXCkacrtPqGcL2BHppSgchlP96jHviCQysvI7Xz+pku+moTs
+         atreTPYdyRmAfTwx9WIMJwNvu78nuz7zE27UOtTVp2scjPLS4OWyMWhXb7c69SVWsYrO
+         U2xkipy3HDuKbaGqqSaXPSGjU5KWEkqeeEva2ELwpPdqkTgVnAk9wEOkVC+9SXeY8dWj
+         nQsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=l1GKa3x7ZNgVpRkmStUdrHjbkYZ9SQFyhIcPJwTf7mQ=;
+        b=FHWBAKXKVGbLzaRGGXBc8tjkb56rZa2aGIV96+kJPtyS/EE1Tcd8DAy1Bbx4MITBfO
+         GXP7G//SVoD7n9wZGC9u4c+6eSD30egxG3tJF/PLJloGguwqf11faBITOrbk9tAqabtB
+         qV6itwGa2huN443ICRAiyALypf9GDux5B/e2Z4Jrzrsb5tRWrKCQZERaA/SSf6BnvQw+
+         YucyVAbkuQN7F5EzxDLT6N5D58+wZUjkroBzplx6OjH50SVVzT34grD6EkWBD3uXNKs3
+         iGH94bJJ0CGT8h7TjVyc0LbmmKgaBcPFEMyYlGu1BPBwce1RPVH+2j7JBxB/u6rAnLec
+         iU+A==
+X-Gm-Message-State: AOAM53157I1CamxJW7XeRxoTmi4qH+4DRE7iD1eNdeZX61cMmIQaK3tE
+        wSf0jUcVchAdKjUVwWgqeVrC
+X-Google-Smtp-Source: ABdhPJzhbChFX7E4odlTkqAVRn4oQYVX+m5ZecCHfZJcCca/kNL2kle2MNutGtYW7mRpy6pztpTV/w==
+X-Received: by 2002:a63:ef14:: with SMTP id u20mr1076416pgh.93.1610526565041;
+        Wed, 13 Jan 2021 00:29:25 -0800 (PST)
+Received: from thinkpad ([2409:4072:6199:4cc7:6c7e:de01:2568:5545])
+        by smtp.gmail.com with ESMTPSA id p15sm1705977pgl.19.2021.01.13.00.29.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 00:29:24 -0800 (PST)
+Date:   Wed, 13 Jan 2021 13:59:15 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     jassisinghbrar@gmail.com, mturquette@baylibre.com,
+        robh+dt@kernel.org, viresh.kumar@linaro.org,
+        ulf.hansson@linaro.org, bjorn.andersson@linaro.org,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] clk: qcom: Add SDX55 APCS clock controller support
+Message-ID: <20210113082915.GB3763@thinkpad>
+References: <20210108113233.75418-1-manivannan.sadhasivam@linaro.org>
+ <20210108113233.75418-6-manivannan.sadhasivam@linaro.org>
+ <161052342416.3661239.16154742996506371048@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="vhpp6qqqfwdpuanf"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210113040542.34247-1-samuel@sholland.org>
+In-Reply-To: <161052342416.3661239.16154742996506371048@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 12, 2021 at 11:37:04PM -0800, Stephen Boyd wrote:
+> Quoting Manivannan Sadhasivam (2021-01-08 03:32:33)
+> > Add a driver for the SDX55 APCS clock controller. It is part of the APCS
+> > hardware block, which among other things implements also a combined mux
+> > and half integer divider functionality. The APCS clock controller has 3
+> > parent clocks:
+> > 
+> > 1. Board XO
+> > 2. Fixed rate GPLL0
+> > 3. A7 PLL
+> > 
+> > The source and the divider can be set both at the same time.
+> 
+> I don't understand what that means. Presumably it's a mux/divider
+> combined?
+> 
 
---vhpp6qqqfwdpuanf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yeah, will make it clear.
 
-On Tue, Jan 12, 2021 at 10:05:39PM -0600, Samuel Holland wrote:
-> This series allows the volume keys on the PinePhone to wake up the
-> device. As pointed out for v1, wakeup should only be enabled when a
-> "wakeup-source" property is present, so v2 requires DT and binding
-> changes in addition to the driver change.
->=20
-> Changes since v1:
->   - Add requisite DT binding change
->   - Only add wakeup capability if "wakeup-source" is present
->   - Warn but do not error out if setting the wake IRQ fails
->   - Add "wakeup-source" property to PinePhone device tree
->=20
-> Ondrej Jirman (1):
->   input: sun4i-lradc-keys -  Add wakup support
->=20
-> Samuel Holland (2):
->   dt-bindings: sun4i-a10-lradc-keys: Accept wakeup-source property
->   arm64: dts: allwinner: pinephone: Support volume key wakeup
->=20
->  .../input/allwinner,sun4i-a10-lradc-keys.yaml |  2 ++
->  .../dts/allwinner/sun50i-a64-pinephone.dtsi   |  1 +
->  drivers/input/keyboard/sun4i-lradc-keys.c     | 22 +++++++++++++++----
->  3 files changed, 21 insertions(+), 4 deletions(-)
+> > 
+> > This is required for enabling CPU frequency scaling on SDX55-based
+> > platforms.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  drivers/clk/qcom/Kconfig      |   9 ++
+> >  drivers/clk/qcom/Makefile     |   1 +
+> >  drivers/clk/qcom/apcs-sdx55.c | 149 ++++++++++++++++++++++++++++++++++
+> >  3 files changed, 159 insertions(+)
+> >  create mode 100644 drivers/clk/qcom/apcs-sdx55.c
+> > 
+> > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> > index d6f4aee4427a..2c67fdfae913 100644
+> > --- a/drivers/clk/qcom/Kconfig
+> > +++ b/drivers/clk/qcom/Kconfig
+> > @@ -45,6 +45,15 @@ config QCOM_CLK_APCS_MSM8916
+> >           Say Y if you want to support CPU frequency scaling on devices
+> >           such as msm8916.
+> >  
+> > +config QCOM_CLK_APCS_SDX55
+> 
+> APCC comes before APCS
+> 
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+Okay
 
-I've applied patch 3
+> > +       tristate "SDX55 APCS Clock Controller"
+> > +       depends on QCOM_APCS_IPC || COMPILE_TEST
+> > +       help
+> > +         Support for the APCS Clock Controller on SDX55 platform. The
+> > +         APCS is managing the mux and divider which feeds the CPUs.
+> > +         Say Y if you want to support CPU frequency scaling on devices
+> > +         such as SDX55.
+> > +
+> >  config QCOM_CLK_APCC_MSM8996
+> >         tristate "MSM8996 CPU Clock Controller"
+> >         select QCOM_KRYO_L2_ACCESSORS
+> > diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> > index e7e0ac382176..a9271f40916c 100644
+> > --- a/drivers/clk/qcom/Makefile
+> > +++ b/drivers/clk/qcom/Makefile
+> > @@ -46,6 +46,7 @@ obj-$(CONFIG_MSM_MMCC_8998) += mmcc-msm8998.o
+> >  obj-$(CONFIG_QCOM_A53PLL) += a53-pll.o
+> >  obj-$(CONFIG_QCOM_A7PLL) += a7-pll.o
+> >  obj-$(CONFIG_QCOM_CLK_APCS_MSM8916) += apcs-msm8916.o
+> > +obj-$(CONFIG_QCOM_CLK_APCS_SDX55) += apcs-sdx55.o
+> >  obj-$(CONFIG_QCOM_CLK_APCC_MSM8996) += clk-cpu-8996.o
+> >  obj-$(CONFIG_QCOM_CLK_RPM) += clk-rpm.o
+> >  obj-$(CONFIG_QCOM_CLK_RPMH) += clk-rpmh.o
+> > diff --git a/drivers/clk/qcom/apcs-sdx55.c b/drivers/clk/qcom/apcs-sdx55.c
+> > new file mode 100644
+> > index 000000000000..14413c957d83
+> > --- /dev/null
+> > +++ b/drivers/clk/qcom/apcs-sdx55.c
+> > @@ -0,0 +1,149 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Qualcomm SDX55 APCS clock controller driver
+> > + *
+> > + * Copyright (c) 2020, Linaro Limited
+> > + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/cpu.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm_domain.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/slab.h>
+> > +
+> > +#include "clk-regmap.h"
+> > +#include "clk-regmap-mux-div.h"
+> > +#include "common.h"
+> 
+> Curious what common is needed for?
+> 
 
-Maxime
+Not needed, will remove.
 
---vhpp6qqqfwdpuanf
-Content-Type: application/pgp-signature; name="signature.asc"
+> > +
+> > +static const u32 apcs_mux_clk_parent_map[] = { 0, 1, 5 };
+> > +
+> > +static const struct clk_parent_data pdata[] = {
+> > +       { .fw_name = "ref", .name = "bi_tcxo", },
+> > +       { .fw_name = "aux", .name = "gpll0", },
+> > +       { .fw_name = "pll", .name = "a7pll", },
+> 
+> Please remove name from here. It shouldn't be necessary if the DT
+> describes things properly. Or there isn't DT for this device?
+> 
 
------BEGIN PGP SIGNATURE-----
+Will remove.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/6vNgAKCRDj7w1vZxhR
-xfMtAQDVdffEBMyH+3xfy28vcNPZ4l3C99AYGTCUmy62qTwl1QEA7N4GZ/dALQDD
-c2AAwHc05QFZinkvyfVZbSBNmIVoqwE=
-=qhju
------END PGP SIGNATURE-----
+> > +};
+> > +
+> > +/*
+> > + * We use the notifier function for switching to a temporary safe configuration
+> > + * (mux and divider), while the A7 PLL is reconfigured.
+> > + */
+> > +static int a7cc_notifier_cb(struct notifier_block *nb, unsigned long event,
+> > +                           void *data)
+> > +{
+> > +       int ret = 0;
+> > +       struct clk_regmap_mux_div *md = container_of(nb,
+> > +                                                    struct clk_regmap_mux_div,
+> > +                                                    clk_nb);
+> > +       if (event == PRE_RATE_CHANGE)
+> > +               /* set the mux and divider to safe frequency (400mhz) */
+> > +               ret = mux_div_set_src_div(md, 1, 2);
+> > +
+> > +       return notifier_from_errno(ret);
+> > +}
+> > +
+> > +static int qcom_apcs_sdx55_clk_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device *dev = &pdev->dev;
+> > +       struct device *parent = dev->parent;
+> > +       struct device *cpu_dev;
+> > +       struct clk_regmap_mux_div *a7cc;
+> > +       struct regmap *regmap;
+> > +       struct clk_init_data init = { };
+> > +       int ret = -ENODEV;
+> 
+> Drop assignement..
+> 
+> > +
+> > +       regmap = dev_get_regmap(parent, NULL);
+> > +       if (!regmap) {
+> > +               dev_err(dev, "Failed to get parent regmap: %d\n", ret);
+> > +               return ret;
+> 
+> .. and Just return -ENODEV?
+> 
+> > +       }
+> > +
+> > +       a7cc = devm_kzalloc(dev, sizeof(*a7cc), GFP_KERNEL);
+> > +       if (!a7cc)
+> > +               return -ENOMEM;
+> > +
+> > +       init.name = "a7mux";
+> > +       init.parent_data = pdata;
+> > +       init.num_parents = ARRAY_SIZE(pdata);
+> > +       init.ops = &clk_regmap_mux_div_ops;
+> > +
+> > +       a7cc->clkr.hw.init = &init;
+> > +       a7cc->clkr.regmap = regmap;
+> > +       a7cc->reg_offset = 0x8;
+> > +       a7cc->hid_width = 5;
+> > +       a7cc->hid_shift = 0;
+> > +       a7cc->src_width = 3;
+> > +       a7cc->src_shift = 8;
+> > +       a7cc->parent_map = apcs_mux_clk_parent_map;
+> > +
+> > +       a7cc->pclk = devm_clk_get(parent, "pll");
+> > +       if (IS_ERR(a7cc->pclk)) {
+> > +               ret = PTR_ERR(a7cc->pclk);
+> > +               if (ret != -EPROBE_DEFER)
+> > +                       dev_err(dev, "Failed to get PLL clk: %d\n", ret);
+> 
+> Use dev_err_probe() please.
+> 
+> > +               return ret;
+> > +       }
+> > +
+> > +       a7cc->clk_nb.notifier_call = a7cc_notifier_cb;
+> > +       ret = clk_notifier_register(a7cc->pclk, &a7cc->clk_nb);
+> > +       if (ret) {
+> > +               dev_err(dev, "Failed to register clock notifier: %d\n", ret);
+> > +               return ret;
+> > +       }
+> > +
+> > +       ret = devm_clk_register_regmap(dev, &a7cc->clkr);
+> > +       if (ret) {
+> > +               dev_err(dev, "Failed to register regmap clock: %d\n", ret);
+> > +               goto err;
+> > +       }
+> > +
+> > +       ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
+> > +                                         &a7cc->clkr.hw);
+> > +       if (ret) {
+> > +               dev_err(dev, "Failed to add clock provider: %d\n", ret);
+> > +               goto err;
+> > +       }
+> > +
+> > +       platform_set_drvdata(pdev, a7cc);
+> > +
+> > +       /*
+> > +        * Attach the power domain to cpudev. There seems to be no better place
+> > +        * to do this, so do it here.
+> > +        */
+> > +       cpu_dev = get_cpu_device(0);
+> > +       dev_pm_domain_attach(cpu_dev, true);
+> 
+> I guess this works given that we don't have CPU drivers. The comment
+> says what the code is doing but doesn't say why it's doing it. Adding
+> why may help understand in the future and would be a better comment.
+> Why can't cpufreq-dt attach a power domain from DT for a cpu device? Is
+> that a bad idea?
+> 
 
---vhpp6qqqfwdpuanf--
+Yeah, I talked with Viresh about using cpufreq-dt for attaching the power
+domain but he said it isn't the appropriate place. Hence, I decided to use
+this driver.
+
+Will make the comment more elaborate.
+
+Thanks,
+Mani
+
+> > +
+> > +       return 0;
+> > +
+> > +err:
+> > +       clk_notifier_unregister(a7cc->pclk, &a7cc->clk_nb);
+> > +       return ret;
+> > +}
