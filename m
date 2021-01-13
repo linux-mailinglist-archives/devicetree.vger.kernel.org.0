@@ -2,121 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6088C2F49D6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:21:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3EA2F49FE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:29:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728202AbhAMLQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 06:16:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51970 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728201AbhAMLQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:16:44 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3113BC061575
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:16:04 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id 23so2162505lfg.10
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:16:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4bKYty+8nc8C2dBtZiBLf8k0Y7ZW112IatpEki8UTGU=;
-        b=Yap7T9/MXQwC9cdbpCGEtx6QEJUFSTAq+De3IOaHWdBhPUEM0AycIvwo5pkg5PArf+
-         mfS1/xRtGm54JM5B3qbFT/ysSiNBL59x6o22CdDn8jjYMepWaq7+k/uOzA7vNeEho7ew
-         kO0VBttx4QN0d/bdkVPO4hjur13f3Z7x7Es+JJ2zwTqDAdA3pwFDGjE/XfpzcN52UIYC
-         LIF9B6Ym6QClqKK9ayAVnxUUGjcYZ/DQkRgvNcoZ6xv2Ob04Y7i9SJAfCBVYwsJ53whh
-         pytCLitqsV6NUBVx9tU/zig1HWSTj3CYIrLulKvxbqZeTUhO1eB0NwZahlTUKf/ttzrl
-         GlJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4bKYty+8nc8C2dBtZiBLf8k0Y7ZW112IatpEki8UTGU=;
-        b=EDE91d3YWTdIoFq7TAluxzOQyk+tvZO9VhSAkT6jlbF8jIxe1jxZhqkL1KXnfVQst1
-         csfl9hHEGrb2f6cJIxnrc2N9fpMp2PriJWk2q4YboSWlq4MTv24xTUzfhSSUjBFzZvII
-         OcCR/hkV0ELmblKOt6pThAhgPrCipga/FFsldan9PTjIIRKHqZ1y7K5RtPJaubFdsnl5
-         NmzJ8ehs6e/TAQwS40BQiDD2dhNQ5Q02dr5DuoINCJ9WZFnxsXLN7Odjn8M0RDH/7sm+
-         ScMhvUF2HiV70GYDqeWwVS9zbVZJvVxy2tfHlyLyb9brh4H8UMkDdzf6H/iV9wmkk6G6
-         kBbA==
-X-Gm-Message-State: AOAM531xCumhZsxhFApMID6XbMdFaB1GMbwzjxkWtGjCjufGhQmscbHd
-        4OO1b8avkqSt3rjlcMk74qw=
-X-Google-Smtp-Source: ABdhPJwtlxTPFkER/EX8mIsjy5tbcZwjcL/z1zBvVuKIQPjLaXNmL8exfkhhOVw7KKKickJM09A1tQ==
-X-Received: by 2002:a19:644b:: with SMTP id b11mr680982lfj.358.1610536562689;
-        Wed, 13 Jan 2021 03:16:02 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id f3sm151135ljn.129.2021.01.13.03.16.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 03:16:02 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     bcm-kernel-feedback-list@broadcom.com,
+        id S1725801AbhAMLWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 06:22:31 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33762 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725747AbhAMLWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:22:30 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10DBKrj0035137;
+        Wed, 13 Jan 2021 05:20:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1610536853;
+        bh=havUQaE9Q8MtbPDZbuGxqyTauNzAHO2v8GAg9BET1bM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=gpIS2oaQbOWVftAnTf4UfVP3sdN6OJYxqFDVOjQPdyAietiR3yuM2hQzNAp696JLC
+         3Yc/ASmekjD8nn+vJRIgOY4IVLrShSMjVhFkXX83SbxB6g4AQ5n/uuvAPyMuTi9C6C
+         2j9nprkduy/NNi5Icipn08SEJbPdXwY+1uCpVwRU=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10DBKrSi095401
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 13 Jan 2021 05:20:53 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 13
+ Jan 2021 05:20:53 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 13 Jan 2021 05:20:53 -0600
+Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10DBKnJo111139;
+        Wed, 13 Jan 2021 05:20:50 -0600
+Subject: Re: [PATCH] dt-bindings: mmc: sdhci-am654: Add compatible string for
+ AM64 SoC
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] arm64: dts: broadcom: bcm4908: describe PMB block
-Date:   Wed, 13 Jan 2021 12:15:47 +0100
-Message-Id: <20210113111547.19972-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210112192723.751-1-zajec5@gmail.com>
-References: <20210112192723.751-1-zajec5@gmail.com>
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210107055457.14948-1-a-govindraju@ti.com>
+ <CAPDyKFp89zPwr-SS9wgR6C5RM+KhSLWbkXivxAttRqTxtiVGDQ@mail.gmail.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <9ad5f3a3-2175-8f43-2481-7bef17828ce2@ti.com>
+Date:   Wed, 13 Jan 2021 16:50:48 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPDyKFp89zPwr-SS9wgR6C5RM+KhSLWbkXivxAttRqTxtiVGDQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Uffe,
 
-PMB (Power Management Bus) controls powering connected devices (e.g.
-PCIe, USB, SATA). In BCM4908 it's a part of the PROCMON block.
+On 13/01/21 4:26 pm, Ulf Hansson wrote:
+> On Thu, 7 Jan 2021 at 06:55, Aswath Govindraju <a-govindraju@ti.com> wrote:
+>>
+>> Add compatible string for AM64 SoC in device tree binding of AM654 SDHCI
+>> module as the same IP is used.
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> 
+> Do you have a corresponding patch for the driver as well? I would like
+> to apply them together.
+> 
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-Florian: this patch is based on top of the
-[PATCH] arm64: dts: broadcom: bcm4908: describe internal switch
-one. Both modify "ranges".
+Yes, I do. Here is the link to the patch,
+https://lore.kernel.org/patchwork/patch/1364589/
 
-V2: Use simple-bus
----
- .../boot/dts/broadcom/bcm4908/bcm4908.dtsi      | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+Thanks,
+Aswath
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-index d30dd2042786..65e186da81d9 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-@@ -108,7 +108,7 @@ soc {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		ranges = <0x00 0x00 0x80000000 0xd0000>;
-+		ranges = <0x00 0x00 0x80000000 0x281000>;
- 
- 		usb@c300 {
- 			compatible = "generic-ehci";
-@@ -213,6 +213,21 @@ phy12: phy@c {
- 				};
- 			};
- 		};
-+
-+		procmon: syscon@280000 {
-+			compatible = "simple-bus";
-+			reg = <0x280000 0x1000>;
-+			ranges;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			power-controller@2800c0 {
-+				compatible = "brcm,bcm4908-pmb";
-+				reg = <0x2800c0 0x40>;
-+				#power-domain-cells = <1>;
-+			};
-+		};
- 	};
- 
- 	bus@ff800000 {
--- 
-2.26.2
+> Kind regards
+> Uffe
+> 
+>> ---
+>>  Documentation/devicetree/bindings/mmc/sdhci-am654.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+>> index 1ae945434c53..34e53db29428 100644
+>> --- a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+>> @@ -21,6 +21,8 @@ properties:
+>>        - ti,j721e-sdhci-4bit
+>>        - ti,j7200-sdhci-8bit
+>>        - ti,j721e-sdhci-4bit
+>> +      - ti,am64-sdhci-8bit
+>> +      - ti,am64-sdhci-4bit
+>>
+>>    reg:
+>>      maxItems: 2
+>> --
+>> 2.17.1
+>>
 
