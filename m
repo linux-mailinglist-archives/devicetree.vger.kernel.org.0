@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1222E2F4B7E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 13:45:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E92092F4B86
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 13:45:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725747AbhAMMmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 07:42:16 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:15822 "EHLO
+        id S1726875AbhAMMnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 07:43:40 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:18612 "EHLO
         mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725774AbhAMMmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 07:42:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1610541563;
+        with ESMTP id S1726184AbhAMMnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 07:43:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1610541648;
         s=strato-dkim-0002; d=goldelico.com;
         h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:From:
         Subject:Sender;
-        bh=VkanYmaTyqw3f/XJ1GIf1rx8lGf/sUcKb9q0CtDyMCk=;
-        b=pZF3zn54S/09dlDKFLCezBxW9hVsH0TGcvo5Bs9tdd8tHWpZ8o0YQRBoirWlWyJaP/
-        iXSDJJI77Yk7ooS9o+sym79hhdfsaQgRSrK1O35mfimTpxMpGmI7FynkpF1RwopNGnM3
-        AHor91ojdi64UpOkvqcKgIhXQaC3ZN1yoXIBZ6tumTJz+A4k5zbJeIQnw7Y8ntQwYhxe
-        Wm4nQXcz/tzfhAsGvZNh6EcZrqFkolP/YL64J4/VfXDdFp7dr7P2QCj3aZOzlGZEqnF/
-        wu7JvMYGpzMkjT3v8PqeSU6zqzCztkoetpjCtdklddc4+CeA1y7j/KxoL66RvRlvQukl
-        aM1w==
+        bh=WikmKM+BNHKniGYCxn04Vfr1jaOcOsdgDtJTgTUj59U=;
+        b=KvU1rm0lvvb3TocRhr510YZvTB46/JfEwDEd58FeEqJL4O3hN94pikSwmaEFySfYTc
+        zFnvSK8O6uH118cFvlQl0y5u/w20WJCLdVnXAnw+P0FvCyVkMG/7+FGuw1iSIYqyNkZu
+        tZl3pKpPZOz2ucibIV7Yqxpm5Y28+A/lLENvYr5M6B0T7+HdJNPn28NW04SQfu58SfkE
+        y4UsdqAV4gQ0Oc+RpCXmg8TRyxr05ffzIQVZmByXBg27pICbFCsNtx+Rhk5mbUisBRLO
+        570wT2zcfPcb/3yOeDKrV1h2pm0LebwSAkEeCeGmCDvPD5qSfk/8bV+QUc5TfY3SHq4W
+        5wpw==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGH/zswDCrssk="
 X-RZG-CLASS-ID: mo00
 Received: from imac.fritz.box
         by smtp.strato.de (RZmta 47.12.1 DYNA|AUTH)
-        with ESMTPSA id m056b3x0DCd6Zgl
+        with ESMTPSA id m056b3x0DCeZZiX
         (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
         (Client did not present a certificate);
-        Wed, 13 Jan 2021 13:39:06 +0100 (CET)
-Subject: Re: [Letux-kernel] [PATCH 3/4] ARM: dts: imx6sl-tolino-shine2hd: correct console uart pinmux
+        Wed, 13 Jan 2021 13:40:35 +0100 (CET)
+Subject: Re: [Letux-kernel] [PATCH 3/4] ARM: dts: imx6sl-tolino-shine3: correct console uart pinmux
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 Content-Type: text/plain; charset=us-ascii
 From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20210112231549.29957-4-andreas@kemnade.info>
-Date:   Wed, 13 Jan 2021 13:39:06 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree <devicetree@vger.kernel.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        j.neuschaefer@gmx.net
+In-Reply-To: <20210112231549.29957-5-andreas@kemnade.info>
+Date:   Wed, 13 Jan 2021 13:40:35 +0100
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <BCFF23DF-7365-40D0-B573-26430D840ECC@goldelico.com>
-References: <20210112231549.29957-1-andreas@kemnade.info> <20210112231549.29957-4-andreas@kemnade.info>
+Message-Id: <0DB3C59A-AF38-4140-9D06-CAD4C04D31F9@goldelico.com>
+References: <20210112231549.29957-1-andreas@kemnade.info> <20210112231549.29957-5-andreas@kemnade.info>
 To:     Discussions about the Letux Kernel <letux-kernel@openphoenux.org>
 X-Mailer: Apple Mail (2.3124)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Ah, there is a v2. Let's hope this gets merged/processed by robots =
+correctly :)
 
 > Am 13.01.2021 um 00:15 schrieb Andreas Kemnade <andreas@kemnade.info>:
 >=20
@@ -60,9 +61,6 @@ done by
 > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
 > arch/arm/boot/dts/imx6sl-tolino-shine3.dts | 2 +-
-
-seems to have a typo (shine2hd vs. shine3) in the patch subject.
-
 > 1 file changed, 1 insertion(+), 1 deletion(-)
 >=20
 > diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts =
