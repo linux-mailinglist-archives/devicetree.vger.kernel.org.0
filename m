@@ -2,202 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1DDF2F4757
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 10:18:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EA1B2F475F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 10:18:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727477AbhAMJQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 04:16:29 -0500
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:33729 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727466AbhAMJQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 04:16:28 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 837765C0194;
-        Wed, 13 Jan 2021 04:15:22 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 13 Jan 2021 04:15:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=MygAzndgaPE7EJwkItlbKgKXiN2
-        CNI7nQQx9sgMYLls=; b=UseYZKOUCwmaff8O7R7dr7RqrkIP2KfckYCRZ4yfgM4
-        gG06kjJSWsVwK33Fxhi54pvH9SWPrpzAlDwhyT5+yABOvpN9WXYBi2cVDMjp2sUA
-        5rzXhwHxgI6dt9U0582jFJ4g6mzKG7mEFzjNC8OSy8pt98JB5ofMOXI4GpYBUkBl
-        kDMATcAB1pz/OMxmCFan8MnWF5SgxPwMILVDalivXIzDyqOVqioYAnrh+2bwKkkd
-        j9JK0mvTiQGPm7+gPJKy8L9DKO4/Toj8ZpOojb5A7PF6cYKCp73Z/9WTlgrBykGD
-        DTrF8I1Cl2j+OR5SelBSkKfG8nTLO8WIAI67jzaYBXA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=MygAzn
-        dgaPE7EJwkItlbKgKXiN2CNI7nQQx9sgMYLls=; b=pC8rk5qZ5AiOFAj5r7lboA
-        E6gh3WF3ru89YdYX/Z//YDYzW/9nm9YywflxgCf25VuDwkASY+CuMnzFAdCE0rnB
-        WjeTk4eCUnYIQB4129x9tYvJk6+NahazU/p7LRuC8+2Ki2mBWwIosHtK5upUFZjs
-        eofOAaameEAT9d5teB0DnZUrByd9/EH3xTNWCQxby/FZ8T3ssucTwyNnX9ARbeQg
-        xTXLSUP3ISGMM4dqzqmBnKEGJduHrPHU2zFcO9ZZrvx0ch2PJFWJFLuhH4iJX1pC
-        bGn4JXVuRFCH4JE0l8XunGAbctRw5ah8LJ6Ol80Rbt9NSCKtVNrPp4p5SysMObkA
-        ==
-X-ME-Sender: <xms:Kbr-X8yboJKKAcUlEBxcSIUVR9qiG_9CFQEhjYQ9JPAGoBBxYcIbzQ>
-    <xme:Kbr-XwS6YYo5tHglW8RPs51H5hE0nc4weDf8-aSn4c6bbSSEKrUciVQouYZ9Lw8WY
-    nuytS5LWgpS7JmWrNk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedukedrtdefgddtudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeffteetveeijeetuefhffegkeetgffhieelheehtdduudethffhjedtvddtudel
-    vdenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppeeltddrkeelrd
-    eikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
-    mhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:Kbr-X-UjzKO4cM42ZOQ4HmJFBI6t1mkrTLKGbAvw40g6hLe70LiEog>
-    <xmx:Kbr-X6hyKhiPz8307O8jZQCLfVZT6ioevX3LAiFk1GmxjpwtR6mvOg>
-    <xmx:Kbr-X-CFOQz0dWMh04ijGXr23MjScsJK6jLmrqN4NC-bFj6dO6tJjQ>
-    <xmx:Krr-Xw2M3D-tJVYXC__TpdynpzkDt971IN-7yThHIsUDupFnAcglfg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A5F26240057;
-        Wed, 13 Jan 2021 04:15:21 -0500 (EST)
-Date:   Wed, 13 Jan 2021 10:15:20 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Eric Anholt <eric@anholt.net>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V3] dt-bindings: gpu: Convert v3d to json-schema
-Message-ID: <20210113091520.btk53z5mrhmaqd6h@gilmour>
-References: <1610189433-29985-1-git-send-email-stefan.wahren@i2se.com>
+        id S1727696AbhAMJRq convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Jan 2021 04:17:46 -0500
+Received: from mail-lf1-f51.google.com ([209.85.167.51]:39920 "EHLO
+        mail-lf1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727527AbhAMJRm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 04:17:42 -0500
+Received: by mail-lf1-f51.google.com with SMTP id a12so1703483lfl.6;
+        Wed, 13 Jan 2021 01:17:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=PL83MRTZmSl5in+hjwvHUEdnS7fuD7aTllMQF6TPQJw=;
+        b=To2PeUjCYja5GfpSI5cn2aPh0tn3r5X2Uro2mtMGtDuKZiVqooEivUKHtgyplplANi
+         jOwNTAGj2Dl3Dei4iH0t4EsGO37+Mn7KkF50U3RJTcLDi7FpUtALqhi6kSTjEOSNMYB4
+         NnsvmvPT64QlZgJtZGMsedr5aQ0U/NRVBo4T9f5VexJ50qTpqkXkCWv0uPHU41QIUsXx
+         W3PvDn5Uq09nosUFjbmjkMy1HSCgDbKLAGn1uv0fnyxa2id2cBPVhNusVn5HITtDmm0D
+         CuVt+Bj19rZQ/HDuy2AWISBoxxsShniK2F4+n9h8NaCNCd701KwDx9oT8kxVr24YBYFI
+         vLCA==
+X-Gm-Message-State: AOAM5301FXWPum0hqHklIp8a1Ue4AUBZuEmRV5ZLkk8jWqZdNSHWCzOk
+        ujf+udmF8PtONvDhIfj7eGr5FiaDbSejUg==
+X-Google-Smtp-Source: ABdhPJxMs8TGw/WO/U6CBuzxxYeCb6wQJSZv+knK+N/KsCy1J9DWa22BPpVXxArcWcE95V5xJKQUOA==
+X-Received: by 2002:ac2:498f:: with SMTP id f15mr489815lfl.60.1610529419373;
+        Wed, 13 Jan 2021 01:16:59 -0800 (PST)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com. [209.85.167.54])
+        by smtp.gmail.com with ESMTPSA id f7sm122179ljk.4.2021.01.13.01.16.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jan 2021 01:16:58 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id m25so1667861lfc.11;
+        Wed, 13 Jan 2021 01:16:58 -0800 (PST)
+X-Received: by 2002:ac2:5979:: with SMTP id h25mr453376lfp.57.1610529418335;
+ Wed, 13 Jan 2021 01:16:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="sfw42jwsi5m26ljh"
-Content-Disposition: inline
-In-Reply-To: <1610189433-29985-1-git-send-email-stefan.wahren@i2se.com>
+References: <20210103100007.32867-1-samuel@sholland.org> <20210103100007.32867-5-samuel@sholland.org>
+ <a6c2eac4-7e98-ecb4-ee8a-d67a7f1b6871@arm.com> <20210106110643.agq3mjyhgvg3w4i6@gilmour>
+ <CAGb2v64mcLogZax8vVJJxG9feBzmGc8VyazTvp7XkBAoLXw9JA@mail.gmail.com> <bc95a8d2-ebec-489c-10af-fd5a80ea1276@sholland.org>
+In-Reply-To: <bc95a8d2-ebec-489c-10af-fd5a80ea1276@sholland.org>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Wed, 13 Jan 2021 17:16:46 +0800
+X-Gmail-Original-Message-ID: <CAGb2v679L8fDbaE6dpEdo2q=fJdF=e6AfzOXvHLBuwZ_5YbDeQ@mail.gmail.com>
+Message-ID: <CAGb2v679L8fDbaE6dpEdo2q=fJdF=e6AfzOXvHLBuwZ_5YbDeQ@mail.gmail.com>
+Subject: Re: [linux-sunxi] Re: [PATCH v2 4/4] arm64: dts: allwinner: h6: Use
+ RSB for AXP805 PMIC connection
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 7, 2021 at 6:27 PM Samuel Holland <samuel@sholland.org> wrote:
+>
+> On 1/6/21 5:38 AM, Chen-Yu Tsai wrote:
+> > On Wed, Jan 6, 2021 at 7:06 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> >>
+> >> On Mon, Jan 04, 2021 at 10:54:19AM +0000, André Przywara wrote:
+> >>> On 03/01/2021 10:00, Samuel Holland wrote:
+> >>>> On boards where the only peripheral connected to PL0/PL1 is an X-Powers
+> >>>> PMIC, configure the connection to use the RSB bus rather than the I2C
+> >>>> bus. Compared to the I2C controller that shares the pins, the RSB
+> >>>> controller allows a higher bus frequency, and it is more CPU-efficient.
+> >>>
+> >>> But is it really necessary to change the DTs for those boards in this
+> >>> way? It means those newer DTs now become incompatible with older
+> >>> kernels, and I don't know if those reasons above really justify this.
+> >>>
+> >>> I understand that we officially don't care about "newer DTs on older
+> >>> kernels", but do we really need to break this deliberately, for no
+> >>> pressing reasons?
+> >>>
+> >>> P.S. I am fine with supporting RSB on H6, and even using it on new DTs,
+> >>> just want to avoid breaking existing ones.
+> >>
+> >> Doing so would also introduce some inconsistencies, one more thing to
+> >> consider during reviews, and would require more testing effort.
+> >>
+> >> I'm not sure that stretching our - already fairly sparse - resources
+> >> thin would be very wise here, especially for something that we don't
+> >> have to do and for a setup that isn't really used that much.
+> >
+> > As soon as some software component starts running RSB, (which I assume
+> > is what Samuel is planning to do in Crust?), there's a chance that it
+> > doesn't switch the chip back to I2C. And then Linux won't be able to
+> > access it.
+>
+> Crust can handle either way via a config option, which currently
+> defaults to I2C for H6. It must use the same selection as Linux, not
+> only because of the PMIC mode, but also because of the pinctrl.
 
---sfw42jwsi5m26ljh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Could Crust be made to also handle pinctrl?
 
-Hi,
+> TF-A is already converted to use RSB[1], and it does switch the PMIC
+> back to I2C before handing off to U-Boot[2]. So new TF-A + old Linux is
+> fine. However, Linux currently does not switch the PMIC back. So the
+> most likely problem from this patch is that, with new Linux + old TF-A,
+> TF-A will be unable to power down the board or access regulators after
+> an SoC reset.
+>
+> I expect there will be a TF-A release between now and when 5.12 hits
+> stable, but people tend not upgrade their U-Boot/TF-A very often.
+>
+> We could solve this by having the Linux RSB driver switch all child
+> devices back to I2C in .shutdown, or by dropping this patch and only
+> using RSB for new boards (which would also address Andre's concern).
 
-On Sat, Jan 09, 2021 at 11:50:32AM +0100, Stefan Wahren wrote:
-> This converts the v3d bindings to yaml format.
->=20
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->=20
-> Changes in V3:
-> - drop redundant maxItems in case we already have items defined
-> - fix order of reg-names enum
-> - tag required items in description
-> - add reg-names to required properties
-> - drop clock-names
->=20
->  .../devicetree/bindings/gpu/brcm,bcm-v3d.txt       | 33 ----------
->  .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 72 ++++++++++++++++=
-++++++
->  2 files changed, 72 insertions(+), 33 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
->  create mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.ya=
-ml
->=20
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt b/Doc=
-umentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-> deleted file mode 100644
-> index b2df82b..0000000
-> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -Broadcom V3D GPU
-> -
-> -Only the Broadcom V3D 3.x and newer GPUs are covered by this binding.
-> -For V3D 2.x, see brcm,bcm-vc4.txt.
-> -
-> -Required properties:
-> -- compatible:	Should be "brcm,7268-v3d" or "brcm,7278-v3d"
-> -- reg:		Physical base addresses and lengths of the register areas
-> -- reg-names:	Names for the register areas.  The "hub" and "core0"
-> -		  register areas are always required.  The "gca" register area
-> -		  is required if the GCA cache controller is present.  The
-> -		  "bridge" register area is required if an external reset
-> -		  controller is not present.
-> -- interrupts:	The interrupt numbers.  The first interrupt is for the hub,
-> -		  while the following interrupts are separate interrupt lines
-> -		  for the cores (if they don't share the hub's interrupt).
-> -		  See bindings/interrupt-controller/interrupts.txt
-> -
-> -Optional properties:
-> -- clocks:	The core clock the unit runs on
-> -- resets:	The reset line for v3d, if not using a mapping of the bridge
-> -		  See bindings/reset/reset.txt
-> -
-> -v3d {
-> -	compatible =3D "brcm,7268-v3d";
-> -	reg =3D <0xf1204000 0x100>,
-> -	      <0xf1200000 0x4000>,
-> -	      <0xf1208000 0x4000>,
-> -	      <0xf1204100 0x100>;
-> -	reg-names =3D "bridge", "hub", "core0", "gca";
-> -	interrupts =3D <0 78 4>,
-> -		     <0 77 4>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Do=
-cumentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> new file mode 100644
-> index 0000000..3b543d4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom V3D GPU Bindings
-> +
-> +maintainers:
-> +  - Eric Anholt <eric@anholt.net>
-> +  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^gpu@[a-f0-9]+$'
-> +
-> +  compatible:
-> +    enum:
-> +      - brcm,7268-v3d
-> +      - brcm,7278-v3d
-> +
-> +  reg:
-> +    items:
-> +      - description: hub register (required)
-> +      - description: core0 register (required)
-> +      - description: GCA cache controller register (if GCA controller pr=
-esent)
-> +      - description: bridge register (if no external reset controller)
-> +    minItems: 2
+This will work for most cases, except in a kernel panic or IIRC direct
+reboot using sysrq. So it's not robust as we'd like it to be.
 
-maxItems will be set to 2 in this case, while it would be 4 I guess?
+ChenYu
 
-Looks fine otherwise
-
-Maxime
-
---sfw42jwsi5m26ljh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX/66KAAKCRDj7w1vZxhR
-xWGqAP0ctcD91iQuKDGJftdswF0t0Cle2waMy0MgAZCzY1CFsAEA5TvpFr1D0WVc
-LgNjEYsl9oXX6M1jnsFYCBhRYkAO9As=
-=qgAJ
------END PGP SIGNATURE-----
-
---sfw42jwsi5m26ljh--
+> Cheers,
+> Samuel
+>
+> [1]: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/7576
+> [2]: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/7575
+>
+> > So I'm for keeping things consistent and converting all users to RSB.
+> >
+> >
+> > ChenYu
+> >
+>
+> --
+> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/bc95a8d2-ebec-489c-10af-fd5a80ea1276%40sholland.org.
