@@ -2,93 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AA4C2F4363
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:53:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38DB82F4368
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 05:57:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726493AbhAMEwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 23:52:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54308 "EHLO
+        id S1726278AbhAME4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 23:56:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726375AbhAMEwx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 23:52:53 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5796FC061575;
-        Tue, 12 Jan 2021 20:52:13 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id y12so375704pji.1;
-        Tue, 12 Jan 2021 20:52:13 -0800 (PST)
+        with ESMTP id S1726234AbhAME4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 23:56:24 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7521C061786
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 20:55:43 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id n25so743010pgb.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 20:55:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=nIPuJG/f1iSSi0S/53GdRrE2iJhHg51i8LMP+mddyMA=;
-        b=jSKe1uJroLlKt0wqGChfLjFAUxtPyB7mpxyQHsbEBAtGRoFQDXviA5yy1ENjBo9F77
-         ZxE1HtkVZu9zft6hh3+dJF5oocoEscdydAxLvHVcVxJJOAsIEQxWj3WktonLkm/BQlDS
-         mcfuoOlrea5bsgKcezg+8n4iOpLJjiwwboWYo9p2xnQc0TaCUdXDftPgPk+EQ+7Uh9Go
-         0R4Ip+cCeYzK7/Jvd5mHraJ5FOqe/OMgOe5CgOFf4DQEtVQ9AyP1tmrMJs35tj3tAIYp
-         L5HGFuy1YhhTI7KfPDnDV4pOo+etIlM7mlPULJSJ3r4w0odUMid0z9WTps4oHb76MMZX
-         3lig==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=mJKCusvpWtBfKn+y4mKbIiTTyEFF53qpNFGSZqmXVHU=;
+        b=AYTgJ9tRKgK3HRW4hrmMHj7DhGnGUEPMNrO18Lx+slvosqt5RDGqMOsTVNyNUVVTCo
+         v1pZVH7seXJuz8HaKjdXfJ0lu1ZsmXbEMoDxpSZ/JSrF1Xw0EeiP9M0EEIScTOoKzJG5
+         woivZntD0iYcGQ8Gid/i9jTxPu3iGVOMIjqIaSd367us82Nkt/bHZYjrWdKudDQ2CX3V
+         kaZyFOPTicOcFAZ5XTx/WGX9MV5XaLfCJOwcxELeXwitDZPj0xChg15Q6vTR5IiJbeZ9
+         YmoVMSLr+9m8EffMMzXJpT45GB4+QFPV1tXCSQGpCMDVnwlSKbsKzgXmkYu5caRB+gbe
+         oGZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=nIPuJG/f1iSSi0S/53GdRrE2iJhHg51i8LMP+mddyMA=;
-        b=CmwS2jqSYL60mSTJP5R2CIlLXEJ2auOnL5uBKdoOqnINoyQQGQG13t0mLNiQq6ya//
-         v9+NRy0ZXrkB5nNaeH1FLR1bqz8+GixxIhu9yRaC0+CSBjxLaAoI9PwAG/OvyYpK5Ulo
-         ERiFrppS3fLBoY8rUYcidLc752ipVz4TC87DDt68aT6ucT4+CzTCPtYfpRbgoucursBI
-         mnfgbEFUs/DYLshSZKB7YYw8tUHZdWhOtR3uDdn3xoagqLeNLrxc3/rjr50Y1xZcRHSp
-         1iAtmriDBcSK15ITsOliwf4wKLlAfl3JY8X2GdpTcwnQSxo6FiluZyefdXNs3FbkkL/h
-         XBow==
-X-Gm-Message-State: AOAM531w1nyflozmC4ZMiTc6gNdHLQfVPab3uKtl9AyfAfa22xlsVKmj
-        ovxmT+xvVecFDXdsLCIiegk=
-X-Google-Smtp-Source: ABdhPJz8iVmHS2KCF9/RjgOLy0eJ8KBHWbbBqr2aVIOs1YCiM5ytF/+GMgL3WRv1taZH12O5MJYQeA==
-X-Received: by 2002:a17:90a:ec10:: with SMTP id l16mr249353pjy.127.1610513532890;
-        Tue, 12 Jan 2021 20:52:12 -0800 (PST)
-Received: from [10.230.29.29] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id g16sm753847pfh.187.2021.01.12.20.52.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jan 2021 20:52:11 -0800 (PST)
-Subject: Re: [PATCH V4 1/3] dt-bindings: phy: brcm,brcmstb-usb-phy: convert to
- the json-schema
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20210106205838.10964-1-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <d31b657f-6826-b276-d697-d8f8d5a711aa@gmail.com>
-Date:   Tue, 12 Jan 2021 20:52:09 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.6.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mJKCusvpWtBfKn+y4mKbIiTTyEFF53qpNFGSZqmXVHU=;
+        b=mTeGizwq6MHe/HfZQ42aRee293ffHX6g7KPGx6P7TNi1iIMXm7ngeKxinX4MOkzjTY
+         JRrHcMc3GqtpLUXZdoXyH/FPMtUGF4Qx8lE4mIZHaqic7a7cBVN+JHeMOf9MRqtUoFGa
+         Js1jHzwKnW9Ypsn1G1iSMswokYaF6ZFAVDH0V380InrGp2j1j2s7jTEArcxe2SY09uNg
+         4tYRC3xXLHzkyI3wPzOgxaQ9lqRjaicXQ2NwvNgHt2qmE/Jxyvx+amIbaxYZd2v1xlRC
+         8JEyu9cY4ZHXxoDzSi+GNDrLUcgUqgPwlGMc1t2vkLnvpOsLi6ZtDrRitKaJZSmJA8Pi
+         Pmcw==
+X-Gm-Message-State: AOAM533py8uyHHVpvmcrDwAenGAoFJHS+c4eF39fdDsv8vh9J99zEXVM
+        COlez638IedAISF9SgOraZzYaw==
+X-Google-Smtp-Source: ABdhPJwTqmk4iglhe8G2D21L3QujLbLeXjPAv+epZYprG0ZGWLUyfbPvPghFsk9qSH1TBXR8r1PVFg==
+X-Received: by 2002:a63:e246:: with SMTP id y6mr383697pgj.412.1610513743224;
+        Tue, 12 Jan 2021 20:55:43 -0800 (PST)
+Received: from localhost ([122.172.85.111])
+        by smtp.gmail.com with ESMTPSA id a198sm820054pfa.7.2021.01.12.20.55.41
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 12 Jan 2021 20:55:42 -0800 (PST)
+Date:   Wed, 13 Jan 2021 10:25:40 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH V3 2/2] scripts: dtc: Build fdtoverlay and fdtdump tools
+Message-ID: <20210113045540.s2hg2dxldsyelzkd@vireshk-i7>
+References: <CAK7LNAQT5nVHGAZDhj4dct0v8UMzQ+-mdfBXJsfedR-7mZTnyA@mail.gmail.com>
+ <72c3a4f63dde3c172c11153e9a5b19fb6cdb4498.1610000585.git.viresh.kumar@linaro.org>
+ <1d9369aa-b7aa-6d06-0d44-6ef21bc639e3@gmail.com>
+ <20210112050818.s6ctvd6ihd2dt2d2@vireshk-i7>
+ <3f0c733a-641f-290f-41b8-62ca22e355b7@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210106205838.10964-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3f0c733a-641f-290f-41b8-62ca22e355b7@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1/6/2021 12:58 PM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 12-01-21, 12:34, Frank Rowand wrote:
+> On 1/11/21 11:08 PM, Viresh Kumar wrote:
+> > On 11-01-21, 18:44, Frank Rowand wrote:
+> >> On 1/7/21 12:25 AM, Viresh Kumar wrote:
+> >>> We will start building overlays for platforms soon in the kernel and
+> >>> would need these tools going forward. Lets start building them.
+> >>>
+> >>> The fdtoverlay program applies (or merges) one ore more overlay dtb
+> >>> blobs to a base dtb blob. The kernel build system would later use
+> >>> fdtoverlay to generate the overlaid blobs based on platform specific
+> >>> configurations.
+> >>>
+> >>> The fdtdump program prints a readable version of a flat device-tree
+> >>> file. This is a very useful tool to analyze the details of the overlay's
+> >>> dtb and the final dtb produced by fdtoverlay after applying the
+> >>> overlay's dtb to a base dtb.
+> >>
+> >> You can calso dump an FDT with:
+> >>
+> >>    dtc -O dts XXX.dtb
+> >>
+> >> Is this sufficient for the desired functionality, or is there something
+> >> additional in fdtdump that is needed?
+> > 
 > 
-> Changes that require mentioning:
-> 1. interrupt-names
->    Name "wakeup" was changed to the "wake". It matches example and what
->    Linux driver looks for in the first place
-> 2. brcm,ipp and brcm,ioc
->    Both were described as booleans with 0 / 1 values. In examples they
->    were integers and Linux checks for int as well. Both got uint32.
-> 3. Added minimal description
+> comment 1:
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> > Not for my usecase at least.
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+I answered this question here (and yes I could have been more clear):
+
+"is there something additional in fdtdump that is needed?"
+
+> 
+> > 
+> >> If nothing additional needed, and there is no other justification for adding
+> >> another program, I would prefer to leave fdtdump out.
+> > 
+> 
+> comment 2:
+> 
+> > Okay, then I will also remove the stale version of fdtdump which is
+> > already there in kernel since a long time.
+> > 
+> 
+> I'm confused.  I read comment 1 as saying that fdtdump does provide a feature
+> that you need to analyze the dtb created by fdtoverlay.  But I read comment 2
+> as implying that you are accepting that fdtdump will not be added to the
+> Linux kernel source.
+
 -- 
-Florian
+viresh
