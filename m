@@ -2,141 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 277FC2F4B00
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 13:09:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D845B2F4B43
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 13:29:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726791AbhAMMIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 07:08:10 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45794 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726692AbhAMMIK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 07:08:10 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10DC6V28110714;
-        Wed, 13 Jan 2021 06:06:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610539591;
-        bh=bj1OIoKh7MPlLtR7S7imc28nG0Aa6DWPD3zetxMh0ds=;
-        h=Subject:CC:References:From:Date:In-Reply-To;
-        b=HnHcHYqSMFoLSi7sKS0j1SNbdWGt6tKxfo2AkwgAzKZWtANnGgxdk8mPNIsZawEaR
-         aF0w0WEmi0ZC1vEV+/Jj1rE49YX2UH3P5h0dGJ+EaD/JVaudUwTWhvROuKfkNZLwWm
-         CV0xTU08fO0fi7SPMYLVMVJY8kb7Q5jrWgPhrj94=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10DC6VXh041122
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 13 Jan 2021 06:06:31 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 13
- Jan 2021 06:06:30 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 13 Jan 2021 06:06:30 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10DC6QGE055184;
-        Wed, 13 Jan 2021 06:06:27 -0600
-Subject: Re: [PATCH 2/2] mmc: sdhci_am654: Add Support for TI's AM64 SoC
-CC:     Sekhar Nori <nsekhar@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Aswath Govindraju <a-govindraju@ti.com>
-References: <20210113115908.3882-1-a-govindraju@ti.com>
- <20210113115908.3882-3-a-govindraju@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <a74e6fbf-5a46-e666-83ee-b0e967362630@ti.com>
-Date:   Wed, 13 Jan 2021 17:36:25 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726259AbhAMM2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 07:28:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56290 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726184AbhAMM2j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 07:28:39 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 45BAB2313E;
+        Wed, 13 Jan 2021 12:27:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1610540878;
+        bh=DMT/14eqvz5zf53FuIMip/3tOpUYx9AeGju+aNpk6Tg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RIeWKwdCzel81a5/+igwlQa7a96S4uuDSVMhO/TwoBeDkIRVbX+C6VT/zl3DHzGuy
+         TN7OjM0+Zieesb8xP+RgbKU5rKX0cUd7nzCdBCw4R29wCGdqUIBnkZaVV1OJ6+Cnca
+         DxODljnCCEJbvE8Rkq5e8BMdF1IFL/e9Km/FCSDg=
+Date:   Wed, 13 Jan 2021 13:29:05 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Claire Chang <tientzu@chromium.org>, robh+dt@kernel.org,
+        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        joro@8bytes.org, will@kernel.org, frowand.list@gmail.com,
+        konrad.wilk@oracle.com, boris.ostrovsky@oracle.com,
+        jgross@suse.com, sstabellini@kernel.org, m.szyprowski@samsung.com,
+        robin.murphy@arm.com, grant.likely@arm.com, xypron.glpk@gmx.de,
+        treding@nvidia.com, mingo@kernel.org, bauerman@linux.ibm.com,
+        peterz@infradead.org, saravanak@google.com,
+        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
+        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
+        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
+        xen-devel@lists.xenproject.org, tfiga@chromium.org,
+        drinkcat@chromium.org
+Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
+Message-ID: <X/7nkb/YDpKlakRO@kroah.com>
+References: <20210106034124.30560-1-tientzu@chromium.org>
+ <20210106034124.30560-3-tientzu@chromium.org>
+ <X/VrqxcaAMi65CF0@kroah.com>
+ <20210113115126.GB29376@lst.de>
 MIME-Version: 1.0
-In-Reply-To: <20210113115908.3882-3-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210113115126.GB29376@lst.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 13/01/21 5:29 pm, Aswath Govindraju wrote:
-> From: Faiz Abbas <faiz_abbas@ti.com>
+On Wed, Jan 13, 2021 at 12:51:26PM +0100, Christoph Hellwig wrote:
+> On Wed, Jan 06, 2021 at 08:50:03AM +0100, Greg KH wrote:
+> > > --- a/include/linux/device.h
+> > > +++ b/include/linux/device.h
+> > > @@ -413,6 +413,7 @@ struct dev_links_info {
+> > >   * @dma_pools:	Dma pools (if dma'ble device).
+> > >   * @dma_mem:	Internal for coherent mem override.
+> > >   * @cma_area:	Contiguous memory area for dma allocations
+> > > + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
+> > 
+> > Why does this have to be added here?  Shouldn't the platform-specific
+> > code handle it instead?
 > 
-> Add support for the controller present on the AM64x SoC.
-> 
-> There are instances:
-> sdhci0: 8bit bus width, max 400 MBps
-> sdhci1: 4bit bus width, max 100 MBps
-> 
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
+> The whole code added here is pretty generic.  What we need to eventually
+> do, though is to add a separate dma_device instead of adding more and more
+> bloat to struct device.
 
-Very sorry forgot to add RESEND tag in the subject. The link to the
-original patch,
-https://lore.kernel.org/patchwork/patch/1364589/
-
-Thanks,
-Aswath
-
->  drivers/mmc/host/sdhci_am654.c | 28 ++++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci_am654.c b/drivers/mmc/host/sdhci_am654.c
-> index a64ea143d185..7a34649b0754 100644
-> --- a/drivers/mmc/host/sdhci_am654.c
-> +++ b/drivers/mmc/host/sdhci_am654.c
-> @@ -514,6 +514,26 @@ static const struct sdhci_am654_driver_data sdhci_j721e_4bit_drvdata = {
->  	.flags = IOMUX_PRESENT,
->  };
->  
-> +static const struct sdhci_pltfm_data sdhci_am64_8bit_pdata = {
-> +	.ops = &sdhci_j721e_8bit_ops,
-> +	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-> +};
-> +
-> +static const struct sdhci_am654_driver_data sdhci_am64_8bit_drvdata = {
-> +	.pdata = &sdhci_am64_8bit_pdata,
-> +	.flags = DLL_PRESENT | DLL_CALIB,
-> +};
-> +
-> +static const struct sdhci_pltfm_data sdhci_am64_4bit_pdata = {
-> +	.ops = &sdhci_j721e_4bit_ops,
-> +	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-> +};
-> +
-> +static const struct sdhci_am654_driver_data sdhci_am64_4bit_drvdata = {
-> +	.pdata = &sdhci_am64_4bit_pdata,
-> +	.flags = IOMUX_PRESENT,
-> +};
-> +
->  static const struct soc_device_attribute sdhci_am654_devices[] = {
->  	{ .family = "AM65X",
->  	  .revision = "SR1.0",
-> @@ -737,6 +757,14 @@ static const struct of_device_id sdhci_am654_of_match[] = {
->  		.compatible = "ti,j721e-sdhci-4bit",
->  		.data = &sdhci_j721e_4bit_drvdata,
->  	},
-> +	{
-> +		.compatible = "ti,am64-sdhci-8bit",
-> +		.data = &sdhci_am64_8bit_drvdata,
-> +	},
-> +	{
-> +		.compatible = "ti,am64-sdhci-4bit",
-> +		.data = &sdhci_am64_4bit_drvdata,
-> +	},
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, sdhci_am654_of_match);
-> 
-
+I have no objections for that happening!
