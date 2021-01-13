@@ -2,96 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 883132F5403
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 21:22:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 282072F54E0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 23:20:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728896AbhAMUVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 15:21:09 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:26935 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725804AbhAMUVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 15:21:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1610569269; x=1642105269;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=iidB/SH6YvMVxsRVtLw+6IrKQ/PkSr13r9FBSRtqThk=;
-  b=gMTtX85EHkukVNMWERLkgd2RLB0TXn+G+T2mhTyTIHleDHrmt0YoYUbi
-   RH3hYy+yoH8On9KAw0CDcHzFruARvGEnIJnkky1ZwDaNvtzaQsWN1YGeF
-   TwP2CovVjz5bPQSAwbRTiYPEtVEY9N3F9nd/q/qz/XGxXuXnXcVtN4Wbb
-   X0z9KACx9hlZmDoBJB0nGN7ob33AYBEEOzY8WfJ1tmiUUjc+cjtvcSGM7
-   S0LE9fjbmzGIsgq1zHNbgm1eLhZsRqduBT2OrqHm7Iyn81XX/zPFenYLx
-   V2saJSU/AWTWUXcTs7jbIwoUJDClrXrz52H5ibMQs1s8MyPdhLWGw2RK3
-   w==;
-IronPort-SDR: se4KIWRlK6R8G9HokD2o13mfrgxpEJhmpqV1JrHIOeW4YAFlGv8wsIOfXRrv8ngXME3kpE+rvw
- gseVaBICIACVrWEkV5NAVLjg+vmJJ+LO8RLAK8qVczO7qWihW1N0owZCyXuoD9fHMN43WdFlFS
- VMo92ag4z6DSG8+Ce1+65SrEfjSYtzMPn9ek+bEepScO1vf0MxBKdyNYOK5W0UKC9zJ1A61ETh
- DXIEyHhuUg9kjJnOEcf8682EKTJs2bDrn4ZPEw+NhmSqcQaVd1iD0sfjhozLQwgUfbJ1Zcgd31
- ky8=
-X-IronPort-AV: E=Sophos;i="5.79,345,1602572400"; 
-   d="scan'208";a="105886843"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jan 2021 13:19:35 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 13 Jan 2021 13:19:34 -0700
-Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Wed, 13 Jan 2021 13:19:32 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH 3/3] arm64: dts: reset: add microchip sparx5 switch reset driver
-Date:   Wed, 13 Jan 2021 21:19:15 +0100
-Message-ID: <20210113201915.2734205-4-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210113201915.2734205-1-steen.hegelund@microchip.com>
-References: <20210113201915.2734205-1-steen.hegelund@microchip.com>
+        id S1729132AbhAMWTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 17:19:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53444 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729283AbhAMWRY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 17:17:24 -0500
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EEB9C0617A3
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 14:16:02 -0800 (PST)
+Received: by mail-qk1-x735.google.com with SMTP id v126so4384142qkd.11
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 14:16:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cTq9BZuyc2JWWvpzIlfxUaiFdXiEl1WBgsmk8mSJEMM=;
+        b=PWBTvEa5NbYEJopVdcXuVqQf/JjG5gACNCIYDMJBf9E0arp6TfC5oz66n3H0qWPk5Y
+         eIFJiuMlFk4kkQDNxi4FbKZIBmN3DV9l7kKrgeNB7g19C34zVdKIAEakRSerhIZjMkpI
+         MnK1rqQpnSHAYo7efBOciJbXp2r+lUNczmriQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cTq9BZuyc2JWWvpzIlfxUaiFdXiEl1WBgsmk8mSJEMM=;
+        b=MfeYrz3qc+T6rMirE1lFXveikVElTCfmeBk5Wiiqx/VWrGQC+irhEPbHkzJQtYtVl/
+         sLdSHbKFJ39U4NbNkJp+8lq2IzZ99q1UBu6Ukj9cOijN+aucX2M/UxstSef7BVNfRacE
+         YjsXCgMQu4qjd+0/6uQ9GjfjHhm9xS8jIpylkdtf3dHGSSe/Vmcq2EbuK7j2WJdsA9QJ
+         FJ6wpO05QtodCfHS46p4nE02MflE9BmWC4zCPR3HxRSR/6+hX9egkCvO7FZL8Nldm6YN
+         J1GZliZ+yvvTV0glNpJXZGPRVO0mrH8kkOsorGnlHQnyCWspel20u1+8/ZoFQRjOFJ4l
+         ksPg==
+X-Gm-Message-State: AOAM530N7HMuadB3if3YXkZyL2QGkBvzfPuQ6GxTpf+B92GxH/7RO071
+        AKmCfRQjDA4EEetQv/SSzsZBoeYp/z6yiYM/tifEPQ==
+X-Google-Smtp-Source: ABdhPJzvis3PmTgmiOX/slOAg9ePoXvVTAv2KB7aJml+JJUsZOkm0hVZBZSipGRrgHGHDf7EXVffIzsQRCNvzhvzvVw=
+X-Received: by 2002:a25:3d47:: with SMTP id k68mr6375160yba.415.1610576161387;
+ Wed, 13 Jan 2021 14:16:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20210108172316.v4.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
+ <20210108172316.v4.2.I9ec9c3c61eded22a5f7fbff838d23fc95ec7cfe0@changeid> <161041725044.3661239.4848052699046966461@swboyd.mtv.corp.google.com>
+In-Reply-To: <161041725044.3661239.4848052699046966461@swboyd.mtv.corp.google.com>
+From:   Philip Chen <philipchen@chromium.org>
+Date:   Wed, 13 Jan 2021 14:15:50 -0800
+Message-ID: <CA+cxXhk-CKC-GguQEyYA-8Fnhdo98D8wvRrJKXvjmuisC1knkw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] ARM: dts: cros-ec-keyboard: Use keymap marcos
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 380281f312d8..6f0a21c362e3 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -132,9 +132,16 @@ mux: mux-controller {
- 			};
- 		};
- 
--		reset@611010008 {
--			compatible = "microchip,sparx5-chip-reset";
--			reg = <0x6 0x11010008 0x4>;
-+		gcb_ctrl: syscon@611010000 {
-+			compatible = "microchip,sparx5-gcb-syscon", "syscon";
-+			reg = <0x6 0x11010000 0x10000>;
-+		};
-+
-+		reset: reset-controller@0 {
-+			compatible = "microchip,sparx5-switch-reset";
-+			reg = <0x6 0x0 0x0>;
-+			#reset-cells = <1>;
-+			syscons = <&cpu_ctrl>,<&gcb_ctrl>;
- 		};
- 
- 		uart0: serial@600100000 {
--- 
-2.29.2
-
+On Mon, Jan 11, 2021 at 6:07 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> BTW, subject says 'marcos' when it should say 'macros'
+Thanks - I fixed it in v5.
+>
+> Quoting Philip Chen (2021-01-08 17:23:32)
+> > The common cros-ec keymap has been defined as macros. This patch uses
+> > the macros to simply linux,keymap in cros-ec-keyboard.dtsi file.
+> >
+> > This patch also creates an alias for keyboard-controller to make it
+> > easier to override the keymap in board-specific dts later.
+> >
+> > Signed-off-by: Philip Chen <philipchen@chromium.org>
+> > ---
+> >
