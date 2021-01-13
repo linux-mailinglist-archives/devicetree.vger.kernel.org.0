@@ -2,75 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A79332F496C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:10:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 649BE2F498D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:10:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727009AbhAMLBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 06:01:43 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39168 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727767AbhAMLBg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 06:01:36 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3BA8823447;
-        Wed, 13 Jan 2021 10:59:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610535570;
-        bh=usBYgqfS4umIzINtxT4Nu+/0pMkIB1VBJg8Hcuu4a4Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=D0kQMvh+6xU4pn8wdIY/LKaWRNZRhq66KAxXllJtJRZMjpaqRVBu1cJM8r76AXOda
-         OdEujvrHbK2tzLM5FSMUhiQzEMaEOUHZij27aKs/aErdNyvGLGWrdyT1dLux3P1MI4
-         xuSk+i03y/oIjIkJ26vevI22vI9BOajrOkvWabA1GpQ+XCZ1k/ZoxKHudaHl3ZnMJF
-         iyg9jDsJDBsRoJHGtG2galUihyg+hifG2ax1szo38hTgiw4BWPgjLRYtu4yDFYcfRN
-         IAe+b9G9Gsm+wYFWFAwzh/YpQ+h+m927kE2GwubcxZ+/XK63Sx0dsI528IaUj5wqtd
-         L2QbpWf9GQ1Cw==
-Received: by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1kzds7-00DpGu-Ux; Wed, 13 Jan 2021 11:59:27 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Linux Doc Mailing List" <linux-doc@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        id S1727612AbhAMLFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 06:05:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727630AbhAMLFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:05:04 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C61DC061786
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:04:24 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id be12so871557plb.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:04:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qi6TAbH6xq2gb5QhoJgs+Zx34VA+1B8w65ilqHtaQhg=;
+        b=niAlQ6mrmMUTgxTuk/wIFV0dA5FTNL/q7yIeA3KMpPiYrOoeMif/GrsGlBNo4nO5hX
+         jS0IBXikG2Rz7tuBf7Cg5OWlFEnPLysXBKbE8NfGrDC26Fn1rRXbr3IGMutv7qZjs1ix
+         LuL6120cwyB2sznVfa8VmXkijtJmiiqz/Wodw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qi6TAbH6xq2gb5QhoJgs+Zx34VA+1B8w65ilqHtaQhg=;
+        b=cC/d7M3sx5c45zipO3cwFuVAbW20mtfQLahxgXKv3dabyuGj6ylZGsbdV1ij1k36q0
+         HUdPBVa2zVu3VHaF3GlGg2l8ElXk1rbrbiDyXzcfVyt/lwFcS2OVXckCB0UImWfxdm89
+         xWA08Hjhoz9/ySo1r+AgxWvPq9zx1RBlc+gm8cf1C8NU8q5da7LbHvHi42+aRzxBARmW
+         mDySii+2zL/1mOv4kOKOVVUInrW0idKRFsz0xdyo/8Xc0kVEid6H6GmsxsNiCXQ8GHoi
+         bu1ooBuGqKDSYMKeGbvj5PXymBOMevQpVUbvQ0zplQzW4zBeDDPjHFpKKmlFEJIuTX46
+         mVeQ==
+X-Gm-Message-State: AOAM531Yt8a+013cPs6uOP7TbRQn1daIi+T+9Qh2LyP5Ioj/JU0blACg
+        kxEiwhJ4XDj9GOfWxx88Pm1QrQ==
+X-Google-Smtp-Source: ABdhPJwqXk7qSn7z63czfXwWGRHHdTzvY1QViHROIw4GMPDd5xlJEcOqPF8W7QFFkzxLCyFUXJv/fg==
+X-Received: by 2002:a17:902:c005:b029:db:1d7:658f with SMTP id v5-20020a170902c005b02900db01d7658fmr1625118plx.35.1610535863499;
+        Wed, 13 Jan 2021 03:04:23 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:1a60:24ff:fe89:3e93])
+        by smtp.gmail.com with ESMTPSA id o129sm2114749pfg.66.2021.01.13.03.04.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 03:04:22 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 24/24] dt-bindings: phy: update phy-cadence-sierra.yaml reference
-Date:   Wed, 13 Jan 2021 11:59:25 +0100
-Message-Id: <3550b08d4e8312e7d4a247a3515a93a5f0fd04c5.1610535350.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1610535349.git.mchehab+huawei@kernel.org>
-References: <cover.1610535349.git.mchehab+huawei@kernel.org>
+Subject: [PATCH v4 1/3] arm64: dts: mt8183: config dsi node
+Date:   Wed, 13 Jan 2021 19:03:59 +0800
+Message-Id: <20210113110400.616319-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changeset ba2bf1f090eb ("dt-bindings: phy: Add Cadence Sierra PHY bindings in YAML format")
-renamed: Documentation/devicetree/bindings/phy/phy-cadence-sierra.txt
-to: Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml.
+Config dsi node for mt8183 kukui. Set panel and ports.
 
-Update its cross-reference accordingly.
+Several kukui boards share the same panel property and only compatible
+is different. So compatible will be set in board dts for comparison
+convenience.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
 ---
- Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+change:
+v4: add backlight and enable mipi_tx0
+---
+ .../mediatek/mt8183-kukui-krane-sku176.dts    |  5 +++
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 42 +++++++++++++++++++
+ 2 files changed, 47 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-index c33e9bc79521..bbbd85501ada 100644
---- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-@@ -151,7 +151,7 @@ patternProperties:
-       WIZ node should have '1' subnode for the SERDES. It could be either
-       Sierra SERDES or Torrent SERDES. Sierra SERDES should follow the
-       bindings specified in
--      Documentation/devicetree/bindings/phy/phy-cadence-sierra.txt
-+      Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
-       Torrent SERDES should follow the bindings specified in
-       Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+index 47113e275cb52..721d16f9c3b4f 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+@@ -16,3 +16,8 @@ / {
+ 	model = "MediaTek krane sku176 board";
+ 	compatible = "google,krane-sku176", "google,krane", "mediatek,mt8183";
+ };
++
++&panel {
++        status = "okay";
++        compatible = "boe,tv101wum-nl6";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index bf2ad1294dd30..da1e947587074 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -249,6 +249,36 @@ &cpu7 {
+ 	proc-supply = <&mt6358_vproc11_reg>;
+ };
  
++&dsi0 {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	panel: panel@0 {
++		/* compatible will be set in board dts */
++		reg = <0>;
++		enable-gpios = <&pio 45 0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&panel_pins_default>;
++		avdd-supply = <&ppvarn_lcd>;
++		avee-supply = <&ppvarp_lcd>;
++		pp1800-supply = <&pp1800_lcd>;
++		backlight = <&backlight_lcd0>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&dsi_out>;
++			};
++		};
++	};
++
++	ports {
++		port {
++			dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++};
++
+ &i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c0_pins>;
+@@ -290,6 +320,10 @@ &i2c6 {
+ 	clock-frequency = <100000>;
+ };
+ 
++&mipi_tx0 {
++	status = "okay";
++};
++
+ &mmc0 {
+ 	status = "okay";
+ 	pinctrl-names = "default", "state_uhs";
+@@ -547,6 +581,14 @@ pins_clk {
+ 		};
+ 	};
+ 
++	panel_pins_default: panel_pins_default {
++		panel_reset {
++			pinmux = <PINMUX_GPIO45__FUNC_GPIO45>;
++			output-low;
++			bias-pull-up;
++		};
++	};
++
+ 	pwm0_pin_default: pwm0_pin_default {
+ 		pins1 {
+ 			pinmux = <PINMUX_GPIO176__FUNC_GPIO176>;
 -- 
-2.29.2
+2.30.0.284.gd98b1dd5eaa7-goog
 
