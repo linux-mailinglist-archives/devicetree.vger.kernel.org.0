@@ -2,144 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 782582F4F9B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 17:13:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E7B2F4FE9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 17:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727452AbhAMQKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 11:10:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40958 "EHLO mail.kernel.org"
+        id S1727775AbhAMQYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 11:24:25 -0500
+Received: from muru.com ([72.249.23.125]:44700 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727309AbhAMQKb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 11:10:31 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A6D4023435;
-        Wed, 13 Jan 2021 16:09:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610554191;
-        bh=/V4uSeR8OSBZFOFVIDMw/BcMXL4VolcqPFbIKUiERHo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CIcwspXmZRh8pc/udeumy8UpzYBjmrX7dpcqHVBi+30uP1j3j4zU+0B10FqVEKafh
-         zYFna+tu0fTLy5NZW/+OxsohzEOeAjA+CH5Tr1A5js5pnPLHEoc9/gzjUyvx/1p91Y
-         YYwmVWgZAHyoZY4pYdT0ia5ZpErjCFa6mRI4+fPFeYRKY3nUj3aeO2k0e29sjipaFh
-         i8McAAFGMhCslAq/p6obQEr3RbKhxC09pzYp/p0JwRk6SB3DFC3DoaAAYyrj4Qgoax
-         zUHGMwuJv8rPnp6y8Q2ebD+pmNBb3VvMORqK8F/SLQLVb35ax0hThFX/HLs6hksODv
-         YBgNPtvxo0NXA==
-Date:   Wed, 13 Jan 2021 16:09:17 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Richard Fitzgerald <rf@opensource.cirrus.com>,
-        kuninori.morimoto.gx@renesas.com, nsaenzjulienne@suse.de,
-        f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/6] dt-bindings: audio-graph-card: Add plls and
- sysclks properties
-Message-ID: <20210113160917.GF4641@sirena.org.uk>
-References: <20210108160501.7638-1-rf@opensource.cirrus.com>
- <20210108160501.7638-3-rf@opensource.cirrus.com>
- <20210113152225.GA2334778@robh.at.kernel.org>
+        id S1727561AbhAMQYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 11:24:24 -0500
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 9719280A7;
+        Wed, 13 Jan 2021 16:23:42 +0000 (UTC)
+Date:   Wed, 13 Jan 2021 18:23:39 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
+        <linux-omap@vger.kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Dave Gerlach <d-gerlach@ti.com>,
+        Roger Quadros <rogerq@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Subject: Re: [PATCH 13/18] ARM: dts: Use simple-pm-bus for genpd for am3
+ l4_wkup
+Message-ID: <X/8ei0o9ULpRdx7T@atomide.com>
+References: <20201026112222.56894-1-tony@atomide.com>
+ <20201026112222.56894-14-tony@atomide.com>
+ <CAMuHMdWribr=eg1LkKce=Hamm+JwSz5UFEXLKUmKkqqz1RpL_w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kbCYTQG2MZjuOjyn"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210113152225.GA2334778@robh.at.kernel.org>
-X-Cookie: Ignore previous fortune.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAMuHMdWribr=eg1LkKce=Hamm+JwSz5UFEXLKUmKkqqz1RpL_w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---kbCYTQG2MZjuOjyn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+* Geert Uytterhoeven <geert@linux-m68k.org> [210113 16:09]:
+> Hi Tony,
+> 
+> On Mon, Oct 26, 2020 at 1:57 PM Tony Lindgren <tony@atomide.com> wrote:
+> > We can now enable simple-pm-bus to use genpd.
+> >
+> > Signed-off-by: Tony Lindgren <tony@atomide.com>
+> 
+> Thanks for your patch, which is now commit 5a230524f87926f2 ("ARM:
+> dts: Use simple-pm-bus for genpd for am3 l4_wkup") in v5.11-rc1.
+> 
+> I have bisected a boot failure on BeagleBone Black to this commit.
+> Reverting this commit on top of a v5.11-rc3-based tree does not help.
+> 
+> With "earlycon keep_bootcon", I do get some output, the last line is
+> 
+>     l4-wkup-clkctrl:00d4:0: failed to disable
+> 
+> I have attached the kernel output of the previous (good) commit,
+> and the failing one.
+> 
+> Do you have a clue?
 
-On Wed, Jan 13, 2021 at 09:22:25AM -0600, Rob Herring wrote:
+Strange, bbb has been working for me with NFSroot, that's with
+omap2plus_defconfig. Care to send your .config so I can give it a
+try tomorrow?
 
-> I'm not sure this makes sense to be generic, but if so, we already have=
-=20
-> the clock binding and should use (and possibly extend) that.
+Regards,
 
-> This appears to all be configuration of clocks within the codec, so=20
-> these properties belong in the codec or cpu nodes.
-
-Right, I think this should just be the clock binding.=20
-
-> > +      The PLL id and clock source id are specific to the particular co=
-mponent
-> > +      so see the relevant component driver for the ids. Typically the
-
-This should refer to the bindings for components, not to their drivers.
-
-> > +      clock source id indicates the pin the source clock is connected =
-to.
-> > +      The same phandle can appear in multiple entries so that several =
-plls
-> > +      can be set in the same component.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +
-> > +  plls-clocks:
-> > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> > +    description: |
-> > +      A list of clock names giving the source clock for each setting
-> > +      in the plls property.
-> > +
-> > +  sysclks:
-> > +    description: |
-> > +      A list of component sysclk settings. There are 4 cells per sysclk
-> > +      setting:
-> > +        - phandle to the node of the codec or cpu component,
-> > +        - component sysclk id,
-> > +        - component clock source id,
-> > +        - direction of the clock: 0 if the clock is an input to the co=
-mponent,
-> > +          1 if it is an output.
->=20
-> A clock provider and consumer would provide the direction.
->=20
-> > +      The sysclk id and clock source id are specific to the particular
-> > +      component so see the relevant component driver for the ids. Typi=
-cally
-> > +      the clock source id indicates the pin the source clock is connec=
-ted to.
-> > +      The same phandle can appear in multiple entries so that several =
-sysclks
-> > +      can be set in the same component.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +
-> > +  sysclks-clocks:
-> > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> > +    description: |
-> > +      A list of clock names giving the source clock for each setting
-> > +      in the sysclks property.
-> > +
-> > +dependencies:
-> > +  plls: [ plls-clocks ]
-> > +  sysclks: [ sysclks-clocks ]
-> > +
-> >  required:
-> >    - dais
-> > =20
-> > --=20
-> > 2.20.1
-> >=20
-
---kbCYTQG2MZjuOjyn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl//GywACgkQJNaLcl1U
-h9DmuwgAg4bSMDfqbeSbsp70+FR5h2BrfLgwsLwRE0uEEsHpMnvplu67Sb5EaYg7
-43mnbG/ru3uKHlU5gpqyXHFlqCGsbpr3s3+Drn6MfToxDD+lgk38LWADAPwgWOAi
-/Y3moCJTzxBEq1DuGk8w1PQqllu1+heWuVCiuo7iOXPJwrPhF5qtrL7P/f69RoFD
-JmfdGqGstHUQRc+rj4r3mGo1+61XFbin0Ptdvm8ST1Zx7D9FOKEfu7gL+UJK6ha8
-BfBUFCVU9Ov9zaBi1HRslnVULJ4h0i3JRao7rb2h7ajI9IzCr6PNuPkK1St1DDT6
-YJ/zH7Zd13mdMSqHWDgJVcGbPRT3Sg==
-=zuCm
------END PGP SIGNATURE-----
-
---kbCYTQG2MZjuOjyn--
+Tony
