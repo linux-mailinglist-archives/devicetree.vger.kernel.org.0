@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F027D2F4D3E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 15:39:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C844B2F4D4B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 15:39:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727047AbhAMOgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 09:36:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38358 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726770AbhAMOgL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 09:36:11 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE789C0617A3
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 06:35:04 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id e25so1815133wme.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 06:35:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=k8M4ay0pyWeTUsp8VTnmXaOTFerFbqdBD2/I+a5rVXU=;
-        b=QRj1w8Zq8rESBoWrOk4jhvDSx+r0QWDtuf8GtQvgUpnFqBkcPHdTvb7c85hHF2l7cc
-         qDKLJjq9Ii0ShbvDAU8iPTjVj20pMzOpAmpTWPBPhfpw7RQO8ZxSx4EUM8mZsSiXOwQL
-         mdSHwkiWfb6QKpJX/SX1f5FrqdKK38gVDw2QhYa4LBWQ5jOkpmSnlu6QgdD7PLAOsV1i
-         pjdicHccdwcNo3H+EHeD0jh7OVRjagkZ/8yX0F72Uzi/JeXwMnfHry8HzfWpKUBOJuAj
-         gvO7/YEvY/bLsnuixLd6a0UD+ErWYadkCVa8OGxI4YHgEEgNnjV4lTOzzUhdH+UO71MZ
-         81gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=k8M4ay0pyWeTUsp8VTnmXaOTFerFbqdBD2/I+a5rVXU=;
-        b=AavHoCHCedjmHzKXcBQo9KKOsFRCNCEy5E/0HYQe0rMTIAmnGC7Wy3qwB7u0Cth1Mj
-         NGLZjJiYKJglpgrbW8j1OGb9pRP9lHH5CoN5PEiEEw08dREbgfua42LXHoWzbryWCf9m
-         Vn9/569nkLF1bTQj8DLv3Wmhc5skLbSYyHyxkBAPgCftx6IXWBEyrQlQxn/1H5zvxpRY
-         5uykykFQQRDCgmBGiXusyFWnBRtS3qmlBhI3SWPaxlUhpEjZMARdPymvnbqVhGTjubIT
-         ipBPmXeirwk53PSnE4uHpNGvAtc/aLMF24PptLsUh6N5LRmLCgdzyhJHtbPFME3HEx9q
-         WNWg==
-X-Gm-Message-State: AOAM532BfdRrBipf3aouSwOLdr/3hrQxvs1L5PUChn1n1CfrV2I0Xssk
-        96BK60LKlI5gsNO6gQhSEfB8lg==
-X-Google-Smtp-Source: ABdhPJyeEFIkF9DIJ5QpLZTm88kYBUJZLogYBqCXhodFTAckts1/BoAtWv9HKHGKxjjjbk2k938twA==
-X-Received: by 2002:a1c:7f83:: with SMTP id a125mr2516711wmd.86.1610548503499;
-        Wed, 13 Jan 2021 06:35:03 -0800 (PST)
-Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
-        by smtp.gmail.com with ESMTPSA id v7sm3410751wma.26.2021.01.13.06.35.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 06:35:03 -0800 (PST)
-Date:   Wed, 13 Jan 2021 14:35:00 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 13/26] KVM: arm64: Enable access to sanitized CPU
- features at EL2
-Message-ID: <X/8FFKOLOVD9Ee2F@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-14-qperret@google.com>
- <d55643ea391f73a2297f499f3219ba8a@kernel.org>
- <X/8CR5eXGGccFjaL@google.com>
+        id S1726238AbhAMOhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 09:37:33 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:58913 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726433AbhAMOhc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 09:37:32 -0500
+Received: from [185.56.157.72] (port=39770 helo=[192.168.101.73])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1kzhGT-00E4X8-5N; Wed, 13 Jan 2021 15:36:49 +0100
+Subject: Re: [RFC 1/2] dt-bindings: clk: versaclock5: Add load capacitance
+ properties
+To:     Adam Ford <aford173@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210106173900.388758-1-aford173@gmail.com>
+ <20210113031602.GA1443816@robh.at.kernel.org>
+ <CAHCN7xKLRj=bbMQAXNDZ+8cHh+jon5Bb7GdQYpVUos91uiV5Tw@mail.gmail.com>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <8f896ca0-d270-787c-74c9-2bca91ccf7f2@lucaceresoli.net>
+Date:   Wed, 13 Jan 2021 15:36:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <X/8CR5eXGGccFjaL@google.com>
+In-Reply-To: <CAHCN7xKLRj=bbMQAXNDZ+8cHh+jon5Bb7GdQYpVUos91uiV5Tw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 13 Jan 2021 at 14:23:03 (+0000), Quentin Perret wrote:
-> Good point, that would be nice indeed. Can I use that from outside an
-> __init function?
+Hi Adam,
 
-Just gave it a go, and the answer to this appears to be yes,
-surprisingly -- I was expecting a compile-time warning similar to what
-we get when non-__init code calls into __init, but that doesn't seem to
-trigger here. Anyways, I'll add the annotation in v3.
+On 13/01/21 13:31, Adam Ford wrote:
+> On Tue, Jan 12, 2021 at 9:16 PM Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Wed, Jan 06, 2021 at 11:38:59AM -0600, Adam Ford wrote:
+>>> There are two registers which can set the load capacitance for
+>>> XTAL1 and XTAL2. These are optional registers when using an
+>>> external crystal.  Update the bindings to support them.
+>>>
+>>> Signed-off-by: Adam Ford <aford173@gmail.com>
+>>> ---
+>>>  .../devicetree/bindings/clock/idt,versaclock5.yaml   | 12 ++++++++++++
+>>>  1 file changed, 12 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>>> index 2ac1131fd922..e5e55ffb266e 100644
+>>> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>>> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>>> @@ -59,6 +59,18 @@ properties:
+>>>      minItems: 1
+>>>      maxItems: 2
+>>>
+>>> +  idt,xtal1-load-femtofarads:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>
+>> Already has a type, so you can drop the $ref.
+>>
+>>> +    minimum: 9000
+>>> +    maximum: 25000
+> 
+> Luca,
+> 
+> Do you want the range to the 9000 - 25000 per the datasheet, or should
+> I use the max value based on the programmer guide?  Currently, my
+> intent was to cap the value to 11111b, so anyone who writes 23000,
+> 24000, or 25000 will all be the same value based on the feedback I got
+> from Renesas.
 
-Thanks,
-Quentin
+DT should describe the HW, so I'd use the same range that can be set in
+hardware, regardless of driver support. Thus it should be:
+
+9000 - [9000 + 430 * 32] = 9000 - 22760
+
+-- 
+Luca
