@@ -2,101 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2B1F2F44E3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 08:11:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D41E72F4513
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 08:19:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726471AbhAMHKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 02:10:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55556 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726406AbhAMHKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 02:10:53 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D6A1C061575
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 23:10:12 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id o17so1251258lfg.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Jan 2021 23:10:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+/pBhauD9iMZd+xMRU4y14ijtDyoPm3QaKcps6L40wk=;
-        b=I3wGrAgx4q012IWGk7k02xJheFeW2a6rV2zbuPE6HbbF11mI9aZQ264yJe+KDDyl08
-         Vkqmyybef8z1BZaR/x16+5l8B36Du/LSVBGlZ8p9CRExoZI2UCPBDObdUlxTlPOq5iWf
-         f6yqqj/C6LwTjoFIy49kyusRBKjPKoVV9LXZNiY9Xj/SOyBAWjPSzW3XqlUGr9C2kJ/Q
-         BMIJ2CU/f0rtByHBnlCxcolJmn/kgd1YxfVKbeOZSHV0xBdY/0LMGluXM8gHop2LVdnE
-         E6NHZnosG6we0vXOqCvuLf8Dd/Y+h7p8UvkBsJalkCcntC773raG5GlnUAQjNx38jI5H
-         EYSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+/pBhauD9iMZd+xMRU4y14ijtDyoPm3QaKcps6L40wk=;
-        b=Rpb4Bx0s6ANY401USTr6YFQTUQKEG3Q9pAsW9y1fWf7Tq+YcamBnSXl/GIKBxFsfPB
-         C27dBqITMuuegHKU6+YJufHuTw2hjvRjaiJHjxjusnoQnIyj6eOSQQ2/+Is3Bg5BNPa0
-         UAg5+Og5O+XcTFlpB80zUG8MA4Lxnf3KUoQ+ghKvQ5rZAx2Uo2N6QY8Xc04sXwY/tfQZ
-         qBV+OJCiL1U5Y26Oj1GO+w/BhZEy2VlY08hURGRXx5WtggDXyVtM+0T4OUzpEJiByzFX
-         MAzcKL/ZOdSIngPk3ykakaaHwFbEIBTXSa9SbLAhrymSzca20eNIpgQxgsGWYboua96N
-         m7hA==
-X-Gm-Message-State: AOAM531Dj4GDEOOQwI++m9tK8f7wui4lGOTo6HandRFdpVzb6BEAYKP3
-        qkKlzMjiUvO/hK1upiiLFwcC1Q==
-X-Google-Smtp-Source: ABdhPJyyPlo9as+Zp8BtAYGYIDTNSW4o24Bhv8muct33wYYJOjvnm8WhGZjl/c0IC7yXWTUpEUf69A==
-X-Received: by 2002:a05:6512:789:: with SMTP id x9mr221266lfr.487.1610521811140;
-        Tue, 12 Jan 2021 23:10:11 -0800 (PST)
-Received: from jade (h-249-223.A175.priv.bahnhof.se. [98.128.249.223])
-        by smtp.gmail.com with ESMTPSA id s5sm113757lfc.150.2021.01.12.23.10.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 23:10:10 -0800 (PST)
-Date:   Wed, 13 Jan 2021 08:10:08 +0100
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
-        Andrew Walbran <qwandor@google.com>,
-        David Hartley <dhh@qti.qualcomm.com>,
-        Achin Gupta <Achin.Gupta@arm.com>,
-        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>
-Subject: Re: [PATCH v3 6/7] firmware: arm_ffa: Setup in-kernel users of FFA
- partitions
-Message-ID: <20210113071008.GA3643006@jade>
-References: <20201204121137.2966778-1-sudeep.holla@arm.com>
- <20201204121137.2966778-7-sudeep.holla@arm.com>
- <CAHUa44EfHeKgktefhH2nEM7E++Zap8Nw7kaSqVmYVoH01Zm1VQ@mail.gmail.com>
- <20210112180414.ejcuhdf563hraqzx@bogus>
+        id S1726722AbhAMHSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 02:18:25 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:53414 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726567AbhAMHSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 02:18:25 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: tomeu)
+        with ESMTPSA id 5C62D1F455D0
+Subject: Re: [PATCH v10 0/4] drm/panfrost: Add support for mt8183 GPU
+To:     Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     fshao@chromium.org, boris.brezillon@collabora.com,
+        hsinyi@chromium.org, hoegsberg@chromium.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20210113060703.3122661-1-drinkcat@chromium.org>
+From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Message-ID: <3fa8f9c5-5956-73fc-e464-4df68a564b64@collabora.com>
+Date:   Wed, 13 Jan 2021 08:17:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210112180414.ejcuhdf563hraqzx@bogus>
+In-Reply-To: <20210113060703.3122661-1-drinkcat@chromium.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 12, 2021 at 06:04:14PM +0000, Sudeep Holla wrote:
-> (sorry for late reply)
+On 1/13/21 7:06 AM, Nicolas Boichat wrote:
+> Hi!
 > 
-> On Fri, Dec 11, 2020 at 11:45:08AM +0100, Jens Wiklander wrote:
-> > On Fri, Dec 4, 2020 at 1:11 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> Follow-up on the v5 [1], things have gotten significantly
+> better in the last 9 months, thanks to the efforts on Bifrost
+> support by the Collabora team (and probably others I'm not
+> aware of).
 > 
-> [...]
-> 
-> Agreed on all the comments, so have just removed those context.
-> 
-> > We may need a way to indicate if we're to use the 32bit or 64bit
-> > calling convention. OP-TEE depends on being able to use 32bit calls
-> > here.
-> 
-> I assume it would be OP-TEE indicating it would like to use 32-bit.
-> I am thinking of API from the driver would be like:
-> 
-> int (*32bit_mode_only_set)(struct ffa_device *dev);
-> 
-> Let me know if that works for you. FF-A driver has no other way to evaluate
-> that and I really don't like that in DT 😉 
+> I've been testing this series on a MT8183/kukui device, with a
+> chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
+> mesa 20.3.2 (lots of artifacts though).
 
-That should work for OP-TEE.
+Btw, don't know if you plan to retest with a newer Mesa, but a recent 
+master should have pretty good ES 3.0 compliance on the Duet.
 
-Thanks,
-Jens
+Cheers,
+
+Tomeu
+
+> devfreq is currently not supported, as we'll need:
+>   - Clock core support for switching the GPU core clock (see 2/4).
+>   - Platform-specific handling of the 2-regulator (see 3/4).
+> 
+> Since the latter is easy to detect, patch 3/4 just disables
+> devfreq if the more than one regulator is specified in the
+> compatible matching table.
+> 
+> [1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
+> [2] https://crrev.com/c/2608070
+> 
+> Changes in v10:
+>   - Fix the binding to make sure sram-supply property can be provided.
+> 
+> Changes in v9:
+>   - Explain why devfreq needs to be disabled for GPUs with >1
+>     regulators.
+> 
+> Changes in v8:
+>   - Use DRM_DEV_INFO instead of ERROR
+> 
+> Changes in v7:
+>   - Fix GPU ID in commit message
+>   - Fix GPU ID in commit message
+> 
+> Changes in v6:
+>   - Rebased, actually tested with recent mesa driver.
+> 
+> Nicolas Boichat (4):
+>    dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+>    arm64: dts: mt8183: Add node for the Mali GPU
+>    drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
+>    drm/panfrost: Add mt8183-mali compatible string
+> 
+>   .../bindings/gpu/arm,mali-bifrost.yaml        |  28 +++++
+>   arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   6 +
+>   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   6 +
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
+>   drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
+>   drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
+>   6 files changed, 164 insertions(+)
+> 
