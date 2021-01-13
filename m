@@ -2,79 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 427192F4E7F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:26:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A96A62F4E90
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 16:29:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726110AbhAMP0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 10:26:02 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:39405 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725870AbhAMP0B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 10:26:01 -0500
-Received: by mail-oi1-f178.google.com with SMTP id w124so2479479oia.6;
-        Wed, 13 Jan 2021 07:25:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=b3870hR1XSDLI0lW/i97u3qoIBY+naXPh0eoGMPyvqM=;
-        b=OBTnBQcWmaeKsBst+r1qGmiOhLBXIEBIgV50ihTBkfwkkadWkDxCHql6CXRc/PP0Wb
-         SbcvmJgpEG2gHHia4p0G2rc0l0G8UhGK7rH85Evswf6aYvkVGOM8UZI3GWEwYx0qs+uF
-         axwRRjUujwWeOwkrn8x8r4VVR8aEj0c/7/M63FKGLRT081p5ZkXof3KE3Yi7EgYsxNSa
-         c9QBo4/7NJWtvAD/7u++fH6TivxNr9bfxXQyAVBnmFI7cqdLuWo11NUI34KKz3DxjoRC
-         6VcjrGg+TIlVpFdPJFXFGgTDI6sMlQVfgyvlAofIYOyhTp0cKuejudksn/IFzlqzPi5E
-         gj+w==
-X-Gm-Message-State: AOAM531zfPYHRP1dm/PtGuZJC9bgd/lSyr8yaDivNyoELulwn7v/6rGC
-        wAfmtoC/7LCNQzgz86IMPw==
-X-Google-Smtp-Source: ABdhPJzIzAYH4lcuxU0hZPlKcwvH7suPUrE/oE44707VblY8cCBk5RMQr7VCRMjF/tMLFRTjwk03Xw==
-X-Received: by 2002:aca:1102:: with SMTP id 2mr1562978oir.100.1610551520596;
-        Wed, 13 Jan 2021 07:25:20 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w129sm443340oig.23.2021.01.13.07.25.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 07:25:19 -0800 (PST)
-Received: (nullmailer pid 2475035 invoked by uid 1000);
-        Wed, 13 Jan 2021 15:25:18 -0000
-Date:   Wed, 13 Jan 2021 09:25:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Ondrej Jirman <megous@megous.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Simon Budig <simon.budig@kernelconcepts.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: edt-ft5x06: add
- iovcc-supply
-Message-ID: <20210113152518.GA2475006@robh.at.kernel.org>
-References: <20210108192337.563679-1-stephan@gerhold.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210108192337.563679-1-stephan@gerhold.net>
+        id S1726882AbhAMP1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 10:27:49 -0500
+Received: from foss.arm.com ([217.140.110.172]:37736 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725902AbhAMP1t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 10:27:49 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 22F7C101E;
+        Wed, 13 Jan 2021 07:27:03 -0800 (PST)
+Received: from localhost.localdomain (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8DD4E3F66E;
+        Wed, 13 Jan 2021 07:27:01 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Emmanuel Vadot <manu@bidouilliste.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@googlegroups.com
+Subject: [PATCH v2 0/8] arm64: dts: allwinner: Various DT fixes
+Date:   Wed, 13 Jan 2021 15:26:22 +0000
+Message-Id: <20210113152630.28810-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.14.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Jan 2021 20:23:36 +0100, Stephan Gerhold wrote:
-> At the moment, the edt-ft5x06 driver can control a single regulator
-> ("vcc"). However, some FocalTech touch controllers have an additional
-> IOVCC pin that should be supplied with the digital I/O voltage.
-> 
-> The I/O voltage might be provided by another regulator that should also
-> be kept on. Otherwise, the touchscreen can randomly stop functioning if
-> the regulator is turned off because no other components still require it.
-> 
-> Document (optional) support for controlling the regulator for IOVCC
-> using "iovcc-supply".
-> 
-> Cc: Ondrej Jirman <megous@megous.com>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml        | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi,
 
-Acked-by: Rob Herring <robh@kernel.org>
+small update, mostly adding Fixes: tags.
+Patch 1/7 has been split up to cover A64 and H6 separately.
+
+I tried to reach out to people with Pine64-LTS boards to clarify on
+the blue LED, as it seems like production boards are spread thinly
+across developers. We got confirmation from several people with
+several board revisions that this LED works and is indeed blue.
+
+I also double checked on the CD pin situation on the two SoPine SOMs
+I have, and could confirm their functionality.
+
+Rebased on top of sunxi/dt-for-5.12.
+
+================
+a collection of DT fixes I gathered over time:
+
+- Adding usbphy references to [EO]HCI0 nodes (A64, H6)
+- Adding Pine64-LTS status LED
+- Dropping non-removable from SoPine/Pine64-LTS SD card
+- Enabling HS200 @ 150 MHz on Pine H64 (H6)
+- Enabling HS200 @ 150 MHz on Pine64-LTS
+
+For details please see the individual patches!
+
+Thanks,
+Andre
+
+Changelog v1 .. v2:
+- Add Fixes: tags
+- Add Chen-Yu's ACKs
+- split USB PHY 0 link patch
+
+Andre Przywara (8):
+  arm64: dts: allwinner: A64: properly connect USB PHY to port 0
+  arm64: dts: allwinner: H6: properly connect USB PHY to port 0
+  arm64: dts: allwinner: Pine64-LTS: Add status LED
+  arm64: dts: allwinner: Drop non-removable from SoPine/LTS SD card
+  arm64: dts: allwinner: H6: Allow up to 150 MHz MMC bus frequency
+  arm64: dts: allwinner: A64: Limit MMC2 bus frequency to 150 MHz
+  arm64: dts: allwinner: Pine64-LTS/SoPine: Enable HS200 eMMC mode
+  arm64: dts: allwinner: Pine H64: Enable HS200 eMMC mode
+
+ .../boot/dts/allwinner/sun50i-a64-pine64-lts.dts      | 11 +++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts |  5 +----
+ .../dts/allwinner/sun50i-a64-sopine-baseboard.dts     |  1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64-sopine.dtsi  |  1 -
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi         |  6 +++++-
+ arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts  |  1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi          |  7 +++++++
+ 7 files changed, 26 insertions(+), 6 deletions(-)
+
+-- 
+2.17.5
+
