@@ -2,120 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC4CF2F41EB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 03:43:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53F422F422A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 03:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728352AbhAMCmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Jan 2021 21:42:40 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:43683 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728351AbhAMCmk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 21:42:40 -0500
-Received: by mail-oi1-f172.google.com with SMTP id q25so570641oij.10;
-        Tue, 12 Jan 2021 18:42:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TnILk4VpEu/oT+IpVAchf2EyrzoqdWoNiHXReeRtRvc=;
-        b=hKE5bEYea+0W8blz3vcb5n+twDamVVL0sVg0aT2XoiFrzyORLTZIkpTqrCvCrDR5NT
-         1irMOnUdmL476Y0WA8VPF7AZg/XPD5LYO0uvkQ+hELGFn7lwfpncAQez4yP8BoOrBoST
-         z9tRTd5apnJqzObtbS2ytltn7Tv2xezF6fT0qj7NsNl5Qu5M5RlpLQz5jVb5d+eS4c8F
-         iRuPSE1rqtbWAeZdMycLL13Iz1VVk5Z7YySsM5HGSzN0lI4HDELzcJ4Pajjlp2wEYQZd
-         yPmDEfdIKmjFjLWCK+4XbbKOC/GSugbuQs/XFzRbDwKYaVCEpqt1Te6sgvrOfOEMCFeC
-         PIAA==
-X-Gm-Message-State: AOAM531ZwM9lqlXbRnDqmq6X9mtpyE1DrQfzHiZukGyO8+NulH/9/It/
-        KZKiNOfa+/DU9GK5CdMeqw==
-X-Google-Smtp-Source: ABdhPJyKqKNiiMd2rkfNqcoZKbYp0KoUwskIJsniu87UfydYYo6KiDbZye7UjaGc55Mxhjh2WSAO8g==
-X-Received: by 2002:aca:f594:: with SMTP id t142mr50034oih.162.1610505713172;
-        Tue, 12 Jan 2021 18:41:53 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b19sm158465oib.6.2021.01.12.18.41.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Jan 2021 18:41:52 -0800 (PST)
-Received: (nullmailer pid 1409182 invoked by uid 1000);
-        Wed, 13 Jan 2021 02:41:51 -0000
-Date:   Tue, 12 Jan 2021 20:41:51 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     davem@davemloft.net, kuba@kernel.org, evgreen@chromium.org,
-        bjorn.andersson@linaro.org, cpratapa@codeaurora.org,
-        subashab@codeaurora.org, rdunlap@infradead.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/4] dt-bindings: net: remove modem-remoteproc
- property
-Message-ID: <20210113024151.GA1408606@robh.at.kernel.org>
-References: <20210112192831.686-1-elder@linaro.org>
- <20210112192831.686-3-elder@linaro.org>
+        id S1728715AbhAMC7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Jan 2021 21:59:11 -0500
+Received: from mga17.intel.com ([192.55.52.151]:16378 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726499AbhAMC7L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 21:59:11 -0500
+IronPort-SDR: TpII4ceYavZO0OC7cRwSy5O3Tr135D+PRBPO7tP9sJzODP8f2tOoSg5g+SA5L8VU/ZvnAExlPk
+ WWJntulckZ8w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9862"; a="157917559"
+X-IronPort-AV: E=Sophos;i="5.79,343,1602572400"; 
+   d="scan'208";a="157917559"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2021 18:57:50 -0800
+IronPort-SDR: +X9T3MaFFO67nRlp0dxZ8TxMXkHxjJOAiOBc3En2s6MlrikQP6movdXK64uL82EtWckUi7GFJu
+ VUrSsRsxGT6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,343,1602572400"; 
+   d="scan'208";a="464751072"
+Received: from allen-box.sh.intel.com (HELO [10.239.159.28]) ([10.239.159.28])
+  by fmsmga001.fm.intel.com with ESMTP; 12 Jan 2021 18:57:44 -0800
+Cc:     baolu.lu@linux.intel.com, joro@8bytes.org, will@kernel.org,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, vdumpa@nvidia.com,
+        zhangfei.gao@linaro.org, shameerali.kolothum.thodi@huawei.com,
+        vivek.gautam@arm.com, Arnd Bergmann <arnd@arndb.de>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Zhou Wang <wangzhou1@hisilicon.com>,
+        "Tian, Kevin" <kevin.tian@intel.com>
+Subject: Re: [PATCH v9 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from
+ IOMMU_DEV_FEAT_SVA
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+References: <20210108145217.2254447-1-jean-philippe@linaro.org>
+ <20210108145217.2254447-4-jean-philippe@linaro.org>
+ <4de8ef03-a2ed-316e-d3e3-6b8474e20113@linux.intel.com>
+ <X/1o72DTmzdCMhDz@myrica>
+From:   Lu Baolu <baolu.lu@linux.intel.com>
+Message-ID: <c88e5d74-098d-7f1d-a7bb-a89e40fb8fa4@linux.intel.com>
+Date:   Wed, 13 Jan 2021 10:49:39 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210112192831.686-3-elder@linaro.org>
+In-Reply-To: <X/1o72DTmzdCMhDz@myrica>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 12, 2021 at 01:28:29PM -0600, Alex Elder wrote:
-> The IPA driver uses the remoteproc SSR notifier now, rather than the
-> temporary IPA notification system used initially.  As a result it no
-> longer needs a property identifying the modem subsystem DT node.
-> 
-> Use GIC_SPI rather than 0 in the example interrupt definition.
-> 
-> Signed-off-by: Alex Elder <elder@linaro.org>
-> ---
->  Documentation/devicetree/bindings/net/qcom,ipa.yaml | 13 ++-----------
->  1 file changed, 2 insertions(+), 11 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> index 8a2d12644675b..a8cff214ee11f 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> @@ -113,13 +113,6 @@ properties:
->        performing early IPA initialization, including loading and
->        validating firwmare used by the GSI.
->  
-> -  modem-remoteproc:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> -    description:
-> -      This defines the phandle to the remoteproc node representing
-> -      the modem subsystem.  This is requied so the IPA driver can
-> -      receive and act on notifications of modem up/down events.
-> -
->    memory-region:
->      maxItems: 1
->      description:
-> @@ -135,7 +128,6 @@ required:
->    - interrupts
->    - interconnects
->    - qcom,smem-states
-> -  - modem-remoteproc
->  
->  oneOf:
->    - required:
-> @@ -168,7 +160,6 @@ examples:
->                  compatible = "qcom,sdm845-ipa";
->  
->                  modem-init;
-> -                modem-remoteproc = <&mss_pil>;
->  
->                  iommus = <&apps_smmu 0x720 0x3>;
->                  reg = <0x1e40000 0x7000>,
-> @@ -178,8 +169,8 @@ examples:
->                              "ipa-shared",
->                              "gsi";
->  
-> -                interrupts-extended = <&intc 0 311 IRQ_TYPE_EDGE_RISING>,
-> -                                      <&intc 0 432 IRQ_TYPE_LEVEL_HIGH>,
-> +                interrupts-extended = <&intc GIC_SPI 311 IRQ_TYPE_EDGE_RISING>,
-> +                                      <&intc GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
+Hi Jean,
 
-You need the include file.
-
->                                        <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
->                                        <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
->                  interrupt-names = "ipa",
-> -- 
-> 2.20.1
+On 1/12/21 5:16 PM, Jean-Philippe Brucker wrote:
+> Hi Baolu,
 > 
+> On Tue, Jan 12, 2021 at 12:31:23PM +0800, Lu Baolu wrote:
+>> Hi Jean,
+>>
+>> On 1/8/21 10:52 PM, Jean-Philippe Brucker wrote:
+>>> Some devices manage I/O Page Faults (IOPF) themselves instead of relying
+>>> on PCIe PRI or Arm SMMU stall. Allow their drivers to enable SVA without
+>>> mandating IOMMU-managed IOPF. The other device drivers now need to first
+>>> enable IOMMU_DEV_FEAT_IOPF before enabling IOMMU_DEV_FEAT_SVA.
+>>>
+>>> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+>>> ---
+>>> Cc: Arnd Bergmann <arnd@arndb.de>
+>>> Cc: David Woodhouse <dwmw2@infradead.org>
+>>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>>> Cc: Joerg Roedel <joro@8bytes.org>
+>>> Cc: Lu Baolu <baolu.lu@linux.intel.com>
+>>> Cc: Will Deacon <will@kernel.org>
+>>> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+>>> Cc: Zhou Wang <wangzhou1@hisilicon.com>
+>>> ---
+>>>    include/linux/iommu.h | 20 +++++++++++++++++---
+>>>    1 file changed, 17 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+>>> index 583c734b2e87..701b2eeb0dc5 100644
+>>> --- a/include/linux/iommu.h
+>>> +++ b/include/linux/iommu.h
+>>> @@ -156,10 +156,24 @@ struct iommu_resv_region {
+>>>    	enum iommu_resv_type	type;
+>>>    };
+>>> -/* Per device IOMMU features */
+>>> +/**
+>>> + * enum iommu_dev_features - Per device IOMMU features
+>>> + * @IOMMU_DEV_FEAT_AUX: Auxiliary domain feature
+>>> + * @IOMMU_DEV_FEAT_SVA: Shared Virtual Addresses
+>>> + * @IOMMU_DEV_FEAT_IOPF: I/O Page Faults such as PRI or Stall. Generally using
+>>> + *			 %IOMMU_DEV_FEAT_SVA requires %IOMMU_DEV_FEAT_IOPF, but
+>>> + *			 some devices manage I/O Page Faults themselves instead
+>>> + *			 of relying on the IOMMU. When supported, this feature
+>>> + *			 must be enabled before and disabled after
+>>> + *			 %IOMMU_DEV_FEAT_SVA.
+>>
+>> Is this only for SVA? We may see more scenarios of using IOPF. For
+>> example, when passing through devices to user level, the user's pages
+>> could be managed dynamically instead of being allocated and pinned
+>> statically.
+> 
+> Hm, isn't that precisely what SVA does?  I don't understand the
+> difference. That said FEAT_IOPF doesn't have to be only for SVA. It could
+> later be used as a prerequisite some another feature. For special cases
+> device drivers can always use the iommu_register_device_fault_handler()
+> API and handle faults themselves.
+
+ From the perspective of IOMMU, there is a little difference between
+these two. For SVA, the page table is from CPU side, so IOMMU only needs
+to call handle_mm_fault(); For above pass-through case, the page table
+is from IOMMU side, so the device driver (probably VFIO) needs to
+register a fault handler and call iommu_map/unmap() to serve the page
+faults.
+
+If we think about the nested mode (or dual-stage translation), it's more
+complicated since the kernel (probably VFIO) handles the second level
+page faults, while the first level page faults need to be delivered to
+user-level guest. Obviously, this hasn't been fully implemented in any
+IOMMU driver.
+
+> 
+>> If @IOMMU_DEV_FEAT_IOPF is defined as generic iopf support, the current
+>> vendor IOMMU driver support may not enough.
+> 
+> IOMMU_DEV_FEAT_IOPF on its own doesn't do anything useful, it's mainly a
+> way for device drivers to probe the IOMMU capability. Granted in patch
+> 10 the SMMU driver registers the IOPF queue on enable() but that could be
+> done by FEAT_SVA enable() instead, if we ever repurpose FEAT_IOPF.
+
+I have no objection to split IOPF from SVA. Actually we must have this
+eventually. My concern is that at this stage, the IOMMU drivers only
+support SVA type of IOPF, a generic IOMMU_DEV_FEAT_IOPF feature might
+confuse the device drivers which want to add other types of IOPF usage.
+
+> 
+> Thanks,
+> Jean
+> 
+
+Best regards,
+baolu
