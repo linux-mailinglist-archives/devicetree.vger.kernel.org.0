@@ -2,210 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1AC2F40A2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 01:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2448C2F40A0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 01:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404771AbhAMAnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2404840AbhAMAnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 12 Jan 2021 19:43:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48704 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392143AbhAMAEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Jan 2021 19:04:30 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 517E4C061575;
-        Tue, 12 Jan 2021 16:03:50 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id q4so40036plr.7;
-        Tue, 12 Jan 2021 16:03:50 -0800 (PST)
+Received: from mail-eopbgr1320118.outbound.protection.outlook.com ([40.107.132.118]:50112
+        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2392213AbhAMAIw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Jan 2021 19:08:52 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VOYwFyQUo9OWhK8l6osYIWDzyUnvW8ehVD7dVvBXNU2fO2+gIvs/UFEQfkERSFDx/zBS0UNs5KizFDHMCnWNFUQlJqVk5drwRqt1CIzo33IIBNzhOUkb5R82Bgp4dV00R9JS0XsEb7a/k6gjMsr1QUEBM3EHBKLKUNxepbd1ySB1/IhnFa4IRjkI9XYWzEEYthASGlamohb478uIxDuYds84Xejusl0b1klPf67BDjU5IYcX8s7vdAi53QCF7iBu9WIWQxRvBJgbutIfx9KlXjI5mLJx87F3srfuZDtyeFrCOZV7s5vu1y6p9nJ6d/g5Zkng61cr/Mj+TQUJ0zcFrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BNut+MAOOGCPfH2O9UmxnaeyOXaudK6vNWmLYxY+HVI=;
+ b=CyyXC4bNgjR/CIH/UhVc7TSurFWAb2oorIsJVLpMPw+bIpijv1Mjno5wk5o5MiYi92tK1g/gq5Chs2lyAMGGfbu1/DEfhC/+HwzLtEluq5EJsJZufuXOxOsDw3L9jgS3Dhd1Vrl7+mXOtNpN0Ue/BStGO62CuqPz5UxFjZHmoIqUK/z6tgipQ4eVzkjooc4Czqk8iTTzYoKajT8VMWdmwKP09jNfwpHe8KpVvTliu8eBhpH1TgZeWzh1EZD64qSOLmgzZwAzo62ZBu1XGiGH2122hj6gYq2eyCb4V7tyGyzJ5jSRqFs6kD3L8sgMluvGN4PMxcHz4MGky8oAV/9DgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=204axfOsodDE4SR5Rhz3nE2QwCb2/l/oST9wJEOlEFU=;
-        b=GVJsp8HxghwwZDLorI5npgTYVZme1OERIt3nW9QQuecITP+ftYJuOYKG8AStJR27+N
-         977Jjey3jBQW3DDPrgp1xMApw+T781iDHeT+rfJktEyz7szuAlIxozYrS/TjNCylDPTF
-         ORYXeym0mdUyo/9ySZTiARE/t0ZEbryj+JROpnd8Ojt3l1fRvxCISjc1qSfRlMZYA90t
-         iLh+eQKxueaIHmLu8NnOmnb1sSZJBl0+4h7TZWRzTeFePWQGnlNJjA2469hXA4jgYCc2
-         pKp6x2zgwaDHaUGnvD2N0IZoy4ogSMjgM6MbqpIciRwwfcXNmWU7H5kX4Z0jDZsugmHf
-         lAxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=204axfOsodDE4SR5Rhz3nE2QwCb2/l/oST9wJEOlEFU=;
-        b=TQArJ/C7DUkti9pffmsxicTY/aHz9q0Ncwjv84hoQ5HOT2I06aIGn+vM+cDaQV2rlH
-         PWT/iqAs52wBgGdEBvMExoibfV+HCgC1/QAYgqY4VMVd8iSG4moEbhzGWlIkD5/1NQwE
-         9A44yjtkDh+Ce4we4Iwf+R3VJFXzrB29UwT/qjMg2kB+jWOire6SA1j+HOi5pp7gvLMa
-         OMgrDLGKMdg934St2kJw1+aX1kxH/vVL/CUBrUHuh6rgHospewLYOrrOPbYnJJ8Lj408
-         Afef3ET617LY1X/mkQWyNAW4QWrKyTUnQXM3gMzwiieWmdlL150Klt5C4YyqwYklD/UQ
-         hnuw==
-X-Gm-Message-State: AOAM533BKB7SbGhryYs6q/b6IVWhXNR9Kvhwe0bluKX9UnxxUJvNFerC
-        9h7F3/1R/H/M4BcsJRlkaVo=
-X-Google-Smtp-Source: ABdhPJyKW2yUb6Ef8aahwHWdedosi9OcKlVuhxzK8K/SzaSmQmhd9JsswUPANO1f9dSnpLUacKaCEw==
-X-Received: by 2002:a17:902:ff06:b029:db:d4f7:9c7d with SMTP id f6-20020a170902ff06b02900dbd4f79c7dmr1866788plj.60.1610496229764;
-        Tue, 12 Jan 2021 16:03:49 -0800 (PST)
-Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h8sm240614pjc.2.2021.01.12.16.03.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Jan 2021 16:03:48 -0800 (PST)
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
-To:     Claire Chang <tientzu@chromium.org>, robh+dt@kernel.org,
-        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
-        joro@8bytes.org, will@kernel.org, frowand.list@gmail.com,
-        konrad.wilk@oracle.com, boris.ostrovsky@oracle.com,
-        jgross@suse.com, sstabellini@kernel.org, hch@lst.de,
-        m.szyprowski@samsung.com, robin.murphy@arm.com
-Cc:     grant.likely@arm.com, xypron.glpk@gmx.de, treding@nvidia.com,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        gregkh@linuxfoundation.org, saravanak@google.com,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
-        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
-        xen-devel@lists.xenproject.org, tfiga@chromium.org,
-        drinkcat@chromium.org
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-3-tientzu@chromium.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
- xGlkaOSDuu09rxuW+69Y2f1TzjFuGpBk4ysWOR85O2Nx8AJ6fYGCoeTbovrNlGT1M9obSFGQ
- X3IzRnWoqlfudjTO5TKoqkbOgpYqIo5n1QbEjCCwCwCg3DOH/4ug2AUUlcIT9/l3pGvoRJ0E
- AICDzi3l7pmC5IWn2n1mvP5247urtHFs/uusE827DDj3K8Upn2vYiOFMBhGsxAk6YKV6IP0d
- ZdWX6fqkJJlu9cSDvWtO1hXeHIfQIE/xcqvlRH783KrihLcsmnBqOiS6rJDO2x1eAgC8meAX
- SAgsrBhcgGl2Rl5gh/jkeA5ykwbxA/9u1eEuL70Qzt5APJmqVXR+kWvrqdBVPoUNy/tQ8mYc
- nzJJ63ng3tHhnwHXZOu8hL4nqwlYHRa9eeglXYhBqja4ZvIvCEqSmEukfivk+DlIgVoOAJbh
- qIWgvr3SIEuR6ayY3f5j0f2ejUMYlYYnKdiHXFlF9uXm1ELrb0YX4GMHz7QnRmxvcmlhbiBG
- YWluZWxsaSA8Zi5mYWluZWxsaUBnbWFpbC5jb20+iGYEExECACYCGyMGCwkIBwMCBBUCCAME
- FgIDAQIeAQIXgAUCVF/S8QUJHlwd3wAKCRBhV5kVtWN2DvCVAJ4u4/bPF4P3jxb4qEY8I2gS
- 6hG0gACffNWlqJ2T4wSSn+3o7CCZNd7SLSC5BA0ESM+4EhAQAL/o09boR9D3Vk1Tt7+gpYr3
- WQ6hgYVON905q2ndEoA2J0dQxJNRw3snabHDDzQBAcqOvdi7YidfBVdKi0wxHhSuRBfuOppu
- pdXkb7zxuPQuSveCLqqZWRQ+Cc2QgF7SBqgznbe6Ngout5qXY5Dcagk9LqFNGhJQzUGHAsIs
- hap1f0B1PoUyUNeEInV98D8Xd/edM3mhO9nRpUXRK9Bvt4iEZUXGuVtZLT52nK6Wv2EZ1TiT
- OiqZlf1P+vxYLBx9eKmabPdm3yjalhY8yr1S1vL0gSA/C6W1o/TowdieF1rWN/MYHlkpyj9c
- Rpc281gAO0AP3V1G00YzBEdYyi0gaJbCEQnq8Vz1vDXFxHzyhgGz7umBsVKmYwZgA8DrrB0M
- oaP35wuGR3RJcaG30AnJpEDkBYHznI2apxdcuTPOHZyEilIRrBGzDwGtAhldzlBoBwE3Z3MY
- 31TOpACu1ZpNOMysZ6xiE35pWkwc0KYm4hJA5GFfmWSN6DniimW3pmdDIiw4Ifcx8b3mFrRO
- BbDIW13E51j9RjbO/nAaK9ndZ5LRO1B/8Fwat7bLzmsCiEXOJY7NNpIEpkoNoEUfCcZwmLrU
- +eOTPzaF6drw6ayewEi5yzPg3TAT6FV3oBsNg3xlwU0gPK3v6gYPX5w9+ovPZ1/qqNfOrbsE
- FRuiSVsZQ5s3AAMFD/9XjlnnVDh9GX/r/6hjmr4U9tEsM+VQXaVXqZuHKaSmojOLUCP/YVQo
- 7IiYaNssCS4FCPe4yrL4FJJfJAsbeyDykMN7wAnBcOkbZ9BPJPNCbqU6dowLOiy8AuTYQ48m
- vIyQ4Ijnb6GTrtxIUDQeOBNuQC/gyyx3nbL/lVlHbxr4tb6YkhkO6shjXhQh7nQb33FjGO4P
- WU11Nr9i/qoV8QCo12MQEo244RRA6VMud06y/E449rWZFSTwGqb0FS0seTcYNvxt8PB2izX+
- HZA8SL54j479ubxhfuoTu5nXdtFYFj5Lj5x34LKPx7MpgAmj0H7SDhpFWF2FzcC1bjiW9mjW
- HaKaX23Awt97AqQZXegbfkJwX2Y53ufq8Np3e1542lh3/mpiGSilCsaTahEGrHK+lIusl6mz
- Joil+u3k01ofvJMK0ZdzGUZ/aPMZ16LofjFA+MNxWrZFrkYmiGdv+LG45zSlZyIvzSiG2lKy
- kuVag+IijCIom78P9jRtB1q1Q5lwZp2TLAJlz92DmFwBg1hyFzwDADjZ2nrDxKUiybXIgZp9
- aU2d++ptEGCVJOfEW4qpWCCLPbOT7XBr+g/4H3qWbs3j/cDDq7LuVYIe+wchy/iXEJaQVeTC
- y5arMQorqTFWlEOgRA8OP47L9knl9i4xuR0euV6DChDrguup2aJVU4hPBBgRAgAPAhsMBQJU
- X9LxBQkeXB3fAAoJEGFXmRW1Y3YOj4UAn3nrFLPZekMeqX5aD/aq/dsbXSfyAKC45Go0YyxV
- HGuUuzv+GKZ6nsysJ7kCDQRXG8fwARAA6q/pqBi5PjHcOAUgk2/2LR5LjjesK50bCaD4JuNc
- YDhFR7Vs108diBtsho3w8WRd9viOqDrhLJTroVckkk74OY8r+3t1E0Dd4wHWHQZsAeUvOwDM
- PQMqTUBFuMi6ydzTZpFA2wBR9x6ofl8Ax+zaGBcFrRlQnhsuXLnM1uuvS39+pmzIjasZBP2H
- UPk5ifigXcpelKmj6iskP3c8QN6x6GjUSmYx+xUfs/GNVSU1XOZn61wgPDbgINJd/THGdqiO
- iJxCLuTMqlSsmh1+E1dSdfYkCb93R/0ZHvMKWlAx7MnaFgBfsG8FqNtZu3PCLfizyVYYjXbV
- WO1A23riZKqwrSJAATo5iTS65BuYxrFsFNPrf7TitM8E76BEBZk0OZBvZxMuOs6Z1qI8YKVK
- UrHVGFq3NbuPWCdRul9SX3VfOunr9Gv0GABnJ0ET+K7nspax0xqq7zgnM71QEaiaH17IFYGS
- sG34V7Wo3vyQzsk7qLf9Ajno0DhJ+VX43g8+AjxOMNVrGCt9RNXSBVpyv2AMTlWCdJ5KI6V4
- KEzWM4HJm7QlNKE6RPoBxJVbSQLPd9St3h7mxLcne4l7NK9eNgNnneT7QZL8fL//s9K8Ns1W
- t60uQNYvbhKDG7+/yLcmJgjF74XkGvxCmTA1rW2bsUriM533nG9gAOUFQjURkwI8jvMAEQEA
- AYkCaAQYEQIACQUCVxvH8AIbAgIpCRBhV5kVtWN2DsFdIAQZAQIABgUCVxvH8AAKCRCH0Jac
- RAcHBIkHD/9nmfog7X2ZXMzL9ktT++7x+W/QBrSTCTmq8PK+69+INN1ZDOrY8uz6htfTLV9+
- e2W6G8/7zIvODuHk7r+yQ585XbplgP0V5Xc8iBHdBgXbqnY5zBrcH+Q/oQ2STalEvaGHqNoD
- UGyLQ/fiKoLZTPMur57Fy1c9rTuKiSdMgnT0FPfWVDfpR2Ds0gpqWePlRuRGOoCln5GnREA/
- 2MW2rWf+CO9kbIR+66j8b4RUJqIK3dWn9xbENh/aqxfonGTCZQ2zC4sLd25DQA4w1itPo+f5
- V/SQxuhnlQkTOCdJ7b/mby/pNRz1lsLkjnXueLILj7gNjwTabZXYtL16z24qkDTI1x3g98R/
- xunb3/fQwR8FY5/zRvXJq5us/nLvIvOmVwZFkwXc+AF+LSIajqQz9XbXeIP/BDjlBNXRZNdo
- dVuSU51ENcMcilPr2EUnqEAqeczsCGpnvRCLfVQeSZr2L9N4svNhhfPOEscYhhpHTh0VPyxI
- pPBNKq+byuYPMyk3nj814NKhImK0O4gTyCK9b+gZAVvQcYAXvSouCnTZeJRrNHJFTgTgu6E0
- caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
- 6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <95ae9c1e-c1f1-5736-fe86-12ced1f648f9@gmail.com>
-Date:   Tue, 12 Jan 2021 16:03:42 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BNut+MAOOGCPfH2O9UmxnaeyOXaudK6vNWmLYxY+HVI=;
+ b=m8TANk7i1fjbLEHk23FCjQqNx7M6v04KZS/1RBLqJehTCb1paXXN1v3ybEHvWbo+LXO2LIoIi6VTuBkFsRIVg5L46VSll/0034AWA2/KDQwfEL2XkwTFSbtn5BPOBUEimxl1TKDXKd359VGL1ZIvXMrx616e3nqZaM77zXe9TTc=
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
+ by TY2PR01MB3290.jpnprd01.prod.outlook.com (2603:1096:404:7b::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.6; Wed, 13 Jan
+ 2021 00:07:17 +0000
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::2023:7ed1:37c3:8037]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::2023:7ed1:37c3:8037%5]) with mapi id 15.20.3763.010; Wed, 13 Jan 2021
+ 00:07:17 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Rob Herring <robh@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: usb: Use OF graph schema
+Thread-Topic: [PATCH] dt-bindings: usb: Use OF graph schema
+Thread-Index: AQHW6PiQZUs3aLKeIkG4TfOxjpCPIKokrdfQ
+Date:   Wed, 13 Jan 2021 00:07:17 +0000
+Message-ID: <TY2PR01MB36921199AF76D6AE7AC9BE35D8A90@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+References: <20210112153527.391232-1-robh@kernel.org>
+In-Reply-To: <20210112153527.391232-1-robh@kernel.org>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [240f:60:5f3e:1:99a6:33ef:b98e:6b0]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 08751d33-1afc-4d03-4031-08d8b757304a
+x-ms-traffictypediagnostic: TY2PR01MB3290:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <TY2PR01MB329024896F020FF31B6F6D5BD8A90@TY2PR01MB3290.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:632;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: lYDoHzA4kzQyXp0nF7G1E0L9Exe4Hj3Gsj3yy84dF6tjGcugp/wXmas2JIcCkYv9R+ZebYEQDxoUJLM+jVfSuCJ8jdO8JyaydmnKan978OV2XcU0Tgd2n/sgII8NrGB0FzFlEnXHJDhqjqO/UmgaPhIARdRJhxqwXKvzWymSYTQo1RvFWbsYyjYbF9hFF6OcIl4l/9Gj1PYRGeviLaB6q836CCoVQhPSVJYVYNP7Dz2neGPFRnXbADduTTleY5hSC+sj5ZiQQTcEJKqfjNjR0EssSkLklVM51gcRi1vCb25yLUCP1Nn1zKG03GyruM0QT0g8PXBM3F/YiihsxtxpCg29oP4z2iKycKamjECGeUwYQ0l3be10EgwHIwQzTy0G4fzbN/AwkHYuE47pWO8mZg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(376002)(396003)(39860400002)(136003)(6506007)(55016002)(2906002)(9686003)(66556008)(66476007)(64756008)(7696005)(66446008)(71200400001)(76116006)(316002)(8936002)(478600001)(54906003)(8676002)(186003)(86362001)(66946007)(52536014)(110136005)(4326008)(33656002)(5660300002)(4744005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?gdzUD5uW3D8c3tDb9F+vuwrIv1S3mDsSHOZFUbhoH9AfyEHuopeAoINO0HaQ?=
+ =?us-ascii?Q?NQ0GMwolggc9DVyfHxmIcxp5cOgHjyIxKSoBDT/jZfJmGcUe/kGuwiDtafGD?=
+ =?us-ascii?Q?yIc4myYyKunJ0/fa03tG7gkLiAXufGI/CUbpCBwbaAi9ZRF75rkK6IC8hCGV?=
+ =?us-ascii?Q?X3ciRvW6eQwP0C7EXxX4MSopSAWrAb5/1WpXfx8VXkiGlLcr1q+Mef8g2QO2?=
+ =?us-ascii?Q?RPHIIH1LjamHkjVnY6ZEt3DcHqokYL1woMzGTXIrEbbrQe2/E/78oCM0lkdG?=
+ =?us-ascii?Q?I9rPluvO+YSLsnqxKGtufts2+OiHW0quTNry/eU3QV5aSew0/moGejbiXP5W?=
+ =?us-ascii?Q?v84efNKtsixbcTVUHRFV/v96zYGD49WXnTySCuHEE0BmH3Jh0y5gv/OJoxeX?=
+ =?us-ascii?Q?8DyjD2HZzMNIE9VJg/EmvFxo9K75D8M6oHFGYxrGt4wQeoElj1FNaUCr/xD8?=
+ =?us-ascii?Q?WhIil96NDex+PfZV4MV/TdqQwDKKZZGel32gUsk9/Mf8fhbUiTN3OC46S1x0?=
+ =?us-ascii?Q?27QbWn9u7KG0plPEQLMbR7CcGT53EvsYjsVu3gy0m4yZutSjU4XUi4DaQrRX?=
+ =?us-ascii?Q?Fgygh0qv4HYql/CF8S5XX6KLfOC7yZk6/xt/FUHvHHYgoKK+VaWXm/X7AqMT?=
+ =?us-ascii?Q?ruHxRpohQcTKtwn+6+JMzineq1JuZ8sQXuY3B3cvooQAz8Wvcn8qCY9AyTd4?=
+ =?us-ascii?Q?T91zuWRFvUTDEMN3pF4ktHYfzvRa6KVG92D5cwQHqT97tmX3CMGhHoK6J8+g?=
+ =?us-ascii?Q?qhA/3Ta3c81eRwlCk/zJbn/POBeoZXN2dVU+PMHys/9fG346oiqI8knNgLaJ?=
+ =?us-ascii?Q?PM2xlA+7y07pzr2qxg89S3A7SZRFdSD8w7MzPAakCbT8Mfs/YEy+IYBe6WuJ?=
+ =?us-ascii?Q?mCvIeArabOW7DM4n3wLYiew3pH/hBxxiRC72D4J8C6fYyO0SN568VhBzuPih?=
+ =?us-ascii?Q?7LRfdcs6MJnsHcFtmF548uKHG5pdthUm38YahpWAg3QRUhELMXeZAei+kJtq?=
+ =?us-ascii?Q?Ytgkkt8JiADws65w0wWzUSgeCmJY98bxrZqF6mfBHAZD9ak=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-In-Reply-To: <20210106034124.30560-3-tientzu@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08751d33-1afc-4d03-4031-08d8b757304a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jan 2021 00:07:17.2385
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: L/Q0ympBNgSTWFbkH8FAvJj89KqYNDiovn6KVK3wGhzZpfNPlH93mnQ/3xTkzKN7oOQaqCK9TMQkionLPAtUnv/c53T//n0GS5OrsebAu7Zsv4bXVWFIldKAq9iIlqMc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB3290
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/5/21 7:41 PM, Claire Chang wrote:
-> Add the initialization function to create restricted DMA pools from
-> matching reserved-memory nodes in the device tree.
-> 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> ---
->  include/linux/device.h  |   4 ++
->  include/linux/swiotlb.h |   7 +-
->  kernel/dma/Kconfig      |   1 +
->  kernel/dma/swiotlb.c    | 144 ++++++++++++++++++++++++++++++++++------
->  4 files changed, 131 insertions(+), 25 deletions(-)
-> 
-> diff --git a/include/linux/device.h b/include/linux/device.h
-> index 89bb8b84173e..ca6f71ec8871 100644
-> --- a/include/linux/device.h
-> +++ b/include/linux/device.h
-> @@ -413,6 +413,7 @@ struct dev_links_info {
->   * @dma_pools:	Dma pools (if dma'ble device).
->   * @dma_mem:	Internal for coherent mem override.
->   * @cma_area:	Contiguous memory area for dma allocations
-> + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
->   * @archdata:	For arch-specific additions.
->   * @of_node:	Associated device tree node.
->   * @fwnode:	Associated device node supplied by platform firmware.
-> @@ -515,6 +516,9 @@ struct device {
->  #ifdef CONFIG_DMA_CMA
->  	struct cma *cma_area;		/* contiguous memory area for dma
->  					   allocations */
-> +#endif
-> +#ifdef CONFIG_SWIOTLB
-> +	struct io_tlb_mem	*dma_io_tlb_mem;
->  #endif
->  	/* arch specific additions */
->  	struct dev_archdata	archdata;
-> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-> index dd8eb57cbb8f..a1bbd7788885 100644
-> --- a/include/linux/swiotlb.h
-> +++ b/include/linux/swiotlb.h
-> @@ -76,12 +76,13 @@ extern enum swiotlb_force swiotlb_force;
->   *
->   * @start:	The start address of the swiotlb memory pool. Used to do a quick
->   *		range check to see if the memory was in fact allocated by this
-> - *		API.
-> + *		API. For restricted DMA pool, this is device tree adjustable.
+> From: Rob Herring, Sent: Wednesday, January 13, 2021 12:35 AM
+>=20
+> Now that we have a graph schema, rework the USB related schemas to use
+> it. Mostly this is adding a reference to graph.yaml and dropping duplicat=
+e
+> parts from schemas.
+>=20
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Cc: Biju Das <biju.das.jz@bp.renesas.com>
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Maybe write it as this is "firmware adjustable" such that when/if ACPI
-needs something like this, the description does not need updating.
+Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-[snip]
+Best regards,
+Yoshihiro Shimoda
 
-> +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
-> +				    struct device *dev)
-> +{
-> +	struct io_tlb_mem *mem = rmem->priv;
-> +	int ret;
-> +
-> +	if (dev->dma_io_tlb_mem)
-> +		return -EBUSY;
-> +
-> +	if (!mem) {
-> +		mem = kzalloc(sizeof(*mem), GFP_KERNEL);
-> +		if (!mem)
-> +			return -ENOMEM;
-> +
-> +		if (!memremap(rmem->base, rmem->size, MEMREMAP_WB)) {
-
-MEMREMAP_WB sounds appropriate as a default.
-Documentation/devicetree/bindings/reserved-memory/ramoops.txt does
-define an "unbuffered" property which in premise could be applied to the
-generic reserved memory binding as well and that we may have to be
-honoring here, if we were to make it more generic. Oh well, this does
-not need to be addressed right now I guess.
--- 
-Florian
