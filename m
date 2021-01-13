@@ -2,172 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9F072F5104
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 18:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31BF32F5105
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 18:21:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728013AbhAMRU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 12:20:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46140 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728022AbhAMRU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 12:20:28 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273ECC061795
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 09:19:48 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id l207so2915900oib.4
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 09:19:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mjg/jy0DZZvh04Gg0ZIjuk4S6kMRfKUqimeQdNDRAhY=;
-        b=NOSxj9uFAtN+cQGRweNSMDktTTciP/m5r4eugWeqMVmqGUhaZZoEeVw3UlgDzgdZ1S
-         zGwm0xBbCsqHEtpRR/SI0HTnITrKvX6xoay3aWHq0gbN5z5v6dpUM5ZS6gRZXKKeCPTJ
-         7b1Zmrcp8KmlAJ2aedEuaSRVabZuI2T9yAi01WDXkTG9BzaBopQMjdNi4NFfpElKQKxJ
-         /44wANgcMPdCyC4Lzf99g2WYM6qOIicdqF8AoGx+Q7PoxE5PsPNVSeFCvnBuuDIdcpBC
-         cXCl6AenutzNgOiU6WncKcGcHjtbiUr12+P4f6vVbI2xG124HYiQxZzHwHMyrrSGx0gY
-         Ttvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mjg/jy0DZZvh04Gg0ZIjuk4S6kMRfKUqimeQdNDRAhY=;
-        b=Q1Z0BYe04DWfzTHc7sMBp8px7M/RormajAsqIGSe/XIRi4tIYAhlaWPeLePMdNNRBq
-         j8BwFC6EBoEkICs/z0G4OQiqeY2D4/GtZ37wm3EYM4vCygZ1kwI1k2I+pK+Q9dVNf+CL
-         RMElLzwdUPe8OopOhlZ5zisnAfRmb7rFt+4CGS79nKGbhIt9aKwj0xcpjiJTgXc//r9z
-         PpueUX1ay4hGr1vwnJ3JxubeZsIlFX2ZeVUapU1pwCGm9XCtIHrGD6vyqBNOoREc39//
-         2sZf3C1prjIG+MQXcDrghnZqajBnMvvgwA07eCqwnYU38jqBEifsHOdo/sfHDcajnSLv
-         5QuA==
-X-Gm-Message-State: AOAM531vjeNcvw+oNC2PbfgN9u/fFuWrW4yrbxzijx0s1fEfw/IzAjRq
-        7tsd+d7c+1dTUWOZ0qMy+TOXWCMC/Hloznez0f9Q0w==
-X-Google-Smtp-Source: ABdhPJyblEJ+ghunXPkjZ+L33I7pPCUNf5kVsgKX6Zykxco0gDU7ktSedzB8qJcsKFCITlg6Yk3YhXq9b1JhYPDZ2wQ=
-X-Received: by 2002:aca:b145:: with SMTP id a66mr201607oif.92.1610558387362;
- Wed, 13 Jan 2021 09:19:47 -0800 (PST)
+        id S1727144AbhAMRUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 12:20:55 -0500
+Received: from foss.arm.com ([217.140.110.172]:39616 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726996AbhAMRUz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 12:20:55 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0D43F1FB;
+        Wed, 13 Jan 2021 09:20:09 -0800 (PST)
+Received: from bogus (unknown [10.57.35.27])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D49D73F66E;
+        Wed, 13 Jan 2021 09:20:06 -0800 (PST)
+Date:   Wed, 13 Jan 2021 17:20:00 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Achin Gupta <achin.gupta@arm.com>
+Cc:     Jens Wiklander <jens.wiklander@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Trilok Soni <tsoni@codeaurora.org>, arve@android.com,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Andrew Walbran <qwandor@google.com>,
+        David Hartley <dhh@qti.qualcomm.com>,
+        Arunachalam Ganapathy <arunachalam.ganapathy@arm.com>,
+        nd@arm.com
+Subject: Re: [PATCH v3 6/7] firmware: arm_ffa: Setup in-kernel users of FFA
+ partitions
+Message-ID: <20210113170527.3qcxrfgrinfotfbh@bogus>
+References: <20201204121137.2966778-1-sudeep.holla@arm.com>
+ <20201204121137.2966778-7-sudeep.holla@arm.com>
+ <CAHUa44EfHeKgktefhH2nEM7E++Zap8Nw7kaSqVmYVoH01Zm1VQ@mail.gmail.com>
+ <CAHUa44HQJw=190MCphXecaQQn3HujHT6ZkSgG-PNARrKMQmQZw@mail.gmail.com>
+ <20210113094408.pjkno4nalk5zizxa@bogus>
+ <CAHUa44EcxCK0ssNHL_GR7uO3airNUdS9+xmVPvXgQfL9DhZCSw@mail.gmail.com>
+ <X/78oOu6+YzvYnJ7@C02ZJ1BRLVDN>
 MIME-Version: 1.0
-References: <20201204025509.1075506-1-dmitry.baryshkov@linaro.org> <20201205170830.4d56ecb7@archlinux>
-In-Reply-To: <20201205170830.4d56ecb7@archlinux>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 13 Jan 2021 20:19:36 +0300
-Message-ID: <CAA8EJporM=aZAn8-ZmocGJCT=KSZHvRMNH5xeBUQ_hypN_M4=g@mail.gmail.com>
-Subject: Re: [PATCH v10 00/15] qcom: pm8150: add support for thermal monitoring
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, linux-pm@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <X/78oOu6+YzvYnJ7@C02ZJ1BRLVDN>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-On Sat, 5 Dec 2020 at 20:08, Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Fri,  4 Dec 2020 05:54:54 +0300
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
->
-> > This patch serie adds support for thermal monitoring block on Qualcomm's
-> > PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
-> > to support thermal zones provided by this thermal monitoring block.
-> > Unlike the rest of PMIC thermal senses, these thermal zones describe
-> > particular thermistors, which differ between from board to board.
->
-> I've just taken another look through the various IIO parts in here and
-> I think they are fine.
->
-> My assumption is that given the timing this isn't going to make the merge
-> window now.  Hence I'll be looking to do an immutable branch based on rc1
-> once it's available (assuming everyone else is fine with this version).
-
-Another gracious ping.
-
-Daniel, any comments for the thermal part?
-
-Jonathan, there was  a proposal to have an immutable branch for this
-series. Do you still plan to create it? If IIO parts are fine with
-you, it might be feasible to get that into 5.12 with thermal part
-either being part of the same patch series or coming later depending
-on Daniel's comments.
-
->
-> Thanks,
->
-> Jonathan
->
-> >
-> > Changes since v9:
-> >  - In patch 12 add comments to the code as requested by Daniel Lezcano.
-> >  - Change copyright comment in qcom-spmi-adc-tm5.c to clearly note
-> >    driver history.
-> >
-> > Changes since v8:
-> >  - Simplified qcom_vadc_map_voltage_temp() code by removing ascending
-> >    tables support
-> >  - Simplified qcom-vadc-common volt/temp mapping code
-> >  - Implement suggestions by Matthias Kaehlcke: message formatting,
-> >    rewrite comments, remove unused variable initialization.
-> >
-> > Changes since v7:
-> >  - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
-> >  - Use explicit sizeof(var) instead of hand-coding 1 when accessing
-> >    adc-tm registers.
-> >  - Remove buffer read from adc_tm5_init().
-> >  - Remove extra on-stack var from adc_tm5_get_temp().
-> >  - Minor formatting changes as suggested Daniel.
-> >
-> > Changes since v6:
-> >  - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
-> >
-> > Changes since v5:
-> >  - Reworked DT bindings:
-> >    * Removed qcom,adc-channel, instead it is parsed from io-channels
-> >    * Renamed qcom,hw-settle-time to include -us suffix
-> >  - Re-added monitor enabling which got lost during refactored. Noted by
-> >    Jishnu Prakash.
-> >  - Use threaded IRQ handler as susggested by Jishnu.
-> >
-> > Changes since v4:
-> >  - Added kernel-doc comments to ADC-TM structures
-> >  - Used several sizeof(buf) instead of hand-conding register size
-> >
-> > Changes since v3:
-> >  - Fix DT description to spell "thermal monitoring" instead of just TM
-> >  - Fix warnings in DT example
-> >  - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
-> >  - Fixed whitespace chanes in qcom-vadc-common.c
-> >  - Removed error message if IIO chanel get returns -EPROBE_DEFER
-> >
-> > Changes since v2:
-> >  - IIO: export of_iio_channel_get_by_name() function
-> >  - dt-bindings: move individual io-channels to each thermal monitoring
-> >    channel rather than listing them all in device node
-> >  - added fallback defaults to of_device_get_match_data calls in
-> >    qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
-> >  - minor typo fixes
-> >
-> > Changes since v1:
-> >  - Introduce fixp_linear_interpolate() by Craig Tatlor
-> >  - Lots of syntax/whitespace changes
-> >  - Cleaned up register definitions per Jonathan's suggestion
-> >  - Implemented most of the suggestions from Bjorn's and Jonathan's
-> >    review
-> >
-> >
+On Wed, Jan 13, 2021 at 01:58:56PM +0000, Achin Gupta wrote:
+> On Wed, Jan 13, 2021 at 01:30:56PM +0100, Jens Wiklander wrote:
+> > On Wed, Jan 13, 2021 at 10:44 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > [...]
+> > > > > > +static int ffa_partition_probe(const char *uuid_str,
+> > > > > > +                              struct ffa_partition_info *buffer)
+> > > > > > +{
+> > > > > > +       int count;
+> > > > > > +       uuid_t uuid;
+> > > > > > +       u32 uuid0_4[4] = { 0 };
+> > > > > > +
+> > > > > > +       if (uuid_parse(uuid_str, &uuid)) {
+> > > > > > +               pr_err("invalid uuid (%s)\n", uuid_str);
+> > > > > > +               return -ENODEV;
+> > > > > > +       }
+> > > > > > +
+> > > > > > +       export_uuid((u8 *)uuid0_4, &uuid);
+> > > > > > +       count = __ffa_partition_info_get(uuid0_4[0], uuid0_4[1], uuid0_4[2],
+> > > > > > +                                        uuid0_4[3], &buffer);
+> > > > Wrong byte order?
+> > > > According to section 5.3 of the SMCCC, UUIDs are returned as a single
+> > > > 128-bit value using the SMC32 calling convention. This value is mapped
+> > > > to argument registers x0-x3 on AArch64 (resp. r0-r3 on AArch32). x0
+> > > > for example shall hold bytes 0 to 3, with byte 0 in the low-order
+> > > > bits.
+> > > >
+> > >
+> > > I need to spend some time to understand the concern here. Initially I agreed
+> > > with your analysis and then a quick review make be realise it is all OK.
+> > > I need to check if my understanding is correct again. I thought I will
+> > > take example and check here itself.
+> > >
+> > > UUID: "fd02c9da-306c-48c7-a49c-bbd827ae86ee"
+> 
+> IIUC this maps to (as per RFC4122).
+> 
+> fd02c9da = time_low (bytes 0-3)
+> 306c48c7 = time_mid & time_hi_and_version (bytes 4-7)
+> a49cbbd8 = clock_seq_hi_and_reserved, clock_seq_low and bytes/octets 0-1 of node (bytes 8-11)
+> 27ae86ee = bytes 2-5 of node (bytes 12-15)
+> 
+> SMCCC says:
+> 
+> w0 : bytes 0-3 with byte 0 in the lower order bits.
+> w1 : bytes 4-7 with byte 4 in the lower order bits.
+> w2 : bytes 8-11 with byte 8 in the lower order bits.
+> w3 : bytes 12-15 with byte 12 in the lower order bits.
+> 
+> This should amount to:
+> 
+> w0 = dac902fd
+> w1 = c7486c30
+> w2 = d8bb9ca4
+> w3 = ee86ae27
+> 
+> So, even though RFC4122 uses big-endian i.e network byte order. The UUID is
+> encoded as little-endian as per the SMCCC.
+> 
+> What do you reckon?
 >
 
+Thank Achin, that matches my understanding too. I spent some time looking
+at RFC4122[1] and concluded what we have is fine.
+
+@Jens, one thing to note, I am not claiming to support this driver with
+big-endian kernel. I plan to take that up once we settle with basic support.
+
+> cheers,
+> Achin
+> 
+> > >
+> > > UUID[0]   UUID[1]  UUID[2]  UUID[3] (referring uuid0_4 above)
+> > > dac902fd c7486c30 d8bb9ca4 ee86ae27
+> > >
+
+Matches w0-w3 above, thanks for detailed explanation
+
+> > > It seems correct as per SMCCC convention to me, or am I missing something
+> > > obvious ?
+> >
+> > In this example I'd expect the first register to hold 0xfd02c9da
+> > regardless of the byte order of the machine. If there is a different
+> > byte order in the receiver it will still be received as 0xfd02c9da.
+> > That's how I've understood the specification.
+> 
 
 -- 
-With best wishes
-Dmitry
+Regards,
+Sudeep
+
+[1] https://tools.ietf.org/html/rfc4122
