@@ -2,119 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F3D2F48C2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 11:36:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDA9C2F48E8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 11:46:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726898AbhAMKgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 05:36:37 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:55510 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726874AbhAMKgh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 05:36:37 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id F08FD1F41028
-Subject: Re: [PATCH v3 2/2] arm64: dts: mt8183: Add krane-sku0 board.
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20210113062834.4043956-1-hsinyi@chromium.org>
- <20210113062834.4043956-2-hsinyi@chromium.org>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <4ccea266-a840-7954-e7b1-ff6a321a9411@collabora.com>
-Date:   Wed, 13 Jan 2021 11:35:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1727052AbhAMKoM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Jan 2021 05:44:12 -0500
+Received: from mail-lj1-f173.google.com ([209.85.208.173]:39597 "EHLO
+        mail-lj1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725681AbhAMKoM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 05:44:12 -0500
+Received: by mail-lj1-f173.google.com with SMTP id b10so1982489ljp.6
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 02:43:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=tgP/px9dEMduUnVn7Ii7SHYctPo6qFWBGOF3w2zM/rE=;
+        b=M+vX9SD+lGIxNCtYjN5/35gQB1aPzTfygxiTt16ypqOKfn3zAYK8GyY9LmXcMZknlx
+         pNMpfQ7JhWv0DizOCYdncF7NhLT6PLXdUiz4gku10aCAIIeZstjXuY1UmMAsugN55VDF
+         TWjjVBonlJu8EcqcBOCydPGVyXp8WRZk8jTycQYhrKIfG5WhFAiuJyF50iWbBHJn7v1V
+         ofW/fVMZgg9DUN+PocOCacld7zNkdA4LqZr1+2r0TeBgCba5Ii6/j7rjBqbZEBpVyiob
+         0xXI+WpWVzvTeV+aAXAUF2r9oyOY4YnqPdTQ/jghnN+5pmFKwgbCgF0gWHwkLgu4eC8X
+         GcWw==
+X-Gm-Message-State: AOAM531hkNETVbXL6OiyNOpokR+y5HM0bwrWcUzKvvE1CFzc5FbOP1Ha
+        Iur4P1nPAjBhECeGSP38KLwKA1hnEjaenw==
+X-Google-Smtp-Source: ABdhPJz2r77/efrKIU8StLx4VlsOjIL4Hrg4L5RtZRNM54+r7fbzz6b45ucE7hCaYs/ma6mQ18QaWA==
+X-Received: by 2002:a05:651c:2da:: with SMTP id f26mr690665ljo.252.1610534609682;
+        Wed, 13 Jan 2021 02:43:29 -0800 (PST)
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com. [209.85.167.52])
+        by smtp.gmail.com with ESMTPSA id h23sm145164ljh.115.2021.01.13.02.43.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Jan 2021 02:43:29 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id b26so2035084lff.9
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 02:43:29 -0800 (PST)
+X-Received: by 2002:a19:810:: with SMTP id 16mr619252lfi.233.1610534609099;
+ Wed, 13 Jan 2021 02:43:29 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210113062834.4043956-2-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210106150525.15403-1-andre.przywara@arm.com>
+ <20210106150525.15403-2-andre.przywara@arm.com> <CAGb2v66V6=jeLuLCvOENhuwXfPAMd1nYcMor3K7FToHT9grTTA@mail.gmail.com>
+ <e85c945a-f6b2-6c78-b577-f3705535ac22@arm.com>
+In-Reply-To: <e85c945a-f6b2-6c78-b577-f3705535ac22@arm.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Wed, 13 Jan 2021 18:43:16 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64oQfv8D=EetS8Ayt-NF3AcynGmkamLy5+16xOLUDoqgA@mail.gmail.com>
+Message-ID: <CAGb2v64oQfv8D=EetS8Ayt-NF3AcynGmkamLy5+16xOLUDoqgA@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH 1/7] arm64: dts: allwinner: H6/A64: properly
+ connect USB PHY to port 0
+To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hsin-Yi,
+On Wed, Jan 13, 2021 at 6:30 PM André Przywara <andre.przywara@arm.com> wrote:
+>
+> On 06/01/2021 15:56, Chen-Yu Tsai wrote:
+> > Hi,
+> >
+> > On Wed, Jan 6, 2021 at 11:05 PM Andre Przywara <andre.przywara@arm.com> wrote:
+> >>
+> >> In recent Allwinner SoCs the first USB host controller (HCI0) shares
+> >> the first PHY with the MUSB controller. Probably to make this sharing
+> >> work, we were avoiding to declare this in the DT. This has two
+> >> shortcomings:
+> >> - U-Boot (which uses the same .dts) cannot use this port in host mode
+> >>   without a PHY linked, so we were loosing one USB port there.
+> >> - It requires the MUSB driver to be enabled and loaded, although we
+> >>   don't actually use it.
+> >>
+> >> To avoid those issues, let's add this PHY link to the A64 and H6 .dtsi
+> >> files. After all PHY port 0 *is* connected to HCI0, so we should describe
+> >> it as this. Remove the part from the boards which were already doing
+> >> that.
+> >>
+> >> This makes it work in U-Boot, also improves compatiblity when no MUSB
+> >> driver is loaded (for instance in distribution installers).
+> >>
+> >> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> >> ---
+> >>  arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts | 4 ----
+> >>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi         | 4 ++++
+> >>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi          | 4 ++++
+> >
+> > It would be better if the H6 parts were separated out.
+>
+> Sure.
+>
+> >
+> > Please also add a fixes tag, which helps with backporting.
+>
+> The whole concept of DT backports raises some eyebrows here, but it's
+> surely easy enough to do.
 
-Thank you for your patch.
+Well, whether people choose to backport is their decision. But providing
+information used to decide whether to do so, and if yes, what else is
+needed, is IMHO something the author can help with.
 
-On 13/1/21 7:28, Hsin-Yi Wang wrote:
-> Similar to krane-sku176 but using a different panel source.
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
-> change:
-> v3: fix yaml
-> ---
->  .../devicetree/bindings/arm/mediatek.yaml     |  4 +++-
+Likely backport scenarios are distribution kernels AFAICT.
 
-I think the binding should be a separate patch? (Rob to confirm). Other than that.
+ChenYu
 
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-
->  arch/arm64/boot/dts/mediatek/Makefile         |  1 +
->  .../dts/mediatek/mt8183-kukui-krane-sku0.dts  | 23 +++++++++++++++++++
->  3 files changed, 27 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index 53f0d4e3ea982..93b3bdf6eaeb7 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -120,7 +120,9 @@ properties:
->            - const: mediatek,mt8183
->        - description: Google Krane (Lenovo IdeaPad Duet, 10e,...)
->          items:
-> -          - const: google,krane-sku176
-> +          - enum:
-> +              - google,krane-sku0
-> +              - google,krane-sku176
->            - const: google,krane
->            - const: mediatek,mt8183
->  
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 18f7b46c4095b..deba27ab76574 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana-rev7.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-evb.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-evb.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
-> new file mode 100644
-> index 0000000000000..fb5ee91b6fe0e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
-> @@ -0,0 +1,23 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2019 Google LLC
-> + *
-> + * Device-tree for Krane sku0.
-> + *
-> + * SKU is a 8-bit value (0x00 == 0):
-> + *  - Bits 7..4: Panel ID: 0x0 (AUO)
-> + *  - Bits 3..0: SKU ID:   0x0 (default)
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt8183-kukui-krane.dtsi"
-> +
-> +/ {
-> +	model = "MediaTek krane sku0 board";
-> +	compatible = "google,krane-sku0", "google,krane", "mediatek,mt8183";
-> +};
-> +
-> +&panel {
-> +	status = "okay";
-> +	compatible = "auo,kd101n80-45na";
-> +};
-> 
+> Thanks,
+> Andre.
