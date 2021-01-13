@@ -2,190 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08B682F5320
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 20:13:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CA9E2F5372
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 20:37:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728557AbhAMTLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 14:11:39 -0500
-Received: from mout.kundenserver.de ([212.227.17.13]:42187 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728555AbhAMTLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 14:11:39 -0500
-Received: from localhost.localdomain ([37.4.249.194]) by
- mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MkYsS-1kE66E3h8g-00lz2n; Wed, 13 Jan 2021 20:08:52 +0100
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Eric Anholt <eric@anholt.net>, Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S1728805AbhAMTgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 14:36:54 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:47467 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728807AbhAMTgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 14:36:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1610566526;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=VbEtyqBdwcJzKeG1wyZKRO8aTEA6+w3GGKg392l/7SU=;
+        b=OGGwrtNqTmNVud44aHrtAeUMKiUVW5Efl119INtlaDwIOBcpwv1ADqiqsB5JvEv4bxuGWz
+        GSjjmyjXy0yD4igpJgZk0AX1EgTIRDqcJ03+GyZajAKkW0L4dcCCc+/2wrVGs2GOrq9qcP
+        7DUfk6UDzRDPaNZYxzguwjfTn387RhI=
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com
+ [209.85.216.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-64-PxiyhEIbN2GZBsUy2j0XnQ-1; Wed, 13 Jan 2021 14:35:25 -0500
+X-MC-Unique: PxiyhEIbN2GZBsUy2j0XnQ-1
+Received: by mail-pj1-f70.google.com with SMTP id q10so1920792pjg.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 11:35:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VbEtyqBdwcJzKeG1wyZKRO8aTEA6+w3GGKg392l/7SU=;
+        b=QvIDU6f1SK+zCTdmtvlIMz1D9dNf6MX6SVovGO6AVXb3gT4BU8Cd06IIFh6enlS/m3
+         y6krKlFMkF+RiwdFmbZRDbd5MR1C8UHa3EnBif6x7SvtxCd6w3AneZJ3lp8pXQ6qASaL
+         ktnhJyEOv8iXQkXYozXDtO4c9tmjZgX9cuU2uRGrR6uOfYx2U8SgMT3RBh7MWxiJR7te
+         p5TkvxpEB6OYfvwXEdH6Nl2E7bx64z1RWWXu/iZ/pJ7XsoJTXGBeNSIy2NVpO2Qdzurq
+         5pr6gFi4SXzpOZ3ZDBe8x2wg/EUm01NCCHiKWSsiTBkT2T93X8HU00v78QP69179WIL9
+         nrsA==
+X-Gm-Message-State: AOAM5320CUC/+Un4ddf2ZA90WWjvCuazbgME8Dwi1yzPAP78FLs16o9e
+        7lnyPNXiC7Y32kXLiK5mmiuRrNPuzRQX2sPPxiy3+W3IYDS7DwIUN9063D23muNcWwgypxfnmqa
+        3jFsOJtqTy82vnrSStO7cMkfUPbBapnEgzSI14Q==
+X-Received: by 2002:a17:90a:4bc3:: with SMTP id u3mr897590pjl.56.1610566523636;
+        Wed, 13 Jan 2021 11:35:23 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz2fp4B6076gDor+MKRDmZygwIeP4EAAXjFgkA3mR5JdkHoL53cyA3W5wgmGsBrvY5bwF+aXTr6Q8622nmc0XE=
+X-Received: by 2002:a17:90a:4bc3:: with SMTP id u3mr897578pjl.56.1610566523391;
+ Wed, 13 Jan 2021 11:35:23 -0800 (PST)
+MIME-Version: 1.0
+References: <20201211222448.2115188-1-dianders@chromium.org>
+ <CAD=FV=Ve4wGJ=KxQjraYsiAQZHG_5qEeFW0ZhmBBkRmtdm7Gwg@mail.gmail.com>
+ <CAO-hwJK+=537C-EbgNXPY3=m5LvM8SVKCDB5X145BfSMHgUMdw@mail.gmail.com>
+ <CAO-hwJLuzAccZbLSCvyP0JnkCW8fgswrm8RJfMaVKjtyF5Yg_A@mail.gmail.com> <CAD=FV=W3uzNPwAGPCUfjC-zoWEPyY4bF8TE4JgPP21s-3MAfpQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=W3uzNPwAGPCUfjC-zoWEPyY4bF8TE4JgPP21s-3MAfpQ@mail.gmail.com>
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date:   Wed, 13 Jan 2021 20:35:12 +0100
+Message-ID: <CAO-hwJ+Gz_yp_vn1prREvhcU=YqVatqd_Hp+95L5i2=bcwfhbA@mail.gmail.com>
+Subject: Re: [PATCH v8 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Jiri Kosina <jkosina@suse.cz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        Kai-Heng Feng <kai.heng.feng@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH V4] dt-bindings: gpu: Convert v3d to json-schema
-Date:   Wed, 13 Jan 2021 20:08:37 +0100
-Message-Id: <1610564917-11559-1-git-send-email-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.7.4
-X-Provags-ID: V03:K1:iHvA9Y/sB5q3WE1S3ZUJR6kCt5z001K1LzszE2traPHzBDwN8BE
- 6bwgVNJbRU2K0lQU2VS++uKV3eicxZ1xaCVXUOU4BUD9dbxIRDTNjlseMq55oTUluxoMb1J
- q4/HKXYCUuHLFv38WXdgvfQUFZAZHscbsrxbZ6Mzqab0FHdRgY05TgN7b1e6yAtNoO8xcvc
- XwXQmnjZZcUOLeF2cWRsw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dF6IekFQiwQ=:9ggfLAcmRmpENItzBhDCKM
- LPzM6KcdMpvcJeutsCfIGyIMWcN9CoYP3czAIq9nl+bQP2XoetA/H0WxFiNT9VkznqOn17d9+
- KcfLFvIpBbNAoGx69OBk+9s1mkI4/zj+B3h4HCO8ylebKguQcwtAbFUOX5EKZm6Dlrd4orPQF
- 9DMtIS6deh3i4vz9KfAvegMtifWDsou40VebMmZMecGCHk08v4MtU9mGW2+TXpExCvEmWH160
- rJ2tqXiZT5B4D7uHkJPtEO+fPhaNAkp/Oh2jMSLet6ub/Q7+wde9UnQfIuuNeyqZYiKC+yenT
- SyrvdX+Nkd2fs3QqylFl+Ml5+QphdKkYTgS+DSajI5HwyH2liIwTmgpaiw9B3XsCIxxypbIxv
- AAIoqAXMr1p27oi3IigEmCxkuM7t+87h9TaOKniwD7UZPvUmTK8on5P3SkYuAUjuUAsTr282g
- 4x8OKWR1og==
+        Stephen Boyd <swboyd@chromium.org>,
+        Andrea Borgia <andrea@borgia.bo.it>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Daniel Playfair Cal <daniel.playfair.cal@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jiri Kosina <jikos@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Max Krummenacher <max.oss.09@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        Pavel Balan <admin@kryma.net>, Shawn Guo <shawnguo@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
+        Xiaofei Tan <tanxiaofei@huawei.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the v3d bindings to yaml format.
+On Wed, Jan 13, 2021 at 5:05 PM Doug Anderson <dianders@chromium.org> wrote:
+>
+> Hi,
+>
+> On Wed, Jan 13, 2021 at 7:09 AM Benjamin Tissoires
+> <benjamin.tissoires@redhat.com> wrote:
+> >
+> > > I wanted to apply the series yesterday, but for these kinds of changes
+> > > I like giving it a spin on actual hardware. Turns out that my XPS-13
+> > > can not boot to v5.11-rc2, which makes testing the new branch slightly
+> > > more difficult.
+> > >
+> > > I'll give it a spin next week, but I think I should be able to land it for 5.12.
+> > >
+> > > Regarding the defconfig conflict, no worries, we can handle it with
+> > > Stephen and Linus.
+> > >
+> >
+> > After 2 full kernel bisects (I messed up the first because I am an
+> > idiot and inverted good and bad after the first reboot), I found my
+> > culprit, and I was able to test the series today.
+> >
+> > The series works fine regarding enumeration and removing of devices,
+> > but it prevents my system from being suspended. If I rmmod
+> > i2c-hid-acpi, suspend works fine, but if it is present, it immediately
+> > comes back, which makes me think that something must be wrong.
+> >
+> > I also just reverted the series and confirmed that suspend/resume now
+> > works, meaning that patch 1/4 needs to be checked.
+>
+> Can you give me any hints about what type of failure you're seeing?
+> Any logs?  I don't have an ACPI system to test with...
 
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
+I don't have any logs, just that the system comes back up. There is a
+chance we are not powering the device down correctly, which triggers
+an IRQ and which puts the system back on.
 
-Changes in V4:
-- define order for required reg-names
-- adapt example
+>
+> Is there any chance that some type of userspace / udev rule is getting
+> tripped up by the driver being renamed?  We ran into something like
+> this recently on Chrome OS where we had a tool that was hardcoded to
+> look for "i2c-hid" and needed to be adapted to account for the new
+> driver name.  Often userspace tweaks with wakeup rules based on driver
+> name...
 
-Changes in V3:
-- drop redundant maxItems in case we already have items defined
-- fix order of reg-names enum
-- tag required items in description
-- add reg-names to required properties
-- drop clock-names
+I don't think there is anything like that on a regular desktop.
 
- .../devicetree/bindings/gpu/brcm,bcm-v3d.txt       | 33 ----------
- .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 75 ++++++++++++++++++++++
- 2 files changed, 75 insertions(+), 33 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
- create mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>
+> I'll go stare at the code now and see if anything jumps out.
+>
 
-diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-deleted file mode 100644
-index b2df82b..0000000
---- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--Broadcom V3D GPU
--
--Only the Broadcom V3D 3.x and newer GPUs are covered by this binding.
--For V3D 2.x, see brcm,bcm-vc4.txt.
--
--Required properties:
--- compatible:	Should be "brcm,7268-v3d" or "brcm,7278-v3d"
--- reg:		Physical base addresses and lengths of the register areas
--- reg-names:	Names for the register areas.  The "hub" and "core0"
--		  register areas are always required.  The "gca" register area
--		  is required if the GCA cache controller is present.  The
--		  "bridge" register area is required if an external reset
--		  controller is not present.
--- interrupts:	The interrupt numbers.  The first interrupt is for the hub,
--		  while the following interrupts are separate interrupt lines
--		  for the cores (if they don't share the hub's interrupt).
--		  See bindings/interrupt-controller/interrupts.txt
--
--Optional properties:
--- clocks:	The core clock the unit runs on
--- resets:	The reset line for v3d, if not using a mapping of the bridge
--		  See bindings/reset/reset.txt
--
--v3d {
--	compatible = "brcm,7268-v3d";
--	reg = <0xf1204000 0x100>,
--	      <0xf1200000 0x4000>,
--	      <0xf1208000 0x4000>,
--	      <0xf1204100 0x100>;
--	reg-names = "bridge", "hub", "core0", "gca";
--	interrupts = <0 78 4>,
--		     <0 77 4>;
--};
-diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-new file mode 100644
-index 0000000..fbce844
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom V3D GPU Bindings
-+
-+maintainers:
-+  - Eric Anholt <eric@anholt.net>
-+  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-+
-+properties:
-+  $nodename:
-+    pattern: '^gpu@[a-f0-9]+$'
-+
-+  compatible:
-+    enum:
-+      - brcm,7268-v3d
-+      - brcm,7278-v3d
-+
-+  reg:
-+    items:
-+      - description: hub register (required)
-+      - description: core0 register (required)
-+      - description: GCA cache controller register (if GCA controller present)
-+      - description: bridge register (if no external reset controller)
-+    minItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: hub
-+      - const: core0
-+      - enum: [ bridge, gca ]
-+      - enum: [ bridge, gca ]
-+    minItems: 2
-+    maxItems: 4
-+
-+  interrupts:
-+    items:
-+      - description: hub interrupt (required)
-+      - description: core interrupts (if it doesn't share the hub's interrupt)
-+    minItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpu@f1200000 {
-+      compatible = "brcm,7268-v3d";
-+      reg = <0xf1200000 0x4000>,
-+            <0xf1208000 0x4000>,
-+            <0xf1204000 0x100>,
-+            <0xf1204100 0x100>;
-+      reg-names = "hub", "core0", "bridge", "gca";
-+      interrupts = <0 78 4>,
-+                   <0 77 4>;
-+    };
-+
-+...
--- 
-2.7.4
+Thanks, but don't spend too much time on it, unless something really
+jumps out. I'll debug that tomorrow. It's much easier with an actual
+device than by just looking at the code.
+
+Cheers,
+Benjamin
+
+> -Doug
+>
 
