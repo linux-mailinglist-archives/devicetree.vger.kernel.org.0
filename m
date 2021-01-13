@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9718A2F49BD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:11:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97E892F49CC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 12:21:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727840AbhAMLKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 06:10:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50688 "EHLO
+        id S1727496AbhAMLO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 06:14:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726618AbhAMLKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:10:48 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C040C061786
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:10:07 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id a12so2163838lfl.6
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:10:07 -0800 (PST)
+        with ESMTP id S1727394AbhAMLO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 06:14:56 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E55C061575
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:14:16 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id m25so2142960lfc.11
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 03:14:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=1RIKo2NpJujrY+VMDhwi2UMp+h4UZU7td38VFzDfTLU=;
-        b=A6QKz8/J4XOhPwlsWoE1bC7zOpo33ogdvsq/uQiqtwd+pspDeiUZsHNgbcY0w/LjWh
-         mn1aBgOa8UecIwkhfqCl3rBNmtC24o+JUmHcAttkjHMYRVZXUqDCfMMlct+3k7LscsUH
-         948noy4Y8bK8ohw7Bkwx+qVqY00iYroOCBt1WaliUHDGkGR3yDCPI+VxRsdHhrVMmz+i
-         pzk+KidJoHkSs1vTYCLN9nL6YbAQraSub0PZ8HNLJXFQyTlkAp16xpoedFnQMrjwDUrN
-         fAWyTOTdHc68Bc6Sr0UjcEw7yiTU7I8K4JUyiAb9aij3CSiYpln4wjp7fadjGfsHATyD
-         4k9A==
+        bh=2oeeMXnnsBnDwet4khk8jHVVA0OfjQp5o9aJi9pKNRk=;
+        b=WKDUHSdCX4gH95Tn4N4tgwpSxxqsL4ncdIE5qs/ecGAQVoqECN0iYML+xsh1wZu6Xo
+         YLvhoLpNa8rId2dkY+5jrHsa4hW+ooj0GFQNlRqc3F0m8+2Vrc2u9Fl6mmNA9wHvAS3V
+         qBB2ggsafCLPPt0MGn+3cC1W8Hv81IoeaWB8tAN4PytxjsyZ4Yyl5M1ONAYLwN4DxBCC
+         CBGzYZldt5z1c0yAiQ4tKBA5YROODsqcspu3keG87z1GDYVD/qeoKyROx4rzaEXs3OLx
+         TxDuRdY4NTDTiy70FIliyldOVRKyHZBEcbR8heCPeu3P1pE3ZAtcS0Vu63DIdV6fPT/Q
+         LM7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=1RIKo2NpJujrY+VMDhwi2UMp+h4UZU7td38VFzDfTLU=;
-        b=UPwlLJLPV6HiMiErdRYneCns4xXWR56bIf56ZFrYZPCBzfuaAG6nIqxL+1KiMfnId+
-         KioIM/5KikjXvTJsSxoFTPiNFN54CDPp6KSjWq2QplwP8lv6AgUhnRk3/LcTxzpQw4VL
-         0RecDGIl7PeN9hnTTUPJeJR33DkXp8FOTVT4GzTfKFUq4hWA0f2cqo0BzJjnkEIMsWl5
-         +DTastaW2i1skGp5+NxCTzGKnsDnB5X15Q8LxSgRG3C+nhhJSQxhy8tjJIjE4/Tn4mwG
-         YPcko/t+uTow1iIuLBK4sOmhLiZ82ehxp/IwTRXdBh46IP7/CA/Og11tUKz+xKmNoLbx
-         X5fw==
-X-Gm-Message-State: AOAM532Q9My62Di0Ua6Uveq6bv5vdJKyKKmFSJYYA8nkWbc0HOmuEcgt
-        5nRpUoreo925ajo9HwHtiX0=
-X-Google-Smtp-Source: ABdhPJzz68gAj7lWUcZLa75sMtWuFykKht0e8oaLZ6ZShFEpym8thmJyRAIm+WYT1KiaGF/KpS9SDg==
-X-Received: by 2002:a19:86c5:: with SMTP id i188mr668156lfd.578.1610536205928;
-        Wed, 13 Jan 2021 03:10:05 -0800 (PST)
+        bh=2oeeMXnnsBnDwet4khk8jHVVA0OfjQp5o9aJi9pKNRk=;
+        b=VZ9xAN9Ku+qbuxHt8UCNYJ5DRhaaQ5JW0NRvg9H/ay9y9sCfuU7LEm5utESjaHXyjy
+         DbnLCfonU13cljfsqikNZ6/rRpTcwHcCuTuK9Kuf8C3EWooL52DsG89tWoEntgOjVubS
+         d40XKO4HhNQ3E7KoFbYfX8TIslyMGhTmSIivaByJCSiPV8svvXkd/hCcrX1JOoDPAh7C
+         qSws8w03REunKXlTotQWzpfFi8ZnfNT+iTVsHh+AUq81e3YU67x4zDrOkqPheKgkANGz
+         oSlmxm+T+Nkw9yPHqSuFdCFTQ0U5e1V2Tf3Ulyo4pId80DDy/YXgAYkkueYwYh6MCwGP
+         CpbQ==
+X-Gm-Message-State: AOAM531uiTDcCDF+GVgvai8D+zmQf35LejuFumpd0+Yx1aCqowakp1gO
+        nKGWw6AmOTa8yiWukS5FcSY=
+X-Google-Smtp-Source: ABdhPJwMoOl7/GYK9VstQwGm61OrpZbuoD5weCsFYV6iP7QD1Y6yPbd8pN0UU1+LnXjnXGW3nosnNg==
+X-Received: by 2002:ac2:5294:: with SMTP id q20mr630407lfm.251.1610536454646;
+        Wed, 13 Jan 2021 03:14:14 -0800 (PST)
 Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id c24sm151727ljn.116.2021.01.13.03.10.04
+        by smtp.gmail.com with ESMTPSA id r75sm177180lff.97.2021.01.13.03.14.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 03:10:05 -0800 (PST)
+        Wed, 13 Jan 2021 03:14:13 -0800 (PST)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     bcm-kernel-feedback-list@broadcom.com,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] arm64: dts: broadcom: bcm4908: describe internal switch
-Date:   Wed, 13 Jan 2021 12:09:46 +0100
-Message-Id: <20210113110946.19614-1-zajec5@gmail.com>
+Subject: [PATCH V2x] arm64: dts: broadcom: bcm4908: describe internal switch
+Date:   Wed, 13 Jan 2021 12:14:06 +0100
+Message-Id: <20210113111406.19824-1-zajec5@gmail.com>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210112131727.19020-1-zajec5@gmail.com>
-References: <20210112131727.19020-1-zajec5@gmail.com>
+In-Reply-To: <20210113110946.19614-1-zajec5@gmail.com>
+References: <20210113110946.19614-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -75,7 +75,11 @@ Asus GT-AC5300 has an extra switch with its PHYs accessible using the
 internal MDIO.
 
 CPU port and Ethernet interface remain to be documented.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
+Resending V2 with Signed-off-by included
+
 V2: Use simple-bus
 ---
  .../bcm4908/bcm4908-asus-gt-ac5300.dts        | 51 +++++++++++
