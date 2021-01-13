@@ -2,105 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D41E72F4513
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 08:19:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C18292F4528
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 08:27:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726722AbhAMHSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 02:18:25 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:53414 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726567AbhAMHSZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 02:18:25 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: tomeu)
-        with ESMTPSA id 5C62D1F455D0
-Subject: Re: [PATCH v10 0/4] drm/panfrost: Add support for mt8183 GPU
-To:     Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Steven Price <steven.price@arm.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-Cc:     fshao@chromium.org, boris.brezillon@collabora.com,
-        hsinyi@chromium.org, hoegsberg@chromium.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20210113060703.3122661-1-drinkcat@chromium.org>
-From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Message-ID: <3fa8f9c5-5956-73fc-e464-4df68a564b64@collabora.com>
-Date:   Wed, 13 Jan 2021 08:17:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1725910AbhAMHYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 02:24:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53748 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725823AbhAMHYS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 02:24:18 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 810A6221E2;
+        Wed, 13 Jan 2021 07:23:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610522617;
+        bh=QaN5LDnossHe47dAwYOWY0s6AXx7yNBh+zG6KLDXjvM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=FqityJjgWnQzpOyyQAwQdv84Zaurt+fRpeqdUeVBfk3qthFwbbU7f41jOFhRPgSYw
+         VKrmoW+rffzrs0Wrf5J4ifM3/IVtpNS+m4kypH+dR7M2unqVrC0bat5erIHEr5SMDx
+         t6llNbjjgu7k13+qsBGcjq7CH1qVFJTNN6Ea3XFqvLmE6l/5WYB6JnrpnNl0Bpmdko
+         CZLMNDLtBzuhm6ORU4OB8HjLesw/4aElxBa3lQ/y793skFh9qbb7mHa4UMXojGMaIr
+         ljLJU+Yu7RP/LLiRRaZYb6x04vREgXsWKOu9BXOtk7H15qggEAufD8GtCJtXnCG0IA
+         M8ZW5ELiOK0IQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20210113060703.3122661-1-drinkcat@chromium.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210106173900.388758-2-aford173@gmail.com>
+References: <20210106173900.388758-1-aford173@gmail.com> <20210106173900.388758-2-aford173@gmail.com>
+Subject: Re: [RFC 2/2] clk: vc5: Add support for optional load capacitance
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+To:     Adam Ford <aford173@gmail.com>, linux-clk@vger.kernel.org
+Date:   Tue, 12 Jan 2021 23:23:36 -0800
+Message-ID: <161052261603.3661239.1571828963550428923@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/13/21 7:06 AM, Nicolas Boichat wrote:
-> Hi!
-> 
-> Follow-up on the v5 [1], things have gotten significantly
-> better in the last 9 months, thanks to the efforts on Bifrost
-> support by the Collabora team (and probably others I'm not
-> aware of).
-> 
-> I've been testing this series on a MT8183/kukui device, with a
-> chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
-> mesa 20.3.2 (lots of artifacts though).
+Quoting Adam Ford (2021-01-06 09:39:00)
+> There are two registers which can set the load capacitance for
+> XTAL1 and XTAL2. These are optional registers when using an
+> external crystal.  Parse the device tree and set the
+> corresponding registers accordingly.
+>=20
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+>  drivers/clk/clk-versaclock5.c | 64 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>=20
+> diff --git a/drivers/clk/clk-versaclock5.c b/drivers/clk/clk-versaclock5.c
+> index 43db67337bc0..445abc3731fb 100644
+> --- a/drivers/clk/clk-versaclock5.c
+> +++ b/drivers/clk/clk-versaclock5.c
+> @@ -759,6 +759,63 @@ static int vc5_update_power(struct device_node *np_o=
+utput,
+>         return 0;
+>  }
+> =20
+> +static int vc5_map_cap_value(u32 femtofarads)
+> +{
+> +       int mapped_value;
+> +
+> +       /* The datasheet explicitly states 9000 - 25000 */
+> +       if ((femtofarads < 9000) || (femtofarads > 25000))
 
-Btw, don't know if you plan to retest with a newer Mesa, but a recent 
-master should have pretty good ES 3.0 compliance on the Duet.
+Please remove useless parenthesis.
 
-Cheers,
+> +               return -EINVAL;
+> +
+> +       /* The lowest target we can hit is 9430, so exit if it's less */
+> +       if (femtofarads < 9430)
+> +               return 0;
+> +
+> +       /*
+> +        * According to VersaClock 6E Programming Guide, there are 6
+> +        * bits which translate to 64 entries in XTAL registers 12 and
+> +        * 13. Because bits 0 and 1 increase the capacitance the
+> +        * same, some of the values can be repeated.  Plugging this
+> +        * into a spreadsheet and generating a trendline, the output
+> +        * equation becomes x =3D (y-9098.29) / 216.44, where 'y' is
+> +        * the desired capacitance in femtofarads, and x is the value
+> +        * of XTAL[5:0].
+> +        * To help with rounding, do fixed point math
+> +        */
+> +       femtofarads *=3D 100;
+> +       mapped_value =3D (femtofarads - 909829) / 21644;
+> +
+> +       /*
+> +        * The datasheet states, the maximum capacitance is 25000,
+> +        * but the programmer guide shows a max value is 22832,
+> +        * so values higher values could overflow, so cap it.
+> +        */
+> +       mapped_value =3D max(mapped_value/100, 0x3f);
+> +
+> +       return mapped_value;
+> +}
+> +static int vc5_update_cap_load(struct device_node *node, struct vc5_driv=
+er_data *vc5)
+> +{
+> +       u32 value, mapped_value;
+> +
+> +       if (!of_property_read_u32(node, "idt,xtal1-load-femtofarads", &va=
+lue)) {
+> +               mapped_value =3D vc5_map_cap_value(value);
+> +               if (mapped_value < 0)
 
-Tomeu
+How can it be less than 0? It's unsigned.
 
-> devfreq is currently not supported, as we'll need:
->   - Clock core support for switching the GPU core clock (see 2/4).
->   - Platform-specific handling of the 2-regulator (see 3/4).
-> 
-> Since the latter is easy to detect, patch 3/4 just disables
-> devfreq if the more than one regulator is specified in the
-> compatible matching table.
-> 
-> [1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
-> [2] https://crrev.com/c/2608070
-> 
-> Changes in v10:
->   - Fix the binding to make sure sram-supply property can be provided.
-> 
-> Changes in v9:
->   - Explain why devfreq needs to be disabled for GPUs with >1
->     regulators.
-> 
-> Changes in v8:
->   - Use DRM_DEV_INFO instead of ERROR
-> 
-> Changes in v7:
->   - Fix GPU ID in commit message
->   - Fix GPU ID in commit message
-> 
-> Changes in v6:
->   - Rebased, actually tested with recent mesa driver.
-> 
-> Nicolas Boichat (4):
->    dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
->    arm64: dts: mt8183: Add node for the Mali GPU
->    drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
->    drm/panfrost: Add mt8183-mali compatible string
-> 
->   .../bindings/gpu/arm,mali-bifrost.yaml        |  28 +++++
->   arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   6 +
->   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   6 +
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
->   drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
->   drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
->   6 files changed, 164 insertions(+)
-> 
+> +                       return mapped_value;
+> +
+> +               regmap_write(vc5->regmap, VC5_XTAL_X1_LOAD_CAP, (mapped_v=
+alue << 2));
+> +       }
+> +
+> +       if (!of_property_read_u32(node, "idt,xtal2-load-femtofarads", &va=
+lue)) {
+> +               mapped_value =3D vc5_map_cap_value(value);
+> +               if (mapped_value < 0)
+
+Same!
+
+> +                       return mapped_value;
+> +               regmap_write(vc5->regmap, VC5_XTAL_X2_LOAD_CAP, (mapped_v=
+alue << 2));
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static int vc5_update_slew(struct device_node *np_output,
+>                            struct vc5_out_data *clk_out)
+>  {
