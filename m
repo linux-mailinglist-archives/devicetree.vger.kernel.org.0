@@ -2,61 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8BED2F4CEB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 15:16:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 261662F4CF6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Jan 2021 15:19:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726634AbhAMOQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 09:16:38 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44144 "EHLO mail.kernel.org"
+        id S1726531AbhAMORt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 09:17:49 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44334 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726594AbhAMOQi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 09:16:38 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C9CBE233FB;
-        Wed, 13 Jan 2021 14:15:55 +0000 (UTC)
+        id S1726113AbhAMORs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 09:17:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 004C6233FB;
+        Wed, 13 Jan 2021 14:17:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610547357;
-        bh=3H1/0VlWx3J/wJnLTMTVLnx6NOXmPlyunqm/AiQM8oE=;
+        s=k20201202; t=1610547428;
+        bh=tOH8kHK8wpkxTpaX7CJMRISBw5TdZpXf3lahBNTxc+0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CccyngmqSe1lhtixq/KSzhHoQhAlJFp2b2ZBm2l7uAXhxebJGm4ZD04jxDsFNR8I/
-         nIlJqGtG9jgycW4IOzNzC+KEUpZjilEF02fI2mEk1z4+EPkBXLtTCzMmxabSMBKjSH
-         1NDBzHsec+bk5Fv77Yhe5IUi9RfLUuyQhknpcwOTA7okC5NssekOOItDqyGi4Wv0+L
-         hkZNtRQiBQm1g9dwIekXLSROMG39kUr/a+e3JydUR3dRiK1CwEn0xjCWiBHLC0xzzV
-         4SYqDVEZ4DBN/tUEnA94NGZSi72tVicyukQewuAi+07TCt+5/NK3hmGxnk+wg/KmEK
-         c7RkLxlxh/t1Q==
-Date:   Wed, 13 Jan 2021 19:45:51 +0530
+        b=HhJhDkIEmgqdedPmBY3qh/I92a06ubSXYAB2qrJYju40o/Liqc0xjbPsJ1dI1sIWQ
+         mryjkz6VcCzhsQSv64FOg6xClzu2lJCnFff4HklLt9MfzNggzakFdGiIiEzNe0eu1g
+         OSCxKkUc0o7jpYcI5e9lfQ02IBc5lWr0mfTLgWml5g+fMfXaDXGDLnYhcGEm8x13Xu
+         yFL5XJu+128TbQTNLifhE+yPQZ4/WQRdBuv9K3DZ9yTXrl7yHdL8V5Ubz2i4DlwUBT
+         ktvoxFcdrIjgmKTOhGGJPcbFlL3KiUIEzJdhmKyhq+KW0T4kABRTW96rtrzj8P4hec
+         KHwme0oZmco6Q==
+Date:   Wed, 13 Jan 2021 19:47:03 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V4 1/3] dt-bindings: phy: brcm,brcmstb-usb-phy: convert
- to the json-schema
-Message-ID: <20210113141551.GS2771@vkoul-mobl>
-References: <20210106205838.10964-1-zajec5@gmail.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 24/24] dt-bindings: phy: update phy-cadence-sierra.yaml
+ reference
+Message-ID: <20210113141703.GT2771@vkoul-mobl>
+References: <cover.1610535349.git.mchehab+huawei@kernel.org>
+ <3550b08d4e8312e7d4a247a3515a93a5f0fd04c5.1610535350.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210106205838.10964-1-zajec5@gmail.com>
+In-Reply-To: <3550b08d4e8312e7d4a247a3515a93a5f0fd04c5.1610535350.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06-01-21, 21:58, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 13-01-21, 11:59, Mauro Carvalho Chehab wrote:
+> Changeset ba2bf1f090eb ("dt-bindings: phy: Add Cadence Sierra PHY bindings in YAML format")
+> renamed: Documentation/devicetree/bindings/phy/phy-cadence-sierra.txt
+> to: Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml.
 > 
-> Changes that require mentioning:
-> 1. interrupt-names
->    Name "wakeup" was changed to the "wake". It matches example and what
->    Linux driver looks for in the first place
-> 2. brcm,ipp and brcm,ioc
->    Both were described as booleans with 0 / 1 values. In examples they
->    were integers and Linux checks for int as well. Both got uint32.
-> 3. Added minimal description
+> Update its cross-reference accordingly.
 
 Applied, thanks
 
