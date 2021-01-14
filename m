@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E600F2F5CE4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 10:08:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65ABB2F5CEF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 10:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727805AbhANJHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 04:07:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51884 "EHLO
+        id S1726806AbhANJJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 04:09:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727274AbhANJHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 04:07:04 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D6C3C061575
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:06:22 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id cq1so2740224pjb.4
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:06:22 -0800 (PST)
+        with ESMTP id S1727258AbhANJJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 04:09:25 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0515C061575
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:08:38 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id r9so9739258ioo.7
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:08:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=r2clGFKfMvWdEL24a/hrPW/SoKgcT/5YZOK8G2tupLA=;
-        b=X7SGbsqsGRlUtP0PJCg54RJ4TAlmaAHUG3xPdqjVb0oScLVfStGatbndpS03GsNgnP
-         Ay7KF7sGV28MuK8UBUQD50tmV7MICCg9iHgn3dDmdiN2V0+w2jb02zv0Fvhtiq/Aou7X
-         FWO4E0ky5/69bheieFiKWNwRnHzuorBEbyewE=
+        bh=XoX/j54i0jG8qEsxZKby76Lqj61QzippjPHzsTsj+5Y=;
+        b=nY1GnsLlZi0Sxxm+zSGIGaqKpSxx6JueftrzPps7oTAcG91/bM9YfHLXW3YxSFcLzK
+         y6cH1olpZ/FXA0Mp0cE9+mqoheJMPU0KT0091/GVtf67wUxU6MGGIWncH2X6oPgNN5KO
+         QvrKMhyV8u8UB5lLj67P7d++Su0Uyq/z5gAtg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=r2clGFKfMvWdEL24a/hrPW/SoKgcT/5YZOK8G2tupLA=;
-        b=rgro34/WwSEvYSo1eZlkuCLFiRSPmYSF0A1M0DDY0gNzjaRYkRYjJ4wVmWRz9UZQyk
-         S5LQ1VEqFjeqPsk9wK9hqordNJngQ6ZMpBWEbgHh+1ZMUl0/88qDGE1gZ2XKu+AYSDi+
-         iGzLThAmzDjxWo26P0PwNrZ+cNiIA83cOMLY+581dj5xC3UnrLKU3L8bLqL2HMIrfrd+
-         MyrffZLAIt3P2OSqeEq04wXLCJ9sJtJARoQmvJ7YMWqnoL9aIM8AUMao3PxvsKYMPJAR
-         Vz8DAmgJsg443Z5+Y5eqVJ7FCcz5r9sAXo4Okn3U6SEkgPdhmJdLM5dmjLBAI5hKVdr2
-         LsPg==
-X-Gm-Message-State: AOAM531+cIM2/kvvC0BsBgdjkDYrQDsxNT+qYX5mS7WmX+u9LQi9XbNz
-        YvX1IcrrI+3A29lNLZvbniN2NW6sgfKIHQ==
-X-Google-Smtp-Source: ABdhPJyXZSPcjuKljh9RVQuI4oWCWkFCLzMveSdRoJ6m+X3Xa8Z6My0/h9dX/I4yM2GnkRurAd/J1g==
-X-Received: by 2002:a17:90a:ae02:: with SMTP id t2mr3941136pjq.169.1610615181877;
-        Thu, 14 Jan 2021 01:06:21 -0800 (PST)
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com. [209.85.210.179])
-        by smtp.gmail.com with ESMTPSA id z6sm4804944pfj.22.2021.01.14.01.06.20
+        bh=XoX/j54i0jG8qEsxZKby76Lqj61QzippjPHzsTsj+5Y=;
+        b=AotdlZN4CV+i2SkV3l0DPEADwNwAkrPjdTcXNE5q90jKauhvFhUnzQn+h9wZLRwsA4
+         fIuoXhxNy+3OF7dVoJXwkX7oHfqjqGmMmTTMujCiNotzz+3BArM/6mM94yVQVdmYS3u/
+         Ofo+fKrBhXvV/i4jIddff3Kb5NHYVtHTqumPouzYyoM9ekjh/+N7Wlmho7Ip5TKMZ4eO
+         iCNcAFfdpqy2TDDxFe+/DhgszBoUBTY0FS8cweJSVZame8dVw463aM3G3NDvhP5oWuEo
+         zPsaiaGeLHgEsPiZUnjPEZyxAg5xZHQzY6c2GlNwGfe8zQnj2dB0f8nqcnNyX4B2c18y
+         xiLQ==
+X-Gm-Message-State: AOAM530My1jxv44yypVIZsux46Q0NVkSypyinwcn7rYpXg1YyfyylQAQ
+        D3QXfnI0vo45j5F6Ry3SGT4HLP8FSeOdPw==
+X-Google-Smtp-Source: ABdhPJxsuSk+EP1VC6yozTVGa+aIVSRTDpvOaGywMZNXjmCckAoAXKICRpdCdv7uG6g6jLJP/UB4VQ==
+X-Received: by 2002:a05:6602:385:: with SMTP id f5mr4584881iov.9.1610615317972;
+        Thu, 14 Jan 2021 01:08:37 -0800 (PST)
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
+        by smtp.gmail.com with ESMTPSA id a17sm3093937ilc.77.2021.01.14.01.08.36
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jan 2021 01:06:21 -0800 (PST)
-Received: by mail-pf1-f179.google.com with SMTP id m6so2970115pfm.6
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:06:20 -0800 (PST)
-X-Received: by 2002:a92:ce8f:: with SMTP id r15mr4926327ilo.303.1610615178346;
- Thu, 14 Jan 2021 01:06:18 -0800 (PST)
+        Thu, 14 Jan 2021 01:08:37 -0800 (PST)
+Received: by mail-io1-f49.google.com with SMTP id o6so9713834iob.10
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:08:36 -0800 (PST)
+X-Received: by 2002:a92:c206:: with SMTP id j6mr5789564ilo.189.1610615314989;
+ Thu, 14 Jan 2021 01:08:34 -0800 (PST)
 MIME-Version: 1.0
-References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-3-tientzu@chromium.org>
- <20210113124209.GA1383@lst.de>
-In-Reply-To: <20210113124209.GA1383@lst.de>
+References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-7-tientzu@chromium.org>
+ <95e6dd76-5e18-e445-c351-19fba18f36de@gmail.com>
+In-Reply-To: <95e6dd76-5e18-e445-c351-19fba18f36de@gmail.com>
 From:   Claire Chang <tientzu@chromium.org>
-Date:   Thu, 14 Jan 2021 17:06:07 +0800
-X-Gmail-Original-Message-ID: <CALiNf2-a6JpbeyfCoGdjFAbguxwW5kn1r_Oq6yr+k1rGum7O8Q@mail.gmail.com>
-Message-ID: <CALiNf2-a6JpbeyfCoGdjFAbguxwW5kn1r_Oq6yr+k1rGum7O8Q@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
-To:     Christoph Hellwig <hch@lst.de>
+Date:   Thu, 14 Jan 2021 17:08:24 +0800
+X-Gmail-Original-Message-ID: <CALiNf29+8Yi93RacsZHr=qYBhQRwqujW6KZVVD=9xPMhpLH5pA@mail.gmail.com>
+Message-ID: <CALiNf29+8Yi93RacsZHr=qYBhQRwqujW6KZVVD=9xPMhpLH5pA@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 6/6] of: Add plumbing for restricted DMA pool
+To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         benh@kernel.crashing.org, paulus@samba.org,
         "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
@@ -66,7 +66,7 @@ Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         Frank Rowand <frowand.list@gmail.com>,
         Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
         boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org,
+        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
         Marek Szyprowski <m.szyprowski@samsung.com>,
         Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
         xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
@@ -89,40 +89,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 8:42 PM Christoph Hellwig <hch@lst.de> wrote:
+On Wed, Jan 13, 2021 at 7:48 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
 >
-> > +#ifdef CONFIG_SWIOTLB
-> > +     struct io_tlb_mem       *dma_io_tlb_mem;
-> >  #endif
+> On 1/5/21 7:41 PM, Claire Chang wrote:
+> > If a device is not behind an IOMMU, we look up the device node and set
+> > up the restricted DMA when the restricted-dma-pool is presented.
+> >
+> > Signed-off-by: Claire Chang <tientzu@chromium.org>
+> > ---
 >
-> Please add a new config option for this code instead of always building
-> it when swiotlb is enabled.
+> [snip]
 >
-> > +static int swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
-> > +                                size_t size)
->
-> Can you split the refactoring in swiotlb.c into one or more prep
-> patches?
->
-> > +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
-> > +                                 struct device *dev)
+> > +int of_dma_set_restricted_buffer(struct device *dev)
 > > +{
-> > +     struct io_tlb_mem *mem = rmem->priv;
-> > +     int ret;
+> > +     struct device_node *node;
+> > +     int count, i;
 > > +
-> > +     if (dev->dma_io_tlb_mem)
-> > +             return -EBUSY;
+> > +     if (!dev->of_node)
+> > +             return 0;
 > > +
-> > +     if (!mem) {
-> > +             mem = kzalloc(sizeof(*mem), GFP_KERNEL);
-> > +             if (!mem)
-> > +                     return -ENOMEM;
+> > +     count = of_property_count_elems_of_size(dev->of_node, "memory-region",
+> > +                                             sizeof(phandle));
 >
-> What is the calling convention here that allows for a NULL and non-NULL
-> private data?
+> You could have an early check for count < 0, along with an error
+> message, if that is deemed useful.
+>
+> > +     for (i = 0; i < count; i++) {
+> > +             node = of_parse_phandle(dev->of_node, "memory-region", i);
+> > +             if (of_device_is_compatible(node, "restricted-dma-pool"))
+>
+> And you may want to add here an of_device_is_available(node). A platform
+> that provides the Device Tree firmware and try to support multiple
+> different SoCs may try to determine if an IOMMU is present, and if it
+> is, it could be marking the restriced-dma-pool region with a 'status =
+> "disabled"' property, or any variant of that scheme.
 
-Since multiple devices can share the same pool, the private data,
-io_tlb_mem struct, will be initialized by the first device attached to
-it.
-This is similar to rmem_dma_device_init() in kernel/dma/coherent.c.
-I'll add a comment for it in next version.
+This function is called only when there is no IOMMU present (check in
+drivers/of/device.c). I can still add of_device_is_available(node)
+here if you think it's helpful.
+
+>
+> > +                     return of_reserved_mem_device_init_by_idx(
+> > +                             dev, dev->of_node, i);
+>
+> This does not seem to be supporting more than one memory region, did not
+> you want something like instead:
+>
+>                 ret = of_reserved_mem_device_init_by_idx(...);
+>                 if (ret)
+>                         return ret;
+>
+
+Yes. This implement only supports one restriced-dma-pool memory region
+with the assumption that there is only one memory region with the
+compatible string, restricted-dma-pool, in the dts. IIUC, it's similar
+to shared-dma-pool.
+
+
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > diff --git a/drivers/of/device.c b/drivers/of/device.c
+> > index aedfaaafd3e7..e2c7409956ab 100644
+> > --- a/drivers/of/device.c
+> > +++ b/drivers/of/device.c
+> > @@ -182,6 +182,10 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+> >       arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+> >
+> >       dev->dma_range_map = map;
+> > +
+> > +     if (!iommu)
+> > +             return of_dma_set_restricted_buffer(dev);
+> > +
+> >       return 0;
+> >  }
+> >  EXPORT_SYMBOL_GPL(of_dma_configure_id);
+> > diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+> > index d9e6a324de0a..28a2dfa197ba 100644
+> > --- a/drivers/of/of_private.h
+> > +++ b/drivers/of/of_private.h
+> > @@ -161,12 +161,17 @@ struct bus_dma_region;
+> >  #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
+> >  int of_dma_get_range(struct device_node *np,
+> >               const struct bus_dma_region **map);
+> > +int of_dma_set_restricted_buffer(struct device *dev);
+> >  #else
+> >  static inline int of_dma_get_range(struct device_node *np,
+> >               const struct bus_dma_region **map)
+> >  {
+> >       return -ENODEV;
+> >  }
+> > +static inline int of_dma_get_restricted_buffer(struct device *dev)
+> > +{
+> > +     return -ENODEV;
+> > +}
+> >  #endif
+> >
+> >  #endif /* _LINUX_OF_PRIVATE_H */
+> >
+>
+>
+> --
+> Florian
