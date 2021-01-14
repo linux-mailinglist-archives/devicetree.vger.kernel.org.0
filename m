@@ -2,170 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 642202F61D4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:22:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 737732F61F3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:28:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728996AbhANNV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 08:21:28 -0500
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:13005 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726579AbhANNV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 08:21:28 -0500
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 10EDB1QE082210;
-        Thu, 14 Jan 2021 21:11:01 +0800 (GMT-8)
-        (envelope-from chiawei_wang@aspeedtech.com)
-Received: from ChiaWeiWang-PC.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 14 Jan
- 2021 21:16:03 +0800
-From:   "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <lee.jones@linaro.org>, <joel@jms.id.au>,
-        <andrew@aj.id.au>, <linus.walleij@linaro.org>, <minyard@acm.org>,
-        <devicetree@vger.kernel.org>,
+        id S1728817AbhANN1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 08:27:16 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:46881 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbhANN1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 08:27:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1610630835; x=1642166835;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Lxcchmlm8obu3rlFf5uFKJiK+GEdYu44ZP1HH6VEu0A=;
+  b=Nrhx9MW1tvHUF3jfkYeegLYzahZdfCAyrlI6oHUmPYsbRpXqa5DCJpJL
+   0ij5VIDwp0IPVCEMT+WKF7WiKrOJe3/pCsOAO5fOWpiJ3LXItpJHpgRJ4
+   zvFFMWN0oMw0Brv7tR0o6PZ9zY0S0viM8zRO5OE+p8RLOS0xdHtqfFm9z
+   CqKZMw0OySSEJYF13d6CO33e7Z6sn+MPtm6NpoNIJNEbDZhMVzuN8TmQ9
+   0XEogWYfa8BLE5DPnmKSXrNDSB+zm7t0UuNm5REXwBzDgR5WGYxSASEiP
+   +h82tUqfSCgRQsqbHkZPYrw/yjopKGGAvUZIxZdGpCx1lW/MUWvx7EQQr
+   Q==;
+IronPort-SDR: HS83lwaP6ijJaUvp1aN1KbgF8STYQ5+aTFT8pX7xB14EikaZUu4n6lI4Vwkw5hfiLw2vD4Iiym
+ /716B0oD02hyloapviCb9KSbKhn/UDdpYekkrcardj4jwgKjRMDIiqfX1zBivl+qksOq26SXEc
+ CgRDudCe7rsMFyfWSPVsC6xxbjwHabPqktzASzzQIy7w2YDCt3CRtUtGh1/OVR8nVVsJWjwFnr
+ /KWzW8ATlfZZMCKEIn3BWzr37cEXQw+o3eXpNATgPbGZM/178WJCvd35+gJBL+97XqmlM6QXtF
+ OEY=
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; 
+   d="scan'208";a="111032907"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Jan 2021 06:25:57 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Thu, 14 Jan 2021 06:25:57 -0700
+Received: from tyr.hegelund-hansen.dk (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Thu, 14 Jan 2021 06:25:55 -0700
+Message-ID: <f819a37076d8bbb49b7c3288c03b75e23d4eb6f9.camel@microchip.com>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: microchip sparx5 reset driver
+ bindings
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <openbmc@lists.ozlabs.org>
-CC:     <BMC-SW@aspeedtech.com>, <haiyue.wang@linux.intel.com>,
-        <cyrilbur@gmail.com>, <rlippert@google.com>
-Subject: [PATCH v5 5/5] soc: aspeed: Adapt to new LPC device tree layout
-Date:   Thu, 14 Jan 2021 21:16:22 +0800
-Message-ID: <20210114131622.8951-6-chiawei_wang@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
-References: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
+        <devicetree@vger.kernel.org>
+Date:   Thu, 14 Jan 2021 14:25:54 +0100
+In-Reply-To: <80d4d9b16628847c59a7f94a7c002d8ce859b0ca.camel@pengutronix.de>
+References: <20210113201915.2734205-1-steen.hegelund@microchip.com>
+         <20210113201915.2734205-2-steen.hegelund@microchip.com>
+         <80d4d9b16628847c59a7f94a7c002d8ce859b0ca.camel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.2.66]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 10EDB1QE082210
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add check against LPC device v2 compatible string to
-ensure that the fixed device tree layout is adopted.
-The LPC register offsets are also fixed accordingly.
+Hi Philipp,
 
-Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
----
- drivers/soc/aspeed/aspeed-lpc-ctrl.c  | 20 ++++++++++++++------
- drivers/soc/aspeed/aspeed-lpc-snoop.c | 23 +++++++++++++++--------
- 2 files changed, 29 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/soc/aspeed/aspeed-lpc-ctrl.c b/drivers/soc/aspeed/aspeed-lpc-ctrl.c
-index 439bcd6b8c4a..c557ffd0992c 100644
---- a/drivers/soc/aspeed/aspeed-lpc-ctrl.c
-+++ b/drivers/soc/aspeed/aspeed-lpc-ctrl.c
-@@ -18,15 +18,15 @@
- 
- #define DEVICE_NAME	"aspeed-lpc-ctrl"
- 
--#define HICR5 0x0
-+#define HICR5 0x80
- #define HICR5_ENL2H	BIT(8)
- #define HICR5_ENFWH	BIT(10)
- 
--#define HICR6 0x4
-+#define HICR6 0x84
- #define SW_FWH2AHB	BIT(17)
- 
--#define HICR7 0x8
--#define HICR8 0xc
-+#define HICR7 0x88
-+#define HICR8 0x8c
- 
- struct aspeed_lpc_ctrl {
- 	struct miscdevice	miscdev;
-@@ -215,6 +215,7 @@ static int aspeed_lpc_ctrl_probe(struct platform_device *pdev)
- 	struct device_node *node;
- 	struct resource resm;
- 	struct device *dev;
-+	struct device_node *np;
- 	int rc;
- 
- 	dev = &pdev->dev;
-@@ -270,8 +271,15 @@ static int aspeed_lpc_ctrl_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	lpc_ctrl->regmap = syscon_node_to_regmap(
--			pdev->dev.parent->of_node);
-+	np = pdev->dev.parent->of_node;
-+	if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") &&
-+	    !of_device_is_compatible(np, "aspeed,ast2500-lpc-v2") &&
-+	    !of_device_is_compatible(np, "aspeed,ast2600-lpc-v2")) {
-+		dev_err(dev, "unsupported LPC device binding\n");
-+		return -ENODEV;
-+	}
-+
-+	lpc_ctrl->regmap = syscon_node_to_regmap(np);
- 	if (IS_ERR(lpc_ctrl->regmap)) {
- 		dev_err(dev, "Couldn't get regmap\n");
- 		return -ENODEV;
-diff --git a/drivers/soc/aspeed/aspeed-lpc-snoop.c b/drivers/soc/aspeed/aspeed-lpc-snoop.c
-index 682ba0eb4eba..ab0f0a54fea6 100644
---- a/drivers/soc/aspeed/aspeed-lpc-snoop.c
-+++ b/drivers/soc/aspeed/aspeed-lpc-snoop.c
-@@ -28,26 +28,25 @@
- #define NUM_SNOOP_CHANNELS 2
- #define SNOOP_FIFO_SIZE 2048
- 
--#define HICR5	0x0
-+#define HICR5	0x80
- #define HICR5_EN_SNP0W		BIT(0)
- #define HICR5_ENINT_SNP0W	BIT(1)
- #define HICR5_EN_SNP1W		BIT(2)
- #define HICR5_ENINT_SNP1W	BIT(3)
--
--#define HICR6	0x4
-+#define HICR6	0x84
- #define HICR6_STR_SNP0W		BIT(0)
- #define HICR6_STR_SNP1W		BIT(1)
--#define SNPWADR	0x10
-+#define SNPWADR	0x90
- #define SNPWADR_CH0_MASK	GENMASK(15, 0)
- #define SNPWADR_CH0_SHIFT	0
- #define SNPWADR_CH1_MASK	GENMASK(31, 16)
- #define SNPWADR_CH1_SHIFT	16
--#define SNPWDR	0x14
-+#define SNPWDR	0x94
- #define SNPWDR_CH0_MASK		GENMASK(7, 0)
- #define SNPWDR_CH0_SHIFT	0
- #define SNPWDR_CH1_MASK		GENMASK(15, 8)
- #define SNPWDR_CH1_SHIFT	8
--#define HICRB	0x80
-+#define HICRB	0x100
- #define HICRB_ENSNP0D		BIT(14)
- #define HICRB_ENSNP1D		BIT(15)
- 
-@@ -258,6 +257,7 @@ static int aspeed_lpc_snoop_probe(struct platform_device *pdev)
- {
- 	struct aspeed_lpc_snoop *lpc_snoop;
- 	struct device *dev;
-+	struct device_node *np;
- 	u32 port;
- 	int rc;
- 
-@@ -267,8 +267,15 @@ static int aspeed_lpc_snoop_probe(struct platform_device *pdev)
- 	if (!lpc_snoop)
- 		return -ENOMEM;
- 
--	lpc_snoop->regmap = syscon_node_to_regmap(
--			pdev->dev.parent->of_node);
-+	np = pdev->dev.parent->of_node;
-+	if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") &&
-+	    !of_device_is_compatible(np, "aspeed,ast2500-lpc-v2") &&
-+	    !of_device_is_compatible(np, "aspeed,ast2600-lpc-v2")) {
-+		dev_err(dev, "unsupported LPC device binding\n");
-+		return -ENODEV;
-+	}
-+
-+	lpc_snoop->regmap = syscon_node_to_regmap(np);
- 	if (IS_ERR(lpc_snoop->regmap)) {
- 		dev_err(dev, "Couldn't get regmap\n");
- 		return -ENODEV;
--- 
-2.17.1
+On Thu, 2021-01-14 at 10:39 +0100, Philipp Zabel wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you
+> know the content is safe
+> 
+> Hi Steen,
+> 
+> On Wed, 2021-01-13 at 21:19 +0100, Steen Hegelund wrote:
+> > Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+> > ---
+> >  .../bindings/reset/microchip,rst.yaml         | 52
+> > +++++++++++++++++++
+> >  1 file changed, 52 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > new file mode 100644
+> > index 000000000000..b5526753e85d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Microchip Sparx5 Switch Reset Controller
+> > +
+> > +maintainers:
+> > +  - Steen Hegelund <steen.hegelund@microchip.com>
+> > +  - Lars Povlsen <lars.povlsen@microchip.com>
+> > +
+> > +description: |
+> > +  The Microchip Sparx5 Switch provides reset control and
+> > implements the following
+> > +  functions
+> > +    - One Time Switch Core Reset (Soft Reset)
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^reset-controller@[0-9a-f]+$"
+> > +
+> > +  compatible:
+> > +    const: microchip,sparx5-switch-reset
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#reset-cells":
+> > +    const: 1
+> > +
+> > +  syscons:
+> > +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> > +    description: Array of syscons used to access reset registers
+> > +    minItems: 2
+> 
+> The order seems to be important in the driver, so this should specify
+> which is the CPU syscon and which is the GCB syscon. I'm not sure if
+> it
+> would be better to have two separately named syscon properties with a
+> single phandle each.
+
+Yes you got a point.  I will change that.
+
+> 
+> regards
+> Philipp
+
+BR
+Steen
 
