@@ -2,87 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24B8D2F61B6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:18:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57A332F61DF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:25:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728989AbhANNQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 08:16:44 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:47212 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725884AbhANNQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 08:16:43 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10ED67jR016311;
-        Thu, 14 Jan 2021 14:15:51 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=c+Aah01poqisBSnVrKowoWFXX7asidtG2KzrPV6ZGbc=;
- b=TuLen2fodnQAieMYqFaAQCxp4gI1iLy1lF3bVHy/XCMjn2T6MKL1+OnkCbKyuIH8qcke
- Pj8dAd9eNyhvpqA0VZiFda2BBk94dEsl1ZGLvBI9vNXb4rG8LEi3lJNXeTfAseTWNtrt
- FVaTDE5jiVVe8lpidxbCU2//T1JkZgn0fWFZ96xPa+p8HJB8/g0w6wAfROs0x9jjfkY3
- Bwkic4Or4DXTTxKlylO+RJN0RTyNJP6jmYE+sJYrXivVPAmP4tsAcZ47OBKiF/z7qqnw
- hBX0aphFMKMPIRA+iS/2UBZfJLS488NRWUhZjsNtEJxFvdq+zuJPF1lSiOntbzQTqvUl Sg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 362379dm2h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 14 Jan 2021 14:15:51 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2D63010002A;
-        Thu, 14 Jan 2021 14:15:51 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 202E3246DB4;
-        Thu, 14 Jan 2021 14:15:51 +0100 (CET)
-Received: from localhost (10.75.127.46) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 14 Jan 2021 14:15:50
- +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        id S1727059AbhANNWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 08:22:36 -0500
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:52299 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726315AbhANNWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 08:22:36 -0500
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 10EDB0vQ082196;
+        Thu, 14 Jan 2021 21:11:00 +0800 (GMT-8)
+        (envelope-from chiawei_wang@aspeedtech.com)
+Received: from ChiaWeiWang-PC.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 14 Jan
+ 2021 21:16:02 +0800
+From:   "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
+To:     <robh+dt@kernel.org>, <lee.jones@linaro.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <linus.walleij@linaro.org>, <minyard@acm.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH v2 3/3] ARM: dts: stm32: add #clock-cells property to usbphyc node on stm32mp151
-Date:   Thu, 14 Jan 2021 14:15:24 +0100
-Message-ID: <20210114131524.3298-4-amelie.delaunay@foss.st.com>
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <openbmc@lists.ozlabs.org>
+CC:     <BMC-SW@aspeedtech.com>, <haiyue.wang@linux.intel.com>,
+        <cyrilbur@gmail.com>, <rlippert@google.com>
+Subject: [PATCH v5 0/5] Remove LPC register partitioning
+Date:   Thu, 14 Jan 2021 21:16:17 +0800
+Message-ID: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210114131524.3298-1-amelie.delaunay@foss.st.com>
-References: <20210114131524.3298-1-amelie.delaunay@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-14_04:2021-01-14,2021-01-14 signatures=0
+X-Originating-IP: [192.168.2.66]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 10EDB0vQ082196
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-usbphyc is a 48Mhz clock provider: the clock can be used as clock source
-for USB OTG. Add #clock-cells property to usbphyc node to reflect this
-capability.
+The LPC controller has no concept of the BMC and the Host partitions.
+The incorrect partitioning can impose unnecessary range restrictions
+on register access through the syscon regmap interface.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+For instance, HICRB contains the I/O port address configuration
+of KCS channel 1/2. However, the KCS#1/#2 drivers cannot access
+HICRB as it is located at the other LPC partition.
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 07cb927ba06d..51acb2b04720 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1482,6 +1482,7 @@
- 		usbphyc: usbphyc@5a006000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			#clock-cells = <0>;
- 			compatible = "st,stm32mp1-usbphyc";
- 			reg = <0x5a006000 0x1000>;
- 			clocks = <&rcc USBPHY_K>;
+In addition, to be backward compatible, the newly added HW control
+bits could be located at any reserved bits over the LPC addressing
+space.
+
+Thereby, this patch series aims to remove the LPC partitioning for
+better driver development and maintenance. This requires the change
+to both the device tree and the driver implementation. To ensure
+both sides are synchronously updated, a v2 binding check is added.
+
+Chagnes since v4:
+	- Add child node example in dt-bindings.
+
+Chagnes since v3:
+	- Revise binding check as suggested by Haiyue Wang.
+
+Changes since v2:
+	- Add v2 binding check to ensure the synchronization between the
+	  device tree change and the driver register offset fix.
+
+Changes since v1:
+	- Add the fix to the aspeed-lpc binding documentation.
+
+Chia-Wei, Wang (5):
+  dt-bindings: aspeed-lpc: Remove LPC partitioning
+  ARM: dts: Remove LPC BMC and Host partitions
+  ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+  pinctrl: aspeed-g5: Adapt to new LPC device tree layout
+  soc: aspeed: Adapt to new LPC device tree layout
+
+ .../devicetree/bindings/mfd/aspeed-lpc.txt    | 100 ++++---------
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  74 ++++------
+ arch/arm/boot/dts/aspeed-g5.dtsi              | 135 ++++++++----------
+ arch/arm/boot/dts/aspeed-g6.dtsi              | 135 ++++++++----------
+ drivers/char/ipmi/kcs_bmc_aspeed.c            |  27 ++--
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c    |  17 ++-
+ drivers/soc/aspeed/aspeed-lpc-ctrl.c          |  20 ++-
+ drivers/soc/aspeed/aspeed-lpc-snoop.c         |  23 +--
+ 8 files changed, 229 insertions(+), 302 deletions(-)
+
 -- 
 2.17.1
 
