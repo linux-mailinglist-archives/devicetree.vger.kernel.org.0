@@ -2,139 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26F042F6BDC
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E2422F6BDE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:14:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726674AbhANUL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 15:11:29 -0500
-Received: from mail-40131.protonmail.ch ([185.70.40.131]:62080 "EHLO
-        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726382AbhANUL3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 15:11:29 -0500
-Date:   Thu, 14 Jan 2021 20:10:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1610655046;
-        bh=ulfYdd/znJ0wKOYLZIAjghjo9MVr60+df9iJJXRe/kM=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=DnGX8c2zCbPMe6+bLs78s6zn6aJHd1iLkNf/ymoamcdYLzXBiGEZhxbOShdrKsGMq
-         YZ3C78yAVVqzMIapilCqadKu1+2q+p9exjwYYv7xSSt8pbDHOucGYaQ8r960RXJmsx
-         xqJWS9+bN35ulBL3kdv6JlDDMl/Ivn5TGKXWV/iw=
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH v3 1/2] arm64: dts: sdm845: add oneplus6/6t devices
-Message-ID: <4db0807e-c33e-5913-1818-1fc055e35acb@connolly.tech>
-In-Reply-To: <17d49d19-7672-520c-12d3-c6ed8c12ae47@somainline.org>
-References: <20210114185227.25265-1-caleb@connolly.tech> <20210114185227.25265-2-caleb@connolly.tech> <17d49d19-7672-520c-12d3-c6ed8c12ae47@somainline.org>
+        id S1727318AbhANULn convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Jan 2021 15:11:43 -0500
+Received: from mailoutvs41.siol.net ([185.57.226.232]:43188 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726382AbhANULn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 15:11:43 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 3D00E521703;
+        Thu, 14 Jan 2021 21:11:01 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id EUtVDrbjK2FT; Thu, 14 Jan 2021 21:11:01 +0100 (CET)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 041A0521880;
+        Thu, 14 Jan 2021 21:11:01 +0100 (CET)
+Received: from kista.localnet (cpe-86-58-58-53.static.triera.net [86.58.58.53])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id A4D68521703;
+        Thu, 14 Jan 2021 21:11:00 +0100 (CET)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
+        linux-arm-kernel@lists.infradead.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 03/19] dt-bindings: rtc: sun6i-a31-rtc: Loosen the requirements on the clocks
+Date:   Thu, 14 Jan 2021 21:11:00 +0100
+Message-ID: <32871510.j77PJt8Iqg@kista>
+In-Reply-To: <20210114113538.1233933-3-maxime@cerno.tech>
+References: <20210114113538.1233933-1-maxime@cerno.tech> <20210114113538.1233933-3-maxime@cerno.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dne četrtek, 14. januar 2021 ob 12:35:22 CET je Maxime Ripard napisal(a):
+> The commit ec98a87509f4 ("rtc: sun6i: Make external 32k oscillator
+> optional") loosened the requirement of the clocks property, making it
+> optional. However, the binding still required it to be present.
+> 
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Fixes: ec98a87509f4 ("rtc: sun6i: Make external 32k oscillator optional")
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-On 14/01/2021 7:19 pm, Konrad Dybcio wrote:
-> Hi!
->
->>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D sdm845-db845c.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D sdm845-mtp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D sdm845-xiaomi-beryllium.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)=09+=3D sdm845-oneplus-enchilada.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)=09+=3D sdm845-oneplus-fajita.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)=09+=3D sdm850-lenovo-yoga-c630.dtb
-> Please sort.
->
->> +/ {
->> +
-> Redundant newline.
->> +=09gpio-keys {
->> +=09=09compatible =3D "gpio-keys";
->> +=09=09label =3D "Volume keys";
->> +=09=09autorepeat;
->> +
->> +=09=09pinctrl-names =3D "default";
->> +=09=09pinctrl-0 =3D <&volume_down_gpio &volume_up_gpio>;
->> +
->> +=09=09vol-down {
->> +=09=09=09label =3D "Volume down";
->> +=09=09=09linux,code =3D <KEY_VOLUMEDOWN>;
->> +=09=09=09gpios =3D <&pm8998_gpio 5 GPIO_ACTIVE_LOW>;
->> +=09=09=09debounce-interval =3D <15>;
->> +=09=09};
->> +
->> +=09=09vol-up {
->> +=09=09=09label =3D "Volume up";
->> +=09=09=09linux,code =3D <KEY_VOLUMEUP>;
->> +=09=09=09gpios =3D <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
->> +=09=09=09debounce-interval =3D <15>;
->> +=09=09};
->> +=09};
-> Perhaps gpio-keys could come before the fixed regulators to keep it a bit=
- more sane/sorted?
->> +&adsp_pas {
-> This should come before apps_rsc alphabetically.
->> +// Prevent garbage data on bluetooth UART lines
-> Please use C-style comments (/* thing */).
->> +&usb_1 {
->> +=09status =3D "okay";
->> +
->> +=09/*
->> +=09 * disable USB3 clock requirement as the device only supports
->> +=09 * USB2.
->> +=09 */
->> +=09qcom,select-utmi-as-pipe-clk;
->> +};
->> +
->> +&usb_1_dwc3 {
->> +=09/*
->> +=09 * We don't have the capability to switch modes yet.
->> +=09 */
->> +=09dr_mode =3D "peripheral";
->> +
->> +=09/* fastest mode for USB 2 */
->> +=09maximum-speed =3D "high-speed";
->> +
->> +=09/* Remove USB3 phy as it's unused on this device. */
->> +=09phys =3D <&usb_1_hsphy>;
->> +=09phy-names =3D "usb2-phy";
->> +};
-> Are you sure you can't get USB3 in host mode? Perhaps it's not worth disc=
-arding it upfront, as some boards can do that, definitely do check!
-The device definitely doesn't support USB3, although downstream does=20
-leave the USB3 phy enabled the hardware doesn't support it. So it made=20
-sense to disable it here.
->> \ No newline at end of file
-> Please add a newline.
->
->
-> The DTS files look correct, but don't you need at least one of msm-id, bo=
-ard-id, pmic-id? I'm not exactly sure what OnePlus does, but I can imagine =
-they would require such properties..
+Acked-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-OnePlus' bootloader doesn't seem to care about these values so I left=20
-them out for simplicity.
+Thanks!
 
-Cheers,
+Best regards,
+Jernej
 
-Caleb
-
->
-> Konrad
->
 
