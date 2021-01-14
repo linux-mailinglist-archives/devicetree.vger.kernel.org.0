@@ -2,259 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF6192F5E3D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:03:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81F922F5E43
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:05:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727440AbhANKAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 05:00:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35188 "EHLO
+        id S1728292AbhANKD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 05:03:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727130AbhANKAq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 05:00:46 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88987C061575
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 02:00:04 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id a6so3986104wmc.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 02:00:04 -0800 (PST)
+        with ESMTP id S1726858AbhANKDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 05:03:55 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DACC061574
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 02:03:16 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id m4so5093596wrx.9
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 02:03:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=tBwa88PnnPvfhT0zH6tlnPzclZk+pRp4GKUcHZy06XI=;
-        b=e9JuoVN+Nnag+M9i1dhhZZaRlfAIEXr26DCtH0AmzSg0X3ojyQGj8gegdZCJ193L/J
-         NFo/NBnzJFJmZfyN4enk1A8cGu+5TsiAKJ0Zh5QlhSJaXPkNWtKGDUD/eRAEUerhXzec
-         +0hJT5sVyCb/uVhCw6LeAfJwfS0gGdupMFtlU5xIDxUYtWbAtmG/QXpZwqp9twojxU7G
-         vZZNoNFbohh6MKyYItrO0Fd6J7cnmyh4w+GT7zGieXJ1DbzJWQvX71mZpQOgGKfuzSUs
-         c2NHWBEHGUJAUTjRyCVzL5xiz4QhnJ4LmsIqbhS3kb5MSur3YfSJUFyTr61WvFeRqxIS
-         NuOw==
+        bh=oVf5kDc7i4gGrzg222CFywiTCholDlEVEzBooRbeXN8=;
+        b=lNr9TM2KRK50yFUSVqvQRC2+d8NR6/ezTC8nz87RztuEm0sg8oFVZ8y/GwJu5fmbuy
+         fYHUI2RWogLsikN9SnHQipAiHDGDc1iscx3mN0jbaxwjTcDQ0ZVtTW8fUsLtiGBQW1Q1
+         AKfeQ1ODq0/1MA3AOJBalS1gNW0n1axzkT2WZXyba4RRsLVzZn2saNJpv/dEYHRUicJF
+         cy5rlCwzCpe0zLOzmTd1UhR5H8lUdW/NIPwujCtBAv7zdrfaCFXLG4Tew5MNdkvkGGm0
+         1fvVpBLtBl0dMLy8xB3oQ4gsFCDJ3uv0n491bAWkFkP/SVR3QtNXDcjHubOMox2quEnn
+         hbJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=tBwa88PnnPvfhT0zH6tlnPzclZk+pRp4GKUcHZy06XI=;
-        b=VMHXb/+nxdmxMSS4AIzSICEHf0eKuVOZvd7t/67fip8PIUNtGT+rU+TgvipiYrBFqM
-         PWpTBV5CmmHyIhH0c39pIsPktoq/+YCFCsYNe3F8yPTkaaPgFtfmVpHrz0wNfnVOtkQ4
-         ETKaBYa45+Ay+TXvMjtL2ocR2u37y5cxxNGlGWONBPqxAZf50tY8ctSM6Toepm+Ujs0f
-         GlX9hSH80hsZVP06221TGl8OpIn88I3p+Cryo7GnST7jNsdwcj5NdJxSRvD5If51+sKK
-         UeKQ6lXC5TiOFp941IJpEF+Vt3mvg0xmP7bMqr6uDEj0skytEEAEQwU0ulpwE5lzKpRG
-         wNtw==
-X-Gm-Message-State: AOAM530oRgVDgcbL5gyvPIanCkP4RADCMnyoY8IQEG81d2MtQR0ZgxFT
-        YBBGU9KU6ncGkw/tZTMHFTqyMg==
-X-Google-Smtp-Source: ABdhPJyk2adzO4fbhrQWuLvpfNMZB423i0gszJ6UsC/u6WDRGhxg6/UyNDYvRObCwC4ii13oPYhy+A==
-X-Received: by 2002:a7b:c259:: with SMTP id b25mr3237151wmj.40.1610618403029;
-        Thu, 14 Jan 2021 02:00:03 -0800 (PST)
+        bh=oVf5kDc7i4gGrzg222CFywiTCholDlEVEzBooRbeXN8=;
+        b=P9YQ+v5LfIgr2yqt68DFH3EN+22qbb1/AYxyFqiuYTggOWiDhnLcRu8Bp5afgfRODa
+         GGZ9UaPtQy8HhdEL7yJfJOV3fakGci5f+F6tkcikIcum3IdUo80iien9eo6FUAUCULik
+         VfsAF5QwsaqRjahCqtLgUMiyzph405p7IB6jvAex5M3JGjbnVXSiEKI91vnNpOBRlu5o
+         DTs/tvxkbPF5LWoo7xP1FkNkavvBXKeu62W51+jnFxCr9Uu9SNMMpzbY9Cx3ZwMFn3ug
+         VJrxjCQB28aJFOjELUDfQ2E9UGL7m9FVuI1vcFsRo1y9OTr1J/hgA1T+J1ezf7XCw+tC
+         2TbQ==
+X-Gm-Message-State: AOAM530jSSb9U/Sem/5kypU34N9wE3ctHMeU7CpAUeErZFQDUeNb5gpz
+        A0ukqm+67b9Mv6NLJeopR5/lNJti2efvCldq
+X-Google-Smtp-Source: ABdhPJx/ZTFqNdbwMrPPQXGb4a5AARaWdvmncwYK2q1w7//JoVyn/n68+kesxeF+gvUR8rMoynCXCw==
+X-Received: by 2002:adf:ef06:: with SMTP id e6mr6917001wro.231.1610618595259;
+        Thu, 14 Jan 2021 02:03:15 -0800 (PST)
 Received: from dell ([91.110.221.178])
-        by smtp.gmail.com with ESMTPSA id i18sm9012903wrp.74.2021.01.14.02.00.01
+        by smtp.gmail.com with ESMTPSA id b3sm2474771wrn.70.2021.01.14.02.03.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 02:00:02 -0800 (PST)
-Date:   Thu, 14 Jan 2021 10:00:00 +0000
+        Thu, 14 Jan 2021 02:03:14 -0800 (PST)
+Date:   Thu, 14 Jan 2021 10:03:12 +0000
 From:   Lee Jones <lee.jones@linaro.org>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "linux@roeck-us.net" <linux@roeck-us.net>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "geert@linux-m68k.org" <geert@linux-m68k.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH RESEND v6 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
-Message-ID: <20210114100000.GK3975472@dell>
-References: <cover.1605882179.git.matti.vaittinen@fi.rohmeurope.com>
- <cc46e329efa30c66f000ab7c97f9bbf0bc31f0f7.1605882179.git.matti.vaittinen@fi.rohmeurope.com>
- <20201127083242.GK2455276@dell>
- <6bd4abcb340bdf764fd23b685684d3f984319ed7.camel@fi.rohmeurope.com>
- <20201202125723.GK4801@dell>
- <3bab8bd8c69a878f849a07dd9ea35bfac2006da2.camel@fi.rohmeurope.com>
- <c2949e981014c049571df355501f2af65b3954de.camel@fi.rohmeurope.com>
- <8a6373aa33aa19d850d3802d6579e66b97c8d325.camel@fi.rohmeurope.com>
+To:     Alexander Dahl <post@lespocky.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Alexander Dahl <ada@thorsis.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, Jeff LaBundy <jeff@labundy.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Fix schema warnings for pwm-leds
+Message-ID: <20210114100312.GL3975472@dell>
+References: <20201228163217.32520-1-post@lespocky.de>
+ <20201228163217.32520-2-post@lespocky.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <8a6373aa33aa19d850d3802d6579e66b97c8d325.camel@fi.rohmeurope.com>
+In-Reply-To: <20201228163217.32520-2-post@lespocky.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Dec 2020, Vaittinen, Matti wrote:
+On Mon, 28 Dec 2020, Alexander Dahl wrote:
 
-> Hello Again peeps,
+> The node names for devices using the pwm-leds driver follow a certain
+> naming scheme (now).  Parent node name is not enforced, but recommended
+> by DT project.
 > 
-> On Thu, 2020-12-17 at 12:04 +0200, Matti Vaittinen wrote:
-> > On Wed, 2020-12-02 at 15:32 +0200, Matti Vaittinen wrote:
-> > > Hello Lee,
-> > > 
-> > > On Wed, 2020-12-02 at 12:57 +0000, Lee Jones wrote:
-> > > > On Fri, 27 Nov 2020, Vaittinen, Matti wrote:
-> > > > 
-> > > > > Hello Lee,
-> > > > > 
-> > > > > On Fri, 2020-11-27 at 08:32 +0000, Lee Jones wrote:
-> > > > > > On Mon, 23 Nov 2020, Matti Vaittinen wrote:
-> > > > > > 
-> > > > > > > Add core support for ROHM BD9576MUF and BD9573MUF PMICs
-> > > > > > > which
-> > > > > > > are
-> > > > > > > mainly used to power the R-Car series processors.
-> > > > > > > 
-> > > > > > > Signed-off-by: Matti Vaittinen <
-> > > > > > > matti.vaittinen@fi.rohmeurope.com>
-> > > > > > > ---
-> > > > > > >  drivers/mfd/Kconfig              |  11 ++++
-> > > > > > >  drivers/mfd/Makefile             |   1 +
-> > > > > > >  drivers/mfd/rohm-bd9576.c        | 108
-> > > > > > > +++++++++++++++++++++++++++++++
-> > > > > > >  include/linux/mfd/rohm-bd957x.h  |  59 +++++++++++++++++
-> > > > > > >  include/linux/mfd/rohm-generic.h |   2 +
-> > > > > > >  5 files changed, 181 insertions(+)
-> > > > > > >  create mode 100644 drivers/mfd/rohm-bd9576.c
-> > > > > > >  create mode 100644 include/linux/mfd/rohm-bd957x.h
-> > > > > > 
-> > > > > > Looks like a possible candidate for "simple-mfd-i2c".
-> > > > > > 
-> > > > > > Could you look into that please?
-> > > > > > 
-> > > > > I must admit I didn't know about "simple-mfd-i2c". Good thing
-> > > > > to
-> > > > > know
-> > > > > when working with simple devices :) Is this a new thing?
-> > > > 
-> > > > Yes, it's new.
-> > > > 
-> > > > > I am unsure I understand the idea fully. Should users put all
-> > > > > the
-> > > > > different regamp configs in this file and just add the device
-> > > > > IDs
-> > > > > with
-> > > > > pointer to correct config? (BD9576 and BD9573 need volatile
-> > > > > ranges).
-> > > > > Also, does this mean each sub-device should have own node and
-> > > > > own
-> > > > > compatible in DT to get correctly load and probed? I guess this
-> > > > > would
-> > > > > need a buy-in from Rob too then.
-> > > > 
-> > > > You should describe the H/W in DT.
-> > > 
-> > > Yes. And it is described. But I've occasionally received request
-> > > from
-> > > DT guys to add some properties directly to MFD node and not to add
-> > > own
-> > > sub-node. This is what is done for example with the BD71837/47
-> > > clocks
-> > > -
-> > > there is no own node for clk - the clk properties are placed
-> > > directly
-> > > in MFD node (as was requested by Stephen and Rob back then - I
-> > > originally had own node for clk). I really have no clear view on
-> > > when
-> > > things warrant for own subnode and when they don't - but as far as
-> > > I
-> > > can see using simple-mfd-i2c forces one to always have a sub-node /
-> > > device. Even just a empty node with nothing but the compatible even
-> > > if
-> > > device does not need stuff from DT? Anyways, I think this is nice
-> > > addition for simple drivers.
-> > > 
-> > > > > By the way - for uneducated eyes like mine this does not look
-> > > > > like
-> > > > > it
-> > > > > has much to do with MFD as a device - here MFD reminds me of a
-> > > > > simple-
-> > > > > bus on top of I2C.
-> > > > 
-> > > > This is for MFD devices where the parent does little more than
-> > > > create
-> > > > a shared address space for child devices to operate on - like
-> > > > yours.
-> > > > 
-> > > > > Anyways, the BD9576 and BD9573 both have a few interrupts for
-> > > > > OVD/UVD
-> > > > > conditions and I am expecting that I will be asked to provide
-> > > > > the
-> > > > > regulator notifiers for those. Reason why I omitted the IRQs
-> > > > > for
-> > > > > now is
-> > > > > that the HW is designed to keep the IRQ asserted for whole
-> > > > > error
-> > > > > duration so some delayed ack mechanism would be needed. I would
-> > > > > like to
-> > > > > keep the door open for adding IRQs to MFD core.
-> > > > 
-> > > > You mean to add an IRQ Domain?
-> > > 
-> > > Yes. I planned to use regmap-irq and create irq chip in MFD when
-> > > the
-> > > over / under voltage / temperature - notifications or watchdog IRQs
-> > > are
-> > > needed. 
-> > 
-> > I am sorry if I have missed your reply. The ROHM email had redirected
-> > almost all patch emails to spam + I am not sure if some mails are
-> > dropping :(
-> > 
-> > (I am considering moving to gmail - but I'd rather keep all mails in
-> > one system and I can't transfer work mail traffic to gmail... I
-> > wonder
-> > how others are managing the mails - which mail system you are using?)
-> > 
-> > I think this series is now pending the decision how to proceed with
-> > MFD
-> > part. If you still want me to start with "simple-mfd-i2c", then I
-> > would
-> > appreciate if you pointed me how you would like to see the regmap
-> > configs added. Although I am quite positive this (eventually) ends up
-> > being more than what simple-mfd-i2c is intended for (because at some
-> > point people want to add the use of the interrupts).
+>   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+>   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+>         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
 > 
-> Looking at this topic again. I kind of understand the idea of combining
-> bunch of MFD drivers into one file. Many of the ROHM PMIC MFD drivers
-> do provide same functionality. Regmap configs, regmap IRQ and MFD
-> cells. Some do also probe the device. So having own file for each IC is
-> likely to not scale well when more devices are supported (and I do hope
-> this will be the case also with the ROHM ICs).
+> Signed-off-by: Alexander Dahl <post@lespocky.de>
+> Acked-by: Jeff LaBundy <jeff@labundy.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
 > 
-> What bugs me with the simple-mfd-i2c here is:
-> 1. Requiring to have own compatibles for sub-devices (regulator and
-> WDG) to get them properly probed. (3 compatibles for 1 IC).
-> 2. Requiring to have own DT node for WDG.
-> 3. Supporting differences between BD9576 and BD9573 by having 6
-> compatibles for 2 ICs.
-> 4. Adding interrupt support.
-
-Linux sees each of these functions as separate devices which are
-handled in different ways by isolated subsystems.  So yes, they each
-require their own compatible string regardless of whether they share
-the same physical piece of silicon or not.
-
-> So ... How do you see adding BD9576/BD9573 MFD stuff in BD9571/(BD9574)
-> MFD driver? The data structures (regmap configs, MFD cells, regmap IRQ
-> portion when added) will be different but the functions and maybe
-> engineers looking at these may be common.
+> Notes:
+>     v8 -> v9:
+>       * added forgotten Acked-by (Jeff LaBundy)
+>       * rebased on v5.11-rc1
+>     
+>     v7 -> v8:
+>       * rebased on recent pavel/for-next (post v5.10-rc1)
+>       * added Acked-by (Rob Herring)
+>     
+>     v6 -> v7:
+>       * added warning message to commit message (Krzysztof Kozlowski)
+>     
+>     v6:
+>       * added this patch to series
 > 
-> Is it just plain confusing to add core structures for technically
-> different ICs in same file - or is it way to avoid duplicating same
-> code in many files? I can try adding the BD9576/BD9573 to the BD9571
-> core - or I can do resend this as is (rebased on 5.11). I can also hack
-> this to be kicked by simple-mfd-i2c (although I have these strong
-> objections) - but I bet it will in the long run just lead to a sub-
-> optimal solution. When the BD9576/BD9573 logic blocks are re-used in
-> some "non simple" designs and re-using the sub-drivers is needed and/or
-> when IRQs are needed.
-> 
-> (BTW - I am currently working with BD71815/BD71817 - and after this
-> discussion I will add these in BD71828/BD71878 MFD core. I had created
-> new MFD file for them but this discussion has been a nice kick to the
-> better direction for me)
+>  Documentation/devicetree/bindings/mfd/iqs62x.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 
-Everything will be a trade-off.
+Failed to apply:
 
-There will either be superflouous files or inflexible code.
-
-You have to make the right decision for the driver and the subsystem.
+Applying: dt-bindings: mfd: Fix schema warnings for pwm-leds
+Using index info to reconstruct a base tree...
+M	Documentation/devicetree/bindings/mfd/iqs62x.yaml
+/home/lee/projects/linux/kernel/.git/worktrees/mfd/rebase-apply/patch:34: indent with spaces.
+            led-1 {
+/home/lee/projects/linux/kernel/.git/worktrees/mfd/rebase-apply/patch:35: indent with spaces.
+                    label = "panel";
+warning: 2 lines add whitespace errors.
+Falling back to patching base and 3-way merge...
+Auto-merging Documentation/devicetree/bindings/mfd/iqs62x.yaml
+CONFLICT (content): Merge conflict in Documentation/devicetree/bindings/mfd/iqs62x.yaml
+Recorded preimage for 'Documentation/devicetree/bindings/mfd/iqs62x.yaml'
 
 -- 
 Lee Jones [李琼斯]
