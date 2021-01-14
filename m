@@ -2,105 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39B992F6A4C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A08ED2F6A86
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:10:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728900AbhANTAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 14:00:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38960 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726264AbhANTAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:00:45 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84982C061757;
-        Thu, 14 Jan 2021 11:00:05 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id g12so9749147ejf.8;
-        Thu, 14 Jan 2021 11:00:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=WxXi2MnOGxI5YShKcxudKHqn+/UocONefhZet/zCVLo=;
-        b=UepYyIAWz7xy1nXKq5atNUa2Qm+TftsQELDvxiZ5ZKg3wkOF2UnwM3VUcE3iKk+sao
-         qRlSSbXZDG6FdDcdxF0p+eeVKT2eO2Lqu9ornaQn/+dWSL6sYYsw9BybabV2MvFxuFVy
-         EdDD22RnAuXX7fJzhLcJGpWMJnry4xLWFkjgmcLmLe0ztz0CBLqiyecsdixWS8t8Tlvj
-         3X9tWg++SMQDewtRoPUSy/q0mWSAGjO/vFf/0IFrLfZgy8iFScN0WKyEzMbpkAVtOTIS
-         t0k+ngWObDgEBwhHbUsySqzqeBOKLpJqPh/13FHPfK3ddlhIs+Y+LaNtTly9Jzfx3Hca
-         TsaQ==
+        id S1726518AbhANTIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 14:08:14 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:40722 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726492AbhANTIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:08:14 -0500
+Received: by mail-ot1-f53.google.com with SMTP id j12so6196937ota.7;
+        Thu, 14 Jan 2021 11:07:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=WxXi2MnOGxI5YShKcxudKHqn+/UocONefhZet/zCVLo=;
-        b=BjVS2L92EhdNSv2PYWr3OukRKm4tWc22X9MoOpzsxumrswbYWe7/szNrhBi3kNqqVr
-         yfo494k5CVsIhi4IiM2TYXan8jy5cK7AIac+rYnA96i6Ju1ejnL0OgoAXfnKwyuDIBrv
-         o66cBJwXWmg1z91KeFLi9IdnEr2diWOCCv1p4FAHJ/DeLz3fdjpAnZHirrs+HtL7Ca40
-         XRpIKxW7Kqgw9KV8VX3YdZOKFQJujGgvY+GPxC1LFGLzHK8Ql1mmY267+hOpAg8gYDeC
-         4E70uhy/zHkSINx3gB2mEzydeklZYAAvK/DzJnIOJ+3955rkIhgdLBX5Av1p6zaacU3B
-         +BIg==
-X-Gm-Message-State: AOAM530S7Os6IwdKAGPL9D4N6r2XRtXNdS0AKtTzuqCUFq2J9DC8q87g
-        /6dl+prTs7Hd3v84d9MQ1Ko=
-X-Google-Smtp-Source: ABdhPJwdqEhWjoLT4FRVAHKXJUONfjo4T5q556X589F/6yrHtdr///kD7gdbJYS+TC7zRnmj28GM7Q==
-X-Received: by 2002:a17:906:494c:: with SMTP id f12mr2937693ejt.56.1610650803972;
-        Thu, 14 Jan 2021 11:00:03 -0800 (PST)
-Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
-        by smtp.gmail.com with ESMTPSA id m22sm2290181edp.81.2021.01.14.11.00.02
+         :mime-version:content-disposition:in-reply-to;
+        bh=mZwsgvKSWJZAJ4CH2N/UlUigQHip7rxk7Ry0cLMON8M=;
+        b=IcqL8uD0EaRUr4G9RV/R5EC1qEGDA4Z1Z0aX47caiSEQGER7sFOohi9H9x+Kng1YDo
+         Ioq3GcOWDFLL+/ZP2y+BgwRhotNWmNHoREAPNWJ7yksoiW3MlZjqcjFVXjG90aSlzmtY
+         aCJERUB/HWQQBBzPJmYdomsswDpkVKmJ/ObfCNAZS8VVmPYis1A6Ft6zQiqosPx1EiDq
+         UWrh8fWSudKqpORIZN+VnoQ8xd7TPwRO01OAc/kLv1fllLLW/nLKjnAzVD8qNterLTG2
+         MtgHzHsC4Au2TCn2NUVMCbwtO50MHT/xl9bRRM5FFpyQ8pmgy/g7W3z0SA4Du2XlR0W4
+         darg==
+X-Gm-Message-State: AOAM531PzftmyhqqFwa3NL+/plqBNeE+fOBQe0kOqPRRAYOvI8FNSkfy
+        dDToQt6sz2pTos/3DYCzaEEuGgU+6A==
+X-Google-Smtp-Source: ABdhPJw+9TEDn4HpbdJVryEihHOZfKukSA/Wmx3kcWOtdOpv2HTYrt7Zs+pKSXCPkEoTMAo+7MkJIg==
+X-Received: by 2002:a9d:f66:: with SMTP id 93mr5434307ott.289.1610651253224;
+        Thu, 14 Jan 2021 11:07:33 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g12sm1274999oos.8.2021.01.14.11.07.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 11:00:03 -0800 (PST)
-Date:   Thu, 14 Jan 2021 21:00:02 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     George McCollister <george.mccollister@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next v4 2/3] net: dsa: add Arrow SpeedChips XRS700x
- driver
-Message-ID: <20210114190002.eriqfc6yd6kg7w2v@skbuf>
-References: <20210113145922.92848-1-george.mccollister@gmail.com>
- <20210113145922.92848-3-george.mccollister@gmail.com>
- <20210114015659.33shdlfthywqdla7@skbuf>
- <CAFSKS=NU4hrnXB5FcAFvnFnmAtK5HfYR8dAKyw3cd=5UKOBNfg@mail.gmail.com>
- <20210114183243.4kse75ksw3u7h4uz@skbuf>
- <CAFSKS=NrdVSDEh5DWN+JOcZ5fycM1y_N5b8cxzZwQxm-hJbVHQ@mail.gmail.com>
+        Thu, 14 Jan 2021 11:07:31 -0800 (PST)
+Received: (nullmailer pid 3386229 invoked by uid 1000);
+        Thu, 14 Jan 2021 19:07:30 -0000
+Date:   Thu, 14 Jan 2021 13:07:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/9] clk: qcom: gcc-msm8998: Wire up gcc_mmss_gpll0 clock
+Message-ID: <20210114190730.GA3384844@robh.at.kernel.org>
+References: <20210109134617.146275-1-angelogioacchino.delregno@somainline.org>
+ <20210109134617.146275-2-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFSKS=NrdVSDEh5DWN+JOcZ5fycM1y_N5b8cxzZwQxm-hJbVHQ@mail.gmail.com>
+In-Reply-To: <20210109134617.146275-2-angelogioacchino.delregno@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 14, 2021 at 12:47:46PM -0600, George McCollister wrote:
-> On Thu, Jan 14, 2021 at 12:32 PM Vladimir Oltean <olteanv@gmail.com> wrote:
-> > > > May boil down to preference too, but I don't believe "dev" is a happy
-> > > > name to give to a driver private data structure.
-> > >
-> > > There are other drivers in the subsystem that do this. If there was a
-> > > consistent pattern followed in the subsystem I would have followed it.
-> > > Trust me I was a bit frustrated with home much time I spent going
-> > > through multiple drivers trying to determine the best practices for
-> > > organization, naming, etc.
-> > > If it's a big let me know and I'll change it.
-> >
-> > Funny that you are complaining about consistency in other drivers,
-> > because if I count correctly, out of a total of 22 occurrences of
-> > struct xrs700x variables in yours, 13 are named priv and 9 are named
-> > dev. So you are not even consistent with yourself. But it's not a major
-> > issue either way.
+On Sat, Jan 09, 2021 at 02:46:09PM +0100, AngeloGioacchino Del Regno wrote:
+> This clock enables the GPLL0 output to the multimedia subsystem
+> clock controller.
 > 
-> Touché. This ended up happening because I followed the pattern used by
-> different drivers in different places. Specifically ksz was using
-> regmap to work on multiple buses but wasn't a very clean example for
-> much else.
-> I'll just change it to priv everywhere.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> ---
+>  drivers/clk/qcom/gcc-msm8998.c               | 17 +++++++++++++++++
+>  include/dt-bindings/clock/qcom,gcc-msm8998.h |  1 +
 
-Don't worry, I know you copied from the micrel ksz driver, I made sure
-to complain there as well:
-https://lkml.org/lkml/2020/11/12/1344
+Please put all the dt header changes in their own patch.
 
-It's a pretty bad driver to copy from, by the way.
+>  2 files changed, 18 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/gcc-msm8998.c b/drivers/clk/qcom/gcc-msm8998.c
+> index 9d7016bcd680..d51c556851ca 100644
+> --- a/drivers/clk/qcom/gcc-msm8998.c
+> +++ b/drivers/clk/qcom/gcc-msm8998.c
+> @@ -1341,6 +1341,22 @@ static struct clk_branch gcc_boot_rom_ahb_clk = {
+>  	},
+>  };
+>  
+> +static struct clk_branch gcc_mmss_gpll0_clk = {
+> +	.halt_check = BRANCH_HALT_DELAY,
+> +	.clkr = {
+> +		.enable_reg = 0x5200c,
+> +		.enable_mask = BIT(1),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "gcc_mmss_gpll0_clk",
+> +			.parent_names = (const char *[]){
+> +				"gpll0_out_main",
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+> +
+>  static struct clk_branch gcc_mss_gpll0_div_clk_src = {
+>  	.halt_check = BRANCH_HALT_DELAY,
+>  	.clkr = {
+> @@ -2944,6 +2960,7 @@ static struct clk_regmap *gcc_msm8998_clocks[] = {
+>  	[GCC_MSS_GPLL0_DIV_CLK_SRC] = &gcc_mss_gpll0_div_clk_src.clkr,
+>  	[GCC_MSS_SNOC_AXI_CLK] = &gcc_mss_snoc_axi_clk.clkr,
+>  	[GCC_MSS_MNOC_BIMC_AXI_CLK] = &gcc_mss_mnoc_bimc_axi_clk.clkr,
+> +	[GCC_MMSS_GPLL0_CLK] = &gcc_mmss_gpll0_clk.clkr,
+>  };
+>  
+>  static struct gdsc *gcc_msm8998_gdscs[] = {
+> diff --git a/include/dt-bindings/clock/qcom,gcc-msm8998.h b/include/dt-bindings/clock/qcom,gcc-msm8998.h
+> index 6a73a174f049..47ca17df780b 100644
+> --- a/include/dt-bindings/clock/qcom,gcc-msm8998.h
+> +++ b/include/dt-bindings/clock/qcom,gcc-msm8998.h
+> @@ -184,6 +184,7 @@
+>  #define GCC_MSS_MNOC_BIMC_AXI_CLK				175
+>  #define GCC_BIMC_GFX_CLK					176
+>  #define UFS_UNIPRO_CORE_CLK_SRC					177
+> +#define GCC_MMSS_GPLL0_CLK					178
+>  
+>  #define PCIE_0_GDSC						0
+>  #define UFS_GDSC						1
+> -- 
+> 2.29.2
+> 
