@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A91102F6058
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:39:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8589F2F6051
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:39:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729117AbhANLiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 06:38:15 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:38493 "EHLO
+        id S1729109AbhANLiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 06:38:07 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:54367 "EHLO
         wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726259AbhANLhk (ORCPT
+        by vger.kernel.org with ESMTP id S1729079AbhANLiF (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 06:37:40 -0500
+        Thu, 14 Jan 2021 06:38:05 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 8908415F9;
-        Thu, 14 Jan 2021 06:36:05 -0500 (EST)
+        by mailout.west.internal (Postfix) with ESMTP id F2EBE161D;
+        Thu, 14 Jan 2021 06:36:06 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:36:06 -0500
+  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:36:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=Ug7edZVw2un8S
-        a6iJImclDs/FAlC+jEIVLVhExbqMgs=; b=d6QbZHyrMq5zWdeZj1RVmvX3Jo8Hx
-        7hdNh9NDYMcEiwDs/t94nBFx19nn8ojZbanYVE5Cahc4KrqxXjC4KCbPFAfu7A1e
-        OBdSQGyhUbnd5RraXSkXmV8xV117CKJ6tBYMSoK5X7VyXjkskCv1VSp66QYMRiYF
-        4GDtr7hWabncMRYw9TxtYAdM79KKpaPHsgbkXd6/PM2HhbOWU0R4rSUFFNThYpXW
-        v7GqRZoyi7QNjbSYHEjiocA2mDG3DOwdNQzvQ2b0WPn6MnjypzfBj6+B9l8YVJ2p
-        2FYHZTLfa0UxJ8DktVuFX2f1ETYsDMZrobkppgfqSkwJICem+ViGH9F2Q==
+        :mime-version:content-transfer-encoding; s=fm1; bh=D9byKSox2zPwP
+        +6D2GfN0TVe2WfZ3MYcth3r2FoYFnI=; b=uqYpI+P8UwZaYqXngi25FBkXrMeq5
+        JIu/6mY4A4YqeC6cWDw1eKOa7CaTWSUBZ17CyseQHa3oBNtMectIsh14EY+aSqBj
+        hMFRp5ZyKgINko391orFgORFlapr7zTNvJfDN6I5TC0rQn3pKg8DcFdKa52N0wm4
+        eldKqjChUel4cn/jZ9Sx56MTalzW4OsAbRRfLMSajdKeKfoysSjuK7oFArt/vjcb
+        54rqF7+ifA8wpvisEdnk1J5q5SuwAo1Ue42LR7ll5JmgukKGJtfrSgeSqpQ9VB7E
+        19hs2oj/RsdkL5L6prYMB3/u9MEgV7PzffzxXxlMG5Uwnai0wzmHGL8Fw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=Ug7edZVw2un8Sa6iJImclDs/FAlC+jEIVLVhExbqMgs=; b=akO4u5ou
-        t2CpMD5tBNKA0LAbXCGFVtr/ViHFaGW7/amini94pvvT+MxbNYCPLOHXQR2MAWxu
-        XheOsWvMdZOCGbJ72GguZRKU/CMnP54LKr3qi2calb6ONb/ZpWq029FQxgXPqy0M
-        0KOe4uVUsQ02yXCZunUW8vHZVtDQkcnkW90Sda47MkvFQTMuqaHJadEcQjmRTKOL
-        bDRV299QxgXjYBr1LwrtY4/GwXfTQ0ahchVTygs/tlXCWbdU2QT7Ganikse4jrp+
-        yYdBsIxaqObXwyilcTFJFFQszbUHuVQ9UBQfXV6od7QR55fxi8m/Uub0koAn8EiU
-        1nRVGey7opeGSg==
-X-ME-Sender: <xms:pCwAYDnb4AZCcnxm8vQ0qyOvkSte7bO7ppy_u_pOKIfhXdO1CqnieA>
-    <xme:pCwAYG2pNMFDVk0jpvug7CPtawjzGj3C26Zo3y1VCTu1gaEliYS3UC9wTL5dDwS8W
-    wMoGbMzhmsIr36PTIc>
+        fm1; bh=D9byKSox2zPwP+6D2GfN0TVe2WfZ3MYcth3r2FoYFnI=; b=JLBmihtG
+        B8n5bqXg3h+alEVyZcQagdL+4hUKJCzMLLkTA2Xvmz1V12TjOmU3f+ELJ/cYz2NV
+        87xmFWXjFbKv6ig+/iDAkcjCnrj1baEtMcex3Y0jc+x4r+Yb0eqDHc4bOahjGgY0
+        mtpa6C9W9efD8vPJ0qgEkdRqWmfhlsEY4YQCOm4l3dZLKQrToiRIKCiYjfs7ak7o
+        6Hty9dUhsY44ClCz+EeEE1ySHMz5s7DJ3lfAX5Zp+Z3cOdOhhnOTCANQ/uVg1Efh
+        o7Ks0yBGcJNzd1+Z50P2IgXs99oXjDzWQVnjNnFZM/jlWg2jYHT4s6MH8deka02z
+        gbH+HwVIB2hCpg==
+X-ME-Sender: <xms:piwAYH3x0pkjR0wNuR6T2iJwC8spUiAtE8c1AGKOwyIDrqAFj953Hg>
+    <xme:piwAYGE8-VA-vQveb1lQQXEv1CsKuyO4-0TjJJJch7_E9xigquiLj2oOZNk_XrAs3
+    1Y0qVx2ADJirJUArS8>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -48,13 +48,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdote
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
     vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedutdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:pSwAYJppgEFbpVzAB1E0h7rIQah1HbbvswegAijCGD3eHjuVgoEjcw>
-    <xmx:pSwAYLm-aG3GkmIlBQT7dQaMmsOji7jNfG-ujUhIuAKNsyfRj7JvGg>
-    <xmx:pSwAYB0vwy1nu-JcQuY4aX-AGS5tAgS3LbpCKQSGAAJlu1zJpwNFXQ>
-    <xmx:pSwAYMTFE4GhYmYdHbOsElVeX0559lNY-EBtoLaLzrcbf__zMUMxnA>
+X-ME-Proxy: <xmx:piwAYH4zKiVJRgv3qMLItiB5aF6DpBuqnQeqxBJnpF8rvs8AzFT0IQ>
+    <xmx:piwAYM2MRr7eFgD1uriEECPh_YFYffa89d6u0QmM1NG5zpItioU2FQ>
+    <xmx:piwAYKHlyTXwOPs5CcxkDThti6IeHfr6Njpz6nAyi_xpIhStQs1Wpg>
+    <xmx:piwAYGiqfBJgDu1glUFjOMg0qZa90lD394cBP4bBC-QMCE1VRM1bPA>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id B88E5108005B;
-        Thu, 14 Jan 2021 06:36:04 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 3188F1080057;
+        Thu, 14 Jan 2021 06:36:06 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -62,9 +62,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 16/19] arm64: dts: allwinner: h6: Use - instead of @ for DT OPP entries
-Date:   Thu, 14 Jan 2021 12:35:35 +0100
-Message-Id: <20210114113538.1233933-16-maxime@cerno.tech>
+Subject: [PATCH 17/19] arm64: dts: allwinner: pinephone: Remove useless light sensor supplies
+Date:   Thu, 14 Jan 2021 12:35:36 +0100
+Message-Id: <20210114113538.1233933-17-maxime@cerno.tech>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210114113538.1233933-1-maxime@cerno.tech>
 References: <20210114113538.1233933-1-maxime@cerno.tech>
@@ -74,111 +74,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DTC and the dt-validate tools report warnings for opp with the format
-opp@$frequency: dtc for a missing reg property, and dt-validate since
-the binding requires child nodes to have the format opp-$frequency.
-
-Change this to the latter format.
+The stk3311 binding don't expect a vdd or leda power supplies. Remove
+them.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
-index 1a5eddc5a40f..8c6e8536b69f 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
-@@ -8,7 +8,7 @@ cpu_opp_table: cpu-opp-table {
- 		nvmem-cells = <&cpu_speed_grade>;
- 		opp-shared;
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+index bbc26abb1e10..9f69d489a81d 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+@@ -183,8 +183,6 @@ light-sensor@48 {
+ 		reg = <0x48>;
+ 		interrupt-parent = <&pio>;
+ 		interrupts = <1 0 IRQ_TYPE_EDGE_FALLING>; /* PB0 */
+-		vdd-supply = <&reg_ldo_io0>;
+-		leda-supply = <&reg_dldo1>;
+ 	};
  
--		opp@480000000 {
-+		opp-480000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <480000000>;
- 
-@@ -17,7 +17,7 @@ opp@480000000 {
- 			opp-microvolt-speed2 = <820000 820000 1200000>;
- 		};
- 
--		opp@720000000 {
-+		opp-720000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <720000000>;
- 
-@@ -26,7 +26,7 @@ opp@720000000 {
- 			opp-microvolt-speed2 = <820000 820000 1200000>;
- 		};
- 
--		opp@816000000 {
-+		opp-816000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <816000000>;
- 
-@@ -35,7 +35,7 @@ opp@816000000 {
- 			opp-microvolt-speed2 = <820000 820000 1200000>;
- 		};
- 
--		opp@888000000 {
-+		opp-888000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <888000000>;
- 
-@@ -44,7 +44,7 @@ opp@888000000 {
- 			opp-microvolt-speed2 = <820000 820000 1200000>;
- 		};
- 
--		opp@1080000000 {
-+		opp-1080000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <1080000000>;
- 
-@@ -53,7 +53,7 @@ opp@1080000000 {
- 			opp-microvolt-speed2 = <880000 880000 1200000>;
- 		};
- 
--		opp@1320000000 {
-+		opp-1320000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <1320000000>;
- 
-@@ -62,7 +62,7 @@ opp@1320000000 {
- 			opp-microvolt-speed2 = <940000 940000 1200000>;
- 		};
- 
--		opp@1488000000 {
-+		opp-1488000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <1488000000>;
- 
-@@ -71,7 +71,7 @@ opp@1488000000 {
- 			opp-microvolt-speed2 = <1000000 1000000 1200000>;
- 		};
- 
--		opp@1608000000 {
-+		opp-1608000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <1608000000>;
- 
-@@ -80,7 +80,7 @@ opp@1608000000 {
- 			opp-microvolt-speed2 = <1030000 1030000 1200000>;
- 		};
- 
--		opp@1704000000 {
-+		opp-1704000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <1704000000>;
- 
-@@ -89,7 +89,7 @@ opp@1704000000 {
- 			opp-microvolt-speed2 = <1060000 1060000 1200000>;
- 		};
- 
--		opp@1800000000 {
-+		opp-1800000000 {
- 			clock-latency-ns = <244144>; /* 8 32k periods */
- 			opp-hz = /bits/ 64 <1800000000>;
- 
+ 	/* Accelerometer/gyroscope */
 -- 
 2.29.2
 
