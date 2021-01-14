@@ -2,123 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DA142F6AC2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5132F2F6AED
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:29:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728377AbhANTTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 14:19:45 -0500
-Received: from relay06.th.seeweb.it ([5.144.164.167]:46179 "EHLO
-        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727956AbhANTTp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:19:45 -0500
-Received: from [192.168.1.101] (abaf224.neoplus.adsl.tpnet.pl [83.6.169.224])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 555BE3EB7A;
-        Thu, 14 Jan 2021 20:19:02 +0100 (CET)
-Subject: Re: [PATCH v3 1/2] arm64: dts: sdm845: add oneplus6/6t devices
-To:     Caleb Connolly <caleb@connolly.tech>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210114185227.25265-1-caleb@connolly.tech>
- <20210114185227.25265-2-caleb@connolly.tech>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <17d49d19-7672-520c-12d3-c6ed8c12ae47@somainline.org>
-Date:   Thu, 14 Jan 2021 20:19:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1727205AbhANT2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 14:28:15 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:45417 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726874AbhANT2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:28:15 -0500
+Received: by mail-ot1-f53.google.com with SMTP id n42so6227982ota.12;
+        Thu, 14 Jan 2021 11:27:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VEeqdZkDifn0VyJEJKrWR4ztWRK6vfNBUVg/0z1SB/E=;
+        b=gjx4xyDZJHjp5pQEKM4eIrncsn8uhTrQOeOPtYGuIkyutl0GMpb1uJpoDbjJY9CIze
+         dQc0w60jQrt5uk2cmzZ2ktI33gGMeG0Qxf8Nv6M3BNwf4x5C5nTHUImXYq9u1p0tgWJe
+         Waz3/gpmhQALZaIa+k3wm+AaMkASJFGK9GRQuJQqX77B+31u9oTc78m2RR41dz+286Ec
+         /rJjszFOBdCf5X9dAKVsriNn+oFSdrAJhPCKbfk4O0NPfsI7WREei3qEtGewqnL/coVq
+         CwoTmZlDf2tlO+WFrF1UA08uddQ0lBIkjWVRSzMuo7QsWTSgasHMumWX9W5IJBBBCiKZ
+         Cz4A==
+X-Gm-Message-State: AOAM531EQudWYGA+zIjlbCKV+Coe+V9JWCTLfscQjVcDNwOfUlEiFKPP
+        uAdGbM96H0hK0DD2X+RFXg==
+X-Google-Smtp-Source: ABdhPJyYwiGGmezeN+wyEHvNPOPyKigxB7dYEfZtRaxnNgEofQKzxycwX+PBMxfL7z5b0J6I8OHScA==
+X-Received: by 2002:a05:6830:19da:: with SMTP id p26mr5479965otp.80.1610652454370;
+        Thu, 14 Jan 2021 11:27:34 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z189sm1222803oia.28.2021.01.14.11.27.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 11:27:33 -0800 (PST)
+Received: (nullmailer pid 3425359 invoked by uid 1000);
+        Thu, 14 Jan 2021 19:27:32 -0000
+Date:   Thu, 14 Jan 2021 13:27:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com, Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v6 06/33] of/device: Move dma_range_map before
+ of_iommu_configure
+Message-ID: <20210114192732.GA3401278@robh.at.kernel.org>
+References: <20210111111914.22211-1-yong.wu@mediatek.com>
+ <20210111111914.22211-7-yong.wu@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <20210114185227.25265-2-caleb@connolly.tech>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210111111914.22211-7-yong.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+On Mon, Jan 11, 2021 at 07:18:47PM +0800, Yong Wu wrote:
+> "dev->dma_range_map" contains the devices' dma_ranges information,
+> This patch moves dma_range_map before of_iommu_configure. The iommu
+> driver may need to know the dma_address requirements of its iommu
+> consumer devices.
+> 
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Frank Rowand <frowand.list@gmail.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/of/device.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index aedfaaafd3e7..1d84636149df 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -170,9 +170,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>  	dev_dbg(dev, "device is%sdma coherent\n",
+>  		coherent ? " " : " not ");
+>  
+> +	dev->dma_range_map = map;
+>  	iommu = of_iommu_configure(dev, np, id);
+>  	if (PTR_ERR(iommu) == -EPROBE_DEFER) {
+>  		kfree(map);
+> +		dev->dma_range_map = NULL;
 
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-enchilada.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-fajita.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+Not really going to matter, but you should probably clear dma_range_map 
+before what it points to is freed.
 
-Please sort.
+With that,
 
-> +/ {
-> +
-Redundant newline.
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		label = "Volume keys";
-> +		autorepeat;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&volume_down_gpio &volume_up_gpio>;
-> +
-> +		vol-down {
-> +			label = "Volume down";
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +			gpios = <&pm8998_gpio 5 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +		};
-> +
-> +		vol-up {
-> +			label = "Volume up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +		};
-> +	};
-Perhaps gpio-keys could come before the fixed regulators to keep it a bit more sane/sorted?
-> +&adsp_pas {
-This should come before apps_rsc alphabetically.
-> +// Prevent garbage data on bluetooth UART lines
-Please use C-style comments (/* thing */).
-> +&usb_1 {
-> +	status = "okay";
-> +
-> +	/*
-> +	 * disable USB3 clock requirement as the device only supports
-> +	 * USB2.
-> +	 */
-> +	qcom,select-utmi-as-pipe-clk;
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	/*
-> +	 * We don't have the capability to switch modes yet.
-> +	 */
-> +	dr_mode = "peripheral";
-> +
-> +	/* fastest mode for USB 2 */
-> +	maximum-speed = "high-speed";
-> +
-> +	/* Remove USB3 phy as it's unused on this device. */
-> +	phys = <&usb_1_hsphy>;
-> +	phy-names = "usb2-phy";
-> +};
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Are you sure you can't get USB3 in host mode? Perhaps it's not worth discarding it upfront, as some boards can do that, definitely do check!
-
-> \ No newline at end of file
-
-Please add a newline.
-
-
-The DTS files look correct, but don't you need at least one of msm-id, board-id, pmic-id? I'm not exactly sure what OnePlus does, but I can imagine they would require such properties..
-
-
-Konrad
-
+>  		return -EPROBE_DEFER;
+>  	}
+>  
+> @@ -181,7 +183,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>  
+>  	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+>  
+> -	dev->dma_range_map = map;
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(of_dma_configure_id);
+> -- 
+> 2.18.0
+> 
