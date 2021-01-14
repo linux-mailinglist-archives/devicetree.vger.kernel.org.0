@@ -2,101 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7222F5E8D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BF082F5E95
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726283AbhANKSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 05:18:11 -0500
-Received: from foss.arm.com ([217.140.110.172]:47166 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726518AbhANKSE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 05:18:04 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 917731FB;
-        Thu, 14 Jan 2021 02:17:19 -0800 (PST)
-Received: from [10.57.56.97] (unknown [10.57.56.97])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9ED2E3F70D;
-        Thu, 14 Jan 2021 02:17:17 -0800 (PST)
-Subject: Re: [PATCH V2 11/11] dts: bindings: Document device tree bindings for
- Arm TRBE
-To:     Rob Herring <robh@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>
-Cc:     mathieu.poirier@linaro.org, coresight@lists.linaro.org,
-        Linu Cherian <lcherian@marvell.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        mike.leach@linaro.org, devicetree@vger.kernel.org
-References: <1610511498-4058-1-git-send-email-anshuman.khandual@arm.com>
- <1610511498-4058-12-git-send-email-anshuman.khandual@arm.com>
- <1610552704.268262.2506183.nullmailer@robh.at.kernel.org>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-Message-ID: <b35f87bf-554f-444c-8b8e-9d62cf12d8f7@arm.com>
-Date:   Thu, 14 Jan 2021 10:17:08 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1728294AbhANKUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 05:20:55 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:22072 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728536AbhANKUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 05:20:54 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10EAGtID027251;
+        Thu, 14 Jan 2021 11:20:00 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=uRMtnaR4nE3tG37P3bZ8OgCpL4zhPMq+PIk8rSGnLv4=;
+ b=EflVwLSqpcVEBNdMVtazs0PYctOw+4RxXuYyNyPMPkipOPlGvll051525PXwM6TQfkkn
+ Y2D3qaMNcpw/OullNs0z3hb5r9rTlbNVYo96Ax46mXT0/L294Jbh1BBETR/V9ncrcbm6
+ r6HAaOLFLsNww7D4Vk2l6UO+M2jLSf+HY6gDk5TFu+UokLC6fqe64HNtp7cBLseKB8lv
+ 1VfOnMS44MJieiBirl1ZVTEBF2/fFvjD/5cSXgi76sQsfcUzVhwJDbQ0qfRLUZg/VkF3
+ BMwqmGjqgnl6qPebB1/PDMzvxo6CwEu4qN1tL0t+b3MfUAZDyWM4gGdqLpTQ7BO4neNn mQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 35yp3y1p90-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 14 Jan 2021 11:20:00 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 244DA10002A;
+        Thu, 14 Jan 2021 11:19:59 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0F6F322E763;
+        Thu, 14 Jan 2021 11:19:59 +0100 (CET)
+Received: from localhost (10.75.127.47) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 14 Jan 2021 11:19:58
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH 0/2] STM32 USBPHYC ck_usbo_48m clock provider
+Date:   Thu, 14 Jan 2021 11:19:47 +0100
+Message-ID: <20210114101949.23859-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <1610552704.268262.2506183.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-14_03:2021-01-13,2021-01-14 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
+STM32 USBPHYC provides clocks to STM32 RCC pour STM32 USB controllers.
+Specifically, ck_usbo_48m is a possible clock parent for USB OTG clock,
+during OTG Full-Speed operation.
 
-On 1/13/21 3:45 PM, Rob Herring wrote:
-> On Wed, 13 Jan 2021 09:48:18 +0530, Anshuman Khandual wrote:
->> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>
->> Document the device tree bindings for Trace Buffer Extension (TRBE).
->>
->> Cc: Anshuman Khandual <anshuman.khandual@arm.com>
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->> ---
->>   Documentation/devicetree/bindings/arm/trbe.yaml | 46 +++++++++++++++++++++++++
->>   1 file changed, 46 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/arm/trbe.yaml
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/arm/trbe.yaml:39:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
-> 
-> dtschema/dtc warnings/errors:
+This series registers the usbphyc as clock provider of this ck_usbo_48m clock.
 
-Thanks for that. I guess Anshuman can fix this up, with the following patch:
+Amelie Delaunay (2):
+  dt-bindings: phy: phy-stm32-usbphyc: add #clock-cells required
+    property
+  phy: stm32: register usbphyc as clock provider of ck_usbo_48m clock
 
-diff --git a/Documentation/devicetree/bindings/arm/trbe.yaml 
-b/Documentation/devicetree/bindings/arm/trbe.yaml
-index 2258595c40dd..24951e02fa58 100644
---- a/Documentation/devicetree/bindings/arm/trbe.yaml
-+++ b/Documentation/devicetree/bindings/arm/trbe.yaml
-@@ -36,7 +36,7 @@ additionalProperties: false
+ .../bindings/phy/phy-stm32-usbphyc.yaml       |  6 ++
+ drivers/phy/st/phy-stm32-usbphyc.c            | 66 +++++++++++++++++++
+ 2 files changed, 72 insertions(+)
 
-  examples:
+-- 
+2.17.1
 
-- - |
-+  - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-
-     trbe {
-
-> 
-> See https://patchwork.ozlabs.org/patch/1425605
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-
-I did see the warning, but I thought I fixed it. Sorry about that.
-
-Cheers
-Suzuki
