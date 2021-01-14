@@ -2,100 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D5852F68F9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 19:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E8992F692F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 19:16:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726730AbhANSGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 13:06:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55380 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729516AbhANSGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 13:06:20 -0500
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1F8C0613C1
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 10:05:25 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 8A9441F531;
-        Thu, 14 Jan 2021 19:05:23 +0100 (CET)
-Subject: Re: [PATCH v2 3/3] dt-bindings: i2c: qcom,i2c-qup: Document noise
- rejection properties
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-i2c@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20210114174909.399284-1-angelogioacchino.delregno@somainline.org>
- <20210114174909.399284-4-angelogioacchino.delregno@somainline.org>
- <YACGU7Di1RnD9nYL@builder.lan>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <80ecc187-9694-9be9-a910-e03366968e0a@somainline.org>
-Date:   Thu, 14 Jan 2021 19:05:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1726121AbhANSNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 13:13:37 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:41122 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726066AbhANSNg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 13:13:36 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1l0773-000bdx-Ad; Thu, 14 Jan 2021 19:12:49 +0100
+Date:   Thu, 14 Jan 2021 19:12:49 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     George McCollister <george.mccollister@gmail.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v4 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <YACJobqwDavtg25C@lunn.ch>
+References: <20210113145922.92848-1-george.mccollister@gmail.com>
+ <20210113145922.92848-3-george.mccollister@gmail.com>
+ <20210114015659.33shdlfthywqdla7@skbuf>
+ <CAFSKS=NU4hrnXB5FcAFvnFnmAtK5HfYR8dAKyw3cd=5UKOBNfg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YACGU7Di1RnD9nYL@builder.lan>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFSKS=NU4hrnXB5FcAFvnFnmAtK5HfYR8dAKyw3cd=5UKOBNfg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/01/21 18:58, Bjorn Andersson ha scritto:
-> On Thu 14 Jan 11:49 CST 2021, AngeloGioacchino Del Regno wrote:
+> > > +static int xrs700x_detect(struct xrs700x *dev)
+> > > +{
+> > > +     const struct xrs700x_info *info;
+> > > +     unsigned int id;
+> > > +     int ret;
+> > > +
+> > > +     ret = regmap_read(dev->regmap, XRS_DEV_ID0, &id);
+> > > +     if (ret) {
+> > > +             dev_err(dev->dev, "error %d while reading switch id.\n",
+> > > +                     ret);
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > +     info = of_device_get_match_data(dev->dev);
+> > > +     if (!info)
+> > > +             return -EINVAL;
+> > > +
+> > > +     if (info->id == id) {
+> > > +             dev->ds->num_ports = info->num_ports;
+> > > +             dev_info(dev->dev, "%s detected.\n", info->name);
+> > > +             return 0;
+> > > +     }
+> > > +
+> > > +     dev_err(dev->dev, "expected switch id 0x%x but found 0x%x.\n",
+> > > +             info->id, id);
+> >
+> > I've been there too, not the smartest of decisions in the long run. See
+> > commit 0b0e299720bb ("net: dsa: sja1105: use detected device id instead
+> > of DT one on mismatch") if you want a sneak preview of how this is going
+> > to feel two years from now. If you can detect the device id you're
+> > probably better off with a single compatible string.
 > 
->> Document the new noise rejection properties "qcom,noise-reject-sda"
->> and "qcom,noise-reject-scl".
->>
+> Previously Andrew said:
+> "Either you need to verify the compatible from day one so it is not
+> wrong, or you just use a single compatible "arrow,xrs700x", which
+> cannot be wrong."
 > 
-> I presume these are unit-less levels?
+> I did it the first way he suggested, if you would have replied at that
+> time to use a single that's the way I would have done it that way.
 > 
-> 
-Yes, there is no unit.
+> If you two can agree I should change it to a single string I'd be
+> happy to do so.
 
-Sorry, I've sent v3 before seeing your R-b on this.
+I'm happy both ways. Marvell uses just on compatible, and has worked
+fine. Other drivers have specific compatible strings, and enforce the
+match, and that has also worked fine.
 
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> Regards,
-> Bjorn
-> 
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> ---
->>   .../devicetree/bindings/i2c/qcom,i2c-qup.yaml      | 14 ++++++++++++++
->>   1 file changed, 14 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
->> index c5c7db3ac2a6..3f14dd65c6b9 100644
->> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
->> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
->> @@ -58,6 +58,20 @@ properties:
->>     '#size-cells':
->>       const: 0
->>   
->> +  qcom,noise-reject-sda:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: Noise rejection level for the SDA line.
->> +    minimum: 0
->> +    maximum: 3
->> +    default: 0
->> +
->> +  qcom,noise-reject-scl:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: Noise rejection level for the SCL line.
->> +    minimum: 0
->> +    maximum: 3
->> +    default: 0
->> +
->>   required:
->>     - compatible
->>     - clocks
->> -- 
->> 2.29.2
->>
+So it is really up to you.
 
+   Andrew
