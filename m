@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A03A42F6BF6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:22:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 320F62F6BF9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:22:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726573AbhANURr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 15:17:47 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:45605 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726382AbhANURr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 15:17:47 -0500
-Received: by mail-ot1-f45.google.com with SMTP id n42so6371153ota.12;
-        Thu, 14 Jan 2021 12:17:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mGHLGcG+fywDOIWv6535mLboQsZK9zujR6OLm58YUu4=;
-        b=PuwE6T2B0sWUfwE20m25f+m7KEdmYek23P1PBxnQ18wbqMkf7KB3j7FNvCHp0e8/9S
-         gnu7fE5IOqg2PbioHhgSvffiINuDEG1vV0pfcI54GfEsF+i2hiNq4hrTj2OKMyqi4W42
-         QleaUtRMULKK/GSWIYwFImjWJsSPsPFiPMREPq1I6GrgKsUzYmaEQQXfkqGnhCbCVJKB
-         FhbxWPi0P2f5clg+yaIJmxvooF2OwPf63Yos1XPieKoqiTYodiNcrpyidyHEeiN5Pes1
-         rX7gLkc4gdXi38bGVnRF3TqPnH5m82d/5/V4+096/cTnf3Dr/h6iT/xpxuy+w0gi0fkE
-         fdCQ==
-X-Gm-Message-State: AOAM533qdNzxqxiP4war/hc2JmU37xNGjtCFnU4YD8RlPju5wEALVXjv
-        ZdA0Ni8XqhlE7Sq9QQPio5cJYctu7g==
-X-Google-Smtp-Source: ABdhPJzFZXNmojmUssMedbd8EPqAAmbYxFcQvkQmHlvqQoYzfUWnSx7dHUxGCKL7+HvmlQe2loxIlw==
-X-Received: by 2002:a05:6830:118b:: with SMTP id u11mr5807949otq.130.1610655426475;
-        Thu, 14 Jan 2021 12:17:06 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k3sm1278096oof.31.2021.01.14.12.17.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 12:17:05 -0800 (PST)
-Received: (nullmailer pid 3520269 invoked by uid 1000);
-        Thu, 14 Jan 2021 20:17:04 -0000
-Date:   Thu, 14 Jan 2021 14:17:04 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     tim.gover@raspberrypi.com, srinivas.kandagatla@linaro.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, phil@raspberrypi.com,
-        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux@armlinux.org.uk, devicetree@vger.kernel.org,
-        catalin.marinas@arm.com, will@kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: nvmem: Add bindings for rmem driver
-Message-ID: <20210114201704.GA3520207@robh.at.kernel.org>
-References: <20210112142342.7290-1-nsaenzjulienne@suse.de>
- <20210112142342.7290-2-nsaenzjulienne@suse.de>
+        id S1726013AbhANUV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 15:21:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39232 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725995AbhANUV3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 15:21:29 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0188B23A57;
+        Thu, 14 Jan 2021 20:20:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610655648;
+        bh=OeS6t5/ij95xKwcEsB+fKixUHBBG+IQfwdzS+DDkg90=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=VjL8bxWbWFbjWWd8YDqy2XEV3mNuJAI46u5QHVCmbVxjpjAim1nSp1y6QBOlPYwbM
+         R/bjsn6TMlWYJuYcBKt/1j8q9xg427T9o93uXfr/gtfjVQ3zkn5z+BoxLQsS8kHW3l
+         6VQusQgK0cXzKDb3M27jhPQtZREs3PL9NV65Fr3x/OaMhC0WmTp7KbGxQ2MZrOS7Uh
+         klX5s8aVrtO8RubUYNfWe99VDdqKAxfnciKZVChW5hXAgeKPDRkkq+syajU/pc8ab9
+         ep9xKfk0wEgDrzuPEl3A2fhctPbTqn7GrBQVtJB2LdgV4Orq3u+qTZfD4tmksLZVOc
+         3TO+GzAZh2k5Q==
+Received: by mail-ed1-f53.google.com with SMTP id b2so7126193edm.3;
+        Thu, 14 Jan 2021 12:20:47 -0800 (PST)
+X-Gm-Message-State: AOAM533+HFw99moZGN5JQJ9KUd7/reqmuXGeuLhcL+gOrVTKGNT8gOHi
+        ufcNcGUzCu+UWpoaqB+VHqmt/DIZb9MBuFH4Ig==
+X-Google-Smtp-Source: ABdhPJzfWIS4FKxHuDGQAHwI9ZRMPwIT7WkHqx5GxMCULXVuYAK1shAq5TcsuRZfYIo+Owg1y0tuvijW+4RMn/Yk0EQ=
+X-Received: by 2002:aa7:d154:: with SMTP id r20mr7331879edo.258.1610655646544;
+ Thu, 14 Jan 2021 12:20:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210112142342.7290-2-nsaenzjulienne@suse.de>
+References: <20201119161956.756455-1-jacopo@jmondi.org> <20201119161956.756455-2-jacopo@jmondi.org>
+ <20201125091526.GI3940@paasikivi.fi.intel.com> <CAL_JsqLfdGumeicqqhkfn5K40GaXX93NuNZTOpgcCLycHmVQbg@mail.gmail.com>
+ <20201222095025.GS26370@paasikivi.fi.intel.com>
+In-Reply-To: <20201222095025.GS26370@paasikivi.fi.intel.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 14 Jan 2021 14:20:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL6e3Ko=gwPZj6SeFHofiebeR3-HzsEHcNiXrabruJtLA@mail.gmail.com>
+Message-ID: <CAL_JsqL6e3Ko=gwPZj6SeFHofiebeR3-HzsEHcNiXrabruJtLA@mail.gmail.com>
+Subject: Re: [PATCH v4 01/30] dt-bindings: media: i2c: Rename ov5647.yaml
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        roman.kovalivskyi@globallogic.com,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.org>,
+        naush@raspberrypi.com, Eugeniu Rosca <erosca@de.adit-jv.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Jan 2021 15:23:38 +0100, Nicolas Saenz Julienne wrote:
-> Firmware/co-processors might use reserved memory areas in order to pass
-> data stemming from an nvmem device otherwise non accessible to Linux.
-> For example an EEPROM memory only physically accessible to firmware, or
-> data only accessible early at boot time.
-> 
-> Introduce the dt-bindings to nvmem's rmem.
-> 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> 
-> ---
-> 
-> Changes since v2:
-> - Run yamllint and fix indentation issues
-> 
-> Changes since v1:
->  - Update schema to new driver design
-> 
->  .../devicetree/bindings/nvmem/rmem.yaml       | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/rmem.yaml
-> 
+On Tue, Dec 22, 2020 at 3:50 AM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Rob,
+>
+> On Mon, Dec 21, 2020 at 01:23:29PM -0700, Rob Herring wrote:
+> > On Wed, Nov 25, 2020 at 2:15 AM Sakari Ailus
+> > <sakari.ailus@linux.intel.com> wrote:
+> > >
+> > > Cc Rob + DT list.
+> >
+> > You have to resend if you really want me to see things. In this case,
+> > I don't think you need to wait on me for a rename.
+>
+> I merged the patch earlier based on the IRC discussion.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Seems this landed in -next:
+
+./Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml: $id:
+relative path/filename doesn't match actual path or filename
+expected: http://devicetree.org/schemas/media/i2c/ovti,ov5647.yaml#
+
+Rob
