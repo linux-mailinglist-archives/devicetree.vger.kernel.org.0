@@ -2,128 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED852F565A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 02:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 805D72F5647
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 02:57:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727719AbhANBqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 20:46:37 -0500
-Received: from foss.arm.com ([217.140.110.172]:42570 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727012AbhANA55 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 19:57:57 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DB191FB;
-        Wed, 13 Jan 2021 16:45:58 -0800 (PST)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3A3073F719;
-        Wed, 13 Jan 2021 16:45:55 -0800 (PST)
-Date:   Thu, 14 Jan 2021 00:45:12 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Icenowy Zheng <icenowy@aosc.xyz>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 02/21] dt-bindings: pinctrl: Add Allwinner H616
- compatible strings
-Message-ID: <20210114004512.6cc7bd10@slackpad.fritz.box>
-In-Reply-To: <20201214093728.ehd2362jzclbxwp5@gilmour>
-References: <20201211011934.6171-1-andre.przywara@arm.com>
-        <20201211011934.6171-3-andre.przywara@arm.com>
-        <20201214093728.ehd2362jzclbxwp5@gilmour>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        id S1726502AbhANBpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 20:45:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33274 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726730AbhANBFP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 20:05:15 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B154C061795;
+        Wed, 13 Jan 2021 17:04:33 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id s15so2056921plr.9;
+        Wed, 13 Jan 2021 17:04:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VpmEfhmuE4m3lCR0CbzUbqFZms+Fz8wndQrnmUOwqpU=;
+        b=TcU4dQzKhkz4u0aGbShBlkm5Lgq7vBIeKqPRvRSA67x2gzxKRk0RspQzEpBkEcuoIy
+         1c2YEI0lQBpuFJ2rrFEGVoWUQg7apSF/CkrdhKvTZrG/WUCjf0KBkpgYE4ZzazRYp9PT
+         HcHbBRZImxTueiR83MlHPjrLeK9YdmZLwXksGik3Kb2iw5fOMV/tlh+oaWPsyk6wt9KS
+         6YvyqRtrbHAVN0Wd2R4y+DaQytJYM2FSKtytA9b9TN+amnbNQILqW90/6PYQVxJBU5mc
+         zR08x9HrQ5CxzaT1W2mj/h10bGZb378QVuIHUepaNTKZvEaTE8nve9wNWSNZPv0i2dNi
+         0mNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=VpmEfhmuE4m3lCR0CbzUbqFZms+Fz8wndQrnmUOwqpU=;
+        b=f9w+aHBkqUfH4pP/mNH27Gg4T9L2m6EYb9D5Z/6EGCu41AxG7VG07bgdcHYw4bHEjy
+         mz2aLsH9H5BH3pHmOmXvO3p+3h1uLBuuxuP2kN9o2yW+NTBYBPrHws1FMyheb56wUhx8
+         gg3PqK8ymStGBfP421JKeuKRcybP1IPhT5A44Pz5TWZ0v0h2/0BMvPVxzhCZ7KdHp048
+         moT3RL7iJB6OW2Acjz5RLjXsvWfwPF069WgY29Bg634xUR0JhBHjxvKJK9Ne6fMfQYQ0
+         y1VAuyRCeuhHjbIfRSjMhS1tjMqbw/t5d+Ft/9lKufEiHkmxZiBX3g4cydbsoJY3pq3h
+         gp9Q==
+X-Gm-Message-State: AOAM532dS2Kj9iR6orgNN9wUp0z4Sbr47VKbnPQd1nMPqnIp1zKZ8IUB
+        olVdHyCrRAKXUXUcWXKlY7s=
+X-Google-Smtp-Source: ABdhPJwrJ8Isxj4nRytmMfOvMREHmP4joIOQKLfG5NRnAzquyOfiEt2ltmtABLIC4FEuwymZgPSspw==
+X-Received: by 2002:a17:90a:f2c6:: with SMTP id gt6mr2130111pjb.35.1610586272925;
+        Wed, 13 Jan 2021 17:04:32 -0800 (PST)
+Received: from google.com ([2620:15c:211:201:7220:84ff:fe09:5e58])
+        by smtp.gmail.com with ESMTPSA id h1sm3901522pgj.59.2021.01.13.17.04.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 17:04:31 -0800 (PST)
+Sender: Minchan Kim <minchan.kim@gmail.com>
+Date:   Wed, 13 Jan 2021 17:04:29 -0800
+From:   Minchan Kim <minchan@kernel.org>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
+        david@redhat.com, mhocko@suse.com, surenb@google.com,
+        pullip.cho@samsung.com, joaodias@google.com, hridya@google.com,
+        john.stultz@linaro.org, sumit.semwal@linaro.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        hch@infradead.org, robh+dt@kernel.org,
+        linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v3 4/4] dma-buf: heaps: add chunk heap to dmabuf heaps
+Message-ID: <X/+Yne/3X3jvdCj0@google.com>
+References: <20210113012143.1201105-1-minchan@kernel.org>
+ <20210113012143.1201105-5-minchan@kernel.org>
+ <23b60450-b6ac-447b-4a61-fc4649c3a390@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <23b60450-b6ac-447b-4a61-fc4649c3a390@infradead.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Dec 2020 10:37:28 +0100
-Maxime Ripard <maxime@cerno.tech> wrote:
-
-> On Fri, Dec 11, 2020 at 01:19:15AM +0000, Andre Przywara wrote:
-> > A new SoC, a new compatible string.
-> > Also we were too miserly with just allowing seven interrupt banks.
-> > 
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml   | 18
-> > ++++++++++++++++-- 1 file changed, 16 insertions(+), 2 deletions(-)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-> > b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-> > index 5240487dfe50..292b05d9ed08 100644 ---
-> > a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-> > +++
-> > b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-> > @@ -53,6 +53,8 @@ properties:
-> >        - allwinner,sun50i-h5-pinctrl
-> >        - allwinner,sun50i-h6-pinctrl
-> >        - allwinner,sun50i-h6-r-pinctrl
-> > +      - allwinner,sun50i-h616-pinctrl
-> > +      - allwinner,sun50i-h616-r-pinctrl
-> >        - allwinner,suniv-f1c100s-pinctrl
-> >        - nextthing,gr8-pinctrl
-> >  
-> > @@ -61,7 +63,7 @@ properties:
-> >  
-> >    interrupts:
-> >      minItems: 1
-> > -    maxItems: 7
-> > +    maxItems: 8
-> >      description:
-> >        One interrupt per external interrupt bank supported on the
-> >        controller, sorted by bank number ascending order.
-> > @@ -91,7 +93,7 @@ properties:
-> >        bank found in the controller
-> >      $ref: /schemas/types.yaml#/definitions/uint32-array
-> >      minItems: 1
-> > -    maxItems: 5
-> > +    maxItems: 8
-> >  
-> >  patternProperties:
-> >    # It's pretty scary, but the basic idea is that:
-> > @@ -145,6 +147,18 @@ allOf:
-> >    # boards are defining it at the moment so it would generate a
-> > lot of # warnings.
-> >  
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - allwinner,sun50i-h616-pinctrl
-> > +
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          minItems: 8
-> > +          maxItems: 8
-> > +  
+On Tue, Jan 12, 2021 at 07:38:40PM -0800, Randy Dunlap wrote:
+> On 1/12/21 5:21 PM, Minchan Kim wrote:
+> > +config DMABUF_HEAPS_CHUNK
+> > +	bool "DMA-BUF CHUNK Heap"
+> > +	depends on DMABUF_HEAPS && DMA_CMA
+> > +	help
+> > +	  Choose this option to enable dma-buf CHUNK heap. This heap is backed
+> > +	  by the Contiguous Memory Allocator (CMA) and allocates the buffers that
+> > +	  arranged into a list of fixed size chunks taken from CMA.
 > 
-> You don't need to have both if they are equals, and in this particular
+> maybe:
+> 	  are arranged into
 
-Mmh, but all the other compatibles have both equal, so what would be
-the recommended way to describe this? Just minItems? I don't find a
-good explanation at the moment how to handle an explicit number, other
-than by enumerating the items explicitly.
+Let me fix it.
 
-> case we already check that the maximum is 8 so there's no need to
-> repeat that check here.
-
-Are you referring to the overall "maxItems: 8" above, in the 2nd hunk?
-While this will become redundant, this is apparently prone to changes
-(as only "7" would be redundant at the moment), so I would rather not
-rely on a global limit.
-
-Cheers,
-Andre.
+Thanks, Randy. 
