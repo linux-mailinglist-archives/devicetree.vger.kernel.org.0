@@ -2,312 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F4182F6677
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 17:56:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8934E2F6680
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 17:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726578AbhANQyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 11:54:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39698 "EHLO
+        id S1727949AbhANQzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 11:55:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725935AbhANQyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 11:54:09 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5955BC061574;
-        Thu, 14 Jan 2021 08:53:29 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id w124so6561376oia.6;
-        Thu, 14 Jan 2021 08:53:29 -0800 (PST)
+        with ESMTP id S1727558AbhANQzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 11:55:53 -0500
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D254AC061574
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 08:55:12 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id o11so5791898ote.4
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 08:55:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+EOdxAUtT3vRFLe3ss8hT6ceHOcvFiqKOxd8XUKB+h4=;
-        b=bg3dwQqIjnxoBLIrB95ooghS/aqn3/z2LSdtR0f1Au3w4QYJYjDl7ElOtpj5EVyFLj
-         Z5UYcz+Myq4JkF3CGzLN2dpt9SHHtjyXx5AOXY/I3q2W8Py9ur5IPeOghM1fooYZCM+O
-         db4nfIZqGfcO5Ov4kz1Kcj4kjSLBCpVGo4yH+bR7q30aVaJBY99LJdj9Yc+5BYwajFiN
-         lt7zsh2PlanlV6htwy5nw7x6gDdtvmjyuTBsT3divY1gBnHup4q0qfSuI8XKZCVBYXBd
-         5JlQ5FWvVCy+w5IVtlnVHtwoNN42ry6BDSvL0BzKt3cZcYM9yF1spdx2Ss7RVWF5acPZ
-         IKaA==
+        bh=5m+OY37W0GKLWbfky43ZmcAdCMqxDwjhx52GcGW1hDQ=;
+        b=T5s98gvdXLbHxUEItuGeY4Rzy0y6xaGT9/7huL2B59jiNMpsrDIX6qzpGLUJFv37vz
+         ZhTPOjKaO2dkxZiQhRGhA/AEVJ5sSroHOwA9pYvLPQONjYBgyFV1Qlzm8KKSsB8V113w
+         OJ/ieg5L1AuNTYg9lfKHqKtF+PFOPfpQ+x0vHPqLFpYxN3ozgDuQ7au2iM8tSyQhM02j
+         R1qFEcoXOvugP0pzy3j+iI/Qx6lAajeXrT5eNxi41ytWrmF6XkgOpmlYoQPoeuJmlYKA
+         OhR60jPdDt8kZoFBwb2peCw+Exom29mNPRCrzMEEv6dd/xFkawj96io2BPeMi7z65LU0
+         rfqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+EOdxAUtT3vRFLe3ss8hT6ceHOcvFiqKOxd8XUKB+h4=;
-        b=PugAi4zCO5BLd4e8In6bnI5whnSBOv4aN8u8MSDELQp5DBhtnkyKX8A4IA7qxgG49b
-         xe+KEpRu0EzjORwwOlXrhxUBolo7oa5diOEafllGVkXPC5/m468zQsIpOcw++ErZ3W6B
-         5cy+nIIgHKv+ztMqs0OODXHkJabD4U7srW1q/KFPkfNrQPq0nr5QX/HVGe4HAYfNLBNb
-         uljZ0H5t/9trQLeuf1FowyCm/KeKgcNtWOGV2T8r72iyCUYfyPcOHiCS4WIfjpyw6h3M
-         DTH+eeJqcwmhgYwXr4inoHyegiAjKybGsPQqcy+hVuIjlb60jWG+z1IXeCQy7G/ccxMS
-         uTtA==
-X-Gm-Message-State: AOAM531d0XBk/sVi2d0pX/dSpVu0a5TmB9T2/XX8HdwYXN+Yh51f4wYq
-        uIJWDBQUd8TyKS927lAJ+9vHT2sPorung40fWg==
-X-Google-Smtp-Source: ABdhPJzPJHiQ3YSKKB7tBmALGTgqSGX0Tv5SzoYNUSXFbb2WKfEj1x8cKowAzDMfujFTASN/q1weCS990RkxG0039Lc=
-X-Received: by 2002:aca:b145:: with SMTP id a66mr3132179oif.92.1610643208567;
- Thu, 14 Jan 2021 08:53:28 -0800 (PST)
+        bh=5m+OY37W0GKLWbfky43ZmcAdCMqxDwjhx52GcGW1hDQ=;
+        b=oryHqqJxXnfpWXoZGdrQqrlyWKBpLu3D2GoW2KcgdQh+BUpnIgICb3hBLotwBVx4ED
+         3gi0fZBYunqB1g7bzLelt8uDggE2U3ts8dof4IZLAWu3M3ul6kJT/hqs7qhMk+ZrVYNA
+         ZJlvBnSJVRTqB5UUrQcMtVugo4KH3D97mKIFpN8q3m9e0ORScX0ED3xNsess1vWSezPG
+         TFhYlL6l/eWu8EvVDcmS2t7AVnf+xItRJewFRoRywXuQSPlKPU4mlYtCeZhc/O4kfpyE
+         le8UopfX7h3w2WDPIS/nC62GJkzrz918QJSjFPH5k/ctKKDrN3UwaK+UYaYcRuo5jOUK
+         Mghw==
+X-Gm-Message-State: AOAM533EWORjmx6dCIJHjlnLP/X3mHCLBmPVmfSdOlsoTsE78UTQj+5u
+        wS88NPax2GnMFyBzODp6o4mfOD4hyFAbCBL8ddTrmg==
+X-Google-Smtp-Source: ABdhPJxgDeLZoaanGamxKRHggVdrfTzkLl3FSiAzq7Cd5Si5C37i7V5LGYE+PqdRJzVReh7gIbausg+9b2UZrNc/kco=
+X-Received: by 2002:a9d:4e84:: with SMTP id v4mr5310699otk.45.1610643312061;
+ Thu, 14 Jan 2021 08:55:12 -0800 (PST)
 MIME-Version: 1.0
-References: <20210113145922.92848-1-george.mccollister@gmail.com>
- <20210113145922.92848-3-george.mccollister@gmail.com> <20210114015659.33shdlfthywqdla7@skbuf>
-In-Reply-To: <20210114015659.33shdlfthywqdla7@skbuf>
-From:   George McCollister <george.mccollister@gmail.com>
-Date:   Thu, 14 Jan 2021 10:53:16 -0600
-Message-ID: <CAFSKS=NU4hrnXB5FcAFvnFnmAtK5HfYR8dAKyw3cd=5UKOBNfg@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 2/3] net: dsa: add Arrow SpeedChips XRS700x driver
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+References: <20201220165845.3712599-1-dmitry.baryshkov@linaro.org>
+ <20201220165845.3712599-2-dmitry.baryshkov@linaro.org> <20201231225007.GA2509172@robh.at.kernel.org>
+ <CAA8EJpp7cJO9Dej3uicPA0+BccqVjs=VphDmGSj05t7SeypAfQ@mail.gmail.com> <CAL_Jsq+1rMKgiumshe2BMSMS-hn03pjmfF3P90j=o8kNQTGCLQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+1rMKgiumshe2BMSMS-hn03pjmfF3P90j=o8kNQTGCLQ@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 14 Jan 2021 19:55:00 +0300
+Message-ID: <CAA8EJpqPONJfQLFQhB3_AEdFYcZ8rKWJw7=wd7KzJRhOEr+w_A@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: qcom,qca639x: add binding for
+ QCA639x defvice
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 7:57 PM Vladimir Oltean <olteanv@gmail.com> wrote:
+Hi Rob,
+
+On Thu, 14 Jan 2021 at 17:33, Rob Herring <robh@kernel.org> wrote:
 >
-> What PHY interface types does the switch support as of this patch?
-> No RGMII delay configuration needed?
+> On Sat, Jan 2, 2021 at 9:41 PM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > Hello,
+> >
+> > On Fri, 1 Jan 2021 at 01:50, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Sun, Dec 20, 2020 at 07:58:42PM +0300, Dmitry Baryshkov wrote:
+> > > > Qualcomm QCA639x is a family of WiFi + Bluetooth SoCs, with BT part
+> > > > being controlled through the UART and WiFi being present on PCIe bus.
+> > > > Both blocks share common power sources. Add binding to describe power
+> > > > sequencing required to power up this device.
+> > > >
+> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > ---
+> > > >  .../devicetree/bindings/mfd/qcom,qca639x.yaml | 84 +++++++++++++++++++
+> > > >  1 file changed, 84 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,qca639x.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/mfd/qcom,qca639x.yaml b/Documentation/devicetree/bindings/mfd/qcom,qca639x.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..d43c75da136f
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/mfd/qcom,qca639x.yaml
+> > > > @@ -0,0 +1,84 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: "http://devicetree.org/schemas/mfd/qcom,qca639x.yaml#"
+> > > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > > > +
+> > > > +title: Qualcomm QCA639x WiFi + Bluetoot SoC bindings
+> > > > +
+> > > > +maintainers:
+> > > > +  - Andy Gross <agross@kernel.org>
+> > > > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > +
+> > > > +description: |
+> > > > +  This binding describes thes Qualcomm QCA6390 or QCA6391 power supplies and
+> > > > +  enablement pins.
+> > >
+> > > Humm, this should really be for the whole device. For BT/WiFi chips
+> > > we've gotten away with 2 nodes for each interface. If that doesn't work
+> > > here, then I think this needs to be 1 node for all, not 3 as it seems
+> > > you are doing.
+> >
+> > 2 nodes: one for common power sequencer and one for bluetooth part.
+> > WiFi part doesn't need a separate node, but see below.
+> >
+> > >
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: qcom,qca639x
+> > >
+> > > List each device, we don't do wildcards in compatible strings.
+> >
+> > Ack. I will change this to qca6390, as 6391 should be fully compatible
+> > from the power sequence point of view.
+> >
+> > >
+> > > > +
+> > > > +  '#power-domain-cells':
+> > > > +    const: 0
+> > > > +
+> > > > +  pinctrl-0: true
+> > > > +  pinctrl-1: true
+> > > > +
+> > > > +  pinctrl-names:
+> > > > +    items:
+> > > > +      - const: default
+> > > > +      - const: active
+> > > > +
+> > > > +  vddaon-supply:
+> > > > +    description:
+> > > > +      0.95V always-on LDO power input
+> > > > +
+> > > > +  vddpmu-supply:
+> > > > +    description:
+> > > > +      0.95V LDO power input to PMU
+> > > > +
+> > > > +  vddrfa1-supply:
+> > > > +    description:
+> > > > +      0.95V LDO power input to RFA
+> > > > +
+> > > > +  vddrfa2-supply:
+> > > > +    description:
+> > > > +      1.25V LDO power input to RFA
+> > > > +
+> > > > +  vddrfa3-supply:
+> > > > +    description:
+> > > > +      2V LDO power input to RFA
+> > > > +
+> > > > +  vddpcie1-supply:
+> > > > +    description:
+> > > > +      1.25V LDO power input to PCIe part
+> > > > +
+> > > > +  vddpcie2-supply:
+> > > > +    description:
+> > > > +      2V LDO power input to PCIe part
+> > >
+> > > Do the PCIe supplies have to be on if only the BT part is used?
+> >
+> > Good question. The documentation just tells us to power up all rails.
+> > There are further internal voltage regulators taking care of current
+> > qca639x mode
+> >
+> > >
+> > > Supplies are refcounted, so I'd suggest just duplicating the supplies in
+> > > both the BT and PCIe nodes.
+> >
+> > While for BT it would be easy, for PCIe it is not that easy. We have
+> > to make sure that the chip is powered up before the respective PCIe
+> > bus is probed (basically before the PCIe controller driver is probed).
+> > I ended up putting a reference to the PCIe PHY device node, making
+> > sure that qca6391 is powered up before the PCIe PHY driver is probed.
+> > PCIe device node itself has its own power-domains entry (PCIE_0_GDSC).
 >
+> This is an abuse of the power-domains binding and a complete hack, so
+> no. The wifi part should be a child node on the PCI bus. That's the
+> only acceptable solution for DT.
 
-Port 0: RMII
-Port 1-3: RGMII
-
-For RGMII the documentation states:
-"PCB is required to add 1.5 ns to 2.0 ns more delay to the clock line
-than the other lines, unless the other end (PHY) has configurable RX
-clock delay."
-
-> > +
-> > +static int xrs700x_bridge_common(struct dsa_switch *ds, int port,
-> > +                              struct net_device *bridge, bool join)
-> > +{
-> > +     unsigned int i, cpu_mask = 0, mask = 0;
-> > +     struct xrs700x *priv = ds->priv;
-> > +     int ret;
-> > +
-> > +     for (i = 0; i < ds->num_ports; i++) {
-> > +             if (dsa_is_cpu_port(ds, i))
-> > +                     continue;
-> > +
-> > +             cpu_mask |= BIT(i);
-> > +
-> > +             if (dsa_to_port(ds, i)->bridge_dev == bridge)
-> > +                     continue;
-> > +
-> > +             mask |= BIT(i);
-> > +     }
-> > +
-> > +     for (i = 0; i < ds->num_ports; i++) {
-> > +             if (dsa_to_port(ds, i)->bridge_dev != bridge)
-> > +                     continue;
-> > +
-> > +             ret = regmap_write(priv->regmap, XRS_PORT_FWD_MASK(i), mask);
->
-> Maybe it would be worth mentioning in a comment that PORT_FWD_MASK's
-> encoding is "1 = Disable forwarding to the port", otherwise this is
-> confusing.
-
-Okay, done.
-
->
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     if (!join) {
-> > +             ret = regmap_write(priv->regmap, XRS_PORT_FWD_MASK(port),
-> > +                                cpu_mask);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
->
-> > +static int xrs700x_detect(struct xrs700x *dev)
-> > +{
-> > +     const struct xrs700x_info *info;
-> > +     unsigned int id;
-> > +     int ret;
-> > +
-> > +     ret = regmap_read(dev->regmap, XRS_DEV_ID0, &id);
-> > +     if (ret) {
-> > +             dev_err(dev->dev, "error %d while reading switch id.\n",
-> > +                     ret);
-> > +             return ret;
-> > +     }
-> > +
-> > +     info = of_device_get_match_data(dev->dev);
-> > +     if (!info)
-> > +             return -EINVAL;
-> > +
-> > +     if (info->id == id) {
-> > +             dev->ds->num_ports = info->num_ports;
-> > +             dev_info(dev->dev, "%s detected.\n", info->name);
-> > +             return 0;
-> > +     }
-> > +
-> > +     dev_err(dev->dev, "expected switch id 0x%x but found 0x%x.\n",
-> > +             info->id, id);
->
-> I've been there too, not the smartest of decisions in the long run. See
-> commit 0b0e299720bb ("net: dsa: sja1105: use detected device id instead
-> of DT one on mismatch") if you want a sneak preview of how this is going
-> to feel two years from now. If you can detect the device id you're
-> probably better off with a single compatible string.
-
-Previously Andrew said:
-"Either you need to verify the compatible from day one so it is not
-wrong, or you just use a single compatible "arrow,xrs700x", which
-cannot be wrong."
-
-I did it the first way he suggested, if you would have replied at that
-time to use a single that's the way I would have done it that way.
-
-If you two can agree I should change it to a single string I'd be
-happy to do so. In my case I need 3 RGMII and only one of the package
-types will fit on the board so there's no risk of changing to one of
-the existing parts. Perhaps this could be an issue if a new part is
-added in the future or on someone else's design.
-
->
-> > +
-> > +     return -ENODEV;
-> > +}
-> > +
-> > +static int xrs700x_alloc_port_mib(struct xrs700x *dev, int port)
-> > +{
-> > +     struct xrs700x_port *p = &dev->ports[port];
-> > +     size_t mib_size = sizeof(*p->mib_data) * ARRAY_SIZE(xrs700x_mibs);
->
-> Reverse Christmas tree ordering... sorry.
-
-The second line uses p so that won't work. I'll change the function to
-use devm_kcalloc like you recommended below and just get rid of
-mib_size.
-
->
-> > +int xrs700x_switch_register(struct xrs700x *dev)
-> > +{
-> > +     int ret;
-> > +     int i;
-> > +
-> > +     ret = xrs700x_detect(dev);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     ret = xrs700x_setup_regmap_range(dev);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     dev->ports = devm_kzalloc(dev->dev,
-> > +                               sizeof(*dev->ports) * dev->ds->num_ports,
-> > +                               GFP_KERNEL);
->
-> devm_kcalloc?
-
-Ok, done.
-
+I see your point here.
 
 >
-> > +     if (!dev->ports)
-> > +             return -ENOMEM;
-> > +
-> > +     for (i = 0; i < dev->ds->num_ports; i++) {
-> > +             ret = xrs700x_alloc_port_mib(dev, i);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     ret = dsa_register_switch(dev->ds);
-> > +
-> > +     return ret;
+> Obviously there's a probe chicken and egg problem for Linux, but for
+> DT it doesn't matter. You have 2 options. You can fix PCIe to force
+> probe devices with a DT node (and lots of folks would appreciate it
+> because you aren't the only one needing it). If there's a DT node,
+> then you know there is a device there. This is what MDIO bus does. Or
+> you can keep your misc driver, but it needs to go find the PCIe child
+> node itself. IOW, you have to create the platform device yourself in
+> the initcall rather than rely on the DT code to create one.
 >
-> return dsa_register_switch
->
-> > +}
-> > +EXPORT_SYMBOL(xrs700x_switch_register);
-> > +
-> > +void xrs700x_switch_remove(struct xrs700x *dev)
-> > +{
-> > +     cancel_delayed_work_sync(&dev->mib_work);
->
-> Is it not enough that this is called from xrs700x_teardown too, which is
-> in the call path of dsa_unregister_switch below?
+> Personally, I wouldn't accept the 2nd solution as I think it is still
+> a hack, but I won't object.
 
-yeah, looks like it. I'll remove this.
+To make things worse, if the device is not powered during the initial
+PCIe host probe, the powerup sequence turns into PCIe hotplug story.
+Even PCIehp driver is probed after initial link training. Would you
+agree to one of the following variants:
 
->
-> > +
-> > +     dsa_unregister_switch(dev->ds);
-> > +}
-> > +EXPORT_SYMBOL(xrs700x_switch_remove);
-> > diff --git a/drivers/net/dsa/xrs700x/xrs700x_mdio.c b/drivers/net/dsa/xrs700x/xrs700x_mdio.c
-> > new file mode 100644
-> > index 000000000000..4fa6cc8f871c
-> > --- /dev/null
-> > +++ b/drivers/net/dsa/xrs700x/xrs700x_mdio.c
-> > +static int xrs700x_mdio_reg_read(void *context, unsigned int reg,
-> > +                              unsigned int *val)
-> > +{
-> > +     struct mdio_device *mdiodev = context;
-> > +     struct device *dev = &mdiodev->dev;
-> > +     u16 uval;
-> > +     int ret;
-> > +
-> > +     uval = (u16)FIELD_GET(GENMASK(31, 16), reg);
-> > +
-> > +     ret = mdiobus_write(mdiodev->bus, mdiodev->addr, XRS_MDIO_IBA1, uval);
-> > +     if (ret < 0) {
-> > +             dev_err(dev, "xrs mdiobus_write returned %d\n", ret);
-> > +             return ret;
-> > +     }
-> > +
-> > +     uval = (u16)((reg & GENMASK(15, 1)) | XRS_IB_READ);
->
-> What happened to bit 0 of "reg"?
+1) Add extra power-domain to pcie host:
 
-From the datasheet:
-"Bits 15-1 of the address on the internal bus to where data is written
-or from where data is read. Address bit 0 is always 0 (because of 16
-bit registers)."
+ pcie0: pci@1c00000 {
+     compatible = "qcom,pcie-sm8250", "snps,dw-pcie";
+     [....]
+     power-domains = <&gcc PCIE_0_GDSC>, <&qca639x>;
+     power-domain-names = "core", "child";
+};
 
-reg_stride is set to 2.
-"The register address stride. Valid register addresses are a multiple
-of this value."
+2) Add power domain to PCIe bridge device  (and handle that from the host code):
 
->
-> > +
-> > +     ret = mdiobus_write(mdiodev->bus, mdiodev->addr, XRS_MDIO_IBA0, uval);
-> > +     if (ret < 0) {
-> > +             dev_err(dev, "xrs mdiobus_write returned %d\n", ret);
-> > +             return ret;
-> > +     }
-> > +
-> > +     ret = mdiobus_read(mdiodev->bus, mdiodev->addr, XRS_MDIO_IBD);
-> > +     if (ret < 0) {
-> > +             dev_err(dev, "xrs mdiobus_read returned %d\n", ret);
-> > +             return ret;
-> > +     }
-> > +
-> > +     *val = (unsigned int)ret;
-> > +
-> > +     return 0;
-> > +}
->
-> > +static int xrs700x_mdio_probe(struct mdio_device *mdiodev)
-> > +{
-> > +     struct xrs700x *dev;
->
-> May boil down to preference too, but I don't believe "dev" is a happy
-> name to give to a driver private data structure.
+ pcie0: pci@1c00000 {
+     compatible = "qcom,pcie-sm8250", "snps,dw-pcie";
+     [....]
+     power-domains = <&gcc PCIE_0_GDSC>;
 
-There are other drivers in the subsystem that do this. If there was a
-consistent pattern followed in the subsystem I would have followed it.
-Trust me I was a bit frustrated with home much time I spent going
-through multiple drivers trying to determine the best practices for
-organization, naming, etc.
-If it's a big let me know and I'll change it.
+     bridge@0,0 {
+         compatible = "pci17cb,010b";
+         [.....]
+         power-domains = <qca639x>;
+    };
+};
 
-Thanks,
-George
+Does any of those variants seem suitable for you?
+
+Or you'd really insist on the following binding:
+
+3)
+
+pcie0: pci@1c00000 {
+     compatible = "qcom,pcie-sm8250", "snps,dw-pcie";
+     [....]
+     power-domains = <&gcc PCIE_0_GDSC>;
+
+     bridge@0,0 {
+         compatible = "pci17cb,010b";
+         [.....]
+         wifi@1,0 {
+             compatible = "pci17cb,1101";
+             power-domains = <qca639x>;
+          };
+    };
+};
+
+
+-- 
+With best wishes
+Dmitry
