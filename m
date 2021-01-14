@@ -2,139 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFA472F62B8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 15:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 605CE2F62C8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 15:14:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729068AbhANOIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 09:08:38 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:40940 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728358AbhANOIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 09:08:37 -0500
-Received: by mail-ot1-f43.google.com with SMTP id j12so5248129ota.7;
-        Thu, 14 Jan 2021 06:08:22 -0800 (PST)
+        id S1726175AbhANONl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 09:13:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33210 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725961AbhANONk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 09:13:40 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FA0C061574;
+        Thu, 14 Jan 2021 06:13:00 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id b26so8198567lff.9;
+        Thu, 14 Jan 2021 06:13:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Dx0pSimPO+7al3kZsg71712ZkypN/dzE6boWLCtFmRY=;
+        b=YPO1KgE2uePmIPhVS5tdBZsbV3DhscA8oOwrY77tPNWdL5Y+FJPuPX1OkmJSDQuFEG
+         fpGoIlwIgFNmtlS1x6mfyUx+YZgWpqq46EVJvOpGzFN3hWmIHdJwMMa/wdTTJmWgRWBa
+         GqOqLmbFxeIztIf098yTaENYXO3SqamEfXl2K69R7+0AlBhTvZowvc4JX44mZ+FQz5lo
+         JIVvzYTKCsKve7oIhrQ6R/mJ+EhDdFHcEDzpx5sxAHdoRRFt8nLfNPvBvCR6JKTvHMsd
+         50B74GkQE2yjaJaLe+VWlLlWgyqdhcCdXFaX5Qond6lL/jiMuPqcs+1JgSxLLR3QzbFN
+         3fOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=G3qssVyonRjps8ihp/C/PMHKlXEjV5UX8OHRldAZeG8=;
-        b=Qak5fX3Kb0T/turhlcEnxF8P5eqhwmlv/z+b4QkMYDCAUVC+RtQehTFBKwvufBtC8e
-         9ilUg3O1QIiDIzH3T9l6CjKJsqkEsajy2KWNQggIc7F1bTHk1lDrBydBcDpE0HE2vth2
-         juNolQdg55wEPC8655+8IKZbvpvYSuM4Yv3zn+hLYrMSsK/pHx2n5fZbG+VU9p3083VJ
-         y6IUj9t2MjObWrmX1XKW7KMhMTbR0gQQApqkf9buaBY6MFgOEx4GSKpdLr4a18fb4C2Z
-         eoSgGSbvf1YUGW4X7O6eoilp9IF+um7Pg+YAgHTK7AV8xJMyxvv8ypybpAtrBU5IXsIE
-         8bbQ==
-X-Gm-Message-State: AOAM5323pJ4+pxv4xrYjo13PtOfbSZIGfzomTJ69YrpGC4DxsFisGH6Y
-        pkeQAVZzYCwEzM7TqnZJxw==
-X-Google-Smtp-Source: ABdhPJwVtCF6IxBm1ri0k7zeacKkkqtY0V0s84gaPnBb33BhOs+QNF5sum09OLklXfLJcLNhR4WmSA==
-X-Received: by 2002:a9d:a61:: with SMTP id 88mr4680079otg.18.1610633276788;
-        Thu, 14 Jan 2021 06:07:56 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c14sm1064336otp.19.2021.01.14.06.07.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 06:07:55 -0800 (PST)
-Received: (nullmailer pid 2822961 invoked by uid 1000);
-        Thu, 14 Jan 2021 14:07:54 -0000
-Date:   Thu, 14 Jan 2021 08:07:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Anshuman Khandual <anshuman.khandual@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        mathieu.poirier@linaro.org, suzuki.poulose@arm.com,
-        mike.leach@linaro.org, Linu Cherian <lcherian@marvell.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 11/11] dts: bindings: Document device tree bindings
- for Arm TRBE
-Message-ID: <20210114140754.GA2816889@robh.at.kernel.org>
-References: <1610511498-4058-1-git-send-email-anshuman.khandual@arm.com>
- <1610511498-4058-12-git-send-email-anshuman.khandual@arm.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Dx0pSimPO+7al3kZsg71712ZkypN/dzE6boWLCtFmRY=;
+        b=fUYFv+2694tmQs24DMT9ArhGu2UkTrv6yTwVkPkSDVUqhrcZ73SYmtZEXHY7+lepvq
+         pXSoALPa+FbyNTVMAIYTsPXOXz/MrTNvwGP19gRKbxrSJDhjizk2mjOk+Rv9qjP+h4xg
+         gzANf13fN71EKYsefZu/PlXOkQvz6TDWI1DESxYeYB/N876yZZaJBbBrb1zQ+0wcwsas
+         2yrj4eleeiftoGRT1pnRLXIAyNihNMn7Vl4l4+YwL/CvdjhRn53SSrSkQSFvCHZ8JCtp
+         /myIE2UClyns8BqLrG5+7LgMrO0Zdtx3nc6eF5a716OhA8MlqXgPKWsAxAXJsS5B8HSA
+         aqVA==
+X-Gm-Message-State: AOAM530sxhMOwzYvBitxUAnyYhF+EFlNBzit8qX43nIqvelMNagNv3Th
+        sKU+Yj/i/3v4QYQrUesqnXDGL+hjVG8=
+X-Google-Smtp-Source: ABdhPJx95LKJ5umiJwjUs/3t/gR7xRGz5wZ/2HLwvhnns7vMFzWsXIO89o/vcuqMW7zO8A++x07wRQ==
+X-Received: by 2002:a05:6512:248:: with SMTP id b8mr3439835lfo.371.1610633578588;
+        Thu, 14 Jan 2021 06:12:58 -0800 (PST)
+Received: from [192.168.2.145] (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
+        by smtp.googlemail.com with ESMTPSA id i27sm438837lfo.213.2021.01.14.06.12.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jan 2021 06:12:57 -0800 (PST)
+Subject: Re: [PATCH v8 2/3] mfd: Add driver for Embedded Controller found on
+ Acer Iconia Tab A500
+To:     Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Dan Murphy <dmurphy@ti.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20201228160547.30562-1-digetx@gmail.com>
+ <20201228160547.30562-3-digetx@gmail.com> <20210114134753.GY3975472@dell>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <796fb7fd-38e3-7204-555b-82ffbf40272c@gmail.com>
+Date:   Thu, 14 Jan 2021 17:12:56 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1610511498-4058-12-git-send-email-anshuman.khandual@arm.com>
+In-Reply-To: <20210114134753.GY3975472@dell>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 09:48:18AM +0530, Anshuman Khandual wrote:
-> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+14.01.2021 16:47, Lee Jones пишет:
+> On Mon, 28 Dec 2020, Dmitry Osipenko wrote:
 > 
-> Document the device tree bindings for Trace Buffer Extension (TRBE).
+>> Acer Iconia Tab A500 is an Android tablet device, it has ENE KB930
+>> Embedded Controller which provides battery-gauge, LED, GPIO and some
+>> other functions. The EC uses firmware that is specifically customized
+>> for Acer A500. This patch adds MFD driver for the Embedded Controller
+>> which allows to power-off / reboot the A500 device, it also provides
+>> a common register read/write API that will be used by the sub-devices.
+>>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  drivers/mfd/Kconfig        |  11 ++
+>>  drivers/mfd/Makefile       |   1 +
+>>  drivers/mfd/acer-ec-a500.c | 202 +++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 214 insertions(+)
+>>  create mode 100644 drivers/mfd/acer-ec-a500.c
 > 
-> Cc: Anshuman Khandual <anshuman.khandual@arm.com>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> ---
->  Documentation/devicetree/bindings/arm/trbe.yaml | 46 +++++++++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/trbe.yaml
+> Looks good to me:
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/trbe.yaml b/Documentation/devicetree/bindings/arm/trbe.yaml
-> new file mode 100644
-> index 0000000..2258595
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/trbe.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +# Copyright 2021, Arm Ltd
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/trbe.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: ARM Trace Buffer Extensions
-> +
-> +maintainers:
-> +  - Anshuman Khandual <anshuman.khandual@arm.com>
-> +
-> +description: |
-> +  Description of TRBE hw
-
-Huh?
-
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "trbe"
-
-const: trbe
-
-> +  compatible:
-> +    items:
-> +      - const: arm,trace-buffer-extension
-
-Any versioning to this? Or is that discoverable?
-
-> +
-> +  interrupts:
-> +    description: |
-> +       Exactly 1 PPI must be listed. For heterogeneous systems where
-> +       TRBE is only supported on a subset of the CPUs, please consult
-> +       the arm,gic-v3 binding for details on describing a PPI partition.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +
-
-Extra blank line.
-
-> +examples:
-> +
-> + - |
-> +   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +   trbe {
-> +     compatible = "arm,trace-buffer-extension";
-> +     interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> +   };
-> +...
-> -- 
-> 2.7.4
+> For my own reference (apply this as-is to your sign-off block):
 > 
+>   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> 
+> Do you have a merge plan?
+> 
+
+Thanks, you could take the DT binding and the MFD patches into the MFD
+tree right now.
+
+Perhaps will be better to merge the battery patch via the Power tree
+since it doesn't have build dependency on the MFD patch. The battery
+patch was reviewed by Sebastian, but not acked, as I see now.
+
+Sebastian, could you please take the battery patch?
