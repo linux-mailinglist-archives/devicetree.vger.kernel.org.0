@@ -2,124 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC5E2F6849
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 18:55:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75D082F6858
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 18:55:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725772AbhANRvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 12:51:08 -0500
-Received: from m-r2.th.seeweb.it ([5.144.164.171]:33611 "EHLO
-        m-r2.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727346AbhANRvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 12:51:08 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 9790B3EA59;
-        Thu, 14 Jan 2021 18:50:25 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
+        id S1727908AbhANRxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 12:53:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52628 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727481AbhANRxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 12:53:41 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55929C061575
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 09:53:01 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id q25so5957291otn.10
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 09:53:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=J6oTorFXnsgqidEZZM4C5olHwJ90X+DJyt6IYyiuwdc=;
+        b=uhxCk8QGTrvkw6Q4iKk6o6mhBvNo4CJTqrNFKzUsvC7M54N1VUoTyKlca/QMyL0CEm
+         qjdtAqS9O7o2AmeEBn6LfN16bPHGCY1eSNsBkntOoLy0jZ3bEsX7cdbx7Wn66cU1/6Tt
+         GKLMthnmdpWpivY1st7Uo3OIWJm9AZVzs20t4gsQHdgJRMT/RQ/2B5mGk0fDuBp3uU0N
+         L/PtF3SCWKap1EjINYb0uROYktFJ6l0ALfeIw94JcPg6baaxnraVKSjWJI4nm8cDAsd6
+         HCgaYyT67GYzHYNmdnpauRB1D/TQkDM6SHUNaWzeEuyzu5XspxiRBOuo+P1S25NcYPRR
+         6WiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=J6oTorFXnsgqidEZZM4C5olHwJ90X+DJyt6IYyiuwdc=;
+        b=cvFC2jDwGccSE+drQizXzb8Meuv812dxTtQzd7IkufVL4CgADPxIUM4Yf7Ylv7LLtQ
+         TlWI5FMZl5D65MVMi7zOwe/ZVW1iLsNNvYQ+CXLS2yIsobtizHzORRttZanwPzvSlIcp
+         XhBEE+f1yZhTpTmeqqEnDM3J7RTl6n4A+PfowEtRhQwOQD9PwAKdJAgYgRALsM2orJXe
+         kdIH5CpRQaPTzlDg3a6jkYyMZggyeDOnwMyhXJxtEG1Eb8C5b5x8PPitZ5EjrMKZjnFH
+         lNKDhwPQqDwGcZQrKqR7zkrquz+WiHxRC3c2WPZyW3LPN0q7nOCBrDEJGN4OWtvpHbqL
+         PjtA==
+X-Gm-Message-State: AOAM5329ec1Y8eo2gs1b7g3lMGuHDe9yRxxfGyiK28xelYz9H8Jjeclw
+        tBwO3Dl5sv4B7HqUUiw9mvzQhA==
+X-Google-Smtp-Source: ABdhPJzMY9gni+cFIpQXl/kvHR6wSCoWvyMyQZ+533ZIemFA/b2TXL2eeZRnfQCtt3fKHo1/ZlYsgA==
+X-Received: by 2002:a05:6830:2157:: with SMTP id r23mr5290727otd.300.1610646780739;
+        Thu, 14 Jan 2021 09:53:00 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 63sm1187857otx.2.2021.01.14.09.52.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 09:53:00 -0800 (PST)
+Date:   Thu, 14 Jan 2021 11:52:58 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
-To:     thierry.reding@gmail.com
-Cc:     sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH 2/2] dt-bindings: display: Document BOE BF060Y8M-AJ0 panel compatible
-Date:   Thu, 14 Jan 2021 18:50:24 +0100
-Message-Id: <20210114175024.399756-2-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210114175024.399756-1-angelogioacchino.delregno@somainline.org>
-References: <20210114175024.399756-1-angelogioacchino.delregno@somainline.org>
+Cc:     agross@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        robh+dt@kernel.org, mgautam@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, konrad.dybcio@somainline.org,
+        martin.botka@somainline.org, marijn.suijten@somainline.org,
+        phone-devel@vger.kernel.org
+Subject: Re: [PATCH 1/3] phy: qcom-qusb2: Allow specifying default clock
+ scheme
+Message-ID: <YACE+uWidV6xzAwC@builder.lan>
+References: <20210114174718.398638-1-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210114174718.398638-1-angelogioacchino.delregno@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the boe,bf060y8m-aj0 panel.
+On Thu 14 Jan 11:47 CST 2021, AngeloGioacchino Del Regno wrote:
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- .../display/panel/boe,bf060y8m-aj0.yaml       | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/boe,bf060y8m-aj0.yaml
+> The TCSR's PHY_CLK_SCHEME register is not available on all SoC
+> models, but some may still use a differential reference clock.
+> 
+> In preparation for these SoCs, add a se_clk_scheme_default
+> configuration entry and declare it to true for all currently
+> supported SoCs (retaining the previous defaults.
+> 
+> This patch brings no functional changes.
+> 
 
-diff --git a/Documentation/devicetree/bindings/display/panel/boe,bf060y8m-aj0.yaml b/Documentation/devicetree/bindings/display/panel/boe,bf060y8m-aj0.yaml
-new file mode 100644
-index 000000000000..0fba09ddb6a2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/boe,bf060y8m-aj0.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/boe,bf060y8m-aj0.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: BOE BF060Y8M-AJ0 5.99" 1080x2160 AMOLED Panel
-+
-+maintainers:
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-+
-+description: |
-+  This is a 5.99" 1080x2160 16.7M Color active matrix AMOLED
-+  video mode panel module on MIPI-DSI 4-Lane interface, GGRB
-+  pixel arrangement, 63 micrometers pitch, with an active
-+  area of 68.04 x 136.08 millimeters.
-+  Each pixel is divided into red and green dots, or blue and
-+  green dots, and two pixels share red or blue dots which are
-+  arranged in vertical stripe.
-+  The DriverIC for this panel module is SW43404.
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: boe,bf060y8m-aj0
-+  reg: true
-+  reset-gpios: true
-+  vcc-supply:
-+    description: Core (TSP) voltage supply (2.70-3.60V)
-+  vddio-supply:
-+    description: I/O voltage supply (1.62-1.98V)
-+  vci-supply:
-+    description: DriverIC Operation supply (2.60-3.60V)
-+  elvdd-supply:
-+    description: EL Driving positive (VDD) supply (4.40-4.80V)
-+  elvss-supply:
-+    description: EL Driving negative (VSS) supply (-5.00V to -1.40V)
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    dsi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            panel@0 {
-+                    compatible = "boe,bf060y8m,aj0";
-+                    reg = <0>;
-+
-+                    vcc-supply = <&disp_vcc_vreg>;
-+                    vddio-supply = <&disp_vddio_vreg>;
-+                    vci-supply = <&disp_vci_vreg>;
-+                    elvdd-supply = <&disp_elvdd_vreg>;
-+                    elvss-supply = <&disp_elvss_vreg>;
-+
-+                    reset-gpios = <&tlmm 94 GPIO_ACTIVE_HIGH>;
-+            };
-+    };
--- 
-2.29.2
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qusb2.c | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qusb2.c b/drivers/phy/qualcomm/phy-qcom-qusb2.c
+> index 109792203baf..8fcfea2a8f1f 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qusb2.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qusb2.c
+> @@ -245,6 +245,9 @@ struct qusb2_phy_cfg {
+>  
+>  	/* true if PHY has PLL_CORE_INPUT_OVERRIDE register to reset PLL */
+>  	bool has_pll_override;
+> +
+> +	/* true if PHY default clk scheme is single-ended */
+> +	bool se_clk_scheme_default;
+>  };
+>  
+>  static const struct qusb2_phy_cfg msm8996_phy_cfg = {
+> @@ -253,6 +256,7 @@ static const struct qusb2_phy_cfg msm8996_phy_cfg = {
+>  	.regs		= msm8996_regs_layout,
+>  
+>  	.has_pll_test	= true,
+> +	.se_clk_scheme_default = true,
+>  	.disable_ctrl	= (CLAMP_N_EN | FREEZIO_N | POWER_DOWN),
+>  	.mask_core_ready = PLL_LOCKED,
+>  	.autoresume_en	 = BIT(3),
+> @@ -266,6 +270,7 @@ static const struct qusb2_phy_cfg msm8998_phy_cfg = {
+>  	.disable_ctrl   = POWER_DOWN,
+>  	.mask_core_ready = CORE_READY_STATUS,
+>  	.has_pll_override = true,
+> +	.se_clk_scheme_default = true,
+>  	.autoresume_en   = BIT(0),
+>  	.update_tune1_with_efuse = true,
+>  };
+> @@ -279,6 +284,7 @@ static const struct qusb2_phy_cfg qusb2_v2_phy_cfg = {
+>  			   POWER_DOWN),
+>  	.mask_core_ready = CORE_READY_STATUS,
+>  	.has_pll_override = true,
+> +	.se_clk_scheme_default = true,
+>  	.autoresume_en	  = BIT(0),
+>  	.update_tune1_with_efuse = true,
+>  };
+> @@ -701,8 +707,13 @@ static int qusb2_phy_init(struct phy *phy)
+>  	/* Required to get phy pll lock successfully */
+>  	usleep_range(150, 160);
+>  
+> -	/* Default is single-ended clock on msm8996 */
+> -	qphy->has_se_clk_scheme = true;
+> +	/*
+> +	 * Not all the SoCs have got a readable TCSR_PHY_CLK_SCHEME
+> +	 * register in the TCSR so, if there's none, use the default
+> +	 * value hardcoded in the configuration.
+> +	 */
+> +	qphy->has_se_clk_scheme = cfg->se_clk_scheme_default;
+> +
+>  	/*
+>  	 * read TCSR_PHY_CLK_SCHEME register to check if single-ended
+>  	 * clock scheme is selected. If yes, then disable differential
+> -- 
+> 2.29.2
+> 
