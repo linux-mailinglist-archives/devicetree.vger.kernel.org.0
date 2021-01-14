@@ -2,115 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDF6A2F5A1E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 06:02:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3CDC2F5A20
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 06:02:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726013AbhANFBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 00:01:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55774 "EHLO
+        id S1726075AbhANFBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 00:01:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725747AbhANFBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 00:01:37 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26902C061575
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 21:00:58 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id b8so2327229plx.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 21:00:58 -0800 (PST)
+        with ESMTP id S1725841AbhANFBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 00:01:41 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90823C061795
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 21:01:01 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id j1so2320543pld.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Jan 2021 21:01:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=cE42hFVWguryUlCy208ZPD2cycUw1CkNT9EoleozTcg=;
-        b=T+xOhJjkUwkFDehOd5lqfyjQlHhT1i8lTPkAHdt7hR/Mc9HxU1ffN8TCrfP6Cg3vfT
-         04w4O7r+q7p9+mYR2sTVgqmVPXYkNP29UpjJhYaSC2CLkUj9ByqX0yfFxWjhFCxglc4F
-         9265lD9q0OJZF/BX+ofCrZXoEL9deZaEqYLCF42nJiZFYH20bZId3xFcrZjbJjg9eKrw
-         lwDGzGT4G979NSEMf1NRb9ytA/vhjSPPPO3YK6XWh2z1OWRr2hFTstAKjkdNAw1OxG+J
-         bhBkl3FfQYjvFUqpZeSbNRg92j6DOSjA5Zc5AI8diKdusrneAUJ5VgTq+I6DOqnH7Jl8
-         ZLcg==
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gdO0WTSyKWA1CQWh1+Ms9mCRHiJwmYIbRxyUnFoqJbg=;
+        b=yqUJsNuQvhJwtek4cII9glL+VwLRVnrFOPIRqRs6YdXrtpfm/7JXl/j9KNtk422wZq
+         PESK/HebDRDwAy4R90sIqGYW3YkUbuh31Nf/ldw3M1wFXVV/lqkHwvaEIJz0DVWtlU1+
+         eEskoM+msdxRd4juvrvkjwBe9ml4NKM7nNwU5Yi7TW86MximiFYj1B07J3pinLzRcukJ
+         Xwgb7N7NXskG5iR8L5EBj3ARX835VoyDRVREWi5rMj+6dEnIeOWhGm8v8uMqa86rK/Lp
+         36VioJww4YzNLHAE6LAsX8eDloV1UAlxbwpJTkjEL6ClVy49Aa/GjHgdwzIoIas9VKka
+         SeTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=cE42hFVWguryUlCy208ZPD2cycUw1CkNT9EoleozTcg=;
-        b=hrUr3ODVe9iL/nc4FQfqVNf1IduCSUwuvAjaTnLsC5KZk5G5IjPicpqe5Y42DvswAy
-         6EBnQmlKqme0tiF4mN6MGXa10SCBlDhrM39JQ7bZl1E3Qx7zReiQxsx/YX2aeAggLKPl
-         /AfsWIDgICwKR5fUcHCr9R1tDBuCSp0OME/w7Fs1Xzv5+8ZwppOkPZ0lUf54Cpiexd2E
-         92VYrKM9W/o/WS60goJpeK3AGZ+iM5SxEG8SP3fS9k7lCHRXiaarC2osWF+Dh+Ti+nqC
-         BJTI148Vg4eqONYvC+anSJU1WDnkisGO/cfUkuEKj0Rsgdkz186ve6ufdEX+YknMT+ms
-         y/Wg==
-X-Gm-Message-State: AOAM531f4MYTL9Deq3VTt4u775fdl1nK1tJSumfxQlqefCFSZBlRSQ+4
-        zJBru3r5lYbI1e8lu1ilBfWJWg==
-X-Google-Smtp-Source: ABdhPJxmovMsDDzMfYod9jPsoYrPikEBudEzDVbQ7NJePchZ7rsR/uQyoELD5H7C/+Q8y9eUaMHQng==
-X-Received: by 2002:a17:90a:ee8f:: with SMTP id i15mr3056399pjz.82.1610600457673;
-        Wed, 13 Jan 2021 21:00:57 -0800 (PST)
-Received: from localhost ([122.172.85.111])
-        by smtp.gmail.com with ESMTPSA id gz5sm4294731pjb.15.2021.01.13.21.00.56
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 13 Jan 2021 21:00:56 -0800 (PST)
-Date:   Thu, 14 Jan 2021 10:30:54 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
-Message-ID: <20210114050054.gfkllnr45pgvwcd7@vireshk-i7>
-References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
- <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=gdO0WTSyKWA1CQWh1+Ms9mCRHiJwmYIbRxyUnFoqJbg=;
+        b=JzcPKYWHOkDLUmXAm7Rd2qCCSX7G472064fB4NsGI+EebPQ75TTOD/t6OGKbeLOdoV
+         5LyvA6qLYRAalfzgFJbsxpCpExatOL/30gg1V16ESe1v0kqw7tMhmDq9Dd1OiLZnhSb9
+         i7QLcpFH70LWLYPRT3FNQb/eYhQQFo/9HlDua7/9+NIXNuwZTlm/lARPyjhUZJYZ7y/9
+         EtUPF3Uc2nTSXQYZKDRkJRn4B4ozk8T4KFrU3wFQ0Ijm2po4+nPmV1J4icXhpzpsU2sW
+         UKUMQMNyfBkyXNSQC+Mwv9geif8OV3Lyh+OA0VL0UesqLLiirBePTIreXTSg2L1n5w4c
+         Ldig==
+X-Gm-Message-State: AOAM530dUyPXHjZ9yfzk06mzfr1FbVFiUnK+1ar3m0NYl9Tq1u62nb/7
+        BZXejBkyLFmlLbvPMBMLh8vhSA==
+X-Google-Smtp-Source: ABdhPJw/KjwzxMrzkLg64ELSAlY5MYh64l6TXiHKqd631a6TQBCTeucap9fzUW/vz4QqeYnG6FGkfw==
+X-Received: by 2002:a17:902:ee0b:b029:db:c808:ccef with SMTP id z11-20020a170902ee0bb02900dbc808ccefmr5909294plb.85.1610600461055;
+        Wed, 13 Jan 2021 21:01:01 -0800 (PST)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id ft9sm104201pjb.17.2021.01.13.21.01.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 21:01:00 -0800 (PST)
+Date:   Wed, 13 Jan 2021 21:01:00 -0800 (PST)
+X-Google-Original-Date: Wed, 13 Jan 2021 21:00:58 PST (-0800)
+Subject:     Re: [PATCH v2 0/3] fix macb phy probe failure if phy-reset is not handled
+In-Reply-To: <1605021732-268521-1-git-send-email-sagar.kadam@sifive.com>
+CC:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, kernel@esmil.dk,
+        Atish Patra <Atish.Patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        anup@brainfault.org, yash.shah@sifive.com, aou@eecs.berkeley.edu,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        sagar.kadam@sifive.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     sagar.kadam@sifive.com
+Message-ID: <mhng-40b3307c-6849-46f4-83c3-ffa1ab92baef@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Frank/Rob.
+On Tue, 10 Nov 2020 07:22:09 PST (-0800), sagar.kadam@sifive.com wrote:
+> HiFive Unleashed is having VSC8541-01 ethernet phy device and requires a
+> specific reset sequence of 0-1-0-1 in order to use it in unmanaged mode.
+> This series addresses a corner case where phy reset is not handled by boot
+> stages prior to linux.
+> Somewhat similar unreliable phy probe failure was reported and discussed
+> here [1].
+> The macb driver fails to detect the ethernet phy device if the bootloader
+> doesn't provide a proper reset sequence to the phy device or the phy itself
+> is in some invalid state. Currently, the FSBL or u-boot-spl is resetting
+> the phy device, and so there is no issue observed in the linux network
+> setup.
+>
+> The series is based on linux-5.10-rc5.
+> Patch 1: Add the OUI to the phy dt node to fix issue of missing mdio device
+> Patch 2 and 3:
+> 	Resetting phy needs GPIO support so add to dt and defconfig.
+>
+> [1] https://lkml.org/lkml/2018/11/29/154
+>
+> To reproduce the issue:
+> Using FSBL:
+> 1. Comment out VSC8541 reset sequence in fsbl/main.c
+>    from within the freedom-u540-c000-bootloader.
+> 2. Build and flash fsbl.bin to micro sdcard.
+>
+> Using u-boot:
+> 1. Comment out VSC8541 reset sequence in board/sifive/fu540/spl.c
+>    from mainline u-boot source code.
+> 2. Build and flash u-boot binaries to micro sdcard.
+>
+> Boot the board and bootlog will show network setup failure messages as:
+>
+> [  1.069474] libphy: MACB_mii_bus: probed
+> [  1.073092] mdio_bus 10090000.ethernet-ffffffff: MDIO device at address 0
+> 	       is missing
+> .....
+> [  1.979252] macb 10090000.ethernet eth0: Could not attach PHY (-19)
+>
+> 3. Now apply the series build, and boot kernel.
+> 4. MACB and VSC8541 driver get successfully probed and the network is set
+>    without any failure.
+>
+>
+> So irrespective of whether the prior stages handle the phy reset sequence,
+> the probing is successful in both the cases of cold boot and warm boot.
+>
+> Change History:
+> ===============================
+> V2:
+> -Rebased v1 on linux kernel v5.10-rc3.
+>
+> V1:
+> -Ignore 4th patch as suggested and so removed it from the series.
+> -Verified this series on 5.7-rc5.
+>
+> V0: Base RFC patch. Verified on 5.7-rc2
+>
+> Sagar Shrikant Kadam (3):
+>   dts: phy: fix missing mdio device and probe failure of vsc8541-01
+>     device
+>   dts: phy: add GPIO number and active state used for phy reset
+>   riscv: defconfig: enable gpio support for HiFive Unleashed
+>
+>  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 2 ++
+>  arch/riscv/configs/defconfig                        | 2 ++
+>  2 files changed, 4 insertions(+)
 
-On 08-01-21, 14:11, Viresh Kumar wrote:
-> diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
-> index 009f4045c8e4..f17bce85f65f 100644
-> --- a/drivers/of/unittest-data/Makefile
-> +++ b/drivers/of/unittest-data/Makefile
-> @@ -38,3 +38,26 @@ DTC_FLAGS_testcases += -@
->  
->  # suppress warnings about intentional errors
->  DTC_FLAGS_testcases += -Wno-interrupts_property
-> +
-> +# Apply overlays statically with fdtoverlay
-
-I will update this part to mention about the dtbs we are not using in the build
-as they will fail (as per Frank's comment).
-
-Is there anything else you guys want me to change before I send the next version
-?
-
-> +intermediate-overlay	:= overlay.dtb
-> +master			:= overlay_0.dtb overlay_1.dtb overlay_2.dtb \
-> +			   overlay_3.dtb overlay_4.dtb overlay_5.dtb \
-> +			   overlay_6.dtb overlay_7.dtb overlay_8.dtb \
-> +			   overlay_9.dtb overlay_10.dtb overlay_11.dtb \
-> +			   overlay_12.dtb overlay_13.dtb overlay_15.dtb \
-> +			   overlay_gpio_01.dtb overlay_gpio_02a.dtb \
-> +			   overlay_gpio_02b.dtb overlay_gpio_03.dtb \
-> +			   overlay_gpio_04a.dtb overlay_gpio_04b.dtb \
-> +			   intermediate-overlay.dtb
-> +
-> +quiet_cmd_fdtoverlay = fdtoverlay $@
-> +      cmd_fdtoverlay = $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $^
-> +
-> +$(obj)/intermediate-overlay.dtb: $(obj)/overlay_base.dtb $(addprefix $(obj)/,$(intermediate-overlay))
-> +	$(call if_changed,fdtoverlay)
-> +
-> +$(obj)/master.dtb: $(obj)/testcases.dtb $(addprefix $(obj)/,$(master))
-> +	$(call if_changed,fdtoverlay)
-> +
-> +always-$(CONFIG_OF_OVERLAY) += intermediate-overlay.dtb master.dtb
-
--- 
-viresh
+David pointed out I missed these, they're on fixes.  Thanks!
