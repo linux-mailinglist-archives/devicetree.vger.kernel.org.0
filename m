@@ -2,144 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F79B2F63A6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 16:05:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1C092F6420
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 16:20:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727164AbhANPEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 10:04:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44248 "EHLO
+        id S1729292AbhANPR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 10:17:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726563AbhANPEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 10:04:46 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8AA3C061574;
-        Thu, 14 Jan 2021 07:04:05 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id l207so6193011oib.4;
-        Thu, 14 Jan 2021 07:04:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/jHFgmoPeXHiV4YcqawMp6uZQ8LlT8fRndukyjzJVg8=;
-        b=JPWfB/w9V9+Kw8HoApq5LrRQoQgHRMrEuu/H+ONr2nIkngZZX63asF57yR+pcHFaCf
-         OM7rfUcxJPUfQ4lZulSLhfzm6izbNWbYHYqQUCeGRhw+C+FOy/AhGUbbAJxXJ4pdAwKB
-         QG6F2zh4P7nNHoH3vBxc1NFHjFAPvs8sSIbrnq9cCyME0NDJ7zlKM6JXA4634ALhZfO7
-         wjEH4iziCpeBrz+fkFSDh0zbLOpGNKvvqe8pnxYA2ReK11apeFxTK6vi+l0JpAUyezf1
-         fhypWlMmxVKpqhwQe+9V0JBv/eY3o585oVkA7sHXM8U2w9sPEF7Cv6ySnpQ6dqn/m4KQ
-         izFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/jHFgmoPeXHiV4YcqawMp6uZQ8LlT8fRndukyjzJVg8=;
-        b=RYNNvIYRHRnBt4rl040xx2+mR349sQvDRHMMmQSY5GexCKa8BQjV06YTtfLYeLEcc3
-         tXSBSgHnESo4CBYemQoMemPTJo0XgDv9d6x2M2MZf7GgfXu/+3s9cQQ0QD+kJNRwm7OR
-         SapJnt7MR40tXDWGdPg64nqUhUsIVjrbQeCOBPUi6jcJF4KeSrepCYwjuWuENoWGIgfW
-         ESLkEq7D7u13SEPbrsmmQpaQ26cjWopntuFTZnPIWOiaNLlK0rc8JSxxxbfWZA8IgxqH
-         +hHK735n6qCCBjo/aEyNh4jZknPxlP7rOSPqxBgNzxNDgSzC879nIjITQ9p+nq2y3stR
-         7dQA==
-X-Gm-Message-State: AOAM531loF0AVbKi4FqkkR1GPOqQJ9udkGj9ChUYRNh1XW3cfflCCdQY
-        kafDidExoO+gztDWP0MUDgs7MmZgK0fP09mZ7w==
-X-Google-Smtp-Source: ABdhPJzLcYo0vmSHvOURWzZZv9H7hQYf9f4KTJGzSrGmc/uN1MH7bW93Frnz3tY06HdfSl/Ubw7GfZLvn2rmdqm/zhU=
-X-Received: by 2002:a05:6808:8e7:: with SMTP id d7mr2876538oic.127.1610636645135;
- Thu, 14 Jan 2021 07:04:05 -0800 (PST)
+        with ESMTP id S1728098AbhANPR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 10:17:58 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E3C3C0613ED
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 07:16:41 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1l04MS-00021i-Rp; Thu, 14 Jan 2021 16:16:32 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1l04MR-00012i-O9; Thu, 14 Jan 2021 16:16:31 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mark Brown <broonie@kernel.org>, Wolfram Sang <wsa@kernel.org>
+Cc:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <uwe.kleine-koenig@pengutronix.de>, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: [PATCH v1 0/7] Remove ARM platform efm32
+Date:   Thu, 14 Jan 2021 16:16:23 +0100
+Message-Id: <20210114151630.128830-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210113145922.92848-1-george.mccollister@gmail.com>
- <20210113145922.92848-2-george.mccollister@gmail.com> <20210114010519.td6q2pzy4mg6viuh@skbuf>
-In-Reply-To: <20210114010519.td6q2pzy4mg6viuh@skbuf>
-From:   George McCollister <george.mccollister@gmail.com>
-Date:   Thu, 14 Jan 2021 09:03:53 -0600
-Message-ID: <CAFSKS=PZ5_FgtOmSq=9xCgYPmqnmwjp6v7JFwx1tyBCP8ayopQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 1/3] dsa: add support for Arrow XRS700x tag trailer
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 7:05 PM Vladimir Oltean <olteanv@gmail.com> wrote:
-> > +++ b/net/dsa/tag_xrs700x.c
-> > @@ -0,0 +1,67 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * XRS700x tag format handling
-> > + * Copyright (c) 2008-2009 Marvell Semiconductor
->
-> Why does Marvell get copyright?
+From: Uwe Kleine-König <uwe.kleine-koenig@pengutronix.de>
 
-What Andrew said. I started with tag_trailer.c since it is quite
-similar and it seemed wrong to remove the copyright.
+Hello,
 
->
-> > + * Copyright (c) 2020 NovaTech LLC
-> > + */
-> > +
-> > +#include <linux/etherdevice.h>
-> > +#include <linux/list.h>
-> > +#include <linux/slab.h>
->
-> These 3 includes are not needed. You can probably remove them later
-> though, if there is no other reason to resend.
+there are no known active users of the efm32 platform. Given that the
+only machine that is supported has only 4 MiB of RAM its use is also
+quite limited.
 
-Removed.
+Back then it served as the platform to develop ARMv7-M support in Linux
+which was quite fun and still is a blissful memory.
 
->
-> > +#include <linux/bitops.h>
-> > +
-> > +#include "dsa_priv.h"
-> > +
-> > +static struct sk_buff *xrs700x_xmit(struct sk_buff *skb, struct net_device *dev)
-> > +{
-> > +     struct dsa_port *dp = dsa_slave_to_port(dev);
-> > +     u8 *trailer;
-> > +
-> > +     trailer = skb_put(skb, 1);
-> > +     trailer[0] = BIT(dp->index);
-> > +
-> > +     return skb;
-> > +}
-> > +
-> > +static struct sk_buff *xrs700x_rcv(struct sk_buff *skb, struct net_device *dev,
-> > +                                struct packet_type *pt)
-> > +{
-> > +     int source_port;
-> > +     u8 *trailer;
-> > +
-> > +     if (skb_linearize(skb))
-> > +             return NULL;
->
-> We've been through this, there should be no reason to linearize an skb
-> for a one-byte tail tag..
+Still given that the code serves no purpose and this probably won't
+change anytime soon, remove all platform support.
 
-Sorry about this. You and Andrew started discussing it and I guess I
-got distracted fixing the other issues. Removed. I'll retest after
-making other changes to patches in the series but based on what you've
-said it should be fine without it.
+I'm unsure what to do with the device tree bindings. Should we delete
+them, too?
 
->
-> > +
-> > +     trailer = skb_tail_pointer(skb) - 1;
-> > +
-> > +     source_port = ffs((int)trailer[0]) - 1;
-> > +
-> > +     if (source_port < 0)
-> > +             return NULL;
-> > +
-> > +     skb->dev = dsa_master_find_slave(dev, 0, source_port);
-> > +     if (!skb->dev)
-> > +             return NULL;
-> > +
-> > +     if (pskb_trim_rcsum(skb, skb->len - 1))
-> > +             return NULL;
-> > +
-> > +     /* Frame is forwarded by hardware, don't forward in software. */
-> > +     skb->offload_fwd_mark = 1;
-> > +
-> > +     return skb;
-> > +}
+Best regards
+Uwe
+
+Uwe Kleine-König (7):
+  ARM: drop efm32 platform
+  clk: Drop unused efm32gg driver
+  clocksource: Drop unused efm32 timer code
+  spi: Drop unused efm32 bus driver
+  i2c: Drop unused efm32 bus driver
+  tty: Drop unused efm32 serial driver
+  MAINTAINERS: Remove deleted platform efm32
+
+ MAINTAINERS                              |   7 -
+ arch/arm/Kconfig                         |  10 +-
+ arch/arm/Kconfig.debug                   |  17 -
+ arch/arm/Makefile                        |   1 -
+ arch/arm/boot/dts/Makefile               |   2 -
+ arch/arm/boot/dts/efm32gg-dk3750.dts     |  88 ---
+ arch/arm/boot/dts/efm32gg.dtsi           | 177 -----
+ arch/arm/configs/efm32_defconfig         |  98 ---
+ arch/arm/include/debug/efm32.S           |  45 --
+ arch/arm/mach-efm32/Makefile             |   2 -
+ arch/arm/mach-efm32/Makefile.boot        |   4 -
+ arch/arm/mach-efm32/dtmachine.c          |  16 -
+ arch/arm/mm/Kconfig                      |   1 -
+ drivers/clk/Makefile                     |   1 -
+ drivers/clk/clk-efm32gg.c                |  84 ---
+ drivers/clocksource/Kconfig              |   9 -
+ drivers/clocksource/Makefile             |   1 -
+ drivers/clocksource/timer-efm32.c        | 278 --------
+ drivers/i2c/busses/Kconfig               |   7 -
+ drivers/i2c/busses/Makefile              |   1 -
+ drivers/i2c/busses/i2c-efm32.c           | 469 -------------
+ drivers/spi/Kconfig                      |   7 -
+ drivers/spi/Makefile                     |   1 -
+ drivers/spi/spi-efm32.c                  | 462 ------------
+ drivers/tty/serial/Kconfig               |  13 -
+ drivers/tty/serial/Makefile              |   1 -
+ drivers/tty/serial/efm32-uart.c          | 852 -----------------------
+ include/linux/platform_data/efm32-spi.h  |  15 -
+ include/linux/platform_data/efm32-uart.h |  19 -
+ include/uapi/linux/serial_core.h         |   3 -
+ 30 files changed, 1 insertion(+), 2690 deletions(-)
+ delete mode 100644 arch/arm/boot/dts/efm32gg-dk3750.dts
+ delete mode 100644 arch/arm/boot/dts/efm32gg.dtsi
+ delete mode 100644 arch/arm/configs/efm32_defconfig
+ delete mode 100644 arch/arm/include/debug/efm32.S
+ delete mode 100644 arch/arm/mach-efm32/Makefile
+ delete mode 100644 arch/arm/mach-efm32/Makefile.boot
+ delete mode 100644 arch/arm/mach-efm32/dtmachine.c
+ delete mode 100644 drivers/clk/clk-efm32gg.c
+ delete mode 100644 drivers/clocksource/timer-efm32.c
+ delete mode 100644 drivers/i2c/busses/i2c-efm32.c
+ delete mode 100644 drivers/spi/spi-efm32.c
+ delete mode 100644 drivers/tty/serial/efm32-uart.c
+ delete mode 100644 include/linux/platform_data/efm32-spi.h
+ delete mode 100644 include/linux/platform_data/efm32-uart.h
+
+
+base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
+-- 
+2.29.2
+
