@@ -2,87 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBC532F61A5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:16:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B43952F61B3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:18:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727080AbhANNOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 08:14:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48742 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726147AbhANNOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 08:14:23 -0500
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4ADDC0613C1
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 05:13:42 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by albert.telenet-ops.be with bizsmtp
-        id GdDc240094C55Sk06dDcRQ; Thu, 14 Jan 2021 14:13:40 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l02RT-003YlL-HL; Thu, 14 Jan 2021 14:13:35 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l02RT-009NQ3-3Z; Thu, 14 Jan 2021 14:13:35 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiri Kosina <trivial@kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Brian Norris <briannorris@chromium.org>,
-        Rajat Jain <rajatja@google.com>, netdev@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 trivial/resend] dt-bindings: net: btusb: DT fix s/interrupt-name/interrupt-names/
-Date:   Thu, 14 Jan 2021 14:13:33 +0100
-Message-Id: <20210114131333.2234932-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S1728952AbhANNQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 08:16:42 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:39222 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725955AbhANNQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 08:16:42 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10ED2bID016430;
+        Thu, 14 Jan 2021 14:15:49 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=dE1TUuVGYcUczJw86WcXEkSTgFgz2gMWVXOhCYrwAEI=;
+ b=RbbyH+XiQ4AzI0iJTjK5eW7p8vXySbcEHv/xolEjuXRU4qhWE9JYuCGC8qF8yEYOL9kn
+ BXn52AAL6GHwgTGCsADaLbXN1xa3DtkLxWRFZ4dXfoKwCWelyavR8Wrhv5BC0FeUz96T
+ 6iib/LCmHEz8pBQ3PqY+LA0zXr2Qs4Rz34QCh5ZO2hzaROnVvBFlNAnV5wWOErgjg8g5
+ oaT3C8ZPGcqByR1blrhiBIvdNBm+UXuv3NeY7faQpcFcpTr9qFFwajp1U1zU35w5UgRo
+ NJZ4ZsnHDxQb4ISR71+6KyBtZoLSVqfqac6EKW7NduJhb+C84MHl/eb4ePua2iQzjeDO ww== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 35y5kywwmv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 14 Jan 2021 14:15:49 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A31A110002A;
+        Thu, 14 Jan 2021 14:15:48 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 92770246DB4;
+        Thu, 14 Jan 2021 14:15:48 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 14 Jan 2021 14:15:48
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH v2 0/3] ARM: stm32: USBPHYC updates on stm32mp15
+Date:   Thu, 14 Jan 2021 14:15:21 +0100
+Message-ID: <20210114131524.3298-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-14_04:2021-01-14,2021-01-14 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The standard DT property name is "interrupt-names".
+This series updates usbphyc parent and child nodes to follow latest DT
+bindings.
 
-Fixes: fd913ef7ce619467 ("Bluetooth: btusb: Add out-of-band wakeup support")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Brian Norris <briannorris@chromium.org>
-Acked-by: Rajat Jain <rajatja@google.com>
 ---
-Who takes this patch, before it celebrates its 4th birthday?
+Changes in v2:
+- squash all DT board patches in one patch
+- update also non-ST DT
 
-v5:
-  - Add Reviewed-by, Acked-by,
+Amelie Delaunay (3):
+  ARM: dts: stm32: add usbphyc vdda1v1 and vdda1v8 supplies on
+    stm32mp151
+  ARM: dts: stm32: remove usbphyc ports vdda1v1 & vdda1v8 on stm32mp15
+    boards
+  ARM: dts: stm32: add #clock-cells property to usbphyc node on
+    stm32mp151
 
-v4:
-  - Add Acked-by,
+ arch/arm/boot/dts/stm32mp151.dtsi                  | 3 +++
+ arch/arm/boot/dts/stm32mp157a-stinger96.dtsi       | 4 ----
+ arch/arm/boot/dts/stm32mp157c-ed1.dts              | 4 ----
+ arch/arm/boot/dts/stm32mp15xx-dhcom-drc02.dtsi     | 2 --
+ arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi      | 4 ----
+ arch/arm/boot/dts/stm32mp15xx-dhcom-picoitx.dtsi   | 4 ----
+ arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 4 ----
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi             | 4 ----
+ 8 files changed, 3 insertions(+), 26 deletions(-)
 
-v3:
-  - New.
----
- Documentation/devicetree/bindings/net/btusb.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/net/btusb.txt b/Documentation/devicetree/bindings/net/btusb.txt
-index b1ad6ee68e909318..c51dd99dc0d3cb73 100644
---- a/Documentation/devicetree/bindings/net/btusb.txt
-+++ b/Documentation/devicetree/bindings/net/btusb.txt
-@@ -38,7 +38,7 @@ Following example uses irq pin number 3 of gpio0 for out of band wake-on-bt:
- 	compatible = "usb1286,204e";
- 	reg = <1>;
- 	interrupt-parent = <&gpio0>;
--	interrupt-name = "wakeup";
-+	interrupt-names = "wakeup";
- 	interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-     };
- };
 -- 
-2.25.1
+2.17.1
 
