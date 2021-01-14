@@ -2,219 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14DEE2F5F0A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:42:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64AF72F5F29
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:46:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727522AbhANKir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 05:38:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43322 "EHLO
+        id S1727846AbhANKpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 05:45:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725954AbhANKio (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 05:38:44 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5B69C061573
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 02:38:04 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        with ESMTP id S1727440AbhANKpj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 05:45:39 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E75AC061573;
+        Thu, 14 Jan 2021 02:44:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=F68eulvXFZnAl5pZI2tB8ZalnqWIEVZQNyoa3f/vSfs=; b=1+PsGp7gsUMf+LHqCtJKBArVm
+        WP/UXkNP7vLIkUGBLCgPKqMEHpthoqKRhWwXZUxFme8DiLG8PZVGHCxLFYHAKJOJZq9ZY93lzRQGh
+        TJwrKZNBikaMgWa9oZhQbYW8yikg4L/TiBmPn6BecganzP2ma01+TVcHrQpijLzAF3Hwyofgymb98
+        S+KV0SLhIWqsgcK3aqePesTczUli33vxnU2yKNauiQTB4BKCJSdVJPhXSnfNL2BVwEdPFj8HhQugj
+        aYDXg8elEfsPoUg4Y4H9nH9Zimbk6OhIKGMzogcDJM8mFXTX/Ise313+SrOYnaPODiXbqgdv+3ZPI
+        mKt3vcBkQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47830)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1l000m-0002Fa-6s; Thu, 14 Jan 2021 11:37:52 +0100
-Received: from [IPv6:2a03:f580:87bc:d400:139b:2156:a22c:f2f2] (unknown [IPv6:2a03:f580:87bc:d400:139b:2156:a22c:f2f2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
-         client-signature RSA-PSS (4096 bits))
-        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
-        (Authenticated sender: mkl@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 73A955C38E7;
-        Thu, 14 Jan 2021 10:37:50 +0000 (UTC)
-Subject: Re: [PATCH] ARM: dts: imx6qdl-sr-som: fix some cubox-i platforms
-To:     Russell King <rmk+kernel@armlinux.org.uk>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1l007c-0002KB-SN; Thu, 14 Jan 2021 10:44:56 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1l007c-0008H6-4K; Thu, 14 Jan 2021 10:44:56 +0000
+Date:   Thu, 14 Jan 2021 10:44:56 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <E1kzzzC-0004lA-UB@rmk-PC.armlinux.org.uk>
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <9cf5e6d3-15c4-04d6-cdfe-dd40d5e17eb4@pengutronix.de>
-Date:   Thu, 14 Jan 2021 11:37:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        Jon Nettleton <jon@solid-run.com>
+Subject: [PATCH net-next 0/2] Add further DT configuration for AT803x PHYs
+Message-ID: <20210114104455.GP1551@shell.armlinux.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <E1kzzzC-0004lA-UB@rmk-PC.armlinux.org.uk>
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="EkwBcncZgSPfSc2GhTEAoY8Gr98aGRc0w"
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---EkwBcncZgSPfSc2GhTEAoY8Gr98aGRc0w
-Content-Type: multipart/mixed; boundary="GqLW4jKMbNgsrVsnHM1irULcgKrBIU13z";
- protected-headers="v1"
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Russell King <rmk+kernel@armlinux.org.uk>, Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
-Message-ID: <9cf5e6d3-15c4-04d6-cdfe-dd40d5e17eb4@pengutronix.de>
-Subject: Re: [PATCH] ARM: dts: imx6qdl-sr-som: fix some cubox-i platforms
-References: <E1kzzzC-0004lA-UB@rmk-PC.armlinux.org.uk>
-In-Reply-To: <E1kzzzC-0004lA-UB@rmk-PC.armlinux.org.uk>
+Hi,
 
---GqLW4jKMbNgsrVsnHM1irULcgKrBIU13z
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: quoted-printable
+This patch series adds the ability to configure the SmartEEE feature
+in AT803x PHYs. SmartEEE defaults to enabled on these PHYs, and has
+a history of causing random sporadic link drops at Gigabit speeds.
 
-On 1/14/21 11:36 AM, Russell King wrote:
-> The PHY address bit 2 is configured by the LED pin. Attaching a LED
-> to this pin is not sufficient to guarantee this configuration pin is
-> correctly read. This leads to some platforms having their PHY at
-> address 0 and others at address 4.
->=20
-> If there is no phy-handle specified, the FEC driver will scan the PHY
-> bus for a PHY and use that. Consequently, adding the DT configuration
-> of the PHY and the phy properties to the FEC driver broke some boards.
->=20
-> Fix this by removing the phy-handle property, and listing two PHY
-> entries for both possible PHY addresses, so that the DT configuration
-> for the PHY can be found by the PHY driver.
->=20
-> Fixes: 86b08bd5b994 ("ARM: dts: imx6-sr-som: add ethernet PHY configura=
-tion")
-> Reported-by: Christoph Mattheis <christoph.mattheis@arcor.de>
-> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
-> ---
->  arch/arm/boot/dts/imx6qdl-sr-som.dtsi | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi b/arch/arm/boot/dts/=
-imx6qdl-sr-som.dtsi
-> index b06577808ff4..bba21dfef103 100644
-> --- a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-> @@ -53,7 +53,6 @@
->  &fec {
->  	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&pinctrl_microsom_enet_ar8035>;
-> -	phy-handle =3D <&phy>;
->  	phy-mode =3D "rgmii-id";
->  	phy-reset-duration =3D <2>;
->  	phy-reset-gpios =3D <&gpio4 15 GPIO_ACTIVE_LOW>;
-> @@ -63,7 +62,15 @@
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
-> =20
-> -		phy: ethernet-phy@0 {
-> +		/*
-> +		 * The PHY can appear at either address 0 or 4 due to the
-> +		 * configuration (LED) pin not being pulled sufficiently.
-> +		 */
-> +		ethernet-phy@0 {
-> +			reg =3D <0>;
-> +			qca,clk-out-frequency =3D <125000000>;
-> +		};
-> +		ethernet-phy@4 {
->  			reg =3D <0>;
-                               ^
-4?
+There appears to be two solutions to this. There is the approach that
+Freescale adopted early on, which is to disable the SmartEEE feature.
+However, this loses the power saving provided by EEE. Another solution
+was found by Jon Nettleton is to increase the Tw parameter for Gigabit
+links.
 
-regards,
-Marc
+This patch series adds support for both approaches, by adding a boolean:
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+	qca,disable-smarteee
 
+if one wishes to disable SmartEEE, and two properties to configure the
+SmartEEE Tw parameters:
 
---GqLW4jKMbNgsrVsnHM1irULcgKrBIU13z--
+	qca,smarteee-tw-us-100m
+	qca,smarteee-tw-us-1g
 
---EkwBcncZgSPfSc2GhTEAoY8Gr98aGRc0w
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Sadly, the PHY quirk I merged a while back for AT8035 on iMX6 is broken 
+- rather than disabling SmartEEE mode, it enables it.
 
------BEGIN PGP SIGNATURE-----
+The addition of these properties will be sent to the appropriate
+platform maintainers - although for SolidRun platforms, we only make use
+of "qca,smarteee-tw-us-1g".
 
-iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmAAHvsACgkQqclaivrt
-76mgygf9H6t3iqH4dV8Tnlfb93xWw2RfAk4IweWr8Bfk+1yJZvm9nlPPF3+ULg3h
-rRiDbYDGgLY6vlMh9vua4jYc988CEbiPL3gibHw2stjuwI+/WFqICOm71xxpcmFy
-HUT8vvnEriD93WwnJWavFqwAvM/BlyA2qTrEJ+P1Fgf+AuA9orwByOjRwGvSoldM
-fQ2RWP607dRXus2ck3ARycSjlUj5FjRx94/8bMbCL4IVZ47F3fsEX9R33c1Cetrd
-vmM9Jn9Jv+SsafPGk5zfaVCagMmLOF86LcVxWFOHMWZH4fnuu0jZpklDkLUp7Czd
-5ziXxQJntdPQ4/mvDvrGR2Ooleh1Qw==
-=U72F
------END PGP SIGNATURE-----
+ .../devicetree/bindings/net/qca,ar803x.yaml        | 16 ++++++
+ drivers/net/phy/at803x.c                           | 65 +++++++++++++++++++++-
+ 2 files changed, 80 insertions(+), 1 deletion(-)
 
---EkwBcncZgSPfSc2GhTEAoY8Gr98aGRc0w--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
