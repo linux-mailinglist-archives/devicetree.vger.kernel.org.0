@@ -2,94 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3DB62F5C46
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 09:18:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6642F5C67
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 09:31:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727155AbhANISd convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Jan 2021 03:18:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41518 "EHLO
+        id S1727799AbhANIaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 03:30:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726677AbhANISc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 03:18:32 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 877C5C061786
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 00:17:52 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kzxpG-00029h-HZ; Thu, 14 Jan 2021 09:17:50 +0100
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kzxpD-0004YJ-M3; Thu, 14 Jan 2021 09:17:47 +0100
-Message-ID: <d7e9c3bed92d6fc6922e5f5ec30f27d7242c5624.camel@pengutronix.de>
-Subject: Re: [PATCH v4 4/7] dt-bindings: display: imx: hdmi: Convert binding
- to YAML
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Sandy Huang <hjc@rock-chips.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Yao <markyao0591@gmail.com>
-Date:   Thu, 14 Jan 2021 09:17:47 +0100
-In-Reply-To: <20210114064437.5793-5-laurent.pinchart+renesas@ideasonboard.com>
-References: <20210114064437.5793-1-laurent.pinchart+renesas@ideasonboard.com>
-         <20210114064437.5793-5-laurent.pinchart+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
-MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        with ESMTP id S1727798AbhANIaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 03:30:17 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE75C061786;
+        Thu, 14 Jan 2021 00:29:37 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id ce17so535899pjb.5;
+        Thu, 14 Jan 2021 00:29:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=9R2jGV3ELt7e4yRKD7ul8p29a+2uSNEqBXC3W5gt1Gk=;
+        b=V7e5LDbJkJbR58fkAEL4hjlfLgteWt83JyppQ6z814W/aVJhxuFoNoRXxnJgZ3Wjsk
+         +NMv6l/fvqSCP2TbBTQ6BDEVUK4QO9ltjdvjeNc3fz8wvOg/I7ui++uBvCLF/h8J2KzJ
+         xiz4ukrtbms42QyKeSL7EG4rha+t2aPCX8ZDKllEwenBMDYt5mNdLlF9NSZg1ufjXKzG
+         Kr2X+29J0ZlG54JY3EYAwnKma7xEB9uF5viLyiFuE13kzMw5NMNo37ZT3mQ5n/Dj7ZBl
+         pza0xFvIo2bjmuNtFgfzWzxDQJBL0hiRNO5uWOgwtLd5GoDpL9dFSLLhWZk1z3mPAcE5
+         hLfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=9R2jGV3ELt7e4yRKD7ul8p29a+2uSNEqBXC3W5gt1Gk=;
+        b=PqUGX5Quov5Qj9V7extM9DINPyvp5BxUNLbFDmf+axr3xZ0SZJsc6IFupPfGFyBOhS
+         W86f7Rw4YQ/seyqoCt8w00m2F9pGJJGLz1SvKuJni2Oq+bcfztXXxwLkQf5zYCsXY2HF
+         +zDjqpmQBs9BzLq1Kah1cY8mImEnzAGgT6DpIPcvsdHTPHrommVRNxm6JaBhwSq1Umvh
+         tvC90eQyfill22QdS4onbjqTuar725T+PNi0x5odQmDQR1TyCRCYuMWV0ajx753p3vWE
+         zhiluan9Ryn1nLEyugZxczbaSqeFvNnn1AMgPDvhYLws0SPG8+TDa7ZEGOmcqa3rD+IR
+         Gs9Q==
+X-Gm-Message-State: AOAM530iy04j8JSZyUVgk6T9KmvF/cXqWHVjSfRQiG7wh5kexwjkZfE4
+        nY1w0eS1CmaoGfbFuPEa+1k=
+X-Google-Smtp-Source: ABdhPJy5BFtnIYW3FZVtRKKO0zBt0IaGmJisHU/iiVqbjsPtKiV511XFyWtRhXAc8PYkN/713VpuQw==
+X-Received: by 2002:a17:90a:7e90:: with SMTP id j16mr3810251pjl.163.1610612977112;
+        Thu, 14 Jan 2021 00:29:37 -0800 (PST)
+Received: from sh05419pcu.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id x22sm4776888pfc.19.2021.01.14.00.29.33
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 14 Jan 2021 00:29:36 -0800 (PST)
+From:   Hongtao Wu <wuht06@gmail.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hongtao Wu <billows.wu@unisoc.com>
+Subject: [RESEND PATCH v5 0/2] PCI: Add new Unisoc PCIe driver
+Date:   Thu, 14 Jan 2021 16:29:26 +0800
+Message-Id: <1610612968-26612-1-git-send-email-wuht06@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-01-14 at 08:44 +0200, Laurent Pinchart wrote:
-> Convert the i.MX6 HDMI TX text binding to YAML.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> Changes since v3:
-> 
-> - Use port instead of port-base
-> 
-> Changes since v1:
-> 
-> - Only specify maxItems for clocks
-> - Drop reg and interrupts as they're checked in the base schema
-> - Rebase on top of OF graph schema, dropped redundant properties
-> - Fix identation for enum entries
-> - Drop clock-names items, use maxItems only
-> ---
->  .../bindings/display/imx/fsl,imx6-hdmi.yaml   | 126 ++++++++++++++++++
->  .../devicetree/bindings/display/imx/hdmi.txt  |  65 ---------
->  2 files changed, 126 insertions(+), 65 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/imx/hdmi.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
-> new file mode 100644
-> index 000000000000..af7fe9c4d196
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx6-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX6 DWC HDMI TX Encoder
-> +
-> +maintainers:
-> +  - Philipp Zabel <p.zabel@pengutronix.de>
+From: Hongtao Wu <billows.wu@unisoc.com>
 
-Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+This series adds PCIe controller driver for Unisoc SoCs.
+This controller is based on DesignWare PCIe IP.
 
-regards
-Philipp
+Changes from v1:
+1) Test this patch on top of Rob Herring's 40 part series of DWC clean-ups:
+   https://lore.kernel.org/linux-pci/20200821035420.380495-1-robh@kernel.org/
+
+2) Delete empty function
+
+3) Document property "sprd,pcie-poweron-syscons" and
+   'sprd,pcie-poweroff-syscons'
+
+4) Delete runtime suspend/resume function
+
+5) Add COMPILE_TEST which CONFIG_PCIE_SPRD depends on
+
+Changes from v2:
+1) Change RC mode to host mode in drivers/pci/controller/dwc/Kconfig
+
+2) Change Signed-off-by from Billows Wu to Hongtao Wu
+
+Changes from v3:
+1) Split the property 'sprd,pcie-poweron-syscons' and
+   'sprd,pcie-poweroff-syscons' into reset, power domains, phy and so on.
+
+2) Delete the function to get resource 'msi' and 'dbi' which were parsed by the
+   DW core.
+
+3) Delete the function 'sprd_pcie_host_init', because the DW core has done it.
+
+Changes from v4:
+1) Install 'yamllint' and upgrade dt-schema in order to solve the yamllint and
+   dtschema/dtc warnings/errors.
+
+Hongtao Wu (2):
+  dt-bindings: PCI: sprd: Document Unisoc PCIe RC host controller
+  PCI: sprd: Add support for Unisoc SoCs' PCIe controller
+
+ .../devicetree/bindings/pci/sprd-pcie.yaml         |  93 +++++++
+ drivers/pci/controller/dwc/Kconfig                 |  12 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pcie-sprd.c             | 293 +++++++++++++++++++++
+ 4 files changed, 399 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/sprd-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-sprd.c
+
+--
+2.7.4
+
