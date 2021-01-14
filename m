@@ -2,113 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2980C2F6174
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:04:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F88F2F6186
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:09:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726855AbhANNDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 08:03:37 -0500
-Received: from mail-qk1-f174.google.com ([209.85.222.174]:41188 "EHLO
-        mail-qk1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726066AbhANNDf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 08:03:35 -0500
-Received: by mail-qk1-f174.google.com with SMTP id 19so7523702qkm.8;
-        Thu, 14 Jan 2021 05:03:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Tevr+spNEpRnq44NthoNPfr11G6U21MwOk+W3Rj2u8A=;
-        b=p6izCGH0r6lIcugzvAuaLO6nS00KMZZUCs/OkbVJt6LaL3JY5MonNKAKsp3D6ThimQ
-         M2hQc0OpIxpRh/Mt+i74O4fHdYeDdFt3SqIcYGyaXTD/UgAN9pOnqUGRnSh1RI0tPmKp
-         5xr8eZErTtivPFMNrA/0sAW5vYLvsdtwDCOE6tbpEZuC0+qMWfljFsay1ouwP5NsGGXF
-         rvrO5V/L3MpCBY4d/uqv0wUzM1k52NUsrFfX7jKQ8RQfYC6tHfL2AWaxXyMDW8OvHqZD
-         FHwSiUGM4Nx2j9aMcQ+miQzuzw7gje1OfLIuyed6rWPRF4i4ySpCgk4CR5X6Bl29q7Ne
-         m4TQ==
-X-Gm-Message-State: AOAM5338fL0hcZcTXhdla7EqOg8nVkNlv5Bd4cfzjgs4BQahPq64gKur
-        FfxXH56YuhYYmFRylAu7pjodAq5vCs/lc5U5+TQ=
-X-Google-Smtp-Source: ABdhPJz7zX1VUb6yM/UFCYla+bwht/B5d+uqLgHlNnpvlh8YvZy2Bzj7uocTaFDWEPNqsL1pXXusBDtHKGx+wylrIcs=
-X-Received: by 2002:a37:a950:: with SMTP id s77mr7011771qke.122.1610629374384;
- Thu, 14 Jan 2021 05:02:54 -0800 (PST)
+        id S1726376AbhANNHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 08:07:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35986 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726311AbhANNHJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 08:07:09 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7746523A57;
+        Thu, 14 Jan 2021 13:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610629588;
+        bh=D/+/bkmIIfUUeCxv5tjLKpAVV+Rlk4zpoC2NQcbuLb4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AC/B8BKOqp7Z35A6gK8NMvjeg+/ildA3STf2gnCVnVAfAVf0awZaDlD+expNz0HY/
+         0AYhZJ7ZQp+jLHnISNeiA8yT4hYX5XJHdkdyFJeQCBzdXox8o8lW1gYxm9GnYgmsko
+         YoRoawyCJJkwaiL6M6ZOv74P+Bdhqm877wXtzLAhBmCTD/r4mW6NG1YZOIySifTTaU
+         iCQKNmN46r61IgGMOWvKEWM8Hc+tDeG6Hdyqoi1MoDayDRHMwdKn7huEsgEWhXoTx9
+         U1lBfyif8afErmlKXSsEejDUIk4e45NPSGA32zsaygHDTHyGD8guygfli/HKAMfJUh
+         laPKlbqa8JK1w==
+Date:   Thu, 14 Jan 2021 15:06:24 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Hongtao Wu <wuht06@gmail.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hongtao Wu <billows.wu@unisoc.com>
+Subject: Re: [RESEND PATCH v5 2/2] PCI: sprd: Add support for Unisoc SoCs'
+ PCIe controller
+Message-ID: <20210114130624.GR4678@unreal>
+References: <1610612968-26612-1-git-send-email-wuht06@gmail.com>
+ <1610612968-26612-3-git-send-email-wuht06@gmail.com>
+ <20210114085233.GO4678@unreal>
+ <CAG_R4_UJ0=8=31XZD-SiiuL91M02N+fn=CLNA4_5Xm7jRDE1Rg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20201021135332.4928-1-fabrizio.castro.jz@renesas.com> <20201021135332.4928-3-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20201021135332.4928-3-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 14 Jan 2021 14:02:42 +0100
-Message-ID: <CAMuHMdWj_Gm6vwOF9Akz84WakA3KTcNTRHte6ukEF_U5=Q8xFA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/5] media: dt-bindings: media: renesas,drif: Convert
- to json-schema
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAG_R4_UJ0=8=31XZD-SiiuL91M02N+fn=CLNA4_5Xm7jRDE1Rg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio, Rob,
-
-On Wed, Oct 21, 2020 at 3:53 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> Convert the Renesas DRIF bindings to DT schema and update
-> MAINTAINERS accordingly.
+On Thu, Jan 14, 2021 at 08:00:50PM +0800, Hongtao Wu wrote:
+> On Thu, Jan 14, 2021 at 4:52 PM Leon Romanovsky <leon@kernel.org> wrote:
+> >
+> > On Thu, Jan 14, 2021 at 04:29:28PM +0800, Hongtao Wu wrote:
+> > > From: Hongtao Wu <billows.wu@unisoc.com>
+> > >
+> > > This series adds PCIe controller driver for Unisoc SoCs.
+> > > This controller is based on DesignWare PCIe IP.
+> > >
+> > > Signed-off-by: Hongtao Wu <billows.wu@unisoc.com>
+> > > ---
+> > >  drivers/pci/controller/dwc/Kconfig     |  12 ++
+> > >  drivers/pci/controller/dwc/Makefile    |   1 +
+> > >  drivers/pci/controller/dwc/pcie-sprd.c | 293 +++++++++++++++++++++++++++++++++
+> > >  3 files changed, 306 insertions(+)
+> > >  create mode 100644 drivers/pci/controller/dwc/pcie-sprd.c
+> >
+> > <...>
+> >
+> > > +static struct platform_driver sprd_pcie_driver = {
+> > > +     .probe = sprd_pcie_probe,
+> > > +     .remove = __exit_p(sprd_pcie_remove),
+> >                    ^^^^^^ why is that?
+> >
 >
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Thanks for the review.
+>
+> I think that if 'MODULE' is defined, '.remove = sprd_pcie_remove',
+> else '.remove = NULL'.
+> I would appreciate hearing your opinion about this.
 
-Thanks for your patch!
+If module not defined, these .probe and .remove won't be called.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+>
+> > > +     .driver = {
+> > > +             .name = "sprd-pcie",
+> > > +             .of_match_table = sprd_pcie_of_match,
+> > > +     },
+> > > +};
+> > > +
+> > > +module_platform_driver(sprd_pcie_driver);
+> > > +
+> > > +MODULE_DESCRIPTION("Unisoc PCIe host controller driver");
+> > > +MODULE_LICENSE("GPL v2");
+> >
+> > I think that it needs to be "GPL" and not "GPL v2".
+> >
+>
+> Many platform drivers use 'GPL v2', but others use 'GPL'.
+> I am not sure whether to use 'GPL' or 'GPL v2'.
+> Could you tell me why ‘GPL’ is needed here?
 
-> +  clock-names:
-> +    maxItems: 1
-> +    items:
-> +      - const: fck
+Because GPL already means v2, see Documentation/process/license-rules.rst
 
-With latest dt-schema, "make dt_binding_check" complains:
+  447
+  448     "GPL v2"                      Same as "GPL". It exists for historic
+  449                                   reasons.
 
-    Documentation/devicetree/bindings/media/renesas,drif.yaml:
-properties:clock-names:maxItems: False schema does not allow 1
-    Documentation/devicetree/bindings/media/renesas,drif.yaml:
-ignoring, error in schema: properties: clock-names: maxItems
 
-Using
-
-       clock-names:
-         const: fck
-
-Fixes that.
-
-However, I'm wondering why I do not get a complaint about the similar
-clock/clock-names in
-Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml.
-Because they're part of an else branch?
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+> > Thanks
+> >
+> > > --
+> > > 2.7.4
+> > >
