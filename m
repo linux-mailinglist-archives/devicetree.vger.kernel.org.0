@@ -2,170 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 720502F5EC3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:33:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 181742F5EE0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:37:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726672AbhANKcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 05:32:15 -0500
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:53232 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726518AbhANKcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 05:32:14 -0500
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10EAR9QX031652;
-        Thu, 14 Jan 2021 04:31:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=7EbSzPs1PWHZQ4mjZAxZUcYIFc5DWtSabTvzQh1Wk1E=;
- b=GoeswMA8NIb9lEwq4mTPP6NCghn5BJKb2bPQ1C8Dgu0itz5MxQWaptmjLeaj+mOkFil4
- uZj9RHkiBSENhRZg/6SfOaR5k7QFwNnUaoI6OjNegaq+CjzgOm0idBEIVJibyF0n7vS3
- N0D7Nn1Ao1nBwrNKjTc8eeM5M6/CJze+PvYHfEbReBxDJb+Q9CJzx+Xxjv8CxKB6Fo8g
- jzx0DmZswOv02wKfskVvSii2lbOKl6rFZAUn0nPaNHmZswexL63b6F5KyfAgTY8bhJ2N
- hra9mmcQpcYDhPWwsnmdJZJ5s6D+nGgfSM0Ie2C5YVHjBD8zI9CnDqHqWd1uNtklgWoZ zg== 
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 35y9srx4fm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Thu, 14 Jan 2021 04:31:12 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Thu, 14 Jan
- 2021 10:31:11 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Thu, 14 Jan 2021 10:31:11 +0000
-Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.57])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id ACE8645;
-        Thu, 14 Jan 2021 10:31:10 +0000 (UTC)
-Subject: Re: [PATCH v4 2/6] dt-bindings: audio-graph-card: Add plls and
- sysclks properties
-To:     Rob Herring <robh@kernel.org>
-CC:     <broonie@kernel.org>, <kuninori.morimoto.gx@renesas.com>,
-        <nsaenzjulienne@suse.de>, <f.fainelli@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210108160501.7638-1-rf@opensource.cirrus.com>
- <20210108160501.7638-3-rf@opensource.cirrus.com>
- <20210113152225.GA2334778@robh.at.kernel.org>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-Message-ID: <c12a846f-9e79-4646-e7f4-397f074eb613@opensource.cirrus.com>
-Date:   Thu, 14 Jan 2021 10:31:10 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1726224AbhANKhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 05:37:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42956 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726055AbhANKhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 05:37:01 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76109C061573
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 02:36:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
+        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
+        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=uLcY4hZ13rDiaqM8tgTddOcC746c7uajEtM1QV9jr7w=; b=M2VosPCkJNRyDFwFQSOsNeh2+7
+        fMxa/RNxMjeW4EpSrVpSz1/YWJ622fEP/rIJZfaCpdOaE/JcI8DwI1tXHUPJ/XfSeg/DETe8BEsEV
+        ANeSYuiAPm32KSkBnlvRLKoOuWSHHYsL01CaAQKHTLp88SKp/agx77o6Ud3O8PUciK4H7K7E3b2Z/
+        oT5vPdvB/NQ/TVcQ8THMMejtUGjFuuff/HZWQayyP0CI3wxN1p44Suee+zqy/qjbIlGKoXAWOU2cY
+        ibMEus+ORaKobC0U/pc//g3oGPAey8D6r6nXImL3QxjdorhIk/YqLuhTqWBiT8LUoQD6iZ4ZJzdby
+        qB4pvfoA==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:55586 helo=rmk-PC.armlinux.org.uk)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <rmk@armlinux.org.uk>)
+        id 1kzzzD-0002JN-4b; Thu, 14 Jan 2021 10:36:15 +0000
+Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <rmk@armlinux.org.uk>)
+        id 1kzzzC-0004lA-UB; Thu, 14 Jan 2021 10:36:14 +0000
+From:   Russell King <rmk+kernel@armlinux.org.uk>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: imx6qdl-sr-som: fix some cubox-i platforms
 MIME-Version: 1.0
-In-Reply-To: <20210113152225.GA2334778@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 priorityscore=1501
- phishscore=0 spamscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0
- adultscore=0 mlxlogscore=999 impostorscore=0 clxscore=1015 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101140059
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <E1kzzzC-0004lA-UB@rmk-PC.armlinux.org.uk>
+Sender: Russell King <rmk@armlinux.org.uk>
+Date:   Thu, 14 Jan 2021 10:36:14 +0000
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The PHY address bit 2 is configured by the LED pin. Attaching a LED
+to this pin is not sufficient to guarantee this configuration pin is
+correctly read. This leads to some platforms having their PHY at
+address 0 and others at address 4.
 
+If there is no phy-handle specified, the FEC driver will scan the PHY
+bus for a PHY and use that. Consequently, adding the DT configuration
+of the PHY and the phy properties to the FEC driver broke some boards.
 
-On 13/01/2021 15:22, Rob Herring wrote:
-> On Fri, Jan 08, 2021 at 04:04:57PM +0000, Richard Fitzgerald wrote:
->> The audio-graph-card driver has properties for configuring the clocking
->> for DAIs within a component, but is missing properties for setting
->> up the PLLs and sysclks of the component.
->>
->> This patch adds the two new properties 'plls' and 'sysclks' so that the
->> audio-graph-driver can fully configure the component clocking.
-> 
-> I'm not sure this makes sense to be generic, but if so, we already have
-> the clock binding and should use (and possibly extend) that.
-> 
-> This appears to all be configuration of clocks within the codec, so
-> these properties belong in the codec or cpu nodes.
->
+Fix this by removing the phy-handle property, and listing two PHY
+entries for both possible PHY addresses, so that the DT configuration
+for the PHY can be found by the PHY driver.
 
-audio-graph-card doesn't have codec or cpu nodes. Those were in
-simple-card but are replaced in audio-graph-card by a simple phandle
-array forming a graph.
+Fixes: 86b08bd5b994 ("ARM: dts: imx6-sr-som: add ethernet PHY configuration")
+Reported-by: Christoph Mattheis <christoph.mattheis@arcor.de>
+Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+---
+ arch/arm/boot/dts/imx6qdl-sr-som.dtsi | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-I could assume that all clock settings apply to the codec and that there
-is only ever one codec in an audio-graph-card configuration.
+diff --git a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+index b06577808ff4..bba21dfef103 100644
+--- a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+@@ -53,7 +53,6 @@
+ &fec {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_microsom_enet_ar8035>;
+-	phy-handle = <&phy>;
+ 	phy-mode = "rgmii-id";
+ 	phy-reset-duration = <2>;
+ 	phy-reset-gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
+@@ -63,7 +62,15 @@
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+-		phy: ethernet-phy@0 {
++		/*
++		 * The PHY can appear at either address 0 or 4 due to the
++		 * configuration (LED) pin not being pulled sufficiently.
++		 */
++		ethernet-phy@0 {
++			reg = <0>;
++			qca,clk-out-frequency = <125000000>;
++		};
++		ethernet-phy@4 {
+ 			reg = <0>;
+ 			qca,clk-out-frequency = <125000000>;
+ 		};
+-- 
+2.20.1
 
->> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
->> ---
->>   .../bindings/sound/audio-graph.yaml           | 46 +++++++++++++++++++
->>   1 file changed, 46 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/audio-graph.yaml b/Documentation/devicetree/bindings/sound/audio-graph.yaml
->> index 4b46794e5153..9e0819205a17 100644
->> --- a/Documentation/devicetree/bindings/sound/audio-graph.yaml
->> +++ b/Documentation/devicetree/bindings/sound/audio-graph.yaml
->> @@ -39,6 +39,52 @@ properties:
->>     mic-det-gpio:
->>       maxItems: 1
->>   
->> +  plls:
->> +    description: |
->> +      A list of component pll settings. There are 4 cells per PLL setting:
->> +        - phandle to the node of the codec or cpu component,
->> +        - component PLL id,
->> +        - component clock source id,
->> +        - frequency (in Hz) of the PLL output clock.
-> 
-> assigned-clocks binding can set frequencies and parent clocks.
-> 
-> 'pll' is too specific to the implementation. You may want to configure
-> the freq and parent of something that's not a pll.
-> 
->> +      The PLL id and clock source id are specific to the particular component
->> +      so see the relevant component driver for the ids. Typically the
->> +      clock source id indicates the pin the source clock is connected to.
->> +      The same phandle can appear in multiple entries so that several plls
->> +      can be set in the same component.
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +
->> +  plls-clocks:
->> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->> +    description: |
->> +      A list of clock names giving the source clock for each setting
->> +      in the plls property.
->> +
->> +  sysclks:
->> +    description: |
->> +      A list of component sysclk settings. There are 4 cells per sysclk
->> +      setting:
->> +        - phandle to the node of the codec or cpu component,
->> +        - component sysclk id,
->> +        - component clock source id,
->> +        - direction of the clock: 0 if the clock is an input to the component,
->> +          1 if it is an output.
-> 
-> A clock provider and consumer would provide the direction.
-> 
->> +      The sysclk id and clock source id are specific to the particular
->> +      component so see the relevant component driver for the ids. Typically
->> +      the clock source id indicates the pin the source clock is connected to.
->> +      The same phandle can appear in multiple entries so that several sysclks
->> +      can be set in the same component.
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +
->> +  sysclks-clocks:
->> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->> +    description: |
->> +      A list of clock names giving the source clock for each setting
->> +      in the sysclks property.
->> +
->> +dependencies:
->> +  plls: [ plls-clocks ]
->> +  sysclks: [ sysclks-clocks ]
->> +
->>   required:
->>     - dais
->>   
->> -- 
->> 2.20.1
->>
