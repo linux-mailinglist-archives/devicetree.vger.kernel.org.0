@@ -2,72 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 677342F5C31
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 09:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3DB62F5C46
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 09:18:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727422AbhANIJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 03:09:08 -0500
-Received: from muru.com ([72.249.23.125]:44772 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727174AbhANIJI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 03:09:08 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 282DA811B;
-        Thu, 14 Jan 2021 08:08:26 +0000 (UTC)
-Date:   Thu, 14 Jan 2021 10:08:23 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "geert@linux-m68k.org" <geert@linux-m68k.org>,
-        "rogerq@ti.com" <rogerq@ti.com>, "s-anna@ti.com" <s-anna@ti.com>,
-        "bcousson@baylibre.com" <bcousson@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "d-gerlach@ti.com" <d-gerlach@ti.com>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
-        "t-kristo@ti.com" <t-kristo@ti.com>
-Subject: Re: [PATCH 13/18] ARM: dts: Use simple-pm-bus for genpd for am3
- l4_wkup
-Message-ID: <X//799pSjH9bL39s@atomide.com>
-References: <20201026112222.56894-1-tony@atomide.com>
- <20201026112222.56894-14-tony@atomide.com>
- <CAMuHMdWribr=eg1LkKce=Hamm+JwSz5UFEXLKUmKkqqz1RpL_w@mail.gmail.com>
- <X/8ei0o9ULpRdx7T@atomide.com>
- <CAMuHMdW+y5Y+0U1beebq7EGiarBKYdHszL+vW5r4xG6HBspVgQ@mail.gmail.com>
- <X/8kDzoADvcnNHxC@atomide.com>
- <X/8tz/2v4bnbF0TZ@atomide.com>
- <X//wx/oSTpXKpY75@atomide.com>
- <1c7301145600dabbb95402c7df0cf00b7bdd7fdd.camel@fi.rohmeurope.com>
+        id S1727155AbhANISd convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Jan 2021 03:18:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41518 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726677AbhANISc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 03:18:32 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 877C5C061786
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 00:17:52 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kzxpG-00029h-HZ; Thu, 14 Jan 2021 09:17:50 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kzxpD-0004YJ-M3; Thu, 14 Jan 2021 09:17:47 +0100
+Message-ID: <d7e9c3bed92d6fc6922e5f5ec30f27d7242c5624.camel@pengutronix.de>
+Subject: Re: [PATCH v4 4/7] dt-bindings: display: imx: hdmi: Convert binding
+ to YAML
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Sandy Huang <hjc@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Yao <markyao0591@gmail.com>
+Date:   Thu, 14 Jan 2021 09:17:47 +0100
+In-Reply-To: <20210114064437.5793-5-laurent.pinchart+renesas@ideasonboard.com>
+References: <20210114064437.5793-1-laurent.pinchart+renesas@ideasonboard.com>
+         <20210114064437.5793-5-laurent.pinchart+renesas@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1c7301145600dabbb95402c7df0cf00b7bdd7fdd.camel@fi.rohmeurope.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Vaittinen, Matti <Matti.Vaittinen@fi.rohmeurope.com> [210114 07:58]:
-> I do also experience the boot problem described by Geert.
+On Thu, 2021-01-14 at 08:44 +0200, Laurent Pinchart wrote:
+> Convert the i.MX6 HDMI TX text binding to YAML.
 > 
-> Head being:
-> b0625afe305253d0831af9289b37c906c18a781b
-> ARM: OMAP2+: Drop legacy platform data for am3 mpuss
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Changes since v3:
 > 
-> => BBB boots Ok.
+> - Use port instead of port-base
 > 
-> Head being:
-> 5a230524f87926f24d637fe62fd689f7f86f5036
-> ARM: dts: Use simple-pm-bus for genpd for am3 l4_wkup
+> Changes since v1:
 > 
-> => BBB boot fails. (I don't have any debug parameters => last thing I
-> see in UART is from uBoot:
+> - Only specify maxItems for clocks
+> - Drop reg and interrupts as they're checked in the base schema
+> - Rebase on top of OF graph schema, dropped redundant properties
+> - Fix identation for enum entries
+> - Drop clock-names items, use maxItems only
+> ---
+>  .../bindings/display/imx/fsl,imx6-hdmi.yaml   | 126 ++++++++++++++++++
+>  .../devicetree/bindings/display/imx/hdmi.txt  |  65 ---------
+>  2 files changed, 126 insertions(+), 65 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/imx/hdmi.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
+> new file mode 100644
+> index 000000000000..af7fe9c4d196
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
+> @@ -0,0 +1,126 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,imx6-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX6 DWC HDMI TX Encoder
+> +
+> +maintainers:
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
 
-Looking at the .config Geert sent me, at least CONFIG_SIMPLE_PM_BUS=y
-is now needed, and probably should be selected or default y for omaps.
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Adding that removes the -512 errors at least that I started seeing with
-Geert's config too.
-
-Can you guys check if adding CONFIG_SIMPLE_PM_BUS=y fixes the problem?
-
-Regards,
-
-Tony
+regards
+Philipp
