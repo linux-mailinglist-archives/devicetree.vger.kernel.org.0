@@ -2,135 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1C092F6420
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 16:20:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 948412F6489
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 16:30:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729292AbhANPR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 10:17:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47128 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728098AbhANPR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 10:17:58 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E3C3C0613ED
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 07:16:41 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1l04MS-00021i-Rp; Thu, 14 Jan 2021 16:16:32 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1l04MR-00012i-O9; Thu, 14 Jan 2021 16:16:31 +0100
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Mark Brown <broonie@kernel.org>, Wolfram Sang <wsa@kernel.org>
-Cc:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <uwe.kleine-koenig@pengutronix.de>, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@pengutronix.de, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: [PATCH v1 0/7] Remove ARM platform efm32
-Date:   Thu, 14 Jan 2021 16:16:23 +0100
-Message-Id: <20210114151630.128830-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1726549AbhANP3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 10:29:08 -0500
+Received: from mga14.intel.com ([192.55.52.115]:7040 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726259AbhANP3I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 10:29:08 -0500
+IronPort-SDR: a4FuUivT27wljN/tx5AaKxFe9DgCQDqo2ZdXkEA1Z9DqxhpRzaGoCJybqmVUECH27fHZiXkOHP
+ BahzXCWFVOKg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="177604640"
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; 
+   d="scan'208";a="177604640"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2021 07:28:27 -0800
+IronPort-SDR: TYZ7Q2aL7R7JrACOCFOgwW2AhaDagifQc2o36b02ZaTDDDKMdMsJQ2932U6hNxQcAM9xjssNPq
+ fSkYNq1rFYHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; 
+   d="scan'208";a="568193538"
+Received: from zulkifl3-ilbpg0.png.intel.com ([10.88.229.114])
+  by orsmga005.jf.intel.com with ESMTP; 14 Jan 2021 07:28:24 -0800
+From:   Muhammad Husaini Zulkifli <muhammad.husaini.zulkifli@intel.com>
+To:     ulf.hansson@linaro.org, broonie@kernel.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        adrian.hunter@intel.com, michal.simek@xilinx.com,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     andriy.shevchenko@intel.com, Rashmi.A@intel.com,
+        mahesh.r.vaidya@intel.com, muhammad.husaini.zulkifli@intel.com
+Subject: [PATCH v1 0/9] mmc: sdhci-of-arasan: Add UHS-1 support for Keem Bay SOC
+Date:   Thu, 14 Jan 2021 23:26:51 +0800
+Message-Id: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Uwe Kleine-König <uwe.kleine-koenig@pengutronix.de>
+Hi,
 
-Hello,
+This patch series adds Ultra High Speed(UHS-1) Bus Speed Mode Support for Keem Bay SoC SD Card.
+Summary of each patches as per below:
 
-there are no known active users of the efm32 platform. Given that the
-only machine that is supported has only 4 MiB of RAM its use is also
-quite limited.
+Patch 1: Use of_device_get_match_data() helper to get the match-data.
+Patch 2: Convert to use np pointer instead of using pdev->dev.of_node.
+Patch 3: Add struct device *dev in probe func(), so that dev pointer can be widely use in probe to make code more readable.
+Patch 4: Change from dev_err to dev_err_probe() to avoid spamming logs when probe is deferred.
+Patch 5: Export function to be use by device driver to configure i/o voltage rail output which communicate with Trusted Firmware.
+Patch 6: Update phy and regulator supply for Keem Bay SoC.
+Patch 7: Add DT Binding for Keem Bay SoC SD Regulator.
+Patch 8: Add SD Regulator driver to support Keem Bay SoC. This is to model using standard regulator abstraction during voltage operation
+as for Keem Bay SoC, i/o voltage rail need to be configure by setting specific bit in the AON_CFG1 Register.
+AON_CFG1 Register is a secure register. Direct access to AON_CFG1 register will cause firewall violation in secure system.
+Patch 9: Add Ultra High Speed (UHS-1) Support for Keem Bay SOC. For Keem Bay hardware, two regulators are been used to change the I/O bus line voltage which are "vqmmc-supply" and "sdvrail-supply".
 
-Back then it served as the platform to develop ARMv7-M support in Linux
-which was quite fun and still is a blissful memory.
+All of these patches was tested with Keem Bay evaluation module board.
 
-Still given that the code serves no purpose and this probably won't
-change anytime soon, remove all platform support.
+Kindly help to review this patch set.
 
-I'm unsure what to do with the device tree bindings. Should we delete
-them, too?
+Muhammad Husaini Zulkifli (9):
+  mmc: sdhci-of-arasan: use of_device_get_match_data()
+  mmc: sdhci-of-arasan: Convert to use np instead of pdev->dev.of_node
+  mmc: sdhci-of-arasan: Add structure device pointer in probe function
+  mmc: sdhci-of-arasan: Use dev_err_probe() to avoid spamming logs
+  firmware: keembay: Add support for Trusted Firmware Service call
+  dt-bindings: mmc: Update phy and regulator supply for Keem Bay SOC
+  dt-bindings: regulator: keembay: Add DT binding documentation
+  regulator: keembay: Add regulator for Keem Bay SoC
+  mmc: sdhci-of-arasan: Add UHS-1 support for Keem Bay SOC
 
-Best regards
-Uwe
+ .../devicetree/bindings/mmc/arasan,sdhci.yaml |   7 +-
+ .../bindings/regulator/keembay-regulator.yaml |  36 ++
+ drivers/mmc/host/sdhci-of-arasan.c            | 313 ++++++++++++++++--
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/keembay-sd-regulator.c      | 112 +++++++
+ include/linux/firmware/intel/keembay.h        |  82 +++++
+ 7 files changed, 532 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/keembay-regulator.yaml
+ create mode 100644 drivers/regulator/keembay-sd-regulator.c
+ create mode 100644 include/linux/firmware/intel/keembay.h
 
-Uwe Kleine-König (7):
-  ARM: drop efm32 platform
-  clk: Drop unused efm32gg driver
-  clocksource: Drop unused efm32 timer code
-  spi: Drop unused efm32 bus driver
-  i2c: Drop unused efm32 bus driver
-  tty: Drop unused efm32 serial driver
-  MAINTAINERS: Remove deleted platform efm32
-
- MAINTAINERS                              |   7 -
- arch/arm/Kconfig                         |  10 +-
- arch/arm/Kconfig.debug                   |  17 -
- arch/arm/Makefile                        |   1 -
- arch/arm/boot/dts/Makefile               |   2 -
- arch/arm/boot/dts/efm32gg-dk3750.dts     |  88 ---
- arch/arm/boot/dts/efm32gg.dtsi           | 177 -----
- arch/arm/configs/efm32_defconfig         |  98 ---
- arch/arm/include/debug/efm32.S           |  45 --
- arch/arm/mach-efm32/Makefile             |   2 -
- arch/arm/mach-efm32/Makefile.boot        |   4 -
- arch/arm/mach-efm32/dtmachine.c          |  16 -
- arch/arm/mm/Kconfig                      |   1 -
- drivers/clk/Makefile                     |   1 -
- drivers/clk/clk-efm32gg.c                |  84 ---
- drivers/clocksource/Kconfig              |   9 -
- drivers/clocksource/Makefile             |   1 -
- drivers/clocksource/timer-efm32.c        | 278 --------
- drivers/i2c/busses/Kconfig               |   7 -
- drivers/i2c/busses/Makefile              |   1 -
- drivers/i2c/busses/i2c-efm32.c           | 469 -------------
- drivers/spi/Kconfig                      |   7 -
- drivers/spi/Makefile                     |   1 -
- drivers/spi/spi-efm32.c                  | 462 ------------
- drivers/tty/serial/Kconfig               |  13 -
- drivers/tty/serial/Makefile              |   1 -
- drivers/tty/serial/efm32-uart.c          | 852 -----------------------
- include/linux/platform_data/efm32-spi.h  |  15 -
- include/linux/platform_data/efm32-uart.h |  19 -
- include/uapi/linux/serial_core.h         |   3 -
- 30 files changed, 1 insertion(+), 2690 deletions(-)
- delete mode 100644 arch/arm/boot/dts/efm32gg-dk3750.dts
- delete mode 100644 arch/arm/boot/dts/efm32gg.dtsi
- delete mode 100644 arch/arm/configs/efm32_defconfig
- delete mode 100644 arch/arm/include/debug/efm32.S
- delete mode 100644 arch/arm/mach-efm32/Makefile
- delete mode 100644 arch/arm/mach-efm32/Makefile.boot
- delete mode 100644 arch/arm/mach-efm32/dtmachine.c
- delete mode 100644 drivers/clk/clk-efm32gg.c
- delete mode 100644 drivers/clocksource/timer-efm32.c
- delete mode 100644 drivers/i2c/busses/i2c-efm32.c
- delete mode 100644 drivers/spi/spi-efm32.c
- delete mode 100644 drivers/tty/serial/efm32-uart.c
- delete mode 100644 include/linux/platform_data/efm32-spi.h
- delete mode 100644 include/linux/platform_data/efm32-uart.h
-
-
-base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
--- 
-2.29.2
+--
+2.17.1
 
