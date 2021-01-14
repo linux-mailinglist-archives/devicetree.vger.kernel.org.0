@@ -2,87 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9182F60E1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 13:15:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2101E2F60F8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 13:18:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728681AbhANMOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 07:14:14 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:58228 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728691AbhANMOE (ORCPT
+        id S1726236AbhANMRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 07:17:40 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:45277 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725955AbhANMRk (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 07:14:04 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10ECC2PZ029600;
-        Thu, 14 Jan 2021 13:13:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=c+Aah01poqisBSnVrKowoWFXX7asidtG2KzrPV6ZGbc=;
- b=Z00ey/3SLkrS4pJbcNkh6/Lxl6AgxgZwo+Xhx6A/y7cv5lmHMyWm6YCjfHmQacoiq88P
- 7AwvhRWqoNguDDTUtunyY/GYU88tvcCPBmZM5I3tG14PEHhifx+ndCq+aExbTQs5kh0B
- eipvZ2XVi7CCMfcyA17czThK/6wChYZ4uyj5eLzzC93a2a9fxcdnn0HNXbQ2Zvi5mhDI
- 7ZapI3EYLEh4bjMhtuxEhWBF9mcIFjUGFs5CFVKuCEeA65EClA+A4x0HjS/HRZgjG0XT
- QCE/Ockp2GkofojIQpZ86RRyOegoEsbczB8ayx5n7eQwAQbMxB1qa0TC2zxj2r83VEfL 3g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 362379d9xw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 14 Jan 2021 13:13:14 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 61740100034;
-        Thu, 14 Jan 2021 13:13:14 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 54F9623BD5D;
-        Thu, 14 Jan 2021 13:13:14 +0100 (CET)
-Received: from localhost (10.75.127.47) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 14 Jan 2021 13:13:13
- +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH 4/4] ARM: dts: stm32: add #clock-cells property to usbphyc node on stm32mp151
-Date:   Thu, 14 Jan 2021 13:13:08 +0100
-Message-ID: <20210114121308.31326-5-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210114121308.31326-1-amelie.delaunay@foss.st.com>
-References: <20210114121308.31326-1-amelie.delaunay@foss.st.com>
+        Thu, 14 Jan 2021 07:17:40 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 604A113A5;
+        Thu, 14 Jan 2021 07:16:33 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 14 Jan 2021 07:16:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=3Ag0xDZDJJDpScu1QNNpjHOhB8+
+        xQOGIpIIJQtqIZRU=; b=kkgYzpUJA5tHA0nv4oE+6J+vdXw3Ub1nVdyXQSwaRVQ
+        5qCMtWOUalhBrQFXFGKpVOMLVjOKbrg8UQyrQglJp+DSt750qfL460GY2Y8NeyKw
+        YqfLaIw5o4lx3Rs66VHBMrBsSLW0mASGLOaEwmYk77ixkucbPrAs8p+9GRmerFiC
+        +s3FUDqe4pZEcSMuIWvaOxNTsEW+0yV7yith29eLDmfpFNt/rRGyEkKaOfK6j1C2
+        CkSuktYNZRsWbN2jD2d4wFWaI2O9vBOEYiBMNTt6Cf0+BkWhMACn0JIDzWA2WUCl
+        CrxESmBIYGFtM2jgJ3NAeawj4gHyK6Vi/RMpf452Qmw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=3Ag0xD
+        ZDJJDpScu1QNNpjHOhB8+xQOGIpIIJQtqIZRU=; b=JRzZaL7+VSqqgG1ttTQk0v
+        dY6SQV2qeKB/ZiHOHLs3DvhG/Cqt8kMNrmToXomxXm4r8oPfl+34RuqjwQUYG9Gy
+        SsWCC3WKkM+vRPTo+Wnk9TpdMgYT7RRYOPCyAxN9iMrI0duBZlxM3woW7KBRoCjD
+        yr9BVCYFhDxsxFg3ukP9BWbSey69HVe3tNV6LrUR9s2knyOvrBbPhPyJDn65B3gZ
+        eBd97eReEh8VUW0PgtAUkheVwgMoX5afG73OuML8je7i3g2u0foH3UD/gEW+b4gG
+        QJSrrkoMcyH4E82Mc+1gsLLlcsV4E38A7GuWm+L5KfRL9qaK9RtSknEJBKF1bNow
+        ==
+X-ME-Sender: <xms:HzYAYJg8nmKdt3S5xK6A6HCfAjZQ6ddBLPsm4deBOwFBd7M0cd-4Nw>
+    <xme:HzYAYOB45hv_0EHjJAmJ9lDqASCNisDRZVvFWUVaMnpy-vhtYvjjNZ73PysD7IWSm
+    oLIGsMMHh5wd1y1B60>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgdduvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:HzYAYJEPm5c8ouLSfy8go3cYv1QWU3RDKf9N_-7vpA2u8FwTUAmTDw>
+    <xmx:HzYAYORSkTmEaT7WZv5WDvWVnqfadPjRpWId1uSLFDMV_pQYPyLDAA>
+    <xmx:HzYAYGznzHGSIqNN8XhQCBdeeZbO5z2iDOCb7oL60f0mGfw-oWqnYg>
+    <xmx:IDYAYBz7X5pkI5j_bEuKweHHBFZyHawZmlJz9RwWTUUMGG65YrdubA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id A3D4B240062;
+        Thu, 14 Jan 2021 07:16:31 -0500 (EST)
+Date:   Thu, 14 Jan 2021 13:16:30 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 00/10] sunxi: Support IRQ wakeup from deep sleep
+Message-ID: <20210114121630.t62p34smv5zlidl2@gilmour>
+References: <20210112055950.21209-1-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG4NODE2.st.com (10.75.127.11) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-14_04:2021-01-14,2021-01-14 signatures=0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="2tgn3qtuqtglz5y3"
+Content-Disposition: inline
+In-Reply-To: <20210112055950.21209-1-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-usbphyc is a 48Mhz clock provider: the clock can be used as clock source
-for USB OTG. Add #clock-cells property to usbphyc node to reflect this
-capability.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+--2tgn3qtuqtglz5y3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 07cb927ba06d..51acb2b04720 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1482,6 +1482,7 @@
- 		usbphyc: usbphyc@5a006000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			#clock-cells = <0>;
- 			compatible = "st,stm32mp1-usbphyc";
- 			reg = <0x5a006000 0x1000>;
- 			clocks = <&rcc USBPHY_K>;
--- 
-2.17.1
+On Mon, Jan 11, 2021 at 11:59:40PM -0600, Samuel Holland wrote:
+> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
+> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC handles
+> the external NMI pin, and provides 32+ IRQs to the ARISC. The first 16
+> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
+> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
+>=20
+> This series replaces the existing chained irqchip driver that could only
+> control the NMI, with a stacked irqchip driver that also provides wakeup
+> capability for those multiplexed SPI IRQs. The idea is to preconfigure
+> the ARISC's IRQ controller, and then the ARISC firmware knows to wake up
+> as soon as it receives an IRQ. It can also decide how deep it can
+> suspend based on the enabled wakeup IRQs.
+>=20
+> As future work, it may be useful to do the chained->stacked conversion
+> on the sunxi-nmi driver as well.
+>=20
+> Patches 1-2 add the new bindings.
+> Patch 3 adds the new driver.
+> Patch 4 adds wakeup capability.
+> Remaining patches update the device trees to use R_INTC where beneficial.
+>=20
+> With appropriate firmware and configuration, this series allows waking
+> from (and it has been tested with) the RTC, NMI/PMIC (power button, A/C
+> plug, etc.), all GPIO ports (button, lid switch, modem, etc.), LRADC,
+> and UARTs. I have tested this patch set on the H3, A64, H5, and H6 SoCs.
 
+Acked-by: Maxime Ripard <mripard@kernel.org>
+
+Thanks!
+Maxime
+
+--2tgn3qtuqtglz5y3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAA2HgAKCRDj7w1vZxhR
+xQh3AQD6XtIvWKtyOViqkNzCFhWteyGB2pagOcYAiqU8YWMjUAD8DBXOAOOSlz3N
+7kble8hHsKjZ4p4cz6+B3ODUQJ8dawA=
+=U5/e
+-----END PGP SIGNATURE-----
+
+--2tgn3qtuqtglz5y3--
