@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8589F2F6051
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:39:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5AC2F604A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:39:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729109AbhANLiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 06:38:07 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:54367 "EHLO
+        id S1727729AbhANLht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 06:37:49 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:52481 "EHLO
         wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729079AbhANLiF (ORCPT
+        by vger.kernel.org with ESMTP id S1727210AbhANLhm (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 06:38:05 -0500
+        Thu, 14 Jan 2021 06:37:42 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id F2EBE161D;
-        Thu, 14 Jan 2021 06:36:06 -0500 (EST)
+        by mailout.west.internal (Postfix) with ESMTP id 63D9C1629;
+        Thu, 14 Jan 2021 06:36:08 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:36:07 -0500
+  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:36:08 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=D9byKSox2zPwP
-        +6D2GfN0TVe2WfZ3MYcth3r2FoYFnI=; b=uqYpI+P8UwZaYqXngi25FBkXrMeq5
-        JIu/6mY4A4YqeC6cWDw1eKOa7CaTWSUBZ17CyseQHa3oBNtMectIsh14EY+aSqBj
-        hMFRp5ZyKgINko391orFgORFlapr7zTNvJfDN6I5TC0rQn3pKg8DcFdKa52N0wm4
-        eldKqjChUel4cn/jZ9Sx56MTalzW4OsAbRRfLMSajdKeKfoysSjuK7oFArt/vjcb
-        54rqF7+ifA8wpvisEdnk1J5q5SuwAo1Ue42LR7ll5JmgukKGJtfrSgeSqpQ9VB7E
-        19hs2oj/RsdkL5L6prYMB3/u9MEgV7PzffzxXxlMG5Uwnai0wzmHGL8Fw==
+        :mime-version:content-transfer-encoding; s=fm1; bh=4tVHNA9SlQA8B
+        TpNFogrGE4lRZOYb7c5rEfw6IFZYEU=; b=eec0Qlrh5vsQdRX0LvpPjA4oHA8N9
+        j7F85NVUeAg+ra/kPog+gNDVJVXitqt83OoHTdWVeqi5fESC1D17xu+UE6TjgIZp
+        aV8w6Y+L9rc8HkyLdOjSalKrm/OH8gSg3l5F0mwyv13GjVz+qP6AZuwmZyjtG7U+
+        iORKPF3dCrjLdo+xsC5Y2xCPONSTcOOWVvXWWViMyHdTgwdWTkFCIgEGKXCJH8cn
+        b2rcRM/R55c8Sk4k0C1GB4OLyT5E5E/e9pqFAl/Dxdbx2hZqQehutZ/vYDZL7NB9
+        Ax+epj6TFsjseuFqamK8ixAzcg848rnV9X3SrqG5chbnWr45SKOpCOrtw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=D9byKSox2zPwP+6D2GfN0TVe2WfZ3MYcth3r2FoYFnI=; b=JLBmihtG
-        B8n5bqXg3h+alEVyZcQagdL+4hUKJCzMLLkTA2Xvmz1V12TjOmU3f+ELJ/cYz2NV
-        87xmFWXjFbKv6ig+/iDAkcjCnrj1baEtMcex3Y0jc+x4r+Yb0eqDHc4bOahjGgY0
-        mtpa6C9W9efD8vPJ0qgEkdRqWmfhlsEY4YQCOm4l3dZLKQrToiRIKCiYjfs7ak7o
-        6Hty9dUhsY44ClCz+EeEE1ySHMz5s7DJ3lfAX5Zp+Z3cOdOhhnOTCANQ/uVg1Efh
-        o7Ks0yBGcJNzd1+Z50P2IgXs99oXjDzWQVnjNnFZM/jlWg2jYHT4s6MH8deka02z
-        gbH+HwVIB2hCpg==
-X-ME-Sender: <xms:piwAYH3x0pkjR0wNuR6T2iJwC8spUiAtE8c1AGKOwyIDrqAFj953Hg>
-    <xme:piwAYGE8-VA-vQveb1lQQXEv1CsKuyO4-0TjJJJch7_E9xigquiLj2oOZNk_XrAs3
-    1Y0qVx2ADJirJUArS8>
+        fm1; bh=4tVHNA9SlQA8BTpNFogrGE4lRZOYb7c5rEfw6IFZYEU=; b=eBi7vmoI
+        5sTOra7lDG9iHJsJSSLZb8F+vZQOnSbO8M162ODp3TTNcRIvjw2Xf1jAq56GcR5f
+        hfNEN2aBByuTglbrnlIoYTMl1qSzSQDDDTdl54WWO1XfxPP9Wu96TxHSgenIC3BW
+        u12ta3w2XdjTdesRYvovaNf/Z+br4W6WnqYS9qgDFwHIu9dRHMQAhIKf096XDR5W
+        kmTQ/yF3uBWUQNJBNijqjqRWs3HZk+mUsh6y0QkmivYF2OECo1SOSbEGEPZzHK64
+        3W92LV0/JNO6bo4o0+oQ5NvU96DMfVGNHUCoEXL/cl1G/ZXzFWGs7uSSg3KXT64N
+        OM7yMo8McDfzdg==
+X-ME-Sender: <xms:pywAYIiAd0w1eo8LDH8LUqC7Ta2IP0luC63p1pn7JKHbHp78YhW0Ew>
+    <xme:pywAYBAGsqHyUD3kNXsmwVlIOdSB0Hmie_Fu96qnI6bRTqQCfkSaWnrX1kRiEQ4tl
+    wdT1RO69ADNwBb9Zfc>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -48,13 +48,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdote
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
     vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedutdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:piwAYH4zKiVJRgv3qMLItiB5aF6DpBuqnQeqxBJnpF8rvs8AzFT0IQ>
-    <xmx:piwAYM2MRr7eFgD1uriEECPh_YFYffa89d6u0QmM1NG5zpItioU2FQ>
-    <xmx:piwAYKHlyTXwOPs5CcxkDThti6IeHfr6Njpz6nAyi_xpIhStQs1Wpg>
-    <xmx:piwAYGiqfBJgDu1glUFjOMg0qZa90lD394cBP4bBC-QMCE1VRM1bPA>
+X-ME-Proxy: <xmx:pywAYAFNXzj-Rcsq92xRqiV_7rRGw9iav2ClQg8rrh82_9tAEgFnjA>
+    <xmx:pywAYJQbkr9WIblcrfwaxGc77wgw9_5EDavSFIXQbu34pAh4xjF2Ug>
+    <xmx:pywAYFx6sNYj9a-Yad6bM6WGrcqrn29soaEUw_Fcf1IcxRms5A6Vow>
+    <xmx:qCwAYHv8CCGa6G_HJFnhLf3BH_-DO1JtJt_xVmgsZOSzmzB-sz2Grw>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 3188F1080057;
-        Thu, 14 Jan 2021 06:36:06 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 9BFE71080063;
+        Thu, 14 Jan 2021 06:36:07 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -62,9 +62,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 17/19] arm64: dts: allwinner: pinephone: Remove useless light sensor supplies
-Date:   Thu, 14 Jan 2021 12:35:36 +0100
-Message-Id: <20210114113538.1233933-17-maxime@cerno.tech>
+Subject: [PATCH 18/19] arm64: dts: allwinner: pinetab: Fix the panel compatible
+Date:   Thu, 14 Jan 2021 12:35:37 +0100
+Message-Id: <20210114113538.1233933-18-maxime@cerno.tech>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210114113538.1233933-1-maxime@cerno.tech>
 References: <20210114113538.1233933-1-maxime@cerno.tech>
@@ -74,27 +74,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The stk3311 binding don't expect a vdd or leda power supplies. Remove
-them.
+The commit 7fa40ca7ef61 ("arm64: allwinner: dts: a64: add DT for Early
+Adopter's PineTab") introduced an ili9881-based panel device node but
+didn't conform to the binding. Fix this.
 
+Fixes: 7fa40ca7ef61 ("arm64: allwinner: dts: a64: add DT for Early Adopter's PineTab")
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ .../boot/dts/allwinner/sun50i-a64-pinetab-early-adopter.dts     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-index bbc26abb1e10..9f69d489a81d 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-@@ -183,8 +183,6 @@ light-sensor@48 {
- 		reg = <0x48>;
- 		interrupt-parent = <&pio>;
- 		interrupts = <1 0 IRQ_TYPE_EDGE_FALLING>; /* PB0 */
--		vdd-supply = <&reg_ldo_io0>;
--		leda-supply = <&reg_dldo1>;
- 	};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-early-adopter.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-early-adopter.dts
+index 652fc0cce304..6265360ce623 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-early-adopter.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-early-adopter.dts
+@@ -17,7 +17,7 @@ &dsi {
+ 	/delete-node/ panel@0;
  
- 	/* Accelerometer/gyroscope */
+ 	panel@0 {
+-		compatible = "feixin,k101-im2byl02";
++		compatible = "feixin,k101-im2byl02", "ilitek,ili9881c";
+ 		reg = <0>;
+ 		power-supply = <&reg_dc1sw>;
+ 		reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
 -- 
 2.29.2
 
