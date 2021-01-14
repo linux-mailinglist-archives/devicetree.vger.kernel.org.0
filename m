@@ -2,160 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03A212F6980
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 19:28:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAC262F699D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 19:36:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726605AbhANS1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 13:27:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47894 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726367AbhANS1v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 13:27:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6BAFE23B6C;
-        Thu, 14 Jan 2021 18:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610648830;
-        bh=8MUhFNbMmiHd+rdJkjEYno3+plDatJJMEeY1oAg4mPk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oR+jfW2Pj9nqejhqxUaCic8d3fJo9/myG07vWt+psU3fMU1wukMlLVPjiiyb7hwSX
-         Pvxl5hVs2FAUxonAxB4Z02b8IUIMvoAEDp/EzMRPUoD94TKrK7zwcv7LAVynwdMNIy
-         4o2Gf4gkOymSuCY+KTwoDGaf3wAlrFW9CwoLSMPs8kWY/ajZF8PXVAC1UYVDojEA/X
-         vgrkglGvjHnOyrenwoHIdRkJqu/s0yt4R5KeJ6CQQ2KWktvHpuIxiViAFnxd468Lb2
-         R3P0oP7VxEkZsKDjterOrn11cZqdv4PCAKN7hKGFhXA2/jaOvFjb1WZ0PezGCrBQpf
-         VTgiQU7DfvnEQ==
-Received: by mail-ot1-f48.google.com with SMTP id d8so6081739otq.6;
-        Thu, 14 Jan 2021 10:27:10 -0800 (PST)
-X-Gm-Message-State: AOAM533kdH3RZnLzL/CDVaE6T4bVJDbnjxonJf8axomZzCzRnA/UllIy
-        MPAbutok2ZQGVQzxUdLy2y/8U4SKvEYgJUrWTkE=
-X-Google-Smtp-Source: ABdhPJw9umgi/v+CuoAHytgwCPXbPtCdsn682b93jR0fCCcvoKawr0blRZecv5C0zHqokPhzyIG8j6MkKzE21dI5I8Q=
-X-Received: by 2002:a05:6830:1c24:: with SMTP id f4mr5307325ote.108.1610648829597;
- Thu, 14 Jan 2021 10:27:09 -0800 (PST)
+        id S1726208AbhANSd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 13:33:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33054 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726131AbhANSd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 13:33:26 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40145C061757;
+        Thu, 14 Jan 2021 10:32:46 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id l9so3928645ejx.3;
+        Thu, 14 Jan 2021 10:32:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Y0c5Nx8W2urmWex5m6DmBEl26zCZs3A4t+gb05nA8VQ=;
+        b=Qaxn2PkC9f4GQ4NOnPQlgmbIoooJsOh30WVZhiuDSdkNEUZuZvPS5zshqw4M7Li1YL
+         3CblAXn8XX5fQ8GKgg02Z1L3mHlZir0y6qO09+CY6pX2p9n6fETMde1o9uwl646UAQ0Z
+         lzDrT8ucpxUe7vUcR03vYmCY7S6Y8XEghc271X00Ud2VqJ72GdE7LkmcKJ2KOwzGeRe5
+         neCaCAfGnVQBgAIaIVoyg3TmH2Qdyr9n3IgBJjNza1FOAXOCzh0BcqZ5r5BVOOriGrig
+         DsVOh+OpYznkXz18dWeBXGIR7Aw+ybUUetM4wj1l8EvgA7aJrdLC7PShew1ls8z5BH/S
+         jUUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Y0c5Nx8W2urmWex5m6DmBEl26zCZs3A4t+gb05nA8VQ=;
+        b=hwiXt5CidFDwGKT2fQVnHmYOgbmKsc/Jwn9/8uUUgUDuFstlTBJGmme+sAwCScAs1U
+         B6Nkjgtizv4Ske8e7D+AnDA8GYEa8d78bRxQ7kmXJyjdrI2n8j5sfWIWkv1su0ujPlZI
+         Z8LFwmjt8w+WYUVbB6gexOiJaqaS9k+1acdDfkv13Db6BUu12kMJP70riGwV0idxXzSl
+         RuyFY49idiHwj010u3O/PvkM1JFSBt9bFyJbAyEMn3sIvmntXmOoKkl3C/t3nf55z2Bf
+         mLkY+4njWiXqxgAF7ID7j3zhdFUE9Z2ky7y6/oFBr9b9lAS7nb5HfB5lllN83CQxQctb
+         1XHg==
+X-Gm-Message-State: AOAM532xa3t1REyxTAp0v6NK48bp+ClH0xB7GI7egc6VEB9xdx3q9Os5
+        aaFMXvBpW6GDIoJyJQCs1a8=
+X-Google-Smtp-Source: ABdhPJyfq2WDYDXrAKqF8SE0Tw84cm/1O2KlVkbuOm9xO+UAvMcNLZ7zUzIdNyZEhD616hB0Hv2/Sw==
+X-Received: by 2002:a17:906:b244:: with SMTP id ce4mr988278ejb.159.1610649164964;
+        Thu, 14 Jan 2021 10:32:44 -0800 (PST)
+Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
+        by smtp.gmail.com with ESMTPSA id jt8sm719248ejc.40.2021.01.14.10.32.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 10:32:44 -0800 (PST)
+Date:   Thu, 14 Jan 2021 20:32:43 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     George McCollister <george.mccollister@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v4 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20210114183243.4kse75ksw3u7h4uz@skbuf>
+References: <20210113145922.92848-1-george.mccollister@gmail.com>
+ <20210113145922.92848-3-george.mccollister@gmail.com>
+ <20210114015659.33shdlfthywqdla7@skbuf>
+ <CAFSKS=NU4hrnXB5FcAFvnFnmAtK5HfYR8dAKyw3cd=5UKOBNfg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20201217172101.381772-1-daniele.alessandrelli@linux.intel.com>
- <CY4PR1101MB2326ED0E6C23D1D868D53365E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
- <20210104113148.GA20575@gondor.apana.org.au> <CY4PR1101MB23260DF5A317CA05BBA3C2F9E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
- <CY4PR1101MB232696B49BA1A3441E8B335EE7A80@CY4PR1101MB2326.namprd11.prod.outlook.com>
-In-Reply-To: <CY4PR1101MB232696B49BA1A3441E8B335EE7A80@CY4PR1101MB2326.namprd11.prod.outlook.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Thu, 14 Jan 2021 19:26:58 +0100
-X-Gmail-Original-Message-ID: <CAMj1kXH9sHm_=dXS7646MbPQoQST9AepfHORSJgj0AxzWB4SvQ@mail.gmail.com>
-Message-ID: <CAMj1kXH9sHm_=dXS7646MbPQoQST9AepfHORSJgj0AxzWB4SvQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/6] Keem Bay OCS ECC crypto driver
-To:     "Reshetova, Elena" <elena.reshetova@intel.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Alessandrelli, Daniele" <daniele.alessandrelli@intel.com>,
-        Mark Gross <mgross@linux.intel.com>,
-        "Khurana, Prabhjot" <prabhjot.khurana@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFSKS=NU4hrnXB5FcAFvnFnmAtK5HfYR8dAKyw3cd=5UKOBNfg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Jan 2021 at 11:25, Reshetova, Elena
-<elena.reshetova@intel.com> wrote:
->
-> > > On Mon, Jan 04, 2021 at 08:04:15AM +0000, Reshetova, Elena wrote:
-> > > > > 2. The OCS ECC HW does not support the NIST P-192 curve. We were planning
-> > to
-> > > > >    add SW fallback for P-192 in the driver, but the Intel Crypto team
-> > > > >    (which, internally, has to approve any code involving cryptography)
-> > > > >    advised against it, because they consider P-192 weak. As a result, the
-> > > > >    driver is not passing crypto self-tests. Is there any possible solution
-> > > > >    to this? Is it reasonable to change the self-tests to only test the
-> > > > >    curves actually supported by the tested driver? (not fully sure how to do
-> > > > >    that).
-> > > >
-> > > > An additional reason against the P-192 SW fallback is the fact that it can
-> > > > potentially trigger unsafe behavior which is not even "visible" to the end user
-> > > > of the ECC functionality. If I request (by my developer mistake) a P-192
-> > > > weaker curve from ECC Keem Bay HW driver, it is much safer to return a
-> > > > "not supported" error that proceed behind my back with a SW code
-> > > > implementation making me believe that I am actually getting a HW-backed up
-> > > > functionality (since I don't think there is a way for me to check that I am using
-> > > > SW fallback).
-> > >
-> > > Sorry, but if you break the Crypto API requirement then your driver
-> > > isn't getting merged.
+On Thu, Jan 14, 2021 at 10:53:16AM -0600, George McCollister wrote:
+> On Wed, Jan 13, 2021 at 7:57 PM Vladimir Oltean <olteanv@gmail.com> wrote:
 > >
-> > But should not we think what behavior would make sense for good crypto drivers in
-> > future?
-> > As cryptography moves forward (especially for the post quantum era), we will have
-> > lengths for all existing algorithms increased (in addition to having a bunch of new
-> > ones),
-> > and we surely should not expect the new generation of HW drivers to implement
-> > the old/weaker lengths, so why there the requirement to support them? It is not a
-> > part of crypto API definition on what bit lengths should be supported, because it
-> > cannot be part of API to begin with since it is always changing parameter (algorithms
-> > and attacks
-> > develop all the time).
->
-> I would really appreciate, if someone helps us to understand here. Maybe there is a
-> correct way to address this, but we just don't see it. The question is not even about
-> this particular crypto driver and the fact whenever it gests merged or not, but the
-> logic of the crypto API subsystem.
->
-> As far as I understand the implementations that are provided by the specialized drivers
-> (like our Keem Bay OCS ECC driver example here) have a higher priority vs. generic
-> Implementations that exists in kernel, which makes sense because we expect these drivers
-> (and the security HW they talk to) to provide both more efficient and more secure
-> implementations than a pure SW implementation in kernel can do (even if it utilizes special
-> instructions, like SIMD, AESNI, etc.). However, naturally these drivers are bound by
-> what security HW can do, and if it does not support a certain size/param of the algorithm
-> (P-192 curve in our case), it is pointless and wrong for them to reimplement what SW is
-> already doing in kernel, so they should not do so and currently they re-direct to core kernel
-> implementation. So far good.
->
-> But now comes my biggest worry is that this redirection as far
-> as I can see is *internal to driver itself*, i.e. it does a callback to these core functions from the driver
-> code, which again, unless I misunderstand smth, leads to the fact that the end user gets
-> P-192 curve ECC implementation from the core kernel that has been "promoted" to a highest
-> priority (given that ECC KeemBay driver for example got priority 300 to begin with). So, if
-> we say we have another HW Driver 'Foo', which happens to implement P-192 curves more securely,
-> but happens to have a lower priority than ECC KeemBay driver, its implementation would never
-> be chosen, but core kernel implementation will be used (via SW fallback internal to ECC Keem
-> Bay driver).
->
+> > What PHY interface types does the switch support as of this patch?
+> > No RGMII delay configuration needed?
+> >
+> 
+> Port 0: RMII
+> Port 1-3: RGMII
+> 
+> For RGMII the documentation states:
+> "PCB is required to add 1.5 ns to 2.0 ns more delay to the clock line
+> than the other lines, unless the other end (PHY) has configurable RX
+> clock delay."
 
-No, this is incorrect. If you allocate a fallback algorithm in the
-correct way, the crypto API will resolve the allocation in the usual
-manner, and select whichever of the remaining implementations has the
-highest priority (provided that it does not require a fallback
-itself).
+Ok, didn't notice that.
 
-> Another problem is that for a user of crypto API I don't see a way (and perhaps I am wrong here)
-> to guarantee that all my calls to perform crypto operations will end up being performed on a
-> security HW I want (maybe because this is the only thing I trust). It seems to be possible in theory,
-> but in practice would require careful evaluation of a kernel setup and a sync between what
-> end user requests and what driver can provide. Let me try to explain a potential scenario.
-> Lets say we had an end user that used to ask for both P-192 and P-384 curve-based ECC operations
-> and let's say we had a driver and security HW that implemented it. The end user made sure that
-> this driver implementation is always preferred vs. other existing implementations. Now, time moves, a new
-> security HW comes instead that only supports P-384, and the driver now has been updated to
-> support P-192 via the SW fallback (like we are asked now).
-> Now, how does an end user notice that when it asks for a P-192 based operations, his operations
-> are not done in security HW anymore? The only way seems to be
-> is to know that driver and security HW has been updated, algorithms and sizes changed, etc.
-> It might take a while before the end user realizes this and for example stops using P-192 altogether,
-> but what if this silent redirect by the driver actually breaks some security assumptions (side-channel
-> resistance being one potential example) made by this end user? The consequences can be very bad.
-> You might say: "this is the end user problem to verify this", but shouldn't we do smth to prevent or
-> at least indicate such potential issues to them?
->
+> > I've been there too, not the smartest of decisions in the long run. See
+> > commit 0b0e299720bb ("net: dsa: sja1105: use detected device id instead
+> > of DT one on mismatch") if you want a sneak preview of how this is going
+> > to feel two years from now. If you can detect the device id you're
+> > probably better off with a single compatible string.
+> 
+> Previously Andrew said:
+> "Either you need to verify the compatible from day one so it is not
+> wrong, or you just use a single compatible "arrow,xrs700x", which
+> cannot be wrong."
+> 
+> I did it the first way he suggested, if you would have replied at that
+> time to use a single that's the way I would have done it that way.
+> 
+> If you two can agree I should change it to a single string I'd be
+> happy to do so. In my case I need 3 RGMII and only one of the package
+> types will fit on the board so there's no risk of changing to one of
+> the existing parts. Perhaps this could be an issue if a new part is
+> added in the future or on someone else's design.
 
-I don't think it is possible at the API level to define rules that
-will always produce the most secure combination of drivers. The
-priority fields are only used to convey relative performance (which is
-already semantically murky, given the lack of distinction between
-hardware with a single queue vs software algorithms that can be
-executed by all CPUs in parallel).
+Ok, if the parts are not pin-compatible I guess the range of potential
+issues to deal with may be lower. Don't get me wrong, I don't have a
+strong opinion. I'm fine if you ignore this comment and keep the
+specific compatibles, I think this is what the Open Firmware document
+recommends anyway.
 
-When it comes to comparative security, trustworthiness or robustness
-of implementations, it is simply left up to the user to blacklist
-modules that they prefer not to use. When fallback allocations are
-made in the correct way, the remaining available implementations will
-be used in priority order.
+> > > +static int xrs700x_alloc_port_mib(struct xrs700x *dev, int port)
+> > > +{
+> > > +     struct xrs700x_port *p = &dev->ports[port];
+> > > +     size_t mib_size = sizeof(*p->mib_data) * ARRAY_SIZE(xrs700x_mibs);
+> >
+> > Reverse Christmas tree ordering... sorry.
+> 
+> The second line uses p so that won't work. I'll change the function to
+> use devm_kcalloc like you recommended below and just get rid of
+> mib_size.
+
+Yes, if you can get rid of it, that works.
+Generally when somebody says "reverse xmas tree" and it's obvious that
+there are data dependencies between variables, what they mean to request
+is:
+
+	struct xrs700x_port *p = &dev->ports[port];
+	size_t mib_size;
+
+	mib_size = sizeof(*p->mib_data) * ARRAY_SIZE(xrs700x_mibs);
+
+> > > diff --git a/drivers/net/dsa/xrs700x/xrs700x_mdio.c b/drivers/net/dsa/xrs700x/xrs700x_mdio.c
+> > > new file mode 100644
+> > > index 000000000000..4fa6cc8f871c
+> > > --- /dev/null
+> > > +++ b/drivers/net/dsa/xrs700x/xrs700x_mdio.c
+> > > +static int xrs700x_mdio_reg_read(void *context, unsigned int reg,
+> > > +                              unsigned int *val)
+> > > +{
+> > > +     struct mdio_device *mdiodev = context;
+> > > +     struct device *dev = &mdiodev->dev;
+> > > +     u16 uval;
+> > > +     int ret;
+> > > +
+> > > +     uval = (u16)FIELD_GET(GENMASK(31, 16), reg);
+> > > +
+> > > +     ret = mdiobus_write(mdiodev->bus, mdiodev->addr, XRS_MDIO_IBA1, uval);
+> > > +     if (ret < 0) {
+> > > +             dev_err(dev, "xrs mdiobus_write returned %d\n", ret);
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > +     uval = (u16)((reg & GENMASK(15, 1)) | XRS_IB_READ);
+> >
+> > What happened to bit 0 of "reg"?
+> 
+> From the datasheet:
+> "Bits 15-1 of the address on the internal bus to where data is written
+> or from where data is read. Address bit 0 is always 0 (because of 16
+> bit registers)."
+> 
+> reg_stride is set to 2.
+> "The register address stride. Valid register addresses are a multiple
+> of this value."
+
+Ok, clear now.
+
+> > May boil down to preference too, but I don't believe "dev" is a happy
+> > name to give to a driver private data structure.
+> 
+> There are other drivers in the subsystem that do this. If there was a
+> consistent pattern followed in the subsystem I would have followed it.
+> Trust me I was a bit frustrated with home much time I spent going
+> through multiple drivers trying to determine the best practices for
+> organization, naming, etc.
+> If it's a big let me know and I'll change it.
+
+Funny that you are complaining about consistency in other drivers,
+because if I count correctly, out of a total of 22 occurrences of
+struct xrs700x variables in yours, 13 are named priv and 9 are named
+dev. So you are not even consistent with yourself. But it's not a major
+issue either way.
