@@ -2,153 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 119372F55B7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 02:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED852F565A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 02:58:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726541AbhANBHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 20:07:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33452 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725846AbhANBGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 20:06:12 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1AEC06179F;
-        Wed, 13 Jan 2021 17:05:22 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id e18so5767575ejt.12;
-        Wed, 13 Jan 2021 17:05:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ALcfKJBsmbqqdDqRB4st0llIoEoKfCPT10X6T0zbwkU=;
-        b=Pj3aCnTaWbkb53KhA2cV4tY8Fgxju7zHO9hGw1mdBF89UwcVYpKDkkQdeNqTOF/rn7
-         ml81BIDwoNkINK3icM/SP3XPRk5Aqbkjl5Vi7ogszqAIzIQit4mYmFzP+5KytL4SWwUW
-         R+0yeKE+HqEQIJCG+EnvFyfMhDoskmn1MiTDEkh9AswBTmx5kV6PLhFJj5L6QIbUJd3p
-         BKyE5qD92oEtu+xhs+qYfZwvitIIzCOMa7vxFsfft5IiV+qqssvVu9EEPZ5tX46ZtUvC
-         uDzr8QWMqIMq+KbWnmefEZPAMw4MzRKdNjz9uo115SK79dkozfxKHigfC6rst6AL8srV
-         PzeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ALcfKJBsmbqqdDqRB4st0llIoEoKfCPT10X6T0zbwkU=;
-        b=bLUE9vk636ZJI9vZYvew1rIkfiVESXm/4aGL6MrBlY8OhnyPnDABDRDW5I1K7bHhq5
-         Wj4tnNTco17DieZhi7KYrrvtLEgkEOouwNPlCAfRKnckEHbbeZj2kflCHmXVcYJCNMMy
-         GAJ4S93kvW5uiGvRBaaFbJ+bnbYtx5al9sMxjTxg1TMZ+UJ1njSqD3/LaJnDLpsWA6dK
-         +/d/unTbVkMsBI1j47yGLZwalr5RS/Nm6ivZIOyb2jMU/a+NvLkjTNRJ2JL/sEhx5OaT
-         +VIvdsXkmhHTE/CQa+5u93iyjzPUPJBTnsXsfXsEEUiijAKq8vtIV5VmHU7lv8cUJqnb
-         4szQ==
-X-Gm-Message-State: AOAM530txiAXLV9u1fd/FWJ1HgBkbjJVkpjWZ75o3/58LfE8E/728Rxo
-        NONnTAdykiwsUgUPzTG8w0g=
-X-Google-Smtp-Source: ABdhPJyYOVMn/DEqhlWYi/YpW3YVztwJFTPD4leH4hUZdvnj8anDgZZAco+WEranBa2+QOwO/S20Jw==
-X-Received: by 2002:a17:906:4e46:: with SMTP id g6mr3316344ejw.243.1610586321512;
-        Wed, 13 Jan 2021 17:05:21 -0800 (PST)
-Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
-        by smtp.gmail.com with ESMTPSA id x5sm558448edi.35.2021.01.13.17.05.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 17:05:20 -0800 (PST)
-Date:   Thu, 14 Jan 2021 03:05:19 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     George McCollister <george.mccollister@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+        id S1727719AbhANBqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 20:46:37 -0500
+Received: from foss.arm.com ([217.140.110.172]:42570 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727012AbhANA55 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 19:57:57 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DB191FB;
+        Wed, 13 Jan 2021 16:45:58 -0800 (PST)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3A3073F719;
+        Wed, 13 Jan 2021 16:45:55 -0800 (PST)
+Date:   Thu, 14 Jan 2021 00:45:12 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 1/3] dsa: add support for Arrow XRS700x tag
- trailer
-Message-ID: <20210114010519.td6q2pzy4mg6viuh@skbuf>
-References: <20210113145922.92848-1-george.mccollister@gmail.com>
- <20210113145922.92848-2-george.mccollister@gmail.com>
+        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 02/21] dt-bindings: pinctrl: Add Allwinner H616
+ compatible strings
+Message-ID: <20210114004512.6cc7bd10@slackpad.fritz.box>
+In-Reply-To: <20201214093728.ehd2362jzclbxwp5@gilmour>
+References: <20201211011934.6171-1-andre.przywara@arm.com>
+        <20201211011934.6171-3-andre.przywara@arm.com>
+        <20201214093728.ehd2362jzclbxwp5@gilmour>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210113145922.92848-2-george.mccollister@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 08:59:20AM -0600, George McCollister wrote:
-> Add support for Arrow SpeedChips XRS700x single byte tag trailer. This
-> is modeled on tag_trailer.c which works in a similar way.
+On Mon, 14 Dec 2020 10:37:28 +0100
+Maxime Ripard <maxime@cerno.tech> wrote:
+
+> On Fri, Dec 11, 2020 at 01:19:15AM +0000, Andre Przywara wrote:
+> > A new SoC, a new compatible string.
+> > Also we were too miserly with just allowing seven interrupt banks.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml   | 18
+> > ++++++++++++++++-- 1 file changed, 16 insertions(+), 2 deletions(-)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+> > b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+> > index 5240487dfe50..292b05d9ed08 100644 ---
+> > a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+> > +++
+> > b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+> > @@ -53,6 +53,8 @@ properties:
+> >        - allwinner,sun50i-h5-pinctrl
+> >        - allwinner,sun50i-h6-pinctrl
+> >        - allwinner,sun50i-h6-r-pinctrl
+> > +      - allwinner,sun50i-h616-pinctrl
+> > +      - allwinner,sun50i-h616-r-pinctrl
+> >        - allwinner,suniv-f1c100s-pinctrl
+> >        - nextthing,gr8-pinctrl
+> >  
+> > @@ -61,7 +63,7 @@ properties:
+> >  
+> >    interrupts:
+> >      minItems: 1
+> > -    maxItems: 7
+> > +    maxItems: 8
+> >      description:
+> >        One interrupt per external interrupt bank supported on the
+> >        controller, sorted by bank number ascending order.
+> > @@ -91,7 +93,7 @@ properties:
+> >        bank found in the controller
+> >      $ref: /schemas/types.yaml#/definitions/uint32-array
+> >      minItems: 1
+> > -    maxItems: 5
+> > +    maxItems: 8
+> >  
+> >  patternProperties:
+> >    # It's pretty scary, but the basic idea is that:
+> > @@ -145,6 +147,18 @@ allOf:
+> >    # boards are defining it at the moment so it would generate a
+> > lot of # warnings.
+> >  
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          enum:
+> > +            - allwinner,sun50i-h616-pinctrl
+> > +
+> > +    then:
+> > +      properties:
+> > +        interrupts:
+> > +          minItems: 8
+> > +          maxItems: 8
+> > +  
 > 
-> Signed-off-by: George McCollister <george.mccollister@gmail.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
+> You don't need to have both if they are equals, and in this particular
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+Mmh, but all the other compatibles have both equal, so what would be
+the recommended way to describe this? Just minItems? I don't find a
+good explanation at the moment how to handle an explicit number, other
+than by enumerating the items explicitly.
 
-A few comments below.
+> case we already check that the maximum is 8 so there's no need to
+> repeat that check here.
 
-> diff --git a/net/dsa/tag_xrs700x.c b/net/dsa/tag_xrs700x.c
-> new file mode 100644
-> index 000000000000..4ee7c260a8a9
-> --- /dev/null
-> +++ b/net/dsa/tag_xrs700x.c
-> @@ -0,0 +1,67 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * XRS700x tag format handling
-> + * Copyright (c) 2008-2009 Marvell Semiconductor
+Are you referring to the overall "maxItems: 8" above, in the 2nd hunk?
+While this will become redundant, this is apparently prone to changes
+(as only "7" would be redundant at the moment), so I would rather not
+rely on a global limit.
 
-Why does Marvell get copyright?
-
-> + * Copyright (c) 2020 NovaTech LLC
-> + */
-> +
-> +#include <linux/etherdevice.h>
-> +#include <linux/list.h>
-> +#include <linux/slab.h>
-
-These 3 includes are not needed. You can probably remove them later
-though, if there is no other reason to resend.
-
-> +#include <linux/bitops.h>
-> +
-> +#include "dsa_priv.h"
-> +
-> +static struct sk_buff *xrs700x_xmit(struct sk_buff *skb, struct net_device *dev)
-> +{
-> +	struct dsa_port *dp = dsa_slave_to_port(dev);
-> +	u8 *trailer;
-> +
-> +	trailer = skb_put(skb, 1);
-> +	trailer[0] = BIT(dp->index);
-> +
-> +	return skb;
-> +}
-> +
-> +static struct sk_buff *xrs700x_rcv(struct sk_buff *skb, struct net_device *dev,
-> +				   struct packet_type *pt)
-> +{
-> +	int source_port;
-> +	u8 *trailer;
-> +
-> +	if (skb_linearize(skb))
-> +		return NULL;
-
-We've been through this, there should be no reason to linearize an skb
-for a one-byte tail tag..
-
-> +
-> +	trailer = skb_tail_pointer(skb) - 1;
-> +
-> +	source_port = ffs((int)trailer[0]) - 1;
-> +
-> +	if (source_port < 0)
-> +		return NULL;
-> +
-> +	skb->dev = dsa_master_find_slave(dev, 0, source_port);
-> +	if (!skb->dev)
-> +		return NULL;
-> +
-> +	if (pskb_trim_rcsum(skb, skb->len - 1))
-> +		return NULL;
-> +
-> +	/* Frame is forwarded by hardware, don't forward in software. */
-> +	skb->offload_fwd_mark = 1;
-> +
-> +	return skb;
-> +}
+Cheers,
+Andre.
