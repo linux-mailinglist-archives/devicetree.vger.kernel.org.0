@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1397F2F6032
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BBCD2F6035
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727330AbhANLgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 06:36:40 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:35335 "EHLO
+        id S1728794AbhANLg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 06:36:56 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:54841 "EHLO
         wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728757AbhANLge (ORCPT
+        by vger.kernel.org with ESMTP id S1728792AbhANLgz (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 06:36:34 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 0E2A91603;
-        Thu, 14 Jan 2021 06:35:47 -0500 (EST)
+        Thu, 14 Jan 2021 06:36:55 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 3D7241612;
+        Thu, 14 Jan 2021 06:35:49 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Thu, 14 Jan 2021 06:35:48 -0500
+  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:35:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=8JSls+ZrE2qxs
-        r/AoQacHX4PPuJVzcAIG/Gq9qSlVdc=; b=N83Go+6mMp12B9eMy/8WDEHnJEhMw
-        UMbeqpgQseHIKyYgAy8uYkhS9TXzuiBMlHtPW1W1OuBn6I203AJfeycrXuFN00cY
-        moFs4e9nNlBVux0T5W9okJD4XdZRNHmHX6fXK+EthtIhDq4B1CCUXNmAkxsBnbKb
-        KDpNQXzLa9iHjqfWh+fhhpIpS/RC2htL/ZTKjUUBONcBGlLqJ6QVrXdjfb/vx8sq
-        XUwJqBVVJaKakq8KUasakfxRIHQBUfyacgtTbtKf6P89bXEKdztSLpG8XBwLbnYz
-        LPq009wqQpLFwNNvEg/RrVz2psXu5E6zwjWUTXtU1NUr1vRWkOVIe5VIg==
+        :mime-version:content-transfer-encoding; s=fm1; bh=C7T4xwiasrrOp
+        sGxvsi367sJDHi88iuvAqSOrhTDqPA=; b=oXOrbFucMFqcYS00JD8Vp1BsKbXZe
+        yFWcUWTjAUnbK9GTzzkcI7peqMmwv4+8ajyvFvHlBMopSJcaEN7B1+g3OYf3N045
+        FDBkYd8aX4+zWqu53e98423nJBJ++LRSzmq+8ujt4NNnduSf1yi334VZAIYajl9Y
+        qPmZ5nDqGpE/Yzbe5aJHmw+le7cAbVmaMUhnLf+71RrP1nf0S6zgiQSG7L8HGJTg
+        SKlLpjziSSOYWl3Ugl2S6KpwQt8qoelkugzjcUGLp2qB5ZvxS3MSbGYMfvvE7yGH
+        kxzR76k3F8bAMjnNj7R50KO0b9fOeFRL/hkX0SKWYVSPJXRgIT35Zy37A==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=8JSls+ZrE2qxsr/AoQacHX4PPuJVzcAIG/Gq9qSlVdc=; b=RBbgreLj
-        HF/TY/LCaWq+fCQXb26BDXiGpoGzuGSBT1gH6+XEe26cTjg3Bwtt0vV+ds3ocCFp
-        7VALsm/gP8sjFTYqMYI4xolZWpmqF3v2PD9i5fGKKLPUsxda7PhJbHY4T9L7aejX
-        99nfDgpRxJ01VxvapESYcVOpLtZNIrShW6ta3vsiA2+EPHMRO9E/27KSvv23vHHR
-        rZY2KG+kSuP4YgUqHd72tPNciGTrE6McBDFSjQq3OUXBBHfXq7o3A5qVPD00ndvN
-        eOm3erio53lMD4IVVAaSnqkKnmwXil/l7/N4uZNz8LITho1IZ4GK20vpWtrt/kKl
-        UmSoQ9bhAyBChA==
-X-ME-Sender: <xms:kywAYNeYzbl5tLSLyxVxZY8y5Nq3Rsqyczer6nwtwVUPPQYqDw3QGw>
-    <xme:kywAYPgop8macANvjkdws8TnHtyL62amV-v48gS3D6Be7W3NhXcooOYL8kwpJHoTv
-    3sn1o7YDAQpn6G54og>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtgecutefuodetggdotefrodftvf
+        fm1; bh=C7T4xwiasrrOpsGxvsi367sJDHi88iuvAqSOrhTDqPA=; b=ZiUK5h+5
+        DHYgcDEvrPTjE77xWxP/lP30S5T6Q3EkJfv4AvfxngeSMkQuOOQsRfSvh1e4e1QY
+        nJejX8qu8BET2inTDpJ4CY41Q9c3BamKudFqbQx7gxy7xBb2flAxprjo8ISALVWb
+        NWrCtzNVk85I8rwvKKKNopVMOkXSVSNr5bkw0zQzKeKRhKqlJOvzgsKDjnaO550j
+        XCQhGZTzGkn9Fa4bKEO1lG6U6HHEXxbvHzk0jXgLIaYINGBGEwe4qNXJ4n1U3ISI
+        S/Hw04ZfU9cZT3Xe11rs5o6/v7ivp29WccmTe1pJK5OxVeW/I4JaiBMts4ZtzHN+
+        vnlFjkClybCNkw==
+X-ME-Sender: <xms:lCwAYAm0OKmc75I75Jm-FueN7ef3ixoTHQj9BVvMH_1mBtHbK_Wn8Q>
+    <xme:lCwAYJTzcXIcRzlIjoRRlW6zir0ATWZNvZF7M89FGhSqYhZm_QreAcDG2pMz98O5l
+    xK7bBQ_K02aVmxuJYU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
     ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
-    vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:kywAYFr0L7scRXU8Yc0ibuNZEvNydkmS3mhTmFyCw0ZJw43s92exIA>
-    <xmx:kywAYPHdvcnh2f6WClz4DA-BLpGE1QmsT63C5I3qEAl9KjElnFzcog>
-    <xmx:kywAYPkN6Ed0-xvQ1gG4u0N27G7AuOY1cOfsef1TQ5gwTd5ywzjkGA>
-    <xmx:kywAYFPbhSt_OMymqownzUjXFA4JpUfCSl5ntZdE10YAasNq3WZ6tg>
+X-ME-Proxy: <xmx:lCwAYOP7YU6lfAlHvILlYB8yCOb6S_fWhR_E2BH8gepFk7aquWuF2g>
+    <xmx:lCwAYCVFNf8M61XreZy_Rk_7tN1gxqdsa_YO5iNlHDzTajJyaPZIuQ>
+    <xmx:lCwAYFeVFnWMm2dZ8ZBEKJR_esRVz3Jg3g4T4IWMyc9AGoHY4Y2X6g>
+    <xmx:lCwAYMNB9emdC3fdN0qVA0K5pL8C9fIZSrdw3PsN_fZQcry9PyjKew>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 0E362108005B;
-        Thu, 14 Jan 2021 06:35:46 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 7A0E7108005F;
+        Thu, 14 Jan 2021 06:35:48 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -62,11 +62,11 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         linux-arm-kernel@lists.infradead.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: [PATCH 04/19] dt-bindings: bridge: simple: Add corpro,gm7123 compatible
-Date:   Thu, 14 Jan 2021 12:35:23 +0100
-Message-Id: <20210114113538.1233933-4-maxime@cerno.tech>
+        Alistair Francis <alistair@alistair23.me>,
+        Vasily Khoruzhick <anarsoul@gmail.com>
+Subject: [PATCH 05/19] dt-bindings: bluetooth: realtek: Switch to unevaluatedProperties
+Date:   Thu, 14 Jan 2021 12:35:24 +0100
+Message-Id: <20210114113538.1233933-5-maxime@cerno.tech>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210114113538.1233933-1-maxime@cerno.tech>
 References: <20210114113538.1233933-1-maxime@cerno.tech>
@@ -76,31 +76,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The corpro,gm7123 was in use in a DT but was never properly documented,
-let's add it.
+additionalProperties prevent any property not explicitly defined in the
+binding to be used. Yet, some serial properties like max-speed are valid
+and validated through the serial/serial.yaml binding.
 
-Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
+Let's change additionalProperties to unevaluatedProperties to avoid
+spurious warnings.
+
+Cc: Alistair Francis <alistair@alistair23.me>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../devicetree/bindings/display/bridge/simple-bridge.yaml     | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
-index 64e8a1c24b40..97ca07b56cbc 100644
---- a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
-@@ -22,6 +22,10 @@ properties:
-               - ti,ths8134a
-               - ti,ths8134b
-           - const: ti,ths8134
-+      - items:
-+          - const: corpro,gm7123
-+          - const: adi,adv7123
-+          - const: dumb-vga-dac
-       - enum:
-           - adi,adv7123
-           - dumb-vga-dac
+diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+index 4f485df69ac3..f4d4969d87f4 100644
+--- a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
++++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+@@ -37,7 +37,7 @@ properties:
+ required:
+   - compatible
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 -- 
 2.29.2
 
