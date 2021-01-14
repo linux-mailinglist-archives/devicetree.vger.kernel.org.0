@@ -2,64 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CC42F5E76
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:15:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7222F5E8D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 11:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726919AbhANKOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 05:14:02 -0500
-Received: from mout.kundenserver.de ([212.227.126.133]:33291 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726661AbhANKOC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 05:14:02 -0500
-Received: from orion.localdomain ([77.7.60.217]) by mrelayeu.kundenserver.de
- (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1N332D-1m3Os10CiL-013R27; Thu, 14 Jan 2021 11:11:28 +0100
-From:   "Enrico Weigelt, metux IT consult" <info@metux.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org
-Subject: [PATCH] of: base: improve error msg in of_phandle_iterator_next()
-Date:   Thu, 14 Jan 2021 11:11:27 +0100
-Message-Id: <20210114101127.16580-1-info@metux.net>
-X-Mailer: git-send-email 2.11.0
-X-Provags-ID: V03:K1:6l2KskMrJs48qKUSwYmCmHjD489n6FI/7d4iwdVSlNAkWFkXS2d
- 5P1DRflrBpUallz5pybt8B6+48b5Ot7WqULDcA3ZD0GlgSRg3vl72FBc+24jUc51wAv8mcN
- aSvTC31OJ2x5PVIB4VsgF/c9YQEK3pDx847SZvp7AHdMNhje3VFbzIwBhIlWswt+f4WzgaZ
- UH+IwiSdzvGIaW9o9c0XQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8JdhkU5kt4Y=:m71J3DHObi+v6NPBqRxNHG
- 0Ve1919mZXB/zaUC0dAWeTO2VedgklpudFv8xF4sIMBN62+kN1gp26B3lFGagrSJS+nCE1YGN
- e4c3uX70WsjMPbLurv92bLxd8Cj2KsCQBkFNV9XzwCUfvFrPGRx/UoThXFOFUB0AmOcVgUwFH
- eXlq5BKWfb5MrIBurGlOcSh+D/bgFnkWA+8ipd0iGx9HXbdW/IurRA5043p+nVjFlczP7zNot
- mTd7e1ifV6OCQ5wkiPxCH4a+/bKtkv5JcRdy/s+/ZN8Itrftb+xNo0vsqR1A5Jx+HOCNW8AEy
- cWtW23AMx14YX0MJGLxg/lTPn+sWBI+/5kzqY9MizadoLeaA3NVsVK0Inq4jlaVcHCp7YtFXh
- U455RR0aPtS3Ulvzwf/bFqx4/2IIbRkgTn3tGmuK69xMmMF1rSibUe1Gq8OxG
+        id S1726283AbhANKSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 05:18:11 -0500
+Received: from foss.arm.com ([217.140.110.172]:47166 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726518AbhANKSE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 05:18:04 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 917731FB;
+        Thu, 14 Jan 2021 02:17:19 -0800 (PST)
+Received: from [10.57.56.97] (unknown [10.57.56.97])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9ED2E3F70D;
+        Thu, 14 Jan 2021 02:17:17 -0800 (PST)
+Subject: Re: [PATCH V2 11/11] dts: bindings: Document device tree bindings for
+ Arm TRBE
+To:     Rob Herring <robh@kernel.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>
+Cc:     mathieu.poirier@linaro.org, coresight@lists.linaro.org,
+        Linu Cherian <lcherian@marvell.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        mike.leach@linaro.org, devicetree@vger.kernel.org
+References: <1610511498-4058-1-git-send-email-anshuman.khandual@arm.com>
+ <1610511498-4058-12-git-send-email-anshuman.khandual@arm.com>
+ <1610552704.268262.2506183.nullmailer@robh.at.kernel.org>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <b35f87bf-554f-444c-8b8e-9d62cf12d8f7@arm.com>
+Date:   Thu, 14 Jan 2021 10:17:08 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
+MIME-Version: 1.0
+In-Reply-To: <1610552704.268262.2506183.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Also print out the phandle ID on error message, as a debug aid.
+Hi Rob
 
-Signed-off-by: Enrico Weigelt, metux IT consult <info@metux.net>
----
- drivers/of/base.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 1/13/21 3:45 PM, Rob Herring wrote:
+> On Wed, 13 Jan 2021 09:48:18 +0530, Anshuman Khandual wrote:
+>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>
+>> Document the device tree bindings for Trace Buffer Extension (TRBE).
+>>
+>> Cc: Anshuman Khandual <anshuman.khandual@arm.com>
+>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>> ---
+>>   Documentation/devicetree/bindings/arm/trbe.yaml | 46 +++++++++++++++++++++++++
+>>   1 file changed, 46 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/arm/trbe.yaml
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/arm/trbe.yaml:39:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+> 
+> dtschema/dtc warnings/errors:
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 161a23631472..8a348f0d3c5e 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1297,8 +1297,8 @@ int of_phandle_iterator_next(struct of_phandle_iterator *it)
- 
- 		if (it->cells_name) {
- 			if (!it->node) {
--				pr_err("%pOF: could not find phandle\n",
--				       it->parent);
-+				pr_err("%pOF: could not find phandle %d\n",
-+				       it->parent, it->phandle);
- 				goto err;
- 			}
- 
--- 
-2.11.0
+Thanks for that. I guess Anshuman can fix this up, with the following patch:
 
+diff --git a/Documentation/devicetree/bindings/arm/trbe.yaml 
+b/Documentation/devicetree/bindings/arm/trbe.yaml
+index 2258595c40dd..24951e02fa58 100644
+--- a/Documentation/devicetree/bindings/arm/trbe.yaml
++++ b/Documentation/devicetree/bindings/arm/trbe.yaml
+@@ -36,7 +36,7 @@ additionalProperties: false
+
+  examples:
+
+- - |
++  - |
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+
+     trbe {
+
+> 
+> See https://patchwork.ozlabs.org/patch/1425605
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+
+I did see the warning, but I thought I fixed it. Sorry about that.
+
+Cheers
+Suzuki
