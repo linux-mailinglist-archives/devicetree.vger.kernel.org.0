@@ -2,204 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FACD2F5D96
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 10:31:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B52742F5DDD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 10:39:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727632AbhANJax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 04:30:53 -0500
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:52081 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727324AbhANJaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 04:30:52 -0500
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id C14D51BF21E;
-        Thu, 14 Jan 2021 09:30:02 +0000 (UTC)
-Date:   Thu, 14 Jan 2021 10:30:01 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-sunxi@googlegroups.com, Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        kevin.lhopital@hotmail.com
-Subject: Re: [linux-sunxi] [PATCH v4 09/15] media: sunxi: Add support for the
- A31 MIPI CSI-2 controller
-Message-ID: <YAAPGZCK/TffZChD@aptenodytes>
-References: <20201231142948.3241780-1-paul.kocialkowski@bootlin.com>
- <20201231142948.3241780-10-paul.kocialkowski@bootlin.com>
- <CAAEAJfAJYCE2z662hPderJ-5Qv3WBA8K5ZQaZ1JuZbZN+KfFig@mail.gmail.com>
+        id S1728362AbhANJhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 04:37:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728289AbhANJhU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 04:37:20 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691FAC061794
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:36:34 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id l9so1473519ejx.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:36:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4WPhESZ2Ino1UQ+7G+F0v8AM8oEjEHY5bkl74A+HS9U=;
+        b=SHJ9j/iZ90wmHmG96hK7ogsn+S7r1luxoBa6keVoDk4NWbSCNnoALijDtih8olEzBp
+         eDDDm4LvTYIbIOa9nrF326FdHiHrMyGHEI0TXd3HrkbhFqbAVtF/7e5WQUgCknaSHz2x
+         oaFoSLatWj55lgEdC8DqqwywnwvJxqk6B9c+akWMvuSp2zsd7hpbZ5o5I5aijPmm7V6s
+         zwK4nJ3wNqC2p35i6MuadpL+gY2FguImFJ1W8Ikba4vihJrR/AQPmBP33UibkinQaJwF
+         Qv9v/EYxpCWlszMU3oHqnTK2fSoOvRL037tvswAb4X2vqXIa3f/aG5y1lQsta3pccOjm
+         akZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4WPhESZ2Ino1UQ+7G+F0v8AM8oEjEHY5bkl74A+HS9U=;
+        b=WqHbTge74teVuPTvyZpfeUzUKYq1tBL5GMDwHObiG+9sV8j+7pExmzJwTAQiVfbS51
+         C2vat9MFBFrDI636Sfkj4FeyUE4T3JVTBKrQ2zutQthe2PpQ+oNO7WYhWjQG7ypeM/mW
+         Oe0+LT7yHf0HC6G5G2KyqRXm1a5KJmuROXaUwzCJmIcCmVx+qSvM00UplPt65ams76rM
+         cE8r7fYq+lBT/LKT0Czj1LHPlGyWeOeHKX9EMlXS31g+5eLXSuBStjeWH5OplNfz9e3+
+         lfpx7bY+R8w2aTd55jDyb51efFfl+UyWjNoWnsacTXkD45yPMi2j4FgPbmJJwJJfE3J3
+         ejXA==
+X-Gm-Message-State: AOAM5307Dq5jjiZ+Zf0zAAI67sdnPaVWFO0AM3UQD6A7v9hvtgTdonXa
+        70E617h1JLZqZb0iX1fGkUZjBVZkukj8si+M3b/4YQ==
+X-Google-Smtp-Source: ABdhPJyrveNlmYlJtZwqPTnLW1uRvgk2qAwIeuLIPI8/FEwrO+3RCMe8L28l1DrM60nxOvEbNEfYmHp69hbWY7kCXSc=
+X-Received: by 2002:a17:906:19c3:: with SMTP id h3mr4605167ejd.429.1610616993048;
+ Thu, 14 Jan 2021 01:36:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="EJgpfe+RWrId2mN0"
-Content-Disposition: inline
-In-Reply-To: <CAAEAJfAJYCE2z662hPderJ-5Qv3WBA8K5ZQaZ1JuZbZN+KfFig@mail.gmail.com>
+References: <20210111054428.3273-1-dqfext@gmail.com> <20210111134349.vdhyebdllbaakukk@skbuf>
+In-Reply-To: <20210111134349.vdhyebdllbaakukk@skbuf>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Thu, 14 Jan 2021 10:36:22 +0100
+Message-ID: <CAMpxmJWi=BPvXyE_m0dyfmhuK76wYjVTtmvVEk7xSfPcaTYbkA@mail.gmail.com>
+Subject: Re: [PATCH net-next 0/2] dsa: add MT7530 GPIO support
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     DENG Qingfang <dqfext@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        netdev <netdev@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---EJgpfe+RWrId2mN0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey Ezequiel,
-
-On Mon 11 Jan 21, 15:21, Ezequiel Garcia wrote:
-> Salut Paul,
->=20
-> Just a minor comment about the v4l2 async API.
+On Mon, Jan 11, 2021 at 2:43 PM Vladimir Oltean <olteanv@gmail.com> wrote:
 >
-> On Thu, 31 Dec 2020 at 11:30, Paul Kocialkowski
-> <paul.kocialkowski@bootlin.com> wrote:
+> On Mon, Jan 11, 2021 at 01:44:26PM +0800, DENG Qingfang wrote:
+> > MT7530's LED controller can be used as GPIO controller. Add support for
+> > it.
 > >
-> > The A31 MIPI CSI-2 controller is a dedicated MIPI CSI-2 bridge
-> > found on Allwinner SoCs such as the A31 and V3/V3s.
+> > DENG Qingfang (2):
+> >   dt-bindings: net: dsa: add MT7530 GPIO controller binding
+> >   drivers: net: dsa: mt7530: MT7530 optional GPIO support
 > >
-> > It is a standalone block, connected to the CSI controller on one side
-> > and to the MIPI D-PHY block on the other. It has a dedicated address
-> > space, interrupt line and clock.
+> >  .../devicetree/bindings/net/dsa/mt7530.txt    |  6 ++
+> >  drivers/net/dsa/mt7530.c                      | 96 +++++++++++++++++++
+> >  drivers/net/dsa/mt7530.h                      | 20 ++++
+> >  3 files changed, 122 insertions(+)
 > >
-> > It is represented as a V4L2 subdev to the CSI controller and takes a
-> > MIPI CSI-2 sensor as its own subdev, all using the fwnode graph and
-> > media controller API.
-> >
-> > Only 8-bit and 10-bit Bayer formats are currently supported.
-> > While up to 4 internal channels to the CSI controller exist, only one
-> > is currently supported by this implementation.
-> >
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  drivers/media/platform/sunxi/Kconfig          |   1 +
-> >  drivers/media/platform/sunxi/Makefile         |   1 +
-> >  .../platform/sunxi/sun6i-mipi-csi2/Kconfig    |  12 +
-> >  .../platform/sunxi/sun6i-mipi-csi2/Makefile   |   4 +
-> >  .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c   | 590 ++++++++++++++++++
-> >  .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.h   | 117 ++++
-> >  6 files changed, 725 insertions(+)
-> >  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
-> >  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefi=
-le
-> >  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_=
-mipi_csi2.c
-> >  create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_=
-mipi_csi2.h
-> >
-> [..]
-> > +static int sun6i_mipi_csi2_v4l2_setup(struct sun6i_mipi_csi2_dev *cdev)
-> > +{
-> > +       struct sun6i_mipi_csi2_video *video =3D &cdev->video;
-> > +       struct v4l2_subdev *subdev =3D &video->subdev;
-> > +       struct v4l2_async_notifier *notifier =3D &video->notifier;
-> > +       struct fwnode_handle *handle;
-> > +       struct v4l2_fwnode_endpoint *endpoint;
-> > +       struct v4l2_async_subdev *subdev_async;
-> > +       int ret;
-> > +
-> > +       /* Subdev */
-> > +
-> > +       v4l2_subdev_init(subdev, &sun6i_mipi_csi2_subdev_ops);
-> > +       subdev->dev =3D cdev->dev;
-> > +       subdev->flags |=3D V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > +       strscpy(subdev->name, MODULE_NAME, sizeof(subdev->name));
-> > +       v4l2_set_subdevdata(subdev, cdev);
-> > +
-> > +       /* Entity */
-> > +
-> > +       subdev->entity.function =3D MEDIA_ENT_F_VID_IF_BRIDGE;
-> > +       subdev->entity.ops =3D &sun6i_mipi_csi2_entity_ops;
-> > +
-> > +       /* Pads */
-> > +
-> > +       video->pads[0].flags =3D MEDIA_PAD_FL_SINK;
-> > +       video->pads[1].flags =3D MEDIA_PAD_FL_SOURCE;
-> > +
-> > +       ret =3D media_entity_pads_init(&subdev->entity, 2, video->pads);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       /* Endpoint */
-> > +
-> > +       handle =3D fwnode_graph_get_endpoint_by_id(dev_fwnode(cdev->dev=
-), 0, 0,
-> > +                                                FWNODE_GRAPH_ENDPOINT_=
-NEXT);
-> > +       if (!handle) {
-> > +               ret =3D -ENODEV;
-> > +               goto error_media_entity;
-> > +       }
-> > +
-> > +       endpoint =3D &video->endpoint;
-> > +       endpoint->bus_type =3D V4L2_MBUS_CSI2_DPHY;
-> > +
-> > +       ret =3D v4l2_fwnode_endpoint_parse(handle, endpoint);
-> > +       fwnode_handle_put(handle);
->=20
-> I think the _put should be...
->=20
-> > +       if (ret)
-> > +               goto error_media_entity;
-> > +
-> > +       /* Notifier */
-> > +
-> > +       v4l2_async_notifier_init(notifier);
-> > +
-> > +       subdev_async =3D &video->subdev_async;
-> > +       ret =3D v4l2_async_notifier_add_fwnode_remote_subdev(notifier, =
-handle,
-> > +                                                          subdev_async=
-);
->=20
-> ... here. See for instance drivers/media/platform/rcar-vin/rcar-csi2.c.
->=20
-> (Unless I've missed something, of course).
+> > --
+> > 2.25.1
+>
+> Adding GPIO and LED maintainers to also have a look.
+> https://patchwork.kernel.org/project/netdevbpf/cover/20210111054428.3273-1-dqfext@gmail.com/
 
-I think you're right, the reference is obtained at
-fwnode_graph_get_endpoint_by_id and should be held when passing handle to
-v4l2_async_notifier_add_fwnode_remote_subdev since it will be used to get
-a reference to the remote port.
+Can you resend the series with GPIO maintainers in CC?
 
-Good catch and thanks for the review!
-
-Paul
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---EJgpfe+RWrId2mN0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmAADxkACgkQ3cLmz3+f
-v9Hytwf/W+8A0xNMOTt+EHzq4AdwRMqFrAR8IlpIUjYo23z3pYtavAnDPlARRdLr
-EQLRhocXT3344ZS75RV4GDtGs7V2ORUemf98h/WJAQDLMHPYZY0WH+JW8hpI37jJ
-przgS0Mte1QrzPEb54o0tOrmomnNrTEg0J4umgGE1HOlzMX48Lij7OV/IYM16ACw
-WOsLkeQnCDolkBW4gZoNN2NGZoVfPpEoMYr1ocA5AXijJ8YkHt9nzc46uBMjglov
-ko7MWEU0TYvBqoMNWFdSmj0gpRHmgUaLuXs5+r4rg3tdLxF4I2NmNRJZJrnQHMMm
-XK9zTMtYtNNs+IfS55Cp8qyb4S4MbA==
-=AC7a
------END PGP SIGNATURE-----
-
---EJgpfe+RWrId2mN0--
+Bart
