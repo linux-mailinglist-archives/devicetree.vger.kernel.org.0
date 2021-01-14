@@ -2,128 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD8222F69DE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 19:50:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B69092F69E9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 19:50:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728456AbhANSpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 13:45:31 -0500
-Received: from mx2.suse.de ([195.135.220.15]:39726 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727346AbhANSpa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 13:45:30 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 248D5B77E;
-        Thu, 14 Jan 2021 18:44:48 +0000 (UTC)
-Message-ID: <99a7d6e80646ff7ac6c1fc615146fc4ad1428552.camel@suse.de>
-Subject: Re: [PATCH v6 11/11] pwm: Add Raspberry Pi Firmware based PWM bus
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, f.fainelli@gmail.com,
-        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wahrenst@gmx.net, linux-input@vger.kernel.org,
-        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
-        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
-        andy.shevchenko@gmail.com
-Date:   Thu, 14 Jan 2021 19:44:46 +0100
-In-Reply-To: <20210112091842.3th64ardbqjafvuq@pengutronix.de>
-References: <20201211164801.7838-1-nsaenzjulienne@suse.de>
-         <20201211164801.7838-12-nsaenzjulienne@suse.de>
-         <20210112091842.3th64ardbqjafvuq@pengutronix.de>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-Gc66jpwjN4JFK05BfjVR"
-User-Agent: Evolution 3.38.2 
+        id S1728014AbhANSsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 13:48:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36314 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727888AbhANSsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 13:48:39 -0500
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C2BC061575;
+        Thu, 14 Jan 2021 10:47:58 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id l200so6950134oig.9;
+        Thu, 14 Jan 2021 10:47:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=wAEkWZc3x9gtdwn0n1Cy4Doqy7JyUlW2E27OCg1gzAA=;
+        b=lCQF4LQuCjNT0I13TUYMWsGFa4HwDMonwlxqtBS4JzA/4dMf3ETcZXEeLtMJVpm90y
+         1d0md5R4LFlL6No7jVuCO/db8ry1jeoIBfDTmwOTcZxba9p912dWFIxcG7Tltverftqn
+         WqOelZjHsShseru8m+JkMqM1vYoayk3lP0W422+yquz0JyVYrpRg48aZ3aOLVD/tNZb9
+         YDn/vJz3HSPi5y/HMqyOkLiQyPKP0dBdCiJbYB7B+rjVGp3gNHdQGQDAgNDMjXmYwwcY
+         KXxWuvnVPx1GFq9ptOJNMJ9gub6tfTj/9d1N7wpECbSQZc/v/iqUKOvKo2SSE29Sfzot
+         bQ6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wAEkWZc3x9gtdwn0n1Cy4Doqy7JyUlW2E27OCg1gzAA=;
+        b=Fg4Xl3YbnaIYTflqfp3XXAA5IeOe2lQWzxI9dtz8uy/ldAqHoN/sJnnwf8RlozNR5/
+         g7S2yAdXKiCEpOSkt6XlNd57cP6qABgXlQthOG/2j8lXkQ//HdCwnBWYEW6K/LBXAQw8
+         kO96/V5hH/jloJ9QCZP4GNz5K+EDDc+1A2Yhn2CbIQ+fhIooUX1mPWKM7J9BRIyQj12Z
+         tZ0RTqCCqx1jFTfdQrKnb0mSf92HZ+3K+ReCenon0/v2LoHVzbnJdB/JEcPBWGTBcYd3
+         XbXtz1yp/N07/8uV36cKtLLaxqn1EN6lDsXb1g5AetG2dB1zxUYp/DE2deyMIrSYl4PF
+         /q8Q==
+X-Gm-Message-State: AOAM532u2ZLIAFWrmOP/ROMOe2biSTNoVYIr7nzUW9eEOcSi4g8tFtz1
+        EVuROUMC59M6OS8Q6EhpAj31qeyRr84r6952Tw==
+X-Google-Smtp-Source: ABdhPJxikTc++JzeVOXBK+hZUYwTsvAtM1b1663z6h7nBr2ND3PhxsnHVxbMwddVRSJruYjWc+I0A89rTb5G0MyjcRc=
+X-Received: by 2002:a05:6808:8e7:: with SMTP id d7mr3482505oic.127.1610650078274;
+ Thu, 14 Jan 2021 10:47:58 -0800 (PST)
 MIME-Version: 1.0
+References: <20210113145922.92848-1-george.mccollister@gmail.com>
+ <20210113145922.92848-3-george.mccollister@gmail.com> <20210114015659.33shdlfthywqdla7@skbuf>
+ <CAFSKS=NU4hrnXB5FcAFvnFnmAtK5HfYR8dAKyw3cd=5UKOBNfg@mail.gmail.com> <20210114183243.4kse75ksw3u7h4uz@skbuf>
+In-Reply-To: <20210114183243.4kse75ksw3u7h4uz@skbuf>
+From:   George McCollister <george.mccollister@gmail.com>
+Date:   Thu, 14 Jan 2021 12:47:46 -0600
+Message-ID: <CAFSKS=NrdVSDEh5DWN+JOcZ5fycM1y_N5b8cxzZwQxm-hJbVHQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 2/3] net: dsa: add Arrow SpeedChips XRS700x driver
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jan 14, 2021 at 12:32 PM Vladimir Oltean <olteanv@gmail.com> wrote:
+> > > May boil down to preference too, but I don't believe "dev" is a happy
+> > > name to give to a driver private data structure.
+> >
+> > There are other drivers in the subsystem that do this. If there was a
+> > consistent pattern followed in the subsystem I would have followed it.
+> > Trust me I was a bit frustrated with home much time I spent going
+> > through multiple drivers trying to determine the best practices for
+> > organization, naming, etc.
+> > If it's a big let me know and I'll change it.
+>
+> Funny that you are complaining about consistency in other drivers,
+> because if I count correctly, out of a total of 22 occurrences of
+> struct xrs700x variables in yours, 13 are named priv and 9 are named
+> dev. So you are not even consistent with yourself. But it's not a major
+> issue either way.
 
---=-Gc66jpwjN4JFK05BfjVR
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Uwe, thanks for the review.
-
-On Tue, 2021-01-12 at 10:18 +0100, Uwe Kleine-K=C3=B6nig wrote:
-
-[...]
-
-> > +                duty_cycle =3D DIV_ROUND_CLOSEST_ULL(state->duty_cycle=
- * RPI_PWM_MAX_DUTY,
-> > +					           RPI_PWM_PERIOD_NS);
->=20
-> ... and round down here.
->=20
-> Just to be sure: writing RPI_PWM_MAX_DUTY (i.e. 255) yields 100% duty
-> cycle, right?
-
-Yes, at 255 the signal is flat.
-
-> > +        else
-> > +                duty_cycle =3D RPI_PWM_MAX_DUTY;
-> > +
-> > +	if (duty_cycle =3D=3D rpipwm->duty_cycle)
-> > +		return 0;
-> > +
-> > +	ret =3D raspberrypi_pwm_set_property(rpipwm->firmware, RPI_PWM_CUR_DU=
-TY_REG,
-> > +					   duty_cycle);
-> > +	if (ret) {
-> > +		dev_err(chip->dev, "Failed to set duty cycle: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/*
-> > +	 * This sets the default duty cycle after resetting the board, we
-> > +	 * updated it every time to mimic Raspberry Pi's downstream's driver
-> > +	 * behaviour.
-> > +	 */
-> > +	ret =3D raspberrypi_pwm_set_property(rpipwm->firmware, RPI_PWM_DEF_DU=
-TY_REG,
-> > +					   duty_cycle);
-> > +	if (ret) {
-> > +		dev_err(chip->dev, "Failed to set default duty cycle: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +        rpipwm->duty_cycle =3D duty_cycle;
->=20
-> Please use tabs for indention. (The general hint is to use checkpatch
-> which (I hope) tells you about problems like this.)
-
-Sorry for that.
-
-I took note of the rest of comments and will update the code.
-
-Regards,
-Nicolas
-
-
-
---=-Gc66jpwjN4JFK05BfjVR
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmAAkR4ACgkQlfZmHno8
-x/7WpAf+OcmBebYI8HGJFfpFhX3gBSdN6587Todi3RNaMrm6loRFFbe3HDS3rO0u
-pv9Zl7lrjVKV1+Fug2/3rTL4Kh0/w98EZJ5mpf6n5k0EG+EoMqGqfqElaLL0mvW9
-7NpiNF15W4/v/U22BH3jtFUkt0PpjN1J2WPclOl+ZPEe31vjdiEauq7zAhRT9Gpr
-XHH9ZbY9f4oXR2s91ZaYGdni3ikxxB4cG/aS50GAM019KW/RIkEibfYpDjrCNOml
-M4Z4Y15Mqi8aouumlLNKiuxNmNhtyCilx3jHPeNm+2b5GeBp/S9jtAVkVaUaYQ9I
-N8qh4QzVUk4qMeucxLeRRemzuIWCOw==
-=pJN/
------END PGP SIGNATURE-----
-
---=-Gc66jpwjN4JFK05BfjVR--
-
+Touch=C3=A9. This ended up happening because I followed the pattern used by
+different drivers in different places. Specifically ksz was using
+regmap to work on multiple buses but wasn't a very clean example for
+much else.
+I'll just change it to priv everywhere.
