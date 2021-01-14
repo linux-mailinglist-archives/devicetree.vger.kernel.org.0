@@ -2,102 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0978D2F63A8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 16:05:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F79B2F63A6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 16:05:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728523AbhANPFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 10:05:13 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:60534 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727460AbhANPFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 10:05:13 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10EF3V2k062896;
-        Thu, 14 Jan 2021 09:03:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610636611;
-        bh=vXgCIfGPafr2DcSWpOFQAhx6vGscVUH6lEVz5/MlPpQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ZbeptpEXi0ucePeZZBvmJah2XgSEBXks3aow0RDpKZIo4106UUXcfKpcyjrZ2egBY
-         e7LqsrohEzQpCBxZDkH1uyleC40ViLuaAyxNyQI9NtTDBL72UJg27LUY/fjmomc2pz
-         jjpWIJDAsGil7kWQOuAfNmRu9LJm4x0zNv28GtiI=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10EF3Vql096669
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 14 Jan 2021 09:03:31 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
- Jan 2021 09:03:31 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 14 Jan 2021 09:03:31 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10EF3VYg091219;
-        Thu, 14 Jan 2021 09:03:31 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [PATCH v2 0/3] Add R5F nodes on TI K3 J7200 SoCs
-Date:   Thu, 14 Jan 2021 09:03:29 -0600
-Message-ID: <161063658083.30539.12739552045443599349.b4-ty@ti.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210111184554.6748-1-s-anna@ti.com>
-References: <20210111184554.6748-1-s-anna@ti.com>
+        id S1727164AbhANPEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 10:04:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44248 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726563AbhANPEq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 10:04:46 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8AA3C061574;
+        Thu, 14 Jan 2021 07:04:05 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id l207so6193011oib.4;
+        Thu, 14 Jan 2021 07:04:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/jHFgmoPeXHiV4YcqawMp6uZQ8LlT8fRndukyjzJVg8=;
+        b=JPWfB/w9V9+Kw8HoApq5LrRQoQgHRMrEuu/H+ONr2nIkngZZX63asF57yR+pcHFaCf
+         OM7rfUcxJPUfQ4lZulSLhfzm6izbNWbYHYqQUCeGRhw+C+FOy/AhGUbbAJxXJ4pdAwKB
+         QG6F2zh4P7nNHoH3vBxc1NFHjFAPvs8sSIbrnq9cCyME0NDJ7zlKM6JXA4634ALhZfO7
+         wjEH4iziCpeBrz+fkFSDh0zbLOpGNKvvqe8pnxYA2ReK11apeFxTK6vi+l0JpAUyezf1
+         fhypWlMmxVKpqhwQe+9V0JBv/eY3o585oVkA7sHXM8U2w9sPEF7Cv6ySnpQ6dqn/m4KQ
+         izFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/jHFgmoPeXHiV4YcqawMp6uZQ8LlT8fRndukyjzJVg8=;
+        b=RYNNvIYRHRnBt4rl040xx2+mR349sQvDRHMMmQSY5GexCKa8BQjV06YTtfLYeLEcc3
+         tXSBSgHnESo4CBYemQoMemPTJo0XgDv9d6x2M2MZf7GgfXu/+3s9cQQ0QD+kJNRwm7OR
+         SapJnt7MR40tXDWGdPg64nqUhUsIVjrbQeCOBPUi6jcJF4KeSrepCYwjuWuENoWGIgfW
+         ESLkEq7D7u13SEPbrsmmQpaQ26cjWopntuFTZnPIWOiaNLlK0rc8JSxxxbfWZA8IgxqH
+         +hHK735n6qCCBjo/aEyNh4jZknPxlP7rOSPqxBgNzxNDgSzC879nIjITQ9p+nq2y3stR
+         7dQA==
+X-Gm-Message-State: AOAM531loF0AVbKi4FqkkR1GPOqQJ9udkGj9ChUYRNh1XW3cfflCCdQY
+        kafDidExoO+gztDWP0MUDgs7MmZgK0fP09mZ7w==
+X-Google-Smtp-Source: ABdhPJzLcYo0vmSHvOURWzZZv9H7hQYf9f4KTJGzSrGmc/uN1MH7bW93Frnz3tY06HdfSl/Ubw7GfZLvn2rmdqm/zhU=
+X-Received: by 2002:a05:6808:8e7:: with SMTP id d7mr2876538oic.127.1610636645135;
+ Thu, 14 Jan 2021 07:04:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210113145922.92848-1-george.mccollister@gmail.com>
+ <20210113145922.92848-2-george.mccollister@gmail.com> <20210114010519.td6q2pzy4mg6viuh@skbuf>
+In-Reply-To: <20210114010519.td6q2pzy4mg6viuh@skbuf>
+From:   George McCollister <george.mccollister@gmail.com>
+Date:   Thu, 14 Jan 2021 09:03:53 -0600
+Message-ID: <CAFSKS=PZ5_FgtOmSq=9xCgYPmqnmwjp6v7JFwx1tyBCP8ayopQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 1/3] dsa: add support for Arrow XRS700x tag trailer
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Jan 2021 12:45:51 -0600, Suman Anna wrote:
-> This is v2 of the R5F DT node patches, and is a minor revision of the
-> previous series [1] with couple of patches squashed in. There is no
-> change in overall delta. Please see the v1 cover-letter for details
-> and the individual patches for exact delta.
+On Wed, Jan 13, 2021 at 7:05 PM Vladimir Oltean <olteanv@gmail.com> wrote:
+> > +++ b/net/dsa/tag_xrs700x.c
+> > @@ -0,0 +1,67 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * XRS700x tag format handling
+> > + * Copyright (c) 2008-2009 Marvell Semiconductor
 >
-> regards
-> Suman
+> Why does Marvell get copyright?
+
+What Andrew said. I started with tag_trailer.c since it is quite
+similar and it seemed wrong to remove the copyright.
+
 >
-> [...]
+> > + * Copyright (c) 2020 NovaTech LLC
+> > + */
+> > +
+> > +#include <linux/etherdevice.h>
+> > +#include <linux/list.h>
+> > +#include <linux/slab.h>
+>
+> These 3 includes are not needed. You can probably remove them later
+> though, if there is no other reason to resend.
 
-Hi Suman Anna,
+Removed.
 
-I have applied the following to branch ti-k3-next on [1].
-Thank you!
+>
+> > +#include <linux/bitops.h>
+> > +
+> > +#include "dsa_priv.h"
+> > +
+> > +static struct sk_buff *xrs700x_xmit(struct sk_buff *skb, struct net_device *dev)
+> > +{
+> > +     struct dsa_port *dp = dsa_slave_to_port(dev);
+> > +     u8 *trailer;
+> > +
+> > +     trailer = skb_put(skb, 1);
+> > +     trailer[0] = BIT(dp->index);
+> > +
+> > +     return skb;
+> > +}
+> > +
+> > +static struct sk_buff *xrs700x_rcv(struct sk_buff *skb, struct net_device *dev,
+> > +                                struct packet_type *pt)
+> > +{
+> > +     int source_port;
+> > +     u8 *trailer;
+> > +
+> > +     if (skb_linearize(skb))
+> > +             return NULL;
+>
+> We've been through this, there should be no reason to linearize an skb
+> for a one-byte tail tag..
 
-[1/3] arm64: dts: ti: k3-j7200: Add R5F cluster nodes
-      commit: eb6f3655d3ed4ee093b484b7a7246a61ae2bc30f
-[2/3] arm64: dts: ti: k3-j7200-som-p0: Add mailboxes to R5Fs
-      commit: 7a3b0c2ad3b0cfac5cb8820b8961f0956ff863fb
-[3/3] arm64: dts: ti: k3-j7200-som-p0: Add DDR carveout memory nodes for R5Fs
-      commit: c8a9c85d4e702f8c81c08f630f2f30901af5ba16
+Sorry about this. You and Andrew started discussing it and I guess I
+got distracted fixing the other issues. Removed. I'll retest after
+making other changes to patches in the series but based on what you've
+said it should be fine without it.
 
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+>
+> > +
+> > +     trailer = skb_tail_pointer(skb) - 1;
+> > +
+> > +     source_port = ffs((int)trailer[0]) - 1;
+> > +
+> > +     if (source_port < 0)
+> > +             return NULL;
+> > +
+> > +     skb->dev = dsa_master_find_slave(dev, 0, source_port);
+> > +     if (!skb->dev)
+> > +             return NULL;
+> > +
+> > +     if (pskb_trim_rcsum(skb, skb->len - 1))
+> > +             return NULL;
+> > +
+> > +     /* Frame is forwarded by hardware, don't forward in software. */
+> > +     skb->offload_fwd_mark = 1;
+> > +
+> > +     return skb;
+> > +}
