@@ -2,98 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A83F2F65EA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 17:27:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF6882F6624
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 17:45:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726103AbhANQ0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 11:26:19 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:5560 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725991AbhANQ0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 11:26:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1610641580; x=1642177580;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=FV0mNZSYHoDJ0ZsgJsY6Yx9jZI1zRcVnreXiCKznxwY=;
-  b=M1ijNwMRjt+4SWLp9a9r092tAgs8bVUcLl5wB4cPR9eWHMAu2sxvf990
-   d8Z8fG4/BuueXyEt/k8oK2iZqxzkt9kRFlCh4eH17yDN4GLKV4SOZjeS5
-   gqLFDB1Vmrez0jxxotZ/kmPaFrK1Ak63YzX3QIuQMNo0rv+2ROCKtgSOV
-   OVpbpXoiZ8ONnGp/WVk1VW2vrcpWJa2UM6c0MrMg4JRFBip7QfMlmww53
-   /is4ntcqgxyA1o+QHFu93GibZym0CcYngBz8ZUv8gkWvrmYooLagXdXMm
-   c9rk4kDQLqMOzdTFw32Jp5EBaj1SG5gz7MUCDAvI/3X7rrKs3v8LzcozY
-   Q==;
-IronPort-SDR: xQTm7zNlEeiJTYopBGTSLlw/2JE8UcGbX+7O6le+GXugSrQf3MbSFQAjOz5qnfP0dyVS/ZIo5S
- TQ62WfwzBALdQpQzR7srGb6AHzU6Yv0DJueVjSxxAwdGvFP/cYPfhplu2AyqiYU8uYGeR3WUH3
- 2eJjeW6BsDPp2RGoFAqI6iZPIIcaP4DKx+O3eV+6VEyg5o1gt8+iqHvhWMAL6n1GAdyR9dL+AQ
- KSgdadNTDZH3fwDkPNLSxLuG8rCtS7s8dCPpvfAYV97kkv+JMUbIg0yhTTcY+kFuHntmSr7jmv
- W7I=
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; 
-   d="scan'208";a="105447456"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Jan 2021 09:24:47 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 14 Jan 2021 09:24:45 -0700
-Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 14 Jan 2021 09:24:43 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
+        id S1726241AbhANQln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 11:41:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37006 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727121AbhANQlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 11:41:42 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BC86C061575
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 08:41:02 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id ke15so1453544ejc.12
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 08:41:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=PpcdUm/gcB3TMCtroKeX+86rJVww+0E1mxO6peOGnow=;
+        b=FGHOZ9P0lE3tooUNruq7iIqeJ+RHltmSjWchoV2pjQXQDi8y359Fcjnd5WKAEXoTpK
+         Y9OB1zMWocLiVTmE+InQdaXpQNjPDgUECLlWCOnGieGoM0J4RE/Wy7qXBK0sRi1DhEOs
+         XVKh7vqG8/VFncTq/LU/PCwHf8zvYQDZF+x8FQplUHzBvgaonBa+BMGlMxcECbHfK8E3
+         afZ/Nm8ZjPNH9Dti91WxyG1PxU1lPESE/XK7L1I+8CvnPM5MGPof6NUxHPf1rFmGa32u
+         Ruke0VtajnvzD6VnyxNJgDPYRlLZHGk9L0cXHe6V3I1wPePxdBBMixEIBrLujoLqYjlM
+         LIYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=PpcdUm/gcB3TMCtroKeX+86rJVww+0E1mxO6peOGnow=;
+        b=ZT/F8voq9zMbg00oyCy2V5yTawCD6l84WoJ4V8kivfySGQ1JGnOyTuWJnm7jCTYgd3
+         t4tZBvSIWgj1X8kGnkoQjsIDr54QqtLSreuPG+wk1Kktgm4cGWHe/0nYm8iDZfh/8huQ
+         lSWa47YfeCimPMfqlooJa+jAadN/3EZCEByIgTgtGcKCH0oImDF9mC+VAHZjsAU5pW1z
+         YMEiBgvQwCIK9M88nTHH9uyTjpMW2ttmP/fJpEg35CBGhJpmw2Mv4zbWQu7zMZmsI9Gz
+         Vfv90jNYRUF3h4lP6c+h/TY0uQrkwZ5JpuJP34tRpntIzFA60JfE85omdxk7IvURj6f3
+         zM/Q==
+X-Gm-Message-State: AOAM530NTOYfy7Zy5W51bbAEh4MwOs1uX3t3ykspMbYHmHqUYrcAOTJY
+        x7nHTgaHqGm8LpG7eT/Xa56uWg==
+X-Google-Smtp-Source: ABdhPJwiiUWF0wbqzhersCabuU1z96vEkPFvGfcvm3oB0CBDThtD+9g0uc7hvEvcDAoRh0d/m3WtnQ==
+X-Received: by 2002:a17:906:b08f:: with SMTP id x15mr6030193ejy.36.1610642461135;
+        Thu, 14 Jan 2021 08:41:01 -0800 (PST)
+Received: from larix.localdomain (adsl-84-226-106-126.adslplus.ch. [84.226.106.126])
+        by smtp.gmail.com with ESMTPSA id cw7sm2123574ejc.13.2021.01.14.08.40.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 08:41:00 -0800 (PST)
+Date:   Thu, 14 Jan 2021 17:41:44 +0100
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     "Tian, Kevin" <kevin.tian@intel.com>
+Cc:     Lu Baolu <baolu.lu@linux.intel.com>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "guohanjun@huawei.com" <guohanjun@huawei.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "rjw@rjwysocki.net" <rjw@rjwysocki.net>,
+        "lenb@kernel.org" <lenb@kernel.org>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v3 3/3] arm64: dts: reset: add microchip sparx5 switch reset driver
-Date:   Thu, 14 Jan 2021 17:24:32 +0100
-Message-ID: <20210114162432.3039657-4-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210114162432.3039657-1-steen.hegelund@microchip.com>
-References: <20210114162432.3039657-1-steen.hegelund@microchip.com>
+        "linux-accelerators@lists.ozlabs.org" 
+        <linux-accelerators@lists.ozlabs.org>,
+        "vdumpa@nvidia.com" <vdumpa@nvidia.com>,
+        "zhangfei.gao@linaro.org" <zhangfei.gao@linaro.org>,
+        "shameerali.kolothum.thodi@huawei.com" 
+        <shameerali.kolothum.thodi@huawei.com>,
+        "vivek.gautam@arm.com" <vivek.gautam@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Zhou Wang <wangzhou1@hisilicon.com>
+Subject: Re: [PATCH v9 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from
+ IOMMU_DEV_FEAT_SVA
+Message-ID: <YAB0SHyUZbxprkL3@larix.localdomain>
+References: <20210108145217.2254447-1-jean-philippe@linaro.org>
+ <20210108145217.2254447-4-jean-philippe@linaro.org>
+ <4de8ef03-a2ed-316e-d3e3-6b8474e20113@linux.intel.com>
+ <X/1o72DTmzdCMhDz@myrica>
+ <c88e5d74-098d-7f1d-a7bb-a89e40fb8fa4@linux.intel.com>
+ <MWHPR11MB18868F53E5A9E0CF9975042B8CA90@MWHPR11MB1886.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MWHPR11MB18868F53E5A9E0CF9975042B8CA90@MWHPR11MB1886.namprd11.prod.outlook.com>
+X-TUID: nq/+KJqkCM9u
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+On Wed, Jan 13, 2021 at 08:10:28AM +0000, Tian, Kevin wrote:
+> > >> Is this only for SVA? We may see more scenarios of using IOPF. For
+> > >> example, when passing through devices to user level, the user's pages
+> > >> could be managed dynamically instead of being allocated and pinned
+> > >> statically.
+> > >
+> > > Hm, isn't that precisely what SVA does?  I don't understand the
+> > > difference. That said FEAT_IOPF doesn't have to be only for SVA. It could
+> > > later be used as a prerequisite some another feature. For special cases
+> > > device drivers can always use the iommu_register_device_fault_handler()
+> > > API and handle faults themselves.
+> > 
+> >  From the perspective of IOMMU, there is a little difference between
+> > these two. For SVA, the page table is from CPU side, so IOMMU only needs
+> > to call handle_mm_fault(); For above pass-through case, the page table
+> > is from IOMMU side, so the device driver (probably VFIO) needs to
+> > register a fault handler and call iommu_map/unmap() to serve the page
+> > faults.
+> > 
+> > If we think about the nested mode (or dual-stage translation), it's more
+> > complicated since the kernel (probably VFIO) handles the second level
+> > page faults, while the first level page faults need to be delivered to
+> > user-level guest. Obviously, this hasn't been fully implemented in any
+> > IOMMU driver.
+> > 
+> 
+> Thinking more the confusion might come from the fact that we mixed
+> hardware capability with software capability. IOMMU_FEAT describes
+> the hardware capability. When FEAT_IOPF is set, it purely means whatever
+> page faults that are enabled by the software are routed through the IOMMU.
+> Nothing more. Then the software (IOMMU drivers) may choose to support
+> only limited faulting scenarios and then evolve to support more complex 
+> usages gradually. For example, the intel-iommu driver only supports 1st-level
+> fault (thus SVA) for now, while FEAT_IOPF as a separate feature may give the
+> impression that 2nd-level faults are also allowed. From this angle once we 
+> start to separate page fault from SVA, we may also need a way to report 
+> the software capability (e.g. a set of faulting categories) and also extend
+> iommu_register_device_fault_handler to allow specifying which 
+> category is enabled respectively. The example categories could be:
+> 
+> - IOPF_BIND, for page tables which are bound/linked to the IOMMU. 
+> Apply to bare metal SVA and guest SVA case;
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 380281f312d8..4edbb9fcdce0 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -132,9 +132,17 @@ mux: mux-controller {
- 			};
- 		};
- 
--		reset@611010008 {
--			compatible = "microchip,sparx5-chip-reset";
--			reg = <0x6 0x11010008 0x4>;
-+		gcb_ctrl: syscon@611010000 {
-+			compatible = "microchip,sparx5-gcb-syscon", "syscon";
-+			reg = <0x6 0x11010000 0x10000>;
-+		};
-+
-+		reset: reset-controller@0 {
-+			compatible = "microchip,sparx5-switch-reset";
-+			reg = <0x6 0x0 0x0>;
-+			#reset-cells = <1>;
-+			cpu-syscon = <&cpu_ctrl>;
-+			gcb-syscon = <&gcb_ctrl>;
- 		};
- 
- 		uart0: serial@600100000 {
--- 
-2.29.2
+These don't seem to fit in the same software capability, since the action
+to perform on incoming page faults is very different. In the first case
+the fault handling is entirely contained within the IOMMU driver; in the
+second case the IOMMU driver only tracks page requests, and offloads
+handling to VFIO.
 
+> - IOPF_MAP, for page tables which are managed through explicit IOMMU
+> map interfaces. Apply to removing VFIO pinning restriction;
+
+From the IOMMU perspective this is the same as guest SVA, no? VFIO
+registering a fault handler and doing the bulk of the work itself.
+
+> Both categories can be enabled together in nested translation, with 
+> additional information provided to differentiate them in fault information.
+> Using paging/staging level doesn't make much sense as it's IOMMU driver's 
+> internal knowledge, e.g. VT-d driver plans to use 1st level for GPA if no 
+> nesting and then turn to 2nd level when nesting is enabled.
+
+I guess detailing what's needed for nested IOPF can help the discussion,
+although I haven't seen any concrete plan about implementing it, and it
+still seems a couple of years away. There are two important steps with
+nested IOPF:
+
+(1) Figuring out whether a fault comes from L1 or L2. A SMMU stall event
+    comes with this information, but a PRI page request doesn't. The IOMMU
+    driver has to first translate the IOVA to a GPA, injecting the fault
+    into the guest if this translation fails by using the usual
+    iommu_report_device_fault().
+
+(2) Translating the faulting GPA to a HVA that can be fed to
+    handle_mm_fault(). That requires help from KVM, so another interface -
+    either KVM registering GPA->HVA translation tables or IOMMU driver
+    querying each translation. Either way it should be reusable by device
+    drivers that implement IOPF themselves.
+
+(1) could be enabled with iommu_dev_enable_feature(). (2) requires a more
+complex interface. (2) alone might also be desirable - demand-paging for
+level 2 only, no SVA for level 1.
+
+Anyway, back to this patch. What I'm trying to convey is "can the IOMMU
+receive incoming I/O page faults for this device and, when SVA is enabled,
+feed them to the mm subsystem?  Enable that or return an error." I'm stuck
+on the name. IOPF alone is too vague. Not IOPF_L1 as Kevin noted, since L1
+is also used in virtualization. IOPF_BIND and IOPF_SVA could also mean (2)
+above. IOMMU_DEV_FEAT_IOPF_FLAT?
+
+That leaves space for the nested extensions. (1) above could be
+IOMMU_FEAT_IOPF_NESTED, and (2) requires some new interfacing with KVM (or
+just an external fault handler) and could be used with either IOPF_FLAT or
+IOPF_NESTED. We can figure out the details later. What do you think?
+
+Thanks,
+Jean
