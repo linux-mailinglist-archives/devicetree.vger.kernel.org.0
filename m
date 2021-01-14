@@ -2,158 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 907B42F6BA6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C09DB2F6BCB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:09:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726049AbhANT6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 14:58:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51418 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730141AbhANT6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:58:31 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07488C0613CF;
-        Thu, 14 Jan 2021 11:57:51 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id d8so6346214otq.6;
-        Thu, 14 Jan 2021 11:57:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=dxs0NJvJmBAu/+s8TLnC3MeVApUdCV36QEczfzjAyAs=;
-        b=TDOKLdG1JiORcaEvujEda4d7gbP+3DlFUYMRJ2BZuNuJsysDGyO8e8yi3sFyO19Ey7
-         5wNzZk0Tf5Xis5LNaLBPBwT6PoLzIXMIJ+vjub5t+bD0GJ5FE4NXNcfdhDDghHCxcP2i
-         87SChiH3OicsTv62jdUdzYj7vxyuFcoCxFNHM84WjrMhLKek/r0Mg8PuH68miK0vQu0q
-         VdStts7H4kUOVWvVxW2DBFhHbV+rtm9Kr7i7IOIzKQZMns9SK9DOGOKjSNjUEuDkqQO6
-         0VSXmb61uqF3ZkqV2UsILU7qSwYHQxfyEVUp8F/vgtMCltH01SddCkRBIhzlHxZ6ZLYJ
-         7uDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=dxs0NJvJmBAu/+s8TLnC3MeVApUdCV36QEczfzjAyAs=;
-        b=l+LASobem6EmrU3fc5olyp1ZvMNivS1LSoyAnjfptziexhq6mosEq5X57DojV/jHMi
-         YSOmG9NPeOoQQA3PVRT28QTsqYpo8zOUcPm917OdWRBFWNd+MJCaMEkD/+hdQAYvaY7E
-         eB16FqeM6GwR05xH/+LkUErJ1gyCqXBP+/sdQhqV+lT7WFCwpnUVCll3cMWZ9YR5GG/K
-         l/LRtN1Jm1uRwrZKVzqwnbTe32tdn7MXDKBNU3TvPhqarLFHOJTk5+7c3ON5JoM7+FEm
-         B3FIbl/nKT6NNzUO3Ej5CS9GS+qilYyetHHRCHnjQZJUL2mGTlzvmePLvitk78qGh6mp
-         ga8A==
-X-Gm-Message-State: AOAM5302P9VCkXBzuVf2dbt2x9hs2rvZQlg+z2TheKV3Do5Zll6YkJD4
-        m0voYmwOncMxwKYIT/TWgQ==
-X-Google-Smtp-Source: ABdhPJzKj/0R/rHQ0pxJhY/M/H2MK/o84pXllHej8SCaSJxoDjllYNy+EF822dCcfq5JOtdJHkWxVQ==
-X-Received: by 2002:a05:6830:12:: with SMTP id c18mr5944650otp.283.1610654270484;
-        Thu, 14 Jan 2021 11:57:50 -0800 (PST)
-Received: from threadripper.novatech-llc.local ([216.21.169.52])
-        by smtp.gmail.com with ESMTPSA id e17sm1244820otk.64.2021.01.14.11.57.49
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 14 Jan 2021 11:57:49 -0800 (PST)
-From:   George McCollister <george.mccollister@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        George McCollister <george.mccollister@gmail.com>
-Subject: [PATCH net-next v5 3/3] dt-bindings: net: dsa: add bindings for xrs700x switches
-Date:   Thu, 14 Jan 2021 13:57:34 -0600
-Message-Id: <20210114195734.55313-4-george.mccollister@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210114195734.55313-1-george.mccollister@gmail.com>
-References: <20210114195734.55313-1-george.mccollister@gmail.com>
+        id S1730141AbhANUHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 15:07:15 -0500
+Received: from mga06.intel.com ([134.134.136.31]:59259 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730060AbhANUHO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 15:07:14 -0500
+IronPort-SDR: A2EDvijNSDGWjLowBMguhIzne69e86cL43sIRQCgq+UOCVm5eynHECeFmRHuf8olwvm3ekbPFX
+ YxvU6Zbyr1bg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="239981227"
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; 
+   d="scan'208";a="239981227"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2021 12:05:27 -0800
+IronPort-SDR: YfkLFWteOmwb/OFyXnSSlR9H5AscNCbcZlx7PaWUMR5yxzjW/Q3C265GIObg5UJFuqSOj42rkQ
+ SopgF7qEboCQ==
+X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; 
+   d="scan'208";a="389905197"
+Received: from yoojae-mobl.amr.corp.intel.com (HELO [10.254.76.112]) ([10.254.76.112])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2021 12:05:27 -0800
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: aspeed: add buffer and DMA mode
+ transfer support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org
+References: <20210112003749.10565-1-jae.hyun.yoo@linux.intel.com>
+ <20210112003749.10565-2-jae.hyun.yoo@linux.intel.com>
+ <20210114193416.GA3432711@robh.at.kernel.org>
+From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Message-ID: <4f67358e-58e5-65a5-3680-1cd8e9851faa@linux.intel.com>
+Date:   Thu, 14 Jan 2021 12:05:26 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
+MIME-Version: 1.0
+In-Reply-To: <20210114193416.GA3432711@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation and an example for Arrow SpeedChips XRS7000 Series
-single chip Ethernet switches.
+Hi Rob,
 
-Signed-off-by: George McCollister <george.mccollister@gmail.com>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
----
- .../devicetree/bindings/net/dsa/arrow,xrs700x.yaml | 73 ++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+On 1/14/2021 11:34 AM, Rob Herring wrote:
+>> -- reg			: address offset and range of bus
+>> +- reg			: Address offset and range of bus registers.
+>> +
+>> +			  An additional SRAM buffer address offset and range is
+>> +			  optional in case of enabling I2C dedicated SRAM for
+>> +			  buffer mode transfer support. If the optional range
+>> +			  is defined, buffer mode will be enabled.
+>> +			  - AST2400
+>> +			    &i2c0 { reg = <0x40 0x40>, <0x800 0x80>; };
+>> +			    &i2c1 { reg = <0x80 0x40>, <0x880 0x80>; };
+>> +			    &i2c2 { reg = <0xc0 0x40>, <0x900 0x80>; };
+>> +			    &i2c3 { reg = <0x100 0x40>, <0x980 0x80>; };
+>> +			    &i2c4 { reg = <0x140 0x40>, <0xa00 0x80>; };
+>> +			    &i2c5 { reg = <0x180 0x40>, <0xa80 0x80>; };
+>> +			    &i2c6 { reg = <0x1c0 0x40>, <0xb00 0x80>; };
+>> +			    &i2c7 { reg = <0x300 0x40>, <0xb80 0x80>; };
+>> +			    &i2c8 { reg = <0x340 0x40>, <0xc00 0x80>; };
+>> +			    &i2c9 { reg = <0x380 0x40>, <0xc80 0x80>; };
+>> +			    &i2c10 { reg = <0x3c0 0x40>, <0xd00 0x80>; };
+>> +			    &i2c11 { reg = <0x400 0x40>, <0xd80 0x80>; };
+>> +			    &i2c12 { reg = <0x440 0x40>, <0xe00 0x80>; };
+>> +			    &i2c13 { reg = <0x480 0x40>, <0xe80 0x80>; };
+> 
+> All this information doesn't need to be in the binding.
+> 
+> It's also an oddly structured dts file if this is what you are doing...
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-new file mode 100644
-index 000000000000..3f01b65f3b22
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/arrow,xrs700x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Arrow SpeedChips XRS7000 Series Switch Device Tree Bindings
-+
-+allOf:
-+  - $ref: dsa.yaml#
-+
-+maintainers:
-+  - George McCollister <george.mccollister@gmail.com>
-+
-+description:
-+  The Arrow SpeedChips XRS7000 Series of single chip gigabit Ethernet switches
-+  are designed for critical networking applications. They have up to three
-+  RGMII ports and one RMII port and are managed via i2c or mdio.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - arrow,xrs7003e
-+          - arrow,xrs7003f
-+          - arrow,xrs7004e
-+          - arrow,xrs7004f
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        switch@8 {
-+            compatible = "arrow,xrs7004e";
-+            reg = <0x8>;
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                ethernet-port@1 {
-+                    reg = <1>;
-+                    label = "lan0";
-+                    phy-handle = <&swphy0>;
-+                    phy-mode = "rgmii-id";
-+                };
-+                ethernet-port@2 {
-+                    reg = <2>;
-+                    label = "lan1";
-+                    phy-handle = <&swphy1>;
-+                    phy-mode = "rgmii-id";
-+                };
-+                ethernet-port@3 {
-+                    reg = <3>;
-+                    label = "cpu";
-+                    ethernet = <&fec1>;
-+                    fixed-link {
-+                        speed = <1000>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
--- 
-2.11.0
+I removed the default buffer mode settings that I added into
+'aspeed-g4.dtsi' and 'aspeed-g5.dtsi' in v1 to avoid touching of the
+default transfer mode setting, but each bus should use its dedicated
+SRAM buffer range for enabling buffer mode so I added this information
+at here as overriding examples instead. I thought that binding document
+is a right place for providing this information but looks like it's not.
+Any recommended place for it? Is it good enough if I add it just into
+the commit message?
 
+>> @@ -17,6 +72,25 @@ Optional Properties:
+>>   - bus-frequency	: frequency of the bus clock in Hz defaults to 100 kHz when not
+>>   		  specified
+>>   - multi-master	: states that there is another master active on this bus.
+>> +- aspeed,dma-buf-size	: size of DMA buffer.
+>> +			    AST2400: N/A
+>> +			    AST2500: 2 ~ 4095
+>> +			    AST2600: 2 ~ 4096
+> 
+> If based on the SoC, then all this can be implied from the compatible
+> string.
+> 
+
+Please help me to clarify your comment. Should I remove it from here
+with keeping the driver handling code for each SoC compatible string?
+Or should I change it like below?
+aspeed,ast2400-i2c-bus: N/A
+aspeed,ast2500-i2c-bus: 2 ~ 4095
+aspeed,ast2600-i2c-bus: 2 ~ 4096
+
+Thanks,
+Jae
