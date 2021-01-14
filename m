@@ -2,81 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD3922F639C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 16:02:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0978D2F63A8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 16:05:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726565AbhANPC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 10:02:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55666 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726459AbhANPC0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 10:02:26 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4211F23A7E;
-        Thu, 14 Jan 2021 15:01:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610636505;
-        bh=9B84DmHm2+LoU9vhzsqNNfyGvLUj3dh2HjqdmTrBpJs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=I3vcu7zZ+kwwHRprxq+sVbd2kjWbAAfkkuKssqt/dp+PxIDqJL3R5am0MtQ4JwSJQ
-         V3KZim1N+ZxLZQlj47GFFTuaAeYiOEqAqyRLHK+tKukkqPK7FqjFpdIQgDomJ+Zf45
-         3spt6ztsS5eQgdkevVXcopUwSMA5SCtBMJ9TZwsylDHUb1O5yrdrKk2BTw1I2wPFAq
-         J1V62QloCRvBf6EgsUjxPVBEcmX9qh6ZV5hZM6ypYWHs9SkNEd4b6x1PrJMqfsu4Kk
-         kh/v7sKMbB3PfdQwTuqQKisaxoMJNuNAEinJPFHU/8IY4menlR0LyVvOJPeQHVEEq6
-         UoIaYFapl7Clg==
-Received: by mail-ed1-f51.google.com with SMTP id p22so5997832edu.11;
-        Thu, 14 Jan 2021 07:01:45 -0800 (PST)
-X-Gm-Message-State: AOAM530s9rSebuNziJlfla1pbQOGDmVrddVWP3dcolGs9sgbNV2UFXJl
-        n1wdF2zwYHtSYLdpTGE6Z6kJfob0Wbb3KghKPQ==
-X-Google-Smtp-Source: ABdhPJxN5d0vZEvTJNolKULIWiaph0OQBqrRQaIswy0bO5DCN9vovErPYaXiKZjEaFqTrP06tQ39Axga+QYnpLISToQ=
-X-Received: by 2002:a05:6402:ca2:: with SMTP id cn2mr5976211edb.137.1610636503797;
- Thu, 14 Jan 2021 07:01:43 -0800 (PST)
+        id S1728523AbhANPFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 10:05:13 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60534 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727460AbhANPFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 10:05:13 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10EF3V2k062896;
+        Thu, 14 Jan 2021 09:03:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1610636611;
+        bh=vXgCIfGPafr2DcSWpOFQAhx6vGscVUH6lEVz5/MlPpQ=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=ZbeptpEXi0ucePeZZBvmJah2XgSEBXks3aow0RDpKZIo4106UUXcfKpcyjrZ2egBY
+         e7LqsrohEzQpCBxZDkH1uyleC40ViLuaAyxNyQI9NtTDBL72UJg27LUY/fjmomc2pz
+         jjpWIJDAsGil7kWQOuAfNmRu9LJm4x0zNv28GtiI=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10EF3Vql096669
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 14 Jan 2021 09:03:31 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
+ Jan 2021 09:03:31 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 14 Jan 2021 09:03:31 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10EF3VYg091219;
+        Thu, 14 Jan 2021 09:03:31 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [PATCH v2 0/3] Add R5F nodes on TI K3 J7200 SoCs
+Date:   Thu, 14 Jan 2021 09:03:29 -0600
+Message-ID: <161063658083.30539.12739552045443599349.b4-ty@ti.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210111184554.6748-1-s-anna@ti.com>
+References: <20210111184554.6748-1-s-anna@ti.com>
 MIME-Version: 1.0
-References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
- <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
- <CAL_JsqLpbSOk-OST8Oi7uyFVjekX-15713F1FbDCQWfVWgikMw@mail.gmail.com> <20210114050309.wokrhw4o3cjxj5uo@vireshk-i7>
-In-Reply-To: <20210114050309.wokrhw4o3cjxj5uo@vireshk-i7>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 14 Jan 2021 09:01:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ=jxBo2JsjNTcBnV_8OrGjUc4ZQEpdVWsfFwWb9YzyFQ@mail.gmail.com>
-Message-ID: <CAL_JsqJ=jxBo2JsjNTcBnV_8OrGjUc4ZQEpdVWsfFwWb9YzyFQ@mail.gmail.com>
-Subject: Re: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 11:03 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+On Mon, 11 Jan 2021 12:45:51 -0600, Suman Anna wrote:
+> This is v2 of the R5F DT node patches, and is a minor revision of the
+> previous series [1] with couple of patches squashed in. There is no
+> change in overall delta. Please see the v1 cover-letter for details
+> and the individual patches for exact delta.
 >
-> On 11-01-21, 09:46, Rob Herring wrote:
-> > On Fri, Jan 8, 2021 at 2:41 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > >
-> > > Now that fdtoverlay is part of the kernel build, start using it to test
-> > > the unitest overlays we have by applying them statically.
-> >
-> > Nice idea.
-> >
-> > > The file overlay_base.dtb have symbols of its own and we need to apply
-> > > overlay.dtb to overlay_base.dtb alone first to make it work, which gives
-> > > us intermediate-overlay.dtb file.
-> >
-> > Okay? If restructuring things helps we should do that. Frank?
+> regards
+> Suman
 >
-> Frank, do we want to do something about it ? Maybe make overlay_base.dts an dtsi
-> and include it from testcases.dts like the other ones ?
+> [...]
 
-No, because overlay_base.dts is an overlay dt. I think we need an
-empty, minimal base.dtb to apply overlay_base.dtbo to.
+Hi Suman Anna,
 
-And then fdtoverlay needs a fix to apply overlays to the root node?
+I have applied the following to branch ti-k3-next on [1].
+Thank you!
 
-Rob
+[1/3] arm64: dts: ti: k3-j7200: Add R5F cluster nodes
+      commit: eb6f3655d3ed4ee093b484b7a7246a61ae2bc30f
+[2/3] arm64: dts: ti: k3-j7200-som-p0: Add mailboxes to R5Fs
+      commit: 7a3b0c2ad3b0cfac5cb8820b8961f0956ff863fb
+[3/3] arm64: dts: ti: k3-j7200-som-p0: Add DDR carveout memory nodes for R5Fs
+      commit: c8a9c85d4e702f8c81c08f630f2f30901af5ba16
+
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
