@@ -2,199 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8D3B2F672E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 18:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAEDF2F673F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 18:16:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728578AbhANROT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 12:14:19 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:41995 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728373AbhANROS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 12:14:18 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10EHC1CD011542;
-        Thu, 14 Jan 2021 18:13:27 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=3Fnau9VjgNR74S0Cjwr64Hdn4b2pMFnAyPJqBCtPQs8=;
- b=zA/7vAaW7tl1oEmqInd+2Uka/SBvPTU3BmQJk5EE/f0OctvEMwIEIMso2iZP6A203Ib5
- K0baDuOJYeEx3Cf7mIXc3+CobCBAwD47hUfd3qSNRKc389bcNXt6swEwcO6cDC5Wz1qQ
- x1fy5yDsn7uzeuWGOdzh8Pk/M75VvVkS9UaRIOTRF+Y0e8qwppsoGYrK90cQanmJ2UYd
- /p377JXankjvwLdrn91qskenj70VSLCkfXWGwxGb6E7YSn8pW2LEvQe59CA71iY/vKww
- RPHNyel+gPnFWi7puVO/tXU4L/hrEK9UV04XMabr/Zrb08JPpiYdsh/0Bn6QiU9NQWDX /Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 35y5gxea5s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 14 Jan 2021 18:13:27 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F3FD610002A;
-        Thu, 14 Jan 2021 18:13:26 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E5BC625D03A;
-        Thu, 14 Jan 2021 18:13:26 +0100 (CET)
-Received: from localhost (10.75.127.45) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 14 Jan 2021 18:13:25
- +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH v2 2/2] phy: stm32: register usbphyc as clock provider of ck_usbo_48m clock
-Date:   Thu, 14 Jan 2021 18:13:14 +0100
-Message-ID: <20210114171314.18946-3-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210114171314.18946-1-amelie.delaunay@foss.st.com>
-References: <20210114171314.18946-1-amelie.delaunay@foss.st.com>
+        id S1728876AbhANRPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 12:15:49 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57460 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726172AbhANRPs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 12:15:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 52D6123A52;
+        Thu, 14 Jan 2021 17:15:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610644507;
+        bh=z7hkXnrOP+wdoKAOpVuktCD+Lqo0Rxh/iodjSrIZzbA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kZy7hLSB81pIj9mKxxRzhc+wwdn5BHyP2EYC9SdtRJZbj7oyA+GHXU8KwqAnq/00y
+         ciTa6Rauf8t+NIKkni1TErjQg941Me0sq9knDwjQaljVZtDsEcBI5QMeqnE+DTWFVt
+         uDWAC3CvldBTdTGUUMqDFvPBF63o0JuA5YH2Z6GLlBdq7f0y4ae3mSeYEfjz8Re9Tj
+         2khaMHBxVPNabodymYPD/lAXnFiX1aZ7IoZrgvVf29tBlkSMUn+FyvcEwjgfgqJhh8
+         4SBVSfd9lop8XgKnwMPEb+H3jWbdn2IjjCZI+giQ/UYoYUDBF7TyQDmpHY/b6rHPG/
+         uerbnsJu3b5GA==
+Date:   Thu, 14 Jan 2021 17:14:34 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Muhammad Husaini Zulkifli <muhammad.husaini.zulkifli@intel.com>
+Cc:     ulf.hansson@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, adrian.hunter@intel.com,
+        michal.simek@xilinx.com, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        Rashmi.A@intel.com, mahesh.r.vaidya@intel.com,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH v1 8/9] regulator: keembay: Add regulator for Keem Bay SoC
+Message-ID: <20210114171434.GI4854@sirena.org.uk>
+References: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
+ <20210114152700.21916-9-muhammad.husaini.zulkifli@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-14_06:2021-01-14,2021-01-14 signatures=0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="1E1Oui4vdubnXi3o"
+Content-Disposition: inline
+In-Reply-To: <20210114152700.21916-9-muhammad.husaini.zulkifli@intel.com>
+X-Cookie: You have taken yourself too seriously.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ck_usbo_48m is generated by usbphyc PLL and used by OTG controller
-for Full-Speed use cases with dedicated Full-Speed transceiver.
 
-ck_usbo_48m is available as soon as the PLL is enabled.
+--1E1Oui4vdubnXi3o
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
-Changes in v2:
-- fix COMMON_CLK dependency issue reported by kernel test robot
----
- drivers/phy/st/Kconfig             |  1 +
- drivers/phy/st/phy-stm32-usbphyc.c | 66 ++++++++++++++++++++++++++++++
- 2 files changed, 67 insertions(+)
+On Thu, Jan 14, 2021 at 11:26:59PM +0800, Muhammad Husaini Zulkifli wrote:
 
-diff --git a/drivers/phy/st/Kconfig b/drivers/phy/st/Kconfig
-index b32f44ff9033..3fc3d0781fb8 100644
---- a/drivers/phy/st/Kconfig
-+++ b/drivers/phy/st/Kconfig
-@@ -36,6 +36,7 @@ config PHY_STIH407_USB
- config PHY_STM32_USBPHYC
- 	tristate "STMicroelectronics STM32 USB HS PHY Controller driver"
- 	depends on ARCH_STM32 || COMPILE_TEST
-+	depends on COMMON_CLK
- 	select GENERIC_PHY
- 	help
- 	  Enable this to support the High-Speed USB transceivers that are part
-diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
-index d08fbb180e43..349976259112 100644
---- a/drivers/phy/st/phy-stm32-usbphyc.c
-+++ b/drivers/phy/st/phy-stm32-usbphyc.c
-@@ -7,6 +7,7 @@
-  */
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -70,6 +71,7 @@ struct stm32_usbphyc {
- 	struct regulator *vdda1v1;
- 	struct regulator *vdda1v8;
- 	atomic_t n_pll_cons;
-+	struct clk_hw clk48_hw;
- 	int switch_setup;
- };
- 
-@@ -295,6 +297,61 @@ static const struct phy_ops stm32_usbphyc_phy_ops = {
- 	.owner = THIS_MODULE,
- };
- 
-+static int stm32_usbphyc_clk48_prepare(struct clk_hw *hw)
-+{
-+	struct stm32_usbphyc *usbphyc = container_of(hw, struct stm32_usbphyc, clk48_hw);
-+
-+	return stm32_usbphyc_pll_enable(usbphyc);
-+}
-+
-+static void stm32_usbphyc_clk48_unprepare(struct clk_hw *hw)
-+{
-+	struct stm32_usbphyc *usbphyc = container_of(hw, struct stm32_usbphyc, clk48_hw);
-+
-+	stm32_usbphyc_pll_disable(usbphyc);
-+}
-+
-+static unsigned long stm32_usbphyc_clk48_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-+{
-+	return 48000000;
-+}
-+
-+static const struct clk_ops usbphyc_clk48_ops = {
-+	.prepare = stm32_usbphyc_clk48_prepare,
-+	.unprepare = stm32_usbphyc_clk48_unprepare,
-+	.recalc_rate = stm32_usbphyc_clk48_recalc_rate,
-+};
-+
-+static void stm32_usbphyc_clk48_unregister(void *data)
-+{
-+	struct stm32_usbphyc *usbphyc = data;
-+
-+	of_clk_del_provider(usbphyc->dev->of_node);
-+	clk_hw_unregister(&usbphyc->clk48_hw);
-+}
-+
-+static int stm32_usbphyc_clk48_register(struct stm32_usbphyc *usbphyc)
-+{
-+	struct device_node *node = usbphyc->dev->of_node;
-+	struct clk_init_data init = { };
-+	int ret = 0;
-+
-+	init.name = "ck_usbo_48m";
-+	init.ops = &usbphyc_clk48_ops;
-+
-+	usbphyc->clk48_hw.init = &init;
-+
-+	ret = clk_hw_register(usbphyc->dev, &usbphyc->clk48_hw);
-+	if (ret)
-+		return ret;
-+
-+	ret = of_clk_add_hw_provider(node, of_clk_hw_simple_get, &usbphyc->clk48_hw);
-+	if (ret)
-+		clk_hw_unregister(&usbphyc->clk48_hw);
-+
-+	return ret;
-+}
-+
- static void stm32_usbphyc_switch_setup(struct stm32_usbphyc *usbphyc,
- 				       u32 utmi_switch)
- {
-@@ -473,6 +530,13 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
- 		goto clk_disable;
- 	}
- 
-+	ret = stm32_usbphyc_clk48_register(usbphyc);
-+	if (ret) {
-+		dev_err(dev,
-+			"failed to register ck_usbo_48m clock: %d\n", ret);
-+		goto clk_disable;
-+	}
-+
- 	version = readl_relaxed(usbphyc->base + STM32_USBPHYC_VERSION);
- 	dev_info(dev, "registered rev:%lu.%lu\n",
- 		 FIELD_GET(MAJREV, version), FIELD_GET(MINREV, version));
-@@ -497,6 +561,8 @@ static int stm32_usbphyc_remove(struct platform_device *pdev)
- 		if (usbphyc->phys[port]->active)
- 			stm32_usbphyc_phy_exit(usbphyc->phys[port]->phy);
- 
-+	stm32_usbphyc_clk48_unregister(usbphyc);
-+
- 	clk_disable_unprepare(usbphyc->clk);
- 
- 	return 0;
--- 
-2.17.1
+> Keem Bay SD regulator driver module is added to encapsulate ARM
+> Secure Monitor Call Calling Convention (SMCCC) during set voltage
+> operations to control I/O Rail supplied voltage levels which communicate
+> with Trusted Firmware.
 
+Adding in Sudeep again for the SMCCC bits.  I just checked and am I
+right in thinking this might already be shipping in production?
+
+> @@ -0,0 +1,112 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Intel Keem Bay SD Regulator
+> + *
+> + * Copyright (C) 2020, Intel Corporation
+> + * Author: Muhammad Husaini Zulkifli <Muhammad.Husaini.Zulkifli@intel.com>
+> + */
+
+Please make the entire comment a C++ comment to improve legibility.
+
+> +static int keembay_regulator_set_voltage(struct regulator_dev *dev,
+> +					int min_uV, int max_uV,
+> +					unsigned *selector)
+> +{
+> +	int tmp_volt;
+> +
+> +	if (min_uV == KEEMBAY_IOV_1_8V_uV && max_uV == KEEMBAY_IOV_1_8V_uV)
+> +		tmp_volt = KEEMBAY_SET_1V8_IO_RAIL;
+> +	else
+> +		tmp_volt = KEEMBAY_SET_3V3_IO_RAIL;
+> +
+> +	return keembay_set_io_rail_supplied_voltage(tmp_volt);
+> +}
+
+This has serious problems with input validation and is broken for most
+valid input.  A set_voltage() function should set the voltage to the
+lowest valid voltage within the range specified in the arguments and
+return an error if it is not possible to set a voltage within the range
+specified by the arguments.  This function will set 3.3V for any input
+range other than exactly 1.8V so for example if the caller validly sets
+a range of 1.7V-1.9V then 3.3V will be selected instead of 1.8V, or if
+the user sets 1.0-1.1V then it will set 3.3V instead of returning an
+error.
+
+> +static int keembay_regulator_get_voltage(struct regulator_dev *dev)
+> +{
+> +	int ret;
+> +
+> +	ret = keembay_get_io_rail_supplied_voltage();
+> +
+> +	return ret ? KEEMBAY_IOV_1_8V_uV : KEEMBAY_IOV_3_3V_uV;
+> +}
+
+This ignores any errors or out of bounds values returned by the called
+function, and please write normal conditional statements rather than
+using the ternery operator to improve legibility.
+
+> +/*
+> + * Using subsys_initcall to ensure that Keem Bay regulator platform driver
+> + * is initialized before device driver try to utilize it.
+> + */
+> +subsys_initcall(keembay_regulator_init);
+
+There is no need to do this, probe deferral will ensure that
+dependencies will be resolved.
+
+--1E1Oui4vdubnXi3o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAAe/kACgkQJNaLcl1U
+h9Do4Af/RWczu73+RbTFDo9aNENM8BeoKxbtXH9eMaV1Ld1loIafX0ASjSYsJzW8
+npIlmVMhfa0rdR3443Nd2AcCP8bu8y5QIkryte5XEac3nHy+BoLcxJLa8iUIdHqS
+9REvzq4D7mwHyXQtangWa9gKnkJKZitOrOOxddj31DTQe4P1BZrje4qXcgfxKTsS
+AB0EhRznmGJQxnssc+ANWs94IF7ixAKKPWBwhfrifKP4Z0GbMR5SjMbTGTEVsiMD
+35k0h/EcBhl8/9mnHgO3Z8h7VpQ8hf4yIAFJwZNjEv1z52flc+v2o6HABWMts4VT
+fNi1mU1wb/64EwoyDST2H6Ttk9cQQw==
+=9PuY
+-----END PGP SIGNATURE-----
+
+--1E1Oui4vdubnXi3o--
