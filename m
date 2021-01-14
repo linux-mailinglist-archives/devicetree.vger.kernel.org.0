@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B432F6055
+	by mail.lfdr.de (Postfix) with ESMTP id C23112F6056
 	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:39:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728358AbhANLiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 06:38:13 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:46219 "EHLO
+        id S1726919AbhANLiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 06:38:14 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:59323 "EHLO
         wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726919AbhANLhl (ORCPT
+        by vger.kernel.org with ESMTP id S1726771AbhANLhl (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
         Thu, 14 Jan 2021 06:37:41 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id A278A1623;
-        Thu, 14 Jan 2021 06:36:02 -0500 (EST)
+        by mailout.west.internal (Postfix) with ESMTP id 1B0C9161F;
+        Thu, 14 Jan 2021 06:36:04 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:36:03 -0500
+  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:36:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=t7Us/A5dLDI86
-        ie2bOdLxUiXRDg2x/q90PdT3LoXUc4=; b=jl7YXrw5XlfAZAbkBcoz5Jgx97wi9
-        QIbGbFuZ7LB4YMXqzTqxcVjhepgPklNjFJJhvCwKAV0fMBOWogdjDEeXO0rtiOiG
-        l1h++ywOYqh6wxPvWVvl5EYf9yB0WxAZaNJ07zYZbC/eZHZvd+sP6VBBW0Mv9uvO
-        NVFX8mfFay+fZn8N5A3dsZmtyI6zYKwtfBmO3JQSNsPt0+yHu0hDvKgehaHIpImu
-        qbhPhhZbEWHUfCqIyJWqfdpr2doTUhVPVuMrEQ5cAo3uHCqLsLhRe9GlArJlJ/ai
-        aIgm1dOdE/sonUQFQ7E/edSO2MloJIcnumFnJPrSYPubRGM8H16iWSHeg==
+        :mime-version:content-transfer-encoding; s=fm1; bh=j2W8X0k+3lPjk
+        rohEpcnvJ5QtLumqRLE9sSucTG7jq0=; b=euQLJg2L7tLz57xWEYsKXjbQETioQ
+        1gZkjNDT893gBC+cCn8Qhnyxh9y4JdA20vbF34E6Ml6UGLdG3Vg/VTZZSXmjUEjF
+        0xxD0CIjuszpGbepeZEbASmPkPs68O2zjYTDBYkgdTLMluYYjTt+bJKYHe8Vp8i+
+        LXLJhn79ELKU5GPLujxntUOkjx6fDMT4VhJfndxUWbE7SHfgWVB2xp7TRzae6glX
+        p4evhdwMSTijuxcqeyfJL8hFWnSJLOXdvX1CmTrRJZsXBU/xEqb1fj9a2NGI2iyc
+        YSjYWPnAZhqsrgyKPCX5rlQcGoYmxzB+iyT1NL7ovSsfWcAETHn7nrsbg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=t7Us/A5dLDI86ie2bOdLxUiXRDg2x/q90PdT3LoXUc4=; b=iNRMf5fp
-        JABmPmcxX4IbU4S92ketthJyKBUk47vbcIW51XlgkZk+MbaeccvXFo4x+trfCevi
-        G2oe0QMIZm1CVAQYu09yPTRvWe1uNk1sbG4kKgfdY4guSiRbW9FXVETn1A9HwE2c
-        qrqFH6n7L6cwXKQ8/SFV5ynWaDvLynJ0TE54dSOFRBQe0wOxDkzk22v6pW5DVTxV
-        GwRecnzBOaCs+cnerkxPOG7WvX61JdNVs9PTBQ6KFot4nzkKdEYuPFH7E0/BSQgU
-        LoEFVYBGY9f/cAUQz7pRNfrVmn48jzNov++su2pWCR7aktR0LxOYc4szl/QRH4aM
-        96b+ugTqKqc5aw==
-X-ME-Sender: <xms:oiwAYFhpW594cGi6kfuV6wI117aJmWwJepQ7ADqjWlFsrk5A8nVdRA>
-    <xme:oiwAYKAGp69yrzdqp7OdXWFQLXL7uoQptqw-RktZyBeYCoBOBMd3rZ_2PtsoTcMRq
-    q5ms6b3updey_i_JGA>
+        fm1; bh=j2W8X0k+3lPjkrohEpcnvJ5QtLumqRLE9sSucTG7jq0=; b=a30sC0wU
+        O7jbsD5fHSTM1SBWwXgWXs+YU5OydJRtD+rhIyWJ6S+qD6UiCLYrlvG0EoudvmZv
+        xgpAlQOzZQPwWCV3PoNe00fCZ6zsHRKl3hjdUe4wpxFKJNdLQuPIAUb7LMQ01GsW
+        A4VgfsNdnqTlwoy6ztcyE8aYs4L2mQ2jqx14d8IrFt9YwzuJ4WKVOl8828dPZflY
+        K9/wbNBBO9OdeZMxlqocy2aXCgwgwKCnIbKSdddpsWXW8s6hF3LKFXcENvOJRcMo
+        gDprzBxPQLaKjRbj9tu3pngFs7j9MB1ZPiOG44jJaexBeOtj4YCSr8uIerNtm6Kq
+        2JsEtJRETqKhkQ==
+X-ME-Sender: <xms:oywAYOrrgUPAC9OiPDuI5jzDuLEOvsokPdHITTFkyAVCUPqVDQsVsQ>
+    <xme:oywAYMrK8ycOzG9Z6n3iCcIl98DE-mHqECVBCtXzc1kMnidhj_KCeeUHj2wpnt-my
+    C1rz4NudcSx9KaKgqc>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -48,13 +48,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdote
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
     vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpeejnecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:oiwAYFHq8awRkl-Ll73UXYXOmRcziXfFd8MUDbEQQGysJfWwrR6qLA>
-    <xmx:oiwAYKT2FIEYM67AjlCXI3CmcYNlGXm4KJ1QTckVXz_Wf_sST2Lqwg>
-    <xmx:oiwAYCwg-J6GwdMtzFoqQCsGG9szemYKPDCiUNILj9UGsfhhgUGPUQ>
-    <xmx:oiwAYMsYanoID5MHuWOkhhkTY6ca452obbiyAMztUsyWfmzBTftHyw>
+X-ME-Proxy: <xmx:oywAYDMslyAg82froJXEExlymbRqULmepxQjzI9S1rkuhB_SE2ByCg>
+    <xmx:oywAYN4P--9AJbUdwnh5gjDAw0Rclt1srk7JHWYvK2huKM1VxCvYnQ>
+    <xmx:oywAYN75Eh8LC_raAsYT8JaaOH2nTRGST_iIvb9-uEeXC_oECn2I1w>
+    <xmx:oywAYA1VA7xVDXlwZEwJbnHlROfql7L3nyUC8ZA4wF1YnQS6WBPKww>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id B7E591080059;
-        Thu, 14 Jan 2021 06:36:01 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 501281080057;
+        Thu, 14 Jan 2021 06:36:03 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -62,9 +62,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 14/19] ARM: dts: sun8i-a83t: Remove empty CSI port
-Date:   Thu, 14 Jan 2021 12:35:33 +0100
-Message-Id: <20210114113538.1233933-14-maxime@cerno.tech>
+Subject: [PATCH 15/19] ARM: dts: sun8i-a33: sina33: Add missing panel power supply
+Date:   Thu, 14 Jan 2021 12:35:34 +0100
+Message-Id: <20210114113538.1233933-15-maxime@cerno.tech>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210114113538.1233933-1-maxime@cerno.tech>
 References: <20210114113538.1233933-1-maxime@cerno.tech>
@@ -74,28 +74,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The empty CSI port triggers a dt-validate warning. Let's align with the
-other DTSI and remove it entirely, expecting the DTS to fill it.
+The SinA33 panel is missing its power-supply property, even though the
+binding mandates it.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- arch/arm/boot/dts/sun8i-a83t.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+ arch/arm/boot/dts/sun8i-a33-sinlinx-sina33.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/sun8i-a83t.dtsi
-index d42b6a0d1b53..8cb3f2007853 100644
---- a/arch/arm/boot/dts/sun8i-a83t.dtsi
-+++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
-@@ -1061,9 +1061,6 @@ csi: camera@1cb0000 {
- 			clock-names = "bus", "mod", "ram";
- 			resets = <&ccu RST_BUS_CSI>;
- 			status = "disabled";
--
--			csi_in: port {
--			};
- 		};
+diff --git a/arch/arm/boot/dts/sun8i-a33-sinlinx-sina33.dts b/arch/arm/boot/dts/sun8i-a33-sinlinx-sina33.dts
+index 785798e3a104..a1f28e71aae4 100644
+--- a/arch/arm/boot/dts/sun8i-a33-sinlinx-sina33.dts
++++ b/arch/arm/boot/dts/sun8i-a33-sinlinx-sina33.dts
+@@ -63,6 +63,7 @@ chosen {
  
- 		hdmi: hdmi@1ee0000 {
+ 	panel {
+ 		compatible = "netron-dy,e231732";
++		power-supply = <&reg_vcc3v3>;
+ 
+ 		port {
+ 			panel_input: endpoint {
 -- 
 2.29.2
 
