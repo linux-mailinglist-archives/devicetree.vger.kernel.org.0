@@ -2,88 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74CC12F6C19
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC992F6C3D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:39:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728474AbhANUcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 15:32:54 -0500
-Received: from mail-40131.protonmail.ch ([185.70.40.131]:20178 "EHLO
-        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728475AbhANUcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 15:32:54 -0500
-Date:   Thu, 14 Jan 2021 20:32:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1610656331;
-        bh=ZjEeyA413RNzpU9DT+FNrhe0K3Gvid9ETDUGt0k6xos=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=FQtJcXyrSzOzQhCejPr+Moq0CVLEOGugaxaLGZttMZzQkR99WOVg7Vq5T8sSuvQx4
-         QZTOB8nq3TtFm4ahmKS2ib8YutPvZ4NQYmd67EqJRWPy3ePeai9HpI3WN0Wdtrnvsd
-         rNJajI6e+ymDq6H4qlpFP+QdmgQcOBCZpThTBoHk=
-To:     caleb@connolly.tech, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: [PATCH v4 2/2] dt-bindings: Document bindings for new SDM845 devices
-Message-ID: <20210114203057.64541-3-caleb@connolly.tech>
-In-Reply-To: <20210114203057.64541-1-caleb@connolly.tech>
-References: <20210114203057.64541-1-caleb@connolly.tech>
+        id S1729451AbhANUeC convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Jan 2021 15:34:02 -0500
+Received: from mailoutvs34.siol.net ([185.57.226.225]:41780 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729446AbhANUeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 15:34:01 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id ACDC45223A1;
+        Thu, 14 Jan 2021 21:33:19 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id qR3iytWrXith; Thu, 14 Jan 2021 21:33:19 +0100 (CET)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 7518C52247F;
+        Thu, 14 Jan 2021 21:33:19 +0100 (CET)
+Received: from kista.localnet (cpe-86-58-58-53.static.triera.net [86.58.58.53])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 39F605223A1;
+        Thu, 14 Jan 2021 21:33:19 +0100 (CET)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 06/19] ARM: dts: sunxi: Fix the LED node names
+Date:   Thu, 14 Jan 2021 21:33:18 +0100
+Message-ID: <7355594.LWBys3nDdC@kista>
+In-Reply-To: <20210114113538.1233933-6-maxime@cerno.tech>
+References: <20210114113538.1233933-1-maxime@cerno.tech> <20210114113538.1233933-6-maxime@cerno.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document compatible bindings for the new OnePlus 6/6T devices.
+Dne četrtek, 14. januar 2021 ob 12:35:25 CET je Maxime Ripard napisal(a):
+> According to the LED bindings, the LED node names are supposed to be led
+> plus an optional suffix. Let's fix our users to use that new scheme.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
 
-Signed-off-by: Caleb Connolly <caleb@connolly.tech>
----
- Documentation/devicetree/bindings/arm/qcom.yaml        | 5 +++++
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 2 files changed, 7 insertions(+)
+Acked-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentatio=
-n/devicetree/bindings/arm/qcom.yaml
-index c97d4a580f47..f3ad845754d3 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -171,6 +171,11 @@ properties:
-           - enum:
-               - qcom,ipq6018-cp01-c1
-           - const: qcom,ipq6018
-+      - items:
-+          - enum:
-+              - oneplus,enchilada
-+              - oneplus,fajita
-+          - const: qcom,sdm845
-=20
-       - items:
-           - enum:
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Docum=
-entation/devicetree/bindings/vendor-prefixes.yaml
-index 041ae90b0d8f..aff440b18293 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -800,6 +800,8 @@ patternProperties:
-     description: OLIMEX Ltd.
-   "^olpc,.*":
-     description: One Laptop Per Child
-+  "^oneplus,.*":
-+    description: One Plus Technology (Shenzhen) Co., Ltd.
-   "^onion,.*":
-     description: Onion Corporation
-   "^onnn,.*":
---=20
-2.29.2
+Best regards,
+Jernej
 
 
