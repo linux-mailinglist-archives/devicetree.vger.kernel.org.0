@@ -2,88 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9E8A2F5985
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 04:42:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 681262F5997
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 04:53:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726702AbhANDmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 22:42:05 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:33010 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726700AbhANDmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 22:42:04 -0500
-Received: by mail-ot1-f41.google.com with SMTP id b24so4082928otj.0;
-        Wed, 13 Jan 2021 19:41:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=SGWbR3BrTol+d77A+2HgxhYJh6fSWxTvgiIdLTniN8c=;
-        b=GPi++iC9uizoWGa4lcWysUvNojG1sBKmBQFEbm/AOGta4kx6V2ktHbzFT1axAc3kYv
-         m0KF1//BeukeX9zET89eb6wgaQ+87kwUNtPO/CbKabxEKxLYsqUlBNsrWdyKDThwrZ+X
-         ITO/Szu/9iAzDuEUcCOSx3pVxT4iL8V2VF4rNyAJeSpmm+B+XuTttLxXULc+cW8sFDs7
-         gvzWncYL9/gQaRJObvR+EU29KWlAatrZhtkZXXwKv4Kl1AwW0yWXJEC2KZH69KWrmB6p
-         foRXxbsZX6Kr+qTFQJCoPRK7i1+l+TzogJ9RlOG8DO21j8fen31LesXzpkDXaA+NsVIt
-         Khhw==
-X-Gm-Message-State: AOAM532CKeIUAl6UH/TesVPA6pnGH2J4dW1OLaMcmSpz9HEri8/Fe0Sg
-        +Z9Q4nskRdT+8a4ZtDPp7Q==
-X-Google-Smtp-Source: ABdhPJwJa4Z41DmVPHPjJCTeKfDKtkC85EF6YrkJqnUVg+XmnwZsX3pVKhE96duI+Pshf3Hlgke1QQ==
-X-Received: by 2002:a9d:8b6:: with SMTP id 51mr3544813otf.5.1610595683907;
-        Wed, 13 Jan 2021 19:41:23 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g26sm829421otp.52.2021.01.13.19.41.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Jan 2021 19:41:22 -0800 (PST)
-Received: (nullmailer pid 3165653 invoked by uid 1000);
-        Thu, 14 Jan 2021 03:41:22 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20210113160053.3974229-2-dmitry.baryshkov@linaro.org>
-References: <20210113160053.3974229-1-dmitry.baryshkov@linaro.org> <20210113160053.3974229-2-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: misc: qcom,qca6390: add binding for QCA6390 device
-Date:   Wed, 13 Jan 2021 21:41:22 -0600
-Message-Id: <1610595682.023066.3165651.nullmailer@robh.at.kernel.org>
+        id S1727222AbhANDuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 22:50:00 -0500
+Received: from mga02.intel.com ([134.134.136.20]:14918 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726198AbhANDt7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Jan 2021 22:49:59 -0500
+IronPort-SDR: /nDJhYewr+JeHUOxaBVmHDdtdIf6RJsOnwA5ZndkDMI6qc5mJ6kBbQ5oK0SnQ9SOg9rIpbV5rG
+ xr1Hrr9DODgQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9863"; a="165392178"
+X-IronPort-AV: E=Sophos;i="5.79,346,1602572400"; 
+   d="scan'208";a="165392178"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2021 19:48:13 -0800
+IronPort-SDR: 9ihKpaDZxgMq/yioalNK/DjgG+j8A0/MMSPqj02P1FPG2nwdp4glytJPZO8PAmxeKpK4MTPHvK
+ rSEc9BWmF24w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,346,1602572400"; 
+   d="scan'208";a="572219502"
+Received: from imail001.iil.intel.com ([10.184.82.104])
+  by fmsmga005.fm.intel.com with ESMTP; 13 Jan 2021 19:48:10 -0800
+Received: from [10.215.249.35] (cheolyon-MOBL.gar.corp.intel.com [10.215.249.35])
+        by imail001.iil.intel.com with ESMTP id 10E3mClv007474;
+        Thu, 14 Jan 2021 05:48:13 +0200
+Subject: Re: [PATCH v10 0/2] Add Intel LGM SoC DMA support
+To:     Vinod Koul <vkoul@kernel.org>, Rahul Tanwar <rtanwar@maxlinear.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, chuanhua.lei@linux.intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com,
+        ckim@maxlinear.com, "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>,
+        Lei Chuan Hua <lchuanhua@maxlinear.com>,
+        Amireddy Mallikarjuna reddy 
+        <mallikarjunax.reddy@linux.intel.com>
+References: <cover.1606905330.git.mallikarjunax.reddy@linux.intel.com>
+ <20210112122905.GR2771@vkoul-mobl>
+From:   "Kim, Cheol Yong" <cheol.yong.kim@linux.intel.com>
+Message-ID: <b3d0aa18-4000-afa7-a59d-b3143ec152f7@linux.intel.com>
+Date:   Thu, 14 Jan 2021 11:47:56 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
+MIME-Version: 1.0
+In-Reply-To: <20210112122905.GR2771@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Jan 2021 19:00:52 +0300, Dmitry Baryshkov wrote:
-> Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
-> being controlled through the UART and WiFi being present on PCIe bus.
-> Both blocks share common power sources. Add binding to describe power
-> sequencing required to power up this device.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/misc/qcom,qca6390.yaml           | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/qcom,qca6390.yaml
-> 
+Thanks! Vinod
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Added relevant people for maintenance. Rahul <rtanwar@maxlinear.com>  
+and Chuan Hua <lchuanhua@maxlinear.com>
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/misc/qcom,qca6390.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/misc/qcom,qca6390.yaml#
-
-See https://patchwork.ozlabs.org/patch/1425839
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+On 1/12/2021 8:29 PM, Vinod Koul wrote:
+> On 03-12-20, 12:10, Amireddy Mallikarjuna reddy wrote:
+>> Add DMA controller driver for Lightning Mountain (LGM) family of SoCs.
+>>
+>> The main function of the DMA controller is the transfer of data from/to any
+>> peripheral to/from the memory. A memory to memory copy capability can also
+>> be configured. This ldma driver is used for configure the device and channnels
+>> for data and control paths.
+>>
+>> These controllers provide DMA capabilities for a variety of on-chip
+>> devices such as SSC, HSNAND and GSWIP (Gigabit Switch IP).
+>
+> Applied after fixing tag on driver patch, thanks
+>
