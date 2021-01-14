@@ -2,95 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 237112F5CA7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 09:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B2B2F5CA9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 09:55:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727207AbhANIxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 03:53:04 -0500
-Received: from mail-qk1-f170.google.com ([209.85.222.170]:35722 "EHLO
-        mail-qk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726806AbhANIxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 03:53:04 -0500
-Received: by mail-qk1-f170.google.com with SMTP id n142so6498495qkn.2;
-        Thu, 14 Jan 2021 00:52:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HlBaHdxvqlzszUO9WtwA8HvpkLJPNI4bofipRM5bvUg=;
-        b=YsVZB9IZJ+wyV6cLaYHXAW3xhP67fq3tv4ymFAE0ONvVIvtijDr3mh4Qvz0HzbAF6l
-         /0S8mCSWco6MYhR1Na33rrtvbM5RYqCHJOIV2z2E13dnyz8Wm3B3hEkrbuSETIVeUELz
-         V9nSKFkfuxQ66Mz2I0jFLiijr7/sB/uehM2s6DDv0cueKmpC1l1O9dXsZeXuy07ZVolk
-         XoRZI7GciM99DV+DSbjhyAd+s57YX1G+bPzyx9cnK1rtByHB5V+lCON9GAGiEpeZBTGb
-         8AEea0LMVLabzQC2ad/hLMX7vlYXVGFk8FKtbNMe2H+PgntsRvmtzjuu0/6uVsoVdTDh
-         Ycrg==
-X-Gm-Message-State: AOAM530SVeG6LEheTOub0MZSp+bm5YynmwxLCHcNUHDWtcgwdBG8pOky
-        k7nXPlj9GyO7vlUWUwZNzBNKijSUsSwJspRWczo=
-X-Google-Smtp-Source: ABdhPJyX11LtHruuOdQOgSW9Ns/toa4urlaHd1qB/Yr1v7lqleoUcnOZLvTJp4pC8894UFCDCV7YmeIHe5EEXBuD0FM=
-X-Received: by 2002:a05:620a:2017:: with SMTP id c23mr6243644qka.114.1610614342577;
- Thu, 14 Jan 2021 00:52:22 -0800 (PST)
+        id S1727348AbhANIxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 03:53:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39332 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727130AbhANIxS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 03:53:18 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 90DDC239A1;
+        Thu, 14 Jan 2021 08:52:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610614357;
+        bh=HfT5kq3zEmUNElPzCNa0BiPdm8D62tWA6D8bZUBBB28=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=m9GwJC98HdR0xjoM5pZYBKbJsAChO1k/KflCRHZ45+kDDt/DRqPEC12yWJg6PrRZP
+         jHiF/EYxm7ipia9RuF5TivwNBwKqHt6phe0lMOLb7WhXQy9jxYhVdpTe/k0dT0pi8u
+         /WCCL2Px1CZHlNB6I3OyIE64194qLjHdAldDb/4EKCdh7J0mNX5jjEn3cjfZrtL0b1
+         6TvOI7s0wxnRtHDEro9FOucOA0yV9o08hgBAPG8RykH45QQcbxsx2b/+n5jscxC4EL
+         xDAls5lLpo3p1uY1D9Fe90/I0pqi/xVoQy/9BoJ5+WElotG7Mdi2uoQKGMi/WmsoqV
+         UKIFqWISiEVAw==
+Date:   Thu, 14 Jan 2021 10:52:33 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Hongtao Wu <wuht06@gmail.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hongtao Wu <billows.wu@unisoc.com>
+Subject: Re: [RESEND PATCH v5 2/2] PCI: sprd: Add support for Unisoc SoCs'
+ PCIe controller
+Message-ID: <20210114085233.GO4678@unreal>
+References: <1610612968-26612-1-git-send-email-wuht06@gmail.com>
+ <1610612968-26612-3-git-send-email-wuht06@gmail.com>
 MIME-Version: 1.0
-References: <20201026112222.56894-1-tony@atomide.com> <20201026112222.56894-14-tony@atomide.com>
- <CAMuHMdWribr=eg1LkKce=Hamm+JwSz5UFEXLKUmKkqqz1RpL_w@mail.gmail.com>
- <X/8ei0o9ULpRdx7T@atomide.com> <CAMuHMdW+y5Y+0U1beebq7EGiarBKYdHszL+vW5r4xG6HBspVgQ@mail.gmail.com>
- <X/8kDzoADvcnNHxC@atomide.com> <X/8tz/2v4bnbF0TZ@atomide.com>
- <X//wx/oSTpXKpY75@atomide.com> <1c7301145600dabbb95402c7df0cf00b7bdd7fdd.camel@fi.rohmeurope.com>
- <X//799pSjH9bL39s@atomide.com>
-In-Reply-To: <X//799pSjH9bL39s@atomide.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 14 Jan 2021 09:52:10 +0100
-Message-ID: <CAMuHMdUhiFuE=mFbnOBWVZvJ1BhRMYGQmT4LeJLbfMCVUW=SmA@mail.gmail.com>
-Subject: Re: [PATCH 13/18] ARM: dts: Use simple-pm-bus for genpd for am3 l4_wkup
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        "rogerq@ti.com" <rogerq@ti.com>, "s-anna@ti.com" <s-anna@ti.com>,
-        "bcousson@baylibre.com" <bcousson@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "d-gerlach@ti.com" <d-gerlach@ti.com>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
-        "t-kristo@ti.com" <t-kristo@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1610612968-26612-3-git-send-email-wuht06@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony,
-
-On Thu, Jan 14, 2021 at 9:08 AM Tony Lindgren <tony@atomide.com> wrote:
-> * Vaittinen, Matti <Matti.Vaittinen@fi.rohmeurope.com> [210114 07:58]:
-> > I do also experience the boot problem described by Geert.
-> >
-> > Head being:
-> > b0625afe305253d0831af9289b37c906c18a781b
-> > ARM: OMAP2+: Drop legacy platform data for am3 mpuss
-> >
-> > => BBB boots Ok.
-> >
-> > Head being:
-> > 5a230524f87926f24d637fe62fd689f7f86f5036
-> > ARM: dts: Use simple-pm-bus for genpd for am3 l4_wkup
-> >
-> > => BBB boot fails. (I don't have any debug parameters => last thing I
-> > see in UART is from uBoot:
+On Thu, Jan 14, 2021 at 04:29:28PM +0800, Hongtao Wu wrote:
+> From: Hongtao Wu <billows.wu@unisoc.com>
 >
-> Looking at the .config Geert sent me, at least CONFIG_SIMPLE_PM_BUS=y
-> is now needed, and probably should be selected or default y for omaps.
+> This series adds PCIe controller driver for Unisoc SoCs.
+> This controller is based on DesignWare PCIe IP.
 >
-> Adding that removes the -512 errors at least that I started seeing with
-> Geert's config too.
+> Signed-off-by: Hongtao Wu <billows.wu@unisoc.com>
+> ---
+>  drivers/pci/controller/dwc/Kconfig     |  12 ++
+>  drivers/pci/controller/dwc/Makefile    |   1 +
+>  drivers/pci/controller/dwc/pcie-sprd.c | 293 +++++++++++++++++++++++++++++++++
+>  3 files changed, 306 insertions(+)
+>  create mode 100644 drivers/pci/controller/dwc/pcie-sprd.c
+
+<...>
+
+> +static struct platform_driver sprd_pcie_driver = {
+> +	.probe = sprd_pcie_probe,
+> +	.remove = __exit_p(sprd_pcie_remove),
+                   ^^^^^^ why is that?
+
+> +	.driver = {
+> +		.name = "sprd-pcie",
+> +		.of_match_table = sprd_pcie_of_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(sprd_pcie_driver);
+> +
+> +MODULE_DESCRIPTION("Unisoc PCIe host controller driver");
+> +MODULE_LICENSE("GPL v2");
+
+I think that it needs to be "GPL" and not "GPL v2".
+
+Thanks
+
+> --
+> 2.7.4
 >
-> Can you guys check if adding CONFIG_SIMPLE_PM_BUS=y fixes the problem?
-
-Thanks, that did the trick!
-Sorry for not realizing that myself.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
