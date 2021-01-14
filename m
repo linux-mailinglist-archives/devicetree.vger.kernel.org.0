@@ -2,105 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B52742F5DDD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 10:39:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 314272F5DE9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 10:42:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728362AbhANJhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 04:37:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58338 "EHLO
+        id S1727326AbhANJkO convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Jan 2021 04:40:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728289AbhANJhU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 04:37:20 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691FAC061794
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:36:34 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id l9so1473519ejx.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:36:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4WPhESZ2Ino1UQ+7G+F0v8AM8oEjEHY5bkl74A+HS9U=;
-        b=SHJ9j/iZ90wmHmG96hK7ogsn+S7r1luxoBa6keVoDk4NWbSCNnoALijDtih8olEzBp
-         eDDDm4LvTYIbIOa9nrF326FdHiHrMyGHEI0TXd3HrkbhFqbAVtF/7e5WQUgCknaSHz2x
-         oaFoSLatWj55lgEdC8DqqwywnwvJxqk6B9c+akWMvuSp2zsd7hpbZ5o5I5aijPmm7V6s
-         zwK4nJ3wNqC2p35i6MuadpL+gY2FguImFJ1W8Ikba4vihJrR/AQPmBP33UibkinQaJwF
-         Qv9v/EYxpCWlszMU3oHqnTK2fSoOvRL037tvswAb4X2vqXIa3f/aG5y1lQsta3pccOjm
-         akZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4WPhESZ2Ino1UQ+7G+F0v8AM8oEjEHY5bkl74A+HS9U=;
-        b=WqHbTge74teVuPTvyZpfeUzUKYq1tBL5GMDwHObiG+9sV8j+7pExmzJwTAQiVfbS51
-         C2vat9MFBFrDI636Sfkj4FeyUE4T3JVTBKrQ2zutQthe2PpQ+oNO7WYhWjQG7ypeM/mW
-         Oe0+LT7yHf0HC6G5G2KyqRXm1a5KJmuROXaUwzCJmIcCmVx+qSvM00UplPt65ams76rM
-         cE8r7fYq+lBT/LKT0Czj1LHPlGyWeOeHKX9EMlXS31g+5eLXSuBStjeWH5OplNfz9e3+
-         lfpx7bY+R8w2aTd55jDyb51efFfl+UyWjNoWnsacTXkD45yPMi2j4FgPbmJJwJJfE3J3
-         ejXA==
-X-Gm-Message-State: AOAM5307Dq5jjiZ+Zf0zAAI67sdnPaVWFO0AM3UQD6A7v9hvtgTdonXa
-        70E617h1JLZqZb0iX1fGkUZjBVZkukj8si+M3b/4YQ==
-X-Google-Smtp-Source: ABdhPJyrveNlmYlJtZwqPTnLW1uRvgk2qAwIeuLIPI8/FEwrO+3RCMe8L28l1DrM60nxOvEbNEfYmHp69hbWY7kCXSc=
-X-Received: by 2002:a17:906:19c3:: with SMTP id h3mr4605167ejd.429.1610616993048;
- Thu, 14 Jan 2021 01:36:33 -0800 (PST)
-MIME-Version: 1.0
-References: <20210111054428.3273-1-dqfext@gmail.com> <20210111134349.vdhyebdllbaakukk@skbuf>
-In-Reply-To: <20210111134349.vdhyebdllbaakukk@skbuf>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 14 Jan 2021 10:36:22 +0100
-Message-ID: <CAMpxmJWi=BPvXyE_m0dyfmhuK76wYjVTtmvVEk7xSfPcaTYbkA@mail.gmail.com>
-Subject: Re: [PATCH net-next 0/2] dsa: add MT7530 GPIO support
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     DENG Qingfang <dqfext@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        netdev <netdev@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC..." 
-        <linux-mediatek@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>
+        with ESMTP id S1728393AbhANJkF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 04:40:05 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A7A7C061794
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 01:39:33 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kzz6B-00043Z-JS; Thu, 14 Jan 2021 10:39:23 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kzz6B-0003ko-6U; Thu, 14 Jan 2021 10:39:23 +0100
+Message-ID: <80d4d9b16628847c59a7f94a7c002d8ce859b0ca.camel@pengutronix.de>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: microchip sparx5 reset driver
+ bindings
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Date:   Thu, 14 Jan 2021 10:39:23 +0100
+In-Reply-To: <20210113201915.2734205-2-steen.hegelund@microchip.com>
+References: <20210113201915.2734205-1-steen.hegelund@microchip.com>
+         <20210113201915.2734205-2-steen.hegelund@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 2:43 PM Vladimir Oltean <olteanv@gmail.com> wrote:
->
-> On Mon, Jan 11, 2021 at 01:44:26PM +0800, DENG Qingfang wrote:
-> > MT7530's LED controller can be used as GPIO controller. Add support for
-> > it.
-> >
-> > DENG Qingfang (2):
-> >   dt-bindings: net: dsa: add MT7530 GPIO controller binding
-> >   drivers: net: dsa: mt7530: MT7530 optional GPIO support
-> >
-> >  .../devicetree/bindings/net/dsa/mt7530.txt    |  6 ++
-> >  drivers/net/dsa/mt7530.c                      | 96 +++++++++++++++++++
-> >  drivers/net/dsa/mt7530.h                      | 20 ++++
-> >  3 files changed, 122 insertions(+)
-> >
-> > --
-> > 2.25.1
->
-> Adding GPIO and LED maintainers to also have a look.
-> https://patchwork.kernel.org/project/netdevbpf/cover/20210111054428.3273-1-dqfext@gmail.com/
+Hi Steen,
 
-Can you resend the series with GPIO maintainers in CC?
+On Wed, 2021-01-13 at 21:19 +0100, Steen Hegelund wrote:
+> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+> ---
+>  .../bindings/reset/microchip,rst.yaml         | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> new file mode 100644
+> index 000000000000..b5526753e85d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Microchip Sparx5 Switch Reset Controller
+> +
+> +maintainers:
+> +  - Steen Hegelund <steen.hegelund@microchip.com>
+> +  - Lars Povlsen <lars.povlsen@microchip.com>
+> +
+> +description: |
+> +  The Microchip Sparx5 Switch provides reset control and implements the following
+> +  functions
+> +    - One Time Switch Core Reset (Soft Reset)
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^reset-controller@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    const: microchip,sparx5-switch-reset
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  syscons:
+> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    description: Array of syscons used to access reset registers
+> +    minItems: 2
 
-Bart
+The order seems to be important in the driver, so this should specify
+which is the CPU syscon and which is the GCB syscon. I'm not sure if it
+would be better to have two separately named syscon properties with a
+single phandle each.
+
+regards
+Philipp
