@@ -2,99 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C2182F685E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 18:55:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA002F6865
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 18:55:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728726AbhANRyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 12:54:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52792 "EHLO
+        id S1728189AbhANRyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 12:54:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728427AbhANRyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 12:54:21 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D0DC061796
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 09:53:30 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id s75so6796702oih.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 09:53:30 -0800 (PST)
+        with ESMTP id S1728908AbhANRyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 12:54:37 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38AA5C0613C1;
+        Thu, 14 Jan 2021 09:53:52 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 23so9220768lfg.10;
+        Thu, 14 Jan 2021 09:53:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SAQ20xRQL/NbqgMnrMeM6ds4nRHdebpusaxXVvq+8jY=;
-        b=n8Uke2ZrV7AW1F1Ibb0Lns8VJdLcfms60B+gCZkAxTz9kKDLISScw/4qa+V1H2Bn0R
-         dyFI4n0pcYfx9YJKTlaBC9nZwdUAyGydFyrE2js9KDjMwCpV1jwPjzYNXrEvpWuut3Cb
-         aFcS2Suh19jmZNGnzPm6FS84A4tmkF+xkEyDhiCjJN9aZqCMq4j+hSaCi45AgWSHf/yQ
-         00H4OxfTvvoqoxhyZ8pmIqzCUikq/Vgx5BNvU1Jl4Sy3W624d5NWBaB+V950Z/RrvHr5
-         JDJPy7oo9lYNgFoJTuMV2nf2IEK5D/hLe4qFka0C57EbdBFEf8OcS26LYEZbptLWpII+
-         xgWA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pLs4ylBJ7K9NgD/fLR2aztrPKsyKv0HfoASFjpZX5pk=;
+        b=btn4i3vw54VYbF3Ev16ktYnSGtPGeIPVqogsYgFVUJDevWvRA3CStZkNCtB9rgBq5d
+         5dTIVjQgjJ/mzhNJdTf3YcuXft4CJt4aCz7Ynuo3DGX0KOk0s8J6iWWRIs8Q2ONJe4E6
+         ROp3uxbk0mtquArsWMNORlagBXrFAAnHgvJnzZPHVDVo558tXMvAsIj6neC1JqU8b3an
+         7ytP61Frzr424EvXl5YlpXnAkd8R7MYuDVvYVt6dvXNut2LmiWTWf0zr0QnS9YawCOVL
+         6vDp3nMRK7Frx5TBFK89pWtpk0mUfEfk9/uDXBG9sErSKd1+Yj8i4LyocX/0AR56KM3h
+         uFzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SAQ20xRQL/NbqgMnrMeM6ds4nRHdebpusaxXVvq+8jY=;
-        b=tY6svYl9yJ8aoEiMUgaT5/YSPqk9ZJvR4uiLaD7e9woHIshOqqSejPvcP9AY5RvsFK
-         nwnX0IXE3fyE1GNkpfUTL1y+WIF+XyUzGFGi/JnJG7D5axqAJ/7+pnL3GjOOTzRaLAnp
-         cm9TM0SmF5ApOvZcOreP2ulzSFq/0uBTZAArF6SzWWaUt+qLJpPzV5BzN8JfhgCLbXp9
-         4iXH6WPu2G+PLFO13UG8u1wCRGJgVXwuRc3JXpektnNFAxfH3dNrfUc1QnT1+xArl4jM
-         878pwR8DEz4fG8bPq0OouvLUwMMOpeJi7SJAvX4qGoZT5pNirU+paFlEDeWXeL8RuPMS
-         0AwQ==
-X-Gm-Message-State: AOAM530Pheh3oWRAq2laVLmnBrzhAF5fGEvVchC3h0WBEEfjC7cyNdEg
-        kdd471RVO/3fkKtoPOSKeOuJTA==
-X-Google-Smtp-Source: ABdhPJz9FKoRxMERTXm0FbMjFq5wFy1ttaVQGS0dKuRhJTxl5a4EHgsNh/n2iKUv31SHjn1qqmi0wQ==
-X-Received: by 2002:aca:54d8:: with SMTP id i207mr3221322oib.101.1610646810307;
-        Thu, 14 Jan 2021 09:53:30 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id u76sm1161164oia.48.2021.01.14.09.53.29
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pLs4ylBJ7K9NgD/fLR2aztrPKsyKv0HfoASFjpZX5pk=;
+        b=hB7LeTvsNvwx+BlT6mIJz2SUtdnPrPfY9nZ17waWQfte/C1kDj2ahcaz4weDFRAmqo
+         /FnNkByzyu0xPK7wd3TKSq7IJbf3K/nOj0iW3SRDcpWy/1FZneuxrcbOW2ixfeok1xvd
+         wvB11HB41vcA8fabGxQ+itfa+wzHAVErt988b3cNY1hcJhNaVGV8oh1cDkdwRZVKwGOj
+         ML72NtNGPE12b1kjbRHMm3DNcernAzVikBjODKoBdzUackCJKQcpLdppKY2Nomaw2SBw
+         HUdjWdB3b35Aq2CWi959qibnjVkrGAjDiT1ppwqpsVWlhYyo4Cn595LSNBxijUoheVhv
+         XOhA==
+X-Gm-Message-State: AOAM532OuOZ8W8AWuF2OAeRiW++iSpmouxPYuGyBVDs9GLpIQf2D+qw5
+        5xohcqKcs63U/VadTNw9uNU=
+X-Google-Smtp-Source: ABdhPJwcBgk4H2SRjqZxUzpcPPwWZOzgzk06/EK2FLl7xpQmVOudc8WrGLsgvlqzCvf9XYROnGo8ZQ==
+X-Received: by 2002:ac2:4437:: with SMTP id w23mr3836737lfl.618.1610646830740;
+        Thu, 14 Jan 2021 09:53:50 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id a24sm610103lfg.256.2021.01.14.09.53.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 09:53:29 -0800 (PST)
-Date:   Thu, 14 Jan 2021 11:53:27 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     agross@kernel.org, kishon@ti.com, vkoul@kernel.org,
-        robh+dt@kernel.org, mgautam@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, konrad.dybcio@somainline.org,
-        martin.botka@somainline.org, marijn.suijten@somainline.org,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: phy: qcom-qusb2: Document SDM660
- compatible
-Message-ID: <YACFF+Pj/L7ZWt8N@builder.lan>
-References: <20210114174718.398638-1-angelogioacchino.delregno@somainline.org>
- <20210114174718.398638-3-angelogioacchino.delregno@somainline.org>
+        Thu, 14 Jan 2021 09:53:50 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH Broadcom/stblinux 1/2] dt-bindings: power: bcm-pmb: add BCM63138 binding
+Date:   Thu, 14 Jan 2021 18:53:38 +0100
+Message-Id: <20210114175339.19920-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210114174718.398638-3-angelogioacchino.delregno@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 14 Jan 11:47 CST 2021, AngeloGioacchino Del Regno wrote:
+From: Rafał Miłecki <rafal@milecki.pl>
 
-> Support for the SDM630/660 series of SoCs was added to the driver:
-> document the qcom,sdm660-qusb2-phy compatible here.
-> 
+PMB can be also found on bcm63xx chipsets. It uses difference device
+addresses so a new binding is required.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/power/brcm,bcm-pmb.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
-> index d457fb6a4779..582abbbd8b32 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
-> @@ -21,6 +21,7 @@ properties:
->                - qcom,ipq8074-qusb2-phy
->                - qcom,msm8996-qusb2-phy
->                - qcom,msm8998-qusb2-phy
-> +              - qcom,sdm660-qusb2-phy
->        - items:
->            - enum:
->                - qcom,sc7180-qusb2-phy
-> -- 
-> 2.29.2
-> 
+diff --git a/Documentation/devicetree/bindings/power/brcm,bcm-pmb.yaml b/Documentation/devicetree/bindings/power/brcm,bcm-pmb.yaml
+index 40b08d83c80b..f8e7ddbd2705 100644
+--- a/Documentation/devicetree/bindings/power/brcm,bcm-pmb.yaml
++++ b/Documentation/devicetree/bindings/power/brcm,bcm-pmb.yaml
+@@ -16,6 +16,7 @@ properties:
+   compatible:
+     enum:
+       - brcm,bcm4908-pmb
++      - brcm,bcm63138-pmb
+ 
+   reg:
+     description: register space of one or more buses
+-- 
+2.26.2
+
