@@ -2,103 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E2842F625A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:50:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7B92F629F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 15:03:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727300AbhANNsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 08:48:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56062 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726236AbhANNsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 08:48:37 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB58BC0613D3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 05:47:56 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id y187so4752777wmd.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 05:47:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=TbqE2IlRGagFgBkQ2kCkUrfXzLCjHj/NgUbyVG+QOLU=;
-        b=OwOxLsbosDLvoLhRLZ8mzzei4v0t2XhAEbH8Iq2Sxm640+qWBEKYZm4cocQg4aGYiV
-         Xffe/6oKYTXJTmiquE5GGTUFqyH4SWt1o3Mk/HO8mr1iB4/oJKfzT+653Fp1pZ6tPwzi
-         S1stu6wWFThE8hKMRzYPWMNQPSVjWsmHzrcFSQebC+wFsDX7FJfNPmzHzMhUEvcJ4Cv+
-         by4PSWVqcLWwoS6qTTEpItMusrhWhM+A6A9T+EBRMyqDtNd1C3s6YY82pNWW5Yu/oudv
-         zQUzIvGo47Uv1SukMAsYZkAvpT4tZhYQ7JGE+BCNysEIgarpETIZ2w3ApWtZcqTPbAU2
-         CxtA==
+        id S1726381AbhANOCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 09:02:25 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:33162 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726236AbhANOCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 09:02:25 -0500
+Received: by mail-ot1-f53.google.com with SMTP id b24so5264453otj.0;
+        Thu, 14 Jan 2021 06:02:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=TbqE2IlRGagFgBkQ2kCkUrfXzLCjHj/NgUbyVG+QOLU=;
-        b=eXoeCcgBQhb8l5LufnHleTN0ZX68h4WslRG95fHJ+Hd4cja7dfaYX9B2yEg+/Lge5I
-         ibcs8aDVFHyrrerbxD8r9c/sEq1lFNDITcIWPSTXRhS6xYhXZMETyA4TZIDamCBVTch6
-         yG2wqVejdeFtfLVLu15eSC5xd0kWCEbhmlma5Ye2/raJumD3enhldA39g73d4mPumx80
-         epnS48XJBmQkjGuA56Rm5ndO8ZU78/brvOQW+FXrqK8DS2F9BB5w+KDloT6CmhwN8SjP
-         2CykWifxy+Kfxt5nGhWRVS8bzZA/QWyLpk1Mjqfof/H2wVE8ROx3Vf/P4+Oyk4LjDWur
-         wlrA==
-X-Gm-Message-State: AOAM530EQZ93Qxz748bX4yDQzq3Nh1p+T0ZcNgNyEyprcdI4b5ZfjorJ
-        UKplZYz92lDitYjeteNYaDAVhQ==
-X-Google-Smtp-Source: ABdhPJx7eMOHq1ibtaSAKOLLhWbpBK52AbF8LO4+T4csN/v/5B1yHZ36jNUkiZ/Dhf1ZMfYjqWO/Sw==
-X-Received: by 2002:a1c:2905:: with SMTP id p5mr4021448wmp.156.1610632075437;
-        Thu, 14 Jan 2021 05:47:55 -0800 (PST)
-Received: from dell ([91.110.221.178])
-        by smtp.gmail.com with ESMTPSA id n9sm9766176wrq.41.2021.01.14.05.47.54
+         :mime-version:content-disposition:in-reply-to;
+        bh=vmtwqRd+vOOs93CtJZXLHlLxZuc0mcM65taAtteZXlA=;
+        b=hOc+4qoXzcULnot14ryYY8UAkVx3pbyThjZ1/WXmwaGobt2bWNzCk+imAt8CZgVGKm
+         xF+NTRHX70J8HU+/BXapIIY+iCdxEqweNb+d1DxCxUfq9sLXfOWDAsjpQE6MyRyhBccH
+         BWQqrQoQmHD95u+BXul+0mqXlSFu5zDRi3rtcYuNnzbc28UEFXruaSghyvOgvnRV9moD
+         w446zKjW0aLbAQM0iDRP8xMjNF3LY6p8QvXvwPnovddV2a3MUf9hP0glCLu6VaSvk7KH
+         deYu1zyJvtfnecRBAhRRrYQv04dKhi4OVRh6Mm4fILcSNZlc+UCw/02L1j3UyGSA0P5T
+         4U1g==
+X-Gm-Message-State: AOAM532ebI6Q4by3lraHAs4A98ABFeOclgjJ/245N8Ik1LAaKycGvUMW
+        uC3VR0hd1PuBob2WGSGSCw==
+X-Google-Smtp-Source: ABdhPJwA4xSmb7PKCcuU6wjuRg19ZNzvAwR2u8Pzf0moxRyQEWEjN27Dqi5u3i2wZ9eO5cK3Ls+Hmw==
+X-Received: by 2002:a9d:6f8f:: with SMTP id h15mr4838190otq.125.1610632901192;
+        Thu, 14 Jan 2021 06:01:41 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u141sm1036348oie.46.2021.01.14.06.01.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 05:47:54 -0800 (PST)
-Date:   Thu, 14 Jan 2021 13:47:53 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/3] mfd: Add driver for Embedded Controller found on
- Acer Iconia Tab A500
-Message-ID: <20210114134753.GY3975472@dell>
-References: <20201228160547.30562-1-digetx@gmail.com>
- <20201228160547.30562-3-digetx@gmail.com>
+        Thu, 14 Jan 2021 06:01:40 -0800 (PST)
+Received: (nullmailer pid 2811070 invoked by uid 1000);
+        Thu, 14 Jan 2021 14:01:38 -0000
+Date:   Thu, 14 Jan 2021 08:01:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Minchan Kim <minchan@kernel.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
+        david@redhat.com, mhocko@suse.com, surenb@google.com,
+        pullip.cho@samsung.com, joaodias@google.com, hridya@google.com,
+        john.stultz@linaro.org, sumit.semwal@linaro.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        hch@infradead.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v3 3/4] dt-bindings: reserved-memory: Make DMA-BUF CMA
+ heap DT-configurable
+Message-ID: <20210114140138.GA2796092@robh.at.kernel.org>
+References: <20210113012143.1201105-1-minchan@kernel.org>
+ <20210113012143.1201105-4-minchan@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201228160547.30562-3-digetx@gmail.com>
+In-Reply-To: <20210113012143.1201105-4-minchan@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Dec 2020, Dmitry Osipenko wrote:
-
-> Acer Iconia Tab A500 is an Android tablet device, it has ENE KB930
-> Embedded Controller which provides battery-gauge, LED, GPIO and some
-> other functions. The EC uses firmware that is specifically customized
-> for Acer A500. This patch adds MFD driver for the Embedded Controller
-> which allows to power-off / reboot the A500 device, it also provides
-> a common register read/write API that will be used by the sub-devices.
+On Tue, Jan 12, 2021 at 05:21:42PM -0800, Minchan Kim wrote:
+> From: Hyesoo Yu <hyesoo.yu@samsung.com>
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> Document devicetree binding for chunk cma heap on dma heap framework.
+> 
+> The DMA chunk heap supports the bulk allocation of higher order pages.
+
+Why do we need this? What does this do that CMA doesn't?
+
+With a CMA area I can believe a carve out is a common, OS independent 
+thing. This looks too closely tied to some Linux thing to go into DT.
+
+> 
+> Signed-off-by: Hyesoo Yu <hyesoo.yu@samsung.com>
+> Signed-off-by: Minchan Kim <minchan@kernel.org>
+> Signed-off-by: Hridya Valsaraju <hridya@google.com>
+> Change-Id: I8fb231e5a8360e2d8f65947e155b12aa664dde01
+
+Drop this.
+
 > ---
->  drivers/mfd/Kconfig        |  11 ++
->  drivers/mfd/Makefile       |   1 +
->  drivers/mfd/acer-ec-a500.c | 202 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 214 insertions(+)
->  create mode 100644 drivers/mfd/acer-ec-a500.c
+>  .../reserved-memory/dma_heap_chunk.yaml       | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml b/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
+> new file mode 100644
+> index 000000000000..3e7fed5fb006
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reserved-memory/dma_heap_chunk.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Device tree binding for chunk heap on DMA HEAP FRAMEWORK
+> +
+> +description: |
+> +  The DMA chunk heap is backed by the Contiguous Memory Allocator (CMA) and
+> +  supports bulk allocation of fixed size pages.
+> +
+> +maintainers:
+> +  - Hyesoo Yu <hyesoo.yu@samsung.com>
+> +  - John Stultz <john.stultz@linaro.org>
+> +  - Minchan Kim <minchan@kernel.org>
+> +  - Hridya Valsaraju<hridya@google.com>
 
-Looks good to me:
+space                  ^
 
-For my own reference (apply this as-is to your sign-off block):
+> +
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - dma_heap,chunk
 
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+The format is <vendor>,<something> and 'dma_heap' is not a vendor.
 
-Do you have a merge plan?
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> +
+> +  chunk-order:
+> +    description: |
+> +            order of pages that will get allocated from the chunk DMA heap.
+> +    maxItems: 1
+> +
+> +  size:
+> +    maxItems: 1
+> +
+> +  alignment:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - size
+> +  - alignment
+> +  - chunk-order
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    reserved-memory {
+> +        #address-cells = <2>;
+> +        #size-cells = <1>;
+> +
+> +        chunk_memory: chunk_memory {
+> +            compatible = "dma_heap,chunk";
+> +            size = <0x3000000>;
+> +            alignment = <0x0 0x00010000>;
+> +            chunk-order = <4>;
+> +        };
+> +    };
+> +
+> +
+> -- 
+> 2.30.0.284.gd98b1dd5eaa7-goog
+> 
