@@ -2,107 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50F672F6EB7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 23:59:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 846512F6ECB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 00:09:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730917AbhANW4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 17:56:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60364 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730900AbhANW4t (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 17:56:49 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B73EB23A6C;
-        Thu, 14 Jan 2021 22:56:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610664969;
-        bh=uXGJ6xCEysiGL4Hzw3Uu8vrJXyYKiGWf1f8PXzrKYZo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=T0OYHM0DE9MxSFhjc+wnS050JkMkxrfkLbuJ9FBqrk4S3OUzL7++4cDszksupy22F
-         XJ10HvCzRzb9+VaoeIs9WkDS/CzFm9MI3dd6+4WbZepqbmZXHNHrG6PmMJAPPiYqk5
-         II3N6J46S/kljP87jktuL+bZNDH9qImPRcYS0zczAWCgAevk6aPcGt3ajSJijEDVRd
-         kHJpf6aIPg9uqKLZxjAMgNqyOOsN9pwJHLM6EaPHZ6ClEd4BVoiLQGW39whevDNNal
-         m7PqT0gL5GbK+GjGvMmpedOlNdG/jyBk6UmQskq4Bw+f2FbzX9joKG+XwRWyU8fTce
-         5L3lfWBxeBjbA==
-Received: by mail-ed1-f46.google.com with SMTP id b2so7511218edm.3;
-        Thu, 14 Jan 2021 14:56:08 -0800 (PST)
-X-Gm-Message-State: AOAM532ynhoA9jIcl9QEm/xDBZQJKUgYFK0f/G8ekAicmQ0MNw0HyRR3
-        oe5XZqfC5Fs/aUtMBzipiDrchYD0EckDT8MKsg==
-X-Google-Smtp-Source: ABdhPJzKHMc6mf/hOkNc8AU+Eybq1geWp6Y8iOKubI270z1OJwevJFI1fq4ScBjoTzAbQLMHBTJ9Z/F6mN1e3WoR/rE=
-X-Received: by 2002:a50:fc96:: with SMTP id f22mr7742818edq.162.1610664967322;
- Thu, 14 Jan 2021 14:56:07 -0800 (PST)
+        id S1730937AbhANXG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 18:06:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35420 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730936AbhANXG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 18:06:27 -0500
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C09DC061757;
+        Thu, 14 Jan 2021 15:05:47 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 801033F0AF;
+        Fri, 15 Jan 2021 00:05:45 +0100 (CET)
+Subject: Re: [PATCH v2 05/11] clk: qcom: gcc-msm8998: Mark gpu_cfg_ahb_clk as
+ critical
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     MSM <linux-arm-msm@vger.kernel.org>, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        phone-devel@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        DTML <devicetree@vger.kernel.org>
+References: <20210114221059.483390-1-angelogioacchino.delregno@somainline.org>
+ <20210114221059.483390-6-angelogioacchino.delregno@somainline.org>
+ <CAOCk7NoVts21FjhhLtZp-0Xdw6-BnrKio_-tuZBRsgapsUdwfw@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <25d40e7d-fbd6-697f-7d4d-a7233aeb652c@somainline.org>
+Date:   Fri, 15 Jan 2021 00:05:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-References: <1610351031-21133-1-git-send-email-yongqiang.niu@mediatek.com> <1610351031-21133-12-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1610351031-21133-12-git-send-email-yongqiang.niu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Fri, 15 Jan 2021 06:55:56 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_98=hJvQibAUfk3f9NF+3sEZ4JuANEDgp6WJ7cVAOygQQ@mail.gmail.com>
-Message-ID: <CAAOTY_98=hJvQibAUfk3f9NF+3sEZ4JuANEDgp6WJ7cVAOygQQ@mail.gmail.com>
-Subject: Re: [PATCH v3, 11/15] drm/mediatek: fix aal size config
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAOCk7NoVts21FjhhLtZp-0Xdw6-BnrKio_-tuZBRsgapsUdwfw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+Il 14/01/21 23:37, Jeffrey Hugo ha scritto:
+> On Thu, Jan 14, 2021 at 3:13 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@somainline.org> wrote:
+>>
+>> The GPU IOMMU depends on this clock and the hypervisor will crash
+>> the SoC if this clock gets disabled because the secure contexts
+>> that have been set on this IOMMU by the bootloader will become
+>> unaccessible (or they get reset).
+>> Mark this clock as critical to avoid this issue when the Adreno
+>> GPU is enabled.
+>>
+> 
+> You should go review the last attempt to do this -
+> https://lkml.org/lkml/2019/12/17/881
+> 
 
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
-=8811=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:48=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> the orginal setting is not correct, fix it follow hardware data sheet.
-> if keep this error setting, mt8173/mt8183 display ok
-> but mt8192 display abnormal.
->
+Thanks for the tip, but unfortunately this isn't possible on the 
+gpu_cfg_ahb_clk, as it is also needed for the Adreno IOMMU, which has 
+secure contexts that are set up from one of the bootloader stages and if 
+you reset/"mess up" one of them (by - in this case - un-clocking the 
+MMU), then the hypervisor will kick in and generate a fault, rebooting 
+the SoC.
 
-Applied to mediatek-drm-next [1], thanks.
+Of course, this scenario is for the case in which you want to boot the 
+device without any gpucc nor any runtime pm user of that.. and the 
+aforementioned issue makes that solution not really usable.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang.
-
-> Fixes: 0664d1392c26 (drm/mediatek: Add AAL engine basic function)
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
-m/mediatek/mtk_drm_ddp_comp.c
-> index fc01fea..6081800 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -174,7 +174,7 @@ static void mtk_aal_config(struct mtk_ddp_comp *comp,=
- unsigned int w,
->                            unsigned int h, unsigned int vrefresh,
->                            unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
->  {
-> -       mtk_ddp_write(cmdq_pkt, h << 16 | w, comp, DISP_AAL_SIZE);
-> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, comp, DISP_AAL_SIZE);
->  }
->
->  static void mtk_aal_start(struct mtk_ddp_comp *comp)
-> --
-> 1.8.1.1.dirty
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Again, unfortunately.
