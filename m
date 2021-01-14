@@ -2,57 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FC992F6C3D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D097D2F6C41
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 21:39:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729451AbhANUeC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Jan 2021 15:34:02 -0500
-Received: from mailoutvs34.siol.net ([185.57.226.225]:41780 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729446AbhANUeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 15:34:01 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id ACDC45223A1;
-        Thu, 14 Jan 2021 21:33:19 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id qR3iytWrXith; Thu, 14 Jan 2021 21:33:19 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 7518C52247F;
-        Thu, 14 Jan 2021 21:33:19 +0100 (CET)
-Received: from kista.localnet (cpe-86-58-58-53.static.triera.net [86.58.58.53])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 39F605223A1;
-        Thu, 14 Jan 2021 21:33:19 +0100 (CET)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 06/19] ARM: dts: sunxi: Fix the LED node names
-Date:   Thu, 14 Jan 2021 21:33:18 +0100
-Message-ID: <7355594.LWBys3nDdC@kista>
-In-Reply-To: <20210114113538.1233933-6-maxime@cerno.tech>
-References: <20210114113538.1233933-1-maxime@cerno.tech> <20210114113538.1233933-6-maxime@cerno.tech>
+        id S1728456AbhANUea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 15:34:30 -0500
+Received: from relay06.th.seeweb.it ([5.144.164.167]:43171 "EHLO
+        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726262AbhANUea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 15:34:30 -0500
+Received: from [192.168.1.101] (abaf224.neoplus.adsl.tpnet.pl [83.6.169.224])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 038D13F1E5;
+        Thu, 14 Jan 2021 21:33:31 +0100 (CET)
+Subject: Re: [PATCH v3 1/2] arm64: dts: sdm845: add oneplus6/6t devices
+To:     Caleb Connolly <caleb@connolly.tech>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210114185227.25265-1-caleb@connolly.tech>
+ <20210114185227.25265-2-caleb@connolly.tech>
+ <17d49d19-7672-520c-12d3-c6ed8c12ae47@somainline.org>
+ <4db0807e-c33e-5913-1818-1fc055e35acb@connolly.tech>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <1b023774-d091-e7fd-8eaf-dedeff5feac2@somainline.org>
+Date:   Thu, 14 Jan 2021 21:33:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <4db0807e-c33e-5913-1818-1fc055e35acb@connolly.tech>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne četrtek, 14. januar 2021 ob 12:35:25 CET je Maxime Ripard napisal(a):
-> According to the LED bindings, the LED node names are supposed to be led
-> plus an optional suffix. Let's fix our users to use that new scheme.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
 
-Acked-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> The device definitely doesn't support USB3, although downstream does 
+> leave the USB3 phy enabled the hardware doesn't support it. So it made 
+> sense to disable it here.
 
-Best regards,
-Jernej
 
+Sure.
+
+
+> OnePlus' bootloader doesn't seem to care about these values so I left 
+> them out for simplicity.
+
+Sounds strange, but it's not the first time vendors surprise us.
+
+
+Konrad
 
