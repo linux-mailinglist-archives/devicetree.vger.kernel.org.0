@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21F212F6059
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F6E2F6046
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:39:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729115AbhANLiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 06:38:15 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:53747 "EHLO
+        id S1727875AbhANLhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 06:37:37 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:36751 "EHLO
         wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726008AbhANLhl (ORCPT
+        by vger.kernel.org with ESMTP id S1727820AbhANLhg (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 06:37:41 -0500
+        Thu, 14 Jan 2021 06:37:36 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 9674C1620;
-        Thu, 14 Jan 2021 06:35:56 -0500 (EST)
+        by mailout.west.internal (Postfix) with ESMTP id 0ADA4161A;
+        Thu, 14 Jan 2021 06:35:57 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:35:57 -0500
+  by compute6.internal (MEProxy); Thu, 14 Jan 2021 06:35:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=dMPMoJZhmxu6x
-        ya+Fwt7JgnK8rPeglk7K8KMxUKrtsA=; b=WYYZTxTXIvYkLFQOw8wDUQsEtBG2w
-        i+GqBJqhmw3Bw4zNL/ktNNZmzxUoc/mtWC8dBhmhXp9BEvAu7X9A521pIqV3m7Ze
-        5boG1tqldaG4EDgkz2F6Bd505zxS8Ukp1aTiv3bI29Az8FDurNgr9PQSsfYLsuP/
-        tn5I8r8wTYDu1AWnyCR14zG7IKYWEH7Pr4sRxTXYhrFpVWN3zqEvhhv1MPxUdavX
-        0bu7Oc2IkuL/exUVzVN8Fav937GlJEaIO5LHZBgK+RURVSlWGxN/ajXhx1bLQqpo
-        qNCmRraaiyjMBee6WTYQsz5cBvmRMjbLLby2z5r2vpYpCr0CEsgEyP/Vg==
+        :mime-version:content-transfer-encoding; s=fm1; bh=UDg9aVuUhCOmU
+        WXIhTH1UY1y+Gg+w4waOMzbL3+uTIA=; b=rlcCuMK3Ci0k+xgV974CicRh2MWvh
+        24SDzhMIntwaoZIgfUi+3ZhKwYcwz2Hg3VoM1gZz1S3YjKShV0wmAFNtHRWRHigV
+        NCfBX+pTtb2LHZFCwiDbh4u8cHZ3R1J01ga8Y2TzMW+mZtmyPxGpnoePc3zD2pjQ
+        H0NG6RNNdkatdEpfHp5p21lffl1tdZ+JZ4gMILuCoeNc1YOiUZYZEnTLoFXLZgqe
+        /HDNbceAfE3PlJHQUVy2L5bkylWNmY4WM/Nu08IcwV0O4zNHl/2OI3TdM10tjDnR
+        Uc6S5BnXoigrvDIPdERzPsMgSAwjphSBrv9GTwzBO23zFmSkjZ/pxKGRQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=dMPMoJZhmxu6xya+Fwt7JgnK8rPeglk7K8KMxUKrtsA=; b=lejmfl3a
-        1qI2pYfj7xMPxQGrDOzD0/LH6/BFzyP9ytkHhxQwmtrsisyz3LjVlh1eVE3O6Mj3
-        jlJ/zTS7OAphbYa7u+FPdn/Q40djrMcMsU/xUXa+NFgL1jkMxMHakbDRoR+vWc9/
-        MHc5JbWNEesln1SUYez3sfUq0ph5auWk+0vGTQRG2DXwVQn2YABOLqXifPHR42W2
-        8f/AakiPACv2dPFc8BzqxX1WNSFuw3e/ed4AKGogKLXMwPw4Hm7YoSdFRBF2cmKa
-        hWuwo8f4t5vc6HmzpxNuE7fDAwCbngN+Gswe5B8Oq+7qqM9sGulLuAeYgpaBRj9Z
-        vcnaSy7aU16dtg==
-X-ME-Sender: <xms:nCwAYBvP85mwDpX-Yq_fAxp3C3sw4RivjcrK-Yi4_3_ZlY1b3GwJng>
-    <xme:nCwAYKeMuzfgdww2K-x0lyjj0Dyu06AsqKsAvPKDQnWM92-iTb8SJqchypYGkuqcR
-    6b_skzO88IbEPBnCo0>
+        fm1; bh=UDg9aVuUhCOmUWXIhTH1UY1y+Gg+w4waOMzbL3+uTIA=; b=DDluxB01
+        D9QiIlTyhv/vaJ6C+F1n6brH0PHvhBw4f2q9f9Rt4cAaZ9XeV381ZTWNHrMeM/Oc
+        33Nl+RN6w6GRggTPrRUy5TLGlUfpDAQIRfhznnPB3C31ifOw3CPGDp2flS/4/3eO
+        hGK+fteE8ZA2/RnABczDO2F0tLXNFrPlwlBugVeQcxE8bE7AgphjJ+sXBNLFpWPp
+        QxUOp0Db1p4Xdt8WT8tM8EofAQp4W04ntlRMnDHKAwzlbImAch1QVzUT+T7SDO5w
+        PLtT9Og6dfjjhYe//VUgVSeuR27tYtQ12vW+69EimEIQw6Kl9MQunuoRfS8YRp7B
+        BoV95xU8O2Zwpg==
+X-ME-Sender: <xms:nSwAYAwCXv-Sp8o4owkfIKCADPpU0FSpQ_c5aukstcqaDfXNuGK6_Q>
+    <xme:nSwAYETD48Nod583753SEPg9bPscLToCLFUqzkZUzZJkZXmmVuP2mDAwT-zSezfFD
+    GIRyUmPJGTV331tynE>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -48,13 +48,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddtgddtfecutefuodetggdote
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
     vdenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpeegnecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:nCwAYExFja57_2ekORsbZXsm_ECgRQ7c21APJgx74LmnwEabUKQb7Q>
-    <xmx:nCwAYIM1XE0BzrOovlgwtOIlkmDDu043ck5JFcNCPXeBfksdHV6RRQ>
-    <xmx:nCwAYB8_XvNuzw6nvnTzHkX4w0kytCKcgb2yZX0Xumz9ZOVSmF6NHw>
-    <xmx:nCwAYNZy-tGe4sTws_F0J_z5UWRFML37_m1BDYioOPExAGCiaLglBw>
+X-ME-Proxy: <xmx:nSwAYCWUefsiTxIN62sViFe3JMJTL7K1T-KLt4zNJCnOuSEMnrn-FA>
+    <xmx:nSwAYOi93DrKp091KW5etR739FyWxZeNhn1Z8WLLZ4UmCa4V7o-VOg>
+    <xmx:nSwAYCAQv-Dhphsq7bE_6PpDKuFkNbz17wnzzT4v1dX6XvYq01_Ryg>
+    <xmx:nSwAYF_avUI4k-JIKVMwLENnAQHmykHW9_N-Xe5xn7pAeaJmzcnf-w>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id CAF45108005F;
-        Thu, 14 Jan 2021 06:35:55 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 41B4B1080057;
+        Thu, 14 Jan 2021 06:35:57 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -62,9 +62,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 10/19] ARM: dts: sun6i: primo81: Remove useless io-channel-cells
-Date:   Thu, 14 Jan 2021 12:35:29 +0100
-Message-Id: <20210114113538.1233933-10-maxime@cerno.tech>
+Subject: [PATCH 11/19] ARM: dts: sun8i: nanopi-r1: Fix GPIO regulator state array
+Date:   Thu, 14 Jan 2021 12:35:30 +0100
+Message-Id: <20210114113538.1233933-11-maxime@cerno.tech>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210114113538.1233933-1-maxime@cerno.tech>
 References: <20210114113538.1233933-1-maxime@cerno.tech>
@@ -74,26 +74,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mma8452 binding doesn't expect an io-channel-cells property, let's
-remove it.
+Even though it translates to the same thing down to the binary level, we
+should have an array of 2 number cells to describe each voltage state,
+which in turns create a validation warning.
+
+Let's fix this.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- arch/arm/boot/dts/sun6i-a31s-primo81.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun6i-a31s-primo81.dts b/arch/arm/boot/dts/sun6i-a31s-primo81.dts
-index bc3170a0b8b5..0e1ee5ff2c2b 100644
---- a/arch/arm/boot/dts/sun6i-a31s-primo81.dts
-+++ b/arch/arm/boot/dts/sun6i-a31s-primo81.dts
-@@ -115,7 +115,6 @@ accelerometer@1c {
- 		reg = <0x1c>;
- 		interrupt-parent = <&pio>;
- 		interrupts = <0 9 IRQ_TYPE_LEVEL_HIGH>; /* PA9 */
--		#io-channel-cells = <1>;
+diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+index 204a39f93f4e..26e2e6172e0d 100644
+--- a/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
++++ b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+@@ -39,8 +39,8 @@ reg_vdd_cpux: gpio-regulator {
+ 		regulator-ramp-delay = <50>;
+ 		gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
+ 		gpios-states = <0x1>;
+-		states = <1100000 0x0
+-			  1300000 0x1>;
++		states = <1100000 0x0>,
++			 <1300000 0x1>;
  	};
- };
  
+ 	wifi_pwrseq: wifi_pwrseq {
 -- 
 2.29.2
 
