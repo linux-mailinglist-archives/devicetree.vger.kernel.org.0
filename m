@@ -2,98 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DAAE2F6EAD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 23:56:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F672F6EB7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 23:59:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730835AbhANWyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 17:54:52 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:46733 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730849AbhANWyw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 17:54:52 -0500
-Received: by mail-oi1-f169.google.com with SMTP id q205so7618856oig.13;
-        Thu, 14 Jan 2021 14:54:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=qWYHygthLZ8mTq8gd7jEV6pMc0SdpN8hLLa0SmpOOjo=;
-        b=bf/QebiVqgzxZ9uSPgEpR80U4njopdBPvZwyAQkf8JQsND505/+ebjvHR2TD4nBSzk
-         ss3EXJuAINnUsdmZ2CxuG2cTrBFJOJsGvaPfXGPj8DDpewSeRdB7kBj48+UYC+DYSAVC
-         9XT/7fKO/lw5h69WNfwVH2qXH8c7AWEKCMv4xuyTucwEwgagQEGE/rV6kWS6a8HVf6V+
-         hJ8UX+PSLFbHyIU9XV0GuHpYZ+UVxxNg2QqA68kWjjgru0+Q2LO/hPvKf6rtIZZmzeDA
-         JM9FBdvwLiYmQmTJtGwRslZGqUTa3USWktdwjv5TGAM/dP4iHRu1gzkGB6SV+tQkORXW
-         vZRw==
-X-Gm-Message-State: AOAM530IGA3bmA6COd4Tdjna2gyWUy27Fufnl2ugsmGsF4+04BoedrZE
-        ZzZ4iD9lrYTe/KwCqNbRsQ==
-X-Google-Smtp-Source: ABdhPJzyV0763obF7cbS9CXWkgMfwQPg33Rx08ZaO2ZOKRwYv+4ZxDG0NYjU132wwc6AGyIgeSrnpg==
-X-Received: by 2002:a05:6808:8f0:: with SMTP id d16mr3941097oic.47.1610664851178;
-        Thu, 14 Jan 2021 14:54:11 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h11sm1403197ooj.36.2021.01.14.14.54.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 14:54:10 -0800 (PST)
-Received: (nullmailer pid 3797266 invoked by uid 1000);
-        Thu, 14 Jan 2021 22:54:06 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yu Chen <chenyu56@huawei.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        Alex Dewar <alex.dewar90@gmail.com>,
-        devel@driverdev.osuosl.org, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <78e54d594b9e31d603d913048a7bc89d3a089608.1610645385.git.mchehab+huawei@kernel.org>
-References: <cover.1610645385.git.mchehab+huawei@kernel.org> <78e54d594b9e31d603d913048a7bc89d3a089608.1610645385.git.mchehab+huawei@kernel.org>
-Subject: Re: [PATCH v2 4/4] phy: phy-hi3670-usb3: move driver from staging into phy
-Date:   Thu, 14 Jan 2021 16:54:06 -0600
-Message-Id: <1610664846.682257.3797263.nullmailer@robh.at.kernel.org>
+        id S1730917AbhANW4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 17:56:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60364 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730900AbhANW4t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 17:56:49 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B73EB23A6C;
+        Thu, 14 Jan 2021 22:56:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610664969;
+        bh=uXGJ6xCEysiGL4Hzw3Uu8vrJXyYKiGWf1f8PXzrKYZo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=T0OYHM0DE9MxSFhjc+wnS050JkMkxrfkLbuJ9FBqrk4S3OUzL7++4cDszksupy22F
+         XJ10HvCzRzb9+VaoeIs9WkDS/CzFm9MI3dd6+4WbZepqbmZXHNHrG6PmMJAPPiYqk5
+         II3N6J46S/kljP87jktuL+bZNDH9qImPRcYS0zczAWCgAevk6aPcGt3ajSJijEDVRd
+         kHJpf6aIPg9uqKLZxjAMgNqyOOsN9pwJHLM6EaPHZ6ClEd4BVoiLQGW39whevDNNal
+         m7PqT0gL5GbK+GjGvMmpedOlNdG/jyBk6UmQskq4Bw+f2FbzX9joKG+XwRWyU8fTce
+         5L3lfWBxeBjbA==
+Received: by mail-ed1-f46.google.com with SMTP id b2so7511218edm.3;
+        Thu, 14 Jan 2021 14:56:08 -0800 (PST)
+X-Gm-Message-State: AOAM532ynhoA9jIcl9QEm/xDBZQJKUgYFK0f/G8ekAicmQ0MNw0HyRR3
+        oe5XZqfC5Fs/aUtMBzipiDrchYD0EckDT8MKsg==
+X-Google-Smtp-Source: ABdhPJzKHMc6mf/hOkNc8AU+Eybq1geWp6Y8iOKubI270z1OJwevJFI1fq4ScBjoTzAbQLMHBTJ9Z/F6mN1e3WoR/rE=
+X-Received: by 2002:a50:fc96:: with SMTP id f22mr7742818edq.162.1610664967322;
+ Thu, 14 Jan 2021 14:56:07 -0800 (PST)
+MIME-Version: 1.0
+References: <1610351031-21133-1-git-send-email-yongqiang.niu@mediatek.com> <1610351031-21133-12-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1610351031-21133-12-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Fri, 15 Jan 2021 06:55:56 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_98=hJvQibAUfk3f9NF+3sEZ4JuANEDgp6WJ7cVAOygQQ@mail.gmail.com>
+Message-ID: <CAAOTY_98=hJvQibAUfk3f9NF+3sEZ4JuANEDgp6WJ7cVAOygQQ@mail.gmail.com>
+Subject: Re: [PATCH v3, 11/15] drm/mediatek: fix aal size config
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Jan 2021 18:35:44 +0100, Mauro Carvalho Chehab wrote:
-> The phy USB3 driver for Hisilicon 970 (hi3670) is ready
-> for mainstream. Mode it from staging into the main driver's
-> phy/ directory.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Hi, Yongqiang:
+
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
+=8811=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:48=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> the orginal setting is not correct, fix it follow hardware data sheet.
+> if keep this error setting, mt8173/mt8183 display ok
+> but mt8192 display abnormal.
+>
+
+Applied to mediatek-drm-next [1], thanks.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
+> Fixes: 0664d1392c26 (drm/mediatek: Add AAL engine basic function)
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  .../bindings/phy/phy-hi3670-usb3.yaml         |  72 ++
->  MAINTAINERS                                   |   9 +-
->  drivers/phy/hisilicon/Kconfig                 |  10 +
->  drivers/phy/hisilicon/Makefile                |   1 +
->  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 668 ++++++++++++++++++
->  drivers/staging/hikey9xx/Kconfig              |  11 -
->  drivers/staging/hikey9xx/Makefile             |   2 -
->  drivers/staging/hikey9xx/phy-hi3670-usb3.c    | 668 ------------------
->  drivers/staging/hikey9xx/phy-hi3670-usb3.yaml |  72 --
->  9 files changed, 759 insertions(+), 754 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml
->  create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
->  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.c
->  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/phy/phy-hi3670-usb3.yaml#
-
-See https://patchwork.ozlabs.org/patch/1426545
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
+m/mediatek/mtk_drm_ddp_comp.c
+> index fc01fea..6081800 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -174,7 +174,7 @@ static void mtk_aal_config(struct mtk_ddp_comp *comp,=
+ unsigned int w,
+>                            unsigned int h, unsigned int vrefresh,
+>                            unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
+>  {
+> -       mtk_ddp_write(cmdq_pkt, h << 16 | w, comp, DISP_AAL_SIZE);
+> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, comp, DISP_AAL_SIZE);
+>  }
+>
+>  static void mtk_aal_start(struct mtk_ddp_comp *comp)
+> --
+> 1.8.1.1.dirty
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
