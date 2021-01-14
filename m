@@ -2,393 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9466A2F6B7F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:52:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55FED2F6B80
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:52:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729196AbhANTuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 14:50:06 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:43078 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727391AbhANTuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:50:06 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10EJmLuQ106909;
-        Thu, 14 Jan 2021 13:48:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610653701;
-        bh=I+QHfgwIg9aiz9BGaEcMMsJH+hW3yftt04jh99XTXDA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=HFDQTPgXsIj8X4Qb6gJgKGVNkTHI4ovarYdr1YO9qtEJQO1oi257OV9o+u87hfEwI
-         DJOU0D8SnMUYkoIHmIbWTTlRDwLYYToCQOIXlKIi0cLCG1O/pg4JaBe5qQt88210pL
-         k71DENaltwFwsUejIbxZi0i7qc3fBRBJ8kSe5VsQ=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10EJmLjS016941
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 14 Jan 2021 13:48:21 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 14
- Jan 2021 13:48:21 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 14 Jan 2021 13:48:21 -0600
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10EJmLPE123292;
-        Thu, 14 Jan 2021 13:48:21 -0600
-Received: from localhost ([10.250.34.42])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 10EJmKWo043644;
-        Thu, 14 Jan 2021 13:48:20 -0600
-From:   Suman Anna <s-anna@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
-CC:     Jan Kiszka <jan.kiszka@siemens.com>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e-main: Add ICSSG nodes
-Date:   Thu, 14 Jan 2021 13:48:05 -0600
-Message-ID: <20210114194805.8231-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210114194805.8231-1-s-anna@ti.com>
-References: <20210114194805.8231-1-s-anna@ti.com>
+        id S1730366AbhANTuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 14:50:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728954AbhANTuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:50:17 -0500
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83004C061757
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 11:49:37 -0800 (PST)
+Received: by mail-qv1-xf2b.google.com with SMTP id j18so2893079qvu.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 11:49:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1zizu37IibkwemqdpaRibOtXAnbLUYIiJx9hqRg2s88=;
+        b=lZuSvDEQF58ZhFUbCoGE7Z1jJ0Pgx9eBL7AutBdLexq9l7vgjFbNBQ/t/RJjUKnjHD
+         7MsVYJMUFtuEZoGw1eSN4SXhmY5cjknh2f22PaDk8I/h5UtJUjzK1g/mh6q0eqnh7eyA
+         s1ORXdVuLbiCUmtQ+vHj5qLyNfb+c0pPYuwRzWmrARQHJLuHYDqaJmYe6q3/SgrvD63l
+         h9of/4WDTqdjE+op+7GXn+hQUqqnLfdxfpb8YSm0bqDkq1y4BVUdVdcOtDW0EE9VSAUa
+         yw9Ji7vhJ5BNKZOEkYlz5NXRCmde9qsOCdo3PAREsrbZOMLm4pI2YDxbEecqQETmwYic
+         nmYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1zizu37IibkwemqdpaRibOtXAnbLUYIiJx9hqRg2s88=;
+        b=qOeAyzSWd4SOttpk07GthbRs+BRYZiQqP9yGnHRuHobBuSms9DzsTLcJbd2ReSt1Cp
+         a828ELn7njzhpopVXv2rhvjO6ZQmuauNSkqx8Ly4clQ9bfyTGQwuA08iwoHyHukAfNRx
+         pLr8++aHfmEiOLXvgcfzhg2SSpaXCXVRxDKLeYRnT8vxr2snTCQiGvp0RC2iHKf0og5y
+         /4qBzEreB/zBfUsxqEOaaYJcRbJ8KjETmmtnfijGHMxRn2Ji1MxkW/CnIme3tRGPYCA1
+         ySCckXvLgAuhWDSwVuQlhjjFwpw1yHQBSsGmNBEQQCUkYqqgNmwgkECtFyd3ij/NduYc
+         nogw==
+X-Gm-Message-State: AOAM531elVbNyIY811+69UTIlypK+fsLJlDhUx0p71jJnlbJxZZvenzk
+        5hfi7WRn4dHBUNcEGS0G6CwwE6raWyC0B9XpAxc9nQ==
+X-Google-Smtp-Source: ABdhPJxg5NPhOqA+7s9RwIlJJn5Yoqck0Iif3Unmra/z5l6l8oWvomlz3q0ZHTEDjMgJZhagYk2KBczrOl9d1bCcXus=
+X-Received: by 2002:a0c:8203:: with SMTP id h3mr8726142qva.0.1610653776416;
+ Thu, 14 Jan 2021 11:49:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210113012143.1201105-1-minchan@kernel.org> <20210113012143.1201105-4-minchan@kernel.org>
+ <20210114140138.GA2796092@robh.at.kernel.org>
+In-Reply-To: <20210114140138.GA2796092@robh.at.kernel.org>
+From:   Hridya Valsaraju <hridya@google.com>
+Date:   Thu, 14 Jan 2021 11:49:00 -0800
+Message-ID: <CA+wgaPN3=1VOMmBUvHfvo7ePSuNUk9WJ2deSC37GYPmc2mdB-g@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: reserved-memory: Make DMA-BUF CMA
+ heap DT-configurable
+To:     Rob Herring <robh@kernel.org>
+Cc:     Minchan Kim <minchan@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Hyesoo Yu <hyesoo.yu@samsung.com>, david@redhat.com,
+        mhocko@suse.com, Suren Baghdasaryan <surenb@google.com>,
+        "pullip.cho" <pullip.cho@samsung.com>,
+        John Dias <joaodias@google.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Christoph Hellwig <hch@infradead.org>,
+        linaro-mm-sig@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT nodes for the ICSSG0 and ICSSG1 processor subsystems that are
-present on the K3 J721E SoCs. The two ICSSGs are identical to each other
-for the most part, with the ICSSG1 supporting slightly enhanced features
-for supporting SGMII PRU Ethernet. Each ICSSG instance is represented by
-a PRUSS subsystem node and other child nodes. These nodes are enabled by
-default.
+On Thu, Jan 14, 2021 at 6:01 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Jan 12, 2021 at 05:21:42PM -0800, Minchan Kim wrote:
+> > From: Hyesoo Yu <hyesoo.yu@samsung.com>
+> >
+> > Document devicetree binding for chunk cma heap on dma heap framework.
+> >
+> > The DMA chunk heap supports the bulk allocation of higher order pages.
+>
+> Why do we need this? What does this do that CMA doesn't?
+>
+> With a CMA area I can believe a carve out is a common, OS independent
+> thing. This looks too closely tied to some Linux thing to go into DT.
 
-The ICSSGs on K3 J721E SoCs are revised versions of the ICSSG on the first
-AM65x SR1.0 SoCs. The PRU IRAMs are slightly smaller, and the IP includes
-two new auxiliary PRU cores called Tx_PRUs. The Tx_PRUs have 6 KB of IRAMs
-and leverage the same host interrupts as the regular PRU cores. All The
-ICSSG host interrupts intended towards the main Arm core are also shared
-with other processors on the SoC, and can be partitioned as per system
-integration needs.
+Hello Rob,
 
-The ICSSG subsystem node contains the entire address space. The various
-sub-modules of the ICSSG are represented as individual child nodes (so
-platform devices themselves) of the PRUSS subsystem node. These include
-the two PRU cores, two RTU cores, two Tx_PRU cores and the interrupt
-controller. All the Data RAMs are represented within a child node of
-its own named 'memories' without any compatible. The Real Time Media
-Independent Interface controller (MII_RT), the Gigabit capable MII_G_RT
-and the CFG sub-module are represented as syscon nodes. The ICSSG CFG
-sub-module provides two internal clock muxes, and these are represented
-as children of the CFG child node 'clocks' by the 'coreclk-mux' and
-iepclk-mux' clk nodes. The default parents for these mux clocks are also
-defined using the assigned-clock-parents property.
+Thank you for the review!
 
-The DT nodes use all standard properties. The regs property in the
-PRU/RTU/Tx_PRU nodes define the addresses for the Instruction RAM, the
-Debug and Control sub-modules for that PRU core. The firmware for each
-PRU/RTU/Tx_PRU core is defined through a 'firmware-name' property.
+The chunk heap's allocator also allocates from the CMA area. It is,
+however, optimized to perform bulk allocation of higher order pages in
+an efficient manner. For this purpose, the heap needs an exclusive CMA
+area that will only be used for allocation by the heap. This is the
+reason why we need to use the DT to create and configure a reserved
+memory region for use by the chunk CMA heap driver. Since all
+allocation from DMA-BUF heaps happen from the user-space, there is no
+other appropriate device-driver that we can use to register the chunk
+CMA heap and configure the reserved memory region for its use.
 
-The default names for the firmware images for each PRU, RTU and Tx_PRU
-cores are defined as follows (these can be adjusted either in derivative
-board dts files or through sysfs at runtime if required):
- ICSSG0 PRU0 Core    : j7-pru0_0-fw   ; PRU1 Core    : j7-pru0_1-fw
- ICSSG0 RTU0 Core    : j7-rtu0_0-fw   ; RTU1 Core    : j7-rtu0_1-fw
- ICSSG0 Tx_PRU0 Core : j7-txpru0_0-fw ; Tx_PRU1 Core : j7-txpru0_1-fw
- ICSSG1 PRU0 Core    : j7-pru1_0-fw   ; PRU1 Core    : j7-pru1_1-fw
- ICSSG1 RTU0 Core    : j7-rtu1_0-fw   ; RTU1 Core    : j7-rtu1_1-fw
- ICSSG1 Tx_PRU0 Core : j7-txpru1_0-fw ; Tx_PRU1 Core : j7-txpru1_1-fw
+We have been following your guidance in [1] to bind the chunk CMA heap
+driver directly to the reserved_memory region it will allocate from.
+Is there an alternative that we are missing Rob?
 
-Note:
-1. The ICSSG INTC on J721E SoCs share all the host interrupts with other
-   processors, so use the 'ti,irqs-reserved' property in derivative board
-   dts files _if_ any of them should not be handled by the host OS.
-2. There are few more sub-modules like the Industrial Ethernet Peripherals
-   (IEPs), MDIO, PWM, UART that do not have bindings and so will be added
-   in the future.
+[1]: https://lore.kernel.org/lkml/20191025225009.50305-2-john.stultz@linaro.org/T/#m3dc63acd33fea269a584f43bb799a876f0b2b45d
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 262 ++++++++++++++++++++++
- 1 file changed, 262 insertions(+)
+The use-case that we have for the heap currently will allocate memory
+from it from userspace and use the allocated memory to optimize
+4K/8K HDR video playback with a secure DRM HW pipeline.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 2d526ea44a85..605fe557cbb4 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -1647,4 +1647,266 @@ c71_0: dsp@64800000 {
- 		resets = <&k3_reset 15 1>;
- 		firmware-name = "j7-c71_0-fw";
- 	};
-+
-+	icssg0: icssg@b000000 {
-+		compatible = "ti,j721e-icssg";
-+		reg = <0x00 0xb000000 0x00 0x80000>;
-+		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x00 0x0b000000 0x100000>;
-+
-+		icssg0_mem: memories@0 {
-+			reg = <0x0 0x2000>,
-+			      <0x2000 0x2000>,
-+			      <0x10000 0x10000>;
-+			reg-names = "dram0", "dram1",
-+				    "shrdram2";
-+		};
-+
-+		icssg0_cfg: cfg@26000 {
-+			compatible = "ti,pruss-cfg", "syscon";
-+			reg = <0x26000 0x200>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x26000 0x2000>;
-+
-+			clocks {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				icssg0_coreclk_mux: coreclk-mux@3c {
-+					reg = <0x3c>;
-+					#clock-cells = <0>;
-+					clocks = <&k3_clks 119 24>, /* icssg0_core_clk */
-+						 <&k3_clks 119 1>;  /* icssg0_iclk */
-+					assigned-clocks = <&icssg0_coreclk_mux>;
-+					assigned-clock-parents = <&k3_clks 119 1>;
-+				};
-+
-+				icssg0_iepclk_mux: iepclk-mux@30 {
-+					reg = <0x30>;
-+					#clock-cells = <0>;
-+					clocks = <&k3_clks 119 3>,	/* icssg0_iep_clk */
-+						 <&icssg0_coreclk_mux>;	/* core_clk */
-+					assigned-clocks = <&icssg0_iepclk_mux>;
-+					assigned-clock-parents = <&icssg0_coreclk_mux>;
-+				};
-+			};
-+		};
-+
-+		icssg0_mii_rt: mii-rt@32000 {
-+			compatible = "ti,pruss-mii", "syscon";
-+			reg = <0x32000 0x100>;
-+		};
-+
-+		icssg0_mii_g_rt: mii-g-rt@33000 {
-+			compatible = "ti,pruss-mii-g", "syscon";
-+			reg = <0x33000 0x1000>;
-+		};
-+
-+		icssg0_intc: interrupt-controller@20000 {
-+			compatible = "ti,icssg-intc";
-+			reg = <0x20000 0x2000>;
-+			interrupt-controller;
-+			#interrupt-cells = <3>;
-+			interrupts = <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "host_intr0", "host_intr1",
-+					  "host_intr2", "host_intr3",
-+					  "host_intr4", "host_intr5",
-+					  "host_intr6", "host_intr7";
-+		};
-+
-+		pru0_0: pru@34000 {
-+			compatible = "ti,j721e-pru";
-+			reg = <0x34000 0x3000>,
-+			      <0x22000 0x100>,
-+			      <0x22400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-pru0_0-fw";
-+		};
-+
-+		rtu0_0: rtu@4000 {
-+			compatible = "ti,j721e-rtu";
-+			reg = <0x4000 0x2000>,
-+			      <0x23000 0x100>,
-+			      <0x23400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-rtu0_0-fw";
-+		};
-+
-+		tx_pru0_0: txpru@a000 {
-+			compatible = "ti,j721e-tx-pru";
-+			reg = <0xa000 0x1800>,
-+			      <0x25000 0x100>,
-+			      <0x25400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-txpru0_0-fw";
-+		};
-+
-+		pru0_1: pru@38000 {
-+			compatible = "ti,j721e-pru";
-+			reg = <0x38000 0x3000>,
-+			      <0x24000 0x100>,
-+			      <0x24400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-pru0_1-fw";
-+		};
-+
-+		rtu0_1: rtu@6000 {
-+			compatible = "ti,j721e-rtu";
-+			reg = <0x6000 0x2000>,
-+			      <0x23800 0x100>,
-+			      <0x23c00 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-rtu0_1-fw";
-+		};
-+
-+		tx_pru0_1: txpru@c000 {
-+			compatible = "ti,j721e-tx-pru";
-+			reg = <0xc000 0x1800>,
-+			      <0x25800 0x100>,
-+			      <0x25c00 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-txpru0_1-fw";
-+		};
-+	};
-+
-+	icssg1: icssg@b100000 {
-+		compatible = "ti,j721e-icssg";
-+		reg = <0x00 0xb100000 0x00 0x80000>;
-+		power-domains = <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x00 0x0b100000 0x100000>;
-+
-+		icssg1_mem: memories@b100000 {
-+			reg = <0x0 0x2000>,
-+			      <0x2000 0x2000>,
-+			      <0x10000 0x10000>;
-+			reg-names = "dram0", "dram1",
-+				    "shrdram2";
-+		};
-+
-+		icssg1_cfg: cfg@26000 {
-+			compatible = "ti,pruss-cfg", "syscon";
-+			reg = <0x26000 0x200>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x26000 0x2000>;
-+
-+			clocks {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				icssg1_coreclk_mux: coreclk-mux@3c {
-+					reg = <0x3c>;
-+					#clock-cells = <0>;
-+					clocks = <&k3_clks 120 54>, /* icssg1_core_clk */
-+						 <&k3_clks 120 4>;  /* icssg1_iclk */
-+					assigned-clocks = <&icssg1_coreclk_mux>;
-+					assigned-clock-parents = <&k3_clks 120 4>;
-+				};
-+
-+				icssg1_iepclk_mux: iepclk-mux@30 {
-+					reg = <0x30>;
-+					#clock-cells = <0>;
-+					clocks = <&k3_clks 120 9>,	/* icssg1_iep_clk */
-+						 <&icssg1_coreclk_mux>;	/* core_clk */
-+					assigned-clocks = <&icssg1_iepclk_mux>;
-+					assigned-clock-parents = <&icssg1_coreclk_mux>;
-+				};
-+			};
-+		};
-+
-+		icssg1_mii_rt: mii-rt@32000 {
-+			compatible = "ti,pruss-mii", "syscon";
-+			reg = <0x32000 0x100>;
-+		};
-+
-+		icssg1_mii_g_rt: mii-g-rt@33000 {
-+			compatible = "ti,pruss-mii-g", "syscon";
-+			reg = <0x33000 0x1000>;
-+		};
-+
-+		icssg1_intc: interrupt-controller@20000 {
-+			compatible = "ti,icssg-intc";
-+			reg = <0x20000 0x2000>;
-+			interrupt-controller;
-+			#interrupt-cells = <3>;
-+			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "host_intr0", "host_intr1",
-+					  "host_intr2", "host_intr3",
-+					  "host_intr4", "host_intr5",
-+					  "host_intr6", "host_intr7";
-+		};
-+
-+		pru1_0: pru@34000 {
-+			compatible = "ti,j721e-pru";
-+			reg = <0x34000 0x4000>,
-+			      <0x22000 0x100>,
-+			      <0x22400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-pru1_0-fw";
-+		};
-+
-+		rtu1_0: rtu@4000 {
-+			compatible = "ti,j721e-rtu";
-+			reg = <0x4000 0x2000>,
-+			      <0x23000 0x100>,
-+			      <0x23400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-rtu1_0-fw";
-+		};
-+
-+		tx_pru1_0: txpru@a000 {
-+			compatible = "ti,j721e-tx-pru";
-+			reg = <0xa000 0x1800>,
-+			      <0x25000 0x100>,
-+			      <0x25400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-txpru1_0-fw";
-+		};
-+
-+		pru1_1: pru@38000 {
-+			compatible = "ti,j721e-pru";
-+			reg = <0x38000 0x4000>,
-+			      <0x24000 0x100>,
-+			      <0x24400 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-pru1_1-fw";
-+		};
-+
-+		rtu1_1: rtu@6000 {
-+			compatible = "ti,j721e-rtu";
-+			reg = <0x6000 0x2000>,
-+			      <0x23800 0x100>,
-+			      <0x23c00 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-rtu1_1-fw";
-+		};
-+
-+		tx_pru1_1: txpru@c000 {
-+			compatible = "ti,j721e-tx-pru";
-+			reg = <0xc000 0x1800>,
-+			      <0x25800 0x100>,
-+			      <0x25c00 0x100>;
-+			reg-names = "iram", "control", "debug";
-+			firmware-name = "j7-txpru1_1-fw";
-+		};
-+	};
- };
--- 
-2.29.2
+Thank you for all the help and review :)
 
+Regards,
+Hridya
+
+
+
+
+
+
+>
+> >
+> > Signed-off-by: Hyesoo Yu <hyesoo.yu@samsung.com>
+> > Signed-off-by: Minchan Kim <minchan@kernel.org>
+> > Signed-off-by: Hridya Valsaraju <hridya@google.com>
+> > Change-Id: I8fb231e5a8360e2d8f65947e155b12aa664dde01
+>
+> Drop this.
+>
+> > ---
+> >  .../reserved-memory/dma_heap_chunk.yaml       | 58 +++++++++++++++++++
+> >  1 file changed, 58 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml b/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
+> > new file mode 100644
+> > index 000000000000..3e7fed5fb006
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
+> > @@ -0,0 +1,58 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/reserved-memory/dma_heap_chunk.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Device tree binding for chunk heap on DMA HEAP FRAMEWORK
+> > +
+> > +description: |
+> > +  The DMA chunk heap is backed by the Contiguous Memory Allocator (CMA) and
+> > +  supports bulk allocation of fixed size pages.
+> > +
+> > +maintainers:
+> > +  - Hyesoo Yu <hyesoo.yu@samsung.com>
+> > +  - John Stultz <john.stultz@linaro.org>
+> > +  - Minchan Kim <minchan@kernel.org>
+> > +  - Hridya Valsaraju<hridya@google.com>
+>
+> space                  ^
+>
+> > +
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - dma_heap,chunk
+>
+> The format is <vendor>,<something> and 'dma_heap' is not a vendor.
+>
+> > +
+> > +  chunk-order:
+> > +    description: |
+> > +            order of pages that will get allocated from the chunk DMA heap.
+> > +    maxItems: 1
+> > +
+> > +  size:
+> > +    maxItems: 1
+> > +
+> > +  alignment:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - size
+> > +  - alignment
+> > +  - chunk-order
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    reserved-memory {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <1>;
+> > +
+> > +        chunk_memory: chunk_memory {
+> > +            compatible = "dma_heap,chunk";
+> > +            size = <0x3000000>;
+> > +            alignment = <0x0 0x00010000>;
+> > +            chunk-order = <4>;
+> > +        };
+> > +    };
+> > +
+> > +
+> > --
+> > 2.30.0.284.gd98b1dd5eaa7-goog
+> >
