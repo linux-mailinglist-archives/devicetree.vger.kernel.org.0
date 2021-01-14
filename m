@@ -2,96 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 418D42F5922
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 04:32:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9E8A2F5985
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 04:42:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726883AbhANDQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Jan 2021 22:16:54 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:50513 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726819AbhANDQx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Jan 2021 22:16:53 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 232F35C01F3;
-        Wed, 13 Jan 2021 22:15:07 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 13 Jan 2021 22:15:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=R9UFuHjtAK1qQ
-        YI8cmha4Thpo1402hfejrmvtlGfR4Y=; b=TT2Y9XJx6o5kizRNy4MAGIOQ3EFGO
-        zbWTFGak2KnxFNIfwkWuijLkhgnOb1DyiZII5Fedp85p+tp9zpOI2HIkTCIJIegI
-        qtobpI5ut+stQ1OkBlXhcNBrPMJ0rCCzOoXFEPC2v6Pavpj3mj7Qj/LIPGfP7eH/
-        JQAO4V7yEXROBH1KXCOZah1bwL2Iz2u09Jzebi8nU1tpHztxl4YAFCGjshUVg0YI
-        2zsVe7ulI467cEo9TRq/oNlcFpaqLrWIzTKl8ag8LgcuU2XwtFnsV2jQhVxARKhK
-        pybZbAHAn5PGuIq333kA9eKIUtVK9uEkXKxWYmlB46kKe40jqEtT4ENgw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=R9UFuHjtAK1qQYI8cmha4Thpo1402hfejrmvtlGfR4Y=; b=HF7EbpQP
-        8vOfcBDfR5TAbgkPTDRBzLfAudjHZZkyokMXnIBmrF/x3ZPhlrbFoAUDk1eYHJEL
-        UOAeo8ceqvZBVhw6EdZvMexEyik1K1iPIFuHKZTPE4kCJFFD4Ph0LIE/dvkPtlz4
-        8gNX8qBZ9Vxx47cGpV354itsgCMU6ITIKs58HaRiQfulWLBcEhujrcSiAHO6W5F5
-        8yPLxRfxRhSbo9PGX1x+FRPN/7Ag+5fEaib7luhVhOqAZhHVMpHhrNs1a6bs8z+E
-        UyUIyWwkQJ3NjewjZMxA/zgGvw5aLUY7ZrWZij0fXX7+E6ZtXuPuq8mK1f0v1vbu
-        Dv6seHlSr4sdFg==
-X-ME-Sender: <xms:O7f_XzQ9KNy6qlVcmt1i2Zngfasko9imabqjYFTqn8DE00oWVR_tIg>
-    <xme:O7f_X0zjBLAot8hRHOpN8TVeNOWzGVGTYZk81r3LsRyVOAGGwQ5DI0hyNRun331hx
-    CtxGr2aJo7rlfQ59w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedukedrtdeggdehjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghj
-    rdhiugdrrghuqeenucggtffrrghtthgvrhhnpeejgfdvveehteekveeggeellefgleette
-    ejffelffdvudduveeiffegteelvefhteenucfkphepuddukedrvddutddrudejfedrgeek
-    necuvehluhhsthgvrhfuihiivgepgeenucfrrghrrghmpehmrghilhhfrhhomheprghnug
-    hrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:O7f_X41nu78WC1fRtlTfUgy2UjwY3adVvk5f674Cwd2lTS4zbE3xDg>
-    <xmx:O7f_XzAxswI2yVi9TEaOMox5rb1lfz-btQROcPMx3cbyyHJmdfDMkg>
-    <xmx:O7f_X8jVAFkJ70QMsCHniftNNyyC4W8-5U1gRi5Jnt3dOhI7fzHDSg>
-    <xmx:O7f_X4jY3SsE9qekIYxhARj2tVxt3yQ1S8TJhkvNZPBrlcOx5zczKg>
-Received: from localhost.localdomain (ppp118-210-173-48.adl-adc-lon-bras34.tpg.internode.on.net [118.210.173.48])
-        by mail.messagingengine.com (Postfix) with ESMTPA id CC2E724005D;
-        Wed, 13 Jan 2021 22:15:03 -0500 (EST)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-mmc@vger.kernel.org
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
-        adrian.hunter@intel.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, ryan_chen@aspeedtech.com
-Subject: [PATCH v7 6/6] ARM: dts: rainier: Add eMMC clock phase compensation
-Date:   Thu, 14 Jan 2021 13:44:33 +1030
-Message-Id: <20210114031433.2388532-7-andrew@aj.id.au>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210114031433.2388532-1-andrew@aj.id.au>
-References: <20210114031433.2388532-1-andrew@aj.id.au>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726702AbhANDmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Jan 2021 22:42:05 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:33010 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726700AbhANDmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Jan 2021 22:42:04 -0500
+Received: by mail-ot1-f41.google.com with SMTP id b24so4082928otj.0;
+        Wed, 13 Jan 2021 19:41:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=SGWbR3BrTol+d77A+2HgxhYJh6fSWxTvgiIdLTniN8c=;
+        b=GPi++iC9uizoWGa4lcWysUvNojG1sBKmBQFEbm/AOGta4kx6V2ktHbzFT1axAc3kYv
+         m0KF1//BeukeX9zET89eb6wgaQ+87kwUNtPO/CbKabxEKxLYsqUlBNsrWdyKDThwrZ+X
+         ITO/Szu/9iAzDuEUcCOSx3pVxT4iL8V2VF4rNyAJeSpmm+B+XuTttLxXULc+cW8sFDs7
+         gvzWncYL9/gQaRJObvR+EU29KWlAatrZhtkZXXwKv4Kl1AwW0yWXJEC2KZH69KWrmB6p
+         foRXxbsZX6Kr+qTFQJCoPRK7i1+l+TzogJ9RlOG8DO21j8fen31LesXzpkDXaA+NsVIt
+         Khhw==
+X-Gm-Message-State: AOAM532CKeIUAl6UH/TesVPA6pnGH2J4dW1OLaMcmSpz9HEri8/Fe0Sg
+        +Z9Q4nskRdT+8a4ZtDPp7Q==
+X-Google-Smtp-Source: ABdhPJwJa4Z41DmVPHPjJCTeKfDKtkC85EF6YrkJqnUVg+XmnwZsX3pVKhE96duI+Pshf3Hlgke1QQ==
+X-Received: by 2002:a9d:8b6:: with SMTP id 51mr3544813otf.5.1610595683907;
+        Wed, 13 Jan 2021 19:41:23 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g26sm829421otp.52.2021.01.13.19.41.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Jan 2021 19:41:22 -0800 (PST)
+Received: (nullmailer pid 3165653 invoked by uid 1000);
+        Thu, 14 Jan 2021 03:41:22 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20210113160053.3974229-2-dmitry.baryshkov@linaro.org>
+References: <20210113160053.3974229-1-dmitry.baryshkov@linaro.org> <20210113160053.3974229-2-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: misc: qcom,qca6390: add binding for QCA6390 device
+Date:   Wed, 13 Jan 2021 21:41:22 -0600
+Message-Id: <1610595682.023066.3165651.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Determined by scope measurements at speed.
+On Wed, 13 Jan 2021 19:00:52 +0300, Dmitry Baryshkov wrote:
+> Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
+> being controlled through the UART and WiFi being present on PCIe bus.
+> Both blocks share common power sources. Add binding to describe power
+> sequencing required to power up this device.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/misc/qcom,qca6390.yaml           | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/qcom,qca6390.yaml
+> 
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 1 +
- 1 file changed, 1 insertion(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index 21ae880c7530..ab8d37d49f30 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -186,6 +186,7 @@ &pinctrl_emmc_default {
- 
- &emmc {
- 	status = "okay";
-+	clk-phase-mmc-hs200 = <180>, <180>;
- };
- 
- &fsim0 {
--- 
-2.27.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/misc/qcom,qca6390.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/misc/qcom,qca6390.yaml#
+
+See https://patchwork.ozlabs.org/patch/1425839
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
