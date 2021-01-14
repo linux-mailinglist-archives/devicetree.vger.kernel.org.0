@@ -2,71 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D81032F68C8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 19:07:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0EA42F688A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 19:01:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729661AbhANSCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 13:02:44 -0500
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:46434 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729619AbhANSCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 13:02:40 -0500
-Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id A900B3B1A32
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 17:57:10 +0000 (UTC)
-X-Originating-IP: 86.201.233.230
-Received: from localhost.localdomain (lfbn-tou-1-151-230.w86-201.abo.wanadoo.fr [86.201.233.230])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id E5A74FF803;
-        Thu, 14 Jan 2021 17:56:08 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-i3c@lists.infradead.org
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Conor Culhane <conor.culhane@silvaco.com>,
-        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>,
-        Nicolas Pitre <nico@fluxnic.net>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v4 6/6] MAINTAINERS: Add Silvaco I3C master
-Date:   Thu, 14 Jan 2021 18:55:58 +0100
-Message-Id: <20210114175558.17097-7-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210114175558.17097-1-miquel.raynal@bootlin.com>
-References: <20210114175558.17097-1-miquel.raynal@bootlin.com>
+        id S1727680AbhANR6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 12:58:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53612 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727228AbhANR6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 12:58:09 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60079C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 09:57:29 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id q25so5971282otn.10
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 09:57:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QFPvrxij+GioCFvfCkXO9xrU7Tgj4zJb5jbfcOgiV+8=;
+        b=aN9r2QtqgIrFifEGKa8DUuX+2uCAfDdbwKotgaPsUmlpqn1s3865BKVWFfRy50l4vX
+         HRJUElnp7aGSUW/Juy+Y/foiBEAPsOf0BPsT5ObFnQH8N4Swh4E6laKFNqECOnuQgww/
+         x4NsSfZRrFWyf3KqgbWI9whTZNUrI743Y/j/ov5LhMwjV/IX5lEojCmkYU8d2UTTp62h
+         9e2t+asTTptiHbxzmd/u5a4SgZMUlnglf44XFjkNJCUT9F9s3l0muZgWGuxe9Qs5rsw8
+         FAYkhORQbP68mFHE/2C9T/90W1ysDgmiKxAFxjpgzb7XPG3OyxRvuJ3DflitfyPc/xxb
+         oxaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QFPvrxij+GioCFvfCkXO9xrU7Tgj4zJb5jbfcOgiV+8=;
+        b=P5OzrvwzailJxoxg7K0Nr1SBMDRs8NcACSQDJ1g21nyVdgTkaD1/NLTbMVLjGYn2aB
+         9+WHlaBUfbZZcA1ydb6b/kZrYTWz0NqiWWnRuumHj7VeMXGVpDOsfS9iOa0Kxw+SgBBl
+         CG6u96YspPFTjV0P+1tv0sxC6r+IZmMQANFThmqY8TGpWpgTAEQeCqQP2gJ3El23E88S
+         P4OUD7bzyLrEGudUVJAE4h/GNdmhpHzPgKUe+O8Z5wg4Xy8YiXGbqX+dYKfdm90TPBZC
+         nZ74Al3NlS3hvIU2bSRAeqxogeGP0GlYqjiEBA7g/6kwp7udZBVUEfbF/AAxpciWCcdo
+         bR7A==
+X-Gm-Message-State: AOAM530g+FdXI8B+DIUC+JHvbFAIW9HNuKxtS0JSdMLsMBsbXovbsF88
+        //uEB3vmfVv/RzG2se3oF3om/w==
+X-Google-Smtp-Source: ABdhPJzXcwgwbspDBloCZD4UhhQnroMwVPNwyjjjGJNUSqIWrOWEzVgJyuhYHj7k9fcdO4GuJRoP4w==
+X-Received: by 2002:a05:6830:2413:: with SMTP id j19mr5573145ots.251.1610647048752;
+        Thu, 14 Jan 2021 09:57:28 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id q18sm1183378ood.35.2021.01.14.09.57.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 09:57:28 -0800 (PST)
+Date:   Thu, 14 Jan 2021 11:57:26 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-i2c@vger.kernel.org, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] i2c: qup: Introduce SCL/SDA noise rejection
+Message-ID: <YACGBnAbHllCdGNw@builder.lan>
+References: <20210114174909.399284-1-angelogioacchino.delregno@somainline.org>
+ <20210114174909.399284-3-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210114174909.399284-3-angelogioacchino.delregno@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Conor and myself as maintainers.
+On Thu 14 Jan 11:49 CST 2021, AngeloGioacchino Del Regno wrote:
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> Some I2C devices may be glitchy due to electrical noise coming
+> from the device itself or because of possible board design issues.
+> To overcome this issue, the QUP's I2C in Qualcomm SoCs supports
+> a noise rejection setting for both SCL and SDA lines.
+> 
+> Introduce a setting for noise rejection through device properties,
+> "qcom,noise-reject-sda" and "qcom,noise-reject-scl", which will
+> be used to set the level of noise rejection sensitivity.
+> If the properties are not specified, noise rejection will not be
+> enabled.
+> 
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 546aa66428c9..caa4e1ea32a7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16237,6 +16237,14 @@ S:	Maintained
- F:	Documentation/fb/sm712fb.rst
- F:	drivers/video/fbdev/sm712*
- 
-+SILVACO I3C DUAL-ROLE MASTER
-+M:	Miquel Raynal <miquel.raynal@bootlin.com>
-+M:	Conor Culhane <conor.culhane@silvaco.com>
-+L:	linux-i3c@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
-+F:	drivers/i3c/master/svc-i3c-master.c
-+
- SIMPLE FIRMWARE INTERFACE (SFI)
- S:	Obsolete
- W:	http://simplefirmware.org/
--- 
-2.20.1
+This looks reasonable, just some small nits below.
 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> ---
+>  drivers/i2c/busses/i2c-qup.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-qup.c b/drivers/i2c/busses/i2c-qup.c
+> index 5a47915869ae..af51234a60ba 100644
+> --- a/drivers/i2c/busses/i2c-qup.c
+> +++ b/drivers/i2c/busses/i2c-qup.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/acpi.h>
+>  #include <linux/atomic.h>
+>  #include <linux/clk.h>
+> +#include <linux/bitfield.h>
+
+If you move this one step up you'll maintain the sort order.
+
+>  #include <linux/delay.h>
+>  #include <linux/dmaengine.h>
+>  #include <linux/dmapool.h>
+> @@ -39,6 +40,8 @@
+>  #define QUP_MX_READ_CNT		0x208
+>  #define QUP_IN_FIFO_BASE	0x218
+>  #define QUP_I2C_CLK_CTL		0x400
+> +#define  QUP_I2C_CLK_CTL_SDA_NR	GENMASK(27, 26)
+> +#define  QUP_I2C_CLK_CTL_SCL_NR	GENMASK(25, 24)
+>  #define QUP_I2C_STATUS		0x404
+>  #define QUP_I2C_MASTER_GEN	0x408
+>  
+> @@ -1663,6 +1666,7 @@ static int qup_i2c_probe(struct platform_device *pdev)
+>  	int ret, fs_div, hs_div;
+>  	u32 src_clk_freq = DEFAULT_SRC_CLK;
+>  	u32 clk_freq = DEFAULT_CLK_FREQ;
+> +	u32 noise_reject_scl = 0, noise_reject_sda = 0;
+
+You shouldn't need to initialize these, device_property_read_u32() won't
+return 0 without updating them.
+
+>  	int blocks;
+>  	bool is_qup_v1;
+>  
+> @@ -1860,6 +1864,19 @@ static int qup_i2c_probe(struct platform_device *pdev)
+>  		qup->clk_ctl = ((fs_div / 2) << 16) | (hs_div << 8) | (fs_div & 0xff);
+>  	}
+>  
+> +	/* SCL/SDA Noise rejection (optional) */
+> +	ret = device_property_read_u32(qup->dev, "qcom,noise-reject-scl",
+> +				      &noise_reject_scl);
+> +	if (ret == 0)
+> +		qup->clk_ctl |= FIELD_PREP(QUP_I2C_CLK_CTL_SCL_NR,
+> +					   noise_reject_scl);
+
+I would prefer if you didn't break this line.
+
+> +
+> +	ret = device_property_read_u32(qup->dev, "qcom,noise-reject-sda",
+> +				      &noise_reject_sda);
+> +	if (ret == 0)
+> +		qup->clk_ctl |= FIELD_PREP(QUP_I2C_CLK_CTL_SDA_NR,
+> +					   noise_reject_sda);
+
+Ditto.
+
+Regards,
+Bjorn
+
+> +
+>  	/*
+>  	 * Time it takes for a byte to be clocked out on the bus.
+>  	 * Each byte takes 9 clock cycles (8 bits + 1 ack).
+> -- 
+> 2.29.2
+> 
