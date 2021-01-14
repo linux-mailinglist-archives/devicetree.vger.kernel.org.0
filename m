@@ -2,143 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 737732F61F3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:28:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 770182F61FE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 14:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728817AbhANN1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 08:27:16 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:46881 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbhANN1P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 08:27:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1610630835; x=1642166835;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Lxcchmlm8obu3rlFf5uFKJiK+GEdYu44ZP1HH6VEu0A=;
-  b=Nrhx9MW1tvHUF3jfkYeegLYzahZdfCAyrlI6oHUmPYsbRpXqa5DCJpJL
-   0ij5VIDwp0IPVCEMT+WKF7WiKrOJe3/pCsOAO5fOWpiJ3LXItpJHpgRJ4
-   zvFFMWN0oMw0Brv7tR0o6PZ9zY0S0viM8zRO5OE+p8RLOS0xdHtqfFm9z
-   CqKZMw0OySSEJYF13d6CO33e7Z6sn+MPtm6NpoNIJNEbDZhMVzuN8TmQ9
-   0XEogWYfa8BLE5DPnmKSXrNDSB+zm7t0UuNm5REXwBzDgR5WGYxSASEiP
-   +h82tUqfSCgRQsqbHkZPYrw/yjopKGGAvUZIxZdGpCx1lW/MUWvx7EQQr
-   Q==;
-IronPort-SDR: HS83lwaP6ijJaUvp1aN1KbgF8STYQ5+aTFT8pX7xB14EikaZUu4n6lI4Vwkw5hfiLw2vD4Iiym
- /716B0oD02hyloapviCb9KSbKhn/UDdpYekkrcardj4jwgKjRMDIiqfX1zBivl+qksOq26SXEc
- CgRDudCe7rsMFyfWSPVsC6xxbjwHabPqktzASzzQIy7w2YDCt3CRtUtGh1/OVR8nVVsJWjwFnr
- /KWzW8ATlfZZMCKEIn3BWzr37cEXQw+o3eXpNATgPbGZM/178WJCvd35+gJBL+97XqmlM6QXtF
- OEY=
-X-IronPort-AV: E=Sophos;i="5.79,347,1602572400"; 
-   d="scan'208";a="111032907"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Jan 2021 06:25:57 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 14 Jan 2021 06:25:57 -0700
-Received: from tyr.hegelund-hansen.dk (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 14 Jan 2021 06:25:55 -0700
-Message-ID: <f819a37076d8bbb49b7c3288c03b75e23d4eb6f9.camel@microchip.com>
-Subject: Re: [PATCH 1/3] dt-bindings: reset: microchip sparx5 reset driver
- bindings
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Date:   Thu, 14 Jan 2021 14:25:54 +0100
-In-Reply-To: <80d4d9b16628847c59a7f94a7c002d8ce859b0ca.camel@pengutronix.de>
-References: <20210113201915.2734205-1-steen.hegelund@microchip.com>
-         <20210113201915.2734205-2-steen.hegelund@microchip.com>
-         <80d4d9b16628847c59a7f94a7c002d8ce859b0ca.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3 
+        id S1727255AbhANN2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 08:28:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51814 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727059AbhANN2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 08:28:51 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8F0C061575
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 05:28:10 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id d13so5738410wrc.13
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 05:28:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=dlcz7oRn2yaQTqvuHBDSXrktv8ILXcA2nR44UFm0ZcI=;
+        b=rsh00TpiE4oLzBqWSh7ccwDvLeX0X61gVe+od40kGrmW6UG3ZLM8GGXAIqphpNhiRS
+         8wTDbLz7QVdCu1p9Md642s7HT3LOMf9tkkKTrD9Sm5IX6RrnoT6/dR18nEO4+/glrsD6
+         qJbx+woz5zMoB/gAFsxvHfVa79sb+V8H0wnuMiqyrzvaSrhoBfg6gXCPrFRPvW4124rc
+         ZWDGdmFpZ1nMCnHJQzt2xSdfDUtNkT6Pa6ov+ivsq73tj5NUE/BIDz7+0jeVr1Dm7rwo
+         yX28gukG73v9nAaQpTqdfsVgWuDpb1yw3gtrAqYZJPMkVBueQlwruB7kd4/QekKm8Akm
+         jVoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=dlcz7oRn2yaQTqvuHBDSXrktv8ILXcA2nR44UFm0ZcI=;
+        b=EMj5qmnejWMRTU4fbRg9zO5SsK+bY49a8evJ6NIAiwlznz3PKmqfjb0XW75Epz/RlP
+         6YqBVy0efoizeraGrl5KQJNcOQEmlUZZ/1kM1kbhHp/TT22VwyLf51Z12oeu4+nNPLJC
+         tt2FLPdUHN31oMXQGc2HlVz1Op5dN5FBixqwtUX8mFdA5TAx0/cJuah8dJMSghyYwsQF
+         bH6MgjfHU0e//BpW5lBBflmA3b1EBTPbnfOQBaK/JgEITD/1T9YrYDpII3e+EGHagnFg
+         +DP34qQfIkqYdhlDcQ6UIBOJdF14EMCXU4DTrsmQrCDvvOIm53vJeoGp/G+CxSXKUV1L
+         yUmQ==
+X-Gm-Message-State: AOAM5303hxwuABP5rPmXgFohc5PAHhDBLcOupOA9KLu49gBt+nbnPh0A
+        +BkrP9o982W5TyrxxUriL1Ul0hyQ+piNtHUq
+X-Google-Smtp-Source: ABdhPJxlj7+hO1id7PH/koLlxYaZ/bWvUGu5JPGMcwurs3OkFnOErAadchHhsBTj64KFJq5paFBVpQ==
+X-Received: by 2002:adf:b343:: with SMTP id k3mr7844050wrd.202.1610630889619;
+        Thu, 14 Jan 2021 05:28:09 -0800 (PST)
+Received: from dell ([91.110.221.178])
+        by smtp.gmail.com with ESMTPSA id b19sm8116213wmj.37.2021.01.14.05.28.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 05:28:09 -0800 (PST)
+Date:   Thu, 14 Jan 2021 13:28:07 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: mfd: gateworks-gsc: Add fan-tach mode
+Message-ID: <20210114132807.GW3975472@dell>
+References: <1609183716-26529-1-git-send-email-tharvey@gateworks.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1609183716-26529-1-git-send-email-tharvey@gateworks.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philipp,
+On Mon, 28 Dec 2020, Tim Harvey wrote:
 
-
-On Thu, 2021-01-14 at 10:39 +0100, Philipp Zabel wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you
-> know the content is safe
+> In 7497d4a66c59 ("hwmon: (gsc-hwmon) add fan sensor") a mode
+> was added to report RPM's from a fan tach input.
 > 
-> Hi Steen,
+> Add this mode to the dt-bindings for the Gateworks System Controller.
 > 
-> On Wed, 2021-01-13 at 21:19 +0100, Steen Hegelund wrote:
-> > Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> > ---
-> >  .../bindings/reset/microchip,rst.yaml         | 52
-> > +++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > new file mode 100644
-> > index 000000000000..b5526753e85d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > @@ -0,0 +1,52 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Microchip Sparx5 Switch Reset Controller
-> > +
-> > +maintainers:
-> > +  - Steen Hegelund <steen.hegelund@microchip.com>
-> > +  - Lars Povlsen <lars.povlsen@microchip.com>
-> > +
-> > +description: |
-> > +  The Microchip Sparx5 Switch provides reset control and
-> > implements the following
-> > +  functions
-> > +    - One Time Switch Core Reset (Soft Reset)
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^reset-controller@[0-9a-f]+$"
-> > +
-> > +  compatible:
-> > +    const: microchip,sparx5-switch-reset
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#reset-cells":
-> > +    const: 1
-> > +
-> > +  syscons:
-> > +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> > +    description: Array of syscons used to access reset registers
-> > +    minItems: 2
-> 
-> The order seems to be important in the driver, so this should specify
-> which is the CPU syscon and which is the GCB syscon. I'm not sure if
-> it
-> would be better to have two separately named syscon properties with a
-> single phandle each.
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 
-Yes you got a point.  I will change that.
+Applied, thanks.
 
-> 
-> regards
-> Philipp
-
-BR
-Steen
-
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
