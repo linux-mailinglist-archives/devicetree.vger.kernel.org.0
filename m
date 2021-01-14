@@ -2,172 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B7BC2F5FAF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D00502F5F9E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 12:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727828AbhANLTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 06:19:22 -0500
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:53162 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726262AbhANLTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 06:19:20 -0500
-Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 148523B2D11;
-        Thu, 14 Jan 2021 11:03:39 +0000 (UTC)
-X-Originating-IP: 86.202.109.140
-Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 5EAE2FF802;
-        Thu, 14 Jan 2021 11:02:15 +0000 (UTC)
-Date:   Thu, 14 Jan 2021 12:02:14 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Steen Hegelund <steen.hegelund@microchip.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v12 1/4] dt-bindings: phy: Add sparx5-serdes bindings
-Message-ID: <20210114110214.GY3654@piout.net>
-References: <20210107091924.1569575-1-steen.hegelund@microchip.com>
- <20210107091924.1569575-2-steen.hegelund@microchip.com>
+        id S1726740AbhANLPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 06:15:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40960 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726497AbhANLPh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 06:15:37 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 23634238A1;
+        Thu, 14 Jan 2021 11:14:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610622896;
+        bh=HEn6x8XwIMQYX5cf2Cfwj/acaJyDmQOqh8W59GekF8E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V7u08RCLdM+KtZsvcdKRaIMwQwwW+USMkLqv2FG95OT9E3vTITF7t82wi97ZJqYog
+         trIPVU4lmVePaaR7vfeitaonyAmiKNYCM0keKY9/HxE20EFIl02QNkvTzVzwWk7GGC
+         u1iuXXs+6pLCsJ23d1+AmpL7iTKgAJMoq7akF+4EnW9epo6tq8Mc3VWvWw8rTqmP5l
+         FCwB5wG6gCBQHqyuC1ec23U3TmMaoT1ivo/D0hu0/UqfH6ImGVo1P60KQdWzBhHbOm
+         z3XW/LW+3zL5ygnfZO/xpQU+PAheuw3LsLhrXGO44JBJuJ+/XPo3SsEr7xDV2H6lUh
+         VQEJiOuajCz9g==
+Date:   Thu, 14 Jan 2021 11:14:22 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     Rob Herring <robh@kernel.org>, kuninori.morimoto.gx@renesas.com,
+        nsaenzjulienne@suse.de, f.fainelli@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/6] dt-bindings: audio-graph-card: Add plls and
+ sysclks properties
+Message-ID: <20210114111422.GA4854@sirena.org.uk>
+References: <20210108160501.7638-1-rf@opensource.cirrus.com>
+ <20210108160501.7638-3-rf@opensource.cirrus.com>
+ <20210113152225.GA2334778@robh.at.kernel.org>
+ <c12a846f-9e79-4646-e7f4-397f074eb613@opensource.cirrus.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pf9I7BMVVzbSWLtt"
 Content-Disposition: inline
-In-Reply-To: <20210107091924.1569575-2-steen.hegelund@microchip.com>
+In-Reply-To: <c12a846f-9e79-4646-e7f4-397f074eb613@opensource.cirrus.com>
+X-Cookie: You have taken yourself too seriously.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2021 10:19:21+0100, Steen Hegelund wrote:
-> Document the Sparx5 ethernet serdes phy driver bindings.
-> 
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-> ---
->  .../bindings/phy/microchip,sparx5-serdes.yaml | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> new file mode 100644
-> index 000000000000..bdbdb3bbddbe
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip Sparx5 Serdes controller
-> +
-> +maintainers:
-> +  - Steen Hegelund <steen.hegelund@microchip.com>
-> +
-> +description: |
-> +  The Sparx5 SERDES interfaces share the same basic functionality, but
-> +  support different operating modes and line rates.
-> +
-> +  The following list lists the SERDES features:
-> +
-> +  * RX Adaptive Decision Feedback Equalizer (DFE)
-> +  * Programmable continuous time linear equalizer (CTLE)
-> +  * Rx variable gain control
-> +  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
-> +  * Adjustable tx de-emphasis (FFE)
-> +  * Tx output amplitude control
-> +  * Supports rx eye monitor
-> +  * Multiple loopback modes
-> +  * Prbs generator and checker
-> +  * Polarity inversion control
-> +
-> +  SERDES6G:
-> +
-> +  The SERDES6G is a high-speed SERDES interface, which can operate at
-> +  the following data rates:
-> +
-> +  * 100 Mbps (100BASE-FX)
-> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-> +
-> +  SERDES10G
-> +
-> +  The SERDES10G is a high-speed SERDES interface, which can operate at
-> +  the following data rates:
-> +
-> +  * 100 Mbps (100BASE-FX)
-> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-> +  * 5 Gbps (QSGMII/USGMII)
-> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-> +  * 10 Gbps (10G-USGMII)
-> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-> +
-> +  SERDES25G
-> +
-> +  The SERDES25G is a high-speed SERDES interface, which can operate at
-> +  the following data rates:
-> +
-> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-> +  * 5 Gbps (QSGMII/USGMII)
-> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-> +  * 10 Gbps (10G-USGMII)
-> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-> +  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^serdes@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    const: microchip,sparx5-serdes
-> +
-> +  reg:
-> +    minItems: 1
-> +
-> +  '#phy-cells':
-> +    const: 1
-> +    description: |
-> +      - The main serdes input port
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#phy-cells'
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    serdes: serdes@10808000 {
-> +      compatible = "microchip,sparx5-serdes";
-> +      #phy-cells = <1>;
-> +      clocks = <&sys_clk>;
-> +      reg = <0x10808000 0x5d0000>;
-> +    };
-> +
-> +...
-> -- 
-> 2.29.2
-> 
+--pf9I7BMVVzbSWLtt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+On Thu, Jan 14, 2021 at 10:31:10AM +0000, Richard Fitzgerald wrote:
+> On 13/01/2021 15:22, Rob Herring wrote:
+
+> > This appears to all be configuration of clocks within the codec, so
+> > these properties belong in the codec or cpu nodes.
+
+> audio-graph-card doesn't have codec or cpu nodes. Those were in
+> simple-card but are replaced in audio-graph-card by a simple phandle
+> array forming a graph.
+
+> I could assume that all clock settings apply to the codec and that there
+> is only ever one codec in an audio-graph-card configuration.
+
+The suggestion here is to put properties in the node for the relevant
+device rather than the card.
+
+--pf9I7BMVVzbSWLtt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAAJ44ACgkQJNaLcl1U
+h9C5hgf/c2ZJGYL10xAvFbrBmbviZFuAh9cGNdSkafHv1OUH4E5CZNwTOSCwi+CE
+fJ7wykl1RjbEdTBdW0LFyMN47/dHLLFh2579jfRqVgBlEHn9oRLyfdJZjhjbrFfb
+FApz80U1oaVv6OlzmGdpzXvtuyqBooIt9yYyd3n9yFWWoetQGT9gn/ulWrrL3qyh
+J5GYZl0aoCdzxl2pA++666p7B5SYtwedDO+NeRVpuHVSvz/nFl7JKHoQWYaVXTmx
+0MTbcB+BtfSwN73s1YQW7CXmi+Pa2nDg552Wfld2eSf/lYnqBpPohF0jU05OAb1y
+vPPBJMABELNIG8+Cod8+RCi7wDzaLQ==
+=3PWv
+-----END PGP SIGNATURE-----
+
+--pf9I7BMVVzbSWLtt--
