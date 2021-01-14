@@ -2,207 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55FED2F6B80
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:52:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78BF12F6B9F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 20:58:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730366AbhANTuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 14:50:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
+        id S1730052AbhANT60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 14:58:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728954AbhANTuR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:50:17 -0500
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83004C061757
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 11:49:37 -0800 (PST)
-Received: by mail-qv1-xf2b.google.com with SMTP id j18so2893079qvu.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 11:49:37 -0800 (PST)
+        with ESMTP id S1729069AbhANT60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 14:58:26 -0500
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2F8C061575;
+        Thu, 14 Jan 2021 11:57:46 -0800 (PST)
+Received: by mail-oo1-xc34.google.com with SMTP id j8so1664363oon.3;
+        Thu, 14 Jan 2021 11:57:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1zizu37IibkwemqdpaRibOtXAnbLUYIiJx9hqRg2s88=;
-        b=lZuSvDEQF58ZhFUbCoGE7Z1jJ0Pgx9eBL7AutBdLexq9l7vgjFbNBQ/t/RJjUKnjHD
-         7MsVYJMUFtuEZoGw1eSN4SXhmY5cjknh2f22PaDk8I/h5UtJUjzK1g/mh6q0eqnh7eyA
-         s1ORXdVuLbiCUmtQ+vHj5qLyNfb+c0pPYuwRzWmrARQHJLuHYDqaJmYe6q3/SgrvD63l
-         h9of/4WDTqdjE+op+7GXn+hQUqqnLfdxfpb8YSm0bqDkq1y4BVUdVdcOtDW0EE9VSAUa
-         yw9Ji7vhJ5BNKZOEkYlz5NXRCmde9qsOCdo3PAREsrbZOMLm4pI2YDxbEecqQETmwYic
-         nmYQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=syC+eoDuMnnkg3JHLhJFFPrmvuYEpcdHPmE2Pdh377A=;
+        b=TGxMNi7kerF0tEfZ8rPOd5ItzSjo04/mPeKO+XYgHqc7qBPwZ1Ti3eNunNv/m+2mCQ
+         KyO/eoaf5EY0nv/Pi0A2RhgyNGEQTsdeVxbdpztKE4aAB3FtWjkZzDQxw2IniO5RA3mG
+         y0/47bDt8Fph+db18oqaTTz/PDmF/H5fiWM2zszIi3YthwjAvA+NM9kbDo3/hkbz2pVP
+         crVBdiM1k0yKYyxJJrb7+ksMN/fxY4o+aYGrgehzzATgjGAHqRLMdSkOLTIcG3YVxJBT
+         nEBHLryW/d6HILFbbwSzOqVRAlhI+eNHyCgYFtu1FSH93OSsgrDUMQT6f8mOjbD98YJG
+         zTag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1zizu37IibkwemqdpaRibOtXAnbLUYIiJx9hqRg2s88=;
-        b=qOeAyzSWd4SOttpk07GthbRs+BRYZiQqP9yGnHRuHobBuSms9DzsTLcJbd2ReSt1Cp
-         a828ELn7njzhpopVXv2rhvjO6ZQmuauNSkqx8Ly4clQ9bfyTGQwuA08iwoHyHukAfNRx
-         pLr8++aHfmEiOLXvgcfzhg2SSpaXCXVRxDKLeYRnT8vxr2snTCQiGvp0RC2iHKf0og5y
-         /4qBzEreB/zBfUsxqEOaaYJcRbJ8KjETmmtnfijGHMxRn2Ji1MxkW/CnIme3tRGPYCA1
-         ySCckXvLgAuhWDSwVuQlhjjFwpw1yHQBSsGmNBEQQCUkYqqgNmwgkECtFyd3ij/NduYc
-         nogw==
-X-Gm-Message-State: AOAM531elVbNyIY811+69UTIlypK+fsLJlDhUx0p71jJnlbJxZZvenzk
-        5hfi7WRn4dHBUNcEGS0G6CwwE6raWyC0B9XpAxc9nQ==
-X-Google-Smtp-Source: ABdhPJxg5NPhOqA+7s9RwIlJJn5Yoqck0Iif3Unmra/z5l6l8oWvomlz3q0ZHTEDjMgJZhagYk2KBczrOl9d1bCcXus=
-X-Received: by 2002:a0c:8203:: with SMTP id h3mr8726142qva.0.1610653776416;
- Thu, 14 Jan 2021 11:49:36 -0800 (PST)
-MIME-Version: 1.0
-References: <20210113012143.1201105-1-minchan@kernel.org> <20210113012143.1201105-4-minchan@kernel.org>
- <20210114140138.GA2796092@robh.at.kernel.org>
-In-Reply-To: <20210114140138.GA2796092@robh.at.kernel.org>
-From:   Hridya Valsaraju <hridya@google.com>
-Date:   Thu, 14 Jan 2021 11:49:00 -0800
-Message-ID: <CA+wgaPN3=1VOMmBUvHfvo7ePSuNUk9WJ2deSC37GYPmc2mdB-g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: reserved-memory: Make DMA-BUF CMA
- heap DT-configurable
-To:     Rob Herring <robh@kernel.org>
-Cc:     Minchan Kim <minchan@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        linux-mm <linux-mm@kvack.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Hyesoo Yu <hyesoo.yu@samsung.com>, david@redhat.com,
-        mhocko@suse.com, Suren Baghdasaryan <surenb@google.com>,
-        "pullip.cho" <pullip.cho@samsung.com>,
-        John Dias <joaodias@google.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Christoph Hellwig <hch@infradead.org>,
-        linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=syC+eoDuMnnkg3JHLhJFFPrmvuYEpcdHPmE2Pdh377A=;
+        b=TvXB1zOGgi7suI1YRIoREhtVURyRnG7lgYrb3Qefv++wF8JX2zXHiUE6ioBh/4Ge1Q
+         kW1O/IMwjT3HPzxu7VKAR8MADJLN0vCYJsqlbyBtu5oSEDYSyfg4IUffQrKvEyaSn3v1
+         SHcEM66/5r5R+THpyago3huIhzQTAO2YmPFTCZ9KD60DtIMXJu6c1+L7qDx2dplfL+hx
+         El2oul2vyMKvHmlqUAKPvdSyjDGpIuK96yVsbyWKQl0v8xnE0ICWnu1LIQ0I9k9POX34
+         6sG4roa0NeprAll2MYGnb/NexmjZLdh7XrSZO6av0Xd8k4oo54tjIrQOFZQnn34t0wcJ
+         6FBQ==
+X-Gm-Message-State: AOAM532CY16dPpKVOKlo3bNsowW6nhMEhOMJ7tND3H207Uc9g6+ooGfY
+        TG7lhwjVng1F1QWTeWbBqg==
+X-Google-Smtp-Source: ABdhPJw/Y2UEAMCQ5R4rchBr33l9lt+rMyzXat5++Yog4HY2+Jyxz5lrxRPMg14JaqERvd/yo+rbTw==
+X-Received: by 2002:a4a:98a3:: with SMTP id a32mr5754406ooj.51.1610654265615;
+        Thu, 14 Jan 2021 11:57:45 -0800 (PST)
+Received: from threadripper.novatech-llc.local ([216.21.169.52])
+        by smtp.gmail.com with ESMTPSA id e17sm1244820otk.64.2021.01.14.11.57.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 14 Jan 2021 11:57:44 -0800 (PST)
+From:   George McCollister <george.mccollister@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        George McCollister <george.mccollister@gmail.com>
+Subject: [PATCH net-next v5 0/3] Arrow SpeedChips XRS700x DSA Driver
+Date:   Thu, 14 Jan 2021 13:57:31 -0600
+Message-Id: <20210114195734.55313-1-george.mccollister@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 14, 2021 at 6:01 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Jan 12, 2021 at 05:21:42PM -0800, Minchan Kim wrote:
-> > From: Hyesoo Yu <hyesoo.yu@samsung.com>
-> >
-> > Document devicetree binding for chunk cma heap on dma heap framework.
-> >
-> > The DMA chunk heap supports the bulk allocation of higher order pages.
->
-> Why do we need this? What does this do that CMA doesn't?
->
-> With a CMA area I can believe a carve out is a common, OS independent
-> thing. This looks too closely tied to some Linux thing to go into DT.
+This series adds a DSA driver for the Arrow SpeedChips XRS 7000 series
+of HSR/PRP gigabit switch chips.
 
-Hello Rob,
+The chips use Flexibilis IP.
+More information can be found here:
+ https://www.flexibilis.com/products/speedchips-xrs7000/
 
-Thank you for the review!
+The switches have up to three RGMII ports and one MII port and are
+managed via mdio or i2c. They use a one byte trailing tag to identify
+the switch port when in managed mode so I've added a tag driver which
+implements this.
 
-The chunk heap's allocator also allocates from the CMA area. It is,
-however, optimized to perform bulk allocation of higher order pages in
-an efficient manner. For this purpose, the heap needs an exclusive CMA
-area that will only be used for allocation by the heap. This is the
-reason why we need to use the DT to create and configure a reserved
-memory region for use by the chunk CMA heap driver. Since all
-allocation from DMA-BUF heaps happen from the user-space, there is no
-other appropriate device-driver that we can use to register the chunk
-CMA heap and configure the reserved memory region for its use.
+This series contains minimal DSA functionality which may be built upon
+in future patches. The ultimate goal is to add HSR and PRP
+(IEC 62439-3 Clause 5 & 4) offloading with integration into net/hsr.
 
-We have been following your guidance in [1] to bind the chunk CMA heap
-driver directly to the reserved_memory region it will allocate from.
-Is there an alternative that we are missing Rob?
+Changes since v1:
+ * Use central TX reallocation in tag driver. (Andrew Lunn)
+ * Code style fixes. (Andrew Lunn, Vladimir Oltean)
+ * Code simplifications. (Andrew Lunn, Vladimir Oltean)
+ * Verify detected switch matches compatible. (Andrew Lunn)
+ * Add inbound policy to allow BPDUs. (Andrew Lunn)
+ * Move files into their own subdir. (Vladimir Oltean)
+ * Automate regmap field allocation. (Vladimir Oltean)
+ * Move setting link speed to .mac_link_up. (Vladimir Oltean)
+ * Use different compatible strings for e/f variants.
 
-[1]: https://lore.kernel.org/lkml/20191025225009.50305-2-john.stultz@linaro.org/T/#m3dc63acd33fea269a584f43bb799a876f0b2b45d
+Changes since v2:
+ * Export constant xrs700x_info symbols. (Jakub Kicinski)
+ * Report stats via .get_stats64. (Jakub Kicinski, Vladimir Oltean)
+ * Use a 3 second polling rate for counters.
 
-The use-case that we have for the heap currently will allocate memory
-from it from userspace and use the allocated memory to optimize
-4K/8K HDR video playback with a secure DRM HW pipeline.
+Changes since v3:
+ * Builds against net-next now that get_stats64 commit has been merged.
+ * Don't show status in devicetree examples. (Rob Herring)
+ * Use ethernet-port(s) in devicetree examples. (Rob Herring)
+ * Use strscpy() instead of strlcpy().
 
-Thank you for all the help and review :)
+Changes since v4:
+ * Removed some unneeded includes. (Vladimir Oltean)
+ * Remove unneeded call to skb_linearize(). (Vladimir Oltean)
+ * Make naming of variables more consistent. (Vladimir Oltean)
+ * Use VLAN_N_VID instead of creating a define for MAX_VLAN.
+   (Florian Fainelli)
+ * Use devm_kcalloc instead of devm_kzalloc where appropriate.
+   (Vladimir Oltean)
+ * Use eth_stp_addr and write BPDU inbound policy address in a loop.
+   (Florian Fainelli)
+ * Set i2c/mdio data before registering. (Florian Fainelli)
 
-Regards,
-Hridya
+George McCollister (3):
+  dsa: add support for Arrow XRS700x tag trailer
+  net: dsa: add Arrow SpeedChips XRS700x driver
+  dt-bindings: net: dsa: add bindings for xrs700x switches
 
+ .../devicetree/bindings/net/dsa/arrow,xrs700x.yaml |  73 +++
+ drivers/net/dsa/Kconfig                            |   2 +
+ drivers/net/dsa/Makefile                           |   1 +
+ drivers/net/dsa/xrs700x/Kconfig                    |  26 +
+ drivers/net/dsa/xrs700x/Makefile                   |   4 +
+ drivers/net/dsa/xrs700x/xrs700x.c                  | 622 +++++++++++++++++++++
+ drivers/net/dsa/xrs700x/xrs700x.h                  |  42 ++
+ drivers/net/dsa/xrs700x/xrs700x_i2c.c              | 150 +++++
+ drivers/net/dsa/xrs700x/xrs700x_mdio.c             | 163 ++++++
+ drivers/net/dsa/xrs700x/xrs700x_reg.h              | 203 +++++++
+ include/net/dsa.h                                  |   2 +
+ net/dsa/Kconfig                                    |   6 +
+ net/dsa/Makefile                                   |   1 +
+ net/dsa/tag_xrs700x.c                              |  61 ++
+ 14 files changed, 1356 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+ create mode 100644 drivers/net/dsa/xrs700x/Kconfig
+ create mode 100644 drivers/net/dsa/xrs700x/Makefile
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x.c
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x.h
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x_i2c.c
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x_mdio.c
+ create mode 100644 drivers/net/dsa/xrs700x/xrs700x_reg.h
+ create mode 100644 net/dsa/tag_xrs700x.c
 
+-- 
+2.11.0
 
-
-
-
->
-> >
-> > Signed-off-by: Hyesoo Yu <hyesoo.yu@samsung.com>
-> > Signed-off-by: Minchan Kim <minchan@kernel.org>
-> > Signed-off-by: Hridya Valsaraju <hridya@google.com>
-> > Change-Id: I8fb231e5a8360e2d8f65947e155b12aa664dde01
->
-> Drop this.
->
-> > ---
-> >  .../reserved-memory/dma_heap_chunk.yaml       | 58 +++++++++++++++++++
-> >  1 file changed, 58 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml b/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
-> > new file mode 100644
-> > index 000000000000..3e7fed5fb006
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
-> > @@ -0,0 +1,58 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/reserved-memory/dma_heap_chunk.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Device tree binding for chunk heap on DMA HEAP FRAMEWORK
-> > +
-> > +description: |
-> > +  The DMA chunk heap is backed by the Contiguous Memory Allocator (CMA) and
-> > +  supports bulk allocation of fixed size pages.
-> > +
-> > +maintainers:
-> > +  - Hyesoo Yu <hyesoo.yu@samsung.com>
-> > +  - John Stultz <john.stultz@linaro.org>
-> > +  - Minchan Kim <minchan@kernel.org>
-> > +  - Hridya Valsaraju<hridya@google.com>
->
-> space                  ^
->
-> > +
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - dma_heap,chunk
->
-> The format is <vendor>,<something> and 'dma_heap' is not a vendor.
->
-> > +
-> > +  chunk-order:
-> > +    description: |
-> > +            order of pages that will get allocated from the chunk DMA heap.
-> > +    maxItems: 1
-> > +
-> > +  size:
-> > +    maxItems: 1
-> > +
-> > +  alignment:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - size
-> > +  - alignment
-> > +  - chunk-order
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    reserved-memory {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <1>;
-> > +
-> > +        chunk_memory: chunk_memory {
-> > +            compatible = "dma_heap,chunk";
-> > +            size = <0x3000000>;
-> > +            alignment = <0x0 0x00010000>;
-> > +            chunk-order = <4>;
-> > +        };
-> > +    };
-> > +
-> > +
-> > --
-> > 2.30.0.284.gd98b1dd5eaa7-goog
-> >
