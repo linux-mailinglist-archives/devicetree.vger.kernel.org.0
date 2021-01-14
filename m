@@ -2,127 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6877A2F6E97
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 23:51:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4CE32F6EAF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 23:56:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730887AbhANWuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 17:50:20 -0500
-Received: from m-r2.th.seeweb.it ([5.144.164.171]:59199 "EHLO
-        m-r2.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730737AbhANWuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 17:50:19 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 517DF3EFD5;
-        Thu, 14 Jan 2021 23:49:22 +0100 (CET)
-Subject: Re: [PATCH 1/9] clk: qcom: gcc-msm8998: Wire up gcc_mmss_gpll0 clock
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     MSM <linux-arm-msm@vger.kernel.org>, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        phone-devel@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        DTML <devicetree@vger.kernel.org>
-References: <20210109134617.146275-1-angelogioacchino.delregno@somainline.org>
- <20210109134617.146275-2-angelogioacchino.delregno@somainline.org>
- <CAOCk7NqUpa0DqW=han49MtwUqNkNsQC3OPpO7B-872bvNukDJw@mail.gmail.com>
- <9942f98c-c186-5cd0-d6ac-a18a4e20583e@somainline.org>
- <CAOCk7Nod9a+5EUUWGpso+EBb2dJVLMvjrOoMpqeTcm+L6mxvtQ@mail.gmail.com>
- <b5f6095d-ed74-26a9-a485-df0dc1203f8e@somainline.org>
- <CAOCk7NqJ7=Rpwzx9ZQ9p=YHrxYeE69YphRq3BbzFwK_TyiVGFA@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <d25b0510-4f80-c46a-aa53-f940b44c9392@somainline.org>
-Date:   Thu, 14 Jan 2021 23:49:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
-MIME-Version: 1.0
-In-Reply-To: <CAOCk7NqJ7=Rpwzx9ZQ9p=YHrxYeE69YphRq3BbzFwK_TyiVGFA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1730848AbhANWyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 17:54:54 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:46738 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730915AbhANWyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 17:54:54 -0500
+Received: by mail-oi1-f171.google.com with SMTP id q205so7618938oig.13
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 14:54:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Kdgl7+Fa7dWGmuWmJbJhRTe7pZgtvLwB3nP1BFK9Eqo=;
+        b=nrz6oXBRkJyphmIraphzgNokoiK3eVZOKmSpyqDeitoPJlSYVzciMc7y82xLAgILvr
+         bqr5Lx5Ws6q4b9b+lWnKP1F88OWmxFeFjipI5EmAbbJz8Za0oNvsxHYnxvP2KYloMLr3
+         /v1WpHV8QgNKVx51JuBTNL42aNesKKxqsltwW3eSbiWc82l5mdFIL1ASc7kSycAIUavP
+         tjOIcek+LSXbg9ULp1efAHedWLztRuPj47Q4egXF/5UQIn0BonPCrXKNoenhewCL1O3c
+         8ApF8xCPhVTXjOsdOdgTK050iFmzKNWhRg/ajn6pa8SBzYPZ2hav1pErIDYQzA23vQSU
+         BspQ==
+X-Gm-Message-State: AOAM533+yZezNWmNpgbyKBGTASkHLBfyVqB4GqQtnYdMhss5ajvusG+r
+        rd9OfB2mMBQomnYEmoQu4wgUunBMzw==
+X-Google-Smtp-Source: ABdhPJxX0hsXcnXhp0j1DKNnifjBSW7maUvWsBr3msRS5zWljWKhIlnx/7lYxnI84yMzgGwtFefTkg==
+X-Received: by 2002:aca:4f97:: with SMTP id d145mr3914920oib.123.1610664853033;
+        Thu, 14 Jan 2021 14:54:13 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t13sm1322353oih.26.2021.01.14.14.54.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 14:54:12 -0800 (PST)
+Received: (nullmailer pid 3797272 invoked by uid 1000);
+        Thu, 14 Jan 2021 22:54:06 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Nicolas Pitre <nico@fluxnic.net>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>,
+        devicetree@vger.kernel.org,
+        Conor Culhane <conor.culhane@silvaco.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-i3c@lists.infradead.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+In-Reply-To: <20210114175558.17097-3-miquel.raynal@bootlin.com>
+References: <20210114175558.17097-1-miquel.raynal@bootlin.com> <20210114175558.17097-3-miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v4 2/6] dt-bindings: i3c: mipi-hci: Include the bus binding
+Date:   Thu, 14 Jan 2021 16:54:06 -0600
+Message-Id: <1610664846.690698.3797271.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/01/21 23:44, Jeffrey Hugo ha scritto:
-> On Thu, Jan 14, 2021 at 3:40 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@somainline.org> wrote:
->>
->> Il 14/01/21 23:33, Jeffrey Hugo ha scritto:
->>> On Thu, Jan 14, 2021 at 3:13 PM AngeloGioacchino Del Regno
->>> <angelogioacchino.delregno@somainline.org> wrote:
->>>>
->>>> Il 14/01/21 23:12, Jeffrey Hugo ha scritto:
->>>>> On Sat, Jan 9, 2021 at 6:47 AM AngeloGioacchino Del Regno
->>>>> <angelogioacchino.delregno@somainline.org> wrote:
->>>>>>
->>>>>> This clock enables the GPLL0 output to the multimedia subsystem
->>>>>> clock controller.
->>>>>>
->>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>>>>
->>>>> Any reason why you are not also adding the div_clk?
->>>>>
->>>>
->>>> Yes, just one: I haven't tested it... and my devices worked without.
->>>> Perhaps we can add it whenever we find out if something really needs it?
->>>
->>> I'm mildly surprised you need to turn on the gate to the PLL0 out, but
->>> not the div_out.  The div_out/div_clk is also fed into every RCG that
->>> exists in the MMCC.
->>>
->>> Per the frequency plan the following RCGs require it -
->>>
->>> cci
->>> cpp
->>> fd_core
->>> camss_gp[0-1]
->>> jpeg0
->>> mclk[0-3]
->>> csi[0-2]phytimer
->>> dp_gtc
->>> maxi
->>> axi
->>> ahb
->>>
->>> Also, I'm very interested in all things 8998, and would generally
->>> appreciate being added to the to: list.
->>>
->>
->> To be honest, I was surprised as well because.. yes, I know that these
->> RCGs seem to need it, but then their clock tables don't contain any
->> reference to the gpll0 divider, hence it's never getting used - and that
->> works great, for now.
->>
->> I am aware of the fact that the clocks that you've mentioned are using
->> the divider to reduce jitter, but I haven't done any camera test on my
->> devices yet: that's definitely in my plans and I really can't wait to do
->> that (as I successfully did for SDM630/660), but... we have more than
->> 100 patches in our trees.
->> We need to get upstream in the same working order as what we have here,
->> so that we don't diverge that much and our work is kept in a
->> maintainable state (avoiding to lose pieces around).
->>
->> I'm sure that I'll send a commit adding the gpll0 divider branch as soon
->> as I will start the camera work: I feel it, it's going to give me issues
->> without, in that field.
->>
->> By the way, noted. I'll make sure to add you in the to/cc for all of the
->> next series regarding 8998 that I'll send.
->>
->> Meanwhile, you may want to check out all the recent patches that I've
->> sent, as like 90% are MSM8998-centric... :))
+On Thu, 14 Jan 2021 18:55:54 +0100, Miquel Raynal wrote:
+> Fix a tiny mistake: the node title should have been named after the
+> description done in the historical i3c.txt file, ie: i3c-master@<address>.
 > 
-> I noticed, and I'm excited to see additional work since I've had a
-> lack of spare time, although I think you've monopolized my backlog  :)
+> Cc: Nicolas Pitre <nico@fluxnic.net>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
 
-I just... had some time... and passion about it :)))
+My bot found errors running 'make dt_binding_check' on your patch:
 
-P.S.: I'm not done yet!! :)
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.example.dt.yaml: i3c-master@a0000000: '#address-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/i3c.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.example.dt.yaml: i3c-master@a0000000: '#size-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/i3c.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.example.dt.yaml: i3c-master@a0000000: '#address-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.example.dt.yaml: i3c-master@a0000000: '#size-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml
+
+See https://patchwork.ozlabs.org/patch/1426584
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
