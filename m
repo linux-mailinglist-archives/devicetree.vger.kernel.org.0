@@ -2,193 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF6882F6624
-	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 17:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 148E22F664C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Jan 2021 17:52:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726241AbhANQln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 11:41:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37006 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727121AbhANQlm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 11:41:42 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BC86C061575
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 08:41:02 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id ke15so1453544ejc.12
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 08:41:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PpcdUm/gcB3TMCtroKeX+86rJVww+0E1mxO6peOGnow=;
-        b=FGHOZ9P0lE3tooUNruq7iIqeJ+RHltmSjWchoV2pjQXQDi8y359Fcjnd5WKAEXoTpK
-         Y9OB1zMWocLiVTmE+InQdaXpQNjPDgUECLlWCOnGieGoM0J4RE/Wy7qXBK0sRi1DhEOs
-         XVKh7vqG8/VFncTq/LU/PCwHf8zvYQDZF+x8FQplUHzBvgaonBa+BMGlMxcECbHfK8E3
-         afZ/Nm8ZjPNH9Dti91WxyG1PxU1lPESE/XK7L1I+8CvnPM5MGPof6NUxHPf1rFmGa32u
-         Ruke0VtajnvzD6VnyxNJgDPYRlLZHGk9L0cXHe6V3I1wPePxdBBMixEIBrLujoLqYjlM
-         LIYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PpcdUm/gcB3TMCtroKeX+86rJVww+0E1mxO6peOGnow=;
-        b=ZT/F8voq9zMbg00oyCy2V5yTawCD6l84WoJ4V8kivfySGQ1JGnOyTuWJnm7jCTYgd3
-         t4tZBvSIWgj1X8kGnkoQjsIDr54QqtLSreuPG+wk1Kktgm4cGWHe/0nYm8iDZfh/8huQ
-         lSWa47YfeCimPMfqlooJa+jAadN/3EZCEByIgTgtGcKCH0oImDF9mC+VAHZjsAU5pW1z
-         YMEiBgvQwCIK9M88nTHH9uyTjpMW2ttmP/fJpEg35CBGhJpmw2Mv4zbWQu7zMZmsI9Gz
-         Vfv90jNYRUF3h4lP6c+h/TY0uQrkwZ5JpuJP34tRpntIzFA60JfE85omdxk7IvURj6f3
-         zM/Q==
-X-Gm-Message-State: AOAM530NTOYfy7Zy5W51bbAEh4MwOs1uX3t3ykspMbYHmHqUYrcAOTJY
-        x7nHTgaHqGm8LpG7eT/Xa56uWg==
-X-Google-Smtp-Source: ABdhPJwiiUWF0wbqzhersCabuU1z96vEkPFvGfcvm3oB0CBDThtD+9g0uc7hvEvcDAoRh0d/m3WtnQ==
-X-Received: by 2002:a17:906:b08f:: with SMTP id x15mr6030193ejy.36.1610642461135;
-        Thu, 14 Jan 2021 08:41:01 -0800 (PST)
-Received: from larix.localdomain (adsl-84-226-106-126.adslplus.ch. [84.226.106.126])
-        by smtp.gmail.com with ESMTPSA id cw7sm2123574ejc.13.2021.01.14.08.40.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 08:41:00 -0800 (PST)
-Date:   Thu, 14 Jan 2021 17:41:44 +0100
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     "Tian, Kevin" <kevin.tian@intel.com>
-Cc:     Lu Baolu <baolu.lu@linux.intel.com>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "will@kernel.org" <will@kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "guohanjun@huawei.com" <guohanjun@huawei.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "rjw@rjwysocki.net" <rjw@rjwysocki.net>,
-        "lenb@kernel.org" <lenb@kernel.org>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-accelerators@lists.ozlabs.org" 
-        <linux-accelerators@lists.ozlabs.org>,
-        "vdumpa@nvidia.com" <vdumpa@nvidia.com>,
-        "zhangfei.gao@linaro.org" <zhangfei.gao@linaro.org>,
-        "shameerali.kolothum.thodi@huawei.com" 
-        <shameerali.kolothum.thodi@huawei.com>,
-        "vivek.gautam@arm.com" <vivek.gautam@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Zhou Wang <wangzhou1@hisilicon.com>
-Subject: Re: [PATCH v9 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from
- IOMMU_DEV_FEAT_SVA
-Message-ID: <YAB0SHyUZbxprkL3@larix.localdomain>
-References: <20210108145217.2254447-1-jean-philippe@linaro.org>
- <20210108145217.2254447-4-jean-philippe@linaro.org>
- <4de8ef03-a2ed-316e-d3e3-6b8474e20113@linux.intel.com>
- <X/1o72DTmzdCMhDz@myrica>
- <c88e5d74-098d-7f1d-a7bb-a89e40fb8fa4@linux.intel.com>
- <MWHPR11MB18868F53E5A9E0CF9975042B8CA90@MWHPR11MB1886.namprd11.prod.outlook.com>
+        id S1726007AbhANQt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 11:49:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51460 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725928AbhANQtZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 11:49:25 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 40BE423B18;
+        Thu, 14 Jan 2021 16:48:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610642924;
+        bh=mZr4R3ehu/swshPtE+4zaVh7GoE9qRWxUwRqeOUyYSc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BF6fckKXuekmtn6KlC00fhxapzqwNGdB5gwSDmuF6hJ9bi7c0bC/widRrjalI9mKi
+         hmILfwxNaTVh6YBK89XJGe4qIxMqXjdTSn7wtjwnNMoSi6n33FecCDGzEvFTeHYvoP
+         xCvn6ye6HUhprVilm38uro4VF7suP+9OPyxWxiiB36oNpcFgTO3Jclvli++cfsvKzi
+         YxZnj/rD88rF3x9Ka+8WhT1j7vZhlZ/GCpiFzr+Tuw/VHmJdrJlWvFWTFK+MN5WgX0
+         YHKBhMbwRAOVsMe1W5Ke1lJtxrG9Fz49UdtPXgRBdcjdd869vla+OoZ+9fDxL6fnVB
+         yyeVZeAbvGzmg==
+Date:   Thu, 14 Jan 2021 16:48:11 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Muhammad Husaini Zulkifli <muhammad.husaini.zulkifli@intel.com>
+Cc:     ulf.hansson@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, adrian.hunter@intel.com,
+        michal.simek@xilinx.com, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        Rashmi.A@intel.com, mahesh.r.vaidya@intel.com,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH v1 5/9] firmware: keembay: Add support for Trusted
+ Firmware Service call
+Message-ID: <20210114164811.GG4854@sirena.org.uk>
+References: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
+ <20210114152700.21916-6-muhammad.husaini.zulkifli@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="IuhbYIxU28t+Kd57"
 Content-Disposition: inline
-In-Reply-To: <MWHPR11MB18868F53E5A9E0CF9975042B8CA90@MWHPR11MB1886.namprd11.prod.outlook.com>
-X-TUID: nq/+KJqkCM9u
+In-Reply-To: <20210114152700.21916-6-muhammad.husaini.zulkifli@intel.com>
+X-Cookie: You have taken yourself too seriously.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 08:10:28AM +0000, Tian, Kevin wrote:
-> > >> Is this only for SVA? We may see more scenarios of using IOPF. For
-> > >> example, when passing through devices to user level, the user's pages
-> > >> could be managed dynamically instead of being allocated and pinned
-> > >> statically.
-> > >
-> > > Hm, isn't that precisely what SVA does?  I don't understand the
-> > > difference. That said FEAT_IOPF doesn't have to be only for SVA. It could
-> > > later be used as a prerequisite some another feature. For special cases
-> > > device drivers can always use the iommu_register_device_fault_handler()
-> > > API and handle faults themselves.
-> > 
-> >  From the perspective of IOMMU, there is a little difference between
-> > these two. For SVA, the page table is from CPU side, so IOMMU only needs
-> > to call handle_mm_fault(); For above pass-through case, the page table
-> > is from IOMMU side, so the device driver (probably VFIO) needs to
-> > register a fault handler and call iommu_map/unmap() to serve the page
-> > faults.
-> > 
-> > If we think about the nested mode (or dual-stage translation), it's more
-> > complicated since the kernel (probably VFIO) handles the second level
-> > page faults, while the first level page faults need to be delivered to
-> > user-level guest. Obviously, this hasn't been fully implemented in any
-> > IOMMU driver.
-> > 
-> 
-> Thinking more the confusion might come from the fact that we mixed
-> hardware capability with software capability. IOMMU_FEAT describes
-> the hardware capability. When FEAT_IOPF is set, it purely means whatever
-> page faults that are enabled by the software are routed through the IOMMU.
-> Nothing more. Then the software (IOMMU drivers) may choose to support
-> only limited faulting scenarios and then evolve to support more complex 
-> usages gradually. For example, the intel-iommu driver only supports 1st-level
-> fault (thus SVA) for now, while FEAT_IOPF as a separate feature may give the
-> impression that 2nd-level faults are also allowed. From this angle once we 
-> start to separate page fault from SVA, we may also need a way to report 
-> the software capability (e.g. a set of faulting categories) and also extend
-> iommu_register_device_fault_handler to allow specifying which 
-> category is enabled respectively. The example categories could be:
-> 
-> - IOPF_BIND, for page tables which are bound/linked to the IOMMU. 
-> Apply to bare metal SVA and guest SVA case;
 
-These don't seem to fit in the same software capability, since the action
-to perform on incoming page faults is very different. In the first case
-the fault handling is entirely contained within the IOMMU driver; in the
-second case the IOMMU driver only tracks page requests, and offloads
-handling to VFIO.
+--IuhbYIxU28t+Kd57
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> - IOPF_MAP, for page tables which are managed through explicit IOMMU
-> map interfaces. Apply to removing VFIO pinning restriction;
+On Thu, Jan 14, 2021 at 11:26:56PM +0800, Muhammad Husaini Zulkifli wrote:
+> Export inline function to encapsulate AON_CFG1 for controling the I/O Rail
+> supplied voltage levels which communicate with Trusted Firmware.
 
-From the IOMMU perspective this is the same as guest SVA, no? VFIO
-registering a fault handler and doing the bulk of the work itself.
+Adding Sudeep for the SMCCC bits, not deleting any context for his
+benefit.
 
-> Both categories can be enabled together in nested translation, with 
-> additional information provided to differentiate them in fault information.
-> Using paging/staging level doesn't make much sense as it's IOMMU driver's 
-> internal knowledge, e.g. VT-d driver plans to use 1st level for GPA if no 
-> nesting and then turn to 2nd level when nesting is enabled.
+> Signed-off-by: Muhammad Husaini Zulkifli <muhammad.husaini.zulkifli@intel=
+=2Ecom>
+> Acked-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> ---
+>  include/linux/firmware/intel/keembay.h | 82 ++++++++++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 include/linux/firmware/intel/keembay.h
+>=20
+> diff --git a/include/linux/firmware/intel/keembay.h b/include/linux/firmw=
+are/intel/keembay.h
+> new file mode 100644
+> index 000000000000..f5a8dbfdb63b
+> --- /dev/null
+> +++ b/include/linux/firmware/intel/keembay.h
+> @@ -0,0 +1,82 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + *  Intel Keembay SOC Firmware API Layer
+> + *
+> + *  Copyright (C) 2020, Intel Corporation
+> + *
+> + *  Author: Muhammad Husaini Zulkifli <Muhammad.Husaini.Zulkifli@intel.c=
+om>
+> + */
+> +
+> +#ifndef __FIRMWARE_KEEMBAY_SMC_H__
+> +#define __FIRMWARE_KEEMBAY_SMC_H__
+> +
+> +#include <linux/arm-smccc.h>
+> +
+> +/*
+> + * This file defines an API function that can be called by a device driv=
+er in order to
+> + * communicate with Trusted Firmware - A profile(TF-A) or Trusted Firmwa=
+re - M profile (TF-M).
+> + */
+> +
+> +#define KEEMBAY_SET_1V8_IO_RAIL	1
+> +#define KEEMBAY_SET_3V3_IO_RAIL	0
+> +
+> +#define KEEMBAY_IOV_1_8V_uV	1800000
+> +#define KEEMBAY_IOV_3_3V_uV	3300000
+> +
+> +#define KEEMBAY_SET_SD_VOLTAGE_ID 0xFF26
+> +#define KEEMBAY_GET_SD_VOLTAGE_ID 0xFF2A
+> +
+> +#define ARM_SMCCC_SIP_KEEMBAY_SET_SD_VOLTAGE		\
+> +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,		\
+> +			   ARM_SMCCC_SMC_32,		\
+> +			   ARM_SMCCC_OWNER_SIP,		\
+> +			   KEEMBAY_SET_SD_VOLTAGE_ID)
+> +
+> +#define ARM_SMCCC_SIP_KEEMBAY_GET_SD_VOLTAGE		\
+> +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,		\
+> +			   ARM_SMCCC_SMC_32,		\
+> +			   ARM_SMCCC_OWNER_SIP,		\
+> +			   KEEMBAY_GET_SD_VOLTAGE_ID)
+> +
+> +#define KEEMBAY_REG_NUM_CONSUMERS 2
+> +
+> +struct keembay_reg_supply {
+> +	struct regulator *consumer;
+> +};
+> +
+> +#if IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY)
+> +/*
+> + * Voltage applied on the IO Rail is controlled from the Always On Regis=
+ter using specific
+> + * bits in AON_CGF1 register. This is a secure register. Keem Bay SOC ca=
+nnot exposed this
+> + * register address to the outside world.
+> + */
+> +static inline int keembay_set_io_rail_supplied_voltage(int volt)
+> +{
+> +	struct arm_smccc_res res;
+> +
+> +	arm_smccc_1_1_invoke(ARM_SMCCC_SIP_KEEMBAY_SET_SD_VOLTAGE, volt, &res);
 
-I guess detailing what's needed for nested IOPF can help the discussion,
-although I haven't seen any concrete plan about implementing it, and it
-still seems a couple of years away. There are two important steps with
-nested IOPF:
+There is a SCMI voltage domain protocol intended for just this use case
+of controlling regulators managed by the firmware, why are you not using
+that for these systems?  See drivers/firmware/arm_scmi/voltage.c.
 
-(1) Figuring out whether a fault comes from L1 or L2. A SMMU stall event
-    comes with this information, but a PRI page request doesn't. The IOMMU
-    driver has to first translate the IOVA to a GPA, injecting the fault
-    into the guest if this translation fails by using the usual
-    iommu_report_device_fault().
+> +
+> +	return res.a0;
+> +}
+> +
+> +static inline int keembay_get_io_rail_supplied_voltage(void)
+> +{
+> +	struct arm_smccc_res res;
+> +
+> +	arm_smccc_1_1_invoke(ARM_SMCCC_SIP_KEEMBAY_GET_SD_VOLTAGE, &res);
+> +
+> +	return res.a1;
+> +}
+> +#else
+> +static inline int keembay_set_io_rail_supplied_voltage(int volt)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+> +static inline int keembay_get_io_rail_supplied_voltage(void)
+> +{
+> +	return -ENODEV;
+> +}
+> +#endif
+> +
+> +#endif /* __FIRMWARE_KEEMBAY_SMC_H__ */
+> --=20
+> 2.17.1
+>=20
 
-(2) Translating the faulting GPA to a HVA that can be fed to
-    handle_mm_fault(). That requires help from KVM, so another interface -
-    either KVM registering GPA->HVA translation tables or IOMMU driver
-    querying each translation. Either way it should be reusable by device
-    drivers that implement IOPF themselves.
+--IuhbYIxU28t+Kd57
+Content-Type: application/pgp-signature; name="signature.asc"
 
-(1) could be enabled with iommu_dev_enable_feature(). (2) requires a more
-complex interface. (2) alone might also be desirable - demand-paging for
-level 2 only, no SVA for level 1.
+-----BEGIN PGP SIGNATURE-----
 
-Anyway, back to this patch. What I'm trying to convey is "can the IOMMU
-receive incoming I/O page faults for this device and, when SVA is enabled,
-feed them to the mm subsystem?  Enable that or return an error." I'm stuck
-on the name. IOPF alone is too vague. Not IOPF_L1 as Kevin noted, since L1
-is also used in virtualization. IOPF_BIND and IOPF_SVA could also mean (2)
-above. IOMMU_DEV_FEAT_IOPF_FLAT?
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAAdcoACgkQJNaLcl1U
+h9CerwgAhiPIFIqpjvEP9eFGGVSOXlw2+GQLMVzLRhS7iYZ5jDGj7dVYplWej/EL
+Tq65lLb07E96iICUEsKo1nmfnfUgcV5bjQluyn20FIB2Pr6glP3+4fLrDWClim9l
+P5AisADLrbjpcDDVPkBUK0hl6Y0UJO6GIlaN7HEwsU1OOU7uGGGucvuTzP/eM4r0
+fxSKPI8OW3S2l8M5stQmdjz9GnH5kZoe0fQjlEsY05DSXNtvu89RsQTLhaEyXciE
+UnRQz2Bl62+BR2oc19ZhXrwo7w23kEvKTiiFjkSX5hoo7zo8gC+gPsVkV602AWCd
+D7kPeQY85lOWuefKm8KnrOTLCm58uQ==
+=mnFr
+-----END PGP SIGNATURE-----
 
-That leaves space for the nested extensions. (1) above could be
-IOMMU_FEAT_IOPF_NESTED, and (2) requires some new interfacing with KVM (or
-just an external fault handler) and could be used with either IOPF_FLAT or
-IOPF_NESTED. We can figure out the details later. What do you think?
-
-Thanks,
-Jean
+--IuhbYIxU28t+Kd57--
