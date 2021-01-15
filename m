@@ -2,228 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 752C22F84CF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4394E2F84F0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:59:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726347AbhAOSxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 13:53:52 -0500
-Received: from relay04.th.seeweb.it ([5.144.164.165]:40077 "EHLO
-        relay04.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387831AbhAOSxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 13:53:52 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 68F691F67F;
-        Fri, 15 Jan 2021 19:52:54 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     stanimir.varbanov@linaro.org
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH 2/2] media: dt-bindings: media: venus: Add sdm660 DT schema
-Date:   Fri, 15 Jan 2021 19:52:52 +0100
-Message-Id: <20210115185252.333562-3-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210115185252.333562-1-angelogioacchino.delregno@somainline.org>
-References: <20210115185252.333562-1-angelogioacchino.delregno@somainline.org>
+        id S2387873AbhAOS6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 13:58:53 -0500
+Received: from foss.arm.com ([217.140.110.172]:51642 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726347AbhAOS6x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 13:58:53 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B4DE2ED1;
+        Fri, 15 Jan 2021 10:58:07 -0800 (PST)
+Received: from bogus (unknown [10.57.35.27])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 984513F719;
+        Fri, 15 Jan 2021 10:58:05 -0800 (PST)
+Date:   Fri, 15 Jan 2021 18:58:03 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Muhammad Husaini Zulkifli <muhammad.husaini.zulkifli@intel.com>,
+        ulf.hansson@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, adrian.hunter@intel.com,
+        michal.simek@xilinx.com, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        Rashmi.A@intel.com, mahesh.r.vaidya@intel.com,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH v1 5/9] firmware: keembay: Add support for Trusted
+ Firmware Service call
+Message-ID: <20210115185803.infufa4thlffagxk@bogus>
+References: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
+ <20210114152700.21916-6-muhammad.husaini.zulkifli@intel.com>
+ <20210114164811.GG4854@sirena.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210114164811.GG4854@sirena.org.uk>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new qcom,sdm660-venus DT binding schema.
+On Thu, Jan 14, 2021 at 04:48:11PM +0000, Mark Brown wrote:
+> On Thu, Jan 14, 2021 at 11:26:56PM +0800, Muhammad Husaini Zulkifli wrote:
+> > Export inline function to encapsulate AON_CFG1 for controling the I/O Rail
+> > supplied voltage levels which communicate with Trusted Firmware.
+>
+> Adding Sudeep for the SMCCC bits, not deleting any context for his
+> benefit.
+>
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- .../bindings/media/qcom,sdm660-venus.yaml     | 164 ++++++++++++++++++
- 1 file changed, 164 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml
+Thanks Mark for cc-ing me and joining the dots. I completely forgot about
+that fact that this platform was using SCMI using SMC as transport. Sorry
+for that and it is my fault. I did review the SCMI/SMC support for this
+platform sometime in June/July last year and forgot the fact it is same
+platform when voltage/regulator support patches for SD/MMC was posted
+sometime later last year. I concentrated on SMCCC conventions and other
+details.
 
-base-commit: 012bd807cf654b992cdc4db7eab85c1e95f9d571
-prerequisite-patch-id: 734bdefdb043a8f91a48916246cc9a36fb5966e5
-prerequisite-patch-id: 999517c02973237996492a41ed5bfc2990083932
-prerequisite-patch-id: a48910425fac61948a7a26bec4d40d63e3368569
-prerequisite-patch-id: b1a1a4216eed0d04dd16e6e8e1053dee185d06d8
-prerequisite-patch-id: dff12be2631cc21ef1c3c930fba49d979f5055fe
+[...]
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml
-new file mode 100644
-index 000000000000..e7568d4007af
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml
-@@ -0,0 +1,164 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/qcom,sdm660-venus.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm Venus video encode and decode accelerators
-+
-+maintainers:
-+  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
-+
-+description: |
-+  The Venus IP is a video encode and decode accelerator present
-+  on Qualcomm platforms
-+
-+properties:
-+  compatible:
-+    const: qcom,sdm660-venus
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 5
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: iface
-+      - const: bus
-+      - const: bus_throttle
-+      - const: vcodec0_core
-+
-+  interconnects:
-+    maxItems: 2
-+
-+  interconnect-names:
-+    items:
-+      - const: video-mem
-+      - const: cpu-cfg
-+
-+  iommus:
-+    maxItems: 20
-+
-+  memory-region:
-+    maxItems: 1
-+
-+  power-domains:
-+    minItems: 3
-+
-+  power-domain-names:
-+    items:
-+      - const: cx
-+      - const: vcodec0
-+      - const: venus
-+
-+  video-decoder:
-+    type: object
-+
-+    properties:
-+      compatible:
-+        const: venus-decoder
-+
-+    required:
-+      - compatible
-+
-+    additionalProperties: false
-+
-+  video-encoder:
-+    type: object
-+
-+    properties:
-+      compatible:
-+        const: venus-encoder
-+
-+    required:
-+      - compatible
-+
-+    additionalProperties: false
-+
-+  video-firmware:
-+    type: object
-+
-+    description: |
-+      Firmware subnode is needed when the platform does not
-+      have TrustZone.
-+
-+    properties:
-+      iommus:
-+        maxItems: 2
-+
-+    required:
-+      - iommus
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - power-domains
-+  - power-domain-names
-+  - clocks
-+  - clock-names
-+  - iommus
-+  - memory-region
-+  - video-decoder
-+  - video-encoder
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-+        #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
-+        #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+        video-codec@cc00000 {
-+                compatible = "qcom,sdm660-venus";
-+                reg = <0x0cc00000 0xff000>;
-+                interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
-+                power-domains = <&rpmpd SDM660_VDDCX>,
-+                                <&mmcc VENUS_CORE0_GDSC>,
-+                                <&mmcc VENUS_GDSC>;
-+                power-domain-names = "cx", "vcodec0", "venus";
-+                clocks = <&mmcc VIDEO_CORE_CLK>,
-+                         <&mmcc VIDEO_AHB_CLK>,
-+                         <&mmcc VIDEO_AXI_CLK>,
-+                         <&mmcc THROTTLE_VIDEO_AXI_CLK>,
-+                         <&mmcc VIDEO_SUBCORE0_CLK>;
-+                clock-names = "core", "iface", "bus", "bus_throttle",
-+                              "vcodec0_core";
-+                iommus = <&mmss_smmu 0x400>,
-+                         <&mmss_smmu 0x401>,
-+                         <&mmss_smmu 0x40a>,
-+                         <&mmss_smmu 0x407>,
-+                         <&mmss_smmu 0x40e>,
-+                         <&mmss_smmu 0x40f>,
-+                         <&mmss_smmu 0x408>,
-+                         <&mmss_smmu 0x409>,
-+                         <&mmss_smmu 0x40b>,
-+                         <&mmss_smmu 0x40c>,
-+                         <&mmss_smmu 0x40d>,
-+                         <&mmss_smmu 0x410>,
-+                         <&mmss_smmu 0x421>,
-+                         <&mmss_smmu 0x428>,
-+                         <&mmss_smmu 0x429>,
-+                         <&mmss_smmu 0x42b>,
-+                         <&mmss_smmu 0x42c>,
-+                         <&mmss_smmu 0x42d>,
-+                         <&mmss_smmu 0x411>,
-+                         <&mmss_smmu 0x431>;
-+                memory-region = <&venus_region>;
-+
-+                video-decoder {
-+                        compatible = "venus-decoder";
-+                };
-+
-+                video-encoder {
-+                        compatible = "venus-encoder";
-+                };
-+        };
--- 
-2.29.2
+> > +#define ARM_SMCCC_SIP_KEEMBAY_SET_SD_VOLTAGE		\
+> > +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,		\
+> > +			   ARM_SMCCC_SMC_32,		\
+> > +			   ARM_SMCCC_OWNER_SIP,		\
+> > +			   KEEMBAY_SET_SD_VOLTAGE_ID)
+> > +
+> > +#define ARM_SMCCC_SIP_KEEMBAY_GET_SD_VOLTAGE		\
+> > +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,		\
+> > +			   ARM_SMCCC_SMC_32,		\
+> > +			   ARM_SMCCC_OWNER_SIP,		\
+> > +			   KEEMBAY_GET_SD_VOLTAGE_ID)
+> > +
+> > +#define KEEMBAY_REG_NUM_CONSUMERS 2
+> > +
+> > +struct keembay_reg_supply {
+> > +	struct regulator *consumer;
+> > +};
+> > +
+> > +#if IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY)
+> > +/*
+> > + * Voltage applied on the IO Rail is controlled from the Always On Register using specific
+> > + * bits in AON_CGF1 register. This is a secure register. Keem Bay SOC cannot exposed this
+> > + * register address to the outside world.
+> > + */
+> > +static inline int keembay_set_io_rail_supplied_voltage(int volt)
+> > +{
+> > +	struct arm_smccc_res res;
+> > +
+> > +	arm_smccc_1_1_invoke(ARM_SMCCC_SIP_KEEMBAY_SET_SD_VOLTAGE, volt, &res);
+>
+> There is a SCMI voltage domain protocol intended for just this use case
+> of controlling regulators managed by the firmware, why are you not using
+> that for these systems?  See drivers/firmware/arm_scmi/voltage.c.
+>
 
+Indeed. Please switch to using the new voltage protocol added for this without
+any extra code. You just need to wire up DT for this.
+
+Just for curiosity, where is SCMI platform firmware implemented ? On Cortex-A,
+secure side or external processor. Does this platform run TF-A ?
+
+--
+Regards,
+Sudeep
