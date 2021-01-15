@@ -2,73 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFADE2F832E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:59:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C53AE2F8338
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:03:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731791AbhAOR7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 12:59:24 -0500
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:58913 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729435AbhAOR7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:59:24 -0500
-X-Originating-IP: 93.29.109.196
-Received: from localhost.localdomain (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id D329B1C0007;
-        Fri, 15 Jan 2021 17:58:41 +0000 (UTC)
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH 2/2] soc: sunxi: mbus: Remove DE2 display engine compatibles
-Date:   Fri, 15 Jan 2021 18:58:31 +0100
-Message-Id: <20210115175831.1184260-2-paul.kocialkowski@bootlin.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210115175831.1184260-1-paul.kocialkowski@bootlin.com>
-References: <20210115175831.1184260-1-paul.kocialkowski@bootlin.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726402AbhAOSCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 13:02:45 -0500
+Received: from mx.blih.net ([212.83.155.74]:56035 "EHLO mx.blih.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726065AbhAOSCp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 13:02:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bidouilliste.com;
+        s=mx; t=1610733721;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=/ukk1KmMKOjY989GVPIe8alQEeaLXXaWWupQX1f4jk4=;
+        b=fI90d3/3h1q91CxwjnZxFLdnBD8nAaoOfyiAg+keL20VrXYOgJ24HaPHb2lrecBjOqU9pT
+        OqdDrnBC2O6divMS/3ZjgATR9MnlTQ0uLYpFSj3jwYz3ky0lpa4zsqfN79jeImfHz/0aF+
+        /3oA5rXvBDodNhSbCJaanO7u0ClqEL8=
+Received: from skull.home.blih.net (lfbn-idf2-1-745-114.w86-247.abo.wanadoo.fr [86.247.192.114])
+        by mx.blih.net (OpenSMTPD) with ESMTPSA id e912b7b2 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
+        Fri, 15 Jan 2021 18:02:01 +0000 (UTC)
+Date:   Fri, 15 Jan 2021 19:02:01 +0100
+From:   Emmanuel Vadot <manu@bidouilliste.com>
+To:     Drew Fustini <drew@beagleboard.org>
+Cc:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        devicetree@vger.kernel.org, bcousson@baylibre.com,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>
+Subject: Re: [PATCH v4 2/2] ARM: dts: am33xx-l4: change #pinctrl-cells from
+ 1 to 2
+Message-Id: <20210115190201.9273b637a7f967e7e55bc740@bidouilliste.com>
+In-Reply-To: <20200701013320.130441-3-drew@beagleboard.org>
+References: <20200701013320.130441-1-drew@beagleboard.org>
+        <20200701013320.130441-3-drew@beagleboard.org>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; amd64-portbld-freebsd13.0)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DE2 display engine hardware takes physical addresses that do not
-need PHYS_BASE subtracted. As a result, they should not be present
-on the mbus driver match list. Remove them.
 
-This was tested on the A83T, along with the patch allowing the DMA
-range map to be non-NULL and restores a working display.
+ Hello Drew,
 
-Fixes: b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in a central place")
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
----
- drivers/soc/sunxi/sunxi_mbus.c | 5 -----
- 1 file changed, 5 deletions(-)
+On Wed,  1 Jul 2020 03:33:20 +0200
+Drew Fustini <drew@beagleboard.org> wrote:
 
-diff --git a/drivers/soc/sunxi/sunxi_mbus.c b/drivers/soc/sunxi/sunxi_mbus.c
-index e9925c8487d7..d90e4a264b6f 100644
---- a/drivers/soc/sunxi/sunxi_mbus.c
-+++ b/drivers/soc/sunxi/sunxi_mbus.c
-@@ -23,12 +23,7 @@ static const char * const sunxi_mbus_devices[] = {
- 	"allwinner,sun7i-a20-display-engine",
- 	"allwinner,sun8i-a23-display-engine",
- 	"allwinner,sun8i-a33-display-engine",
--	"allwinner,sun8i-a83t-display-engine",
--	"allwinner,sun8i-h3-display-engine",
--	"allwinner,sun8i-r40-display-engine",
--	"allwinner,sun8i-v3s-display-engine",
- 	"allwinner,sun9i-a80-display-engine",
--	"allwinner,sun50i-a64-display-engine",
- 
- 	/*
- 	 * And now we have the regular devices connected to the MBUS
+> Increase #pinctrl-cells to 2 so that mux and conf be kept separate. This
+> requires the AM33XX_PADCONF macro in omap.h to also be modified to keep pin
+> conf and pin mux values separate.
+> 
+> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> ---
+>  arch/arm/boot/dts/am33xx-l4.dtsi   | 2 +-
+>  include/dt-bindings/pinctrl/omap.h | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
+> index a9cbefc80c0c..3141590e5889 100644
+> --- a/arch/arm/boot/dts/am33xx-l4.dtsi
+> +++ b/arch/arm/boot/dts/am33xx-l4.dtsi
+> @@ -278,7 +278,7 @@ scm: scm@0 {
+>  				am33xx_pinmux: pinmux@800 {
+>  					compatible = "pinctrl-single";
+>  					reg = <0x800 0x238>;
+> -					#pinctrl-cells = <1>;
+> +					#pinctrl-cells = <2>;
+>  					pinctrl-single,register-width = <32>;
+>  					pinctrl-single,function-mask = <0x7f>;
+>  				};
+> diff --git a/include/dt-bindings/pinctrl/omap.h b/include/dt-bindings/pinctrl/omap.h
+> index 625718042413..2d2a8c737822 100644
+> --- a/include/dt-bindings/pinctrl/omap.h
+> +++ b/include/dt-bindings/pinctrl/omap.h
+> @@ -65,7 +65,7 @@
+>  #define DM814X_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
+>  #define DM816X_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
+>  #define AM33XX_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
+> -#define AM33XX_PADCONF(pa, dir, mux)	OMAP_IOPAD_OFFSET((pa), 0x0800) ((dir) | (mux))
+> +#define AM33XX_PADCONF(pa, conf, mux)	OMAP_IOPAD_OFFSET((pa), 0x0800) (conf) (mux)
+>  
+>  /*
+>   * Macros to allow using the offset from the padconf physical address
+> -- 
+> 2.25.1
+
+ Based on the bindings doc a value of 2 is only acceptable if one uses
+pinctrl-single,bits but all the am33xx pins still uses
+pinctrl-single,pins.
+ I noticed this because this breaks FreeBSD when I tried with 5.9 dts.
+
 -- 
-2.30.0
-
+Emmanuel Vadot <manu@bidouilliste.com> <manu@freebsd.org>
