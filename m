@@ -2,154 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 578652F778D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 12:24:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05F1B2F77E5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 12:46:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726137AbhAOLYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 06:24:22 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:58081 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726046AbhAOLYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 06:24:22 -0500
-X-UUID: 69a24a2d07a641f392b1dff7cc47ea39-20210115
-X-UUID: 69a24a2d07a641f392b1dff7cc47ea39-20210115
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <crystal.guo@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1357855546; Fri, 15 Jan 2021 19:23:37 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 15 Jan 2021 19:23:36 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 15 Jan 2021 19:23:35 +0800
-From:   Crystal Guo <crystal.guo@mediatek.com>
-To:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <crystal.guo@mediatek.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <stanley.chu@mediatek.com>, <srv_heupstream@mediatek.com>,
-        <seiya.wang@mediatek.com>, <fan.chen@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>, <Yingjoe.Chen@mediatek.com>,
-        <s-anna@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <Yidi.Lin@mediatek.com>, <ikjn@chromium.org>
-Subject: [v7,2/2] reset-controller: ti: introduce an integrated reset handler
-Date:   Fri, 15 Jan 2021 19:23:31 +0800
-Message-ID: <20210115112331.27434-3-crystal.guo@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210115112331.27434-1-crystal.guo@mediatek.com>
-References: <20210115112331.27434-1-crystal.guo@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 5E853876C392C9C9401EA3500EE0D371DA375EFC9FD4FBEBB67153AC2FA3F1082000:8
-X-MTK:  N
+        id S1726182AbhAOLqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 06:46:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726091AbhAOLqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 06:46:30 -0500
+Received: from mail-qv1-xf4a.google.com (mail-qv1-xf4a.google.com [IPv6:2607:f8b0:4864:20::f4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281C6C061757
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 03:45:50 -0800 (PST)
+Received: by mail-qv1-xf4a.google.com with SMTP id m8so7356573qvt.14
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 03:45:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=A1L5LiBXauTNSiThdiKpn8PiuSiEsdxg7IXuLjvuJiE=;
+        b=quv2i1zkZlwy1Dp26TdFDlOdkrMzdCjPwdHofP6/kJ8sMM2YlaOx2CUK+C+xMaeCcC
+         wiYqUlER9Y68k4CGt/pkNbnTPZXwJgl2hgUIw186/H7EkDLChdsSYp7hntFw2G2bBwj6
+         HsbKZHCLS94PSlGncDsBfIm5UMR66O9MSlyJGCzIWh3g/MUjuL7aQlG2HuOYLMEdRaVY
+         jnsXXd1Lu3RKEwzbNeQAz4JpIRigk4R00jCj7TS3SheFiAe3c7E3IuXkBf5lZ+xsuj8+
+         USW7iakliYd2dlHltzTIbqAJj5pNmWuRZ/FZnUQG5VdnzWI18o/BJS/RrAxFTXTAWJuH
+         dnqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=A1L5LiBXauTNSiThdiKpn8PiuSiEsdxg7IXuLjvuJiE=;
+        b=rtirHVzV3hJjDMCFk+AaGtVQrz5MmMVUhHx0537VUuYHdKo5CzYjrZWZ/YSrUwGfQ3
+         tpmh26CQpy8FqXPEjE9B2svgE3Ji2cqlVO/JE2gDM4tbj2XnCVpp65ckdaPfS9Zf/6L/
+         Tn79UCk827ZwPkn80BeFj0U0UO0cNCA0rSfzYh3erkrWpbnBKsD36cA2iJNrWH/eS0ML
+         KLkd+IrT+oOg1fbQCi3Xv9MP3ONysQHWiz5fHSlEqk4Y8XM/7cTtw6j3YqvHRLa6gyx0
+         ELrMvczeRTFL18O1jmddJbWxLXE1pamEnAaUJcpRvvZCwr3rTaq3WCPLLIQAIU45gtWD
+         xnjQ==
+X-Gm-Message-State: AOAM532f2n9oIb7WI8iKQC1QSjmgugo+OzH3bjC2wv2Xd1ZsldHp9gKv
+        5ZH4/wvH2lkD5enrf4zW7WYaQUQHEHje
+X-Google-Smtp-Source: ABdhPJzmRzMTYsK6JufS+gg1o2UjoLxakUX7PNu5dhXrEwOvB0uPXPmlthwFWXtHETHU1JpMEW26vrHLVvFe
+Sender: "qperret via sendgmr" <qperret@r2d2-qp.c.googlers.com>
+X-Received: from r2d2-qp.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:1652])
+ (user=qperret job=sendgmr) by 2002:a0c:99c8:: with SMTP id
+ y8mr11358708qve.35.1610711148511; Fri, 15 Jan 2021 03:45:48 -0800 (PST)
+Date:   Fri, 15 Jan 2021 11:45:42 +0000
+Message-Id: <20210115114544.1830068-1-qperret@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
+Subject: [PATCH 0/2] fdt: A couple of no-map fixes
+From:   Quentin Perret <qperret@google.com>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        drinkcat@chromium.org, swboyd@chromium.org, f.fainelli@gmail.com,
+        karahmed@amazon.de, kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce ti_syscon_reset() to integrate assert and deassert together.
-If some modules need do serialized assert and deassert operations
-to reset itself, reset_control_reset can be called for convenience.
+In the context of a KVM/arm64 thread [1], it became apparent that the
+difference in behaviour of EFI and DT with respect to no-map regions was
+something worth fixing.
 
-Such as reset-qcom-aoss.c, it integrates assert and deassert together
-by 'reset' method. MTK Socs also need this method to perform reset.
+Rob pointed out in that thread that a couple of patches in this area had
+been sent but still needed to be integrated together, which is basically
+what this series attempts to do.
 
-Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
----
- drivers/reset/reset-ti-syscon.c | 39 +++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+ - Patch 01 is a generic fix that should make sense on its own;
 
-diff --git a/drivers/reset/reset-ti-syscon.c b/drivers/reset/reset-ti-syscon.c
-index 218370faf37b..a30cb17362a4 100644
---- a/drivers/reset/reset-ti-syscon.c
-+++ b/drivers/reset/reset-ti-syscon.c
-@@ -15,15 +15,24 @@
-  * GNU General Public License for more details.
-  */
- 
-+#include <linux/delay.h>
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- #include <linux/reset-controller.h>
- 
- #include <dt-bindings/reset/ti-syscon.h>
- 
-+#define MTK_SYSCON_RESET_FLAG	BIT(0)
-+#define MT_RESET_DURATION	10
-+
-+struct mediatek_reset_data {
-+	unsigned int flag;
-+};
-+
- /**
-  * struct ti_syscon_reset_control - reset control structure
-  * @assert_offset: reset assert control register offset from syscon base
-@@ -56,6 +65,7 @@ struct ti_syscon_reset_data {
- 	struct regmap *regmap;
- 	struct ti_syscon_reset_control *controls;
- 	unsigned int nr_controls;
-+	const struct mediatek_reset_data *reset_data;
- };
- 
- #define to_ti_syscon_reset_data(rcdev)	\
-@@ -158,9 +168,32 @@ static int ti_syscon_reset_status(struct reset_controller_dev *rcdev,
- 		!(control->flags & STATUS_SET);
- }
- 
-+static int mtk_syscon_reset(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	int ret;
-+
-+	ret = ti_syscon_reset_assert(rcdev, id);
-+	if (ret)
-+		return ret;
-+	usleep_range(MT_RESET_DURATION, MT_RESET_DURATION * 2);
-+
-+	return ti_syscon_reset_deassert(rcdev, id);
-+}
-+
-+static int ti_syscon_reset(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	struct ti_syscon_reset_data *data = to_ti_syscon_reset_data(rcdev);
-+
-+	if (data->reset_data && data->reset_data->flag & MTK_SYSCON_RESET_FLAG)
-+		return mtk_syscon_reset(rcdev, id);
-+	else
-+		return -ENOTSUPP;
-+}
-+
- static const struct reset_control_ops ti_syscon_reset_ops = {
- 	.assert		= ti_syscon_reset_assert,
- 	.deassert	= ti_syscon_reset_deassert,
-+	.reset		= ti_syscon_reset,
- 	.status		= ti_syscon_reset_status,
- };
- 
-@@ -182,6 +215,7 @@ static int ti_syscon_reset_probe(struct platform_device *pdev)
- 	if (IS_ERR(regmap))
- 		return PTR_ERR(regmap);
- 
-+	data->reset_data = of_device_get_match_data(&pdev->dev);
- 	list = of_get_property(np, "ti,reset-bits", &size);
- 	if (!list || (size / sizeof(*list)) % 7 != 0) {
- 		dev_err(dev, "invalid DT reset description\n");
-@@ -217,8 +251,13 @@ static int ti_syscon_reset_probe(struct platform_device *pdev)
- 	return devm_reset_controller_register(dev, &data->rcdev);
- }
- 
-+static const struct mediatek_reset_data mtk_reset_data = {
-+	.flag = MTK_SYSCON_RESET_FLAG,
-+};
-+
- static const struct of_device_id ti_syscon_reset_of_match[] = {
- 	{ .compatible = "ti,syscon-reset", },
-+	{ .compatible = "mediatek,syscon-reset", .data = &mtk_reset_data},
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, ti_syscon_reset_of_match);
+ - Patch 02 allows the kernel to have a saner behaviour with a broken DT.
+   This one had a small rebase conflict (caused by patch 01). I tested
+   it in qemu and everything is looking good, the error message shows up
+   in dmesg when it should.
+
+Thanks,
+Quentin
+
+[1] https://lore.kernel.org/kvmarm/20210108121524.656872-1-qperret@google.com/
+
+KarimAllah Ahmed (1):
+  fdt: Properly handle "no-map" field in the memory region
+
+Nicolas Boichat (1):
+  of/fdt: Make sure no-map does not remove already reserved regions
+
+ drivers/of/fdt.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
 -- 
-2.18.0
+2.30.0.284.gd98b1dd5eaa7-goog
 
