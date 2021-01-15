@@ -2,139 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD3C12F86A0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 21:25:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 417582F86C5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 21:36:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729770AbhAOUZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 15:25:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56476 "EHLO
+        id S2388036AbhAOUfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 15:35:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbhAOUZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 15:25:16 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D745C061793
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 12:24:35 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id g15so1561233pjd.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 12:24:35 -0800 (PST)
+        with ESMTP id S1731339AbhAOUfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 15:35:01 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE428C0613D3
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 12:34:20 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id 30so6751076pgr.6
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 12:34:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8Jy+sRCJHRiWM+ceRz2fikqssAZSpSpfI/4rqhLv5UY=;
-        b=n+Ld6svog4T0o5pSqW43F4jUz1pZUfMnLmN+tPe4fjsQMhErj5dRDk5ofxhWBLA80s
-         W8V9udmZoWB9o3Y2IPT4NNk7mntgXgIE8henc7cLzSnj2i1OCWLBsAkqUB5OOTpLrFgl
-         hl4xJb5zZwtYkN2sRyGZVmosr5Up0LXyuHQE0=
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=g+YP0bVv1YfQ4vqCqWwoBJPB0DUFQOEmaYfwxcveiIA=;
+        b=BF5sTMwQLqTbsyDlqquGDw/KXf1h3FUyEXcOPNi/o1CHl7yHh50bZEqxyLD5QVR4yW
+         yWVLAZZkEDY5Gb4yuZfV/qjcTTfWWmExpwev/jTOJm3IKk+6mxWzYp6pt5pZkooUIVCr
+         E24D0xxUOsZ3Ile+o4KLzim2rj5RxTUKFslLs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8Jy+sRCJHRiWM+ceRz2fikqssAZSpSpfI/4rqhLv5UY=;
-        b=Zre7l9VoRuW60PYN2BByrZQxsRaYAsU+noE18vvItyabCjpXwV3ngYm4sXEsYEN6ps
-         HTRZdFPOsQukDXUCsRZzBFab9v0gLN0Fys+YXptWqr0FxCdeUcQOKdG9hqCxgEfiMsGJ
-         H5hUgd4jdegEEA7wmj8lXcLvgmNejF3QwFPhUU+IP8eBHOaBom0q6YfzE6HedScWfgbi
-         6B1NrtGXQcOdmXWb4AEUDIEukX3Fyv3KkPYO1l/PFiUkLTBp4EO7p6o0PH0/PEN4g7VT
-         1woS7sT2jRBFUpojP1nLORZ6SppfjvMYdUnu1sVLVLIlZ7YfqFbWeGeYk6y5hVvFNIun
-         eREQ==
-X-Gm-Message-State: AOAM5324h2+cffDSunggBCTbru9Hiem3nC91isfHAwqou9CNOowjft//
-        i3gFB/hz8zDa2F50XsHTpibrNA==
-X-Google-Smtp-Source: ABdhPJxfLfEXdoYx9cLDm7u1L3pDYoeIVqRGU+wDlNC9ThyGO+0OPKHSRx/2/3+C3rfVk5z0NFGxtw==
-X-Received: by 2002:a17:90a:4d84:: with SMTP id m4mr12524210pjh.145.1610742275062;
-        Fri, 15 Jan 2021 12:24:35 -0800 (PST)
-Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:a6ae:11ff:fe11:fd59])
-        by smtp.gmail.com with ESMTPSA id x19sm401097pfp.207.2021.01.15.12.24.33
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=g+YP0bVv1YfQ4vqCqWwoBJPB0DUFQOEmaYfwxcveiIA=;
+        b=bnS8w2Fyhyk0rAGi2AITFyVvkd27U0AHdOs/v4+9Mm4s7ZIGWSNtbPGvMGDPm7Lr1a
+         QyiYtrQtfdvjouXsLs5XBbtfhk/pWdV7dG5jJ0El9DCG8XjwjK5JofBNq650jkz7JVT7
+         v4Bvw10PzbcknvCeWVeNVR6vNeOuTqjLYoWAMxdEWzJY7fFhGpCagpObKmDatvCTFUOO
+         1PhBQSGTJVgmRWzGmrZT7tmip68Z3DTmchCnNXWxsZ/01aZ8k4QKaOnP0V/aKsbPEaOd
+         96wcc/5f1JPQVpra/Y3UQGe6dmpGUg1WXlY1CAc1KjsCwy/PtfL92wfRSiFY1qcpdhnV
+         zzqw==
+X-Gm-Message-State: AOAM530+KsmAMlC9hz/SWc9mmc+ApylOpoDNiCHO6WgIjshzBRl/J6FR
+        FDJ1bu5vDlIzDpkcO66qAeXicA==
+X-Google-Smtp-Source: ABdhPJwFxrCy6unJ9wd4f769/57cihhVD8RvoOwOtvmtOsKd2+BhZR6IT569L9AX8EMqVI2bYQyQeg==
+X-Received: by 2002:a65:534c:: with SMTP id w12mr14398508pgr.179.1610742860241;
+        Fri, 15 Jan 2021 12:34:20 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id e65sm9118505pfh.175.2021.01.15.12.34.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 12:24:34 -0800 (PST)
-From:   Philip Chen <philipchen@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>, dmitry.torokhov@gmail.com
-Cc:     swboyd@chromium.org, dianders@chromium.org,
-        Philip Chen <philipchen@chromium.org>,
+        Fri, 15 Jan 2021 12:34:19 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+References: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+Subject: Re: [PATCH v7 1/2] dt-bindings: input: cros-ec-keyb: Add a new property
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     dianders@chromium.org, Philip Chen <philipchen@chromium.org>,
         Benson Leung <bleung@chromium.org>,
         Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         Guenter Roeck <groeck@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
         Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
         linux-input@vger.kernel.org
-Subject: [PATCH v7 1/2] dt-bindings: input: cros-ec-keyb: Add a new property
-Date:   Fri, 15 Jan 2021 12:24:29 -0800
-Message-Id: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Philip Chen <philipchen@chromium.org>,
+        dmitry.torokhov@gmail.com
+Date:   Fri, 15 Jan 2021 12:34:18 -0800
+Message-ID: <161074285814.3661239.12462722802289701745@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new property `function-row-physmap` to the
-device tree for the custom keyboard top row design.
+Quoting Philip Chen (2021-01-15 12:24:29)
+> Add a new property `function-row-physmap` to the
+> device tree for the custom keyboard top row design.
+>=20
+> The property describes the rows/columns of the top row keys
+> from left to right.
+>=20
+> Signed-off-by: Philip Chen <philipchen@chromium.org>
+> ---
 
-The property describes the rows/columns of the top row keys
-from left to right.
-
-Signed-off-by: Philip Chen <philipchen@chromium.org>
----
-
-Changes in v7:
-- Use MATRIX_KEY macro to describe `function-row-physmap`
-
-Changes in v6:
-- remove $ref and add `function-row-physmap` to the example
-
-Changes in v5:
-- add minItems and maxItems for `function-row-physmap`
-
-Changes in v2:
-- add `function-row-physmap` instead of `google,custom-keyb-top-row`
-
- .../bindings/input/google,cros-ec-keyb.yaml   | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-index 8e50c14a9d778..5377b232fa10f 100644
---- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-+++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-@@ -31,6 +31,17 @@ properties:
-       if the EC does not have its own logic or hardware for this.
-     type: boolean
- 
-+  function-row-physmap:
-+    minItems: 1
-+    maxItems: 15
-+    description: |
-+      An ordered u32 array describing the rows/columns (in the scan matrix)
-+      of top row keys from physical left (KEY_F1) to right. Each entry
-+      encodes the row/column as:
-+      (((row) & 0xFF) << 24) | (((column) & 0xFF) << 16)
-+      where the lower 16 bits are reserved. This property is specified only
-+      when the keyboard has a custom design for the top row keys.
-+
- required:
-   - compatible
- 
-@@ -38,11 +49,24 @@ unevaluatedProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/input/input.h>
-     cros-ec-keyb {
-         compatible = "google,cros-ec-keyb";
-         keypad,num-rows = <8>;
-         keypad,num-columns = <13>;
-         google,needs-ghost-filter;
-+        function-row-physmap = <
-+            MATRIX_KEY(0x00, 0x02, 0)   /* T1 */
-+            MATRIX_KEY(0x03, 0x02, 0)   /* T2 */
-+            MATRIX_KEY(0x02, 0x02, 0)   /* T3 */
-+            MATRIX_KEY(0x01, 0x02, 0)   /* T4 */
-+            MATRIX_KEY(0x03, 0x04, 0)   /* T5 */
-+            MATRIX_KEY(0x02, 0x04, 0)   /* T6 */
-+            MATRIX_KEY(0x01, 0x04, 0)   /* T7 */
-+            MATRIX_KEY(0x02, 0x09, 0)   /* T8 */
-+            MATRIX_KEY(0x01, 0x09, 0)   /* T9 */
-+            MATRIX_KEY(0x00, 0x04, 0)   /* T10 */
-+        >;
-         /*
-          * Keymap entries take the form of 0xRRCCKKKK where
-          * RR=Row CC=Column KKKK=Key Code
--- 
-2.26.2
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
