@@ -2,222 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 213282F8438
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:23:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE482F8459
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:28:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387992AbhAOSWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 13:22:01 -0500
-Received: from mx2.suse.de ([195.135.220.15]:50512 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732975AbhAOSWA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 13:22:00 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 065C4AA6F;
-        Fri, 15 Jan 2021 18:21:19 +0000 (UTC)
-Message-ID: <b707107cfd81e556e446c8691f04dc8d247f81ac.camel@suse.de>
-Subject: Re: [PATCH V4] dt-bindings: gpu: Convert v3d to json-schema
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Eric Anholt <eric@anholt.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org
-Date:   Fri, 15 Jan 2021 19:21:17 +0100
-In-Reply-To: <1610564917-11559-1-git-send-email-stefan.wahren@i2se.com>
-References: <1610564917-11559-1-git-send-email-stefan.wahren@i2se.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-9bhOjb89UhlJwDzoHjSe"
-User-Agent: Evolution 3.38.3 
+        id S1729353AbhAOS1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 13:27:53 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:29762 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728784AbhAOS1v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 13:27:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1610735184;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=edpQ9XBa4NxUM42jV640jE0QnzJCtHUWVPa7s08fP6M=;
+        b=Wshpl5KRRd9niSnQ2ICUQmQ2dzz9Qq0xsgXWfBlFS+LY72nKd1bNeaHRCVgqmichD+3jsI
+        oXENPzTD79b/1Ij3rQmBKez/PIzEOE4U0Lqzq/2AM5tJnxpAI5+0820cTYoaySVZjjEdDo
+        mOxmw1oMpSsIVlIYdMSSV9EuiJ3NzjQ=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-589-F06MtB27P1KfCKg0SqzF3Q-1; Fri, 15 Jan 2021 13:26:22 -0500
+X-MC-Unique: F06MtB27P1KfCKg0SqzF3Q-1
+Received: by mail-qk1-f200.google.com with SMTP id x74so8831557qkb.12
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 10:26:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=edpQ9XBa4NxUM42jV640jE0QnzJCtHUWVPa7s08fP6M=;
+        b=Soypo14K/4jkrIYlOqHPxUmkzRX6PHeCea/3nsMCDdU79qit4Lbel3FmVJkM4c0aOb
+         EvKbaeLFYA39qDuYiRxTs2CAXfSE/dRaHqvAUAF8wUW3zhD5yX49Hak6FM3BF76VRWJk
+         1L+8F8D2D5bH8JsKz/qXt779svQSyP6o+d6aO5O7CVUBmBj/lDeZx3Knwvub8AcQH/wy
+         exOVRkIjOWFIkulEFpGGJJaUunTBLLDBKIydQ6LctFen4ZdG5UnKiSJ9wwbK761oTyu1
+         SskbjT/prLkdAwGpKXXQZ+tb6mOaxXALG2lap4nS0ARroLMLXJjIRZ2evaQTjoamfPdI
+         baMA==
+X-Gm-Message-State: AOAM5303y+uDRVQhrW5NGxIrKdWnY9Avznu7fBB1lxh3hW6vEaGvUR5C
+        rKqSDVr/EYkhjc42kVVCSDgpF6PCXm2V8M4aP4+q01L6anq6H3vA17OV5CaXx+ttYTPmW9dgwNk
+        AH/Z508lmBjWBMf7811mtfA==
+X-Received: by 2002:a37:8703:: with SMTP id j3mr13736106qkd.455.1610735182336;
+        Fri, 15 Jan 2021 10:26:22 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxhh3gcJfS7/iyNYYOy0a2+NqIKUaY7FuPSZFU4sMQT601HHELrIoh6E714w3tQyBxQ+Nw6Lw==
+X-Received: by 2002:a37:8703:: with SMTP id j3mr13736081qkd.455.1610735182105;
+        Fri, 15 Jan 2021 10:26:22 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id q185sm5545762qka.96.2021.01.15.10.26.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Jan 2021 10:26:21 -0800 (PST)
+Subject: Re: [PATCH 2/2] fpga: Add support for Xilinx DFX AXI Shutdown manager
+To:     Nava kishore Manne <nava.manne@xilinx.com>, mdf@kernel.org,
+        robh+dt@kernel.org, michal.simek@xilinx.com,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     git@xilinx.com, chinnikishore369@gmail.com
+References: <20210115013431.27667-1-nava.manne@xilinx.com>
+ <20210115013431.27667-2-nava.manne@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <2dc469ae-cdf4-0774-c786-7dd01c4914c9@redhat.com>
+Date:   Fri, 15 Jan 2021 10:26:19 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
+In-Reply-To: <20210115013431.27667-2-nava.manne@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---=-9bhOjb89UhlJwDzoHjSe
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, 2021-01-13 at 20:08 +0100, Stefan Wahren wrote:
-> This converts the v3d bindings to yaml format.
->=20
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+On 1/14/21 5:34 PM, Nava kishore Manne wrote:
+> This patch adds support for Xilinx Dynamic Function eXchange(DFX) AXI
+> shutdown manager IP. It can be used to safely handling the AXI traffic
+> on a Reconfigurable Partition when it is undergoing dynamic reconfiguration
+> and there by preventing system deadlock that may occur if AXI transactions
+> are interrupted during reconfiguration.
+>
+> PR-Decoupler and AXI shutdown manager are completely different IPs.
+> But both the IP registers are compatible and also both belong to the
+> same sub-system (fpga-bridge).So using same driver for both IP's.
+>
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
 > ---
+>  drivers/fpga/xilinx-pr-decoupler.c | 35 ++++++++++++++++++++++++++----
 
-Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+It looks like the copyright is wrong, please review spelling of Xilix
 
-Regards,
-Nicolas
-
->=20
-> Changes in V4:
-> - define order for required reg-names
-> - adapt example
->=20
-> Changes in V3:
-> - drop redundant maxItems in case we already have items defined
-> - fix order of reg-names enum
-> - tag required items in description
-> - add reg-names to required properties
-> - drop clock-names
->=20
-> =C2=A0.../devicetree/bindings/gpu/brcm,bcm-v3d.txt       | 33 ----------
-> =C2=A0.../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 75 +++++++++++=
-+++++++++++
-> =C2=A02 files changed, 75 insertions(+), 33 deletions(-)
-> =C2=A0delete mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v=
-3d.txt
-> =C2=A0create mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v=
-3d.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt b/Doc=
-umentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-> deleted file mode 100644
-> index b2df82b..0000000
-> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -Broadcom V3D GPU
-> -
-> -Only the Broadcom V3D 3.x and newer GPUs are covered by this binding.
-> -For V3D 2.x, see brcm,bcm-vc4.txt.
-> -
-> -Required properties:
-> -- compatible:	Should be "brcm,7268-v3d" or "brcm,7278-v3d"
-> -- reg:		Physical base addresses and lengths of the register areas
-> -- reg-names:	Names for the register areas.  The "hub" and "core0"
-> -		  register areas are always required.  The "gca" register area
-> -		  is required if the GCA cache controller is present.  The
-> -		  "bridge" register area is required if an external reset
-> -		  controller is not present.
-> -- interrupts:	The interrupt numbers.  The first interrupt is for the hub=
-,
-> -		  while the following interrupts are separate interrupt lines
-> -		  for the cores (if they don't share the hub's interrupt).
-> -		  See bindings/interrupt-controller/interrupts.txt
-> -
-> -Optional properties:
-> -- clocks:	The core clock the unit runs on
-> -- resets:	The reset line for v3d, if not using a mapping of the bridge
-> -		  See bindings/reset/reset.txt
-> -
-> -v3d {
-> -	compatible =3D "brcm,7268-v3d";
-> -	reg =3D <0xf1204000 0x100>,
-> -	      <0xf1200000 0x4000>,
-> -	      <0xf1208000 0x4000>,
-> -	      <0xf1204100 0x100>;
-> -	reg-names =3D "bridge", "hub", "core0", "gca";
-> -	interrupts =3D <0 78 4>,
-> -		     <0 77 4>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Do=
-cumentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> new file mode 100644
-> index 0000000..fbce844
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom V3D GPU Bindings
-> +
-> +maintainers:
-> +  - Eric Anholt <eric@anholt.net>
-> +  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^gpu@[a-f0-9]+$'
-> +
-> +  compatible:
-> +    enum:
-> +      - brcm,7268-v3d
-> +      - brcm,7278-v3d
-> +
-> +  reg:
-> +    items:
-> +      - description: hub register (required)
-> +      - description: core0 register (required)
-> +      - description: GCA cache controller register (if GCA controller pr=
-esent)
-> +      - description: bridge register (if no external reset controller)
-> +    minItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: hub
-> +      - const: core0
-> +      - enum: [ bridge, gca ]
-> +      - enum: [ bridge, gca ]
-> +    minItems: 2
-> +    maxItems: 4
-> +
-> +  interrupts:
-> +    items:
-> +      - description: hub interrupt (required)
-> +      - description: core interrupts (if it doesn't share the hub's inte=
-rrupt)
-> +    minItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpu@f1200000 {
-> +      compatible =3D "brcm,7268-v3d";
-> +      reg =3D <0xf1200000 0x4000>,
-> +            <0xf1208000 0x4000>,
-> +            <0xf1204000 0x100>,
-> +            <0xf1204100 0x100>;
-> +      reg-names =3D "hub", "core0", "bridge", "gca";
-> +      interrupts =3D <0 78 4>,
-> +                   <0 77 4>;
-> +    };
-> +
-> +...
+ * Copyright (c) 2017, Xilix Inc
 
 
+>  1 file changed, 31 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/fpga/xilinx-pr-decoupler.c b/drivers/fpga/xilinx-pr-decoupler.c
+> index 7d69af230567..c95f3d065ccb 100644
+> --- a/drivers/fpga/xilinx-pr-decoupler.c
+> +++ b/drivers/fpga/xilinx-pr-decoupler.c
+> @@ -19,10 +19,15 @@
+>  #define CTRL_OFFSET		0
+>  
+>  struct xlnx_pr_decoupler_data {
+> +	const struct xlnx_config_data *ipconfig;
+>  	void __iomem *io_base;
+>  	struct clk *clk;
+>  };
+>  
+> +struct xlnx_config_data {
+> +	char *name;
+> +};
 
---=-9bhOjb89UhlJwDzoHjSe
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+Move xlnx_config_data above xlnx_pr_decouple_data.
 
------BEGIN PGP SIGNATURE-----
+could you 'const' char *name ?
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmAB3R0ACgkQlfZmHno8
-x/6zlAgAr4hmHIcqPIBSJv91KJeRqu6x3uKC+AxZNzD3O+P4ajSUtYjdBeZ7UAcq
-JI/l6zhuTsALg8CjWSFsbwXxkOzzfamUNk80gqo/0ug87hhODasgLui53GrOFjH6
-06k8EoncuUwwNmiPTQGOqEg82Kitxx4mjhV7jJgCbI10LewDgVB2IPlAVwkpTW/z
-nqJ/Hk1AlHcWKqozBVGw7veNCG83yk+Sf/tdjuYA9rS1LTk8y8sE0uu/sZtailHu
-sFm8S8a0ouFSMPRYwVYrZaIRC+lbDK5Kf6S3iKUFU6s3/gqnZHgrIyRSDfaoMDll
-9IoxDo306UB0DwM67LnVvxSMivBacQ==
-=4lrW
------END PGP SIGNATURE-----
+> +
+>  static inline void xlnx_pr_decoupler_write(struct xlnx_pr_decoupler_data *d,
+>  					   u32 offset, u32 val)
+>  {
+> @@ -76,15 +81,28 @@ static const struct fpga_bridge_ops xlnx_pr_decoupler_br_ops = {
+>  	.enable_show = xlnx_pr_decoupler_enable_show,
+>  };
+>  
+> +static const struct xlnx_config_data decoupler_config = {
+> +	.name = "Xilinx PR Decoupler",
+> +};
+> +
+> +static const struct xlnx_config_data shutdown_config = {
+> +	.name = "Xilinx DFX AXI shutdown mgr",
 
---=-9bhOjb89UhlJwDzoHjSe--
+To be consistent with decoupler name,
+
+shutdown mgr -> Shutdown Manager
+
+> +};
+> +
+>  static const struct of_device_id xlnx_pr_decoupler_of_match[] = {
+> -	{ .compatible = "xlnx,pr-decoupler-1.00", },
+> -	{ .compatible = "xlnx,pr-decoupler", },
+> +	{ .compatible = "xlnx,pr-decoupler-1.00", .data = &decoupler_config },
+> +	{ .compatible = "xlnx,pr-decoupler", .data = &decoupler_config },
+> +	{ .compatible = "xlnx,dfx-axi-shutdown-manager-1.00",
+> +					.data = &shutdown_config },
+> +	{ .compatible = "xlnx,dfx-axi-shutdown-manager",
+> +					.data = &shutdown_config },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, xlnx_pr_decoupler_of_match);
+>  
+>  static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
+>  {
+> +	struct device_node *np = pdev->dev.of_node;
+>  	struct xlnx_pr_decoupler_data *priv;
+>  	struct fpga_bridge *br;
+>  	int err;
+> @@ -94,6 +112,14 @@ static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> +	if (np) {
+> +		const struct of_device_id *match;
+> +
+> +		match = of_match_node(xlnx_pr_decoupler_of_match, np);
+> +		if (match && match->data)
+> +			priv->ipconfig = match->data;
+> +	}
+> +
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	priv->io_base = devm_ioremap_resource(&pdev->dev, res);
+>  	if (IS_ERR(priv->io_base))
+> @@ -114,7 +140,7 @@ static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
+>  
+>  	clk_disable(priv->clk);
+>  
+> -	br = devm_fpga_bridge_create(&pdev->dev, "Xilinx PR Decoupler",
+> +	br = devm_fpga_bridge_create(&pdev->dev, priv->ipconfig->name,
+>  				     &xlnx_pr_decoupler_br_ops, priv);
+>  	if (!br) {
+>  		err = -ENOMEM;
+> @@ -125,7 +151,8 @@ static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
+>  
+>  	err = fpga_bridge_register(br);
+>  	if (err) {
+> -		dev_err(&pdev->dev, "unable to register Xilinx PR Decoupler");
+> +		dev_err(&pdev->dev, "unable to register %s",
+> +			priv->ipconfig->name);
+>  		goto err_clk;
+>  	}
+
+Look at XILINX_PR_DECOUPLER entry in Kconfig, maybe add something like
+
+help
+
+  Say Y to enable drivers for the  ... Decoupler or DFX AIX Shutdown Manager
+
+Tom
+
+>  
 
