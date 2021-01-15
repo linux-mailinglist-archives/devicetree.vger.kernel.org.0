@@ -2,154 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 255A32F7146
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 04:56:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3255C2F7158
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 05:04:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732769AbhAODz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 22:55:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40996 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731139AbhAODzw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 22:55:52 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30998C061575;
-        Thu, 14 Jan 2021 19:55:12 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id j12so7363044ota.7;
-        Thu, 14 Jan 2021 19:55:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=P1pE3SlC44ai1ckIdueI94VlVgFy9zu5zhNWEKBjxuQ=;
-        b=Tg1Uvl8gK/EKXgNwP6EqowAB4+ptGN9J8bRToi75GZ9OVHhY+DNTjWDgSnLve60V1W
-         p4SBj67qBAcI5V7c1ECEXI9BADrVtA/kqdWUZ8wrmvkZLq80wPK1P9aOcxi9jP+t1o1Y
-         KJr9TmA3Emi2eYjvaTNmfYa78wa2J7E/MtSKH1w0D1ZFiY9+trEAB+Lk/sB78j34+U6Q
-         QByhUNBgx9QoaEVsdVJXJ9oc7L+Wzpj2rRZf3GGKLUd6e994kaH+aTmFouM/T+5YkMor
-         B9vA+ZyssFr4nIV+q9jMInF47uDkXYY8FgOjmCO1Gda/s+Pg2GpJG7kq0nmsH76Du8lk
-         AUMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=P1pE3SlC44ai1ckIdueI94VlVgFy9zu5zhNWEKBjxuQ=;
-        b=Tg65Etht3bOsVE/Da3JOQpYk0/09e/TZQZMEK6ek8+oFckRW8X02NsmShSOrpKU6FV
-         C6FqnJVdlKoD0PRou93UijGp3/StuMDVF/igVl+byxm+BqW6/I2IeVN7F47tDDlhfcyM
-         OjLP9g8oozujm28Ssq8BkgBYMC+PuwLMu4M4xkrCHHIXkE4CaLa1xM+H5K0zcId4uJ/R
-         8xhCEKPB8J//xxNmHfl7wNZoygR4Gj0Frb/GyThPnEzar7MX5BZQ/27KtnqWd1HxZAxI
-         7hxEzypZRRrlHqhDSiG/K3B/tuPu6DwH76DVPabWb7wlZzVOtCw3afJSnXP08uu7tfBc
-         8e3A==
-X-Gm-Message-State: AOAM530BoLtC4msCNF1bt/55JOfBPWDvARhjAiFrjhFKg2D+TxPw4/qQ
-        C6GNqfkqAabeOB31U6S2iFmF5vZk+DENy6RcJSA=
-X-Google-Smtp-Source: ABdhPJycmwChvFy+e4H9mlLdITjI5zgt1vFrzcRWChV7FXDg5tJwdGl+uV3O3z94glc+CC6FWc8S3nIDWhJ/O4Ph/I0=
-X-Received: by 2002:a05:6830:160f:: with SMTP id g15mr6975275otr.129.1610682911620;
- Thu, 14 Jan 2021 19:55:11 -0800 (PST)
+        id S1732822AbhAOECv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 23:02:51 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:47155 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1732821AbhAOECu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 23:02:50 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id EFB6B13C9;
+        Thu, 14 Jan 2021 23:02:03 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Thu, 14 Jan 2021 23:02:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=y
+        CBsbbIUgUY+VKKhj2BGPNlSP1bj0827xEGAxuWLWcc=; b=PZMKBwY1gNHSQJZLo
+        akElT2kCqksVQ/lvO5FtNjEqa80ytPUrCRQaJ+M2qfmMS3/auSzfKUU7YB2DqGGx
+        4lifCPoB5OgWNxcMo7qDksq5gDkClgBVwJxQMQ+CM4m3fSqDIUkzTUqC5JG5IODg
+        mforC12V9uYoambRWYGAId/h60EvjOR1J3mkMwsas0gD1ELV5SW9HYmE0auUcy2p
+        1y42HXzcuph4RYEpr+WCoi6EQ4iz1sbOV0huJT6MNAtr2/GbZY3So+5ged0sPz7F
+        GHQL49VQTB4YiHiqjk0ZgFYyiKukWnLFwMB2UfUYNuiZOEBMOltZ82axZAoiPdur
+        kq0dA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=yCBsbbIUgUY+VKKhj2BGPNlSP1bj0827xEGAxuWLW
+        cc=; b=fJ9TtgD3Fnh1juVdSp4Xq9bBgY/dq+Ph6073aErTbKrTi/6qiB6nO0Y2y
+        Xo9p/k35+qK8J5mV19NzcYr92t0JA8BiblBt1rQ1ej13xQy/DtzHd2dTPlkgXKi1
+        f4ViUeCmwrHIAFYT5Hpdu6lgsytLe7gbKQS2bLM5Feic/pZMGjb12B9Dv7U1nPsF
+        Pcz8WDECWBzQkwTPUr9+08vbVumQHN2qwcfUNcVaDZYzGzxKn4i4rZoNUuWCK8jY
+        LJ1TbG8jXRQdvm//tTwG+MKq4llrUqzE2lsD5T2LpOmvUEn126rkaHrevOxZaP4m
+        QScjLwUXMv6114mHV2AkzIOqtuIwg==
+X-ME-Sender: <xms:uBMBYLW-oX5kQGOK8T7ecnzgnoCwzOEM5MPSUpyXYbasWpE334Crpg>
+    <xme:uBMBYDntBknKE3rvgGDjaq4WoN7PZW2ZGbTgb9SuYIvPd2lnnu6db6LY6kTJCRxQv
+    84ucjpEEjIf0BmRgw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddugdeiiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpedvtddtjeeiuddugfffveetkeffgeffgedutdfgfeekudevudekffeh
+    tdefveeuvdenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
+    ugdrohhrgh
+X-ME-Proxy: <xmx:uBMBYHaPAGcLmZuQkzH2ROhXeBM5nPGL1u33CY5M6MDqp71VFQStCg>
+    <xmx:uBMBYGWFzDW5ubZ-RpdflzRAj_pJaltdQ1C9uV6bxRZm6nwRm8b5dQ>
+    <xmx:uBMBYFlOTXOUmnq5yx3X62kOzgGzvnAFppkgbqlam073BMPQRwKopA>
+    <xmx:uxMBYLU32mh7ywdH1f50jWYmvfvkuVcO8j2RR8gktHEHR1VfyUgIBw>
+Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id B9B511080059;
+        Thu, 14 Jan 2021 23:01:59 -0500 (EST)
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210112055950.21209-1-samuel@sholland.org>
+ <20210112055950.21209-4-samuel@sholland.org> <87turjjkjr.wl-maz@kernel.org>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v4 03/10] irqchip/sun6i-r: Use a stacked irqchip driver
+Message-ID: <495f71d0-9dbf-23d2-45a1-f27b15138bb2@sholland.org>
+Date:   Thu, 14 Jan 2021 22:01:59 -0600
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-References: <1605177598-23501-1-git-send-email-gene.chen.richtek@gmail.com>
- <1605177598-23501-5-git-send-email-gene.chen.richtek@gmail.com> <74b127eb-9a3c-20c9-5692-b00b982f4da3@gmail.com>
-In-Reply-To: <74b127eb-9a3c-20c9-5692-b00b982f4da3@gmail.com>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Fri, 15 Jan 2021 11:55:00 +0800
-Message-ID: <CAE+NS34qR9f2LOpvxTBDF4OR=Xq-SFP+uHdWe3dZ5x8xggS8kA@mail.gmail.com>
-Subject: Re: [PATCH v7 04/11] mfd: mt6360: Combine mt6360 pmic/ldo resources
- into mt6360 regulator resources
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     sre@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-pm@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, ChiYuan Huang <cy_huang@richtek.com>,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <87turjjkjr.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Matthias Brugger <matthias.bgg@gmail.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=88=
-12=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:32=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
->
->
-> On 12/11/2020 11:39, Gene Chen wrote:
-> > From: Gene Chen <gene_chen@richtek.com>
-> >
-> > Combine mt6360 pmic/ldo resources into mt6360 regulator resources
-> > to simplify the similar resources object.
-> >
-> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> > Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> > ---
-> >  drivers/mfd/mt6360-core.c | 11 +++--------
-> >  1 file changed, 3 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/mfd/mt6360-core.c b/drivers/mfd/mt6360-core.c
-> > index 692e47b..5119e51 100644
-> > --- a/drivers/mfd/mt6360-core.c
-> > +++ b/drivers/mfd/mt6360-core.c
-> > @@ -265,7 +265,7 @@ static const struct resource mt6360_led_resources[]=
- =3D {
-> >       DEFINE_RES_IRQ_NAMED(MT6360_FLED1_STRB_TO_EVT, "fled1_strb_to_evt=
-"),
-> >  };
-> >
-> > -static const struct resource mt6360_pmic_resources[] =3D {
-> > +static const struct resource mt6360_regulator_resources[] =3D {
-> >       DEFINE_RES_IRQ_NAMED(MT6360_BUCK1_PGB_EVT, "buck1_pgb_evt"),
-> >       DEFINE_RES_IRQ_NAMED(MT6360_BUCK1_OC_EVT, "buck1_oc_evt"),
-> >       DEFINE_RES_IRQ_NAMED(MT6360_BUCK1_OV_EVT, "buck1_ov_evt"),
-> > @@ -278,9 +278,6 @@ static const struct resource mt6360_pmic_resources[=
-] =3D {
-> >       DEFINE_RES_IRQ_NAMED(MT6360_LDO7_OC_EVT, "ldo7_oc_evt"),
-> >       DEFINE_RES_IRQ_NAMED(MT6360_LDO6_PGB_EVT, "ldo6_pgb_evt"),
-> >       DEFINE_RES_IRQ_NAMED(MT6360_LDO7_PGB_EVT, "ldo7_pgb_evt"),
-> > -};
-> > -
-> > -static const struct resource mt6360_ldo_resources[] =3D {
-> >       DEFINE_RES_IRQ_NAMED(MT6360_LDO1_OC_EVT, "ldo1_oc_evt"),
-> >       DEFINE_RES_IRQ_NAMED(MT6360_LDO2_OC_EVT, "ldo2_oc_evt"),
-> >       DEFINE_RES_IRQ_NAMED(MT6360_LDO3_OC_EVT, "ldo3_oc_evt"),
-> > @@ -298,10 +295,8 @@ static const struct mfd_cell mt6360_devs[] =3D {
-> >                   NULL, 0, 0, "mediatek,mt6360-chg"),
-> >       OF_MFD_CELL("mt6360-led", mt6360_led_resources,
-> >                   NULL, 0, 0, "mediatek,mt6360-led"),
-> > -     OF_MFD_CELL("mt6360-pmic", mt6360_pmic_resources,
-> > -                 NULL, 0, 0, "mediatek,mt6360-pmic"),
-> > -     OF_MFD_CELL("mt6360-ldo", mt6360_ldo_resources,
-> > -                 NULL, 0, 0, "mediatek,mt6360-ldo"),
-> > +     OF_MFD_CELL("mt6360-regulator", mt6360_regulator_resources,
-> > +                 NULL, 0, 0, "mediatek,mt6360-regulator"),
->
-> As discussed with the MFD maintainer [1], the regulator (and probably all=
- cells)
-> shouldn't have a DT binding.
->
-> So please send a new version which fixes that.
->
-> Regards,
-> Matthias
->
-> [1] https://lore.kernel.org/linux-mediatek/20210111164118.GE4728@sirena.o=
-rg.uk/
->
+Hello,
 
-Should I use parent's device to find sub-devices of_node if without
-compatible name?
-I trace the function mfd_add_device,
+On 1/14/21 3:06 PM, Marc Zyngier wrote:
+> Hi Samuel,
+> 
+> On 2021-01-12 05:59, Samuel Holland wrote:
+> 
+> [...]
+> 
+>> +static void sun6i_r_intc_ack_nmi(void)
+>> +{
+>> +	writel(SUN6I_NMI_BIT, base + SUN6I_IRQ_PENDING(0));
+> 
+> writel_relaxed()
 
-if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
-    .....
-    ret =3D mfd_match_of_node_to_dev(pdev, np, cell);
-    .....
-}
+irq_chip_unmask_parent(), which calls gic_unmask_irq(), is called
+immediately after this in .irq_unmask. Since gic_unmask_irq() also uses
+writel_relaxed(), the GIC write could be ordered before the write here.
 
-which is binding mfd sub-device with compatible. Does it be removed in
-the feature?
+I was getting occasional spurious interrupts (1 out of each 20-25) when
+using a level trigger, which were resolved by switching to writel() here.
 
-> >       OF_MFD_CELL("mt6360-tcpc", NULL,
-> >                   NULL, 0, 0, "mediatek,mt6360-tcpc"),
-> >  };
-> >
+I mentioned this in the changelog, but it probably deserves a comment in
+the code as well. Or maybe I should use an explicit barrier somewhere?
+
+>> +}
+>> +
+>> +static void sun6i_r_intc_nmi_ack(struct irq_data *data)
+>> +{
+>> +	if (irqd_get_trigger_type(data) & IRQ_TYPE_EDGE_BOTH)
+>> +		sun6i_r_intc_ack_nmi();
+>> +	else
+>> +		data->chip_data = SUN6I_NMI_NEEDS_ACK;
+>> +}
+>> +
+>> +static void sun6i_r_intc_nmi_eoi(struct irq_data *data)
+>> +{
+>> +	/* For oneshot IRQs, delay the ack until the IRQ is unmasked. */
+>> +	if (data->chip_data == SUN6I_NMI_NEEDS_ACK && !irqd_irq_masked(data)) 
+>> {
+>> +		sun6i_r_intc_ack_nmi();
+>> +		data->chip_data = 0;
+> 
+> nit: NULL rather than 0?
+
+NULL seemed less appropriate since I'm not using the field as a pointer,
+but I don't have a strong opinion about it.
+
+> [...]
+> 
+>> +static struct irq_chip sun6i_r_intc_nmi_chip = {
+>> +	.name			= "sun6i-r-intc",
+>> +	.irq_ack		= sun6i_r_intc_nmi_ack,
+>> +	.irq_mask		= irq_chip_mask_parent,
+>> +	.irq_unmask		= sun6i_r_intc_nmi_unmask,
+>> +	.irq_eoi		= sun6i_r_intc_nmi_eoi,
+>> +	.irq_set_affinity	= irq_chip_set_affinity_parent,
+>> +	.irq_set_type		= sun6i_r_intc_nmi_set_type,
+>> +	.irq_set_irqchip_state	= sun6i_r_intc_nmi_set_irqchip_state,
+> 
+> You probably also want to wire irq_get_irqchip_state(), while
+> you're at it.
+
+I thought if the interrupt was pending here, it would necessarily also
+be pending at the GIC, so adding a separate layer would be redundant.
+
+irq_set_vcpu_affinity(), __irq_get_irqchip_state(), and
+irq_set_irqchip_state() [the functions, not the callbacks] have the
+interesting property that they search up the irqdomain hierarchy for the
+first irqdomain with the callback. So if all the callback would do is
+defer to its parent, it doesn't need to be provided at all*.
+
+*except in case this irqdomain has a child which calls
+irq_chip_get_parent_state(), which does not look past its immediate
+parent. But I did not think that case was worth worrying about.
+
+Cheers,
+Samuel
+
+> Otherwise, looks pretty good now.
+> 
+> Thanks,
+> 
+> 	M.
+> 
+
