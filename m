@@ -2,81 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A362F8197
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:06:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4851E2F8199
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:08:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729403AbhAORGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 12:06:31 -0500
-Received: from m43-15.mailgun.net ([69.72.43.15]:33212 "EHLO
-        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729018AbhAORGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:06:30 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1610730373; h=In-Reply-To: Content-Type: MIME-Version:
- References: Message-ID: Subject: Cc: To: From: Date: Sender;
- bh=wjgIsm5r+W+QCFqaE40wKTkYfo5MCRy14S3C/mBWwqs=; b=e+S0aCpSVZnBx4Gf/F4kA9VWz4/CZ+t6BPs0XArrjhxsplxrnZpyQhC1apxTQc4J+0UOO0qx
- lr6F7biH0cNQwXx53iYCdaVv6NrmPU+ImXrAK1bUAtzTSw6lostbW/1c09ENZ/NI7mTYJ9Ma
- We9/O+NpRG3UcoJpZL9b51d9T3w=
-X-Mailgun-Sending-Ip: 69.72.43.15
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 6001cb6175e5c01cba1308c4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 15 Jan 2021 17:05:37
- GMT
-Sender: jackp=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C1D84C43469; Fri, 15 Jan 2021 17:05:36 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: jackp)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B06CAC43466;
-        Fri, 15 Jan 2021 17:05:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B06CAC43466
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jackp@codeaurora.org
-Date:   Fri, 15 Jan 2021 09:05:29 -0800
-From:   Jack Pham <jackp@codeaurora.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+        id S1727722AbhAORHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 12:07:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41998 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726669AbhAORHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:07:46 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86EFEC0613D3
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 09:07:05 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id v19so6358622pgj.12
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 09:07:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4adxDxz9HqPVfz8Lxcu2pNJI7Jq0oZpTHx7mnjR2y24=;
+        b=YCH08rkeWH6gnupZGfqnqtlqNK8NtZ4N2VJ+p6e1T7504rPR0S8s4XMQyv2JBs9gNx
+         l0z3kSEOAdz0i0yTOdmUvDqUdDeQJYnXvS1iacXSAMPwt8oP5P+3r3VjL2ccNkJv8bES
+         aE7/gZjQSscc9ii428ukfMJc5r3g5uukRk/x0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4adxDxz9HqPVfz8Lxcu2pNJI7Jq0oZpTHx7mnjR2y24=;
+        b=aIVfcwLE4oqKkdMmPH+ZeraOahU9PFSrADnFqJAu2XjYYvVOiAWC5yD7GW5aZYHaqg
+         pdzfY3BCV1mTllRbAcxZraG0Blv9i5II60U0HwB9QzrDoS5g3N6tvp+L1KshhlNjYjIQ
+         WNbI+GuHtIiMug0Oxy0bBEuaYKl4XTz5hcd+zTfAK5kpSwq1n1wJj7IYHCESyPAB01z0
+         seSRCCaFDZNkS2C0CRngoJ5YNvAMBjMcQDTTMX8fmSxjDF3V8OIaT50WiLbS4OQoRPCI
+         +KxARkmomrUk45yHWrzmPVbSfmpNLr9Yh3gqQcdsOwotzINUlaENaF1fMt/IttYr2oD7
+         h0IA==
+X-Gm-Message-State: AOAM532xWou1buPbAjDR3nrlZapYomyVwyxZgFmkcI+57LLhZc+QMade
+        AqopJmrK7BOLI08Hy1p3St5InA==
+X-Google-Smtp-Source: ABdhPJyT3TOdHA/cqUx5fzvZGFP+CY2+Tnv5+/Uc8wxERO63aZNGWJLIlojFxJfV931cpmRjzX4I4A==
+X-Received: by 2002:a63:c64f:: with SMTP id x15mr13505698pgg.196.1610730424928;
+        Fri, 15 Jan 2021 09:07:04 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
+        by smtp.gmail.com with ESMTPSA id t23sm8813329pfc.0.2021.01.15.09.07.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jan 2021 09:07:04 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
+        gregkh@linuxfoundation.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     swboyd@chromium.org, linux-input@vger.kernel.org,
+        hdegoede@redhat.com, andrea@borgia.bo.it,
+        kai.heng.feng@canonical.com, robh+dt@kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] phy: qcom-qmp: Add SM8350 USB QMP PHYs
-Message-ID: <20210115170529.GA5063@jackp-linux.qualcomm.com>
-References: <20210115104047.3460-1-jackp@codeaurora.org>
- <20210115104047.3460-2-jackp@codeaurora.org>
- <2c5481fe-f5be-5d6a-f62f-c93d04b9210e@somainline.org>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Coiby Xu <coiby.xu@gmail.com>,
+        Daniel Playfair Cal <daniel.playfair.cal@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jiri Kosina <jikos@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Max Krummenacher <max.oss.09@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
+Date:   Fri, 15 Jan 2021 09:06:36 -0800
+Message-Id: <20210115170641.903392-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2c5481fe-f5be-5d6a-f62f-c93d04b9210e@somainline.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 12:54:26PM +0100, Konrad Dybcio wrote:
-> I might be wrong but it looks as if you forgot to add a compatible for
-> the "sm8350_usb3_uniphy_cfg" configuration.
 
-Not wrong at all! My mistake, will add it in v2.
+The goal of this series is to support the Goodix GT7375P touchscreen.
+This touchscreen is special because it has power sequencing
+requirements that necessitate driving a reset GPIO.
 
-Thanks,
-Jack
+To do this, we totally rejigger the way i2c-hid is organized so that
+it's easier to jam the Goodix support in there.
+
+This series was:
+- Tested on a device that uses normal i2c-hid.
+- Tested on a device that has a Goodix i2c-hid device.
+- Tested on an ACPI device, but an earlier version of the series.
+
+I believe the plan is for Benjamin to land the whole series.  Will
+said this about the arm64 defconfig change (and provided his Ack):
+> ...there are a few things I really care about
+> in defconfig (e.g. things like page size!), generally speaking we don't
+> need to Ack everything that changes in there.
+>
+> That said, might be worth checking whether arm-soc have any defconfig
+> changes queued in -next so you don't end up with conflicts.
+
+Changes in v9:
+- 120 ms delay => 180 ms delay
+- Local variable in ACPI code "ihid_of" => "ihid_acpi".
+- Squash Benjamin's change for ACPI power on.
+
+Changes in v8:
+- Mark suspend/resume as static as per patches robot.
+
+Changes in v7:
+- Rebase atop commit afdd34c5fa40 ("HID: i2c-hid: show the error ...")
+
+Changes in v6:
+- ACPI probe function should have been "static"
+- Don't export suspend/resume, just export dev_pm_ops from core.
+- Fixed crash in ACPI module (missing init of "client")
+- No need for regulator include in the core.
+- Removed i2c_device_id table from ACPI module.
+- Suspend/resume are no longer exported from the core.
+
+Changes in v5:
+- Add shutdown_tail op and use it in ACPI.
+- Added mention of i2c-hid in the yaml itself as per Rob.
+- Adjusted subject as per Rob.
+- i2chid_subclass_data => i2chid_ops.
+- power_up_device => power_up (same with power_down).
+- subclass => ops.
+
+Changes in v4:
+- ("arm64: defconfig: Update config names for i2c-hid rejigger") new for v4.
+- Fully rejigger so ACPI and OF are full subclasses.
+- Totally redid based on the new subclass system.
+
+Changes in v3:
+- Fixed compatible in example.
+- Removed Benjamin as a maintainer.
+- Rework to use subclassing.
+- Updated description.
+
+Changes in v2:
+- ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
+- Get timings based on the compatible string.
+- Use a separate compatible string for this new touchscreen.
+
+Douglas Anderson (4):
+  HID: i2c-hid: Reorganize so ACPI and OF are separate modules
+  arm64: defconfig: Update config names for i2c-hid rejigger
+  dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix
+    GT7375P
+  HID: i2c-hid: Introduce goodix-i2c-hid using i2c-hid core
+
+ .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
+ arch/arm64/configs/defconfig                  |   3 +-
+ drivers/hid/Makefile                          |   2 +-
+ drivers/hid/i2c-hid/Kconfig                   |  47 +++-
+ drivers/hid/i2c-hid/Makefile                  |   6 +-
+ drivers/hid/i2c-hid/i2c-hid-acpi.c            | 143 ++++++++++
+ drivers/hid/i2c-hid/i2c-hid-core.c            | 252 +++---------------
+ drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 116 ++++++++
+ drivers/hid/i2c-hid/i2c-hid-of.c              | 143 ++++++++++
+ drivers/hid/i2c-hid/i2c-hid.h                 |  22 ++
+ include/linux/platform_data/i2c-hid.h         |  41 ---
+ 11 files changed, 578 insertions(+), 262 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
+ delete mode 100644 include/linux/platform_data/i2c-hid.h
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.30.0.284.gd98b1dd5eaa7-goog
+
