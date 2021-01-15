@@ -2,154 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4367A2F7575
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD95A2F757C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:33:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728006AbhAOJa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 04:30:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44226 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726375AbhAOJaz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 04:30:55 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6144323436;
-        Fri, 15 Jan 2021 09:30:12 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1l0LQo-007hoL-BW; Fri, 15 Jan 2021 09:30:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 15 Jan 2021 09:30:10 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
+        id S1728120AbhAOJck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 04:32:40 -0500
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:35831 "EHLO
+        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728119AbhAOJck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 04:32:40 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id B15E4109D;
+        Fri, 15 Jan 2021 04:31:33 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Fri, 15 Jan 2021 04:31:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=HsVevunbqcn0WZOnrasqEtibK5+
+        ofqfzXoCSROAGtew=; b=dtFK+59YZ78Od0fAwFFvA5zbWk0Q4WbT4N4ZprzKnuu
+        PHdRycC3WPF+iAKFUn1oUO06znx2upX/SGsBuTChZLWY5lyRWLyFFOsi0+hm7f9S
+        F7cltm8xadpvCkzot/AcT5sHFuUytPbR2TrXxbYE4NOzF/kR29Mn2f335JEwLhz+
+        XIa1A+cchLxZPB8ttzWC2g9zcFixooHYp+fv8vP0AQiOCUtN3zQp8QqY4LQ9kG4g
+        RD6ACkQzhYHUGlrvggcxywjbr6cLTYzkpro1Ao7mkc7kNUiBW6kdzVO/YRLO0Qzy
+        xMlp4wmbF84kv49e9I8nvR4/JXy9GR3FNRk8TPataIg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=HsVevu
+        nbqcn0WZOnrasqEtibK5+ofqfzXoCSROAGtew=; b=b7JDICAwu1oR8oUHNvYg7N
+        qEaHY1lshOIVwSSBpfDxF2mPW5CVFUdq4EK533XrJpdeiGPU5qmpHkPxnsCxwy56
+        dq0CX+nBafj93ueH/tvGLsulBprPS6U3wpdka8DvrxCs08CoMbgJ2CHO5hWSBCSU
+        zLoyun2MduiLFNO59Or7xEHQ1oIv0mjfBlA1zbD3RfcL9b5Hzvaxn9FXkhH6XfZU
+        J5dvA8P9s2zoUvPesNbKxcho0RYdwcKVHNJB1ohm44vrTVbl/xXPpaCxlGYfqcoC
+        g7XmJ2d3sDY3xPiBB4vc6ITMnF30vgT9Lrur4sMh6wWWDroXq2WT/U7ZI7aosoDg
+        ==
+X-ME-Sender: <xms:9GABYDuZeGkg3F5xVKKeBENpxHh875OBEbyqHtOesoht8lvnybNoeg>
+    <xme:9GABYEdcXva9stjtNAoQC6YNayad8xqU6LypXMtFFb77qLZurcQq2WOcPI2utg_Gs
+    oOgjIKCNU2VebE-NK8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddugddufeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:9GABYGxs6UeO1FaLtE-ULXwii_GDK0rPFjwQMRyE37q7VOpCWpb6FQ>
+    <xmx:9GABYCOePzYgri3no-M52_0UCbVGSILFW8DWXFVBVts_fMn5by2Gvg>
+    <xmx:9GABYD-LsZ8imi0p3cHwq5b0dxvlXzEW7LBC_XlfSeD1E6fpv3kmkg>
+    <xmx:9WABYGbl9YC-H6RQohRvlj7Z6CTtTuly4VWy_Yx6JbghyQnbLiPR6w>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 78EA0108005B;
+        Fri, 15 Jan 2021 04:31:32 -0500 (EST)
+Date:   Fri, 15 Jan 2021 10:31:29 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 03/10] irqchip/sun6i-r: Use a stacked irqchip driver
-In-Reply-To: <495f71d0-9dbf-23d2-45a1-f27b15138bb2@sholland.org>
-References: <20210112055950.21209-1-samuel@sholland.org>
- <20210112055950.21209-4-samuel@sholland.org> <87turjjkjr.wl-maz@kernel.org>
- <495f71d0-9dbf-23d2-45a1-f27b15138bb2@sholland.org>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <36edee16d9ee630d9f0034fb824b1b52@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: samuel@sholland.org, tglx@linutronix.de, robh+dt@kernel.org, mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net, megous@megous.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 01/19] dt-bindings: sunxi: Fix the pinecube compatible
+Message-ID: <20210115093129.jfnoa34qz76qst3x@gilmour>
+References: <20210114113538.1233933-1-maxime@cerno.tech>
+ <CAGb2v676zeK+9xVMdYd1rZ5RRPLQO-t0s9CWzTcjtRqq82XupQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4pp2awtrw5wfht7x"
+Content-Disposition: inline
+In-Reply-To: <CAGb2v676zeK+9xVMdYd1rZ5RRPLQO-t0s9CWzTcjtRqq82XupQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-15 04:01, Samuel Holland wrote:
-> Hello,
-> 
-> On 1/14/21 3:06 PM, Marc Zyngier wrote:
->> Hi Samuel,
->> 
->> On 2021-01-12 05:59, Samuel Holland wrote:
->> 
->> [...]
->> 
->>> +static void sun6i_r_intc_ack_nmi(void)
->>> +{
->>> +	writel(SUN6I_NMI_BIT, base + SUN6I_IRQ_PENDING(0));
->> 
->> writel_relaxed()
-> 
-> irq_chip_unmask_parent(), which calls gic_unmask_irq(), is called
-> immediately after this in .irq_unmask. Since gic_unmask_irq() also uses
-> writel_relaxed(), the GIC write could be ordered before the write here.
 
-That's odd. writel() places a barrier *before* the actual write,
-ensuring that this write is ordered w.r.t. previous accesses.
-If you are trying to ensure ordering with what follows, you need
-an explicit barrier after this access.
+--4pp2awtrw5wfht7x
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I guess that in the end, you may need both, as what you have orders
-the access to GICC_AIR to take place before the write to this pending
-register, and you also need to provide the ordering you just described.
+On Fri, Jan 15, 2021 at 10:41:04AM +0800, Chen-Yu Tsai wrote:
+> On Thu, Jan 14, 2021 at 7:35 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > Commit 6ab48105aae7 ("ARM: dts: s3: pinecube: align compatible property
+> > to other S3 boards") changed the pinecube compatible to make it similar
+> > to the other S3 boards we have, but failed to update the bindings
+> > documentation.
+> >
+> > Fixes: 6ab48105aae7 ("ARM: dts: s3: pinecube: align compatible property=
+ to other S3 boards")
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+>=20
+> Acked-by: Chen-Yu Tsai <wens@csie.org>
+>=20
+> for the whole series.
 
-> 
-> I was getting occasional spurious interrupts (1 out of each 20-25) when
-> using a level trigger, which were resolved by switching to writel() 
-> here.
-> 
-> I mentioned this in the changelog, but it probably deserves a comment 
-> in
-> the code as well. Or maybe I should use an explicit barrier somewhere?
+Applied all the patches but the 4 and 5 that had comments
 
-Please document it in the code. This is subtle enough to warrant a good
-description.
+Thanks!
+Maxime
 
->>> +}
->>> +
->>> +static void sun6i_r_intc_nmi_ack(struct irq_data *data)
->>> +{
->>> +	if (irqd_get_trigger_type(data) & IRQ_TYPE_EDGE_BOTH)
->>> +		sun6i_r_intc_ack_nmi();
->>> +	else
->>> +		data->chip_data = SUN6I_NMI_NEEDS_ACK;
->>> +}
->>> +
->>> +static void sun6i_r_intc_nmi_eoi(struct irq_data *data)
->>> +{
->>> +	/* For oneshot IRQs, delay the ack until the IRQ is unmasked. */
->>> +	if (data->chip_data == SUN6I_NMI_NEEDS_ACK && 
->>> !irqd_irq_masked(data))
->>> {
->>> +		sun6i_r_intc_ack_nmi();
->>> +		data->chip_data = 0;
->> 
->> nit: NULL rather than 0?
-> 
-> NULL seemed less appropriate since I'm not using the field as a 
-> pointer,
-> but I don't have a strong opinion about it.
+--4pp2awtrw5wfht7x
+Content-Type: application/pgp-signature; name="signature.asc"
 
-chip_data *is* a pointer, which is why we conventionally use NULL rather
-than an integer value. Up to you.
+-----BEGIN PGP SIGNATURE-----
 
-> 
->> [...]
->> 
->>> +static struct irq_chip sun6i_r_intc_nmi_chip = {
->>> +	.name			= "sun6i-r-intc",
->>> +	.irq_ack		= sun6i_r_intc_nmi_ack,
->>> +	.irq_mask		= irq_chip_mask_parent,
->>> +	.irq_unmask		= sun6i_r_intc_nmi_unmask,
->>> +	.irq_eoi		= sun6i_r_intc_nmi_eoi,
->>> +	.irq_set_affinity	= irq_chip_set_affinity_parent,
->>> +	.irq_set_type		= sun6i_r_intc_nmi_set_type,
->>> +	.irq_set_irqchip_state	= sun6i_r_intc_nmi_set_irqchip_state,
->> 
->> You probably also want to wire irq_get_irqchip_state(), while
->> you're at it.
-> 
-> I thought if the interrupt was pending here, it would necessarily also
-> be pending at the GIC, so adding a separate layer would be redundant.
-> 
-> irq_set_vcpu_affinity(), __irq_get_irqchip_state(), and
-> irq_set_irqchip_state() [the functions, not the callbacks] have the
-> interesting property that they search up the irqdomain hierarchy for 
-> the
-> first irqdomain with the callback. So if all the callback would do is
-> defer to its parent, it doesn't need to be provided at all*.
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAFg8QAKCRDj7w1vZxhR
+xf4AAP4zIq0JpbYTLRyDfFqAJXrPNcXa20+EpGjTz7BejgFlNAD/WhHIep3CwD4L
++014I+eH8rQV7CBKEAzoDFeI1bTUsA4=
+=Uzvz
+-----END PGP SIGNATURE-----
 
-Ah, of course... I even wrote that code!
-
-Thanks,
-
-          M.
--- 
-Jazz is not dead. It just smells funny...
+--4pp2awtrw5wfht7x--
