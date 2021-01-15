@@ -2,66 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 631982F8116
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 17:48:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F101C2F8124
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 17:48:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726666AbhAOQqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 11:46:48 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:44709 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725818AbhAOQqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 11:46:48 -0500
-Received: by mail-oi1-f179.google.com with SMTP id d189so10132832oig.11;
-        Fri, 15 Jan 2021 08:46:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1qpxgp00wN0qYeZYo3gwL+8xqHIsplT0Ne8rJnwk8ts=;
-        b=KsZ/O6m8hgOIw0mVCyeoeRDrKK4RzATfmtxIiHOAfsdvv35n4PAkeK2Qk4jE1C9YbQ
-         G/COLNV3PlcNbPgC+zMC8U67HS9uveN8kktZBEEaca3gmejVLPW9V7rwH0WgNwHl2Xk7
-         NZjqaIe+vnIJ0rLFuWBf5sEavC/uwHGJ/SqxvJ4Blrs5JX+odP+/5b+wvIBNVX3eQtR+
-         HhYrQAWWCCTogo15o8LfTheyII/6H0isnY9gCNzKM2k12yyNW4jnRwYvfp1V9s1/ewDT
-         GyNW4xTSqV0rnJtHiM2qjdzMZjf2vfNH/AQQehorWK7I7qel088zbICoInoEU7yRvHCs
-         PJPQ==
-X-Gm-Message-State: AOAM530hjGthgOzC8x/hvd14LWhLlP/LCg741gGJBZLhxd631K6InFl7
-        /BD8HgEQQt4+nRysDxE3Bw==
-X-Google-Smtp-Source: ABdhPJxKezkGGuZxt6aZaHY+EN1XL8Y0TAJjDKLYIpjZp2/2mGPnNi7TzBIl4AbOYWHBYa4pJgI1hg==
-X-Received: by 2002:a05:6808:a90:: with SMTP id q16mr6157461oij.107.1610729167054;
-        Fri, 15 Jan 2021 08:46:07 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s24sm1782964oij.20.2021.01.15.08.46.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 08:46:06 -0800 (PST)
-Received: (nullmailer pid 1426045 invoked by uid 1000);
-        Fri, 15 Jan 2021 16:46:05 -0000
-Date:   Fri, 15 Jan 2021 10:46:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jic23@kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] dt-bindings: iio: dac: AD5766 yaml documentation
-Message-ID: <20210115164605.GA1425845@robh.at.kernel.org>
-References: <20210115112105.58652-1-cristian.pop@analog.com>
+        id S1726402AbhAOQs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 11:48:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726065AbhAOQs0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 11:48:26 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D89BC061798
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 08:47:07 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1l0SFY-0001WS-IL; Fri, 15 Jan 2021 17:47:00 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1l0SFX-0004gy-Te; Fri, 15 Jan 2021 17:46:59 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] gpio: pca953x: Add support for pca9506
+Date:   Fri, 15 Jan 2021 17:46:55 +0100
+Message-Id: <20210115164658.187681-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210115112105.58652-1-cristian.pop@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jan 2021 13:21:03 +0200, Cristian Pop wrote:
-> This adds device tree bindings for the AD5766 DAC.
-> 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
-> ---
-> Changelog v6:
-> 	- Use microvolt unit
-> 	- Remove unrelevant to the binding comment
->  .../bindings/iio/dac/adi,ad5766.yaml          | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml
-> 
+Hello,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+compared to (implicit) v1 (Message-Id:
+20210113194952.104734-1-u.kleine-koenig@pengutronix.de) I split the
+patch #1 into driver adaption and dt documenation (i.e. patches #1 and
+#2 here).
+
+For patch #3 I did s/chips/lines/ in the commit log and capitalized
+"Increase" in the summary line.
+
+Best regards
+Uwe
+
+Uwe Kleine-König (3):
+  gpio: pca953x: Add support for pca9506
+  dt-bindings: gpio: pca953x: Document new supported chip pca9506
+  dt-bindings: gpio: pca953x: Increase allowed length for
+    gpio-line-names
+
+ Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 3 ++-
+ drivers/gpio/gpio-pca953x.c                              | 2 ++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+
+base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
+-- 
+2.29.2
+
