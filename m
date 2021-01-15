@@ -2,71 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E2892F70AD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 03:42:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A01E2F70B0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 03:42:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732282AbhAOCmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 21:42:00 -0500
-Received: from mail-lf1-f54.google.com ([209.85.167.54]:41790 "EHLO
-        mail-lf1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732279AbhAOCmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 21:42:00 -0500
-Received: by mail-lf1-f54.google.com with SMTP id s26so11044105lfc.8
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 18:41:43 -0800 (PST)
+        id S1729700AbhAOCml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 21:42:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53554 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725988AbhAOCmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 21:42:40 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D13E7C061575
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 18:41:59 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id s26so11045766lfc.8
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 18:41:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vs1r0AZs3ldhjf+gof6Gcqu5JtaJeiVqg0aeRPk9Wek=;
+        b=MchTCeL43TPv0d8h5+AAY2iwuueROyDAj3xcC1b1MvdLLuBmK6WZ7Pu8/g3daVL565
+         tJG1hOhZoTb0UEoHUdzUlyjy/1SEKPPL3R5F7irvwkRf5uGBYACJIGZRTUhVHNBA0PAk
+         4EYT0YexEHFndthChwJkZVtWaz/9342z9HVXgMnyR7TOhVkryqGfTYmtY9SgaJamSYFO
+         IK1PMDp1kJS9elWA+XpP7/zDkQiFNwTI4oX8oki/l7Gzio4hWDIxP9C10M2a51WC8kiU
+         c57PzoxRPxGer4Ai/reKAWfQGLgaQreHyG+dy2q37+OuHHjIPpqp52EiCFGDsrc37TqU
+         LMJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7vARAkXwRSsFkX00zsT9VLex/c6iF4ARUzZdyRywzrI=;
-        b=feoREVN3X50iFgslV/jqCeomA4fJU9x//q9f+/EcWzLpEY22W5DMTIVSv8SVqV3+Ai
-         kB5Nqnkyb6sHt48N4WDCKamRdzjtGYFDvE9jNY8xZogam5I5hMh8o2pnkCWGhWWi1Lw8
-         6lCKCD4etn8ink/lKJnmjYyM2dDGhTqk9ga9jRHdct/XfPZ32mIGqe2Bt61ph7r6h1Wq
-         gQcUohIM9ysqZ//borPci5SsrCjxeM0pdz5wEJPWfaeVxqBz1LEcsKF7Xn1iqzunyeIc
-         +5yf4BK7yD/O4niAO7Jtzas+3AxPztRendHSocUwhr8tPDhqswX0W/zOAPi6i8qnevOy
-         aB6Q==
-X-Gm-Message-State: AOAM533MpOODo4y9qRjw/EDQaHRxORKXFvy3/V7Iuv7S5CZ1LLJsXS1u
-        S/7iC7oOT537nOAS067u+lk822Tf7mB1ww==
-X-Google-Smtp-Source: ABdhPJxS3BMhxYIgKe/mb05nuA8w0qUnmTSx9TKs3APp9x2scNInjNfSeSP1l4VYtgmQ2osraUFJWg==
-X-Received: by 2002:a05:6512:786:: with SMTP id x6mr4235889lfr.643.1610678477832;
-        Thu, 14 Jan 2021 18:41:17 -0800 (PST)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
-        by smtp.gmail.com with ESMTPSA id r16sm648037ljk.93.2021.01.14.18.41.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jan 2021 18:41:17 -0800 (PST)
-Received: by mail-lj1-f173.google.com with SMTP id w26so8817853ljo.4
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 18:41:17 -0800 (PST)
-X-Received: by 2002:a2e:8852:: with SMTP id z18mr4574680ljj.94.1610678476955;
- Thu, 14 Jan 2021 18:41:16 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vs1r0AZs3ldhjf+gof6Gcqu5JtaJeiVqg0aeRPk9Wek=;
+        b=mSvsghteJp+095jvMgQIhnQa1vQbdA6iIoD3Xfba5ssP/ujFkGIwnidooxCmwaFnWn
+         yed1nMT3ufeoKwEgGyJxO7YEjOWOYOqH61D6EywdZaLGJzgFVtpxRI254ZpY00pC905T
+         Qcbj9xn5SU2fqWIMQpO5K5w1znZNikmYeaskHEL08uVU5kHboCEahwasFhe6PNSLJmta
+         qhIRkyZDQRaiFT81DkHn91Ll3RYJUGWvRyBbYHaSKJZgurd1KHHr1ubrEKj/Bm2RaA6d
+         u75J79fdEIu7KYdOh6ZX0DLNqN5A9C7jqs9JTKDK6csnlaqKR5q6ZyZ8cO3Zz1jztQ5t
+         LptQ==
+X-Gm-Message-State: AOAM531u2uUym2IwBkwHKbtavWyCwGUTpC91g3ARngZ2dcfGROKBIZaE
+        cAKgI3O8TD/6cfja7yL1BX8Q4Q==
+X-Google-Smtp-Source: ABdhPJyGmf4gq71vElZ4iwpirRhVnXO+k3CfWmSz8yBzhQtLbbWgM64ChjHqb60un0c19l/66XQRVQ==
+X-Received: by 2002:a05:6512:10c9:: with SMTP id k9mr4994841lfg.532.1610678518253;
+        Thu, 14 Jan 2021 18:41:58 -0800 (PST)
+Received: from eriador.lumag.spb.ru ([188.162.64.106])
+        by smtp.gmail.com with ESMTPSA id c14sm729219lfd.186.2021.01.14.18.41.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 18:41:57 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: qrb5165-rb5: enable cdsp device
+Date:   Fri, 15 Jan 2021 05:41:56 +0300
+Message-Id: <20210115024156.92265-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210114113538.1233933-1-maxime@cerno.tech>
-In-Reply-To: <20210114113538.1233933-1-maxime@cerno.tech>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Fri, 15 Jan 2021 10:41:04 +0800
-X-Gmail-Original-Message-ID: <CAGb2v676zeK+9xVMdYd1rZ5RRPLQO-t0s9CWzTcjtRqq82XupQ@mail.gmail.com>
-Message-ID: <CAGb2v676zeK+9xVMdYd1rZ5RRPLQO-t0s9CWzTcjtRqq82XupQ@mail.gmail.com>
-Subject: Re: [PATCH 01/19] dt-bindings: sunxi: Fix the pinecube compatible
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 14, 2021 at 7:35 PM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Commit 6ab48105aae7 ("ARM: dts: s3: pinecube: align compatible property
-> to other S3 boards") changed the pinecube compatible to make it similar
-> to the other S3 boards we have, but failed to update the bindings
-> documentation.
->
-> Fixes: 6ab48105aae7 ("ARM: dts: s3: pinecube: align compatible property to other S3 boards")
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Enable Compute DSP (cdsp) on QRB5165-RB5 platform and provide firmware
+filename used to boot the cdsp.
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-for the whole series.
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index d7799a6fb489..89a1d60e93ad 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -451,6 +451,11 @@ vreg_s8c_1p3: smps8 {
+ 	};
+ };
+ 
++&cdsp {
++	status = "okay";
++	firmware-name = "qcom/sm8250/cdsp.mbn";
++};
++
+ &dsi0 {
+ 	status = "okay";
+ 	vdda-supply = <&vreg_l9a_1p2>;
+-- 
+2.29.2
+
