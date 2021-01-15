@@ -2,90 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5CB2F7FD2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 16:40:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C48B2F7FF4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 16:47:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726402AbhAOPjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 10:39:52 -0500
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:40460 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732751AbhAOPjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 10:39:51 -0500
-Received: by mail-oo1-f41.google.com with SMTP id v19so2290378ooj.7
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 07:39:36 -0800 (PST)
+        id S1726030AbhAOPq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 10:46:27 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:33981 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725910AbhAOPq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 10:46:26 -0500
+Received: by mail-ot1-f52.google.com with SMTP id a109so8949722otc.1;
+        Fri, 15 Jan 2021 07:46:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=94xkx+0r8OoT6ih6r+wvNCHlyCkX38ZU2pCIwQ+F1Os=;
-        b=K8Msg9K3DwptRuiP8KlwxoqQDccGh/gboIukL3024QvGGMPl5UzKvX65rftNIStuhU
-         qDFhMXXPCuakBnv2dopfqLvkN/Be6RYqrdyJeDkmENbuCp0UeNH8juN09YoJrv/AdhHk
-         WJAN9HL5U6s3V5YV8wA9Eed8cDp42GwhbwvOqzttVTowi5HWmLpQymwOhUildWlvhhu/
-         RF9bn9gwkRz9idWGp/T9gJVTUidJjYR4OvyhbiUONchMbny8i9hWggfibLnVd6eQcs+D
-         HMpQyR1STvHCfHgTMbjoCn30wlr11QJPxXYaZkTbUz+/zAke8mnNgKkPv8GUV8zZHBqe
-         JyqQ==
-X-Gm-Message-State: AOAM531JJF8xAEpWsU8BKactmHkTzxADjmezjnB5GOR2zdii42wua3gC
-        d6FWU+h2JYIw6a7N23jOHPSxwldNzQ==
-X-Google-Smtp-Source: ABdhPJyL8zfTEZXUqiakxcaGWlJvzJbNssl5LSkAF2uY0V4vq3RryGCrQkMEp0nP8mwv9xJpwOdUwA==
-X-Received: by 2002:a4a:a11a:: with SMTP id i26mr8681904ool.54.1610725150668;
-        Fri, 15 Jan 2021 07:39:10 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CAVo+erasOTevyP/72Qi2ybUcxE9hqUJxgq3h+H1dpA=;
+        b=Ttgv3Ahqo4mCztAZXhb0eEtPzr1EjQQH56CVF0pCPkw4K6x3JlaA8keRzO9i8sZk76
+         WCbiUqIreO2izMep48IopDMpXfTK82mWJI4882NUk+QWUubo/a5N5nFGOizX3NdHQITt
+         DdqgDxBAifZYZqr4y6aOU872kvZR2plBx5tpVGEzjhXhiTu4oLDilakNf120HVvpFd8S
+         Dv0adBFZMMDNAZ3JAEqkjh2SArHtYpFoQiY3dYZgUSWnkaG9reltxwqMXeejXiiEtueI
+         +RsNVf8l+2JQU9+iumOrCb4nPO7tRcNcNzxP0tCXdYj5iyu/pNZFSimoay6KDCvTta58
+         F2cA==
+X-Gm-Message-State: AOAM532M5QXjOrJ7m7L86qRPMYS3E49RLffTNXw68plx95ys3uWpdL8H
+        AnZDP0gnssPrH/SoUvGB7sbQxM0A/A==
+X-Google-Smtp-Source: ABdhPJwLrd6B6y7mp+t0817rPMZ2yAaOp4E8lU0oG+WhJxaPnixXpus0itdgsRCFCCJ0n1sM0pMDew==
+X-Received: by 2002:a9d:3ef6:: with SMTP id b109mr8838462otc.288.1610725545186;
+        Fri, 15 Jan 2021 07:45:45 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z189sm1728067oia.28.2021.01.15.07.39.09
+        by smtp.gmail.com with ESMTPSA id s23sm1888422oot.0.2021.01.15.07.45.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 07:39:09 -0800 (PST)
-Received: (nullmailer pid 1311459 invoked by uid 1000);
-        Fri, 15 Jan 2021 15:39:04 -0000
+        Fri, 15 Jan 2021 07:45:44 -0800 (PST)
+Received: (nullmailer pid 1322391 invoked by uid 1000);
+        Fri, 15 Jan 2021 15:45:43 -0000
+Date:   Fri, 15 Jan 2021 09:45:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Sean Anderson <seanga2@gmail.com>
-In-Reply-To: <20210115140352.146941-9-damien.lemoal@wdc.com>
-References: <20210115140352.146941-1-damien.lemoal@wdc.com> <20210115140352.146941-9-damien.lemoal@wdc.com>
-Subject: Re: [PATCH v12 08/17] dt-bindings: fix sifive clint compatible string
-Date:   Fri, 15 Jan 2021 09:39:04 -0600
-Message-Id: <1610725144.899521.1311458.nullmailer@robh.at.kernel.org>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: media: ov5647: Fix filename
+Message-ID: <20210115154543.GA1320747@robh.at.kernel.org>
+References: <20210115101652.9275-1-jacopo@jmondi.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210115101652.9275-1-jacopo@jmondi.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jan 2021 23:03:43 +0900, Damien Le Moal wrote:
-> Fix the Sifive clint compatible string definition to make the value
-> "sifive,fu540-c000-clint" optional, allowing a DT to specify only
-> "sifive,clint0" for its generic implementation without any tweak.
-> With this change, a Sifive clint node can now be defined as explained
-> in the compatible string description.
+On Fri, Jan 15, 2021 at 11:16:52AM +0100, Jacopo Mondi wrote:
+> Commit 1b5071af8240 ("media: dt-bindings: media: i2c: Rename
+> ov5647.yaml") renamed the bindings file but did not update the
+> Id: field there.
 > 
-> Cc: Anup Patel <anup.patel@wdc.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> Fix it by using the new filename.
+> 
+> Fixes: 1b5071af8240 ("media: dt-bindings: media: i2c: Rename ov5647.yaml")
+> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
 > ---
->  .../devicetree/bindings/timer/sifive,clint.yaml          | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/timer/sifive,clint.example.dt.yaml: timer@2000000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['sifive,fu540-c000-clint', 'sifive,clint0'] is too long
-	Additional items are not allowed ('sifive,clint0' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-
-See https://patchwork.ozlabs.org/patch/1427053
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> index 280c62afae13..429566c9ee1d 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/media/i2c/ov5647.yaml#
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5647.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> 
+>  title: Omnivision OV5647 raw image sensor
+> --
+> 2.29.2
+> 
