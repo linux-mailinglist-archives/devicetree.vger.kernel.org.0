@@ -2,81 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 417582F86C5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 21:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2E62F8708
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:01:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388036AbhAOUfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 15:35:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731339AbhAOUfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 15:35:01 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE428C0613D3
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 12:34:20 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id 30so6751076pgr.6
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 12:34:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=g+YP0bVv1YfQ4vqCqWwoBJPB0DUFQOEmaYfwxcveiIA=;
-        b=BF5sTMwQLqTbsyDlqquGDw/KXf1h3FUyEXcOPNi/o1CHl7yHh50bZEqxyLD5QVR4yW
-         yWVLAZZkEDY5Gb4yuZfV/qjcTTfWWmExpwev/jTOJm3IKk+6mxWzYp6pt5pZkooUIVCr
-         E24D0xxUOsZ3Ile+o4KLzim2rj5RxTUKFslLs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=g+YP0bVv1YfQ4vqCqWwoBJPB0DUFQOEmaYfwxcveiIA=;
-        b=bnS8w2Fyhyk0rAGi2AITFyVvkd27U0AHdOs/v4+9Mm4s7ZIGWSNtbPGvMGDPm7Lr1a
-         QyiYtrQtfdvjouXsLs5XBbtfhk/pWdV7dG5jJ0El9DCG8XjwjK5JofBNq650jkz7JVT7
-         v4Bvw10PzbcknvCeWVeNVR6vNeOuTqjLYoWAMxdEWzJY7fFhGpCagpObKmDatvCTFUOO
-         1PhBQSGTJVgmRWzGmrZT7tmip68Z3DTmchCnNXWxsZ/01aZ8k4QKaOnP0V/aKsbPEaOd
-         96wcc/5f1JPQVpra/Y3UQGe6dmpGUg1WXlY1CAc1KjsCwy/PtfL92wfRSiFY1qcpdhnV
-         zzqw==
-X-Gm-Message-State: AOAM530+KsmAMlC9hz/SWc9mmc+ApylOpoDNiCHO6WgIjshzBRl/J6FR
-        FDJ1bu5vDlIzDpkcO66qAeXicA==
-X-Google-Smtp-Source: ABdhPJwFxrCy6unJ9wd4f769/57cihhVD8RvoOwOtvmtOsKd2+BhZR6IT569L9AX8EMqVI2bYQyQeg==
-X-Received: by 2002:a65:534c:: with SMTP id w12mr14398508pgr.179.1610742860241;
-        Fri, 15 Jan 2021 12:34:20 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id e65sm9118505pfh.175.2021.01.15.12.34.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 12:34:19 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        id S1732824AbhAOVBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 16:01:02 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:59434 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733195AbhAOVBA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:01:00 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10FKwSrX040711;
+        Fri, 15 Jan 2021 14:58:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1610744308;
+        bh=Sc+E12C0KeMsBR6ZQgAShxwFlyogleIJrGrKpJQw9+I=;
+        h=From:To:CC:Subject:Date;
+        b=hAMQdGnvcb+3/Pvup+bHNMIKe6CD91W4IfLTwa0vehyzv+7A0+jJ3V5ZPwVva9WU0
+         0F59yFvUzIPWjpaXMSBSTPxuwOzMWAgu9bEJLhHBfy7V/EHerB2wsLJZYqnxRfrFIG
+         qcj5rMx0D804of+T5c8Jy29RitVo/nGntMGo5h+U=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10FKwSQs041781
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 15 Jan 2021 14:58:28 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 15
+ Jan 2021 14:58:28 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 15 Jan 2021 14:58:28 -0600
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10FKwSCL042823;
+        Fri, 15 Jan 2021 14:58:28 -0600
+Received: from localhost ([10.250.34.42])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 10FKwRS9077904;
+        Fri, 15 Jan 2021 14:58:28 -0600
+From:   Suman Anna <s-anna@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+CC:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        David Lechner <david@lechnology.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Suman Anna <s-anna@ti.com>
+Subject: [PATCH] dt-bindings: irqchip: Add #address-cells to PRUSS INTC
+Date:   Fri, 15 Jan 2021 14:58:19 -0600
+Message-ID: <20210115205819.19426-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
-References: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
-Subject: Re: [PATCH v7 1/2] dt-bindings: input: cros-ec-keyb: Add a new property
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     dianders@chromium.org, Philip Chen <philipchen@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-To:     LKML <linux-kernel@vger.kernel.org>,
-        Philip Chen <philipchen@chromium.org>,
-        dmitry.torokhov@gmail.com
-Date:   Fri, 15 Jan 2021 12:34:18 -0800
-Message-ID: <161074285814.3661239.12462722802289701745@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Philip Chen (2021-01-15 12:24:29)
-> Add a new property `function-row-physmap` to the
-> device tree for the custom keyboard top row design.
->=20
-> The property describes the rows/columns of the top row keys
-> from left to right.
->=20
-> Signed-off-by: Philip Chen <philipchen@chromium.org>
-> ---
+The '#address-cells' property looks to be a required property for
+interrupt controller nodes as indicated by a warning message seen
+when building dtbs with W=2. Adding the property to the PRUSS INTC
+dts nodes though fails the dtbs_check. Add this property to the
+PRUSS INTC binding to make it compliant with both dtbs_check and
+building dtbs.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+Hi Rob,
+
+This patch is also part of our effort to get rid of the warnings seen
+around interrupt providers on TI K3 dtbs [1]. I needed this in the PRUSS
+INTC bindings to not get a warning with dtbs_check while also ensuring
+no warnings while building dtbs with W=2.
+
+I would have expected the '#address-cells' requirement to be inherited
+automatically. And looking through the schema files, I actually do not
+see the interrupt-controller.yaml included automatically anywhere. You
+had asked us to drop the inclusion in this binding in our first version
+with YAML [3]. Am I missing something, and how do we ensure that this
+is enforced automatically for everyone?
+
+regards
+Suman
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210115083003.27387-1-lokeshvutla@ti.com/
+[2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210114194805.8231-1-s-anna@ti.com/
+[3] https://patchwork.kernel.org/comment/23484523/
+
+ .../bindings/interrupt-controller/ti,pruss-intc.yaml        | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+index c2ce215501a5..dcbfe08e997d 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+@@ -79,6 +79,9 @@ properties:
+       mapping and channels to host interrupts so through this property entire
+       mapping is provided.
+ 
++  "#address-cells":
++    const: 0
++
+   ti,irqs-reserved:
+     $ref: /schemas/types.yaml#/definitions/uint8
+     description: |
+@@ -100,6 +103,7 @@ required:
+   - interrupt-names
+   - interrupt-controller
+   - "#interrupt-cells"
++  - "#address-cells"
+ 
+ additionalProperties: false
+ 
+@@ -123,6 +127,7 @@ examples:
+                               "host_intr6", "host_intr7";
+             interrupt-controller;
+             #interrupt-cells = <3>;
++            #address-cells = <0>;
+         };
+     };
+ 
+@@ -142,6 +147,7 @@ examples:
+             reg = <0x20000 0x2000>;
+             interrupt-controller;
+             #interrupt-cells = <3>;
++            #address-cells = <0>;
+             interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
+                    <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
+                    <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.29.2
+
