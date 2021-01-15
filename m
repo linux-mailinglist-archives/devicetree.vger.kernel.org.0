@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DD8F2F80F9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 17:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3902F8119
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 17:48:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727869AbhAOQjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 11:39:21 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50640 "EHLO
+        id S1726751AbhAOQrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 11:47:22 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53720 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726657AbhAOQjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 11:39:21 -0500
+        with ESMTP id S1725818AbhAOQrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 11:47:21 -0500
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10FGcXss005195;
-        Fri, 15 Jan 2021 10:38:33 -0600
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10FGjtRF008746;
+        Fri, 15 Jan 2021 10:45:55 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610728713;
-        bh=wZQyTzD4KHELT+ZdhYxfwSJ38y+1CC1synxgDs8UPD8=;
+        s=ti-com-17Q1; t=1610729155;
+        bh=zchShokG7/uvqn5K80CFp02tXojD8KiM9r/o+giCB4E=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ngsAgzkoNdxHP9ir5eBRVRJn2QRI4cKo5lE073rNIcSJ5VEgv+HaOYjlgjr8DCmWh
-         VdEz2LCPFx4ehyBkNAszqYg3Y0DqjNFYuGiFsGZa4kPpIkRUKk2FBLx6rrv66Ym1Cj
-         yzdxcI1cNE0euuTbyGc1wj/paQ+KE+F8Kzznh42s=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10FGcXtr088735
+        b=iYbhCDhPcH8tQ2LYnMwQ2jmrKD0AM4eBLOG26lC09fDbeRNNeyB1bIVixWK2WdKG4
+         EQY1lTzpOcXaPmT7WOx0WpavlwtVrP6wzy+BpcOnq+SlLhGQHTVxKsRkZivIUEkdSI
+         Oe9M7uaR50SnGVEhh4jmrunP9FiX8biOpKcxZPB0=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10FGjtxI100716
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 15 Jan 2021 10:38:33 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 15 Jan 2021 10:45:55 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 15
- Jan 2021 10:38:32 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2021 10:45:54 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 15 Jan 2021 10:38:32 -0600
+ Frontend Transport; Fri, 15 Jan 2021 10:45:54 -0600
 Received: from [10.250.34.42] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10FGcWG4069644;
-        Fri, 15 Jan 2021 10:38:32 -0600
-Subject: Re: [PATCH] dt-bindings: soc: ti: Update TI PRUSS bindings about
- schemas to include
-To:     <santosh.shilimkar@oracle.com>
-CC:     Rob Herring <robh@kernel.org>,
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10FGjsS7087268;
+        Fri, 15 Jan 2021 10:45:54 -0600
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: ti,pruss: add ti,am1806-pruss
+To:     David Lechner <david@lechnology.com>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
         Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        <tony@atomide.com>, <linux-omap@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <ssantosh@kernel.org>, <praneeth@ti.com>, <lee.jones@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20201216225027.2681-1-grzegorz.jaszczyk@linaro.org>
- <20201221213234.GA596829@robh.at.kernel.org>
+        Sekhar Nori <nsekhar@ti.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+References: <20210104183021.330112-1-david@lechnology.com>
+ <20210104183021.330112-2-david@lechnology.com>
 From:   Suman Anna <s-anna@ti.com>
-Message-ID: <6f5b6609-bb9e-31f7-c0c2-3bb261a54d6a@ti.com>
-Date:   Fri, 15 Jan 2021 10:38:27 -0600
+Message-ID: <f03b9e77-510a-2ad4-4cb8-4aa3919abeb5@ti.com>
+Date:   Fri, 15 Jan 2021 10:45:54 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201221213234.GA596829@robh.at.kernel.org>
+In-Reply-To: <20210104183021.330112-2-david@lechnology.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -63,28 +64,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Santosh,
++ Sekhar and Bartosz
 
-On 12/21/20 3:32 PM, Rob Herring wrote:
-> On Wed, 16 Dec 2020 23:50:27 +0100, Grzegorz Jaszczyk wrote:
->> Now after ti,pruss-intc.yaml and ti,pru-rproc.yaml are merged, include
->> them in proper property and extend the examples section.
->>
->> At the occasion extend the allowed property list about dma-ranges.
->>
->> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->> ---
->>  .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 76 +++++++++++++++++++
->>  1 file changed, 76 insertions(+)
->>
+Hi David,
+
+On 1/4/21 12:30 PM, David Lechner wrote:
+> This adds a "ti,am1806-pruss" compatible type for the PRUSS found in
+> TI AM18xx/OMAP-L138 SoCs.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: David Lechner <david@lechnology.com>
+> ---
+>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> index 037c51b2f972..a6ed23fdbc00 100644
+> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> @@ -61,6 +61,7 @@ properties:
+>  
+>    compatible:
+>      enum:
+> +      - ti,am1806-pruss  # for AM18xx/OMAP-L138 SoC family
 
-Gentle reminder, I haven't seen this patch yet on linux-next.
-Can you please pick this up for 5.12.
+Almost all the drivers for these SoCs use the prefix "ti,da850-xxx" for the
+compatibles. Can we switch to using those instead of ti,am1806?
 
-Thanks,
+regards
 Suman
 
+>        - ti,am3356-pruss  # for AM335x SoC family
+>        - ti,am4376-pruss0 # for AM437x SoC family and PRUSS unit 0
+>        - ti,am4376-pruss1 # for AM437x SoC family and PRUSS unit 1
+> @@ -321,6 +322,7 @@ if:
+>      compatible:
+>        contains:
+>          enum:
+> +          - ti,am1806-pruss
+>            - ti,k2g-pruss
+>            - ti,am654-icssg
+>            - ti,j721e-icssg
+> 
 
