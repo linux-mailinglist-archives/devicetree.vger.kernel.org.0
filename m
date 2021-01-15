@@ -2,90 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1241D2F8713
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:03:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59D2A2F871F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388562AbhAOVCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 16:02:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36152 "EHLO
+        id S2388776AbhAOVCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 16:02:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388420AbhAOVCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:02:01 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3892C06179E;
-        Fri, 15 Jan 2021 13:01:30 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id a12so10579508wrv.8;
-        Fri, 15 Jan 2021 13:01:30 -0800 (PST)
+        with ESMTP id S2388772AbhAOVCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:02:43 -0500
+Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3AA9C0613C1
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 13:02:02 -0800 (PST)
+Received: by mail-qk1-x749.google.com with SMTP id n13so9213975qkn.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 13:02:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LEzohCRsK+Jzaxz+SANVOLWTAoH1HEg4LQDGbyq7c0o=;
-        b=VD+rTQiNM6uXyQBYmwDXV81j7ywhaUNtBqPfiq4Op2JgxB+14ghSpxI0EViBf7rHVs
-         LVNVhhlFOZWfVAnIptmVJbM7DuC2G9q4tUdYQmWo2++y+7rUdKfBwK1o/Dih9ObssR3k
-         uEE81VtxzZ0M429oyptd/ZIWWb072RzKUIPkPu9UBcsvpa5aYPRwg4yBtgnYKawd/LyM
-         ErgqFRP9PWnuWIiGHisCucF/WmW/BxqobQRvcf9zwZSHbXhoinOpgzRi6uZFd+wXTRNk
-         50hzFPC0ily05UUGxu/UlXhaoxNWa4xRnUKSIxNUGFokVkVBQqc9ebyrIgUV0165RegF
-         MJpw==
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=HxQUFzxtkBI9IE2jZdisE7OWgiNmHacDc1aIpJob93c=;
+        b=fcry9Lnx+lFYwZJOSIFilMZOfFjtLVaUyqSqSmrqaaSK6S56bQsgMZmazbos/VfW+t
+         Bbm50u3Wh9ltZLSmEp5iioaxhc6efP45gT8eUmffMrrz/zt93VjuoF97MSLyBN5UqLFO
+         d+jw288OCReuJt2rx9EYVdbd/gXDD4xntD8A1bTuR52uyae6XYmkIVqgQRlzorbHQ5wX
+         J6PDnC2Ovx72pDJ6ZwtN0ms+WvcVePSlipcU5U8VhD9GMv0PU6BhQHtELx9tMPGeojKB
+         PPpWi2Qj+xF5CjIbFFDsgFVGiQm5iKQ5Q995ZUOahsQkch0WX9vV+j+9ZSjacaR4UsoS
+         +rpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LEzohCRsK+Jzaxz+SANVOLWTAoH1HEg4LQDGbyq7c0o=;
-        b=rWyVbPYBkjt6Oe8u+ztaSKibEOaRb0EN6TJgEeaZvDwR7hchwRSbFY4z/TgVOWVbcD
-         xVHwfBKDRQb5XI3sNGYVd8xIy8dVArMzLzo9AgjcLkQe52kJ2Qx/WYhQPgzmNPJXOnxi
-         Fd4cgCpPS0OevwA+RocsDZvIWcaq7wHm/5UPbsQthVrrMerPvTryfbBS+0yLm3W6iEm2
-         rJXtKXzvqerxhLzDWst8PUzcWj7Anm97LZFQX/AAzhvM7LRgv29ikejBnd4srgjukSHi
-         dsSxSITnrUPfpKTYAksTmAHR9caF4XQsT+3hey69LiWr3oPJxhaXL+BJIi71oL1WV/zV
-         3p0w==
-X-Gm-Message-State: AOAM530Kpz9eWGDHf0SK0cGSguDVFKHLv4hBJRHsZ0r9y9bHMkLu5x0e
-        CcdhDMBuZr3MiBNLK6pGTHY=
-X-Google-Smtp-Source: ABdhPJzYao0HWnOejl6JP2t3R52ey+WuKckBJelKydLHQMjZyHCZNwYZUPLNN4fOW8w8O86NpX9RdQ==
-X-Received: by 2002:a5d:4a09:: with SMTP id m9mr15201327wrq.359.1610744489776;
-        Fri, 15 Jan 2021 13:01:29 -0800 (PST)
-Received: from localhost.localdomain (2a01cb0008bd270090311bc0a820c7e4.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:9031:1bc0:a820:c7e4])
-        by smtp.gmail.com with ESMTPSA id l7sm13414853wme.4.2021.01.15.13.01.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 13:01:29 -0800 (PST)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     krzk@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH v4 3/3] arm64: defconfig: Enable PF8x00 as builtin
-Date:   Fri, 15 Jan 2021 22:01:24 +0100
-Message-Id: <20210115210124.507282-4-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210115210124.507282-1-adrien.grassein@gmail.com>
-References: <20210115210124.507282-1-adrien.grassein@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=HxQUFzxtkBI9IE2jZdisE7OWgiNmHacDc1aIpJob93c=;
+        b=Ir67KEGpGDf/DK4OB72waKwyV9KM5SeLMbxJfvtqDUHgleUvUIkQHL9OTR3NPVzjtS
+         Ls10e99oI+tDDp85JcXoiKd/fN2YfuVmeDdZFObKni7k8rBKc8Yh3FzGVVM+zFBGYJBE
+         vOrjv9KtcGqtrjVy9FpGb8xP8DWPtQM+5q7kSJAstySOJ5ZDfKnsfI+W2CHzqNf2DOaf
+         O9iSpUHWJcKDHRLkMmbOEJHN0Ig+j0P24I7pk6jcFS/xOhtEvWa367tyDDbO5VGupLnN
+         HPiceCSFyWUVukZ8LdZVK22ndICnf2LB+PM7CgXRLgEO2rTKiSqTISRbo5yzk4RyloEw
+         mdzg==
+X-Gm-Message-State: AOAM533RzJLnhJSevmiYkj2LP4JNeRwKi0n9NiFIbY4988vC/MrYUOeY
+        QUou4xpXft5q9yQEXHhsn+IbBJfHGx61e+s=
+X-Google-Smtp-Source: ABdhPJzzFJ4sVYqQ5ohkt/drFJVkon5uRFouk1OF5Nb7fuaqlAi3rQHoA9RR7PjoJKZvqMU0aWek0r3Q+y1UA0U=
+Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
+ (user=saravanak job=sendgmr) by 2002:a0c:8642:: with SMTP id
+ p60mr14075482qva.6.1610744522082; Fri, 15 Jan 2021 13:02:02 -0800 (PST)
+Date:   Fri, 15 Jan 2021 13:01:58 -0800
+Message-Id: <20210115210159.3090203-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
+Subject: [PATCH v1] of: property: Add fw_devlink support for "gpio" and
+ "gpios" binding
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linux-tegra <linux-tegra@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jon Hunter <jonathanh@nvidia.com>, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver is mandatory for the nitrogen8m mini board
-when booting from the sdcard slot.
+To provide backward compatibility for boards that use deprecated DT
+bindings, we need to add fw_devlink support for "gpio" and "gpios".
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+Cc: linux-tegra <linux-tegra@vger.kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Fixes: e590474768f1 ("driver core: Set fw_devlink=on by default")
+Tested-by: Jon Hunter <jonathanh@nvidia.com>
+Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/of/property.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 9957b6669eb1..de90f42419a3 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -606,6 +606,7 @@ CONFIG_REGULATOR_MAX77620=y
- CONFIG_REGULATOR_MAX8973=y
- CONFIG_REGULATOR_MP8859=y
- CONFIG_REGULATOR_PCA9450=y
-+CONFIG_REGULATOR_PF8X00=y
- CONFIG_REGULATOR_PFUZE100=y
- CONFIG_REGULATOR_PWM=y
- CONFIG_REGULATOR_QCOM_RPMH=y
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 5f9eed79a8aa..1c8c65c4a887 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1258,6 +1258,8 @@ DEFINE_SIMPLE_PROP(pinctrl5, "pinctrl-5", NULL)
+ DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
+ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+ DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
++DEFINE_SIMPLE_PROP(gpio_compat, "gpio", "#gpio-cells")
++DEFINE_SIMPLE_PROP(gpios_compat, "gpios", "#gpio-cells")
+ DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+ DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+ DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
+@@ -1296,6 +1298,8 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+ 	{ .parse_prop = parse_pinctrl6, },
+ 	{ .parse_prop = parse_pinctrl7, },
+ 	{ .parse_prop = parse_pinctrl8, },
++	{ .parse_prop = parse_gpio_compat, },
++	{ .parse_prop = parse_gpios_compat, },
+ 	{ .parse_prop = parse_regulators, },
+ 	{ .parse_prop = parse_gpio, },
+ 	{ .parse_prop = parse_gpios, },
 -- 
-2.25.1
+2.30.0.284.gd98b1dd5eaa7-goog
 
