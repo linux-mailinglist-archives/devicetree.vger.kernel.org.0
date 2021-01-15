@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A01B32F78F9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 13:30:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CAF2F78FA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 13:30:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728879AbhAOMaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 07:30:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38360 "EHLO
+        id S1732023AbhAOMaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 07:30:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732001AbhAOMaV (ORCPT
+        with ESMTP id S1732004AbhAOMaV (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 07:30:21 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6BD3C06179B
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:02 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id q1so17702428ion.8
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:02 -0800 (PST)
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACBAC06179E
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:04 -0800 (PST)
+Received: by mail-io1-xd2d.google.com with SMTP id d81so2588328iof.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=TlMXZe9vbR6LJlfX0Afcu1jiqjYyCt8OtEseGfcdfxI=;
-        b=JRSFpz/o2h699by61WGjBL6YeNPRKRI8m5GuG7GlTRrJrIYzpTEzbmALPn+fggHkWM
-         urLsoIAKcdLa0eK498YbNvM/1Oa4vpb3kgJuSWcEvd0r/JHarQbFHs2uVguZRCt7JuVr
-         Lnu/yHHc9udxtFmBXCXZO++HsWlv4zvy1D42TlsR+TIoDMwO8fX85OFU2/kFtRQXOGPB
-         jyPVoydNZ5MYKRgf+Eu1iVVIcha/NHsxxEPkKrHDXHSzQwL0+QIGZ40hneqK5Mdj+i19
-         wrJ4OrMTd1p++5NPJ62PjYriuxkrtGINcIpRTXYUyj2OG5blziYq1cCRJmqg9Ze8aols
-         9JHw==
+        bh=ZgcJCeO5IRSICza2r6GEj0/QJ8rNtZfDDcOXMnAT21Y=;
+        b=KlBHmLnqBTnK5J4DO27zadgPE02VDPajn5Xg/cG0Avp0kSMoBuas/f4gBKy6oYikjv
+         eHMZ+mouCClKU0+QunG7Zrjbi/sGQ1MjvHhG2GHCJWNkRVYW/GTjc3FRXlCXRKAl5AlD
+         MrGSX9n0S4lZFaCeasXFtcC/Vr+efZCJqGH9hSQKtv7gB2MwsF9ZsfeUF7k6tYce9ttE
+         sROYyXbJf8wI7YD628/UzChvd6ivXvTPFcDM5BiPpBMg2FFg/vVqGsxfhsgYBBXicnw5
+         aJnjob7RO7vZLcSrSO9IPRkzuyAP5GVEIrcPPDLQKEBr1BTzE3w/1Ei51hzx0eoGlT6s
+         5F0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=TlMXZe9vbR6LJlfX0Afcu1jiqjYyCt8OtEseGfcdfxI=;
-        b=djwVAnbV4EnjpE8jj7fdWzJa32BGHmYnWeqoYHei86c8WJWBlLEbiLWqnBUCyqKNhD
-         Z/kYXduUrkQEgqfxKKD3uVPT8T2MhZZMNqMFJCAzLXE9lWEkoQ/IjbGotVWyGOX0IP9B
-         x5E7LgjvbOUMN3X6ETTSzaNToR2IpDpCqi2+4BQ0fwKm6iw5slt6TdYHz9OovJYF0Hv1
-         ay5VjCuMuURFMy84Qkf6gIwRJ2BKt9o4YdAHLNaFellJQbst7bZdwEnhAGk3elaa3Fma
-         k16FIuMPAHapD6XyOn68ePJncuei2bA4U2OXP82REAP5usSLKxnc4ULdayVFe5cskhK8
-         1QCw==
-X-Gm-Message-State: AOAM531nFmyy40eSKSU+UJ+v8N42f3IHZfNGl1SaKMMH8dCHBOtfu9Ct
-        O9aNVlVANEC7tf9haWLfEsDlew==
-X-Google-Smtp-Source: ABdhPJxeTbQ33+T+xfyMgt90nbOdw2e/+PqiAnA7XCniJ2gEb1MAAEtSOPyNtLKlDhe/I1qdi+Gxxg==
-X-Received: by 2002:a92:d484:: with SMTP id p4mr6738423ilg.63.1610713742338;
-        Fri, 15 Jan 2021 04:29:02 -0800 (PST)
+        bh=ZgcJCeO5IRSICza2r6GEj0/QJ8rNtZfDDcOXMnAT21Y=;
+        b=OrUH1dpedfWw0uJC8McwdZ5IZpVtlXa2aITHJhnubF8mI6wUXS2wfaj9lsu8MMwtKp
+         pQuKULf12820py6yztPH+ov9B9h9L61tb5i5j6S4akBNQw+HRodU2KeZKEnQSWe6l8NW
+         AfpTxBwcwsTmS7rjTMCiWGw/lcZvVoLaG622XfdOn0sB6UZZmrCLXVTHEn3URkFDCLJG
+         e1e0FSx/FZRwYdkkkNuOOI21t8+Wsa4cnETX8QB+MXxM6GUdYrK66qfw1Y9KZwp4K0vh
+         fL8AYidHjFD7dFZXN7dlftxv7JUnwSO9/4NPvtRwW5+L3rwrdHgsY+AYBsmtJGnr0f1K
+         X6kA==
+X-Gm-Message-State: AOAM530QUmtXG+wt6lvYx4UdjItQmfRZ6mwPxHbNXE74WAZHkAAodHuF
+        5U1+iPdvdmxaYYFAPvex89tR/g==
+X-Google-Smtp-Source: ABdhPJz1xDn2LWVaVJ8b+MHU6nw6XSrUBGZCU+K1D+osCjh8vAx4TY14eoXtbjzSaYSWT3Y4tk8i3A==
+X-Received: by 2002:a5d:9418:: with SMTP id v24mr8176550ion.61.1610713743450;
+        Fri, 15 Jan 2021 04:29:03 -0800 (PST)
 Received: from beast.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id a9sm3828509ion.53.2021.01.15.04.29.01
+        by smtp.gmail.com with ESMTPSA id a9sm3828509ion.53.2021.01.15.04.29.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 04:29:01 -0800 (PST)
+        Fri, 15 Jan 2021 04:29:02 -0800 (PST)
 From:   Alex Elder <elder@linaro.org>
 To:     robh+dt@kernel.org, davem@davemloft.net, kuba@kernel.org
 Cc:     evgreen@chromium.org, bjorn.andersson@linaro.org,
         cpratapa@codeaurora.org, subashab@codeaurora.org,
         rdunlap@infradead.org, devicetree@vger.kernel.org,
         netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 net-next 2/4] dt-bindings: net: remove modem-remoteproc property
-Date:   Fri, 15 Jan 2021 06:28:53 -0600
-Message-Id: <20210115122855.19928-3-elder@linaro.org>
+Subject: [PATCH v2 net-next 3/4] arm64: dts: qcom: sc7180: kill IPA modem-remoteproc property
+Date:   Fri, 15 Jan 2021 06:28:54 -0600
+Message-Id: <20210115122855.19928-4-elder@linaro.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210115122855.19928-1-elder@linaro.org>
 References: <20210115122855.19928-1-elder@linaro.org>
@@ -65,73 +65,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The IPA driver uses the remoteproc SSR notifier now, rather than the
-temporary IPA notification system used initially.  As a result it no
-longer needs a property identifying the modem subsystem DT node.
-
-Use GIC_SPI rather than 0 in the example interrupt definition.
+The "modem-remoteproc" property is no longer required for the IPA
+driver, so get rid of it.
 
 Signed-off-by: Alex Elder <elder@linaro.org>
 ---
-v2: Now include <.../arm-gic.h> instead of <.../irq.h> in example.
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
- .../devicetree/bindings/net/qcom,ipa.yaml         | 15 +++------------
- 1 file changed, 3 insertions(+), 12 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-index 8a2d12644675b..8f86084bf12e9 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-@@ -113,13 +113,6 @@ properties:
-       performing early IPA initialization, including loading and
-       validating firwmare used by the GSI.
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 22b832fc62e3d..003309f0d3e18 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -1434,8 +1434,6 @@
+ 			qcom,smem-state-names = "ipa-clock-enabled-valid",
+ 						"ipa-clock-enabled";
  
--  modem-remoteproc:
--    $ref: /schemas/types.yaml#/definitions/phandle
--    description:
--      This defines the phandle to the remoteproc node representing
--      the modem subsystem.  This is requied so the IPA driver can
--      receive and act on notifications of modem up/down events.
+-			modem-remoteproc = <&remoteproc_mpss>;
 -
-   memory-region:
-     maxItems: 1
-     description:
-@@ -135,7 +128,6 @@ required:
-   - interrupts
-   - interconnects
-   - qcom,smem-states
--  - modem-remoteproc
+ 			status = "disabled";
+ 		};
  
- oneOf:
-   - required:
-@@ -147,7 +139,7 @@ additionalProperties: false
- 
- examples:
-   - |
--        #include <dt-bindings/interrupt-controller/irq.h>
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-         #include <dt-bindings/clock/qcom,rpmh.h>
-         #include <dt-bindings/interconnect/qcom,sdm845.h>
- 
-@@ -168,7 +160,6 @@ examples:
-                 compatible = "qcom,sdm845-ipa";
- 
-                 modem-init;
--                modem-remoteproc = <&mss_pil>;
- 
-                 iommus = <&apps_smmu 0x720 0x3>;
-                 reg = <0x1e40000 0x7000>,
-@@ -178,8 +169,8 @@ examples:
-                             "ipa-shared",
-                             "gsi";
- 
--                interrupts-extended = <&intc 0 311 IRQ_TYPE_EDGE_RISING>,
--                                      <&intc 0 432 IRQ_TYPE_LEVEL_HIGH>,
-+                interrupts-extended = <&intc GIC_SPI 311 IRQ_TYPE_EDGE_RISING>,
-+                                      <&intc GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
-                                       <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-                                       <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
-                 interrupt-names = "ipa",
 -- 
 2.20.1
 
