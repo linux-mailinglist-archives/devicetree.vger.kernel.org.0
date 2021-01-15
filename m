@@ -2,105 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D2A2F871F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 819132F8734
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:09:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388776AbhAOVCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 16:02:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388772AbhAOVCn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:02:43 -0500
-Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3AA9C0613C1
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 13:02:02 -0800 (PST)
-Received: by mail-qk1-x749.google.com with SMTP id n13so9213975qkn.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 13:02:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:message-id:mime-version:subject:from:to:cc;
-        bh=HxQUFzxtkBI9IE2jZdisE7OWgiNmHacDc1aIpJob93c=;
-        b=fcry9Lnx+lFYwZJOSIFilMZOfFjtLVaUyqSqSmrqaaSK6S56bQsgMZmazbos/VfW+t
-         Bbm50u3Wh9ltZLSmEp5iioaxhc6efP45gT8eUmffMrrz/zt93VjuoF97MSLyBN5UqLFO
-         d+jw288OCReuJt2rx9EYVdbd/gXDD4xntD8A1bTuR52uyae6XYmkIVqgQRlzorbHQ5wX
-         J6PDnC2Ovx72pDJ6ZwtN0ms+WvcVePSlipcU5U8VhD9GMv0PU6BhQHtELx9tMPGeojKB
-         PPpWi2Qj+xF5CjIbFFDsgFVGiQm5iKQ5Q995ZUOahsQkch0WX9vV+j+9ZSjacaR4UsoS
-         +rpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
-         :to:cc;
-        bh=HxQUFzxtkBI9IE2jZdisE7OWgiNmHacDc1aIpJob93c=;
-        b=Ir67KEGpGDf/DK4OB72waKwyV9KM5SeLMbxJfvtqDUHgleUvUIkQHL9OTR3NPVzjtS
-         Ls10e99oI+tDDp85JcXoiKd/fN2YfuVmeDdZFObKni7k8rBKc8Yh3FzGVVM+zFBGYJBE
-         vOrjv9KtcGqtrjVy9FpGb8xP8DWPtQM+5q7kSJAstySOJ5ZDfKnsfI+W2CHzqNf2DOaf
-         O9iSpUHWJcKDHRLkMmbOEJHN0Ig+j0P24I7pk6jcFS/xOhtEvWa367tyDDbO5VGupLnN
-         HPiceCSFyWUVukZ8LdZVK22ndICnf2LB+PM7CgXRLgEO2rTKiSqTISRbo5yzk4RyloEw
-         mdzg==
-X-Gm-Message-State: AOAM533RzJLnhJSevmiYkj2LP4JNeRwKi0n9NiFIbY4988vC/MrYUOeY
-        QUou4xpXft5q9yQEXHhsn+IbBJfHGx61e+s=
-X-Google-Smtp-Source: ABdhPJzzFJ4sVYqQ5ohkt/drFJVkon5uRFouk1OF5Nb7fuaqlAi3rQHoA9RR7PjoJKZvqMU0aWek0r3Q+y1UA0U=
-Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
- (user=saravanak job=sendgmr) by 2002:a0c:8642:: with SMTP id
- p60mr14075482qva.6.1610744522082; Fri, 15 Jan 2021 13:02:02 -0800 (PST)
-Date:   Fri, 15 Jan 2021 13:01:58 -0800
-Message-Id: <20210115210159.3090203-1-saravanak@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
-Subject: [PATCH v1] of: property: Add fw_devlink support for "gpio" and
- "gpios" binding
-From:   Saravana Kannan <saravanak@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-tegra <linux-tegra@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jon Hunter <jonathanh@nvidia.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1728003AbhAOVHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 16:07:21 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33830 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732190AbhAOVHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:07:20 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10FL6VSC044316;
+        Fri, 15 Jan 2021 15:06:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1610744791;
+        bh=lSbnnKL5je0ksIl3ZafhacuyYDpFxm0MC9dJyE+A2mc=;
+        h=From:To:CC:Subject:Date;
+        b=ACUgwC4stCgS8AQKSHiF3N9CsXGgcdWwkeDUDDiGgIBP+ur+xj3viR6yUjOLu+pdJ
+         3kFJXREoz47mjBB4BXzITzBBPSEzZrG2sP0N4I5R8HBjOpJMpK3a2yQ46VB9tS1+I+
+         Y9rWE7uifGXu2jFV0L7Ki7cdiTh3SWQzLx592co0=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10FL6Vm2110177
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 15 Jan 2021 15:06:31 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 15
+ Jan 2021 15:06:31 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 15 Jan 2021 15:06:31 -0600
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10FL6VmJ103016;
+        Fri, 15 Jan 2021 15:06:31 -0600
+Received: from localhost ([10.250.34.42])
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 10FL6VMF046857;
+        Fri, 15 Jan 2021 15:06:31 -0600
+From:   Suman Anna <s-anna@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
+CC:     Jan Kiszka <jan.kiszka@siemens.com>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH] arm64: dts: ti: am65x/j721e: Fix PRUSS INTC warnings with #address-cells
+Date:   Fri, 15 Jan 2021 15:06:25 -0600
+Message-ID: <20210115210625.20427-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To provide backward compatibility for boards that use deprecated DT
-bindings, we need to add fw_devlink support for "gpio" and "gpios".
+A "Warning (interrupt_provider)" is generated for each PRUSS INTC
+instance on TI K3 dts files when building the TI K3 dtbs with W=2,
 
-Cc: linux-tegra <linux-tegra@vger.kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Fixes: e590474768f1 ("driver core: Set fw_devlink=on by default")
-Tested-by: Jon Hunter <jonathanh@nvidia.com>
-Signed-off-by: Saravana Kannan <saravanak@google.com>
+AM65x:
+/bus@100000/icssg@b000000/interrupt-controller@20000: Missing #address-cells in interrupt provider
+/bus@100000/icssg@b100000/interrupt-controller@20000: Missing #address-cells in interrupt provider
+/bus@100000/icssg@b200000/interrupt-controller@20000: Missing #address-cells in interrupt provider
+
+J721E:
+/bus@100000/icssg@b000000/interrupt-controller@20000: Missing #address-cells in interrupt provider
+/bus@100000/icssg@b100000/interrupt-controller@20000: Missing #address-cells in interrupt provider
+
+Fix these by adding the '#address-cell' property with value 0.
+
+Signed-off-by: Suman Anna <s-anna@ti.com>
 ---
- drivers/of/property.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Hi Nishanth,
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 5f9eed79a8aa..1c8c65c4a887 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1258,6 +1258,8 @@ DEFINE_SIMPLE_PROP(pinctrl5, "pinctrl-5", NULL)
- DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
- DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
- DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-+DEFINE_SIMPLE_PROP(gpio_compat, "gpio", "#gpio-cells")
-+DEFINE_SIMPLE_PROP(gpios_compat, "gpios", "#gpio-cells")
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
- DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
-@@ -1296,6 +1298,8 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_pinctrl6, },
- 	{ .parse_prop = parse_pinctrl7, },
- 	{ .parse_prop = parse_pinctrl8, },
-+	{ .parse_prop = parse_gpio_compat, },
-+	{ .parse_prop = parse_gpios_compat, },
- 	{ .parse_prop = parse_regulators, },
- 	{ .parse_prop = parse_gpio, },
- 	{ .parse_prop = parse_gpios, },
+This is a follow-up fix to the ICSSG dt node series [1] to get rid of
+the warnings with W=2, but will depend on the PRUSS INTC dt-binding
+update patch [2] to not generate any warnings with dtbs_check.
+
+regards
+Suman
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=414883
+[2] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210115205819.19426-1-s-anna@ti.com/
+
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 3 +++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 2 ++
+ 2 files changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 8aa8f1273563..3975753e2dd7 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -982,6 +982,7 @@ icssg0_intc: interrupt-controller@20000 {
+ 			reg = <0x20000 0x2000>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
++			#address-cells = <0>;
+ 			interrupts = <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+@@ -1113,6 +1114,7 @@ icssg1_intc: interrupt-controller@20000 {
+ 			reg = <0x20000 0x2000>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
++			#address-cells = <0>;
+ 			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
+@@ -1244,6 +1246,7 @@ icssg2_intc: interrupt-controller@20000 {
+ 			reg = <0x20000 0x2000>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
++			#address-cells = <0>;
+ 			interrupts = <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index 605fe557cbb4..9ed521602780 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -1710,6 +1710,7 @@ icssg0_intc: interrupt-controller@20000 {
+ 			reg = <0x20000 0x2000>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
++			#address-cells = <0>;
+ 			interrupts = <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+@@ -1841,6 +1842,7 @@ icssg1_intc: interrupt-controller@20000 {
+ 			reg = <0x20000 0x2000>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
++			#address-cells = <0>;
+ 			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
 -- 
-2.30.0.284.gd98b1dd5eaa7-goog
+2.29.2
 
