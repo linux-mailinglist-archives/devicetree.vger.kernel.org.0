@@ -2,83 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDA482F74D6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:04:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AE8F2F74EF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:11:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726439AbhAOJDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 04:03:54 -0500
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:37033 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725995AbhAOJDy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 04:03:54 -0500
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 15FED1C0017;
-        Fri, 15 Jan 2021 09:03:07 +0000 (UTC)
-Date:   Fri, 15 Jan 2021 10:03:26 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        roman.kovalivskyi@globallogic.com,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.org>,
-        naush@raspberrypi.com, Eugeniu Rosca <erosca@de.adit-jv.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 01/30] dt-bindings: media: i2c: Rename ov5647.yaml
-Message-ID: <20210115090326.qufukw5cd73ansby@uno.localdomain>
-References: <20201119161956.756455-1-jacopo@jmondi.org>
- <20201119161956.756455-2-jacopo@jmondi.org>
- <20201125091526.GI3940@paasikivi.fi.intel.com>
- <CAL_JsqLfdGumeicqqhkfn5K40GaXX93NuNZTOpgcCLycHmVQbg@mail.gmail.com>
- <20201222095025.GS26370@paasikivi.fi.intel.com>
- <CAL_JsqL6e3Ko=gwPZj6SeFHofiebeR3-HzsEHcNiXrabruJtLA@mail.gmail.com>
+        id S1726091AbhAOJKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 04:10:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35596 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725797AbhAOJKf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 04:10:35 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 63C0D2339D;
+        Fri, 15 Jan 2021 09:09:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610701794;
+        bh=2LsRbyy+Do/aO21gdeD8r6ksKU/aBqs/cH54QcFN0M0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kwOsFVdhMhd4G8E6EBIJ2M/mJv4XJCk+e8/OQeGt/4LYAoIrshRd2769DjDHuWzBj
+         GZO6pwHE8IbceZTwBaiXxctaiYSN9rqw88arE1llWuN3kQnMxLIzr3LMVBtu31rz/3
+         5t/L0ASDCxW4UWXJHWCzFFhsyEnd+XzLmGE7zmS9ZirGtW2GiQPyHY1kxA60lFIVCU
+         ElCS9j261nDAJHNne33jWdbnMrnrSCuIctlE0ygISU629eUCS+c02SH0n0Y1Pqxv/z
+         2r1WuqbHDk9SnUtGveRtfTGtehN+EXesKRX1p4WsuPvkGJfOWKOjK37KBBpm/Gzk14
+         GbCZ4qcgnDGRA==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/2] [REPOST] dt-bindings: qcom,pdc: Add compatible for SM8250
+Date:   Fri, 15 Jan 2021 14:39:40 +0530
+Message-Id: <20210115090941.2289416-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqL6e3Ko=gwPZj6SeFHofiebeR3-HzsEHcNiXrabruJtLA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ups,
+Add the compatible string for SM8250 SoC from Qualcomm. This compatible
+is used already in DTS files but not documented yet
 
-   I'll fix. A question for Mauro though
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+Reposting this with acks collected
 
-On Thu, Jan 14, 2021 at 02:20:34PM -0600, Rob Herring wrote:
-> On Tue, Dec 22, 2020 at 3:50 AM Sakari Ailus
-> <sakari.ailus@linux.intel.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Mon, Dec 21, 2020 at 01:23:29PM -0700, Rob Herring wrote:
-> > > On Wed, Nov 25, 2020 at 2:15 AM Sakari Ailus
-> > > <sakari.ailus@linux.intel.com> wrote:
-> > > >
-> > > > Cc Rob + DT list.
-> > >
-> > > You have to resend if you really want me to see things. In this case,
-> > > I don't think you need to wait on me for a rename.
-> >
-> > I merged the patch earlier based on the IRC discussion.
->
-> Seems this landed in -next:
->
-> ./Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml: $id:
-> relative path/filename doesn't match actual path or filename
-> expected: http://devicetree.org/schemas/media/i2c/ovti,ov5647.yaml#
->
+ .../devicetree/bindings/interrupt-controller/qcom,pdc.txt        | 1 +
+ 1 file changed, 1 insertion(+)
 
-The fix is worth a Fixes: tag, should I refer to the current commit
-sha1 in linux-media/master or is there any risk for a rebase before
-the tree is merged in the v5.12 merge window ?
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+index 1df293953327..9c1a046e6fd9 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+@@ -20,6 +20,7 @@ Properties:
+ 	Definition: Should contain "qcom,<soc>-pdc" and "qcom,pdc"
+ 		    - "qcom,sc7180-pdc": For SC7180
+ 		    - "qcom,sdm845-pdc": For SDM845
++		    - "qcom,sdm8250-pdc": For SM8250
+ 
+ - reg:
+ 	Usage: required
+-- 
+2.26.2
 
-Thanks
-    j
-
-> Rob
