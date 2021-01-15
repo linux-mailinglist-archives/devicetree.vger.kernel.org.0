@@ -2,141 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4B852F834E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:09:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2FAE2F8421
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:21:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726809AbhAOSJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 13:09:07 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:20292 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725818AbhAOSJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 13:09:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1610734059;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3Md7vRoyiKJc0iq4tJJs8CQ7dxbz/DxlqmE3R+5lMtE=;
-        b=PvYFd7SmWlpqLD7lYgcwLoH+VGztN5pNADlIoKbyCclM8NXHrKwNTUc3w1qr+jRP3/y02B
-        Q1Y8Gxbevsjn2nm1DtQMqFAmoJdFil4JenwhFUu3vJ1ZB6tYQbbN95TJuWbhhDbyajLUPe
-        OKx8bE0bCGsiSYs3MkoaDHQ6KtD7OgA=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-326-nYwXUuW2OqOI9Mp4t7U3MQ-1; Fri, 15 Jan 2021 13:07:28 -0500
-X-MC-Unique: nYwXUuW2OqOI9Mp4t7U3MQ-1
-Received: by mail-qt1-f200.google.com with SMTP id i1so8031111qtw.4
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 10:07:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=3Md7vRoyiKJc0iq4tJJs8CQ7dxbz/DxlqmE3R+5lMtE=;
-        b=TkYmGyySV+GcOO9Zl32IrXlpP7mDm1Vd4sOg2akSBaESjrbe4+3QC2ybqkbgJ2NbSL
-         ulJUaQ4UqYT6lFwzBfz6ob28MQ0IEBD6NWwZQ/oZa/yiSzbP7TV/y9JeO7Brh6bJsLsb
-         hnxRpjh8048iuOMNXJJTVErU9jHlr6+posNUZljUok0m+LRuY8qmyXwBS/NS776PCWz+
-         sHoQZ+gLo97hzLXT5bze/n5CVIm6IpJ8/+uEBAq+MJh9VIIaCZZlhGNt7HQcMFIe+lPf
-         FaL76e7jbsqs8LoNXm8RtPttMb75SVkaWTc91HL04OI3XWGYrkZSqXUtMvl0XpHxsl8P
-         nlHw==
-X-Gm-Message-State: AOAM533Mf2Z6hq0GzgbbH1RnzDo7z1NuPTk6zw7HFRe326uw5Sx9hDVi
-        IlXbjzek7EscWF4YGLYEDXquf0i5PfBBUjWvI0OWITpWhpsZn4EV96y+J7JcgX5YuO2r3Gvazrs
-        P0yUTVt+lh8tzB+1MDRnydA==
-X-Received: by 2002:ae9:d847:: with SMTP id u68mr13552522qkf.409.1610734048020;
-        Fri, 15 Jan 2021 10:07:28 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyxGGsdmnjkULss7tilHK1g+lYfiaHQlYY+K09kc6sxYHVqk6Jy1JquyFM9u53peKnWffQPag==
-X-Received: by 2002:ae9:d847:: with SMTP id u68mr13552493qkf.409.1610734047725;
-        Fri, 15 Jan 2021 10:07:27 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id a203sm5516833qkb.31.2021.01.15.10.07.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jan 2021 10:07:27 -0800 (PST)
-Subject: Re: [PATCH 1/2] dt-bindings: fpga: Add compatible value for Xilinx
- DFX AXI shutdown manger
-To:     Nava kishore Manne <nava.manne@xilinx.com>, mdf@kernel.org,
-        robh+dt@kernel.org, michal.simek@xilinx.com,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     git@xilinx.com, chinnikishore369@gmail.com
-References: <20210115013431.27667-1-nava.manne@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <2dd1a504-9bb7-3bdb-028e-7edd0ed99668@redhat.com>
-Date:   Fri, 15 Jan 2021 10:07:25 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S2388216AbhAOSVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 13:21:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43598 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388494AbhAOSVH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 13:21:07 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AF08323A7C;
+        Fri, 15 Jan 2021 18:20:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610734826;
+        bh=QE9Yei7sjCPLtHD7KESy7qt2oI0VHOCi99x9kBzhGm4=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=LOCfWv9+OJgUcC9jZyzEeryRATTuy8ZH8TJZnFyAkAnfrJbHqjDO7KeJ0HoEHsOiL
+         xqhBJaSUrFfF94H5ZCpAV9Bovzzth0S+TOD5/+DQfgbHV4Tm8YCP3Y0UdsampMrBp6
+         6pTw3UD0rgQ2PZcmm0L5Ohx3HSjGXsDBRmPL1KqHSm2CBOIyN9iaLCsMJBMp5FJqG8
+         PaiqUNuOD7TOOENoApJiPDw0tjg0cqdJNkMYZIne+BDgPiFZZpq79IK+Uo6GIyKIhQ
+         MirzVnbamnsriQCHgt56OSR5YJJ7FPJjIK/ae+iZFf7W+tesGxH6/Gao2XnRxfCBl8
+         iOl/uDJucnULw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        jagan@amarulasolutions.com, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com
+In-Reply-To: <20210114174714.122561-1-adrien.grassein@gmail.com>
+References: <20210114174714.122561-1-adrien.grassein@gmail.com>
+Subject: Re: [PATCH v5 0/6] Fix issues on pf8x00 driver
+Message-Id: <161073479107.12431.4350059208898304988.b4-ty@kernel.org>
+Date:   Fri, 15 Jan 2021 18:19:51 +0000
 MIME-Version: 1.0
-In-Reply-To: <20210115013431.27667-1-nava.manne@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 14 Jan 2021 18:47:08 +0100, Adrien Grassein wrote:
+> this patch set aims is to fix some issues contains in the pf8x00 driver.
+> Some issues are documentation ones, some others are in code.
+> 
+> These issues where found while developing another version of the same
+> driver. I prefer to share with you the patch for it.
+> 
+> I do these patches on the master branch of the linux-next repository.
+> 
+> [...]
 
-On 1/14/21 5:34 PM, Nava kishore Manne wrote:
-> This patch Adds compatible value for Xilinx Dynamic Function eXchnage(DFX)
-> AXI Shutdown manager IP.
+Applied to
 
-A multi patch set should have a cover letter.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Use git format-patch --cover-letter
+Thanks!
 
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> ---
->  .../bindings/fpga/xilinx-pr-decoupler.txt     | 19 ++++++++++++++++---
->  1 file changed, 16 insertions(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt b/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> index 4284d293fa61..42fca058a5f4 100644
-> --- a/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> +++ b/Documentation/devicetree/bindings/fpga/xilinx-pr-decoupler.txt
-> @@ -7,13 +7,26 @@ changes from passing through the bridge.  The controller can also
->  couple / enable the bridges which allows traffic to pass through the
->  bridge normally.
-Below is some wordsmithing to make the compatibility explicit and remove unneeded words
->  
-> +Xilinx LogiCORE Dynamic Function eXchange(DFX) AXI shutdown manager
-> +Softcore
-is compatible with the Xilinx LogiCORE pr-decoupler.
-> +
-> +The Xilinx LogiCORE Dynamic Function eXchange(DFX) AXI shutdown manager
-> +manages one or more shutdown managers / fpga bridges.
-> +The controller can shutdown/passthrough the bridges which prevents
+[1/6] regulator: pf8x00: add a doc for the module
+      commit: 4d23b84d1fcd1eadbc5c6cd93e76b02a8d191d66
+[2/6] regulator: dt-bindings: pf8x00: fix nxp,phase-shift doc
+      commit: 988d0d42509a2c1fad0844a6e8f9c7bce7c930dd
+[3/6] regulator: dt-bindings: pf8x00: mark nxp,ilim-ma property as deprecated
+      commit: 34b860aa0b6221b21eea6bac76357063f525b561
+[4/6] regulator: pf8x00: mark nxp,ilim-ma property as deprecated
+      commit: 245f5f65229a6c6f5b04fa90221b44818a928916
+[5/6] regulator: pf8x00: use linear range for buck 1-6
+      commit: 35a93349932e0e04c284f8a4954f3d1236c97d85
+[6/6] regulator: pf8x00: fix nxp,phase-shift
+      commit: 475a5d85ff62f7ca73f51f23977e7e3ec8c9f906
 
-Delete 4 lines above.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-The DFX AXI shutdown manager prevents
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> +AXI traffic from passing through the bridge. The controller safely
-> +handles AXI4MM and AXI4-Lite interfaces on a Reconfigurable Partition
-> +when it is undergoing dynamic reconfiguration (DFX), preventing system
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-I don't know about the use of '(DFX)' here, above it is Dynamic Function eXchange'
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Here it is dynamic reconfiguration, maybe just delete the '(DFX)'
-
-> +deadlock that can occur if AXI transactions are interrupted by DFX
-> +
->  The Driver supports only MMIO handling. A PR region can have multiple
-> -PR Decouplers which can be handled independently or chained via decouple/
-> -decouple_status signals.
-> +PR Decouplers/AXI shutdown manager which can be handled independently
-> +or chained via decouple/ decouple_status signals.
-Being compatible, i don't think it is necessary to add to / change this section.
->  
->  Required properties:
->  - compatible		: Should contain "xlnx,pr-decoupler-1.00" followed by
-> -                          "xlnx,pr-decoupler"
-> +                          "xlnx,pr-decoupler" or
-> +			  "xlnx,dfx-axi-shutdown-manager-1.00" followed by
-> +			  "xlnx,dfx-axi-shutdown-manager"
->  - regs			: base address and size for decoupler module
->  - clocks		: input clock to IP
->  - clock-names		: should contain "aclk"
-
-Adding an example similar to the existing would be helpful.
-
-Tom
-
+Thanks,
+Mark
