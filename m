@@ -2,165 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 428862F6EEC
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 00:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D50202F6F4C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 01:12:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730612AbhANX2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 18:28:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34842 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727838AbhANX2B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 18:28:01 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 710EF23AC6;
-        Thu, 14 Jan 2021 23:27:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610666840;
-        bh=4Zj3Wl9MmezHCv26E0/LT5ibGDbwFsMqnirwMOVtjqE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aBLoFuP9S4Nc3XrlPFcxpWS2vWovEqXQd9fxBf6JZfHE2hegibJmRABAh+PPF7RLr
-         73MX39xJBmv973lJK2GoCa78CI7e7G04MIaff7ut6UhF0nf7DXAlQp6HjQtzcLRfPf
-         qcKkvU09liZCmxbEsjeFf/3FIG+og4y4FNILMH6O3Azz0G2n6fx34/CS4Ifp+IRf8P
-         GlSwRBKhSCKwj6xECjsMMrWT7dC3mTU2EJcd+cX61/zSv/Bf6Jedjx7HfcjCJeaHMw
-         qHg4v4Gty8N54mrBohg1Eb9qnSlVTgZ9PnbsE1nflAsGuiMaKbYb5ZnqU4rge2ElDP
-         RpGeHwhRWfojA==
-Received: by mail-ej1-f42.google.com with SMTP id q22so10748124eja.2;
-        Thu, 14 Jan 2021 15:27:20 -0800 (PST)
-X-Gm-Message-State: AOAM532ZGnwEX26aYNhEPvp9CAmQwxXDlEGutRBSdAv15Sxi9Aa+5E9n
-        73a58zWuZM3GRxlpwYF6MWiMMZNIsPYW+hmkpg==
-X-Google-Smtp-Source: ABdhPJwT7znQYQKLZ+6Sn6y2n9e+stArAY5GAuMtoUClRK/SPi6pP38lZV6DIyg4QRGopg8Iq3NUruuIGHT/VFxhO+Y=
-X-Received: by 2002:a17:906:fb1a:: with SMTP id lz26mr6911340ejb.194.1610666838951;
- Thu, 14 Jan 2021 15:27:18 -0800 (PST)
+        id S1731204AbhAOAKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 19:10:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49142 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731040AbhAOAKc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 19:10:32 -0500
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96A5CC061575;
+        Thu, 14 Jan 2021 16:09:52 -0800 (PST)
+Received: by mail-io1-xd34.google.com with SMTP id w18so14958232iot.0;
+        Thu, 14 Jan 2021 16:09:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=s5ahcu3v2MVuo3zeW5uMRThAdBUDPKXNvYYU61ViJ9I=;
+        b=VKBPrIpYnYXWPv2Gi/XJn25zjX8+K8yazAvNQnEkXwlGFYOyh6/KQSRP0AI2MGyLti
+         aPfHueYC2xldLbkHLQSMhnf4Qdl8buhcjOvkyFDXC/9SJ/BxVjJuM/WAhlrjmnAJ+HnF
+         tkIfXxW77kjRqKHitJukz0NhjUFukfMC6yImosyDrP7EGfTMo7lzjNC3FiTWzPDkgq63
+         CZLsK1v6uSsxQFrkCFJNpdGgi24I83Gf1c1XcBuWqgbIfUhC5GR9g0cBRRdVTNwVokHK
+         fJKi3u1hVaAr7n3XZXd5jU51YC19YMm3rFLtMPArp+Swo1Jufxqf3SdCMBxegpHTNTcl
+         SkQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=s5ahcu3v2MVuo3zeW5uMRThAdBUDPKXNvYYU61ViJ9I=;
+        b=W+nFBpZKBjfe0RuiLYNJP1iE/nF+YM0lnD6IMLfiwBUUDiMb+hvzqJlBXeznOLzoHA
+         7xEGp/IrI4QsW5kuAJXQ+1Yg5fNdAQvwydcczPpA0Lfqd/psOZOowIlR1QUpYHvj3wZ3
+         WzfShiokgRgZBMw3bPN3qA6a4pgtcFGQBFpEX0nYD0kAc9EqY/gMXP49UNIDfokbom/h
+         Tb+iSKnGvR9OrGD1mafQQSynSZWBcNBLLWnJ74lDrRShrPUGa0AGXAihUZGHSo+sTVj5
+         u11CmAhsbsbPWmjUn/3Jr32PA1nU3ZkAXCfw1T9PJQQxU4QOKIvlq1Eg4UDFDbLmFSPq
+         +Z8w==
+X-Gm-Message-State: AOAM5313XUTSdE2d0zN2bYIWUDx5aslluwFEDYFZTGQY5KP7j8YXxo/+
+        7dUKEDYRofcnHcCQRbUpMWCsjWasa+DWKrAtFDk=
+X-Google-Smtp-Source: ABdhPJzJv2544H8hyL4xbmLEwbu03dvdhy7FZ5hh2Q0NWYCYKcpC+vBm12AIw7aDElnq7AmtXJ6U36Y6ToWNJC6lt5E=
+X-Received: by 2002:a92:1f09:: with SMTP id i9mr8738065ile.288.1610669392008;
+ Thu, 14 Jan 2021 16:09:52 -0800 (PST)
 MIME-Version: 1.0
-References: <1609989081-29353-1-git-send-email-yongqiang.niu@mediatek.com>
- <1609989081-29353-6-git-send-email-yongqiang.niu@mediatek.com> <CAAOTY__Ox7jxLxQvm_mvAqEedj48=grH0Mao7xZ5bLuABZNeMQ@mail.gmail.com>
-In-Reply-To: <CAAOTY__Ox7jxLxQvm_mvAqEedj48=grH0Mao7xZ5bLuABZNeMQ@mail.gmail.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Fri, 15 Jan 2021 07:27:07 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8psXwmWqKidGKZN05jcNqhq4igNmbbXX2xePYDgwHDDg@mail.gmail.com>
-Message-ID: <CAAOTY_8psXwmWqKidGKZN05jcNqhq4igNmbbXX2xePYDgwHDDg@mail.gmail.com>
-Subject: Re: [PATCH v9, 05/11] drm/mediatek: add fifo_size into rdma private data
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20210114221059.483390-1-angelogioacchino.delregno@somainline.org>
+ <20210114221059.483390-6-angelogioacchino.delregno@somainline.org>
+ <CAOCk7NoVts21FjhhLtZp-0Xdw6-BnrKio_-tuZBRsgapsUdwfw@mail.gmail.com> <25d40e7d-fbd6-697f-7d4d-a7233aeb652c@somainline.org>
+In-Reply-To: <25d40e7d-fbd6-697f-7d4d-a7233aeb652c@somainline.org>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Thu, 14 Jan 2021 17:09:41 -0700
+Message-ID: <CAOCk7NoGPSsimtM03jPAGx9deXWmOFYR=nNBsfO6o-YZ6z8OBg@mail.gmail.com>
+Subject: Re: [PATCH v2 05/11] clk: qcom: gcc-msm8998: Mark gpu_cfg_ahb_clk as critical
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     MSM <linux-arm-msm@vger.kernel.org>, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        phone-devel@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
-
-Chun-Kuang Hu <chunkuang.hu@kernel.org> =E6=96=BC 2021=E5=B9=B41=E6=9C=887=
-=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=886:05=E5=AF=AB=E9=81=93=EF=BC=
-=9A
+On Thu, Jan 14, 2021 at 4:05 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@somainline.org> wrote:
 >
-> Hi, Yongqiang:
+> Il 14/01/21 23:37, Jeffrey Hugo ha scritto:
+> > On Thu, Jan 14, 2021 at 3:13 PM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@somainline.org> wrote:
+> >>
+> >> The GPU IOMMU depends on this clock and the hypervisor will crash
+> >> the SoC if this clock gets disabled because the secure contexts
+> >> that have been set on this IOMMU by the bootloader will become
+> >> unaccessible (or they get reset).
+> >> Mark this clock as critical to avoid this issue when the Adreno
+> >> GPU is enabled.
+> >>
+> >
+> > You should go review the last attempt to do this -
+> > https://lkml.org/lkml/2019/12/17/881
+> >
 >
-> Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
-=887=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8811:12=E5=AF=AB=E9=81=93=
-=EF=BC=9A
-> >
-> > Get the fifo size from device tree
-> > because each rdma in the same SoC may have different fifo size
+> Thanks for the tip, but unfortunately this isn't possible on the
+> gpu_cfg_ahb_clk, as it is also needed for the Adreno IOMMU, which has
+> secure contexts that are set up from one of the bootloader stages and if
+> you reset/"mess up" one of them (by - in this case - un-clocking the
+> MMU), then the hypervisor will kick in and generate a fault, rebooting
+> the SoC.
 >
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-
-Applied to mediatek-drm-next [1], thanks.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang.
-
+> Of course, this scenario is for the case in which you want to boot the
+> device without any gpucc nor any runtime pm user of that.. and the
+> aforementioned issue makes that solution not really usable.
 >
-> >
-> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_disp_rdma.c | 19 ++++++++++++++++++-
-> >  1 file changed, 18 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm=
-/mediatek/mtk_disp_rdma.c
-> > index d46b8ae..8c64d5c 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-> > @@ -64,6 +64,7 @@ struct mtk_disp_rdma {
-> >         struct mtk_ddp_comp             ddp_comp;
-> >         struct drm_crtc                 *crtc;
-> >         const struct mtk_disp_rdma_data *data;
-> > +       u32                             fifo_size;
-> >  };
-> >
-> >  static inline struct mtk_disp_rdma *comp_to_rdma(struct mtk_ddp_comp *=
-comp)
-> > @@ -132,12 +133,18 @@ static void mtk_rdma_config(struct mtk_ddp_comp *=
-comp, unsigned int width,
-> >         unsigned int threshold;
-> >         unsigned int reg;
-> >         struct mtk_disp_rdma *rdma =3D comp_to_rdma(comp);
-> > +       u32 rdma_fifo_size;
-> >
-> >         mtk_ddp_write_mask(cmdq_pkt, width, comp,
-> >                            DISP_REG_RDMA_SIZE_CON_0, 0xfff);
-> >         mtk_ddp_write_mask(cmdq_pkt, height, comp,
-> >                            DISP_REG_RDMA_SIZE_CON_1, 0xfffff);
-> >
-> > +       if (rdma->fifo_size)
-> > +               rdma_fifo_size =3D rdma->fifo_size;
-> > +       else
-> > +               rdma_fifo_size =3D RDMA_FIFO_SIZE(rdma);
-> > +
-> >         /*
-> >          * Enable FIFO underflow since DSI and DPI can't be blocked.
-> >          * Keep the FIFO pseudo size reset default of 8 KiB. Set the
-> > @@ -146,7 +153,7 @@ static void mtk_rdma_config(struct mtk_ddp_comp *co=
-mp, unsigned int width,
-> >          */
-> >         threshold =3D width * height * vrefresh * 4 * 7 / 1000000;
-> >         reg =3D RDMA_FIFO_UNDERFLOW_EN |
-> > -             RDMA_FIFO_PSEUDO_SIZE(RDMA_FIFO_SIZE(rdma)) |
-> > +             RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) |
-> >               RDMA_OUTPUT_VALID_FIFO_THRESHOLD(threshold);
-> >         mtk_ddp_write(cmdq_pkt, reg, comp, DISP_REG_RDMA_FIFO_CON);
-> >  }
-> > @@ -292,6 +299,16 @@ static int mtk_disp_rdma_probe(struct platform_dev=
-ice *pdev)
-> >                 return comp_id;
-> >         }
-> >
-> > +       if (of_find_property(dev->of_node, "mediatek,rdma-fifo-size", &=
-ret)) {
-> > +               ret =3D of_property_read_u32(dev->of_node,
-> > +                                          "mediatek,rdma-fifo-size",
-> > +                                          &priv->fifo_size);
-> > +               if (ret) {
-> > +                       dev_err(dev, "Failed to get rdma fifo size\n");
-> > +                       return ret;
-> > +               }
-> > +       }
-> > +
-> >         ret =3D mtk_ddp_comp_init(dev, dev->of_node, &priv->ddp_comp, c=
-omp_id,
-> >                                 &mtk_disp_rdma_funcs);
-> >         if (ret) {
-> > --
-> > 1.8.1.1.dirty
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> Again, unfortunately.
+
+Intresting, that's not true on all devices, but presumably you have
+devices where it is.  Fun.
