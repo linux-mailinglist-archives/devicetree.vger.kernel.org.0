@@ -2,95 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9F92F890C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 00:00:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FD502F8934
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 00:12:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726869AbhAOXA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 18:00:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726224AbhAOXA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 18:00:26 -0500
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A228DC061793
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 14:59:45 -0800 (PST)
-Received: by mail-ua1-x932.google.com with SMTP id d3so936179uap.4
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 14:59:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lBeHYBPs8O+PuMBSXIDj9EGHakvLyVLX6sC/5Rr17Uw=;
-        b=ND4BhA6Nr8vjqjBtdcIkQkMJzPTFPMG+L9xCmvlLIbeVS/TMzcLLcKSWxLVLWFh+zl
-         KW3OjtmjZjtir71AO6GCHm9ejeO1o9+wshl3qk/RKumMzQQc1/Nr3yxA/JhFbk/gu0F4
-         E4Qe8P6iLBuy4RzA4+JoUtE9xsTKt7+a8wsr8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lBeHYBPs8O+PuMBSXIDj9EGHakvLyVLX6sC/5Rr17Uw=;
-        b=hrzUX5BOJpw+zON2xcy6iwvVD9r+DblzpAG9NogPhtgHMNnDcB3mXWwck3lOsJEDqT
-         ygswP9DrbuTZqDGjcrUHtOBtFF7JHgLTu1eWvFTB2pEyZ38cC0csV3xS70Wex7Jf4M5I
-         y+Ace4VxfTNEIxyFYlIvkhJkr0pLqbasGA3bWVFij4S8l0otN1+aLwzFBl78IlLlnXrH
-         LjBW6RPx1QMrzh+qAHVFxZMJVJHvuB1I/jXeHZsP6reYi0Vnqy1eYUWt83YifQ9LWHqz
-         3W/Nc0X+TifcEdtvpVAK1KlJJG2HAp5P5IL3SIwny54YM8ZQEPiWOfbbb5k3fm/WwBwJ
-         r6BA==
-X-Gm-Message-State: AOAM532uVlinKk1Npp6mc8AvIFHPUbJHumjN7oEvr4Axd46wN1gxnEg4
-        QWHA0e8KdPGuOJ0NCejFJ/TFRHjkKWL1yw==
-X-Google-Smtp-Source: ABdhPJwi6/n5tUc+SSZSb6D+22C1guQKU8CPXXDm4iFJl2AWcEMR3tTV0zLD9a4U3udHGvhfPrY6nA==
-X-Received: by 2002:ab0:35d1:: with SMTP id x17mr11207687uat.26.1610751584409;
-        Fri, 15 Jan 2021 14:59:44 -0800 (PST)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id i4sm1451277vkc.16.2021.01.15.14.59.43
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jan 2021 14:59:43 -0800 (PST)
-Received: by mail-ua1-f47.google.com with SMTP id w7so3425903uap.13
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 14:59:43 -0800 (PST)
-X-Received: by 2002:ab0:5a70:: with SMTP id m45mr11259619uad.121.1610751583152;
- Fri, 15 Jan 2021 14:59:43 -0800 (PST)
+        id S1726494AbhAOXLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 18:11:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35090 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726176AbhAOXLK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 18:11:10 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPS id 295A5239E5;
+        Fri, 15 Jan 2021 23:10:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610752230;
+        bh=eybBFxYoP8FqQdbFVj6zvQXc8uGIwGWtn4xP5y3DQ2o=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=Jg7d9mx9oDVOCRgZE9Rp5eBfQhe0mCF02/Ww/a16syR9cZ8NpxsY9xwRUd52Vapu8
+         yu4doI83Iq4EW5oXS/qQtX1Ho4+rkwIupZZ+pIlTXcY7vbIGMWnfj1oxwpFweO0/3q
+         diDbdKu8tEV4T2Sy1Bge8vONuF/POdrodeRUmO3m5NQN6SrK/oLp4GhHRAA/1ynEDn
+         bd9cart7gVhA8ItvlmHcLREIsoBzhLCMaFqXecm0OFy3fhEjogjt/Bn4QnPL8Fxp3H
+         1/1kkaFsrYW0c0RnG+Bs9DTwEObk+Ov/qg1nsSzxwXgyIrX6x5l6GSNhb79v/q3xnH
+         P/ufKQBMrkqkw==
+Received: from pdx-korg-docbuild-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-1.ci.codeaurora.org (Postfix) with ESMTP id 1EE1E60593;
+        Fri, 15 Jan 2021 23:10:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210115224420.1635017-1-dianders@chromium.org> <20210115144345.v2.4.I6889e21811df6adaff5c5b8a8c80fda0669ab3a5@changeid>
-In-Reply-To: <20210115144345.v2.4.I6889e21811df6adaff5c5b8a8c80fda0669ab3a5@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 15 Jan 2021 14:59:31 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=X3LgTz1x_C_y3u1cypa80qikOnvmo-v2sETkfaDd_ChQ@mail.gmail.com>
-Message-ID: <CAD=FV=X3LgTz1x_C_y3u1cypa80qikOnvmo-v2sETkfaDd_ChQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] dt-bindings: dt-bindings: display: simple: Add N116BCA-EA1
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Rob Clark <robdclark@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next 0/2] Add further DT configuration for AT803x PHYs
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161075223012.26680.6453584853333825296.git-patchwork-notify@kernel.org>
+Date:   Fri, 15 Jan 2021 23:10:30 +0000
+References: <20210114104455.GP1551@shell.armlinux.org.uk>
+In-Reply-To: <20210114104455.GP1551@shell.armlinux.org.uk>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
+        devicetree@vger.kernel.org, f.fainelli@gmail.com, kuba@kernel.org,
+        netdev@vger.kernel.org, robh+dt@kernel.org, jon@solid-run.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello:
 
-On Fri, Jan 15, 2021 at 2:44 PM Douglas Anderson <dianders@chromium.org> wrote:
->
-> Another simple eDP panel.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
->
-> Changes in v2:
-> - ("dt-bindings: dt-bindings: display: simple: Add N116BCA-EA1") new for v2.
->
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-As per always I find my typos right after I hit send.  ${SUBJECT} has
-one too many copies of the "dt-bindings:" tag.  I will assume this can
-be fixed when it's applied.  Please yell if you'd rather I spam a
-repost.  ;-)
+On Thu, 14 Jan 2021 10:44:56 +0000 you wrote:
+> Hi,
+> 
+> This patch series adds the ability to configure the SmartEEE feature
+> in AT803x PHYs. SmartEEE defaults to enabled on these PHYs, and has
+> a history of causing random sporadic link drops at Gigabit speeds.
+> 
+> There appears to be two solutions to this. There is the approach that
+> Freescale adopted early on, which is to disable the SmartEEE feature.
+> However, this loses the power saving provided by EEE. Another solution
+> was found by Jon Nettleton is to increase the Tw parameter for Gigabit
+> links.
+> 
+> [...]
 
--Doug
+Here is the summary with links:
+  - [net-next,1/2] dt: ar803x: document SmartEEE properties
+    https://git.kernel.org/netdev/net-next/c/623c13295cf4
+  - [net-next,2/2] net: phy: at803x: add support for configuring SmartEEE
+    https://git.kernel.org/netdev/net-next/c/390b4cad8148
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
