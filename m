@@ -2,179 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B1822F75BB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:46:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4912F75BE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:47:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727696AbhAOJpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 04:45:31 -0500
-Received: from mout.kundenserver.de ([212.227.17.13]:57431 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726286AbhAOJpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 04:45:30 -0500
-Received: from methusalix.internal.home.lespocky.de ([109.250.106.207]) by
- mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MLhsE-1lHsVq2E4W-00Hh89; Fri, 15 Jan 2021 10:42:46 +0100
-Received: from falbala.internal.home.lespocky.de ([192.168.243.94])
-        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94)
-        (envelope-from <post@lespocky.de>)
-        id 1l0Lcu-0004aO-T6; Fri, 15 Jan 2021 10:42:42 +0100
-Date:   Fri, 15 Jan 2021 10:42:39 +0100
-From:   Alexander Dahl <post@lespocky.de>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Alexander Dahl <post@lespocky.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Fix schema warnings for pwm-leds
-Message-ID: <20210115094238.s36rrgmpq63a622p@falbala.internal.home.lespocky.de>
-Mail-Followup-To: Jeff LaBundy <jeff@labundy.com>,
-        Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, Rob Herring <robh@kernel.org>
-References: <20201228163217.32520-1-post@lespocky.de>
- <20201228163217.32520-2-post@lespocky.de>
- <20210114100312.GL3975472@dell>
- <20210115035050.GA27243@labundy.com>
+        id S1726375AbhAOJqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 04:46:50 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:35451 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726849AbhAOJqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 04:46:49 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 9A47723E59;
+        Fri, 15 Jan 2021 10:46:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1610703974;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=yW5+sW/iNL6QDHA2UIJPSkV9BAe3+M083pp8li0kZiQ=;
+        b=FzVEPnq5SU6mAMue7gdxjElP/OjMX/6rmMktxfeZb+3KFh/8tyfsuDLGYcZDBMahHQkIXS
+        JPnY4DDNiVDvAnvAaT7ZeJL5Glm9MCf2uxJoEpsRz+bBqYZk6qacG0flxfDUD1KT1KI9Zy
+        JFQhGzTzru+OrUUwP6V6P27LMoloV4U=
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="h2j7lras76hzpifw"
-Content-Disposition: inline
-In-Reply-To: <20210115035050.GA27243@labundy.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Scan-Signature: cebb1f1cd8c059b76424c23a7b2a6eee
-X-Spam-Score: -3.3 (---)
-X-Provags-ID: V03:K1:NOWsO8Ky6tGtOQE7h7YxhW4mI24HkwY3RcOJvf3uTx/DSwn0422
- t3p/GnUrPrcY6dSeMEjz4Gi1aPxDyKCZbGnRdPknJs1xPu/QdBkX4OTdDgKFTLX5HDq+Qoo
- 3g79+oqgBQOupbSUNvA4eKCRAU4A9edEdOR12g5fIzuwHx0TmP9mhGQIlVKWlQDcnr4PlCK
- gNvY+sW4GDySGzNlEuwFw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:EY0QcSCryvE=:5JD5RiuQuL8HuXAa4U4PyI
- wKLLWN3SWcddfqVqVFKdjScZS9LtLYCJaOZR0CfVfLmmLLWmQD0rJH6FQy29bRv/TdUCUrnFE
- dbLMVVMftbkID9hoM+WDk3/e1O/kwekew1qtYEaXdGSeG7SELWcQvSSm24k+Uwd6UdzNuMPXM
- GiKXuZSC01P1LXGumFcYQLEx0MX1ofOYqH5xLNXFaySgSd5J3JbhPrzmKPb8TTrN3JNDwJZPD
- ehkTV005W2KyePA5MeEu4KJLNmvikv6J00shbQCwLyil/Zclpi5YXHPWJEqFRvidKKeWOoKvh
- AbG/3Jom1XgmOqedpuYn6mWY777mxKHc3VxohDWmqwL6KkhQBKbRP4XHeV+5d3F1+XoOp2hPF
- 2cfZrjR1nslQ/yoYi14CXdc+Buk4Cn0r8X6t7rk8KPaBs0JAMPdteMBAflSOH
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 15 Jan 2021 10:46:10 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: sl28: add variant 1
+In-Reply-To: <20210115093412.GK28365@dragon>
+References: <20201229120321.17103-1-michael@walle.cc>
+ <20201229120321.17103-2-michael@walle.cc> <20210111013442.GU28365@dragon>
+ <838c9860e19dcfb18d35cffde773ad93@walle.cc> <20210115093412.GK28365@dragon>
+User-Agent: Roundcube Webmail/1.4.10
+Message-ID: <0f1556f0b7eeaa0704907c291545ed69@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am 2021-01-15 10:34, schrieb Shawn Guo:
+> On Mon, Jan 11, 2021 at 09:00:37AM +0100, Michael Walle wrote:
+>> Am 2021-01-11 02:34, schrieb Shawn Guo:
+>> > On Tue, Dec 29, 2020 at 01:03:21PM +0100, Michael Walle wrote:
+>> > > There is a new variant 1 of this board available. It features up to
+>> > > four
+>> > > SerDes lanes for customer use. Add a new device tree which features
+>> > > just
+>> > > the basic peripherals. A customer will then have to modify or append
+>> > > to
+>> > > this device tree.
+>> > >
+>> > > Signed-off-by: Michael Walle <michael@walle.cc>
+>> > > ---
+>> > >  arch/arm64/boot/dts/freescale/Makefile        |  1 +
+>> > >  .../fsl-ls1028a-kontron-sl28-var1.dts         | 61
+>> > > +++++++++++++++++++
+>> > >  2 files changed, 62 insertions(+)
+>> > >  create mode 100644
+>> > > arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
+>> > >
+>> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
+>> > > b/arch/arm64/boot/dts/freescale/Makefile
+>> > > index 6f0777ee6cd6..79cb0025fcc6 100644
+>> > > --- a/arch/arm64/boot/dts/freescale/Makefile
+>> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+>> > > @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-qds.dtb
+>> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-rdb.dtb
+>> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) +=
+>> > > fsl-ls1028a-kontron-kbox-a-230-ls.dtb
+>> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28.dtb
+>> > > +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var1.dtb
+>> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var2.dtb
+>> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) +=
+>> > > fsl-ls1028a-kontron-sl28-var3-ads2.dtb
+>> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var4.dtb
+>> > > diff --git
+>> > > a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
+>> > > b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
+>> > > new file mode 100644
+>> > > index 000000000000..52f2f3ffdce1
+>> > > --- /dev/null
+>> > > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
+>> > > @@ -0,0 +1,61 @@
+>> > > +// SPDX-License-Identifier: GPL-2.0+
+>> > > +/*
+>> > > + * Device Tree file for the Kontron SMARC-sAL28 board.
+>> > > + *
+>> > > + * This is for the network variant 1 which has one ethernet port.
+>> > > It is
+>> > > + * different than the base variant, which also has one port, but
+>> > > here the
+>> > > + * port is connected via RGMII. This port is not TSN aware.
+>> > > + * None of the  four SerDes lanes are used by the module, instead
+>> > > they are
+>> > > + * all led out to the carrier for customer use.
+>> > > + *
+>> > > + * Copyright (C) 2020 Michael Walle <michael@walle.cc>
+>> > > + *
+>> > > + */
+>> > > +
+>> > > +/dts-v1/;
+>> > > +#include "fsl-ls1028a-kontron-sl28.dts"
+>> > > +#include <dt-bindings/net/qca-ar803x.h>
+>> > > +
+>> > > +/ {
+>> > > +	model = "Kontron SMARC-sAL28 (4 Lanes)";
+>> > > +	compatible = "kontron,sl28-var1", "kontron,sl28", "fsl,ls1028a";
+>> > > +};
+>> > > +
+>> > > +&enetc_port0 {
+>> > > +	status = "disabled";
+>> > > +	/delete-property/ phy-handle;
+>> > > +	/delete-node/ mdio;
+>> >
+>> > As it's disabled anyway, why do we bother to delete the property and
+>> > child node?
+>> 
+>> Because beneath that node is also the old phy0 label. So you'd be 
+>> getting
+>> arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts:38.24-55.5:
+>> ERROR (duplicate_label):
+>> /soc/pcie@1f0000000/ethernet@0,1/mdio/ethernet-phy@4: Duplicate label 
+>> 'phy0'
+>> on /soc/pcie@1f0000000/ethernet@0,1/mdio/ethernet-phy@4 and
+>> /soc/pcie@1f0000000/ethernet@0,0/mdio/ethernet-phy@5
+> 
+> So labelling enetc_port1 phy as 'phy1' would fix it, right?
 
---h2j7lras76hzpifw
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+That might fix it, but I don't want an old unused phy node in the device 
+tree
+which isn't even there. Also I don't want one board starting the labels 
+with
+phy0 and the other with phy1.
 
-Hello Jeff,
+If you don't like that /delete-node/ stuff, I'd have to reorganize the
+includes. var1 and var2 unfortunately isn't compatible with the base 
+variant
+fsl-ls1028a-kontron-sl28.dts regarding the phy configurations. Thus I'd
+probably have to split "fsl-ls1028a-kontron-sl28.dts" into a common dtsi 
+and
+one which handles the networking.
 
-On Thu, Jan 14, 2021 at 09:50:50PM -0600, Jeff LaBundy wrote:
-> On Thu, Jan 14, 2021 at 10:03:12AM +0000, Lee Jones wrote:
-> > On Mon, 28 Dec 2020, Alexander Dahl wrote:
-> >=20
-> > > The node names for devices using the pwm-leds driver follow a certain
-> > > naming scheme (now).  Parent node name is not enforced, but recommend=
-ed
-> > > by DT project.
-> > >=20
-> > >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
-> > >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
-> > > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.e=
-xample.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-=
-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
-> > >         From schema: /home/alex/src/linux/leds/Documentation/devicetr=
-ee/bindings/leds/leds-pwm.yaml
-> > >=20
-> > > Signed-off-by: Alexander Dahl <post@lespocky.de>
-> > > Acked-by: Jeff LaBundy <jeff@labundy.com>
-> > > Acked-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >=20
-> > > Notes:
-> > >     v8 -> v9:
-> > >       * added forgotten Acked-by (Jeff LaBundy)
-> > >       * rebased on v5.11-rc1
-> > >    =20
-> > >     v7 -> v8:
-> > >       * rebased on recent pavel/for-next (post v5.10-rc1)
-> > >       * added Acked-by (Rob Herring)
-> > >    =20
-> > >     v6 -> v7:
-> > >       * added warning message to commit message (Krzysztof Kozlowski)
-> > >    =20
-> > >     v6:
-> > >       * added this patch to series
-> > >=20
-> > >  Documentation/devicetree/bindings/mfd/iqs62x.yaml | 5 +++--
-> > >  1 file changed, 3 insertions(+), 2 deletions(-)
-> >=20
-> > Failed to apply:
-> >=20
-> > Applying: dt-bindings: mfd: Fix schema warnings for pwm-leds
-> > Using index info to reconstruct a base tree...
-> > M	Documentation/devicetree/bindings/mfd/iqs62x.yaml
-> > /home/lee/projects/linux/kernel/.git/worktrees/mfd/rebase-apply/patch:3=
-4: indent with spaces.
-> >             led-1 {
-> > /home/lee/projects/linux/kernel/.git/worktrees/mfd/rebase-apply/patch:3=
-5: indent with spaces.
-> >                     label =3D "panel";
-> > warning: 2 lines add whitespace errors.
-> > Falling back to patching base and 3-way merge...
-> > Auto-merging Documentation/devicetree/bindings/mfd/iqs62x.yaml
-> > CONFLICT (content): Merge conflict in Documentation/devicetree/bindings=
-/mfd/iqs62x.yaml
-> > Recorded preimage for 'Documentation/devicetree/bindings/mfd/iqs62x.yam=
-l'
->=20
-> It looks like the following patch already beat this to the punch:
->=20
-> 8237e8382498 ("dt-bindings: mfd: Correct the node name of the panel LED")
-
-Which tree is that commit on? This one?
-
-https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/
-
-> That patch does not retain the LED's label or rename the parent node to
-> led-controller, however. The label hardly matters for this example, but
-> perhaps we still want the parent node change to follow leds-pwm.yaml.
-
-Should I rework the patch then to have that change only?
-
-Greets
-Alex
-
---=20
-/"\ ASCII RIBBON | =BBWith the first link, the chain is forged. The first
-\ / CAMPAIGN     | speech censured, the first thought forbidden, the
- X  AGAINST      | first freedom denied, chains us all irrevocably.=AB
-/ \ HTML MAIL    | (Jean-Luc Picard, quoting Judge Aaron Satie)
-
---h2j7lras76hzpifw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEwo7muQJjlc+Prwj6NK3NAHIhXMYFAmABY4oACgkQNK3NAHIh
-XMab+xAAiHeOZzBFG4YB0oYV5i8ACoy6/kajEnF698M7uAJyVfCdryYdg9vejNsY
-N43fEtfkWgqaNph449fNAFJIzrfCez8Y7uz3HHXaSfPSYkXpDsM+248YuSUEBBV1
-AMji0bj3CiUGh4WtVfLBR5L13xeSR/tKKoZqpIaFBgOlsii/8W+Dc7vw2CoFIE6U
-Ac4eVKylR8D/619Oij//lMFT3YiEUEsKmH2oiQ21yKHL5IuYMmGJAMZJg3COgVf+
-Abn1i7Dln8iz3OMdISlUgClhRpNv5DGXf8U1z3JeaWWK1f0EQYfgMWy8gz8zSmv9
-v07Bx90iY8YABFkdIRXJTbm4kKfiZ9WQQepfN2sHuQXvnKM3aKORx6o43fIR/A1G
-yaCIsU49ONg/zWQtdLMzXomLdIfhZNx0poREu01GhLVbWNQLtZzTCnVRNfp/tCkz
-irqNzETxwk6MjHV2xgY1kJ3Sx4rM/BVX+sYO/fwdKT95v/voCJNob52H16w6TUue
-hIKktspa97v9y31m7ejI/8WHMt9Qgb+aHWvRtFaNI7g3XF9UDUxGD5WRzor8a/Ii
-MOh2Tr5tS9nl0BdR2iHn4FMWkSwnr8Q4DiQLkvdNW5e4/92ODuMN/q1A66kxiWm5
-KrIpfaNcUmg/NBYoE9vnOKej5D8dNQryaiVb6TwSpbVYJ3vVJyE=
-=wtKq
------END PGP SIGNATURE-----
-
---h2j7lras76hzpifw--
+-michael
