@@ -2,209 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0142F73C5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 08:40:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A842F73F0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 09:01:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731682AbhAOHjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 02:39:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60506 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731639AbhAOHjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 02:39:11 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE13C0613CF;
-        Thu, 14 Jan 2021 23:38:31 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id y22so9308786ljn.9;
-        Thu, 14 Jan 2021 23:38:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=m3cu7YY/eNxyQb45/rsrpXDYAx8mxu2G4v5OxVWwgOY=;
-        b=DP3BxUiOkbp6jEYZ4Pczn/iLq8dB7vCdU+wbx32ThuzfbcK9Sr2Zb5Mg0mPX6prLvm
-         13sBk/pw4Wa+uHzXFzw7YXFfOD+cFwd6cN0lQlMKatejivttxoMnNK/wYacJW0JrnT8N
-         u+6ZIyIiMGeUhhWSd5micAwjY2QkFMJYlpXMkFM9Tu6+R2eiTAIj83SaKcQ5JG7Ba+tX
-         +qQyEezYMVy2hwblYBc9wRlwBuGh96vzZ7H+36uMYulKI7b5EF3Lx5imE1aYY23W0Zj6
-         cGawi0HoCtKGJ6LZ8bzAspQo+SAJVKuW5B4SvHkUOehgoUhlt12HHqPD3/8zzX4/SE3S
-         uDfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=m3cu7YY/eNxyQb45/rsrpXDYAx8mxu2G4v5OxVWwgOY=;
-        b=SyTkuXMtqV8ZzMm3eU1yukNIXhewNCwyZqIw1a/fbZgD3gQGFOcD7yfppvpaOdSWus
-         mveu9JzE8ycnhqcjdrPlKRuhmzUuqqUUHJPu+q24mKCzcQ/aAYdyJjxx/jHpdzj+n74W
-         2n+rRyf1IPFiWSeiyHxronxRwNnplX9RDhl9QBblStRNuO0o5LkBxKS//Lya/escFoaK
-         qxnKfQ2YgqC3Bxy5Ufh1Ryfqoj7FZY/8H1WhPoNmSuAC7nrtKgyJ1MBopGHnK/8TL8fm
-         viA11ztrAhNP7/d7xzW8c4U/XWtUnHWCeoVm1KrCCY6DmYHR3jpaKigdyZueLdq95N8S
-         xpeQ==
-X-Gm-Message-State: AOAM532Wf5p8RlypU2QdwQdLNJGbL/bPsCBP8EgvhXfxXmTNhAqQYFJk
-        pibzkLwYupfZP8eWjaaA9aQ=
-X-Google-Smtp-Source: ABdhPJz09J5ZMuvwWmEAfRK3sELUcjg0OI6QIwBRHmJ9nDiNL5cnQegYPW63N7ectPkwZRxjHp/Zpg==
-X-Received: by 2002:a2e:8602:: with SMTP id a2mr4556195lji.421.1610696308352;
-        Thu, 14 Jan 2021 23:38:28 -0800 (PST)
-Received: from endpoint.lan ([185.188.71.122])
-        by smtp.gmail.com with ESMTPSA id w9sm807559lfl.168.2021.01.14.23.38.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 23:38:27 -0800 (PST)
-From:   Pawel Dembicki <paweldembicki@gmail.com>
-To:     linuxppc-dev@lists.ozlabs.org
-Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] powerpc: dts: p2020rdb: add missing peripherials
-Date:   Fri, 15 Jan 2021 08:37:58 +0100
-Message-Id: <20210115073800.1072204-1-paweldembicki@gmail.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+        id S1731999AbhAOIA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 03:00:58 -0500
+Received: from comms.puri.sm ([159.203.221.185]:59764 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728688AbhAOIA6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 03:00:58 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 936E4DF477;
+        Thu, 14 Jan 2021 23:59:47 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id rFSU89Uq-WvI; Thu, 14 Jan 2021 23:59:46 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     laurent.pinchart@ideasonboard.com
+Cc:     agx@sigxcpu.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kernel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, marex@denx.de,
+        robh@kernel.org, stefan@agner.ch,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: Re: [PATCH v2 1/7] dt-bindings: display: mxsfb: Convert binding to YAML
+Date:   Fri, 15 Jan 2021 08:59:18 +0100
+Message-Id: <20210115075918.26407-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20201007012438.27970-2-laurent.pinchart@ideasonboard.com>
+References: <20201007012438.27970-2-laurent.pinchart@ideasonboard.com>
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds dts entry for some peripherials:
-- i2c: temperature sensor ADT7461
-- i2c: eeprom m24256
-- i2c: eeprom at24c01
-- i2c: pmic zl2006
-- i2c: gpio expander
-- phy: reset pins for phy
-- dsa: switch vsc7385
+hi Laurent,
 
-It was required to adjust rgmii settings for enet0 because switch with
-dsa driver act different without 8081 sterring.
+Do you mind me adding a DT property in the old format now? If so, I'd
+appreciated an ack in this thread:
+https://lore.kernel.org/linux-arm-kernel/20201201134638.GA305734@bogon.m.sigxcpu.org/
 
-Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
----
- arch/powerpc/boot/dts/fsl/p2020rdb.dts | 73 ++++++++++++++++++++++++--
- 1 file changed, 70 insertions(+), 3 deletions(-)
+If it causes extra work for you and want to resend your series soon, I'll
+gladly delay them for later.
 
-diff --git a/arch/powerpc/boot/dts/fsl/p2020rdb.dts b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
-index 3acd3890b397..1f2ddeca0375 100644
---- a/arch/powerpc/boot/dts/fsl/p2020rdb.dts
-+++ b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
-@@ -7,6 +7,9 @@
- 
- /include/ "p2020si-pre.dtsi"
- 
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
- / {
- 	model = "fsl,P2020RDB";
- 	compatible = "fsl,P2020RDB";
-@@ -131,22 +134,84 @@ partition@1100000 {
- 		L2switch@2,0 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--			compatible = "vitesse-7385";
-+			compatible = "vitesse,vsc7385";
- 			reg = <0x2 0x0 0x20000>;
--		};
-+			reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 
-+				port@1 {
-+					reg = <1>;
-+					label = "e1-sw-p1";
-+				};
-+				port@2 {
-+					reg = <2>;
-+					label = "e1-sw-p2";
-+				};
-+				port@3 {
-+					reg = <3>;
-+					label = "e1-sw-p3";
-+				};
-+				port@4 {
-+					reg = <4>;
-+					label = "e1-sw-p4";
-+				};
-+				port@6 {
-+					reg = <6>;
-+					label = "cpu";
-+					ethernet = <&enet0>;
-+					phy-mode = "rgmii";
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+			};
-+		};
- 	};
- 
- 	soc: soc@ffe00000 {
- 		ranges = <0x0 0x0 0xffe00000 0x100000>;
- 
-+		gpio0: gpio-controller@fc00 {
-+		};
-+
- 		i2c@3000 {
-+			temperature-sensor@4c {
-+				compatible = "adi,adt7461";
-+				reg = <0x4c>;
-+			};
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c256";
-+				reg = <0x50>;
-+			};
- 			rtc@68 {
- 				compatible = "dallas,ds1339";
- 				reg = <0x68>;
- 			};
- 		};
- 
-+		i2c@3100 {
-+			pmic@11 {
-+				compatible = "zl2006";
-+				reg = <0x11>;
-+			};
-+
-+			gpio@18 {
-+				compatible = "nxp,pca9557";
-+				reg = <0x18>;
-+			};
-+
-+			eeprom@52 {
-+				compatible = "atmel,24c01";
-+				reg = <0x52>;
-+			};
-+		};
-+
- 		spi@7000 {
- 			flash@0 {
- 				#address-cells = <1>;
-@@ -200,10 +265,12 @@ mdio@24520 {
- 			phy0: ethernet-phy@0 {
- 				interrupts = <3 1 0 0>;
- 				reg = <0x0>;
-+				reset-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
- 			};
- 			phy1: ethernet-phy@1 {
- 				interrupts = <3 1 0 0>;
- 				reg = <0x1>;
-+				reset-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
- 			};
- 			tbi-phy@2 {
- 				device_type = "tbi-phy";
-@@ -233,7 +300,7 @@ ptp_clock@24e00 {
- 
- 		enet0: ethernet@24000 {
- 			fixed-link = <1 1 1000 0 0>;
--			phy-connection-type = "rgmii-id";
-+			phy-connection-type = "rgmii";
- 		};
- 
- 		enet1: ethernet@25000 {
--- 
-2.25.1
-
+thanks,
+                                       martin
