@@ -2,130 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC2A42F7DF9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 15:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D10EE2F7E51
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 15:34:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725910AbhAOOTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 09:19:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33738 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726402AbhAOOTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 09:19:04 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0227CC061757
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 06:18:23 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id by27so9662892edb.10
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 06:18:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=OH+rZHzGdNTeRecZmSqrgPziCSuu4f72OhFhoRM4HuU=;
-        b=K0qDpynOLuTprVDb33NvmUMReRVLpR9nrJrY+1ihuqXOcO1MEfmKwDiCEdia+8AXdI
-         bzpYGv/xyqhXAZWFAOpnjSUXwXKILFKTg2zNhkd2tUNZwgrmQVtMyOIZK3yBma1JRUYs
-         VE3buV/Bi1JInu/E609rSiJf6LQ45K2ztPydoL741kkqdIBvFbagpUFGQSFjEi6mWQVK
-         Gq650Zj6LHrcziwkfbSqVp9iYxb+lnfyKy1l52LxLUSEvue0h/K2OR/ppEVrbSI2vE5D
-         WHJBPIccv/QlcZY+cGlc/tdWv6HFTBvLhID0gi8+xKifsXx3Zk0TkAfovuuHgFi+Ls9O
-         mGWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=OH+rZHzGdNTeRecZmSqrgPziCSuu4f72OhFhoRM4HuU=;
-        b=R2rielgnlELUwRGgmRkax/li9yn1drH/owLG6coaye3B2KI8Sf1ThWpvsh1IuyiepV
-         sSbhG5kwsSku6B+hIOTmUcHjJUPdxOL2s+LRfDShdQ42e9cyvBVHFIBTZVkeVtNq7Wx4
-         NMB9o2AHw4Pcj4k//kxol7c6lNX4mFyLxtcHmSK/MAIz17qm+ZdYCRpavurtpWZgulvB
-         RE2Ko+SeUdlvFfVmUtlXCNYDt6KfXdq+F5AuBO6akS5+FAC5MOsxSN8Nl4T1FB5rbwmy
-         SKcxDlGclSw6M1aC53ciyMkQteOVpDHk2BjsoU+SEOZEOU9X1iAcSUaoPCycTBEakEGA
-         Dsew==
-X-Gm-Message-State: AOAM532Fr8H/zjEV49ZeBtdI6mWABHlH4r/cSBqjIOLL7XqEgu+gNG54
-        2PjSmQhR3vwmpuYw20IWHMxI2116s+pXOhjIPF27yw==
-X-Google-Smtp-Source: ABdhPJwDHmfSoYGDiypTGdc3guOuQ+vdr1lYhPvGPGUbUz1IbNGaW2nJ+ayiEjiCEG6lNhn76Fm+mocjee9bhGE611Y=
-X-Received: by 2002:a50:b742:: with SMTP id g60mr9586445ede.113.1610720301753;
- Fri, 15 Jan 2021 06:18:21 -0800 (PST)
-MIME-Version: 1.0
-References: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Fri, 15 Jan 2021 15:18:10 +0100
-Message-ID: <CAMpxmJWy_1vXPopMRP_-U_jEAUbHJBEHA4x88H98i2JA=dzPHA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpio: pca953x: Add support for pca9506
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S1733041AbhAOOdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 09:33:40 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:36927 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726046AbhAOOdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 09:33:39 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10FESAKE007013;
+        Fri, 15 Jan 2021 15:32:43 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : subject
+ : date : message-id : mime-version : content-type; s=selector1;
+ bh=L3iN3yrmVDvMpCGi/fPZ69/2cDOE2wson7OCPRa1tMI=;
+ b=H5Tdd/yRm3AeJIeQyynaeHBYWspkbUwkJrm5rMUEEv0sJ2zwuIeqMaa0d3ZCE/lngtlH
+ HTMHTWcU8kxQC46rwfcQ/EwYFiWwdbKWvOabhp/dIhii6EIVYgKp4T/h1xVMVMWtF7vT
+ i8NylSeFJ0TI2dQ/kIMWeul5jmKTpVeU1xYfkxkS6Me2OQhRSuodRk1xO7+tepOrHZjM
+ PAbEFUghx5h7F/znypMCJTcKYMKZbvkHo6xL+aoL9YGpOxrePQOw69NzdYKOUVs5aZCu
+ amYOhcbwoKvkKM/qe8k8ehuxvzbr9cYVsZ8f7TED7XVS0qqCVWjQAU1m/lUczQ3FwWTx kg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 35y5gxm2vq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 15 Jan 2021 15:32:43 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A033B10002A;
+        Fri, 15 Jan 2021 15:32:41 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6E6CE24974F;
+        Fri, 15 Jan 2021 15:32:41 +0100 (CET)
+Received: from localhost (10.75.127.49) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 15 Jan 2021 15:32:41
+ +0100
+From:   Yannick Fertre <yannick.fertre@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] ARM: multi_v7_defconfig: add STM32 CEC support
+Date:   Fri, 15 Jan 2021 15:32:36 +0100
+Message-ID: <20210115143236.27675-1-yannick.fertre@foss.st.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG4NODE3.st.com (10.75.127.12) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-15_08:2021-01-15,2021-01-15 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 8:50 PM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
->
-> According to the reference manual "The PCA9505 is identical to the
-> PCA9506 except that it includes 100 k=CE=A9 internal pull-up resistors on=
- all
-> the I/Os." So the pca9506 device can be considered identical to the
-> pca9505 for the gpio driver.
->
-> Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 1 +
->  drivers/gpio/gpio-pca953x.c                              | 2 ++
->  2 files changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/D=
-ocumentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> index f5ee23c2df60..cdd7744b8723 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-> @@ -32,6 +32,7 @@ properties:
->        - maxim,max7327
->        - nxp,pca6416
->        - nxp,pca9505
-> +      - nxp,pca9506
->        - nxp,pca9534
->        - nxp,pca9535
->        - nxp,pca9536
-> diff --git a/drivers/gpio/gpio-pca953x.c b/drivers/gpio/gpio-pca953x.c
-> index 825b362eb4b7..5ea09fd01544 100644
-> --- a/drivers/gpio/gpio-pca953x.c
-> +++ b/drivers/gpio/gpio-pca953x.c
-> @@ -73,6 +73,7 @@
->  static const struct i2c_device_id pca953x_id[] =3D {
->         { "pca6416", 16 | PCA953X_TYPE | PCA_INT, },
->         { "pca9505", 40 | PCA953X_TYPE | PCA_INT, },
-> +       { "pca9506", 40 | PCA953X_TYPE | PCA_INT, },
->         { "pca9534", 8  | PCA953X_TYPE | PCA_INT, },
->         { "pca9535", 16 | PCA953X_TYPE | PCA_INT, },
->         { "pca9536", 4  | PCA953X_TYPE, },
-> @@ -1236,6 +1237,7 @@ static int pca953x_resume(struct device *dev)
->  static const struct of_device_id pca953x_dt_ids[] =3D {
->         { .compatible =3D "nxp,pca6416", .data =3D OF_953X(16, PCA_INT), =
-},
->         { .compatible =3D "nxp,pca9505", .data =3D OF_953X(40, PCA_INT), =
-},
-> +       { .compatible =3D "nxp,pca9506", .data =3D OF_953X(40, PCA_INT), =
-},
->         { .compatible =3D "nxp,pca9534", .data =3D OF_953X( 8, PCA_INT), =
-},
->         { .compatible =3D "nxp,pca9535", .data =3D OF_953X(16, PCA_INT), =
-},
->         { .compatible =3D "nxp,pca9536", .data =3D OF_953X( 4, 0), },
->
-> base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
-> --
-> 2.29.2
->
+Enable CEC support for STMicroelectronics as loadable module.
 
-Hi Uwe,
+Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+---
+ arch/arm/configs/multi_v7_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-This looks good but we usually split the DT bindings and code changes
-into separate patches. Would you mind resending?
+diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+index c5f25710fedc..05cc0607a9ad 100644
+--- a/arch/arm/configs/multi_v7_defconfig
++++ b/arch/arm/configs/multi_v7_defconfig
+@@ -656,6 +656,7 @@ CONFIG_V4L_TEST_DRIVERS=y
+ CONFIG_VIDEO_VIVID=m
+ CONFIG_CEC_PLATFORM_DRIVERS=y
+ CONFIG_CEC_SAMSUNG_S5P=m
++CONFIG_CEC_STM32=m
+ CONFIG_VIDEO_ADV7180=m
+ CONFIG_VIDEO_ADV7604=m
+ CONFIG_VIDEO_ADV7604_CEC=y
+-- 
+2.17.1
 
-Bart
