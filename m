@@ -2,172 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1F592F7141
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 04:56:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF942F712F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 04:52:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730972AbhAODzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 22:55:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40806 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731101AbhAODy7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 22:54:59 -0500
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A207C0613D3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:54:19 -0800 (PST)
-Received: by mail-io1-xd32.google.com with SMTP id q1so15694427ion.8
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:54:19 -0800 (PST)
+        id S1730838AbhAODvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 22:51:51 -0500
+Received: from mail-bn7nam10on2044.outbound.protection.outlook.com ([40.107.92.44]:22881
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727116AbhAODvu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Jan 2021 22:51:50 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dSBm2/f5l5E7/08dIe8bF4pxI4b1BwmP1DJO+NfM3jSjtR2g6MLOdtbEEbwLl38H/SZaD8DLLVWfpHCZxoECPnJ6GMSwo6jKW7yeHL8YiX9LR43oW72N/OMRGC+ml3eQjN2KyiGfjEZwotvtMAXdq3o/8jrvoO8z6i0KenTPuLR9fsNIFluklt4oBgeaCFWiSRBcLTNhEQoazT0G3nC77UVPLjlaKZRPNCzeyEOm/CPwOOOBQ2p5yOBsgxM0gBImdpaZPU+c4H6aZYf4RFfBrEpMK8Wc6el8qKCzJZmG3StbDv9dRv9M2vOCjmqkk8GXps9++w/soIUVYOWbNhnIZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oP+OWISoctf3LsgM/ywx4HyZFHZdBYUpWIfjLCWuv9g=;
+ b=nONO/RNnYXmIA53I3YB7XVhOT/J5bweb3ShnQIEtyF/PPImMTYTmMfU+gwl3INa8IMMdRK5KIdf4X3YDxu4DMXxlVHQxnTaIrZpidVYX0P58HQprrhQv7XyW46rUXkZLR3i/I46SMroduTZV4EyHheO+JeVY5M0+iCjfefYt54NXXZBNjVDaV+kYTqzAuvpaXC/NK2uzN4X+IQ+87pLJx5dm8uAwflM5g5cx36cUAlggFEWiLwYa2RjWbKXXPGqIM1zQvvt10KKgVjNCzBo+TIYAW2aK0sGNPYcQwJGa+ThTvyQY4Gu4t0zTH4aeHZW3YD/mQoFKmqxKvqm7lQNkKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Zn/E5DSPd3qJg+DTv9IwC7Z6z2pECZsgPkasFqGe2mo=;
-        b=SlbAB2R28TVOPw4dT3y4+YKxnBvZIXRjddrKEDVYjmW3vvG3MDP0dEXICbitCBjDsh
-         shg/YaDMPSBJC8TmtKZMEExrMsM7sLlrF7dj4kE9P1DHob7nRhpZZQNoE756taUh2vVw
-         OwHAOHom27x10XansCH8DvCa2BNXVtylJjjRk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Zn/E5DSPd3qJg+DTv9IwC7Z6z2pECZsgPkasFqGe2mo=;
-        b=JY4a9Di7hN8N/k0zo+6CPNW4F7q+0mC41wk0L9Aszf7+9Vb8ZefhNnErSYiVWw2J4Z
-         7AYq9KQRtjIGxbbl62YbYPWf4trRPA6BX+emaiSnZRCCIokeyQtw0Jv4MHmE2B9wdEvf
-         n02zu6N8i0iWYLXNMiZbnBHaPDa85mB6m94gwLQDmH0ou1SmnTHm4k5W1b48SLJDsSk9
-         TapLShh4dotag4OyCQa3pZueavKfUNL/7Q+2Nv8Jpp4BalOl8lBvcqT5FSLTNrsTb0kh
-         15AROVWQd/twtjAvE/TaRgqLvZQPi92aH32vb/z4eoxtkgFBUcrDJIaTh6BmWCjIcAHu
-         6ZSA==
-X-Gm-Message-State: AOAM5307CUPtCkqyr5DRSVUul2/bLvQ9084gPTAClqwSGTYPEgvLN97M
-        DJZM4z6R4VoJSWb1wR8y3b32IfegbJ+2/Q==
-X-Google-Smtp-Source: ABdhPJzZyypbFp59OGbOgJeY4Lh3E0zgmX0ck25GuQmBlNl2K9Tm4qgzBgtuewjp1ltIOrdH8tJujA==
-X-Received: by 2002:a92:b01:: with SMTP id b1mr4954739ilf.160.1610682858177;
-        Thu, 14 Jan 2021 19:54:18 -0800 (PST)
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com. [209.85.166.51])
-        by smtp.gmail.com with ESMTPSA id s12sm4625626ili.4.2021.01.14.19.54.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Jan 2021 19:54:17 -0800 (PST)
-Received: by mail-io1-f51.google.com with SMTP id d81so574083iof.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:54:17 -0800 (PST)
-X-Received: by 2002:a5d:9588:: with SMTP id a8mr2906589ioo.34.1610682391276;
- Thu, 14 Jan 2021 19:46:31 -0800 (PST)
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oP+OWISoctf3LsgM/ywx4HyZFHZdBYUpWIfjLCWuv9g=;
+ b=JZMm2frla3aw8ZeF2PKVLbkH+g3YTaYx0zMgvPScSVPkAmVylEvfHWWzWCKvhD8hJF9pAl2bqnUud/o9fpCV7xPCJEE2MwjWKPehhpy3+RuICJqMDrGf3nPleehXLJYaeknlWUB3MmJX2Te7jlR51+ev5Hhljlx8uFuaSyoowfU=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=labundy.com;
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com (2603:10b6:805:fb::32)
+ by SN6PR08MB5631.namprd08.prod.outlook.com (2603:10b6:805:fb::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.12; Fri, 15 Jan
+ 2021 03:50:56 +0000
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::972:c257:aa68:9be0]) by SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::972:c257:aa68:9be0%4]) with mapi id 15.20.3763.010; Fri, 15 Jan 2021
+ 03:50:56 +0000
+Date:   Thu, 14 Jan 2021 21:50:50 -0600
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Alexander Dahl <post@lespocky.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 1/4] dt-bindings: mfd: Fix schema warnings for pwm-leds
+Message-ID: <20210115035050.GA27243@labundy.com>
+References: <20201228163217.32520-1-post@lespocky.de>
+ <20201228163217.32520-2-post@lespocky.de>
+ <20210114100312.GL3975472@dell>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210114100312.GL3975472@dell>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [136.49.173.128]
+X-ClientProxiedBy: SA9PR03CA0016.namprd03.prod.outlook.com
+ (2603:10b6:806:20::21) To SN6PR08MB5517.namprd08.prod.outlook.com
+ (2603:10b6:805:fb::32)
 MIME-Version: 1.0
-References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-7-tientzu@chromium.org>
- <95e6dd76-5e18-e445-c351-19fba18f36de@gmail.com> <CALiNf29+8Yi93RacsZHr=qYBhQRwqujW6KZVVD=9xPMhpLH5pA@mail.gmail.com>
- <5f276678-3ab2-ddc8-640c-6dbbe173463c@gmail.com>
-In-Reply-To: <5f276678-3ab2-ddc8-640c-6dbbe173463c@gmail.com>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Fri, 15 Jan 2021 11:46:20 +0800
-X-Gmail-Original-Message-ID: <CALiNf28nW0CKsBRw-HQmz=jBJ3vK6cjoQZPu8Zx=Yn=RWPdVWQ@mail.gmail.com>
-Message-ID: <CALiNf28nW0CKsBRw-HQmz=jBJ3vK6cjoQZPu8Zx=Yn=RWPdVWQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 6/6] of: Add plumbing for restricted DMA pool
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <joro@8bytes.org>, will@kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        rdunlap@infradead.org, dan.j.williams@intel.com,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from labundy.com (136.49.173.128) by SA9PR03CA0016.namprd03.prod.outlook.com (2603:10b6:806:20::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.27 via Frontend Transport; Fri, 15 Jan 2021 03:50:55 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c1a831da-fe7c-41f0-cc0f-08d8b908c31f
+X-MS-TrafficTypeDiagnostic: SN6PR08MB5631:
+X-Microsoft-Antispam-PRVS: <SN6PR08MB56317AE91CD8649D1F10B816D3A70@SN6PR08MB5631.namprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:913;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AVyIz+G7UrKBI6TenJROJmNzfpRqgs7DXtgfJQeDmEinlJMyQPNTvJKKOPWYaMvq0X488pztfHcSsxYKwgz2gxyYavtdQ6Hnle6d7gdvIvbqa6nIH6k3aLSf6lDKZbsGSK0/5TRA9E4on9tsIW0GJCVkUuG+AtV2Q5Pcbw16ciIy4J9r9ihfeMTUOlZ3Y1pWnYoy5njucQDu1NdslWGW1sQURRrlISgHtwEI+AE/cTOPnqRq3RmmISFaX5cqSmu/DI8sa2KmUS5iQ5mqmq54WNJJWqxb76Di6u6f8NJ2+S4iX0o666G58RanFGguQxo+OzkUsIsYXo5kGjUBh7UisUrW4VaDQmhXsXBcWRnIn1hyeviJhJFVj+6bWEhXHy/7kNeB7XIAVGmS88SWCFRQ2Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR08MB5517.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(39830400003)(366004)(376002)(396003)(136003)(346002)(316002)(7696005)(86362001)(55016002)(7416002)(8936002)(36756003)(2616005)(16526019)(186003)(8886007)(1076003)(26005)(54906003)(956004)(8676002)(52116002)(478600001)(5660300002)(4326008)(66946007)(66476007)(66556008)(33656002)(83380400001)(6916009)(2906002)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?MDJOUXVIbmhZRDZpY1ljUTA4c0NSZnZDSkZIVHVuVFF4Q3VQNkdTSUpZdkR5?=
+ =?utf-8?B?SS8zRm5DQ3JKNUZFamNESnoxeVE1bnRLM2pVZnkwRUNBdlRsdUhQY0lDdVFj?=
+ =?utf-8?B?OW5xTUVDNFZwS2R5RndCVElud3hZalQ0TjZiQk9KeXVTVEpKMVdiWEtrYmZC?=
+ =?utf-8?B?Z3o2Vlg0NXZyS3V5ZHI1cU41bzU2NHB3Q2VQcXJiZEE0NGJsUVJ2dHo1bjY3?=
+ =?utf-8?B?ejduem55Z1B0OEVmcDlybFZ0dDJxZC9sWXZocWxqd0lnL2o5ZU1ZZWtBMUFP?=
+ =?utf-8?B?cjkrdU0rbmN5d05hQWRmaHVkNVBqeXROclEyQXFrUy85MGx0S2dhbHBGNHlv?=
+ =?utf-8?B?U0FWemJpSW5aazkyQVUxb1hndEowSEkxa0dkQlhpRHUraUhQTGI3cmF2dnJY?=
+ =?utf-8?B?bEdLVWJhK2FuUEZZVjY2Q2tWbzVCdWxYUUk0Z2hhOEMxcGlzeHk1YmY2eFBW?=
+ =?utf-8?B?UnpnWmxTNlpFNk16RTFoM2RrSm5QNHI4QzE1TlFKU0pmb3BSL0N3QkpRejVM?=
+ =?utf-8?B?QzF1NnRJak00bGpobmU2ckk0UEZ4Q2hteHY2MVNueUc2a3lOTEwrUEgwUHMz?=
+ =?utf-8?B?WVhabXhoVmk0UnNQSGhveXpFWmJHVmxNTFAxbkk5NCtQcnFYVSs0Zm5JRDc2?=
+ =?utf-8?B?dlRtS2RlK0daUXhNYkZDUzZUL1A0dlRIaGp6NThWbSt6UmRQWklkRHkrYWtS?=
+ =?utf-8?B?eDVKb0lFVUhpVXgyclhodWFCcGRZQ3ZNN0dkZnN0aDJQUDB1MTFGVHg5Lzdo?=
+ =?utf-8?B?eng0RmRtcEEvcGR5WVRzZmdWZWRXOWt1MFBLTUJCOTJ6OGlRejRIQk9vRXZi?=
+ =?utf-8?B?N3hZbGduUHFzM0hBaDVkY1BtdFlteW52MGpMcUpoS1NFSVhnbktYL0M0UUd1?=
+ =?utf-8?B?Q2xlYUp6ejNJWHdCWEQrZmhibERQYkI0V2w0K1ZVRllGS0J6S2tXNUtXTnAr?=
+ =?utf-8?B?OXdYTjJXNkNYei9aVVVQbEtGckx0WUt5UXdGTHVWN2Q2WmxCQkVobmFicjlm?=
+ =?utf-8?B?UEE2MUtkOFRoS0c3bVdqdmJUcFc3VG1pWkRCaENPODdDU3ZUTWxHekMxa0RP?=
+ =?utf-8?B?Q0wvTXo5MGowNnI5MXNjSzg4Q0NnMmFYT2UwTmtoWm5DZkYwTXFDQzlFYjhX?=
+ =?utf-8?B?ZnFhdEozUFBtdU9IYzhrVE9XNmg1Um9RMWdhZEUyQURWTkpVdUNmd2ZGYTZp?=
+ =?utf-8?B?WlJtZ2dUVmtUWGpaRGM1dWkxWGl3ZkY1MlR5b1luV1I5eDdiNTViWndTRXJH?=
+ =?utf-8?B?K0lsNmtiM1ZaTUVEamtBSFlDeGg4Ujl5cWRVU0p6SlNoTkhDcmFUdFAyN3FN?=
+ =?utf-8?Q?BF0SOJS2IESMw9+UDo8fsCBMMplVpZKyqK?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1a831da-fe7c-41f0-cc0f-08d8b908c31f
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR08MB5517.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2021 03:50:56.2259
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uPQ+XkRa/WifLQHaIah9lOGP8SFFov18edVQEvPE73Sx81BgVU78tLKgnz871n5hNv5kRcHze/tPbDG5F8nfBg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR08MB5631
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 2:52 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> On 1/14/21 1:08 AM, Claire Chang wrote:
-> > On Wed, Jan 13, 2021 at 7:48 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
-> >>
-> >> On 1/5/21 7:41 PM, Claire Chang wrote:
-> >>> If a device is not behind an IOMMU, we look up the device node and set
-> >>> up the restricted DMA when the restricted-dma-pool is presented.
-> >>>
-> >>> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> >>> ---
-> >>
-> >> [snip]
-> >>
-> >>> +int of_dma_set_restricted_buffer(struct device *dev)
-> >>> +{
-> >>> +     struct device_node *node;
-> >>> +     int count, i;
-> >>> +
-> >>> +     if (!dev->of_node)
-> >>> +             return 0;
-> >>> +
-> >>> +     count = of_property_count_elems_of_size(dev->of_node, "memory-region",
-> >>> +                                             sizeof(phandle));
-> >>
-> >> You could have an early check for count < 0, along with an error
-> >> message, if that is deemed useful.
-> >>
-> >>> +     for (i = 0; i < count; i++) {
-> >>> +             node = of_parse_phandle(dev->of_node, "memory-region", i);
-> >>> +             if (of_device_is_compatible(node, "restricted-dma-pool"))
-> >>
-> >> And you may want to add here an of_device_is_available(node). A platform
-> >> that provides the Device Tree firmware and try to support multiple
-> >> different SoCs may try to determine if an IOMMU is present, and if it
-> >> is, it could be marking the restriced-dma-pool region with a 'status =
-> >> "disabled"' property, or any variant of that scheme.
-> >
-> > This function is called only when there is no IOMMU present (check in
-> > drivers/of/device.c). I can still add of_device_is_available(node)
-> > here if you think it's helpful.
->
-> I believe it is, since boot loader can have a shared Device Tree blob
-> skeleton and do various adaptations based on the chip (that's what we
-> do) and adding a status property is much simpler than insertion new
-> nodes are run time.
->
-> >
-> >>
-> >>> +                     return of_reserved_mem_device_init_by_idx(
-> >>> +                             dev, dev->of_node, i);
-> >>
-> >> This does not seem to be supporting more than one memory region, did not
-> >> you want something like instead:
-> >>
-> >>                 ret = of_reserved_mem_device_init_by_idx(...);
-> >>                 if (ret)
-> >>                         return ret;
-> >>
-> >
-> > Yes. This implement only supports one restriced-dma-pool memory region
-> > with the assumption that there is only one memory region with the
-> > compatible string, restricted-dma-pool, in the dts. IIUC, it's similar
-> > to shared-dma-pool.
->
-> Then if here is such a known limitation it should be both documented and
-> enforced here, you shouldn ot be iterating over all of the phandles that
-> you find, stop at the first one and issue a warning if count > 1?
+Hi Alexander,
 
-What I have in mind is there might be multiple memory regions, but
-only one is for restriced-dma-pool.
-Say, if you want a separated region for coherent DMA and only do
-streaming DMA in this restriced-dma-pool region, you can add another
-reserved-memory node with shared-dma-pool in dts and the current
-implementation will try to allocate the memory via
-dma_alloc_from_dev_coherent() first (see dma_alloc_attrs() in
-/kernel/dma/mapping.c).
-Or if you have vendor specific memory region, you can still set up
-restriced-dma-pool by adding another reserved-memory node in dts.
-Dose this make sense to you? I'll document this for sure.
+On Thu, Jan 14, 2021 at 10:03:12AM +0000, Lee Jones wrote:
+> On Mon, 28 Dec 2020, Alexander Dahl wrote:
+> 
+> > The node names for devices using the pwm-leds driver follow a certain
+> > naming scheme (now).  Parent node name is not enforced, but recommended
+> > by DT project.
+> > 
+> >   DTC     Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> >   CHECK   Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml
+> > /home/alex/build/linux/Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+> >         From schema: /home/alex/src/linux/leds/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> > 
+> > Signed-off-by: Alexander Dahl <post@lespocky.de>
+> > Acked-by: Jeff LaBundy <jeff@labundy.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > ---
+> > 
+> > Notes:
+> >     v8 -> v9:
+> >       * added forgotten Acked-by (Jeff LaBundy)
+> >       * rebased on v5.11-rc1
+> >     
+> >     v7 -> v8:
+> >       * rebased on recent pavel/for-next (post v5.10-rc1)
+> >       * added Acked-by (Rob Herring)
+> >     
+> >     v6 -> v7:
+> >       * added warning message to commit message (Krzysztof Kozlowski)
+> >     
+> >     v6:
+> >       * added this patch to series
+> > 
+> >  Documentation/devicetree/bindings/mfd/iqs62x.yaml | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> Failed to apply:
+> 
+> Applying: dt-bindings: mfd: Fix schema warnings for pwm-leds
+> Using index info to reconstruct a base tree...
+> M	Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> /home/lee/projects/linux/kernel/.git/worktrees/mfd/rebase-apply/patch:34: indent with spaces.
+>             led-1 {
+> /home/lee/projects/linux/kernel/.git/worktrees/mfd/rebase-apply/patch:35: indent with spaces.
+>                     label = "panel";
+> warning: 2 lines add whitespace errors.
+> Falling back to patching base and 3-way merge...
+> Auto-merging Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> CONFLICT (content): Merge conflict in Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> Recorded preimage for 'Documentation/devicetree/bindings/mfd/iqs62x.yaml'
 
-> --
-> Florian
+It looks like the following patch already beat this to the punch:
+
+8237e8382498 ("dt-bindings: mfd: Correct the node name of the panel LED")
+
+That patch does not retain the LED's label or rename the parent node to
+led-controller, however. The label hardly matters for this example, but
+perhaps we still want the parent node change to follow leds-pwm.yaml.
+
+> 
+> -- 
+> Lee Jones [李琼斯]
+> Senior Technical Lead - Developer Services
+> Linaro.org │ Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
+
+Kind regards,
+Jeff LaBundy
