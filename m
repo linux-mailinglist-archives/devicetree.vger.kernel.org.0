@@ -2,119 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B37962F70DF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 04:20:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1F592F7141
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 04:56:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732444AbhAODTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 22:19:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33068 "EHLO
+        id S1730972AbhAODzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 22:55:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732440AbhAODTA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 22:19:00 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEDCC061757
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:18:20 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id y12so4279598pji.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:18:20 -0800 (PST)
+        with ESMTP id S1731101AbhAODy7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 22:54:59 -0500
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A207C0613D3
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:54:19 -0800 (PST)
+Received: by mail-io1-xd32.google.com with SMTP id q1so15694427ion.8
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:54:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=CYL61nUpT9QBPPOoJporp4vlEmNkT+pHSZF51yBwgfY=;
-        b=H147E/W6ElX0kdzhQq8m290rGMnwBel2jhgKL0V8XhKc/7KgcrZuOOwV32wMytwdsq
-         QwsCwRHbFm6ES5ynCtkkJBwUlIb1ek6yQJcQ7eiPOsUQP5EUFXNL81Dc0jVFkQXj8hwg
-         veTzFlFbCZI1QE7UIktlECNH3nD30ld5r+ybQ=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Zn/E5DSPd3qJg+DTv9IwC7Z6z2pECZsgPkasFqGe2mo=;
+        b=SlbAB2R28TVOPw4dT3y4+YKxnBvZIXRjddrKEDVYjmW3vvG3MDP0dEXICbitCBjDsh
+         shg/YaDMPSBJC8TmtKZMEExrMsM7sLlrF7dj4kE9P1DHob7nRhpZZQNoE756taUh2vVw
+         OwHAOHom27x10XansCH8DvCa2BNXVtylJjjRk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=CYL61nUpT9QBPPOoJporp4vlEmNkT+pHSZF51yBwgfY=;
-        b=b1GnMgfxG6TbF82C5/gUxw7yFDseHfNPWrn0JEFfGYG7j6rC79oB0NSri0GKPbt/H0
-         2pYcu38S2PJL2dnPDI+oC9wUlsOPYlyU9A2+mPf0bLfcUTixAiw0Dre71FWCsnDGcTeg
-         uiMRWvsccPwkvsb/rgN1gRIwZcJknz9DwZyNYHq1O5A0Fsu6Eojdk8RzjVtKq7MKB5oE
-         g4iaqrOXuJ7ist0VeVLbwprjDh4kSP4muTjvLg2dVcGttkB1B9Ke5M5DRngJPfvukro3
-         I4c2jabk/AXs+ukI51DRZXuKZ9xC/rlb50OVYq8yNEr7oDti4ba25370oiQF3m4rYu3R
-         mhWg==
-X-Gm-Message-State: AOAM532cTfJQVo+6z2hqaJuNCyb99IsMRhRonTfNjdE2yqTaSsW73O9x
-        BqrQq9GSINSKdeU/a3Cjawo9Gw==
-X-Google-Smtp-Source: ABdhPJwKK/Ocxu/ROS6mrbWbApoVD7MGfUwi3WiESvR/TWJTzsbvbigTM0iW13OtrNg66Ss0ABX2+w==
-X-Received: by 2002:a17:90b:14c7:: with SMTP id jz7mr8308072pjb.40.1610680699797;
-        Thu, 14 Jan 2021 19:18:19 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id x15sm6207760pfi.184.2021.01.14.19.18.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 19:18:19 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Zn/E5DSPd3qJg+DTv9IwC7Z6z2pECZsgPkasFqGe2mo=;
+        b=JY4a9Di7hN8N/k0zo+6CPNW4F7q+0mC41wk0L9Aszf7+9Vb8ZefhNnErSYiVWw2J4Z
+         7AYq9KQRtjIGxbbl62YbYPWf4trRPA6BX+emaiSnZRCCIokeyQtw0Jv4MHmE2B9wdEvf
+         n02zu6N8i0iWYLXNMiZbnBHaPDa85mB6m94gwLQDmH0ou1SmnTHm4k5W1b48SLJDsSk9
+         TapLShh4dotag4OyCQa3pZueavKfUNL/7Q+2Nv8Jpp4BalOl8lBvcqT5FSLTNrsTb0kh
+         15AROVWQd/twtjAvE/TaRgqLvZQPi92aH32vb/z4eoxtkgFBUcrDJIaTh6BmWCjIcAHu
+         6ZSA==
+X-Gm-Message-State: AOAM5307CUPtCkqyr5DRSVUul2/bLvQ9084gPTAClqwSGTYPEgvLN97M
+        DJZM4z6R4VoJSWb1wR8y3b32IfegbJ+2/Q==
+X-Google-Smtp-Source: ABdhPJzZyypbFp59OGbOgJeY4Lh3E0zgmX0ck25GuQmBlNl2K9Tm4qgzBgtuewjp1ltIOrdH8tJujA==
+X-Received: by 2002:a92:b01:: with SMTP id b1mr4954739ilf.160.1610682858177;
+        Thu, 14 Jan 2021 19:54:18 -0800 (PST)
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com. [209.85.166.51])
+        by smtp.gmail.com with ESMTPSA id s12sm4625626ili.4.2021.01.14.19.54.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Jan 2021 19:54:17 -0800 (PST)
+Received: by mail-io1-f51.google.com with SMTP id d81so574083iof.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:54:17 -0800 (PST)
+X-Received: by 2002:a5d:9588:: with SMTP id a8mr2906589ioo.34.1610682391276;
+ Thu, 14 Jan 2021 19:46:31 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
-References: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org> <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
-Date:   Thu, 14 Jan 2021 19:18:17 -0800
-Message-ID: <161068069765.3661239.6061499369110570958@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-7-tientzu@chromium.org>
+ <95e6dd76-5e18-e445-c351-19fba18f36de@gmail.com> <CALiNf29+8Yi93RacsZHr=qYBhQRwqujW6KZVVD=9xPMhpLH5pA@mail.gmail.com>
+ <5f276678-3ab2-ddc8-640c-6dbbe173463c@gmail.com>
+In-Reply-To: <5f276678-3ab2-ddc8-640c-6dbbe173463c@gmail.com>
+From:   Claire Chang <tientzu@chromium.org>
+Date:   Fri, 15 Jan 2021 11:46:20 +0800
+X-Gmail-Original-Message-ID: <CALiNf28nW0CKsBRw-HQmz=jBJ3vK6cjoQZPu8Zx=Yn=RWPdVWQ@mail.gmail.com>
+Message-ID: <CALiNf28nW0CKsBRw-HQmz=jBJ3vK6cjoQZPu8Zx=Yn=RWPdVWQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 6/6] of: Add plumbing for restricted DMA pool
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Joerg Roedel <joro@8bytes.org>, will@kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        sstabellini@kernel.org, Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        rdunlap@infradead.org, dan.j.williams@intel.com,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2020-09-29 23:42:48)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/bo=
-ot/dts/qcom/sc7180-trogdor.dtsi
-> index 5724982..850b43e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -231,6 +231,7 @@
-> =20
->                 audio-jack =3D <&alc5682>;
-> =20
-> +               #sound-dai-cells =3D <0>;
->                 #address-cells =3D <1>;
->                 #size-cells =3D <0>;
-> =20
-> @@ -257,6 +258,17 @@
->                                 sound-dai =3D <&max98357a>;
->                         };
->                 };
-
-Can you please add a newline here?
-
-> +               dai-link@2 {
-> +                       link-name =3D "MultiMedia2";
-> +                       reg =3D <2>;
-> +                       cpu {
-> +                               sound-dai =3D <&lpass_cpu 2>;
-> +                       };
-> +
-> +                       codec {
-> +                               sound-dai =3D <&msm_dp>;
-> +                       };
-> +               };
->         };
->  };
-> =20
-> @@ -782,6 +794,9 @@ hp_i2c: &i2c9 {
->                 reg =3D <MI2S_SECONDARY>;
->                 qcom,playback-sd-lines =3D <0>;
->         };
-
-Can you please add a newline here?
-
-> +       hdmi-primary@0 {
-
-This should be hdmi-primary@2 {
-
-Or a more generic node name should be devised. dai@2 perhaps?
-
-> +               reg =3D <LPASS_DP_RX>;
-> +       };
->  };
+On Fri, Jan 15, 2021 at 2:52 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
 >
+> On 1/14/21 1:08 AM, Claire Chang wrote:
+> > On Wed, Jan 13, 2021 at 7:48 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+> >>
+> >> On 1/5/21 7:41 PM, Claire Chang wrote:
+> >>> If a device is not behind an IOMMU, we look up the device node and set
+> >>> up the restricted DMA when the restricted-dma-pool is presented.
+> >>>
+> >>> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> >>> ---
+> >>
+> >> [snip]
+> >>
+> >>> +int of_dma_set_restricted_buffer(struct device *dev)
+> >>> +{
+> >>> +     struct device_node *node;
+> >>> +     int count, i;
+> >>> +
+> >>> +     if (!dev->of_node)
+> >>> +             return 0;
+> >>> +
+> >>> +     count = of_property_count_elems_of_size(dev->of_node, "memory-region",
+> >>> +                                             sizeof(phandle));
+> >>
+> >> You could have an early check for count < 0, along with an error
+> >> message, if that is deemed useful.
+> >>
+> >>> +     for (i = 0; i < count; i++) {
+> >>> +             node = of_parse_phandle(dev->of_node, "memory-region", i);
+> >>> +             if (of_device_is_compatible(node, "restricted-dma-pool"))
+> >>
+> >> And you may want to add here an of_device_is_available(node). A platform
+> >> that provides the Device Tree firmware and try to support multiple
+> >> different SoCs may try to determine if an IOMMU is present, and if it
+> >> is, it could be marking the restriced-dma-pool region with a 'status =
+> >> "disabled"' property, or any variant of that scheme.
+> >
+> > This function is called only when there is no IOMMU present (check in
+> > drivers/of/device.c). I can still add of_device_is_available(node)
+> > here if you think it's helpful.
+>
+> I believe it is, since boot loader can have a shared Device Tree blob
+> skeleton and do various adaptations based on the chip (that's what we
+> do) and adding a status property is much simpler than insertion new
+> nodes are run time.
+>
+> >
+> >>
+> >>> +                     return of_reserved_mem_device_init_by_idx(
+> >>> +                             dev, dev->of_node, i);
+> >>
+> >> This does not seem to be supporting more than one memory region, did not
+> >> you want something like instead:
+> >>
+> >>                 ret = of_reserved_mem_device_init_by_idx(...);
+> >>                 if (ret)
+> >>                         return ret;
+> >>
+> >
+> > Yes. This implement only supports one restriced-dma-pool memory region
+> > with the assumption that there is only one memory region with the
+> > compatible string, restricted-dma-pool, in the dts. IIUC, it's similar
+> > to shared-dma-pool.
+>
+> Then if here is such a known limitation it should be both documented and
+> enforced here, you shouldn ot be iterating over all of the phandles that
+> you find, stop at the first one and issue a warning if count > 1?
+
+What I have in mind is there might be multiple memory regions, but
+only one is for restriced-dma-pool.
+Say, if you want a separated region for coherent DMA and only do
+streaming DMA in this restriced-dma-pool region, you can add another
+reserved-memory node with shared-dma-pool in dts and the current
+implementation will try to allocate the memory via
+dma_alloc_from_dev_coherent() first (see dma_alloc_attrs() in
+/kernel/dma/mapping.c).
+Or if you have vendor specific memory region, you can still set up
+restriced-dma-pool by adding another reserved-memory node in dts.
+Dose this make sense to you? I'll document this for sure.
+
+> --
+> Florian
