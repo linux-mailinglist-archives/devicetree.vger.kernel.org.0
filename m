@@ -2,89 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6273A2F762C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 11:03:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 382942F7675
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 11:19:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728212AbhAOKCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 05:02:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54362 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728020AbhAOKCc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 05:02:32 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B37F9224F9;
-        Fri, 15 Jan 2021 10:01:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610704912;
-        bh=wv8ySCdCXULDYKAIbJev8yhBQxUDdYmctzFeIbE6JIQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FrvA5gVmAWWSK8h3wOyiXvdkOKf5i9J8FzvM7tH/j9tiADm2FuM0U3AosQ/mS4eEv
-         r0lTVZvBgmdXhhI7ChU2XdoyP4XYoPIMQQSGRUClfsWGAB9UK4HSe4WvdgREIABUGF
-         7HtrElBNsFQkGOqy6z1u4nJUShH6K6Ln7I1StVnvfCQq+vixOfv387EL+4h2HVLP9B
-         ZEoalEjQk7OK7N8YJvAtbDMoPxkKT79Ms6acp3U51GYtZ+AI4eSoE+eTJbT7SUmQBn
-         3CC+676aFhDm0Xto7Qvbkp0izs2mQjkWvQeJbLuVgcUY5jhs2/GHzwkHbxdljqvOew
-         LD6h4yZK3xHQQ==
-Date:   Fri, 15 Jan 2021 18:01:37 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, festevam@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org, georgi.djakov@linaro.org, cdleonard@gmail.com,
-        gregkh@linuxfoundation.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, kernel@puri.sm, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 4/5] arm64: dts: imx8mq: Add interconnect for lcdif
-Message-ID: <20210115100136.GN28365@dragon>
-References: <20210107121754.3295-1-martin.kepplinger@puri.sm>
- <20210107121754.3295-5-martin.kepplinger@puri.sm>
- <20210115094738.GL28365@dragon>
- <71f61d0b-b09e-84e9-dd6e-77b89b09ba42@puri.sm>
+        id S1728455AbhAOKRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 05:17:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38038 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726652AbhAOKRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 05:17:37 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 955B7C061757;
+        Fri, 15 Jan 2021 02:16:57 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id n8so989326ljg.3;
+        Fri, 15 Jan 2021 02:16:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZXuInPt5XugZp+FubZRX8WPAHVc2hVpGy3We37oEAS0=;
+        b=Az69gZ4nMi/Dq/AsNp/woo1FI7lbYOAgmMI0VSoWdFu1OH1jEd5oYjv4MolhYoBLbv
+         aIJT63ySekLiffbg56NZRMR4B5knuLF1BH9VUSdDgXKFRT3narxSIPNNruOVHFqtqiyv
+         TDBmFkuaA55ZwvhE/q7UEBZBpDUFoTA5LZthnlGMtAVoHicMARad8IvotL7siLWeQJOV
+         Uq/kxS++BvuDO4jSoz7dkWz4KnqpHMViNNcmffu8EcXnr0wAkN/+2fnmBBhdkMZlK7xo
+         5BVFu+Jxlqz0/HJwDxk3bMcJQ6kshspTUGy17m90n0HS88p2d5KhnBvEe+gOPM14MBkK
+         0xpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZXuInPt5XugZp+FubZRX8WPAHVc2hVpGy3We37oEAS0=;
+        b=VbFpOVrCcddyI79jsIFvHoA4a2w5SJcWHlIobUycPBq/pZLvIIzNCbbwNcoLPGOK18
+         Xr3qO5XET98tNGpi/S5tgKyTQNg3D60HI8ZhCFkOHvbjVwBATgFfzMX4Iymy01fiOOXi
+         vcAjPwA0p9WSBgK8r7oUGzepUoS91J59wOGLJJbsfPHINOdIPDt6P0xoxy4LJoU6zTgL
+         rb8+/rRJftPFNBLp1cOMpxBoyFirZAjmifPcSQRpO+YytLHhlXImNkIzkqYQXqD4oGUg
+         Uv8uBCD8/iKPgI3XSJI9TDFu/zjb47mK15NlTVLjiZgAaexTSGsdPUEZiliIYh6jEuc3
+         jPMQ==
+X-Gm-Message-State: AOAM531l4bhNao3rbTf1UXY6lVItt/gnYeyG1QAm/NTmUns6AjjGpuG0
+        7GrJG5lAVNzfWrqYdLkcjNsTf91bwxJ+xQ==
+X-Google-Smtp-Source: ABdhPJxhuyosdrez0tbHJ9NG+xNNVIsAbFxuJ+0CnE2EHVHGw5LwuJKo16Qj9JGczgu4kzBiroxWyA==
+X-Received: by 2002:a2e:965a:: with SMTP id z26mr5067140ljh.349.1610705816148;
+        Fri, 15 Jan 2021 02:16:56 -0800 (PST)
+Received: from endpoint.lan ([185.188.71.122])
+        by smtp.gmail.com with ESMTPSA id g26sm758033ljn.90.2021.01.15.02.16.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jan 2021 02:16:55 -0800 (PST)
+From:   Pawel Dembicki <paweldembicki@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Yangbo Lu <yangbo.lu@nxp.com>,
+        Pawel Dembicki <paweldembicki@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: fsl-ls1012a-rdb: add i2c devices
+Date:   Fri, 15 Jan 2021 11:16:12 +0100
+Message-Id: <20210115101613.1490837-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <71f61d0b-b09e-84e9-dd6e-77b89b09ba42@puri.sm>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 10:57:02AM +0100, Martin Kepplinger wrote:
-> 
-> 
-> On 15.01.21 10:47, Shawn Guo wrote:
-> > On Thu, Jan 07, 2021 at 01:17:53PM +0100, Martin Kepplinger wrote:
-> > > Add interconnect ports for lcdif to set bus capabilities.
-> > > 
-> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > ---
-> > >   arch/arm64/boot/dts/freescale/imx8mq.dtsi | 3 +++
-> > >   1 file changed, 3 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > index 89e7de2e7f7a..9300be8c9b53 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > > @@ -11,6 +11,7 @@
-> > >   #include "dt-bindings/input/input.h"
-> > >   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > >   #include <dt-bindings/thermal/thermal.h>
-> > > +#include <dt-bindings/interconnect/imx8mq.h>
-> > >   #include "imx8mq-pinfunc.h"
-> > >   / {
-> > > @@ -522,6 +523,8 @@
-> > >   						  <&clk IMX8MQ_VIDEO_PLL1>,
-> > >   						  <&clk IMX8MQ_VIDEO_PLL1_OUT>;
-> > >   				assigned-clock-rates = <0>, <0>, <0>, <594000000>;
-> > > +				interconnects = <&noc IMX8MQ_ICM_LCDIF &noc IMX8MQ_ICS_DRAM>;
-> > > +				interconnect-names = "dram";
-> > 
-> > Hmm, two interconnect phandles but only one name?
-> > 
-> 
-> Well it's one interconnect path that would more accurately be named
-> "lcdif-dram" if that's what you mean. I removed "lcdif-" because it's the
-> lcdif node, but maybe we should name it lcdif-dram after all. at least
-> that's how others describe it.
+LS1012A-RDB equipped in some i2c devices:
+  - 3x GPIO Expander: PCAL9555A (NXP)
+  - Gyro: FXAS21002 (NXP)
+  - Accelerometer: FXOS8700 (NXP)
+  - Current & Power Monitor: INA220 (TI)
 
-Ha, sorry, I misunderstood the interconnects property.
+This patch add listed devices to dts.
 
-Shawn
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+---
+ .../boot/dts/freescale/fsl-ls1012a-rdb.dts    | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+index d45c17620b98..12117a973eb6 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+@@ -7,6 +7,7 @@
+  */
+ /dts-v1/;
+ 
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include "fsl-ls1012a.dtsi"
+ 
+ / {
+@@ -33,6 +34,50 @@ &esdhc1 {
+ 
+ &i2c0 {
+ 	status = "okay";
++
++	accelerometer@1e {
++		compatible = "nxp,fxos8700";
++		reg = <0x1e>;
++		interrupt-parent = <&gpio26>;
++		interrupts = <13 IRQ_TYPE_EDGE_RISING>;
++		interrupt-names = "INT1";
++	};
++
++	gyroscope@20 {
++		compatible = "nxp,fxas21002c";
++		reg = <0x20>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pcal9555a";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@25 {
++		compatible = "nxp,pcal9555a";
++		reg = <0x25>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio26: gpio@26 {
++		compatible = "nxp,pcal9555a";
++		reg = <0x26>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	current-sensor@40 {
++		compatible = "ti,ina220";
++		reg = <0x40>;
++		shunt-resistor = <2000>;
++	};
+ };
+ 
+ &qspi {
+-- 
+2.25.1
+
