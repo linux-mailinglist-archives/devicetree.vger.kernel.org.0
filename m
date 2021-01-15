@@ -2,143 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 819132F8734
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 336322F876E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:17:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728003AbhAOVHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 16:07:21 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33830 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732190AbhAOVHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:07:20 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10FL6VSC044316;
-        Fri, 15 Jan 2021 15:06:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610744791;
-        bh=lSbnnKL5je0ksIl3ZafhacuyYDpFxm0MC9dJyE+A2mc=;
-        h=From:To:CC:Subject:Date;
-        b=ACUgwC4stCgS8AQKSHiF3N9CsXGgcdWwkeDUDDiGgIBP+ur+xj3viR6yUjOLu+pdJ
-         3kFJXREoz47mjBB4BXzITzBBPSEzZrG2sP0N4I5R8HBjOpJMpK3a2yQ46VB9tS1+I+
-         Y9rWE7uifGXu2jFV0L7Ki7cdiTh3SWQzLx592co0=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10FL6Vm2110177
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 15 Jan 2021 15:06:31 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 15
- Jan 2021 15:06:31 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 15 Jan 2021 15:06:31 -0600
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10FL6VmJ103016;
-        Fri, 15 Jan 2021 15:06:31 -0600
-Received: from localhost ([10.250.34.42])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 10FL6VMF046857;
-        Fri, 15 Jan 2021 15:06:31 -0600
-From:   Suman Anna <s-anna@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>
-CC:     Jan Kiszka <jan.kiszka@siemens.com>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH] arm64: dts: ti: am65x/j721e: Fix PRUSS INTC warnings with #address-cells
-Date:   Fri, 15 Jan 2021 15:06:25 -0600
-Message-ID: <20210115210625.20427-1-s-anna@ti.com>
-X-Mailer: git-send-email 2.29.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1727034AbhAOVRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 16:17:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39442 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726969AbhAOVQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:16:58 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210AEC0613D3;
+        Fri, 15 Jan 2021 13:16:18 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id c79so6290075pfc.2;
+        Fri, 15 Jan 2021 13:16:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=P1F2p8q5a6/P2LLGT6PbiRW8fW48uJP7OTSXVwwF5MA=;
+        b=smsaGFHkbJzmruXEkpuRLUcyKuZJrQLw8O3xlWLdYGLSNBskkyMhPnSjJJFugY8tkN
+         q9fVLzd+l49uJIui0LvlA3Y7rKQbnYiqjl/3SUTPOTRtYpqVkaH/eWbioy0lKkUQXLX/
+         aKoNM44cn7Q83F2jafUTqVircxUDuVihjI8fAOqVftKBznkQQiy9wE7Zr3uk17vKJL7e
+         JNW1sRa3WVbmqFFEWuOCVqmigmYW5VPVXyUAAS+ktk4YfLdI0U7vtnAxuMRUVUikfdHj
+         8HOk1DDt+fK7C8PSGoOlHYr/wAX/kUVfR12meuwOdnnqHfyuorWPDnW9iSb/ncGmFnWx
+         uwZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=P1F2p8q5a6/P2LLGT6PbiRW8fW48uJP7OTSXVwwF5MA=;
+        b=f+XxR84nc9lXu/DYAABukv1LJfndfiC9NGnz+3tO8fWCezVQZJWb5vOBX96Frh1B51
+         dn1vg1i3EQV5ERuejGbdV694/q12R9ES6VhvPb4gtqgajGxgls8H41gd7lBpLy32rqU+
+         BugY5TRDZp4k9NCu1rnrQkyvIeVdVZt58VmfDBUVzw+gTMTFuvTEFVSCX/ossXRwp2/a
+         ViNaOyyJW9yx2edXgEnKt4v9k3JMFZJBxMFPvxEPh4QympEas+RTShe800QSrRHQImj2
+         nllcfONjCeEruLKWThuj4fzX4QHWwl8/2rfoqye5P1MEFQqYv3IH1uE5DdfOybsYhGzI
+         QoRQ==
+X-Gm-Message-State: AOAM532aizEIlIn4wT5v3iJOkDKJgtCZStyNZYYv83YekF06Sf8kgEH8
+        wiU670c/A3a5x3752AizTs/hB/vbtzw=
+X-Google-Smtp-Source: ABdhPJxnMYqdYNxQBggNBk+ryw2wEC+n3MYVAbYXP54Qa3XmUNm3PJ8f62vX3almY1OHFUg4KiV/GQ==
+X-Received: by 2002:a63:4f5d:: with SMTP id p29mr14430811pgl.110.1610745377498;
+        Fri, 15 Jan 2021 13:16:17 -0800 (PST)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id 77sm9321827pfv.16.2021.01.15.13.16.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jan 2021 13:16:17 -0800 (PST)
+From:   Al Cooper <alcooperx@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Al Cooper <alcooperx@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 0/2] serial: 8250: Add driver for Broadcom UART
+Date:   Fri, 15 Jan 2021 16:15:41 -0500
+Message-Id: <20210115211543.33563-1-alcooperx@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A "Warning (interrupt_provider)" is generated for each PRUSS INTC
-instance on TI K3 dts files when building the TI K3 dtbs with W=2,
+v2 - remove the patch that modified 8250_of.c to keep it from
+     registering before this driver when this driver was deferred
+     as it was getting it's "clocks". This was fixed by changing
+     the Device Tree entry to remove "clock-frequency". This results
+     in both drivers getting "clocks" and getting same deferral.
 
-AM65x:
-/bus@100000/icssg@b000000/interrupt-controller@20000: Missing #address-cells in interrupt provider
-/bus@100000/icssg@b100000/interrupt-controller@20000: Missing #address-cells in interrupt provider
-/bus@100000/icssg@b200000/interrupt-controller@20000: Missing #address-cells in interrupt provider
+Add UART driver for the new Broadcom 8250 based STB UART. The new
+UART is backward compatible with the standard 8250, but has some
+additional features. The new features include a high accuracy baud
+rate clock system and DMA support.
 
-J721E:
-/bus@100000/icssg@b000000/interrupt-controller@20000: Missing #address-cells in interrupt provider
-/bus@100000/icssg@b100000/interrupt-controller@20000: Missing #address-cells in interrupt provider
+Al Cooper (2):
+  dt-bindings: Add support for the Broadcom UART driver
+  serial: 8250: Add new 8250-core based Broadcom STB driver
 
-Fix these by adding the '#address-cell' property with value 0.
+ .../bindings/serial/brcm,bcm7271-uart.yaml    |   94 ++
+ MAINTAINERS                                   |    8 +
+ drivers/tty/serial/8250/8250_bcm7271.c        | 1131 +++++++++++++++++
+ drivers/tty/serial/8250/Kconfig               |   11 +
+ drivers/tty/serial/8250/Makefile              |    1 +
+ drivers/tty/serial/8250/bcm7271_uart.h        |  158 +++
+ 6 files changed, 1403 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
+ create mode 100644 drivers/tty/serial/8250/8250_bcm7271.c
+ create mode 100644 drivers/tty/serial/8250/bcm7271_uart.h
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-Hi Nishanth,
-
-This is a follow-up fix to the ICSSG dt node series [1] to get rid of
-the warnings with W=2, but will depend on the PRUSS INTC dt-binding
-update patch [2] to not generate any warnings with dtbs_check.
-
-regards
-Suman
-
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=414883
-[2] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210115205819.19426-1-s-anna@ti.com/
-
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 3 +++
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 2 ++
- 2 files changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 8aa8f1273563..3975753e2dd7 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -982,6 +982,7 @@ icssg0_intc: interrupt-controller@20000 {
- 			reg = <0x20000 0x2000>;
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
-+			#address-cells = <0>;
- 			interrupts = <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1113,6 +1114,7 @@ icssg1_intc: interrupt-controller@20000 {
- 			reg = <0x20000 0x2000>;
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
-+			#address-cells = <0>;
- 			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1244,6 +1246,7 @@ icssg2_intc: interrupt-controller@20000 {
- 			reg = <0x20000 0x2000>;
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
-+			#address-cells = <0>;
- 			interrupts = <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 605fe557cbb4..9ed521602780 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -1710,6 +1710,7 @@ icssg0_intc: interrupt-controller@20000 {
- 			reg = <0x20000 0x2000>;
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
-+			#address-cells = <0>;
- 			interrupts = <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1841,6 +1842,7 @@ icssg1_intc: interrupt-controller@20000 {
- 			reg = <0x20000 0x2000>;
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
-+			#address-cells = <0>;
- 			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
 -- 
-2.29.2
+2.17.1
 
