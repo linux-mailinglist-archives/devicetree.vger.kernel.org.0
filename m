@@ -2,514 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E70E2F8200
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:19:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5684E2F8248
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:28:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725923AbhAORS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 12:18:58 -0500
-Received: from mail-wr1-f45.google.com ([209.85.221.45]:44761 "EHLO
-        mail-wr1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728537AbhAORS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:18:58 -0500
-Received: by mail-wr1-f45.google.com with SMTP id w5so10017284wrm.11;
-        Fri, 15 Jan 2021 09:18:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XT45Vq3RKUCpWrhvNqP5nEW9Yg/Fw3wWYnWKTgouWcU=;
-        b=omyAgpxUz5Hp62nAkIbAJXB+PVgEU3AjJm8uYXVEGwthh86N4LDmQIl/qpjygtzXJT
-         G6UObAzc+L6qX6yDXrrYmyhcwzMWrm2wdarwKgfwj7zORPiqeODy7wcsoXx+NsMuXHmm
-         QXbBCYNyHbIXkPP0XeRL3k+qlbhpQXsCa8QGwfD4WfzgHb/owoa4/0upuvAEpblI+pTA
-         xEr22E+F0gHgIBeeb/Dsxxi+yfLo2Qqq8dfseo7tVNHsqfK8ct8zVQMsAwIHCMkIhdbV
-         xIcjIXQ6yXuEgRz0mwGrg/X5iJ+curcgjLCfUYHhlIzDw5qkcJXzs9W57Xm/F6RxiD9U
-         9HiA==
-X-Gm-Message-State: AOAM532Yu34++NyGUe7Un4CT/GnRJ3jFGKInifZPz/PoHKHYkoMwOI/E
-        Mea0rlzaUiqJMhZP1gip36Y=
-X-Google-Smtp-Source: ABdhPJzJpe7McJnoBVrsj169V3+NWbPAUA1XrcEw/w7uT1zfNDtH7HJ3FIcQISFUixLWTKvSTZw5Lg==
-X-Received: by 2002:a5d:4dc6:: with SMTP id f6mr14450469wru.336.1610731095071;
-        Fri, 15 Jan 2021 09:18:15 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id d7sm5323515wmb.47.2021.01.15.09.18.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 09:18:13 -0800 (PST)
-Date:   Fri, 15 Jan 2021 18:18:12 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] arm64: dts: imx: Add i.mx8mm nitrogen8mm basic
- dts support
-Message-ID: <20210115171812.GB45379@kozik-lap>
-References: <20210113173855.1509417-1-adrien.grassein@gmail.com>
- <20210113173855.1509417-3-adrien.grassein@gmail.com>
+        id S1731582AbhAOR2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 12:28:04 -0500
+Received: from mail2.eaton.com ([192.104.67.3]:10400 "EHLO mail2.eaton.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726809AbhAOR2D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 12:28:03 -0500
+X-Greylist: delayed 455 seconds by postgrey-1.27 at vger.kernel.org; Fri, 15 Jan 2021 12:28:03 EST
+Received: from mail2.eaton.com (simtcimsva04.etn.com [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 810518C0CB;
+        Fri, 15 Jan 2021 12:19:46 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=eaton.com;
+        s=eaton-s2020-01; t=1610731186;
+        bh=QuYdqKG82rlVJgUlvqNS+ohVvr9/Hg3JrYkrZA9DJzE=; h=From:To:Date;
+        b=QLiOHgJVCFxzfvlkQk805cWW8thEuc/Fd9GJnbQokWH9Hn3lEZxkGAax1+GWs1Scm
+         81oZQ0hlZbopBylpbqj1dD+bu2p75UoeODaQCK+FEhm3BkayhJBeP0WQi4gT5SBvQu
+         1TeBKVjTQ36/0TcYfJr2Z11JQyF93MRy6E17IscmSZEFq2tF9wVZKBTPVaVHk8/AoZ
+         143v1KDr8i1/aB9dMtNUo9m1j8LkvHKDJHf9QzYOuom/bF09o351Dy6qDmScAkTSpI
+         GJRmCanQHxl9Lger4ZUwMDtvGJcECiwK4fr2Fro1ULdJMEhmgMgu2q5bvhgKFuW+SF
+         tdoH4Omcl6PoQ==
+Received: from mail2.eaton.com (simtcimsva04.etn.com [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 670768C089;
+        Fri, 15 Jan 2021 12:19:46 -0500 (EST)
+Received: from SIMTCSGWY03.napa.ad.etn.com (simtcsgwy03.napa.ad.etn.com [151.110.126.189])
+        by mail2.eaton.com (Postfix) with ESMTPS;
+        Fri, 15 Jan 2021 12:19:46 -0500 (EST)
+Received: from SIMTCSHUB01.napa.ad.etn.com (151.110.40.174) by
+ SIMTCSGWY03.napa.ad.etn.com (151.110.126.189) with Microsoft SMTP Server
+ (TLS) id 14.3.487.0; Fri, 15 Jan 2021 12:19:45 -0500
+Received: from USSTCSEXHET01.NAPA.AD.ETN.COM (151.110.240.153) by
+ SIMTCSHUB01.napa.ad.etn.com (151.110.40.174) with Microsoft SMTP Server (TLS)
+ id 14.3.487.0; Fri, 15 Jan 2021 12:19:45 -0500
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.176)
+ by hybridmail.eaton.com (151.110.240.153) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1591.10; Fri, 15 Jan 2021 12:19:32 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BIm4xStNXyDF80rW8j9qaRR81SACXWBabwNa78qyYvDLm5idOaHdxSWaw+Z6DcWeCkPu0ZYiVeuXpUV5KFOXa/AqInv7fGa1+q3Oa68jxWb2kPmrp9/USThU0CE1sY0tLuNY2CftDRriOuTUbyOAGIAZaNb3B/51xFi2VhWBhtJIuAUELICfqawUP031gRvJ3XmRRxTwTTmODHB3TnxY9tUwt0FVpZ0R8quuZh4E2gzWF1xoWyG0C4yG+HiP2S610MCRUjqesSBycgSkodZk+BDrh+SkxWud4FdrLau0h7nxawI3bfQ+hH9uEyM7AaKHK33936PLsVSqCz669TxG7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YSdB6KxO6thCuMnVvjygJLgYrTq3Dt3H0ZrIB3Hg6ZM=;
+ b=DXwlxLW6+vpIgcKhlc0krE9wsGOGVOZ9PekV9fVSSJ32Bw5kbgztZrwdUj51huzV66ruKPSh8S2f1ffh/foHSB60BN+GVF5FdDJh2uVIoFrgaQ9ME1rsuj0QtyXPiqdI/5i2ph7SOvjTlEqslkx4FUEQNUAQkKNazUqzTpFK/plW91C9hrSYuAcTujTXompSnViDLUSCo5ei2oQT+YTJ84uij4frGLN6wYSiB6dogI0eGeLs+UrbY4VCFxH2rHpuiSL38w0/KOS/9bZbPIRuxRXnkwhjJW2r2d2jJnZWD6JPdoVcOQrmVXzKY8uNKu8wPyM4OtuLlvnYfHg/fpEz1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=eaton.com; dmarc=pass action=none header.from=eaton.com;
+ dkim=pass header.d=eaton.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Eaton.onmicrosoft.com;
+ s=selector1-Eaton-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YSdB6KxO6thCuMnVvjygJLgYrTq3Dt3H0ZrIB3Hg6ZM=;
+ b=rZHxp8SKT+5c/Aa9DgHo/ac1P4RXtle8oWgeF1K1+z8wA1oigSVM23/tXnlKz/mOHbyHI9Md0snQwEipS3BihPkkMGaPbX7VmAAzN5+mD08jzEY0CSKG7/RTW2p0yT4D/B2ihbvv8hQy9wTR2G3p+k+h6xIyWFLZfU3d+P1Jngo=
+Received: from MW4PR17MB4243.namprd17.prod.outlook.com (2603:10b6:303:71::6)
+ by MWHPR17MB0991.namprd17.prod.outlook.com (2603:10b6:300:9e::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.9; Fri, 15 Jan
+ 2021 17:19:42 +0000
+Received: from MW4PR17MB4243.namprd17.prod.outlook.com
+ ([fe80::950b:b237:60e4:d30]) by MW4PR17MB4243.namprd17.prod.outlook.com
+ ([fe80::950b:b237:60e4:d30%7]) with mapi id 15.20.3763.012; Fri, 15 Jan 2021
+ 17:19:40 +0000
+From:   "Badel, Laurent" <LaurentBadel@eaton.com>
+To:     "davem@davemloft.net" <davem@davemloft.net>,
+        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
+        "fugang.duan@nxp.com" <fugang.duan@nxp.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "richard.leitner@skidata.com" <richard.leitner@skidata.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "marex@denx.de" <marex@denx.de>
+Subject: Subject: [PATCH v3 net-next 0/4] net:phy: Fix LAN87xx external reset
+Thread-Topic: Subject: [PATCH v3 net-next 0/4] net:phy: Fix LAN87xx external
+ reset
+Thread-Index: AdbrYlJ9lIFRoNXFQCGzpMmC2Op2Pg==
+Date:   Fri, 15 Jan 2021 17:19:40 +0000
+Message-ID: <MW4PR17MB4243A17EE8C434AE3DCAEAF4DFA70@MW4PR17MB4243.namprd17.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: davemloft.net; dkim=none (message not signed)
+ header.d=none;davemloft.net; dmarc=none action=none header.from=eaton.com;
+x-originating-ip: [89.217.230.232]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2a1ca0e8-9b70-46a5-88a1-08d8b979be31
+x-ms-traffictypediagnostic: MWHPR17MB0991:
+x-microsoft-antispam-prvs: <MWHPR17MB0991546AE91A92C3DB26E79EDFA70@MWHPR17MB0991.namprd17.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: A4S3JXFGvibS/ASAImEIi2zlMsJ+fuTFod51eCDa7ymfghCOcDOVG7gU8L1riBJwlYqPzHiAk9w9B8kBb10krxFyNQzGyBuOrbb2xWG865KGsvs/O0OKxar/VM+wvP1cWYrLN0NQ9ETdep8jfrRSRmIDR8MGLEU5Tmn4e5j31+lrVw4Uk9Im09x5LX7QvuGFcqtjFmFn4K1jKPzpaKDj4EqOUrPUpvw4XOLnP35gvvOrKbLauWE8mGdWPY2A9ZDmaXjdPyBJbaoAEBONj+lMrjib+Yu0R3W29iOTmQ8yrxP5Nsh14uflhsDgP5pbHDoniD2H/prAHkwucvSeE3iQep7hoO+Ttc/+bPFJX3HGdpLfs8Ig2UrQ+Y6WUE8/CC5SVUSLJjGIxak5J3Rz5iOyf9PTMQ6QSjcEL992EB1pbQeATp8bRnbUNevcPRB4g1QR
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR17MB4243.namprd17.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(376002)(366004)(346002)(136003)(39860400002)(76116006)(478600001)(86362001)(66556008)(64756008)(66476007)(66946007)(55016002)(66446008)(5660300002)(7416002)(110136005)(9686003)(2906002)(83380400001)(7696005)(316002)(33656002)(52536014)(921005)(26005)(8936002)(186003)(71200400001)(8676002)(6506007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?hJ5JafAkZCbg7quxae1vcL+SncDj8NDIf4suKDbooGi9onoOTyrLRFV53p8j?=
+ =?us-ascii?Q?ucqtr37rpm1nNglr2LdelXh/PcNMvRoqJZWfCTp6+PqiIGLHeNDKwmZQ7wcE?=
+ =?us-ascii?Q?7XRBLVBbrstHZtT5JZ+DrnnIUHoZZJSw5QfoOtdNX9lICJ0rr5Dc9IJ1xJqz?=
+ =?us-ascii?Q?ecKddAVkZTMTNl1n1FxTdwsAvop6psQSx5IGDKwjrtoe0w+k39s0Eor8ehJv?=
+ =?us-ascii?Q?S+TNN2awNqqix39He/vgP+wGIUiOC3hHqmbWCc8d8vB/N3w6KP0ZUUb9fGZE?=
+ =?us-ascii?Q?0m9XSya2GZXLlGsq4BD6v86GAphxeC71WbtNC4GwLKWuXiHAd/1EQZTt3Cgp?=
+ =?us-ascii?Q?GqiqZZ+0RK00LxM6nq/f7uCG8YyOAfbso9mGO/MVJ2qw54iM7sTlXhdj7u13?=
+ =?us-ascii?Q?iJhfAIy2ix+2bvndlBfzeHaX6/ycmSqmXwnrhTb2EeQM1ckcJx1Xt3JiJIbF?=
+ =?us-ascii?Q?BDIK+l2f7ONx6wHOKTT1SxZQiH52c5sQQGOWFE9X547A2oosWPMq5m8UKk1x?=
+ =?us-ascii?Q?ky4D2bCrL6jpbxSUidSkG64+wglH2JuuYJFzbVwi7CBtv2WuRmXbSOPwcIGf?=
+ =?us-ascii?Q?GfOY3bwbj5PSfDHM2txmXc4XbCF7BG7oX878myYRnh392iTDX+/jRnoAWG1G?=
+ =?us-ascii?Q?7SxgEQ0zVo46TrmG9GUztGMTeGC2Jxpu2Eyhq8MV97ziyHk28H6WClc+UJCb?=
+ =?us-ascii?Q?+Qn9ZBg7rC1W7ezFSXZgvEfdmFoTjmjnH2pF3x4zLoxVu1z3jLkER+zxsQHd?=
+ =?us-ascii?Q?mIhx/YW78Rp1xWPDZcsJRPkZuDf9VB1bgcLXjBdP3baven77wvdGeconjcLS?=
+ =?us-ascii?Q?h/uck6YMawDd2Qo5xypqtSaLnDlQ73ME0Xv8BA7aRlFQO9ZNljyzWdKQP3rN?=
+ =?us-ascii?Q?H+Dg2s5DxLwdF/IrtjX3ME5qMoRgd9/bpGMmU1+PC2y+Fzzhf1RUV0E9ky3a?=
+ =?us-ascii?Q?kpJZzAaP/K4b/HFDdiQCv8I0uhSU3kOWVNJfGEJ6Rus=3D?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210113173855.1509417-3-adrien.grassein@gmail.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR17MB4243.namprd17.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a1ca0e8-9b70-46a5-88a1-08d8b979be31
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2021 17:19:40.4839
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d6525c95-b906-431a-b926-e9b51ba43cc4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 01cEqxXeidv6HcAbH6g9ooO3AaH7e50c3zkljHWLSjBTvd54gfstQGNssIQlY/5j5yNTzhdQxQ2fzfHustbdog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR17MB0991
+X-TM-SNTS-SMTP: 8563DF15C57AA2B0A6F8022B56B740374498CE455BDFABF4347CA2168673FB012002:8
+X-OriginatorOrg: eaton.com
+X-EXCLAIMER-MD-CONFIG: 96b59d02-bc1a-4a40-8c96-611cac62bce9
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.1988-8.6.0.1013-25914.001
+X-TM-AS-Result: No-2.019-7.0-31-10
+X-imss-scan-details: No-2.019-7.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.1988-8.6.1013-25914.001
+X-TMASE-Result: 10-2.019100-10.000000
+X-TMASE-MatchedRID: GNFHl0IKSqmYizZS4XBb34vqrlGw2G/kMI2NtA9qrmIda1Vk3RqxOAnf
+        5JZh+MGVW9oUHABU5913bK+a09DXi8J9YYPRw7TqIwk7p1qp3JZITFAcgVBxK+ZAlRR6AIJ7pTM
+        fRy1HRznLaFXAfbtwNor2Q2H10K5KtPeV72UUGU8JaVZHbbd1ri9eSYpU2Ct+IZ5kqZm//eWQLC
+        DnKuiAgedRkWB60/F/D5rpUQLVm0FmdUzfNFdOwUhSUqTPfB+ZOHhqIXe4IzasHCH3SeE3CcxAw
+        z/u+fT4d9m/hd4OMhirqJHnxm19ii8e+PWnrZW8j0drvddoWERqYquCrLrVwgAheUymmndf1Kk3
+        WJawO3GmsbPDvBTBpnip4VRjaN9bmDp+HsqIdAh08zy97KsgJqm9/6ObPjnD4wPKnwkMVn1Sj90
+        2t3M5P4oLmLF/tZ7GkRqZRu8iKdN0YtjF30CyAk95wQijrwBLJAiIU8AC7ozyf40vOg6Tw1N0uD
+        yypm5V9XJZEbpTIOwfUYgX+mnChzfa6I248QZMLGDmqzfHOB/2X2nyY2WSCcAkyHiYDAQbblsbM
+        XlEtupH0m/3viEjzKsYZXSBnFHJcExcPM4F1gLY8CtSlWSg/JpnDiJt8Xy4fmBSyEqHyB+1EqVe
+        Qo7DiZkMh5BGOrxiOnwr3a5BMV8LEx+quc3j9y8s/ULwMh46lhpPdwv1Z0prvf5eVgMu7NGVQrn
+        ZJqIeMqqNAwlLCF1eZyq6655uiHpYutjENC/lEhGH3CRdKUVMtkHpT9ho+qFjroW+ne0h6BSsoH
+        Gi6wXbpsq+MnNpYyMAqEP8MqAnHLucZD5uGderm7DrUlmNkL6hIaKfExp0wrbXMGDYqV+FR9Hau
+        8GO7nSz6XreSIanJSuHNdI7iyNJnzbCPPcBumGZuNsRpJ7ZTPoWsi97tUbGIcPohCqo+UnltO8Q
+        hfg4MVfXaIKKzLGk98YZFvIVLBEzdh3D4mdtLr3kj3gYm08HH3J2uF6L8XQWaIbnjyDJVkIsYwV
+        z6UgRzIoVBoe7FWcjFnImzvyS
+X-TMASE-SNAP-Result: 1.821001.0001-0-1-12:0,22:0,33:0,34:0-0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 06:38:54PM +0100, Adrien Grassein wrote:
-> Tested with a basic Build Root configuration booting from sdcard.
-> 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../dts/freescale/imx8mm-nitrogen8mm_rev2.dts | 417 ++++++++++++++++++
->  2 files changed, 418 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 901d80086b47..b2eb7a5e4db3 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -45,6 +45,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r3.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-nitrogen.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-nitrogen8mm_rev2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-phanbell.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-pico-pi.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-thor96.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
-> new file mode 100644
-> index 000000000000..a83fa8d05e81
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
-> @@ -0,0 +1,417 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree file for Boundary Devices i.MX8MMini Nitrogen8MM Rev2 board.
-> + * Adrien Grassein <adrien.grassein@gmail.com.com>
-> + */
-> +/dts-v1/;
-> +#include "imx8mm.dtsi"
-> +
-> +/ {
-> +	model = "Boundary Devices i.MX8MMini Nitrogen8MM Rev2";
-> +	compatible = "boundary,imx8mm-nitrogen8mm", "fsl,imx8mm";
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&reg_sw3>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&reg_sw3>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&reg_sw3>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&reg_sw3>;
-> +};
-> +
-> +&fec1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec1>;
-> +
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy0>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		ethphy0: ethernet-phy@4 {
-> +			compatible = "ethernet-phy-id004d.d072",
-> +				"ethernet-phy-ieee802.3-c22";
-> +			reg = <4>;
-> +			interrupts-extended = <&gpio3 16 IRQ_TYPE_LEVEL_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default", "gpio";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	pinctrl-1 = <&pinctrl_i2c1_1>;
-> +	scl-gpios = <&gpio5 14 GPIO_OPEN_DRAIN>;
-> +	sda-gpios = <&gpio5 15 GPIO_OPEN_DRAIN>;
-> +	status = "okay";
-> +
-> +	pmic@8 {
-> +		compatible = "nxp,pf8121a";
-> +		reg = <0x8>;
-> +		status = "okay";
-> +
-> +		regulators {
-> +		    reg_ldo1: ldo1 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-min-microvolt = <1500000>;
+=EF=BB=BFDescription:=20
+External PHY reset from the FEC driver was introduced in commit [1] to=20
+mitigate an issue with iMX SoCs and LAN87xx PHYs. The issue occurs=20
+because the FEC driver turns off the reference clock for power saving=20
+reasons [2], which doesn't work out well with LAN87xx PHYs which require=20
+a running REF_CLK during the power-up sequence. As a result, the PHYs=20
+occasionnally (and unpredictably) fail to establish a stable link and
+require a hardware reset to work reliably.
 
-Thanks for the changes.
+As previously noted [3] the solution in [1] integrates poorly with the
+PHY abstraction layer, and it also performs many unnecessary resets. This
+patch series suggests a simpler solution to this problem, namely to hold
+the PHY in reset during the time between the PHY driver probe and the first
+opening of the FEC driver.
 
-The usual convention is to order the fields from min to max, as it is
-used in most of other bindings. So first goes min, then max.
+To illustrate why this is sufficient, below is a representation of the PHY
+RST and REF_CLK status at relevant time points (note that RST signal is
+active-low for LAN8710/20):
 
-Somehow the nxp,pf8x00-regulator.yaml example codes has less logical
-order (also starting with always-on and boot-on) and people (last time I
-think Jagan) tend to copy it...  don't. Do like all other regulators and
-DTSes. It makes life of reviewers and future contributors easier.
+ 1. During system boot when the PHY is probed:
+ RST    111111111111111111111000001111111111111
+ CLK    000011111111111111111111111111111000000
+ REF_CLK is enabled during fec_probe(), and there is a short reset pulse
+ due to mdiobus_register_gpiod() which calls gpiod_get_optional() with
+ the GPIOD_OUT_LOW which sets the initial value to 0. The reset is
+ de-asserted by phy_device_register() shortly after.  After that, the PHY
+ runs without clock until the FEC is opened, which causes issues.
 
-> +			};
-> +
-> +			reg_ldo2: ldo2 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-min-microvolt = <1500000>;
-> +			};
-> +
-> +			reg_ldo3: ldo3 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-min-microvolt = <1500000>;
-> +			};
-> +
-> +			reg_ldo4: ldo4 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-min-microvolt = <1500000>;
-> +			};
-> +
-> +			reg_buck1: buck1 {
-> +				nxp,ilim-ma = <4500>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-min-microvolt =  <400000>;
-> +			};
-> +
-> +			reg_buck2: buck2 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-min-microvolt =  <400000>;
-> +			};
-> +
-> +			reg_sw3: buck3 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-min-microvolt =  <400000>;
-> +			};
-> +
-> +			reg_buck4: buck4 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-min-microvolt =  <400000>;
-> +			};
-> +
-> +			reg_buck5: buck5 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-min-microvolt =  <400000>;
-> +			};
-> +
-> +			reg_buck6: buck6 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-min-microvolt =  <400000>;
-> +			};
-> +
-> +			reg_buck7: buck7 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-min-microvolt = <3300000>;
-> +			};
-> +
-> +			reg_vsnvs: vsnvs {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-min-microvolt = <1800000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default", "gpio";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	pinctrl-1 = <&pinctrl_i2c3_1>;
-> +	scl-gpios = <&gpio5 18 GPIO_OPEN_DRAIN>;
-> +	sda-gpios = <&gpio5 19 GPIO_OPEN_DRAIN>;
-> +	status = "okay";
-> +
-> +	i2cmux@70 {
-> +		compatible = "nxp,pca9540";
-> +		reg = <0x70>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		i2c3@0 {
-> +			reg = <0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			rtc@68 {
-> +				compatible = "microcrystal,rv4162";
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&pinctrl_i2c3a_rv4162>;
-> +				reg = <0x68>;
-> +				interrupts-extended = <&gpio4 22 IRQ_TYPE_LEVEL_LOW>;
-> +				wakeup-source;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +/* console */
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_UART2>;
-> +	assigned-clock-parents = <&clk IMX8MM_CLK_24M>;
-> +	status = "okay";
-> +};
-> +
-> +/* eMMC */
-> +&usdhc1 {
-> +	bus-width = <8>;
-> +	sdhci-caps-mask = <0x80000000 0x0>;
-> +	non-removable;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-> +	status = "okay";
-> +};
-> +
-> +/* sdcard */
-> +&usdhc2 {
-> +	bus-width = <4>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-> +	status = "okay";
-> +	vqmmc-supply = <&reg_ldo2>;
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hog>;
-> +
-> +	pinctrl_fec1: fec1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC			0x3
-> +			MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO		0x3
-> +			MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
-> +			MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
-> +			MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
-> +			MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
-> +			MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
-> +			MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
-> +			MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
-> +			MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
-> +			MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
-> +			MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
-> +			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-> +			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-> +			MX8MM_IOMUXC_NAND_READY_B_GPIO3_IO16		0x159
-> +		>;
-> +	};
-> +
-> +	pinctrl_hog: hoggrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3 0x09
-> +			MX8MM_IOMUXC_GPIO1_IO08_GPIO1_IO8 0x09
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL 0x400001c3
-> +			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA 0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1_1: i2c1-1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C1_SCL_GPIO5_IO14 0x400001c3
-> +			MX8MM_IOMUXC_I2C1_SDA_GPIO5_IO15 0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL 0x400001c3
-> +			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA 0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3_1: i2c3-1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C3_SCL_GPIO5_IO18 0x400001c3
-> +			MX8MM_IOMUXC_I2C3_SDA_GPIO5_IO19 0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3a_rv4162: i2c3a-rv4162grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22 0x1c0
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX 0x140
-> +			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX 0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x190
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7	0x1d0
-> +			MX8MM_IOMUXC_SD1_RESET_B_GPIO2_IO10	0x141
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_100mhz: usdhc1-100mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x194
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7	0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_200mhz: usdhc1-200mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x196
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7	0x1d6
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
-> +			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12	0x1c4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d6
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x190
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO00_ANAMIX_REF_CLK_32K	0x03
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x194
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x196
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d6
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B 0x140
-> +		>;
-> +	};
-> +
+ 2. At first opening of the FEC:
+ RST    111111111111111111111111111100000111111
+ CLK    000000000011111111111111111111111111111
+ After REF_CLK is enabled, phy_reset_after_clk_enable() causes a
+ short reset pulse. Reset is needed here because the PHY was running=20
+ without clock before.=20
+  =20
+ 3. At closing of the FEC driver:
+ RST    111110000000000000000000000000000000000                =20
+ CLK    111111111111000000000000000000000000000
+ FEC first disconnects the PHY, which asserts the reset, and then=20
+ disables the clock.
+  =20
+ 4. At subsequent openings of the FEC:
+ RST    000000000000000011111111111110000011111                 =20
+ CLK    000000000011111111111111111111111111111
+ FEC first enables the clock, then connects to the PHY which releases=20
+ the reset. Here the second reset pulse (phy_reset_after_clk_enable())=20
+ is unnecessary, because REF_CLK is already running when the reset is=20
+ first deasserted.=20
+ =20
+This illustrates that the only place where the extra reset pulse is=20
+actually needed, is at the first opening of the FEC driver, and the reason
+it is needed in the first place, is because the PHY has been running=20
+without clock after it was probed.=20
 
-Unneeded blank line.
+Extensive testing with LAN8720 confirmed that the REF_CLK can be disabled
+without problems as long as the PHY is either in reset or in power-down=20
+mode (which is relevant for suspend-to-ram as well). Therefore, instead=20
+of relying on extra calls to phy_reset_after_clk_enable(), the issue=20
+addressed by commit [1] can be simply fixed by keeping the PHY in reset=20
+when exiting from phy_probe(). In this way the PHY will always be in reset
+or power-down whenever the REF_CLK is turned off.
 
-Best regards,
-Krzysztof
+This should not cause issues, since as per the PAL documentation any=20
+driver that has business with the PHY should at least call phy_attach(),=20
+which will deassert the reset in due time. Therefore this fix probably=20
+works equally well for any PHY, but out of caution the patch uses the=20
+existing PHY_RST_AFTER_CLK_EN driver flag (which it renames), to implement
+the fix only for LAN8710/20/40 PHYs.
+
+Previous versions:
+This is the 3rd version of the series;  below is a short description of
+the previous versions.
+
+v1:=20
+The solution in [1] has the unfortunate side-effect of breaking the PHY=20
+interrupt system due to the hardware reset erasing the interrupt mask of
+the PHY. Patch series v1 suggested performing the extra reset before the=20
+PHY is configured, by moving the call to phy_reset_after_clk_enable() from
+the FEC into phy_init_hw() instead. The patch was re-examinated after=20
+finding an issue during resume from suspend, where the PHY also seemed to
+require a hardware reset to work properly.=20
+Further investigation showed that this is in fact due to another
+peculiarity of the LAN87xx, which also erase their interrupt mask upon=20
+software reset (which is done by phy_init_hw() on resuming from=20
+suspend-to-ram), and is thus a separate issue that will be addressed in=20
+a separate patch.=20
+
+v2:
+During this time the kernel had moved on and 2 new commits rendered the v1
+fix unnecessary:=20
+  [3] allows the extra PHY reset to still be performed from the FEC, but=20
+  before the interrupt mask is configured, thereby fixing the above=20
+  interrupt mask issue.
+  [4] allows LAN87xx to take control of the REF_CLK directly, preventing
+  the FEC from disabling it and thus circumventing the entire REF_CLK=20
+  issue.
+Patch v2 proposed to fix 2 potential issues with the solution from [4],=20
+namely that (i) failing to set the PHY "clocks" DT property would silently=
+=20
+break the system (because FEC succeeds in disabling the REF_CLK, yet the=20
+extra reset has been removed), and (ii) keeping the REF_CLK enabled
+defeated the power-saving purpose of commit [2].
+
+The present patch fixes (i), and leaves it up to the user to use the=20
+power-friendly clock management of [2] (leave the DT clocks property=20
+unset), or keep the REF_CLK always enabled (set the clocks property).=20
+It also simplifies the code by removing all calls to=20
+phy_reset_after_clk_enable() and related code, and the function
+phy_reset_after_clk_enable() altogether. =20
+
+Tests: against net-next (5.11-rc3) with LAN8720 and LAN8742 and iMX283=20
+SoC. Unfortunately unable to test LAN8740 which has a different form=20
+factor.
+
+References:
+[1] commit 1b0a83ac04e3 ("net: fec: add phy_reset_after_clk_enable()
+    support")
+[2] commit e8fcfcd5684a ("net: fec: optimize the clock management to save
+    power")
+[3] commit 64a632da538a ("net: fec: Fix phy_device lookup for=20
+    phy_reset_after_clk_enable()")
+[4] commit bedd8d78aba3 ("net: phy: smsc: LAN8710/20: add phy refclk in
+    support")
+
+Laurent Badel (4):
+  Remove PHY reset in fec_main.c
+  Remove phy_reset_after_clk_enable()
+  Rename PHY_RST_AFTER_CLK_EN to PHY_RST_AFTER_PROBE
+  Add PHY reset after probe for PHYs with PHY_RST_AFTER_PROBE flag=20
+
+ drivers/net/ethernet/freescale/fec_main.c | 40 -----------------------
+ drivers/net/phy/phy_device.c              | 26 +--------------
+ drivers/net/phy/smsc.c                    |  4 +--
+ include/linux/phy.h                       |  3 +-
+ 4 files changed, 4 insertions(+), 69 deletions(-)
+
+--=20
+2.17.1
+
+
+
+-----------------------------
+Eaton Industries Manufacturing GmbH ~ Registered place of business: Route d=
+e la Longeraie 7, 1110, Morges, Switzerland=20
+
+-----------------------------
+
