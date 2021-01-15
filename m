@@ -2,146 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 503242F7E6D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 15:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C20D2F7E72
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 15:44:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726137AbhAOOnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 09:43:16 -0500
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:48406 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725910AbhAOOnP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 09:43:15 -0500
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10FEb3p7015653;
-        Fri, 15 Jan 2021 08:42:16 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=UCqd0nfi3jYn7t3HzDEdBbfO8As7XK0/wje7LItu+eA=;
- b=bf5scJoMYYE1dZUmw8hy4+691YTAfgtufVNSav9wxrPxxPqZoZ524rVHyPL25fh39eMT
- 5CKpDc0Qr+MgzlqjVGnYH5ZJhAL8jffASqFQXa3MbxVhXIBqVs+T3pT3T9T5+o5Rr0d4
- AEQKr3pt59eveMg4kI+pFywT3W9kaMwPEmYL5VYrJhhVPGV9eeydUSWFJtJEPgvu+9EF
- dI0PtAiYYKjSCGB4rlgzuM1nBrPrYnwCUKUGjugBAy/njN/kaRb4mqAQJW7tNFHSYdx0
- J0dRrPJvMqsAZBgxLIFWFLUop/2R/aagCQZ5fMU3LYLI7mz9YMXhodIYZh4DUJjUml32 UA== 
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 36156kmu1r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 15 Jan 2021 08:42:16 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 15 Jan
- 2021 14:42:13 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Fri, 15 Jan 2021 14:42:13 +0000
-Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.57])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 4DD0A45;
-        Fri, 15 Jan 2021 14:42:13 +0000 (UTC)
-Subject: Re: [PATCH v4 2/6] dt-bindings: audio-graph-card: Add plls and
- sysclks properties
-To:     Mark Brown <broonie@kernel.org>
-CC:     Rob Herring <robh@kernel.org>, <kuninori.morimoto.gx@renesas.com>,
-        <nsaenzjulienne@suse.de>, <f.fainelli@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210108160501.7638-1-rf@opensource.cirrus.com>
- <20210108160501.7638-3-rf@opensource.cirrus.com>
- <20210113152225.GA2334778@robh.at.kernel.org>
- <20210113160917.GF4641@sirena.org.uk>
- <ee3d0b75-dc2f-9994-19a4-a3c3f21a2c65@opensource.cirrus.com>
- <20210115131142.GA4384@sirena.org.uk>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-Message-ID: <1ec5e5f4-f672-2c60-23a5-9d985b943379@opensource.cirrus.com>
-Date:   Fri, 15 Jan 2021 14:42:12 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1730792AbhAOOoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 09:44:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39234 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727716AbhAOOog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 09:44:36 -0500
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A1CC061757
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 06:43:56 -0800 (PST)
+Received: by mail-ot1-x329.google.com with SMTP id b24so8743461otj.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 06:43:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=x0jeRffU+yop2UeLzXkeiDQE3IGPjGYo516b3eTS6oY=;
+        b=IJ+4HWXUdwcAH3GtOhYa7ypaWMxhh5MbHnIQIlibpi840ZZ02W/dhYFnc5rH20mGNY
+         2j6gViUNbEwJ8P8kJktJN6VHMMlRbOMzCRMyHhNYqYfe0J2e9g1R9jDBNUVAd8YeAh/e
+         UnaXRNXhH5OtAZk7GlTbSBzLDOaj7K7ylyIXBcQs47u5LmTRHKAOxoC81VPBJc7197fo
+         IDbB/nAPrSO23dHFAajc+A0m8bbOKSAoauPfBo9/ALGAwmDUHct2YYpcPVFzlkC5z/KG
+         qCs17nZy3BmyuqPx6F09zdIGNeJ09QzAynUqXrKN2qcmrZQ3UO7Pudaa1llDn5CGE5IR
+         Fziw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=x0jeRffU+yop2UeLzXkeiDQE3IGPjGYo516b3eTS6oY=;
+        b=MDdb7JARjLVP2FAWLRxRiO+McG54ql6sfTNXGfo4EDiXkegxS3fxejCNTb1kJ6zze9
+         LbOv2yvEvnIPjxXHApOHNUq+HJJITCToeAk2qECEatcsTkU0IXGZfAJ+mO79Rmox+2zC
+         PZcI4D7ZJjHhtTpVKGTh4GdCSPg6vyxZkeOH4TeAaALK8k6J0txtcHEpC75ztEqQOZ/J
+         ULTAItLsT6mAZXEA6dH9QjMF1xjTIMgOh1vNz7cVJLK6qGSxooe52aZmCQqVu70iwcG/
+         3JNjEcVV/WxbGzO+FfpNZRxbD5806hGx8iiQVdo0814GPUoY6pqGoMkQdL8yLrM2YgZu
+         AXrw==
+X-Gm-Message-State: AOAM5315SXkzlHBbUmmcOwDDarodZCg5rgPcnOSkImVIhyofkhYvLKyG
+        0LSkOe4uoYUJ3Na6T2eSUH/Skw==
+X-Google-Smtp-Source: ABdhPJxjeiUubZZgCiEeMMb59uqjChQ3EteGlfG88/A7rOidXAq3ujcrFUAaVhSD6WWTbVBchNAgXw==
+X-Received: by 2002:a9d:3e0d:: with SMTP id a13mr8552934otd.194.1610721835721;
+        Fri, 15 Jan 2021 06:43:55 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id w10sm1695715oic.44.2021.01.15.06.43.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jan 2021 06:43:55 -0800 (PST)
+Date:   Fri, 15 Jan 2021 08:43:53 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Roja Rani Yarubandi <rojay@codeaurora.org>, ulf.hansson@linaro.org,
+        viresh.kumar@linaro.org
+Cc:     robh+dt@kernel.org, wsa@kernel.org, swboyd@chromium.org,
+        dianders@chromium.org, saiprakash.ranjan@codeaurora.org,
+        mka@chromium.org, akashast@codeaurora.org,
+        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
+        rnayak@codeaurora.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for
+ 'assigned-performance-states'
+Message-ID: <YAGqKfDfB7EEuZVn@builder.lan>
+References: <20201224111210.1214-1-rojay@codeaurora.org>
+ <20201224111210.1214-4-rojay@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20210115131142.GA4384@sirena.org.uk>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 mlxlogscore=999 phishscore=0
- suspectscore=0 malwarescore=0 bulkscore=0 clxscore=1015 impostorscore=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101150092
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201224111210.1214-4-rojay@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/01/2021 13:11, Mark Brown wrote:
-> On Fri, Jan 15, 2021 at 10:35:23AM +0000, Richard Fitzgerald wrote:
->> On 13/01/2021 16:09, Mark Brown wrote:
->>> On Wed, Jan 13, 2021 at 09:22:25AM -0600, Rob Herring wrote:
+On Thu 24 Dec 05:12 CST 2020, Roja Rani Yarubandi wrote:
+
+> @@ -629,6 +658,16 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
+>  	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
+>  
+>  	disable_irq(gi2c->irq);
+> +
+> +	/* Drop the assigned performance state */
+> +	if (gi2c->assigned_pstate) {
+> +		ret = dev_pm_genpd_set_performance_state(dev, 0);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to set performance state\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+
+Ulf, Viresh, I think we discussed this at the time of introducing the
+performance states.
+
+The client's state does not affect if its performance_state should
+be included in the calculation of the aggregated performance_state, so
+each driver that needs to keep some minimum performance state needs to
+have these two snippets.
+
+Would it not make sense to on enable/disable re-evaluate the
+performance_state and potentially reconfigure the hardware
+automatically?
+
+Regards,
+Bjorn
+
+>  	ret = geni_se_resources_off(&gi2c->se);
+>  	if (ret) {
+>  		enable_irq(gi2c->irq);
+> @@ -654,6 +693,16 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
+>  	if (ret)
+>  		return ret;
+>  
+> +	/* Set the assigned performance state */
+> +	if (gi2c->assigned_pstate) {
+> +		ret = dev_pm_genpd_set_performance_state(dev,
+> +							 gi2c->assigned_pstate);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to set performance state\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	enable_irq(gi2c->irq);
+>  	gi2c->suspended = 0;
+>  	return 0;
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
 > 
->> some_codec {
->> 	pll: pll {
->> 		compatible = "fixed-clock";
->> 		clocks = <&audio_mclk>;
->> 		clock-frequency = <98304000>;
->> 	}
-> 
-> A PLL is not a fixed clock, why would you define a fixed clock here?
-
-It's a fixed clock if you are only setting one configuration. Call it
-compatible="any-other-dummy-clock-type" if you like, it doesn't matter
-what it is for the purposes of what I was describing.
-
-This isn't a clk driver for a pll, it's just a setting to be passed to
-snd_soc_component_set_pll() using a clock binding to specify it.
-
-> Are you confusing the selection of rates on existing clocks with the use
-> of the assigned-* properties that the clock binding provides?
-> 
-
-I'm not at all sure what you and Rob have in mind here. Perhaps you
-could give an example of what you are thinking the .dts would look like
-to define some pll/sysclk settings for audio-graph-card to apply. An
-example is worth a thousand emails.
-
->> For this to work the clock binding must be a real clock object (so needs
->> a valid compatible=). But I need to somehow specify the PLL ID and
-> 
-> That seems like a *very* surprising requirement - why would the clock
-> binding have that requirement?  It would seem to create issues for a
-> single device providing multiple clocks which should be a pretty common
-> coase.
-> 
-
-You misunderstand me. What I'm saying is that to do this:
-
-	sound {
-		clocks = <&pll>;
-	}
-
-The node 'pll' must correspond to a clock provider driver. It can't be
-just a bare node with some properties pick-n-mixed from the clock
-binding, like this:
-
-	pll1 : pll1 {
-		clock-frequency = <98304000>;
-	};
-
-which doesn't define a compatible= to match it to a clk driver. An
-attempt to bulk_get the machine driver clocks here will fail.
-
-To use a bare node with pick-n-mixed useful clock binding properties,
-that doesn't represent a real clk provider driver, it would have to be
-pointed to by a custom property that is not treated as a clk framework
-object, e.g.:
-
-	sound {
-		audio-graph-card,plls = <&pll>;
-	}
-
-In this case pll is a node parsed by audio-graph-card that just happens
-to use properties from the clock binding.
-
-So the question I'm trying to ask is: when you and Rob said use
-the clock binding, did you mean pointing to that binding from
-clocks=<...>, or from a custom property like my audio-graph-card,plls
-example above.
