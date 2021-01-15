@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFC2E2F7DB0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 15:06:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A6F2F7DB1
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 15:06:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729384AbhAOOG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 09:06:28 -0500
-Received: from esa6.hgst.iphmx.com ([216.71.154.45]:1772 "EHLO
+        id S1731075AbhAOOGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 09:06:31 -0500
+Received: from esa6.hgst.iphmx.com ([216.71.154.45]:1776 "EHLO
         esa6.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725910AbhAOOG2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 09:06:28 -0500
+        with ESMTP id S1725910AbhAOOGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 09:06:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1610719589; x=1642255589;
+  t=1610719591; x=1642255591;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=0gydr514UdHfaLZyMWZlPzEDnEe7NJxvNWRTRtcTWlQ=;
-  b=Hm67ImCNHvNLpzLlVQCWhB+6zl8rSz9WUsqP3fE38+dcLytA5pDnnZKP
-   crc/j/xVHQ1T312JORhGew1Hnm8LlQqXBHUiQnWPhe/BRhpudUUbS2o6A
-   PasK3VHqRHbf9IAIEP7TnmHcVcGj+TtrWECL00YY90k+Z5TS8e53HFqpN
-   u4AlVSxRvvJB2GmGwg9RWIVq0XpqvFDPC2rZd86Wcn2l1/K6hAJc4sMb6
-   RNS5sNfmAdmUWIC4CmF0UAJAAbMTDyy8MCdBE/OxXGCF1xcZ5N/Hy4dm9
-   3DIgzu/f0MgdpuxEGYqPzPxt75fPC60ZJuNWTAMAGi4luCn4ATSrKv+Ro
-   Q==;
-IronPort-SDR: XJA864xaevv5tsqn1IMK7XyVQqumBSMYJFZy8zhmg4kXjZ8vbq4Pxe0eig5o1003SKwy87jXlh
- 3CFlh16HRn/IYAzxOi80ZD3aRCRp4jmYsRB7O2VftQRojR6l+xAq65OedzxDy/D5hzXNEdLMPZ
- e9IDEqtY+yPt+X3WSdSEFaRyCmtVEpcBGS5I03/oUtCNgKq2JxBRM2NupcZhCfltfdvOiEJv17
- pdW8rJRlJJO3MuFVzg7NOfBo4M3jW/3YQd75gnw2J/R1H3Gow9hhF45Tw1OHeLbO/bW6tyKASu
- 9xs=
+  bh=EtL2qzwmDcnW1fQU2frLeb46tiz62PjL2rf0Kz9/lC8=;
+  b=Q/7wj1Dukp80GDH2jM2fsQ4ldBAj15h/Aamm0BZvnrfWGh/AdpcoO4yl
+   Qe0lsm4LkZ+nYFuwa0wzJV5slp91Ctynf55BwfQNqT2I0yeOdSgz8o1Vp
+   xLtQdziF18Uxv6GxtHwshU/TSKZ/q6N5+3CwP+zmGWlf1yA4e+mmQzrxl
+   P5xxrlpCgqQdMlW9qDGVMvjSarYkphZN1VFtM4H0KfenCFdSDwTm9aUVy
+   c0h227LgHvgz2+WlQRKnhkHlxjySlui2nXI1WIsme02cmWfMt91ELkq8q
+   IgfDzM4vEskSq81frPxrmVVu8vNGeDiQ63s+NL3zlmjwC8pH/VlrwhixR
+   g==;
+IronPort-SDR: 3jG/0FOz+BwnLbr6PqB7QxnGBACdfBPvORpVnCMZ/ZbLaFPgHTsfcOnOQ4aI9HOFR5U/kCy/N1
+ k1l3hm5iUsPkT0yymoHzUVZVKLbfoi+3yItCi1J9m/y4q54Ue6mUcpF/5gegZ4nlRV9/QsdYJE
+ 2Zhxx1q2ZB0LakusTRzJFiQ3jCblbce8zloETRN1VKDJX3HuB91olTZaSAZcNfCFFpPU9VpKY6
+ TpR2ygF7CdT95QB7TroURPVQR6KLT6pTUc4JTQat801QNq9FWAG5BVgGnSNjdxbmW19VbgRj2X
+ TBE=
 X-IronPort-AV: E=Sophos;i="5.79,349,1602518400"; 
-   d="scan'208";a="158693656"
+   d="scan'208";a="158693661"
 Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 15 Jan 2021 22:04:47 +0800
-IronPort-SDR: tf/fZfKQQ7dDe+diNQVRthjAX2Z6XUfV/KSS+GVIp3NHfnDIKkwqO52kmkdlOT6XX5xX9zULKS
- SJYbRdf+fY5CDAhmXdLO7Qt9KezVGFb9KIwNGTZO/IR6Tu5/c4TtFaqN9idUkxPmaPDVJA7d9D
- IM/VntJGV0hsPlTWWF2VlN77dmKqjHusLP/uDWsesO0ocK3GTnlEv43Ofy/8IfGKG9LX26ozEy
- AY0k2yCmGKxfxeUr0Q11Et98QphNKRhNIdlr8Bbn5dBoPoETRCfe4URJs7AcEjKTvFI/QEt2uV
- JFnH87LWtjnatbM0EiWr6rIG
+  by ob1.hgst.iphmx.com with ESMTP; 15 Jan 2021 22:04:49 +0800
+IronPort-SDR: DbsO85ryw+4pMeRVm0rbjm81SrJsAFsK/OTydcUzQTbw1DrAGuBByKNKtMrpSAiEr32OZ5Tmu9
+ 722CB6gVNPGlpdecoC8IYFTWXBvfEX4L9raw9fpaeLgHHVq9elEq5nArnE9XAMXbcTNGWmYoo3
+ pKDQAgsT+F4n8ibUPW3tVyyO8Modb/02xhe6iaMBKBTHaZw5SlrdaV4vQER/u+5/2kT4WXKE0M
+ 6+LfIkWyaOavZ/oVRWkiwc5ml12Uk3Hl2H9ThaKTIXPB17weZfGVpHxuaY+9L8WlxBkNMLzPI+
+ 9h/Quw+uMLH4YgvH1Odyb+5n
 Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2021 05:49:28 -0800
-IronPort-SDR: sfbO9Hl3NbtP06FM9vFhxxWYbPbnhsLD6vbTWtQYPKLZp/V3Eg+5Ck5uQjf3w7e1MwD91XpEy2
- m6s8/sYAhKD1j74L94lYXg7z4ljN+zvNsZc3I9BSv+4V4KYFfMMgXoFkfXg7CSfZQFoqxiSQ6F
- tpIM8S5qeVrMkm/+V0PbJjyBraILXmaexm9e/XKQiuFHVQsA3WpkT0VmXFYlx1EaUAZ10bhWjx
- LDU5o7Mi/UjyOkk68tFhMf6jDS2Y7E+TxnFOfsX2ef3/HvFTyepd0z6bL4tw3rzvNfC7wivLrl
- jeY=
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2021 05:49:30 -0800
+IronPort-SDR: JC5ud1Aie5s5GBUGPKB/4k1MQtXjjQf7M952OQjx03uRNLt+E5iO5tqDsoCi7OCT87qba+eyUp
+ Cfug/866HQFAlEFwNvHGaGgU1ZIcile0z9jt/VzR0MujlG1hELIuLPzCZ9C27pjx/CTf/iNcoE
+ EBHQCeWBN3AxnKpi27AP58PzwoOHF0Etb4WzWJ7yhxcPCQMRXhkxaOq7ZYxmRGtgG9iVJplplC
+ DeridHx9Jfbwq3u/liz3g2bBJO416LxNUbpf7605bGf7PJN/FWReeJ3ld3K2c4J+DZzhXJ5C5f
+ PtY=
 WDCIronportException: Internal
 Received: from wdapacbjl0003.my.asia.wdc.com (HELO twashi.fujisawa.hgst.com) ([10.84.70.177])
-  by uls-op-cesaip02.wdc.com with ESMTP; 15 Jan 2021 06:04:46 -0800
+  by uls-op-cesaip02.wdc.com with ESMTP; 15 Jan 2021 06:04:47 -0800
 From:   Damien Le Moal <damien.lemoal@wdc.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         linux-riscv@lists.infradead.org
-Cc:     Sean Anderson <seanga2@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+Cc:     Sean Anderson <seanga2@gmail.com>, Anup Patel <anup.patel@wdc.com>,
         Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v12 07/17] dt-bindings: update risc-v cpu properties
-Date:   Fri, 15 Jan 2021 23:03:42 +0900
-Message-Id: <20210115140352.146941-8-damien.lemoal@wdc.com>
+Subject: [PATCH v12 08/17] dt-bindings: fix sifive clint compatible string
+Date:   Fri, 15 Jan 2021 23:03:43 +0900
+Message-Id: <20210115140352.146941-9-damien.lemoal@wdc.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210115140352.146941-1-damien.lemoal@wdc.com>
 References: <20210115140352.146941-1-damien.lemoal@wdc.com>
@@ -66,43 +65,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Canaan Kendryte K210 SoC CPU cores are based on a rocket chip
-version using a draft verion of the RISC-V ISA specifications. To avoid
-any confusion with CPU cores using stable specifications, add the
-compatible string "canaan,k210" for this SoC CPU cores.
+Fix the Sifive clint compatible string definition to make the value
+"sifive,fu540-c000-clint" optional, allowing a DT to specify only
+"sifive,clint0" for its generic implementation without any tweak.
+With this change, a Sifive clint node can now be defined as explained
+in the compatible string description.
 
-Also add the "riscv,none" value to the mmu-type property to allow a DT
-to indicate that the CPU being described does not have an MMU or that
-it has an MMU that is not usable (which is the case for the K210 SoC).
-
-Cc: Paul Walmsley <paul.walmsley@sifive.com>
+Cc: Anup Patel <anup.patel@wdc.com>
 Cc: Rob Herring <robh@kernel.org>
 Cc: devicetree@vger.kernel.org
 Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
 ---
- Documentation/devicetree/bindings/riscv/cpus.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/timer/sifive,clint.yaml          | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index eb6843f69f7c..e534f6a7cfa1 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -39,6 +39,7 @@ properties:
-               - sifive,u74
-               - sifive,u5
-               - sifive,u7
-+              - canaan,k210
-           - const: riscv
-       - const: riscv    # Simulator only
-     description:
-@@ -56,6 +57,7 @@ properties:
-       - riscv,sv32
-       - riscv,sv39
-       - riscv,sv48
-+      - riscv,none
+diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+index 2a0e9cd9fbcf..c6b1f37a2949 100644
+--- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
++++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+@@ -22,12 +22,13 @@ description:
  
-   riscv,isa:
+ properties:
+   compatible:
+-    items:
+-      - const: sifive,fu540-c000-clint
+-      - const: sifive,clint0
++    oneOf:
++      - items:
++          - enum:
++              - sifive,fu540-c000-clint
++              - sifive,clint0
+ 
      description:
+-      Should be "sifive,<chip>-clint" and "sifive,clint<version>".
+       Supported compatible strings are -
+       "sifive,fu540-c000-clint" for the SiFive CLINT v0 as integrated
+       onto the SiFive FU540 chip, and "sifive,clint0" for the SiFive
 -- 
 2.29.2
 
