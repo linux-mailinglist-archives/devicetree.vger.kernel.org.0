@@ -2,286 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 486BC2F7C25
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 14:11:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7C0F2F7C3D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 14:14:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731611AbhAONKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 08:10:01 -0500
-Received: from relay03.th.seeweb.it ([5.144.164.164]:42177 "EHLO
-        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387840AbhAONJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 08:09:57 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id EFB8B1F52E;
-        Fri, 15 Jan 2021 14:09:13 +0100 (CET)
-Subject: Re: [PATCH 2/4] clk: qcom: clk-alpha-pll: Add support for Lucid 5LPE
- PLL
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vivek Aknurwar <viveka@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jeevan Shriram <jshriram@codeaurora.org>,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org
-References: <20210105154645.217998-1-vkoul@kernel.org>
- <20210105154645.217998-3-vkoul@kernel.org>
- <c1354fed-7887-f60f-e288-df7b64d419b7@somainline.org>
- <20210115130229.GG2771@vkoul-mobl>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <cae54887-0c20-0c71-2387-20c14723b152@somainline.org>
-Date:   Fri, 15 Jan 2021 14:09:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1731425AbhAONM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 08:12:58 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38542 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731209AbhAONM6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 08:12:58 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AC2D82256F;
+        Fri, 15 Jan 2021 13:12:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610716337;
+        bh=/pOnbiJh8C5AScCuERBndwrdoUImzTZwz+BjkazkJSk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W1A9eyEeghxG1xu1NXHmeM5jdKyYsMTWyjGjEPzU3Qt+zw820bLH01AR+pO3WHXlz
+         OPmNP8wlAovbpkvhjC5E1IriHEC7U+5sv45dDxR2t04sQVGzZ7OR4gg0lUb/hCxemR
+         QzGu52Bd9/Bq8BgZ4AEx8+44Tjxs66DH4dKM6ha3PWUjtITDHqXlV/q/qmQXL8PmqB
+         BLyjV7vXMmHlk37iFS7vTmGaS4sWhAlbR+eVRSY+207l5ljs1gdpeNjlMEUDWeXS8l
+         80pY0mJomBDIgeuNWjZLgQO9k0eUS94e0BfxbQmCzV+5jJpYtDaJ1UCH4LBMSM6X3V
+         m2RP42hyRiDFg==
+Date:   Fri, 15 Jan 2021 13:11:42 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     Rob Herring <robh@kernel.org>, kuninori.morimoto.gx@renesas.com,
+        nsaenzjulienne@suse.de, f.fainelli@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/6] dt-bindings: audio-graph-card: Add plls and
+ sysclks properties
+Message-ID: <20210115131142.GA4384@sirena.org.uk>
+References: <20210108160501.7638-1-rf@opensource.cirrus.com>
+ <20210108160501.7638-3-rf@opensource.cirrus.com>
+ <20210113152225.GA2334778@robh.at.kernel.org>
+ <20210113160917.GF4641@sirena.org.uk>
+ <ee3d0b75-dc2f-9994-19a4-a3c3f21a2c65@opensource.cirrus.com>
 MIME-Version: 1.0
-In-Reply-To: <20210115130229.GG2771@vkoul-mobl>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="LQksG6bCIzRHxTLp"
+Content-Disposition: inline
+In-Reply-To: <ee3d0b75-dc2f-9994-19a4-a3c3f21a2c65@opensource.cirrus.com>
+X-Cookie: Debug is human, de-fix divine.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/01/21 14:02, Vinod Koul ha scritto:
-> On 13-01-21, 23:39, AngeloGioacchino Del Regno wrote:
->> Il 05/01/21 16:46, Vinod Koul ha scritto:
->>> From: Vivek Aknurwar <viveka@codeaurora.org>
->>>
->>> Lucid 5LPE is a slightly different Lucid PLL with different offsets and
->>> porgramming sequence so add support for these
->>>
->>> Signed-off-by: Vivek Aknurwar <viveka@codeaurora.org>
->>> Signed-off-by: Jeevan Shriram <jshriram@codeaurora.org>
->>> [vkoul: rebase and tidy up for upstream]
->>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
->>> ---
->>>    drivers/clk/qcom/clk-alpha-pll.c | 217 +++++++++++++++++++++++++++++++
->>>    drivers/clk/qcom/clk-alpha-pll.h |   4 +
->>>    2 files changed, 221 insertions(+)
->>>
->>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
->>> index f7721088494c..843c43649a5a 100644
->>> --- a/drivers/clk/qcom/clk-alpha-pll.c
->>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
->>> @@ -156,6 +156,12 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
->>>    /* LUCID PLL specific settings and offsets */
->>>    #define LUCID_PCAL_DONE		BIT(27)
->>> +/* LUCID 5LPE PLL specific settings and offsets */
->>> +#define LUCID_5LPE_PCAL_DONE		BIT(11)
->>> +#define LUCID_5LPE_ALPHA_PLL_ACK_LATCH	BIT(13)
->>> +#define LUCID_5LPE_PLL_LATCH_INPUT	BIT(14)
->>> +#define LUCID_5LPE_ENABLE_VOTE_RUN	BIT(21)
->>> +
->>>    #define pll_alpha_width(p)					\
->>>    		((PLL_ALPHA_VAL_U(p) - PLL_ALPHA_VAL(p) == 4) ?	\
->>>    				 ALPHA_REG_BITWIDTH : ALPHA_REG_16BIT_WIDTH)
->>> @@ -1600,3 +1606,214 @@ const struct clk_ops clk_alpha_pll_agera_ops = {
->>>    	.set_rate = clk_alpha_pll_agera_set_rate,
->>>    };
->>>    EXPORT_SYMBOL_GPL(clk_alpha_pll_agera_ops);
->>> +
->>> +static int alpha_pll_lucid_5lpe_enable(struct clk_hw *hw)
->>> +{
->>> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
->>> +	u32 val;
->>> +	int ret;
->>> +
->>> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	/* If in FSM mode, just vote for it */
->>> +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN) {
->>> +		ret = clk_enable_regmap(hw);
->>> +		if (ret)
->>> +			return ret;
->>> +		return wait_for_pll_enable_lock(pll);
->>> +	}
->>> +
->>> +	/* Check if PLL is already enabled, return if enabled */
->>> +	ret = trion_pll_is_enabled(pll, pll->clkr.regmap);
->>> +	if (ret < 0)
->>> +		return ret;
->>> +
->>> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_RUN);
->>> +
->>> +	ret = wait_for_pll_enable_lock(pll);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	/* Enable the PLL outputs */
->>> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, PLL_OUT_MASK);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	/* Enable the global PLL outputs */
->>> +	return regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
->>> +}
->>> +
->>> +static void alpha_pll_lucid_5lpe_disable(struct clk_hw *hw)
->>> +{
->>> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
->>> +	u32 val;
->>> +	int ret;
->>> +
->>> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
->>> +	if (ret)
->>> +		return;
->>> +
->>> +	/* If in FSM mode, just unvote it */
->>> +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN) {
->>> +		clk_disable_regmap(hw);
->>> +		return;
->>> +	}
->>> +
->>> +	/* Disable the global PLL output */
->>> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
->>> +	if (ret)
->>> +		return;
->>> +
->>> +	/* Disable the PLL outputs */
->>> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, 0);
->>> +	if (ret)
->>> +		return;
->>> +
->>> +	/* Place the PLL mode in STANDBY */
->>> +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_STANDBY);
->>> +}
->>> +
->>> +/*
->>> + * The Lucid 5LPE PLL requires a power-on self-calibration which happens
->>> + * when the PLL comes out of reset. Calibrate in case it is not completed.
->>> + */
->>> +static int alpha_pll_lucid_5lpe_prepare(struct clk_hw *hw)
->>> +{
->>> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
->>> +	struct clk_hw *p;
->>> +	u32 val;
->>> +	int ret;
->>> +
->>> +	/* Return early if calibration is not needed. */
->>> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
->>> +	if (val & LUCID_5LPE_PCAL_DONE)
->>> +		return 0;
->>> +
->>> +	p = clk_hw_get_parent(hw);
->>> +	if (!p)
->>> +		return -EINVAL;
->>> +
->>> +	ret = alpha_pll_lucid_5lpe_enable(hw);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	alpha_pll_lucid_5lpe_disable(hw);
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int alpha_pll_lucid_5lpe_set_rate(struct clk_hw *hw, unsigned long rate,
->>> +					 unsigned long prate)
->>> +{
->>> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
->>> +	unsigned long rrate;
->>> +	u32 val, l;
->>> +	u64 a;
->>> +	int ret;
->>> +
->>> +	rrate = alpha_pll_round_rate(rate, prate, &l, &a, ALPHA_REG_16BIT_WIDTH);
->>> +
->>> +	/*
->>> +	 * Due to a limited number of bits for fractional rate programming, the
->>> +	 * rounded up rate could be marginally higher than the requested rate.
->>> +	 */
->>> +	ret = alpha_pll_check_rate_margin(hw, rrate, rate);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	regmap_write(pll->clkr.regmap, PLL_L_VAL(pll), l);
->>> +	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
->>> +
->>> +	/* Latch the PLL input */
->>> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll),
->>> +				 LUCID_5LPE_PLL_LATCH_INPUT, LUCID_5LPE_PLL_LATCH_INPUT);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	/* Wait for 2 reference cycles before checking the ACK bit. */
->>> +	udelay(1);
->>> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
->>> +	if (!(val & LUCID_5LPE_ALPHA_PLL_ACK_LATCH)) {
->>> +		pr_err("Lucid 5LPE PLL latch failed. Output may be unstable!\n");
->>> +		return -EINVAL;
->>> +	}
->>> +
->>> +	/* Return the latch input to 0 */
->>> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), LUCID_5LPE_PLL_LATCH_INPUT, 0);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	if (clk_hw_is_enabled(hw)) {
->>> +		ret = wait_for_pll_enable_lock(pll);
->>> +		if (ret)
->>> +			return ret;
->>> +	}
->>> +
->>> +	/* Wait for PLL output to stabilize */
->>> +	udelay(100);
->>> +	return 0;
->>> +}
->>> +
->>
->> This one looks exactly like alpha_pll_trion_set_rate() but:
->> 1. You are forcing ALPHA_REG_16BIT_WIDTH for the alpha_pll_round_rate
->>     call: this is bad, you should actually use pll_alpha_width(pll) here,
->>     unless you have a very good reason that I didn't understand...
->> 2. The only change between these two functions (trion and
->>     lucid_5lpe_set_rate) is that PLL_UPDATE becomes
->>     LUCID_5LPE_PLL_LATCH_INPUT, and that you check for
->>     LUCID_5LPE_ALPHA_PLL_ACK_LATCH instead of ALPHA_PLL_ACK_LATCH: this
->>     looks like being 95% code duplication.
->>
->> The best options here, in my opinion, would be to commonize the function
->> alpha_pll_trion_set_rate: that will avoid this huge duplication.
-> 
-> Yeah I agree we could reuse, I can redo this. I was thinking of making
-> this bit as one of the values in register and use that but that does not
-> look good as this is not a register offset, so only option is to have a
-> new type of PLL for this and use that as here..
-> 
 
-Just an idea:
+--LQksG6bCIzRHxTLp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-static int __alpha_pll_trion_set_rate(struct clk_hw *hw,
-                                       u32 upd_regbit, u32 latch_regbit,
-                                       unsigned long rate,
-                                       unsigned long prate)
+On Fri, Jan 15, 2021 at 10:35:23AM +0000, Richard Fitzgerald wrote:
+> On 13/01/2021 16:09, Mark Brown wrote:
+> > On Wed, Jan 13, 2021 at 09:22:25AM -0600, Rob Herring wrote:
 
-static int alpha_pll_trion_set_rate( args here )
-{
-	return __alpha_pll_trion_set_rate(hw, PLL_UPDATE,
-					 ALPHA_PLL_ACK_LATCH,
-					 rate, prate);
-}
+> some_codec {
+> 	pll: pll {
+> 		compatible = "fixed-clock";
+> 		clocks = <&audio_mclk>;
+> 		clock-frequency = <98304000>;
+> 	}
 
-static int alpha_pll_lucid_5lpe_set_rate( args )
-{
-	return __alpha_pll_trion_set_rate(hw, LUCID_5LPE_PLL_UPDATE,
-					  LUCID_5LPE_PLL_ACK_LATCH,
-					  rate, prate);
-}
+A PLL is not a fixed clock, why would you define a fixed clock here?
+Are you confusing the selection of rates on existing clocks with the use
+of the assigned-* properties that the clock binding provides?
 
-Perhaps, that would be good.
+> For this to work the clock binding must be a real clock object (so needs
+> a valid compatible=). But I need to somehow specify the PLL ID and
 
---Angelo
+That seems like a *very* surprising requirement - why would the clock
+binding have that requirement?  It would seem to create issues for a
+single device providing multiple clocks which should be a pretty common
+coase.
+
+> > > > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> > > > +    description: |
+> > > > +      A list of clock names giving the source clock for each setting
+> > > > +      in the sysclks property.
+> > > > +
+
+
+Please delete unneeded context from mails when replying.  Doing this
+makes it much easier to find your reply in the message, helping ensure
+it won't be missed by people scrolling through the irrelevant quoted
+material.
+
+--LQksG6bCIzRHxTLp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmABlI0ACgkQJNaLcl1U
+h9Ad4wf+NpbjhW4qXIhAE/mkqs7cQ7UrZ5RbD3y9XQxnUyiF4huBFqAnfcKRy+RU
+Rbv5BkqxDJm6VcvlGqzZ9Uq16JOFFXNxN9ovQItAl5T0UkIksMm8WHxYWC34ckaq
+cOrgHsEUvFsgRO0SwwBSl/0Miyndfy5kdppsML2bxC3bu+h/P/BX0dsAen67aNbG
+LbhemYBmgjMIU41DtfaKHd9qtKULmX8OUgB4h2aaHOQP3pXVdSs0FhYYazqgRHZJ
+7rUqEG4zvt7sJ9AsSZllA95Nqg2KQ2LYAuugSVER+GIIoWtVoqjgeBwKkNnu2dYo
+4RzIeg4/17T68RY72c0AmwGDOkFVTg==
+=klrm
+-----END PGP SIGNATURE-----
+
+--LQksG6bCIzRHxTLp--
