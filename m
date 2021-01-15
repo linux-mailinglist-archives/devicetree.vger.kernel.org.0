@@ -2,102 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A962F77F6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 12:50:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCAED2F780E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 12:54:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbhAOLuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 06:50:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725880AbhAOLuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 06:50:12 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD64C0613C1
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 03:49:31 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id y187so7366622wmd.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 03:49:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3Y7sMMgPPU0z1BRwF7VpVGZTbQ0iTQO/E15b+IMgvcU=;
-        b=FBPnFTN4YjNwGEPEgPPb/GKxLm/dByez2tgxihH2QTOTy8WmfoPhVGgCzfn0uuGa8M
-         le7S8lSWf3kb+z9kHtBc5PVcqBfHBeT7ib2PNxJY2Zq+w1uLPC3x0ahHXedS8w9r/zSt
-         Vr7XG2oq+iz7SGe/QZ797LMLcSlB+4xePegN1OGrgG0MDR0Zv5lR+pIpgvNZDk7aJ/Mb
-         hryGKVORma3fI+fujyOofhDDF3qhRqxZnI9GwL3OcFimO/VS6sVPQwpfJAv1jFGmP4Lv
-         Q2N79aIUB9MLyG1XUJCCpN+9Hmp8uqgyfbmnUaRhTyj3f6drUti+D/pRLLBEe0/rMZ/F
-         u5kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3Y7sMMgPPU0z1BRwF7VpVGZTbQ0iTQO/E15b+IMgvcU=;
-        b=iOtYjFMCtPNCPSd1zdV0B4/sNDv8vJmZCtGLtV4tKnNdZRd51D1E9IsU5EU0fB8LnQ
-         KXSdqfeo8ZsFhu2Gx5qb3PuyLujmU2fYpEpJf90UO+b42p5DkmcMMAdodrrm0Og9TKKi
-         adScnu08qZgW5QZ/Rxtt/ERwZF3Rmi/RHGmBP6K2PFEjYoaiQWPTE5g8Bsf3PHM44AS0
-         FJk2acrV7yNm/piaI31wNsfP0lOzcl21Pgua1ydKM06YVtNbODmW7HCxcmu6mpSESHb5
-         eI/4Kjxb0CUCvjP6UITuuNfrcubCYdfz/9bMEzRT+ztloBhP0M1mt7dMP9ICiSFezjt2
-         5Pgg==
-X-Gm-Message-State: AOAM532f9wuvWGRXIpY/IFsn/AjrOnDMLbVTl08Yzqz4f7CApAeA5fc3
-        Byfpg+0lsxWcRTybBfjvihV7RA==
-X-Google-Smtp-Source: ABdhPJwWgFLEVnJBIPMEZOTOrpwlHUua4mJ1YrDg7puiVZE13rx4b9mevJ5cGcZlLYSVVXMXEmG+Hw==
-X-Received: by 2002:a05:600c:2292:: with SMTP id 18mr2114867wmf.133.1610711369083;
-        Fri, 15 Jan 2021 03:49:29 -0800 (PST)
-Received: from google.com (230.69.233.35.bc.googleusercontent.com. [35.233.69.230])
-        by smtp.gmail.com with ESMTPSA id v20sm15758301wra.19.2021.01.15.03.49.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 03:49:28 -0800 (PST)
-Date:   Fri, 15 Jan 2021 11:49:25 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, android-kvm@google.com,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Fuad Tabba <tabba@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Brazdil <dbrazdil@google.com>
-Subject: Re: [RFC PATCH v2 15/26] of/fdt: Introduce
- early_init_dt_add_memory_hyp()
-Message-ID: <YAGBRVxOFO+ghZXT@google.com>
-References: <20210108121524.656872-1-qperret@google.com>
- <20210108121524.656872-16-qperret@google.com>
- <CAL_JsqLmzFWmTc=6JSRMofSEVRx9GCrwGxEsYog9dC16EMGdvQ@mail.gmail.com>
- <X/1xN2UxiUxkzAiN@google.com>
- <CAL_Jsq+5d+Ox_-m_Rd83R9xoZb6e2cxCNfbL8YPzKdwj=y0M8Q@mail.gmail.com>
- <X/2xlxx9Ucp4UZvL@google.com>
- <CAL_Jsq+o+t4YYXEW_nYqMsT4ubYJWe6Kdhu614RtrCqsHBtfLw@mail.gmail.com>
- <X/3LIGgx83XJ+U0F@google.com>
- <CAL_Jsq+SeOrn4qFyFuPUmXdnM1oMNMLWLsDzrYgUt9Ts3hyoNg@mail.gmail.com>
- <X/3TRIkakv9mSHSQ@google.com>
+        id S1728586AbhAOLyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 06:54:43 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51776 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728439AbhAOLym (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 06:54:42 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3723823877;
+        Fri, 15 Jan 2021 11:54:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610711642;
+        bh=DmAtmPatw2EY8p2iSFBHPlHoDcRywFbV5L9riDHjlwI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BonyO8NkmRWZvGcQ5r6dL+IcN6xEZQ7N+gXYKeHIp//LF8jAOMF3F84I42LtbQ+T7
+         /2VgvA2ICf6/uySCT9K3TozEPNNB4jbSytQMA7vfJB5J+gg4lwXlIdOQoxIH4mTvrz
+         wWtZJ41cWsAxcxx5S2xMDfBzjOeB1bOZ2X7iw9tbzUabW75suxdH4NzcQlim4F1cHd
+         ivD+X0t0rvt70Xpsev96LBScXh0BaCS1VRp4Nya1o1dVopNJ/Z86GqkCRG+E0s5rbF
+         cvjOLBQEW3yxJ6qz8BAFor8f27FvSAr26S37ZEvpUoY6pAo+HzwVF+Z0bOPIixFvs+
+         bjSu200hTuQAA==
+Received: by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1l0Nfz-00FzCB-OF; Fri, 15 Jan 2021 12:53:59 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Added some missing DT settings for Hikey 970
+Date:   Fri, 15 Jan 2021 12:53:55 +0100
+Message-Id: <cover.1610710288.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <X/3TRIkakv9mSHSQ@google.com>
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 12 Jan 2021 at 16:50:12 (+0000), Quentin Perret wrote:
-> On Tuesday 12 Jan 2021 at 10:45:56 (-0600), Rob Herring wrote:
-> > Umm, yes you are right. But both are dealing with nomap. So someone
-> > needs to sort out what the right thing to do here is. No one cared
-> > enough to follow up in a year and a half.
-> 
-> Fair enough, happy to do that. I'll send a small series with these two
-> patches independently from this series which may take a while to land.
+The Hikey 970 device tree has a few missing pieces that are required
+in order for it to be able to support USB and DRM drivers upstream.
 
-Now sent:
+Besides PM, USB and DRM specific bits, the hardware's binding
+for I2C buses and pinctrl are missing.
 
-https://lore.kernel.org/lkml/20210115114544.1830068-1-qperret@google.com/
+Those DT bindings come from the official Linaro Hikey 970 tree:
 
-Thanks,
-Quentin
+	https://github.com/96boards-hikey/linux/tree/hikey970-v4.9
+
+Changed in order to apply cleanly upstream.
+
+PS.: The changes from this series were submitted initially on this
+patch series:
+	Move Hikey 970 USB support out of staging and add DT
+	https://lore.kernel.org/lkml/cover.1605530560.git.mchehab+huawei@kernel.org/
+
+I'm opting to split such series into separate patch series, in order to 
+make easier for review and upstream merge, as the original series
+was mixing patches for different subsystems.
+
+Mauro Carvalho Chehab (3):
+  arm64: dts: hisilicon: hi3670.dtsi: add iomcu_rst
+  arm64: dts: hikey970-pinctrl.dtsi: add missing pinctrl settings
+  arm64: dts: hisilicon: hi3670.dtsi: add I2C settings
+
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  77 +++
+ .../boot/dts/hisilicon/hikey970-pinctrl.dtsi  | 548 +++++++++++++++++-
+ 2 files changed, 614 insertions(+), 11 deletions(-)
+
+-- 
+2.29.2
+
+
