@@ -2,93 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5125B2F805E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 17:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B09A2F8066
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 17:16:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726801AbhAOQNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 11:13:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58388 "EHLO
+        id S1730632AbhAOQPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 11:15:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726669AbhAOQNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 11:13:07 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D814CC0613C1
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 08:12:26 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1l0Ri4-000613-SI; Fri, 15 Jan 2021 17:12:24 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1l0Ri3-00035n-RC; Fri, 15 Jan 2021 17:12:23 +0100
-Date:   Fri, 15 Jan 2021 17:12:23 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     linux-devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 1/2] gpio: pca953x: Add support for pca9506
-Message-ID: <20210115161223.3weymsqrl3hdxtdx@pengutronix.de>
-References: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de>
- <CAMpxmJWy_1vXPopMRP_-U_jEAUbHJBEHA4x88H98i2JA=dzPHA@mail.gmail.com>
+        with ESMTP id S1726669AbhAOQPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 11:15:54 -0500
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2DE6C061799
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 08:15:36 -0800 (PST)
+Received: by mail-ot1-x329.google.com with SMTP id b24so9044044otj.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 08:15:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=iPVfTfHT6gBAu795m3aMHoadgoj03D2XwLab0IXl/KI=;
+        b=fRz2PsY+IiJRIlRpWYA01nOlQDMkIc3+bzy+f+B3aETjnc4lrmL82O34lrRJeAYqKL
+         PM7VboLHDgF94iykA1AUpoK8oygf7ee74W4KXWCxaR6dkDpeq7obO32vFpV90rZn31T3
+         lVAM1dMP/1x17O+tHeAZJNy8RWm/xgt6OOr1WIRwZ5WTpyjGYCLWMhIvMB/C0FFH3YXf
+         czLJtem84F+aidVI8flVnY5X/HxvkhkCIWaxkMO7/76f8Hlf2bnIaonltDEGT9Ah5SNz
+         BZhAxg1Kkf8ItwwFKeM+15072ayLQeSrlP4gGq8AtfbQFvMK3pArIrJdl/Wk+m62zDWP
+         UlUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=iPVfTfHT6gBAu795m3aMHoadgoj03D2XwLab0IXl/KI=;
+        b=ZYavxk8zi0fDdbdd6CWSZTH4eR9AIGwoCAXLspWUxu60Kuh3U8lIpbNvJj3geXloUy
+         t5QGk9NWNXl3zYpFd0EwGbukzARbLTXyYtKll0OCuW+SRt6H2PsLd+/c8WYKqMcG/QhE
+         mC5LUJ7GA6aFiPHyqI986DM8xUYOQjyOBhAIAbhVg5moVRNa7m80iK6cKl7nlTH20Wrw
+         NtEXnC4JgXzcR4rkltzwU40y6YDM2SfKN3p31OGkQmDIO8URzugwgQC0eSFrfP2psr3x
+         dpimEWYObQgrF0lCeIbhh4JsrMoTcvYOyf3hNocin9JGBLk4zQN6Ey4p2h1OO6y6Wm6A
+         bMQg==
+X-Gm-Message-State: AOAM531Dl0fCxanr3pgAcue81MqXW3KKedlUIi8xMJPu1n46lbRsb1fn
+        d6vd1xuqGLd5PV10MfJZ5JMHhg==
+X-Google-Smtp-Source: ABdhPJwhQwng3lLCyVUn+0lS0lljn8lNlR018JLdd32oPBp51d9spPV8DW2uWmJVivUOa7dZtWxpxg==
+X-Received: by 2002:a05:6830:44a:: with SMTP id d10mr8631694otc.254.1610727336025;
+        Fri, 15 Jan 2021 08:15:36 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id m3sm1924324ots.72.2021.01.15.08.15.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jan 2021 08:15:35 -0800 (PST)
+Date:   Fri, 15 Jan 2021 10:15:32 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Roja Rani Yarubandi <rojay@codeaurora.org>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, wsa@kernel.org,
+        swboyd@chromium.org, dianders@chromium.org,
+        saiprakash.ranjan@codeaurora.org, mka@chromium.org,
+        akashast@codeaurora.org, msavaliy@qti.qualcomm.com,
+        parashar@codeaurora.org, rnayak@codeaurora.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: power: Introduce
+ 'assigned-performance-states' property
+Message-ID: <YAG/pNXQOS+C2zLr@builder.lan>
+References: <20201224111210.1214-1-rojay@codeaurora.org>
+ <20201224111210.1214-2-rojay@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5pblz2pntlkyiuuv"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMpxmJWy_1vXPopMRP_-U_jEAUbHJBEHA4x88H98i2JA=dzPHA@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201224111210.1214-2-rojay@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu 24 Dec 05:12 CST 2020, Roja Rani Yarubandi wrote:
 
---5pblz2pntlkyiuuv
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> While most devices within power-domains which support performance states,
+> scale the performance state dynamically, some devices might want to
+> set a static/default performance state while the device is active.
+> These devices typically would also run off a fixed clock and not support
+> dynamically scaling the device's performance, also known as DVFS
+> techniques.
+> 
+> Add a property 'assigned-performance-states' which client devices can
+> use to set this default performance state on their power-domains.
+> 
+> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> ---
+>  .../bindings/power/power-domain.yaml          | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/power-domain.yaml b/Documentation/devicetree/bindings/power/power-domain.yaml
+> index aed51e9dcb11..a42977a82d06 100644
+> --- a/Documentation/devicetree/bindings/power/power-domain.yaml
+> +++ b/Documentation/devicetree/bindings/power/power-domain.yaml
+> @@ -66,6 +66,18 @@ properties:
+>        by the given provider should be subdomains of the domain specified
+>        by this binding.
+>  
+> +  assigned-performance-states:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +       Some devices might need to configure their power domains in a default
+> +       performance state while the device is active. These devices typcially
+> +       would also run off a fixed clock and not support dynamically scaling
+> +       the device's performance, also known as DVFS techniques. Each cell in
+> +       performance state value corresponds to one power domain specified as
+> +       part of the power-domains property. Performance state value can be an
+> +       opp-level inside an OPP table of the power-domain and need not match
+> +       with any OPP table performance state.
+> +
+>  required:
+>    - "#power-domain-cells"
+>  
+> @@ -131,3 +143,40 @@ examples:
+>              min-residency-us = <7000>;
+>          };
+>      };
+> +
+> +  - |
+> +    parent4: power-controller@12340000 {
+> +        compatible = "foo,power-controller";
+> +        reg = <0x12340000 0x1000>;
+> +        #power-domain-cells = <0>;
+> +    };
+> +
+> +    parent5: power-controller@43210000 {
+> +        compatible = "foo,power-controller";
+> +        reg = <0x43210000 0x1000>;
+> +        #power-domain-cells = <0>;
+> +        operating-points-v2 = <&power_opp_table>;
+> +
+> +        power_opp_table: opp-table {
+> +            compatible = "operating-points-v2";
+> +
+> +            power_opp_low: opp1 {
+> +                opp-level = <16>;
+> +            };
+> +
+> +            rpmpd_opp_ret: opp2 {
+> +                opp-level = <64>;
+> +            };
+> +
+> +            rpmpd_opp_svs: opp3 {
+> +                opp-level = <256>;
+> +            };
+> +        };
+> +    };
+> +
+> +    child4: consumer@12341000 {
+> +        compatible = "foo,consumer";
+> +        reg = <0x12341000 0x1000>;
+> +        power-domains = <&parent4>, <&parent5>;
+> +        assigned-performance-states = <0>, <256>;
 
-Hello Bart,
+May I ask how this is different from saying something like:
 
-On Fri, Jan 15, 2021 at 03:18:10PM +0100, Bartosz Golaszewski wrote:
-> On Wed, Jan 13, 2021 at 8:50 PM Uwe Kleine-K=F6nig
-> >  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 1 +
-> >  drivers/gpio/gpio-pca953x.c                              | 2 ++
-> > [...]
->
-> This looks good but we usually split the DT bindings and code changes
-> into separate patches. Would you mind resending?
+	required-opps = <&??>, <&rpmpd_opp_svs>:
 
-If I do mind, do you then take the patch as is? :-)
+Regards,
+Bjorn
 
-Well, ok, I can split ...
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---5pblz2pntlkyiuuv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmABvuQACgkQwfwUeK3K
-7An9pggAiHF7yJroKXNPrvTlOMD6CUSOVq2k6z+rStmyZF/UTDNRJRlTkKdmNG5w
-f9OmezW4mX9jUckXG2BHiUt845ndeJ6tyXeivmre/N4e5CJUD1cY0CbesSr1V/KV
-kc3O0Jqqx5GZB7DlkS0dOce7FlGVHixKIgQD07649qzv0Xg0OYTKKDwvGR/vx78s
-qofsuBJW7V9qyVx2QbXzuSbJqkLHkDApMnjocgXiYNxBwMmun2GRBldo52kwpDKL
-p+1Lf1FuXhJowQP7KbBMnuuGNRhFS/h7yxFyeg99BiLR9qAjEbkcNRNKHaUhlqPv
-mK5MIzTp2QQ7mNEts12QkqOSY2oiLg==
-=YqpM
------END PGP SIGNATURE-----
-
---5pblz2pntlkyiuuv--
+> +    };
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
