@@ -2,110 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 475492F831D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EAFA2F832B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:59:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727863AbhAOR44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 12:56:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35720 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727443AbhAOR44 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 12:56:56 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EA79F22262;
-        Fri, 15 Jan 2021 17:56:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610733375;
-        bh=vj26FR8f+iU2PtcYdkiiX4Rofrx/+1bCKnemSD3ZlAQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JBsK2t1VzsBu7KmHfRB8fFQdKPeEXnjNV8szW2jRZ4QDkGhXgm0jdcVxgilxe9p4n
-         3rr27iUbtfupeVQ9dSztg52vZ+fqiF5Ttg75ixVu2Lvbu50jVCt8kYGzkOhia4psYj
-         uOvJvb3YOwdvG7agAGkKP6W2DfqhlHuM+a0NRLQFu+Y4mRQR2ck9zbXfOyG53Yu0TO
-         R8OBrPn6JClmTKnHxfX7MInKY5GFT6fNowCH7A5VjTF9kPc3k2FDlCzVg5UYjyx/Pk
-         tq0rw2Dzn10iP4FC6v4i6FDJ+0+5VgTyrUJz3OsrN8AIVDGK5sc9H+SYtmRF59xAD6
-         SUv6kieT6g8lw==
-Date:   Fri, 15 Jan 2021 09:56:13 -0800
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
-        Satya Tangirala <satyat@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: Re: [PATCH v4 1/9] mmc: add basic support for inline encryption
-Message-ID: <YAHXPREJaKjK/z7+@sol.localdomain>
-References: <20210104184542.4616-1-ebiggers@kernel.org>
- <20210104184542.4616-2-ebiggers@kernel.org>
- <CAPDyKFq717teu2HPZLCn9QVxLOwZHdi_iS+Ji69S0kYX1o52PQ@mail.gmail.com>
+        id S1729073AbhAOR7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 12:59:23 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:46687 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727670AbhAOR7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:59:23 -0500
+X-Originating-IP: 93.29.109.196
+Received: from localhost.localdomain (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 435151C0003;
+        Fri, 15 Jan 2021 17:58:40 +0000 (UTC)
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: [PATCH 1/2] of: device: Allow DMA range map to be set before of_dma_configure_id
+Date:   Fri, 15 Jan 2021 18:58:30 +0100
+Message-Id: <20210115175831.1184260-1-paul.kocialkowski@bootlin.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFq717teu2HPZLCn9QVxLOwZHdi_iS+Ji69S0kYX1o52PQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 10:22:03AM +0100, Ulf Hansson wrote:
-> On Mon, 4 Jan 2021 at 19:48, Eric Biggers <ebiggers@kernel.org> wrote:
-> >
-> > From: Eric Biggers <ebiggers@google.com>
-> >
-> > In preparation for adding CQHCI crypto engine (inline encryption)
-> > support, add the code required to make mmc_core and mmc_block aware of
-> > inline encryption.  Specifically:
-> >
-> > - Add a capability flag MMC_CAP2_CRYPTO to struct mmc_host.  Drivers
-> >   will set this if the host and driver support inline encryption.
-> >
-> > - Embed a blk_keyslot_manager in struct mmc_host.  Drivers will
-> >   initialize this if the host and driver support inline encryption.
-> >   mmc_block registers this keyslot manager with the request_queue of any
-> >   MMC card attached to the host.  mmc_core destroys this keyslot manager
-> >   when freeing the mmc_host.
-> >
-> > - Make mmc_block copy the crypto keyslot and crypto data unit number
-> >   from struct request to struct mmc_request, so that drivers will have
-> >   access to them.
-> >
-> > - If the MMC host is reset, reprogram all the keyslots to ensure that
-> >   the software state stays in sync with the hardware state.
-> >
-> > Co-developed-by: Satya Tangirala <satyat@google.com>
-> > Signed-off-by: Satya Tangirala <satyat@google.com>
-> > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> > Reviewed-by: Satya Tangirala <satyat@google.com>
-> > Reviewed-and-tested-by: Peng Zhou <peng.zhou@mediatek.com>
-> > Signed-off-by: Eric Biggers <ebiggers@google.com>
-> 
-> Eric, again, my apologies for the delay. Overall, I think this looks good.
-> 
-> My only hesitation to merge this as is, is that I want to make sure
-> you have thought of the life cycle issues for the struct
-> blk_keyslot_manager ksm. It's being used both from the mmc core/block
-> device driver and the mmc host driver. I am looking at this right now
-> and will get back to you very soon, if I find some issues with it.
-> 
-> If you have some time, feel free to elaborate around how this is
-> intended to work.
-> 
-> Kind regards
-> Uffe
+A mechanism was recently introduced for the sunxi architecture where
+the DMA offset for specific devices (under the MBUS) is set by a common
+driver (sunxi_mbus). This driver calls dma_direct_set_offset to set
+the device's dma_range_map manually.
 
-The blk_keyslot_manager is initialized early on when the other host structures
-(struct mmc_host, struct cqhci_host, struct sdhci_host, struct sdhci_msm_host)
-are initialized, prior to mmc_add_host().
+However this information was overwritten by of_dma_configure_id, which
+obtains the map from of_dma_get_range (or keeps it NULL when it fails
+and the force_dma argument is true, which is the case for platform
+devices).
 
-It is destroyed when the struct mmc_host is freed by mmc_free_host().
+As a result, the dma_range_map was always overwritten and the mechanism
+could not correctly take effect.
 
-So it should just work; it's the same lifecycle as the existing host structures.
-Is there something you think I'm overlooking?
+This adds a check to ensure that no previous DMA range map is
+overwritten and prints a warning when the map was already set while
+also being available from dt. In this case, the map that was already
+set is kept.
 
-- Eric
+Fixes: b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in a central place")
+Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+---
+ drivers/of/device.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index aedfaaafd3e7..db1b8634c2c7 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -181,7 +181,14 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+ 
+ 	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+ 
+-	dev->dma_range_map = map;
++	if (!dev->dma_range_map) {
++		dev->dma_range_map = map;
++	} else if (map) {
++		dev_warn(dev,
++			 "DMA range map was already set, ignoring range map from dt\n");
++		kfree(map);
++	}
++
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(of_dma_configure_id);
+-- 
+2.30.0
+
