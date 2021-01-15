@@ -2,138 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B2E62F8708
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:01:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 770612F8716
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 22:03:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732824AbhAOVBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 16:01:02 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59434 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733195AbhAOVBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:01:00 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10FKwSrX040711;
-        Fri, 15 Jan 2021 14:58:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610744308;
-        bh=Sc+E12C0KeMsBR6ZQgAShxwFlyogleIJrGrKpJQw9+I=;
-        h=From:To:CC:Subject:Date;
-        b=hAMQdGnvcb+3/Pvup+bHNMIKe6CD91W4IfLTwa0vehyzv+7A0+jJ3V5ZPwVva9WU0
-         0F59yFvUzIPWjpaXMSBSTPxuwOzMWAgu9bEJLhHBfy7V/EHerB2wsLJZYqnxRfrFIG
-         qcj5rMx0D804of+T5c8Jy29RitVo/nGntMGo5h+U=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10FKwSQs041781
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 15 Jan 2021 14:58:28 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 15
- Jan 2021 14:58:28 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 15 Jan 2021 14:58:28 -0600
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10FKwSCL042823;
-        Fri, 15 Jan 2021 14:58:28 -0600
-Received: from localhost ([10.250.34.42])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 10FKwRS9077904;
-        Fri, 15 Jan 2021 14:58:28 -0600
-From:   Suman Anna <s-anna@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-CC:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        David Lechner <david@lechnology.com>,
-        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Suman Anna <s-anna@ti.com>
-Subject: [PATCH] dt-bindings: irqchip: Add #address-cells to PRUSS INTC
-Date:   Fri, 15 Jan 2021 14:58:19 -0600
-Message-ID: <20210115205819.19426-1-s-anna@ti.com>
-X-Mailer: git-send-email 2.29.2
+        id S1727180AbhAOVCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 16:02:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36226 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726664AbhAOVCS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 16:02:18 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3429C06179A;
+        Fri, 15 Jan 2021 13:01:28 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id o10so2588494wmc.1;
+        Fri, 15 Jan 2021 13:01:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bpsAkxAkTGW0ezsZh7If/0oVx9Z3+WsvGsLBvRRdrWc=;
+        b=jjvPi0uZEcgWYHHH1Iwg9GuQT/6GMtzBLf5LsqxEK3wL58k3rVUziJY1BNOvZlBYhO
+         QeyCa5xrEjAGmxJ0c77EUEPx7QVVCTddR4vXjyK4loOKnh6QXpJDR2kaiMIY8Yy01GsG
+         zH7LInyKLJ41L2i4NmL59fZFNl7wjmHYucm+b+A1QHdVHyjbaxK9yx49Ox9vu3qP4grX
+         VH7RAlfuf60Qc1ViJEDrBZ4tcUqForCMop8XyBKQ77G3LZmfDi1ohLcqNZFAjfmWpCwq
+         cy7WAOP3pKhllY353PKmBlzMOReMOSt1g/W2v/p8LEZUxEHWoyYYX6N6+Qk4QSfNV0ja
+         JSDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bpsAkxAkTGW0ezsZh7If/0oVx9Z3+WsvGsLBvRRdrWc=;
+        b=NjHwNAtEU45VGahn5OOXI1vshlq9ceGdo3pNt7aGNUlxxv+3SdHT6tAvpoVtuJ8ThF
+         BvSJCjdDv8SJKLdCY7qZnUuhzr2u+kQ7S1JXqS2Hx6Ab3iQdJEyVNSSkBAs0ehGnfWQk
+         GWuPz1EauQ6UzlAeQ+A8y/1tGcmKHXd6O2S8QtiCOlL1wv89ah2XVzSeQj6IC7gV0bCC
+         SqsewboZhyI2TVMs40AO1ftvyO04ZvpHfWfkdMKqOZKyR355JGwpYWlBDGIs627WbPxw
+         1MjVcrgeG8mJA28j0SpqwrbmaRzBMTw4WiDL2lk8rkG0gFHUoESPN+N3eWj0EXh9QTut
+         dcrA==
+X-Gm-Message-State: AOAM530d4sGC72PeL42ZvOdyfVTA5GYOO+WlqFtrsQ9AHAwBWcXhMXU5
+        Obi2xkkTDhw7f/WrqJbczow=
+X-Google-Smtp-Source: ABdhPJzVXwlOfp+uJOID97HxREesaAtzxn9LsqMJNcoMBcPsIo3heQ/5vq8/rnAbRSFg1K6PuC0+7Q==
+X-Received: by 2002:a05:600c:4ecc:: with SMTP id g12mr9119530wmq.84.1610744487428;
+        Fri, 15 Jan 2021 13:01:27 -0800 (PST)
+Received: from localhost.localdomain (2a01cb0008bd270090311bc0a820c7e4.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:9031:1bc0:a820:c7e4])
+        by smtp.gmail.com with ESMTPSA id l7sm13414853wme.4.2021.01.15.13.01.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jan 2021 13:01:26 -0800 (PST)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     krzk@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v4 0/3] Add support for Boundary Nitrogen8M Mini SBC
+Date:   Fri, 15 Jan 2021 22:01:21 +0100
+Message-Id: <20210115210124.507282-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The '#address-cells' property looks to be a required property for
-interrupt controller nodes as indicated by a warning message seen
-when building dtbs with W=2. Adding the property to the PRUSS INTC
-dts nodes though fails the dtbs_check. Add this property to the
-PRUSS INTC binding to make it compliant with both dtbs_check and
-building dtbs.
+Hello,
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-Hi Rob,
+This patch set aims is to add the support of the Nitrogen8M Mini SBC
+from Boundary Devices.
 
-This patch is also part of our effort to get rid of the warnings seen
-around interrupt providers on TI K3 dtbs [1]. I needed this in the PRUSS
-INTC bindings to not get a warning with dtbs_check while also ensuring
-no warnings while building dtbs with W=2.
+Thanks,
 
-I would have expected the '#address-cells' requirement to be inherited
-automatically. And looking through the schema files, I actually do not
-see the interrupt-controller.yaml included automatically anywhere. You
-had asked us to drop the inclusion in this binding in our first version
-with YAML [3]. Am I missing something, and how do we ensure that this
-is enforced automatically for everyone?
+Update in v2:
+  - Rewrite the dts (Remove the unused wlan and audio);
+  - Remove useless definition;
+  - Take in account review.
 
-regards
-Suman
+Update in v3:
+  - Take in account review.
 
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210115083003.27387-1-lokeshvutla@ti.com/
-[2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210114194805.8231-1-s-anna@ti.com/
-[3] https://patchwork.kernel.org/comment/23484523/
+Update in v4:
+  - Reorder definition in pmic
 
- .../bindings/interrupt-controller/ti,pruss-intc.yaml        | 6 ++++++
- 1 file changed, 6 insertions(+)
+Adrien Grassein (3):
+  dt-bindings: arm: imx: add imx8mm nitrogen support
+  arm64: dts: imx: Add i.mx8mm nitrogen8mm basic dts support
+  arm64: defconfig: Enable PF8x00 as builtin
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-index c2ce215501a5..dcbfe08e997d 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-@@ -79,6 +79,9 @@ properties:
-       mapping and channels to host interrupts so through this property entire
-       mapping is provided.
- 
-+  "#address-cells":
-+    const: 0
-+
-   ti,irqs-reserved:
-     $ref: /schemas/types.yaml#/definitions/uint8
-     description: |
-@@ -100,6 +103,7 @@ required:
-   - interrupt-names
-   - interrupt-controller
-   - "#interrupt-cells"
-+  - "#address-cells"
- 
- additionalProperties: false
- 
-@@ -123,6 +127,7 @@ examples:
-                               "host_intr6", "host_intr7";
-             interrupt-controller;
-             #interrupt-cells = <3>;
-+            #address-cells = <0>;
-         };
-     };
- 
-@@ -142,6 +147,7 @@ examples:
-             reg = <0x20000 0x2000>;
-             interrupt-controller;
-             #interrupt-cells = <3>;
-+            #address-cells = <0>;
-             interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
-                    <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
-                    <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mm-nitrogen8mm_rev2.dts | 415 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 4 files changed, 418 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
+
 -- 
-2.29.2
+2.25.1
 
