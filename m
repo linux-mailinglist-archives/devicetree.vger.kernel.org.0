@@ -2,203 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFE482F8459
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:28:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 373552F848C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:37:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729353AbhAOS1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 13:27:53 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:29762 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728784AbhAOS1v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 13:27:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1610735184;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=edpQ9XBa4NxUM42jV640jE0QnzJCtHUWVPa7s08fP6M=;
-        b=Wshpl5KRRd9niSnQ2ICUQmQ2dzz9Qq0xsgXWfBlFS+LY72nKd1bNeaHRCVgqmichD+3jsI
-        oXENPzTD79b/1Ij3rQmBKez/PIzEOE4U0Lqzq/2AM5tJnxpAI5+0820cTYoaySVZjjEdDo
-        mOxmw1oMpSsIVlIYdMSSV9EuiJ3NzjQ=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-589-F06MtB27P1KfCKg0SqzF3Q-1; Fri, 15 Jan 2021 13:26:22 -0500
-X-MC-Unique: F06MtB27P1KfCKg0SqzF3Q-1
-Received: by mail-qk1-f200.google.com with SMTP id x74so8831557qkb.12
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 10:26:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=edpQ9XBa4NxUM42jV640jE0QnzJCtHUWVPa7s08fP6M=;
-        b=Soypo14K/4jkrIYlOqHPxUmkzRX6PHeCea/3nsMCDdU79qit4Lbel3FmVJkM4c0aOb
-         EvKbaeLFYA39qDuYiRxTs2CAXfSE/dRaHqvAUAF8wUW3zhD5yX49Hak6FM3BF76VRWJk
-         1L+8F8D2D5bH8JsKz/qXt779svQSyP6o+d6aO5O7CVUBmBj/lDeZx3Knwvub8AcQH/wy
-         exOVRkIjOWFIkulEFpGGJJaUunTBLLDBKIydQ6LctFen4ZdG5UnKiSJ9wwbK761oTyu1
-         SskbjT/prLkdAwGpKXXQZ+tb6mOaxXALG2lap4nS0ARroLMLXJjIRZ2evaQTjoamfPdI
-         baMA==
-X-Gm-Message-State: AOAM5303y+uDRVQhrW5NGxIrKdWnY9Avznu7fBB1lxh3hW6vEaGvUR5C
-        rKqSDVr/EYkhjc42kVVCSDgpF6PCXm2V8M4aP4+q01L6anq6H3vA17OV5CaXx+ttYTPmW9dgwNk
-        AH/Z508lmBjWBMf7811mtfA==
-X-Received: by 2002:a37:8703:: with SMTP id j3mr13736106qkd.455.1610735182336;
-        Fri, 15 Jan 2021 10:26:22 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxhh3gcJfS7/iyNYYOy0a2+NqIKUaY7FuPSZFU4sMQT601HHELrIoh6E714w3tQyBxQ+Nw6Lw==
-X-Received: by 2002:a37:8703:: with SMTP id j3mr13736081qkd.455.1610735182105;
-        Fri, 15 Jan 2021 10:26:22 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id q185sm5545762qka.96.2021.01.15.10.26.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Jan 2021 10:26:21 -0800 (PST)
-Subject: Re: [PATCH 2/2] fpga: Add support for Xilinx DFX AXI Shutdown manager
-To:     Nava kishore Manne <nava.manne@xilinx.com>, mdf@kernel.org,
-        robh+dt@kernel.org, michal.simek@xilinx.com,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     git@xilinx.com, chinnikishore369@gmail.com
-References: <20210115013431.27667-1-nava.manne@xilinx.com>
- <20210115013431.27667-2-nava.manne@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <2dc469ae-cdf4-0774-c786-7dd01c4914c9@redhat.com>
-Date:   Fri, 15 Jan 2021 10:26:19 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1727443AbhAOSgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 13:36:43 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50234 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725946AbhAOSgn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 13:36:43 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CBF892371F;
+        Fri, 15 Jan 2021 18:36:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610735762;
+        bh=nrEh5qKyFfcqrhQvojtYrOk8oDWspF+B8YHetNxIp/I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iud4H4qhXR7cQadVrAZeKW3YsK9FY+a6ESBYwIDqPuHCrVo1FTirO4xZK11ZOcx4w
+         lhdZ3iWiiuaAn4db+D3/pACYwfMX4PgMM+8a8xbdgSVUg7jiPuTF7k5ib0JRsxJSKN
+         KVHM0ZKAqeNP8SirE7ocjw16rqeDu9UblTqtmNxE9ILFVn6VZm8ZouQno8BaYniDS9
+         w5JgP0NzqNUtXEwrQWs06NtyLpp7p+YZE71C0qfm6seHnuP4bmj6AzuO4Xr9H03IIh
+         efYdqRW3fXg/wbTZooTu8cCrpK04KhjyeRoNQ4YCcqFFboCllOz7SB/nZ5LhcnH2wM
+         T2NdtCgMzFaIQ==
+Date:   Fri, 15 Jan 2021 18:35:27 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     Rob Herring <robh@kernel.org>, kuninori.morimoto.gx@renesas.com,
+        nsaenzjulienne@suse.de, f.fainelli@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/6] dt-bindings: audio-graph-card: Add plls and
+ sysclks properties
+Message-ID: <20210115183527.GG4384@sirena.org.uk>
+References: <20210108160501.7638-1-rf@opensource.cirrus.com>
+ <20210108160501.7638-3-rf@opensource.cirrus.com>
+ <20210113152225.GA2334778@robh.at.kernel.org>
+ <20210113160917.GF4641@sirena.org.uk>
+ <ee3d0b75-dc2f-9994-19a4-a3c3f21a2c65@opensource.cirrus.com>
+ <20210115131142.GA4384@sirena.org.uk>
+ <1ec5e5f4-f672-2c60-23a5-9d985b943379@opensource.cirrus.com>
+ <20210115152004.GD4384@sirena.org.uk>
+ <d67f805f-2813-14e9-0c4f-5948ec73f7b0@opensource.cirrus.com>
 MIME-Version: 1.0
-In-Reply-To: <20210115013431.27667-2-nava.manne@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="reI/iBAAp9kzkmX4"
+Content-Disposition: inline
+In-Reply-To: <d67f805f-2813-14e9-0c4f-5948ec73f7b0@opensource.cirrus.com>
+X-Cookie: Debug is human, de-fix divine.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 1/14/21 5:34 PM, Nava kishore Manne wrote:
-> This patch adds support for Xilinx Dynamic Function eXchange(DFX) AXI
-> shutdown manager IP. It can be used to safely handling the AXI traffic
-> on a Reconfigurable Partition when it is undergoing dynamic reconfiguration
-> and there by preventing system deadlock that may occur if AXI transactions
-> are interrupted during reconfiguration.
->
-> PR-Decoupler and AXI shutdown manager are completely different IPs.
-> But both the IP registers are compatible and also both belong to the
-> same sub-system (fpga-bridge).So using same driver for both IP's.
->
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> ---
->  drivers/fpga/xilinx-pr-decoupler.c | 35 ++++++++++++++++++++++++++----
+--reI/iBAAp9kzkmX4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It looks like the copyright is wrong, please review spelling of Xilix
+On Fri, Jan 15, 2021 at 04:15:21PM +0000, Richard Fitzgerald wrote:
 
- * Copyright (c) 2017, Xilix Inc
+> If I do:
+>  	sound {
+>  		clocks =3D <&clock>;
+>  	};
+>=20
+> 	clock: clock {
+> 		compatible =3D "fixed-clock";
+> 		clock-frequency =3D <98304000>;
+> 	};
+>=20
+> I can clk_bulk_get_all().
+> But if I remove the 'compatible' from the clock node, clk_bulk_get_all()
+> will return -EPROBE_DEFER and log:
 
+OK, so if this is only supposed to represent a fixed clock on the board
+separate to the CODEC then yes, of course you do need to instantiate a
+driver for it like you do for every device on the board.  However it
+shouldn't be a subdevice of the CODEC as you had it originally, it
+should be a distinct device as the above has it since that is what
+physically exists.  This obviously won't configure the FLL at all though
+(which was what the binding you were proposing was for, the above is
+definitely not a direct substitute for the binding you originally
+proposed).
 
->  1 file changed, 31 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/fpga/xilinx-pr-decoupler.c b/drivers/fpga/xilinx-pr-decoupler.c
-> index 7d69af230567..c95f3d065ccb 100644
-> --- a/drivers/fpga/xilinx-pr-decoupler.c
-> +++ b/drivers/fpga/xilinx-pr-decoupler.c
-> @@ -19,10 +19,15 @@
->  #define CTRL_OFFSET		0
->  
->  struct xlnx_pr_decoupler_data {
-> +	const struct xlnx_config_data *ipconfig;
->  	void __iomem *io_base;
->  	struct clk *clk;
->  };
->  
-> +struct xlnx_config_data {
-> +	char *name;
-> +};
+> > When we say to use the clock binding what we are saying is to use the
+> > actual clock bindings to describe the clocks, not make a custom binding
+> > that looks kind of like them - making a custom binding doesn't address
+> > the problem.
 
-Move xlnx_config_data above xlnx_pr_decouple_data.
+> But I don't know what you mean by "use the actual clock bindings to
+> describe the clocks".
 
-could you 'const' char *name ?
+> What is not clear to me is how you want me to use a clock binding to
+> describe something that isn't a clk-framework clk. If you know what you
+> want, then please.. an example would help explain.
 
-> +
->  static inline void xlnx_pr_decoupler_write(struct xlnx_pr_decoupler_data *d,
->  					   u32 offset, u32 val)
->  {
-> @@ -76,15 +81,28 @@ static const struct fpga_bridge_ops xlnx_pr_decoupler_br_ops = {
->  	.enable_show = xlnx_pr_decoupler_enable_show,
->  };
->  
-> +static const struct xlnx_config_data decoupler_config = {
-> +	.name = "Xilinx PR Decoupler",
-> +};
-> +
-> +static const struct xlnx_config_data shutdown_config = {
-> +	.name = "Xilinx DFX AXI shutdown mgr",
+The concept of a clock framework is an implementation detail of Linux
+which should not affect how the DT bindings for a device or system are
+written, DT bindings should be clear and idiomatic as DT bindings.  The
+goal is to represent the system in a clear and standardized fashion
+which is useful to OSs in general, not just something convenient for
+Linux as it happens to be implemented right now.  Current Linux
+internals are not a constraint for DT bindings.
 
-To be consistent with decoupler name,
+In this case if you can't figure out how to parse clock bindings without
+moving the clocks over to standard Linux clock APIs (which seems likely)
+then it follows that if you want to describe the clock configuration in
+DT then the driver support for these clocks should use the standard
+Linux clock framework.  This seems like a good idea in general anyway.
 
-shutdown mgr -> Shutdown Manager
+--reI/iBAAp9kzkmX4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +};
-> +
->  static const struct of_device_id xlnx_pr_decoupler_of_match[] = {
-> -	{ .compatible = "xlnx,pr-decoupler-1.00", },
-> -	{ .compatible = "xlnx,pr-decoupler", },
-> +	{ .compatible = "xlnx,pr-decoupler-1.00", .data = &decoupler_config },
-> +	{ .compatible = "xlnx,pr-decoupler", .data = &decoupler_config },
-> +	{ .compatible = "xlnx,dfx-axi-shutdown-manager-1.00",
-> +					.data = &shutdown_config },
-> +	{ .compatible = "xlnx,dfx-axi-shutdown-manager",
-> +					.data = &shutdown_config },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, xlnx_pr_decoupler_of_match);
->  
->  static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
->  {
-> +	struct device_node *np = pdev->dev.of_node;
->  	struct xlnx_pr_decoupler_data *priv;
->  	struct fpga_bridge *br;
->  	int err;
-> @@ -94,6 +112,14 @@ static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
->  	if (!priv)
->  		return -ENOMEM;
->  
-> +	if (np) {
-> +		const struct of_device_id *match;
-> +
-> +		match = of_match_node(xlnx_pr_decoupler_of_match, np);
-> +		if (match && match->data)
-> +			priv->ipconfig = match->data;
-> +	}
-> +
->  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	priv->io_base = devm_ioremap_resource(&pdev->dev, res);
->  	if (IS_ERR(priv->io_base))
-> @@ -114,7 +140,7 @@ static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
->  
->  	clk_disable(priv->clk);
->  
-> -	br = devm_fpga_bridge_create(&pdev->dev, "Xilinx PR Decoupler",
-> +	br = devm_fpga_bridge_create(&pdev->dev, priv->ipconfig->name,
->  				     &xlnx_pr_decoupler_br_ops, priv);
->  	if (!br) {
->  		err = -ENOMEM;
-> @@ -125,7 +151,8 @@ static int xlnx_pr_decoupler_probe(struct platform_device *pdev)
->  
->  	err = fpga_bridge_register(br);
->  	if (err) {
-> -		dev_err(&pdev->dev, "unable to register Xilinx PR Decoupler");
-> +		dev_err(&pdev->dev, "unable to register %s",
-> +			priv->ipconfig->name);
->  		goto err_clk;
->  	}
+-----BEGIN PGP SIGNATURE-----
 
-Look at XILINX_PR_DECOUPLER entry in Kconfig, maybe add something like
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAB4G4ACgkQJNaLcl1U
+h9Ajugf/V/c7kkx7kjE3+tn6nJNrg21PFVDm4St0hGGrFYbLX5tp94E++n7e+0S4
+1O72CIgQcws/PAoj49e1eR9ucRcZztKs5ahuZNxEtGti7ASiGaVfsP63/496zQZN
+VPW5tOl/xrSw4kNiMkoCSZXT4Izm05XeLtLvV2SQxeVevR2ifnp38Ms5KTEG9PXT
+q5Kecf+CmTuIXlFFvyY3eD5Pqdvqe7F7obdoOxUET3NEEfuPYtRCA7YLHmFu/EfH
+Co3vKlM5RmSi8s4RJ4jXplNFEGMDSjfdLbvrIUPFl/fC4aHMIRk0sAQnKftj9vkO
+rs0GP4a8Qfuiyb0YYpMLrw2ora7WTQ==
+=sFv+
+-----END PGP SIGNATURE-----
 
-help
-
-  Say Y to enable drivers for the  ... Decoupler or DFX AIX Shutdown Manager
-
-Tom
-
->  
-
+--reI/iBAAp9kzkmX4--
