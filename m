@@ -2,64 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DCA22F8534
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 20:16:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBC182F8537
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 20:16:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731525AbhAOTPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 14:15:16 -0500
-Received: from foss.arm.com ([217.140.110.172]:52484 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388123AbhAOTPQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 14:15:16 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C28C7ED1;
-        Fri, 15 Jan 2021 11:14:30 -0800 (PST)
-Received: from bogus (unknown [10.57.35.27])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BFF393F719;
-        Fri, 15 Jan 2021 11:14:28 -0800 (PST)
-Date:   Fri, 15 Jan 2021 19:14:26 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Muhammad Husaini Zulkifli <muhammad.husaini.zulkifli@intel.com>,
-        ulf.hansson@linaro.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, adrian.hunter@intel.com,
-        michal.simek@xilinx.com, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
-        Rashmi.A@intel.com, mahesh.r.vaidya@intel.com,
-        Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH v1 8/9] regulator: keembay: Add regulator for Keem Bay SoC
-Message-ID: <20210115191426.xf23pde2drtlujkg@bogus>
-References: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
- <20210114152700.21916-9-muhammad.husaini.zulkifli@intel.com>
- <20210114171434.GI4854@sirena.org.uk>
+        id S2387768AbhAOTQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 14:16:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41624 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733245AbhAOTQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 14:16:08 -0500
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CADD7C061757
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 11:15:27 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 420891F518;
+        Fri, 15 Jan 2021 20:15:26 +0100 (CET)
+Subject: Re: (subset) [PATCH v2 0/7] Really implement Qualcomm LAB/IBB
+ regulators
+To:     Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org
+Cc:     bjorn.andersson@linaro.org, sumit.semwal@linaro.org,
+        martin.botka@somainline.org, robh+dt@kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
+        phone-devel@vger.kernel.org, marijn.suijten@somainline.org,
+        devicetree@vger.kernel.org, lgirdwood@gmail.com
+References: <20210113194214.522238-1-angelogioacchino.delregno@somainline.org>
+ <161073479108.12431.17135576809621290489.b4-ty@kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <93eedc72-e269-a67e-12f6-e391337a5c67@somainline.org>
+Date:   Fri, 15 Jan 2021 20:15:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210114171434.GI4854@sirena.org.uk>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <161073479108.12431.17135576809621290489.b4-ty@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 14, 2021 at 05:14:34PM +0000, Mark Brown wrote:
-> On Thu, Jan 14, 2021 at 11:26:59PM +0800, Muhammad Husaini Zulkifli wrote:
->
-> > Keem Bay SD regulator driver module is added to encapsulate ARM
-> > Secure Monitor Call Calling Convention (SMCCC) during set voltage
-> > operations to control I/O Rail supplied voltage levels which communicate
-> > with Trusted Firmware.
->
-> Adding in Sudeep again for the SMCCC bits.  I just checked and am I
-> right in thinking this might already be shipping in production?
->
+Il 15/01/21 19:19, Mark Brown ha scritto:
+> On Wed, 13 Jan 2021 20:42:07 +0100, AngeloGioacchino Del Regno wrote:
+>> Okay, the title may be a little "aggressive"? However, the qcom-labibb
+>> driver wasn't really .. doing much.
+>> The current form of this driver is only taking care of enabling or
+>> disabling the regulators, which is pretty useless if they were not
+>> pre-set from the bootloader, which sets them only if continuous
+>> splash is enabled.
+>> Moreover, some bootloaders are setting a higher voltage and/or a higher
+>> current limit compared to what's actually required by the attached
+>> hardware (which is, in 99.9% of the cases, a display) and this produces
+>> a higher power consumption, higher heat output and a risk of actually
+>> burning the display if kept up for a very long time: for example, this
+>> is true on at least some Sony Xperia MSM8998 (Yoshino platform) and
+>> especially on some Sony Xperia SDM845 (Tama platform) smartphones.
+>>
+>> [...]
+> 
+> Applied to
+> 
+>     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> 
+> Thanks!
+> 
+> [1/7] regulator: qcom-labibb: Implement voltage selector ops
+>        commit: dd582369c6c1f39ec475af6191a934f3e57fda35
+> 
+> All being well this means that it will be integrated into the linux-next
+> tree (usually sometime in the next 24 hours) and sent to Linus during
+> the next merge window (or sooner if it is a bug fix), however if
+> problems are discovered then the patch may be dropped or reverted.
+> 
+> You may get further e-mails resulting from automated or manual testing
+> and review of the tree, please engage with people reporting problems and
+> send followup patches addressing any issues that are reported if needed.
+> 
+> If any updates are required or you are submitting further changes they
+> should be sent as incremental updates against current git, existing
+> patches will not be replaced.
+> 
+> Please add any relevant lists and maintainers to the CCs when replying
+> to this mail.
+> 
+> Thanks,
+> Mark
+> 
 
-OK you seem to have asked the most important question here directly.
-I have asked for the details of platform firmware implementation in
-the other email basically for the same reason(to check how feasible is
-it to move to new SCMI voltage protocol). Some work in the firmware, but
-if the implement is on the A-profile itself in TF-A or any other equivalent,
-it should not be too difficult.
+Hello Mark,
 
---
-Regards,
-Sudeep
+Thanks for applying the commit, however, I feel like reminding you that 
+setting voltage on this regulator without setting a current limit is 
+really unsafe (at least, from many, many experiments) so, to ensure the 
+entire safety of this code and the hardware that's attached to these 
+regulators you should, please, either apply the entire series, or nothing.
+
+My concerns are only about keeping LAB and IBB safe for everyone's hardware.
+
+Thank you again
+-- Angelo
