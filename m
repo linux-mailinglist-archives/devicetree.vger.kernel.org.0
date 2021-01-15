@@ -2,117 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 891292F7678
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 11:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF592F7673
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 11:19:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727754AbhAOKRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 05:17:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38062 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726494AbhAOKRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 05:17:42 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AA41C061793;
-        Fri, 15 Jan 2021 02:17:02 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id v24so5718631lfr.7;
-        Fri, 15 Jan 2021 02:17:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6fgRlLkwxsmY7BYgCFdgyzj4S+bI1O7GBJW53PDVtEY=;
-        b=TlHMbmMslon+O19Brt5TtQkGwyv26qSkm5vsYY3VFo14F75GVw4EmaAeENHxrHcD4h
-         RLAcNjncj2Q6i02f1xU17AbdqJmAi2fI/fcFx0QcvgZLAIy7uvMwQghEwSlh11gpNHgF
-         C1KXvLq07euYLF8Npqg+/yROO5dwwzg2CqccIsKE8uSYKmLWudo375H9o+MLRa8JJMMN
-         FdIPJQYwXDHWBpbC4OkaorOuy04fHm2RdsUp/pq9OqYXvuXBsfNrdGSuICLTt2i7OjQN
-         bT+6U6CEalaqFJQk4xQbEoHX3aK7ydSueWNtD1zpE7zA18nraJzgdudjnjGSgBAiN0JJ
-         uRVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6fgRlLkwxsmY7BYgCFdgyzj4S+bI1O7GBJW53PDVtEY=;
-        b=Kp9bfUgNUhmtIYhcfeScpaYGsIO/EiLScZN9s2K38a34cHTdztJ2SUSdQ976vRwtxq
-         pERJCxQhWfbk5hFB4GQrpUKgz4vCfueAoKBdqNAB7+0sdPCAKQ7gy9Xy4IpzOczIhbkq
-         FbiPeJmvnsAEpzqhx4g+IrrS9YAtqwCBhOgDY2OSUe8xCqshKBvdL6ukANy8qIMe71Kq
-         5wTffxJiH79t4Jzw+QhSARCpZfKvy5LyYdpotNQRF2eaKSe1nd2W731hpoOqRIzYCw/r
-         23BQln1Nc1IoUUm1jGEW9NemZJl7PiY6xgxTkJ/oKSexEqZCLOZs/iMjoPUw4HH8GqG+
-         eoYw==
-X-Gm-Message-State: AOAM532NNvPHj8de0YgycpRh+ikG9945UNMR4QdWm0F47wrJxNAZQIkn
-        i87obGONLrThT/7Lzwv8w6U=
-X-Google-Smtp-Source: ABdhPJxTQRfxiWTZ+haizQueztCjKL3UrnWo2+rFVHOeIaOwvfZEDEhqrtFMnDb7ffHtlO+uVHzqsg==
-X-Received: by 2002:a19:600d:: with SMTP id u13mr5242339lfb.312.1610705820854;
-        Fri, 15 Jan 2021 02:17:00 -0800 (PST)
-Received: from endpoint.lan ([185.188.71.122])
-        by smtp.gmail.com with ESMTPSA id g26sm758033ljn.90.2021.01.15.02.16.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 02:17:00 -0800 (PST)
-From:   Pawel Dembicki <paweldembicki@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Yangbo Lu <yangbo.lu@nxp.com>,
-        Pawel Dembicki <paweldembicki@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: fsl-ls1012a-frdm: add spi-uart device
-Date:   Fri, 15 Jan 2021 11:16:13 +0100
-Message-Id: <20210115101613.1490837-2-paweldembicki@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210115101613.1490837-1-paweldembicki@gmail.com>
-References: <20210115101613.1490837-1-paweldembicki@gmail.com>
+        id S1728828AbhAOKRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 05:17:22 -0500
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:34569 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728794AbhAOKRV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 05:17:21 -0500
+X-Originating-IP: 93.34.118.233
+Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id A241720010;
+        Fri, 15 Jan 2021 10:16:38 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: media: ov5647: Fix filename
+Date:   Fri, 15 Jan 2021 11:16:52 +0100
+Message-Id: <20210115101652.9275-1-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds spi-uart controller  to LS1012A-FRDM board dts.
-Device is equipped in SC16IS740 from NXP.
+Commit 1b5071af8240 ("media: dt-bindings: media: i2c: Rename
+ov5647.yaml") renamed the bindings file but did not update the
+Id: field there.
 
-Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+Fix it by using the new filename.
+
+Fixes: 1b5071af8240 ("media: dt-bindings: media: i2c: Rename ov5647.yaml")
+Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
 ---
- .../boot/dts/freescale/fsl-ls1012a-frdm.dts   | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
-index 67702667ed8a..9473d16336a2 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
-@@ -7,6 +7,7 @@
-  */
- /dts-v1/;
- 
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include "fsl-ls1012a.dtsi"
- 
- / {
-@@ -57,6 +58,26 @@ simple-audio-card,codec {
- 	};
- };
- 
-+&dspi {
-+	status = "okay";
-+	bus-num = <0>;
-+
-+	serial@0 {
-+		reg = <0>;
-+		compatible = "nxp,sc16is740";
-+		spi-max-frequency = <4000000>;
-+		clocks = <&sc16is7xx_clk>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+
-+		sc16is7xx_clk: sc16is7xx_clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <24000000>;
-+		};
-+	};
-+};
-+
- &duart0 {
- 	status = "okay";
- };
--- 
-2.25.1
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+index 280c62afae13..429566c9ee1d 100644
+--- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/media/i2c/ov5647.yaml#
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5647.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+
+ title: Omnivision OV5647 raw image sensor
+--
+2.29.2
 
