@@ -2,69 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE2142F81AC
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:10:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0DBF2F81B2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727930AbhAORJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 12:09:34 -0500
-Received: from mail-wm1-f45.google.com ([209.85.128.45]:34926 "EHLO
-        mail-wm1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726502AbhAORJe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:09:34 -0500
-Received: by mail-wm1-f45.google.com with SMTP id e15so1826381wme.0;
-        Fri, 15 Jan 2021 09:09:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Qj5xjZ8pehkTSz45VvmvqkYgWH5pE9pcEgHD+C9611k=;
-        b=L780ke4BitK9GzCJPoS4Gal4oECENNR/S7kKBf9Wya88A5d7vtRm2WwMwEfMzXcK1l
-         7VInyfOfONpEVIHQs55cFUzWucxzl1eOJXerQTNitkWb+mR2Yf6ovLmnnCdtKOD0ybP+
-         8KD2gopiDDFKMusXfu9hnC2yPsshEirwJhPyYnKhS9YWteDjV6zjaA1S/RcG4Mf90YmG
-         0R8TDXYV51BsD6K7EGqiucByCRzHsN3Jw6WLfnUPCrlhJi1GEWBJ+oamLqCAf4uCYBx2
-         kzHYsGWffnu/SVLDGevNhZ89g5cZjWeKHmInsKWXmxdvtu+i8X6AVbR7q+RemzNrxdd3
-         UZsA==
-X-Gm-Message-State: AOAM533gz985xXhTsw/00HsLj1oUgwBJVw9oWF+Fkl2hyE7DIRQZou3y
-        CF8o9t7ikdOUyCQc/17Qbs4=
-X-Google-Smtp-Source: ABdhPJzurmSQQa/bJdXOhhtSX1aBWN9k6U7wX5fZj5YzTnxVHCE40TjoZ+ZpRLdg+wYpb24lty/e6w==
-X-Received: by 2002:a05:600c:3549:: with SMTP id i9mr9198010wmq.89.1610730532183;
-        Fri, 15 Jan 2021 09:08:52 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id z13sm28100146wmz.3.2021.01.15.09.08.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 09:08:50 -0800 (PST)
-Date:   Fri, 15 Jan 2021 18:08:49 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: imx: add imx8mm nitrogen support
-Message-ID: <20210115170849.GA45379@kozik-lap>
-References: <20210113173855.1509417-1-adrien.grassein@gmail.com>
- <20210113173855.1509417-2-adrien.grassein@gmail.com>
+        id S1726626AbhAORKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 12:10:11 -0500
+Received: from m43-15.mailgun.net ([69.72.43.15]:51209 "EHLO
+        m43-15.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728910AbhAORKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:10:10 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1610730587; h=In-Reply-To: Content-Type: MIME-Version:
+ References: Message-ID: Subject: Cc: To: From: Date: Sender;
+ bh=aiKLgWl9D/qmUkm2ChFG0sCHujSYfskh5yLKLQlSwFY=; b=ov+0u3PGV/hMVKWqoUAmiZ6kZRPpBRa6Kc5EpNXXZ3jQUVBYB4YFTIrVtBdZ2dxZnLBwJO68
+ xjpiq+SsjlXpv35sAHWWkcwpb+dqJTwhc8rrQugU9zmtrrgL7QNC/ftSyPC4URE54wd1YQko
+ 5AmnMCmZHwCcE2nSFst0W+DoI14=
+X-Mailgun-Sending-Ip: 69.72.43.15
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 6001cc37859d74370ddbd08d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 15 Jan 2021 17:09:11
+ GMT
+Sender: jackp=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4965FC43468; Fri, 15 Jan 2021 17:09:10 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: jackp)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 590D7C43464;
+        Fri, 15 Jan 2021 17:09:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 590D7C43464
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jackp@codeaurora.org
+Date:   Fri, 15 Jan 2021 09:09:06 -0800
+From:   Jack Pham <jackp@codeaurora.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] phy: qcom-qmp: Add SM8350 USB QMP PHYs
+Message-ID: <20210115170906.GB5063@jackp-linux.qualcomm.com>
+References: <20210115104047.3460-1-jackp@codeaurora.org>
+ <20210115104047.3460-2-jackp@codeaurora.org>
+ <2c5481fe-f5be-5d6a-f62f-c93d04b9210e@somainline.org>
+ <20210115124736.GF2771@vkoul-mobl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210113173855.1509417-2-adrien.grassein@gmail.com>
+In-Reply-To: <20210115124736.GF2771@vkoul-mobl>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 06:38:53PM +0100, Adrien Grassein wrote:
-> The Nitrogen8M Mini is an ARM based single board computer (SBC).
-> 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Vinod,
 
-You received here a review tag. Please don't ignore it but include it.
+On Fri, Jan 15, 2021 at 06:17:36PM +0530, Vinod Koul wrote:
+> On 15-01-21, 12:54, Konrad Dybcio wrote:
+> > I might be wrong but it looks as if you forgot to add a compatible
+> > for the "sm8350_usb3_uniphy_cfg" configuration.
 
-For the record, second time:
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+I believe Konrad was referring to the driver in which I had neglected to
+add the compatible to the qcom_qmp_phy_of_match_table. My mistake.
 
-Best regards,
-Krzysztof
+> It seems to be documented in patch 2, ideally we should have the
+> bindings patches first and this as patch 3...
+
+Ok. I think driver change would be patch 2 rather, with the bindings in
+patch 1? Patch 3 and 4 are dt-bindings updates to the SNPS Femto PHY and
+DWC3 QCOM docs respectively.
+
+Will send v2, thanks.
+
+Jack
+-- 
+The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
