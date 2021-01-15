@@ -2,131 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 373552F848C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:37:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C24C62F84A9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:45:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727443AbhAOSgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 13:36:43 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50234 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725946AbhAOSgn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 13:36:43 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CBF892371F;
-        Fri, 15 Jan 2021 18:36:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610735762;
-        bh=nrEh5qKyFfcqrhQvojtYrOk8oDWspF+B8YHetNxIp/I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iud4H4qhXR7cQadVrAZeKW3YsK9FY+a6ESBYwIDqPuHCrVo1FTirO4xZK11ZOcx4w
-         lhdZ3iWiiuaAn4db+D3/pACYwfMX4PgMM+8a8xbdgSVUg7jiPuTF7k5ib0JRsxJSKN
-         KVHM0ZKAqeNP8SirE7ocjw16rqeDu9UblTqtmNxE9ILFVn6VZm8ZouQno8BaYniDS9
-         w5JgP0NzqNUtXEwrQWs06NtyLpp7p+YZE71C0qfm6seHnuP4bmj6AzuO4Xr9H03IIh
-         efYdqRW3fXg/wbTZooTu8cCrpK04KhjyeRoNQ4YCcqFFboCllOz7SB/nZ5LhcnH2wM
-         T2NdtCgMzFaIQ==
-Date:   Fri, 15 Jan 2021 18:35:27 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     Rob Herring <robh@kernel.org>, kuninori.morimoto.gx@renesas.com,
-        nsaenzjulienne@suse.de, f.fainelli@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/6] dt-bindings: audio-graph-card: Add plls and
- sysclks properties
-Message-ID: <20210115183527.GG4384@sirena.org.uk>
-References: <20210108160501.7638-1-rf@opensource.cirrus.com>
- <20210108160501.7638-3-rf@opensource.cirrus.com>
- <20210113152225.GA2334778@robh.at.kernel.org>
- <20210113160917.GF4641@sirena.org.uk>
- <ee3d0b75-dc2f-9994-19a4-a3c3f21a2c65@opensource.cirrus.com>
- <20210115131142.GA4384@sirena.org.uk>
- <1ec5e5f4-f672-2c60-23a5-9d985b943379@opensource.cirrus.com>
- <20210115152004.GD4384@sirena.org.uk>
- <d67f805f-2813-14e9-0c4f-5948ec73f7b0@opensource.cirrus.com>
+        id S1726347AbhAOSo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 13:44:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726136AbhAOSoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 13:44:25 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4362DC0613C1;
+        Fri, 15 Jan 2021 10:43:45 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id u19so10674191edx.2;
+        Fri, 15 Jan 2021 10:43:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2wTYsbuyYQ2FbFdy6VZkTjORDxCVE2/HiFWUNQyuqfo=;
+        b=TA5SREHguQtnh4V82TM0JtFv/Nox2ciU80Iae2LFCssqGDAfkzIF1WlKWzGA5W0mo2
+         Z190SFkCoGB3UtVRrHCW6Sh5T4BhngIkmb/gTe0cXFiJmlWlzSIGwEenRZnXdKx0oGqc
+         hTWGld3Nfs8rVAYr54D+NvpVdr9e6yrkDjTNxqkQIiozKYj5bYmI63OCb046LgF4ta85
+         giK7BsWaaMrWdq/2q6FpEV32FOrqeTKhlP0SRWja9TJPXryzpvJTtv+0Sr++6NXm5uwV
+         EpAU2OUPLxVKdUUL3NHc+BtPf984GqhpO/qYtmpPOhGY535Vq/WnrCxI5WQCBDCcXi81
+         wYBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2wTYsbuyYQ2FbFdy6VZkTjORDxCVE2/HiFWUNQyuqfo=;
+        b=teRu7Ltpw0tG/voiTxoth6h775+NWXMPyoq/9OTFrr5cD1bEEmVMb6Ad9/XhpmCLbh
+         cnd0PgSMKBvQEokq+ATQLRi87BDLHihLbTmOcJaGpujnRjod8FktmrIUVOmK1+kEUV0x
+         Q30fFMGH+y0otb2K50f3AC2Q4XTiA6saH4pqa/NohhyLGnLW0ftMghUlCG+E9esaaIQx
+         Ls8OJ/X1ClPoBx55UXEsGIFwE96GBZPX8MaOBXojyHxZNTtBI36+2MAA/dYrbFoirK9+
+         dorA888bVJ7nUhAgpvuBzm/cXZoBhxEFXHBqekeVqIffa88ncNn78Xnzxmhj0vxlgHNw
+         ej1g==
+X-Gm-Message-State: AOAM531p5RoPr3mlCgMwRrekVexspwRYiRj98J/iC8fagw5mOIlr9I3O
+        Ye4GZ6iSFj9y2pn0FFZY5dY=
+X-Google-Smtp-Source: ABdhPJzfm4ZE9tW7a5cOdid8Be0Ri9Z1l7Nnmx9gaWSuokT1bvaxR/aS/+U4vPDyfuOEv2MwxCB41w==
+X-Received: by 2002:aa7:c78c:: with SMTP id n12mr10884722eds.363.1610736224029;
+        Fri, 15 Jan 2021 10:43:44 -0800 (PST)
+Received: from skbuf (5-12-227-87.residential.rdsnet.ro. [5.12.227.87])
+        by smtp.gmail.com with ESMTPSA id mb15sm4051240ejb.9.2021.01.15.10.43.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jan 2021 10:43:43 -0800 (PST)
+Date:   Fri, 15 Jan 2021 20:43:42 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     George McCollister <george.mccollister@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v5 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20210115184342.jp7vu3pxukoifxsv@skbuf>
+References: <20210114195734.55313-1-george.mccollister@gmail.com>
+ <20210114195734.55313-3-george.mccollister@gmail.com>
+ <20210114224843.374dmyzvtszat6m4@skbuf>
+ <CAFSKS=P5u8YAL=1Rww0VqdHkcf11j7R-bJ02sj6pWoxvqRm3jw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="reI/iBAAp9kzkmX4"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d67f805f-2813-14e9-0c4f-5948ec73f7b0@opensource.cirrus.com>
-X-Cookie: Debug is human, de-fix divine.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAFSKS=P5u8YAL=1Rww0VqdHkcf11j7R-bJ02sj6pWoxvqRm3jw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 15, 2021 at 09:30:29AM -0600, George McCollister wrote:
+> On Thu, Jan 14, 2021 at 4:48 PM Vladimir Oltean <olteanv@gmail.com> wrote:
+> >
+> > On Thu, Jan 14, 2021 at 01:57:33PM -0600, George McCollister wrote:
+> [snip]
+> >
+> > Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+> >
+> > This driver is good to go, just one small nitpick below, you can fix it
+> > up afterwards if you want.
+> >
+> > > +static void xrs700x_port_stp_state_set(struct dsa_switch *ds, int port,
+> > > +                                    u8 state)
+> > > +{
+> > > +     struct xrs700x *priv = ds->priv;
+> > > +     unsigned int bpdus = 1;
+> > > +     unsigned int val;
+> > > +
+> > > +     switch (state) {
+> > > +     case BR_STATE_DISABLED:
+> > > +             bpdus = 0;
+> > > +             fallthrough;
+> > > +     case BR_STATE_BLOCKING:
+> > > +     case BR_STATE_LISTENING:
+> > > +             val = XRS_PORT_DISABLED;
+> > > +             break;
+> > > +     case BR_STATE_LEARNING:
+> > > +             val = XRS_PORT_LEARNING;
+> > > +             break;
+> > > +     case BR_STATE_FORWARDING:
+> > > +             val = XRS_PORT_FORWARDING;
+> > > +             break;
+> > > +     default:
+> > > +             dev_err(ds->dev, "invalid STP state: %d\n", state);
+> > > +             return;
+> > > +     }
+> > > +
+> > > +     regmap_fields_write(priv->ps_forward, port, val);
+> > > +
+> > > +     /* Enable/disable inbound policy added by xrs700x_port_add_bpdu_ipf()
+> > > +      * which allows BPDU forwarding to the CPU port when the front facing
+> > > +      * port is in disabled/learning state.
+> >                       ~~~~~~~~
+> > You probably mean blocking. When the port is in BR_STATE_DISABLED, you
+> > set bpdus = 1, which makes sense.
+> 
+> That doesn't sound quite right, let me try to explain this differently
+> and you can tell me if it makes more sense. If so I'll update it, add
+> the reviewed-bys and post v6:
+> 
+> Enable/disable inbound policy added by xrs700x_port_add_bpdu_ipf()
+> which allows BPDU forwarding to the CPU port. The policy must be
+> enabled when the front facing port is in BLOCKING, LISTENING and
+> LEARNING BR_STATEs since the switch doesn't otherwise forward BPDUs
+> when the port is set to XRS_PORT_DISABLED and XRS_PORT_LEARNING.
 
---reI/iBAAp9kzkmX4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Jan 15, 2021 at 04:15:21PM +0000, Richard Fitzgerald wrote:
-
-> If I do:
->  	sound {
->  		clocks =3D <&clock>;
->  	};
->=20
-> 	clock: clock {
-> 		compatible =3D "fixed-clock";
-> 		clock-frequency =3D <98304000>;
-> 	};
->=20
-> I can clk_bulk_get_all().
-> But if I remove the 'compatible' from the clock node, clk_bulk_get_all()
-> will return -EPROBE_DEFER and log:
-
-OK, so if this is only supposed to represent a fixed clock on the board
-separate to the CODEC then yes, of course you do need to instantiate a
-driver for it like you do for every device on the board.  However it
-shouldn't be a subdevice of the CODEC as you had it originally, it
-should be a distinct device as the above has it since that is what
-physically exists.  This obviously won't configure the FLL at all though
-(which was what the binding you were proposing was for, the above is
-definitely not a direct substitute for the binding you originally
-proposed).
-
-> > When we say to use the clock binding what we are saying is to use the
-> > actual clock bindings to describe the clocks, not make a custom binding
-> > that looks kind of like them - making a custom binding doesn't address
-> > the problem.
-
-> But I don't know what you mean by "use the actual clock bindings to
-> describe the clocks".
-
-> What is not clear to me is how you want me to use a clock binding to
-> describe something that isn't a clk-framework clk. If you know what you
-> want, then please.. an example would help explain.
-
-The concept of a clock framework is an implementation detail of Linux
-which should not affect how the DT bindings for a device or system are
-written, DT bindings should be clear and idiomatic as DT bindings.  The
-goal is to represent the system in a clear and standardized fashion
-which is useful to OSs in general, not just something convenient for
-Linux as it happens to be implemented right now.  Current Linux
-internals are not a constraint for DT bindings.
-
-In this case if you can't figure out how to parse clock bindings without
-moving the clocks over to standard Linux clock APIs (which seems likely)
-then it follows that if you want to describe the clock configuration in
-DT then the driver support for these clocks should use the standard
-Linux clock framework.  This seems like a good idea in general anyway.
-
---reI/iBAAp9kzkmX4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAB4G4ACgkQJNaLcl1U
-h9Ajugf/V/c7kkx7kjE3+tn6nJNrg21PFVDm4St0hGGrFYbLX5tp94E++n7e+0S4
-1O72CIgQcws/PAoj49e1eR9ucRcZztKs5ahuZNxEtGti7ASiGaVfsP63/496zQZN
-VPW5tOl/xrSw4kNiMkoCSZXT4Izm05XeLtLvV2SQxeVevR2ifnp38Ms5KTEG9PXT
-q5Kecf+CmTuIXlFFvyY3eD5Pqdvqe7F7obdoOxUET3NEEfuPYtRCA7YLHmFu/EfH
-Co3vKlM5RmSi8s4RJ4jXplNFEGMDSjfdLbvrIUPFl/fC4aHMIRk0sAQnKftj9vkO
-rs0GP4a8Qfuiyb0YYpMLrw2ora7WTQ==
-=sFv+
------END PGP SIGNATURE-----
-
---reI/iBAAp9kzkmX4--
+No, that was clear in the first place. It is even intelligible with the
+comment as-is, otherwise I would have asked you what you mean. You don't
+need to resent. I made a mistake when I said "you set bpdus = 1", you
+obviously set bpdus = 0 for BR_STATE_DISABLED and 1 for everything else.
+I think I should just get more sleep before giving review comments.
