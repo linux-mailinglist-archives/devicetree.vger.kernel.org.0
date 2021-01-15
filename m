@@ -2,171 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A03502F73BD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 08:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B0142F73C5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 08:40:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731576AbhAOHd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 02:33:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59278 "EHLO
+        id S1731682AbhAOHjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 02:39:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731558AbhAOHd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 02:33:26 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102DEC0613D3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 23:32:46 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id y187so6759068wmd.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 23:32:45 -0800 (PST)
+        with ESMTP id S1731639AbhAOHjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 02:39:11 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE13C0613CF;
+        Thu, 14 Jan 2021 23:38:31 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id y22so9308786ljn.9;
+        Thu, 14 Jan 2021 23:38:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Dg3fcenP6YIm0aYs5w4I6Adx/SFGTjlnu+FOvTsHu6s=;
-        b=gxUveA9YGhNb2E0mZMUvTHI+xbr056FxLZgftfCZZGeNOF+yJ9kajtQExO+pdJR3qx
-         BLnTtJDuM10lTPfSe/TNs/D6zWrnF+RDifagNGXkh9NzzEPnWLATnD41wIUUXTU3msTk
-         Mq5Tkcpzrr9Y/X/lAsccBF2PsbSF/xuTcOOOXSl82oWcuDtlv73iVqwrlUF4P462WsPR
-         w/UjHkhGsQJK0QC1WuIzsvDRmaanz15SvGJXwYOm7R/MSO4PtmnYA8Ix054Ghw5VnjW7
-         74nqHDrKqAVyPcPhYjEAHt9B+qR2m+wBK6xmMz4DkHGOntE0rS6A6mbthBP1uMf2rFdk
-         cOUw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m3cu7YY/eNxyQb45/rsrpXDYAx8mxu2G4v5OxVWwgOY=;
+        b=DP3BxUiOkbp6jEYZ4Pczn/iLq8dB7vCdU+wbx32ThuzfbcK9Sr2Zb5Mg0mPX6prLvm
+         13sBk/pw4Wa+uHzXFzw7YXFfOD+cFwd6cN0lQlMKatejivttxoMnNK/wYacJW0JrnT8N
+         u+6ZIyIiMGeUhhWSd5micAwjY2QkFMJYlpXMkFM9Tu6+R2eiTAIj83SaKcQ5JG7Ba+tX
+         +qQyEezYMVy2hwblYBc9wRlwBuGh96vzZ7H+36uMYulKI7b5EF3Lx5imE1aYY23W0Zj6
+         cGawi0HoCtKGJ6LZ8bzAspQo+SAJVKuW5B4SvHkUOehgoUhlt12HHqPD3/8zzX4/SE3S
+         uDfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Dg3fcenP6YIm0aYs5w4I6Adx/SFGTjlnu+FOvTsHu6s=;
-        b=r3pcgz6ITfhzxyg1oRM/joe4iYhmIIVBFueIVrHb/tEnPrms5sO1xaBLb/rwVOtXln
-         sn32lZQwTSoLXzQIJeGvnq40XF9N9FnUUwmx9w90QvgACWCKytz0EQB7R8nlhh1xDLSb
-         QTRUdLodOr0fxf1TtiyCoz8jIQrRy32U9MYZ0wvIBlham3D2upY1M7WnZ6ET5Utx88z9
-         S8tt5yRKXJEakUD/GSspu9B5OqVPW6IglXMLAA9PzN+QH523Mb64MfjseYrCWVnSL+in
-         Xlom4E/R9Vx7YszOIp3nQFcHa6nLANWRN7S9K7HzxAn2DDlND9XLMoCAWCEFP6vQ6xyz
-         zCFQ==
-X-Gm-Message-State: AOAM533hnZbnI+KhBGsr7Nhb718jbgoze5ovnCuJAL2xAOxj1NM8Wqyg
-        O2zUYtFbI8E6wpjnj75WrnjdOw==
-X-Google-Smtp-Source: ABdhPJyDsyZ0WWe8TcdEBpHT5umYuSY/TkSm8W+40uVNy+0csJt6A1ZznlatODu7M7D5wl3RVsB1vQ==
-X-Received: by 2002:a1c:df85:: with SMTP id w127mr7535799wmg.166.1610695964629;
-        Thu, 14 Jan 2021 23:32:44 -0800 (PST)
-Received: from dell ([91.110.221.158])
-        by smtp.gmail.com with ESMTPSA id w13sm13281029wrt.52.2021.01.14.23.32.43
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m3cu7YY/eNxyQb45/rsrpXDYAx8mxu2G4v5OxVWwgOY=;
+        b=SyTkuXMtqV8ZzMm3eU1yukNIXhewNCwyZqIw1a/fbZgD3gQGFOcD7yfppvpaOdSWus
+         mveu9JzE8ycnhqcjdrPlKRuhmzUuqqUUHJPu+q24mKCzcQ/aAYdyJjxx/jHpdzj+n74W
+         2n+rRyf1IPFiWSeiyHxronxRwNnplX9RDhl9QBblStRNuO0o5LkBxKS//Lya/escFoaK
+         qxnKfQ2YgqC3Bxy5Ufh1Ryfqoj7FZY/8H1WhPoNmSuAC7nrtKgyJ1MBopGHnK/8TL8fm
+         viA11ztrAhNP7/d7xzW8c4U/XWtUnHWCeoVm1KrCCY6DmYHR3jpaKigdyZueLdq95N8S
+         xpeQ==
+X-Gm-Message-State: AOAM532Wf5p8RlypU2QdwQdLNJGbL/bPsCBP8EgvhXfxXmTNhAqQYFJk
+        pibzkLwYupfZP8eWjaaA9aQ=
+X-Google-Smtp-Source: ABdhPJz09J5ZMuvwWmEAfRK3sELUcjg0OI6QIwBRHmJ9nDiNL5cnQegYPW63N7ectPkwZRxjHp/Zpg==
+X-Received: by 2002:a2e:8602:: with SMTP id a2mr4556195lji.421.1610696308352;
+        Thu, 14 Jan 2021 23:38:28 -0800 (PST)
+Received: from endpoint.lan ([185.188.71.122])
+        by smtp.gmail.com with ESMTPSA id w9sm807559lfl.168.2021.01.14.23.38.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Jan 2021 23:32:43 -0800 (PST)
-Date:   Fri, 15 Jan 2021 07:32:41 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>, sre@kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, ChiYuan Huang <cy_huang@richtek.com>,
-        benjamin.chao@mediatek.com
-Subject: Re: [PATCH v7 04/11] mfd: mt6360: Combine mt6360 pmic/ldo resources
- into mt6360 regulator resources
-Message-ID: <20210115073241.GC3975472@dell>
-References: <1605177598-23501-1-git-send-email-gene.chen.richtek@gmail.com>
- <1605177598-23501-5-git-send-email-gene.chen.richtek@gmail.com>
- <74b127eb-9a3c-20c9-5692-b00b982f4da3@gmail.com>
- <CAE+NS34qR9f2LOpvxTBDF4OR=Xq-SFP+uHdWe3dZ5x8xggS8kA@mail.gmail.com>
+        Thu, 14 Jan 2021 23:38:27 -0800 (PST)
+From:   Pawel Dembicki <paweldembicki@gmail.com>
+To:     linuxppc-dev@lists.ozlabs.org
+Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] powerpc: dts: p2020rdb: add missing peripherials
+Date:   Fri, 15 Jan 2021 08:37:58 +0100
+Message-Id: <20210115073800.1072204-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAE+NS34qR9f2LOpvxTBDF4OR=Xq-SFP+uHdWe3dZ5x8xggS8kA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jan 2021, Gene Chen wrote:
+This patch adds dts entry for some peripherials:
+- i2c: temperature sensor ADT7461
+- i2c: eeprom m24256
+- i2c: eeprom at24c01
+- i2c: pmic zl2006
+- i2c: gpio expander
+- phy: reset pins for phy
+- dsa: switch vsc7385
 
-> Matthias Brugger <matthias.bgg@gmail.com> 於 2021年1月12日 週二 下午8:32寫道：
-> >
-> >
-> >
-> > On 12/11/2020 11:39, Gene Chen wrote:
-> > > From: Gene Chen <gene_chen@richtek.com>
-> > >
-> > > Combine mt6360 pmic/ldo resources into mt6360 regulator resources
-> > > to simplify the similar resources object.
-> > >
-> > > Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> > > Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> > > ---
-> > >  drivers/mfd/mt6360-core.c | 11 +++--------
-> > >  1 file changed, 3 insertions(+), 8 deletions(-)
-> > >
-> > > diff --git a/drivers/mfd/mt6360-core.c b/drivers/mfd/mt6360-core.c
-> > > index 692e47b..5119e51 100644
-> > > --- a/drivers/mfd/mt6360-core.c
-> > > +++ b/drivers/mfd/mt6360-core.c
-> > > @@ -265,7 +265,7 @@ static const struct resource mt6360_led_resources[] = {
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_FLED1_STRB_TO_EVT, "fled1_strb_to_evt"),
-> > >  };
-> > >
-> > > -static const struct resource mt6360_pmic_resources[] = {
-> > > +static const struct resource mt6360_regulator_resources[] = {
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_BUCK1_PGB_EVT, "buck1_pgb_evt"),
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_BUCK1_OC_EVT, "buck1_oc_evt"),
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_BUCK1_OV_EVT, "buck1_ov_evt"),
-> > > @@ -278,9 +278,6 @@ static const struct resource mt6360_pmic_resources[] = {
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_LDO7_OC_EVT, "ldo7_oc_evt"),
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_LDO6_PGB_EVT, "ldo6_pgb_evt"),
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_LDO7_PGB_EVT, "ldo7_pgb_evt"),
-> > > -};
-> > > -
-> > > -static const struct resource mt6360_ldo_resources[] = {
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_LDO1_OC_EVT, "ldo1_oc_evt"),
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_LDO2_OC_EVT, "ldo2_oc_evt"),
-> > >       DEFINE_RES_IRQ_NAMED(MT6360_LDO3_OC_EVT, "ldo3_oc_evt"),
-> > > @@ -298,10 +295,8 @@ static const struct mfd_cell mt6360_devs[] = {
-> > >                   NULL, 0, 0, "mediatek,mt6360-chg"),
-> > >       OF_MFD_CELL("mt6360-led", mt6360_led_resources,
-> > >                   NULL, 0, 0, "mediatek,mt6360-led"),
-> > > -     OF_MFD_CELL("mt6360-pmic", mt6360_pmic_resources,
-> > > -                 NULL, 0, 0, "mediatek,mt6360-pmic"),
-> > > -     OF_MFD_CELL("mt6360-ldo", mt6360_ldo_resources,
-> > > -                 NULL, 0, 0, "mediatek,mt6360-ldo"),
-> > > +     OF_MFD_CELL("mt6360-regulator", mt6360_regulator_resources,
-> > > +                 NULL, 0, 0, "mediatek,mt6360-regulator"),
-> >
-> > As discussed with the MFD maintainer [1], the regulator (and probably all cells)
-> > shouldn't have a DT binding.
-> >
-> > So please send a new version which fixes that.
-> >
-> > Regards,
-> > Matthias
-> >
-> > [1] https://lore.kernel.org/linux-mediatek/20210111164118.GE4728@sirena.org.uk/
+It was required to adjust rgmii settings for enet0 because switch with
+dsa driver act different without 8081 sterring.
 
-I don't think Mark is correct here.
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+---
+ arch/powerpc/boot/dts/fsl/p2020rdb.dts | 73 ++++++++++++++++++++++++--
+ 1 file changed, 70 insertions(+), 3 deletions(-)
 
-We usually do implement compatible strings for sub-devices and they do
-tend to have their own device nodes.
-
-It's a very long time ago since I coded this up myself, but from
-memory, you can't have 2 devices share a compatible string.
-
-> Should I use parent's device to find sub-devices of_node if without
-> compatible name?
-> I trace the function mfd_add_device,
-> 
-> if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
->     .....
->     ret = mfd_match_of_node_to_dev(pdev, np, cell);
->     .....
-> }
-> 
-> which is binding mfd sub-device with compatible. Does it be removed in
-> the feature?
-> 
-> > >       OF_MFD_CELL("mt6360-tcpc", NULL,
-> > >                   NULL, 0, 0, "mediatek,mt6360-tcpc"),
-> > >  };
-> > >
-
+diff --git a/arch/powerpc/boot/dts/fsl/p2020rdb.dts b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
+index 3acd3890b397..1f2ddeca0375 100644
+--- a/arch/powerpc/boot/dts/fsl/p2020rdb.dts
++++ b/arch/powerpc/boot/dts/fsl/p2020rdb.dts
+@@ -7,6 +7,9 @@
+ 
+ /include/ "p2020si-pre.dtsi"
+ 
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++
+ / {
+ 	model = "fsl,P2020RDB";
+ 	compatible = "fsl,P2020RDB";
+@@ -131,22 +134,84 @@ partition@1100000 {
+ 		L2switch@2,0 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+-			compatible = "vitesse-7385";
++			compatible = "vitesse,vsc7385";
+ 			reg = <0x2 0x0 0x20000>;
+-		};
++			reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 
++				port@1 {
++					reg = <1>;
++					label = "e1-sw-p1";
++				};
++				port@2 {
++					reg = <2>;
++					label = "e1-sw-p2";
++				};
++				port@3 {
++					reg = <3>;
++					label = "e1-sw-p3";
++				};
++				port@4 {
++					reg = <4>;
++					label = "e1-sw-p4";
++				};
++				port@6 {
++					reg = <6>;
++					label = "cpu";
++					ethernet = <&enet0>;
++					phy-mode = "rgmii";
++					fixed-link {
++						speed = <1000>;
++						full-duplex;
++						pause;
++					};
++				};
++			};
++		};
+ 	};
+ 
+ 	soc: soc@ffe00000 {
+ 		ranges = <0x0 0x0 0xffe00000 0x100000>;
+ 
++		gpio0: gpio-controller@fc00 {
++		};
++
+ 		i2c@3000 {
++			temperature-sensor@4c {
++				compatible = "adi,adt7461";
++				reg = <0x4c>;
++			};
++
++			eeprom@50 {
++				compatible = "atmel,24c256";
++				reg = <0x50>;
++			};
+ 			rtc@68 {
+ 				compatible = "dallas,ds1339";
+ 				reg = <0x68>;
+ 			};
+ 		};
+ 
++		i2c@3100 {
++			pmic@11 {
++				compatible = "zl2006";
++				reg = <0x11>;
++			};
++
++			gpio@18 {
++				compatible = "nxp,pca9557";
++				reg = <0x18>;
++			};
++
++			eeprom@52 {
++				compatible = "atmel,24c01";
++				reg = <0x52>;
++			};
++		};
++
+ 		spi@7000 {
+ 			flash@0 {
+ 				#address-cells = <1>;
+@@ -200,10 +265,12 @@ mdio@24520 {
+ 			phy0: ethernet-phy@0 {
+ 				interrupts = <3 1 0 0>;
+ 				reg = <0x0>;
++				reset-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
+ 			};
+ 			phy1: ethernet-phy@1 {
+ 				interrupts = <3 1 0 0>;
+ 				reg = <0x1>;
++				reset-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+ 			};
+ 			tbi-phy@2 {
+ 				device_type = "tbi-phy";
+@@ -233,7 +300,7 @@ ptp_clock@24e00 {
+ 
+ 		enet0: ethernet@24000 {
+ 			fixed-link = <1 1 1000 0 0>;
+-			phy-connection-type = "rgmii-id";
++			phy-connection-type = "rgmii";
+ 		};
+ 
+ 		enet1: ethernet@25000 {
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.25.1
+
