@@ -2,62 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6159D2F8867
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 23:28:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 911D92F8882
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 23:37:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726224AbhAOW0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 17:26:13 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:51910 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725863AbhAOW0N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 17:26:13 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 75BBA58B;
-        Fri, 15 Jan 2021 23:25:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1610749531;
-        bh=1lWu0Wr18eUW/zYHXzAgkSrjIhn0kvFfK0ToUCV26Po=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wPYFR1F1oeXBM3AfAiWfORdKRonvEhoFCJ2W8mI7zi3niEjds2uDcDS/ZQ7/BnH0w
-         G3ExpiXWanTfL/0inmcehRD35caFQB0XnFRdPoDu191joilntgVY/HtJR2x9BQjDh4
-         P7kGpCCQrnuxsvokihfMRiIeHbxq9MeHFWmMTgFc=
-Date:   Sat, 16 Jan 2021 00:25:14 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     agx@sigxcpu.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kernel@pengutronix.de,
-        linux-arm-kernel@lists.infradead.org, marex@denx.de,
-        robh@kernel.org, stefan@agner.ch
-Subject: Re: [PATCH v2 1/7] dt-bindings: display: mxsfb: Convert binding to
- YAML
-Message-ID: <YAIWSr46dqZpYAat@pendragon.ideasonboard.com>
-References: <20201007012438.27970-2-laurent.pinchart@ideasonboard.com>
- <20210115075918.26407-1-martin.kepplinger@puri.sm>
+        id S1726172AbhAOWhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 17:37:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56638 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725863AbhAOWhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 17:37:02 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A23A1C061757
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 14:36:22 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id u11so1143999plg.13
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 14:36:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ywqlXS0DMFG48gu1pC9iNZc0yRyZGXmZHZluYtDfIDk=;
+        b=UqUPocA4ts0gq9hP7f3Qb1J/OcQWAbekkb/roAdZFEt+PFWRVJaGkiZ3M1DCDK9oq6
+         SDQRVWVgjzuswDEGgV2OEFl8cIhhDRZxSqeAy0lPsk6vV8sJ7yIn06UPTmhvmrJhp9ky
+         6ZZY+9kVsYuVaJFYgx+GGUj2hSFHdX4QmrGTU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ywqlXS0DMFG48gu1pC9iNZc0yRyZGXmZHZluYtDfIDk=;
+        b=V5nDc/vZy7GtQEKdbEUcVd+spIo/fqQy0CrHvUuVaswIdDkJ0vvsBge3dtd5LVwM9O
+         VmZRceAAHJkr3M/qYc0I+UDFG5cfWu08Y/f5ii6kmgFBO7zocO9WMLJJqVa6qMuP9O0j
+         E7hDodbccP4qFK2uBztcRQQooCIYqUdwkqxlG72O9GC28ADBQ4KrUv2ecUQ6ER3Oxg3b
+         rWIo45Wl0xhkPqwwgVux+gtEsLLLlLtZqpo0KkEO+s6WWeg0xjU3t10XBVkhHQb+4ApW
+         +DJiqgf8gR9ktUaIK7ub7CxbYrZ3o182I62fVE0OIDdmot0T6KL//ycta+hiz4PbuJ38
+         3yzg==
+X-Gm-Message-State: AOAM531+MvfSwCwtHPXftIS37pN8VU0LW5LsdDGrVJ28eP4i9vL2Dmo+
+        a3t7/RK6GqiGvUfkLYSw4FxpaA==
+X-Google-Smtp-Source: ABdhPJwfcmXp/Enm8DCTmC7DYAAKuOQuMDLgHMXVVWWlrn5h2vpAzgoQvQr0nlFLMVn6zX5FCVbHmA==
+X-Received: by 2002:a17:902:ba8d:b029:dc:bc0:4d5 with SMTP id k13-20020a170902ba8db02900dc0bc004d5mr14763136pls.75.1610750182188;
+        Fri, 15 Jan 2021 14:36:22 -0800 (PST)
+Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:a6ae:11ff:fe11:fd59])
+        by smtp.gmail.com with ESMTPSA id l3sm5208670pjz.27.2021.01.15.14.36.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Jan 2021 14:36:21 -0800 (PST)
+From:   Philip Chen <philipchen@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>, dmitry.torokhov@gmail.com
+Cc:     swboyd@chromium.org, dianders@chromium.org,
+        Philip Chen <philipchen@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v6 1/3] dt-bindings: input: Create macros for cros-ec keymap
+Date:   Fri, 15 Jan 2021 14:36:15 -0800
+Message-Id: <20210115143555.v6.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210115075918.26407-1-martin.kepplinger@puri.sm>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+In Chrome OS, the keyboard matrix can be split to two groups:
 
-On Fri, Jan 15, 2021 at 08:59:18AM +0100, Martin Kepplinger wrote:
-> hi Laurent,
-> 
-> Do you mind me adding a DT property in the old format now? If so, I'd
-> appreciated an ack in this thread:
-> https://lore.kernel.org/linux-arm-kernel/20201201134638.GA305734@bogon.m.sigxcpu.org/
-> 
-> If it causes extra work for you and want to resend your series soon, I'll
-> gladly delay them for later.
+The keymap for the top row keys can be customized based on OEM
+preference, while the keymap for the other keys is generic/fixed
+across boards.
 
-I think the conversion ot YAML is ready. I've split it from the rest of
-my series, and posted a v3, asking Rob to merge it. Would you mind
-rebasing the addition of the new properties on top ?
+This patch creates marcos for the keymaps of these two groups, making
+it easier to reuse the generic portion of keymap when we override the
+keymap in the board-specific dts for custom top row design.
 
+Signed-off-by: Philip Chen <philipchen@chromium.org>
+---
+
+(no changes since v2)
+
+Changes in v2:
+- Rename CROS_STD_NON_TOP_ROW_KEYMAP to CROS_STD_MAIN_KEYMAP
+
+ include/dt-bindings/input/cros-ec-keyboard.h | 103 +++++++++++++++++++
+ 1 file changed, 103 insertions(+)
+ create mode 100644 include/dt-bindings/input/cros-ec-keyboard.h
+
+diff --git a/include/dt-bindings/input/cros-ec-keyboard.h b/include/dt-bindings/input/cros-ec-keyboard.h
+new file mode 100644
+index 0000000000000..a37a8c5701219
+--- /dev/null
++++ b/include/dt-bindings/input/cros-ec-keyboard.h
+@@ -0,0 +1,103 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * This header provides the constants of the standard Chrome OS key matrix
++ * for cros-ec keyboard-controller bindings.
++ *
++ * Copyright (c) 2021 Google, Inc
++ */
++
++#ifndef _CROS_EC_KEYBOARD_H
++#define _CROS_EC_KEYBOARD_H
++
++#define CROS_STD_TOP_ROW_KEYMAP	\
++	MATRIX_KEY(0x00, 0x02, KEY_F1)	\
++	MATRIX_KEY(0x03, 0x02, KEY_F2)	\
++	MATRIX_KEY(0x02, 0x02, KEY_F3)	\
++	MATRIX_KEY(0x01, 0x02, KEY_F4)	\
++	MATRIX_KEY(0x03, 0x04, KEY_F5)	\
++	MATRIX_KEY(0x02, 0x04, KEY_F6)	\
++	MATRIX_KEY(0x01, 0x04, KEY_F7)	\
++	MATRIX_KEY(0x02, 0x09, KEY_F8)	\
++	MATRIX_KEY(0x01, 0x09, KEY_F9)	\
++	MATRIX_KEY(0x00, 0x04, KEY_F10)	\
++	MATRIX_KEY(0x03, 0x09, KEY_F13)
++
++#define CROS_STD_MAIN_KEYMAP	\
++	MATRIX_KEY(0x00, 0x01, KEY_LEFTMETA)	\
++	MATRIX_KEY(0x00, 0x03, KEY_B)		\
++	MATRIX_KEY(0x00, 0x05, KEY_RO)		\
++	MATRIX_KEY(0x00, 0x06, KEY_N)		\
++	MATRIX_KEY(0x00, 0x08, KEY_EQUAL)	\
++	MATRIX_KEY(0x00, 0x0a, KEY_RIGHTALT)	\
++	MATRIX_KEY(0x01, 0x01, KEY_ESC)		\
++	MATRIX_KEY(0x01, 0x03, KEY_G)		\
++	MATRIX_KEY(0x01, 0x06, KEY_H)		\
++	MATRIX_KEY(0x01, 0x08, KEY_APOSTROPHE)	\
++	MATRIX_KEY(0x01, 0x0b, KEY_BACKSPACE)	\
++	MATRIX_KEY(0x01, 0x0c, KEY_HENKAN)	\
++						\
++	MATRIX_KEY(0x02, 0x00, KEY_LEFTCTRL)	\
++	MATRIX_KEY(0x02, 0x01, KEY_TAB)		\
++	MATRIX_KEY(0x02, 0x03, KEY_T)		\
++	MATRIX_KEY(0x02, 0x05, KEY_RIGHTBRACE)	\
++	MATRIX_KEY(0x02, 0x06, KEY_Y)		\
++	MATRIX_KEY(0x02, 0x07, KEY_102ND)	\
++	MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)	\
++	MATRIX_KEY(0x02, 0x0a, KEY_YEN)		\
++						\
++	MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)	\
++	MATRIX_KEY(0x03, 0x01, KEY_GRAVE)	\
++	MATRIX_KEY(0x03, 0x03, KEY_5)		\
++	MATRIX_KEY(0x03, 0x06, KEY_6)		\
++	MATRIX_KEY(0x03, 0x08, KEY_MINUS)	\
++	MATRIX_KEY(0x03, 0x0b, KEY_BACKSLASH)	\
++	MATRIX_KEY(0x03, 0x0c, KEY_MUHENKAN)	\
++						\
++	MATRIX_KEY(0x04, 0x00, KEY_RIGHTCTRL)	\
++	MATRIX_KEY(0x04, 0x01, KEY_A)		\
++	MATRIX_KEY(0x04, 0x02, KEY_D)		\
++	MATRIX_KEY(0x04, 0x03, KEY_F)		\
++	MATRIX_KEY(0x04, 0x04, KEY_S)		\
++	MATRIX_KEY(0x04, 0x05, KEY_K)		\
++	MATRIX_KEY(0x04, 0x06, KEY_J)		\
++	MATRIX_KEY(0x04, 0x08, KEY_SEMICOLON)	\
++	MATRIX_KEY(0x04, 0x09, KEY_L)		\
++	MATRIX_KEY(0x04, 0x0a, KEY_BACKSLASH)	\
++	MATRIX_KEY(0x04, 0x0b, KEY_ENTER)	\
++						\
++	MATRIX_KEY(0x05, 0x01, KEY_Z)		\
++	MATRIX_KEY(0x05, 0x02, KEY_C)		\
++	MATRIX_KEY(0x05, 0x03, KEY_V)		\
++	MATRIX_KEY(0x05, 0x04, KEY_X)		\
++	MATRIX_KEY(0x05, 0x05, KEY_COMMA)	\
++	MATRIX_KEY(0x05, 0x06, KEY_M)		\
++	MATRIX_KEY(0x05, 0x07, KEY_LEFTSHIFT)	\
++	MATRIX_KEY(0x05, 0x08, KEY_SLASH)	\
++	MATRIX_KEY(0x05, 0x09, KEY_DOT)		\
++	MATRIX_KEY(0x05, 0x0b, KEY_SPACE)	\
++						\
++	MATRIX_KEY(0x06, 0x01, KEY_1)		\
++	MATRIX_KEY(0x06, 0x02, KEY_3)		\
++	MATRIX_KEY(0x06, 0x03, KEY_4)		\
++	MATRIX_KEY(0x06, 0x04, KEY_2)		\
++	MATRIX_KEY(0x06, 0x05, KEY_8)		\
++	MATRIX_KEY(0x06, 0x06, KEY_7)		\
++	MATRIX_KEY(0x06, 0x08, KEY_0)		\
++	MATRIX_KEY(0x06, 0x09, KEY_9)		\
++	MATRIX_KEY(0x06, 0x0a, KEY_LEFTALT)	\
++	MATRIX_KEY(0x06, 0x0b, KEY_DOWN)	\
++	MATRIX_KEY(0x06, 0x0c, KEY_RIGHT)	\
++						\
++	MATRIX_KEY(0x07, 0x01, KEY_Q)		\
++	MATRIX_KEY(0x07, 0x02, KEY_E)		\
++	MATRIX_KEY(0x07, 0x03, KEY_R)		\
++	MATRIX_KEY(0x07, 0x04, KEY_W)		\
++	MATRIX_KEY(0x07, 0x05, KEY_I)		\
++	MATRIX_KEY(0x07, 0x06, KEY_U)		\
++	MATRIX_KEY(0x07, 0x07, KEY_RIGHTSHIFT)	\
++	MATRIX_KEY(0x07, 0x08, KEY_P)		\
++	MATRIX_KEY(0x07, 0x09, KEY_O)		\
++	MATRIX_KEY(0x07, 0x0b, KEY_UP)		\
++	MATRIX_KEY(0x07, 0x0c, KEY_LEFT)
++
++#endif /* _CROS_EC_KEYBOARD_H */
 -- 
-Regards,
+2.26.2
 
-Laurent Pinchart
