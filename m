@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4851E2F8199
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:08:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEFC22F81A4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:08:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727722AbhAORHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 12:07:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41998 "EHLO
+        id S1728917AbhAORIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 12:08:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726669AbhAORHq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:07:46 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86EFEC0613D3
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 09:07:05 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id v19so6358622pgj.12
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 09:07:05 -0800 (PST)
+        with ESMTP id S1728326AbhAORI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:08:26 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0EE8C06179A
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 09:07:11 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id t6so5025894plq.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 09:07:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4adxDxz9HqPVfz8Lxcu2pNJI7Jq0oZpTHx7mnjR2y24=;
-        b=YCH08rkeWH6gnupZGfqnqtlqNK8NtZ4N2VJ+p6e1T7504rPR0S8s4XMQyv2JBs9gNx
-         l0z3kSEOAdz0i0yTOdmUvDqUdDeQJYnXvS1iacXSAMPwt8oP5P+3r3VjL2ccNkJv8bES
-         aE7/gZjQSscc9ii428ukfMJc5r3g5uukRk/x0=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=VvtlNUY05ZRZXw1HkORLQwU8MetpDw7Is/Hf+MOi1N8=;
+        b=AfIDkQOnt6kOO2TACfRsIWQjT5bpOShsBMdgrJ55dE8+KG5o2Gb7WSU7jFgiUyz7v+
+         pqidjVNUwod92goMvJLqWMIfS65ZrrmVwK9KqyqIc1k40v4LWY9Bxp2e0EUHIFyU7knW
+         f0VH+w5k9X2PZ5VKBjGp621dTV1m2leI7ww30=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4adxDxz9HqPVfz8Lxcu2pNJI7Jq0oZpTHx7mnjR2y24=;
-        b=aIVfcwLE4oqKkdMmPH+ZeraOahU9PFSrADnFqJAu2XjYYvVOiAWC5yD7GW5aZYHaqg
-         pdzfY3BCV1mTllRbAcxZraG0Blv9i5II60U0HwB9QzrDoS5g3N6tvp+L1KshhlNjYjIQ
-         WNbI+GuHtIiMug0Oxy0bBEuaYKl4XTz5hcd+zTfAK5kpSwq1n1wJj7IYHCESyPAB01z0
-         seSRCCaFDZNkS2C0CRngoJ5YNvAMBjMcQDTTMX8fmSxjDF3V8OIaT50WiLbS4OQoRPCI
-         +KxARkmomrUk45yHWrzmPVbSfmpNLr9Yh3gqQcdsOwotzINUlaENaF1fMt/IttYr2oD7
-         h0IA==
-X-Gm-Message-State: AOAM532xWou1buPbAjDR3nrlZapYomyVwyxZgFmkcI+57LLhZc+QMade
-        AqopJmrK7BOLI08Hy1p3St5InA==
-X-Google-Smtp-Source: ABdhPJyT3TOdHA/cqUx5fzvZGFP+CY2+Tnv5+/Uc8wxERO63aZNGWJLIlojFxJfV931cpmRjzX4I4A==
-X-Received: by 2002:a63:c64f:: with SMTP id x15mr13505698pgg.196.1610730424928;
-        Fri, 15 Jan 2021 09:07:04 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=VvtlNUY05ZRZXw1HkORLQwU8MetpDw7Is/Hf+MOi1N8=;
+        b=tsLIiy3pmV4Mk2xrLhZjsMEzf8PD4nGbbiXCV7kWFaXVztAiX3+F1JenP87BSyQEZw
+         yasTqQL0Ft4VBtDC+eWl98J/j37r0VGaNXlyJJezkm32oCCWG/jZW42VGDi/YCrMwyZ2
+         XvvtUh32xQgxNer9rfSx5R7pZIbJi974kJGi+Ill+xVWeYAtqrvOPA3BAEa+Qw35zh+5
+         lHLgfWQHfrwqxvOtIM6H3vTxOB1dhQB42AMDgIsMPXIwroSwjCDQ9ZwKZKqxP5Babqms
+         ghLMGp2J1WWjRaxPK5isq0xseB7CoRLd9zrd/k8vNPiRRSTfZPlI6bo9YI0J16LqiRpF
+         PAFA==
+X-Gm-Message-State: AOAM533ZN+RtpxK78FN8yDhE2e3vXoL2rYtzL64Ss1kpGkn1bIb+8IAa
+        EELJaKXURPkWEguHJpeUHpfHFg==
+X-Google-Smtp-Source: ABdhPJyFtWNYz1haJTm7CHTsmdWi6mAz16QXK0dcJU/2QxgPESAqU3D2/r7Ut9q0pMXQpc8FGma+Dw==
+X-Received: by 2002:a17:90a:1057:: with SMTP id y23mr11352188pjd.97.1610730431157;
+        Fri, 15 Jan 2021 09:07:11 -0800 (PST)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id t23sm8813329pfc.0.2021.01.15.09.07.02
+        by smtp.gmail.com with ESMTPSA id t23sm8813329pfc.0.2021.01.15.09.07.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 09:07:04 -0800 (PST)
+        Fri, 15 Jan 2021 09:07:10 -0800 (PST)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
         gregkh@linuxfoundation.org,
@@ -52,120 +52,118 @@ Cc:     swboyd@chromium.org, linux-input@vger.kernel.org,
         hdegoede@redhat.com, andrea@borgia.bo.it,
         kai.heng.feng@canonical.com, robh+dt@kernel.org,
         Douglas Anderson <dianders@chromium.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Coiby Xu <coiby.xu@gmail.com>,
-        Daniel Playfair Cal <daniel.playfair.cal@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        Jiri Kosina <jikos@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Michael Walle <michael@walle.cc>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v9 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
-Date:   Fri, 15 Jan 2021 09:06:36 -0800
-Message-Id: <20210115170641.903392-1-dianders@chromium.org>
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v9 3/4] dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix GT7375P
+Date:   Fri, 15 Jan 2021 09:06:39 -0800
+Message-Id: <20210115090518.v9.3.Ibb28033c81d87fcc13a6ba28c6ea7ac154d65f93@changeid>
 X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
+In-Reply-To: <20210115170641.903392-1-dianders@chromium.org>
+References: <20210115170641.903392-1-dianders@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds new bindings for the Goodix GT7375P touchscreen.  While this
+touchscreen's communications are based on the generic "i2c-over-hid"
+protocol, it needs special power sequencing and thus gets its own
+compatible and bindings.
 
-The goal of this series is to support the Goodix GT7375P touchscreen.
-This touchscreen is special because it has power sequencing
-requirements that necessitate driving a reset GPIO.
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
 
-To do this, we totally rejigger the way i2c-hid is organized so that
-it's easier to jam the Goodix support in there.
-
-This series was:
-- Tested on a device that uses normal i2c-hid.
-- Tested on a device that has a Goodix i2c-hid device.
-- Tested on an ACPI device, but an earlier version of the series.
-
-I believe the plan is for Benjamin to land the whole series.  Will
-said this about the arm64 defconfig change (and provided his Ack):
-> ...there are a few things I really care about
-> in defconfig (e.g. things like page size!), generally speaking we don't
-> need to Ack everything that changes in there.
->
-> That said, might be worth checking whether arm-soc have any defconfig
-> changes queued in -next so you don't end up with conflicts.
-
-Changes in v9:
-- 120 ms delay => 180 ms delay
-- Local variable in ACPI code "ihid_of" => "ihid_acpi".
-- Squash Benjamin's change for ACPI power on.
-
-Changes in v8:
-- Mark suspend/resume as static as per patches robot.
-
-Changes in v7:
-- Rebase atop commit afdd34c5fa40 ("HID: i2c-hid: show the error ...")
-
-Changes in v6:
-- ACPI probe function should have been "static"
-- Don't export suspend/resume, just export dev_pm_ops from core.
-- Fixed crash in ACPI module (missing init of "client")
-- No need for regulator include in the core.
-- Removed i2c_device_id table from ACPI module.
-- Suspend/resume are no longer exported from the core.
+(no changes since v5)
 
 Changes in v5:
-- Add shutdown_tail op and use it in ACPI.
 - Added mention of i2c-hid in the yaml itself as per Rob.
 - Adjusted subject as per Rob.
-- i2chid_subclass_data => i2chid_ops.
-- power_up_device => power_up (same with power_down).
-- subclass => ops.
-
-Changes in v4:
-- ("arm64: defconfig: Update config names for i2c-hid rejigger") new for v4.
-- Fully rejigger so ACPI and OF are full subclasses.
-- Totally redid based on the new subclass system.
 
 Changes in v3:
 - Fixed compatible in example.
 - Removed Benjamin as a maintainer.
-- Rework to use subclassing.
 - Updated description.
 
 Changes in v2:
 - ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
-- Get timings based on the compatible string.
-- Use a separate compatible string for this new touchscreen.
 
-Douglas Anderson (4):
-  HID: i2c-hid: Reorganize so ACPI and OF are separate modules
-  arm64: defconfig: Update config names for i2c-hid rejigger
-  dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix
-    GT7375P
-  HID: i2c-hid: Introduce goodix-i2c-hid using i2c-hid core
-
- .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
- arch/arm64/configs/defconfig                  |   3 +-
- drivers/hid/Makefile                          |   2 +-
- drivers/hid/i2c-hid/Kconfig                   |  47 +++-
- drivers/hid/i2c-hid/Makefile                  |   6 +-
- drivers/hid/i2c-hid/i2c-hid-acpi.c            | 143 ++++++++++
- drivers/hid/i2c-hid/i2c-hid-core.c            | 252 +++---------------
- drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 116 ++++++++
- drivers/hid/i2c-hid/i2c-hid-of.c              | 143 ++++++++++
- drivers/hid/i2c-hid/i2c-hid.h                 |  22 ++
- include/linux/platform_data/i2c-hid.h         |  41 ---
- 11 files changed, 578 insertions(+), 262 deletions(-)
+ .../bindings/input/goodix,gt7375p.yaml        | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
- create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
- create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
- create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
- delete mode 100644 include/linux/platform_data/i2c-hid.h
 
+diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+new file mode 100644
+index 000000000000..fe1c5016f7f3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Goodix GT7375P touchscreen
++
++maintainers:
++  - Douglas Anderson <dianders@chromium.org>
++
++description:
++  Supports the Goodix GT7375P touchscreen.
++  This touchscreen uses the i2c-hid protocol but has some non-standard
++  power sequencing required.
++
++properties:
++  compatible:
++    items:
++      - const: goodix,gt7375p
++
++  reg:
++    enum:
++      - 0x5d
++      - 0x14
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    true
++
++  vdd-supply:
++    description: The 3.3V supply to the touchscreen.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      ap_ts: touchscreen@5d {
++        compatible = "goodix,gt7375p";
++        reg = <0x5d>;
++
++        interrupt-parent = <&tlmm>;
++        interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
++
++        reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
++        vdd-supply = <&pp3300_ts>;
++      };
++    };
 -- 
 2.30.0.284.gd98b1dd5eaa7-goog
 
