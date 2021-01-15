@@ -2,100 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B67BC2F7560
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4367A2F7575
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:31:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730853AbhAOJ22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 04:28:28 -0500
-Received: from mga03.intel.com ([134.134.136.65]:41112 "EHLO mga03.intel.com"
+        id S1728006AbhAOJa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 04:30:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44226 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729172AbhAOJ21 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 04:28:27 -0500
-IronPort-SDR: vkHvCL/UdoOEiTe08AgJYfTICXi69wN3dpBYmuUbijXKBqRPUEof5UTHHSKYHbVHVDixPZI17P
- r+uov+N8ljyA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9864"; a="178611070"
-X-IronPort-AV: E=Sophos;i="5.79,349,1602572400"; 
-   d="scan'208";a="178611070"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2021 01:26:41 -0800
-IronPort-SDR: 88dXyl/0gw5XIMHuouF1nDiZ/c618bWw9ZCwXlY6MlY7JDivP8c1c4jDWSSxOYObPcYMQzG2op
- NNsUdgfYw9Uw==
-X-IronPort-AV: E=Sophos;i="5.79,349,1602572400"; 
-   d="scan'208";a="364525233"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2021 01:26:38 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id A9C30206A9; Fri, 15 Jan 2021 11:26:36 +0200 (EET)
-Date:   Fri, 15 Jan 2021 11:26:36 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        roman.kovalivskyi@globallogic.com,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.org>,
-        naush@raspberrypi.com, Eugeniu Rosca <erosca@de.adit-jv.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 01/30] dt-bindings: media: i2c: Rename ov5647.yaml
-Message-ID: <20210115092636.GP11878@paasikivi.fi.intel.com>
-References: <20201119161956.756455-1-jacopo@jmondi.org>
- <20201119161956.756455-2-jacopo@jmondi.org>
- <20201125091526.GI3940@paasikivi.fi.intel.com>
- <CAL_JsqLfdGumeicqqhkfn5K40GaXX93NuNZTOpgcCLycHmVQbg@mail.gmail.com>
- <20201222095025.GS26370@paasikivi.fi.intel.com>
- <CAL_JsqL6e3Ko=gwPZj6SeFHofiebeR3-HzsEHcNiXrabruJtLA@mail.gmail.com>
- <20210115090326.qufukw5cd73ansby@uno.localdomain>
+        id S1726375AbhAOJaz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 04:30:55 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6144323436;
+        Fri, 15 Jan 2021 09:30:12 +0000 (UTC)
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1l0LQo-007hoL-BW; Fri, 15 Jan 2021 09:30:10 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210115090326.qufukw5cd73ansby@uno.localdomain>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 15 Jan 2021 09:30:10 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 03/10] irqchip/sun6i-r: Use a stacked irqchip driver
+In-Reply-To: <495f71d0-9dbf-23d2-45a1-f27b15138bb2@sholland.org>
+References: <20210112055950.21209-1-samuel@sholland.org>
+ <20210112055950.21209-4-samuel@sholland.org> <87turjjkjr.wl-maz@kernel.org>
+ <495f71d0-9dbf-23d2-45a1-f27b15138bb2@sholland.org>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <36edee16d9ee630d9f0034fb824b1b52@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: samuel@sholland.org, tglx@linutronix.de, robh+dt@kernel.org, mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net, megous@megous.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
-
-On Fri, Jan 15, 2021 at 10:03:26AM +0100, Jacopo Mondi wrote:
-> Ups,
+On 2021-01-15 04:01, Samuel Holland wrote:
+> Hello,
 > 
->    I'll fix. A question for Mauro though
+> On 1/14/21 3:06 PM, Marc Zyngier wrote:
+>> Hi Samuel,
+>> 
+>> On 2021-01-12 05:59, Samuel Holland wrote:
+>> 
+>> [...]
+>> 
+>>> +static void sun6i_r_intc_ack_nmi(void)
+>>> +{
+>>> +	writel(SUN6I_NMI_BIT, base + SUN6I_IRQ_PENDING(0));
+>> 
+>> writel_relaxed()
 > 
-> On Thu, Jan 14, 2021 at 02:20:34PM -0600, Rob Herring wrote:
-> > On Tue, Dec 22, 2020 at 3:50 AM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > On Mon, Dec 21, 2020 at 01:23:29PM -0700, Rob Herring wrote:
-> > > > On Wed, Nov 25, 2020 at 2:15 AM Sakari Ailus
-> > > > <sakari.ailus@linux.intel.com> wrote:
-> > > > >
-> > > > > Cc Rob + DT list.
-> > > >
-> > > > You have to resend if you really want me to see things. In this case,
-> > > > I don't think you need to wait on me for a rename.
-> > >
-> > > I merged the patch earlier based on the IRC discussion.
-> >
-> > Seems this landed in -next:
-> >
-> > ./Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml: $id:
-> > relative path/filename doesn't match actual path or filename
-> > expected: http://devicetree.org/schemas/media/i2c/ovti,ov5647.yaml#
-> >
+> irq_chip_unmask_parent(), which calls gic_unmask_irq(), is called
+> immediately after this in .irq_unmask. Since gic_unmask_irq() also uses
+> writel_relaxed(), the GIC write could be ordered before the write here.
+
+That's odd. writel() places a barrier *before* the actual write,
+ensuring that this write is ordered w.r.t. previous accesses.
+If you are trying to ensure ordering with what follows, you need
+an explicit barrier after this access.
+
+I guess that in the end, you may need both, as what you have orders
+the access to GICC_AIR to take place before the write to this pending
+register, and you also need to provide the ordering you just described.
+
 > 
-> The fix is worth a Fixes: tag, should I refer to the current commit
-> sha1 in linux-media/master or is there any risk for a rebase before
-> the tree is merged in the v5.12 merge window ?
+> I was getting occasional spurious interrupts (1 out of each 20-25) when
+> using a level trigger, which were resolved by switching to writel() 
+> here.
+> 
+> I mentioned this in the changelog, but it probably deserves a comment 
+> in
+> the code as well. Or maybe I should use an explicit barrier somewhere?
 
-I'd say that happens only in exceptional circumstances. I think you can do
-that.
+Please document it in the code. This is subtle enough to warrant a good
+description.
 
+>>> +}
+>>> +
+>>> +static void sun6i_r_intc_nmi_ack(struct irq_data *data)
+>>> +{
+>>> +	if (irqd_get_trigger_type(data) & IRQ_TYPE_EDGE_BOTH)
+>>> +		sun6i_r_intc_ack_nmi();
+>>> +	else
+>>> +		data->chip_data = SUN6I_NMI_NEEDS_ACK;
+>>> +}
+>>> +
+>>> +static void sun6i_r_intc_nmi_eoi(struct irq_data *data)
+>>> +{
+>>> +	/* For oneshot IRQs, delay the ack until the IRQ is unmasked. */
+>>> +	if (data->chip_data == SUN6I_NMI_NEEDS_ACK && 
+>>> !irqd_irq_masked(data))
+>>> {
+>>> +		sun6i_r_intc_ack_nmi();
+>>> +		data->chip_data = 0;
+>> 
+>> nit: NULL rather than 0?
+> 
+> NULL seemed less appropriate since I'm not using the field as a 
+> pointer,
+> but I don't have a strong opinion about it.
+
+chip_data *is* a pointer, which is why we conventionally use NULL rather
+than an integer value. Up to you.
+
+> 
+>> [...]
+>> 
+>>> +static struct irq_chip sun6i_r_intc_nmi_chip = {
+>>> +	.name			= "sun6i-r-intc",
+>>> +	.irq_ack		= sun6i_r_intc_nmi_ack,
+>>> +	.irq_mask		= irq_chip_mask_parent,
+>>> +	.irq_unmask		= sun6i_r_intc_nmi_unmask,
+>>> +	.irq_eoi		= sun6i_r_intc_nmi_eoi,
+>>> +	.irq_set_affinity	= irq_chip_set_affinity_parent,
+>>> +	.irq_set_type		= sun6i_r_intc_nmi_set_type,
+>>> +	.irq_set_irqchip_state	= sun6i_r_intc_nmi_set_irqchip_state,
+>> 
+>> You probably also want to wire irq_get_irqchip_state(), while
+>> you're at it.
+> 
+> I thought if the interrupt was pending here, it would necessarily also
+> be pending at the GIC, so adding a separate layer would be redundant.
+> 
+> irq_set_vcpu_affinity(), __irq_get_irqchip_state(), and
+> irq_set_irqchip_state() [the functions, not the callbacks] have the
+> interesting property that they search up the irqdomain hierarchy for 
+> the
+> first irqdomain with the callback. So if all the callback would do is
+> defer to its parent, it doesn't need to be provided at all*.
+
+Ah, of course... I even wrote that code!
+
+Thanks,
+
+          M.
 -- 
-Regards,
-
-Sakari Ailus
+Jazz is not dead. It just smells funny...
