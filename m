@@ -2,139 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D4402F70C3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 03:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B37962F70DF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 04:20:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732271AbhAOC63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Jan 2021 21:58:29 -0500
-Received: from mail-vi1eur05on2052.outbound.protection.outlook.com ([40.107.21.52]:38689
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726239AbhAOC63 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Jan 2021 21:58:29 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=grLCcE7j2nGvKxJIx8REOpgRWp431mex+tXlrri5d1jFOL3FSu5Z3yHwLckF7GaAHkrOBqK7WnW7yi8c5LuiEnQydSpdhtPHIgp74jjBq4q6iqhuaeW0kk/DwQ51l9ho/zMCc5JNm6AGLB3fRJRNfJNslUn+uF73yf0CbPAs9mIlMDnoaizz62h29gVeOOaQG14xodv3wINb9wz3xMtT1JO1luWQRkq7oX50JsijrTXzhi/4hf8A4hEDQ4jXaUOhT1e7Psu6pk+o06sxuAW/8wtX1+GNo7lDxnAAIK3sxKVbRbC4vDPgop05FnGCgcQ9tbmDiP83N8zCW6T6GBuz/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q4KkLJmzCS/HTFWj8OjtTZVVsRx+jWPUIc0U65M9Kp0=;
- b=XcG+CCgx2y7pcenyPS13FT+3k3uxtldSyCLpp8iOx99AIpoefi9Q2qabk0QmWJU8A6CU9kul/n2k6CewT/nmC0yJJhAtjUF+HvKCv6X4Eej5qnwl/wnxGW0pLu/LYycGJn5hAqz5dsQb8RJ04GEOhaoZVgP4CyR1h2tTZqqMJ8MgU+p2AS5HXuGdGnmW+rytiSDy63L/dTT7T+t/V5SV/adoJQh7GMrOeEXPKSJavbuiEh17rkGmm4jZwIjOkfV3V1hFj48KnHEDqta2EJMvXHjyEQC3iJquq6Z6hrciWSmu0DEUVkIOZTnw2mxVHr/zbRuxZwP2rXW/7tl7OHqWdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q4KkLJmzCS/HTFWj8OjtTZVVsRx+jWPUIc0U65M9Kp0=;
- b=Ac9VNDqG13VAROxCSRoN/2K7HQbqjsINseVmMurM8lDdOGcPcS0I8MFfje+jnveutUBhl54sLaFd2zD6ByUM1mIIrwK9VcpoKTafsINTSyLK6eINJf7LpxPSE8jxPTsmvz6RM8QrMEkJ11m+QRp1p7cFqcJUtwyMINAWfTmZNUc=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB8PR04MB6617.eurprd04.prod.outlook.com (2603:10a6:10:10f::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.11; Fri, 15 Jan
- 2021 02:57:40 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c964:9:850a:fc5]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c964:9:850a:fc5%10]) with mapi id 15.20.3742.012; Fri, 15 Jan 2021
- 02:57:40 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH] arm64: dts: imx8mq: use_dt_domains for pci node
-Date:   Fri, 15 Jan 2021 11:26:57 +0800
-Message-Id: <20210115032657.15390-1-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.28.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SG2PR02CA0083.apcprd02.prod.outlook.com
- (2603:1096:4:90::23) To DB6PR0402MB2760.eurprd04.prod.outlook.com
- (2603:10a6:4:a1::14)
+        id S1732444AbhAODTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Jan 2021 22:19:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33068 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732440AbhAODTA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Jan 2021 22:19:00 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEDCC061757
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:18:20 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id y12so4279598pji.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Jan 2021 19:18:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=CYL61nUpT9QBPPOoJporp4vlEmNkT+pHSZF51yBwgfY=;
+        b=H147E/W6ElX0kdzhQq8m290rGMnwBel2jhgKL0V8XhKc/7KgcrZuOOwV32wMytwdsq
+         QwsCwRHbFm6ES5ynCtkkJBwUlIb1ek6yQJcQ7eiPOsUQP5EUFXNL81Dc0jVFkQXj8hwg
+         veTzFlFbCZI1QE7UIktlECNH3nD30ld5r+ybQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=CYL61nUpT9QBPPOoJporp4vlEmNkT+pHSZF51yBwgfY=;
+        b=b1GnMgfxG6TbF82C5/gUxw7yFDseHfNPWrn0JEFfGYG7j6rC79oB0NSri0GKPbt/H0
+         2pYcu38S2PJL2dnPDI+oC9wUlsOPYlyU9A2+mPf0bLfcUTixAiw0Dre71FWCsnDGcTeg
+         uiMRWvsccPwkvsb/rgN1gRIwZcJknz9DwZyNYHq1O5A0Fsu6Eojdk8RzjVtKq7MKB5oE
+         g4iaqrOXuJ7ist0VeVLbwprjDh4kSP4muTjvLg2dVcGttkB1B9Ke5M5DRngJPfvukro3
+         I4c2jabk/AXs+ukI51DRZXuKZ9xC/rlb50OVYq8yNEr7oDti4ba25370oiQF3m4rYu3R
+         mhWg==
+X-Gm-Message-State: AOAM532cTfJQVo+6z2hqaJuNCyb99IsMRhRonTfNjdE2yqTaSsW73O9x
+        BqrQq9GSINSKdeU/a3Cjawo9Gw==
+X-Google-Smtp-Source: ABdhPJwKK/Ocxu/ROS6mrbWbApoVD7MGfUwi3WiESvR/TWJTzsbvbigTM0iW13OtrNg66Ss0ABX2+w==
+X-Received: by 2002:a17:90b:14c7:: with SMTP id jz7mr8308072pjb.40.1610680699797;
+        Thu, 14 Jan 2021 19:18:19 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id x15sm6207760pfi.184.2021.01.14.19.18.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Jan 2021 19:18:19 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from linux-1xn6.ap.freescale.net (119.31.174.71) by SG2PR02CA0083.apcprd02.prod.outlook.com (2603:1096:4:90::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.9 via Frontend Transport; Fri, 15 Jan 2021 02:57:36 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: f1c87d54-edca-433e-195c-08d8b9015217
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6617:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB6617A3FF4D3947AEBF90FD04C9A70@DB8PR04MB6617.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9oY9XC486bOwoNH2tjqXY8Ai4A3p8JEpQZX8Gyb7uZ5iPUDgD+yjxyuNih0lqYeu2WtkFR/m/oMNGYFPVdaOcZoPGUhvDqRqTxuqY6BFy6YVpgs8K6C7qxIAv7oau5KPZ4RFfS6YmIGorUk/WJmfL/Dnbg2Djmm33vPnlaS75mv/DqCJc9FS0Tw9mMKUkD8S/BLKtqh4QfF8HKTWmOchGpetBOViuYDuUK7+9z9hiWLGp6/BVbmFHhCiN/5boFTKzdWvt8XAk/H6/1Q08odvJnp6hNRsi1zjNvtcLpWmzcsMeI6gQ9HpqexFPGKZZzzI/2HHPxmzInzCICPHf+HZaM0ZV6Us6BtNvsVAhCwd9a/I6KzhOmzAUVjR7DIRiHvAAIE1E4+GPGC+GVqLi3+hvHS/yP+J1UY2ySaMtUrhVVsRpayPpjRAcJeZD0FG5Zra
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(376002)(136003)(39860400002)(366004)(26005)(6666004)(52116002)(86362001)(478600001)(1076003)(316002)(8936002)(5660300002)(54906003)(6486002)(8676002)(186003)(6506007)(956004)(2616005)(2906002)(6512007)(16526019)(66556008)(66946007)(66476007)(4326008)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?pq+rrSQvHPHHzJ3CtkGvCy+c6AuEU+D8coJ8x3/uh+AkV5pmn0SbC1PpKJuV?=
- =?us-ascii?Q?RF3Cbi6bqm74QEGZI3x/ik5IYG4bVcegwUsvhpLTf2QlEEe4SRJlYURF5tTd?=
- =?us-ascii?Q?uT9VDOyATg3QtPaY1KQv4K794kRZ3RFnNVzQKJA4Ecest3i7klg/9J/ipag/?=
- =?us-ascii?Q?zXJYFtpOaaD7rmGfm8njeA+qbMHEgxMVO6G21fRGcc4inU3oXudaRLrj2JYZ?=
- =?us-ascii?Q?1Rj2D1V1PhE6glHRj8zcUrBwVp1GlikAmqdWCfRnQnyYa1MadMLIjd/VyycU?=
- =?us-ascii?Q?otBYTEPbevw/XtpR89DHVyzPpX/tmyQ80Eck39gqAC2wJkAUs2v6vzcCihfU?=
- =?us-ascii?Q?jwkaeBqRjM93fXgD23EUPmXxM5ooaTFA09mSROKWD3tfaU6zvmRai+XNTluK?=
- =?us-ascii?Q?+DkSrlJq5eDTUv/t/Sssb4nUYrXFhHq2U6cFTUEnObx65fHSUr4F/SjdQVUh?=
- =?us-ascii?Q?Mr/INOMmb9KwDcA0umA0uresHmLWqrI3Zu9i3Rw/tIdy1afEdnEu2QNobhG6?=
- =?us-ascii?Q?EIrHGkr3hRUzLH3zwH4GsxrnieKQgF1z7ejHL4TwskAxxuzJZYMzgXG31DR4?=
- =?us-ascii?Q?uuie6zjijvY1mM1YTH5w/ZFp6PwPYa5sV1er+pGtJ/WVbz/AByP3sQEvZgDj?=
- =?us-ascii?Q?1hgClW6fsuqQFjzcLauuSarTFI6yHT5Blv6X2CXATsRqLOFG41wX79N6uuPa?=
- =?us-ascii?Q?VXFE1X4Du7kHodzZjf917MmDrWNoUYe4zrD30YlnFgPlkL8t3aNHs5NOtnnF?=
- =?us-ascii?Q?0KAAD/hk7WKXfCZ9c64+4gqLOoRM+nM7+pI3RiiUn68mrOzp7j46ug027pRv?=
- =?us-ascii?Q?fLQQWhtgHJfpiz9iSA3ROSX3P50fCppHv/+HS3FybMyGuWXnZDJ3SPTNSWGO?=
- =?us-ascii?Q?N8t+4A8ZLy8XkoUZJ0A8Afygbb87clp5EedqsbLH1CxNZh1+sGoxkPZCNrQ+?=
- =?us-ascii?Q?a1PWRlAYQXGvxmKaOtl1IS6TJ3DdRhKRGC9NFAo1iZHkZxdfavsGq9oJEkWP?=
- =?us-ascii?Q?KXZL?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1c87d54-edca-433e-195c-08d8b9015217
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2021 02:57:39.9135
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: di/1qxnCrPiGKXbjJlxqnPX/TriVAWg/Qb7EAEw9ZXo3CW4mpCu7OGBPmo06/HWntVxeBgnTxJBdj2kKDL3vjg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6617
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
+References: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org> <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
+Date:   Thu, 14 Jan 2021 19:18:17 -0800
+Message-ID: <161068069765.3661239.6061499369110570958@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Quoting Srinivasa Rao Mandadapu (2020-09-29 23:42:48)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/bo=
+ot/dts/qcom/sc7180-trogdor.dtsi
+> index 5724982..850b43e 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -231,6 +231,7 @@
+> =20
+>                 audio-jack =3D <&alc5682>;
+> =20
+> +               #sound-dai-cells =3D <0>;
+>                 #address-cells =3D <1>;
+>                 #size-cells =3D <0>;
+> =20
+> @@ -257,6 +258,17 @@
+>                                 sound-dai =3D <&max98357a>;
+>                         };
+>                 };
 
-We are using Jailhouse Hypervsior which has virtual pci node that
-use dt domains. so also use dt domains for pci node, this will avoid
-conflict with Jailhouse Hypervisor to trigger the following error:
-          pr_err("Inconsistent \"linux,pci-domain\" property in DT\n");
+Can you please add a newline here?
 
-Reviewed-by: Richard Zhu <hongxing.zhu@nxp.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+> +               dai-link@2 {
+> +                       link-name =3D "MultiMedia2";
+> +                       reg =3D <2>;
+> +                       cpu {
+> +                               sound-dai =3D <&lpass_cpu 2>;
+> +                       };
+> +
+> +                       codec {
+> +                               sound-dai =3D <&msm_dp>;
+> +                       };
+> +               };
+>         };
+>  };
+> =20
+> @@ -782,6 +794,9 @@ hp_i2c: &i2c9 {
+>                 reg =3D <MI2S_SECONDARY>;
+>                 qcom,playback-sd-lines =3D <0>;
+>         };
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index a841a023e8e0..ac37cc86ad39 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1315,6 +1315,7 @@ pcie0: pcie@33800000 {
- 			                <0 0 0 3 &gic GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
- 			                <0 0 0 4 &gic GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
- 			fsl,max-link-speed = <2>;
-+			linux,pci-domain = <0>;
- 			power-domains = <&pgc_pcie>;
- 			resets = <&src IMX8MQ_RESET_PCIEPHY>,
- 			         <&src IMX8MQ_RESET_PCIE_CTRL_APPS_EN>,
-@@ -1344,6 +1345,7 @@ pcie1: pcie@33c00000 {
- 					<0 0 0 3 &gic GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
- 					<0 0 0 4 &gic GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
- 			fsl,max-link-speed = <2>;
-+			linux,pci-domain = <1>;
- 			power-domains = <&pgc_pcie>;
- 			resets = <&src IMX8MQ_RESET_PCIEPHY2>,
- 			         <&src IMX8MQ_RESET_PCIE2_CTRL_APPS_EN>,
--- 
-2.28.0
+Can you please add a newline here?
 
+> +       hdmi-primary@0 {
+
+This should be hdmi-primary@2 {
+
+Or a more generic node name should be devised. dai@2 perhaps?
+
+> +               reg =3D <LPASS_DP_RX>;
+> +       };
+>  };
+>
