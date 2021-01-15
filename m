@@ -2,88 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A81532F7FFD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 16:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 538732F8010
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 16:54:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727716AbhAOPvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 10:51:07 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:34628 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726046AbhAOPvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 10:51:06 -0500
-Received: by mail-ot1-f44.google.com with SMTP id a109so8964633otc.1;
-        Fri, 15 Jan 2021 07:50:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UWwfO6fUF3jtZTFE5DmkWv7oWxLHfv1fXYLbOJ6ASMY=;
-        b=acW5vd9tA5IGEqARXWGahLHFYx8Ry9BMcbNk7jSXYqQlBeE7hSNAcsuFDfu+xHo8Vr
-         I40npuFkD56hGIUcLsbLhGGPLhokvB2dJfaXCNVeGSs83iBlj+vBdjaVbg6pstuopUQ2
-         u1MGE8VdTlhWmTdvbWGbpBLhyj8xTLgKxOd6I0AhHrWMkRtLaPjhHGmMR2OUza9buYfr
-         4Yk4tcSBk+Gn4UqDgNKhxWDXAOJyRZUp90TZkDT5kiO8YUPNC8VgbuVsWSMQBqHkQPSf
-         /dPuZ0OwZKRD8DEIU7PtIILSD1470cjoRCHwdTOBLIZg3ZzZoUlYVXGUp1sN4XJkjHuR
-         zlZQ==
-X-Gm-Message-State: AOAM531bMPCx05z8CbZPvJgXTv7ky6RDWMiAm1oEViSty+dJQHKyJ+A0
-        VgXwZnX1cEQkG8Yf5w3Z+OdSyIrMKg==
-X-Google-Smtp-Source: ABdhPJyLI97/zqP2+zMwbcvSjT7ER1S+YTAMTLyOVfHUEjDMlnWl0x4l5k7i1ZOWTLQMQsyMj3NRWQ==
-X-Received: by 2002:a9d:1f7:: with SMTP id e110mr8442019ote.73.1610725825796;
-        Fri, 15 Jan 2021 07:50:25 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w5sm1838406oow.7.2021.01.15.07.50.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 07:50:24 -0800 (PST)
-Received: (nullmailer pid 1330230 invoked by uid 1000);
-        Fri, 15 Jan 2021 15:50:24 -0000
-Date:   Fri, 15 Jan 2021 09:50:24 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: ov5647: Fix filename
-Message-ID: <20210115155024.GB1320747@robh.at.kernel.org>
-References: <20210115101652.9275-1-jacopo@jmondi.org>
- <c77755a4-4386-f5b0-cb47-64227d022b4b@ideasonboard.com>
- <20210115110146.yu635kh4emdvbidy@uno.localdomain>
+        id S1732286AbhAOPw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 10:52:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53928 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732139AbhAOPw7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 10:52:59 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C787EC061796
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 07:51:41 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1l0RNt-0003NK-0o; Fri, 15 Jan 2021 16:51:33 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1l0RNr-0008LH-RE; Fri, 15 Jan 2021 16:51:31 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mark Brown <broonie@kernel.org>, Wolfram Sang <wsa@kernel.org>
+Cc:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: [PATCH v2 0/7] Remove ARM platform efm32
+Date:   Fri, 15 Jan 2021 16:51:23 +0100
+Message-Id: <20210115155130.185010-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210115110146.yu635kh4emdvbidy@uno.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 12:01:46PM +0100, Jacopo Mondi wrote:
-> Hi Kieran
-> 
-> On Fri, Jan 15, 2021 at 10:20:20AM +0000, Kieran Bingham wrote:
-> > Hi Jacopo,
-> >
-> > On 15/01/2021 10:16, Jacopo Mondi wrote:
-> > > Commit 1b5071af8240 ("media: dt-bindings: media: i2c: Rename
-> > > ov5647.yaml") renamed the bindings file but did not update the
-> > > Id: field there.
-> > >
-> > > Fix it by using the new filename.
-> > >
-> > > Fixes: 1b5071af8240 ("media: dt-bindings: media: i2c: Rename ov5647.yaml")
-> > > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> >
-> > I wonder if this could be automatically validated by one of the checkers
-> > at some point. (I assume it isn't already).
-> >
-> 
-> The dt validation process complains
-> 
-> ../Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml: $id: relative path/filename doesn't match actual path or filename
-> 
-> I can't tell if it's a newly introduced validation or it was there
-> already when I renamed that file ~6 months ago and I failed to run
-> validation :/
+From: Uwe Kleine-König <uwe@kleine-koenig.org>
 
-It's been there since Aug 2019.
+Hello,
 
-Rob
+compared to v1 (Message-Id:
+20210114151630.128830-1-u.kleine-koenig@pengutronix.de) I did the following changes:
+
+ - add "serial" to the summary line of the patch removing the serial
+   driver
+ - actually remove the serial driver in the patch that claims to do this
+   instead of patch 1.
+
+On irc Arnd signalled to want to merge the first patch. As there are no
+hard interdependencies between these, I think the best approach is for the
+individual maintainers to pick up the patches they are responsible for.
+
+Thanks and best regards,
+Uwe
+
+Uwe Kleine-König (7):
+  ARM: drop efm32 platform
+  clk: Drop unused efm32gg driver
+  clocksource: Drop unused efm32 timer code
+  spi: Drop unused efm32 bus driver
+  i2c: Drop unused efm32 bus driver
+  tty: serial: Drop unused efm32 serial driver
+  MAINTAINERS: Remove deleted platform efm32
+
+ MAINTAINERS                              |   7 -
+ arch/arm/Kconfig                         |  10 +-
+ arch/arm/Kconfig.debug                   |  17 -
+ arch/arm/Makefile                        |   1 -
+ arch/arm/boot/dts/Makefile               |   2 -
+ arch/arm/boot/dts/efm32gg-dk3750.dts     |  88 ---
+ arch/arm/boot/dts/efm32gg.dtsi           | 177 -----
+ arch/arm/configs/efm32_defconfig         |  98 ---
+ arch/arm/include/debug/efm32.S           |  45 --
+ arch/arm/mach-efm32/Makefile             |   2 -
+ arch/arm/mach-efm32/Makefile.boot        |   4 -
+ arch/arm/mach-efm32/dtmachine.c          |  16 -
+ arch/arm/mm/Kconfig                      |   1 -
+ drivers/clk/Makefile                     |   1 -
+ drivers/clk/clk-efm32gg.c                |  84 ---
+ drivers/clocksource/Kconfig              |   9 -
+ drivers/clocksource/Makefile             |   1 -
+ drivers/clocksource/timer-efm32.c        | 278 --------
+ drivers/i2c/busses/Kconfig               |   7 -
+ drivers/i2c/busses/Makefile              |   1 -
+ drivers/i2c/busses/i2c-efm32.c           | 469 -------------
+ drivers/spi/Kconfig                      |   7 -
+ drivers/spi/Makefile                     |   1 -
+ drivers/spi/spi-efm32.c                  | 462 ------------
+ drivers/tty/serial/Kconfig               |  13 -
+ drivers/tty/serial/Makefile              |   1 -
+ drivers/tty/serial/efm32-uart.c          | 852 -----------------------
+ include/linux/platform_data/efm32-spi.h  |  15 -
+ include/linux/platform_data/efm32-uart.h |  19 -
+ include/uapi/linux/serial_core.h         |   3 -
+ 30 files changed, 1 insertion(+), 2690 deletions(-)
+ delete mode 100644 arch/arm/boot/dts/efm32gg-dk3750.dts
+ delete mode 100644 arch/arm/boot/dts/efm32gg.dtsi
+ delete mode 100644 arch/arm/configs/efm32_defconfig
+ delete mode 100644 arch/arm/include/debug/efm32.S
+ delete mode 100644 arch/arm/mach-efm32/Makefile
+ delete mode 100644 arch/arm/mach-efm32/Makefile.boot
+ delete mode 100644 arch/arm/mach-efm32/dtmachine.c
+ delete mode 100644 drivers/clk/clk-efm32gg.c
+ delete mode 100644 drivers/clocksource/timer-efm32.c
+ delete mode 100644 drivers/i2c/busses/i2c-efm32.c
+ delete mode 100644 drivers/spi/spi-efm32.c
+ delete mode 100644 drivers/tty/serial/efm32-uart.c
+ delete mode 100644 include/linux/platform_data/efm32-spi.h
+ delete mode 100644 include/linux/platform_data/efm32-uart.h
+
+
+base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
+-- 
+2.29.2
+
