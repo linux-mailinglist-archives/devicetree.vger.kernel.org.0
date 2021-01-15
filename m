@@ -2,89 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A2E2F8430
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:23:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 213282F8438
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 19:23:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728160AbhAOSVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 13:21:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43862 "EHLO mail.kernel.org"
+        id S2387992AbhAOSWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 13:22:01 -0500
+Received: from mx2.suse.de ([195.135.220.15]:50512 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726434AbhAOSVR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 13:21:17 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 13EE923AA7;
-        Fri, 15 Jan 2021 18:20:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610734836;
-        bh=yywxwDqzhCGsowbf6Lp1h6NAOX0mTHDYPddZyQTe1ZA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=HVtOaB4YVRF7tyEqDy4FPLguR4hJxrNBUgjNdbrKtR51R6rZp0c9OY9pednANeGcZ
-         5eqpEZf6JRVve4q1AETTslDOCyOeqhJcO2QO1Tvd2GziUQ8yM8HWMz7iQT9a1OKMwV
-         tsHBqxLf+RRRogOXIebyHFv3QdnUQ9xWC3Iuk09c2ekCbm80REl0Rjyf97b0lH2/WZ
-         i1ZVPmjook3gxY+0c3LjT5bZVT+xkXDlQ0HPK7K6XaCGum6ySerJA0z2bzpvzzbg1x
-         kj2zMV8Y9KNYOXWCuTZuPvmcFkeTndukZ76VcYBWfRiGGwUQhaTUH6PQ/OgEu39j3b
-         dR/elNyIMXQug==
-From:   Mark Brown <broonie@kernel.org>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        jagan@amarulasolutions.com, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com
-In-Reply-To: <20210113222016.1915993-1-adrien.grassein@gmail.com>
-References: <20210113222016.1915993-1-adrien.grassein@gmail.com>
-Subject: Re: [PATCH v4 0/6] Fix issues on pf8x00 driver
-Message-Id: <161073479107.12431.7161364443941484976.b4-ty@kernel.org>
-Date:   Fri, 15 Jan 2021 18:19:51 +0000
+        id S1732975AbhAOSWA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 13:22:00 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 065C4AA6F;
+        Fri, 15 Jan 2021 18:21:19 +0000 (UTC)
+Message-ID: <b707107cfd81e556e446c8691f04dc8d247f81ac.camel@suse.de>
+Subject: Re: [PATCH V4] dt-bindings: gpu: Convert v3d to json-schema
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Eric Anholt <eric@anholt.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+Date:   Fri, 15 Jan 2021 19:21:17 +0100
+In-Reply-To: <1610564917-11559-1-git-send-email-stefan.wahren@i2se.com>
+References: <1610564917-11559-1-git-send-email-stefan.wahren@i2se.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-9bhOjb89UhlJwDzoHjSe"
+User-Agent: Evolution 3.38.3 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Jan 2021 23:20:10 +0100, Adrien Grassein wrote:
-> this patch set aims is to fix some issues contains in the pf8x00 driver.
-> Some issues are documentation ones, some others are in code.
-> 
-> These issues where found while developing another version of the same
-> driver. I prefer to share with you the patch for it.
-> 
-> I do these patches on the master branch of the linux-next repository.
-> 
-> [...]
 
-Applied to
+--=-9bhOjb89UhlJwDzoHjSe
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+On Wed, 2021-01-13 at 20:08 +0100, Stefan Wahren wrote:
+> This converts the v3d bindings to yaml format.
+>=20
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> ---
 
-Thanks!
+Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-[1/6] regulator: pf8x00: add a doc for the module
-      commit: 4d23b84d1fcd1eadbc5c6cd93e76b02a8d191d66
-[2/6] regulator: dt-bindings: pf8x00: fix nxp,phase-shift doc
-      commit: 988d0d42509a2c1fad0844a6e8f9c7bce7c930dd
-[3/6] regulator: dt-bindings: pf8x00: mark nxp,ilim-ma property as deprecated
-      commit: 34b860aa0b6221b21eea6bac76357063f525b561
-[4/6] regulator: pf8x00: mark nxp,ilim-ma property as deprecated
-      commit: 245f5f65229a6c6f5b04fa90221b44818a928916
-[5/6] regulator: pf8x00: use linear range for buck 1-6
-      commit: 35a93349932e0e04c284f8a4954f3d1236c97d85
-[6/6] regulator: pf8x00: fix nxp,phase-shift
-      commit: 475a5d85ff62f7ca73f51f23977e7e3ec8c9f906
+Regards,
+Nicolas
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+>=20
+> Changes in V4:
+> - define order for required reg-names
+> - adapt example
+>=20
+> Changes in V3:
+> - drop redundant maxItems in case we already have items defined
+> - fix order of reg-names enum
+> - tag required items in description
+> - add reg-names to required properties
+> - drop clock-names
+>=20
+> =C2=A0.../devicetree/bindings/gpu/brcm,bcm-v3d.txt       | 33 ----------
+> =C2=A0.../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 75 +++++++++++=
++++++++++++
+> =C2=A02 files changed, 75 insertions(+), 33 deletions(-)
+> =C2=A0delete mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v=
+3d.txt
+> =C2=A0create mode 100644 Documentation/devicetree/bindings/gpu/brcm,bcm-v=
+3d.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt b/Doc=
+umentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
+> deleted file mode 100644
+> index b2df82b..0000000
+> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.txt
+> +++ /dev/null
+> @@ -1,33 +0,0 @@
+> -Broadcom V3D GPU
+> -
+> -Only the Broadcom V3D 3.x and newer GPUs are covered by this binding.
+> -For V3D 2.x, see brcm,bcm-vc4.txt.
+> -
+> -Required properties:
+> -- compatible:	Should be "brcm,7268-v3d" or "brcm,7278-v3d"
+> -- reg:		Physical base addresses and lengths of the register areas
+> -- reg-names:	Names for the register areas.  The "hub" and "core0"
+> -		  register areas are always required.  The "gca" register area
+> -		  is required if the GCA cache controller is present.  The
+> -		  "bridge" register area is required if an external reset
+> -		  controller is not present.
+> -- interrupts:	The interrupt numbers.  The first interrupt is for the hub=
+,
+> -		  while the following interrupts are separate interrupt lines
+> -		  for the cores (if they don't share the hub's interrupt).
+> -		  See bindings/interrupt-controller/interrupts.txt
+> -
+> -Optional properties:
+> -- clocks:	The core clock the unit runs on
+> -- resets:	The reset line for v3d, if not using a mapping of the bridge
+> -		  See bindings/reset/reset.txt
+> -
+> -v3d {
+> -	compatible =3D "brcm,7268-v3d";
+> -	reg =3D <0xf1204000 0x100>,
+> -	      <0xf1200000 0x4000>,
+> -	      <0xf1208000 0x4000>,
+> -	      <0xf1204100 0x100>;
+> -	reg-names =3D "bridge", "hub", "core0", "gca";
+> -	interrupts =3D <0 78 4>,
+> -		     <0 77 4>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Do=
+cumentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+> new file mode 100644
+> index 0000000..fbce844
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpu/brcm,bcm-v3d.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom V3D GPU Bindings
+> +
+> +maintainers:
+> +  - Eric Anholt <eric@anholt.net>
+> +  - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: '^gpu@[a-f0-9]+$'
+> +
+> +  compatible:
+> +    enum:
+> +      - brcm,7268-v3d
+> +      - brcm,7278-v3d
+> +
+> +  reg:
+> +    items:
+> +      - description: hub register (required)
+> +      - description: core0 register (required)
+> +      - description: GCA cache controller register (if GCA controller pr=
+esent)
+> +      - description: bridge register (if no external reset controller)
+> +    minItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: hub
+> +      - const: core0
+> +      - enum: [ bridge, gca ]
+> +      - enum: [ bridge, gca ]
+> +    minItems: 2
+> +    maxItems: 4
+> +
+> +  interrupts:
+> +    items:
+> +      - description: hub interrupt (required)
+> +      - description: core interrupts (if it doesn't share the hub's inte=
+rrupt)
+> +    minItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpu@f1200000 {
+> +      compatible =3D "brcm,7268-v3d";
+> +      reg =3D <0xf1200000 0x4000>,
+> +            <0xf1208000 0x4000>,
+> +            <0xf1204000 0x100>,
+> +            <0xf1204100 0x100>;
+> +      reg-names =3D "hub", "core0", "bridge", "gca";
+> +      interrupts =3D <0 78 4>,
+> +                   <0 77 4>;
+> +    };
+> +
+> +...
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+--=-9bhOjb89UhlJwDzoHjSe
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-Thanks,
-Mark
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmAB3R0ACgkQlfZmHno8
+x/6zlAgAr4hmHIcqPIBSJv91KJeRqu6x3uKC+AxZNzD3O+P4ajSUtYjdBeZ7UAcq
+JI/l6zhuTsALg8CjWSFsbwXxkOzzfamUNk80gqo/0ug87hhODasgLui53GrOFjH6
+06k8EoncuUwwNmiPTQGOqEg82Kitxx4mjhV7jJgCbI10LewDgVB2IPlAVwkpTW/z
+nqJ/Hk1AlHcWKqozBVGw7veNCG83yk+Sf/tdjuYA9rS1LTk8y8sE0uu/sZtailHu
+sFm8S8a0ouFSMPRYwVYrZaIRC+lbDK5Kf6S3iKUFU6s3/gqnZHgrIyRSDfaoMDll
+9IoxDo306UB0DwM67LnVvxSMivBacQ==
+=4lrW
+-----END PGP SIGNATURE-----
+
+--=-9bhOjb89UhlJwDzoHjSe--
+
