@@ -2,129 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C20D2F7E72
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 15:44:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B65D2F7EBD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 16:00:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730792AbhAOOoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 09:44:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39234 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727716AbhAOOog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 09:44:36 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A1CC061757
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 06:43:56 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id b24so8743461otj.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 06:43:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=x0jeRffU+yop2UeLzXkeiDQE3IGPjGYo516b3eTS6oY=;
-        b=IJ+4HWXUdwcAH3GtOhYa7ypaWMxhh5MbHnIQIlibpi840ZZ02W/dhYFnc5rH20mGNY
-         2j6gViUNbEwJ8P8kJktJN6VHMMlRbOMzCRMyHhNYqYfe0J2e9g1R9jDBNUVAd8YeAh/e
-         UnaXRNXhH5OtAZk7GlTbSBzLDOaj7K7ylyIXBcQs47u5LmTRHKAOxoC81VPBJc7197fo
-         IDbB/nAPrSO23dHFAajc+A0m8bbOKSAoauPfBo9/ALGAwmDUHct2YYpcPVFzlkC5z/KG
-         qCs17nZy3BmyuqPx6F09zdIGNeJ09QzAynUqXrKN2qcmrZQ3UO7Pudaa1llDn5CGE5IR
-         Fziw==
+        id S1726046AbhAOO74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 09:59:56 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:46742 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731502AbhAOO7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 09:59:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1610722706;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=dmVQjQTpqOnD4r9o3Q6+/fS9ZXoOCu6z+q20+s/vvWQ=;
+        b=QYZQnYRgkyfnHGvF9z1SHneF5S2cgylo1sRSe+JsIBb0Isx/XPFVFjM4esOAq67Uuu099c
+        bYUWZm2lsykvC5B4cbza2VGog526qOaGdcmXwCJqV3CDjGCrO6SupoxwDpXG4kUqdX8oGi
+        vfookECfCp8T4vonMWO6Xs1EikfU4bs=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-560-lzFr5PSMPj-dIIOCzpOccw-1; Fri, 15 Jan 2021 09:58:25 -0500
+X-MC-Unique: lzFr5PSMPj-dIIOCzpOccw-1
+Received: by mail-wm1-f72.google.com with SMTP id r1so3077931wmn.8
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 06:58:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=x0jeRffU+yop2UeLzXkeiDQE3IGPjGYo516b3eTS6oY=;
-        b=MDdb7JARjLVP2FAWLRxRiO+McG54ql6sfTNXGfo4EDiXkegxS3fxejCNTb1kJ6zze9
-         LbOv2yvEvnIPjxXHApOHNUq+HJJITCToeAk2qECEatcsTkU0IXGZfAJ+mO79Rmox+2zC
-         PZcI4D7ZJjHhtTpVKGTh4GdCSPg6vyxZkeOH4TeAaALK8k6J0txtcHEpC75ztEqQOZ/J
-         ULTAItLsT6mAZXEA6dH9QjMF1xjTIMgOh1vNz7cVJLK6qGSxooe52aZmCQqVu70iwcG/
-         3JNjEcVV/WxbGzO+FfpNZRxbD5806hGx8iiQVdo0814GPUoY6pqGoMkQdL8yLrM2YgZu
-         AXrw==
-X-Gm-Message-State: AOAM5315SXkzlHBbUmmcOwDDarodZCg5rgPcnOSkImVIhyofkhYvLKyG
-        0LSkOe4uoYUJ3Na6T2eSUH/Skw==
-X-Google-Smtp-Source: ABdhPJxjeiUubZZgCiEeMMb59uqjChQ3EteGlfG88/A7rOidXAq3ujcrFUAaVhSD6WWTbVBchNAgXw==
-X-Received: by 2002:a9d:3e0d:: with SMTP id a13mr8552934otd.194.1610721835721;
-        Fri, 15 Jan 2021 06:43:55 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w10sm1695715oic.44.2021.01.15.06.43.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 06:43:55 -0800 (PST)
-Date:   Fri, 15 Jan 2021 08:43:53 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Roja Rani Yarubandi <rojay@codeaurora.org>, ulf.hansson@linaro.org,
-        viresh.kumar@linaro.org
-Cc:     robh+dt@kernel.org, wsa@kernel.org, swboyd@chromium.org,
-        dianders@chromium.org, saiprakash.ranjan@codeaurora.org,
-        mka@chromium.org, akashast@codeaurora.org,
-        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
-        rnayak@codeaurora.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for
- 'assigned-performance-states'
-Message-ID: <YAGqKfDfB7EEuZVn@builder.lan>
-References: <20201224111210.1214-1-rojay@codeaurora.org>
- <20201224111210.1214-4-rojay@codeaurora.org>
+        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dmVQjQTpqOnD4r9o3Q6+/fS9ZXoOCu6z+q20+s/vvWQ=;
+        b=UNn5F4xneiZ5nKAHI+JyT9m+hIHGce62own2QUc0b/3B9TvPbWC1kdHMbA/QmrTYBu
+         h0+bYpc9W84Ekr7Rd8cdI7OfjoAlrcCA8EmvdM5Uh0FpwXyZKTuHF4f910/ruz2ub4JM
+         91JJ9QAau/04WnUNuxmK+eCC9bOMY7hwh3Rk0bp3yXyXKzwkYGPWulXFHu+fBsRsPwFm
+         16+ryHgqCrDfAOkbQJy6y1TrCm2iLCCM94y9BHlFif87IecymxmuIdOKbZPNZsxL/dke
+         1szpWXFqJzr2FVSGmUJg5M0l6bv/3GdGAQ0kaVlpNoHCMisHl23GQjjDi2K9p8+jHz5e
+         VQCg==
+X-Gm-Message-State: AOAM533DKIFDNyaDykgtHHueyxXJhB3x6ML5QZF6WR0gQki3ExvXiVYH
+        B+Si9iLgG7yRuA0wXHBP6FPpc+X0KSXADwaP29w+CJ5hGBBwyK+VSqbRxrOfxqp0IS9mLrw2Re7
+        yrHumGmgMYUQeDOTiorTDHQ==
+X-Received: by 2002:a1c:e255:: with SMTP id z82mr1118468wmg.60.1610722704147;
+        Fri, 15 Jan 2021 06:58:24 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwW+XSWfmPhbHhzTUqZ64FJxtNe1z+L1rkyzhGjXUijdF1PlSioAAyUWeDkY39cnqvjrYChFw==
+X-Received: by 2002:a1c:e255:: with SMTP id z82mr1118429wmg.60.1610722703896;
+        Fri, 15 Jan 2021 06:58:23 -0800 (PST)
+Received: from ?IPv6:2a01:e34:eea6:7961::e71? ([2a01:e34:eea6:7961::e71])
+        by smtp.gmail.com with ESMTPSA id f14sm15410402wre.69.2021.01.15.06.58.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Jan 2021 06:58:23 -0800 (PST)
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Subject: Re: [PATCH v8 0/4] HID: i2c-hid: Reorganize to allow supporting
+ goodix,gt7375p
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Jiri Kosina <jkosina@suse.cz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        Kai-Heng Feng <kai.heng.feng@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andrea Borgia <andrea@borgia.bo.it>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Daniel Playfair Cal <daniel.playfair.cal@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Jiri Kosina <jikos@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Max Krummenacher <max.oss.09@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        Pavel Balan <admin@kryma.net>, Shawn Guo <shawnguo@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
+        Xiaofei Tan <tanxiaofei@huawei.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20201211222448.2115188-1-dianders@chromium.org>
+ <CAD=FV=Ve4wGJ=KxQjraYsiAQZHG_5qEeFW0ZhmBBkRmtdm7Gwg@mail.gmail.com>
+ <CAO-hwJK+=537C-EbgNXPY3=m5LvM8SVKCDB5X145BfSMHgUMdw@mail.gmail.com>
+ <CAO-hwJLuzAccZbLSCvyP0JnkCW8fgswrm8RJfMaVKjtyF5Yg_A@mail.gmail.com>
+ <CAD=FV=W3uzNPwAGPCUfjC-zoWEPyY4bF8TE4JgPP21s-3MAfpQ@mail.gmail.com>
+ <CAO-hwJ+Gz_yp_vn1prREvhcU=YqVatqd_Hp+95L5i2=bcwfhbA@mail.gmail.com>
+Message-ID: <f3add027-d732-0846-fa54-b3c51430b152@redhat.com>
+Date:   Fri, 15 Jan 2021 15:58:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201224111210.1214-4-rojay@codeaurora.org>
+In-Reply-To: <CAO-hwJ+Gz_yp_vn1prREvhcU=YqVatqd_Hp+95L5i2=bcwfhbA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 24 Dec 05:12 CST 2020, Roja Rani Yarubandi wrote:
+Hi,
 
-> @@ -629,6 +658,16 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
->  	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
->  
->  	disable_irq(gi2c->irq);
-> +
-> +	/* Drop the assigned performance state */
-> +	if (gi2c->assigned_pstate) {
-> +		ret = dev_pm_genpd_set_performance_state(dev, 0);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to set performance state\n");
-> +			return ret;
-> +		}
-> +	}
-> +
+On Wed, Jan 13, 2021 at 8:35 PM Benjamin Tissoires <benjamin.tissoires@redhat.com> wrote:
+>
+> On Wed, Jan 13, 2021 at 5:05 PM Doug Anderson <dianders@chromium.org> wrote:
+> >
+> > Hi,
+> >
+> > On Wed, Jan 13, 2021 at 7:09 AM Benjamin Tissoires
+> > <benjamin.tissoires@redhat.com> wrote:
+> > >
+> > > > I wanted to apply the series yesterday, but for these kinds of changes
+> > > > I like giving it a spin on actual hardware. Turns out that my XPS-13
+> > > > can not boot to v5.11-rc2, which makes testing the new branch slightly
+> > > > more difficult.
+> > > >
+> > > > I'll give it a spin next week, but I think I should be able to land it for 5.12.
+> > > >
+> > > > Regarding the defconfig conflict, no worries, we can handle it with
+> > > > Stephen and Linus.
+> > > >
+> > >
+> > > After 2 full kernel bisects (I messed up the first because I am an
+> > > idiot and inverted good and bad after the first reboot), I found my
+> > > culprit, and I was able to test the series today.
+> > >
+> > > The series works fine regarding enumeration and removing of devices,
+> > > but it prevents my system from being suspended. If I rmmod
+> > > i2c-hid-acpi, suspend works fine, but if it is present, it immediately
+> > > comes back, which makes me think that something must be wrong.
+> > >
+> > > I also just reverted the series and confirmed that suspend/resume now
+> > > works, meaning that patch 1/4 needs to be checked.
+> >
+> > Can you give me any hints about what type of failure you're seeing?
+> > Any logs?  I don't have an ACPI system to test with...
+>
+> I don't have any logs, just that the system comes back up. There is a
+> chance we are not powering the device down correctly, which triggers
+> an IRQ and which puts the system back on.
+>
+> >
+> > Is there any chance that some type of userspace / udev rule is getting
+> > tripped up by the driver being renamed?  We ran into something like
+> > this recently on Chrome OS where we had a tool that was hardcoded to
+> > look for "i2c-hid" and needed to be adapted to account for the new
+> > driver name.  Often userspace tweaks with wakeup rules based on driver
+> > name...
+>
+> I don't think there is anything like that on a regular desktop.
+>
+> >
+> > I'll go stare at the code now and see if anything jumps out.
+> >
+>
+> Thanks, but don't spend too much time on it, unless something really
+> jumps out. I'll debug that tomorrow. It's much easier with an actual
+> device than by just looking at the code.
+>
 
-Ulf, Viresh, I think we discussed this at the time of introducing the
-performance states.
+Well, that's weird. Now suspend resume works reliably even with your
+series. It could just have been that the lid sensor was too close to a
+magnet or something like that. Though while testing the old version of
+i2c-hid, it was working... Such a mystery :)
 
-The client's state does not affect if its performance_state should
-be included in the calculation of the aggregated performance_state, so
-each driver that needs to keep some minimum performance state needs to
-have these two snippets.
+Anyway, while trying to dig up that now-non-issue, I got the following patch
+that you likely want to squash into 1/4:
 
-Would it not make sense to on enable/disable re-evaluate the
-performance_state and potentially reconfigure the hardware
-automatically?
+---
 
-Regards,
-Bjorn
+diff --git a/drivers/hid/i2c-hid/i2c-hid-acpi.c b/drivers/hid/i2c-hid/i2c-hid-acpi.c
+index 0f86060f01b4..dd6d9f74e7e7 100644
+--- a/drivers/hid/i2c-hid/i2c-hid-acpi.c
++++ b/drivers/hid/i2c-hid/i2c-hid-acpi.c
+@@ -31,7 +31,6 @@
+  struct i2c_hid_acpi {
+         struct i2chid_ops ops;
+         struct i2c_client *client;
+-       bool power_fixed;
+  };
 
->  	ret = geni_se_resources_off(&gi2c->se);
->  	if (ret) {
->  		enable_irq(gi2c->irq);
-> @@ -654,6 +693,16 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
->  	if (ret)
->  		return ret;
->  
-> +	/* Set the assigned performance state */
-> +	if (gi2c->assigned_pstate) {
-> +		ret = dev_pm_genpd_set_performance_state(dev,
-> +							 gi2c->assigned_pstate);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to set performance state\n");
-> +			return ret;
-> +		}
-> +	}
-> +
->  	enable_irq(gi2c->irq);
->  	gi2c->suspended = 0;
->  	return 0;
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+  static const struct acpi_device_id i2c_hid_acpi_blacklist[] = {
+@@ -75,25 +74,6 @@ static int i2c_hid_acpi_get_descriptor(struct i2c_client *client)
+         return hid_descriptor_address;
+  }
+
+-static int i2c_hid_acpi_power_up(struct i2chid_ops *ops)
+-{
+-       struct i2c_hid_acpi *ihid_of =
+-               container_of(ops, struct i2c_hid_acpi, ops);
+-       struct device *dev = &ihid_of->client->dev;
+-       struct acpi_device *adev;
+-
+-       /* Only need to call acpi_device_fix_up_power() the first time */
+-       if (ihid_of->power_fixed)
+-               return 0;
+-       ihid_of->power_fixed = true;
+-
+-       adev = ACPI_COMPANION(dev);
+-       if (adev)
+-               acpi_device_fix_up_power(adev);
+-
+-       return 0;
+-}
+-
+  static void i2c_hid_acpi_shutdown_tail(struct i2chid_ops *ops)
+  {
+         struct i2c_hid_acpi *ihid_of =
+@@ -107,6 +87,7 @@ static int i2c_hid_acpi_probe(struct i2c_client *client,
+  {
+         struct device *dev = &client->dev;
+         struct i2c_hid_acpi *ihid_acpi;
++       struct acpi_device *adev;
+         u16 hid_descriptor_address;
+         int ret;
+
+@@ -115,7 +96,6 @@ static int i2c_hid_acpi_probe(struct i2c_client *client,
+                 return -ENOMEM;
+
+         ihid_acpi->client = client;
+-       ihid_acpi->ops.power_up = i2c_hid_acpi_power_up;
+         ihid_acpi->ops.shutdown_tail = i2c_hid_acpi_shutdown_tail;
+
+         ret = i2c_hid_acpi_get_descriptor(client);
+@@ -123,6 +103,10 @@ static int i2c_hid_acpi_probe(struct i2c_client *client,
+                 return ret;
+         hid_descriptor_address = ret;
+
++       adev = ACPI_COMPANION(dev);
++       if (adev)
++               acpi_device_fix_up_power(adev);
++
+         if (acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0) {
+                 device_set_wakeup_capable(dev, true);
+                 device_set_wakeup_enable(dev, false);
+
+
+---
+
+This allows to keep the powering ordering of the old i2c-hid module
+(power up before setting device wakeup capable), and simplify the
+not so obvious power_fixed field of struct i2c_hid_acpi.
+
+(I can also send it as a followup on the series if you prefer).
+
+Cheers,
+Benjamin
+
