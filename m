@@ -2,168 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEFC22F81A4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9442F81A7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 18:08:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728917AbhAORIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 12:08:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728326AbhAORI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 12:08:26 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0EE8C06179A
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 09:07:11 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id t6so5025894plq.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 09:07:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VvtlNUY05ZRZXw1HkORLQwU8MetpDw7Is/Hf+MOi1N8=;
-        b=AfIDkQOnt6kOO2TACfRsIWQjT5bpOShsBMdgrJ55dE8+KG5o2Gb7WSU7jFgiUyz7v+
-         pqidjVNUwod92goMvJLqWMIfS65ZrrmVwK9KqyqIc1k40v4LWY9Bxp2e0EUHIFyU7knW
-         f0VH+w5k9X2PZ5VKBjGp621dTV1m2leI7ww30=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VvtlNUY05ZRZXw1HkORLQwU8MetpDw7Is/Hf+MOi1N8=;
-        b=tsLIiy3pmV4Mk2xrLhZjsMEzf8PD4nGbbiXCV7kWFaXVztAiX3+F1JenP87BSyQEZw
-         yasTqQL0Ft4VBtDC+eWl98J/j37r0VGaNXlyJJezkm32oCCWG/jZW42VGDi/YCrMwyZ2
-         XvvtUh32xQgxNer9rfSx5R7pZIbJi974kJGi+Ill+xVWeYAtqrvOPA3BAEa+Qw35zh+5
-         lHLgfWQHfrwqxvOtIM6H3vTxOB1dhQB42AMDgIsMPXIwroSwjCDQ9ZwKZKqxP5Babqms
-         ghLMGp2J1WWjRaxPK5isq0xseB7CoRLd9zrd/k8vNPiRRSTfZPlI6bo9YI0J16LqiRpF
-         PAFA==
-X-Gm-Message-State: AOAM533ZN+RtpxK78FN8yDhE2e3vXoL2rYtzL64Ss1kpGkn1bIb+8IAa
-        EELJaKXURPkWEguHJpeUHpfHFg==
-X-Google-Smtp-Source: ABdhPJyFtWNYz1haJTm7CHTsmdWi6mAz16QXK0dcJU/2QxgPESAqU3D2/r7Ut9q0pMXQpc8FGma+Dw==
-X-Received: by 2002:a17:90a:1057:: with SMTP id y23mr11352188pjd.97.1610730431157;
-        Fri, 15 Jan 2021 09:07:11 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id t23sm8813329pfc.0.2021.01.15.09.07.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 09:07:10 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
-        gregkh@linuxfoundation.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     swboyd@chromium.org, linux-input@vger.kernel.org,
-        hdegoede@redhat.com, andrea@borgia.bo.it,
-        kai.heng.feng@canonical.com, robh+dt@kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v9 3/4] dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix GT7375P
-Date:   Fri, 15 Jan 2021 09:06:39 -0800
-Message-Id: <20210115090518.v9.3.Ibb28033c81d87fcc13a6ba28c6ea7ac154d65f93@changeid>
-X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
-In-Reply-To: <20210115170641.903392-1-dianders@chromium.org>
-References: <20210115170641.903392-1-dianders@chromium.org>
+        id S1726136AbhAORIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 12:08:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46732 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725946AbhAORIx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 12:08:53 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 69460222B3;
+        Fri, 15 Jan 2021 17:08:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610730491;
+        bh=TTxGRW3tiG7LwSjTKZStrgp68+J+/ZsXQqui4SyalIY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Gj5MA1QhIl6mv38/JorSQaBuTdgK7JhRQ8W4zqkwTY2LHofctJYuQC/F7ATNbm3q7
+         J4z7W/PZKj4xzlJ7DnKO8070MiSiVtC6o/vJbUPNn42rfa3iEJq5ZhcIum2t5RiRqG
+         WZ0J28wSu6CQtFLrZnKxueolRqXU0WBQYtqzXc/wDVQuftGXwKsQlG2bttiSIik1UV
+         DoKyndUiOV9u7prRSzT6D/ahQ3wRtTTkFaQutL1lc/URgSVKjkkm3AKdgsKON3GzpS
+         uf2xyFYGeD06X3z0195kB3GOim7nUK8uRoXRyHLuJRGVVT7cCWcG+GtEI1YnYd6Anr
+         GZfk7L3DWyYGg==
+Date:   Fri, 15 Jan 2021 17:07:37 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Argus Lin <argus.lin@mediatek.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Arnd Bergmann <arnd@arndb.de>, Jack Yu <jack.yu@realtek.com>,
+        Shuming Fan <shumingf@realtek.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        "Shane.Chien" <shane.chien@mediatek.com>,
+        Chipeng Chang <chipeng.chang@mediatek.com>,
+        alsa-devel@alsa-project.org, wsd_upstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/2] ASoC: mediatek: mt6359: add MT6359 accdet driver
+Message-ID: <20210115170737.GE4384@sirena.org.uk>
+References: <1609935546-11722-1-git-send-email-argus.lin@mediatek.com>
+ <1609935546-11722-3-git-send-email-argus.lin@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="n+lFg1Zro7sl44OB"
+Content-Disposition: inline
+In-Reply-To: <1609935546-11722-3-git-send-email-argus.lin@mediatek.com>
+X-Cookie: Debug is human, de-fix divine.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds new bindings for the Goodix GT7375P touchscreen.  While this
-touchscreen's communications are based on the generic "i2c-over-hid"
-protocol, it needs special power sequencing and thus gets its own
-compatible and bindings.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
+--n+lFg1Zro7sl44OB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-(no changes since v5)
+On Wed, Jan 06, 2021 at 08:19:06PM +0800, Argus Lin wrote:
+> MT6359 audio codec support accessory detect features, adds MT6359
+> accdet driver to support plug detection and key detection.
 
-Changes in v5:
-- Added mention of i2c-hid in the yaml itself as per Rob.
-- Adjusted subject as per Rob.
+> ---
+>  sound/soc/codecs/Kconfig         |    7 +
+>  sound/soc/codecs/Makefile        |    2 +
+>  sound/soc/codecs/mt6359-accdet.c | 1951 ++++++++++++++++++++++++++++++++++++++
+>  sound/soc/codecs/mt6359-accdet.h |  136 +++
+>  sound/soc/codecs/mt6359.h        | 1863 +++++++++++++++++++++++++++++++++---
 
-Changes in v3:
-- Fixed compatible in example.
-- Removed Benjamin as a maintainer.
-- Updated description.
+This driver is *huge*.  Looking through the code it feels like there's a
+lot of things that are written with mostly duplicated code that differs
+only in data so you could shrink things down a lot by refactoring things
+to have one copy of the code and pass different data into it.
 
-Changes in v2:
-- ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
+>  	  Enable support for the platform which uses MT6359 as
+>  	  external codec device.
+> +config SND_SOC_MT6359_ACCDET
 
- .../bindings/input/goodix,gt7375p.yaml        | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+Missing blank line here.
 
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-new file mode 100644
-index 000000000000..fe1c5016f7f3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Goodix GT7375P touchscreen
-+
-+maintainers:
-+  - Douglas Anderson <dianders@chromium.org>
-+
-+description:
-+  Supports the Goodix GT7375P touchscreen.
-+  This touchscreen uses the i2c-hid protocol but has some non-standard
-+  power sequencing required.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: goodix,gt7375p
-+
-+  reg:
-+    enum:
-+      - 0x5d
-+      - 0x14
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    true
-+
-+  vdd-supply:
-+    description: The 3.3V supply to the touchscreen.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      ap_ts: touchscreen@5d {
-+        compatible = "goodix,gt7375p";
-+        reg = <0x5d>;
-+
-+        interrupt-parent = <&tlmm>;
-+        interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+        reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+        vdd-supply = <&pp3300_ts>;
-+      };
-+    };
--- 
-2.30.0.284.gd98b1dd5eaa7-goog
+> +++ b/sound/soc/codecs/mt6359-accdet.c
+> @@ -0,0 +1,1951 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2021 MediaTek Inc.
 
+Please make the entire comment a C++ one so things look more
+intentional.
+
+> +#include "mt6359-accdet.h"
+> +#include "mt6359.h"
+> +/* grobal variable definitions */
+
+Spelling mistake and you need more blank lines here.
+
+> +#define REGISTER_VAL(x)	((x) - 1)
+> +#define HAS_CAP(_c, _x)	\
+> +	({typeof(_c)c = (_c); \
+> +	typeof(_x)x = (_x); \
+> +	(((c) & (x)) == (x)); })
+
+These need namepsacing.
+
+> +static struct mt63xx_accdet_data *accdet;
+> +
+> +static struct head_dts_data accdet_dts;
+> +struct pwm_deb_settings *cust_pwm_deb;
+
+You'd need a *very* good reason to be using global data rather than
+storing anything in the device's driver data like most drivers.  There's
+extensive use of global data here, and lots of raw pr_ prints rather
+than dev_ prints as well - this doesn't look like how a Linux driver is
+supposed to be written.
+
+> +
+> +const struct of_device_id mt6359_accdet_of_match[] = {
+> +	{
+> +		.compatible = "mediatek,mt6359-accdet",
+> +		.data = &mt6359_accdet,
+
+Given that this is specific to a particular PMIC why does this need a
+compatible string?
+
+> +/* global function declaration */
+> +
+> +static u64 mt6359_accdet_get_current_time(void)
+> +{
+> +	return sched_clock();
+> +}
+
+It is probably best to remove this wrapper.
+
+> +static bool mt6359_accdet_timeout_ns(u64 start_time_ns, u64 timeout_time_ns)
+> +{
+> +	u64 cur_time = 0;
+> +	u64 elapse_time = 0;
+> +
+> +	/* get current tick, ns */
+> +	cur_time = mt6359_accdet_get_current_time();
+> +	if (cur_time < start_time_ns) {
+> +		start_time_ns = cur_time;
+> +		/* 400us */
+> +		timeout_time_ns = 400 * 1000;
+> +	}
+> +	elapse_time = cur_time - start_time_ns;
+> +
+> +	/* check if timeout */
+> +	if (timeout_time_ns <= elapse_time)
+> +		return false;
+> +
+> +	return true;
+> +}
+
+There must be a generic implementation of this already surely?
+
+> +static unsigned int check_key(unsigned int v)
+> +{
+
+This looks a lot like open coding of the functionality of the extcon
+adc_jack functionality.
+
+> +static void send_key_event(unsigned int keycode, unsigned int flag)
+> +{
+> +	int report = 0;
+> +
+> +	switch (keycode) {
+> +	case DW_KEY:
+> +		if (flag != 0)
+> +			report = SND_JACK_BTN_1;
+
+What does flag mean?  At the very least it needs renaming.
+
+> +static void send_status_event(unsigned int cable_type, unsigned int status)
+> +{
+> +	int report = 0;
+
+This is one of those places that looks like it could be code with
+different data passed in.
+
+> +
+> +	switch (cable_type) {
+> +	case HEADSET_NO_MIC:
+> +		if (status)
+> +			report = SND_JACK_HEADPHONE;
+> +		else
+> +			report = 0;
+> +		snd_soc_jack_report(&accdet->jack, report, SND_JACK_HEADPHONE);
+> +		/* when plug 4-pole out, if both AB=3 AB=0 happen,3-pole plug
+> +		 * in will be incorrectly reported, then 3-pole plug-out is
+> +		 * reported,if no mantory 4-pole plug-out, icon would be
+> +		 * visible.
+> +		 */
+> +		if (status == 0) {
+> +			report = 0;
+> +			snd_soc_jack_report(&accdet->jack, report, SND_JACK_MICROPHONE);
+> +		}
+> +		pr_info("accdet HEADPHONE(3-pole) %s\n",
+> +			status ? "PlugIn" : "PlugOut");
+
+You shouldn't be spamming the logs for normal events like this.
+
+> +	regmap_read(accdet->regmap, ACCDET_IRQ_ADDR, &val);
+> +	while (val & ACCDET_IRQ_MASK_SFT &&
+> +	       mt6359_accdet_timeout_ns(cur_time, ACCDET_TIME_OUT))
+> +		;
+
+This is open coding regmap_read_poll_timeout(), this pattern is repeated
+in several places.
+
+> +static inline void clear_accdet_eint(unsigned int eintid)
+> +{
+> +	if ((eintid & PMIC_EINT0) == PMIC_EINT0) {
+
+The == part is redundant here, and again this is another place where it
+feels like there's duplicated code that should be using data.  All this
+interrupt handling code is really extremely difficult to follow, there's
+*lots* of functions all open coding many individual register bits
+sometimes redundantly and it's very hard to follow what it's supposed to
+be doing.  I can't help but think that in addition to making things data
+driven writing more linear code without these abstraction layers would
+help a lot with comprehensibility.
+
+> +static irqreturn_t mtk_accdet_irq_handler_thread(int irq, void *data)
+> +{
+> +	accdet_irq_handle();
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+Why does this wrapper function exist - AFAICT it's just introducing a
+bug given that the called function is able to detect spurious interrupts
+but this unconditionally reports IRQ_HANDLED.
+
+> +int mt6359_accdet_init(struct snd_soc_component *component,
+> +		       struct snd_soc_card *card)
+> +{
+> +	int ret = 0;
+> +	struct mt63xx_accdet_data *priv =
+> +			snd_soc_card_get_drvdata(component->card);
+
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(mt6359_accdet_init);
+
+This is a weird interface, what's going on here?
+
+> +int mt6359_accdet_set_drvdata(struct snd_soc_card *card)
+> +{
+> +	snd_soc_card_set_drvdata(card, accdet);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(mt6359_accdet_set_drvdata);
+
+This is setting off *massive* alarm bells in that it seems to try to
+claim the card level driver data for this specific driver, again what's
+going on here?
+
+> +module_init(mt6359_accdet_soc_init);
+> +module_exit(mt6359_accdet_soc_exit);
+
+module_platform_driver()
+
+--n+lFg1Zro7sl44OB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmABy9gACgkQJNaLcl1U
+h9DY/gf/fHBtIfQbXuCCr1+QvKa57mk9zIvrlJKMEtVByp+AvZkXaTLoyMIg1JcO
+4rAyQrhsqr3HcLdUVrzQqljjDGREnMvwZOUB9EeEnREwj+vtYm/ogs4ccXmpmCES
+tIhNW4JpGfVxCVhM0XfUz8s86Y7mo4bv0pDy6aZMop4p2wG4lZvOcdXDdqVFXVyG
+YkT3A7fNgJ5Hi7K3BGViNNLEvCjkXt6KmFjNTPpyc4zUXoOJNkqHv5gUn/NhW9Lv
+BYOuUVlwjlJC4SANqXz/5WYI0aux1tFpgnkASGWV1K7TyFyjzEJklB1vmGHE/e+6
+WDE6B01vYILmCPElPN8uHzwXEYzv6Q==
+=azMJ
+-----END PGP SIGNATURE-----
+
+--n+lFg1Zro7sl44OB--
