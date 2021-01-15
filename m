@@ -2,117 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9270F2F868A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 21:21:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0380B2F869E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 21:25:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388600AbhAOUUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 15:20:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55538 "EHLO
+        id S1733119AbhAOUY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 15:24:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388588AbhAOUUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 15:20:52 -0500
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A8AEC0613D3;
-        Fri, 15 Jan 2021 12:20:12 -0800 (PST)
-Received: by mail-io1-xd2d.google.com with SMTP id d81so5430378iof.3;
-        Fri, 15 Jan 2021 12:20:12 -0800 (PST)
+        with ESMTP id S1731529AbhAOUYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 15:24:49 -0500
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2763C0613D3
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 12:24:08 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id y128so6172523ybf.10
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 12:24:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3XzHspCX9O1x943fOc9JVbEHt7+srRIHgKjIIe0gcTw=;
-        b=NgWS5kVabAPxdHhBiKkubPCMxZN3NZ2xmbF8XalcBWU3OrQ3/tV+zpDt/IDcz+5IkC
-         U3+38yv5icRvZyOmDELIfUuDz2bazw0ZDq+9azXPkIlqimmDJ+H7dLk1zGUcuZbzXw7J
-         7/95a4q72b7v/RTX2DePIsNQIaentHQ63Vey+hFENcrAIMRia9po4SjMbhemuvPSPOJv
-         CxemdbgEYCzsYDesOub6heMvvjV3px1PPvTCbyYATyauWYmJqjOCdu8YRwROtwKtrJNL
-         8k41j0IB2qf8fy1A9fyrs/RWrWql4NwyH5z++D5WY0hFQ+cR2fydYUxMVl/rU09uZOB7
-         p/kg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=A9RX5qj7rGFsbJXJNhBoN2LaZMygrpZRt1un2PekIsg=;
+        b=Lws9KxcTbF/05kFWM5ca/fUUTv9qdz9Gq6nJSPR8gOYdAJJYISEV3k8IiV7U/ca4vK
+         FKRCwkcQ5VkxJBYfvm1xiCrIdlm1TNTgMeoHtKxxNQPAVZqU1b7tUfTGWnNyHgtlOaNx
+         2iAcfnRu710KgMObu7nfIPrNr9YsQeQ6S13YY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3XzHspCX9O1x943fOc9JVbEHt7+srRIHgKjIIe0gcTw=;
-        b=Kid3kpYDTx3X69+CKIo+YJrDwH3JzquXxCYhgzVrwsMzsFf4ZJpRXM3mRoU794YyQN
-         oEXxFLZMIdVICVLzd2ICYXXV5GcU4Yu9/oQKgHbVOFWcdQB4YPaIr8bI5rV9Sy6dD4U0
-         h9uOe4lYRwgi23BxWRjrh1G99S5KzZ/BCJoE9k6VESVuBD2uWZbEHNoZIdV+mDOhcXbM
-         8gnhs+PKT/Q9RR641ksu3Qw4DZbjEtpI1+Rf30VonbKIx9NZd7jbFdHdzU4vWczbqjWr
-         A5tbWju8c25W2jMyN180fMlxRKRmLTov7zax4pObaNhzCL2hKW3MPHJBhvrOAnAzN3G5
-         dLHw==
-X-Gm-Message-State: AOAM530JvDvNi+QkjMK9eqKAT+onVGDnOdUHPjrtEvimdtK3JNrpTeAm
-        dEaWCJ5WW3eGODsxz12HVBOWEwvLAk3LuPC7
-X-Google-Smtp-Source: ABdhPJwKEbWqA8LJEeHIYAOPbhOtSAIGSkE20xlarQKNl+/RedBLvYsuTNRj6JxcFkzNL6Pch4Hy6w==
-X-Received: by 2002:a6b:6f09:: with SMTP id k9mr9923958ioc.30.1610742011324;
-        Fri, 15 Jan 2021 12:20:11 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:475c:c79e:a431:bccb])
-        by smtp.gmail.com with ESMTPSA id e28sm4194900iov.38.2021.01.15.12.20.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 12:20:10 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V2 4/4] net: ethernet: ravb: Enable optional refclk
-Date:   Fri, 15 Jan 2021 14:19:51 -0600
-Message-Id: <20210115201953.443710-4-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210115201953.443710-1-aford173@gmail.com>
-References: <20210115201953.443710-1-aford173@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=A9RX5qj7rGFsbJXJNhBoN2LaZMygrpZRt1un2PekIsg=;
+        b=tmPCIm4ff0LuMNQ+YzBB8Q2GF5PFw9HNcKFhyPPtB9v8Jn+my0mIhnsTAoMuhaUU47
+         6SRaVIv9DG4Z5zJgR5S4bg6bCiKmPG9TiKdVKvHTvyUVaDyYp79qaWdmzLXMiJ7oj8Gz
+         BRzAXDA0fQLKemgDkJgAyMnzw+NYUejHnkjcnV/RW28mnBgfju8HfuW5nAM1CnzoyaFT
+         iK9U57KVFdbFm6RAfT8KIVsrWbLIRQCPQTBLG04AONLordxfn3CY8ZqZQ72OxDQYaMxO
+         /mPfuhdpqw2/yYXvb/LFKbq54qj7QpY3c1gJ6RpzF7Z6H5IqALPXvSq1XYfgxsFJItTu
+         CMdg==
+X-Gm-Message-State: AOAM532yqvtp/CF3Ymg/AK9D5fQXU/p+iNKvlf5J8mCa+3ivUbvLzezd
+        MYYLMLVLZgMJfpzaY/W+7QsWw98krvLGacybYYBsbw==
+X-Google-Smtp-Source: ABdhPJzbKp6kvJAB2wHiJiHdtH6OLS0uBJV8n51BolL+iPUV2rkxC1Oi3wvGezDc7Xv/goZFG8cSN0t+ZDBCl2aWpro=
+X-Received: by 2002:a25:3a04:: with SMTP id h4mr20270835yba.285.1610742247860;
+ Fri, 15 Jan 2021 12:24:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210114183010.v6.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+ <161067828422.3661239.16933057782247961610@swboyd.mtv.corp.google.com>
+In-Reply-To: <161067828422.3661239.16933057782247961610@swboyd.mtv.corp.google.com>
+From:   Philip Chen <philipchen@chromium.org>
+Date:   Fri, 15 Jan 2021 12:23:57 -0800
+Message-ID: <CA+cxXhnimCistZF6e-7Uxz7aZ2Ugm7yoBPhO9RWzCtCm65xgbg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: input: cros-ec-keyb: Add a new property
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For devices that use a programmable clock for the avb reference clock,
-the driver may need to enable them.  Add code to find the optional clock
-and enable it when available.
-
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
- drivers/net/ethernet/renesas/ravb.h      | 1 +
- drivers/net/ethernet/renesas/ravb_main.c | 8 ++++++++
- 2 files changed, 9 insertions(+)
-
-V2:  The previous patch to fetch the fclk was dropped.  In its place
-     is code to enable the refclk
-
-diff --git a/drivers/net/ethernet/renesas/ravb.h b/drivers/net/ethernet/renesas/ravb.h
-index 7453b17a37a2..ff363797bd2b 100644
---- a/drivers/net/ethernet/renesas/ravb.h
-+++ b/drivers/net/ethernet/renesas/ravb.h
-@@ -994,6 +994,7 @@ struct ravb_private {
- 	struct platform_device *pdev;
- 	void __iomem *addr;
- 	struct clk *clk;
-+	struct clk *refclk;
- 	struct mdiobb_ctrl mdiobb;
- 	u32 num_rx_ring[NUM_RX_QUEUE];
- 	u32 num_tx_ring[NUM_TX_QUEUE];
-diff --git a/drivers/net/ethernet/renesas/ravb_main.c b/drivers/net/ethernet/renesas/ravb_main.c
-index bd30505fbc57..739e30f45daa 100644
---- a/drivers/net/ethernet/renesas/ravb_main.c
-+++ b/drivers/net/ethernet/renesas/ravb_main.c
-@@ -2148,6 +2148,14 @@ static int ravb_probe(struct platform_device *pdev)
- 		goto out_release;
- 	}
- 
-+	priv->refclk = devm_clk_get_optional(&pdev->dev, "refclk");
-+	if (IS_ERR(priv->refclk)) {
-+		error = PTR_ERR(priv->refclk);
-+		goto out_release;
-+	} else {
-+		(void)clk_prepare_enable(priv->refclk);
-+	}
-+
- 	ndev->max_mtu = 2048 - (ETH_HLEN + VLAN_HLEN + ETH_FCS_LEN);
- 	ndev->min_mtu = ETH_MIN_MTU;
- 
--- 
-2.25.1
-
+On Thu, Jan 14, 2021 at 6:38 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Philip Chen (2021-01-14 18:30:30)
+> > Add a new property `function-row-physmap` to the
+> > device tree for the custom keyboard top row design.
+> >
+> > The property describes the rows/columns of the top row keys
+> > from left to right.
+> >
+> > Signed-off-by: Philip Chen <philipchen@chromium.org>
+>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>
+> One nit below.
+>
+> > diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > index 8e50c14a9d778..a742b0777ee6d 100644
+> > --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > @@ -43,6 +54,18 @@ examples:
+> >          keypad,num-rows = <8>;
+> >          keypad,num-columns = <13>;
+> >          google,needs-ghost-filter;
+> > +        function-row-physmap = <
+> > +                0x00020000      /* T1 */
+> > +                0x03020000      /* T2 */
+> > +                0x02020000      /* T3 */
+> > +                0x01020000      /* T4 */
+> > +                0x03040000      /* T5 */
+> > +                0x02040000      /* T6 */
+> > +                0x01040000      /* T7 */
+> > +                0x02090000      /* T8 */
+> > +                0x01090000      /* T9 */
+> > +                0x00040000      /* T10 */
+>
+> Can we include the header file for MATRIX_KEY so we can use the macro
+> here?
+Sure.
