@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17CAF2F78FA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 13:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D672A2F78FF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 13:30:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732023AbhAOMaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 07:30:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38368 "EHLO
+        id S1732046AbhAOMaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 07:30:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732004AbhAOMaV (ORCPT
+        with ESMTP id S1732011AbhAOMaV (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 07:30:21 -0500
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACBAC06179E
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:04 -0800 (PST)
-Received: by mail-io1-xd2d.google.com with SMTP id d81so2588328iof.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:04 -0800 (PST)
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B9DC0617A0
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:05 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id d9so17731246iob.6
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ZgcJCeO5IRSICza2r6GEj0/QJ8rNtZfDDcOXMnAT21Y=;
-        b=KlBHmLnqBTnK5J4DO27zadgPE02VDPajn5Xg/cG0Avp0kSMoBuas/f4gBKy6oYikjv
-         eHMZ+mouCClKU0+QunG7Zrjbi/sGQ1MjvHhG2GHCJWNkRVYW/GTjc3FRXlCXRKAl5AlD
-         MrGSX9n0S4lZFaCeasXFtcC/Vr+efZCJqGH9hSQKtv7gB2MwsF9ZsfeUF7k6tYce9ttE
-         sROYyXbJf8wI7YD628/UzChvd6ivXvTPFcDM5BiPpBMg2FFg/vVqGsxfhsgYBBXicnw5
-         aJnjob7RO7vZLcSrSO9IPRkzuyAP5GVEIrcPPDLQKEBr1BTzE3w/1Ei51hzx0eoGlT6s
-         5F0A==
+        bh=t+ObhEAIT9fbovEwiN4T77G8335SbFAVW9ujGpSZ6KQ=;
+        b=j6zz31UDqKS8+mz/uvFOZxGx09lqzxksGJlSucJEC306pIAr/tS++aEARxTyTaH+Hd
+         XUuUs0eJMu9h+6nbhO3R3g7q8WXN6e9/LR/5RoOQc+IdiFEtT1tTAUlpnxrwo4z6kQ42
+         M/j0WVGT//n0hPipDvnW9ADeABfPakasVTbrTtTroRkxku/HjEnk8cIBJ8BHicMgAYHF
+         lW4soIHt3COX5JOAO+cKhe3KwPtpCdSbMF+06RITNiOGbHuseTyRc89ZYVaPTIfaCDjZ
+         QzyhByhQrQB1NphzUS2MIUfJsy67NAAqja7dEBKS0NQRhiHWFgV8UOKKffnA5Fm0jZbD
+         Nv9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ZgcJCeO5IRSICza2r6GEj0/QJ8rNtZfDDcOXMnAT21Y=;
-        b=OrUH1dpedfWw0uJC8McwdZ5IZpVtlXa2aITHJhnubF8mI6wUXS2wfaj9lsu8MMwtKp
-         pQuKULf12820py6yztPH+ov9B9h9L61tb5i5j6S4akBNQw+HRodU2KeZKEnQSWe6l8NW
-         AfpTxBwcwsTmS7rjTMCiWGw/lcZvVoLaG622XfdOn0sB6UZZmrCLXVTHEn3URkFDCLJG
-         e1e0FSx/FZRwYdkkkNuOOI21t8+Wsa4cnETX8QB+MXxM6GUdYrK66qfw1Y9KZwp4K0vh
-         fL8AYidHjFD7dFZXN7dlftxv7JUnwSO9/4NPvtRwW5+L3rwrdHgsY+AYBsmtJGnr0f1K
-         X6kA==
-X-Gm-Message-State: AOAM530QUmtXG+wt6lvYx4UdjItQmfRZ6mwPxHbNXE74WAZHkAAodHuF
-        5U1+iPdvdmxaYYFAPvex89tR/g==
-X-Google-Smtp-Source: ABdhPJz1xDn2LWVaVJ8b+MHU6nw6XSrUBGZCU+K1D+osCjh8vAx4TY14eoXtbjzSaYSWT3Y4tk8i3A==
-X-Received: by 2002:a5d:9418:: with SMTP id v24mr8176550ion.61.1610713743450;
-        Fri, 15 Jan 2021 04:29:03 -0800 (PST)
+        bh=t+ObhEAIT9fbovEwiN4T77G8335SbFAVW9ujGpSZ6KQ=;
+        b=ApTZee1JhHHCrN1fP2L5Y/LG8kApFL5mzmQclQ/Vs8fwl94xJxT/ZfoubffaoQN/qg
+         T/ai/phEDbVZxtwOd0sjg84OJhSlTV5CpO1ZI6liTkjHOHqkEeSBuGlSwsCe3hE0HhE3
+         67ovijvcjEHl/WpqbgHpcFZHQtqQC5NKwgBRNqFIr2mgVwtzDEJsuc6dNoqEjz8QowGC
+         XVHy7clE7tqpWVcgQHUUZi1Ye+Dlupc2zbaWzjooCzICg8L/wfBKlhEBLnS6ScHnPhVn
+         RhqHcC9iqlLL52Ufqb2th8Gc7W5rDBT26Hhjkjs3JzX1/FL45Dl0ySDPnTgpRoRauAe8
+         JevQ==
+X-Gm-Message-State: AOAM5311izEpk25/ZGhB26zoSgLtjMWDbQI00BrST0gFMCNrR4f2EVyf
+        /RZK0sX9OMqVfacvMYGt1Lt4FTExKexCmA==
+X-Google-Smtp-Source: ABdhPJz4k+H5EbE4BC6jKWyuKS4/qK9DyW17Y1VbtDQjIjztsxWWY3DD8dcCwWM8nxwAyr+batzR3w==
+X-Received: by 2002:a6b:6f17:: with SMTP id k23mr8495949ioc.147.1610713744655;
+        Fri, 15 Jan 2021 04:29:04 -0800 (PST)
 Received: from beast.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id a9sm3828509ion.53.2021.01.15.04.29.02
+        by smtp.gmail.com with ESMTPSA id a9sm3828509ion.53.2021.01.15.04.29.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 04:29:02 -0800 (PST)
+        Fri, 15 Jan 2021 04:29:04 -0800 (PST)
 From:   Alex Elder <elder@linaro.org>
 To:     robh+dt@kernel.org, davem@davemloft.net, kuba@kernel.org
 Cc:     evgreen@chromium.org, bjorn.andersson@linaro.org,
         cpratapa@codeaurora.org, subashab@codeaurora.org,
         rdunlap@infradead.org, devicetree@vger.kernel.org,
         netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 net-next 3/4] arm64: dts: qcom: sc7180: kill IPA modem-remoteproc property
-Date:   Fri, 15 Jan 2021 06:28:54 -0600
-Message-Id: <20210115122855.19928-4-elder@linaro.org>
+Subject: [PATCH v2 net-next 4/4] arm64: dts: qcom: sdm845: kill IPA modem-remoteproc property
+Date:   Fri, 15 Jan 2021 06:28:55 -0600
+Message-Id: <20210115122855.19928-5-elder@linaro.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210115122855.19928-1-elder@linaro.org>
 References: <20210115122855.19928-1-elder@linaro.org>
@@ -70,18 +70,18 @@ driver, so get rid of it.
 
 Signed-off-by: Alex Elder <elder@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 --
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 --
  1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 22b832fc62e3d..003309f0d3e18 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -1434,8 +1434,6 @@
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index bcf888381f144..04b2490eec9f4 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -2366,8 +2366,6 @@
  			qcom,smem-state-names = "ipa-clock-enabled-valid",
  						"ipa-clock-enabled";
  
--			modem-remoteproc = <&remoteproc_mpss>;
+-			modem-remoteproc = <&mss_pil>;
 -
  			status = "disabled";
  		};
