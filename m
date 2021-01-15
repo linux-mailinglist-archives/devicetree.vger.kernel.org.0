@@ -2,105 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBC182F8537
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 20:16:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B18A62F857A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 20:31:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387768AbhAOTQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 14:16:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41624 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733245AbhAOTQI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 14:16:08 -0500
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CADD7C061757
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 11:15:27 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 420891F518;
-        Fri, 15 Jan 2021 20:15:26 +0100 (CET)
-Subject: Re: (subset) [PATCH v2 0/7] Really implement Qualcomm LAB/IBB
- regulators
-To:     Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org
-Cc:     bjorn.andersson@linaro.org, sumit.semwal@linaro.org,
-        martin.botka@somainline.org, robh+dt@kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        phone-devel@vger.kernel.org, marijn.suijten@somainline.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com
-References: <20210113194214.522238-1-angelogioacchino.delregno@somainline.org>
- <161073479108.12431.17135576809621290489.b4-ty@kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <93eedc72-e269-a67e-12f6-e391337a5c67@somainline.org>
-Date:   Fri, 15 Jan 2021 20:15:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1730047AbhAOTaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 14:30:39 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38086 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729507AbhAOTai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 14:30:38 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10FJT0Rn067814;
+        Fri, 15 Jan 2021 13:29:00 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1610738940;
+        bh=hhYK5dJAuYydgh5h5MfqOpugS5cO5it8t71+CYUq8qU=;
+        h=From:To:CC:Subject:Date;
+        b=NlDBEkCqW8m1IoFgKJrRtBYbidXfl4PcImAB1J/S3i3XASLMFg8qhj9k28QXQ8YFD
+         YtTVF6bwona31kdWBEjS1/yFaJJbfxfbFkLi/CSEl6zQ94Kk4s4XWslVTT1fQgGAjJ
+         jJJyQzcEb1vUEu0VM1nXqDHhvf8KKCaU4Gy3ZSlM=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10FJT0A6025390
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 15 Jan 2021 13:29:00 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 15
+ Jan 2021 13:28:59 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 15 Jan 2021 13:28:59 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10FJSwbu057633;
+        Fri, 15 Jan 2021 13:28:59 -0600
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     "David S. Miller" <davem@davemloft.net>, <netdev@vger.kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, Sekhar Nori <nsekhar@ti.com>,
+        <devicetree@vger.kernel.org>
+Subject: [net-next 0/6] net: ethernet: ti: am65-cpsw-nuss: introduce support for am64x cpsw3g
+Date:   Fri, 15 Jan 2021 21:28:47 +0200
+Message-ID: <20210115192853.5469-1-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <161073479108.12431.17135576809621290489.b4-ty@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/01/21 19:19, Mark Brown ha scritto:
-> On Wed, 13 Jan 2021 20:42:07 +0100, AngeloGioacchino Del Regno wrote:
->> Okay, the title may be a little "aggressive"? However, the qcom-labibb
->> driver wasn't really .. doing much.
->> The current form of this driver is only taking care of enabling or
->> disabling the regulators, which is pretty useless if they were not
->> pre-set from the bootloader, which sets them only if continuous
->> splash is enabled.
->> Moreover, some bootloaders are setting a higher voltage and/or a higher
->> current limit compared to what's actually required by the attached
->> hardware (which is, in 99.9% of the cases, a display) and this produces
->> a higher power consumption, higher heat output and a risk of actually
->> burning the display if kept up for a very long time: for example, this
->> is true on at least some Sony Xperia MSM8998 (Yoshino platform) and
->> especially on some Sony Xperia SDM845 (Tama platform) smartphones.
->>
->> [...]
-> 
-> Applied to
-> 
->     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-> 
-> Thanks!
-> 
-> [1/7] regulator: qcom-labibb: Implement voltage selector ops
->        commit: dd582369c6c1f39ec475af6191a934f3e57fda35
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
-> 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
-> 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
-> 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
-> 
-> Thanks,
-> Mark
-> 
+Hi
 
-Hello Mark,
+This series introduces basic support for recently introduced TI K3 AM642x SoC [1]
+which contains 3 port (2 external ports) CPSW3g module. The CPSW3g integrated
+in MAIN domain and can be configured in multi port or switch modes.
+In this series only multi port mode is enabled. The initial version of switchdev
+support was introduced by Vignesh Raghavendra [2] and work is in progress.
 
-Thanks for applying the commit, however, I feel like reminding you that 
-setting voltage on this regulator without setting a current limit is 
-really unsafe (at least, from many, many experiments) so, to ensure the 
-entire safety of this code and the hardware that's attached to these 
-regulators you should, please, either apply the entire series, or nothing.
+The overall functionality and DT bindings are similar to other K3 CPSWxg
+versions, so DT binding changes are minimal and driver is mostly re-used for
+TI K3 AM642x CPSW3g.
 
-My concerns are only about keeping LAB and IBB safe for everyone's hardware.
+The main difference is that TI K3 AM642x SoC is not fully DMA coherent and
+instead DMA coherency is supported per DMA channel.
 
-Thank you again
--- Angelo
+Patches 1-2 - DT bindings update 
+Patches 3-4 - Update driver to support changed DMA coherency model
+Patches 5-6 - adds TI K3 AM642x SoC platform data and so enable CPSW3g 
+
+[1] https://www.ti.com/lit/pdf/spruim2
+[2] https://patchwork.ozlabs.org/project/netdev/cover/20201130082046.16292-1-vigneshr@ti.com/
+
+Grygorii Strashko (2):
+  dt-binding: ti: am65x-cpts: add assigned-clock and power-domains props
+  dt-binding: net: ti: k3-am654-cpsw-nuss: update bindings for am64x cpsw3g
+
+Peter Ujfalusi (2):
+  net: ethernet: ti: am65-cpsw-nuss: Use DMA device for DMA API
+  net: ethernet: ti: am65-cpsw-nuss: Support for transparent ASEL
+    handling
+
+Vignesh Raghavendra (2):
+  net: ti: cpsw_ale: add driver data for AM64 CPSW3g
+  net: ethernet: ti: am65-cpsw: add support for am64x cpsw3g
+
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 50 ++++++----
+ .../bindings/net/ti,k3-am654-cpts.yaml        |  7 ++
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      | 96 +++++++++++--------
+ drivers/net/ethernet/ti/am65-cpsw-nuss.h      |  2 +
+ drivers/net/ethernet/ti/cpsw_ale.c            |  7 ++
+ 5 files changed, 101 insertions(+), 61 deletions(-)
+
+-- 
+2.17.1
+
