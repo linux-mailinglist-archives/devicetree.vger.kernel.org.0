@@ -2,90 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D672A2F78FF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 13:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 385E82F7A5D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 13:50:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732046AbhAOMaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 07:30:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732011AbhAOMaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 07:30:21 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B9DC0617A0
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:05 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id d9so17731246iob.6
-        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 04:29:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=t+ObhEAIT9fbovEwiN4T77G8335SbFAVW9ujGpSZ6KQ=;
-        b=j6zz31UDqKS8+mz/uvFOZxGx09lqzxksGJlSucJEC306pIAr/tS++aEARxTyTaH+Hd
-         XUuUs0eJMu9h+6nbhO3R3g7q8WXN6e9/LR/5RoOQc+IdiFEtT1tTAUlpnxrwo4z6kQ42
-         M/j0WVGT//n0hPipDvnW9ADeABfPakasVTbrTtTroRkxku/HjEnk8cIBJ8BHicMgAYHF
-         lW4soIHt3COX5JOAO+cKhe3KwPtpCdSbMF+06RITNiOGbHuseTyRc89ZYVaPTIfaCDjZ
-         QzyhByhQrQB1NphzUS2MIUfJsy67NAAqja7dEBKS0NQRhiHWFgV8UOKKffnA5Fm0jZbD
-         Nv9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=t+ObhEAIT9fbovEwiN4T77G8335SbFAVW9ujGpSZ6KQ=;
-        b=ApTZee1JhHHCrN1fP2L5Y/LG8kApFL5mzmQclQ/Vs8fwl94xJxT/ZfoubffaoQN/qg
-         T/ai/phEDbVZxtwOd0sjg84OJhSlTV5CpO1ZI6liTkjHOHqkEeSBuGlSwsCe3hE0HhE3
-         67ovijvcjEHl/WpqbgHpcFZHQtqQC5NKwgBRNqFIr2mgVwtzDEJsuc6dNoqEjz8QowGC
-         XVHy7clE7tqpWVcgQHUUZi1Ye+Dlupc2zbaWzjooCzICg8L/wfBKlhEBLnS6ScHnPhVn
-         RhqHcC9iqlLL52Ufqb2th8Gc7W5rDBT26Hhjkjs3JzX1/FL45Dl0ySDPnTgpRoRauAe8
-         JevQ==
-X-Gm-Message-State: AOAM5311izEpk25/ZGhB26zoSgLtjMWDbQI00BrST0gFMCNrR4f2EVyf
-        /RZK0sX9OMqVfacvMYGt1Lt4FTExKexCmA==
-X-Google-Smtp-Source: ABdhPJz4k+H5EbE4BC6jKWyuKS4/qK9DyW17Y1VbtDQjIjztsxWWY3DD8dcCwWM8nxwAyr+batzR3w==
-X-Received: by 2002:a6b:6f17:: with SMTP id k23mr8495949ioc.147.1610713744655;
-        Fri, 15 Jan 2021 04:29:04 -0800 (PST)
-Received: from beast.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id a9sm3828509ion.53.2021.01.15.04.29.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Jan 2021 04:29:04 -0800 (PST)
-From:   Alex Elder <elder@linaro.org>
-To:     robh+dt@kernel.org, davem@davemloft.net, kuba@kernel.org
-Cc:     evgreen@chromium.org, bjorn.andersson@linaro.org,
-        cpratapa@codeaurora.org, subashab@codeaurora.org,
-        rdunlap@infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 net-next 4/4] arm64: dts: qcom: sdm845: kill IPA modem-remoteproc property
-Date:   Fri, 15 Jan 2021 06:28:55 -0600
-Message-Id: <20210115122855.19928-5-elder@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210115122855.19928-1-elder@linaro.org>
-References: <20210115122855.19928-1-elder@linaro.org>
+        id S2388006AbhAOMsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 07:48:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52366 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732588AbhAOMsW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 07:48:22 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5C099208BA;
+        Fri, 15 Jan 2021 12:47:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610714861;
+        bh=eTI7ILWKYaLFNuONtwhCzjcLb2VJvQujfi2l3S4BFVc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PVHT669oWu/cn7kUmawuwpOg2yDBO6GOp55yt8PnHkDn8A33PkunAxX07qGsn3Mpx
+         KJnz2h2ecFIjDNxgB4vc+QGNeu1h+PqY0QwgWGzduxkjMygrjq+Pr0tpwWPc+9qwCa
+         7EbDnvfE60myfDJ9vLv4KpM2mpMmuLAsffpjkJA0bKQ/1Q3z20CN0MORzL3kVJvOGg
+         pOxI9S+PeCtCoxJxxQL1RF9eRgEJH9EwxI5XE6WgnZ4bvY7URfqX1I4yRJhreELtZ2
+         HuFUFyU0bSQqNIEa3IAwAKMB+TVL6SMnAcrI1TYxZNoIOpYH/fXeaVLM6lFngr1vd/
+         +5BGdsfhxDWaw==
+Date:   Fri, 15 Jan 2021 18:17:36 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Jack Pham <jackp@codeaurora.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] phy: qcom-qmp: Add SM8350 USB QMP PHYs
+Message-ID: <20210115124736.GF2771@vkoul-mobl>
+References: <20210115104047.3460-1-jackp@codeaurora.org>
+ <20210115104047.3460-2-jackp@codeaurora.org>
+ <2c5481fe-f5be-5d6a-f62f-c93d04b9210e@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2c5481fe-f5be-5d6a-f62f-c93d04b9210e@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "modem-remoteproc" property is no longer required for the IPA
-driver, so get rid of it.
+On 15-01-21, 12:54, Konrad Dybcio wrote:
+> Hi,
+> 
+> 
+> I might be wrong but it looks as if you forgot to add a compatible for the "sm8350_usb3_uniphy_cfg" configuration.
 
-Signed-off-by: Alex Elder <elder@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+It seems to be documented in patch 2, ideally we should have the
+bindings patches first and this as patch 3...
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index bcf888381f144..04b2490eec9f4 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2366,8 +2366,6 @@
- 			qcom,smem-state-names = "ipa-clock-enabled-valid",
- 						"ipa-clock-enabled";
- 
--			modem-remoteproc = <&mss_pil>;
--
- 			status = "disabled";
- 		};
- 
+> 
+> 
+> Konrad
+
 -- 
-2.20.1
-
+~Vinod
