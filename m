@@ -2,132 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A0632F7589
-	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:35:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDC82F759F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Jan 2021 10:40:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726385AbhAOJew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 04:34:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46164 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725910AbhAOJev (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Jan 2021 04:34:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4404123447;
-        Fri, 15 Jan 2021 09:34:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610703258;
-        bh=OKNLTlQKyKn5tOx2TJLSfSa0m89ZdsA7oHQE8VHaB0U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Km3/cC9zGGC5OlciE4xO4tVv900cDkjHKm7cIZ2/5nwSp3Hyvy5m4VwBhSU/DSZbR
-         TPy1BRSfNtFR1DIDNfvGoArY39Zb/DO5Ao7fceMawN0o4T7qP0zxPKUiVY9YpKJ42j
-         MS0knJAIzLNhFT8OThBnsMbmdrL3F60CSR+GHd0wGyXo02+3EDQJ7Q5QsvQkdTVDXz
-         vtaEbm4zf0pu9E6uAH96pTSCdGrQz1TIAkVq40oo39A9SjIGM/E8ipCzYlA3iOY33e
-         VITWcXXyg0JmQpFdjNp5VGoaUvw/zHJ+VHB1tg/kUtuLZjdtK/CuAQtXiHkTP+qXxO
-         hJvfKW9K1NJ2A==
-Date:   Fri, 15 Jan 2021 17:34:13 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: sl28: add variant 1
-Message-ID: <20210115093412.GK28365@dragon>
-References: <20201229120321.17103-1-michael@walle.cc>
- <20201229120321.17103-2-michael@walle.cc>
- <20210111013442.GU28365@dragon>
- <838c9860e19dcfb18d35cffde773ad93@walle.cc>
+        id S1729326AbhAOJkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 04:40:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58202 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728586AbhAOJkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 04:40:06 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7883C061757
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 01:39:33 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id r4so7007856wmh.5
+        for <devicetree@vger.kernel.org>; Fri, 15 Jan 2021 01:39:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=imaj/ctA3L/wlWp3n7QdUSQrNtHtAb2R0yMsutlcFPY=;
+        b=cgNHpF2O+P66n9VszplNB6gDRihOfYqmDe4a9OIAshp+cU/z6aXgBreHhneSyDALZB
+         BFYGYyGUabYUiTlTHxRBvbTeYEGj5y+kFZ5f8osmjYQjsw8koD7JA2Krcm+uU5ZdCOXL
+         6UPcAz0nGGLXfXm0bGER9yAs+cwACT/tfr1gxEPjNxsGj6M1OHAAKFSlXDLO/i73v669
+         z9Iy84NcAxp0HiERnGCV2OdGBbHfRI2cyESBg8jBGFPVcrJtjpKUD8n2PBChgYLQ4+N+
+         GmZdCzUZXwIvOg9O3aik1NfifD3b9uFRIEsjXiDJuW6HQpBfj2Sw6TVSc22OTr5CQlO6
+         PHOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=imaj/ctA3L/wlWp3n7QdUSQrNtHtAb2R0yMsutlcFPY=;
+        b=PB4JGHu0uZHX2z8zhdKoMEtojl4baiMuK15DS11SBbuiXZlh950z57kMQsEUiqv4YY
+         NQn8GfBf28Kll7UZRBL7Jry8SQWO6nIEbsXZIEZYZ5z3yBy939TRjow1bHh/uiXnDpva
+         HRe2BDCArMYmShVtn1DRzgtv+76RhanlQL96ff0ZXO1XAYaVfdFlNVTVj2Uwydi5iwUt
+         riGurFjOPpsF1u4AFUvkgsptHtFr7er4fNFrIRrloNJ5nH3r/i99GukMoSonEFQECshU
+         nGGKkV9ZGVdA8lUFzFqxHiFaW8R+dpc7p3esDn86glY2hjRUt7CZIfvbiPvaSDrUQocv
+         Zjkg==
+X-Gm-Message-State: AOAM5303az1MqgU/3MNWF+VTJKp6201JUIN7HmQsh/4zHTnkV3JIVWKK
+        Vyj51RgR6t3j18JokAWXsV5zhwcxMYr0HS/A65OpkQ==
+X-Google-Smtp-Source: ABdhPJzdRWu/TfyZ/Gd97tSU+o2o0bt1wD1y05MueGCvzmmH7EPSDgX4zaroWKovIWX7b3kAAonKNBo6s9Su7SNi1RQ=
+X-Received: by 2002:a1c:1fc2:: with SMTP id f185mr7918821wmf.134.1610703572400;
+ Fri, 15 Jan 2021 01:39:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <838c9860e19dcfb18d35cffde773ad93@walle.cc>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210111212031.2422-1-vitaly.wool@konsulko.com>
+In-Reply-To: <20210111212031.2422-1-vitaly.wool@konsulko.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Fri, 15 Jan 2021 15:09:21 +0530
+Message-ID: <CAAhSdy04Nm+ET3Oepe5zRyVWiWpZzmfe=0BrdOEPUHGEOF86Vw@mail.gmail.com>
+Subject: Re: [PATCH] RISC-V: simplify BUILTIN_DTB processing
+To:     Vitaly Wool <vitaly.wool@konsulko.com>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 11, 2021 at 09:00:37AM +0100, Michael Walle wrote:
-> Am 2021-01-11 02:34, schrieb Shawn Guo:
-> > On Tue, Dec 29, 2020 at 01:03:21PM +0100, Michael Walle wrote:
-> > > There is a new variant 1 of this board available. It features up to
-> > > four
-> > > SerDes lanes for customer use. Add a new device tree which features
-> > > just
-> > > the basic peripherals. A customer will then have to modify or append
-> > > to
-> > > this device tree.
-> > > 
-> > > Signed-off-by: Michael Walle <michael@walle.cc>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/Makefile        |  1 +
-> > >  .../fsl-ls1028a-kontron-sl28-var1.dts         | 61
-> > > +++++++++++++++++++
-> > >  2 files changed, 62 insertions(+)
-> > >  create mode 100644
-> > > arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> > > b/arch/arm64/boot/dts/freescale/Makefile
-> > > index 6f0777ee6cd6..79cb0025fcc6 100644
-> > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-qds.dtb
-> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-rdb.dtb
-> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) +=
-> > > fsl-ls1028a-kontron-kbox-a-230-ls.dtb
-> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28.dtb
-> > > +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var1.dtb
-> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var2.dtb
-> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) +=
-> > > fsl-ls1028a-kontron-sl28-var3-ads2.dtb
-> > >  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var4.dtb
-> > > diff --git
-> > > a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-> > > b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-> > > new file mode 100644
-> > > index 000000000000..52f2f3ffdce1
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-> > > @@ -0,0 +1,61 @@
-> > > +// SPDX-License-Identifier: GPL-2.0+
-> > > +/*
-> > > + * Device Tree file for the Kontron SMARC-sAL28 board.
-> > > + *
-> > > + * This is for the network variant 1 which has one ethernet port.
-> > > It is
-> > > + * different than the base variant, which also has one port, but
-> > > here the
-> > > + * port is connected via RGMII. This port is not TSN aware.
-> > > + * None of the  four SerDes lanes are used by the module, instead
-> > > they are
-> > > + * all led out to the carrier for customer use.
-> > > + *
-> > > + * Copyright (C) 2020 Michael Walle <michael@walle.cc>
-> > > + *
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +#include "fsl-ls1028a-kontron-sl28.dts"
-> > > +#include <dt-bindings/net/qca-ar803x.h>
-> > > +
-> > > +/ {
-> > > +	model = "Kontron SMARC-sAL28 (4 Lanes)";
-> > > +	compatible = "kontron,sl28-var1", "kontron,sl28", "fsl,ls1028a";
-> > > +};
-> > > +
-> > > +&enetc_port0 {
-> > > +	status = "disabled";
-> > > +	/delete-property/ phy-handle;
-> > > +	/delete-node/ mdio;
-> > 
-> > As it's disabled anyway, why do we bother to delete the property and
-> > child node?
-> 
-> Because beneath that node is also the old phy0 label. So you'd be getting
-> arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts:38.24-55.5:
-> ERROR (duplicate_label):
-> /soc/pcie@1f0000000/ethernet@0,1/mdio/ethernet-phy@4: Duplicate label 'phy0'
-> on /soc/pcie@1f0000000/ethernet@0,1/mdio/ethernet-phy@4 and
-> /soc/pcie@1f0000000/ethernet@0,0/mdio/ethernet-phy@5
+On Tue, Jan 12, 2021 at 2:51 AM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
+>
+> Provide __dtb_start as a parameter to setup_vm() in case
+> CONFIG_BUILTIN_DTB is true, so we don't have to duplicate
+> BUILTIN_DTB specific processing in MMU-enabled and MMU-disabled
+> versions of setup_vm().
+>
+> Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
+> ---
+>  arch/riscv/kernel/head.S | 4 ++++
+>  arch/riscv/mm/init.c     | 4 ----
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
+> index 16e9941900c4..f5a9bad86e58 100644
+> --- a/arch/riscv/kernel/head.S
+> +++ b/arch/riscv/kernel/head.S
+> @@ -260,7 +260,11 @@ clear_bss_done:
+>
+>         /* Initialize page tables and relocate to virtual addresses */
+>         la sp, init_thread_union + THREAD_SIZE
+> +#ifdef CONFIG_BUILTIN_DTB
+> +       la a0, __dtb_start
+> +#else
+>         mv a0, s1
+> +#endif /* CONFIG_BUILTIN_DTB */
+>         call setup_vm
+>  #ifdef CONFIG_MMU
+>         la a0, early_pg_dir
+> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> index 5b17f8d22f91..45faad7c4291 100644
+> --- a/arch/riscv/mm/init.c
+> +++ b/arch/riscv/mm/init.c
+> @@ -615,11 +615,7 @@ static void __init setup_vm_final(void)
+>  #else
+>  asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>  {
+> -#ifdef CONFIG_BUILTIN_DTB
+> -       dtb_early_va = (void *) __dtb_start;
+> -#else
+>         dtb_early_va = (void *)dtb_pa;
+> -#endif
+>         dtb_early_pa = dtb_pa;
+>  }
+>
+> --
+> 2.20.1
+>
 
-So labelling enetc_port1 phy as 'phy1' would fix it, right?
+We can avoid the early DTB mapping for MMU-enabled case when
+BUILTIN_DTB is enabled (same as previous discussion). Otherwise
+looks good to me.
 
-Shawn
+Reviewed-by: Anup Patel <anup@brainfault.org>
+
+Regards,
+Anup
