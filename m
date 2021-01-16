@@ -2,79 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4C802F8E7D
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 18:57:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 415022F8E83
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 19:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727570AbhAPR4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 12:56:17 -0500
-Received: from mail-out.m-online.net ([212.18.0.9]:35905 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727154AbhAPR4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 12:56:17 -0500
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4DJ5LP0bwFz1qs3T;
-        Sat, 16 Jan 2021 18:55:25 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4DJ5LN740lz1tSQn;
-        Sat, 16 Jan 2021 18:55:24 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id 1Vo_tbLk7kin; Sat, 16 Jan 2021 18:55:24 +0100 (CET)
-X-Auth-Info: 1+mt8bXHCGKA8fBz8vw78glbrDug8q/LrnocHbrrpuU=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Sat, 16 Jan 2021 18:55:23 +0100 (CET)
-Subject: Re: [PATCH] RFC: mmc: mmci: Convert bindings to DT schema
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     devicetree@vger.kernel.org
-References: <20210115225313.2616477-1-linus.walleij@linaro.org>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <7d5c6875-c10e-e9fd-08ef-65a97e26c127@denx.de>
-Date:   Sat, 16 Jan 2021 18:55:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1727284AbhAPSDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 13:03:16 -0500
+Received: from foss.arm.com ([217.140.110.172]:55786 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727226AbhAPSDQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 16 Jan 2021 13:03:16 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C0947ED1;
+        Sat, 16 Jan 2021 06:57:46 -0800 (PST)
+Received: from [10.57.56.43] (unknown [10.57.56.43])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1BDB43F719;
+        Sat, 16 Jan 2021 06:57:44 -0800 (PST)
+Subject: Re: [PATCH 1/2] of: device: Allow DMA range map to be set before
+ of_dma_configure_id
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20210115175831.1184260-1-paul.kocialkowski@bootlin.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <ddf44e96-187b-91c0-822d-ade4f1e5be2b@arm.com>
+Date:   Sat, 16 Jan 2021 14:57:43 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20210115225313.2616477-1-linus.walleij@linaro.org>
+In-Reply-To: <20210115175831.1184260-1-paul.kocialkowski@bootlin.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/15/21 11:53 PM, Linus Walleij wrote:
-> This converts the MMCI bindings from simple text to a proper
-> schema.
+On 2021-01-15 17:58, Paul Kocialkowski wrote:
+> A mechanism was recently introduced for the sunxi architecture where
+> the DMA offset for specific devices (under the MBUS) is set by a common
+> driver (sunxi_mbus). This driver calls dma_direct_set_offset to set
+> the device's dma_range_map manually.
 > 
-> I can't get this to work when testing the schema and I don't
-> know why, possibly my fault. That is why it is RFC.
+> However this information was overwritten by of_dma_configure_id, which
+> obtains the map from of_dma_get_range (or keeps it NULL when it fails
+> and the force_dma argument is true, which is the case for platform
+> devices).
 > 
-> /var/linus/linux-nomadik/build-ux500/Documentation/devicetree/bindings/mmc/arm,pl18x.example.dt.yaml: mmc@5000: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /var/linus/linux-nomadik/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> /var/linus/linux-nomadik/build-ux500/Documentation/devicetree/bindings/mmc/arm,pl18x.example.dt.yaml: mmc@80126000: 'bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'cd-gpios', 'clock-names', 'clocks', 'max-frequency', 'vmmc-supply', 'vqmmc-supply' do not match any of the regexes: 'pinctrl-[0-9]+'
+> As a result, the dma_range_map was always overwritten and the mechanism
+> could not correctly take effect.
 > 
-> This appear on my machine despite:
-> 
-> allOf:
->    - $ref: /schemas/arm/primecell.yaml#
->    - $ref: /schemas/mmc/mmc-controller.yaml#
-> 
-> No idea why these refs are not reffed. Help.
+> This adds a check to ensure that no previous DMA range map is
+> overwritten and prints a warning when the map was already set while
+> also being available from dt. In this case, the map that was already
+> set is kept.
 
-[...]
+Hang on, the hard-coded offset is only intended to be installed when 
+there *isn't* anything described in DT, in which case of_dma_get_range() 
+should always bail out early without touching it anyway. This sounds 
+like something's not quite right in the MBUS driver, so I don't think 
+working around it in core code is really the right thing to do.
 
-> +  st,use-ckin:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: ST Micro-specific property, use CKIN pin from an external
-> +      driver to sample the receive data (for example with a voltage switch
-> +      transceiver).
+Do you have a case where one of the relevant devices inherits a 
+"dma-ranges" via the regular hierarchy without indirecting via an 
+"interconnects" reference? Currently you're only checking for the 
+latter, so that would be one way things could go awry (although to be a 
+problem, said "dma-ranges" would also have to encode something *other* 
+than the appropriate MBUS offset, which implies an incorrect or at least 
+inaccurately-structured DT as well).
+
+Robin.
+
+> Fixes: b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in a central place")
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>   drivers/of/device.c | 9 ++++++++-
+>   1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index aedfaaafd3e7..db1b8634c2c7 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -181,7 +181,14 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>   
+>   	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+>   
+> -	dev->dma_range_map = map;
+> +	if (!dev->dma_range_map) {
+> +		dev->dma_range_map = map;
+> +	} else if (map) {
+> +		dev_warn(dev,
+> +			 "DMA range map was already set, ignoring range map from dt\n");
+> +		kfree(map);
+> +	}
 > +
-> +additionalProperties: false
-
-Set this to "true" and then the validation should work.
-
-[...]
+>   	return 0;
+>   }
+>   EXPORT_SYMBOL_GPL(of_dma_configure_id);
+> 
