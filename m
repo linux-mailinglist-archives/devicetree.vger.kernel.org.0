@@ -2,151 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E908D2F8F58
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 21:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A9A32F8F3B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 21:36:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727480AbhAPU4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 15:56:47 -0500
-Received: from mout.gmx.net ([212.227.17.20]:48835 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726751AbhAPU4I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 16 Jan 2021 15:56:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1610830440;
-        bh=7B6YBniBlOdUKUBNpIZoTRJoQhsWL/33VK8gWA6nQR0=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ljKvnS5DcTcWGglUZc7S5r2nf+1Ay8faK0t+OTQTHDxY0fQup1oJOWZBb4ypbLOB9
-         2zxYqQrl6VVlb5cDxkXDrInME0yNy2mFoMcfS9e2v809/mLiWol+4BqIb6W1+pw0lH
-         DHvVRvAVohb5s6jzznWpA850XFRAK4X+Uq8sXF84=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.209]) by mail.gmx.com (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MVvPJ-1lS4bN0qpx-00Rm0T; Sat, 16
- Jan 2021 21:54:00 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v8 7/7] ARM: dts: imx50-kobo-aura: Add Netronix embedded controller
-Date:   Sat, 16 Jan 2021 20:48:26 +0100
-Message-Id: <20210116194826.3866540-8-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210116194826.3866540-1-j.neuschaefer@gmx.net>
-References: <20210116194826.3866540-1-j.neuschaefer@gmx.net>
+        id S1726273AbhAPUfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 15:35:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726083AbhAPUfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 15:35:40 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3533C061573;
+        Sat, 16 Jan 2021 12:34:59 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id d22so2360978edy.1;
+        Sat, 16 Jan 2021 12:34:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=a73n5pAnB+P6IPG8V8MfXs8zF34tD/FahmEduHIQin8=;
+        b=mDehsDSBxWifluWe6tgscuDC8QikOu9YnvTFnvYnSDmOCbPXPuqGrP76Ez2W+y9z3r
+         Ue/NNCgjR9HVnfCfdFYWXPdNNpzOHWF7qpjoOJwBIelCkPYtBsJlI8kVf8CBSZJ05NRX
+         8ozkKrPiSWkejB3AoBnUtSf+wdftD7HD5dCtSfrmFE0xVE2rb6uq/4o5oyYZYCltNmB0
+         SXlMorTPLI2oImft90+5DZ+vNjyL86mFlZ2qoVgCGze2/wY004jXDIiVx6p5atWUczfg
+         l1Q5zNTib3SDXWacBOOqGbWHLP0IY1JHF7irtKHjHxL+AWcs5jJnSV02w0dFM3czDF6y
+         zDcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=a73n5pAnB+P6IPG8V8MfXs8zF34tD/FahmEduHIQin8=;
+        b=qhb2wdhUZn1gKyh3IpMPDN1Qy4ZlhmF9aRhEbZQjXcIw6Md1fqAcALzg0lpVmDaPU+
+         4CAxqsUnUxY9Hp5TZbTmA5GbVig2GLUH7mqbdMlEi2YGyw1qlp9fKJ8nA9CZHUlT7PS3
+         k7hEBWdFml+t6c81KAmA484rIvkGnGuWjaBO+76yqyo9wX4a6GJJbHohHD5XB+nNGQxJ
+         8ayRvrtTwyT6gwouqAWSEDriYUT22em7ev5gBFC0YbiUOLnuFMVSQ2ODEzeocNY7o1cc
+         a8XH5rKkrd8A9pqOv4hUWwrX37TW3tWCG26foIZ5okJNFu6D4eCJ3tZnRV/YFFpXIgAv
+         narw==
+X-Gm-Message-State: AOAM533Jt9dRih357U3QpH/wf4QI9gY+VzE5QnJHi7qrRk3z1i5VxqB1
+        gMndaX3rIb9BbXuDK4/QJCo=
+X-Google-Smtp-Source: ABdhPJzekSyc4UA44U+r1BdsHaXKpFKU6E7EhcOHoru7JjTIgxbV0NhL1BeqbJ1VPGBRkdagBel+3Q==
+X-Received: by 2002:aa7:c652:: with SMTP id z18mr13534552edr.60.1610829298552;
+        Sat, 16 Jan 2021 12:34:58 -0800 (PST)
+Received: from localhost.localdomain (p200300f13723cb00428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:3723:cb00:428d:5cff:feb9:9db8])
+        by smtp.googlemail.com with ESMTPSA id d13sm7751959edx.27.2021.01.16.12.34.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Jan 2021 12:34:58 -0800 (PST)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     olek2@wp.pl
+Cc:     devicetree@vger.kernel.org, john@phrozen.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        robh+dt@kernel.org, tsbogend@alpha.franken.de
+Subject: RE: [PATCH] dt-bindings: mips: lantiq: Document Lantiq Xway EBU bindings
+Date:   Sat, 16 Jan 2021 21:34:46 +0100
+Message-Id: <20210116203446.148603-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210101213759.2070-1-olek2@wp.pl>
+References: <20210101213759.2070-1-olek2@wp.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:+jp6Fwxyu/nDxR+wW8seHUGOUPvLEAiset4N4MtufT7Oc6Q1H2z
- vgGOQA8TIu2zXrneixwjHpWyVlmxoN+ZyoKCu9fow5rgm8q7OhqO+Xe+crmZ5Ynsnri35tl
- H2YBkUBonCUhLUxk4Pe1J3quJbTC/eTjf/woiTfoJJUAf4DksWKkht7Misn58jht2pbNlv4
- GZEQZDNhUQrhmKmD1v8/A==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:V1e2MGs1JUw=:DlxAGfpi0DVwORanN725CO
- dgmkRx7uNS5HKdTuGsGB2HBOxdR31P8eSxJQImujGcx7JBZS7YLt16T2ekImW+vDvhi5DA7xL
- FXIMb+RdCWLjTUoJeTqpwIgeX/76XUBJ3sX1G3CocUlp5S6Np2T3mM9+2PK+Y8Uj/KIE7IlwQ
- PIOHGTNNPIjkTsdh3p9hCySSUKcXoE9FcLAEOWVv9m10oL9DY9dviEWLmqY/ng3Tqxoy64H+q
- +QcsFZS3Ixpe0VltL4Kx01fWuLUurcR+7+WB9Av4wcA2qxGYzC7gXu3PYEO/4tsd3KKCEr4bF
- VP9Gr7Oqp0wl430YPeknqj5hj9v9jxzgVMzmi9lNhpo77MJ4EAlRgimj7EhoWr1Tzc3544Wb7
- QLBOTlm4yMNTjfQOFP91eg5UP8c7K9yCx3UYKMbo6UTd/+CBprWQ0q6OMT5xIE8vXfKRwFC7P
- ktHrqUgCuoa/w/cgdHuCrgjCEmE8C/bQYsRXT5/u6LpL6gnn7aKoeL281fMRhDMEppZFATEAF
- JvTsp8pw8e3HruZBWGc9gYNcUxPZyvSGEXFTsiUoBvcfK25Xhir86wvjs40NCK35XKNp+FRZ6
- cmeBQ+rUSF6INSDceXZA9GIq/34Qr/RVqbxvYpztU5KEAH9Q8JtNBMpNeNIHVcic9NPY8CG04
- Hzrnq6ccohlQPG3uXlEjEF7JDpFFWJubqR1I5Hth/Bf7QDGTY3bwTSxoJw+IcOpn+Un4Pdy3x
- JXvTC1hAQoEpYKjBBrIBb1wo3qV5Hhomr1RESOfB12o3uKZhroZtXlFiWimmAw7n68qdGay6A
- NhkMH4BkKSvM5ajk3ppRDQvuYA/aTw9zuC6rYXBgFyWrS6dYltI+ypnW9zwEXQo3ul2PGFhcK
- EAlQCbQASncgDUl5U2SQ==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the Netronix EC on the Kobo Aura ebook reader.
+(again, sorry for seeing this patch late)
 
-Several features are still missing:
- - Frontlight/backlight. The vendor kernel drives the frontlight LED
-   using the PWM output of the EC and an additional boost pin that
-   increases the brightness.
- - Battery monitoring
- - Interrupts for RTC alarm and low-battery events
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - lantiq,ebu-xway
+I think this compatible string is very generic and with that comes some
+problems.
+There is actually two different versions of this IP: one which has
+support for controlling the interrupt of the PCI controller on some
+SoCs (Danube, xRX100, xRX200). Other SoC variants (Falcon, Amazon-SE)
+don't have that interrupt-controller as they don't have PCI support.
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
-v5-v8:
-- no changes
+Also there is at least one clock input. I *assume* we need to describe
+it but I am not sure (as this platform doesn't use the common clock
+framework yet).
 
-v4:
-- https://lore.kernel.org/lkml/20201123000913.1506944-1-j.neuschaefer@gmx.=
-net/
-- Add 'grp' suffix to pinctrl node
+My version of this can be found here [0]. It's still sitting in my
+tree because it has a dependency on an ICU patch in my tree which I
+could not make work properly yet.
 
-v3:
-- https://lore.kernel.org/lkml/20200925050818.2512375-1-j.neuschaefer@gmx.=
-net/
-- Remove interrupt-controller property from embedded-controller node
-- subnodes of embedded-controller node in to the main node
 
-v2:
-- https://lore.kernel.org/lkml/20200905144503.1067124-3-j.neuschaefer@gmx.=
-net/
-- Fix pwm-cells property (should be 2, not 1)
-=2D--
- arch/arm/boot/dts/imx50-kobo-aura.dts | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+Best regards,
+Martin
 
-diff --git a/arch/arm/boot/dts/imx50-kobo-aura.dts b/arch/arm/boot/dts/imx=
-50-kobo-aura.dts
-index 97cfd970fe742..82ce8c43be867 100644
-=2D-- a/arch/arm/boot/dts/imx50-kobo-aura.dts
-+++ b/arch/arm/boot/dts/imx50-kobo-aura.dts
-@@ -143,10 +143,24 @@ &i2c3 {
- 	pinctrl-0 =3D <&pinctrl_i2c3>;
- 	status =3D "okay";
 
--	/* TODO: embedded controller at 0x43 */
-+	embedded-controller@43 {
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl_ec>;
-+		compatible =3D "netronix,ntxec";
-+		reg =3D <0x43>;
-+		system-power-controller;
-+		interrupts-extended =3D <&gpio4 11 IRQ_TYPE_EDGE_FALLING>;
-+		#pwm-cells =3D <2>;
-+	};
- };
-
- &iomuxc {
-+	pinctrl_ec: ecgrp {
-+		fsl,pins =3D <
-+			MX50_PAD_CSPI_SS0__GPIO4_11		0x0	/* INT */
-+		>;
-+	};
-+
- 	pinctrl_gpiokeys: gpiokeysgrp {
- 		fsl,pins =3D <
- 			MX50_PAD_CSPI_MISO__GPIO4_10		0x0
-=2D-
-2.29.2
-
+[0] https://github.com/xdarklight/linux/blob/8d5c632e11fe0ca14497efc2f9d99b69f75590ba/Documentation/devicetree/bindings/mips/lantiq/lantiq%2Cebu.yaml
