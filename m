@@ -2,169 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4BE52F8F87
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 22:57:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 955EF2F8FE6
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 00:46:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726385AbhAPV4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 16:56:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43502 "EHLO
+        id S1726831AbhAPXpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 18:45:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727394AbhAPV4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 16:56:14 -0500
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 627B1C061574;
-        Sat, 16 Jan 2021 13:55:34 -0800 (PST)
-Received: by mail-io1-xd2a.google.com with SMTP id z5so25342932iob.11;
-        Sat, 16 Jan 2021 13:55:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zI9m/88/zC4bXfzybZXMOWBpR1qzXzngD3/Zlbudf54=;
-        b=X66Yz+ldWRglOqRx4lkYLATma5h6JQgFBBQfT3Zaszt8AVJB1OkyZv5ErmxEAVJl52
-         zcEJWMS3tXeW/6BDBdCcip/QP8UwxKEAYNF8deUn8CIoso+XoGK+p3GF7KhLN+lYCEbo
-         Olam/s7L+qfrIINk0nh8jI08OKAdpRB1o5Kngp01hb80cQM6vH+9nVLa24pVzrtzeE76
-         nA5oHoF9jnqEvHDLD+1WptiJm6n4xuvmpg/tw+4Zd80nz4fGK4sXbPInE2jf93OIXZLA
-         W4EYo9rNlE8BIlCBCkwOi+0jHuFITYk90Fn1ATa4AoSVMUJeFPcEYlKQlpvCb+X8ZJkT
-         +zVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zI9m/88/zC4bXfzybZXMOWBpR1qzXzngD3/Zlbudf54=;
-        b=rZuVr0nU3c+1qvb2n+1oWNEcdYO2NKZdhXrR9uj9hG9v/CAa6jq0+9H/WrkXE5kasi
-         Nc9VWBO2/rfOjCdDUhYEv77gxpBV4J7R3ix7lJdF9MHcOoVpA9X/9FKaXRY8hDNaA2nw
-         oN1frJQmg9wI77JvwzVcSokk5SjA6RdyVlvz0qBCAuWNmg8Lgm+u1gwCOOiAcvtm+EHn
-         p5XWfxsUFksmujORXM5aI0odJqp2m2kyruv9G3F0w3JtqM/IzqrA8llxn8Jh590rartS
-         218b51NE5W/2nTi6PzHdi3sERicUOXDJz5Ousu5PhuMxHCiz7nUfJxSqWuNP8JKFMMj/
-         rRWQ==
-X-Gm-Message-State: AOAM530bzSk8BFrlHV/GEWil4IgoJ8uLJEUemNA19ZWQ6DlhcsPKy0GH
-        1DnYYd8f2p5Sq7j+DzK5+PYssuwVuPEW7Q==
-X-Google-Smtp-Source: ABdhPJzRmXjW2USpEGMGRV8ZM2koCDXodW496Y230kQR1Hiq9+OnTBVp30ZelZwGHfnWKaK6HpVEvw==
-X-Received: by 2002:a92:845c:: with SMTP id l89mr16086055ild.114.1610834133448;
-        Sat, 16 Jan 2021 13:55:33 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:e50e:b7cb:7c2:91f9])
-        by smtp.gmail.com with ESMTPSA id r9sm7544300ill.72.2021.01.16.13.55.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Jan 2021 13:55:32 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-clk@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] clk: vc5: Add support for optional load capacitance
-Date:   Sat, 16 Jan 2021 15:54:51 -0600
-Message-Id: <20210116215451.601498-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210116215451.601498-1-aford173@gmail.com>
-References: <20210116215451.601498-1-aford173@gmail.com>
+        with ESMTP id S1726788AbhAPXpt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 18:45:49 -0500
+Received: from hillosipuli.retiisi.eu (unknown [IPv6:2a01:4f9:c010:4572::e8:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16135C061573;
+        Sat, 16 Jan 2021 15:45:09 -0800 (PST)
+Received: from valkosipuli.localdomain (valkosipuli.localdomain [IPv6:fd35:1bc8:1a6:d3d5::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id E8782634C89;
+        Sun, 17 Jan 2021 01:44:04 +0200 (EET)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1l0vEi-0002pe-Pb; Sun, 17 Jan 2021 01:44:04 +0200
+Date:   Sun, 17 Jan 2021 01:44:04 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org
+Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: i2c: Add IMX300 CMOS
+ sensor binding
+Message-ID: <20210116234404.GX850@valkosipuli.retiisi.org.uk>
+References: <20210113182934.444727-1-angelogioacchino.delregno@somainline.org>
+ <20210113182934.444727-3-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210113182934.444727-3-angelogioacchino.delregno@somainline.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are two registers which can set the load capacitance for
-XTAL1 and XTAL2. These are optional registers when using an
-external crystal.  Parse the device tree and set the
-corresponding registers accordingly.
+Hi AngeloGioacchino,
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+On Wed, Jan 13, 2021 at 07:29:34PM +0100, AngeloGioacchino Del Regno wrote:
+> Add YAML device tree binding for IMX300 CMOS image sensor, and
+> the relevant MAINTAINERS entries.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> ---
+>  .../bindings/media/i2c/sony,imx300.yaml       | 112 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 ++
+>  2 files changed, 119 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+> new file mode 100644
+> index 000000000000..4fa767feea80
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/sony,imx300.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony 1/2.3-Inch 25Mpixel Stacked CMOS Digital Image Sensor
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> +
+> +description: |-
+> +  The Sony IMX300 is a 1/2.3-inch Stacked CMOS (Exmor-RS) digital image
+> +  sensor with a pixel size of 1.08um and an active array size of
+> +  5948H x 4140V. It is programmable through I2C interface at address 0x10.
+> +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
+> +  4 data lanes.
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,imx300
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
 
-diff --git a/drivers/clk/clk-versaclock5.c b/drivers/clk/clk-versaclock5.c
-index 43db67337bc0..224118ca08fd 100644
---- a/drivers/clk/clk-versaclock5.c
-+++ b/drivers/clk/clk-versaclock5.c
-@@ -759,6 +759,72 @@ static int vc5_update_power(struct device_node *np_output,
- 	return 0;
- }
- 
-+static int vc5_map_cap_value(u32 femtofarads)
-+{
-+	int mapped_value;
-+
-+	/*
-+	 * The datasheet explicitly states 9000 - 25000 with 0.5pF
-+	 * steps, but the Programmer's guide shows the steps are 0.430pF.
-+	 * After getting feedback from Renesas, the .5pF steps were the
-+	 * goal, but 430nF was the actual values.
-+	 * Because of this, the actual range goes to 22760 instead of 25000
-+	 */
-+	if (femtofarads < 9000 || femtofarads > 22760)
-+		return -EINVAL;
-+
-+	/* The lowest target we can hit is 9430, so exit if it's less */
-+	if (femtofarads < 9430)
-+		return 0;
-+
-+	/*
-+	 * The Programmer's guide shows XTAL[5:0] but in reality,
-+	 * XTAL[0] and XTAL[1] are both LSB which makes the math
-+	 * strange.  With clarfication from Renesas, setting the
-+	 * values should be simpler by ignoring XTAL[0]
-+	 */
-+
-+	mapped_value = DIV_ROUND_CLOSEST(femtofarads - 9430, 430);
-+
-+	/*
-+	 * Since the calculation ignores XTAL[0], there is one
-+	 * special case where mapped_value = 32.  In reality, this means
-+	 * the real mapped value should be 111111b.  In other clases,
-+	 * the mapped_value needs to be shifted 1 to the left.
-+	 */
-+
-+	if (mapped_value > 31)
-+		mapped_value = 0x3f;
-+	else
-+		mapped_value <<= 1;
-+
-+	return mapped_value;
-+}
-+static int vc5_update_cap_load(struct device_node *node, struct vc5_driver_data *vc5)
-+{
-+	u32 value;
-+	int mapped_value;
-+
-+	if (!of_property_read_u32(node, "idt,xtal-load-femtofarads", &value)) {
-+		mapped_value = vc5_map_cap_value(value);
-+		if (mapped_value < 0)
-+			return mapped_value;
-+
-+		/*
-+		 * According to Renesas, bits [1:0] of VC5_XTAL_X1_LOAD_CAP
-+		 * and VC5_XTAL_X2_LOAD_CAP should always be 01b.
-+		 * Since the mapped_value is really the high 6 bits of 8,
-+		 * shift the value 2 places and or in the 0x01;
-+		 */
-+
-+		mapped_value = (mapped_value << 2) | 0x01;
-+		regmap_write(vc5->regmap, VC5_XTAL_X1_LOAD_CAP, mapped_value);
-+		regmap_write(vc5->regmap, VC5_XTAL_X2_LOAD_CAP, mapped_value);
-+	}
-+
-+	return 0;
-+}
-+
- static int vc5_update_slew(struct device_node *np_output,
- 			   struct vc5_out_data *clk_out)
- {
-@@ -884,6 +950,13 @@ static int vc5_probe(struct i2c_client *client, const struct i2c_device_id *id)
- 		return -EINVAL;
- 	}
- 
-+	/* Configure Optional Loading Capacitance for external XTAL */
-+	if (!(vc5->chip_info->flags & VC5_HAS_INTERNAL_XTAL)) {
-+		ret = vc5_update_cap_load(client->dev.of_node, vc5);
-+		if (ret)
-+			goto err_clk_register;
-+	}
-+
- 	init.name = kasprintf(GFP_KERNEL, "%pOFn.mux", client->dev.of_node);
- 	init.ops = &vc5_mux_ops;
- 	init.flags = 0;
+Please add assigned clock related properties; see
+Documentation/driver-api/media/camera-sensor.rst .
+
+> +
+> +  vdig-supply:
+> +    description:
+> +      Digital I/O voltage supply, 1.15-1.20 volts
+> +
+> +  vana-supply:
+> +    description:
+> +      Analog voltage supply, 2.2 volts
+> +
+> +  vddl-supply:
+> +    description:
+> +      Digital core voltage supply, 1.8 volts
+> +
+> +  reset-gpios:
+> +    description: |-
+> +      Reference to the GPIO connected to the xclr pin, if any.
+> +      Must be released (set high) after all supplies are applied.
+> +
+> +  # See ../video-interfaces.txt for more details
+> +  port:
+> +    type: object
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +
+> +        properties:
+> +          data-lanes:
+> +            description: |-
+> +              The driver only supports four-lane operation.
+
+This can be removed as bindings describe hardware, not driver operation.
+
+> +            items:
+> +              - const: 0
+> +              - const: 1
+> +              - const: 2
+> +              - const: 3
+
+Two lanes here, too?
+
+> +
+> +          clock-noncontinuous: true
+> +
+> +          link-frequencies:
+> +            $ref: /schemas/types.yaml#/definitions/uint64-array
+> +            description:
+> +              Allowed data bus frequencies. The driver currently needs
+> +              to switch between 780000000 and 480000000 Hz in order to
+> +              guarantee functionality of all modes.
+
+You can omit this description, too.
+
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - vana-supply
+> +  - vdig-supply
+> +  - vddl-supply
+
+Are the regulators really required? I'm not quite sure about the
+established practices; still the common case is that one or two of these
+are hard-wired.
+
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        imx300: sensor@10 {
+> +            compatible = "sony,imx300";
+> +            reg = <0x10>;
+> +            clocks = <&imx300_xclk>;
+> +            vana-supply = <&imx300_vana>;   /* 2.2v */
+> +            vdig-supply = <&imx300_vdig>;   /* 1.2v */
+> +            vddl-supply = <&imx300_vddl>;   /* 1.8v */
+> +
+> +            port {
+> +                imx300_0: endpoint {
+> +                    remote-endpoint = <&csi1_ep>;
+> +                    data-lanes = <0 1 2 3>;
+> +                    clock-noncontinuous;
+> +                    link-frequencies = /bits/ 64 <780000000 480000000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ad9abb42f852..5e0f08f48d48 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16633,6 +16633,13 @@ T:	git git://linuxtv.org/media_tree.git
+>  F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
+>  F:	drivers/media/i2c/imx290.c
+>  
+> +SONY IMX300 SENSOR DRIVER
+> +M:	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> +L:	linux-media@vger.kernel.org
+
+Please also add the git tree.
+
+Ideally also the MAINTAINERS change comes with the first patch adding the
+files, which should be the DT bindings. I.e. just reverse the order of the
+patches.
+
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+> +F:	drivers/media/i2c/imx300.c
+> +
+>  SONY IMX319 SENSOR DRIVER
+>  M:	Bingbu Cao <bingbu.cao@intel.com>
+>  L:	linux-media@vger.kernel.org
+
 -- 
-2.25.1
+Kind regards,
 
+Sakari Ailus
