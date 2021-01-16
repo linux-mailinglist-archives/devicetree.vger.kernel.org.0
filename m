@@ -2,93 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C03D22F8F24
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 21:19:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D6852F8F35
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 21:30:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726083AbhAPUTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 15:19:25 -0500
-Received: from vern.gendns.com ([98.142.107.122]:45694 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725979AbhAPUTZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 16 Jan 2021 15:19:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=dDBlo7fWVLQ4psoCP9puULsa0wiX1uMAgLwk8C8ViP4=; b=cniftJ/K2eMSWl89ytKsF9sFXP
-        RjC1H23Mxb07KllTMIsTeeTjr9NiWGNZ2flsStXlGDhhOuygTP9oDmNyQLIs5V4+ZLB9+xYAaQ8E3
-        6Zlax1e4Q/8J12ZVDOy3bY1670UmWq9n7n5hKTynTzEc8fTInWzVf+2RdiOJFLkMfkiMymJaLgQFz
-        a3DUlduJ6Gegj4zTxnxQuDVIdhyLvXKUI488ryMam1ToAgw/CQTPvZdVzwpcZ03c0PkCg8ax1tZNV
-        2GMrJ9zdpNbIfx21di+ySF8HVuoGUnf31YAC4Qwv4u70BV10FIeBkOW9uK5921H4wVtGeq1vs/VtB
-        vYZD2HYA==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:52456 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <david@lechnology.com>)
-        id 1l0s1z-0003pa-EO; Sat, 16 Jan 2021 15:18:43 -0500
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: ti,pruss: add ti,am1806-pruss
-To:     Suman Anna <s-anna@ti.com>, linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210104183021.330112-1-david@lechnology.com>
- <20210104183021.330112-2-david@lechnology.com>
- <f03b9e77-510a-2ad4-4cb8-4aa3919abeb5@ti.com>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <8535db9a-5fd1-f2f2-086a-0f9d017e0e52@lechnology.com>
-Date:   Sat, 16 Jan 2021 14:18:42 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727100AbhAPUaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 15:30:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53494 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727118AbhAPUaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 15:30:06 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A428C061573;
+        Sat, 16 Jan 2021 12:29:26 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id u14so6342331wmq.4;
+        Sat, 16 Jan 2021 12:29:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=dx1C+ulHEMTjOYP7fq7N1OBcBMUm6/ktsvewWHn76/U=;
+        b=SUDRmraR9fFz+okCrgCncyKO0d81LFusWjWOGxooe6gDOr7btRBFrN7OnpRXR1OP+e
+         4xlGFQE6k0f7UAZ54/sYgNXCkfEGYrbo1h+/iOgz3tzqyQPZ1WNs/Dfei//JWr9L9sA/
+         n5ow42KJErZSHIYeSG69VxpMnxYghPXXQQEcXHvF0WgqrkpX1B7rPiTfqmJQq9loROC9
+         /HlHalxoLRlCBU8phulKEnzG/HXelRpwidpQVfbV+WmpCcR/SiT26YcD3CIDZi1Hfl8f
+         K/OZI03msH5OinhmLe07SMAXdfUGGQFOwVqTJeOdg+e/c4f9IbvxlSdDxV+832P7APYV
+         WmsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=dx1C+ulHEMTjOYP7fq7N1OBcBMUm6/ktsvewWHn76/U=;
+        b=IwRhdf7TdlPLCQTTlegHsW8ElPRJg0L/VYFl3cOoxaj9r8zuGKJ0qoyzrTpmXusxnY
+         iZ/pxgG2rLhK3K1Jyr29eUv1iBZH+RPTS5YtscLr8weHFsRtUPGiko04RBWk6l6js2s1
+         s1uP3lDM53viwipibI0BiMAA5UfJDOxiLEkfX+tTGIh0Ddaxz8IdaZGUWSm2aUrHWGyK
+         Ww6/ILHF67MIDVMh7gCmrY1yDf2nhQR/Ps1x7L2n7DrGBm6M1hwLl18tqKV4+TQ6/Tqj
+         jHYQyuSQwdyKk25p8uG0aejodCwDzv3eW4HLDpYCumXygjTFN/39WM9X8uEjjucF2bmA
+         7rLg==
+X-Gm-Message-State: AOAM531XCZKWFeC0oDfcYaL/hSPWbe0ykz++/NpODzVPMQlwfN9cUpQw
+        kEuYBTdbBsIYu9JLfHcKmpk=
+X-Google-Smtp-Source: ABdhPJwJHRhJNxpuAQLVxX8sJPPQVT2eqGEoQ84RHRqJK59k4c3m2QgASaCs1Cjlf5G73/ZxJaEL/w==
+X-Received: by 2002:a05:600c:2905:: with SMTP id i5mr13998611wmd.28.1610828965050;
+        Sat, 16 Jan 2021 12:29:25 -0800 (PST)
+Received: from localhost.localdomain (p200300f13723cb00428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:3723:cb00:428d:5cff:feb9:9db8])
+        by smtp.googlemail.com with ESMTPSA id x7sm16209988wmi.11.2021.01.16.12.29.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Jan 2021 12:29:24 -0800 (PST)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     olek2@wp.pl
+Cc:     devicetree@vger.kernel.org, john@phrozen.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        robh+dt@kernel.org, tsbogend@alpha.franken.de
+Subject: RE: [PATCH] dt-bindings: mips: lantiq: Document Lantiq Xway CGU bindings
+Date:   Sat, 16 Jan 2021 21:29:22 +0100
+Message-Id: <20210116202922.147964-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210101180118.2496-1-olek2@wp.pl>
+References: <20210101180118.2496-1-olek2@wp.pl>
 MIME-Version: 1.0
-In-Reply-To: <f03b9e77-510a-2ad4-4cb8-4aa3919abeb5@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/15/21 10:45 AM, Suman Anna wrote:
-> + Sekhar and Bartosz
-> 
-> Hi David,
-> 
-> On 1/4/21 12:30 PM, David Lechner wrote:
->> This adds a "ti,am1806-pruss" compatible type for the PRUSS found in
->> TI AM18xx/OMAP-L138 SoCs.
->>
->> Signed-off-by: David Lechner <david@lechnology.com>
->> ---
->>   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->> index 037c51b2f972..a6ed23fdbc00 100644
->> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->> @@ -61,6 +61,7 @@ properties:
->>   
->>     compatible:
->>       enum:
->> +      - ti,am1806-pruss  # for AM18xx/OMAP-L138 SoC family
-> 
-> Almost all the drivers for these SoCs use the prefix "ti,da850-xxx" for the
-> compatibles. Can we switch to using those instead of ti,am1806?
+(sorry for only seeing this late)
 
-I wasn't sure which chips exactly are "DA850". If someone can tell
-me, I can look at the docs to see if they have a PRUSS.
+[...]
+> +maintainers:
+> +  - John Crispin <john@phrozen.org>
+personally I think we should get at least John's Acked-by but I don't
+know if there's any rule for adding a dt-binding for some other
+maintainer
+
+[...]
+> +required:
+> +  - compatible
+> +  - reg
+based on "DOs and DON’Ts for designing and writing Devicetree bindings"
+from [0] I think this is incomplete
+As far as I know CGU contains some PLLs. These PLLs need at least one
+input: the main XTAL which is found on the board
+
+Also the Lantiq code does not use the common clock framework yet. Once
+that's used we also need #clock-cells = <1>. I don't know if that
+should be added already (or not).
+
+> +examples:
+> +  - |
+> +    cgu@103000 {
+this should be clock-controller@...
+
+
+Best regards,
+Martin
+
+
+[0] https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-bindings.html
