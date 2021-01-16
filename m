@@ -2,90 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9192F8AEC
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 04:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C4892F8AFD
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 04:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726810AbhAPDEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 22:04:10 -0500
-Received: from esa5.hgst.iphmx.com ([216.71.153.144]:31923 "EHLO
-        esa5.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726157AbhAPDEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 22:04:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1610766249; x=1642302249;
-  h=from:to:subject:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding;
-  bh=ZPZhL+T8Z9NF/+BIa4GwReplGTgbLgirKE6EpwN9c2o=;
-  b=PL9pG72TUb8Ozo2wJxVnQHF+LSAHacIQ1AV7djW4M1Eizil+HxEDlcLE
-   ET0g2ueisJiZQx2TkACOStmyA1xUXazRlsP7Uy3PTbyI2toFD+DrDa9ID
-   Qae/La6WwofFv1X06XdXez5xxCEGhyg2cqmQ6MppuXwe5Z28aLOBLeloM
-   GnrJ91QYc40pWA3psP1n8aGyxsbEu0gQeCSrk4LJjREaeJrHHhAtAZZ9Y
-   r8MTEjF4D/kBPbqGFyE6JUfp6Dk3FwF+i5UeB0DkUswXw8sux5imP90lx
-   Zo4OafTc/KRXlOEf74HP3K6YXb/sSQ9nlYEByAA6MQwmlgGsicF8h2MZ7
-   g==;
-IronPort-SDR: HAr1KLETT5CDlKcqUaJY1GUF+YqVW025N+udRuIpCdxXQA6NsazVb1asgr94l6tPOw3/Zd9Esp
- 9WyUe4QpHxm61xZQz2rn9luOJW++PlhPsPb2ElBFzlMEW9IesqByw0z5/DQxnQDjQbDKGJ1IeT
- F1CgVtY31KLTYzUFNf2JMC4E/15YGnZQTmRohZqqBnuu9UHYWyMMZ/kctW3boANxM5O+B73CQV
- 7cC+KytqN77TlkjW6ic477o1zQs0JpBCw7XttIwhhme918nLXWQYaVRhdYMz+HH1GcQfkXe/my
- XA0=
-X-IronPort-AV: E=Sophos;i="5.79,351,1602518400"; 
-   d="scan'208";a="157556792"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 16 Jan 2021 11:01:59 +0800
-IronPort-SDR: s6JpUzkJtWwgPodQO6BN8Jn56ENGtc7PFuzYfM7NQAiX/9bQl5+BR1gQevc/Qb6WO2fKzdUxXW
- B4x2X36La2eh1HC1E7o5PVQC4BkH4zyAaMh9GEBZVnmfjVsugQzwcLncmVsE+5OcvYE8kgcH3C
- WZRkwCIWBNrfXFJKCEy60BFujVqVqbCNitLX1XNjwjZW9I9GjyX+0vKqRVv41UJzOiG8ytgcrr
- KAiTBT6tsOFF/5uiSNVx405eVYQStLHBNKVy0LlOZXsextxKRIQuDv0q7IhYtr6woQTng/hZTu
- hYtkJsJCag2d2vllDhN545dR
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2021 18:44:41 -0800
-IronPort-SDR: G2gQbhK46/w1otpOJlsLuvFvrM636mcD0tDDF743edWcsXV7omZS0Sv13LtR+y3KgdpYz52JWQ
- BSgoEPYmgA4ZNJpQdhArWWsova9mIbGj3ZyZVLcfbj/M2Khu14GzUg4KVozYXD4Y0Tap/xbZWd
- pSVa8/LHoRtIX9PlFXJi1ZUv9m6ssYrprgT9vSm1fkzdLihBzGlFKdsWsMsRSbflAAuI+mQjHN
- JBAAp8vKneZtBWIbzDvpoNweXsQ+RDQwvFevwG6e8/OHAZ2LP57bCaBLqfaXqA11vXaFf8xqox
- loc=
-WDCIronportException: Internal
-Received: from cnf011319.ad.shared (HELO twashi.fujisawa.hgst.com) ([10.84.70.208])
-  by uls-op-cesaip02.wdc.com with ESMTP; 15 Jan 2021 19:01:59 -0800
-From:   Damien Le Moal <damien.lemoal@wdc.com>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: Fix mt8192-mt6359-rt1015-rt5682 warning
-Date:   Sat, 16 Jan 2021 12:01:56 +0900
-Message-Id: <20210116030156.15726-3-damien.lemoal@wdc.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210116030156.15726-1-damien.lemoal@wdc.com>
-References: <20210116030156.15726-1-damien.lemoal@wdc.com>
+        id S1729282AbhAPDcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 22:32:02 -0500
+Received: from szxga05-in.huawei.com ([45.249.212.191]:11025 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726778AbhAPDcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 22:32:01 -0500
+Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4DHk8751XTzj7Pt;
+        Sat, 16 Jan 2021 11:30:15 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.176.220) by
+ DGGEMS411-HUB.china.huawei.com (10.3.19.211) with Microsoft SMTP Server id
+ 14.3.498.0; Sat, 16 Jan 2021 11:31:08 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Russell King <rmk+kernel@arm.linux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Will Deacon <will.deacon@arm.com>,
+        "Haojian Zhuang" <haojian.zhuang@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>
+Subject: [PATCH v5 0/4] ARM: Add support for Hisilicon Kunpeng L3 cache controller
+Date:   Sat, 16 Jan 2021 11:27:36 +0800
+Message-ID: <20210116032740.873-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.176.220]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix identation of the maintainers entries in
-mt8192-mt6359-rt1015-rt5682.yaml to remove an annoying dtbs_check
-warning.
+v4 --> v5:
+1. Add SoC macro ARCH_KUNPENG50X, and the Kunpeng L3 cache controller only enabled
+   on that platform.
+2. Require the compatible string of the Kunpeng L3 cache controller must have a
+   relevant name on a specific SoC. For example:
+   compatible = "hisilicon,kunpeng509-l3cache", "hisilicon,kunpeng-l3cache";
 
-Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
----
- .../bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml           | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+v3 --> v4:
+Rename the compatible string from "hisilicon,l3cache" to "hisilicon,kunpeng-l3cache".
+Then adjust the file name, configuration option name, and description accordingly.
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-index bf8c8ba25009..54650823b29a 100644
---- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-@@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Mediatek MT8192 with MT6359, RT1015 and RT5682 ASoC sound card driver
- 
- maintainers:
--   - Jiaxin Yu <jiaxin.yu@mediatek.com>
--   - Shane Chien <shane.chien@mediatek.com>
-+  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-+  - Shane Chien <shane.chien@mediatek.com>
- 
- description:
-   This binding describes the MT8192 sound card.
+v2 --> v3:
+Add Hisilicon L3 cache controller driver and its document. That's: patch 2-3.
+
+v1 --> v2:
+Discard the middle-tier functions and do silent narrowing cast in the outcache
+hook functions. For example:
+-static void l2c220_inv_range(unsigned long start, unsigned long end)
++static void l2c220_inv_range(phys_addr_t pa_start, phys_addr_t pa_end)
+ {
++	unsigned long start = pa_start;
++	unsigned long end = pa_end;
+
+
+v1:
+Do cast phys_addr_t to unsigned long by adding a middle-tier function.
+For example:
+-static void l2c220_inv_range(unsigned long start, unsigned long end)
++static void __l2c220_inv_range(unsigned long start, unsigned long end)
+ {
+ 	...
+ }
++static void l2c220_inv_range(phys_addr_t start, phys_addr_t end)
++{
++  __l2c220_inv_range(start, end);
++}
+
+
+Zhen Lei (4):
+  ARM: LPAE: Use phys_addr_t instead of unsigned long in outercache
+    hooks
+  ARM: hisi: add support for Kunpeng50x SoC
+  dt-bindings: arm: hisilicon: Add binding for Kunpeng L3 cache
+    controller
+  ARM: Add support for Hisilicon Kunpeng L3 cache controller
+
+ .../arm/hisilicon/kunpeng-l3cache.yaml        |  40 +++++
+ arch/arm/include/asm/outercache.h             |   6 +-
+ arch/arm/mach-hisi/Kconfig                    |   8 +
+ arch/arm/mm/Kconfig                           |  10 ++
+ arch/arm/mm/Makefile                          |   1 +
+ arch/arm/mm/cache-feroceon-l2.c               |  15 +-
+ arch/arm/mm/cache-kunpeng-l3.c                | 153 ++++++++++++++++++
+ arch/arm/mm/cache-kunpeng-l3.h                |  30 ++++
+ arch/arm/mm/cache-l2x0.c                      |  50 ++++--
+ arch/arm/mm/cache-tauros2.c                   |  15 +-
+ arch/arm/mm/cache-uniphier.c                  |   6 +-
+ arch/arm/mm/cache-xsc3l2.c                    |  12 +-
+ 12 files changed, 317 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/kunpeng-l3cache.yaml
+ create mode 100644 arch/arm/mm/cache-kunpeng-l3.c
+ create mode 100644 arch/arm/mm/cache-kunpeng-l3.h
+
 -- 
-2.29.2
+2.26.0.106.g9fadedd
+
 
