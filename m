@@ -2,167 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E85142F8F5C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 22:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC8002F8F83
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 22:56:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726751AbhAPVCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 16:02:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60292 "EHLO
+        id S1727431AbhAPV4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 16:56:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbhAPVCM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 16:02:12 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F13F5C061573;
-        Sat, 16 Jan 2021 13:01:31 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id l9so12582714ejx.3;
-        Sat, 16 Jan 2021 13:01:31 -0800 (PST)
+        with ESMTP id S1727286AbhAPV4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 16:56:13 -0500
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E3DC061573;
+        Sat, 16 Jan 2021 13:55:33 -0800 (PST)
+Received: by mail-io1-xd29.google.com with SMTP id d13so22170386ioy.4;
+        Sat, 16 Jan 2021 13:55:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=b6fot4S0o8FzBACw00nl0yHU0eEOQr6GTvAJmo+zENQ=;
-        b=kEh8eR+7T5R8d2o7uD/lJHuY8dv8i1NNXBpsp2Kz30djqxD7PIinIv/GSxaERAsJpg
-         Qr0hFfmaigLfAsv5JuvxCUBLYzpgQYycqh9F5C0XcuRdgYrvYzeG9jyILTswpMT/YdiH
-         /dHlEryL8aAmxfVSM7wxBoXNF1RJpruY1SYHCUz/REnMjrP2fn84U5XQp2BWwKazYlUC
-         jEOjzxN3MikFrF5Km1Pd99tN7xpYFveHz7rurvd1xnSkWsS0UNssSj9zd0w0x7W3Tz94
-         I4hOFNF12VhfALTvQKJ6uJQfw7aQPFbYs2mTGN/nssOQXUFN9rOj18I2w8BO3gcdbD6q
-         qqJg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XpCvkHzpZP61955aUi+AhO8oazmglG56bzhfKCazjxk=;
+        b=bdSuMeBqz1oGDvNCPwwtJejUbU5B8R5VnhxUFepoOwA2DzVRsAxZGPSz33oKuEciXv
+         iJyRAeejHf31KEwq0Z2uOUturS80dxFW0PzZoNuGsZBiSJ+3toTILhM6jV1wMjyQuJXD
+         I8GGEY/TIpmhGmGoqgtL2l8SQ0kb61Jntczv5TiUBWx3OG41J1ZaNuDECXOTTCCqfFsh
+         FyAZLWThRUqjy4kV9rFcDOR5rvPwIHQnSRlr2UN/NKWRIrmCQ+ZABRNU1V9nKDDx2Uxe
+         ZKJO/l3gkF8VVn6r9gZJbVJgDGx6f75UQFrSNmBIgplHda9Hv0QqieibjyjxGMh/hAGz
+         nxsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b6fot4S0o8FzBACw00nl0yHU0eEOQr6GTvAJmo+zENQ=;
-        b=ufkMVxnqegcm3wyPYxKUGiHBYvhm8T8TyEQSSYLbX8aY14juGFTar/9kub8JHtEvfT
-         kBB73R/HD37HQTe7vb918gh988169QJ5PNZt1paLg1s+poejwuaBCvL8OyyrHZmvlHn9
-         mWoI442KxiZHCinSi4/orAV/5BqHT86345jIfNDxdld9/6IkV5Q9xHN9va0EzklLL+46
-         Ikl6nAT7z6FpXvb6OP5X4RJTdGKlfaseSfKCbpl24l/asVD6jSIw+Bfc1NRBFC10+5Li
-         LnaYWPGTumiGgAZ6EPXsAmvSFOoOAuJZqaCgqyabqXM6xJlH5GIpeabF4Fv28ChBuvWp
-         J/+Q==
-X-Gm-Message-State: AOAM532prfrxSEGiDGy2aeWFFKZviCV4hTUEnR1ebJR08PnAYOwNKNCa
-        AYIIuDJi+WjwII99jk40n8wjVPHQI/SdnwlMmyw=
-X-Google-Smtp-Source: ABdhPJwi6ie1Yk7L9E3ktUS9hNm/69jCzQMPLiaiVv9fUfCeBpf1UPMrxU+hF3OIde5B0EuEm426RXWdLPC1C9q7KzM=
-X-Received: by 2002:a17:907:3e27:: with SMTP id hp39mr8452064ejc.187.1610830890430;
- Sat, 16 Jan 2021 13:01:30 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XpCvkHzpZP61955aUi+AhO8oazmglG56bzhfKCazjxk=;
+        b=snOgA2htR+XICE0UcyWK2fzO0rvoXBVYdpFblLaSYDrNGU87tYAegcE5d0qenmsOmt
+         G1j9Srhf01JitJEGpmILygIEudx2MufBOwvm0s//F/UcqU2TIHvfVc/jNDV4ZUIclPiX
+         HyXJLDD6ncdEKh/NzSVzt6cT/IibNEKX+Jil5WtZEUM4/TX+2VI/hdFnSNBQM1aRCsYq
+         Qwp9G8l4YSg68ar9NAzj34jDDDzJTBHYqUGUNdf4CkdGjarJdSV8rXHv1vyaM4OZLKJ5
+         hVIvwAwXDYx0gGQppTwqryMOKRJqj913tmLkTgWSJAqP4SDGZgtV40jjwcICtGFQJTux
+         0BVw==
+X-Gm-Message-State: AOAM530mAmCXKrQ0wZ5YjNpyidWMQ9nFb0rUkkwpx2EATzZWxpqCN1lb
+        TzUUxzTG1DMHotk46vUkRIFoSH5K1l5+3g==
+X-Google-Smtp-Source: ABdhPJwR7K2ntzwTHIiqpPIvh+eO+Vlz//g9La2dGYjW/R4YHFh2viSn88xVFFxXJQDr/6ipJLO0sw==
+X-Received: by 2002:a6b:9346:: with SMTP id v67mr12687442iod.108.1610834131989;
+        Sat, 16 Jan 2021 13:55:31 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:e50e:b7cb:7c2:91f9])
+        by smtp.gmail.com with ESMTPSA id r9sm7544300ill.72.2021.01.16.13.55.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Jan 2021 13:55:31 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-clk@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: clk: versaclock5: Add optional load capacitance property
+Date:   Sat, 16 Jan 2021 15:54:50 -0600
+Message-Id: <20210116215451.601498-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210102205904.2691120-1-martin.blumenstingl@googlemail.com>
- <20210102205904.2691120-5-martin.blumenstingl@googlemail.com> <20210112234330.GA192175@xps15>
-In-Reply-To: <20210112234330.GA192175@xps15>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 16 Jan 2021 22:01:19 +0100
-Message-ID: <CAFBinCCfiC9a6u2qAs8-pEUB299C=vHut5=1ZPVPoCs0w-+r-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] remoteproc: meson-mx-ao-arc: Add a driver for the
- AO ARC remote procesor
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     linux-remoteproc@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, ohad@wizery.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mathieu,
+There are two registers which can set the load capacitance for
+XTAL1 and XTAL2. These are optional registers when using an
+external crystal.  Since XTAL1 and XTAL2 will set to the same value,
+update the binding to support a single property called
+xtal-load-femtofarads.
 
-thank you for taking the time to go through my patch!
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-On Wed, Jan 13, 2021 at 12:43 AM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
-[...]
-> > +       If unusre say N.
->
-> s/unusre/unsure
-godo catch, noted.
+diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+index 2ac1131fd922..c268debe5b8d 100644
+--- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
++++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+@@ -59,6 +59,12 @@ properties:
+     minItems: 1
+     maxItems: 2
+ 
++  idt,xtal-load-femtofarads:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 9000
++    maximum: 22760
++    description: Optional load capacitor for XTAL1 and XTAL2
++
+ patternProperties:
+   "^OUT[1-4]$":
+     type: object
+-- 
+2.25.1
 
-[...]
-> > +#include <linux/property.h>
->
-> Is it possible for this to go after platform_device.h?
-I think so, not sure why this is not in alphabetical order
-
-[...]
-> > +#define AO_CPU_CNTL                                  0x0
-> > +     #define AO_CPU_CNTL_MEM_ADDR_UPPER              GENMASK(28, 16)
-> > +     #define AO_CPU_CNTL_HALT                        BIT(9)
-> > +     #define AO_CPU_CNTL_UNKNONWN                    BIT(8)
-> > +     #define AO_CPU_CNTL_RUN                         BIT(0)
->
-> Any reason for the extra tabulation at the beginning of the lines?
-not really, I think I did the same thing as in
-drivers/iio/adc/meson_saradc.c where the register itself starts at the
-beginning of the line and each bit(mask) starts indented
-I'll change this for the next version
-
-[...]
-> > +#define MESON_AO_RPROC_SRAM_USABLE_BITS                      GENMASK(31, 20)
->
-> As per your comments in the cover letter I assume we don't know more about this?
-unfortunately not, but I'll still try to get some more information
-from someone at Amlogic.
-That said, this is "legacy" hardware for them so I can't make any promises.
-
-> > +#define MESON_AO_RPROC_MEMORY_OFFSET                 0x10000000
-> > +
-> > +struct meson_mx_ao_arc_rproc_priv {
-> > +     void __iomem            *remap_base;
-> > +     void __iomem            *cpu_base;
-> > +     unsigned long           sram_va;
-> > +     phys_addr_t             sram_pa;
-> > +     size_t                  sram_size;
-> > +     struct gen_pool         *sram_pool;
-> > +     struct reset_control    *arc_reset;
-> > +     struct clk              *arc_pclk;
-> > +     struct regmap           *secbus2_regmap;
-> > +};
-> > +
-> > +static int meson_mx_ao_arc_rproc_start(struct rproc *rproc)
-> > +{
-> > +     struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-> > +     phys_addr_t phys_addr;
-> > +     int ret;
-> > +
-> > +     ret = clk_prepare_enable(priv->arc_pclk);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     writel(0, priv->remap_base + AO_REMAP_REG0);
-> > +     usleep_range(10, 100);
->
-> That's wonderful - here too I assume there is no indication as to why this is
-> needed?
-looking at this again: the vendor driver only has a delay after
-pulsing the reset line
-I will double check and hopefully remove this usleep_range and only
-keep the one below (after pulsing the reset line)
-
-[...]
-> > +static void *meson_mx_ao_arc_rproc_da_to_va(struct rproc *rproc, u64 da,
-> > +                                         size_t len)
-> > +{
-> > +     struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
-> > +
-> > +     if ((da + len) >= priv->sram_size)
-> > +             return NULL;
->
-> This isn't an index so it should be '>' rather than '>='.  You should be able to
-> ask for the whole range and get it, which the above prevents you from doing.
->
-> Moreover are you sure 'da' always starts at 0? This seems to be at odds with
-> your comment in meson_mx_ao_arc_rproc_start() about converting from 0xd9000000
-> to 0xc9000000.
-thanks for both of these comments, I'll address this in the next version
-
-[...]
-> > +     priv->arc_reset = devm_reset_control_get_exclusive(dev, NULL);
-> > +     if (IS_ERR(priv->arc_reset)) {
->
-> Looking at __devm_reset_control_get(), this should probably be IS_ERR_OR_NULL().
-as far as I know only devm_reset_control_get_optional_exclusive (the
-important bit is "optional" - I am using the "mandatory/not optional"
-variant) can return NULL, all other variants return PTR_ERR or a valid
-reset_control.
-
-
-Best regards,
-Martin
