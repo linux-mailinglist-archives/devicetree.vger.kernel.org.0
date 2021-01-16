@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E702F8BEC
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 07:42:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 213922F8C28
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 09:04:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725797AbhAPGmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 01:42:21 -0500
-Received: from comms.puri.sm ([159.203.221.185]:52552 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725781AbhAPGmV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 16 Jan 2021 01:42:21 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 9C8AAE01BD;
-        Fri, 15 Jan 2021 22:41:40 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id i2thfZY25I2n; Fri, 15 Jan 2021 22:41:39 -0800 (PST)
-Date:   Sat, 16 Jan 2021 07:41:37 +0100
-In-Reply-To: <YAIWSr46dqZpYAat@pendragon.ideasonboard.com>
-References: <20201007012438.27970-2-laurent.pinchart@ideasonboard.com> <20210115075918.26407-1-martin.kepplinger@puri.sm> <YAIWSr46dqZpYAat@pendragon.ideasonboard.com>
-Content-Type: text/plain;
- charset=utf-8
+        id S1726076AbhAPIEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 03:04:11 -0500
+Received: from mail-40131.protonmail.ch ([185.70.40.131]:39625 "EHLO
+        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725767AbhAPIEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 03:04:11 -0500
+Date:   Sat, 16 Jan 2021 08:03:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1610784208;
+        bh=RTo2buFROqeDl4B9r3Quwwc7fkgEhCDar0wfjKOstSk=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=Uxl3SyllkBfAjI9P9Ycjc6Q6LijLObxongn3PpKEQW1K1EisBxANoVWI8LxcBgYwG
+         /GHZxMTr8CUUGHK3MFua9gHKLS8SgPweVLCw4cBP38dRjXJXrZ+O6P0/Rcw5W+BwZO
+         z0zkK8Fi7NJTme3u4vF+FYFBC3Gg2wrxr0UO8ddI=
+To:     Mark Brown <broonie@kernel.org>
+From:   Timon Baetz <timon.baetz@protonmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: Timon Baetz <timon.baetz@protonmail.com>
+Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic nodes
+Message-ID: <20210116090306.7c3d8023.timon.baetz@protonmail.com>
+In-Reply-To: <20210115134213.GB4384@sirena.org.uk>
+References: <20201230205139.1812366-1-timon.baetz@protonmail.com> <20210104183821.GA29033@kozik-lap> <20210104212449.GJ5645@sirena.org.uk> <20210105165529.GB20401@kozik-lap> <20210106145931.GE4752@sirena.org.uk> <20210108161635.1b9303c8.timon.baetz@protonmail.com> <20210108161653.GA4554@sirena.org.uk> <20210115071914.0407a928.timon.baetz@protonmail.com> <20210115134213.GB4384@sirena.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 1/7] dt-bindings: display: mxsfb: Convert binding to YAML
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     agx@sigxcpu.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kernel@pengutronix.de,
-        linux-arm-kernel@lists.infradead.org, marex@denx.de,
-        robh@kernel.org, stefan@agner.ch
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-Message-ID: <AEF0DD5A-AB4B-4787-981A-02728F63AB9A@puri.sm>
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 15 Jan 2021 13:42:14 +0000, Mark Brown wrote:
+> On Fri, Jan 15, 2021 at 06:19:28AM +0000, Timon Baetz wrote:
+> > On Fri, 8 Jan 2021 16:16:53 +0000, Mark Brown wrote: =20
+> > > On Fri, Jan 08, 2021 at 03:16:48PM +0000, Timon Baetz wrote: =20
+>=20
+> > > > Muic needs a node to be used with extcon_get_edev_by_phandle().
+> > > > Charger needs a node to reference a regulator.   =20
+>=20
+> > > The pattern is to use the parent device's node. =20
+>=20
+> > So is extcon going to be a self-reference then? =20
+>=20
+> I guess, assuming you even need to look this up via the device tree.
 
+I could use extcon_get_extcon_dev("max8997-muic") and basically hard
+code the extcon device name in the charger driver. Then I only need
+charger-supply in DTS which could be added to the parent device's node.
 
-Am 15=2E J=C3=A4nner 2021 23:25:14 MEZ schrieb Laurent Pinchart <laurent=
-=2Epinchart@ideasonboard=2Ecom>:
->Hi Martin,
->
->On Fri, Jan 15, 2021 at 08:59:18AM +0100, Martin Kepplinger wrote:
->> hi Laurent,
->>=20
->> Do you mind me adding a DT property in the old format now? If so, I'd
->> appreciated an ack in this thread:
->>
->https://lore=2Ekernel=2Eorg/linux-arm-kernel/20201201134638=2EGA305734@bo=
-gon=2Em=2Esigxcpu=2Eorg/
->>=20
->> If it causes extra work for you and want to resend your series soon,
->I'll
->> gladly delay them for later=2E
->
->I think the conversion ot YAML is ready=2E I've split it from the rest of
->my series, and posted a v3, asking Rob to merge it=2E Would you mind
->rebasing the addition of the new properties on top ?
+Would that be acceptable for everyone?
 
+Thanks,
+Timon
 
-Hi Laurent,
-
-thanks for the timely answer=2E sounds good; I'll rebase=2E
-
-                 martin
