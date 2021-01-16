@@ -2,103 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A13712F8F46
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 21:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E85142F8F5C
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 22:02:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726751AbhAPUqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 15:46:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56896 "EHLO
+        id S1726751AbhAPVCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 16:02:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726385AbhAPUqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 15:46:08 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 655BBC061573;
-        Sat, 16 Jan 2021 12:45:27 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id i63so10270202wma.4;
-        Sat, 16 Jan 2021 12:45:27 -0800 (PST)
+        with ESMTP id S1726201AbhAPVCM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 16:02:12 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F13F5C061573;
+        Sat, 16 Jan 2021 13:01:31 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id l9so12582714ejx.3;
+        Sat, 16 Jan 2021 13:01:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1bOdjlQaGWQ8aWyfQJKQhH8VYqrUnQwXrgWi9Mree3I=;
-        b=JVLUSXN/s1nK2Icd010Ugl0WvUG8e2CogSLbdUBFSOCqzl8Viq35eqiCorrawBbqOP
-         lZdjcJr04Wpdfl0I5R5AF5jAS0inbViR+2YrmTTSNV4t668qWTILE5++Nf1XvS2wOCYD
-         LySvYMj2/eickyHPLaVIuS1zfuAn76npFktWUqmNc42VN2bJTPQJC1+B/Mb9IVS8wEoz
-         dqC3FavixxVSFWz1Xc2lbDjdUeBAdmxZX+s+g/mVTNC+9PA3UWodxnfHwcdlFA1zlP11
-         ujZM1QALLVQrEHB2Ire3ONAEyvBYfEeXY0Ulr28zoRfDDobOQ91WYmA/qf8c/Cgiavaq
-         dkAw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b6fot4S0o8FzBACw00nl0yHU0eEOQr6GTvAJmo+zENQ=;
+        b=kEh8eR+7T5R8d2o7uD/lJHuY8dv8i1NNXBpsp2Kz30djqxD7PIinIv/GSxaERAsJpg
+         Qr0hFfmaigLfAsv5JuvxCUBLYzpgQYycqh9F5C0XcuRdgYrvYzeG9jyILTswpMT/YdiH
+         /dHlEryL8aAmxfVSM7wxBoXNF1RJpruY1SYHCUz/REnMjrP2fn84U5XQp2BWwKazYlUC
+         jEOjzxN3MikFrF5Km1Pd99tN7xpYFveHz7rurvd1xnSkWsS0UNssSj9zd0w0x7W3Tz94
+         I4hOFNF12VhfALTvQKJ6uJQfw7aQPFbYs2mTGN/nssOQXUFN9rOj18I2w8BO3gcdbD6q
+         qqJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1bOdjlQaGWQ8aWyfQJKQhH8VYqrUnQwXrgWi9Mree3I=;
-        b=cJPexEoi3sbWyFkRztO0P0e9otZK5CN/n7L1iS/YLT1jr9JiUr/NXo+ry6ZEwQE4dd
-         bW0eBXD62j8hHbPtB7wFLNbkTTt7jzy7prCcQoDv5hK2UUT+r1n/3yIXQhHegWMVU0gJ
-         W+bdw+2QLwz2ZVCJq/vfss0vPtb24lV+OHTXoWrC4PdmcVW880jMB2itPGaycfPxCeL4
-         MZfFwiBMarejerkLmUIhKggEp+gYQkRFST1RlSxS6X74P6bTgENOuyCtWWszVHKn+WCq
-         c/r/eEj2xpAXsa7mOOlZgwp3BVlf/yS45MC+pEu4Kg1u3LaUpI9xbqDoLaUstHEw35fr
-         rjTA==
-X-Gm-Message-State: AOAM532tPU4DeIFT7wGnDUO8SSbNg+Rvb29O7lF2GY2cx4xjGZ94bQxt
-        CiTR+gWMtdt6QDWxbEXPjsE=
-X-Google-Smtp-Source: ABdhPJwElVqFppdHo/z59LybTiKhI0iTID9QTEnWtvUWk4UygqYhNQIsB8EmTnF1JLq5RzR48DOtPw==
-X-Received: by 2002:a05:600c:2255:: with SMTP id a21mr14522086wmm.122.1610829925978;
-        Sat, 16 Jan 2021 12:45:25 -0800 (PST)
-Received: from localhost.localdomain (p200300f13723cb00428d5cfffeb99db8.dip0.t-ipconnect.de. [2003:f1:3723:cb00:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id c2sm15180609wrt.87.2021.01.16.12.45.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Jan 2021 12:45:25 -0800 (PST)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     olek2@wp.pl
-Cc:     devicetree@vger.kernel.org, john@phrozen.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        robh+dt@kernel.org, tsbogend@alpha.franken.de
-Subject: RE: [PATCH] dt-bindings: mips: lantiq: Document Lantiq Xway DMA bindings
-Date:   Sat, 16 Jan 2021 21:45:21 +0100
-Message-Id: <20210116204521.150091-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210103101803.2123-1-olek2@wp.pl>
-References: <20210103101803.2123-1-olek2@wp.pl>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b6fot4S0o8FzBACw00nl0yHU0eEOQr6GTvAJmo+zENQ=;
+        b=ufkMVxnqegcm3wyPYxKUGiHBYvhm8T8TyEQSSYLbX8aY14juGFTar/9kub8JHtEvfT
+         kBB73R/HD37HQTe7vb918gh988169QJ5PNZt1paLg1s+poejwuaBCvL8OyyrHZmvlHn9
+         mWoI442KxiZHCinSi4/orAV/5BqHT86345jIfNDxdld9/6IkV5Q9xHN9va0EzklLL+46
+         Ikl6nAT7z6FpXvb6OP5X4RJTdGKlfaseSfKCbpl24l/asVD6jSIw+Bfc1NRBFC10+5Li
+         LnaYWPGTumiGgAZ6EPXsAmvSFOoOAuJZqaCgqyabqXM6xJlH5GIpeabF4Fv28ChBuvWp
+         J/+Q==
+X-Gm-Message-State: AOAM532prfrxSEGiDGy2aeWFFKZviCV4hTUEnR1ebJR08PnAYOwNKNCa
+        AYIIuDJi+WjwII99jk40n8wjVPHQI/SdnwlMmyw=
+X-Google-Smtp-Source: ABdhPJwi6ie1Yk7L9E3ktUS9hNm/69jCzQMPLiaiVv9fUfCeBpf1UPMrxU+hF3OIde5B0EuEm426RXWdLPC1C9q7KzM=
+X-Received: by 2002:a17:907:3e27:: with SMTP id hp39mr8452064ejc.187.1610830890430;
+ Sat, 16 Jan 2021 13:01:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210102205904.2691120-1-martin.blumenstingl@googlemail.com>
+ <20210102205904.2691120-5-martin.blumenstingl@googlemail.com> <20210112234330.GA192175@xps15>
+In-Reply-To: <20210112234330.GA192175@xps15>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sat, 16 Jan 2021 22:01:19 +0100
+Message-ID: <CAFBinCCfiC9a6u2qAs8-pEUB299C=vHut5=1ZPVPoCs0w-+r-Q@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] remoteproc: meson-mx-ao-arc: Add a driver for the
+ AO ARC remote procesor
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     linux-remoteproc@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, ohad@wizery.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(another late reply from me, sorry)
+Hi Mathieu,
 
-> +required:
-> +  - compatible
-> +  - reg
-This is actually an older IP variant of what can be found in the Intel
-LGM SoCs. The dt-bindings are currently being upstreamed for that newer
-SoC in [0].
+thank you for taking the time to go through my patch!
 
-Based on "DOs and DON’Ts for designing and writing Devicetree bindings"
-I think some more mandatory properties are needed, even though our
-driver currently uses none of them:
-- interrupts: as far as I know the IP on the Lantiq SoCs has (at least)
-  one interrupt for each DMA channel. That means: 28 interrupts on the
-  xRX200 SoCs
-- I *assume* (but I have not researched if that's really the case) that
-  the Lantiq variant also has at least one clock input and a reset line
-- since we don't have a proper DMA driver yet I can't comment what we
-  should use for #dma-cells
+On Wed, Jan 13, 2021 at 12:43 AM Mathieu Poirier
+<mathieu.poirier@linaro.org> wrote:
+[...]
+> > +       If unusre say N.
+>
+> s/unusre/unsure
+godo catch, noted.
 
-> +examples:
-> +  - |
-> +    dma@e104100 {
-note to self: it seems that both dma@ and dma-controller@ are used in
-existing schemas (the latter having twice as many occurrences though):
-$ grep -R dma@ Documentation/devicetree/bindings/dma/* | wc -l
-20
-$ grep -R dma-controller@ Documentation/devicetree/bindings/dma/* | wc -l
-45
+[...]
+> > +#include <linux/property.h>
+>
+> Is it possible for this to go after platform_device.h?
+I think so, not sure why this is not in alphabetical order
+
+[...]
+> > +#define AO_CPU_CNTL                                  0x0
+> > +     #define AO_CPU_CNTL_MEM_ADDR_UPPER              GENMASK(28, 16)
+> > +     #define AO_CPU_CNTL_HALT                        BIT(9)
+> > +     #define AO_CPU_CNTL_UNKNONWN                    BIT(8)
+> > +     #define AO_CPU_CNTL_RUN                         BIT(0)
+>
+> Any reason for the extra tabulation at the beginning of the lines?
+not really, I think I did the same thing as in
+drivers/iio/adc/meson_saradc.c where the register itself starts at the
+beginning of the line and each bit(mask) starts indented
+I'll change this for the next version
+
+[...]
+> > +#define MESON_AO_RPROC_SRAM_USABLE_BITS                      GENMASK(31, 20)
+>
+> As per your comments in the cover letter I assume we don't know more about this?
+unfortunately not, but I'll still try to get some more information
+from someone at Amlogic.
+That said, this is "legacy" hardware for them so I can't make any promises.
+
+> > +#define MESON_AO_RPROC_MEMORY_OFFSET                 0x10000000
+> > +
+> > +struct meson_mx_ao_arc_rproc_priv {
+> > +     void __iomem            *remap_base;
+> > +     void __iomem            *cpu_base;
+> > +     unsigned long           sram_va;
+> > +     phys_addr_t             sram_pa;
+> > +     size_t                  sram_size;
+> > +     struct gen_pool         *sram_pool;
+> > +     struct reset_control    *arc_reset;
+> > +     struct clk              *arc_pclk;
+> > +     struct regmap           *secbus2_regmap;
+> > +};
+> > +
+> > +static int meson_mx_ao_arc_rproc_start(struct rproc *rproc)
+> > +{
+> > +     struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
+> > +     phys_addr_t phys_addr;
+> > +     int ret;
+> > +
+> > +     ret = clk_prepare_enable(priv->arc_pclk);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     writel(0, priv->remap_base + AO_REMAP_REG0);
+> > +     usleep_range(10, 100);
+>
+> That's wonderful - here too I assume there is no indication as to why this is
+> needed?
+looking at this again: the vendor driver only has a delay after
+pulsing the reset line
+I will double check and hopefully remove this usleep_range and only
+keep the one below (after pulsing the reset line)
+
+[...]
+> > +static void *meson_mx_ao_arc_rproc_da_to_va(struct rproc *rproc, u64 da,
+> > +                                         size_t len)
+> > +{
+> > +     struct meson_mx_ao_arc_rproc_priv *priv = rproc->priv;
+> > +
+> > +     if ((da + len) >= priv->sram_size)
+> > +             return NULL;
+>
+> This isn't an index so it should be '>' rather than '>='.  You should be able to
+> ask for the whole range and get it, which the above prevents you from doing.
+>
+> Moreover are you sure 'da' always starts at 0? This seems to be at odds with
+> your comment in meson_mx_ao_arc_rproc_start() about converting from 0xd9000000
+> to 0xc9000000.
+thanks for both of these comments, I'll address this in the next version
+
+[...]
+> > +     priv->arc_reset = devm_reset_control_get_exclusive(dev, NULL);
+> > +     if (IS_ERR(priv->arc_reset)) {
+>
+> Looking at __devm_reset_control_get(), this should probably be IS_ERR_OR_NULL().
+as far as I know only devm_reset_control_get_optional_exclusive (the
+important bit is "optional" - I am using the "mandatory/not optional"
+variant) can return NULL, all other variants return PTR_ERR or a valid
+reset_control.
 
 
 Best regards,
 Martin
-
-
-[0] https://patchwork.ozlabs.org/project/devicetree-bindings/patch/0864b9bfa6e2b8b5e7ad9a7a739ca3274f66493c.1610703653.git.mallikarjunax.reddy@linux.intel.com/
-[1] https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-bindings.html
