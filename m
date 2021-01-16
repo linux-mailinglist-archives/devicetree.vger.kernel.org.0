@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 213922F8C28
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 09:04:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4134F2F8C3E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 09:32:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726076AbhAPIEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 03:04:11 -0500
-Received: from mail-40131.protonmail.ch ([185.70.40.131]:39625 "EHLO
-        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725767AbhAPIEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 03:04:11 -0500
-Date:   Sat, 16 Jan 2021 08:03:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1610784208;
-        bh=RTo2buFROqeDl4B9r3Quwwc7fkgEhCDar0wfjKOstSk=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=Uxl3SyllkBfAjI9P9Ycjc6Q6LijLObxongn3PpKEQW1K1EisBxANoVWI8LxcBgYwG
-         /GHZxMTr8CUUGHK3MFua9gHKLS8SgPweVLCw4cBP38dRjXJXrZ+O6P0/Rcw5W+BwZO
-         z0zkK8Fi7NJTme3u4vF+FYFBC3Gg2wrxr0UO8ddI=
-To:     Mark Brown <broonie@kernel.org>
-From:   Timon Baetz <timon.baetz@protonmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Timon Baetz <timon.baetz@protonmail.com>
-Subject: Re: [PATCH v6 2/8] regulator: dt-bindings: Document max8997-pmic nodes
-Message-ID: <20210116090306.7c3d8023.timon.baetz@protonmail.com>
-In-Reply-To: <20210115134213.GB4384@sirena.org.uk>
-References: <20201230205139.1812366-1-timon.baetz@protonmail.com> <20210104183821.GA29033@kozik-lap> <20210104212449.GJ5645@sirena.org.uk> <20210105165529.GB20401@kozik-lap> <20210106145931.GE4752@sirena.org.uk> <20210108161635.1b9303c8.timon.baetz@protonmail.com> <20210108161653.GA4554@sirena.org.uk> <20210115071914.0407a928.timon.baetz@protonmail.com> <20210115134213.GB4384@sirena.org.uk>
+        id S1725898AbhAPIcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 03:32:06 -0500
+Received: from mail-wr1-f54.google.com ([209.85.221.54]:43305 "EHLO
+        mail-wr1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725767AbhAPIcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 03:32:06 -0500
+Received: by mail-wr1-f54.google.com with SMTP id y17so11501355wrr.10;
+        Sat, 16 Jan 2021 00:31:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=C1s6L4p8Sf8kJTcJb4k3ToX2/C1U5xuvZGOPjO3tRUE=;
+        b=XmWUOtsar0MVb1IXYldefcS0vd6+MiOUlM/SiNVKXmKGnyejkw4P28rWxSSajef6yK
+         dQ7fzonSEo2I28PlUSTG5j89tHlvsOTCE3ImH7+QDxxuhyqVVoV+ZyjN1PFJ+p1vkxWk
+         3FKzvub0zrnG+ylGHOJbSyPbUzAAQcRniW/hFJmD0ERC/cAxpPovg8gVAaGni52TVWPW
+         AZ4XtNZfHC2evJ5aF1DFeplQTShMIzuzHh3nnU+exADAP3Bi9fKv7gHuX0ibPu1a2S34
+         VraSFpSMigDNQGeVBln3MP6q8cAY5tGmcQaM6DxkI6sJ+OSr6F7hgwJNk6dfNLcKqZSi
+         EHlw==
+X-Gm-Message-State: AOAM530i+rpbNHK0YU4E6QJ0Vav/y+fZBnMWvDSPum9VUTHniGezQHvD
+        VNEWtL5kCNq+f7v3kW4WYwE=
+X-Google-Smtp-Source: ABdhPJyLXhQ8B8JUo2DBZNeqvGOuQVhMqlQ6OsXwIEdvY6ALpZCs8VgevLL/fpcev/MW+3obP+l79Q==
+X-Received: by 2002:adf:a1d5:: with SMTP id v21mr16904404wrv.24.1610785884600;
+        Sat, 16 Jan 2021 00:31:24 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id f9sm19807482wrw.81.2021.01.16.00.31.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Jan 2021 00:31:23 -0800 (PST)
+Date:   Sat, 16 Jan 2021 09:31:22 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 2/3] arm64: dts: imx: Add i.mx8mm nitrogen8mm basic
+ dts support
+Message-ID: <20210116083122.GA3704@kozik-lap>
+References: <20210115210124.507282-1-adrien.grassein@gmail.com>
+ <20210115210124.507282-3-adrien.grassein@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Disposition: inline
+In-Reply-To: <20210115210124.507282-3-adrien.grassein@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jan 2021 13:42:14 +0000, Mark Brown wrote:
-> On Fri, Jan 15, 2021 at 06:19:28AM +0000, Timon Baetz wrote:
-> > On Fri, 8 Jan 2021 16:16:53 +0000, Mark Brown wrote: =20
-> > > On Fri, Jan 08, 2021 at 03:16:48PM +0000, Timon Baetz wrote: =20
->=20
-> > > > Muic needs a node to be used with extcon_get_edev_by_phandle().
-> > > > Charger needs a node to reference a regulator.   =20
->=20
-> > > The pattern is to use the parent device's node. =20
->=20
-> > So is extcon going to be a self-reference then? =20
->=20
-> I guess, assuming you even need to look this up via the device tree.
+On Fri, Jan 15, 2021 at 10:01:23PM +0100, Adrien Grassein wrote:
+> Tested with a basic Build Root configuration booting from sdcard.
+> 
+> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../dts/freescale/imx8mm-nitrogen8mm_rev2.dts | 415 ++++++++++++++++++
+>  2 files changed, 416 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
 
-I could use extcon_get_extcon_dev("max8997-muic") and basically hard
-code the extcon device name in the charger driver. Then I only need
-charger-supply in DTS which could be added to the parent device's node.
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Would that be acceptable for everyone?
-
-Thanks,
-Timon
-
+Best regards,
+Krzysztof
