@@ -2,130 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA68B2F8E93
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 19:06:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BA0C2F8E95
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 19:07:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727704AbhAPSGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Jan 2021 13:06:36 -0500
-Received: from mail-out.m-online.net ([212.18.0.9]:47216 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727663AbhAPSGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Jan 2021 13:06:35 -0500
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4DJ5Z64Qcbz1qs0p;
-        Sat, 16 Jan 2021 19:05:34 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4DJ5Z63jNfz1qqkn;
-        Sat, 16 Jan 2021 19:05:34 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id YsgKP4Ot00dp; Sat, 16 Jan 2021 19:05:33 +0100 (CET)
-X-Auth-Info: DgP2Scq84PJFIgJmKrhhYnT8L6xBn47Wx0HdBALYiys=
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        id S1727313AbhAPSHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Jan 2021 13:07:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40494 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727146AbhAPSHK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 16 Jan 2021 13:07:10 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Sat, 16 Jan 2021 19:05:33 +0100 (CET)
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Ludovic Barre <ludovic.barre@st.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: stm32: Rename mmc controller nodes to mmc@
-Date:   Sat, 16 Jan 2021 19:05:27 +0100
-Message-Id: <20210116180527.57532-1-marex@denx.de>
-X-Mailer: git-send-email 2.29.2
+        by mail.kernel.org (Postfix) with ESMTPSA id 74597224B2;
+        Sat, 16 Jan 2021 18:06:28 +0000 (UTC)
+Date:   Sat, 16 Jan 2021 18:06:25 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/6] iio:pressure:ms5637: add ms5803 support
+Message-ID: <20210116180625.0b9b5dfa@archlinux>
+In-Reply-To: <20210109231148.1168104-1-alexandre.belloni@bootlin.com>
+References: <20210109231148.1168104-1-alexandre.belloni@bootlin.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Per mmc-controller.yaml, the node pattern is "^mmc(@.*)?$" ,
-so adjust the node.
+On Sun, 10 Jan 2021 00:11:42 +0100
+Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>
-Cc: Ludovic Barre <ludovic.barre@st.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: linux-stm32@st-md-mailman.stormreply.com
-Cc: devicetree@vger.kernel.org
----
- arch/arm/boot/dts/stm32f429.dtsi  | 2 +-
- arch/arm/boot/dts/stm32f746.dtsi  | 4 ++--
- arch/arm/boot/dts/stm32mp151.dtsi | 6 +++---
- 3 files changed, 6 insertions(+), 6 deletions(-)
+> Hello,
+> 
+> This series adds support for the Measurement Specialities ms5803. It is
+> very similar to the ms5805 but has a different PROM layout (which I
+> suspect predates the ms5805 PROM layout). Also it supports less
+> frequency sampling options.
+> 
+> After a bit of preparatory work in the ms5637 driver and its common
+> library, mainly to handle the PROM layout and sample frequencies, adding
+> support is trivial.
+> 
+> Changes in v2:
+>  - Dropped "iio:pressure:ms5637: switch to probe_new" to keep the i2c_device_id
+>    table.
+>  - Reorder trivial-devices.yaml
+LGTM. Series applied to the togreg branch of iio.git and pushed out as testing
+to see if the autobuilders can find anything we missed.
 
-diff --git a/arch/arm/boot/dts/stm32f429.dtsi b/arch/arm/boot/dts/stm32f429.dtsi
-index ad715a0e1c9a..f6530d724d00 100644
---- a/arch/arm/boot/dts/stm32f429.dtsi
-+++ b/arch/arm/boot/dts/stm32f429.dtsi
-@@ -566,7 +566,7 @@ adc3: adc@200 {
- 			};
- 		};
- 
--		sdio: sdio@40012c00 {
-+		sdio: mmc@40012c00 {
- 			compatible = "arm,pl180", "arm,primecell";
- 			arm,primecell-periphid = <0x00880180>;
- 			reg = <0x40012c00 0x400>;
-diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
-index 640ff54ed00c..e1df603fc981 100644
---- a/arch/arm/boot/dts/stm32f746.dtsi
-+++ b/arch/arm/boot/dts/stm32f746.dtsi
-@@ -473,7 +473,7 @@ usart6: serial@40011400 {
- 			status = "disabled";
- 		};
- 
--		sdio2: sdio2@40011c00 {
-+		sdio2: mmc@40011c00 {
- 			compatible = "arm,pl180", "arm,primecell";
- 			arm,primecell-periphid = <0x00880180>;
- 			reg = <0x40011c00 0x400>;
-@@ -484,7 +484,7 @@ sdio2: sdio2@40011c00 {
- 			status = "disabled";
- 		};
- 
--		sdio1: sdio1@40012c00 {
-+		sdio1: mmc@40012c00 {
- 			compatible = "arm,pl180", "arm,primecell";
- 			arm,primecell-periphid = <0x00880180>;
- 			reg = <0x40012c00 0x400>;
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 8c2a5d0875d8..33777a80799a 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1055,7 +1055,7 @@ adc2: adc@100 {
- 			};
- 		};
- 
--		sdmmc3: sdmmc@48004000 {
-+		sdmmc3: mmc@48004000 {
- 			compatible = "arm,pl18x", "arm,primecell";
- 			arm,primecell-periphid = <0x00253180>;
- 			reg = <0x48004000 0x400>;
-@@ -1375,7 +1375,7 @@ qspi: spi@58003000 {
- 			status = "disabled";
- 		};
- 
--		sdmmc1: sdmmc@58005000 {
-+		sdmmc1: mmc@58005000 {
- 			compatible = "arm,pl18x", "arm,primecell";
- 			arm,primecell-periphid = <0x00253180>;
- 			reg = <0x58005000 0x1000>;
-@@ -1390,7 +1390,7 @@ sdmmc1: sdmmc@58005000 {
- 			status = "disabled";
- 		};
- 
--		sdmmc2: sdmmc@58007000 {
-+		sdmmc2: mmc@58007000 {
- 			compatible = "arm,pl18x", "arm,primecell";
- 			arm,primecell-periphid = <0x00253180>;
- 			reg = <0x58007000 0x1000>;
--- 
-2.29.2
+thanks,
+
+Jonathan
+
+> 
+> Alexandre Belloni (6):
+>   dt-bindings: trivial-devices: reorder memsic devices
+>   iio:pressure:ms5637: introduce hardware differentiation
+>   iio:pressure:ms5637: limit available sample frequencies
+>   iio:common:ms_sensors:ms_sensors_i2c: rework CRC calculation helper
+>   iio:common:ms_sensors:ms_sensors_i2c: add support for alternative PROM
+>     layout
+>   iio:pressure:ms5637: add ms5803 support
+> 
+>  .../devicetree/bindings/trivial-devices.yaml  | 10 ++-
+>  .../iio/common/ms_sensors/ms_sensors_i2c.c    | 76 ++++++++++++++----
+>  .../iio/common/ms_sensors/ms_sensors_i2c.h    | 15 +++-
+>  drivers/iio/pressure/ms5637.c                 | 77 +++++++++++++++----
+>  4 files changed, 143 insertions(+), 35 deletions(-)
+> 
 
