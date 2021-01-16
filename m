@@ -2,230 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51BFA2F8A14
-	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 01:54:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB962F8A3F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Jan 2021 02:11:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726236AbhAPAy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Jan 2021 19:54:28 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33178 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726127AbhAPAy1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Jan 2021 19:54:27 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10G0q3Hp126853;
-        Fri, 15 Jan 2021 18:52:03 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1610758323;
-        bh=DzUbwP7nb2tbbYzvsD7uYmHzOGYXMnQzBTsU5fUEmLc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=YiVhyya3xnv9/xRWTbhQF2BFkr+rVWx3I4B12TtoeZ89ACUycTOtwC3fNAGd6iJlP
-         8Sx71tUG82TVFf4ayS9E+0xwfcCHsH3h1IXEQYLwPyRY5Zuf8Ke8nGhp3sQH/VqXfK
-         I4VEMS0RE9ucn5YWhfOuBs7iZ/hXzPj8B3rujoiw=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10G0q3ar055654
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 15 Jan 2021 18:52:03 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 15
- Jan 2021 18:52:03 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 15 Jan 2021 18:52:03 -0600
-Received: from [10.250.34.42] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10G0q2ib113879;
-        Fri, 15 Jan 2021 18:52:02 -0600
-Subject: Re: [PATCH 2/2] soc: ti: pruss: add support for AM18XX/OMAP-L138
- PRUSS
-To:     David Lechner <david@lechnology.com>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210104183021.330112-1-david@lechnology.com>
- <20210104183021.330112-3-david@lechnology.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <4b60b60b-7e59-28fb-dc3a-f3f097e4cc8a@ti.com>
-Date:   Fri, 15 Jan 2021 18:52:02 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726472AbhAPBLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Jan 2021 20:11:11 -0500
+Received: from mout.gmx.net ([212.227.15.15]:58949 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725854AbhAPBLF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Jan 2021 20:11:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1610759368;
+        bh=btqIRTBlIF7ZyskJXnBkokLSwHrAtzmVQT1qlCS/DeQ=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=AgJ3s3W+QH4RUV3xi4QP+O1XXMc6AhvugL0NDMZD1l7ckAbPTLB7Tr1lVKZTFyFSX
+         17hcgxDh2CiSdXEBRPQE+rySjjvhKp5LkO7BjoytBeBFBXWwP8iv4qGH8A7xJUILeV
+         E+f7pXjNTW6JEgy6NTyC+BaPAI+MOtRhkt/bUhXI=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.209]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N3bSj-1m04oV0YDr-010buh; Sat, 16
+ Jan 2021 02:09:28 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     devicetree@vger.kernel.org
+Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: arm: Convert nuvoton,npcm750 binding to YAML
+Date:   Sat, 16 Jan 2021 02:09:05 +0100
+Message-Id: <20210116010907.3475405-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210104183021.330112-3-david@lechnology.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:OV7/hltbT/tDW93LOCLudAWVCDl0VqWbae/oBNe/eCUWawkDkQ9
+ H/X9rQ4CJFpmsISoHeQ+WeJgSgBgxcKbLcdYYYM0l1ifndpMOVDBFLHDQn89xFiWndic+cM
+ Y3N5ijLhAvbnQf5GTKO40cHCR6jbyTNIqR9d+SkFmTNteVdTCmS8JXIxBP+WPZ5ABGXDnJB
+ UUac260HFNvFoW4YBADfw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:IQj4QauaFKE=:y9VxW/qAftr45HQO4OKHtr
+ 2VDtWsQX+6n6I+Qb8tW3ylZheMHAIq+BQZen9VN58npLkhg6WMJc0Qi8qiDfNlPgB8U0GPPLK
+ RmrXULBpt5RAQxMlmYm2dPLetffbX5peOE/mTALxdHmVnTmqksAQre1iDh/B+b8j0+gWa3U8f
+ ckG7Qvhc2An/irDFald64dyTTCxTrH+2FM47UsVo3Fr7u2c0A/lAOlGv95fpwVOscb5a3Jwck
+ 0wQeZhy4EMp4968HHbCYsP7TVmH6kapZZFewuz3WHQWXg/YVHXeLaWf+2mP9qdH6HCQ8sUA6R
+ zOmRUrq/hyMF2lEhfgJfQTw6qX0nHX7619lAMEv87lio/7vsxrgBqf8a+5eUiQJG6vyi2bnWd
+ vc5V/4/7N91OXkuFV5VwtDBV0HmNHni02kpGpoY5V6L274rL9Gk4iji84ql2AqKALp/5bFMkE
+ ZyLLBxqRV6zweCEbBUqazUmJZvzNhtj+h1cmccTn8yjPrtpKQrvlMXIDfrJTN9O94HR+0+i6X
+ 5SQ0zLgIhWXMztmYl3Z1UwI0Tm+36iAeWyOKPXbmgzZrMTw/4MP/R/zaSAEV1mtO/0IqJo25+
+ HEgN50EdQSOTAtIUrIMgHM41mzJDEt1jOP5gkiJMJbuAtFNlhhoH/M6uOb1RZsLa4TpH7WRHL
+ Riz9EqQru44cIgiyB9pJDoMZy8Y98h7q3541wNlrlu9WZhcCiiuaQqfYCpbL3/8E1KVkHVwfM
+ o7x8+pEd/lDgCAMPQomFIqaAwjuE69ATPKTpfbtpBSWzRH7ghCUdGZ3lOEL7nyS/lLAw9U4hJ
+ c9GvJR4L2bNbiW2ZmoUv50lHbR4zb7bYvZGzpfpHYxPuDA0Wo8kseTOMKxKGAIkROiFZdr/rk
+ i8VW2uQtUJmaCNMHZa+w==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
+The general trend is to have devicetree bindings in YAML format, to
+allow automatic validation of bindings and devicetrees.
 
-On 1/4/21 12:30 PM, David Lechner wrote:
-> This adds support for the PRUSS found in AM18XX/OMAP-L138. This PRUSS
-> doesn't have a CFG register, so that is made optional as selected by
-> the device tree compatible string.
-> 
-> ARCH_DAVINCI is added in the Kconfig so that the driver can be selected
-> on that platform.
-> 
-> Signed-off-by: David Lechner <david@lechnology.com>
-> ---
->  drivers/soc/ti/Kconfig |  2 +-
->  drivers/soc/ti/pruss.c | 76 ++++++++++++++++++++++++------------------
->  2 files changed, 45 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
-> index 7e2fb1c16af1..7a692a21480a 100644
-> --- a/drivers/soc/ti/Kconfig
-> +++ b/drivers/soc/ti/Kconfig
-> @@ -85,7 +85,7 @@ config TI_K3_SOCINFO
->  
->  config TI_PRUSS
->  	tristate "TI PRU-ICSS Subsystem Platform drivers"
-> -	depends on SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE || ARCH_K3
-> +	depends on ARCH_DAVINCI || SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE || ARCH_K3
->  	select MFD_SYSCON
->  	help
->  	  TI PRU-ICSS Subsystem platform specific support.
-> diff --git a/drivers/soc/ti/pruss.c b/drivers/soc/ti/pruss.c
-> index 5d6e7132a5c4..bfaf3ff74b01 100644
-> --- a/drivers/soc/ti/pruss.c
-> +++ b/drivers/soc/ti/pruss.c
-> @@ -24,10 +24,12 @@
->   * struct pruss_private_data - PRUSS driver private data
->   * @has_no_sharedram: flag to indicate the absence of PRUSS Shared Data RAM
->   * @has_core_mux_clock: flag to indicate the presence of PRUSS core clock
-> + * @has_cfg: flag to indicate the presence of PRUSS CFG registers
+Convert the NPCM SoC family's binding to YAML before it accumulates more
+entries.
 
-I recommend to change this to a negative flag as the Davinci platforms are the
-only ones that don't have CFG (being the very first SoCs with a PRUSS IP)
-sub-module.
+The nuvoton,npcm750-evb compatible string is introduced to keep the
+structure of the binding a little simpler.
 
->   */
->  struct pruss_private_data {
->  	bool has_no_sharedram;
->  	bool has_core_mux_clock;
-> +	bool has_cfg;
->  };
->  
->  static void pruss_of_free_clk_provider(void *data)
-> @@ -239,42 +241,44 @@ static int pruss_probe(struct platform_device *pdev)
->  		goto rpm_disable;
->  	}
->  
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
 
-And use it here to skip all the cfg code parsing. All the below delta is just
-for the additional indentation for the flag. If you don't like goto's in
-non-error paths, then we can refactor the CFG parse code into a separate function.
+If someone else wants to be listed as the maintainer, please let me
+know.
 
-regards
-Suman
 
-> -	child = of_get_child_by_name(np, "cfg");
-> -	if (!child) {
-> -		dev_err(dev, "%pOF is missing its 'cfg' node\n", child);
-> -		ret = -ENODEV;
-> -		goto rpm_put;
-> -	}
-> +	if (data->has_cfg) {
-> +		child = of_get_child_by_name(np, "cfg");
-> +		if (!child) {
-> +			dev_err(dev, "%pOF is missing its 'cfg' node\n", child);
-> +			ret = -ENODEV;
-> +			goto rpm_put;
-> +		}
->  
-> -	if (of_address_to_resource(child, 0, &res)) {
-> -		ret = -ENOMEM;
-> -		goto node_put;
-> -	}
-> +		if (of_address_to_resource(child, 0, &res)) {
-> +			ret = -ENOMEM;
-> +			goto node_put;
-> +		}
->  
-> -	pruss->cfg_base = devm_ioremap(dev, res.start, resource_size(&res));
-> -	if (!pruss->cfg_base) {
-> -		ret = -ENOMEM;
-> -		goto node_put;
-> -	}
-> +		pruss->cfg_base = devm_ioremap(dev, res.start, resource_size(&res));
-> +		if (!pruss->cfg_base) {
-> +			ret = -ENOMEM;
-> +			goto node_put;
-> +		}
->  
-> -	regmap_conf.name = kasprintf(GFP_KERNEL, "%pOFn@%llx", child,
-> -				     (u64)res.start);
-> -	regmap_conf.max_register = resource_size(&res) - 4;
-> -
-> -	pruss->cfg_regmap = devm_regmap_init_mmio(dev, pruss->cfg_base,
-> -						  &regmap_conf);
-> -	kfree(regmap_conf.name);
-> -	if (IS_ERR(pruss->cfg_regmap)) {
-> -		dev_err(dev, "regmap_init_mmio failed for cfg, ret = %ld\n",
-> -			PTR_ERR(pruss->cfg_regmap));
-> -		ret = PTR_ERR(pruss->cfg_regmap);
-> -		goto node_put;
-> -	}
-> +		regmap_conf.name = kasprintf(GFP_KERNEL, "%pOFn@%llx", child,
-> +					     (u64)res.start);
-> +		regmap_conf.max_register = resource_size(&res) - 4;
-> +
-> +		pruss->cfg_regmap = devm_regmap_init_mmio(dev, pruss->cfg_base,
-> +							  &regmap_conf);
-> +		kfree(regmap_conf.name);
-> +		if (IS_ERR(pruss->cfg_regmap)) {
-> +			dev_err(dev, "regmap_init_mmio failed for cfg, ret = %ld\n",
-> +				PTR_ERR(pruss->cfg_regmap));
-> +			ret = PTR_ERR(pruss->cfg_regmap);
-> +			goto node_put;
-> +		}
->  
-> -	ret = pruss_clk_init(pruss, child);
-> -	if (ret) {
-> -		dev_err(dev, "failed to setup coreclk-mux\n");
-> -		goto node_put;
-> +		ret = pruss_clk_init(pruss, child);
-> +		if (ret) {
-> +			dev_err(dev, "failed to setup coreclk-mux\n");
-> +			goto node_put;
-> +		}
->  	}
->  
->  	ret = devm_of_platform_populate(dev);
-> @@ -309,19 +313,27 @@ static int pruss_remove(struct platform_device *pdev)
->  }
->  
->  /* instance-specific driver private data */
-> +static const struct pruss_private_data am18xx_pruss_data = {
-> +	.has_no_sharedram = true,
-> +};
-> +
->  static const struct pruss_private_data am437x_pruss1_data = {
->  	.has_no_sharedram = false,
-> +	.has_cfg = true,
->  };
->  
->  static const struct pruss_private_data am437x_pruss0_data = {
->  	.has_no_sharedram = true,
-> +	.has_cfg = true,
->  };
->  
->  static const struct pruss_private_data am65x_j721e_pruss_data = {
->  	.has_core_mux_clock = true,
-> +	.has_cfg = true,
->  };
->  
->  static const struct of_device_id pruss_of_match[] = {
-> +	{ .compatible = "ti,am1806-pruss", .data = &am18xx_pruss_data, },
->  	{ .compatible = "ti,am3356-pruss" },
->  	{ .compatible = "ti,am4376-pruss0", .data = &am437x_pruss0_data, },
->  	{ .compatible = "ti,am4376-pruss1", .data = &am437x_pruss1_data, },
-> 
+v2:
+- Fix indentation to satisfy yamllint
+- Fix $schema line
+
+v1:
+- https://lore.kernel.org/lkml/20210108224008.705687-1-j.neuschaefer@gmx.n=
+et/
+=2D--
+ .../devicetree/bindings/arm/npcm/npcm.txt     |  6 -----
+ .../devicetree/bindings/arm/npcm/npcm.yaml    | 23 +++++++++++++++++++
+ 2 files changed, 23 insertions(+), 6 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/npcm/npcm.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/npcm/npcm.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/npcm/npcm.txt b/Documen=
+tation/devicetree/bindings/arm/npcm/npcm.txt
+deleted file mode 100644
+index 2d87d9ecea85b..0000000000000
+=2D-- a/Documentation/devicetree/bindings/arm/npcm/npcm.txt
++++ /dev/null
+@@ -1,6 +0,0 @@
+-NPCM Platforms Device Tree Bindings
+=2D-----------------------------------
+-NPCM750 SoC
+-Required root node properties:
+-	- compatible =3D "nuvoton,npcm750";
+-
+diff --git a/Documentation/devicetree/bindings/arm/npcm/npcm.yaml b/Docume=
+ntation/devicetree/bindings/arm/npcm/npcm.yaml
+new file mode 100644
+index 0000000000000..894aefb70652a
+=2D-- /dev/null
++++ b/Documentation/devicetree/bindings/arm/npcm/npcm.yaml
+@@ -0,0 +1,23 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/npcm/npcm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NPCM Platforms Device Tree Bindings
++
++maintainers:
++  - Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - description: NPCM750 based boards
++        items:
++          - enum:
++              - nuvoton,npcm750-evb         # NPCM750 evaluation board
++          - const: nuvoton,npcm750
++
++additionalProperties: true
+=2D-
+2.29.2
 
