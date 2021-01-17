@@ -2,451 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78A7F2F9613
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 00:10:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D89F2F9653
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 00:44:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730144AbhAQXKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 18:10:22 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:34119 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730135AbhAQXKP (ORCPT
+        id S1730478AbhAQXoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 18:44:24 -0500
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:39587 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729128AbhAQXoW (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Jan 2021 18:10:15 -0500
+        Sun, 17 Jan 2021 18:44:22 -0500
 Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 276EA580648;
-        Sun, 17 Jan 2021 18:09:23 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Sun, 17 Jan 2021 18:09:23 -0500
+        by mailout.nyi.internal (Postfix) with ESMTP id EADC55C0115;
+        Sun, 17 Jan 2021 18:43:34 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Sun, 17 Jan 2021 18:43:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=YtkT4G92yNq5q
-        qffxmE42obC85pLO4H7YoT/ivVcDR0=; b=P8nPXlCLYCNgwGEjGtBWjSws/WSO/
-        xfCBqOcBF8P39jCi1dxCdxLHCp+wd4EpWRFLbS7KvYmARv4YjDP8db7wzBxFDbgS
-        uVrXRYix02TLSXk12H1mRV8SM9KQlSGISpEVI9cnEwB+Ic4M3/bLOMUScHYdIHlz
-        Xz5uzEliedZ7WhBxZTINyf/xpjHLahkt04R+PEQaOQO7EAcuQz2utMScQpgsj5BX
-        xMENXlAmK5P1DHkIrIOqh99ClxEi94TdIYS2J+ElKwXTHEH58ctO5t6s8EhnVg1/
-        nBtH7eRRYjoSsmVPk8sSAfmZF9/9Fi05lovaDktYwJZa3jggufyqNdnuQ==
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=Ua2hz2ockS+fhQT1CoQlw/0yz7
+        pRrE2jiu2BjbpcR3I=; b=bxigC4xn4Tbegnhlnc2IIKrNMWSvxBm4LGosvyaenA
+        aspbjJ6B6JjV8cTNj5fDpqDS/0Vcv14RaCd9eRIOzEdoE1cUKpmU12vsdE3SfEea
+        s9+sG55/QJlUQ49e7PTUrhvR7oULVBTPh550lyuq2OLvL/J18YNT1no19AgFNsdq
+        WntrAQw6O2tkoekFI/pxy8AgvHJvszslc9ycU/QtYLyKXroag76Smp63jNLmzLcG
+        3UTnf5x8gOYTWGxCBakNjr3R5QoMckb9C6vzhDY//AIEGI2PQJXzRjmXTJR3Id47
+        Y3Pn8cf8LHfOVdWEKO1A0IMa7r3Upoi9RKN+tC2gLtDQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=YtkT4G92yNq5qqffxmE42obC85pLO4H7YoT/ivVcDR0=; b=EkLJb22Y
-        THs0HuHukZi0hdbZp0TADrrxEVZrymbP5Nf8V8j3DR4JDl8gBVCJ7khOk+f8khqC
-        2o1xspORkF6HTWSekeyD/7NP3Plx9KLPiSF8Vq9sj4XYLGP+9OJ4mCoZj+JOP0rL
-        9RF+0Dq+uBKcqmc5YuVcR6iTl0k7uZ6xMhzwgiz5JAl2ENtKaQLEQnwq61jITQPq
-        KA2/1JOO5uuDjbyKSmQe5gD3zF0e/Uw4v3H99Ej29xj9JWmmJjyj4vnuSOEHEF8a
-        Dqday1Z3KrPX55C5Qzx39FCxywNMUD3AQSGSjSEGsnJiGdJDztcOED1ZYJAoRqeG
-        gf0rv7bXmFlW0A==
-X-ME-Sender: <xms:o8MEYK5Vf8a-tXk3k5cke_RUnPdpDWXgA6B1DGbOhafJq5NMBDk7JQ>
-    <xme:o8MEYD7rjxN6RsYEazWBNAGdLwNQgJ8BPWeMXt54riUKTT3kq-FLM3-mdI2LqfUz5
-    ICyRUt504pp2Nuqu3U>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtdejgddtiecutefuodetggdotefrodftvf
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Ua2hz2ockS+fhQT1C
+        oQlw/0yz7pRrE2jiu2BjbpcR3I=; b=DXPSR/X943Mml+KuQxhBuihTUDnPV+hIB
+        UBkkLcrcso1HGqIy/3q2WQGdjnOFj0tndXN1WUBdbKwIvyFnWgA8JNSK5DMRRkAc
+        pvtuUV+Q6kF8eb7mO90gaO5tD50ngtf9YC8O6mkqaJXXPeokFkg2vZMtW4yQ3pZt
+        yMxyg1LnJMkhgqKU44BJN5U6aSNhk1B4JsO/sceqwk29cCwxV/7357eCJg96slXa
+        Hyy6E3OF0ubY+NZt8ZrGNp4tdwYVPDIjfG2KNk00dSwd6G40r0yfOHs5OT+NWDbh
+        Qj9dJNMv0Pj4CplQRh5P4kPAB2kUaHnP+ee62BvAlLc4V40k7xZEg==
+X-ME-Sender: <xms:pssEYKdJfeKBcld3GGZ4lXpJfOuLKEXYF9k5T0qpZS8nIZS8XGaWjA>
+    <xme:pssEYEOCbv-oFdAGQgkqCLuldb7KN9ljCBTxDk0uhfP5dfpwr0bxpWOkCvhjfPdbY
+    MNMa4P3mywAGOgVUUY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtdejgdduvdcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
-    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepgeegtdetjeekge
-    eguefgheeuvedugedvteejveeiudegvddtkeffkeehtdetudfhnecukfhppeejfedrleef
-    rdekgedrvddtkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:o8MEYJc1KToV7Org6bQJWP-4SxVwVeh0o_Rk_x-JY2tX1InsIpjY8w>
-    <xmx:o8MEYHLnyGdelgYzZcRl-n9Dd3XJL1oPDLymrDZCs1bv39CTECYI0w>
-    <xmx:o8MEYOK71iUX9JbMyFIg37jAOL6AN5hmfg9-kI_O6VmtjOtqGHdgyQ>
-    <xmx:o8MEYLXIjqjtUtcTExQZk0MrOQ8Et-G8-2eq1tJehUj-8DrK7Q1vyw>
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepveeiueduhfevheetle
+    dvgfeuhfejgfffieejhedttdffudfhheegjeefjeffleehnecuffhomhgrihhnpeguvghv
+    ihgtvghtrhgvvgdrohhrghenucfkphepjeefrdelfedrkeegrddvtdeknecuvehluhhsth
+    gvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegr
+    lhhishhtrghirhdvfedrmhgv
+X-ME-Proxy: <xmx:pssEYLgAOjLoHyD4H_nyzyK9pmpmIXK_t1s1EmhdvPhZKexFLATOFQ>
+    <xmx:pssEYH8K2_1C_Wi2clBW0lVLXvMXI2ui9Mj73zl_Esvr1A7bfmpF-Q>
+    <xmx:pssEYGtWCe2vj339K3uFDDw8-wiJfC-L279lUXHV8_9gSZ1c4oStNQ>
+    <xmx:pssEYKhmfCe9YE3uTsm21sVqFA-GHzAOyAvgeZf-CCDjOsHjva4PHw>
 Received: from ThinkpadX1Yoga3.localdomain (c-73-93-84-208.hsd1.ca.comcast.net [73.93.84.208])
-        by mail.messagingengine.com (Postfix) with ESMTPA id C513D1080057;
-        Sun, 17 Jan 2021 18:09:21 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 89083240057;
+        Sun, 17 Jan 2021 18:43:33 -0500 (EST)
 From:   Alistair Francis <alistair@alistair23.me>
-To:     arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alistair23@gmail.com,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH 2/2] remarkable2_defconfig: Add initial support for the reMarkable2
-Date:   Sat, 16 Jan 2021 19:51:40 -0800
-Message-Id: <20210117035140.1437-2-alistair@alistair23.me>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        broonie@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH 1/6] devicetree/bindings: Initial commit of silergy,sy7636a.yaml
+Date:   Sat, 16 Jan 2021 20:25:34 -0800
+Message-Id: <20210117042539.1609-1-alistair@alistair23.me>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210117035140.1437-1-alistair@alistair23.me>
-References: <20210117035140.1437-1-alistair@alistair23.me>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This defconfig is based on the one released by reMarkable with their
-4.14 kernel. I have updated it to match the latest kernels.
+Initial support for the Silergy SY7636A Power Management chip
+driver.
 
 Signed-off-by: Alistair Francis <alistair@alistair23.me>
 ---
- arch/arm/configs/remarkable2_defconfig | 358 +++++++++++++++++++++++++
- 1 file changed, 358 insertions(+)
- create mode 100644 arch/arm/configs/remarkable2_defconfig
+ .../bindings/mfd/silergy,sy7636a.yaml         | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
 
-diff --git a/arch/arm/configs/remarkable2_defconfig b/arch/arm/configs/remarkable2_defconfig
+diff --git a/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml b/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
 new file mode 100644
-index 000000000000..8c9785555cda
+index 000000000000..37541a7fcc5d
 --- /dev/null
-+++ b/arch/arm/configs/remarkable2_defconfig
-@@ -0,0 +1,358 @@
-+CONFIG_KERNEL_LZO=y
-+CONFIG_SYSVIPC=y
-+CONFIG_NO_HZ=y
-+CONFIG_HIGH_RES_TIMERS=y
-+CONFIG_PREEMPT=y
-+CONFIG_IKCONFIG=y
-+CONFIG_IKCONFIG_PROC=y
-+CONFIG_LOG_BUF_SHIFT=18
-+CONFIG_CGROUPS=y
-+CONFIG_RELAY=y
-+CONFIG_BLK_DEV_INITRD=y
-+CONFIG_EXPERT=y
-+CONFIG_KALLSYMS_ALL=y
-+CONFIG_PERF_EVENTS=y
-+# CONFIG_SLUB_DEBUG is not set
-+# CONFIG_COMPAT_BRK is not set
-+CONFIG_ARCH_MXC=y
-+CONFIG_SOC_IMX50=y
-+CONFIG_SOC_IMX53=y
-+CONFIG_SOC_IMX6Q=y
-+CONFIG_SOC_IMX6SL=y
-+CONFIG_SOC_IMX6SLL=y
-+CONFIG_SOC_IMX6SX=y
-+CONFIG_SOC_IMX7D=y
-+CONFIG_SOC_IMX7ULP=y
-+CONFIG_SOC_VF610=y
-+CONFIG_SMP=y
-+CONFIG_VMSPLIT_2G=y
-+CONFIG_ARM_PSCI=y
-+CONFIG_HIGHMEM=y
-+CONFIG_CMDLINE="noinitrd console=ttymxc0,115200"
-+CONFIG_CPU_FREQ=y
-+CONFIG_CPU_FREQ_STAT=y
-+CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND=y
-+CONFIG_CPU_FREQ_GOV_POWERSAVE=y
-+CONFIG_CPU_FREQ_GOV_USERSPACE=y
-+CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
-+CONFIG_CPUFREQ_DT=y
-+CONFIG_CPU_IDLE=y
-+CONFIG_VFP=y
-+CONFIG_NEON=y
-+CONFIG_PM_DEBUG=y
-+CONFIG_PM_TEST_SUSPEND=y
-+CONFIG_MODULES=y
-+CONFIG_MODULE_UNLOAD=y
-+CONFIG_MODVERSIONS=y
-+CONFIG_MODULE_SRCVERSION_ALL=y
-+# CONFIG_BLK_DEV_BSG is not set
-+CONFIG_BINFMT_MISC=m
-+CONFIG_CMA=y
-+CONFIG_NET=y
-+CONFIG_PACKET=y
-+CONFIG_UNIX=y
-+CONFIG_INET=y
-+CONFIG_IP_PNP=y
-+CONFIG_IP_PNP_DHCP=y
-+CONFIG_VLAN_8021Q=y
-+CONFIG_LLC2=y
-+CONFIG_CAN=y
-+CONFIG_CAN_FLEXCAN=y
-+CONFIG_CAN_M_CAN=y
-+CONFIG_BT=y
-+CONFIG_BT_RFCOMM=y
-+CONFIG_BT_RFCOMM_TTY=y
-+CONFIG_BT_BNEP=y
-+CONFIG_BT_BNEP_MC_FILTER=y
-+CONFIG_BT_BNEP_PROTO_FILTER=y
-+CONFIG_BT_HIDP=y
-+CONFIG_BT_HCIBTUSB=y
-+CONFIG_BT_HCIUART=y
-+CONFIG_BT_HCIUART_BCSP=y
-+CONFIG_BT_HCIUART_ATH3K=y
-+CONFIG_BT_HCIBCM203X=y
-+CONFIG_BT_ATH3K=y
-+CONFIG_CFG80211=y
-+CONFIG_NL80211_TESTMODE=y
-+CONFIG_CFG80211_WEXT=y
-+CONFIG_MAC80211=y
-+CONFIG_DEVTMPFS=y
-+CONFIG_DEVTMPFS_MOUNT=y
-+# CONFIG_STANDALONE is not set
-+CONFIG_IMX_WEIM=y
-+CONFIG_CONNECTOR=y
-+CONFIG_MTD=y
-+CONFIG_MTD_CMDLINE_PARTS=y
-+CONFIG_MTD_BLOCK=y
-+CONFIG_MTD_CFI=y
-+CONFIG_MTD_JEDECPROBE=y
-+CONFIG_MTD_CFI_INTELEXT=y
-+CONFIG_MTD_CFI_AMDSTD=y
-+CONFIG_MTD_CFI_STAA=y
-+CONFIG_MTD_DATAFLASH=y
-+CONFIG_MTD_SST25L=y
-+CONFIG_MTD_SPI_NOR=y
-+# CONFIG_MTD_SPI_NOR_USE_4K_SECTORS is not set
-+CONFIG_MTD_UBI=y
-+CONFIG_BLK_DEV_LOOP=y
-+CONFIG_BLK_DEV_RAM=y
-+CONFIG_BLK_DEV_RAM_SIZE=65536
-+CONFIG_EEPROM_AT24=y
-+CONFIG_EEPROM_AT25=y
-+# CONFIG_SCSI_PROC_FS is not set
-+CONFIG_BLK_DEV_SD=y
-+CONFIG_SCSI_CONSTANTS=y
-+CONFIG_SCSI_LOGGING=y
-+CONFIG_SCSI_SCAN_ASYNC=y
-+# CONFIG_SCSI_LOWLEVEL is not set
-+CONFIG_ATA=y
-+CONFIG_SATA_AHCI_PLATFORM=y
-+CONFIG_AHCI_IMX=y
-+CONFIG_PATA_IMX=y
-+CONFIG_NETDEVICES=y
-+# CONFIG_NET_VENDOR_BROADCOM is not set
-+CONFIG_CS89x0=y
-+CONFIG_CS89x0_PLATFORM=y
-+# CONFIG_NET_VENDOR_FARADAY is not set
-+# CONFIG_NET_VENDOR_INTEL is not set
-+# CONFIG_NET_VENDOR_MARVELL is not set
-+# CONFIG_NET_VENDOR_MICREL is not set
-+# CONFIG_NET_VENDOR_MICROCHIP is not set
-+# CONFIG_NET_VENDOR_NATSEMI is not set
-+# CONFIG_NET_VENDOR_SEEQ is not set
-+CONFIG_SMC91X=y
-+CONFIG_SMC911X=y
-+CONFIG_SMSC911X=y
-+# CONFIG_NET_VENDOR_STMICRO is not set
-+CONFIG_MICREL_PHY=y
-+CONFIG_USB_KAWETH=y
-+CONFIG_USB_PEGASUS=y
-+CONFIG_USB_RTL8150=y
-+CONFIG_USB_RTL8152=y
-+CONFIG_USB_USBNET=y
-+CONFIG_USB_NET_CDC_EEM=m
-+CONFIG_ATH6KL=m
-+CONFIG_ATH6KL_SDIO=m
-+CONFIG_BRCMFMAC=m
-+CONFIG_HOSTAP=y
-+CONFIG_INPUT_EVDEV=y
-+CONFIG_INPUT_EVBUG=m
-+CONFIG_KEYBOARD_GPIO=y
-+CONFIG_KEYBOARD_IMX=y
-+CONFIG_MOUSE_PS2=m
-+CONFIG_MOUSE_PS2_ELANTECH=y
-+CONFIG_INPUT_TOUCHSCREEN=y
-+CONFIG_TOUCHSCREEN_ADS7846=y
-+CONFIG_TOUCHSCREEN_EGALAX=y
-+CONFIG_TOUCHSCREEN_WACOM_I2C=y
-+CONFIG_TOUCHSCREEN_MAX11801=y
-+CONFIG_TOUCHSCREEN_IMX6UL_TSC=y
-+CONFIG_TOUCHSCREEN_MC13783=y
-+CONFIG_TOUCHSCREEN_TSC2007=y
-+CONFIG_TOUCHSCREEN_STMPE=y
-+CONFIG_INPUT_MISC=y
-+CONFIG_INPUT_MMA8450=y
-+CONFIG_SERIO_SERPORT=m
-+# CONFIG_LEGACY_PTYS is not set
-+CONFIG_SERIAL_IMX=y
-+CONFIG_SERIAL_IMX_CONSOLE=y
-+CONFIG_SERIAL_FSL_LPUART=y
-+CONFIG_SERIAL_FSL_LPUART_CONSOLE=y
-+# CONFIG_I2C_COMPAT is not set
-+CONFIG_I2C_CHARDEV=y
-+# CONFIG_I2C_HELPER_AUTO is not set
-+CONFIG_I2C_ALGOPCF=m
-+CONFIG_I2C_ALGOPCA=m
-+CONFIG_I2C_IMX=y
-+CONFIG_I2C_IMX_LPI2C=y
-+CONFIG_SPI=y
-+CONFIG_SPI_FSL_LPSPI=y
-+CONFIG_SPI_FSL_QUADSPI=y
-+CONFIG_SPI_GPIO=y
-+CONFIG_SPI_IMX=y
-+CONFIG_SPI_SPIDEV=y
-+CONFIG_SPI_SLAVE=y
-+CONFIG_SPI_SLAVE_TIME=y
-+CONFIG_SPI_SLAVE_SYSTEM_CONTROL=y
-+CONFIG_GPIO_SYSFS=y
-+CONFIG_GPIO_MAX732X=y
-+CONFIG_GPIO_PCA953X=y
-+CONFIG_GPIO_74X164=y
-+CONFIG_POWER_RESET=y
-+CONFIG_POWER_RESET_SYSCON_POWEROFF=y
-+CONFIG_POWER_SUPPLY=y
-+CONFIG_THERMAL=y
-+CONFIG_THERMAL_WRITABLE_TRIPS=y
-+CONFIG_CPU_THERMAL=y
-+CONFIG_IMX_THERMAL=y
-+CONFIG_WATCHDOG=y
-+CONFIG_IMX2_WDT=y
-+CONFIG_IMX7ULP_WDT=y
-+CONFIG_MFD_DA9052_I2C=y
-+CONFIG_MFD_MC13XXX_SPI=y
-+CONFIG_MFD_MC13XXX_I2C=y
-+CONFIG_MFD_SI476X_CORE=y
-+CONFIG_MFD_STMPE=y
-+CONFIG_REGULATOR=y
-+CONFIG_REGULATOR_FIXED_VOLTAGE=y
-+CONFIG_REGULATOR_ANATOP=y
-+CONFIG_REGULATOR_DA9052=y
-+CONFIG_REGULATOR_GPIO=y
-+CONFIG_REGULATOR_MC13783=y
-+CONFIG_REGULATOR_MC13892=y
-+CONFIG_REGULATOR_PFUZE100=y
-+CONFIG_MEDIA_SUPPORT=y
-+CONFIG_MEDIA_USB_SUPPORT=y
-+CONFIG_USB_VIDEO_CLASS=m
-+CONFIG_RADIO_SI476X=y
-+CONFIG_V4L_PLATFORM_DRIVERS=y
-+CONFIG_V4L_MEM2MEM_DRIVERS=y
-+CONFIG_VIDEO_CODA=y
-+CONFIG_DRM=y
-+CONFIG_LCD_CLASS_DEVICE=y
-+CONFIG_LCD_L4F00242T03=y
-+CONFIG_LCD_PLATFORM=y
-+CONFIG_BACKLIGHT_PWM=y
-+CONFIG_BACKLIGHT_GPIO=y
-+CONFIG_FRAMEBUFFER_CONSOLE=y
-+CONFIG_LOGO=y
-+CONFIG_SOUND=y
-+CONFIG_SND=y
-+CONFIG_SND_USB_AUDIO=m
-+CONFIG_SND_SOC=y
-+CONFIG_SND_IMX_SOC=y
-+CONFIG_SND_SOC_EUKREA_TLV320=y
-+CONFIG_SND_SOC_IMX_SGTL5000=y
-+CONFIG_SND_SOC_IMX_SPDIF=y
-+CONFIG_USB=y
-+CONFIG_USB_EHCI_HCD=y
-+CONFIG_USB_HCD_TEST_MODE=y
-+CONFIG_USB_ACM=m
-+CONFIG_USB_STORAGE=y
-+CONFIG_USB_CHIPIDEA=y
-+CONFIG_USB_CHIPIDEA_UDC=y
-+CONFIG_USB_CHIPIDEA_HOST=y
-+CONFIG_USB_SERIAL=m
-+CONFIG_USB_SERIAL_GENERIC=y
-+CONFIG_USB_SERIAL_FTDI_SIO=m
-+CONFIG_USB_SERIAL_OPTION=m
-+CONFIG_USB_TEST=m
-+CONFIG_USB_EHSET_TEST_FIXTURE=y
-+CONFIG_NOP_USB_XCEIV=y
-+CONFIG_USB_MXS_PHY=y
-+CONFIG_USB_GADGET=y
-+CONFIG_USB_CONFIGFS=y
-+CONFIG_USB_CONFIGFS_SERIAL=y
-+CONFIG_USB_CONFIGFS_ACM=y
-+CONFIG_USB_CONFIGFS_OBEX=y
-+CONFIG_USB_CONFIGFS_NCM=y
-+CONFIG_USB_CONFIGFS_ECM=y
-+CONFIG_USB_CONFIGFS_ECM_SUBSET=y
-+CONFIG_USB_CONFIGFS_RNDIS=y
-+CONFIG_USB_CONFIGFS_EEM=y
-+CONFIG_USB_CONFIGFS_MASS_STORAGE=y
-+CONFIG_USB_CONFIGFS_F_LB_SS=y
-+CONFIG_USB_CONFIGFS_F_FS=y
-+CONFIG_USB_ZERO=m
-+CONFIG_USB_ETH=m
-+CONFIG_USB_G_NCM=m
-+CONFIG_USB_GADGETFS=m
-+CONFIG_USB_MASS_STORAGE=m
-+CONFIG_USB_G_SERIAL=m
-+CONFIG_MMC=y
-+CONFIG_MMC_SDHCI=y
-+CONFIG_MMC_SDHCI_PLTFM=y
-+CONFIG_MMC_SDHCI_ESDHC_IMX=y
-+CONFIG_NEW_LEDS=y
-+CONFIG_LEDS_CLASS=y
-+CONFIG_LEDS_GPIO=y
-+CONFIG_LEDS_TRIGGERS=y
-+CONFIG_LEDS_TRIGGER_TIMER=y
-+CONFIG_LEDS_TRIGGER_ONESHOT=y
-+CONFIG_LEDS_TRIGGER_HEARTBEAT=y
-+CONFIG_LEDS_TRIGGER_BACKLIGHT=y
-+CONFIG_LEDS_TRIGGER_GPIO=y
-+CONFIG_RTC_CLASS=y
-+CONFIG_RTC_INTF_DEV_UIE_EMUL=y
-+CONFIG_RTC_DRV_MC13XXX=y
-+CONFIG_RTC_DRV_MXC=y
-+CONFIG_RTC_DRV_SNVS=y
-+CONFIG_DMADEVICES=y
-+CONFIG_FSL_EDMA=y
-+CONFIG_IMX_SDMA=y
-+CONFIG_MXS_DMA=y
-+CONFIG_DMATEST=m
-+CONFIG_STAGING=y
-+CONFIG_STAGING_MEDIA=y
-+# CONFIG_IOMMU_SUPPORT is not set
-+CONFIG_EXTCON_USB_GPIO=y
-+CONFIG_IIO=y
-+CONFIG_IMX7D_ADC=y
-+CONFIG_VF610_ADC=y
-+CONFIG_PWM=y
-+CONFIG_TEE=y
-+CONFIG_OPTEE=y
-+CONFIG_EXT2_FS=y
-+CONFIG_EXT2_FS_XATTR=y
-+CONFIG_EXT2_FS_POSIX_ACL=y
-+CONFIG_EXT2_FS_SECURITY=y
-+CONFIG_EXT3_FS=y
-+CONFIG_EXT3_FS_POSIX_ACL=y
-+CONFIG_EXT3_FS_SECURITY=y
-+CONFIG_QUOTA=y
-+CONFIG_QUOTA_NETLINK_INTERFACE=y
-+# CONFIG_PRINT_QUOTA_WARNING is not set
-+CONFIG_AUTOFS4_FS=y
-+CONFIG_FUSE_FS=y
-+CONFIG_ISO9660_FS=m
-+CONFIG_JOLIET=y
-+CONFIG_ZISOFS=y
-+CONFIG_UDF_FS=m
-+CONFIG_MSDOS_FS=m
-+CONFIG_VFAT_FS=y
-+CONFIG_TMPFS=y
-+CONFIG_JFFS2_FS=y
-+CONFIG_UBIFS_FS=y
-+CONFIG_NFS_FS=y
-+CONFIG_NFS_V3_ACL=y
-+CONFIG_NFS_V4=y
-+CONFIG_ROOT_NFS=y
-+CONFIG_NLS_DEFAULT="cp437"
-+CONFIG_NLS_CODEPAGE_437=y
-+CONFIG_NLS_ASCII=y
-+CONFIG_NLS_ISO8859_1=y
-+CONFIG_NLS_ISO8859_15=m
-+CONFIG_NLS_UTF8=y
-+CONFIG_SECURITYFS=y
-+CONFIG_CRYPTO_USER=y
-+CONFIG_CRYPTO_TEST=m
-+CONFIG_CRYPTO_CTS=y
-+CONFIG_CRYPTO_LRW=y
-+CONFIG_CRYPTO_MD4=y
-+CONFIG_CRYPTO_MD5=y
-+CONFIG_CRYPTO_RMD128=y
-+CONFIG_CRYPTO_RMD160=y
-+CONFIG_CRYPTO_RMD256=y
-+CONFIG_CRYPTO_RMD320=y
-+CONFIG_CRYPTO_SHA512=y
-+CONFIG_CRYPTO_TGR192=y
-+CONFIG_CRYPTO_WP512=y
-+CONFIG_CRYPTO_BLOWFISH=y
-+CONFIG_CRYPTO_CAMELLIA=y
-+CONFIG_CRYPTO_TWOFISH=y
-+CONFIG_CRYPTO_DEV_FSL_CAAM=y
-+CONFIG_CRYPTO_DEV_MXS_DCP=y
-+CONFIG_CRC_CCITT=m
-+CONFIG_CRC_T10DIF=y
-+CONFIG_CRC7=m
-+CONFIG_LIBCRC32C=m
-+CONFIG_DMA_CMA=y
-+CONFIG_CMA_SIZE_MBYTES=0
-+CONFIG_FONTS=y
-+CONFIG_FONT_8x8=y
-+CONFIG_FONT_8x16=y
-+# CONFIG_DEBUG_BUGVERBOSE is not set
-+CONFIG_MAGIC_SYSRQ=y
-+CONFIG_DEBUG_FS=y
-+# CONFIG_SCHED_DEBUG is not set
-+# CONFIG_FTRACE is not set
++++ b/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/silergy,sy7636a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: silergy sy7636a PMIC
++
++maintainers:
++  - Alistair Francis <alistair@alistair23.me>
++
++properties:
++  compatible:
++    enum:
++      - silergy,sy7636a
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        regulator@60 {
++          compatible = "silergy,sy7636a";
++          reg = <0x60>;
++        };
++    };
++
++...
 -- 
 2.29.2
 
