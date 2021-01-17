@@ -2,232 +2,487 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B632F95E9
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 23:24:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A1152F9618
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 00:11:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730494AbhAQWXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 17:23:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44392 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730496AbhAQWXL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jan 2021 17:23:11 -0500
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02EF5C061575
-        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 14:22:08 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6E53C1F424;
-        Sun, 17 Jan 2021 23:22:07 +0100 (CET)
-Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: i2c: Add IMX300 CMOS
- sensor binding
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org
-References: <20210113182934.444727-1-angelogioacchino.delregno@somainline.org>
- <20210113182934.444727-3-angelogioacchino.delregno@somainline.org>
- <20210116234404.GX850@valkosipuli.retiisi.org.uk>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <9fab4d1a-7c33-3999-4a84-d0abff205d3e@somainline.org>
-Date:   Sun, 17 Jan 2021 23:22:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1730443AbhAQXKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 18:10:24 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:49033 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729673AbhAQXKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Jan 2021 18:10:15 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 55045580645;
+        Sun, 17 Jan 2021 18:09:22 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Sun, 17 Jan 2021 18:09:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=vmQuL0mbmT8sLbVsdjB4nNkwb3
+        urGnWXN9OrQ6Do3Ow=; b=BKjca8Bh9ynez6easVNGz3xWXS+yL7xClnOvAQTPku
+        xVslu+3lSdNXAjKikB6qasbAL3g7e55ZAwnGNY0DmwVV0tcHiS6oGRZ/mcXo7ZzQ
+        xfX9x9scv/Tvjp7muLitxqoc5PVaUPpc2xQu8/dETRx00w/IFwQN3SJespatahhU
+        r3s3sB6NKX5w/7rknqQ9JEPu0QGDC4KFxWPFncxcNTbu4Vz2TX5XDorM3SCUKqRh
+        XmypBKihbTk3K0Kd4ydBlo1ACTcFiuzW7m0KNblnc194BIdmrMJtn3JfN1SKgGRG
+        DLjgoCmzITxT6k1eawr6K6MQ+BjKM0YvWZELdeYVWDhA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=vmQuL0mbmT8sLbVsd
+        jB4nNkwb3urGnWXN9OrQ6Do3Ow=; b=pAmlCA/WVnt6kGj85MKjG+IIZ2f59Rn06
+        V2PUPQC84JTXWHCaxX7bc2OYYysRdjNfJ1X6mhTYbd9ysNy8LAMLDGDOi8tfyFV7
+        +y0xHSvnLriUwlLXEBb+Wkw0WEswtN5EEjcbao5H9w19tNv5XcpecM/60ZI7yF5I
+        /e73k+GsXp8RO2Ae9J/EP3rCbhESnglCHSi4d1OG7Ryd5mjo7jd31d29MxwK6oWq
+        hGCH5zxy8t7+2sroTfDoRKZa0PUCeKBCFeECTPlJZvlNBwXprDzNNHM3a8/L1apu
+        6WPrM2RJz1rIWTpgp4hqdgnqVI9PRZVGmBkUUukgjVOCaHevZoXWw==
+X-ME-Sender: <xms:oMMEYHuMzKyEPBVrD716V0oj-N3zhk682wWyME5xsB_Gwsyn8YY9Vg>
+    <xme:oMMEYIduqMwSAsPuKC7EqnD4LRLDPBZo3__q5e4NO9AIul16uGQ6pC12AAyOlll9C
+    9_2VwcTtAK9i1qdQo4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtdejgddtiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepkeduveffffefffefve
+    fhudejfeefiedugfeltdegueehhfejkedvudeltdeihedtnecuffhomhgrihhnpehrvghm
+    rghrkhgrsghlvgdrtghomhenucfkphepjeefrdelfedrkeegrddvtdeknecuvehluhhsth
+    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegr
+    lhhishhtrghirhdvfedrmhgv
+X-ME-Proxy: <xmx:oMMEYKyx2GT5WC56UpA8pQ-s1W-K-VW73JgYJHj9Niku8N5XsR-egg>
+    <xmx:oMMEYGOaV9fDuQ3BMeLnfO_Mf6Lt8QEB2yIBKaftQ335hsMZl83fPA>
+    <xmx:oMMEYH9yic5MAaU2d1pK603O0_EVsPNibE1n8v3jAweudM6yIae5qQ>
+    <xmx:osMEYOYZZI4U6793uG8WbHii6ClwNL5_EKOMXRFnUK66zdoMSy_6EQ>
+Received: from ThinkpadX1Yoga3.localdomain (c-73-93-84-208.hsd1.ca.comcast.net [73.93.84.208])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 70434108005F;
+        Sun, 17 Jan 2021 18:09:19 -0500 (EST)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alistair23@gmail.com,
+        Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH 1/2] imx7d-remarkable2.dts: Initial device tree for reMarkable2
+Date:   Sat, 16 Jan 2021 19:51:39 -0800
+Message-Id: <20210117035140.1437-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20210116234404.GX850@valkosipuli.retiisi.org.uk>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/01/21 00:44, Sakari Ailus ha scritto:
-> Hi AngeloGioacchino,
-> 
-> On Wed, Jan 13, 2021 at 07:29:34PM +0100, AngeloGioacchino Del Regno wrote:
->> Add YAML device tree binding for IMX300 CMOS image sensor, and
->> the relevant MAINTAINERS entries.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> ---
->>   .../bindings/media/i2c/sony,imx300.yaml       | 112 ++++++++++++++++++
->>   MAINTAINERS                                   |   7 ++
->>   2 files changed, 119 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
->> new file mode 100644
->> index 000000000000..4fa767feea80
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
->> @@ -0,0 +1,112 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/i2c/sony,imx300.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Sony 1/2.3-Inch 25Mpixel Stacked CMOS Digital Image Sensor
->> +
->> +maintainers:
->> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> +
->> +description: |-
->> +  The Sony IMX300 is a 1/2.3-inch Stacked CMOS (Exmor-RS) digital image
->> +  sensor with a pixel size of 1.08um and an active array size of
->> +  5948H x 4140V. It is programmable through I2C interface at address 0x10.
->> +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
->> +  4 data lanes.
->> +
->> +properties:
->> +  compatible:
->> +    const: sony,imx300
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
-> 
-> Please add assigned clock related properties; see
-> Documentation/driver-api/media/camera-sensor.rst .
-> 
->> +
->> +  vdig-supply:
->> +    description:
->> +      Digital I/O voltage supply, 1.15-1.20 volts
->> +
->> +  vana-supply:
->> +    description:
->> +      Analog voltage supply, 2.2 volts
->> +
->> +  vddl-supply:
->> +    description:
->> +      Digital core voltage supply, 1.8 volts
->> +
->> +  reset-gpios:
->> +    description: |-
->> +      Reference to the GPIO connected to the xclr pin, if any.
->> +      Must be released (set high) after all supplies are applied.
->> +
->> +  # See ../video-interfaces.txt for more details
->> +  port:
->> +    type: object
->> +    properties:
->> +      endpoint:
->> +        type: object
->> +
->> +        properties:
->> +          data-lanes:
->> +            description: |-
->> +              The driver only supports four-lane operation.
-> 
-> This can be removed as bindings describe hardware, not driver operation.
-> 
->> +            items:
->> +              - const: 0
->> +              - const: 1
->> +              - const: 2
->> +              - const: 3
-> 
-> Two lanes here, too?
-> 
->> +
->> +          clock-noncontinuous: true
->> +
->> +          link-frequencies:
->> +            $ref: /schemas/types.yaml#/definitions/uint64-array
->> +            description:
->> +              Allowed data bus frequencies. The driver currently needs
->> +              to switch between 780000000 and 480000000 Hz in order to
->> +              guarantee functionality of all modes.
-> 
-> You can omit this description, too.
-> 
->> +
->> +        required:
->> +          - data-lanes
->> +          - link-frequencies
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - vana-supply
->> +  - vdig-supply
->> +  - vddl-supply
-> 
-> Are the regulators really required? I'm not quite sure about the
-> established practices; still the common case is that one or two of these
-> are hard-wired.
-> 
->> +  - port
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c0 {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        imx300: sensor@10 {
->> +            compatible = "sony,imx300";
->> +            reg = <0x10>;
->> +            clocks = <&imx300_xclk>;
->> +            vana-supply = <&imx300_vana>;   /* 2.2v */
->> +            vdig-supply = <&imx300_vdig>;   /* 1.2v */
->> +            vddl-supply = <&imx300_vddl>;   /* 1.8v */
->> +
->> +            port {
->> +                imx300_0: endpoint {
->> +                    remote-endpoint = <&csi1_ep>;
->> +                    data-lanes = <0 1 2 3>;
->> +                    clock-noncontinuous;
->> +                    link-frequencies = /bits/ 64 <780000000 480000000>;
->> +                };
->> +            };
->> +        };
->> +    };
->> +
->> +...
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index ad9abb42f852..5e0f08f48d48 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -16633,6 +16633,13 @@ T:	git git://linuxtv.org/media_tree.git
->>   F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
->>   F:	drivers/media/i2c/imx290.c
->>   
->> +SONY IMX300 SENSOR DRIVER
->> +M:	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> +L:	linux-media@vger.kernel.org
-> 
-> Please also add the git tree.
-> 
-> Ideally also the MAINTAINERS change comes with the first patch adding the
-> files, which should be the DT bindings. I.e. just reverse the order of the
-> patches.
-> 
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
->> +F:	drivers/media/i2c/imx300.c
->> +
->>   SONY IMX319 SENSOR DRIVER
->>   M:	Bingbu Cao <bingbu.cao@intel.com>
->>   L:	linux-media@vger.kernel.org
-> 
+The reMarkable2 (https://remarkable.com) is an e-ink tablet based on
+the imx7d SoC.
 
-Besides that, I'm sorry I forgot to port the following tag from V3 of 
-this patch, which didn't change.
+This commit is based on the DTS provide by reMarkable but ported to the
+latest kernel (instead of 4.14). I have removed references to
+non-upstream devices and have changed the UART so that the console can
+be accessed without having to open up the device via the OTG pogo pins.
 
-I'm adding the forgotten R-b from Rob here:
+Currently the kernel boots, but there is no support for the dispaly,
+WiFi or the power controller chips.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Alistair Francis <alistair@alistair23.me>
+---
+ arch/arm/boot/dts/Makefile              |   1 +
+ arch/arm/boot/dts/imx7d-remarkable2.dts | 375 ++++++++++++++++++++++++
+ 2 files changed, 376 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx7d-remarkable2.dts
 
-Sorry again.
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 3d1ea0b25168..5fca2612ef58 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -664,6 +664,7 @@ dtb-$(CONFIG_SOC_IMX7D) += \
+ 	imx7d-sdb-sht11.dtb \
+ 	imx7d-zii-rmu2.dtb \
+ 	imx7d-zii-rpu2.dtb \
++	imx7d-remarkable2.dtb \
+ 	imx7s-colibri-aster.dtb \
+ 	imx7s-colibri-eval-v3.dtb \
+ 	imx7s-mba7.dtb \
+diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
+new file mode 100644
+index 000000000000..fba55a0e028a
+--- /dev/null
++++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
+@@ -0,0 +1,375 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2015 Freescale Semiconductor, Inc.
++ * Copyright (C) 2019 reMarkable AS - http://www.remarkable.com/
++ *
++ * This file is dual-licensed: you can use it either under the terms
++ * of the GPL or the X11 license, at your option. Note that this dual
++ * licensing only applies to this file, and not this project as a
++ * whole.
++ *
++ *  a) This file is free software; you can redistribute it and/or
++ *     modify it under the terms of the GNU General Public License as
++ *     published by the Free Software Foundation; either version 2 of the
++ *     License, or (at your option) any later version.
++ *
++ *     This file is distributed in the hope that it will be useful,
++ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *     GNU General Public License for more details.
++ *
++ * Or, alternatively,
++ *
++ *  b) Permission is hereby granted, free of charge, to any person
++ *     obtaining a copy of this software and associated documentation
++ *     files (the "Software"), to deal in the Software without
++ *     restriction, including without limitation the rights to use,
++ *     copy, modify, merge, publish, distribute, sublicense, and/or
++ *     sell copies of the Software, and to permit persons to whom the
++ *     Software is furnished to do so, subject to the following
++ *     conditions:
++ *
++ *     The above copyright notice and this permission notice shall be
++ *     included in all copies or substantial portions of the Software.
++ *
++ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
++ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
++ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ *     OTHER DEALINGS IN THE SOFTWARE.
++ */
++
++/dts-v1/;
++
++#include "imx7d.dtsi"
++
++/ {
++	model = "reMarkable 2.0";
++	compatible = "fsl,imx7d-sdb", "fsl,imx7d";
++
++	chosen {
++		stdout-path = &uart6;
++	};
++
++	memory {
++		reg = <0x80000000 0x40000000>;
++	};
++
++	reg_vref_1v8: regulator-vref-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vref-1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	reg_brcm: regulator-brcm {
++		compatible = "regulator-fixed";
++		regulator-name = "brcm_reg";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&pinctrl_brcm_reg>;
++		pinctrl-1 = <&pinctrl_brcm_reg>;
++		gpio = <&gpio6 13 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		startup-delay-us = <150>;
++	};
++
++	reg_digitizer: regulator-digitizer {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD_3V3_DIGITIZER";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&pinctrl_digitizer_reg>;
++		pinctrl-1 = <&pinctrl_digitizer_reg>;
++		gpio = <&gpio1 6 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		startup-delay-us = <100000>; /* 100 ms */
++	};
++
++	reg_touch: regulator-touch {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD_3V3_TOUCH";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&pinctrl_touch_reg>;
++		pinctrl-1 = <&pinctrl_touch_reg>;
++		gpio = <&gpio1 11 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	reg_sdoe: regulator-sdoe {
++		compatible = "regulator-fixed";
++		regulator-name = "SDOE";
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&pinctrl_sdoe_reg>;
++		pinctrl-1 = <&pinctrl_sdoe_reg>;
++		gpio = <&gpio3 27 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	reg_gdoe: regulator-gdoe {
++		compatible = "regulator-fixed";
++		regulator-name = "GDOE";
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&pinctrl_gdoe_reg>;
++		pinctrl-1 = <&pinctrl_gdoe_reg>;
++		gpio = <&gpio3 21 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
++	wifi_pwrseq: wifi_pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&pinctrl_wifi>;
++		pinctrl-1 = <&pinctrl_wifi>;
++		reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
++		clocks = <&clks IMX7D_CLKO2_ROOT_DIV>;
++		clock-names = "ext_clock";
++	};
++};
++
++&clks {
++	assigned-clocks = <&clks IMX7D_CLKO2_ROOT_SRC>,
++			  <&clks IMX7D_CLKO2_ROOT_DIV>;
++	assigned-clock-parents = <&clks IMX7D_CKIL>;
++	assigned-clock-rates = <0>, <32768>;
++};
++
++&crypto {
++	status = "disabled";
++};
++
++&dma_apbh {
++	status = "disabled";
++};
++
++&sdma {
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&pinctrl_uart1>;
++	pinctrl-1 = <&pinctrl_uart1>;
++	assigned-clocks = <&clks IMX7D_UART1_ROOT_SRC>;
++	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
++	status = "okay";
++};
++
++&uart6 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart6>;
++	assigned-clocks = <&clks IMX7D_UART6_ROOT_SRC>;
++	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
++	status = "okay";
++};
++
++&usbotg2 {
++	srp-disable;
++	hnp-disable;
++	asp-disable;
++	phy-charger-detection;
++	status = "okay";
++};
++
++&usdhc2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	pinctrl-names = "default", "state_100mhz", "sleep";
++	pinctrl-0 = <&pinctrl_usdhc2>;
++	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc2>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	vmmc-supply = <&reg_brcm>;
++	bus-width = <4>;
++	non-removable;
++	keep-power-in-suspend;
++	cap-power-off-card;
++	status = "okay";
++
++	brcmf: bcrmf@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++	};
++};
++
++&usdhc3 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
++	pinctrl-0 = <&pinctrl_usdhc3>;
++	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
++	pinctrl-3 = <&pinctrl_usdhc3>;
++	assigned-clocks = <&clks IMX7D_USDHC3_ROOT_CLK>;
++	assigned-clock-rates = <400000000>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
++&wdog1 {
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&pinctrl_wdog>;
++	pinctrl-1 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
++};
++
++&iomuxc_lpsr {
++	pinctrl_digitizer_reg: digitizerreggrp {
++		fsl,pins = <
++			/* DIGITIZER_PWR_EN */
++			MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6	0x14
++		>;
++	};
++};
++
++&iomuxc {
++	pinctrl_bd71815: bd71815grp {
++		fsl,pins = <
++			MX7D_PAD_SAI1_RX_SYNC__GPIO6_IO16	0x59
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
++			MX7D_PAD_UART1_RX_DATA__UART1_DCE_RX	0x79
++		>;
++	};
++
++	pinctrl_uart6: uart6grp {
++		fsl,pins = <
++			MX7D_PAD_EPDC_DATA09__UART6_DCE_TX		0x79
++			MX7D_PAD_EPDC_DATA08__UART6_DCE_RX		0x79
++		>;
++	};
++
++	pinctrl_usdhc2: usdhc2grp {
++		fsl,pins = <
++			MX7D_PAD_SD2_CMD__SD2_CMD		0x59
++			MX7D_PAD_SD2_CLK__SD2_CLK		0x19
++			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x59
++			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x59
++			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x59
++			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x59
++		>;
++	};
++
++	pinctrl_usdhc2_100mhz: usdhc2grp_100mhz {
++		fsl,pins = <
++			MX7D_PAD_SD2_CMD__SD2_CMD		0x5a
++			MX7D_PAD_SD2_CLK__SD2_CLK		0x1a
++			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5a
++			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5a
++			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5a
++			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5a
++		>;
++	};
++
++	pinctrl_usdhc2_200mhz: usdhc2grp_200mhz {
++		fsl,pins = <
++			MX7D_PAD_SD2_CMD__SD2_CMD		0x5b
++			MX7D_PAD_SD2_CLK__SD2_CLK		0x1b
++			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5b
++			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5b
++			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5b
++			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5b
++		>;
++	};
++
++
++	pinctrl_usdhc3: usdhc3grp {
++		fsl,pins = <
++			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
++			MX7D_PAD_SD3_CLK__SD3_CLK		0x19
++			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x59
++			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x59
++			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x59
++			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x59
++			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x59
++			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x59
++			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x59
++			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x59
++			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x19
++		>;
++	};
++
++	pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
++		fsl,pins = <
++			MX7D_PAD_SD3_CMD__SD3_CMD		0x5a
++			MX7D_PAD_SD3_CLK__SD3_CLK		0x1a
++			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5a
++			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5a
++			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5a
++			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5a
++			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5a
++			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5a
++			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5a
++			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5a
++			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1a
++		>;
++	};
++
++	pinctrl_usdhc3_200mhz: usdhc3grp_200mhz {
++		fsl,pins = <
++			MX7D_PAD_SD3_CMD__SD3_CMD		0x5b
++			MX7D_PAD_SD3_CLK__SD3_CLK		0x1b
++			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5b
++			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5b
++			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5b
++			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5b
++			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5b
++			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5b
++			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5b
++			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5b
++			MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1b
++		>;
++	};
++
++	pinctrl_brcm_reg: brcmreggrp {
++		fsl,pins = <
++			/* WIFI_PWR_EN */
++			MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13	0x14
++		>;
++	};
++
++	pinctrl_wifi: wifigrp {
++		fsl,pins = <
++			/* WiFi Reg On */
++			MX7D_PAD_SD2_CD_B__GPIO5_IO9		0x00000014
++			/* WiFi Sleep 32k */
++			MX7D_PAD_SD1_WP__CCM_CLKO2		0x00000014
++		>;
++	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX7D_PAD_ENET1_COL__WDOG1_WDOG_ANY	0x74
++		>;
++	};
++
++	pinctrl_touch_reg: touchreggrp {
++		fsl,pins = <
++			/* TOUCH_PWR_EN */
++			MX7D_PAD_GPIO1_IO11__GPIO1_IO11		0x14
++		>;
++	};
++
++	pinctrl_sdoe_reg: sdoereggrp {
++		fsl,pins = <
++			MX7D_PAD_LCD_DATA22__GPIO3_IO27		0x74
++		>;
++	};
++
++	pinctrl_gdoe_reg: gdoereggrp {
++		fsl,pins = <
++			MX7D_PAD_LCD_DATA16__GPIO3_IO21		0x74
++		>;
++	};
++};
+-- 
+2.29.2
+
