@@ -2,154 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD612F926A
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 14:11:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 081572F928A
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 14:27:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728600AbhAQNKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 08:10:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728431AbhAQNKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jan 2021 08:10:50 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AD43C061573
-        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 05:10:10 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id l12so8646430wry.2
-        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 05:10:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=xbC44zdaVke4L6gQPI02ZlDXwA+cifJeW8d65s2rmO0=;
-        b=elc5qY+hA6Bka0lCcizSfDRP3sa7aLJYOboHgVqE87bD4pJYwutbCYzcVhVQkzM0gX
-         FNNnWESHwZALNhLrukjfLX88MxB8O9uEu6tCs3CR1bDV2dKm7a3n2i0amskpF+J8OSK0
-         GrvFejY4pqQ800gUd/z1wELHD6aSYCIP2RoNoQvVDeQMt1VqhqswEVpsXYN/bIX7pGTu
-         xFBiDA3fzbNfYpg7Mo24TcL5BwuRKdCuwpQ7avlLcWF7sDukUbkS+iUEOj7BQHLYMKH+
-         Wn2agnUJvIro9hsYvD4Fzv14Wyc5y4QOKRVrn9JJqMmzRB8OBqVDmYE6Lshp8KdJbBWY
-         hgvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=xbC44zdaVke4L6gQPI02ZlDXwA+cifJeW8d65s2rmO0=;
-        b=oFS/1rw+CMm2xc0Kx19ePbJfXQLuK4fL5SUuVey81EWODXwIBcTl+PkHJl+/Tm62yT
-         x7j7lhAEBDE1719Q2n4g3UO4Iwi9npSxDtPbkcOGea+Yj7Yo9rx8cX7AbX3wyJxpC6+4
-         gNIJVbONNMGU3N8mG7TAU0g5MaGAPqDiS9q7oGoGZIUAXYSNduRYAKItiO2mrhWDvFYj
-         zqIuNgV1Ej2+IKuDmeI2xNRNY+75Ax32K5ZrYd44u/nEHYjdaieNpkYwOLY3RRCwZwfx
-         yicVX9vE7Ys2CmmpIBgBw+KHq6gWYWX1equgIcXHF9Qkv69MvjSVWQSaazB0rdBadZlK
-         VRuw==
-X-Gm-Message-State: AOAM532n1aaVJy7v/u/oVX1NpWvivdQeX+UGZIOA2vhtVilab1ZRxCwO
-        BM2jl1GIzeZvNU+miiG7NUMHbfkdadFR+w==
-X-Google-Smtp-Source: ABdhPJwRxkuLaip4WZjwwnEB00W95qy50SE4f7qDVDkfQTQecFDfMCHSJuhcu/lCZI/vmVsH7LhFug==
-X-Received: by 2002:a5d:4491:: with SMTP id j17mr21266505wrq.78.1610889008764;
-        Sun, 17 Jan 2021 05:10:08 -0800 (PST)
-Received: from einstein.dilieto.eu (smtp.dilieto.eu. [188.68.43.228])
-        by smtp.gmail.com with ESMTPSA id f7sm8541656wmg.43.2021.01.17.05.10.07
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 17 Jan 2021 05:10:08 -0800 (PST)
-Date:   Sun, 17 Jan 2021 14:10:05 +0100
-From:   Nicola Di Lieto <nicola.dilieto@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH v2 2/2] pwm: pwm-gpio: Add DT bindings
-Message-ID: <20210117131005.ecdaby7rwb72xecd@einstein.dilieto.eu>
-References: <20201209072842.amvpwe37zvfmve3g@pengutronix.de>
- <20201211170432.6113-1-nicola.dilieto@gmail.com>
- <20201211170432.6113-3-nicola.dilieto@gmail.com>
- <20210117123440.6ziqtrjodf7ahx7w@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210117123440.6ziqtrjodf7ahx7w@pengutronix.de>
-User-Agent: NeoMutt/20170113 (1.7.2)
+        id S1728527AbhAQN0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 08:26:03 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:17386 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727480AbhAQN0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Jan 2021 08:26:02 -0500
+Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 10HD4MVu086084;
+        Sun, 17 Jan 2021 08:24:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
+ from : to : cc : date : in-reply-to : references : content-type :
+ mime-version : content-transfer-encoding; s=pp1;
+ bh=woqyHjUD+Wk6Ib5O7OUBZ1HHzA3VJ6QiDNMM6trQ8E0=;
+ b=tgEQN74HAtITOc3FbpINU+z+YxVXlSnqUggB0OwiPIKC9wCM6Mwp8cjbeNRwU2YHin0i
+ 4yOXlNUvogquWbyZn2U6sxLPttaeVp6rIZPvwRlTEZdPX5hSm+e3IEruuLJOZf8a4mwC
+ XJeuMZRVm0jBM5QDd7NjtdyO7TFbeZeiAC7a68GDMZ/qYljPz/GZoMAKtZnrH8B54erX
+ 8Ri5qdkVUJs/Q8XSucKsT1eq6GEOClJSZJCFwk+edGKwc20Zo32ekfBKhIbQ9sQYF0Nu
+ Zyq0xPV23CVtscYAvB9zJ1qtrv2Ao4dO4aMOX7TWRIjGeyIXbSjv34hF1+qeCP8nwgp9 UQ== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 364k16b0d9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 17 Jan 2021 08:24:07 -0500
+Received: from m0098394.ppops.net (m0098394.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 10HDKrL2160007;
+        Sun, 17 Jan 2021 08:24:06 -0500
+Received: from ppma03fra.de.ibm.com (6b.4a.5195.ip4.static.sl-reverse.com [149.81.74.107])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 364k16b0cu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 17 Jan 2021 08:24:06 -0500
+Received: from pps.filterd (ppma03fra.de.ibm.com [127.0.0.1])
+        by ppma03fra.de.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 10HDJ04G021917;
+        Sun, 17 Jan 2021 13:24:04 GMT
+Received: from b06cxnps4074.portsmouth.uk.ibm.com (d06relay11.portsmouth.uk.ibm.com [9.149.109.196])
+        by ppma03fra.de.ibm.com with ESMTP id 363qs88kdn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 17 Jan 2021 13:24:04 +0000
+Received: from d06av24.portsmouth.uk.ibm.com (d06av24.portsmouth.uk.ibm.com [9.149.105.60])
+        by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 10HDO1hV26804688
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Sun, 17 Jan 2021 13:24:01 GMT
+Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id C0B7B42041;
+        Sun, 17 Jan 2021 13:24:01 +0000 (GMT)
+Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id C64FF4203F;
+        Sun, 17 Jan 2021 13:23:54 +0000 (GMT)
+Received: from li-f45666cc-3089-11b2-a85c-c57d1a57929f.ibm.com (unknown [9.160.41.68])
+        by d06av24.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+        Sun, 17 Jan 2021 13:23:54 +0000 (GMT)
+Message-ID: <3c920af2da0d2650bc80bf8099bed7c6c549ca5b.camel@linux.ibm.com>
+Subject: Re: [PATCH v15 09/10] arm64: Call kmalloc() to allocate DTB buffer
+From:   Mimi Zohar <zohar@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        bauerman@linux.ibm.com, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        will@kernel.org, catalin.marinas@arm.com, mpe@ellerman.id.au,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     james.morse@arm.com, sashal@kernel.org, benh@kernel.crashing.org,
+        paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Date:   Sun, 17 Jan 2021 08:23:53 -0500
+In-Reply-To: <20210115173017.30617-10-nramas@linux.microsoft.com>
+References: <20210115173017.30617-1-nramas@linux.microsoft.com>
+         <20210115173017.30617-10-nramas@linux.microsoft.com>
+Content-Type: text/plain; charset="ISO-8859-15"
+X-Mailer: Evolution 3.28.5 (3.28.5-14.el8) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-17_06:2021-01-15,2021-01-17 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1011 mlxscore=0 adultscore=0
+ phishscore=0 mlxlogscore=999 spamscore=0 suspectscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101170082
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 17, 2021 at 01:34:40PM +0100, Uwe Kleine-König wrote:
->Hello,
->
->On Fri, Dec 11, 2020 at 06:04:32PM +0100, Nicola Di Lieto wrote:
->> Added Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
->
->this looks fine to me, but this patch should be sent to the dt mailing
->list (devicetree@vger.kernel.org) to catch the attention of the people
->who have to Ack it.
->
->Best regards
->Uwe
->
+Hi Ard,
 
-As suggested by Uwe, I am copying the patch here. The original post is 
-at https://lore.kernel.org/linux-pwm/20201211170432.6113-3-nicola.dilieto@gmail.com/
+On Fri, 2021-01-15 at 09:30 -0800, Lakshmi Ramasubramanian wrote:
+> create_dtb() function allocates kernel virtual memory for
+> the device tree blob (DTB).  This is not consistent with other
+> architectures, such as powerpc, which calls kmalloc() for allocating
+> memory for the DTB.
+> 
+> Call kmalloc() to allocate memory for the DTB, and kfree() to free
+> the allocated memory.
 
---
+The vmalloc() function description says, "vmalloc - allocate virtually
+contiguous memory".  I'd appreciate your reviewing this patch, in
+particular, which replaces vmalloc() with kmalloc().
 
-Added Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+thanks,
 
-Signed-off-by: Nicola Di Lieto <nicola.dilieto@gmail.com>
----
- .../devicetree/bindings/pwm/pwm-gpio.yaml          | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+Mimi
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml b/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
-new file mode 100644
-index 000000000000..e681b2b1c229
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/pwm-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic software PWM for modulating GPIOs
-+
-+maintainers:
-+  - Nicola Di Lieto <nicola.dilieto@gmail.com>
-+
-+properties:
-+  "#pwm-cells":
-+    description: |
-+      It should be 3. See pwm.yaml in this directory for a
-+      description of the cells format.
-+    const: 3
-+
-+  compatible:
-+    const: pwm-gpio
-+
-+  gpios:
-+    description:
-+      GPIO to be modulated
-+    maxItems: 1
-+
-+required:
-+  - "#pwm-cells"
-+  - compatible
-+  - gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    pwm0 {
-+        #pwm-cells = <3>;
-+        compatible = "pwm-gpio";
-+        gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
-+    };
--- 
-2.11.0
-
+> 
+> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> ---
+>  arch/arm64/kernel/machine_kexec_file.c | 12 +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
+> index 7de9c47dee7c..51c40143d6fa 100644
+> --- a/arch/arm64/kernel/machine_kexec_file.c
+> +++ b/arch/arm64/kernel/machine_kexec_file.c
+> @@ -29,7 +29,7 @@ const struct kexec_file_ops * const kexec_file_loaders[] = {
+>  
+>  int arch_kimage_file_post_load_cleanup(struct kimage *image)
+>  {
+> -	vfree(image->arch.dtb);
+> +	kfree(image->arch.dtb);
+>  	image->arch.dtb = NULL;
+>  
+>  	vfree(image->arch.elf_headers);
+> @@ -59,19 +59,21 @@ static int create_dtb(struct kimage *image,
+>  			+ cmdline_len + DTB_EXTRA_SPACE;
+>  
+>  	for (;;) {
+> -		buf = vmalloc(buf_size);
+> +		buf = kmalloc(buf_size, GFP_KERNEL);
+>  		if (!buf)
+>  			return -ENOMEM;
+>  
+>  		/* duplicate a device tree blob */
+>  		ret = fdt_open_into(initial_boot_params, buf, buf_size);
+> -		if (ret)
+> +		if (ret) {
+> +			kfree(buf);
+>  			return -EINVAL;
+> +		}
+>  
+>  		ret = of_kexec_setup_new_fdt(image, buf, initrd_load_addr,
+>  					     initrd_len, cmdline);
+>  		if (ret) {
+> -			vfree(buf);
+> +			kfree(buf);
+>  			if (ret == -ENOMEM) {
+>  				/* unlikely, but just in case */
+>  				buf_size += DTB_EXTRA_SPACE;
+> @@ -217,6 +219,6 @@ int load_other_segments(struct kimage *image,
+>  	return 0;
+>  
+>  out_err:
+> -	vfree(dtb);
+> +	kfree(dtb);
+>  	return ret;
+>  }
 
 
