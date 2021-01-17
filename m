@@ -2,91 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 122372F947C
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 19:19:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15B782F94AF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 19:37:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729888AbhAQSSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 13:18:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729883AbhAQSRp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jan 2021 13:17:45 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9A18C061575;
-        Sun, 17 Jan 2021 10:17:04 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id s11so7801825edd.5;
-        Sun, 17 Jan 2021 10:17:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=2JtWKNyDRARawQO+6zhdJOxEt3nWiQDJWt9SIw5zWcQ=;
-        b=mZiNuxsvPbyMDex2+YoSTHol1Bmdo+HuPHVMRE5CDHe5TZz7s/mOgrQrk+bGP/ps92
-         zWhLuSqPMBJzvffJc4XbvhA2mgPlkCIW9aTOLZ/R5E65NlSPvBfnCjodEQFhkm2kCrdy
-         84Ni7K8MNlRtLhq8smnlRChz9HxrjPB0sQrhx80FA0eeN5Fy+BvD1HW3FXwScAtNWxsv
-         oyFdrzZqAFMw9cjURH62N2sFATvBXVHWgfin2nkm7+Rk8RWFZ3pspMW8FOldSHUfeCem
-         o6BE/rFnweRUxdX5RuT54YRgzHRwAi86YE+imCFru/VQQpDVP4hypMOTV6D+Un+8UP28
-         Tqvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=2JtWKNyDRARawQO+6zhdJOxEt3nWiQDJWt9SIw5zWcQ=;
-        b=BnoPb8v+HSYHFQmmhONLya3br3xdqDGG5q9Tz6UxqsqJgJiqOfscbLYT1OFj1eCysA
-         hjoB+SzgWVA+MZ+pKMPZuGcN+8URrqOP6xAYK7HdXibnSIwfcjCKiSDutXFjDMyCk+Vp
-         pi8xdgWecN1fWQoGc56Tf+TeT/wooW0TtrUXYQzizEVWida9TG9v9B/vQUmLXYXtg5pL
-         JOTCLy1+dBVwKabRecevFU5Zju8CTCQtYxWpehTJniGsp6uXirV6GfyOnQTAeEA7DP07
-         aw6R/sB5gvU6ervJmKD2Jl7VTSohtOnHRjNKffDCuiQZJT0ABo9oQZQiO4SsmNVanYPX
-         u3xQ==
-X-Gm-Message-State: AOAM532Tah/xJyQygIjsNqd7RF3tfZUQwIHnaRHPrtrZjXLWml0+vlG7
-        qdItj4d28DkW674jczsynAc=
-X-Google-Smtp-Source: ABdhPJwRU8gsjM8P1npn0q7DNNkS2ZHeR/5FzHHPq/SUp3D4Xkz8+WaWK7oymmdAKqDt1b7QoVmzfg==
-X-Received: by 2002:a50:d552:: with SMTP id f18mr16563922edj.168.1610907422276;
-        Sun, 17 Jan 2021 10:17:02 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id zn8sm8745158ejb.39.2021.01.17.10.17.01
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 17 Jan 2021 10:17:01 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: remove interrupt-names property from rk3399 vdec node
-Date:   Sun, 17 Jan 2021 19:16:53 +0100
-Message-Id: <20210117181653.24886-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S1728154AbhAQShj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 13:37:39 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:52319 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726295AbhAQShi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jan 2021 13:37:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1610908658; x=1642444658;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=5zEtVXUtLNSl7Itit1n2Vbnz8QdINdtV9kRZRL9aMTo=;
+  b=yIHT/5nyGb2/XfHyYpu2kUN5ahXHPNuJ27kJEJj0oRnp5vbegX+ptBSV
+   3gYcqGIrtYsZO+PXAHUGReMumRD9uN1oEm8U86ODGdMnIxuhL4Ef5uotl
+   41S5/DX/x1IfKuY9KB8OxQXp9Jpy/ktK9pU3YUYweycJWNa6m8FGhrf4y
+   MVOPLsD1KgfUHWPgOqLFTYsr122hawoIH3lGOhT8ETDoxkaVfm63koOps
+   VmmlJXF8VINKOoo86W5ujH9+96uDyULngzZk1C1kQK9VShwG39CcA4e2S
+   +mFtW3I/tITz0yWKyofGE6i7I2eF9rpcNMOdaBroYhxdNphRXKm2bkO4t
+   w==;
+IronPort-SDR: yWjOMqHUnzQemjZ4spKMTavd5xNjDCVMKqSHjMv7rjrfxiwD93wOFzCnA2DPfgXGshMegp2tTX
+ Cbq6tsUfXAmhM3ptiN1SYI/gyDYViLB5NCRwaX4/L1d6V9IZ2/QXIPvijaTr1BwiXrOzSgKvra
+ m4a/ksSfaoPmZg/UZITnuktinFwp86ENNSJr/BOOfOW/aJQ40xr9h5JtZ8PR3TJMyYta0NtbXI
+ ZrUWUhjsORtBoGawCa026ECWEddLw5qxH1H33pPJ3uPWEfSVTUT/O1temMHcNKrNk24c/oieFm
+ Dzg=
+X-IronPort-AV: E=Sophos;i="5.79,354,1602572400"; 
+   d="scan'208";a="40702894"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Jan 2021 11:36:22 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Sun, 17 Jan 2021 11:36:18 -0700
+Received: from ness.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Sun, 17 Jan 2021 11:36:15 -0700
+From:   <nicolas.ferre@microchip.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Subject: [PATCH] ARM: dts: at91-sama5d27_wlsom1: add i2c recovery
+Date:   Sun, 17 Jan 2021 19:35:58 +0100
+Message-ID: <20210117183558.5369-1-nicolas.ferre@microchip.com>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below gives this error:
-/arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml: video-codec@ff660000:
-'interrupt-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-The rkvdec driver gets it irq with help of the platform_get_irq()
-function, so remove the interrupt-names property from the rk3399
-vdec node.
+Add the i2c gpio pinctrls to support the i2c bus recovery on this board.
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/
-media/rockchip,vdec.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Reviewed-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi | 22 +++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index b18d6cc26..08f163964 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1275,7 +1275,6 @@
- 		compatible = "rockchip,rk3399-vdec";
- 		reg = <0x0 0xff660000 0x0 0x400>;
- 		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "vdpu";
- 		clocks = <&cru ACLK_VDU>, <&cru HCLK_VDU>,
- 			 <&cru SCLK_VDU_CA>, <&cru SCLK_VDU_CORE>;
- 		clock-names = "axi", "ahb", "cabac", "core";
+diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+index a06700e53e4c..025a78310e3a 100644
+--- a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
++++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
+@@ -43,14 +43,20 @@ uart6: serial@200 {
+ 
+ &i2c0 {
+ 	pinctrl-0 = <&pinctrl_i2c0_default>;
+-	pinctrl-names = "default";
++	pinctrl-1 = <&pinctrl_i2c0_gpio>;
++	pinctrl-names = "default", "gpio";
++	sda-gpios = <&pioA PIN_PD21 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&pioA PIN_PD22 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
+ };
+ 
+ &i2c1 {
+ 	dmas = <0>, <0>;
+-	pinctrl-names = "default";
++	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
++	pinctrl-1 = <&pinctrl_i2c1_gpio>;
++	sda-gpios = <&pioA PIN_PD19 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&pioA PIN_PD20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
+ 
+ 	mcp16502@5b {
+@@ -258,12 +264,24 @@ pinctrl_i2c0_default: i2c0_default {
+ 		bias-disable;
+ 	};
+ 
++	pinctrl_i2c0_gpio: i2c0_gpio {
++		pinmux = <PIN_PD21__GPIO>,
++			 <PIN_PD22__GPIO>;
++		bias-disable;
++	};
++
+ 	pinctrl_i2c1_default: i2c1_default {
+ 		pinmux = <PIN_PD19__TWD1>,
+ 			 <PIN_PD20__TWCK1>;
+ 		bias-disable;
+ 	};
+ 
++	pinctrl_i2c1_gpio: i2c1_gpio {
++		pinmux = <PIN_PD19__GPIO>,
++			 <PIN_PD20__GPIO>;
++		bias-disable;
++	};
++
+ 	pinctrl_macb0_default: macb0_default {
+ 		pinmux = <PIN_PB14__GTXCK>,
+ 			 <PIN_PB15__GTXEN>,
 -- 
-2.11.0
+2.30.0
 
