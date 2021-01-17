@@ -2,94 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1FB42F94E1
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 20:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 688CD2F94FA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 20:44:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728455AbhAQT0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 14:26:42 -0500
-Received: from m-r1.th.seeweb.it ([5.144.164.170]:40041 "EHLO
-        m-r1.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730092AbhAQTZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jan 2021 14:25:31 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 1725F1F523;
-        Sun, 17 Jan 2021 20:23:46 +0100 (CET)
-Subject: Re: [PATCH 2/2] media: dt-bindings: media: venus: Add sdm660 DT
- schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     mchehab@kernel.org, phone-devel@vger.kernel.org,
-        linux-media@vger.kernel.org, robh+dt@kernel.org,
-        stanimir.varbanov@linaro.org, linux-kernel@vger.kernel.org,
-        marijn.suijten@somainline.org, konrad.dybcio@somainline.org,
-        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org
-References: <20210115185252.333562-1-angelogioacchino.delregno@somainline.org>
- <20210115185252.333562-3-angelogioacchino.delregno@somainline.org>
- <1610898357.209470.1730313.nullmailer@robh.at.kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <890cbed0-0f4c-f8e4-5d91-c0cd40edde1d@somainline.org>
-Date:   Sun, 17 Jan 2021 20:23:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1729404AbhAQToD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 14:44:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43788 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729248AbhAQToC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Jan 2021 14:44:02 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1A8A2224DE
+        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 19:43:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610912601;
+        bh=+86Plp7l6rjnoZJxBCIfp6sVMGYq9EHo8dv5Nj7H9qs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NYN6BM0xd2edIFYnYQUWydRWbvkzVLx2A2q1rYM8v2izEPOU/thxt/5hAhDD4TY7H
+         HLsxzkiOiovcpVX+P7AHsIvzqgaz1IrEVjJoMyTCXF95lhdWMOBqqmN4qiFscfh7Jz
+         e1uTe5nX0Z2pqA1YqsHFbXb0EmulGVrW5bke5gaAy2Y7uaGK3EP89ZGviO9Sq74gTj
+         WPCXXfBDujo1GA6+v3xY/+uFMk7m5rcZE4R3K7+yxvUAsJtKrShxWPC40LGBSaf1A/
+         NFt7x52v2Bpd5tkY0Oc5Ug3390TBKG0kBg1syirr1zObcsNWQSUPTTfCdSvdFGZ7Rf
+         YY6RNCdjUOG9w==
+Received: by mail-ej1-f50.google.com with SMTP id by1so14345395ejc.0
+        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 11:43:21 -0800 (PST)
+X-Gm-Message-State: AOAM533bQWvwdQzeXEiBiC6g+BnvzMWg0f1vu9gkVYlPfjwb7DZ5mbl9
+        UpssXiZt5jSnqO6+UnNz/b7j2lkUqlsXLfKbQg==
+X-Google-Smtp-Source: ABdhPJwQQ7/qFpWc6J/UK+mAcC/uBCKWvqFXeGOhx3YOVpuUxrv48rFUWjb0VL0HpEGzM5cYh1nWGoH7TkaNyzIxGa4=
+X-Received: by 2002:a17:906:25c4:: with SMTP id n4mr15403774ejb.359.1610912599686;
+ Sun, 17 Jan 2021 11:43:19 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1610898357.209470.1730313.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201209072842.amvpwe37zvfmve3g@pengutronix.de>
+ <20201211170432.6113-1-nicola.dilieto@gmail.com> <20201211170432.6113-3-nicola.dilieto@gmail.com>
+ <20210117123440.6ziqtrjodf7ahx7w@pengutronix.de> <20210117131005.ecdaby7rwb72xecd@einstein.dilieto.eu>
+In-Reply-To: <20210117131005.ecdaby7rwb72xecd@einstein.dilieto.eu>
+From:   Rob Herring <robh@kernel.org>
+Date:   Sun, 17 Jan 2021 13:43:07 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLOqcYtSXJ3eNi7uZZwm8Bi2yXEQEjK1F7-2FBbNmg1uA@mail.gmail.com>
+Message-ID: <CAL_JsqLOqcYtSXJ3eNi7uZZwm8Bi2yXEQEjK1F7-2FBbNmg1uA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pwm: pwm-gpio: Add DT bindings
+To:     Nicola Di Lieto <nicola.dilieto@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/01/21 16:45, Rob Herring ha scritto:
-> On Fri, 15 Jan 2021 19:52:52 +0100, AngeloGioacchino Del Regno wrote:
->> Add new qcom,sdm660-venus DT binding schema.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> ---
->>   .../bindings/media/qcom,sdm660-venus.yaml     | 164 ++++++++++++++++++
->>   1 file changed, 164 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml
->>
->> base-commit: 012bd807cf654b992cdc4db7eab85c1e95f9d571
->> prerequisite-patch-id: 734bdefdb043a8f91a48916246cc9a36fb5966e5
->> prerequisite-patch-id: 999517c02973237996492a41ed5bfc2990083932
->> prerequisite-patch-id: a48910425fac61948a7a26bec4d40d63e3368569
->> prerequisite-patch-id: b1a1a4216eed0d04dd16e6e8e1053dee185d06d8
->> prerequisite-patch-id: dff12be2631cc21ef1c3c930fba49d979f5055fe
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/media/qcom,sdm660-venus.example.dts:20:18: fatal error: dt-bindings/clock/qcom,mmcc-sdm660.h: No such file or directory
->     20 |         #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
->        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/media/qcom,sdm660-venus.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1370: dt_binding_check] Error 2
-> 
-> See https://patchwork.ozlabs.org/patch/1427279
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+On Sun, Jan 17, 2021 at 7:10 AM Nicola Di Lieto
+<nicola.dilieto@gmail.com> wrote:
+>
+> On Sun, Jan 17, 2021 at 01:34:40PM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> >Hello,
+> >
+> >On Fri, Dec 11, 2020 at 06:04:32PM +0100, Nicola Di Lieto wrote:
+> >> Added Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+> >
+> >this looks fine to me, but this patch should be sent to the dt mailing
+> >list (devicetree@vger.kernel.org) to catch the attention of the people
+> >who have to Ack it.
+> >
+> >Best regards
+> >Uwe
+> >
+>
+> As suggested by Uwe, I am copying the patch here. The original post is
+> at https://lore.kernel.org/linux-pwm/20201211170432.6113-3-nicola.dilieto=
+@gmail.com/
 
-Yes, because this depends on the commits that are mentioned in the tags.
-Is there any better way to add a dependency on another patch series?
+You need to resend the patch to the list. Then patchwork picks it up
+and automated tests run.
 
-- Angelo
+Of course, I'd rather just have the other one I already reviewed applied.
+
+Rob
