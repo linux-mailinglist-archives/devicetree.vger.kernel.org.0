@@ -2,132 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 568EE2F90C5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 06:44:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F40D62F9103
+	for <lists+devicetree@lfdr.de>; Sun, 17 Jan 2021 06:58:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726247AbhAQFnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 00:43:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725815AbhAQFne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jan 2021 00:43:34 -0500
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45D5C061573
-        for <devicetree@vger.kernel.org>; Sat, 16 Jan 2021 21:42:52 -0800 (PST)
-Received: by mail-ua1-x931.google.com with SMTP id j59so4418121uad.5
-        for <devicetree@vger.kernel.org>; Sat, 16 Jan 2021 21:42:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Olt2YOxfNlY0a+PB/Ct3vvAUbttTgv/DLZUtCACcw8A=;
-        b=EQI2syrqKXMoRfyWu1KSfQ7T474G8zDMmq/hd9N2q/GIm5i59uLyxltnLhA4QudIcD
-         QnuQn+XWFa+E/LL5fsm9LIPowQjdwgtihyIm6O17SPOQIbOaJOLNhY/aWn1AYZf557Ow
-         JEFQGLCjLgLFQUQvIikIs7LkZJX7lKNAqDI3E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Olt2YOxfNlY0a+PB/Ct3vvAUbttTgv/DLZUtCACcw8A=;
-        b=bUWYB3cAllmAZNAPDZ/17e7yxuzmSeDmbz/MLzhjdJZshMMr/rWD35k9KZsbOvF6n+
-         5K1SfOBXAJszrH9RsREhskzz9205b5GMKDP4xYNKPw4YxURibP4dslu0bXizltUrxIaQ
-         XoLN9Mn9724dx9r5tXrhqk/H0VWoJ4pq6rOWfgfdJMgYdjX6oT0ERe6wjQ3cyyqHq3hV
-         oRgbCIB7uLIxbezRPGePrjVFM06oFC6woGklLDf37+dWKMay6iU3uYi2sBfw4UnwG7DH
-         1hmOFognYtxx2snEvTb6i7q7BEa8GRQY2VZg+dievXXHBZwe0IIoXnMae3yBEPDHjRza
-         FghQ==
-X-Gm-Message-State: AOAM531N60zjhVWmtKbGwhBG6tLXosZgvq9pznol5BnpywYnvAGcC+Lb
-        q5R4gsuJhUiilBeBZ8QoIHT5EK0+4TApSGx/QOW61w==
-X-Google-Smtp-Source: ABdhPJwXwI0RYPLjRggAllyTjh/EEvwkgVxdYKDanZi5mBCStwwyCakvkuOuYkJ0GyG4FSWpv7KhZ7m0RG1NXRl+P+w=
-X-Received: by 2002:ab0:3894:: with SMTP id z20mr13880263uav.82.1610862171854;
- Sat, 16 Jan 2021 21:42:51 -0800 (PST)
+        id S1726203AbhAQF6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 00:58:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50676 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726144AbhAQF6A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Jan 2021 00:58:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 94ABD23119;
+        Sun, 17 Jan 2021 05:57:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610863039;
+        bh=KhFAlgYWV81mqF0LQgovtUnRvAnJ5XcvzlxsYz88gBs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LsPPSvSJ5M33pVXNm+ssIGtBxJjtc5n/S9gXbtD3H8JQ7vOrIz+JOKJ9NglOa08Cw
+         vuTP57JvWHtdKMcBOzLr0BZICj5t93Rp+k7Vm5MMHKE3TmQw9hA4FoXNPP84RAIlMB
+         4VdxPB0Ar8F8dCLtG2ieVzO1PcSLom+JIqSIGxvfiMdtQOKcZqiBbY2neTF/qxKTTe
+         kYkS1YgL8uDSBzdvXy/2JkYk8Ji9tm9GN2Y8VSTnfC+2A4HPZ/JZN6aSGKN0dHZgX4
+         mCbxz17sawjvxRzcAD1AO/2an3VWiA+yIVJemmRYvFH8Wd+E8r+gnrOeNX0mlsDSAb
+         znRfIGgsToYyg==
+Date:   Sun, 17 Jan 2021 11:27:14 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, chuanhua.lei@linux.intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        malliamireddy009@gmail.com, rtanwar@maxlinear.com,
+        lchuanhua@maxlinear.com
+Subject: Re: [PATCH v11 0/2]  Add Intel LGM SoC DMA support
+Message-ID: <20210117055714.GJ2771@vkoul-mobl>
+References: <cover.1610703653.git.mallikarjunax.reddy@linux.intel.com>
 MIME-Version: 1.0
-References: <20210116090656.11752-1-chunfeng.yun@mediatek.com>
- <20210116090656.11752-12-chunfeng.yun@mediatek.com> <CANMq1KA63Lcifv0G80AyF9-JAdojtsnR18QtfytTMuKw7pTkPA@mail.gmail.com>
-In-Reply-To: <CANMq1KA63Lcifv0G80AyF9-JAdojtsnR18QtfytTMuKw7pTkPA@mail.gmail.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Sun, 17 Jan 2021 13:42:40 +0800
-Message-ID: <CANMq1KDkEL1Uh3yCG_-D=Kcm2Nob+mLNiA87syoaiuBFrrsnvg@mail.gmail.com>
-Subject: Re: [PATCH next 12/15] arm64: dts: mediatek: mt8183: fix dtbs_check warning
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-usb@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Min Guo <min.guo@mediatek.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1610703653.git.mallikarjunax.reddy@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 17, 2021 at 9:58 AM Nicolas Boichat <drinkcat@chromium.org> wrote:
->
-> On Sat, Jan 16, 2021 at 5:07 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> >
-> > Harmonize node names, compatibles and properties.
-> >
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 9 ++++-----
-> >  1 file changed, 4 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 5b782a4769e7..a69a033a68ac 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -865,7 +865,7 @@
-> >                         ranges;
-> >                         status = "disabled";
-> >
-> > -                       usb_host: xhci@11200000 {
-> > +                       usb_host: usb@11200000 {
-> >                                 compatible = "mediatek,mt8183-xhci",
-> >                                              "mediatek,mtk-xhci";
-> >                                 reg = <0 0x11200000 0 0x1000>;
-> > @@ -908,11 +908,11 @@
-> >                         status = "disabled";
-> >                 };
-> >
-> > -               mipi_tx0: mipi-dphy@11e50000 {
-> > +               mipi_tx0: dsi-phy@11e50000 {
-> >                         compatible = "mediatek,mt8183-mipi-tx";
-> >                         reg = <0 0x11e50000 0 0x1000>;
-> >                         clocks = <&apmixedsys CLK_APMIXED_MIPID0_26M>;
-> > -                       clock-names = "ref_clk";
-> > +                       clock-names = "ref";
-> >                         #clock-cells = <0>;
-> >                         #phy-cells = <0>;
-> >                         clock-output-names = "mipi_tx0_pll";
->
-> This is unrelated to USB, so this should probably be a separate patch.
+On 15-01-21, 17:56, Amireddy Mallikarjuna reddy wrote:
+> Add DMA controller driver for Lightning Mountain (LGM) family of SoCs.
+> 
+> The main function of the DMA controller is the transfer of data from/to any
+> peripheral to/from the memory. A memory to memory copy capability can also
+> be configured. This ldma driver is used for configure the device and channnels
+> for data and control paths.
+> 
+> These controllers provide DMA capabilities for a variety of on-chip
+> devices such as SSC, HSNAND and GSWIP (Gigabit Switch IP).
+> 
+> -------------
+> Future Plans:
+> -------------
+> LGM SOC also supports Hardware Memory Copy engine.
+> The role of the HW Memory copy engine is to offload memory copy operations
+> from the CPU.
 
-Actually, after looking again at the complete stack of patches, I
-think this might be ok as part of this overall cleanup (I'll let the
-maintainer speak up).
+??
 
->
-> > @@ -931,11 +931,10 @@
-> >                         };
-> >                 };
-> >
-> > -               u3phy: usb-phy@11f40000 {
-> > +               u3phy: t-phy@11f40000 {
-> >                         compatible = "mediatek,mt8183-tphy",
-> >                                      "mediatek,generic-tphy-v2";
-> >                         #address-cells = <1>;
-> > -                       #phy-cells = <1>;
-> >                         #size-cells = <1>;
-> >                         ranges = <0 0 0x11f40000 0x1000>;
-> >                         status = "okay";
-> > --
-> > 2.18.0
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Please send updates against already applied patches and not an updated
+series!
+
+-- 
+~Vinod
