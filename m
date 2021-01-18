@@ -2,184 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAFFF2FA652
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:34:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45FA22FA65A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:35:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406801AbhARQdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 11:33:14 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:22197 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2406531AbhARQc3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 11:32:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1610987462;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=UqqkV4pT3FZ8X8fvg8OJBm77Py4wiQX0myH+LsoZDCw=;
-        b=Upp1LIYy+CJWstNbkLGhVounDHNAbV7GNpAXRTVKe1uh58jRHHlhVXRhgagbGSf4vN/vsd
-        IWnot0UVDK/OvIK4DBIVHbulQgfJyEuGXIzTMPIHFtyrPYRHXieJHvHCe3+BygTangowVe
-        rK+YwSqq7qnjzUhKTdajrSI5YQJdXUs=
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com
- [209.85.210.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-465-cwigV3HQNMeg2clQBgkXpw-1; Mon, 18 Jan 2021 11:31:01 -0500
-X-MC-Unique: cwigV3HQNMeg2clQBgkXpw-1
-Received: by mail-pf1-f199.google.com with SMTP id c70so11279836pfb.16
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 08:30:59 -0800 (PST)
+        id S2392688AbhARQeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 11:34:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52540 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406822AbhARQdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 11:33:55 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6469EC061573;
+        Mon, 18 Jan 2021 08:33:15 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id l9so18815893ejx.3;
+        Mon, 18 Jan 2021 08:33:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=hF6QZO2ui8M4e5iVZafQO9TdqdKvztuXf/OtqBjaiiE=;
+        b=Kmu32BZcMB80NvCufU/jOaCBV3VpUM6Zx0IEKYT3A4jOWYijJN7+QKkIAc+bl4PaOh
+         NHnCfEa9YU5c/e8BakRtLoMDO+5NqNzohMb3js0HAjh+7yfKF3aZOwjuiXjKpINdiNIu
+         F8MdM7UMLixqWZJyx/nY2EFhaafkMHv0xEE2P4r8l8LUdJXS64OeUwGTGDaUk8JyrKls
+         3/wSW7WE/pjDaQMKvdHrHz+46HSjQMwsZXYzvIzgGUd1LwYpNQocn9Kjvf9ddLmrk9FB
+         L9lCfup+hSui9a/wtS9UzMfDhLrIrPPXwqflyY8mBAPuqI2FkgdjNiQV+x+IDARPlGcl
+         3mEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UqqkV4pT3FZ8X8fvg8OJBm77Py4wiQX0myH+LsoZDCw=;
-        b=sVTmf5su90b6HzLKMx2EKgx30jv0OOlKheKSfOBJuXC31ich8IF3HlHQ93xB7eJ+U9
-         lGH5ils8JhWC1eZEVRg++tSitCIjSzkxVnDm+eLq1E0FtT+WaxNovRD88hT043ggovW5
-         jys3c3hsRpyWucvxrz5aQhrA0L+vIDYL7+V+A+q8xjRIo6/Qc7d+9skekKXE8ylumare
-         Bq1fMwHAjSBMUAucSKVIxIHFvq+TGYclPoCRv/utt7wRvqlXVro4itUj/wODShB4AhCg
-         gvoGgqclKwW781nlS+zqCYsdhYM7jVQArZsFbmXtaXdfgrmuW1NxSZORIljz+hGEf1kS
-         gx1Q==
-X-Gm-Message-State: AOAM530DA6mk2eQxMXiSwbjji2SAKBzuR/JpPWjdOmx0WIaAJ3pmX4pY
-        dIgv5BrUy2AHnQ72xTJPxOZoQTAiwfqkWkzPK9VfP/wFFcQkixSzfR4GcUDquy3NsGkhHN3aHIX
-        zxy+nz92twGo/3JyHekapVLAJKl1THx1q9ZraYQ==
-X-Received: by 2002:a62:5547:0:b029:1a4:cb2a:2833 with SMTP id j68-20020a6255470000b02901a4cb2a2833mr342779pfb.35.1610987459103;
-        Mon, 18 Jan 2021 08:30:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwQZOW38waFNxH9jbai1nJ21Z+g0/K1dIN8TLDr66GfVuysO8ZrPHNLGZxQPy2H160dRR5gxUpHW2cA6nG/36I=
-X-Received: by 2002:a62:5547:0:b029:1a4:cb2a:2833 with SMTP id
- j68-20020a6255470000b02901a4cb2a2833mr342749pfb.35.1610987458819; Mon, 18 Jan
- 2021 08:30:58 -0800 (PST)
-MIME-Version: 1.0
-References: <20210115170641.903392-1-dianders@chromium.org>
-In-Reply-To: <20210115170641.903392-1-dianders@chromium.org>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Mon, 18 Jan 2021 17:30:47 +0100
-Message-ID: <CAO-hwJJyQqvhZaRAbnxvi0k+pUr8i3iwCnkEs69sAw+byRst3g@mail.gmail.com>
-Subject: Re: [PATCH v9 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Jiri Kosina <jkosina@suse.cz>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        Hans De Goede <hdegoede@redhat.com>,
-        Andrea Borgia <andrea@borgia.bo.it>,
-        Kai Heng Feng <kai.heng.feng@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Coiby Xu <coiby.xu@gmail.com>,
-        Daniel Playfair Cal <daniel.playfair.cal@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Jiri Kosina <jikos@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Michael Walle <michael@walle.cc>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=hF6QZO2ui8M4e5iVZafQO9TdqdKvztuXf/OtqBjaiiE=;
+        b=t76JzIMHDWvaEYlWeKjvajnCjYPOPgpuQjBU81g6cmetoHRgvW1N4KcvDAgMYhP7cJ
+         73XQ8cowGlxk1c+U7OrZnxrBMuqxCOOmU7E+HodOpOhbqR8tfSgptAfb3jDV3hvi0DGr
+         0XyjQqn8ycDy+hlL3KoVtcaRvm989G0Twh7zOF+7MOFJM6fxoKEiGFq/E2wowpsMlJoG
+         ENQghmudQh5plB6bG0wK/hcarsAKDiNBZdsbfIMp9msbvS4yxwEFfuGekIE9KCvEhp2S
+         LDjU0FFkJiHi+sQ5SWP8+ffUq3Y0Ow+xXhYy3y0CSXk/8bV3gU/Q2THqWQGmep7EZfAD
+         hbbg==
+X-Gm-Message-State: AOAM530p/rZL59Dgwj+UkQ0YhYolHCwxZYgP+XKD43YBphdw5YcUJlPM
+        1h6VyLgBlHyvDsG73GSL4lI=
+X-Google-Smtp-Source: ABdhPJw/YWlrg1475xeiVGz/HO9C+4j9GqprcoUAiRma6zdp+NDRNVRzrgg6b+6tBp8TBRCY+ULnBA==
+X-Received: by 2002:a17:906:65a:: with SMTP id t26mr336681ejb.394.1610987594201;
+        Mon, 18 Jan 2021 08:33:14 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id r13sm8409806ejy.36.2021.01.18.08.33.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 18 Jan 2021 08:33:13 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: cleanup cpu_thermal node of rk3399-rock960.dts
+Date:   Mon, 18 Jan 2021 17:33:06 +0100
+Message-Id: <20210118163306.8693-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 6:07 PM Douglas Anderson <dianders@chromium.org> wrote:
->
->
-> The goal of this series is to support the Goodix GT7375P touchscreen.
-> This touchscreen is special because it has power sequencing
-> requirements that necessitate driving a reset GPIO.
->
-> To do this, we totally rejigger the way i2c-hid is organized so that
-> it's easier to jam the Goodix support in there.
->
-> This series was:
-> - Tested on a device that uses normal i2c-hid.
-> - Tested on a device that has a Goodix i2c-hid device.
-> - Tested on an ACPI device, but an earlier version of the series.
->
-> I believe the plan is for Benjamin to land the whole series.  Will
-> said this about the arm64 defconfig change (and provided his Ack):
-> > ...there are a few things I really care about
-> > in defconfig (e.g. things like page size!), generally speaking we don't
-> > need to Ack everything that changes in there.
-> >
-> > That said, might be worth checking whether arm-soc have any defconfig
-> > changes queued in -next so you don't end up with conflicts.
->
-> Changes in v9:
-> - 120 ms delay => 180 ms delay
-> - Local variable in ACPI code "ihid_of" => "ihid_acpi".
-> - Squash Benjamin's change for ACPI power on.
->
-> Changes in v8:
-> - Mark suspend/resume as static as per patches robot.
->
-> Changes in v7:
-> - Rebase atop commit afdd34c5fa40 ("HID: i2c-hid: show the error ...")
->
-> Changes in v6:
-> - ACPI probe function should have been "static"
-> - Don't export suspend/resume, just export dev_pm_ops from core.
-> - Fixed crash in ACPI module (missing init of "client")
-> - No need for regulator include in the core.
-> - Removed i2c_device_id table from ACPI module.
-> - Suspend/resume are no longer exported from the core.
->
-> Changes in v5:
-> - Add shutdown_tail op and use it in ACPI.
-> - Added mention of i2c-hid in the yaml itself as per Rob.
-> - Adjusted subject as per Rob.
-> - i2chid_subclass_data => i2chid_ops.
-> - power_up_device => power_up (same with power_down).
-> - subclass => ops.
->
-> Changes in v4:
-> - ("arm64: defconfig: Update config names for i2c-hid rejigger") new for v4.
-> - Fully rejigger so ACPI and OF are full subclasses.
-> - Totally redid based on the new subclass system.
->
-> Changes in v3:
-> - Fixed compatible in example.
-> - Removed Benjamin as a maintainer.
-> - Rework to use subclassing.
-> - Updated description.
->
-> Changes in v2:
-> - ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
-> - Get timings based on the compatible string.
-> - Use a separate compatible string for this new touchscreen.
->
-> Douglas Anderson (4):
->   HID: i2c-hid: Reorganize so ACPI and OF are separate modules
->   arm64: defconfig: Update config names for i2c-hid rejigger
->   dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix
->     GT7375P
->   HID: i2c-hid: Introduce goodix-i2c-hid using i2c-hid core
->
->  .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
->  arch/arm64/configs/defconfig                  |   3 +-
->  drivers/hid/Makefile                          |   2 +-
->  drivers/hid/i2c-hid/Kconfig                   |  47 +++-
->  drivers/hid/i2c-hid/Makefile                  |   6 +-
->  drivers/hid/i2c-hid/i2c-hid-acpi.c            | 143 ++++++++++
->  drivers/hid/i2c-hid/i2c-hid-core.c            | 252 +++---------------
->  drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 116 ++++++++
->  drivers/hid/i2c-hid/i2c-hid-of.c              | 143 ++++++++++
->  drivers/hid/i2c-hid/i2c-hid.h                 |  22 ++
->  include/linux/platform_data/i2c-hid.h         |  41 ---
->  11 files changed, 578 insertions(+), 262 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
->  create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
->  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
->  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
->  delete mode 100644 include/linux/platform_data/i2c-hid.h
->
+The cpu_thermal node in the rk3399-rock960.dts file does not
+reference &cpu_thermal directly to add the board-specific parts,
+but also repeats all the SoC default properties.
+Clean the whole thing up and fix alignment.
+Place node in the correct alphabetical order.
 
-Many thanks for the wait. I have now scheduled this series in for-5.12/i2c-hid.
+Suggested-by: Robin Murphy <robin.murphy@arm.com>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock960.dts | 75 ++++++++++++-------------
+ 1 file changed, 36 insertions(+), 39 deletions(-)
 
-Cheers,
-Benjamin
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+index b20774081..bff8a73d9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+@@ -63,6 +63,42 @@
+ 
+ };
+ 
++&cpu_thermal {
++	polling-delay-passive = <100>;
++	polling-delay = <1000>;
++	thermal-sensors = <&tsadc 0>;
++	sustainable-power = <1550>;
++
++	trips {
++		cpu_alert0: cpu_alert0 {
++			temperature = <65000>;
++			hysteresis = <2000>;
++			type = "passive";
++		};
++
++		cpu_alert1: cpu_alert1 {
++			temperature = <75000>;
++			hysteresis = <2000>;
++			type = "passive";
++		};
++
++		cpu_crit: cpu_crit {
++			temperature = <95000>;
++			hysteresis = <2000>;
++			type = "critical";
++		};
++	};
++
++	cooling-maps {
++		map0 {
++			trip = <&cpu_alert1>;
++			cooling-device =
++				<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++				<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
+ &pcie0 {
+ 	ep-gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
+ };
+@@ -125,45 +161,6 @@
+ 	status = "okay";
+ };
+ 
+-&thermal_zones {
+-	cpu_thermal: cpu-thermal {
+-		polling-delay-passive = <100>;
+-		polling-delay = <1000>;
+-		thermal-sensors = <&tsadc 0>;
+-		sustainable-power = <1550>;
+-
+-		trips {
+-			cpu_alert0: cpu_alert0 {
+-				    temperature = <65000>;
+-				    hysteresis = <2000>;
+-				    type = "passive";
+-			};
+-
+-			cpu_alert1: cpu_alert1 {
+-				    temperature = <75000>;
+-				    hysteresis = <2000>;
+-				    type = "passive";
+-			};
+-
+-			cpu_crit: cpu_crit {
+-				  temperature = <95000>;
+-				  hysteresis = <2000>;
+-				  type = "critical";
+-			};
+-		};
+-
+-		cooling-maps {
+-			     map0 {
+-
+-			     trip = <&cpu_alert1>;
+-			     cooling-device =
+-					<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-					<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+-			};
+-		};
+-	};
+-};
+-
+ &usbdrd_dwc3_0 {
+ 	dr_mode = "otg";
+ };
+-- 
+2.11.0
 
