@@ -2,173 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C14FA2F9F02
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 13:03:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58E0D2F9F21
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 13:08:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403853AbhARMCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 07:02:38 -0500
-Received: from foss.arm.com ([217.140.110.172]:34258 "EHLO foss.arm.com"
+        id S2391344AbhARMHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 07:07:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45028 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403824AbhARMCe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 07:02:34 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5E77A31B;
-        Mon, 18 Jan 2021 04:01:37 -0800 (PST)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 39A3F3F719;
-        Mon, 18 Jan 2021 04:01:35 -0800 (PST)
-Date:   Mon, 18 Jan 2021 12:01:32 +0000
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     "Zulkifli, Muhammad Husaini" <muhammad.husaini.zulkifli@intel.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Hunter, Adrian" <adrian.hunter@intel.com>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Shevchenko, Andriy" <andriy.shevchenko@intel.com>,
-        "A, Rashmi" <rashmi.a@intel.com>,
-        "Vaidya, Mahesh R" <mahesh.r.vaidya@intel.com>
-Subject: Re: [PATCH v1 5/9] firmware: keembay: Add support for Trusted
- Firmware Service call
-Message-ID: <20210118120132.GC25035@e120937-lin>
-References: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
- <20210114152700.21916-6-muhammad.husaini.zulkifli@intel.com>
- <20210114164811.GG4854@sirena.org.uk>
- <20210115185803.infufa4thlffagxk@bogus>
- <DM6PR11MB287679CF20BBC7C81B6E38F5B8A40@DM6PR11MB2876.namprd11.prod.outlook.com>
+        id S2403958AbhARMGM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 07:06:12 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C810B222BB;
+        Mon, 18 Jan 2021 12:05:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610971531;
+        bh=Lzm0BRSPRh6hdv3HRtMexM0LcDTwJy2kZUXSLb2saBw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=psaRCDOFpGvW4U/D19GI5blrsYUQ3xjIhj8we01ZTwpt0nYzBUxMPdwrpxz56ySU/
+         wHTGJIwabtWA0oinSG6V3xhuG0pXGqJLxE6Cdxoh/0/wYFD/t3gDgjhfWuVdOKInWl
+         ABWAJy13NIrp4i+y3tW3jtalxIt5kH/BFrHxr5WqJDzfEPTtmW6vIWXsKYr9dwAMRg
+         D+a48KLDsJKyHnsJD117XDUzu1F0cWmY9HWmiM70iNi7tqQ089V8BPNcoisOSiatAW
+         fnMKMtF4GqM1B69HYjBSyvu/CRg9gH9palkwuVHyLiDgZRwn1pM/FSnf78lWTFTyAT
+         73qzfRXGR+Pxw==
+Date:   Mon, 18 Jan 2021 12:04:54 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org
+Subject: Re: [PATCH v3 1/7] regulator: qcom-labibb: Implement voltage
+ selector ops
+Message-ID: <20210118120453.GC4455@sirena.org.uk>
+References: <20210117220830.150948-1-angelogioacchino.delregno@somainline.org>
+ <20210117220830.150948-2-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="DIOMP1UsTsWJauNi"
 Content-Disposition: inline
-In-Reply-To: <DM6PR11MB287679CF20BBC7C81B6E38F5B8A40@DM6PR11MB2876.namprd11.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210117220830.150948-2-angelogioacchino.delregno@somainline.org>
+X-Cookie: Huh?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi 
 
-sorry I'm a bit late on this.
+--DIOMP1UsTsWJauNi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Mon, Jan 18, 2021 at 10:28:33AM +0000, Zulkifli, Muhammad Husaini wrote:
-> Hi Sudeep and Mark,
-> 
-> Thanks for the review. I replied inline.
-> 
-> >-----Original Message-----
-> >From: Sudeep Holla <sudeep.holla@arm.com>
-> >Sent: Saturday, January 16, 2021 2:58 AM
-> >To: Mark Brown <broonie@kernel.org>
-> >Cc: Zulkifli, Muhammad Husaini <muhammad.husaini.zulkifli@intel.com>;
-> >ulf.hansson@linaro.org; lgirdwood@gmail.com; robh+dt@kernel.org;
-> >devicetree@vger.kernel.org; Hunter, Adrian <adrian.hunter@intel.com>;
-> >michal.simek@xilinx.com; linux-mmc@vger.kernel.org; linux-
-> >kernel@vger.kernel.org; Shevchenko, Andriy
-> ><andriy.shevchenko@intel.com>; A, Rashmi <rashmi.a@intel.com>; Vaidya,
-> >Mahesh R <mahesh.r.vaidya@intel.com>; Sudeep Holla
-> ><sudeep.holla@arm.com>
-> >Subject: Re: [PATCH v1 5/9] firmware: keembay: Add support for Trusted
-> >Firmware Service call
-> >
-> >On Thu, Jan 14, 2021 at 04:48:11PM +0000, Mark Brown wrote:
-> >> On Thu, Jan 14, 2021 at 11:26:56PM +0800, Muhammad Husaini Zulkifli
-> >wrote:
-> >> > Export inline function to encapsulate AON_CFG1 for controling the
-> >> > I/O Rail supplied voltage levels which communicate with Trusted Firmware.
-> >>
-> >> Adding Sudeep for the SMCCC bits, not deleting any context for his
-> >> benefit.
-> >>
-> >
-> >Thanks Mark for cc-ing me and joining the dots. I completely forgot about that
-> >fact that this platform was using SCMI using SMC as transport. Sorry for that and
-> >it is my fault. I did review the SCMI/SMC support for this platform sometime in
-> >June/July last year and forgot the fact it is same platform when
-> >voltage/regulator support patches for SD/MMC was posted sometime later last
-> >year. I concentrated on SMCCC conventions and other details.
-> 
-> Yes Sudeep. I redesigned the way I handle the smccc call. Previously it was handled directly in mmc driver.
-> After few discussion, we conclude to create an abstraction using regulator framework to encapsulate this smccc call
-> during set voltage operation. Using standard abstraction will make things easier for the maintainer.
-> 
-> >
-> >[...]
-> >
-> >> > +#define ARM_SMCCC_SIP_KEEMBAY_SET_SD_VOLTAGE		\
-> >> > +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,		\
-> >> > +			   ARM_SMCCC_SMC_32,		\
-> >> > +			   ARM_SMCCC_OWNER_SIP,		\
-> >> > +			   KEEMBAY_SET_SD_VOLTAGE_ID)
-> >> > +
-> >> > +#define ARM_SMCCC_SIP_KEEMBAY_GET_SD_VOLTAGE		\
-> >> > +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,		\
-> >> > +			   ARM_SMCCC_SMC_32,		\
-> >> > +			   ARM_SMCCC_OWNER_SIP,		\
-> >> > +			   KEEMBAY_GET_SD_VOLTAGE_ID)
-> >> > +
-> >> > +#define KEEMBAY_REG_NUM_CONSUMERS 2
-> >> > +
-> >> > +struct keembay_reg_supply {
-> >> > +	struct regulator *consumer;
-> >> > +};
-> >> > +
-> >> > +#if IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY)
-> >> > +/*
-> >> > + * Voltage applied on the IO Rail is controlled from the Always On
-> >> > +Register using specific
-> >> > + * bits in AON_CGF1 register. This is a secure register. Keem Bay
-> >> > +SOC cannot exposed this
-> >> > + * register address to the outside world.
-> >> > + */
-> >> > +static inline int keembay_set_io_rail_supplied_voltage(int volt) {
-> >> > +	struct arm_smccc_res res;
-> >> > +
-> >> > +
-> >	arm_smccc_1_1_invoke(ARM_SMCCC_SIP_KEEMBAY_SET_SD_VOLTA
-> >GE, volt,
-> >> > +&res);
-> >>
-> >> There is a SCMI voltage domain protocol intended for just this use
-> >> case of controlling regulators managed by the firmware, why are you
-> >> not using that for these systems?  See drivers/firmware/arm_scmi/voltage.c.
-> 
-> From mmc maintainer's perspective, I should use the common modelling either using 
-> regulator framework or pinctrl to perform voltage operation. Not just directly invoke 
-> smccc call in the mmc driver. That is why I came up with this regulator driver to perform 
-> voltage operation. 
-> 
+On Sun, Jan 17, 2021 at 11:08:24PM +0100, AngeloGioacchino Del Regno wrote:
+> Implement {get,set}_voltage_sel, list_voltage, map_voltage with
+> the useful regulator regmap helpers in order to be able to manage
+> the voltage of LAB (positive) and IBB (negative) regulators.
 
-There is an SCMI regulator driver built on top of SCMIv3.0 Voltage Domain
-Protocol, so as long as your SCMI platform firmware support the new VD
-protocol you should be able to wire up a generic SCMI regulator in the DT
-(as described in the arm,scmi.txt bindings) and then just use the usual
-regulator framework ops with such SCMI regulator without the need to add
-a custom regulator using custom SMCCC calls).
+Please do not submit new versions of already applied patches, please
+submit incremental updates to the existing code.  Modifying existing
+commits creates problems for other users building on top of those
+commits so it's best practice to only change pubished git commits if
+absolutely essential.
 
-Thanks
+--DIOMP1UsTsWJauNi
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Cristian
+-----BEGIN PGP SIGNATURE-----
 
-> >>
-> >
-> >Indeed. Please switch to using the new voltage protocol added for this without
-> >any extra code. You just need to wire up DT for this.
-> 
-> May I know even if I wire up the DT, how should I call this from the mmc driver
-> For set/get voltage operation? Any example?
-> 
-> >
-> >Just for curiosity, where is SCMI platform firmware implemented ? On Cortex-
-> >A, secure side or external processor. Does this platform run TF-A ?
-> 
-> The KMB SCMI framework is implemented in secure runtime firmware (TF-A BL31). 
-> Hopefully I am answering your question.
-> 
-> >
-> >--
-> >Regards,
-> >Sudeep
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAFeWUACgkQJNaLcl1U
+h9ChhQf+I84AxaUISvCxfDx9zsu0Oy+N1I0gO7//RG7oyTwhUfw8jWyp6jVqXapv
+iL+DD+h/sdD5p2k/gli9USjGQryOhhNmhSYTL9KDIs9Q7tLDb0np/vDPrJ1tsvpT
+nlAT0Tw2Vg/gozbfVbI9bp3iKH1aTIAYBD0dLoc+mx/IN8XZK8Sfh1RKq4dGDy67
+3ibSJ7yMxAZGm7JB9lHhq+X5ZYjhQ4JbT9pTkNzX+RqkzGQDkK96oFJv+6P88qNX
+Jg9qgdwml9Yj4LBkXnDXr38y2TqD6ERPpPbs9AmyliM//zSLNQEr99g9XLhaQsCd
+oBD1Huu6CQJ8H90pum4sL4c0cRs+bg==
+=y1H8
+-----END PGP SIGNATURE-----
+
+--DIOMP1UsTsWJauNi--
