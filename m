@@ -2,199 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6F1B2F9B45
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 09:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE2AA2F9B4A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 09:31:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387703AbhARI3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 03:29:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32984 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733226AbhARI31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 03:29:27 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23E2EC061573;
-        Mon, 18 Jan 2021 00:28:47 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id u25so22842545lfc.2;
-        Mon, 18 Jan 2021 00:28:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=KLqGbxNa2Y//bSC/m+YoN3yy9E8IE8S0pxgJYj58niI=;
-        b=Tfe7yWK4zDgBHMzIL7TOZmcC9zEBk86gzt6EuxaaK+Ya2f8nnOhvclMuu/30j1XSiL
-         odccw1S4tfuCzYqsW9+c8tiQDO/Tl+gKvHR4mAMpnxAlKGSJyc+EdP72IvPJ1bHId9rl
-         wzsXvsD5i7PeY0MrYhJQiHBFuRmNhqw34635KhB9eBd2qOZ0QXcrZYzaQBToN4ShM+YS
-         qxWWwqOvZADYcDgzw3YOkPUrMyXdG9ozdXmdbK0YQlSDbnLJNWSI5HIfPzDjWd64F8nn
-         mf6KsiE2zuhDwMSd/kGAdsklAGp/Vwu8Y5o/ChUSF9A7hx/sTIarKpaE7v5J6UVUCg1X
-         MrLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=KLqGbxNa2Y//bSC/m+YoN3yy9E8IE8S0pxgJYj58niI=;
-        b=tzDFbsdk8Fn6hToJ6hI5rGDtXZSlTikuMLx/bGlO/0BgWpUUpSrDyEoUe+N782vs3x
-         D+ZGDJs6CWApTPk0HpsBdQeuyF3QhnF+3/Iy1oGZgIu+rS4/CDaJpX5JEeetFnoG9fbf
-         twukx9QGH/1rUxEjMPVEajwk3ADlNgTACEM0VuYtnE0DHBvnE26zGh/2NyaaeqVTeNXh
-         EymWCgQlKwUcVjHMvB8CSM7fYU+GnW9pkrnounTj+4TD20mZZqoCtPwCQqlYxYOrM820
-         Tp+4EiWK5rFF9u2w89oRDoQE64OzTcKz7yngQCZht14TQWhbNJqTTqysMsQhXSEIkgxa
-         lquQ==
-X-Gm-Message-State: AOAM532BgJTa9sBEo9+AuCQlfLyTS4frwhYxeAtmGdAM/LDyuTNOFGqv
-        5tNI3bKvD4KuZu9d7s29FSxFQxk0VM/KG+eJ1MQ=
-X-Google-Smtp-Source: ABdhPJzQnwoABZVMam3MBtsrDW5CKBbIRNTR8LDPVSYlnnj70IT1dmoQYSz9szEAPTqj0/sUuSA1tQIbOLR4AZgLZKk=
-X-Received: by 2002:a19:991:: with SMTP id 139mr10815362lfj.637.1610958525450;
- Mon, 18 Jan 2021 00:28:45 -0800 (PST)
+        id S2387605AbhARIbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 03:31:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36966 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387762AbhARIbF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 03:31:05 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 12005229C4;
+        Mon, 18 Jan 2021 08:30:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610958624;
+        bh=G3g8ccSLtuvhTl60lHfmT7S7bjEzSTABporbVH6+n+U=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fkcgMup31XGT1Z5K8zlsvezWWy/jsPz6BxcK4s/s66tfkfD/Y9SdbEDQhBzpdl7gn
+         AP9+4SjGW9r1TcYrwDwPeBleK2VLFEwy0ZXStjoLStGRSonS3kDFuzBRE7JpGmQdyi
+         xu952exggDCV6wlBAMrAPr+mion7WOGY44sCYgdtECGptX1Etfelj0U56ig5ggNTbG
+         eO7uleg21m2AfyeUk2AVOsk9vN6Be0JAV8YPJlTLTmrlrBjBwIjBvQXKwxthwWn7fW
+         ZBEP9rJPV4KX5S0eV/r3L9Qlvdb2vVD9nk9z6L7cw1XEOJ8vJt9vqI3OehCCDLHwyw
+         fAbkyFfcHEy9g==
+Received: by mail-oi1-f180.google.com with SMTP id x71so1144464oia.9;
+        Mon, 18 Jan 2021 00:30:24 -0800 (PST)
+X-Gm-Message-State: AOAM533ydJqGKOtivl0rC84z0lNdbd1JN2WXFmjraFw1Y84PyXswgDDO
+        BfZacL9sH5Et4Unq2ZhgDwssXApB9xfWNockK78=
+X-Google-Smtp-Source: ABdhPJxocP0lzyO5eastZR7W498dSoutGIJLzsAbhLz7NT/RJ0W67cuDPaPOteUii2SmOroZ5Ohy9ddjtnE0FzB0rqU=
+X-Received: by 2002:aca:be54:: with SMTP id o81mr7853744oif.67.1610958623304;
+ Mon, 18 Jan 2021 00:30:23 -0800 (PST)
 MIME-Version: 1.0
-References: <1610720001-15300-1-git-send-email-u0084500@gmail.com> <3a4a88a9-f0e3-2b65-9df4-6c1d4e3f1c14@roeck-us.net>
-In-Reply-To: <3a4a88a9-f0e3-2b65-9df4-6c1d4e3f1c14@roeck-us.net>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 18 Jan 2021 16:28:34 +0800
-Message-ID: <CADiBU38g_E+iH4jTwQfPvJh4=WRH4vzQ12oubGg47gj+CpTU0A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] usb typec: tcpci: mt6360: Add vsafe0v support and
- external vbus supply control
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        matthias.bgg@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        cy_huang <cy_huang@richtek.com>, gene_chen@richtek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <20210118073340.62141-1-tony@atomide.com>
+In-Reply-To: <20210118073340.62141-1-tony@atomide.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 18 Jan 2021 09:30:07 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1Eec1cAOdxNQ=8LORop+ESqx_=dg1uhJwpXhknxOydsg@mail.gmail.com>
+Message-ID: <CAK8P3a1Eec1cAOdxNQ=8LORop+ESqx_=dg1uhJwpXhknxOydsg@mail.gmail.com>
+Subject: Re: [PATCHv2] drivers: bus: simple-pm-bus: Fix compatibility with
+ simple-bus for auxdata
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Guenter Roeck <linux@roeck-us.net> =E6=96=BC 2021=E5=B9=B41=E6=9C=8818=E6=
-=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=881:43=E5=AF=AB=E9=81=93=EF=BC=9A
+On Mon, Jan 18, 2021 at 8:33 AM Tony Lindgren <tony@atomide.com> wrote:
 >
-> On 1/15/21 6:13 AM, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > MT6360 not support for TCPC command to control source and sink.
+> After converting am335x to probe devices with simple-pm-bus I noticed
+> that we are not passing auxdata for of_platform_populate() like we do
+> with simple-bus.
 >
-> does not
+> While device tree using SoCs should no longer need platform data, there
+> are still quite a few drivers that still need it as can be seen with
+> git grep OF_DEV_AUXDATA. We want to have simple-pm-bus be usable as a
+> replacement for simple-bus also for cases where OF_DEV_AUXDATA is still
+> needed.
 >
-Ack
-> > Uses external 5V vbus regulator as the vbus source control.
-> >
-> Use
+> Let's fix the issue by passing auxdata as platform data to simple-pm-bus.
+> That way the SoCs needing this can pass the auxdata with OF_DEV_AUXDATA.
+> And let's pass the auxdata for omaps to fix the issue for am335x.
 >
-Ack
-> > Also adds the capability to report vsafe0v.
-> >
-> add
+> As an alternative solution, adding simple-pm-bus handling directly to
+> drivers/of/platform.c was considered, but we would still need simple-pm-bus
+> device driver. So passing auxdata as platform data seems like the simplest
+> solution.
 >
-Ack
-> So far this driver works without regulator. Unless I am missing something=
-,
-> this patch makes regulator support mandatory, meaning existing code will =
-fail.
-> I am not sure if that is appropriate/acceptable. Can we be sure that this=
- will
-> work for existing users of this driver ?
->
-Yes, I already checked all the src/snk functionality based on  the
-latest typec code.
-It'll be common for our TCPC. It didn't support for TCPC command.
-From the recent patches, actually, I have the local change to test the
-src capability.
-But I didn't submit it. It's almost the same to add set_vbus callback.
-That's why I submit this change after tcpci 'set_vbus callback' is added.
+> Fixes: 5a230524f879 ("ARM: dts: Use simple-pm-bus for genpd for am3 l4_wkup")
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+> Changes since v1: Updated description, added devicetree list to Cc
 
-> Thanks,
-> Guenter
->
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> >  drivers/usb/typec/tcpm/tcpci_mt6360.c | 29 +++++++++++++++++++++++++++=
-++
-> >  1 file changed, 29 insertions(+)
-> >
-> > diff --git a/drivers/usb/typec/tcpm/tcpci_mt6360.c b/drivers/usb/typec/=
-tcpm/tcpci_mt6360.c
-> > index f1bd9e0..0edf4b6 100644
-> > --- a/drivers/usb/typec/tcpm/tcpci_mt6360.c
-> > +++ b/drivers/usb/typec/tcpm/tcpci_mt6360.c
-> > @@ -11,6 +11,7 @@
-> >  #include <linux/of.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/regmap.h>
-> > +#include <linux/regulator/consumer.h>
-> >  #include <linux/usb/tcpm.h>
-> >
-> >  #include "tcpci.h"
-> > @@ -36,6 +37,7 @@ struct mt6360_tcpc_info {
-> >       struct tcpci_data tdata;
-> >       struct tcpci *tcpci;
-> >       struct device *dev;
-> > +     struct regulator *vbus;
-> >       int irq;
-> >  };
-> >
-> > @@ -51,6 +53,27 @@ static inline int mt6360_tcpc_write16(struct regmap =
-*regmap,
-> >       return regmap_raw_write(regmap, reg, &val, sizeof(u16));
-> >  }
-> >
-> > +static int mt6360_tcpc_set_vbus(struct tcpci *tcpci, struct tcpci_data=
- *data, bool src, bool snk)
-> > +{
-> > +     struct mt6360_tcpc_info *mti =3D container_of(data, struct mt6360=
-_tcpc_info, tdata);
-> > +     int ret;
-> > +
-> > +     /* To correctly handle the already enabled vbus and disable its s=
-upply first */
-> > +     if (regulator_is_enabled(mti->vbus)) {
-> > +             ret =3D regulator_disable(mti->vbus);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
->
-> Is it really a good idea to disable vbus if it happens to be already enab=
-led
-> and there is (another ?) request to enable it ?
->
-Yes, for  the state change from src_attach_wait to src_attach,
-It need to meet the requirement that  the vbus is at vsafe0v.
-So to disable it first is needed.
-And to prevent other users from enabling/disabling external vbus
-regulator in any case.
-I think we may change regulator_get  to 'regulator_get_exclusive'.
-From the design, 5v regulator only can be controlled via typec framework.
-If other user touch it, it'll affect the typec state transition.
-> > +
-> > +     if (src) {
-> > +             ret =3D regulator_enable(mti->vbus);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> >  static int mt6360_tcpc_init(struct tcpci *tcpci, struct tcpci_data *td=
-ata)
-> >  {
-> >       struct regmap *regmap =3D tdata->regmap;
-> > @@ -138,7 +161,13 @@ static int mt6360_tcpc_probe(struct platform_devic=
-e *pdev)
-> >       if (mti->irq < 0)
-> >               return mti->irq;
-> >
-> > +     mti->vbus =3D devm_regulator_get(&pdev->dev, "vbus");
-> > +     if (IS_ERR(mti->vbus))
-> > +             return PTR_ERR(mti->vbus);
-> > +
-> >       mti->tdata.init =3D mt6360_tcpc_init;
-> > +     mti->tdata.set_vbus =3D mt6360_tcpc_set_vbus;
-> > +     mti->tdata.vbus_vsafe0v =3D 1;
-> >       mti->tcpci =3D tcpci_register_port(&pdev->dev, &mti->tdata);
-> >       if (IS_ERR(mti->tcpci)) {
-> >               dev_err(&pdev->dev, "Failed to register tcpci port\n");
-> >
->
+This looks fine to me for now
+
+Acked-by: Arnd Bergmann <arnd@arndb.de>
+
+But I think we should take the time to discuss how to phase out auxdata
+over time. There are still a number of users, but it's not that many in the
+end. For some of them I see a clear solution, for other ones I do not:
+
+lpc32xx: Used only for pl080 DMA data with the old method, needs to
+    be converted to use the proper DT binding that was added a few years
+    ago.
+
+kirkwood: I don't see what this does at all, as there is no pdata, and
+    there is no clkdev lookup for "mvebu-audio"
+
+orion: similar to kirkwood, these seem to have been added for
+    clkdev lookup, but the orion_clkdev_init() function seems to
+    not be called for the orion5x_dt variant.
+
+omap2: I'll leave these for Tony to comment
+
+spear3xx: pl022 and pl080 should just use the normal DT
+   binding, see lpc32xx.
+
+u300: platform is scheduled for removal
+
+integrator_ap: pl010_set_mctrl() needs a callback to
+    integrator_uart_set_mctrl(). I see no good alternative, but
+    a workaround might be to call into syscon directly from the
+    driver on versatile machines. For all I can tell, pl010 is only
+    used on versatile and ep93xx, so that would not harm a
+    commonly used driver.
+
+versatile/integrator_cp: similar problem but for mmci, which is
+    used more widely. Used for card detection, which could
+    theoretically be implemented with a fake gpio driver, but that
+    might be excessive.
+
+mips/pic32: used for setting up DMA for sdhci, could be done
+   in a platform-specific sdhci front-end.
+
+arm-cci: used to pass cci address after ioremap(), avoiding
+   this would revert e9c112c94b01 ("perf/arm-cci: Untangle
+   global cci_ctrl_base").
+
+           Arnd
