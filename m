@@ -2,210 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 382522FA080
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 13:55:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EBDE2FA003
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 13:40:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391921AbhARMy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 07:54:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391740AbhARMgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 07:36:25 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE62C061574
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 04:35:44 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by michel.telenet-ops.be with bizsmtp
-        id JCbi240024C55Sk06CbiuL; Mon, 18 Jan 2021 13:35:42 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l1Tkz-004aJf-Me; Mon, 18 Jan 2021 13:35:41 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l1Tkz-002MtQ-Ay; Mon, 18 Jan 2021 13:35:41 +0100
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Robin van der Gracht <robin@protonic.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Miguel Ojeda Sandonis <miguel.ojeda.sandonis@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH 3/3] dt-bindings: auxdisplay: ht16k33: Convert to json-schema
-Date:   Mon, 18 Jan 2021 13:35:38 +0100
-Message-Id: <20210118123538.564597-4-geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210118123538.564597-1-geert@linux-m68k.org>
-References: <20210118123538.564597-1-geert@linux-m68k.org>
+        id S2404109AbhARMjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 07:39:01 -0500
+Received: from aclms1.advantech.com.tw ([61.58.41.199]:55411 "EHLO
+        aclms1.advantech.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391421AbhARMiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 07:38:54 -0500
+Received: from taipei09.ADVANTECH.CORP (unverified [172.20.0.236]) by ACLMS2.ADVANTECH.CORP
+ (Clearswift SMTPRS 5.6.0) with ESMTP id <Te423a0aba9ac14014b1cbc@ACLMS2.ADVANTECH.CORP>;
+ Mon, 18 Jan 2021 20:37:55 +0800
+Received: from localhost (172.16.12.146) by taipei09.ADVANTECH.CORP
+ (172.20.0.236) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 18 Jan
+ 2021 20:37:52 +0800
+From:   Campion Kang <campion.kang@advantech.com.tw>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        <linux-hwmon@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        AceLan Kao <chia-lin.kao@canonical.com>,
+        Campion Kang <campion.kang@advantech.com.tw>
+Subject: [PATCH v6 1/6] MAINTAINERS: Add Advantech AHC1EC0 embedded controller entry
+Date:   Mon, 18 Jan 2021 20:37:44 +0800
+Message-ID: <20210118123749.4769-1-campion.kang@advantech.com.tw>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.12.146]
+X-ClientProxiedBy: ACLCAS4.ADVANTECH.CORP (172.20.2.20) To
+ taipei09.ADVANTECH.CORP (172.20.0.236)
+X-TM-SNTS-SMTP: 825B17EF239580278BAEB5586553E13416AA873D536EA6557C1679AE1DA87FA42000:8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Holtek HT16K33 LED controller with keyscan Device Tree
-binding documentation to json-schema.
+Add Advantech AHC1EC0 embedded controller entry
 
-Move the file from display to auxdisplay.
-Update the example:
-  - Sort properties in order of documentation,
-  - Group tuples using angle brackets to improve human readability and
-    enable automatic validation.
+Changed since V5:
+	- add include/linux/mfd/ahc1ec0.h
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
 ---
- .../bindings/auxdisplay/holtek,ht16k33.yaml   | 77 +++++++++++++++++++
- .../devicetree/bindings/display/ht16k33.txt   | 43 -----------
- MAINTAINERS                                   |  2 +-
- 3 files changed, 78 insertions(+), 44 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/ht16k33.txt
+ MAINTAINERS | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-new file mode 100644
-index 0000000000000000..64ffff460026040f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/auxdisplay/holtek,ht16k33.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Holtek HT16K33 RAM mapping 16*8 LED controller with keyscan
-+
-+maintainers:
-+  - Robin van der Gracht <robin@protonic.nl>
-+
-+allOf:
-+  - $ref: "/schemas/input/matrix-keymap.yaml#"
-+
-+properties:
-+  compatible:
-+    const: holtek,ht16k33
-+
-+  reg:
-+    maxItems: 1
-+
-+  refresh-rate-hz:
-+    maxItems: 1
-+    description: Display update interval in Hertz
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  debounce-delay-ms:
-+    maxItems: 1
-+    description: Debouncing interval time in milliseconds
-+
-+  linux,keymap: true
-+
-+  linux,no-autorepeat:
-+    description: Disable keyrepeat
-+
-+  default-brightness-level:
-+    minimum: 1
-+    maximum: 16
-+    default: 16
-+    description: Initial brightness level
-+
-+required:
-+  - compatible
-+  - reg
-+  - refresh-rate-hz
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/input/input.h>
-+    i2c1 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ht16k33: ht16k33@70 {
-+                    compatible = "holtek,ht16k33";
-+                    reg = <0x70>;
-+                    refresh-rate-hz = <20>;
-+                    interrupt-parent = <&gpio4>;
-+                    interrupts = <5 (IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_EDGE_RISING)>;
-+                    debounce-delay-ms = <50>;
-+                    linux,keymap = <MATRIX_KEY(2, 0, KEY_F6)>,
-+                                   <MATRIX_KEY(3, 0, KEY_F8)>,
-+                                   <MATRIX_KEY(4, 0, KEY_F10)>,
-+                                   <MATRIX_KEY(5, 0, KEY_F4)>,
-+                                   <MATRIX_KEY(6, 0, KEY_F2)>,
-+                                   <MATRIX_KEY(2, 1, KEY_F5)>,
-+                                   <MATRIX_KEY(3, 1, KEY_F7)>,
-+                                   <MATRIX_KEY(4, 1, KEY_F9)>,
-+                                   <MATRIX_KEY(5, 1, KEY_F3)>,
-+                                   <MATRIX_KEY(6, 1, KEY_F1)>;
-+            };
-+      };
-diff --git a/Documentation/devicetree/bindings/display/ht16k33.txt b/Documentation/devicetree/bindings/display/ht16k33.txt
-deleted file mode 100644
-index ec43776970164921..0000000000000000
---- a/Documentation/devicetree/bindings/display/ht16k33.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--Holtek ht16k33 RAM mapping 16*8 LED controller driver with keyscan
---------------------------------------------------------------------------------
--
--Required properties:
--- compatible:		"holtek,ht16k33"
--- reg:			I2C slave address of the chip.
--- refresh-rate-hz:	Display update interval in HZ.
--
--Optional properties:
--- linux,no-autorepeat:	Disable keyrepeat.
--- default-brightness-level: Initial brightness level [1-16] (default: 16).
--
--- Keypad
-- Supply the 'interrupts' property to enable the keyscan feature.
-- - interrupts:		Interrupt specification for the key pressed interrupt.
-- - debounce-delay-ms:	Debouncing interval time in milliseconds.
-- - linux,keymap: 	The keymap for keys as described in the binding
--			document (devicetree/bindings/input/matrix-keymap.txt).
--
--Example:
--
--&i2c1 {
--	ht16k33: ht16k33@70 {
--		compatible = "holtek,ht16k33";
--		reg = <0x70>;
--		refresh-rate-hz = <20>;
--		debounce-delay-ms = <50>;
--		interrupt-parent = <&gpio4>;
--		interrupts = <5 (IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_EDGE_RISING)>;
--		linux,keymap = <
--			MATRIX_KEY(2, 0, KEY_F6)
--			MATRIX_KEY(3, 0, KEY_F8)
--			MATRIX_KEY(4, 0, KEY_F10)
--			MATRIX_KEY(5, 0, KEY_F4)
--			MATRIX_KEY(6, 0, KEY_F2)
--			MATRIX_KEY(2, 1, KEY_F5)
--			MATRIX_KEY(3, 1, KEY_F7)
--			MATRIX_KEY(4, 1, KEY_F9)
--			MATRIX_KEY(5, 1, KEY_F3)
--			MATRIX_KEY(6, 1, KEY_F1)
--		>;
--	};
--};
 diff --git a/MAINTAINERS b/MAINTAINERS
-index cc1e6a5ee6e67357..aeb209ad82496d06 100644
+index 00836f6452f0..e1ccdaadb5ee 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -8160,7 +8160,7 @@ F:	net/hsr/
- HT16K33 LED CONTROLLER DRIVER
- M:	Robin van der Gracht <robin@protonic.nl>
- S:	Maintained
--F:	Documentation/devicetree/bindings/display/ht16k33.txt
-+F:	Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
- F:	drivers/auxdisplay/ht16k33.c
+@@ -562,6 +562,17 @@ S:	Maintained
+ F:	Documentation/scsi/advansys.rst
+ F:	drivers/scsi/advansys.c
  
- HTCPEN TOUCHSCREEN DRIVER
++ADVANTECH AHC1EC0 EMBEDDED CONTROLLER DRIVER
++M:	Campion Kang <campion.kang@advantech.com.tw>
++L:	linux-kernel@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/mfd/ahc1ec0.yaml
++F:	drivers/hwmon/ahc1ec0-hwmon.c
++F:	drivers/mfd/ahc1ec0.c
++F:	drivers/watchdog/ahc1ec0-wdt.c
++F:	include/dt-bindings/mfd/ahc1ec0-dt.h
++F:	include/linux/mfd/ahc1ec0.h
++
+ ADXL34X THREE-AXIS DIGITAL ACCELEROMETER DRIVER (ADXL345/ADXL346)
+ M:	Michael Hennerich <michael.hennerich@analog.com>
+ S:	Supported
 -- 
-2.25.1
+2.17.1
 
