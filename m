@@ -2,170 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 254782FA2D8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DFA42FA334
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:37:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392925AbhAROWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 09:22:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52276 "EHLO
+        id S1730501AbhAROhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 09:37:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392842AbhAROW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 09:22:27 -0500
-Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA41BC061575
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:21:39 -0800 (PST)
-Received: by mail-vs1-xe30.google.com with SMTP id 187so5303597vsg.4
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:21:39 -0800 (PST)
+        with ESMTP id S2392966AbhAROhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 09:37:02 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF681C061574
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:36:21 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id v67so24395024lfa.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:36:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8Vm6t4j1UkDFvwn0ow87G236Agmhfjw2bgz8G0c2yDI=;
-        b=YXqE56R8iZgWt/xrgnWS0ADg7SYiBItKyNtuwN2h7t8q8wy0w5JqyNKlBWWFXshlUJ
-         CXagI21LIShLrGMg/Fe+mnuli1luaaTSzLB/NMpARZXTfROfsDQ/iYpdulrKRaH44omv
-         S3dWkuVPoYR3IwAGyg2u+a7pE2le0xJ5aSX6UQ02k2X7P8OC5oRR/2mBDYU/RO97xmR/
-         ue7BsAGWAwxc8eN2KmJVGqjUnBQuKE1bW5qwFvFfZ9cFLuc1KyfyJOPJVDZ+37g+WL2K
-         0rvDzQ7f2IYdc6wYIYYbseljKuikW3Le4bFcVJON3qyVmain2Bxgg3VOyYtwlTCcLffH
-         Uw4w==
+         :cc:content-transfer-encoding;
+        bh=VnozxiVtT8LfRAKBlvkwNTPKq2sjh1M1hTG/VkrbqVo=;
+        b=Qe4heyHLyP5mc9Fdz+yXEEn/dBKE8DdByYTz/0Kwf27PCbYnm6cDJ6bMwk3/S7WUsB
+         uwtkHl+a+JQs1d1TEHQhXA9f7Fke2uLspEjycST6DIFtQgcR4/7AEPOpsN1F8DkrAU3C
+         4pqDfMFbNmwpZ1suoFp0zNb2roYAXPwBwe1mOggQZdluVE6a5goFUZaew6o5u9LiPOvz
+         EFO/l0xeAkjgNyCmrdROvEIdBpy227iDtvtv5uxS5HlCTU3fO4r01twzAktPLU+HwwCO
+         BUICPJLyvS/tRgbVIOEmSJCqQFlVYUMZBxas+LxiRgLoibuGWprW1z4s4VOO2rMtYcA4
+         y/vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8Vm6t4j1UkDFvwn0ow87G236Agmhfjw2bgz8G0c2yDI=;
-        b=OW4gzuPgtArYDM6bHBX1Jln/0NJ6yOcvLFBTLct4fusaMXphBaP5XWF66ziZ0YmC8Z
-         y3Dc67MqJ8YMUu15sxyOkhKNryqKL188pKujuabncoBuIhbu/9TfTfQKvKKkGO0T4XQc
-         +oSkQPyroryo6mvIa0ZlaYPMNQxZQ5+UWU2MqxLcBRh7xus8ad+2sW1EedgZswN4Jn/w
-         +f2M8LVqKM64YiZaUNadT2/3ZpQU6RATXK0noiXYWwN9PjMDRTMffFiV2op4DDx1MD2t
-         uERUbHozz2CxA+MGKIuvJpVkBMZ/lYxa8xIRwHc+NdO0I7dDdLtrzQaT08yhIKuGtLIR
-         i5NQ==
-X-Gm-Message-State: AOAM5322v7SGCiVIcFV1M5s/n+kksEgindNJmTmP5UXVIVpMnhN8KkLr
-        m/qiYqH0UTXjiS6v1/8W6HpbwwAQRj5rmnv+x1HRtw==
-X-Google-Smtp-Source: ABdhPJz90QZK3nqwzH2xdCIh6J4iWnuKhWdk04HEQs0XckljNnog8h9RjU13Vc2Neznz6h0kc0sFbd9aNjuBi9ia6Z0=
-X-Received: by 2002:a67:7f41:: with SMTP id a62mr17276352vsd.55.1610979698621;
- Mon, 18 Jan 2021 06:21:38 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=VnozxiVtT8LfRAKBlvkwNTPKq2sjh1M1hTG/VkrbqVo=;
+        b=gM7BPIMYJmHVJSuzYGFlJuwwnRHrXCzMlfEN7edDT5YUnVpfT1EpuoDJ7Qz6m1U0Dj
+         a+3eHqhJVnAahrZWiRED/FI7w7GSCS/jUsyAbF7fFveQhHSdma1NfeQ0S8trk8/NwCHQ
+         f06lxvgmyRR+7IM4H3phJGNH5+pkV40lr9yH+Ir0f/Lm8VMYlsZQmNXqkT9jYyet/ahj
+         h+HT3yjvKJhrG3cQL2ORDIcqJMZHCuHbY6ZiirKMk3vJC8bo+c6o3EJMWlSaJbDUMae3
+         WQo/5tSGJEpm05lxx0sLrVsNLpeuiR/fMqQIfNqJZmXuXlf4X82SY2jIyfPYDOtYLxJj
+         bTVw==
+X-Gm-Message-State: AOAM532U38SHyOF36plpgzTYK0XeiEeEmtFVfLyOxkywmugpvY12FIS6
+        a+q/XBfh5Jri3hDnL4Y+dK1eWKYYEF8HHRAsay6tcg==
+X-Google-Smtp-Source: ABdhPJyY7OJUJYXQs3eY5XSmWodhWuHtWw5KwgWFtzcCkS/5ZqzHMaJgigjXuUNfYcnXVVp3q4tmd1c9nu1+kQpgVmI=
+X-Received: by 2002:a19:8bc6:: with SMTP id n189mr11007722lfd.291.1610980580204;
+ Mon, 18 Jan 2021 06:36:20 -0800 (PST)
 MIME-Version: 1.0
-References: <20210104184542.4616-1-ebiggers@kernel.org> <20210104184542.4616-2-ebiggers@kernel.org>
- <CAPDyKFq717teu2HPZLCn9QVxLOwZHdi_iS+Ji69S0kYX1o52PQ@mail.gmail.com> <YAHXPREJaKjK/z7+@sol.localdomain>
-In-Reply-To: <YAHXPREJaKjK/z7+@sol.localdomain>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 18 Jan 2021 15:21:01 +0100
-Message-ID: <CAPDyKFopKy6dwENJ6YQQ0KRPQdT25R_zmhrNH7jyu=+p6bKpNA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/9] mmc: add basic support for inline encryption
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
-        Satya Tangirala <satyat@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
+References: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de> <20210113194952.104734-2-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20210113194952.104734-2-u.kleine-koenig@pengutronix.de>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 18 Jan 2021 15:36:08 +0100
+Message-ID: <CACRpkdbVKzE_pe0mPb4H2c0RVJGxEtiFEfMpTCoEO+7qdVBHFQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: gpio: pca953x: increase allowed length
+ for gpio-line-names
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jan 2021 at 18:56, Eric Biggers <ebiggers@kernel.org> wrote:
+On Wed, Jan 13, 2021 at 8:50 PM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+
+> Some supported chips (e.g. pca9505) support 40 chips. To be able to give
+
+40 lines I guess? (No big deal. Everyone understand what you mean.)
+
+> each line a name the length of the gpio-line-names property must be
+> allowed to contain up to 40 entries.
 >
-> On Fri, Jan 15, 2021 at 10:22:03AM +0100, Ulf Hansson wrote:
-> > On Mon, 4 Jan 2021 at 19:48, Eric Biggers <ebiggers@kernel.org> wrote:
-> > >
-> > > From: Eric Biggers <ebiggers@google.com>
-> > >
-> > > In preparation for adding CQHCI crypto engine (inline encryption)
-> > > support, add the code required to make mmc_core and mmc_block aware of
-> > > inline encryption.  Specifically:
-> > >
-> > > - Add a capability flag MMC_CAP2_CRYPTO to struct mmc_host.  Drivers
-> > >   will set this if the host and driver support inline encryption.
-> > >
-> > > - Embed a blk_keyslot_manager in struct mmc_host.  Drivers will
-> > >   initialize this if the host and driver support inline encryption.
-> > >   mmc_block registers this keyslot manager with the request_queue of any
-> > >   MMC card attached to the host.  mmc_core destroys this keyslot manager
-> > >   when freeing the mmc_host.
-> > >
-> > > - Make mmc_block copy the crypto keyslot and crypto data unit number
-> > >   from struct request to struct mmc_request, so that drivers will have
-> > >   access to them.
-> > >
-> > > - If the MMC host is reset, reprogram all the keyslots to ensure that
-> > >   the software state stays in sync with the hardware state.
-> > >
-> > > Co-developed-by: Satya Tangirala <satyat@google.com>
-> > > Signed-off-by: Satya Tangirala <satyat@google.com>
-> > > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> > > Reviewed-by: Satya Tangirala <satyat@google.com>
-> > > Reviewed-and-tested-by: Peng Zhou <peng.zhou@mediatek.com>
-> > > Signed-off-by: Eric Biggers <ebiggers@google.com>
-> >
-> > Eric, again, my apologies for the delay. Overall, I think this looks good.
-> >
-> > My only hesitation to merge this as is, is that I want to make sure
-> > you have thought of the life cycle issues for the struct
-> > blk_keyslot_manager ksm. It's being used both from the mmc core/block
-> > device driver and the mmc host driver. I am looking at this right now
-> > and will get back to you very soon, if I find some issues with it.
-> >
-> > If you have some time, feel free to elaborate around how this is
-> > intended to work.
-> >
-> > Kind regards
-> > Uffe
->
-> The blk_keyslot_manager is initialized early on when the other host structures
-> (struct mmc_host, struct cqhci_host, struct sdhci_host, struct sdhci_msm_host)
-> are initialized, prior to mmc_add_host().
->
-> It is destroyed when the struct mmc_host is freed by mmc_free_host().
->
-> So it should just work; it's the same lifecycle as the existing host structures.
-> Is there something you think I'm overlooking?
+> Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
 
-I think so, but let me elaborate a bit.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-As I understand it, to initialize the data structures, blk_ksm_init()
-is getting called and via cqhci_init().
-
-To hook up the block request queue, blk_ksm_register() is called via
-mmc_setup_queue(), which means this happens when the mmc block device
-driver is probed.
-
-To free up the data structures, blk_ksm_destroy() is called from
-mmc_free_host().
-
-To me, this can be made more consistent. For example, it looks like
-blk_ksm_destroy() could be called, even if blk_ksm_init() hasn't been
-called (depending on the probe error path of the mmc host).
-
-There are a couple of options to better deal with this.
-1) Extend the blk_ksm interface with a devm_blk_ksm_init() function
-(thus let it deal with lifecycle problems for us) and simply drop the
-call to blk_ksm_destroy().
-2) Extend the cqhci interface with a cleanup function (perhaps
-"cqhci_deinit") and let it call blk_ksm_destroy().
-3) Convert to let blk_ksm_init() to be called from mmc_add_host() and
-blk_ksm_destroy() from mmc_remove_host().
-
-Moreover, even if there seems to be no real need to call
-blk_ksm_unregister() for the mmc block device driver, perhaps we
-should still do it to be consistent with blk_ksm_register()?
-
-Then a final concern. It looks like the mmc core relies on checking
-"host->caps2 & MMC_CAP2_CRYPTO", when it calls blk_ksm_register() and
-blk_ksm_reprogram_all_keys(), for example. Normally, host->caps2 bits
-are considered as static configurations and set during the host driver
-probe path, which may not be a good match for this case. Instead, it
-seems like we should set a new separate flag, to indicate for the mmc
-core that blk_ksm_init has been enabled. Otherwise it looks like we
-could end up calling blk_ksm_reprogram_all_keys(), even if
-blk_ksm_init() hasn't been called.
-
-Kind regards
-Uffe
+Yours,
+Linus Walleij
