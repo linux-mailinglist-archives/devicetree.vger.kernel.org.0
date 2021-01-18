@@ -2,146 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65AC52FA639
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAFFF2FA652
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:34:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393014AbhARQ3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 11:29:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406659AbhARQZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 11:25:41 -0500
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78EB8C061757;
-        Mon, 18 Jan 2021 08:24:57 -0800 (PST)
-Received: from localhost.localdomain (abaf224.neoplus.adsl.tpnet.pl [83.6.169.224])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 7104C1FC8F;
-        Mon, 18 Jan 2021 17:24:55 +0100 (CET)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 02/11] arm64: dts: qcom: msm8992-bullhead: Update regulator config
-Date:   Mon, 18 Jan 2021 17:24:22 +0100
-Message-Id: <20210118162432.107275-2-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210118162432.107275-1-konrad.dybcio@somainline.org>
-References: <20210118162432.107275-1-konrad.dybcio@somainline.org>
+        id S2406801AbhARQdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 11:33:14 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:22197 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2406531AbhARQc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 11:32:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1610987462;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=UqqkV4pT3FZ8X8fvg8OJBm77Py4wiQX0myH+LsoZDCw=;
+        b=Upp1LIYy+CJWstNbkLGhVounDHNAbV7GNpAXRTVKe1uh58jRHHlhVXRhgagbGSf4vN/vsd
+        IWnot0UVDK/OvIK4DBIVHbulQgfJyEuGXIzTMPIHFtyrPYRHXieJHvHCe3+BygTangowVe
+        rK+YwSqq7qnjzUhKTdajrSI5YQJdXUs=
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com
+ [209.85.210.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-465-cwigV3HQNMeg2clQBgkXpw-1; Mon, 18 Jan 2021 11:31:01 -0500
+X-MC-Unique: cwigV3HQNMeg2clQBgkXpw-1
+Received: by mail-pf1-f199.google.com with SMTP id c70so11279836pfb.16
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 08:30:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UqqkV4pT3FZ8X8fvg8OJBm77Py4wiQX0myH+LsoZDCw=;
+        b=sVTmf5su90b6HzLKMx2EKgx30jv0OOlKheKSfOBJuXC31ich8IF3HlHQ93xB7eJ+U9
+         lGH5ils8JhWC1eZEVRg++tSitCIjSzkxVnDm+eLq1E0FtT+WaxNovRD88hT043ggovW5
+         jys3c3hsRpyWucvxrz5aQhrA0L+vIDYL7+V+A+q8xjRIo6/Qc7d+9skekKXE8ylumare
+         Bq1fMwHAjSBMUAucSKVIxIHFvq+TGYclPoCRv/utt7wRvqlXVro4itUj/wODShB4AhCg
+         gvoGgqclKwW781nlS+zqCYsdhYM7jVQArZsFbmXtaXdfgrmuW1NxSZORIljz+hGEf1kS
+         gx1Q==
+X-Gm-Message-State: AOAM530DA6mk2eQxMXiSwbjji2SAKBzuR/JpPWjdOmx0WIaAJ3pmX4pY
+        dIgv5BrUy2AHnQ72xTJPxOZoQTAiwfqkWkzPK9VfP/wFFcQkixSzfR4GcUDquy3NsGkhHN3aHIX
+        zxy+nz92twGo/3JyHekapVLAJKl1THx1q9ZraYQ==
+X-Received: by 2002:a62:5547:0:b029:1a4:cb2a:2833 with SMTP id j68-20020a6255470000b02901a4cb2a2833mr342779pfb.35.1610987459103;
+        Mon, 18 Jan 2021 08:30:59 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwQZOW38waFNxH9jbai1nJ21Z+g0/K1dIN8TLDr66GfVuysO8ZrPHNLGZxQPy2H160dRR5gxUpHW2cA6nG/36I=
+X-Received: by 2002:a62:5547:0:b029:1a4:cb2a:2833 with SMTP id
+ j68-20020a6255470000b02901a4cb2a2833mr342749pfb.35.1610987458819; Mon, 18 Jan
+ 2021 08:30:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210115170641.903392-1-dianders@chromium.org>
+In-Reply-To: <20210115170641.903392-1-dianders@chromium.org>
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date:   Mon, 18 Jan 2021 17:30:47 +0100
+Message-ID: <CAO-hwJJyQqvhZaRAbnxvi0k+pUr8i3iwCnkEs69sAw+byRst3g@mail.gmail.com>
+Subject: Re: [PATCH v9 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Jiri Kosina <jkosina@suse.cz>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        Hans De Goede <hdegoede@redhat.com>,
+        Andrea Borgia <andrea@borgia.bo.it>,
+        Kai Heng Feng <kai.heng.feng@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Coiby Xu <coiby.xu@gmail.com>,
+        Daniel Playfair Cal <daniel.playfair.cal@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jiri Kosina <jikos@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Max Krummenacher <max.oss.09@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Include pm(i)8994 dtsi
-* Add PMI8994 RPM regulators
-* Add comments concerning "missing" regulators
+On Fri, Jan 15, 2021 at 6:07 PM Douglas Anderson <dianders@chromium.org> wrote:
+>
+>
+> The goal of this series is to support the Goodix GT7375P touchscreen.
+> This touchscreen is special because it has power sequencing
+> requirements that necessitate driving a reset GPIO.
+>
+> To do this, we totally rejigger the way i2c-hid is organized so that
+> it's easier to jam the Goodix support in there.
+>
+> This series was:
+> - Tested on a device that uses normal i2c-hid.
+> - Tested on a device that has a Goodix i2c-hid device.
+> - Tested on an ACPI device, but an earlier version of the series.
+>
+> I believe the plan is for Benjamin to land the whole series.  Will
+> said this about the arm64 defconfig change (and provided his Ack):
+> > ...there are a few things I really care about
+> > in defconfig (e.g. things like page size!), generally speaking we don't
+> > need to Ack everything that changes in there.
+> >
+> > That said, might be worth checking whether arm-soc have any defconfig
+> > changes queued in -next so you don't end up with conflicts.
+>
+> Changes in v9:
+> - 120 ms delay => 180 ms delay
+> - Local variable in ACPI code "ihid_of" => "ihid_acpi".
+> - Squash Benjamin's change for ACPI power on.
+>
+> Changes in v8:
+> - Mark suspend/resume as static as per patches robot.
+>
+> Changes in v7:
+> - Rebase atop commit afdd34c5fa40 ("HID: i2c-hid: show the error ...")
+>
+> Changes in v6:
+> - ACPI probe function should have been "static"
+> - Don't export suspend/resume, just export dev_pm_ops from core.
+> - Fixed crash in ACPI module (missing init of "client")
+> - No need for regulator include in the core.
+> - Removed i2c_device_id table from ACPI module.
+> - Suspend/resume are no longer exported from the core.
+>
+> Changes in v5:
+> - Add shutdown_tail op and use it in ACPI.
+> - Added mention of i2c-hid in the yaml itself as per Rob.
+> - Adjusted subject as per Rob.
+> - i2chid_subclass_data => i2chid_ops.
+> - power_up_device => power_up (same with power_down).
+> - subclass => ops.
+>
+> Changes in v4:
+> - ("arm64: defconfig: Update config names for i2c-hid rejigger") new for v4.
+> - Fully rejigger so ACPI and OF are full subclasses.
+> - Totally redid based on the new subclass system.
+>
+> Changes in v3:
+> - Fixed compatible in example.
+> - Removed Benjamin as a maintainer.
+> - Rework to use subclassing.
+> - Updated description.
+>
+> Changes in v2:
+> - ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
+> - Get timings based on the compatible string.
+> - Use a separate compatible string for this new touchscreen.
+>
+> Douglas Anderson (4):
+>   HID: i2c-hid: Reorganize so ACPI and OF are separate modules
+>   arm64: defconfig: Update config names for i2c-hid rejigger
+>   dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix
+>     GT7375P
+>   HID: i2c-hid: Introduce goodix-i2c-hid using i2c-hid core
+>
+>  .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
+>  arch/arm64/configs/defconfig                  |   3 +-
+>  drivers/hid/Makefile                          |   2 +-
+>  drivers/hid/i2c-hid/Kconfig                   |  47 +++-
+>  drivers/hid/i2c-hid/Makefile                  |   6 +-
+>  drivers/hid/i2c-hid/i2c-hid-acpi.c            | 143 ++++++++++
+>  drivers/hid/i2c-hid/i2c-hid-core.c            | 252 +++---------------
+>  drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 116 ++++++++
+>  drivers/hid/i2c-hid/i2c-hid-of.c              | 143 ++++++++++
+>  drivers/hid/i2c-hid/i2c-hid.h                 |  22 ++
+>  include/linux/platform_data/i2c-hid.h         |  41 ---
+>  11 files changed, 578 insertions(+), 262 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+>  create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
+>  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
+>  create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
+>  delete mode 100644 include/linux/platform_data/i2c-hid.h
+>
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- .../dts/qcom/msm8992-bullhead-rev-101.dts     | 39 +++++++++++++------
- 1 file changed, 27 insertions(+), 12 deletions(-)
+Many thanks for the wait. I have now scheduled this series in for-5.12/i2c-hid.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts
-index 5969b5cfdc85..cacbfdbd69e3 100644
---- a/arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts
-@@ -6,6 +6,8 @@
- /dts-v1/;
- 
- #include "msm8992.dtsi"
-+#include "pm8994.dtsi"
-+#include "pmi8994.dtsi"
- 
- / {
- 	model = "LG Nexus 5X";
-@@ -44,7 +46,7 @@ &blsp1_uart2 {
- };
- 
- &rpm_requests {
--	pm8994-regulators {
-+	pm8994_regulators: pm8994-regulators {
- 		compatible = "qcom,rpm-pm8994-regulators";
- 
- 		vdd_l1-supply = <&pm8994_s1>;
-@@ -53,15 +55,17 @@ pm8994-regulators {
- 		vdd_l4_27_31-supply = <&pm8994_s3>;
- 		vdd_l5_7-supply = <&pm8994_s3>;
- 		vdd_l6_12_32-supply = <&pm8994_s5>;
--		vdd_l8_16_30-supply = <&vreg_vph_pwr>;
--		vdd_l9_10_18_22-supply = <&vreg_vph_pwr>;
--		vdd_l13_19_23_24-supply = <&vreg_vph_pwr>;
-+		vdd_l8_16_30-supply = <&vph_pwr>;
-+		vdd_l9_10_18_22-supply = <&vph_pwr>;
-+		vdd_l13_19_23_24-supply = <&vph_pwr>;
- 		vdd_l14_15-supply = <&pm8994_s5>;
--		vdd_l17_29-supply = <&vreg_vph_pwr>;
--		vdd_l20_21-supply = <&vreg_vph_pwr>;
-+		vdd_l17_29-supply = <&vph_pwr>;
-+		vdd_l20_21-supply = <&vph_pwr>;
- 		vdd_l25-supply = <&pm8994_s5>;
- 		vdd_lvs1_2 = <&pm8994_s4>;
- 
-+		/* S1, S2, S6 and S12 are managed by RPMPD */
-+
- 		pm8994_s1: s1 {
- 			regulator-min-microvolt = <800000>;
- 			regulator-max-microvolt = <800000>;
-@@ -93,6 +97,8 @@ pm8994_s7: s7 {
- 			regulator-max-microvolt = <1000000>;
- 		};
- 
-+		/* S8, S9, S10 and S11 - SPMI-managed VDD_APC */
-+
- 		pm8994_l1: l1 {
- 			regulator-min-microvolt = <1000000>;
- 			regulator-max-microvolt = <1000000>;
-@@ -113,18 +119,14 @@ pm8994_l4: l4 {
- 			regulator-max-microvolt = <1225000>;
- 		};
- 
--		pm8994_l5: l5 {
--			/* TODO */
--		};
-+		/* L5 is inaccessible from RPM */
- 
- 		pm8994_l6: l6 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 		};
- 
--		pm8994_l7: l7 {
--			/* TODO */
--		};
-+		/* L7 is inaccessible from RPM */
- 
- 		pm8994_l8: l8 {
- 			regulator-min-microvolt = <1800000>;
-@@ -266,6 +268,19 @@ pm8994_l32: l32 {
- 			*/
- 		};
- 	};
-+
-+	pmi8994_regulators: pmi8994-regulators {
-+		compatible = "qcom,rpm-pmi8994-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_bst_byp-supply = <&vph_pwr>;
-+
-+		pmi8994_s1: s1 {};
-+
-+		/* S2 & S3 - VDD_GFX */
-+
-+		pmi8994_bby: boost-bypass {};
-+	};
- };
- 
- &sdhc_1 {
--- 
-2.29.2
+Cheers,
+Benjamin
 
