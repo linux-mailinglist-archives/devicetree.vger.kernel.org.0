@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE432FA510
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:46:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7E8F2FA4EA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:39:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404255AbhARPqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 10:46:47 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:48961 "EHLO
+        id S2391511AbhARPhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 10:37:32 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:49919 "EHLO
         new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2406002AbhARPeg (ORCPT
+        by vger.kernel.org with ESMTP id S2406006AbhARPfj (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 10:34:36 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 94DC15806D8;
-        Mon, 18 Jan 2021 10:33:47 -0500 (EST)
+        Mon, 18 Jan 2021 10:35:39 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id BEA4958077C;
+        Mon, 18 Jan 2021 10:34:18 -0500 (EST)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 18 Jan 2021 10:33:47 -0500
+  by compute6.internal (MEProxy); Mon, 18 Jan 2021 10:34:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=FoqMHt7gYp1OuPWSg+McBubYh5f
-        JwhBcVDnnZsbPWmo=; b=pWE9yrItSVWTtW7n9cU2pgG83mBy05I0liXPbKmF4cf
-        iTsia/4iqcUom5StFTktqurKZB0ZLD0NURl3ehX9Sa1L5FOfODMqzBLDleG+qNgP
-        JCG2HT0HPb4Ej9CD/b4+jCaaRC4tzXjcDcuNO8rfEkyHvuJgGtatJSj/3tMxoD/A
-        NsU/uonZR+nyByr/Z4ZvknniezlvoeF8vNB/NyL0ycpvrne7gsrDCZnzgj8Qddqv
-        YxYgHXWdmwHhcHHsldBb5CLBiomcTIGzGlvZNLoLj+S7PHU21MSMqpcKXB34kLXu
-        j5tNjTMvS3eqsU58Zlg1ikIwj8wIBB8BKW5aqZG2Lkg==
+        from:date:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=oU0HqCO/5476uMOlzZwZPuowCXA
+        18QWWN/mw1RTCV9g=; b=vaLbxPDj1tzN7TvKH7vMSi8rBS2vusxWy7RC4A/CE9S
+        Ylt63G5nEwedMq4k910g9dGsqleq9P+5+WLnYB99gqTjkkT8DkXqQt7hY5CicuuU
+        QNee8aJ92b8/DJrqmADB/FO5bm1BHwTdLwVGHSk+AY1cnx4ejvMg8FD69cwhNlFE
+        cBqQDRP+OZ4vjQ0iJ9Ygl69Q+wxTp14dRR4p744L9nc+NRpIfjgMXgdr5petDQ+F
+        +5rBz4APbiZkBKs6S3PKv/+qpR4AH5nBhe+BGrYbjoiogNQ2gcCzS5R/xqiPlpz0
+        J+VR0VV8X4GVG5C4yPlt4nHjxk4CKb0U0PMOzf4b0aA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=FoqMHt
-        7gYp1OuPWSg+McBubYh5fJwhBcVDnnZsbPWmo=; b=FTN1WFO8otdhupklABgfSo
-        cbjCDQ8BynXSXBrhtpxI6mpdYRQkL6UZ+aUMVm9dtkX/ljzO/cuY2Ic5sTzLTYnn
-        qF5Xr6EQfOIdr/TCPuHQLkxNHa4QSXTh0/p7nV1ZWEVHK0ZfaokbsgbcxWsX30Lu
-        FMEgzTsZgTgtV5fqmCxQ8yAmZHtyI6gaaYW3AOYxDsyvVGIVWVW0O6UqjbKpe32B
-        rhn9akN5KhBNhuFMv6W2B/tM0OI0PVDhG6J/7Pjvwmrn82TPbQ85Xt47W2qFk64a
-        uPA0vvqTrB2T15enZMyyMzNGEKfaAZvnkiB//I2v1dk3QaEqwF4rNQwIo41DVnmw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=oU0HqC
+        O/5476uMOlzZwZPuowCXA18QWWN/mw1RTCV9g=; b=mjqAXbJ6T9w+h2IIeJ2kX5
+        dy5ImmXm3D6BhD4QYyrTZInUCozeZE5atfcmUT+QIlkVv0yRDigd9ce1Va4g2afk
+        bvKjwg45/Kw/igygZlLmkjPEQGZ6nzcwuiCPHLsUUPTjtLorVZM/T0w3nxDthTD7
+        Il2/uBS0/7pQqfNYVV9dU2LJxD/X6tSRjvWqJd4vY8JH62Lo8Ul6nAqgrR1ESbj6
+        9hfokd49eLluMen+YfDewoAInBtbmMI+XQnpknlOlOaJ26LwO0nRsO8upZJD+7Ic
+        Zu6ZWju0Jv094mIZfuAMvl/zmH4zJZOd1U0V9HEvdb8ALm/HyqaixhKu8/u7pP9Q
         ==
-X-ME-Sender: <xms:WaoFYD1bhl5s2wreVHxmhzEjTYDdXG9ImyzfrXKlmpVeUcpdSd794g>
-    <xme:WaoFYI33LHogkts8Hj82vEzi4-naP5qxP8ZBkC8ovnD02bk-Kne2bNaf5rMw2Q0_8
-    cYFpHV2CPAssgI94Tw>
+X-ME-Sender: <xms:eqoFYAJ4CIUHiG4GVCR9KCgyZlIZ6qgs3_c5rq9uY6vJupciZOv_-g>
+    <xme:eqoFYAIBO-axLA9_9Bu_uw3lhNYlHZpSdGmIG4_m4sLk_B6xF-NcFlIvaOjKBIoVe
+    -IOSY9IK-8PwV65wDE>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtdekgdejkecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:WaoFYFr1PRoJX2m0zniKJ2iov0RjfPCNyLbPJuWtxPIMu5KDk3uqWg>
-    <xmx:WaoFYEgo5pgdbna_pzF9SV-XVjmU_iYHGudLmdrtufhra1X83gwFJw>
-    <xmx:WaoFYB-MHIJiOu0C7Zfz47AvMIbDTNigSz99BSto9FgM2-H6qOstew>
-    <xmx:W6oFYNVjYbSsVn4W15Blfn5TRprWm5BT-rZftPkmLgZ1jJtqvAyIaA>
+    fjughrpefhfffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepmhgrgihimhgv
+    segtvghrnhhordhtvggthhenucggtffrrghtthgvrhhnpefhffffgfetjeegieetleeuvd
+    ekffdukeejjeehveelkefggffgkeekvdfhieeggfenucfkphepledtrdekledrieekrdej
+    ieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:eqoFYAuSP6s61YaBhGfA4YBZq8QhJsIuKNugI-L4bTlJoEGbpCxTwA>
+    <xmx:eqoFYNZ8Tng5XbR2GgZ9fBL9Lz-bRniwPUQ3TgLruEFhyNG-KVA5DQ>
+    <xmx:eqoFYHYvH6Nzfweadf_THLEOYAh8kARqsi6PpmDOLaW5xGryZ6ecsg>
+    <xmx:eqoFYNweQh-H9eN39ex1dLODCaGKM4rRD-af1Dc_ji3FzpefRF-Fnw>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id F170C240066;
-        Mon, 18 Jan 2021 10:33:44 -0500 (EST)
-Date:   Mon, 18 Jan 2021 16:33:43 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
+        by mail.messagingengine.com (Postfix) with ESMTPA id E640E24005D;
+        Mon, 18 Jan 2021 10:34:17 -0500 (EST)
+From:   maxime@cerno.tech
+Date:   Mon, 18 Jan 2021 16:34:16 +0100
 To:     Andre Przywara <andre.przywara@arm.com>
 Cc:     Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
@@ -68,49 +68,49 @@ Cc:     Chen-Yu Tsai <wens@csie.org>,
         Shuosheng Huang <huangshuosheng@allwinnertech.com>,
         Yangtao Li <tiny.windzz@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 15/21] dt-bindings: usb: sunxi-musb: Add H616
+        linux-sunxi@googlegroups.com, Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3 17/21] dt-bindings: watchdog: sun4i: Add H616
  compatible string
-Message-ID: <20210118153343.5z3jervyeyb5eykz@gilmour>
+Message-ID: <20210118153416.h6zc5h5j52rlxro2@gilmour>
+65;6201;1cFrom: Maxime Ripard <maxime@cerno.tech>
 References: <20210118020848.11721-1-andre.przywara@arm.com>
- <20210118020848.11721-16-andre.przywara@arm.com>
+ <20210118020848.11721-18-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4ykgfxhs5nsm2eo7"
+        protocol="application/pgp-signature"; boundary="ekw7d4qbod7okqkh"
 Content-Disposition: inline
-In-Reply-To: <20210118020848.11721-16-andre.przywara@arm.com>
+In-Reply-To: <20210118020848.11721-18-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---4ykgfxhs5nsm2eo7
+--ekw7d4qbod7okqkh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 18, 2021 at 02:08:42AM +0000, Andre Przywara wrote:
-> The H616 MUSB peripheral is presumably compatible to the H3 one.
+On Mon, Jan 18, 2021 at 02:08:44AM +0000, Andre Przywara wrote:
+> Use enums to group all compatible devices together on the way.
 >=20
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
 Acked-by: Maxime Ripard <mripard@kernel.org>
 
 Maxime
 
---4ykgfxhs5nsm2eo7
+--ekw7d4qbod7okqkh
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAWqVwAKCRDj7w1vZxhR
-xYjzAQDLk/EpbRCVz8VDYaLgPBBPS1yRXybtHbVMCb1qOUrsRQEAtE503egZAWiC
-n+1wt1hg5a/g8gj+mBEfPSOpFyH4Kw4=
-=BGtH
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAWqeAAKCRDj7w1vZxhR
+xa7kAQCUNTWleBinyXgESqWs2vbvBzOFbAYKt3vV6V2JdkaMIgEAoqaV9ae12yAo
+z+OKnbYdl4+hDmjGI/vB8yaRTyP6mwg=
+=maz4
 -----END PGP SIGNATURE-----
 
---4ykgfxhs5nsm2eo7--
+--ekw7d4qbod7okqkh--
