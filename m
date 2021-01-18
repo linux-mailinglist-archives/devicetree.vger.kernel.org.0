@@ -2,132 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D48F92F99F0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 07:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB9712F99F9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 07:35:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732546AbhARGcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 01:32:51 -0500
-Received: from so254-31.mailgun.net ([198.61.254.31]:23133 "EHLO
-        so254-31.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731189AbhARGcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 01:32:50 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1610951549; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=FvvEhUCfCsPdOZ5IqVfNiwN/9PpX9OC08L+DYKz9fAw=;
- b=OAse5MERRkI6gojcccC4SE+NP37Z6SPBHuaO/W96beMacrn1ZtlnVtV4B+VZiA2SXpJfFAbL
- Wt6os8qSMnrD7EJWvXghn13tt2I/vmvsWm4E0b+z4lHC5xAuGbzRfLB8xpRv6E1W+OQKuOVN
- w2DxURlnzFwRJVvvh8tfc54mthI=
-X-Mailgun-Sending-Ip: 198.61.254.31
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 60052b63ba7f868506fe6373 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 18 Jan 2021 06:32:03
- GMT
-Sender: sanm=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id AE935C43463; Mon, 18 Jan 2021 06:32:02 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sanm)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C78E9C433CA;
-        Mon, 18 Jan 2021 06:32:01 +0000 (UTC)
+        id S1732495AbhARGdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 01:33:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36482 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732470AbhARGdj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 01:33:39 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CEFBF227C3;
+        Mon, 18 Jan 2021 06:32:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610951578;
+        bh=6N01wzOWjD4rcN3F+PsOZ2+FEiqBi+1ijLv2TWHWy1I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DZhxDTkH4wOiwmQkjydK2eMj9TNaaYJmpx+GAz3q49VqQbiljqZ7R4DIpakgbcF6Y
+         T8r5mtoerAun0V4Aq06ChEmL0Tdci7RmiFkFIci1mKJDy9jimnRqEEeuC654YQAEUM
+         AUwdIzGyafW7ZD+C1NWNwdf8GMR7hAhQuBl9hx2xKwx7QmZwX22H+5MKS8w8iDzgAh
+         oyms8zIjaL3/SB9RP5D917Y/ru5sdAMdAcU6mgMvoZt/Lyl7ABJXAr1ejU0YiFq43O
+         jKWj754opqG8+X2S4t5jjzYjj1+kDO4H1HBcDgrMIq0GfUugUja7Sv2L++2iL8hmVn
+         dS/mKQujjh3MA==
+Date:   Mon, 18 Jan 2021 14:32:53 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Bruno Thomsen <bruno.thomsen@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Bruno Thomsen <bth@kamstrup.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH] ARM: dts: imx7d-flex-concentrator: fix pcf2127 reset
+Message-ID: <20210118063252.GJ28365@dragon>
+References: <20210111151537.12530-1-bruno.thomsen@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 18 Jan 2021 12:02:01 +0530
-From:   sanm@codeaurora.org
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH] usb: dwc3: qcom: Add shutdown callback for dwc3
-In-Reply-To: <87sg7544da.fsf@kernel.org>
-References: <1605162619-10064-1-git-send-email-sanm@codeaurora.org>
- <87sg7544da.fsf@kernel.org>
-Message-ID: <1a9050a56805b4d95482ccb45edcbb97@codeaurora.org>
-X-Sender: sanm@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210111151537.12530-1-bruno.thomsen@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-13 14:10, Felipe Balbi wrote:
-> Hi,
-> 
-> Sandeep Maheswaram <sanm@codeaurora.org> writes:
->> This patch adds a shutdown callback to USB DWC QCOM driver to ensure 
->> that
->> it is properly shutdown in reboot/shutdown path. This is required
->> where SMMU address translation is enabled like on SC7180
->> SoC and few others. If the hardware is still accessing memory after
->> SMMU translation is disabled as part of SMMU shutdown callback in
->> system reboot or shutdown path, then IOVAs(I/O virtual address)
->> which it was using will go on the bus as the physical addresses which
->> might result in unknown crashes (NoC/interconnect errors).
->> 
->> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> 
-> sounds like this is fixing a bug. Do you have a Fixes tag for it? 
-> Should
-> this go to stable?
-> 
-Didn't encounter any bug till now but made this change to prevent issue.
+On Mon, Jan 11, 2021 at 04:15:37PM +0100, Bruno Thomsen wrote:
+> RTC pcf2127 device driver has changed default behaviour of the watchdog
+> feature in v5.11-rc1. Now you need to explicitly enable it with a
+> device tree property, "reset-source", when used in the board design.
 
->> diff --git a/drivers/usb/dwc3/dwc3-qcom.c 
->> b/drivers/usb/dwc3/dwc3-qcom.c
->> index c703d55..a930e06 100644
->> --- a/drivers/usb/dwc3/dwc3-qcom.c
->> +++ b/drivers/usb/dwc3/dwc3-qcom.c
->> @@ -790,13 +790,11 @@ static int dwc3_qcom_probe(struct 
->> platform_device *pdev)
->>  	return ret;
->>  }
->> 
->> -static int dwc3_qcom_remove(struct platform_device *pdev)
->> +static void __dwc3_qcom_teardown(struct dwc3_qcom *qcom)
->>  {
->> -	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
->> -	struct device *dev = &pdev->dev;
->>  	int i;
->> 
->> -	of_platform_depopulate(dev);
->> +	of_platform_depopulate(qcom->dev);
->> 
->>  	for (i = qcom->num_clocks - 1; i >= 0; i--) {
->>  		clk_disable_unprepare(qcom->clks[i]);
->> @@ -807,12 +805,27 @@ static int dwc3_qcom_remove(struct 
->> platform_device *pdev)
->>  	dwc3_qcom_interconnect_exit(qcom);
->>  	reset_control_assert(qcom->resets);
->> 
->> -	pm_runtime_allow(dev);
->> -	pm_runtime_disable(dev);
->> +	pm_runtime_allow(qcom->dev);
->> +	pm_runtime_disable(qcom->dev);
->> +}
-> 
-> you can make the changes smaller by adding:
-> 
-> 	struct device *dev = qcom->dev;
-> 
-> The nothing else needs to change in this function ;-)
+It sound that the existing DTBs are broken by this default behaviour
+change?
 
-I will do this in next version
+> 
+> Fixes: 71ac13457d9d ("rtc: pcf2127: only use watchdog when explicitly available")
+> 
+> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+> Cc: Bruno Thomsen <bth@kamstrup.com>
+> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Cc: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+
+Applied, thanks.
+
+Shawn
+
+> ---
+>  arch/arm/boot/dts/imx7d-flex-concentrator.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx7d-flex-concentrator.dts b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+> index 84b095279e65..bd6b5285aa8d 100644
+> --- a/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+> +++ b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+> @@ -115,6 +115,7 @@ pcf2127: rtc@0 {
+>  		compatible = "nxp,pcf2127";
+>  		reg = <0>;
+>  		spi-max-frequency = <2000000>;
+> +		reset-source;
+>  	};
+>  };
+>  
+> 
+> base-commit: 7c53f6b671f4aba70ff15e1b05148b10d58c2837
+> -- 
+> 2.29.2
+> 
