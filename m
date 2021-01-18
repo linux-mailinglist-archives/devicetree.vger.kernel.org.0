@@ -2,150 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28FB72FA835
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 19:02:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B2652FA9AC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 20:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407447AbhARSBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 13:01:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43276 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407439AbhARSBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 13:01:44 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6F8C061573;
-        Mon, 18 Jan 2021 10:01:04 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id b2so18566860edm.3;
-        Mon, 18 Jan 2021 10:01:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=t9C6m1Bp+7ojBwZjrpoSk7AZP13lnZCWBFDi9dyawb8=;
-        b=T7xA2Fg3WnborDBN+VfiJCWwtJa4Txobvi+h19s7rwTI+pMe/bLXTKA7WcQGuek0NE
-         9+Zs5map31SnyxvvGzYCLuYSUejNcsqH0V9lrwTwnjPeooJmRmhZSUC8kS0tF6A0ZsNt
-         k42Twv+5qGejIVQ81vsP34cyAkM2jCqSyvdWQ6uvjBu6vPJUbIBx1i8A48vgOO07Qqes
-         c6kpRHIfkkbfCxtcG1vZ4JV511Qpj2vTt3Tej5G7OD6SrxD98wt3JTcFi3eA8EnzXZqN
-         GJq3AssRXz5/suu+SiHslnNh3Ft5zZeiuQz+HbaOXKcj4RQIRtin76gfglix2V9Fq/EB
-         q7Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=t9C6m1Bp+7ojBwZjrpoSk7AZP13lnZCWBFDi9dyawb8=;
-        b=tN4ExU083G9xoLkZ6+pkKtrF797s/2vnFT5bKHxVzYgNWMKMoTMc3VAOVG+IQV9BbU
-         nwmSqrkfSJVo+tcgvRRwr7hlY7IH8sCvBx8T3QJbv9s1N3pAJjUXTygji2fsnTDCVcPi
-         jNfOMPx/IYosKSctKS5bk1whVLl0BkrpNQLtOFif8lZvNWWetN5acm4Y8rkUqMO5GMXE
-         KuX4pAI1vgrKRn7WK1meRUyRe4F+YMhCSXqyBwsm+T+YVtmyy531AzygzRMcgJCCOrq/
-         RHs+nN5cMWd8f8rVPlnr409hSrbSXGYxOPzkrLIFkeSkExWc18t3CcgNT9dQcFyXZ7GF
-         U+Iw==
-X-Gm-Message-State: AOAM533nsLgHXEKq0WENY+nX9ZZFXYNSpKv7YLXEOBcrCKdhKOAvJkVV
-        8YvqihGFk+sulXVnYQsQJuI=
-X-Google-Smtp-Source: ABdhPJwaKfyxX61XGB9UTG9bK8k96xqpEtLIU7WIxVaNUGPzsrB8xueLvnSEP0lvu/gG7alLl2UGWA==
-X-Received: by 2002:a05:6402:50ca:: with SMTP id h10mr481300edb.181.1610992863042;
-        Mon, 18 Jan 2021 10:01:03 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id gb14sm9447178ejc.61.2021.01.18.10.01.01
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 18 Jan 2021 10:01:02 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: cleanup cpu_thermal node of rk3399-rock960.dts
-Date:   Mon, 18 Jan 2021 19:00:54 +0100
-Message-Id: <20210118180054.9360-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S2390589AbhARTHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 14:07:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35694 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390584AbhARLjw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 06:39:52 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1286C222BB;
+        Mon, 18 Jan 2021 11:39:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610969951;
+        bh=LsDiKpAXfFsvoIt/CkJHtJcTokFYsuXapYBygCW0Ys4=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=ruS/9hf12xaXkqkqoCYdNtNsYyVCdevm1OTWhIZng2TPa7jdYysPF/p1/mM07RoJI
+         0X3Kja3uAy4VYucSeN8zPivGthZ2MzMqOe9lxILlncsItfBToMJL8Ei2mpDA8LCbgS
+         Jrg377sa2d+MEmZh3RSTWwhOgW9rSMW8v2oc4k0NYxRqJJHsVZQa5km5G69TTkCwkn
+         I/odljS3nKROcrnfU38/+nDJTS1qh5Clq4xxnZMha6/t7IFk2FBoJFNXuzK+hLdw2t
+         Ou0ncyzFJsLjeezn/Aw7M6T35zaFVLeUvn//ySvadNsLBqYA61860LmBQNFf7WuqIF
+         ZiBVSCzokXnpw==
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Jack Pham <jackp@codeaurora.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Wesley Cheng <wcheng@codeaurora.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jack Pham <jackp@codeaurora.org>
+Subject: Re: [PATCH v2 4/4] dt-bindings: usb: qcom,dwc3: Add bindings for
+ SM8150, SM8250, SM8350
+In-Reply-To: <20210115174723.7424-5-jackp@codeaurora.org>
+References: <20210115174723.7424-1-jackp@codeaurora.org>
+ <20210115174723.7424-5-jackp@codeaurora.org>
+Date:   Mon, 18 Jan 2021 13:39:02 +0200
+Message-ID: <87zh16v5ih.fsf@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The cpu_thermal node in the rk3399-rock960.dts file does not
-reference &cpu_thermal directly to add the board-specific parts,
-but also repeats all the SoC default properties.
-Clean the whole thing up and fix alignment.
-Place new nodes in the correct alphabetical order.
-Compered to rk3399.dtsi the temperature property in
-cpu_alert0 changes from <70000> to <65000>.
-A sustainable-power property was added.
-The trip property in cooling map0 points to <&cpu_alert1>
-instead of <&cpu_alert0>.
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-Suggested-by: Robin Murphy <robin.murphy@arm.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-rock960.dts | 53 +++++++------------------
- 1 file changed, 14 insertions(+), 39 deletions(-)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
-index b20774081..1a23e8f3c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
-@@ -63,6 +63,20 @@
- 
- };
- 
-+&cpu_alert0 {
-+	temperature = <65000>;
-+};
-+
-+&cpu_thermal {
-+	sustainable-power = <1550>;
-+
-+	cooling-maps {
-+		map0 {
-+			trip = <&cpu_alert1>;
-+		};
-+	};
-+};
-+
- &pcie0 {
- 	ep-gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
- };
-@@ -125,45 +139,6 @@
- 	status = "okay";
- };
- 
--&thermal_zones {
--	cpu_thermal: cpu-thermal {
--		polling-delay-passive = <100>;
--		polling-delay = <1000>;
--		thermal-sensors = <&tsadc 0>;
--		sustainable-power = <1550>;
--
--		trips {
--			cpu_alert0: cpu_alert0 {
--				    temperature = <65000>;
--				    hysteresis = <2000>;
--				    type = "passive";
--			};
--
--			cpu_alert1: cpu_alert1 {
--				    temperature = <75000>;
--				    hysteresis = <2000>;
--				    type = "passive";
--			};
--
--			cpu_crit: cpu_crit {
--				  temperature = <95000>;
--				  hysteresis = <2000>;
--				  type = "critical";
--			};
--		};
--
--		cooling-maps {
--			     map0 {
--
--			     trip = <&cpu_alert1>;
--			     cooling-device =
--					<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
--					<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
--			};
--		};
--	};
--};
--
- &usbdrd_dwc3_0 {
- 	dr_mode = "otg";
- };
--- 
-2.11.0
+Jack Pham <jackp@codeaurora.org> writes:
+> Add compatible strings for the USB DWC3 controller on QCOM SM8150,
+> SM8250 and SM8350 SoCs.
+>
+> Note the SM8150 & SM8250 compatibles are already being used in the
+> dts but was missing from the documentation.
+>
+> Signed-off-by: Jack Pham <jackp@codeaurora.org>
+> ---
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Docum=
+entation/devicetree/bindings/usb/qcom,dwc3.yaml
+> index 2cf525d21e05..da47f43d6b04 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -17,6 +17,9 @@ properties:
+>            - qcom,msm8998-dwc3
+>            - qcom,sc7180-dwc3
+>            - qcom,sdm845-dwc3
+> +          - qcom,sm8150-dwc3
+> +          - qcom,sm8250-dwc3
+> +          - qcom,sm8350-dwc3
 
+nicely done!
+
+Acked-by: Felipe Balbi <balbi@kernel.org>
+
+=2D-=20
+balbi
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAmAFc1YRHGJhbGJpQGtl
+cm5lbC5vcmcACgkQzL64meEamQZxrw//fSf5M/ifV+IvyWh08Kp8BJ+dLMcZAZNu
+kOAV4BxvEAwPCylflF/FudCWIzMlYDnlYEAQGKjas2gXqOaI3Cz/vewlBfF4wa/X
+Xme7xWRedpKmKxpL71P0NrdQ3DzDwFdo1mCRbshh3m15MUrWpuDf7PtzBE1sIZg6
+u804URsW2Q0k9NWLjYM/NhhqeRnaZwMFLlI6njmPF8yqqzkYi62/u8GxV2YXnJ14
+oXCl/WQwRcklGMPrR/JCGmL4RFiWmVaMEovPjBCVvO4JielFIrRsRXkYHoOrAHWj
+fOGTaN7TQII3J+toOK2OmRVeccXdUM54bdo7bC3Mb9TCHi916B0LIZLobMMAy4D0
+Tz6prg4F5MCkZuyo5ePzW5ZnK9b8HstXd3A4mv2qk87eeJVndWraHzzW6GTnQj8K
+h5l74ftKn3QpwwFXkB01N6qjzfBIoo5IeBTQUZXcQDve+gIxXX5iNWKeUMofqJaq
+byrI5DHrWbAX2DI8df4lPUdZ13nPrJlEnny/FlOzsc/q2Ay32Hah9ZTaknna1k/y
+Bs+zku8yF4Ghoc7m+Zjct0k4m8JIbRYXSpCD/kVsH2bbA40XbRfOTdsHUcBYfEhu
+YLsMyQrOsL3PG02iwN/7mWgfdiwEFqrcLZFNqVLikFznokD3fZMYKxyn1IKVoLAd
+wIJDcmVJZHg=
+=uCXF
+-----END PGP SIGNATURE-----
+--=-=-=--
