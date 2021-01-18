@@ -2,115 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE652FA8C0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 19:28:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB4C2FA866
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 19:13:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393624AbhARS0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 13:26:37 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52548 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392937AbhARPGT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 10:06:19 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 56C2422BF3;
-        Mon, 18 Jan 2021 15:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610982338;
-        bh=O6M1n/+xN3XivdFxg/+MeYf0/keKDicCppxhlPQcqAo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gu4q31Ni9yGfcWk46rz/cLDZVGk5skrlSQ0hEbFEU2l+cFzxD2LvJvCh+TMY7DNWw
-         OsbMuu1lvYbvUuKIHXO2vMxoHqqzJLyqNyIPtzTWfpsXmIU87GkEjdXojUOOx9YY47
-         Hv0daJ84K6I9xYWSAzqu3i/z6PMRjYZoNLUbNdh0TQ8358/2WoJ207Pm7xnMgLIwxX
-         mhE8cPknJ6sm7Tb09I1hPPJLJRjFUfhJeLXDKka+a4aoXBEjfbzZah32BNKEMawIlp
-         s96ecjh0LQnBQsbGQplb8R+rMfQqJS3imqFt81LxnkecaBOW4UJpysnFpD+wHYjbma
-         akC2YMZzsTnxQ==
-Received: by mail-ed1-f54.google.com with SMTP id b21so9122897edy.6;
-        Mon, 18 Jan 2021 07:05:38 -0800 (PST)
-X-Gm-Message-State: AOAM530x5bhKVGxke+aLaEpgIbZSf8GqITwKuyHLBMCnrYTJaFm0t3iW
-        jkGgEfKLsd6UsMTB+RJ9wo47W22EhzctYr6B9Q==
-X-Google-Smtp-Source: ABdhPJyfXzalDLfP+23Rji9ljj49KRJPNaWxn9PX5oQgRjG3us5FDJGuKT75vRlC9zwSL0fJPMRPsmGBGhMExyQutg0=
-X-Received: by 2002:a05:6402:55:: with SMTP id f21mr20025590edu.38.1610982336942;
- Mon, 18 Jan 2021 07:05:36 -0800 (PST)
+        id S2407017AbhARSLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 13:11:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41842 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407251AbhARRzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 12:55:08 -0500
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EDB5C061575
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 09:54:28 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7A3A43EBD3;
+        Mon, 18 Jan 2021 18:54:26 +0100 (CET)
+Subject: Re: [PATCH v3 1/7] regulator: qcom-labibb: Implement voltage selector
+ ops
+To:     Mark Brown <broonie@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org
+References: <20210117220830.150948-1-angelogioacchino.delregno@somainline.org>
+ <20210117220830.150948-2-angelogioacchino.delregno@somainline.org>
+ <20210118120453.GC4455@sirena.org.uk>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <032d29df-9892-4774-2a61-7b634deafe06@somainline.org>
+Date:   Mon, 18 Jan 2021 18:54:26 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-References: <20210116090656.11752-1-chunfeng.yun@mediatek.com> <20210116090656.11752-4-chunfeng.yun@mediatek.com>
-In-Reply-To: <20210116090656.11752-4-chunfeng.yun@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 18 Jan 2021 23:05:25 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__DtGc85JNyxWcebof5h3_Os2ugyy1P0jZsOs0Yzj2miw@mail.gmail.com>
-Message-ID: <CAAOTY__DtGc85JNyxWcebof5h3_Os2ugyy1P0jZsOs0Yzj2miw@mail.gmail.com>
-Subject: Re: [PATCH next 04/15] dt-bindings: phy: mediatek: hdmi-phy: modify
- compatible items
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Min Guo <min.guo@mediatek.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210118120453.GC4455@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Chunfeng:
+Il 18/01/21 13:04, Mark Brown ha scritto:
+> On Sun, Jan 17, 2021 at 11:08:24PM +0100, AngeloGioacchino Del Regno wrote:
+>> Implement {get,set}_voltage_sel, list_voltage, map_voltage with
+>> the useful regulator regmap helpers in order to be able to manage
+>> the voltage of LAB (positive) and IBB (negative) regulators.
+> 
+> Please do not submit new versions of already applied patches, please
+> submit incremental updates to the existing code.  Modifying existing
+> commits creates problems for other users building on top of those
+> commits so it's best practice to only change pubished git commits if
+> absolutely essential.
+> 
 
-Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=881=
-6=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=885:07=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> The compatilbe "mediatek,mt7623-hdmi-tx" is not supported in driver,
-> and in fact uses "mediatek,mt2701-hdmi-tx" instead on MT7623, so changes
-> the compatible items to make dependence clear.
->
-> Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  .../devicetree/bindings/phy/mediatek,hdmi-phy.yaml    | 11 +++++++----
->  1 file changed, 7 insertions(+), 4 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml=
- b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
-> index 4752517a1446..0d94950b84ca 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
-> @@ -21,10 +21,13 @@ properties:
->      pattern: "^hdmi-phy@[0-9a-f]+$"
->
->    compatible:
-> -    enum:
-> -      - mediatek,mt2701-hdmi-phy
-> -      - mediatek,mt7623-hdmi-phy
-> -      - mediatek,mt8173-hdmi-phy
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7623-hdmi-phy
-> +          - const: mediatek,mt2701-hdmi-phy
-> +      - const: mediatek,mt2701-hdmi-phy
-> +      - const: mediatek,mt8173-hdmi-phy
->
+Sorry for that. Should I send a v4 to fix that?
 
-I like move 'items' to the bottom.
-
-- const: mediatek,mt2701-hdmi-phy
-- const: mediatek,mt8173-hdmi-phy
-
-- items:
-  - enum:
-      - mediatek,mt7623-hdmi-phy
-  - const: mediatek,mt2701-hdmi-phy
-
-Regards,
-Chun-Kuang.
-
->    reg:
->      maxItems: 1
-> --
-> 2.18.0
+- Angelo
