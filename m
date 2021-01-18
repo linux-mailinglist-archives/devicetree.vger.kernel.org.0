@@ -2,143 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D00DD2FA2A3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:14:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A66B2FA2BD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392726AbhARONp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 09:13:45 -0500
-Received: from mail-ve1eur02hn2214.outbound.protection.outlook.com ([52.100.10.214]:39822
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2404579AbhAROKw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 09:10:52 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kyc8z0uV4RLfYYrYmEZLY4pAgIOkxkyEaGQZFKIKD2aBrepOzYAz1iOizSK6s57bFdwYd5Zhq2G8MBzWhnT/91OzR4HDfj4M+7R9Ovw6I8RN4n+2M5krkHlgbUzcRNq5pX+J6UWudZAx3hUJJKmT/na2R73qedyn6TEZji1XlxINVbyt9NgnEJxd25SCAsd7vtxYks0DcdOzYGCRenjLHr+9OhmI1jvcq3gwgNkjBQSZIWurcFtjhIvyjvStwMa5DYAexw9/6zVAz29iuQGgzkk7oU1l+AVlbxW/6NExlGGPLpuu3HBewxVXCtVqjiB0f0Wx6dN2ezgvAqH7clcgdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2Ch+TDBVQwmtp0AZCA0o9OKX8vp7eqp2AkDNaCu/lnw=;
- b=E3vCuZX1WXR1TsJ+3+a2SXNnon2K7XLLCp/FmNPW4+TycuOQ1xe1oKd41UYpEhUrYaP26DVfPWgEmyfjjZiDeq663mNGNISsHKqg8ooHU8+j9cxQ43q/LJrFEXf4nDAgOb/qykIfN/bb39jD93DhdMEIgxYWIArMblq9akzU/FfaAf3Z90XGFci9VNy1rQg7l3Oc8oHjqk2IVDCDEmWBQVzlfq6R95UtQ8us1/UzTq7WBm8SIWqQlBFLgIHrLs6HtFHyu57FX8wzYTq2xgZNTt4C3u5FEKxe1iufyJu43C5Oi/9ytMKOocVQv1sQbzXwbpOjTm2h8naNOHP/DSzZlw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 62.153.209.162) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=schleissheimer.de; dmarc=none action=none
- header.from=schleissheimer.de; dkim=fail (no key for signature)
- header.d=schleissheimer.de; arc=none
+        id S2392677AbhAROS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 09:18:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51422 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730061AbhAROSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 09:18:20 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C2EAC061574
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:17:39 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id v24so17653086lfr.7
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:17:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=schleissheimer.onmicrosoft.com; s=selector1-schleissheimer-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2Ch+TDBVQwmtp0AZCA0o9OKX8vp7eqp2AkDNaCu/lnw=;
- b=FuMqjrLAHPKo0BZugJOTasvayMSGUe6NSXZtI7ivpZxH2sJzdNwVYpJYv4sAGaZWBK0SgC2GjEEBtzDdKYvJH7bVmZ6d/QZU0dUzZj4tYn3Cc/TxRhEbXgVkY9KCM/x7NimSWRwUlCpPkysninu9Yv7vTcZkYkfFlgUjpU2lGOI=
-Received: from MR2P264CA0003.FRAP264.PROD.OUTLOOK.COM (2603:10a6:500:1::15) by
- AM5P190MB0419.EURP190.PROD.OUTLOOK.COM (2603:10a6:206:17::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3763.11; Mon, 18 Jan 2021 14:10:02 +0000
-Received: from VI1EUR04FT057.eop-eur04.prod.protection.outlook.com
- (2603:10a6:500:1:cafe::a9) by MR2P264CA0003.outlook.office365.com
- (2603:10a6:500:1::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.12 via Frontend
- Transport; Mon, 18 Jan 2021 14:10:02 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 62.153.209.162)
- smtp.mailfrom=schleissheimer.de; vger.kernel.org; dkim=fail (no key for
- signature) header.d=schleissheimer.de;vger.kernel.org; dmarc=none action=none
- header.from=schleissheimer.de;
-Received-SPF: Fail (protection.outlook.com: domain of schleissheimer.de does
- not designate 62.153.209.162 as permitted sender)
- receiver=protection.outlook.com; client-ip=62.153.209.162;
- helo=mail.schleissheimer.de;
-Received: from mail.schleissheimer.de (62.153.209.162) by
- VI1EUR04FT057.mail.protection.outlook.com (10.152.29.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3763.12 via Frontend Transport; Mon, 18 Jan 2021 14:10:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=schleissheimer.de; s=dkim1;
-        h=Message-Id:Date:Subject:Cc:To:From; bh=2Ch+TDBVQwmtp0AZCA0o9OKX8vp7eqp2AkDNaCu/lnw=;
-        b=pRllO+N3qGsfhl6Rpram2B+hbHcyVBK0jL826ibpuy9nja4MkymWejsMSLpdruY9Pir4ffMmkckPbBuzGU07MpWnqZ5kHnVsyZbCbjIynFh6sggX9VmiK77v0JMCx9F7ZpDQpULegGss0FBBNvtBVHJgU5WDEdI0mZNyaseMlzA=;
-Received: from [192.168.10.165] (port=40438 helo=contiredmine.schleissheimer.de)
-        by mail.schleissheimer.de with esmtp (Exim 4.82_1-5b7a7c0-XX)
-        (envelope-from <schuchmann@schleissheimer.de>)
-        id 1l1VEA-0003DD-2g; Mon, 18 Jan 2021 15:09:54 +0100
-X-CTCH-RefID: str=0001.0A782F23.600596B2.00D5,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-From:   Sven Schuchmann <schuchmann@schleissheimer.de>
-To:     schuchmann@schleissheimer.de
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] leds: lp50xx: add setting of default intensity from DT
-Date:   Mon, 18 Jan 2021 14:09:47 +0000
-Message-Id: <20210118140947.3887-1-schuchmann@schleissheimer.de>
-X-Mailer: git-send-email 2.17.1
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4cLRkD5fMwA8Gc20pqhJAXTwKJ6eAulUDWsudxs4dBs=;
+        b=eUGXgEqnkJ/7zQ8WZ3tYl6gC+d8tiyn4lC7t8LQyyIOFIqMWEIfuIRF5tuiqcHcLXf
+         ml7OgG6+Cd4wLWRY32OEHCodUSa6uZFm7XMDRy0D3h+n3+swtl8czdNJVjuSzHHZ5ZjM
+         nGAcoyNgrFVhODd1Q9a1LHlrxmiUwWBbkZd58M0gAuaopC+aWD8EMKFDdUhzZ3IQgXsI
+         ld74e+h5P8r30GscJ8JzIrynxz+esVOzMLulrnnqWt0jzRJhQjbXt3co3WeAdEs8VTba
+         1cFP39uqXsnMFlW/ZHPjV2bWoP2V6bSV6r96YfgpWCdoici2yPxnPjBXZIxowLip3Jjr
+         zC+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4cLRkD5fMwA8Gc20pqhJAXTwKJ6eAulUDWsudxs4dBs=;
+        b=qx+tlwpjE+rKU+6/qIwfOljjez/K/Ks437dzsl8xC3ddpnoPA0azk4CMnlgR3nz0Qj
+         NPvVH73N3BfB3kYtbdi2DdBr5gM1iXAxGOdaFeOTzFnAXAAqTbRu2Ixvb+hYWs8Gonvt
+         j0LC/Duqzfq0ywnJtlj5eDLNb7vOyixDw4A9Mg0IVLakqxj+5EC/JO40xAByh3s6XTMV
+         hnSWygnB/ciYxZk9U8r8ikYwM7ILsjXVsyvCv+gt4LwItniYe507lZEtShrDnFOSqzEh
+         eHPseFN26Ndt66mlbz7M7E7oeXv7zVNvA4MYueCzNcqXr16LZ1hmcLQu3TdXTqEb5nC2
+         ucFQ==
+X-Gm-Message-State: AOAM532Le/Ootlcc/YErWG6U3Rjo9onbdhsi0HSZzgf6s/dOW77v6Ink
+        Mkr3PAFk56lMJ5nk+siIirXQuw==
+X-Google-Smtp-Source: ABdhPJwVkGjH38o/DgaLFGP8QWPyUTY3reaUbkdfFfLsZbCVMY2rKjo0Bc+ArcAz9YYxiNbc61XYMg==
+X-Received: by 2002:a05:6512:491:: with SMTP id v17mr11504155lfq.148.1610979457888;
+        Mon, 18 Jan 2021 06:17:37 -0800 (PST)
+Received: from localhost.localdomain (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id a24sm1907358lfg.256.2021.01.18.06.17.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jan 2021 06:17:36 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Subject: [PATCH v2] mmc: mmci: Convert bindings to DT schema
+Date:   Mon, 18 Jan 2021 15:17:34 +0100
+Message-Id: <20210118141734.2722369-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 2375168b-421e-423a-14e8-08d8bbbabf31
-X-MS-TrafficTypeDiagnostic: AM5P190MB0419:
-X-Microsoft-Antispam-PRVS: <AM5P190MB041960E1F6133622BB0702B984A40@AM5P190MB0419.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: P8HfNApsTjwlplmvQBR3aWgPPRvMIgPVx2jHLJrGXKM58zuRVJF9AK1i2sLnXMZZIL49mbRl6T6snzzLEkf5lN+oZj1gQvI/9wZPFUhB3w5f+xRprBO6dNIiOe9NyQx2Rlaah2mhlRrNFQcHUdsD0xM7yzMkY9dSlj6dmuWR5O5nt0GwOS4BbuJr3ggxnMpvOKkMWjeZLs9TpdqHnZ3/TNw1jDUiQCwBg6CIJzQSioglX5aUVX82pgiCDGBh/jBVJrHt8SeiVK1M7HqamceL7rAWWE0cL2GMAXm9DyfGHhUSII7ZKmfVFmk5HP53L0xCiETI650L/llRRnsewY8Lg9Q6K2CvZ/dc/6Hs7hpOVJjIT7HcxS3fDBzX1GJqghL3nx3+M/uBNPj0D1RViL/O133pHoD1vFg8nY9tbXhDWKQ2wqb8HjrEufikityEtkGDv4uS/GtDEWIDF/6BtaU7IA==
-X-Forefront-Antispam-Report: CIP:62.153.209.162;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.schleissheimer.de;PTR:www.schleissheimer.de;CAT:NONE;SFS:(346002)(136003)(376002)(396003)(39840400004)(46966006)(186003)(7636003)(83380400001)(5660300002)(26005)(9786002)(6666004)(1076003)(8936002)(356005)(2906002)(34206002)(47076005)(4326008)(36756003)(37006003)(2616005)(8676002)(7696005)(54906003)(82310400003)(70206006)(34010700045)(316002)(478600001)(70586007)(426003)(336012);DIR:OUT;SFP:1501;
-X-OriginatorOrg: schleissheimer.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2021 14:10:01.8031
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2375168b-421e-423a-14e8-08d8bbbabf31
-X-MS-Exchange-CrossTenant-Id: ba05321a-a007-44df-8805-c7e62d5887b5
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ba05321a-a007-44df-8805-c7e62d5887b5;Ip=[62.153.209.162];Helo=[mail.schleissheimer.de]
-X-MS-Exchange-CrossTenant-AuthSource: VI1EUR04FT057.eop-eur04.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5P190MB0419
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to use a multicolor-led together with a trigger
-the led needs to have an intensity set to see something.
-The trigger changes the brightness of the led but if there
-is no intensity we actually see nothing.
+This converts the MMCI bindings from simple text to a proper
+schema.
 
-This patch adds the ability to set the default intensity
-of each led so that it is turned on from DT.
-
-Signed-off-by: Sven Schuchmann <schuchmann@schleissheimer.de>
+Cc: devicetree@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 6 +++++-
- drivers/leds/leds-lp50xx.c                              | 4 ++++
- 2 files changed, 9 insertions(+), 1 deletion(-)
+ChangeLog v1->v2:
+- Use unevaluatedProperties: false instead of
+  additionalProperties: false and refs start working.
+- Define clocks to 1 or 2 items.
+- Define interrupts to 1 or 2 items.
+---
+ .../devicetree/bindings/mmc/arm,pl18x.yaml    | 216 ++++++++++++++++++
+ .../devicetree/bindings/mmc/mmci.txt          |  74 ------
+ 2 files changed, 216 insertions(+), 74 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mmc/mmci.txt
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-index c192b5feadc7..f810c4e84c44 100644
---- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-@@ -69,7 +69,11 @@ patternProperties:
-     patternProperties:
-       "(^led-[0-9a-f]$|led)":
-         type: object
--        $ref: common.yaml#
-+        allOf:
-+          - $ref: common.yaml#
-+        properties:
-+          default-intensity:
-+            The intensity the LED get initialised with.
- 
- required:
-   - compatible
-diff --git a/drivers/leds/leds-lp50xx.c b/drivers/leds/leds-lp50xx.c
-index f13117eed976..55b9e0c9e737 100644
---- a/drivers/leds/leds-lp50xx.c
-+++ b/drivers/leds/leds-lp50xx.c
-@@ -501,6 +501,10 @@ static int lp50xx_probe_dt(struct lp50xx *priv)
- 			}
- 
- 			mc_led_info[num_colors].color_index = color_id;
+diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+new file mode 100644
+index 000000000000..7b8f189acc61
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+@@ -0,0 +1,216 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/arm,pl18x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+			fwnode_property_read_u32(led_node, "default-intensity",
-+				&mc_led_info[num_colors].intensity);
++title: ARM PrimeCell MultiMedia Card Interface (MMCI) PL180 and PL181
 +
- 			num_colors++;
- 		}
- 
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++  - Ulf Hansson <ulf.hansson@linaro.org>
++
++description:
++  The ARM PrimeCells MMCI PL180 and PL181 provides an interface for
++  reading and writing to MultiMedia and SD cards alike. Over the years
++  vendors have use the VHDL code from ARM to create derivative MMC/SD/SDIO
++  host controllers with very similar characteristics.
++
++allOf:
++  - $ref: /schemas/arm/primecell.yaml#
++  - $ref: mmc-controller.yaml#
++
++# We need a select here so we don't match all nodes with 'arm,primecell'
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - arm,pl180
++          - arm,pl181
++          - arm,pl18x
++  required:
++    - compatible
++
++properties:
++  compatible:
++    oneOf:
++      - description: The first version of the block, simply called
++          PL180 and found in the ARM Integrator IM/PD1 logic module.
++        items:
++          - const: arm,pl180
++          - const: arm,primecell
++      - description: The improved version of the block, found in the
++          ARM Versatile and later reference designs. Further revisions
++          exist but get detected at runtime by reading some magic numbers
++          in the PrimeCell ID registers.
++        items:
++          - const: arm,pl181
++          - const: arm,primecell
++      - description: Wildcard entry that will let the operating system
++          inspect the PrimeCell ID registers to determine which hardware
++          variant of PL180 or PL181 this is.
++        items:
++          - const: arm,pl18x
++          - const: arm,primecell
++
++  clocks:
++    description: One or two clocks, the "apb_pclk" and the "MCLK"
++      which is the core block clock. The names are not compulsory.
++    minItems: 1
++    maxItems: 2
++
++  dmas:
++    description: Two or zero DMA channels for RX and TX DMA.
++    items:
++      - description: RX DMA channel
++      - description: TX DMA channel
++
++  dma-names:
++    description: One "tx" channel for transmit and one "rx" channel
++      for receive.
++    items:
++      - const: rx
++      - const: tx
++
++  power-domains: true
++
++  resets:
++    maxItems: 1
++
++  reg:
++    description: the MMIO memory window must be exactly 4KB (0x1000) and the
++      layout should provide the PrimeCell ID registers so that the device can
++      be discovered. On ST Micro variants, a second register window may be
++      defined if a delay block is present and used for tuning.
++
++  interrupts:
++    description: The first interrupt is the command interrupt and corresponds
++      to the event at the end of a command. The second interrupt is the
++      PIO (polled I/O) interrupt and occurs when the FIFO needs to be
++      emptied as part of a bulk read from the card. Some variants have these
++      two interrupts wired into the same line (logic OR) and in that case
++      only one interrupt may be provided.
++    minItems: 1
++    maxItems: 2
++
++  st,sig-dir-dat0:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, bus signal direction pins used for
++      DAT[0].
++
++  st,sig-dir-dat2:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, bus signal direction pins used for
++      DAT[2].
++
++  st,sig-dir-dat31:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, bus signal direction pins used for
++      DAT[3] and DAT[1].
++
++  st,sig-dir-dat74:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, bus signal direction pins used for
++      DAT[7] and DAT[4].
++
++  st,sig-dir-cmd:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, CMD signal direction used for
++      pin CMD.
++
++  st,sig-pin-fbclk:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, feedback clock FBCLK signal pin
++      in use.
++
++  st,sig-dir:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, signal direction polarity used for
++      pins CMD, DAT[0], DAT[1], DAT[2] and DAT[3].
++
++  st,neg-edge:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, data and command phase relation,
++      generated on the sd clock falling edge.
++
++  st,use-ckin:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, use CKIN pin from an external
++      driver to sample the receive data (for example with a voltage switch
++      transceiver).
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    mmc@5000 {
++      compatible = "arm,pl180", "arm,primecell";
++      reg = <0x5000 0x1000>;
++      interrupts-extended = <&vic 22 &sic 1>;
++      clocks = <&xtal24mhz>, <&pclk>;
++      clock-names = "mclk", "apb_pclk";
++    };
++
++    mmc@80126000 {
++      compatible = "arm,pl18x", "arm,primecell";
++      reg = <0x80126000 0x1000>;
++      interrupts = <0 60 IRQ_TYPE_LEVEL_HIGH>;
++      dmas = <&dma 29 0 0x2>, <&dma 29 0 0x0>;
++      dma-names = "rx", "tx";
++      clocks = <&prcc_kclk 1 5>, <&prcc_pclk 1 5>;
++      clock-names = "sdi", "apb_pclk";
++      max-frequency = <100000000>;
++      bus-width = <4>;
++      cap-sd-highspeed;
++      cap-mmc-highspeed;
++      cd-gpios  = <&gpio2 31 0x4>;
++      st,sig-dir-dat0;
++      st,sig-dir-dat2;
++      st,sig-dir-cmd;
++      st,sig-pin-fbclk;
++      vmmc-supply = <&ab8500_ldo_aux3_reg>;
++      vqmmc-supply = <&vmmci>;
++    };
++
++    mmc@101f6000 {
++      compatible = "arm,pl18x", "arm,primecell";
++      reg = <0x101f6000 0x1000>;
++      clocks = <&sdiclk>, <&pclksdi>;
++      clock-names = "mclk", "apb_pclk";
++      interrupt-parent = <&vica>;
++      interrupts = <22>;
++      max-frequency = <400000>;
++      bus-width = <4>;
++      cap-mmc-highspeed;
++      cap-sd-highspeed;
++      full-pwr-cycle;
++      st,sig-dir-dat0;
++      st,sig-dir-dat2;
++      st,sig-dir-dat31;
++      st,sig-dir-cmd;
++      st,sig-pin-fbclk;
++      vmmc-supply = <&vmmc_regulator>;
++    };
++
++    mmc@52007000 {
++      compatible = "arm,pl18x", "arm,primecell";
++      arm,primecell-periphid = <0x10153180>;
++      reg = <0x52007000 0x1000>;
++      interrupts = <49>;
++      interrupt-names = "cmd_irq";
++      clocks = <&rcc 0>;
++      clock-names = "apb_pclk";
++      resets = <&rcc 1>;
++      cap-sd-highspeed;
++      cap-mmc-highspeed;
++      max-frequency = <120000000>;
++    };
+diff --git a/Documentation/devicetree/bindings/mmc/mmci.txt b/Documentation/devicetree/bindings/mmc/mmci.txt
+deleted file mode 100644
+index 4ec921e4bf34..000000000000
+--- a/Documentation/devicetree/bindings/mmc/mmci.txt
++++ /dev/null
+@@ -1,74 +0,0 @@
+-* ARM PrimeCell MultiMedia Card Interface (MMCI) PL180/1
+-
+-The ARM PrimeCell MMCI PL180 and PL181 provides an interface for
+-reading and writing to MultiMedia and SD cards alike.
+-
+-This file documents differences between the core properties described
+-by mmc.txt and the properties used by the mmci driver. Using "st" as
+-the prefix for a property, indicates support by the ST Micro variant.
+-
+-Required properties:
+-- compatible             : contains "arm,pl18x", "arm,primecell".
+-- vmmc-supply            : phandle to the regulator device tree node, mentioned
+-                           as the VCC/VDD supply in the eMMC/SD specs.
+-
+-Optional properties:
+-- arm,primecell-periphid : contains the PrimeCell Peripheral ID, it overrides
+-                           the ID provided by the HW
+-- resets                 : phandle to internal reset line.
+-			   Should be defined for sdmmc variant.
+-- vqmmc-supply           : phandle to the regulator device tree node, mentioned
+-                           as the VCCQ/VDD_IO supply in the eMMC/SD specs.
+-specific for ux500 variant:
+-- st,sig-dir-dat0        : bus signal direction pin used for DAT[0].
+-- st,sig-dir-dat2        : bus signal direction pin used for DAT[2].
+-- st,sig-dir-dat31       : bus signal direction pin used for DAT[3] and DAT[1].
+-- st,sig-dir-dat74       : bus signal direction pin used for DAT[4] to DAT[7].
+-- st,sig-dir-cmd         : cmd signal direction pin used for CMD.
+-- st,sig-pin-fbclk       : feedback clock signal pin used.
+-
+-specific for sdmmc variant:
+-- reg			 : a second base register may be defined if a delay
+-                           block is present and used for tuning.
+-- st,sig-dir             : signal direction polarity used for cmd, dat0 dat123.
+-- st,neg-edge            : data & command phase relation, generated on
+-                           sd clock falling edge.
+-- st,use-ckin            : use ckin pin from an external driver to sample
+-                           the receive data (example: with voltage
+-			   switch transceiver).
+-
+-Deprecated properties:
+-- mmc-cap-mmc-highspeed  : indicates whether MMC is high speed capable.
+-- mmc-cap-sd-highspeed   : indicates whether SD is high speed capable.
+-
+-Example:
+-
+-sdi0_per1@80126000 {
+-	compatible = "arm,pl18x", "arm,primecell";
+-	reg = <0x80126000 0x1000>;
+-	interrupts = <0 60 IRQ_TYPE_LEVEL_HIGH>;
+-
+-	dmas = <&dma 29 0 0x2>, /* Logical - DevToMem */
+-	       <&dma 29 0 0x0>; /* Logical - MemToDev */
+-	dma-names = "rx", "tx";
+-
+-	clocks = <&prcc_kclk 1 5>, <&prcc_pclk 1 5>;
+-	clock-names = "sdi", "apb_pclk";
+-
+-	max-frequency = <100000000>;
+-	bus-width = <4>;
+-	cap-sd-highspeed;
+-	cap-mmc-highspeed;
+-	cd-gpios  = <&gpio2 31 0x4>; // 95
+-	st,sig-dir-dat0;
+-	st,sig-dir-dat2;
+-	st,sig-dir-cmd;
+-	st,sig-pin-fbclk;
+-
+-	vmmc-supply = <&ab8500_ldo_aux3_reg>;
+-	vqmmc-supply = <&vmmci>;
+-
+-	pinctrl-names = "default", "sleep";
+-	pinctrl-0 = <&sdi0_default_mode>;
+-	pinctrl-1 = <&sdi0_sleep_mode>;
+-};
 -- 
-2.17.1
+2.29.2
 
