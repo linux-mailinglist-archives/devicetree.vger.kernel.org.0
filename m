@@ -2,85 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B693E2FA3EA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:02:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 780262FA465
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:19:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393128AbhARPAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 10:00:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60472 "EHLO
+        id S2405667AbhARPSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 10:18:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2393125AbhARPAK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:00:10 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6329DC061573
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:59:29 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id gx5so4856388ejb.7
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:59:29 -0800 (PST)
+        with ESMTP id S2405652AbhARPSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:18:03 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01119C061574
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:17:21 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id f17so18535129ljg.12
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:17:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iSBE4jHyV0yiGAPlv7yUlmbeiPPVBYbZTBnxyeVqKhc=;
-        b=WimftGn8DrHzzSkaIaeyHp4Rf5wrkFzQejolh5k7FrvTM1X4tQJfL6BPb0pntGz5jU
-         rtis3d7qLkXwTnZ5Tx904Tmlx9JxRGOiLxQfHo9Xwf3G6ebDePuOuAbmEudqlWIgpKH3
-         wAaDjsOriul24e2cFyWZJa1xIFzJ5Tu2vWnjXgx8gqcU3GlCpQ3CwbO6ka7jUCCoTj9S
-         naNB+8tAa2C/krD+3BFO+Ri5/sPlH+nxGyXWmMo9A1D6Sj8LFoMEmXyp76OSZkPloVe8
-         ZVRWa+2RG6siOwJdiU3Qh9JpKK2Mx30aqtBYekBA70fIzUkvnuudh6Vdtw5WNHXS8Nxv
-         ETJA==
+         :cc:content-transfer-encoding;
+        bh=OPHysYtc2Ia3boQBkdrxKp3u8wFOYlTnKE670xk1qic=;
+        b=uASd1yt9xDQj6nOnol2L3fD+lTE8+WkyK7zXRZAFxthqbIdrutyIs8T/hnHOLykAqu
+         ggI83IRMSWxt00dCyj/yJB6fO5UZPYYkX1qjBtRbrGqzFYsUF4D/6ANwrT7/6XAgi0yO
+         Uw9U1wjsnfWyoNr+EHobaJX+YRQxw4CrjYtTPCTyt3E8v5zAkpf2wMlu93SbQRSkIM6w
+         LGKk8RLuKsJAYEIviZ0R6dc37RszKaAqB/xyXcZTLpX7c0pmTgMjHD8UAp+vCPOTwvAP
+         WHeES4etsDJRXi++S3YlVugvkhK54ukWLT+Ifx61zWHoEtqgHLJhGFqGsgCPe9yNkCd8
+         S6YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iSBE4jHyV0yiGAPlv7yUlmbeiPPVBYbZTBnxyeVqKhc=;
-        b=QUzx3k5v3e5Ene5pPgoT9qZszOlGCbCXCGKZkBqJXUlcXG+1RUrSsPjRd2IMDvSI1H
-         cm8oM8lR6wqTaQ6SRWaqvwJUKMqkwmO5zrSZuK6KhlebReKtqm6z5IMgE/uEYZLikqyW
-         YSPYIrCblx5swzGKWg/evRrc7u+h+M3iKsYRVZNVmAjbQvRGH/phhmiQllY/2SNew0Nu
-         IqabOmnlvVjVCN5E+l2zLqQ8GCcAp8Qrtj+squWyT3ycrpOTS1kF11zYKDL0ivMonAOt
-         U2ruHCIQyYQlnPdWCtYu+P4N+02f0gU0lzwTFbCGMbCGOCgivy+p0PlYYdv80Igt7fzq
-         dTIQ==
-X-Gm-Message-State: AOAM5314D5DCstrn5GsYUkKiAPPebkdX2yIv3Lhgethj4HcCWfFJ+0NW
-        WN17AG7j967hBkykwCOHDxNeYbUeS0raYr+JA1ePIA==
-X-Google-Smtp-Source: ABdhPJwI73VNVTnVNFqoeKDEdVqoH328eZPX4L/8TfI3OnSMbLTmqOtJyvigmGCGUUyH0NQs8m/gMD5eGsq/Db7OWWY=
-X-Received: by 2002:a17:906:388b:: with SMTP id q11mr46695ejd.421.1610981968099;
- Mon, 18 Jan 2021 06:59:28 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=OPHysYtc2Ia3boQBkdrxKp3u8wFOYlTnKE670xk1qic=;
+        b=loGt8+qCOOxqiqHB8xISuwnzJZDA81xmHF9fm/SP47NMO/7DbqHAzgSwfY56MLgOf7
+         bJB3YjNVEA6EG6zNZ3pOKjW+P1f6mp4TexjfmDxh9ODKf0ZclrKib7vwCTpk9zDj/WGG
+         e2HCT0CiJn0RkDMZY3Upx03HM67z59pX+WhSWkj/VuuVsDaedXt0qh+a7j31McQ9daWL
+         K6VZcf6mviG2sNpzLooy5lK0rrsiIfNEYap8YUl4nGKYvCf58sBQAbOYS4lDPUwTZTg4
+         Las0LALigES1VUE1Vezh3RMx7QPPUk62WS4TlzbwCXV/RKvSgZiihe/DiRainvukDZoV
+         4y0Q==
+X-Gm-Message-State: AOAM530DkPD2RvwPpEAJgO7O7LdJmSBczVGqbVaW6NWy3+RrMg0ydZ6z
+        rAhAglMs5jGrJ3LgA2Frx7Ynl/GAoTY9QL6pCXgsw1De2Po=
+X-Google-Smtp-Source: ABdhPJwDOWG8CktHHb9ktt+7yg2eWonewdywZRxtch9+AFYDZBR09JofcA2Ik+l/XzSoYjsPxXUwkXszzWkhlPcxEiw=
+X-Received: by 2002:a2e:586:: with SMTP id 128mr60244ljf.273.1610983039544;
+ Mon, 18 Jan 2021 07:17:19 -0800 (PST)
 MIME-Version: 1.0
-References: <20210114131622.8951-1-chiawei_wang@aspeedtech.com> <20210114131622.8951-5-chiawei_wang@aspeedtech.com>
-In-Reply-To: <20210114131622.8951-5-chiawei_wang@aspeedtech.com>
+References: <20210115164658.187681-1-u.kleine-koenig@pengutronix.de> <20210115164658.187681-3-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20210115164658.187681-3-u.kleine-koenig@pengutronix.de>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 18 Jan 2021 15:59:16 +0100
-Message-ID: <CACRpkdbqJuKHH+sR3LfWV72kM7TEhimFVi1viuQGkP8DWOODow@mail.gmail.com>
-Subject: Re: [PATCH v5 4/5] pinctrl: aspeed-g5: Adapt to new LPC device tree layout
-To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Corey Minyard <minyard@acm.org>,
+Date:   Mon, 18 Jan 2021 16:17:08 +0100
+Message-ID: <CACRpkdYj9s5mM8i9Exao+XHMj71-GH1VQ_HBYQo_7sgrvtvPtA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: gpio: pca953x: Document new supported
+ chip pca9506
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        BMC-SW@aspeedtech.com, haiyue.wang@linux.intel.com,
-        cyrilbur@gmail.com, Robert Lippert <rlippert@google.com>
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 14, 2021 at 2:17 PM Chia-Wei, Wang
-<chiawei_wang@aspeedtech.com> wrote:
+On Fri, Jan 15, 2021 at 5:47 PM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
 
-> Add check against LPC device v2 compatible string to
-> ensure that the fixed device tree layout is adopted.
-> The LPC register offsets are also fixed accordingly.
+> The previous patch added support for this chip. Add its name to the list
+> of allowed compatibles.
 >
-> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+> Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-
-I suppose the patches need to go in together. Tell me if you
-need me to apply this one patch to the pinctrl tree.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
