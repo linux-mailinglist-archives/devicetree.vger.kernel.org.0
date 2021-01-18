@@ -2,80 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC242FA560
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1895E2FA4D7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:34:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392640AbhARPsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 10:48:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57320 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405973AbhARPdJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 10:33:09 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1689C22C7E;
-        Mon, 18 Jan 2021 15:32:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610983947;
-        bh=7uZs9pF/t9m+cAWUrEQPaLEWyNNr57zs99L3UB18ecw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=IijNMuDuF77zj4RjcHFWz5/wSBg7Y3rHgqLkAecBWlrWY6nJGzyY+p8d2V17wFObr
-         v8QnhLtS3SyUaNcm0PiDMGFCu56DO1D2Wp6kQrkY/A7CqHGVoD0wxB+DvHkwi47tx9
-         dgAbVWqOvzCL5il39pkKf2PJiI8FYet7A4ExxYXpSurphhbyX+6MMPuNU5WFYRc2Kk
-         mGdbdFupq33rur8RaOpQV09C9dy2bRbEo5jHn8jYWCmlaN97VabATT4zgJzm45nGO+
-         pF8DAfEHDG34PN0X8opWBJqhVclNZo+PixRvTP/cD6U5DYCivi1+/mez0SkKHrl0fy
-         hrhpHYVcZEhcQ==
-Date:   Mon, 18 Jan 2021 16:32:22 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mayulong <mayulong1@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 10/13] mfd: hi6421-spmi-pmic: move driver from
- staging
-Message-ID: <20210118163222.6161f9a2@coco.lan>
-In-Reply-To: <20210118151227.GF4903@dell>
-References: <cover.1610975633.git.mchehab+huawei@kernel.org>
-        <8a152819ef89c73dd6afb5c2deb5441402fcd2fa.1610975633.git.mchehab+huawei@kernel.org>
-        <20210118151227.GF4903@dell>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S2405978AbhARPdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 10:33:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39322 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405972AbhARPdC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:33:02 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D862CC061574
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:32:46 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id b10so18627596ljp.6
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:32:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bBQOG7vxoM6QNk6U3xhAhy3xS9YtkVdNjMmBgzCoLbA=;
+        b=Cuhm6Se308oUzIL+drXDZ+cwNnuIbBlps5d6xsRssecTHpjtgiuTXzQNDMhO0JY8bt
+         YszIfLR3A3eKvExUZO7VBnhwcWQLm4D59sAQxyW/hIP/kQgjZCk8tQ5PDNc13t6+Pjq2
+         Vh2K46SLjz1jIHAb14v74cfZz5YTawi+sTQT0gvsUXqFXvPCWOb8sojcejX4G7GTL5js
+         Bd/uigPucj6wczJhxvWhiZVIXVP0bGt43r5NBfHeB5VzWWXtgTsFR5ONsoTUhbOBSSTR
+         Yqyr/24gdZ0l4L5em2Zv2771xtQG3Twi+luFDeUk6OY04kZGRj5BKfmldGwrSqYUNl98
+         X2lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bBQOG7vxoM6QNk6U3xhAhy3xS9YtkVdNjMmBgzCoLbA=;
+        b=aHP6HWKu6mjppMUqzbNwLGMZHzoky9C9LA68/FuS9Cod7A1CtwhkVtgv1n7VGNQipL
+         WAZXxKEjO9SBTbkLde7a1xBH6kCryMmshVR8J+1PGmD50wdH7QVpxMBAAnwY+pD3U/bD
+         SKo0+BYYaC+4gB5WmMz/v2GPfeIiElPAOMOuxhJCm//LHIpFTsjoHHkloVTVlUg8I4BV
+         Cs00QsbES2PF1lcdMlMmGCP1wd6pW6FUJT/YKgFLG1UgE69xQvcGqpTvULyenv7Sk5aj
+         UU5LZqbVg4qyu1Le1ZGIy1KaX9u4v3I+oClsiAIKsLY7nnFv5p+G5qB25LWKKxxLtiSp
+         TBpA==
+X-Gm-Message-State: AOAM532VBJy1ix6iJ4UaVN8yLxNyZP2WYTk81Z1YKNNzjXTsfDimc0eo
+        gfkUmlVi4wwatI+9Wk8JmmN4OC3oUh9MCkOBMCc00Q==
+X-Google-Smtp-Source: ABdhPJx4ZdzRD10FhfCcqPFhhRv+irScAwpmWxe4JltyATFb4F/WmkBfnmVNpRmz04RW1/5GvimIWM/NJ/EbS4tq3uM=
+X-Received: by 2002:a2e:586:: with SMTP id 128mr85874ljf.273.1610983965379;
+ Mon, 18 Jan 2021 07:32:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210115210159.3090203-1-saravanak@google.com>
+In-Reply-To: <20210115210159.3090203-1-saravanak@google.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 18 Jan 2021 16:32:34 +0100
+Message-ID: <CACRpkdYrzaFuWkbTe7Fmos4Bk4Ojt6wbqayDjyrS7sf98P-Rbg@mail.gmail.com>
+Subject: Re: [PATCH v1] of: property: Add fw_devlink support for "gpio" and
+ "gpios" binding
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jon Hunter <jonathanh@nvidia.com>, kernel-team@android.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Mon, 18 Jan 2021 15:12:27 +0000
-Lee Jones <lee.jones@linaro.org> escreveu:
+On Fri, Jan 15, 2021 at 10:02 PM Saravana Kannan <saravanak@google.com> wrote:
 
-> On Mon, 18 Jan 2021, Mauro Carvalho Chehab wrote:
-> 
-> > This driver is ready for mainstream. So, move it out of staging.
-> > 
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > ---
-> >  .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 133 +++++++
-> >  MAINTAINERS                                   |   7 +
-> >  drivers/mfd/Kconfig                           |  15 +
-> >  drivers/mfd/Makefile                          |   1 +
-> >  drivers/mfd/hi6421-spmi-pmic.c                | 342 ++++++++++++++++++
-> >  drivers/staging/hikey9xx/Kconfig              |  16 -
-> >  drivers/staging/hikey9xx/Makefile             |   1 -
-> >  drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 342 ------------------
-> >  .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 133 -------
-> >  9 files changed, 498 insertions(+), 492 deletions(-)  
-> 
-> Could you please resubmit this will the correct flags.
-> 
-> I believe it's the `git format-patch` -M flag that you want.
+> To provide backward compatibility for boards that use deprecated DT
+> bindings, we need to add fw_devlink support for "gpio" and "gpios".
+>
+> Cc: linux-tegra <linux-tegra@vger.kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Fixes: e590474768f1 ("driver core: Set fw_devlink=on by default")
+> Tested-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-As explained at patch 00/13, this was intentionally generated with
---no-merges, in order to allow reviewers to view the entire source
-code at the patch. 
+"gpios" is a valid non legacy property I think.
 
-Anyway, I'll re-send the series with -M, as it makes easier to merge,
-if everything is ok.
+Anyways:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thanks,
-Mauro
+Yours,
+Linus Walleij
