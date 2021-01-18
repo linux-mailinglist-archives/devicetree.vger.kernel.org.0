@@ -2,86 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 077092FA820
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 19:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE652FA8C0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 19:28:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406076AbhARR6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 12:58:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50132 "EHLO mail.kernel.org"
+        id S2393624AbhARS0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 13:26:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52548 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2407346AbhARR6a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 12:58:30 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B0CF622BEA;
-        Mon, 18 Jan 2021 17:57:47 +0000 (UTC)
+        id S2392937AbhARPGT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 10:06:19 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 56C2422BF3;
+        Mon, 18 Jan 2021 15:05:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610992668;
-        bh=EEyVJLZ5jFQ72gpJ+iRvZBf84rPHcUeWRZnKPD8+AxY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hJoy3iGkJrKVdqohtDcz2FnDHvu8B0R8WcT8AeTHEgUOOR8eF5qXO+pHiav0K5IGe
-         ylKl/gz/PwSKpQ/k60vWASPEodx4QgeWiy9BYr9lwuNLVjawlbVnInRoZ0XXF4v4jw
-         a/lgRM1F/tWzYaraDnz8mIfM9Qx3gtQko1dPaQUQ8WFXuYsy/7alEr38Tzm2sxla9e
-         9yB5OFMxmuEUM9WBER6h/dDBh1Azm4W0PrFIq34doyZHG9CDzKAMUDLCI4906C8G4z
-         0zrQAyoiOFPqJe4HEZAnFetfkDO1zIBHaWuu5W/VmvatUPqRycyOJlIToGKjQsJ64M
-         0SL9Z7RDyxybA==
-Date:   Mon, 18 Jan 2021 17:57:10 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, sumit.semwal@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org
-Subject: Re: [PATCH v3 1/7] regulator: qcom-labibb: Implement voltage
- selector ops
-Message-ID: <20210118175710.GR4455@sirena.org.uk>
-References: <20210117220830.150948-1-angelogioacchino.delregno@somainline.org>
- <20210117220830.150948-2-angelogioacchino.delregno@somainline.org>
- <20210118120453.GC4455@sirena.org.uk>
- <032d29df-9892-4774-2a61-7b634deafe06@somainline.org>
+        s=k20201202; t=1610982338;
+        bh=O6M1n/+xN3XivdFxg/+MeYf0/keKDicCppxhlPQcqAo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gu4q31Ni9yGfcWk46rz/cLDZVGk5skrlSQ0hEbFEU2l+cFzxD2LvJvCh+TMY7DNWw
+         OsbMuu1lvYbvUuKIHXO2vMxoHqqzJLyqNyIPtzTWfpsXmIU87GkEjdXojUOOx9YY47
+         Hv0daJ84K6I9xYWSAzqu3i/z6PMRjYZoNLUbNdh0TQ8358/2WoJ207Pm7xnMgLIwxX
+         mhE8cPknJ6sm7Tb09I1hPPJLJRjFUfhJeLXDKka+a4aoXBEjfbzZah32BNKEMawIlp
+         s96ecjh0LQnBQsbGQplb8R+rMfQqJS3imqFt81LxnkecaBOW4UJpysnFpD+wHYjbma
+         akC2YMZzsTnxQ==
+Received: by mail-ed1-f54.google.com with SMTP id b21so9122897edy.6;
+        Mon, 18 Jan 2021 07:05:38 -0800 (PST)
+X-Gm-Message-State: AOAM530x5bhKVGxke+aLaEpgIbZSf8GqITwKuyHLBMCnrYTJaFm0t3iW
+        jkGgEfKLsd6UsMTB+RJ9wo47W22EhzctYr6B9Q==
+X-Google-Smtp-Source: ABdhPJyfXzalDLfP+23Rji9ljj49KRJPNaWxn9PX5oQgRjG3us5FDJGuKT75vRlC9zwSL0fJPMRPsmGBGhMExyQutg0=
+X-Received: by 2002:a05:6402:55:: with SMTP id f21mr20025590edu.38.1610982336942;
+ Mon, 18 Jan 2021 07:05:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="H83aLI5Lttn3Hg7B"
-Content-Disposition: inline
-In-Reply-To: <032d29df-9892-4774-2a61-7b634deafe06@somainline.org>
-X-Cookie: Huh?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210116090656.11752-1-chunfeng.yun@mediatek.com> <20210116090656.11752-4-chunfeng.yun@mediatek.com>
+In-Reply-To: <20210116090656.11752-4-chunfeng.yun@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 18 Jan 2021 23:05:25 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__DtGc85JNyxWcebof5h3_Os2ugyy1P0jZsOs0Yzj2miw@mail.gmail.com>
+Message-ID: <CAAOTY__DtGc85JNyxWcebof5h3_Os2ugyy1P0jZsOs0Yzj2miw@mail.gmail.com>
+Subject: Re: [PATCH next 04/15] dt-bindings: phy: mediatek: hdmi-phy: modify
+ compatible items
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Min Guo <min.guo@mediatek.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Chunfeng:
 
---H83aLI5Lttn3Hg7B
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=881=
+6=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=885:07=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> The compatilbe "mediatek,mt7623-hdmi-tx" is not supported in driver,
+> and in fact uses "mediatek,mt2701-hdmi-tx" instead on MT7623, so changes
+> the compatible items to make dependence clear.
+>
+> Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+>  .../devicetree/bindings/phy/mediatek,hdmi-phy.yaml    | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml=
+ b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
+> index 4752517a1446..0d94950b84ca 100644
+> --- a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
+> @@ -21,10 +21,13 @@ properties:
+>      pattern: "^hdmi-phy@[0-9a-f]+$"
+>
+>    compatible:
+> -    enum:
+> -      - mediatek,mt2701-hdmi-phy
+> -      - mediatek,mt7623-hdmi-phy
+> -      - mediatek,mt8173-hdmi-phy
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt7623-hdmi-phy
+> +          - const: mediatek,mt2701-hdmi-phy
+> +      - const: mediatek,mt2701-hdmi-phy
+> +      - const: mediatek,mt8173-hdmi-phy
+>
 
-On Mon, Jan 18, 2021 at 06:54:26PM +0100, AngeloGioacchino Del Regno wrote:
-> Il 18/01/21 13:04, Mark Brown ha scritto:
+I like move 'items' to the bottom.
 
-> > Please do not submit new versions of already applied patches, please
-> > submit incremental updates to the existing code.  Modifying existing
-> > commits creates problems for other users building on top of those
-> > commits so it's best practice to only change pubished git commits if
-> > absolutely essential.
+- const: mediatek,mt2701-hdmi-phy
+- const: mediatek,mt8173-hdmi-phy
 
-> Sorry for that. Should I send a v4 to fix that?
+- items:
+  - enum:
+      - mediatek,mt7623-hdmi-phy
+  - const: mediatek,mt2701-hdmi-phy
 
-If there are any changes in this version then yes, if it's identical no.
+Regards,
+Chun-Kuang.
 
---H83aLI5Lttn3Hg7B
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAFy/YACgkQJNaLcl1U
-h9DILwf/W/k0KmU3tk6fbj3vqLj4p3aN45BnYBPEUgOt869NEKwIEyov9iGBqF/j
-p4+uKx9cZR4oh5QGRec6KkMnCNoE4aUgZITh0X14/beFR//TPKbdEOp8NCyLFyzy
-LyiMHysKL5uVWcjLmk5bJi2n0HT8kyttHATO0hGX1hL5aBWqCRb0/zVJwhzIdbr5
-w8wMJpc93QWqCgNODc3vVbOilsuD2A+2W8uO1q2gGEdYLrgOYmrH/G+/lcCGmvtR
-ux+dJvZ9Zv1RJEiFNnpb5FrJyBxrffP0MEvRz3lReBPDXvzIQtJVHNuCiSDGE1fq
-rjygJzfS3pRIrX+/yDViRGzDLjuEeg==
-=hJqq
------END PGP SIGNATURE-----
-
---H83aLI5Lttn3Hg7B--
+>    reg:
+>      maxItems: 1
+> --
+> 2.18.0
