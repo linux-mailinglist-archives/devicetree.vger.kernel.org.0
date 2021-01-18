@@ -2,125 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E29CA2FA52D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:52:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89FF22FA52A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:52:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404490AbhARPwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 10:52:09 -0500
-Received: from foss.arm.com ([217.140.110.172]:38298 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390778AbhARPt4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 10:49:56 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2B7641FB;
-        Mon, 18 Jan 2021 07:49:09 -0800 (PST)
-Received: from [10.57.39.58] (unknown [10.57.39.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 559E53F68F;
-        Mon, 18 Jan 2021 07:49:06 -0800 (PST)
-Subject: Re: [PATCH v6 06/33] of/device: Move dma_range_map before
- of_iommu_configure
-To:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh@kernel.org>
-Cc:     youlin.pei@mediatek.com, devicetree@vger.kernel.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream@mediatek.com, chao.hao@mediatek.com,
-        Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        anan.sun@mediatek.com, linux-arm-kernel@lists.infradead.org,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-References: <20210111111914.22211-1-yong.wu@mediatek.com>
- <20210111111914.22211-7-yong.wu@mediatek.com>
- <20210114192732.GA3401278@robh.at.kernel.org>
- <1610688626.4578.1.camel@mhfsdcap03>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <1853732d-0efd-171e-9e1f-7ee7ed72a98f@arm.com>
-Date:   Mon, 18 Jan 2021 15:49:06 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S2403905AbhARPvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 10:51:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43318 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406013AbhARPvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:51:10 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED38C061573
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:50:30 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id s24so145253wmj.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:50:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=hnlP4TCuuuU1Boi/hLdzhd2/6iQdts7ZHhXzPyMgjoQ=;
+        b=C5aYq8K6u9jjD9Bxrht4BtypiJqRgY4dAlrtbgaYqLKiGopcD3CZOqogeLuBQshiC/
+         rLAS9F/uord1WqD0EZA4j9vpmHY6rxDIiSOeN80PtzTh8ARftMzeDqbc78uo4fxmhH3J
+         W8BtWFO05uzZsIDEUzKTpHVpsTqoN8rTqx6AlbDD7W2ngK66pKXgcB/nLEbfFpyH9F7L
+         nAwKM4QM/IdBwnPo4LUsDt2Q3PBg3E1yL5dAFy/JhUVMDJ7nZ7B4Gfl0WYtsD61uPuAx
+         QxIIDD6739wfYHmcmVuZJM6p55gXqigdlDAlJEhGaA8bIWjtLnqzZU3858Zfa+hDNi1x
+         tuYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=hnlP4TCuuuU1Boi/hLdzhd2/6iQdts7ZHhXzPyMgjoQ=;
+        b=ksHj67/0JxOk5HoFDFpp5tIiOkLTsjYg0Vb2wTcSMg6wvAmKZekkVCz6nyMQwPc/RV
+         WGTji7YUN42x4ZhA3aiZMEm4QZgcz/WG3wFHLQfmx6SbbIqkoa252OoVttRWMO2w4ddl
+         Z6DYZHFmkZikHkxuxnm43CvqDzGoPJRvAQYLvNyN+MVUxHZRZHd4xyWn2qhjgmzgC0Vd
+         JhpzfVO/mOh5pXB/lJUVJOyh+8J4pZf1LvjdJGPZXlV27gNXdD/nmQknDCqYJ6AwX2a1
+         02CqQ+sgSSeuYHSIE/D7/iJkkf+1G4SWVxNF7i2vENty0n6s5kBqrnusfOcPuj2kh3z4
+         aNdQ==
+X-Gm-Message-State: AOAM531UClocffW3wSuNh1eL9svzbIR82EUPQ2DZOO0CgBYMJGfSWEsM
+        z9WUwB1BoJVma81mPJidzaICdA==
+X-Google-Smtp-Source: ABdhPJyGQlmjNpAe5FPf9+L9SpVO6HOy+hRWw/s3IfHIcDSQDh6vMYL2r/2lCncdI6UxCHS92rQYVA==
+X-Received: by 2002:a1c:6383:: with SMTP id x125mr37380wmb.46.1610985028772;
+        Mon, 18 Jan 2021 07:50:28 -0800 (PST)
+Received: from dell ([91.110.221.158])
+        by smtp.gmail.com with ESMTPSA id m14sm30211665wrh.94.2021.01.18.07.50.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jan 2021 07:50:28 -0800 (PST)
+Date:   Mon, 18 Jan 2021 15:50:26 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mayulong <mayulong1@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 10/13] mfd: hi6421-spmi-pmic: move driver from staging
+Message-ID: <20210118155026.GH4903@dell>
+References: <cover.1610975633.git.mchehab+huawei@kernel.org>
+ <8a152819ef89c73dd6afb5c2deb5441402fcd2fa.1610975633.git.mchehab+huawei@kernel.org>
+ <20210118151227.GF4903@dell>
+ <20210118163222.6161f9a2@coco.lan>
 MIME-Version: 1.0
-In-Reply-To: <1610688626.4578.1.camel@mhfsdcap03>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210118163222.6161f9a2@coco.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-15 05:30, Yong Wu wrote:
-> On Thu, 2021-01-14 at 13:27 -0600, Rob Herring wrote:
->> On Mon, Jan 11, 2021 at 07:18:47PM +0800, Yong Wu wrote:
->>> "dev->dma_range_map" contains the devices' dma_ranges information,
->>> This patch moves dma_range_map before of_iommu_configure. The iommu
->>> driver may need to know the dma_address requirements of its iommu
->>> consumer devices.
->>>
->>> CC: Rob Herring <robh+dt@kernel.org>
->>> CC: Frank Rowand <frowand.list@gmail.com>
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>> ---
->>>   drivers/of/device.c | 3 ++-
->>>   1 file changed, 2 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/of/device.c b/drivers/of/device.c
->>> index aedfaaafd3e7..1d84636149df 100644
->>> --- a/drivers/of/device.c
->>> +++ b/drivers/of/device.c
->>> @@ -170,9 +170,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
->>>   	dev_dbg(dev, "device is%sdma coherent\n",
->>>   		coherent ? " " : " not ");
->>>   
->>> +	dev->dma_range_map = map;
->>>   	iommu = of_iommu_configure(dev, np, id);
->>>   	if (PTR_ERR(iommu) == -EPROBE_DEFER) {
->>>   		kfree(map);
->>> +		dev->dma_range_map = NULL;
->>
->> Not really going to matter, but you should probably clear dma_range_map
->> before what it points to is freed.
->>
->> With that,
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, 18 Jan 2021, Mauro Carvalho Chehab wrote:
+
+> Em Mon, 18 Jan 2021 15:12:27 +0000
+> Lee Jones <lee.jones@linaro.org> escreveu:
 > 
-> Thanks for the review. I will move it before "kfree(map)" in next
-> version.
-
-Paul noticed that we already have a bug in assigning to this 
-unconditionally[1] - I'd totally forgotten about this series when I 
-theorised about IOMMU drivers wanting the information earlier, but 
-sweeping my inbox now only goes to show I was right to think of it :)
-
-We should really get something in as a fix independent of this series, 
-taking both angles into account.
-
-Robin.
-
-[1] 
-https://lore.kernel.org/linux-arm-kernel/5c7946f3-b56e-da00-a750-be097c7ceb32@arm.com/
-
->>
->>>   		return -EPROBE_DEFER;
->>>   	}
->>>   
->>> @@ -181,7 +183,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
->>>   
->>>   	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
->>>   
->>> -	dev->dma_range_map = map;
->>>   	return 0;
->>>   }
->>>   EXPORT_SYMBOL_GPL(of_dma_configure_id);
->>> -- 
->>> 2.18.0
->>>
+> > On Mon, 18 Jan 2021, Mauro Carvalho Chehab wrote:
+> > 
+> > > This driver is ready for mainstream. So, move it out of staging.
+> > > 
+> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > > ---
+> > >  .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 133 +++++++
+> > >  MAINTAINERS                                   |   7 +
+> > >  drivers/mfd/Kconfig                           |  15 +
+> > >  drivers/mfd/Makefile                          |   1 +
+> > >  drivers/mfd/hi6421-spmi-pmic.c                | 342 ++++++++++++++++++
+> > >  drivers/staging/hikey9xx/Kconfig              |  16 -
+> > >  drivers/staging/hikey9xx/Makefile             |   1 -
+> > >  drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 342 ------------------
+> > >  .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 133 -------
+> > >  9 files changed, 498 insertions(+), 492 deletions(-)  
+> > 
+> > Could you please resubmit this will the correct flags.
+> > 
+> > I believe it's the `git format-patch` -M flag that you want.
 > 
-> _______________________________________________
-> iommu mailing list
-> iommu@lists.linux-foundation.org
-> https://lists.linuxfoundation.org/mailman/listinfo/iommu
-> 
+> As explained at patch 00/13, this was intentionally generated with
+> --no-merges, in order to allow reviewers to view the entire source
+> code at the patch. 
+
+That's a fair point.  Please leave it as it is for now then.
+
+I'll get around to the review soon I hope.
+
+> Anyway, I'll re-send the series with -M, as it makes easier to merge,
+> if everything is ok.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
