@@ -2,59 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6A52F968C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 01:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 889602F968E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 01:21:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730239AbhARATd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 19:19:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56332 "EHLO mail.kernel.org"
+        id S1730363AbhARAU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 19:20:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56514 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726785AbhARATa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Jan 2021 19:19:30 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B59392137B;
-        Mon, 18 Jan 2021 00:18:47 +0000 (UTC)
+        id S1726785AbhARAUz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Jan 2021 19:20:55 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7CB932137B;
+        Mon, 18 Jan 2021 00:20:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610929129;
-        bh=AMoWwMeerbu7qqOXqsa78mXjRjBuQWevhvlMY9YjqsI=;
+        s=k20201202; t=1610929214;
+        bh=dS4f/1BykfEfBDCsMyA9FOjgQL/14LAVXWk6QfSd3LQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Fxoy4aLBp7wHvaNt5YBGyOLBAVg0hUxDjY+fmt7rLrZFdGieAc6fynGKcPcrzSfXt
-         ooB5Mvt9nrf7L/I2XF7Cqjr7V5hHOHgO2qfdrCLPHpdbzvX5nWYi9m0ZByeSVv4Wfd
-         rz2gKJcHAdDFfPrT2QlElAzNuzJsMzoYymOv7MMkiyy9mcOt06vDSx7CsPoWM7iPc6
-         5x1wePq4BD0s3qqLgCweXYJzVhvYQnXb6qeYJ7U89tEW7Hq7DqqVpYx64UU8Y/aQje
-         dYub0JHD6ZhEhYZ1m0YlQwvM6hPvrC2s/nYrUyVKwU8jIMQdYAUjv5T0x6zxGqheT9
-         fFLxhELjR6oJg==
-Date:   Mon, 18 Jan 2021 08:18:44 +0800
+        b=q0Hb+lD5DlD4jRoi7QQwD+wuWWp7qi9A9Zd711ELYl7ovBavuxVBNYaDrcLDzROLW
+         uvQSqYJ0SK9RZotKTnBhWbJhEjkGphy6eyxxLE4aZcP6R0aJPexEifapRfMNDLm8Qw
+         0khdxrW3tRe48YfSsnCbrc1Fr4wyfDYveJrvybO4eekTEGfQ8KHRDUmfZ0E3NbbRDs
+         3vy3xpTBesLQmikXDuZU2GN3p1BMHZdbBb1lhgqIr0YI+N8a5AKI2HHLsQUPUOmGOT
+         Fk0R3caAi22S7i60ZiqxB2hXLU7FZ8Mnec/JcGCHppR1sIA2Z4zhECqCS2z7oP5fLv
+         a1YnqBMYOm73Q==
+Date:   Mon, 18 Jan 2021 08:20:09 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mn-beacon-som: Configure RTC aliases
-Message-ID: <20210118001843.GB28365@dragon>
-References: <20210110115354.1259994-1-aford173@gmail.com>
+To:     Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: lx2160a-cex7: delete RTC interrupt
+Message-ID: <20210118002009.GC28365@dragon>
+References: <E1kybEV-0003w1-DS@rmk-PC.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210110115354.1259994-1-aford173@gmail.com>
+In-Reply-To: <E1kybEV-0003w1-DS@rmk-PC.armlinux.org.uk>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 10, 2021 at 05:53:53AM -0600, Adam Ford wrote:
-> On the i.MX8MN Beacon SOM, there is an RTC chip which is fed power
-> from the baseboard during power off.  The SNVS RTC integrated into
-> the SoC is not fed power.  Depending on the order the modules are
-> loaded, this can be a problem if the external RTC isn't rtc0.
+On Sun, Jan 10, 2021 at 01:58:15PM +0000, Russell King wrote:
+> The RTC interrupt is incorrect and prevents the RTC driver
+> initialising. In any case, the PCF2127 driver wants an active low
+> interrupt, which neither the GIC nor the GPIO blocks support.
+> There is an ISPPT block in the LX2160A, but this is not supported
+> in mainline kernels. So, just delete the interrupt.
 > 
-> Make the alias for rtc0 point to the external RTC all the time and
-> rtc1 point to the SVNS in order to correctly hold date/time over
-> a power-cycle.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
 
 Applied, thanks.
