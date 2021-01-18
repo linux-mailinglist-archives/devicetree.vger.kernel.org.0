@@ -2,272 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35BEE2FA3DB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:59:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95E052FA3CD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:57:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393051AbhARO67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 09:58:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59054 "EHLO
+        id S2405450AbhARO4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 09:56:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405281AbhAROyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 09:54:05 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26233C0617A0
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:52:14 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id a12so24482350lfl.6
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:52:14 -0800 (PST)
+        with ESMTP id S2405447AbhARO4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 09:56:23 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48052C061573
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:55:43 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id b21so9084089edy.6
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:55:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xYwmrtz/QU6RpO5QbrehkEFuAsa7SlsbStjo8EQedtw=;
-        b=ujDw7idogA7ubtCSw3Pua5Bqbvx9JmkO80LBhL8vrBdDBdrx2urUN92KMUlBkqNsFo
-         JuCu6wGdT+6ULvsB1a/3HtgMykEatbSXqLmMNYOXJ5miRdG7Vr/Hi2yJYw600WxkoxWo
-         c9Q9fy/GXO96GDapcaioKyZZNLtzgGYy7zVubgy5gobhXh1R9B9mhUcLYJW8y5pYajJH
-         hSaFH5fkPeJ3w0+LHmM7vI9U28GbwiZJ6Gge57oqS1fsX5HwsRgP856wjf1LcG4eALVs
-         2lR3SvP7jzbm1py4EyPrn8C12I80tr9ps+nZ71mo5/vJUHCP1BxHYZTe1bQlHK6EP07K
-         kixg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=09OWnlfXjcogYNVXeufU+daH3KK6SF0uozk3EDI2xc0=;
+        b=Ev4ise7mk+YfkUErtOqsnwcDFyrMpCScNp5Psyu6jm+IHZGb5AwxdoGBoXxuFX61mn
+         v2wNMdPzRA6DGQ8J8z4yP8QZBUdxpmSc05ndX3QWTS6XRi52tsQwLDjoAaMSXQn7zPLo
+         PsvzPQv221Crp/lfaRs//J6sa5jk4TF72mUxit1qwocnPg4B8nnuhf0d4TM0t7cDiQ0F
+         JcXBLfrE+G/mFv1ucW2UAxMuvZZbQWbewZ2DpHcPPDqqkxwgBbCEy2W4Wk+jD/4X+8xJ
+         ficH1ht6iUzOuUBsJ5itApxU1eCDRDbauNKd7+kNvcME5dJbo+1Odl9v0dDFzTN1mZy/
+         RBeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xYwmrtz/QU6RpO5QbrehkEFuAsa7SlsbStjo8EQedtw=;
-        b=B9ACxEKo/giG40zSJXwN5VlD2BLXFPPZPbdhtsuhehrZ6bwZeOhY0Z0y4mjL9Hde6w
-         V+HGQLlUa9g9rZhfzNIMve9Vx81VH3XWc6msQ4xmVGaGdh533e9Q5ojRNzc/5vS8q9gR
-         xQV2u4LPMaZqxrDjQL1bmseBWX3eJ2kl9gTw3qoB3TUe+qzC7iXSb6r5NDvxjvlzgz6D
-         yUTqy1zuUwMiLDO/rESJH1cMqqHkE0vwyrb7Ukg+h80SJrIy7M8cagqPmbGh04Pik/wW
-         +XfVx+DWoj+945JPJrx1/zSYsUr5oaTtpyILkZ6fnlGEgLatRfh2G6FkGNOyGBxMsfi6
-         EhVg==
-X-Gm-Message-State: AOAM5307cTbT/zbRqWMnHdniW4/9MkizbT0t5hebweOUBOYMTocCyrB5
-        XH1dU14Qg3aYLjZTqbBX30o0jA==
-X-Google-Smtp-Source: ABdhPJy12rVVQHuq3bXXn3UoG9OVnbgEgrR1ZyjIQRrQLx0ljxi9lbTbiNHXZhF0K0WKtUDYHYIOtA==
-X-Received: by 2002:ac2:43a4:: with SMTP id t4mr11750936lfl.197.1610981532713;
-        Mon, 18 Jan 2021 06:52:12 -0800 (PST)
-Received: from eriador.lumag.spb.ru ([188.162.64.4])
-        by smtp.gmail.com with ESMTPSA id h13sm1969697lfj.110.2021.01.18.06.52.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jan 2021 06:52:12 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-Subject: [PATCH v11 5/5] arm64: dts: qrb5165-rb5: port thermal zone definitions
-Date:   Mon, 18 Jan 2021 17:52:00 +0300
-Message-Id: <20210118145200.504951-6-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210118145200.504951-1-dmitry.baryshkov@linaro.org>
-References: <20210118145200.504951-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=09OWnlfXjcogYNVXeufU+daH3KK6SF0uozk3EDI2xc0=;
+        b=BkwHH5SmbgkVIJLrwnvB7Mg0CqA+IWg8FTUK5vM31G05y/Uyzg90YtNUiI7+8xRrWg
+         9ud1Cjg2/uExlMqHN+BrhPrH6M2IWAo8OmVnUuize0qBH1UNf3en46Cfew5uEFPgHQG7
+         qttdUPMWi6fn9+9fUDUsZF8EF+1uzSkaIgafjM/Yy1DH1S2w/VT9NKoZDQtRX9M6ugFw
+         4hJ8Q9N75TTYGXXvq16j6SxFOhJ1knHyJi4+/NuJzfgyUvMwSjYmGcYbS+IsYzWH36wD
+         PbtFK0xEzBEetsXherD0pYirIubU3/aivNo4dcC6T+caQv728wx3Y6oG+nPj+BXT/cVF
+         IUlA==
+X-Gm-Message-State: AOAM532kB0sitTFCYKGPYq8fjiib07AEjn2tmzR1UzgK3Z+7XrDyVbmk
+        xX9kxnUgQo2wtlADZfKSEBYXFdsw/pObqPV/c7ikOA==
+X-Google-Smtp-Source: ABdhPJy+a9+KdfIbj4llUoSCWn/X0q20L19eACDpfVzZgzCAWDztQO7cPFmXXFG84iqiR4H9I/Tc4icao+FF/ozbz+k=
+X-Received: by 2002:a50:d6dc:: with SMTP id l28mr19968203edj.105.1610981741946;
+ Mon, 18 Jan 2021 06:55:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210111054428.3273-1-dqfext@gmail.com> <20210111054428.3273-3-dqfext@gmail.com>
+In-Reply-To: <20210111054428.3273-3-dqfext@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 18 Jan 2021 15:55:30 +0100
+Message-ID: <CACRpkdYA2fWF_1K+2aYoZnBAsm9H3=VHpeT4ZDU5sCdrOUWx=w@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/2] drivers: net: dsa: mt7530: MT7530 optional
+ GPIO support
+To:     DENG Qingfang <dqfext@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        Frank Wunderlich <frank-w@public-files.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zones definitions basing on the downstream kernel.
+On Mon, Jan 11, 2021 at 6:46 AM DENG Qingfang <dqfext@gmail.com> wrote:
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 155 +++++++++++++++++++++++
- 1 file changed, 155 insertions(+)
+> MT7530's LED controller can drive up to 15 LED/GPIOs.
+>
+> Add support for GPIO control and allow users to use its GPIOs by
+> setting gpio-controller property in device tree.
+>
+> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index ce22d4fa383e..ef9452f0c6b2 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -66,6 +66,78 @@ bt {
- 
- 	};
- 
-+	thermal-zones {
-+		conn-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150b_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		pm8150l-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		skin-msm-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wifi-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <52000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		xo-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	vbat: vbat-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VBAT";
-@@ -420,6 +492,38 @@ &i2c15 {
- 	status = "okay";
- };
- 
-+&pm8150_adc {
-+	xo-therm@4c {
-+		reg = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	wifi-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150_adc_tm {
-+	status = "okay";
-+
-+	xo-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150_adc ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	wifi-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pm8150_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pm8150_gpios {
- 	gpio-reserved-ranges = <1 1>, <3 2>, <7 1>;
- 	gpio-line-names =
-@@ -435,6 +539,25 @@ &pm8150_gpios {
- 		"GPIO_10_P"; /* Green LED */
- };
- 
-+&pm8150b_adc {
-+	conn-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150b_adc_tm {
-+	status = "okay";
-+
-+	conn-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pm8150b_gpios {
- 	gpio-line-names =
- 		"NC",
-@@ -451,6 +574,38 @@ &pm8150b_gpios {
- 		"NC";
- };
- 
-+&pm8150l_adc {
-+	skin-msm-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pm8150l-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150l_adc_tm {
-+	status = "okay";
-+
-+	skin-msm-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150l_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	pm8150l-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pm8150l_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pm8150l_gpios {
- 	gpio-line-names =
- 		"NC",
--- 
-2.29.2
+Double-check the initial output conditions as indicated by
+Russell, if you really want to be thorough, use an oscilloscope
+but check the specs at least.
 
+> +static u32
+> +mt7530_gpio_to_bit(unsigned int offset)
+> +{
+> +       return BIT(offset + offset / 3);
+> +}
+
+So for offset 0..14 this becomes bits
+0, 1, 2, 4, 5, 6, 8, 9, 10, 12  ... 18
+
+What is the logic in this and is it what you intend?
+Please add a comment explaining what the offset is supposed
+to become for offsets 0..14 and why.
+
+> +       gc->ngpio = 15;
+
+And it really IS 15 not 16? Not that I know network equipment
+very well...
+
+Yours,
+Linus Walleij
