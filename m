@@ -2,312 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F9762F97AC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 03:11:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A3822F97EE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 03:50:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731162AbhARCLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 21:11:33 -0500
-Received: from foss.arm.com ([217.140.110.172]:48638 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731139AbhARCLZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Jan 2021 21:11:25 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C649214F6;
-        Sun, 17 Jan 2021 18:10:17 -0800 (PST)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C68BA3F719;
-        Sun, 17 Jan 2021 18:10:15 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Icenowy Zheng <icenowy@aosc.io>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, devicetree@vger.kernel.org
-Subject: [PATCH v3 21/21] arm64: dts: allwinner: Add OrangePi Zero 2 .dts
-Date:   Mon, 18 Jan 2021 02:08:48 +0000
-Message-Id: <20210118020848.11721-22-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20210118020848.11721-1-andre.przywara@arm.com>
-References: <20210118020848.11721-1-andre.przywara@arm.com>
+        id S1731162AbhARCuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 21:50:21 -0500
+Received: from mail-dm6nam10on2044.outbound.protection.outlook.com ([40.107.93.44]:4704
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731128AbhARCuT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Jan 2021 21:50:19 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=azxYsee1OCtFQbUriN1zwZAZ6KvqBoI8LamWWSOEelub5UgAMF27IVa+Hv2ua7T1iaCln0HCaCQDoonmslmKc1AVuCQy1ynkOW1XgSo2nA59viAy2vh0Gstt0xJ7yAeNNdwYY2pmcsM/C3ogotz484hsrZVKKbv0MidBZn9fZNduIHDuqR/zcDrT/Be+dkAhEvXHrmicWmJEocTkP1QM/2GmBnhppJ6obuSUqcw4W6tw1jV0w54zRLmQyML4Bkan+kbpmrDVaoRJjfiBIMZcBWH8hmxgm4WpfT8Ne7s18mo1iNeaC5Q0PkLDlPc5R4SjI3Aw1RPcyfrj23PfMlWR9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sewfEWt9Le9uh8w54oN736BzCE/Tb3R3X65VlU/nCLk=;
+ b=hiQm0xA5XBqlAV8WSR1BCv7HVtVRwnyYqe7rvdwW+JvczYQ+hUv0UkxGKpDTEHzN+xevKNXSeROie8NEgktZHBl4FhcTLqY6PpxRwtwYNeDl/9+m+OOq8exoGA8q2gCiag+sGSBPLCkHKoud7QkRVgAPSGu6hc6EyBCt0lQ5+qKXqRv83iapfZGm81tt/Bl35PeOKHTqItw5AoOTQk0asQutYfnJrWS3fZ9QkqlZ5X1sF7vivKWLEg5EUtxLhMNAbu3lpET4I+jy2r2LjSkP3APFfAfyZRyDyBn/Ic32bDBbyg9h0MN7tQPmX6ZrlQ4oatW53wlTxKejQIiCwfhidg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sewfEWt9Le9uh8w54oN736BzCE/Tb3R3X65VlU/nCLk=;
+ b=PV3386yO0JR4yDhn3X35Qi+sFvzpJI8+ZrQgNgx+A1rq+NVP2Qgt1L1s52xy6KmarOoumz+5eJA6citUFoRtb17PG5rc/otRRLVaQ2XMQ9c5e9qgdqfC/ojDqKIbwK+aPcC65jNiKI6Sf1Upx8zacjlMiYE6JoxPLnOJvqwAN5c=
+Received: from SN4PR0501CA0153.namprd05.prod.outlook.com
+ (2603:10b6:803:2c::31) by CH2PR02MB6614.namprd02.prod.outlook.com
+ (2603:10b6:610:a6::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.14; Mon, 18 Jan
+ 2021 02:49:24 +0000
+Received: from SN1NAM02FT029.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:2c:cafe::29) by SN4PR0501CA0153.outlook.office365.com
+ (2603:10b6:803:2c::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.6 via Frontend
+ Transport; Mon, 18 Jan 2021 02:49:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT029.mail.protection.outlook.com (10.152.72.110) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3763.12 via Frontend Transport; Mon, 18 Jan 2021 02:49:24 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Sun, 17 Jan 2021 18:49:18 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Sun, 17 Jan 2021 18:49:18 -0800
+Envelope-to: git@xilinx.com,
+ michal.simek@xilinx.com,
+ mdf@kernel.org,
+ trix@redhat.com,
+ robh+dt@kernel.org,
+ linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ chinnikishore369@gmail.com
+Received: from [10.140.6.60] (port=39926 helo=xhdnavam40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <nava.manne@xilinx.com>)
+        id 1l1KbV-0001PD-1j; Sun, 17 Jan 2021 18:49:17 -0800
+From:   Nava kishore Manne <nava.manne@xilinx.com>
+To:     <mdf@kernel.org>, <trix@redhat.com>, <robh+dt@kernel.org>,
+        <michal.simek@xilinx.com>, <linux-fpga@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <git@xilinx.com>, <chinnikishore369@gmail.com>,
+        Nava kishore Manne <nava.manne@xilinx.com>
+Subject: [PATCH 1/3] drivers: firmware: Add Pdi load API support
+Date:   Mon, 18 Jan 2021 08:13:16 +0530
+Message-ID: <20210118024318.9530-1-nava.manne@xilinx.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5a7bb548-df3e-4bc5-4637-08d8bb5baa34
+X-MS-TrafficTypeDiagnostic: CH2PR02MB6614:
+X-Microsoft-Antispam-PRVS: <CH2PR02MB66147C8BE60ACD5A86B97FC3C2A40@CH2PR02MB6614.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ai99X6/R8AW40anabKzCtwoI8dPDrYsE0O2ASvao1uXS02uZ4eUMTs3LN0hefDVx40h3YOw57Mqa2pY61kgnmL6nMzundTs08a1opI5RtcJh0Kop5tbKKix0LbaGtq1/yWlwVfMDHcT3D+ZS1N76I8ga6u2Vsk3dnGnWGrjzkEubUYC1Wfnp1/WNU/7PVm03I6TJQp8g4CZvklEQk2e4nf67eVI7DbUn0mDT2gvrwYIQPCdlyBLojVVzc5WpM2C5mgzM6683IquV4+Z0R+2obX9sBh962hpWFNGZ/OuJlfBbjw50VMbtkolM3unexdsgiAzsrXWPDZKc6pK4FEjNxmhO5noPg4Hi625fW6ZCXy395YImhBoC4hzJXI1mbfazTn6EQK5Z8CAVeGJtN0Vv95HqWml1CrNEAHv3u/3PCndCrSeQJRl3TRITnQ6JAsCHL6s2P9Ho8QDd37TIjOnWwDeAMohewE/BiGtVvGjohCadZLJXj5CUsMtyjivyGdeRTummEoLvCK9407xlfAD6Ww==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(346002)(376002)(136003)(39850400004)(46966006)(70586007)(2906002)(70206006)(426003)(9786002)(336012)(36906005)(83380400001)(47076005)(5660300002)(8676002)(316002)(186003)(54906003)(110136005)(356005)(82310400003)(26005)(7636003)(2616005)(8936002)(82740400003)(107886003)(7696005)(1076003)(478600001)(4326008)(36756003)(102446001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2021 02:49:24.4106
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a7bb548-df3e-4bc5-4637-08d8bb5baa34
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT029.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6614
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OrangePi Zero 2 is a development board with the new H616 SoC.
+This patch adds load pdi api support to enable pdi/partial loading from
+linux. Programmable Device Image (PDI) is combination of headers, images
+and bitstream files to be loaded. Partial PDI is partial set of image/
+images to be loaded.
 
-It features the usual connectors used on those small boards, and comes
-with the AXP305, which seems to be compatible with the AXP805.
-
-For more details see: http://linux-sunxi.org/Xunlong_Orange_Pi_Zero2
-
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
 ---
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../allwinner/sun50i-h616-orangepi-zero2.dts  | 240 ++++++++++++++++++
- 2 files changed, 241 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+ drivers/firmware/xilinx/zynqmp.c     | 17 +++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h |  9 +++++++++
+ 2 files changed, 26 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 41ce680e5f8d..9ba4b5d92657 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -36,3 +36,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-new file mode 100644
-index 000000000000..7f49d192fe41
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-@@ -0,0 +1,240 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2020 Arm Ltd.
+diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
+index 7eb9958662dd..a466225b9f9e 100644
+--- a/drivers/firmware/xilinx/zynqmp.c
++++ b/drivers/firmware/xilinx/zynqmp.c
+@@ -897,6 +897,23 @@ int zynqmp_pm_set_requirement(const u32 node, const u32 capabilities,
+ }
+ EXPORT_SYMBOL_GPL(zynqmp_pm_set_requirement);
+ 
++/**
++ * zynqmp_pm_load_pdi - Load and process pdi
++ * @src:       Source device where PDI is located
++ * @address:   Pdi src address
++ *
++ * This function provides support to load pdi from linux
++ *
++ * Return: Returns status, either success or error+reason
 + */
++int zynqmp_pm_load_pdi(const u32 src, const u64 address)
++{
++	return zynqmp_pm_invoke_fn(PM_LOAD_PDI, src,
++				   lower_32_bits(address),
++				   upper_32_bits(address), 0, NULL);
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_load_pdi);
 +
-+/dts-v1/;
+ /**
+  * zynqmp_pm_aes - Access AES hardware to encrypt/decrypt the data using
+  * AES-GCM core.
+diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+index 2a0da841c942..87114ee645b1 100644
+--- a/include/linux/firmware/xlnx-zynqmp.h
++++ b/include/linux/firmware/xlnx-zynqmp.h
+@@ -52,6 +52,9 @@
+ #define	ZYNQMP_PM_CAPABILITY_WAKEUP	0x4U
+ #define	ZYNQMP_PM_CAPABILITY_UNUSABLE	0x8U
+ 
++/* Loader commands */
++#define PM_LOAD_PDI	0x701
 +
-+#include "sun50i-h616.dtsi"
+ /*
+  * Firmware FPGA Manager flags
+  * XILINX_ZYNQMP_PM_FPGA_FULL:	FPGA full reconfiguration
+@@ -354,6 +357,7 @@ int zynqmp_pm_write_pggs(u32 index, u32 value);
+ int zynqmp_pm_read_pggs(u32 index, u32 *value);
+ int zynqmp_pm_system_shutdown(const u32 type, const u32 subtype);
+ int zynqmp_pm_set_boot_health_status(u32 value);
++int zynqmp_pm_load_pdi(const u32 src, const u64 address);
+ #else
+ static inline struct zynqmp_eemi_ops *zynqmp_pm_get_eemi_ops(void)
+ {
+@@ -538,6 +542,11 @@ static inline int zynqmp_pm_set_boot_health_status(u32 value)
+ {
+ 	return -ENODEV;
+ }
 +
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "OrangePi Zero2";
-+	compatible = "xunlong,orangepi-zero2", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		ethernet0 = &emac0;
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&pio 2 12 GPIO_ACTIVE_HIGH>; /* PC12 */
-+			default-state = "on";
-+		};
-+
-+		led-1 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-+		};
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the USB-C socket */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_usb1_vbus: usb1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb1-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_vcc5v>;
-+		enable-active-high;
-+		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
-+		status = "okay";
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+/* USB 2 & 3 are on headers only. */
-+
-+&emac0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ext_rgmii_pins>;
-+	phy-mode = "rgmii";
-+	phy-handle = <&ext_rgmii_phy>;
-+	phy-supply = <&reg_dcdce>;
-+	allwinner,rx-delay-ps = <3100>;
-+	allwinner,tx-delay-ps = <700>;
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	ext_rgmii_phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+	};
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_dcdce>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&r_rsb {
-+	status = "okay";
-+
-+	axp305: pmic@745 {
-+		compatible = "x-powers,axp305", "x-powers,axp805",
-+			     "x-powers,axp806";
-+		reg = <0x745>;
-+
-+		x-powers,self-working-mode;
-+		vina-supply = <&reg_vcc5v>;
-+		vinb-supply = <&reg_vcc5v>;
-+		vinc-supply = <&reg_vcc5v>;
-+		vind-supply = <&reg_vcc5v>;
-+		vine-supply = <&reg_vcc5v>;
-+		aldoin-supply = <&reg_vcc5v>;
-+		bldoin-supply = <&reg_vcc5v>;
-+		cldoin-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-sys";
-+			};
-+
-+			reg_aldo2: aldo2 {	/* 3.3V on headers */
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3-ext";
-+			};
-+
-+			reg_aldo3: aldo3 {	/* 3.3V on headers */
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3-ext2";
-+			};
-+
-+			reg_bldo1: bldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			bldo2 {
-+				/* unused */
-+			};
-+
-+			bldo3 {
-+				/* unused */
-+			};
-+
-+			bldo4 {
-+				/* unused */
-+			};
-+
-+			cldo1 {
-+				/* reserved */
-+			};
-+
-+			cldo2 {
-+				/* unused */
-+			};
-+
-+			cldo3 {
-+				/* unused */
-+			};
-+
-+			reg_dcdca: dcdca {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdcc: dcdcc {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdcd: dcdcd {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-name = "vdd-dram";
-+			};
-+
-+			reg_dcdce: dcdce {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-eth-mmc";
-+			};
-+
-+			sw {
-+				/* unused */
-+			};
-+		};
-+	};
-+};
-+
-+&spi0  {
-+	status = "okay";
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <40000000>;
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_usb1_vbus>;
-+	status = "okay";
-+};
++static inline int zynqmp_pm_load_pdi(const u32 src, const u64 address)
++{
++	return -ENODEV;
++}
+ #endif
+ 
+ #endif /* __FIRMWARE_ZYNQMP_H__ */
 -- 
-2.17.5
+2.18.0
 
