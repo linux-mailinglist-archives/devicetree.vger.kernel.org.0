@@ -2,130 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D71A72FA16E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 14:27:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A0E2FA1AA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 14:33:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404511AbhARNZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 08:25:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40030 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404508AbhARNZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 08:25:35 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C7CDC061573
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 05:24:55 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1l1UWU-0000Fu-4s; Mon, 18 Jan 2021 14:24:46 +0100
-Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1l1UWT-0001h5-2N; Mon, 18 Jan 2021 14:24:45 +0100
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        id S2392085AbhARNbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 08:31:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35152 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2392245AbhARN3o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 08:29:44 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 52E2622D3E;
+        Mon, 18 Jan 2021 13:28:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610976499;
+        bh=ER44iK7yD08nTVE0Gmc9J0iq1NcY3wonsHp6uZKbQG8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DYUg0oEuvGPRdLbKChKcbWun+yfepbQfHp5228jiVrb/6wdrBk8zNApGezf143EvL
+         gRy/ANNBcS0zCTqtIQdZisweYUC3YnBK+z2L1VUMLrlgNpWmnK9tKuTy2VC4TjBs3P
+         QPu/fZ8G7i4UMKdAjqp49HA+vkc6k9lfYRLYs50oTWu6kjOrmDz/T7wpcTnqkhvMJw
+         CDDqluhSMY+ovBz2tzu9NMrrlNhvnolTGu+dBke8DdMOv7FpuLfpIf+Phu5+ryJCv7
+         lZ+/sZ2oNaWTFTYKk5kOH8Pe9TnmnV+nCPw49IoFQvijj5Xt79pt7GfxGqPvHPoVAU
+         lnT5IaUJ4IQsw==
+Received: by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1l1UZs-000Vkc-9x; Mon, 18 Jan 2021 14:28:16 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Colin Ian King <colin.king@canonical.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     Kamel Bouhara <kamel.bouhara@bootlin.com>, ceggers@arri.de,
-        kernel@pengutronix.de, Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4] nvmem: core: skip child nodes not matching binding
-Date:   Mon, 18 Jan 2021 14:24:11 +0100
-Message-Id: <20210118132411.6268-1-a.fatoum@pengutronix.de>
-X-Mailer: git-send-email 2.30.0
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mayulong <mayulong1@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
+        YueHaibing <yuehaibing@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/13] Move Hisilicon 6421v600 SPMI driver set out of staging
+Date:   Mon, 18 Jan 2021 14:28:01 +0100
+Message-Id: <cover.1610975633.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: afa@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The nvmem cell binding applies to all eeprom child nodes matching
-"^.*@[0-9a-f]+$" without taking a compatible into account.
+Hi Mark,
 
-Linux drivers, like at24, are even more extensive and assume
-_all_ at24 eeprom child nodes to be nvmem cells since e888d445ac33
-("nvmem: resolve cells from DT at registration time").
+This patch series finish addressing support for Hikey 970
+SPMI controller, PMIC and regulators.
 
-Since df5f3b6f5357 ("dt-bindings: nvmem: stm32: new property for
-data access"), the additionalProperties: True means it's Ok to have
-other properties as long as they don't match "^.*@[0-9a-f]+$".
+I removed some unrelated DT patches from this series,
+plus the Hikey 970 PHY USB3 code from it, in order to avoid
+mixing different stuff on this series[1].
 
-The barebox bootloader extends the MTD partitions binding to
-EEPROM and can fix up following device tree node:
+[1] Those unrelated patches were submitted last week on
+separate series.
 
-  &eeprom {
-    partitions {
-      compatible = "fixed-partitions";
-    };
-  };
+The entire patchset is on this branch:
 
-This is allowed binding-wise, but drivers using nvmem_register()
-like at24 will fail to parse because the function expects all child
-nodes to have a reg property present. This results in the whole
-EEPROM driver probe failing despite the device tree being correct.
+	https://git.linuxtv.org/mchehab/experimental.git/log/?h=devel/destage-usb
 
-Fix this by skipping nodes lacking a reg property instead of
-returning an error. This effectively makes the drivers adhere
-to the binding because all nodes with a unit address must have
-a reg property and vice versa.
+In order to make easier for review, this series was generated
+with --no-merges. So, you don't need to take a look at the
+staging patches, as the entire code will be there on patches 9-11.
 
-Fixes: e888d445ac33 ("nvmem: resolve cells from DT at registration time").
-Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Patches 12 and 13 on this series will require that the other
+patch series to get merged first. It probably makes sense to be
+merged via DT tree. I opted to add them here just because,
+on the last submission, you asked to see the DT patches. 
 
----
-Previous Discussion: https://lore.kernel.org/lkml/20200428111829.2215-1-a.fatoum@pengutronix.de/
-v1:
-  - Ignore all nodes with a unit address (i.e. contain @)
-v1 -> v2:
-  - use ->full_name instead of ->name as to not break existing correct
-    cells (Christian)
-v2 -> v3:
-  - use optional compatible property to weed out nodes instead of name
-  - extend binding documentation (Srini)
-v3 -> v4:
-  - drop optional nvmem-cell compatible because it's redundant (Rob)
-  - Make driver adhere to binding instead of changing binding
+On this version 2, I addressed almost all issues you pointed during
+your review:
 
-As review feedback on v3, Rob suggested moving nvmem cells into a
-separate MTD partition. This sound good for people who want MTD
-partitions and nvmem to coexist, but my problem described above where
-MTD partitions are already fixed up top level into an EEPROM node isn't
-solved by this. Revisiting the issue, I think the correct way forward is
-along the lines of v1 & v2, where the driver is fixed to actually adhere
-to the existing binding. Srini didn't like string matching for @ in driver
-code, so I now check for presence of reg instead. They are equivalent
-per device tree specification. From v0.3:
+- this driver's probe routine is very similar to the one at the non-SPMI
+  variant of Hisilicon 6421;
+- The register/voltage data were moved from DT into the driver itself;
+- It doesn't have anymore any static data;
+- All debug messages got removed;
+- Addressed a few be32 warnings from sparse.
 
-  "The unit-address must match the first address specified in the
-  reg property of the node. If the node has no reg property, the
-  @unit-address must be omitted"...
+Regards,
+Mauro
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
- drivers/nvmem/core.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Mauro Carvalho Chehab (13):
+  staging: hikey9xx: hisilicon,hisi-spmi-controller.yaml fix bindings
+  staging: hikey9xx: hisi-spmi-controller: clean sparse warnings
+  staging: hikey9xx: hi6421v600-regulator: do some cleanups
+  staging: hikey9xx: hi6421v600-regulator: move LDO config from DT
+  staging: hikey9xx: hi6421v600-regulator: cleanup debug msgs
+  staging: hikey9xx: hisilicon,hi6421-spmi-pmic.yaml: simplify props
+  staging: hikey970: get rid of an static data
+  staging: hikey9xx: hi6421v600-regulator: do some cleanups
+  spmi: hi6421-spmi-pmic: move driver from staging
+  mfd: hi6421-spmi-pmic: move driver from staging
+  regulator: hi6421v600-regulator: move it from staging
+  dts: hisilicon: add support for USB3 on Hikey 970
+  dts: hisilicon: add support for the PMIC found on Hikey 970
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 177f5bf27c6d..f114df55f403 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -682,7 +682,9 @@ static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
- 
- 	for_each_child_of_node(parent, child) {
- 		addr = of_get_property(child, "reg", &len);
--		if (!addr || (len < 2 * sizeof(u32))) {
-+		if (!addr)
-+			continue;
-+		if (len < 2 * sizeof(u32)) {
- 			dev_err(dev, "nvmem: invalid reg on %pOF\n", child);
- 			return -EINVAL;
- 		}
+ .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 135 +++++
+ .../spmi/hisilicon,hisi-spmi-controller.yaml  |  75 +++
+ MAINTAINERS                                   |  15 +-
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    | 124 ++++-
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  58 +++
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  87 ++++
+ drivers/mfd/Kconfig                           |  15 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/hi6421-spmi-pmic.c                | 342 +++++++++++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/hi6421v600-regulator.c      | 347 +++++++++++++
+ drivers/spmi/Kconfig                          |   9 +
+ drivers/spmi/Makefile                         |   1 +
+ drivers/spmi/hisi-spmi-controller.c           | 358 +++++++++++++
+ drivers/staging/Kconfig                       |   2 -
+ drivers/staging/Makefile                      |   1 -
+ drivers/staging/hikey9xx/Kconfig              |  38 --
+ drivers/staging/hikey9xx/Makefile             |   5 -
+ drivers/staging/hikey9xx/TODO                 |   5 -
+ drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 342 -------------
+ .../staging/hikey9xx/hi6421v600-regulator.c   | 478 ------------------
+ .../staging/hikey9xx/hisi-spmi-controller.c   | 358 -------------
+ .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 159 ------
+ .../hisilicon,hisi-spmi-controller.yaml       |  62 ---
+ 25 files changed, 1554 insertions(+), 1472 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+ create mode 100644 Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
+ create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+ create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
+ create mode 100644 drivers/regulator/hi6421v600-regulator.c
+ create mode 100644 drivers/spmi/hisi-spmi-controller.c
+ delete mode 100644 drivers/staging/hikey9xx/Kconfig
+ delete mode 100644 drivers/staging/hikey9xx/Makefile
+ delete mode 100644 drivers/staging/hikey9xx/TODO
+ delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+ delete mode 100644 drivers/staging/hikey9xx/hi6421v600-regulator.c
+ delete mode 100644 drivers/staging/hikey9xx/hisi-spmi-controller.c
+ delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
+ delete mode 100644 drivers/staging/hikey9xx/hisilicon,hisi-spmi-controller.yaml
+
 -- 
-2.30.0
+2.29.2
+
 
