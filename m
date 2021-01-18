@@ -2,108 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6892FA4E9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:39:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 392A32FA569
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:59:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391316AbhARPhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 10:37:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392484AbhARPfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:35:43 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51AD2C061757
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:35:02 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 190so13984872wmz.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:35:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PU8JAhvN4zUsrfhkKJ3/U+lzCe3kpuol8jLKQfI+x5M=;
-        b=Ft3KErTXOHq5QcXbEobfzgK8Gf7EjBtWIZDiuSkD72B8gK7VvfcLCtPp/hZ8JuHuaj
-         uroX8moLdNwpGW0foiUal0VbqQayQsWQUG6ONnnYmsLnxql436zRI8QWaT4MomVExnPj
-         JRajFo8XyBfDGfRtXuZupfM3rbwmEKnNr30oLneAZJPwBSGkYW1WKrF+mRld47INz4W2
-         qTUsFItaXxifel9I3qeFAztbcdz6vaT8mmwJ48IszxZkklexnWu4siLs+URTz2kXhAlV
-         ndP8E3pla+lmvJzApg893H+KsiUGj0TPLKWAdaZs79xH5kBl4+YPu/LNmlYjE0yWEKsA
-         bOLw==
+        id S2405957AbhARP6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 10:58:16 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:37780 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405901AbhARPrz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:47:55 -0500
+Received: by mail-ot1-f50.google.com with SMTP id o11so16656713ote.4;
+        Mon, 18 Jan 2021 07:47:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PU8JAhvN4zUsrfhkKJ3/U+lzCe3kpuol8jLKQfI+x5M=;
-        b=J7f4QAi/TB8zgiLNKDk55Tw88UJ6wjYdUTvN7GjhCiUndv/YSrEoOsxGw2nwgHkKSj
-         H+8jYb5jnjEHiCPEMaElncAFThwapPYITeqnO4SOUzYK5e2fqfDllk0yFRx4lmY5RXnE
-         FqcSTd+cymN/p+EnI6y00deSbCG4er5OzKDqykoO93wyj1NsYVBQsraXytxNnZBRofRy
-         HUyhTkBRTEeoCRE1jhc8VgzA1+T5VPEbzZt6KPHH/7JlYGEiPrH0xR0Sfxo6oyLlzSso
-         1HZMs5i4isQPwlpe0DLHLN5f3FiGBOZpPoaXhRvPYuKMawkxlmlvUM4De0SbSUMUD5+1
-         21Rw==
-X-Gm-Message-State: AOAM530c9nl+y9B2I1bGorv5lIu6ECFLtXWk+s3SrT8T7Yys9ryBpS5e
-        U2lm7DBlIw8gRfw9+hSfq9zdQg==
-X-Google-Smtp-Source: ABdhPJy7Qf+dR3dTGNomfdXFejG6kvnctAApzuCxs3vM5dctK4LY7mW25LdpmWsSzHonrRc5DG4brw==
-X-Received: by 2002:a1c:c205:: with SMTP id s5mr7211954wmf.129.1610984100986;
-        Mon, 18 Jan 2021 07:35:00 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:2095:8614:d69:136f? ([2a01:e34:ed2f:f020:2095:8614:d69:136f])
-        by smtp.googlemail.com with ESMTPSA id c16sm30141331wrx.51.2021.01.18.07.34.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jan 2021 07:35:00 -0800 (PST)
-Subject: Re: [PATCH v2 0/2] Add drivers for Intel Keem Bay SoC timer block
-To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        "Seow, Chen Yong" <chen.yong.seow@intel.com>
-References: <cover.1609306622.git.vijayakannan.ayyathurai@intel.com>
- <DM6PR11MB4250A1E8C1F2CA97516A2E59FBA90@DM6PR11MB4250.namprd11.prod.outlook.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <98fd451c-828e-e2e4-8462-51f9c88b6f1e@linaro.org>
-Date:   Mon, 18 Jan 2021 16:34:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <DM6PR11MB4250A1E8C1F2CA97516A2E59FBA90@DM6PR11MB4250.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=WHAijgRPzgM6AOFxyA1t0PneGLCP7qF9iSM709PN7no=;
+        b=gSiTDR/yvkXHwlbpvd1f0RUm8x1TJDtM3cnPi9GufhQIKSrfrjzm5ICmHFJd4Bq0bw
+         w7JpYOYMXlh0uTxhlabov4J261Q7WVOcjsyEnnJV0ZNtq/CcvLVWzZcHBUem10xr8q3n
+         UFiwMdvvHrMMNUR9M2l5r4WMyq/A+7ysECfMEt3luw6uy3Af+56XXmtUK48r7dYMKaKT
+         R34b2YDs83H39zOlQ1/Z1EO84cS0bteIONKSKjC2nfSKwMjXpbWRTWYEW9S3FF1UHkgN
+         YwMhJffmjR2y/NKGTK4jYMqj+qz7ERhM8Il5mSth6T2J3hZDGEFHP8qx3H3a/4NKmohY
+         jyNQ==
+X-Gm-Message-State: AOAM531r2C5TD9a84TX36+Pfkln5HiVlQVHWw5cmL79hbK+hk3dgJVy3
+        lfI3Rt6aqYv4t5HZL4ORAA==
+X-Google-Smtp-Source: ABdhPJwMs7UNxARBHzKpWRi3Gfe2AEbExUF2dRMnHv6f7YY4I9jyFTC64qaSblOnLQPi2S5WTivgVg==
+X-Received: by 2002:a9d:6255:: with SMTP id i21mr66114otk.346.1610984832609;
+        Mon, 18 Jan 2021 07:47:12 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x31sm3819079otb.4.2021.01.18.07.47.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jan 2021 07:47:10 -0800 (PST)
+Received: (nullmailer pid 3984439 invoked by uid 1000);
+        Mon, 18 Jan 2021 15:47:02 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
+        linux-kernel@vger.kernel.org, mdf@kernel.org, robh+dt@kernel.org,
+        trix@redhat.com, devicetree@vger.kernel.org, git@xilinx.com,
+        linux-fpga@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        chinnikishore369@gmail.com, michal.simek@xilinx.com
+In-Reply-To: <20210118024318.9530-2-nava.manne@xilinx.com>
+References: <20210118024318.9530-1-nava.manne@xilinx.com> <20210118024318.9530-2-nava.manne@xilinx.com>
+Subject: Re: [PATCH 2/3] dt-bindings: fpga: Add binding doc for versal fpga manager
+Date:   Mon, 18 Jan 2021 09:47:02 -0600
+Message-Id: <1610984822.721524.3984438.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2021 11:54, Ayyathurai, Vijayakannan wrote:
-> Hi,
+On Mon, 18 Jan 2021 08:13:17 +0530, Nava kishore Manne wrote:
+> From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
 > 
->> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
->>
->> Changes since v1:
->>  - Add support for KEEMBAY_TIMER to get selected through Kconfig.platforms.
->>  - Add CLOCK_EVT_FEAT_DYNIRQ as part of clockevent feature.
->>  - Avoid overlapping reg regions across 2 device nodes.
->>  - Simplify 2 device nodes as 1 because both are from same IP block.
->>  - Adapt the driver code according to the new simplified devicetree.
->>
->> Vijayakannan Ayyathurai (2):
->>   dt-bindings: timer: Add bindings for Intel Keem Bay SoC timer
->>   clocksource: Add Intel Keem Bay Timer Support
+> This patch adds binding doc for versal fpga manager driver.
 > 
-> Kindly help us to review this updated patch(v2) set.
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+> ---
+>  .../bindings/fpga/xlnx,versal-fpga.yaml       | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
+> 
 
-Review in progress ... :)
+My bot found errors running 'make dt_binding_check' on your patch:
 
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml:15:1: [error] syntax error: could not find expected ':' (syntax)
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a simple key
+  in "<unicode string>", line 14, column 1
+could not find expected ':'
+  in "<unicode string>", line 15, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml:  while scanning a simple key
+  in "<unicode string>", line 14, column 1
+could not find expected ':'
+  in "<unicode string>", line 15, column 1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
+make: *** [Makefile:1370: dt_binding_check] Error 2
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+See https://patchwork.ozlabs.org/patch/1427979
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
