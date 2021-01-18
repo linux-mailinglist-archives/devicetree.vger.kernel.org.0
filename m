@@ -2,225 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D971C2FA584
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:03:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89DEE2FA5D8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:17:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405782AbhARQDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 11:03:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34892 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2406310AbhARQDb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 11:03:31 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2DC4F22B49;
-        Mon, 18 Jan 2021 16:02:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610985770;
-        bh=3M/vvoFedZclJuVsFaENrRMbkyh6UMmQAfselLSVG6I=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=FoL/1quOtrqnRQoSL8iO6o9mRWMIvM7bwXmMlI1qAmpIfLun4vjCN0X9mzW5nKW7V
-         Wq7OAcoFW2mkXa8vhCgUL6FDYckb8bMYBD47WOxtvSm+6vhAzL2neE5s6IXGzsJPU2
-         qqf/kyyPjENuCrYHccjYY27O2X6WitYrPbW1GGj+40BPmUVcPhAL2aT6MxOuUV+Drx
-         lhSod1AoaJv623tNQnRU9ypvVtxKa3PjD2Nfwo9bcJ+eaSW1kAEXKWcQPCu/T4eHyH
-         CF4xAwE1upW9CpM2yqjTVH5G68r9IQbeTJcCw2Dt1JdwqOp3Nj4ZLPUUUvHxOBM6OZ
-         SQESl6/mfh9Ug==
-Date:   Mon, 18 Jan 2021 17:02:45 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mayulong <mayulong1@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 11/13] regulator: hi6421v600-regulator: move it from
- staging
-Message-ID: <20210118170245.1bf5160f@coco.lan>
-In-Reply-To: <20210118135440.GM4455@sirena.org.uk>
-References: <cover.1610975633.git.mchehab+huawei@kernel.org>
-        <d0a7cae3c654d25e01b0c436e00de55a21cd7f64.1610975633.git.mchehab+huawei@kernel.org>
-        <20210118135440.GM4455@sirena.org.uk>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S2406218AbhARQQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 11:16:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406536AbhARQPr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 11:15:47 -0500
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D082C061574
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 08:15:06 -0800 (PST)
+Received: from localhost.localdomain (abaf224.neoplus.adsl.tpnet.pl [83.6.169.224])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id E1BC41F524;
+        Mon, 18 Jan 2021 17:15:02 +0100 (CET)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] clk: qcom: smd: Add missing RPM clocks for msm8992/4
+Date:   Mon, 18 Jan 2021 17:14:41 +0100
+Message-Id: <20210118161442.104660-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Mon, 18 Jan 2021 13:54:40 +0000
-Mark Brown <broonie@kernel.org> escreveu:
+This was omitted when first adding the clocks for these SoCs.
 
-> On Mon, Jan 18, 2021 at 02:28:12PM +0100, Mauro Carvalho Chehab wrote:
-> 
-> > index f385146d2bd1..3b23ad56b31a 100644
-> > --- a/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-> > @@ -60,6 +60,8 @@ required:
-> >    - reg
-> >    - regulators
-> >  
-> > +additionalProperties: false
-> > +
-> >  examples:
-> >    - |
-> >      /* pmic properties */  
-> 
-> Why is this part of this patch?
+Fixes: b4297844995 ("clk: qcom: smd: Add support for MSM8992/4 rpm clocks")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ drivers/clk/qcom/clk-smd-rpm.c         | 16 ++++++++++++++++
+ include/dt-bindings/clock/qcom,rpmcc.h |  2 ++
+ include/linux/soc/qcom/smd-rpm.h       |  1 +
+ 3 files changed, 19 insertions(+)
 
-I'll place on a separate one.
+diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
+index 0e1dfa89489e..91d610042a5d 100644
+--- a/drivers/clk/qcom/clk-smd-rpm.c
++++ b/drivers/clk/qcom/clk-smd-rpm.c
+@@ -624,6 +624,8 @@ static const struct rpm_smd_clk_desc rpm_clk_msm8976 = {
+ };
+ 
+ /* msm8992 */
++DEFINE_CLK_SMD_RPM_BRANCH(msm8992, bi_tcxo, bi_tcxo_a, QCOM_SMD_RPM_MISC_CLK, 0,
++								19200000);
+ DEFINE_CLK_SMD_RPM(msm8992, pnoc_clk, pnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 0);
+ DEFINE_CLK_SMD_RPM(msm8992, ocmemgx_clk, ocmemgx_a_clk, QCOM_SMD_RPM_MEM_CLK, 2);
+ DEFINE_CLK_SMD_RPM(msm8992, bimc_clk, bimc_a_clk, QCOM_SMD_RPM_MEM_CLK, 0);
+@@ -642,6 +644,8 @@ DEFINE_CLK_SMD_RPM(msm8992, ipa_clk, ipa_a_clk, QCOM_SMD_RPM_IPA_CLK, 0);
+ DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8992, ln_bb_clk, ln_bb_a_clk, 8);
+ DEFINE_CLK_SMD_RPM(msm8992, mmssnoc_ahb_clk, mmssnoc_ahb_a_clk,
+ 		   QCOM_SMD_RPM_BUS_CLK, 3);
++DEFINE_CLK_SMD_RPM_BRANCH(msm8992, mss_cfg_ahb_clk, mss_cfg_ahb_a_clk,
++			QCOM_SMD_RPM_MFFG_CLK, 0, 19200000);
+ DEFINE_CLK_SMD_RPM_QDSS(msm8992, qdss_clk, qdss_a_clk,
+ 			QCOM_SMD_RPM_MISC_CLK, 1);
+ DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8992, rf_clk1, rf_clk1_a, 4);
+@@ -653,6 +657,8 @@ DEFINE_CLK_SMD_RPM(msm8992, ce1_clk, ce1_a_clk, QCOM_SMD_RPM_CE_CLK, 0);
+ DEFINE_CLK_SMD_RPM(msm8992, ce2_clk, ce2_a_clk, QCOM_SMD_RPM_CE_CLK, 1);
+ 
+ static struct clk_smd_rpm *msm8992_clks[] = {
++	[RPM_SMD_XO_CLK_SRC] = &msm8992_bi_tcxo,
++	[RPM_SMD_XO_A_CLK_SRC] = &msm8992_bi_tcxo_a,
+ 	[RPM_SMD_PNOC_CLK] = &msm8992_pnoc_clk,
+ 	[RPM_SMD_PNOC_A_CLK] = &msm8992_pnoc_a_clk,
+ 	[RPM_SMD_OCMEMGX_CLK] = &msm8992_ocmemgx_clk,
+@@ -685,6 +691,8 @@ static struct clk_smd_rpm *msm8992_clks[] = {
+ 	[RPM_SMD_LN_BB_A_CLK] = &msm8992_ln_bb_a_clk,
+ 	[RPM_SMD_MMSSNOC_AHB_CLK] = &msm8992_mmssnoc_ahb_clk,
+ 	[RPM_SMD_MMSSNOC_AHB_A_CLK] = &msm8992_mmssnoc_ahb_a_clk,
++	[RPM_SMD_MSS_CFG_AHB_CLK] = &msm8992_mss_cfg_ahb_clk,
++	[RPM_SMD_MSS_CFG_AHB_A_CLK] = &msm8992_mss_cfg_ahb_a_clk,
+ 	[RPM_SMD_QDSS_CLK] = &msm8992_qdss_clk,
+ 	[RPM_SMD_QDSS_A_CLK] = &msm8992_qdss_a_clk,
+ 	[RPM_SMD_RF_CLK1] = &msm8992_rf_clk1,
+@@ -707,6 +715,8 @@ static const struct rpm_smd_clk_desc rpm_clk_msm8992 = {
+ };
+ 
+ /* msm8994 */
++DEFINE_CLK_SMD_RPM_BRANCH(msm8994, bi_tcxo, bi_tcxo_a, QCOM_SMD_RPM_MISC_CLK, 0,
++								19200000);
+ DEFINE_CLK_SMD_RPM(msm8994, pnoc_clk, pnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 0);
+ DEFINE_CLK_SMD_RPM(msm8994, ocmemgx_clk, ocmemgx_a_clk, QCOM_SMD_RPM_MEM_CLK, 2);
+ DEFINE_CLK_SMD_RPM(msm8994, bimc_clk, bimc_a_clk, QCOM_SMD_RPM_MEM_CLK, 0);
+@@ -725,6 +735,8 @@ DEFINE_CLK_SMD_RPM(msm8994, ipa_clk, ipa_a_clk, QCOM_SMD_RPM_IPA_CLK, 0);
+ DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8994, ln_bb_clk, ln_bb_a_clk, 8);
+ DEFINE_CLK_SMD_RPM(msm8994, mmssnoc_ahb_clk, mmssnoc_ahb_a_clk,
+ 		   QCOM_SMD_RPM_BUS_CLK, 3);
++DEFINE_CLK_SMD_RPM_BRANCH(msm8994, mss_cfg_ahb_clk, mss_cfg_ahb_a_clk,
++			QCOM_SMD_RPM_MFFG_CLK, 0, 19200000);
+ DEFINE_CLK_SMD_RPM_QDSS(msm8994, qdss_clk, qdss_a_clk,
+ 			QCOM_SMD_RPM_MISC_CLK, 1);
+ DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8994, rf_clk1, rf_clk1_a, 4);
+@@ -737,6 +749,8 @@ DEFINE_CLK_SMD_RPM(msm8994, ce2_clk, ce2_a_clk, QCOM_SMD_RPM_CE_CLK, 1);
+ DEFINE_CLK_SMD_RPM(msm8994, ce3_clk, ce3_a_clk, QCOM_SMD_RPM_CE_CLK, 2);
+ 
+ static struct clk_smd_rpm *msm8994_clks[] = {
++	[RPM_SMD_XO_CLK_SRC] = &msm8994_bi_tcxo,
++	[RPM_SMD_XO_A_CLK_SRC] = &msm8994_bi_tcxo_a,
+ 	[RPM_SMD_PNOC_CLK] = &msm8994_pnoc_clk,
+ 	[RPM_SMD_PNOC_A_CLK] = &msm8994_pnoc_a_clk,
+ 	[RPM_SMD_OCMEMGX_CLK] = &msm8994_ocmemgx_clk,
+@@ -769,6 +783,8 @@ static struct clk_smd_rpm *msm8994_clks[] = {
+ 	[RPM_SMD_LN_BB_A_CLK] = &msm8994_ln_bb_a_clk,
+ 	[RPM_SMD_MMSSNOC_AHB_CLK] = &msm8994_mmssnoc_ahb_clk,
+ 	[RPM_SMD_MMSSNOC_AHB_A_CLK] = &msm8994_mmssnoc_ahb_a_clk,
++	[RPM_SMD_MSS_CFG_AHB_CLK] = &msm8994_mss_cfg_ahb_clk,
++	[RPM_SMD_MSS_CFG_AHB_A_CLK] = &msm8994_mss_cfg_ahb_a_clk,
+ 	[RPM_SMD_QDSS_CLK] = &msm8994_qdss_clk,
+ 	[RPM_SMD_QDSS_A_CLK] = &msm8994_qdss_a_clk,
+ 	[RPM_SMD_RF_CLK1] = &msm8994_rf_clk1,
+diff --git a/include/dt-bindings/clock/qcom,rpmcc.h b/include/dt-bindings/clock/qcom,rpmcc.h
+index 8aaba7cd9589..e8e256dbcc8a 100644
+--- a/include/dt-bindings/clock/qcom,rpmcc.h
++++ b/include/dt-bindings/clock/qcom,rpmcc.h
+@@ -149,5 +149,7 @@
+ #define RPM_SMD_CE2_A_CLK			103
+ #define RPM_SMD_CE3_CLK				104
+ #define RPM_SMD_CE3_A_CLK			105
++#define RPM_SMD_MSS_CFG_AHB_CLK			106
++#define RPM_SMD_MSS_CFG_AHB_A_CLK		107
+ 
+ #endif
+diff --git a/include/linux/soc/qcom/smd-rpm.h b/include/linux/soc/qcom/smd-rpm.h
+index f2645ec52520..ce51b18f7128 100644
+--- a/include/linux/soc/qcom/smd-rpm.h
++++ b/include/linux/soc/qcom/smd-rpm.h
+@@ -37,6 +37,7 @@ struct qcom_smd_rpm;
+ #define QCOM_SMD_RPM_IPA_CLK	0x617069
+ #define QCOM_SMD_RPM_CE_CLK	0x6563
+ #define QCOM_SMD_RPM_AGGR_CLK	0x72676761
++#define QCOM_SMD_RPM_MFFG_CLK	0x6766636d
+ 
+ int qcom_rpm_smd_write(struct qcom_smd_rpm *rpm,
+ 		       int state,
+-- 
+2.29.2
 
-> 
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +//
-> > +// Device driver for regulators in Hisi IC
-> > +//
-> > +// Copyright (c) 2013 Linaro Ltd.
-> > +// Copyright (c) 2011 Hisilicon.
-> > +//  
-> 
-> This looks like it needs an update.
-
-Ok.
-
-> 
-> > +// This program is free software; you can redistribute it and/or modify
-> > +// it under the terms of the GNU General Public License version 2 as
-> > +// published by the Free Software Foundation.
-> > +//
-> > +// This program is distributed in the hope that it will be useful,
-> > +// but WITHOUT ANY WARRANTY; without even the implied warranty of
-> > +// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> > +// GNU General Public License for more details.  
-> 
-> This boilerplate can be removed.
-
-Ok.
-
-> 
-> > +static int hi6421_spmi_regulator_enable(struct regulator_dev *rdev)
-> > +{
-> > +	struct hi6421_spmi_reg_info *sreg = rdev_get_drvdata(rdev);
-> > +	struct hi6421_spmi_pmic *pmic = sreg->pmic;
-> > +	int ret;
-> > +
-> > +	/* cannot enable more than one regulator at one time */
-> > +	mutex_lock(&sreg->enable_mutex);
-> > +	usleep_range(HISI_REGS_ENA_PROTECT_TIME,
-> > +		     HISI_REGS_ENA_PROTECT_TIME + 1000);
-> > +
-> > +	/* set enable register */
-> > +	ret = hi6421_spmi_pmic_rmw(pmic, rdev->desc->enable_reg,
-> > +				   rdev->desc->enable_mask,
-> > +				   rdev->desc->enable_mask);  
-> 
-> If for some reason the PMIC is sufficiently fragile to need a delay
-> between enables it's not clear why the driver is doing it before
-> enabling rather than after, presumably there's issues with the regulator
-> ramping up and stabalising its output 
-
-I don't have any datasheets or documentation from this device, except for 
-the Linaro's official driver for Kernel 4.9 (from where this driver
-was originally ported), and a high-level documentation for this 
-hardware at 96boards site, which doesn't cover any details.
-
--
-
-My understanding is that the issue here seems to be different.
-
-This is the original code (which can be seen on changeset 42f24d9d446a,
-already upstream):
-
-	struct timeval last_enabled;
-
-	static void ensured_time_after(struct timeval since, u32 delay_us)
-	{
-	       struct timeval now;
-	       u64 elapsed_ns64, delay_ns64;
-	       u32 actual_us32;
-
-	       delay_ns64 = delay_us * NSEC_PER_USEC;
-	       do_gettimeofday(&now);
-	       elapsed_ns64 = timeval_to_ns(&now) - timeval_to_ns(&since);
-	       if (delay_ns64 > elapsed_ns64) {
-	               actual_us32 = ((u32)(delay_ns64 - elapsed_ns64) /
-	                                                       NSEC_PER_USEC);
-	               if (actual_us32 >= 1000) {
-	                       mdelay(actual_us32 / 1000); /*lint !e647 */
-	                       udelay(actual_us32 % 1000);
-	               } else if (actual_us32 > 0) {
-	                       udelay(actual_us32);
-	               }
-	       }
-	       return;
-	}
-
-	static int hisi_regulator_enable(struct regulator_dev *dev)
-	{
-	       struct hisi_regulator *sreg = rdev_get_drvdata(dev);
-	       struct hisi_pmic *pmic = rdev_to_pmic(dev);
-
-	       /* keep a distance of off_on_delay from last time disabled */
-	       ensured_time_after(sreg->last_off_time, sreg->off_on_delay);
-
-	       BRAND_DEBUG("<[%s]: off_on_delay=%dus>\n", __func__, sreg->off_on_delay);
-
-	       /* cannot enable more than one regulator at one time */
-	       mutex_lock(&enable_mutex);
-	       ensured_time_after(last_enabled, HISI_REGS_ENA_PROTECT_TIME);
-
-	       /* set enable register */
-	       hisi_pmic_rmw(pmic, sreg->register_info.ctrl_reg,
-                               sreg->register_info.enable_mask,
-                               sreg->register_info.enable_mask);
-	       BRAND_DEBUG("<[%s]: ctrl_reg=0x%x,enable_mask=0x%x>\n", __func__, sreg->register_info.ctrl_reg,\
-        	               sreg->register_info.enable_mask);
-
-	       do_gettimeofday(&last_enabled);
-	       mutex_unlock(&enable_mutex);
-
-	       return 0;
-	}
-
-What I did here was to play safe. So, I removed the static var and the 
-call to gettimeofday() and replaced by just a delay.
-
-As, on this device, the power lines don't change too often: only
-the USB power supply changes over time during its reset sequence.
-
-The other power lines are powered during the boot and remain powered
-if the hardware is detected.
-
-> > +	/* set enable register to 0 */
-> > +	return hi6421_spmi_pmic_rmw(pmic, rdev->desc->enable_reg,
-> > +				    rdev->desc->enable_mask, 0);  
-> 
-> I'm not sure all these comments are adding anything.
-
-I'll drop on a next version.
-> 
-> > +	if (unlikely(selector >= rdev->desc->n_voltages))
-> > +		return -EINVAL;  
-> 
-> This should not be a hot path that needs an unlikely() annotation.
-
-I'll drop unlikely().
-
-> > +static unsigned int
-> > +hi6421_spmi_regulator_get_optimum_mode(struct regulator_dev *rdev,
-> > +				       int input_uV, int output_uV,
-> > +				       int load_uA)
-> > +{
-> > +	struct hi6421_spmi_reg_info *sreg = rdev_get_drvdata(rdev);
-> > +
-> > +	if (load_uA || ((unsigned int)load_uA > sreg->eco_uA))
-> > +		return REGULATOR_MODE_NORMAL;  
-> 
-> This means that for *any* load at all we select NORMAL - I'm not
-> convinced this is intentional?
-
-Indeed this seems to be a bug. Thanks for noticing it!
-
-I'll fix that.
-
-Thanks,
-Mauro
