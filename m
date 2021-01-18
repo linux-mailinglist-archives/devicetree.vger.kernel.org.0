@@ -2,126 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE2AA2F9B4A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 09:31:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82E8C2F9B59
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 09:35:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387605AbhARIbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 03:31:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36966 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387762AbhARIbF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 03:31:05 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 12005229C4;
-        Mon, 18 Jan 2021 08:30:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610958624;
-        bh=G3g8ccSLtuvhTl60lHfmT7S7bjEzSTABporbVH6+n+U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fkcgMup31XGT1Z5K8zlsvezWWy/jsPz6BxcK4s/s66tfkfD/Y9SdbEDQhBzpdl7gn
-         AP9+4SjGW9r1TcYrwDwPeBleK2VLFEwy0ZXStjoLStGRSonS3kDFuzBRE7JpGmQdyi
-         xu952exggDCV6wlBAMrAPr+mion7WOGY44sCYgdtECGptX1Etfelj0U56ig5ggNTbG
-         eO7uleg21m2AfyeUk2AVOsk9vN6Be0JAV8YPJlTLTmrlrBjBwIjBvQXKwxthwWn7fW
-         ZBEP9rJPV4KX5S0eV/r3L9Qlvdb2vVD9nk9z6L7cw1XEOJ8vJt9vqI3OehCCDLHwyw
-         fAbkyFfcHEy9g==
-Received: by mail-oi1-f180.google.com with SMTP id x71so1144464oia.9;
-        Mon, 18 Jan 2021 00:30:24 -0800 (PST)
-X-Gm-Message-State: AOAM533ydJqGKOtivl0rC84z0lNdbd1JN2WXFmjraFw1Y84PyXswgDDO
-        BfZacL9sH5Et4Unq2ZhgDwssXApB9xfWNockK78=
-X-Google-Smtp-Source: ABdhPJxocP0lzyO5eastZR7W498dSoutGIJLzsAbhLz7NT/RJ0W67cuDPaPOteUii2SmOroZ5Ohy9ddjtnE0FzB0rqU=
-X-Received: by 2002:aca:be54:: with SMTP id o81mr7853744oif.67.1610958623304;
- Mon, 18 Jan 2021 00:30:23 -0800 (PST)
+        id S2387722AbhARIev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 03:34:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34132 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726488AbhARIeo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 03:34:44 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD621C061573;
+        Mon, 18 Jan 2021 00:34:03 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id x23so17278875lji.7;
+        Mon, 18 Jan 2021 00:34:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=NxbXFKF94p6kEsRAtmd8BKyy9JENwa9sivc+ZAodEKA=;
+        b=A2RSX4y2LmMv6mR7pwlrf3u6T3rGFBse1drQ3xjZKsSLH2Wb5CBopN0Tdz9y8eXBQP
+         kAFWmHreQYGoFj+NYj3SHu6ce3tYIQMekoexo1meFdbwptfhfM44+l3RDgA7JQVVFEbd
+         8bm9FjCb8rzH8w6Ew8sijtTEYsfyzOoNBPxcVvAu7mrpZWtqwzqevN5S6qSYBg1m8vSL
+         piLsmxcfauKP/oTrw8wu7xtJD0MddqhyzJ7iqkN/jZNRUm4Y6LM8YY3jEduWM49lnYIg
+         /bsJ++4LJSwhCDav/DwNlIbCiYP3FuEBFqfOiYvEHZqXoJGeItOcb1YzywOHWuhz1nuI
+         d4KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=NxbXFKF94p6kEsRAtmd8BKyy9JENwa9sivc+ZAodEKA=;
+        b=ema9lq1Tvx5TAG8zNbtYzZ3D2gq3NkXKEV96SoFrUYf8ZJ/FtkZAYKUTjDyW92Tpjf
+         380cN2IsRAj7fhnrrmGtSeF28nMmOXmVErvDtSPg+71lwj7gviKW3aY23QIwjjWy9Zie
+         apbNjc9nUez39/66+NXAo4MUPW/OGVyeSbrLzvVp3ZjGH1U/mjz5CO6+ef+FN1SiB8r/
+         EprgP8q/Y76jm64rF5n/WSlXd7PQA8C7Y9Jyxz0m/TSbkwGt65+aA7e7X2dGDzs33CmS
+         bBdFmqxGm33CMY4zpuvt1vBy9pD+7dpLFXJ+kBhXKeS3tgfsiBmfWNK1lHIKVmhQs6oP
+         Dzog==
+X-Gm-Message-State: AOAM531ZcjDh76hE22t2fZAMh6dQanG/0y+v3QUAXnzV3AoLNgxchQMv
+        kbeR1vVvbTXYtcasPR35vJITwwsRDB7ORprticg=
+X-Google-Smtp-Source: ABdhPJynqi6oTwFjkTNFUl1fP0igBITsisexmUdUKnImyJVj0NHltLH5ZKbkHMkITjIr3opjkpv5LEywTjJJTrhJ9R4=
+X-Received: by 2002:a2e:8e64:: with SMTP id t4mr10154052ljk.141.1610958842168;
+ Mon, 18 Jan 2021 00:34:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20210118073340.62141-1-tony@atomide.com>
-In-Reply-To: <20210118073340.62141-1-tony@atomide.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Mon, 18 Jan 2021 09:30:07 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1Eec1cAOdxNQ=8LORop+ESqx_=dg1uhJwpXhknxOydsg@mail.gmail.com>
-Message-ID: <CAK8P3a1Eec1cAOdxNQ=8LORop+ESqx_=dg1uhJwpXhknxOydsg@mail.gmail.com>
-Subject: Re: [PATCHv2] drivers: bus: simple-pm-bus: Fix compatibility with
- simple-bus for auxdata
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>
+References: <1610720001-15300-1-git-send-email-u0084500@gmail.com>
+ <1610720001-15300-2-git-send-email-u0084500@gmail.com> <1610898357.197444.1730305.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1610898357.197444.1730305.nullmailer@robh.at.kernel.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Mon, 18 Jan 2021 16:33:50 +0800
+Message-ID: <CADiBU3_pH3_=Dpi8auWTekBaev-ZF2WNPUZRzJEu8+pA0Lk18w@mail.gmail.com>
+Subject: Re: [PATCH 2/2] usb typec: tcpci: mt6360: Add vbus supply into
+ dt-binding description
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Guenter Roeck <linux@roeck-us.net>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
+        Rob Herring <robh+dt@kernel.org>, gene_chen@richtek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Linux USB List <linux-usb@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 8:33 AM Tony Lindgren <tony@atomide.com> wrote:
+Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B41=E6=9C=8817=E6=97=A5 =
+=E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8811:46=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> After converting am335x to probe devices with simple-pm-bus I noticed
-> that we are not passing auxdata for of_platform_populate() like we do
-> with simple-bus.
+> On Fri, 15 Jan 2021 22:13:21 +0800, cy_huang wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Add external vbus source into dt-binding description.
+> >
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> >  Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml | 7 ++=
++++++
+> >  1 file changed, 7 insertions(+)
+> >
 >
-> While device tree using SoCs should no longer need platform data, there
-> are still quite a few drivers that still need it as can be seen with
-> git grep OF_DEV_AUXDATA. We want to have simple-pm-bus be usable as a
-> replacement for simple-bus also for cases where OF_DEV_AUXDATA is still
-> needed.
+> My bot found errors running 'make dt_binding_check' on your patch:
 >
-> Let's fix the issue by passing auxdata as platform data to simple-pm-bus.
-> That way the SoCs needing this can pass the auxdata with OF_DEV_AUXDATA.
-> And let's pass the auxdata for omaps to fix the issue for am335x.
+> yamllint warnings/errors:
 >
-> As an alternative solution, adding simple-pm-bus handling directly to
-> drivers/of/platform.c was considered, but we would still need simple-pm-bus
-> device driver. So passing auxdata as platform data seems like the simplest
-> solution.
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/=
+mediatek,mt6360-tcpc.yaml: properties:vbus-supply: 'maxItems' is not one of=
+ ['description', 'deprecated']
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/=
+mediatek,mt6360-tcpc.yaml: ignoring, error in schema: properties: vbus-supp=
+ly
+> warning: no schema found in file: ./Documentation/devicetree/bindings/usb=
+/mediatek,mt6360-tcpc.yaml
 >
-> Fixes: 5a230524f879 ("ARM: dts: Use simple-pm-bus for genpd for am3 l4_wkup")
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
-> Changes since v1: Updated description, added devicetree list to Cc
+> See https://patchwork.ozlabs.org/patch/1427073
+>
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+>
+Thanks, after I re-installed the yamlint, the error can be seen.
+Refer to https://www.kernel.org/doc/Documentation/devicetree/bindings/examp=
+le-schema.yaml
+*-supply is only a phandle
 
-This looks fine to me for now
+In next series patch, I'll remove the maxItems in vbus-supply.
+I already checked the below change. make dt_binding_check can be passed
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+   vbus-supply:
+     description:
+       Vbus source supply regulator.
+-    maxItems: 1
 
-But I think we should take the time to discuss how to phase out auxdata
-over time. There are still a number of users, but it's not that many in the
-end. For some of them I see a clear solution, for other ones I do not:
-
-lpc32xx: Used only for pl080 DMA data with the old method, needs to
-    be converted to use the proper DT binding that was added a few years
-    ago.
-
-kirkwood: I don't see what this does at all, as there is no pdata, and
-    there is no clkdev lookup for "mvebu-audio"
-
-orion: similar to kirkwood, these seem to have been added for
-    clkdev lookup, but the orion_clkdev_init() function seems to
-    not be called for the orion5x_dt variant.
-
-omap2: I'll leave these for Tony to comment
-
-spear3xx: pl022 and pl080 should just use the normal DT
-   binding, see lpc32xx.
-
-u300: platform is scheduled for removal
-
-integrator_ap: pl010_set_mctrl() needs a callback to
-    integrator_uart_set_mctrl(). I see no good alternative, but
-    a workaround might be to call into syscon directly from the
-    driver on versatile machines. For all I can tell, pl010 is only
-    used on versatile and ep93xx, so that would not harm a
-    commonly used driver.
-
-versatile/integrator_cp: similar problem but for mmci, which is
-    used more widely. Used for card detection, which could
-    theoretically be implemented with a fake gpio driver, but that
-    might be excessive.
-
-mips/pic32: used for setting up DMA for sdhci, could be done
-   in a platform-specific sdhci front-end.
-
-arm-cci: used to pass cci address after ioremap(), avoiding
-   this would revert e9c112c94b01 ("perf/arm-cci: Untangle
-   global cci_ctrl_base").
-
-           Arnd
+   connector:
+     type: object
