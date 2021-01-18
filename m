@@ -2,85 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A159E2FAA9D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 20:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAAF62FAB75
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 21:29:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2437060AbhART0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 14:26:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33394 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390424AbhARLiE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 06:38:04 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 385FF22CAD;
-        Mon, 18 Jan 2021 11:37:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610969842;
-        bh=DFDLTsvgjvFrpYts0MUpDKjSJv7X4cfmoGmxg2T+lxE=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=Ht/K/dOm+n6j+u4svc925LDLs7DG0tdGysPEGezRHEQ/ebqEso/O5saSc7kmWadXV
-         /JyQEf9IQNXMGToB5jEMQT3iUdB4shoFnfHzwJBKDSD05Fi6PCVVpVxXlDGP1Sn1nj
-         MKnl++d/T1RP7oj8YwCWeVerHgo7Hffwz0ye3T/grhGJ8McwpKAYw5JkmVNyh/3zx7
-         +rBLamk68TUHdDNi84r/8RIFAlAVfvs76/Sat5LZkkNWf2fJ6eSH15402pGzdrfhrd
-         vVrDgTWH+kPj1/kj+CVgLG353yl0vv+EL2h7AhoKS5WsPWnEHu7dNUu8u1mYSidrCU
-         bLWa0+5qSHtag==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: usb: qcom,dwc3: Add binding for SDX55
-In-Reply-To: <20210118051005.55958-2-manivannan.sadhasivam@linaro.org>
-References: <20210118051005.55958-1-manivannan.sadhasivam@linaro.org>
- <20210118051005.55958-2-manivannan.sadhasivam@linaro.org>
-Date:   Mon, 18 Jan 2021 13:37:14 +0200
-Message-ID: <8735yywk5x.fsf@kernel.org>
+        id S2394213AbhARU3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 15:29:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33346 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389088AbhARKmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 05:42:31 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F7FC061575
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 02:41:46 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1l1Ryg-0002BX-FN; Mon, 18 Jan 2021 11:41:42 +0100
+Subject: Re: [RFC PATCH] ARM: dts: imx6qdl: specify vcc-supply for NOP USB
+ PHYs
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20201113152856.3758-1-a.fatoum@pengutronix.de>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <f148055b-2456-795a-6afe-ab4f09058803@pengutronix.de>
+Date:   Mon, 18 Jan 2021 11:41:41 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+In-Reply-To: <20201113152856.3758-1-a.fatoum@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-Hi,
+did this maybe slip through the cracks?
 
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
-> Add devicetree binding for SDX55 USB controller based on Qcom designware
-> IP.
->
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-usb@vger.kernel.org
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On 13.11.20 16:28, Ahmad Fatoum wrote:
+> The SoC dtsi lists a NOP USB PHY for each of the two HSIC-only USB
+> controllers. Their device tree node doesn't indicate a vcc-supply
+> resulting in:
+> 
+>   usb_phy_generic usbphynop1: supply vcc not found, using dummy regulator
+>   usb_phy_generic usbphynop2: supply vcc not found, using dummy regulator
+> 
+> warnings on boot up. The USB IP vcc-supply - separate from the vusb - is
+> hardwired to LDO_2P5[1], which we already have a device tree node for.
+> Reference it for the dummy "phy" as well.
+> 
+> This will lead to breakage (probe deferment) for kernels that:
+>   - Use a HSIC USB controller
+>   - Use this new device tree
+>   - but have CONFIG_REGULATOR_ANATOP disabled
+> 
+> Because while the regulator is always-on, it can't be resolved when
+> there is no driver for it.
+> 
+> As there are
+> 
+>   - no affected upstream device trees
+>   - existing device trees are unaffected without recompilation
+>   - disabling CONFIG_REGULATOR_ANATOP is explicitly a non-recommended
+>     configuration per symbol help text
+> 
+> this potential breakage is deemed acceptable.
+> 
+> [1]: i.MX 6Dual/6Quad Reference Manual, Rev. C,
+>      Figure 53-1. Power System Overview
+> 
+> Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/imx6qdl.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+> index 43edbf1156c7..22e4c142de13 100644
+> --- a/arch/arm/boot/dts/imx6qdl.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl.dtsi
+> @@ -131,11 +131,13 @@ pmu: pmu {
+>  
+>  	usbphynop1: usbphynop1 {
+>  		compatible = "usb-nop-xceiv";
+> +		vcc-supply = <&reg_vdd2p5>;
+>  		#phy-cells = <0>;
+>  	};
+>  
+>  	usbphynop2: usbphynop2 {
+>  		compatible = "usb-nop-xceiv";
+> +		vcc-supply = <&reg_vdd2p5>;
+>  		#phy-cells = <0>;
+>  	};
+>  
+> 
 
-Acked-by: Felipe Balbi <balbi@kernel.org>
-
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAmAFcuoRHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzL64meEamQZxIRAAlpEpxTpJDTCzj+N4SW/IvB68Da7w97Zi
-3Y1rUZSbQmbLkclkDEnF0H10rF1oT2b39xeVbj++j56S1BCB3XVRli+LRYcnEx+o
-SissxEDGr1baczSn8uZJ/UgWIEFrp1JztyqLSWtA62NCEmC7+HQoZf0765CMELVv
-V3dC8Y6GFRWBNErxfuwoJdVgbWe3SPNrrkTodnAZxNKsxiV2V23jy1j+kWRKMabx
-50gMSKBbAhbLNuvZMVoOHp3TgXZofcCboT0RH6sr0ycBGipJkIjApn03zslFL2RW
-tgIR2Y1H4HN3JimLP4NEfERyCU0v0ibwf/gLMdMy4/psfEcoE7E+I2GLadAlL5wa
-0iDVPyLvjmpyj136DAM0X07iZsak5mpeaTMvkrYqPDABnOflfyOAv5eysXPkh+Sf
-xh/676DIR7LfNBrdPrql/69sQmW54t9kBR803jYHhYr8tvVdqYLnKFGNMpEFGH1+
-/05EFqwnR3M5cppmBPL2qhP7y8Blig29o/YTB6ysrArdkcfosp7ZrABliUJ0CuU4
-bfKjRDeJamJGoYTZu0hcKX5pF+/3teJXESoBK3j0jXTGkr+mCCJG+VfWArXEd3x5
-BoKrdA2D65G+i/kyZ6x983augUgAit9GW4y2IldPMHhE0E4GgDWnpoEuBnmuxk3+
-s2CVt/FiDaI=
-=KbUF
------END PGP SIGNATURE-----
---=-=-=--
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
