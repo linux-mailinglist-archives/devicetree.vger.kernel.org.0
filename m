@@ -2,99 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8AFE2F9B0C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 09:14:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 200252F9B1E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 09:19:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733243AbhARINb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 03:13:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725775AbhARIN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 03:13:29 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC69FC061573
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 00:12:48 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1l1PeX-0002bZ-Bf; Mon, 18 Jan 2021 09:12:45 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1l1PeV-0006w5-Cb; Mon, 18 Jan 2021 09:12:43 +0100
-Date:   Mon, 18 Jan 2021 09:12:37 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Bruno Thomsen <bruno.thomsen@gmail.com>,
-        devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        linux-kernel@vger.kernel.org, Bruno Thomsen <bth@kamstrup.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx7d-flex-concentrator: fix pcf2127 reset
-Message-ID: <20210118081237.mgcxyob42hv5hdnp@pengutronix.de>
-References: <20210111151537.12530-1-bruno.thomsen@gmail.com>
- <20210118063252.GJ28365@dragon>
+        id S2387683AbhARITb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 03:19:31 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:57954 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2387659AbhARIS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 03:18:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1610957851;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=8p71lFNP7FXrIuyl6skw0ASk5esBQ6KVEaZUK9bQhEI=;
+        b=AAbRBZsauQFl7qnXmcjnt7/7+0fbrTwBufFkiFs/Jjjy5gacFjNx97d9tA+xX6I1va6mbC
+        o5oAgjhXt2fIZNnue5Wns85tUvfGo5OrN1j1nJrs25yYBKZ1ipHOM0ppE/BCSZwEL9ID+O
+        AJmB0W54l8pQItLRq5qhRX12ZqBDnko=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-290-HLsgrb1JMl-cj8UX3zzh5w-1; Mon, 18 Jan 2021 03:17:26 -0500
+X-MC-Unique: HLsgrb1JMl-cj8UX3zzh5w-1
+Received: by mail-wr1-f69.google.com with SMTP id i4so7945057wrm.21
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 00:17:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8p71lFNP7FXrIuyl6skw0ASk5esBQ6KVEaZUK9bQhEI=;
+        b=dOHUmqGPl8AG8M3u7KvDZPgjYZDkE/5FejfQnuWruQponcieV1nA3vRf/Wn/yr0uqe
+         RlhvZAQCNSwL13svRofnOEE/pB/nVOpSp8X+jXAV5BZkoOtE5BA+ShByP8zYYJYhqJg8
+         ra8WwgUjExX8G/8ZpksEWkod6nIEIkPEybyAqZyc+ZcG3/OjcxYzTbsZU/iZUOKpyObu
+         PrHYwTpu9JaU04gBasFSo13mrAiU8dna457AhNSNWwDpE5RVP+1wMYyg2+QIq1/Ba4s0
+         E+WAezpYCWvZM7XHC+aL4tbOxXXxygEpYCukV3DEptkehWfU1JSIgA/eAlwjpVeusuL/
+         +ujw==
+X-Gm-Message-State: AOAM533GKhyxO3Y3c9bZvLt+E6s4eZ/MTv/BwrYRc/xHBRAE0TvSPInd
+        QEvZSeb/SPmmGKswgXDjwuh8qRYhgIVpzexS131mSN8Yxzajt30F8R2e+XC4C0+3LRslI4fS3bn
+        eE0+NfMGtsU6ulWnpqH+bQg==
+X-Received: by 2002:a1c:7d8e:: with SMTP id y136mr19233389wmc.25.1610957844799;
+        Mon, 18 Jan 2021 00:17:24 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwWNpmRpqtOwIwpRwr9ajm9ng9gHciOz2/IHbrBx5b2wdpPFb2jiNCZIdjtb8rJFTA5f1KwGQ==
+X-Received: by 2002:a1c:7d8e:: with SMTP id y136mr19233369wmc.25.1610957844580;
+        Mon, 18 Jan 2021 00:17:24 -0800 (PST)
+Received: from minerva.redhat.com ([92.176.231.106])
+        by smtp.gmail.com with ESMTPSA id l8sm4906002wmi.8.2021.01.18.00.17.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jan 2021 00:17:23 -0800 (PST)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Enric Balletbo i Serra <eballetbo@gmail.com>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org
+Subject: [PATCH] ARM: dts: omap3-igep: Change email address in copyright notice
+Date:   Mon, 18 Jan 2021 09:17:07 +0100
+Message-Id: <20210118081707.160596-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tehix5zhhrl3q6mw"
-Content-Disposition: inline
-In-Reply-To: <20210118063252.GJ28365@dragon>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+I've switched employer a long time ago and the mentioned email address no
+longer exists. Use my personal address to prevent the issue in the future.
 
---tehix5zhhrl3q6mw
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+---
 
-On Mon, Jan 18, 2021 at 02:32:53PM +0800, Shawn Guo wrote:
-> On Mon, Jan 11, 2021 at 04:15:37PM +0100, Bruno Thomsen wrote:
-> > RTC pcf2127 device driver has changed default behaviour of the watchdog
-> > feature in v5.11-rc1. Now you need to explicitly enable it with a
-> > device tree property, "reset-source", when used in the board design.
->=20
-> It sound that the existing DTBs are broken by this default behaviour
-> change?
+ arch/arm/boot/dts/omap3-igep.dtsi            | 2 +-
+ arch/arm/boot/dts/omap3-igep0020-common.dtsi | 2 +-
+ arch/arm/boot/dts/omap3-igep0020-rev-f.dts   | 2 +-
+ arch/arm/boot/dts/omap3-igep0020.dts         | 2 +-
+ arch/arm/boot/dts/omap3-igep0030-common.dtsi | 2 +-
+ arch/arm/boot/dts/omap3-igep0030-rev-g.dts   | 2 +-
+ arch/arm/boot/dts/omap3-igep0030.dts         | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
-I didn't do a representative research, but I expect that there are only
-very few machines that have a working watchdog setup using the pcf2127.
-All other machines were surprised by commit
+diff --git a/arch/arm/boot/dts/omap3-igep.dtsi b/arch/arm/boot/dts/omap3-igep.dtsi
+index 5de2be9bbe6..99f5585097a 100644
+--- a/arch/arm/boot/dts/omap3-igep.dtsi
++++ b/arch/arm/boot/dts/omap3-igep.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * Common device tree for IGEP boards based on AM/DM37x
+  *
+- * Copyright (C) 2012 Javier Martinez Canillas <javier@osg.samsung.com>
++ * Copyright (C) 2012 Javier Martinez Canillas <javier@dowhile0.org>
+  * Copyright (C) 2012 Enric Balletbo i Serra <eballetbo@gmail.com>
+  */
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/omap3-igep0020-common.dtsi b/arch/arm/boot/dts/omap3-igep0020-common.dtsi
+index af8aa5f0feb..73d8f471b9e 100644
+--- a/arch/arm/boot/dts/omap3-igep0020-common.dtsi
++++ b/arch/arm/boot/dts/omap3-igep0020-common.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * Common Device Tree Source for IGEPv2
+  *
+- * Copyright (C) 2014 Javier Martinez Canillas <javier@osg.samsung.com>
++ * Copyright (C) 2014 Javier Martinez Canillas <javier@dowhile0.org>
+  * Copyright (C) 2014 Enric Balletbo i Serra <eballetbo@gmail.com>
+  */
+ 
+diff --git a/arch/arm/boot/dts/omap3-igep0020-rev-f.dts b/arch/arm/boot/dts/omap3-igep0020-rev-f.dts
+index 567232584f0..9dca5bfc87a 100644
+--- a/arch/arm/boot/dts/omap3-igep0020-rev-f.dts
++++ b/arch/arm/boot/dts/omap3-igep0020-rev-f.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Device Tree Source for IGEPv2 Rev. F (TI OMAP AM/DM37x)
+  *
+- * Copyright (C) 2012 Javier Martinez Canillas <javier@osg.samsung.com>
++ * Copyright (C) Javier Martinez Canillas <javier@dowhile0.org>
+  * Copyright (C) 2012 Enric Balletbo i Serra <eballetbo@gmail.com>
+  */
+ 
+diff --git a/arch/arm/boot/dts/omap3-igep0020.dts b/arch/arm/boot/dts/omap3-igep0020.dts
+index e341535a716..c6f863bc03a 100644
+--- a/arch/arm/boot/dts/omap3-igep0020.dts
++++ b/arch/arm/boot/dts/omap3-igep0020.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Device Tree Source for IGEPv2 Rev. C (TI OMAP AM/DM37x)
+  *
+- * Copyright (C) 2012 Javier Martinez Canillas <javier@osg.samsung.com>
++ * Copyright (C) 2012 Javier Martinez Canillas <javier@dowhile0.org>
+  * Copyright (C) 2012 Enric Balletbo i Serra <eballetbo@gmail.com>
+  */
+ 
+diff --git a/arch/arm/boot/dts/omap3-igep0030-common.dtsi b/arch/arm/boot/dts/omap3-igep0030-common.dtsi
+index 71b0ae807ec..742e3e14706 100644
+--- a/arch/arm/boot/dts/omap3-igep0030-common.dtsi
++++ b/arch/arm/boot/dts/omap3-igep0030-common.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * Common Device Tree Source for IGEP COM MODULE
+  *
+- * Copyright (C) 2014 Javier Martinez Canillas <javier@osg.samsung.com>
++ * Copyright (C) 2014 Javier Martinez Canillas <javier@dowhile0.org>
+  * Copyright (C) 2014 Enric Balletbo i Serra <eballetbo@gmail.com>
+  */
+ 
+diff --git a/arch/arm/boot/dts/omap3-igep0030-rev-g.dts b/arch/arm/boot/dts/omap3-igep0030-rev-g.dts
+index df6ba121983..8e9c12cf51a 100644
+--- a/arch/arm/boot/dts/omap3-igep0030-rev-g.dts
++++ b/arch/arm/boot/dts/omap3-igep0030-rev-g.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Device Tree Source for IGEP COM MODULE Rev. G (TI OMAP AM/DM37x)
+  *
+- * Copyright (C) 2014 Javier Martinez Canillas <javier@osg.samsung.com>
++ * Copyright (C) 2014 Javier Martinez Canillas <javier@dowhile0.org>
+  * Copyright (C) 2014 Enric Balletbo i Serra <eballetbo@gmail.com>
+  */
+ 
+diff --git a/arch/arm/boot/dts/omap3-igep0030.dts b/arch/arm/boot/dts/omap3-igep0030.dts
+index 32f31035daa..5188f96f431 100644
+--- a/arch/arm/boot/dts/omap3-igep0030.dts
++++ b/arch/arm/boot/dts/omap3-igep0030.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Device Tree Source for IGEP COM MODULE Rev. E (TI OMAP AM/DM37x)
+  *
+- * Copyright (C) 2012 Javier Martinez Canillas <javier@osg.samsung.com>
++ * Copyright (C) 2012 Javier Martinez Canillas <javier@dowhile0.org>
+  * Copyright (C) 2012 Enric Balletbo i Serra <eballetbo@gmail.com>
+  */
+ 
+-- 
+2.29.2
 
-	0e735eaae165 ("rtc: pcf2127: add watchdog feature support")
-
-because they suddenly had a non-functional watchdog device. The
-alternative would be to "fix" the device trees of all these machines to
-restore pre-v5.4-rc1 behaviour. This is IMHO worse.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---tehix5zhhrl3q6mw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmAFQukACgkQwfwUeK3K
-7Am55gf+Ovx9hJP0bLpt4Sc5iOSaKU/x3Jo40vV0amY/uvZkHTPJEbRb5R7sweFC
-mXjK0WkkLhLKJZJHSmiz2AC4iu3Hf/Q96IjQ8XxmsSHdszv4Kit3ALwFSRNB3b5q
-2xzq1t1MNYchIH2hHoBRx/RZR0t6+0JwJhHfldsC1kce8mFp6upg3bsNlesM1HmT
-hWARzMC1ev4JiRj9NkVQLy0NZWOrgZD6Tr/PARigv25vKA6i7xUdxwlekJQkFmrf
-8Scvj8/yFfPczgFhOwMTIMqai0cJVvMEbpVq/wqftAh+OLqA3z0uPKaUQ4toXto0
-SPAEZZUqJ5pZhsEh7yPoZhjrzElWaw==
-=bunu
------END PGP SIGNATURE-----
-
---tehix5zhhrl3q6mw--
