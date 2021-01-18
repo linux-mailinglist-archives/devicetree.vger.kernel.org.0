@@ -2,103 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A79DC2FABA5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 21:39:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36A322FABA3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 21:37:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388354AbhARKgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 05:36:17 -0500
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:40853 "EHLO
-        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388668AbhARJWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 04:22:47 -0500
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.west.internal (Postfix) with ESMTP id A73745BF;
-        Mon, 18 Jan 2021 04:11:06 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Mon, 18 Jan 2021 04:11:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=sNatjfCCJ4k/1qMlePtHKBU6lZX
-        7A1FzNnd0WJpbQ9c=; b=lBR/cYFAjSO5wPKgXiNaMQftufE2Mj0zewsjAxG2aiM
-        Nu0sq3vn/RGQ5nVb1j6Aym0/N10JdJlK/RUlPkjJsSXRUIligL5c68N70rAWpXxo
-        vDUFAAhAg8drljlZVHvLBgwP/RZtxEzVSOoUvqpJSAT/4G3Lli8b2Gg0SWHAOQEO
-        h0cVJkeVV9iaEmoC6lLpnkt9ipIq2IplYwZjsWoJKZCJ/PttykMfbV2WXBXhusTI
-        mgcpZqrbeUL/uyYL9r+MaFQlyk6r0S3dDE20ZCnWRt7texUsQpbid6klf70Ca1hz
-        ZNXTvUVQKpX1PTHictbHQ1ffWSyqJCL3SVrb7nZOKQg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=sNatjf
-        CCJ4k/1qMlePtHKBU6lZX7A1FzNnd0WJpbQ9c=; b=SD2K89zx5/SBUaDYivVOM9
-        RZ1HCjJ0oMVxHu/NFNtAJOqjOMFrvl+0vsFZ94BgAWit6+R72GfAPzh0jR3LKZn9
-        l94CQpxTSO5F78YlIh+gU28X1qXh4wmMYMUMEd1mka4QG024dK4oJVGjFawz+twq
-        MT7YmX0e+WarEkd5bU8vB0FTKLlQr1di/TPy5K4V1BmPlD1T8V2qeWoehKmMKcuz
-        aorWy4A9Yf9usQd4iwELDh3Ufo3qc2WUs7UNuEntB6A4vexP/iX16B0ev+GfseKx
-        YCIvxOA7pnaRMbXFjX+MZLiu0+2/Yh9rSHsG6Q2fvy5yTY9ZTKkvty3nQ+7VIMKQ
-        ==
-X-ME-Sender: <xms:qVAFYMHlLQAg8T5b4aiekBc34q6XvabuqCdn78qCQVCRJtugxYqR-g>
-    <xme:qVAFYOxuIylYXS0qxIsw7S7k9VSuiOpbJii_C1jVsevidDNj7VjDMf5OEhx1WMB8c
-    dCRAgXbCKfZ4q_ZP34>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtdekgddtudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:qVAFYFuQ5JHywchM-9AEwqCtKD5fuzaP-N4wn_QRRkYemWPMJaayTQ>
-    <xmx:qVAFYD1M0v01S7Q4w-avVSAzE3ZjpwlYRYkY11LC4EeMq9zqC-tjUA>
-    <xmx:qVAFYI8qckxQMdvGWtPTFDaY-0xkdnN5Pj8XbRiTEZhxKxCkZh_XyA>
-    <xmx:qlAFYIGxwJ3_I4rSHLycYodoxsfys7kI-L-TgCJsDyFW7OfTGdGzQg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 737D11080059;
-        Mon, 18 Jan 2021 04:11:05 -0500 (EST)
-Date:   Mon, 18 Jan 2021 10:11:03 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] ARM: dts: sunxi: bananapi-m2-plus: Increase BT UART speed
-Message-ID: <20210118091103.rgsu7zf2ogauu5dw@gilmour>
-References: <20210116105228.847073-1-jernej.skrabec@siol.net>
+        id S2388380AbhARKgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 05:36:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34532 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388886AbhARJck (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 04:32:40 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8EE0520780;
+        Mon, 18 Jan 2021 09:32:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610962320;
+        bh=7UlzqAXgQrFeU5H5PfgXOffeF2ee2L2uNmDpETFzuko=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uIT9Osv4DcbyvIqyLKAQqyzmMgUoL1yPHJwOlJ2Jwzy84CbPkpuI7/x+GBAT8X3aA
+         FVbvD9s/yTghq/ZLAWNP8nfMjnyxCdFc1/csF5/zzZfcOhD0mmdILdYBtk78dfWPVG
+         juj0f9adMi4JHzqAsMo00RlMXRa10eKNq3btbcpi2ZLZRHwqJcbyaj5NndOT9M6H7E
+         GjHruR+YoTfTkd+5SPY5TZS4l/8lMC0cUFYDDsBthBl42WV6GYPgq/Tw4s0C7jAvKW
+         DyKv4Uk4mtwr7cuLG8BrVlK5C7Rd0htHMJyD9thfijiFN/WeNBWaiEX8RtSMMlmKDq
+         WkuDHaxfk7JWA==
+Received: by pali.im (Postfix)
+        id 2B093889; Mon, 18 Jan 2021 10:31:58 +0100 (CET)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: marvell: armada-37xx: Add SATA comphy into main armada-37xx.dtsi file
+Date:   Mon, 18 Jan 2021 10:31:39 +0100
+Message-Id: <20210118093139.8441-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="otdlbzqmmunyr6or"
-Content-Disposition: inline
-In-Reply-To: <20210116105228.847073-1-jernej.skrabec@siol.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+SATA on A3720 SOC can use only comphy2, so move this definition from board
+specific DTS file armada-3720-espressobin.dtsi into main A3720 SOC file
+armada-37xx.dtsi.
 
---otdlbzqmmunyr6or
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Pali Rohár <pali@kernel.org>
+---
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi | 2 --
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi             | 2 ++
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-On Sat, Jan 16, 2021 at 11:52:28AM +0100, Jernej Skrabec wrote:
-> Bluetooth module on BananaPi M2 Plus can also be used for streaming
-> audio. However, for that case higher UART speed is required.
->=20
-> Add a max-speed property.
->=20
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
+index daffe136c523..5fc613d24151 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
+@@ -67,8 +67,6 @@
+ /* J6 */
+ &sata {
+ 	status = "okay";
+-	phys = <&comphy2 0>;
+-	phy-names = "sata-phy";
+ };
+ 
+ /* U11 */
+diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+index b1209ccd258e..005463935ffa 100644
+--- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+@@ -459,6 +459,8 @@
+ 				reg = <0xe0000 0x178>;
+ 				interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&nb_periph_clk 1>;
++				phys = <&comphy2 0>;
++				phy-names = "sata-phy";
+ 				status = "disabled";
+ 			};
+ 
+-- 
+2.20.1
 
-Applied, thanks
-Maxime
-
---otdlbzqmmunyr6or
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAVQpwAKCRDj7w1vZxhR
-xSqzAP4+Ezgu9kD31iiMrK7nhOH8gkPj1reKeVKAAzNcJ//ZmAEAn/2zgNoydPl5
-1p6LXsRq3zVBcn2FYU87C97XnINTngk=
-=sMgx
------END PGP SIGNATURE-----
-
---otdlbzqmmunyr6or--
