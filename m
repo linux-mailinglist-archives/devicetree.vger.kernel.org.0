@@ -2,90 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B4EC2F9E1B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 12:28:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E92CA2F9DF4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 12:21:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389699AbhARL11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 06:27:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390094AbhARLRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 06:17:11 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE914C0613ED;
-        Mon, 18 Jan 2021 03:15:40 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id l12so10831967wry.2;
-        Mon, 18 Jan 2021 03:15:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0h1i352EiVbHiUM8JHOCOF/H+GACCn8PizeJpCi8MZk=;
-        b=F2CYbEyEXwQGfdqcrbmovXlv9qqvFFdfI+1XieT55dWKUke8Wv+eXrWrPD2ZgoYDBe
-         9uhTtLHazLCucke3uj7QUY+AIx7lC19ZQPYsnQtkCtWucV4hyEttt3p/A+/wmV8jx1g5
-         MpxIP+u7aEKiPhFpNTfQBsCfoGbvFx05pj4NZVg3evYw1ql63xnnyBnf7F60W0/Zu8X9
-         75i/Cbn8LdOqmBnMa+IzHgZA1IaHxRHvkGdK0nYeqbK4Hm1HMvA9ZJdf46SWH41o7Uv7
-         24uYQIjSyps1USHOySYs7r4PTtxrubT2JtkXRBQo21YDbuW1AEk6mfCr0OYTVZP7xGY/
-         AkFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0h1i352EiVbHiUM8JHOCOF/H+GACCn8PizeJpCi8MZk=;
-        b=SLFMeGKpHMuu7/Ym9GuD3LV6j0OJv0WCtemRLII+hc2diq6YqdRKWrGf7rnYh+AkHq
-         R+wE6Y+yZrIHYbWbVWIOFl5z1BBQ0TYXL10QGxcbJRJIIkXA3wJdLCRU8l6jTR9zwR2t
-         zzzCKnzp/AYTcIDjyYMebsIbgjIqR+RzuQywmmxG3pdrVfhWalDDCTt666yVRTa+k/Lh
-         GFkUKSgZINnblC5yGUQl9OqZe7p4d/k1D2YgdZifNkhcHWdA1UXIqHhinmvAogqR2Rmt
-         AN8cPudsnO0irY84PbjuJ6JbJGPRbAcUu4ndPC1WAmGUX2It/q+LVEC8FkeYGPxyNw4Z
-         sjrQ==
-X-Gm-Message-State: AOAM531jwnB6bciXoskkHYt/EKko+nXAundPF4GKJMQiYwDpSAqaIjRT
-        1L5PdBQFfQROpnOmuNYfpGY=
-X-Google-Smtp-Source: ABdhPJwgAK+FAy6FwNo9C9xaA0grlmR2OjOv3U3cw7OLWr3F7meQ7e9jvAIodhO2RqLRbQHD4OD3pA==
-X-Received: by 2002:adf:8290:: with SMTP id 16mr24504028wrc.27.1610968539530;
-        Mon, 18 Jan 2021 03:15:39 -0800 (PST)
-Received: from localhost.localdomain (2a01cb0008bd2700989047bbcea0de57.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:9890:47bb:cea0:de57])
-        by smtp.gmail.com with ESMTPSA id b132sm26778440wmh.21.2021.01.18.03.15.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jan 2021 03:15:38 -0800 (PST)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     shawnguo@kernel.org, krzk@kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH v5 3/3] arm64: defconfig: Enable PF8x00 as builtin
-Date:   Mon, 18 Jan 2021 12:15:31 +0100
-Message-Id: <20210118111531.903154-4-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210118111531.903154-1-adrien.grassein@gmail.com>
-References: <20210118111531.903154-1-adrien.grassein@gmail.com>
+        id S2389983AbhARLUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 06:20:51 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57934 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390164AbhARLUs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 06:20:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B890F221FF;
+        Mon, 18 Jan 2021 11:20:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610968807;
+        bh=E8QQY2aLftyITmKLMjzYemgVGG+nBpPUVZCtMkrxh70=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GyPbelTC+rVE0e/RrETG3NA/Cg2qYDaq9ddrxAUBpUPTYOMZfiT7CtSw86i+AAY2b
+         SAlksssuAp41cepquQLKlHFa8NqHoTzD2CrfZpfv3yHVAwy2t/aksEQKOHe8Cib1Tu
+         tJyqtCR3yATIeNW4Hkb6qZgeYl50CxwfLwQ45UQ//bYKpd/AIKPrf9A7aBlxdubZIi
+         Tcdiev42g19kZI5rqNP3h9VeMY2jEU+yctGTXWFlSpZAk6siOHpJQ0RwElWkym24Gt
+         UXXvIFPJUDzTmhqlGtonzE3KlyVtgOwEAvZpBWQmx0lXMBGI+yJAeA+YLQbsOAuXRk
+         50QFQSMBCt45Q==
+Date:   Mon, 18 Jan 2021 11:19:29 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     "Zulkifli, Muhammad Husaini" <muhammad.husaini.zulkifli@intel.com>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Hunter, Adrian" <adrian.hunter@intel.com>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Shevchenko, Andriy" <andriy.shevchenko@intel.com>,
+        "A, Rashmi" <rashmi.a@intel.com>,
+        "Vaidya, Mahesh R" <mahesh.r.vaidya@intel.com>
+Subject: Re: [PATCH v1 5/9] firmware: keembay: Add support for Trusted
+ Firmware Service call
+Message-ID: <20210118111929.GA4455@sirena.org.uk>
+References: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
+ <20210114152700.21916-6-muhammad.husaini.zulkifli@intel.com>
+ <20210114164811.GG4854@sirena.org.uk>
+ <20210115185803.infufa4thlffagxk@bogus>
+ <DM6PR11MB287679CF20BBC7C81B6E38F5B8A40@DM6PR11MB2876.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2oS5YaxWCcQjTEyO"
+Content-Disposition: inline
+In-Reply-To: <DM6PR11MB287679CF20BBC7C81B6E38F5B8A40@DM6PR11MB2876.namprd11.prod.outlook.com>
+X-Cookie: Huh?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver is mandatory for the nitrogen8m mini board
-when booting from the sdcard slot.
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+--2oS5YaxWCcQjTEyO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 15fe99544c67..fe7f82ceba9d 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -607,6 +607,7 @@ CONFIG_REGULATOR_MAX77620=y
- CONFIG_REGULATOR_MAX8973=y
- CONFIG_REGULATOR_MP8859=y
- CONFIG_REGULATOR_PCA9450=y
-+CONFIG_REGULATOR_PF8X00=y
- CONFIG_REGULATOR_PFUZE100=y
- CONFIG_REGULATOR_PWM=y
- CONFIG_REGULATOR_QCOM_RPMH=y
--- 
-2.25.1
+On Mon, Jan 18, 2021 at 10:28:33AM +0000, Zulkifli, Muhammad Husaini wrote:
 
+> >> There is a SCMI voltage domain protocol intended for just this use
+> >> case of controlling regulators managed by the firmware, why are you
+> >> not using that for these systems?  See drivers/firmware/arm_scmi/volta=
+ge.c.
+
+> From mmc maintainer's perspective, I should use the common modelling eith=
+er using=20
+> regulator framework or pinctrl to perform voltage operation. Not just dir=
+ectly invoke=20
+> smccc call in the mmc driver. That is why I came up with this regulator d=
+river to perform=20
+> voltage operation.=20
+
+The above is a standard way of controlling regulators via SMCCC which
+already has a regulator driver, you're duplicating this functionality.
+
+> >Indeed. Please switch to using the new voltage protocol added for this w=
+ithout
+> >any extra code. You just need to wire up DT for this.
+
+> May I know even if I wire up the DT, how should I call this from the mmc =
+driver
+> For set/get voltage operation? Any example?
+
+There's one in the binding document for the driver.
+
+--2oS5YaxWCcQjTEyO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAFbrkACgkQJNaLcl1U
+h9C0hAf+MTe7TY8tHxMsjksj2YMRZ39Ocrok7EGZgRzOkMp5uq8KLLqw2HxZAD2x
+WjhHGgMwe5rtgH7R0YwRY7XdZaPQV+Pz6uKSHVjSFUv/WpcTnBna7AejBx9yf47S
+dgKATC0kf+axN2P9tpC1sxECflrV0aOfo3uWGu4wVgpHQ5BDOWL6TuUoH9Z7QfR6
+kiTSuFYJulD3OzfOqpQ9NLE/HQ38xX22OnDZ874S2l7tjofADlTNKynfszo0RQO0
+WQrpFuaa/ZrrCarlvtzzNzJSpxUW7ew0I7h7f71tfWelGPB1nwzPQPEOD3/vrvww
+YGcs2hozfssgLhhH5lioxj+mkoPzXQ==
+=cOY2
+-----END PGP SIGNATURE-----
+
+--2oS5YaxWCcQjTEyO--
