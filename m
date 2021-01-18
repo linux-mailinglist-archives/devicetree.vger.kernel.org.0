@@ -2,115 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E8F2FA4EA
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6892FA4E9
 	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:39:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391511AbhARPhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 10:37:32 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:49919 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2406006AbhARPfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 10:35:39 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id BEA4958077C;
-        Mon, 18 Jan 2021 10:34:18 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 18 Jan 2021 10:34:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:date:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=oU0HqCO/5476uMOlzZwZPuowCXA
-        18QWWN/mw1RTCV9g=; b=vaLbxPDj1tzN7TvKH7vMSi8rBS2vusxWy7RC4A/CE9S
-        Ylt63G5nEwedMq4k910g9dGsqleq9P+5+WLnYB99gqTjkkT8DkXqQt7hY5CicuuU
-        QNee8aJ92b8/DJrqmADB/FO5bm1BHwTdLwVGHSk+AY1cnx4ejvMg8FD69cwhNlFE
-        cBqQDRP+OZ4vjQ0iJ9Ygl69Q+wxTp14dRR4p744L9nc+NRpIfjgMXgdr5petDQ+F
-        +5rBz4APbiZkBKs6S3PKv/+qpR4AH5nBhe+BGrYbjoiogNQ2gcCzS5R/xqiPlpz0
-        J+VR0VV8X4GVG5C4yPlt4nHjxk4CKb0U0PMOzf4b0aA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=oU0HqC
-        O/5476uMOlzZwZPuowCXA18QWWN/mw1RTCV9g=; b=mjqAXbJ6T9w+h2IIeJ2kX5
-        dy5ImmXm3D6BhD4QYyrTZInUCozeZE5atfcmUT+QIlkVv0yRDigd9ce1Va4g2afk
-        bvKjwg45/Kw/igygZlLmkjPEQGZ6nzcwuiCPHLsUUPTjtLorVZM/T0w3nxDthTD7
-        Il2/uBS0/7pQqfNYVV9dU2LJxD/X6tSRjvWqJd4vY8JH62Lo8Ul6nAqgrR1ESbj6
-        9hfokd49eLluMen+YfDewoAInBtbmMI+XQnpknlOlOaJ26LwO0nRsO8upZJD+7Ic
-        Zu6ZWju0Jv094mIZfuAMvl/zmH4zJZOd1U0V9HEvdb8ALm/HyqaixhKu8/u7pP9Q
-        ==
-X-ME-Sender: <xms:eqoFYAJ4CIUHiG4GVCR9KCgyZlIZ6qgs3_c5rq9uY6vJupciZOv_-g>
-    <xme:eqoFYAIBO-axLA9_9Bu_uw3lhNYlHZpSdGmIG4_m4sLk_B6xF-NcFlIvaOjKBIoVe
-    -IOSY9IK-8PwV65wDE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtdekgdejkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhfffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepmhgrgihimhgv
-    segtvghrnhhordhtvggthhenucggtffrrghtthgvrhhnpefhffffgfetjeegieetleeuvd
-    ekffdukeejjeehveelkefggffgkeekvdfhieeggfenucfkphepledtrdekledrieekrdej
-    ieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:eqoFYAuSP6s61YaBhGfA4YBZq8QhJsIuKNugI-L4bTlJoEGbpCxTwA>
-    <xmx:eqoFYNZ8Tng5XbR2GgZ9fBL9Lz-bRniwPUQ3TgLruEFhyNG-KVA5DQ>
-    <xmx:eqoFYHYvH6Nzfweadf_THLEOYAh8kARqsi6PpmDOLaW5xGryZ6ecsg>
-    <xmx:eqoFYNweQh-H9eN39ex1dLODCaGKM4rRD-af1Dc_ji3FzpefRF-Fnw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id E640E24005D;
-        Mon, 18 Jan 2021 10:34:17 -0500 (EST)
-From:   maxime@cerno.tech
-Date:   Mon, 18 Jan 2021 16:34:16 +0100
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v3 17/21] dt-bindings: watchdog: sun4i: Add H616
- compatible string
-Message-ID: <20210118153416.h6zc5h5j52rlxro2@gilmour>
-65;6201;1cFrom: Maxime Ripard <maxime@cerno.tech>
-References: <20210118020848.11721-1-andre.przywara@arm.com>
- <20210118020848.11721-18-andre.przywara@arm.com>
+        id S2391316AbhARPhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 10:37:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39990 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392484AbhARPfn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:35:43 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51AD2C061757
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:35:02 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 190so13984872wmz.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 07:35:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PU8JAhvN4zUsrfhkKJ3/U+lzCe3kpuol8jLKQfI+x5M=;
+        b=Ft3KErTXOHq5QcXbEobfzgK8Gf7EjBtWIZDiuSkD72B8gK7VvfcLCtPp/hZ8JuHuaj
+         uroX8moLdNwpGW0foiUal0VbqQayQsWQUG6ONnnYmsLnxql436zRI8QWaT4MomVExnPj
+         JRajFo8XyBfDGfRtXuZupfM3rbwmEKnNr30oLneAZJPwBSGkYW1WKrF+mRld47INz4W2
+         qTUsFItaXxifel9I3qeFAztbcdz6vaT8mmwJ48IszxZkklexnWu4siLs+URTz2kXhAlV
+         ndP8E3pla+lmvJzApg893H+KsiUGj0TPLKWAdaZs79xH5kBl4+YPu/LNmlYjE0yWEKsA
+         bOLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PU8JAhvN4zUsrfhkKJ3/U+lzCe3kpuol8jLKQfI+x5M=;
+        b=J7f4QAi/TB8zgiLNKDk55Tw88UJ6wjYdUTvN7GjhCiUndv/YSrEoOsxGw2nwgHkKSj
+         H+8jYb5jnjEHiCPEMaElncAFThwapPYITeqnO4SOUzYK5e2fqfDllk0yFRx4lmY5RXnE
+         FqcSTd+cymN/p+EnI6y00deSbCG4er5OzKDqykoO93wyj1NsYVBQsraXytxNnZBRofRy
+         HUyhTkBRTEeoCRE1jhc8VgzA1+T5VPEbzZt6KPHH/7JlYGEiPrH0xR0Sfxo6oyLlzSso
+         1HZMs5i4isQPwlpe0DLHLN5f3FiGBOZpPoaXhRvPYuKMawkxlmlvUM4De0SbSUMUD5+1
+         21Rw==
+X-Gm-Message-State: AOAM530c9nl+y9B2I1bGorv5lIu6ECFLtXWk+s3SrT8T7Yys9ryBpS5e
+        U2lm7DBlIw8gRfw9+hSfq9zdQg==
+X-Google-Smtp-Source: ABdhPJy7Qf+dR3dTGNomfdXFejG6kvnctAApzuCxs3vM5dctK4LY7mW25LdpmWsSzHonrRc5DG4brw==
+X-Received: by 2002:a1c:c205:: with SMTP id s5mr7211954wmf.129.1610984100986;
+        Mon, 18 Jan 2021 07:35:00 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:2095:8614:d69:136f? ([2a01:e34:ed2f:f020:2095:8614:d69:136f])
+        by smtp.googlemail.com with ESMTPSA id c16sm30141331wrx.51.2021.01.18.07.34.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jan 2021 07:35:00 -0800 (PST)
+Subject: Re: [PATCH v2 0/2] Add drivers for Intel Keem Bay SoC timer block
+To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Seow, Chen Yong" <chen.yong.seow@intel.com>
+References: <cover.1609306622.git.vijayakannan.ayyathurai@intel.com>
+ <DM6PR11MB4250A1E8C1F2CA97516A2E59FBA90@DM6PR11MB4250.namprd11.prod.outlook.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <98fd451c-828e-e2e4-8462-51f9c88b6f1e@linaro.org>
+Date:   Mon, 18 Jan 2021 16:34:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ekw7d4qbod7okqkh"
-Content-Disposition: inline
-In-Reply-To: <20210118020848.11721-18-andre.przywara@arm.com>
+In-Reply-To: <DM6PR11MB4250A1E8C1F2CA97516A2E59FBA90@DM6PR11MB4250.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/01/2021 11:54, Ayyathurai, Vijayakannan wrote:
+> Hi,
+> 
+>> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+>>
+>> Changes since v1:
+>>  - Add support for KEEMBAY_TIMER to get selected through Kconfig.platforms.
+>>  - Add CLOCK_EVT_FEAT_DYNIRQ as part of clockevent feature.
+>>  - Avoid overlapping reg regions across 2 device nodes.
+>>  - Simplify 2 device nodes as 1 because both are from same IP block.
+>>  - Adapt the driver code according to the new simplified devicetree.
+>>
+>> Vijayakannan Ayyathurai (2):
+>>   dt-bindings: timer: Add bindings for Intel Keem Bay SoC timer
+>>   clocksource: Add Intel Keem Bay Timer Support
+> 
+> Kindly help us to review this updated patch(v2) set.
 
---ekw7d4qbod7okqkh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Review in progress ... :)
 
-On Mon, Jan 18, 2021 at 02:08:44AM +0000, Andre Przywara wrote:
-> Use enums to group all compatible devices together on the way.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> Acked-by: Rob Herring <robh@kernel.org>
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Maxime
-
---ekw7d4qbod7okqkh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAWqeAAKCRDj7w1vZxhR
-xa7kAQCUNTWleBinyXgESqWs2vbvBzOFbAYKt3vV6V2JdkaMIgEAoqaV9ae12yAo
-z+OKnbYdl4+hDmjGI/vB8yaRTyP6mwg=
-=maz4
------END PGP SIGNATURE-----
-
---ekw7d4qbod7okqkh--
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
