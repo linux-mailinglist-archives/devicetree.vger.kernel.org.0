@@ -2,153 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA052F9D6A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 12:03:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 530702F9E12
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 12:26:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389725AbhARLBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 06:01:49 -0500
-Received: from comms.puri.sm ([159.203.221.185]:59698 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389126AbhARK4U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 05:56:20 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id D1CFBE0114;
-        Mon, 18 Jan 2021 02:55:17 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 9EQ35MVmsmc9; Mon, 18 Jan 2021 02:55:16 -0800 (PST)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, krzk@kernel.org,
-        kernel@puri.sm, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        catalin.marinas@arm.com, will@kernel.org,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: [PATCH v2 7/9] arm64: dts: imx8mq-librem5: set regulators boot-on
-Date:   Mon, 18 Jan 2021 11:54:23 +0100
-Message-Id: <20210118105425.425-8-martin.kepplinger@puri.sm>
-In-Reply-To: <20210118105425.425-1-martin.kepplinger@puri.sm>
-References: <20210118105425.425-1-martin.kepplinger@puri.sm>
+        id S2389973AbhARLRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 06:17:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390019AbhARLQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 06:16:18 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D704C0613CF;
+        Mon, 18 Jan 2021 03:15:38 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id u14so9231633wmq.4;
+        Mon, 18 Jan 2021 03:15:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CJ72bt177B4DIMVzaTLLlUkw9fRM650S/6lWEQAT6dM=;
+        b=t53hjN4JoCR8pQXbKACwBx0R7gMAx4R8cOmcGcfNoNgpG41hB5EVRA/emJyIMHFzAo
+         eSeZEX/USZ7CK7x6IrCf83xz3p9tHKxrNK9EgkhKOp8w/fz9GxtTQK3ApBLxJgT2oztc
+         zn9U1fhcOZD16wkCFminFqYSLoYasdn2UpcKSeeyX18lXpyNm/YDE2/bG5Ik9SEoWf5Y
+         ulc0dHt685IlDo7VZoPvh5mLk2v3nX2Z/wzC6xNzKKuO3rqD31FBhFH3o6A9e8lV44Yd
+         yqqu8cyXITMaxb/RH6n/qa7ILdgf5CoIGwCC5VmYC3z5AZ6zzL6HUZMxRs2EClQG1aUv
+         ig3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CJ72bt177B4DIMVzaTLLlUkw9fRM650S/6lWEQAT6dM=;
+        b=XjLtqGPbh8GrIzrjliz9dWJ/XmDNvbT0syoXzktVoCW8Sy6I9xy5DgfLIn90TL2mf8
+         Azg7pvg3IAlbYHTcrB+bjpESbXD55w6aBEoBDym1bTpyWH3zuADUhkXYTJYB+UYEBx60
+         qAXYud8Vujyhxza50zBGAXryP9JsGlvzR+6Jh9GV/gJQr7Q1H9T/FhVpZS3d6bverph2
+         6SiD/l9mJGVot+V5najXRp0eF8pcV1smUDVckLkaT8Jjy61hczgzvOJJMXDrEfcJux8/
+         u2uxPOKS525dE6E36HOiclQ6PstsdCNIfBImVDsneq0mrkgfoE3G1Mpa4tYDX5nOxzt1
+         UXHA==
+X-Gm-Message-State: AOAM532DBe1tJoZOL5q1HObOtbYsww95e82HCJUrz4V1Fh4IdBJdksB4
+        IAaZnO25fmiJUvky/fi/hmg=
+X-Google-Smtp-Source: ABdhPJzwosWeCGnN/uC2PxZQ5Yjn6dpYgRUOTyxZTbeAfcVlAGKdJ8ij6bnUx89R22ZgDrfy2/92FA==
+X-Received: by 2002:a05:600c:4417:: with SMTP id u23mr20620115wmn.100.1610968536790;
+        Mon, 18 Jan 2021 03:15:36 -0800 (PST)
+Received: from localhost.localdomain (2a01cb0008bd2700989047bbcea0de57.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:9890:47bb:cea0:de57])
+        by smtp.gmail.com with ESMTPSA id b132sm26778440wmh.21.2021.01.18.03.15.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jan 2021 03:15:36 -0800 (PST)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     shawnguo@kernel.org, krzk@kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v5 0/3] Add support for Boundary Nitrogen8M Mini SBC
+Date:   Mon, 18 Jan 2021 12:15:28 +0100
+Message-Id: <20210118111531.903154-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Expect all those regulators to be turned on initially.
+Hello,
 
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+This patch set aims is to add the support of the Nitrogen8M Mini SBC
+from Boundary Devices.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index bf86402cda30..06a4799b6aeb 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -682,6 +682,7 @@
- 				regulator-name = "buck1";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
- 				regulator-ramp-delay = <1250>;
- 				rohm,dvs-run-voltage = <900000>;
- 				rohm,dvs-idle-voltage = <850000>;
-@@ -693,6 +694,7 @@
- 				regulator-name = "buck2";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
- 				regulator-ramp-delay = <1250>;
- 				rohm,dvs-run-voltage = <1000000>;
- 				rohm,dvs-idle-voltage = <900000>;
-@@ -703,6 +705,7 @@
- 				regulator-name = "buck3";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
- 				rohm,dvs-run-voltage = <900000>;
- 			};
- 
-@@ -717,6 +720,7 @@
- 				regulator-name = "buck5";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1350000>;
-+				regulator-boot-on;
- 				regulator-always-on;
- 			};
- 
-@@ -724,6 +728,7 @@
- 				regulator-name = "buck6";
- 				regulator-min-microvolt = <3000000>;
- 				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
- 				regulator-always-on;
- 			};
- 
-@@ -731,6 +736,7 @@
- 				regulator-name = "buck7";
- 				regulator-min-microvolt = <1605000>;
- 				regulator-max-microvolt = <1995000>;
-+				regulator-boot-on;
- 				regulator-always-on;
- 			};
- 
-@@ -738,6 +744,7 @@
- 				regulator-name = "buck8";
- 				regulator-min-microvolt = <800000>;
- 				regulator-max-microvolt = <1400000>;
-+				regulator-boot-on;
- 				regulator-always-on;
- 			};
- 
-@@ -745,6 +752,7 @@
- 				regulator-name = "ldo1";
- 				regulator-min-microvolt = <3000000>;
- 				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
- 				/* leave on for snvs power button */
- 				regulator-always-on;
- 			};
-@@ -753,6 +761,7 @@
- 				regulator-name = "ldo2";
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <900000>;
-+				regulator-boot-on;
- 				/* leave on for snvs power button */
- 				regulator-always-on;
- 			};
-@@ -761,6 +770,7 @@
- 				regulator-name = "ldo3";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
- 				regulator-always-on;
- 			};
- 
-@@ -768,6 +778,7 @@
- 				regulator-name = "ldo4";
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
- 				regulator-always-on;
- 			};
- 
-@@ -784,6 +795,7 @@
- 				regulator-name = "ldo6";
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
- 				regulator-always-on;
- 			};
- 
-@@ -792,6 +804,7 @@
- 				regulator-name = "ldo7";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
- 				regulator-always-on;
- 			};
- 		};
+Thanks,
+
+Update in v2:
+  - Rewrite the dts (Remove the unused wlan and audio);
+  - Remove useless definition;
+  - Take in account review.
+
+Update in v3:
+  - Take in account review.
+
+Update in v4:
+  - Reorder definition in pmic
+
+Update in v5:
+  - Take in account review.
+  - Remove useless i2c groups
+
+Adrien Grassein (3):
+  dt-bindings: arm: imx: add imx8mm nitrogen support
+  arm64: dts: imx: Add i.mx8mm nitrogen8mm basic dts support
+  arm64: defconfig: Enable PF8x00 as builtin
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mm-nitrogen8mm_rev2.dts | 395 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 4 files changed, 398 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
+
 -- 
-2.20.1
+2.25.1
 
