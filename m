@@ -2,95 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDA202FA638
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65AC52FA639
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:31:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405942AbhARP6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 10:58:05 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:46556 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405900AbhARPrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:47:55 -0500
-Received: by mail-ot1-f49.google.com with SMTP id w3so16605111otp.13;
-        Mon, 18 Jan 2021 07:47:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=7fgTElUed+dLXiedRGXn6iUhg8ezF6u02H7vJDNFxaQ=;
-        b=bDsxlyxWvPUwlOuMMJiswhqKQ1Yp91vlOpnGhrS9JTMu2STyr78BNhK9+Zq8ua8oD7
-         7ZPhnoxFAWTrVWwjsA2zeONvJBUFzHebTwcfQJd38d4PjjqRpjWKbeKx3j/WsHcjwp/v
-         vbZhtx9xZr+8T/WtEmPRzi0f2Qqt+tHBLMOUwehgqLOXZDnGjmkYctkNw5VfcQ39MeR/
-         xM53VhX3X62Gh4da3hvGAsLBP8HdHfptCOIzodbsZmS4Dw1n2LY8AJbuekM19YbNcwv/
-         Hy+aSaaDSjPsLiPuxECO+Mr/vRibQBRCrLESYsP9sRvv5rda9sInz9iqIXIN+ppuYVmT
-         srDA==
-X-Gm-Message-State: AOAM533HtOUdcmdJbZC3AvxRCHg6Edtwm25eiTh1zPWp3j0PDCOPKYHS
-        7C9G7xODfpDAKzBeHlRyow==
-X-Google-Smtp-Source: ABdhPJy5q/BWp4jbEhJl/2ExB4bau3UfQKeemepMe2Nty8rNip/vK0Lj+SkolcrUeG6oTBVPUFZLhw==
-X-Received: by 2002:a05:6830:1e47:: with SMTP id e7mr73795otj.268.1610984829430;
-        Mon, 18 Jan 2021 07:47:09 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s2sm732912otk.45.2021.01.18.07.47.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jan 2021 07:47:08 -0800 (PST)
-Received: (nullmailer pid 3984441 invoked by uid 1000);
-        Mon, 18 Jan 2021 15:47:02 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Mayulong <mayulong1@huawei.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org
-In-Reply-To: <8a152819ef89c73dd6afb5c2deb5441402fcd2fa.1610975633.git.mchehab+huawei@kernel.org>
-References: <cover.1610975633.git.mchehab+huawei@kernel.org> <8a152819ef89c73dd6afb5c2deb5441402fcd2fa.1610975633.git.mchehab+huawei@kernel.org>
-Subject: Re: [PATCH v2 10/13] mfd: hi6421-spmi-pmic: move driver from staging
-Date:   Mon, 18 Jan 2021 09:47:02 -0600
-Message-Id: <1610984822.729521.3984440.nullmailer@robh.at.kernel.org>
+        id S2393014AbhARQ3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 11:29:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406659AbhARQZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 11:25:41 -0500
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78EB8C061757;
+        Mon, 18 Jan 2021 08:24:57 -0800 (PST)
+Received: from localhost.localdomain (abaf224.neoplus.adsl.tpnet.pl [83.6.169.224])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 7104C1FC8F;
+        Mon, 18 Jan 2021 17:24:55 +0100 (CET)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 02/11] arm64: dts: qcom: msm8992-bullhead: Update regulator config
+Date:   Mon, 18 Jan 2021 17:24:22 +0100
+Message-Id: <20210118162432.107275-2-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210118162432.107275-1-konrad.dybcio@somainline.org>
+References: <20210118162432.107275-1-konrad.dybcio@somainline.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Jan 2021 14:28:11 +0100, Mauro Carvalho Chehab wrote:
-> This driver is ready for mainstream. So, move it out of staging.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 133 +++++++
->  MAINTAINERS                                   |   7 +
->  drivers/mfd/Kconfig                           |  15 +
->  drivers/mfd/Makefile                          |   1 +
->  drivers/mfd/hi6421-spmi-pmic.c                | 342 ++++++++++++++++++
->  drivers/staging/hikey9xx/Kconfig              |  16 -
->  drivers/staging/hikey9xx/Makefile             |   1 -
->  drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 342 ------------------
->  .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 133 -------
->  9 files changed, 498 insertions(+), 492 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
->  create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
->  delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
->  delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
-> 
+* Include pm(i)8994 dtsi
+* Add PMI8994 RPM regulators
+* Add comments concerning "missing" regulators
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ .../dts/qcom/msm8992-bullhead-rev-101.dts     | 39 +++++++++++++------
+ 1 file changed, 27 insertions(+), 12 deletions(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-
-See https://patchwork.ozlabs.org/patch/1428169
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts
+index 5969b5cfdc85..cacbfdbd69e3 100644
+--- a/arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts
++++ b/arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts
+@@ -6,6 +6,8 @@
+ /dts-v1/;
+ 
+ #include "msm8992.dtsi"
++#include "pm8994.dtsi"
++#include "pmi8994.dtsi"
+ 
+ / {
+ 	model = "LG Nexus 5X";
+@@ -44,7 +46,7 @@ &blsp1_uart2 {
+ };
+ 
+ &rpm_requests {
+-	pm8994-regulators {
++	pm8994_regulators: pm8994-regulators {
+ 		compatible = "qcom,rpm-pm8994-regulators";
+ 
+ 		vdd_l1-supply = <&pm8994_s1>;
+@@ -53,15 +55,17 @@ pm8994-regulators {
+ 		vdd_l4_27_31-supply = <&pm8994_s3>;
+ 		vdd_l5_7-supply = <&pm8994_s3>;
+ 		vdd_l6_12_32-supply = <&pm8994_s5>;
+-		vdd_l8_16_30-supply = <&vreg_vph_pwr>;
+-		vdd_l9_10_18_22-supply = <&vreg_vph_pwr>;
+-		vdd_l13_19_23_24-supply = <&vreg_vph_pwr>;
++		vdd_l8_16_30-supply = <&vph_pwr>;
++		vdd_l9_10_18_22-supply = <&vph_pwr>;
++		vdd_l13_19_23_24-supply = <&vph_pwr>;
+ 		vdd_l14_15-supply = <&pm8994_s5>;
+-		vdd_l17_29-supply = <&vreg_vph_pwr>;
+-		vdd_l20_21-supply = <&vreg_vph_pwr>;
++		vdd_l17_29-supply = <&vph_pwr>;
++		vdd_l20_21-supply = <&vph_pwr>;
+ 		vdd_l25-supply = <&pm8994_s5>;
+ 		vdd_lvs1_2 = <&pm8994_s4>;
+ 
++		/* S1, S2, S6 and S12 are managed by RPMPD */
++
+ 		pm8994_s1: s1 {
+ 			regulator-min-microvolt = <800000>;
+ 			regulator-max-microvolt = <800000>;
+@@ -93,6 +97,8 @@ pm8994_s7: s7 {
+ 			regulator-max-microvolt = <1000000>;
+ 		};
+ 
++		/* S8, S9, S10 and S11 - SPMI-managed VDD_APC */
++
+ 		pm8994_l1: l1 {
+ 			regulator-min-microvolt = <1000000>;
+ 			regulator-max-microvolt = <1000000>;
+@@ -113,18 +119,14 @@ pm8994_l4: l4 {
+ 			regulator-max-microvolt = <1225000>;
+ 		};
+ 
+-		pm8994_l5: l5 {
+-			/* TODO */
+-		};
++		/* L5 is inaccessible from RPM */
+ 
+ 		pm8994_l6: l6 {
+ 			regulator-min-microvolt = <1800000>;
+ 			regulator-max-microvolt = <1800000>;
+ 		};
+ 
+-		pm8994_l7: l7 {
+-			/* TODO */
+-		};
++		/* L7 is inaccessible from RPM */
+ 
+ 		pm8994_l8: l8 {
+ 			regulator-min-microvolt = <1800000>;
+@@ -266,6 +268,19 @@ pm8994_l32: l32 {
+ 			*/
+ 		};
+ 	};
++
++	pmi8994_regulators: pmi8994-regulators {
++		compatible = "qcom,rpm-pmi8994-regulators";
++
++		vdd_s1-supply = <&vph_pwr>;
++		vdd_bst_byp-supply = <&vph_pwr>;
++
++		pmi8994_s1: s1 {};
++
++		/* S2 & S3 - VDD_GFX */
++
++		pmi8994_bby: boost-bypass {};
++	};
+ };
+ 
+ &sdhc_1 {
+-- 
+2.29.2
 
