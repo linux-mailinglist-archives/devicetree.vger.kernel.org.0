@@ -2,156 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C673C2FA245
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 14:57:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F3D52FA259
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:01:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404784AbhARN4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 08:56:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39920 "EHLO mail.kernel.org"
+        id S2392128AbhARNb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 08:31:57 -0500
+Received: from foss.arm.com ([217.140.110.172]:36062 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404791AbhARNz6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 08:55:58 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 33A7C221F8;
-        Mon, 18 Jan 2021 13:55:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610978117;
-        bh=ykgFhUqSM1dyJBvw0Rywlt6WHe0ZmeC2SAS93hYZkRo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gWfeqVULU5LOFwX+zHhR7ooyTHeoB068knM+l7TtzY1V0br2LJrTuprNWbLljIhSQ
-         +IIYMEH0tVE2PhpBjBJ82jzb2swQU2zcc/bErazzIdDOE+GsQgdW+gv9xN2I1tO9sn
-         fajtB1v9z2BXgF/PaVGp4U8KqNCfBqzvzInOoOCCn8yoSLtbnnl+SDTA/vy2LrEiJK
-         +Ex1pRMOnqoywNYYLBIHHMsPGGHyEsdksyTN48/XXE92yDXyoGgq1KR+JieSNUzgZe
-         EamHHfuud0RIXDgf1lj13cZ1lxYPNL5H/uWPALj39S4PXZc4SbQ7gQvDubzk1giXy9
-         KxS6dZ0ghhFgg==
-Date:   Mon, 18 Jan 2021 13:54:40 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mayulong <mayulong1@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 11/13] regulator: hi6421v600-regulator: move it from
- staging
-Message-ID: <20210118135440.GM4455@sirena.org.uk>
-References: <cover.1610975633.git.mchehab+huawei@kernel.org>
- <d0a7cae3c654d25e01b0c436e00de55a21cd7f64.1610975633.git.mchehab+huawei@kernel.org>
+        id S2390314AbhARN2c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 08:28:32 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3B94ED6E;
+        Mon, 18 Jan 2021 05:27:46 -0800 (PST)
+Received: from [10.57.39.58] (unknown [10.57.39.58])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 716473F719;
+        Mon, 18 Jan 2021 05:27:44 -0800 (PST)
+Subject: Re: [PATCH 1/2] of: device: Allow DMA range map to be set before
+ of_dma_configure_id
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20210115175831.1184260-1-paul.kocialkowski@bootlin.com>
+ <ddf44e96-187b-91c0-822d-ade4f1e5be2b@arm.com> <YAMdZ9peWRMRACv2@collins>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <5c7946f3-b56e-da00-a750-be097c7ceb32@arm.com>
+Date:   Mon, 18 Jan 2021 13:27:44 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nrXiCraHbXeog9mY"
-Content-Disposition: inline
-In-Reply-To: <d0a7cae3c654d25e01b0c436e00de55a21cd7f64.1610975633.git.mchehab+huawei@kernel.org>
-X-Cookie: Huh?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <YAMdZ9peWRMRACv2@collins>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2021-01-16 17:07, Paul Kocialkowski wrote:
+> Hi Robin,
+> 
+> Le Sat 16 Jan 21, 14:57, Robin Murphy a écrit :
+>> On 2021-01-15 17:58, Paul Kocialkowski wrote:
+>>> A mechanism was recently introduced for the sunxi architecture where
+>>> the DMA offset for specific devices (under the MBUS) is set by a common
+>>> driver (sunxi_mbus). This driver calls dma_direct_set_offset to set
+>>> the device's dma_range_map manually.
+>>>
+>>> However this information was overwritten by of_dma_configure_id, which
+>>> obtains the map from of_dma_get_range (or keeps it NULL when it fails
+>>> and the force_dma argument is true, which is the case for platform
+>>> devices).
+>>>
+>>> As a result, the dma_range_map was always overwritten and the mechanism
+>>> could not correctly take effect.
+>>>
+>>> This adds a check to ensure that no previous DMA range map is
+>>> overwritten and prints a warning when the map was already set while
+>>> also being available from dt. In this case, the map that was already
+>>> set is kept.
+>>
+>> Hang on, the hard-coded offset is only intended to be installed when there
+>> *isn't* anything described in DT, in which case of_dma_get_range() should
+>> always bail out early without touching it anyway. This sounds like
+>> something's not quite right in the MBUS driver, so I don't think working
+>> around it in core code is really the right thing to do.
+> 
+> That's right, there is no practical case where the two are in conflict.
+> The problem that I'm solving here is that dev->dma_range_map is *always*
+> assigned, even when of_dma_get_range bailed and map still is NULL.
+> 
+> This has the effect of always overwriting what the MBUS driver does
+> (and leaking its memory too).
 
---nrXiCraHbXeog9mY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Oh, I should have looked closer at of_dma_configure_id() itself. I was 
+assuming that b4bdc4fbf8d0 had been tested and at least *could* work, 
+but apparently not :/
 
-On Mon, Jan 18, 2021 at 02:28:12PM +0100, Mauro Carvalho Chehab wrote:
+Indeed it seems there was a fundamental oversight in e0d072782c73 
+("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset"), 
+equivalent to the same one I previously made myself with bus_dma_mask 
+and fixed in 6778be4e5209 ("of/device: Really only set bus DMA mask when 
+appropriate"). I think same simpler fix is the right one for this case 
+too, i.e. just move the assignment to dev->dma_range_map up under the 
+"if (!ret)" condition. Assigning it this late - after the IOMMU and arch 
+setup - looks wrong anyway, even if it isn't currently an issue in 
+practice (in principle an IOMMU driver *could* start trying to figure 
+out reserved regions around DMA windows for a device as early as its 
+.of_xlate callback, even though that's not the intent of the API design).
 
-> index f385146d2bd1..3b23ad56b31a 100644
-> --- a/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.ya=
-ml
-> @@ -60,6 +60,8 @@ required:
->    - reg
->    - regulators
-> =20
-> +additionalProperties: false
-> +
->  examples:
->    - |
->      /* pmic properties */
+Luckily dma_range_map hasn't been hooked up in the equivalent ACPI path 
+yet, so you're off the hook for fixing that too :)
 
-Why is this part of this patch?
+Cheers,
+Robin.
 
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// Device driver for regulators in Hisi IC
-> +//
-> +// Copyright (c) 2013 Linaro Ltd.
-> +// Copyright (c) 2011 Hisilicon.
-> +//
-
-This looks like it needs an update.
-
-> +// This program is free software; you can redistribute it and/or modify
-> +// it under the terms of the GNU General Public License version 2 as
-> +// published by the Free Software Foundation.
-> +//
-> +// This program is distributed in the hope that it will be useful,
-> +// but WITHOUT ANY WARRANTY; without even the implied warranty of
-> +// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> +// GNU General Public License for more details.
-
-This boilerplate can be removed.
-
-> +static int hi6421_spmi_regulator_enable(struct regulator_dev *rdev)
-> +{
-> +	struct hi6421_spmi_reg_info *sreg =3D rdev_get_drvdata(rdev);
-> +	struct hi6421_spmi_pmic *pmic =3D sreg->pmic;
-> +	int ret;
-> +
-> +	/* cannot enable more than one regulator at one time */
-> +	mutex_lock(&sreg->enable_mutex);
-> +	usleep_range(HISI_REGS_ENA_PROTECT_TIME,
-> +		     HISI_REGS_ENA_PROTECT_TIME + 1000);
-> +
-> +	/* set enable register */
-> +	ret =3D hi6421_spmi_pmic_rmw(pmic, rdev->desc->enable_reg,
-> +				   rdev->desc->enable_mask,
-> +				   rdev->desc->enable_mask);
-
-If for some reason the PMIC is sufficiently fragile to need a delay
-between enables it's not clear why the driver is doing it before
-enabling rather than after, presumably there's issues with the regulator
-ramping up and stabalising its output=20
-
-> +	/* set enable register to 0 */
-> +	return hi6421_spmi_pmic_rmw(pmic, rdev->desc->enable_reg,
-> +				    rdev->desc->enable_mask, 0);
-
-I'm not sure all these comments are adding anything.
-
-> +	if (unlikely(selector >=3D rdev->desc->n_voltages))
-> +		return -EINVAL;
-
-This should not be a hot path that needs an unlikely() annotation.
-
-> +static unsigned int
-> +hi6421_spmi_regulator_get_optimum_mode(struct regulator_dev *rdev,
-> +				       int input_uV, int output_uV,
-> +				       int load_uA)
-> +{
-> +	struct hi6421_spmi_reg_info *sreg =3D rdev_get_drvdata(rdev);
-> +
-> +	if (load_uA || ((unsigned int)load_uA > sreg->eco_uA))
-> +		return REGULATOR_MODE_NORMAL;
-
-This means that for *any* load at all we select NORMAL - I'm not
-convinced this is intentional?
-
---nrXiCraHbXeog9mY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAFkx8ACgkQJNaLcl1U
-h9CCJQf+JZE52OG1ptTsbSKUutT6ORzmQVWG6aAfTo8g32Z9wgbLY2jYIVYh/gEd
-dqFNvXFpVCy22tOaAKybiteHGhS4941GKXI5zQ/bkRTVaNt9S4H6qACeNJ9OZUvv
-OKP1s5V1Xpdgodu4Zd1VAKrT1ewYxt6y4R2mltc5rb4sm9J2vkeYjnVd2bioe6Xp
-BHMYppqMJoy3bxiRFizy91HxmwSD/v6FYk3FIn40+vYIGQ2OjBElMhBPO9xrdRy6
-2BCgn+4WIQrK2pYGvE9Q4Kl7/9gj2SRUWEnUiVtygitrMCOC4OxyWbPMXZqFPo7f
-uB6wUGsnEx2kEvbE5bryKYom/wcxlA==
-=06Fz
------END PGP SIGNATURE-----
-
---nrXiCraHbXeog9mY--
+>> Do you have a case where one of the relevant devices inherits a "dma-ranges"
+>> via the regular hierarchy without indirecting via an "interconnects"
+>> reference? Currently you're only checking for the latter, so that would be
+>> one way things could go awry (although to be a problem, said "dma-ranges"
+>> would also have to encode something *other* than the appropriate MBUS
+>> offset, which implies an incorrect or at least inaccurately-structured DT as
+>> well).
+> 
+> No, I think things are good in that regard. No messed up dt or anything like
+> that :)
+> 
+> Cheers,
+> 
+> Paul
+> 
+>> Robin.
+>>
+>>> Fixes: b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in a central place")
+>>> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+>>> ---
+>>>    drivers/of/device.c | 9 ++++++++-
+>>>    1 file changed, 8 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/of/device.c b/drivers/of/device.c
+>>> index aedfaaafd3e7..db1b8634c2c7 100644
+>>> --- a/drivers/of/device.c
+>>> +++ b/drivers/of/device.c
+>>> @@ -181,7 +181,14 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>>>    	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+>>> -	dev->dma_range_map = map;
+>>> +	if (!dev->dma_range_map) {
+>>> +		dev->dma_range_map = map;
+>>> +	} else if (map) {
+>>> +		dev_warn(dev,
+>>> +			 "DMA range map was already set, ignoring range map from dt\n");
+>>> +		kfree(map);
+>>> +	}
+>>> +
+>>>    	return 0;
+>>>    }
+>>>    EXPORT_SYMBOL_GPL(of_dma_configure_id);
+>>>
+> 
