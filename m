@@ -2,81 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95ED12F9FF4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 13:38:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4B972FA081
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 13:55:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391658AbhARMhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 07:37:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57892 "EHLO
+        id S2391740AbhARMy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 07:54:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404057AbhARMhH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 07:37:07 -0500
+        with ESMTP id S2391742AbhARMgZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 07:36:25 -0500
 Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38905C0613D6
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FF3C061757
         for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 04:35:44 -0800 (PST)
 Received: from ramsan.of.borg ([84.195.186.194])
         by albert.telenet-ops.be with bizsmtp
-        id JCbi2400E4C55Sk06CbiEb; Mon, 18 Jan 2021 13:35:42 +0100
+        id JCbi2400h4C55Sk06CbiEp; Mon, 18 Jan 2021 13:35:42 +0100
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1l1Tkz-004aJc-QR; Mon, 18 Jan 2021 13:35:41 +0100
+        id 1l1Tl0-004aJd-3l; Mon, 18 Jan 2021 13:35:42 +0100
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1l1Tkz-002MtD-89; Mon, 18 Jan 2021 13:35:41 +0100
+        id 1l1Tkz-002MtG-9f; Mon, 18 Jan 2021 13:35:41 +0100
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
 To:     Robin van der Gracht <robin@protonic.nl>,
         Rob Herring <robh+dt@kernel.org>,
         Miguel Ojeda Sandonis <miguel.ojeda.sandonis@gmail.com>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Kaplan <M.KAPLAN@evva.com>,
         Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH 0/3] auxdisplay: ht16k33: Improvement, fix, and json-schema conversion
-Date:   Mon, 18 Jan 2021 13:35:35 +0100
-Message-Id: <20210118123538.564597-1-geert@linux-m68k.org>
+Subject: [PATCH 1/3] dt-bindings: auxdisplay: ht16k33: Keyscan function should be optional
+Date:   Mon, 18 Jan 2021 13:35:36 +0100
+Message-Id: <20210118123538.564597-2-geert@linux-m68k.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210118123538.564597-1-geert@linux-m68k.org>
+References: <20210118123538.564597-1-geert@linux-m68k.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-	Hi Robin, Rob, Miguel,
+From: Robin van der Gracht <robin@protonic.nl>
 
-This patch series contains various updates for the Holtek HT16K33 LED
-controller with keyscan DT bindings and driver:
-  1. Make the keypad function optional, from an old patch by Robin that seem to
-     have fallen through the cracks,
-  2. Fix the default brightness range,
-  3. Convert DT bindings to json-schema.
+Keyscan should be optional to support simple LED matrix displays (output
+only).
 
-Thanks!
+Reported-by: Michael Kaplan <M.KAPLAN@evva.com>
+Signed-off-by: Robin van der Gracht <robin@protonic.nl>
+[geert: Rebased]
+Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+---
+ .../devicetree/bindings/display/ht16k33.txt        | 11 +++++++----
+ drivers/auxdisplay/ht16k33.c                       | 14 ++++++--------
+ 2 files changed, 13 insertions(+), 12 deletions(-)
 
-Geert Uytterhoeven (2):
-  dt-bindings: auxdisplay: ht16k33: Fix default-brightness-level range
-  dt-bindings: auxdisplay: ht16k33: Convert to json-schema
-
-Robin van der Gracht (1):
-  dt-bindings: auxdisplay: ht16k33: Keyscan function should be optional
-
- .../bindings/auxdisplay/holtek,ht16k33.yaml   | 77 +++++++++++++++++++
- .../devicetree/bindings/display/ht16k33.txt   | 40 ----------
- MAINTAINERS                                   |  2 +-
- drivers/auxdisplay/ht16k33.c                  | 14 ++--
- 4 files changed, 84 insertions(+), 49 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/ht16k33.txt
-
+diff --git a/Documentation/devicetree/bindings/display/ht16k33.txt b/Documentation/devicetree/bindings/display/ht16k33.txt
+index d5a8b070b46779a4..3d602f5b9eb6bb74 100644
+--- a/Documentation/devicetree/bindings/display/ht16k33.txt
++++ b/Documentation/devicetree/bindings/display/ht16k33.txt
+@@ -4,16 +4,19 @@ Holtek ht16k33 RAM mapping 16*8 LED controller driver with keyscan
+ Required properties:
+ - compatible:		"holtek,ht16k33"
+ - reg:			I2C slave address of the chip.
+-- interrupts:		Interrupt specification for the key pressed interrupt.
+ - refresh-rate-hz:	Display update interval in HZ.
+-- debounce-delay-ms:	Debouncing interval time in milliseconds.
+-- linux,keymap: 	The keymap for keys as described in the binding
+-			document (devicetree/bindings/input/matrix-keymap.txt).
+ 
+ Optional properties:
+ - linux,no-autorepeat:	Disable keyrepeat.
+ - default-brightness-level: Initial brightness level [0-15] (default: 15).
+ 
++- Keypad
++ Supply the 'interrupts' property to enable the keyscan feature.
++ - interrupts:		Interrupt specification for the key pressed interrupt.
++ - debounce-delay-ms:	Debouncing interval time in milliseconds.
++ - linux,keymap: 	The keymap for keys as described in the binding
++			document (devicetree/bindings/input/matrix-keymap.txt).
++
+ Example:
+ 
+ &i2c1 {
+diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
+index d951d54b26f5239b..444f3b1019e3d425 100644
+--- a/drivers/auxdisplay/ht16k33.c
++++ b/drivers/auxdisplay/ht16k33.c
+@@ -402,11 +402,6 @@ static int ht16k33_probe(struct i2c_client *client,
+ 		return -EIO;
+ 	}
+ 
+-	if (client->irq <= 0) {
+-		dev_err(&client->dev, "No IRQ specified\n");
+-		return -EINVAL;
+-	}
+-
+ 	priv = devm_kzalloc(&client->dev, sizeof(*priv), GFP_KERNEL);
+ 	if (!priv)
+ 		return -ENOMEM;
+@@ -459,9 +454,12 @@ static int ht16k33_probe(struct i2c_client *client,
+ 	if (err)
+ 		goto err_fbdev_info;
+ 
+-	err = ht16k33_keypad_probe(client, &priv->keypad);
+-	if (err)
+-		goto err_fbdev_unregister;
++	/* Keypad */
++	if (client->irq > 0) {
++		err = ht16k33_keypad_probe(client, &priv->keypad);
++		if (err)
++			goto err_fbdev_unregister;
++	}
+ 
+ 	/* Backlight */
+ 	memset(&bl_props, 0, sizeof(struct backlight_properties));
 -- 
 2.25.1
 
-Gr{oetje,eeting}s,
-
-						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-							    -- Linus Torvalds
