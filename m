@@ -2,65 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 053832FA0B4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 14:07:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0642FA0DC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 14:12:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389909AbhARNEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 08:04:30 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:47766 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391972AbhARNEI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 08:04:08 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l1UBn-00047p-Mz; Mon, 18 Jan 2021 14:03:23 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     richard@nod.at, robh+dt@kernel.org, vigneshr@ti.com,
-        miquel.raynal@bootlin.com, Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: (subset) [PATCH v16 0/8] Add Rockchip NFC drivers for RK3308 and others
-Date:   Mon, 18 Jan 2021 14:03:22 +0100
-Message-ID: <2205525.ECZNHGQPT7@diego>
-In-Reply-To: <161097370156.287816.7898637730580960045.b4-ty@sntech.de>
-References: <20201210002134.5686-1-yifeng.zhao@rock-chips.com> <161097370156.287816.7898637730580960045.b4-ty@sntech.de>
+        id S2404392AbhARNLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 08:11:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392000AbhARNKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 08:10:21 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93716C061574
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 05:09:40 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id n6so2419473edt.10
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 05:09:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=D1AAveqTyJyo7XF8SzJyHG+QKvAwmHfyliyuUc7ZAnA=;
+        b=l68X6CtsM6Skvy4gGizDCvSonOG+owbJN7TdOkzZrLvP9lhnyhqOS5uV9Fm7qeeL3S
+         Ij8FFii+F+dvmzuzn6BDBr0YBsWmrXIRP+uih2bEIbpg6s1K/JLbomJ+nDWR5mQdskRb
+         dXpoDQF71t8wB3VevXYfrJAIKoEso938vlYv88rWTwCZJTjm0puR9CSc3JgLHlACWrr6
+         aG7mCHr1d4C2CX7OsoPHwN7Hx8NUa+bYAmAD7WE448vm9D8V/VmS/vbuHNvKkpAlGySF
+         mYYcX8vBTOowRWG0JSPP6H9ELliocDrT6r4wTN4fWgL8atdJs1vgMgRdhfMfbhEi4I9U
+         fZQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=D1AAveqTyJyo7XF8SzJyHG+QKvAwmHfyliyuUc7ZAnA=;
+        b=QxSzLsdO7uda/78PZCtL55cF2EdCnTT7fZfafHOR8yPnkIDSdkPuu2Ujp/IHPDox0T
+         aqQjFk0XQJECziXjT5N1Y3X3i6/MFE/D5Fc5nuxHUhAjhM6IVLWPqz5QP83T4r5j7kCa
+         +UjKfdnwA9zeABLwGSVZaBedvFR/ATgOZIKD8YC7QOc5pnLMCSvatEVbkRfuFbL7IPZY
+         gf1D07WOSOg4LjTu577SDP0lmFoptc1rfa5MhO53r/J0aJOzJpB7mcB/AEx8U2RWbvdQ
+         Rk1nO+Qo+23nw3LCxESKuEFg+ZBIyorR30iM2zm6Q8Cj8e9XJTuubKd/+QLrPqwPIEkV
+         KWeg==
+X-Gm-Message-State: AOAM531rwuk5R1zOApqawI6LI6akQDCRdYpE9LQwsg9FQ4SrCEo3IFON
+        xJVSN0K52qgW3WsuNxv2SsoFElbRITr/uRMKrq1URA==
+X-Google-Smtp-Source: ABdhPJx7P49VEgkKm6Wu3E1/wBPsP3g0IlibgP8xzr/V3RelBVzdfxzLzDN1d2NZc2Hw19FgOMKk1QSj/fKTM7uyr8I=
+X-Received: by 2002:a05:6402:c92:: with SMTP id cm18mr5108809edb.367.1610975379333;
+ Mon, 18 Jan 2021 05:09:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20210104130111.1269694-1-geert+renesas@glider.be>
+ <CACRpkdZyV-tye0b6Pxf6s_SSEy1sq=Hqr_xXUopJrCkXsu9m9g@mail.gmail.com> <CAMuHMdVK+iYu-mEPfcNK0OwpFMs8re2uC7YAYzt5_CYvo_8BQg@mail.gmail.com>
+In-Reply-To: <CAMuHMdVK+iYu-mEPfcNK0OwpFMs8re2uC7YAYzt5_CYvo_8BQg@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 18 Jan 2021 14:09:28 +0100
+Message-ID: <CACRpkdZiUAi+Ur=v0omivvUnUVe9p2Tntum_DtdOa-uD-sKTuQ@mail.gmail.com>
+Subject: Re: [PATCH v12] ARM: uncompress: Validate start of physical memory
+ against passed DTB
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Eric Miao <eric.miao@nvidia.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Lukasz Stelmach <l.stelmach@samsung.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Grant Likely <grant.likely@linaro.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 18. Januar 2021, 13:57:36 CET schrieb Heiko Stuebner:
-> On Thu, 10 Dec 2020 08:21:30 +0800, Yifeng Zhao wrote:
-> > Rockchp's NFC(Nand Flash Controller) has four versions: V600, V622, V800 and
-> > V900.This series patch can support all four versions.
-> > 
-> > 
-> > Changes in v16:
-> > - Fix some comments about 'ret' variable.
-> > 
-> > [...]
-> 
-> Applied, thanks!
-> 
-> [6/8] arm: dts: rockchip: Add NFC node for RV1108 SoC
->       commit: 2525f194f9dc07c48b0a12697128357068c2e04b
-> [7/8] arm: dts: rockchip: Add NFC node for RK2928 and other SoCs
->       commit: 9c2bfe53b2fc4a8a63311f162e80b27978db6c06
-> [8/8] arm: dts: rockchip: Add NFC node for RK3036 SoC
->       commit: 4cd9a03435bcd20ce6f524e3826fd263951c22fe
+On Mon, Jan 11, 2021 at 5:19 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-I of course also applied patches 4-5 (arm32) in
-- https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v5.12-armsoc/dts32&id=2525f194f9dc07c48b0a12697128357068c2e04b
-- https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v5.12-armsoc/dts32&id=9c2bfe53b2fc4a8a63311f162e80b27978db6c06
+> > I suppose we already had a discussion of why this property
+> > is undocumented? Or should we document it? Obviously
+> > it is already in widespread use.
+>
+> This comes from commit 51975db0b7333cf3 ("of/flattree: merge
+> early_init_dt_scan_memory() common code"), which combined existing
+> practises on Microblaze (commit 12e8414263f47352 ("microblaze_v8: Open
+> firmware files")) and PowerPC (ba7594852f4e7121 ("[PATCH] powerpc: Add
+> support for "linux,usable-memory" on memory nodes")), with the former
+> obviously just copying the latter.
+> Unfortunately none of this is documented in The DeviceTree
+> Specification, ePAPR, or P1275.
+>
+> Heinrich tried to document it, but his patch was ignored:
+> [PATCH] Documentation: devicetree: "linux,usable-memory" property
+> https://lore.kernel.org/linux-devicetree/20161223161747.9986-1-xypron.glpk@gmx.de/
+> https://lkml.org/lkml/2016/12/23/175
+> https://lore.kernel.org/patchwork/patch/745784/
+> Note that Heinrichs address is mangled in lore (imported from gmane?,
+> but lkml and patchwork have it right.
 
-just b4 seemed to hickup with my 2 fetches for arm32+arm64.
+I bet it's just a mishap.
+Rob, can you pick up and apply this patch?
 
-
-Heiko
-
-
+Yours,
+Linus Walleij
