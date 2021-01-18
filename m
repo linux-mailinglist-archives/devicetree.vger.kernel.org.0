@@ -2,83 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 678A42FA4B4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 562C22FA4C7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:32:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405702AbhARP0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 10:26:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56096 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405648AbhARPZY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 10:25:24 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 31EA8206B2;
-        Mon, 18 Jan 2021 15:24:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610983483;
-        bh=xe8zwdAs5oOqIiJX/sypIYB/hScfzOBO8s8ms7b/orw=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=YUN6F/h0JVIQc690a0hOxEg0P0nkAdEGtCqiDVl75aaLa/DMDTT+1Bp68uS9c55Uq
-         zSx7tOiQT3wMxTko6W8AUUP1O2JcnUiFlHJO3ynYz7kP959PXdSHAzObI92S3KK1ZK
-         DUad8lfjw/6pr47fst9Xphk7+dOVXahroGzNOuIWU9lmB2SGKtPHsNd7WOYwoQOSiK
-         jg6yHJezEb5pQKWu9PP5Ek5o9JJCA9QFLShpW59q8RmfhzkCWgo7a0LePUcN6yd6GW
-         UnRrYOqQ+SgjjOwI+BOD7t5W9VNup4/XOrxuF6pf0OiuqOUK7dD3Qv/9IWQfbMBliQ
-         v9ein479sfIJw==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Michael Grzeschik <mgr@pengutronix.de>,
-        Manish Narani <manish.narani@xilinx.com>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        michal.simek@xilinx.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: Re: [RESEND PATCH v3 2/2] usb: dwc3: Add driver for Xilinx platforms
-In-Reply-To: <20210118134223.GE12316@pengutronix.de>
-References: <1608015291-52007-1-git-send-email-manish.narani@xilinx.com>
- <1608015291-52007-3-git-send-email-manish.narani@xilinx.com>
- <20210118134223.GE12316@pengutronix.de>
-Date:   Mon, 18 Jan 2021 17:24:38 +0200
-Message-ID: <87r1miuv2h.fsf@kernel.org>
+        id S2405692AbhARPcA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Jan 2021 10:32:00 -0500
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:42272 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405757AbhARP05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 10:26:57 -0500
+Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 3AA3E3AE39F
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 15:26:14 +0000 (UTC)
+X-Originating-IP: 86.201.233.230
+Received: from xps13 (lfbn-tou-1-151-230.w86-201.abo.wanadoo.fr [86.201.233.230])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id E713DFF813;
+        Mon, 18 Jan 2021 15:25:09 +0000 (UTC)
+Date:   Mon, 18 Jan 2021 16:25:08 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-i3c@lists.infradead.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Conor Culhane <conor.culhane@silvaco.com>,
+        Rajeev Huralikoppi <rajeev.huralikoppi@silvaco.com>,
+        Nicolas Pitre <nico@fluxnic.net>
+Subject: Re: [PATCH v4 1/6] dt-bindings: i3c: Convert controller description
+ to yaml
+Message-ID: <20210118162508.2f2079da@xps13>
+In-Reply-To: <20210115170312.GA1434283@robh.at.kernel.org>
+References: <20210114175558.17097-1-miquel.raynal@bootlin.com>
+        <20210114175558.17097-2-miquel.raynal@bootlin.com>
+        <20210115170312.GA1434283@robh.at.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-Hi,
+> > +      reg:
+> > +        items:
+> > +          - description: |
+> > +              1st cell
+> > +              ========
+> > +
+> > +              I2C address. 10 bit addressing is not supported. Devices with
+> > +              10-bit address can't be properly passed through DEFSLVS command.
+> > +
+> > +              2nd cell
+> > +              ========
+> > +
+> > +              Should be 0.
+> > +
+> > +              3rd cell
+> > +              ========
+> > +
+> > +              Shall encode the I3C LVR (Legacy Virtual Register):
+> > +              bit[31:8]: unused/ignored
+> > +              bit[7:5]: I2C device index. Possible values:
+> > +                * 0: I2C device has a 50 ns spike filter
+> > +                * 1: I2C device does not have a 50 ns spike filter but supports
+> > +                     high frequency on SCL
+> > +                * 2: I2C device does not have a 50 ns spike filter and is not
+> > +                     tolerant to high frequencies
+> > +                * 3-7: reserved
+> > +              bit[4]: tell whether the device operates in FM (Fast Mode) or
+> > +                      FM+ mode:
+> > +                * 0: FM+ mode
+> > +                * 1: FM mode
+> > +              bit[3:0]: device type
+> > +                * 0-15: reserved  
+> 
+> We can do a bit better:
+> 
+> reg:
+>   items:
+>     - items:  # Note: drop the '-' if we support more than 1 entry
+>         - description: I2C address...
+>           maximum: 0x7f  # Not sure this works, do we support the high 
+>                          # flag bits here?
+>         - const: 0
+>         - description: I3C LVR (Legacy Virtual Register)...
 
-Michael Grzeschik <mgr@pengutronix.de> writes:
-> On Tue, Dec 15, 2020 at 12:24:51PM +0530, Manish Narani wrote:
->>Add a new driver for supporting Xilinx platforms. This driver is used
->>for some sequence of operations required for Xilinx USB controllers.
->>This driver is also used to choose between PIPE clock coming from SerDes
->>and the Suspend Clock. Before the controller is out of reset, the clock
->>selection should be changed to PIPE clock in order to make the USB
->>controller work. There is a register added in Xilinx USB controller
->>register space for the same.
->
-> I tried out this driver with the vanilla kernel on an zynqmp. Without
-> this patch the USB-Gadget is already acting buggy. In the gadget mode,
-> some iterations of plug/unplug results to an stalled gadget which will
-> never come back without a reboot.
->
-> With the corresponding code of this driver (reset assert, clk modify,
-> reset deassert) in the downstream kernels phy driver we found out it is
-> totaly stable. But using this exact glue driver which should do the same
-> as the downstream code, the gadget still was buggy the way described
-> above.
->
-> I suspect the difference lays in the different order of operations.
-> While the downstream code is runing the resets inside the phy driver
-> which is powered and initialized in the dwc3-core itself. With this glue
-> layser approach of this patch the whole phy init is done before even
-> touching dwc3-core in any way. It seems not to have the same effect,
-> though.
->
-> If really the order of operations is limiting us, we probably need
-> another solution than this glue layer. Any Ideas?
+I definitely think that it is a good move to properly define the fact
+that we can accept only a single reg entry with three cells -and their
+content, overall-, but this syntax does not work and I really don't find
+the right way to describe it.
 
-might be a good idea to collect dwc3 trace events. Can you do that?
+The error I get is:
 
--- 
-balbi
+---8<---
+       reg:
+         items:
+           - items:
+               - description: first item
+               - description: second item
+--->8---
+
+schemas/i3c/i3c.yaml: ignoring, error in schema: patternProperties: @[0-9a-f]+$: properties: reg
+<path>/i3c.yaml: patternProperties:@[0-9a-f]+$:properties:reg: 'anyOf' conditional failed, one must be fixed:
+	'maxItems' is a required property
+	'items' is not one of ['maxItems', 'description', 'deprecated']
+	'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'default', '$ref']
+	<path>/i3c.yaml: patternProperties:@[0-9a-f]+$:properties:reg:items: 'oneOf' conditional failed, one must be fixed:
+		[{'items': [{'description': 'first item'}, {'description': 'second item'}]}] is not of type 'object'
+		'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'default', '$ref']
+
+I tried defining a phandle array, playing with the dashes, using allOf,
+adding maxItems, none of it worked so far so any advice will be highly
+appreciated!
+
+Thanks,
+Miquèl
