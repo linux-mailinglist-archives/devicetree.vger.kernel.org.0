@@ -2,103 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0D1A2FA3D5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09B712FA3EC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 16:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392585AbhARO6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 09:58:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60028 "EHLO
+        id S2393064AbhARPBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 10:01:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390711AbhARO6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 09:58:04 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF34C061573
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:57:23 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1l1Vy6-00037n-CY; Mon, 18 Jan 2021 15:57:22 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1l1Vy6-0007Uf-2l; Mon, 18 Jan 2021 15:57:22 +0100
-Date:   Mon, 18 Jan 2021 15:57:21 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        with ESMTP id S2405300AbhAROxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 09:53:41 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3E1C0613D6
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:52:06 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id b26so24471219lff.9
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:52:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=wSPG6layhSC30o3OnM7Qlvms5bw51mBSqqd8MBWO5aM=;
+        b=BVK94L9RBhNjR/ndUTQd239fAM/3EB2t37FLedBe4VA+rqB0xEJV6xFoFL3RxKyn5l
+         oMuc01Xmx/cnrB6aGEVV+RopzRTp3Cxz+w2d/C3aWZ2/bnkfq96/XUDG1uv6DtiH4DW+
+         JC6GI+FtixLrZXwAIsH/dRxxL2L1gmIuC8mATdzvtCare65PRQCNwZeYLeC7cB34Jrsv
+         QsCaGQ2VikPr3YrBI7RVsZwm1yCK3Id0CaKEo4ScMP+vDuEOoRUkKMuaM2iCsQPQfyru
+         KL7sj55oSQixdt46XrzjxHSF8oLm6bx/heKocoRdG5LPbxzrffFl5IKMhOFX3rT25YI3
+         m+Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=wSPG6layhSC30o3OnM7Qlvms5bw51mBSqqd8MBWO5aM=;
+        b=ixCzdUCNg0jzQGL5PO+PrTFabArP5sli9XtxMmNSdQiVxMHYPkNJFF+XPaVmVWfJzh
+         ebjX5GoiJ6rRpkH3dZQRTe31TQGcthIy/kunxnlEXV6MnRR8/LKkq4BcOMy2REKSPjiv
+         pU9WmveslykJQksnx7M0MAvRIEQgAZUl0+M6M50FmKN/fLU6s2v4XuexuL2gkmiMlhGz
+         mb24rtq8WOz0mpEPK+Fp7Rzz0IO1kB1yacpKzMtNQt2He7gwVEmD/DK92NjzBDjkpgnI
+         DUUjvj+IiUCu5Gr64n/q9GdQ57+wbjgNOGzZolew6rQrv8wllJYxCESKVgXdpwlLcYVx
+         xiAg==
+X-Gm-Message-State: AOAM532EhliOC1VFy2TPA3rO/kWkFfaqVHzSJHakSlgQW4+dxSj5DwgH
+        ZC/hl2s85NkpV83SAvCnqZYORQ==
+X-Google-Smtp-Source: ABdhPJwSfquSJ7jjgclmLk//cisgpwUC3Xamsd2ZGDo00xObtkFy6X9RTgEHpIBbWH2mN3ndW9LCXA==
+X-Received: by 2002:a19:8053:: with SMTP id b80mr12468741lfd.74.1610981525354;
+        Mon, 18 Jan 2021 06:52:05 -0800 (PST)
+Received: from eriador.lumag.spb.ru ([188.162.64.4])
+        by smtp.gmail.com with ESMTPSA id h13sm1969697lfj.110.2021.01.18.06.52.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jan 2021 06:52:04 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 2/2] dt-bindings: gpio: pca953x: increase allowed length
- for gpio-line-names
-Message-ID: <20210118145721.6puoqfd6jx3x76jh@pengutronix.de>
-References: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de>
- <20210113194952.104734-2-u.kleine-koenig@pengutronix.de>
- <CACRpkdbVKzE_pe0mPb4H2c0RVJGxEtiFEfMpTCoEO+7qdVBHFQ@mail.gmail.com>
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v11 1/5] dt-bindings: thermal: qcom: add adc-thermal monitor bindings
+Date:   Mon, 18 Jan 2021 17:51:56 +0300
+Message-Id: <20210118145200.504951-2-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210118145200.504951-1-dmitry.baryshkov@linaro.org>
+References: <20210118145200.504951-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3vlece4lwqrljhc3"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdbVKzE_pe0mPb4H2c0RVJGxEtiFEfMpTCoEO+7qdVBHFQ@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
+close counterpart of VADC part of those PMICs.
 
---3vlece4lwqrljhc3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 154 ++++++++++++++++++
+ 1 file changed, 154 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
 
-On Mon, Jan 18, 2021 at 03:36:08PM +0100, Linus Walleij wrote:
-> On Wed, Jan 13, 2021 at 8:50 PM Uwe Kleine-K=F6nig
-> <u.kleine-koenig@pengutronix.de> wrote:
->=20
-> > Some supported chips (e.g. pca9505) support 40 chips. To be able to give
->=20
-> 40 lines I guess? (No big deal. Everyone understand what you mean.)
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+new file mode 100644
+index 000000000000..9da2b349030d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+@@ -0,0 +1,154 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/qcom-spmi-adc-tm5.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm's SPMI PMIC ADC Thermal Monitoring
++maintainers:
++  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
++
++properties:
++  compatible:
++    const: qcom,spmi-adc-tm5
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#thermal-sensor-cells":
++    const: 1
++    description:
++      Number of cells required to uniquely identify the thermal sensors. Since
++      we have multiple sensors this is set to 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  qcom,avg-samples:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of samples to be used for measurement.
++    enum:
++      - 1
++      - 2
++      - 4
++      - 8
++      - 16
++    default: 1
++
++  qcom,decimation:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: This parameter is used to decrease ADC sampling rate.
++            Quicker measurements can be made by reducing decimation ratio.
++    enum:
++      - 250
++      - 420
++      - 840
++    default: 840
++
++patternProperties:
++  "^([-a-z0-9]*)@[0-7]$":
++    type: object
++    description:
++      Represent one thermal sensor.
++
++    properties:
++      reg:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Specify the sensor channel. There are 8 channels in PMIC5's ADC TM
++        minimum: 0
++        maximum: 7
++
++      io-channels:
++        description:
++          From common IIO binding. Used to pipe PMIC ADC channel to thermal monitor
++
++      qcom,ratiometric:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          Channel calibration type.
++          If this property is specified VADC will use the VDD reference
++          (1.875V) and GND for channel calibration. If property is not found,
++          channel will be calibrated with 0V and 1.25V reference channels,
++          also known as absolute calibration.
++
++      qcom,hw-settle-time-us:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: Time between AMUX getting configured and the ADC starting conversion.
++        enum: [15, 100, 200, 300, 400, 500, 600, 700, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000]
++
++      qcom,pre-scaling:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        description: Used for scaling the channel input signal before the
++          signal is fed to VADC. The configuration for this node is to know the
++          pre-determined ratio and use it for post scaling. It is a pair of
++          integers, denoting the numerator and denominator of the fraction by
++          which input signal is multiplied. For example, <1 3> indicates the
++          signal is scaled down to 1/3 of its value before ADC measurement.  If
++          property is not found default value depending on chip will be used.
++        items:
++          - const: 1
++          - enum: [ 1, 3, 4, 6, 20, 8, 10 ]
++
++    required:
++      - reg
++      - io-channels
++
++    additionalProperties:
++      false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#address-cells"
++  - "#size-cells"
++  - "#thermal-sensor-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/iio/qcom,spmi-vadc.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    spmi_bus {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        pm8150b_adc: adc@3100 {
++            reg = <0x3100>;
++            compatible = "qcom,spmi-adc5";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            #io-channel-cells = <1>;
++            io-channel-ranges;
++
++            /* Other propreties are omitted */
++            conn-therm@4f {
++                reg = <ADC5_AMUX_THM3_100K_PU>;
++                qcom,ratiometric;
++                qcom,hw-settle-time = <200>;
++            };
++        };
++
++        pm8150b_adc_tm: adc-tm@3500 {
++            compatible = "qcom,spmi-adc-tm5";
++            reg = <0x3500>;
++            interrupts = <0x2 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
++            #thermal-sensor-cells = <1>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            conn-therm@0 {
++                reg = <0>;
++                io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
++                qcom,ratiometric;
++                qcom,hw-settle-time-us = <200>;
++            };
++        };
++    };
++...
+-- 
+2.29.2
 
-Yes, I noticed that myself and fixed that in v2
-(https://lore.kernel.org/r/20210115164658.187681-1-u.kleine-koenig@pengutro=
-nix.de)
-
-> > each line a name the length of the gpio-line-names property must be
-> > allowed to contain up to 40 entries.
-> >
-> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
->=20
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Who will pick up this series (preferable v2 instead of this (implicit)
-v1)? Will they notice this Reviewed-by?
-
-Thanks
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---3vlece4lwqrljhc3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmAFoc8ACgkQwfwUeK3K
-7Alp+gf+MbTZQlKr9dm/t79pr4utXSUvEU8jo/ZumncN9bspoecUEgzuGGYuEqGJ
-N5wpDqnpBz+UPdy+P2rCXNdlAZtPQT2f0w3DmllGUG7NTV0F+vFJG8v6H2I6f9Cv
-Pi+iqXKSme1BkQNOrYTQCLKn1nb7fzBYQynRJvPDtuCxkue4LCorAL+L6ZJjaaYr
-lts/1V6Lrifvyh2hVQBjHkaEI9Q8KtP2LZQNDKnkB9Bt6oheT+YDZFztRJPA4RXN
-fz8zZE5exGK8dSCvQTYdRvg40w80tqb908rFKCQivpEGbPqy533pFiz7YhOjvWvs
-G6U+JdYV0/sWPc9XybNDedEf8TLArA==
-=YSCe
------END PGP SIGNATURE-----
-
---3vlece4lwqrljhc3--
