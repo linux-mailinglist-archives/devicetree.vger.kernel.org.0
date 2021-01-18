@@ -2,126 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 717042F987B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 05:10:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30BD92F987D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 05:13:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730255AbhAREKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Jan 2021 23:10:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33924 "EHLO
+        id S1730997AbhARENA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Jan 2021 23:13:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730175AbhAREKD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jan 2021 23:10:03 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 539B9C061573
-        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 20:09:23 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 23so22049683lfg.10
-        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 20:09:23 -0800 (PST)
+        with ESMTP id S1726624AbhAREM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Jan 2021 23:12:59 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35B86C061574
+        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 20:12:19 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id q4so7924258plr.7
+        for <devicetree@vger.kernel.org>; Sun, 17 Jan 2021 20:12:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kKCfYpwo74RsICpySZjG8kYYtlGFYkZdkFNgkyDKCT0=;
-        b=AhP6NwUJdS6wWmHjt3HVF9oEPO27LTk5ZVVsxfNNJTMJp4YreqXTOfX10k/oD9Iezt
-         dPoCBKQfITeUdF9ZwOVLLSdBNnkPxn6C/waTP0lhhjVLkvDe0nH8PCUsk2ocEltwo5d/
-         UtNXbXKZcmomHLmiiQGa/MZ0uAXHsmBUGD1bFvU+4VAkjw55pUE9tsszsDvS+C497hnt
-         Tg1MDAYbZgFEJjcjE9s39o9ntWTVx6WuvpWDYNFOBMTDiNMnUjgcJ3GdeDkb4Tz7Vc3Z
-         Et4Qgio5JzLD81e1Tgb872rmEeNIRGeiOe08Hch0FH41kuJNVeiuGDq1JP1kI8cmwXQ8
-         ystA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dJSz008Gr3fMyHCiz6o58NLkvxxf8SsrpAa4i2B5A9Y=;
+        b=lsrqoPBrRDbShsY2EoTnFVgI9pXnwxl02VqP5w3FhW5fQzc16+sBDocMJ8OyX2aLoI
+         0Tx0I5lflR0vERpEC14lV6hjWrwWa+GULn+I1VAB/j/ovtUeAfkmxUHqk1oe5diVmYO5
+         MuCbyArZqKwFk/mgaP6hn6zXn1dcBrj42a7ZPZX8mGQ9tMTsXUhleB6TQ9ZyORGF5C/N
+         I8jUAXgyRMcmGp+W+PGqiW4n8tbsXatrPEBnJbhDRIb4pumnzrF8bpueoRbDGV/d3umv
+         8gsoE9O3KPQus6sg0HaLO09lrxjc3jUqv6H6WZ/HMrBB2/TTf5P8TUQ6WOVw6UgogcGR
+         ZyrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kKCfYpwo74RsICpySZjG8kYYtlGFYkZdkFNgkyDKCT0=;
-        b=Nf7r2yPCmn0eB0cFiKfIw1IF1Id0U3OcOVFeHlt7G77+GkvpISgZsiWRYQ0r/0HJtG
-         r1U/4uRjm7HIKDWEoytwl89/7Ew1QJs9Gag0eWSr9tgg67Lbi3fmE3VRmsEj0VTplYb8
-         wks5h4/BmdolfFgDwNVt33G9cM0lXXd76KGMy5w3+7yVrn1/3CJ6cgWwd9qgVXbCzTM3
-         DJAKfjPHK3dkNv27hRfLrrCnrKaNPKZycR18HYHDDtx8MBkPb4Ab48OvGsfLytpWiGla
-         Hkf4Ar52N+2sMjOObBlowW/7cdIN6wKvNg5Oyld2z7l1GtsAFYrL3GyuK9oHdKd3WRtx
-         v94A==
-X-Gm-Message-State: AOAM532hIdXSYqRog5UsJvyLe4vKq0icw+btPMO1qzvfOTG9ie0Cckva
-        NZ4Cldoof8UsrckWvkddQsZXu9Ym+WGN1lanQkToIQ==
-X-Google-Smtp-Source: ABdhPJw87g/8egB7b0xP0jb75QeBiNosVXRLBEN4XgOceeOKqXL+Kuh7KPX0ZjWPRfqEjlvRbpZdIED/dekKQwpxGxc=
-X-Received: by 2002:a05:6512:234d:: with SMTP id p13mr10075578lfu.87.1610942961812;
- Sun, 17 Jan 2021 20:09:21 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dJSz008Gr3fMyHCiz6o58NLkvxxf8SsrpAa4i2B5A9Y=;
+        b=hPVHBY4iYfvE9SUKnzPvaXjiXyysQgeONwaBvx2HZVBiLx1qVOgwo2aaM/RzQBdvJ/
+         iU9OmQ9FsgI6CDSmbeSmnft9tQu3g14FkrorSUs2RAax57J3kB87Ab7397d98CTxhZRj
+         wh1Cskvw4BCDA7Gc01Jy536rpL1/cis9vC+1Q5aB6/lOywHVK3I8btT9AwiDIwsErnrY
+         OXIp0FQnjatXD0W9jbiMeUtKCHSfjoJKYJtOuBFuphHF1HLE01ram9lOQ3HSkFlMMzUA
+         sCZtDqNoxZTTrWZjbe9BM9imSV0DGsvapLWAXsJTW1163K8j1KFxWDP4++UOc81dSRrb
+         XNWw==
+X-Gm-Message-State: AOAM533m1oeu+4dK7HGZclv5oayiXQEf2BeiMdZgz6G94QN1rMDUkeFr
+        66yL14CGWt9UDfVeUl0NeWDM
+X-Google-Smtp-Source: ABdhPJwJIIwOwn0dK83qSwMSm4RoQFAzyfF1XJ5YfGOfsmnCR7lJpFOG2cYzoMEk3RttK5GQpmeHnQ==
+X-Received: by 2002:a17:903:230b:b029:dd:7cf1:8c33 with SMTP id d11-20020a170903230bb02900dd7cf18c33mr24507515plh.31.1610943138692;
+        Sun, 17 Jan 2021 20:12:18 -0800 (PST)
+Received: from localhost.localdomain ([103.77.37.182])
+        by smtp.gmail.com with ESMTPSA id h15sm6727319pja.4.2021.01.17.20.12.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Jan 2021 20:12:17 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com
+Cc:     viresh.kumar@linaro.org, ulf.hansson@linaro.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 0/5] Add APCS support for SDX55
+Date:   Mon, 18 Jan 2021 09:41:51 +0530
+Message-Id: <20210118041156.50016-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210118020244.103451-1-damien.lemoal@wdc.com> <20210118020244.103451-7-damien.lemoal@wdc.com>
-In-Reply-To: <20210118020244.103451-7-damien.lemoal@wdc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 18 Jan 2021 09:38:10 +0530
-Message-ID: <CAAhSdy2BqJddRbCWR=jAsjvB0GUWbwnF9T0rJRgoFnKZnJZ2CQ@mail.gmail.com>
-Subject: Re: [PATCH v13 06/17] dt-bindings: update sifive clint compatible string
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Anup Patel <anup.patel@wdc.com>,
-        Sean Anderson <seanga2@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 7:33 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
->
-> Add the "canaan,k210-clint" compatible string to the Sifive clint
-> bindings to indicate the use of the "sifive,clint0" IP block in the
-> Canaan Kendryte K210 SoC. The description of the compatible string
-> property is also updated to reflect this addition.
->
-> Cc: Anup Patel <anup.patel@wdc.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  .../bindings/timer/sifive,clint.yaml          | 19 +++++++++++++------
->  1 file changed, 13 insertions(+), 6 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> index 2a0e9cd9fbcf..1a7d582a208f 100644
-> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -22,16 +22,23 @@ description:
->
->  properties:
->    compatible:
-> -    items:
-> -      - const: sifive,fu540-c000-clint
-> -      - const: sifive,clint0
-> +    oneOf:
-> +      - items:
-> +          - const: sifive,fu540-c000-clint
-> +          - const: sifive,clint0
-> +
-> +      - items:
-> +          - const: canaan,k210-clint
-> +          - const: sifive,clint0
->
->      description:
-> -      Should be "sifive,<chip>-clint" and "sifive,clint<version>".
-> +      Should be "<vendor>,<chip>-clint" and "sifive,clint<version>".
->        Supported compatible strings are -
->        "sifive,fu540-c000-clint" for the SiFive CLINT v0 as integrated
-> -      onto the SiFive FU540 chip, and "sifive,clint0" for the SiFive
-> -      CLINT v0 IP block with no chip integration tweaks.
-> +      onto the SiFive FU540 chip, "canaan,k210-clint" for the SiFive
-> +      CLINT v0 as integrated onto the Canaan Kendryte K210 chip, and
-> +      "sifive,clint0" for the SiFive CLINT v0 IP block with no chip
-> +      integration tweaks.
->        Please refer to sifive-blocks-ip-versioning.txt for details
->
->    reg:
-> --
-> 2.29.2
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Hello,
 
-Looks good to me.
+This series adds APCS mailbox and clock support for SDX55. The APCS IP
+in SDX55 provides IPC and clock functionalities. Hence, mailbox support
+is added to the "qcom-apcs-ipc-mailbox" driver and a dedicated clock
+driver "apcs-sdx55" is added.
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+Also, the clock to the APCS block is coming from 3 different sources:
 
-Regards,
-Anup
+1. Board XO
+2. Fixed rate GPLL0
+3. A7 PLL
+
+First source is from crystal osc, second is from GCC and third one is a
+separate clock source. Hence, a dedicated clk driver is added for the A7
+PLL as well.
+
+Apart from the mailbox support, another intention of this series is to add
+the CPUFreq support to SDX55 platform. Since there is no dedicated hardware
+IP in SDX55 to do CPUFreq duties, this platform makes use of the clock and
+regulators directly via cpufreq-dt driver.
+
+The trick here is attaching the power domain to cpudev. Usually the power
+domains for the target device is attached in the bus driver or in the
+dedicated device drivers. But in this case, there is no dedicated CPUFreq
+driver nor a bus driver. After discussing with Viresh, I concluded that
+A7 PLL driver might be the best place to do this!
+
+But this decision is subject to discussion, hence added Ulf and Viresh to
+this series.
+
+Thanks,
+Mani
+
+Changes in v3:
+
+* Incorporated review comments from Stephen for APCS clk driver and Rob for
+  APCS DT binding
+
+Changes in v2:
+
+* Modified the max_register value as per the SDX55 IPC offset in mailbox
+  driver.
+
+Manivannan Sadhasivam (5):
+  dt-bindings: mailbox: Add binding for SDX55 APCS
+  mailbox: qcom: Add support for SDX55 APCS IPC
+  dt-bindings: clock: Add Qualcomm A7 PLL binding
+  clk: qcom: Add A7 PLL support
+  clk: qcom: Add SDX55 APCS clock controller support
+
+ .../devicetree/bindings/clock/qcom,a7pll.yaml |  51 ++++++
+ .../mailbox/qcom,apcs-kpss-global.yaml        |  33 ++++
+ drivers/clk/qcom/Kconfig                      |  17 ++
+ drivers/clk/qcom/Makefile                     |   2 +
+ drivers/clk/qcom/a7-pll.c                     | 100 ++++++++++++
+ drivers/clk/qcom/apcs-sdx55.c                 | 149 ++++++++++++++++++
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c       |   7 +-
+ 7 files changed, 358 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,a7pll.yaml
+ create mode 100644 drivers/clk/qcom/a7-pll.c
+ create mode 100644 drivers/clk/qcom/apcs-sdx55.c
+
+-- 
+2.25.1
+
