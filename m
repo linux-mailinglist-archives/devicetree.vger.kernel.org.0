@@ -2,62 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEEB92F9D72
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 12:03:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA052F9D6A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 12:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389160AbhARLC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 06:02:58 -0500
-Received: from comms.puri.sm ([159.203.221.185]:59686 "EHLO comms.puri.sm"
+        id S2389725AbhARLBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 06:01:49 -0500
+Received: from comms.puri.sm ([159.203.221.185]:59698 "EHLO comms.puri.sm"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389715AbhARK4P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 05:56:15 -0500
+        id S2389126AbhARK4U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 05:56:20 -0500
 Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 21F2ADF753;
-        Mon, 18 Jan 2021 02:55:05 -0800 (PST)
+        by comms.puri.sm (Postfix) with ESMTP id D1CFBE0114;
+        Mon, 18 Jan 2021 02:55:17 -0800 (PST)
 Received: from comms.puri.sm ([127.0.0.1])
         by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Eu1FaHQnleqY; Mon, 18 Jan 2021 02:55:04 -0800 (PST)
+        with ESMTP id 9EQ35MVmsmc9; Mon, 18 Jan 2021 02:55:16 -0800 (PST)
 From:   Martin Kepplinger <martin.kepplinger@puri.sm>
 To:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com
 Cc:     kernel@pengutronix.de, linux-imx@nxp.com, krzk@kernel.org,
         kernel@puri.sm, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         catalin.marinas@arm.com, will@kernel.org,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
         Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: [PATCH v2 4/9] arm64: dts: imx8mq-librem5: Add usb-c chip as supplier for the charger
-Date:   Mon, 18 Jan 2021 11:54:20 +0100
-Message-Id: <20210118105425.425-5-martin.kepplinger@puri.sm>
+Subject: [PATCH v2 7/9] arm64: dts: imx8mq-librem5: set regulators boot-on
+Date:   Mon, 18 Jan 2021 11:54:23 +0100
+Message-Id: <20210118105425.425-8-martin.kepplinger@puri.sm>
 In-Reply-To: <20210118105425.425-1-martin.kepplinger@puri.sm>
 References: <20210118105425.425-1-martin.kepplinger@puri.sm>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Guido Günther <agx@sigxcpu.org>
+Expect all those regulators to be turned on initially.
 
-The tps65982 feeds the bq25895 charge controller on the Librem 5.
-
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
 Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 ---
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index 95d710831f28..d7d807cd72b3 100644
+index bf86402cda30..06a4799b6aeb 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -928,6 +928,7 @@
- 		ti,use-vinmin-threshold = <1>; /* enable VINDPM */
- 		ti,vinmin-threshold = <3900000>; /* uV */
- 		monitored-battery = <&bat>;
-+		power-supplies = <&typec_pd>;
- 	};
- };
+@@ -682,6 +682,7 @@
+ 				regulator-name = "buck1";
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
++				regulator-boot-on;
+ 				regulator-ramp-delay = <1250>;
+ 				rohm,dvs-run-voltage = <900000>;
+ 				rohm,dvs-idle-voltage = <850000>;
+@@ -693,6 +694,7 @@
+ 				regulator-name = "buck2";
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
++				regulator-boot-on;
+ 				regulator-ramp-delay = <1250>;
+ 				rohm,dvs-run-voltage = <1000000>;
+ 				rohm,dvs-idle-voltage = <900000>;
+@@ -703,6 +705,7 @@
+ 				regulator-name = "buck3";
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
++				regulator-boot-on;
+ 				rohm,dvs-run-voltage = <900000>;
+ 			};
  
+@@ -717,6 +720,7 @@
+ 				regulator-name = "buck5";
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1350000>;
++				regulator-boot-on;
+ 				regulator-always-on;
+ 			};
+ 
+@@ -724,6 +728,7 @@
+ 				regulator-name = "buck6";
+ 				regulator-min-microvolt = <3000000>;
+ 				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
+ 				regulator-always-on;
+ 			};
+ 
+@@ -731,6 +736,7 @@
+ 				regulator-name = "buck7";
+ 				regulator-min-microvolt = <1605000>;
+ 				regulator-max-microvolt = <1995000>;
++				regulator-boot-on;
+ 				regulator-always-on;
+ 			};
+ 
+@@ -738,6 +744,7 @@
+ 				regulator-name = "buck8";
+ 				regulator-min-microvolt = <800000>;
+ 				regulator-max-microvolt = <1400000>;
++				regulator-boot-on;
+ 				regulator-always-on;
+ 			};
+ 
+@@ -745,6 +752,7 @@
+ 				regulator-name = "ldo1";
+ 				regulator-min-microvolt = <3000000>;
+ 				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
+ 				/* leave on for snvs power button */
+ 				regulator-always-on;
+ 			};
+@@ -753,6 +761,7 @@
+ 				regulator-name = "ldo2";
+ 				regulator-min-microvolt = <900000>;
+ 				regulator-max-microvolt = <900000>;
++				regulator-boot-on;
+ 				/* leave on for snvs power button */
+ 				regulator-always-on;
+ 			};
+@@ -761,6 +770,7 @@
+ 				regulator-name = "ldo3";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
+ 				regulator-always-on;
+ 			};
+ 
+@@ -768,6 +778,7 @@
+ 				regulator-name = "ldo4";
+ 				regulator-min-microvolt = <900000>;
+ 				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
+ 				regulator-always-on;
+ 			};
+ 
+@@ -784,6 +795,7 @@
+ 				regulator-name = "ldo6";
+ 				regulator-min-microvolt = <900000>;
+ 				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
+ 				regulator-always-on;
+ 			};
+ 
+@@ -792,6 +804,7 @@
+ 				regulator-name = "ldo7";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
+ 				regulator-always-on;
+ 			};
+ 		};
 -- 
 2.20.1
 
