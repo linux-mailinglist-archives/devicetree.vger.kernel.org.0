@@ -2,84 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A93F72F99DD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 07:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C5BC2F99E0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 07:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730122AbhARG0s convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Jan 2021 01:26:48 -0500
-Received: from mail-lf1-f46.google.com ([209.85.167.46]:36301 "EHLO
-        mail-lf1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729880AbhARG0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 01:26:39 -0500
-Received: by mail-lf1-f46.google.com with SMTP id o13so22444664lfr.3;
-        Sun, 17 Jan 2021 22:26:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=3nptW95ygLFIn5TLK3XfM+T3+opmLi9dGoD+h9cW+MI=;
-        b=lo+YNi+Rp33NuFOYUPQ64MLwInk0EzgG4X7CWXZkLbD9gtWi3nyjFfbw8R8EqLeYSV
-         WwKSC5Nz3qeGxaWZ96AhoraIW2GBZQZd+hJYdkJ7KSsLZu10mMepPCw1TAlM/SHa3AiF
-         0QVBVYGVPaX16ArFOKwcZJuCTpaMpDcXvM8VSbNpupDIfRu5ngtXj7dpe6BZyIrAmPXJ
-         iQ20HfUTiyO4OJ1ezfGs94EsoyKux1K5EdU8XAKnSLoznliiydcKodZzg5+0rv+G56y8
-         JrAsXrNoxCASOXRF+wG//L/Lfvgw2Yj4ssDWRVn0XQcVOnBLQ2xFvg5BjAKfahlYuBrz
-         Nk7g==
-X-Gm-Message-State: AOAM5306nyrE/0j5Vg1vYvrcM+a7ivbYY7CNwyPs3CQ0y4xtwVAYFgpm
-        UwekOD8928k5J2lNw/geDtK9BWPk0WvgGg==
-X-Google-Smtp-Source: ABdhPJyXcLzygkB/8MlE7UAKk0uG9gZ28iw7TLkXJEqsLT5x1wclWrjvdUQoN9I6d/EYXXi/WZpZUA==
-X-Received: by 2002:a05:6512:466:: with SMTP id x6mr10946870lfd.257.1610951155001;
-        Sun, 17 Jan 2021 22:25:55 -0800 (PST)
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
-        by smtp.gmail.com with ESMTPSA id l84sm1779588lfd.75.2021.01.17.22.25.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Jan 2021 22:25:54 -0800 (PST)
-Received: by mail-lf1-f48.google.com with SMTP id v67so22425293lfa.0;
-        Sun, 17 Jan 2021 22:25:54 -0800 (PST)
-X-Received: by 2002:a19:810:: with SMTP id 16mr11002147lfi.233.1610951154213;
- Sun, 17 Jan 2021 22:25:54 -0800 (PST)
+        id S1731137AbhARG1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 01:27:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59422 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731070AbhARG1i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 01:27:38 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AE38122512;
+        Mon, 18 Jan 2021 06:26:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1610951217;
+        bh=K2lbHwzdDMu3Kr/dXSxYY0vnoR/vcNJ3QB9jn7n7oSY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WtXgUJAfEEiPjqx2XBlrBEBM5szGP/0YdZWzuYPRoTB95tpqr43z6CzwxUgREzZjZ
+         t3vCbushCOG+K32ZU7zZQI7eKvs0wcWoqV5oarbaW8kbELZ8CPjC7Rn1ko6B4bsPHN
+         20mwqk25fhzCJqKVMc20X1oRIJ0k2auT/7QJ3Ycl9+I/mEf4x7IdZ/SIDZVJu10Kc7
+         FzKDlEt0ImzQRFxtgXlrSNfnmRWFE9xTgJAkxEvPfBG7Mwm0UNOqDOZt1NQ7/IACVk
+         1L3rQs3rzJRT+p/OykMYMjyhelrA5zu1x9035ofRZ1AkUyHjbqa0oPWt4P95C35Miq
+         PEGhRq/Ymc6vA==
+Date:   Mon, 18 Jan 2021 14:26:51 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v7 0/5] mainline Kverneland boards
+Message-ID: <20210118062650.GH28365@dragon>
+References: <20210111101855.3121-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-References: <20201218195033.2301127-1-contact@paulk.fr> <3035881.9zrMQt1rZd@jernej-laptop>
- <CAGb2v64xtm5wBuL6bkAYYFK2irjxs58df_xeHws6vaG_QDux+g@mail.gmail.com>
-In-Reply-To: <CAGb2v64xtm5wBuL6bkAYYFK2irjxs58df_xeHws6vaG_QDux+g@mail.gmail.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 18 Jan 2021 14:25:42 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67HY=EFX6-5NmXz0+02FOZkAa1r+AUy9QGeTEZBOcdJMw@mail.gmail.com>
-Message-ID: <CAGb2v67HY=EFX6-5NmXz0+02FOZkAa1r+AUy9QGeTEZBOcdJMw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: sun8i-v3s: Add CSI0 MCLK pin definition
-To:     Paul Kocialkowski <contact@paulk.fr>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210111101855.3121-1-o.rempel@pengutronix.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 30, 2020 at 11:29 AM Chen-Yu Tsai <wens@csie.org> wrote:
->
-> On Tue, Dec 22, 2020 at 4:17 PM Jernej Škrabec <jernej.skrabec@siol.net> wrote:
-> >
-> > Hi!
-> >
-> > Dne petek, 18. december 2020 ob 20:50:33 CET je Paul Kocialkowski napisal(a):
-> > > This adds a device-tree definition for the CSI0 MCLK pin,
-> > > which can be used for feeding MIPI CSI-2 sensors.
-> > >
-> > > Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
-> >
-> > Is this used anywhere? Current policy is to add pin definitions only if any
-> > user exists.
->
-> IIRC we sort of loosened that requirement with the use of /omit-if-no-ref/.
-> The A20 dtsi file has a whole bunch of pins defined that are not directly
-> used but are available for users to reference, especially in overlays.
-> The "-@" parameter for the device tree compiler, used to build overlay
-> compatible DTBs, makes the compiler ignore /omit-if-no-ref/ and include
-> all the nodes.
+On Mon, Jan 11, 2021 at 11:18:50AM +0100, Oleksij Rempel wrote:
+> changes v7:
+> - add Acked-by: Rob Herring to the firs patch
+> - imx6qdl-vicut1.dtsi: add missing KEY_POWER
+> - imx6dl-victgo.dts: add missing gpio flags to rotary-encoder 
+> - imx6dl-victgo.dts: rename video@5c to video-decoder@5c 
+> - imx6dl-victgo.dts: sort out some spaces 
+> 
+> changes v6:
+> - move startup-delay-us close to gpio property
+> - imx6qdl-vicut1.dtsi: rename video@5c to video-decoder@5c
+> - imx6qdl-vicut1.dtsi: sort out some spaces
+> - use defines for linux,code and linux,axis
+> 
+> changes v5:
+> - reorder kvg prefix
+> - add Acked-by: Rob Herring.. 
+> 
+> changes v4:
+> - fix active level of SPI CS GPIOs
+> 
+> changes v3:
+> - add vicutp board
+> - change tvnorm to sdtv-standards
+> - change linux,default-trigger "mmc" to  "disk-activity";
+> - add power-supply property to the panel node
+> 
+> changes v2:
+> - add victgo board
+> - diff fixes for vicut1.dtsi
+> 
+> Oleksij Rempel (5):
+>   dt-bindings: vendor-prefixes: Add an entry for Kverneland Group
+>   dt-bindings: arm: fsl: add Kverneland UT1, UT1Q and UI1P boards
+>   ARM: dts: add Kverneland UT1, UT1Q and UT1P
+>   dt-bindings: arm: fsl: add Kverneland TGO board
+>   ARM: dts: add Kverneland TGO board
 
-I've queued up this patch for 5.12.
-
-ChenYu
+Applied all, thanks.
