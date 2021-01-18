@@ -2,132 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B6A72FAAE0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 21:06:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A79DC2FABA5
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 21:39:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393910AbhARUER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 15:04:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2437802AbhARUDs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 15:03:48 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9810DC061757
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 12:03:08 -0800 (PST)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1l1ajo-0004iO-WC; Mon, 18 Jan 2021 21:02:57 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1l1ajl-00070s-Of; Mon, 18 Jan 2021 21:02:53 +0100
-Date:   Mon, 18 Jan 2021 21:02:53 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     "Badel, Laurent" <LaurentBadel@eaton.com>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "fugang.duan@nxp.com" <fugang.duan@nxp.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "richard.leitner@skidata.com" <richard.leitner@skidata.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "marex@denx.de" <marex@denx.de>
-Subject: Re: [PATCH v4 net-next 0/5] net: phy: Fix SMSC LAN87xx external reset
-Message-ID: <20210118200253.m2pahxgn7ui7vups@pengutronix.de>
-References: <MW4PR17MB42439280269409B3094724CCDFA40@MW4PR17MB4243.namprd17.prod.outlook.com>
+        id S2388354AbhARKgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 05:36:17 -0500
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:40853 "EHLO
+        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2388668AbhARJWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 04:22:47 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.west.internal (Postfix) with ESMTP id A73745BF;
+        Mon, 18 Jan 2021 04:11:06 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Mon, 18 Jan 2021 04:11:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=sNatjfCCJ4k/1qMlePtHKBU6lZX
+        7A1FzNnd0WJpbQ9c=; b=lBR/cYFAjSO5wPKgXiNaMQftufE2Mj0zewsjAxG2aiM
+        Nu0sq3vn/RGQ5nVb1j6Aym0/N10JdJlK/RUlPkjJsSXRUIligL5c68N70rAWpXxo
+        vDUFAAhAg8drljlZVHvLBgwP/RZtxEzVSOoUvqpJSAT/4G3Lli8b2Gg0SWHAOQEO
+        h0cVJkeVV9iaEmoC6lLpnkt9ipIq2IplYwZjsWoJKZCJ/PttykMfbV2WXBXhusTI
+        mgcpZqrbeUL/uyYL9r+MaFQlyk6r0S3dDE20ZCnWRt7texUsQpbid6klf70Ca1hz
+        ZNXTvUVQKpX1PTHictbHQ1ffWSyqJCL3SVrb7nZOKQg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=sNatjf
+        CCJ4k/1qMlePtHKBU6lZX7A1FzNnd0WJpbQ9c=; b=SD2K89zx5/SBUaDYivVOM9
+        RZ1HCjJ0oMVxHu/NFNtAJOqjOMFrvl+0vsFZ94BgAWit6+R72GfAPzh0jR3LKZn9
+        l94CQpxTSO5F78YlIh+gU28X1qXh4wmMYMUMEd1mka4QG024dK4oJVGjFawz+twq
+        MT7YmX0e+WarEkd5bU8vB0FTKLlQr1di/TPy5K4V1BmPlD1T8V2qeWoehKmMKcuz
+        aorWy4A9Yf9usQd4iwELDh3Ufo3qc2WUs7UNuEntB6A4vexP/iX16B0ev+GfseKx
+        YCIvxOA7pnaRMbXFjX+MZLiu0+2/Yh9rSHsG6Q2fvy5yTY9ZTKkvty3nQ+7VIMKQ
+        ==
+X-ME-Sender: <xms:qVAFYMHlLQAg8T5b4aiekBc34q6XvabuqCdn78qCQVCRJtugxYqR-g>
+    <xme:qVAFYOxuIylYXS0qxIsw7S7k9VSuiOpbJii_C1jVsevidDNj7VjDMf5OEhx1WMB8c
+    dCRAgXbCKfZ4q_ZP34>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtdekgddtudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:qVAFYFuQ5JHywchM-9AEwqCtKD5fuzaP-N4wn_QRRkYemWPMJaayTQ>
+    <xmx:qVAFYD1M0v01S7Q4w-avVSAzE3ZjpwlYRYkY11LC4EeMq9zqC-tjUA>
+    <xmx:qVAFYI8qckxQMdvGWtPTFDaY-0xkdnN5Pj8XbRiTEZhxKxCkZh_XyA>
+    <xmx:qlAFYIGxwJ3_I4rSHLycYodoxsfys7kI-L-TgCJsDyFW7OfTGdGzQg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 737D11080059;
+        Mon, 18 Jan 2021 04:11:05 -0500 (EST)
+Date:   Mon, 18 Jan 2021 10:11:03 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] ARM: dts: sunxi: bananapi-m2-plus: Increase BT UART speed
+Message-ID: <20210118091103.rgsu7zf2ogauu5dw@gilmour>
+References: <20210116105228.847073-1-jernej.skrabec@siol.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="otdlbzqmmunyr6or"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <MW4PR17MB42439280269409B3094724CCDFA40@MW4PR17MB4243.namprd17.prod.outlook.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 20:45:33 up 47 days,  9:51, 29 users,  load average: 0.13, 0.07,
- 0.02
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210116105228.847073-1-jernej.skrabec@siol.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
 
-thanks for your patches :) Can you check your setup since we get 6
-individual emails: 'git send-email --thread ...' ;)
+--otdlbzqmmunyr6or
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 21-01-18 16:57, Badel, Laurent wrote:
-> ﻿Description:
-> External PHY reset from the FEC driver was introduced in commit [1] to 
-> mitigate an issue with iMX SoCs and LAN87xx PHYs. The issue occurs 
-> because the FEC driver turns off the reference clock for power saving 
-> reasons [2], which doesn't work out well with LAN87xx PHYs which require 
-> a running REF_CLK during the power-up sequence.
+On Sat, Jan 16, 2021 at 11:52:28AM +0100, Jernej Skrabec wrote:
+> Bluetooth module on BananaPi M2 Plus can also be used for streaming
+> audio. However, for that case higher UART speed is required.
+>=20
+> Add a max-speed property.
+>=20
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 
-Not only during the power-up sequence. The complete phy internal state
-machine (the hardware state machine) gets confused if the clock is
-turned off randomly.
+Applied, thanks
+Maxime
 
-> As a result, the PHYs 
-> occasionally (and unpredictably) fail to establish a stable link and 
-> require a hardware reset to work reliably.
-> 
-> As previously noted [3], the solution in [1] integrates poorly with the
-> PHY abstraction layer, and it also performs many unnecessary resets. This
-> patch series suggests a simpler solution to this problem, namely to hold
-> the PHY in reset during the time between the PHY driver probe and the first
-> opening of the FEC driver.
+--otdlbzqmmunyr6or
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Holding the Phy within reset during the FEC is in reset seems wrong to
-me because: The clock can be supplied by an external crystal/oszi. This
-would add unnecessary delays. Also this is again a FEC/SMSC combination
-fix again. The phy has the same problem on other hosts if they are the
-clock provider and toggling the ref-clk.
+-----BEGIN PGP SIGNATURE-----
 
-> To illustrate why this is sufficient, below is a representation of the PHY
-> RST and REF_CLK status at relevant time points (note that RST signal is
-> active-low for LAN87xx):
-> 
->  1. During system boot when the PHY is probed:
->  RST    111111111111111111111000001111111111111
->  CLK    000011111111111111111111111111111000000
->  REF_CLK is enabled during fec_probe(), and there is a short reset pulse
->  due to mdiobus_register_gpiod() which calls gpiod_get_optional() with
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAVQpwAKCRDj7w1vZxhR
+xSqzAP4+Ezgu9kD31iiMrK7nhOH8gkPj1reKeVKAAzNcJ//ZmAEAn/2zgNoydPl5
+1p6LXsRq3zVBcn2FYU87C97XnINTngk=
+=sMgx
+-----END PGP SIGNATURE-----
 
-There is also a deprecated "phy-reset-gpios" did you test this as well?
-
->  the GPIOD_OUT_LOW flag, which sets the initial value to 0. The reset is
->  deasserted by phy_device_register() shortly after.  After that, the PHY
->  runs without clock until the FEC is opened, which causes the unstable 
->  link issue.
-
-Nope that's not true, you can specify the clock within the device-tree
-so the fec-ref-clk isn't disabled anymore.
-
->  2. At first opening of the FEC:
-
-...
-
-> Extensive testing with LAN8720 confirmed that the REF_CLK can be disabled
-> without problems as long as the PHY is either in reset or in power-down 
-> mode (which is relevant for suspend-to-ram as well).
-
-You can't disable the clock. What you listing here means that the smsc
-phy needs to be re-initialized after such an clock loss. If we can
-disbale the clock randomly we wouldn't need to re-initialize the phy
-again.
-
-Regards,
-  Marco
+--otdlbzqmmunyr6or--
