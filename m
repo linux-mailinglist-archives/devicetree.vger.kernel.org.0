@@ -2,124 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1167D2FA3D3
+	by mail.lfdr.de (Postfix) with ESMTP id F0D1A2FA3D5
 	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 15:59:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390465AbhARO6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 09:58:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50776 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726594AbhARO5U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 09:57:20 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 18BB622CA1;
-        Mon, 18 Jan 2021 14:56:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610981799;
-        bh=Han/yBiP7YCv1DXxaRT5BucStPwaHvat3bP/RRDdIcU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=avLtiyDQmnR9BLa+wtOvaFsMFXNbe1OmFAoxgLQkXH0IEdgaE75ZVyjzlyMov/hQ7
-         W2qi1DcjEyu/UvCF3CNjQ+truPkhUjN2RBEExIROxXkqy5XCa0kC1z5Nvw7j5/wCle
-         hVEiqpdTgj3qSrL3Nl7umSk+NETXx8QVdf8qIck/dc6q3fk7kOrlOhJ4G/N4/bOzqD
-         uZY3Bw3s9+FIJVgFValBTrFZcA+gvjo/O95OBgs7rA9ExusVsBbvwR+vy5CzrLa++q
-         JA3gF6hT9ZZ+uKbh+fM+ZskKfu1j+pGh7cvaedstV0rV7zw3fOhJObJILZRmUCAQ1n
-         C2UMHnJ7kHpTA==
-Received: by mail-ej1-f41.google.com with SMTP id 6so24082386ejz.5;
-        Mon, 18 Jan 2021 06:56:39 -0800 (PST)
-X-Gm-Message-State: AOAM5330uGqGn3ZFF5AuVUY1IylC6/88GEYLrl8P3zVD+EffpZ5Lm3kv
-        vvyaUjFbo1mfA0YO5cfOk9f8wpyOhQA8d//9bg==
-X-Google-Smtp-Source: ABdhPJzQmiS9/MsRXPQe1QLclHpEy2erv8VURiXmHTwJ59O6sI9r4nQ58rZnC7a+vUSVQmEFf565IppWMasuz6EtwSo=
-X-Received: by 2002:a17:906:35c9:: with SMTP id p9mr77562ejb.310.1610981797653;
- Mon, 18 Jan 2021 06:56:37 -0800 (PST)
+        id S2392585AbhARO6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 09:58:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60028 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390711AbhARO6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 09:58:04 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF34C061573
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 06:57:23 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1l1Vy6-00037n-CY; Mon, 18 Jan 2021 15:57:22 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1l1Vy6-0007Uf-2l; Mon, 18 Jan 2021 15:57:22 +0100
+Date:   Mon, 18 Jan 2021 15:57:21 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 2/2] dt-bindings: gpio: pca953x: increase allowed length
+ for gpio-line-names
+Message-ID: <20210118145721.6puoqfd6jx3x76jh@pengutronix.de>
+References: <20210113194952.104734-1-u.kleine-koenig@pengutronix.de>
+ <20210113194952.104734-2-u.kleine-koenig@pengutronix.de>
+ <CACRpkdbVKzE_pe0mPb4H2c0RVJGxEtiFEfMpTCoEO+7qdVBHFQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210116090656.11752-1-chunfeng.yun@mediatek.com> <20210116090656.11752-3-chunfeng.yun@mediatek.com>
-In-Reply-To: <20210116090656.11752-3-chunfeng.yun@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 18 Jan 2021 22:56:25 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8FV87MTSi_Mc2MA3uWzCUBcpCC5Sne2Wc6X1R57EiCkw@mail.gmail.com>
-Message-ID: <CAAOTY_8FV87MTSi_Mc2MA3uWzCUBcpCC5Sne2Wc6X1R57EiCkw@mail.gmail.com>
-Subject: Re: [PATCH next 03/15] dt-bindings: phy: mediatek: dsi-phy: modify
- compatible dependence
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Min Guo <min.guo@mediatek.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3vlece4lwqrljhc3"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbVKzE_pe0mPb4H2c0RVJGxEtiFEfMpTCoEO+7qdVBHFQ@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Chunfeng:
 
-Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=881=
-6=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=885:07=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> The compatilbe "mediatek,mt7623-mipi-tx" is not supported in driver,
-> and in fact uses "mediatek,mt2701-mipi-tx" instead on MT7623, so changes
-> the compatible items to make dependence clear.
->
-> And add an optional "clock-names" property, it's not used to get the cloc=
-k,
-> but some DTS files provide it.
+--3vlece4lwqrljhc3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Separate the clock part to another patch.
+On Mon, Jan 18, 2021 at 03:36:08PM +0100, Linus Walleij wrote:
+> On Wed, Jan 13, 2021 at 8:50 PM Uwe Kleine-K=F6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+>=20
+> > Some supported chips (e.g. pca9505) support 40 chips. To be able to give
+>=20
+> 40 lines I guess? (No big deal. Everyone understand what you mean.)
 
-Regards,
-Chun-Kuang.
+Yes, I noticed that myself and fixed that in v2
+(https://lore.kernel.org/r/20210115164658.187681-1-u.kleine-koenig@pengutro=
+nix.de)
 
->
-> Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  .../bindings/phy/mediatek,dsi-phy.yaml          | 17 ++++++++++++-----
->  1 file changed, 12 insertions(+), 5 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml =
-b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> index 71d4acea1f66..af6e554c5b69 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> @@ -19,11 +19,14 @@ properties:
->      pattern: "^dsi-phy@[0-9a-f]+$"
->
->    compatible:
-> -    enum:
-> -      - mediatek,mt2701-mipi-tx
-> -      - mediatek,mt7623-mipi-tx
-> -      - mediatek,mt8173-mipi-tx
-> -      - mediatek,mt8183-mipi-tx
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7623-mipi-tx
-> +          - const: mediatek,mt2701-mipi-tx
-> +      - const: mediatek,mt2701-mipi-tx
-> +      - const: mediatek,mt8173-mipi-tx
-> +      - const: mediatek,mt8183-mipi-tx
->
->    reg:
->      maxItems: 1
-> @@ -32,6 +35,10 @@ properties:
->      items:
->        - description: PLL reference clock
->
-> +  clock-names:
-> +    items:
-> +      - const: ref
-> +
->    clock-output-names:
->      maxItems: 1
->
-> --
-> 2.18.0
+> > each line a name the length of the gpio-line-names property must be
+> > allowed to contain up to 40 entries.
+> >
+> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Who will pick up this series (preferable v2 instead of this (implicit)
+v1)? Will they notice this Reviewed-by?
+
+Thanks
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--3vlece4lwqrljhc3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmAFoc8ACgkQwfwUeK3K
+7Alp+gf+MbTZQlKr9dm/t79pr4utXSUvEU8jo/ZumncN9bspoecUEgzuGGYuEqGJ
+N5wpDqnpBz+UPdy+P2rCXNdlAZtPQT2f0w3DmllGUG7NTV0F+vFJG8v6H2I6f9Cv
+Pi+iqXKSme1BkQNOrYTQCLKn1nb7fzBYQynRJvPDtuCxkue4LCorAL+L6ZJjaaYr
+lts/1V6Lrifvyh2hVQBjHkaEI9Q8KtP2LZQNDKnkB9Bt6oheT+YDZFztRJPA4RXN
+fz8zZE5exGK8dSCvQTYdRvg40w80tqb908rFKCQivpEGbPqy533pFiz7YhOjvWvs
+G6U+JdYV0/sWPc9XybNDedEf8TLArA==
+=YSCe
+-----END PGP SIGNATURE-----
+
+--3vlece4lwqrljhc3--
