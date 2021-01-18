@@ -2,102 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F88C2FA6AF
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:52:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5FF2FA6AD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 17:50:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391511AbhARQrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 11:47:18 -0500
-Received: from foss.arm.com ([217.140.110.172]:39358 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2406368AbhARQqI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 11:46:08 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E2F8331B;
-        Mon, 18 Jan 2021 08:45:20 -0800 (PST)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 78DC73F68F;
-        Mon, 18 Jan 2021 08:45:19 -0800 (PST)
-Date:   Mon, 18 Jan 2021 16:45:17 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     kernel test robot <lkp@intel.com>, daire.mcnamara@microchip.com
-Cc:     bhelgaas@google.com, robh@kernel.org, linux-pci@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        kbuild-all@lists.01.org, david.abdurachmanov@gmail.com,
-        cyril.jean@microchip.com, ben.dooks@codethink.co.uk
-Subject: Re: [PATCH v19 3/4] PCI: microchip: Add host driver for Microchip
- PCIe controller
-Message-ID: <20210118164517.GB16417@e121166-lin.cambridge.arm.com>
-References: <20201224094500.19149-4-daire.mcnamara@microchip.com>
- <202012291014.UP1fULPL-lkp@intel.com>
+        id S2393499AbhARQtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 11:49:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393423AbhARQtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 11:49:19 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94BF3C061573;
+        Mon, 18 Jan 2021 08:48:37 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id s11so11030192edd.5;
+        Mon, 18 Jan 2021 08:48:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=MdavDPScT8OMhzBsegf4N4uuSFdYSkhFpD+67Vj7XX4=;
+        b=rjR+0plW0jpyDPgI6e9OUdyRjou3VeQ4qpxqBG4i+DV6JbdbOvKLk63j4OWwBKmW8R
+         M9Cx5VPfOMI1eTNEhutT7gh4rcGKXVvX+bvhAm4f/LBHg0T59erwISKG2qvBSfPqnji4
+         gyqbBXlutXpdB8Hw2x2L+XimtM5305BezpSXAcq5Gqxr2W/PoSpTbhwjDx49u24F2cUi
+         Enh3cXAf2WxwL5a3RW0BtK1Ho3cdTruGR6IXrNpgkEkvaszjs3COnsX0NhZPhNePFut9
+         +TJK4lsKmLMFdR/T5Sb/QgiwwIGrpL8K8XH5PLoATmTEM7tgOljPnWLFlKvTnzNE9Ltj
+         DFag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MdavDPScT8OMhzBsegf4N4uuSFdYSkhFpD+67Vj7XX4=;
+        b=LPaZpPwE5S5sLdCn0tfTEOqFM7hq7TnzAKqJTEn8XO4kPr+9kQ7qUK80TuO1O/Xff8
+         bkSBvHPazbn97AHJFA+Z7azJcl0+3OXghwKFU6+ox3Zg87o6W9tBjEoJ3jRneM53r4eJ
+         VJAUjViYZnYgYvarAYmthrvJ1qohh029EXF/WRrAjUYtnuv6XP23wDM2y84IeF5LvjN7
+         nUokZFYAZzKjx0xNN/lLTg0KyJLlIipD+/+esuVTrPzpWVd5UcFErTVcBGOWIARAFay6
+         mdaGQLTbIxWhPOK4xJRyqEZ4ZrCPH1kanf/PFcuuKE8MbJDcF2ydlYFf2Co50dNom7kH
+         TuXA==
+X-Gm-Message-State: AOAM531V05WSr6W0MjmH2mB12ikFsKADmxK7P5bwbMbLjpSAZnrnAcKX
+        8PzeG3HHiozA3Y5S8rBQarXjZPZhaio=
+X-Google-Smtp-Source: ABdhPJzpYtzVUi2XrlE1b/f2Q7A5d5j6NrtBFUvOylh6ry9hP/bQDkPOSi1NNGAvQoaDbG4A2SJGFw==
+X-Received: by 2002:aa7:ce87:: with SMTP id y7mr262073edv.211.1610988516027;
+        Mon, 18 Jan 2021 08:48:36 -0800 (PST)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id m24sm9618925ejo.52.2021.01.18.08.48.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jan 2021 08:48:35 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: rockchip: cleanup cpu_thermal node of
+ rk3399-rock960.dts
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20210118163306.8693-1-jbx6244@gmail.com>
+Message-ID: <c6dfa1a7-4a61-2e80-fe43-add1af611395@gmail.com>
+Date:   Mon, 18 Jan 2021 17:48:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202012291014.UP1fULPL-lkp@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210118163306.8693-1-jbx6244@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 29, 2020 at 10:21:23AM +0800, kernel test robot wrote:
-> Hi,
-> 
-> Thank you for the patch! Perhaps something to improve:
+Hi,
 
-Can you fix it up promptly and resend please ?
+Sorry.
+This can go in the bin...
+It needs more cleanup...
+See question below.
 
-Thanks,
-Lorenzo
-
-> [auto build test WARNING on 3650b228f83adda7e5ee532e2b90429c03f7b9ec]
+On 1/18/21 5:33 PM, Johan Jonker wrote:
+> The cpu_thermal node in the rk3399-rock960.dts file does not
+> reference &cpu_thermal directly to add the board-specific parts,
+> but also repeats all the SoC default properties.
+> Clean the whole thing up and fix alignment.
+> Place node in the correct alphabetical order.
 > 
-> url:    https://github.com/0day-ci/linux/commits/daire-mcnamara-microchip-com/PCI-microchip-Add-host-driver-for-Microchip-PCIe-controller/20201224-174858
-> base:    3650b228f83adda7e5ee532e2b90429c03f7b9ec
-> config: mips-allyesconfig (attached as .config)
-> compiler: mips-linux-gcc (GCC) 9.3.0
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # https://github.com/0day-ci/linux/commit/05ba26bb79a9904585ed68019beec93a5258b0f3
->         git remote add linux-review https://github.com/0day-ci/linux
->         git fetch --no-tags linux-review daire-mcnamara-microchip-com/PCI-microchip-Add-host-driver-for-Microchip-PCIe-controller/20201224-174858
->         git checkout 05ba26bb79a9904585ed68019beec93a5258b0f3
->         # save the attached .config to linux build tree
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=mips 
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All warnings (new ones prefixed by >>):
-> 
->    drivers/pci/controller/pcie-microchip-host.c: In function 'mc_msi_bottom_irq_ack':
-> >> drivers/pci/controller/pcie-microchip-host.c:436:17: warning: variable 'msi' set but not used [-Wunused-but-set-variable]
->      436 |  struct mc_msi *msi;
->          |                 ^~~
-> 
-> 
-> vim +/msi +436 drivers/pci/controller/pcie-microchip-host.c
-> 
->    431	
->    432	static void mc_msi_bottom_irq_ack(struct irq_data *data)
->    433	{
->    434		struct mc_port *port = irq_data_get_irq_chip_data(data);
->    435		void __iomem *bridge_base_addr;
->  > 436		struct mc_msi *msi;
->    437		u32 bitpos = data->hwirq;
->    438		unsigned long status;
->    439	
->    440		bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
->    441		msi = &port->msi;
->    442	
->    443		writel_relaxed(BIT(bitpos), bridge_base_addr + ISTATUS_MSI);
->    444		status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
->    445		if (!status)
->    446			writel_relaxed(BIT(PM_MSI_INT_MSI_SHIFT), bridge_base_addr + ISTATUS_LOCAL);
->    447	}
->    448	
-> 
+> Suggested-by: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
-> 0-DAY CI Kernel Test Service, Intel Corporation
-> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+>  arch/arm64/boot/dts/rockchip/rk3399-rock960.dts | 75 ++++++++++++-------------
+>  1 file changed, 36 insertions(+), 39 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+> index b20774081..bff8a73d9 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+> @@ -63,6 +63,42 @@
+>  
+>  };
+>  
+> +&cpu_thermal {
+> +	polling-delay-passive = <100>;
+> +	polling-delay = <1000>;
+> +	thermal-sensors = <&tsadc 0>;
+> +	sustainable-power = <1550>;
+> +
+> +	trips {
+> +		cpu_alert0: cpu_alert0 {
+> +			temperature = <65000>;
+> +			hysteresis = <2000>;
+> +			type = "passive";
+> +		};
+> +
+> +		cpu_alert1: cpu_alert1 {
+> +			temperature = <75000>;
+> +			hysteresis = <2000>;
+> +			type = "passive";
+> +		};
+> +
+> +		cpu_crit: cpu_crit {
+> +			temperature = <95000>;
+> +			hysteresis = <2000>;
+> +			type = "critical";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map0 {
+> +			trip = <&cpu_alert1>;
+> +			cooling-device =
+> +				<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +		};
+> +	};
+> +};
+> +
+>  &pcie0 {
+>  	ep-gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
+>  };
+> @@ -125,45 +161,6 @@
+>  	status = "okay";
+>  };
+>  
+> -&thermal_zones {
+> -	cpu_thermal: cpu-thermal {
+> -		polling-delay-passive = <100>;
+> -		polling-delay = <1000>;
+> -		thermal-sensors = <&tsadc 0>;
+> -		sustainable-power = <1550>;
+> -
+> -		trips {
+> -			cpu_alert0: cpu_alert0 {
+> -				    temperature = <65000>;
+> -				    hysteresis = <2000>;
+> -				    type = "passive";
+> -			};
+> -
+> -			cpu_alert1: cpu_alert1 {
+> -				    temperature = <75000>;
+> -				    hysteresis = <2000>;
+> -				    type = "passive";
+> -			};
+> -
+> -			cpu_crit: cpu_crit {
+> -				  temperature = <95000>;
+> -				  hysteresis = <2000>;
+> -				  type = "critical";
+> -			};
+> -		};
+> -
+> -		cooling-maps {
+
+> -			     map0 {
+> -
+> -			     trip = <&cpu_alert1>;
+
+The trip property points to "cpu_alert1", while in rk3399.dtsi that is
+"&cpu_alert0"
+What is correct here?
 
 
+> -			     cooling-device =
+> -					<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -					<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> -			};
+> -		};
+> -	};
+> -};
+> -
+>  &usbdrd_dwc3_0 {
+>  	dr_mode = "otg";
+>  };
+> 
+
+
+				map0 {
+					trip = <&cpu_alert0>;
+					cooling-device =
+						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+				};
