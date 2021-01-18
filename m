@@ -2,234 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE76B2F9F32
-	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 13:13:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02DD82F9FB1
+	for <lists+devicetree@lfdr.de>; Mon, 18 Jan 2021 13:32:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389141AbhARMLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 07:11:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45902 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403807AbhARMKu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Jan 2021 07:10:50 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C07FF208D5;
-        Mon, 18 Jan 2021 12:10:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1610971808;
-        bh=VO8Q71JIzVWPPB+FCHBwwoRa4mTNvS2Wg4JbjxOYW5w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Dl+gdId9lqcX05hWACysMpicyspFHBrUuv57P257a8ncaN/YZsCgbaGsNW+2grlNE
-         xx7Kbdt5TD6eUV9E3VHUtGfz0i5vpa8+zYW1oxybnunb4J8A2kz9x1gEmUZrWyumpM
-         t3kBO/kHEdRQ4PTvhP/g2J4VJYi+hCMRYMSEJotlR7tHsRifHAKwdXkYSpG+zj4M2q
-         W1EjnjExc3AlI3I3y83WA2fK46hy5M64uMcSgiNS3eFW3wMGnMtrXY3Kf61B0rjTnR
-         2a9DFhKt3HF/UNFXNbG1lIqo3szvwliNZs9AOInGTWp6tWkunKdrl6Shchj4rr7VuC
-         MGm6+t1e/A/2w==
-Received: by mail-oi1-f169.google.com with SMTP id s75so17478248oih.1;
-        Mon, 18 Jan 2021 04:10:08 -0800 (PST)
-X-Gm-Message-State: AOAM531ya5gDCIrodzHd7oHmt4pvt6BJ6NwdXRQyFPsvetmzFXi3TCPE
-        bDFH3ra9sHh6wIi9R1DD3tGDwoGNMrZLzid4eOo=
-X-Google-Smtp-Source: ABdhPJyJfiFiRlcYa+bgXA1A7m+wUOg/ssP9BRzLZYX69gw0lgPu2QrIHF5DtAmhC1pP3vzLJu7aitHkLvvsvT/u/5s=
-X-Received: by 2002:aca:210f:: with SMTP id 15mr12665970oiz.174.1610971807918;
- Mon, 18 Jan 2021 04:10:07 -0800 (PST)
+        id S2391481AbhARMb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 07:31:26 -0500
+Received: from mail-eopbgr80082.outbound.protection.outlook.com ([40.107.8.82]:24595
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2390845AbhARMbR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 07:31:17 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ht9xgGgsTc2xYi4Wi5rE5XJTSRcP2n+h4or1IVdoeuoHaN4qrt3W5tFJjdNLd/EW1je0LNj62JsK3+prM19zk6JAeEtcCXYg+JZmO3SPGdgjhNYYdlVPblOwgbkqpweD9wTU5BqISWvQvwWVUSirZmKwVtaZJRKuEOhb29yrPEhi5k2H7adSB7/C2DTSKuKsY8ikK4WydQl6LxL7vTci03X0LOOsdwnx/6klFF7a4rzDwGkIashku7TC5bDsj2CYWz84rkp/fscklfgC2TbApd01IJg2rf6/h9e/sz7aI+zXH2HhcBiSRnSFaW/S/K7D/HQ8ZQOlR7p+RmbqZQgRxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6DKry2gjhsPjTETZ1vRFjvc9GuFAszLzT50jYX+YN80=;
+ b=ZpqwCMD16XRz/Ew6HAJc3Q0n1W+cMpOpbe3Otn4jsMfd587wNroeIjbVEGwMg6jEm5fnmw4qM37fpjFuqDRlUsI9m+c+dHolq/PwWnV/nhS5OQYr1wk4MQSo29Qyr0YHgzA1kcvO6wEC4/ZeDXyId/azrj8w+iU35MK7tgr37XA0MbgvHfEapCsFwbYQXsnhr8neDbZbPO9ivXFCZBaUS+rLIupi8b6ZEY0cuFOR+38E52nUaVT/TxAcNOIHk1JnTKw92cA0RVijGM0psYa83IEjI87xls7x32RiRbBwIpxUXzo8ymtIq3Ecj1LlNQOPIZaETnmY/qdSz6GaXDYuag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6DKry2gjhsPjTETZ1vRFjvc9GuFAszLzT50jYX+YN80=;
+ b=B9FuRgBelKzUUsO54RT4CycyqzI5I9vC9YMolztUzHFH9syh6tx+H/0Q3onHXESFEE+di9DDpYpAfLMFogsa/aKCMEB1hQKefCNKJH6ydhmiyYpR2jbId/44+zULznUBTDXEOn8b0QDdtG6SBgIA+i2ZamD4aoJghliGrT1cOnA=
+Authentication-Results: wizery.com; dkim=none (message not signed)
+ header.d=none;wizery.com; dmarc=none action=none header.from=nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB8PR04MB7178.eurprd04.prod.outlook.com (2603:10a6:10:12e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.13; Mon, 18 Jan
+ 2021 12:30:27 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5%10]) with mapi id 15.20.3763.014; Mon, 18 Jan 2021
+ 12:30:27 +0000
+From:   peng.fan@nxp.com
+To:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
+        patrice.chotard@st.com, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V7 00/10] remoteproc: imx_rproc: support iMX8MQ/M 
+Date:   Mon, 18 Jan 2021 20:19:49 +0800
+Message-Id: <1610972399-28286-1-git-send-email-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR03CA0113.apcprd03.prod.outlook.com
+ (2603:1096:4:91::17) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+ (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-References: <20201217172101.381772-1-daniele.alessandrelli@linux.intel.com>
- <CY4PR1101MB2326ED0E6C23D1D868D53365E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
- <20210104113148.GA20575@gondor.apana.org.au> <CY4PR1101MB23260DF5A317CA05BBA3C2F9E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
- <CY4PR1101MB232696B49BA1A3441E8B335EE7A80@CY4PR1101MB2326.namprd11.prod.outlook.com>
- <CAMj1kXH9sHm_=dXS7646MbPQoQST9AepfHORSJgj0AxzWB4SvQ@mail.gmail.com> <CY4PR1101MB232656080E3F457EC345E7B2E7A40@CY4PR1101MB2326.namprd11.prod.outlook.com>
-In-Reply-To: <CY4PR1101MB232656080E3F457EC345E7B2E7A40@CY4PR1101MB2326.namprd11.prod.outlook.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Mon, 18 Jan 2021 13:09:56 +0100
-X-Gmail-Original-Message-ID: <CAMj1kXF9yUVEdPeF6EUCSOdb44HdFuVPk6G2cKOAUAn-mVjCzw@mail.gmail.com>
-Message-ID: <CAMj1kXF9yUVEdPeF6EUCSOdb44HdFuVPk6G2cKOAUAn-mVjCzw@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/6] Keem Bay OCS ECC crypto driver
-To:     "Reshetova, Elena" <elena.reshetova@intel.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Alessandrelli, Daniele" <daniele.alessandrelli@intel.com>,
-        Mark Gross <mgross@linux.intel.com>,
-        "Khurana, Prabhjot" <prabhjot.khurana@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR03CA0113.apcprd03.prod.outlook.com (2603:1096:4:91::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3784.6 via Frontend Transport; Mon, 18 Jan 2021 12:30:22 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: bcc79742-1856-4a0b-b32d-08d8bbacd60f
+X-MS-TrafficTypeDiagnostic: DB8PR04MB7178:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB7178E1DDC9D7EB5568362FBE88A40@DB8PR04MB7178.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PzIrL3y906IZvULSn58KjSszhRKQDXem0gykVAztZAkWOPvsToMPdzbdrMvKQY9gACu7beQA7lP7j9oJmiBtQESAmD/nfhQPPcaZgEiKFMZ7dCiQD2RT0w2wlsV6fOmkNXL0BAGWtssEVSnSbnOlBckjBRL21ORDKB/CutmRaLOmIVwSXHqHb99gljYRW1RI0hm9prYutAXgfIMepofr8T5qlz1vxM9is3D9OiZjYv7EweWTOEvEc/tTvchWms51sNkY5nvPMgh6EjYZ2/aFdsmkQ6xzw8M6izjJz0WkrONYEBHZv/Hz3pJtNnuMKS0qs/PqdTeC8mBy2Pe+VB2CaY/jkKDpEm0G/QoMHeTgL7FwUfToasKPO7HOWwq66ar7WEYUxzvWRzZ4PeSMuCC7ZMsSyQzNCUAWcl5e3mI/a9eJjiSYeb4OY6OpM2Sg9dsOb+NsoCjY7CrGICzuQR3+Hnpk0t0eaPukc09bDZuhnA+upEEJI8IC1EcDiqfeR0lftMq9vLYcpYGhCgU0OmfoAshTLsmyUGB6ACkuzt9bZ4Q=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(376002)(366004)(39860400002)(5660300002)(2616005)(966005)(4326008)(36756003)(8936002)(69590400011)(956004)(478600001)(6666004)(186003)(26005)(6506007)(52116002)(6512007)(9686003)(66556008)(66946007)(66476007)(7416002)(2906002)(16526019)(4743002)(86362001)(8676002)(83380400001)(316002)(6486002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?V7fqUBHMqaMp0OBhSD7ek56oS4cRZXQwnatxd3+cKZGSFmyOpY3rHIJ9tw9t?=
+ =?us-ascii?Q?D8ldolRI7wDwfedvnIgUvuLP7zt67I6fco5OvHWH+p6E+yKgoV9rc2j6tsjg?=
+ =?us-ascii?Q?oaMi6R2HmfD1Jwai7vjrDoyG1zYMHdZWbSqHSwZurGgVH1vGmwvUpQvUZH6t?=
+ =?us-ascii?Q?Z4NQmj0hT1ltNU/TJV3tKtXV5nPjIBiLcgOg6LeZxuCoqKU/sb6fLq51kfDU?=
+ =?us-ascii?Q?gAhtKZCRA7hPBg3iCh5n0qlkiOEwsy+4jkDul+QTs53yLmf4jbeJ8W+IQ2Dl?=
+ =?us-ascii?Q?8I2WqCfm1qEY+hXN8d8Cu1v8FdE2sbzYf7pAPp+gm49n0MkzGG0LJYodzWvc?=
+ =?us-ascii?Q?P87slHguGFtWj9ai/oEdJAq7W21SiAEQo+jBKYT/X7NON9tjWIlE5vOzqNiU?=
+ =?us-ascii?Q?0uYbTpqDhnaZLUWLNOqsFQJrVA6Z4sV6NDoEPDEb5uTTwsyvGrXJqJpeH6mP?=
+ =?us-ascii?Q?yrPOQ56dDODkdW/VH/7PRIMV0eCMQ4Z/065Nw3Jy1g7HHt5rq2uV/JezuE9G?=
+ =?us-ascii?Q?S0o5MDwkd0ig5KpGUOkbFA2GDdz2H1tqlAHyDC3wsDBt/hS0iqQSSYfTqrT8?=
+ =?us-ascii?Q?OnjUCTp7+r2Qmyfc/+Qp5F5NUKA0+89iiTzWnG4Z6wmLPJTK+YnjA63qRWDH?=
+ =?us-ascii?Q?pACeXiqbK1OYSuz53Bm9aojac+5+Q5IRHHxeO9k4HYoZMYCUZKSAI2pCZNvT?=
+ =?us-ascii?Q?NddEg3X6Kmxm6YwZ0J2cX5lRxOeuiPdtf6MEU3i2TaFterrPeE+GRyFGPGOG?=
+ =?us-ascii?Q?ohwhO/puqg6viK2St06gsbjtD7Ch4KHBtNSGemlCNSG19NrNezRWWBIr7/mC?=
+ =?us-ascii?Q?eiUIWGPwqBWRhQUXjT8fHUZVkzv83Feixgn/z/Hxyy1nVPwFxmnpyIywN7r4?=
+ =?us-ascii?Q?5195KB8ccE7oukzRbBRAz6g33aXxxAlO5g++xHW6uhIlJPdGBAgnAhVXUilH?=
+ =?us-ascii?Q?H/7YxXpphpxesr/VGuuyd5GZh0t1/EpSm/hCMXYnxqe7DMnDkiBipkqCYrsc?=
+ =?us-ascii?Q?F0sw?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bcc79742-1856-4a0b-b32d-08d8bbacd60f
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2021 12:30:27.5626
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Qq3YKTcxuufZrlh/zevNZg8980cKfCiAW2iONSvjjJSAeHcJSW4Av02/SZ4LyZoqJjqgsR4DGRaPvMIALXxRmg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7178
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Jan 2021 at 12:55, Reshetova, Elena
-<elena.reshetova@intel.com> wrote:
->
-> > On Thu, 14 Jan 2021 at 11:25, Reshetova, Elena
-> > <elena.reshetova@intel.com> wrote:
-> > >
-> > > > > On Mon, Jan 04, 2021 at 08:04:15AM +0000, Reshetova, Elena wrote:
-> > > > > > > 2. The OCS ECC HW does not support the NIST P-192 curve. We were
-> > planning
-> > > > to
-> > > > > > >    add SW fallback for P-192 in the driver, but the Intel Crypto team
-> > > > > > >    (which, internally, has to approve any code involving cryptography)
-> > > > > > >    advised against it, because they consider P-192 weak. As a result, the
-> > > > > > >    driver is not passing crypto self-tests. Is there any possible solution
-> > > > > > >    to this? Is it reasonable to change the self-tests to only test the
-> > > > > > >    curves actually supported by the tested driver? (not fully sure how to do
-> > > > > > >    that).
-> > > > > >
-> > > > > > An additional reason against the P-192 SW fallback is the fact that it can
-> > > > > > potentially trigger unsafe behavior which is not even "visible" to the end user
-> > > > > > of the ECC functionality. If I request (by my developer mistake) a P-192
-> > > > > > weaker curve from ECC Keem Bay HW driver, it is much safer to return a
-> > > > > > "not supported" error that proceed behind my back with a SW code
-> > > > > > implementation making me believe that I am actually getting a HW-backed up
-> > > > > > functionality (since I don't think there is a way for me to check that I am using
-> > > > > > SW fallback).
-> > > > >
-> > > > > Sorry, but if you break the Crypto API requirement then your driver
-> > > > > isn't getting merged.
-> > > >
-> > > > But should not we think what behavior would make sense for good crypto drivers
-> > in
-> > > > future?
-> > > > As cryptography moves forward (especially for the post quantum era), we will
-> > have
-> > > > lengths for all existing algorithms increased (in addition to having a bunch of new
-> > > > ones),
-> > > > and we surely should not expect the new generation of HW drivers to implement
-> > > > the old/weaker lengths, so why there the requirement to support them? It is not
-> > a
-> > > > part of crypto API definition on what bit lengths should be supported, because it
-> > > > cannot be part of API to begin with since it is always changing parameter
-> > (algorithms
-> > > > and attacks
-> > > > develop all the time).
-> > >
-> > > I would really appreciate, if someone helps us to understand here. Maybe there is a
-> > > correct way to address this, but we just don't see it. The question is not even about
-> > > this particular crypto driver and the fact whenever it gests merged or not, but the
-> > > logic of the crypto API subsystem.
-> > >
-> > > As far as I understand the implementations that are provided by the specialized
-> > drivers
-> > > (like our Keem Bay OCS ECC driver example here) have a higher priority vs. generic
-> > > Implementations that exists in kernel, which makes sense because we expect these
-> > drivers
-> > > (and the security HW they talk to) to provide both more efficient and more secure
-> > > implementations than a pure SW implementation in kernel can do (even if it utilizes
-> > special
-> > > instructions, like SIMD, AESNI, etc.). However, naturally these drivers are bound by
-> > > what security HW can do, and if it does not support a certain size/param of the
-> > algorithm
-> > > (P-192 curve in our case), it is pointless and wrong for them to reimplement what
-> > SW is
-> > > already doing in kernel, so they should not do so and currently they re-direct to
-> > core kernel
-> > > implementation. So far good.
-> > >
-> > > But now comes my biggest worry is that this redirection as far
-> > > as I can see is *internal to driver itself*, i.e. it does a callback to these core
-> > functions from the driver
-> > > code, which again, unless I misunderstand smth, leads to the fact that the end user
-> > gets
-> > > P-192 curve ECC implementation from the core kernel that has been "promoted"
-> > to a highest
-> > > priority (given that ECC KeemBay driver for example got priority 300 to begin with).
-> > So, if
-> > > we say we have another HW Driver 'Foo', which happens to implement P-192
-> > curves more securely,
-> > > but happens to have a lower priority than ECC KeemBay driver, its implementation
-> > would never
-> > > be chosen, but core kernel implementation will be used (via SW fallback internal to
-> > ECC Keem
-> > > Bay driver).
-> > >
-> >
-> > No, this is incorrect. If you allocate a fallback algorithm in the
-> > correct way, the crypto API will resolve the allocation in the usual
-> > manner, and select whichever of the remaining implementations has the
-> > highest priority (provided that it does not require a fallback
-> > itself).
->
-> Thank you very much Ard for the important correction here!
-> See below if I got it now correctly to the end for the use case in question.
->
-> >
-> > > Another problem is that for a user of crypto API I don't see a way (and perhaps I
-> > am wrong here)
-> > > to guarantee that all my calls to perform crypto operations will end up being
-> > performed on a
-> > > security HW I want (maybe because this is the only thing I trust). It seems to be
-> > possible in theory,
-> > > but in practice would require careful evaluation of a kernel setup and a sync
-> > between what
-> > > end user requests and what driver can provide. Let me try to explain a potential
-> > scenario.
-> > > Lets say we had an end user that used to ask for both P-192 and P-384 curve-based
-> > ECC operations
-> > > and let's say we had a driver and security HW that implemented it. The end user
-> > made sure that
-> > > this driver implementation is always preferred vs. other existing implementations.
-> > Now, time moves, a new
-> > > security HW comes instead that only supports P-384, and the driver now has been
-> > updated to
-> > > support P-192 via the SW fallback (like we are asked now).
-> > > Now, how does an end user notice that when it asks for a P-192 based operations,
-> > his operations
-> > > are not done in security HW anymore? The only way seems to be
-> > > is to know that driver and security HW has been updated, algorithms and sizes
-> > changed, etc.
-> > > It might take a while before the end user realizes this and for example stops using
-> > P-192 altogether,
-> > > but what if this silent redirect by the driver actually breaks some security
-> > assumptions (side-channel
-> > > resistance being one potential example) made by this end user? The consequences
-> > can be very bad.
-> > > You might say: "this is the end user problem to verify this", but shouldn't we do
-> > smth to prevent or
-> > > at least indicate such potential issues to them?
-> > >
-> >
-> > I don't think it is possible at the API level to define rules that
-> > will always produce the most secure combination of drivers. The
-> > priority fields are only used to convey relative performance (which is
-> > already semantically murky, given the lack of distinction between
-> > hardware with a single queue vs software algorithms that can be
-> > executed by all CPUs in parallel).
-> >
-> > When it comes to comparative security, trustworthiness or robustness
-> > of implementations, it is simply left up to the user to blacklist
-> > modules that they prefer not to use. When fallback allocations are
-> > made in the correct way, the remaining available implementations will
-> > be used in priority order.
->
-> So, let me see if I understand the full picture correctly now and how to utilize
-> the blacklisting of modules as a user. Suppose I want to blacklist everything but
-> my OSC driver module. So, if I am as a user refer to a specific driver implementation
-> using a unique driver name (ecdh-keembay-ocs in our case), then regardless of the
-> fact that a driver implements this SW fallback for P-192 curve, if I am as a user to
-> ask for P-192 curve (or any other param that results in SW fallback), I will be notified
-> that this requested implementation does not provide it?
->
+From: Peng Fan <peng.fan@nxp.com>
 
-This is rather unusual compared with how the crypto API is typically
-used, but if this is really what you want to implement, you can do so
-by:
-- having a "ecdh" implementation that implements the entire range, and
-uses a fallback for curves that it does not implement
-- export the same implementation again as "ecdh" and with a known
-driver name "ecdh-keembay-ocs", but with a slightly lower priority,
-and in this case, return an error when the unimplemented curve is
-requested.
+V7:
+ Add R-b tag from Mathieu
+ vdevbuffer->vdev0buffer in patch 1/10, 7/10
+ correct err msg and shutdown seq per Mathieu's comments in patch 10/10
+ Hope this version is ok to be merged.
+ 
+V6:
+ Add R-b tag from Mathieu
+ Convert imx-rproc.txt to yaml and add dt-bindings support for i.MX8MQ/M, patch 1/10 2/10
+ No other changes.
 
-That way, you fully adhere to the API, by providing implementations of
-all curves by default. And if a user requests "ecdh-keembay-ocs"
-explicitly, it will not be able to use the P192 curve inadvertently.
+V5:
+ Apply on Linux next
+ Add V5 subject prefix
+ Add R-b tag from Bjorn for 1/8, 2/8, 3/8
+ https://patchwork.kernel.org/project/linux-remoteproc/cover/20201229033019.25899-1-peng.fan@nxp.com/
 
-But policing which curves are secure and which are not is really not
-the job of the API. We have implementations of MD5 and RC4 in the
-kernel that we would *love* to remove but we simply cannot do so as
-long as they are still being used. The same applies to P192: we simply
-cannot fail requests for that curve for use cases that were previously
-deemed valid. It is perfectly reasonable to omit the implementation
-from your hardware, but banning its use outright on the grounds that
-is no longer secure conflicts with our requirement not to break
-existing use cases.
+V4:
+ According to Bjorn's comments, add is_iomem for da to va usage
+ 1/8, 2/8 is new patch
+ 3/8, follow Bjorn's comments to correct/update the err msg.
+ 6/8, new patch
+ 8/8, use dev_err_probe to simplify code, use queue_work instead schedule_delayed_work
+
+V3:
+ Since I was quite busy in the past days, V3 is late
+ Rebased on Linux-next
+ Add R-b tags
+ 1/7: Add R-b tag of Mathieu, add comments
+ 4/7: Typo fix
+ 5/7: Add R-b tag of Mathieu, drop index Per Mathieu's comments
+ 6/7: Add R-b tag of Mathieu
+ 7/7: Add comment for vqid << 16, drop unneeded timeout settings of mailbox
+      Use queue_work instead of schedule_delayed_work
+      free mbox channels when remove
+ https://lkml.org/lkml/2020/12/4/82
+
+V2:
+ Rebased on linux-next
+ Dropped early boot feature to make patchset simple.
+ Drop rsc-da
+ https://patchwork.kernel.org/project/linux-remoteproc/cover/20200927064131.24101-1-peng.fan@nxp.com/
+
+V1:
+ https://patchwork.kernel.org/cover/11682461/
+
+This patchset is to support i.MX8MQ/M coproc.
+The early boot feature was dropped to make the patchset small in V2.
+
+Since i.MX specific TCM memory requirement, add elf platform hook.
+Several patches have got reviewed by Oleksij and Mathieu in v1.
+
+
+
+
+Peng Fan (10):
+  dt-bindings: remoteproc: convert imx rproc bindings to json-schema
+  dt-bindings: remoteproc: imx_rproc: add i.MX8MQ/M support
+  remoteproc: introduce is_iomem to rproc_mem_entry
+  remoteproc: add is_iomem to da_to_va
+  remoteproc: imx_rproc: correct err message
+  remoteproc: imx_rproc: use devm_ioremap
+  remoteproc: imx_rproc: add i.MX specific parse fw hook
+  remoteproc: imx_rproc: support i.MX8MQ/M
+  remoteproc: imx_rproc: ignore mapping vdev regions
+  remoteproc: imx_proc: enable virtio/mailbox
+
+ .../bindings/remoteproc/fsl,imx-rproc.yaml    | 108 ++++++++
+ .../bindings/remoteproc/imx-rproc.txt         |  33 ---
+ drivers/remoteproc/imx_rproc.c                | 260 +++++++++++++++++-
+ drivers/remoteproc/ingenic_rproc.c            |   2 +-
+ drivers/remoteproc/keystone_remoteproc.c      |   2 +-
+ drivers/remoteproc/mtk_scp.c                  |   6 +-
+ drivers/remoteproc/omap_remoteproc.c          |   2 +-
+ drivers/remoteproc/pru_rproc.c                |   2 +-
+ drivers/remoteproc/qcom_q6v5_adsp.c           |   2 +-
+ drivers/remoteproc/qcom_q6v5_pas.c            |   2 +-
+ drivers/remoteproc/qcom_q6v5_wcss.c           |   2 +-
+ drivers/remoteproc/qcom_wcnss.c               |   2 +-
+ drivers/remoteproc/remoteproc_core.c          |   7 +-
+ drivers/remoteproc/remoteproc_coredump.c      |   8 +-
+ drivers/remoteproc/remoteproc_debugfs.c       |   2 +-
+ drivers/remoteproc/remoteproc_elf_loader.c    |  21 +-
+ drivers/remoteproc/remoteproc_internal.h      |   2 +-
+ drivers/remoteproc/st_slim_rproc.c            |   2 +-
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c     |   2 +-
+ drivers/remoteproc/ti_k3_r5_remoteproc.c      |   2 +-
+ drivers/remoteproc/wkup_m3_rproc.c            |   2 +-
+ include/linux/remoteproc.h                    |   4 +-
+ 22 files changed, 407 insertions(+), 68 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+
+-- 
+2.28.0
+
