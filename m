@@ -2,168 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E43D12FBDAC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3122E2FBE22
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:45:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728316AbhASQMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 11:12:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35162 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392020AbhASQLc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 11:11:32 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3EFBA2311C;
-        Tue, 19 Jan 2021 16:10:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611072651;
-        bh=m+FSqXlvV3JjPMmUcXvwZL6Fu9L0fgTghhQI30bmy2k=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Scv8LoYDdqSEF/O9EjJoFkntp6r0fkQ3IRKXeELmMo38FnVPXRiIS39TVlZDRohld
-         srTYmPQI3Ztdp3A5LP34We/EhbtQvyIDDjF+jQx3+GwEJ3GyQPUIfKKnhP227bRNFR
-         H0wirINUXiOaG6GVfOuRxmBfb7qvrmI5rg+lmzv5CKG86sdUFsFAYouZCrrT4GQ3Yi
-         2VvKfb4rqW0c8UY6FfAORXMpD3WSutS8cYRo/p7R7U+IMVMkz1CNj90xag5/cNLJFn
-         1yzWXcUgi8f83MC3BO3onXOSwRw3q6Rv5SGi9BqMX+S8s8iMNTPGHCUeTAgCrAbGhF
-         WHQxdyDwBqyAA==
-Received: by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1l1tai-0012bT-Nj; Tue, 19 Jan 2021 17:10:48 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Colin Ian King <colin.king@canonical.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mayulong <mayulong1@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
-        YueHaibing <yuehaibing@huawei.com>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 00/21] Move Hisilicon 6421v600 SPMI driver set out of staging
-Date:   Tue, 19 Jan 2021 17:10:26 +0100
-Message-Id: <cover.1611072387.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.29.2
+        id S2391698AbhASRmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 12:42:22 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:4778 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391584AbhASRkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:40:22 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B6007195c0000>; Tue, 19 Jan 2021 09:39:40 -0800
+Received: from [10.25.99.10] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 19 Jan
+ 2021 17:39:36 +0000
+Subject: Re: Re: [RESEND PATCH v6 5/6] arm64: tegra: Audio graph header for
+ Tegra210
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <broonie@kernel.org>, <robh+dt@kernel.org>, <jonathanh@nvidia.com>,
+        <kuninori.morimoto.gx@renesas.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sharadg@nvidia.com>
+References: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
+ <1611048496-24650-6-git-send-email-spujar@nvidia.com> <YAcTxxyogVgfN1uw@ulmo>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <b83eb795-328e-acc5-4555-7befd919a136@nvidia.com>
+Date:   Tue, 19 Jan 2021 23:09:32 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+In-Reply-To: <YAcTxxyogVgfN1uw@ulmo>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1611077980; bh=NYSuQvptGwglsg6hwhbeZo+P6a5iRvHlv/Ac5X3wq0E=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=BkfBjCUirmEPSHaImywpIfpgV7kphUGUianmqeHjkbZ0ygzEmqlRasO7Hwd/L4VPy
+         KOO2kYKtrdPTiV4eFWv2p4PUvcSY07KI0LiQ2CZaQQtGpJXn8EjBnfOmzwobA1RVdZ
+         MSxH3StnoqYMehpSI9CqmNvITcT7VpsxCqSErtSmKkGgyaqQL90TXladEbNVJGOybg
+         PLS6JMYhVbDNvmgjUEg2rAaCoqv08+3EKa/mlMh+SnOTuWQP1v06KTpRg6mHxSlIgK
+         uvz8RO5GxtqnZGHBIbwoekZLCd/ajzehQG7HgxkAZy5fj5SXzTAaaFR0QZ9pBUlM7S
+         8VOFBzSnarVhQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark/Lee,
-
-This patch series finish addressing support for Hikey 970
-SPMI controller, PMIC and regulators.
-
-I removed some unrelated DT patches from this series,
-plus the Hikey 970 PHY USB3 code from it, in order to avoid
-mixing different stuff on this series[1].
-
-[1] Those unrelated patches were submitted last week on
-separate series.
-
-The entire patchset is on this branch:
-
-	https://git.linuxtv.org/mchehab/experimental.git/log/?h=hikey970-destage-usb
-
-In order to make easier for review, this series was generated
-with --no-renames. So, you don't need to take a look at the
-staging patches, as the entire code will be there on patches 9-11.
-
-The last two patches on this series will likely require that other
-patch series to get merged first. It probably makes sense to be
-merged via DT tree. 
-
-Regards,
-Mauro
-
-v4:
-- use regmap for mfd and spmi drivers;
-- a few minor cleanups at the mfd driver.
-
-v3:
-- fixed a bug with eco-mode at get_optimum_mode;
-- changed the sleep logic when enabling/disabling a power line;
-- additional cleanups, as requested by Mark.
-
-v2:
-
-- this driver's probe routine is very similar to the one at the non-SPMI
-  variant of Hisilicon 6421;
-- The register/voltage data were moved from DT into the driver itself;
-- It doesn't have anymore any static data;
-- All debug messages got removed;
-- Addressed a few be32 warnings from sparse.
 
 
+On 1/19/2021 10:45 PM, Thierry Reding wrote:
+> On Tue, Jan 19, 2021 at 02:58:15PM +0530, Sameer Pujar wrote:
+>> Expose a header which describes DT bindings required to use audio-graph
+>> based sound card. All Tegra210 based platforms can include this header
+>> and add platform specific information. Currently, from SoC point of view,
+>> all links are exposed for ADMAIF, AHUB, I2S and DMIC components.
+>>
+>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+>> ---
+>>   .../boot/dts/nvidia/tegra210-audio-graph.dtsi      | 153 +++++++++++++++++++++
+>>   1 file changed, 153 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/nvidia/tegra210-audio-graph.dtsi
+> I prefer keeping everything in tegra210.dtsi, but I can do that merge
+> when I apply, after the DT bindings have been acked, so no need to
+> resend just because of that.
 
-
-Mauro Carvalho Chehab (21):
-  staging: hikey9xx: hisilicon,hisi-spmi-controller.yaml fix bindings
-  staging: hikey9xx: hisilicon,hi6421-spmi-pmic.yaml: simplify props
-  staging: hikey9xx: hisi-spmi-controller: clean sparse warnings
-  staging: hikey9xx: hi6421v600-regulator: do some cleanups
-  staging: hikey9xx: hi6421v600-regulator: move LDO config from DT
-  staging: hikey9xx: hi6421v600-regulator: cleanup debug msgs
-  staging: hikey9xx: hi6421v600-regulator: get rid of an static data
-  staging: hikey9xx: hi6421v600-regulator: do some cleanups
-  staging: hikey9xx: hi6421v600-regulator: update copyright
-  staging: hikey9xx: hi6421v600-regulator: fix delay logic
-  staging: hikey9xx: hi6421v600-regulator: cleanup comments
-  staging: hikey9xx: hi6421v600-regulator: fix get_optimum_mode
-  staging: hikey9xx: hisilicon,hi6421-spmi-pmic.yaml: cleanup a warning
-  staging: hikey9xx: spmi driver: convert to regmap
-  staging: hikey9xx: hi6421-spmi-pmic: update copyright
-  staging: hikey9xx: simplify includes
-  spmi: hisi-spmi-controller: move driver from staging
-  mfd: hi6421-spmi-pmic: move driver from staging
-  regulator: hi6421v600-regulator: move it from staging
-  dts: hisilicon: add support for USB3 on Hikey 970
-  dts: hisilicon: add support for the PMIC found on Hikey 970
-
- .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 135 +++++
- .../spmi/hisilicon,hisi-spmi-controller.yaml  |  75 +++
- MAINTAINERS                                   |  15 +-
- .../boot/dts/hisilicon/hi3670-hikey970.dts    | 124 ++++-
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  58 +++
- .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  87 ++++
- drivers/mfd/Kconfig                           |  15 +
- drivers/mfd/Makefile                          |   1 +
- drivers/mfd/hi6421-spmi-pmic.c                | 281 ++++++++++
- drivers/regulator/Kconfig                     |   8 +
- drivers/regulator/Makefile                    |   1 +
- drivers/regulator/hi6421v600-regulator.c      | 338 +++++++++++++
- drivers/spmi/Kconfig                          |   9 +
- drivers/spmi/Makefile                         |   1 +
- drivers/spmi/hisi-spmi-controller.c           | 358 +++++++++++++
- drivers/staging/Kconfig                       |   2 -
- drivers/staging/Makefile                      |   1 -
- drivers/staging/hikey9xx/Kconfig              |  38 --
- drivers/staging/hikey9xx/Makefile             |   5 -
- drivers/staging/hikey9xx/TODO                 |   5 -
- drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 342 -------------
- .../staging/hikey9xx/hi6421v600-regulator.c   | 478 ------------------
- .../staging/hikey9xx/hisi-spmi-controller.c   | 358 -------------
- .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 159 ------
- .../hisilicon,hisi-spmi-controller.yaml       |  62 ---
- include/linux/mfd/hi6421-spmi-pmic.h          |   8 +-
- 26 files changed, 1486 insertions(+), 1478 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
- create mode 100644 Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
- create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
- create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
- create mode 100644 drivers/regulator/hi6421v600-regulator.c
- create mode 100644 drivers/spmi/hisi-spmi-controller.c
- delete mode 100644 drivers/staging/hikey9xx/Kconfig
- delete mode 100644 drivers/staging/hikey9xx/Makefile
- delete mode 100644 drivers/staging/hikey9xx/TODO
- delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
- delete mode 100644 drivers/staging/hikey9xx/hi6421v600-regulator.c
- delete mode 100644 drivers/staging/hikey9xx/hisi-spmi-controller.c
- delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
- delete mode 100644 drivers/staging/hikey9xx/hisilicon,hisi-spmi-controller.yaml
-
--- 
-2.29.2
-
-
+I think this may be fine for Tegra210 based boards. But for Tegra186 and 
+Tegra194, whenever we add support for it, can rely on a common 
+audio-graph dtsi because there is no change w.r.t APE. This can help us 
+to avoid duplication of the bindings. This most likely applies to future 
+chips as well (where Tegra186 audio-graph bindings can be considered as 
+base) when there is no significant change in APE.
