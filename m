@@ -2,506 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D65FC2FB7D3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:28:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9076E2FB7D6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:28:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389525AbhASLb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 06:31:27 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:10805 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387507AbhASJ3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 04:29:44 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B6006a65b0007>; Tue, 19 Jan 2021 01:28:59 -0800
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 19 Jan
- 2021 09:28:59 +0000
-Received: from audio.nvidia.com (172.20.145.6) by mail.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Tue, 19 Jan 2021 09:28:55 +0000
-From:   Sameer Pujar <spujar@nvidia.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <thierry.reding@gmail.com>
-CC:     <jonathanh@nvidia.com>, <kuninori.morimoto.gx@renesas.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <sharadg@nvidia.com>, Sameer Pujar <spujar@nvidia.com>
-Subject: [RESEND PATCH v6 6/6] arm64: tegra: Audio graph sound card for Jetson Nano and TX1
-Date:   Tue, 19 Jan 2021 14:58:16 +0530
-Message-ID: <1611048496-24650-7-git-send-email-spujar@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
-References: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
+        id S1728534AbhASLbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 06:31:32 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:58577 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387667AbhASJiK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 04:38:10 -0500
+X-Originating-IP: 93.29.109.196
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 807B6C0015;
+        Tue, 19 Jan 2021 09:37:25 +0000 (UTC)
+Date:   Tue, 19 Jan 2021 10:37:25 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+        youlin.pei@mediatek.com, devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream@mediatek.com, chao.hao@mediatek.com,
+        Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        anan.sun@mediatek.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 06/33] of/device: Move dma_range_map before
+ of_iommu_configure
+Message-ID: <YAaoVTlCjriJt+iY@aptenodytes>
+References: <20210111111914.22211-1-yong.wu@mediatek.com>
+ <20210111111914.22211-7-yong.wu@mediatek.com>
+ <20210114192732.GA3401278@robh.at.kernel.org>
+ <1610688626.4578.1.camel@mhfsdcap03>
+ <1853732d-0efd-171e-9e1f-7ee7ed72a98f@arm.com>
+ <1611048011.14702.6.camel@mhfsdcap03>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1611048539; bh=7Xf2p7q6sLj/nHibZUjeyNnHhKjOwsiJG8GjpwoFLzg=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Type;
-        b=jNUNUsm+3xhMKMb6vXU4TLnmOBV4MQZf0YQ8VMmmPbeVCB557bynunD6ziKW4KhaA
-         6JfTERAnFRO6/a2okVEH6ws7zJOhiuFde8J+JC7L/PKJCmMI4SHnawr/Z9wvvB/USV
-         pinSPON81Qnjpmr/tYH4fG1xr2Vv07AzNmhLiSOlpXG6YGHzp6SMB6aKTDcXwq+G0V
-         GOePii8TDEMP2+OCCnmOYDxVQ/j3MjR2cPlr/f59Qox9/odYUMhG3+u2Jiw+Z2sesY
-         WbcJMOhPVGUafJ5RNb5RrfQr/h/pckbEdH/XokhY1A1jnYNvs3MTekAX1Drelrze6i
-         sAxSdlFgZLKxQ==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ZpZRInV+koQDOukd"
+Content-Disposition: inline
+In-Reply-To: <1611048011.14702.6.camel@mhfsdcap03>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable support for audio-graph based sound card on Jetson-Nano and
-Jetson-TX1. Depending on the platform, required I/O interfaces are
-enabled.
 
- * Jetson-Nano: Enable I2S3, I2S4, DMIC1 and DMIC2.
- * Jetson-TX1: Enable all I2S and DMIC interfaces.
+--ZpZRInV+koQDOukd
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts | 262 +++++++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 146 ++++++++++++
- 2 files changed, 408 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-index 69102dc..747ab93 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-@@ -3,6 +3,7 @@
- 
- #include "tegra210-p2180.dtsi"
- #include "tegra210-p2597.dtsi"
-+#include "tegra210-audio-graph.dtsi"
- 
- / {
- 	model = "NVIDIA Jetson TX1 Developer Kit";
-@@ -127,4 +128,265 @@
- 			status = "okay";
- 		};
- 	};
-+
-+	tegra_sound {
-+		status = "okay";
-+
-+		compatible = "nvidia,tegra210-audio-graph-card";
-+
-+		dais = /* FE */
-+		       <&admaif1_port>, <&admaif2_port>, <&admaif3_port>,
-+		       <&admaif4_port>, <&admaif5_port>, <&admaif6_port>,
-+		       <&admaif7_port>, <&admaif8_port>, <&admaif9_port>,
-+		       <&admaif10_port>,
-+		       /* Router */
-+		       <&xbar_i2s1_port>, <&xbar_i2s2_port>, <&xbar_i2s3_port>,
-+		       <&xbar_i2s4_port>, <&xbar_i2s5_port>, <&xbar_dmic1_port>,
-+		       <&xbar_dmic2_port>, <&xbar_dmic3_port>,
-+		       /* I/O DAP Ports */
-+		       <&i2s1_port>, <&i2s2_port>, <&i2s3_port>, <&i2s4_port>,
-+		       <&i2s5_port>, <&dmic1_port>, <&dmic2_port>, <&dmic3_port>;
-+
-+		label = "jetson-tx1-ape";
-+	};
-+};
-+
-+&tegra_admaif {
-+	status = "okay";
-+};
-+
-+&tegra_ahub {
-+	status = "okay";
-+
-+	ports {
-+		xbar_i2s1_port: port@a {
-+			reg = <0xa>;
-+			xbar_i2s1_ep: endpoint {
-+				remote-endpoint = <&i2s1_cif_ep>;
-+			};
-+		};
-+		xbar_i2s2_port: port@b {
-+			reg = <0xb>;
-+			xbar_i2s2_ep: endpoint {
-+				remote-endpoint = <&i2s2_cif_ep>;
-+			};
-+		};
-+		xbar_i2s3_port: port@c {
-+			reg = <0xc>;
-+			xbar_i2s3_ep: endpoint {
-+				remote-endpoint = <&i2s3_cif_ep>;
-+			};
-+		};
-+		xbar_i2s4_port: port@d {
-+			reg = <0xd>;
-+			xbar_i2s4_ep: endpoint {
-+				remote-endpoint = <&i2s4_cif_ep>;
-+			};
-+		};
-+		xbar_i2s5_port: port@e {
-+			reg = <0xe>;
-+			xbar_i2s5_ep: endpoint {
-+				remote-endpoint = <&i2s5_cif_ep>;
-+			};
-+		};
-+		xbar_dmic1_port: port@f {
-+			reg = <0xf>;
-+			xbar_dmic1_ep: endpoint {
-+				remote-endpoint = <&dmic1_cif_ep>;
-+			};
-+		};
-+		xbar_dmic2_port: port@10 {
-+			reg = <0x10>;
-+			xbar_dmic2_ep: endpoint {
-+				remote-endpoint = <&dmic2_cif_ep>;
-+			};
-+		};
-+		xbar_dmic3_port: port@11 {
-+			reg = <0x11>;
-+			xbar_dmic3_ep: endpoint {
-+				remote-endpoint = <&dmic3_cif_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s1 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s1_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s1_ep>;
-+			};
-+		};
-+		i2s1_port: port@1 {
-+			reg = <1>;
-+			i2s1_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s2 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s2_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s2_ep>;
-+			};
-+		};
-+		i2s2_port: port@1 {
-+			reg = <1>;
-+			i2s2_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s3 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s3_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s3_ep>;
-+			};
-+		};
-+		i2s3_port: port@1 {
-+			reg = <1>;
-+			i2s3_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s4 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s4_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s4_ep>;
-+			};
-+		};
-+		i2s4_port: port@1 {
-+			reg = <1>;
-+			i2s4_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s5 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s5_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s5_ep>;
-+			};
-+		};
-+		i2s5_port: port@1 {
-+			reg = <1>;
-+			i2s5_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic1 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic1_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_dmic1_ep>;
-+			};
-+		};
-+		dmic1_port: port@1 {
-+			reg = <1>;
-+			dmic1_dap_ep: endpoint {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic2 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic2_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_dmic2_ep>;
-+			};
-+		};
-+		dmic2_port: port@1 {
-+			reg = <1>;
-+			dmic2_dap_ep: endpoint {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic3 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic3_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_dmic3_ep>;
-+			};
-+		};
-+		dmic3_port: port@1 {
-+			reg = <1>;
-+			dmic3_dap_ep: endpoint {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-index 6a877de..0c917a1 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-@@ -6,6 +6,7 @@
- #include <dt-bindings/mfd/max77620.h>
- 
- #include "tegra210.dtsi"
-+#include "tegra210-audio-graph.dtsi"
- 
- / {
- 	model = "NVIDIA Jetson Nano Developer Kit";
-@@ -870,4 +871,149 @@
- 
- 		vin-supply = <&vdd_5v0_sys>;
- 	};
-+
-+	tegra_sound {
-+		status = "okay";
-+
-+		compatible = "nvidia,tegra210-audio-graph-card";
-+
-+		dais = /* FE */
-+		       <&admaif1_port>, <&admaif2_port>, <&admaif3_port>,
-+		       <&admaif4_port>, <&admaif5_port>, <&admaif6_port>,
-+		       <&admaif7_port>, <&admaif8_port>, <&admaif9_port>,
-+		       <&admaif10_port>,
-+		       /* Router */
-+		       <&xbar_i2s3_port>, <&xbar_i2s4_port>,
-+		       <&xbar_dmic1_port>, <&xbar_dmic2_port>,
-+		       /* I/O DAP Ports */
-+		       <&i2s3_port>, <&i2s4_port>,
-+		       <&dmic1_port>, <&dmic2_port>;
-+
-+		label = "jetson-nano-ape";
-+	};
-+};
-+
-+&tegra_admaif {
-+	status = "okay";
-+};
-+
-+&tegra_ahub {
-+	status = "okay";
-+
-+	ports {
-+		xbar_i2s3_port: port@c {
-+			reg = <0xc>;
-+			xbar_i2s3_ep: endpoint {
-+				remote-endpoint = <&i2s3_cif_ep>;
-+			};
-+		};
-+		xbar_i2s4_port: port@d {
-+			reg = <0xd>;
-+			xbar_i2s4_ep: endpoint {
-+				remote-endpoint = <&i2s4_cif_ep>;
-+			};
-+		};
-+		xbar_dmic1_port: port@f {
-+			reg = <0xf>;
-+			xbar_dmic1_ep: endpoint {
-+				remote-endpoint = <&dmic1_cif_ep>;
-+			};
-+		};
-+		xbar_dmic2_port: port@10 {
-+			reg = <0x10>;
-+			xbar_dmic2_ep: endpoint {
-+				remote-endpoint = <&dmic2_cif_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s3 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s3_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s3_ep>;
-+			};
-+		};
-+		i2s3_port: port@1 {
-+			reg = <1>;
-+			i2s3_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s4 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s4_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s4_ep>;
-+			};
-+		};
-+		i2s4_port: port@1 {
-+			reg = <1>;
-+			i2s4_dap_ep: endpoint@0 {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic1 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic1_cif_ep: endpoint@0 {
-+				remote-endpoint = <&xbar_dmic1_ep>;
-+			};
-+		};
-+		dmic1_port: port@1 {
-+			reg = <1>;
-+			dmic1_dap_ep: endpoint@0 {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic2 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic2_cif_ep: endpoint@0 {
-+				remote-endpoint = <&xbar_dmic2_ep>;
-+			};
-+		};
-+		dmic2_port: port@1 {
-+			reg = <1>;
-+			dmic2_dap_ep: endpoint@0 {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
- };
--- 
-2.7.4
+On Tue 19 Jan 21, 17:20, Yong Wu wrote:
+> On Mon, 2021-01-18 at 15:49 +0000, Robin Murphy wrote:
+> > On 2021-01-15 05:30, Yong Wu wrote:
+> > > On Thu, 2021-01-14 at 13:27 -0600, Rob Herring wrote:
+> > >> On Mon, Jan 11, 2021 at 07:18:47PM +0800, Yong Wu wrote:
+> > >>> "dev->dma_range_map" contains the devices' dma_ranges information,
+> > >>> This patch moves dma_range_map before of_iommu_configure. The iommu
+> > >>> driver may need to know the dma_address requirements of its iommu
+> > >>> consumer devices.
+> > >>>
+> > >>> CC: Rob Herring <robh+dt@kernel.org>
+> > >>> CC: Frank Rowand <frowand.list@gmail.com>
+> > >>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > >>> ---
+> > >>>   drivers/of/device.c | 3 ++-
+> > >>>   1 file changed, 2 insertions(+), 1 deletion(-)
+> > >>>
+> > >>> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> > >>> index aedfaaafd3e7..1d84636149df 100644
+> > >>> --- a/drivers/of/device.c
+> > >>> +++ b/drivers/of/device.c
+> > >>> @@ -170,9 +170,11 @@ int of_dma_configure_id(struct device *dev, st=
+ruct device_node *np,
+> > >>>   	dev_dbg(dev, "device is%sdma coherent\n",
+> > >>>   		coherent ? " " : " not ");
+> > >>>  =20
+> > >>> +	dev->dma_range_map =3D map;
+> > >>>   	iommu =3D of_iommu_configure(dev, np, id);
+> > >>>   	if (PTR_ERR(iommu) =3D=3D -EPROBE_DEFER) {
+> > >>>   		kfree(map);
+> > >>> +		dev->dma_range_map =3D NULL;
+> > >>
+> > >> Not really going to matter, but you should probably clear dma_range_=
+map
+> > >> before what it points to is freed.
+> > >>
+> > >> With that,
+> > >>
+> > >> Reviewed-by: Rob Herring <robh@kernel.org>
+> > >=20
+> > > Thanks for the review. I will move it before "kfree(map)" in next
+> > > version.
+> >=20
+> > Paul noticed that we already have a bug in assigning to this=20
+> > unconditionally[1] - I'd totally forgotten about this series when I=20
+> > theorised about IOMMU drivers wanting the information earlier, but=20
+> > sweeping my inbox now only goes to show I was right to think of it :)
+> >=20
+> > We should really get something in as a fix independent of this series,=
+=20
+> > taking both angles into account.
+>=20
+> Thanks this info. Following your suggestion, Move this into the "if (!
+> ret)". Then it is like this:
 
+Thanks for preparing the change :)
+
+>=20
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -163,8 +163,10 @@ int of_dma_configure_id(struct device *dev, struct
+> device_node *np,
+>  	dev->coherent_dma_mask &=3D mask;
+>  	*dev->dma_mask &=3D mask;
+>  	/* ...but only set bus limit if we found valid dma-ranges earlier */
+
+Maybe the comment would need some update too, like:
+/* ...but only set bus limit and map if we found valid dma-ranges earlier */
+
+> -	if (!ret)
+> +	if (!ret) {
+>  		dev->bus_dma_limit =3D end;
+> +		dev->dma_range_map =3D map;
+> +	}
+> =20
+>  	coherent =3D of_dma_is_coherent(np);
+>  	dev_dbg(dev, "device is%sdma coherent\n",
+> @@ -172,6 +174,8 @@ int of_dma_configure_id(struct device *dev, struct
+> device_node *np,
+> =20
+>  	iommu =3D of_iommu_configure(dev, np, id);
+>  	if (PTR_ERR(iommu) =3D=3D -EPROBE_DEFER) {
+
+And maybe one here, something like:
+/* don't touch range map if it wasn't set from a valid dma-ranges */
+
+> +		if (!ret)
+> +			dev->dma_range_map =3D NULL;
+>  		kfree(map);
+>  		return -EPROBE_DEFER;
+>  	}
+> @@ -181,7 +185,6 @@ int of_dma_configure_id(struct device *dev, struct
+> device_node *np,
+> =20
+>  	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+> =20
+> -	dev->dma_range_map =3D map;
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(of_dma_configure_id);
+>=20
+>=20
+> If this is ok, I will send this as a independent patch.
+
+With the suggested changes, this looks good to me!
+
+Thanks,
+
+Paul
+
+> >=20
+> > Robin.
+> >=20
+> > [1]=20
+> > https://lore.kernel.org/linux-arm-kernel/5c7946f3-b56e-da00-a750-be097c=
+7ceb32@arm.com/
+> >=20
+> > >>
+> > >>>   		return -EPROBE_DEFER;
+> > >>>   	}
+> > >>>  =20
+> > >>> @@ -181,7 +183,6 @@ int of_dma_configure_id(struct device *dev, str=
+uct device_node *np,
+> > >>>  =20
+> > >>>   	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+> > >>>  =20
+> > >>> -	dev->dma_range_map =3D map;
+> > >>>   	return 0;
+> > >>>   }
+> > >>>   EXPORT_SYMBOL_GPL(of_dma_configure_id);
+> > >>> --=20
+> > >>> 2.18.0
+> > >>>
+> > >=20
+> > > _______________________________________________
+> > > iommu mailing list
+> > > iommu@lists.linux-foundation.org
+> > > https://lists.linuxfoundation.org/mailman/listinfo/iommu
+> > >=20
+>=20
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--ZpZRInV+koQDOukd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmAGqFQACgkQ3cLmz3+f
+v9E3gwf8CT7hHXO41OxQvi2MFcgYFzwhZZyobCae68dTmEbC4OQjOxfwex0hT0Fc
+fSqWrI33YU977JQ5MA+ZDZKJ9LenssabEikucOUfCCaiTxjy+EK7Sn83ub51okw+
+IHa+n83H1G5nwTHPP1fn40z97Lyvk9wgOGRGtkqOuzADCoQ1ouQ6j0m+/nN0xJme
+ORP/0J4qvKaZJznz7yDSPNP6QQ4UHXmg8e9CU9Oo9L6IaqH75jOJ0EtZDTrvqetL
+Y2AzrZSrGESdcqXGAgO0sPICDorDbvP9dFGTsCeZwuM2lpCyWFRhE4sCQAA86NtG
+JsLC4pzVbtkIepjP8eXSMmJf93G32g==
+=pOip
+-----END PGP SIGNATURE-----
+
+--ZpZRInV+koQDOukd--
