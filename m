@@ -2,92 +2,343 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 280222FB7F4
+	by mail.lfdr.de (Postfix) with ESMTP id 949A22FB7F5
 	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:28:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391385AbhASLdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 06:33:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37094 "EHLO
+        id S2391390AbhASLdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 06:33:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405180AbhASLGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 06:06:07 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01473C0613C1
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:05:21 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id v19so12719876pgj.12
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:05:20 -0800 (PST)
+        with ESMTP id S2387806AbhASLJC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 06:09:02 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D904C061574
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:07:28 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id s11so13705784edd.5
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:07:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=4TOzYyZIin/yiRGi1ie9o6/CbIyjNQOy95/3SVEBU9A=;
-        b=uExiI/2TzOCWPI0pjBTK0TdMIUfxRWt8KPMbORnS5c9XO68eyPvKDWJwxuopER796L
-         vURhfaHxKLDrdEPMFkOr9D58bDFAGeSBZqyZoZFnV8Ds7wkLh1pLnTtIRfKzC3SNrIG8
-         4yP6GQFO22QzekfpAs4U1eCA1618km+cf6i7I1xDcH3U66TWqpFoSnJURTiEhgICz/DU
-         PNnFj2qdBYVwZw3IYfwhM3DmNJJsRyPbxgsnldEdXpXHVPwmlxWQ3gmqbfaoayhgLuzv
-         3XIncpgMG7FADLMlh68SnARce4hUuVnnPuu2JPftCXyp7Mk01bVkT2woy+Zvbj/1lR5b
-         eoIQ==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PiSjDPl16vhUAr6+ooHTRzvPgNHbXyGAQCQbk4AmUos=;
+        b=ny/yfseETpui/uGYy5m/BCn0Wmh42Jehw6bXhKkNR3ZFc73yLXexoQgaP3xlMQPZil
+         2oU5LJTPsp/pVrcw6q46rFIJnI5GuCLXO3P4cb5W73MDcKjp0ghXjB9aw04vxjZCOn5s
+         FO/khYiN10ARZjpg39ao3RbjKw+XodmMySyvzr0I8bJaIGU0LHQHd7GvuwnOGp6S3P+W
+         EIIKNUJibptm6s+nD0KKk6EOtc1zbv5LYxSBikqTvrK1XKibcPOrNzvE7DbQ2gZ/LQGf
+         ZB2ibAUba7EZgShuh9GjtHLzjVgghxqxATXXM1e3/Pe+bQ1cN7G683sOc/bZvu3DbMh6
+         q+/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4TOzYyZIin/yiRGi1ie9o6/CbIyjNQOy95/3SVEBU9A=;
-        b=qt2qkj5SoQrzoelmPZjN1L1prkm8CUpYXG4WB1HrKfOEtduiwlHmnlVuu2y5+IoygM
-         XXg8ZHIjEvGT92Gck1Bjcg5LwMnOMPb69h/mmS4j7ky/iqm844PcuBmwVfdp+LCWDaY6
-         bzAWdpBPfygf3oEQPIOJcL1nMwX2pClLZ2EmAveoMkMxYH328sXDRObkN6kcd4DPG7sp
-         kgOs+13iPlB4EymTJL3Ye1oE0d20tjNrpdiYhG6ulKTOl5Htn2YEs8KOcaaOcdw3pyV+
-         p7vAxyWDXVOBsicFBXbhg4QOAcc6Ci8i3bIs9CMJx+o69CVj1AYkJwniarOxC/8IwLG7
-         ffAg==
-X-Gm-Message-State: AOAM53093CzRutCUTjGKgdmBB0Izul4Ohuas5fBqY9QNIdEpn86ISPo+
-        +pLkbKYcLaqKnq0XWuXnhycpMQ==
-X-Google-Smtp-Source: ABdhPJypZ7g85maNn/Fq9wWXClDnT5wovR1kfqNu7P4AWwxVkN+tY7vWNWWbv+l/0xEltuRgBAxuTA==
-X-Received: by 2002:a62:a508:0:b029:1ba:621:ff29 with SMTP id v8-20020a62a5080000b02901ba0621ff29mr707798pfm.44.1611054320340;
-        Tue, 19 Jan 2021 03:05:20 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id a5sm18186189pgl.41.2021.01.19.03.05.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 19 Jan 2021 03:05:18 -0800 (PST)
-Date:   Tue, 19 Jan 2021 16:35:16 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
-        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for
- 'assigned-performance-states'
-Message-ID: <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
-References: <20201224111210.1214-1-rojay@codeaurora.org>
- <20201224111210.1214-4-rojay@codeaurora.org>
- <YAGqKfDfB7EEuZVn@builder.lan>
- <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
- <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PiSjDPl16vhUAr6+ooHTRzvPgNHbXyGAQCQbk4AmUos=;
+        b=puT8P54BAWcejCOP1Skz/TRsT5awjXpSfl5IjjG5oBk7fygYbWe4YsKucsl8HzpK6N
+         jTN1xtyvqmh5VBBBdJzCi+o/9Cs7pwjhd2bUYUJAqIGrdw0bTi1JpviuWSd4ip1KKPXP
+         18Rqm9p6aB/IvQaj7bGQoVkak1GBvjJGeHFpUI8RSDxxMkn/5JbNnSgIKuB62DtHTEKl
+         97nFeOz1Ocqo0rN16MIS/R06JycKEFFnFJtU8Guih27QjytiduR9ZpiXRRU82LEndCzH
+         t3lXKhhT0EpIhWq4ZlBSMjj7SnPapVUlUO3jbZvLmVLKDPMFW3cJsp1ZjwOTwZRSqHGZ
+         robA==
+X-Gm-Message-State: AOAM533IfU6SzHO3SRAW4s0Xi/UgBjVIdj9CmZCKMsM+5Qt21DEirzQ3
+        bxPzMjHketUrblM4eOs0VziKbRwvQA+xd/p1IO29OA==
+X-Google-Smtp-Source: ABdhPJz/1WP0AgSz4xQSUCugngOIARYeJgEQS2PMU+S7nK7aEm5ZHXIcqJFcCXKfWO6z4hnptEIfnAM2bHl2z9cTOAY=
+X-Received: by 2002:a50:b742:: with SMTP id g60mr2872307ede.113.1611054447199;
+ Tue, 19 Jan 2021 03:07:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <cover.1611037866.git.matti.vaittinen@fi.rohmeurope.com> <50f72f1f7f28e969a1e0353712fcc530bce9dd06.1611037866.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <50f72f1f7f28e969a1e0353712fcc530bce9dd06.1611037866.git.matti.vaittinen@fi.rohmeurope.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Tue, 19 Jan 2021 12:07:16 +0100
+Message-ID: <CAMpxmJVjnAMig16qWkjpaHwQ+4Ld9yEc-gg-CGv28QQYBB6gNg@mail.gmail.com>
+Subject: Re: [PATCH v2 10/17] gpio: support ROHM BD71815 GPOs
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-power@fi.rohmeurope.com,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-01-21, 12:02, Ulf Hansson wrote:
-> As a matter of fact this was quite recently discussed [1], which also
-> pointed out some issues when using the "required-opps" in combination,
-> but perhaps that got resolved? Viresh?
+On Tue, Jan 19, 2021 at 8:23 AM Matti Vaittinen
+<matti.vaittinen@fi.rohmeurope.com> wrote:
+>
+> Support GPO(s) found from ROHM BD71815 power management IC. The IC has two
+> GPO pins but only one is properly documented in data-sheet. The driver
+> exposes by default only the documented GPO. The second GPO is connected to
+> E5 pin and is marked as GND in data-sheet. Control for this undocumented
+> pin can be enabled using a special DT property.
+>
+> This driver is derived from work by Peter Yang <yanglsh@embest-tech.com>
+> although not so much of original is left.
+>
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 
-Perhaps we never did anything there ..
+Hi Matti,
 
--- 
-viresh
+looks great, just a couple nits.
+
+> ---
+> Changes since v1:
+>   - removed unneeded headers
+>   - clarified dev/parent->dev usage
+>   - removed forgotten #define DEBUG
+>
+>  drivers/gpio/Kconfig        |  10 +++
+>  drivers/gpio/Makefile       |   1 +
+>  drivers/gpio/gpio-bd71815.c | 171 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 182 insertions(+)
+>  create mode 100644 drivers/gpio/gpio-bd71815.c
+>
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index c70f46e80a3b..fd7283af858d 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -1096,6 +1096,16 @@ config GPIO_BD70528
+>           This driver can also be built as a module. If so, the module
+>           will be called gpio-bd70528.
+>
+> +config GPIO_BD71815
+> +       tristate "ROHM BD71815 PMIC GPIO support"
+> +       depends on MFD_ROHM_BD71828
+> +       help
+> +         Support for GPO(s) on ROHM BD71815 PMIC. There are two GPOs
+> +         available on the ROHM PMIC.
+> +
+> +         This driver can also be built as a module. If so, the module
+> +         will be called gpio-bd71815.
+> +
+>  config GPIO_BD71828
+>         tristate "ROHM BD71828 GPIO support"
+>         depends on MFD_ROHM_BD71828
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index 35e3b6026665..86bb680522a6 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -39,6 +39,7 @@ obj-$(CONFIG_GPIO_ATH79)              += gpio-ath79.o
+>  obj-$(CONFIG_GPIO_BCM_KONA)            += gpio-bcm-kona.o
+>  obj-$(CONFIG_GPIO_BCM_XGS_IPROC)       += gpio-xgs-iproc.o
+>  obj-$(CONFIG_GPIO_BD70528)             += gpio-bd70528.o
+> +obj-$(CONFIG_GPIO_BD71815)             += gpio-bd71815.o
+>  obj-$(CONFIG_GPIO_BD71828)             += gpio-bd71828.o
+>  obj-$(CONFIG_GPIO_BD9571MWV)           += gpio-bd9571mwv.o
+>  obj-$(CONFIG_GPIO_BRCMSTB)             += gpio-brcmstb.o
+> diff --git a/drivers/gpio/gpio-bd71815.c b/drivers/gpio/gpio-bd71815.c
+> new file mode 100644
+> index 000000000000..664de5f69bf1
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-bd71815.c
+> @@ -0,0 +1,171 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Support to GPOs on ROHM BD71815
+> + */
+
+Newline here.
+
+> +#include <linux/module.h>
+> +#include <linux/init.h>
+> +#include <linux/irq.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of.h>
+> +/* For the BD71815 register definitions */
+> +#include <linux/mfd/rohm-bd71815.h>
+> +
+
+Please arrange headers alphabetically.
+
+> +struct bd71815_gpio {
+> +       struct gpio_chip chip;
+> +       struct device *dev;
+> +       struct regmap *regmap;
+> +       /*
+> +        * Sigh. The BD71815 and BD71817 were originally designed to support two
+> +        * GPO pins. At some point it was noticed the second GPO pin which is
+> +        * the E5 pin located at the center of IC is hard to use on PCB (due to
+> +        * the location). It was decided to not promote this second GPO and pin
+> +        * is marked as GND on the data-sheet. The functionality is still there
+> +        * though! I guess driving GPO connected to ground is a bad idea. Thus
+> +        * we do not support it by default. OTOH - the original driver written
+> +        * by colleagues at Embest did support controlling this second GPO. It
+> +        * is thus possible this is used in some of the products.
+> +        *
+> +        * This driver does not by default support configuring this second GPO
+> +        * but allows using it by providing the DT property
+> +        * "rohm,enable-hidden-gpo".
+> +        */
+> +       bool e5_pin_is_gpo;
+> +};
+> +
+> +static int bd71815gpo_get(struct gpio_chip *chip, unsigned int offset)
+> +{
+> +       struct bd71815_gpio *bd71815 = gpiochip_get_data(chip);
+> +       int ret = 0;
+> +       int val;
+> +
+> +       ret = regmap_read(bd71815->regmap, BD71815_REG_GPO, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return (val >> offset) & 1;
+> +}
+> +
+> +static void bd71815gpo_set(struct gpio_chip *chip, unsigned int offset,
+> +                          int value)
+> +{
+> +       struct bd71815_gpio *bd71815 = gpiochip_get_data(chip);
+> +       int ret, val, mask;
+> +
+> +       if (!bd71815->e5_pin_is_gpo && offset)
+> +               return;
+> +
+> +       mask = BIT(offset);
+> +       val = value ? mask : 0;
+
+Maybe use regmap_set/clear_bits() here?
+
+> +       ret = regmap_update_bits(bd71815->regmap, BD71815_REG_GPO, mask, val);
+> +       if (ret)
+> +               dev_warn(bd71815->dev, "failed to toggle GPO\n");
+> +}
+> +
+> +static int bd71815_gpio_set_config(struct gpio_chip *chip, unsigned int offset,
+> +                                  unsigned long config)
+> +{
+> +       struct bd71815_gpio *bdgpio = gpiochip_get_data(chip);
+> +
+> +       if (!bdgpio->e5_pin_is_gpo && offset)
+> +               return -EOPNOTSUPP;
+> +
+> +       switch (pinconf_to_config_param(config)) {
+> +       case PIN_CONFIG_DRIVE_OPEN_DRAIN:
+> +               return regmap_update_bits(bdgpio->regmap,
+> +                                         BD71815_REG_GPO,
+> +                                         BD71815_GPIO_DRIVE_MASK << offset,
+> +                                         BD71815_GPIO_OPEN_DRAIN << offset);
+> +       case PIN_CONFIG_DRIVE_PUSH_PULL:
+> +               return regmap_update_bits(bdgpio->regmap,
+> +                                         BD71815_REG_GPO,
+> +                                         BD71815_GPIO_DRIVE_MASK << offset,
+> +                                         BD71815_GPIO_CMOS << offset);
+> +       default:
+> +               break;
+> +       }
+> +       return -EOPNOTSUPP;
+> +}
+> +
+> +/* BD71815 GPIO is actually GPO */
+> +static int bd71815gpo_direction_get(struct gpio_chip *gc, unsigned int offset)
+> +{
+> +       return GPIO_LINE_DIRECTION_OUT;
+> +}
+> +
+> +/* Template for GPIO chip */
+
+So let's make it const?
+
+> +static struct gpio_chip bd71815gpo_chip = {
+> +       .label                  = "bd71815",
+> +       .owner                  = THIS_MODULE,
+> +       .get                    = bd71815gpo_get,
+> +       .get_direction          = bd71815gpo_direction_get,
+> +       .set                    = bd71815gpo_set,
+> +       .set_config             = bd71815_gpio_set_config,
+> +       .can_sleep              = 1,
+> +};
+> +
+> +static int gpo_bd71815_probe(struct platform_device *pdev)
+> +{
+> +       int ret;
+> +       struct bd71815_gpio *g;
+> +       struct device *dev;
+> +       struct device *parent;
+> +
+> +       /*
+> +        * Bind devm lifetime to this platform device => use dev for devm.
+> +        * also the prints should originate from this device.
+> +        */
+> +       dev = &pdev->dev;
+> +       /* The device-tree and regmap come from MFD => use parent for that */
+> +       parent = dev->parent;
+> +
+> +       g = devm_kzalloc(dev, sizeof(*g), GFP_KERNEL);
+> +       if (!g)
+> +               return -ENOMEM;
+> +
+> +       g->e5_pin_is_gpo = of_property_read_bool(parent->of_node,
+> +                                                "rohm,enable-hidden-gpo");
+> +       g->chip = bd71815gpo_chip;
+> +       g->chip.base = -1;
+> +
+> +       if (g->e5_pin_is_gpo)
+> +               g->chip.ngpio = 2;
+> +       else
+> +               g->chip.ngpio = 1;
+> +
+> +       g->chip.parent = parent;
+> +       g->chip.of_node = parent->of_node;
+> +       g->regmap = dev_get_regmap(parent, NULL);
+> +       g->dev = dev;
+> +
+> +       ret = devm_gpiochip_add_data(dev, &g->chip, g);
+> +       if (ret < 0) {
+> +               dev_err(dev, "could not register gpiochip, %d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       return ret;
+> +}
+> +static const struct platform_device_id bd7181x_gpo_id[] = {
+> +       { "bd71815-gpo" },
+> +       { },
+> +};
+> +MODULE_DEVICE_TABLE(platform, bd7181x_gpo_id);
+> +
+> +static struct platform_driver gpo_bd71815_driver = {
+> +       .driver = {
+> +               .name   = "bd71815-gpo",
+> +               .owner  = THIS_MODULE,
+> +       },
+> +       .probe          = gpo_bd71815_probe,
+> +       .id_table       = bd7181x_gpo_id,
+> +};
+> +
+> +module_platform_driver(gpo_bd71815_driver);
+> +
+> +/* Note:  this hardware lives inside an I2C-based multi-function device. */
+> +MODULE_ALIAS("platform:bd71815-gpo");
+> +
+> +MODULE_AUTHOR("Peter Yang <yanglsh@embest-tech.com>");
+> +MODULE_DESCRIPTION("GPO interface for BD71815");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.25.4
+>
+
+Bartosz
+
+>
+> --
+> Matti Vaittinen, Linux device drivers
+> ROHM Semiconductors, Finland SWDC
+> Kiviharjunlenkki 1E
+> 90220 OULU
+> FINLAND
+>
+> ~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+> Simon says - in Latin please.
+> ~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+> Thanks to Simon Glass for the translation =]
