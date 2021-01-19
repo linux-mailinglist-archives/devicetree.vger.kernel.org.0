@@ -2,100 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ED912FBA75
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B60D2FBA8E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:58:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391183AbhASOzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 09:55:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58560 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389730AbhASMqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 07:46:25 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24958C061573
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 04:45:45 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id 6so28295138ejz.5
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 04:45:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=2WUya7+5IGqjt8qAdysqD/38MxbinafCy/KFWnkGaFA=;
-        b=GBvAMjsNyc1KwbcthQYQW5GVYHx2lUvo09MvmbVSBtBubbd5uZbBhrMfoN66JwDgEJ
-         RjF62+B7wxJFtp1Ha/dJwHbUMYJH5u/pq1IPhbKb/b900pw0igY7wnFULlHODuK/aKuv
-         fQ01bO7TBI3nnaE9uPkcsVJzTs8eJ+rzht4vG3xphpuJ3jENEpbOTKMtao7V9NUFefA9
-         OFLkt0zd9eLv6AbEAhmXA7qbfJki4Itn9YOi2Xov2WmVJXQlD6IXhr4bXgvSGbs8yOax
-         1BQUL8i8CN3ZYjplXIw/SZ1JbG5vyYnYEtYSj5hWQ7KWeeIm4gYhzYGhxVJ1Pd0H/2pD
-         7ULQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2WUya7+5IGqjt8qAdysqD/38MxbinafCy/KFWnkGaFA=;
-        b=HRkPuej3Vljtee9vDWr3UbOsBevT/hAqbmd4lR4R/7+OkxIHcCRGvYtuDKFo5MAd0d
-         eG/MRkdfvO5Q5ovvUXAQL8esl3NjJ4Dz6OGQlyk6Ib7F1ccCFSb2VvsitO5rv08r2Jxi
-         R4/E5Jp9pgqtNuWv57l1N6MNm+1GLZL9SQm+EClb6hdoVGBvRn9l4wGArOOgsyxLS7fP
-         aVutbHrRN8pCqAyWjuGRi4o1REGdR3xOO1PjwW76bbZXj0+Nc1lEUKu1bWTEHvEpNjGg
-         ucEKAcdT/ea6qxV3AVu6eKU95LdzTS08mCkkMaNV226EoHjKGDK46wmzNKTTHedAqia6
-         K1Pw==
-X-Gm-Message-State: AOAM532cfDO0slFXIe5ishBcWbsXd7l97TeJjnqQdKF3u2/2FPVEj2Wz
-        QLcEugAj24uO7s6G/m6A7PPZD9oA+GyXdD02URIefQ==
-X-Google-Smtp-Source: ABdhPJyuri53Lipmasye8wf+k1fH8XTfNEYApHNNFB4TKoAJIeXibPQX4MIUb9qFN+ASQENiw63w8NY/OURkJsg/h4w=
-X-Received: by 2002:a17:906:19c3:: with SMTP id h3mr2823601ejd.429.1611060343774;
- Tue, 19 Jan 2021 04:45:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20210115164658.187681-1-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20210115164658.187681-1-u.kleine-koenig@pengutronix.de>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Tue, 19 Jan 2021 13:45:31 +0100
-Message-ID: <CAMpxmJWjy-KbTswA2_8iigzRB7eDoR0P+xYPPWLpfXj-E=wEVg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] gpio: pca953x: Add support for pca9506
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S2389730AbhASOzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 09:55:40 -0500
+Received: from www.zeus03.de ([194.117.254.33]:47494 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389995AbhASMq6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Jan 2021 07:46:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=B/tgnQe++TiNEzjAeZeldBhlj6A3
+        T8pYiGEsSUAtogQ=; b=uwbZfWInaxQBHij4qU8TlH4HF9hXI++CYIPEGHusGwls
+        V/xh7/4GL/Ben2yejWMuewPQWYN/FNF0ZKI5OLHJjhEuBKAZnSzOB56nJjdPk3vR
+        Ra4gFMfdnHcq02cZ6C56ryNmviQeZMWrcpEJfzUFlho/pM09Gvs3kJwoKRMttD4=
+Received: (qmail 1070386 invoked from network); 19 Jan 2021 13:46:11 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 Jan 2021 13:46:11 +0100
+X-UD-Smtp-Session: l3s3148p1@rYodOUC5uNsgAwDPXyX1ACWcscxtZ2TX
+Date:   Tue, 19 Jan 2021 13:46:10 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Takeshi Saito <takeshi.saito.xv@renesas.com>,
+        Koji Matsuoka <koji.matsuoka.xm@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        linux-devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 6/6] arm64: dts: renesas: falcon: Enable MMC
+Message-ID: <20210119124610.GB1259@kunai>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Takeshi Saito <takeshi.saito.xv@renesas.com>,
+        Koji Matsuoka <koji.matsuoka.xm@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20201227174202.40834-1-wsa+renesas@sang-engineering.com>
+ <20201227174202.40834-7-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWs5SWUpDkcX4m9MqVKa4KJvAfXSsRt=Fq3c9=2JtdwHQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eAbsdosE1cNLO4uF"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdWs5SWUpDkcX4m9MqVKa4KJvAfXSsRt=Fq3c9=2JtdwHQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 5:47 PM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
->
-> Hello,
->
-> compared to (implicit) v1 (Message-Id:
-> 20210113194952.104734-1-u.kleine-koenig@pengutronix.de) I split the
-> patch #1 into driver adaption and dt documenation (i.e. patches #1 and
-> #2 here).
->
-> For patch #3 I did s/chips/lines/ in the commit log and capitalized
-> "Increase" in the summary line.
->
-> Best regards
-> Uwe
->
-> Uwe Kleine-K=C3=B6nig (3):
->   gpio: pca953x: Add support for pca9506
->   dt-bindings: gpio: pca953x: Document new supported chip pca9506
->   dt-bindings: gpio: pca953x: Increase allowed length for
->     gpio-line-names
->
->  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 3 ++-
->  drivers/gpio/gpio-pca953x.c                              | 2 ++
->  2 files changed, 4 insertions(+), 1 deletion(-)
->
->
-> base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
-> --
-> 2.29.2
->
 
-Applied, thanks!
+--eAbsdosE1cNLO4uF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Bartosz
+
+> > +       reg_1p8v: regulator0 {
+>=20
+> Please use a better node name, to avoid accidental duplicates, cfr. commit
+> 45f5d5a9e34d3fe4 ("arm64: dts: renesas: r8a77995: draak: Fix backlight
+> regulator name")
+
+Done.
+
+> > +       no-sd;
+> > +       no-sdio;
+>=20
+> I'm no expert on the no-sd{,io} properties.
+> Just wondering if we need them on other R-Car gen3 boards with eMMC, too/
+
+Won't hurt. I'll prepare something...
+
+Thanks!
+
+
+--eAbsdosE1cNLO4uF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmAG1I8ACgkQFA3kzBSg
+KbYiyw//bwI1CJ3F9ockT6j55WLc1MDFnVukvB0oA6xUzfVbQ4s//6IGFKz7yNIg
+ZESpSiagu7xD9dF6l4rxeaTHF0jRRENIJcyZLniTG5CCX0EirFLSCwtZZVuWuQ6k
+6a+gbiLPcuCs5XAZLQzARpOMVkW1GevPDHqEm0jj/D7+W8yMxAkpRbrSyHOVr3kx
+VnXaJ4ycTSakJHSc3uzzAOqxDP+9z9cGpQT0nmRgoVyqtTUwy8vFzzFwDqVuHujv
+fonmCgr8mZQR1aV2b3XYdQjgPhI040BzNKfjR/PD09qw9znV7Qi7W9ThLSwLrmdT
+TqVk9Rvzm+bO4AQtiLm9lcBhOOf+z3DBLnPr+wkMxrEWQs9iqQCWZU6daeOxtNFQ
+P6KqhG+zW0Y8JdDPi7/6s8fhwUSOW/NUezI5a9fKSZGEmoL+gVpG4F4DZTZUmokz
+iTGqQhSCzYXHnCWepUEwx4V1Ht8hnqwkcLcxIhxIRoNFDzcByZgnZv4ME7dCjQKU
+J0wJxRJqerWxjjbJhJHFxjSTCnN22p4/IFlZUn9c2hfrikwK3WFbhLdcMSYEpTr1
+6tb+qADtqIbFvElVfON2Nvy0uUWo2h58yryzBbvFkYgoF04V0F3HV3WmafIIINL9
+BRej6bYYX4UDuc94u+ophtpUCJVGpaumicacb9l3F0+bKwIEpI4=
+=kVoD
+-----END PGP SIGNATURE-----
+
+--eAbsdosE1cNLO4uF--
