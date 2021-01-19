@@ -2,146 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFC312FBEDD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 19:26:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B94E62FBF5F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 19:52:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403809AbhASSYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 13:24:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
+        id S1728411AbhASSob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 13:44:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392393AbhASST4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 13:19:56 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC317C0613C1
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 10:19:15 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id f6so16853116ybq.13
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 10:19:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mHK63mNEb6W4AaDercWEjXkLeIiYVU3MkZRoAzxz/mw=;
-        b=TIKhKTRiWi86JaBOFJSF4irAc52V20kHLuNqvziTTpBjGp3nKdshbwFVlPqC5MQiSd
-         iuJl1Kioq0DuEj4Ij/cpA3HZALUgN1HS/TA5uG2KrYah/3L9lpuktzLLoiA365+IWEHf
-         d8iCmmDNoFSWNDuq/1zYACTbZNPeSSiMa/H28opAMGaxfB1dutjMLQ/Z32aF+wP+rWBC
-         zBTi/wLEuNcg/kVVduAO045TnKU1GD6+fDtWxuNWScZBSc+d2jwNrQV4B+00nOS0cBhU
-         02Oki33NxIM339vFFJbj/pkY4t6smCaD+O37PWEw5vD8+tAi1Edp9oQOctWwi3Xr6Ylf
-         Hxmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mHK63mNEb6W4AaDercWEjXkLeIiYVU3MkZRoAzxz/mw=;
-        b=jX8zwye9Gjbir92O1LUw0K9iPEa43cqY+Xz8heShJhvNzowNm8NcaJlDJrrfoTcG30
-         dyfrZhxw3tiKdjGsD10N7DP/ncHWPmYNbsy11qwMHZdE/463Rz0FzWCKND8uoI6lZMp8
-         D+SY3Fgd3yMmLrZtyN5b77HzvrA/1nBqYaaxK60iY84ssVV/n5FIApNOPXiBfZuX55im
-         wlrzjoUuXbuqep9AQEqh85ZZb3Juf5kIeWocLaXw0mFiMXz5oysqgEzzmYLOWgfOrWOG
-         3tiCfkH84khUFJdqasIC4batwoMymoGEyS0OPuo8QR+MRcgqnMw9+lbB28eG5BBp9cpb
-         G0ag==
-X-Gm-Message-State: AOAM532/FMMKjq1sjs3d4gYlY6FRxmgxO29npX6jMkH17bE9kGyEnwjR
-        QdMEH+uBQWL+nBI4dAcrQXqXHeDaEBJETeTcpbdQYA==
-X-Google-Smtp-Source: ABdhPJyLm5a7tvFOQ9GLnScwek6wKmCIHJ18QWGEYTshZYKHDn18Z57uCs9I6lcgQx2VH3iG7/oNB3pahuCum8iP7M8=
-X-Received: by 2002:a25:77d4:: with SMTP id s203mr8612886ybc.32.1611080355041;
- Tue, 19 Jan 2021 10:19:15 -0800 (PST)
+        with ESMTP id S1732856AbhASR4i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:56:38 -0500
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96E23C06179B
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 09:44:27 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1C5913F116;
+        Tue, 19 Jan 2021 18:44:25 +0100 (CET)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v4 6/7] dt-bindings: regulator: qcom-labibb: Document SCP/OCP interrupts
+Date:   Tue, 19 Jan 2021 18:44:20 +0100
+Message-Id: <20210119174421.226541-7-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210119174421.226541-1-angelogioacchino.delregno@somainline.org>
+References: <20210119174421.226541-1-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-References: <20210115210159.3090203-1-saravanak@google.com>
- <CACRpkdYrzaFuWkbTe7Fmos4Bk4Ojt6wbqayDjyrS7sf98P-Rbg@mail.gmail.com>
- <CAGETcx9t3R-k0ttiaBUqcveqnXMX75xuTcKPSo9J6WJOfgSP8w@mail.gmail.com>
- <CAMuHMdUN7+O28Xz5rkPwR2RuSA+o_E2VcWsz_9+kzy4=0Jnb1g@mail.gmail.com>
- <CACRpkdZqSm-xfo8a8aFUe-Mbaw9tM+OmCAF3KWjOVDfC=oWj+Q@mail.gmail.com>
- <CAGETcx-Vp0BpYbpPjwsmOv0q5ba1mJvfsPEZ9Oi2Rmx67udu7A@mail.gmail.com> <CAMuHMdUc+RCK=t02QhtWRekoYCx2pHnMyaTYiC0=SxKQVrqDHQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdUc+RCK=t02QhtWRekoYCx2pHnMyaTYiC0=SxKQVrqDHQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 19 Jan 2021 10:18:38 -0800
-Message-ID: <CAGETcx_Ud+UJcdWkCH-WzEGjH4voRBoO++np7ARSi5Gnh51jYg@mail.gmail.com>
-Subject: Re: [PATCH v1] of: property: Add fw_devlink support for "gpio" and
- "gpios" binding
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 10:10 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Saravana,
->
-> On Tue, Jan 19, 2021 at 6:54 PM Saravana Kannan <saravanak@google.com> wrote:
-> > On Tue, Jan 19, 2021 at 2:20 AM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > > On Tue, Jan 19, 2021 at 9:50 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > > Can we pull this into driver-core-next please? It fixes issues on some
-> > > > > boards with fw_devlink=on.
-> > > >
-> > > > On r8a77951-salvator-xs.dts, it introduces one more failure:
-> > > >
-> > > >     OF: /soc/i2c@e66d8000/gpio@20/pcie-sata-switch-hog: could not get
-> > > > #gpio-cells for /cpus/cpu@102
-> >
-> > Geert,
-> >
-> > One good thing is that it's noticing this being weird and ignoring it
-> > in your particular board. I *think* it interprets the "7" as a phandle
-> > and that's cpu@102 and realizes it's not a gpio-controller. For at
-> > least in your case, it's a safe failure.
->
-> While 7 is the GPIO index, relative to the current GPIO controller,
-> represented by the parent device node.
->
-> > > > Seems like it doesn't parse gpios properties in GPIO hogs correctly.
-> > >
-> > > Could it be that the code assumes no self-referencing phandles?
-> > > (Just guessing...)
-> >
-> > Ok I tried to understand what gpio-hogs means. It's not fully clear to
-> > me. But it looks like if a gpio-controller has a gpio-hog, then it
-> > doesn't have/need gpio-cells? Is that right?
->
-> A GPIO hog is a way to fix (strap) a GPIO line to a specific value.
-> Usually this is done to enable a piece of hardware on a board, or
-> control a mux.
->
-> The controller still needs gpio-cells.
->
-> > So if a gpio-controller has a gpio-hog, can it ever be referred to by
-> > another consumer in DT using blah-gpios = ...? If so, I don't see any
-> > obvious code that's handling the missing gpio-cells in this case.
->
-> Yes it can.
->
-> > Long story short, please help me understand gpio-hog in the context of
-> > finding dependencies in DT.
->
-> The hog references a GPIO on the current controller.  As this is always
-> the parent device node, the hog's gpios properties lack the phandle.
->
-> E.g. a normal reference to the first GPIO of gpio5 looks like:
->
->     gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
->
-> A hog on the first GPIO of gpio5 would be a subnode of gpio5,
-> and would just use:
->
->     gpios = <0 GPIO_ACTIVE_LOW>;
->
-> instead.
->
-> Hope this helps.
+Short-Circuit Protection (SCP) and Over-Current Protection (OCP) are
+now implemented in the driver: document the interrupts.
+This also fixes wrong documentation about the SCP interrupt for LAB.
 
-I'm still not sure if I've understood this fully, but does this just
-boil down to:
-Don't parse [name-]gpio[s] to find dependencies if the node has
-gpio-hog property?
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ .../regulator/qcom-labibb-regulator.yaml      | 20 +++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
--Saravana
+diff --git a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+index 7a507692f1ba..cf784bd1f5e5 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom-labibb-regulator.yaml
+@@ -29,9 +29,10 @@ properties:
+         default: 200
+ 
+       interrupts:
+-        maxItems: 1
++        minItems: 1
++        maxItems: 2
+         description:
+-          Short-circuit interrupt for lab.
++          Short-circuit and over-current interrupts for lab.
+ 
+     required:
+       - interrupts
+@@ -47,9 +48,10 @@ properties:
+         default: 300
+ 
+       interrupts:
+-        maxItems: 1
++        minItems: 1
++        maxItems: 2
+         description:
+-          Short-circuit interrupt for lab.
++          Short-circuit and over-current interrupts for ibb.
+ 
+     required:
+       - interrupts
+@@ -67,13 +69,15 @@ examples:
+       compatible = "qcom,pmi8998-lab-ibb";
+ 
+       lab {
+-        interrupts = <0x3 0x0 IRQ_TYPE_EDGE_RISING>;
+-        interrupt-names = "sc-err";
++        interrupts = <0x3 0xde 0x1 IRQ_TYPE_EDGE_RISING>,
++                     <0x3 0xde 0x0 IRQ_TYPE_LEVEL_LOW>;
++        interrupt-names = "sc-err", "ocp";
+       };
+ 
+       ibb {
+-        interrupts = <0x3 0x2 IRQ_TYPE_EDGE_RISING>;
+-        interrupt-names = "sc-err";
++        interrupts = <0x3 0xdc 0x2 IRQ_TYPE_EDGE_RISING>,
++                     <0x3 0xdc 0x0 IRQ_TYPE_LEVEL_LOW>;
++        interrupt-names = "sc-err", "ocp";
+       };
+     };
+ 
+-- 
+2.30.0
+
