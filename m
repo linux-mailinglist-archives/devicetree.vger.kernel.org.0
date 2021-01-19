@@ -2,205 +2,695 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 732112FC377
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 23:29:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 704AC2FC370
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 23:29:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728057AbhASW3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 17:29:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38268 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728450AbhASRpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:45:04 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB21C061573
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 09:44:24 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id f63so4881401pfa.13
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 09:44:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=PyAusgNikMGWd1ucE6aiZDZDGeF00uAUvB33zhM8v9k=;
-        b=dE5ApTI6whsHRlN72iTYXumXXJS8pBWzPhLmu3WGiQNAuWKCugNaFlRGWDfcXIwThB
-         Txd94DwsRuO6qTE3GMDVx1Z/KYEJEYAA6HUPsdjAmVuwKL6GG4aekOxNugT7kOew7T8L
-         AN1Gd6SOX93iq0DT80n6ij1XgLjr5fkUHOPAQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to;
-        bh=PyAusgNikMGWd1ucE6aiZDZDGeF00uAUvB33zhM8v9k=;
-        b=Weyb6C4/KxhOdwrwhDbYBZKwZDYKho+Xw2o6JtIQtp6gETvbgjeBK2fXo2da5h1a48
-         PJnbS54ZV1aAdI8jo24YW3xNn1WjFwyYKKFu9aiq++5sqKjhrkaPkvmnvhBv0b9/+T9S
-         Dt8ikbvZo2MZ+26kLbFLDFzJlXibJ3VFXOfod3FbI/hYkoZAUG5cbWS+ZH6G90x53Tkj
-         0TJoVMcHPVX4qr19sAx7oJIc15EVDY1WKiiNW/lQm9DSTEZDDnAOYlPeBaFbC2rNubGN
-         QHeS2A331Z4WV0N+fAC4kHwvmhwF68K++ghghRc5DEqrPZCJeSXYNeFyU7fuvPwRAhSZ
-         7yZA==
-X-Gm-Message-State: AOAM532TchnxpBzldxFnVq1gVoVnRayBRap/Ur9pmK7arArGLQXnf5rh
-        z1WTs9RODLHmeGQNtdvFtIpBgw==
-X-Google-Smtp-Source: ABdhPJyOQ3o8UuDuyx8ebtY6AKxy3XVO4gK1Rk4FtsEXCQgNa35yHx0yCwmbMzNJX0ZIwP8kXHfe2Q==
-X-Received: by 2002:a05:6a00:2286:b029:1ae:6c7f:31ce with SMTP id f6-20020a056a002286b02901ae6c7f31cemr5034315pfe.6.1611078263504;
-        Tue, 19 Jan 2021 09:44:23 -0800 (PST)
-Received: from [10.230.182.181] ([192.19.224.250])
-        by smtp.gmail.com with ESMTPSA id w20sm16789263pga.90.2021.01.19.09.44.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jan 2021 09:44:22 -0800 (PST)
-Subject: Re: [PATCH v1 1/1] arm64: dts: stingray: fix usb dma address
- translation
-To:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Arnd Bergmann <arnd@arndb.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Bharat Gooty <bharat.gooty@broadcom.com>
-References: <20210119053444.23108-1-rayagonda.kokatanur@broadcom.com>
-From:   Ray Jui <ray.jui@broadcom.com>
-Message-ID: <2ea086ec-9af4-aaab-9ebf-a8e5986c9063@broadcom.com>
-Date:   Tue, 19 Jan 2021 09:44:18 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1728863AbhASW2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 17:28:03 -0500
+Received: from relay07.th.seeweb.it ([5.144.164.168]:35359 "EHLO
+        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728500AbhASRp7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:45:59 -0500
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id A96593F0EB;
+        Tue, 19 Jan 2021 18:44:24 +0100 (CET)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v4 5/7] regulator: qcom-labibb: Implement short-circuit and over-current IRQs
+Date:   Tue, 19 Jan 2021 18:44:19 +0100
+Message-Id: <20210119174421.226541-6-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210119174421.226541-1-angelogioacchino.delregno@somainline.org>
+References: <20210119174421.226541-1-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-In-Reply-To: <20210119053444.23108-1-rayagonda.kokatanur@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000a1485905b944633c"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000a1485905b944633c
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Short-Circuit Protection (SCP) and Over-Current Protection (OCP) are
+very important for regulators like LAB and IBB, which are designed to
+provide from very small to relatively big amounts of current to the
+device (normally, a display).
 
+Now that this regulator supports both voltage setting and current
+limiting in this driver, to me it looked like being somehow essential
+to provide support for SCP and OCP, for two reasons:
+1. SCP is a drastic measure to prevent damaging "more" hardware in
+   the worst situations, if any was damaged, preventing potentially
+   drastic issues;
+2. OCP is a great way to protect the hardware that we're powering
+   through these regulators as if anything bad happens, the HW will
+   draw more current than expected: in this case, the OCP interrupt
+   will fire and the regulators will be immediately shut down,
+   preventing hardware damage in many cases.
 
+Both interrupts were successfully tested in a "sort-of" controlled
+manner, with the following methodology:
 
-On 1/18/2021 9:34 PM, Rayagonda Kokatanur wrote:
-> From: Bharat Gooty <bharat.gooty@broadcom.com>
-> 
-> Add a non-empty dma-ranges so that dma address translation
-> happens.
-> 
-> Fixes: 2013a4b684b6 ("arm64: dts: broadcom: clear the warnings caused by empty dma-ranges")
-> 
-> Signed-off-by: Bharat Gooty <bharat.gooty@broadcom.com>
-> Signed-off-by: Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
-> ---
->  arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi
-> index aef8f2b00778..5401a646c840 100644
-> --- a/arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi
-> @@ -4,11 +4,16 @@
->   */
->  	usb {
->  		compatible = "simple-bus";
-> -		dma-ranges;
->  		#address-cells = <2>;
->  		#size-cells = <2>;
->  		ranges = <0x0 0x0 0x0 0x68500000 0x0 0x00400000>;
->  
-> +		/*
-> +		 * Internally, USB bus to the interconnect can only address up
-> +		 * to 40-bit
-> +		 */
-> +		dma-ranges = <0 0 0 0 0x100 0x0>;
-> +
+Short-Circuit Protection (SCP):
+1. Set LAB/IBB to 4.6/-1.4V, current limit 200mA/50mA;
+2. Connect a 10 KOhm resistor to LAB/IBB by poking the right traces
+   on a FxTec Pro1 smartphone for a very brief time (in short words,
+   "just a rapid touch with flying wires");
+3. The Short-Circuit protection trips: IRQ raises, regulators get
+   cut. Recovery OK, test repeated without rebooting, OK.
 
-Should have had my signed-off since during our internal review, I added
-the above comment to explain why we set it to 40-bit here despite the
-USB controller itself is capable of addressing 64-bit as Arnd pointed out.
+Over-Current Protection (OCP):
+1. Set LAB/IBB to the expected voltage to power up the display of
+   a Sony Xperia XZ Premium smartphone (Sharp LS055D1SX04), set
+   current limit to LAB 200mA, IBB 50mA (the values that this
+   display unit needs are 200/800mA);
+2. Boot the kernel: OCP fires. Recovery never happens because
+   the selected current limit is too low, but that's expected.
+   Test OK.
 
-Well, the following ack should do it too, thanks.
+3. Set LAB/IBB to the expected current limits for XZ Premium
+   (LAB 200mA, IBB 800mA), but lower than expected voltage,
+   specifically LAB 5.4V, IBB -5.6V (instead of 5.6, -5.8V);
+4. Boot the kernel: OCP fires. Recovery never happens because
+   the selected voltage (still in the working range limits)
+   is producing a current draw of more than 200mA on LAB.
+   Test OK.
 
-Acked-by: Ray Jui <ray.jui@broadcom.com>
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+---
+ drivers/regulator/qcom-labibb-regulator.c | 518 +++++++++++++++++++++-
+ 1 file changed, 515 insertions(+), 3 deletions(-)
 
->  		usbphy0: usb-phy@0 {
->  			compatible = "brcm,sr-usb-combo-phy";
->  			reg = <0x0 0x00000000 0x0 0x100>;
-> 
+diff --git a/drivers/regulator/qcom-labibb-regulator.c b/drivers/regulator/qcom-labibb-regulator.c
+index 4d68b69b5a52..dbb4511c3c6d 100644
+--- a/drivers/regulator/qcom-labibb-regulator.c
++++ b/drivers/regulator/qcom-labibb-regulator.c
+@@ -17,8 +17,20 @@
+ 
+ #define PMI8998_LAB_REG_BASE		0xde00
+ #define PMI8998_IBB_REG_BASE		0xdc00
++#define PMI8998_IBB_LAB_REG_OFFSET	0x200
+ 
+ #define REG_LABIBB_STATUS1		0x08
++ #define LABIBB_STATUS1_SC_BIT		BIT(6)
++ #define LABIBB_STATUS1_VREG_OK_BIT	BIT(7)
++
++#define REG_LABIBB_INT_SET_TYPE		0x11
++#define REG_LABIBB_INT_POLARITY_HIGH	0x12
++#define REG_LABIBB_INT_POLARITY_LOW	0x13
++#define REG_LABIBB_INT_LATCHED_CLR	0x14
++#define REG_LABIBB_INT_EN_SET		0x15
++#define REG_LABIBB_INT_EN_CLR		0x16
++ #define LABIBB_INT_VREG_OK		BIT(0)
++ #define LABIBB_INT_VREG_TYPE_LEVEL	0
+ 
+ #define REG_LABIBB_VOLTAGE		0x41
+  #define LABIBB_VOLTAGE_OVERRIDE_EN	BIT(7)
+@@ -26,8 +38,7 @@
+  #define IBB_VOLTAGE_SET_MASK		GENMASK(5, 0)
+ 
+ #define REG_LABIBB_ENABLE_CTL		0x46
+-#define LABIBB_STATUS1_VREG_OK_BIT	BIT(7)
+-#define LABIBB_CONTROL_ENABLE		BIT(7)
++ #define LABIBB_CONTROL_ENABLE		BIT(7)
+ 
+ #define REG_LABIBB_PD_CTL		0x47
+  #define LAB_PD_CTL_MASK		GENMASK(1, 0)
+@@ -56,6 +67,11 @@
+ #define LAB_ENABLE_TIME			(LABIBB_OFF_ON_DELAY * 2)
+ #define IBB_ENABLE_TIME			(LABIBB_OFF_ON_DELAY * 10)
+ #define LABIBB_POLL_ENABLED_TIME	1000
++#define OCP_RECOVERY_INTERVAL_MS	500
++#define SC_RECOVERY_INTERVAL_MS		250
++#define LABIBB_MAX_OCP_COUNT		4
++#define LABIBB_MAX_SC_COUNT		3
++#define LABIBB_MAX_FATAL_COUNT		2
+ 
+ struct labibb_current_limits {
+ 	u32				uA_min;
+@@ -69,10 +85,17 @@ struct labibb_regulator {
+ 	struct regmap			*regmap;
+ 	struct regulator_dev		*rdev;
+ 	struct labibb_current_limits	uA_limits;
++	struct delayed_work		ocp_recovery_work;
++	struct delayed_work		sc_recovery_work;
+ 	u16				base;
+ 	u8				type;
+ 	u8				dischg_sel;
+ 	u8				soft_start_sel;
++	int				sc_irq;
++	int				sc_count;
++	int				ocp_irq;
++	int				ocp_irq_count;
++	int				fatal_count;
+ };
+ 
+ struct labibb_regulator_data {
+@@ -82,6 +105,450 @@ struct labibb_regulator_data {
+ 	const struct regulator_desc	*desc;
+ };
+ 
++static int qcom_labibb_ocp_hw_enable(struct regulator_dev *rdev)
++{
++	struct labibb_regulator *vreg = rdev_get_drvdata(rdev);
++	int ret;
++
++	/* Clear irq latch status to avoid spurious event */
++	ret = regmap_update_bits(rdev->regmap,
++				 vreg->base + REG_LABIBB_INT_LATCHED_CLR,
++				 LABIBB_INT_VREG_OK, 1);
++	if (ret)
++		return ret;
++
++	/* Enable OCP HW interrupt */
++	return regmap_update_bits(rdev->regmap,
++				  vreg->base + REG_LABIBB_INT_EN_SET,
++				  LABIBB_INT_VREG_OK, 1);
++}
++
++static int qcom_labibb_ocp_hw_disable(struct regulator_dev *rdev)
++{
++	struct labibb_regulator *vreg = rdev_get_drvdata(rdev);
++
++	return regmap_update_bits(rdev->regmap,
++				  vreg->base + REG_LABIBB_INT_EN_CLR,
++				  LABIBB_INT_VREG_OK, 1);
++}
++
++/**
++ * qcom_labibb_check_ocp_status - Check the Over-Current Protection status
++ * @vreg: Main driver structure
++ *
++ * This function checks the STATUS1 register for the VREG_OK bit: if it is
++ * set, then there is no Over-Current event.
++ *
++ * Returns: Zero if there is no over-current, 1 if in over-current or
++ *          negative number for error
++ */
++static int qcom_labibb_check_ocp_status(struct labibb_regulator *vreg)
++{
++	u32 cur_status;
++	int ret;
++
++	ret = regmap_read(vreg->rdev->regmap, vreg->base + REG_LABIBB_STATUS1,
++			  &cur_status);
++	if (ret)
++		return ret;
++
++	return !(cur_status & LABIBB_STATUS1_VREG_OK_BIT);
++}
++
++/**
++ * qcom_labibb_ocp_recovery_worker - Handle OCP event
++ * @work: OCP work structure
++ *
++ * This is the worker function to handle the Over Current Protection
++ * hardware event; This will check if the hardware is still
++ * signaling an over-current condition and will eventually stop
++ * the regulator if such condition is still signaled after
++ * LABIBB_MAX_OCP_COUNT times.
++ *
++ * If the driver that is consuming the regulator did not take action
++ * for the OCP condition, or the hardware did not stabilize, a cut
++ * of the LAB and IBB regulators will be forced (regulators will be
++ * disabled).
++ *
++ * As last, if the writes to shut down the LAB/IBB regulators fail
++ * for more than LABIBB_MAX_FATAL_COUNT, then a kernel panic will be
++ * triggered, as a last resort to protect the hardware from burning;
++ * this, however, is expected to never happen, but this is kept to
++ * try to further ensure that we protect the hardware at all costs.
++ */
++static void qcom_labibb_ocp_recovery_worker(struct work_struct *work)
++{
++	struct labibb_regulator *vreg;
++	const struct regulator_ops *ops;
++	int ret;
++
++	vreg = container_of(work, struct labibb_regulator,
++			    ocp_recovery_work.work);
++	ops = vreg->rdev->desc->ops;
++
++	if (vreg->ocp_irq_count >= LABIBB_MAX_OCP_COUNT) {
++		/*
++		 * If we tried to disable the regulator multiple times but
++		 * we kept failing, there's only one last hope to save our
++		 * hardware from the death: raise a kernel bug, reboot and
++		 * hope that the bootloader kindly saves us. This, though
++		 * is done only as paranoid checking, because failing the
++		 * regmap write to disable the vreg is almost impossible,
++		 * since we got here after multiple regmap R/W.
++		 */
++		BUG_ON(vreg->fatal_count > LABIBB_MAX_FATAL_COUNT);
++		dev_err(&vreg->rdev->dev, "LABIBB: CRITICAL: Disabling regulator\n");
++
++		/* Disable the regulator immediately to avoid damage */
++		ret = ops->disable(vreg->rdev);
++		if (ret) {
++			vreg->fatal_count++;
++			goto reschedule;
++		}
++		enable_irq(vreg->ocp_irq);
++		vreg->fatal_count = 0;
++		return;
++	}
++
++	ret = qcom_labibb_check_ocp_status(vreg);
++	if (ret != 0) {
++		vreg->ocp_irq_count++;
++		goto reschedule;
++	}
++
++	ret = qcom_labibb_ocp_hw_enable(vreg->rdev);
++	if (ret) {
++		/* We cannot trust it without OCP enabled. */
++		dev_err(vreg->dev, "Cannot enable OCP IRQ\n");
++		vreg->ocp_irq_count++;
++		goto reschedule;
++	}
++
++	enable_irq(vreg->ocp_irq);
++	/* Everything went fine: reset the OCP count! */
++	vreg->ocp_irq_count = 0;
++	return;
++
++reschedule:
++	mod_delayed_work(system_wq, &vreg->ocp_recovery_work,
++			 msecs_to_jiffies(OCP_RECOVERY_INTERVAL_MS));
++}
++
++/**
++ * qcom_labibb_ocp_isr - Interrupt routine for OverCurrent Protection
++ * @irq:  Interrupt number
++ * @chip: Main driver structure
++ *
++ * Over Current Protection (OCP) will signal to the client driver
++ * that an over-current event has happened and then will schedule
++ * a recovery worker.
++ *
++ * Disabling and eventually re-enabling the regulator is expected
++ * to be done by the driver, as some hardware may be triggering an
++ * over-current condition only at first initialization or it may
++ * be expected only for a very brief amount of time, after which
++ * the attached hardware may be expected to stabilize its current
++ * draw.
++ *
++ * Returns: IRQ_HANDLED for success or IRQ_NONE for failure.
++ */
++static irqreturn_t qcom_labibb_ocp_isr(int irq, void *chip)
++{
++	struct labibb_regulator *vreg = chip;
++	const struct regulator_ops *ops = vreg->rdev->desc->ops;
++	int ret;
++
++	/* If the regulator is not enabled, this is a fake event */
++	if (!ops->is_enabled(vreg->rdev))
++		return 0;
++
++	/* If we tried to recover for too many times it's not getting better */
++	if (vreg->ocp_irq_count > LABIBB_MAX_OCP_COUNT)
++		return IRQ_NONE;
++
++	/*
++	 * If we (unlikely) can't read this register, to prevent hardware
++	 * damage at all costs, we assume that the overcurrent event was
++	 * real; Moreover, if the status register is not signaling OCP,
++	 * it was a spurious event, so it's all ok.
++	 */
++	ret = qcom_labibb_check_ocp_status(vreg);
++	if (ret == 0) {
++		vreg->ocp_irq_count = 0;
++		goto end;
++	}
++	vreg->ocp_irq_count++;
++
++	/*
++	 * Disable the interrupt temporarily, or it will fire continuously;
++	 * we will re-enable it in the recovery worker function.
++	 */
++	disable_irq(irq);
++
++	/* Warn the user for overcurrent */
++	dev_warn(vreg->dev, "Over-Current interrupt fired!\n");
++
++	/* Disable the interrupt to avoid hogging */
++	ret = qcom_labibb_ocp_hw_disable(vreg->rdev);
++	if (ret)
++		goto end;
++
++	/* Signal overcurrent event to drivers */
++	regulator_notifier_call_chain(vreg->rdev,
++				      REGULATOR_EVENT_OVER_CURRENT, NULL);
++
++end:
++	/* Schedule the recovery work */
++	schedule_delayed_work(&vreg->ocp_recovery_work,
++			      msecs_to_jiffies(OCP_RECOVERY_INTERVAL_MS));
++	if (ret)
++		return IRQ_NONE;
++
++	return IRQ_HANDLED;
++}
++
++static int qcom_labibb_set_ocp(struct regulator_dev *rdev)
++{
++	struct labibb_regulator *vreg = rdev_get_drvdata(rdev);
++	char *ocp_irq_name;
++	u32 irq_flags = IRQF_ONESHOT;
++	int irq_trig_low, ret;
++
++	/* If there is no OCP interrupt, there's nothing to set */
++	if (vreg->ocp_irq <= 0)
++		return -EINVAL;
++
++	ocp_irq_name = devm_kasprintf(vreg->dev, GFP_KERNEL, "%s-over-current",
++				      vreg->desc.name);
++	if (!ocp_irq_name)
++		return -ENOMEM;
++
++	/* IRQ polarities - LAB: trigger-low, IBB: trigger-high */
++	switch (vreg->type) {
++	case QCOM_LAB_TYPE:
++		irq_flags |= IRQF_TRIGGER_LOW;
++		irq_trig_low = 1;
++		break;
++	case QCOM_IBB_TYPE:
++		irq_flags |= IRQF_TRIGGER_HIGH;
++		irq_trig_low = 0;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	/* Activate OCP HW level interrupt */
++	ret = regmap_update_bits(rdev->regmap,
++				 vreg->base + REG_LABIBB_INT_SET_TYPE,
++				 LABIBB_INT_VREG_OK,
++				 LABIBB_INT_VREG_TYPE_LEVEL);
++	if (ret)
++		return ret;
++
++	/* Set OCP interrupt polarity */
++	ret = regmap_update_bits(rdev->regmap,
++				 vreg->base + REG_LABIBB_INT_POLARITY_HIGH,
++				 LABIBB_INT_VREG_OK, !irq_trig_low);
++	if (ret)
++		return ret;
++	ret = regmap_update_bits(rdev->regmap,
++				 vreg->base + REG_LABIBB_INT_POLARITY_LOW,
++				 LABIBB_INT_VREG_OK, irq_trig_low);
++	if (ret)
++		return ret;
++
++	ret = qcom_labibb_ocp_hw_enable(rdev);
++	if (ret)
++		return ret;
++
++	return devm_request_threaded_irq(vreg->dev, vreg->ocp_irq, NULL,
++					 qcom_labibb_ocp_isr, irq_flags,
++					 ocp_irq_name, vreg);
++}
++
++/**
++ * qcom_labibb_check_sc_status - Check the Short Circuit Protection status
++ * @vreg: Main driver structure
++ *
++ * This function checks the STATUS1 register on both LAB and IBB regulators
++ * for the ShortCircuit bit: if it is set on *any* of them, then we have
++ * experienced a short-circuit event.
++ *
++ * Returns: Zero if there is no short-circuit, 1 if in short-circuit or
++ *          negative number for error
++ */
++static int qcom_labibb_check_sc_status(struct labibb_regulator *vreg)
++{
++	u32 ibb_status, ibb_reg, lab_status, lab_reg;
++	int ret;
++
++	/* We have to work on both regulators due to PBS... */
++	lab_reg = ibb_reg = vreg->base + REG_LABIBB_STATUS1;
++	if (vreg->type == QCOM_LAB_TYPE)
++		ibb_reg -= PMI8998_IBB_LAB_REG_OFFSET;
++	else
++		lab_reg += PMI8998_IBB_LAB_REG_OFFSET;
++
++	ret = regmap_read(vreg->rdev->regmap, lab_reg, &lab_status);
++	if (ret)
++		return ret;
++	ret = regmap_read(vreg->rdev->regmap, ibb_reg, &ibb_status);
++	if (ret)
++		return ret;
++
++	return !!(lab_status & LABIBB_STATUS1_SC_BIT) ||
++	       !!(ibb_status & LABIBB_STATUS1_SC_BIT);
++}
++
++/**
++ * qcom_labibb_sc_recovery_worker - Handle Short Circuit event
++ * @work: SC work structure
++ *
++ * This is the worker function to handle the Short Circuit Protection
++ * hardware event; This will check if the hardware is still
++ * signaling a short-circuit condition and will eventually never
++ * re-enable the regulator if such condition is still signaled after
++ * LABIBB_MAX_SC_COUNT times.
++ *
++ * If the driver that is consuming the regulator did not take action
++ * for the SC condition, or the hardware did not stabilize, this
++ * worker will stop rescheduling, leaving the regulators disabled
++ * as already done by the Portable Batch System (PBS).
++ *
++ * Returns: IRQ_HANDLED for success or IRQ_NONE for failure.
++ */
++static void qcom_labibb_sc_recovery_worker(struct work_struct *work)
++{
++	struct labibb_regulator *vreg;
++	const struct regulator_ops *ops;
++	u32 lab_reg, ibb_reg, lab_val, ibb_val, val;
++	bool pbs_cut = false;
++	int i, sc, ret;
++
++	vreg = container_of(work, struct labibb_regulator,
++			    sc_recovery_work.work);
++	ops = vreg->rdev->desc->ops;
++
++	/*
++	 * If we tried to check the regulator status multiple times but we
++	 * kept failing, then just bail out, as the Portable Batch System
++	 * (PBS) will disable the vregs for us, preventing hardware damage.
++	 */
++	if (vreg->fatal_count > LABIBB_MAX_FATAL_COUNT)
++		return;
++
++	/* Too many short-circuit events. Throw in the towel. */
++	if (vreg->sc_count > LABIBB_MAX_SC_COUNT)
++		return;
++
++	/*
++	 * The Portable Batch System (PBS) automatically disables LAB
++	 * and IBB when a short-circuit event is detected, so we have to
++	 * check and work on both of them at the same time.
++	 */
++	lab_reg = ibb_reg = vreg->base + REG_LABIBB_ENABLE_CTL;
++	if (vreg->type == QCOM_LAB_TYPE)
++		ibb_reg -= PMI8998_IBB_LAB_REG_OFFSET;
++	else
++		lab_reg += PMI8998_IBB_LAB_REG_OFFSET;
++
++	sc = qcom_labibb_check_sc_status(vreg);
++	if (sc)
++		goto reschedule;
++
++	for (i = 0; i < LABIBB_MAX_SC_COUNT; i++) {
++		ret = regmap_read(vreg->regmap, lab_reg, &lab_val);
++		if (ret) {
++			vreg->fatal_count++;
++			goto reschedule;
++		}
++
++		ret = regmap_read(vreg->regmap, ibb_reg, &ibb_val);
++		if (ret) {
++			vreg->fatal_count++;
++			goto reschedule;
++		}
++		val = lab_val & ibb_val;
++
++		if (!(val & LABIBB_CONTROL_ENABLE)) {
++			pbs_cut = true;
++			break;
++		}
++		usleep_range(5000, 6000);
++	}
++	if (pbs_cut)
++		goto reschedule;
++
++
++	/*
++	 * If we have reached this point, we either have successfully
++	 * recovered from the SC condition or we had a spurious SC IRQ,
++	 * which means that we can re-enable the regulators, if they
++	 * have ever been disabled by the PBS.
++	 */
++	ret = ops->enable(vreg->rdev);
++	if (ret)
++		goto reschedule;
++
++	/* Everything went fine: reset the OCP count! */
++	vreg->sc_count = 0;
++	enable_irq(vreg->sc_irq);
++	return;
++
++reschedule:
++	/*
++	 * Now that we have done basic handling of the short-circuit,
++	 * reschedule this worker in the regular system workqueue, as
++	 * taking action is not truly urgent anymore.
++	 */
++	vreg->sc_count++;
++	mod_delayed_work(system_wq, &vreg->sc_recovery_work,
++			 msecs_to_jiffies(SC_RECOVERY_INTERVAL_MS));
++}
++
++/**
++ * qcom_labibb_sc_isr - Interrupt routine for Short Circuit Protection
++ * @irq:  Interrupt number
++ * @chip: Main driver structure
++ *
++ * Short Circuit Protection (SCP) will signal to the client driver
++ * that a regulation-out event has happened and then will schedule
++ * a recovery worker.
++ *
++ * The LAB and IBB regulators will be automatically disabled by the
++ * Portable Batch System (PBS) and they will be enabled again by
++ * the worker function if the hardware stops signaling the short
++ * circuit event.
++ *
++ * Returns: IRQ_HANDLED for success or IRQ_NONE for failure.
++ */
++static irqreturn_t qcom_labibb_sc_isr(int irq, void *chip)
++{
++	struct labibb_regulator *vreg = chip;
++
++	if (vreg->sc_count > LABIBB_MAX_SC_COUNT)
++		return IRQ_NONE;
++
++	/* Warn the user for short circuit */
++	dev_warn(vreg->dev, "Short-Circuit interrupt fired!\n");
++
++	/*
++	 * Disable the interrupt temporarily, or it will fire continuously;
++	 * we will re-enable it in the recovery worker function.
++	 */
++	disable_irq(irq);
++
++	/* Signal out of regulation event to drivers */
++	regulator_notifier_call_chain(vreg->rdev,
++				      REGULATOR_EVENT_REGULATION_OUT, NULL);
++
++	/* Schedule the short-circuit handling as high-priority work */
++	mod_delayed_work(system_highpri_wq, &vreg->sc_recovery_work,
++			 msecs_to_jiffies(SC_RECOVERY_INTERVAL_MS));
++	return IRQ_HANDLED;
++}
++
++
+ static int qcom_labibb_set_current_limit(struct regulator_dev *rdev,
+ 					 int min_uA, int max_uA)
+ {
+@@ -210,6 +677,7 @@ static const struct regulator_ops qcom_labibb_ops = {
+ 	.set_current_limit	= qcom_labibb_set_current_limit,
+ 	.get_current_limit	= qcom_labibb_get_current_limit,
+ 	.set_soft_start		= qcom_labibb_set_soft_start,
++	.set_over_current_protection = qcom_labibb_set_ocp,
+ };
+ 
+ static const struct regulator_desc pmi8998_lab_desc = {
+@@ -287,7 +755,7 @@ static int qcom_labibb_regulator_probe(struct platform_device *pdev)
+ 	struct labibb_regulator *vreg;
+ 	struct device *dev = &pdev->dev;
+ 	struct regulator_config cfg = {};
+-
++	struct device_node *reg_node;
+ 	const struct of_device_id *match;
+ 	const struct labibb_regulator_data *reg_data;
+ 	struct regmap *reg_regmap;
+@@ -305,6 +773,8 @@ static int qcom_labibb_regulator_probe(struct platform_device *pdev)
+ 		return -ENODEV;
+ 
+ 	for (reg_data = match->data; reg_data->name; reg_data++) {
++		char *sc_irq_name;
++		int irq = 0;
+ 
+ 		/* Validate if the type of regulator is indeed
+ 		 * what's mentioned in DT.
+@@ -327,10 +797,44 @@ static int qcom_labibb_regulator_probe(struct platform_device *pdev)
+ 		if (!vreg)
+ 			return -ENOMEM;
+ 
++		sc_irq_name = devm_kasprintf(dev, GFP_KERNEL,
++					     "%s-short-circuit",
++					     reg_data->name);
++		if (!sc_irq_name)
++			return -ENOMEM;
++
++		reg_node = of_get_child_by_name(pdev->dev.of_node,
++						reg_data->name);
++		if (!reg_node)
++			return -EINVAL;
++
++		/* The Short Circuit interrupt is critical */
++		irq = of_irq_get_byname(reg_node, "sc-err");
++		if (irq <= 0) {
++			if (irq == 0)
++				irq = -EINVAL;
++
++			return dev_err_probe(vreg->dev, irq,
++					     "Short-circuit irq not found.\n");
++		}
++		vreg->sc_irq = irq;
++
++		/* OverCurrent Protection IRQ is optional */
++		irq = of_irq_get_byname(reg_node, "ocp");
++		vreg->ocp_irq = irq;
++		vreg->ocp_irq_count = 0;
++		of_node_put(reg_node);
++
+ 		vreg->regmap = reg_regmap;
+ 		vreg->dev = dev;
+ 		vreg->base = reg_data->base;
+ 		vreg->type = reg_data->type;
++		INIT_DELAYED_WORK(&vreg->sc_recovery_work,
++				  qcom_labibb_sc_recovery_worker);
++
++		if (vreg->ocp_irq > 0)
++			INIT_DELAYED_WORK(&vreg->ocp_recovery_work,
++					  qcom_labibb_ocp_recovery_worker);
+ 
+ 		switch (vreg->type) {
+ 		case QCOM_LAB_TYPE:
+@@ -365,6 +869,14 @@ static int qcom_labibb_regulator_probe(struct platform_device *pdev)
+ 					reg_data->name, ret);
+ 			return PTR_ERR(vreg->rdev);
+ 		}
++
++		ret = devm_request_threaded_irq(vreg->dev, vreg->sc_irq, NULL,
++						qcom_labibb_sc_isr,
++						IRQF_ONESHOT |
++						IRQF_TRIGGER_RISING,
++						sc_irq_name, vreg);
++		if (ret)
++			return ret;
+ 	}
+ 
+ 	return 0;
+-- 
+2.30.0
 
---000000000000a1485905b944633c
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-Gp3tsmw0Vz7IMJs6DQIm7T8CfIzeId1IIHcH02MbpO7m1Btzyz625FoBWF8CAwEAAaOCAcswggHH
-MA4GA1UdDwEB/wQEAwIFoDCBngYIKwYBBQUHAQEEgZEwgY4wTQYIKwYBBQUHMAKGQWh0dHA6Ly9z
-ZWN1cmUuZ2xvYmFsc2lnbi5jb20vY2FjZXJ0L2dzcGVyc29uYWxzaWduMnNoYTJnM29jc3AuY3J0
-MD0GCCsGAQUFBzABhjFodHRwOi8vb2NzcDIuZ2xvYmFsc2lnbi5jb20vZ3NwZXJzb25hbHNpZ24y
-c2hhMmczME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
-dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEQGA1UdHwQ9MDswOaA3oDWG
-M2h0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NwZXJzb25hbHNpZ24yc2hhMmczLmNybDAfBgNV
-HREEGDAWgRRyYXkuanVpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBRpcoJiMWeVRIV3kYDEBDZJnXsLYTAdBgNVHQ4EFgQUvUTLkCwFvnpejW/KGvdaDA31b+sw
-DQYJKoZIhvcNAQELBQADggEBACMny/9Y1OPK7qwiBKBMt478eBgXnTlJ0J0HNebYcxN/l7fKIKMb
-/eX/AQKIDsHeshmV2ekPU4yY/04veXx3QTgmE1bb4ksKEFEbU0LXlVPrnlgNn8M75cPymegn/2yU
-r1+htd2eve3obmKc5Lrl0GP+4m72XxAOL687Aw5vRa4Lf294s+x4d+VRwUjoFTj9zyLhexWQuJv/
-yX1HjSkrlIsRwi6DN0/ieL04O9aD1UNPlCC6akGnv4tgwlESh51M564qhonlfSW6La+L/aTIuQc0
-88lq8s/VMBBGdc7176/v5TbNwEC/c5QYbp2n76rAmKKjhjwWmBk64yLT7CoIxk0xggJvMIICawIB
-ATBtMF0xCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTMwMQYDVQQDEypH
-bG9iYWxTaWduIFBlcnNvbmFsU2lnbiAyIENBIC0gU0hBMjU2IC0gRzMCDCUMagLNLily51ao1jAN
-BglghkgBZQMEAgEFAKCB1DAvBgkqhkiG9w0BCQQxIgQggBEFQAH9YLUFYNStBiFLHxTGsYuOUKK9
-/FrHPWRvKMEwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjEwMTE5
-MTc0NDIzWjBpBgkqhkiG9w0BCQ8xXDBaMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZI
-AWUDBAECMAoGCCqGSIb3DQMHMAsGCSqGSIb3DQEBCjALBgkqhkiG9w0BAQcwCwYJYIZIAWUDBAIB
-MA0GCSqGSIb3DQEBAQUABIIBAG4Q9HMeBjM9DwbsSzRm7gLHu2ddOpWi1nrUCHVFjarRjfJ9OG5v
-TLylY7noZBoOlxKcyZwp4EVepfGWjt/R1X1qGb1LLe6nYv4Tn4QSBAgpXNSPeU1ndcdvRhWyOYv3
-UznBeM7fpF31b2w3GPM2YLD5lWZtDjwZUL46sNsLwEpgUVrY1K++S4TEKx5FpgIWnqdFKcgvYWZ3
-QstVzXyGr4mmJquQAzT+ZNsiCi/kXpfZ3tNQpM/6XrGIzHDtn0MFNxoSe374egXWzT9Wu/gmJ9EZ
-HyTUpphI6BTEbXNpdBh8bdSKCw6k+vNWUMLFYBjPfeHQ1CaUFSGIhouKtYpuaoI=
---000000000000a1485905b944633c--
