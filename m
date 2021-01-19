@@ -2,275 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 090112FB7D7
+	by mail.lfdr.de (Postfix) with ESMTP id 75CCF2FB7D8
 	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:28:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389604AbhASLbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 06:31:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49856 "EHLO
+        id S2389612AbhASLbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 06:31:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389176AbhASJxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 04:53:38 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1383FC061757
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 01:52:58 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1l1ngy-0007kD-71; Tue, 19 Jan 2021 10:52:52 +0100
-Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1l1ngw-0004fd-0U; Tue, 19 Jan 2021 10:52:50 +0100
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     kernel@pengutronix.de, Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: stm32: enable STM32MP1 crypto/CRC accelerators unconditionally
-Date:   Tue, 19 Jan 2021 10:52:39 +0100
-Message-Id: <20210119095241.17888-1-a.fatoum@pengutronix.de>
-X-Mailer: git-send-email 2.30.0
+        with ESMTP id S2389648AbhASKHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 05:07:43 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD42C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 02:07:01 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id b26so28278602lff.9
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 02:07:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eUB+VRzHaFNDWANA7/7FL0Nbtz+9KcKdZ4XxgVZRnxs=;
+        b=pNcqhqA/sssg/ZtmmEdNyGJ1l+sQ6M+232R/v2PJqdKkm8fSY/oheB3CERBAiniMS0
+         3KdB+VE+Nmp6qC/HOf8IdhgenB/fUL2EcQ0G178vp4EHtF7J8oP73VITxaK9touiF9u8
+         L7ohOV/y1zsc97OApeAmD/6urBkVchyUPfCBEhSssnId+n5PuSaRKIYDNJ6txOxBqmHc
+         em23Vgb8QMQFfSPdxdcY6Mo7ele04maDZ0KyaDz73n41b7wFWRmjl87vZQUztjh1pDK9
+         9Pk5QMVuDb3e2vTjrCSyVUBvtUKSumr/JFuGdZwfnXmG8utJtbTIkjoNr/u/XOIgQFfD
+         qjkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eUB+VRzHaFNDWANA7/7FL0Nbtz+9KcKdZ4XxgVZRnxs=;
+        b=BTQuVsq+OsWX3E295Zrm9yyit2mNLED9x2YABKV+q04J/LeS6XNqHfk6hUS7mP1Ybp
+         cvemTEcvOMq4xGBICF48Z3cgF0MCRQbkEH5YT9VCJ+W3SFgZVVP5TkLdl+7g7oF68i7U
+         zptZeCCe2UDpZlvr45/fXj0LwKLT7fdF/PNvrOQjC7PED2NRSr8BlHck1uaCwnKLVXEL
+         PUAl73+1dbWBmhl2MDy5CeabI+7gf5zxroe+PafnUvJFnpm1iU9IwZIVcpyK8tbdUBLN
+         3EDV/yFPVxblHUNWe8GXu2MwOutBXBOSmpaW+GILbsUbPC8cyFlP3UWdMrMM6TOV157w
+         yb3A==
+X-Gm-Message-State: AOAM530XpJ1wcuXZHCYKy6VjIc73DP8uO+Mrq84oxdCRg4NpN4q4yKUW
+        vcJAAMuzg7x1WZSIcfC1S+dNfQ==
+X-Google-Smtp-Source: ABdhPJyTT+nNCy+txQCw0fPQ/hLSK1JeNLsyxaAdblvN0/3s6IytPnjWn1CpEjJvPB6CAPdyqXeGNQ==
+X-Received: by 2002:ac2:4990:: with SMTP id f16mr1674453lfl.156.1611050819386;
+        Tue, 19 Jan 2021 02:06:59 -0800 (PST)
+Received: from localhost.localdomain (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id g190sm2225581lfd.72.2021.01.19.02.06.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 02:06:58 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Subject: [PATCH v3] mmc: mmci: Convert bindings to DT schema
+Date:   Tue, 19 Jan 2021 11:06:55 +0100
+Message-Id: <20210119100655.2755164-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: afa@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no SoC-external hardware support needed for the hash1, rng1,
-crc1 and cryp1 IP blocks to function. Enable them thus unconditionally
-instead of replicating their enablement in board device trees.
+This converts the MMCI bindings from simple text to a proper
+schema.
 
-Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: devicetree@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- arch/arm/boot/dts/stm32mp151.dtsi              |  3 ---
- arch/arm/boot/dts/stm32mp157a-stinger96.dtsi   |  4 ----
- arch/arm/boot/dts/stm32mp157c-dk2.dts          |  4 ----
- arch/arm/boot/dts/stm32mp157c-ed1.dts          | 16 ----------------
- arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi |  4 ----
- arch/arm/boot/dts/stm32mp15xc.dtsi             |  1 -
- arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi   |  8 --------
- arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi   |  4 ----
- arch/arm/boot/dts/stm32mp15xx-dkx.dtsi         | 12 ------------
- arch/arm/boot/dts/stm32mp15xx-osd32.dtsi       |  4 ----
- 10 files changed, 60 deletions(-)
+ChangeLog v2->v3:
+- Drop "dmas" and "dma-names" that are already part of the
+  generic schema. Sorry for missing this in v2.
+ChangeLog v1->v2:
+- Use unevaluatedProperties: false instead of
+  additionalProperties: false and refs start working.
+- Define clocks to 1 or 2 items.
+- Define interrupts to 1 or 2 items.
+---
+ .../devicetree/bindings/mmc/arm,pl18x.yaml    | 203 ++++++++++++++++++
+ .../devicetree/bindings/mmc/mmci.txt          |  74 -------
+ 2 files changed, 203 insertions(+), 74 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mmc/mmci.txt
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 3c75abacb374..c2d998343b6a 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1297,7 +1297,6 @@ hash1: hash@54002000 {
- 			dmas = <&mdma1 31 0x2 0x1000A02 0x0 0x0>;
- 			dma-names = "in";
- 			dma-maxburst = <2>;
--			status = "disabled";
- 		};
- 
- 		rng1: rng@54003000 {
-@@ -1305,7 +1304,6 @@ rng1: rng@54003000 {
- 			reg = <0x54003000 0x400>;
- 			clocks = <&rcc RNG1_K>;
- 			resets = <&rcc RNG1_R>;
--			status = "disabled";
- 		};
- 
- 		mdma1: dma-controller@58000000 {
-@@ -1402,7 +1400,6 @@ crc1: crc@58009000 {
- 			compatible = "st,stm32f7-crc";
- 			reg = <0x58009000 0x400>;
- 			clocks = <&rcc CRC1>;
--			status = "disabled";
- 		};
- 
- 		stmmac_axi_config_0: stmmac-axi-config {
-diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-index 58275bcf9e26..268a99291d79 100644
---- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-@@ -253,10 +253,6 @@ &pwr_regulators {
- 	vdd_3v3_usbfs-supply = <&vdd_usb>;
- };
- 
--&rng1 {
--	status = "okay";
--};
+diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+new file mode 100644
+index 000000000000..eddc1f6bdbe5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+@@ -0,0 +1,203 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/arm,pl18x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM PrimeCell MultiMedia Card Interface (MMCI) PL180 and PL181
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++  - Ulf Hansson <ulf.hansson@linaro.org>
++
++description:
++  The ARM PrimeCells MMCI PL180 and PL181 provides an interface for
++  reading and writing to MultiMedia and SD cards alike. Over the years
++  vendors have use the VHDL code from ARM to create derivative MMC/SD/SDIO
++  host controllers with very similar characteristics.
++
++allOf:
++  - $ref: /schemas/arm/primecell.yaml#
++  - $ref: mmc-controller.yaml#
++
++# We need a select here so we don't match all nodes with 'arm,primecell'
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - arm,pl180
++          - arm,pl181
++          - arm,pl18x
++  required:
++    - compatible
++
++properties:
++  compatible:
++    oneOf:
++      - description: The first version of the block, simply called
++          PL180 and found in the ARM Integrator IM/PD1 logic module.
++        items:
++          - const: arm,pl180
++          - const: arm,primecell
++      - description: The improved version of the block, found in the
++          ARM Versatile and later reference designs. Further revisions
++          exist but get detected at runtime by reading some magic numbers
++          in the PrimeCell ID registers.
++        items:
++          - const: arm,pl181
++          - const: arm,primecell
++      - description: Wildcard entry that will let the operating system
++          inspect the PrimeCell ID registers to determine which hardware
++          variant of PL180 or PL181 this is.
++        items:
++          - const: arm,pl18x
++          - const: arm,primecell
++
++  clocks:
++    description: One or two clocks, the "apb_pclk" and the "MCLK"
++      which is the core block clock. The names are not compulsory.
++    minItems: 1
++    maxItems: 2
++
++  power-domains: true
++
++  resets:
++    maxItems: 1
++
++  reg:
++    description: the MMIO memory window must be exactly 4KB (0x1000) and the
++      layout should provide the PrimeCell ID registers so that the device can
++      be discovered. On ST Micro variants, a second register window may be
++      defined if a delay block is present and used for tuning.
++
++  interrupts:
++    description: The first interrupt is the command interrupt and corresponds
++      to the event at the end of a command. The second interrupt is the
++      PIO (polled I/O) interrupt and occurs when the FIFO needs to be
++      emptied as part of a bulk read from the card. Some variants have these
++      two interrupts wired into the same line (logic OR) and in that case
++      only one interrupt may be provided.
++    minItems: 1
++    maxItems: 2
++
++  st,sig-dir-dat0:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, bus signal direction pins used for
++      DAT[0].
++
++  st,sig-dir-dat2:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, bus signal direction pins used for
++      DAT[2].
++
++  st,sig-dir-dat31:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, bus signal direction pins used for
++      DAT[3] and DAT[1].
++
++  st,sig-dir-dat74:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, bus signal direction pins used for
++      DAT[7] and DAT[4].
++
++  st,sig-dir-cmd:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, CMD signal direction used for
++      pin CMD.
++
++  st,sig-pin-fbclk:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, feedback clock FBCLK signal pin
++      in use.
++
++  st,sig-dir:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, signal direction polarity used for
++      pins CMD, DAT[0], DAT[1], DAT[2] and DAT[3].
++
++  st,neg-edge:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, data and command phase relation,
++      generated on the sd clock falling edge.
++
++  st,use-ckin:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: ST Micro-specific property, use CKIN pin from an external
++      driver to sample the receive data (for example with a voltage switch
++      transceiver).
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    mmc@5000 {
++      compatible = "arm,pl180", "arm,primecell";
++      reg = <0x5000 0x1000>;
++      interrupts-extended = <&vic 22 &sic 1>;
++      clocks = <&xtal24mhz>, <&pclk>;
++      clock-names = "mclk", "apb_pclk";
++    };
++
++    mmc@80126000 {
++      compatible = "arm,pl18x", "arm,primecell";
++      reg = <0x80126000 0x1000>;
++      interrupts = <0 60 IRQ_TYPE_LEVEL_HIGH>;
++      dmas = <&dma 29 0 0x2>, <&dma 29 0 0x0>;
++      dma-names = "rx", "tx";
++      clocks = <&prcc_kclk 1 5>, <&prcc_pclk 1 5>;
++      clock-names = "sdi", "apb_pclk";
++      max-frequency = <100000000>;
++      bus-width = <4>;
++      cap-sd-highspeed;
++      cap-mmc-highspeed;
++      cd-gpios  = <&gpio2 31 0x4>;
++      st,sig-dir-dat0;
++      st,sig-dir-dat2;
++      st,sig-dir-cmd;
++      st,sig-pin-fbclk;
++      vmmc-supply = <&ab8500_ldo_aux3_reg>;
++      vqmmc-supply = <&vmmci>;
++    };
++
++    mmc@101f6000 {
++      compatible = "arm,pl18x", "arm,primecell";
++      reg = <0x101f6000 0x1000>;
++      clocks = <&sdiclk>, <&pclksdi>;
++      clock-names = "mclk", "apb_pclk";
++      interrupt-parent = <&vica>;
++      interrupts = <22>;
++      max-frequency = <400000>;
++      bus-width = <4>;
++      cap-mmc-highspeed;
++      cap-sd-highspeed;
++      full-pwr-cycle;
++      st,sig-dir-dat0;
++      st,sig-dir-dat2;
++      st,sig-dir-dat31;
++      st,sig-dir-cmd;
++      st,sig-pin-fbclk;
++      vmmc-supply = <&vmmc_regulator>;
++    };
++
++    mmc@52007000 {
++      compatible = "arm,pl18x", "arm,primecell";
++      arm,primecell-periphid = <0x10153180>;
++      reg = <0x52007000 0x1000>;
++      interrupts = <49>;
++      interrupt-names = "cmd_irq";
++      clocks = <&rcc 0>;
++      clock-names = "apb_pclk";
++      resets = <&rcc 1>;
++      cap-sd-highspeed;
++      cap-mmc-highspeed;
++      max-frequency = <120000000>;
++    };
+diff --git a/Documentation/devicetree/bindings/mmc/mmci.txt b/Documentation/devicetree/bindings/mmc/mmci.txt
+deleted file mode 100644
+index 4ec921e4bf34..000000000000
+--- a/Documentation/devicetree/bindings/mmc/mmci.txt
++++ /dev/null
+@@ -1,74 +0,0 @@
+-* ARM PrimeCell MultiMedia Card Interface (MMCI) PL180/1
 -
- &rtc {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-index 2bc92ef3aeb9..045636555ddd 100644
---- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-@@ -29,10 +29,6 @@ chosen {
- 	};
- };
- 
--&cryp1 {
--	status = "okay";
--};
+-The ARM PrimeCell MMCI PL180 and PL181 provides an interface for
+-reading and writing to MultiMedia and SD cards alike.
 -
- &dsi {
- 	status = "okay";
- 	phy-dsi-supply = <&reg18>;
-diff --git a/arch/arm/boot/dts/stm32mp157c-ed1.dts b/arch/arm/boot/dts/stm32mp157c-ed1.dts
-index 81a7d5849db4..f69622097e89 100644
---- a/arch/arm/boot/dts/stm32mp157c-ed1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ed1.dts
-@@ -115,14 +115,6 @@ adc1: adc@0 {
- 	};
- };
- 
--&crc1 {
--	status = "okay";
--};
+-This file documents differences between the core properties described
+-by mmc.txt and the properties used by the mmci driver. Using "st" as
+-the prefix for a property, indicates support by the ST Micro variant.
 -
--&cryp1 {
--	status = "okay";
--};
+-Required properties:
+-- compatible             : contains "arm,pl18x", "arm,primecell".
+-- vmmc-supply            : phandle to the regulator device tree node, mentioned
+-                           as the VCC/VDD supply in the eMMC/SD specs.
 -
- &dac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&dac_ch1_pins_a &dac_ch2_pins_a>;
-@@ -144,10 +136,6 @@ &gpu {
- 	contiguous-area = <&gpu_reserved>;
- };
- 
--&hash1 {
--	status = "okay";
--};
+-Optional properties:
+-- arm,primecell-periphid : contains the PrimeCell Peripheral ID, it overrides
+-                           the ID provided by the HW
+-- resets                 : phandle to internal reset line.
+-			   Should be defined for sdmmc variant.
+-- vqmmc-supply           : phandle to the regulator device tree node, mentioned
+-                           as the VCCQ/VDD_IO supply in the eMMC/SD specs.
+-specific for ux500 variant:
+-- st,sig-dir-dat0        : bus signal direction pin used for DAT[0].
+-- st,sig-dir-dat2        : bus signal direction pin used for DAT[2].
+-- st,sig-dir-dat31       : bus signal direction pin used for DAT[3] and DAT[1].
+-- st,sig-dir-dat74       : bus signal direction pin used for DAT[4] to DAT[7].
+-- st,sig-dir-cmd         : cmd signal direction pin used for CMD.
+-- st,sig-pin-fbclk       : feedback clock signal pin used.
 -
- &i2c4 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&i2c4_pins_a>;
-@@ -325,10 +313,6 @@ &pwr_regulators {
- 	vdd_3v3_usbfs-supply = <&vdd_usb>;
- };
- 
--&rng1 {
--	status = "okay";
--};
+-specific for sdmmc variant:
+-- reg			 : a second base register may be defined if a delay
+-                           block is present and used for tuning.
+-- st,sig-dir             : signal direction polarity used for cmd, dat0 dat123.
+-- st,neg-edge            : data & command phase relation, generated on
+-                           sd clock falling edge.
+-- st,use-ckin            : use ckin pin from an external driver to sample
+-                           the receive data (example: with voltage
+-			   switch transceiver).
 -
- &rtc {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-index 6cf49a0a9e69..a2aca1982bf6 100644
---- a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-@@ -250,10 +250,6 @@ &m4_rproc {
- 	status = "okay";
- };
- 
--&rng1 {
--	status = "okay";
--};
+-Deprecated properties:
+-- mmc-cap-mmc-highspeed  : indicates whether MMC is high speed capable.
+-- mmc-cap-sd-highspeed   : indicates whether SD is high speed capable.
 -
- &rtc {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/stm32mp15xc.dtsi b/arch/arm/boot/dts/stm32mp15xc.dtsi
-index b06a55a2fa18..86953d7ddde0 100644
---- a/arch/arm/boot/dts/stm32mp15xc.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xc.dtsi
-@@ -12,7 +12,6 @@ cryp1: cryp@54001000 {
- 			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&rcc CRYP1>;
- 			resets = <&rcc CRYP1_R>;
--			status = "disabled";
- 		};
- 	};
- };
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-index ac46ab363e1b..603c14054509 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-@@ -377,14 +377,6 @@ flash0: mx66l51235l@0 {
- 	};
- };
- 
--&rng1 {
--	status = "okay";
--};
+-Example:
 -
--&rtc {
--	status = "okay";
--};
+-sdi0_per1@80126000 {
+-	compatible = "arm,pl18x", "arm,primecell";
+-	reg = <0x80126000 0x1000>;
+-	interrupts = <0 60 IRQ_TYPE_LEVEL_HIGH>;
 -
- &sdmmc1 {
- 	pinctrl-names = "default", "opendrain", "sleep";
- 	pinctrl-0 = <&sdmmc1_b4_pins_a &sdmmc1_dir_pins_a>;
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-index 803eb8bc9c85..3f4af430aaf4 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-@@ -204,10 +204,6 @@ flash0: spi-flash@0 {
- 	};
- };
- 
--&rng1 {
--	status = "okay";
--};
+-	dmas = <&dma 29 0 0x2>, /* Logical - DevToMem */
+-	       <&dma 29 0 0x0>; /* Logical - MemToDev */
+-	dma-names = "rx", "tx";
 -
- &rtc {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-index 89c0e1ddc387..0cca6c3ff4a0 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-@@ -124,10 +124,6 @@ &cec {
- 	status = "okay";
- };
- 
--&crc1 {
--	status = "okay";
--};
+-	clocks = <&prcc_kclk 1 5>, <&prcc_pclk 1 5>;
+-	clock-names = "sdi", "apb_pclk";
 -
- &dts {
- 	status = "okay";
- };
-@@ -155,10 +151,6 @@ &gpu {
- 	contiguous-area = <&gpu_reserved>;
- };
- 
--&hash1 {
--	status = "okay";
--};
+-	max-frequency = <100000000>;
+-	bus-width = <4>;
+-	cap-sd-highspeed;
+-	cap-mmc-highspeed;
+-	cd-gpios  = <&gpio2 31 0x4>; // 95
+-	st,sig-dir-dat0;
+-	st,sig-dir-dat2;
+-	st,sig-dir-cmd;
+-	st,sig-pin-fbclk;
 -
- &i2c1 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&i2c1_pins_a>;
-@@ -482,10 +474,6 @@ &pwr_regulators {
- 	vdd_3v3_usbfs-supply = <&vdd_usb>;
- };
- 
--&rng1 {
--	status = "okay";
--};
+-	vmmc-supply = <&ab8500_ldo_aux3_reg>;
+-	vqmmc-supply = <&vmmci>;
 -
- &rtc {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-index 713485a95795..d03d4d12133c 100644
---- a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-@@ -224,7 +224,3 @@ &m4_rproc {
- 	interrupts = <68 1>;
- 	status = "okay";
- };
--
--&rng1 {
--	status = "okay";
+-	pinctrl-names = "default", "sleep";
+-	pinctrl-0 = <&sdi0_default_mode>;
+-	pinctrl-1 = <&sdi0_sleep_mode>;
 -};
 -- 
-2.30.0
+2.29.2
 
