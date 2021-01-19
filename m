@@ -2,106 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCF262FC495
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 00:19:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 621572FC4A3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 00:19:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726840AbhASXPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 18:15:24 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:39776 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728496AbhASXLn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 18:11:43 -0500
-Received: by mail-ot1-f46.google.com with SMTP id i30so8621037ota.6;
-        Tue, 19 Jan 2021 15:11:25 -0800 (PST)
+        id S1730451AbhASXST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 18:18:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54138 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730338AbhASXRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 18:17:54 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2A5C061573
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 15:17:14 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id c7so23715111qke.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 15:17:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dB7F3Mtlu9hzcaH0arXRlX+sy8rlfc5xRtRuFS9rvVg=;
+        b=SibYt1GVdrviyGqBHiuRdkDJ212F7mKHeGAGTB3L6VdvZ2tX3F1XaE6kRQ89HeDHwg
+         ctZ9o3Y7tlLWqVfF7LjJMXmKGSrNa7VSowWHy5QAb8k8NxgbCOgJC1zipjomGEe3iJea
+         5TUZlIHbOQHHZiG4nXdh4SABgjHW6NYYLnatBHGCtcOa1VU0mfaYrkyObMYi3FoyzCIS
+         u9No6XJWWpJnuT3Yd0j9glu45Q1AoZ59LbenJHRMpv6VgZ3urxG+tii+h03WPMXVJeF0
+         oYBrTIqMJDQYiiWTHVH+nvfZqnu+QcedayPLqgxAsYcqY9Mg7ssCkwU2X4lXf6mmRWne
+         Q9Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zwnspLO1XU1UxAjviLLOho2793ZeLPfsqMsqct/RJD4=;
-        b=I5p36v8nFPGov43Xa1UYERG+V0gM6jF+5D0bBQWU43E5o9eNphYHXgvk+Chaa1xecP
-         41Vq/8rFz7MJLVprcK6PfeBzI04li/dWROHEq14rSvy7y6kTfYxmGNyJskvWuytAIVqS
-         013ksw1IHmOJ6KnA0j5YoUhy5YtM/hzvPuskuz7m8VAckMwLlfTPl5hQzWeEOPMTI2E+
-         9YvXmiHjuer+sMu0SL4Jfcda55SY0DH8f9Ud10Nc4Dl4o5qWZpoIEYWo6Q9hVxLmeE08
-         +fEi3tmAA0MVGTKI598IcMXuBF71WxlTB6LBjVHog/IHgjR9ZwNfz+WXFNmS6imHVHkM
-         VjwA==
-X-Gm-Message-State: AOAM530VJCefrYW79vck7PVIiAD6ZQYqlieyGOFGzinZTh8N8Fm92/qh
-        ZSBfhWgCDvpzln3w7z0nuRP2Fzw1RQ==
-X-Google-Smtp-Source: ABdhPJyTgJTFM5NXoV7ntdMWXNrAUbzEb6Iwjg696qOUlnMDqKMVqsb1IVxmC6Gqyn9VRUxLSXvACQ==
-X-Received: by 2002:a9d:4e8d:: with SMTP id v13mr5250786otk.12.1611097860450;
-        Tue, 19 Jan 2021 15:11:00 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h203sm31052oib.11.2021.01.19.15.10.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 15:10:59 -0800 (PST)
-Received: (nullmailer pid 2774332 invoked by uid 1000);
-        Tue, 19 Jan 2021 23:10:58 -0000
-Date:   Tue, 19 Jan 2021 17:10:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        matthias.bgg@gmail.com, gregkh@linuxfoundation.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        cy_huang@richtek.com, gene_chen@richtek.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] usb typec: tcpci: mt6360: Add vbus supply into
- dt-binding description
-Message-ID: <20210119231058.GA2772032@robh.at.kernel.org>
-References: <1610720001-15300-1-git-send-email-u0084500@gmail.com>
- <1610720001-15300-2-git-send-email-u0084500@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dB7F3Mtlu9hzcaH0arXRlX+sy8rlfc5xRtRuFS9rvVg=;
+        b=C3E/tcyAt9IgZ/7ZN9BNKnjoJDFdRP8rjw9jCTvbD8ssIEd/WG+bP+mc7dwWL5td+S
+         +X0fW3gSIrhCXy2oTYsdpLLxBpZP7V7FLqnGESJd3FI2HmXNelYoqDOzI9K3BMBxHL2Z
+         +buqxeu8gP/nM80afgfE52FlsPiZVWvSUlBO1rLZb4lSC1VR+9jKcc1oG5Yc0zBZE4Gj
+         SdptszVoKCSNkj9l4+iv1fuZlqHtcPPv/LqBIOXaoLIfwHgQyBDUKqyOUSeF0PfeglDs
+         bqlLhkbkVgETfEz/gSrXv3GkiT6Q6oqPB3E9QUwdukZ3msGJ8RaOdoweqPfiYkJ8jxVA
+         jIKA==
+X-Gm-Message-State: AOAM530KuBOWuN8Z+u3mHUERkw1AYXOreMscDF9UA2JI7Scs4MjjQWsp
+        LIMgaHRAZ73hWZJ7XbiPfLwhpx4aoB/VHBl+P51T9w==
+X-Google-Smtp-Source: ABdhPJyGeUyg+YiDKqtN0x6dVvip4U9xb9aSUrHVlWP6pb2DIhbKAAN/SFc8tehaF+Bmf26mv1wmQWdcJ5xXSunbNtM=
+X-Received: by 2002:a37:be84:: with SMTP id o126mr3005803qkf.138.1611098233468;
+ Tue, 19 Jan 2021 15:17:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1610720001-15300-2-git-send-email-u0084500@gmail.com>
+References: <20210119054848.592329-1-dmitry.baryshkov@linaro.org> <078a7025-ce5c-a252-f8f4-694c56153b3a@linaro.org>
+In-Reply-To: <078a7025-ce5c-a252-f8f4-694c56153b3a@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 20 Jan 2021 02:17:02 +0300
+Message-ID: <CAA8EJpr2bubGBtUGf=4+d4ZVT1nReTBzT25scGehdwKy2EepmQ@mail.gmail.com>
+Subject: Re: [PATCH v12 0/5] qcom: pm8150: add support for thermal monitoring
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>, linux-pm@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 10:13:21PM +0800, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> Add external vbus source into dt-binding description.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
-> index 1e8e1c2..b8d842b 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
-> @@ -26,6 +26,11 @@ properties:
->      items:
->        - const: PD_IRQB
->  
-> +  vbus-supply:
-> +    description:
-> +      Vbus source supply regulator.
-> +    maxItems: 1
+On Tue, 19 Jan 2021 at 23:58, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+>
+> On 19/01/2021 06:48, Dmitry Baryshkov wrote:
+> > This patch serie adds support for thermal monitoring block on Qualcomm's
+> > PMIC5 chips. PM8150{,b,l}, qrb5165-rb5 board and sm8250-mtp board device
+> > trees are extended to support thermal zones provided by this thermal
+> > monitoring block.  Unlike the rest of PMIC thermal senses, these thermal
+> > zones describe particular thermistors, which differ between from board
+> > to board.
+> >
+> > Dependencies: https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/log/?h=ib-iio-thermal-5.11-rc1
+>
+> Shall I pick 3,4,5 also ?
 
-vbus-supply is already in the 'connector' node, you don't need it here.
+I have no strong preference on this topic. It might be easier to get
+3,4,5 through lk-qcom so that we won't face possible conflicts. Bjorn?
 
-> +
->    connector:
->      type: object
->      $ref: ../connector/usb-connector.yaml#
-> @@ -38,6 +43,7 @@ required:
->    - compatible
->    - interrupts
->    - interrupt-names
-> +  - vbus-supply
->  
->  examples:
->    - |
-> @@ -54,6 +60,7 @@ examples:
->            compatible = "mediatek,mt6360-tcpc";
->            interrupts-extended = <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
->            interrupt-names = "PD_IRQB";
-> +          vbus-supply = <&otg_vbus>;
->  
->            connector {
->              compatible = "usb-c-connector";
-> -- 
-> 2.7.4
-> 
+
+-- 
+With best wishes
+Dmitry
