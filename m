@@ -2,181 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D5592FBACD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 16:13:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 626DA2FBB02
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 16:22:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390490AbhASPMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 10:12:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33702 "EHLO
+        id S1727324AbhASPW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 10:22:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389689AbhASPMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 10:12:33 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213C8C061575;
-        Tue, 19 Jan 2021 07:11:52 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id ke15so21291369ejc.12;
-        Tue, 19 Jan 2021 07:11:52 -0800 (PST)
+        with ESMTP id S2391289AbhASPVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 10:21:14 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D336C061573;
+        Tue, 19 Jan 2021 07:20:34 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id d4so10690115plh.5;
+        Tue, 19 Jan 2021 07:20:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=T684pbRiyXTHMjiyj9K2qNkRy+PGwfHnHIkUTOyJyoc=;
-        b=rwBg1iZ0GoU89hgJR18WBQvxOXb9/628zja19HwjUGMulIOy/0KmK6IqkjxMHiVfEj
-         bTTadX4Iy+kKHnmY+oTOXSLkazhXICmv7dI3rl1EDzAeKsSiG+vNHCbImcHOAycUV4kD
-         GtQra359abpwz4RpgVAbEnfXjXNJ42WSzqh2QKh5nB92G9HFFFdrJlF/80ToHu8DJAAR
-         DD8AeGBEPhGVtSJlrVX9qKs/M4ueUDJVuNW9reTyHIZhsvv6q3iwlUVYz6P3H+NNd8C1
-         ujhVtPMdukkBsOkzwkOS+7GgdutVUxD0InXM8zTabUtFG68IUHFX8WIQJ3ACrYudHtfc
-         0uRg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jxt4w4ggY4vN/CdqHUV7TtDziRTtz0CwnZSmwECkKwE=;
+        b=uUlkjJFj2KO4UD0W1i4m2465xydGM4l+ACJN+jL/a9PtdOUN4uQVYvdJUO6JnBe3rl
+         OzGiD/RCn1gO80P6GCwnELlFuVjiT0rKy6Uy7foPuPyeW1kNXDi0PHVnxHRjEVQ4xVh5
+         oM0JkFai+5zUYoISXL2NCyaZsnS3GE22Maf2OfVe9d43QNgk2kA3OYRtH129XoNkEIhj
+         +lFlfA4k0Ma0p49OpbfQTewCOsk6ZZEKtuw/8jue5gUmbgYMQduEvQkjr+LIdNGqWJ+g
+         15Wt1lgJQrfsYhX7A+31NyQlSLNZUPNcvVBvQHBcwIzgH5ze5ponpBIlbwO4wLaLJ3Q7
+         21NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=T684pbRiyXTHMjiyj9K2qNkRy+PGwfHnHIkUTOyJyoc=;
-        b=JL0fByPUw2NlzgLbTCSXWWbKoAbC0MQG6TsKUaQTlfwkQtxFfo7HmaZ+hsP2A5kMeE
-         uE7x5EGAJiL0Lb+Ufif1TULt8aJVxgccsNdk0B6gOLm0FdrjnOBb5IR3rTdw/jbtCqzr
-         JntHGOLeA08uUR7TX/TDUHYzMbb7nUttUtEHI/VZfotU8CDKdBjsdVW5M5gMC8fLfEH7
-         S3JIzEISMsb6vX7moY7rzuq+Wt1ny3cOEPBIT/dHIXbrMaKORyIdEkLSwqLRRbK3NYix
-         C64DDUvGlnoOQgUVCpH9JDNSCL3sQX1BVqMuh7MhxrDiJgsUPhID859a44ovF+SuvI7T
-         liog==
-X-Gm-Message-State: AOAM530npxWitZA2hBdvmHAu2PnLofyLDQSxJot+vFbPVRAjzWkJvRtf
-        z2eiwboWuoqjqaI52H88HixW3u5AP2A=
-X-Google-Smtp-Source: ABdhPJzFqLgbC9mdVhryq9kB69wAPD08K3GAiGu/JoWn1hmEvjzNPYCzX2bcVz/GW8glarmpD4P5cA==
-X-Received: by 2002:a17:906:a20e:: with SMTP id r14mr3240679ejy.404.1611069110542;
-        Tue, 19 Jan 2021 07:11:50 -0800 (PST)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id x17sm13053730edq.77.2021.01.19.07.11.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jan 2021 07:11:50 -0800 (PST)
-Subject: Re: [PATCH 2/3] dt-bindings: rockchip: Add DesignWare based PCIe
- controller
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Simon Xue <xxm@rock-chips.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-References: <20210118091739.247040-1-xxm@rock-chips.com>
- <20210118091739.247040-2-xxm@rock-chips.com>
- <e143ad9e-1cfd-e59d-0079-513c036981ba@gmail.com> <2336601.uoxibFcf9D@diego>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <677c102d-0b9b-1a12-0ac6-4dd0a1023b68@gmail.com>
-Date:   Tue, 19 Jan 2021 16:11:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jxt4w4ggY4vN/CdqHUV7TtDziRTtz0CwnZSmwECkKwE=;
+        b=jq5qojm5c+bsTltGuhG+Sh5T2TbdNk0/5+w9ksWo4oUfcHRZdnHmfzpJzKYFw6lib9
+         LFCKhcQuqrfsZOYM3lEe7x4p68aVvCcyZNeVCHJUvnicdqY/XNFAabr1PDpfCQl2WLLf
+         xUxCpJIwTR8/PdI4W5s5/JgUShuK/a08PRjElz/VwGrUKC5GdQF2sNeTcXr86uxjMW1T
+         7yTUl6FL4Qp+875wqSu0RG4315LbRhyFmcUmR2zzaLkbFkW6esJrBT6nFfxXRE1DUfO3
+         uRAs/UolP15x1D/vr+a9TeeoAcgsSnOWr8FihPUldzL3+KeEjiPo2ymYJ/ahMJjDlX3e
+         pwow==
+X-Gm-Message-State: AOAM5318b67eQjjTwpgr9aRvo8ReXpnT5L4TzilgIMuy62cuMyCH1e3u
+        XgjokBK1ixzoTkjHQyJEL0GuTGgchFMvQJzah8Q=
+X-Google-Smtp-Source: ABdhPJy9cd4uD4ZDVNE5k4wYxMzfD0jsGzIDGtxq0M0R5ffZ9NGiqS5Rfxd7PGqzOuXmA8HLWIRHeQD7hiMi4oabo44=
+X-Received: by 2002:a17:90a:6c90:: with SMTP id y16mr147003pjj.129.1611069634063;
+ Tue, 19 Jan 2021 07:20:34 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <2336601.uoxibFcf9D@diego>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210115211543.33563-1-alcooperx@gmail.com> <20210115211543.33563-3-alcooperx@gmail.com>
+In-Reply-To: <20210115211543.33563-3-alcooperx@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 19 Jan 2021 17:21:23 +0200
+Message-ID: <CAHp75VdQPQK8jTF3QDKx6mF1QzOg-qiuHrTiojnWn7GskokfoA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] serial: 8250: Add new 8250-core based Broadcom STB driver
+To:     Al Cooper <alcooperx@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon, Heiko,
+On Fri, Jan 15, 2021 at 11:19 PM Al Cooper <alcooperx@gmail.com> wrote:
+>
+> Add a UART driver for the new Broadcom 8250 based STB UART. The new
+> UART is backward compatible with the standard 8250, but has some
+> additional features. The new features include a high accuracy baud
+> rate clock system and DMA support.
+>
+> The driver will use the new optional BAUD MUX clock to select the best
+> one of the four master clocks (81MHz, 108MHz, 64MHz and 48MHz) to feed
+> the baud rate selection logic for any requested baud rate.  This allows
+> for more accurate BAUD rates when high speed baud rates are selected.
+>
+> The driver will use the new UART DMA hardware if the UART DMA registers
+> are specified in Device Tree "reg" property. The DMA functionality can
+> be disabled on kernel boot with the argument:
+> "8250_bcm7271.disable_dma=Y".
+>
+> The driver also set the UPSTAT_AUTOCTS flag when hardware flow control
+> is enabled. This flag is needed for UARTs that don't assert a CTS
+> changed interrupt when CTS changes and AFE (Hardware Flow Control) is
+> enabled.
+>
+> The driver also contains a workaround for a bug in the Synopsis 8250
+> core. The problem is that at high baud rates, the RX partial FIFO
+> timeout interrupt can occur but there is no RX data (DR not set in
+> the LSR register). In this case the driver will not read the Receive
+> Buffer Register, which clears the interrupt, and the system will get
+> continuous UART interrupts until the next RX character arrives. The
+> fix originally suggested by Synopsis was to read the Receive Buffer
+> Register and discard the character when the DR bit in the LSR was
+> not set, to clear the interrupt. The problem was that occasionally
+> a character would arrive just after the DR bit check and a valid
+> character would be discarded. The fix that was added will clear
+> receive interrupts to stop the interrupt, deassert RTS to insure
+> that no new data can arrive, wait for 1.5 character times for the
+> sender to react to RTS and then check for data and either do a dummy
+> read or a valid read. Sysfs error counters were also added and were
+> used to help create test software that would cause the error condition.
+> The counters can be found at:
+> /sys/devices/platform/rdb/*serial/rx_bad_timeout_late_char
+> /sys/devices/platform/rdb/*serial/rx_bad_timeout_no_char
 
-On 1/19/21 2:14 PM, Heiko Stübner wrote:
-> Hi Johan,
-> 
-> Am Dienstag, 19. Januar 2021, 14:07:41 CET schrieb Johan Jonker:
->> Hi Simon,
->>
->> Thank you for this patch for rk3568 pcie.
->>
->> Include the Rockchip device tree maintainer and all other people/lists
->> to the CC list.
->>
->> ./scripts/checkpatch.pl --strict <patch1> <patch2>
->>
->>  ./scripts/get_maintainer.pl --noroles --norolestats --nogit-fallback
->> --nogit <patch1> <patch2>
->>
->> git send-email --suppress-cc all --dry-run --annotate --to
->> heiko@sntech.de --cc <..> <patch1> <patch2>
->>
->> This SoC has no support in mainline linux kernel yet.
->> In all the following yaml documents for rk3568 we need headers with
->> defines for clocks and power domains, etc.
->>
->> For example:
->> #include <dt-bindings/clock/rk3568-cru.h>
->> #include <dt-bindings/power/rk3568-power.h>
->>
->> Could Rockchip submit first clocks and power drivers entries and a basic
->> rk3568.dtsi + evb dts?
->> Include a patch to this serie with 3 pcie nodes added to rk3568.dtsi.
->>
->> A dtbs_check only works with a complete dtsi and evb dts.
->>
->> make ARCH=arm64 dtbs_check
->> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>
->> On 1/18/21 10:17 AM, Simon Xue wrote:
->>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
->>> ---
->>>  .../bindings/pci/rockchip-dw-pcie.yaml        | 101 ++++++++++++++++++
->>>  1 file changed, 101 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>> new file mode 100644
->>> index 000000000000..fa664cfffb29
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>> @@ -0,0 +1,101 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: DesignWare based PCIe RC controller on Rockchip SoCs
->>> +
->>
->>> +maintainers:
->>> +  - Shawn Lin <shawn.lin@rock-chips.com>
->>> +  - Simon Xue <xxm@rock-chips.com>
->>
->> maintainers:
->>   - Heiko Stuebner <heiko@sntech.de>
->>
->> Add only people with maintainer rights.
-> 
-> I'd disagree on this ;-)
+Brief looking into the code raises several questions:
+ - is it driver from the last decade?
+ - why it's not using what kernel provides?
+ - we have a lot of nice helpers:
+   - DMA Engine API
+   - BIT() and GENMASK() macros
+   - tons of different helpers like regmap API (if you wish to dump
+registers via debugfs)
 
-All roads leads to Heiko... ;)
+Can you shrink this driver by 20-30% (I truly believe it's possible)
+and split DMA driver to drivers/dma (which may already have something
+similar there)?
 
-It takes long term commitment.
-Year in, year out.
-Keeping yourself up to date with the latest pcei development.
-Communicate in English.
-Be able to submit patches without errors... ;)
-Review other peoples patches.
-Respond in short time.
-Bug fixing.
-
-If that's what you really want, then you must include a patch to this
-serie for MAINTAINERS.
-
-Check patch with:
-
-./scripts/parse-maintainers.pl --input=MAINTAINERS --output=MAINTAINERS
---order
-
-Otherwise it's safe to include that person mentioned above.
-
-> 
-> The maintainer for individual drivers should be the persons who are
-> actually know the hardware. We have individual Rockchip developers
-> taking care of other drivers as well already.
-> 
-> And normally scripts/get_maintainer.pl should already include me
-> due to the wildcard for things having "rockchip" in the name.
-> 
-> 
-> Heiko
-> 
-> 
-> 
-
+-- 
+With Best Regards,
+Andy Shevchenko
