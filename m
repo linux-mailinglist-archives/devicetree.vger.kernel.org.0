@@ -2,298 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68A312FAE06
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 01:29:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCC562FAE0E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 01:34:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732015AbhASA1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 19:27:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732002AbhASA1M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 19:27:12 -0500
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA4CC061573
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 16:26:17 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 42F361F914;
-        Tue, 19 Jan 2021 01:26:15 +0100 (CET)
-Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: i2c: Add IMX300 CMOS
- sensor binding
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org
-References: <20210113182934.444727-1-angelogioacchino.delregno@somainline.org>
- <20210113182934.444727-3-angelogioacchino.delregno@somainline.org>
- <20210116234404.GX850@valkosipuli.retiisi.org.uk>
- <b681819b-1fc9-a6ea-bb20-f234dcdb3cb7@somainline.org>
- <20210118223636.GA3@valkosipuli.retiisi.org.uk>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <b130e389-90a2-e6d5-3000-5b9b9067bcda@somainline.org>
-Date:   Tue, 19 Jan 2021 01:26:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1730600AbhASAeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 19:34:12 -0500
+Received: from mail-pl1-f174.google.com ([209.85.214.174]:40460 "EHLO
+        mail-pl1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730466AbhASAeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 19:34:10 -0500
+Received: by mail-pl1-f174.google.com with SMTP id q4so9520520plr.7;
+        Mon, 18 Jan 2021 16:33:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7rDRopC82DR8SCQXLHu8GoZEQ0kPieDkm9TRSwV7rgQ=;
+        b=JflsUfBhE6kxLUilWgzMvx8TmgDMoeaEPcWtb/s7+yrD8UQbS4/59VNRdHrq8yywAE
+         vU6E1YmjfvwORiDqn/qWDtMZVHFp7q4C75sJhGyJQZBm6ESI78l+9tc8iTfQtHKek1zE
+         5wuDPrH2e9agrChBp2EjnGJxuRvw7u2XXY0kNzLBRiqu7HdILxczU7v7IzEAtuklZyNh
+         4S581jai0qvLaQEnEfATq1+rYHd5Ug4NA0sy0WS0zTpc/h6TIZXPzh4uvThgB0VDHeM2
+         zcfBiTPsOsduOM9eYTNwJqe0pryP6Eo6ewU4yZy4OQ3gQvdxZx3tp2a57dTibToy/aNN
+         wSmQ==
+X-Gm-Message-State: AOAM531IaizIRcKKdMXh2MEtxX+BbUMn433MR/uJIA+d00G9cey+Mgsm
+        cmeoVwIVL6jYlZ1o+vvKum8iunU5RRs=
+X-Google-Smtp-Source: ABdhPJyBXIZoQqYjC0C0/6S4LO7EIwuy8qQ6NnQiHWF1V75m5VxXkjNQNn9E7wQwxr++clKqK5IfgQ==
+X-Received: by 2002:a17:90a:5209:: with SMTP id v9mr2126839pjh.8.1611016409366;
+        Mon, 18 Jan 2021 16:33:29 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
+        by smtp.gmail.com with ESMTPSA id x81sm6844446pfc.46.2021.01.18.16.33.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jan 2021 16:33:28 -0800 (PST)
+Date:   Mon, 18 Jan 2021 16:33:26 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     mdf@kernel.org, trix@redhat.com, robh+dt@kernel.org,
+        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, git@xilinx.com,
+        chinnikishore369@gmail.com,
+        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
+Message-ID: <YAYo1ksLfMMNxPuL@epycbox.lan>
+References: <20210118024318.9530-1-nava.manne@xilinx.com>
+ <20210118024318.9530-3-nava.manne@xilinx.com>
 MIME-Version: 1.0
-In-Reply-To: <20210118223636.GA3@valkosipuli.retiisi.org.uk>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210118024318.9530-3-nava.manne@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/01/21 23:40, Sakari Ailus ha scritto:
-> On Sun, Jan 17, 2021 at 06:51:04PM +0100, AngeloGioacchino Del Regno wrote:
->> Il 17/01/21 00:44, Sakari Ailus ha scritto:
->>> Hi AngeloGioacchino,
->>>
->>> On Wed, Jan 13, 2021 at 07:29:34PM +0100, AngeloGioacchino Del Regno wrote:
->>>> Add YAML device tree binding for IMX300 CMOS image sensor, and
->>>> the relevant MAINTAINERS entries.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>>> ---
->>>>    .../bindings/media/i2c/sony,imx300.yaml       | 112 ++++++++++++++++++
->>>>    MAINTAINERS                                   |   7 ++
->>>>    2 files changed, 119 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
->>>> new file mode 100644
->>>> index 000000000000..4fa767feea80
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
->>>> @@ -0,0 +1,112 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/media/i2c/sony,imx300.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Sony 1/2.3-Inch 25Mpixel Stacked CMOS Digital Image Sensor
->>>> +
->>>> +maintainers:
->>>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>>> +
->>>> +description: |-
->>>> +  The Sony IMX300 is a 1/2.3-inch Stacked CMOS (Exmor-RS) digital image
->>>> +  sensor with a pixel size of 1.08um and an active array size of
->>>> +  5948H x 4140V. It is programmable through I2C interface at address 0x10.
->>>> +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
->>>> +  4 data lanes.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: sony,imx300
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    maxItems: 1
->>>
->>> Please add assigned clock related properties; see
->>> Documentation/driver-api/media/camera-sensor.rst .
->>>
->> Will do!
->>
->>>> +
->>>> +  vdig-supply:
->>>> +    description:
->>>> +      Digital I/O voltage supply, 1.15-1.20 volts
->>>> +
->>>> +  vana-supply:
->>>> +    description:
->>>> +      Analog voltage supply, 2.2 volts
->>>> +
->>>> +  vddl-supply:
->>>> +    description:
->>>> +      Digital core voltage supply, 1.8 volts
->>>> +
->>>> +  reset-gpios:
->>>> +    description: |-
->>>> +      Reference to the GPIO connected to the xclr pin, if any.
->>>> +      Must be released (set high) after all supplies are applied.
->>>> +
->>>> +  # See ../video-interfaces.txt for more details
->>>> +  port:
->>>> +    type: object
->>>> +    properties:
->>>> +      endpoint:
->>>> +        type: object
->>>> +
->>>> +        properties:
->>>> +          data-lanes:
->>>> +            description: |-
->>>> +              The driver only supports four-lane operation.
->>>
->>> This can be removed as bindings describe hardware, not driver operation.
->>>
->> Ack.
->>
->>>> +            items:
->>>> +              - const: 0
->>>> +              - const: 1
->>>> +              - const: 2
->>>> +              - const: 3
->>>
->>> Two lanes here, too?
->>>
->>
->> The driver only supports four-lane operation.
->> I am 100% sure that this sensor can also work with two lanes, but it needs
->> special configuration which I'm not able to produce, nor test.
->>
->> As you may imagine (and as you can read in the driver itself), all of this
->> was reverse-engineering work, as Sony has never released any datasheet for
->> this sensor - and I have a hunch - they never will (but that's another
->> story).
-> 
-> That's all fine. The bindings describe the hardware, not the driver's
-> capabilities.
-> 
+Hi Nava,
 
-Ok, will add the dual-lane configuration!
+On Mon, Jan 18, 2021 at 08:13:18AM +0530, Nava kishore Manne wrote:
+> This patch adds driver for versal fpga manager.
+Nit: Add support for Xilinx Versal FPGA manager
+> 
+> PDI source type can be DDR, OCM, QSPI flash etc..
+No idea what PDI is :)
+> But driver allocates memory always from DDR, Since driver supports only
+> DDR source type.
+> 
+> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> ---
+>  drivers/fpga/Kconfig       |   8 ++
+>  drivers/fpga/Makefile      |   1 +
+>  drivers/fpga/versal-fpga.c | 149 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 158 insertions(+)
+>  create mode 100644 drivers/fpga/versal-fpga.c
+> 
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index 5645226ca3ce..9f779c3a6739 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -216,4 +216,12 @@ config FPGA_MGR_ZYNQMP_FPGA
+>  	  to configure the programmable logic(PL) through PS
+>  	  on ZynqMP SoC.
+>  
+> +config FPGA_MGR_VERSAL_FPGA
+> +        tristate "Xilinx Versal FPGA"
+> +        depends on ARCH_ZYNQMP || COMPILE_TEST
+> +        help
+> +          Select this option to enable FPGA manager driver support for
+> +          Xilinx Versal SOC. This driver uses the versal soc firmware
+> +          interface to load programmable logic(PL) images
+> +          on versal soc.
+>  endif # FPGA
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index d8e21dfc6778..40c9adb6a644 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
+> +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      += versal-fpga.o
+>  obj-$(CONFIG_ALTERA_PR_IP_CORE)         += altera-pr-ip-core.o
+>  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    += altera-pr-ip-core-plat.o
+>  
+> diff --git a/drivers/fpga/versal-fpga.c b/drivers/fpga/versal-fpga.c
+> new file mode 100644
+> index 000000000000..2a42aa78b182
+> --- /dev/null
+> +++ b/drivers/fpga/versal-fpga.c
+> @@ -0,0 +1,149 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2021 Xilinx, Inc.
+> + */
+> +
+> +#include <linux/dma-mapping.h>
+> +#include <linux/fpga/fpga-mgr.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/string.h>
+> +#include <linux/firmware/xlnx-zynqmp.h>
+> +
+> +/* Constant Definitions */
+> +#define PDI_SOURCE_TYPE	0xF
+> +
+> +/**
+> + * struct versal_fpga_priv - Private data structure
+> + * @dev:	Device data structure
+> + * @flags:	flags which is used to identify the PL Image type
+> + */
+> +struct versal_fpga_priv {
+> +	struct device *dev;
+> +	u32 flags;
+This seems unused ... please introduce them when/if you start using
+them.
+> +};
+> +
+> +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
+> +				      struct fpga_image_info *info,
+> +				      const char *buf, size_t size)
+> +{
+> +	struct versal_fpga_priv *priv;
+> +
+> +	priv = mgr->priv;
+> +	priv->flags = info->flags;
+? What uses this ? It seems this function could just be 'return 0' right
+now.
+> +
+> +	return 0;
+> +}
+> +
+> +static int versal_fpga_ops_write(struct fpga_manager *mgr,
+> +				 const char *buf, size_t size)
+> +{
+> +	struct versal_fpga_priv *priv;
+> +	dma_addr_t dma_addr = 0;
+> +	char *kbuf;
+> +	int ret;
+> +
+> +	priv = mgr->priv;
+> +
+> +	kbuf = dma_alloc_coherent(priv->dev, size, &dma_addr, GFP_KERNEL);
+> +	if (!kbuf)
+> +		return -ENOMEM;
+> +
+> +	memcpy(kbuf, buf, size);
+> +
+> +	wmb(); /* ensure all writes are done before initiate FW call */
+> +
+> +	ret = zynqmp_pm_load_pdi(PDI_SOURCE_TYPE, dma_addr);
+> +
+> +	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
+> +
+> +	return ret;
+> +}
+> +
+> +static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
+> +					  struct fpga_image_info *info)
+> +{
+> +	return 0;
+> +}
+> +
+> +static enum fpga_mgr_states versal_fpga_ops_state(struct fpga_manager *mgr)
+> +{
+> +	return FPGA_MGR_STATE_OPERATING;
+Is that always the case? Shouldn't that be FPGA_MGR_STATE_UNKNOWN?
+> +}
+> +
+> +static const struct fpga_manager_ops versal_fpga_ops = {
+> +	.state = versal_fpga_ops_state,
+> +	.write_init = versal_fpga_ops_write_init,
+> +	.write = versal_fpga_ops_write,
+> +	.write_complete = versal_fpga_ops_write_complete,
+> +};
+> +
+> +static int versal_fpga_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct versal_fpga_priv *priv;
+> +	struct fpga_manager *mgr;
+> +	int err, ret;
+Please pick one, err or ret. 'err' seems unused?
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->dev = dev;
+> +	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
+> +	if (ret < 0) {
+> +		dev_err(dev, "no usable DMA configuration");
+Nit: "no usable DMA configuration\n"
+> +		return ret;
+> +	}
+> +
+> +	mgr = devm_fpga_mgr_create(dev, "Xilinx Versal FPGA Manager",
+> +				   &versal_fpga_ops, priv);
+> +	if (!mgr)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, mgr);
+> +
 
->>
->>>> +
->>>> +          clock-noncontinuous: true
->>>> +
->>>> +          link-frequencies:
->>>> +            $ref: /schemas/types.yaml#/definitions/uint64-array
->>>> +            description:
->>>> +              Allowed data bus frequencies. The driver currently needs
->>>> +              to switch between 780000000 and 480000000 Hz in order to
->>>> +              guarantee functionality of all modes.
->>>
->>> You can omit this description, too.
->>>
->>
->> The intention here was to be clear and provide as much information as I
->> could gather during the very time-consuming reverse engineering process that
->> took place in the making of this driver.
->>
->> But okay, I will remove this.
-> 
-> Again, this is about the hardware, not the driver. That information is also
-> part of the driver.
-> 
+Replace this part:
+> +	err = fpga_mgr_register(mgr);
+> +	if (err) {
+> +		dev_err(dev, "unable to register FPGA manager");
+> +		fpga_mgr_free(mgr);
+> +		return err;
+> +	}
 
-Sure! Removing for the next version!
+with:
+	return devm_fpga_mgr_register(mgr);
 
->>
->>>> +
->>>> +        required:
->>>> +          - data-lanes
->>>> +          - link-frequencies
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - clocks
->>>> +  - vana-supply
->>>> +  - vdig-supply
->>>> +  - vddl-supply
->>>
->>> Are the regulators really required? I'm not quite sure about the
->>> established practices; still the common case is that one or two of these
->>> are hard-wired.
->>>
->>
->> On all the Sony phones that I have (....many), with MSM8956, MSM8996,
->> SDM630, equipped with the IMX300 camera assy, none of these three are
->> hard-wired: sometimes they're wired to the LDOs of the PMIC, sometimes
->> they're wired to fixed LDOs, enabled through GPIOs (fixed-regulator binding
->> in this case).
->>
->> So.. yeah, they're really required.
-> 
-> As noted, that depends on the board. You just happen to have some where
-> they are not hard-wired.
-> 
+I tried to get rid of the boilerplate, since every driver repeats it
+(and above calling fpga_mgr_free(mgr) on a devm_fpga_mgr_create()
+created FPGA manager is wrong?) :)
+> +
+> +	return 0;
+> +}
+> +
 
-Sure, but then the supplies are required properties, since we are
-describing the hardware: it can't work without power.
-
-Besides that, when a board supplies power through fixed always-on
-rails, DT users will specify a fixed-regulator binding with the
-right voltages: this is a good habit for describing the board in DT.
-
->>
->>>> +  - port
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    i2c0 {
->>>> +        #address-cells = <1>;
->>>> +        #size-cells = <0>;
->>>> +
->>>> +        imx300: sensor@10 {
->>>> +            compatible = "sony,imx300";
->>>> +            reg = <0x10>;
->>>> +            clocks = <&imx300_xclk>;
->>>> +            vana-supply = <&imx300_vana>;   /* 2.2v */
->>>> +            vdig-supply = <&imx300_vdig>;   /* 1.2v */
->>>> +            vddl-supply = <&imx300_vddl>;   /* 1.8v */
->>>> +
->>>> +            port {
->>>> +                imx300_0: endpoint {
->>>> +                    remote-endpoint = <&csi1_ep>;
->>>> +                    data-lanes = <0 1 2 3>;
->>>> +                    clock-noncontinuous;
->>>> +                    link-frequencies = /bits/ 64 <780000000 480000000>;
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +    };
->>>> +
->>>> +...
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index ad9abb42f852..5e0f08f48d48 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -16633,6 +16633,13 @@ T:	git git://linuxtv.org/media_tree.git
->>>>    F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
->>>>    F:	drivers/media/i2c/imx290.c
->>>> +SONY IMX300 SENSOR DRIVER
->>>> +M:	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>>> +L:	linux-media@vger.kernel.org
->>>
->>> Please also add the git tree.
->>>
->>> Ideally also the MAINTAINERS change comes with the first patch adding the
->>> files, which should be the DT bindings. I.e. just reverse the order of the
->>> patches.
->>>
->>
->> I haven't added it because last time I did that I got reviews saying that if
->> I'm not the owner of the git tree I shall not put it in.
->> Though, if that's a requirement for media, then I didn't know that...
+Then
+> +static int versal_fpga_remove(struct platform_device *pdev)
+> +{
+> +	struct fpga_manager *mgr = platform_get_drvdata(pdev);
+> +
+> +	fpga_mgr_unregister(mgr);
+> +	fpga_mgr_free(mgr);
+> +
+> +	return 0;
+> +}
+drop this since cleanup is now automatic.
+> +
+> +static const struct of_device_id versal_fpga_of_match[] = {
+> +	{ .compatible = "xlnx,versal-fpga", },
+> +	{},
+> +};
+> +
+Nit: Drop the newline
+> +MODULE_DEVICE_TABLE(of, versal_fpga_of_match);
+> +
+> +static struct platform_driver versal_fpga_driver = {
+> +	.probe = versal_fpga_probe,
+> +	.remove = versal_fpga_remove,
+> +	.driver = {
+> +		.name = "versal_fpga_manager",
+> +		.of_match_table = of_match_ptr(versal_fpga_of_match),
+> +	},
+> +};
+> +
+Nit: Drop the newline
+> +module_platform_driver(versal_fpga_driver);
+> +
+> +MODULE_AUTHOR("Nava kishore Manne <nava.manne@xilinx.com>");
+> +MODULE_AUTHOR("Appana Durga Kedareswara rao <appanad.durga.rao@xilinx.com>");
+> +MODULE_DESCRIPTION("Xilinx Versal FPGA Manager");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.18.0
 > 
-> The documentation in MAINTAINERS doesn't say that at least.
-> 
-> I think it'd be useful to have it.
-> 
->>
->>>> +S:	Maintained
->>>> +F:	Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
->>>> +F:	drivers/media/i2c/imx300.c
->>>> +
->>>>    SONY IMX319 SENSOR DRIVER
->>>>    M:	Bingbu Cao <bingbu.cao@intel.com>
->>>>    L:	linux-media@vger.kernel.org
->>>
->>
->> Thank you for your review!
-> 
-> You're welcome!
-> 
-
+Thanks,
+Moritz
