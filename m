@@ -2,154 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C070F2FBEBB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 19:18:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFC312FBEDD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 19:26:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388823AbhASSRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 13:17:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45220 "EHLO
+        id S2403809AbhASSYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 13:24:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392438AbhASSQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 13:16:52 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2379BC0617A0;
-        Tue, 19 Jan 2021 10:16:20 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id q4so10974493plr.7;
-        Tue, 19 Jan 2021 10:16:20 -0800 (PST)
+        with ESMTP id S2392393AbhASST4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 13:19:56 -0500
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC317C0613C1
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 10:19:15 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id f6so16853116ybq.13
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 10:19:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=yO2k+wmEJJ8xH/LdKcVR5jElonjFD3LzbOdCVG89a24=;
-        b=JuAp4fE1Om8r2jXXlMjO5EQi5ELsiLrAOz/7Zy1G6MLGJZu8BbcFwCxCtNHSUrn1jj
-         MmAgtIXKIPipjExj1ugO237PHHtr7KE34SawUz5NB/gwppYKIcabT5jjH6rEn489hG83
-         Twr9iCkqfYBF6/5myQHtdrcFuDYyeMk+PZEoL1SnFS7OzMNVmYArnSDx6s+tCQlvDqCN
-         6xQVc4dtO2sI24n/ZN3pbXuADpSQFPslbOAnByTeZLqLeijMXFupmKD0uTal0iwxDJsM
-         DGSJKnbxDZGnib4SEKELE+G0FY2R3UdBGwyAV22p7zhKnNuggW5IsRdFUN4vGoctgcKS
-         TMQw==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mHK63mNEb6W4AaDercWEjXkLeIiYVU3MkZRoAzxz/mw=;
+        b=TIKhKTRiWi86JaBOFJSF4irAc52V20kHLuNqvziTTpBjGp3nKdshbwFVlPqC5MQiSd
+         iuJl1Kioq0DuEj4Ij/cpA3HZALUgN1HS/TA5uG2KrYah/3L9lpuktzLLoiA365+IWEHf
+         d8iCmmDNoFSWNDuq/1zYACTbZNPeSSiMa/H28opAMGaxfB1dutjMLQ/Z32aF+wP+rWBC
+         zBTi/wLEuNcg/kVVduAO045TnKU1GD6+fDtWxuNWScZBSc+d2jwNrQV4B+00nOS0cBhU
+         02Oki33NxIM339vFFJbj/pkY4t6smCaD+O37PWEw5vD8+tAi1Edp9oQOctWwi3Xr6Ylf
+         Hxmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=yO2k+wmEJJ8xH/LdKcVR5jElonjFD3LzbOdCVG89a24=;
-        b=tvVZ+XiEXpmPnk5Xv6+ARucPt2VssILU20tFcZnxgztVo8YnyrJgTTJium7SNiPUvv
-         cpQXA94wI2FKsjWeH+AI2HXEIA13EAh/zj0v1aohnTn14OXv5euGo/ERDdwqNY2kexx+
-         Nb4UMA/dE9bmCUNkB8IraVHsADkjALmQXPHsVRSJC9Ohhi6a+VkNactrieV0sf6muj/c
-         YPJ23quoq5nRiaEwPUzSNAq+kLiRJtP1FkPYhXjtdRmk2r+ZY+x2aTZlXUJWyhk0yRpg
-         /MzrfI354q3zujLa3YoTsqgyoibehQeitReyZA5FXaUy0p7GyzbHZPO3NqTn7g6cY3Hd
-         a+Vg==
-X-Gm-Message-State: AOAM531mlBd/ZobnFJoqllNfH9i9Xs0QWK6CuxF0fQIY+20IxmNSoQni
-        wp3TEJHQYQki4vkbpQFKb+80kjJcOZE=
-X-Google-Smtp-Source: ABdhPJzcggUh79T/vPrFJplztZOgRtqaMxMfiR3jkAw2gStudADC7DJRMqW/nK/e4Tb6fVJmNFZXqw==
-X-Received: by 2002:a17:90b:4d09:: with SMTP id mw9mr990860pjb.199.1611080179615;
-        Tue, 19 Jan 2021 10:16:19 -0800 (PST)
-Received: from [10.230.29.29] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id k128sm8187958pfd.137.2021.01.19.10.16.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jan 2021 10:16:18 -0800 (PST)
-Subject: Re: [PATCH v2 2/2] serial: 8250: Add new 8250-core based Broadcom STB
- driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Al Cooper <alcooperx@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20210115211543.33563-1-alcooperx@gmail.com>
- <20210115211543.33563-3-alcooperx@gmail.com>
- <CAHp75VdQPQK8jTF3QDKx6mF1QzOg-qiuHrTiojnWn7GskokfoA@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <71d58a3e-2707-69d7-8074-c67235912e06@gmail.com>
-Date:   Tue, 19 Jan 2021 10:16:16 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.6.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mHK63mNEb6W4AaDercWEjXkLeIiYVU3MkZRoAzxz/mw=;
+        b=jX8zwye9Gjbir92O1LUw0K9iPEa43cqY+Xz8heShJhvNzowNm8NcaJlDJrrfoTcG30
+         dyfrZhxw3tiKdjGsD10N7DP/ncHWPmYNbsy11qwMHZdE/463Rz0FzWCKND8uoI6lZMp8
+         D+SY3Fgd3yMmLrZtyN5b77HzvrA/1nBqYaaxK60iY84ssVV/n5FIApNOPXiBfZuX55im
+         wlrzjoUuXbuqep9AQEqh85ZZb3Juf5kIeWocLaXw0mFiMXz5oysqgEzzmYLOWgfOrWOG
+         3tiCfkH84khUFJdqasIC4batwoMymoGEyS0OPuo8QR+MRcgqnMw9+lbB28eG5BBp9cpb
+         G0ag==
+X-Gm-Message-State: AOAM532/FMMKjq1sjs3d4gYlY6FRxmgxO29npX6jMkH17bE9kGyEnwjR
+        QdMEH+uBQWL+nBI4dAcrQXqXHeDaEBJETeTcpbdQYA==
+X-Google-Smtp-Source: ABdhPJyLm5a7tvFOQ9GLnScwek6wKmCIHJ18QWGEYTshZYKHDn18Z57uCs9I6lcgQx2VH3iG7/oNB3pahuCum8iP7M8=
+X-Received: by 2002:a25:77d4:: with SMTP id s203mr8612886ybc.32.1611080355041;
+ Tue, 19 Jan 2021 10:19:15 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAHp75VdQPQK8jTF3QDKx6mF1QzOg-qiuHrTiojnWn7GskokfoA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210115210159.3090203-1-saravanak@google.com>
+ <CACRpkdYrzaFuWkbTe7Fmos4Bk4Ojt6wbqayDjyrS7sf98P-Rbg@mail.gmail.com>
+ <CAGETcx9t3R-k0ttiaBUqcveqnXMX75xuTcKPSo9J6WJOfgSP8w@mail.gmail.com>
+ <CAMuHMdUN7+O28Xz5rkPwR2RuSA+o_E2VcWsz_9+kzy4=0Jnb1g@mail.gmail.com>
+ <CACRpkdZqSm-xfo8a8aFUe-Mbaw9tM+OmCAF3KWjOVDfC=oWj+Q@mail.gmail.com>
+ <CAGETcx-Vp0BpYbpPjwsmOv0q5ba1mJvfsPEZ9Oi2Rmx67udu7A@mail.gmail.com> <CAMuHMdUc+RCK=t02QhtWRekoYCx2pHnMyaTYiC0=SxKQVrqDHQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdUc+RCK=t02QhtWRekoYCx2pHnMyaTYiC0=SxKQVrqDHQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 19 Jan 2021 10:18:38 -0800
+Message-ID: <CAGETcx_Ud+UJcdWkCH-WzEGjH4voRBoO++np7ARSi5Gnh51jYg@mail.gmail.com>
+Subject: Re: [PATCH v1] of: property: Add fw_devlink support for "gpio" and
+ "gpios" binding
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 19, 2021 at 10:10 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Saravana,
+>
+> On Tue, Jan 19, 2021 at 6:54 PM Saravana Kannan <saravanak@google.com> wrote:
+> > On Tue, Jan 19, 2021 at 2:20 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > On Tue, Jan 19, 2021 at 9:50 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > Can we pull this into driver-core-next please? It fixes issues on some
+> > > > > boards with fw_devlink=on.
+> > > >
+> > > > On r8a77951-salvator-xs.dts, it introduces one more failure:
+> > > >
+> > > >     OF: /soc/i2c@e66d8000/gpio@20/pcie-sata-switch-hog: could not get
+> > > > #gpio-cells for /cpus/cpu@102
+> >
+> > Geert,
+> >
+> > One good thing is that it's noticing this being weird and ignoring it
+> > in your particular board. I *think* it interprets the "7" as a phandle
+> > and that's cpu@102 and realizes it's not a gpio-controller. For at
+> > least in your case, it's a safe failure.
+>
+> While 7 is the GPIO index, relative to the current GPIO controller,
+> represented by the parent device node.
+>
+> > > > Seems like it doesn't parse gpios properties in GPIO hogs correctly.
+> > >
+> > > Could it be that the code assumes no self-referencing phandles?
+> > > (Just guessing...)
+> >
+> > Ok I tried to understand what gpio-hogs means. It's not fully clear to
+> > me. But it looks like if a gpio-controller has a gpio-hog, then it
+> > doesn't have/need gpio-cells? Is that right?
+>
+> A GPIO hog is a way to fix (strap) a GPIO line to a specific value.
+> Usually this is done to enable a piece of hardware on a board, or
+> control a mux.
+>
+> The controller still needs gpio-cells.
+>
+> > So if a gpio-controller has a gpio-hog, can it ever be referred to by
+> > another consumer in DT using blah-gpios = ...? If so, I don't see any
+> > obvious code that's handling the missing gpio-cells in this case.
+>
+> Yes it can.
+>
+> > Long story short, please help me understand gpio-hog in the context of
+> > finding dependencies in DT.
+>
+> The hog references a GPIO on the current controller.  As this is always
+> the parent device node, the hog's gpios properties lack the phandle.
+>
+> E.g. a normal reference to the first GPIO of gpio5 looks like:
+>
+>     gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+>
+> A hog on the first GPIO of gpio5 would be a subnode of gpio5,
+> and would just use:
+>
+>     gpios = <0 GPIO_ACTIVE_LOW>;
+>
+> instead.
+>
+> Hope this helps.
 
+I'm still not sure if I've understood this fully, but does this just
+boil down to:
+Don't parse [name-]gpio[s] to find dependencies if the node has
+gpio-hog property?
 
-On 1/19/2021 7:21 AM, Andy Shevchenko wrote:
-> On Fri, Jan 15, 2021 at 11:19 PM Al Cooper <alcooperx@gmail.com> wrote:
->>
->> Add a UART driver for the new Broadcom 8250 based STB UART. The new
->> UART is backward compatible with the standard 8250, but has some
->> additional features. The new features include a high accuracy baud
->> rate clock system and DMA support.
->>
->> The driver will use the new optional BAUD MUX clock to select the best
->> one of the four master clocks (81MHz, 108MHz, 64MHz and 48MHz) to feed
->> the baud rate selection logic for any requested baud rate.  This allows
->> for more accurate BAUD rates when high speed baud rates are selected.
->>
->> The driver will use the new UART DMA hardware if the UART DMA registers
->> are specified in Device Tree "reg" property. The DMA functionality can
->> be disabled on kernel boot with the argument:
->> "8250_bcm7271.disable_dma=Y".
->>
->> The driver also set the UPSTAT_AUTOCTS flag when hardware flow control
->> is enabled. This flag is needed for UARTs that don't assert a CTS
->> changed interrupt when CTS changes and AFE (Hardware Flow Control) is
->> enabled.
->>
->> The driver also contains a workaround for a bug in the Synopsis 8250
->> core. The problem is that at high baud rates, the RX partial FIFO
->> timeout interrupt can occur but there is no RX data (DR not set in
->> the LSR register). In this case the driver will not read the Receive
->> Buffer Register, which clears the interrupt, and the system will get
->> continuous UART interrupts until the next RX character arrives. The
->> fix originally suggested by Synopsis was to read the Receive Buffer
->> Register and discard the character when the DR bit in the LSR was
->> not set, to clear the interrupt. The problem was that occasionally
->> a character would arrive just after the DR bit check and a valid
->> character would be discarded. The fix that was added will clear
->> receive interrupts to stop the interrupt, deassert RTS to insure
->> that no new data can arrive, wait for 1.5 character times for the
->> sender to react to RTS and then check for data and either do a dummy
->> read or a valid read. Sysfs error counters were also added and were
->> used to help create test software that would cause the error condition.
->> The counters can be found at:
->> /sys/devices/platform/rdb/*serial/rx_bad_timeout_late_char
->> /sys/devices/platform/rdb/*serial/rx_bad_timeout_no_char
-> 
-> Brief looking into the code raises several questions:
->  - is it driver from the last decade?
-
-Work on this driver started back in 2018, that was indeed the last decade.
-
->  - why it's not using what kernel provides?
->  - we have a lot of nice helpers:
->    - DMA Engine API
-
-Not sure this makes sense, given that the DMA hardware that was added to
-this UART block is only used by the UART block and no other pieces of HW
-in the system, nor will they ever be. Not sure it makes sense to pay the
-cost of an extra indirection and subsystem unless there are at least two
-consumers of that DMA hardware to warrant modeling it after a dmaengine
-driver. I also remember that Al researched before whether 8250_dma.c
-could work, and came to the conclusion that it would not, but I will let
-him comment on the specifics.
-
-
->    - BIT() and GENMASK() macros
->    - tons of different helpers like regmap API (if you wish to dump
-> registers via debugfs)
-> 
-> Can you shrink this driver by 20-30% (I truly believe it's possible)
-> and split DMA driver to drivers/dma (which may already have something
-> similar there)?
-
-See previous response.
--- 
-Florian
+-Saravana
