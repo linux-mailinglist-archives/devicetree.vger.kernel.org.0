@@ -2,123 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16E352FC5B5
+	by mail.lfdr.de (Postfix) with ESMTP id F006F2FC5B7
 	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 01:24:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726443AbhATAVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 19:21:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43100 "EHLO
+        id S1727088AbhATAWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 19:22:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391420AbhASNpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 08:45:44 -0500
-Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EED8C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 05:43:29 -0800 (PST)
-Received: by mail-ua1-x934.google.com with SMTP id a31so6661474uae.11
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 05:43:29 -0800 (PST)
+        with ESMTP id S2387683AbhASNnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 08:43:51 -0500
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F9B7C061574;
+        Tue, 19 Jan 2021 05:43:08 -0800 (PST)
+Received: by mail-io1-xd36.google.com with SMTP id x21so21368721iog.10;
+        Tue, 19 Jan 2021 05:43:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iN6LdNddtCPvRlGXitGPbToLS1CEl0fCsvQKN0BpriY=;
-        b=m785Q8QxruIQgi3wqou/VxiBLJ/MVprrsoEl26S11OjFrdkVNeBiBSQzbWq5wc3Bnk
-         WebjUhGaBZup0HmRhG1iHJWgPSiFnLZyBzGWNI20XYsn0k5hKcZiKhImt7Ma53urQp36
-         Ks0JtGiJq+9ofbOLlSzc0kEaziHNjCAEr7Sz5mI5NogFbrmG7T7P87zGcBBsxFuKgqRL
-         UkP3EvyYE72XCvWqmms377Treyd3hnNcDperSD7wzNJ6RWRciyYfh7wdpACYJEJSpEs9
-         Xt1aHHTKD5GTRaT1mnwWEyAqr2PoRhM3/wJJgFlU3SZldkU0vszqgdYfJurQCU0hPcoJ
-         2VRQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XvhxARzPFutdg81T930cbyQKfkMbVSUeQ1+BndRwFnQ=;
+        b=aEkdXNXA7u+6R0tmTB5TEzHGH/YPncnqWAADUYnAzEkOgAiRFQ5dsYKdY31pRYPeZG
+         5Q2KYd9W2nH+k1TEW2PbbBUO25RqFzfqE2ti3pm5DKdDwL0xwb7f/7jsK4ueGn8LR7MQ
+         Z/9umkcqB+nNGpZ4BMKKRi2nHMVhCd+vTE2Yye0+iMTT4wlyWW/ePXueDZRGxWs2CYbI
+         p6cm3ExSAF4X7Cw0I2nxlWThv0UkhN1dd2G2uU/cKFw/k2kJ5qspOsuaULL34nBYNcp0
+         yOj/34tYw1ym0Fk+NVdv6DgLoKhU/XB5RERhUfzTdr2VongHOfv21axuMSaV9eVbLgEf
+         2Byw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iN6LdNddtCPvRlGXitGPbToLS1CEl0fCsvQKN0BpriY=;
-        b=jkAiVndm2mvD8DqBfx3OYrt0xgUVDy30EVnxC9hFRy8WytfwG3e8e+kLqUZoa75lVB
-         Bg6tawAMes1yUxZp6O4a8KGzEPrVmHl/fWNOsSuDkizDK8E0nG861mV3KKrZihGU0Cgy
-         IuMRgLHs6OwElRG8596iwS7qji0OEISJFWDAD3okp8LMubWIfFb9CMGmYTFDlPZ8SdyV
-         b0evJ41Ntz+meV6KyGAWqB9S+xAD55hS7gkDSoo70HQAW77v7y56IqDzKYVy2A1nVRuI
-         L7mf0nMOHquNGutH1Ag6FYB6dHIBbaPrlzs+2TFrrpcLQ7Eagdy9fz9+5WO0Psx/SlNS
-         1nVA==
-X-Gm-Message-State: AOAM5313HOhj0BBzqdggxpvUTPrWVuDgr5pTFmBBh4Ybc+8lmog7APm+
-        kmTlxPse/ElgU/NodgNFNgE8p85imAz98gCblD8VkA==
-X-Google-Smtp-Source: ABdhPJy8YfW3TY12bJa5OWZwiU4SCjJkJNpC1EcV4z3zof+egZ29HsMFioSINO1T9lcPwSbYO0VGk61l1zVyHuRcmlQ=
-X-Received: by 2002:a9f:204e:: with SMTP id 72mr2102277uam.19.1611063808290;
- Tue, 19 Jan 2021 05:43:28 -0800 (PST)
-MIME-Version: 1.0
-References: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
-In-Reply-To: <20210114152700.21916-1-muhammad.husaini.zulkifli@intel.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 19 Jan 2021 14:42:52 +0100
-Message-ID: <CAPDyKFrzg-mXTEQUd2oZiiSvbn29O+AGDC0VVDjbSQo6YOji8A@mail.gmail.com>
-Subject: Re: [PATCH v1 0/9] mmc: sdhci-of-arasan: Add UHS-1 support for Keem
- Bay SOC
-To:     Muhammad Husaini Zulkifli <muhammad.husaini.zulkifli@intel.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XvhxARzPFutdg81T930cbyQKfkMbVSUeQ1+BndRwFnQ=;
+        b=SuQq/2Ew9Mrr56MxHBJhfzV8c+FA14J+ruBQxJDOA/Nl1fwiabyNvmPg58Vzg9WFyA
+         gstzShkckoK7m8epjGGtiUOqJdme7do9IQ/xc7nhHW7kWU5dPaQUJyDZ7r1yaQ8oRDFb
+         BdCzjED7puk8rq6YoCjGXsWjq4pmN3Hfq3CjyBqkssP9E4rs2FcrlQpJh1PYqte+x3+g
+         Ptede7tQ1GxTH6qvQaVM3ugcM1fCiJY7KzrRVZuCIllwMcld7hxxrUrvCFz6aAoeqo0S
+         qawZNTGSJiRZi0fsfY54S1yuOTgY5XVNiEwU4Z4GmGEH4h6cpU6rHnqg0HwcraAowaS/
+         wzoA==
+X-Gm-Message-State: AOAM531HXEn80pfRCWNEfb2qfHWfRA1ElYccknBDPVfj/XOf+PvsXhyW
+        QMtV9py3BTDf0KSa2hoU58k=
+X-Google-Smtp-Source: ABdhPJy4pjcts2A1oVS2TaVpQShOhvaywh1DfDHODNyq18hD1bAkwk0YEK4Wuh4EFbRGeEY6teQBrg==
+X-Received: by 2002:a02:969a:: with SMTP id w26mr3480063jai.96.1611063787372;
+        Tue, 19 Jan 2021 05:43:07 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:2386:3a11:421c:65a9])
+        by smtp.gmail.com with ESMTPSA id h14sm1795829ilh.63.2021.01.19.05.43.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 05:43:06 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Shevchenko, Andriy" <andriy.shevchenko@intel.com>,
-        Rashmi.A@intel.com, mahesh.r.vaidya@intel.com
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: imx8mn: Add fspi node
+Date:   Tue, 19 Jan 2021 07:42:57 -0600
+Message-Id: <20210119134258.774480-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Jan 2021 at 16:28, Muhammad Husaini Zulkifli
-<muhammad.husaini.zulkifli@intel.com> wrote:
->
-> Hi,
->
-> This patch series adds Ultra High Speed(UHS-1) Bus Speed Mode Support for Keem Bay SoC SD Card.
-> Summary of each patches as per below:
->
-> Patch 1: Use of_device_get_match_data() helper to get the match-data.
-> Patch 2: Convert to use np pointer instead of using pdev->dev.of_node.
-> Patch 3: Add struct device *dev in probe func(), so that dev pointer can be widely use in probe to make code more readable.
-> Patch 4: Change from dev_err to dev_err_probe() to avoid spamming logs when probe is deferred.
-> Patch 5: Export function to be use by device driver to configure i/o voltage rail output which communicate with Trusted Firmware.
-> Patch 6: Update phy and regulator supply for Keem Bay SoC.
-> Patch 7: Add DT Binding for Keem Bay SoC SD Regulator.
-> Patch 8: Add SD Regulator driver to support Keem Bay SoC. This is to model using standard regulator abstraction during voltage operation
-> as for Keem Bay SoC, i/o voltage rail need to be configure by setting specific bit in the AON_CFG1 Register.
-> AON_CFG1 Register is a secure register. Direct access to AON_CFG1 register will cause firewall violation in secure system.
-> Patch 9: Add Ultra High Speed (UHS-1) Support for Keem Bay SOC. For Keem Bay hardware, two regulators are been used to change the I/O bus line voltage which are "vqmmc-supply" and "sdvrail-supply".
->
-> All of these patches was tested with Keem Bay evaluation module board.
->
-> Kindly help to review this patch set.
->
-> Muhammad Husaini Zulkifli (9):
->   mmc: sdhci-of-arasan: use of_device_get_match_data()
->   mmc: sdhci-of-arasan: Convert to use np instead of pdev->dev.of_node
->   mmc: sdhci-of-arasan: Add structure device pointer in probe function
->   mmc: sdhci-of-arasan: Use dev_err_probe() to avoid spamming logs
->   firmware: keembay: Add support for Trusted Firmware Service call
->   dt-bindings: mmc: Update phy and regulator supply for Keem Bay SOC
->   dt-bindings: regulator: keembay: Add DT binding documentation
->   regulator: keembay: Add regulator for Keem Bay SoC
->   mmc: sdhci-of-arasan: Add UHS-1 support for Keem Bay SOC
->
->  .../devicetree/bindings/mmc/arasan,sdhci.yaml |   7 +-
->  .../bindings/regulator/keembay-regulator.yaml |  36 ++
->  drivers/mmc/host/sdhci-of-arasan.c            | 313 ++++++++++++++++--
->  drivers/regulator/Kconfig                     |  10 +
->  drivers/regulator/Makefile                    |   1 +
->  drivers/regulator/keembay-sd-regulator.c      | 112 +++++++
->  include/linux/firmware/intel/keembay.h        |  82 +++++
->  7 files changed, 532 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/regulator/keembay-regulator.yaml
->  create mode 100644 drivers/regulator/keembay-sd-regulator.c
->  create mode 100644 include/linux/firmware/intel/keembay.h
->
-> --
-> 2.17.1
->
+The i.MX8M Nano has the same Flexspi controller used in the i.MX8M
+Mini.  Add the node and disable it by default.
 
-Applied patch 1 to patch 4. I assume you will be respinning the rest?
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Thanks and kind regards
-Uffe
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index 3fac73779fdd..16ea50089567 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -889,6 +889,19 @@ usdhc3: mmc@30b60000 {
+ 				status = "disabled";
+ 			};
+ 
++			flexspi: spi@30bb0000 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "nxp,imx8mm-fspi";
++				reg = <0x30bb0000 0x10000>, <0x8000000 0x10000000>;
++				reg-names = "fspi_base", "fspi_mmap";
++				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MN_CLK_QSPI_ROOT>,
++					 <&clk IMX8MN_CLK_QSPI_ROOT>;
++				clock-names = "fspi", "fspi_en";
++				status = "disabled";
++			};
++
+ 			sdma1: dma-controller@30bd0000 {
+ 				compatible = "fsl,imx8mn-sdma", "fsl,imx8mq-sdma";
+ 				reg = <0x30bd0000 0x10000>;
+-- 
+2.25.1
+
