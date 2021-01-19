@@ -2,113 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B39D62FB4C2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 10:05:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3DDC2FB4CA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 10:07:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730754AbhASJDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 04:03:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54980 "EHLO mail.kernel.org"
+        id S1731339AbhASJEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 04:04:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55854 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731626AbhASI5s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 03:57:48 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0470123103;
-        Tue, 19 Jan 2021 08:57:05 +0000 (UTC)
+        id S1730808AbhASJER (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Jan 2021 04:04:17 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9743423103;
+        Tue, 19 Jan 2021 09:03:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611046628;
-        bh=FNcY0Ysa8mRAba5iHcXtcfQOnny/W/mDvHOHe7GEF0Q=;
+        s=k20201202; t=1611047017;
+        bh=agtIFYNs3lDgHvE0kjTIVWnuYq7hAEIToBhzatiNOvY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lpWQ49TouWfPuvM/2l87PgVTet3UyKx9kXsMTe8IcUcaf9NJxOooNf55QuaBflm58
-         QtF0WcrMXJmRPkbd7faM2Aw/41mG6G36eD2+EAnbZuue6Z0NXQj4j9L92zthdmTgKh
-         NjMDIVXk0DbnDgTGYH0CwfV+hRtqAeDnlgTTabeSUiO9E0gdsb704cuh6v8+T/qBjP
-         aWeD6T/T2YDup+KzPU5qCL0r8GEAA7FPfzb5zTNJeOUoVWuPdUJWlnM0+3EydtYUXv
-         N9LwHz3PMt5IWA2K5VgrzUfwr5uvSMekCEQtqGJk/ArYj+1P+zxClXmjRshvDA2Ars
-         2FkRPfNS12rHw==
-Date:   Tue, 19 Jan 2021 16:57:02 +0800
+        b=k2trKYpn8FrJbfRhuWgpHTOgwZD7qeKPALdYYWDY7ccGcQX18mMa27bjGkw/4imBg
+         r6fiEVXDoMm/iRR01ni1QotHdL+IUauEO+4GRFGOMKo/Dc0i51/2JiPank6AZrvCcL
+         rna8Dv0CT0hPCa7BBwNSCVL1vieOlZ5/XAQLaKZw1YdeiCdlz30U/+M88ro+eYxCQp
+         v8GLRCdDhv5YJRiWStaA6xQgnpTkb8ZryN7ySWmKNzmsWdKc4xNIEGJU0YM6nD+xEL
+         TnKkZXCoyNobvzVfL6glLPh4UrLpW4bktNaZyXFQMR5Rv7h/AF5rUWR7amPd97Jhwt
+         O6GOgY7eVKolQ==
+Date:   Tue, 19 Jan 2021 17:03:31 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH] ARM: dts: imx6qdl: specify vcc-supply for NOP USB
- PHYs
-Message-ID: <20210119085700.GB4356@dragon>
-References: <20201113152856.3758-1-a.fatoum@pengutronix.de>
+To:     =?utf-8?B?UGF3ZcWC?= Dembicki <paweldembicki@gmail.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Yangbo Lu <yangbo.lu@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: fsl-ls1012a-rdb: add i2c devices
+Message-ID: <20210119090330.GC4356@dragon>
+References: <20210115101613.1490837-1-paweldembicki@gmail.com>
+ <20210118073609.GQ28365@dragon>
+ <CAJN1KkwW174XKn+covSgCHkzUbS40BqAzLBA5QMt4CD2v5CTYw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201113152856.3758-1-a.fatoum@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJN1KkwW174XKn+covSgCHkzUbS40BqAzLBA5QMt4CD2v5CTYw@mail.gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020 at 04:28:55PM +0100, Ahmad Fatoum wrote:
-> The SoC dtsi lists a NOP USB PHY for each of the two HSIC-only USB
-> controllers. Their device tree node doesn't indicate a vcc-supply
-> resulting in:
+On Mon, Jan 18, 2021 at 11:08:11AM +0100, Paweł Dembicki wrote:
+> On 18.01.2021 at 08:36 Shawn Guo <shawnguo@kernel.org> wrote:
+> >
+> > On Fri, Jan 15, 2021 at 11:16:12AM +0100, Pawel Dembicki wrote:
+> > > LS1012A-RDB equipped in some i2c devices:
+> > >   - 3x GPIO Expander: PCAL9555A (NXP)
+> > >   - Gyro: FXAS21002 (NXP)
+> > >   - Accelerometer: FXOS8700 (NXP)
+> > >   - Current & Power Monitor: INA220 (TI)
+> > >
+> > > This patch add listed devices to dts.
+> > >
+> > > Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+> > > ---
+> > >  .../boot/dts/freescale/fsl-ls1012a-rdb.dts    | 45 +++++++++++++++++++
+> > >  1 file changed, 45 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+> > > index d45c17620b98..12117a973eb6 100644
+> > > --- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+> > > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+> > > @@ -7,6 +7,7 @@
+> > >   */
+> > >  /dts-v1/;
+> > >
+> > > +#include <dt-bindings/interrupt-controller/irq.h>
+> > >  #include "fsl-ls1012a.dtsi"
+> > >
+> > >  / {
+> > > @@ -33,6 +34,50 @@ &esdhc1 {
+> > >
+> > >  &i2c0 {
+> > >       status = "okay";
+> > > +
+> > > +     accelerometer@1e {
+> > > +             compatible = "nxp,fxos8700";
+> > > +             reg = <0x1e>;
+> > > +             interrupt-parent = <&gpio26>;
+> > > +             interrupts = <13 IRQ_TYPE_EDGE_RISING>;
+> > > +             interrupt-names = "INT1";
+> > > +     };
+> > > +
+> > > +     gyroscope@20 {
+> >
+> > Please sort these device node in unit-address.
+> >
+> > Shawn
+> >
 > 
->   usb_phy_generic usbphynop1: supply vcc not found, using dummy regulator
->   usb_phy_generic usbphynop2: supply vcc not found, using dummy regulator
+> Could You give me more details please?  Devices are sorted by
+> unit-address ascending.
 
-So the patch is all for removing this kernel message, with introducing
-the following potential breakage?
+Oops! I'm sorry.  It must be something went wrong with my eyes.
 
 Shawn
-
-> 
-> warnings on boot up. The USB IP vcc-supply - separate from the vusb - is
-> hardwired to LDO_2P5[1], which we already have a device tree node for.
-> Reference it for the dummy "phy" as well.
-> 
-> This will lead to breakage (probe deferment) for kernels that:
->   - Use a HSIC USB controller
->   - Use this new device tree
->   - but have CONFIG_REGULATOR_ANATOP disabled
-> 
-> Because while the regulator is always-on, it can't be resolved when
-> there is no driver for it.
-> 
-> As there are
-> 
->   - no affected upstream device trees
->   - existing device trees are unaffected without recompilation
->   - disabling CONFIG_REGULATOR_ANATOP is explicitly a non-recommended
->     configuration per symbol help text
-> 
-> this potential breakage is deemed acceptable.
-> 
-> [1]: i.MX 6Dual/6Quad Reference Manual, Rev. C,
->      Figure 53-1. Power System Overview
-> 
-> Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> ---
->  arch/arm/boot/dts/imx6qdl.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-> index 43edbf1156c7..22e4c142de13 100644
-> --- a/arch/arm/boot/dts/imx6qdl.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl.dtsi
-> @@ -131,11 +131,13 @@ pmu: pmu {
->  
->  	usbphynop1: usbphynop1 {
->  		compatible = "usb-nop-xceiv";
-> +		vcc-supply = <&reg_vdd2p5>;
->  		#phy-cells = <0>;
->  	};
->  
->  	usbphynop2: usbphynop2 {
->  		compatible = "usb-nop-xceiv";
-> +		vcc-supply = <&reg_vdd2p5>;
->  		#phy-cells = <0>;
->  	};
->  
-> -- 
-> 2.28.0
-> 
