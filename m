@@ -2,1671 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B9742FB7ED
+	by mail.lfdr.de (Postfix) with ESMTP id 78AE82FB7EE
 	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:28:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389930AbhASLcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 06:32:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45322 "EHLO mail.kernel.org"
+        id S2389940AbhASLco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 06:32:44 -0500
+Received: from mga09.intel.com ([134.134.136.24]:51667 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404517AbhASKqa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 05:46:30 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7FCF023134;
-        Tue, 19 Jan 2021 10:44:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611053087;
-        bh=eD7QpDYrxNw0fApKo+Et1GXvGfLET/IT2VlMeaPIdFs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=T9L37XPfV8iLQ1lp9zgcyes5Uk+DME1n4xDa5GLAuHXD3owsR8CMafk+yhYQ4kBox
-         oNbz4MlY2sWdH+Hftr83Fgw872Hi2S5WctY3WYUgkZodVZa6jvV1N88ljdbMD84T2v
-         6L2EXtEoaXkawuarXdQ1oC9nxSO21ZVD9TekGZSzWb2uoBj3rIyZDbKmSCpHvtomLc
-         mTwcIaBZRzJjfl8KmqZEVEMYIFxuwFZHA7fDClMIcxVsrSldU0YyVUj48czVA/DT4O
-         uATLX4e8eowVD2tGsqPrpo+MB5BDUxE9ARqZOrHzv23NFHrSF2Dd2TlstevkePTgdu
-         V63ZecWCY0B8A==
-Received: by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1l1oVA-000u2N-8y; Tue, 19 Jan 2021 11:44:44 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Alex Dewar <alex.dewar90@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Yu Chen <chenyu56@huawei.com>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 5/5] phy: phy-hi3670-usb3: move driver from staging into phy
-Date:   Tue, 19 Jan 2021 11:44:43 +0100
-Message-Id: <82ce73ac9a383f0cae0faded5ec6fef2d3417d3c.1611052729.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1611052729.git.mchehab+huawei@kernel.org>
-References: <cover.1611052729.git.mchehab+huawei@kernel.org>
+        id S2404565AbhASKsR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Jan 2021 05:48:17 -0500
+IronPort-SDR: 7KvbcOjUbXV0WRyGDPEbxlJ9TOha5yh4aXetuQ+/MNH21y/I9c5tmw8OlWZwaIaJCtBe57ibdd
+ yUrTaJ1qCQlg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="179057751"
+X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; 
+   d="scan'208";a="179057751"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2021 02:47:21 -0800
+IronPort-SDR: qWWxOPDR4P7DRqy9Gf1yl6Vxd7RfiOFpBd4FAu8JOKlkijcQFY4gNOhdnn0EtFlnsBJrqzn0JP
+ jNnD75AhJfBQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; 
+   d="scan'208";a="350472910"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+  by orsmga003.jf.intel.com with ESMTP; 19 Jan 2021 02:47:21 -0800
+Received: from orsmsx604.amr.corp.intel.com (10.22.229.17) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 19 Jan 2021 02:47:20 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 19 Jan 2021 02:47:20 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.102)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Tue, 19 Jan 2021 02:47:20 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q94PY0KuJfHBWFdJrqPnfBeSXJnjN9nrBFN0LYFAocL29MQChgk6O5zJ2PVEUUIyZUYQtVwdrL65EiVW5G4XYhXn8UHAw6NhMq95p7fORv6YvP3kxBnT4PQ8AaDLn6EhnA8K51E3RK5V5bZzHnPVjr5OlFsF4QobkNfpKmx+8dnBdx9zVg9Y9Ub01leNbOCj2R+9Tr3eIiVhtNePH7iWHMVrRW3NjMJUAxHlrMHsJkgbmHxQ0P92AXnONeXCeSLRPSdVDK5ZC92/smfnHcf1MMDUYNeb2WN3NvN6B/UM76D4EaPgsldebdmLaIr0WszgQZcY79x9Nb7fjNQXv2Qu1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LzsLt5dYMISrd29qAQj21zSpscD6HUSnm3n78mDh+as=;
+ b=e/9N6vqbtq8kzDzWBfdwirIq+9OT2shvp9pydiU4jF300Giay3ziWxcgActW5zN2aUG55paSq4LPwaMLltlvMoHeQCz8sdomkRCWKhYBPNsWZ3Ee9F9Brir8cjq2PKfOvtNfwpoGfdWaznvxv59iul3ZNJ83iOyarbYppT860sLxuw8M5TaQe8+vvBfNuIQoLw0OcHNs7S4VoOsVWoG7PwefQ/MsXJV/b5NVR4iamE9kFlMngXTcX7KICajj4ufMuhqI2iZ90iZSwbN+4WrDMmTalLvv1+vTlEB8Kf8XIFHuqJ7am6nWU6uFlD2MptctAFF4AZNqfpyuL19iQgCPNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LzsLt5dYMISrd29qAQj21zSpscD6HUSnm3n78mDh+as=;
+ b=u8sWdwoJSOqIXjJamWtGJ9ofe3Pw4GchMYrKWmZOXyL5wOo1aWzpG9V3BNMPiQwJ4yUS9rl/N56Jy4NPnWiAZX/wqirSA/4pe3AqiVYGic1P8OJKPhr3puZ036c1uGryeLh4Lq5aHdCTdqDasZaVU2PzxHtfZhA8cklf7Wjm7JM=
+Received: from CY4PR1101MB2326.namprd11.prod.outlook.com
+ (2603:10b6:903:b3::23) by CY4PR1101MB2325.namprd11.prod.outlook.com
+ (2603:10b6:903:bf::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Tue, 19 Jan
+ 2021 10:47:19 +0000
+Received: from CY4PR1101MB2326.namprd11.prod.outlook.com
+ ([fe80::98c3:2fe8:7b0c:f845]) by CY4PR1101MB2326.namprd11.prod.outlook.com
+ ([fe80::98c3:2fe8:7b0c:f845%3]) with mapi id 15.20.3763.014; Tue, 19 Jan 2021
+ 10:47:18 +0000
+From:   "Reshetova, Elena" <elena.reshetova@intel.com>
+To:     Ard Biesheuvel <ardb@kernel.org>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Alessandrelli, Daniele" <daniele.alessandrelli@intel.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        "Khurana, Prabhjot" <prabhjot.khurana@intel.com>
+Subject: RE: [RFC PATCH 0/6] Keem Bay OCS ECC crypto driver
+Thread-Topic: [RFC PATCH 0/6] Keem Bay OCS ECC crypto driver
+Thread-Index: AQHW1JkZ8lMRowq1QUyYZqNdBK9VvaoXNMxwgAA8YgCAADFl8IAPZGXAgACVhQCABdATEIAAD+kAgAF3RuA=
+Date:   Tue, 19 Jan 2021 10:47:18 +0000
+Message-ID: <CY4PR1101MB232671C57461DB26A9374BC5E7A30@CY4PR1101MB2326.namprd11.prod.outlook.com>
+References: <20201217172101.381772-1-daniele.alessandrelli@linux.intel.com>
+ <CY4PR1101MB2326ED0E6C23D1D868D53365E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <20210104113148.GA20575@gondor.apana.org.au>
+ <CY4PR1101MB23260DF5A317CA05BBA3C2F9E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CY4PR1101MB232696B49BA1A3441E8B335EE7A80@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CAMj1kXH9sHm_=dXS7646MbPQoQST9AepfHORSJgj0AxzWB4SvQ@mail.gmail.com>
+ <CY4PR1101MB232656080E3F457EC345E7B2E7A40@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CAMj1kXF9yUVEdPeF6EUCSOdb44HdFuVPk6G2cKOAUAn-mVjCzw@mail.gmail.com>
+In-Reply-To: <CAMj1kXF9yUVEdPeF6EUCSOdb44HdFuVPk6G2cKOAUAn-mVjCzw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [178.55.192.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fc78292d-e84c-4d70-eefd-08d8bc6797e3
+x-ms-traffictypediagnostic: CY4PR1101MB2325:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR1101MB2325953EB3DB70D5CE714D5EE7A39@CY4PR1101MB2325.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ZPG/xviCGdEA1Hf396vL+TuRfHdH9os61KHrj4Vj3q8vCUm9IKVTj8lJcMEQJ7yW/pRdzu1G7/Guq8vQzCGctMLciUAklatkj7msWStV9RmYdr/7bGFdXrCzzOh+J3PFQ8ulu2zp0k8vEIAEkmbnG9EPmXoLJmafBbc9fnIRQurZgT88Aw80rbL5tMFPscHRT3uKaENnNB5OchMiikXipZ3kGKRELxneNYhz0e6iuaETWxRi/ECjO8yzXxq/duXWFmUjyHjs3JpQK8EqRQq0lN9M+4TD37/f29pfUZ9GSWvFTSyEMwA3Urwfb9utV0auX5XP7cPeVh7ahztvtwEtGa9uO2dFUKsIaAbG6nIaKZPkfXnf2V9EbkblE5w3R9EWu9SK7QnMN47EHgUAqJBoGw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR1101MB2326.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39860400002)(346002)(376002)(136003)(396003)(186003)(26005)(478600001)(6916009)(4326008)(8936002)(6506007)(30864003)(52536014)(5660300002)(33656002)(66556008)(7696005)(66946007)(66476007)(76116006)(64756008)(66446008)(316002)(54906003)(2906002)(9686003)(55016002)(86362001)(83380400001)(8676002)(71200400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?SCtyVXd2NXpKVk0yblhNZ1Jzb3FYTHBlN3prVzZ4d3Y0bXRUdmoxMWE3ak9G?=
+ =?utf-8?B?SllqQUlVbEd6dU9lYmJkMHJUb2R5SG0vQ3BjNzdjUXBoamR0S3A3Tkp6U3Fo?=
+ =?utf-8?B?NnFORXNja3VIMlJsaFBoelZLUytoN0pkdnQ0dWJSaFBSTUI3MVJXdDZuWXY2?=
+ =?utf-8?B?bkUzYkdUT3QyYUNwV3pwV1Fzaklzb2hiVTRqZ3Y5ZkFIOFdzNDlYSVd6VTBQ?=
+ =?utf-8?B?NzR2WTZYQ1pQSkRFU25EL044NmJNZkdaY2ZvTG5OTDE4M2hJWHJXSy9HYlM2?=
+ =?utf-8?B?TlFGRXlqOFlCUUsvQVJORDJLMkxtODZubCtDQ25pUlFyNWhyRmlsdTE3ZU8v?=
+ =?utf-8?B?WWJUQTVsVVZOS3NrckNyS0NLaWlySURIYWQwdk5qMWVZbHQrTW05Ym9DZmpy?=
+ =?utf-8?B?aXRhOTFGZVpOWGdncjNnd1BOcXc3b3pDam5kTEtzckFWUEZnMHlzT1BST29Y?=
+ =?utf-8?B?aDgyVUlNSERCbWdLcjFiZ0cwSXRndU9FVnVrS1hvZFlpWkhBQ0FLQk1HNG15?=
+ =?utf-8?B?UjZwWEN6SGpjUnl5N3NqWW9tUkkxSldxcTV2KzFnVXRIdzNCY0NjS3dBbjJM?=
+ =?utf-8?B?czdOaENQVTM4Tk01L0tCRjltVmZydDBhR09TclV5N0VDQndoTmdEZUJkcnAr?=
+ =?utf-8?B?SFRTcGdUZWRRNGFBL2l1MGtPMWgzSGk1Tkd3QW1UbnM3N1lYM0pSR2NiMUtD?=
+ =?utf-8?B?Qk5Ndmx5ek5xeWNFRW5pR0dPaXFwaUVXcEk3UVNkOTBtVytheWNUeERPZjQ1?=
+ =?utf-8?B?NWNWK0NRTzdxZVpxSENvNmNaNThyREd5emswMjErOXlBMDBZMStwTVF1aUpV?=
+ =?utf-8?B?T1Q4aUh5SVRTU09DcjNxcGt5bTdseTRrNW9vY09WQzdRMVUxcHN5US9XYU55?=
+ =?utf-8?B?YkFrb3FDUmVWaXVFZ0w1a29NMFc2dXZNMnpNaEZxVTVabVhoTlJTc0pMc1Vl?=
+ =?utf-8?B?RE5uTmVxQm9zK2pFNXdBY2pSNEFUNEIwdi9RKzNVNkJ0UjA3c3AvOTlSa0Q5?=
+ =?utf-8?B?NUJnM0ZZVEhJai8wcHI2MXFHVkNTeDFIRXpjTXo2Qktjc2tVRkEyeUROUHVl?=
+ =?utf-8?B?ZUlmSERWb2pTRXNuNzlabjIvVFVuS081U2U5VnltUkUvWEhsSTVpd2U3cnFw?=
+ =?utf-8?B?YjNnbG8zRE5TQk1DampDTkFWOEtQbzNnM0RqUWUwcGFQNTQ2NEw2enJTSjZ5?=
+ =?utf-8?B?WjhvNjYxK0tmS2xQY3FCRFlWd3o5MkFYbUNUTk5NOGU3OTRwQmpSRTNrb2hq?=
+ =?utf-8?B?VDJsQlc3bkVPQlFGQlpKczdYc00ya0FrSDBLWVdLWFh3dEcyQmFsK0Z3TjdD?=
+ =?utf-8?Q?ABrUQvd0itYtU=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR1101MB2326.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc78292d-e84c-4d70-eefd-08d8bc6797e3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2021 10:47:18.8196
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 18GZlFpQITaxlHoduZbLfO3en4l1C9lnCIheq9cnfqzasfcBy9XX+ry4ZoeCossorpdPi/IT1GGfhFg9mHN/yTTrulghP0qlZYiDUFb4txY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1101MB2325
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The phy USB3 driver for Hisilicon 970 (hi3670) is ready
-for mainstream. Mode it from staging into the main driver's
-phy/ directory.
-
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../bindings/phy/hisilicon,hi3670-usb3.yaml   |  73 ++
- MAINTAINERS                                   |   9 +-
- drivers/phy/hisilicon/Kconfig                 |  10 +
- drivers/phy/hisilicon/Makefile                |   1 +
- drivers/phy/hisilicon/phy-hi3670-usb3.c       | 668 ++++++++++++++++++
- drivers/staging/hikey9xx/Kconfig              |  11 -
- drivers/staging/hikey9xx/Makefile             |   2 -
- drivers/staging/hikey9xx/phy-hi3670-usb3.c    | 668 ------------------
- drivers/staging/hikey9xx/phy-hi3670-usb3.yaml |  73 --
- 9 files changed, 760 insertions(+), 755 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
- create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
- delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.c
- delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
-
-diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-new file mode 100644
-index 000000000000..ebd78acfe2de
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/hisilicon,hi3670-usb3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hisilicon Kirin970 USB PHY
-+
-+maintainers:
-+  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+
-+description: |+
-+  Bindings for USB3 PHY on HiSilicon Kirin 970.
-+
-+properties:
-+  compatible:
-+    const: hisilicon,hi3670-usb-phy
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  hisilicon,pericrg-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control iso refclk.
-+
-+  hisilicon,pctrl-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control usb tcxo.
-+
-+  hisilicon,sctrl-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control phy deep sleep.
-+
-+  hisilicon,eye-diagram-param:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Eye diagram for phy.
-+
-+  hisilicon,tx-vboost-lvl:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: TX level vboost for phy.
-+
-+required:
-+  - compatible
-+  - hisilicon,pericrg-syscon
-+  - hisilicon,pctrl-syscon
-+  - hisilicon,sctrl-syscon
-+  - hisilicon,eye-diagram-param
-+  - hisilicon,tx-vboost-lvl
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      usb3_otg_bc: usb3_otg_bc@ff200000 {
-+        compatible = "syscon", "simple-mfd";
-+        reg = <0x0 0xff200000 0x0 0x1000>;
-+
-+        usb_phy {
-+          compatible = "hisilicon,hi3670-usb-phy";
-+          #phy-cells = <0>;
-+          hisilicon,pericrg-syscon = <&crg_ctrl>;
-+          hisilicon,pctrl-syscon = <&pctrl>;
-+          hisilicon,sctrl-syscon = <&sctrl>;
-+          hisilicon,eye-diagram-param = <0xfdfee4>;
-+          hisilicon,tx-vboost-lvl = <0x5>;
-+        };
-+      };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 281de213ef47..8d858e8d5a52 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18088,7 +18088,7 @@ L:	linux-usb@vger.kernel.org
- S:	Maintained
- F:	drivers/usb/roles/intel-xhci-usb-role-switch.c
- 
--USB IP DRIVER FOR HISILICON KIRIN
-+USB IP DRIVER FOR HISILICON KIRIN 960
- M:	Yu Chen <chenyu56@huawei.com>
- M:	Binghui Wang <wangbinghui@hisilicon.com>
- L:	linux-usb@vger.kernel.org
-@@ -18096,6 +18096,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
- F:	drivers/phy/hisilicon/phy-hi3660-usb3.c
- 
-+USB IP DRIVER FOR HISILICON KIRIN 970
-+M:	Mauro Carvalho Chehab <mchehab@kernel.org>
-+L:	linux-usb@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/phy/hisilicon,kirin970-usb3.yaml
-+F:	drivers/phy/hisilicon/phy-kirin970-usb3.c
-+
- USB ISP116X DRIVER
- M:	Olav Kongas <ok@artecdesign.ee>
- L:	linux-usb@vger.kernel.org
-diff --git a/drivers/phy/hisilicon/Kconfig b/drivers/phy/hisilicon/Kconfig
-index 1c73053bcc98..4d008cfc279c 100644
---- a/drivers/phy/hisilicon/Kconfig
-+++ b/drivers/phy/hisilicon/Kconfig
-@@ -23,6 +23,16 @@ config PHY_HI3660_USB
- 
- 	  To compile this driver as a module, choose M here.
- 
-+config PHY_HI3670_USB
-+	tristate "hi3670 USB PHY support"
-+	depends on (ARCH_HISI && ARM64) || COMPILE_TEST
-+	select GENERIC_PHY
-+	select MFD_SYSCON
-+	help
-+	  Enable this to support the HISILICON HI3670 USB PHY.
-+
-+	  To compile this driver as a module, choose M here.
-+
- config PHY_HISTB_COMBPHY
- 	tristate "HiSilicon STB SoCs COMBPHY support"
- 	depends on (ARCH_HISI && ARM64) || COMPILE_TEST
-diff --git a/drivers/phy/hisilicon/Makefile b/drivers/phy/hisilicon/Makefile
-index 92e874ae9c74..51729868145b 100644
---- a/drivers/phy/hisilicon/Makefile
-+++ b/drivers/phy/hisilicon/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_PHY_HI6220_USB)		+= phy-hi6220-usb.o
- obj-$(CONFIG_PHY_HI3660_USB)		+= phy-hi3660-usb3.o
-+obj-$(CONFIG_PHY_HI3670_USB)		+= phy-hi3670-usb3.o
- obj-$(CONFIG_PHY_HISTB_COMBPHY)		+= phy-histb-combphy.o
- obj-$(CONFIG_PHY_HISI_INNO_USB2)	+= phy-hisi-inno-usb2.o
- obj-$(CONFIG_PHY_HIX5HD2_SATA)		+= phy-hix5hd2-sata.o
-diff --git a/drivers/phy/hisilicon/phy-hi3670-usb3.c b/drivers/phy/hisilicon/phy-hi3670-usb3.c
-new file mode 100644
-index 000000000000..8918f3665f8e
---- /dev/null
-+++ b/drivers/phy/hisilicon/phy-hi3670-usb3.c
-@@ -0,0 +1,668 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Phy provider for USB 3.1 controller on HiSilicon Kirin970 platform
-+ *
-+ * Copyright (C) 2017-2020 Hilisicon Electronics Co., Ltd.
-+ *		http://www.huawei.com
-+ *
-+ * Authors: Yu Chen <chenyu56@huawei.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define SCTRL_SCDEEPSLEEPED		(0x0)
-+#define USB_CLK_SELECTED		BIT(20)
-+
-+#define PERI_CRG_PEREN0			(0x00)
-+#define PERI_CRG_PERDIS0		(0x04)
-+#define PERI_CRG_PEREN4			(0x40)
-+#define PERI_CRG_PERDIS4		(0x44)
-+#define PERI_CRG_PERRSTEN4		(0x90)
-+#define PERI_CRG_PERRSTDIS4		(0x94)
-+#define PERI_CRG_ISODIS			(0x148)
-+#define PERI_CRG_PEREN6			(0x410)
-+#define PERI_CRG_PERDIS6		(0x414)
-+
-+#define USB_REFCLK_ISO_EN		BIT(25)
-+
-+#define GT_CLK_USB2PHY_REF		BIT(19)
-+
-+#define PCTRL_PERI_CTRL3		(0x10)
-+#define PCTRL_PERI_CTRL3_MSK_START	(16)
-+#define USB_TCXO_EN			BIT(1)
-+
-+#define PCTRL_PERI_CTRL24		(0x64)
-+#define SC_CLK_USB3PHY_3MUX1_SEL	BIT(25)
-+
-+#define USB3OTG_CTRL0			(0x00)
-+#define USB3OTG_CTRL3			(0x0c)
-+#define USB3OTG_CTRL4			(0x10)
-+#define USB3OTG_CTRL5			(0x14)
-+#define USB3OTG_CTRL7			(0x1c)
-+#define USB_MISC_CFG50			(0x50)
-+#define USB_MISC_CFG54			(0x54)
-+#define USB_MISC_CFG58			(0x58)
-+#define USB_MISC_CFG5C			(0x5c)
-+#define USB_MISC_CFGA0			(0xa0)
-+#define TCA_CLK_RST			(0x200)
-+#define TCA_INTR_EN			(0x204)
-+#define TCA_INTR_STS			(0x208)
-+#define TCA_GCFG			(0x210)
-+#define TCA_TCPC			(0x214)
-+#define TCA_SYSMODE_CFG			(0x218)
-+#define TCA_VBUS_CTRL			(0x240)
-+
-+#define CTRL0_USB3_VBUSVLD		BIT(7)
-+#define CTRL0_USB3_VBUSVLD_SEL		BIT(6)
-+
-+#define CTRL3_USB2_VBUSVLDEXT0		BIT(6)
-+#define CTRL3_USB2_VBUSVLDEXTSEL0	BIT(5)
-+
-+#define CTRL5_USB2_SIDDQ		BIT(0)
-+
-+#define CTRL7_USB2_REFCLKSEL_MASK	GENMASK(4, 3)
-+#define CTRL7_USB2_REFCLKSEL_ABB	(BIT(4) | BIT(3))
-+#define CTRL7_USB2_REFCLKSEL_PAD	BIT(4)
-+
-+#define CFG50_USB3_PHY_TEST_POWERDOWN	BIT(23)
-+
-+#define CFG54_USB31PHY_CR_ADDR_MASK	GENMASK(31, 16)
-+
-+#define CFG54_USB3PHY_REF_USE_PAD	BIT(12)
-+#define CFG54_PHY0_PMA_PWR_STABLE	BIT(11)
-+#define CFG54_PHY0_PCS_PWR_STABLE	BIT(9)
-+#define CFG54_USB31PHY_CR_ACK		BIT(7)
-+#define CFG54_USB31PHY_CR_WR_EN		BIT(5)
-+#define CFG54_USB31PHY_CR_SEL		BIT(4)
-+#define CFG54_USB31PHY_CR_RD_EN		BIT(3)
-+#define CFG54_USB31PHY_CR_CLK		BIT(2)
-+#define CFG54_USB3_PHY0_ANA_PWR_EN	BIT(1)
-+
-+#define CFG58_USB31PHY_CR_DATA_MASK     GENMASK(31, 16)
-+
-+#define CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN	BIT(1)
-+
-+#define CFGA0_VAUX_RESET		BIT(9)
-+#define CFGA0_USB31C_RESET		BIT(8)
-+#define CFGA0_USB2PHY_REFCLK_SELECT	BIT(4)
-+#define CFGA0_USB3PHY_RESET		BIT(1)
-+#define CFGA0_USB2PHY_POR		BIT(0)
-+
-+#define INTR_EN_XA_TIMEOUT_EVT_EN	BIT(1)
-+#define INTR_EN_XA_ACK_EVT_EN		BIT(0)
-+
-+#define CLK_RST_TCA_REF_CLK_EN		BIT(1)
-+#define CLK_RST_SUSPEND_CLK_EN		BIT(0)
-+
-+#define GCFG_ROLE_HSTDEV		BIT(4)
-+#define GCFG_OP_MODE			GENMASK(1, 0)
-+#define GCFG_OP_MODE_CTRL_SYNC_MODE	BIT(0)
-+
-+#define TCPC_VALID			BIT(4)
-+#define TCPC_LOW_POWER_EN		BIT(3)
-+#define TCPC_MUX_CONTROL_MASK		GENMASK(1, 0)
-+#define TCPC_MUX_CONTROL_USB31		BIT(0)
-+
-+#define SYSMODE_CFG_TYPEC_DISABLE	BIT(3)
-+
-+#define VBUS_CTRL_POWERPRESENT_OVERRD	GENMASK(3, 2)
-+#define VBUS_CTRL_VBUSVALID_OVERRD	GENMASK(1, 0)
-+
-+#define KIRIN970_USB_DEFAULT_PHY_PARAM	(0xfdfee4)
-+#define KIRIN970_USB_DEFAULT_PHY_VBOOST	(0x5)
-+
-+#define TX_VBOOST_LVL_REG		(0xf)
-+#define TX_VBOOST_LVL_START		(6)
-+#define TX_VBOOST_LVL_ENABLE		BIT(9)
-+
-+struct hi3670_priv {
-+	struct device *dev;
-+	struct regmap *peri_crg;
-+	struct regmap *pctrl;
-+	struct regmap *sctrl;
-+	struct regmap *usb31misc;
-+
-+	u32 eye_diagram_param;
-+	u32 tx_vboost_lvl;
-+
-+	u32 peri_crg_offset;
-+	u32 pctrl_offset;
-+	u32 usb31misc_offset;
-+};
-+
-+static int hi3670_phy_cr_clk(struct regmap *usb31misc)
-+{
-+	int ret;
-+
-+	/* Clock up */
-+	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+				 CFG54_USB31PHY_CR_CLK, CFG54_USB31PHY_CR_CLK);
-+	if (ret)
-+		return ret;
-+
-+	/* Clock down */
-+	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+				 CFG54_USB31PHY_CR_CLK, 0);
-+
-+	return ret;
-+}
-+
-+static int hi3670_phy_cr_set_sel(struct regmap *usb31misc)
-+{
-+	return regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+				  CFG54_USB31PHY_CR_SEL, CFG54_USB31PHY_CR_SEL);
-+}
-+
-+static int hi3670_phy_cr_start(struct regmap *usb31misc, int direction)
-+{
-+	int ret, reg;
-+
-+	if (direction)
-+		reg = CFG54_USB31PHY_CR_WR_EN;
-+	else
-+		reg = CFG54_USB31PHY_CR_RD_EN;
-+
-+	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54, reg, reg);
-+
-+	if (ret)
-+		return ret;
-+
-+	ret = hi3670_phy_cr_clk(usb31misc);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+				  CFG54_USB31PHY_CR_RD_EN | CFG54_USB31PHY_CR_WR_EN, 0);
-+}
-+
-+static int hi3670_phy_cr_wait_ack(struct regmap *usb31misc)
-+{
-+	u32 reg;
-+	int retry = 10;
-+	int ret;
-+
-+	while (retry-- > 0) {
-+		ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
-+		if (ret)
-+			return ret;
-+		if ((reg & CFG54_USB31PHY_CR_ACK) == CFG54_USB31PHY_CR_ACK)
-+			return 0;
-+
-+		ret = hi3670_phy_cr_clk(usb31misc);
-+		if (ret)
-+			return ret;
-+
-+		usleep_range(10, 20);
-+	}
-+
-+	return -ETIMEDOUT;
-+}
-+
-+static int hi3670_phy_cr_set_addr(struct regmap *usb31misc, u32 addr)
-+{
-+	u32 reg;
-+	int ret;
-+
-+	ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
-+	if (ret)
-+		return ret;
-+
-+	reg = FIELD_PREP(CFG54_USB31PHY_CR_ADDR_MASK, addr);
-+	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+				 CFG54_USB31PHY_CR_ADDR_MASK, reg);
-+
-+	return ret;
-+}
-+
-+static int hi3670_phy_cr_read(struct regmap *usb31misc, u32 addr, u32 *val)
-+{
-+	int reg;
-+	int i;
-+	int ret;
-+
-+	for (i = 0; i < 100; i++) {
-+		ret = hi3670_phy_cr_clk(usb31misc);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = hi3670_phy_cr_set_sel(usb31misc);
-+	if (ret)
-+		return ret;
-+
-+	ret = hi3670_phy_cr_set_addr(usb31misc, addr);
-+	if (ret)
-+		return ret;
-+
-+	ret = hi3670_phy_cr_start(usb31misc, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = hi3670_phy_cr_wait_ack(usb31misc);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(usb31misc, USB_MISC_CFG58, &reg);
-+	if (ret)
-+		return ret;
-+
-+	*val = FIELD_GET(CFG58_USB31PHY_CR_DATA_MASK, reg);
-+
-+	return 0;
-+}
-+
-+static int hi3670_phy_cr_write(struct regmap *usb31misc, u32 addr, u32 val)
-+{
-+	int i;
-+	int ret;
-+
-+	for (i = 0; i < 100; i++) {
-+		ret = hi3670_phy_cr_clk(usb31misc);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = hi3670_phy_cr_set_sel(usb31misc);
-+	if (ret)
-+		return ret;
-+
-+	ret = hi3670_phy_cr_set_addr(usb31misc, addr);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(usb31misc, USB_MISC_CFG58,
-+			   FIELD_PREP(CFG58_USB31PHY_CR_DATA_MASK, val));
-+	if (ret)
-+		return ret;
-+
-+	ret = hi3670_phy_cr_start(usb31misc, 1);
-+	if (ret)
-+		return ret;
-+
-+	ret = hi3670_phy_cr_wait_ack(usb31misc);
-+
-+	return ret;
-+}
-+
-+static int hi3670_phy_set_params(struct hi3670_priv *priv)
-+{
-+	u32 reg;
-+	int ret;
-+	int retry = 3;
-+
-+	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL4,
-+			   priv->eye_diagram_param);
-+	if (ret) {
-+		dev_err(priv->dev, "set USB3OTG_CTRL4 failed\n");
-+		return ret;
-+	}
-+
-+	while (retry-- > 0) {
-+		ret = hi3670_phy_cr_read(priv->usb31misc,
-+					 TX_VBOOST_LVL_REG, &reg);
-+		if (!ret)
-+			break;
-+
-+		if (ret != -ETIMEDOUT) {
-+			dev_err(priv->dev, "read TX_VBOOST_LVL_REG failed\n");
-+			return ret;
-+		}
-+	}
-+	if (ret)
-+		return ret;
-+
-+	reg |= (TX_VBOOST_LVL_ENABLE | (priv->tx_vboost_lvl << TX_VBOOST_LVL_START));
-+	ret = hi3670_phy_cr_write(priv->usb31misc, TX_VBOOST_LVL_REG, reg);
-+	if (ret)
-+		dev_err(priv->dev, "write TX_VBOOST_LVL_REG failed\n");
-+
-+	return ret;
-+}
-+
-+static bool hi3670_is_abbclk_selected(struct hi3670_priv *priv)
-+{
-+	u32 reg;
-+
-+	if (!priv->sctrl) {
-+		dev_err(priv->dev, "priv->sctrl is null!\n");
-+		return false;
-+	}
-+
-+	if (regmap_read(priv->sctrl, SCTRL_SCDEEPSLEEPED, &reg)) {
-+		dev_err(priv->dev, "SCTRL_SCDEEPSLEEPED read failed!\n");
-+		return false;
-+	}
-+
-+	if ((reg & USB_CLK_SELECTED) == 0)
-+		return false;
-+
-+	return true;
-+}
-+
-+static int hi3670_config_phy_clock(struct hi3670_priv *priv)
-+{
-+	u32 val, mask;
-+	int ret;
-+
-+	if (!hi3670_is_abbclk_selected(priv)) {
-+		/* usb refclk iso disable */
-+		ret = regmap_write(priv->peri_crg, PERI_CRG_ISODIS,
-+				   USB_REFCLK_ISO_EN);
-+		if (ret)
-+			goto out;
-+
-+		/* enable usb_tcxo_en */
-+		ret = regmap_write(priv->pctrl, PCTRL_PERI_CTRL3,
-+				   USB_TCXO_EN |
-+				   (USB_TCXO_EN << PCTRL_PERI_CTRL3_MSK_START));
-+
-+		/* select usbphy clk from abb */
-+		mask = SC_CLK_USB3PHY_3MUX1_SEL;
-+		ret = regmap_update_bits(priv->pctrl,
-+					 PCTRL_PERI_CTRL24, mask, 0);
-+		if (ret)
-+			goto out;
-+
-+		ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
-+					 CFGA0_USB2PHY_REFCLK_SELECT, 0);
-+		if (ret)
-+			goto out;
-+
-+		ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
-+		if (ret)
-+			goto out;
-+		val &= ~CTRL7_USB2_REFCLKSEL_MASK;
-+		val |= CTRL7_USB2_REFCLKSEL_ABB;
-+		ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
-+		if (ret)
-+			goto out;
-+
-+		return 0;
-+	}
-+
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
-+				 CFG54_USB3PHY_REF_USE_PAD,
-+				 CFG54_USB3PHY_REF_USE_PAD);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
-+				 CFGA0_USB2PHY_REFCLK_SELECT,
-+				 CFGA0_USB2PHY_REFCLK_SELECT);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
-+	if (ret)
-+		goto out;
-+	val &= ~CTRL7_USB2_REFCLKSEL_MASK;
-+	val |= CTRL7_USB2_REFCLKSEL_PAD;
-+	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(priv->peri_crg,
-+			   PERI_CRG_PEREN6, GT_CLK_USB2PHY_REF);
-+	if (ret)
-+		goto out;
-+
-+	return 0;
-+out:
-+	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
-+	return ret;
-+}
-+
-+static int hi3670_config_tca(struct hi3670_priv *priv)
-+{
-+	u32 val, mask;
-+	int ret;
-+
-+	ret = regmap_write(priv->usb31misc, TCA_INTR_STS, 0xffff);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(priv->usb31misc, TCA_INTR_EN,
-+			   INTR_EN_XA_TIMEOUT_EVT_EN | INTR_EN_XA_ACK_EVT_EN);
-+	if (ret)
-+		goto out;
-+
-+	mask = CLK_RST_TCA_REF_CLK_EN | CLK_RST_SUSPEND_CLK_EN;
-+	ret = regmap_update_bits(priv->usb31misc, TCA_CLK_RST, mask, 0);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_update_bits(priv->usb31misc, TCA_GCFG,
-+				 GCFG_ROLE_HSTDEV | GCFG_OP_MODE,
-+				 GCFG_ROLE_HSTDEV | GCFG_OP_MODE_CTRL_SYNC_MODE);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_update_bits(priv->usb31misc, TCA_SYSMODE_CFG,
-+				 SYSMODE_CFG_TYPEC_DISABLE, 0);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_read(priv->usb31misc, TCA_TCPC, &val);
-+	if (ret)
-+		goto out;
-+	val &= ~(TCPC_VALID | TCPC_LOW_POWER_EN | TCPC_MUX_CONTROL_MASK);
-+	val |= (TCPC_VALID | TCPC_MUX_CONTROL_USB31);
-+	ret = regmap_write(priv->usb31misc, TCA_TCPC, val);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(priv->usb31misc, TCA_VBUS_CTRL,
-+			   VBUS_CTRL_POWERPRESENT_OVERRD | VBUS_CTRL_VBUSVALID_OVERRD);
-+	if (ret)
-+		goto out;
-+
-+	return 0;
-+out:
-+	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
-+	return ret;
-+}
-+
-+static int hi3670_phy_init(struct phy *phy)
-+{
-+	struct hi3670_priv *priv = phy_get_drvdata(phy);
-+	u32 val;
-+	int ret;
-+
-+	/* assert controller */
-+	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET |
-+	      CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, 0);
-+	if (ret)
-+		goto out;
-+
-+	ret = hi3670_config_phy_clock(priv);
-+	if (ret)
-+		goto out;
-+
-+	/* Exit from IDDQ mode */
-+	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL5,
-+				 CTRL5_USB2_SIDDQ, 0);
-+	if (ret)
-+		goto out;
-+
-+	/* Release USB31 PHY out of TestPowerDown mode */
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG50,
-+				 CFG50_USB3_PHY_TEST_POWERDOWN, 0);
-+	if (ret)
-+		goto out;
-+
-+	/* Deassert phy */
-+	val = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
-+	if (ret)
-+		goto out;
-+
-+	usleep_range(100, 120);
-+
-+	/* Tell the PHY power is stable */
-+	val = CFG54_USB3_PHY0_ANA_PWR_EN | CFG54_PHY0_PCS_PWR_STABLE |
-+	      CFG54_PHY0_PMA_PWR_STABLE;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
-+				 val, val);
-+	if (ret)
-+		goto out;
-+
-+	ret = hi3670_config_tca(priv);
-+	if (ret)
-+		goto out;
-+
-+	/* Enable SSC */
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG5C,
-+				 CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN,
-+				 CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN);
-+	if (ret)
-+		goto out;
-+
-+	/* Deassert controller */
-+	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
-+	if (ret)
-+		goto out;
-+
-+	usleep_range(100, 120);
-+
-+	/* Set fake vbus valid signal */
-+	val = CTRL0_USB3_VBUSVLD | CTRL0_USB3_VBUSVLD_SEL;
-+	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL0, val, val);
-+	if (ret)
-+		goto out;
-+
-+	val = CTRL3_USB2_VBUSVLDEXT0 | CTRL3_USB2_VBUSVLDEXTSEL0;
-+	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL3, val, val);
-+	if (ret)
-+		goto out;
-+
-+	usleep_range(100, 120);
-+
-+	ret = hi3670_phy_set_params(priv);
-+	if (ret)
-+		goto out;
-+
-+	return 0;
-+out:
-+	dev_err(priv->dev, "failed to init phy ret: %d\n", ret);
-+	return ret;
-+}
-+
-+static int hi3670_phy_exit(struct phy *phy)
-+{
-+	struct hi3670_priv *priv = phy_get_drvdata(phy);
-+	u32 mask;
-+	int ret;
-+
-+	/* Assert phy */
-+	mask = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, mask, 0);
-+	if (ret)
-+		goto out;
-+
-+	if (!hi3670_is_abbclk_selected(priv)) {
-+		/* disable usb_tcxo_en */
-+		ret = regmap_write(priv->pctrl, PCTRL_PERI_CTRL3,
-+				   USB_TCXO_EN << PCTRL_PERI_CTRL3_MSK_START);
-+	} else {
-+		ret = regmap_write(priv->peri_crg, PERI_CRG_PERDIS6,
-+				   GT_CLK_USB2PHY_REF);
-+		if (ret)
-+			goto out;
-+	}
-+
-+	return 0;
-+out:
-+	dev_err(priv->dev, "failed to exit phy ret: %d\n", ret);
-+	return ret;
-+}
-+
-+static struct phy_ops hi3670_phy_ops = {
-+	.init		= hi3670_phy_init,
-+	.exit		= hi3670_phy_exit,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int hi3670_phy_probe(struct platform_device *pdev)
-+{
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &pdev->dev;
-+	struct phy *phy;
-+	struct hi3670_priv *priv;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->dev = dev;
-+	priv->peri_crg = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							 "hisilicon,pericrg-syscon");
-+	if (IS_ERR(priv->peri_crg)) {
-+		dev_err(dev, "no hisilicon,pericrg-syscon\n");
-+		return PTR_ERR(priv->peri_crg);
-+	}
-+
-+	priv->pctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
-+						      "hisilicon,pctrl-syscon");
-+	if (IS_ERR(priv->pctrl)) {
-+		dev_err(dev, "no hisilicon,pctrl-syscon\n");
-+		return PTR_ERR(priv->pctrl);
-+	}
-+
-+	priv->sctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
-+						      "hisilicon,sctrl-syscon");
-+	if (IS_ERR(priv->sctrl)) {
-+		dev_err(dev, "no hisilicon,sctrl-syscon\n");
-+		return PTR_ERR(priv->sctrl);
-+	}
-+
-+	/* node of hi3670 phy is a sub-node of usb3_otg_bc */
-+	priv->usb31misc = syscon_node_to_regmap(dev->parent->of_node);
-+	if (IS_ERR(priv->usb31misc)) {
-+		dev_err(dev, "no hisilicon,usb3-otg-bc-syscon\n");
-+		return PTR_ERR(priv->usb31misc);
-+	}
-+
-+	if (of_property_read_u32(dev->of_node, "hisilicon,eye-diagram-param",
-+				 &priv->eye_diagram_param))
-+		priv->eye_diagram_param = KIRIN970_USB_DEFAULT_PHY_PARAM;
-+
-+	if (of_property_read_u32(dev->of_node, "hisilicon,tx-vboost-lvl",
-+				 &priv->tx_vboost_lvl))
-+		priv->tx_vboost_lvl = KIRIN970_USB_DEFAULT_PHY_VBOOST;
-+
-+	phy = devm_phy_create(dev, NULL, &hi3670_phy_ops);
-+	if (IS_ERR(phy))
-+		return PTR_ERR(phy);
-+
-+	phy_set_drvdata(phy, priv);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id hi3670_phy_of_match[] = {
-+	{ .compatible = "hisilicon,hi3670-usb-phy" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, hi3670_phy_of_match);
-+
-+static struct platform_driver hi3670_phy_driver = {
-+	.probe	= hi3670_phy_probe,
-+	.driver = {
-+		.name	= "hi3670-usb-phy",
-+		.of_match_table	= hi3670_phy_of_match,
-+	}
-+};
-+module_platform_driver(hi3670_phy_driver);
-+
-+MODULE_AUTHOR("Yu Chen <chenyu56@huawei.com>");
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("Hilisicon Kirin970 USB31 PHY Driver");
-diff --git a/drivers/staging/hikey9xx/Kconfig b/drivers/staging/hikey9xx/Kconfig
-index b29f5d5df134..0e97b5b9a56a 100644
---- a/drivers/staging/hikey9xx/Kconfig
-+++ b/drivers/staging/hikey9xx/Kconfig
-@@ -1,16 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
--# to be placed at drivers/phy
--config PHY_HI3670_USB
--	tristate "hi3670 USB PHY support"
--	depends on (ARCH_HISI && ARM64) || COMPILE_TEST
--	select GENERIC_PHY
--	select MFD_SYSCON
--	help
--	  Enable this to support the HISILICON HI3670 USB PHY.
--
--	  To compile this driver as a module, choose M here.
--
- # to be placed at drivers/spmi
- config SPMI_HISI3670
- 	tristate "Hisilicon 3670 SPMI Controller"
-diff --git a/drivers/staging/hikey9xx/Makefile b/drivers/staging/hikey9xx/Makefile
-index 1924fadac952..9371dcc3d35b 100644
---- a/drivers/staging/hikey9xx/Makefile
-+++ b/drivers/staging/hikey9xx/Makefile
-@@ -1,7 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
--obj-$(CONFIG_PHY_HI3670_USB)		+= phy-hi3670-usb3.o
--
- obj-$(CONFIG_SPMI_HISI3670)		+= hisi-spmi-controller.o
- obj-$(CONFIG_MFD_HI6421_SPMI)		+= hi6421-spmi-pmic.o
- obj-$(CONFIG_REGULATOR_HI6421V600)	+= hi6421v600-regulator.o
-diff --git a/drivers/staging/hikey9xx/phy-hi3670-usb3.c b/drivers/staging/hikey9xx/phy-hi3670-usb3.c
-deleted file mode 100644
-index 8918f3665f8e..000000000000
---- a/drivers/staging/hikey9xx/phy-hi3670-usb3.c
-+++ /dev/null
-@@ -1,668 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Phy provider for USB 3.1 controller on HiSilicon Kirin970 platform
-- *
-- * Copyright (C) 2017-2020 Hilisicon Electronics Co., Ltd.
-- *		http://www.huawei.com
-- *
-- * Authors: Yu Chen <chenyu56@huawei.com>
-- */
--
--#include <linux/bitfield.h>
--#include <linux/clk.h>
--#include <linux/kernel.h>
--#include <linux/mfd/syscon.h>
--#include <linux/module.h>
--#include <linux/phy/phy.h>
--#include <linux/platform_device.h>
--#include <linux/regmap.h>
--
--#define SCTRL_SCDEEPSLEEPED		(0x0)
--#define USB_CLK_SELECTED		BIT(20)
--
--#define PERI_CRG_PEREN0			(0x00)
--#define PERI_CRG_PERDIS0		(0x04)
--#define PERI_CRG_PEREN4			(0x40)
--#define PERI_CRG_PERDIS4		(0x44)
--#define PERI_CRG_PERRSTEN4		(0x90)
--#define PERI_CRG_PERRSTDIS4		(0x94)
--#define PERI_CRG_ISODIS			(0x148)
--#define PERI_CRG_PEREN6			(0x410)
--#define PERI_CRG_PERDIS6		(0x414)
--
--#define USB_REFCLK_ISO_EN		BIT(25)
--
--#define GT_CLK_USB2PHY_REF		BIT(19)
--
--#define PCTRL_PERI_CTRL3		(0x10)
--#define PCTRL_PERI_CTRL3_MSK_START	(16)
--#define USB_TCXO_EN			BIT(1)
--
--#define PCTRL_PERI_CTRL24		(0x64)
--#define SC_CLK_USB3PHY_3MUX1_SEL	BIT(25)
--
--#define USB3OTG_CTRL0			(0x00)
--#define USB3OTG_CTRL3			(0x0c)
--#define USB3OTG_CTRL4			(0x10)
--#define USB3OTG_CTRL5			(0x14)
--#define USB3OTG_CTRL7			(0x1c)
--#define USB_MISC_CFG50			(0x50)
--#define USB_MISC_CFG54			(0x54)
--#define USB_MISC_CFG58			(0x58)
--#define USB_MISC_CFG5C			(0x5c)
--#define USB_MISC_CFGA0			(0xa0)
--#define TCA_CLK_RST			(0x200)
--#define TCA_INTR_EN			(0x204)
--#define TCA_INTR_STS			(0x208)
--#define TCA_GCFG			(0x210)
--#define TCA_TCPC			(0x214)
--#define TCA_SYSMODE_CFG			(0x218)
--#define TCA_VBUS_CTRL			(0x240)
--
--#define CTRL0_USB3_VBUSVLD		BIT(7)
--#define CTRL0_USB3_VBUSVLD_SEL		BIT(6)
--
--#define CTRL3_USB2_VBUSVLDEXT0		BIT(6)
--#define CTRL3_USB2_VBUSVLDEXTSEL0	BIT(5)
--
--#define CTRL5_USB2_SIDDQ		BIT(0)
--
--#define CTRL7_USB2_REFCLKSEL_MASK	GENMASK(4, 3)
--#define CTRL7_USB2_REFCLKSEL_ABB	(BIT(4) | BIT(3))
--#define CTRL7_USB2_REFCLKSEL_PAD	BIT(4)
--
--#define CFG50_USB3_PHY_TEST_POWERDOWN	BIT(23)
--
--#define CFG54_USB31PHY_CR_ADDR_MASK	GENMASK(31, 16)
--
--#define CFG54_USB3PHY_REF_USE_PAD	BIT(12)
--#define CFG54_PHY0_PMA_PWR_STABLE	BIT(11)
--#define CFG54_PHY0_PCS_PWR_STABLE	BIT(9)
--#define CFG54_USB31PHY_CR_ACK		BIT(7)
--#define CFG54_USB31PHY_CR_WR_EN		BIT(5)
--#define CFG54_USB31PHY_CR_SEL		BIT(4)
--#define CFG54_USB31PHY_CR_RD_EN		BIT(3)
--#define CFG54_USB31PHY_CR_CLK		BIT(2)
--#define CFG54_USB3_PHY0_ANA_PWR_EN	BIT(1)
--
--#define CFG58_USB31PHY_CR_DATA_MASK     GENMASK(31, 16)
--
--#define CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN	BIT(1)
--
--#define CFGA0_VAUX_RESET		BIT(9)
--#define CFGA0_USB31C_RESET		BIT(8)
--#define CFGA0_USB2PHY_REFCLK_SELECT	BIT(4)
--#define CFGA0_USB3PHY_RESET		BIT(1)
--#define CFGA0_USB2PHY_POR		BIT(0)
--
--#define INTR_EN_XA_TIMEOUT_EVT_EN	BIT(1)
--#define INTR_EN_XA_ACK_EVT_EN		BIT(0)
--
--#define CLK_RST_TCA_REF_CLK_EN		BIT(1)
--#define CLK_RST_SUSPEND_CLK_EN		BIT(0)
--
--#define GCFG_ROLE_HSTDEV		BIT(4)
--#define GCFG_OP_MODE			GENMASK(1, 0)
--#define GCFG_OP_MODE_CTRL_SYNC_MODE	BIT(0)
--
--#define TCPC_VALID			BIT(4)
--#define TCPC_LOW_POWER_EN		BIT(3)
--#define TCPC_MUX_CONTROL_MASK		GENMASK(1, 0)
--#define TCPC_MUX_CONTROL_USB31		BIT(0)
--
--#define SYSMODE_CFG_TYPEC_DISABLE	BIT(3)
--
--#define VBUS_CTRL_POWERPRESENT_OVERRD	GENMASK(3, 2)
--#define VBUS_CTRL_VBUSVALID_OVERRD	GENMASK(1, 0)
--
--#define KIRIN970_USB_DEFAULT_PHY_PARAM	(0xfdfee4)
--#define KIRIN970_USB_DEFAULT_PHY_VBOOST	(0x5)
--
--#define TX_VBOOST_LVL_REG		(0xf)
--#define TX_VBOOST_LVL_START		(6)
--#define TX_VBOOST_LVL_ENABLE		BIT(9)
--
--struct hi3670_priv {
--	struct device *dev;
--	struct regmap *peri_crg;
--	struct regmap *pctrl;
--	struct regmap *sctrl;
--	struct regmap *usb31misc;
--
--	u32 eye_diagram_param;
--	u32 tx_vboost_lvl;
--
--	u32 peri_crg_offset;
--	u32 pctrl_offset;
--	u32 usb31misc_offset;
--};
--
--static int hi3670_phy_cr_clk(struct regmap *usb31misc)
--{
--	int ret;
--
--	/* Clock up */
--	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
--				 CFG54_USB31PHY_CR_CLK, CFG54_USB31PHY_CR_CLK);
--	if (ret)
--		return ret;
--
--	/* Clock down */
--	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
--				 CFG54_USB31PHY_CR_CLK, 0);
--
--	return ret;
--}
--
--static int hi3670_phy_cr_set_sel(struct regmap *usb31misc)
--{
--	return regmap_update_bits(usb31misc, USB_MISC_CFG54,
--				  CFG54_USB31PHY_CR_SEL, CFG54_USB31PHY_CR_SEL);
--}
--
--static int hi3670_phy_cr_start(struct regmap *usb31misc, int direction)
--{
--	int ret, reg;
--
--	if (direction)
--		reg = CFG54_USB31PHY_CR_WR_EN;
--	else
--		reg = CFG54_USB31PHY_CR_RD_EN;
--
--	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54, reg, reg);
--
--	if (ret)
--		return ret;
--
--	ret = hi3670_phy_cr_clk(usb31misc);
--	if (ret)
--		return ret;
--
--	return regmap_update_bits(usb31misc, USB_MISC_CFG54,
--				  CFG54_USB31PHY_CR_RD_EN | CFG54_USB31PHY_CR_WR_EN, 0);
--}
--
--static int hi3670_phy_cr_wait_ack(struct regmap *usb31misc)
--{
--	u32 reg;
--	int retry = 10;
--	int ret;
--
--	while (retry-- > 0) {
--		ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
--		if (ret)
--			return ret;
--		if ((reg & CFG54_USB31PHY_CR_ACK) == CFG54_USB31PHY_CR_ACK)
--			return 0;
--
--		ret = hi3670_phy_cr_clk(usb31misc);
--		if (ret)
--			return ret;
--
--		usleep_range(10, 20);
--	}
--
--	return -ETIMEDOUT;
--}
--
--static int hi3670_phy_cr_set_addr(struct regmap *usb31misc, u32 addr)
--{
--	u32 reg;
--	int ret;
--
--	ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
--	if (ret)
--		return ret;
--
--	reg = FIELD_PREP(CFG54_USB31PHY_CR_ADDR_MASK, addr);
--	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
--				 CFG54_USB31PHY_CR_ADDR_MASK, reg);
--
--	return ret;
--}
--
--static int hi3670_phy_cr_read(struct regmap *usb31misc, u32 addr, u32 *val)
--{
--	int reg;
--	int i;
--	int ret;
--
--	for (i = 0; i < 100; i++) {
--		ret = hi3670_phy_cr_clk(usb31misc);
--		if (ret)
--			return ret;
--	}
--
--	ret = hi3670_phy_cr_set_sel(usb31misc);
--	if (ret)
--		return ret;
--
--	ret = hi3670_phy_cr_set_addr(usb31misc, addr);
--	if (ret)
--		return ret;
--
--	ret = hi3670_phy_cr_start(usb31misc, 0);
--	if (ret)
--		return ret;
--
--	ret = hi3670_phy_cr_wait_ack(usb31misc);
--	if (ret)
--		return ret;
--
--	ret = regmap_read(usb31misc, USB_MISC_CFG58, &reg);
--	if (ret)
--		return ret;
--
--	*val = FIELD_GET(CFG58_USB31PHY_CR_DATA_MASK, reg);
--
--	return 0;
--}
--
--static int hi3670_phy_cr_write(struct regmap *usb31misc, u32 addr, u32 val)
--{
--	int i;
--	int ret;
--
--	for (i = 0; i < 100; i++) {
--		ret = hi3670_phy_cr_clk(usb31misc);
--		if (ret)
--			return ret;
--	}
--
--	ret = hi3670_phy_cr_set_sel(usb31misc);
--	if (ret)
--		return ret;
--
--	ret = hi3670_phy_cr_set_addr(usb31misc, addr);
--	if (ret)
--		return ret;
--
--	ret = regmap_write(usb31misc, USB_MISC_CFG58,
--			   FIELD_PREP(CFG58_USB31PHY_CR_DATA_MASK, val));
--	if (ret)
--		return ret;
--
--	ret = hi3670_phy_cr_start(usb31misc, 1);
--	if (ret)
--		return ret;
--
--	ret = hi3670_phy_cr_wait_ack(usb31misc);
--
--	return ret;
--}
--
--static int hi3670_phy_set_params(struct hi3670_priv *priv)
--{
--	u32 reg;
--	int ret;
--	int retry = 3;
--
--	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL4,
--			   priv->eye_diagram_param);
--	if (ret) {
--		dev_err(priv->dev, "set USB3OTG_CTRL4 failed\n");
--		return ret;
--	}
--
--	while (retry-- > 0) {
--		ret = hi3670_phy_cr_read(priv->usb31misc,
--					 TX_VBOOST_LVL_REG, &reg);
--		if (!ret)
--			break;
--
--		if (ret != -ETIMEDOUT) {
--			dev_err(priv->dev, "read TX_VBOOST_LVL_REG failed\n");
--			return ret;
--		}
--	}
--	if (ret)
--		return ret;
--
--	reg |= (TX_VBOOST_LVL_ENABLE | (priv->tx_vboost_lvl << TX_VBOOST_LVL_START));
--	ret = hi3670_phy_cr_write(priv->usb31misc, TX_VBOOST_LVL_REG, reg);
--	if (ret)
--		dev_err(priv->dev, "write TX_VBOOST_LVL_REG failed\n");
--
--	return ret;
--}
--
--static bool hi3670_is_abbclk_selected(struct hi3670_priv *priv)
--{
--	u32 reg;
--
--	if (!priv->sctrl) {
--		dev_err(priv->dev, "priv->sctrl is null!\n");
--		return false;
--	}
--
--	if (regmap_read(priv->sctrl, SCTRL_SCDEEPSLEEPED, &reg)) {
--		dev_err(priv->dev, "SCTRL_SCDEEPSLEEPED read failed!\n");
--		return false;
--	}
--
--	if ((reg & USB_CLK_SELECTED) == 0)
--		return false;
--
--	return true;
--}
--
--static int hi3670_config_phy_clock(struct hi3670_priv *priv)
--{
--	u32 val, mask;
--	int ret;
--
--	if (!hi3670_is_abbclk_selected(priv)) {
--		/* usb refclk iso disable */
--		ret = regmap_write(priv->peri_crg, PERI_CRG_ISODIS,
--				   USB_REFCLK_ISO_EN);
--		if (ret)
--			goto out;
--
--		/* enable usb_tcxo_en */
--		ret = regmap_write(priv->pctrl, PCTRL_PERI_CTRL3,
--				   USB_TCXO_EN |
--				   (USB_TCXO_EN << PCTRL_PERI_CTRL3_MSK_START));
--
--		/* select usbphy clk from abb */
--		mask = SC_CLK_USB3PHY_3MUX1_SEL;
--		ret = regmap_update_bits(priv->pctrl,
--					 PCTRL_PERI_CTRL24, mask, 0);
--		if (ret)
--			goto out;
--
--		ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
--					 CFGA0_USB2PHY_REFCLK_SELECT, 0);
--		if (ret)
--			goto out;
--
--		ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
--		if (ret)
--			goto out;
--		val &= ~CTRL7_USB2_REFCLKSEL_MASK;
--		val |= CTRL7_USB2_REFCLKSEL_ABB;
--		ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
--		if (ret)
--			goto out;
--
--		return 0;
--	}
--
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
--				 CFG54_USB3PHY_REF_USE_PAD,
--				 CFG54_USB3PHY_REF_USE_PAD);
--	if (ret)
--		goto out;
--
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
--				 CFGA0_USB2PHY_REFCLK_SELECT,
--				 CFGA0_USB2PHY_REFCLK_SELECT);
--	if (ret)
--		goto out;
--
--	ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
--	if (ret)
--		goto out;
--	val &= ~CTRL7_USB2_REFCLKSEL_MASK;
--	val |= CTRL7_USB2_REFCLKSEL_PAD;
--	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
--	if (ret)
--		goto out;
--
--	ret = regmap_write(priv->peri_crg,
--			   PERI_CRG_PEREN6, GT_CLK_USB2PHY_REF);
--	if (ret)
--		goto out;
--
--	return 0;
--out:
--	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
--	return ret;
--}
--
--static int hi3670_config_tca(struct hi3670_priv *priv)
--{
--	u32 val, mask;
--	int ret;
--
--	ret = regmap_write(priv->usb31misc, TCA_INTR_STS, 0xffff);
--	if (ret)
--		goto out;
--
--	ret = regmap_write(priv->usb31misc, TCA_INTR_EN,
--			   INTR_EN_XA_TIMEOUT_EVT_EN | INTR_EN_XA_ACK_EVT_EN);
--	if (ret)
--		goto out;
--
--	mask = CLK_RST_TCA_REF_CLK_EN | CLK_RST_SUSPEND_CLK_EN;
--	ret = regmap_update_bits(priv->usb31misc, TCA_CLK_RST, mask, 0);
--	if (ret)
--		goto out;
--
--	ret = regmap_update_bits(priv->usb31misc, TCA_GCFG,
--				 GCFG_ROLE_HSTDEV | GCFG_OP_MODE,
--				 GCFG_ROLE_HSTDEV | GCFG_OP_MODE_CTRL_SYNC_MODE);
--	if (ret)
--		goto out;
--
--	ret = regmap_update_bits(priv->usb31misc, TCA_SYSMODE_CFG,
--				 SYSMODE_CFG_TYPEC_DISABLE, 0);
--	if (ret)
--		goto out;
--
--	ret = regmap_read(priv->usb31misc, TCA_TCPC, &val);
--	if (ret)
--		goto out;
--	val &= ~(TCPC_VALID | TCPC_LOW_POWER_EN | TCPC_MUX_CONTROL_MASK);
--	val |= (TCPC_VALID | TCPC_MUX_CONTROL_USB31);
--	ret = regmap_write(priv->usb31misc, TCA_TCPC, val);
--	if (ret)
--		goto out;
--
--	ret = regmap_write(priv->usb31misc, TCA_VBUS_CTRL,
--			   VBUS_CTRL_POWERPRESENT_OVERRD | VBUS_CTRL_VBUSVALID_OVERRD);
--	if (ret)
--		goto out;
--
--	return 0;
--out:
--	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
--	return ret;
--}
--
--static int hi3670_phy_init(struct phy *phy)
--{
--	struct hi3670_priv *priv = phy_get_drvdata(phy);
--	u32 val;
--	int ret;
--
--	/* assert controller */
--	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET |
--	      CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, 0);
--	if (ret)
--		goto out;
--
--	ret = hi3670_config_phy_clock(priv);
--	if (ret)
--		goto out;
--
--	/* Exit from IDDQ mode */
--	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL5,
--				 CTRL5_USB2_SIDDQ, 0);
--	if (ret)
--		goto out;
--
--	/* Release USB31 PHY out of TestPowerDown mode */
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG50,
--				 CFG50_USB3_PHY_TEST_POWERDOWN, 0);
--	if (ret)
--		goto out;
--
--	/* Deassert phy */
--	val = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
--	if (ret)
--		goto out;
--
--	usleep_range(100, 120);
--
--	/* Tell the PHY power is stable */
--	val = CFG54_USB3_PHY0_ANA_PWR_EN | CFG54_PHY0_PCS_PWR_STABLE |
--	      CFG54_PHY0_PMA_PWR_STABLE;
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
--				 val, val);
--	if (ret)
--		goto out;
--
--	ret = hi3670_config_tca(priv);
--	if (ret)
--		goto out;
--
--	/* Enable SSC */
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG5C,
--				 CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN,
--				 CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN);
--	if (ret)
--		goto out;
--
--	/* Deassert controller */
--	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET;
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
--	if (ret)
--		goto out;
--
--	usleep_range(100, 120);
--
--	/* Set fake vbus valid signal */
--	val = CTRL0_USB3_VBUSVLD | CTRL0_USB3_VBUSVLD_SEL;
--	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL0, val, val);
--	if (ret)
--		goto out;
--
--	val = CTRL3_USB2_VBUSVLDEXT0 | CTRL3_USB2_VBUSVLDEXTSEL0;
--	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL3, val, val);
--	if (ret)
--		goto out;
--
--	usleep_range(100, 120);
--
--	ret = hi3670_phy_set_params(priv);
--	if (ret)
--		goto out;
--
--	return 0;
--out:
--	dev_err(priv->dev, "failed to init phy ret: %d\n", ret);
--	return ret;
--}
--
--static int hi3670_phy_exit(struct phy *phy)
--{
--	struct hi3670_priv *priv = phy_get_drvdata(phy);
--	u32 mask;
--	int ret;
--
--	/* Assert phy */
--	mask = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
--	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, mask, 0);
--	if (ret)
--		goto out;
--
--	if (!hi3670_is_abbclk_selected(priv)) {
--		/* disable usb_tcxo_en */
--		ret = regmap_write(priv->pctrl, PCTRL_PERI_CTRL3,
--				   USB_TCXO_EN << PCTRL_PERI_CTRL3_MSK_START);
--	} else {
--		ret = regmap_write(priv->peri_crg, PERI_CRG_PERDIS6,
--				   GT_CLK_USB2PHY_REF);
--		if (ret)
--			goto out;
--	}
--
--	return 0;
--out:
--	dev_err(priv->dev, "failed to exit phy ret: %d\n", ret);
--	return ret;
--}
--
--static struct phy_ops hi3670_phy_ops = {
--	.init		= hi3670_phy_init,
--	.exit		= hi3670_phy_exit,
--	.owner		= THIS_MODULE,
--};
--
--static int hi3670_phy_probe(struct platform_device *pdev)
--{
--	struct phy_provider *phy_provider;
--	struct device *dev = &pdev->dev;
--	struct phy *phy;
--	struct hi3670_priv *priv;
--
--	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
--	if (!priv)
--		return -ENOMEM;
--
--	priv->dev = dev;
--	priv->peri_crg = syscon_regmap_lookup_by_phandle(dev->of_node,
--							 "hisilicon,pericrg-syscon");
--	if (IS_ERR(priv->peri_crg)) {
--		dev_err(dev, "no hisilicon,pericrg-syscon\n");
--		return PTR_ERR(priv->peri_crg);
--	}
--
--	priv->pctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
--						      "hisilicon,pctrl-syscon");
--	if (IS_ERR(priv->pctrl)) {
--		dev_err(dev, "no hisilicon,pctrl-syscon\n");
--		return PTR_ERR(priv->pctrl);
--	}
--
--	priv->sctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
--						      "hisilicon,sctrl-syscon");
--	if (IS_ERR(priv->sctrl)) {
--		dev_err(dev, "no hisilicon,sctrl-syscon\n");
--		return PTR_ERR(priv->sctrl);
--	}
--
--	/* node of hi3670 phy is a sub-node of usb3_otg_bc */
--	priv->usb31misc = syscon_node_to_regmap(dev->parent->of_node);
--	if (IS_ERR(priv->usb31misc)) {
--		dev_err(dev, "no hisilicon,usb3-otg-bc-syscon\n");
--		return PTR_ERR(priv->usb31misc);
--	}
--
--	if (of_property_read_u32(dev->of_node, "hisilicon,eye-diagram-param",
--				 &priv->eye_diagram_param))
--		priv->eye_diagram_param = KIRIN970_USB_DEFAULT_PHY_PARAM;
--
--	if (of_property_read_u32(dev->of_node, "hisilicon,tx-vboost-lvl",
--				 &priv->tx_vboost_lvl))
--		priv->tx_vboost_lvl = KIRIN970_USB_DEFAULT_PHY_VBOOST;
--
--	phy = devm_phy_create(dev, NULL, &hi3670_phy_ops);
--	if (IS_ERR(phy))
--		return PTR_ERR(phy);
--
--	phy_set_drvdata(phy, priv);
--	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
--	return PTR_ERR_OR_ZERO(phy_provider);
--}
--
--static const struct of_device_id hi3670_phy_of_match[] = {
--	{ .compatible = "hisilicon,hi3670-usb-phy" },
--	{ },
--};
--MODULE_DEVICE_TABLE(of, hi3670_phy_of_match);
--
--static struct platform_driver hi3670_phy_driver = {
--	.probe	= hi3670_phy_probe,
--	.driver = {
--		.name	= "hi3670-usb-phy",
--		.of_match_table	= hi3670_phy_of_match,
--	}
--};
--module_platform_driver(hi3670_phy_driver);
--
--MODULE_AUTHOR("Yu Chen <chenyu56@huawei.com>");
--MODULE_LICENSE("GPL v2");
--MODULE_DESCRIPTION("Hilisicon Kirin970 USB31 PHY Driver");
-diff --git a/drivers/staging/hikey9xx/phy-hi3670-usb3.yaml b/drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
-deleted file mode 100644
-index ebd78acfe2de..000000000000
---- a/drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
-+++ /dev/null
-@@ -1,73 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/phy/hisilicon,hi3670-usb3.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Hisilicon Kirin970 USB PHY
--
--maintainers:
--  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
--
--description: |+
--  Bindings for USB3 PHY on HiSilicon Kirin 970.
--
--properties:
--  compatible:
--    const: hisilicon,hi3670-usb-phy
--
--  "#phy-cells":
--    const: 0
--
--  hisilicon,pericrg-syscon:
--    $ref: '/schemas/types.yaml#/definitions/phandle'
--    description: phandle of syscon used to control iso refclk.
--
--  hisilicon,pctrl-syscon:
--    $ref: '/schemas/types.yaml#/definitions/phandle'
--    description: phandle of syscon used to control usb tcxo.
--
--  hisilicon,sctrl-syscon:
--    $ref: '/schemas/types.yaml#/definitions/phandle'
--    description: phandle of syscon used to control phy deep sleep.
--
--  hisilicon,eye-diagram-param:
--    $ref: /schemas/types.yaml#/definitions/uint32
--    description: Eye diagram for phy.
--
--  hisilicon,tx-vboost-lvl:
--    $ref: /schemas/types.yaml#/definitions/uint32
--    description: TX level vboost for phy.
--
--required:
--  - compatible
--  - hisilicon,pericrg-syscon
--  - hisilicon,pctrl-syscon
--  - hisilicon,sctrl-syscon
--  - hisilicon,eye-diagram-param
--  - hisilicon,tx-vboost-lvl
--  - "#phy-cells"
--
--additionalProperties: false
--
--examples:
--  - |
--    bus {
--      #address-cells = <2>;
--      #size-cells = <2>;
--
--      usb3_otg_bc: usb3_otg_bc@ff200000 {
--        compatible = "syscon", "simple-mfd";
--        reg = <0x0 0xff200000 0x0 0x1000>;
--
--        usb_phy {
--          compatible = "hisilicon,hi3670-usb-phy";
--          #phy-cells = <0>;
--          hisilicon,pericrg-syscon = <&crg_ctrl>;
--          hisilicon,pctrl-syscon = <&pctrl>;
--          hisilicon,sctrl-syscon = <&sctrl>;
--          hisilicon,eye-diagram-param = <0xfdfee4>;
--          hisilicon,tx-vboost-lvl = <0x5>;
--        };
--      };
--    };
--- 
-2.29.2
-
+PiBPbiBNb24sIDE4IEphbiAyMDIxIGF0IDEyOjU1LCBSZXNoZXRvdmEsIEVsZW5hDQo+IDxlbGVu
+YS5yZXNoZXRvdmFAaW50ZWwuY29tPiB3cm90ZToNCj4gPg0KPiA+ID4gT24gVGh1LCAxNCBKYW4g
+MjAyMSBhdCAxMToyNSwgUmVzaGV0b3ZhLCBFbGVuYQ0KPiA+ID4gPGVsZW5hLnJlc2hldG92YUBp
+bnRlbC5jb20+IHdyb3RlOg0KPiA+ID4gPg0KPiA+ID4gPiA+ID4gT24gTW9uLCBKYW4gMDQsIDIw
+MjEgYXQgMDg6MDQ6MTVBTSArMDAwMCwgUmVzaGV0b3ZhLCBFbGVuYSB3cm90ZToNCj4gPiA+ID4g
+PiA+ID4gPiAyLiBUaGUgT0NTIEVDQyBIVyBkb2VzIG5vdCBzdXBwb3J0IHRoZSBOSVNUIFAtMTky
+IGN1cnZlLiBXZSB3ZXJlDQo+ID4gPiBwbGFubmluZw0KPiA+ID4gPiA+IHRvDQo+ID4gPiA+ID4g
+PiA+ID4gICAgYWRkIFNXIGZhbGxiYWNrIGZvciBQLTE5MiBpbiB0aGUgZHJpdmVyLCBidXQgdGhl
+IEludGVsIENyeXB0byB0ZWFtDQo+ID4gPiA+ID4gPiA+ID4gICAgKHdoaWNoLCBpbnRlcm5hbGx5
+LCBoYXMgdG8gYXBwcm92ZSBhbnkgY29kZSBpbnZvbHZpbmcgY3J5cHRvZ3JhcGh5KQ0KPiA+ID4g
+PiA+ID4gPiA+ICAgIGFkdmlzZWQgYWdhaW5zdCBpdCwgYmVjYXVzZSB0aGV5IGNvbnNpZGVyIFAt
+MTkyIHdlYWsuIEFzIGEgcmVzdWx0LCB0aGUNCj4gPiA+ID4gPiA+ID4gPiAgICBkcml2ZXIgaXMg
+bm90IHBhc3NpbmcgY3J5cHRvIHNlbGYtdGVzdHMuIElzIHRoZXJlIGFueSBwb3NzaWJsZSBzb2x1
+dGlvbg0KPiA+ID4gPiA+ID4gPiA+ICAgIHRvIHRoaXM/IElzIGl0IHJlYXNvbmFibGUgdG8gY2hh
+bmdlIHRoZSBzZWxmLXRlc3RzIHRvIG9ubHkgdGVzdCB0aGUNCj4gPiA+ID4gPiA+ID4gPiAgICBj
+dXJ2ZXMgYWN0dWFsbHkgc3VwcG9ydGVkIGJ5IHRoZSB0ZXN0ZWQgZHJpdmVyPyAobm90IGZ1bGx5
+IHN1cmUgaG93IHRvDQo+IGRvDQo+ID4gPiA+ID4gPiA+ID4gICAgdGhhdCkuDQo+ID4gPiA+ID4g
+PiA+DQo+ID4gPiA+ID4gPiA+IEFuIGFkZGl0aW9uYWwgcmVhc29uIGFnYWluc3QgdGhlIFAtMTky
+IFNXIGZhbGxiYWNrIGlzIHRoZSBmYWN0IHRoYXQgaXQgY2FuDQo+ID4gPiA+ID4gPiA+IHBvdGVu
+dGlhbGx5IHRyaWdnZXIgdW5zYWZlIGJlaGF2aW9yIHdoaWNoIGlzIG5vdCBldmVuICJ2aXNpYmxl
+IiB0byB0aGUgZW5kDQo+IHVzZXINCj4gPiA+ID4gPiA+ID4gb2YgdGhlIEVDQyBmdW5jdGlvbmFs
+aXR5LiBJZiBJIHJlcXVlc3QgKGJ5IG15IGRldmVsb3BlciBtaXN0YWtlKSBhIFAtMTkyDQo+ID4g
+PiA+ID4gPiA+IHdlYWtlciBjdXJ2ZSBmcm9tIEVDQyBLZWVtIEJheSBIVyBkcml2ZXIsIGl0IGlz
+IG11Y2ggc2FmZXIgdG8gcmV0dXJuIGENCj4gPiA+ID4gPiA+ID4gIm5vdCBzdXBwb3J0ZWQiIGVy
+cm9yIHRoYXQgcHJvY2VlZCBiZWhpbmQgbXkgYmFjayB3aXRoIGEgU1cgY29kZQ0KPiA+ID4gPiA+
+ID4gPiBpbXBsZW1lbnRhdGlvbiBtYWtpbmcgbWUgYmVsaWV2ZSB0aGF0IEkgYW0gYWN0dWFsbHkg
+Z2V0dGluZyBhIEhXLQ0KPiBiYWNrZWQgdXANCj4gPiA+ID4gPiA+ID4gZnVuY3Rpb25hbGl0eSAo
+c2luY2UgSSBkb24ndCB0aGluayB0aGVyZSBpcyBhIHdheSBmb3IgbWUgdG8gY2hlY2sgdGhhdCBJ
+IGFtDQo+IHVzaW5nDQo+ID4gPiA+ID4gPiA+IFNXIGZhbGxiYWNrKS4NCj4gPiA+ID4gPiA+DQo+
+ID4gPiA+ID4gPiBTb3JyeSwgYnV0IGlmIHlvdSBicmVhayB0aGUgQ3J5cHRvIEFQSSByZXF1aXJl
+bWVudCB0aGVuIHlvdXIgZHJpdmVyDQo+ID4gPiA+ID4gPiBpc24ndCBnZXR0aW5nIG1lcmdlZC4N
+Cj4gPiA+ID4gPg0KPiA+ID4gPiA+IEJ1dCBzaG91bGQgbm90IHdlIHRoaW5rIHdoYXQgYmVoYXZp
+b3Igd291bGQgbWFrZSBzZW5zZSBmb3IgZ29vZCBjcnlwdG8NCj4gZHJpdmVycw0KPiA+ID4gaW4N
+Cj4gPiA+ID4gPiBmdXR1cmU/DQo+ID4gPiA+ID4gQXMgY3J5cHRvZ3JhcGh5IG1vdmVzIGZvcndh
+cmQgKGVzcGVjaWFsbHkgZm9yIHRoZSBwb3N0IHF1YW50dW0gZXJhKSwgd2Ugd2lsbA0KPiA+ID4g
+aGF2ZQ0KPiA+ID4gPiA+IGxlbmd0aHMgZm9yIGFsbCBleGlzdGluZyBhbGdvcml0aG1zIGluY3Jl
+YXNlZCAoaW4gYWRkaXRpb24gdG8gaGF2aW5nIGEgYnVuY2ggb2YNCj4gbmV3DQo+ID4gPiA+ID4g
+b25lcyksDQo+ID4gPiA+ID4gYW5kIHdlIHN1cmVseSBzaG91bGQgbm90IGV4cGVjdCB0aGUgbmV3
+IGdlbmVyYXRpb24gb2YgSFcgZHJpdmVycyB0bw0KPiBpbXBsZW1lbnQNCj4gPiA+ID4gPiB0aGUg
+b2xkL3dlYWtlciBsZW5ndGhzLCBzbyB3aHkgdGhlcmUgdGhlIHJlcXVpcmVtZW50IHRvIHN1cHBv
+cnQgdGhlbT8gSXQgaXMNCj4gbm90DQo+ID4gPiBhDQo+ID4gPiA+ID4gcGFydCBvZiBjcnlwdG8g
+QVBJIGRlZmluaXRpb24gb24gd2hhdCBiaXQgbGVuZ3RocyBzaG91bGQgYmUgc3VwcG9ydGVkLA0K
+PiBiZWNhdXNlIGl0DQo+ID4gPiA+ID4gY2Fubm90IGJlIHBhcnQgb2YgQVBJIHRvIGJlZ2luIHdp
+dGggc2luY2UgaXQgaXMgYWx3YXlzIGNoYW5naW5nIHBhcmFtZXRlcg0KPiA+ID4gKGFsZ29yaXRo
+bXMNCj4gPiA+ID4gPiBhbmQgYXR0YWNrcw0KPiA+ID4gPiA+IGRldmVsb3AgYWxsIHRoZSB0aW1l
+KS4NCj4gPiA+ID4NCj4gPiA+ID4gSSB3b3VsZCByZWFsbHkgYXBwcmVjaWF0ZSwgaWYgc29tZW9u
+ZSBoZWxwcyB1cyB0byB1bmRlcnN0YW5kIGhlcmUuIE1heWJlIHRoZXJlDQo+IGlzIGENCj4gPiA+
+ID4gY29ycmVjdCB3YXkgdG8gYWRkcmVzcyB0aGlzLCBidXQgd2UganVzdCBkb24ndCBzZWUgaXQu
+IFRoZSBxdWVzdGlvbiBpcyBub3QgZXZlbg0KPiBhYm91dA0KPiA+ID4gPiB0aGlzIHBhcnRpY3Vs
+YXIgY3J5cHRvIGRyaXZlciBhbmQgdGhlIGZhY3Qgd2hlbmV2ZXIgaXQgZ2VzdHMgbWVyZ2VkIG9y
+IG5vdCwgYnV0DQo+IHRoZQ0KPiA+ID4gPiBsb2dpYyBvZiB0aGUgY3J5cHRvIEFQSSBzdWJzeXN0
+ZW0uDQo+ID4gPiA+DQo+ID4gPiA+IEFzIGZhciBhcyBJIHVuZGVyc3RhbmQgdGhlIGltcGxlbWVu
+dGF0aW9ucyB0aGF0IGFyZSBwcm92aWRlZCBieSB0aGUgc3BlY2lhbGl6ZWQNCj4gPiA+IGRyaXZl
+cnMNCj4gPiA+ID4gKGxpa2Ugb3VyIEtlZW0gQmF5IE9DUyBFQ0MgZHJpdmVyIGV4YW1wbGUgaGVy
+ZSkgaGF2ZSBhIGhpZ2hlciBwcmlvcml0eSB2cy4NCj4gZ2VuZXJpYw0KPiA+ID4gPiBJbXBsZW1l
+bnRhdGlvbnMgdGhhdCBleGlzdHMgaW4ga2VybmVsLCB3aGljaCBtYWtlcyBzZW5zZSBiZWNhdXNl
+IHdlIGV4cGVjdA0KPiB0aGVzZQ0KPiA+ID4gZHJpdmVycw0KPiA+ID4gPiAoYW5kIHRoZSBzZWN1
+cml0eSBIVyB0aGV5IHRhbGsgdG8pIHRvIHByb3ZpZGUgYm90aCBtb3JlIGVmZmljaWVudCBhbmQg
+bW9yZQ0KPiBzZWN1cmUNCj4gPiA+ID4gaW1wbGVtZW50YXRpb25zIHRoYW4gYSBwdXJlIFNXIGlt
+cGxlbWVudGF0aW9uIGluIGtlcm5lbCBjYW4gZG8gKGV2ZW4gaWYgaXQNCj4gdXRpbGl6ZXMNCj4g
+PiA+IHNwZWNpYWwNCj4gPiA+ID4gaW5zdHJ1Y3Rpb25zLCBsaWtlIFNJTUQsIEFFU05JLCBldGMu
+KS4gSG93ZXZlciwgbmF0dXJhbGx5IHRoZXNlIGRyaXZlcnMgYXJlIGJvdW5kDQo+IGJ5DQo+ID4g
+PiA+IHdoYXQgc2VjdXJpdHkgSFcgY2FuIGRvLCBhbmQgaWYgaXQgZG9lcyBub3Qgc3VwcG9ydCBh
+IGNlcnRhaW4gc2l6ZS9wYXJhbSBvZiB0aGUNCj4gPiA+IGFsZ29yaXRobQ0KPiA+ID4gPiAoUC0x
+OTIgY3VydmUgaW4gb3VyIGNhc2UpLCBpdCBpcyBwb2ludGxlc3MgYW5kIHdyb25nIGZvciB0aGVt
+IHRvIHJlaW1wbGVtZW50DQo+IHdoYXQNCj4gPiA+IFNXIGlzDQo+ID4gPiA+IGFscmVhZHkgZG9p
+bmcgaW4ga2VybmVsLCBzbyB0aGV5IHNob3VsZCBub3QgZG8gc28gYW5kIGN1cnJlbnRseSB0aGV5
+IHJlLWRpcmVjdCB0bw0KPiA+ID4gY29yZSBrZXJuZWwNCj4gPiA+ID4gaW1wbGVtZW50YXRpb24u
+IFNvIGZhciBnb29kLg0KPiA+ID4gPg0KPiA+ID4gPiBCdXQgbm93IGNvbWVzIG15IGJpZ2dlc3Qg
+d29ycnkgaXMgdGhhdCB0aGlzIHJlZGlyZWN0aW9uIGFzIGZhcg0KPiA+ID4gPiBhcyBJIGNhbiBz
+ZWUgaXMgKmludGVybmFsIHRvIGRyaXZlciBpdHNlbGYqLCBpLmUuIGl0IGRvZXMgYSBjYWxsYmFj
+ayB0byB0aGVzZSBjb3JlDQo+ID4gPiBmdW5jdGlvbnMgZnJvbSB0aGUgZHJpdmVyDQo+ID4gPiA+
+IGNvZGUsIHdoaWNoIGFnYWluLCB1bmxlc3MgSSBtaXN1bmRlcnN0YW5kIHNtdGgsIGxlYWRzIHRv
+IHRoZSBmYWN0IHRoYXQgdGhlIGVuZA0KPiB1c2VyDQo+ID4gPiBnZXRzDQo+ID4gPiA+IFAtMTky
+IGN1cnZlIEVDQyBpbXBsZW1lbnRhdGlvbiBmcm9tIHRoZSBjb3JlIGtlcm5lbCB0aGF0IGhhcyBi
+ZWVuDQo+ICJwcm9tb3RlZCINCj4gPiA+IHRvIGEgaGlnaGVzdA0KPiA+ID4gPiBwcmlvcml0eSAo
+Z2l2ZW4gdGhhdCBFQ0MgS2VlbUJheSBkcml2ZXIgZm9yIGV4YW1wbGUgZ290IHByaW9yaXR5IDMw
+MCB0byBiZWdpbg0KPiB3aXRoKS4NCj4gPiA+IFNvLCBpZg0KPiA+ID4gPiB3ZSBzYXkgd2UgaGF2
+ZSBhbm90aGVyIEhXIERyaXZlciAnRm9vJywgd2hpY2ggaGFwcGVucyB0byBpbXBsZW1lbnQgUC0x
+OTINCj4gPiA+IGN1cnZlcyBtb3JlIHNlY3VyZWx5LA0KPiA+ID4gPiBidXQgaGFwcGVucyB0byBo
+YXZlIGEgbG93ZXIgcHJpb3JpdHkgdGhhbiBFQ0MgS2VlbUJheSBkcml2ZXIsIGl0cw0KPiBpbXBs
+ZW1lbnRhdGlvbg0KPiA+ID4gd291bGQgbmV2ZXINCj4gPiA+ID4gYmUgY2hvc2VuLCBidXQgY29y
+ZSBrZXJuZWwgaW1wbGVtZW50YXRpb24gd2lsbCBiZSB1c2VkICh2aWEgU1cgZmFsbGJhY2sNCj4g
+aW50ZXJuYWwgdG8NCj4gPiA+IEVDQyBLZWVtDQo+ID4gPiA+IEJheSBkcml2ZXIpLg0KPiA+ID4g
+Pg0KPiA+ID4NCj4gPiA+IE5vLCB0aGlzIGlzIGluY29ycmVjdC4gSWYgeW91IGFsbG9jYXRlIGEg
+ZmFsbGJhY2sgYWxnb3JpdGhtIGluIHRoZQ0KPiA+ID4gY29ycmVjdCB3YXksIHRoZSBjcnlwdG8g
+QVBJIHdpbGwgcmVzb2x2ZSB0aGUgYWxsb2NhdGlvbiBpbiB0aGUgdXN1YWwNCj4gPiA+IG1hbm5l
+ciwgYW5kIHNlbGVjdCB3aGljaGV2ZXIgb2YgdGhlIHJlbWFpbmluZyBpbXBsZW1lbnRhdGlvbnMg
+aGFzIHRoZQ0KPiA+ID4gaGlnaGVzdCBwcmlvcml0eSAocHJvdmlkZWQgdGhhdCBpdCBkb2VzIG5v
+dCByZXF1aXJlIGEgZmFsbGJhY2sNCj4gPiA+IGl0c2VsZikuDQo+ID4NCj4gPiBUaGFuayB5b3Ug
+dmVyeSBtdWNoIEFyZCBmb3IgdGhlIGltcG9ydGFudCBjb3JyZWN0aW9uIGhlcmUhDQo+ID4gU2Vl
+IGJlbG93IGlmIEkgZ290IGl0IG5vdyBjb3JyZWN0bHkgdG8gdGhlIGVuZCBmb3IgdGhlIHVzZSBj
+YXNlIGluIHF1ZXN0aW9uLg0KPiA+DQo+ID4gPg0KPiA+ID4gPiBBbm90aGVyIHByb2JsZW0gaXMg
+dGhhdCBmb3IgYSB1c2VyIG9mIGNyeXB0byBBUEkgSSBkb24ndCBzZWUgYSB3YXkgKGFuZCBwZXJo
+YXBzIEkNCj4gPiA+IGFtIHdyb25nIGhlcmUpDQo+ID4gPiA+IHRvIGd1YXJhbnRlZSB0aGF0IGFs
+bCBteSBjYWxscyB0byBwZXJmb3JtIGNyeXB0byBvcGVyYXRpb25zIHdpbGwgZW5kIHVwIGJlaW5n
+DQo+ID4gPiBwZXJmb3JtZWQgb24gYQ0KPiA+ID4gPiBzZWN1cml0eSBIVyBJIHdhbnQgKG1heWJl
+IGJlY2F1c2UgdGhpcyBpcyB0aGUgb25seSB0aGluZyBJIHRydXN0KS4gSXQgc2VlbXMgdG8gYmUN
+Cj4gPiA+IHBvc3NpYmxlIGluIHRoZW9yeSwNCj4gPiA+ID4gYnV0IGluIHByYWN0aWNlIHdvdWxk
+IHJlcXVpcmUgY2FyZWZ1bCBldmFsdWF0aW9uIG9mIGEga2VybmVsIHNldHVwIGFuZCBhIHN5bmMN
+Cj4gPiA+IGJldHdlZW4gd2hhdA0KPiA+ID4gPiBlbmQgdXNlciByZXF1ZXN0cyBhbmQgd2hhdCBk
+cml2ZXIgY2FuIHByb3ZpZGUuIExldCBtZSB0cnkgdG8gZXhwbGFpbiBhIHBvdGVudGlhbA0KPiA+
+ID4gc2NlbmFyaW8uDQo+ID4gPiA+IExldHMgc2F5IHdlIGhhZCBhbiBlbmQgdXNlciB0aGF0IHVz
+ZWQgdG8gYXNrIGZvciBib3RoIFAtMTkyIGFuZCBQLTM4NCBjdXJ2ZS0NCj4gYmFzZWQNCj4gPiA+
+IEVDQyBvcGVyYXRpb25zDQo+ID4gPiA+IGFuZCBsZXQncyBzYXkgd2UgaGFkIGEgZHJpdmVyIGFu
+ZCBzZWN1cml0eSBIVyB0aGF0IGltcGxlbWVudGVkIGl0LiBUaGUgZW5kIHVzZXINCj4gPiA+IG1h
+ZGUgc3VyZSB0aGF0DQo+ID4gPiA+IHRoaXMgZHJpdmVyIGltcGxlbWVudGF0aW9uIGlzIGFsd2F5
+cyBwcmVmZXJyZWQgdnMuIG90aGVyIGV4aXN0aW5nDQo+IGltcGxlbWVudGF0aW9ucy4NCj4gPiA+
+IE5vdywgdGltZSBtb3ZlcywgYSBuZXcNCj4gPiA+ID4gc2VjdXJpdHkgSFcgY29tZXMgaW5zdGVh
+ZCB0aGF0IG9ubHkgc3VwcG9ydHMgUC0zODQsIGFuZCB0aGUgZHJpdmVyIG5vdyBoYXMNCj4gYmVl
+bg0KPiA+ID4gdXBkYXRlZCB0bw0KPiA+ID4gPiBzdXBwb3J0IFAtMTkyIHZpYSB0aGUgU1cgZmFs
+bGJhY2sgKGxpa2Ugd2UgYXJlIGFza2VkIG5vdykuDQo+ID4gPiA+IE5vdywgaG93IGRvZXMgYW4g
+ZW5kIHVzZXIgbm90aWNlIHRoYXQgd2hlbiBpdCBhc2tzIGZvciBhIFAtMTkyIGJhc2VkDQo+IG9w
+ZXJhdGlvbnMsDQo+ID4gPiBoaXMgb3BlcmF0aW9ucw0KPiA+ID4gPiBhcmUgbm90IGRvbmUgaW4g
+c2VjdXJpdHkgSFcgYW55bW9yZT8gVGhlIG9ubHkgd2F5IHNlZW1zIHRvIGJlDQo+ID4gPiA+IGlz
+IHRvIGtub3cgdGhhdCBkcml2ZXIgYW5kIHNlY3VyaXR5IEhXIGhhcyBiZWVuIHVwZGF0ZWQsIGFs
+Z29yaXRobXMgYW5kIHNpemVzDQo+ID4gPiBjaGFuZ2VkLCBldGMuDQo+ID4gPiA+IEl0IG1pZ2h0
+IHRha2UgYSB3aGlsZSBiZWZvcmUgdGhlIGVuZCB1c2VyIHJlYWxpemVzIHRoaXMgYW5kIGZvciBl
+eGFtcGxlIHN0b3BzDQo+IHVzaW5nDQo+ID4gPiBQLTE5MiBhbHRvZ2V0aGVyLA0KPiA+ID4gPiBi
+dXQgd2hhdCBpZiB0aGlzIHNpbGVudCByZWRpcmVjdCBieSB0aGUgZHJpdmVyIGFjdHVhbGx5IGJy
+ZWFrcyBzb21lIHNlY3VyaXR5DQo+ID4gPiBhc3N1bXB0aW9ucyAoc2lkZS1jaGFubmVsDQo+ID4g
+PiA+IHJlc2lzdGFuY2UgYmVpbmcgb25lIHBvdGVudGlhbCBleGFtcGxlKSBtYWRlIGJ5IHRoaXMg
+ZW5kIHVzZXI/IFRoZQ0KPiBjb25zZXF1ZW5jZXMNCj4gPiA+IGNhbiBiZSB2ZXJ5IGJhZC4NCj4g
+PiA+ID4gWW91IG1pZ2h0IHNheTogInRoaXMgaXMgdGhlIGVuZCB1c2VyIHByb2JsZW0gdG8gdmVy
+aWZ5IHRoaXMiLCBidXQgc2hvdWxkbid0IHdlIGRvDQo+ID4gPiBzbXRoIHRvIHByZXZlbnQgb3IN
+Cj4gPiA+ID4gYXQgbGVhc3QgaW5kaWNhdGUgc3VjaCBwb3RlbnRpYWwgaXNzdWVzIHRvIHRoZW0/
+DQo+ID4gPiA+DQo+ID4gPg0KPiA+ID4gSSBkb24ndCB0aGluayBpdCBpcyBwb3NzaWJsZSBhdCB0
+aGUgQVBJIGxldmVsIHRvIGRlZmluZSBydWxlcyB0aGF0DQo+ID4gPiB3aWxsIGFsd2F5cyBwcm9k
+dWNlIHRoZSBtb3N0IHNlY3VyZSBjb21iaW5hdGlvbiBvZiBkcml2ZXJzLiBUaGUNCj4gPiA+IHBy
+aW9yaXR5IGZpZWxkcyBhcmUgb25seSB1c2VkIHRvIGNvbnZleSByZWxhdGl2ZSBwZXJmb3JtYW5j
+ZSAod2hpY2ggaXMNCj4gPiA+IGFscmVhZHkgc2VtYW50aWNhbGx5IG11cmt5LCBnaXZlbiB0aGUg
+bGFjayBvZiBkaXN0aW5jdGlvbiBiZXR3ZWVuDQo+ID4gPiBoYXJkd2FyZSB3aXRoIGEgc2luZ2xl
+IHF1ZXVlIHZzIHNvZnR3YXJlIGFsZ29yaXRobXMgdGhhdCBjYW4gYmUNCj4gPiA+IGV4ZWN1dGVk
+IGJ5IGFsbCBDUFVzIGluIHBhcmFsbGVsKS4NCj4gPiA+DQo+ID4gPiBXaGVuIGl0IGNvbWVzIHRv
+IGNvbXBhcmF0aXZlIHNlY3VyaXR5LCB0cnVzdHdvcnRoaW5lc3Mgb3Igcm9idXN0bmVzcw0KPiA+
+ID4gb2YgaW1wbGVtZW50YXRpb25zLCBpdCBpcyBzaW1wbHkgbGVmdCB1cCB0byB0aGUgdXNlciB0
+byBibGFja2xpc3QNCj4gPiA+IG1vZHVsZXMgdGhhdCB0aGV5IHByZWZlciBub3QgdG8gdXNlLiBX
+aGVuIGZhbGxiYWNrIGFsbG9jYXRpb25zIGFyZQ0KPiA+ID4gbWFkZSBpbiB0aGUgY29ycmVjdCB3
+YXksIHRoZSByZW1haW5pbmcgYXZhaWxhYmxlIGltcGxlbWVudGF0aW9ucyB3aWxsDQo+ID4gPiBi
+ZSB1c2VkIGluIHByaW9yaXR5IG9yZGVyLg0KPiA+DQo+ID4gU28sIGxldCBtZSBzZWUgaWYgSSB1
+bmRlcnN0YW5kIHRoZSBmdWxsIHBpY3R1cmUgY29ycmVjdGx5IG5vdyBhbmQgaG93IHRvIHV0aWxp
+emUNCj4gPiB0aGUgYmxhY2tsaXN0aW5nIG9mIG1vZHVsZXMgYXMgYSB1c2VyLiBTdXBwb3NlIEkg
+d2FudCB0byBibGFja2xpc3QgZXZlcnl0aGluZyBidXQNCj4gPiBteSBPU0MgZHJpdmVyIG1vZHVs
+ZS4gU28sIGlmIEkgYW0gYXMgYSB1c2VyIHJlZmVyIHRvIGEgc3BlY2lmaWMgZHJpdmVyDQo+IGlt
+cGxlbWVudGF0aW9uDQo+ID4gdXNpbmcgYSB1bmlxdWUgZHJpdmVyIG5hbWUgKGVjZGgta2VlbWJh
+eS1vY3MgaW4gb3VyIGNhc2UpLCB0aGVuIHJlZ2FyZGxlc3Mgb2YgdGhlDQo+ID4gZmFjdCB0aGF0
+IGEgZHJpdmVyIGltcGxlbWVudHMgdGhpcyBTVyBmYWxsYmFjayBmb3IgUC0xOTIgY3VydmUsIGlm
+IEkgYW0gYXMgYSB1c2VyIHRvDQo+ID4gYXNrIGZvciBQLTE5MiBjdXJ2ZSAob3IgYW55IG90aGVy
+IHBhcmFtIHRoYXQgcmVzdWx0cyBpbiBTVyBmYWxsYmFjayksIEkgd2lsbCBiZQ0KPiBub3RpZmll
+ZA0KPiA+IHRoYXQgdGhpcyByZXF1ZXN0ZWQgaW1wbGVtZW50YXRpb24gZG9lcyBub3QgcHJvdmlk
+ZSBpdD8NCj4gPg0KPiANCj4gVGhpcyBpcyByYXRoZXIgdW51c3VhbCBjb21wYXJlZCB3aXRoIGhv
+dyB0aGUgY3J5cHRvIEFQSSBpcyB0eXBpY2FsbHkNCj4gdXNlZCwgDQoNClRoZSBpbnRlcmVzdGlu
+ZyBwYXJ0IGhlcmUgaXMgdGhhdCBJIHRoaW5rIHRoZSB1c2UgY2FzZSBJIGFtIGRlc2NyaWJpbmcg
+aXMNCnByZXR0eSBnZW5lcmljLCBpdCBpcyBzdHJhbmdlIHRvIHNlZSB3aHkgbm9vbmUgaGFzIHJh
+aXNlZCB0aGlzIGJlZm9yZS4gDQpPbmUgd291bGQgdGhpbmsgdGhhdCB0aGlzIGlzIHRoZSBwdXJw
+b3NlIG9mIGhhdmluZyB0aGVzZSBtb3JlIHNlY3VyZSBjcnlwdG8NCkhXIGltcGxlbWVudGF0aW9u
+cyBzdXBwb3J0ZWQgdmlhIGRyaXZlcnMgdG8gbWFrZSBzdXJlIHRoYXQgdGhlIHVzZXJzDQp0aGF0
+IGNhcmUgYWJvdXQgaGlnaC1ncmFkZSBzZWN1cml0eSBhY3R1YWxseSBnZXQgd2hhdCB0aGV5IGV4
+cGVjdCBhbmQNCnRoZSByaXNrIG9mIG1pc3Rha2VzIGlzIG1pbmltaXplZC4gDQoNCmJ1dCBpZiB0
+aGlzIGlzIHJlYWxseSB3aGF0IHlvdSB3YW50IHRvIGltcGxlbWVudCwgeW91IGNhbiBkbyBzbw0K
+PiBieToNCj4gLSBoYXZpbmcgYSAiZWNkaCIgaW1wbGVtZW50YXRpb24gdGhhdCBpbXBsZW1lbnRz
+IHRoZSBlbnRpcmUgcmFuZ2UsIGFuZA0KPiB1c2VzIGEgZmFsbGJhY2sgZm9yIGN1cnZlcyB0aGF0
+IGl0IGRvZXMgbm90IGltcGxlbWVudA0KPiAtIGV4cG9ydCB0aGUgc2FtZSBpbXBsZW1lbnRhdGlv
+biBhZ2FpbiBhcyAiZWNkaCIgYW5kIHdpdGggYSBrbm93bg0KPiBkcml2ZXIgbmFtZSAiZWNkaC1r
+ZWVtYmF5LW9jcyIsIGJ1dCB3aXRoIGEgc2xpZ2h0bHkgbG93ZXIgcHJpb3JpdHksDQo+IGFuZCBp
+biB0aGlzIGNhc2UsIHJldHVybiBhbiBlcnJvciB3aGVuIHRoZSB1bmltcGxlbWVudGVkIGN1cnZl
+IGlzDQo+IHJlcXVlc3RlZC4NCj4gDQo+IFRoYXQgd2F5LCB5b3UgZnVsbHkgYWRoZXJlIHRvIHRo
+ZSBBUEksIGJ5IHByb3ZpZGluZyBpbXBsZW1lbnRhdGlvbnMgb2YNCj4gYWxsIGN1cnZlcyBieSBk
+ZWZhdWx0LiBBbmQgaWYgYSB1c2VyIHJlcXVlc3RzICJlY2RoLWtlZW1iYXktb2NzIg0KPiBleHBs
+aWNpdGx5LCBpdCB3aWxsIG5vdCBiZSBhYmxlIHRvIHVzZSB0aGUgUDE5MiBjdXJ2ZSBpbmFkdmVy
+dGVudGx5Lg0KDQpUaGFuayB5b3UgdmVyeSBtdWNoIEFyZCBmb3IgdGhpcyBleHBsYW5hdGlvbiEg
+V2Ugd2lsbCBzZWUgaG93IHN1Y2gNCmltcGxlbWVudGF0aW9uIGRlZmluaXRpb24gd291bGQgbG9v
+ayBpbiBwcmFjdGljZSBmaXJzdCBiZWZvcmUgdGhpbmtpbmcNCm9uIHRoZSB3YXkgdG8gcHJvY2Vl
+ZC4gSXQgbWlnaHQgZW5kIHVwIGxvb2tpbmcgc3RyYW5nZSBhbmQgY29uZnVzaW5nLA0KYW5kIGlm
+IHNvLCBpdCB3b3VsZCBhdCB0aGUgZW5kIGRlc3Ryb3kgdGhlIG9yaWdpbmFsIGlkZWEgdG8gbWFr
+ZSAiaXQgc2ltcGxlDQphbmQgc2VjdXJlIGZvciB0aGUgZHJpdmVyIHVzZXJzIHRvIHVzZSB0aGUg
+cHJvdmlkZWQgZnVuY3Rpb25hbGl0eSIuDQpJIGhhdmUgbm90IHNlZW4gdGhpcyBiZWluZyBkb25l
+IGF0IGFsbCBiZWZvcmUgYXQgYW55IGV4aXN0aW5nIGNyeXB0byBkcml2ZXJzLA0KdGhhdCdzIHdo
+eSBJIHdhcyB0aGlua2luZyB0aGlzIGlzIG5vdCBzdXBwb3J0ZWQgdG8gYmVnaW4gd2l0aC4NCg0K
+PiANCj4gQnV0IHBvbGljaW5nIHdoaWNoIGN1cnZlcyBhcmUgc2VjdXJlIGFuZCB3aGljaCBhcmUg
+bm90IGlzIHJlYWxseSBub3QNCj4gdGhlIGpvYiBvZiB0aGUgQVBJLiBXZSBoYXZlIGltcGxlbWVu
+dGF0aW9ucyBvZiBNRDUgYW5kIFJDNCBpbiB0aGUNCj4ga2VybmVsIHRoYXQgd2Ugd291bGQgKmxv
+dmUqIHRvIHJlbW92ZSBidXQgd2Ugc2ltcGx5IGNhbm5vdCBkbyBzbyBhcw0KPiBsb25nIGFzIHRo
+ZXkgYXJlIHN0aWxsIGJlaW5nIHVzZWQuIFRoZSBzYW1lIGFwcGxpZXMgdG8gUDE5Mjogd2Ugc2lt
+cGx5DQo+IGNhbm5vdCBmYWlsIHJlcXVlc3RzIGZvciB0aGF0IGN1cnZlIGZvciB1c2UgY2FzZXMg
+dGhhdCB3ZXJlIHByZXZpb3VzbHkNCj4gZGVlbWVkIHZhbGlkLiBJdCBpcyBwZXJmZWN0bHkgcmVh
+c29uYWJsZSB0byBvbWl0IHRoZSBpbXBsZW1lbnRhdGlvbg0KPiBmcm9tIHlvdXIgaGFyZHdhcmUs
+IGJ1dCBiYW5uaW5nIGl0cyB1c2Ugb3V0cmlnaHQgb24gdGhlIGdyb3VuZHMgdGhhdA0KPiBpcyBu
+byBsb25nZXIgc2VjdXJlIGNvbmZsaWN0cyB3aXRoIG91ciByZXF1aXJlbWVudCBub3QgdG8gYnJl
+YWsNCj4gZXhpc3RpbmcgdXNlIGNhc2VzLg0KDQpJIGFncmVlIHdpdGggdGhlIGFib3ZlIGxvZ2lj
+LiBJbiB0aGUgbGlnaHQgdGhhdCB0aGUgY3J5cHRvIEFQSSBpcyBhIHRvb2xib3ggZm9yIHRoZQ0K
+Y3J5cHRvIGFuZCBub3QgdGhlIHNlY3VyaXR5IHN1YnN5c3RlbSB0aGF0IGFpbXMgdG8gbWFrZSBh
+bnkgZ3VhcmFudGVlcyBvbg0KdGhlIGVuZCBzZWN1cml0eSBwcm9wZXJ0aWVzIGl0IGFsbCBtYWtl
+cyBzZW5zZS4gSSBndWVzcyBJIHdhcyBvbmx5IGFza2luZyBpZiB0aGlzDQp0b29sYm94IGNhbiBo
+ZWxwIGl0cyB1c2VycyB0byBtaW5pbWl6ZSBwb3RlbnRpYWwgbWlzdGFrZXMgYW5kIGJlIGNvbmZp
+Z3VyYWJsZQ0KZW5vdWdoIHRvIHN1cHBvcnQgZGlmZmVyZW50IHVzYWdlIHNjZW5hcmlvcy4gQnV0
+IGlmIHRoZSBhYm92ZSB3b3JrcywgSSBndWVzcw0KaXQgc3VwcG9ydHMgaXQsIGp1c3QgaG9wZSB0
+aGUgZW5kIGRlY2xhcmF0aW9uIGlzIG5vdCB0b28gbWVzc3kgdG8gY3JlYXRlIG90aGVyDQooZGlm
+ZmVyZW50KSB1c2FnZSBwcm9ibGVtcy4gDQoNCkJlc3QgUmVnYXJkcywNCkVsZW5hLg0KDQo=
