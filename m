@@ -2,150 +2,379 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C972FBA7C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:57:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0881C2FBA7E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:57:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391799AbhASOzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 09:55:45 -0500
-Received: from mail-eopbgr70088.outbound.protection.outlook.com ([40.107.7.88]:15332
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728716AbhASNC3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 08:02:29 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bgmgvos5xcSZ9sV+SaR0v4CsmmR4p8cvnz7vdPK8e3/8YeVMleXrqmT9f4Hx0NJRLaF/Mb1d+H1HsPnOk+ceCLG5KgXXxZ7GssPRFD36yHQ+pwZYZ9qkPAwJeUsk9Z9/XMTR4kuVLMbU6K3//FV9If8p9+fHhL6yFyz6Iwj7ujqLiC/kyZPxveMIk3nS8gJRn4rTDntEU5c35fQqLzN/2vIkQKQLzCMYkMaPt4uJwRwDDVLrvXWSKOchsBPyBLQwsDTaNDj1Nuvw55Csavdmor8xyCFiCO7aXHQcL9OPXjrluwSgK6WGgWDCSGAZZEH98akk2g3VGaUhBlkEZ5BsUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JKqVj/fp4WM3UMFkqjbW8Lbih9Ry8GprkE13tckiM8U=;
- b=VxZXifRawpD5yrRVKMAFim4ZwKnUN3ysQHDJwRIKIBSiWZXQVdmAcDJnWhmLVXuXE6EauGWjLcmADZY121C/ktNuPqZW4UVY+o5H6n722fP+IT0Ev6ottOiRIWmofbYwKTQVDbJLHQD0p3X1mM31q/C/brBiO1cBSuiKSSsUJhu9lITccB//F7QV1FW4L1LcIEsgV0eAy527FOduQseNuKwnkc1Xv+TmpaWuKUQ6m2Yd7Sv+lEtxQ4rP1/SL04E2iQLxQtSICpNQSyimHeh5YQFyVv5pvys6UxjEXt4sYEfDti/nPebqhwBEmrKMkE0Qmp95EqzwkhN04JTxwH3m8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
- header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
+        id S2391819AbhASOzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 09:55:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35080 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392718AbhASNI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 08:08:26 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B8DC0613C1;
+        Tue, 19 Jan 2021 05:07:45 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id d22so10412675edy.1;
+        Tue, 19 Jan 2021 05:07:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=rohmsemiconductoreurope.onmicrosoft.com;
- s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JKqVj/fp4WM3UMFkqjbW8Lbih9Ry8GprkE13tckiM8U=;
- b=A7uGSl6E7UHV16hmkoIdN2Lip/gvx3wPOPHEaYXWlxxNpJIPtD5tsvH7ctM6htBk0TNkFWVu0D3NGmUpg41G35rgRfamR2aDkNVFYEbqCQsGHUkuyImjExKgSAPUS5gN9YlwwKOk5ogay7uG8zDTWImC1WlAOBOfWQK7iQETt58=
-Received: from HE1PR03MB3162.eurprd03.prod.outlook.com (2603:10a6:7:55::20) by
- HE1PR0302MB2668.eurprd03.prod.outlook.com (2603:10a6:3:f1::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3763.13; Tue, 19 Jan 2021 13:01:38 +0000
-Received: from HE1PR03MB3162.eurprd03.prod.outlook.com
- ([fe80::cd6c:2eae:c885:c9d]) by HE1PR03MB3162.eurprd03.prod.outlook.com
- ([fe80::cd6c:2eae:c885:c9d%6]) with mapi id 15.20.3763.014; Tue, 19 Jan 2021
- 13:01:38 +0000
-From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-To:     "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>
-CC:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 10/17] gpio: support ROHM BD71815 GPOs
-Thread-Topic: [PATCH v2 10/17] gpio: support ROHM BD71815 GPOs
-Thread-Index: AQHW7jP1aCOdIjy6aUiaKgV7fuUEzqouyhYAgAAf8oA=
-Date:   Tue, 19 Jan 2021 13:01:37 +0000
-Message-ID: <8bd5d95df1daaee0d7b3fee33e5c5cad679759a6.camel@fi.rohmeurope.com>
-References: <cover.1611037866.git.matti.vaittinen@fi.rohmeurope.com>
-         <50f72f1f7f28e969a1e0353712fcc530bce9dd06.1611037866.git.matti.vaittinen@fi.rohmeurope.com>
-         <CAMpxmJVjnAMig16qWkjpaHwQ+4Ld9yEc-gg-CGv28QQYBB6gNg@mail.gmail.com>
-In-Reply-To: <CAMpxmJVjnAMig16qWkjpaHwQ+4Ld9yEc-gg-CGv28QQYBB6gNg@mail.gmail.com>
-Reply-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Accept-Language: fi-FI, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-authentication-results: baylibre.com; dkim=none (message not signed)
- header.d=none;baylibre.com; dmarc=none action=none
- header.from=fi.rohmeurope.com;
-x-originating-ip: [62.78.225.252]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 546ec45e-95e8-44f3-0a86-08d8bc7a5bb4
-x-ms-traffictypediagnostic: HE1PR0302MB2668:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HE1PR0302MB2668BC326B779F97B9729536ADA30@HE1PR0302MB2668.eurprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nP9aklN01nCJ7c8JXVAFSY9n6JiJWslsVISTvxLCi8QFyHJ0jpWaqVttd7Mrcd1V157zcO29L7xHlXDZqcd46xKa0CXJdmAG2b6/TiqCtV4Im46gWucYcnVqRjsH2e23AULQhIGHHeyiBLJkf73u/vQL1RfGogMKnvKfRyWbqGynJ2/iHEVCfWaibkIDMu9Ds1hycT9fJWiVK9JbBDhf6iMOLU4IKbFMcrPE5a9kUQ1D5dgJxWXasLfbiwR3nprOP9B28pxGuO93uKU/Rwvttlk96QDuybteDoa+uk19o900L9A6wIJGRq8VDZerPUEx0Kw9T2MUCGLEtQ4rv05YRjQq94NTd1kPFeNQMl8WIlj+fTjpXFvNy9jNP9ljdHYCBo6G2znDRDfg8xpZpS3kuQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR03MB3162.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(366004)(346002)(396003)(39850400004)(83380400001)(86362001)(26005)(186003)(6486002)(316002)(4326008)(53546011)(2616005)(6506007)(71200400001)(7416002)(66556008)(3450700001)(64756008)(66476007)(8936002)(66446008)(6512007)(54906003)(66946007)(76116006)(6916009)(478600001)(2906002)(5660300002)(8676002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?eDFjWWJaSVI5NEdlUU1CbWtqRjBacEN5eVZDRjVYWEpsdUprTW1YVDM3SUls?=
- =?utf-8?B?U3RwbDNueVV2TGd5bHQzZGxKQXpiaUVYS2tZVU45R0lNbUZWMHRUdHdyZEZa?=
- =?utf-8?B?SUw0bG45THlwWVpBNUFUdzMzSTRvNmZDZWlDbTJaMndIY2JkSWgycUgzVU1H?=
- =?utf-8?B?ei9HQThLSlhNak42YjRpdWJ5NkhaNFhmZEthMG5pQ3dOVERySzljcEtROGFQ?=
- =?utf-8?B?UUl1YnQ5R3oydXZIRTFlYzZERE9keGQ3RGkzaldJUGxFRXV0aDNZdmtZckZP?=
- =?utf-8?B?M0xuUXdKSGFvb09hM0ZDTUwvbE5oeHgyVnRzcU15blc3bkJrVExuMWRMVzkv?=
- =?utf-8?B?a2tFVzBvNEUrQThiNU5kUjY4S1VHek1keW1jZUVmaGprOU9HYWFDSmNwdktk?=
- =?utf-8?B?cXV0eFV2TEZvV2hudDE4NzAvdUQrenA4V2p6ZmMycVBzbEhvcEVQSUxDQ0JC?=
- =?utf-8?B?RWhWL1psOVdQbkpSVVp3S1l2YjlYeXZyVnBBQ0R3dE8xeFllWUVJaDZhM2VT?=
- =?utf-8?B?UXB3emtDazFJQWpXUno3SHVGVW1iWWJLM3BGc3lYRVdHSWo5RHRmdTJUL2JW?=
- =?utf-8?B?SXpMZnpkaFVrZUNheUxabVBicERoZGpBbitrVVdBRHIvcmdqRVlzZUpxdGVl?=
- =?utf-8?B?V00rRGxXS29GR1NNbWJvblFLS1JqQUNzZzQ3UFBncjlDdDJTWXFON2hkL1lv?=
- =?utf-8?B?MVR4dXRKRWdvQzh5cFp5WmxnWnh1Z2RxdzVTRis4S3NLRU0zKy95L1VyaE9Q?=
- =?utf-8?B?dHNDZDNCTjI1dG1xUElMZER3cVlIU3FOMjkwMHJRaDhVaUdMMzBRSlp4RDZh?=
- =?utf-8?B?QkZWWG9VQkdrMzdMaEczcXY3NlBIN21hZ29ZUitkWUpvTDFKTlUrMUl0bHlm?=
- =?utf-8?B?THFiM1NXQ1FvcFowNTJkbjNVVzNuOG5mOUd1VklzTUxvU0ZqVldnd0ZCcDFW?=
- =?utf-8?B?d2UrazExZTZBcEE3akV1dXhrOUpESHhUOFdNRzFrRFI3cmJlNDR0MFRIaVF6?=
- =?utf-8?B?NUZEd29CTlFFNHUxSVRHRktpdExibEc4V1FnaTBmL3lVRFM1RGxoNWFabGlx?=
- =?utf-8?B?YWlReW9wM2I1SmUzN2hWOGE2ck9iVm5EUjUxc1hXTUwwSngzSlE1T3BoOUJ0?=
- =?utf-8?B?d3lNUXJOYW82Ymd4Z3BSYUdKOHpTM1JEeERCODdXS3hQcWVSbGpVcEZSQ3pp?=
- =?utf-8?B?SkpuR25xT0VyeWppWDI3cFduRW90YVZoV1E2emhFUnAyZmZGcnJIUE9WUlhT?=
- =?utf-8?B?S3JzQkJMdVNHTzUzN09zSXQ0UG9sVkFFS2poRmFISVdPZ2REaHp5WmFOc1Qz?=
- =?utf-8?B?YnJDRXBxRFdTZm5sTStVcUxkN0N6dkZXRld0bzJwRkdQc3IrbVZTem92MUp4?=
- =?utf-8?B?cGZDUHpIMjB1NFYvaFJ6Q3JFWlNFeW9QZE9NdFBQeDExUU45dlRmL3V2ZU1M?=
- =?utf-8?B?aERiYlRGN0VVcHloK1FKbHF5cC9aaDN1Nmp5Ym1RPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FEB28E79FDFD0648825D54FE989BAFE0@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wzaXSRn4+k01DEBdxGgglCeDYjx+EaPzUwvzpubQoSs=;
+        b=HzOBN2TQiQXAD6gN5jIPfgNqQOLdMxjEWNT04squLwNoPZ2YGCKBDbjd7ADFHtEGzZ
+         JUBpEDMJKdaQMeAXb3YRwX1SjNKRCc+Pq7pzBtYFrUUYa95VA6wd6vlA4mMOMPVuElpT
+         QozoL55q/mVw15BNzeRN4Hi83aWALP0LM0dKZVN5eQMHNV/w6K+yPr7J11RDqkKjkicP
+         jbtd3iPVLVvAnoKA52u/++7z4YyxXZiS7YZiiyjqZYFeE5Ay5aKAUfg/kXIXv+M34ubn
+         f2P17MgnrtNYpDz+dZIQN2cXN892oqSn8EW5g7HO8GirziT2NNt7PuyVA+O/+TBiKUJ3
+         I9dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wzaXSRn4+k01DEBdxGgglCeDYjx+EaPzUwvzpubQoSs=;
+        b=jESu4tlRF6gXQa7lXvcd1mbZD1Kn/bBtCxRxTtlP+ye064htRZEXSuHr4Lo7aXb+cJ
+         c6aZF0lttuOhGNsFfbK/PGfAef1cJP7Ww67owi4IpwXcScQGHAEEtE3hnHz3ytmr2Ow5
+         2PI6IGNh18e7B/vBUnplYQ42EA8lHPwQ0wyk+XmkjPBOx6jAPmF9DMNqxhjK85sHW5Oy
+         w0a/mbVVeXtqcjEaKyKtk+QYoFtM9Wl3jgkZjR5XiSqLxOYyHbwvqbkIqmVXtAZrL2BS
+         VG3b5Bs4vr/nmcSNpfkp9d/lICWdRPEOOy3WktFZ9gvAV+hKcVKF+rcMCQCHTOTpUBsP
+         LMVQ==
+X-Gm-Message-State: AOAM531f7kUphh5ertDnozAZCIZDQURXfTXzkj2i3wbwbyz7995xlicJ
+        hyHnF7HnT0sMvM4u4EJ260s/NQVYsdM=
+X-Google-Smtp-Source: ABdhPJxGMjNIGBOEXxEbq4NM0CuNR7cCn53Aw3uCy1mn9iG1Rc6tAxOw8T+aMFDekTP/Cird6una6A==
+X-Received: by 2002:aa7:dd12:: with SMTP id i18mr2486937edv.36.1611061664198;
+        Tue, 19 Jan 2021 05:07:44 -0800 (PST)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id l17sm2408837ejc.60.2021.01.19.05.07.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jan 2021 05:07:43 -0800 (PST)
+Subject: Re: [PATCH 2/3] dt-bindings: rockchip: Add DesignWare based PCIe
+ controller
+To:     Simon Xue <xxm@rock-chips.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20210118091739.247040-1-xxm@rock-chips.com>
+ <20210118091739.247040-2-xxm@rock-chips.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <e143ad9e-1cfd-e59d-0079-513c036981ba@gmail.com>
+Date:   Tue, 19 Jan 2021 14:07:41 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-X-OriginatorOrg: fi.rohmeurope.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR03MB3162.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 546ec45e-95e8-44f3-0a86-08d8bc7a5bb4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2021 13:01:38.2153
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: A3kbTi+TmNaU2SfEWPoLlKzqcnJrBqDBv7hk04kne4sexhj66/joxn7ahlthVPOOIIaPaKHjNCNd1VeEPKChKKoD2Ca89dtrLcTiuEO0T2UoUwVX9W9Sa3DX9pS5QQia
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0302MB2668
+In-Reply-To: <20210118091739.247040-2-xxm@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQmFydG9zeiwNCg0KT24gVHVlLCAyMDIxLTAxLTE5IGF0IDEyOjA3ICswMTAwLCBCYXJ0b3N6
-IEdvbGFzemV3c2tpIHdyb3RlOg0KPiBPbiBUdWUsIEphbiAxOSwgMjAyMSBhdCA4OjIzIEFNIE1h
-dHRpIFZhaXR0aW5lbg0KPiA8bWF0dGkudmFpdHRpbmVuQGZpLnJvaG1ldXJvcGUuY29tPiB3cm90
-ZToNCj4gPiBTdXBwb3J0IEdQTyhzKSBmb3VuZCBmcm9tIFJPSE0gQkQ3MTgxNSBwb3dlciBtYW5h
-Z2VtZW50IElDLiBUaGUgSUMNCj4gPiBoYXMgdHdvDQo+ID4gR1BPIHBpbnMgYnV0IG9ubHkgb25l
-IGlzIHByb3Blcmx5IGRvY3VtZW50ZWQgaW4gZGF0YS1zaGVldC4gVGhlDQo+ID4gZHJpdmVyDQo+
-ID4gZXhwb3NlcyBieSBkZWZhdWx0IG9ubHkgdGhlIGRvY3VtZW50ZWQgR1BPLiBUaGUgc2Vjb25k
-IEdQTyBpcw0KPiA+IGNvbm5lY3RlZCB0bw0KPiA+IEU1IHBpbiBhbmQgaXMgbWFya2VkIGFzIEdO
-RCBpbiBkYXRhLXNoZWV0LiBDb250cm9sIGZvciB0aGlzDQo+ID4gdW5kb2N1bWVudGVkDQo+ID4g
-cGluIGNhbiBiZSBlbmFibGVkIHVzaW5nIGEgc3BlY2lhbCBEVCBwcm9wZXJ0eS4NCj4gPiANCj4g
-PiBUaGlzIGRyaXZlciBpcyBkZXJpdmVkIGZyb20gd29yayBieSBQZXRlciBZYW5nIDwNCj4gPiB5
-YW5nbHNoQGVtYmVzdC10ZWNoLmNvbT4NCj4gPiBhbHRob3VnaCBub3Qgc28gbXVjaCBvZiBvcmln
-aW5hbCBpcyBsZWZ0Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IE1hdHRpIFZhaXR0aW5lbiA8
-bWF0dGkudmFpdHRpbmVuQGZpLnJvaG1ldXJvcGUuY29tPg0KPiANCj4gSGkgTWF0dGksDQo+IA0K
-PiBsb29rcyBncmVhdCwganVzdCBhIGNvdXBsZSBuaXRzLg0KPiANCg0KVGhhbmtzIGZvciB0aGUg
-cmV2aWV3ISBJJ2xsIHN0b3JlIHlvdXIgZmluc2luZ3MgYW5kIGZpeCB0aGVtIHdoZW4gSQ0KcmVz
-cGluIHRoaXMuIEkgdGhpbmsgYWxsIG9mIHlvdXIgcG9pbnRzIHdlcmUgdmFsaWQuIEFzIEkga25v
-dyB0aGlzIGlzDQpsYXJnaXNoIHNlcmllcyAoYW5kIGFzIEkga25vdyBJIGFjY2lkZW50YWxseSBz
-ZW50IGZpcnN0IDEwIHYyIHBhdGNoZXMNCnRvIGFsbCByZWNpcGllbnRzIG5vIG1hdHRlciB3aGF0
-IHN1YnN5c3RlbSB3YXMgaW1wYWN0ZWQpIEknbGwgd2FpdCBmb3INCmEgd2hpbGUgYmVmb3JlIHJl
-c2VuZGluZyAoYXQgbGVhc3QgYSB3ZWVrKS4gQmVzaWRlcyBJIGRvbid0IGV4cGVjdCB0aGUNCmRl
-cGVuZGVuY2llcyB0byBiZSBtZXJnZWQgYmVmb3JlIG5leHQga2VybmVsIHJlbGVhc2Ugc28gdGhp
-cyBpcyBub3QNCnVyZ2VudCA6KQ0KDQotIGJ1dCB0aGFua3MhDQoNCkJyLA0KCU1hdHRpDQoNCg==
+Hi Simon,
+
+Thank you for this patch for rk3568 pcie.
+
+Include the Rockchip device tree maintainer and all other people/lists
+to the CC list.
+
+./scripts/checkpatch.pl --strict <patch1> <patch2>
+
+ ./scripts/get_maintainer.pl --noroles --norolestats --nogit-fallback
+--nogit <patch1> <patch2>
+
+git send-email --suppress-cc all --dry-run --annotate --to
+heiko@sntech.de --cc <..> <patch1> <patch2>
+
+This SoC has no support in mainline linux kernel yet.
+In all the following yaml documents for rk3568 we need headers with
+defines for clocks and power domains, etc.
+
+For example:
+#include <dt-bindings/clock/rk3568-cru.h>
+#include <dt-bindings/power/rk3568-power.h>
+
+Could Rockchip submit first clocks and power drivers entries and a basic
+rk3568.dtsi + evb dts?
+Include a patch to this serie with 3 pcie nodes added to rk3568.dtsi.
+
+A dtbs_check only works with a complete dtsi and evb dts.
+
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+
+On 1/18/21 10:17 AM, Simon Xue wrote:
+> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> ---
+>  .../bindings/pci/rockchip-dw-pcie.yaml        | 101 ++++++++++++++++++
+>  1 file changed, 101 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> new file mode 100644
+> index 000000000000..fa664cfffb29
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -0,0 +1,101 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: DesignWare based PCIe RC controller on Rockchip SoCs
+> +
+
+> +maintainers:
+> +  - Shawn Lin <shawn.lin@rock-chips.com>
+> +  - Simon Xue <xxm@rock-chips.com>
+
+maintainers:
+  - Heiko Stuebner <heiko@sntech.de>
+
+Add only people with maintainer rights.
+
+
+allOf:
+  - $ref: /schemas/pci/pci-bus.yaml#
+
+designware-pcie.txt is in need for conversion to yaml.
+Include the things that are needed in this document for now.
+
+> +
+> +# We need a select here so we don't match all nodes with 'snps,dw-pcie'
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: rockchip,rk3568-pcie
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+
+> +    enum:
+> +      - rockchip,rk3568-pcie
+> +      - snps,dw-pcie
+
+    items:
+      - const: rockchip,rk3568-pcie
+      - const: snps,dw-pcie
+
+> +
+> +  reg:
+> +    maxItems: 1
+
+    interrupts:
+      - description:
+      - description:
+      - description:
+      - description:
+      - description:
+
+  interrupt-names:    items:
+      - const: sys
+      - const: pmc
+      - const: msg
+      - const: legacy
+      - const: err
+
+> +
+> +  clocks:
+> +    items:
+> +      - description: AHB clock for PCIe master
+> +      - description: AHB clock for PCIe slave
+> +      - description: AHB clock for PCIe dbi
+> +      - description: APB clock for PCIe
+> +      - description: Auxiliary clock for PCIe
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aclk_mst
+> +      - const: aclk_slv
+> +      - const: aclk_dbi
+> +      - const: pclk
+> +      - const: aux
+> +
+
+
+  msi-map: true
+
+  power-domains:
+    maxItems: 1
+
+> +  resets:	maxItems: 1
+
+> +    items:
+> +      - description: PCIe pipe reset line
+
+remove
+
+> +
+> +  reset-names:
+	const: pipe
+
+> +    items:
+> +      - const: pipe
+
+remove
+
+> +
+> +required:
+> +  - compatible
+
+> +  - "#address-cells"
+> +  - "#size-cells"
+
+already required in pci-bus.yaml
+
+> +  - bus-range
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+
+> +  - msi-map
+
+not defined in pci-bus.yaml and designware-pcie.txt
+add to document
+
+> +  - num-lanes
+
+> +  - phys
+> +  - phy-names
+
+not defined in pci-bus.yaml and designware-pcie.txt
+add to document
+
+   - power-domains
+
+> +  - ranges
+
+already required in pci-bus.yaml
+
+> +  - resets
+> +  - reset-names
+> +
+
+> +additionalProperties: false
+
+unevaluatedProperties: false
+
+If other documents are included use unevaluatedProperties.
+
+> +
+> +examples:
+> +  - |
+
+#include <dt-bindings/clock/rk3568-cru.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/power/rk3568-power.h>
+
+Missing defines
+
+
+    bus {
+        #address-cells = <2>;
+        #size-cells = <2>;
+
+dt-check uses standard 32 bit regs
+this example is for 64 bit
+
+> +    pcie3x2: pcie@fe280000 {
+> +      compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
+
+> +      #address-cells = <3>;
+> +      #size-cells = <2>;
+
+sort things that start with # below
+
+> +      bus-range = <0x20 0x2f>;
+
+sort order is:
+compatible
+reg
+interrupt
+the rest in alphabetical order
+things with #
+no status in yaml examples
+
+
+> +      reg = <0x3 0xc0800000 0x0 0x400000>,
+> +            <0x0 0xfe280000 0x0 0x10000>;
+> +      reg-names = "pcie-dbi", "pcie-apb";
+
+		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
+
+> +      clocks = <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,
+> +               <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,
+> +               <&cru CLK_PCIE30X2_AUX_NDFT>;
+> +      clock-names = "aclk_mst", "aclk_slv",
+> +                    "aclk_dbi", "pclk",
+> +                    "aux";
+> +      msi-map = <0x2000 &its 0x2000 0x1000>;
+> +      num-lanes = <2>;
+> +      phys = <&pcie30phy>;
+> +      phy-names = "pcie-phy";
+
+    power-domains = <&power RK3568_PD_PIPE>;
+
+> +      ranges = <0x00000800 0x0 0x80000000 0x3 0x80000000 0x0 0x800000
+> +                0x81000000 0x0 0x80800000 0x3 0x80800000 0x0 0x100000
+> +                0x83000000 0x0 0x80900000 0x3 0x80900000 0x0 0x3f700000>;
+> +      resets = <&cru SRST_PCIE30X2_POWERUP>;
+> +      reset-names = "pipe";
+> +    };
+
+};
+
+> +
+> +...
+> 
+
+Make sure that all properties that show up in this node are checked!
+
+	pcie2x1: pcie@fe260000 {
+		compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
+		#address-cells = <3>;
+		#size-cells = <2>;
+		bus-range = <0x0 0xf>;
+		clocks = <&cru ACLK_PCIE20_MST>, <&cru ACLK_PCIE20_SLV>,
+			 <&cru ACLK_PCIE20_DBI>, <&cru PCLK_PCIE20>,
+			 <&cru CLK_PCIE20_AUX_NDFT>;
+		clock-names = "aclk_mst", "aclk_slv",
+			      "aclk_dbi", "pclk", "aux";
+		device_type = "pci";
+		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
+		linux,pci-domain = <0>;
+		num-ib-windows = <6>;
+		num-ob-windows = <2>;
+		max-link-speed = <2>;
+		msi-map = <0x0 &its 0x0 0x1000>;
+		num-lanes = <1>;
+		phys = <&combphy2_psq PHY_TYPE_PCIE>;
+		phy-names = "pcie-phy";
+		power-domains = <&power RK3568_PD_PIPE>;
+		ranges = <0x00000800 0x0 0x00000000 0x3 0x00000000 0x0 0x800000
+			  0x81000000 0x0 0x00800000 0x3 0x00800000 0x0 0x100000
+			  0x83000000 0x0 0x00900000 0x3 0x00900000 0x0 0x3f700000>;
+		reg = <0x3 0xc0000000 0x0 0x400000>,
+		      <0x0 0xfe260000 0x0 0x10000>;
+		reg-names = "pcie-dbi", "pcie-apb";
+		resets = <&cru SRST_PCIE20_POWERUP>;
+		reset-names = "pipe";
+		status = "disabled";
+	};
