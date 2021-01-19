@@ -2,72 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4623F2FC2B1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 22:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 776AE2FC2CE
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 22:53:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389002AbhASVpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 16:45:51 -0500
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:49127 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728707AbhASVoY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 16:44:24 -0500
-X-Originating-IP: 86.202.109.140
-Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 0A3B120005;
-        Tue, 19 Jan 2021 21:43:37 +0000 (UTC)
-Date:   Tue, 19 Jan 2021 22:43:37 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 03/19] dt-bindings: rtc: sun6i-a31-rtc: Loosen the
- requirements on the clocks
-Message-ID: <20210119214337.GT3666@piout.net>
-References: <20210114113538.1233933-1-maxime@cerno.tech>
- <20210114113538.1233933-3-maxime@cerno.tech>
+        id S1726618AbhASVxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 16:53:35 -0500
+Received: from relay07.th.seeweb.it ([5.144.164.168]:42541 "EHLO
+        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726134AbhASVxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 16:53:30 -0500
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 0CAC83EF47;
+        Tue, 19 Jan 2021 22:52:45 +0100 (CET)
+Subject: Re: [PATCH 1/3] phy: qcom-qusb2: Allow specifying default clock
+ scheme
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
+        robh+dt@kernel.org, mgautam@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, konrad.dybcio@somainline.org,
+        martin.botka@somainline.org, marijn.suijten@somainline.org,
+        phone-devel@vger.kernel.org
+References: <20210114174718.398638-1-angelogioacchino.delregno@somainline.org>
+ <20210119150707.GB2771@vkoul-mobl>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <b1542397-a206-7d6e-4918-2ad08f350c8b@somainline.org>
+Date:   Tue, 19 Jan 2021 22:52:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210114113538.1233933-3-maxime@cerno.tech>
+In-Reply-To: <20210119150707.GB2771@vkoul-mobl>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/01/2021 12:35:22+0100, Maxime Ripard wrote:
-> The commit ec98a87509f4 ("rtc: sun6i: Make external 32k oscillator
-> optional") loosened the requirement of the clocks property, making it
-> optional. However, the binding still required it to be present.
+Il 19/01/21 16:07, Vinod Koul ha scritto:
+> Patch 2 had two blank lines getting inserted, I have fixed that up while
+> applying.. so:
 > 
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Fixes: ec98a87509f4 ("rtc: sun6i: Make external 32k oscillator optional")
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Applied all, thanks
 
-> ---
->  .../devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml         | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> index 37c2a601c3fa..b1b0ee769b71 100644
-> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> @@ -128,7 +128,6 @@ required:
->    - compatible
->    - reg
->    - interrupts
-> -  - clocks
->    - clock-output-names
->  
->  additionalProperties: false
-> -- 
-> 2.29.2
-> 
-
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Thank you!
