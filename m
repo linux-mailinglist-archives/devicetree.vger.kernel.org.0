@@ -2,189 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FF662FBA82
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:57:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 393052FBA84
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:57:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391941AbhASOzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 09:55:51 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2378 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390219AbhASNkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 08:40:09 -0500
-Received: from fraeml708-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4DKqRX6plxz67dh8;
-        Tue, 19 Jan 2021 21:35:52 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml708-chm.china.huawei.com (10.206.15.36) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Tue, 19 Jan 2021 14:39:00 +0100
-Received: from localhost (10.47.77.36) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Tue, 19 Jan
- 2021 13:38:59 +0000
-Date:   Tue, 19 Jan 2021 13:38:19 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-CC:     <joro@8bytes.org>, <will@kernel.org>, <lorenzo.pieralisi@arm.com>,
-        <robh+dt@kernel.org>, <guohanjun@huawei.com>,
-        <sudeep.holla@arm.com>, <rjw@rjwysocki.net>, <lenb@kernel.org>,
-        <robin.murphy@arm.com>, <eric.auger@redhat.com>,
-        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-acpi@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-accelerators@lists.ozlabs.org>, <baolu.lu@linux.intel.com>,
-        <vdumpa@nvidia.com>, <zhangfei.gao@linaro.org>,
-        <shameerali.kolothum.thodi@huawei.com>, <vivek.gautam@arm.com>
-Subject: Re: [PATCH v9 06/10] iommu: Add a page fault handler
-Message-ID: <20210119133819.000015f6@Huawei.com>
-In-Reply-To: <20210108145217.2254447-7-jean-philippe@linaro.org>
-References: <20210108145217.2254447-1-jean-philippe@linaro.org>
-        <20210108145217.2254447-7-jean-philippe@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S2391943AbhASOzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 09:55:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43320 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391267AbhASNqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 08:46:31 -0500
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D56C061799
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 05:43:43 -0800 (PST)
+Received: by mail-vs1-xe32.google.com with SMTP id s2so11072714vsk.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 05:43:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZwifCSX45KhsvY2iJTL0WhKEp/VAHjvt7PynTrJUsDk=;
+        b=gXiQ9xYsNg2rnEMj13umiSHP/tkUj27IExlmJW/qZx9JksExVXRsHUCGfoxnZWGyJJ
+         SKWAYjFK9DPjcoXXlgUEs9WTuRdGa/03tT/483PmfSPDxQJ6dbN225oN1DNdAsKB4uVH
+         /k4QpdhAfSSJQD8AYQSXb4pAQ5AY/AttZgTO5QjFveSHjxZ/B5NE8/kqGaMUNJuhjUso
+         UVVEF6SGqB27rWUHyjL+go4wPes6yO13Jlix6AX3TxAcQZ1ygsyq8wN3TPS6FHceaYle
+         pc4Kou13auHkqOan07St4EEvFaNXTJ0vIIPjfYz00ZFryUzmj1jtISPyqDlyxslZdlVU
+         SQSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZwifCSX45KhsvY2iJTL0WhKEp/VAHjvt7PynTrJUsDk=;
+        b=uVxt7bS53YAU2dcoJKWc3fjddv94S4wOAFEwhuYZx5eXOSbZYVRUqZM3Ub38UA3yi9
+         jv2K1I20jRZJjjv1d5v1CLRV1mpkziOSTRD1GhEmsc9YFOiA0xE6VgLgJDcTKxNip9pq
+         3kE0iHdIUkZxqUQvb3CWuQXt8uzUpS6CjSSHdnWmiGWGw2D1jB0C72b0yCoLdDQoh+4l
+         t4fpiXeKHpsLjzV3Aa/ZzjD4Sqy8TRc39S9aLD6WbUmqHQlNm7ugASbOzHQhn0scQZCl
+         loQLxVCXMi86M967iQaRD0l5eLyAQubUXvPOkA79CuFN6A+DiwlPE3XwDyRgJ6SGjlH/
+         I9bQ==
+X-Gm-Message-State: AOAM533ImgUHzTjNHPJIReDP7Tv7zBdogQ1S+asasHzVneYioCggUPSp
+        SSaRAxu3qeSq/k4T2OgmlHGNiHSbavQj3eRkOlB2I5up5BVnPA==
+X-Google-Smtp-Source: ABdhPJyNZwiCneblhx3D9rnVa5WXxr7vgezCM4SQABvJl8PA3qInPMT4IDEoPvGCeZB1In3tRQZbqkcIIA+453oN+aY=
+X-Received: by 2002:a67:f997:: with SMTP id b23mr2484759vsq.34.1611063823059;
+ Tue, 19 Jan 2021 05:43:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.77.36]
-X-ClientProxiedBy: lhreml735-chm.china.huawei.com (10.201.108.86) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+References: <20210115193218.5809-1-grygorii.strashko@ti.com>
+In-Reply-To: <20210115193218.5809-1-grygorii.strashko@ti.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 19 Jan 2021 14:43:06 +0100
+Message-ID: <CAPDyKFp3K7G_36vB5BrMjhLgCD99xi4tL9sHGaunTGm+AqYeNw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: sdhci-am654: fix compatible for j7200
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Faiz Abbas <faiz_abbas@ti.com>, Nishanth Menon <nm@ti.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Jan 2021 15:52:14 +0100
-Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
+On Fri, 15 Jan 2021 at 20:32, Grygorii Strashko
+<grygorii.strashko@ti.com> wrote:
+>
+> On TI J7200 SoC the SDHCI controller compatible defined as
+>  "ti,j7200-sdhci-8bit", "ti,j721e-sdhci-8bit"
+>  or
+>  "ti,j7200-sdhci-4bit", "ti,j721e-sdhci-4bit"
+> which causes dtbs_check warnings:
+> mmc@4f80000: compatible: ['ti,j7200-sdhci-8bit', 'ti,j721e-sdhci-8bit'] is too long
+> mmc@4f80000: compatible: Additional items are not allowed ('ti,j721e-sdhci-8bit' was unexpected)
+> mmc@4fb0000: compatible:0: 'ti,j7200-sdhci-4bit' is not one of ['ti,am654-sdhci-5.1', 'ti,j721e-sdhci-8bit',
+>  'ti,j721e-sdhci-4bit', 'ti,j7200-sdhci-8bit', 'ti,j721e-sdhci-4bit', 'ti,am64-sdhci-8bit', 'ti,am64-sdhci-4bit']
+> mmc@4fb0000: compatible: ['ti,j7200-sdhci-4bit', 'ti,j721e-sdhci-4bit'] is too long
+> mmc@4fb0000: compatible: Additional items are not allowed ('ti,j721e-sdhci-4bit' was unexpected)
+>
+> Fix it by adding missing compatible strings and their combinations.
+>
+> Fixes: 407d0c2cdd12 ("dt-bindings: mmc: sdhci-am654: Convert sdhci-am654 controller documentation to json schema")
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
-> Some systems allow devices to handle I/O Page Faults in the core mm. For
-> example systems implementing the PCIe PRI extension or Arm SMMU stall
-> model. Infrastructure for reporting these recoverable page faults was
-> added to the IOMMU core by commit 0c830e6b3282 ("iommu: Introduce device
-> fault report API"). Add a page fault handler for host SVA.
-> 
-> IOMMU driver can now instantiate several fault workqueues and link them
-> to IOPF-capable devices. Drivers can choose between a single global
-> workqueue, one per IOMMU device, one per low-level fault queue, one per
-> domain, etc.
-> 
-> When it receives a fault event, supposedly in an IRQ handler, the IOMMU
+Applied for next, thanks!
 
-Why "supposedly"? Do you mean "most commonly" 
+Kind regards
+Uffe
 
-> driver reports the fault using iommu_report_device_fault(), which calls
-> the registered handler. The page fault handler then calls the mm fault
-> handler, and reports either success or failure with iommu_page_response().
-> When the handler succeeds, the IOMMU retries the access.
 
-For PRI that description is perhaps a bit missleading.  IIRC the IOMMU
-will only retry when it gets a new ATS query.
-
-> 
-> The iopf_param pointer could be embedded into iommu_fault_param. But
-> putting iopf_param into the iommu_param structure allows us not to care
-> about ordering between calls to iopf_queue_add_device() and
-> iommu_register_device_fault_handler().
-> 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-
-One really minor inconsistency inline that made me look twice..
-With or without that tided up FWIW.
-
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
-...
-
-> +/**
-> + * iopf_queue_add_device - Add producer to the fault queue
-> + * @queue: IOPF queue
-> + * @dev: device to add
-> + *
-> + * Return: 0 on success and <0 on error.
-> + */
-> +int iopf_queue_add_device(struct iopf_queue *queue, struct device *dev)
-> +{
-> +	int ret = -EBUSY;
-> +	struct iopf_device_param *iopf_param;
-> +	struct dev_iommu *param = dev->iommu;
-> +
-> +	if (!param)
-> +		return -ENODEV;
-> +
-> +	iopf_param = kzalloc(sizeof(*iopf_param), GFP_KERNEL);
-> +	if (!iopf_param)
-> +		return -ENOMEM;
-> +
-> +	INIT_LIST_HEAD(&iopf_param->partial);
-> +	iopf_param->queue = queue;
-> +	iopf_param->dev = dev;
-> +
-> +	mutex_lock(&queue->lock);
-> +	mutex_lock(&param->lock);
-> +	if (!param->iopf_param) {
-> +		list_add(&iopf_param->queue_list, &queue->devices);
-> +		param->iopf_param = iopf_param;
-> +		ret = 0;
-> +	}
-> +	mutex_unlock(&param->lock);
-> +	mutex_unlock(&queue->lock);
-> +
-> +	if (ret)
-> +		kfree(iopf_param);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(iopf_queue_add_device);
-> +
-> +/**
-> + * iopf_queue_remove_device - Remove producer from fault queue
-> + * @queue: IOPF queue
-> + * @dev: device to remove
-> + *
-> + * Caller makes sure that no more faults are reported for this device.
-> + *
-> + * Return: 0 on success and <0 on error.
-> + */
-> +int iopf_queue_remove_device(struct iopf_queue *queue, struct device *dev)
-> +{
-> +	int ret = 0;
-I'm not that keen that the logic of ret is basically the opposite
-of that in the previous function.
-There we had it init to error then set to good, here we do the opposite.
-
-Not that important which but right now it just made me do a double take
-whilst reading.
-
-> +	struct iopf_fault *iopf, *next;
-> +	struct iopf_device_param *iopf_param;
-> +	struct dev_iommu *param = dev->iommu;
-> +
-> +	if (!param || !queue)
-> +		return -EINVAL;
-> +
-> +	mutex_lock(&queue->lock);
-> +	mutex_lock(&param->lock);
-> +	iopf_param = param->iopf_param;
-> +	if (iopf_param && iopf_param->queue == queue) {
-> +		list_del(&iopf_param->queue_list);
-> +		param->iopf_param = NULL;
-> +	} else {
-> +		ret = -EINVAL;
-> +	}
-> +	mutex_unlock(&param->lock);
-> +	mutex_unlock(&queue->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Just in case some faults are still stuck */
-> +	list_for_each_entry_safe(iopf, next, &iopf_param->partial, list)
-> +		kfree(iopf);
-> +
-> +	kfree(iopf_param);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(iopf_queue_remove_device);
-> +
-
-...
-
+> ---
+>  .../devicetree/bindings/mmc/sdhci-am654.yaml  | 21 ++++++++++++-------
+>  1 file changed, 13 insertions(+), 8 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> index 34e53db29428..3a79e39253d2 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> @@ -15,14 +15,19 @@ allOf:
+>
+>  properties:
+>    compatible:
+> -    enum:
+> -      - ti,am654-sdhci-5.1
+> -      - ti,j721e-sdhci-8bit
+> -      - ti,j721e-sdhci-4bit
+> -      - ti,j7200-sdhci-8bit
+> -      - ti,j721e-sdhci-4bit
+> -      - ti,am64-sdhci-8bit
+> -      - ti,am64-sdhci-4bit
+> +    oneOf:
+> +      - const: ti,am654-sdhci-5.1
+> +      - const: ti,j721e-sdhci-8bit
+> +      - const: ti,j721e-sdhci-4bit
+> +      - const: ti,j721e-sdhci-4bit
+> +      - const: ti,am64-sdhci-8bit
+> +      - const: ti,am64-sdhci-4bit
+> +      - items:
+> +          - const: ti,j7200-sdhci-8bit
+> +          - const: ti,j721e-sdhci-8bit
+> +      - items:
+> +          - const: ti,j7200-sdhci-4bit
+> +          - const: ti,j721e-sdhci-4bit
+>
+>    reg:
+>      maxItems: 2
+> --
+> 2.17.1
+>
