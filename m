@@ -2,152 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 434222FB7F2
+	by mail.lfdr.de (Postfix) with ESMTP id AFBA52FB7F3
 	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:28:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391211AbhASLc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 06:32:57 -0500
-Received: from mail-eopbgr60100.outbound.protection.outlook.com ([40.107.6.100]:49376
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2404644AbhASKyL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 05:54:11 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Uar8qATU4CiTvz9ANSYF8YfOfw4y21hC9yjlGp3Lw+3AN7k3Wrs1MRaHe+slxKQjVN8vy+YcsoOpnuocLp2zztwpnCDG4Yir0ccCbqifQK7WCuJc79jbBGcSWBQ2cmAhGR0AmWoFZKjlG/O3QOQ5mDWz5Huni/hCTujx7MsYFU62FOgsP+DHBX9Hj5eitrcy1SKwFXGyZ+Kh0qQzhMFCYssZ48OpGz7KwnUcGahpSsTmQCD34M38KBKZr0c3+WG3aupixlyEZyXqFTBxOyjfJ+FLkmhYwZTOmtkWEatmvJQjCKL/w7GfH9Zlau4i/kTH4n5O2SSltXJ2Ga3LxN09tQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0F7yAidr0T81HREofnWAgNGv1GvLo5Pfvu/QPA2JaoI=;
- b=e0kCyu6hdjrix16UX/b30wskrHo9OiDNNWjnPzjwhexLCdx6CChI1Yi/5OuhHqHNHOeyO6eM8vN9Ts/qUnlqltVeK14JxmDTcdGRxa7LR4+DKOPO7OGBDbIK3d6av5omfuk7wPiEdjDb/9K79C7c7qBT0XmToHqoQ6iUB0ghlBuiykd1mPYiDifNVbfCTjQa85hJWv2sON5vk84e69yoOI8iEIx78lI1PpM1Uxzc600DYvP7Bps9quzDK+UkeEbcEiAqkldlZ04BH2CCgdAKw6zo3A80OzJwlbA6PfIXiO7FPgMQ1OujzdjajO8JvY5Vig8FK83MGbNvamOjet1zkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 62.153.209.162) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=schleissheimer.de; dmarc=none action=none
- header.from=schleissheimer.de; dkim=fail (no key for signature)
- header.d=schleissheimer.de; arc=none
+        id S2391226AbhASLc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 06:32:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36508 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405090AbhASLDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 06:03:19 -0500
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2311BC0613D6
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:02:38 -0800 (PST)
+Received: by mail-vs1-xe2c.google.com with SMTP id e15so10836731vsa.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:02:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=schleissheimer.onmicrosoft.com; s=selector1-schleissheimer-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0F7yAidr0T81HREofnWAgNGv1GvLo5Pfvu/QPA2JaoI=;
- b=hJdaIhmGN5frroukLtcFCnuqHhj4aAAYwi4sfFURnuGCZWK4PR2PbYdp4RnJgG/59kG8t1IG1tOItCSZUc1kQDGmt3SiThH0poSxDlizp9YgnlVJ1MXpeOVSl4fdvmUGKNGj8mIZTVAmdbt5lHqBQta/lu7myiC2biUpGd6pFfA=
-Received: from AM5P194CA0024.EURP194.PROD.OUTLOOK.COM (2603:10a6:203:8f::34)
- by DB6P190MB0149.EURP190.PROD.OUTLOOK.COM (2603:10a6:4:87::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3763.11; Tue, 19 Jan 2021 10:53:22 +0000
-Received: from VI1EUR04FT008.eop-eur04.prod.protection.outlook.com
- (2603:10a6:203:8f:cafe::33) by AM5P194CA0024.outlook.office365.com
- (2603:10a6:203:8f::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.9 via Frontend
- Transport; Tue, 19 Jan 2021 10:53:21 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 62.153.209.162)
- smtp.mailfrom=schleissheimer.de; vger.kernel.org; dkim=fail (no key for
- signature) header.d=schleissheimer.de;vger.kernel.org; dmarc=none action=none
- header.from=schleissheimer.de;
-Received-SPF: Fail (protection.outlook.com: domain of schleissheimer.de does
- not designate 62.153.209.162 as permitted sender)
- receiver=protection.outlook.com; client-ip=62.153.209.162;
- helo=mail.schleissheimer.de;
-Received: from mail.schleissheimer.de (62.153.209.162) by
- VI1EUR04FT008.mail.protection.outlook.com (10.152.29.150) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3763.12 via Frontend Transport; Tue, 19 Jan 2021 10:53:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=schleissheimer.de; s=dkim1;
-        h=Message-Id:Date:Subject:Cc:To:From; bh=0F7yAidr0T81HREofnWAgNGv1GvLo5Pfvu/QPA2JaoI=;
-        b=VuGTlqpj1u9rwKTsTszVcAXngDRjeOOolPxqpDlXZmn3TakW7jcNdphPQMa9pyXhVcTF6KnL2lCSpAIy+oTjV6le5oA9yYxw/nYcgedNrhqMrpDiPcnqQ4eoPYVtTcsdjpWNLj0Rpkr12DiDj7TWy/oEX/woWhKcRbedYw33GFM=;
-Received: from [192.168.10.165] (port=50098 helo=contiredmine.schleissheimer.de)
-        by mail.schleissheimer.de with esmtp (Exim 4.82_1-5b7a7c0-XX)
-        (envelope-from <schuchmann@schleissheimer.de>)
-        id 1l1odQ-000789-0y; Tue, 19 Jan 2021 11:53:16 +0100
-X-CTCH-RefID: str=0001.0A782F1B.6006BA1C.0069,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-From:   Sven Schuchmann <schuchmann@schleissheimer.de>
-To:     schuchmann@schleissheimer.de
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1] leds: lp50xx: add setting of default intensity from DT
-Date:   Tue, 19 Jan 2021 10:53:12 +0000
-Message-Id: <20210119105312.2636-1-schuchmann@schleissheimer.de>
-X-Mailer: git-send-email 2.17.1
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=51aRHVM9MtmiP0LM6KVSBIfypf8NCoJI3/kkLCUIyQc=;
+        b=cO9pngCqzzQU5+wYm76QgcPi+sSh5wfMsbcSm2rfew1o6UU+XMprqcdkv8Tat7a3sj
+         dZ1uP2iZAQeaaPqA9q3x/D9TRd5FTzLxx9Ujcm/4TCxNZHTRKgnZEYSqRfUV/idaFtUI
+         oLzD/IohWXy5i90tTRAvvJl1rLywYJhSrRpjC91JF1wtZyouUt/RdQE4rGgESI8mp19Z
+         XuETWBfpczg9ESTyyyrb1l0HWs/4hVK8iNjlxaoFSpzUhxUnp5o2zuCyqcmVLs4IdQSG
+         fp73BBTKRzw62HJLaxJ9z/8c5RwdpNy+ViRHrZHpkxe2g1y5yS4VXmvvGLyFRM7UrbEi
+         w3kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=51aRHVM9MtmiP0LM6KVSBIfypf8NCoJI3/kkLCUIyQc=;
+        b=nP3G9ak/2iULCnirYXt/jIVSNBZaH99jhzqHh9lfuKEBMjtKfF6cGLdYLWvzg8bNAQ
+         O6RueBCgdb/Y/hxOn9yPBwQj9PzpTHkVO2Ah9zstdNRBw0oDUK72m7eNptN171J4ecVm
+         MILyD3+iUbYn0RwgysPmIrjf9a9AgRSpvmON9zOr11/fubRQogGC6l+UG0DbzBTyYQUq
+         52irSSGDFEXntP9jydNlYVO5/Fsc+KsXvQKEVKttDuv35uTwdYfK5pw1R8CZ31HxzTYk
+         Ae2/Su8pdYeZ0DP/gEndIb+wYjoA5ONX88CcKFp7zcevWC5Qmb3/W3baZV2XNDy2MOXJ
+         ZWEg==
+X-Gm-Message-State: AOAM530RfC7EBAVA47yPPfaMVqV1R7Eobo387umURCjFxCjn3BM2S5Bq
+        9dEIlXfAS4tL6SDqYE3BOj4EFAnnzB/UZXXmgt8nhA==
+X-Google-Smtp-Source: ABdhPJzmHhIQqV/usHrcyHk3rDz6//q3bjjAW5H2CFufPw2AHrOrqfaIxGqrbhGDRrsQtReKyxV9CP3hwLdfWdsh4uM=
+X-Received: by 2002:a67:7f41:: with SMTP id a62mr2178224vsd.55.1611054157249;
+ Tue, 19 Jan 2021 03:02:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 543a9ea9-e694-4000-68ca-08d8bc686ff5
-X-MS-TrafficTypeDiagnostic: DB6P190MB0149:
-X-Microsoft-Antispam-PRVS: <DB6P190MB01495545243B42D6A278E4148FA30@DB6P190MB0149.EURP190.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZwCm2+Xq6N/Z9/YTDAOVJcRhwiiVGJ0+S+gwJFlF2VxpZSl9IhWOHysA6RRQP5Gjchej4e4hCjDwZBGb3+i3PngEMOdV0tFd9PoF4wjCa7PWmgtgYJ/wDmI8Ux7ujyJ8CRDj/VHlGTKVfIenmm/E398yC+zCwTt7WHu/7JfWMpY+3ERHcR0OZk5VEiZHvdL6f+VKhMeEy8Kga0202cgxCj9nuOYYRGHMaBUNyF/xWae9ZmYYUqqTbYtDDESKFBnrobC3d1u4TfSWnCZgDVQf9z7/aAG/TRj1aVO2HYpXQvL666CsCrX50ctn/IQK0kdRMl2AjfgzMAbq8hz4l8qvtuVsLyREkvKNZR0sd7clAGwmYAYkEwHLbTsyHVI1FhkiZpXYWjO7MfrjZd0tDgIFkIY07ML/yEFmU9uT4XieXVPS9eZnlMn5yuas+tfv7mOXjRcQOWh1Oj3m0ynRfky0wQ==
-X-Forefront-Antispam-Report: CIP:62.153.209.162;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.schleissheimer.de;PTR:www.schleissheimer.de;CAT:NONE;SFS:(39840400004)(376002)(346002)(136003)(396003)(46966006)(70206006)(82310400003)(2906002)(54906003)(26005)(336012)(2616005)(8676002)(6666004)(34206002)(37006003)(7636003)(478600001)(83380400001)(47076005)(316002)(7696005)(70586007)(4326008)(186003)(1076003)(426003)(8936002)(5660300002)(356005)(9786002)(36756003);DIR:OUT;SFP:1102;
-X-OriginatorOrg: schleissheimer.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2021 10:53:21.3040
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 543a9ea9-e694-4000-68ca-08d8bc686ff5
-X-MS-Exchange-CrossTenant-Id: ba05321a-a007-44df-8805-c7e62d5887b5
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ba05321a-a007-44df-8805-c7e62d5887b5;Ip=[62.153.209.162];Helo=[mail.schleissheimer.de]
-X-MS-Exchange-CrossTenant-AuthSource: VI1EUR04FT008.eop-eur04.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6P190MB0149
+References: <20201224111210.1214-1-rojay@codeaurora.org> <20201224111210.1214-4-rojay@codeaurora.org>
+ <YAGqKfDfB7EEuZVn@builder.lan> <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
+In-Reply-To: <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 19 Jan 2021 12:02:01 +0100
+Message-ID: <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for 'assigned-performance-states'
+To:     Rajendra Nayak <rnayak@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Roja Rani Yarubandi <rojay@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
+        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
+        Linux PM <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to use a multicolor-led together with a trigger
-from DT the led needs to have an intensity set to see something.
-The trigger changes the brightness of the led but if there
-is no intensity we actually see nothing.
+On Mon, 18 Jan 2021 at 06:36, Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>
+>
+> On 1/15/2021 8:13 PM, Bjorn Andersson wrote:
+> > On Thu 24 Dec 05:12 CST 2020, Roja Rani Yarubandi wrote:
+> >
+> >> @@ -629,6 +658,16 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
+> >>      struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
+> >>
+> >>      disable_irq(gi2c->irq);
+> >> +
+> >> +    /* Drop the assigned performance state */
+> >> +    if (gi2c->assigned_pstate) {
+> >> +            ret = dev_pm_genpd_set_performance_state(dev, 0);
+> >> +            if (ret) {
+> >> +                    dev_err(dev, "Failed to set performance state\n");
+> >> +                    return ret;
+> >> +            }
+> >> +    }
+> >> +
+> >
+> > Ulf, Viresh, I think we discussed this at the time of introducing the
+> > performance states.
+> >
+> > The client's state does not affect if its performance_state should
+> > be included in the calculation of the aggregated performance_state, so
+> > each driver that needs to keep some minimum performance state needs to
+> > have these two snippets.
+> >
+> > Would it not make sense to on enable/disable re-evaluate the
+> > performance_state and potentially reconfigure the hardware
+> > automatically?
+>
+> I agree, this will be repeated across multiple drivers which would
+> need some minimal vote while they are active, handling this during
+> genpd enable/disable in genpd core makes sense.
 
-This patch adds the ability to set the default intensity
-of each led so that it is turned on from DT.
+Initially that's what we tried out, but we realized that it was
+difficult to deal with this internally in genpd, but more importantly
+it also removed some flexibility from consumers and providers. See
+commit 68de2fe57a8f ("PM / Domains: Make genpd performance states
+orthogonal to the idlestates").
 
-Signed-off-by: Sven Schuchmann <schuchmann@schleissheimer.de>
----
- Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 8 +++++++-
- drivers/leds/leds-lp50xx.c                              | 4 ++++
- 2 files changed, 11 insertions(+), 1 deletion(-)
+As a matter of fact this was quite recently discussed [1], which also
+pointed out some issues when using the "required-opps" in combination,
+but perhaps that got resolved? Viresh?
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-index c192b5feadc7..5ad2a0c3c052 100644
---- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
-@@ -69,7 +69,12 @@ patternProperties:
-     patternProperties:
-       "(^led-[0-9a-f]$|led)":
-         type: object
--        $ref: common.yaml#
-+        allOf:
-+          - $ref: common.yaml#
-+        properties:
-+          default-intensity:
-+            maxItems: 1
-+            description: The intensity the LED gets initialised with.
- 
- required:
-   - compatible
-@@ -102,6 +107,7 @@ examples:
- 
-                led-0 {
-                    color = <LED_COLOR_ID_RED>;
-+                   default-intensity = <100>;
-                };
- 
-                led-1 {
-diff --git a/drivers/leds/leds-lp50xx.c b/drivers/leds/leds-lp50xx.c
-index f13117eed976..ba760fa33bdc 100644
---- a/drivers/leds/leds-lp50xx.c
-+++ b/drivers/leds/leds-lp50xx.c
-@@ -501,6 +501,10 @@ static int lp50xx_probe_dt(struct lp50xx *priv)
- 			}
- 
- 			mc_led_info[num_colors].color_index = color_id;
-+
-+			fwnode_property_read_u32(led_node, "default-intensity",
-+						 &mc_led_info[num_colors].intensity);
-+
- 			num_colors++;
- 		}
- 
--- 
-2.17.1
+My concern is, if we would make this kind of change to the internals
+of genpd, it would lead to the following limitation: A consumer driver
+can no longer make its vote for its device to stick around, when the
+device becomes runtime suspended - and how do we know that we never
+need to support such a case?
 
+>
+> >
+> > Regards,
+> > Bjorn
+> >
+> >>      ret = geni_se_resources_off(&gi2c->se);
+> >>      if (ret) {
+> >>              enable_irq(gi2c->irq);
+> >> @@ -654,6 +693,16 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
+> >>      if (ret)
+> >>              return ret;
+> >>
+> >> +    /* Set the assigned performance state */
+> >> +    if (gi2c->assigned_pstate) {
+> >> +            ret = dev_pm_genpd_set_performance_state(dev,
+> >> +                                                     gi2c->assigned_pstate);
+> >> +            if (ret) {
+> >> +                    dev_err(dev, "Failed to set performance state\n");
+> >> +                    return ret;
+> >> +            }
+> >> +    }
+> >> +
+> >>      enable_irq(gi2c->irq);
+> >>      gi2c->suspended = 0;
+> >>      return 0;
+
+Kind regards
+Uffe
+
+[1]
+https://lkml.org/lkml/2020/9/11/230
