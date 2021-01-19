@@ -2,115 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0A032FAF68
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 05:26:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC08C2FAF99
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 05:54:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731284AbhASEU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 23:20:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33926 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730712AbhASER3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 23:17:29 -0500
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B88C061573
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 20:16:49 -0800 (PST)
-Received: by mail-io1-xd2a.google.com with SMTP id x21so18874774iog.10
-        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 20:16:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1ZJDrgzZmYXfIo0lGIMXEXiySIw3gPtBzcGCID7s8Rw=;
-        b=LcbM3pmru0ucPXbMjeSV2nKL0tNYuwj4P09n7fLfJPRKFXp2iIi7QXy/+oQYIs9uvG
-         VHMTvgy0LY64CPN9Ugci67iTo1g4+gw9SR79kPv+XTLTCZFvDAc7wp+iKxqK2y6H6EWf
-         Qvmw/MOkOu0xWdJ9HNukA/J8BdAgyhfZSMpMc=
+        id S1730012AbhASEhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 23:37:03 -0500
+Received: from mail-lf1-f50.google.com ([209.85.167.50]:40048 "EHLO
+        mail-lf1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728481AbhASEdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 23:33:41 -0500
+Received: by mail-lf1-f50.google.com with SMTP id v24so20577847lfr.7;
+        Mon, 18 Jan 2021 20:33:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1ZJDrgzZmYXfIo0lGIMXEXiySIw3gPtBzcGCID7s8Rw=;
-        b=czx7au9/+vccRfOmFgrJ4Xq7ylzCaM5w7wwaLvcsSR5S+WeNy7s2FDNznx10pSqCD2
-         2YjufX6C3cCC9u3RZkE3S/lFteV7oDNR8OxIl1vzSVUFlciA069jP/gow+40mzJv28ZX
-         wyU8TeQTO6WXG4IoBymgpkb4y4RroXtGU2WDL+TOOPZVzvqVJg01QjzBjqwiNaAKY3YL
-         b4ueHXj6xKG1fwAKMpbZ+atEsdp/HmG32YBZWPTE1rdiWBb9tAborHWlI1Xt7EZ+436E
-         U78RqYRMbopyjLV/4Kirwsn+ASCMk2BRtkSoRo1eV8P4c7h4fBycGXkKYlC632V0flMh
-         jc9Q==
-X-Gm-Message-State: AOAM531R6zLrurylM/lsMQyy1qosoOjYCWAvl77B4TyzG0eRvKbwvdho
-        MZ0j1MgDPJGoA1a0wtDyVhnHkuAagW7xpa1mhctCLA==
-X-Google-Smtp-Source: ABdhPJx1/ogNcijA0/Z5AfgmfPpBpPyqkRKX8ipSYmZcentmAty4lVh6xCNc6+Ml/YaghCmRKnI08Jm+P91hO3WNZy4=
-X-Received: by 2002:a05:6e02:1a8e:: with SMTP id k14mr1905628ilv.308.1611029808923;
- Mon, 18 Jan 2021 20:16:48 -0800 (PST)
+        bh=6N+mtJnAllpPqS59taAIm6aHXmVEI3uucSUB9g2qkoQ=;
+        b=VIPWjiecJyU8Lw2ZPDoI5NjzdbI72osiUVxaFoEadamdVx1uvG4KozptDDYE37pDQX
+         /JJ6ugdGuGIgS6RnQEJZaYe+AXNjh9Ytk5/NSs6uUmABgqgyoBA2QKx0Qm04iHz88TeL
+         OFWGwJRHR12PJhsVFkMygzsz2NXnZlmW+Da7EZXDEN7oSpw9xvEJXy28QtO950wKSSJl
+         ea/vqVgOKLsTmP0telCJIfpJr5cmw3pD1TlNtplSa6150eX+r64oAEWnRHDFEiZRhZIo
+         305ediMKx3wWKwBuswRqeoLJ7qhyOmCMCVZYNjmmHPeEXAdhDwmpcHeNECg8sUXPxW/1
+         1DiA==
+X-Gm-Message-State: AOAM532zhopB3UiffNqKimlr1cRxcQAJ07cUf6QbJo0nNfxkEEDDgR6D
+        Eb1m9Bj7tcYJkgxsjAvQiB0r2sU8gOU39Q==
+X-Google-Smtp-Source: ABdhPJytOkHd/csUxWnIN9wrsx6Xzf/CwbF8B2rkm2tnFbLQr7/fpL6gx2O0kj9naDGK3tioA8JBOA==
+X-Received: by 2002:a19:991:: with SMTP id 139mr1042089lfj.637.1611030777529;
+        Mon, 18 Jan 2021 20:32:57 -0800 (PST)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com. [209.85.167.50])
+        by smtp.gmail.com with ESMTPSA id h1sm2147623lfc.121.2021.01.18.20.32.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Jan 2021 20:32:57 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id v24so20577782lfr.7;
+        Mon, 18 Jan 2021 20:32:56 -0800 (PST)
+X-Received: by 2002:ac2:4d44:: with SMTP id 4mr1116418lfp.296.1611030776537;
+ Mon, 18 Jan 2021 20:32:56 -0800 (PST)
 MIME-Version: 1.0
-References: <1609815993-22744-1-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1609815993-22744-1-git-send-email-yongqiang.niu@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Tue, 19 Jan 2021 12:16:23 +0800
-Message-ID: <CAJMQK-j_5oWcLSrsVAvjkDKUJOSeZbS6aqZQML9etYJLctRX7Q@mail.gmail.com>
-Subject: Re: [PATCH v4, 00/10] soc: mediatek: mmsys: Use function call for
- setting the routing registers
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        lkml <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
+References: <20210106134617.391-1-wens@kernel.org>
+In-Reply-To: <20210106134617.391-1-wens@kernel.org>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Tue, 19 Jan 2021 12:32:45 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64oCaS14ATUi+y6ZQTkZCqGxnskM=zFkoQp_-jVanu_Vw@mail.gmail.com>
+Message-ID: <CAGb2v64oCaS14ATUi+y6ZQTkZCqGxnskM=zFkoQp_-jVanu_Vw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/4] arm64: rockchip: Fix PCIe ep-gpios requirement and
+ Add Nanopi M4B
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Chen-Yu Tsai <wens@kernel.org>, Rob Herring <robh@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 5, 2021 at 3:06 AM Yongqiang Niu <yongqiang.niu@mediatek.com> wrote:
->
-> The following series are intended to prepare the mtk-mmsys driver to
-> allow different DDP (Data Display Path) function call per SoC.
->
-> base 5.11-rc1
->
-> change since v3:
-> - move register operation into mmsys path select function
->
-> Yongqiang Niu (10):
->   soc: mediatek: mmsys: create mmsys folder
->   soc: mediatek: mmsys: Create struct mtk_mmsys to store context data
->   soc: mediatek: mmsys: move register operation into mmsys path select
->     function
->   soc: mediatek: mmsys: Use function call for setting the routing
->     registers
->   soc: mediatek: mmsys: add mt8183 function call for setting the routing
->     registers
+Hi,
 
-patch 01 ~ 05: I've tested on a mt8183 device, so
-
-Tested-by: Hsin-Yi Wang <hsinyi@chromium.org>
-
->   soc: mediatek: mmsys: add component OVL_2L2
->   soc: mediatek: mmsys: add component POSTMASK
->   soc: mediatek: mmsys: add component RDMA4
->   soc: mediatek: mmsys: Use function call for setting mmsys ovl mout
->     register
->   soc: mediatek: mmsys: add mt8192 mmsys support
+On Wed, Jan 6, 2021 at 9:46 PM Chen-Yu Tsai <wens@kernel.org> wrote:
 >
->  drivers/soc/mediatek/Makefile             |   2 +-
->  drivers/soc/mediatek/mmsys/Makefile       |   5 +
->  drivers/soc/mediatek/mmsys/mt2701-mmsys.c | 254 ++++++++++++++++++++
->  drivers/soc/mediatek/mmsys/mt8183-mmsys.c | 110 +++++++++
->  drivers/soc/mediatek/mmsys/mt8192-mmsys.c | 149 ++++++++++++
->  drivers/soc/mediatek/mmsys/mtk-mmsys.c    | 180 ++++++++++++++
->  drivers/soc/mediatek/mtk-mmsys.c          | 373 ------------------------------
->  include/linux/soc/mediatek/mtk-mmsys.h    |  25 ++
->  8 files changed, 724 insertions(+), 374 deletions(-)
->  create mode 100644 drivers/soc/mediatek/mmsys/Makefile
->  create mode 100644 drivers/soc/mediatek/mmsys/mt2701-mmsys.c
->  create mode 100644 drivers/soc/mediatek/mmsys/mt8183-mmsys.c
->  create mode 100644 drivers/soc/mediatek/mmsys/mt8192-mmsys.c
->  create mode 100644 drivers/soc/mediatek/mmsys/mtk-mmsys.c
->  delete mode 100644 drivers/soc/mediatek/mtk-mmsys.c
+> From: Chen-Yu Tsai <wens@csie.org>
+>
+> Hi everyone,
+>
+> This is v3 of my Nanopi M4B series. Changes since v2 include:
+>
+>   - Replaced dev_err() with dev_err_probe() for gpiod_get_optional() error
+>   - Added Reviewed-by tag from Robin Murphy for patch 3
+>
+> Changes since v1 include:
+>
+>   - Rewrite subject of patch 1 to match existing convention and reference
+>     'ep-gpios' DT property instead of the 'ep_gpio' field
+>
+> This series mainly adds support for the new Nanopi M4B, which is a newer
+> variant of the Nanopi M4.
+>
+> The differences against the original Nanopi M4 that are common with the
+> other M4V2 revision include:
+>
+>   - microphone header removed
+>   - power button added
+>   - recovery button added
+>
+> Additional changes specific to the M4B:
+>
+>   - USB 3.0 hub removed; board now has 2x USB 3.0 type-A ports and 2x
+>     USB 2.0 ports
+>   - ADB toggle switch added; this changes the top USB 3.0 host port to
+>     a peripheral port
+>   - Type-C port no longer supports data or PD
+>   - WiFi/Bluetooth combo chip switched to AP6256, which supports BT 5.0
+>     but only 1T1R (down from 2T2R) for WiFi
+>
+> While working on this, I found that for the M4 family, the PCIe reset
+> pin (from the M.2 expansion board) was not wired to the SoC. Only the
+> NanoPC T4 has this wired. This ended up in patches 1 and 3.
+>
+> Patch 1 makes ep_gpio in the Rockchip PCIe driver optional. This property
+> is optional in the DT binding, so this just makes the driver adhere to
+> the binding.
+>
+> Patch 2 adds a new compatible string for the new board.
+>
+> Patch 3 moves the ep-gpios property of the pcie controller from the
+> common nanopi4.dtsi file to the nanopc-t4.dts file.
+>
+> Patch 4 adds a new device tree file for the new board. It includes the
+> original device tree for the M4, and then lists the differences.
+>
+> Given that patch 3 would make PCIe unusable without patch 1, I suggest
+> merging patch 1 through the PCI tree as a fix for 5.10, and the rest
+> for 5.11 through the Rockchip tree.
+
+Gentle ping. I would really like to get the PCIe controller fix merged
+before -rc6 (cut-off for arm-soc -next) and be able to get the new board
+into 5.12. Or we could have all of them merged for 5.12, though depending
+on the order the PRs are sent and merged by Linus there would be a possible
+window where PCIe doesn't work for the Nanopi M4's.
+
+
+Thanks
+ChenYu
+
+> Please have a look. The changes are mostly trivial.
+>
+>
+> Regards
+> ChenYu
+>
+> Chen-Yu Tsai (4):
+>   PCI: rockchip: Make 'ep-gpios' DT property optional
+>   dt-bindings: arm: rockchip: Add FriendlyARM NanoPi M4B
+>   arm64: dts: rockchip: nanopi4: Move ep-gpios property to nanopc-t4
+>   arm64: dts: rockchip: rk3399: Add NanoPi M4B
+>
+>  .../devicetree/bindings/arm/rockchip.yaml     |  1 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
+>  .../boot/dts/rockchip/rk3399-nanopc-t4.dts    |  1 +
+>  .../boot/dts/rockchip/rk3399-nanopi-m4b.dts   | 52 +++++++++++++++++++
+>  .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |  1 -
+>  drivers/pci/controller/pcie-rockchip.c        |  5 +-
+>  6 files changed, 58 insertions(+), 3 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts
+>
+> --
+> 2.29.2
+>
