@@ -2,197 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C91AC2FB3F1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 09:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E9122FB3FB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 09:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730691AbhASIWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 03:22:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58328 "EHLO
+        id S1725842AbhASIYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 03:24:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729385AbhASIWE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 03:22:04 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3DDC061574;
-        Tue, 19 Jan 2021 00:21:21 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id b26so27874063lff.9;
-        Tue, 19 Jan 2021 00:21:21 -0800 (PST)
+        with ESMTP id S1731245AbhASIYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 03:24:23 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E9CC0613C1
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 00:23:43 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id l12so13558839wry.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 00:23:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=NSnwppJM4RBea6rhgGGM4rDbGdYQwq/CEd9KX8c0D8U=;
-        b=KKX43xE7CyF2OAHuoufRljedddmzgKGxjqqoHL0WRNIJh7aY09SxmQA88AnYR2a812
-         hLSEHieWkcK1Qnyq4av0mhU1BT8vD0Voa8VgjhuwHdW3XO6OaPJymUgX5TlGksBxlJKH
-         RfLZMBS8xRUo8/o4tLPTsIrdRI2qYz2odIaI6VLXwEsFi3N+YcGl1tcJdgXKg6LkFqSZ
-         wbnOevLZ/MdE4bLfktG88R1UChwhJCyp+TxWrl/nCTg4rqCwar/PzykpOE8ZvJiaswVp
-         1vDe+CDfuDEpfNdr8/u9Dk2Ff5RrCF0MtXcInHEn0yvJla/Mo/ltmKB0y0YcKXvNtywO
-         7ciQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=0o446r/7sfNrNMbiwlFxGJePev96CeNNzqsH+vREsX8=;
+        b=I+pBsb0vAWfUoTHY7RYJ6yNwT7cwg2JIs/IprcYa7Jzjnxdqdpn2CwBtUjTwRo4XM8
+         uyIxI/Ggh9GSR8awn0b5sPWRSJ6KeHwcuc4V3KOQtFbLoo91T/73rswe0bX4MOgtFIIq
+         ZGSHMQaKXk0g37CDxvDds7AOnm+lJVqQiA8kil11Bj3iT+HcRtNi3LkzM+W0rIu2yY5l
+         wYQ2dW8NeBCzjwnly/8/Evir6hbxKdfoTmtw8ACc/5C0nweEREnUNSjhfoxL146bZiLg
+         Aw0Xg9rkmpOGYX/qwx16LkK3/KSXweJF8f1Ja+42rbAaqhrWjHyujQ/j/QaJohd5V6CQ
+         +kbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=NSnwppJM4RBea6rhgGGM4rDbGdYQwq/CEd9KX8c0D8U=;
-        b=eooyZEiT1bFLCnec5C8M3dx9x3taUGC0/ZlJGvQsmjqRYnLMniJeMeRZhT0WYI7SJu
-         qyQWbytjYwds5fpmLTdK5zM03USAMID0SxBq3kNphovb9+W4nntoJ11o/mrER8Q+jXQB
-         VrYac65LVe0iceAkkbtwD3zpyT80sxD2iyo89nwKNDXyvczZgXFR+s0IqpDUlawqsF0C
-         9tn8kpE3g5L6NYfLqrYspgAtadZiirSgqXa0ZsuirDcKCOpMCmHcMdwKVM5lgcPvQeSZ
-         CmMYLLlimlzcoOU5WNisCH92KhDvEoOFFbjGuEs/py3vrzo3QFJsgQjQ2ZVp1NRt3C+v
-         Pq+g==
-X-Gm-Message-State: AOAM530wFE/afdA0jZdUBQN4e2vNuA3YZj3vp6Bw2Asm4KpFOpQz2EU/
-        zB/zc2CPxb0ms24jM0bkrFiqMygsqbugYCk1sFEkwmY9sSU=
-X-Google-Smtp-Source: ABdhPJy7lFmGjvnX+2QdulCkZeQ6a/G+bDIiQs0QLBdf5QXWUq0IjnzT13t9tJXYesmgQNMi5ZCyMg4N+moiqesZvqc=
-X-Received: by 2002:a19:ca5a:: with SMTP id h26mr1393081lfj.612.1611044480139;
- Tue, 19 Jan 2021 00:21:20 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=0o446r/7sfNrNMbiwlFxGJePev96CeNNzqsH+vREsX8=;
+        b=SUdynKaoJEJfPb1fAy0mkUfo6QfdTMwBjS72JO+PpGvEUbXedUKSvx4flFumNXJwM0
+         HI5YEtuq1Es4AOzLsCpN6eXmjMZLtDKjYM3U3MXfvUzk7NmK+WS67/1lMoEM36M/uOA/
+         4sdYxk9/6Enokj0THn3Y8R5BAm9v4846Iy7D6cRKy61x7/MLJTZ89J+2okZgEKOJXTtQ
+         N3CFd4gYnCrKbhVTBTBx77Km8atw2YoMrOUTSi1Ns0SzaLhWGD7Ab1+k3X4n3ifFFIAW
+         nDGLR5PwTqKesuisyuPs4dXWY+g8+5c8HVbVwaky4gALm88AfoQvP8Nv4lO7JQPrI1fQ
+         uehg==
+X-Gm-Message-State: AOAM532VyK/mLZUISwnmFglzjzkY6JQHw4ZaX3vuY4wLZjFtibRx/9Kb
+        f962Cv5IX+euEdG8mmlSPRR6xA==
+X-Google-Smtp-Source: ABdhPJy40W+PZAbNiUmSORK+HY3by6NS2OcSzoL5kUbSYa1SMUjm7J9uhh20bQCKaiilyG3zYfMTCA==
+X-Received: by 2002:a5d:6289:: with SMTP id k9mr3282521wru.200.1611044621936;
+        Tue, 19 Jan 2021 00:23:41 -0800 (PST)
+Received: from dell ([91.110.221.158])
+        by smtp.gmail.com with ESMTPSA id y14sm29847493wru.96.2021.01.19.00.23.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 00:23:41 -0800 (PST)
+Date:   Tue, 19 Jan 2021 08:23:39 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     AceLan Kao <chia-lin.kao@canonical.com>
+Cc:     Campion Kang <campion.kang@advantech.com.tw>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v6 4/6] mfd: ahc1ec0: Add support for Advantech embedded
+ controller
+Message-ID: <20210119082339.GI4903@dell>
+References: <20210118123749.4769-1-campion.kang@advantech.com.tw>
+ <20210118123749.4769-4-campion.kang@advantech.com.tw>
+ <CAFv23QngmvuKZb0_pK7RBa=VX=2ypabg5p1+vSqrT36CNdJhgw@mail.gmail.com>
 MIME-Version: 1.0
-References: <1610720001-15300-1-git-send-email-u0084500@gmail.com>
- <3a4a88a9-f0e3-2b65-9df4-6c1d4e3f1c14@roeck-us.net> <1611041612.12761.9.camel@mhfsdcap03>
-In-Reply-To: <1611041612.12761.9.camel@mhfsdcap03>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 19 Jan 2021 16:21:08 +0800
-Message-ID: <CADiBU3-2DL9GOBesE6sZmWv_OeFNP5C5-TfrZ9tVkUXKSiV9wQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] usb typec: tcpci: mt6360: Add vsafe0v support and
- external vbus supply control
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        matthias.bgg@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        cy_huang <cy_huang@richtek.com>, gene_chen@richtek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFv23QngmvuKZb0_pK7RBa=VX=2ypabg5p1+vSqrT36CNdJhgw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=881=
-9=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=883:33=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> On Sun, 2021-01-17 at 09:43 -0800, Guenter Roeck wrote:
-> > On 1/15/21 6:13 AM, cy_huang wrote:
-> > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > >
-> > > MT6360 not support for TCPC command to control source and sink.
-> >
-> > does not
-> >
-> > > Uses external 5V vbus regulator as the vbus source control.
-> > >
-> > Use
-> >
-> > > Also adds the capability to report vsafe0v.
-> > >
-> > add
-> >
-> > So far this driver works without regulator. Unless I am missing somethi=
-ng,
-> > this patch makes regulator support mandatory, meaning existing code wil=
-l fail.
-> If don't provide vbus-supply in DTS, regulator framework will provide a
-> dummy regulator, so the code will not fail.
- In the last reply, I will change from regulator_get to
-regulator_get_exclusive, it will return -ENODEV.
-The IS_ERR can catch this situation, no dummy regulator will be returned.
+On Tue, 19 Jan 2021, AceLan Kao wrote:
 
-And assume no vbus 5v for source & snk attached, It will cause typec
-state machine repeated from
-drp -> src_attach_wait -> src_attached -> PD_T_PS_SOURCE_on timeout.
-It will be stuck in the loop until snk detached.
+> Campion Kang <campion.kang@advantech.com.tw> 於 2021年1月18日 週一 下午8:37寫道：
+> >
+> > AHC1EC0 is the embedded controller driver for Advantech industrial
+> > products. This provides sub-devices such as hwmon and watchdog, and also
+> > expose functions for sub-devices to read/write the value to embedded
+> > controller.
+> >
+> > Changed since V5:
+> >         - Kconfig: add "AHC1EC0" string to clearly define the EC name
+> >         - fix the code according to reviewer's suggestion
+> >         - remove unnecessary header files
+> >         - change the structure name to lower case, align with others
+> > naming
+> >
+> > Signed-off-by: Campion Kang <campion.kang@advantech.com.tw>
+> > ---
+> >  drivers/mfd/Kconfig         |  10 +
+> >  drivers/mfd/Makefile        |   2 +
+> >  drivers/mfd/ahc1ec0.c       | 808 ++++++++++++++++++++++++++++++++++++
+> >  include/linux/mfd/ahc1ec0.h | 276 ++++++++++++
+> >  4 files changed, 1096 insertions(+)
+> >  create mode 100644 drivers/mfd/ahc1ec0.c
+> >  create mode 100644 include/linux/mfd/ahc1ec0.h
 
-> > I am not sure if that is appropriate/acceptable. Can we be sure that th=
-is will
-> > work for existing users of this driver ?
->
-> >
-> > Thanks,
-> > Guenter
-> >
-> > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > > ---
-> > >  drivers/usb/typec/tcpm/tcpci_mt6360.c | 29 +++++++++++++++++++++++++=
-++++
-> > >  1 file changed, 29 insertions(+)
-> > >
-> > > diff --git a/drivers/usb/typec/tcpm/tcpci_mt6360.c b/drivers/usb/type=
-c/tcpm/tcpci_mt6360.c
-> > > index f1bd9e0..0edf4b6 100644
-> > > --- a/drivers/usb/typec/tcpm/tcpci_mt6360.c
-> > > +++ b/drivers/usb/typec/tcpm/tcpci_mt6360.c
-> > > @@ -11,6 +11,7 @@
-> > >  #include <linux/of.h>
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/regmap.h>
-> > > +#include <linux/regulator/consumer.h>
-> > >  #include <linux/usb/tcpm.h>
-> > >
-> > >  #include "tcpci.h"
-> > > @@ -36,6 +37,7 @@ struct mt6360_tcpc_info {
-> > >     struct tcpci_data tdata;
-> > >     struct tcpci *tcpci;
-> > >     struct device *dev;
-> > > +   struct regulator *vbus;
-> > >     int irq;
-> > >  };
-> > >
-> > > @@ -51,6 +53,27 @@ static inline int mt6360_tcpc_write16(struct regma=
-p *regmap,
-> > >     return regmap_raw_write(regmap, reg, &val, sizeof(u16));
-> > >  }
-> > >
-> > > +static int mt6360_tcpc_set_vbus(struct tcpci *tcpci, struct tcpci_da=
-ta *data, bool src, bool snk)
-> > > +{
-> > > +   struct mt6360_tcpc_info *mti =3D container_of(data, struct mt6360=
-_tcpc_info, tdata);
-> > > +   int ret;
-> > > +
-> > > +   /* To correctly handle the already enabled vbus and disable its s=
-upply first */
-> > > +   if (regulator_is_enabled(mti->vbus)) {
-> > > +           ret =3D regulator_disable(mti->vbus);
-> > > +           if (ret)
-> > > +                   return ret;
-> > > +   }
-> >
-> > Is it really a good idea to disable vbus if it happens to be already en=
-abled
-> > and there is (another ?) request to enable it ?
-> >
-> > > +
-> > > +   if (src) {
-> > > +           ret =3D regulator_enable(mti->vbus);
-> > > +           if (ret)
-> > > +                   return ret;
-> > > +   }
-> > > +
-> > > +   return 0;
-> > > +}
-> > > +
-> > >  static int mt6360_tcpc_init(struct tcpci *tcpci, struct tcpci_data *=
-tdata)
-> > >  {
-> > >     struct regmap *regmap =3D tdata->regmap;
-> > > @@ -138,7 +161,13 @@ static int mt6360_tcpc_probe(struct platform_dev=
-ice *pdev)
-> > >     if (mti->irq < 0)
-> > >             return mti->irq;
-> > >
-> > > +   mti->vbus =3D devm_regulator_get(&pdev->dev, "vbus");
-> > > +   if (IS_ERR(mti->vbus))
-> > > +           return PTR_ERR(mti->vbus);
-> > > +
-> > >     mti->tdata.init =3D mt6360_tcpc_init;
-> > > +   mti->tdata.set_vbus =3D mt6360_tcpc_set_vbus;
-> > > +   mti->tdata.vbus_vsafe0v =3D 1;
-> > >     mti->tcpci =3D tcpci_register_port(&pdev->dev, &mti->tdata);
-> > >     if (IS_ERR(mti->tcpci)) {
-> > >             dev_err(&pdev->dev, "Failed to register tcpci port\n");
-> > >
-> >
->
+[...]
+
+NB: Snipped 1000 lines.
+
+> Tested-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
+
+Would you be kind enough to snip your replies please AceLan?
+
+It would have the benefit of saving a lot of people a little time.
+
+TIA.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
