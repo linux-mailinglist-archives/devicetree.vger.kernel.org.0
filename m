@@ -2,155 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78F122FC563
+	by mail.lfdr.de (Postfix) with ESMTP id E426F2FC564
 	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 01:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730549AbhATABG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 19:01:06 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2379 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2394961AbhASNxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 08:53:23 -0500
-Received: from fraeml711-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4DKqhc4w8Yz67ZHY;
-        Tue, 19 Jan 2021 21:47:12 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml711-chm.china.huawei.com (10.206.15.60) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Tue, 19 Jan 2021 14:52:39 +0100
-Received: from localhost (10.47.77.36) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Tue, 19 Jan
- 2021 13:52:38 +0000
-Date:   Tue, 19 Jan 2021 13:51:58 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-CC:     <joro@8bytes.org>, <will@kernel.org>, <lorenzo.pieralisi@arm.com>,
-        <robh+dt@kernel.org>, <guohanjun@huawei.com>,
-        <sudeep.holla@arm.com>, <rjw@rjwysocki.net>, <lenb@kernel.org>,
-        <robin.murphy@arm.com>, <eric.auger@redhat.com>,
-        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-acpi@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-accelerators@lists.ozlabs.org>, <baolu.lu@linux.intel.com>,
-        <vdumpa@nvidia.com>, <zhangfei.gao@linaro.org>,
-        <shameerali.kolothum.thodi@huawei.com>, <vivek.gautam@arm.com>
-Subject: Re: [PATCH v9 07/10] iommu/arm-smmu-v3: Maintain a SID->device
- structure
-Message-ID: <20210119135158.00001995@Huawei.com>
-In-Reply-To: <20210108145217.2254447-8-jean-philippe@linaro.org>
-References: <20210108145217.2254447-1-jean-philippe@linaro.org>
-        <20210108145217.2254447-8-jean-philippe@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1727450AbhATAJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 19:09:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44660 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2394941AbhASNxH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 08:53:07 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D38C061573;
+        Tue, 19 Jan 2021 05:52:04 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id w5so19788262wrm.11;
+        Tue, 19 Jan 2021 05:52:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Rdm/biE4a+mlahQDle49aMaEn2RSuJRihRF9ov5TZxY=;
+        b=tEPNj6jc4dDBVRN92ctn+19OOJlId09PKo+cbreOHGSTV52nPQG79Iq7VltOLAuL54
+         RwFuw2ciF8ad7tqWu4FoK1X3RSaOxIr7uRyJ7JTT9Wy+mbC9jnNePKXLYj1ndOHvIYG9
+         KTGek18TQo0jLucnu3PHmpoa/jDFw3spAIGr+SXoX8w+rYPuXfE31c74Cqq/l7hpiBuI
+         /N8XnQrFIFGFW2gM7LzWw7wv3AYkg2BXkWOAbdm4mAcEJhDsjZA6dUY5YOcF93CKkhzR
+         rBqxnqEPE90Swfla6YqCWizwq3Te8qkoXvejSA85Y1nyiTG8DNVFwmo26O+0+TUCz8an
+         C9nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Rdm/biE4a+mlahQDle49aMaEn2RSuJRihRF9ov5TZxY=;
+        b=URFFUaTSpc/tnO5tJidsjSN/BCmvJP9MXtXC//6VktD9oSFT5+HJOGYd2xBn43hjkF
+         qH9XFzLFgXKmgqPS6Gl37Z4SyJPCGJgw7bvzp2vu8Bva1Rgd44NZAfPFDtQ5uX1VLXHM
+         oRflI2lGLl4vZK8CfZSKpUdQ0dbxGZl4Qsxvtc2rz2cQnc/YMgkDIdv1z1FK8KSGcGwH
+         UPpNgwoqzXrMEV/V2aJASJY9rJ0IEbYQcCEMrNVTGRYhQHmjz8weapGoRynm+Yu3c1Z/
+         ltvZa65ThJ+LBOpdvNj9eMsIa/9Q3RlWK6a520j/GJi9MEyBbZlMcpVoiCMpJGZ81Gkq
+         7NkA==
+X-Gm-Message-State: AOAM530+oRlWG6JD49Jpuv/XffrNjkv7yDJJEEIpvgmwqS1Bvgq7gkWS
+        gW8mKUS0Zu/CebcmIlXTwLo=
+X-Google-Smtp-Source: ABdhPJws7vLn4dGCoaQ8qzPypxg+WVQRz6mwaCJ75KdkEoJ6PUn8D4EnMC/dQmsxJbHyAyppnbaLQw==
+X-Received: by 2002:a5d:4712:: with SMTP id y18mr4595230wrq.229.1611064323159;
+        Tue, 19 Jan 2021 05:52:03 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id b133sm5317905wme.33.2021.01.19.05.52.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 05:52:01 -0800 (PST)
+Date:   Tue, 19 Jan 2021 14:52:00 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     JC Kuo <jckuo@nvidia.com>
+Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
+        kishon@ti.com, linux-tegra@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, nkristam@nvidia.com
+Subject: Re: [PATCH v6 04/15] phy: tegra: xusb: tegra210: Do not reset UPHY
+ PLL
+Message-ID: <YAbkABc68aMTvIyr@ulmo>
+References: <20210119085546.725005-1-jckuo@nvidia.com>
+ <20210119085546.725005-5-jckuo@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.77.36]
-X-ClientProxiedBy: lhreml735-chm.china.huawei.com (10.201.108.86) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="mjN8PrBnL8xAik0+"
+Content-Disposition: inline
+In-Reply-To: <20210119085546.725005-5-jckuo@nvidia.com>
+User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Jan 2021 15:52:15 +0100
-Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
 
-> When handling faults from the event or PRI queue, we need to find the
-> struct device associated with a SID. Add a rb_tree to keep track of
-> SIDs.
-> 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-One totally trivial point if you happen to be spinning again.
+--mjN8PrBnL8xAik0+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-with or without that.
-
+On Tue, Jan 19, 2021 at 04:55:35PM +0800, JC Kuo wrote:
+> Once UPHY PLL hardware power sequencer is enabled, do not assert
+> reset to PEX/SATA PLLs, otherwise UPHY PLL operation will be broken.
+> This commit removes reset_control_assert(pcie->rst) and
+> reset_control_assert(sata->rst) from PEX/SATA UPHY disable procedure.
+>=20
+> Signed-off-by: JC Kuo <jckuo@nvidia.com>
 > ---
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h |  13 +-
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 161 ++++++++++++++++----
->  2 files changed, 144 insertions(+), 30 deletions(-)
-> 
+> v6:
+>    no change
+> v5:
+>    no change
+> v4:
+>    no change
+> v3:
+>    new, was a part of "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
+>=20
+>  drivers/phy/tegra/xusb-tegra210.c | 2 --
+>  1 file changed, 2 deletions(-)
+>=20
+> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-t=
+egra210.c
+> index 4dc9286ec1b8..9bfecdfecf35 100644
+> --- a/drivers/phy/tegra/xusb-tegra210.c
+> +++ b/drivers/phy/tegra/xusb-tegra210.c
+> @@ -502,7 +502,6 @@ static void tegra210_pex_uphy_disable(struct tegra_xu=
+sb_padctl *padctl)
+>  	if (--pcie->enable > 0)
+>  		return;
+> =20
+> -	reset_control_assert(pcie->rst);
+>  	clk_disable_unprepare(pcie->pll);
+>  }
+> =20
+> @@ -739,7 +738,6 @@ static void tegra210_sata_uphy_disable(struct tegra_x=
+usb_padctl *padctl)
+>  	if (--sata->enable > 0)
+>  		return;
+> =20
+> -	reset_control_assert(sata->rst);
+>  	clk_disable_unprepare(sata->pll);
+>  }
 
-...
+Isn't this going to break things between here and patch 5 where the
+hardware sequencer is enabled? If so, it might be better to move this
+into patch 5 so that things stay functional and bisectible.
 
->  
-> +static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
-> +				  struct arm_smmu_master *master)
-> +{
-> +	int i;
-> +	int ret = 0;
-> +	struct arm_smmu_stream *new_stream, *cur_stream;
-> +	struct rb_node **new_node, *parent_node = NULL;
-> +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(master->dev);
-> +
-> +	master->streams = kcalloc(fwspec->num_ids,
-> +				  sizeof(struct arm_smmu_stream), GFP_KERNEL);
-				  sizeof(*master->streams)
+Thierry
 
-nitpick :) Saves reviewer going to check that master->streams is of the type they expect.
+--mjN8PrBnL8xAik0+
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-> +	if (!master->streams)
-> +		return -ENOMEM;
-> +	master->num_streams = fwspec->num_ids;
-> +
-> +	mutex_lock(&smmu->streams_mutex);
-> +	for (i = 0; i < fwspec->num_ids && !ret; i++) {
-> +		u32 sid = fwspec->ids[i];
-> +
-> +		new_stream = &master->streams[i];
-> +		new_stream->id = sid;
-> +		new_stream->master = master;
-> +
-> +		/*
-> +		 * Check the SIDs are in range of the SMMU and our stream table
-> +		 */
-> +		if (!arm_smmu_sid_in_range(smmu, sid)) {
-> +			ret = -ERANGE;
-> +			break;
-> +		}
-> +
-> +		/* Ensure l2 strtab is initialised */
-> +		if (smmu->features & ARM_SMMU_FEAT_2_LVL_STRTAB) {
-> +			ret = arm_smmu_init_l2_strtab(smmu, sid);
-> +			if (ret)
-> +				break;
-> +		}
-> +
-> +		/* Insert into SID tree */
-> +		new_node = &(smmu->streams.rb_node);
-> +		while (*new_node) {
-> +			cur_stream = rb_entry(*new_node, struct arm_smmu_stream,
-> +					      node);
-> +			parent_node = *new_node;
-> +			if (cur_stream->id > new_stream->id) {
-> +				new_node = &((*new_node)->rb_left);
-> +			} else if (cur_stream->id < new_stream->id) {
-> +				new_node = &((*new_node)->rb_right);
-> +			} else {
-> +				dev_warn(master->dev,
-> +					 "stream %u already in tree\n",
-> +					 cur_stream->id);
-> +				ret = -EINVAL;
-> +				break;
-> +			}
-> +		}
-> +
-> +		if (!ret) {
-> +			rb_link_node(&new_stream->node, parent_node, new_node);
-> +			rb_insert_color(&new_stream->node, &smmu->streams);
-> +		}
-> +	}
-> +
-> +	if (ret) {
-> +		for (; i > 0; i--)
-> +			rb_erase(&master->streams[i].node, &smmu->streams);
-> +		kfree(master->streams);
-> +	}
-> +	mutex_unlock(&smmu->streams_mutex);
-> +
-> +	return ret;
-> +}
-...
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAG4/0ACgkQ3SOs138+
+s6FRdBAAkdDGGqqOByCqXlI4BlCDvaCGH7gokubynuGUXTo+SPMkd//DHFmwPN6A
+7X081GnqqOEFdpEXJKFwPae6K2VX2JAT/q/wnGJLXDcDI2yw47YSyNbywux/aAo3
+RO0Ws8OkhFtLXzRx7y/ljYEC4rxf+eqtGEyZWjMDVt7HRTvT8cR/DfTyZFW5rB8l
+YGs3rlUqq9gtCKoY2YdrCWYveBDfEzug3IQ7ZYZUppu0r9t+Dmc/vjMkr53wciA6
+pRmkzisoO/3pjDHMv0kTVBtTs2EGCRMGN59LICXQyegLI2HtLloLsqBdAbet+vru
+JaaGFuAnrpD/D8GB83hZJkGuYIrAODd2RYuBJaima+V8VDGp6pwrvplcSSacC+61
+pAD6yy6ZWzoGdlSMp1TlG5mmhSy6Oyo2xWNdasezLOJU8SX3BjfuF0+E7NyRticC
+dL/kwTsO/rbLTx2oNytjPrvaClogBxTUWTOVyhUR6p6MBCYWqC5W08KuUQKvpj8x
+TGMQ5S4DaoDlptvDl92EneA16QLpwOsNalzvu5n+bMepQxlaBIbRcmMQtwXVM/am
+Du2XP/aFHvPfQPUIezFFDF3lRfurC5afAw8r9TNI8ElHfwasPdH2equiVK5Fqn7a
+XxR1qShC3WZUTBBsnOeG9iRJhFrssk3+4hE9PEfUAdN3MGE5iDE=
+=YdRC
+-----END PGP SIGNATURE-----
+
+--mjN8PrBnL8xAik0+--
