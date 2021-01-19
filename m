@@ -2,294 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 532792FBCD4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 17:48:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9F62FBD18
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:00:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730842AbhASQq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 11:46:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52638 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389101AbhASQkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 11:40:33 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D14C061793
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 08:39:51 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id my11so1664608pjb.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 08:39:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=cTdtY4qgSag2E2xJ3jmFdRITmCSY9t7wixAtSeoxg2Q=;
-        b=aCdcBXR98AKemYk1+rhoQq3w5sl00WP94W9fCQXp2GYqIbMgOeObEGYjxzu2OHDRO5
-         JNnsEeVYEnnxWjq9JYN0N5Es5VJ6o8poBtybD4qmqmh+rtRYqdcWoS6ZPLvmB86VqKvp
-         KuwOo2wVfkXaKHST7hTie1Zwm+VmOHtTC+BkN5PrmnPa+oDrKx5SvzRSPHggm6ulyFUW
-         j+cymDA+einZLR931KJ6XZ/xF54na30P2hXeZrfAa+CsmNp0pLfqhX6DXf51S3FRYpCy
-         JD5rtGrBY59cPndSADv8WZZ1j+0nBFiz6eSDCgJfZCqNCKBOqXZw+i6ne3frB35NnWCk
-         XfAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cTdtY4qgSag2E2xJ3jmFdRITmCSY9t7wixAtSeoxg2Q=;
-        b=i9EHb0i2oiwUQpCm0HnotLpcG9vOWjMIRoTFEfBi/xg7brT75SaVsfdkfEzOXXXYRm
-         PaPad8L6QZ18+ha0JMF1j1hucaMHZhhZ1IWVrz7HXQJIbNGsIhMtul6kBYucQw2ZB7tD
-         Uhddk7A/ELk6bxR/wk03aca0YEhScsifoh3q+crK+4aTG9ip/bIyhj6Z/+cj3nXxfIPd
-         Tm8tmQKOD5Xajrv4LQXCE3yF8SHU6rFDfgU2dl0X3ggWuMZzjQ3fijBwLvPiEouXbaG8
-         NUA6C/N4+zTRSikCYbOr7WMZNV9WQkR/DfJASX8F1BESmMQYLXnbooFgJMGLTC0u8IY9
-         ZQdg==
-X-Gm-Message-State: AOAM531CB1FqiMPXmep6nHGT4jADcJJBqE6OCHXJrp71w3WiWYoTNDsC
-        4vd0Hf4U/np5ZI2u4t5/9jpeQg==
-X-Google-Smtp-Source: ABdhPJwsgG18vPsJQ0f/5DyB3vrcEJ5GeHpm0/VCYtLLtHmxk+zq/mqzsg8nE5P3A0ADiB+MatltVA==
-X-Received: by 2002:a17:90b:11d4:: with SMTP id gv20mr575460pjb.116.1611074390788;
-        Tue, 19 Jan 2021 08:39:50 -0800 (PST)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id j23sm19036043pgj.34.2021.01.19.08.39.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 08:39:50 -0800 (PST)
-Date:   Tue, 19 Jan 2021 09:39:48 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     peng.fan@nxp.com
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        o.rempel@pengutronix.de, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
-        patrice.chotard@st.com
-Subject: Re: [PATCH V8 10/10] remoteproc: imx_proc: enable virtio/mailbox
-Message-ID: <20210119163948.GC611676@xps15>
-References: <1611041711-15902-1-git-send-email-peng.fan@nxp.com>
- <1611041711-15902-11-git-send-email-peng.fan@nxp.com>
+        id S2389596AbhASQ7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 11:59:45 -0500
+Received: from userp2130.oracle.com ([156.151.31.86]:54422 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389173AbhASQ7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 11:59:24 -0500
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10JGXWR0143590;
+        Tue, 19 Jan 2021 16:57:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=sgdV4DlHNHTspbd/aK7hkeNWRoha9hMFwjn/ZmwVWQk=;
+ b=N6ODgjzWnXRoegsWTwaFflZ7AM6NcT0c5vtyyMYYAXB5kuxnJ6eavvmWkBdXiZHEF6CR
+ aAb3lnX+7LCGEazD06mBnK0XvmUubX4XqHFajisIhSoKVG8QtuP97odTL8qGVf9m8LLZ
+ hEWvwyCpgefIrGHH6Qz/8wegaUpW0HDdkjKKWjj7avmOT2iGF1f3zNvSQHcX34oiTd6f
+ 4ODXLDIeJ6CUpO5Y6gg1wB2+2aaHVla/pucjEXLEddNsGN3cjpLoNzL+yM43SozyVVUs
+ g8lG/gZHA41S1tCkgjQonycuvavpiN/O8M+9VpsvypAT63qxVOj3j3w5xkhFthgAsEjS rw== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by userp2130.oracle.com with ESMTP id 363xyhse4g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 19 Jan 2021 16:57:50 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10JGsbvn142094;
+        Tue, 19 Jan 2021 16:57:49 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+        by userp3020.oracle.com with ESMTP id 3661khg06j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 19 Jan 2021 16:57:49 +0000
+Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
+        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 10JGvk9l005845;
+        Tue, 19 Jan 2021 16:57:47 GMT
+Received: from [10.74.104.209] (/10.74.104.209)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Tue, 19 Jan 2021 08:57:46 -0800
+Subject: Re: [PATCH] dt-bindings: soc: ti: Update TI PRUSS bindings about
+ schemas to include
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        tony@atomide.com, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        ssantosh@kernel.org, praneeth@ti.com, lee.jones@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20201216225027.2681-1-grzegorz.jaszczyk@linaro.org>
+ <20201221213234.GA596829@robh.at.kernel.org>
+ <6f5b6609-bb9e-31f7-c0c2-3bb261a54d6a@ti.com>
+From:   santosh.shilimkar@oracle.com
+Organization: Oracle Corporation
+Message-ID: <a080a917-9c37-088b-075b-7b5a5d49256d@oracle.com>
+Date:   Tue, 19 Jan 2021 08:57:43 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.12.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1611041711-15902-11-git-send-email-peng.fan@nxp.com>
+In-Reply-To: <6f5b6609-bb9e-31f7-c0c2-3bb261a54d6a@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9869 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 malwarescore=0
+ phishscore=0 mlxscore=0 adultscore=0 spamscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101190097
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9869 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 phishscore=0
+ malwarescore=0 mlxlogscore=999 bulkscore=0 priorityscore=1501 spamscore=0
+ mlxscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101190096
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 03:35:11PM +0800, peng.fan@nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 1/15/21 8:38 AM, Suman Anna wrote:
+> Hi Santosh,
 > 
-> Use virtio/mailbox to build connection between Remote Proccessors
-> and Linux. Add work queue to handle incoming messages.
+> On 12/21/20 3:32 PM, Rob Herring wrote:
+>> On Wed, 16 Dec 2020 23:50:27 +0100, Grzegorz Jaszczyk wrote:
+>>> Now after ti,pruss-intc.yaml and ti,pru-rproc.yaml are merged, include
+>>> them in proper property and extend the examples section.
+>>>
+>>> At the occasion extend the allowed property list about dma-ranges.
+>>>
+>>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>>> ---
+>>>   .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 76 +++++++++++++++++++
+>>>   1 file changed, 76 insertions(+)
+>>>
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>
 > 
-> Reviewed-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/remoteproc/imx_rproc.c | 116 ++++++++++++++++++++++++++++++++-
->  1 file changed, 113 insertions(+), 3 deletions(-)
-
-Reviewed-by: Mathieu Poirier <mathieu.poirer@linaro.org>
-
-I will pickup this set when Rob has reviewed the DT bindings.  In the mean time
-you might want to fix the title section in the the .yaml file, the Kconfig
-and the MODULE_DESCRIPTION and add a reference to i.MX8.
-
-Thanks,
-Mathieu
-
+> Gentle reminder, I haven't seen this patch yet on linux-next.
+> Can you please pick this up for 5.12.
 > 
-> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-> index 54ac143ba033..c16a91f8e410 100644
-> --- a/drivers/remoteproc/imx_rproc.c
-> +++ b/drivers/remoteproc/imx_rproc.c
-> @@ -7,6 +7,7 @@
->  #include <linux/err.h>
->  #include <linux/interrupt.h>
->  #include <linux/kernel.h>
-> +#include <linux/mailbox_client.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/of_address.h>
-> @@ -15,6 +16,9 @@
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/remoteproc.h>
-> +#include <linux/workqueue.h>
-> +
-> +#include "remoteproc_internal.h"
->  
->  #define IMX7D_SRC_SCR			0x0C
->  #define IMX7D_ENABLE_M4			BIT(3)
-> @@ -86,6 +90,11 @@ struct imx_rproc {
->  	const struct imx_rproc_dcfg	*dcfg;
->  	struct imx_rproc_mem		mem[IMX7D_RPROC_MEM_MAX];
->  	struct clk			*clk;
-> +	struct mbox_client		cl;
-> +	struct mbox_chan		*tx_ch;
-> +	struct mbox_chan		*rx_ch;
-> +	struct work_struct		rproc_work;
-> +	struct workqueue_struct		*workqueue;
->  };
->  
->  static const struct imx_rproc_att imx_rproc_att_imx8mq[] = {
-> @@ -366,9 +375,33 @@ static int imx_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
->  	return 0;
->  }
->  
-> +static void imx_rproc_kick(struct rproc *rproc, int vqid)
-> +{
-> +	struct imx_rproc *priv = rproc->priv;
-> +	int err;
-> +	__u32 mmsg;
-> +
-> +	if (!priv->tx_ch) {
-> +		dev_err(priv->dev, "No initialized mbox tx channel\n");
-> +		return;
-> +	}
-> +
-> +	/*
-> +	 * Send the index of the triggered virtqueue as the mu payload.
-> +	 * Let remote processor know which virtqueue is used.
-> +	 */
-> +	mmsg = vqid << 16;
-> +
-> +	err = mbox_send_message(priv->tx_ch, (void *)&mmsg);
-> +	if (err < 0)
-> +		dev_err(priv->dev, "%s: failed (%d, err:%d)\n",
-> +			__func__, vqid, err);
-> +}
-> +
->  static const struct rproc_ops imx_rproc_ops = {
->  	.start		= imx_rproc_start,
->  	.stop		= imx_rproc_stop,
-> +	.kick		= imx_rproc_kick,
->  	.da_to_va       = imx_rproc_da_to_va,
->  	.load		= rproc_elf_load_segments,
->  	.parse_fw	= imx_rproc_parse_fw,
-> @@ -444,6 +477,66 @@ static int imx_rproc_addr_init(struct imx_rproc *priv,
->  	return 0;
->  }
->  
-> +static void imx_rproc_vq_work(struct work_struct *work)
-> +{
-> +	struct imx_rproc *priv = container_of(work, struct imx_rproc,
-> +					      rproc_work);
-> +
-> +	rproc_vq_interrupt(priv->rproc, 0);
-> +	rproc_vq_interrupt(priv->rproc, 1);
-> +}
-> +
-> +static void imx_rproc_rx_callback(struct mbox_client *cl, void *msg)
-> +{
-> +	struct rproc *rproc = dev_get_drvdata(cl->dev);
-> +	struct imx_rproc *priv = rproc->priv;
-> +
-> +	queue_work(priv->workqueue, &priv->rproc_work);
-> +}
-> +
-> +static int imx_rproc_xtr_mbox_init(struct rproc *rproc)
-> +{
-> +	struct imx_rproc *priv = rproc->priv;
-> +	struct device *dev = priv->dev;
-> +	struct mbox_client *cl;
-> +	int ret;
-> +
-> +	if (!of_get_property(dev->of_node, "mbox-names", NULL))
-> +		return 0;
-> +
-> +	cl = &priv->cl;
-> +	cl->dev = dev;
-> +	cl->tx_block = true;
-> +	cl->tx_tout = 100;
-> +	cl->knows_txdone = false;
-> +	cl->rx_callback = imx_rproc_rx_callback;
-> +
-> +	priv->tx_ch = mbox_request_channel_byname(cl, "tx");
-> +	if (IS_ERR(priv->tx_ch)) {
-> +		ret = PTR_ERR(priv->tx_ch);
-> +		return dev_err_probe(cl->dev, ret,
-> +				     "failed to request tx mailbox channel: %d\n", ret);
-> +	}
-> +
-> +	priv->rx_ch = mbox_request_channel_byname(cl, "rx");
-> +	if (IS_ERR(priv->rx_ch)) {
-> +		mbox_free_channel(priv->tx_ch);
-> +		ret = PTR_ERR(priv->rx_ch);
-> +		return dev_err_probe(cl->dev, ret,
-> +				     "failed to request rx mailbox channel: %d\n", ret);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void imx_rproc_free_mbox(struct rproc *rproc)
-> +{
-> +	struct imx_rproc *priv = rproc->priv;
-> +
-> +	mbox_free_channel(priv->tx_ch);
-> +	mbox_free_channel(priv->rx_ch);
-> +}
-> +
->  static int imx_rproc_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -481,18 +574,28 @@ static int imx_rproc_probe(struct platform_device *pdev)
->  	priv->dev = dev;
->  
->  	dev_set_drvdata(dev, rproc);
-> +	priv->workqueue = create_workqueue(dev_name(dev));
-> +	if (!priv->workqueue) {
-> +		dev_err(dev, "cannot create workqueue\n");
-> +		ret = -ENOMEM;
-> +		goto err_put_rproc;
-> +	}
-> +
-> +	ret = imx_rproc_xtr_mbox_init(rproc);
-> +	if (ret)
-> +		goto err_put_wkq;
->  
->  	ret = imx_rproc_addr_init(priv, pdev);
->  	if (ret) {
->  		dev_err(dev, "failed on imx_rproc_addr_init\n");
-> -		goto err_put_rproc;
-> +		goto err_put_mbox;
->  	}
->  
->  	priv->clk = devm_clk_get(dev, NULL);
->  	if (IS_ERR(priv->clk)) {
->  		dev_err(dev, "Failed to get clock\n");
->  		ret = PTR_ERR(priv->clk);
-> -		goto err_put_rproc;
-> +		goto err_put_mbox;
->  	}
->  
->  	/*
-> @@ -502,9 +605,11 @@ static int imx_rproc_probe(struct platform_device *pdev)
->  	ret = clk_prepare_enable(priv->clk);
->  	if (ret) {
->  		dev_err(&rproc->dev, "Failed to enable clock\n");
-> -		goto err_put_rproc;
-> +		goto err_put_mbox;
->  	}
->  
-> +	INIT_WORK(&(priv->rproc_work), imx_rproc_vq_work);
-> +
->  	ret = rproc_add(rproc);
->  	if (ret) {
->  		dev_err(dev, "rproc_add failed\n");
-> @@ -515,6 +620,10 @@ static int imx_rproc_probe(struct platform_device *pdev)
->  
->  err_put_clk:
->  	clk_disable_unprepare(priv->clk);
-> +err_put_mbox:
-> +	imx_rproc_free_mbox(rproc);
-> +err_put_wkq:
-> +	destroy_workqueue(priv->workqueue);
->  err_put_rproc:
->  	rproc_free(rproc);
->  
-> @@ -528,6 +637,7 @@ static int imx_rproc_remove(struct platform_device *pdev)
->  
->  	clk_disable_unprepare(priv->clk);
->  	rproc_del(rproc);
-> +	imx_rproc_free_mbox(rproc);
->  	rproc_free(rproc);
->  
->  	return 0;
-> -- 
-> 2.28.0
-> 
+Yes, will look into it this week.
