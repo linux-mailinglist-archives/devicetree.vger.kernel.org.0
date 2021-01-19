@@ -2,89 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EA182FC392
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 23:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 740362FC390
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 23:36:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726821AbhASRoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 12:44:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726713AbhASO6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 09:58:23 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DFF7C061575;
-        Tue, 19 Jan 2021 06:57:42 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id c5so20020859wrp.6;
-        Tue, 19 Jan 2021 06:57:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=v1fcpvnUYPI/nQja+D/H69Nwe6mpUxULCJd6j/AG/F4=;
-        b=Byg8/tHEodzmLL86FpTJLixTBpbHAUztcvN7SPKf8dz4tuMZufNgeLi82a2mLrrURo
-         NC9XYjeHhd50imztA6ghDQF4J9ZcEWH4hSX8PVfF8siXtvAxMbRUFZnl1jzirqdFcNSe
-         n873a+o741Kpvhzya/CnMmSRXURQ1L8xBHlFTRupYlvrPiTXwEnGoYYxI6V1OIerOePN
-         eBP5pb5kRhKtxdgknSGldys243eZceoDNcPlQnUj1sCap+RIGPO+l+Q6FTdTIcpzI4wg
-         YUQ7pYVmJWdbbi11t3smnWhcGQqytj8mhx1sJSyacw2K11oyYOZ6kkbgZFSSyiDTj22z
-         fFUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=v1fcpvnUYPI/nQja+D/H69Nwe6mpUxULCJd6j/AG/F4=;
-        b=QhX2sKjJ4B40UigAtxz1MaT5QpD0K12ApHxJRP1FRYL0rWwckZwRHg4oY03VrxKlMH
-         L1077O0nPJ1oPzMmKaHU/oMaTYoaXlEqB1y45HoWoIxbLqA9w0XI8E5jauRIIytkj/fB
-         hdAd9R/8HhztlqhVZrZ9vO7zFkD4gP2FZkF28oCAKrkPa+E+BFT9YOatKP/RxDY4PiQT
-         xJ5/82XzhtaSM0ts8z8vL3uvwGGng6CAD8vbu4CLcOL7gruORU9csFBJBHEyQMZGyQEF
-         WnK6y9uHh5/CGqud1ODjn8lmdC3Ww+YfhbTJ0Lt+iAzw+DakmHXt3UW9HQX0nDL4NgVE
-         THvw==
-X-Gm-Message-State: AOAM533OiZAKbeoY8k1/ECzeaWr5QRLkYkuB4RvLaiQAd2a48WzgY3Zb
-        pD3Z+wGM61xQ3yEDv/3HBOo=
-X-Google-Smtp-Source: ABdhPJxYxibfTIpBNikpwutwBO3WkgharOYrPB4r8vQJGAxjzMjogW9/ubDSI56HVXTanCGLeAA2Gg==
-X-Received: by 2002:adf:ef03:: with SMTP id e3mr480940wro.98.1611068260925;
-        Tue, 19 Jan 2021 06:57:40 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id s1sm36786893wrv.97.2021.01.19.06.57.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 06:57:40 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH v3 1/2] dt-bindings: arm: amlogic: add support for the Beelink GS-King-X
-Date:   Tue, 19 Jan 2021 14:57:33 +0000
-Message-Id: <20210119145734.12675-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210119145734.12675-1-christianshewitt@gmail.com>
-References: <20210119145734.12675-1-christianshewitt@gmail.com>
+        id S1727482AbhASRnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 12:43:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47022 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731918AbhASPDw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Jan 2021 10:03:52 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7DB9A207B1;
+        Tue, 19 Jan 2021 15:02:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611068574;
+        bh=dZST2z3zdhC3d3+vZT1xghuXsRnYONAPhxzobtNNEXc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bAPTk0z2dNr0o6iBUWXlIKiIeozZpt1A5TfBdwYXGiAqRhokwPhq6d4VGpDZShjB0
+         tsaFQeB92I6tnDB1wGM0MhOSsH8ypmGa/3qmrx8gVdp/qPhCXPpRMhIZdwQVoAUR9z
+         zMeFDZ8TBpA59R9g7SalT5R1toWvKGv0kzwGKBdRVr5OrDrkEAYq+CA5TdGHfQDjV/
+         0kIouCmcm/Lkptjn++EQ5odDpQ47VYxMuKZ8j/t9d9bO4/Apj55wQS6JKcNHZH6nRE
+         ALOU59V75ZWRqhfWXwi1uz+nSCdiGOfJK613XBR7OtjjY1B+i4B7ysthcpO2QmUf2g
+         Khk/UkK8G1CJg==
+Date:   Tue, 19 Jan 2021 20:32:47 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Jack Pham <jackp@codeaurora.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: phy: qcom,qmp: Add SM8150, SM8250
+ and SM8350 USB PHY bindings
+Message-ID: <20210119150247.GX2771@vkoul-mobl>
+References: <20210115174723.7424-1-jackp@codeaurora.org>
+ <20210115174723.7424-2-jackp@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210115174723.7424-2-jackp@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Shenzen AZW (Beelink) GS-King-X is based on the Amlogic W400 reference
-board with an S922X-H chip.
+On 15-01-21, 09:47, Jack Pham wrote:
+> Add the compatible strings for the USB3 PHYs found on SM8150, SM8250
+> and SM8350 SoCs. These require separate subschemas due to the different
+> required clock entries.
+> 
+> Note the SM8150 and SM8250 compatibles have already been in place in
+> the dts as well as the driver implementation but were missing from
+> the documentation.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Applied, thanks
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 3341788d1096..6bef60ddda64 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -151,6 +151,7 @@ properties:
-       - description: Boards with the Amlogic Meson G12B S922X SoC
-         items:
-           - enum:
-+              - azw,gsking-x
-               - azw,gtking
-               - azw,gtking-pro
-               - hardkernel,odroid-n2
 -- 
-2.17.1
-
+~Vinod
