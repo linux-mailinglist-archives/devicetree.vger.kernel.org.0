@@ -2,199 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C1B2FB4CC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 10:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3532FB6D4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:21:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726023AbhASJGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 04:06:10 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:59533 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731669AbhASJF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 04:05:27 -0500
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 4AD73C002A;
-        Tue, 19 Jan 2021 09:04:28 +0000 (UTC)
-Date:   Tue, 19 Jan 2021 10:04:27 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH 1/2] of: device: Allow DMA range map to be set before
- of_dma_configure_id
-Message-ID: <YAagmzfPXTW4Jlg0@aptenodytes>
-References: <20210115175831.1184260-1-paul.kocialkowski@bootlin.com>
- <ddf44e96-187b-91c0-822d-ade4f1e5be2b@arm.com>
- <YAMdZ9peWRMRACv2@collins>
- <5c7946f3-b56e-da00-a750-be097c7ceb32@arm.com>
+        id S1731290AbhASI4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 03:56:55 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:6127 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727088AbhASI4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 03:56:48 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B60069e9a0001>; Tue, 19 Jan 2021 00:55:54 -0800
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 19 Jan
+ 2021 08:55:51 +0000
+Received: from jckuo-lt.nvidia.com (172.20.145.6) by mail.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Tue, 19 Jan 2021 08:55:48 +0000
+From:   JC Kuo <jckuo@nvidia.com>
+To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
+        <robh@kernel.org>, <jonathanh@nvidia.com>, <kishon@ti.com>
+CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nkristam@nvidia.com>, JC Kuo <jckuo@nvidia.com>
+Subject: [PATCH v6 00/15] Tegra XHCI controller ELPG support
+Date:   Tue, 19 Jan 2021 16:55:31 +0800
+Message-ID: <20210119085546.725005-1-jckuo@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="VWPV4+qJKHV+hHEv"
-Content-Disposition: inline
-In-Reply-To: <5c7946f3-b56e-da00-a750-be097c7ceb32@arm.com>
+X-NVConfidentiality: public
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1611046554; bh=ZON5aretQ9H8PdWHEDTWVkej22AqCFg+dYWyS+Qc2Gw=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         X-NVConfidentiality:Content-Transfer-Encoding:Content-Type;
+        b=FgynQo34dMFfU3/ULN/PgTavt3S/U9PgwdecmQaKZE3acZTDBTraO1Fkpms1mznWB
+         fh4VHGFhr00HoLJA1varZ+bZFym/n+dhQBjrBbrAh/7RZFSI00S6Ad8jzvXASmsTvc
+         CC4/DDbPpvR+zbAwq9Bll2zlbNDjGkN2V+60IBiN3qiXTpwHchGJpZUzxTu7+qVfqT
+         BKs2tJykDblrD5lWj9XvWm2vNVHDjaCtr/5eWsHlyTGLWsQEs0RKGBGCmwSZQpQyE8
+         95A8wQocFy51JIHuaT2SbXPh1iexRtNQQZpKD9FoTig5HZ7Dk6o0FNWZbNmkL+Bo8R
+         Eu6NMVN5oEk5Q==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
+state for power saving when all of the connected USB devices are in
+suspended state. This patch series includes clk, phy and pmc changes
+that are required for properly place controller in ELPG and bring
+controller out of ELPG.
 
---VWPV4+qJKHV+hHEv
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+JC Kuo (15):
+  clk: tegra: Add PLLE HW power sequencer control
+  clk: tegra: Don't enable PLLE HW sequencer at init
+  phy: tegra: xusb: Move usb3 port init for Tegra210
+  phy: tegra: xusb: tegra210: Do not reset UPHY PLL
+  phy: tegra: xusb: Rearrange UPHY init on Tegra210
+  phy: tegra: xusb: Add Tegra210 lane_iddq operation
+  phy: tegra: xusb: Add sleepwalk and suspend/resume
+  soc/tegra: pmc: Provide USB sleepwalk register map
+  arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
+  dt-bindings: phy: tegra-xusb: Add nvidia,pmc prop
+  phy: tegra: xusb: Add wake/sleepwalk for Tegra210
+  phy: tegra: xusb: Tegra210 host mode VBUS control
+  phy: tegra: xusb: Add wake/sleepwalk for Tegra186
+  usb: host: xhci-tegra: Unlink power domain devices
+  xhci: tegra: Enable ELPG for runtime/system PM
 
-Hi Robin,
+ .../phy/nvidia,tegra124-xusb-padctl.txt       |    1 +
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi      |    1 +
+ drivers/clk/tegra/clk-pll.c                   |   12 -
+ drivers/clk/tegra/clk-tegra210.c              |   53 +-
+ drivers/phy/tegra/xusb-tegra186.c             |  558 ++++-
+ drivers/phy/tegra/xusb-tegra210.c             | 1889 +++++++++++++----
+ drivers/phy/tegra/xusb.c                      |   92 +-
+ drivers/phy/tegra/xusb.h                      |   22 +-
+ drivers/soc/tegra/pmc.c                       |   94 +
+ drivers/usb/host/xhci-tegra.c                 |  613 ++++--
+ include/linux/clk/tegra.h                     |    4 +-
+ include/linux/phy/tegra/xusb.h                |   10 +-
+ 12 files changed, 2784 insertions(+), 565 deletions(-)
 
-On Mon 18 Jan 21, 13:27, Robin Murphy wrote:
-> On 2021-01-16 17:07, Paul Kocialkowski wrote:
-> > Hi Robin,
-> >=20
-> > Le Sat 16 Jan 21, 14:57, Robin Murphy a =C3=A9crit :
-> > > On 2021-01-15 17:58, Paul Kocialkowski wrote:
-> > > > A mechanism was recently introduced for the sunxi architecture where
-> > > > the DMA offset for specific devices (under the MBUS) is set by a co=
-mmon
-> > > > driver (sunxi_mbus). This driver calls dma_direct_set_offset to set
-> > > > the device's dma_range_map manually.
-> > > >=20
-> > > > However this information was overwritten by of_dma_configure_id, wh=
-ich
-> > > > obtains the map from of_dma_get_range (or keeps it NULL when it fai=
-ls
-> > > > and the force_dma argument is true, which is the case for platform
-> > > > devices).
-> > > >=20
-> > > > As a result, the dma_range_map was always overwritten and the mecha=
-nism
-> > > > could not correctly take effect.
-> > > >=20
-> > > > This adds a check to ensure that no previous DMA range map is
-> > > > overwritten and prints a warning when the map was already set while
-> > > > also being available from dt. In this case, the map that was already
-> > > > set is kept.
-> > >=20
-> > > Hang on, the hard-coded offset is only intended to be installed when =
-there
-> > > *isn't* anything described in DT, in which case of_dma_get_range() sh=
-ould
-> > > always bail out early without touching it anyway. This sounds like
-> > > something's not quite right in the MBUS driver, so I don't think work=
-ing
-> > > around it in core code is really the right thing to do.
-> >=20
-> > That's right, there is no practical case where the two are in conflict.
-> > The problem that I'm solving here is that dev->dma_range_map is *always*
-> > assigned, even when of_dma_get_range bailed and map still is NULL.
-> >=20
-> > This has the effect of always overwriting what the MBUS driver does
-> > (and leaking its memory too).
->=20
-> Oh, I should have looked closer at of_dma_configure_id() itself. I was
-> assuming that b4bdc4fbf8d0 had been tested and at least *could* work, but
-> apparently not :/
->=20
-> Indeed it seems there was a fundamental oversight in e0d072782c73
-> ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset"),
-> equivalent to the same one I previously made myself with bus_dma_mask and
-> fixed in 6778be4e5209 ("of/device: Really only set bus DMA mask when
-> appropriate"). I think same simpler fix is the right one for this case to=
-o,
-> i.e. just move the assignment to dev->dma_range_map up under the "if (!re=
-t)"
-> condition. Assigning it this late - after the IOMMU and arch setup - looks
-> wrong anyway, even if it isn't currently an issue in practice (in princip=
-le
-> an IOMMU driver *could* start trying to figure out reserved regions around
-> DMA windows for a device as early as its .of_xlate callback, even though
-> that's not the intent of the API design).
-
-Okay sounds good, I'll resend a patch with the assignment under if (!ret)!
-
-> Luckily dma_range_map hasn't been hooked up in the equivalent ACPI path y=
-et,
-> so you're off the hook for fixing that too :)
-
-Good for me :)
-
-Cheers,
-
-Paul
-
-> > > Do you have a case where one of the relevant devices inherits a "dma-=
-ranges"
-> > > via the regular hierarchy without indirecting via an "interconnects"
-> > > reference? Currently you're only checking for the latter, so that wou=
-ld be
-> > > one way things could go awry (although to be a problem, said "dma-ran=
-ges"
-> > > would also have to encode something *other* than the appropriate MBUS
-> > > offset, which implies an incorrect or at least inaccurately-structure=
-d DT as
-> > > well).
-> >=20
-> > No, I think things are good in that regard. No messed up dt or anything=
- like
-> > that :)
-> >=20
-> > Cheers,
-> >=20
-> > Paul
-> >=20
-> > > Robin.
-> > >=20
-> > > > Fixes: b4bdc4fbf8d0 ("soc: sunxi: Deal with the MBUS DMA offsets in=
- a central place")
-> > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > ---
-> > > >    drivers/of/device.c | 9 ++++++++-
-> > > >    1 file changed, 8 insertions(+), 1 deletion(-)
-> > > >=20
-> > > > diff --git a/drivers/of/device.c b/drivers/of/device.c
-> > > > index aedfaaafd3e7..db1b8634c2c7 100644
-> > > > --- a/drivers/of/device.c
-> > > > +++ b/drivers/of/device.c
-> > > > @@ -181,7 +181,14 @@ int of_dma_configure_id(struct device *dev, st=
-ruct device_node *np,
-> > > >    	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
-> > > > -	dev->dma_range_map =3D map;
-> > > > +	if (!dev->dma_range_map) {
-> > > > +		dev->dma_range_map =3D map;
-> > > > +	} else if (map) {
-> > > > +		dev_warn(dev,
-> > > > +			 "DMA range map was already set, ignoring range map from dt\n");
-> > > > +		kfree(map);
-> > > > +	}
-> > > > +
-> > > >    	return 0;
-> > > >    }
-> > > >    EXPORT_SYMBOL_GPL(of_dma_configure_id);
-> > > >=20
-> >=20
-
+v5 "arm64: tegra210/tegra186/tegra194: XUSB PADCTL irq" has been
+merged separately.
 --=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+2.25.1
 
---VWPV4+qJKHV+hHEv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmAGoJsACgkQ3cLmz3+f
-v9EHhwf/elOyvLNl99Y6DkOE0jrgwROy6MwAy6sEWzlI8Ks3G9JqNi7yLpQ3A1Ak
-0TvY9aChoHCSaoKMC/GoyxdbZrP662sELa4833LTLXNoLC7SZLMsqGeYDVriCA7p
-VBJC4kJNyHXknWLDF4NMEe0m7UApXI7bmckz+eImWYiQQJvw8JHKTgnzTt8NDfHw
-E5auZMZvtj5JJI2u9NriJUZeFxnwo4a9izHHTNsWWkWXXLZAieG3PCI+rdrOObmG
-9W2e1FdctysCIFwzRRFTn2t9u1j9+epnFTNw+C1BueuUKCM/Q6ZGHbOeEveakbas
-58uZgm9ppLgEZdCgFjduv7F1hjajvA==
-=j/jd
------END PGP SIGNATURE-----
-
---VWPV4+qJKHV+hHEv--
