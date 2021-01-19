@@ -2,121 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3182FBD62
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D37AF2FBD73
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:23:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391403AbhASRSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 12:18:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60728 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391392AbhASRSI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:18:08 -0500
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9448BC061575;
-        Tue, 19 Jan 2021 09:17:25 -0800 (PST)
-Received: by mail-qk1-x733.google.com with SMTP id z11so22555500qkj.7;
-        Tue, 19 Jan 2021 09:17:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=b5LVKZxTrplQ11RZzvZpJI3DUzGXGrVYerBOEgEz3Uc=;
-        b=l/n21kYHvIIahJUswWHxBAyM/26feZo064ZrEbI6AsIrwNR0f8tI3sbipKjX+jYgtu
-         fCJoADl181GNe+acSApG0KsagHqMvDJgGKB1nh9B4hdbtYSH4E3f+2Jm+U4GAZQ8rgQW
-         MP5sfiPE/HKYPowcrY+5yaJ50ixgy/DlJy5IYQXpB3YdqBwWANQsfqKgJqnU7VGcDUmJ
-         HA6yKOKoLb6gcBClXoHl1pQU/qpk6LNHGav76unhGL7HN2OkI0rHbV6IpU7kLWTQXQ78
-         JfTw27VvqtXyTMRr6dlw5CVoRSSeHKc01G96mn6kN15d7hs3oEHEKp3tEZk0plShKmjY
-         dCww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=b5LVKZxTrplQ11RZzvZpJI3DUzGXGrVYerBOEgEz3Uc=;
-        b=LHwj8PHCInCydv6eIXeaL+WT44+798kOEZ1/6bhf91hNrnq9fRNAF/8IalSmt03uoH
-         kKwZc2V/vgiPlYI+Tbl0PPzSrQu00wyzmNerBxGUZNDiKArXeBiFpPcEnNQRQ0cY+mC5
-         /2chS4jpRg/39G6bgA9KLiFLzYpbL7JCU/XKwmWh2d3hSwZoZqOZEGy04nKn6VxcjXwY
-         yIf2soXDfCl4T7GbPpb9RpDk70eRQjDreDNjk9E9YpwdVLHLLdzAXdbJoEFKiFAHJyz3
-         18p3rW3V1teKenqxWQPklpqimuSRM7SI6+USSyh8FEkwnk4VHztmaTbR44pNxwRmirlo
-         3lkQ==
-X-Gm-Message-State: AOAM5309j8wbxJycy2WdmWipVWHEUByNsZltjS4mNI0OX+NidskABc29
-        TfZSZTpDZnbtgWl3dajyTRY=
-X-Google-Smtp-Source: ABdhPJzvA1cMspD0O9nIWOVS4ATYqPCJVxApWvkdPWnsRK8TH9FkVxLjk1DX1basETRjptxUwnfavg==
-X-Received: by 2002:a37:5c81:: with SMTP id q123mr5289236qkb.309.1611076644872;
-        Tue, 19 Jan 2021 09:17:24 -0800 (PST)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id 8sm12922265qkr.28.2021.01.19.09.17.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 09:17:23 -0800 (PST)
-Date:   Tue, 19 Jan 2021 18:17:21 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     broonie@kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com,
-        kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sharadg@nvidia.com
-Subject: Re: [RESEND PATCH v6 6/6] arm64: tegra: Audio graph sound card for
- Jetson Nano and TX1
-Message-ID: <YAcUIZpOVr7Sjyoq@ulmo>
-References: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
- <1611048496-24650-7-git-send-email-spujar@nvidia.com>
+        id S2389732AbhASRWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 12:22:40 -0500
+Received: from foss.arm.com ([217.140.110.172]:41292 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390373AbhASRVb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Jan 2021 12:21:31 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4745111D4;
+        Tue, 19 Jan 2021 09:20:33 -0800 (PST)
+Received: from bogus (unknown [10.57.35.27])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 918BD3F66E;
+        Tue, 19 Jan 2021 09:20:30 -0800 (PST)
+Date:   Tue, 19 Jan 2021 17:20:28 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     "Zulkifli, Muhammad Husaini" <muhammad.husaini.zulkifli@intel.com>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        Mark Brown <broonie@kernel.org>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Hunter, Adrian" <adrian.hunter@intel.com>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Shevchenko, Andriy" <andriy.shevchenko@intel.com>,
+        "A, Rashmi" <rashmi.a@intel.com>,
+        "Vaidya, Mahesh R" <mahesh.r.vaidya@intel.com>
+Subject: Re: [PATCH v1 5/9] firmware: keembay: Add support for Trusted
+ Firmware Service call
+Message-ID: <20210119172028.577x72bxv2khmg76@bogus>
+References: <20210118120132.GC25035@e120937-lin>
+ <DM6PR11MB2876FCA96049D398A899A930B8A30@DM6PR11MB2876.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="PWqwWawcwfvI8Z/3"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1611048496-24650-7-git-send-email-spujar@nvidia.com>
-User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
+In-Reply-To: <DM6PR11MB2876FCA96049D398A899A930B8A30@DM6PR11MB2876.namprd11.prod.outlook.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 19, 2021 at 02:38:32AM +0000, Zulkifli, Muhammad Husaini wrote:
 
---PWqwWawcwfvI8Z/3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[...]
 
-On Tue, Jan 19, 2021 at 02:58:16PM +0530, Sameer Pujar wrote:
-> Enable support for audio-graph based sound card on Jetson-Nano and
-> Jetson-TX1. Depending on the platform, required I/O interfaces are
-> enabled.
->=20
->  * Jetson-Nano: Enable I2S3, I2S4, DMIC1 and DMIC2.
->  * Jetson-TX1: Enable all I2S and DMIC interfaces.
->=20
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts | 262 +++++++++++++++=
-++++++
->  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 146 ++++++++++++
->  2 files changed, 408 insertions(+)
+> 
+> I try to hook up the DT last night. Seems like the SCMI Protocol 17 is not
+> implemented at ATF side.
 
-Similarly to patch 5, I'm likely going to make some changes to this when
-I apply to avoid those label references, since that's not something that
-we use elsewhere, so I want to keep things consistent.
+I had guessed that.
 
-Again, just mentioning that here, but no need to resend.
+> Double check with ATF Team, currently we don't have SCMI voltage domain
+> control in ARM Trusted Firmware yet as of now, that is why even if I map the
+> function to scmi, my call will be fail.
 
-Thierry
+Correct, but if you already have this custom SMCCC for voltage already
+implemented in TF-A, I don't see it is a big deal to support voltage
+protocol there.
 
---PWqwWawcwfvI8Z/3
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> [    2.648989] arm-scmi firmware:scmi: SCMI Notifications - Core Enabled.
+> [    2.656157] arm-scmi firmware:scmi: SCMI Protocol v1.0 'INTEL:KMB' Firmware version 0x1
+> [    2.664513] arm-scmi firmware:scmi: SCMI protocol 23 not implemented
+> [    2.675898] arm-scmi firmware:scmi: SCMI protocol 17 not implemented
+> 
+> Any possibilities that for UHS patch we go with my current regulator driver
+> implementation?
 
------BEGIN PGP SIGNATURE-----
+Sorry absolutely no. If this platform was not using SCMI, I wouldn't have
+pushed back hard on this custom SMCCC. Please update TF-A to add this support.
+There is no point in having custom interface just for this when everything
+else is already using SCMI on this platform.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAHFCEACgkQ3SOs138+
-s6FBpg/+LPSfyFZtSmQC9bfJ13HYxQ7gHohZ2vXse2/p6URwG/zJO5KWW3C6G7ou
-1QPSEjcmu93wU3CdyJfMjeq0ZkTtETUO91lhdBJSVG0ZzVeuwMDTySwzaDnvTZfz
-ZjYbM0eYIL2DNQYdPATo0jEBsIDkwvGvmnrdgcGQlQEfDp7mk28Xbp3nlKmyElp6
-5D845/Mf8Kvna6eMX3op9gq0f/RSBGyQCXBaZbKSUapD9WEpRCDev6Y/dUwh4544
-E3oh/LrkcXyX7Mh/pT26O0wWVDzT9TSFyBQ5TMbenxt03gV8g5Lrxi6p+8XvlPNt
-Rz0YOdFQUdC5NTwtwPcEQTNJA4ZxUtcln9gzozFama8cG+8EcrnfdRQflzaARr3d
-jt9ST91LzNGsw/Ua/KJS9P/MCOa8WbKERqR13/m3OUavXi22G6aBKErd+V03P6JP
-VWj4gRh/N7gx8CPmEIb4pu6TJL/xEcDC+SmfRJlJx5rMvzwvDuwkz9GAxS+vYCzy
-LPOsIRKM+K4SG1iKghK/fOjMoWECmB63cYiEVHvXs4aW4Z4hK6AphRlFEfCDxKrn
-GJT1SkpssGZvLTl/I1QFQSSRIUIEyK5l9xgfBr5JAe1z/dwlITZOrdYPTkJ5OV+V
-TGpp3ObTYhUYd0lhJUxYOlNkM1wdZcGg9ALEwJDKwfud0McFTsA=
-=DCH2
------END PGP SIGNATURE-----
-
---PWqwWawcwfvI8Z/3--
+-- 
+Regards,
+Sudeep
