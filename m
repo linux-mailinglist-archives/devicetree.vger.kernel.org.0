@@ -2,97 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B232FB495
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 09:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24FE12FB4A5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 09:58:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbhASIvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 03:51:50 -0500
-Received: from mga12.intel.com ([192.55.52.136]:16685 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726023AbhASIvn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 03:51:43 -0500
-IronPort-SDR: FipACqjkVmBWYPwgEfOd4XR0g7/fUWG1VhaahQtXxnhYGNqAqtXPo8UxA/sBaKwzGw0cNOuzBe
- dJCkfvujzrZw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="158077570"
-X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; 
-   d="scan'208";a="158077570"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2021 00:49:51 -0800
-IronPort-SDR: E1bgHeIxth2unR7Y9/+ZKbPWF0Dgu0jSZ73lc5I+JnKlpsfu01GBKf56QTKcTQDPZ0tSsy5KTT
- oc+BzXVAtIJA==
-X-IronPort-AV: E=Sophos;i="5.79,358,1602572400"; 
-   d="scan'208";a="350443947"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2021 00:49:48 -0800
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1l1miw-003J3e-D7; Tue, 19 Jan 2021 10:50:50 +0200
-Date:   Tue, 19 Jan 2021 10:50:50 +0200
-From:   "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>
-To:     "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        "Seow, Chen Yong" <chen.yong.seow@intel.com>
-Subject: Re: [PATCH v2 2/2] clocksource: Add Intel Keem Bay Timer Support
-Message-ID: <20210119085050.GM4077@smile.fi.intel.com>
-References: <cover.1609306622.git.vijayakannan.ayyathurai@intel.com>
- <2a7038bc170e31a668995c367bbae018bf805dbe.1609306622.git.vijayakannan.ayyathurai@intel.com>
- <73330c8b-4633-4a13-b4b5-7405ff1661fe@linaro.org>
- <DM6PR11MB4250EB33E23178D211D0411DFBA30@DM6PR11MB4250.namprd11.prod.outlook.com>
+        id S1731279AbhASI4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 03:56:53 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:6161 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731061AbhASI4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 03:56:48 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B60069ea70000>; Tue, 19 Jan 2021 00:56:07 -0800
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 19 Jan
+ 2021 08:56:04 +0000
+Received: from jckuo-lt.nvidia.com (172.20.145.6) by mail.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Tue, 19 Jan 2021 08:56:01 +0000
+From:   JC Kuo <jckuo@nvidia.com>
+To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
+        <robh@kernel.org>, <jonathanh@nvidia.com>, <kishon@ti.com>
+CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nkristam@nvidia.com>, JC Kuo <jckuo@nvidia.com>
+Subject: [PATCH v6 04/15] phy: tegra: xusb: tegra210: Do not reset UPHY PLL
+Date:   Tue, 19 Jan 2021 16:55:35 +0800
+Message-ID: <20210119085546.725005-5-jckuo@nvidia.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210119085546.725005-1-jckuo@nvidia.com>
+References: <20210119085546.725005-1-jckuo@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR11MB4250EB33E23178D211D0411DFBA30@DM6PR11MB4250.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-NVConfidentiality: public
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1611046567; bh=fMWbCxXN66OVLrsG2zwzPXGHGUm0Z1aSKFkU6EI97W8=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
+         References:MIME-Version:X-NVConfidentiality:
+         Content-Transfer-Encoding:Content-Type;
+        b=OXgWlOYCw4Z8aMnl1uoD6xlI3VFrl8wFlnP5EgB/rAkdApXrP1ajT8mLbhQNV9ocf
+         lcANcNDH0r7wecrQtJnl4OhvBqbwucf+HEhdx0j8P5IH5ikJnJig9VCYPTl4vnDZnD
+         CMSnpVSSKO1j7HdwJGonePClfVpBmNJsrOZ0q1Eau/H45RpZ4DG6QT9KAzoUJtlfu7
+         NstyrW2X1FV9zvkUyxZjSpEe2juvnLuZXps9kgJYnEZsnOjXmyTsTwZ3jxehkVXJli
+         +lFd88iq1lpiSCoDT4u78fhzg9Ct9NnlStTCVeBCv9mXPBiZCtsuEbOiuSfJaNhaTK
+         xW9lNz9Kal2fQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 02:56:36AM +0000, Ayyathurai, Vijayakannan wrote:
+Once UPHY PLL hardware power sequencer is enabled, do not assert
+reset to PEX/SATA PLLs, otherwise UPHY PLL operation will be broken.
+This commit removes reset_control_assert(pcie->rst) and
+reset_control_assert(sata->rst) from PEX/SATA UPHY disable procedure.
 
-...
+Signed-off-by: JC Kuo <jckuo@nvidia.com>
+---
+v6:
+   no change
+v5:
+   no change
+v4:
+   no change
+v3:
+   new, was a part of "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
 
-> > > +	data.base = of_iomap(np, 2);
-> > > +	if (!data.base)
-> > > +		return -ENXIO;
-> > > +
-> > > +	ret = keembay_clocksource_init(np, &data);
-> > > +	if (ret)
-> > > +		goto exit;
-> > > +
-> > > +	ret = keembay_clockevent_init(np, &data);
-> > 
-> > Is this missing ?
-> > 
-> 
-> Yes. Either case it goes to the exit path. So I thought of avoiding this error handling code.
+ drivers/phy/tegra/xusb-tegra210.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-The point is that in success you probably won't call keembay_timer_cleanup().
-
-> > 	if (ret)
-> > 		goto exit;
-> > 
-> > 	return 0;
-> > 
-> > > +exit:
-> > > +	keembay_timer_cleanup(np, &data);
-> > > +
-> > > +	return ret;
-> > > +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-teg=
+ra210.c
+index 4dc9286ec1b8..9bfecdfecf35 100644
+--- a/drivers/phy/tegra/xusb-tegra210.c
++++ b/drivers/phy/tegra/xusb-tegra210.c
+@@ -502,7 +502,6 @@ static void tegra210_pex_uphy_disable(struct tegra_xusb=
+_padctl *padctl)
+ 	if (--pcie->enable > 0)
+ 		return;
+=20
+-	reset_control_assert(pcie->rst);
+ 	clk_disable_unprepare(pcie->pll);
+ }
+=20
+@@ -739,7 +738,6 @@ static void tegra210_sata_uphy_disable(struct tegra_xus=
+b_padctl *padctl)
+ 	if (--sata->enable > 0)
+ 		return;
+=20
+-	reset_control_assert(sata->rst);
+ 	clk_disable_unprepare(sata->pll);
+ }
+=20
+--=20
+2.25.1
 
