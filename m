@@ -2,97 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22E802FC2F7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 23:07:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 789A82FC2F6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 23:07:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728865AbhASWFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 17:05:37 -0500
-Received: from a1.mail.mailgun.net ([198.61.254.60]:63663 "EHLO
-        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733312AbhASRqc (ORCPT
+        id S1728871AbhASWFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 17:05:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38152 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728632AbhASRqc (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:46:32 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1611078330; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=L0vFdFdhSXmndQrwYXuvFainDV9NH9XIG05iM/Zdhg8=; b=YrE7O1MuisAGp+WU8eyiQk4sG1nql0XV3/QCZZ71kGaXUf7/fWQajVwwBWsJ/Xr65F+90qyp
- T+orIZDQLLZjTnHN3P0X/a2/vpx6xXlRTC8qSjJbgAv041fItC5SPzaVrNiS/FN8viOCk7Tb
- Osetb4iVdvJIRBIw+N818/69xAg=
-X-Mailgun-Sending-Ip: 198.61.254.60
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 6007193502b2f1cb1a797d55 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 19 Jan 2021 17:39:01
- GMT
-Sender: jackp=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B2471C43462; Tue, 19 Jan 2021 17:39:00 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F29FC061793;
+        Tue, 19 Jan 2021 09:44:26 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: jackp)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5B93EC433C6;
-        Tue, 19 Jan 2021 17:38:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5B93EC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jackp@codeaurora.org
-From:   Jack Pham <jackp@codeaurora.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 980D43F0B4;
+        Tue, 19 Jan 2021 18:44:22 +0100 (CET)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, sumit.semwal@linaro.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jack Pham <jackp@codeaurora.org>,
-        Felipe Balbi <balbi@kernel.org>
-Subject: [PATCH v3] dt-bindings: usb: qcom,dwc3: Add bindings for SM8150, SM8250, SM8350
-Date:   Tue, 19 Jan 2021 09:37:48 -0800
-Message-Id: <20210119173748.6729-1-jackp@codeaurora.org>
-X-Mailer: git-send-email 2.24.0
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v4 0/7] Really implement Qualcomm LAB/IBB regulators
+Date:   Tue, 19 Jan 2021 18:44:14 +0100
+Message-Id: <20210119174421.226541-1-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible strings for the USB DWC3 controller on QCOM SM8150,
-SM8250 and SM8350 SoCs.
+Okay, the title may be a little "aggressive"? However, the qcom-labibb
+driver wasn't really .. doing much.
+The current form of this driver is only taking care of enabling or
+disabling the regulators, which is pretty useless if they were not
+pre-set from the bootloader, which sets them only if continuous
+splash is enabled.
+Moreover, some bootloaders are setting a higher voltage and/or a higher
+current limit compared to what's actually required by the attached
+hardware (which is, in 99.9% of the cases, a display) and this produces
+a higher power consumption, higher heat output and a risk of actually
+burning the display if kept up for a very long time: for example, this
+is true on at least some Sony Xperia MSM8998 (Yoshino platform) and
+especially on some Sony Xperia SDM845 (Tama platform) smartphones.
 
-Note the SM8150 & SM8250 compatibles are already being used in the
-dts but was missing from the documentation.
+In any case, the main reason why this change was necessary for us is
+that, during the bringup of Sony Xperia MSM8998 phones, we had an issue
+with the bootloader not turning on the display and not setting the lab
+and ibb regulators before booting the kernel, making it impossible to
+powerup the display.
 
-Acked-by: Felipe Balbi <balbi@kernel.org>
-Signed-off-by: Jack Pham <jackp@codeaurora.org>
----
-v3: Resend of #4/4 of https://lore.kernel.org/linux-usb/20210115174723.7424-1-jackp@codeaurora.org
-    added Felipe's Ack & rebased on gregkh/usb-testing
+With this said, this patchset enables setting voltage, current limiting,
+overcurrent and short-circuit protection.. and others, on the LAB/IBB
+regulators.
+Each commit in this patch series provides as many informations as
+possible about what's going on and testing methodology.
 
- Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Changes in v4:
+ - Remove already applied commit
+ - Add commit to switch to regulator_{list,map}_voltage_linear
+   which in v3 got squashed in the commit that got removed in v4.
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-index dd1d8bcd9254..c3cbd1fa9944 100644
---- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-@@ -18,6 +18,9 @@ properties:
-           - qcom,sc7180-dwc3
-           - qcom,sdm845-dwc3
-           - qcom,sdx55-dwc3
-+          - qcom,sm8150-dwc3
-+          - qcom,sm8250-dwc3
-+          - qcom,sm8350-dwc3
-       - const: qcom,dwc3
- 
-   reg:
+Changes in v3:
+ - Improved check for PBS disable and short-circuit condition:
+   during the testing of short-circuit, coincidentally another
+   register reading zero on the interesting bit was probed,
+   which didn't trigger a malfunction of the SC logic, but was
+   also wrong.
+   After the change, the short-circuit test was re-done in the
+   same way as described in the commit that is implementing it.
+ - From Bjorn Andersson review:
+   - Improved documentation about over-current and short-circuit
+     protection in the driver
+   - Improved maintainability of qcom_labibb_sc_recovery_worker()
+   - Flipped around check for PBS vreg disabled in for loop of
+     function labibb_sc_err_handler()
+ - From Mark Brown (forgotten in v2):
+   - Changed regulator_{list,map}_voltage_linear_range usages to
+     regulator_{list,map}_voltage_linear (and fixed regulator
+     descs to reflect the change).
+
+Changes in v2:
+ - From Mark Brown review:
+   - Replaced some if branches with switch statements
+   - Moved irq get and request in probe function
+   - Changed short conditionals to full ones
+   - Removed useless check for ocp_irq_requested
+ -  Fixed issues with YAML documentation
+
+AngeloGioacchino Del Regno (7):
+  regulator: qcom-labibb: Switch voltage ops from linear_range to linear
+  regulator: qcom-labibb: Implement current limiting
+  regulator: qcom-labibb: Implement pull-down, softstart, active
+    discharge
+  dt-bindings: regulator: qcom-labibb: Document soft start properties
+  regulator: qcom-labibb: Implement short-circuit and over-current IRQs
+  dt-bindings: regulator: qcom-labibb: Document SCP/OCP interrupts
+  arm64: dts: pmi8998: Add the right interrupts for LAB/IBB SCP and OCP
+
+ .../regulator/qcom-labibb-regulator.yaml      |  30 +-
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |   8 +-
+ drivers/regulator/qcom-labibb-regulator.c     | 720 +++++++++++++++++-
+ 3 files changed, 735 insertions(+), 23 deletions(-)
+
 -- 
-2.24.0
+2.30.0
 
