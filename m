@@ -2,202 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D54A2FBC46
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 17:23:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F0492FBC4D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 17:23:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390099AbhASQMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 11:12:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36270 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391693AbhASQMj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 11:12:39 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C18A8233EF;
-        Tue, 19 Jan 2021 16:10:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611072652;
-        bh=YH50CiobQgjEKwsDKLeIrIz9J7SfDmzMf4nqV3wo0tI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=e40AJSdtW9pAF9X9VguGqDvCjIazJnx3pI1diBtBCyLlUPXMu9Ol82kOYcsP5y0UW
-         q7JRBbA61a2C1Qv6sPBUwtz6928W5dm/m96JSYt6qk2Fb0t2YVO04R1fv0PcFcF2cX
-         CuSCo8anJ+t2lNMPqcRDfqFUcaKtk2B8eDN97WteRA9S45rfov+/4Mx0CNighZTrtv
-         vU0ncBux5z9kX7OLxanhCTeuBq8BLj3KWWh7S9vRkoBG8CURNEffgd4fL60Vc6cWFY
-         wVirtXJUKwZ48Q9MLstjPsWSSZe/RwcqyXg1alHJMfr+tlwfuOxanZ4Wf3gQWGGaGI
-         k6EvPVVTuH5CQ==
-Received: by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1l1taj-0012cP-IV; Tue, 19 Jan 2021 17:10:49 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 21/21] dts: hisilicon: add support for the PMIC found on Hikey 970
-Date:   Tue, 19 Jan 2021 17:10:47 +0100
-Message-Id: <83951b776a90538ccba982d322dfe59f498df0c3.1611072387.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1611072387.git.mchehab+huawei@kernel.org>
-References: <cover.1611072387.git.mchehab+huawei@kernel.org>
+        id S1731223AbhASQW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 11:22:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48748 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730889AbhASQWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 11:22:34 -0500
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5505FC061573;
+        Tue, 19 Jan 2021 08:21:54 -0800 (PST)
+Received: by mail-qk1-x735.google.com with SMTP id 22so22357491qkf.9;
+        Tue, 19 Jan 2021 08:21:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8bKO85uYL0TuKxcIkZ/8W11uUZW2LrfduTLto/+NkzI=;
+        b=ED4QgOlPjbdeNh5YfNkolLpSW8IX2bPLuSFg/tr0zbzxHmNRxlcQBXFgPmuRMyPK7u
+         4F4hvIFaQtqE+4q3gyjy5h0o2bUpEoUqg53nbbYo4dqj8iEt/dSi7QxWSwHpiN6VRRMM
+         kk+uUnAvzzsOJWb0oMyBYPLijnnW6nftCOSQEUovCT1X5zfuniTMhy9j0IuIIQ3stLmm
+         iF/Q20rlPiyRElRgruCxPlfHhOdanbSY9oCjTQ+Jfb4jQpluGAIM+VORGJ8EqANDi/lO
+         U8h+IeT2BjMa/fERMEvAITo+PwidWJdiFEytv3Mw9gYCI+pwSxQfrTRNyfxcIF9mkl57
+         2PMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8bKO85uYL0TuKxcIkZ/8W11uUZW2LrfduTLto/+NkzI=;
+        b=LApL7tob42ByrjgRCYXi10R3bC4CfCn9dzrSd5k5JQK3T+YNZi/9AJXZaCAh9T7iqP
+         JVSCEtNoYdcYA9JwYbsrOc8DCT6Nijvc6zo0Xnoss+upz8ry+/EMpk8LMkSmVBzMVeCn
+         Ou/ARZ2EAz6nkUxklKuwUR+R5xxNaRtBRTow520yyrXPkBGjZ4fEjLNn6lN8Wp9PdAKj
+         8hMFdysQToAWUkNcB/h3tbqlL1SySPxRvaD9LFSeGhnbG0VM3owAD5FYyZAORp/13d0L
+         LN/hgrqgxBHBh2YQHKHyvFjkwTfR7SBr+NDaCe599o2QpIq4LEQlFP9uY44Nb6Gzuk1A
+         c+Lg==
+X-Gm-Message-State: AOAM530Bb7HAG4dENvdNxF56T+fDgGZ/yUJPs//ChlC1fC8wyV2DreNO
+        CUGB5PySigNrhsSOjKCAYcc=
+X-Google-Smtp-Source: ABdhPJzORVjV8oYhIUFvxkNrvq9ZcABKnSG69miE7HR5p6O/qB/yiVAy7sqvFvb8VxZ8IKSI6VL+Nw==
+X-Received: by 2002:a37:6611:: with SMTP id a17mr5112101qkc.150.1611073313510;
+        Tue, 19 Jan 2021 08:21:53 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id c28sm12924389qtv.2.2021.01.19.08.21.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jan 2021 08:21:53 -0800 (PST)
+Subject: Re: [PATCH V2 1/2] scripts: dtc: Add fdtoverlay.c and fdtdump.c to
+ DTC_SOURCE
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
+        Frank Rowand <frowand.list@gmail.com>
+References: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <eb85b5ba-e2c5-7601-6934-089b5b1370d2@gmail.com>
+Date:   Tue, 19 Jan 2021 10:21:52 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+In-Reply-To: <be5cb12a68d9ac2c35ad9dd50d6b168f7cad6837.1609996381.git.viresh.kumar@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
-on HiKey970 board.
+On 1/6/21 11:15 PM, Viresh Kumar wrote:
+> We will start building overlays for platforms soon in the kernel and
+> would need these tools going forward. Lets start fetching them.
+> 
+> Note that a copy of fdtdump.c was already copied back in the year 2012,
+> but was never updated or built for some reason.
+> 
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> ---
+> V2: Separate out this change from Makefile one.
+> 
+> This needs to be followed by invocation of the ./update-dtc-source.sh
+> script so the relevant files can be copied before the Makefile is
+> updated in the next patch.
+> 
+>  scripts/dtc/update-dtc-source.sh | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/scripts/dtc/update-dtc-source.sh b/scripts/dtc/update-dtc-source.sh
+> index bc704e2a6a4a..9bc4afb71415 100755
+> --- a/scripts/dtc/update-dtc-source.sh
+> +++ b/scripts/dtc/update-dtc-source.sh
+> @@ -31,9 +31,9 @@ set -ev
+>  DTC_UPSTREAM_PATH=`pwd`/../dtc
+>  DTC_LINUX_PATH=`pwd`/scripts/dtc
+>  
+> -DTC_SOURCE="checks.c data.c dtc.c dtc.h flattree.c fstree.c livetree.c srcpos.c \
+> -		srcpos.h treesource.c util.c util.h version_gen.h yamltree.c \
+> -		dtc-lexer.l dtc-parser.y"
+> +DTC_SOURCE="checks.c data.c dtc.c dtc.h fdtdump.c fdtoverlay.c flattree.c \
+> +		fstree.c livetree.c srcpos.c srcpos.h treesource.c util.c \
+> +		util.h version_gen.h yamltree.c dtc-lexer.l dtc-parser.y"
+>  LIBFDT_SOURCE="fdt.c fdt.h fdt_addresses.c fdt_empty_tree.c \
+>  		fdt_overlay.c fdt_ro.c fdt_rw.c fdt_strerror.c fdt_sw.c \
+>  		fdt_wip.c libfdt.h libfdt_env.h libfdt_internal.h"
+> 
 
-As we now have support for it, change the fixed regulators
-used by the SD I/O to use the proper LDO supplies.
+DTC_SOURCE is for the dtc program.  Please add a FDTOVERLAY_SOURCE and
+related use for the fdtoverlay program.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../boot/dts/hisilicon/hi3670-hikey970.dts    | 22 +----
- .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 87 +++++++++++++++++++
- 2 files changed, 90 insertions(+), 19 deletions(-)
- create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-index fe6600dbad61..1f221cb97690 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-@@ -12,6 +12,7 @@
- 
- #include "hi3670.dtsi"
- #include "hikey970-pinctrl.dtsi"
-+#include "hikey970-pmic.dtsi"
- 
- / {
- 	model = "HiKey970";
-@@ -39,23 +40,6 @@ memory@0 {
- 		reg = <0x0 0x0 0x0 0x0>;
- 	};
- 
--	sd_1v8: regulator-1v8 {
--		compatible = "regulator-fixed";
--		regulator-name = "fixed-1.8V";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--		regulator-always-on;
--	};
--
--	sd_3v3: regulator-3v3 {
--		compatible = "regulator-fixed";
--		regulator-name = "fixed-3.3V";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		regulator-boot-on;
--		regulator-always-on;
--	};
--
- 	wlan_en: wlan-en-1-8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "wlan-en-regulator";
-@@ -425,8 +409,8 @@ &dwmmc1 {
- 	pinctrl-0 = <&sd_pmx_func
- 		     &sd_clk_cfg_func
- 		     &sd_cfg_func>;
--	vmmc-supply = <&sd_3v3>;
--	vqmmc-supply = <&sd_1v8>;
-+	vmmc-supply = <&ldo16>;
-+	vqmmc-supply = <&ldo9>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-new file mode 100644
-index 000000000000..8cf45b962fea
---- /dev/null
-+++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-@@ -0,0 +1,87 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
-+ *
-+ * Copyright (C) 2020, Huawei Tech. Co., Ltd.
-+ */
-+
-+#include <dt-bindings/spmi/spmi.h>
-+
-+/ {
-+	spmi: spmi@fff24000 {
-+		compatible = "hisilicon,kirin970-spmi-controller";
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+		status = "okay";
-+		reg = <0x0 0xfff24000 0x0 0x1000>;
-+		spmi-channel = <2>;
-+
-+		pmic: pmic@0 {
-+			compatible = "hisilicon,hi6421-spmi";
-+			reg = <0 SPMI_USID>;
-+
-+			#interrupt-cells = <2>;
-+			interrupt-controller;
-+			gpios = <&gpio28 0 0>;
-+
-+			regulators {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				ldo3: LDO3 {
-+					regulator-name = "ldo3";
-+					regulator-min-microvolt = <1500000>;
-+					regulator-max-microvolt = <2000000>;
-+					regulator-boot-on;
-+				};
-+
-+				ldo4: LDO4 { /* 40 PIN */
-+					regulator-name = "ldo4";
-+					regulator-min-microvolt = <1725000>;
-+					regulator-max-microvolt = <1900000>;
-+					regulator-boot-on;
-+				};
-+
-+				ldo9: LDO9 { /* SDCARD I/O */
-+					regulator-name = "ldo9";
-+					regulator-min-microvolt = <1750000>;
-+					regulator-max-microvolt = <3300000>;
-+					regulator-boot-on;
-+				};
-+
-+				ldo15: LDO15 { /* UFS */
-+					regulator-name = "ldo15";
-+					regulator-min-microvolt = <1800000>;
-+					regulator-max-microvolt = <3000000>;
-+					regulator-always-on;
-+				};
-+
-+				ldo16: LDO16 { /* SD */
-+					regulator-name = "ldo16";
-+					regulator-min-microvolt = <1800000>;
-+					regulator-max-microvolt = <3000000>;
-+					regulator-boot-on;
-+				};
-+
-+				ldo17: LDO17 {
-+					regulator-name = "ldo17";
-+					regulator-min-microvolt = <2500000>;
-+					regulator-max-microvolt = <3300000>;
-+				};
-+
-+				ldo33: LDO33 { /* PEX8606 */
-+					regulator-name = "ldo33";
-+					regulator-min-microvolt = <2500000>;
-+					regulator-max-microvolt = <3300000>;
-+					regulator-boot-on;
-+				};
-+
-+				ldo34: LDO34 { /* GPS AUX IN VDD */
-+					regulator-name = "ldo34";
-+					regulator-min-microvolt = <2600000>;
-+					regulator-max-microvolt = <3300000>;
-+				};
-+			};
-+		};
-+	};
-+};
--- 
-2.29.2
-
+-Frank
