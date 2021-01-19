@@ -2,141 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A24E72FBD40
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:13:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8929C2FBD7E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:26:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390524AbhASRNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 12:13:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59596 "EHLO
+        id S1731245AbhASRQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 12:16:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390680AbhASRMy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:12:54 -0500
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7EC9C061573;
-        Tue, 19 Jan 2021 09:12:13 -0800 (PST)
-Received: by mail-qt1-x832.google.com with SMTP id v5so14199831qtv.7;
-        Tue, 19 Jan 2021 09:12:13 -0800 (PST)
+        with ESMTP id S2387730AbhASRQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:16:35 -0500
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E62EC061573;
+        Tue, 19 Jan 2021 09:15:55 -0800 (PST)
+Received: by mail-qk1-x72d.google.com with SMTP id v126so22514781qkd.11;
+        Tue, 19 Jan 2021 09:15:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8ZydUd6iysbYazKads1ipIIW9R1NAHfYqDDc67KX+ok=;
-        b=GUDFIcbbkZ0IKIM4c9iEcy1neGW1Am8AUsPJaK5r+I0x8/XC+qJ6nYm3gtQT7I7rTm
-         oLGRvD0Mwza9JzaPlkt+gSugq+ltoro+jO/Q2yMEBAU0Ea8cwM1lPfatTuoW2x40vhFf
-         f17G5DKs6UpamngxVSM02PtXFwA1KrGZN/f847VB29EZIdE1zgOSa5g9skse6P62x60W
-         iceQoQyyFtru7OzdGAzm7sCqJ7/VYs7xi7DR4NRWjZRctUd83LRJadIvFEv+vEHYkhCb
-         /r456Iiat+2ErGvhEjsUVHSGSaebp36nT7hh72DnOxAVZMg9j6INS4YJ795MSUSWZMXa
-         wQqQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=/Wq4qZjE/3PIn7FnaG2ZyC5WlhiHEngk1+PS8fgItLE=;
+        b=JFx2kpR6qED4GlcB1JBdL5pzb/N3debM49RiAn3r7cD6kOxykr8h2jV+oZtcfVmtDv
+         bl/NyyyYuuaeH/1X5rZ+hzMOFCj1R3DC5fRote5OwHhGCh+6sXR0tLGauMdV/2ZMJLZg
+         XlM1/CS1QvD/r1jDrwt/QRyvGdBkp4eXu44ypOEoLpwsKKgZyxZyDWzI/GdmzIdyvml4
+         3sU6NxKqDlAJvEfceK2wGe/Tp1i+BKjl6vt2y8i+IXD0z8Se2skSl36xrWsLyr65k6Z4
+         h4uVH0458HyM/qP9HCFsQJseKhbIEkeuBIILcLiE1SJGlfIjGkqHkazxbKE775/8sZZ+
+         wj/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8ZydUd6iysbYazKads1ipIIW9R1NAHfYqDDc67KX+ok=;
-        b=nUQ+t3rJ8ZZGF5eKMduGbM2gmnZfccks3LoNrUUXquhPkKvCLwBkOG3FyoW3U6s2aJ
-         9WiiLVBOE2A/9RnNroS2yxJKRmlXpjKRKOwitHifWP6+D+uPuCz654V1/puD5TfLVqY3
-         /xTePq5OA/Uk+fmx+ut6iHw5oerEczIVlUnRUREC6S2i1IpYImDF/1iIil3qVYiffL6Q
-         I3rtJpU9jVp3k58VxLqbpq2sZy9RHQYkAb9RGf2PxG4xi9dtDAgiKjryEXatO38m+ggs
-         Go1VfSlAvF2C9GnVySXQv9//JwBsynXksNBaU1aFUWTMqWkLpiaiPZBAW0gznyp7G6mp
-         E4xA==
-X-Gm-Message-State: AOAM531vzu2zvuK0hmlYRBzGtgZYgK3+kzsX5aT63WlNIGxgKOuqpzwS
-        wFKb2B/FWo/ZFgE8onWHnAQ=
-X-Google-Smtp-Source: ABdhPJwtroIpxWtBHKcJeF05ADTjF0q/OCbvAPWrC+faW3VgLBMJHBUy/U1Ri2mRYv4Wi61jkGQBRw==
-X-Received: by 2002:aed:2f67:: with SMTP id l94mr5244724qtd.201.1611076333155;
-        Tue, 19 Jan 2021 09:12:13 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id j66sm495062qkf.78.2021.01.19.09.12.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jan 2021 09:12:12 -0800 (PST)
-Subject: Re: [PATCH V4 0/3] scripts: dtc: Build fdtoverlay
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-References: <cover.1610431620.git.viresh.kumar@linaro.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com>
-Date:   Tue, 19 Jan 2021 11:12:11 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/Wq4qZjE/3PIn7FnaG2ZyC5WlhiHEngk1+PS8fgItLE=;
+        b=K9jbTilpQDcr0W5ZTOPHalY4IPpkbCBirZlyvgzZV1KfntJtMul61U2M35v9snN2av
+         CqYVaRIJcgyQGbSc0nT74RkrwWSSLL64fStPqQ75sV0HnDq0iWtrEAD/FLzRlHXKGsIs
+         dD7eQfQHKxjr1apKqYUHD8wEHzc5S5NipNsBID7iy/6p8+Gkcu26wUKjwYJnP7KAimdU
+         87eT1HPGBOPYUI2bdIbnD1nlrFJoRn9St5L4gbh7T0SlkVnMAfUct9GshaVXRFz+Dy27
+         6XhNjp90tiUjJ4cwerAeUjW9kz6E8XZWLUd6eymxBegdyTSWJVxb6NagyrHpX8i0xP/Y
+         WMbw==
+X-Gm-Message-State: AOAM530M56Om7A7i0k8vFbJyaDJSaeTFMzzRcZQV+VcU+ZrIXFjpIeO5
+        ba9bilxS+CNPVNco9aMeDBmR/d/67Uw=
+X-Google-Smtp-Source: ABdhPJycqx06CLHOtr8yYwKPAeyRnNsWmzo5DsVRoLEFQGnY+lx39eEbN/524ikbpYu5IHC3qNi4Kw==
+X-Received: by 2002:a05:620a:12ed:: with SMTP id f13mr5362033qkl.497.1611076554637;
+        Tue, 19 Jan 2021 09:15:54 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id k64sm13500696qkc.110.2021.01.19.09.15.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 09:15:53 -0800 (PST)
+Date:   Tue, 19 Jan 2021 18:15:51 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com,
+        kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sharadg@nvidia.com
+Subject: Re: [RESEND PATCH v6 5/6] arm64: tegra: Audio graph header for
+ Tegra210
+Message-ID: <YAcTxxyogVgfN1uw@ulmo>
+References: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
+ <1611048496-24650-6-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <cover.1610431620.git.viresh.kumar@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="V/me9ht3Hy4FdSi0"
+Content-Disposition: inline
+In-Reply-To: <1611048496-24650-6-git-send-email-spujar@nvidia.com>
+User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/12/21 2:28 AM, Viresh Kumar wrote:
-> We will start building overlays for platforms soon in the kernel and
-> would need fdtoverlay tool going forward. Lets start fetching and
-> building it.
-> 
-> While at it, also remove fdtdump.c file, which isn't used by the kernel.
-> 
-> V4:
-> - Don't fetch and build fdtdump.c
-> - Remove fdtdump.c
-> 
-> Viresh Kumar (3):
->   scripts: dtc: Add fdtoverlay.c to DTC_SOURCE
->   scripts: dtc: Build fdtoverlay tool
->   scripts: dtc: Remove the unused fdtdump.c file
-> 
->  scripts/dtc/Makefile             |   6 +-
->  scripts/dtc/fdtdump.c            | 163 -------------------------------
->  scripts/dtc/update-dtc-source.sh |   6 +-
->  3 files changed, 8 insertions(+), 167 deletions(-)
->  delete mode 100644 scripts/dtc/fdtdump.c
-> 
 
-My first inclination was to accept fdtoverlay, as is, from the upstream
-project.
+--V/me9ht3Hy4FdSi0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-But my experiences debugging use of fdtoverlay against the existing
-unittest overlay files has me very wary of accepting fdtoverlay in
-it's current form.
+On Tue, Jan 19, 2021 at 02:58:15PM +0530, Sameer Pujar wrote:
+> Expose a header which describes DT bindings required to use audio-graph
+> based sound card. All Tegra210 based platforms can include this header
+> and add platform specific information. Currently, from SoC point of view,
+> all links are exposed for ADMAIF, AHUB, I2S and DMIC components.
+>=20
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  .../boot/dts/nvidia/tegra210-audio-graph.dtsi      | 153 +++++++++++++++=
+++++++
+>  1 file changed, 153 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra210-audio-graph.dtsi
 
-As an exmple, adding an overlay that fails to reply results in the
-following build messages:
+I prefer keeping everything in tegra210.dtsi, but I can do that merge
+when I apply, after the DT bindings have been acked, so no need to
+resend just because of that.
 
-   linux--5.11-rc> make zImage
-   make[1]: Entering directory '/local/frowand_nobackup/src/git_linus/build/dragon_linus_5.11-rc'
-     GEN     Makefile
-     CALL    /local/frowand_nobackup/src/git_linus/linux--5.11-rc/scripts/checksyscalls.sh
-     CALL    /local/frowand_nobackup/src/git_linus/linux--5.11-rc/scripts/atomic/check-atomics.sh
-     CHK     include/generated/compile.h
-     FDTOVERLAY drivers/of/unittest-data/static_test.dtb
+Thierry
 
-   Failed to apply 'drivers/of/unittest-data/overlay.dtb': FDT_ERR_NOTFOUND
-   make[4]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/drivers/of/unittest-data/Makefile:96: drivers/of/unittest-data/static_test.dtb] Error 1
-   make[3]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/scripts/Makefile.build:496: drivers/of/unittest-data] Error 2
-   make[2]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/scripts/Makefile.build:496: drivers/of] Error 2
-   make[1]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/Makefile:1805: drivers] Error 2
-   make[1]: Leaving directory '/local/frowand_nobackup/src/git_linus/build/dragon_linus_5.11-rc'
-   make: *** [Makefile:185: __sub-make] Error 2
+--V/me9ht3Hy4FdSi0
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-The specific error message (copied from above) is:
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAHE8QACgkQ3SOs138+
+s6HyRRAAr5aaieN+iwicZO0lllDEMbxrMSPQLW5lRPP/IsqHcVcSaInc2Xuoyeks
+Q36vwKPpeHV4mWLwAPgunERnusPLI705z88oTVJnV1mXMiduyW2yfyBHdd6tpMZS
+KX2rPHf1AoiBrvh170nem+ZCxjfqcMR4+YL58JjIpyXaPbfJ2qwnOuBDFKLU2uiS
+yG3k6wyYsBBJWsS41rOya4dqNi+YpzGaQ7IE7r5YP3R0Or9RiEhwjE8xgXiLPVhM
+YilIjWyv3Csc9yPsliO1WCriNboKL+BgClNQ4YELltr+mYbsSZwIzqXrApRwXJP3
+6tuZA67Cmhmk9ghCxI2dljX+fkEks5lEIVpChT4GmF6vSbfF0kp8Sc+sIiGtkCRH
+wx+30v+iqYLXN407FCL5gqiqzZPfIeAAKJ1pv7vDL+p4kqdiFHF0UTCvZoZKG4R5
+FCsmesbdBCk8VjgfoHG2oFZ764r7uMdhrO1sTOryYEzqaUpEPh4dfHGye8OM9vYd
+JvvEtllWM2nNLQ32sSKbvYZaRLVpqP3njGXp8qvTZ+TGkYDpTuHqYI2jpQmciq5f
+gYN6k2z12Za8D82/QzEDwtgyLYayRmbFFIuaX7+eAjQBYSH6j2nEgwY4aOAUyXZF
+Zmuw02HfH1lGSwdKNvQ60ynTniWrIfqxSlUVZQ9emj56wlkz8WE=
+=if1e
+-----END PGP SIGNATURE-----
 
-   Failed to apply 'drivers/of/unittest-data/overlay.dtb': FDT_ERR_NOTFOUND
-
-which is cryptic and does not even point to the location in the overlay that
-is problematic.  If you look at the source of fdtoverlay / libfdt, you will
-find that FDT_ERR_NOTFOUND may be generated in one of many places.
-
-I do _not_ want to do a full review of fdtoverlay, but I think that it is
-reasonable to request enhancing fdtoverlay in the parent project to generate
-usable error messages before enabling fdtoverlay in the Linux kernel tree.
-
-fdtoverlay in it's current form adds a potential maintenance burden to me
-(as the overlay maintainer).  I now have the experience of how difficult it
-was to debug the use of fdtoverlay in the context of the proposed patch to
-use it with the devicetree unittest overlay .dtb files.
-
--Frank
+--V/me9ht3Hy4FdSi0--
