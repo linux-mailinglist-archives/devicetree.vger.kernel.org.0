@@ -2,107 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB5372FAF14
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 04:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0A032FAF68
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 05:26:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394912AbhASDVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 22:21:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50222 "EHLO
+        id S1731284AbhASEU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 23:20:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2394911AbhASDVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 22:21:36 -0500
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5951C061574;
-        Mon, 18 Jan 2021 19:20:55 -0800 (PST)
-Received: by mail-io1-xd2e.google.com with SMTP id h11so7882201ioh.11;
-        Mon, 18 Jan 2021 19:20:55 -0800 (PST)
+        with ESMTP id S1730712AbhASER3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 23:17:29 -0500
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B88C061573
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 20:16:49 -0800 (PST)
+Received: by mail-io1-xd2a.google.com with SMTP id x21so18874774iog.10
+        for <devicetree@vger.kernel.org>; Mon, 18 Jan 2021 20:16:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7MVhaKG7Tn8dwOvNkpJZ6mk5gJu3V7+tsTKQ2lqUNQE=;
-        b=HD4yG7uJzVIXhW4l5LOOY2Wtb78VGKVvgrBOKpEg8/e3WTdk/g2b3OD5zky4NY7qNP
-         0qlAkuB3YWZQtvgm0E4njzDLwumPfzddC5mGulQB28NbWUPw+fPt32WMgONtkQergNDr
-         hWeu0gHhFCSUcKSQ1XncMb1xgIC4NwsBxa1dbqAXJP8fv/+3Kzg3h1kxtVFJR2m0duxn
-         5kXzMgWqSjS6POeLMRCi2OGi6kxSqkkXzjSBxRul3ZKyTclzcthyiN3RJbUCowWibEAZ
-         NT1i5Yo7Ee9UXgpB8jaNZHyfWUNWaM2DMKTezjdSYJnD2Q3fY/igFFyHboIpu/M68fPl
-         KEHQ==
+        bh=1ZJDrgzZmYXfIo0lGIMXEXiySIw3gPtBzcGCID7s8Rw=;
+        b=LcbM3pmru0ucPXbMjeSV2nKL0tNYuwj4P09n7fLfJPRKFXp2iIi7QXy/+oQYIs9uvG
+         VHMTvgy0LY64CPN9Ugci67iTo1g4+gw9SR79kPv+XTLTCZFvDAc7wp+iKxqK2y6H6EWf
+         Qvmw/MOkOu0xWdJ9HNukA/J8BdAgyhfZSMpMc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7MVhaKG7Tn8dwOvNkpJZ6mk5gJu3V7+tsTKQ2lqUNQE=;
-        b=baqYfl29VDlL2wtG8hOJe0jythUpoM1sTFVRF4KrVDYAWlXTslk8YS2++G2SlSk13l
-         Vb4QwY0qA8G6mIwQjSQwugAK/AbQMFw/1mx7Tkg3dcBPiKt0EI3oRP1YNCywQ9bWUN4F
-         jSIWvcfxAhnpL1y5J4qgp3bvFlYIo3WUSTKIb/pgioWCLxw6OYECB2Po0VMgLdcmxgt8
-         2x3uL0Elz5uL847xykhiwJA8dfktcAQTckBjNkhl4dMtDYiouHRd9pm90WBucUijXyLB
-         U2mjsyCGUSd3RivoHHH4lszc4Wvv2B/TF6xX8ARIoFYLlkOBNLCe6qv+YEfHrkerIf9B
-         GDBA==
-X-Gm-Message-State: AOAM533vdoMU4pjsZK+GG+jWpx5ffhogfbeNP7TbU3Q9h/gjUtgnTZ0M
-        roaOVdJgriVgq7diVo++xqmO2tnV7DepGR4tjQA=
-X-Google-Smtp-Source: ABdhPJzXnPvDBsNuLIJ/wPJ3uimKTNwNlnlHCUgeghHJPjwTzbvrIJD6a+WMcDB8AkkPzw0EUhbbpeUYS71kvSYdUJw=
-X-Received: by 2002:a6b:c7c5:: with SMTP id x188mr1480858iof.39.1611026455198;
- Mon, 18 Jan 2021 19:20:55 -0800 (PST)
+        bh=1ZJDrgzZmYXfIo0lGIMXEXiySIw3gPtBzcGCID7s8Rw=;
+        b=czx7au9/+vccRfOmFgrJ4Xq7ylzCaM5w7wwaLvcsSR5S+WeNy7s2FDNznx10pSqCD2
+         2YjufX6C3cCC9u3RZkE3S/lFteV7oDNR8OxIl1vzSVUFlciA069jP/gow+40mzJv28ZX
+         wyU8TeQTO6WXG4IoBymgpkb4y4RroXtGU2WDL+TOOPZVzvqVJg01QjzBjqwiNaAKY3YL
+         b4ueHXj6xKG1fwAKMpbZ+atEsdp/HmG32YBZWPTE1rdiWBb9tAborHWlI1Xt7EZ+436E
+         U78RqYRMbopyjLV/4Kirwsn+ASCMk2BRtkSoRo1eV8P4c7h4fBycGXkKYlC632V0flMh
+         jc9Q==
+X-Gm-Message-State: AOAM531R6zLrurylM/lsMQyy1qosoOjYCWAvl77B4TyzG0eRvKbwvdho
+        MZ0j1MgDPJGoA1a0wtDyVhnHkuAagW7xpa1mhctCLA==
+X-Google-Smtp-Source: ABdhPJx1/ogNcijA0/Z5AfgmfPpBpPyqkRKX8ipSYmZcentmAty4lVh6xCNc6+Ml/YaghCmRKnI08Jm+P91hO3WNZy4=
+X-Received: by 2002:a05:6e02:1a8e:: with SMTP id k14mr1905628ilv.308.1611029808923;
+ Mon, 18 Jan 2021 20:16:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20210111054428.3273-1-dqfext@gmail.com> <20210111054428.3273-3-dqfext@gmail.com>
- <CACRpkdYA2fWF_1K+2aYoZnBAsm9H3=VHpeT4ZDU5sCdrOUWx=w@mail.gmail.com>
-In-Reply-To: <CACRpkdYA2fWF_1K+2aYoZnBAsm9H3=VHpeT4ZDU5sCdrOUWx=w@mail.gmail.com>
-From:   DENG Qingfang <dqfext@gmail.com>
-Date:   Tue, 19 Jan 2021 11:20:48 +0800
-Message-ID: <CALW65jbJ2DFqLw-i91y7oRfRhcukHSAS3A0XMuy4kA+1AtLtLQ@mail.gmail.com>
-Subject: Re: [PATCH net-next 2/2] drivers: net: dsa: mt7530: MT7530 optional
- GPIO support
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+References: <1609815993-22744-1-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1609815993-22744-1-git-send-email-yongqiang.niu@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Tue, 19 Jan 2021 12:16:23 +0800
+Message-ID: <CAJMQK-j_5oWcLSrsVAvjkDKUJOSeZbS6aqZQML9etYJLctRX7Q@mail.gmail.com>
+Subject: Re: [PATCH v4, 00/10] soc: mediatek: mmsys: Use function call for
+ setting the routing registers
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        lkml <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
-        Frank Wunderlich <frank-w@public-files.de>
+        Daniel Vetter <daniel@ffwll.ch>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-
-On Mon, Jan 18, 2021 at 10:55 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+On Tue, Jan 5, 2021 at 3:06 AM Yongqiang Niu <yongqiang.niu@mediatek.com> wrote:
 >
-> So for offset 0..14 this becomes bits
-> 0, 1, 2, 4, 5, 6, 8, 9, 10, 12  ... 18
+> The following series are intended to prepare the mtk-mmsys driver to
+> allow different DDP (Data Display Path) function call per SoC.
 >
-> What is the logic in this and is it what you intend?
-
-Yes. Bit 0..2 are phy 0's LED 0..2, bit 4..6 are phy 1's LED 0..2, etc.
-
-> Please add a comment explaining what the offset is supposed
-> to become for offsets 0..14 and why.
-
-I already added to mt7530.h, perhaps I should copy it here?
-
+> base 5.11-rc1
 >
-> > +       gc->ngpio = 15;
+> change since v3:
+> - move register operation into mmsys path select function
 >
-> And it really IS 15 not 16? Not that I know network equipment
-> very well...
+> Yongqiang Niu (10):
+>   soc: mediatek: mmsys: create mmsys folder
+>   soc: mediatek: mmsys: Create struct mtk_mmsys to store context data
+>   soc: mediatek: mmsys: move register operation into mmsys path select
+>     function
+>   soc: mediatek: mmsys: Use function call for setting the routing
+>     registers
+>   soc: mediatek: mmsys: add mt8183 function call for setting the routing
+>     registers
 
-Yes, 3 LEDs for each phy.
+patch 01 ~ 05: I've tested on a mt8183 device, so
 
+Tested-by: Hsin-Yi Wang <hsinyi@chromium.org>
+
+>   soc: mediatek: mmsys: add component OVL_2L2
+>   soc: mediatek: mmsys: add component POSTMASK
+>   soc: mediatek: mmsys: add component RDMA4
+>   soc: mediatek: mmsys: Use function call for setting mmsys ovl mout
+>     register
+>   soc: mediatek: mmsys: add mt8192 mmsys support
 >
-> Yours,
-> Linus Walleij
+>  drivers/soc/mediatek/Makefile             |   2 +-
+>  drivers/soc/mediatek/mmsys/Makefile       |   5 +
+>  drivers/soc/mediatek/mmsys/mt2701-mmsys.c | 254 ++++++++++++++++++++
+>  drivers/soc/mediatek/mmsys/mt8183-mmsys.c | 110 +++++++++
+>  drivers/soc/mediatek/mmsys/mt8192-mmsys.c | 149 ++++++++++++
+>  drivers/soc/mediatek/mmsys/mtk-mmsys.c    | 180 ++++++++++++++
+>  drivers/soc/mediatek/mtk-mmsys.c          | 373 ------------------------------
+>  include/linux/soc/mediatek/mtk-mmsys.h    |  25 ++
+>  8 files changed, 724 insertions(+), 374 deletions(-)
+>  create mode 100644 drivers/soc/mediatek/mmsys/Makefile
+>  create mode 100644 drivers/soc/mediatek/mmsys/mt2701-mmsys.c
+>  create mode 100644 drivers/soc/mediatek/mmsys/mt8183-mmsys.c
+>  create mode 100644 drivers/soc/mediatek/mmsys/mt8192-mmsys.c
+>  create mode 100644 drivers/soc/mediatek/mmsys/mtk-mmsys.c
+>  delete mode 100644 drivers/soc/mediatek/mtk-mmsys.c
