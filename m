@@ -2,81 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA0462FC24B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 22:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC9CA2FC24F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 22:30:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728331AbhASSo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 13:44:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40644 "EHLO
+        id S1728530AbhASSor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 13:44:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392096AbhASRzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:55:51 -0500
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051E8C061798;
-        Tue, 19 Jan 2021 09:48:47 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 8039E3F211;
-        Tue, 19 Jan 2021 18:46:00 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     viresh.kumar@linaro.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v4 6/7] cpufreq: qcom-hw: Allow getting the maximum transition latency for OPPs
-Date:   Tue, 19 Jan 2021 18:45:56 +0100
-Message-Id: <20210119174557.227318-7-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210119174557.227318-1-angelogioacchino.delregno@somainline.org>
-References: <20210119174557.227318-1-angelogioacchino.delregno@somainline.org>
+        with ESMTP id S1727366AbhASR4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:56:44 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29903C061575;
+        Tue, 19 Jan 2021 09:52:17 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id a9so17150006wrt.5;
+        Tue, 19 Jan 2021 09:52:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=gv2/PYi0aGKQQV3NNP+/AyoxHWeD+l2D8Mb5mG065rw=;
+        b=GhBc/yO1LHVTuTVTXwGDUXKyzz4etrMMp1ydZI8UHSghb6SEaJcOCeDhdkAAzVyWN4
+         QUt4wTw5jkO3Hl2eLGCLR+BOp6WgI/L4ndLuUSjbcuN07ggE+AFOiDlVPI46v6vsDuVn
+         d2bG102Kn38muF7oTAuFWOsXhey7HD94nOxqzzc3j0IzZS40VkgvSXRqun36+ynwh998
+         X4dwXtCRYI0XJQd/V06Nr1aG2iFa68dPQnVqoeLRS1KiXpF/Y9djKje6RoWZ175x4Dq0
+         RPLH8jEjmYSia3t/tboWBRcypnnOlvRx4+fIKLDNmg8NPiq+WcrTNj56dOLsKVR8sYYr
+         RWhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=gv2/PYi0aGKQQV3NNP+/AyoxHWeD+l2D8Mb5mG065rw=;
+        b=qc1y+yYRodUWfRmfD474PJWkVsuF+ygWvllOACb23FzEneqY9mtoccyLqlcWQvYiwr
+         PnKisGX+vN+HTMBsE7CMxMgTA+OkLs7VM7FXHhYzDsfe0NEQ7TPL7cGyKm4Im2ktYOXQ
+         ITCvBPgN4Nrn4/ef811iU00M5Z0qvC5uyzwdtzTzfUehv3ZApTCLOdu+On00GoVOff6q
+         OmgcFE+JVl1SBo1Hj5ityNGhPWh+68XZkLDsROSemtuYaszBOZQtGwToQsptuBL9Vytf
+         z1AvLfYYPbvLuP118L44sm2uD3iasweQBDYqkV/ZFlm+9xn1nAt/SDVU37v/2a7D6Ptf
+         oFEQ==
+X-Gm-Message-State: AOAM533StAIV9zgpeqtzCCyeHzJ1beI5WYV94rW2R09WzyNxVEcQxLj8
+        7jxPXyvqUtvEnUaEdVi6kYw=
+X-Google-Smtp-Source: ABdhPJxX0AQATCNwY8eoPUgbi2+2Ojnis18eOEeKrXe62tsmFQ1QzsEebCNWAjyVAjfVrnz+VEJzYQ==
+X-Received: by 2002:adf:b343:: with SMTP id k3mr5423195wrd.202.1611078735895;
+        Tue, 19 Jan 2021 09:52:15 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id k131sm5817605wmb.37.2021.01.19.09.52.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 09:52:14 -0800 (PST)
+Date:   Tue, 19 Jan 2021 18:52:13 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] of: property: Add fw_devlink support for "gpio" and
+ "gpios" binding
+Message-ID: <YAccTde7got3jeXf@ulmo>
+References: <20210115210159.3090203-1-saravanak@google.com>
+ <CACRpkdYrzaFuWkbTe7Fmos4Bk4Ojt6wbqayDjyrS7sf98P-Rbg@mail.gmail.com>
+ <CAGETcx9t3R-k0ttiaBUqcveqnXMX75xuTcKPSo9J6WJOfgSP8w@mail.gmail.com>
+ <CAMuHMdUN7+O28Xz5rkPwR2RuSA+o_E2VcWsz_9+kzy4=0Jnb1g@mail.gmail.com>
+ <CACRpkdZqSm-xfo8a8aFUe-Mbaw9tM+OmCAF3KWjOVDfC=oWj+Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4S7UTJVfLVdubIqD"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdZqSm-xfo8a8aFUe-Mbaw9tM+OmCAF3KWjOVDfC=oWj+Q@mail.gmail.com>
+User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to fine-tune the frequency scaling from various governors,
-allow to set a maximum transition latency from OPPs, which may be
-different depending on the SoC.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- drivers/cpufreq/qcom-cpufreq-hw.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+--4S7UTJVfLVdubIqD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-index a92959bb7b50..5f67da796f6c 100644
---- a/drivers/cpufreq/qcom-cpufreq-hw.c
-+++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-@@ -1401,6 +1401,7 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
- 	void __iomem *base;
- 	struct qcom_cpufreq_data *data;
- 	const char *fdom_resname;
-+	unsigned int transition_latency;
- 	int cpu_count, index, ret;
- 
- 	cpu_dev = get_cpu_device(policy->cpu);
-@@ -1478,6 +1479,12 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
- 		goto error;
- 	}
- 
-+	transition_latency = dev_pm_opp_get_max_transition_latency(cpu_dev);
-+	if (!transition_latency)
-+		transition_latency = CPUFREQ_ETERNAL;
-+
-+	policy->cpuinfo.transition_latency = transition_latency;
-+
- 	dev_pm_opp_of_register_em(cpu_dev, policy->cpus);
- 
- 	if (policy_has_boost_freq(policy)) {
--- 
-2.30.0
+On Tue, Jan 19, 2021 at 11:20:24AM +0100, Linus Walleij wrote:
+> On Tue, Jan 19, 2021 at 9:50 AM Geert Uytterhoeven <geert@linux-m68k.org>=
+ wrote:
+>=20
+> > > Can we pull this into driver-core-next please? It fixes issues on some
+> > > boards with fw_devlink=3Don.
+> >
+> > On r8a77951-salvator-xs.dts, it introduces one more failure:
+> >
+> >     OF: /soc/i2c@e66d8000/gpio@20/pcie-sata-switch-hog: could not get
+> > #gpio-cells for /cpus/cpu@102
+> >
+> > Seems like it doesn't parse gpios properties in GPIO hogs correctly.
+>=20
+> Could it be that the code assumes no self-referencing phandles?
+> (Just guessing...)
 
+Well, since this is scanning the DT and creating device links between
+producers and consumers, there's really no point in handling self-
+references, so I think that's fine.
+
+However, what this probably should do is skip the node if it's marked
+as a GPIO hog to avoid the error message.
+
+Thierry
+
+--4S7UTJVfLVdubIqD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAHHE0ACgkQ3SOs138+
+s6F+kA//YmrTT+fOYS55Tu/6/1d1bj/H3eNnWHUSmFjxSkxHGsrNo1kmo/M9CxWI
+yVfJQnPzTyh1Jwa2Sf9eXhDGm7PxuPDAofQ+Gz3I2udCy21DOY5/5vHsJBS6LeTo
+rGvrfDnTZd3XR20W9nhLu56s89u/d8qQxVfdn2vNCddnod1BLml4lvaEKY2BHWRY
+6OQ6PPS4pVluDZT/QoI4p8gL9HUFdjtot9lOuIVxnFNmBDCHdwF4kIICMhRGOqOH
+eBDfZZfOy9y4rc8lUXTbD90RHH/HDQfAuUZ8IDE98/dln21qIllgR6KzmNZ1x8F8
+aUM27NW+4zz8Lmqb6uICeMYwHNIZm/V5xH0ZVHSUgbjvhSDH3iMm5C5LGJMLoYx3
+VygOLrTzkReXOUqT2IpHQiHkt0qKki89VzfzFzvLppH8FAq2rlSKLtwEL5MPldpS
+IMafATlayMSQfsdbxfaBUAd3g6MHsB3jbpXt6Q63aCRODWYWAyQSxJQMSftbnoHe
+gDCrmEMARa+Ei3o+oRC3TUVwaLB/smx9Vp7GBtfUfME6azOBWbpBZjyaNoy6RzKq
+aq25VhumEuRlWitkCDoF2/i6hhGCqoKNymV3YLUrpAMfeNHFL9kHEAWFxhCPvEm9
++l+nkM7CbSdZDqmA5tb6qcJeVTIE7dsi/BYAtIxr6YKlo2nONJk=
+=uguw
+-----END PGP SIGNATURE-----
+
+--4S7UTJVfLVdubIqD--
