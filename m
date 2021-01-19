@@ -2,285 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC562FAE0E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 01:34:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D8BF2FAE84
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 02:56:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730600AbhASAeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jan 2021 19:34:12 -0500
-Received: from mail-pl1-f174.google.com ([209.85.214.174]:40460 "EHLO
-        mail-pl1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730466AbhASAeK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jan 2021 19:34:10 -0500
-Received: by mail-pl1-f174.google.com with SMTP id q4so9520520plr.7;
-        Mon, 18 Jan 2021 16:33:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7rDRopC82DR8SCQXLHu8GoZEQ0kPieDkm9TRSwV7rgQ=;
-        b=JflsUfBhE6kxLUilWgzMvx8TmgDMoeaEPcWtb/s7+yrD8UQbS4/59VNRdHrq8yywAE
-         vU6E1YmjfvwORiDqn/qWDtMZVHFp7q4C75sJhGyJQZBm6ESI78l+9tc8iTfQtHKek1zE
-         5wuDPrH2e9agrChBp2EjnGJxuRvw7u2XXY0kNzLBRiqu7HdILxczU7v7IzEAtuklZyNh
-         4S581jai0qvLaQEnEfATq1+rYHd5Ug4NA0sy0WS0zTpc/h6TIZXPzh4uvThgB0VDHeM2
-         zcfBiTPsOsduOM9eYTNwJqe0pryP6Eo6ewU4yZy4OQ3gQvdxZx3tp2a57dTibToy/aNN
-         wSmQ==
-X-Gm-Message-State: AOAM531IaizIRcKKdMXh2MEtxX+BbUMn433MR/uJIA+d00G9cey+Mgsm
-        cmeoVwIVL6jYlZ1o+vvKum8iunU5RRs=
-X-Google-Smtp-Source: ABdhPJyBXIZoQqYjC0C0/6S4LO7EIwuy8qQ6NnQiHWF1V75m5VxXkjNQNn9E7wQwxr++clKqK5IfgQ==
-X-Received: by 2002:a17:90a:5209:: with SMTP id v9mr2126839pjh.8.1611016409366;
-        Mon, 18 Jan 2021 16:33:29 -0800 (PST)
-Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
-        by smtp.gmail.com with ESMTPSA id x81sm6844446pfc.46.2021.01.18.16.33.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jan 2021 16:33:28 -0800 (PST)
-Date:   Mon, 18 Jan 2021 16:33:26 -0800
-From:   Moritz Fischer <mdf@kernel.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     mdf@kernel.org, trix@redhat.com, robh+dt@kernel.org,
-        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com,
-        chinnikishore369@gmail.com,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
-Message-ID: <YAYo1ksLfMMNxPuL@epycbox.lan>
-References: <20210118024318.9530-1-nava.manne@xilinx.com>
- <20210118024318.9530-3-nava.manne@xilinx.com>
+        id S2387965AbhASB4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jan 2021 20:56:01 -0500
+Received: from mga07.intel.com ([134.134.136.100]:64315 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727781AbhASBz6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Jan 2021 20:55:58 -0500
+IronPort-SDR: 2FA8/91A7vV2a37kb8S+7tplagAGtebB/vAlAiBZBfcxVuMrAfXtVIqx05nXi8HP3LuHn2HJ/8
+ Hu+vvXOAa0Mg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9868"; a="242936276"
+X-IronPort-AV: E=Sophos;i="5.79,357,1602572400"; 
+   d="scan'208";a="242936276"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2021 17:55:16 -0800
+IronPort-SDR: OjTjmzZeGtgaBCZNBedTA+J7GwthUjz3cke8cA/2dGYbV+tSI/wpyCs8srt3psLsNd3oXNSecU
+ t/plIS1KZtJQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,357,1602572400"; 
+   d="scan'208";a="353654790"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by orsmga006.jf.intel.com with ESMTP; 18 Jan 2021 17:55:16 -0800
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 18 Jan 2021 17:55:15 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 18 Jan 2021 17:55:15 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 18 Jan 2021 17:55:15 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.44) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Mon, 18 Jan 2021 17:55:15 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=h7JK7YPMOpBsnhYymgAkQoU+YREKez9ELl80CrKF5JKaQ0NBdDZCdP8kJMNuuJgFpPZkwfZXMdOTPxo8pUQdOx8wlh0HASdyyHdP1beGsqDTMTd+WSE6RT1e7Jv4u8GmRJyBaUSey1StsvSqbM52WiCT2ffx3Hy72Hf5Fi+dsT+ZRgX7DKKHwqRJTyQ1uChG2AdRprJBgncTww97srw8sujnUDReP4T4dOumHA1UBpc+1c2gIqcwVaUxTWmEvE+lx51OGWVH+YEH0Hiv+8OrRAdu8xJRr9s0WOSveuB3QSAGh4GT14C4t6Jqp0sCUUIqjE3ZLyS1aUH0DWHN5P58BQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i0FkHVel7Mf9z6SlzAtvwh+1uJNF9nUNnqQDDyc4H4s=;
+ b=DjkuQZ24/K/oJl4yR1VjYL+gGUrGuQHPTCu5WmLNn5orYpFpIetg/xMdC0BdsiggtHw4hrGVUwcHt50EZ45b6piWtGT6JlU7RjMUcynDCHJaJ8JytYzlJXvyl6FAnWMkd1SAKpL6JbVoLZ2aM9aLQ+rbrPOWV/FEz6QbJZeg3YPppwwod+9U3ZAIIJo9cYh5npUeMFNWHlk+5hne3KKFgI7jUb4XtDT3xo1/OhBhrKWfy/xrlDQZcCI0erS13mvzzsGr7XHs+t6Thqd1/x3pLd4OgMJf4peRolovuAWfjGmL/LmVFhWHVzkptnjvXfEfvVqg8NcuueRlUsFEfQgqrQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i0FkHVel7Mf9z6SlzAtvwh+1uJNF9nUNnqQDDyc4H4s=;
+ b=uCwIPuAD+JNFruw6FS/YWU2rWV8WCG9gXReYFM6nPW+Aa5TWR/qokmYs2AMHhsKrfhnItIbLlqMWmk8n8AIvA/gDaLVyY2GlWcVEAXTlQMDT0d8xXCSWi3/fBtvQmvKtk2gmYOieT6/Yfc5wqTN0vO8EW64e4drNdHt2a+Qe/PA=
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
+ by DM6PR11MB2764.namprd11.prod.outlook.com (2603:10b6:5:bf::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Tue, 19 Jan
+ 2021 01:55:14 +0000
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::6da6:c2ee:aa4a:d21f]) by DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::6da6:c2ee:aa4a:d21f%5]) with mapi id 15.20.3763.014; Tue, 19 Jan 2021
+ 01:55:13 +0000
+From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Seow, Chen Yong" <chen.yong.seow@intel.com>
+Subject: RE: [PATCH v2 0/2] Add drivers for Intel Keem Bay SoC timer block
+Thread-Topic: [PATCH v2 0/2] Add drivers for Intel Keem Bay SoC timer block
+Thread-Index: AQHW3m7YxPa/m6s82EKpveVtdL87PqoldpUQgAgrgQCAAKkhYA==
+Date:   Tue, 19 Jan 2021 01:55:13 +0000
+Message-ID: <DM6PR11MB42504F46CCABB7DEC1AA28AAFBA30@DM6PR11MB4250.namprd11.prod.outlook.com>
+References: <cover.1609306622.git.vijayakannan.ayyathurai@intel.com>
+ <DM6PR11MB4250A1E8C1F2CA97516A2E59FBA90@DM6PR11MB4250.namprd11.prod.outlook.com>
+ <98fd451c-828e-e2e4-8462-51f9c88b6f1e@linaro.org>
+In-Reply-To: <98fd451c-828e-e2e4-8462-51f9c88b6f1e@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [42.106.176.12]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 932f882f-3bec-4cf3-8a17-08d8bc1d4322
+x-ms-traffictypediagnostic: DM6PR11MB2764:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR11MB2764D9023207F53FFB4DCC9AFBA30@DM6PR11MB2764.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: L7aQn4P9vWGXptT+oR3fKAawhQRcKwfxpVGCwqNHqaId7G4UnF8QwqiOqeCeg0JS2QSfll34GGgax+p6bGEcUA2TzfOUu40EuAiTyN6T1zZS6+auqUNl6mrM+8hAxkx3fBm+ZruvIzj3xSNefjCcr6a/CnwwGIsPlw2BlOtT3F0DH2lW66VbHeuWVuTg1e64GO6prbFHN3A0OVR6ET8SGmC9suWra+am6lJxjycoH1sqLWUsk42SCf+DepW/kJQiFTv+bhmn46MhWZW1++utkIuqljWwVmImAG689kpDk2NWa1HHbDXk4NMM60VCbyAHwDlZDkiqVYdvRY9Cr9plbqmVbpNepwAXKKAhZuWYLExzf8kHCpiy1bAiGVksa3rPlCEXoNYwe7a5I4TwCkMk+Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(396003)(376002)(366004)(39860400002)(33656002)(83380400001)(110136005)(2906002)(54906003)(316002)(64756008)(5660300002)(6506007)(8676002)(26005)(55016002)(86362001)(71200400001)(4744005)(4326008)(76116006)(66946007)(9686003)(66446008)(52536014)(8936002)(7696005)(478600001)(186003)(66556008)(66476007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?MWFqOHlZWkhlbUtHZkQxY3B2cWNJOVZsbTJtRlR4cWUvM1djYnZwM3dHeHFJ?=
+ =?utf-8?B?dmhNMzlxNGNtdm5LUUZFZUFjc2hHUVVxVnJGZTdUTWpsY2NjN3NWWk01Mks4?=
+ =?utf-8?B?NGh4TGxVcGJqYXRFaHpNTi9GN3pDTTZ0ZTg1Z2xOVUk4amcrZmNpaWRCTkw1?=
+ =?utf-8?B?L08xcG5oai9kZXNwN2hUSnBCMkRmUEJTWHRseTF0OGNRSEZ4RTNYeGs4dEVI?=
+ =?utf-8?B?Y0psZGFaQ1ZwWHluSkNRYkhaREd2N3hpZTRYR0FDblpUa21rQ0NxL3FvdEo0?=
+ =?utf-8?B?OU1KeVV5aHI5MC9GZ0pqS2N4L0NuQnM5RnRQai9vMGVEeXNjWTJkWjNPWmYw?=
+ =?utf-8?B?WTZwZjFQT0I0MGpoNEdhSWE4cnBnOUl3U2hWVVBvZVF2UkxIeXJHVDVoU09S?=
+ =?utf-8?B?TUp0eWoydFViN3B5ckJzZ21uV0xNWWliQytrcXBlbHlTU0FJdVlDNDFrYlpj?=
+ =?utf-8?B?VUtJQTdNSGUzdjZEMk9FRUlKaE9Xd3A0RFNIU0tGSGhhb2tkeDVhUXE1N3dq?=
+ =?utf-8?B?K3Q0NHpiUXdPaFVCdFM1NFZreERGd0RNbE10QVVOOEZwVGlmckRwNVN2cTMx?=
+ =?utf-8?B?R2ZQeWZGbDhQQTBCb2poakxUdFZveno3Y3d2S0xzZGFHTzhOVVhBaHVOSXNU?=
+ =?utf-8?B?cVQ1N0xzeHB2aVhoemlIalhSUTAzRHBQN2RFbHdyc2JXdDhxQ2FkUkdKS3VM?=
+ =?utf-8?B?MzhJa1BTeFlvY09KVzNWd0pDSml2NUpBTE1vUTV3bmQ0d3grWk43UHYwK0h4?=
+ =?utf-8?B?SkdmeHJWWUlpN0MzcTE5ajdSUHlNQlJ4WncxV0owVm9XdERXSWJpdGZyK3ZF?=
+ =?utf-8?B?L3NpcGZhUVAwWS85a2x0T1B3Q1ZLTWcvL3R5dlh5cHRZc0c3aVMzRi9WTmwr?=
+ =?utf-8?B?cGxVaUIvYnhIQzBvMXpvc0dPSkl2YzFCN2JqMUNndUtDWjNXODM2T2REeXBn?=
+ =?utf-8?B?M0tQN0NiU1A4UE5uSnJGOTBGZDEyWjFEZnp5MmovWTREVHBjaHBTQTFOVk1z?=
+ =?utf-8?B?dkx4c2xqejN1M09GeXFiSCtBVDV1RkMvU29MQW12SmR4d0x4YjdPS0NROUtL?=
+ =?utf-8?B?by8rTEtISkgwQTNxMjZJUjJkMGlHNGF5K0gwaGdFS2w0YTBPOUE5RERvZjRu?=
+ =?utf-8?B?MldjQXZRM1hNWlV6bzVQZGtrVkJvaDNyaC92Qk9oUEV6OHhpZU1md2VHbHhL?=
+ =?utf-8?B?ZzdYWmxmakFYZERWc2RSVlcwcmRHL1cxNFB1Mnd5cWFlb2VNMW5ZZUZXenI3?=
+ =?utf-8?B?dW56d1E5bHFNMXNkbjN6VTM5ZGhNRHVyUDAydndaTzFWTVpIc2x1ZEVBRFcv?=
+ =?utf-8?Q?QZri7dhl8RwGE=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210118024318.9530-3-nava.manne@xilinx.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 932f882f-3bec-4cf3-8a17-08d8bc1d4322
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2021 01:55:13.7856
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CHw1aN3CiBHO1hVUAMoGp0oyDBiDnCzh2+SKE22NRCXnF7tEZAoWGpfkNsgRQkkb1pHQhi7yhyvQ0bWMfzOnZQ5FT+cPn+FDf8U9CBrIpe01GsL6LapsE1E1OdIctwzY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2764
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nava,
-
-On Mon, Jan 18, 2021 at 08:13:18AM +0530, Nava kishore Manne wrote:
-> This patch adds driver for versal fpga manager.
-Nit: Add support for Xilinx Versal FPGA manager
-> 
-> PDI source type can be DDR, OCM, QSPI flash etc..
-No idea what PDI is :)
-> But driver allocates memory always from DDR, Since driver supports only
-> DDR source type.
-> 
-> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> ---
->  drivers/fpga/Kconfig       |   8 ++
->  drivers/fpga/Makefile      |   1 +
->  drivers/fpga/versal-fpga.c | 149 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 158 insertions(+)
->  create mode 100644 drivers/fpga/versal-fpga.c
-> 
-> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> index 5645226ca3ce..9f779c3a6739 100644
-> --- a/drivers/fpga/Kconfig
-> +++ b/drivers/fpga/Kconfig
-> @@ -216,4 +216,12 @@ config FPGA_MGR_ZYNQMP_FPGA
->  	  to configure the programmable logic(PL) through PS
->  	  on ZynqMP SoC.
->  
-> +config FPGA_MGR_VERSAL_FPGA
-> +        tristate "Xilinx Versal FPGA"
-> +        depends on ARCH_ZYNQMP || COMPILE_TEST
-> +        help
-> +          Select this option to enable FPGA manager driver support for
-> +          Xilinx Versal SOC. This driver uses the versal soc firmware
-> +          interface to load programmable logic(PL) images
-> +          on versal soc.
->  endif # FPGA
-> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> index d8e21dfc6778..40c9adb6a644 100644
-> --- a/drivers/fpga/Makefile
-> +++ b/drivers/fpga/Makefile
-> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
->  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
->  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
->  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
-> +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      += versal-fpga.o
->  obj-$(CONFIG_ALTERA_PR_IP_CORE)         += altera-pr-ip-core.o
->  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    += altera-pr-ip-core-plat.o
->  
-> diff --git a/drivers/fpga/versal-fpga.c b/drivers/fpga/versal-fpga.c
-> new file mode 100644
-> index 000000000000..2a42aa78b182
-> --- /dev/null
-> +++ b/drivers/fpga/versal-fpga.c
-> @@ -0,0 +1,149 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2021 Xilinx, Inc.
-> + */
-> +
-> +#include <linux/dma-mapping.h>
-> +#include <linux/fpga/fpga-mgr.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/string.h>
-> +#include <linux/firmware/xlnx-zynqmp.h>
-> +
-> +/* Constant Definitions */
-> +#define PDI_SOURCE_TYPE	0xF
-> +
-> +/**
-> + * struct versal_fpga_priv - Private data structure
-> + * @dev:	Device data structure
-> + * @flags:	flags which is used to identify the PL Image type
-> + */
-> +struct versal_fpga_priv {
-> +	struct device *dev;
-> +	u32 flags;
-This seems unused ... please introduce them when/if you start using
-them.
-> +};
-> +
-> +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
-> +				      struct fpga_image_info *info,
-> +				      const char *buf, size_t size)
-> +{
-> +	struct versal_fpga_priv *priv;
-> +
-> +	priv = mgr->priv;
-> +	priv->flags = info->flags;
-? What uses this ? It seems this function could just be 'return 0' right
-now.
-> +
-> +	return 0;
-> +}
-> +
-> +static int versal_fpga_ops_write(struct fpga_manager *mgr,
-> +				 const char *buf, size_t size)
-> +{
-> +	struct versal_fpga_priv *priv;
-> +	dma_addr_t dma_addr = 0;
-> +	char *kbuf;
-> +	int ret;
-> +
-> +	priv = mgr->priv;
-> +
-> +	kbuf = dma_alloc_coherent(priv->dev, size, &dma_addr, GFP_KERNEL);
-> +	if (!kbuf)
-> +		return -ENOMEM;
-> +
-> +	memcpy(kbuf, buf, size);
-> +
-> +	wmb(); /* ensure all writes are done before initiate FW call */
-> +
-> +	ret = zynqmp_pm_load_pdi(PDI_SOURCE_TYPE, dma_addr);
-> +
-> +	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
-> +
-> +	return ret;
-> +}
-> +
-> +static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
-> +					  struct fpga_image_info *info)
-> +{
-> +	return 0;
-> +}
-> +
-> +static enum fpga_mgr_states versal_fpga_ops_state(struct fpga_manager *mgr)
-> +{
-> +	return FPGA_MGR_STATE_OPERATING;
-Is that always the case? Shouldn't that be FPGA_MGR_STATE_UNKNOWN?
-> +}
-> +
-> +static const struct fpga_manager_ops versal_fpga_ops = {
-> +	.state = versal_fpga_ops_state,
-> +	.write_init = versal_fpga_ops_write_init,
-> +	.write = versal_fpga_ops_write,
-> +	.write_complete = versal_fpga_ops_write_complete,
-> +};
-> +
-> +static int versal_fpga_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct versal_fpga_priv *priv;
-> +	struct fpga_manager *mgr;
-> +	int err, ret;
-Please pick one, err or ret. 'err' seems unused?
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->dev = dev;
-> +	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
-> +	if (ret < 0) {
-> +		dev_err(dev, "no usable DMA configuration");
-Nit: "no usable DMA configuration\n"
-> +		return ret;
-> +	}
-> +
-> +	mgr = devm_fpga_mgr_create(dev, "Xilinx Versal FPGA Manager",
-> +				   &versal_fpga_ops, priv);
-> +	if (!mgr)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, mgr);
-> +
-
-Replace this part:
-> +	err = fpga_mgr_register(mgr);
-> +	if (err) {
-> +		dev_err(dev, "unable to register FPGA manager");
-> +		fpga_mgr_free(mgr);
-> +		return err;
-> +	}
-
-with:
-	return devm_fpga_mgr_register(mgr);
-
-I tried to get rid of the boilerplate, since every driver repeats it
-(and above calling fpga_mgr_free(mgr) on a devm_fpga_mgr_create()
-created FPGA manager is wrong?) :)
-> +
-> +	return 0;
-> +}
-> +
-
-Then
-> +static int versal_fpga_remove(struct platform_device *pdev)
-> +{
-> +	struct fpga_manager *mgr = platform_get_drvdata(pdev);
-> +
-> +	fpga_mgr_unregister(mgr);
-> +	fpga_mgr_free(mgr);
-> +
-> +	return 0;
-> +}
-drop this since cleanup is now automatic.
-> +
-> +static const struct of_device_id versal_fpga_of_match[] = {
-> +	{ .compatible = "xlnx,versal-fpga", },
-> +	{},
-> +};
-> +
-Nit: Drop the newline
-> +MODULE_DEVICE_TABLE(of, versal_fpga_of_match);
-> +
-> +static struct platform_driver versal_fpga_driver = {
-> +	.probe = versal_fpga_probe,
-> +	.remove = versal_fpga_remove,
-> +	.driver = {
-> +		.name = "versal_fpga_manager",
-> +		.of_match_table = of_match_ptr(versal_fpga_of_match),
-> +	},
-> +};
-> +
-Nit: Drop the newline
-> +module_platform_driver(versal_fpga_driver);
-> +
-> +MODULE_AUTHOR("Nava kishore Manne <nava.manne@xilinx.com>");
-> +MODULE_AUTHOR("Appana Durga Kedareswara rao <appanad.durga.rao@xilinx.com>");
-> +MODULE_DESCRIPTION("Xilinx Versal FPGA Manager");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.18.0
-> 
-Thanks,
-Moritz
+SGkgRGFuaWVsLA0KDQo+IEZyb206IERhbmllbCBMZXpjYW5vIDxkYW5pZWwubGV6Y2Fub0BsaW5h
+cm8ub3JnPg0KPiA+PiBGcm9tOiBWaWpheWFrYW5uYW4gQXl5YXRodXJhaSA8dmlqYXlha2FubmFu
+LmF5eWF0aHVyYWlAaW50ZWwuY29tPg0KPiA+Pg0KPiA+PiBDaGFuZ2VzIHNpbmNlIHYxOg0KPiA+
+PiAgLSBBZGQgc3VwcG9ydCBmb3IgS0VFTUJBWV9USU1FUiB0byBnZXQgc2VsZWN0ZWQgdGhyb3Vn
+aA0KPiBLY29uZmlnLnBsYXRmb3Jtcy4NCj4gPj4gIC0gQWRkIENMT0NLX0VWVF9GRUFUX0RZTklS
+USBhcyBwYXJ0IG9mIGNsb2NrZXZlbnQgZmVhdHVyZS4NCj4gPj4gIC0gQXZvaWQgb3ZlcmxhcHBp
+bmcgcmVnIHJlZ2lvbnMgYWNyb3NzIDIgZGV2aWNlIG5vZGVzLg0KPiA+PiAgLSBTaW1wbGlmeSAy
+IGRldmljZSBub2RlcyBhcyAxIGJlY2F1c2UgYm90aCBhcmUgZnJvbSBzYW1lIElQIGJsb2NrLg0K
+PiA+PiAgLSBBZGFwdCB0aGUgZHJpdmVyIGNvZGUgYWNjb3JkaW5nIHRvIHRoZSBuZXcgc2ltcGxp
+ZmllZCBkZXZpY2V0cmVlLg0KPiA+Pg0KPiA+PiBWaWpheWFrYW5uYW4gQXl5YXRodXJhaSAoMik6
+DQo+ID4+ICAgZHQtYmluZGluZ3M6IHRpbWVyOiBBZGQgYmluZGluZ3MgZm9yIEludGVsIEtlZW0g
+QmF5IFNvQyB0aW1lcg0KPiA+PiAgIGNsb2Nrc291cmNlOiBBZGQgSW50ZWwgS2VlbSBCYXkgVGlt
+ZXIgU3VwcG9ydA0KPiA+DQo+ID4gS2luZGx5IGhlbHAgdXMgdG8gcmV2aWV3IHRoaXMgdXBkYXRl
+ZCBwYXRjaCh2Mikgc2V0Lg0KPiANCj4gUmV2aWV3IGluIHByb2dyZXNzIC4uLiA6KQ0KPiANCg0K
+VGhhbmsgeW91IGZvciB0aGUgUmV2aWV3LiANCg0KVGhhbmtzLA0KVmlqYXkNCg==
