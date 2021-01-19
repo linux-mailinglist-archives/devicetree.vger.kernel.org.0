@@ -2,167 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 796E42FC23A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 22:27:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 056B22FC200
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 22:14:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729066AbhASSpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 13:45:46 -0500
-Received: from foss.arm.com ([217.140.110.172]:44832 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729359AbhASSk5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 13:40:57 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D412311B3;
-        Tue, 19 Jan 2021 10:40:10 -0800 (PST)
-Received: from [10.57.39.58] (unknown [10.57.39.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 59B753F66E;
-        Tue, 19 Jan 2021 10:40:09 -0800 (PST)
-Subject: Re: [PATCH 2/3] dt-bindings: rockchip: Add DesignWare based PCIe
- controller
-To:     Johan Jonker <jbx6244@gmail.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Simon Xue <xxm@rock-chips.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     linux-pci@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org
-References: <20210118091739.247040-1-xxm@rock-chips.com>
- <20210118091739.247040-2-xxm@rock-chips.com>
- <e143ad9e-1cfd-e59d-0079-513c036981ba@gmail.com> <2336601.uoxibFcf9D@diego>
- <677c102d-0b9b-1a12-0ac6-4dd0a1023b68@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <c9ff67c7-ca1d-d4a6-aef5-4c75688ed6d3@arm.com>
-Date:   Tue, 19 Jan 2021 18:40:08 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1728640AbhASVLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 16:11:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731022AbhASSsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 13:48:43 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF866C061575
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 10:47:50 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id y4so16978090ybn.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 10:47:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qbBb2z3wvLGYTO+ldEKir4YWRAxMBcx6I27778gF5Xs=;
+        b=VkIoZxm1URRRWxudAbS2nI/fxGZ6GztlJEv0aVWMFVv+0sWdHokVTwAPNPhN5/vfQk
+         14CK+51gc7yo2MH1XVhCHyeN3/zezbPlXpmtTEmEtfo3LYRelzFWIB/tEZtowqEzY3qz
+         eQjDHt+0C6gI4JoeJ/mYDIGLKqqknMqOwLOFTFBNEfCR3bo4ZaZsBfkdLTW1Kco54rDo
+         UsEEog+uddoV4/FUP3oYVcSebAh89g2Cg6uHMvbLbx3k1LKuJYnyc5AbQKE/wdUx9Slo
+         EhEYN01+mV3TPLwWW0NAQ2FH5LiAhkaHBhHoOzZ3C/w7TwNAvrjWBUWXV8jgWVMO1Y/G
+         UA/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qbBb2z3wvLGYTO+ldEKir4YWRAxMBcx6I27778gF5Xs=;
+        b=iWU+ZhWYZcu1sfB1mO9oQSc16mrjh3Ermun1m9xtlv9x1IU+cljNvtNqEf0fkVldK5
+         ysNzA1ZBl9q17EthPUcIzCQFI1xNLoJY9YJbKcLRogMwjMv8kpgbYMzDr6vQzmt+3EwI
+         G8yyvlsSBuztMkPyNiblOFjy8jjaXE2CwuCIdhsRExIEwLh4kXI0b10rpmeKN0QOWKhQ
+         dkM1yKPq8FpJsj6LNZBBsRo+de38Mw3FdFJOZw/6xrE1bXqYskz+tkrQ+fK7YczyQc6K
+         uuv8oj0XA/mf1ql9umV7KkbQwGXfqnb9KsnRDW9PgFJ9MOLokis1KsFD3NuqFbZSmVeg
+         3gPQ==
+X-Gm-Message-State: AOAM532ymLAIg9NNE6qgPorTBrDt6Cw4d9/+2YriPzNBRRmPJ7BCYhQt
+        opcjHAwFH1iD17mcMcflv/P7x4ll27MKzsjO5ck89w==
+X-Google-Smtp-Source: ABdhPJwMEZUL/cpMRRzTRn9Eb+L3/pE4Y7I4NUEiGKRffpli7tbbMgrH43UvkSA1XJBKTvA8v5JFk5GblUU3+1OONqQ=
+X-Received: by 2002:a25:c343:: with SMTP id t64mr7758543ybf.228.1611082069882;
+ Tue, 19 Jan 2021 10:47:49 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <677c102d-0b9b-1a12-0ac6-4dd0a1023b68@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+References: <20210115210159.3090203-1-saravanak@google.com>
+ <CACRpkdYrzaFuWkbTe7Fmos4Bk4Ojt6wbqayDjyrS7sf98P-Rbg@mail.gmail.com>
+ <CAGETcx9t3R-k0ttiaBUqcveqnXMX75xuTcKPSo9J6WJOfgSP8w@mail.gmail.com>
+ <CAMuHMdUN7+O28Xz5rkPwR2RuSA+o_E2VcWsz_9+kzy4=0Jnb1g@mail.gmail.com>
+ <CACRpkdZqSm-xfo8a8aFUe-Mbaw9tM+OmCAF3KWjOVDfC=oWj+Q@mail.gmail.com>
+ <CAGETcx-Vp0BpYbpPjwsmOv0q5ba1mJvfsPEZ9Oi2Rmx67udu7A@mail.gmail.com>
+ <CAMuHMdUc+RCK=t02QhtWRekoYCx2pHnMyaTYiC0=SxKQVrqDHQ@mail.gmail.com>
+ <CAGETcx_Ud+UJcdWkCH-WzEGjH4voRBoO++np7ARSi5Gnh51jYg@mail.gmail.com> <CAMuHMdUe6W5ABO-WntCRFXnusacY=2HNiahXN-9ts-Nsf847uQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdUe6W5ABO-WntCRFXnusacY=2HNiahXN-9ts-Nsf847uQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 19 Jan 2021 10:47:13 -0800
+Message-ID: <CAGETcx9i7QWOhpS8-qgBaDQiYcgze_AMgE2d00qAyDkBzcZ-qA@mail.gmail.com>
+Subject: Re: [PATCH v1] of: property: Add fw_devlink support for "gpio" and
+ "gpios" binding
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-19 15:11, Johan Jonker wrote:
-> Hi Simon, Heiko,
-> 
-> On 1/19/21 2:14 PM, Heiko Stübner wrote:
->> Hi Johan,
->>
->> Am Dienstag, 19. Januar 2021, 14:07:41 CET schrieb Johan Jonker:
->>> Hi Simon,
->>>
->>> Thank you for this patch for rk3568 pcie.
->>>
->>> Include the Rockchip device tree maintainer and all other people/lists
->>> to the CC list.
->>>
->>> ./scripts/checkpatch.pl --strict <patch1> <patch2>
->>>
->>>   ./scripts/get_maintainer.pl --noroles --norolestats --nogit-fallback
->>> --nogit <patch1> <patch2>
->>>
->>> git send-email --suppress-cc all --dry-run --annotate --to
->>> heiko@sntech.de --cc <..> <patch1> <patch2>
->>>
->>> This SoC has no support in mainline linux kernel yet.
->>> In all the following yaml documents for rk3568 we need headers with
->>> defines for clocks and power domains, etc.
->>>
->>> For example:
->>> #include <dt-bindings/clock/rk3568-cru.h>
->>> #include <dt-bindings/power/rk3568-power.h>
->>>
->>> Could Rockchip submit first clocks and power drivers entries and a basic
->>> rk3568.dtsi + evb dts?
->>> Include a patch to this serie with 3 pcie nodes added to rk3568.dtsi.
->>>
->>> A dtbs_check only works with a complete dtsi and evb dts.
->>>
->>> make ARCH=arm64 dtbs_check
->>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>
->>> On 1/18/21 10:17 AM, Simon Xue wrote:
->>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
->>>> ---
->>>>   .../bindings/pci/rockchip-dw-pcie.yaml        | 101 ++++++++++++++++++
->>>>   1 file changed, 101 insertions(+)
->>>>   create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>> new file mode 100644
->>>> index 000000000000..fa664cfffb29
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>> @@ -0,0 +1,101 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: DesignWare based PCIe RC controller on Rockchip SoCs
->>>> +
->>>
->>>> +maintainers:
->>>> +  - Shawn Lin <shawn.lin@rock-chips.com>
->>>> +  - Simon Xue <xxm@rock-chips.com>
->>>
->>> maintainers:
->>>    - Heiko Stuebner <heiko@sntech.de>
->>>
->>> Add only people with maintainer rights.
->>
->> I'd disagree on this ;-)
-> 
-> All roads leads to Heiko... ;)
-> 
-> It takes long term commitment.
-> Year in, year out.
-> Keeping yourself up to date with the latest pcei development.
-> Communicate in English.
-> Be able to submit patches without errors... ;)
-> Review other peoples patches.
-> Respond in short time.
-> Bug fixing.
+On Tue, Jan 19, 2021 at 10:33 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Saravana,
+>
+> On Tue, Jan 19, 2021 at 7:19 PM Saravana Kannan <saravanak@google.com> wrote:
+> > On Tue, Jan 19, 2021 at 10:10 AM Geert Uytterhoeven
+> > <geert@linux-m68k.org> wrote:
+> > > On Tue, Jan 19, 2021 at 6:54 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > > On Tue, Jan 19, 2021 at 2:20 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > > > On Tue, Jan 19, 2021 at 9:50 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > > > Can we pull this into driver-core-next please? It fixes issues on some
+> > > > > > > boards with fw_devlink=on.
+> > > > > >
+> > > > > > On r8a77951-salvator-xs.dts, it introduces one more failure:
+> > > > > >
+> > > > > >     OF: /soc/i2c@e66d8000/gpio@20/pcie-sata-switch-hog: could not get
+> > > > > > #gpio-cells for /cpus/cpu@102
+> > > >
+> > > > Geert,
+> > > >
+> > > > One good thing is that it's noticing this being weird and ignoring it
+> > > > in your particular board. I *think* it interprets the "7" as a phandle
+> > > > and that's cpu@102 and realizes it's not a gpio-controller. For at
+> > > > least in your case, it's a safe failure.
+> > >
+> > > While 7 is the GPIO index, relative to the current GPIO controller,
+> > > represented by the parent device node.
+> > >
+> > > > > > Seems like it doesn't parse gpios properties in GPIO hogs correctly.
+> > > > >
+> > > > > Could it be that the code assumes no self-referencing phandles?
+> > > > > (Just guessing...)
+> > > >
+> > > > Ok I tried to understand what gpio-hogs means. It's not fully clear to
+> > > > me. But it looks like if a gpio-controller has a gpio-hog, then it
+> > > > doesn't have/need gpio-cells? Is that right?
+> > >
+> > > A GPIO hog is a way to fix (strap) a GPIO line to a specific value.
+> > > Usually this is done to enable a piece of hardware on a board, or
+> > > control a mux.
+> > >
+> > > The controller still needs gpio-cells.
+> > >
+> > > > So if a gpio-controller has a gpio-hog, can it ever be referred to by
+> > > > another consumer in DT using blah-gpios = ...? If so, I don't see any
+> > > > obvious code that's handling the missing gpio-cells in this case.
+> > >
+> > > Yes it can.
+> > >
+> > > > Long story short, please help me understand gpio-hog in the context of
+> > > > finding dependencies in DT.
+> > >
+> > > The hog references a GPIO on the current controller.  As this is always
+> > > the parent device node, the hog's gpios properties lack the phandle.
+> > >
+> > > E.g. a normal reference to the first GPIO of gpio5 looks like:
+> > >
+> > >     gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+> > >
+> > > A hog on the first GPIO of gpio5 would be a subnode of gpio5,
+> > > and would just use:
+> > >
+> > >     gpios = <0 GPIO_ACTIVE_LOW>;
+> > >
+> > > instead.
+> > >
+> > > Hope this helps.
+> >
+> > I'm still not sure if I've understood this fully, but does this just
+> > boil down to:
+> > Don't parse [name-]gpio[s] to find dependencies if the node has
+> > gpio-hog property?
+>
+> Indeed. You can just ignore all nodes with a gpio-hog property, as they're
+> always handled by their parent.
 
-Crikey, it's only a DT binding... :/
+Ok, I'll send out an updated patch later (next week probably). Or
+maybe we can merge this now and I can fix up gpio-hog handling later
+since I'd need to do it anyway for the name-gpios stuff anyway? Or
+will those never be combined with gpio-hog?
 
-> If that's what you really want, then you must include a patch to this
-> serie for MAINTAINERS.
-
-I think if Bjorn and Lorenzo want a specifically named sub-maintainer 
-for the driver itself, we can let them say so rather than presume.
-
-Robin.
-
-> 
-> Check patch with:
-> 
-> ./scripts/parse-maintainers.pl --input=MAINTAINERS --output=MAINTAINERS
-> --order
-> 
-> Otherwise it's safe to include that person mentioned above.
-> 
->>
->> The maintainer for individual drivers should be the persons who are
->> actually know the hardware. We have individual Rockchip developers
->> taking care of other drivers as well already.
->>
->> And normally scripts/get_maintainer.pl should already include me
->> due to the wildcard for things having "rockchip" in the name.
->>
->>
->> Heiko
->>
->>
->>
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
+-Saravana
