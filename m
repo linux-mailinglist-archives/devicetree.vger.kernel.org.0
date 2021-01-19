@@ -2,98 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 902092FC1B5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 21:59:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F1EE2FC250
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 22:30:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728623AbhASU6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 15:58:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52180 "EHLO
+        id S1728536AbhASSov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 13:44:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729843AbhASU6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 15:58:44 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CEC4C061574
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 12:58:04 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id o10so2236845wmc.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 12:58:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=of/pRXfYf8KADmbm/k7eAlaIB9piSSwAWZ8glb4h2lk=;
-        b=ccFf+1ObrkxxiKN/zv8a7jjbmKQyeEBznWyroAQD9yAVMaTnl+JtmHf5fIQ6Rp+Rob
-         yF6h+EoyFK6Nz8ldK6DIOj3AlTamfWWRGssGaVrp0pH3oJyLLVbDPqFujsScurwkRcWl
-         W5s3zsXqXedGuTW5KIVCMkdQMRm8U5j6auWhsAC7XoBgP/6bNtGTGQq2dheNWz4C+hQm
-         03s+pcyRBjTWifFxRg0eOAj3uT1X5kZtY43JsBlyIx0DaudguLPTC/wtCvNhziENpMaK
-         s24C/rJOhJfvsmE6w/eGa2e3KP5nCwFcaWp3A/+ugQQn4g/rmnPvx4dpPeaHRHZBHFCO
-         jhEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=of/pRXfYf8KADmbm/k7eAlaIB9piSSwAWZ8glb4h2lk=;
-        b=TZLehHPTNQdAdgIVUZ8qEOsyNOKHAPCDe3rdiG6w2XFEHEAnmAqvVqop9l47/HkW8p
-         eeZ6N1b1Up7lQHVaQMoizbAkPRNIGSzpHUCln92MO3M8spwF+nZ8ODQJBGe6ik5hiPYl
-         yz7aiJUqw/iE/mJgn0bxTBm3VzYW1QrTWN7HL2zGcLyS19uEjCu8EuIJD7UvhVdSqOfc
-         zvdpoXZpALbmUp5c8ymgdxj0Y+ANfjy2Zx2jsYbiQ2SFNaWMKvK0yRpi01Bp6lhAL7MC
-         /nF5KYsGhAjTZP2ly9PyGQmPgwPSRnmp9tazGGmYzGLiCDW3i9ZlE/Dx0qdZ/2+fkmGx
-         TQXQ==
-X-Gm-Message-State: AOAM533dfkll19C1Fv/VcVj8IsGWMEDJHjWU5m38YlSUs7zLZiqXbXPn
-        OjhYfBtbXpNGeOpWRPP6ikKUIQ==
-X-Google-Smtp-Source: ABdhPJwwlkl7tUgr70Wbh1Oql8bMdbNpHNrfJ1G+pno8wXk6Ry+lDe8WS36QVLc2VM7Vg8xp0m5a8w==
-X-Received: by 2002:a1c:6089:: with SMTP id u131mr1230059wmb.187.1611089882759;
-        Tue, 19 Jan 2021 12:58:02 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:c8a3:239a:c6eb:c10b? ([2a01:e34:ed2f:f020:c8a3:239a:c6eb:c10b])
-        by smtp.googlemail.com with ESMTPSA id a62sm6592680wmf.7.2021.01.19.12.58.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jan 2021 12:58:02 -0800 (PST)
-Subject: Re: [PATCH v12 0/5] qcom: pm8150: add support for thermal monitoring
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-References: <20210119054848.592329-1-dmitry.baryshkov@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <078a7025-ce5c-a252-f8f4-694c56153b3a@linaro.org>
-Date:   Tue, 19 Jan 2021 21:57:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S2389051AbhASR5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:57:21 -0500
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E51C061799
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 09:44:27 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 805123F114;
+        Tue, 19 Jan 2021 18:44:25 +0100 (CET)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, sumit.semwal@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v4 7/7] arm64: dts: pmi8998: Add the right interrupts for LAB/IBB SCP and OCP
+Date:   Tue, 19 Jan 2021 18:44:21 +0100
+Message-Id: <20210119174421.226541-8-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210119174421.226541-1-angelogioacchino.delregno@somainline.org>
+References: <20210119174421.226541-1-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-In-Reply-To: <20210119054848.592329-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2021 06:48, Dmitry Baryshkov wrote:
-> This patch serie adds support for thermal monitoring block on Qualcomm's
-> PMIC5 chips. PM8150{,b,l}, qrb5165-rb5 board and sm8250-mtp board device
-> trees are extended to support thermal zones provided by this thermal
-> monitoring block.  Unlike the rest of PMIC thermal senses, these thermal
-> zones describe particular thermistors, which differ between from board
-> to board.
-> 
-> Dependencies: https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/log/?h=ib-iio-thermal-5.11-rc1
+In commit 208921bae696 ("arm64: dts: qcom: pmi8998: Add nodes for
+LAB and IBB regulators") bindings for the lab/ibb regulators were
+added to the pmi8998 dt, but the original committer has never
+specified what the interrupts were for.
+LAB and IBB regulators provide two interrupts, SC-ERR (short
+circuit error) and VREG-OK but, in that commit, the regulators
+were provided with two different types of interrupts;
+specifically, IBB had the SC-ERR interrupt, while LAB had the
+VREG-OK one, none of which were (luckily) used, since the driver
+didn't actually use these at all.
+Assuming that the original intention was to have the SC IRQ in
+both LAB and IBB, as per the names appearing in documentation,
+fix the SCP interrupt.
 
-Shall I pick 3,4,5 also ?
+While at it, also add the OCP interrupt in order to be able to
+enable the Over-Current Protection feature, if requested.
 
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+index d016b12967eb..d230c510d4b7 100644
+--- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+@@ -30,11 +30,15 @@ labibb {
+ 			compatible = "qcom,pmi8998-lab-ibb";
+ 
+ 			ibb: ibb {
+-				interrupts = <0x3 0xdc 0x2 IRQ_TYPE_EDGE_RISING>;
++				interrupts = <0x3 0xdc 0x2 IRQ_TYPE_EDGE_RISING>,
++					     <0x3 0xdc 0x0 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-names = "sc-err", "ocp";
+ 			};
+ 
+ 			lab: lab {
+-				interrupts = <0x3 0xde 0x0 IRQ_TYPE_EDGE_RISING>;
++				interrupts = <0x3 0xde 0x1 IRQ_TYPE_EDGE_RISING>,
++					     <0x3 0xde 0x0 IRQ_TYPE_LEVEL_LOW>;
++				interrupt-names = "sc-err", "ocp";
+ 			};
+ 		};
+ 	};
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.30.0
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
