@@ -2,134 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B522FBCAA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 17:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B5872FBCBF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 17:44:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732602AbhASQi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 11:38:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732565AbhASQhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 11:37:47 -0500
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0BB4C061575;
-        Tue, 19 Jan 2021 08:37:06 -0800 (PST)
-Received: by mail-qt1-x82a.google.com with SMTP id e15so14102565qte.9;
-        Tue, 19 Jan 2021 08:37:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bCSZ3cFgDncczjOTQzrLh3KhFyorQ6+1KD0+f0P1dME=;
-        b=FM397utP+4/o8rUBWPME1wIrAYgGf43fXWuy1hyuw0mWNEHQrxsFVvf1bG1ZmCaBno
-         AyIE5jOqNsxpfWzaUcpZhEihFeV0KP0oEnPoohl8fY7y3E8QYOrRfq5cFnOWFzMhz89E
-         M4tfC6q64IEJD56nZBIL4rGiwv9BxmRvOOGisyWSTGqKu5JDbyqA64j0nnpisk8APiDi
-         8trQRBpfRh7jmJ3EdC2PPt71xl9XpLQtWjX1y+mOv13kzTfVLhTlvwDQ2oZOq6LPDfJv
-         CsBdZq9rhFpLXC6ALA6CA+4cOIbTKMLIq3S8PdM9NLB+dvkJxJBPiVWWP+3a43AuX6cS
-         B74w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=bCSZ3cFgDncczjOTQzrLh3KhFyorQ6+1KD0+f0P1dME=;
-        b=ID/Agr1Mhm2s2+9cbNUD1Q/WQfbrDegL6uwvPuNqtq+B1E0jS+vqawbfxS6RGEeHT/
-         bm4GAkTKRPuBiwb7XAYx/Yn5XWrHVbiO1sTKkkqkm+k0mmznqBZXxszXBoxSwEtMu+Oq
-         hXuIEiRYtYzBVrpM0/G9E2op0bR7AzTzZmTkcpP32qnsU01luKJUccAvSD0nuOaFyTqJ
-         7uAViCHHI/9eGPgvAmchQJesfymN72yhFMhaT6pk4GnFM+FvwwWwH2yPfbTKA5wQXz9/
-         PMgTlVwYHa6owqX2B27IT3oiDukp0vOCG5jZznsnQMz9CVvSkWO8/7t+St5vzSa/9nvo
-         3N8Q==
-X-Gm-Message-State: AOAM531y38AN7CrUHoG3GxLajaG8AEaqVGFRmoW8xvt8izDmIx/NeQGk
-        0plCEw52d3/1OOxvHx3yudHka4dinl30/g==
-X-Google-Smtp-Source: ABdhPJwaCSQVQJ5qmH28RmEa7+Y91MTcWHElNc3H0KIU+KNdhebpBpYrO1rymfA4b4kF6Bt8EfU15A==
-X-Received: by 2002:ac8:59cb:: with SMTP id f11mr5052769qtf.70.1611074226273;
-        Tue, 19 Jan 2021 08:37:06 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id z78sm13264930qkb.0.2021.01.19.08.37.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jan 2021 08:37:05 -0800 (PST)
-Subject: Re: [PATCH V4 2/3] scripts: dtc: Build fdtoverlay tool
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-References: <cover.1610431620.git.viresh.kumar@linaro.org>
- <facca66aba8070ef8bdb075ec442287c81e7d23e.1610431620.git.viresh.kumar@linaro.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <c77e66ee-5553-123a-7ec7-bf3d9e3cebd1@gmail.com>
-Date:   Tue, 19 Jan 2021 10:37:05 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1731977AbhASQmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 11:42:25 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53094 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389278AbhASQlj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 11:41:39 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10JGdRq1013322;
+        Tue, 19 Jan 2021 10:39:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611074368;
+        bh=jljfKdRWfHI5nVmQOfVi65N3P1Pg9s+aML4Z2XXxMWY=;
+        h=From:To:CC:Subject:Date;
+        b=NvtSaxilTsSQAptpa2a5SnBH4uiBMFWIZF8cO1g7IOgYhXk6tIRba/CA97FyxNF3H
+         OVItU/WP93J87ZBiJwG/sabCC/KMuN4/1R3ukf/yiei+vLuVOMQPSMX7b+6GdfCjQj
+         1fvHCV753DjPB1eAZiNTQrSP7lkeydRUKtJH/awA=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10JGdRnh054857
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 19 Jan 2021 10:39:27 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 19
+ Jan 2021 10:39:27 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 19 Jan 2021 10:39:27 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10JGdRIX124421;
+        Tue, 19 Jan 2021 10:39:27 -0600
+From:   Dave Gerlach <d-gerlach@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Dave Gerlach <d-gerlach@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: [PATCH v2 0/5] arm64: Initial support for Texas Instruments AM642 Platform
+Date:   Tue, 19 Jan 2021 10:39:22 -0600
+Message-ID: <20210119163927.774-1-d-gerlach@ti.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <facca66aba8070ef8bdb075ec442287c81e7d23e.1610431620.git.viresh.kumar@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
+This is v2 of the series to add initial support for the latest new SoC,
+AM642, from Texas Instruments. Version 1 can be found at [1]. Additional
+detail can be found in the patch descriptions, also see AM64X Technical
+Reference Manual (SPRUIM2, Nov 2020) for further details:
+https://www.ti.com/lit/pdf/spruim2
 
-I made these comments in the v2 patch series.  I am copying them here since
-this is the current version.
+Since v1, several new bindings have made it in linux-next so we can
+now include those nodes using them here. The spi, i2c, and mmc nodes
+have now been added along with DMA support. Specifics about changes
+from v1 are included with each patch.
 
-On 1/12/21 2:29 AM, Viresh Kumar wrote:
-> We will start building overlays for platforms soon in the kernel and
-> would need fdtoverlay going forward. Lets start building it.
-> 
-> The fdtoverlay program applies (or merges) one ore more overlay dtb
-> blobs to a base dtb blob. The kernel build system would later use
-> fdtoverlay to generate the overlaid blobs based on platform specific
-> configurations.
-> 
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-> ---
->  scripts/dtc/Makefile | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-> index 4852bf44e913..5f19386a49eb 100644
-> --- a/scripts/dtc/Makefile
-> +++ b/scripts/dtc/Makefile
-> @@ -1,13 +1,17 @@
->  # SPDX-License-Identifier: GPL-2.0
->  # scripts/dtc makefile
->  
-> -hostprogs-always-$(CONFIG_DTC)		+= dtc
-> +hostprogs-always-$(CONFIG_DTC)		+= dtc fdtoverlay
->  hostprogs-always-$(CHECK_DT_BINDING)	+= dtc
->  
->  dtc-objs	:= dtc.o flattree.o fstree.o data.o livetree.o treesource.o \
->  		   srcpos.o checks.o util.o
->  dtc-objs	+= dtc-lexer.lex.o dtc-parser.tab.o
->  
+Regards,
+Dave
 
-# The upstream project builds libfdt as a separate library.  We are choosing to
-# instead directly link the libfdt object files into fdtoverly
+[1] https://lore.kernel.org/linux-arm-kernel/20201125052004.17823-1-d-gerlach@ti.com/
 
-> +libfdt-objs	:= fdt.o fdt_ro.o fdt_wip.o fdt_sw.o fdt_rw.o fdt_strerror.o fdt_empty_tree.o fdt_addresses.o fdt_overlay.o
-> +libfdt		= $(addprefix libfdt/,$(libfdt-objs))
-> +fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
-> +
->  # Source files need to get at the userspace version of libfdt_env.h to compile
->  HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
->  
-> 
+Dave Gerlach (4):
+  dt-bindings: arm: ti: Add bindings for AM642 SoC
+  dt-bindings: pinctrl: k3: Introduce pinmux definitions for AM64
+  arm64: dts: ti: Add support for AM642 SoC
+  arm64: dts: ti: Add support for AM642 EVM
 
-In general, I am a proponent of using shared libraries (which the upstream project
-builds by default) because if a security bug in the library is fixed, it is fixed
-for all users of the library.
+Peter Ujfalusi (1):
+  arm64: dts: ti: k3-am64-main: Enable DMA support
 
-In this specific case, I actually prefer the implementation that the patch provides
-(directly linking the library object files into fdtoverlay, which uses the library)
-because it is the only user of the library _and_ fdtoverlay will not inadvertently
-use the system wide libfdt if it happens to be installed (as it is on my system).
+ .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 406 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi       |  76 ++++
+ arch/arm64/boot/dts/ti/k3-am64.dtsi           | 103 +++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       | 258 +++++++++++
+ arch/arm64/boot/dts/ti/k3-am642.dtsi          |  65 +++
+ include/dt-bindings/pinctrl/k3.h              |   5 +-
+ 8 files changed, 920 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am64.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642.dtsi
 
-Any thoughts on this Rob?
+-- 
+2.28.0
 
--Frank
