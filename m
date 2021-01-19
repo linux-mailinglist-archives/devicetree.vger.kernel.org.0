@@ -2,102 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD9F62FBD18
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:00:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FAD72FBD59
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 18:18:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389596AbhASQ7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 11:59:45 -0500
-Received: from userp2130.oracle.com ([156.151.31.86]:54422 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389173AbhASQ7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 11:59:24 -0500
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10JGXWR0143590;
-        Tue, 19 Jan 2021 16:57:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=sgdV4DlHNHTspbd/aK7hkeNWRoha9hMFwjn/ZmwVWQk=;
- b=N6ODgjzWnXRoegsWTwaFflZ7AM6NcT0c5vtyyMYYAXB5kuxnJ6eavvmWkBdXiZHEF6CR
- aAb3lnX+7LCGEazD06mBnK0XvmUubX4XqHFajisIhSoKVG8QtuP97odTL8qGVf9m8LLZ
- hEWvwyCpgefIrGHH6Qz/8wegaUpW0HDdkjKKWjj7avmOT2iGF1f3zNvSQHcX34oiTd6f
- 4ODXLDIeJ6CUpO5Y6gg1wB2+2aaHVla/pucjEXLEddNsGN3cjpLoNzL+yM43SozyVVUs
- g8lG/gZHA41S1tCkgjQonycuvavpiN/O8M+9VpsvypAT63qxVOj3j3w5xkhFthgAsEjS rw== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by userp2130.oracle.com with ESMTP id 363xyhse4g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 19 Jan 2021 16:57:50 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10JGsbvn142094;
-        Tue, 19 Jan 2021 16:57:49 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by userp3020.oracle.com with ESMTP id 3661khg06j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 19 Jan 2021 16:57:49 +0000
-Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 10JGvk9l005845;
-        Tue, 19 Jan 2021 16:57:47 GMT
-Received: from [10.74.104.209] (/10.74.104.209)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Tue, 19 Jan 2021 08:57:46 -0800
-Subject: Re: [PATCH] dt-bindings: soc: ti: Update TI PRUSS bindings about
- schemas to include
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        tony@atomide.com, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        ssantosh@kernel.org, praneeth@ti.com, lee.jones@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20201216225027.2681-1-grzegorz.jaszczyk@linaro.org>
- <20201221213234.GA596829@robh.at.kernel.org>
- <6f5b6609-bb9e-31f7-c0c2-3bb261a54d6a@ti.com>
-From:   santosh.shilimkar@oracle.com
-Organization: Oracle Corporation
-Message-ID: <a080a917-9c37-088b-075b-7b5a5d49256d@oracle.com>
-Date:   Tue, 19 Jan 2021 08:57:43 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.12.1
+        id S1729273AbhASRQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 12:16:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59210 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388948AbhASRLJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:11:09 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18640C061574
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 09:10:25 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id 36so8951342otp.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 09:10:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=pXSkCf6NTgWeornYKqyzoK7uvy0u52bJAmSUmFRq6Kk=;
+        b=fSkRlQI1Eq9zu7gjrvH74OD6VquTHZLJC/QSHGiWhCmHuBGHf/OjtT5VlBJz9LG/s8
+         Yom9x6VRsm+PgVQGiKa4yfQjuh6OdKacXb2GZBG/Cmp5wDGTgkEIWNqS4eptcZnafWI3
+         3q7b5gb7fBw70nh6VliSeSefH4OUygnybHTDjtX1YrZUs+u2feJoIU/hCZRBXYzREtFN
+         nnLlVPr6etMMpEHSq0mWn3mLQAaUHGlEBUgvtDtlB+E8dHQJ8PtuKMZWlCPtuXfRg/g3
+         9tAduNlcf1iAza8c9/WS4JRwj69Bo0S3q9aDnOVFbb7XDYylU51lK6DAfKIIjwXWQOWn
+         ZPAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=pXSkCf6NTgWeornYKqyzoK7uvy0u52bJAmSUmFRq6Kk=;
+        b=m2kb2S8vKTWBpyqYoDaDwggksZa0BOxvh1pZpxXy95YSpbmv/q0xIynnjnF6RVcQ4+
+         Jrbx8GEK773z0cLSctZmLDe7m2Smfho4jPVwlm04eEL06/8PS6/cYMjYE7p2OkeNfBgq
+         i2IIOaAb4+sxFRgMI64wi3uw6k7KbDngvid7JxXqxJzUdRr1KrWwCTpDEUq7E/5XdLMa
+         VXW7qB6Y0m96XnMzi4K3BtJv9rw9jscN+i8uBohBdTMDOQApsJSObOmJ26SZNV8sW7jI
+         cTAbxX83c2e+vkkR/v1+BbOlMLL9McHCjWDJ5NJjMysiA15T2RkNaKDkue6UTDuE5aAR
+         NJoA==
+X-Gm-Message-State: AOAM530aeVM6hCivIkVUTp/G/IeYxCIqa1lXRElx7eJz/uS1S8yQnAG2
+        ERLDBG5zgZFrCwwdTBgFkz3hpQ==
+X-Google-Smtp-Source: ABdhPJwIVkhmej3WLIceC3lEJrYdFar4S/jJLeGL7N6ySC0eU3Z1pEwOya5yOuDEO52p/OcABnn1HQ==
+X-Received: by 2002:a9d:6188:: with SMTP id g8mr4131050otk.299.1611076224437;
+        Tue, 19 Jan 2021 09:10:24 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n11sm3975378oij.37.2021.01.19.09.10.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 09:10:23 -0800 (PST)
+Date:   Tue, 19 Jan 2021 11:10:22 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add SM8350 pinctrl
+ bindings
+Message-ID: <YAcSfhpy3IA9H0qb@builder.lan>
+References: <20210106054950.303244-1-vkoul@kernel.org>
+ <20210106054950.303244-2-vkoul@kernel.org>
+ <X/dCIuUR/El8Gxaa@builder.lan>
+ <20210113025627.GA1414436@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <6f5b6609-bb9e-31f7-c0c2-3bb261a54d6a@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9869 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 malwarescore=0
- phishscore=0 mlxscore=0 adultscore=0 spamscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2101190097
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9869 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 phishscore=0
- malwarescore=0 mlxlogscore=999 bulkscore=0 priorityscore=1501 spamscore=0
- mlxscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1011
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2101190096
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210113025627.GA1414436@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/15/21 8:38 AM, Suman Anna wrote:
-> Hi Santosh,
+On Tue 12 Jan 20:56 CST 2021, Rob Herring wrote:
+
+> On Thu, Jan 07, 2021 at 11:17:22AM -0600, Bjorn Andersson wrote:
+> > On Tue 05 Jan 23:49 CST 2021, Vinod Koul wrote:
+> > 
+> > > Add device tree binding Documentation details for Qualcomm SM8350
+> > > pinctrl driver.
+> > > 
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > >  .../bindings/pinctrl/qcom,sm8350-tlmm.yaml    | 149 ++++++++++++++++++
+> > >  1 file changed, 149 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> > > new file mode 100644
+> > > index 000000000000..abdafd25bfc2
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-tlmm.yaml
+> > > @@ -0,0 +1,149 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8350-tlmm.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Qualcomm Technologies, Inc. SM8350 TLMM block
+> > > +
+> > > +maintainers:
+> > > +  - Vinod Koul <vkoul@kernel.org>
+> > > +
+> > > +description: |
+> > > +  This binding describes the Top Level Mode Multiplexer block found in the
+> > > +  SM8350 platform.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: qcom,sm8350-tlmm
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupt-controller: true
+> > > +
+> > > +  '#interrupt-cells':
+> > > +    description: Specifies the PIN numbers and Flags, as defined in
+> > > +      include/dt-bindings/interrupt-controller/irq.h
+> > > +    const: 2
+> > > +
+> > > +  gpio-controller: true
+> > > +
+> > > +  '#gpio-cells':
+> > > +    description: Specifying the pin number and flags, as defined in
+> > > +      include/dt-bindings/gpio/gpio.h
+> > > +    const: 2
+> > > +
+> > > +  gpio-ranges:
+> > > +    maxItems: 1
+> > > +
+> > > +  gpio-reserved-ranges:
+> > > +    maxItems: 1
+> > > +
+> > > +#PIN CONFIGURATION NODES
+> > > +patternProperties:
+> > > +  '-pinmux$':
+> > 
+> > I believe that what Rob was asking for was the matter of describing the
+> > mux and config subnodes under this one. But I don't know really how to
+> > express this, because the following are all valid:
+> > 
+> > default_state: default-state {
+> > 	pins = "gpio1";
+> > 	bias-disable;
+> > };
+> > 
+> > default_state: default-state {
+> > 	rx {
+> > 		pins = "gpio1";
+> > 		function = "gpio";
+> > 		bias-disable;
+> > 	};
+> > };
+> > 
+> > default_state: default-state {
+> > 	pinmux {
+> > 		pins = "gpio1";
+> > 		function = "gpio";
+> > 	};
+> > 
+> > 	pinconf {
+> > 		pins = "gpio1";
+> > 		bias-disable;
+> > 	};
+> > };
+> > 
+> > I.e. the properties described here applies either to this node directly,
+> > or any subnodes (1 level) down.
 > 
-> On 12/21/20 3:32 PM, Rob Herring wrote:
->> On Wed, 16 Dec 2020 23:50:27 +0100, Grzegorz Jaszczyk wrote:
->>> Now after ti,pruss-intc.yaml and ti,pru-rproc.yaml are merged, include
->>> them in proper property and extend the examples section.
->>>
->>> At the occasion extend the allowed property list about dma-ranges.
->>>
->>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> ---
->>>   .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 76 +++++++++++++++++++
->>>   1 file changed, 76 insertions(+)
->>>
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->>
+> Why!?
 > 
-> Gentle reminder, I haven't seen this patch yet on linux-next.
-> Can you please pick this up for 5.12.
+
+That's is how the generic pinctrl framework in Linux has parsed these
+nodes for the last several years, so I expect all pinctrl bindings to
+show this.
+
+And in particular, rather than forcing people to use the third form
+above the free naming of the subnodes allows to describe an entire 4 pin
+UART in a single pin state (the last requires 3-4 nodes + duplicates for
+sleep state), and for single gpio things the first one doesn't force
+people to make up phony names - which typically lands them in the last
+case (using pinmux/pinconf).
+
+> You can create a definition and reuse it. Something like this:
 > 
-Yes, will look into it this week.
+> $defs:
+>   pin-node:
+>     type: object
+>     properties:
+>       ...
+> 
+> patternProperties:
+>   '-state$':
+>     oneOf:
+>       - $ref: #/$defs/pin-node
+> 
+>       - patternProperties:
+>           '.*':
+>             $ref: #/$defs/pin-node
+
+So I presume then that it would make sense to convert
+{pinmux,pinconf}-node.yaml this form and then in our binding we should
+somehow just refer to these.
+
+But what's the appropriate method of extending and limiting pin-node? We
+have additional constraints and not all the properties are valid for the
+Qualcomm TLMM.
+
+Regards,
+Bjorn
+
+> 
+> 
+> Rob
