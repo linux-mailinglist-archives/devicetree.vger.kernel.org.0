@@ -2,227 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419E92FBB86
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 16:46:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEAE52FBBC7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 16:59:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391409AbhASPpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 10:45:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40636 "EHLO
+        id S2388994AbhASPzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 10:55:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389575AbhASPow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 10:44:52 -0500
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C87DC061573;
-        Tue, 19 Jan 2021 07:44:12 -0800 (PST)
-Received: by mail-qk1-x72d.google.com with SMTP id v126so22177852qkd.11;
-        Tue, 19 Jan 2021 07:44:12 -0800 (PST)
+        with ESMTP id S2391198AbhASPxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 10:53:11 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 872CEC061757;
+        Tue, 19 Jan 2021 07:52:27 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id b26so29755523lff.9;
+        Tue, 19 Jan 2021 07:52:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LpYod6/yIeHu0blY8X3TaII+yGQK9blo73/oSXeWqc0=;
-        b=XidkRvDUr8AzD1SbQb5YrM207F8xmWX03kCIKOmE6BWpfFPlqFN3LFQakzpmu+FPd4
-         z0EwSreX1aAZVgu7uVLmO/dy+1fqcpCupn83rp0V0SYotnBSPj3HkIL5LjZGZgu2w5zZ
-         OLLyUlRtJZyWwp12kBax6Jvmkvphr27q6qzGah5Ufh1kXhXcYASo8hg2Hcn4rt1eYovd
-         6OMymwgVkvNxeUQz6gVTco8ND2laBBnsKAC9Kaf2vG+vcrXKIVMvf5XIAgyq7FpU5FX0
-         1qS01oTaYe1T8/0GoZ3+O/IEkaKxkU5mLmc3sFL9WR5DIxeD0Kd/ThpHW11k4iK7UaX/
-         7Ktw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9ttJy1sbqgGN8LlqZHeVaLyiNVqgMKw+PzRs47gIEZM=;
+        b=jwt+XJ2m2JVvGLpNNzqCpOQtY+LD7flaonocDr/9T9K1hJIAsp9o64rEPe3dQz53gn
+         IgQfNMeIMtQ8MH1bHbv2e+wMtxYRsoQix+/zm9vDMZcSRtaBH/b756/Xz27+djcH+Y13
+         YpOCLS+FdAhOmUg9lD7zSJWFz1xXvaUYWcK9y0PFyaS3SkwQfnmWGx6PkKMWTEfUZziR
+         SWCbYryxhbYngqcywTug9qsEQQp+dxJIBpN1Hu3JwL4HKSf2GZ9EvM8tIVOsaGMJchIO
+         C5KPTXBTeDG7OqH3LVxYTblhQY43PrmYnVYh4dnWW8YK/VAG9g2LWfg8eHzWyriOO0Oi
+         ZWmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=LpYod6/yIeHu0blY8X3TaII+yGQK9blo73/oSXeWqc0=;
-        b=mnGi3yk0B79818lUiuoMHzLW52pig6hKt3aeiykezd2NDxbaLF4vCKZnCuTEgyXXlC
-         LqJscl6UzvTsRMGaPy6k/NfthWUD7E6E6NEGje/Lm6rnyJpNB6Ju6gm6xxisBFmJ3tfp
-         YzZsS5ZToYytLYCdvRUP7Asjv/TmFE5lMjxH4XPqqk6CZCs+9Nb0YE0wdaH9644ZWpe6
-         jXybSbfeZj8dtzl1dgvOVZrqacbbwNwyF8rTDYFAI7h0cAQzy6IbkbgsbCSpJq/08ubp
-         EtyQn4SulsbQX23poYg+jpDYQdLK49tgyrL0PvQTeFCvwd+hbTljNkdfJ+c0zZauxkxA
-         lisQ==
-X-Gm-Message-State: AOAM530xPKQ9+Wvzd2p9DOmbeLmGODC1YdWiiiHVLswaPE1wvbW8I/bK
-        dBiBN+KFQd7LIJOJd6KpP3g=
-X-Google-Smtp-Source: ABdhPJyVLM2KcEzfMhxUZNQNVAA0NejB+xsMo11skQKbPBXDERoGmdRLU1yjk/3ToS+VYZK/b0d5Qw==
-X-Received: by 2002:a37:a5ca:: with SMTP id o193mr4916359qke.394.1611071051311;
-        Tue, 19 Jan 2021 07:44:11 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id 190sm13325277qkf.61.2021.01.19.07.44.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jan 2021 07:44:10 -0800 (PST)
-Subject: Re: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-References: <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
- <20210119022154.2338781-1-frowand.list@gmail.com>
- <20210119080546.dzec3jatsz2662qs@vireshk-i7>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <f7133d16-510b-f730-a43b-89edab08aabe@gmail.com>
-Date:   Tue, 19 Jan 2021 09:44:09 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        bh=9ttJy1sbqgGN8LlqZHeVaLyiNVqgMKw+PzRs47gIEZM=;
+        b=EU5q4k4JXYnkS6znJa4gJwz0memNCyrwKEmFute57IEYTTpHe1iygXk+/fGTKdzIFy
+         30qqF6VnQdfpJ3DV16swPC3x7HSrqeOUk9oeG12EJd251Vl8Rpe3LokFgnS5bPtzHVZ0
+         Xx+hrdstFdF7mWwO2jkwYjAZG8Kbrqu904tWXnMpb71zGJOs96yV4/O00X+Qvac8Q9Ue
+         VdOAQXupkIQFQCr0TZPfIzRIhDvcuclAtgqOgczKjoyrKKaO2e7XtQYyy1Pp82VA01M/
+         VJk1tEkIVfX4o8GzPIasHYRpNzZ9KbKWnKGnKnUDBwn/ifMB8dcYA8QsanGLaniK1xtt
+         LHIA==
+X-Gm-Message-State: AOAM533epUdIWfZl5SS0R4poPkgGixMWG+UD7i8aJ/VOp43JexomZDmY
+        jpjseliU0xwMXWPcN5NZHEEX5GWAISDc4g==
+X-Google-Smtp-Source: ABdhPJyBPJJ70QrkQnJMC/3VXdTqzGRprlpWOXXRLJcsX0AsXieN2y63cQM7BoI75q7ca2FCWdOUyQ==
+X-Received: by 2002:a05:6512:94f:: with SMTP id u15mr1971415lft.389.1611071546013;
+        Tue, 19 Jan 2021 07:52:26 -0800 (PST)
+Received: from localhost.localdomain ([185.188.71.122])
+        by smtp.gmail.com with ESMTPSA id t196sm2309286lff.195.2021.01.19.07.52.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 07:52:24 -0800 (PST)
+From:   Pawel Dembicki <paweldembicki@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Yangbo Lu <yangbo.lu@nxp.com>,
+        Pawel Dembicki <paweldembicki@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] arm64: dts: fsl-ls1012a-rdb: add i2c devices
+Date:   Tue, 19 Jan 2021 16:51:05 +0100
+Message-Id: <20210119155106.1833610-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210119080546.dzec3jatsz2662qs@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/19/21 2:05 AM, Viresh Kumar wrote:
-> On 18-01-21, 20:21, frowand.list@gmail.com wrote:
->> From: Frank Rowand <frank.rowand@sony.com>
->>
->> These changes apply on top of the patches in:
->>
->>   [PATCH] of: unittest: Statically apply overlays using fdtoverlay
->>   Message-Id: <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
->>
->> There are still some issues to be cleaned up, so not ready for acceptance.
-> 
-> Are you talking about the missing __overlay__ thing ? (more below)
+LS1012A-RDB equipped in some i2c devices:
+  - 3x GPIO Expander: PCAL9555A (NXP)
+  - Gyro: FXAS21002 (NXP)
+  - Accelerometer: FXOS8700 (NXP)
+  - Current & Power Monitor: INA220 (TI)
 
-No.  I am referencing my comments below (I'll copy them up here):
+This patch add listed devices to dts.
 
-   I have not used the construct "always-$(CONFIG_OF_OVERLAY)" before, and
-   have not looked into the proper usage of it.
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+---
+Changes in v2:
+- resend only
 
-   [Tested using my own fdtoverlay instead of the one supplied by your patches
-   that added fdtoverlay and fdtdump to the kernel tree.]
+ .../boot/dts/freescale/fsl-ls1012a-rdb.dts    | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-   I have not run this through checkpatch, or my checks for build warnings.
-   I have not run unittests on my target with these patches applied.
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+index d45c17620b98..12117a973eb6 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+@@ -7,6 +7,7 @@
+  */
+ /dts-v1/;
+ 
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include "fsl-ls1012a.dtsi"
+ 
+ / {
+@@ -33,6 +34,50 @@ &esdhc1 {
+ 
+ &i2c0 {
+ 	status = "okay";
++
++	accelerometer@1e {
++		compatible = "nxp,fxos8700";
++		reg = <0x1e>;
++		interrupt-parent = <&gpio26>;
++		interrupts = <13 IRQ_TYPE_EDGE_RISING>;
++		interrupt-names = "INT1";
++	};
++
++	gyroscope@20 {
++		compatible = "nxp,fxas21002c";
++		reg = <0x20>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pcal9555a";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@25 {
++		compatible = "nxp,pcal9555a";
++		reg = <0x25>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio26: gpio@26 {
++		compatible = "nxp,pcal9555a";
++		reg = <0x26>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	current-sensor@40 {
++		compatible = "ti,ina220";
++		reg = <0x40>;
++		shunt-resistor = <2000>;
++	};
+ };
+ 
+ &qspi {
+-- 
+2.25.1
 
-I will have to get the updated patch, test it more fully, and fill in a gap
-in my knowledge (use of "always-$(CONFIG_xxx)".
-
-
-> 
->> I have not used the construct "always-$(CONFIG_OF_OVERLAY)" before, and
->> have not looked into the proper usage of it.
-> 
-> I wasn't sure either, maybe Masahiro can suggest the best fit.
-> 
->> I tested this using a hand build libfdt and fdtoverlay from the dtc-compiler
->> upstream project.  For my testing I added LD_LIBRARY_PATH to the body of
->> "cmd_fdtoverlay" to reference my hand built libfdt.  The kernel build
->> system will have to instead use a libfdt that is built in the kernel
->> tree.
-> 
-> I tested it with this patchset:
-> 
-> https://lore.kernel.org/lkml/cover.1610431620.git.viresh.kumar@linaro.org/
-> 
->> I have not run this through checkpatch, or my checks for build warnings.
->> I have not run unittests on my target with these patches applied.
->>
->> ---
->>  drivers/of/unittest-data/Makefile | 67 ++++++++++++++++++++++---------
->>  1 file changed, 48 insertions(+), 19 deletions(-)
->>
->> diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
->> index f17bce85f65f..28614a123d1e 100644
->> --- a/drivers/of/unittest-data/Makefile
->> +++ b/drivers/of/unittest-data/Makefile
->> @@ -39,25 +39,54 @@ DTC_FLAGS_testcases += -@
->>  # suppress warnings about intentional errors
->>  DTC_FLAGS_testcases += -Wno-interrupts_property
->>  
->> -# Apply overlays statically with fdtoverlay
->> -intermediate-overlay	:= overlay.dtb
->> -master			:= overlay_0.dtb overlay_1.dtb overlay_2.dtb \
->> -			   overlay_3.dtb overlay_4.dtb overlay_5.dtb \
->> -			   overlay_6.dtb overlay_7.dtb overlay_8.dtb \
->> -			   overlay_9.dtb overlay_10.dtb overlay_11.dtb \
->> -			   overlay_12.dtb overlay_13.dtb overlay_15.dtb \
->> -			   overlay_gpio_01.dtb overlay_gpio_02a.dtb \
->> -			   overlay_gpio_02b.dtb overlay_gpio_03.dtb \
->> -			   overlay_gpio_04a.dtb overlay_gpio_04b.dtb \
->> -			   intermediate-overlay.dtb
->> -
->> -quiet_cmd_fdtoverlay = fdtoverlay $@
->> -      cmd_fdtoverlay = $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $^
->> -
->> -$(obj)/intermediate-overlay.dtb: $(obj)/overlay_base.dtb $(addprefix $(obj)/,$(intermediate-overlay))
->> -	$(call if_changed,fdtoverlay)
->> +# Apply overlays statically with fdtoverlay.  This is a build time test that
->> +# the overlays can be applied successfully by fdtoverlay.  This does not
->> +# guarantee that the overlays can be applied successfully at run time by
->> +# unittest, but it provides a bit of build time test coverage for those
->> +# who do not execute unittest.
->> +#
->> +# The overlays are applied on top of testcases.dtb to create static_test.dtb
->> +# If fdtoverlay detects an error than the kernel build will fail.
->> +# static_test.dtb is not consumed by unittest.
->> +#
->> +# Some unittest overlays deliberately contain errors that unittest checks for.
->> +# These overlays will cause fdtoverlay to fail, and are thus not included
->> +# in the static test:
->> +#			overlay.dtb \
->> +#			overlay_bad_add_dup_node.dtb \
->> +#			overlay_bad_add_dup_prop.dtb \
->> +#			overlay_bad_phandle.dtb \
->> +#			overlay_bad_symbol.dtb \
->> +
->> +apply_static_overlay := overlay_base.dtb \
-> 
-> This won't work because of the issues I mentioned earlier. This file
-> doesn't have __overlay__. One way to fix that is to do this:
-> 
-> diff --git a/drivers/of/unittest-data/overlay_base.dts b/drivers/of/unittest-data/overlay_base.dts
-> index 99ab9d12d00b..59172c4c9e5a 100644
-> --- a/drivers/of/unittest-data/overlay_base.dts
-> +++ b/drivers/of/unittest-data/overlay_base.dts
-> @@ -11,8 +11,7 @@
->   * dtc will create nodes "/__symbols__" and "/__local_fixups__".
->   */
-> 
-> -/ {
-> -       testcase-data-2 {
-> +       &overlay_base {
->                 #address-cells = <1>;
->                 #size-cells = <1>;
-> 
-> @@ -89,5 +88,3 @@ retail_1: vending@50000 {
->                 };
-> 
->         };
-> -};
-> -
-
-No.  overlay_base.dts is intentionally compiled into a base FDT, not
-an overlay.  Unittest intentionally unflattens this FDT in early boot,
-in association with unflattening the system FDT.  One key intent
-behind this is to use the same memory allocation method that is
-used for the system FDT.
-
-Do not try to convert overlay_base.dts into an overlay.
-
-
-> diff --git a/drivers/of/unittest-data/testcases.dts b/drivers/of/unittest-data/testcases.dts
-> index a85b5e1c381a..539dc7d9eddc 100644
-> --- a/drivers/of/unittest-data/testcases.dts
-> +++ b/drivers/of/unittest-data/testcases.dts
-> @@ -11,6 +11,11 @@ node-remove {
->                         };
->                 };
->         };
-> +
-> +       overlay_base: testcase-data-2 {
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +       };
-> 
->> -always-$(CONFIG_OF_OVERLAY) += intermediate-overlay.dtb master.dtb
->> +always-$(CONFIG_OF_OVERLAY) += static_test.dtb
-> 
-> This is how static_test.dtb looks now with fdtdump
-> 
-
-< snip >
-
--Frank
