@@ -2,121 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ED3B2FBBB6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 16:54:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B622FBBC9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 16:59:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391563AbhASPxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 10:53:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391503AbhASPxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 10:53:21 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3352DC0613C1;
-        Tue, 19 Jan 2021 07:52:41 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id f11so22452469ljm.8;
-        Tue, 19 Jan 2021 07:52:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iJc26kqK3lGiggOL8r2k0b8rqu0j1HSR3SxkGPEs1EY=;
-        b=KYeJOrYr4NiWht8sbmC/Lsf0oX1RjPVSxie4XQt3heuBHRyENk1dc26UYOgG7BiLv4
-         Gkf7GCfhHbXwi3tVVJ1cpN+9puCxX6QQExS/U/vVHjAJKrvSar98RXEWJRsoS9mv2Yd1
-         TBLzKmbj3VeOywQqBR9K4VXLGXTyfw/f58ucV59glj13oonZez0cKb1Lme19AcRBNp5I
-         2A7SI+JV3wA0hmaDitV6gTrRr1k0ediqvRDAndoefSWJmI5/jsLwpw5HnxFqgnzNw0Pk
-         Ahj8v17c42Ccw0FjxSy/I9pxiQIle8K1jsEu26B6q7XFK2CPo4IxC3EkNaedc1OI/veU
-         6M2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iJc26kqK3lGiggOL8r2k0b8rqu0j1HSR3SxkGPEs1EY=;
-        b=L6Nccxf1Sqs8qPI6DV6J5i3mt2S2VHQuBOXIGtXU1e7M5TsC5Sk3964q/QvdKQ1wUn
-         BIwR7XI3pP2Gyx3cKEN+2qqPoDmVog1CIKbWHUFnrRRTgtjGYdmysghfSO3TvgHI341y
-         kAqrnYSsWYAZ0lF+p9rfovQ/wGEDeLPmueR6V0hW94QopvqQZVGfIv6A1Nyqz2DtiXdF
-         goG77hqX9UVIyYveupXeQPuYufZiOLBpGC3gehd6ps52ANnbIG8a4s999gHpMfv7lL6j
-         V0Bfz2EgSsOQtfmHNzf0L4pn5UoymU9GGa/nyXKcB3aiJ0W28Js2dUuPx8RrdlOnTE48
-         cflA==
-X-Gm-Message-State: AOAM531z5SUtbR8XhkVIJS63lkZRmS82rVpPK+NF9MauxcAuF201pRzj
-        tiRBaDIjnby7W7OW78CxuXOHrDXGR8N38A==
-X-Google-Smtp-Source: ABdhPJzIAOAwZS7Lprc/tcLmL4dMSTFDAD+TRc74Ry67mioOpAxj0Y4Dc8RTokKqX9mSCTlfNdJ94w==
-X-Received: by 2002:a2e:3317:: with SMTP id d23mr403130ljc.199.1611071559679;
-        Tue, 19 Jan 2021 07:52:39 -0800 (PST)
-Received: from localhost.localdomain ([185.188.71.122])
-        by smtp.gmail.com with ESMTPSA id t196sm2309286lff.195.2021.01.19.07.52.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 07:52:39 -0800 (PST)
-From:   Pawel Dembicki <paweldembicki@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Yangbo Lu <yangbo.lu@nxp.com>,
-        Pawel Dembicki <paweldembicki@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: fsl-ls1012a-frdm: add spi-uart device
-Date:   Tue, 19 Jan 2021 16:51:06 +0100
-Message-Id: <20210119155106.1833610-2-paweldembicki@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210119155106.1833610-1-paweldembicki@gmail.com>
-References: <20210119155106.1833610-1-paweldembicki@gmail.com>
+        id S2389433AbhASP4G convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 19 Jan 2021 10:56:06 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:43137 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391409AbhASPwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 10:52:46 -0500
+X-Originating-IP: 86.201.233.230
+Received: from xps13 (lfbn-tou-1-151-230.w86-201.abo.wanadoo.fr [86.201.233.230])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 265F4C0008;
+        Tue, 19 Jan 2021 15:51:39 +0000 (UTC)
+Date:   Tue, 19 Jan 2021 16:51:38 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Richard Weinberger <richard@nod.at>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFm?= =?UTF-8?B?YcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 3/3] mtd: parsers: ofpart: support BCM4908 fixed
+ partitions
+Message-ID: <20210119165138.4982ae46@xps13>
+In-Reply-To: <20210115153901.31052-3-zajec5@gmail.com>
+References: <20210115153901.31052-1-zajec5@gmail.com>
+        <20210115153901.31052-3-zajec5@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds spi-uart controller  to LS1012A-FRDM board dts.
-Device is equipped in SC16IS740 from NXP.
+Hi Rafał,
 
-Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
----
-Changes in v2:
-- reordered property list
-- change clock name to "clock-sc16is7xx"
+Rafał Miłecki <zajec5@gmail.com> wrote on Fri, 15 Jan 2021 16:39:01
++0100:
 
- .../boot/dts/freescale/fsl-ls1012a-frdm.dts   | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> BCM4908 partitioning is based on fixed layout but allows specifying
+> multiple firmware partitions. It requires detecting which firmware
+> partition was used for booting current kernel.
+> 
+> To support such cases without duplicating a lot of code (without copying
+> most of the ofpart.c code) support for post-parsing callback was added.
+> 
+> BCM4908 callback simply reads offset of currently used firmware
+> partition from the DT. Bootloader specifies it using the "brcm_blparms"
+> property.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
-index 67702667ed8a..2517528f684f 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
-@@ -7,6 +7,7 @@
-  */
- /dts-v1/;
- 
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include "fsl-ls1012a.dtsi"
- 
- / {
-@@ -57,6 +58,26 @@ simple-audio-card,codec {
- 	};
- };
- 
-+&dspi {
-+	bus-num = <0>;
-+	status = "okay";
-+
-+	serial@0 {
-+		compatible = "nxp,sc16is740";
-+		reg = <0>;
-+		spi-max-frequency = <4000000>;
-+		clocks = <&sc16is7xx_clk>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+
-+		sc16is7xx_clk: clock-sc16is7xx {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <24000000>;
-+		};
-+	};
-+};
-+
- &duart0 {
- 	status = "okay";
- };
--- 
-2.25.1
+The approach looks fine by me, let's see what other maintainers think.
 
+
+Cheers,
+Miquèl
