@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFBA52FB7F3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 280222FB7F4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:28:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391226AbhASLc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 06:32:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36508 "EHLO
+        id S2391385AbhASLdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 06:33:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405090AbhASLDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 06:03:19 -0500
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2311BC0613D6
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:02:38 -0800 (PST)
-Received: by mail-vs1-xe2c.google.com with SMTP id e15so10836731vsa.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:02:38 -0800 (PST)
+        with ESMTP id S2405180AbhASLGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 06:06:07 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01473C0613C1
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:05:21 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id v19so12719876pgj.12
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 03:05:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=51aRHVM9MtmiP0LM6KVSBIfypf8NCoJI3/kkLCUIyQc=;
-        b=cO9pngCqzzQU5+wYm76QgcPi+sSh5wfMsbcSm2rfew1o6UU+XMprqcdkv8Tat7a3sj
-         dZ1uP2iZAQeaaPqA9q3x/D9TRd5FTzLxx9Ujcm/4TCxNZHTRKgnZEYSqRfUV/idaFtUI
-         oLzD/IohWXy5i90tTRAvvJl1rLywYJhSrRpjC91JF1wtZyouUt/RdQE4rGgESI8mp19Z
-         XuETWBfpczg9ESTyyyrb1l0HWs/4hVK8iNjlxaoFSpzUhxUnp5o2zuCyqcmVLs4IdQSG
-         fp73BBTKRzw62HJLaxJ9z/8c5RwdpNy+ViRHrZHpkxe2g1y5yS4VXmvvGLyFRM7UrbEi
-         w3kQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=4TOzYyZIin/yiRGi1ie9o6/CbIyjNQOy95/3SVEBU9A=;
+        b=uExiI/2TzOCWPI0pjBTK0TdMIUfxRWt8KPMbORnS5c9XO68eyPvKDWJwxuopER796L
+         vURhfaHxKLDrdEPMFkOr9D58bDFAGeSBZqyZoZFnV8Ds7wkLh1pLnTtIRfKzC3SNrIG8
+         4yP6GQFO22QzekfpAs4U1eCA1618km+cf6i7I1xDcH3U66TWqpFoSnJURTiEhgICz/DU
+         PNnFj2qdBYVwZw3IYfwhM3DmNJJsRyPbxgsnldEdXpXHVPwmlxWQ3gmqbfaoayhgLuzv
+         3XIncpgMG7FADLMlh68SnARce4hUuVnnPuu2JPftCXyp7Mk01bVkT2woy+Zvbj/1lR5b
+         eoIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=51aRHVM9MtmiP0LM6KVSBIfypf8NCoJI3/kkLCUIyQc=;
-        b=nP3G9ak/2iULCnirYXt/jIVSNBZaH99jhzqHh9lfuKEBMjtKfF6cGLdYLWvzg8bNAQ
-         O6RueBCgdb/Y/hxOn9yPBwQj9PzpTHkVO2Ah9zstdNRBw0oDUK72m7eNptN171J4ecVm
-         MILyD3+iUbYn0RwgysPmIrjf9a9AgRSpvmON9zOr11/fubRQogGC6l+UG0DbzBTyYQUq
-         52irSSGDFEXntP9jydNlYVO5/Fsc+KsXvQKEVKttDuv35uTwdYfK5pw1R8CZ31HxzTYk
-         Ae2/Su8pdYeZ0DP/gEndIb+wYjoA5ONX88CcKFp7zcevWC5Qmb3/W3baZV2XNDy2MOXJ
-         ZWEg==
-X-Gm-Message-State: AOAM530RfC7EBAVA47yPPfaMVqV1R7Eobo387umURCjFxCjn3BM2S5Bq
-        9dEIlXfAS4tL6SDqYE3BOj4EFAnnzB/UZXXmgt8nhA==
-X-Google-Smtp-Source: ABdhPJzmHhIQqV/usHrcyHk3rDz6//q3bjjAW5H2CFufPw2AHrOrqfaIxGqrbhGDRrsQtReKyxV9CP3hwLdfWdsh4uM=
-X-Received: by 2002:a67:7f41:: with SMTP id a62mr2178224vsd.55.1611054157249;
- Tue, 19 Jan 2021 03:02:37 -0800 (PST)
-MIME-Version: 1.0
-References: <20201224111210.1214-1-rojay@codeaurora.org> <20201224111210.1214-4-rojay@codeaurora.org>
- <YAGqKfDfB7EEuZVn@builder.lan> <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
-In-Reply-To: <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 19 Jan 2021 12:02:01 +0100
-Message-ID: <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for 'assigned-performance-states'
-To:     Rajendra Nayak <rnayak@codeaurora.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=4TOzYyZIin/yiRGi1ie9o6/CbIyjNQOy95/3SVEBU9A=;
+        b=qt2qkj5SoQrzoelmPZjN1L1prkm8CUpYXG4WB1HrKfOEtduiwlHmnlVuu2y5+IoygM
+         XXg8ZHIjEvGT92Gck1Bjcg5LwMnOMPb69h/mmS4j7ky/iqm844PcuBmwVfdp+LCWDaY6
+         bzAWdpBPfygf3oEQPIOJcL1nMwX2pClLZ2EmAveoMkMxYH328sXDRObkN6kcd4DPG7sp
+         kgOs+13iPlB4EymTJL3Ye1oE0d20tjNrpdiYhG6ulKTOl5Htn2YEs8KOcaaOcdw3pyV+
+         p7vAxyWDXVOBsicFBXbhg4QOAcc6Ci8i3bIs9CMJx+o69CVj1AYkJwniarOxC/8IwLG7
+         ffAg==
+X-Gm-Message-State: AOAM53093CzRutCUTjGKgdmBB0Izul4Ohuas5fBqY9QNIdEpn86ISPo+
+        +pLkbKYcLaqKnq0XWuXnhycpMQ==
+X-Google-Smtp-Source: ABdhPJypZ7g85maNn/Fq9wWXClDnT5wovR1kfqNu7P4AWwxVkN+tY7vWNWWbv+l/0xEltuRgBAxuTA==
+X-Received: by 2002:a62:a508:0:b029:1ba:621:ff29 with SMTP id v8-20020a62a5080000b02901ba0621ff29mr707798pfm.44.1611054320340;
+        Tue, 19 Jan 2021 03:05:20 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id a5sm18186189pgl.41.2021.01.19.03.05.18
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 19 Jan 2021 03:05:18 -0800 (PST)
+Date:   Tue, 19 Jan 2021 16:35:16 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Roja Rani Yarubandi <rojay@codeaurora.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
         Wolfram Sang <wsa@kernel.org>,
         Stephen Boyd <swboyd@chromium.org>,
@@ -67,92 +65,29 @@ Cc:     Roja Rani Yarubandi <rojay@codeaurora.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         linux-arm-msm <linux-arm-msm@vger.kernel.org>,
         Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for
+ 'assigned-performance-states'
+Message-ID: <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
+References: <20201224111210.1214-1-rojay@codeaurora.org>
+ <20201224111210.1214-4-rojay@codeaurora.org>
+ <YAGqKfDfB7EEuZVn@builder.lan>
+ <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
+ <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Jan 2021 at 06:36, Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
->
-> On 1/15/2021 8:13 PM, Bjorn Andersson wrote:
-> > On Thu 24 Dec 05:12 CST 2020, Roja Rani Yarubandi wrote:
-> >
-> >> @@ -629,6 +658,16 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
-> >>      struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
-> >>
-> >>      disable_irq(gi2c->irq);
-> >> +
-> >> +    /* Drop the assigned performance state */
-> >> +    if (gi2c->assigned_pstate) {
-> >> +            ret = dev_pm_genpd_set_performance_state(dev, 0);
-> >> +            if (ret) {
-> >> +                    dev_err(dev, "Failed to set performance state\n");
-> >> +                    return ret;
-> >> +            }
-> >> +    }
-> >> +
-> >
-> > Ulf, Viresh, I think we discussed this at the time of introducing the
-> > performance states.
-> >
-> > The client's state does not affect if its performance_state should
-> > be included in the calculation of the aggregated performance_state, so
-> > each driver that needs to keep some minimum performance state needs to
-> > have these two snippets.
-> >
-> > Would it not make sense to on enable/disable re-evaluate the
-> > performance_state and potentially reconfigure the hardware
-> > automatically?
->
-> I agree, this will be repeated across multiple drivers which would
-> need some minimal vote while they are active, handling this during
-> genpd enable/disable in genpd core makes sense.
+On 19-01-21, 12:02, Ulf Hansson wrote:
+> As a matter of fact this was quite recently discussed [1], which also
+> pointed out some issues when using the "required-opps" in combination,
+> but perhaps that got resolved? Viresh?
 
-Initially that's what we tried out, but we realized that it was
-difficult to deal with this internally in genpd, but more importantly
-it also removed some flexibility from consumers and providers. See
-commit 68de2fe57a8f ("PM / Domains: Make genpd performance states
-orthogonal to the idlestates").
+Perhaps we never did anything there ..
 
-As a matter of fact this was quite recently discussed [1], which also
-pointed out some issues when using the "required-opps" in combination,
-but perhaps that got resolved? Viresh?
-
-My concern is, if we would make this kind of change to the internals
-of genpd, it would lead to the following limitation: A consumer driver
-can no longer make its vote for its device to stick around, when the
-device becomes runtime suspended - and how do we know that we never
-need to support such a case?
-
->
-> >
-> > Regards,
-> > Bjorn
-> >
-> >>      ret = geni_se_resources_off(&gi2c->se);
-> >>      if (ret) {
-> >>              enable_irq(gi2c->irq);
-> >> @@ -654,6 +693,16 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
-> >>      if (ret)
-> >>              return ret;
-> >>
-> >> +    /* Set the assigned performance state */
-> >> +    if (gi2c->assigned_pstate) {
-> >> +            ret = dev_pm_genpd_set_performance_state(dev,
-> >> +                                                     gi2c->assigned_pstate);
-> >> +            if (ret) {
-> >> +                    dev_err(dev, "Failed to set performance state\n");
-> >> +                    return ret;
-> >> +            }
-> >> +    }
-> >> +
-> >>      enable_irq(gi2c->irq);
-> >>      gi2c->suspended = 0;
-> >>      return 0;
-
-Kind regards
-Uffe
-
-[1]
-https://lkml.org/lkml/2020/9/11/230
+-- 
+viresh
