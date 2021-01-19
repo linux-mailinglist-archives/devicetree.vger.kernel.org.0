@@ -2,91 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A5962FBA76
+	by mail.lfdr.de (Postfix) with ESMTP id 0ED912FBA75
 	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 15:57:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391131AbhASOzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 09:55:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41002 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404937AbhASMel (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 07:34:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3A52D2310E;
-        Tue, 19 Jan 2021 12:33:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1611059632;
-        bh=nhLuurJSrgADMg3lBfOTeTfYMIf5bFMG7UNgaXRHqZ4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XMFySzbpHGeNgMMesjH9tuaLgO7p7bI6r5Eg9KF5YH4R+v+FeIvF8htdqA9C2hk2z
-         cZjZWaTyWQz+PWPcYgAX5FxSUAUWHtx8YqgpkkHPXhTgJonIU8FKqtiPzqPIIGRgc4
-         GEfcF2bkYGSR4csEKZpOTayWgH0Mz+4RHeu7OT/w=
-Date:   Tue, 19 Jan 2021 13:33:49 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Al Cooper <al.cooper@broadcom.com>
-Cc:     Al Cooper <alcooperx@gmail.com>, linux-kernel@vger.kernel.org,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 2/2] serial: 8250: Add new 8250-core based Broadcom
- STB driver
-Message-ID: <YAbRrSSNkzcvGSL3@kroah.com>
-References: <20210115211543.33563-1-alcooperx@gmail.com>
- <20210115211543.33563-3-alcooperx@gmail.com>
- <YAXJRDhS1HXeYaZz@kroah.com>
- <CAGh=XABU=jdLWo8AfSBZPwn+_gDfCNN07cg9a58nxknjjyEfxg@mail.gmail.com>
+        id S2391183AbhASOzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 09:55:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389730AbhASMqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 07:46:25 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24958C061573
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 04:45:45 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id 6so28295138ejz.5
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 04:45:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=2WUya7+5IGqjt8qAdysqD/38MxbinafCy/KFWnkGaFA=;
+        b=GBvAMjsNyc1KwbcthQYQW5GVYHx2lUvo09MvmbVSBtBubbd5uZbBhrMfoN66JwDgEJ
+         RjF62+B7wxJFtp1Ha/dJwHbUMYJH5u/pq1IPhbKb/b900pw0igY7wnFULlHODuK/aKuv
+         fQ01bO7TBI3nnaE9uPkcsVJzTs8eJ+rzht4vG3xphpuJ3jENEpbOTKMtao7V9NUFefA9
+         OFLkt0zd9eLv6AbEAhmXA7qbfJki4Itn9YOi2Xov2WmVJXQlD6IXhr4bXgvSGbs8yOax
+         1BQUL8i8CN3ZYjplXIw/SZ1JbG5vyYnYEtYSj5hWQ7KWeeIm4gYhzYGhxVJ1Pd0H/2pD
+         7ULQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2WUya7+5IGqjt8qAdysqD/38MxbinafCy/KFWnkGaFA=;
+        b=HRkPuej3Vljtee9vDWr3UbOsBevT/hAqbmd4lR4R/7+OkxIHcCRGvYtuDKFo5MAd0d
+         eG/MRkdfvO5Q5ovvUXAQL8esl3NjJ4Dz6OGQlyk6Ib7F1ccCFSb2VvsitO5rv08r2Jxi
+         R4/E5Jp9pgqtNuWv57l1N6MNm+1GLZL9SQm+EClb6hdoVGBvRn9l4wGArOOgsyxLS7fP
+         aVutbHrRN8pCqAyWjuGRi4o1REGdR3xOO1PjwW76bbZXj0+Nc1lEUKu1bWTEHvEpNjGg
+         ucEKAcdT/ea6qxV3AVu6eKU95LdzTS08mCkkMaNV226EoHjKGDK46wmzNKTTHedAqia6
+         K1Pw==
+X-Gm-Message-State: AOAM532cfDO0slFXIe5ishBcWbsXd7l97TeJjnqQdKF3u2/2FPVEj2Wz
+        QLcEugAj24uO7s6G/m6A7PPZD9oA+GyXdD02URIefQ==
+X-Google-Smtp-Source: ABdhPJyuri53Lipmasye8wf+k1fH8XTfNEYApHNNFB4TKoAJIeXibPQX4MIUb9qFN+ASQENiw63w8NY/OURkJsg/h4w=
+X-Received: by 2002:a17:906:19c3:: with SMTP id h3mr2823601ejd.429.1611060343774;
+ Tue, 19 Jan 2021 04:45:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGh=XABU=jdLWo8AfSBZPwn+_gDfCNN07cg9a58nxknjjyEfxg@mail.gmail.com>
+References: <20210115164658.187681-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20210115164658.187681-1-u.kleine-koenig@pengutronix.de>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Tue, 19 Jan 2021 13:45:31 +0100
+Message-ID: <CAMpxmJWjy-KbTswA2_8iigzRB7eDoR0P+xYPPWLpfXj-E=wEVg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] gpio: pca953x: Add support for pca9506
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        linux-devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 03:32:57PM -0500, Al Cooper wrote:
-> On Mon, Jan 18, 2021 at 12:45 PM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Fri, Jan 15, 2021 at 04:15:43PM -0500, Al Cooper wrote:
-> > > Add a UART driver for the new Broadcom 8250 based STB UART. The new
-> > > UART is backward compatible with the standard 8250, but has some
-> > > additional features. The new features include a high accuracy baud
-> > > rate clock system and DMA support.
-> > >
-> > > The driver will use the new optional BAUD MUX clock to select the best
-> > > one of the four master clocks (81MHz, 108MHz, 64MHz and 48MHz) to feed
-> > > the baud rate selection logic for any requested baud rate.  This allows
-> > > for more accurate BAUD rates when high speed baud rates are selected.
-> > >
-> > > The driver will use the new UART DMA hardware if the UART DMA registers
-> > > are specified in Device Tree "reg" property. The DMA functionality can
-> > > be disabled on kernel boot with the argument:
-> > > "8250_bcm7271.disable_dma=Y".
-> >
-> > Shouldn't that be on a per-device basis, and not a per-driver basis?
-> 
-> There is only one instance of the UART DMA hardware and it gets muxed
-> to just one of the possible UARTS.
+On Fri, Jan 15, 2021 at 5:47 PM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> Hello,
+>
+> compared to (implicit) v1 (Message-Id:
+> 20210113194952.104734-1-u.kleine-koenig@pengutronix.de) I split the
+> patch #1 into driver adaption and dt documenation (i.e. patches #1 and
+> #2 here).
+>
+> For patch #3 I did s/chips/lines/ in the commit log and capitalized
+> "Increase" in the summary line.
+>
+> Best regards
+> Uwe
+>
+> Uwe Kleine-K=C3=B6nig (3):
+>   gpio: pca953x: Add support for pca9506
+>   dt-bindings: gpio: pca953x: Document new supported chip pca9506
+>   dt-bindings: gpio: pca953x: Increase allowed length for
+>     gpio-line-names
+>
+>  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 3 ++-
+>  drivers/gpio/gpio-pca953x.c                              | 2 ++
+>  2 files changed, 4 insertions(+), 1 deletion(-)
+>
+>
+> base-commit: 5c8fe583cce542aa0b84adc939ce85293de36e5e
+> --
+> 2.29.2
+>
 
-But the driver doesn't know/care about that, it binds to any device that
-matches it.  per-module/driver flags are not a good idea.
+Applied, thanks!
 
-> > And why would you want to disable this, if you have support for this in
-> > the DT?  Why not just rely on the DT setting?
-> 
-> The DMA feature is used when the UART is connected to a Bluetooth
-> controller and the BAUD rate is typically 2-3Mbs. The ability to
-> easily disable DMA is very useful when debugging BT communication
-> problems in the field. DT settings could also be used to disable DMA,
-> but knowing the correct modifications to the "reg" and "reg-names"
-> properties is a lot more complicated.
-
-So this is a debug-only option?  If so, why not just make it a debugfs
-file then?  No need to clutter up a module parameter for this mess.
-
-thanks,
-
-greg k-h
+Bartosz
