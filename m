@@ -2,107 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 393D12FC38C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 23:34:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAFFE2FC393
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 23:36:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727424AbhASRoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 12:44:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40612 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405012AbhASOv5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 09:51:57 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4D8C320DD4;
-        Tue, 19 Jan 2021 14:51:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611067874;
-        bh=qOALRYpx8VGwwp5SoEb+UBz0tWOmyG8pglZmxBoikVE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=m7Rm+D4I2y7BtzNch/jc6E/zBCBw/RA5fx5YRY4HqpOxgYIatEi91igNNZKlmUmu8
-         X3Lio+WuAAhYLIflvAgUn2GQgB7K5uMpqfL/JEvLLycdMZq7bEJU8Bb47J2dyskSS0
-         /ozQP1/8937fGg93pZSb1TABODB1iOa/9v7leF7VICKhA+zOpKvXU4GvH43uUdCxEb
-         oj8B+03Ngi6MbMiujtVvdGnCxboKbnyREEWNGnAyN67ptzwyJQhSIJNUrQmu90Quip
-         RTOYFcLhowalPAIahNqb9JFni4mh74/G6OXNcskFgdScMWsibylfZ+uhLLJGdR35Nn
-         RSx6c3Iws7a0A==
-Received: by mail-ej1-f50.google.com with SMTP id l9so23166076ejx.3;
-        Tue, 19 Jan 2021 06:51:14 -0800 (PST)
-X-Gm-Message-State: AOAM532PER8EDGTKuIS5NcqxuMxV311KKyzTTb0yOo+KVmXkG1D7trsJ
-        b7PLY7JuKCKIMS45FmCO3rGVRc+IsxGg/GO7Bg==
-X-Google-Smtp-Source: ABdhPJwrYsjRqRbp8W7L7RNsRzd0evjxpOTm49EMHHsM+d5m4OoM4vtdOIpMtlbNj9xIX15UkOfWeW2OVJ+CD82IXC8=
-X-Received: by 2002:a17:906:d87:: with SMTP id m7mr3166012eji.108.1611067872941;
- Tue, 19 Jan 2021 06:51:12 -0800 (PST)
-MIME-Version: 1.0
-References: <20210118073340.62141-1-tony@atomide.com> <CAK8P3a1Eec1cAOdxNQ=8LORop+ESqx_=dg1uhJwpXhknxOydsg@mail.gmail.com>
- <YAVJyjmrbLCFjqVA@atomide.com>
-In-Reply-To: <YAVJyjmrbLCFjqVA@atomide.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 19 Jan 2021 08:51:01 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJWPc4rt0NiaF=zS0XOy4b8pZKDCEaxCjp8rW+joMjvjQ@mail.gmail.com>
-Message-ID: <CAL_JsqJWPc4rt0NiaF=zS0XOy4b8pZKDCEaxCjp8rW+joMjvjQ@mail.gmail.com>
-Subject: Re: [PATCHv2] drivers: bus: simple-pm-bus: Fix compatibility with
- simple-bus for auxdata
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Arnd Bergmann <arnd@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1727218AbhASRoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 12:44:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58874 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727098AbhASO6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 09:58:23 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A92BC061574;
+        Tue, 19 Jan 2021 06:57:40 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id d13so19987301wrc.13;
+        Tue, 19 Jan 2021 06:57:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=S7s1aDdJzIQjumzCvBYrOOcnrCsH9+fQZVg5rQvhpjg=;
+        b=QpVvmAtyMBONqrk1J3o1A1o3YCgKKWEmtVeAn5I6zbQExRfwxCB1aP76iMm1tvaKV0
+         kSCGfOGdmTvQpm+gek0pJr4Qw54rnBUunT3i/CcxjVlS18BCcXNVt50Go3mImTXxAZjI
+         nwFyFLGb+tzkvxcuDWOff+yK5fWUNfEstqNh/8/shTcqEFpVKX62vnFzcZGvfX5+AWJW
+         MV7dM/j9Rle19cDTiuH6Wsq1ECFEa9CZqNRu4vKjctpQKhJjAGZ2EgVbskNSyPSKmeBm
+         nxKIbIroZJuCNMEdoMeMVKOim3bnEOkQRpqoo63+xNC9mR2WzvN37T0GZuyw9Bc12d/g
+         geTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=S7s1aDdJzIQjumzCvBYrOOcnrCsH9+fQZVg5rQvhpjg=;
+        b=cVfwGzGfD/Nr7C5brbSuXbBo0WLGFCRfz33C19jCi/FAjuksp8lE4fL8l9KdhtM8iY
+         xFEHDjCnvoKje63f6mlBwlcBxQDlWawubhmOEwcSYwkqqGNhdwwMp/XeonGL5FLl+PFq
+         IXuXjOXjbQxbE8FY0HnZoHG2OycD6IhHioN7xSDnw18jVMENiKYXm2i2HgW+zgajHMGW
+         RfcqAtdDsC20Ewk0YQJCFfPcdE8d6Ya6Q0pwPpvN1EwQc/qqVDycX5FaEoi4qoJA+YQl
+         Wbll52Ph3d5s/z9ARbhd6par4uCIbPBbi4PcTdrHBHX2nbxnuk975OoYqMkRSXjKSrfC
+         eqYg==
+X-Gm-Message-State: AOAM530HeuvF+4HL5JLL8nqlwuI0ESOU7yfPTwvHO0m5PvRdK1tn3e6j
+        VVacbdUVX4OpjnnrCcdJopk=
+X-Google-Smtp-Source: ABdhPJwlVliSnGIRl5fq1VrlSGKf5EfYyoA/cUAaO255OlTrVwFyZS+pvw/KTSyiE5n2JE7dYIKmTQ==
+X-Received: by 2002:a5d:504d:: with SMTP id h13mr4875065wrt.246.1611068258821;
+        Tue, 19 Jan 2021 06:57:38 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id s1sm36786893wrv.97.2021.01.19.06.57.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 06:57:38 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v3 0/2] arm64: dts: meson: add support for Beelink GS-King-X
+Date:   Tue, 19 Jan 2021 14:57:32 +0000
+Message-Id: <20210119145734.12675-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 2:41 AM Tony Lindgren <tony@atomide.com> wrote:
->
-> * Arnd Bergmann <arnd@kernel.org> [210118 08:30]:
-> > On Mon, Jan 18, 2021 at 8:33 AM Tony Lindgren <tony@atomide.com> wrote:
-> > >
-> > > After converting am335x to probe devices with simple-pm-bus I noticed
-> > > that we are not passing auxdata for of_platform_populate() like we do
-> > > with simple-bus.
-> > >
-> > > While device tree using SoCs should no longer need platform data, there
-> > > are still quite a few drivers that still need it as can be seen with
-> > > git grep OF_DEV_AUXDATA. We want to have simple-pm-bus be usable as a
-> > > replacement for simple-bus also for cases where OF_DEV_AUXDATA is still
-> > > needed.
-> > >
-> > > Let's fix the issue by passing auxdata as platform data to simple-pm-bus.
-> > > That way the SoCs needing this can pass the auxdata with OF_DEV_AUXDATA.
-> > > And let's pass the auxdata for omaps to fix the issue for am335x.
-> > >
-> > > As an alternative solution, adding simple-pm-bus handling directly to
-> > > drivers/of/platform.c was considered, but we would still need simple-pm-bus
-> > > device driver. So passing auxdata as platform data seems like the simplest
-> > > solution.
-> > >
-> > > Fixes: 5a230524f879 ("ARM: dts: Use simple-pm-bus for genpd for am3 l4_wkup")
-> > > Signed-off-by: Tony Lindgren <tony@atomide.com>
-> > > ---
-> > > Changes since v1: Updated description, added devicetree list to Cc
-> >
-> > This looks fine to me for now
-> >
-> > Acked-by: Arnd Bergmann <arnd@arndb.de>
->
-> Thanks for the review.
->
-> > But I think we should take the time to discuss how to phase out auxdata
-> > over time. There are still a number of users, but it's not that many in the
-> > end. For some of them I see a clear solution, for other ones I do not:
->
-> Yes agreed we should remove the auxdata use.
->
-> > omap2: I'll leave these for Tony to comment
->
-> The three hardest ones to update (because of PM dependencies):
->
-> - PRM power managment interrupts that also pinctrl driver uses
+This series adds bindings and device-tree for the Beelink (AZW) GS-King-X,
+which like GT-King and GT-King Pro is based on the W400 reference design.
 
-I haven't looked at it, but can't one driver go find the other node
-and the interrupts it needs? There's nothing wrong with a driver
-looking outside 'its node' for information.
+Changes since v2:
+- shorten audio card name to GSKING-X
+- add Neil's tested-by
+- add Martin's reviews
 
-Rob
+Changes since v1:
+- move audio from TDM_B to TDM_A
+- drop S/PDIF content
+- add Rob's bindings ack
+
+Christian Hewitt (2):
+  dt-bindings: arm: amlogic: add support for the Beelink GS-King-X
+  arm64: dts: meson: add initial Beelink GS-King-X device-tree
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../boot/dts/amlogic/meson-g12b-gsking-x.dts  | 133 ++++++++++++++++++
+ 3 files changed, 135 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+
+-- 
+2.17.1
+
