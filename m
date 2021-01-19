@@ -2,139 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E99392FBCD1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 17:48:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 532792FBCD4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 17:48:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389143AbhASQkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 11:40:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52680 "EHLO
+        id S1730842AbhASQq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 11:46:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389120AbhASQko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 11:40:44 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2EB9C061574
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 08:40:03 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mgr@pengutronix.de>)
-        id 1l1u2Y-0005Fo-8U; Tue, 19 Jan 2021 17:39:34 +0100
-Received: from mgr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mgr@pengutronix.de>)
-        id 1l1u2X-0006I4-9p; Tue, 19 Jan 2021 17:39:33 +0100
-Date:   Tue, 19 Jan 2021 17:39:33 +0100
-From:   Michael Grzeschik <mgr@pengutronix.de>
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Manish Narani <manish.narani@xilinx.com>,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        michal.simek@xilinx.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: Re: [RESEND PATCH v3 2/2] usb: dwc3: Add driver for Xilinx platforms
-Message-ID: <20210119163933.GG12316@pengutronix.de>
-References: <1608015291-52007-1-git-send-email-manish.narani@xilinx.com>
- <1608015291-52007-3-git-send-email-manish.narani@xilinx.com>
- <20210118134223.GE12316@pengutronix.de>
- <87r1miuv2h.fsf@kernel.org>
+        with ESMTP id S2389101AbhASQkd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 11:40:33 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D14C061793
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 08:39:51 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id my11so1664608pjb.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 08:39:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=cTdtY4qgSag2E2xJ3jmFdRITmCSY9t7wixAtSeoxg2Q=;
+        b=aCdcBXR98AKemYk1+rhoQq3w5sl00WP94W9fCQXp2GYqIbMgOeObEGYjxzu2OHDRO5
+         JNnsEeVYEnnxWjq9JYN0N5Es5VJ6o8poBtybD4qmqmh+rtRYqdcWoS6ZPLvmB86VqKvp
+         KuwOo2wVfkXaKHST7hTie1Zwm+VmOHtTC+BkN5PrmnPa+oDrKx5SvzRSPHggm6ulyFUW
+         j+cymDA+einZLR931KJ6XZ/xF54na30P2hXeZrfAa+CsmNp0pLfqhX6DXf51S3FRYpCy
+         JD5rtGrBY59cPndSADv8WZZ1j+0nBFiz6eSDCgJfZCqNCKBOqXZw+i6ne3frB35NnWCk
+         XfAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cTdtY4qgSag2E2xJ3jmFdRITmCSY9t7wixAtSeoxg2Q=;
+        b=i9EHb0i2oiwUQpCm0HnotLpcG9vOWjMIRoTFEfBi/xg7brT75SaVsfdkfEzOXXXYRm
+         PaPad8L6QZ18+ha0JMF1j1hucaMHZhhZ1IWVrz7HXQJIbNGsIhMtul6kBYucQw2ZB7tD
+         Uhddk7A/ELk6bxR/wk03aca0YEhScsifoh3q+crK+4aTG9ip/bIyhj6Z/+cj3nXxfIPd
+         Tm8tmQKOD5Xajrv4LQXCE3yF8SHU6rFDfgU2dl0X3ggWuMZzjQ3fijBwLvPiEouXbaG8
+         NUA6C/N4+zTRSikCYbOr7WMZNV9WQkR/DfJASX8F1BESmMQYLXnbooFgJMGLTC0u8IY9
+         ZQdg==
+X-Gm-Message-State: AOAM531CB1FqiMPXmep6nHGT4jADcJJBqE6OCHXJrp71w3WiWYoTNDsC
+        4vd0Hf4U/np5ZI2u4t5/9jpeQg==
+X-Google-Smtp-Source: ABdhPJwsgG18vPsJQ0f/5DyB3vrcEJ5GeHpm0/VCYtLLtHmxk+zq/mqzsg8nE5P3A0ADiB+MatltVA==
+X-Received: by 2002:a17:90b:11d4:: with SMTP id gv20mr575460pjb.116.1611074390788;
+        Tue, 19 Jan 2021 08:39:50 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id j23sm19036043pgj.34.2021.01.19.08.39.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 08:39:50 -0800 (PST)
+Date:   Tue, 19 Jan 2021 09:39:48 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     peng.fan@nxp.com
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        o.rempel@pengutronix.de, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
+        patrice.chotard@st.com
+Subject: Re: [PATCH V8 10/10] remoteproc: imx_proc: enable virtio/mailbox
+Message-ID: <20210119163948.GC611676@xps15>
+References: <1611041711-15902-1-git-send-email-peng.fan@nxp.com>
+ <1611041711-15902-11-git-send-email-peng.fan@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uc35eWnScqDcQrv5"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87r1miuv2h.fsf@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 17:35:27 up 48 days,  5:02, 89 users,  load average: 0.15, 0.23,
- 0.19
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mgr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1611041711-15902-11-git-send-email-peng.fan@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 19, 2021 at 03:35:11PM +0800, peng.fan@nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Use virtio/mailbox to build connection between Remote Proccessors
+> and Linux. Add work queue to handle incoming messages.
+> 
+> Reviewed-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/remoteproc/imx_rproc.c | 116 ++++++++++++++++++++++++++++++++-
+>  1 file changed, 113 insertions(+), 3 deletions(-)
 
---uc35eWnScqDcQrv5
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Mathieu Poirier <mathieu.poirer@linaro.org>
 
-On Mon, Jan 18, 2021 at 05:24:38PM +0200, Felipe Balbi wrote:
->
->Hi,
->
->Michael Grzeschik <mgr@pengutronix.de> writes:
->> On Tue, Dec 15, 2020 at 12:24:51PM +0530, Manish Narani wrote:
->>>Add a new driver for supporting Xilinx platforms. This driver is used
->>>for some sequence of operations required for Xilinx USB controllers.
->>>This driver is also used to choose between PIPE clock coming from SerDes
->>>and the Suspend Clock. Before the controller is out of reset, the clock
->>>selection should be changed to PIPE clock in order to make the USB
->>>controller work. There is a register added in Xilinx USB controller
->>>register space for the same.
->>
->> I tried out this driver with the vanilla kernel on an zynqmp. Without
->> this patch the USB-Gadget is already acting buggy. In the gadget mode,
->> some iterations of plug/unplug results to an stalled gadget which will
->> never come back without a reboot.
->>
->> With the corresponding code of this driver (reset assert, clk modify,
->> reset deassert) in the downstream kernels phy driver we found out it is
->> totaly stable. But using this exact glue driver which should do the same
->> as the downstream code, the gadget still was buggy the way described
->> above.
->>
->> I suspect the difference lays in the different order of operations.
->> While the downstream code is runing the resets inside the phy driver
->> which is powered and initialized in the dwc3-core itself. With this glue
->> layser approach of this patch the whole phy init is done before even
->> touching dwc3-core in any way. It seems not to have the same effect,
->> though.
->>
->> If really the order of operations is limiting us, we probably need
->> another solution than this glue layer. Any Ideas?
->
->might be a good idea to collect dwc3 trace events. Can you do that?
+I will pickup this set when Rob has reviewed the DT bindings.  In the mean time
+you might want to fix the title section in the the .yaml file, the Kconfig
+and the MODULE_DESCRIPTION and add a reference to i.MX8.
 
-I already did that. In case the port is not working properly, the port
-was producing several "Erratic Errors" between the plug/unplug events.
+Thanks,
+Mathieu
 
-This was not the case until the reset_assert, pll configure,
-reset_deassert sequence was applied like in the downstream kernels
-phy driver on phy_init.
-
-Regards,
-Michael
-
---=20
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
---uc35eWnScqDcQrv5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEElXvEUs6VPX6mDPT8C+njFXoeLGQFAmAHCz8ACgkQC+njFXoe
-LGSODxAAxydcsZuiOW+cXJH7OETTYOD83zHcdXo2Y3fWuKeUHaZoiZ+YZTXX3HeL
-rgVC/aSf2+ONKW6kxuUmnxKCrcDRv52y2TAbXEic9MstbxfPHUMae5gxWtTmdX62
-LxZ1YxebJ85wXVukcjUfA9ABOmHe0ZE9m3WxvDW15lwhRuJAx3vCmVQm/VgcyVCM
-pTFOdQ4pIxSXp+I0AHUUi1yteA51tzEToXOJiSgWCGd+mN5NAA19okhzQZlbhJ4G
-Gs78Ca6elF9F6DGSZVZ41ry/dcyrQfIQ5mnXWZuUF5BlpAW9zLl/FQBB3Wnjijx9
-8LFcpHrfJJlxU10UqptLeEc28zYx7uouSYdtXghv+kzlxm67qWEUV7cht+PXJ69y
-1rlNclKk7roqJNZnc9nnzmwa7AdFqCSWtN5c/ZmohhSNUDe4xFiUEyorkNRFVIe7
-gyBalT21ho83I5jar0u6FJ99ZCKCbi++yC2V0zoDKXxbpfdHf5MbcrLBRHzXuiXj
-chIXOsVpM07gDCwMNBUhZqy9FFZERzY3xxoHYnhhDZ4tgy1crtfFxfMnaPro+u1M
-b/j4UCjWcSb0AJ0uvzJuMVEy4JDFb/feaNJCGLqFeG97DaChgYJm5uy6yhj434yk
-ExLqsU4gk4lSpCTesHqcas2r2IoM231ew/Ma7ni3CSWhRUp4tgA=
-=DxJJ
------END PGP SIGNATURE-----
-
---uc35eWnScqDcQrv5--
+> 
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index 54ac143ba033..c16a91f8e410 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -7,6 +7,7 @@
+>  #include <linux/err.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+> +#include <linux/mailbox_client.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+> @@ -15,6 +16,9 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+>  #include <linux/remoteproc.h>
+> +#include <linux/workqueue.h>
+> +
+> +#include "remoteproc_internal.h"
+>  
+>  #define IMX7D_SRC_SCR			0x0C
+>  #define IMX7D_ENABLE_M4			BIT(3)
+> @@ -86,6 +90,11 @@ struct imx_rproc {
+>  	const struct imx_rproc_dcfg	*dcfg;
+>  	struct imx_rproc_mem		mem[IMX7D_RPROC_MEM_MAX];
+>  	struct clk			*clk;
+> +	struct mbox_client		cl;
+> +	struct mbox_chan		*tx_ch;
+> +	struct mbox_chan		*rx_ch;
+> +	struct work_struct		rproc_work;
+> +	struct workqueue_struct		*workqueue;
+>  };
+>  
+>  static const struct imx_rproc_att imx_rproc_att_imx8mq[] = {
+> @@ -366,9 +375,33 @@ static int imx_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
+>  	return 0;
+>  }
+>  
+> +static void imx_rproc_kick(struct rproc *rproc, int vqid)
+> +{
+> +	struct imx_rproc *priv = rproc->priv;
+> +	int err;
+> +	__u32 mmsg;
+> +
+> +	if (!priv->tx_ch) {
+> +		dev_err(priv->dev, "No initialized mbox tx channel\n");
+> +		return;
+> +	}
+> +
+> +	/*
+> +	 * Send the index of the triggered virtqueue as the mu payload.
+> +	 * Let remote processor know which virtqueue is used.
+> +	 */
+> +	mmsg = vqid << 16;
+> +
+> +	err = mbox_send_message(priv->tx_ch, (void *)&mmsg);
+> +	if (err < 0)
+> +		dev_err(priv->dev, "%s: failed (%d, err:%d)\n",
+> +			__func__, vqid, err);
+> +}
+> +
+>  static const struct rproc_ops imx_rproc_ops = {
+>  	.start		= imx_rproc_start,
+>  	.stop		= imx_rproc_stop,
+> +	.kick		= imx_rproc_kick,
+>  	.da_to_va       = imx_rproc_da_to_va,
+>  	.load		= rproc_elf_load_segments,
+>  	.parse_fw	= imx_rproc_parse_fw,
+> @@ -444,6 +477,66 @@ static int imx_rproc_addr_init(struct imx_rproc *priv,
+>  	return 0;
+>  }
+>  
+> +static void imx_rproc_vq_work(struct work_struct *work)
+> +{
+> +	struct imx_rproc *priv = container_of(work, struct imx_rproc,
+> +					      rproc_work);
+> +
+> +	rproc_vq_interrupt(priv->rproc, 0);
+> +	rproc_vq_interrupt(priv->rproc, 1);
+> +}
+> +
+> +static void imx_rproc_rx_callback(struct mbox_client *cl, void *msg)
+> +{
+> +	struct rproc *rproc = dev_get_drvdata(cl->dev);
+> +	struct imx_rproc *priv = rproc->priv;
+> +
+> +	queue_work(priv->workqueue, &priv->rproc_work);
+> +}
+> +
+> +static int imx_rproc_xtr_mbox_init(struct rproc *rproc)
+> +{
+> +	struct imx_rproc *priv = rproc->priv;
+> +	struct device *dev = priv->dev;
+> +	struct mbox_client *cl;
+> +	int ret;
+> +
+> +	if (!of_get_property(dev->of_node, "mbox-names", NULL))
+> +		return 0;
+> +
+> +	cl = &priv->cl;
+> +	cl->dev = dev;
+> +	cl->tx_block = true;
+> +	cl->tx_tout = 100;
+> +	cl->knows_txdone = false;
+> +	cl->rx_callback = imx_rproc_rx_callback;
+> +
+> +	priv->tx_ch = mbox_request_channel_byname(cl, "tx");
+> +	if (IS_ERR(priv->tx_ch)) {
+> +		ret = PTR_ERR(priv->tx_ch);
+> +		return dev_err_probe(cl->dev, ret,
+> +				     "failed to request tx mailbox channel: %d\n", ret);
+> +	}
+> +
+> +	priv->rx_ch = mbox_request_channel_byname(cl, "rx");
+> +	if (IS_ERR(priv->rx_ch)) {
+> +		mbox_free_channel(priv->tx_ch);
+> +		ret = PTR_ERR(priv->rx_ch);
+> +		return dev_err_probe(cl->dev, ret,
+> +				     "failed to request rx mailbox channel: %d\n", ret);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void imx_rproc_free_mbox(struct rproc *rproc)
+> +{
+> +	struct imx_rproc *priv = rproc->priv;
+> +
+> +	mbox_free_channel(priv->tx_ch);
+> +	mbox_free_channel(priv->rx_ch);
+> +}
+> +
+>  static int imx_rproc_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -481,18 +574,28 @@ static int imx_rproc_probe(struct platform_device *pdev)
+>  	priv->dev = dev;
+>  
+>  	dev_set_drvdata(dev, rproc);
+> +	priv->workqueue = create_workqueue(dev_name(dev));
+> +	if (!priv->workqueue) {
+> +		dev_err(dev, "cannot create workqueue\n");
+> +		ret = -ENOMEM;
+> +		goto err_put_rproc;
+> +	}
+> +
+> +	ret = imx_rproc_xtr_mbox_init(rproc);
+> +	if (ret)
+> +		goto err_put_wkq;
+>  
+>  	ret = imx_rproc_addr_init(priv, pdev);
+>  	if (ret) {
+>  		dev_err(dev, "failed on imx_rproc_addr_init\n");
+> -		goto err_put_rproc;
+> +		goto err_put_mbox;
+>  	}
+>  
+>  	priv->clk = devm_clk_get(dev, NULL);
+>  	if (IS_ERR(priv->clk)) {
+>  		dev_err(dev, "Failed to get clock\n");
+>  		ret = PTR_ERR(priv->clk);
+> -		goto err_put_rproc;
+> +		goto err_put_mbox;
+>  	}
+>  
+>  	/*
+> @@ -502,9 +605,11 @@ static int imx_rproc_probe(struct platform_device *pdev)
+>  	ret = clk_prepare_enable(priv->clk);
+>  	if (ret) {
+>  		dev_err(&rproc->dev, "Failed to enable clock\n");
+> -		goto err_put_rproc;
+> +		goto err_put_mbox;
+>  	}
+>  
+> +	INIT_WORK(&(priv->rproc_work), imx_rproc_vq_work);
+> +
+>  	ret = rproc_add(rproc);
+>  	if (ret) {
+>  		dev_err(dev, "rproc_add failed\n");
+> @@ -515,6 +620,10 @@ static int imx_rproc_probe(struct platform_device *pdev)
+>  
+>  err_put_clk:
+>  	clk_disable_unprepare(priv->clk);
+> +err_put_mbox:
+> +	imx_rproc_free_mbox(rproc);
+> +err_put_wkq:
+> +	destroy_workqueue(priv->workqueue);
+>  err_put_rproc:
+>  	rproc_free(rproc);
+>  
+> @@ -528,6 +637,7 @@ static int imx_rproc_remove(struct platform_device *pdev)
+>  
+>  	clk_disable_unprepare(priv->clk);
+>  	rproc_del(rproc);
+> +	imx_rproc_free_mbox(rproc);
+>  	rproc_free(rproc);
+>  
+>  	return 0;
+> -- 
+> 2.28.0
+> 
