@@ -2,113 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F322FBF60
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 19:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03F9B2FBF03
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jan 2021 19:33:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728459AbhASSoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 13:44:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40042 "EHLO
+        id S1728534AbhASSa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 13:30:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726549AbhASR4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 12:56:42 -0500
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D45C06138A
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 09:54:30 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id k132so9661630ybf.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 09:54:30 -0800 (PST)
+        with ESMTP id S1727176AbhASSaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 13:30:22 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1781C061575
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 10:29:41 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id 3so2859782ljc.4
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 10:29:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=b+/J27uvGJNWRkcEdHdikRhtGLPGXBf2Z7B8raJzfG8=;
-        b=VNmhhkIievbkfSc+cjRvVw2L92usrVFQArZAzXCy99qCox/NjfpvR07w/+4P8slWk5
-         NHZAWIhrgGzzekDe1fQMBL0cUF2CjUMATWBMUl31unA/FvaxTrFd+77Oup7faIC9sJVM
-         9QG87sR/eWzrliUtIupEbtEiNWQyG5oPB7F+/+CpmGxlk2KYqDH3PnavfGc3sy9n7tP/
-         cCSPhtGwfXS2d2gSzNiZrKaqlfal36TyN15sGM/Dns6WwQFG0fZRlvY/116YfkG8Ku5T
-         qUqMC+HWaUq+SDkKx1HB9w2+TB9q8VzQq1SEh+nw8myO82T6druRVu5BAszrPdMLCQAC
-         YqKg==
+        bh=JWWYuzWaghP5Q544uqJbXr3wVFNCkeCk1gyHHkDdQ/A=;
+        b=xnRYIRj8nrXC1Xt9zSBJsXJhgrBfjtCh3CpB6YoNFq2VStdTH5p5X55ThbO9d1T1QX
+         W4s3X+eaII0u/7aakfdFOHqfMiUcebQtCqGbU6qrTrTIw/bmaobbAmF5g8xQdlH+JcMm
+         MwOW3qhK6j4IEuDDA9aUNzDZHWOBV902OvyIedTiWvaRgws3zCpOuRkUoF7aUpFxFq3D
+         40LMffLZW2m8ILnF63bEftJER/hfJVcH/wFwzdFaBuEzghmJBC93E7qNrD9P7KluZaeX
+         XSeU0f3WfA72mJTI8MrG5TUXjTsupJjNWOUFcePRC+6ucYsae6rZqQivHGipbnhG0lhg
+         MmZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=b+/J27uvGJNWRkcEdHdikRhtGLPGXBf2Z7B8raJzfG8=;
-        b=kUPPPaougZ1ZbhqVZUpxc6/f8y7xTLVM3jnTcPmPbtx2DYHglx6MMXmmga4DIJbzXC
-         1W940I+T1T57amqz80pIhBwnV1utJoi2k4JIcr3HbSgN4gB8IZi+7ZCv0Bm+Y8aKzmut
-         qPJkZKH/42T1hWUXx2Cs5qAy9kr4L/+D5HYKLiezIg5/Lm/Ei2k0PXEpjAiNSm6F3VoA
-         ry41uSwFKFpmnS/RrMaqrAV+iS2YLesCctnLtJxg/uiC8nxGElGIzjrUxB6/LKZJqBn5
-         FMmHzA1KUxdd9OwqFb+w7pShC7NRoaE6JWwOBZqESvMbZFYYKo2KVOuFBfA/q/vqZid5
-         dXRQ==
-X-Gm-Message-State: AOAM5307bff/++yhHRH2B3wat0nd67ec848d8KTtwkHQGZpvMRW/f1Kq
-        Kvu5i1DyqT3HoAASQnxcOaBo6wInw1vgB3WlfiEWAQ==
-X-Google-Smtp-Source: ABdhPJxrYl/1TM45kNIJhyUluY43XDSvSI/9t/hcpCygXflUpxCfBA/MJNLA/Q+aYIn08kWgLlNWb6Xo+b5k0jCg4sg=
-X-Received: by 2002:a25:7491:: with SMTP id p139mr7075085ybc.346.1611078869664;
- Tue, 19 Jan 2021 09:54:29 -0800 (PST)
+        bh=JWWYuzWaghP5Q544uqJbXr3wVFNCkeCk1gyHHkDdQ/A=;
+        b=qADTFTkFK6BqNVTQT6yWoRom4ceM+7BL/D2pkIEO5L+7LXUHdLHERWc/Z+iwjy7SIM
+         Ru9n62uACMXxcAKXB5zxv5RvpTmZWVRoqt4PJcUL4ecIT9Oy6XhB4qeVf+KT365e0cDa
+         YHVBKWy+ZLxSbm6VLh8FAEMFKPU06u7iNGhgsQpT7HxsI/M5PhZHxaBOhWgKheoOZD5p
+         oVajLIqLIdFvnaXAxkZ3chMPAsp2yhC0Or0eGu+NHas3c+u1Hgxbx+eaBGHySHQmOA+Q
+         dbcF0oNP5Fl5VHxYfmEfkOfSLwMGayu6LyaQbXipqetI9A595BgMlhnC3sUlevFFKhqQ
+         ma9w==
+X-Gm-Message-State: AOAM531q9CdnNRAU4z29yxKbb4g34xE6/MqhYXmlwKwRcWBIEAUOVJWh
+        B7nwBG/tavtRe2CHsPrWqNiY7JgjbDvqhqyYpNbsog==
+X-Google-Smtp-Source: ABdhPJyoOd3Tzkorx9mIjYO8VVetUnWwDqJgYwdoxP5M9bwFey7dBLq3et+JsaDPEcCzrb4F1+lPqF4gjUDlxQ1XCog=
+X-Received: by 2002:a05:651c:10e:: with SMTP id a14mr2543204ljb.128.1611080980220;
+ Tue, 19 Jan 2021 10:29:40 -0800 (PST)
 MIME-Version: 1.0
-References: <20210115210159.3090203-1-saravanak@google.com>
- <CACRpkdYrzaFuWkbTe7Fmos4Bk4Ojt6wbqayDjyrS7sf98P-Rbg@mail.gmail.com>
- <CAGETcx9t3R-k0ttiaBUqcveqnXMX75xuTcKPSo9J6WJOfgSP8w@mail.gmail.com>
- <CAMuHMdUN7+O28Xz5rkPwR2RuSA+o_E2VcWsz_9+kzy4=0Jnb1g@mail.gmail.com> <CACRpkdZqSm-xfo8a8aFUe-Mbaw9tM+OmCAF3KWjOVDfC=oWj+Q@mail.gmail.com>
-In-Reply-To: <CACRpkdZqSm-xfo8a8aFUe-Mbaw9tM+OmCAF3KWjOVDfC=oWj+Q@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 19 Jan 2021 09:53:53 -0800
-Message-ID: <CAGETcx-Vp0BpYbpPjwsmOv0q5ba1mJvfsPEZ9Oi2Rmx67udu7A@mail.gmail.com>
-Subject: Re: [PATCH v1] of: property: Add fw_devlink support for "gpio" and
- "gpios" binding
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Android Kernel Team <kernel-team@android.com>,
+References: <20210113012143.1201105-1-minchan@kernel.org> <20210113012143.1201105-5-minchan@kernel.org>
+In-Reply-To: <20210113012143.1201105-5-minchan@kernel.org>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Tue, 19 Jan 2021 10:29:29 -0800
+Message-ID: <CALAqxLWPT8PWYue0h1863NjNxKn_FH0DtoRtArpmmxZ1Ve5xCw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] dma-buf: heaps: add chunk heap to dmabuf heaps
+To:     Minchan Kim <minchan@kernel.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Hyesoo Yu <hyesoo.yu@samsung.com>, david@redhat.com,
+        Michal Hocko <mhocko@suse.com>,
+        Suren Baghdasaryan <surenb@google.com>,
+        KyongHo Cho <pullip.cho@samsung.com>,
+        John Dias <joaodias@google.com>,
+        Hridya Valsaraju <hridya@google.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-media <linux-media@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        Christoph Hellwig <hch@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
+        <linaro-mm-sig@lists.linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 2:20 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+On Tue, Jan 12, 2021 at 5:22 PM Minchan Kim <minchan@kernel.org> wrote:
 >
-> On Tue, Jan 19, 2021 at 9:50 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> From: Hyesoo Yu <hyesoo.yu@samsung.com>
 >
-> > > Can we pull this into driver-core-next please? It fixes issues on some
-> > > boards with fw_devlink=on.
-> >
-> > On r8a77951-salvator-xs.dts, it introduces one more failure:
-> >
-> >     OF: /soc/i2c@e66d8000/gpio@20/pcie-sata-switch-hog: could not get
-> > #gpio-cells for /cpus/cpu@102
-
-Geert,
-
-One good thing is that it's noticing this being weird and ignoring it
-in your particular board. I *think* it interprets the "7" as a phandle
-and that's cpu@102 and realizes it's not a gpio-controller. For at
-least in your case, it's a safe failure.
-
-> >
-> > Seems like it doesn't parse gpios properties in GPIO hogs correctly.
+> This patch supports chunk heap that allocates the buffers that
+> arranged into a list a fixed size chunks taken from CMA.
 >
-> Could it be that the code assumes no self-referencing phandles?
-> (Just guessing...)
+> The chunk heap driver is bound directly to a reserved_memory
+> node by following Rob Herring's suggestion in [1].
 >
+> [1] https://lore.kernel.org/lkml/20191025225009.50305-2-john.stultz@linaro.org/T/#m3dc63acd33fea269a584f43bb799a876f0b2b45d
+>
+> Signed-off-by: Hyesoo Yu <hyesoo.yu@samsung.com>
+> Signed-off-by: Hridya Valsaraju <hridya@google.com>
+> Signed-off-by: Minchan Kim <minchan@kernel.org>
+> ---
+...
+> +static int register_chunk_heap(struct chunk_heap *chunk_heap_info)
+> +{
+> +       struct dma_heap_export_info exp_info;
+> +
+> +       exp_info.name = cma_get_name(chunk_heap_info->cma);
 
-Linus,
+One potential issue here, you're setting the name to the same as the
+CMA name. Since the CMA heap uses the CMA name, if one chunk was
+registered as a chunk heap but also was the default CMA area, it might
+be registered twice. But since both would have the same name it would
+be an initialization race as to which one "wins".
 
-Ok I tried to understand what gpio-hogs means. It's not fully clear to
-me. But it looks like if a gpio-controller has a gpio-hog, then it
-doesn't have/need gpio-cells? Is that right?
+So maybe could you postfix the CMA name with "-chunk" or something?
 
-So if a gpio-controller has a gpio-hog, can it ever be referred to by
-another consumer in DT using blah-gpios = ...? If so, I don't see any
-obvious code that's handling the missing gpio-cells in this case.
-
-Long story short, please help me understand gpio-hog in the context of
-finding dependencies in DT.
-
-Thanks,
-Saravana
+thanks
+-john
