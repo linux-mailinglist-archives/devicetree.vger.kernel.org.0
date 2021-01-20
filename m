@@ -2,149 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FD012FD700
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:33:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A782FD70A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:33:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731779AbhATPio convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 20 Jan 2021 10:38:44 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:60590 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390174AbhATOz0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 09:55:26 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l2EsV-0001oX-0b; Wed, 20 Jan 2021 15:54:35 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>, Simon Xue <xxm@rock-chips.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        PCI <linux-pci@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH 2/3] dt-bindings: rockchip: Add DesignWare based PCIe controller
-Date:   Wed, 20 Jan 2021 15:54:34 +0100
-Message-ID: <3792680.3daJWjYHZt@diego>
-In-Reply-To: <CAL_JsqK=roMm7vb=WAcLUsiru5qwFg=Sc_po1gD8oJu=JipZbg@mail.gmail.com>
-References: <20210118091739.247040-1-xxm@rock-chips.com> <c9ff67c7-ca1d-d4a6-aef5-4c75688ed6d3@arm.com> <CAL_JsqK=roMm7vb=WAcLUsiru5qwFg=Sc_po1gD8oJu=JipZbg@mail.gmail.com>
+        id S1731632AbhATRaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 12:30:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34368 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727513AbhATRZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 12:25:02 -0500
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B50AC0613CF;
+        Wed, 20 Jan 2021 09:24:22 -0800 (PST)
+Received: by mail-qt1-x833.google.com with SMTP id o18so7138691qtp.10;
+        Wed, 20 Jan 2021 09:24:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=QHGxCrtWj1JMWVn1PV7IKwxKRhoQXxqNmdVqNw1canw=;
+        b=kjr59o3afGGwKSLLD1PXHcn1hlF0tuSLZI5cRO/0CPg/reKzx+ZnIxdKMIoq2J+FHM
+         9H+fl80XPaa2NncZMusZBaWdm7bqn0C0OqmBloVCw6Fw3TwTC104Y3GzEXs/YowhZb/t
+         XXIC+nPehiSyGikka/bpWVKbNJCsL9P3+Jr6ajcsCsD/0AEspMmSuAVe6aUA1avVglub
+         qMupdhxnPZuBLTKZi89dP51m4sj4gYeA/OzY35S3ISWWRJQWrW6FiUrMfZgboy1/lq49
+         AB7tKAiO5pSZyg2haypmAtrvkuiQeN5qtjgcIOkSxUttPKWtYL4EO9FDdidD1G3Mf+OG
+         Qzlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=QHGxCrtWj1JMWVn1PV7IKwxKRhoQXxqNmdVqNw1canw=;
+        b=naaUDVgD2UtmOkpwK5FQp4GxArzvviugsJFo4VhAkKitfopGxT4G78uEPKzw13h0R1
+         gXNSkex5zzFWu2H9HLe9G11j9fvXA4ijI2FuKwdKQqSEcxIJyvOogq6H4M9+VAj+6nZw
+         JWCG2T9bAkjKFA65nYxk5GB5yo5QYF6zPv9M06RkAVDpdU4OYs45eNhjZEfW5xKgkAmM
+         pA0AdlxJFhR1Wu704USZkwleceNJV1PnE7zvjhNJjTlTME6Qb3a2sP8YY/JTZT8G7CnS
+         +oMhQjLTljW3shkSD0TeTvL8i91PpYGsK1rbHTtq6ZwKLkBEE5tx64L6ye31hd55g7eU
+         i6Ew==
+X-Gm-Message-State: AOAM532gtA+43PVizGVjlHXOjMa0kNkqdYP0lqPCfOPBGSDyWAbaPOyu
+        JZBu2FjB3VXz0f9hNkXN+CU=
+X-Google-Smtp-Source: ABdhPJzWRcWqEGULd33QwmIEXWdCtG/rHx79bLVCT6LWLGrMzLGo3dVLazphPv2N5hr5DPJ4Bm07DA==
+X-Received: by 2002:a05:622a:90:: with SMTP id o16mr5255432qtw.49.1611163461791;
+        Wed, 20 Jan 2021 09:24:21 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id h26sm1553183qtq.18.2021.01.20.09.24.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 09:24:19 -0800 (PST)
+Date:   Wed, 20 Jan 2021 18:24:17 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>, kernel-team@android.com
+Subject: Re: [PATCH v1 1/2] of: property: Add fw_devlink support for "gpio"
+ and "gpios" binding
+Message-ID: <YAhnQbORCTJM+FLI@ulmo>
+References: <20210120080522.471120-1-saravanak@google.com>
+ <20210120080522.471120-2-saravanak@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pCZppSPUrQdyYjcn"
+Content-Disposition: inline
+In-Reply-To: <20210120080522.471120-2-saravanak@google.com>
+User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 20. Januar 2021, 15:16:25 CET schrieb Rob Herring:
-> On Tue, Jan 19, 2021 at 12:40 PM Robin Murphy <robin.murphy@arm.com> wrote:
-> >
-> > On 2021-01-19 15:11, Johan Jonker wrote:
-> > > Hi Simon, Heiko,
-> > >
-> > > On 1/19/21 2:14 PM, Heiko Stübner wrote:
-> > >> Hi Johan,
-> > >>
-> > >> Am Dienstag, 19. Januar 2021, 14:07:41 CET schrieb Johan Jonker:
-> > >>> Hi Simon,
-> > >>>
-> > >>> Thank you for this patch for rk3568 pcie.
-> > >>>
-> > >>> Include the Rockchip device tree maintainer and all other people/lists
-> > >>> to the CC list.
-> > >>>
-> > >>> ./scripts/checkpatch.pl --strict <patch1> <patch2>
-> > >>>
-> > >>>   ./scripts/get_maintainer.pl --noroles --norolestats --nogit-fallback
-> > >>> --nogit <patch1> <patch2>
-> > >>>
-> > >>> git send-email --suppress-cc all --dry-run --annotate --to
-> > >>> heiko@sntech.de --cc <..> <patch1> <patch2>
-> > >>>
-> > >>> This SoC has no support in mainline linux kernel yet.
-> > >>> In all the following yaml documents for rk3568 we need headers with
-> > >>> defines for clocks and power domains, etc.
-> > >>>
-> > >>> For example:
-> > >>> #include <dt-bindings/clock/rk3568-cru.h>
-> > >>> #include <dt-bindings/power/rk3568-power.h>
-> > >>>
-> > >>> Could Rockchip submit first clocks and power drivers entries and a basic
-> > >>> rk3568.dtsi + evb dts?
-> > >>> Include a patch to this serie with 3 pcie nodes added to rk3568.dtsi.
-> > >>>
-> > >>> A dtbs_check only works with a complete dtsi and evb dts.
-> > >>>
-> > >>> make ARCH=arm64 dtbs_check
-> > >>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > >>>
-> > >>> On 1/18/21 10:17 AM, Simon Xue wrote:
-> > >>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> > >>>> ---
-> > >>>>   .../bindings/pci/rockchip-dw-pcie.yaml        | 101 ++++++++++++++++++
-> > >>>>   1 file changed, 101 insertions(+)
-> > >>>>   create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > >>>>
-> > >>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > >>>> new file mode 100644
-> > >>>> index 000000000000..fa664cfffb29
-> > >>>> --- /dev/null
-> > >>>> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > >>>> @@ -0,0 +1,101 @@
-> > >>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > >>>> +%YAML 1.2
-> > >>>> +---
-> > >>>> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
-> > >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >>>> +
-> > >>>> +title: DesignWare based PCIe RC controller on Rockchip SoCs
-> > >>>> +
-> > >>>
-> > >>>> +maintainers:
-> > >>>> +  - Shawn Lin <shawn.lin@rock-chips.com>
-> > >>>> +  - Simon Xue <xxm@rock-chips.com>
-> > >>>
-> > >>> maintainers:
-> > >>>    - Heiko Stuebner <heiko@sntech.de>
-> > >>>
-> > >>> Add only people with maintainer rights.
-> > >>
-> > >> I'd disagree on this ;-)
-> > >
-> > > All roads leads to Heiko... ;)
-> > >
-> > > It takes long term commitment.
-> > > Year in, year out.
-> > > Keeping yourself up to date with the latest pcei development.
-> > > Communicate in English.
-> > > Be able to submit patches without errors... ;)
-> > > Review other peoples patches.
-> > > Respond in short time.
-> > > Bug fixing.
-> >
-> > Crikey, it's only a DT binding... :/
-> >
-> > > If that's what you really want, then you must include a patch to this
-> > > serie for MAINTAINERS.
-> >
-> > I think if Bjorn and Lorenzo want a specifically named sub-maintainer
-> > for the driver itself, we can let them say so rather than presume.
-> 
-> For the binding it's my call. :)
-> 
-> This should be someone who cares and knows the h/w. IOW, if I want to
-> delete the binding, someone who will object.
->
-> Of course, I'd like that someone to have all the above qualities too.
 
-I guess that would be separate entites then ...
+--pCZppSPUrQdyYjcn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Shawn and Simon know the hardware way better, though I'm not sure if their
-work commitments will allow them to keep track of binding deletions
+On Wed, Jan 20, 2021 at 12:05:20AM -0800, Saravana Kannan wrote:
+> To provide backward compatibility for boards that use deprecated DT
+> bindings, we need to add fw_devlink support for "gpio" and "gpios".
+>=20
+> Cc: linux-tegra <linux-tegra@vger.kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+> Fixes: e590474768f1 ("driver core: Set fw_devlink=3Don by default")
+> Tested-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/of/property.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 
-So maybe all 3 of us ;-)
+Reviewed-by: Thierry Reding <treding@nvidia.com>
 
-Heiko
+--pCZppSPUrQdyYjcn
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAIZz8ACgkQ3SOs138+
+s6H8Fw//exdiPxcZEHUstRkaLWDGfkyaqoNUjcXBm4sI/X6+A+X8vRU6oxxj2jzK
+x3XgbzhjLkp442DZtMlOgS5yYlkxAWoKyyleroeCE1CS7Jcfl7EeL3dp4ggflRjg
+mb3/zLG4VYvsIX/859RpnOW8APr9d1/AcRQPvuPX9+7TdO6u2n+HVp4A3bgvhQvo
+hpdazA/S5Jp2UsoQuc8DQGu89QV47TCjrztorp6js5Creh+OX7cc6/BPAv7s2SIB
+9Dr+cVIXhVwkruq6cBNS77J6ZunRyeNNzyhlAYPtBqSNMAMH2PBwal5iOCMoY9YH
+9f+4jTIGnakEKA+eWkeSfRmt/9BqpPEbk7W+ACskXupq9dB+/Dtp2sU1JvZDIwFX
+NCvQaRSmXSRObs3YlJplauQ5uNmG5zvWg8y6es9s9lMRUVJkZHJl7sBSO751B3Qb
+RXb5P5Ip8n0pMppl8SHAt2E9ayBcz7ZvJwC1+dNtRUM3K/ShDCicfnbO1Y/Tvy/l
+sL1IaCqGrQfT7A02LpVSBVxBFvXEGxreSI3XmET3UOx0jtwcSYIFrnpMKpNKB1Y+
+gUCGfUdvZRdqazUhYiEbgK6GRdOpfVFuxxSbvU7ia7gU2wjP6AwideiLRkUkGNge
+S3P13nua5DiZtx+D1g9zg3zqmAQTJPaiYAi6BADk+eQH8oz6XeE=
+=NGtr
+-----END PGP SIGNATURE-----
+
+--pCZppSPUrQdyYjcn--
