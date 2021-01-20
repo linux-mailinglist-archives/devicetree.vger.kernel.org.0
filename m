@@ -2,172 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3352FD581
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:26:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 510382FD583
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:26:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389833AbhATQWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 11:22:48 -0500
-Received: from foss.arm.com ([217.140.110.172]:42470 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403839AbhATQUw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 11:20:52 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9822731B;
-        Wed, 20 Jan 2021 08:20:06 -0800 (PST)
-Received: from [10.57.39.58] (unknown [10.57.39.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DC27D3F68F;
-        Wed, 20 Jan 2021 08:20:04 -0800 (PST)
-Subject: Re: [PATCH 2/3] dt-bindings: rockchip: Add DesignWare based PCIe
- controller
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>, Simon Xue <xxm@rock-chips.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        PCI <linux-pci@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
-References: <20210118091739.247040-1-xxm@rock-chips.com>
- <c9ff67c7-ca1d-d4a6-aef5-4c75688ed6d3@arm.com>
- <CAL_JsqK=roMm7vb=WAcLUsiru5qwFg=Sc_po1gD8oJu=JipZbg@mail.gmail.com>
- <3792680.3daJWjYHZt@diego>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <0f83d344-c257-a576-ed38-8f9299047f73@arm.com>
-Date:   Wed, 20 Jan 2021 16:20:03 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S2391414AbhATQWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 11:22:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403877AbhATQVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 11:21:14 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB80C0613D3
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 08:20:34 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id t6so12782156plq.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 08:20:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=cRKedHZD4eQd4YutMVRkvvYFpo5E79xcV0d35RU4DKE=;
+        b=tMRsDwdM2AL2jqj+gv2iqJMEhTJRRzQEsTI6NwNp/PsKyl2dFfsVvGWLiak44FAsHR
+         rRtjrYE/+DvQ7MLsesV8llOWlxkItubFUXlRrSC9LLP4Wj3Ta5s9wWOydHLrestFCSvP
+         L/0N0111LisRF4JX2S7tQsndrJcfYAwDgHyid0/vh+Ux0M4HBi8x4NhnOInb2/lWDeOA
+         t9cQHFSRKzvkyvictDOaby54khjlTKHjmv8GhuhgRcDjb58CAnf45DMoRnc5diYij+Xn
+         D17ToApYnM/1OHDaGyxtOsgpZ6nyn8vZ6t4WNlQGPsIc+z7c4+BslU1PVnBMQm/03+vT
+         UM8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cRKedHZD4eQd4YutMVRkvvYFpo5E79xcV0d35RU4DKE=;
+        b=cYh/sPFz0Lc6cz9e7ukJKMFHJrLi7wVQVs9Zv3/2B5iD5GtlmzVsz4kpsbE3ul/v/y
+         lbi2odSCqQxIDT+JIgewA29PKhwWj/y/pRH0zjtx+28+HhAerMO1rxRCTPl57oTgh2G6
+         XBYZHdCn4Jrnxk5nAgvnA1wf+cWyp2dC7hufy4xXJ43gowaJM673eb9s1mU41S76tmmO
+         Cuvk9fUmfnbX1mdjc7JYZTsrDKtuotdZIEkMGp+/8fPxRaJTgvS/SKyZj8mEjIobuJs2
+         OgCZes1i3iMG4EpZ6kuEsXPcmXQBk7rhm8UmLE4Zb7pA0NVaQUvcPHg8TCTjv+Iu9wD/
+         ++ow==
+X-Gm-Message-State: AOAM531Y67e1ByNn9pUszCtcuVnPlomq8Vefm3zlEt2khlSkz7SZJBzb
+        TrmYUjdpXMyAKJ2sNVy/R6ly
+X-Google-Smtp-Source: ABdhPJzF+19oudVJqy1cqnehphkReFwLuVjvpXl1jxFMDn7okWClCz7xrwAHD3KkDPFCIK7RLkYrjg==
+X-Received: by 2002:a17:902:7596:b029:da:b7a3:cdd0 with SMTP id j22-20020a1709027596b02900dab7a3cdd0mr10336255pll.14.1611159633964;
+        Wed, 20 Jan 2021 08:20:33 -0800 (PST)
+Received: from thinkpad ([2409:4072:409:c713:3d52:1d51:c724:155d])
+        by smtp.gmail.com with ESMTPSA id n15sm2972057pgl.31.2021.01.20.08.20.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 08:20:32 -0800 (PST)
+Date:   Wed, 20 Jan 2021 21:50:21 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     bjorn.andersson@linaro.org, sboyd@kernel.org,
+        jassisinghbrar@gmail.com, viresh.kumar@linaro.org,
+        linux-clk@vger.kernel.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, ulf.hansson@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] dt-bindings: clock: Add Qualcomm A7 PLL binding
+Message-ID: <20210120162021.GA54606@thinkpad>
+References: <20210118041156.50016-1-manivannan.sadhasivam@linaro.org>
+ <20210118041156.50016-4-manivannan.sadhasivam@linaro.org>
+ <20210120155018.GA213895@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <3792680.3daJWjYHZt@diego>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210120155018.GA213895@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-20 14:54, Heiko Stübner wrote:
-> Am Mittwoch, 20. Januar 2021, 15:16:25 CET schrieb Rob Herring:
->> On Tue, Jan 19, 2021 at 12:40 PM Robin Murphy <robin.murphy@arm.com> wrote:
->>>
->>> On 2021-01-19 15:11, Johan Jonker wrote:
->>>> Hi Simon, Heiko,
->>>>
->>>> On 1/19/21 2:14 PM, Heiko Stübner wrote:
->>>>> Hi Johan,
->>>>>
->>>>> Am Dienstag, 19. Januar 2021, 14:07:41 CET schrieb Johan Jonker:
->>>>>> Hi Simon,
->>>>>>
->>>>>> Thank you for this patch for rk3568 pcie.
->>>>>>
->>>>>> Include the Rockchip device tree maintainer and all other people/lists
->>>>>> to the CC list.
->>>>>>
->>>>>> ./scripts/checkpatch.pl --strict <patch1> <patch2>
->>>>>>
->>>>>>    ./scripts/get_maintainer.pl --noroles --norolestats --nogit-fallback
->>>>>> --nogit <patch1> <patch2>
->>>>>>
->>>>>> git send-email --suppress-cc all --dry-run --annotate --to
->>>>>> heiko@sntech.de --cc <..> <patch1> <patch2>
->>>>>>
->>>>>> This SoC has no support in mainline linux kernel yet.
->>>>>> In all the following yaml documents for rk3568 we need headers with
->>>>>> defines for clocks and power domains, etc.
->>>>>>
->>>>>> For example:
->>>>>> #include <dt-bindings/clock/rk3568-cru.h>
->>>>>> #include <dt-bindings/power/rk3568-power.h>
->>>>>>
->>>>>> Could Rockchip submit first clocks and power drivers entries and a basic
->>>>>> rk3568.dtsi + evb dts?
->>>>>> Include a patch to this serie with 3 pcie nodes added to rk3568.dtsi.
->>>>>>
->>>>>> A dtbs_check only works with a complete dtsi and evb dts.
->>>>>>
->>>>>> make ARCH=arm64 dtbs_check
->>>>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>>>>
->>>>>> On 1/18/21 10:17 AM, Simon Xue wrote:
->>>>>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
->>>>>>> ---
->>>>>>>    .../bindings/pci/rockchip-dw-pcie.yaml        | 101 ++++++++++++++++++
->>>>>>>    1 file changed, 101 insertions(+)
->>>>>>>    create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..fa664cfffb29
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>>>>>> @@ -0,0 +1,101 @@
->>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>>> +%YAML 1.2
->>>>>>> +---
->>>>>>> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
->>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>> +
->>>>>>> +title: DesignWare based PCIe RC controller on Rockchip SoCs
->>>>>>> +
->>>>>>
->>>>>>> +maintainers:
->>>>>>> +  - Shawn Lin <shawn.lin@rock-chips.com>
->>>>>>> +  - Simon Xue <xxm@rock-chips.com>
->>>>>>
->>>>>> maintainers:
->>>>>>     - Heiko Stuebner <heiko@sntech.de>
->>>>>>
->>>>>> Add only people with maintainer rights.
->>>>>
->>>>> I'd disagree on this ;-)
->>>>
->>>> All roads leads to Heiko... ;)
->>>>
->>>> It takes long term commitment.
->>>> Year in, year out.
->>>> Keeping yourself up to date with the latest pcei development.
->>>> Communicate in English.
->>>> Be able to submit patches without errors... ;)
->>>> Review other peoples patches.
->>>> Respond in short time.
->>>> Bug fixing.
->>>
->>> Crikey, it's only a DT binding... :/
->>>
->>>> If that's what you really want, then you must include a patch to this
->>>> serie for MAINTAINERS.
->>>
->>> I think if Bjorn and Lorenzo want a specifically named sub-maintainer
->>> for the driver itself, we can let them say so rather than presume.
->>
->> For the binding it's my call. :)
->>
->> This should be someone who cares and knows the h/w. IOW, if I want to
->> delete the binding, someone who will object.
->>
->> Of course, I'd like that someone to have all the above qualities too.
+On Wed, Jan 20, 2021 at 09:50:18AM -0600, Rob Herring wrote:
+> On Mon, 18 Jan 2021 09:41:54 +0530, Manivannan Sadhasivam wrote:
+> > Add devicetree YAML binding for Cortex A7 PLL clock in Qualcomm
+> > platforms like SDX55.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  .../devicetree/bindings/clock/qcom,a7pll.yaml | 51 +++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,a7pll.yaml
+> > 
 > 
-> I guess that would be separate entites then ...
+> 
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> 
 
-Yup, that's the point I was trying to clarify - binding maintainer and 
-driver maintainer are technically distinct roles. Of course if someone 
-is a driver maintainer then it's usual - and preferable - for them to 
-maintain the relevant bindings as well, so MAINTAINERS entries for 
-drivers typically also cover those for convenience and pre-schema 
-historical reasons. However, someone can take responsibility for a 
-binding without signing up to explicitly maintain a corresponding driver 
-(I know I have), and in that case the schema makes the binding 
-self-documenting already - we don't have MAINTAINERS entries that *only* 
-cover bindings, other than the top-level one that says Rob's in charge 
-overall :)
+Oops! Sorry, I missed your review for this patch:
 
-Robin.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> Shawn and Simon know the hardware way better, though I'm not sure if their
-> work commitments will allow them to keep track of binding deletions
-> 
-> So maybe all 3 of us ;-)
-> 
-> Heiko
-> 
-> 
+Thanks,
+Mani
