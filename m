@@ -2,118 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A14242FDD3B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 00:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BCB92FDD43
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 00:45:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726032AbhATXme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 18:42:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728926AbhATV1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 16:27:36 -0500
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327A2C0613D3
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 13:26:11 -0800 (PST)
-Received: by mail-io1-xd29.google.com with SMTP id h11so9921304ioh.11
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 13:26:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YXXV9c9WKgadxq6Z4uVJs3qrKStMf5F06B0reLAMGUg=;
-        b=obICub08u3TKWOIQP8jWfqoQ65pQAelEhsWLTsxpQ9mflzxooSx1BtRS3lyh9PJuYD
-         1VyMyg8xLR1wMSUVXSBXj1N3Wd19xOOciQMCfo9U574wFO6zRWC0EvUe4+UzgpzwgX19
-         e2JABF15y2eiQ7jmqu+PGuWjon+e1CvSa3p+Ld0dezU5lO3WYI6XcLAv4Z1w2Nqa95/9
-         52w94SX2lv9xF1M8Qa+Uvykw+sCgJSd7RoL7IT6swChFD2u8x5jJgPfT5XwBxvx7ABTB
-         ZCDEINHZlv8Oe79UyxKSqJJgztthWZVMZwONgDhuV2dQbfbaEZMhwWJzc+CTVe9t/g8u
-         i4ew==
+        id S1731053AbhATXn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 18:43:56 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:36556 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730652AbhATVkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 16:40:14 -0500
+Received: by mail-ot1-f43.google.com with SMTP id v21so7069524otj.3;
+        Wed, 20 Jan 2021 13:39:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YXXV9c9WKgadxq6Z4uVJs3qrKStMf5F06B0reLAMGUg=;
-        b=YHmv+EtVjSKKfbsw50p7/HmXIin/u1tKsEUOO9NZU1e9/xYIx+ZIh8vrebiMY4bEMG
-         MVWwJGb9ts+j/spWDWnKYgilbkLEG1p2UUsK/+LL+JJ3q7nFaX9WWDRKQvjOnmkZYFcR
-         eLnZT83pLVIt47dAwp9dm7hABKLN8d7OQQB3o95ICeo2fT//N+Q605ppojFKTDzvQ/cm
-         3ZSuzk1ajpII35LAHJ2e1JvJq8GxtxNrSUqoiTNtxqxzhBZw0VWYzORKTJZRAz4aWAkT
-         e3On7y31JO420Dllb5yLDUy6MjKt2BmCEm0BvhhTgLfFyvugP1PCp6FQYYtHoHESeS/l
-         mSoA==
-X-Gm-Message-State: AOAM532B+caQ0V91L8YNGMCwWh0SGMWkVeMbWLCf1CK7fKIdkpWP4zXv
-        6rfQ1VPk7Nm59WWpx5vs0vp4gg==
-X-Google-Smtp-Source: ABdhPJydebF8rvITp21O4iWGarRssmn+Okq1r/VxSdQjhCSwnLHM6s5tJW9QDIJIE4KeuSZZvp8q4w==
-X-Received: by 2002:a92:a010:: with SMTP id e16mr9038816ili.38.1611177970421;
-        Wed, 20 Jan 2021 13:26:10 -0800 (PST)
-Received: from beast.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id q196sm1335687iod.27.2021.01.20.13.26.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7CQ3HB1nTNFRMwomepbdzCXSM0Vunqc4+WhRW4CgReg=;
+        b=EoVhPifZeKWe9ZHumV2OIz5KoVESejoU8hf/s630VQR9cAlZ2CcUh5TcnHHWbcSzJb
+         hiPOx4Sp6p7tmordMDjiJR62kTniopVmv2R+FXkIlFl4y59Yz/qmZi17CGtd0OzeDkY0
+         dtn7ZMveBksX68tgXN7BdKebwle+qNw9IvYxRbwMa6av0ubqgv/cCRLvCmrXOxEXLqCi
+         t1SMJWUFRwZOyy06UHKV9H1b5PIE5+7F1TvUN/Mw40ojsFhZsN1/K5tF58XbRmfYeEKE
+         UnVawYQQdqGScQ50x4UmlVNleXRRNNRRgwDgpKyllzbFWp5+naj6pXo7bztDdiRM2T6K
+         cHOA==
+X-Gm-Message-State: AOAM5320D4Bhu+dgqMSordN8TzmRmZh8UoZejdmh27FcaUAGc+EWuZHL
+        /BpjiQaL+SaINT2bVD8eSw==
+X-Google-Smtp-Source: ABdhPJzGDS+Z9qNM9dct2YDH/2pXy5NEBm+Yj/vIMrRQLRDGQVMBKKxSHAjSx6WNW2sbX8BiGlOZHw==
+X-Received: by 2002:a05:6830:1e19:: with SMTP id s25mr8204614otr.249.1611178772240;
+        Wed, 20 Jan 2021 13:39:32 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 70sm657133otf.39.2021.01.20.13.39.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 13:26:09 -0800 (PST)
-From:   Alex Elder <elder@linaro.org>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     elder@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
-        evgreen@chromium.org, cpratapa@codeaurora.org,
-        subashab@codeaurora.org, robh+dt@kernel.org, rdunlap@infradead.org,
-        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 net-next 0/4] net: ipa: remove a build dependency
-Date:   Wed, 20 Jan 2021 15:26:02 -0600
-Message-Id: <20210120212606.12556-1-elder@linaro.org>
-X-Mailer: git-send-email 2.20.1
+        Wed, 20 Jan 2021 13:39:30 -0800 (PST)
+Received: (nullmailer pid 880940 invoked by uid 1000);
+        Wed, 20 Jan 2021 21:39:29 -0000
+Date:   Wed, 20 Jan 2021 15:39:29 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     linux-kbuild@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Kieran Bingham <kbingham@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] kbuild: use always-y instead of extra-y
+Message-ID: <20210120213929.GA875847@robh.at.kernel.org>
+References: <20210120062351.3011786-1-masahiroy@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210120062351.3011786-1-masahiroy@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(David/Jakub, please take these all through net-next if they are
-acceptable to you, once Rob has acked the binding.  Rob, please ack
-if the binding looks OK to you.)
+On Wed, Jan 20, 2021 at 03:23:51PM +0900, Masahiro Yamada wrote:
+> As commit d0e628cd817f ("kbuild: doc: clarify the difference between
+> extra-y and always-y") explained, extra-y should be used for listing
+> the prerequsites of vmlinux. always-y is a better fix here.
 
-Version 3 removes the "Fixes" tag from the first patch, and updates
-the addressee list to include some people I apparently missed.
+prerequisites
 
-Version 2 includes <.../arm-gic.h> rather than <.../irq.h> in the
-example section of the DT binding, to ensure GIC_SPI is defined.
-I verified this passes "make dt_bindings_check".
+Glad to see this clarified. I think just tried both and picked one.
 
-The rest of the series is unchanged.  Below is the original cover
-letter.
-
----
-
-Unlike the original (temporary) IPA notification mechanism, the
-generic remoteproc SSR notification code does not require the IPA
-driver to maintain a pointer to the modem subsystem remoteproc
-structure.
-
-The IPA driver was converted to use the newer SSR notifiers, but the
-specification and use of a phandle for the modem subsystem was never
-removed.
-
-This series removes the lookup of the remoteproc pointer, and that
-removes the need for the modem DT property.  It also removes the
-reference to the "modem-remoteproc" property from the DT binding,
-and from the DT files that specified them.
-
-David/Jakub, please take these all through net-next if they are
-acceptable to you, once Rob has acked the binding and DT patches.
-
-Thanks.
-
-					-Alex
-
-Alex Elder (4):
-  net: ipa: remove a remoteproc dependency
-  dt-bindings: net: remove modem-remoteproc property
-  arm64: dts: qcom: sc7180: kill IPA modem-remoteproc property
-  arm64: dts: qcom: sdm845: kill IPA modem-remoteproc property
-
- .../devicetree/bindings/net/qcom,ipa.yaml     | 15 ++------
- arch/arm64/boot/dts/qcom/sc7180.dtsi          |  2 -
- arch/arm64/boot/dts/qcom/sdm845.dtsi          |  2 -
- drivers/net/ipa/ipa.h                         |  2 -
- drivers/net/ipa/ipa_main.c                    | 38 +------------------
- 5 files changed, 5 insertions(+), 54 deletions(-)
-
--- 
-2.20.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+> 
+>  Documentation/devicetree/bindings/Makefile |  8 ++++----
+>  drivers/gpu/drm/i915/Makefile              |  2 +-
+>  scripts/Makefile.lib                       | 10 +++++-----
+>  scripts/gdb/linux/Makefile                 |  2 +-
+>  4 files changed, 11 insertions(+), 11 deletions(-)
