@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5DBB2FCC8A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:17:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F19B72FCC88
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:17:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728215AbhATIQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 03:16:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55620 "EHLO
+        id S1730364AbhATIPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 03:15:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730349AbhATIJi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:09:38 -0500
+        with ESMTP id S1730353AbhATIKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:10:04 -0500
 Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46CFCC061793
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:09:15 -0800 (PST)
-Received: by mail-yb1-xb4a.google.com with SMTP id 9so14509436ybj.16
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:09:15 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5BAC061794
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:09:18 -0800 (PST)
+Received: by mail-yb1-xb4a.google.com with SMTP id e74so29432952ybh.19
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:09:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=SmiqRyWwl+9YuN8tC28z3cuRSiSYFs1m5Wjro9iC9Ms=;
-        b=TT4sKjt+gSjbsCN6+pFJiq4W7jnq2vEr5ZAJoj4n+MV7aD/ZAb/7zSNbnUoihwfwaF
-         RVRq5rGq6g0pqX7kIIWCWZdEFASqCVfUeJu54j1nUGEu+V7d5mLdTT5DBBpicnbtSypm
-         GvrikyajuQosd5G1B4w2ngQnytrhBWzNs09TUt85mIL8K40uzw7mgrXkXBxFk9wFA+D5
-         WHf33hEVZ0wwAJn3g2IFXtZsFyMwm0IFHcOSDsFa1I9etxi57K5X/U+UI1yhv3krXZDI
-         idv5WEOoZtJSap8l0eN6uA3AhEGKRcNBz/gROaELrpWXBNq975Qw/C6zPTqtnQJjR1dL
-         U7Ig==
+        bh=Y+Fx4Q3xTRwBEn5hZJB1lpjzFFSmiRd0H1yYDfLlDsM=;
+        b=vxgOFOdsDQzr5aEd2YVIbLvshnoCoC/VERiplfYPU24l+TSlB98fGzz2Obmxp+OUKm
+         cu4aBejiuqpcX2Lr2v2PrD0Y/Mo2cofT8fHOxIWKNEHkIpCHviRli0zXK7TPUqmL8dAS
+         7ofKtcHbvMbcvZGIR4xh0jwTqDuaCVvQnpa7g2ZY828MIeTlXa9rzwE5HY8TBuQ24EbH
+         F22E2Kfua9yrRPawIekUNYvseOiatHx/U31JkBNQsHUwozXQHKraFxhjuSmKzxyN+gwJ
+         Xr49ZK74JsNUX3+kAcVd/1urKJdvVtkWU8Q+BBHHkIV6lWQYc4pQ7CHcAWwxhVYqIn8Z
+         AU6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=SmiqRyWwl+9YuN8tC28z3cuRSiSYFs1m5Wjro9iC9Ms=;
-        b=egOH5YF4Wq8Q0rJX5u7fog4waqbEzumavyBRFaxo0pi0a2AIZtLBiOVT/bu9jXgGpg
-         OS8js1gBYciAVhd1fDmzjug+KaH7w3SO4aDrDEV8GRYckwIyOb9EGD9UqEbUDA1og3Jc
-         +Za4bvk81FtPTtwbl2dVnP+3Se7YUpGpjNgYkckv7NaHp+tyA2/tZj+FPuSKJA+AegUG
-         pn52KpBk7rmSVN6mySqXp4WPyXVwHm8HG21f+5LAFk42wYeKVE6YUoad4vASxVfApjmV
-         OJtEL7ltA1G1d8GxuUsg2Wioj69S6RvoxNrhCyvaNTEvqGLzXObo/SfpusPQa6FnMX4n
-         d3Dg==
-X-Gm-Message-State: AOAM532c1USXvkh89cLZrGkAwtuaHfEh4HtGubYc4J3nltLoelQzjNd7
-        /WBkDYlhzOtsDUk1/V9lWibGYAiepktU
-X-Google-Smtp-Source: ABdhPJwgsQAWglOCEGtKoVUzqAnU2tsXXNDSVYHjY2bZzGFR74ahzBGi0FOePYDzZ4UL/6irz4aCUWlI3X8a
+        bh=Y+Fx4Q3xTRwBEn5hZJB1lpjzFFSmiRd0H1yYDfLlDsM=;
+        b=Seu9r4LlkHXimNnFjbErxVlnCA7hDVZxAWqdQbLIJm+B8MkBEcEV0O5PvpIY2kjpSI
+         GhPF94PycHAjSP94bPEpCuLs85C3caVWZNkCKfrjKY9p6URQNZWdg8sh+wTpGpb4Sod/
+         SpuiGuihXs6Bmg0tnQRvSJgeyHLAcQFIawkMWueR3WhKyef4VrvZVndHrDQ4S2X7KCHW
+         Km8Z6/35ZGrlc3eV4kL8PRB4YafdgIejqdd05MiOWypvc/ql3UjDYnZ528b9zcywDUxG
+         wG71ewrr468uK3XI7+OTCptgQErE2Oto4nob5rgmdgd/GN3jowQMK1VAGUjlgPuQkNzS
+         T1Mw==
+X-Gm-Message-State: AOAM532/oKq/TWToLYOz0bDHL4MnCCDnF6KZ5p0B6VLqzqokSqw58n7D
+        VD5JMKePW+P+DsYPbwM8K+1CwgFEqsVn
+X-Google-Smtp-Source: ABdhPJxqem2Ny4Ah8ScsPr/Hgjfex9iupmb+ZO1O4sdHmta+oHMFwOypJuwrF8TGgOpJyI/ofGdmGNQUpdMy
 Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
 X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:1164:8893:969a:b338])
- (user=tzungbi job=sendgmr) by 2002:a25:d84:: with SMTP id 126mr11341755ybn.145.1611130154567;
- Wed, 20 Jan 2021 00:09:14 -0800 (PST)
-Date:   Wed, 20 Jan 2021 16:08:48 +0800
+ (user=tzungbi job=sendgmr) by 2002:a25:f02:: with SMTP id 2mr11570686ybp.190.1611130158185;
+ Wed, 20 Jan 2021 00:09:18 -0800 (PST)
+Date:   Wed, 20 Jan 2021 16:08:49 +0800
 In-Reply-To: <20210120080850.699354-1-tzungbi@google.com>
-Message-Id: <20210120080850.699354-4-tzungbi@google.com>
+Message-Id: <20210120080850.699354-5-tzungbi@google.com>
 Mime-Version: 1.0
 References: <20210120080850.699354-1-tzungbi@google.com>
 X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
-Subject: [PATCH 3/5] ASoC: mediatek: mt8192: change mclk_multiple of TDM from
- 128 to 512
+Subject: [PATCH 4/5] ASoC: dt-bindings: mt8192-mt6359: add hdmi-codec property
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     broonie@kernel.org, robh+dt@kernel.org
 Cc:     alsa-devel@alsa-project.org, tzungbi@google.com,
@@ -62,31 +61,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-mclk = rate * mclk_multiple
-bclk = rate * channel * sample_width
+Adds optional property "hdmi-codec".
 
-If TDM outputs 8 channels and 32 bits, bclk will be greater than mclk.
-
-Changes the ratio from 128 to 512.
+If specified, the machine driver should:
+- Exposes a device that can write audio data to the DP bridge.
+- Detects jack plug events.
 
 Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 ---
- sound/soc/mediatek/mt8192/mt8192-dai-tdm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml          | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/sound/soc/mediatek/mt8192/mt8192-dai-tdm.c b/sound/soc/mediatek/mt8192/mt8192-dai-tdm.c
-index 8383536b7ae0..f5de1d769679 100644
---- a/sound/soc/mediatek/mt8192/mt8192-dai-tdm.c
-+++ b/sound/soc/mediatek/mt8192/mt8192-dai-tdm.c
-@@ -738,7 +738,7 @@ static struct mtk_afe_tdm_priv *init_tdm_priv_data(struct mtk_base_afe *afe)
- 	if (!tdm_priv)
- 		return NULL;
+diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+index 54650823b29a..5a5b765b859a 100644
+--- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
++++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+@@ -23,6 +23,10 @@ properties:
+     $ref: "/schemas/types.yaml#/definitions/phandle"
+     description: The phandle of MT8192 ASoC platform.
  
--	tdm_priv->mclk_multiple = 128;
-+	tdm_priv->mclk_multiple = 512;
- 	tdm_priv->bck_id = MT8192_I2S4_BCK;
- 	tdm_priv->mclk_id = MT8192_I2S4_MCK;
- 	tdm_priv->id = MT8192_DAI_TDM;
++  mediatek,hdmi-codec:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: The phandle of HDMI codec.
++
+ additionalProperties: false
+ 
+ required:
+@@ -35,6 +39,7 @@ examples:
+     sound: mt8192-sound {
+         compatible = "mediatek,mt8192_mt6359_rt1015_rt5682";
+         mediatek,platform = <&afe>;
++        mediatek,hdmi-codec = <&anx_bridge_dp>;
+         pinctrl-names = "aud_clk_mosi_off",
+                         "aud_clk_mosi_on";
+         pinctrl-0 = <&aud_clk_mosi_off>;
 -- 
 2.30.0.284.gd98b1dd5eaa7-goog
 
