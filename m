@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C02492FDAD5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 21:30:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CBC32FDB2C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 21:49:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732320AbhATU3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 15:29:01 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:44430 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387797AbhATU1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:27:54 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPWiI084087;
+        id S1732283AbhATUt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 15:49:28 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49232 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388237AbhATU0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:26:37 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPWPW039649;
         Wed, 20 Jan 2021 14:25:32 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
         s=ti-com-17Q1; t=1611174332;
-        bh=2tmU+y1jmlZL63kJ196TIibbUIQ7mPE/6X2+DeHZp3w=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=GhfTyKiHE2gfs6lbrKRZmeB2p9lnBlwX5sOW1WnlzrGgzFZbSzjuy0A/ZmK1oCxh0
-         A/KLiGxeJcqZ451JTcRMUqVkZ/FyxMrCVEX3zBCcMwgBmOv3cUQ+vcPKhyTP0GuY/v
-         1hIE+w1SEMjETQROrDV+FjN/NiweleOGFsvkDvk8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKPWb5125786
+        bh=Twc/GQf12aJeqk1mHxxtbn5jnBdXtyChT6TgBPfGu/M=;
+        h=From:To:CC:Subject:Date;
+        b=Pz8w0D/ttlbqoMB0QkvJwoYlSkDdce3HnJsJqUDYiPVjLyvH8L/7TJvoaS2X6sD0J
+         tuvY47hgfJ2kyzzICguhLZd/Yr8VZH8XK3mUAUXdWIgyhRx/IfYlYtWX8glg+0Z8Jh
+         r8qxG9ZJnnX52WxNhaN/lbNQE8PBFxultiY9EXSo=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKPWmt050851
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
         Wed, 20 Jan 2021 14:25:32 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
  Jan 2021 14:25:32 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 20 Jan 2021 14:25:32 -0600
+ Frontend Transport; Wed, 20 Jan 2021 14:25:31 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPW5d078370;
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPWol090495;
         Wed, 20 Jan 2021 14:25:32 -0600
 From:   Dave Gerlach <d-gerlach@ti.com>
 To:     Nishanth Menon <nm@ti.com>
@@ -47,12 +47,10 @@ CC:     Dave Gerlach <d-gerlach@ti.com>,
         Kishon Vijay Abraham <kishon@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>,
         Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH v3 5/5] arm64: dts: ti: Add support for AM642 EVM
-Date:   Wed, 20 Jan 2021 14:25:32 -0600
-Message-ID: <20210120202532.9011-6-d-gerlach@ti.com>
+Subject: [PATCH v3 0/5] arm64: Initial support for Texas Instruments AM642 Platform
+Date:   Wed, 20 Jan 2021 14:25:27 -0600
+Message-ID: <20210120202532.9011-1-d-gerlach@ti.com>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210120202532.9011-1-d-gerlach@ti.com>
-References: <20210120202532.9011-1-d-gerlach@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -61,286 +59,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AM642 EValuation Module (EVM) is a board that provides access to
-various peripherals available on the AM642 SoC, such as PCIe, USB 2.0,
-CPSW Ethernet, ADC, and more.
+This is v3 of the series to add initial support for the latest new SoC,
+AM642, from Texas Instruments. Additional detail can be found in the
+patch descriptions, also see AM64X Technical Reference Manual (SPRUIM2,
+Nov 2020) for further details: https://www.ti.com/lit/pdf/spruim2
 
-Introduce support for the AM642 EVM to enable mmc boot, including
-enabling UART and I2C on the board.
+This version contains a few minor fixes from v2:
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile         |   2 +
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 246 ++++++++++++++++++++++++
- 2 files changed, 248 insertions(+)
+* Use the appropriate 'arm,cortex-a53-pmu' instead of 'arm,armv8-pmuv3'
+  for ARM pmu node based on Sudeep's comment from v2.
+* Fix a typo in the 'dmas' property on main_spi0
+* Drop main_spi0 from board dts as a more appropriate
+  compatible to use for the eeprom will be available after [1] is merged.
+* Add 'gpio-line-names' under main_i2c1.
+
+
+v2: https://lore.kernel.org/linux-arm-kernel/20210119163927.774-1-d-gerlach@ti.com/
+v1: https://lore.kernel.org/linux-arm-kernel/20201125052004.17823-1-d-gerlach@ti.com/
+
+Regards,
+Dave
+
+[1] https://lore.kernel.org/patchwork/project/lkml/list/?series=478815
+
+Dave Gerlach (4):
+  dt-bindings: arm: ti: Add bindings for AM642 SoC
+  dt-bindings: pinctrl: k3: Introduce pinmux definitions for AM64
+  arm64: dts: ti: Add support for AM642 SoC
+  arm64: dts: ti: Add support for AM642 EVM
+
+Peter Ujfalusi (1):
+  arm64: dts: ti: k3-am64-main: Enable DMA support
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 406 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi       |  76 ++++
+ arch/arm64/boot/dts/ti/k3-am64.dtsi           | 103 +++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       | 246 +++++++++++
+ arch/arm64/boot/dts/ti/k3-am642.dtsi          |  65 +++
+ include/dt-bindings/pinctrl/k3.h              |   5 +-
+ 8 files changed, 908 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am64.dtsi
  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642.dtsi
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 65506f21ba30..c687739e2bca 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -11,3 +11,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
-+
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-new file mode 100644
-index 000000000000..1f1787750fef
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -0,0 +1,246 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include "k3-am642.dtsi"
-+
-+/ {
-+	compatible =  "ti,am642-evm", "ti,am642";
-+	model = "Texas Instruments AM642 EVM";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 2G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-+
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+
-+	evm_12v0: fixedregulator-evm12v0 {
-+		/* main DC jack */
-+		compatible = "regulator-fixed";
-+		regulator-name = "evm_12v0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_5v0: fixedregulator-vsys5v0 {
-+		/* output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&evm_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_3v3: fixedregulator-vsys3v3 {
-+		/* output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&evm_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: fixed-regulator-sd {
-+		/* TPS2051BD */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vddb: fixedregulator-vddb {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vddb_3v3_display";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vsys_3v3>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "am64-evm:red:heartbeat";
-+			gpios = <&exp1 16 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0294, PIN_INPUT_PULLUP, 0) /* (J19) MMC1_CMD */
-+			AM64X_IOPAD(0x028c, PIN_INPUT_PULLDOWN, 0) /* (L20) MMC1_CLK */
-+			AM64X_IOPAD(0x0288, PIN_INPUT_PULLUP, 0) /* (K21) MMC1_DAT0 */
-+			AM64X_IOPAD(0x0284, PIN_INPUT_PULLUP, 0) /* (L21) MMC1_DAT1 */
-+			AM64X_IOPAD(0x0280, PIN_INPUT_PULLUP, 0) /* (K19) MMC1_DAT2 */
-+			AM64X_IOPAD(0x027c, PIN_INPUT_PULLUP, 0) /* (K18) MMC1_DAT3 */
-+			AM64X_IOPAD(0x0298, PIN_INPUT_PULLUP, 0) /* (D19) MMC1_SDCD */
-+			AM64X_IOPAD(0x029c, PIN_INPUT, 0) /* (C20) MMC1_SDWP */
-+			AM64X_IOPAD(0x0290, PIN_INPUT, 0) /* MMC1_CLKLB */
-+		>;
-+	};
-+
-+	main_uart0_pins_default: main-uart0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0238, PIN_INPUT, 0) /* (B16) UART0_CTSn */
-+			AM64X_IOPAD(0x023c, PIN_OUTPUT, 0) /* (A16) UART0_RTSn */
-+			AM64X_IOPAD(0x0230, PIN_INPUT, 0) /* (D15) UART0_RXD */
-+			AM64X_IOPAD(0x0234, PIN_OUTPUT, 0) /* (C16) UART0_TXD */
-+		>;
-+	};
-+
-+	main_i2c1_pins_default: main-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
-+			AM64X_IOPAD(0x026c, PIN_INPUT_PULLUP, 0) /* (B19) I2C1_SDA */
-+		>;
-+	};
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+};
-+
-+/* main_uart1 is reserved for firmware usage */
-+&main_uart1 {
-+	status = "reserved";
-+};
-+
-+&main_uart2 {
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	status = "disabled";
-+};
-+
-+&main_uart4 {
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	status = "disabled";
-+};
-+
-+&mcu_uart0 {
-+	status = "disabled";
-+};
-+
-+&mcu_uart1 {
-+	status = "disabled";
-+};
-+
-+&main_i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c1_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp1: gpio@22 {
-+		compatible = "ti,tca6424";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "GPIO_eMMC_RSTn", "CAN_MUX_SEL",
-+				  "GPIO_CPSW1_RST", "GPIO_RGMII1_RST",
-+				  "GPIO_RGMII2_RST", "GPIO_PCIe_RST_OUT",
-+				  "MMC1_SD_EN", "FSI_FET_SEL",
-+				  "MCAN0_STB_3V3", "MCAN1_STB_3V3",
-+				  "CPSW_FET_SEL", "CPSW_FET2_SEL",
-+				  "PRG1_RGMII2_FET_SEL", "TEST_GPIO2",
-+				  "GPIO_OLED_RESETn", "VPP_LDO_EN",
-+				  "TEST_LED1", "TP92", "TP90", "TP88",
-+				  "TP87", "TP86", "TP89", "TP91";
-+	};
-+
-+	/* osd9616p0899-10 */
-+	display@3c {
-+		compatible = "solomon,ssd1306fb-i2c";
-+		reg = <0x3c>;
-+		reset-gpios = <&exp1 14 GPIO_ACTIVE_LOW>;
-+		vbat-supply = <&vddb>;
-+		solomon,height = <16>;
-+		solomon,width = <96>;
-+		solomon,com-seq;
-+		solomon,com-invdir;
-+		solomon,page-offset = <0>;
-+		solomon,prechargep1 = <2>;
-+		solomon,prechargep2 = <13>;
-+	};
-+};
-+
-+&mcu_i2c0 {
-+	status = "disabled";
-+};
-+
-+&mcu_i2c1 {
-+	status = "disabled";
-+};
-+
-+&mcu_spi0 {
-+	status = "disabled";
-+};
-+
-+&mcu_spi1 {
-+	status = "disabled";
-+};
-+
-+&sdhci0 {
-+	/* emmc */
-+	bus-width = <8>;
-+	non-removable;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
-+
-+&sdhci1 {
-+	/* SD/MMC */
-+	vmmc-supply = <&vdd_mmc1>;
-+	pinctrl-names = "default";
-+	bus-width = <4>;
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
 -- 
 2.28.0
 
