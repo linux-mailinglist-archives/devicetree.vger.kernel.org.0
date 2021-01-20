@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 004032FD7C3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 19:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F742FD878
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 19:43:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391616AbhATSE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 13:04:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42958 "EHLO
+        id S1726379AbhATSLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 13:11:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733281AbhATSEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 13:04:46 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31EEC061757
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 10:03:55 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id p5so25962733oif.7
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 10:03:55 -0800 (PST)
+        with ESMTP id S2404227AbhATSKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 13:10:30 -0500
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BEA3C0613D3
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 10:09:32 -0800 (PST)
+Received: by mail-oo1-xc2f.google.com with SMTP id i18so5997290ooh.5
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 10:09:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=r0c/YZ8GjVTyP0w+VrpQ2AmOJVqjrISAFl9tsDI76YM=;
-        b=m7s2uKE2WCxSZn2wLO2vYX7Euav+c2Ak6HnopbS/GJRBt/XTC+atumqnMnAUs1+x/5
-         A80g6czwDlidrwjxfaoqEc6vQc/YEHoOyYA5YKD5PM1wJjEzSRJ9ljsWl3jFAmfB3Isy
-         LJRWCNB6HxnFe8KM8+awbM9twcpaHaQEtS11llI3mSY4p36W8O1BQlhcst+egEZazry+
-         h/vX4ikLeotfK96E+7Ik7ju11zhAlG5xuuT9ML9sAKbHtxamD5mGa/2buyIVPUHwqade
-         Zhqq7wQ2ibWwhqUyEi1WAa7yGqswSJHw7kjQ1utWxW90y7b6QToLsL2h8c6ETq4DdrCO
-         06NA==
+        bh=7K9KBn9bqB04jrZILJlEhKRz8nOBafHD9qg+6ZogXcY=;
+        b=Y05L323FDoV6AKTTz392NPub0X8DK+iYUHda1bZLzF/BArGroWw1wNZ3WUQuOIwbQ3
+         nenqM5F2urm6eukQ8yCS88NiWyU3gcSCnkLPJnzjAL3HBni+fvUnP/GD4kXaGt/Nw22f
+         v218FCXEm9INpFhKzseGOH/LoX86THTAGGRg4e/GXiFV15m7c9ttbjI8oL5YvkEBE97R
+         tSEVGcOckszxiBd2aAJSoMA+n2BKCUS3GfuxEHveO4EL5rxX446Nd0NMqStkqiNpnx+o
+         rRRZCHUfglWaHjglGMQF3ghqvKEUYWIJj0eilB9QakQpFwz7H0ycDbddYONqyuMQlEHC
+         c7/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=r0c/YZ8GjVTyP0w+VrpQ2AmOJVqjrISAFl9tsDI76YM=;
-        b=iZgFQymLHKYBDq8Rgv8qrCA8pdMbtMw02Yu/39XINxsVlhCaY4nOxcAqn8luPLKiTR
-         UWqAMeo6Z0PIVdzdnFFMnZ8IA3G9sULJ9+wHUCBW3eEEALAzfMVVnCdkFXGS5QL3cZdq
-         zeNl7vQXjiZWcf2AjdzINVDYFjKnCQZsU/E9R6zP5ZTGlHUr0kni5rnRY1rALn/XPryW
-         nc8HslSOVgVavTH5TKSqajIseh5pIbLpat+P0LYfjLoVUtK8jbJ+FAdjteBOFgrFH2dH
-         MWylb6ei1++SSHnU+7dzj047LmXQ1uwcM0sPX4pUvBbCdvNdVLO1DnL8JjiXWfqLecSi
-         Ua1A==
-X-Gm-Message-State: AOAM530TLRjiFZ+Z3k5zzuVZSYT0WpfzD2YRIKw5joIQ9zLhRJN4TDw3
-        ArR9ny1a/WrbR01Hxv7zhE66+A==
-X-Google-Smtp-Source: ABdhPJwPY/Qtx36Vw0VkDh29SyG9rkmTQemhiiJHu7Ba1no56dfgF4UL15rJtGE794O4rIyCvoav8A==
-X-Received: by 2002:aca:c188:: with SMTP id r130mr3726383oif.99.1611165835041;
-        Wed, 20 Jan 2021 10:03:55 -0800 (PST)
+        bh=7K9KBn9bqB04jrZILJlEhKRz8nOBafHD9qg+6ZogXcY=;
+        b=ZTGaNVBG29XkKy1jSVGjkm8wnlteN2gI7nSne4gJsQtPD9tue6SbdoIkuNDiuDpK7z
+         64cl5ShAtpSTaDF0Yu6jZJP7/J1xWffujyGikHNRedpbHHbcvKX1KWPSxmdsTYKQD9te
+         CDjFMuyfuU9XU9NUhEliRbnFn6atEwLcybc7xWe4rb2TK7E93HNY/4dIYmeJ1UcivizV
+         iVGzl5i4pFSpSTNLawmpeeLKKVTuKhzPdnl9aQr/BCy93/3qGLQM4Af6MHvuuhtuAhGQ
+         lFvCSWQMnQcD0JqHiXbc/bMyAp3mjy8Uw+9KDx6hubQtKVROkn0eCN9P3RAtKIa3pGNS
+         iYXA==
+X-Gm-Message-State: AOAM530kLvkrrqv5GoTrhvWnPZMVl2IBDB49uy3TMGSrX17vINiBjOj2
+        AR3MeMutXjKg9gp+wU6m+ae4n+xbL60VtQ==
+X-Google-Smtp-Source: ABdhPJwg/06sM/oK9/QGoc/MFPdAr2NH9zCbF5vyGBQIfPrV63QgbluXPkmyF/waaMwusJjN2+VdTw==
+X-Received: by 2002:a4a:9f47:: with SMTP id d7mr6980105ool.23.1611166171359;
+        Wed, 20 Jan 2021 10:09:31 -0800 (PST)
 Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t2sm545263otj.47.2021.01.20.10.03.54
+        by smtp.gmail.com with ESMTPSA id n124sm513578oig.33.2021.01.20.10.09.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 10:03:54 -0800 (PST)
+        Wed, 20 Jan 2021 10:09:30 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        chuanhua.lei@intel.com,
+        Amireddy Mallikarjuna reddy 
+        <mallikarjunax.reddy@linux.intel.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] media: dt-bindings: media: i2c: Fix $id of renamed ov5647.yaml
-Date:   Wed, 20 Jan 2021 10:04:03 -0800
-Message-Id: <20210120180403.1580423-1-bjorn.andersson@linaro.org>
+Subject: [PATCH] dt-bindings: dma: intel-ldma: Fix $ref specifier
+Date:   Wed, 20 Jan 2021 10:09:39 -0800
+Message-Id: <20210120180939.1580984-1-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,28 +64,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The recent rename of ov5647.yaml missed to update the $id, resulting in
-a binding check error. Fix this.
+The $ref for "intel,dma-poll-cnt" is missing an '/', causing
+dt_binding_check to fail. Fix this.
 
-Fixes: 1b5071af8240 ("media: dt-bindings: media: i2c: Rename ov5647.yaml")
+Fixes: afd4df85602d ("dt-bindings: dma: Add bindings for Intel LGM SoC")
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml | 2 +-
+ Documentation/devicetree/bindings/dma/intel,ldma.yaml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
-index 280c62afae13..429566c9ee1d 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/media/i2c/ov5647.yaml#
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5647.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/dma/intel,ldma.yaml b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+index 866d4c758a7a..a5c4be783593 100644
+--- a/Documentation/devicetree/bindings/dma/intel,ldma.yaml
++++ b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+@@ -56,7 +56,7 @@ properties:
+     maxItems: 1
  
- title: Omnivision OV5647 raw image sensor
+   intel,dma-poll-cnt:
+-    $ref: /schemas/types.yaml#definitions/uint32
++    $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+       DMA descriptor polling counter is used to control the poling mechanism
+       for the descriptor fetching for all channels.
 -- 
 2.29.2
 
