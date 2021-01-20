@@ -2,105 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D71B2FDB8E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 22:26:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 720982FDB90
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 22:26:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732648AbhATU4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 15:56:17 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48986 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388714AbhATUvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:51:37 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKobGZ092368;
-        Wed, 20 Jan 2021 14:50:37 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611175837;
-        bh=2vV9gs//LMB4/Bs09TdtFRUOhLnpkCX1eP7ABeNkuOc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ie3lu0ysjusuyuqsivWK5h3m+JBk7jL0jKifIG96qOeHP6mh0lFXMEZ/iYzy/exef
-         PoVP5QQAC1GEQmp5kMIRbuMHIyo7r2Wgb+DJMIop+H4wi9BUVMZohJarnCqoXfEkhy
-         9ZTQg2Y4Md79VvnGGr/6LQyu1ArhXA7B041B5rm8=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKobfl049604
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 20 Jan 2021 14:50:37 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
- Jan 2021 14:50:37 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 20 Jan 2021 14:50:37 -0600
-Received: from [10.250.35.71] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKoadD058607;
-        Wed, 20 Jan 2021 14:50:36 -0600
-Subject: Re: [PATCH v3 2/5] dt-bindings: pinctrl: k3: Introduce pinmux
- definitions for AM64
-To:     Dave Gerlach <d-gerlach@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-References: <20210120202532.9011-1-d-gerlach@ti.com>
- <20210120202532.9011-3-d-gerlach@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <e31b5b8c-90e6-901b-cc99-06341ee8a144@ti.com>
-Date:   Wed, 20 Jan 2021 14:50:36 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1732776AbhATU4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 15:56:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46762 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389788AbhATUxB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 15:53:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 10B9A233FC;
+        Wed, 20 Jan 2021 20:52:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611175938;
+        bh=8jBF67VISxuT/xu2rcoO5YE2FU88OFticdYf54+neO8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=N5+QPs/+DlLJt3MClwur9O+wbKTIHuhCZO1VVEg8KCi0KUGwZU0XaVmJBd/K8SOdz
+         cEzlwRbPCzeRUL92LOaLG3+3089C3zNhwSfg9YkO9sJ70ZNsc3OXJjUzdq6Cv+skzI
+         uQ+DIRkP//QC6bZTLNu6zeypikx0R1XyPDBuKUmj7JfObyOYNU2C5ebQ5Aoa7GYsPg
+         07E5RfDaVTnJIS3588nJV65f3gpv3VlcZ+3ItM3EcpYFKZReSNI8z9r19FnQwTFCJp
+         p8VUIwhGYO2M00l1IuVVUkLQXOCs80dksUXtNmGbDSIgYqCI5cgFQNfisGIh2UQfND
+         5oJ72HvNobAzg==
+Date:   Wed, 20 Jan 2021 12:52:17 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Lukasz Stelmach <l.stelmach@samsung.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v10 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
+ Adapter Driver
+Message-ID: <20210120125217.6394e6a4@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <dleftj8s8nwgmx.fsf%l.stelmach@samsung.com>
+References: <20210115172722.516468bb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <CGME20210120193032eucas1p26566e957da7a75bc0818fe08e055bec8@eucas1p2.samsung.com>
+        <dleftj8s8nwgmx.fsf%l.stelmach@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <20210120202532.9011-3-d-gerlach@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/20/21 2:25 PM, Dave Gerlach wrote:
-> Add pinctrl macros for AM64 SoC. These macro definitions are similar to
-> that of previous platforms, but adding new definitions to avoid any
-> naming confusions in the soc dts files.
+On Wed, 20 Jan 2021 20:30:14 +0100 Lukasz Stelmach wrote:
+> > You need to use 64 bit stats, like struct rtnl_link_stats64.
+> > On a 32bit system at 100Mbps ulong can wrap in minutes.
+> >  
 > 
-> Unlike what checkpatch insists, we do not need parentheses enclosing
-> the values for this macro as we do intend it to generate two separate
-> values as has been done for other similar platforms.
+> Let me see. At first glance
 > 
-> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> git grep -l ndo_get_stats\\\> drivers/net/ethernet/  | xargs grep -li SPEED_100\\\>
+> 
+> quite a number of Fast Ethernet drivers use net_device_stats. Let me
+> calculate.
+> 
+> - bytes
+>   100Mbps is ~10MiB/s
+>   sending 4GiB at 10MiB/s takes 27 minutes
+> 
+> - packets
+>   minimum frame size is 84 bytes (840 bits on the wire) on 100Mbps means
+>   119048 pps at this speed it takse 10 hours to transmit 2^32 packets
+> 
+> Anyway, I switched to rtnl_link_stats64. Tell me, is it OK to just
+> memcpy() in .ndo_get_stats64?
 
-Reviewed-by: Suman Anna <s-anna@ti.com>
+Yup, you can just memcpy() your local copy over the one you get as an
+argument of ndo_get_stats64
 
-> ---
->  include/dt-bindings/pinctrl/k3.h | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> >> +	struct work_struct	ax_work;  
+> >
+> > I don't see you ever canceling / flushing this work.
+> > You should do that at least on driver remove if not close.  
 > 
-> diff --git a/include/dt-bindings/pinctrl/k3.h b/include/dt-bindings/pinctrl/k3.h
-> index b0eea7cc6e23..e085f102b283 100644
-> --- a/include/dt-bindings/pinctrl/k3.h
-> +++ b/include/dt-bindings/pinctrl/k3.h
-> @@ -3,7 +3,7 @@
->   * This header provides constants for pinctrl bindings for TI's K3 SoC
->   * family.
->   *
-> - * Copyright (C) 2018 Texas Instruments Incorporated - https://www.ti.com/
-> + * Copyright (C) 2018-2021 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  #ifndef _DT_BINDINGS_PINCTRL_TI_K3_H
->  #define _DT_BINDINGS_PINCTRL_TI_K3_H
-> @@ -35,4 +35,7 @@
->  #define J721E_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
->  #define J721E_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
->  
-> +#define AM64X_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
-> +#define AM64X_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
-> +
->  #endif
+> Done.
 > 
+> Does it mean most drivers do it wrong?
+> 
+>     git grep INIT_WORK drivers/net/ethernet/ | \
+>     sed -e 's/\(^[^:]*\):[^>]*->\([^,]*\),.*/\1        \2/' | \
+>     while read file var; do \
+>         grep -H $var $file;
+>     done | grep INIT_WORK\\\|cancel_work
 
+Some may use flush, but I wouldn't be surprised if there were bugs like
+this out there.
