@@ -2,85 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D42C2FD9AD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 20:33:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C81972FD9E4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 20:43:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388417AbhATTWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 14:22:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51778 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391821AbhATSqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 13:46:02 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AFE6C061757;
-        Wed, 20 Jan 2021 10:45:23 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id q4so12994190plr.7;
-        Wed, 20 Jan 2021 10:45:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ia6awbsKTp8Y/OHTrNkojNrbZCc+h9n0c5uhLVndNlM=;
-        b=eSi3o7Hts7hlc+psPE7j5Kec/PGslxCLCSrtgddOK7PeOLtUELUScC19XvhmHJ5u+0
-         rXlqVKVY2zMJ1HWAueNB9GonOPcFaf/mtyEMczkFpV3wGPGIda8mkeZU3WKcHfGHRt4j
-         aD/ACcYD1Hv8SktX/bHpw9/Ow484JyIxeAnfKDbqRypjWdJe7py1KTT8Pr2yfS3Q12/S
-         kXHSIefq3Ism6JVf2Ip5kFK0simc85ZKhNN3HsO0ka0QcV2WHfz/55I4LajlfDHGCsEY
-         Iml9mG0t2z2zC3r6sBXs+dFoCcddttdw3yOdLW5XOAhWVdV+LGXtXQ2hUuuEqzoiEjFR
-         zk1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ia6awbsKTp8Y/OHTrNkojNrbZCc+h9n0c5uhLVndNlM=;
-        b=aDp1s5Jd74rNWFuUBMiid5BKqLSwqAC83jee/pKNFGXSpLT30Mvkkb5EGuejWVWv8J
-         qWdOFzfub44u8wEYi8KV3kRdnnTKdB1qk8SPm+3XzzvlevghemtozsJO8MfUL2NluvNs
-         fa6QS6V6AWlfZVnBXTS1g0t4V1b8xuPij6RSbHVfnuEcuNcoxxZZGQRsocqM8rAgEFB3
-         V7gYputVpGMhOEk6rzl9ypvekxENX8NmrqtFsnwaoXCiwYXXWn0ZV4ALZnU5yc9Ke3sh
-         yhZHfC6AlOdceKjq6hzwlEIbxy/Syh30fU8hffZPTIdvKfTRzOQftTQeAhNqWzuQGUze
-         LciQ==
-X-Gm-Message-State: AOAM533g6OsAe0RsxwQJX7QsYWrEU8DAHCiMBbXjDO9LbDYWEHar5X4k
-        tSaWdHMyWeqd9YTo5iZEcVI=
-X-Google-Smtp-Source: ABdhPJyhB9PHGnnWdxziLm9KpjmPL5UoX71QgHgl2PhJNwCoIZhwO1TLD702kIRSrpEGKico853KQw==
-X-Received: by 2002:a17:902:8687:b029:dc:2a2c:e99b with SMTP id g7-20020a1709028687b02900dc2a2ce99bmr11204747plo.37.1611168322755;
-        Wed, 20 Jan 2021 10:45:22 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y21sm3061846pfp.208.2021.01.20.10.45.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 10:45:22 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Bharat Gooty <bharat.gooty@broadcom.com>
-Subject: Re: [PATCH v1 1/1] arm64: dts: stingray: fix usb dma address translation
-Date:   Wed, 20 Jan 2021 10:45:20 -0800
-Message-Id: <20210120184520.2093143-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210119053444.23108-1-rayagonda.kokatanur@broadcom.com>
-References: <20210119053444.23108-1-rayagonda.kokatanur@broadcom.com>
+        id S1732237AbhATTmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 14:42:12 -0500
+Received: from 6.mo5.mail-out.ovh.net ([178.32.119.138]:40606 "EHLO
+        6.mo5.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436480AbhATTdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 14:33:43 -0500
+X-Greylist: delayed 925 seconds by postgrey-1.27 at vger.kernel.org; Wed, 20 Jan 2021 14:33:42 EST
+Received: from player759.ha.ovh.net (unknown [10.108.35.13])
+        by mo5.mail-out.ovh.net (Postfix) with ESMTP id 8EB7C2A0838
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 20:07:22 +0100 (CET)
+Received: from RCM-web2.webmail.mail.ovh.net (public-gprs350448.centertel.pl [37.47.0.49])
+        (Authenticated sender: rafal@milecki.pl)
+        by player759.ha.ovh.net (Postfix) with ESMTPSA id 2E5521A44063F;
+        Wed, 20 Jan 2021 19:07:17 +0000 (UTC)
 MIME-Version: 1.0
+Date:   Wed, 20 Jan 2021 20:07:17 +0100
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82e?= =?UTF-8?Q?cki?= 
+        <zajec5@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2] arm64: dts: broadcom: bcm4908: describe internal
+ switch
+In-Reply-To: <20210120185824.2360279-1-f.fainelli@gmail.com>
+References: <20210112131727.19020-1-zajec5@gmail.com>
+ <20210113110946.19614-1-zajec5@gmail.com>
+ <20210120185824.2360279-1-f.fainelli@gmail.com>
+User-Agent: Roundcube Webmail/1.4.10
+Message-ID: <105a78eed57cfbe5556284f79b3d1b0d@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 37.47.0.49
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 9181150792718782191
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledruddvgdduvddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhgpofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjeffudffgfejgfdvieegudekffefveehjeeuieekheduieduhedvieefudetheeinecukfhppedtrddtrddtrddtpdefjedrgeejrddtrdegleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejheelrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jan 2021 11:04:44 +0530, Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com> wrote:
-> From: Bharat Gooty <bharat.gooty@broadcom.com>
+On 2021-01-20 19:58, Florian Fainelli wrote:
+> On Wed, 13 Jan 2021 12:09:46 +0100, Rafał Miłecki <zajec5@gmail.com> 
+> wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>> 
+>> BCM4908 has internal switch with 5 GPHYs. Ports 0 - 3 are always
+>> connected to the internal PHYs. Remaining ports depend on device 
+>> setup.
+>> 
+>> Asus GT-AC5300 has an extra switch with its PHYs accessible using the
+>> internal MDIO.
+>> 
+>> CPU port and Ethernet interface remain to be documented.
+>> ---
 > 
-> Add a non-empty dma-ranges so that dma address translation
-> happens.
-> 
-> Fixes: 2013a4b684b6 ("arm64: dts: broadcom: clear the warnings caused by empty dma-ranges")
-> 
-> Signed-off-by: Bharat Gooty <bharat.gooty@broadcom.com>
-> Signed-off-by: Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
-> ---
+> Applied to devicetree-arm64/next, thanks!
 
-Applied to devicetree-arm64/fixes, thanks!
---
-Florian
+You may need to pick a patch sent as
+[PATCH V2x] arm64: dts: broadcom: bcm4908: describe internal switch
+instead.
+
+V2x contains Signed-off-by which I missed in the V2.
+
+Sorry for the inconvenience!
