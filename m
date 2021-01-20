@@ -2,123 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D975A2FD74D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A57D32FD751
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:43:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727690AbhATRhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 12:37:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36742 "EHLO
+        id S1726666AbhATRjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 12:39:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732001AbhATRgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 12:36:02 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E17C2C0613C1;
-        Wed, 20 Jan 2021 09:35:21 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id g10so5510936wrx.1;
-        Wed, 20 Jan 2021 09:35:21 -0800 (PST)
+        with ESMTP id S1733269AbhATRh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 12:37:59 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49324C0613D3
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 09:37:19 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id a1so2590963wrq.6
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 09:37:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=bgWbillt2EgWWG5wuhiDZDSvtc6oP4uvK/bDe7atus4=;
-        b=m/DQCZTCFDAKAA47Fqyr754WPbDeIlXyeMyJc5X1hFhVDLxtVxK9YanCcfypvzCVTm
-         f4oeRquI2HYah+oWSPGB44coBCY0pbzUGmiVjq3BoIZ5eRH7vPNGqWFa/++/wlUF9sog
-         vVUpbF0+aUvcbCf7q80COT84GSMUolRI9fk5M0uMlbX6aVemVh27ksTZuJy813zMym6i
-         8HndGkfMoxwVk0a/wGLhj5fbZJRz3EajFrz7YXvXOZJTPR8a9Cfo1iYoqIE95k3TYdoS
-         a+rbQYxnPf3dIIvpdkjdkO4X4zRPfgqLtnNZQK2K5ZCD16ZIYj/RMO831ok5u+jVJjz9
-         g4Wg==
+        d=linaro.org; s=google;
+        h=to:cc:references:from:subject:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=h4o1dqV1saA7hYOJlBVLQsq7Q1SofZIleeHLa1n/egM=;
+        b=r4LRj2ZHTeb9ADlUTM5kszCh7XMbCx74c2Av/bphqgjiLl3oZYyI19iTJuSK9Epvo6
+         cgo1dopcJS6lomWcqFMHUtcyK3rXHcYsQTZGV8BQRvwSueJZniYjBa0bSaxFCOErmJdi
+         4nMYnCp4SNT46fC+1HKiK+JgZBjicGdta8LOkPR8jRUNI2fj0i2EW/4qVqOUynfHq57d
+         cjQkCvTo9GpmFNfqY0ZrZPQMRCKDN7MFVWXwx2R0MBC1KzmvvstzduuXOS6EMOKMCvf3
+         edh/KDjDNebV6vfG0BQfaiKaqjKOQ7TTu6+A3TRKjbHcFAFNWxKOkKy2lJp8X2Ajt7lT
+         567Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bgWbillt2EgWWG5wuhiDZDSvtc6oP4uvK/bDe7atus4=;
-        b=pMkZHZIZbCZlrmsrS143XMv1/nfw8qtTk3DFN4pjLizPuYuTsewdyhYD2tKn5Q1rLc
-         04iP0BVNqrN/GzyX+QK/UdNZ10RrtMD6WuNdlNGrAO8gc6U8GHV5foyCxkBC3AyQBnqc
-         lL/FKP0Y2+UhB1ECBlXhbjkV8E0wxG3psK9fY5da0qyy9dbzmzMoLrlcY5/8NiZRQ8oQ
-         03LkTeIq2G4hpdj8x3eblZzrJJlGn40d+tWnqj2NU8IhPHM/RgwhJ4DM+T5ij5bvkFEo
-         XYMwawF5GUS8yUhC0aH6S8WM7O2LCcyG8H9//aLi8AldZ51Wnvt4TYLjGfgR1UGJ34f4
-         /ziw==
-X-Gm-Message-State: AOAM533QalzsIlaknlFzyfvRmGhFGJBwqPCtKnh9YqKdV8r8YOFmnBAX
-        3Eyj23PidBA7wDbvIiDEO7I=
-X-Google-Smtp-Source: ABdhPJzByxqsWOE3ecma2d/q4MjvAdPab8HfLtylXkpN1r5aMzK5sHc1+rLNxK0T60IIARVKjx0OjA==
-X-Received: by 2002:adf:e547:: with SMTP id z7mr10021098wrm.283.1611164120662;
-        Wed, 20 Jan 2021 09:35:20 -0800 (PST)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id r16sm5306760wrx.36.2021.01.20.09.35.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 09:35:19 -0800 (PST)
-Date:   Wed, 20 Jan 2021 18:35:18 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
-        kishon@ti.com, mturquette@baylibre.com, sboyd@kernel.org,
-        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=h4o1dqV1saA7hYOJlBVLQsq7Q1SofZIleeHLa1n/egM=;
+        b=LGLqStoBuJ2bAcv9pdpRuGFwWBGW4UxfKQJsHbxwsunNayaX5jYeETQ/yh2M/d1xa9
+         m3eRGnFura0ZVDmgHx02aA+DUVikPNk9hVB5rNgmyMxFM+RazuMBcm1vrOTSntV6snoE
+         vd862/xeRPSytoP0Ix8ydAEWvLjFmpv4B4IB3BoLgYREEN4ao04avWMyqqDR5639pAQa
+         LfKeHXMPAAEdQRhJFlDKJK4278vYxynr8YrN6p3m3gWnq57rhVKdgz2HMQNSxcjPkMZd
+         hEv/J01HBTKoUIUeaMQLjwLfKD6mDrSFkNAXvA0mmUdGYLQtFpKOGMyXQcYy12XohugU
+         Niew==
+X-Gm-Message-State: AOAM531rO9Fbq3eCNQNXLIP3HQ3IHmWn5yTf5Hd8aYIJPkDJ6b3VqFez
+        Z9ANlsVTjfbMJrZCEky+NYP8E29+nhW1lw==
+X-Google-Smtp-Source: ABdhPJzkezaLXgq5uH78Cp6GjxLgHk7vFHYkmiYrokCm4/BtfZHexDrRbjL04HUFOyb8tTclJDb35w==
+X-Received: by 2002:a05:6000:254:: with SMTP id m20mr2062106wrz.300.1611164237903;
+        Wed, 20 Jan 2021 09:37:17 -0800 (PST)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id w8sm5480791wrl.91.2021.01.20.09.37.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Jan 2021 09:37:16 -0800 (PST)
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     robh+dt@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        nkristam@nvidia.com, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v7 08/14] arm64: tegra210: XUSB PADCTL add "nvidia,pmc"
- prop
-Message-ID: <YAhp1tzeVszKFAXt@ulmo>
-References: <20210120073414.69208-1-jckuo@nvidia.com>
- <20210120073414.69208-9-jckuo@nvidia.com>
+        okukatla@codeaurora.org
+References: <20210120080627.20784-1-manivannan.sadhasivam@linaro.org>
+ <20210120080627.20784-3-manivannan.sadhasivam@linaro.org>
+ <cb0f56b6-a75c-51a8-d640-08896d459a68@linaro.org>
+ <20210120163735.GC54606@thinkpad>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH 2/2] interconnect: qcom: Add SDX55 interconnect provider
+ driver
+Message-ID: <2a5d4de5-1e92-3b58-0ad1-9dd472ed7a0b@linaro.org>
+Date:   Wed, 20 Jan 2021 19:37:20 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="18V6D7czgfXzXs7x"
-Content-Disposition: inline
-In-Reply-To: <20210120073414.69208-9-jckuo@nvidia.com>
-User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
+In-Reply-To: <20210120163735.GC54606@thinkpad>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mani,
 
---18V6D7czgfXzXs7x
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 1/20/21 18:37, Manivannan Sadhasivam wrote:
+> Hi Georgi,
+> 
+> On Wed, Jan 20, 2021 at 04:59:31PM +0200, Georgi Djakov wrote:
+>> Hi Mani,
+>>
+>> Thanks for the patch!
+>>
+>> On 1/20/21 10:06, Manivannan Sadhasivam wrote:
+>>> Add driver for the Qualcomm interconnect buses found in SDX55 based
+>>> platforms. The topology consists of several NoCs that are controlled by
+>>> a remote processor that collects the aggregated bandwidth for each
+>>> master-slave pairs.
+>>>
+>>> Based on SM8250 driver and generated from downstream dts.
+>>>
+>>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>> ---
+>>>    drivers/interconnect/qcom/Kconfig  |  10 +
+>>>    drivers/interconnect/qcom/Makefile |   2 +
+>>>    drivers/interconnect/qcom/sdx55.c  | 356 +++++++++++++++++++++++++++++
+>>>    drivers/interconnect/qcom/sdx55.h  |  70 ++++++
+>>>    4 files changed, 438 insertions(+)
+>>>    create mode 100644 drivers/interconnect/qcom/sdx55.c
+>>>    create mode 100644 drivers/interconnect/qcom/sdx55.h
+>>>
+>>> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+>>> index a8f93ba265f8..6df7e2161a0a 100644
+>>> --- a/drivers/interconnect/qcom/Kconfig
+>>> +++ b/drivers/interconnect/qcom/Kconfig
+>>> @@ -65,6 +65,16 @@ config INTERCONNECT_QCOM_SDM845
+>>>    	  This is a driver for the Qualcomm Network-on-Chip on sdm845-based
+>>>    	  platforms.
+>>> +config INTERCONNECT_QCOM_SDX55
+>>> +	tristate "Qualcomm SDX55 interconnect driver"
+>>> +	depends on INTERCONNECT_QCOM
+>>> +	depends on (QCOM_RPMH && QCOM_COMMAND_DB && OF) || COMPILE_TEST
+>>
+>> Why not use depends on INTERCONNECT_QCOM_RPMH_POSSIBLE?
+>>
+> 
+> I just followed the same pattern as other RPMh based drivers. And I don't get
+> what you are suggesting here! Can you please explain?
 
-On Wed, Jan 20, 2021 at 03:34:08PM +0800, JC Kuo wrote:
-> PMC driver provides USB sleepwalk registers access to XUSB PADCTL
-> driver. This commit adds a "nvidia,pmc" property which points to
-> PMC node to XUSB PADCTL device node.
->=20
-> Signed-off-by: JC Kuo <jckuo@nvidia.com>
-> ---
-> v7:
->    no change
-> v6:
->    no change
-> v5:
->    no change
-> v4:
->    no change
-> v3:
->    no change
->=20
->  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+There are some recent changes here. Please check linux-next or v5.11-rc3+.
 
-Applied, thanks.
-
-Thierry
-
---18V6D7czgfXzXs7x
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAIadUACgkQ3SOs138+
-s6EDMRAAvfRgeCYikIL6BAwhM+SJloxBij+bHJARe9b4wi6pnROzxtFyJqUvo/cB
-g19sC695KcooGStaivQiO9I7P/oFiss+DW2X7p0gz/3QvOO9JCsjpw6rT87qi6d/
-ssfTnZ+vjiJg2YA+xvIomS9x6VTknLB4yNf0gN++hr/qkLUBviIg1WLwEKQ2TA4q
-42rT2OoJC1IXx+BJ7w6O1N+bu4RFRva2jv2E6dOrTFdgeP4WR6D3gvgoHfeqGYJ+
-HXtn/3j4X2DrTnUwAXkZ3EPBSTW/KxjUKKmUkZLkxILSZDFzQ2wIVH1DUEGIqQYn
-GN52PjCca4A7FYY0coZIEiW48lthCybbVu21NPs+C/qqBTwuyEBOZULvPfDeVJQa
-5b9K3RsL1M4z00iSTueUa/Q0aiiGcAoOoeOZIbdH+4E9AteeboFfO0NB+qmudQxi
-fpR0JJtEbov1KiE2xJG0McHesgUfWbqdcfyN9U2FNcEzNhppyDhdj1OfTiJ/frRy
-L8ryBXnTZ2aufYjDyJe7ShDJElIbssSBI4ETs48Zc9zYlejUuth8H4aNgNS7pCe1
-ihtyG2TegmRT2IgZDEvYn3CrPGElfcDaRBMBYaM0869tTa1Has8+SVIPxWO51UWK
-YZkkTPNo9qYFrMwP2E/EwyiImIxLsDeBQh8RTEUG0ED9CQgd/9M=
-=zY9/
------END PGP SIGNATURE-----
-
---18V6D7czgfXzXs7x--
+Thanks,
+Georgi
