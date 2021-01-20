@@ -2,895 +2,614 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B3F62FDA14
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 20:52:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCEB52FD9F6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 20:48:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388515AbhATTvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 14:51:17 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34862 "EHLO mail.kernel.org"
+        id S2392647AbhATTpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 14:45:30 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:50830 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388516AbhATTnf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 14:43:35 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E91F423440;
-        Wed, 20 Jan 2021 19:42:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611171773;
-        bh=dpvnKdlnWCevTpMOgFtCI8VlzM6niYYU9DykXvhAxjM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FUFdnrZnOdKjhAvjaWbr1P71BIOYfvnqC1LJGsSMsjx/XME3w6QaFwIywUgjB4u55
-         AqmWkUB4xuTrmZVJrLPkAR0xVGL2P6mPaQiCHsnaowJEE/eKV1fj0RAp0m4JqM21jd
-         4nSsb3Ed8B60GZLmSdsPezc+RV++H4qAAR0PJi+UdgUUdPbkbqxxlsIhyr2+tpbk9h
-         zhIyNU6BN9/XRA9T8aYpo2zK8DL5FnZZZXZ811AXxvsDHyjz2UEvfRKawSrUgQhVXO
-         IwFN9whB5543b66i0Omw/EOZrsbdDlBDZBXjtWL6XUpz8wS/CHaVAccv0EPcsMeZq+
-         KML2MjqLu2zTA==
-Date:   Wed, 20 Jan 2021 20:42:45 +0100
-From:   Matthias Brugger <matthias.bgg@kernel.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fei Shao <fshao@chromium.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Ran Bi <ran.bi@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 5/9] mfd: Add support for the MediaTek MT6359 PMIC
-Message-ID: <YAiHtWRYDJls8Pc4@ziggy.stardust>
-References: <1608104827-7937-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1608104827-7937-6-git-send-email-hsin-hsiung.wang@mediatek.com>
+        id S2392614AbhATTpM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 14:45:12 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1l2JOq-001hHn-Nj; Wed, 20 Jan 2021 20:44:16 +0100
+Date:   Wed, 20 Jan 2021 20:44:16 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Lukasz Stelmach <l.stelmach@samsung.com>
+Cc:     Jakub Kicinski <kuba@kernel.org>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v10 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
+ Adapter Driver
+Message-ID: <YAiIECyk6cA0Z+9I@lunn.ch>
+References: <20210115172722.516468bb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <CGME20210120193032eucas1p26566e957da7a75bc0818fe08e055bec8@eucas1p2.samsung.com>
+ <dleftj8s8nwgmx.fsf%l.stelmach@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1608104827-7937-6-git-send-email-hsin-hsiung.wang@mediatek.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dleftj8s8nwgmx.fsf%l.stelmach@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 16, 2020 at 03:47:03PM +0800, Hsin-Hsiung Wang wrote:
-> This adds support for the MediaTek MT6359 PMIC. This is a
-> multifunction device with the following sub modules:
+On Wed, Jan 20, 2021 at 08:30:14PM +0100, Lukasz Stelmach wrote:
+> It was <2021-01-15 pią 17:27>, when Jakub Kicinski wrote:
+> > On Wed, 13 Jan 2021 19:40:28 +0100 Łukasz Stelmach wrote:
+> >> ASIX AX88796[1] is a versatile ethernet adapter chip, that can be
+> >> connected to a CPU with a 8/16-bit bus or with an SPI. This driver
+> >> supports SPI connection.
+> >> 
+> >> The driver has been ported from the vendor kernel for ARTIK5[2]
+> >> boards. Several changes were made to adapt it to the current kernel
+> >> which include:
+> >> 
+> >> + updated DT configuration,
+> >> + clock configuration moved to DT,
+> >> + new timer, ethtool and gpio APIs,
+> >> + dev_* instead of pr_* and custom printk() wrappers,
+> >> + removed awkward vendor power managemtn.
+> >> + introduced ethtool tunable to control SPI compression
+> >> 
 > 
-> - Codec
-> - Interrupt
-> - Regulator
-> - RTC
+> [...]
 > 
-> It is interfaced to the host controller using SPI interface
-> by a proprietary hardware called PMIC wrapper or pwrap.
-> MT6359 MFD is a child device of the pwrap.
+> >> 
+> >> The other ax88796 driver is for NE2000 compatible AX88796L chip. These
+> >> chips are not compatible. Hence, two separate drivers are required.
+> >> 
+> >> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
+> >> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> >
+> >> +static u32 ax88796c_get_priv_flags(struct net_device *ndev)
+> >> +{
+> >> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> >> +
+> >> +        return ax_local->priv_flags;
+> >
+> > stray indent
+> >
+> >> +}
 > 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> ---
->  drivers/mfd/mt6358-irq.c             |  24 ++
->  drivers/mfd/mt6397-core.c            |  28 ++
->  include/linux/mfd/mt6359/core.h      | 133 +++++++
->  include/linux/mfd/mt6359/registers.h | 529 +++++++++++++++++++++++++++
->  include/linux/mfd/mt6397/core.h      |   1 +
->  5 files changed, 715 insertions(+)
->  create mode 100644 include/linux/mfd/mt6359/core.h
->  create mode 100644 include/linux/mfd/mt6359/registers.h
+> Done.
 > 
-> diff --git a/drivers/mfd/mt6358-irq.c b/drivers/mfd/mt6358-irq.c
-> index 4b094e5e51cc..83f3ffbdbb4c 100644
-> --- a/drivers/mfd/mt6358-irq.c
-> +++ b/drivers/mfd/mt6358-irq.c
-> @@ -5,6 +5,8 @@
->  #include <linux/interrupt.h>
->  #include <linux/mfd/mt6358/core.h>
->  #include <linux/mfd/mt6358/registers.h>
-> +#include <linux/mfd/mt6359/core.h>
-> +#include <linux/mfd/mt6359/registers.h>
->  #include <linux/mfd/mt6397/core.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> @@ -26,6 +28,17 @@ static const struct irq_top_t mt6358_ints[] = {
->  	MT6358_TOP_GEN(MISC),
->  };
->  
-> +static const struct irq_top_t mt6359_ints[] = {
-> +	MT6359_TOP_GEN(BUCK),
-> +	MT6359_TOP_GEN(LDO),
-> +	MT6359_TOP_GEN(PSC),
-> +	MT6359_TOP_GEN(SCK),
-> +	MT6359_TOP_GEN(BM),
-> +	MT6359_TOP_GEN(HK),
-> +	MT6359_TOP_GEN(AUD),
-> +	MT6359_TOP_GEN(MISC),
-> +};
-> +
->  static struct pmic_irq_data mt6358_irqd = {
->  	.num_top = ARRAY_SIZE(mt6358_ints),
->  	.num_pmic_irqs = MT6358_IRQ_NR,
-> @@ -33,6 +46,13 @@ static struct pmic_irq_data mt6358_irqd = {
->  	.pmic_ints = mt6358_ints,
->  };
->  
-> +static struct pmic_irq_data mt6359_irqd = {
-> +	.num_top = ARRAY_SIZE(mt6359_ints),
-> +	.num_pmic_irqs = MT6359_IRQ_NR,
-> +	.top_int_status_reg = MT6359_TOP_INT_STATUS0,
-> +	.pmic_ints = mt6359_ints,
-> +};
-> +
->  static void pmic_irq_enable(struct irq_data *data)
->  {
->  	unsigned int hwirq = irqd_to_hwirq(data);
-> @@ -195,6 +215,10 @@ int mt6358_irq_init(struct mt6397_chip *chip)
->  		chip->irq_data = &mt6358_irqd;
->  		break;
->  
-> +	case MT6359_CHIP_ID:
-> +		chip->irq_data = &mt6359_irqd;
-> +		break;
-> +
->  	default:
->  		dev_err(chip->dev, "unsupported chip: 0x%x\n", chip->chip_id);
->  		return -ENODEV;
-> diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
-> index f6cd8a660602..07240eaf4055 100644
-> --- a/drivers/mfd/mt6397-core.c
-> +++ b/drivers/mfd/mt6397-core.c
-> @@ -13,9 +13,11 @@
->  #include <linux/mfd/core.h>
->  #include <linux/mfd/mt6323/core.h>
->  #include <linux/mfd/mt6358/core.h>
-> +#include <linux/mfd/mt6359/core.h>
->  #include <linux/mfd/mt6397/core.h>
->  #include <linux/mfd/mt6323/registers.h>
->  #include <linux/mfd/mt6358/registers.h>
-> +#include <linux/mfd/mt6359/registers.h>
->  #include <linux/mfd/mt6397/registers.h>
->  
->  #define MT6323_RTC_BASE		0x8000
-> @@ -99,6 +101,21 @@ static const struct mfd_cell mt6358_devs[] = {
->  	},
->  };
->  
-> +static const struct mfd_cell mt6359_devs[] = {
-> +	{
-> +		.name = "mt6359-regulator",
-> +		.of_compatible = "mediatek,mt6359-regulator",
+> >> +#define MAX(x,y) ((x) > (y) ? (x) : (y))
+> >
+> > Please use the standard linux max / max_t macros.
+> 
+> Done.
+> 
+> >> +static struct sk_buff *
+> >> +ax88796c_tx_fixup(struct net_device *ndev, struct sk_buff_head *q)
+> >> +{
+> >> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> >> +	u8 spi_len = ax_local->ax_spi.comp ? 1 : 4;
+> >> +	struct sk_buff *skb;
+> >> +	struct tx_pkt_info *info;
+> >> +	struct skb_data *entry;
+> >> +	u16 pkt_len;
+> >> +	u8 padlen, seq_num;
+> >> +	u8 need_pages;
+> >> +	int headroom;
+> >> +	int tailroom;
+> >> +
+> >> +	if (skb_queue_empty(q))
+> >> +		return NULL;
+> >> +
+> >> +	skb = skb_peek(q);
+> >> +	pkt_len = skb->len;
+> >> +	need_pages = (pkt_len + TX_OVERHEAD + 127) >> 7;
+> >> +	if (ax88796c_check_free_pages(ax_local, need_pages) != 0)
+> >> +		return NULL;
+> >> +
+> >> +	headroom = skb_headroom(skb);
+> >> +	tailroom = skb_tailroom(skb);
+> >> +	padlen = round_up(pkt_len, 4) - pkt_len;
+> >> +	seq_num = ++ax_local->seq_num & 0x1F;
+> >> +
+> >> +	info = (struct tx_pkt_info *)skb->cb;
+> >> +	info->pkt_len = pkt_len;
+> >> +
+> >> +	if (skb_cloned(skb) ||
+> >> +	    (headroom < (TX_OVERHEAD + spi_len)) ||
+> >> +	    (tailroom < (padlen + TX_EOP_SIZE))) {
+> >> +		size_t h = MAX((TX_OVERHEAD + spi_len) - headroom,0);
+> >> +		size_t t = MAX((padlen + TX_EOP_SIZE) - tailroom,0);
+> >> +
+> >> +		if (pskb_expand_head(skb, h, t, GFP_KERNEL))
+> >> +			return NULL;
+> >> +	}
+> >> +
+> >> +	info->seq_num = seq_num;
+> >> +	ax88796c_proc_tx_hdr(info, skb->ip_summed);
+> >> +
+> >> +	/* SOP and SEG header */
+> >> +	memcpy(skb_push(skb, TX_OVERHEAD), &info->sop, TX_OVERHEAD);
+> >
+> > why use skb->cb to store info? why not declare it on the stack?
+> >
+> 
+> Done.
+> 
+> >> +	/* Write SPI TXQ header */
+> >> +	memcpy(skb_push(skb, spi_len), ax88796c_tx_cmd_buf, spi_len);
+> >> +
+> >> +	/* Make 32-bit alignment */
+> >> +	skb_put(skb, padlen);
+> >> +
+> >> +	/* EOP header */
+> >> +	memcpy(skb_put(skb, TX_EOP_SIZE), &info->eop, TX_EOP_SIZE);
+> >> +
+> >> +	skb_unlink(skb, q);
+> >> +
+> >> +	entry = (struct skb_data *)skb->cb;
+> >> +	memset(entry, 0, sizeof(*entry));
+> >> +	entry->len = pkt_len;
+> >> +
+> >> +	if (netif_msg_pktdata(ax_local)) {
+> >> +		char pfx[IFNAMSIZ + 7];
+> >> +
+> >> +		snprintf(pfx, sizeof(pfx), "%s:     ", ndev->name);
+> >> +
+> >> +		netdev_info(ndev, "TX packet len %d, total len %d, seq %d\n",
+> >> +			    pkt_len, skb->len, seq_num);
+> >> +
+> >> +		netdev_info(ndev, "  SPI Header:\n");
+> >> +		print_hex_dump(KERN_INFO, pfx, DUMP_PREFIX_OFFSET, 16, 1,
+> >> +			       skb->data, 4, 0);
+> >> +
+> >> +		netdev_info(ndev, "  TX SOP:\n");
+> >> +		print_hex_dump(KERN_INFO, pfx, DUMP_PREFIX_OFFSET, 16, 1,
+> >> +			       skb->data + 4, TX_OVERHEAD, 0);
+> >> +
+> >> +		netdev_info(ndev, "  TX packet:\n");
+> >> +		print_hex_dump(KERN_INFO, pfx, DUMP_PREFIX_OFFSET, 16, 1,
+> >> +			       skb->data + 4 + TX_OVERHEAD,
+> >> +			       skb->len - TX_EOP_SIZE - 4 - TX_OVERHEAD, 0);
+> >> +
+> >> +		netdev_info(ndev, "  TX EOP:\n");
+> >> +		print_hex_dump(KERN_INFO, pfx, DUMP_PREFIX_OFFSET, 16, 1,
+> >> +			       skb->data + skb->len - 4, 4, 0);
+> >> +	}
+> >> +
+> >> +	return skb;
+> >> +}
+> >> +
+> >> +static int ax88796c_hard_xmit(struct ax88796c_device *ax_local)
+> >> +{
+> >> +	struct sk_buff *tx_skb;
+> >> +	struct skb_data *entry;
+> >> +
+> >> +	WARN_ON(!mutex_is_locked(&ax_local->spi_lock));
+> >> +
+> >> +	tx_skb = ax88796c_tx_fixup(ax_local->ndev, &ax_local->tx_wait_q);
+> >> +
+> >> +	if (!tx_skb)
+> >> +		return 0;
+> >
+> > tx_dropped++ ?
+> >
+> 
+> Done.
+> 
+> >> +	entry = (struct skb_data *)tx_skb->cb;
+> >> +
+> >> +	AX_WRITE(&ax_local->ax_spi,
+> >> +		 (TSNR_TXB_START | TSNR_PKT_CNT(1)), P0_TSNR);
+> >> +
+> >> +	axspi_write_txq(&ax_local->ax_spi, tx_skb->data, tx_skb->len);
+> >> +
+> >> +	if (((AX_READ(&ax_local->ax_spi, P0_TSNR) & TXNR_TXB_IDLE) == 0) ||
+> >> +	    ((ISR_TXERR & AX_READ(&ax_local->ax_spi, P0_ISR)) != 0)) {
+> >> +		/* Ack tx error int */
+> >> +		AX_WRITE(&ax_local->ax_spi, ISR_TXERR, P0_ISR);
+> >> +
+> >> +		ax_local->stats.tx_dropped++;
+> >> +
+> >> +		netif_err(ax_local, tx_err, ax_local->ndev,
+> >> +			  "TX FIFO error, re-initialize the TX bridge\n");
+> >
+> > rate limit
+> >
+> 
+> Done.
+> 
+> >> +		/* Reinitial tx bridge */
+> >> +		AX_WRITE(&ax_local->ax_spi, TXNR_TXB_REINIT |
+> >> +			AX_READ(&ax_local->ax_spi, P0_TSNR), P0_TSNR);
+> >> +		ax_local->seq_num = 0;
+> >> +	} else {
+> >> +		ax_local->stats.tx_packets++;
+> >> +		ax_local->stats.tx_bytes += entry->len;
+> >> +	}
+> >> +
+> >> +	entry->state = tx_done;
+> >> +	dev_kfree_skb(tx_skb);
+> >
+> > dev_consume_skb() is better in cases the xmission was correct.
+> > kfree_skb() shows up in packet drop monitor.
+> >
+> 
+> This one is OK as it is because
+> 
+> 1. dev_kfree_skb() is consume_skb()
+> 
+>     include/linux/skbuff.h:#define dev_kfree_skb(a) consume_skb(a)
+> 
+> 2. dev_consume_skb() does not exist. There are dev_consume_skb_irq() and
+> dev_consume_skb_any(). The former can be used in IRQs, the latter
+> anywher and de facto calls the former if in IRQ. If not, it calls
+> dev_kfree_skb() (see above)
+> 
+> 3. Last but not least. kfree_skb() and consume_skb() become the same
+> without CONFIG_TRACEPOINTS (commit be769db2f958).
+> 
+> >> +
+> >> +	return 1;
+> >> +}
+> >
+> >> +static void
+> >> +ax88796c_skb_return(struct ax88796c_device *ax_local, struct sk_buff *skb,
+> >> +		    struct rx_header *rxhdr)
+> >> +{
+> >> +	struct net_device *ndev = ax_local->ndev;
+> >> +	int status;
+> >> +
+> >> +	do {
+> >> +		if (!(ndev->features & NETIF_F_RXCSUM))
+> >> +			break;
+> >> +
+> >> +		/* checksum error bit is set */
+> >> +		if ((rxhdr->flags & RX_HDR3_L3_ERR) ||
+> >> +		    (rxhdr->flags & RX_HDR3_L4_ERR))
+> >> +			break;
+> >> +
+> >> +		/* Other types may be indicated by more than one bit. */
+> >> +		if ((rxhdr->flags & RX_HDR3_L4_TYPE_TCP) ||
+> >> +		    (rxhdr->flags & RX_HDR3_L4_TYPE_UDP))
+> >> +			skb->ip_summed = CHECKSUM_UNNECESSARY;
+> >> +	} while (0);
+> >> +
+> >> +	ax_local->stats.rx_packets++;
+> >> +	ax_local->stats.rx_bytes += skb->len;
+> >> +	skb->dev = ndev;
+> >> +
+> >> +	skb->protocol = eth_type_trans(skb, ax_local->ndev);
+> >> +
+> >> +	netif_info(ax_local, rx_status, ndev, "< rx, len %zu, type 0x%x\n",
+> >> +		   skb->len + sizeof(struct ethhdr), skb->protocol);
+> >> +
+> >> +	status = netif_rx_ni(skb);
+> >> +	if (status != NET_RX_SUCCESS)
+> >> +		netif_info(ax_local, rx_err, ndev,
+> >> +			   "netif_rx status %d\n", status);
+> >
+> > rate limit
+> >
+> 
+> Done.
+> 
+> >> +}
+> >> +
+> >> +static void
+> >> +ax88796c_rx_fixup(struct ax88796c_device *ax_local, struct sk_buff *rx_skb)
+> >> +{
+> >> +	struct rx_header *rxhdr = (struct rx_header *)rx_skb->data;
+> >> +	struct net_device *ndev = ax_local->ndev;
+> >> +	u16 len;
+> >> +
+> >> +	be16_to_cpus(&rxhdr->flags_len);
+> >> +	be16_to_cpus(&rxhdr->seq_lenbar);
+> >> +	be16_to_cpus(&rxhdr->flags);
+> >> +
+> >> +	if (((rxhdr->flags_len) & RX_HDR1_PKT_LEN) !=
+> >> +			 (~(rxhdr->seq_lenbar) & 0x7FF)) {
+> >
+> > Lots of unnecessary parenthesis.
+> >
+> 
+> Done.
+> 
+> >> +		netif_err(ax_local, rx_err, ndev, "Header error\n");
+> >> +
+> >> +		ax_local->stats.rx_frame_errors++;
+> >> +		kfree_skb(rx_skb);
+> >> +		return;
+> >> +	}
+> >> +
+> >> +	if ((rxhdr->flags_len & RX_HDR1_MII_ERR) ||
+> >> +	    (rxhdr->flags_len & RX_HDR1_CRC_ERR)) {
+> >> +		netif_err(ax_local, rx_err, ndev, "CRC or MII error\n");
+> >> +
+> >> +		ax_local->stats.rx_crc_errors++;
+> >> +		kfree_skb(rx_skb);
+> >> +		return;
+> >> +	}
+> >> +
+> >> +	len = rxhdr->flags_len & RX_HDR1_PKT_LEN;
+> >> +	if (netif_msg_pktdata(ax_local)) {
+> >> +		char pfx[IFNAMSIZ + 7];
+> >> +
+> >> +		snprintf(pfx, sizeof(pfx), "%s:     ", ndev->name);
+> >> +		netdev_info(ndev, "RX data, total len %d, packet len %d\n",
+> >> +			    rx_skb->len, len);
+> >> +
+> >> +		netdev_info(ndev, "  Dump RX packet header:");
+> >> +		print_hex_dump(KERN_INFO, pfx, DUMP_PREFIX_OFFSET, 16, 1,
+> >> +			       rx_skb->data, sizeof(*rxhdr), 0);
+> >> +
+> >> +		netdev_info(ndev, "  Dump RX packet:");
+> >> +		print_hex_dump(KERN_INFO, pfx, DUMP_PREFIX_OFFSET, 16, 1,
+> >> +			       rx_skb->data + sizeof(*rxhdr), len, 0);
+> >> +	}
+> >> +
+> >> +	skb_pull(rx_skb, sizeof(*rxhdr));
+> >> +	pskb_trim(rx_skb, len);
+> >> +
+> >> +	ax88796c_skb_return(ax_local, rx_skb, rxhdr);
+> >> +}
+> >> +
+> >> +static int ax88796c_receive(struct net_device *ndev)
+> >> +{
+> >> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> >> +	struct skb_data *entry;
+> >> +	u16 w_count, pkt_len;
+> >> +	struct sk_buff *skb;
+> >> +	u8 pkt_cnt;
+> >> +
+> >> +	WARN_ON(!mutex_is_locked(&ax_local->spi_lock));
+> >> +
+> >> +	/* check rx packet and total word count */
+> >> +	AX_WRITE(&ax_local->ax_spi, AX_READ(&ax_local->ax_spi, P0_RTWCR)
+> >> +		  | RTWCR_RX_LATCH, P0_RTWCR);
+> >> +
+> >> +	pkt_cnt = AX_READ(&ax_local->ax_spi, P0_RXBCR2) & RXBCR2_PKT_MASK;
+> >> +	if (!pkt_cnt)
+> >> +		return 0;
+> >> +
+> >> +	pkt_len = AX_READ(&ax_local->ax_spi, P0_RCPHR) & 0x7FF;
+> >> +
+> >> +	w_count = ((pkt_len + 6 + 3) & 0xFFFC) >> 1;
+> >
+> > w_count = round_up(pkt_len + 6, 4) >> 1;
+> >
+> 
+> Done.
+> 
+> >> +	skb = netdev_alloc_skb(ndev, (w_count * 2));
+> >
+> > parenthesis unnecessary
+> >
+> 
+> Done.
+> 
+> >> +	if (!skb) {
+> >> +		AX_WRITE(&ax_local->ax_spi, RXBCR1_RXB_DISCARD, P0_RXBCR1);
+> >
+> > Increment rx_dropped counter here?
+> >
+> 
+> Done.
+> 
+> >> +		return 0;
+> >> +	}
+> >> +	entry = (struct skb_data *)skb->cb;
+> >> +
+> >> +	AX_WRITE(&ax_local->ax_spi, RXBCR1_RXB_START | w_count, P0_RXBCR1);
+> >> +
+> >> +	axspi_read_rxq(&ax_local->ax_spi,
+> >> +		       skb_put(skb, w_count * 2), skb->len);
+> >> +
+> >> +	/* Check if rx bridge is idle */
+> >> +	if ((AX_READ(&ax_local->ax_spi, P0_RXBCR2) & RXBCR2_RXB_IDLE) == 0) {
+> >> +		netif_err(ax_local, rx_err, ndev,
+> >> +			  "Rx Bridge is not idle\n");
+> >
+> > rate limit?
+> >
+> 
+> Ok.
+> 
+> >> +		AX_WRITE(&ax_local->ax_spi, RXBCR2_RXB_REINIT, P0_RXBCR2);
+> >> +
+> >> +		entry->state = rx_err;
+> >> +	} else {
+> >> +		entry->state = rx_done;
+> >> +	}
+> >> +
+> >> +	AX_WRITE(&ax_local->ax_spi, ISR_RXPKT, P0_ISR);
+> >> +
+> >> +	ax88796c_rx_fixup(ax_local, skb);
+> >> +
+> >> +	return 1;
+> >> +}
+> >> +
+> >> +static int ax88796c_process_isr(struct ax88796c_device *ax_local)
+> >> +{
+> >> +	struct net_device *ndev = ax_local->ndev;
+> >> +	u8 done = 0;
+> >
+> > The logic associated with this variable is "is there more to do" rather
+> > than "done", no?
+> >
+> 
+> ax88796c_receive() returns 1, if there may be something more to do. So
+> yes, let's rename it to todo.
+> 
+> >> +	u16 isr;
+> >> +
+> >> +	WARN_ON(!mutex_is_locked(&ax_local->spi_lock));
+> >> +
+> >> +	isr = AX_READ(&ax_local->ax_spi, P0_ISR);
+> >> +	AX_WRITE(&ax_local->ax_spi, isr, P0_ISR);
+> >> +
+> >> +	netif_dbg(ax_local, intr, ndev, "  ISR 0x%04x\n", isr);
+> >> +
+> >> +	if (isr & ISR_TXERR) {
+> >> +		netif_dbg(ax_local, intr, ndev, "  TXERR interrupt\n");
+> >> +		AX_WRITE(&ax_local->ax_spi, TXNR_TXB_REINIT, P0_TSNR);
+> >> +		ax_local->seq_num = 0x1f;
+> >> +	}
+> >> +
+> >> +	if (isr & ISR_TXPAGES) {
+> >> +		netif_dbg(ax_local, intr, ndev, "  TXPAGES interrupt\n");
+> >> +		set_bit(EVENT_TX, &ax_local->flags);
+> >> +	}
+> >> +
+> >> +	if (isr & ISR_LINK) {
+> >> +		netif_dbg(ax_local, intr, ndev, "  Link change interrupt\n");
+> >> +		phy_mac_interrupt(ax_local->ndev->phydev);
+> >> +	}
+> >> +
+> >> +	if (isr & ISR_RXPKT) {
+> >> +		netif_dbg(ax_local, intr, ndev, "  RX interrupt\n");
+> >> +		done = ax88796c_receive(ax_local->ndev);
+> >> +	}
+> >> +
+> >> +	return done;
+> >> +}
+> >
+> >> +static void ax88796c_work(struct work_struct *work)
+> >> +{
+> >> +	struct ax88796c_device *ax_local =
+> >> +			container_of(work, struct ax88796c_device, ax_work);
+> >> +
+> >> +	mutex_lock(&ax_local->spi_lock);
+> >> +
+> >> +	if (test_bit(EVENT_SET_MULTI, &ax_local->flags)) {
+> >> +		ax88796c_set_hw_multicast(ax_local->ndev);
+> >> +		clear_bit(EVENT_SET_MULTI, &ax_local->flags);
+> >> +	}
+> >> +
+> >> +	if (test_bit(EVENT_INTR, &ax_local->flags)) {
+> >> +		AX_WRITE(&ax_local->ax_spi, IMR_MASKALL, P0_IMR);
+> >> +
+> >> +		while (1) {
+> >> +			if (!ax88796c_process_isr(ax_local))
+> >> +				break;
+> >
+> > while (ax88796c_process_isr(ax_local))
+> > 	/* nothing */;
+> > ?
+> >
+> 
+> Ok.
+> 
+> >> +		}
+> >> +
+> >> +		clear_bit(EVENT_INTR, &ax_local->flags);
+> >> +
+> >> +		AX_WRITE(&ax_local->ax_spi, IMR_DEFAULT, P0_IMR);
+> >> +
+> >> +		enable_irq(ax_local->ndev->irq);
+> >> +	}
+> >> +
+> >> +	if (test_bit(EVENT_TX, &ax_local->flags)) {
+> >> +		while (skb_queue_len(&ax_local->tx_wait_q)) {
+> >> +			if (!ax88796c_hard_xmit(ax_local))
+> >> +				break;
+> >> +		}
+> >> +
+> >> +		clear_bit(EVENT_TX, &ax_local->flags);
+> >> +
+> >> +		if (netif_queue_stopped(ax_local->ndev) &&
+> >> +		    (skb_queue_len(&ax_local->tx_wait_q) < TX_QUEUE_LOW_WATER))
+> >> +			netif_wake_queue(ax_local->ndev);
+> >> +	}
+> >> +
+> >> +	mutex_unlock(&ax_local->spi_lock);
+> >> +}
+> >
+> >> +static void ax88796c_set_csums(struct ax88796c_device *ax_local)
+> >> +{
+> >> +	struct net_device *ndev = ax_local->ndev;
+> >> +
+> >> +	WARN_ON(!mutex_is_locked(&ax_local->spi_lock));
+> >
+> > lockdep_assert_held() in all those cases
+> >
+> 
+> Done.
+> 
+> >> +static void ax88796c_free_skb_queue(struct sk_buff_head *q)
+> >> +{
+> >> +	struct sk_buff *skb;
+> >> +
+> >> +	while (q->qlen) {
+> >> +		skb = skb_dequeue(q);
+> >> +		kfree_skb(skb);
+> >> +	}
+> >
+> > __skb_queue_purge()
+> >
+> 
+> Done.
+> 
+> >> +}
+> >> +
+> >> +static int
+> >> +ax88796c_close(struct net_device *ndev)
+> >> +{
+> >> +	struct ax88796c_device *ax_local = to_ax88796c_device(ndev);
+> >> +
+> >> +	netif_stop_queue(ndev);
+> >> +	phy_stop(ndev->phydev);
+> >> +
+> >> +	mutex_lock(&ax_local->spi_lock);
+> >> +
+> >> +	/* Disable MAC interrupts */
+> >> +	AX_WRITE(&ax_local->ax_spi, IMR_MASKALL, P0_IMR);
+> >> +	ax88796c_free_skb_queue(&ax_local->tx_wait_q);
+> >> +	ax88796c_soft_reset(ax_local);
+> >> +
+> >> +	mutex_unlock(&ax_local->spi_lock);
+> >> +
+> >> +	free_irq(ndev->irq, ndev);
+> >> +
+> >> +	return 0;
+> >> +}
+> >
+> >> +struct ax88796c_device {
+> >> +	struct spi_device	*spi;
+> >> +	struct net_device	*ndev;
+> >> +	struct net_device_stats	stats;
+> >
+> > You need to use 64 bit stats, like struct rtnl_link_stats64.
+> > On a 32bit system at 100Mbps ulong can wrap in minutes.
+> >
+> 
+> Let me see. At first glance
+> 
+> git grep -l ndo_get_stats\\\> drivers/net/ethernet/  | xargs grep -li SPEED_100\\\>
+> 
+> quite a number of Fast Ethernet drivers use net_device_stats. Let me
+> calculate.
+> 
+> - bytes
+>   100Mbps is ~10MiB/s
+>   sending 4GiB at 10MiB/s takes 27 minutes
+> 
+> - packets
+>   minimum frame size is 84 bytes (840 bits on the wire) on 100Mbps means
+>   119048 pps at this speed it takse 10 hours to transmit 2^32 packets
+> 
+> Anyway, I switched to rtnl_link_stats64. Tell me, is it OK to just
+> memcpy() in .ndo_get_stats64?
 
-This way autoload for the regulator driver will not work. Can you please
-test that. From my understanding you can drop the of_compatible here.
+You should uses the helpers in include/linux/u64_stats_sync.h to make
+sure the synchronization between readers and writers is correct. A
+memcpy() within those primitives should be O.K.
 
-Regards,
-Matthias
-
-> +	}, {
-> +		.name = "mt6359-rtc",
-> +		.num_resources = ARRAY_SIZE(mt6358_rtc_resources),
-> +		.resources = mt6358_rtc_resources,
-> +		.of_compatible = "mediatek,mt6358-rtc",
-> +	}, {
-> +		.name = "mt6359-sound",
-> +		.of_compatible = "mediatek,mt6359-sound",
-> +	},
-> +};
-> +
->  static const struct mfd_cell mt6397_devs[] = {
->  	{
->  		.name = "mt6397-rtc",
-> @@ -149,6 +166,14 @@ static const struct chip_data mt6358_core = {
->  	.irq_init = mt6358_irq_init,
->  };
->  
-> +static const struct chip_data mt6359_core = {
-> +	.cid_addr = MT6359_SWCID,
-> +	.cid_shift = 8,
-> +	.cells = mt6359_devs,
-> +	.cell_size = ARRAY_SIZE(mt6359_devs),
-> +	.irq_init = mt6358_irq_init,
-> +};
-> +
->  static const struct chip_data mt6397_core = {
->  	.cid_addr = MT6397_CID,
->  	.cid_shift = 0,
-> @@ -218,6 +243,9 @@ static const struct of_device_id mt6397_of_match[] = {
->  	}, {
->  		.compatible = "mediatek,mt6358",
->  		.data = &mt6358_core,
-> +	}, {
-> +		.compatible = "mediatek,mt6359",
-> +		.data = &mt6359_core,
->  	}, {
->  		.compatible = "mediatek,mt6397",
->  		.data = &mt6397_core,
-> diff --git a/include/linux/mfd/mt6359/core.h b/include/linux/mfd/mt6359/core.h
-> new file mode 100644
-> index 000000000000..61872f1ecbe4
-> --- /dev/null
-> +++ b/include/linux/mfd/mt6359/core.h
-> @@ -0,0 +1,133 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2020 MediaTek Inc.
-> + */
-> +
-> +#ifndef __MFD_MT6359_CORE_H__
-> +#define __MFD_MT6359_CORE_H__
-> +
-> +enum mt6359_irq_top_status_shift {
-> +	MT6359_BUCK_TOP = 0,
-> +	MT6359_LDO_TOP,
-> +	MT6359_PSC_TOP,
-> +	MT6359_SCK_TOP,
-> +	MT6359_BM_TOP,
-> +	MT6359_HK_TOP,
-> +	MT6359_AUD_TOP = 7,
-> +	MT6359_MISC_TOP,
-> +};
-> +
-> +enum mt6359_irq_numbers {
-> +	MT6359_IRQ_VCORE_OC = 1,
-> +	MT6359_IRQ_VGPU11_OC,
-> +	MT6359_IRQ_VGPU12_OC,
-> +	MT6359_IRQ_VMODEM_OC,
-> +	MT6359_IRQ_VPROC1_OC,
-> +	MT6359_IRQ_VPROC2_OC,
-> +	MT6359_IRQ_VS1_OC,
-> +	MT6359_IRQ_VS2_OC,
-> +	MT6359_IRQ_VPA_OC = 9,
-> +	MT6359_IRQ_VFE28_OC = 16,
-> +	MT6359_IRQ_VXO22_OC,
-> +	MT6359_IRQ_VRF18_OC,
-> +	MT6359_IRQ_VRF12_OC,
-> +	MT6359_IRQ_VEFUSE_OC,
-> +	MT6359_IRQ_VCN33_1_OC,
-> +	MT6359_IRQ_VCN33_2_OC,
-> +	MT6359_IRQ_VCN13_OC,
-> +	MT6359_IRQ_VCN18_OC,
-> +	MT6359_IRQ_VA09_OC,
-> +	MT6359_IRQ_VCAMIO_OC,
-> +	MT6359_IRQ_VA12_OC,
-> +	MT6359_IRQ_VAUX18_OC,
-> +	MT6359_IRQ_VAUD18_OC,
-> +	MT6359_IRQ_VIO18_OC,
-> +	MT6359_IRQ_VSRAM_PROC1_OC,
-> +	MT6359_IRQ_VSRAM_PROC2_OC,
-> +	MT6359_IRQ_VSRAM_OTHERS_OC,
-> +	MT6359_IRQ_VSRAM_MD_OC,
-> +	MT6359_IRQ_VEMC_OC,
-> +	MT6359_IRQ_VSIM1_OC,
-> +	MT6359_IRQ_VSIM2_OC,
-> +	MT6359_IRQ_VUSB_OC,
-> +	MT6359_IRQ_VRFCK_OC,
-> +	MT6359_IRQ_VBBCK_OC,
-> +	MT6359_IRQ_VBIF28_OC,
-> +	MT6359_IRQ_VIBR_OC,
-> +	MT6359_IRQ_VIO28_OC,
-> +	MT6359_IRQ_VM18_OC,
-> +	MT6359_IRQ_VUFS_OC = 45,
-> +	MT6359_IRQ_PWRKEY = 48,
-> +	MT6359_IRQ_HOMEKEY,
-> +	MT6359_IRQ_PWRKEY_R,
-> +	MT6359_IRQ_HOMEKEY_R,
-> +	MT6359_IRQ_NI_LBAT_INT,
-> +	MT6359_IRQ_CHRDET_EDGE = 53,
-> +	MT6359_IRQ_RTC = 64,
-> +	MT6359_IRQ_FG_BAT_H = 80,
-> +	MT6359_IRQ_FG_BAT_L,
-> +	MT6359_IRQ_FG_CUR_H,
-> +	MT6359_IRQ_FG_CUR_L,
-> +	MT6359_IRQ_FG_ZCV = 84,
-> +	MT6359_IRQ_FG_N_CHARGE_L = 87,
-> +	MT6359_IRQ_FG_IAVG_H,
-> +	MT6359_IRQ_FG_IAVG_L = 89,
-> +	MT6359_IRQ_FG_DISCHARGE = 91,
-> +	MT6359_IRQ_FG_CHARGE,
-> +	MT6359_IRQ_BATON_LV = 96,
-> +	MT6359_IRQ_BATON_BAT_IN = 98,
-> +	MT6359_IRQ_BATON_BAT_OU,
-> +	MT6359_IRQ_BIF = 100,
-> +	MT6359_IRQ_BAT_H = 112,
-> +	MT6359_IRQ_BAT_L,
-> +	MT6359_IRQ_BAT2_H,
-> +	MT6359_IRQ_BAT2_L,
-> +	MT6359_IRQ_BAT_TEMP_H,
-> +	MT6359_IRQ_BAT_TEMP_L,
-> +	MT6359_IRQ_THR_H,
-> +	MT6359_IRQ_THR_L,
-> +	MT6359_IRQ_AUXADC_IMP,
-> +	MT6359_IRQ_NAG_C_DLTV = 121,
-> +	MT6359_IRQ_AUDIO = 128,
-> +	MT6359_IRQ_ACCDET = 133,
-> +	MT6359_IRQ_ACCDET_EINT0,
-> +	MT6359_IRQ_ACCDET_EINT1,
-> +	MT6359_IRQ_SPI_CMD_ALERT = 144,
-> +	MT6359_IRQ_NR,
-> +};
-> +
-> +#define MT6359_IRQ_BUCK_BASE MT6359_IRQ_VCORE_OC
-> +#define MT6359_IRQ_LDO_BASE MT6359_IRQ_VFE28_OC
-> +#define MT6359_IRQ_PSC_BASE MT6359_IRQ_PWRKEY
-> +#define MT6359_IRQ_SCK_BASE MT6359_IRQ_RTC
-> +#define MT6359_IRQ_BM_BASE MT6359_IRQ_FG_BAT_H
-> +#define MT6359_IRQ_HK_BASE MT6359_IRQ_BAT_H
-> +#define MT6359_IRQ_AUD_BASE MT6359_IRQ_AUDIO
-> +#define MT6359_IRQ_MISC_BASE MT6359_IRQ_SPI_CMD_ALERT
-> +
-> +#define MT6359_IRQ_BUCK_BITS (MT6359_IRQ_VPA_OC - MT6359_IRQ_BUCK_BASE + 1)
-> +#define MT6359_IRQ_LDO_BITS (MT6359_IRQ_VUFS_OC - MT6359_IRQ_LDO_BASE + 1)
-> +#define MT6359_IRQ_PSC_BITS	\
-> +	(MT6359_IRQ_CHRDET_EDGE - MT6359_IRQ_PSC_BASE + 1)
-> +#define MT6359_IRQ_SCK_BITS (MT6359_IRQ_RTC - MT6359_IRQ_SCK_BASE + 1)
-> +#define MT6359_IRQ_BM_BITS (MT6359_IRQ_BIF - MT6359_IRQ_BM_BASE + 1)
-> +#define MT6359_IRQ_HK_BITS (MT6359_IRQ_NAG_C_DLTV - MT6359_IRQ_HK_BASE + 1)
-> +#define MT6359_IRQ_AUD_BITS	\
-> +	(MT6359_IRQ_ACCDET_EINT1 - MT6359_IRQ_AUD_BASE + 1)
-> +#define MT6359_IRQ_MISC_BITS	\
-> +	(MT6359_IRQ_SPI_CMD_ALERT - MT6359_IRQ_MISC_BASE + 1)
-> +
-> +#define MT6359_TOP_GEN(sp)	\
-> +{	\
-> +	.hwirq_base = MT6359_IRQ_##sp##_BASE,	\
-> +	.num_int_regs =	\
-> +		((MT6359_IRQ_##sp##_BITS - 1) /	\
-> +		MTK_PMIC_REG_WIDTH) + 1,	\
-> +	.en_reg = MT6359_##sp##_TOP_INT_CON0,	\
-> +	.en_reg_shift = 0x6,	\
-> +	.sta_reg = MT6359_##sp##_TOP_INT_STATUS0,	\
-> +	.sta_reg_shift = 0x2,	\
-> +	.top_offset = MT6359_##sp##_TOP,	\
-> +}
-> +
-> +#endif /* __MFD_MT6359_CORE_H__ */
-> diff --git a/include/linux/mfd/mt6359/registers.h b/include/linux/mfd/mt6359/registers.h
-> new file mode 100644
-> index 000000000000..4d72f0a7f2b0
-> --- /dev/null
-> +++ b/include/linux/mfd/mt6359/registers.h
-> @@ -0,0 +1,529 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2020 MediaTek Inc.
-> + */
-> +
-> +#ifndef __MFD_MT6359_REGISTERS_H__
-> +#define __MFD_MT6359_REGISTERS_H__
-> +
-> +/* PMIC Registers */
-> +#define MT6359_SWCID                         0xa
-> +#define MT6359_MISC_TOP_INT_CON0             0x188
-> +#define MT6359_MISC_TOP_INT_STATUS0          0x194
-> +#define MT6359_TOP_INT_STATUS0               0x19e
-> +#define MT6359_SCK_TOP_INT_CON0              0x528
-> +#define MT6359_SCK_TOP_INT_STATUS0           0x534
-> +#define MT6359_EOSC_CALI_CON0                0x53a
-> +#define MT6359_EOSC_CALI_CON1                0x53c
-> +#define MT6359_RTC_MIX_CON0                  0x53e
-> +#define MT6359_RTC_MIX_CON1                  0x540
-> +#define MT6359_RTC_MIX_CON2                  0x542
-> +#define MT6359_RTC_DSN_ID                    0x580
-> +#define MT6359_RTC_DSN_REV0                  0x582
-> +#define MT6359_RTC_DBI                       0x584
-> +#define MT6359_RTC_DXI                       0x586
-> +#define MT6359_RTC_BBPU                      0x588
-> +#define MT6359_RTC_IRQ_STA                   0x58a
-> +#define MT6359_RTC_IRQ_EN                    0x58c
-> +#define MT6359_RTC_CII_EN                    0x58e
-> +#define MT6359_RTC_AL_MASK                   0x590
-> +#define MT6359_RTC_TC_SEC                    0x592
-> +#define MT6359_RTC_TC_MIN                    0x594
-> +#define MT6359_RTC_TC_HOU                    0x596
-> +#define MT6359_RTC_TC_DOM                    0x598
-> +#define MT6359_RTC_TC_DOW                    0x59a
-> +#define MT6359_RTC_TC_MTH                    0x59c
-> +#define MT6359_RTC_TC_YEA                    0x59e
-> +#define MT6359_RTC_AL_SEC                    0x5a0
-> +#define MT6359_RTC_AL_MIN                    0x5a2
-> +#define MT6359_RTC_AL_HOU                    0x5a4
-> +#define MT6359_RTC_AL_DOM                    0x5a6
-> +#define MT6359_RTC_AL_DOW                    0x5a8
-> +#define MT6359_RTC_AL_MTH                    0x5aa
-> +#define MT6359_RTC_AL_YEA                    0x5ac
-> +#define MT6359_RTC_OSC32CON                  0x5ae
-> +#define MT6359_RTC_POWERKEY1                 0x5b0
-> +#define MT6359_RTC_POWERKEY2                 0x5b2
-> +#define MT6359_RTC_PDN1                      0x5b4
-> +#define MT6359_RTC_PDN2                      0x5b6
-> +#define MT6359_RTC_SPAR0                     0x5b8
-> +#define MT6359_RTC_SPAR1                     0x5ba
-> +#define MT6359_RTC_PROT                      0x5bc
-> +#define MT6359_RTC_DIFF                      0x5be
-> +#define MT6359_RTC_CALI                      0x5c0
-> +#define MT6359_RTC_WRTGR                     0x5c2
-> +#define MT6359_RTC_CON                       0x5c4
-> +#define MT6359_RTC_SEC_CTRL                  0x5c6
-> +#define MT6359_RTC_INT_CNT                   0x5c8
-> +#define MT6359_RTC_SEC_DAT0                  0x5ca
-> +#define MT6359_RTC_SEC_DAT1                  0x5cc
-> +#define MT6359_RTC_SEC_DAT2                  0x5ce
-> +#define MT6359_RTC_SEC_DSN_ID                0x600
-> +#define MT6359_RTC_SEC_DSN_REV0              0x602
-> +#define MT6359_RTC_SEC_DBI                   0x604
-> +#define MT6359_RTC_SEC_DXI                   0x606
-> +#define MT6359_RTC_TC_SEC_SEC                0x608
-> +#define MT6359_RTC_TC_MIN_SEC                0x60a
-> +#define MT6359_RTC_TC_HOU_SEC                0x60c
-> +#define MT6359_RTC_TC_DOM_SEC                0x60e
-> +#define MT6359_RTC_TC_DOW_SEC                0x610
-> +#define MT6359_RTC_TC_MTH_SEC                0x612
-> +#define MT6359_RTC_TC_YEA_SEC                0x614
-> +#define MT6359_RTC_SEC_CK_PDN                0x616
-> +#define MT6359_RTC_SEC_WRTGR                 0x618
-> +#define MT6359_PSC_TOP_INT_CON0              0x910
-> +#define MT6359_PSC_TOP_INT_STATUS0           0x91c
-> +#define MT6359_BM_TOP_INT_CON0               0xc32
-> +#define MT6359_BM_TOP_INT_CON1               0xc38
-> +#define MT6359_BM_TOP_INT_STATUS0            0xc4a
-> +#define MT6359_BM_TOP_INT_STATUS1            0xc4c
-> +#define MT6359_HK_TOP_INT_CON0               0xf92
-> +#define MT6359_HK_TOP_INT_STATUS0            0xf9e
-> +#define MT6359_BUCK_TOP_INT_CON0             0x1418
-> +#define MT6359_BUCK_TOP_INT_STATUS0          0x1424
-> +#define MT6359_BUCK_VPU_CON0                 0x1488
-> +#define MT6359_BUCK_VPU_DBG0                 0x14a6
-> +#define MT6359_BUCK_VPU_DBG1                 0x14a8
-> +#define MT6359_BUCK_VPU_ELR0                 0x14ac
-> +#define MT6359_BUCK_VCORE_CON0               0x1508
-> +#define MT6359_BUCK_VCORE_DBG0               0x1526
-> +#define MT6359_BUCK_VCORE_DBG1               0x1528
-> +#define MT6359_BUCK_VCORE_SSHUB_CON0         0x152a
-> +#define MT6359_BUCK_VCORE_ELR0               0x1534
-> +#define MT6359_BUCK_VGPU11_CON0              0x1588
-> +#define MT6359_BUCK_VGPU11_DBG0              0x15a6
-> +#define MT6359_BUCK_VGPU11_DBG1              0x15a8
-> +#define MT6359_BUCK_VGPU11_ELR0              0x15ac
-> +#define MT6359_BUCK_VMODEM_CON0              0x1688
-> +#define MT6359_BUCK_VMODEM_DBG0              0x16a6
-> +#define MT6359_BUCK_VMODEM_DBG1              0x16a8
-> +#define MT6359_BUCK_VMODEM_ELR0              0x16ae
-> +#define MT6359_BUCK_VPROC1_CON0              0x1708
-> +#define MT6359_BUCK_VPROC1_DBG0              0x1726
-> +#define MT6359_BUCK_VPROC1_DBG1              0x1728
-> +#define MT6359_BUCK_VPROC1_ELR0              0x172e
-> +#define MT6359_BUCK_VPROC2_CON0              0x1788
-> +#define MT6359_BUCK_VPROC2_DBG0              0x17a6
-> +#define MT6359_BUCK_VPROC2_DBG1              0x17a8
-> +#define MT6359_BUCK_VPROC2_ELR0              0x17b2
-> +#define MT6359_BUCK_VS1_CON0                 0x1808
-> +#define MT6359_BUCK_VS1_DBG0                 0x1826
-> +#define MT6359_BUCK_VS1_DBG1                 0x1828
-> +#define MT6359_BUCK_VS1_ELR0                 0x1834
-> +#define MT6359_BUCK_VS2_CON0                 0x1888
-> +#define MT6359_BUCK_VS2_DBG0                 0x18a6
-> +#define MT6359_BUCK_VS2_DBG1                 0x18a8
-> +#define MT6359_BUCK_VS2_ELR0                 0x18b4
-> +#define MT6359_BUCK_VPA_CON0                 0x1908
-> +#define MT6359_BUCK_VPA_CON1                 0x190e
-> +#define MT6359_BUCK_VPA_CFG0                 0x1910
-> +#define MT6359_BUCK_VPA_CFG1                 0x1912
-> +#define MT6359_BUCK_VPA_DBG0                 0x1914
-> +#define MT6359_BUCK_VPA_DBG1                 0x1916
-> +#define MT6359_VGPUVCORE_ANA_CON2            0x198e
-> +#define MT6359_VGPUVCORE_ANA_CON13           0x19a4
-> +#define MT6359_VPROC1_ANA_CON3               0x19b2
-> +#define MT6359_VPROC2_ANA_CON3               0x1a0e
-> +#define MT6359_VMODEM_ANA_CON3               0x1a1a
-> +#define MT6359_VPU_ANA_CON3                  0x1a26
-> +#define MT6359_VS1_ANA_CON0                  0x1a2c
-> +#define MT6359_VS2_ANA_CON0                  0x1a34
-> +#define MT6359_VPA_ANA_CON0                  0x1a3c
-> +#define MT6359_LDO_TOP_INT_CON0              0x1b14
-> +#define MT6359_LDO_TOP_INT_CON1              0x1b1a
-> +#define MT6359_LDO_TOP_INT_STATUS0           0x1b28
-> +#define MT6359_LDO_TOP_INT_STATUS1           0x1b2a
-> +#define MT6359_LDO_VSRAM_PROC1_ELR           0x1b40
-> +#define MT6359_LDO_VSRAM_PROC2_ELR           0x1b42
-> +#define MT6359_LDO_VSRAM_OTHERS_ELR          0x1b44
-> +#define MT6359_LDO_VSRAM_MD_ELR              0x1b46
-> +#define MT6359_LDO_VFE28_CON0                0x1b88
-> +#define MT6359_LDO_VFE28_MON                 0x1b8a
-> +#define MT6359_LDO_VXO22_CON0                0x1b98
-> +#define MT6359_LDO_VXO22_MON                 0x1b9a
-> +#define MT6359_LDO_VRF18_CON0                0x1ba8
-> +#define MT6359_LDO_VRF18_MON                 0x1baa
-> +#define MT6359_LDO_VRF12_CON0                0x1bb8
-> +#define MT6359_LDO_VRF12_MON                 0x1bba
-> +#define MT6359_LDO_VEFUSE_CON0               0x1bc8
-> +#define MT6359_LDO_VEFUSE_MON                0x1bca
-> +#define MT6359_LDO_VCN33_1_CON0              0x1bd8
-> +#define MT6359_LDO_VCN33_1_MON               0x1bda
-> +#define MT6359_LDO_VCN33_1_MULTI_SW          0x1be8
-> +#define MT6359_LDO_VCN33_2_CON0              0x1c08
-> +#define MT6359_LDO_VCN33_2_MON               0x1c0a
-> +#define MT6359_LDO_VCN33_2_MULTI_SW          0x1c18
-> +#define MT6359_LDO_VCN13_CON0                0x1c1a
-> +#define MT6359_LDO_VCN13_MON                 0x1c1c
-> +#define MT6359_LDO_VCN18_CON0                0x1c2a
-> +#define MT6359_LDO_VCN18_MON                 0x1c2c
-> +#define MT6359_LDO_VA09_CON0                 0x1c3a
-> +#define MT6359_LDO_VA09_MON                  0x1c3c
-> +#define MT6359_LDO_VCAMIO_CON0               0x1c4a
-> +#define MT6359_LDO_VCAMIO_MON                0x1c4c
-> +#define MT6359_LDO_VA12_CON0                 0x1c5a
-> +#define MT6359_LDO_VA12_MON                  0x1c5c
-> +#define MT6359_LDO_VAUX18_CON0               0x1c88
-> +#define MT6359_LDO_VAUX18_MON                0x1c8a
-> +#define MT6359_LDO_VAUD18_CON0               0x1c98
-> +#define MT6359_LDO_VAUD18_MON                0x1c9a
-> +#define MT6359_LDO_VIO18_CON0                0x1ca8
-> +#define MT6359_LDO_VIO18_MON                 0x1caa
-> +#define MT6359_LDO_VEMC_CON0                 0x1cb8
-> +#define MT6359_LDO_VEMC_MON                  0x1cba
-> +#define MT6359_LDO_VSIM1_CON0                0x1cc8
-> +#define MT6359_LDO_VSIM1_MON                 0x1cca
-> +#define MT6359_LDO_VSIM2_CON0                0x1cd8
-> +#define MT6359_LDO_VSIM2_MON                 0x1cda
-> +#define MT6359_LDO_VUSB_CON0                 0x1d08
-> +#define MT6359_LDO_VUSB_MON                  0x1d0a
-> +#define MT6359_LDO_VUSB_MULTI_SW             0x1d18
-> +#define MT6359_LDO_VRFCK_CON0                0x1d1a
-> +#define MT6359_LDO_VRFCK_MON                 0x1d1c
-> +#define MT6359_LDO_VBBCK_CON0                0x1d2a
-> +#define MT6359_LDO_VBBCK_MON                 0x1d2c
-> +#define MT6359_LDO_VBIF28_CON0               0x1d3a
-> +#define MT6359_LDO_VBIF28_MON                0x1d3c
-> +#define MT6359_LDO_VIBR_CON0                 0x1d4a
-> +#define MT6359_LDO_VIBR_MON                  0x1d4c
-> +#define MT6359_LDO_VIO28_CON0                0x1d5a
-> +#define MT6359_LDO_VIO28_MON                 0x1d5c
-> +#define MT6359_LDO_VM18_CON0                 0x1d88
-> +#define MT6359_LDO_VM18_MON                  0x1d8a
-> +#define MT6359_LDO_VUFS_CON0                 0x1d98
-> +#define MT6359_LDO_VUFS_MON                  0x1d9a
-> +#define MT6359_LDO_VSRAM_PROC1_CON0          0x1e88
-> +#define MT6359_LDO_VSRAM_PROC1_MON           0x1e8a
-> +#define MT6359_LDO_VSRAM_PROC1_VOSEL1        0x1e8e
-> +#define MT6359_LDO_VSRAM_PROC2_CON0          0x1ea6
-> +#define MT6359_LDO_VSRAM_PROC2_MON           0x1ea8
-> +#define MT6359_LDO_VSRAM_PROC2_VOSEL1        0x1eac
-> +#define MT6359_LDO_VSRAM_OTHERS_CON0         0x1f08
-> +#define MT6359_LDO_VSRAM_OTHERS_MON          0x1f0a
-> +#define MT6359_LDO_VSRAM_OTHERS_VOSEL1       0x1f0e
-> +#define MT6359_LDO_VSRAM_OTHERS_SSHUB        0x1f26
-> +#define MT6359_LDO_VSRAM_MD_CON0             0x1f2c
-> +#define MT6359_LDO_VSRAM_MD_MON              0x1f2e
-> +#define MT6359_LDO_VSRAM_MD_VOSEL1           0x1f32
-> +#define MT6359_VFE28_ANA_CON0                0x1f88
-> +#define MT6359_VAUX18_ANA_CON0               0x1f8c
-> +#define MT6359_VUSB_ANA_CON0                 0x1f90
-> +#define MT6359_VBIF28_ANA_CON0               0x1f94
-> +#define MT6359_VCN33_1_ANA_CON0              0x1f98
-> +#define MT6359_VCN33_2_ANA_CON0              0x1f9c
-> +#define MT6359_VEMC_ANA_CON0                 0x1fa0
-> +#define MT6359_VSIM1_ANA_CON0                0x1fa4
-> +#define MT6359_VSIM2_ANA_CON0                0x1fa8
-> +#define MT6359_VIO28_ANA_CON0                0x1fac
-> +#define MT6359_VIBR_ANA_CON0                 0x1fb0
-> +#define MT6359_VRF18_ANA_CON0                0x2008
-> +#define MT6359_VEFUSE_ANA_CON0               0x200c
-> +#define MT6359_VCN18_ANA_CON0                0x2010
-> +#define MT6359_VCAMIO_ANA_CON0               0x2014
-> +#define MT6359_VAUD18_ANA_CON0               0x2018
-> +#define MT6359_VIO18_ANA_CON0                0x201c
-> +#define MT6359_VM18_ANA_CON0                 0x2020
-> +#define MT6359_VUFS_ANA_CON0                 0x2024
-> +#define MT6359_VRF12_ANA_CON0                0x202a
-> +#define MT6359_VCN13_ANA_CON0                0x202e
-> +#define MT6359_VA09_ANA_CON0                 0x2032
-> +#define MT6359_VA12_ANA_CON0                 0x2036
-> +#define MT6359_VXO22_ANA_CON0                0x2088
-> +#define MT6359_VRFCK_ANA_CON0                0x208c
-> +#define MT6359_VBBCK_ANA_CON0                0x2094
-> +#define MT6359_AUD_TOP_INT_CON0              0x2328
-> +#define MT6359_AUD_TOP_INT_STATUS0           0x2334
-> +
-> +#define MT6359_RG_BUCK_VPU_EN_ADDR             MT6359_BUCK_VPU_CON0
-> +#define MT6359_RG_BUCK_VPU_LP_ADDR             MT6359_BUCK_VPU_CON0
-> +#define MT6359_RG_BUCK_VPU_LP_SHIFT            1
-> +#define MT6359_DA_VPU_VOSEL_ADDR               MT6359_BUCK_VPU_DBG0
-> +#define MT6359_DA_VPU_VOSEL_MASK               0x7F
-> +#define MT6359_DA_VPU_VOSEL_SHIFT              0
-> +#define MT6359_DA_VPU_EN_ADDR                  MT6359_BUCK_VPU_DBG1
-> +#define MT6359_RG_BUCK_VPU_VOSEL_ADDR          MT6359_BUCK_VPU_ELR0
-> +#define MT6359_RG_BUCK_VPU_VOSEL_MASK          0x7F
-> +#define MT6359_RG_BUCK_VPU_VOSEL_SHIFT         0
-> +#define MT6359_RG_BUCK_VCORE_EN_ADDR           MT6359_BUCK_VCORE_CON0
-> +#define MT6359_RG_BUCK_VCORE_LP_ADDR           MT6359_BUCK_VCORE_CON0
-> +#define MT6359_RG_BUCK_VCORE_LP_SHIFT          1
-> +#define MT6359_DA_VCORE_VOSEL_ADDR             MT6359_BUCK_VCORE_DBG0
-> +#define MT6359_DA_VCORE_VOSEL_MASK             0x7F
-> +#define MT6359_DA_VCORE_VOSEL_SHIFT            0
-> +#define MT6359_DA_VCORE_EN_ADDR                MT6359_BUCK_VCORE_DBG1
-> +#define MT6359_RG_BUCK_VCORE_SSHUB_EN_ADDR     MT6359_BUCK_VCORE_SSHUB_CON0
-> +#define MT6359_RG_BUCK_VCORE_SSHUB_VOSEL_ADDR  MT6359_BUCK_VCORE_SSHUB_CON0
-> +#define MT6359_RG_BUCK_VCORE_SSHUB_VOSEL_MASK  0x7F
-> +#define MT6359_RG_BUCK_VCORE_SSHUB_VOSEL_SHIFT 4
-> +#define MT6359_RG_BUCK_VCORE_VOSEL_ADDR        MT6359_BUCK_VCORE_ELR0
-> +#define MT6359_RG_BUCK_VCORE_VOSEL_MASK        0x7F
-> +#define MT6359_RG_BUCK_VCORE_VOSEL_SHIFT       0
-> +#define MT6359_RG_BUCK_VGPU11_EN_ADDR          MT6359_BUCK_VGPU11_CON0
-> +#define MT6359_RG_BUCK_VGPU11_LP_ADDR          MT6359_BUCK_VGPU11_CON0
-> +#define MT6359_RG_BUCK_VGPU11_LP_SHIFT         1
-> +#define MT6359_DA_VGPU11_VOSEL_ADDR            MT6359_BUCK_VGPU11_DBG0
-> +#define MT6359_DA_VGPU11_VOSEL_MASK            0x7F
-> +#define MT6359_DA_VGPU11_VOSEL_SHIFT           0
-> +#define MT6359_DA_VGPU11_EN_ADDR               MT6359_BUCK_VGPU11_DBG1
-> +#define MT6359_RG_BUCK_VGPU11_VOSEL_ADDR       MT6359_BUCK_VGPU11_ELR0
-> +#define MT6359_RG_BUCK_VGPU11_VOSEL_MASK       0x7F
-> +#define MT6359_RG_BUCK_VGPU11_VOSEL_SHIFT      0
-> +#define MT6359_RG_BUCK_VMODEM_EN_ADDR          MT6359_BUCK_VMODEM_CON0
-> +#define MT6359_RG_BUCK_VMODEM_LP_ADDR          MT6359_BUCK_VMODEM_CON0
-> +#define MT6359_RG_BUCK_VMODEM_LP_SHIFT         1
-> +#define MT6359_DA_VMODEM_VOSEL_ADDR            MT6359_BUCK_VMODEM_DBG0
-> +#define MT6359_DA_VMODEM_VOSEL_MASK            0x7F
-> +#define MT6359_DA_VMODEM_VOSEL_SHIFT           0
-> +#define MT6359_DA_VMODEM_EN_ADDR               MT6359_BUCK_VMODEM_DBG1
-> +#define MT6359_RG_BUCK_VMODEM_VOSEL_ADDR       MT6359_BUCK_VMODEM_ELR0
-> +#define MT6359_RG_BUCK_VMODEM_VOSEL_MASK       0x7F
-> +#define MT6359_RG_BUCK_VMODEM_VOSEL_SHIFT      0
-> +#define MT6359_RG_BUCK_VPROC1_EN_ADDR          MT6359_BUCK_VPROC1_CON0
-> +#define MT6359_RG_BUCK_VPROC1_LP_ADDR          MT6359_BUCK_VPROC1_CON0
-> +#define MT6359_RG_BUCK_VPROC1_LP_SHIFT         1
-> +#define MT6359_DA_VPROC1_VOSEL_ADDR            MT6359_BUCK_VPROC1_DBG0
-> +#define MT6359_DA_VPROC1_VOSEL_MASK            0x7F
-> +#define MT6359_DA_VPROC1_VOSEL_SHIFT           0
-> +#define MT6359_DA_VPROC1_EN_ADDR               MT6359_BUCK_VPROC1_DBG1
-> +#define MT6359_RG_BUCK_VPROC1_VOSEL_ADDR       MT6359_BUCK_VPROC1_ELR0
-> +#define MT6359_RG_BUCK_VPROC1_VOSEL_MASK       0x7F
-> +#define MT6359_RG_BUCK_VPROC1_VOSEL_SHIFT      0
-> +#define MT6359_RG_BUCK_VPROC2_EN_ADDR          MT6359_BUCK_VPROC2_CON0
-> +#define MT6359_RG_BUCK_VPROC2_LP_ADDR          MT6359_BUCK_VPROC2_CON0
-> +#define MT6359_RG_BUCK_VPROC2_LP_SHIFT         1
-> +#define MT6359_DA_VPROC2_VOSEL_ADDR            MT6359_BUCK_VPROC2_DBG0
-> +#define MT6359_DA_VPROC2_VOSEL_MASK            0x7F
-> +#define MT6359_DA_VPROC2_VOSEL_SHIFT           0
-> +#define MT6359_DA_VPROC2_EN_ADDR               MT6359_BUCK_VPROC2_DBG1
-> +#define MT6359_RG_BUCK_VPROC2_VOSEL_ADDR       MT6359_BUCK_VPROC2_ELR0
-> +#define MT6359_RG_BUCK_VPROC2_VOSEL_MASK       0x7F
-> +#define MT6359_RG_BUCK_VPROC2_VOSEL_SHIFT      0
-> +#define MT6359_RG_BUCK_VS1_EN_ADDR             MT6359_BUCK_VS1_CON0
-> +#define MT6359_RG_BUCK_VS1_LP_ADDR             MT6359_BUCK_VS1_CON0
-> +#define MT6359_RG_BUCK_VS1_LP_SHIFT            1
-> +#define MT6359_DA_VS1_VOSEL_ADDR               MT6359_BUCK_VS1_DBG0
-> +#define MT6359_DA_VS1_VOSEL_MASK               0x7F
-> +#define MT6359_DA_VS1_VOSEL_SHIFT              0
-> +#define MT6359_DA_VS1_EN_ADDR                  MT6359_BUCK_VS1_DBG1
-> +#define MT6359_RG_BUCK_VS1_VOSEL_ADDR          MT6359_BUCK_VS1_ELR0
-> +#define MT6359_RG_BUCK_VS1_VOSEL_MASK          0x7F
-> +#define MT6359_RG_BUCK_VS1_VOSEL_SHIFT         0
-> +#define MT6359_RG_BUCK_VS2_EN_ADDR             MT6359_BUCK_VS2_CON0
-> +#define MT6359_RG_BUCK_VS2_LP_ADDR             MT6359_BUCK_VS2_CON0
-> +#define MT6359_RG_BUCK_VS2_LP_SHIFT            1
-> +#define MT6359_DA_VS2_VOSEL_ADDR               MT6359_BUCK_VS2_DBG0
-> +#define MT6359_DA_VS2_VOSEL_MASK               0x7F
-> +#define MT6359_DA_VS2_VOSEL_SHIFT              0
-> +#define MT6359_DA_VS2_EN_ADDR                  MT6359_BUCK_VS2_DBG1
-> +#define MT6359_RG_BUCK_VS2_VOSEL_ADDR          MT6359_BUCK_VS2_ELR0
-> +#define MT6359_RG_BUCK_VS2_VOSEL_MASK          0x7F
-> +#define MT6359_RG_BUCK_VS2_VOSEL_SHIFT         0
-> +#define MT6359_RG_BUCK_VPA_EN_ADDR             MT6359_BUCK_VPA_CON0
-> +#define MT6359_RG_BUCK_VPA_LP_ADDR             MT6359_BUCK_VPA_CON0
-> +#define MT6359_RG_BUCK_VPA_LP_SHIFT            1
-> +#define MT6359_RG_BUCK_VPA_VOSEL_ADDR          MT6359_BUCK_VPA_CON1
-> +#define MT6359_RG_BUCK_VPA_VOSEL_MASK          0x3F
-> +#define MT6359_RG_BUCK_VPA_VOSEL_SHIFT         0
-> +#define MT6359_DA_VPA_VOSEL_ADDR               MT6359_BUCK_VPA_DBG0
-> +#define MT6359_DA_VPA_VOSEL_MASK               0x3F
-> +#define MT6359_DA_VPA_VOSEL_SHIFT              0
-> +#define MT6359_DA_VPA_EN_ADDR                  MT6359_BUCK_VPA_DBG1
-> +#define MT6359_RG_VGPU11_FCCM_ADDR             MT6359_VGPUVCORE_ANA_CON2
-> +#define MT6359_RG_VGPU11_FCCM_SHIFT            9
-> +#define MT6359_RG_VCORE_FCCM_ADDR              MT6359_VGPUVCORE_ANA_CON13
-> +#define MT6359_RG_VCORE_FCCM_SHIFT             5
-> +#define MT6359_RG_VPROC1_FCCM_ADDR             MT6359_VPROC1_ANA_CON3
-> +#define MT6359_RG_VPROC1_FCCM_SHIFT            1
-> +#define MT6359_RG_VPROC2_FCCM_ADDR             MT6359_VPROC2_ANA_CON3
-> +#define MT6359_RG_VPROC2_FCCM_SHIFT            1
-> +#define MT6359_RG_VMODEM_FCCM_ADDR             MT6359_VMODEM_ANA_CON3
-> +#define MT6359_RG_VMODEM_FCCM_SHIFT            1
-> +#define MT6359_RG_VPU_FCCM_ADDR                MT6359_VPU_ANA_CON3
-> +#define MT6359_RG_VPU_FCCM_SHIFT               1
-> +#define MT6359_RG_VS1_FPWM_ADDR                MT6359_VS1_ANA_CON0
-> +#define MT6359_RG_VS1_FPWM_SHIFT               3
-> +#define MT6359_RG_VS2_FPWM_ADDR                MT6359_VS2_ANA_CON0
-> +#define MT6359_RG_VS2_FPWM_SHIFT               3
-> +#define MT6359_RG_VPA_MODESET_ADDR             MT6359_VPA_ANA_CON0
-> +#define MT6359_RG_VPA_MODESET_SHIFT            1
-> +#define MT6359_RG_LDO_VSRAM_PROC1_VOSEL_ADDR   MT6359_LDO_VSRAM_PROC1_ELR
-> +#define MT6359_RG_LDO_VSRAM_PROC1_VOSEL_MASK   0x7F
-> +#define MT6359_RG_LDO_VSRAM_PROC1_VOSEL_SHIFT  0
-> +#define MT6359_RG_LDO_VSRAM_PROC2_VOSEL_ADDR   MT6359_LDO_VSRAM_PROC2_ELR
-> +#define MT6359_RG_LDO_VSRAM_PROC2_VOSEL_MASK   0x7F
-> +#define MT6359_RG_LDO_VSRAM_PROC2_VOSEL_SHIFT  0
-> +#define MT6359_RG_LDO_VSRAM_OTHERS_VOSEL_ADDR  MT6359_LDO_VSRAM_OTHERS_ELR
-> +#define MT6359_RG_LDO_VSRAM_OTHERS_VOSEL_MASK  0x7F
-> +#define MT6359_RG_LDO_VSRAM_OTHERS_VOSEL_SHIFT 0
-> +#define MT6359_RG_LDO_VSRAM_MD_VOSEL_ADDR      MT6359_LDO_VSRAM_MD_ELR
-> +#define MT6359_RG_LDO_VSRAM_MD_VOSEL_MASK      0x7F
-> +#define MT6359_RG_LDO_VSRAM_MD_VOSEL_SHIFT     0
-> +#define MT6359_RG_LDO_VFE28_EN_ADDR            MT6359_LDO_VFE28_CON0
-> +#define MT6359_DA_VFE28_B_EN_ADDR              MT6359_LDO_VFE28_MON
-> +#define MT6359_RG_LDO_VXO22_EN_ADDR            MT6359_LDO_VXO22_CON0
-> +#define MT6359_RG_LDO_VXO22_EN_SHIFT           0
-> +#define MT6359_DA_VXO22_B_EN_ADDR              MT6359_LDO_VXO22_MON
-> +#define MT6359_RG_LDO_VRF18_EN_ADDR            MT6359_LDO_VRF18_CON0
-> +#define MT6359_RG_LDO_VRF18_EN_SHIFT           0
-> +#define MT6359_DA_VRF18_B_EN_ADDR              MT6359_LDO_VRF18_MON
-> +#define MT6359_RG_LDO_VRF12_EN_ADDR            MT6359_LDO_VRF12_CON0
-> +#define MT6359_RG_LDO_VRF12_EN_SHIFT           0
-> +#define MT6359_DA_VRF12_B_EN_ADDR              MT6359_LDO_VRF12_MON
-> +#define MT6359_RG_LDO_VEFUSE_EN_ADDR           MT6359_LDO_VEFUSE_CON0
-> +#define MT6359_RG_LDO_VEFUSE_EN_SHIFT          0
-> +#define MT6359_DA_VEFUSE_B_EN_ADDR             MT6359_LDO_VEFUSE_MON
-> +#define MT6359_RG_LDO_VCN33_1_EN_0_ADDR        MT6359_LDO_VCN33_1_CON0
-> +#define MT6359_RG_LDO_VCN33_1_EN_0_MASK        0x1
-> +#define MT6359_RG_LDO_VCN33_1_EN_0_SHIFT       0
-> +#define MT6359_DA_VCN33_1_B_EN_ADDR            MT6359_LDO_VCN33_1_MON
-> +#define MT6359_RG_LDO_VCN33_1_EN_1_ADDR        MT6359_LDO_VCN33_1_MULTI_SW
-> +#define MT6359_RG_LDO_VCN33_1_EN_1_SHIFT       15
-> +#define MT6359_RG_LDO_VCN33_2_EN_0_ADDR        MT6359_LDO_VCN33_2_CON0
-> +#define MT6359_RG_LDO_VCN33_2_EN_0_SHIFT       0
-> +#define MT6359_DA_VCN33_2_B_EN_ADDR            MT6359_LDO_VCN33_2_MON
-> +#define MT6359_RG_LDO_VCN33_2_EN_1_ADDR        MT6359_LDO_VCN33_2_MULTI_SW
-> +#define MT6359_RG_LDO_VCN33_2_EN_1_MASK        0x1
-> +#define MT6359_RG_LDO_VCN33_2_EN_1_SHIFT       15
-> +#define MT6359_RG_LDO_VCN13_EN_ADDR            MT6359_LDO_VCN13_CON0
-> +#define MT6359_RG_LDO_VCN13_EN_SHIFT           0
-> +#define MT6359_DA_VCN13_B_EN_ADDR              MT6359_LDO_VCN13_MON
-> +#define MT6359_RG_LDO_VCN18_EN_ADDR            MT6359_LDO_VCN18_CON0
-> +#define MT6359_DA_VCN18_B_EN_ADDR              MT6359_LDO_VCN18_MON
-> +#define MT6359_RG_LDO_VA09_EN_ADDR             MT6359_LDO_VA09_CON0
-> +#define MT6359_RG_LDO_VA09_EN_SHIFT            0
-> +#define MT6359_DA_VA09_B_EN_ADDR               MT6359_LDO_VA09_MON
-> +#define MT6359_RG_LDO_VCAMIO_EN_ADDR           MT6359_LDO_VCAMIO_CON0
-> +#define MT6359_RG_LDO_VCAMIO_EN_SHIFT          0
-> +#define MT6359_DA_VCAMIO_B_EN_ADDR             MT6359_LDO_VCAMIO_MON
-> +#define MT6359_RG_LDO_VA12_EN_ADDR             MT6359_LDO_VA12_CON0
-> +#define MT6359_RG_LDO_VA12_EN_SHIFT            0
-> +#define MT6359_DA_VA12_B_EN_ADDR               MT6359_LDO_VA12_MON
-> +#define MT6359_RG_LDO_VAUX18_EN_ADDR           MT6359_LDO_VAUX18_CON0
-> +#define MT6359_DA_VAUX18_B_EN_ADDR             MT6359_LDO_VAUX18_MON
-> +#define MT6359_RG_LDO_VAUD18_EN_ADDR           MT6359_LDO_VAUD18_CON0
-> +#define MT6359_DA_VAUD18_B_EN_ADDR             MT6359_LDO_VAUD18_MON
-> +#define MT6359_RG_LDO_VIO18_EN_ADDR            MT6359_LDO_VIO18_CON0
-> +#define MT6359_RG_LDO_VIO18_EN_SHIFT           0
-> +#define MT6359_DA_VIO18_B_EN_ADDR              MT6359_LDO_VIO18_MON
-> +#define MT6359_RG_LDO_VEMC_EN_ADDR             MT6359_LDO_VEMC_CON0
-> +#define MT6359_RG_LDO_VEMC_EN_SHIFT            0
-> +#define MT6359_DA_VEMC_B_EN_ADDR               MT6359_LDO_VEMC_MON
-> +#define MT6359_RG_LDO_VSIM1_EN_ADDR            MT6359_LDO_VSIM1_CON0
-> +#define MT6359_RG_LDO_VSIM1_EN_SHIFT           0
-> +#define MT6359_DA_VSIM1_B_EN_ADDR              MT6359_LDO_VSIM1_MON
-> +#define MT6359_RG_LDO_VSIM2_EN_ADDR            MT6359_LDO_VSIM2_CON0
-> +#define MT6359_RG_LDO_VSIM2_EN_SHIFT           0
-> +#define MT6359_DA_VSIM2_B_EN_ADDR              MT6359_LDO_VSIM2_MON
-> +#define MT6359_RG_LDO_VUSB_EN_0_ADDR           MT6359_LDO_VUSB_CON0
-> +#define MT6359_RG_LDO_VUSB_EN_0_MASK           0x1
-> +#define MT6359_RG_LDO_VUSB_EN_0_SHIFT          0
-> +#define MT6359_DA_VUSB_B_EN_ADDR               MT6359_LDO_VUSB_MON
-> +#define MT6359_RG_LDO_VUSB_EN_1_ADDR           MT6359_LDO_VUSB_MULTI_SW
-> +#define MT6359_RG_LDO_VUSB_EN_1_MASK           0x1
-> +#define MT6359_RG_LDO_VUSB_EN_1_SHIFT          15
-> +#define MT6359_RG_LDO_VRFCK_EN_ADDR            MT6359_LDO_VRFCK_CON0
-> +#define MT6359_RG_LDO_VRFCK_EN_SHIFT           0
-> +#define MT6359_DA_VRFCK_B_EN_ADDR              MT6359_LDO_VRFCK_MON
-> +#define MT6359_RG_LDO_VBBCK_EN_ADDR            MT6359_LDO_VBBCK_CON0
-> +#define MT6359_RG_LDO_VBBCK_EN_SHIFT           0
-> +#define MT6359_DA_VBBCK_B_EN_ADDR              MT6359_LDO_VBBCK_MON
-> +#define MT6359_RG_LDO_VBIF28_EN_ADDR           MT6359_LDO_VBIF28_CON0
-> +#define MT6359_DA_VBIF28_B_EN_ADDR             MT6359_LDO_VBIF28_MON
-> +#define MT6359_RG_LDO_VIBR_EN_ADDR             MT6359_LDO_VIBR_CON0
-> +#define MT6359_RG_LDO_VIBR_EN_SHIFT            0
-> +#define MT6359_DA_VIBR_B_EN_ADDR               MT6359_LDO_VIBR_MON
-> +#define MT6359_RG_LDO_VIO28_EN_ADDR            MT6359_LDO_VIO28_CON0
-> +#define MT6359_RG_LDO_VIO28_EN_SHIFT           0
-> +#define MT6359_DA_VIO28_B_EN_ADDR              MT6359_LDO_VIO28_MON
-> +#define MT6359_RG_LDO_VM18_EN_ADDR             MT6359_LDO_VM18_CON0
-> +#define MT6359_RG_LDO_VM18_EN_SHIFT            0
-> +#define MT6359_DA_VM18_B_EN_ADDR               MT6359_LDO_VM18_MON
-> +#define MT6359_RG_LDO_VUFS_EN_ADDR             MT6359_LDO_VUFS_CON0
-> +#define MT6359_RG_LDO_VUFS_EN_SHIFT               0
-> +#define MT6359_DA_VUFS_B_EN_ADDR               MT6359_LDO_VUFS_MON
-> +#define MT6359_RG_LDO_VSRAM_PROC1_EN_ADDR      MT6359_LDO_VSRAM_PROC1_CON0
-> +#define MT6359_DA_VSRAM_PROC1_B_EN_ADDR        MT6359_LDO_VSRAM_PROC1_MON
-> +#define MT6359_DA_VSRAM_PROC1_VOSEL_ADDR       MT6359_LDO_VSRAM_PROC1_VOSEL1
-> +#define MT6359_DA_VSRAM_PROC1_VOSEL_MASK       0x7F
-> +#define MT6359_DA_VSRAM_PROC1_VOSEL_SHIFT      8
-> +#define MT6359_RG_LDO_VSRAM_PROC2_EN_ADDR      MT6359_LDO_VSRAM_PROC2_CON0
-> +#define MT6359_DA_VSRAM_PROC2_B_EN_ADDR        MT6359_LDO_VSRAM_PROC2_MON
-> +#define MT6359_DA_VSRAM_PROC2_VOSEL_ADDR       MT6359_LDO_VSRAM_PROC2_VOSEL1
-> +#define MT6359_DA_VSRAM_PROC2_VOSEL_MASK       0x7F
-> +#define MT6359_DA_VSRAM_PROC2_VOSEL_SHIFT      8
-> +#define MT6359_RG_LDO_VSRAM_OTHERS_EN_ADDR     MT6359_LDO_VSRAM_OTHERS_CON0
-> +#define MT6359_DA_VSRAM_OTHERS_B_EN_ADDR       MT6359_LDO_VSRAM_OTHERS_MON
-> +#define MT6359_DA_VSRAM_OTHERS_VOSEL_ADDR      MT6359_LDO_VSRAM_OTHERS_VOSEL1
-> +#define MT6359_DA_VSRAM_OTHERS_VOSEL_MASK      0x7F
-> +#define MT6359_DA_VSRAM_OTHERS_VOSEL_SHIFT     8
-> +#define MT6359_RG_LDO_VSRAM_OTHERS_SSHUB_EN_ADDR     MT6359_LDO_VSRAM_OTHERS_SSHUB
-> +#define MT6359_RG_LDO_VSRAM_OTHERS_SSHUB_VOSEL_ADDR  MT6359_LDO_VSRAM_OTHERS_SSHUB
-> +#define MT6359_RG_LDO_VSRAM_OTHERS_SSHUB_VOSEL_MASK  0x7F
-> +#define MT6359_RG_LDO_VSRAM_OTHERS_SSHUB_VOSEL_SHIFT 1
-> +#define MT6359_RG_LDO_VSRAM_MD_EN_ADDR         MT6359_LDO_VSRAM_MD_CON0
-> +#define MT6359_DA_VSRAM_MD_B_EN_ADDR           MT6359_LDO_VSRAM_MD_MON
-> +#define MT6359_DA_VSRAM_MD_VOSEL_ADDR          MT6359_LDO_VSRAM_MD_VOSEL1
-> +#define MT6359_DA_VSRAM_MD_VOSEL_MASK          0x7F
-> +#define MT6359_DA_VSRAM_MD_VOSEL_SHIFT         8
-> +#define MT6359_RG_VCN33_1_VOSEL_ADDR           MT6359_VCN33_1_ANA_CON0
-> +#define MT6359_RG_VCN33_1_VOSEL_MASK           0xF
-> +#define MT6359_RG_VCN33_1_VOSEL_SHIFT          8
-> +#define MT6359_RG_VCN33_2_VOSEL_ADDR           MT6359_VCN33_2_ANA_CON0
-> +#define MT6359_RG_VCN33_2_VOSEL_MASK           0xF
-> +#define MT6359_RG_VCN33_2_VOSEL_SHIFT          8
-> +#define MT6359_RG_VEMC_VOSEL_ADDR              MT6359_VEMC_ANA_CON0
-> +#define MT6359_RG_VEMC_VOSEL_MASK              0xF
-> +#define MT6359_RG_VEMC_VOSEL_SHIFT             8
-> +#define MT6359_RG_VSIM1_VOSEL_ADDR             MT6359_VSIM1_ANA_CON0
-> +#define MT6359_RG_VSIM1_VOSEL_MASK             0xF
-> +#define MT6359_RG_VSIM1_VOSEL_SHIFT            8
-> +#define MT6359_RG_VSIM2_VOSEL_ADDR             MT6359_VSIM2_ANA_CON0
-> +#define MT6359_RG_VSIM2_VOSEL_MASK             0xF
-> +#define MT6359_RG_VSIM2_VOSEL_SHIFT            8
-> +#define MT6359_RG_VIO28_VOSEL_ADDR             MT6359_VIO28_ANA_CON0
-> +#define MT6359_RG_VIO28_VOSEL_MASK             0xF
-> +#define MT6359_RG_VIO28_VOSEL_SHIFT            8
-> +#define MT6359_RG_VIBR_VOSEL_ADDR              MT6359_VIBR_ANA_CON0
-> +#define MT6359_RG_VIBR_VOSEL_MASK              0xF
-> +#define MT6359_RG_VIBR_VOSEL_SHIFT             8
-> +#define MT6359_RG_VRF18_VOSEL_ADDR             MT6359_VRF18_ANA_CON0
-> +#define MT6359_RG_VRF18_VOSEL_MASK             0xF
-> +#define MT6359_RG_VRF18_VOSEL_SHIFT            8
-> +#define MT6359_RG_VEFUSE_VOSEL_ADDR            MT6359_VEFUSE_ANA_CON0
-> +#define MT6359_RG_VEFUSE_VOSEL_MASK            0xF
-> +#define MT6359_RG_VEFUSE_VOSEL_SHIFT           8
-> +#define MT6359_RG_VCAMIO_VOSEL_ADDR            MT6359_VCAMIO_ANA_CON0
-> +#define MT6359_RG_VCAMIO_VOSEL_MASK            0xF
-> +#define MT6359_RG_VCAMIO_VOSEL_SHIFT           8
-> +#define MT6359_RG_VIO18_VOSEL_ADDR             MT6359_VIO18_ANA_CON0
-> +#define MT6359_RG_VIO18_VOSEL_MASK             0xF
-> +#define MT6359_RG_VIO18_VOSEL_SHIFT            8
-> +#define MT6359_RG_VM18_VOSEL_ADDR              MT6359_VM18_ANA_CON0
-> +#define MT6359_RG_VM18_VOSEL_MASK              0xF
-> +#define MT6359_RG_VM18_VOSEL_SHIFT             8
-> +#define MT6359_RG_VUFS_VOSEL_ADDR              MT6359_VUFS_ANA_CON0
-> +#define MT6359_RG_VUFS_VOSEL_MASK              0xF
-> +#define MT6359_RG_VUFS_VOSEL_SHIFT             8
-> +#define MT6359_RG_VRF12_VOSEL_ADDR             MT6359_VRF12_ANA_CON0
-> +#define MT6359_RG_VRF12_VOSEL_MASK             0xF
-> +#define MT6359_RG_VRF12_VOSEL_SHIFT            8
-> +#define MT6359_RG_VCN13_VOSEL_ADDR             MT6359_VCN13_ANA_CON0
-> +#define MT6359_RG_VCN13_VOSEL_MASK             0xF
-> +#define MT6359_RG_VCN13_VOSEL_SHIFT            8
-> +#define MT6359_RG_VA09_VOSEL_ADDR              MT6359_VA09_ANA_CON0
-> +#define MT6359_RG_VA09_VOSEL_MASK              0xF
-> +#define MT6359_RG_VA09_VOSEL_SHIFT             8
-> +#define MT6359_RG_VA12_VOSEL_ADDR              MT6359_VA12_ANA_CON0
-> +#define MT6359_RG_VA12_VOSEL_MASK              0xF
-> +#define MT6359_RG_VA12_VOSEL_SHIFT             8
-> +#define MT6359_RG_VXO22_VOSEL_ADDR             MT6359_VXO22_ANA_CON0
-> +#define MT6359_RG_VXO22_VOSEL_MASK             0xF
-> +#define MT6359_RG_VXO22_VOSEL_SHIFT            8
-> +#define MT6359_RG_VRFCK_VOSEL_ADDR             MT6359_VRFCK_ANA_CON0
-> +#define MT6359_RG_VRFCK_VOSEL_MASK             0xF
-> +#define MT6359_RG_VRFCK_VOSEL_SHIFT            8
-> +#define MT6359_RG_VBBCK_VOSEL_ADDR             MT6359_VBBCK_ANA_CON0
-> +#define MT6359_RG_VBBCK_VOSEL_MASK             0xF
-> +#define MT6359_RG_VBBCK_VOSEL_SHIFT            8
-> +
-> +#endif /* __MFD_MT6359_REGISTERS_H__ */
-> diff --git a/include/linux/mfd/mt6397/core.h b/include/linux/mfd/mt6397/core.h
-> index 949268581b36..56f210eebc54 100644
-> --- a/include/linux/mfd/mt6397/core.h
-> +++ b/include/linux/mfd/mt6397/core.h
-> @@ -13,6 +13,7 @@
->  enum chip_id {
->  	MT6323_CHIP_ID = 0x23,
->  	MT6358_CHIP_ID = 0x58,
-> +	MT6359_CHIP_ID = 0x59,
->  	MT6391_CHIP_ID = 0x91,
->  	MT6397_CHIP_ID = 0x97,
->  };
-> -- 
-> 2.18.0
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+	 Andrew
