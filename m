@@ -2,104 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92D262FD5E7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B96DD2FD5F7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:47:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727253AbhATQms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 11:42:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53406 "EHLO
+        id S1732885AbhATQrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 11:47:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391718AbhATQmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 11:42:21 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05E56C061757;
-        Wed, 20 Jan 2021 08:41:41 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id q1so48078177ion.8;
-        Wed, 20 Jan 2021 08:41:40 -0800 (PST)
+        with ESMTP id S1732728AbhATQqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 11:46:51 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3469FC061575;
+        Wed, 20 Jan 2021 08:46:11 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id 19so25928910qkm.8;
+        Wed, 20 Jan 2021 08:46:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=d1ptfx9MBkjEmmJ18l5zZfZj5ndiNTQD02M7SBmrC80=;
-        b=b54lhfe/lR/z5qUzeKX6jAB8CXmKK7J8XsyATY7LYJLUJ+hbnsi4nskN4GOMGvddz9
-         3LFPqe18YuJ4jo8UTLv5uogW3Gog6mWhN7eysHGi/jEvyoB+5XdzM0Gbv5ngZiHsZjpo
-         3UlUxXOBP2XiQF50Vnz4ssffWGnLhCHikV8F3ml1zMQNy33SsRXtcJRDyPjdYUm0C4E+
-         ep7zxspAMQik7ADES/LMwbCmI1i4ZsKX4f0JKKfIcyarYFxgok7KjZKQA8KFIxgH+MEc
-         yXiydONZo2juDScLcvkI6Tc5LDc7MQqhngRXdLVjBQH/msQsMeAl94j20CDksec6MHkG
-         BuxQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=xPJXpjgk3V30+lydtz3hNrB60KcZVVAu0KQldhg/ajU=;
+        b=C0nHxcnmlDXhX2R/7zo3NnICFQ7dGJiITnNv76P+QArPkjAUzjP0TM24h9DIp9G11m
+         cYcemn3WzsBNfEMDnVK5HF9pB+BI92fPXuU/LdUKbebAz7vUhJWfZdEQDMF/4ZlLH0qt
+         KaZf1QhMVWOyHrFuE6MFBXHDa8H5Ys0nfO6G/c70/Dzr0XN60tHKWtLYozVB1ZBuOnWW
+         kn0hIFVoFIaQ/cQp/H3Ju2NZxrL/K+1QuE/Rn8xdzPMYjjQBLDxfOjEzG8D+Sxm6xQ0g
+         qrOfXTsbNWJ59/rWizeW2C22jdZ2IUXlIcXQYEaKZEIioMSKNc1HdcCrADDFPM5xp9gY
+         62Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=d1ptfx9MBkjEmmJ18l5zZfZj5ndiNTQD02M7SBmrC80=;
-        b=EqElRwIAM6fbM7QONyvSR3l416AzA1n+9zEAJLQReMrYc4SRD9aC5HVveOUxeZkyxw
-         SfEyJBcschFDel0EuQKasAPYjHOgRNa2gNl7zWdQuDWkoN9R/tR0IwLRZf4HxYbIaxHH
-         4/7hQteKwP30QuAaSPoRHq2PLR+R46at0aNdFCkvtPxAzTMW6g5pGkaP2JuQ5WZfFKka
-         bylZ4ncDSMxpYG+lY+0riXOZ89SvDE6zf0gewtr0hvIkoOAALkrBnOOwPvi30J2QxUr7
-         POpR/ZmCc8Hz+56ZpyU/EzSsLdCAaAGR8RCTObl4QQjP2vD+y1zfw85/j19VMrCPdyR/
-         TwmA==
-X-Gm-Message-State: AOAM531BcjG0NukWAfcarielkf8gUJ0nKYYFw9LlwXNuXXHrAkPQDePY
-        cebTbrxcJD8dDgVSqnmkynz+evxlx4HOPiTav3uUO0Zl46o=
-X-Google-Smtp-Source: ABdhPJwjkfC7vxSYl+elSTXavI2EkbX9fRHxRQYsNVMDnePcYgrd7W8c2kUHMf5xk7qsxsjJKAGToNoQ9/fW0Kdwwqo=
-X-Received: by 2002:a02:7fd5:: with SMTP id r204mr8622208jac.74.1611160900259;
- Wed, 20 Jan 2021 08:41:40 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=xPJXpjgk3V30+lydtz3hNrB60KcZVVAu0KQldhg/ajU=;
+        b=Br+f1iBPbYgyDFNGLSvh/i6oij0hvluxK9jziumPMI/T5I2140c38I63PSYuGCb381
+         xzeeXdxliXrzobgwqV47GcwI8jDp+FfLFEh6+ggmbf4b2c2jAPPVh8WXjqBJA6MT65Kf
+         dVDKNcx1qSs1EGptXqHR7CNrAN5upzGsMFcKxtYAYd0gIa/+41XLZ33nD4BGdK0gCpYn
+         F0y9vy7WYHhNa8uyx4woY3Kx1eRKZyLQhUsrXISmQCoxNYIRe59WKqx4+s9ziD0nLno+
+         SCDCc4RdV+n8VRysqOMO5lALzcwaQhdstUeuASvAThV7xST51nQASEoXd8Qaf6ICRl0W
+         L9HQ==
+X-Gm-Message-State: AOAM5304XynBoY1QqIglKbkgHJjBZaXGP3D0eii2umDqZf2p1zmmUj6S
+        l4gfqOXZrzhlV2qEEVUvhR8=
+X-Google-Smtp-Source: ABdhPJzReeSv8cDFaEYd1BOXiQGjbXaR1YMMv2BlKWvMDykTVzY+6VLoRX4zqGZx6c4danro1bqSNw==
+X-Received: by 2002:a37:6442:: with SMTP id y63mr10222452qkb.192.1611161170512;
+        Wed, 20 Jan 2021 08:46:10 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id b12sm1504717qtt.74.2021.01.20.08.46.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 08:46:09 -0800 (PST)
+Date:   Wed, 20 Jan 2021 17:46:06 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Jun Nie <jun.nie@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] pwm: remove zte zx driver
+Message-ID: <YAheTtSLm4C2K9bD@ulmo>
+References: <20210120150944.1688327-1-arnd@kernel.org>
+ <YAhRMaJhYJZat2SI@ulmo>
+ <CAK8P3a2JhcRnaDXK1V4=FgRJrGjqrj5-LzhCaC+jpLa1hDL+Pw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210119212109.1064786-1-aford173@gmail.com> <9dab169a-e551-7ba1-7fe2-d00e80978388@lucaceresoli.net>
-In-Reply-To: <9dab169a-e551-7ba1-7fe2-d00e80978388@lucaceresoli.net>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 20 Jan 2021 10:41:29 -0600
-Message-ID: <CAHCN7xKERYbGvhdX38bzb5Qa75wTUMSkDoLQy4E1BZQYz9wNkA@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: clk: versaclock5: Add optional load
- capacitance property
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     linux-clk <linux-clk@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="5/9yMM0sT+zOg2Sc"
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a2JhcRnaDXK1V4=FgRJrGjqrj5-LzhCaC+jpLa1hDL+Pw@mail.gmail.com>
+User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 10:35 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
->
-> Hi Adam,
->
-> On 19/01/21 22:21, Adam Ford wrote:
-> > There are two registers which can set the load capacitance for
-> > XTAL1 and XTAL2. These are optional registers when using an
-> > external crystal.  Since XTAL1 and XTAL2 will set to the same value,
-> > update the binding to support a single property called
-> > xtal-load-femtofarads.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > ---
-> > V2:  No Change
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> > index 2ac1131fd922..c268debe5b8d 100644
-> > --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> > @@ -59,6 +59,12 @@ properties:
-> >      minItems: 1
-> >      maxItems: 2
-> >
-> > +  idt,xtal-load-femtofarads:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
->
-> "Vendor specific properties having a standard unit suffix don't need a
-> type." -- Documentation/devicetree/bindings/example-schema.yaml
->
 
-I tried to remove the "$ref: /schemas/types.yaml#/definitions/uint32"
-but when I ran the test to make the yaml files, it threw an error, so
-I put it back.
+--5/9yMM0sT+zOg2Sc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-adam
-> Overall looks good.
->
-> --
-> Luca
+On Wed, Jan 20, 2021 at 05:04:36PM +0100, Arnd Bergmann wrote:
+> On Wed, Jan 20, 2021 at 4:50 PM Thierry Reding <thierry.reding@gmail.com>=
+ wrote:
+> > On Wed, Jan 20, 2021 at 04:09:22PM +0100, Arnd Bergmann wrote:
+>=20
+> > > -config PWM_VT8500
+> > > -     tristate "vt8500 PWM support"
+> > > -     depends on ARCH_VT8500 || COMPILE_TEST
+> > > -     depends on HAS_IOMEM
+> > > -     help
+> > > -       Generic PWM framework driver for vt8500.
+> > > -
+> > > -       To compile this driver as a module, choose M here: the module
+> > > -       will be called pwm-vt8500.
+> > > -
+> >
+> > I assume that you dropped the PWM_VT8500 symbol by mistake? I can fix
+> > that up while applying, so no need to resend.
+>=20
+> Indeed, thanks for catching my mistake and fixing it up!
+
+Fixed up and applied, thanks!
+
+Thierry
+
+--5/9yMM0sT+zOg2Sc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAIXkwACgkQ3SOs138+
+s6HKixAAukfD/Du+eHGX3/DGbQONoE0kUAM83BGtaX+yrUhKsShiHFesfndVV3A6
+iA51zuRyUr6n99suKhcGcsE6Zxt2uKiLlEEuPe920cjDquLF/VvCsamJKtP3Bwfy
+QCr08+Zf+KBL3YItlShgCok19+k4D4FFxOjFL5jNo7d3pfVJBnevfUhCM+xnVvHx
+kOrKln4E1UwMvCtELTLfCoJdVef++ZkNn2D6kuuLGsuiTlPVQcMqRRrlvJxovSV1
+88ZRqIvjeT1Qp6rzkB+XsGiRipuNOvq2uMXSZ3LdRE5Ch4Z1UZ1md8wQ1ev9iVI/
+IPeVWchcO7K3HeydsEmEw1Y1i1gS6HEoHIwFT5lsXI1HQqY0T6hb6x0aoOu7j3H1
+PZzdDCCDGP8Z3N58cxdozVpFuxS91h/nKyt23HUCayGidaLHunQkX6vtLy2R8NiP
+/xGYcByX5kWD/52Jic9O9KW98tcj3zEbU+QZ7v8TuOXixse2TTUeTrOElg0KnnE4
+tUOy2fJOQlUWiNyrwB1e/OCjCYWcMZgcZBQh1m8dvBMq8z7k0AowkjK2mL5nLTkT
+yfhf+DSgW/PLd24KF+rZg26GB4+zFdEihr639UBWZ8XdhhJ0mkeSZ837jyHWKIZr
+TPN4qOMA0H4ZZI6Y7uAN6S+d2deKXVZ2A3aIo88/etb5Bdn8D7o=
+=bnN+
+-----END PGP SIGNATURE-----
+
+--5/9yMM0sT+zOg2Sc--
