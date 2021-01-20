@@ -2,55 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C45AC2FDB8A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 22:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D71B2FDB8E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 22:26:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732417AbhATU4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 15:56:15 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53860 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388549AbhATUvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:51:04 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKo4q6047968;
-        Wed, 20 Jan 2021 14:50:04 -0600
+        id S1732648AbhATU4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 15:56:17 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48986 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388714AbhATUvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:51:37 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKobGZ092368;
+        Wed, 20 Jan 2021 14:50:37 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611175804;
-        bh=7/hhNavleejKSmTt64PV/hnP/QVVJqHVJl/lX11+bMY=;
+        s=ti-com-17Q1; t=1611175837;
+        bh=2vV9gs//LMB4/Bs09TdtFRUOhLnpkCX1eP7ABeNkuOc=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=n9tyN7X5uUFEqANHyM0DlA/JrqvWdEnK3bnAHveaPbtPy/IO/OE22J2Sv32jnlzgl
-         HNhCxRGgJ2O/+lSh8uFziBdo5nJehj2ZEBtaS5SrUZ/fCbNn9oYCUowoqJpJeSO02A
-         VGadrNVdUT77ZfC4WnMlHSTN0moHmc1u1wavLrlc=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKo4J0030938
+        b=ie3lu0ysjusuyuqsivWK5h3m+JBk7jL0jKifIG96qOeHP6mh0lFXMEZ/iYzy/exef
+         PoVP5QQAC1GEQmp5kMIRbuMHIyo7r2Wgb+DJMIop+H4wi9BUVMZohJarnCqoXfEkhy
+         9ZTQg2Y4Md79VvnGGr/6LQyu1ArhXA7B041B5rm8=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKobfl049604
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 20 Jan 2021 14:50:04 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 20 Jan 2021 14:50:37 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
- Jan 2021 14:50:03 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2021 14:50:37 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 20 Jan 2021 14:50:03 -0600
+ Frontend Transport; Wed, 20 Jan 2021 14:50:37 -0600
 Received: from [10.250.35.71] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKo3dS089721;
-        Wed, 20 Jan 2021 14:50:03 -0600
-Subject: Re: [PATCH] arm64: dts: ti: k3*: Fixup PMU compatibility to be CPU
- specific
-To:     Nishanth Menon <nm@ti.com>, Sudeep Holla <sudeep.holla@arm.com>,
-        Dave Gerlach <d-gerlach@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210120195145.32259-1-nm@ti.com>
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKoadD058607;
+        Wed, 20 Jan 2021 14:50:36 -0600
+Subject: Re: [PATCH v3 2/5] dt-bindings: pinctrl: k3: Introduce pinmux
+ definitions for AM64
+To:     Dave Gerlach <d-gerlach@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+References: <20210120202532.9011-1-d-gerlach@ti.com>
+ <20210120202532.9011-3-d-gerlach@ti.com>
 From:   Suman Anna <s-anna@ti.com>
-Message-ID: <dbd31e85-fc72-1a94-f143-6ed0777ffa9a@ti.com>
-Date:   Wed, 20 Jan 2021 14:49:58 -0600
+Message-ID: <e31b5b8c-90e6-901b-cc99-06341ee8a144@ti.com>
+Date:   Wed, 20 Jan 2021 14:50:36 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210120195145.32259-1-nm@ti.com>
+In-Reply-To: <20210120202532.9011-3-d-gerlach@ti.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -59,74 +64,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/20/21 1:51 PM, Nishanth Menon wrote:
-> We can use CPU specific pmu configuration to expose the appropriate
-> CPU specific events rather than just the basic generic pmuv3 perf
-> events.
+On 1/20/21 2:25 PM, Dave Gerlach wrote:
+> Add pinctrl macros for AM64 SoC. These macro definitions are similar to
+> that of previous platforms, but adding new definitions to avoid any
+> naming confusions in the soc dts files.
 > 
-> Reported-by: Sudeep Holla <sudeep.holla@arm.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Unlike what checkpatch insists, we do not need parentheses enclosing
+> the values for this macro as we do intend it to generate two separate
+> values as has been done for other similar platforms.
+> 
+> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
 
-Tested-by: Suman Anna <s-anna@ti.com>
-
-regards
-Suman
+Reviewed-by: Suman Anna <s-anna@ti.com>
 
 > ---
+>  include/dt-bindings/pinctrl/k3.h | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> AM65: https://pastebin.ubuntu.com/p/TF2cCMySkt/
-> J721E: https://pastebin.ubuntu.com/p/jgGPNmNgG3/
-> J7200: https://pastebin.ubuntu.com/p/Kfc3VHHXNB/
-> 
-> Original report: https://lore.kernel.org/linux-arm-kernel/20210119172412.smsjdo2sjzqi5vcn@bogus/
-> 
-> I have'nt split this patch up for fixes tag primarily because the
-> basic functionality works and this is an improvement than a critical
-> fixup to backport for older kernels.
-> 
->  arch/arm64/boot/dts/ti/k3-am65.dtsi  | 2 +-
->  arch/arm64/boot/dts/ti/k3-j7200.dtsi | 2 +-
->  arch/arm64/boot/dts/ti/k3-j721e.dtsi | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-> index d84c0bc05023..a9fc1af03f27 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-> @@ -56,7 +56,7 @@ a53_timer0: timer-cl0-cpu0 {
->  	};
+> diff --git a/include/dt-bindings/pinctrl/k3.h b/include/dt-bindings/pinctrl/k3.h
+> index b0eea7cc6e23..e085f102b283 100644
+> --- a/include/dt-bindings/pinctrl/k3.h
+> +++ b/include/dt-bindings/pinctrl/k3.h
+> @@ -3,7 +3,7 @@
+>   * This header provides constants for pinctrl bindings for TI's K3 SoC
+>   * family.
+>   *
+> - * Copyright (C) 2018 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2018-2021 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  #ifndef _DT_BINDINGS_PINCTRL_TI_K3_H
+>  #define _DT_BINDINGS_PINCTRL_TI_K3_H
+> @@ -35,4 +35,7 @@
+>  #define J721E_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+>  #define J721E_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
 >  
->  	pmu: pmu {
-> -		compatible = "arm,armv8-pmuv3";
-> +		compatible = "arm,cortex-a53-pmu";
->  		/* Recommendation from GIC500 TRM Table A.3 */
->  		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
->  	};
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-> index 66169bcf7c9a..b7005b803149 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-> @@ -114,7 +114,7 @@ a72_timer0: timer-cl0-cpu0 {
->  	};
->  
->  	pmu: pmu {
-> -		compatible = "arm,armv8-pmuv3";
-> +		compatible = "arm,cortex-a72-pmu";
->  		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
->  	};
->  
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> index cc483f7344af..f0587fde147e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> @@ -115,7 +115,7 @@ a72_timer0: timer-cl0-cpu0 {
->  	};
->  
->  	pmu: pmu {
-> -		compatible = "arm,armv8-pmuv3";
-> +		compatible = "arm,cortex-a72-pmu";
->  		/* Recommendation from GIC500 TRM Table A.3 */
->  		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
->  	};
+> +#define AM64X_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+> +#define AM64X_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
+> +
+>  #endif
 > 
 
