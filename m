@@ -2,102 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 150722FD6BA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:18:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37D9B2FD6ED
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:33:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729629AbhATRRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 12:17:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60872 "EHLO
+        id S2388041AbhATOHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 09:07:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404173AbhATRQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 12:16:59 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA780C061575
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 09:16:18 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id e67so11563483ybc.12
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 09:16:18 -0800 (PST)
+        with ESMTP id S2390035AbhATNc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 08:32:28 -0500
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 693B4C061757
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 05:31:48 -0800 (PST)
+Received: by mail-ua1-x92b.google.com with SMTP id a31so7855922uae.11
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 05:31:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=b9wI5aOMK4QP7qEbl5k5jkAB+hpflm5UBU0G8oOa8LA=;
-        b=bHQw89wbOV7Fyq9pJVIClifJ4R4XL+mAjZePqAM5wS6hckVNC8Gj1g5zDKKt2crNAb
-         ZP0B5JPFtcowlxGooOulgculUU1EEoLo9TdPArv1F7VN9FD6sWiM4BBBc7NLN6MSUDIZ
-         dPd8BuXJlNoZ7a3hIiXrfp2YY4gLoh/RMG4QlFl7HlenzNWXLFN4kQCMbglhkepu9i8Y
-         GHZQ5He01i/kQQrbTRkI5/EBUWxeyEnsgs6r1vR6sgJlflH8Suj/FHuFnt2ZK7UTaJKo
-         TdjskkEhZH83qZUxy1sCRbqhm7U+KL/fWL6LAtZs2bpJU/ViOyhmRQrwAfCF2kS86cWV
-         /odg==
+        bh=EygyrNo1L66YguGSTSkEZs1oOOE5dPsaKPmSAlahwhk=;
+        b=hFuCyLYIUL4bPuSmVyGwJ5qOdl9VuxHNMdTOzr19HhTY8Qw8M95643Sr3sDDY21Zyu
+         jNzFPBb0zSofa2aZatqnXTmPP2A3EJeg8yfRxYVD6DihsAyj8Maeg9uS9lLCNNXdVdTQ
+         PW2VMXc5rtoUbZO4cuH3/JfK7gVdE59o8Ten4A9HedDee2EqeCupC4s/KIHpVsRaf7CT
+         ur2XoCezvAZaDTLJbgoP5Gq/Jwyr3yknamxPGVOa5y5ngerkbktCxytiKcxbgbm1NsLs
+         M9cupGjLJf30oFZQ90aLQbh9Zxwq49JQkZ+dqcg3cAnVp7Ce70WZI42+e5dc3JSMr/LW
+         LtBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=b9wI5aOMK4QP7qEbl5k5jkAB+hpflm5UBU0G8oOa8LA=;
-        b=oTc4lPcM42+ZkW90Gs66tY8Cf9agf52xcLhx2HBXwxojdRlqpSkrSUuZPxCo8umfFL
-         BbWRM2EiKIXeZ7sqk/fXYkdJT4VrlVd/vyCIhMkwSYfIUcnMduVPW9rjcf4jcnKWRK7E
-         2eiuIo7Y0md+gerNEBWJOTGnRUNWOmJaaBJ09XUPuAnu+ZvAgi9Tehs02q6hXCAK00BZ
-         obg7j40efu+Ur6ZxZY080wL5vDSAN2Jl5SH1QHqdO3BoOyecQNJY/uPXZcddi1RMIbsy
-         COpa0BCC1usPG+9VLKhoGnas7I6hoERYPYPdkHY/2nEe/Uh4rJBJIOCVSTuFO9H/ae7G
-         7akw==
-X-Gm-Message-State: AOAM531Zel4obLy3es0MjDLiNZjJWV37iaqlMbG014G6G5GjUAeVNwac
-        nkVAFDCT6dS9rGgPQtrTLTx6P5qsNkUnhjT1OTyKnQ==
-X-Google-Smtp-Source: ABdhPJwi1CKgasHlPWQ/KwwGM6Bb7GEe0fwT8QqGkXr5UjjZ4xi0ClwNOMIzy1N4g0aOxnt8VzEuLM+Y07LqYB0YZRE=
-X-Received: by 2002:a25:288:: with SMTP id 130mr15326444ybc.412.1611162977999;
- Wed, 20 Jan 2021 09:16:17 -0800 (PST)
+        bh=EygyrNo1L66YguGSTSkEZs1oOOE5dPsaKPmSAlahwhk=;
+        b=amBfF3YKw+W4juw8+z000Li0TL35i/A0aeluHC43ZmUnDmX/WG1kDwU2QCrU1L9aFg
+         vkGVSFRWpo5jpeSCNvBHZUNqSNh4QLJuRM1PcPILCJZRCILnZ9zn8mfUKEJvD2CAFtyO
+         h2JbmCJE931ET9eL5smQkseB8OIQ6D/w6o4aCeN2OVzpJD36Z13hHho4egQTJzZlWTkl
+         Cmsal6BJsFWK0ZrJp1tPtWxkMzkzYijDlCxHrfSlpleja8hozPfC3GOAUjrWXmsvbv91
+         ULETex9rbweCg9qp5+ec8Z44ZX/1jZ3P+tKG3mtggzSEsOnoMc702J/NYnJh/VjeoBdQ
+         EQAw==
+X-Gm-Message-State: AOAM531NJ6vW8CMLMOqijpBRkEjDjmu9wHmZu0b+mhhDqFS4095TJqWq
+        Be2CjptierDGjlBJv8ab6R0c7o+NRqmx7zdIcgLf8w==
+X-Google-Smtp-Source: ABdhPJzkobxZ3ZkN8/e+5qJpHJ+BQ3MwguUnina2HKp/lBcnr/mhXKUDNIf5dGu8SstEZIGrIePbNt3r4BgNcnONcXo=
+X-Received: by 2002:ab0:768:: with SMTP id h95mr6005681uah.104.1611149507447;
+ Wed, 20 Jan 2021 05:31:47 -0800 (PST)
 MIME-Version: 1.0
-References: <20201218210750.3455872-1-saravanak@google.com>
- <CAMuHMdUpZELgL4qUCs1VH0UUeckpTwqYLrMy2ETPzrpuUwkLnQ@mail.gmail.com> <CAMuHMdWEOpbh8xS9W09xudpoym8=J4UzuWTDqF3L+yDuU3k2ZQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWEOpbh8xS9W09xudpoym8=J4UzuWTDqF3L+yDuU3k2ZQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 20 Jan 2021 09:15:42 -0800
-Message-ID: <CAGETcx8ssLeiHYZcHzXC-mUd=KGxi=pZQqkt8iwcHY-EYOcCjw@mail.gmail.com>
-Subject: Re: [PATCH] of: property: Add device link support for interrupts
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+References: <20201224111210.1214-1-rojay@codeaurora.org> <20201224111210.1214-4-rojay@codeaurora.org>
+ <YAGqKfDfB7EEuZVn@builder.lan> <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
+ <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com> <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
+In-Reply-To: <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 20 Jan 2021 14:31:10 +0100
+Message-ID: <CAPDyKFogrWt=K3VtEZVH5bPL_fYt7rgdm5wGgq+QHtzX-n0z7g@mail.gmail.com>
+Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for 'assigned-performance-states'
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Wolfram Sang <wsa@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
+        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
+        Linux PM <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 6:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+On Tue, 19 Jan 2021 at 12:05, Viresh Kumar <viresh.kumar@linaro.org> wrote:
 >
-> Hi Saravana,
+> On 19-01-21, 12:02, Ulf Hansson wrote:
+> > As a matter of fact this was quite recently discussed [1], which also
+> > pointed out some issues when using the "required-opps" in combination,
+> > but perhaps that got resolved? Viresh?
 >
-> On Wed, Jan 20, 2021 at 10:53 AM Geert Uytterhoeven
-> <geert@linux-m68k.org> wrote:
-> > On Fri, Dec 18, 2020 at 10:11 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > Add support for creating device links out of interrupts property.
-> > >
-> > > Cc: Marc Zyngier <maz@kernel.org>
-> > > Cc: Kevin Hilman <khilman@baylibre.com>
-> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >
-> > Thanks for your patch!
-> >
-> > This does not seem to add all links.  I see links being created to the
-> > secondary interrupt controller (e61c0000 "renesas,irqc"), but not to
-> > the primary interrupt controller (GIC)
-> >
-> > Which is good, as the GIC driver is not a platform_driver, and thus
-> > creating links would break everything ;-)
+> Perhaps we never did anything there ..
+
+Okay. Looks like we should pick up that discussion again, to conclude
+on how to move forward.
+
 >
-> of_link_to_phandle() ignores device nodes where OF_POPULATED
-> is set, and of_irq_init() sets that flag.  Hence the GIC is ignored.
+> --
+> viresh
 
-Geert,
-
-Yes, I know :)  I wrote it that way for GIC and some of the early
-devices that can't use the driver core. And as Marc said in the other
-email, it looks like GIC is going to be stuck as a non-device for a
-while. But this patch and others that'll follow are all set up for
-allowing non-root interrupt controllers to be implemented as platform
-devices (or <anybus> device).
-
--Saravana
+Kind regards
+Uffe
