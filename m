@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA4232FCC49
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:07:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C89E42FCC50
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:07:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730478AbhATICl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 03:02:41 -0500
-Received: from mx.blih.net ([212.83.155.74]:21225 "EHLO mx.blih.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729643AbhATICY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 03:02:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bidouilliste.com;
-        s=mx; t=1611129668;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZsuP9EUESZltLXaS8dgiXaaE9jo809x4YaPbT21PXX0=;
-        b=H7JaUfFmYjDL9GqizsW5Z81btdTOdGyLWR7NoJXuI2Mf0ZC2A7VVQJ8nVadFxPz5Ns7NEh
-        cHlxGitgyOwAdSJ8SVKX199i7PGBz8U75pttMkV2/fnqa6TB1JPFnmJWgpXbUXVAh4UC8z
-        eReXnS+9nC83aog2msOHc1cunSX/oBI=
-Received: from amy.home (lfbn-idf2-1-745-114.w86-247.abo.wanadoo.fr [86.247.192.114])
-        by mx.blih.net (OpenSMTPD) with ESMTPSA id 3bf0e6a4 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
-        Wed, 20 Jan 2021 08:01:08 +0000 (UTC)
-Date:   Wed, 20 Jan 2021 09:01:08 +0100
-From:   Emmanuel Vadot <manu@bidouilliste.com>
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Tony Lindgren <tony@atomide.com>
-Subject: Re: [PATCH] pinctrl: clarify #pinctrl-cells for pinctrl-single,pins
-Message-Id: <20210120090108.bbdee781a237cb931a572323@bidouilliste.com>
-In-Reply-To: <20210120050342.320704-1-drew@beagleboard.org>
-References: <20210120050342.320704-1-drew@beagleboard.org>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; amd64-portbld-freebsd13.0)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1730509AbhATIEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 03:04:31 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:37251 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730077AbhATIDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:03:51 -0500
+Received: by mail-ot1-f50.google.com with SMTP id o11so22600533ote.4;
+        Wed, 20 Jan 2021 00:03:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yK/ie3EIPWE7RkFQwOhdBJJ8g6b1r6m+2mIGzWMnhyU=;
+        b=bhgmKOrt03g/TpPBL29W6SMX+a9cPtiwRc7yDjEYjSTrmaLmoHtv7rDI5WzXwYVe30
+         XO/2qfl/IKsL2HHuO73nemaBoW2WC+5m7eOpBMHvcXxcjTnkmTKOS6Edgla4lU/nCwkq
+         w/M8AHXS0abf4BwSpYI/KQxB8Q+N/kELQrxHSbbGciR0qqYVUiL6/eTbogC8s2HvS6mN
+         iu2xS9CsfucLjhlks/Y8G/RI7PQDJQ17+8Dn6uitzDaDesascCTnXbGhYNBj6nJ7EJgy
+         kM7CQOZGRM8qh7sQUpAsr5gzwCUpBEtWX9YqYZ6XieBuL+ItRLnxSBVKCg1oaJKUdkLO
+         kYFA==
+X-Gm-Message-State: AOAM530Mtel//K8jNTT0il/+wmjju3M+hJjVmbMAToe1CwydybBaAXHX
+        bjiDDi/ACTGJ5Lkd9l3VwgSEm2l3zoMTzqEcWN/XPhDpk+4=
+X-Google-Smtp-Source: ABdhPJzevJPBcvky5yCg7XX71DeoBect44zX/F7XQhp9USLrJHRkB9vJdBGn+ivHRuBVbyh0mvtqYYe2kmG87Qos4qU=
+X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr6240929otc.145.1611129789904;
+ Wed, 20 Jan 2021 00:03:09 -0800 (PST)
+MIME-Version: 1.0
+References: <20201228112715.14947-1-wsa+renesas@sang-engineering.com>
+ <20201228112715.14947-4-wsa+renesas@sang-engineering.com> <20210119221624.GA3651@kunai>
+ <YAfjJwije0H56wp7@kroah.com>
+In-Reply-To: <YAfjJwije0H56wp7@kroah.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 20 Jan 2021 09:02:58 +0100
+Message-ID: <CAMuHMdVYmW3kkYv2xTCS2X4pFpChknX7yy7N06EOegGTzK=DmQ@mail.gmail.com>
+Subject: Re: [PATCH 3/6] dt-bindings: serial: renesas,hscif: Add r8a779a0 support
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jan 2021 21:03:44 -0800
-Drew Fustini <drew@beagleboard.org> wrote:
+Hi Greg,
 
-> Document that #pinctrl-cells can be 1 or 2 for pinctrl-single,pins
-> 
-> Fixes: 27c90e5e48d0 ("ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2")
-> Reported-by: Emmanuel Vadot <manu@bidouilliste.com>
-> Link: https://lore.kernel.org/linux-gpio/20210115190201.9273b637a7f967e7e55bc740@bidouilliste.com/
-> Cc: Tony Lindgren <tony@atomide.com>
-> Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> ---
->  Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-> index f903eb4471f8..bb9999119314 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-> @@ -8,7 +8,7 @@ Required properties:
->  - reg : offset and length of the register set for the mux registers
->  
->  - #pinctrl-cells : number of cells in addition to the index, set to 1
-> -  for pinctrl-single,pins and 2 for pinctrl-single,bits
-> +  or 2 for pinctrl-single,pins and set to 2 for pinctrl-single,bits
->  
->  - pinctrl-single,register-width : pinmux register access width in bits
->  
-> -- 
-> 2.25.1
-> 
+On Wed, Jan 20, 2021 at 9:00 AM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+> On Tue, Jan 19, 2021 at 11:16:24PM +0100, Wolfram Sang wrote:
+> > On Mon, Dec 28, 2020 at 12:27:10PM +0100, Wolfram Sang wrote:
+> > > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > > ---
+> >
+> > Can we apply this via the serial tree? Or shall we take it via
+> > renesas-soc? Thanks!
+>
+> I can take it, but normally I try to wait for a DT maintainer ack.
+>
+> If you want to take it, feel free to as well.
 
- Reviewed-by: Emmanuel Vadot <manu@FreeBSD.org>
+Acked on Jan 8:
+https://lore.kernel.org/linux-devicetree/20210108034114.GA1845830@robh.at.kernel.org/
 
- Thanks, now the docs make more sense :)
+Thanks for applying!
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Emmanuel Vadot <manu@bidouilliste.com> <manu@FreeBSD.org>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
