@@ -2,186 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B97712FCC76
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:13:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 231EB2FCC9E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:22:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729643AbhATILu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 03:11:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730400AbhATIJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:09:52 -0500
-Received: from mail-qt1-x84a.google.com (mail-qt1-x84a.google.com [IPv6:2607:f8b0:4864:20::84a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3F9C061795
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:09:22 -0800 (PST)
-Received: by mail-qt1-x84a.google.com with SMTP id k12so20559260qth.23
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:09:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=sQhmAabxwvCN6VVpbop+UBorAEcNt9ytsxAM/0+JvF8=;
-        b=XHin27U/N0fQ34PIArxAW2shOw/rjlWwDl3nOAM2NMubmTTzcW1XTDK74gQ1R7RMEn
-         0aa47E5WiPHsN90DZqMoVTSTOV08s7sQ19nN53hYxydGfm6dhzAMlaG3+yIFqub69tcx
-         q+DRAUhp8hQ7PFUV1nS+QZT91phyTujh4P56fcQXiwRQRyF3lQIpUjAmcz+oMUK4FnNW
-         zQxJ9H5GWUx/uyuccaQsFx1a9wFkGDuklQiNxKQf8cuvSrp8S1Qz1z4iTNme3UdcoiwF
-         4OaMlf0ltrlbVm5XpTIlWa6vO/e0tAmw86z0AmM3QnLQtLHN0hZE28oWI1YOvnOLeorc
-         v01w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=sQhmAabxwvCN6VVpbop+UBorAEcNt9ytsxAM/0+JvF8=;
-        b=T3f2YyoNi0JzDo99cDA+8/hhKcxqdyM9T2OS5zaCtBHQp55vqinrOqf8e69R+x/mA1
-         cQnnS/zw0da451hbuPFHiYiIY3SqXkXVR9Yr20z5llLaqQPwQQ9rbzhkcmftfY3EYsBh
-         1QTAJuXZlAOMeWn6S2H7IPOt2A3cso1EcA9StpDDXtoxOgY3JtxsIMMUt66/cLHAz3Aq
-         RnYVpq0EgSB+ZSJmbz8oa5R0Y125eD/96ZczlP83q+t8GtEIQ3FK59xA/yV01oEj3ROq
-         1bfkcUKIp87kXhsFyU9hd8/MqCJMB87zkdgKxLrRYt4TYYsf+KRxKbovEJO3al6XIEoH
-         PNwQ==
-X-Gm-Message-State: AOAM5308x6tEXL0pfAukzpuV0SD/7B27tic96BiZXR4C59N8xgiRcHEP
-        939eGg0FCyt7KJL/QtSKJfhVReKCBRnn
-X-Google-Smtp-Source: ABdhPJxehndhb8u41XwHipFb3V90nONbfNuOZLuAMKwJz+KEqMbLrtwgT3VtjA53R1Q3SW2jghvJY22UV08P
-Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
-X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:1164:8893:969a:b338])
- (user=tzungbi job=sendgmr) by 2002:a05:6214:14ae:: with SMTP id
- bo14mr8437792qvb.16.1611130161829; Wed, 20 Jan 2021 00:09:21 -0800 (PST)
-Date:   Wed, 20 Jan 2021 16:08:50 +0800
-In-Reply-To: <20210120080850.699354-1-tzungbi@google.com>
-Message-Id: <20210120080850.699354-6-tzungbi@google.com>
-Mime-Version: 1.0
-References: <20210120080850.699354-1-tzungbi@google.com>
-X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
-Subject: [PATCH 5/5] ASoC: mediatek: mt8192-mt6359: support audio over DP
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     broonie@kernel.org, robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, tzungbi@google.com,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1730323AbhATIVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 03:21:19 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:4817 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730526AbhATIUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:20:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1611130847; x=1642666847;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=lIVXiYfF1ZAAiHw/fch8Q+/D+WuN/BFANz4ZM0AO5Ic=;
+  b=amWeTR2L0su++ZX0kqRPeO/1M7Uex35WwpOln9NhhQrhzaCRNxcZdZet
+   MjCV+pJ72Vy8JW5IjMd5mTABH1dzJtksFfyTLv5IoRWjoIlvbwuxUiaKP
+   D+v3mlnUXKdYRjasRD7Nso5eU1aq2hl9uBBBM1oVgL/z3iZJN+mc/tt8s
+   MW4bKm+nFOoIVN1ReucwC1Bk4Ga3D+1HqL71Nxr/TpYS6/HDK064GP2TL
+   aHgAxIZWnREvl99DYG1tdOBcoAF9S3iezvK/4UbXPY11Z08JF051h0hli
+   cGg/OpZWEXR/mivcD3N3qX8AXUecJswFxad2OJDdAOH4cVbkK3vmZaFz9
+   g==;
+IronPort-SDR: 4403iNUNK90EPytwP7Ki8SipcpnhxEWZCrnV6NwVvXU1EzrUeJxL71pvv4Ace2hcibU3E5BmH2
+ 7vCsJM4u9HKHEwPxr8qiMb83roTrdOejVpZYMUtKoBXLZ8+dxOHPxQfLOEtwh3a2zAXgJIPDe2
+ 1an5i47RbAQ1Dr0lsswN0KeqKt6XrKFfVQQDkk7PLjxKqJ2yNXsIOH1JT6o+yJsXCY2T4jxZ/f
+ hQuwbu0gtPzc3q6bORAjSJBnw5kbODXFcLv23OGYMxSvLWcWZVJkWLhIoyUtyEbZ3qQ4M4N8R1
+ mfc=
+X-IronPort-AV: E=Sophos;i="5.79,360,1602572400"; 
+   d="scan'208";a="106602461"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Jan 2021 01:19:31 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 20 Jan 2021 01:19:31 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Wed, 20 Jan 2021 01:19:29 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v4 1/3] dt-bindings: reset: microchip sparx5 reset driver bindings
+Date:   Wed, 20 Jan 2021 09:19:19 +0100
+Message-ID: <20210120081921.3315847-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210120081921.3315847-1-steen.hegelund@microchip.com>
+References: <20210120081921.3315847-1-steen.hegelund@microchip.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the DTS property is specified, the DP bridge should populate a
-"hdmi-codec" platform device (sound/soc/codecs/hdmi-codec.c).
+Document the Sparx5 reset device driver bindings
 
-The "hdmi-codec" device is the communication relayer between the ASoC
-machine driver and the DP bridge.  For example:
-- Notifies DP bridge when setting hw_param.
-- Notifies ASoC when jack detection events.
+The driver uses two syscons on sparx5 for access to
+the reset control and the reset status.
 
-Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
 ---
- .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 39 ++++++++++++++++++-
- 1 file changed, 37 insertions(+), 2 deletions(-)
+ .../bindings/reset/microchip,rst.yaml         | 59 +++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/microchip,rst.yaml
 
-diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-index 8ea24b32a535..cc0fc72305d2 100644
---- a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-+++ b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-@@ -33,6 +33,7 @@
- 
- struct mt8192_mt6359_priv {
- 	struct snd_soc_jack headset_jack;
-+	struct snd_soc_jack hdmi_jack;
- };
- 
- static int mt8192_rt1015_i2s_hw_params(struct snd_pcm_substream *substream,
-@@ -329,6 +330,23 @@ static int mt8192_rt5682_init(struct snd_soc_pcm_runtime *rtd)
- 	return snd_soc_component_set_jack(cmpnt_codec, jack, NULL);
- };
- 
-+static int mt8192_mt6359_hdmi_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_component *cmpnt_codec =
-+		asoc_rtd_to_codec(rtd, 0)->component;
-+	struct mt8192_mt6359_priv *priv = snd_soc_card_get_drvdata(rtd->card);
-+	int ret;
+diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+new file mode 100644
+index 000000000000..af01016e246f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+	ret = snd_soc_card_jack_new(rtd->card, "HDMI Jack", SND_JACK_LINEOUT,
-+				    &priv->hdmi_jack, NULL, 0);
-+	if (ret) {
-+		dev_err(rtd->dev, "HDMI Jack creation failed: %d\n", ret);
-+		return ret;
-+	}
++title: Microchip Sparx5 Switch Reset Controller
 +
-+	return snd_soc_component_set_jack(cmpnt_codec, &priv->hdmi_jack, NULL);
-+}
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
 +
- static int mt8192_i2s_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
- 				      struct snd_pcm_hw_params *params)
- {
-@@ -600,7 +618,7 @@ SND_SOC_DAILINK_DEFS(pcm2,
- 
- SND_SOC_DAILINK_DEFS(tdm,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("TDM")),
--		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
-+		     DAILINK_COMP_ARRAY(COMP_CODEC(NULL, "i2s-hifi")),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
-@@ -936,8 +954,14 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 	{
- 		.name = "TDM",
- 		.no_pcm = 1,
-+		.dai_fmt = SND_SOC_DAIFMT_DSP_A |
-+			   SND_SOC_DAIFMT_IB_NF |
-+			   SND_SOC_DAIFMT_CBM_CFM,
- 		.dpcm_playback = 1,
- 		.ignore_suspend = 1,
-+		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
-+		.ignore = 1,
-+		.init = mt8192_mt6359_hdmi_init,
- 		SND_SOC_DAILINK_REG(tdm),
- 	},
- };
-@@ -948,6 +972,7 @@ mt8192_mt6359_rt1015_rt5682_widgets[] = {
- 	SND_SOC_DAPM_SPK("Right Spk", NULL),
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
-+	SND_SOC_DAPM_OUTPUT("TDM Out"),
- };
- 
- static const struct snd_soc_dapm_route mt8192_mt6359_rt1015_rt5682_routes[] = {
-@@ -958,6 +983,8 @@ static const struct snd_soc_dapm_route mt8192_mt6359_rt1015_rt5682_routes[] = {
- 	{ "Headphone Jack", NULL, "HPOL" },
- 	{ "Headphone Jack", NULL, "HPOR" },
- 	{ "IN1P", NULL, "Headset Mic" },
-+	/* TDM */
-+	{ "TDM Out", NULL, "TDM" },
- };
- 
- static const struct snd_kcontrol_new mt8192_mt6359_rt1015_rt5682_controls[] = {
-@@ -1031,7 +1058,7 @@ static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682_card = {
- static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card;
--	struct device_node *platform_node;
-+	struct device_node *platform_node, *hdmi_codec;
- 	int ret, i;
- 	struct snd_soc_dai_link *dai_link;
- 	const struct of_device_id *match;
-@@ -1051,6 +1078,9 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 	card = (struct snd_soc_card *)match->data;
- 	card->dev = &pdev->dev;
- 
-+	hdmi_codec = of_parse_phandle(pdev->dev.of_node,
-+				      "mediatek,hdmi-codec", 0);
++description: |
++  The Microchip Sparx5 Switch provides reset control and implements the following
++  functions
++    - One Time Switch Core Reset (Soft Reset)
 +
- 	for_each_card_prelinks(card, i, dai_link) {
- 		if (strcmp(dai_link->name, "I2S3") == 0) {
- 			if (card == &mt8192_mt6359_rt1015_rt5682_card) {
-@@ -1077,6 +1107,11 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 			}
- 		}
- 
-+		if (hdmi_codec && strcmp(dai_link->name, "TDM") == 0) {
-+			dai_link->codecs->of_node = hdmi_codec;
-+			dai_link->ignore = 0;
-+		}
++properties:
++  $nodename:
++    pattern: "^reset-controller@[0-9a-f]+$"
 +
- 		if (!dai_link->platforms->name)
- 			dai_link->platforms->of_node = platform_node;
- 	}
++  compatible:
++    const: microchip,sparx5-switch-reset
++
++  reg:
++    maxItems: 1
++
++  "#reset-cells":
++    const: 1
++
++  cpu-syscon:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: syscon used to access CPU reset
++    maxItems: 1
++
++  gcb-syscon:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: syscon used to access Global Control Block
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#reset-cells"
++  - cpu-syscon
++  - gcb-syscon
++
++additionalProperties: false
++
++examples:
++  - |
++    reset: reset-controller@0 {
++        compatible = "microchip,sparx5-switch-reset";
++        reg = <0x0 0x0>;
++        #reset-cells = <1>;
++        cpu-syscon = <&cpu_ctrl>;
++        gcb-syscon = <&gcb_ctrl>;
++    };
++
 -- 
-2.30.0.284.gd98b1dd5eaa7-goog
+2.29.2
 
