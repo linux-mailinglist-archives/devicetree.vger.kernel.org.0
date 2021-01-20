@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82BAC2FDAD0
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 21:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 524CB2FDAD4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 21:30:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732732AbhATU1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 15:27:53 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:49234 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388193AbhATU0h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:26:37 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPW4k039653;
+        id S2387811AbhATU3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 15:29:12 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:44418 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387696AbhATU1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:27:53 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPW4a084083;
         Wed, 20 Jan 2021 14:25:32 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
         s=ti-com-17Q1; t=1611174332;
-        bh=XQCT5KP9fyg68TKUBWqsug+cm7ZJ8pzWsmcIveGqVj8=;
+        bh=anbAmcxVQ26Xqvyl15OSRimT263fiLng37o8D9w5B14=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=pHsf7Dczu7IQyWfvlHiHBWvNCW/iJBje24abv7lyE1sBU3i00YKBIMWsRadFTLWZw
-         OSdVL/yvMG7ETzjHyJv5YNyEamzQRJbhJ1RihANWpFp/tjNDZzQm5REgYZIyF2McsP
-         mxfwpvQ9e10q6clbBN2aTiFQZQxRBxDf+6MiUm6A=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKPWa1012231
+        b=ojI+aVUBa+P6/To/3nFqXu04JCYfNgRHuK7iwGpcXpjUpbjy/cQpDMOEEUVJJ4RSo
+         To6Wz4xHtiw8IK2HMyvXZUkxBh2tEsCMOvIN8OHsUKM1aFQKTsk4a+CLbqP7dG861q
+         xD+7x9jE1dX9dFMz3iSVPSQkv+6G6E8F4WFaiPI0=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKPWQB125783
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
         Wed, 20 Jan 2021 14:25:32 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
  Jan 2021 14:25:32 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
  Frontend Transport; Wed, 20 Jan 2021 14:25:32 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPWiD045033;
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPW8V078365;
         Wed, 20 Jan 2021 14:25:32 -0600
 From:   Dave Gerlach <d-gerlach@ti.com>
 To:     Nishanth Menon <nm@ti.com>
@@ -47,9 +47,9 @@ CC:     Dave Gerlach <d-gerlach@ti.com>,
         Kishon Vijay Abraham <kishon@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>,
         Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH v3 1/5] dt-bindings: arm: ti: Add bindings for AM642 SoC
-Date:   Wed, 20 Jan 2021 14:25:28 -0600
-Message-ID: <20210120202532.9011-2-d-gerlach@ti.com>
+Subject: [PATCH v3 2/5] dt-bindings: pinctrl: k3: Introduce pinmux definitions for AM64
+Date:   Wed, 20 Jan 2021 14:25:29 -0600
+Message-ID: <20210120202532.9011-3-d-gerlach@ti.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210120202532.9011-1-d-gerlach@ti.com>
 References: <20210120202532.9011-1-d-gerlach@ti.com>
@@ -61,50 +61,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
-providing advanced system integration to enable applications such as
-Motor Drives, PLC, Remote IO and IoT Gateways.
+Add pinctrl macros for AM64 SoC. These macro definitions are similar to
+that of previous platforms, but adding new definitions to avoid any
+naming confusions in the soc dts files.
 
-Some highlights of this SoC are:
-* Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
-  MCUs, and a single Cortex-M4F.
-* Two Gigabit Industrial Communication Subsystems (ICSSG).
-* Integrated Ethernet switch supporting up to a total of two external
-  ports.
-* PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
-  controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
-  peripherals.
-* Centralized System Controller for Security, Power, and Resource
-  Management (DMSC).
-
-See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
-for further details: https://www.ti.com/lit/pdf/spruim2
+Unlike what checkpatch insists, we do not need parentheses enclosing
+the values for this macro as we do intend it to generate two separate
+values as has been done for other similar platforms.
 
 Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
 ---
-v1: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20201125052004.17823-2-d-gerlach@ti.com/
+ include/dt-bindings/pinctrl/k3.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
- Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-index c6e1c1e63e43..393f94a64f8d 100644
---- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-+++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-@@ -33,6 +33,12 @@ properties:
-         items:
-           - const: ti,j7200
+diff --git a/include/dt-bindings/pinctrl/k3.h b/include/dt-bindings/pinctrl/k3.h
+index b0eea7cc6e23..e085f102b283 100644
+--- a/include/dt-bindings/pinctrl/k3.h
++++ b/include/dt-bindings/pinctrl/k3.h
+@@ -3,7 +3,7 @@
+  * This header provides constants for pinctrl bindings for TI's K3 SoC
+  * family.
+  *
+- * Copyright (C) 2018 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2018-2021 Texas Instruments Incorporated - https://www.ti.com/
+  */
+ #ifndef _DT_BINDINGS_PINCTRL_TI_K3_H
+ #define _DT_BINDINGS_PINCTRL_TI_K3_H
+@@ -35,4 +35,7 @@
+ #define J721E_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+ #define J721E_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
  
-+      - description: K3 AM642 SoC
-+        items:
-+          - enum:
-+              - ti,am642-evm
-+          - const: ti,am642
++#define AM64X_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
++#define AM64X_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
 +
- additionalProperties: true
- 
- ...
+ #endif
 -- 
 2.28.0
 
