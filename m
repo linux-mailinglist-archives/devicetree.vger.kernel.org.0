@@ -2,130 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D168F2FDA5D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 21:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82BAC2FDAD0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 21:30:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728192AbhATRfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 12:35:31 -0500
-Received: from foss.arm.com ([217.140.110.172]:45620 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732935AbhATRbE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 12:31:04 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0CA6C31B;
-        Wed, 20 Jan 2021 09:30:15 -0800 (PST)
-Received: from [10.57.39.58] (unknown [10.57.39.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EF5433F68F;
-        Wed, 20 Jan 2021 09:30:08 -0800 (PST)
-Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
-To:     Rob Herring <robh@kernel.org>, Claire Chang <tientzu@chromium.org>
-Cc:     mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
-        joro@8bytes.org, will@kernel.org, frowand.list@gmail.com,
-        konrad.wilk@oracle.com, boris.ostrovsky@oracle.com,
-        jgross@suse.com, sstabellini@kernel.org, hch@lst.de,
-        m.szyprowski@samsung.com, grant.likely@arm.com, xypron.glpk@gmx.de,
-        treding@nvidia.com, mingo@kernel.org, bauerman@linux.ibm.com,
-        peterz@infradead.org, gregkh@linuxfoundation.org,
-        saravanak@google.com, rafael.j.wysocki@intel.com,
-        heikki.krogerus@linux.intel.com, andriy.shevchenko@linux.intel.com,
-        rdunlap@infradead.org, dan.j.williams@intel.com,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        iommu@lists.linux-foundation.org, xen-devel@lists.xenproject.org,
-        tfiga@chromium.org, drinkcat@chromium.org
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-6-tientzu@chromium.org>
- <20210120165348.GA220770@robh.at.kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <313f8052-a591-75de-c4c2-ee9ea8f02e7f@arm.com>
-Date:   Wed, 20 Jan 2021 17:30:07 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1732732AbhATU1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 15:27:53 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49234 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388193AbhATU0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:26:37 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPW4k039653;
+        Wed, 20 Jan 2021 14:25:32 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611174332;
+        bh=XQCT5KP9fyg68TKUBWqsug+cm7ZJ8pzWsmcIveGqVj8=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=pHsf7Dczu7IQyWfvlHiHBWvNCW/iJBje24abv7lyE1sBU3i00YKBIMWsRadFTLWZw
+         OSdVL/yvMG7ETzjHyJv5YNyEamzQRJbhJ1RihANWpFp/tjNDZzQm5REgYZIyF2McsP
+         mxfwpvQ9e10q6clbBN2aTiFQZQxRBxDf+6MiUm6A=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKPWa1012231
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 20 Jan 2021 14:25:32 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
+ Jan 2021 14:25:32 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 20 Jan 2021 14:25:32 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPWiD045033;
+        Wed, 20 Jan 2021 14:25:32 -0600
+From:   Dave Gerlach <d-gerlach@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Dave Gerlach <d-gerlach@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: [PATCH v3 1/5] dt-bindings: arm: ti: Add bindings for AM642 SoC
+Date:   Wed, 20 Jan 2021 14:25:28 -0600
+Message-ID: <20210120202532.9011-2-d-gerlach@ti.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20210120202532.9011-1-d-gerlach@ti.com>
+References: <20210120202532.9011-1-d-gerlach@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210120165348.GA220770@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-20 16:53, Rob Herring wrote:
-> On Wed, Jan 06, 2021 at 11:41:23AM +0800, Claire Chang wrote:
->> Introduce the new compatible string, restricted-dma-pool, for restricted
->> DMA. One can specify the address and length of the restricted DMA memory
->> region by restricted-dma-pool in the device tree.
-> 
-> If this goes into DT, I think we should be able to use dma-ranges for
-> this purpose instead. Normally, 'dma-ranges' is for physical bus
-> restrictions, but there's no reason it can't be used for policy or to
-> express restrictions the firmware has enabled.
+The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
+providing advanced system integration to enable applications such as
+Motor Drives, PLC, Remote IO and IoT Gateways.
 
-There would still need to be some way to tell SWIOTLB to pick up the 
-corresponding chunk of memory and to prevent the kernel from using it 
-for anything else, though.
+Some highlights of this SoC are:
+* Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
+  MCUs, and a single Cortex-M4F.
+* Two Gigabit Industrial Communication Subsystems (ICSSG).
+* Integrated Ethernet switch supporting up to a total of two external
+  ports.
+* PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
+  controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
+  peripherals.
+* Centralized System Controller for Security, Power, and Resource
+  Management (DMSC).
 
->> Signed-off-by: Claire Chang <tientzu@chromium.org>
->> ---
->>   .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
->>   1 file changed, 24 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
->> index e8d3096d922c..44975e2a1fd2 100644
->> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
->> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
->> @@ -51,6 +51,20 @@ compatible (optional) - standard definition
->>             used as a shared pool of DMA buffers for a set of devices. It can
->>             be used by an operating system to instantiate the necessary pool
->>             management subsystem if necessary.
->> +        - restricted-dma-pool: This indicates a region of memory meant to be
->> +          used as a pool of restricted DMA buffers for a set of devices. The
->> +          memory region would be the only region accessible to those devices.
->> +          When using this, the no-map and reusable properties must not be set,
->> +          so the operating system can create a virtual mapping that will be used
->> +          for synchronization. The main purpose for restricted DMA is to
->> +          mitigate the lack of DMA access control on systems without an IOMMU,
->> +          which could result in the DMA accessing the system memory at
->> +          unexpected times and/or unexpected addresses, possibly leading to data
->> +          leakage or corruption. The feature on its own provides a basic level
->> +          of protection against the DMA overwriting buffer contents at
->> +          unexpected times. However, to protect against general data leakage and
->> +          system memory corruption, the system needs to provide way to restrict
->> +          the DMA to a predefined memory region.
->>           - vendor specific string in the form <vendor>,[<device>-]<usage>
->>   no-map (optional) - empty property
->>       - Indicates the operating system must not create a virtual mapping
->> @@ -120,6 +134,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
->>   			compatible = "acme,multimedia-memory";
->>   			reg = <0x77000000 0x4000000>;
->>   		};
->> +
->> +		restricted_dma_mem_reserved: restricted_dma_mem_reserved {
->> +			compatible = "restricted-dma-pool";
->> +			reg = <0x50000000 0x400000>;
->> +		};
->>   	};
->>   
->>   	/* ... */
->> @@ -138,4 +157,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
->>   		memory-region = <&multimedia_reserved>;
->>   		/* ... */
->>   	};
->> +
->> +	pcie_device: pcie_device@0,0 {
->> +		memory-region = <&restricted_dma_mem_reserved>;
-> 
-> PCI hosts often have inbound window configurations that limit the
-> address range and translate PCI to bus addresses. Those windows happen
-> to be configured by dma-ranges. In any case, wouldn't you want to put
-> the configuration in the PCI host node? Is there a usecase of
-> restricting one PCIe device and not another?
+See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
+for further details: https://www.ti.com/lit/pdf/spruim2
 
-The general design seems to accommodate devices having their own pools 
-such that they can't even snoop on each others' transient DMA data. If 
-the interconnect had a way of wiring up, say, PCI RIDs to AMBA NSAIDs, 
-then in principle you could certainly apply that to PCI endpoints too 
-(presumably you'd also disallow them from peer-to-peer transactions at 
-the PCI level too).
+Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+v1: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20201125052004.17823-2-d-gerlach@ti.com/
 
-Robin.
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index c6e1c1e63e43..393f94a64f8d 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -33,6 +33,12 @@ properties:
+         items:
+           - const: ti,j7200
+ 
++      - description: K3 AM642 SoC
++        items:
++          - enum:
++              - ti,am642-evm
++          - const: ti,am642
++
+ additionalProperties: true
+ 
+ ...
+-- 
+2.28.0
+
