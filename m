@@ -2,134 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E952F2FDF1D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 03:18:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3958F2FE020
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 04:52:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729013AbhAUBnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 20:43:41 -0500
-Received: from mail-eopbgr00081.outbound.protection.outlook.com ([40.107.0.81]:11138
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2391883AbhAUBRO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 20:17:14 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IsRonzgyxudGLmBdlL6RSfDkAi57wOvqvIBAaM6ggL9EN1VzkKpzf7gDioLP7V9/vEsOZw+Pc96pv1wY2nqxuRRTIOC3cLJiJPwtgnBR+x/b7LXy1zyaPEq/hslR7DJIKf3sJ3HrOdNA5Wedcot95L24PMUy5FYVt9FjeVRD4oGe37ThMMt7wdpXwql0pBq2Pc9kap4oPcKxgdvXjdDg4Cy/Fzwz7h8I/LNIT30NCkRDVDEed+SZ3+amPsSoOcYvIfgXbUXiKFzCzVPP87LL/j8LO/qUvtgw3RUT/iTyK8Didyk75jDPEfImdrbhWFv+ww55RBl5RX8JnjfpPoukXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rI+IUMb1+JCMowDxbZUaZ3xdAvqxJsUkD8J2FuBMne0=;
- b=kh0rmusw9PnmmG3wSxww6sOymZ21hZFBthLEnDFGjLu4GYv3iFHwrwM/5OlRzQpbJYvs6YATP1HgnPyzlhZETkIgVLkrkW9DRihwjdc5QbhL+XpO1oVjB8iaCzhjsEfk+9AjRspHngIbDgC2X6N9a6dCFU2MQY+9XA+EXsKPbz6oPO++EyJPCW01cJRTCapDCYFWbtDnsHnGrFipYHnX2AmCrf7al9ZtI8+JQJ/IdWDQ3iXSdSY9xNVOKwaFjCdYOigDq8CrNh5hl6sx4spLrfUARsgDumk7AF/4Ylqgh1dx4v5kJNT1OIVUJMr5Njy8pCXsT1rPMMP4R9+f38tvKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rI+IUMb1+JCMowDxbZUaZ3xdAvqxJsUkD8J2FuBMne0=;
- b=aBmSOGy2NFoRkAeYF8V8cAjm6feC5NG40vkdTW4yqEV//86OdXpVDhvd9Jpx9dVEXCYPMJiYcfckWtiRV0vaPIJKkVxSl5wsepc8LD4OXRAMk4FosGRDkmczizc+wzQhRdBkKjL4cu2cUF138OSB2A2qwHQ0adepu45Zp8Ji1iU=
-Authentication-Results: wizery.com; dkim=none (message not signed)
- header.d=none;wizery.com; dmarc=none action=none header.from=nxp.com;
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DBBPR04MB7948.eurprd04.prod.outlook.com (2603:10a6:10:1e6::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.11; Thu, 21 Jan
- 2021 01:15:03 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c964:9:850a:fc5]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c964:9:850a:fc5%10]) with mapi id 15.20.3763.014; Thu, 21 Jan 2021
- 01:15:03 +0000
-From:   peng.fan@nxp.com
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        paul@crapouillou.net, matthias.bgg@gmail.com, agross@kernel.org,
-        patrice.chotard@st.com, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V9 09/10] remoteproc: imx_rproc: ignore mapping vdev regions
-Date:   Thu, 21 Jan 2021 09:03:34 +0800
-Message-Id: <1611191015-22584-10-git-send-email-peng.fan@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1611191015-22584-1-git-send-email-peng.fan@nxp.com>
-References: <1611191015-22584-1-git-send-email-peng.fan@nxp.com>
+        id S1727085AbhAUDvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 22:51:06 -0500
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:52687 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2388069AbhATXrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 18:47:39 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id D40315C0136;
+        Wed, 20 Jan 2021 18:46:21 -0500 (EST)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Wed, 20 Jan 2021 18:46:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=Osf2ELJTbWcLwWlfylNHUcxi3LV4y9b
+        ORwKF8hqOZGw=; b=jOAydszf3n1jDn8jWiGmW8H/hzbrEB96l5TAiKCLXPCgFeK
+        H19QuUPhFWn8fAPgcohYz4bpI5Stebdx7ad55gk25yBT4fIdE+3jfS/wn3ijhvFg
+        vc9w4EUFMjnBLJJQGjs8KZMMfvuJNnlO2AdeR4bt6jYsBiRITJhrlOHX9681bV5L
+        UbWWLP2VdUtNgHvjWfjehUiOX2zo98vsgGExG3RBQ2lj5DydfwLm0pwXPzLqezfr
+        vGUbGIgDQuCnSfXsSXZsy+pqFykTmS88lW8IG+9oMYWf5NxzLQTTK/IvpKBXLuSj
+        8xI6YKjdiS8Hvo1aGX/aFi6K8ymQxnpZEVsJHtg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Osf2EL
+        JTbWcLwWlfylNHUcxi3LV4y9bORwKF8hqOZGw=; b=ePZO5PHcT+F/5lxask8Z4B
+        ylukggbKy+OtlTGpxvqkg0s+hwXrzrTWHUk3K4W4L9aUgVZx4MtW3XxdAT9H3cQk
+        cFanGoZNGUaEe4MQzeFC5RxKq8zHSDoEclXnQQHJQlewu+tm3Dw10tfpwQoY8N17
+        d4CqPKy8qGTVNkWWe2wFcT4rG8B1AxoV7HTkc0Mte2k4Q3JKB+a1B+gcYpkamzxL
+        FzFIMZU+ZUFy/2Fh6SxgamPxnYJ9nt9OIZsTdxLL07vhFvr1E0Ox4V3rUlrDovVB
+        QwUbVNoONeiCu5KGiDN9Qh4TPlfVMUmsEPd+4ZDlZMCYUjBdwcSh9/E4FxeDEiTQ
+        ==
+X-ME-Sender: <xms:zMAIYDqjI8n-vorK9RHJAlNUNZEWheGuLkH8I2qv3KUdjR5cLA7iGA>
+    <xme:zMAIYNq3QLZzYVqVNgTRvGy_TFlZZ9kVOXKPT2AZXBs8ZHEM5wwUhzvaq-6Mr-NPA
+    KSJWFCj7u3QJzbQ4g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudefgdduvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
+    htthgvrhhnpeduffdtvdevkeffgfetffffueevgeejleeghfffjedthedthfelgfekfefh
+    feekieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:zcAIYAN8FD9QayNBy0WYXSo2ZCywtzPr83V4YgpPcsIuUPoEDOjEgQ>
+    <xmx:zcAIYG7rynQYuNjz1tCZ85i69e3DU2d58HnXQUhCPjWlMcZVgDpcMA>
+    <xmx:zcAIYC7WlrNW6gkz4mn3XUxLn6urpUcAZ712PgR2bmIJf8Jds92ngw>
+    <xmx:zcAIYJbsD8kysw-wCz4vgVfFbZq1ra8djnrtJMWz2FXRyZoBSABx2Q>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id E4A3DA0005D; Wed, 20 Jan 2021 18:46:20 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-78-g36b56e88ef-fm-20210120.001-g36b56e88
+Mime-Version: 1.0
+Message-Id: <9f2dcef2-0b76-475c-9bb4-b029589763bf@www.fastmail.com>
+In-Reply-To: <CAPDyKFqBOWLBbAxZNhN5r=qjXTG9+3tX4nT8+Gz+Xbppsxh5_g@mail.gmail.com>
+References: <20210114031433.2388532-1-andrew@aj.id.au>
+ <CAPDyKFqBOWLBbAxZNhN5r=qjXTG9+3tX4nT8+Gz+Xbppsxh5_g@mail.gmail.com>
+Date:   Thu, 21 Jan 2021 10:16:00 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Ulf Hansson" <ulf.hansson@linaro.org>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>
+Subject: Re: [PATCH v7 0/6] mmc: sdhci-of-aspeed: Expose phase delay tuning
 Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SGAP274CA0018.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::30)
- To DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SGAP274CA0018.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 01:14:57 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 73860709-5ab3-4318-b6f3-08d8bda9faa1
-X-MS-TrafficTypeDiagnostic: DBBPR04MB7948:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DBBPR04MB79488EF328A344B0B9E2F03588A10@DBBPR04MB7948.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1247;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BcXWNgaC4F1m3n7WxDumbhBJ/mPIcl/IvpGq78QGjJfeAhxzZVRo1z9/5YK8S2nCvZRi5VVQcJHutY3KYOg1V5+2knF0/e5gCnE7ANxsQFpRyD3DctUOGJK1GDLiqhtR6tSzk31ty7bMIt8kHxbnmNFWTz0QJJNpr8SnMvgFCgjYwYyccfQBuTi95zR8zOXyCLxqwxxWgX0UejhjMFyCslrckRDGY7hfXXyxeCYbBH4vj/iNOUb9MJv9PDJ4QM7kn0ikL6gs3C1luvOlWLhkvDcTugHCbHyMb9XA1Cpiv2Q2Z6acVeVZl4m5EjE7xWTsF5n3ZYJUDp9PmUXsTy60CWDPSmW5AJm9fwcqE3cbbcHCv/IGa/gMMbWai39T2ErS2/44fGqR9NCdQfwa8iyc9M5MHbphywhuimI7VZlLRqlH5PAgXm5hw2+NDWj6ufDGqV4jt7snyI+RLODcQKVWnA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(396003)(366004)(376002)(346002)(69590400011)(66476007)(186003)(2906002)(6666004)(52116002)(2616005)(4326008)(7416002)(5660300002)(66946007)(26005)(16526019)(956004)(36756003)(316002)(8936002)(9686003)(6506007)(8676002)(478600001)(6486002)(6512007)(4744005)(86362001)(66556008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?927zAcV8xOlNVcgXY6uO/w93hhf1ChxVSkm/HmYkWuP6dMDNhpb0vZM6fOJN?=
- =?us-ascii?Q?+V5FxOW6Xjsb/m0q0a+Q9xbQSXYhs3b9ui5julv1MLk5V718rSfO47+PADLX?=
- =?us-ascii?Q?83SimagIsuEoC1tZYXddS4HWsslKJs6nWTBlaNFOR4cY2SjyF64Gi8xS7DuZ?=
- =?us-ascii?Q?4AXNhJNXNuBRLSG7av19Jtp1lEvRX2mX/Yr2jKHBfDSU5fWh/OBFQMw5YtDZ?=
- =?us-ascii?Q?+K8a6pkz1zXl2EA+wP3D0PTh/RLB/YbfXPP1jvqPWVhcCWr3nSGMHlULlJHc?=
- =?us-ascii?Q?pwzDNo9vgiW4Z+Rj9gWTuSGeglCT0gML38f9zRW0HDxVV9BE6n9bNpXv/RDt?=
- =?us-ascii?Q?zbpPNqh/h60yOTInV/E8oUSJRXhhkZYnXl+LmBMupdl4hKbdNhB1HNWm+FeH?=
- =?us-ascii?Q?nzoMczayOfS8kgqZkZB1sKiZUAVWLP0GDSWz5awf0Kiqw46V7IwHRbZMNiDX?=
- =?us-ascii?Q?pl4H0IjnpRqHOhbauPo1oA+gfIdJYpk5Cm4jiuTFtNaraSZcDDXQ5fY/FSdr?=
- =?us-ascii?Q?LtVskj8HHHcvtPGsQLZod8QONPXEOARLnFTA6lQLNmEH1aIfRC/bwToBCM8P?=
- =?us-ascii?Q?wi6Lx7vz3Y9Y+nn5XYGIlzP4Ubi8kfKrrQhJN25hWVbFxqZvtTTQ6eCfe7Nl?=
- =?us-ascii?Q?wigNUgduQITHqyIBlCq0YEgx7vqqLgi0E7Ovlv4VVbySM4oVF60bxQEPuI/N?=
- =?us-ascii?Q?RCXJs7l5hZKDDhCZRdy4raViaR8FbK/775Wdx3SB8fCv29LvvV8iOyE37x2I?=
- =?us-ascii?Q?HlvamcpranftNCr82DWhFV18mxR8NpQ34AKTnAxLabGEm2JziDS8SuFLsQtZ?=
- =?us-ascii?Q?YQsCvaIAfcqPa9QLCH/qTUP9LBEFkmH0XdyXLpzV/g+mHOxc5vi7GA5fxdt6?=
- =?us-ascii?Q?OGKWiOGPJmnf8T4Z7Mi7rjFDh6qF2mVOIm2PzMbCs5pK4Zzzg/FpJt6MBr4n?=
- =?us-ascii?Q?9OsMQonAA5WariZ5SKw/+CZCF8f+2ORNjvdenQKuQgbCIWruBUdFwqV9IWf/?=
- =?us-ascii?Q?kG3S?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73860709-5ab3-4318-b6f3-08d8bda9faa1
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 01:15:02.9987
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3IogGmJDU/06inWtkPKWj6Yli2awb4aR70SCdBxC+VScFSm3ngWi01TmeIbhVcLIRLOJ3NI0UMMy//XFXZLAYA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7948
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
 
-vdev regions are vdev0vring0, vdev0vring1, vdevbuffer and similar.
-They are handled by remoteproc common code, no need to map in imx
-rproc driver.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
----
- drivers/remoteproc/imx_rproc.c | 3 +++
- 1 file changed, 3 insertions(+)
+On Thu, 21 Jan 2021, at 00:26, Ulf Hansson wrote:
+> On Thu, 14 Jan 2021 at 04:14, Andrew Jeffery <andrew@aj.id.au> wrote:
+> >
+> > Hello,
+> >
+> > This series implements support for the MMC core clk-phase-* devicetree bindings
+> > in the Aspeed SD/eMMC driver. The relevant register was exposed on the AST2600
+> > and is present for both the SD/MMC controller and the dedicated eMMC
+> > controller.
+> >
+> > v7 is just a small change to the the kunit testing in response to Adrian's
+> > feedback.
+> >
+> > I've just done a quick build test of v7 given the small change and more
+> > extensive testing done with v5.
+> >
+> > v6 can be found here:
+> >
+> > https://lore.kernel.org/linux-mmc/20201218035338.1130849-1-andrew@aj.id.au/
+> >
+> > Please review!
+> >
+> > Cheers,
+> >
+> > Andrew
+> >
+> > Andrew Jeffery (6):
+> >   mmc: core: Add helper for parsing clock phase properties
+> >   mmc: sdhci-of-aspeed: Expose clock phase controls
+> >   mmc: sdhci-of-aspeed: Add AST2600 bus clock support
+> >   mmc: sdhci-of-aspeed: Add KUnit tests for phase calculations
+> >   MAINTAINERS: Add entry for the ASPEED SD/MMC driver
+> >   ARM: dts: rainier: Add eMMC clock phase compensation
+> >
+> >  MAINTAINERS                                  |   9 +
+> >  arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts |   1 +
+> >  drivers/mmc/core/host.c                      |  44 ++++
+> >  drivers/mmc/host/Kconfig                     |  14 +
+> >  drivers/mmc/host/sdhci-of-aspeed-test.c      |  98 +++++++
+> >  drivers/mmc/host/sdhci-of-aspeed.c           | 255 ++++++++++++++++++-
+> >  include/linux/mmc/host.h                     |  13 +
+> >  7 files changed, 423 insertions(+), 11 deletions(-)
+> >  create mode 100644 drivers/mmc/host/sdhci-of-aspeed-test.c
+> >
+> 
+> Applied patch 1 to patch 5 applied for next (patch 6 should go via arm
+> soc), thanks!
 
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index 0124ebf69838..3685bbd135b0 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -417,6 +417,9 @@ static int imx_rproc_addr_init(struct imx_rproc *priv,
- 		struct resource res;
- 
- 		node = of_parse_phandle(np, "memory-region", a);
-+		/* Not map vdev region */
-+		if (!strcmp(node->name, "vdev"))
-+			continue;
- 		err = of_address_to_resource(node, 0, &res);
- 		if (err) {
- 			dev_err(dev, "unable to resolve memory region\n");
--- 
-2.28.0
+Yep. Joel, can you pick it up?
 
+> 
+> Thanks for stepping and helping with maintenance as well!
+
+Happy to help :)
+
+Andrew
