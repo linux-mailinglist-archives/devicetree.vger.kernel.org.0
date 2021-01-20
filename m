@@ -2,110 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 447B42FC702
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:44:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A53B22FC710
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:47:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728299AbhATBnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 20:43:55 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:8876 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726023AbhATBnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 20:43:52 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B60078aaa0000>; Tue, 19 Jan 2021 17:43:06 -0800
-Received: from [10.19.109.31] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 20 Jan
- 2021 01:43:00 +0000
-Subject: Re: [PATCH v6 04/15] phy: tegra: xusb: tegra210: Do not reset UPHY
- PLL
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <gregkh@linuxfoundation.org>, <robh@kernel.org>,
-        <jonathanh@nvidia.com>, <kishon@ti.com>,
-        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nkristam@nvidia.com>
-References: <20210119085546.725005-1-jckuo@nvidia.com>
- <20210119085546.725005-5-jckuo@nvidia.com> <YAbkABc68aMTvIyr@ulmo>
-From:   JC Kuo <jckuo@nvidia.com>
-Organization: NVIDIA
-Message-ID: <f389ab2f-1ecf-9eb5-6897-f780a27f4fec@nvidia.com>
-Date:   Wed, 20 Jan 2021 09:42:57 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1731001AbhATBpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 20:45:51 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:42183 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731180AbhATBpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 20:45:36 -0500
+Received: by mail-ot1-f43.google.com with SMTP id f6so12652918ots.9;
+        Tue, 19 Jan 2021 17:45:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4zFLIX6YbpN5aLim6yrRCBFClVwkiMJYaqWYmkOOPrQ=;
+        b=ilOxwK0IkK4JzQDbT9lqRPExZvUnT8UCT+yejraADgL+HLvaVpCbrkUlbKLtfrUrHd
+         bTo99MByXRqsfNwJLSUZRkM6y/IKtA8QUKpbVIezDUg795d1w7yQhyF3CTTT5dAYX8cj
+         V/MD9ZAg+3zIzSob2+/1WwEmaa9uvLLZHggrbmswlNYqEz2K8DjJ4Wm4BuMW7oeA02qW
+         ydmrTX5wsH+tFIq3v69yYfPYeitAHvAdWnZ5NSjwokQUAjhk8LKFki89SbaEwY83E+In
+         7BOF6jWDfuAEvhpx+1Ms5OJVCSCLH4lewbO5rDHU8tHExhaX08pksEa8CRbmGAk5eCtZ
+         K7aA==
+X-Gm-Message-State: AOAM530pLak8BuScDdCYpu5Y+gbcYfnr3hmvhKDlC2mZWJ6rtk+MFGu2
+        SWLXBZs4nvJKc6lYwibolQ==
+X-Google-Smtp-Source: ABdhPJzNzLwDdCRWb7mfJZPjC5yXOTPWn6hRch00Trm6xqHb+giSCQZAzkcjk4lDkIWsGAcxhvOK9g==
+X-Received: by 2002:a9d:313:: with SMTP id 19mr5381524otv.147.1611107095736;
+        Tue, 19 Jan 2021 17:44:55 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s24sm99037oij.20.2021.01.19.17.44.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 17:44:54 -0800 (PST)
+Received: (nullmailer pid 3016866 invoked by uid 1000);
+        Wed, 20 Jan 2021 01:44:53 -0000
+Date:   Tue, 19 Jan 2021 19:44:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        linuxppc-dev@lists.ozlabs.org, Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+Subject: Re: [PATCH 1/2] dt-bindings: powerpc: Add a schema for the 'sleep'
+ property
+Message-ID: <20210120014453.GA3706951@robh.at.kernel.org>
+References: <20201008142420.2083861-1-robh@kernel.org>
+ <752e9355-defb-6d3c-248b-f626247d4cee@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YAbkABc68aMTvIyr@ulmo>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1611106986; bh=7ZWJjA3V1BT8uXEoBJb4nujxJszYGXToGqMzgsjGGFY=;
-        h=Subject:To:CC:References:From:Organization:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:Content-Type:Content-Language:
-         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-        b=Y0G9aiLxpNBJoGv63xS+8ysFT8PWHMqh+wxlTDSkRUzlwYbtHZSz9M876pF0JmHyn
-         WJfi7TVUl8oPq+nMtRK575C6RKbH1eJI9GuO4k7iGa9t9nw7jUWmk4/5jNPaSWnROq
-         BTCAbhkY5bmLt1AuiqqypRGjAGPyVNzqfjtz8sXKMabPBZi/QVGMRoFnwATyxgZaUR
-         m2OrSKX4xQHLIFSJm8gDmfDODNFaIfopdEXijBNGPwarAmajfIFOCRR6cYay36wT5+
-         a1NEJv9HYE3MAzmVpPP5aQvxie4zQvscRJEpS1+Yuu2F0nTUcE3dR3SmcacZi6kSxP
-         Mn62fT258b/XQ==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <752e9355-defb-6d3c-248b-f626247d4cee@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 1/19/21 9:52 PM, Thierry Reding wrote:
-> On Tue, Jan 19, 2021 at 04:55:35PM +0800, JC Kuo wrote:
->> Once UPHY PLL hardware power sequencer is enabled, do not assert
->> reset to PEX/SATA PLLs, otherwise UPHY PLL operation will be broken.
->> This commit removes reset_control_assert(pcie->rst) and
->> reset_control_assert(sata->rst) from PEX/SATA UPHY disable procedure.
->>
->> Signed-off-by: JC Kuo <jckuo@nvidia.com>
->> ---
->> v6:
->>    no change
->> v5:
->>    no change
->> v4:
->>    no change
->> v3:
->>    new, was a part of "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
->>
->>  drivers/phy/tegra/xusb-tegra210.c | 2 --
->>  1 file changed, 2 deletions(-)
->>
->> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-tegra210.c
->> index 4dc9286ec1b8..9bfecdfecf35 100644
->> --- a/drivers/phy/tegra/xusb-tegra210.c
->> +++ b/drivers/phy/tegra/xusb-tegra210.c
->> @@ -502,7 +502,6 @@ static void tegra210_pex_uphy_disable(struct tegra_xusb_padctl *padctl)
->>  	if (--pcie->enable > 0)
->>  		return;
->>  
->> -	reset_control_assert(pcie->rst);
->>  	clk_disable_unprepare(pcie->pll);
->>  }
->>  
->> @@ -739,7 +738,6 @@ static void tegra210_sata_uphy_disable(struct tegra_xusb_padctl *padctl)
->>  	if (--sata->enable > 0)
->>  		return;
->>  
->> -	reset_control_assert(sata->rst);
->>  	clk_disable_unprepare(sata->pll);
->>  }
+On Sun, Jan 17, 2021 at 05:10:03PM +0100, Johan Jonker wrote:
+> Hi Rob,
 > 
-> Isn't this going to break things between here and patch 5 where the
-> hardware sequencer is enabled? If so, it might be better to move this
-> into patch 5 so that things stay functional and bisectible.
-Hi Thierry,
-Yes, I will move it into patch 5.
-
-Thanks,
-JC
-
+> This patch generates notifications in the Rockchip ARM and arm64 tree.
+> Could you limit the scope to PowerPC only.
 > 
-> Thierry
+> Kind regards,
 > 
+> Johan Jonker
+> 
+> make ARCH=arm dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/powerpc/sleep.yaml
+> 
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/powerpc/sleep.yaml
+> 
+> Example:
+> 
+> /arch/arm64/boot/dts/rockchip/rk3399pro-rock-pi-n10.dt.yaml: pinctrl:
+> sleep: {'ddrio-pwroff': {'rockchip,pins': [[0, 1, 1, 168]]},
+> 'ap-pwroff': {'rockchip,pins': [[1, 5, 1, 168]]}} is not of type 'array'
+> 	From schema: /Documentation/devicetree/bindings/powerpc/sleep.yaml
+
+IMO, the node name should be changed or just removed. The grouping 
+doesn't serve any purpose and changing wouldn't break the ABI.
+
+Rob
