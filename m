@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A53B22FC710
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:47:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 334482FC728
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:52:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731001AbhATBpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 20:45:51 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:42183 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731180AbhATBpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 20:45:36 -0500
-Received: by mail-ot1-f43.google.com with SMTP id f6so12652918ots.9;
-        Tue, 19 Jan 2021 17:45:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4zFLIX6YbpN5aLim6yrRCBFClVwkiMJYaqWYmkOOPrQ=;
-        b=ilOxwK0IkK4JzQDbT9lqRPExZvUnT8UCT+yejraADgL+HLvaVpCbrkUlbKLtfrUrHd
-         bTo99MByXRqsfNwJLSUZRkM6y/IKtA8QUKpbVIezDUg795d1w7yQhyF3CTTT5dAYX8cj
-         V/MD9ZAg+3zIzSob2+/1WwEmaa9uvLLZHggrbmswlNYqEz2K8DjJ4Wm4BuMW7oeA02qW
-         ydmrTX5wsH+tFIq3v69yYfPYeitAHvAdWnZ5NSjwokQUAjhk8LKFki89SbaEwY83E+In
-         7BOF6jWDfuAEvhpx+1Ms5OJVCSCLH4lewbO5rDHU8tHExhaX08pksEa8CRbmGAk5eCtZ
-         K7aA==
-X-Gm-Message-State: AOAM530pLak8BuScDdCYpu5Y+gbcYfnr3hmvhKDlC2mZWJ6rtk+MFGu2
-        SWLXBZs4nvJKc6lYwibolQ==
-X-Google-Smtp-Source: ABdhPJzNzLwDdCRWb7mfJZPjC5yXOTPWn6hRch00Trm6xqHb+giSCQZAzkcjk4lDkIWsGAcxhvOK9g==
-X-Received: by 2002:a9d:313:: with SMTP id 19mr5381524otv.147.1611107095736;
-        Tue, 19 Jan 2021 17:44:55 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s24sm99037oij.20.2021.01.19.17.44.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 17:44:54 -0800 (PST)
-Received: (nullmailer pid 3016866 invoked by uid 1000);
-        Wed, 20 Jan 2021 01:44:53 -0000
-Date:   Tue, 19 Jan 2021 19:44:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        linuxppc-dev@lists.ozlabs.org, Heiko Stuebner <heiko@sntech.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: powerpc: Add a schema for the 'sleep'
- property
-Message-ID: <20210120014453.GA3706951@robh.at.kernel.org>
-References: <20201008142420.2083861-1-robh@kernel.org>
- <752e9355-defb-6d3c-248b-f626247d4cee@gmail.com>
+        id S1731095AbhATBvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 20:51:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53126 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731102AbhATBuv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Jan 2021 20:50:51 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPS id 63C3422472;
+        Wed, 20 Jan 2021 01:50:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611107410;
+        bh=fYVhz0Utn/IH6+2xkAXvc2UhddhAnB+A/q8GU/7LXZ8=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=o36XoS0e9yW42WCIpWPxbEeA55yu+dzjXtl7opTY0GK2l5hLBNcOjCR0iv8UqZygY
+         w6TYwDPsP+cxPhFuwCK0MyXOojwuespJs0wShCsjlh38PjmsCqeP3Jr8u+urS7Yl3N
+         ZqmDgaxpnw/hn2ZJoygYEIanHk0jn0KXwgfJSKTiR2/6/1kBZH5YVWWwtvqHsjMcBP
+         Pq2fmFtqgmsr+DGQZ8Lxy8gIXJm8Tk2NcH0rLZwE5Vs+8mL1mkcq952dQhJJ+NM+eD
+         tRwwww+xNERk/l7zkhJTfnniz++AmzAhTt+3jmacoujRgHubP5FOo9wOZ1jgLKlpGJ
+         4XWyU1JyYENAA==
+Received: from pdx-korg-docbuild-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-1.ci.codeaurora.org (Postfix) with ESMTP id 5C6AB604FC;
+        Wed, 20 Jan 2021 01:50:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <752e9355-defb-6d3c-248b-f626247d4cee@gmail.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next 0/6] net: ethernet: ti: am65-cpsw-nuss: introduce support
+ for am64x cpsw3g
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161110741037.23772.5269078969682153495.git-patchwork-notify@kernel.org>
+Date:   Wed, 20 Jan 2021 01:50:10 +0000
+References: <20210115192853.5469-1-grygorii.strashko@ti.com>
+In-Reply-To: <20210115192853.5469-1-grygorii.strashko@ti.com>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     davem@davemloft.net, netdev@vger.kernel.org, kuba@kernel.org,
+        peter.ujfalusi@gmail.com, vigneshr@ti.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, nsekhar@ti.com,
+        devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 17, 2021 at 05:10:03PM +0100, Johan Jonker wrote:
-> Hi Rob,
-> 
-> This patch generates notifications in the Rockchip ARM and arm64 tree.
-> Could you limit the scope to PowerPC only.
-> 
-> Kind regards,
-> 
-> Johan Jonker
-> 
-> make ARCH=arm dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/powerpc/sleep.yaml
-> 
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/powerpc/sleep.yaml
-> 
-> Example:
-> 
-> /arch/arm64/boot/dts/rockchip/rk3399pro-rock-pi-n10.dt.yaml: pinctrl:
-> sleep: {'ddrio-pwroff': {'rockchip,pins': [[0, 1, 1, 168]]},
-> 'ap-pwroff': {'rockchip,pins': [[1, 5, 1, 168]]}} is not of type 'array'
-> 	From schema: /Documentation/devicetree/bindings/powerpc/sleep.yaml
+Hello:
 
-IMO, the node name should be changed or just removed. The grouping 
-doesn't serve any purpose and changing wouldn't break the ABI.
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-Rob
+On Fri, 15 Jan 2021 21:28:47 +0200 you wrote:
+> Hi
+> 
+> This series introduces basic support for recently introduced TI K3 AM642x SoC [1]
+> which contains 3 port (2 external ports) CPSW3g module. The CPSW3g integrated
+> in MAIN domain and can be configured in multi port or switch modes.
+> In this series only multi port mode is enabled. The initial version of switchdev
+> support was introduced by Vignesh Raghavendra [2] and work is in progress.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,1/6] dt-binding: ti: am65x-cpts: add assigned-clock and power-domains props
+    https://git.kernel.org/netdev/net-next/c/b3228c74e0d2
+  - [net-next,2/6] dt-binding: net: ti: k3-am654-cpsw-nuss: update bindings for am64x cpsw3g
+    https://git.kernel.org/netdev/net-next/c/19d9a846d9fc
+  - [net-next,3/6] net: ethernet: ti: am65-cpsw-nuss: Use DMA device for DMA API
+    https://git.kernel.org/netdev/net-next/c/ed569ed9b30a
+  - [net-next,4/6] net: ethernet: ti: am65-cpsw-nuss: Support for transparent ASEL handling
+    https://git.kernel.org/netdev/net-next/c/39fd0547ee66
+  - [net-next,5/6] net: ti: cpsw_ale: add driver data for AM64 CPSW3g
+    https://git.kernel.org/netdev/net-next/c/1dd3841033b3
+  - [net-next,6/6] net: ethernet: ti: am65-cpsw: add support for am64x cpsw3g
+    https://git.kernel.org/netdev/net-next/c/4f7cce272403
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
