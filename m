@@ -2,71 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 938352FD4F2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:09:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C4D42FD529
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:14:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731469AbhATQHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 11:07:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36524 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391254AbhATQFe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 11:05:34 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 65BAE233F8;
-        Wed, 20 Jan 2021 16:04:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611158693;
-        bh=tCY0oELYRd4QvtVyOqXMepIBNI4ULR18UJOim1D3bsk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sEmKfr9CxifTG2YE8U1qSq6PoLQjtahrX6K7FwtjlQ5VZoYVQcu73Tpfkkg0Hlaix
-         Io7a5B7ukdvjEjPWfmi5Xs/UU4WqGtOP0PA3jD/+4lWe+7CQRQcaXLcck0XwgQJVHD
-         Sm0CYOX8Avuqq/YRgq2wTKjv0hRak3Kq9dkEEYWpkhWbgf5QQDAJs6hFasnfx38CWI
-         OKqlwcBXCxsns6HDVmT++FMKM9upO3kE/oT9brDMGLcW5qgTOePxz7ftuC9vX6taQo
-         Nc0f3TFVcgh8HEVhSOZIotk0/sxKUckGGqdxgu17cB6NIKfqfboMnodt1S0rdtcLL5
-         OC0p/zwiu8QbA==
-Received: by mail-oi1-f176.google.com with SMTP id f132so25494184oib.12;
-        Wed, 20 Jan 2021 08:04:53 -0800 (PST)
-X-Gm-Message-State: AOAM532Wc5ioCkuwibp5mlULX6lfiglCxFlMWrk8935CCX/K+7yJDSuK
-        j8+wmrFVXbZAGdmsQ0J8bgC5VtgWn3fekF+BV90=
-X-Google-Smtp-Source: ABdhPJyLDeFbaDazP1z9y9ooclYTHcmXJDGv3fxWTYIMN6vJgmVL46kRjEEjTbvBK5FAEEjz0DdaTdejgQPy+pxBIdI=
-X-Received: by 2002:aca:44d:: with SMTP id 74mr3345812oie.4.1611158692720;
- Wed, 20 Jan 2021 08:04:52 -0800 (PST)
+        id S2391115AbhATQND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 11:13:03 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:49813 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2391280AbhATQJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 11:09:34 -0500
+Received: from [77.244.183.192] (port=62062 helo=[192.168.178.24])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1l2G2I-005oUX-7K; Wed, 20 Jan 2021 17:08:46 +0100
+Subject: Re: [PATCH v2] dt-bindings: clk: versaclock5: Miscellaneous fixes and
+ improvements:
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Adam Ford <aford173@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20210114125650.2233045-1-geert+renesas@glider.be>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <6d7a8180-b10d-481f-a3ca-05c37c17cb1a@lucaceresoli.net>
+Date:   Wed, 20 Jan 2021 17:08:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210120150944.1688327-1-arnd@kernel.org> <YAhRMaJhYJZat2SI@ulmo>
-In-Reply-To: <YAhRMaJhYJZat2SI@ulmo>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Wed, 20 Jan 2021 17:04:36 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2JhcRnaDXK1V4=FgRJrGjqrj5-LzhCaC+jpLa1hDL+Pw@mail.gmail.com>
-Message-ID: <CAK8P3a2JhcRnaDXK1V4=FgRJrGjqrj5-LzhCaC+jpLa1hDL+Pw@mail.gmail.com>
-Subject: Re: [PATCH] pwm: remove zte zx driver
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Jun Nie <jun.nie@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210114125650.2233045-1-geert+renesas@glider.be>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 4:50 PM Thierry Reding <thierry.reding@gmail.com> wrote:
-> On Wed, Jan 20, 2021 at 04:09:22PM +0100, Arnd Bergmann wrote:
+Hi Geert,
 
-> > -config PWM_VT8500
-> > -     tristate "vt8500 PWM support"
-> > -     depends on ARCH_VT8500 || COMPILE_TEST
-> > -     depends on HAS_IOMEM
-> > -     help
-> > -       Generic PWM framework driver for vt8500.
-> > -
-> > -       To compile this driver as a module, choose M here: the module
-> > -       will be called pwm-vt8500.
-> > -
->
-> I assume that you dropped the PWM_VT8500 symbol by mistake? I can fix
-> that up while applying, so no need to resend.
+On 14/01/21 13:56, Geert Uytterhoeven wrote:
+>   - Add missing reference for "idt,voltage-microvolt",
+>   - Add missing "additionalProperties: false" for subnodes, to catch
+>     typos in properties,
+>   - Fix property names in example.
+> 
+> Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>   - Settle on "idt,voltage-microvolt", cfr. commit 4b003f5fcadfa2d0
+>     ('clk: vc5: Use "idt,voltage-microvolt" instead of
+>     "idt,voltage-microvolts"'),
+>   - Drop reference to clock.yaml, which is already applied
+>     unconditionally,
+>   - Drop removal of allOf around if condition, as it is unnecessary
+>     churn.
+> ---
+>  .../devicetree/bindings/clock/idt,versaclock5.yaml       | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> index 2ac1131fd9222a86..70239f992d714ae0 100644
+> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> @@ -75,12 +75,15 @@ patternProperties:
+>          maximum: 6
+>        idt,voltage-microvolt:
+>          description: The output drive voltage.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
 
-Indeed, thanks for catching my mistake and fixing it up!
+"Vendor specific properties having a standard unit suffix don't need a
+type." -- Documentation/devicetree/bindings/example-schema.yaml
 
-       Arnd
+The rest looks good.
+
+-- 
+Luca
