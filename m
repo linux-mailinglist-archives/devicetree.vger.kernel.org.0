@@ -2,146 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E426F2FC564
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 01:10:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4F12FC6D9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727450AbhATAJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 19:09:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44660 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2394941AbhASNxH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 08:53:07 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D38C061573;
-        Tue, 19 Jan 2021 05:52:04 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id w5so19788262wrm.11;
-        Tue, 19 Jan 2021 05:52:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Rdm/biE4a+mlahQDle49aMaEn2RSuJRihRF9ov5TZxY=;
-        b=tEPNj6jc4dDBVRN92ctn+19OOJlId09PKo+cbreOHGSTV52nPQG79Iq7VltOLAuL54
-         RwFuw2ciF8ad7tqWu4FoK1X3RSaOxIr7uRyJ7JTT9Wy+mbC9jnNePKXLYj1ndOHvIYG9
-         KTGek18TQo0jLucnu3PHmpoa/jDFw3spAIGr+SXoX8w+rYPuXfE31c74Cqq/l7hpiBuI
-         /N8XnQrFIFGFW2gM7LzWw7wv3AYkg2BXkWOAbdm4mAcEJhDsjZA6dUY5YOcF93CKkhzR
-         rBqxnqEPE90Swfla6YqCWizwq3Te8qkoXvejSA85Y1nyiTG8DNVFwmo26O+0+TUCz8an
-         C9nw==
+        id S1728587AbhATBcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 20:32:15 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:34919 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728541AbhATBcC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 20:32:02 -0500
+Received: by mail-oi1-f181.google.com with SMTP id w8so1615655oie.2;
+        Tue, 19 Jan 2021 17:31:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Rdm/biE4a+mlahQDle49aMaEn2RSuJRihRF9ov5TZxY=;
-        b=URFFUaTSpc/tnO5tJidsjSN/BCmvJP9MXtXC//6VktD9oSFT5+HJOGYd2xBn43hjkF
-         qH9XFzLFgXKmgqPS6Gl37Z4SyJPCGJgw7bvzp2vu8Bva1Rgd44NZAfPFDtQ5uX1VLXHM
-         oRflI2lGLl4vZK8CfZSKpUdQ0dbxGZl4Qsxvtc2rz2cQnc/YMgkDIdv1z1FK8KSGcGwH
-         UPpNgwoqzXrMEV/V2aJASJY9rJ0IEbYQcCEMrNVTGRYhQHmjz8weapGoRynm+Yu3c1Z/
-         ltvZa65ThJ+LBOpdvNj9eMsIa/9Q3RlWK6a520j/GJi9MEyBbZlMcpVoiCMpJGZ81Gkq
-         7NkA==
-X-Gm-Message-State: AOAM530+oRlWG6JD49Jpuv/XffrNjkv7yDJJEEIpvgmwqS1Bvgq7gkWS
-        gW8mKUS0Zu/CebcmIlXTwLo=
-X-Google-Smtp-Source: ABdhPJws7vLn4dGCoaQ8qzPypxg+WVQRz6mwaCJ75KdkEoJ6PUn8D4EnMC/dQmsxJbHyAyppnbaLQw==
-X-Received: by 2002:a5d:4712:: with SMTP id y18mr4595230wrq.229.1611064323159;
-        Tue, 19 Jan 2021 05:52:03 -0800 (PST)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id b133sm5317905wme.33.2021.01.19.05.52.01
+         :mime-version:content-disposition:in-reply-to;
+        bh=70aGOwWqvSNnuRZRBgvIddOExT7M4WJHCpkHOLv549U=;
+        b=JIceF53FUorEn13lbB0lCxvM63P0X5eZMCq9vYodn4V6WHeo1hjJaQQ97YDgMjIlQE
+         d/bw3HaoEI2AFIo3yj3xi4g4722+aHhDzmfNlpXrlQjB3bm/3yVkVcByMGGeuXn0jQI+
+         hb2zhVcTEE6jpqizR5wNOtOO4iIHmPvwU91c5GfVjfvuoRQWQlVdMICa8nLxGhQe2tLh
+         zW7ZIJ3ZcpJSF7G54grmD/ea07bU9UV3Nw3yTQ/5lfMO7T4+E9o1d3RbrfgTgLqy8qnt
+         bOEOoPjxLEmMm+dCNS/wRaaoWkZC+n9wHFZhGPO7cU1XDLuz5vqDFoww3SsQt1fVNLpu
+         ad6w==
+X-Gm-Message-State: AOAM530DJIQb4AXzZtCC2taSQzFZYUHS0GQQt4K42ypegE6Klyac3v8Q
+        0Q4pJivfHhuYzc6tG+0kIG4j6XQ0TQ==
+X-Google-Smtp-Source: ABdhPJydF0BAx1ZnbHLhfNn1zr8cKXRT8sZgYcv8vLFh//tc2P2ggSEcgqco5mLp+bpeuijFP9ph4Q==
+X-Received: by 2002:aca:4d4:: with SMTP id 203mr1626279oie.18.1611106281114;
+        Tue, 19 Jan 2021 17:31:21 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t16sm100212otq.17.2021.01.19.17.31.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 05:52:01 -0800 (PST)
-Date:   Tue, 19 Jan 2021 14:52:00 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
-        kishon@ti.com, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, nkristam@nvidia.com
-Subject: Re: [PATCH v6 04/15] phy: tegra: xusb: tegra210: Do not reset UPHY
- PLL
-Message-ID: <YAbkABc68aMTvIyr@ulmo>
-References: <20210119085546.725005-1-jckuo@nvidia.com>
- <20210119085546.725005-5-jckuo@nvidia.com>
+        Tue, 19 Jan 2021 17:31:19 -0800 (PST)
+Received: (nullmailer pid 2992413 invoked by uid 1000);
+        Wed, 20 Jan 2021 01:31:18 -0000
+Date:   Tue, 19 Jan 2021 19:31:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mike Looijmans <mike.looijmans@topic.nl>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: iio: accel: Add bmi088 accelerometer
+ bindings
+Message-ID: <20210120013118.GA2990828@robh.at.kernel.org>
+References: <20210119124622.9490-1-mike.looijmans@topic.nl>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mjN8PrBnL8xAik0+"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210119085546.725005-5-jckuo@nvidia.com>
-User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
+In-Reply-To: <20210119124622.9490-1-mike.looijmans@topic.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---mjN8PrBnL8xAik0+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jan 19, 2021 at 04:55:35PM +0800, JC Kuo wrote:
-> Once UPHY PLL hardware power sequencer is enabled, do not assert
-> reset to PEX/SATA PLLs, otherwise UPHY PLL operation will be broken.
-> This commit removes reset_control_assert(pcie->rst) and
-> reset_control_assert(sata->rst) from PEX/SATA UPHY disable procedure.
->=20
-> Signed-off-by: JC Kuo <jckuo@nvidia.com>
+On Tue, Jan 19, 2021 at 01:46:21PM +0100, Mike Looijmans wrote:
+> This adds the device-tree bindings for the Bosch Sensortec BMI088 IMU,
+> the accelerometer part.
+> 
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> 
 > ---
-> v6:
->    no change
-> v5:
->    no change
-> v4:
->    no change
-> v3:
->    new, was a part of "phy: tegra: xusb: Rearrange UPHY init on Tegra210"
->=20
->  drivers/phy/tegra/xusb-tegra210.c | 2 --
->  1 file changed, 2 deletions(-)
->=20
-> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-t=
-egra210.c
-> index 4dc9286ec1b8..9bfecdfecf35 100644
-> --- a/drivers/phy/tegra/xusb-tegra210.c
-> +++ b/drivers/phy/tegra/xusb-tegra210.c
-> @@ -502,7 +502,6 @@ static void tegra210_pex_uphy_disable(struct tegra_xu=
-sb_padctl *padctl)
->  	if (--pcie->enable > 0)
->  		return;
-> =20
-> -	reset_control_assert(pcie->rst);
->  	clk_disable_unprepare(pcie->pll);
->  }
-> =20
-> @@ -739,7 +738,6 @@ static void tegra210_sata_uphy_disable(struct tegra_x=
-usb_padctl *padctl)
->  	if (--sata->enable > 0)
->  		return;
-> =20
-> -	reset_control_assert(sata->rst);
->  	clk_disable_unprepare(sata->pll);
->  }
+> 
+> Changes in v6:
+> I't been almost a year since the last commit, sorry...
+> Fixed the yaml errors
+> Add interrupt, vdd and vddio properties
+> 
+> Changes in v5:
+> submit together with driver code as patch series
+> 
+> Changes in v2:
+> convert to yaml format
+> 
+>  .../bindings/iio/accel/bosch,bmi088.yaml      | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
+> new file mode 100644
+> index 000000000000..459b9969fd12
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/accel/bosch,bmi088.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bosch BMI088 IMU accelerometer part
+> +
+> +maintainers:
+> +  - Mike Looijmans <mike.looijmans@topic.nl>
+> +
+> +description: |
+> +  Acceleration part of the IMU sensor with an SPI interface
+> +  Specifications about the sensor can be found at:
+> +    https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - bosch,bmi088_accel
 
-Isn't this going to break things between here and patch 5 where the
-hardware sequencer is enabled? If so, it might be better to move this
-into patch 5 so that things stay functional and bisectible.
+bosch,bmi088-accel
 
-Thierry
-
---mjN8PrBnL8xAik0+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAG4/0ACgkQ3SOs138+
-s6FRdBAAkdDGGqqOByCqXlI4BlCDvaCGH7gokubynuGUXTo+SPMkd//DHFmwPN6A
-7X081GnqqOEFdpEXJKFwPae6K2VX2JAT/q/wnGJLXDcDI2yw47YSyNbywux/aAo3
-RO0Ws8OkhFtLXzRx7y/ljYEC4rxf+eqtGEyZWjMDVt7HRTvT8cR/DfTyZFW5rB8l
-YGs3rlUqq9gtCKoY2YdrCWYveBDfEzug3IQ7ZYZUppu0r9t+Dmc/vjMkr53wciA6
-pRmkzisoO/3pjDHMv0kTVBtTs2EGCRMGN59LICXQyegLI2HtLloLsqBdAbet+vru
-JaaGFuAnrpD/D8GB83hZJkGuYIrAODd2RYuBJaima+V8VDGp6pwrvplcSSacC+61
-pAD6yy6ZWzoGdlSMp1TlG5mmhSy6Oyo2xWNdasezLOJU8SX3BjfuF0+E7NyRticC
-dL/kwTsO/rbLTx2oNytjPrvaClogBxTUWTOVyhUR6p6MBCYWqC5W08KuUQKvpj8x
-TGMQ5S4DaoDlptvDl92EneA16QLpwOsNalzvu5n+bMepQxlaBIbRcmMQtwXVM/am
-Du2XP/aFHvPfQPUIezFFDF3lRfurC5afAw8r9TNI8ElHfwasPdH2equiVK5Fqn7a
-XxR1qShC3WZUTBBsnOeG9iRJhFrssk3+4hE9PEfUAdN3MGE5iDE=
-=YdRC
------END PGP SIGNATURE-----
-
---mjN8PrBnL8xAik0+--
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +  vddio-supply: true
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description: |
+> +      Type should be either IRQ_TYPE_LEVEL_HIGH or IRQ_TYPE_LEVEL_LOW.
+> +      The first interrupt listed must be the one connected to the INT1 pin, the
+> +      second must be the one connected to the INT2 pin.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      bmi088_accel@1 {
+> +        compatible = "bosch,bmi088_accel";
+> +        reg = <1>;
+> +        spi-max-frequency = <10000000>;
+> +        interrupt-parent = <&gpio6>;
+> +        interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+> +      };
+> +    };
+> +...
+> -- 
+> 2.17.1
+> 
