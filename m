@@ -2,109 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 904DF2FCA54
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 06:12:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A53EF2FCA58
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 06:13:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbhATFK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 00:10:27 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:52221 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729334AbhATFCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 00:02:50 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 81FAC5804C4;
-        Wed, 20 Jan 2021 00:02:04 -0500 (EST)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Wed, 20 Jan 2021 00:02:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=Xzm1/rS4H5PuGurLJPLZvaUpqeI5TgR
-        jZU293uiw6+I=; b=P24yY3z15/L4B7lxaydItYA4CLoWr6VA726Wz1eKfo/tgN4
-        dTAwH9XMR9zVWUsf9F60+BazxWYMNZe5GdJf+MQwRX6zNXt98c1Kj89e/VGvScvn
-        lOhXmqdRA8osmB6XKVP5cVH0bGwPL408+Dtyux5ZcyNW0ZAtXDCFK2rfigJpqgU1
-        pSLzqV4ZEcN54lj0YmGEvdLgzWrp++UzwQYCYX8bqYfxvsKBzarpkUEB2HWXFlyJ
-        mWONS+9cecOvSby+mxkv1fk152uyQgxo3lfS00Pjl0RGxw+WEyF9XECT3iFV7wPk
-        DcRlz/uvnGHczYuO6BFuunBvjFxB9TKT9Hiox4Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Xzm1/r
-        S4H5PuGurLJPLZvaUpqeI5TgRjZU293uiw6+I=; b=mWT3KX8groTC8G4KBtzThz
-        g5yDxRt/vpcgvBEDLkZY6f9igVJ8kFp2NunCaS//O1LWgUB2jjHKdZde8AuXmnnR
-        TOLAG55xn6P33BzQ+7rEk5gZaZ6ckPEYI23X7NirttLyHVEUeucqsGDWleEF/zKj
-        kScbzCvM5Qv/7+l6lh/MOjl57I/DzL7LVQ5v8WhVhFvmDW6Azhi9evmh5tjAnLdc
-        F8Xn1rhdu5aA1ET9MjoRwqOSGZztYU2s3gsHrdTbkIEeLbdX2HtsXJkUeREqYZVJ
-        f1XxjgL/Qv5+GEe+FTi+8bdU39dClxJDAWBJjN1XFOAkKfyUaqQu+JGWgKfgsSnQ
-        ==
-X-ME-Sender: <xms:S7kHYEA4ECdFeuWvMr4TvXzwAMslB6Tr2AQoRHKamDZhHzWvrfywIA>
-    <xme:S7kHYGiPZ9fyrb4eEERpZ7_rnG7TujMC1amHOEA-JwMlUTVC8rvEYtrUdTMK2AH0Q
-    yJHUedoObNQudz9CA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledruddugdejlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
-    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
-    veeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:S7kHYHnXLx0PgA5r0vp-LmUai24JFpe4gy_C1lC95bxDjtHVPdTK4w>
-    <xmx:S7kHYKzgZD9eSyItcnj1r176R9Ns1rWw-Ms6CfZ3nW2NfYvyKuMT4g>
-    <xmx:S7kHYJT1oSJzwEAGbyfkIfepWEKCzKPIabbdyol1U8ij7spess0P0Q>
-    <xmx:TLkHYIIfSc1hSOcFh96O2laG_ylipwlZ5t7S8FdrxkWcj6JQqlbr9A>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 0AAC7A0005D; Wed, 20 Jan 2021 00:02:03 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-78-g36b56e88ef-fm-20210120.001-g36b56e88
-Mime-Version: 1.0
-Message-Id: <c05a7bca-df80-4c26-b6dd-802696c9ddab@www.fastmail.com>
-In-Reply-To: <20210114131622.8951-3-chiawei_wang@aspeedtech.com>
-References: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
- <20210114131622.8951-3-chiawei_wang@aspeedtech.com>
-Date:   Wed, 20 Jan 2021 15:31:41 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Lee Jones" <lee.jones@linaro.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Corey Minyard" <minyard@acm.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Cc:     BMC-SW@aspeedtech.com, "Haiyue Wang" <haiyue.wang@linux.intel.com>,
-        "Cyril Bur" <cyrilbur@gmail.com>,
-        "Robert Lippert" <rlippert@google.com>
-Subject: Re: [PATCH v5 2/5] ARM: dts: Remove LPC BMC and Host partitions
-Content-Type: text/plain
+        id S1729246AbhATFNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 00:13:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44414 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729540AbhATFF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 00:05:28 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C7C4C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 21:04:48 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id t29so8654907pfg.11
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 21:04:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oVErpyitxxhLPGfDajEW4fVOhIOQLKcz6X3NWGJEV+g=;
+        b=uae8KpuguS3BNlU2aKIemgBTkOQCef+In7mqQlFkr3oDW8LNMjmfF9rKFmc0WEj3DO
+         B7Phigy/LW/xRix8UhBC0QTTX+kYe1I6uytBsM/FGqTebvGjyN9/PFv+cDIWwujm7MNY
+         h2VsFSPX967OoJBmHoQXeyDkobrnYkuSLEiyfhT3moCrqyH+d6UTsw/LjGmB69daoigg
+         jUQGJ5P+Zg/LNs5iS94M5FRwr6nV4p780NzgEAMsqi/FKR+h5ebVPyxMKMnDC3ozO4Pv
+         O9HNoiES0tmVk4ozHIZwbMMUbZKl4abi7cWt/2Kp9BkbytuyYBcLfIz+kVDah0xII+/x
+         oicQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oVErpyitxxhLPGfDajEW4fVOhIOQLKcz6X3NWGJEV+g=;
+        b=F7/QiUaawTX/+OpD66oBh+B10bdZ7427X+qkr9U4VETCwdxo/NpH38qXHEC+TFcblB
+         z1AfkmVCWtudwKROqa7gLlFWJVNXU+MAFC0/8KREEVVUxHZJEtQS4yLpICS8A81lDOGg
+         wLLA6krDzARasSpFOpyTlq+A4hzzzAutO6Fz3tFnYFqORiislHjQqkkEErQi4kAoncyt
+         IGXSnjGhBEIeyGebmiyXzzmKoU0Lfq2EvjSgydHN+mOgUsrnAh5Sqtg3pZ6iy+xy7D2G
+         Ba3XwaymBP2lmYyyWqXGK36pJYx77gW7sXelNBSd8muFUQy9JdYYR5/p3YOhlAun6KHs
+         rz6A==
+X-Gm-Message-State: AOAM532FpsXILTtZ3tkeb8TqCX5xETs6Ywbk0qu5sI/WGH6KfU0NNalH
+        faJPrJtUhXRjTiHhs4wPxlLOSA==
+X-Google-Smtp-Source: ABdhPJwxwrfL9EnkZQLOwI9kO2+ssEC1CnWALWlmwpz/giDP4Fdgt36PXxQaDpZ7MHxmz1v18Ks31g==
+X-Received: by 2002:aa7:90cf:0:b029:1a3:a176:f4d0 with SMTP id k15-20020aa790cf0000b02901a3a176f4d0mr7366085pfk.8.1611119087844;
+        Tue, 19 Jan 2021 21:04:47 -0800 (PST)
+Received: from x1.hsd1.or.comcast.net ([2601:1c0:4701:ae70:900a:5243:9086:584])
+        by smtp.gmail.com with ESMTPSA id z15sm708410pfr.89.2021.01.19.21.04.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jan 2021 21:04:46 -0800 (PST)
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Drew Fustini <drew@beagleboard.org>,
+        Emmanuel Vadot <manu@bidouilliste.com>,
+        Tony Lindgren <tony@atomide.com>
+Subject: [PATCH] pinctrl: clarify #pinctrl-cells for pinctrl-single,pins
+Date:   Tue, 19 Jan 2021 21:03:44 -0800
+Message-Id: <20210120050342.320704-1-drew@beagleboard.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document that #pinctrl-cells can be 1 or 2 for pinctrl-single,pins
 
+Fixes: 27c90e5e48d0 ("ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2")
+Reported-by: Emmanuel Vadot <manu@bidouilliste.com>
+Link: https://lore.kernel.org/linux-gpio/20210115190201.9273b637a7f967e7e55bc740@bidouilliste.com/
+Cc: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Drew Fustini <drew@beagleboard.org>
+---
+ Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Thu, 14 Jan 2021, at 23:46, Chia-Wei, Wang wrote:
-> The LPC controller has no concept of the BMC and the Host partitions.
-> 
-> A concrete instance is that the HICRB[5:4] are for the I/O port address
-> configurtaion of KCS channel 1/2. However, the KCS driver cannot access
-> HICRB for channel 1/2 initialization via syscon regmap interface due to
-> the parition boundary. (i.e. offset 80h)
-> 
-> In addition, for the HW design backward compatibility, a newly added HW
-> control bit could be located at any reserved one over the LPC addressing
-> space. Thereby, this patch removes the lpc-bmc and lpc-host child node
-> and thus the LPC partitioning.
-> 
-> Note that this change requires the synchronization between device tree
-> change and the driver change. To prevent the misuse of old devicetrees
-> with new drivers, or vice versa, the v2 compatible strings are adopted
-> for the LPC device as listed:
-> 
-> 	"aspeed,ast2400-lpc-v2"
-> 	"aspeed,ast2500-lpc-v2"
-> 	"aspeed,ast2600-lpc-v2"
-> 
-> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+index f903eb4471f8..bb9999119314 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+@@ -8,7 +8,7 @@ Required properties:
+ - reg : offset and length of the register set for the mux registers
+ 
+ - #pinctrl-cells : number of cells in addition to the index, set to 1
+-  for pinctrl-single,pins and 2 for pinctrl-single,bits
++  or 2 for pinctrl-single,pins and set to 2 for pinctrl-single,bits
+ 
+ - pinctrl-single,register-width : pinmux register access width in bits
+ 
+-- 
+2.25.1
 
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
