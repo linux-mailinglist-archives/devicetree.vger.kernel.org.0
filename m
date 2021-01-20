@@ -2,527 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D230F2FD557
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:22:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C3352FD581
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:26:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391444AbhATQSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 11:18:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48298 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729113AbhATQSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 11:18:37 -0500
-Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D76C7C0613CF;
-        Wed, 20 Jan 2021 08:17:56 -0800 (PST)
-Received: by mail-ua1-x930.google.com with SMTP id d3so5543401uap.4;
-        Wed, 20 Jan 2021 08:17:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yXY6XJ/yr1uxDqOl3Hug5UlUQ2GVsN80G0JuIFhZphM=;
-        b=gokr3nT0If+J2hz6ncJ06IUn2uIuHbefyU4rbuNrePHVwUn6vXYixvPNN9BE43LwDg
-         tKoKg5WvZQtIzVUVHjzUJJ3MCjGLI6MRzXGK5NhhS7J3ZPeOVsHiiaIih1LSLQlx5Lu8
-         MSvhR/b7zVt7eh55Z4RH/Wn7OwTlaRgBs2qwBQ+ot5aHKqPxU7SjK93v44jl72h7pmz2
-         ntD4SGgJwlhtib6Le9y0ZEn0MwTia1gFrctPWJmkI4qZM+Lfi/JN9adTqm4JVOp79zzX
-         E2OMzr/c0VRdPor6qt74MzRzzX/zNuJljAzjnsNViQtyKSuYst+enHmdVUJOkYmSQS24
-         sZJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yXY6XJ/yr1uxDqOl3Hug5UlUQ2GVsN80G0JuIFhZphM=;
-        b=GjQ/czv+LElixLhm0w2yIH2OgbGzw7gfGU5CEZOp/mEu7twOPyN5fc3H7x1R4R4jz5
-         UAYW9mLFpFHcTjxjvOXOEGCbYkfy1vc/XMco4U+GGe1QKTb+hjtk5xz3BtOiEJW9J9J1
-         JAbvWSlkqNzhta8DZtWPKK0+/XdE94X9HqsU89IDb8AbFWlePvhYiQuLyYGb851w5b9q
-         hZF8sWnXhsenMWJFzlG9PqV3bIgwep68FmzM5tSfFIFbPN52zcSVJXbl9+rD6d8nqizo
-         l7RZNSNeSJZHI6CebE8mN7kNPhHraR3gOlcuPVsaZdsw+crx+lI4cpigip4TZCTsnAAW
-         LNbQ==
-X-Gm-Message-State: AOAM532hKgYfFMw8Hn89WvJtfr2y9f4ABpE8Z/MekLpygZgQkINSxby6
-        Xc0UidhMCziUzpEXIQgnrtLHWx7nKeQcP9CQcos=
-X-Google-Smtp-Source: ABdhPJyFm2RraKYys3JlScwYGB9YGgzVY0AVFztXpMhMAM9fA9j/GVs1OtnDzgxs8LW1vv+b/WEJn4X1rL3dCBkGsAg=
-X-Received: by 2002:ab0:6f97:: with SMTP id f23mr6380433uav.5.1611159475845;
- Wed, 20 Jan 2021 08:17:55 -0800 (PST)
+        id S2389833AbhATQWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 11:22:48 -0500
+Received: from foss.arm.com ([217.140.110.172]:42470 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2403839AbhATQUw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 11:20:52 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9822731B;
+        Wed, 20 Jan 2021 08:20:06 -0800 (PST)
+Received: from [10.57.39.58] (unknown [10.57.39.58])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DC27D3F68F;
+        Wed, 20 Jan 2021 08:20:04 -0800 (PST)
+Subject: Re: [PATCH 2/3] dt-bindings: rockchip: Add DesignWare based PCIe
+ controller
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Simon Xue <xxm@rock-chips.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+References: <20210118091739.247040-1-xxm@rock-chips.com>
+ <c9ff67c7-ca1d-d4a6-aef5-4c75688ed6d3@arm.com>
+ <CAL_JsqK=roMm7vb=WAcLUsiru5qwFg=Sc_po1gD8oJu=JipZbg@mail.gmail.com>
+ <3792680.3daJWjYHZt@diego>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <0f83d344-c257-a576-ed38-8f9299047f73@arm.com>
+Date:   Wed, 20 Jan 2021 16:20:03 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-References: <20210120134357.1522254-1-robert.foss@linaro.org> <20210120134357.1522254-15-robert.foss@linaro.org>
-In-Reply-To: <20210120134357.1522254-15-robert.foss@linaro.org>
-From:   AngeloGioacchino Del Regno <kholk11@gmail.com>
-Date:   Wed, 20 Jan 2021 17:17:44 +0100
-Message-ID: <CAK7fi1ZZhpJqs9oEA=h+7msZ7VzkvOwF4y6p9E2ykrYxb8=0CA@mail.gmail.com>
-Subject: Re: [PATCH v2 15/22] dt-bindings: media: camss: Add qcom,sdm660-camss binding
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>, will@kernel.org,
-        shawnguo@kernel.org, leoyang.li@nxp.com, geert+renesas@glider.be,
-        vkoul@kernel.org, Anson.Huang@nxp.com, michael@walle.cc,
-        agx@sigxcpu.org, max.oss.09@gmail.com,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Jonathan Marek <jonathan@marek.ca>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <3792680.3daJWjYHZt@diego>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il giorno mer 20 gen 2021 alle ore 14:44 Robert Foss
-<robert.foss@linaro.org> ha scritto:
->
-> Add bindings for qcom,sdm660-camss in order to support the camera
-> subsystem on SDM630/660 and SDA variants.
->
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+On 2021-01-20 14:54, Heiko Stübner wrote:
+> Am Mittwoch, 20. Januar 2021, 15:16:25 CET schrieb Rob Herring:
+>> On Tue, Jan 19, 2021 at 12:40 PM Robin Murphy <robin.murphy@arm.com> wrote:
+>>>
+>>> On 2021-01-19 15:11, Johan Jonker wrote:
+>>>> Hi Simon, Heiko,
+>>>>
+>>>> On 1/19/21 2:14 PM, Heiko Stübner wrote:
+>>>>> Hi Johan,
+>>>>>
+>>>>> Am Dienstag, 19. Januar 2021, 14:07:41 CET schrieb Johan Jonker:
+>>>>>> Hi Simon,
+>>>>>>
+>>>>>> Thank you for this patch for rk3568 pcie.
+>>>>>>
+>>>>>> Include the Rockchip device tree maintainer and all other people/lists
+>>>>>> to the CC list.
+>>>>>>
+>>>>>> ./scripts/checkpatch.pl --strict <patch1> <patch2>
+>>>>>>
+>>>>>>    ./scripts/get_maintainer.pl --noroles --norolestats --nogit-fallback
+>>>>>> --nogit <patch1> <patch2>
+>>>>>>
+>>>>>> git send-email --suppress-cc all --dry-run --annotate --to
+>>>>>> heiko@sntech.de --cc <..> <patch1> <patch2>
+>>>>>>
+>>>>>> This SoC has no support in mainline linux kernel yet.
+>>>>>> In all the following yaml documents for rk3568 we need headers with
+>>>>>> defines for clocks and power domains, etc.
+>>>>>>
+>>>>>> For example:
+>>>>>> #include <dt-bindings/clock/rk3568-cru.h>
+>>>>>> #include <dt-bindings/power/rk3568-power.h>
+>>>>>>
+>>>>>> Could Rockchip submit first clocks and power drivers entries and a basic
+>>>>>> rk3568.dtsi + evb dts?
+>>>>>> Include a patch to this serie with 3 pcie nodes added to rk3568.dtsi.
+>>>>>>
+>>>>>> A dtbs_check only works with a complete dtsi and evb dts.
+>>>>>>
+>>>>>> make ARCH=arm64 dtbs_check
+>>>>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+>>>>>>
+>>>>>> On 1/18/21 10:17 AM, Simon Xue wrote:
+>>>>>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+>>>>>>> ---
+>>>>>>>    .../bindings/pci/rockchip-dw-pcie.yaml        | 101 ++++++++++++++++++
+>>>>>>>    1 file changed, 101 insertions(+)
+>>>>>>>    create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..fa664cfffb29
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+>>>>>>> @@ -0,0 +1,101 @@
+>>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>>>> +%YAML 1.2
+>>>>>>> +---
+>>>>>>> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
+>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>> +
+>>>>>>> +title: DesignWare based PCIe RC controller on Rockchip SoCs
+>>>>>>> +
+>>>>>>
+>>>>>>> +maintainers:
+>>>>>>> +  - Shawn Lin <shawn.lin@rock-chips.com>
+>>>>>>> +  - Simon Xue <xxm@rock-chips.com>
+>>>>>>
+>>>>>> maintainers:
+>>>>>>     - Heiko Stuebner <heiko@sntech.de>
+>>>>>>
+>>>>>> Add only people with maintainer rights.
+>>>>>
+>>>>> I'd disagree on this ;-)
+>>>>
+>>>> All roads leads to Heiko... ;)
+>>>>
+>>>> It takes long term commitment.
+>>>> Year in, year out.
+>>>> Keeping yourself up to date with the latest pcei development.
+>>>> Communicate in English.
+>>>> Be able to submit patches without errors... ;)
+>>>> Review other peoples patches.
+>>>> Respond in short time.
+>>>> Bug fixing.
+>>>
+>>> Crikey, it's only a DT binding... :/
+>>>
+>>>> If that's what you really want, then you must include a patch to this
+>>>> serie for MAINTAINERS.
+>>>
+>>> I think if Bjorn and Lorenzo want a specifically named sub-maintainer
+>>> for the driver itself, we can let them say so rather than presume.
+>>
+>> For the binding it's my call. :)
+>>
+>> This should be someone who cares and knows the h/w. IOW, if I want to
+>> delete the binding, someone who will object.
+>>
+>> Of course, I'd like that someone to have all the above qualities too.
+> 
+> I guess that would be separate entites then ...
 
-Hey Robert!
+Yup, that's the point I was trying to clarify - binding maintainer and 
+driver maintainer are technically distinct roles. Of course if someone 
+is a driver maintainer then it's usual - and preferable - for them to 
+maintain the relevant bindings as well, so MAINTAINERS entries for 
+drivers typically also cover those for convenience and pre-schema 
+historical reasons. However, someone can take responsibility for a 
+binding without signing up to explicitly maintain a corresponding driver 
+(I know I have), and in that case the schema makes the binding 
+self-documenting already - we don't have MAINTAINERS entries that *only* 
+cover bindings, other than the top-level one that says Rob's in charge 
+overall :)
 
-> ---
->
-> Changes since v1:
->  - Laurent: Reworked driver to use dtschema
->
->
->  .../bindings/media/qcom,sdm660-camss.yaml     | 416 ++++++++++++++++++
->  1 file changed, 416 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-> new file mode 100644
-> index 000000000000..105ce84f9b71
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-> @@ -0,0 +1,416 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/media/qcom,sdm660-camss.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm CAMSS ISP
-> +
-> +maintainers:
+Robin.
 
-If you want, feel free to add me to the maintainers list for SDM660 CAMSS
-- AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-
-> +  - Robert Foss <robert.foss@linaro.org>
-> +  - Todor Tomov <todor.too@gmail.com>
-> +
-> +description: |
-> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sdm660-camss
-> +
-> +  clocks:
-> +    description:
-> +      Input clocks for the hardware block.
-> +    minItems: 42
-> +    maxItems: 42
-> +
-> +  clock-names:
-> +    description:
-> +      Names of input clocks for the hardware block.
-> +    items:
-> +      - const: ahb
-> +      - const: cphy_csid0
-> +      - const: cphy_csid1
-> +      - const: cphy_csid2
-> +      - const: cphy_csid3
-> +      - const: csi0_ahb
-> +      - const: csi0
-> +      - const: csi0_phy
-> +      - const: csi0_pix
-> +      - const: csi0_rdi
-> +      - const: csi1_ahb
-> +      - const: csi1
-> +      - const: csi1_phy
-> +      - const: csi1_pix
-> +      - const: csi1_rdi
-> +      - const: csi2_ahb
-> +      - const: csi2
-> +      - const: csi2_phy
-> +      - const: csi2_pix
-> +      - const: csi2_rdi
-> +      - const: csi3_ahb
-> +      - const: csi3
-> +      - const: csi3_phy
-> +      - const: csi3_pix
-> +      - const: csi3_rdi
-> +      - const: csiphy0_timer
-> +      - const: csiphy1_timer
-> +      - const: csiphy2_timer
-> +      - const: csiphy_ahb2crif
-> +      - const: csi_vfe0
-> +      - const: csi_vfe1
-> +      - const: ispif_ahb
-> +      - const: throttle_axi
-> +      - const: top_ahb
-> +      - const: vfe0_ahb
-> +      - const: vfe0
-> +      - const: vfe0_stream
-> +      - const: vfe1_ahb
-> +      - const: vfe1
-> +      - const: vfe1_stream
-> +      - const: vfe_ahb
-> +      - const: vfe_axi
-> +
-> +  interrupts:
-> +    description:
-> +      IRQs for the hardware block.
-> +    minItems: 10
-> +    maxItems: 10
-> +
-> +  interrupt-names:
-> +    description:
-> +      Names of IRQs for the hardware block.
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csid3
-> +      - const: csiphy0
-> +      - const: csiphy1
-> +      - const: csiphy2
-> +      - const: ispif
-> +      - const: vfe0
-> +      - const: vfe1
-> +
-> +  iommus:
-> +    maxItems: 4
-> +
-> +  power-domains:
-> +    maxItems: 2
-> +
-> +  ports:
-> +    description:
-> +      The CSI data input ports.
-> +
-> +    type: object
-> +
-> +    properties:
-> +      port@0:
-> +        type: object
-> +        description: Input node for receiving CSI data.
-> +        properties:
-> +          endpoint:
-> +            type: object
-> +
-> +            properties:
-> +              clock-lanes:
-> +                description: |-
-> +                  The physical clock lane index.
-> +
-> +              data-lanes:
-> +                description: |-
-> +                  An array of physical data lanes indexes.
-> +                  Position of an entry determines the logical
-> +                  lane number, while the value of an entry
-> +                  indicates physical lane index.
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +        required:
-> +          - endpoint
-> +          - reg
-> +
-> +      port@1:
-> +        type: object
-> +        description: Input node for receiving CSI data.
-> +        properties:
-> +          endpoint:
-> +            type: object
-> +
-> +            properties:
-> +              clock-lanes:
-> +                description: |-
-> +                  The physical clock lane index.
-> +
-> +              data-lanes:
-> +                description: |-
-> +                  An array of physical data lanes indexes.
-> +                  Position of an entry determines the logical
-> +                  lane number, while the value of an entry
-> +                  indicates physical lane index.
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +        required:
-> +          - endpoint
-> +          - reg
-> +
-> +      port@2:
-> +        type: object
-> +        description: Input node for receiving CSI data.
-> +        properties:
-> +          endpoint:
-> +            type: object
-> +
-> +            properties:
-> +              clock-lanes:
-> +                description: |-
-> +                  The physical clock lane index.
-> +
-> +              data-lanes:
-> +                description: |-
-> +                  An array of physical data lanes indexes.
-> +                  Position of an entry determines the logical
-> +                  lane number, while the value of an entry
-> +                  indicates physical lane index.
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +        required:
-> +          - endpoint
-> +          - reg
-> +
-> +      port@3:
-> +        type: object
-> +        description: Input node for receiving CSI data.
-> +        properties:
-> +          endpoint:
-> +            type: object
-> +
-> +            properties:
-> +              clock-lanes:
-> +                description: |-
-> +                  The physical clock lane index.
-> +
-> +              data-lanes:
-> +                description: |-
-> +                  An array of physical data lanes indexes.
-> +                  Position of an entry determines the logical
-> +                  lane number, while the value of an entry
-> +                  indicates physical lane index.
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +        required:
-> +          - endpoint
-> +          - reg
-> +
-> +  reg:
-> +    minItems: 14
-> +    maxItems: 14
-> +
-> +  reg-names:
-> +    items:
-> +      - const: csi_clk_mux
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csid3
-> +      - const: csiphy0
-> +      - const: csiphy0_clk_mux
-> +      - const: csiphy1
-> +      - const: csiphy1_clk_mux
-> +      - const: csiphy2
-> +      - const: csiphy2_clk_mux
-> +      - const: ispif
-> +      - const: vfe0
-> +      - const: vfe1
-> +
-> +  vdda-supply:
-> +    description:
-> +      Definition of the regulator used as analog power supply.
-> +
-> +required:
-> +  - clock-names
-> +  - clocks
-> +  - compatible
-> +  - interrupt-names
-> +  - interrupts
-> +  - iommus
-> +  - power-domains
-> +  - reg
-> +  - reg-names
-> +  - vdda-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sdm660.h>
-> +    #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
-> +
-> +    camss: camss@ca00000 {
-> +      compatible = "qcom,sdm660-camss";
-> +
-> +      clocks = <&mmcc CAMSS_AHB_CLK>,
-> +        <&mmcc CAMSS_CPHY_CSID0_CLK>,
-> +        <&mmcc CAMSS_CPHY_CSID1_CLK>,
-> +        <&mmcc CAMSS_CPHY_CSID2_CLK>,
-> +        <&mmcc CAMSS_CPHY_CSID3_CLK>,
-> +        <&mmcc CAMSS_CSI0_AHB_CLK>,
-> +        <&mmcc CAMSS_CSI0_CLK>,
-> +        <&mmcc CAMSS_CPHY_CSID0_CLK>,
-> +        <&mmcc CAMSS_CSI0PIX_CLK>,
-> +        <&mmcc CAMSS_CSI0RDI_CLK>,
-> +        <&mmcc CAMSS_CSI1_AHB_CLK>,
-> +        <&mmcc CAMSS_CSI1_CLK>,
-> +        <&mmcc CAMSS_CPHY_CSID1_CLK>,
-> +        <&mmcc CAMSS_CSI1PIX_CLK>,
-> +        <&mmcc CAMSS_CSI1RDI_CLK>,
-> +        <&mmcc CAMSS_CSI2_AHB_CLK>,
-> +        <&mmcc CAMSS_CSI2_CLK>,
-> +        <&mmcc CAMSS_CPHY_CSID2_CLK>,
-> +        <&mmcc CAMSS_CSI2PIX_CLK>,
-> +        <&mmcc CAMSS_CSI2RDI_CLK>,
-> +        <&mmcc CAMSS_CSI3_AHB_CLK>,
-> +        <&mmcc CAMSS_CSI3_CLK>,
-> +        <&mmcc CAMSS_CPHY_CSID3_CLK>,
-> +        <&mmcc CAMSS_CSI3PIX_CLK>,
-> +        <&mmcc CAMSS_CSI3RDI_CLK>,
-> +        <&mmcc CAMSS_CSI0PHYTIMER_CLK>,
-> +        <&mmcc CAMSS_CSI1PHYTIMER_CLK>,
-> +        <&mmcc CAMSS_CSI2PHYTIMER_CLK>,
-> +        <&mmcc CSIPHY_AHB2CRIF_CLK>,
-> +        <&mmcc CAMSS_CSI_VFE0_CLK>,
-> +        <&mmcc CAMSS_CSI_VFE1_CLK>,
-> +        <&mmcc CAMSS_ISPIF_AHB_CLK>,
-> +        <&mmcc THROTTLE_CAMSS_AXI_CLK>,
-> +        <&mmcc CAMSS_TOP_AHB_CLK>,
-> +        <&mmcc CAMSS_VFE0_AHB_CLK>,
-> +        <&mmcc CAMSS_VFE0_CLK>,
-> +        <&mmcc CAMSS_VFE0_STREAM_CLK>,
-> +        <&mmcc CAMSS_VFE1_AHB_CLK>,
-> +        <&mmcc CAMSS_VFE1_CLK>,
-> +        <&mmcc CAMSS_VFE1_STREAM_CLK>,
-> +        <&mmcc CAMSS_VFE_VBIF_AHB_CLK>,
-> +        <&mmcc CAMSS_VFE_VBIF_AXI_CLK>;
-> +
-> +      clock-names = "ahb",
-> +        "cphy_csid0",
-> +        "cphy_csid1",
-> +        "cphy_csid2",
-> +        "cphy_csid3",
-> +        "csi0_ahb",
-> +        "csi0",
-> +        "csi0_phy",
-> +        "csi0_pix",
-> +        "csi0_rdi",
-> +        "csi1_ahb",
-> +        "csi1",
-> +        "csi1_phy",
-> +        "csi1_pix",
-> +        "csi1_rdi",
-> +        "csi2_ahb",
-> +        "csi2",
-> +        "csi2_phy",
-> +        "csi2_pix",
-> +        "csi2_rdi",
-> +        "csi3_ahb",
-> +        "csi3",
-> +        "csi3_phy",
-> +        "csi3_pix",
-> +        "csi3_rdi",
-> +        "csiphy0_timer",
-> +        "csiphy1_timer",
-> +        "csiphy2_timer",
-> +        "csiphy_ahb2crif",
-> +        "csi_vfe0",
-> +        "csi_vfe1",
-> +        "ispif_ahb",
-> +        "throttle_axi",
-> +        "top_ahb",
-> +        "vfe0_ahb",
-> +        "vfe0",
-> +        "vfe0_stream",
-> +        "vfe1_ahb",
-> +        "vfe1",
-> +        "vfe1_stream",
-> +        "vfe_ahb",
-> +        "vfe_axi";
-> +
-> +      interrupts = <GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 80 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 309 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 314 IRQ_TYPE_EDGE_RISING>,
-> +        <GIC_SPI 315 IRQ_TYPE_EDGE_RISING>;
-> +
-> +      interrupt-names = "csid0",
-> +        "csid1",
-> +        "csid2",
-> +        "csid3",
-> +        "csiphy0",
-> +        "csiphy1",
-> +        "csiphy2",
-> +        "ispif",
-> +        "vfe0",
-> +        "vfe1";
-> +
-> +      iommus = <&mmss_smmu 0xc00>,
-> +        <&mmss_smmu 0xc01>,
-> +        <&mmss_smmu 0xc02>,
-> +        <&mmss_smmu 0xc03>;
-> +
-> +      power-domains = <&mmcc CAMSS_VFE0_GDSC>,
-> +        <&mmcc CAMSS_VFE1_GDSC>;
-> +
-> +      reg = <0x0ca00020 0x10>,
-> +        <0x0ca30000 0x100>,
-> +        <0x0ca30400 0x100>,
-> +        <0x0ca30800 0x100>,
-> +        <0x0ca30c00 0x100>,
-> +        <0x0c824000 0x1000>,
-> +        <0x0ca00120 0x4>,
-> +        <0x0c825000 0x1000>,
-> +        <0x0ca00124 0x4>,
-> +        <0x0c826000 0x1000>,
-> +        <0x0ca00128 0x4>,
-> +        <0x0ca31000 0x500>,
-> +        <0x0ca10000 0x1000>,
-> +        <0x0ca14000 0x1000>;
-> +
-> +      reg-names = "csi_clk_mux",
-> +        "csid0",
-> +        "csid1",
-> +        "csid2",
-> +        "csid3",
-> +        "csiphy0",
-> +        "csiphy0_clk_mux",
-> +        "csiphy1",
-> +        "csiphy1_clk_mux",
-> +        "csiphy2",
-> +        "csiphy2_clk_mux",
-> +        "ispif",
-> +        "vfe0",
-> +        "vfe1";
-> +
-> +      vdda-supply = <&reg_2v8>;
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +      };
-> +    };
-> --
-> 2.27.0
->
+> Shawn and Simon know the hardware way better, though I'm not sure if their
+> work commitments will allow them to keep track of binding deletions
+> 
+> So maybe all 3 of us ;-)
+> 
+> Heiko
+> 
+> 
