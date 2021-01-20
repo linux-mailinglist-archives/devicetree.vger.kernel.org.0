@@ -2,81 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 334482FC728
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C55CD2FC742
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:58:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731095AbhATBvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 20:51:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53126 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731102AbhATBuv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 20:50:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPS id 63C3422472;
-        Wed, 20 Jan 2021 01:50:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611107410;
-        bh=fYVhz0Utn/IH6+2xkAXvc2UhddhAnB+A/q8GU/7LXZ8=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=o36XoS0e9yW42WCIpWPxbEeA55yu+dzjXtl7opTY0GK2l5hLBNcOjCR0iv8UqZygY
-         w6TYwDPsP+cxPhFuwCK0MyXOojwuespJs0wShCsjlh38PjmsCqeP3Jr8u+urS7Yl3N
-         ZqmDgaxpnw/hn2ZJoygYEIanHk0jn0KXwgfJSKTiR2/6/1kBZH5YVWWwtvqHsjMcBP
-         Pq2fmFtqgmsr+DGQZ8Lxy8gIXJm8Tk2NcH0rLZwE5Vs+8mL1mkcq952dQhJJ+NM+eD
-         tRwwww+xNERk/l7zkhJTfnniz++AmzAhTt+3jmacoujRgHubP5FOo9wOZ1jgLKlpGJ
-         4XWyU1JyYENAA==
-Received: from pdx-korg-docbuild-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-1.ci.codeaurora.org (Postfix) with ESMTP id 5C6AB604FC;
-        Wed, 20 Jan 2021 01:50:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S1726882AbhATB5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 20:57:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731431AbhATBvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 20:51:48 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21984C061757;
+        Tue, 19 Jan 2021 17:51:08 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id m13so24169734ljo.11;
+        Tue, 19 Jan 2021 17:51:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=EOmNpRX8SEbQAJ9InTqMSNS2j7g0suVcBgq97tfbIbQ=;
+        b=I3qDBA9cDib9CkJzwuxF/g+0zMDc3JeLl4/2KThX16QQW/b9GqN6PeAwLvoWmhNgSr
+         yonfe7+Hp0cDnEFp19D5zWRQKycOsHRhVqsxYcGMFmiOBiH/nDUG0eRK9gPwHSrUg8cu
+         PPpxCmhNMLHm6IRN9FIr05AZpI8A1sDnubZp/fBN4qlEj3pOU4JOMUtkuHlv5krn4iqi
+         yBk7zYG29xoVqd20crDKnauAKeJu0NrapS/9fkYWCggiMIgI1Bya++HwZC/Kp+4uG2Lz
+         jfn5PVPSmwxUvAfLFj0nIL9dTU0/wmb6HsGGT8MM9I2o2k3Bl4nr191BGn3uYAV9LzX7
+         vPNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=EOmNpRX8SEbQAJ9InTqMSNS2j7g0suVcBgq97tfbIbQ=;
+        b=TiHmOQVFOLAiapjFOeWddrWOQKAeMx5+NjkqM6X9sRE7gsnYG42fqHRiIqL6UmMYnv
+         tPqK6/tqjCkKVrNss8iYJVnQlei3A8QP+1s+Xdz/QM2tPzymoq1hqjqAMWroDr7hh1pe
+         Kw6QIJJsrj2ZKcjt0V94GXn4vYhm4XvxW4DeQ4ZxDULDayynTJPF8zm1oBwEvjVnFXw2
+         ei4QWSYXSZSkr2n4zvLCVQbfufR3SxxeAlwbhGu8qI3ZL45W5HTpusOxBil5IPh2FGFz
+         R/mrOlgxIEuMcZdRaai1pL1KPO9w52+umHVE5Jj/2U6NzFsX3eBi7NgTBPQUcKDfYNPb
+         3teg==
+X-Gm-Message-State: AOAM532jOwDpTacEUuQKzxJx33f9dJhhT25htWgFkjo0PHJWHCDHGSP1
+        QvLlBVqQxlNmuyWlyvxhReGsNu+OcQTYzJBbV9BvPKQdeog=
+X-Google-Smtp-Source: ABdhPJygEfsArRDrh+JnpahiHFfQMmrfKhHFHuwAbP4alJJdACL3ihQ5Qh4sGJ6Cu8lTbQlN90Y6Ea5V6E77+v3Tbfc=
+X-Received: by 2002:a2e:a36a:: with SMTP id i10mr3159325ljn.342.1611107466601;
+ Tue, 19 Jan 2021 17:51:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [net-next 0/6] net: ethernet: ti: am65-cpsw-nuss: introduce support
- for am64x cpsw3g
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161110741037.23772.5269078969682153495.git-patchwork-notify@kernel.org>
-Date:   Wed, 20 Jan 2021 01:50:10 +0000
-References: <20210115192853.5469-1-grygorii.strashko@ti.com>
-In-Reply-To: <20210115192853.5469-1-grygorii.strashko@ti.com>
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     davem@davemloft.net, netdev@vger.kernel.org, kuba@kernel.org,
-        peter.ujfalusi@gmail.com, vigneshr@ti.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, nsekhar@ti.com,
-        devicetree@vger.kernel.org
+References: <1610720001-15300-1-git-send-email-u0084500@gmail.com>
+ <1610720001-15300-2-git-send-email-u0084500@gmail.com> <20210119231058.GA2772032@robh.at.kernel.org>
+In-Reply-To: <20210119231058.GA2772032@robh.at.kernel.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 20 Jan 2021 09:50:55 +0800
+Message-ID: <CADiBU3_t5jozakQnD7Wuuj1pjumbXhW3P9kkWRqh5pG1pfi_Sw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] usb typec: tcpci: mt6360: Add vbus supply into
+ dt-binding description
+To:     Rob Herring <robh@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        matthias.bgg@gmail.com, Greg KH <gregkh@linuxfoundation.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>, gene_chen@richtek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B41=E6=9C=8820=E6=97=A5 =
+=E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=887:11=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Fri, Jan 15, 2021 at 10:13:21PM +0800, cy_huang wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Add external vbus source into dt-binding description.
+> >
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> >  Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml | 7 ++=
++++++
+> >  1 file changed, 7 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc=
+.yaml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> > index 1e8e1c2..b8d842b 100644
+> > --- a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> > @@ -26,6 +26,11 @@ properties:
+> >      items:
+> >        - const: PD_IRQB
+> >
+> > +  vbus-supply:
+> > +    description:
+> > +      Vbus source supply regulator.
+> > +    maxItems: 1
+>
+> vbus-supply is already in the 'connector' node, you don't need it here.
+>
+If not put here, 'regulator_get' only can follow the legacy way to get
+vbus regulator.
+Currently, there's no one to use the 'vbus-supply' property.
+From my understanding, the 'vbus-supply' is the chip level property,
+not connector type property.
 
-This series was applied to netdev/net-next.git (refs/heads/master):
-
-On Fri, 15 Jan 2021 21:28:47 +0200 you wrote:
-> Hi
-> 
-> This series introduces basic support for recently introduced TI K3 AM642x SoC [1]
-> which contains 3 port (2 external ports) CPSW3g module. The CPSW3g integrated
-> in MAIN domain and can be configured in multi port or switch modes.
-> In this series only multi port mode is enabled. The initial version of switchdev
-> support was introduced by Vignesh Raghavendra [2] and work is in progress.
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,1/6] dt-binding: ti: am65x-cpts: add assigned-clock and power-domains props
-    https://git.kernel.org/netdev/net-next/c/b3228c74e0d2
-  - [net-next,2/6] dt-binding: net: ti: k3-am654-cpsw-nuss: update bindings for am64x cpsw3g
-    https://git.kernel.org/netdev/net-next/c/19d9a846d9fc
-  - [net-next,3/6] net: ethernet: ti: am65-cpsw-nuss: Use DMA device for DMA API
-    https://git.kernel.org/netdev/net-next/c/ed569ed9b30a
-  - [net-next,4/6] net: ethernet: ti: am65-cpsw-nuss: Support for transparent ASEL handling
-    https://git.kernel.org/netdev/net-next/c/39fd0547ee66
-  - [net-next,5/6] net: ti: cpsw_ale: add driver data for AM64 CPSW3g
-    https://git.kernel.org/netdev/net-next/c/1dd3841033b3
-  - [net-next,6/6] net: ethernet: ti: am65-cpsw: add support for am64x cpsw3g
-    https://git.kernel.org/netdev/net-next/c/4f7cce272403
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+> > +
+> >    connector:
+> >      type: object
+> >      $ref: ../connector/usb-connector.yaml#
+> > @@ -38,6 +43,7 @@ required:
+> >    - compatible
+> >    - interrupts
+> >    - interrupt-names
+> > +  - vbus-supply
+> >
+> >  examples:
+> >    - |
+> > @@ -54,6 +60,7 @@ examples:
+> >            compatible =3D "mediatek,mt6360-tcpc";
+> >            interrupts-extended =3D <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
+> >            interrupt-names =3D "PD_IRQB";
+> > +          vbus-supply =3D <&otg_vbus>;
+> >
+> >            connector {
+> >              compatible =3D "usb-c-connector";
+> > --
+> > 2.7.4
+> >
