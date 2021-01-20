@@ -2,121 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4765C2FCC60
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82DE02FCC63
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:09:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730340AbhATIJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 03:09:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55526 "EHLO
+        id S1730372AbhATIJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 03:09:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730314AbhATIHF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:07:05 -0500
-Received: from mail-qt1-x849.google.com (mail-qt1-x849.google.com [IPv6:2607:f8b0:4864:20::849])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F0DC061786
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:05:30 -0800 (PST)
-Received: by mail-qt1-x849.google.com with SMTP id b24so20510627qtt.22
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:05:30 -0800 (PST)
+        with ESMTP id S1730330AbhATIJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:09:12 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A11C0613C1
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:06:42 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id n10so14667772pgl.10
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:06:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=DHTbZHOkLsKuxtNFUubtLM+gqL6YY3qNMXB7NuoXXTA=;
-        b=Il85GfxJuukw/3SvMs3zLOlirjw0U0IRX28xLvqLD/ty4nOJ9Xp2b6K/KilcjTtmQM
-         l537tY9lg5rnaulxbobhsAQ4ifT7eB3rf7cPRgXY2+779zC29zzRqjwxCm/qPxoZFv/T
-         YLNOmli8uuHOFGw2BPlx47YqPWcXY9rNa3RaHpibks4PcGEamflHasRmla1Xc09F3K3H
-         q/XHi9O0n4NiedG60FpJA022VrFu72+DH+a6+I8VVIwjqABMUaVUYwhaJgA5/MCSpuah
-         95TGfv7ff6pRPcUfPbgtt/nVwnmLY6DkE0HEZitHNxnfVAqkWg4tMJoqPW9JRwpn00BR
-         AEcA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AOs3HzRR3mAFpw46cKXmvSbeM84R4INByCK26V8xTI8=;
+        b=b2oNX+bT43fFEBKDnEG9zQ6OcyDDVc4GNtq5N7Rm7SnbaJU2dx/BT9GiMBtvtSXQIX
+         ADvaEIEU+4RhYOjFDWQwcqJvxTo491/vjLjeq7mRelmHk/+dZQLxPGPuDG7VJllfNN8k
+         Zgtyuo9iM4i2gjcdev3qU+e4E8rCkp7krxKkt1ETLQL7wR7jD5PTBv0x629eMnzccMOr
+         KwokXh2cQ7ATdxZkZop7U1duPsO0zb2vplGCwbAa1n2IOi9mVChQ7vB9vL75BhBb7P6j
+         0JpSf6cQqQq5FXOjXVYAoU8yHofdZzz9+4siO6xXLnQq0aURjUPpEWDKQ9oAcu4aASCi
+         O0pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=DHTbZHOkLsKuxtNFUubtLM+gqL6YY3qNMXB7NuoXXTA=;
-        b=bwB/EXCQCcfrxliXCU+Kw+OBXsQH86DwlRStx1V6upyle5A7la/pq67VGAWK0OPRpA
-         BzPJDw4+2Ot0PoUGUlFmUqIQc0kJgYmnnGXhj4v8LnqYJ3Nlr893ef3HMecP/5Rbibo6
-         67kHHCOmnDE9j5BFdWUuEI1unNG74HZlleERtyMC6j64ik5HBtJ8ERAujrLLfAfyEq++
-         03Qf3pRk2n59CN7P5pquKZ+gcO+vs9vnIyW0VU7Lt1JzaAjZdhcpHXRf4PczJkeDZCHe
-         csyCFWHyGY6XpIJhKD0dWErd7Ss9zP8YJ3Gw4G4aAhQTD49tzYxjK6T73D8LIfSRr24A
-         P2tA==
-X-Gm-Message-State: AOAM533x4dL0ZjGgCIYAk4EWHlP4W/zEIMRHpWxSYRRYWApdKXAb3OxZ
-        PmP8KY6+Ugx+Xi0hXU7NJWFmKvBAgo3MuNY=
-X-Google-Smtp-Source: ABdhPJyakDkqGvLIh+tdPGMZ1JrSamWDar9qMU1B4qiTmPWOBDxyLEdM7ux0cpDZXMRzWb92SLidW5+XN5u+0vQ=
-Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
- (user=saravanak job=sendgmr) by 2002:ad4:58c2:: with SMTP id
- dh2mr8314576qvb.4.1611129929818; Wed, 20 Jan 2021 00:05:29 -0800 (PST)
-Date:   Wed, 20 Jan 2021 00:05:21 -0800
-In-Reply-To: <20210120080522.471120-1-saravanak@google.com>
-Message-Id: <20210120080522.471120-3-saravanak@google.com>
-Mime-Version: 1.0
-References: <20210120080522.471120-1-saravanak@google.com>
-X-Mailer: git-send-email 2.30.0.284.gd98b1dd5eaa7-goog
-Subject: [PATCH v1 2/2] of: property: Add fw_devlink support for interrupts
-From:   Saravana Kannan <saravanak@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AOs3HzRR3mAFpw46cKXmvSbeM84R4INByCK26V8xTI8=;
+        b=d3YXvr9cxpr9dfNdswoHYhJLIhNiAJVLJD77YdVwleVOGk6qBljiv0UtmMuwa3B+NH
+         UEyusvGHsi7yicNxkf0nTqgi+56A3uJtkh80t8FiN5sv/fXCcfBiwuDCuZBw29jogLJ4
+         N9AjxLRRsMeZdp+1VfHdqS5FbrR6ai3NeooWGyG4u1s4zNhVN9LNNeX2oQdnFMaGa1Xf
+         Kgh8GeuEB42Sxj7cS5+T5hgrsi398O3H7QVMGyBj6i0A7/IfoW93LPC7MpWFpsuT/eMI
+         TOR9X+gd/L2hPnaBbDXLxhQ1p2XiIt/Z2kMKJnbFFDPizHcdo0HLgKnwx2cSZyzE/3Ou
+         JteQ==
+X-Gm-Message-State: AOAM531gLOZYQevON1a7HxtUZbccvIhoMYEcZz/iy2/o84QYeOZAVJrf
+        1vACM+UEbs6yiRP3gbxuveS4
+X-Google-Smtp-Source: ABdhPJxoiq5/2zDrA3lE7ESI22QLiB2iZq8nx7yhoZ4gEunSxznOx0Cxw/w1cx3JBu+HXtydjfrgFg==
+X-Received: by 2002:aa7:9625:0:b029:1a4:3b48:a19c with SMTP id r5-20020aa796250000b02901a43b48a19cmr8150583pfg.13.1611130001378;
+        Wed, 20 Jan 2021 00:06:41 -0800 (PST)
+Received: from localhost.localdomain ([2409:4072:6d85:48cc:b166:aab7:ff85:2769])
+        by smtp.gmail.com with ESMTPSA id y1sm1324040pff.17.2021.01.20.00.06.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 00:06:40 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     georgi.djakov@linaro.org, robh+dt@kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        okukatla@codeaurora.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/2] Add interconnect driver for SDX55
+Date:   Wed, 20 Jan 2021 13:36:25 +0530
+Message-Id: <20210120080627.20784-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This allows fw_devlink to create device links between consumers of an
-interrupt and the supplier of the interrupt.
+Hello Georgi,
 
-Cc: Marc Zyngier <maz@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/property.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+This small series adds interconnect driver support for SDX55 platform for
+scaling the bandwidth requirements over RPMh. The driver has been tested
+on SDX55-MTP and gives below DDR metrics using mbw [1] tool:
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 0b256ce9d7d5..9dd9cc50e65a 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -24,6 +24,7 @@
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/of_graph.h>
-+#include <linux/of_irq.h>
- #include <linux/string.h>
- #include <linux/moduleparam.h>
- 
-@@ -1289,6 +1290,15 @@ static struct device_node *parse_gpio_compat(struct device_node *np,
- 	return sup_args.np;
- }
- 
-+static struct device_node *parse_interrupts(struct device_node *np,
-+					    const char *prop_name, int index)
-+{
-+	if (strcmp(prop_name, "interrupts") || index)
-+		return NULL;
-+
-+	return of_irq_find_parent(np);
-+}
-+
- static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_clocks, },
- 	{ .parse_prop = parse_interconnects, },
-@@ -1315,6 +1325,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_pinctrl7, },
- 	{ .parse_prop = parse_pinctrl8, },
- 	{ .parse_prop = parse_gpio_compat, },
-+	{ .parse_prop = parse_interrupts, },
- 	{ .parse_prop = parse_regulators, },
- 	{ .parse_prop = parse_gpio, },
- 	{ .parse_prop = parse_gpios, },
+Src port: SDX55_MASTER_AMPSS_M0
+Dest port: SDX55_SLAVE_EBI_CH0
+
+Command: mbw 100
+
+With bandwidth 500000:
+AVG	Method: MEMCPY	Elapsed: 0.59058	MiB: 100.00000	Copy: 169.324 MiB/s
+With bandwidth 700000:
+AVG	Method: MEMCPY	Elapsed: 0.29267	MiB: 100.00000	Copy: 341.678 MiB/s
+With bandwidth 900000:
+AVG	Method: MEMCPY	Elapsed: 0.19608	MiB: 100.00000	Copy: 510.005 MiB/s
+
+The copy speed seems to be the same for all bandwidth less than 500000 and
+greater than 900000.
+
+Note: The CPUFreq governer needs to be set to something other than schedutil to
+see the difference. Otherwise the speed seems to be the same for all bandwidth.
+
+Thanks,
+Mani
+
+Manivannan Sadhasivam (2):
+  dt-bindings: interconnect: Add Qualcomm SDX55 DT bindings
+  interconnect: qcom: Add SDX55 interconnect provider driver
+
+ .../bindings/interconnect/qcom,rpmh.yaml      |   4 +
+ drivers/interconnect/qcom/Kconfig             |  10 +
+ drivers/interconnect/qcom/Makefile            |   2 +
+ drivers/interconnect/qcom/sdx55.c             | 356 ++++++++++++++++++
+ drivers/interconnect/qcom/sdx55.h             |  70 ++++
+ include/dt-bindings/interconnect/qcom,sdx55.h |  76 ++++
+ 6 files changed, 518 insertions(+)
+ create mode 100644 drivers/interconnect/qcom/sdx55.c
+ create mode 100644 drivers/interconnect/qcom/sdx55.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,sdx55.h
+
 -- 
-2.30.0.284.gd98b1dd5eaa7-goog
+2.25.1
 
