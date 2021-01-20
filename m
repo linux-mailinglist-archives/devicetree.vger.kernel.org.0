@@ -2,145 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4F12FC6D9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:33:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B8C2FC6FA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 02:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728587AbhATBcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 20:32:15 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:34919 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728541AbhATBcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jan 2021 20:32:02 -0500
-Received: by mail-oi1-f181.google.com with SMTP id w8so1615655oie.2;
-        Tue, 19 Jan 2021 17:31:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=70aGOwWqvSNnuRZRBgvIddOExT7M4WJHCpkHOLv549U=;
-        b=JIceF53FUorEn13lbB0lCxvM63P0X5eZMCq9vYodn4V6WHeo1hjJaQQ97YDgMjIlQE
-         d/bw3HaoEI2AFIo3yj3xi4g4722+aHhDzmfNlpXrlQjB3bm/3yVkVcByMGGeuXn0jQI+
-         hb2zhVcTEE6jpqizR5wNOtOO4iIHmPvwU91c5GfVjfvuoRQWQlVdMICa8nLxGhQe2tLh
-         zW7ZIJ3ZcpJSF7G54grmD/ea07bU9UV3Nw3yTQ/5lfMO7T4+E9o1d3RbrfgTgLqy8qnt
-         bOEOoPjxLEmMm+dCNS/wRaaoWkZC+n9wHFZhGPO7cU1XDLuz5vqDFoww3SsQt1fVNLpu
-         ad6w==
-X-Gm-Message-State: AOAM530DJIQb4AXzZtCC2taSQzFZYUHS0GQQt4K42ypegE6Klyac3v8Q
-        0Q4pJivfHhuYzc6tG+0kIG4j6XQ0TQ==
-X-Google-Smtp-Source: ABdhPJydF0BAx1ZnbHLhfNn1zr8cKXRT8sZgYcv8vLFh//tc2P2ggSEcgqco5mLp+bpeuijFP9ph4Q==
-X-Received: by 2002:aca:4d4:: with SMTP id 203mr1626279oie.18.1611106281114;
-        Tue, 19 Jan 2021 17:31:21 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t16sm100212otq.17.2021.01.19.17.31.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 17:31:19 -0800 (PST)
-Received: (nullmailer pid 2992413 invoked by uid 1000);
-        Wed, 20 Jan 2021 01:31:18 -0000
-Date:   Tue, 19 Jan 2021 19:31:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: iio: accel: Add bmi088 accelerometer
- bindings
-Message-ID: <20210120013118.GA2990828@robh.at.kernel.org>
-References: <20210119124622.9490-1-mike.looijmans@topic.nl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210119124622.9490-1-mike.looijmans@topic.nl>
+        id S1728414AbhATBhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 20:37:09 -0500
+Received: from smtprelay-out1.synopsys.com ([149.117.73.133]:57268 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728131AbhATBhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Jan 2021 20:37:05 -0500
+Received: from mailhost.synopsys.com (sv2-mailhost1.synopsys.com [10.205.2.133])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id DDE5240165;
+        Wed, 20 Jan 2021 01:36:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1611106564; bh=WkdENdp1R+dSsxIwzxEkUY5SIW0WcdJoumVT9j8XDE8=;
+        h=Date:From:Subject:To:Cc:From;
+        b=g0beNNOuknYAI9Ql3rAem9nUaZ0HvgAPDG6r5wruvtEmgp6XMjWI5ZKfI8jjShhm1
+         Ym40AEehBAUMcJVdOFlzfGuE3CS1vpZVKjtuNel88Tt2d+ZQ9j6SzXBcoDYwGHHaHw
+         MD2eMKAmy/gtZTL/MWo+qqLnzlE+Ymw++NYDrVLEjHvH+gcjByO6EIjT714ENr+yO8
+         Tknqm9FweU0VX0C+mJ2beLMb5VCAtqMui4C5IoHhR3WjY8GqkoieD/kekixK1Zp+4r
+         J1KX+lXvYQeEd97TrZ0Jp0m+CtErimzN6CDqo/I35RH8lSOBLlhieJcwYUZI4dmEwv
+         OBitnqgEubvfQ==
+Received: from te-lab16 (unknown [10.10.52.11])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPSA id 45953A0096;
+        Wed, 20 Jan 2021 01:36:01 +0000 (UTC)
+Received: by te-lab16 (sSMTP sendmail emulation); Tue, 19 Jan 2021 17:36:01 -0800
+Date:   Tue, 19 Jan 2021 17:36:01 -0800
+Message-Id: <cover.1611106162.git.Thinh.Nguyen@synopsys.com>
+X-SNPS-Relay: synopsys.com
+From:   Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Subject: [PATCH v7 0/6] usb: Support USB 3.2 multi-lanes
+To:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thinh.Nguyen@synopsys.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     John Youn <John.Youn@synopsys.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 01:46:21PM +0100, Mike Looijmans wrote:
-> This adds the device-tree bindings for the Bosch Sensortec BMI088 IMU,
-> the accelerometer part.
-> 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> 
-> ---
-> 
-> Changes in v6:
-> I't been almost a year since the last commit, sorry...
-> Fixed the yaml errors
-> Add interrupt, vdd and vddio properties
-> 
-> Changes in v5:
-> submit together with driver code as patch series
-> 
-> Changes in v2:
-> convert to yaml format
-> 
->  .../bindings/iio/accel/bosch,bmi088.yaml      | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> new file mode 100644
-> index 000000000000..459b9969fd12
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/bosch,bmi088.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bosch BMI088 IMU accelerometer part
-> +
-> +maintainers:
-> +  - Mike Looijmans <mike.looijmans@topic.nl>
-> +
-> +description: |
-> +  Acceleration part of the IMU sensor with an SPI interface
-> +  Specifications about the sensor can be found at:
-> +    https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - bosch,bmi088_accel
+A USB SuperSpeed Plus device may operate at different speed and lane count
+(i.e. gen2x2, gen1x2, or gen2x1). The DWC_usb32 IP supports SuperSpeed Plus
+gen2x2. To support this, this series update a few things to the USB gadget
+stack and dwc3 driver:
 
-bosch,bmi088-accel
+* Accept and parse new maximum_speed devicetree property strings
+* Introduce enum usb_ssp_rate to describe the speed in SuperSpeed Plus genXxY
+* Capture the connected and max supported usb_ssp_rate
+* Report the device sublink speeds base on the usb_ssp_rate in the BOS
+  descriptor
+* Introduce gadget ops to select SuperSpeed Plus various transfer rate and lane
+  count
+* Update dwc3 driver to support the above changes
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +  vddio-supply: true
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      Type should be either IRQ_TYPE_LEVEL_HIGH or IRQ_TYPE_LEVEL_LOW.
-> +      The first interrupt listed must be the one connected to the INT1 pin, the
-> +      second must be the one connected to the INT2 pin.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      bmi088_accel@1 {
-> +        compatible = "bosch,bmi088_accel";
-> +        reg = <1>;
-> +        spi-max-frequency = <10000000>;
-> +        interrupt-parent = <&gpio6>;
-> +        interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
-> +      };
-> +    };
-> +...
-> -- 
-> 2.17.1
-> 
+Changes in v7:
+ - Greg picked up the first few patches of the series to his usb-testing
+   branch. Rebase the remaining patches on Greg's usb-testing branch
+
+Changes in v6:
+ - Rebase on Greg's usb-testing branch
+ - Update cover letter and title since there are many updates
+   * Previous version 5: https://lore.kernel.org/linux-usb/cover.1601001199.git.Thinh.Nguyen@synopsys.com/
+ - To simplify things, use usb_ssp_rate enum to specify the signaling rate
+   generation and lane count instead of separately tracking them.
+ - Convert the sublink speed attributes to macros and move it to uapi
+ - Remove usb_sublink_speed struct
+ - Remove "usb: dwc3: gadget: Report sublink speed capability"
+ - Update dwc3 to support the new changes
+
+Changes in v5:
+ - Rebase on Felipe's testing/next branch
+ - Changed Signed-off-by email to match From: email header
+ - Add Rob's Reviewed-by
+
+Changes in v4:
+ - Instead of using a single function to parse "maximum-speed" property for
+   speed, gen X, and number of lanes, split those tasks to separate common
+   functions
+ - Revise DWC3 driver to use those new common functions
+ - Fix checkpatch warnings for using "unsigned" rather than "unsigned int" and
+   missing identifier name in udc_set_num_lanes_and_speed gadget ops
+
+Changes in v3:
+ - Remove "num-lanes" and "lane-speed-mantissa-gbps" common properties
+ - Remove "num-lanes" and "lane-speed-mantissa-gbps" properties validation in dwc3
+ - Update "maximum-speed" to support variations of SSP Gen X x Y
+ - Update common function to parse new strings for "maximum-speed"
+ - Update commit messages for the new changes
+
+Changes in v2:
+ - Move usb_sublink_speed attribute struct and enum to include/linux/usb/ch9.h
+ - Use "num-lanes" and "lane-speed-mantissa-gbps" as common properties instead
+ - Add common functions to get num-lanes and lsm properties
+ - Fix missing gen1x2 sublink speed attribute check report in dwc3
+
+
+Thinh Nguyen (6):
+  dt-binding: usb: Include USB SSP rates in GenXxY
+  usb: common: Parse for USB SSP genXxY
+  usb: dwc3: core: Check maximum_speed SSP genXxY
+  usb: dwc3: gadget: Implement setting of SSP rate
+  usb: dwc3: gadget: Track connected SSP rate and lane count
+  usb: dwc3: gadget: Set speed only up to the max supported
+
+ .../devicetree/bindings/usb/usb.yaml          |  3 +
+ drivers/usb/common/common.c                   | 26 +++++-
+ drivers/usb/dwc3/core.c                       | 37 +++++++++
+ drivers/usb/dwc3/core.h                       |  9 +++
+ drivers/usb/dwc3/gadget.c                     | 80 ++++++++++++++++++-
+ include/linux/usb/ch9.h                       | 11 +++
+ 6 files changed, 162 insertions(+), 4 deletions(-)
+
+
+base-commit: 7a79f1f7f7e75e532c5a803ab3ebf42a3e79497c
+-- 
+2.28.0
+
