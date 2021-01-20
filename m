@@ -2,92 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37D9B2FD6ED
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F5A62FD709
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:33:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388041AbhATOHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 09:07:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40626 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390035AbhATNc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 08:32:28 -0500
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 693B4C061757
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 05:31:48 -0800 (PST)
-Received: by mail-ua1-x92b.google.com with SMTP id a31so7855922uae.11
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 05:31:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EygyrNo1L66YguGSTSkEZs1oOOE5dPsaKPmSAlahwhk=;
-        b=hFuCyLYIUL4bPuSmVyGwJ5qOdl9VuxHNMdTOzr19HhTY8Qw8M95643Sr3sDDY21Zyu
-         jNzFPBb0zSofa2aZatqnXTmPP2A3EJeg8yfRxYVD6DihsAyj8Maeg9uS9lLCNNXdVdTQ
-         PW2VMXc5rtoUbZO4cuH3/JfK7gVdE59o8Ten4A9HedDee2EqeCupC4s/KIHpVsRaf7CT
-         ur2XoCezvAZaDTLJbgoP5Gq/Jwyr3yknamxPGVOa5y5ngerkbktCxytiKcxbgbm1NsLs
-         M9cupGjLJf30oFZQ90aLQbh9Zxwq49JQkZ+dqcg3cAnVp7Ce70WZI42+e5dc3JSMr/LW
-         LtBw==
+        id S1726137AbhATR3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 12:29:43 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:38474 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388346AbhATOIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 09:08:23 -0500
+Received: by mail-oi1-f175.google.com with SMTP id n186so17216423oia.5;
+        Wed, 20 Jan 2021 06:08:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EygyrNo1L66YguGSTSkEZs1oOOE5dPsaKPmSAlahwhk=;
-        b=amBfF3YKw+W4juw8+z000Li0TL35i/A0aeluHC43ZmUnDmX/WG1kDwU2QCrU1L9aFg
-         vkGVSFRWpo5jpeSCNvBHZUNqSNh4QLJuRM1PcPILCJZRCILnZ9zn8mfUKEJvD2CAFtyO
-         h2JbmCJE931ET9eL5smQkseB8OIQ6D/w6o4aCeN2OVzpJD36Z13hHho4egQTJzZlWTkl
-         Cmsal6BJsFWK0ZrJp1tPtWxkMzkzYijDlCxHrfSlpleja8hozPfC3GOAUjrWXmsvbv91
-         ULETex9rbweCg9qp5+ec8Z44ZX/1jZ3P+tKG3mtggzSEsOnoMc702J/NYnJh/VjeoBdQ
-         EQAw==
-X-Gm-Message-State: AOAM531NJ6vW8CMLMOqijpBRkEjDjmu9wHmZu0b+mhhDqFS4095TJqWq
-        Be2CjptierDGjlBJv8ab6R0c7o+NRqmx7zdIcgLf8w==
-X-Google-Smtp-Source: ABdhPJzkobxZ3ZkN8/e+5qJpHJ+BQ3MwguUnina2HKp/lBcnr/mhXKUDNIf5dGu8SstEZIGrIePbNt3r4BgNcnONcXo=
-X-Received: by 2002:ab0:768:: with SMTP id h95mr6005681uah.104.1611149507447;
- Wed, 20 Jan 2021 05:31:47 -0800 (PST)
-MIME-Version: 1.0
-References: <20201224111210.1214-1-rojay@codeaurora.org> <20201224111210.1214-4-rojay@codeaurora.org>
- <YAGqKfDfB7EEuZVn@builder.lan> <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
- <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com> <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
-In-Reply-To: <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 20 Jan 2021 14:31:10 +0100
-Message-ID: <CAPDyKFogrWt=K3VtEZVH5bPL_fYt7rgdm5wGgq+QHtzX-n0z7g@mail.gmail.com>
-Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for 'assigned-performance-states'
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
-        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=zcKgwjky9crKlWMGPybKhU6+7gIFQmOWdjIZJmpIFjc=;
+        b=ldJKrjxRZsxJP49FyRZDGTqQvYYSa3QBLdR5VUTUo9yUCmrmj76pmHHiWTCOcfuCkT
+         lNogw8/NboJLhkeR2BavznQCBMH+vKRZo+/ZfcSAhr+lrGvvlvjf8hArf+hGN13G5vrU
+         uFp+w3URccZl318BcKVV3z4qd0eL9Mow2XBxkchNwa3hwiob/X/qknBm1LHXAQEhfv68
+         r8QQGuMEXXy7BCEfeWwjMKvJppH39/+j0WEklmbWpxNChhtGNqGm8EhYEi08MWwyrsIx
+         0scvAVNM8BchWzvYH7+vXcoc0M+JhvBVe2yWxKhY9vUkLuQqbspH2XoG4kgcTpYTMRYF
+         m2CQ==
+X-Gm-Message-State: AOAM533Tn+p6hZPsNMP/kt/Qkyr4Wdq0r3BPgdAhjFXXhIf31XsphihX
+        wu9OKRbiHntKzREfchcjtQ==
+X-Google-Smtp-Source: ABdhPJzcEAq7/9jtYgE52EsiAT1br27RsunNbC2p9kjwtyWOTE98FYW9E/oOsC5otWdKb86kBgxzuA==
+X-Received: by 2002:aca:c74d:: with SMTP id x74mr3006218oif.177.1611151656166;
+        Wed, 20 Jan 2021 06:07:36 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id d10sm360682ooh.32.2021.01.20.06.07.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 06:07:35 -0800 (PST)
+Received: (nullmailer pid 31593 invoked by uid 1000);
+        Wed, 20 Jan 2021 14:07:34 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Simon Xue <xxm@rock-chips.com>
+Cc:     Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        robh+dt@kernel.org, linux-rockchip@lists.infradead.org
+In-Reply-To: <20210120101554.241029-1-xxm@rock-chips.com>
+References: <20210120101554.241029-1-xxm@rock-chips.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: rockchip: Add DesignWare based PCIe controller
+Date:   Wed, 20 Jan 2021 08:07:34 -0600
+Message-Id: <1611151654.051365.31592.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jan 2021 at 12:05, Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 19-01-21, 12:02, Ulf Hansson wrote:
-> > As a matter of fact this was quite recently discussed [1], which also
-> > pointed out some issues when using the "required-opps" in combination,
-> > but perhaps that got resolved? Viresh?
->
-> Perhaps we never did anything there ..
+On Wed, 20 Jan 2021 18:15:53 +0800, Simon Xue wrote:
+> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> ---
+>  .../bindings/pci/rockchip-dw-pcie.yaml        | 140 ++++++++++++++++++
+>  1 file changed, 140 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> 
 
-Okay. Looks like we should pick up that discussion again, to conclude
-on how to move forward.
+My bot found errors running 'make dt_binding_check' on your patch:
 
->
-> --
-> viresh
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml:39:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
 
-Kind regards
-Uffe
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml: properties:interrupt: [{'description': 'system information'}, {'description': 'power management control'}, {'description': 'PCIe message'}, {'description': 'legacy interrupt'}, {'description': 'error report'}] is not of type 'object', 'boolean'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml: properties:compatible: Additional properties are not allowed ('item' was unexpected)
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml: properties:compatible: 'item' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml: properties:compatible: Additional properties are not allowed ('item' was unexpected)
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml: ignoring, error in schema: properties: interrupt
+warning: no schema found in file: ./Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+Documentation/devicetree/bindings/pci/rockchip-dw-pcie.example.dts:19:18: fatal error: dt-bindings/clock/rk3568-cru.h: No such file or directory
+   19 |         #include <dt-bindings/clock/rk3568-cru.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/pci/rockchip-dw-pcie.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1370: dt_binding_check] Error 2
+
+See https://patchwork.ozlabs.org/patch/1429132
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
