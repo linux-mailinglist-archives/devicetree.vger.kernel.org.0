@@ -2,92 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A53EF2FCA58
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 06:13:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B2B92FCA5A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 06:13:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729246AbhATFNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 00:13:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44414 "EHLO
+        id S1730664AbhATFNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 00:13:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729540AbhATFF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 00:05:28 -0500
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C7C4C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 21:04:48 -0800 (PST)
-Received: by mail-pf1-x434.google.com with SMTP id t29so8654907pfg.11
-        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 21:04:48 -0800 (PST)
+        with ESMTP id S1730025AbhATFG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 00:06:57 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C690CC0613C1
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 21:06:10 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id g15so1413321pjd.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Jan 2021 21:06:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oVErpyitxxhLPGfDajEW4fVOhIOQLKcz6X3NWGJEV+g=;
-        b=uae8KpuguS3BNlU2aKIemgBTkOQCef+In7mqQlFkr3oDW8LNMjmfF9rKFmc0WEj3DO
-         B7Phigy/LW/xRix8UhBC0QTTX+kYe1I6uytBsM/FGqTebvGjyN9/PFv+cDIWwujm7MNY
-         h2VsFSPX967OoJBmHoQXeyDkobrnYkuSLEiyfhT3moCrqyH+d6UTsw/LjGmB69daoigg
-         jUQGJ5P+Zg/LNs5iS94M5FRwr6nV4p780NzgEAMsqi/FKR+h5ebVPyxMKMnDC3ozO4Pv
-         O9HNoiES0tmVk4ozHIZwbMMUbZKl4abi7cWt/2Kp9BkbytuyYBcLfIz+kVDah0xII+/x
-         oicQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Hzg6y4zoFYD+EUAndxjbqw0YNJbPZQFi+C0cZWASRds=;
+        b=BugPfUCLnUl2CU81CWTWpiBV2A2yz92kQdY4tGEddrQkOPkGVQcQ3gWjXKVlUw6lWT
+         eqbT3jEnKOD/8Oxd+1WZHNlWblsehnn1ISaSrPhdV/BwOZotbwaTmye1S4X3WNMoZZVK
+         z6OqUugNbK3fLsD5FAmyXU1bWa4WurbyF96lsi39TV830sUTKbnMbYMMSAYc5DpOuLEr
+         7E2+km1hzTiO73vhGGv0j/2M+m2J4kiBsTFzpzzkeeSRj/Uv/jfZVD6+OZd+Wp5EtyA5
+         poNnZUNvY8dl2WKk+FaunZf7hyzasd4uA+1UxmRf1t363ODeepjVJt5CPZQT1hZEH4wG
+         ueIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oVErpyitxxhLPGfDajEW4fVOhIOQLKcz6X3NWGJEV+g=;
-        b=F7/QiUaawTX/+OpD66oBh+B10bdZ7427X+qkr9U4VETCwdxo/NpH38qXHEC+TFcblB
-         z1AfkmVCWtudwKROqa7gLlFWJVNXU+MAFC0/8KREEVVUxHZJEtQS4yLpICS8A81lDOGg
-         wLLA6krDzARasSpFOpyTlq+A4hzzzAutO6Fz3tFnYFqORiislHjQqkkEErQi4kAoncyt
-         IGXSnjGhBEIeyGebmiyXzzmKoU0Lfq2EvjSgydHN+mOgUsrnAh5Sqtg3pZ6iy+xy7D2G
-         Ba3XwaymBP2lmYyyWqXGK36pJYx77gW7sXelNBSd8muFUQy9JdYYR5/p3YOhlAun6KHs
-         rz6A==
-X-Gm-Message-State: AOAM532FpsXILTtZ3tkeb8TqCX5xETs6Ywbk0qu5sI/WGH6KfU0NNalH
-        faJPrJtUhXRjTiHhs4wPxlLOSA==
-X-Google-Smtp-Source: ABdhPJwxwrfL9EnkZQLOwI9kO2+ssEC1CnWALWlmwpz/giDP4Fdgt36PXxQaDpZ7MHxmz1v18Ks31g==
-X-Received: by 2002:aa7:90cf:0:b029:1a3:a176:f4d0 with SMTP id k15-20020aa790cf0000b02901a3a176f4d0mr7366085pfk.8.1611119087844;
-        Tue, 19 Jan 2021 21:04:47 -0800 (PST)
-Received: from x1.hsd1.or.comcast.net ([2601:1c0:4701:ae70:900a:5243:9086:584])
-        by smtp.gmail.com with ESMTPSA id z15sm708410pfr.89.2021.01.19.21.04.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jan 2021 21:04:46 -0800 (PST)
-From:   Drew Fustini <drew@beagleboard.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Drew Fustini <drew@beagleboard.org>,
-        Emmanuel Vadot <manu@bidouilliste.com>,
-        Tony Lindgren <tony@atomide.com>
-Subject: [PATCH] pinctrl: clarify #pinctrl-cells for pinctrl-single,pins
-Date:   Tue, 19 Jan 2021 21:03:44 -0800
-Message-Id: <20210120050342.320704-1-drew@beagleboard.org>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Hzg6y4zoFYD+EUAndxjbqw0YNJbPZQFi+C0cZWASRds=;
+        b=d+IvXnAjp/lCX6ZeUiZrCFHVOAeoDahpf/45CibuzbIbwAcZmr9EQmummSE79nfy5s
+         0M2Hcz8CeZcIv3klRUNxtR0UfitZ+XQk3ymScGlFPaOPY+gC3l92nYTtx1V5Mu8TOIHJ
+         528HBCjf/KSQKZa6k9cDU4S3aBOGJfsLvAeQduAGDrBmvLbzyxoNUZA4UVi47fqMsZgv
+         p7TaOWjLi9Jq7LxymWcRqrZ9AVrEiG+s52Cz6OrwyHn4i7HEZfcIfpAwdUktRNhKuvsV
+         JKjb9De1Mn5EVN/3F1OtxJn3DQqgRyRg+ly8Qs/8uPit/klrvUEskJxoxCx0JzpaM82U
+         3HDA==
+X-Gm-Message-State: AOAM533IXe2HWHyqK7M4X3r4g3VsTqs3IFbpynsuQRXBSeCAQDMDBo6g
+        Naas2Mg6SRuu6nuB2SS0s5FGcA==
+X-Google-Smtp-Source: ABdhPJywCR4oiBs6YZqxbz7ud0eRJJyQ/e2dFnM4aN4PRBfDeBcYh6l9mrpWE0qtn1ThAV6Olnxo9w==
+X-Received: by 2002:a17:902:728b:b029:de:c843:1d4c with SMTP id d11-20020a170902728bb02900dec8431d4cmr5473202pll.84.1611119170246;
+        Tue, 19 Jan 2021 21:06:10 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id r20sm658333pgb.3.2021.01.19.21.06.08
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 19 Jan 2021 21:06:09 -0800 (PST)
+Date:   Wed, 20 Jan 2021 10:36:06 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
+Message-ID: <20210120050606.b2m4jssh73wexybx@vireshk-i7>
+References: <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
+ <20210119022154.2338781-1-frowand.list@gmail.com>
+ <20210119080546.dzec3jatsz2662qs@vireshk-i7>
+ <f7133d16-510b-f730-a43b-89edab08aabe@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f7133d16-510b-f730-a43b-89edab08aabe@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document that #pinctrl-cells can be 1 or 2 for pinctrl-single,pins
+On 19-01-21, 09:44, Frank Rowand wrote:
+> No.  overlay_base.dts is intentionally compiled into a base FDT, not
+> an overlay.  Unittest intentionally unflattens this FDT in early boot,
+> in association with unflattening the system FDT.  One key intent
+> behind this is to use the same memory allocation method that is
+> used for the system FDT.
+> 
+> Do not try to convert overlay_base.dts into an overlay.
 
-Fixes: 27c90e5e48d0 ("ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2")
-Reported-by: Emmanuel Vadot <manu@bidouilliste.com>
-Link: https://lore.kernel.org/linux-gpio/20210115190201.9273b637a7f967e7e55bc740@bidouilliste.com/
-Cc: Tony Lindgren <tony@atomide.com>
-Signed-off-by: Drew Fustini <drew@beagleboard.org>
----
- Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Okay, but why does it have /plugin/; specified in it then ?
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-index f903eb4471f8..bb9999119314 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-@@ -8,7 +8,7 @@ Required properties:
- - reg : offset and length of the register set for the mux registers
- 
- - #pinctrl-cells : number of cells in addition to the index, set to 1
--  for pinctrl-single,pins and 2 for pinctrl-single,bits
-+  or 2 for pinctrl-single,pins and set to 2 for pinctrl-single,bits
- 
- - pinctrl-single,register-width : pinmux register access width in bits
- 
+And shouldn't we create two separate dtb-s now, static_test.dtb and
+static_overlay_test.dtb ? As fdtoverlay will not be able to merge it with
+testcase.dtb anyway.
+
+Or maybe we can create another file static_overlay.dts (like testcases.dts)
+which can include both testcases.dts and overlay_base.dts, and then we can
+create static_test.dtb out of it ? That won't impact the runtime tests at all.
+
 -- 
-2.25.1
-
+viresh
