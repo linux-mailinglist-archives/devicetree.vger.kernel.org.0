@@ -2,95 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 177812FCA5B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 06:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA682FCA9C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 06:33:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730576AbhATFNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 00:13:22 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:14679 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730601AbhATFHe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 00:07:34 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B6007ba6e0000>; Tue, 19 Jan 2021 21:06:54 -0800
-Received: from [10.25.99.10] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 20 Jan
- 2021 05:06:48 +0000
-Subject: Re: Re: Re: [RESEND PATCH v6 5/6] arm64: tegra: Audio graph header
- for Tegra210
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <broonie@kernel.org>, <robh+dt@kernel.org>, <jonathanh@nvidia.com>,
-        <kuninori.morimoto.gx@renesas.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <sharadg@nvidia.com>
-References: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
- <1611048496-24650-6-git-send-email-spujar@nvidia.com> <YAcTxxyogVgfN1uw@ulmo>
- <b83eb795-328e-acc5-4555-7befd919a136@nvidia.com> <YAcdi7ARk0imXafQ@ulmo>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <fb0d0f14-e038-cb0c-542e-011ccb4beb93@nvidia.com>
-Date:   Wed, 20 Jan 2021 10:36:44 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <YAcdi7ARk0imXafQ@ulmo>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1611119214; bh=TrUW/bRVd0y6RBunmo1Nvw8U/CisQ85mSiTQB96uz4Q=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=iqJqehfrlGaLEYWRtxL8pSQcX78r9QttWiB+MThCuJIKgzBAG05ePIeO7kEtH3u/w
-         lKt3gIrqHKl2y2rosb6wvtl0mGOf4xTMhixn97FdZEXDfyp1TXk1MBmpz4dGKFTh0p
-         6yuyUPjOwC1fWbInmd2GX5IlkNh0bscT1c4rJ7bz5rkxVsv8a+y8jLOEHjV27Dw+Np
-         CXv7nlVgSuim4YEU3v93drYtjTu4UdfUo66xQPY/+Vh21xrI9i/319L0kc1ub4RLYK
-         XuVuyONSrYrmMpaopjtSGaxQSv2E0F8WFn/+psAoaISZ87LPRUOIIH62rj+IqyrO3i
-         lYpd9Yh5WOaEg==
+        id S1728152AbhATFMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 00:12:47 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:54425 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729450AbhATFEX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 00:04:23 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id D766E5804C4;
+        Wed, 20 Jan 2021 00:03:17 -0500 (EST)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Wed, 20 Jan 2021 00:03:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=xNfm365uClhXGK6uG7giL0yzWNNeafG
+        YOvKdTJ/PaV4=; b=B65btyI7ZbltdGycriiqYkYmIHNLpaB6Ai5O8lo33wsVxlL
+        kYIRRM8BLvbAtN8tJna0alEZeDHuozOZVoHuVql/heJxoiJAafaT6piGJhAhTess
+        V7Pxch+wx3RRBVhokHM8Az6IX3Jdml2ibmy64CJPNwcdZ60HjIqHQihyM3qUfJfN
+        tudsRU4ALKIThFUCZ/D3L6uhCloJkZgwAZPSE1WAbwMGzbBpPH6DqTJsNKOD4Cbp
+        3g4BcGqjA+aWvgMhNcfgqlX+nIVsJhWtCAYV+msOU5mKv+5/6gBVG9iQsLL5xY9S
+        te25kRvCklAm1t272+4VRH/66UfZs3wetgGQ7Aw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=xNfm36
+        5uClhXGK6uG7giL0yzWNNeafGYOvKdTJ/PaV4=; b=PmwO0/ivKVegqmL9LjtChe
+        ylEVxkhXZab9FLUmqqGlkuk7t7sO4iykeSm5N/hRBmCaE+HMg8AYe3fRXr+Jvbfa
+        RFjVm74FaP2ZYxv+7r+Xgr57ZMYdOOzF4L1nVL5hvWrGX5eXLry74SepcpY7VdeZ
+        1o0aRVEKOPnC0lr98FzWEc3V3/Dy7vkkXWsnByJrWeaKnTkgRyMpo0Le/nMmm6Bo
+        R0isIzNjIhaJqyoszy26lsqE4+jjRQGfCmKh8op4iCZ5WpOYUZOysHjhoxfwcbdw
+        MPG0O1TsVzS7rOsR/hBA7ePOeIXR9dr6JcGSN+BbZSrQokqkDzTaMLWENU90H3Pw
+        ==
+X-ME-Sender: <xms:lLkHYFt4DbO0L0G8OIDTbUJ4pVitSuGE98-4nUUfEqc_Tb2FdIyANA>
+    <xme:lLkHYOccuHw6bzEEjUJYk9ee2MiBssVeDLor_pZ2IR-7KauLqO9IU2GyP6JdP3K0j
+    qQWVXaDWiSSre5aLA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledruddugdejlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
+    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
+    veeuffenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:lLkHYIwwsHKKIUcfSRZCkoBkP2SUUYHW6Tj7eEZs8lZJx7nPV605GQ>
+    <xmx:lLkHYMPflY4bGbYYJBMiVwNMPPZblfeAUDykF_pmLV7eGf5QWzL2aQ>
+    <xmx:lLkHYF884fp1v8o0Z9GLAahX8n5sGKkzaEMxheM5ZzTx37yyeUx7sw>
+    <xmx:lbkHYIVtadAKc1vvus-yfsIG9MTiRwwjjblm5qMxxIi2lFyNIhNCMw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id BBB6BA0005D; Wed, 20 Jan 2021 00:03:16 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-78-g36b56e88ef-fm-20210120.001-g36b56e88
+Mime-Version: 1.0
+Message-Id: <c8421730-f8a6-46a7-9e2c-9107eb979276@www.fastmail.com>
+In-Reply-To: <20210114131622.8951-4-chiawei_wang@aspeedtech.com>
+References: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
+ <20210114131622.8951-4-chiawei_wang@aspeedtech.com>
+Date:   Wed, 20 Jan 2021 15:32:55 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Lee Jones" <lee.jones@linaro.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Corey Minyard" <minyard@acm.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Cc:     BMC-SW@aspeedtech.com, "Haiyue Wang" <haiyue.wang@linux.intel.com>,
+        "Cyril Bur" <cyrilbur@gmail.com>,
+        "Robert Lippert" <rlippert@google.com>
+Subject: Re: [PATCH v5 3/5] ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 1/19/2021 11:27 PM, Thierry Reding wrote:
-> On Tue, Jan 19, 2021 at 11:09:32PM +0530, Sameer Pujar wrote:
->>
->> On 1/19/2021 10:45 PM, Thierry Reding wrote:
->>> On Tue, Jan 19, 2021 at 02:58:15PM +0530, Sameer Pujar wrote:
->>>> Expose a header which describes DT bindings required to use audio-graph
->>>> based sound card. All Tegra210 based platforms can include this header
->>>> and add platform specific information. Currently, from SoC point of view,
->>>> all links are exposed for ADMAIF, AHUB, I2S and DMIC components.
->>>>
->>>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
->>>> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
->>>> ---
->>>>    .../boot/dts/nvidia/tegra210-audio-graph.dtsi      | 153 +++++++++++++++++++++
->>>>    1 file changed, 153 insertions(+)
->>>>    create mode 100644 arch/arm64/boot/dts/nvidia/tegra210-audio-graph.dtsi
->>> I prefer keeping everything in tegra210.dtsi, but I can do that merge
->>> when I apply, after the DT bindings have been acked, so no need to
->>> resend just because of that.
->> I think this may be fine for Tegra210 based boards. But for Tegra186 and
->> Tegra194, whenever we add support for it, can rely on a common audio-graph
->> dtsi because there is no change w.r.t APE. This can help us to avoid
->> duplication of the bindings. This most likely applies to future chips as
->> well (where Tegra186 audio-graph bindings can be considered as base) when
->> there is no significant change in APE.
-> Maybe. Although that argument is somewhat extreme because we already
-> have some of that same duplication throughout the other .dtsi files. By
-> the same argument we could save a bit of duplication by having something
-> like tegra-gpio.dtsi and including that in all the SoC .dtsi files and
-> only update the compatible string, because that's the only significant
-> change.
+On Thu, 14 Jan 2021, at 23:46, Chia-Wei, Wang wrote:
+> Add check against LPC device v2 compatible string to
+> ensure that the fixed device tree layout is adopted.
+> The LPC register offsets are also fixed accordingly.
+> 
+> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+> Acked-by: Haiyue Wang <haiyue.wang@linux.intel.com>
 
-> Duplication isn't a big problem for DTS files because the data is meant
-> to be stable anyway. So once it is in place and doesn't have to change,
-> it really doesn't matter if it comes from an include or it's duplicated.
-
-OK, if there is no issue with duplication then fine with me. Thanks.
-
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
