@@ -2,82 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B67A2FD54E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:22:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B632F2FD54D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:21:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733050AbhATPxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 10:53:20 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:37061 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389590AbhATPug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 10:50:36 -0500
-Received: by mail-oi1-f173.google.com with SMTP id r189so15823822oih.4;
-        Wed, 20 Jan 2021 07:50:20 -0800 (PST)
+        id S1732785AbhATPxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 10:53:12 -0500
+Received: from mail-oo1-f41.google.com ([209.85.161.41]:38619 "EHLO
+        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391088AbhATPvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 10:51:16 -0500
+Received: by mail-oo1-f41.google.com with SMTP id i18so5884145ooh.5;
+        Wed, 20 Jan 2021 07:50:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=yYbx2xe32XFhOVL3J3Pp49OQN2yzd40W6CTKKFcuuLs=;
-        b=eD3/44yLzTVrioqZqsyF6ywRSp8JBt8P5yn2Ipzxx7mEjbPwh2iYGb3ydtACHfUrBb
-         a0glNwwxuWGfk/7qVdVFQbMt+QOZxZN7ba0vftjJPi4HywyqWCWtC5dyCXSxlJy01/10
-         I83uo3i2NG64SIBNqVunnOBeGfRAecMjx8Z9i8OARhonZ/T6n+sfaehEYh3aFVgeDVBv
-         /fVHPtHA+3RlBGHk35gxuOMjzJvZFnqLBpL0lZ1WPGNUgJHQrZUX52MbZvHYqUSUmzBf
-         K4oEwPSJNAQ4fWVqmhLZlpMg8syHRap+OS3Dr3zOJl5q98orDOkxFNZh6NfqtmE250Iy
-         RBXA==
-X-Gm-Message-State: AOAM531+vsozdglEhQX/VbdllQGtBVUh7O9uiGZvqWRpQtt2NJuN9AkM
-        1AFnQgMPjESznEZE1jh25mmf7kdHKw==
-X-Google-Smtp-Source: ABdhPJwE5LbLqu6tO4VBPYKT84ed6pwNWrxXdXwW/G4xSoU8ui32yzPJo+C9nCvqTiNUldKGUoGmcg==
-X-Received: by 2002:aca:b2c3:: with SMTP id b186mr3318985oif.135.1611157795183;
-        Wed, 20 Jan 2021 07:49:55 -0800 (PST)
+        bh=AwuxJ4TRyBO9NJG/uyghBKZXILepM64nYdpzoIJWbe0=;
+        b=AG5/31RVXHkI3qouITEcTD2XTOcWlgd2NZIeHZFMsrFmawvYKfyA/KZ0U1WLR5hEqR
+         gPZdayP8+niZLycHBlDL9Ep5mJpNbBVxGtHlCVYeFQApG7wtUTjbA80LSH2WQYtx0Mq0
+         GYyOLErgAN1NCy6V6qy5twZUSMWh5k8KTxZBiwjd3keKyj3lJq6X8LSQozySKSiuvN5U
+         ZT5R+Lt/FhdwDvMAp0M5DHoQ9UirvQFlf7pAPq22l5TgFxJven4TB/0eOaHJqoccDvw2
+         7vUSlZnugxE3m3hxXlLbD9aCaI2XiLcg0d9hZKQPY+n5RsY9v7H879X6ZZ65j0T3wfQJ
+         VWJw==
+X-Gm-Message-State: AOAM530dd/ihRtgY6BObMOFPSqrVzg495GdI2EPEgisxMyTH2MKT0Hj1
+        kjLwL5QhICfMvaHE6Ag5mw==
+X-Google-Smtp-Source: ABdhPJzslC9cQt+PR2D4qDB7kt/LzMuuhN3F/HQPzpBC7gC0hvoF6NHWJFDAPX2VerPVgBaSbq32kA==
+X-Received: by 2002:a05:6820:381:: with SMTP id r1mr6555763ooj.73.1611157830743;
+        Wed, 20 Jan 2021 07:50:30 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 186sm424754ood.6.2021.01.20.07.49.53
+        by smtp.gmail.com with ESMTPSA id l12sm419516ooq.22.2021.01.20.07.50.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 07:49:54 -0800 (PST)
-Received: (nullmailer pid 213140 invoked by uid 1000);
-        Wed, 20 Jan 2021 15:49:52 -0000
-Date:   Wed, 20 Jan 2021 09:49:52 -0600
+        Wed, 20 Jan 2021 07:50:29 -0800 (PST)
+Received: (nullmailer pid 214535 invoked by uid 1000);
+        Wed, 20 Jan 2021 15:50:28 -0000
+Date:   Wed, 20 Jan 2021 09:50:28 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Philip Chen <philipchen@chromium.org>
-Cc:     Guenter Roeck <groeck@chromium.org>, dianders@chromium.org,
-        Benson Leung <bleung@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, swboyd@chromium.org,
-        dmitry.torokhov@gmail.com, LKML <linux-kernel@vger.kernel.org>,
+To:     Bert Vermeulen <bert@biot.com>
+Cc:     Birger Koblitz <mail@birger-koblitz.de>,
+        Sander Vanheule <sander@svanheule.net>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: input: Create macros for cros-ec
- keymap
-Message-ID: <20210120154952.GA212597@robh.at.kernel.org>
-References: <20210115143555.v6.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 4/5] dt-bindings: Add Cisco prefix to vendor list
+Message-ID: <20210120155028.GB213895@robh.at.kernel.org>
+References: <20210119092109.185282-1-bert@biot.com>
+ <20210119092109.185282-5-bert@biot.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210115143555.v6.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
+In-Reply-To: <20210119092109.185282-5-bert@biot.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jan 2021 14:36:15 -0800, Philip Chen wrote:
-> In Chrome OS, the keyboard matrix can be split to two groups:
-> 
-> The keymap for the top row keys can be customized based on OEM
-> preference, while the keymap for the other keys is generic/fixed
-> across boards.
-> 
-> This patch creates marcos for the keymaps of these two groups, making
-> it easier to reuse the generic portion of keymap when we override the
-> keymap in the board-specific dts for custom top row design.
-> 
-> Signed-off-by: Philip Chen <philipchen@chromium.org>
+On Tue, 19 Jan 2021 10:21:08 +0100, Bert Vermeulen wrote:
+> Signed-off-by: Bert Vermeulen <bert@biot.com>
 > ---
-> 
-> (no changes since v2)
-> 
-> Changes in v2:
-> - Rename CROS_STD_NON_TOP_ROW_KEYMAP to CROS_STD_MAIN_KEYMAP
-> 
->  include/dt-bindings/input/cros-ec-keyboard.h | 103 +++++++++++++++++++
->  1 file changed, 103 insertions(+)
->  create mode 100644 include/dt-bindings/input/cros-ec-keyboard.h
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 
