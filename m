@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 595062FDD51
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 00:45:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 781482FDD01
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 00:40:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731530AbhATXoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 18:44:06 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:41834 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387742AbhATVse (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 16:48:34 -0500
-Received: by mail-ot1-f43.google.com with SMTP id x13so24851836oto.8;
-        Wed, 20 Jan 2021 13:48:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RYiLrGhcJLAAUHtrVI8d9P1h8COy/rO0jrSizRQNgyU=;
-        b=snGNRcj7B9nmVc3VFGYfWgMeeItCKYfuUjdZEEZGsr83SIp6erZ3R5zhPT1Yedd4Ni
-         GZLcE/cto/Rl0SV4BBH5wwqM9otoU8rriqFSMWluLWSf8a9kpOQLUn0ByaJVK4A6L6ft
-         mnH6gP4+kZasWIUcxE6DmmOGHRxvh26i/phyJAcJJT7aGVg29svuuZ20acYRIMczobum
-         qrqYEOuOQ6DkgYyjINctHewfsLS7avaMdaCp4uOCu59H+r3d2PzIUZwPHWjylAmFvDhf
-         HTC/hX52grwpAUGJKXRND0l5A4rkD6x/uct2+ucwHSXNcy6EGklnWBiGbw0frx9DBhsF
-         q3kA==
-X-Gm-Message-State: AOAM532eAELpSpJIOJgudKxGikvof45kK2ED9s4bT5ZC3WXyAWrL0goL
-        wVh4Co89CJu2rUk7c8TyCGMYkqJfjg==
-X-Google-Smtp-Source: ABdhPJxYfPB/9UFcjdVsorlzePdRphHmAQkXGYqjRi6/Xol24sVNJD+KrM7TislYw9OYzVg7ZKHljA==
-X-Received: by 2002:a9d:4587:: with SMTP id x7mr2312485ote.241.1611179273540;
-        Wed, 20 Jan 2021 13:47:53 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v67sm678427otb.43.2021.01.20.13.47.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 13:47:52 -0800 (PST)
-Received: (nullmailer pid 898723 invoked by uid 1000);
-        Wed, 20 Jan 2021 21:47:51 -0000
-Date:   Wed, 20 Jan 2021 15:47:51 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dp-connector: Drop maxItems from -supply
-Message-ID: <20210120214751.GA895542@robh.at.kernel.org>
-References: <20210120175922.1579835-1-bjorn.andersson@linaro.org>
+        id S1727085AbhATWLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 17:11:16 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36132 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732512AbhATWFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 17:05:54 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KM4PbY117948;
+        Wed, 20 Jan 2021 16:04:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611180265;
+        bh=l7FPmUmxYIv5xnu29knvZYlZgQZERVnv7zqpQvWksUw=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=u4fejAdvldYPvqKGOI+K0QbkPPYBL3uvdhk81TvoLyaOoypEYwmkrnyoDnOv5jT15
+         j37KG9pPgsd7Ii9kqfg1CY9TYUtP3XFduLQ/U/Kq02pCmftOtQRK0Ugsvctg6pplyJ
+         Edof0W8/VUndwQKl6omNFjvEIPXYM2zDci512Vew=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KM4Pt0101576
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 20 Jan 2021 16:04:25 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
+ Jan 2021 16:04:24 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 20 Jan 2021 16:04:24 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KM4OTd014736;
+        Wed, 20 Jan 2021 16:04:24 -0600
+Date:   Wed, 20 Jan 2021 16:04:25 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Dave Gerlach <d-gerlach@ti.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH v3 3/5] arm64: dts: ti: Add support for AM642 SoC
+Message-ID: <20210120220425.dzixsaetrejkk2li@crusader>
+References: <20210120202532.9011-1-d-gerlach@ti.com>
+ <20210120202532.9011-4-d-gerlach@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210120175922.1579835-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20210120202532.9011-4-d-gerlach@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 09:59:22AM -0800, Bjorn Andersson wrote:
-> The meta-schema recently gained a definition for the common -supply$
-> property, which denotes that maxItems is not a valid property. Drop this
-> to clear up the binding validation error.
-> 
-> Fixes: a46c112512de ("dt-bindings: dp-connector: add binding for DisplayPort connector")
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  .../devicetree/bindings/display/connector/dp-connector.yaml      | 1 -
->  1 file changed, 1 deletion(-)
+On 14:25-20210120, Dave Gerlach wrote:
+> The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
+> providing advanced system integration to enable applications such as
+> Motor Drives, PLC, Remote IO and IoT Gateways.
 
-Applied to drm-misc-next.
+Hi Sudeep,
+> +
+> +	pmu: pmu {
+> +		compatible = "arm,cortex-a53-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
 
-Thanks,
-Rob
+
+If this looks right to you, would be nice to have your reviewed-by :)
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
