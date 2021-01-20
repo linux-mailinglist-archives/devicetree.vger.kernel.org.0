@@ -2,148 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27C842FD5FC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:49:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ECDF2FD632
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:55:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391634AbhATQsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 11:48:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54566 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391641AbhATQrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 11:47:48 -0500
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D497C0613C1;
-        Wed, 20 Jan 2021 08:47:04 -0800 (PST)
-Received: by mail-pf1-x432.google.com with SMTP id m6so14857964pfk.1;
-        Wed, 20 Jan 2021 08:47:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rI55C5R2Ib+0Rd7/giiUezyr291JCSLEI1Z384+KvVY=;
-        b=s1zHKUfXoRjGrKTJJxaYl7s7Ha8O7YCs7O1775EhIt7rVEMQ78+MGJysUShJ8Qo+31
-         uFfp8GS6DUZt2xQcl7//37wP3jc2S2aUNachb9KtLvr7GgLTq/UNr9fJGqomPIUS/URP
-         EsGWzAnWDz9a7K3T1z+9+oGHCs8r6ZmoWnDXYfCuU/b8yIrX2YI/osDfpM1Aed5CDBwt
-         yIpQPmWnRoK//R9/1bG+PR/EhMmrpH29k29Mp1wj5mn0Iw4xd2p/NpJBG5snV0ZRsvmc
-         X/YyeCPdm9K7BBUWuMTeBf/x9SWyHOZV2LvVX8SthGkkMmJERPKWHa69v8yxL+j6cskv
-         5+9A==
+        id S2403859AbhATQyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 11:54:35 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:39484 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403809AbhATQyc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 11:54:32 -0500
+Received: by mail-ot1-f41.google.com with SMTP id i30so11078511ota.6;
+        Wed, 20 Jan 2021 08:54:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rI55C5R2Ib+0Rd7/giiUezyr291JCSLEI1Z384+KvVY=;
-        b=OOCmXKRsFQPjauS7I89IN/ApLiNXgen2ojAmYqTtbLfmiGzW8o69J04QKHhcdTpz8m
-         ke/t2Lv6PgfjGT1C21b/iTpUTtLwwoDmKafsO7hSBjc/YemfbNWPecaRFrwqTOjqfOXP
-         0cj7Jiu6iRIzcoNLzyqDWewL/YvAYHFCJq5bRbFCdcGmeze/0qnbzDsRJGVgcOzLOJhx
-         3+tIWYTruE2eF8NzkMmoFV/j6qpIorzekEqWXQ9yeJndlax+VmzyDipTqo7195YsIOUU
-         SBY9cPzhux0Eo3UfxX5eEhI11qZcx4HNWqutYUl/aj30awoo/7Z0eg5Mz7EUsovcROn9
-         HtGg==
-X-Gm-Message-State: AOAM530XT0veDwLw3uW79gQXm/ErqsC75HZdj92BbeO2JuzwsBefLN2X
-        VEtZ3o7NP6CuS0lGBQTutUrqjPx759KuMP8bQKw=
-X-Google-Smtp-Source: ABdhPJyrMn3IRyo0TyefSx6BpNfLQtd9Ybt6FKSJMpt+UY+Cd3SudbChqJoPM1x0xgoyhDn+KIm2H6Ni6STKEp89b1c=
-X-Received: by 2002:a62:445:0:b029:19c:162b:bbef with SMTP id
- 66-20020a6204450000b029019c162bbbefmr9882734pfe.40.1611161223528; Wed, 20 Jan
- 2021 08:47:03 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+Nevn/Hsb1/pSSLD/4PKRZrIOGJGLolaHEVGjwXHh7g=;
+        b=VA2JRK6XbQyUxFc+e7gPWkoHVPvfxNWup/KTgzs0Uv5WL/yfgobfQ85evNGxJwciMM
+         rnmkNcoVMhtWFARSD669/fR2dXDMfp/UWRwiRbPAoqq7zGxbGl33m+lRlpG+kpqOkAEg
+         sbIjwVz2hAUyMErC7r690IT7zxidG6JD17sk468HfqhYZLgOk4NDBgnSyrfRzT5rfWWz
+         GLG+w4DdIJVpu0QvKmjYxTlopoz80ljRcEjX37uP7i2gjV8ao5uplrqOT4NWNaZBPHY1
+         1NtofNDmfgYK9Y2qGVQXcI76EevwEwPD+UCgwEx1spHLLe2om3Mej32UVMx28UuzHJ9X
+         n4SA==
+X-Gm-Message-State: AOAM532cPJQsOpJQ53EEpQQgeLmGgL2ccs6WmRCa32mSkcXDM8WIufXW
+        P7dKqknY2D2iwQzj7mNzNw==
+X-Google-Smtp-Source: ABdhPJwaG3j9UrY6/UvK8tGFavZ8pchhV25GbY2yn1OpU1TWw5L3kI0PQYj6i0y3Xx2xzLR+yGRYiw==
+X-Received: by 2002:a05:6830:20c2:: with SMTP id z2mr7356498otq.322.1611161630884;
+        Wed, 20 Jan 2021 08:53:50 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id d10sm444480ooh.32.2021.01.20.08.53.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 08:53:49 -0800 (PST)
+Received: (nullmailer pid 328496 invoked by uid 1000);
+        Wed, 20 Jan 2021 16:53:48 -0000
+Date:   Wed, 20 Jan 2021 10:53:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Claire Chang <tientzu@chromium.org>
+Cc:     mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        joro@8bytes.org, will@kernel.org, frowand.list@gmail.com,
+        konrad.wilk@oracle.com, boris.ostrovsky@oracle.com,
+        jgross@suse.com, sstabellini@kernel.org, hch@lst.de,
+        m.szyprowski@samsung.com, robin.murphy@arm.com,
+        grant.likely@arm.com, xypron.glpk@gmx.de, treding@nvidia.com,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        gregkh@linuxfoundation.org, saravanak@google.com,
+        rafael.j.wysocki@intel.com, heikki.krogerus@linux.intel.com,
+        andriy.shevchenko@linux.intel.com, rdunlap@infradead.org,
+        dan.j.williams@intel.com, bgolaszewski@baylibre.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, iommu@lists.linux-foundation.org,
+        xen-devel@lists.xenproject.org, tfiga@chromium.org,
+        drinkcat@chromium.org
+Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
+Message-ID: <20210120165348.GA220770@robh.at.kernel.org>
+References: <20210106034124.30560-1-tientzu@chromium.org>
+ <20210106034124.30560-6-tientzu@chromium.org>
 MIME-Version: 1.0
-References: <20210115211543.33563-1-alcooperx@gmail.com> <20210115211543.33563-3-alcooperx@gmail.com>
- <CAHp75VdQPQK8jTF3QDKx6mF1QzOg-qiuHrTiojnWn7GskokfoA@mail.gmail.com> <71d58a3e-2707-69d7-8074-c67235912e06@gmail.com>
-In-Reply-To: <71d58a3e-2707-69d7-8074-c67235912e06@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 20 Jan 2021 18:47:52 +0200
-Message-ID: <CAHp75VfNumFBwbytCuA_YK1w-+kN20vRF+GhogtU+DDG3EB_7g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] serial: 8250: Add new 8250-core based Broadcom STB driver
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Al Cooper <alcooperx@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210106034124.30560-6-tientzu@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 8:16 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
-> On 1/19/2021 7:21 AM, Andy Shevchenko wrote:
-> > On Fri, Jan 15, 2021 at 11:19 PM Al Cooper <alcooperx@gmail.com> wrote:
-> >>
-> >> Add a UART driver for the new Broadcom 8250 based STB UART. The new
-> >> UART is backward compatible with the standard 8250, but has some
-> >> additional features. The new features include a high accuracy baud
-> >> rate clock system and DMA support.
-> >>
-> >> The driver will use the new optional BAUD MUX clock to select the best
-> >> one of the four master clocks (81MHz, 108MHz, 64MHz and 48MHz) to feed
-> >> the baud rate selection logic for any requested baud rate.  This allows
-> >> for more accurate BAUD rates when high speed baud rates are selected.
-> >>
-> >> The driver will use the new UART DMA hardware if the UART DMA registers
-> >> are specified in Device Tree "reg" property. The DMA functionality can
-> >> be disabled on kernel boot with the argument:
-> >> "8250_bcm7271.disable_dma=Y".
-> >>
-> >> The driver also set the UPSTAT_AUTOCTS flag when hardware flow control
-> >> is enabled. This flag is needed for UARTs that don't assert a CTS
-> >> changed interrupt when CTS changes and AFE (Hardware Flow Control) is
-> >> enabled.
-> >>
-> >> The driver also contains a workaround for a bug in the Synopsis 8250
-> >> core. The problem is that at high baud rates, the RX partial FIFO
-> >> timeout interrupt can occur but there is no RX data (DR not set in
-> >> the LSR register). In this case the driver will not read the Receive
-> >> Buffer Register, which clears the interrupt, and the system will get
-> >> continuous UART interrupts until the next RX character arrives. The
-> >> fix originally suggested by Synopsis was to read the Receive Buffer
-> >> Register and discard the character when the DR bit in the LSR was
-> >> not set, to clear the interrupt. The problem was that occasionally
-> >> a character would arrive just after the DR bit check and a valid
-> >> character would be discarded. The fix that was added will clear
-> >> receive interrupts to stop the interrupt, deassert RTS to insure
-> >> that no new data can arrive, wait for 1.5 character times for the
-> >> sender to react to RTS and then check for data and either do a dummy
-> >> read or a valid read. Sysfs error counters were also added and were
-> >> used to help create test software that would cause the error condition.
-> >> The counters can be found at:
-> >> /sys/devices/platform/rdb/*serial/rx_bad_timeout_late_char
-> >> /sys/devices/platform/rdb/*serial/rx_bad_timeout_no_char
-> >
-> > Brief looking into the code raises several questions:
-> >  - is it driver from the last decade?
->
-> Work on this driver started back in 2018, that was indeed the last decade.
->
-> >  - why it's not using what kernel provides?
-> >  - we have a lot of nice helpers:
-> >    - DMA Engine API
->
-> Not sure this makes sense, given that the DMA hardware that was added to
-> this UART block is only used by the UART block and no other pieces of HW
-> in the system, nor will they ever be. Not sure it makes sense to pay the
-> cost of an extra indirection and subsystem unless there are at least two
-> consumers of that DMA hardware to warrant modeling it after a dmaengine
-> driver. I also remember that Al researched before whether 8250_dma.c
-> could work, and came to the conclusion that it would not, but I will let
-> him comment on the specifics.
+On Wed, Jan 06, 2021 at 11:41:23AM +0800, Claire Chang wrote:
+> Introduce the new compatible string, restricted-dma-pool, for restricted
+> DMA. One can specify the address and length of the restricted DMA memory
+> region by restricted-dma-pool in the device tree.
 
-I see. In any case I still believe that the driver can be shrinked by
-a notable amount of lines.
+If this goes into DT, I think we should be able to use dma-ranges for 
+this purpose instead. Normally, 'dma-ranges' is for physical bus 
+restrictions, but there's no reason it can't be used for policy or to 
+express restrictions the firmware has enabled.
 
-> >    - BIT() and GENMASK() macros
-> >    - tons of different helpers like regmap API (if you wish to dump
-> > registers via debugfs)
-> >
-> > Can you shrink this driver by 20-30% (I truly believe it's possible)
-> > and split DMA driver to drivers/dma (which may already have something
-> > similar there)?
->
-> See previous response.
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> ---
+>  .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> index e8d3096d922c..44975e2a1fd2 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> @@ -51,6 +51,20 @@ compatible (optional) - standard definition
+>            used as a shared pool of DMA buffers for a set of devices. It can
+>            be used by an operating system to instantiate the necessary pool
+>            management subsystem if necessary.
+> +        - restricted-dma-pool: This indicates a region of memory meant to be
+> +          used as a pool of restricted DMA buffers for a set of devices. The
+> +          memory region would be the only region accessible to those devices.
+> +          When using this, the no-map and reusable properties must not be set,
+> +          so the operating system can create a virtual mapping that will be used
+> +          for synchronization. The main purpose for restricted DMA is to
+> +          mitigate the lack of DMA access control on systems without an IOMMU,
+> +          which could result in the DMA accessing the system memory at
+> +          unexpected times and/or unexpected addresses, possibly leading to data
+> +          leakage or corruption. The feature on its own provides a basic level
+> +          of protection against the DMA overwriting buffer contents at
+> +          unexpected times. However, to protect against general data leakage and
+> +          system memory corruption, the system needs to provide way to restrict
+> +          the DMA to a predefined memory region.
+>          - vendor specific string in the form <vendor>,[<device>-]<usage>
+>  no-map (optional) - empty property
+>      - Indicates the operating system must not create a virtual mapping
+> @@ -120,6 +134,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+>  			compatible = "acme,multimedia-memory";
+>  			reg = <0x77000000 0x4000000>;
+>  		};
+> +
+> +		restricted_dma_mem_reserved: restricted_dma_mem_reserved {
+> +			compatible = "restricted-dma-pool";
+> +			reg = <0x50000000 0x400000>;
+> +		};
+>  	};
+>  
+>  	/* ... */
+> @@ -138,4 +157,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+>  		memory-region = <&multimedia_reserved>;
+>  		/* ... */
+>  	};
+> +
+> +	pcie_device: pcie_device@0,0 {
+> +		memory-region = <&restricted_dma_mem_reserved>;
 
+PCI hosts often have inbound window configurations that limit the 
+address range and translate PCI to bus addresses. Those windows happen 
+to be configured by dma-ranges. In any case, wouldn't you want to put 
+the configuration in the PCI host node? Is there a usecase of 
+restricting one PCIe device and not another? 
 
--- 
-With Best Regards,
-Andy Shevchenko
+Rob
