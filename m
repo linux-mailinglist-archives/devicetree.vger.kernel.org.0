@@ -2,82 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E752D2FD5DC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:42:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03EA92FD61B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:53:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728627AbhATQjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 11:39:17 -0500
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:42271 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2391504AbhATQft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 11:35:49 -0500
-Received: from [77.244.183.192] (port=62332 helo=[192.168.178.24])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1l2GRk-0061NW-La; Wed, 20 Jan 2021 17:35:04 +0100
-Subject: Re: [PATCH V2 1/2] dt-bindings: clk: versaclock5: Add optional load
- capacitance property
-To:     Adam Ford <aford173@gmail.com>, linux-clk@vger.kernel.org
-Cc:     aford@beaconembedded.com,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210119212109.1064786-1-aford173@gmail.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <9dab169a-e551-7ba1-7fe2-d00e80978388@lucaceresoli.net>
-Date:   Wed, 20 Jan 2021 17:35:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2388486AbhATQxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 11:53:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52568 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391303AbhATQiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 11:38:25 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91CF5C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 08:37:44 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id j12so2489416pjy.5
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 08:37:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=F/DhG0PPxm0vKgWn3ZUodFL5gREX9ouvD4YqI6sx3m0=;
+        b=T5xizAhCUnokT5bbT4Dz2K7SWIx4lepR61GZQ3HYDfJVWkirqLoPYTENaBy0UESLVT
+         HQ9LdIC/+DMy6GeeZSgu5eQudCxPQfMFsGM4mcx9pxxZVjTwLGiiUrshA07jFyBRiOAj
+         J5aimP/fSm8b9zSInqaq7Q+U9hCGwgpkAv/MshMoGh05QKecI8RiOHvXEngqRru0WpUY
+         SPzdtNptVXkmPQaFHmMFBJAw+7c+Gq4nYiTgv7BETFlXp66C5H2wbwf1Sxx4NhyeY4HO
+         RQpf/I3APZggx/HkIAuajo/CoJVwxeptNzt4uikARVj87NRj6wROC3lJgqFmeyMx6/z1
+         wSAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=F/DhG0PPxm0vKgWn3ZUodFL5gREX9ouvD4YqI6sx3m0=;
+        b=ctdBHcq7XsoD2gUaAQSaz0J6HYNpFK2yjKgsBLRF1siFKGVgK4+MO1BRy/vMmnBe/9
+         zFUcOSZSII60b6e7AKvsCwQEeUun7FikTRChifiFNTFQHTqBKbGpsDYHK+Tmg/rAQCoM
+         PxjMKcg0LiR8b0Rbg23809M+mvMpX+b+EOXB0Ck25eV/agpw0sXYEUnMg4KDaNHhgUM+
+         w19d4uUsEeAIW3U/B9WIsyF0Udji/ySqMQOTbQKMjgJY7Xa+pMudHq60OQWYTZzCUYbP
+         flPnyeV+6QwhISvsSKk4l1qRx6nuS+zSLRzl9dc+/Tm/TD4YANGTQEUqgwK1A1vTqdoT
+         d36g==
+X-Gm-Message-State: AOAM533e7exJl3GfT08Q3r9TL0o/9i3Dj/ZsFoEt9Uo0S+7fZLCY4HhF
+        wQHm5z7rM+bfiuGhAs6NlINK
+X-Google-Smtp-Source: ABdhPJwYzAMEAtg9/JFbhiEuwp4XYSlhS8FCZoRDmYqnHbumm4A5Hob0ASGs5q1KrV8/8oB0j4+sVg==
+X-Received: by 2002:a17:90a:d913:: with SMTP id c19mr2267949pjv.19.1611160663340;
+        Wed, 20 Jan 2021 08:37:43 -0800 (PST)
+Received: from thinkpad ([2409:4072:409:c713:3d52:1d51:c724:155d])
+        by smtp.gmail.com with ESMTPSA id a9sm2889668pfn.178.2021.01.20.08.37.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 08:37:42 -0800 (PST)
+Date:   Wed, 20 Jan 2021 22:07:35 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     robh+dt@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        okukatla@codeaurora.org
+Subject: Re: [PATCH 2/2] interconnect: qcom: Add SDX55 interconnect provider
+ driver
+Message-ID: <20210120163735.GC54606@thinkpad>
+References: <20210120080627.20784-1-manivannan.sadhasivam@linaro.org>
+ <20210120080627.20784-3-manivannan.sadhasivam@linaro.org>
+ <cb0f56b6-a75c-51a8-d640-08896d459a68@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20210119212109.1064786-1-aford173@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: it-IT
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cb0f56b6-a75c-51a8-d640-08896d459a68@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+Hi Georgi,
 
-On 19/01/21 22:21, Adam Ford wrote:
-> There are two registers which can set the load capacitance for
-> XTAL1 and XTAL2. These are optional registers when using an
-> external crystal.  Since XTAL1 and XTAL2 will set to the same value,
-> update the binding to support a single property called
-> xtal-load-femtofarads.
+On Wed, Jan 20, 2021 at 04:59:31PM +0200, Georgi Djakov wrote:
+> Hi Mani,
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> V2:  No Change
+> Thanks for the patch!
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> index 2ac1131fd922..c268debe5b8d 100644
-> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> @@ -59,6 +59,12 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> +  idt,xtal-load-femtofarads:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> On 1/20/21 10:06, Manivannan Sadhasivam wrote:
+> > Add driver for the Qualcomm interconnect buses found in SDX55 based
+> > platforms. The topology consists of several NoCs that are controlled by
+> > a remote processor that collects the aggregated bandwidth for each
+> > master-slave pairs.
+> > 
+> > Based on SM8250 driver and generated from downstream dts.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >   drivers/interconnect/qcom/Kconfig  |  10 +
+> >   drivers/interconnect/qcom/Makefile |   2 +
+> >   drivers/interconnect/qcom/sdx55.c  | 356 +++++++++++++++++++++++++++++
+> >   drivers/interconnect/qcom/sdx55.h  |  70 ++++++
+> >   4 files changed, 438 insertions(+)
+> >   create mode 100644 drivers/interconnect/qcom/sdx55.c
+> >   create mode 100644 drivers/interconnect/qcom/sdx55.h
+> > 
+> > diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+> > index a8f93ba265f8..6df7e2161a0a 100644
+> > --- a/drivers/interconnect/qcom/Kconfig
+> > +++ b/drivers/interconnect/qcom/Kconfig
+> > @@ -65,6 +65,16 @@ config INTERCONNECT_QCOM_SDM845
+> >   	  This is a driver for the Qualcomm Network-on-Chip on sdm845-based
+> >   	  platforms.
+> > +config INTERCONNECT_QCOM_SDX55
+> > +	tristate "Qualcomm SDX55 interconnect driver"
+> > +	depends on INTERCONNECT_QCOM
+> > +	depends on (QCOM_RPMH && QCOM_COMMAND_DB && OF) || COMPILE_TEST
+> 
+> Why not use depends on INTERCONNECT_QCOM_RPMH_POSSIBLE?
+>
 
-"Vendor specific properties having a standard unit suffix don't need a
-type." -- Documentation/devicetree/bindings/example-schema.yaml
-
-Overall looks good.
-
--- 
-Luca
+I just followed the same pattern as other RPMh based drivers. And I don't get
+what you are suggesting here! Can you please explain?
+ 
+Thanks,
+Mani
