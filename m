@@ -2,392 +2,412 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDA382FD38A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 16:14:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABA452FD3A3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 16:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732274AbhATPJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 10:09:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388178AbhATPAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 10:00:09 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B2B4C061757
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 06:59:28 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id c128so3115582wme.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 06:59:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=to:cc:references:from:subject:message-id:date:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=wTTpt9baQV1IojdvX3VLbJozKtinDQLSiS4JMFBUvpw=;
-        b=D0SC+TfsUw97jXhMaauhoJ2V10Doi/pQS75sO1dyt0ORnMKtP5n9a9mcA2tBuWmIIu
-         82dQNdOJHsCGXSqJM5kJ+14cQMsKbc7xevN1toqZuvOm3WBXn7zvCguOMY/II5fmvEqm
-         fOv4OzQN5EHihHmf3SZ3fT6R2JAxpxHppk2WjMjgeZq5g7aDBgAOtIukjvIerr9N9/Dd
-         VnUq1iruBw849HnHuYXSsE9MKVmZmbJV93JGsP8mgF1h9TKktNwyrBAlDjUGmthSKIVd
-         3svGVkXMWHB5i4edZ2keWWvej1y6qo+ehqXV97iwVU28f/4ByzW6s7JnRB6v/I5U86oI
-         xp+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wTTpt9baQV1IojdvX3VLbJozKtinDQLSiS4JMFBUvpw=;
-        b=I+YNWpnYqgBqge0q97re/ytafs/BdS6hGpKRrYFqDfFI9VJ8Iwjr0q58LdjID/G+dw
-         ePsbsYfJ4kmjGXDf0WlMbYKTwWZOY2llgvFw4c4eaaLsve6b4xp+QFFTdIZ4+tfItcrV
-         IgqrJcNPt5omZCZcE6XrSQ3LV+emVLfEvS22ul4C/2Qc3z2/G0HTHElGtBF2YlcKB6n2
-         zgkKbCIgIYy1e/JDOxwDcsjALdNy1acRBoGSjZqyZG4qLnTf4TQKBfWkJoyk+3fs5r6e
-         giHbEpwx59ps/muj+5/umimSxP5MHJ/4ZUGjFOxrOG3DpBH45qmvOB5FZcs4UJ//IBOJ
-         SBvg==
-X-Gm-Message-State: AOAM533ewBi2jVbk1iiN7bBzOjkaEXjWAp16TdIYD9l5VrmwvxzqXobd
-        dJ9/3AVwBBkzpQim63Ml0JQQNw==
-X-Google-Smtp-Source: ABdhPJxtkvddop+w7wDdFZDnf5USm9uT3ZTY0AqCwLAZYaClKDgwqGgNAVkQTs/GbcaDt7LgrkHfIA==
-X-Received: by 2002:a1c:808d:: with SMTP id b135mr4610059wmd.157.1611154767181;
-        Wed, 20 Jan 2021 06:59:27 -0800 (PST)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id h13sm4467006wrm.28.2021.01.20.06.59.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jan 2021 06:59:26 -0800 (PST)
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        robh+dt@kernel.org
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        okukatla@codeaurora.org
-References: <20210120080627.20784-1-manivannan.sadhasivam@linaro.org>
- <20210120080627.20784-3-manivannan.sadhasivam@linaro.org>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Subject: Re: [PATCH 2/2] interconnect: qcom: Add SDX55 interconnect provider
- driver
-Message-ID: <cb0f56b6-a75c-51a8-d640-08896d459a68@linaro.org>
-Date:   Wed, 20 Jan 2021 16:59:31 +0200
+        id S1732335AbhATPNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 10:13:20 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49548 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390424AbhATPKa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 10:10:30 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4B8AE23159;
+        Wed, 20 Jan 2021 15:09:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611155390;
+        bh=WUbBotuq4Oy3mOku8gwtWKS3a6Wa5oh19lqXYgHBTPk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XJe6y9IkPheSVA1dkehUm4nXJaNtJmMAWGxhpbS1n76Bb8Jwp7txkWfhJrz1dZxbE
+         mG2e9yDMJVBY86Qh1VmEn0DkBluSzuR1jSLnYemOLxGy62R9F4H0SqDuGAtuGk78rG
+         y+a7qAnFqTvU8gymBknDVMsw4av+iH3+WlTcl3U7st9TrYGwgBYHlgEztf68JStGVL
+         tQ1dx9wdAl2WsCIIYOP+m48JaeTguu9SKyBti97BqI0gQriMrF4Z82zIAA/YdrjvTF
+         svmvw+AgImzUNoPsiSMWQZo141JCH5FfLqsOYaG2U9WX6YRIVJjxntxs4vQzC3m8Ks
+         QkvXLriQSK0tw==
+From:   Arnd Bergmann <arnd@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Jun Nie <jun.nie@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] pwm: remove zte zx driver
+Date:   Wed, 20 Jan 2021 16:09:22 +0100
+Message-Id: <20210120150944.1688327-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210120080627.20784-3-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mani,
+From: Arnd Bergmann <arnd@arndb.de>
 
-Thanks for the patch!
+The zte zx platform is getting removed, so this driver is no
+longer needed.
 
-On 1/20/21 10:06, Manivannan Sadhasivam wrote:
-> Add driver for the Qualcomm interconnect buses found in SDX55 based
-> platforms. The topology consists of several NoCs that are controlled by
-> a remote processor that collects the aggregated bandwidth for each
-> master-slave pairs.
-> 
-> Based on SM8250 driver and generated from downstream dts.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->   drivers/interconnect/qcom/Kconfig  |  10 +
->   drivers/interconnect/qcom/Makefile |   2 +
->   drivers/interconnect/qcom/sdx55.c  | 356 +++++++++++++++++++++++++++++
->   drivers/interconnect/qcom/sdx55.h  |  70 ++++++
->   4 files changed, 438 insertions(+)
->   create mode 100644 drivers/interconnect/qcom/sdx55.c
->   create mode 100644 drivers/interconnect/qcom/sdx55.h
-> 
-> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
-> index a8f93ba265f8..6df7e2161a0a 100644
-> --- a/drivers/interconnect/qcom/Kconfig
-> +++ b/drivers/interconnect/qcom/Kconfig
-> @@ -65,6 +65,16 @@ config INTERCONNECT_QCOM_SDM845
->   	  This is a driver for the Qualcomm Network-on-Chip on sdm845-based
->   	  platforms.
->   
-> +config INTERCONNECT_QCOM_SDX55
-> +	tristate "Qualcomm SDX55 interconnect driver"
-> +	depends on INTERCONNECT_QCOM
-> +	depends on (QCOM_RPMH && QCOM_COMMAND_DB && OF) || COMPILE_TEST
+Cc: Jun Nie <jun.nie@linaro.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ .../devicetree/bindings/pwm/pwm-zx.txt        |  22 --
+ drivers/pwm/Kconfig                           |  20 --
+ drivers/pwm/Makefile                          |   2 -
+ drivers/pwm/pwm-zx.c                          | 278 ------------------
+ 4 files changed, 322 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-zx.txt
+ delete mode 100644 drivers/pwm/pwm-zx.c
 
-Why not use depends on INTERCONNECT_QCOM_RPMH_POSSIBLE?
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-zx.txt b/Documentation/devicetree/bindings/pwm/pwm-zx.txt
+deleted file mode 100644
+index 3c8fe7aa8269..000000000000
+--- a/Documentation/devicetree/bindings/pwm/pwm-zx.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-ZTE ZX PWM controller
+-
+-Required properties:
+- - compatible: Should be "zte,zx296718-pwm".
+- - reg: Physical base address and length of the controller's registers.
+- - clocks : The phandle and specifier referencing the controller's clocks.
+- - clock-names: "pclk" for PCLK, "wclk" for WCLK to the PWM controller.  The
+-   PCLK is for register access, while WCLK is the reference clock for
+-   calculating period and duty cycles.
+- - #pwm-cells: Should be 3. See pwm.yaml in this directory for a description of
+-   the cells format.
+-
+-Example:
+-
+-	pwm: pwm@1439000 {
+-		compatible = "zte,zx296718-pwm";
+-		reg = <0x1439000 0x1000>;
+-		clocks = <&lsp1crm LSP1_PWM_PCLK>,
+-			 <&lsp1crm LSP1_PWM_WCLK>;
+-		clock-names = "pclk", "wclk";
+-		#pwm-cells = <3>;
+-	};
+diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+index 0937e1c047ac..4c28d0634ce9 100644
+--- a/drivers/pwm/Kconfig
++++ b/drivers/pwm/Kconfig
+@@ -601,24 +601,4 @@ config PWM_TWL_LED
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called pwm-twl-led.
+ 
+-config PWM_VT8500
+-	tristate "vt8500 PWM support"
+-	depends on ARCH_VT8500 || COMPILE_TEST
+-	depends on HAS_IOMEM
+-	help
+-	  Generic PWM framework driver for vt8500.
+-
+-	  To compile this driver as a module, choose M here: the module
+-	  will be called pwm-vt8500.
+-
+-config PWM_ZX
+-	tristate "ZTE ZX PWM support"
+-	depends on ARCH_ZX || COMPILE_TEST
+-	depends on HAS_IOMEM
+-	help
+-	  Generic PWM framework driver for ZTE ZX family SoCs.
+-
+-	  To compile this driver as a module, choose M here: the module
+-	  will be called pwm-zx.
+-
+ endif
+diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+index 18b89d7fd092..e90d0fd789f3 100644
+--- a/drivers/pwm/Makefile
++++ b/drivers/pwm/Makefile
+@@ -56,5 +56,3 @@ obj-$(CONFIG_PWM_TIECAP)	+= pwm-tiecap.o
+ obj-$(CONFIG_PWM_TIEHRPWM)	+= pwm-tiehrpwm.o
+ obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
+ obj-$(CONFIG_PWM_TWL_LED)	+= pwm-twl-led.o
+-obj-$(CONFIG_PWM_VT8500)	+= pwm-vt8500.o
+-obj-$(CONFIG_PWM_ZX)		+= pwm-zx.o
+diff --git a/drivers/pwm/pwm-zx.c b/drivers/pwm/pwm-zx.c
+deleted file mode 100644
+index 34e91195ce98..000000000000
+--- a/drivers/pwm/pwm-zx.c
++++ /dev/null
+@@ -1,278 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-only
+-/*
+- * Copyright (C) 2017 Sanechips Technology Co., Ltd.
+- * Copyright 2017 Linaro Ltd.
+- */
+-
+-#include <linux/clk.h>
+-#include <linux/err.h>
+-#include <linux/io.h>
+-#include <linux/kernel.h>
+-#include <linux/module.h>
+-#include <linux/platform_device.h>
+-#include <linux/pwm.h>
+-#include <linux/slab.h>
+-
+-#define ZX_PWM_MODE		0x0
+-#define ZX_PWM_CLKDIV_SHIFT	2
+-#define ZX_PWM_CLKDIV_MASK	GENMASK(11, 2)
+-#define ZX_PWM_CLKDIV(x)	(((x) << ZX_PWM_CLKDIV_SHIFT) & \
+-					 ZX_PWM_CLKDIV_MASK)
+-#define ZX_PWM_POLAR		BIT(1)
+-#define ZX_PWM_EN		BIT(0)
+-#define ZX_PWM_PERIOD		0x4
+-#define ZX_PWM_DUTY		0x8
+-
+-#define ZX_PWM_CLKDIV_MAX	1023
+-#define ZX_PWM_PERIOD_MAX	65535
+-
+-struct zx_pwm_chip {
+-	struct pwm_chip chip;
+-	struct clk *pclk;
+-	struct clk *wclk;
+-	void __iomem *base;
+-};
+-
+-static inline struct zx_pwm_chip *to_zx_pwm_chip(struct pwm_chip *chip)
+-{
+-	return container_of(chip, struct zx_pwm_chip, chip);
+-}
+-
+-static inline u32 zx_pwm_readl(struct zx_pwm_chip *zpc, unsigned int hwpwm,
+-			       unsigned int offset)
+-{
+-	return readl(zpc->base + (hwpwm + 1) * 0x10 + offset);
+-}
+-
+-static inline void zx_pwm_writel(struct zx_pwm_chip *zpc, unsigned int hwpwm,
+-				 unsigned int offset, u32 value)
+-{
+-	writel(value, zpc->base + (hwpwm + 1) * 0x10 + offset);
+-}
+-
+-static void zx_pwm_set_mask(struct zx_pwm_chip *zpc, unsigned int hwpwm,
+-			    unsigned int offset, u32 mask, u32 value)
+-{
+-	u32 data;
+-
+-	data = zx_pwm_readl(zpc, hwpwm, offset);
+-	data &= ~mask;
+-	data |= value & mask;
+-	zx_pwm_writel(zpc, hwpwm, offset, data);
+-}
+-
+-static void zx_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+-			     struct pwm_state *state)
+-{
+-	struct zx_pwm_chip *zpc = to_zx_pwm_chip(chip);
+-	unsigned long rate;
+-	unsigned int div;
+-	u32 value;
+-	u64 tmp;
+-
+-	value = zx_pwm_readl(zpc, pwm->hwpwm, ZX_PWM_MODE);
+-
+-	if (value & ZX_PWM_POLAR)
+-		state->polarity = PWM_POLARITY_NORMAL;
+-	else
+-		state->polarity = PWM_POLARITY_INVERSED;
+-
+-	if (value & ZX_PWM_EN)
+-		state->enabled = true;
+-	else
+-		state->enabled = false;
+-
+-	div = (value & ZX_PWM_CLKDIV_MASK) >> ZX_PWM_CLKDIV_SHIFT;
+-	rate = clk_get_rate(zpc->wclk);
+-
+-	tmp = zx_pwm_readl(zpc, pwm->hwpwm, ZX_PWM_PERIOD);
+-	tmp *= div * NSEC_PER_SEC;
+-	state->period = DIV_ROUND_CLOSEST_ULL(tmp, rate);
+-
+-	tmp = zx_pwm_readl(zpc, pwm->hwpwm, ZX_PWM_DUTY);
+-	tmp *= div * NSEC_PER_SEC;
+-	state->duty_cycle = DIV_ROUND_CLOSEST_ULL(tmp, rate);
+-}
+-
+-static int zx_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
+-			 unsigned int duty_ns, unsigned int period_ns)
+-{
+-	struct zx_pwm_chip *zpc = to_zx_pwm_chip(chip);
+-	unsigned int period_cycles, duty_cycles;
+-	unsigned long long c;
+-	unsigned int div = 1;
+-	unsigned long rate;
+-
+-	/* Find out the best divider */
+-	rate = clk_get_rate(zpc->wclk);
+-
+-	while (1) {
+-		c = rate / div;
+-		c = c * period_ns;
+-		do_div(c, NSEC_PER_SEC);
+-
+-		if (c < ZX_PWM_PERIOD_MAX)
+-			break;
+-
+-		div++;
+-
+-		if (div > ZX_PWM_CLKDIV_MAX)
+-			return -ERANGE;
+-	}
+-
+-	/* Calculate duty cycles */
+-	period_cycles = c;
+-	c *= duty_ns;
+-	do_div(c, period_ns);
+-	duty_cycles = c;
+-
+-	/*
+-	 * If the PWM is being enabled, we have to temporarily disable it
+-	 * before configuring the registers.
+-	 */
+-	if (pwm_is_enabled(pwm))
+-		zx_pwm_set_mask(zpc, pwm->hwpwm, ZX_PWM_MODE, ZX_PWM_EN, 0);
+-
+-	/* Set up registers */
+-	zx_pwm_set_mask(zpc, pwm->hwpwm, ZX_PWM_MODE, ZX_PWM_CLKDIV_MASK,
+-			ZX_PWM_CLKDIV(div));
+-	zx_pwm_writel(zpc, pwm->hwpwm, ZX_PWM_PERIOD, period_cycles);
+-	zx_pwm_writel(zpc, pwm->hwpwm, ZX_PWM_DUTY, duty_cycles);
+-
+-	/* Re-enable the PWM if needed */
+-	if (pwm_is_enabled(pwm))
+-		zx_pwm_set_mask(zpc, pwm->hwpwm, ZX_PWM_MODE,
+-				ZX_PWM_EN, ZX_PWM_EN);
+-
+-	return 0;
+-}
+-
+-static int zx_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+-			const struct pwm_state *state)
+-{
+-	struct zx_pwm_chip *zpc = to_zx_pwm_chip(chip);
+-	struct pwm_state cstate;
+-	int ret;
+-
+-	pwm_get_state(pwm, &cstate);
+-
+-	if (state->polarity != cstate.polarity)
+-		zx_pwm_set_mask(zpc, pwm->hwpwm, ZX_PWM_MODE, ZX_PWM_POLAR,
+-				(state->polarity == PWM_POLARITY_INVERSED) ?
+-				 0 : ZX_PWM_POLAR);
+-
+-	if (state->period != cstate.period ||
+-	    state->duty_cycle != cstate.duty_cycle) {
+-		ret = zx_pwm_config(chip, pwm, state->duty_cycle,
+-				    state->period);
+-		if (ret)
+-			return ret;
+-	}
+-
+-	if (state->enabled != cstate.enabled) {
+-		if (state->enabled) {
+-			ret = clk_prepare_enable(zpc->wclk);
+-			if (ret)
+-				return ret;
+-
+-			zx_pwm_set_mask(zpc, pwm->hwpwm, ZX_PWM_MODE,
+-					ZX_PWM_EN, ZX_PWM_EN);
+-		} else {
+-			zx_pwm_set_mask(zpc, pwm->hwpwm, ZX_PWM_MODE,
+-					ZX_PWM_EN, 0);
+-			clk_disable_unprepare(zpc->wclk);
+-		}
+-	}
+-
+-	return 0;
+-}
+-
+-static const struct pwm_ops zx_pwm_ops = {
+-	.apply = zx_pwm_apply,
+-	.get_state = zx_pwm_get_state,
+-	.owner = THIS_MODULE,
+-};
+-
+-static int zx_pwm_probe(struct platform_device *pdev)
+-{
+-	struct zx_pwm_chip *zpc;
+-	unsigned int i;
+-	int ret;
+-
+-	zpc = devm_kzalloc(&pdev->dev, sizeof(*zpc), GFP_KERNEL);
+-	if (!zpc)
+-		return -ENOMEM;
+-
+-	zpc->base = devm_platform_ioremap_resource(pdev, 0);
+-	if (IS_ERR(zpc->base))
+-		return PTR_ERR(zpc->base);
+-
+-	zpc->pclk = devm_clk_get(&pdev->dev, "pclk");
+-	if (IS_ERR(zpc->pclk))
+-		return PTR_ERR(zpc->pclk);
+-
+-	zpc->wclk = devm_clk_get(&pdev->dev, "wclk");
+-	if (IS_ERR(zpc->wclk))
+-		return PTR_ERR(zpc->wclk);
+-
+-	ret = clk_prepare_enable(zpc->pclk);
+-	if (ret)
+-		return ret;
+-
+-	zpc->chip.dev = &pdev->dev;
+-	zpc->chip.ops = &zx_pwm_ops;
+-	zpc->chip.base = -1;
+-	zpc->chip.npwm = 4;
+-	zpc->chip.of_xlate = of_pwm_xlate_with_flags;
+-	zpc->chip.of_pwm_n_cells = 3;
+-
+-	/*
+-	 * PWM devices may be enabled by firmware, and let's disable all of
+-	 * them initially to save power.
+-	 */
+-	for (i = 0; i < zpc->chip.npwm; i++)
+-		zx_pwm_set_mask(zpc, i, ZX_PWM_MODE, ZX_PWM_EN, 0);
+-
+-	ret = pwmchip_add(&zpc->chip);
+-	if (ret < 0) {
+-		dev_err(&pdev->dev, "failed to add PWM chip: %d\n", ret);
+-		clk_disable_unprepare(zpc->pclk);
+-		return ret;
+-	}
+-
+-	platform_set_drvdata(pdev, zpc);
+-
+-	return 0;
+-}
+-
+-static int zx_pwm_remove(struct platform_device *pdev)
+-{
+-	struct zx_pwm_chip *zpc = platform_get_drvdata(pdev);
+-	int ret;
+-
+-	ret = pwmchip_remove(&zpc->chip);
+-	clk_disable_unprepare(zpc->pclk);
+-
+-	return ret;
+-}
+-
+-static const struct of_device_id zx_pwm_dt_ids[] = {
+-	{ .compatible = "zte,zx296718-pwm", },
+-	{ /* sentinel */ }
+-};
+-MODULE_DEVICE_TABLE(of, zx_pwm_dt_ids);
+-
+-static struct platform_driver zx_pwm_driver = {
+-	.driver = {
+-		.name = "zx-pwm",
+-		.of_match_table = zx_pwm_dt_ids,
+-	},
+-	.probe = zx_pwm_probe,
+-	.remove = zx_pwm_remove,
+-};
+-module_platform_driver(zx_pwm_driver);
+-
+-MODULE_ALIAS("platform:zx-pwm");
+-MODULE_AUTHOR("Shawn Guo <shawn.guo@linaro.org>");
+-MODULE_DESCRIPTION("ZTE ZX PWM Driver");
+-MODULE_LICENSE("GPL v2");
+-- 
+2.29.2
 
-> +	select INTERCONNECT_QCOM_RPMH
-> +	select INTERCONNECT_QCOM_BCM_VOTER
-> +	help
-> +	  This is a driver for the Qualcomm Network-on-Chip on sdx55-based
-> +	  platforms.
-> +
->   config INTERCONNECT_QCOM_SM8150
->   	tristate "Qualcomm SM8150 interconnect driver"
->   	depends on INTERCONNECT_QCOM
-> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
-> index cf628f7990cd..981a5ea45af9 100644
-> --- a/drivers/interconnect/qcom/Makefile
-> +++ b/drivers/interconnect/qcom/Makefile
-> @@ -8,6 +8,7 @@ qnoc-qcs404-objs			:= qcs404.o
->   icc-rpmh-obj				:= icc-rpmh.o
->   qnoc-sc7180-objs			:= sc7180.o
->   qnoc-sdm845-objs			:= sdm845.o
-> +qnoc-sdx55-objs				:= sdx55.o
->   qnoc-sm8150-objs			:= sm8150.o
->   qnoc-sm8250-objs			:= sm8250.o
->   icc-smd-rpm-objs			:= smd-rpm.o
-> @@ -20,6 +21,7 @@ obj-$(CONFIG_INTERCONNECT_QCOM_QCS404) += qnoc-qcs404.o
->   obj-$(CONFIG_INTERCONNECT_QCOM_RPMH) += icc-rpmh.o
->   obj-$(CONFIG_INTERCONNECT_QCOM_SC7180) += qnoc-sc7180.o
->   obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) += qnoc-sdm845.o
-> +obj-$(CONFIG_INTERCONNECT_QCOM_SDX55) += qnoc-sdx55.o
->   obj-$(CONFIG_INTERCONNECT_QCOM_SM8150) += qnoc-sm8150.o
->   obj-$(CONFIG_INTERCONNECT_QCOM_SM8250) += qnoc-sm8250.o
->   obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
-> diff --git a/drivers/interconnect/qcom/sdx55.c b/drivers/interconnect/qcom/sdx55.c
-> new file mode 100644
-> index 000000000000..a7ac12a1b62b
-> --- /dev/null
-> +++ b/drivers/interconnect/qcom/sdx55.c
-> @@ -0,0 +1,356 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Qualcomm SDX55 interconnect driver
-> + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> + *
-> + * Copyright (c) 2020, Linaro Ltd.
-
-Now is 2021, but probably you wrote it in 2020.
-
-> + *
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/interconnect.h>
-> +#include <linux/interconnect-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_platform.h>
-> +#include <dt-bindings/interconnect/qcom,sdx55.h>
-> +
-> +#include "bcm-voter.h"
-> +#include "icc-rpmh.h"
-> +#include "sdx55.h"
-> +
-> +DEFINE_QNODE(ipa_core_master, SDX55_MASTER_IPA_CORE, 1, 8, SDX55_SLAVE_IPA_CORE);
-> +DEFINE_QNODE(llcc_mc, SDX55_MASTER_LLCC, 4, 4, SDX55_SLAVE_EBI_CH0);
-> +DEFINE_QNODE(acm_tcu, SDX55_MASTER_TCU_0, 1, 8, SDX55_SLAVE_LLCC, SDX55_SLAVE_MEM_NOC_SNOC, SDX55_SLAVE_MEM_NOC_PCIE_SNOC);
-> +DEFINE_QNODE(qnm_snoc_gc, SDX55_MASTER_SNOC_GC_MEM_NOC, 1, 8, SDX55_SLAVE_LLCC);
-> +DEFINE_QNODE(xm_apps_rdwr, SDX55_MASTER_AMPSS_M0, 1, 16, SDX55_SLAVE_LLCC, SDX55_SLAVE_MEM_NOC_SNOC, SDX55_SLAVE_MEM_NOC_PCIE_SNOC);
-> +DEFINE_QNODE(qhm_audio, SDX55_MASTER_AUDIO, 1, 4, SDX55_SLAVE_ANOC_SNOC);
-> +DEFINE_QNODE(qhm_blsp1, SDX55_MASTER_BLSP_1, 1, 4, SDX55_SLAVE_ANOC_SNOC);
-> +DEFINE_QNODE(qhm_qdss_bam, SDX55_MASTER_QDSS_BAM, 1, 4, SDX55_SLAVE_SNOC_CFG, SDX55_SLAVE_EMAC_CFG, SDX55_SLAVE_USB3, SDX55_SLAVE_TLMM, SDX55_SLAVE_SPMI_FETCHER, SDX55_SLAVE_QDSS_CFG, SDX55_SLAVE_PDM, SDX55_SLAVE_SNOC_MEM_NOC_GC, SDX55_SLAVE_TCSR, SDX55_SLAVE_CNOC_DDRSS, SDX55_SLAVE_SPMI_VGI_COEX, SDX55_SLAVE_QPIC, SDX55_SLAVE_OCIMEM, SDX55_SLAVE_IPA_CFG, SDX55_SLAVE_USB3_PHY_CFG, SDX55_SLAVE_AOP, SDX55_SLAVE_BLSP_1, SDX55_SLAVE_SDCC_1, SDX55_SLAVE_CNOC_MSS, SDX55_SLAVE_PCIE_PARF, SDX55_SLAVE_ECC_CFG, SDX55_SLAVE_AUDIO, SDX55_SLAVE_AOSS, SDX55_SLAVE_PRNG, SDX55_SLAVE_CRYPTO_0_CFG, SDX55_SLAVE_TCU, SDX55_SLAVE_CLK_CTL, SDX55_SLAVE_IMEM_CFG);
-> +DEFINE_QNODE(qhm_qpic, SDX55_MASTER_QPIC, 1, 4, SDX55_SLAVE_AOSS, SDX55_SLAVE_IPA_CFG, SDX55_SLAVE_ANOC_SNOC, SDX55_SLAVE_AOP, SDX55_SLAVE_AUDIO);
-> +DEFINE_QNODE(qhm_snoc_cfg, SDX55_MASTER_SNOC_CFG, 1, 4, SDX55_SLAVE_SERVICE_SNOC);
-> +DEFINE_QNODE(qhm_spmi_fetcher1, SDX55_MASTER_SPMI_FETCHER, 1, 4, SDX55_SLAVE_AOSS, SDX55_SLAVE_ANOC_SNOC, SDX55_SLAVE_AOP);
-> +DEFINE_QNODE(qnm_aggre_noc, SDX55_MASTER_ANOC_SNOC, 1, 8, SDX55_SLAVE_PCIE_0, SDX55_SLAVE_SNOC_CFG, SDX55_SLAVE_SDCC_1, SDX55_SLAVE_TLMM, SDX55_SLAVE_SPMI_FETCHER, SDX55_SLAVE_QDSS_CFG, SDX55_SLAVE_PDM, SDX55_SLAVE_SNOC_MEM_NOC_GC, SDX55_SLAVE_TCSR, SDX55_SLAVE_CNOC_DDRSS, SDX55_SLAVE_SPMI_VGI_COEX, SDX55_SLAVE_QDSS_STM, SDX55_SLAVE_QPIC, SDX55_SLAVE_OCIMEM, SDX55_SLAVE_IPA_CFG, SDX55_SLAVE_USB3_PHY_CFG, SDX55_SLAVE_AOP, SDX55_SLAVE_BLSP_1, SDX55_SLAVE_USB3, SDX55_SLAVE_CNOC_MSS, SDX55_SLAVE_PCIE_PARF, SDX55_SLAVE_ECC_CFG, SDX55_SLAVE_APPSS, SDX55_SLAVE_AUDIO, SDX55_SLAVE_AOSS, SDX55_SLAVE_PRNG, SDX55_SLAVE_CRYPTO_0_CFG, SDX55_SLAVE_TCU, SDX55_SLAVE_CLK_CTL, SDX55_SLAVE_IMEM_CFG);
-> +DEFINE_QNODE(qnm_ipa, SDX55_MASTER_IPA, 1, 8, SDX55_SLAVE_SNOC_CFG, SDX55_SLAVE_EMAC_CFG, SDX55_SLAVE_USB3, SDX55_SLAVE_AOSS, SDX55_SLAVE_SPMI_FETCHER, SDX55_SLAVE_QDSS_CFG, SDX55_SLAVE_PDM, SDX55_SLAVE_SNOC_MEM_NOC_GC, SDX55_SLAVE_TCSR, SDX55_SLAVE_CNOC_DDRSS, SDX55_SLAVE_QDSS_STM, SDX55_SLAVE_QPIC, SDX55_SLAVE_OCIMEM, SDX55_SLAVE_IPA_CFG, SDX55_SLAVE_USB3_PHY_CFG, SDX55_SLAVE_AOP, SDX55_SLAVE_BLSP_1, SDX55_SLAVE_SDCC_1, SDX55_SLAVE_CNOC_MSS, SDX55_SLAVE_PCIE_PARF, SDX55_SLAVE_ECC_CFG, SDX55_SLAVE_AUDIO, SDX55_SLAVE_TLMM, SDX55_SLAVE_PRNG, SDX55_SLAVE_CRYPTO_0_CFG, SDX55_SLAVE_CLK_CTL, SDX55_SLAVE_IMEM_CFG);
-> +DEFINE_QNODE(qnm_memnoc, SDX55_MASTER_MEM_NOC_SNOC, 1, 8, SDX55_SLAVE_SNOC_CFG, SDX55_SLAVE_EMAC_CFG, SDX55_SLAVE_USB3, SDX55_SLAVE_TLMM, SDX55_SLAVE_SPMI_FETCHER, SDX55_SLAVE_QDSS_CFG, SDX55_SLAVE_PDM, SDX55_SLAVE_TCSR, SDX55_SLAVE_CNOC_DDRSS, SDX55_SLAVE_SPMI_VGI_COEX, SDX55_SLAVE_QDSS_STM, SDX55_SLAVE_QPIC, SDX55_SLAVE_OCIMEM, SDX55_SLAVE_IPA_CFG, SDX55_SLAVE_USB3_PHY_CFG, SDX55_SLAVE_AOP, SDX55_SLAVE_BLSP_1, SDX55_SLAVE_SDCC_1, SDX55_SLAVE_CNOC_MSS, SDX55_SLAVE_PCIE_PARF, SDX55_SLAVE_ECC_CFG, SDX55_SLAVE_APPSS,  SDX55_SLAVE_AUDIO, SDX55_SLAVE_AOSS, SDX55_SLAVE_PRNG, SDX55_SLAVE_CRYPTO_0_CFG, SDX55_SLAVE_TCU, SDX55_SLAVE_CLK_CTL, SDX55_SLAVE_IMEM_CFG);
-> +DEFINE_QNODE(qnm_memnoc_pcie, SDX55_MASTER_MEM_NOC_PCIE_SNOC, 1, 8, SDX55_SLAVE_PCIE_0);
-> +DEFINE_QNODE(qxm_crypto, SDX55_MASTER_CRYPTO_CORE_0, 1, 8, SDX55_SLAVE_AOSS, SDX55_SLAVE_ANOC_SNOC, SDX55_SLAVE_AOP);
-> +DEFINE_QNODE(xm_emac, SDX55_MASTER_EMAC, 1, 8, SDX55_SLAVE_ANOC_SNOC);
-> +DEFINE_QNODE(xm_ipa2pcie_slv, SDX55_MASTER_IPA_PCIE, 1, 8, SDX55_SLAVE_PCIE_0);
-> +DEFINE_QNODE(xm_pcie, SDX55_MASTER_PCIE, 1, 8, SDX55_SLAVE_ANOC_SNOC);
-> +DEFINE_QNODE(xm_qdss_etr, SDX55_MASTER_QDSS_ETR, 1, 8, SDX55_SLAVE_SNOC_CFG, SDX55_SLAVE_EMAC_CFG, SDX55_SLAVE_USB3, SDX55_SLAVE_AOSS, SDX55_SLAVE_SPMI_FETCHER, SDX55_SLAVE_QDSS_CFG, SDX55_SLAVE_PDM, SDX55_SLAVE_SNOC_MEM_NOC_GC, SDX55_SLAVE_TCSR, SDX55_SLAVE_CNOC_DDRSS, SDX55_SLAVE_SPMI_VGI_COEX, SDX55_SLAVE_QPIC, SDX55_SLAVE_OCIMEM, SDX55_SLAVE_IPA_CFG, SDX55_SLAVE_USB3_PHY_CFG, SDX55_SLAVE_AOP, SDX55_SLAVE_BLSP_1, SDX55_SLAVE_SDCC_1, SDX55_SLAVE_CNOC_MSS, SDX55_SLAVE_PCIE_PARF, SDX55_SLAVE_ECC_CFG, SDX55_SLAVE_AUDIO, SDX55_SLAVE_AOSS, SDX55_SLAVE_PRNG, SDX55_SLAVE_CRYPTO_0_CFG, SDX55_SLAVE_TCU, SDX55_SLAVE_CLK_CTL, SDX55_SLAVE_IMEM_CFG);
-> +DEFINE_QNODE(xm_sdc1, SDX55_MASTER_SDCC_1, 1, 8, SDX55_SLAVE_AOSS, SDX55_SLAVE_IPA_CFG, SDX55_SLAVE_ANOC_SNOC, SDX55_SLAVE_AOP, SDX55_SLAVE_AUDIO);
-> +DEFINE_QNODE(xm_usb3, SDX55_MASTER_USB3, 1, 8, SDX55_SLAVE_ANOC_SNOC);
-> +DEFINE_QNODE(ipa_core_slave, SDX55_SLAVE_IPA_CORE, 1, 8);
-> +DEFINE_QNODE(ebi, SDX55_SLAVE_EBI_CH0, 1, 4);
-> +DEFINE_QNODE(qns_llcc, SDX55_SLAVE_LLCC, 1, 16, SDX55_SLAVE_EBI_CH0);
-> +DEFINE_QNODE(qns_memnoc_snoc, SDX55_SLAVE_MEM_NOC_SNOC, 1, 8, SDX55_MASTER_MEM_NOC_SNOC);
-> +DEFINE_QNODE(qns_sys_pcie, SDX55_SLAVE_MEM_NOC_PCIE_SNOC, 1, 8, SDX55_MASTER_MEM_NOC_PCIE_SNOC);
-> +DEFINE_QNODE(qhs_aop, SDX55_SLAVE_AOP, 1, 4);
-> +DEFINE_QNODE(qhs_aoss, SDX55_SLAVE_AOSS, 1, 4);
-> +DEFINE_QNODE(qhs_apss, SDX55_SLAVE_APPSS, 1, 4);
-> +DEFINE_QNODE(qhs_audio, SDX55_SLAVE_AUDIO, 1, 4);
-> +DEFINE_QNODE(qhs_blsp1, SDX55_SLAVE_BLSP_1, 1, 4);
-> +DEFINE_QNODE(qhs_clk_ctl, SDX55_SLAVE_CLK_CTL, 1, 4);
-> +DEFINE_QNODE(qhs_crypto0_cfg, SDX55_SLAVE_CRYPTO_0_CFG, 1, 4);
-> +DEFINE_QNODE(qhs_ddrss_cfg, SDX55_SLAVE_CNOC_DDRSS, 1, 4);
-> +DEFINE_QNODE(qhs_ecc_cfg, SDX55_SLAVE_ECC_CFG, 1, 4);
-> +DEFINE_QNODE(qhs_emac_cfg, SDX55_SLAVE_EMAC_CFG, 1, 4);
-> +DEFINE_QNODE(qhs_imem_cfg, SDX55_SLAVE_IMEM_CFG, 1, 4);
-> +DEFINE_QNODE(qhs_ipa, SDX55_SLAVE_IPA_CFG, 1, 4);
-> +DEFINE_QNODE(qhs_mss_cfg, SDX55_SLAVE_CNOC_MSS, 1, 4);
-> +DEFINE_QNODE(qhs_pcie_parf, SDX55_SLAVE_PCIE_PARF, 1, 4);
-> +DEFINE_QNODE(qhs_pdm, SDX55_SLAVE_PDM, 1, 4);
-> +DEFINE_QNODE(qhs_prng, SDX55_SLAVE_PRNG, 1, 4);
-> +DEFINE_QNODE(qhs_qdss_cfg, SDX55_SLAVE_QDSS_CFG, 1, 4);
-> +DEFINE_QNODE(qhs_qpic, SDX55_SLAVE_QPIC, 1, 4);
-> +DEFINE_QNODE(qhs_sdc1, SDX55_SLAVE_SDCC_1, 1, 4);
-> +DEFINE_QNODE(qhs_snoc_cfg, SDX55_SLAVE_SNOC_CFG, 1, 4, SDX55_MASTER_SNOC_CFG);
-> +DEFINE_QNODE(qhs_spmi_fetcher, SDX55_SLAVE_SPMI_FETCHER, 1, 4);
-> +DEFINE_QNODE(qhs_spmi_vgi_coex, SDX55_SLAVE_SPMI_VGI_COEX, 1, 4);
-> +DEFINE_QNODE(qhs_tcsr, SDX55_SLAVE_TCSR, 1, 4);
-> +DEFINE_QNODE(qhs_tlmm, SDX55_SLAVE_TLMM, 1, 4);
-> +DEFINE_QNODE(qhs_usb3, SDX55_SLAVE_USB3, 1, 4);
-> +DEFINE_QNODE(qhs_usb3_phy, SDX55_SLAVE_USB3_PHY_CFG, 1, 4);
-> +DEFINE_QNODE(qns_aggre_noc, SDX55_SLAVE_ANOC_SNOC, 1, 8, SDX55_MASTER_ANOC_SNOC);
-> +DEFINE_QNODE(qns_snoc_memnoc, SDX55_SLAVE_SNOC_MEM_NOC_GC, 1, 8, SDX55_MASTER_SNOC_GC_MEM_NOC);
-> +DEFINE_QNODE(qxs_imem, SDX55_SLAVE_OCIMEM, 1, 8);
-> +DEFINE_QNODE(srvc_snoc, SDX55_SLAVE_SERVICE_SNOC, 1, 4);
-> +DEFINE_QNODE(xs_pcie, SDX55_SLAVE_PCIE_0, 1, 8);
-> +DEFINE_QNODE(xs_qdss_stm, SDX55_SLAVE_QDSS_STM, 1, 4);
-> +DEFINE_QNODE(xs_sys_tcu_cfg, SDX55_SLAVE_TCU, 1, 8);
-> +
-> +DEFINE_QBCM(bcm_mc0, "MC0", true, &ebi);
-> +DEFINE_QBCM(bcm_sh0, "SH0", true, &qns_llcc);
-> +DEFINE_QBCM(bcm_ce0, "CE0", false, &qxm_crypto);
-> +DEFINE_QBCM(bcm_ip0, "IP0", false, &ipa_core_slave);
-> +DEFINE_QBCM(bcm_pn0, "PN0", false, &qhm_snoc_cfg);
-> +DEFINE_QBCM(bcm_sh3, "SH3", false, &xm_apps_rdwr);
-> +DEFINE_QBCM(bcm_sh4, "SH4", false, &qns_memnoc_snoc, &qns_sys_pcie);
-> +DEFINE_QBCM(bcm_sn0, "SN0", true, &qns_snoc_memnoc);
-> +DEFINE_QBCM(bcm_sn1, "SN1", false, &qxs_imem);
-> +DEFINE_QBCM(bcm_pn1, "PN1", false, &xm_sdc1);
-> +DEFINE_QBCM(bcm_pn2, "PN2", false, &qhm_audio, &qhm_spmi_fetcher1);
-> +DEFINE_QBCM(bcm_sn3, "SN3", false, &xs_qdss_stm);
-> +DEFINE_QBCM(bcm_pn3, "PN3", false, &qhm_blsp1, &qhm_qpic);
-> +DEFINE_QBCM(bcm_sn4, "SN4", false, &xs_sys_tcu_cfg);
-> +DEFINE_QBCM(bcm_pn5, "PN5", false, &qxm_crypto);
-> +DEFINE_QBCM(bcm_sn6, "SN6", false, &xs_pcie);
-> +DEFINE_QBCM(bcm_sn7, "SN7", false, &qnm_aggre_noc, &xm_emac, &xm_emac, &xm_usb3,
-> +	    &qns_aggre_noc);
-> +DEFINE_QBCM(bcm_sn8, "SN8", false, &qhm_qdss_bam, &xm_qdss_etr);
-> +DEFINE_QBCM(bcm_sn9, "SN9", false, &qnm_memnoc);
-> +DEFINE_QBCM(bcm_sn10, "SN10", false, &qnm_memnoc_pcie);
-> +DEFINE_QBCM(bcm_sn11, "SN11", false, &qnm_ipa, &xm_ipa2pcie_slv);
-> +
-> +static struct qcom_icc_bcm *mc_virt_bcms[] = {
-> +	&bcm_mc0,
-> +};
-> +
-> +static struct qcom_icc_node *mc_virt_nodes[] = {
-> +	[MASTER_LLCC] = &llcc_mc,
-> +	[SLAVE_EBI_CH0] = &ebi,
-> +};
-> +
-> +static struct qcom_icc_desc sdx55_mc_virt = {
-
-Can this be const?
-
-> +	.nodes = mc_virt_nodes,
-> +	.num_nodes = ARRAY_SIZE(mc_virt_nodes),
-> +	.bcms = mc_virt_bcms,
-> +	.num_bcms = ARRAY_SIZE(mc_virt_bcms),
-> +};
-> +
-> +static struct qcom_icc_bcm *mem_noc_bcms[] = {
-> +	&bcm_sh0,
-> +	&bcm_sh3,
-> +	&bcm_sh4,
-> +};
-> +
-> +static struct qcom_icc_node *mem_noc_nodes[] = {
-> +	[MASTER_TCU_0] = &acm_tcu,
-> +	[MASTER_SNOC_GC_MEM_NOC] = &qnm_snoc_gc,
-> +	[MASTER_AMPSS_M0] = &xm_apps_rdwr,
-> +	[SLAVE_LLCC] = &qns_llcc,
-> +	[SLAVE_MEM_NOC_SNOC] = &qns_memnoc_snoc,
-> +	[SLAVE_MEM_NOC_PCIE_SNOC] = &qns_sys_pcie,
-> +};
-> +
-> +static struct qcom_icc_desc sdx55_mem_noc = {
-
-const?
-
-> +	.nodes = mem_noc_nodes,
-> +	.num_nodes = ARRAY_SIZE(mem_noc_nodes),
-> +	.bcms = mem_noc_bcms,
-> +	.num_bcms = ARRAY_SIZE(mem_noc_bcms),
-> +};
-> +
-> +static struct qcom_icc_bcm *system_noc_bcms[] = {
-> +	&bcm_ce0,
-> +	&bcm_pn0,
-> +	&bcm_pn1,
-> +	&bcm_pn2,
-> +	&bcm_pn3,
-> +	&bcm_pn5,
-> +	&bcm_sn0,
-> +	&bcm_sn1,
-> +	&bcm_sn3,
-> +	&bcm_sn4,
-> +	&bcm_sn6,
-> +	&bcm_sn7,
-> +	&bcm_sn8,
-> +	&bcm_sn9,
-> +	&bcm_sn10,
-> +	&bcm_sn11,
-> +};
-> +
-> +static struct qcom_icc_node *system_noc_nodes[] = {
-> +	[MASTER_AUDIO] = &qhm_audio,
-> +	[MASTER_BLSP_1] = &qhm_blsp1,
-> +	[MASTER_QDSS_BAM] = &qhm_qdss_bam,
-> +	[MASTER_QPIC] = &qhm_qpic,
-> +	[MASTER_SNOC_CFG] = &qhm_snoc_cfg,
-> +	[MASTER_SPMI_FETCHER] = &qhm_spmi_fetcher1,
-> +	[MASTER_ANOC_SNOC] = &qnm_aggre_noc,
-> +	[MASTER_IPA] = &qnm_ipa,
-> +	[MASTER_MEM_NOC_SNOC] = &qnm_memnoc,
-> +	[MASTER_MEM_NOC_PCIE_SNOC] = &qnm_memnoc_pcie,
-> +	[MASTER_CRYPTO_CORE_0] = &qxm_crypto,
-> +	[MASTER_EMAC] = &xm_emac,
-> +	[MASTER_IPA_PCIE] = &xm_ipa2pcie_slv,
-> +	[MASTER_PCIE] = &xm_pcie,
-> +	[MASTER_QDSS_ETR] = &xm_qdss_etr,
-> +	[MASTER_SDCC_1] = &xm_sdc1,
-> +	[MASTER_USB3] = &xm_usb3,
-> +	[SLAVE_AOP] = &qhs_aop,
-> +	[SLAVE_AOSS] = &qhs_aoss,
-> +	[SLAVE_APPSS] = &qhs_apss,
-> +	[SLAVE_AUDIO] = &qhs_audio,
-> +	[SLAVE_BLSP_1] = &qhs_blsp1,
-> +	[SLAVE_CLK_CTL] = &qhs_clk_ctl,
-> +	[SLAVE_CRYPTO_0_CFG] = &qhs_crypto0_cfg,
-> +	[SLAVE_CNOC_DDRSS] = &qhs_ddrss_cfg,
-> +	[SLAVE_ECC_CFG] = &qhs_ecc_cfg,
-> +	[SLAVE_EMAC_CFG] = &qhs_emac_cfg,
-> +	[SLAVE_IMEM_CFG] = &qhs_imem_cfg,
-> +	[SLAVE_IPA_CFG] = &qhs_ipa,
-> +	[SLAVE_CNOC_MSS] = &qhs_mss_cfg,
-> +	[SLAVE_PCIE_PARF] = &qhs_pcie_parf,
-> +	[SLAVE_PDM] = &qhs_pdm,
-> +	[SLAVE_PRNG] = &qhs_prng,
-> +	[SLAVE_QDSS_CFG] = &qhs_qdss_cfg,
-> +	[SLAVE_QPIC] = &qhs_qpic,
-> +	[SLAVE_SDCC_1] = &qhs_sdc1,
-> +	[SLAVE_SNOC_CFG] = &qhs_snoc_cfg,
-> +	[SLAVE_SPMI_FETCHER] = &qhs_spmi_fetcher,
-> +	[SLAVE_SPMI_VGI_COEX] = &qhs_spmi_vgi_coex,
-> +	[SLAVE_TCSR] = &qhs_tcsr,
-> +	[SLAVE_TLMM] = &qhs_tlmm,
-> +	[SLAVE_USB3] = &qhs_usb3,
-> +	[SLAVE_USB3_PHY_CFG] = &qhs_usb3_phy,
-> +	[SLAVE_ANOC_SNOC] = &qns_aggre_noc,
-> +	[SLAVE_SNOC_MEM_NOC_GC] = &qns_snoc_memnoc,
-> +	[SLAVE_OCIMEM] = &qxs_imem,
-> +	[SLAVE_SERVICE_SNOC] = &srvc_snoc,
-> +	[SLAVE_PCIE_0] = &xs_pcie,
-> +	[SLAVE_QDSS_STM] = &xs_qdss_stm,
-> +	[SLAVE_TCU] = &xs_sys_tcu_cfg,
-> +};
-> +
-> +static struct qcom_icc_desc sdx55_system_noc = {
-
-const?
-
-> +	.nodes = system_noc_nodes,
-> +	.num_nodes = ARRAY_SIZE(system_noc_nodes),
-> +	.bcms = system_noc_bcms,
-> +	.num_bcms = ARRAY_SIZE(system_noc_bcms),
-> +};
-> +
-> +static struct qcom_icc_bcm *ipa_virt_bcms[] = {
-> +	&bcm_ip0,
-> +};
-> +
-> +static struct qcom_icc_node *ipa_virt_nodes[] = {
-> +	[MASTER_IPA_CORE] = &ipa_core_master,
-> +	[SLAVE_IPA_CORE] = &ipa_core_slave,
-> +};
-> +
-> +static struct qcom_icc_desc sdx55_ipa_virt = {
-
-const?
-
-The rest looks good!
-
-Thanks,
-Georgi
