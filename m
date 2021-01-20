@@ -2,82 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 781482FDD01
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 00:40:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1A8C2FDD42
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 00:45:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727085AbhATWLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 17:11:16 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36132 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732512AbhATWFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 17:05:54 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KM4PbY117948;
-        Wed, 20 Jan 2021 16:04:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611180265;
-        bh=l7FPmUmxYIv5xnu29knvZYlZgQZERVnv7zqpQvWksUw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=u4fejAdvldYPvqKGOI+K0QbkPPYBL3uvdhk81TvoLyaOoypEYwmkrnyoDnOv5jT15
-         j37KG9pPgsd7Ii9kqfg1CY9TYUtP3XFduLQ/U/Kq02pCmftOtQRK0Ugsvctg6pplyJ
-         Edof0W8/VUndwQKl6omNFjvEIPXYM2zDci512Vew=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KM4Pt0101576
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 20 Jan 2021 16:04:25 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
- Jan 2021 16:04:24 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 20 Jan 2021 16:04:24 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KM4OTd014736;
-        Wed, 20 Jan 2021 16:04:24 -0600
-Date:   Wed, 20 Jan 2021 16:04:25 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Dave Gerlach <d-gerlach@ti.com>,
-        Sudeep Holla <sudeep.holla@arm.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: Re: [PATCH v3 3/5] arm64: dts: ti: Add support for AM642 SoC
-Message-ID: <20210120220425.dzixsaetrejkk2li@crusader>
-References: <20210120202532.9011-1-d-gerlach@ti.com>
- <20210120202532.9011-4-d-gerlach@ti.com>
+        id S1731592AbhATXoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 18:44:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729585AbhATWWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 17:22:20 -0500
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87453C061757
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 14:21:07 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id r189so23267oih.4
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 14:21:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iuuB/jOlzPElZfMvk5p2UDvJi85zELwSvE3glw8OPIw=;
+        b=e2o98l27C2vaXITzOO4ZXqZ4QA16q+H8vup/3a0lHVCDl1dlwZmg+AwCy/mdauli/1
+         tXjQ3FLWcMf+lEq6r7IPBOZvlP9a4E8IwTwsa/dw6uWlTNk/2shXK+4TDAejDTO46O/N
+         APFPzMl4dfG06AxgPuyBnpMIPZfmnjcEbnSdtSxIy6zj3egxRf1bQvw3+DJ2nMwRa2Tt
+         WKixlcmo1MfHtx5NwsfK5CMZujrUhC0DTwAOUQ5CRTwLvQKdS04LajteEys2UH1Cvgwu
+         1q3pNSTXhFEqanuq8hrhkQ9imy2VvBtou79eF/53c9C0SsfLrDjMTW7ri3vAklH/HL3X
+         aJ8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iuuB/jOlzPElZfMvk5p2UDvJi85zELwSvE3glw8OPIw=;
+        b=hDYFIXCa/53c9qlXhNOgYrqgAAyh9kijoBcF6x9bSRXJDNKsRgU8PRLNDhwNIwLCU9
+         JHcCHqawf7z5yrAf/CUHs8RmzL9HJdb8V/2GIkhwlwFcSG1Fp/9hoqwT95N47lyWsr4C
+         vN5dIUJJ6+REW9ihKXIR9QUTQknQph6uCNq4yZSbZe/iWGvlo/7Ej8NaIeDCWSh4/5bf
+         K7gXsUUSeVqQgmyyN68cV6s/ZDcYicrzDBDa9ZASr5nj8OJgMVgAnzMl6oVQs9N953Q2
+         oZ/Mg+F/raOiMVUHtse9+ZUkkUH15VEvEYHen1pkLxm0mX58DJfIrqeePMzfF5iZRJor
+         F2Ug==
+X-Gm-Message-State: AOAM533lJueeUTdkUib0SkT61SxyZfY2nTeJI4OrsZZ1dJMSvZnTQHiM
+        7DmPJhUDkpDbzDfXr3IBbSzcrA==
+X-Google-Smtp-Source: ABdhPJytfmfxPYq2+G1uFOWDMntzi0gw0jgFPSvVK1kERm0z+jCb/zumi/rIT1FeyHa6hU0hHsiMDg==
+X-Received: by 2002:a05:6808:9a:: with SMTP id s26mr4254499oic.124.1611181266962;
+        Wed, 20 Jan 2021 14:21:06 -0800 (PST)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id h127sm660819oia.28.2021.01.20.14.21.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 14:21:06 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] pinctrl: qcom: TLMM driver for SC8180x
+Date:   Wed, 20 Jan 2021 14:21:11 -0800
+Message-Id: <20210120222114.1609779-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210120202532.9011-4-d-gerlach@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:25-20210120, Dave Gerlach wrote:
-> The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
-> providing advanced system integration to enable applications such as
-> Motor Drives, PLC, Remote IO and IoT Gateways.
+These patches introduces a binding documenting the shared properties of all
+TLMM blocks, then defines the binding for the SC8180x specifically, followed by
+the actual driver.
 
-Hi Sudeep,
-> +
-> +	pmu: pmu {
-> +		compatible = "arm,cortex-a53-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
+Bjorn Andersson (3):
+  dt-bindings: pinctrl: qcom: Define common TLMM binding
+  dt-bindings: pinctrl: qcom: Add sc8180x binding
+  pinctrl: qcom: Add sc8180x TLMM driver
 
-
-If this looks right to you, would be nice to have your reviewed-by :)
+ .../pinctrl/qcom,sc8180x-pinctrl.yaml         |  153 ++
+ .../bindings/pinctrl/qcom,tlmm-common.yaml    |   85 +
+ drivers/pinctrl/qcom/Kconfig                  |    9 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-sc8180x.c        | 1624 +++++++++++++++++
+ 5 files changed, 1872 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sc8180x.c
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.29.2
+
