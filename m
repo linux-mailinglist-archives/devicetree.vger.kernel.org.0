@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A02582FD334
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 15:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98DC62FD332
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 15:54:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388602AbhATOwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 09:52:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51776 "EHLO
+        id S2388330AbhATOwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 09:52:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390061AbhATOX6 (ORCPT
+        with ESMTP id S2390272AbhATOX6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 09:23:58 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9EECC061786
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 06:22:35 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B68C061798
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 06:22:48 -0800 (PST)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1l2ENH-0001dF-CT; Wed, 20 Jan 2021 15:22:19 +0100
+        id 1l2ENH-0001dG-CS; Wed, 20 Jan 2021 15:22:19 +0100
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1l2ENG-0007k2-93; Wed, 20 Jan 2021 15:22:18 +0100
+        id 1l2ENG-0007kC-A5; Wed, 20 Jan 2021 15:22:18 +0100
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -32,16 +32,16 @@ To:     Mark Rutland <mark.rutland@arm.com>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>
 Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Robin van der Gracht <robin@protonic.nl>,
         devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
         dri-devel@lists.freedesktop.org
-Subject: [PATCH v1 5/7] ARM: dts: imx6dl-prtvt7: Remove backlight enable gpio
-Date:   Wed, 20 Jan 2021 15:22:15 +0100
-Message-Id: <20210120142217.29652-6-o.rempel@pengutronix.de>
+Subject: [PATCH v1 6/7] ARM: dts: imx6dl-prtvt7: fix PWM cell count for the backlight node.
+Date:   Wed, 20 Jan 2021 15:22:16 +0100
+Message-Id: <20210120142217.29652-7-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210120142217.29652-1-o.rempel@pengutronix.de>
 References: <20210120142217.29652-1-o.rempel@pengutronix.de>
@@ -55,47 +55,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The backlight power is controlled through the reg_bl_12v0 regulator.
+At some point PWM cell count was changed, but it didn't triggered any
+error, since this DT was overwriting "#pwm-cells".
+To make sure, we are in sync with the kernel driver, remove this
+property and fix the pwm consumer.
 
-Co-Developed-by: Robin van der Gracht <robin@protonic.nl>
-Signed-off-by: Robin van der Gracht <robin@protonic.nl>
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- arch/arm/boot/dts/imx6dl-prtvt7.dts | 9 ---------
- 1 file changed, 9 deletions(-)
+ arch/arm/boot/dts/imx6dl-prtvt7.dts | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/arch/arm/boot/dts/imx6dl-prtvt7.dts b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-index 63ae2065834c..fe8df03c8bfb 100644
+index fe8df03c8bfb..35d06ba93c88 100644
 --- a/arch/arm/boot/dts/imx6dl-prtvt7.dts
 +++ b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-@@ -21,14 +21,11 @@ memory@10000000 {
+@@ -21,7 +21,7 @@ memory@10000000 {
  
  	backlight_lcd: backlight-lcd {
  		compatible = "pwm-backlight";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_backlight>;
- 		pwms = <&pwm1 0 500000>;
+-		pwms = <&pwm1 0 500000>;
++		pwms = <&pwm1 0 500000 0>;
  		brightness-levels = <0 20 81 248 1000>;
  		default-brightness-level = <20>;
  		num-interpolated-steps = <21>;
- 		power-supply = <&reg_bl_12v0>;
--		enable-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
- 	};
+@@ -325,7 +325,6 @@ &ipu1_di0_disp0 {
+ };
  
- 	display {
-@@ -367,12 +364,6 @@ MX6QDL_PAD_CSI0_DAT6__AUD3_TXFS		0x130b0
- 		>;
- 	};
- 
--	pinctrl_backlight: backlightgrp {
--		fsl,pins = <
--			MX6QDL_PAD_DISP0_DAT7__GPIO4_IO28	0x1b0b0
--		>;
--	};
--
- 	pinctrl_can1phy: can1phy {
- 		fsl,pins = <
- 			/* CAN1_SR */
+ &pwm1 {
+-	#pwm-cells = <2>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pwm1>;
+ 	status = "okay";
 -- 
 2.30.0
 
