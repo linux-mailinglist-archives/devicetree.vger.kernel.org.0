@@ -2,119 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 317512FD47F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 16:48:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B67A2FD54E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:22:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732650AbhATPsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 10:48:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59186 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390990AbhATPs0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 10:48:26 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D31F823381;
-        Wed, 20 Jan 2021 15:47:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611157666;
-        bh=2MocRlRCh66dE3X3CN+d7WGNSYOcv0cdbsXGp0jK/TI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=G7g8/XwFmDSefIYQ0/hM5DG32luuviYnhxsvGyyvqH71drjwgOnxl7cnq6qSETStC
-         rgI/qBfGvFezKi/tXapt2RaP5X88f8g4Dey5uctSOrl24zJVMoru1W+KwuI5dWXwj1
-         074UBRLKcvc9cYYLY4vvyJYdKeivIIU9uTo24gArf5cGeisFOOhO/obuB3uLPo+j0S
-         3QI5hO4J0eR2275CxpTFc4VJzRdJ0w9MC5roUONYAOjGktXjA+zVDehx6ByFTjw0kc
-         7Oth2N+RPvveGHovy8Jrtf5S38e4hz0rQ80CSNMKTL+6rGCUDC7jETT1Z0o8POUZwa
-         w+lKYjI19qjTQ==
-Received: by mail-ed1-f46.google.com with SMTP id p22so26282235edu.11;
-        Wed, 20 Jan 2021 07:47:45 -0800 (PST)
-X-Gm-Message-State: AOAM532LVsSG+M5mvFEs8qO89GP5yue/+SN+8hLc/xJu5p/d5qjNtcds
-        bTi1sgAVdfTjLEUHwuv1O/eBymILXSKh9LMx9A==
-X-Google-Smtp-Source: ABdhPJyv5rSn8gpQeUE47l+JvQKQMeSPtNSNnL82x0WlBAb+tiv+uDDVZYOK9w4R3yR9mLRvZq3e6YHT2ajWnLZroDo=
-X-Received: by 2002:a50:e78b:: with SMTP id b11mr7795479edn.165.1611157664395;
- Wed, 20 Jan 2021 07:47:44 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1610431620.git.viresh.kumar@linaro.org> <facca66aba8070ef8bdb075ec442287c81e7d23e.1610431620.git.viresh.kumar@linaro.org>
- <c77e66ee-5553-123a-7ec7-bf3d9e3cebd1@gmail.com>
-In-Reply-To: <c77e66ee-5553-123a-7ec7-bf3d9e3cebd1@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 20 Jan 2021 09:47:32 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+NkV1-yrWKrP+OAChekMV81h2hk12xADkeGUvmwi9DgQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+NkV1-yrWKrP+OAChekMV81h2hk12xADkeGUvmwi9DgQ@mail.gmail.com>
-Subject: Re: [PATCH V4 2/3] scripts: dtc: Build fdtoverlay tool
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        id S1733050AbhATPxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 10:53:20 -0500
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:37061 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389590AbhATPug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 10:50:36 -0500
+Received: by mail-oi1-f173.google.com with SMTP id r189so15823822oih.4;
+        Wed, 20 Jan 2021 07:50:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yYbx2xe32XFhOVL3J3Pp49OQN2yzd40W6CTKKFcuuLs=;
+        b=eD3/44yLzTVrioqZqsyF6ywRSp8JBt8P5yn2Ipzxx7mEjbPwh2iYGb3ydtACHfUrBb
+         a0glNwwxuWGfk/7qVdVFQbMt+QOZxZN7ba0vftjJPi4HywyqWCWtC5dyCXSxlJy01/10
+         I83uo3i2NG64SIBNqVunnOBeGfRAecMjx8Z9i8OARhonZ/T6n+sfaehEYh3aFVgeDVBv
+         /fVHPtHA+3RlBGHk35gxuOMjzJvZFnqLBpL0lZ1WPGNUgJHQrZUX52MbZvHYqUSUmzBf
+         K4oEwPSJNAQ4fWVqmhLZlpMg8syHRap+OS3Dr3zOJl5q98orDOkxFNZh6NfqtmE250Iy
+         RBXA==
+X-Gm-Message-State: AOAM531+vsozdglEhQX/VbdllQGtBVUh7O9uiGZvqWRpQtt2NJuN9AkM
+        1AFnQgMPjESznEZE1jh25mmf7kdHKw==
+X-Google-Smtp-Source: ABdhPJwE5LbLqu6tO4VBPYKT84ed6pwNWrxXdXwW/G4xSoU8ui32yzPJo+C9nCvqTiNUldKGUoGmcg==
+X-Received: by 2002:aca:b2c3:: with SMTP id b186mr3318985oif.135.1611157795183;
+        Wed, 20 Jan 2021 07:49:55 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 186sm424754ood.6.2021.01.20.07.49.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 07:49:54 -0800 (PST)
+Received: (nullmailer pid 213140 invoked by uid 1000);
+        Wed, 20 Jan 2021 15:49:52 -0000
+Date:   Wed, 20 Jan 2021 09:49:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Philip Chen <philipchen@chromium.org>
+Cc:     Guenter Roeck <groeck@chromium.org>, dianders@chromium.org,
+        Benson Leung <bleung@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, swboyd@chromium.org,
+        dmitry.torokhov@gmail.com, LKML <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: input: Create macros for cros-ec
+ keymap
+Message-ID: <20210120154952.GA212597@robh.at.kernel.org>
+References: <20210115143555.v6.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210115143555.v6.1.Iaa8a60cf2ed4b7ad5e2fbb4ad76a1c600ee36113@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 12:28 PM Frank Rowand <frowand.list@gmail.com> wrote:
->
-> Hi Viresh,
->
-> I made these comments in the v2 patch series.  I am copying them here since
-> this is the current version.
->
-> On 1/12/21 2:29 AM, Viresh Kumar wrote:
-> > We will start building overlays for platforms soon in the kernel and
-> > would need fdtoverlay going forward. Lets start building it.
-> >
-> > The fdtoverlay program applies (or merges) one ore more overlay dtb
-> > blobs to a base dtb blob. The kernel build system would later use
-> > fdtoverlay to generate the overlaid blobs based on platform specific
-> > configurations.
-> >
-> > Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-> > ---
-> >  scripts/dtc/Makefile | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-> > index 4852bf44e913..5f19386a49eb 100644
-> > --- a/scripts/dtc/Makefile
-> > +++ b/scripts/dtc/Makefile
-> > @@ -1,13 +1,17 @@
-> >  # SPDX-License-Identifier: GPL-2.0
-> >  # scripts/dtc makefile
-> >
-> > -hostprogs-always-$(CONFIG_DTC)               += dtc
-> > +hostprogs-always-$(CONFIG_DTC)               += dtc fdtoverlay
-> >  hostprogs-always-$(CHECK_DT_BINDING) += dtc
-> >
-> >  dtc-objs     := dtc.o flattree.o fstree.o data.o livetree.o treesource.o \
-> >                  srcpos.o checks.o util.o
-> >  dtc-objs     += dtc-lexer.lex.o dtc-parser.tab.o
-> >
->
-> # The upstream project builds libfdt as a separate library.  We are choosing to
-> # instead directly link the libfdt object files into fdtoverly
->
-> > +libfdt-objs  := fdt.o fdt_ro.o fdt_wip.o fdt_sw.o fdt_rw.o fdt_strerror.o fdt_empty_tree.o fdt_addresses.o fdt_overlay.o
-> > +libfdt               = $(addprefix libfdt/,$(libfdt-objs))
-> > +fdtoverlay-objs      := $(libfdt) fdtoverlay.o util.o
-> > +
-> >  # Source files need to get at the userspace version of libfdt_env.h to compile
-> >  HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
-> >
-> >
->
-> In general, I am a proponent of using shared libraries (which the upstream project
-> builds by default) because if a security bug in the library is fixed, it is fixed
-> for all users of the library.
->
-> In this specific case, I actually prefer the implementation that the patch provides
-> (directly linking the library object files into fdtoverlay, which uses the library)
-> because it is the only user of the library _and_ fdtoverlay will not inadvertently
-> use the system wide libfdt if it happens to be installed (as it is on my system).
->
-> Any thoughts on this Rob?
+On Fri, 15 Jan 2021 14:36:15 -0800, Philip Chen wrote:
+> In Chrome OS, the keyboard matrix can be split to two groups:
+> 
+> The keymap for the top row keys can be customized based on OEM
+> preference, while the keymap for the other keys is generic/fixed
+> across boards.
+> 
+> This patch creates marcos for the keymaps of these two groups, making
+> it easier to reuse the generic portion of keymap when we override the
+> keymap in the board-specific dts for custom top row design.
+> 
+> Signed-off-by: Philip Chen <philipchen@chromium.org>
+> ---
+> 
+> (no changes since v2)
+> 
+> Changes in v2:
+> - Rename CROS_STD_NON_TOP_ROW_KEYMAP to CROS_STD_MAIN_KEYMAP
+> 
+>  include/dt-bindings/input/cros-ec-keyboard.h | 103 +++++++++++++++++++
+>  1 file changed, 103 insertions(+)
+>  create mode 100644 include/dt-bindings/input/cros-ec-keyboard.h
+> 
 
-I agree. No point in complicating the build to do a library.
 
-Rob
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
