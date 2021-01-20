@@ -2,81 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FDA62FC81E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 03:41:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9C2D2FC923
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 04:38:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728327AbhATCj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jan 2021 21:39:59 -0500
-Received: from mga06.intel.com ([134.134.136.31]:3913 "EHLO mga06.intel.com"
+        id S1731794AbhATC3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jan 2021 21:29:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46618 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387494AbhATCjR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Jan 2021 21:39:17 -0500
-IronPort-SDR: mxgiDw+tuMDeHbQB/72JgGLpHagRZOB5POz7dtVacr+C7Txl6hbpBy5CkTnFsF4APipp4u1g/a
- NCrvlJiigNPA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9869"; a="240572463"
-X-IronPort-AV: E=Sophos;i="5.79,359,1602572400"; 
-   d="scan'208";a="240572463"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2021 18:37:28 -0800
-IronPort-SDR: Zf119pcf4SzdD8zILodBx/X8amBPPZOTguiV0ZLpdjZZQ36bGoKJg+iArkIY9cx15zg5SnzjF1
- vEapR4FdF4Wg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,359,1602572400"; 
-   d="scan'208";a="466923220"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga001.fm.intel.com with ESMTP; 19 Jan 2021 18:37:28 -0800
-Received: from [10.214.172.191] (unknown [10.214.172.191])
-        by linux.intel.com (Postfix) with ESMTP id 25C1F5807EA;
-        Tue, 19 Jan 2021 18:37:24 -0800 (PST)
-Subject: Re: [PATCH v11 0/2] Add Intel LGM SoC DMA support
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@intel.com, chuanhua.lei@linux.intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        malliamireddy009@gmail.com, rtanwar@maxlinear.com,
-        lchuanhua@maxlinear.com
-References: <cover.1610703653.git.mallikarjunax.reddy@linux.intel.com>
- <20210117055714.GJ2771@vkoul-mobl>
-From:   "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
-Message-ID: <f624ed42-f1e8-6309-2439-09f1e496015d@linux.intel.com>
-Date:   Wed, 20 Jan 2021 10:37:23 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1730013AbhATB2c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Jan 2021 20:28:32 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5C1AD22241;
+        Wed, 20 Jan 2021 01:26:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611106001;
+        bh=3G3E7KWC6d4c7VoJN3B4ZwtGBHWj7WRyCTjKW4mNPCs=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Hu5v67N1ncDAIBT7W+wknGyzXsQY3x6CUKXJ4EgI4cvMv08rmkqUPjOpub7oXMS6z
+         LefJZT0JVLbVposI1Jcw8K76BRwwWdxdxWSw2y8L7HTtDg217/dOJffYTmWhPvdKOY
+         r9+24L8XN4gmI1FMU/o/nTW/bMsEFv1AAaQd2L6wOZBl+FMyKSE7fTeWBrIIRYfUJR
+         uCAIcKmijQAJO8gIBOTYdtCA1JJh8QMfpsM6SdFX5OTSRPDsal90Gxax03j7XqTORS
+         SeZYBWmrA+uQyWdxJGEj06R/3sq4ZU89hQAVOObdQvKXPMOnMeR1eL2WkTN2DSALB/
+         Ra1yb6LHOyqPQ==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Sagar Shrikant Kadam <sagar.kadam@sifive.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.10 29/45] dts: phy: fix missing mdio device and probe failure of vsc8541-01 device
+Date:   Tue, 19 Jan 2021 20:25:46 -0500
+Message-Id: <20210120012602.769683-29-sashal@kernel.org>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210120012602.769683-1-sashal@kernel.org>
+References: <20210120012602.769683-1-sashal@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210117055714.GJ2771@vkoul-mobl>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ok Vinod.
+From: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
 
-Thanks,
-Mallikarjuna reddy A
+[ Upstream commit be969b7cfbcfa8a835a528f1dc467f0975c6d883 ]
 
-On 1/17/2021 1:57 PM, Vinod Koul wrote:
-> On 15-01-21, 17:56, Amireddy Mallikarjuna reddy wrote:
->> Add DMA controller driver for Lightning Mountain (LGM) family of SoCs.
->>
->> The main function of the DMA controller is the transfer of data from/to any
->> peripheral to/from the memory. A memory to memory copy capability can also
->> be configured. This ldma driver is used for configure the device and channnels
->> for data and control paths.
->>
->> These controllers provide DMA capabilities for a variety of on-chip
->> devices such as SSC, HSNAND and GSWIP (Gigabit Switch IP).
->>
->> -------------
->> Future Plans:
->> -------------
->> LGM SOC also supports Hardware Memory Copy engine.
->> The role of the HW Memory copy engine is to offload memory copy operations
->> from the CPU.
-> ??
->
-> Please send updates against already applied patches and not an updated
-> series!
->
+HiFive unleashed A00 board has VSC8541-01 ethernet phy, this device is
+identified as a Revision B device as described in device identification
+registers. In order to use this phy in the unmanaged mode, it requires
+a specific reset sequence of logical 0-1-0-1 transition on the NRESET pin
+as documented here [1].
+
+Currently, the bootloader (fsbl or u-boot-spl) takes care of the phy reset.
+If due to some reason the phy device hasn't received the reset by the prior
+stages before the linux macb driver comes into the picture, the MACB mii
+bus gets probed but the mdio scan fails and is not even able to read the
+phy ID registers. It gives an error message:
+
+"libphy: MACB_mii_bus: probed
+mdio_bus 10090000.ethernet-ffffffff: MDIO device at address 0 is missing."
+
+Thus adding the device OUI (Organizationally Unique Identifier) to the phy
+device node helps to probe the phy device.
+
+[1]: VSC8541-01 datasheet:
+https://www.mouser.com/ds/2/523/Microsemi_VSC8541-01_Datasheet_10496_V40-1148034.pdf
+
+Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+index 4a2729f5ca3f0..60846e88ae4b1 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+@@ -88,6 +88,7 @@ &eth0 {
+ 	phy-mode = "gmii";
+ 	phy-handle = <&phy0>;
+ 	phy0: ethernet-phy@0 {
++		compatible = "ethernet-phy-id0007.0771";
+ 		reg = <0>;
+ 	};
+ };
+-- 
+2.27.0
+
