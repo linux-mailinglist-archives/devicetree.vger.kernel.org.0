@@ -2,79 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DF182FD6B1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:18:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 150722FD6BA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:18:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390755AbhATRQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 12:16:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60538 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404143AbhATRPy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 12:15:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E3AA22CE3;
-        Wed, 20 Jan 2021 17:15:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1611162910;
-        bh=icT6ldp0FVZTNs/72NOyreuoBFHN73VbBxC41uUl4iw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q1+iWkrHj2DeduiQT4II0hNWE4A2UXg1nQdfTu/u7O3f4tEzJn6+N26uCzqz1QNL5
-         dEs8KQGQBQ6KYihWINdXaRZc46J0XM87o8/TVEufwLkVY6jTuYCN+pXpg/EnlX8hHi
-         WghRafhypYgnsxnDnU7wfeIloMACTvloNeI8wcGI=
-Date:   Wed, 20 Jan 2021 18:15:08 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Al Cooper <alcooperx@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 2/2] serial: 8250: Add new 8250-core based Broadcom
- STB driver
-Message-ID: <YAhlHL67rDmWSWdr@kroah.com>
-References: <20210115211543.33563-1-alcooperx@gmail.com>
- <20210115211543.33563-3-alcooperx@gmail.com>
- <CAHp75VdQPQK8jTF3QDKx6mF1QzOg-qiuHrTiojnWn7GskokfoA@mail.gmail.com>
- <71d58a3e-2707-69d7-8074-c67235912e06@gmail.com>
- <CAHp75VfNumFBwbytCuA_YK1w-+kN20vRF+GhogtU+DDG3EB_7g@mail.gmail.com>
- <YAhiw+6UiUplNcLq@kroah.com>
- <CAHp75Vf-ZmPuOjRYwNbURJXP3g_-m1LUDbsWtKHMvP49jseprw@mail.gmail.com>
+        id S1729629AbhATRRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 12:17:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60872 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404173AbhATRQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 12:16:59 -0500
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA780C061575
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 09:16:18 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id e67so11563483ybc.12
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 09:16:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b9wI5aOMK4QP7qEbl5k5jkAB+hpflm5UBU0G8oOa8LA=;
+        b=bHQw89wbOV7Fyq9pJVIClifJ4R4XL+mAjZePqAM5wS6hckVNC8Gj1g5zDKKt2crNAb
+         ZP0B5JPFtcowlxGooOulgculUU1EEoLo9TdPArv1F7VN9FD6sWiM4BBBc7NLN6MSUDIZ
+         dPd8BuXJlNoZ7a3hIiXrfp2YY4gLoh/RMG4QlFl7HlenzNWXLFN4kQCMbglhkepu9i8Y
+         GHZQ5He01i/kQQrbTRkI5/EBUWxeyEnsgs6r1vR6sgJlflH8Suj/FHuFnt2ZK7UTaJKo
+         TdjskkEhZH83qZUxy1sCRbqhm7U+KL/fWL6LAtZs2bpJU/ViOyhmRQrwAfCF2kS86cWV
+         /odg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b9wI5aOMK4QP7qEbl5k5jkAB+hpflm5UBU0G8oOa8LA=;
+        b=oTc4lPcM42+ZkW90Gs66tY8Cf9agf52xcLhx2HBXwxojdRlqpSkrSUuZPxCo8umfFL
+         BbWRM2EiKIXeZ7sqk/fXYkdJT4VrlVd/vyCIhMkwSYfIUcnMduVPW9rjcf4jcnKWRK7E
+         2eiuIo7Y0md+gerNEBWJOTGnRUNWOmJaaBJ09XUPuAnu+ZvAgi9Tehs02q6hXCAK00BZ
+         obg7j40efu+Ur6ZxZY080wL5vDSAN2Jl5SH1QHqdO3BoOyecQNJY/uPXZcddi1RMIbsy
+         COpa0BCC1usPG+9VLKhoGnas7I6hoERYPYPdkHY/2nEe/Uh4rJBJIOCVSTuFO9H/ae7G
+         7akw==
+X-Gm-Message-State: AOAM531Zel4obLy3es0MjDLiNZjJWV37iaqlMbG014G6G5GjUAeVNwac
+        nkVAFDCT6dS9rGgPQtrTLTx6P5qsNkUnhjT1OTyKnQ==
+X-Google-Smtp-Source: ABdhPJwi1CKgasHlPWQ/KwwGM6Bb7GEe0fwT8QqGkXr5UjjZ4xi0ClwNOMIzy1N4g0aOxnt8VzEuLM+Y07LqYB0YZRE=
+X-Received: by 2002:a25:288:: with SMTP id 130mr15326444ybc.412.1611162977999;
+ Wed, 20 Jan 2021 09:16:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vf-ZmPuOjRYwNbURJXP3g_-m1LUDbsWtKHMvP49jseprw@mail.gmail.com>
+References: <20201218210750.3455872-1-saravanak@google.com>
+ <CAMuHMdUpZELgL4qUCs1VH0UUeckpTwqYLrMy2ETPzrpuUwkLnQ@mail.gmail.com> <CAMuHMdWEOpbh8xS9W09xudpoym8=J4UzuWTDqF3L+yDuU3k2ZQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdWEOpbh8xS9W09xudpoym8=J4UzuWTDqF3L+yDuU3k2ZQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 20 Jan 2021 09:15:42 -0800
+Message-ID: <CAGETcx8ssLeiHYZcHzXC-mUd=KGxi=pZQqkt8iwcHY-EYOcCjw@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Add device link support for interrupts
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 07:09:46PM +0200, Andy Shevchenko wrote:
-> On Wed, Jan 20, 2021 at 7:05 PM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> > On Wed, Jan 20, 2021 at 06:47:52PM +0200, Andy Shevchenko wrote:
-> > > On Tue, Jan 19, 2021 at 8:16 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
-> > > > On 1/19/2021 7:21 AM, Andy Shevchenko wrote:
-> > > > > On Fri, Jan 15, 2021 at 11:19 PM Al Cooper <alcooperx@gmail.com> wrote:
-> 
-> ...
-> 
-> > > > Not sure this makes sense, given that the DMA hardware that was added to
-> > > > this UART block is only used by the UART block and no other pieces of HW
-> > > > in the system, nor will they ever be. Not sure it makes sense to pay the
-> > > > cost of an extra indirection and subsystem unless there are at least two
-> > > > consumers of that DMA hardware to warrant modeling it after a dmaengine
-> > > > driver. I also remember that Al researched before whether 8250_dma.c
-> > > > could work, and came to the conclusion that it would not, but I will let
-> > > > him comment on the specifics.
+On Wed, Jan 20, 2021 at 6:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Saravana,
+>
+> On Wed, Jan 20, 2021 at 10:53 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Fri, Dec 18, 2020 at 10:11 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > Add support for creating device links out of interrupts property.
 > > >
-> > > I see. In any case I still believe that the driver can be shrinked by
-> > > a notable amount of lines.
+> > > Cc: Marc Zyngier <maz@kernel.org>
+> > > Cc: Kevin Hilman <khilman@baylibre.com>
+> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
 > >
-> > Patches always gladly accepted :)
-> 
-> Or a good review... :-)
+> > Thanks for your patch!
+> >
+> > This does not seem to add all links.  I see links being created to the
+> > secondary interrupt controller (e61c0000 "renesas,irqc"), but not to
+> > the primary interrupt controller (GIC)
+> >
+> > Which is good, as the GIC driver is not a platform_driver, and thus
+> > creating links would break everything ;-)
+>
+> of_link_to_phandle() ignores device nodes where OF_POPULATED
+> is set, and of_irq_init() sets that flag.  Hence the GIC is ignored.
 
-Please do so!
+Geert,
+
+Yes, I know :)  I wrote it that way for GIC and some of the early
+devices that can't use the driver core. And as Marc said in the other
+email, it looks like GIC is going to be stuck as a non-device for a
+while. But this patch and others that'll follow are all set up for
+allowing non-root interrupt controllers to be implemented as platform
+devices (or <anybus> device).
+
+-Saravana
