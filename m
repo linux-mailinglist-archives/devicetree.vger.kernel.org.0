@@ -2,101 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7272FCC9F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7602C2FCCD3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 09:40:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730144AbhATIVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 03:21:48 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:10949 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730889AbhATIVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:21:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1611130876; x=1642666876;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=VNLrzjgoabE8/kewp0resFlpEskWy7DNy5ntsw+R3ns=;
-  b=C+bMEw3KE+TeS8GObf02kFYdQNzqVFVoymTZCzcBFsu4k/9z9WTyN1d9
-   exwy4P1FpgNizmU/LOtS/HO7QprfxAojQoWlwqgIeErL3gH9qMPiz1UOQ
-   GBQ5PCp+GXCvqOLnb0UbmqqfKAKtVZ/vLc5pUdG67NOuEEp1lcBTLpZPH
-   tZoGJc2yGvQs8GTFojd9vsFWBA49u2mp44fSXf9lf04XF3YU1ZAuXG1vu
-   lEcQBy7lGrvaAI/w3x6M73bdbaxr9lIFZjvi3gzMZilRY4uYdQmU3+MzM
-   VmS1JhsKwle7PWAD7NoD89dngWb6xNTJpU8mc/NDBSSdH0I01D1gjAh6j
-   Q==;
-IronPort-SDR: ej0lc+9QZlL8fcZ2/QYpWfNXzGIXe3o0KeV7cJMDx7ASJ9xUVYIYPSni6FXDx5hHyrCYNlrfGB
- FKZrLjK7axkgUbwLJz41hCislhGUV8XsgPTpePbbhJ6DbbgECkTgauxxs1LkliM53oqjaHa/Z5
- OE1hJrZ0SojkPXhtyb1Z1hLHrJbUZENR9uloFiJrvo0wYDo11aMky1EvXF+v17mMNN+R1YpBBp
- xnON19sKb9NYjau9YRTcLp0VhDPkc1DseaOaTrqevfIONlFhLKdI+GLRW+dHEIC30aoxHbAgrg
- n8A=
-X-IronPort-AV: E=Sophos;i="5.79,360,1602572400"; 
-   d="scan'208";a="106072383"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Jan 2021 01:19:37 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 20 Jan 2021 01:19:35 -0700
-Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Wed, 20 Jan 2021 01:19:33 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v4 3/3] arm64: dts: reset: add microchip sparx5 switch reset driver
-Date:   Wed, 20 Jan 2021 09:19:21 +0100
-Message-ID: <20210120081921.3315847-4-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210120081921.3315847-1-steen.hegelund@microchip.com>
-References: <20210120081921.3315847-1-steen.hegelund@microchip.com>
+        id S1730980AbhATIfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 03:35:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33196 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730950AbhATIec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 03:34:32 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB60FC0613CF
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:33:51 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id y187so2028406wmd.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 00:33:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=kf68twK2VJqQ9rG90iy/Ey4koGBofqxtFe6BH41DE2U=;
+        b=ugv47AZmMA+xT9rztkNUf1l1ZWJmiwwKfuZcduQNMyAoiXL1mZ4978OKPr3LEWr7vz
+         KNR0D99j9aUzgV+TNPAvrOBbhn7PIvz7iQEtTR8K7v2JE6FekzIw1fz+7P8nFv0cCABa
+         DFK85L7PJVYKs3/kbL4eFwcH8lwz93GswENPw+JUpWOI4HzhyrwL1SkCK8duQCmGJj/J
+         Zykl2cLd1X48gVne+VuwLslmUSSTeNwdoTkcr/PaN0H1vjdySHEBNArm4zAIzxcmNa3P
+         /oxAmhso1coeEuToHfQMLoUafrOJ1eonMC542hB3+fycgWMDpuMVbNSJBoZp6Aee3GnB
+         yUwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=kf68twK2VJqQ9rG90iy/Ey4koGBofqxtFe6BH41DE2U=;
+        b=Bbj7kgbetzYhm0V6u7HP4snXjqAotxiZfPPTb5m9+wdyDHGTi3MGM0Bs36Myok1rii
+         Fydb9g5iKzVqYneovmspWLDEE8NKatBcIqOjr+pMnZVkMX8tgSsuBiZ/tX0pefrETKSo
+         nA3HNLY8Z6m0x6vfKJ2l4/j/sNitOWNwGYMuGWq2Mw4TYbsEdsblTNdvtSusQh7atibV
+         tpDK0U3gFahsDK4jwqB1DUDKxW7GwagXb9IBOvx7I2Eh/QvBjmku2z/2a9vfmElajvHN
+         dSVenOIibTzrI8PG+2RP3CJot6Yg+uU9ZNPKrnR19zBAT3Ul+R+SNir+ogla5qIrZ6nY
+         TD9A==
+X-Gm-Message-State: AOAM530Qm9Jk2FEPPeAP3dTr2hM5N7QhKpTVooCDn4X05MPxyKS11oUP
+        6RR9P2Bmle+T+YCLvQlbmVesA4S+gRJmIOyV
+X-Google-Smtp-Source: ABdhPJzEiyHU50818frV69xIg7wQLT2H4SHkDbjF641qDAzxYiCtZvuG6UsYBlE6su9suTh5V1Du6g==
+X-Received: by 2002:a1c:6005:: with SMTP id u5mr3248278wmb.122.1611131630513;
+        Wed, 20 Jan 2021 00:33:50 -0800 (PST)
+Received: from dell ([91.110.221.158])
+        by smtp.gmail.com with ESMTPSA id h13sm2480169wrm.28.2021.01.20.00.33.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 00:33:49 -0800 (PST)
+Date:   Wed, 20 Jan 2021 08:33:48 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 3/7] mfd: Add MFD driver for ATC260x PMICs
+Message-ID: <20210120083348.GM4903@dell>
+References: <cover.1610534765.git.cristian.ciocaltea@gmail.com>
+ <81546cf3265f51374a1b38b9e801003fd6c3e298.1610534765.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <81546cf3265f51374a1b38b9e801003fd6c3e298.1610534765.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This provides reset driver support for the Microchip Sparx5 PCB134 and
-PCB135 reference boards.
+On Wed, 13 Jan 2021, Cristian Ciocaltea wrote:
 
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+> Add initial support for the Actions Semi ATC260x PMICs which integrates
+> Audio Codec, Power management, Clock generation and GPIO controller
+> blocks.
+> 
+> For the moment this driver only supports Regulator, Poweroff and Onkey
+> functionalities for the ATC2603C and ATC2609A chip variants.
+> 
+> Since the PMICs can be accessed using both I2C and SPI buses, the
+> following driver structure has been adopted:
+> 
+>            -----> atc260x-core.c (Implements core functionalities)
+>           /
+> ATC260x --------> atc260x-i2c.c (Implements I2C interface)
+>           \
+>            -----> atc260x-spi.c (Implements SPI interface - TODO)
+> 
+> Co-developed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> ---
+> Changes in v5:
+>  - None
+> 
+> Changes in v4 - according to Lee's review:
+>  - Replaced 'regmap_add_irq_chip()' with 'devm' counterpart and dropped
+>    'atc260x_device_remove()' and 'atc260x_i2c_remove()' functions
+>  - Moved kerneldoc sections from prototypes to real functions
+>  - Placed single line entries on one line for mfd_cells[]
+>  - Several other minor changes
+> 
+> Changes in v3:
+>  - Fixed the issues reported by Lee's kernel test robot:
+>    WARNING: modpost: missing MODULE_LICENSE() in drivers/mfd/atc260x-core.o
+>    >> FATAL: modpost: drivers/mfd/atc260x-i2c: sizeof(struct i2c_device_id)=24 is
+>       not a modulo of the size of section __mod_i2c__<identifier>_device_table=588.
+>    >> Fix definition of struct i2c_device_id in mod_devicetable.h
+>  - Dropped the usage of '.of_compatible' fields in {atc2603c,atc2609a}_mfd_cells[]
+>  - Added 'Co-developed-by' tag in commit message and dropped [cristian: ...] line
+> 
+>  drivers/mfd/Kconfig                  |  18 ++
+>  drivers/mfd/Makefile                 |   3 +
+>  drivers/mfd/atc260x-core.c           | 293 +++++++++++++++++++++++++
+>  drivers/mfd/atc260x-i2c.c            |  64 ++++++
+>  include/linux/mfd/atc260x/atc2603c.h | 281 ++++++++++++++++++++++++
+>  include/linux/mfd/atc260x/atc2609a.h | 308 +++++++++++++++++++++++++++
+>  include/linux/mfd/atc260x/core.h     |  58 +++++
+>  7 files changed, 1025 insertions(+)
+>  create mode 100644 drivers/mfd/atc260x-core.c
+>  create mode 100644 drivers/mfd/atc260x-i2c.c
+>  create mode 100644 include/linux/mfd/atc260x/atc2603c.h
+>  create mode 100644 include/linux/mfd/atc260x/atc2609a.h
+>  create mode 100644 include/linux/mfd/atc260x/core.h
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 380281f312d8..4edbb9fcdce0 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -132,9 +132,17 @@ mux: mux-controller {
- 			};
- 		};
- 
--		reset@611010008 {
--			compatible = "microchip,sparx5-chip-reset";
--			reg = <0x6 0x11010008 0x4>;
-+		gcb_ctrl: syscon@611010000 {
-+			compatible = "microchip,sparx5-gcb-syscon", "syscon";
-+			reg = <0x6 0x11010000 0x10000>;
-+		};
-+
-+		reset: reset-controller@0 {
-+			compatible = "microchip,sparx5-switch-reset";
-+			reg = <0x6 0x0 0x0>;
-+			#reset-cells = <1>;
-+			cpu-syscon = <&cpu_ctrl>;
-+			gcb-syscon = <&gcb_ctrl>;
- 		};
- 
- 		uart0: serial@600100000 {
+[...]
+
+> +/**
+> + * atc260x_device_probe(): Probe a configured ATC260x device
+> + *
+> + * @atc260x: ATC260x device to probe (must be configured)
+> + *
+> + * This function lets the ATC260x core register the ATC260x MFD devices
+> + * and IRQCHIP. The ATC260x device passed in must be fully configured
+> + * with atc260x_match_device, its IRQ set, and regmap created.
+> + */
+> +int atc260x_device_probe(struct atc260x *atc260x)
+> +{
+> +	struct device *dev = atc260x->dev;
+> +	unsigned int chip_rev;
+> +	int ret;
+> +
+> +	if (!atc260x->irq) {
+> +		dev_err(dev, "No interrupt support\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Initialize the hardware */
+> +	atc260x->dev_init(atc260x);
+> +
+> +	ret = regmap_read(atc260x->regmap, atc260x->rev_reg, &chip_rev);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to get chip revision\n");
+> +		return ret;
+> +	}
+> +
+> +	if (chip_rev > 31) {
+
+Nit: If you have to respin this, please define this magic number.
+
+> +		dev_err(dev, "Unknown chip revision: %u\n", chip_rev);
+> +		return -EINVAL;
+> +	}
+> +
+> +	atc260x->ic_ver = __ffs(chip_rev + 1U);
+> +
+> +	dev_info(dev, "Detected chip type %s rev.%c\n",
+> +		 atc260x->type_name, 'A' + atc260x->ic_ver);
+> +
+> +	ret = devm_regmap_add_irq_chip(dev, atc260x->regmap, atc260x->irq, IRQF_ONESHOT,
+> +				       -1, atc260x->regmap_irq_chip, &atc260x->irq_data);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to add IRQ chip: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+> +				   atc260x->cells, atc260x->nr_cells, NULL, 0,
+> +				   regmap_irq_get_domain(atc260x->irq_data));
+> +	if (ret) {
+> +		dev_err(dev, "Failed to add child devices: %d\n", ret);
+> +		regmap_del_irq_chip(atc260x->irq, atc260x->irq_data);
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(atc260x_device_probe);
+
+[...]
+
+> +static struct i2c_driver atc260x_i2c_driver = {
+> +	.driver = {
+> +		.name	= "atc260x",
+> +		.of_match_table	= of_match_ptr(atc260x_i2c_of_match),
+> +	},
+> +	.probe		= atc260x_i2c_probe,
+> +};
+
+Nit: These spacings/line-ups just look odd.
+
+Please stick to one ' ' after the '='.
+
+> +module_i2c_driver(atc260x_i2c_driver);
+
+[...]
+
+> +struct atc260x {
+> +	struct device *dev;
+> +
+> +	struct regmap *regmap;
+> +	const struct regmap_irq_chip *regmap_irq_chip;
+> +	struct regmap_irq_chip_data *irq_data;
+> +
+> +	struct mutex *regmap_mutex;	/* mutex for custom regmap locking */
+> +
+> +	const struct mfd_cell *cells;
+> +	int nr_cells;
+> +	int irq;
+> +
+> +	enum atc260x_type ic_type;
+> +	enum atc260x_ver ic_ver;
+> +	const char *type_name;
+> +	unsigned int rev_reg;
+> +
+> +	int (*dev_init)(struct atc260x *atc260x);
+
+Ah, I didn't see this before.
+
+Call-backs of this nature are the devil.  Please populate a struct
+with the differentiating register addresses/values instead and always
+call a generic deivce_init().
+
+> +};
+> +
+> +struct regmap_config;
+> +
+> +int atc260x_match_device(struct atc260x *atc260x, struct regmap_config *regmap_cfg);
+> +int atc260x_device_probe(struct atc260x *atc260x);
+> +
+> +#endif /* __LINUX_MFD_ATC260X_CORE_H */
+
 -- 
-2.29.2
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
