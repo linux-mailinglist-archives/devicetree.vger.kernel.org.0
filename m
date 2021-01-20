@@ -2,168 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1566F2FDB2A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 21:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABECB2FDB27
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 21:49:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732247AbhATUtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 15:49:24 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:49236 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388484AbhATU0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 15:26:48 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPWAi039657;
-        Wed, 20 Jan 2021 14:25:32 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611174332;
-        bh=a860Bk2b6O2EQ43esiaErREx0zOF1XcsHCWahHr1ROM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ZrZoC+JJ5tKnPmoyGEe/OlUqikGZtp0nTqDEtl16pSEBLaj2vp6TuK472OrhVCcU2
-         f9EzvO0cTt6OLYGLI6YocRGRlg3ARf1D3FyBsLDo30DEbtqEWybi4bopfxlYo6h4Zo
-         AGPYTTN46WN2O3TUmc95LvkspTiTYjGgcWqEWSI4=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10KKPW63081479
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 20 Jan 2021 14:25:32 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 20
- Jan 2021 14:25:32 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 20 Jan 2021 14:25:32 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10KKPW2s090499;
-        Wed, 20 Jan 2021 14:25:32 -0600
-From:   Dave Gerlach <d-gerlach@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     Dave Gerlach <d-gerlach@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH v3 4/5] arm64: dts: ti: k3-am64-main: Enable DMA support
-Date:   Wed, 20 Jan 2021 14:25:31 -0600
-Message-ID: <20210120202532.9011-5-d-gerlach@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210120202532.9011-1-d-gerlach@ti.com>
-References: <20210120202532.9011-1-d-gerlach@ti.com>
+        id S1731182AbhATUs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 15:48:27 -0500
+Received: from mga17.intel.com ([192.55.52.151]:60530 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731514AbhATUsU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 15:48:20 -0500
+IronPort-SDR: 1rU1P64yCiKAZuw5iv+Lv31L30Myu6ihxmYy8K/abKr9cP4Hg1ggVa0m2emtK2y4Di7lsy/caL
+ 1EYmG3b23nDQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="158950365"
+X-IronPort-AV: E=Sophos;i="5.79,362,1602572400"; 
+   d="scan'208";a="158950365"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2021 12:47:28 -0800
+IronPort-SDR: L/wl4gvZ7TdUoU8zWusXveudB72pqSFzK8Nfs/i5YpgujXfQRwJYLNxC7jdT2Q2FyyqoJIO0g8
+ +oA8cmMfCEeA==
+X-IronPort-AV: E=Sophos;i="5.79,362,1602572400"; 
+   d="scan'208";a="366509663"
+Received: from djiang5-mobl1.amr.corp.intel.com (HELO [10.254.121.244]) ([10.254.121.244])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2021 12:47:26 -0800
+Subject: Re: [PATCH v9 05/10] uacce: Enable IOMMU_DEV_FEAT_IOPF
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org
+Cc:     vivek.gautam@arm.com, guohanjun@huawei.com,
+        Zhou Wang <wangzhou1@hisilicon.com>,
+        linux-acpi@vger.kernel.org, zhangfei.gao@linaro.org,
+        lenb@kernel.org, devicetree@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, eric.auger@redhat.com,
+        vdumpa@nvidia.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        rjw@rjwysocki.net, shameerali.kolothum.thodi@huawei.com,
+        iommu@lists.linux-foundation.org, sudeep.holla@arm.com,
+        robin.murphy@arm.com, linux-accelerators@lists.ozlabs.org,
+        baolu.lu@linux.intel.com, Dan Williams <dan.j.williams@intel.com>,
+        "Pan, Jacob jun" <jacob.jun.pan@intel.com>
+References: <20210108145217.2254447-1-jean-philippe@linaro.org>
+ <20210108145217.2254447-6-jean-philippe@linaro.org>
+From:   Dave Jiang <dave.jiang@intel.com>
+Message-ID: <e14f47bd-1b0c-1905-3bb7-62e1c5b096c7@intel.com>
+Date:   Wed, 20 Jan 2021 13:47:25 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210108145217.2254447-6-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-Add the nodes for DMSS INTA, BCDMA and PKTDMA to enable the use of the
-DMAs in the system.
+On 1/8/2021 7:52 AM, Jean-Philippe Brucker wrote:
+> The IOPF (I/O Page Fault) feature is now enabled independently from the
+> SVA feature, because some IOPF implementations are device-specific and
+> do not require IOMMU support for PCIe PRI or Arm SMMU stall.
+>
+> Enable IOPF unconditionally when enabling SVA for now. In the future, if
+> a device driver implementing a uacce interface doesn't need IOPF
+> support, it will need to tell the uacce module, for example with a new
+> flag.
+>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> ---
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+> Cc: Zhou Wang <wangzhou1@hisilicon.com>
+> ---
+>   drivers/misc/uacce/uacce.c | 32 +++++++++++++++++++++++++-------
+>   1 file changed, 25 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/misc/uacce/uacce.c b/drivers/misc/uacce/uacce.c
+> index d07af4edfcac..41ef1eb62a14 100644
+> --- a/drivers/misc/uacce/uacce.c
+> +++ b/drivers/misc/uacce/uacce.c
+> @@ -385,6 +385,24 @@ static void uacce_release(struct device *dev)
+>   	kfree(uacce);
+>   }
+>   
+> +static unsigned int uacce_enable_sva(struct device *parent, unsigned int flags)
+> +{
+> +	if (!(flags & UACCE_DEV_SVA))
+> +		return flags;
+> +
+> +	flags &= ~UACCE_DEV_SVA;
+> +
+> +	if (iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_IOPF))
+> +		return flags;
+> +
+> +	if (iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_SVA)) {
+> +		iommu_dev_disable_feature(parent, IOMMU_DEV_FEAT_IOPF);
+> +		return flags;
+> +	}
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 74 ++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+Sorry to jump in a bit late on this and not specifically towards the 
+intent of this patch. But I'd like to start a discussion on if we want 
+to push the iommu dev feature enabling to the device driver itself 
+rather than having UACCE control this? Maybe allow the device driver to 
+manage the feature bits and UACCE only verify that they are enabled?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index e3ef4bff04af..25b702303637 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -49,6 +49,8 @@ dmss: dmss {
- 		dma-ranges;
- 		ranges;
- 
-+		ti,sci-dev-id = <25>;
-+
- 		secure_proxy_main: mailbox@4d000000 {
- 			compatible = "ti,am654-secure-proxy";
- 			#mbox-cells = <1>;
-@@ -59,6 +61,78 @@ secure_proxy_main: mailbox@4d000000 {
- 			interrupt-names = "rx_012";
- 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-+
-+		inta_main_dmss: interrupt-controller@48000000 {
-+			compatible = "ti,sci-inta";
-+			reg = <0x00 0x48000000 0x00 0x100000>;
-+			#address-cells = <0>;
-+			#interrupt-cells = <0>;
-+			interrupt-controller;
-+			interrupt-parent = <&gic500>;
-+			msi-controller;
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <28>;
-+			ti,interrupt-ranges = <4 68 36>;
-+			ti,unmapped-event-sources = <&main_bcdma>, <&main_pktdma>;
-+		};
-+
-+		main_bcdma: dma-controller@485c0100 {
-+			compatible = "ti,am64-dmss-bcdma";
-+			reg = <0x00 0x485c0100 0x00 0x100>,
-+			      <0x00 0x4c000000 0x00 0x20000>,
-+			      <0x00 0x4a820000 0x00 0x20000>,
-+			      <0x00 0x4aa40000 0x00 0x20000>,
-+			      <0x00 0x4bc00000 0x00 0x100000>;
-+			reg-names = "gcfg", "bchanrt", "rchanrt", "tchanrt", "ringrt";
-+			msi-parent = <&inta_main_dmss>;
-+			#dma-cells = <3>;
-+
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <26>;
-+			ti,sci-rm-range-bchan = <0x20>; /* BLOCK_COPY_CHAN */
-+			ti,sci-rm-range-rchan = <0x21>; /* SPLIT_TR_RX_CHAN */
-+			ti,sci-rm-range-tchan = <0x22>; /* SPLIT_TR_TX_CHAN */
-+		};
-+
-+		main_pktdma: dma-controller@485c0000 {
-+			compatible = "ti,am64-dmss-pktdma";
-+			reg = <0x00 0x485c0000 0x00 0x100>,
-+			      <0x00 0x4a800000 0x00 0x20000>,
-+			      <0x00 0x4aa00000 0x00 0x40000>,
-+			      <0x00 0x4b800000 0x00 0x400000>;
-+			reg-names = "gcfg", "rchanrt", "tchanrt", "ringrt";
-+			msi-parent = <&inta_main_dmss>;
-+			#dma-cells = <2>;
-+
-+			ti,sci = <&dmsc>;
-+			ti,sci-dev-id = <30>;
-+			ti,sci-rm-range-tchan = <0x23>, /* UNMAPPED_TX_CHAN */
-+						<0x24>, /* CPSW_TX_CHAN */
-+						<0x25>, /* SAUL_TX_0_CHAN */
-+						<0x26>, /* SAUL_TX_1_CHAN */
-+						<0x27>, /* ICSSG_0_TX_CHAN */
-+						<0x28>; /* ICSSG_1_TX_CHAN */
-+			ti,sci-rm-range-tflow = <0x10>, /* RING_UNMAPPED_TX_CHAN */
-+						<0x11>, /* RING_CPSW_TX_CHAN */
-+						<0x12>, /* RING_SAUL_TX_0_CHAN */
-+						<0x13>, /* RING_SAUL_TX_1_CHAN */
-+						<0x14>, /* RING_ICSSG_0_TX_CHAN */
-+						<0x15>; /* RING_ICSSG_1_TX_CHAN */
-+			ti,sci-rm-range-rchan = <0x29>, /* UNMAPPED_RX_CHAN */
-+						<0x2b>, /* CPSW_RX_CHAN */
-+						<0x2d>, /* SAUL_RX_0_CHAN */
-+						<0x2f>, /* SAUL_RX_1_CHAN */
-+						<0x31>, /* SAUL_RX_2_CHAN */
-+						<0x33>, /* SAUL_RX_3_CHAN */
-+						<0x35>, /* ICSSG_0_RX_CHAN */
-+						<0x37>; /* ICSSG_1_RX_CHAN */
-+			ti,sci-rm-range-rflow = <0x2a>, /* FLOW_UNMAPPED_RX_CHAN */
-+						<0x2c>, /* FLOW_CPSW_RX_CHAN */
-+						<0x2e>, /* FLOW_SAUL_RX_0/1_CHAN */
-+						<0x32>, /* FLOW_SAUL_RX_2/3_CHAN */
-+						<0x36>, /* FLOW_ICSSG_0_RX_CHAN */
-+						<0x38>; /* FLOW_ICSSG_1_RX_CHAN */
-+		};
- 	};
- 
- 	dmsc: dmsc@44043000 {
--- 
-2.28.0
+ 1. The device driver knows what platform it's on and what specific
+    feature bits its devices supports. Maybe in the future if there are
+    feature bits that's needed on one platform and not on another?
+ 2. This allows the possibility of multiple uacce device registered to 1
+    pci dev, which for a device with asymmetric queues (Intel DSA/idxd
+    driver) that is desirable feature. The current setup forces a single
+    uacce device per pdev. If additional uacce devs are registered, the
+    first removal of uacce device will disable the feature bit for the
+    rest of the registered devices. With uacce managing the feature bit,
+    it would need to add device context to the parent pdev and ref
+    counting. It may be cleaner to just allow device driver to manage
+    the feature bits and the driver should have all the information on
+    when the feature needs to be turned on and off.
 
+- DaveJ
+
+
+> +
+> +	return flags | UACCE_DEV_SVA;
+> +}
+> +
+>   /**
+>    * uacce_alloc() - alloc an accelerator
+>    * @parent: pointer of uacce parent device
+> @@ -404,11 +422,7 @@ struct uacce_device *uacce_alloc(struct device *parent,
+>   	if (!uacce)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> -	if (flags & UACCE_DEV_SVA) {
+> -		ret = iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_SVA);
+> -		if (ret)
+> -			flags &= ~UACCE_DEV_SVA;
+> -	}
+> +	flags = uacce_enable_sva(parent, flags);
+>   
+>   	uacce->parent = parent;
+>   	uacce->flags = flags;
+> @@ -432,8 +446,10 @@ struct uacce_device *uacce_alloc(struct device *parent,
+>   	return uacce;
+>   
+>   err_with_uacce:
+> -	if (flags & UACCE_DEV_SVA)
+> +	if (flags & UACCE_DEV_SVA) {
+>   		iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_SVA);
+> +		iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_IOPF);
+> +	}
+>   	kfree(uacce);
+>   	return ERR_PTR(ret);
+>   }
+> @@ -487,8 +503,10 @@ void uacce_remove(struct uacce_device *uacce)
+>   	mutex_unlock(&uacce->queues_lock);
+>   
+>   	/* disable sva now since no opened queues */
+> -	if (uacce->flags & UACCE_DEV_SVA)
+> +	if (uacce->flags & UACCE_DEV_SVA) {
+>   		iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_SVA);
+> +		iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_IOPF);
+> +	}
+>   
+>   	if (uacce->cdev)
+>   		cdev_device_del(uacce->cdev, &uacce->dev);
