@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B632F2FD54D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:21:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BDB2FD56A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 17:22:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732785AbhATPxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 10:53:12 -0500
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:38619 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391088AbhATPvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 10:51:16 -0500
-Received: by mail-oo1-f41.google.com with SMTP id i18so5884145ooh.5;
-        Wed, 20 Jan 2021 07:50:58 -0800 (PST)
+        id S2390027AbhATQUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 11:20:38 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:46190 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390516AbhATPyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 10:54:03 -0500
+Received: by mail-ot1-f51.google.com with SMTP id d1so3281540otl.13;
+        Wed, 20 Jan 2021 07:53:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AwuxJ4TRyBO9NJG/uyghBKZXILepM64nYdpzoIJWbe0=;
-        b=AG5/31RVXHkI3qouITEcTD2XTOcWlgd2NZIeHZFMsrFmawvYKfyA/KZ0U1WLR5hEqR
-         gPZdayP8+niZLycHBlDL9Ep5mJpNbBVxGtHlCVYeFQApG7wtUTjbA80LSH2WQYtx0Mq0
-         GYyOLErgAN1NCy6V6qy5twZUSMWh5k8KTxZBiwjd3keKyj3lJq6X8LSQozySKSiuvN5U
-         ZT5R+Lt/FhdwDvMAp0M5DHoQ9UirvQFlf7pAPq22l5TgFxJven4TB/0eOaHJqoccDvw2
-         7vUSlZnugxE3m3hxXlLbD9aCaI2XiLcg0d9hZKQPY+n5RsY9v7H879X6ZZ65j0T3wfQJ
-         VWJw==
-X-Gm-Message-State: AOAM530dd/ihRtgY6BObMOFPSqrVzg495GdI2EPEgisxMyTH2MKT0Hj1
-        kjLwL5QhICfMvaHE6Ag5mw==
-X-Google-Smtp-Source: ABdhPJzslC9cQt+PR2D4qDB7kt/LzMuuhN3F/HQPzpBC7gC0hvoF6NHWJFDAPX2VerPVgBaSbq32kA==
-X-Received: by 2002:a05:6820:381:: with SMTP id r1mr6555763ooj.73.1611157830743;
-        Wed, 20 Jan 2021 07:50:30 -0800 (PST)
+        bh=tjLl6io0Xj+xbm1R4uz89/t5xocdQ7tSIufYOrGhyyY=;
+        b=YYRBm/v86kRcgB5tzEM+Rc7kUPHH8iZMvi7fBIHevvcafP/aOz4Q5dhe4fSh+SyNPG
+         zsRpusBSdVxe+I/sFDMTJ9CINw8jyvhwuLuKdMaJ7YW0d5+7OmudfRlXb1vtJUo7k9Gy
+         swG9e2COPvMB6/r65TpOvHMvYJznOAIlJh9Vv/ayiWPChHurj1brD+ZqFsJyeA/ziSyk
+         uBEQUrV7KyukvywzgE5ckkGMfKYTHF9CstUPw4KiujuVQYyQyS08TBZG3PgEjG+D8TxO
+         KK+DN1abqybansDS8rWeQAJRtG5p6PyWByrPtvUo1i3fzQUMeAo3NInkzUGhaQsjUnjc
+         CPOw==
+X-Gm-Message-State: AOAM530psybPNos178UQSU/VClGHwMeC4HBYeXMYRvLApnO5MuPZppde
+        emsQHqt9HdfLqZjRG6U54PKqzK2CbQ==
+X-Google-Smtp-Source: ABdhPJw79QgL9cL6y3RB5CDBVhHYTmzGpACMXDJAkpQxeChGQ4FIbSQrMuVmuYxHZbYezldy9vQggQ==
+X-Received: by 2002:a05:6830:1db7:: with SMTP id z23mr7454152oti.314.1611158002927;
+        Wed, 20 Jan 2021 07:53:22 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l12sm419516ooq.22.2021.01.20.07.50.29
+        by smtp.gmail.com with ESMTPSA id t16sm466296otq.17.2021.01.20.07.53.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 07:50:29 -0800 (PST)
-Received: (nullmailer pid 214535 invoked by uid 1000);
-        Wed, 20 Jan 2021 15:50:28 -0000
-Date:   Wed, 20 Jan 2021 09:50:28 -0600
+        Wed, 20 Jan 2021 07:53:21 -0800 (PST)
+Received: (nullmailer pid 220380 invoked by uid 1000);
+        Wed, 20 Jan 2021 15:53:20 -0000
+Date:   Wed, 20 Jan 2021 09:53:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bert Vermeulen <bert@biot.com>
-Cc:     Birger Koblitz <mail@birger-koblitz.de>,
-        Sander Vanheule <sander@svanheule.net>,
-        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 4/5] dt-bindings: Add Cisco prefix to vendor list
-Message-ID: <20210120155028.GB213895@robh.at.kernel.org>
-References: <20210119092109.185282-1-bert@biot.com>
- <20210119092109.185282-5-bert@biot.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        arnaud.pouliquen@st.com, ohad@wizery.com, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH v4 01/17] dt-bindings: remoteproc: Add bindind to support
+ autonomous processors
+Message-ID: <20210120155320.GA220319@robh.at.kernel.org>
+References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
+ <20201218173228.2277032-2-mathieu.poirier@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210119092109.185282-5-bert@biot.com>
+In-Reply-To: <20201218173228.2277032-2-mathieu.poirier@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jan 2021 10:21:08 +0100, Bert Vermeulen wrote:
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
+On Fri, 18 Dec 2020 10:32:12 -0700, Mathieu Poirier wrote:
+> This patch adds a binding to guide the remoteproc core on how to deal with
+> remote processors in two cases:
+> 
+> 1) When an application holding a reference to a remote processor character
+>    device interface crashes.
+> 
+> 2) when the platform driver for a remote processor is removed.
+> 
+> In both cases if "autonomous-on-core-reboot" is specified in the remote
+> processor DT node, the remoteproc core will detach the remote processor
+> rather than switching it off.
+> 
+> Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/remoteproc/remoteproc-core.yaml  | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
 > 
 
-
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
