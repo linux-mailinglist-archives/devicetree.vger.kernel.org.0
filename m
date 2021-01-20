@@ -2,85 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEF162FD2A2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 15:33:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A539F2FD2B2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 15:33:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728260AbhATO1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 09:27:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52122 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390521AbhATOZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 09:25:28 -0500
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC924C0617A1
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 06:23:40 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by xavier.telenet-ops.be with bizsmtp
-        id K2PS2400g4C55Sk012PSaA; Wed, 20 Jan 2021 15:23:37 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l2EOL-005BZX-He; Wed, 20 Jan 2021 15:23:25 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l2EOL-009FIO-3H; Wed, 20 Jan 2021 15:23:25 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Saravana Kannan <saravanak@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>
-Cc:     Marc Zyngier <maz@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH/RFC] soc: renesas: rcar-sysc: Mark device node OF_POPULATED after init
-Date:   Wed, 20 Jan 2021 15:23:23 +0100
-Message-Id: <20210120142323.2203705-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S2389521AbhATOaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 09:30:11 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:46544 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389152AbhATO3I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 09:29:08 -0500
+Received: by mail-oi1-f177.google.com with SMTP id q205so25127272oig.13;
+        Wed, 20 Jan 2021 06:28:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zk9mjZhLDREeYKhiJgsc2oeG8Rrpq7wEhbcQ16h+YVc=;
+        b=sBf8POKupvE1qtCKx+6CQg1UfZ1dHkGsi5dcKYc+kOa0ttHAjn5qmDeXMFRl6lKBU5
+         Qed87N6MMpwwwOJSjRegw6kc1ReRxvasGJxPAZCbzyBDEzbLY/vCEifxpIa3O3rlVLKA
+         vEwZ+S+OKKWrEghFZ93ZpIaRN1Nv6ep54PuyXvUTApSfAios7iMkUHQimLnbNxid2pUE
+         5935GCQiRCr00ndZ4RTzNufNQdSdqW5pcJrSp4nxx3VDNRWpCgjd7+eWIes0+vzdM1Ed
+         Ic8MkLvOuqMa+L6QPQoBWZWdeZqe9hyN4uye0rYaHT80xSTCGnCrIp8rASKllAU09VYS
+         3f8Q==
+X-Gm-Message-State: AOAM532qZlJ75kRpEge0upPSDK64aZrshfh4loDigDLLLRVu7ZyHCAyw
+        79L7cisMmd0mspgzJ15FVLHjaTehmiv4wgiEAbU=
+X-Google-Smtp-Source: ABdhPJx4JBI22mfkyjXFbNJl5635lGRtKv4WIot3WQUaJsXyI2T3UknjeCsfo78WHUo5N+9DUt/TdiV9KhWo0qmqdwU=
+X-Received: by 2002:aca:4b16:: with SMTP id y22mr3020036oia.148.1611152907628;
+ Wed, 20 Jan 2021 06:28:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201218210750.3455872-1-saravanak@google.com> <CAMuHMdUpZELgL4qUCs1VH0UUeckpTwqYLrMy2ETPzrpuUwkLnQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdUpZELgL4qUCs1VH0UUeckpTwqYLrMy2ETPzrpuUwkLnQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 20 Jan 2021 15:28:16 +0100
+Message-ID: <CAMuHMdWEOpbh8xS9W09xudpoym8=J4UzuWTDqF3L+yDuU3k2ZQ@mail.gmail.com>
+Subject: Re: [PATCH] of: property: Add device link support for interrupts
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The R-Car System Controller (SYSC) driver registers PM domains from an
-early_initcall().  It does not use a platform driver, as secondary CPU
-startup on R-Car H1 needs to control the CPU power domains, before
-initialization of the driver framework.
+Hi Saravana,
 
-As fw_devlink only considers platform devices, it does not know that the
-System Controller is ready.  Hence probing of on-chip devices that are
-part of the SYSC PM domain fail:
+On Wed, Jan 20, 2021 at 10:53 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+> On Fri, Dec 18, 2020 at 10:11 PM Saravana Kannan <saravanak@google.com> wrote:
+> > Add support for creating device links out of interrupts property.
+> >
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+>
+> Thanks for your patch!
+>
+> This does not seem to add all links.  I see links being created to the
+> secondary interrupt controller (e61c0000 "renesas,irqc"), but not to
+> the primary interrupt controller (GIC)
+>
+> Which is good, as the GIC driver is not a platform_driver, and thus
+> creating links would break everything ;-)
 
-    probe deferral - supplier e6180000.system-controller not ready
+of_link_to_phandle() ignores device nodes where OF_POPULATED
+is set, and of_irq_init() sets that flag.  Hence the GIC is ignored.
 
-Fix this by setting the OF_POPULATED flag for the SYSC device node after
-successful initialization.  This will make of_link_to_phandle() ignore
-the SYSC device node as a dependency, and consumer devices will be
-probed again.
+Gr{oetje,eeting}s,
 
-Fixes: e590474768f1cc04 ("driver core: Set fw_devlink=on by default")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/soc/renesas/rcar-sysc.c | 2 ++
- 1 file changed, 2 insertions(+)
+                        Geert
 
-diff --git a/drivers/soc/renesas/rcar-sysc.c b/drivers/soc/renesas/rcar-sysc.c
-index 9b235fc900273405..a00bb098e1fe7488 100644
---- a/drivers/soc/renesas/rcar-sysc.c
-+++ b/drivers/soc/renesas/rcar-sysc.c
-@@ -439,6 +439,8 @@ static int __init rcar_sysc_pd_init(void)
- 	}
- 
- 	error = of_genpd_add_provider_onecell(np, &domains->onecell_data);
-+	if (!error)
-+		of_node_set_flag(np, OF_POPULATED);
- 
- out_put:
- 	of_node_put(np);
 -- 
-2.25.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
