@@ -2,75 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD4872FD64E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:02:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2EB82FD680
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:09:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731880AbhATPwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 10:52:44 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:37970 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391084AbhATPvB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 10:51:01 -0500
-Received: by mail-ot1-f46.google.com with SMTP id 34so12946502otd.5;
-        Wed, 20 Jan 2021 07:50:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=d1RIdVWUE4TQGWQdWOMOdBMzSo28XMRtLOv3LQVvbYY=;
-        b=qwpc6KR2Mbs2hnNQymugjuOwxvGWW4BeTujV0I8qubQ7wVd9w2pqGzmHzXW0RXF5Ie
-         RXxuTKy5dhSX5rpwC67Jotl6fCHqRjwtNUrKwH2djsv1vq4IOUnHDkcF8vN3bgUPyGeF
-         Oz13yXgUzXRsUu1vCdxVhWz5xPnZEGQ/i8cLDXHZ9l9QUrqZPcfE6Lk2tPabyNr4AUOT
-         UFba8tBc0XRx8ns60CXYA7JnPnqF+p+1C6ru3/V30mDXq1B3QGk5upt7QNQ5ieavuODu
-         YR8DoloL3MKIE7DIK4NAItPbE5GkUOQw5gVglRsT5+yEVEpD2NQPixhJI33xnReTJ4Di
-         vf/g==
-X-Gm-Message-State: AOAM532d2yNKU0EOmJuJvGhCNMH6TW9J6LiuHynhUyDMnx3f2Yw4bSal
-        eEI8uh9mJ1uSsvDzVItS1w==
-X-Google-Smtp-Source: ABdhPJza+e1g6BqmYZCEdNrw4PdYHbZpUkkQnnQYFNep0IagbifZCgUs/DzozVcOsfQc40GCknXmSQ==
-X-Received: by 2002:a05:6830:1ad4:: with SMTP id r20mr7218321otc.354.1611157820437;
-        Wed, 20 Jan 2021 07:50:20 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x12sm423724oic.51.2021.01.20.07.50.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 07:50:19 -0800 (PST)
-Received: (nullmailer pid 214205 invoked by uid 1000);
-        Wed, 20 Jan 2021 15:50:18 -0000
-Date:   Wed, 20 Jan 2021 09:50:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     bjorn.andersson@linaro.org, sboyd@kernel.org,
-        jassisinghbrar@gmail.com, viresh.kumar@linaro.org,
-        linux-clk@vger.kernel.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org, ulf.hansson@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] dt-bindings: clock: Add Qualcomm A7 PLL binding
-Message-ID: <20210120155018.GA213895@robh.at.kernel.org>
-References: <20210118041156.50016-1-manivannan.sadhasivam@linaro.org>
- <20210118041156.50016-4-manivannan.sadhasivam@linaro.org>
+        id S1726370AbhATRGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 12:06:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58832 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391751AbhATRF7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 12:05:59 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D8BCD2137B;
+        Wed, 20 Jan 2021 17:05:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1611162310;
+        bh=WtZFfFv8GO9q/O1gGxEeXgX0Wj/VD7wZE2sc6QJ27o8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tPkkOWw/X0F+3FvGsBJreKu0ARlTqj2ae5kmYBGEHJsL0wFLXH/ry8cs1XUhspE1K
+         XWE2Af1UCMcHpVyt6q9crwhI3ePHzZ0Vj4bCUAxRaDHQSvUsEnbm4OoyEt3WbhSM1z
+         N0IxR5YOojYYYqiuWotYnZSTFPYMI3RK75JLodGk=
+Date:   Wed, 20 Jan 2021 18:05:07 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 2/2] serial: 8250: Add new 8250-core based Broadcom
+ STB driver
+Message-ID: <YAhiw+6UiUplNcLq@kroah.com>
+References: <20210115211543.33563-1-alcooperx@gmail.com>
+ <20210115211543.33563-3-alcooperx@gmail.com>
+ <CAHp75VdQPQK8jTF3QDKx6mF1QzOg-qiuHrTiojnWn7GskokfoA@mail.gmail.com>
+ <71d58a3e-2707-69d7-8074-c67235912e06@gmail.com>
+ <CAHp75VfNumFBwbytCuA_YK1w-+kN20vRF+GhogtU+DDG3EB_7g@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210118041156.50016-4-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <CAHp75VfNumFBwbytCuA_YK1w-+kN20vRF+GhogtU+DDG3EB_7g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Jan 2021 09:41:54 +0530, Manivannan Sadhasivam wrote:
-> Add devicetree YAML binding for Cortex A7 PLL clock in Qualcomm
-> platforms like SDX55.
+On Wed, Jan 20, 2021 at 06:47:52PM +0200, Andy Shevchenko wrote:
+> On Tue, Jan 19, 2021 at 8:16 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+> > On 1/19/2021 7:21 AM, Andy Shevchenko wrote:
+> > > On Fri, Jan 15, 2021 at 11:19 PM Al Cooper <alcooperx@gmail.com> wrote:
+> > >>
+> > >> Add a UART driver for the new Broadcom 8250 based STB UART. The new
+> > >> UART is backward compatible with the standard 8250, but has some
+> > >> additional features. The new features include a high accuracy baud
+> > >> rate clock system and DMA support.
+> > >>
+> > >> The driver will use the new optional BAUD MUX clock to select the best
+> > >> one of the four master clocks (81MHz, 108MHz, 64MHz and 48MHz) to feed
+> > >> the baud rate selection logic for any requested baud rate.  This allows
+> > >> for more accurate BAUD rates when high speed baud rates are selected.
+> > >>
+> > >> The driver will use the new UART DMA hardware if the UART DMA registers
+> > >> are specified in Device Tree "reg" property. The DMA functionality can
+> > >> be disabled on kernel boot with the argument:
+> > >> "8250_bcm7271.disable_dma=Y".
+> > >>
+> > >> The driver also set the UPSTAT_AUTOCTS flag when hardware flow control
+> > >> is enabled. This flag is needed for UARTs that don't assert a CTS
+> > >> changed interrupt when CTS changes and AFE (Hardware Flow Control) is
+> > >> enabled.
+> > >>
+> > >> The driver also contains a workaround for a bug in the Synopsis 8250
+> > >> core. The problem is that at high baud rates, the RX partial FIFO
+> > >> timeout interrupt can occur but there is no RX data (DR not set in
+> > >> the LSR register). In this case the driver will not read the Receive
+> > >> Buffer Register, which clears the interrupt, and the system will get
+> > >> continuous UART interrupts until the next RX character arrives. The
+> > >> fix originally suggested by Synopsis was to read the Receive Buffer
+> > >> Register and discard the character when the DR bit in the LSR was
+> > >> not set, to clear the interrupt. The problem was that occasionally
+> > >> a character would arrive just after the DR bit check and a valid
+> > >> character would be discarded. The fix that was added will clear
+> > >> receive interrupts to stop the interrupt, deassert RTS to insure
+> > >> that no new data can arrive, wait for 1.5 character times for the
+> > >> sender to react to RTS and then check for data and either do a dummy
+> > >> read or a valid read. Sysfs error counters were also added and were
+> > >> used to help create test software that would cause the error condition.
+> > >> The counters can be found at:
+> > >> /sys/devices/platform/rdb/*serial/rx_bad_timeout_late_char
+> > >> /sys/devices/platform/rdb/*serial/rx_bad_timeout_no_char
+> > >
+> > > Brief looking into the code raises several questions:
+> > >  - is it driver from the last decade?
+> >
+> > Work on this driver started back in 2018, that was indeed the last decade.
+> >
+> > >  - why it's not using what kernel provides?
+> > >  - we have a lot of nice helpers:
+> > >    - DMA Engine API
+> >
+> > Not sure this makes sense, given that the DMA hardware that was added to
+> > this UART block is only used by the UART block and no other pieces of HW
+> > in the system, nor will they ever be. Not sure it makes sense to pay the
+> > cost of an extra indirection and subsystem unless there are at least two
+> > consumers of that DMA hardware to warrant modeling it after a dmaengine
+> > driver. I also remember that Al researched before whether 8250_dma.c
+> > could work, and came to the conclusion that it would not, but I will let
+> > him comment on the specifics.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  .../devicetree/bindings/clock/qcom,a7pll.yaml | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,a7pll.yaml
-> 
+> I see. In any case I still believe that the driver can be shrinked by
+> a notable amount of lines.
 
-
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Patches always gladly accepted :)
