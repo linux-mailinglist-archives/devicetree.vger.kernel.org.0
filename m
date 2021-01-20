@@ -2,83 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C4332FD331
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 15:54:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF162FD2A2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 15:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388235AbhATOwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 09:52:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51676 "EHLO
+        id S1728260AbhATO1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 09:27:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731226AbhATOXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 09:23:30 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8FFC0613D6
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 06:22:35 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l2ENH-0001dH-CS; Wed, 20 Jan 2021 15:22:19 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l2ENG-0007kL-BB; Wed, 20 Jan 2021 15:22:18 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v1 7/7] ARM: dts: imx6dl-plym2m: remove touchscreen-size-* properties
-Date:   Wed, 20 Jan 2021 15:22:17 +0100
-Message-Id: <20210120142217.29652-8-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210120142217.29652-1-o.rempel@pengutronix.de>
-References: <20210120142217.29652-1-o.rempel@pengutronix.de>
+        with ESMTP id S2390521AbhATOZ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 09:25:28 -0500
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC924C0617A1
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 06:23:40 -0800 (PST)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by xavier.telenet-ops.be with bizsmtp
+        id K2PS2400g4C55Sk012PSaA; Wed, 20 Jan 2021 15:23:37 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1l2EOL-005BZX-He; Wed, 20 Jan 2021 15:23:25 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1l2EOL-009FIO-3H; Wed, 20 Jan 2021 15:23:25 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Saravana Kannan <saravanak@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>
+Cc:     Marc Zyngier <maz@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH/RFC] soc: renesas: rcar-sysc: Mark device node OF_POPULATED after init
+Date:   Wed, 20 Jan 2021 15:23:23 +0100
+Message-Id: <20210120142323.2203705-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove touchscreen-size-* properties.  This values are not correct, event if it
-works with ts_test tool, it fails to work properly with weston.
-And the real range of values reported by the driver (or measured by the
-controller) is close to max values and may change with time on resistive
-panels. So, it make no sense to keep this values in the device tree.
+The R-Car System Controller (SYSC) driver registers PM domains from an
+early_initcall().  It does not use a platform driver, as secondary CPU
+startup on R-Car H1 needs to control the CPU power domains, before
+initialization of the driver framework.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+As fw_devlink only considers platform devices, it does not know that the
+System Controller is ready.  Hence probing of on-chip devices that are
+part of the SYSC PM domain fail:
+
+    probe deferral - supplier e6180000.system-controller not ready
+
+Fix this by setting the OF_POPULATED flag for the SYSC device node after
+successful initialization.  This will make of_link_to_phandle() ignore
+the SYSC device node as a dependency, and consumer devices will be
+probed again.
+
+Fixes: e590474768f1cc04 ("driver core: Set fw_devlink=on by default")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- arch/arm/boot/dts/imx6dl-plym2m.dts | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/soc/renesas/rcar-sysc.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
-index 4d0d3d3386af..c97274f0df07 100644
---- a/arch/arm/boot/dts/imx6dl-plym2m.dts
-+++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
-@@ -138,8 +138,6 @@ touchscreen@0 {
- 		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
- 		pendown-gpio = <&gpio3 20 GPIO_ACTIVE_LOW>;
+diff --git a/drivers/soc/renesas/rcar-sysc.c b/drivers/soc/renesas/rcar-sysc.c
+index 9b235fc900273405..a00bb098e1fe7488 100644
+--- a/drivers/soc/renesas/rcar-sysc.c
++++ b/drivers/soc/renesas/rcar-sysc.c
+@@ -439,6 +439,8 @@ static int __init rcar_sysc_pd_init(void)
+ 	}
  
--		touchscreen-size-x = <800>;
--		touchscreen-size-y = <480>;
- 		touchscreen-inverted-x;
- 		touchscreen-inverted-y;
- 		touchscreen-max-pressure = <4095>;
+ 	error = of_genpd_add_provider_onecell(np, &domains->onecell_data);
++	if (!error)
++		of_node_set_flag(np, OF_POPULATED);
+ 
+ out_put:
+ 	of_node_put(np);
 -- 
-2.30.0
+2.25.1
 
