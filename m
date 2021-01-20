@@ -2,81 +2,353 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DDF22FCEA9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 12:02:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E497A2FCEA8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 12:02:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388309AbhATKyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 05:54:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52722 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731040AbhATKFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 05:05:21 -0500
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8128FC0613C1
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 02:04:40 -0800 (PST)
-Received: by mail-io1-xd2c.google.com with SMTP id z22so19057541ioh.9
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 02:04:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1x1DNnE2tmguD//mZOuWvz3mKIik8+ReShmCCkMxJPg=;
-        b=vOaQe2FJITlcZJobI1lcdZ2oifntBqUUxmvmDwD2+70GiSg80LuRavNbkVR4xTlJB5
-         HkmFVKYGb9UL0NEMHF4pM9oMx3hfzzR66xvyBwqiuttgAPmgnUmxb4gSR99x76JTNg6Y
-         0iZeTrSo6Ew+Nn6/uyYwDN5Mptk7SyQFecxE/UFUjqpmOt+PA48kPMZwgomvqHMrVOP3
-         01TxB7j+NH4tRGWtufzMDcJGx/WbGgoQEwBTp3d9SdNKesrTQC6m6ek27xOcGry5ONkI
-         4L8GTpjQ+5Vh17KfFJXfYK/5tV+sEW+D9qb9mx94sD5tl1f3CGHQTK386qlBws8uVAdK
-         4R8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1x1DNnE2tmguD//mZOuWvz3mKIik8+ReShmCCkMxJPg=;
-        b=DzGlNkkVCdeLQvgxIE9mLF1TXvg3MrpYMVTCLsOMK8MeFAzebGkPNPW4IeG5SmWfyU
-         leLZ1+uU9LX/em3oyup02gDt5y9CiNXuvhdTx+pE1O3x/GpqcQndDyivBlJZ4x4rLgX/
-         GLSqgJXHlAZEqcyv1dRfyx2/xdpeiyj1aGsp97FqlkScyiyKLgiyMYYdUx+cFbvlrj0P
-         9Dmo6QJQirqQHimUegQLPVb6Z/WTW/0WMCC4XyOTBL909yDECxvHVaDldxlCeI3/077j
-         pRFFSkAcJ5J3N2mtERE1BrxkeJDmrxdJHZwJWMbkhyFHjLQoNXP302xm/1ApomAx1Mns
-         2SCw==
-X-Gm-Message-State: AOAM531DckDJWKtn279yVhtAPWu7Jp71UEk0t8Gf9W5WZ3xI77zez7FM
-        iYAvFAaLvej3iBJQOyD9Xa3knUURHzOwp/uDCo7AUw==
-X-Google-Smtp-Source: ABdhPJyiec6rsJjOmlleiEJnWE+gm+rYerW942cFcdQ7OxN+oRRXKKjz/E4+amu2LBkxWlI1M74QCgrJBJYzZywiPXw=
-X-Received: by 2002:a05:6e02:1566:: with SMTP id k6mr7069593ilu.19.1611137079553;
- Wed, 20 Jan 2021 02:04:39 -0800 (PST)
+        id S2388378AbhATKzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 05:55:31 -0500
+Received: from regular1.263xmail.com ([211.150.70.201]:36128 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732959AbhATKVp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 05:21:45 -0500
+X-Greylist: delayed 545 seconds by postgrey-1.27 at vger.kernel.org; Wed, 20 Jan 2021 05:21:41 EST
+Received: from localhost (unknown [192.168.167.32])
+        by regular1.263xmail.com (Postfix) with ESMTP id 8C467DD3;
+        Wed, 20 Jan 2021 18:06:46 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from [192.168.31.83] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P9605T140282402715392S1611137205091198_;
+        Wed, 20 Jan 2021 18:06:45 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <8ff28dfb5dc050d228dd7191eb44a491>
+X-RL-SENDER: xxm@rock-chips.com
+X-SENDER: xxm@rock-chips.com
+X-LOGIN-NAME: xxm@rock-chips.com
+X-FST-TO: devicetree@vger.kernel.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH 2/3] dt-bindings: rockchip: Add DesignWare based PCIe
+ controller
+To:     Johan Jonker <jbx6244@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20210118091739.247040-1-xxm@rock-chips.com>
+ <20210118091739.247040-2-xxm@rock-chips.com>
+ <e143ad9e-1cfd-e59d-0079-513c036981ba@gmail.com>
+From:   xxm <xxm@rock-chips.com>
+Message-ID: <3b2714f6-2bdf-4b63-5a64-fa257e4fc94e@rock-chips.com>
+Date:   Wed, 20 Jan 2021 18:06:44 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 MIME-Version: 1.0
-References: <20210119101044.1637023-1-howardyen@google.com> <af91bbf1-6731-3e87-4086-de0dbba22c22@intel.com>
-In-Reply-To: <af91bbf1-6731-3e87-4086-de0dbba22c22@intel.com>
-From:   Howard Yen <howardyen@google.com>
-Date:   Wed, 20 Jan 2021 18:04:28 +0800
-Message-ID: <CAJDAHvbTY3Z_bRg+++uLefWSvCWo_nGq+3OOQX3QHJ2w3X1SQw@mail.gmail.com>
-Subject: Re: [PATCH 0/4] add xhci hooks for USB offload
-To:     Mathias Nyman <mathias.nyman@intel.com>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <e143ad9e-1cfd-e59d-0079-513c036981ba@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 8:47 PM Mathias Nyman <mathias.nyman@intel.com> wrote:
+Hi Johan,
+
+Thanks for your review, I try to fix what you point out and get some 
+consultations from others, please help to have
+
+a look at the patch V2
+
+Simon Xue.
+
+在 2021/1/19 21:07, Johan Jonker 写道:
+> Hi Simon,
 >
-> On 19.1.2021 12.10, Howard Yen wrote:
-> > To let the xhci driver support USB offload, add hooks for vendor to have
-> > customized behavior for the initialization, memory allocation, irq work, and
-> > device context synchronization. Detail is in each patch commit message.
+> Thank you for this patch for rk3568 pcie.
 >
-> Is this related to the usb audio sideband capability that was added to the xHCI specification?
-> If yes, then we should probably implement the generic parts first, and then add
-> the vendor specific hooks.
+> Include the Rockchip device tree maintainer and all other people/lists
+> to the CC list.
 >
-> -Mathias
+> ./scripts/checkpatch.pl --strict <patch1> <patch2>
+>
+>   ./scripts/get_maintainer.pl --noroles --norolestats --nogit-fallback
+> --nogit <patch1> <patch2>
+>
+> git send-email --suppress-cc all --dry-run --annotate --to
+> heiko@sntech.de --cc <..> <patch1> <patch2>
+>
+> This SoC has no support in mainline linux kernel yet.
+> In all the following yaml documents for rk3568 we need headers with
+> defines for clocks and power domains, etc.
+>
+> For example:
+> #include <dt-bindings/clock/rk3568-cru.h>
+> #include <dt-bindings/power/rk3568-power.h>
+>
+> Could Rockchip submit first clocks and power drivers entries and a basic
+> rk3568.dtsi + evb dts?
+> Include a patch to this serie with 3 pcie nodes added to rk3568.dtsi.
+>
+> A dtbs_check only works with a complete dtsi and evb dts.
+>
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+>
+> On 1/18/21 10:17 AM, Simon Xue wrote:
+>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+>> ---
+>>   .../bindings/pci/rockchip-dw-pcie.yaml        | 101 ++++++++++++++++++
+>>   1 file changed, 101 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+>> new file mode 100644
+>> index 000000000000..fa664cfffb29
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+>> @@ -0,0 +1,101 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: DesignWare based PCIe RC controller on Rockchip SoCs
+>> +
+>> +maintainers:
+>> +  - Shawn Lin <shawn.lin@rock-chips.com>
+>> +  - Simon Xue <xxm@rock-chips.com>
+> maintainers:
+>    - Heiko Stuebner <heiko@sntech.de>
+>
+> Add only people with maintainer rights.
+>
+>
+> allOf:
+>    - $ref: /schemas/pci/pci-bus.yaml#
+>
+> designware-pcie.txt is in need for conversion to yaml.
+> Include the things that are needed in this document for now.
+>
+>> +
+>> +# We need a select here so we don't match all nodes with 'snps,dw-pcie'
+>> +select:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: rockchip,rk3568-pcie
+>> +  required:
+>> +    - compatible
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - rockchip,rk3568-pcie
+>> +      - snps,dw-pcie
+>      items:
+>        - const: rockchip,rk3568-pcie
+>        - const: snps,dw-pcie
+>
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>      interrupts:
+>        - description:
+>        - description:
+>        - description:
+>        - description:
+>        - description:
+>
+>    interrupt-names:    items:
+>        - const: sys
+>        - const: pmc
+>        - const: msg
+>        - const: legacy
+>        - const: err
+>
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: AHB clock for PCIe master
+>> +      - description: AHB clock for PCIe slave
+>> +      - description: AHB clock for PCIe dbi
+>> +      - description: APB clock for PCIe
+>> +      - description: Auxiliary clock for PCIe
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: aclk_mst
+>> +      - const: aclk_slv
+>> +      - const: aclk_dbi
+>> +      - const: pclk
+>> +      - const: aux
+>> +
+>
+>    msi-map: true
+>
+>    power-domains:
+>      maxItems: 1
+>
+>> +  resets:	maxItems: 1
+>> +    items:
+>> +      - description: PCIe pipe reset line
+> remove
+>
+>> +
+>> +  reset-names:
+> 	const: pipe
+>
+>> +    items:
+>> +      - const: pipe
+> remove
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+> already required in pci-bus.yaml
+>
+>> +  - bus-range
+>> +  - reg
+>> +  - reg-names
+>> +  - clocks
+>> +  - clock-names
+>> +  - msi-map
+> not defined in pci-bus.yaml and designware-pcie.txt
+> add to document
+>
+>> +  - num-lanes
+>> +  - phys
+>> +  - phy-names
+> not defined in pci-bus.yaml and designware-pcie.txt
+> add to document
+>
+>     - power-domains
+>
+>> +  - ranges
+> already required in pci-bus.yaml
+>
+>> +  - resets
+>> +  - reset-names
+>> +
+>> +additionalProperties: false
+> unevaluatedProperties: false
+>
+> If other documents are included use unevaluatedProperties.
+>
+>> +
+>> +examples:
+>> +  - |
+> #include <dt-bindings/clock/rk3568-cru.h>
+> #include <dt-bindings/interrupt-controller/arm-gic.h>
+> #include <dt-bindings/power/rk3568-power.h>
+>
+> Missing defines
+>
+>
+>      bus {
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+>
+> dt-check uses standard 32 bit regs
+> this example is for 64 bit
+>
+>> +    pcie3x2: pcie@fe280000 {
+>> +      compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
+>> +      #address-cells = <3>;
+>> +      #size-cells = <2>;
+> sort things that start with # below
+>
+>> +      bus-range = <0x20 0x2f>;
+> sort order is:
+> compatible
+> reg
+> interrupt
+> the rest in alphabetical order
+> things with #
+> no status in yaml examples
+>
+>
+>> +      reg = <0x3 0xc0800000 0x0 0x400000>,
+>> +            <0x0 0xfe280000 0x0 0x10000>;
+>> +      reg-names = "pcie-dbi", "pcie-apb";
+> 		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+> 			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+> 			     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+> 			     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+> 			     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+> 		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
+>
+>> +      clocks = <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,
+>> +               <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,
+>> +               <&cru CLK_PCIE30X2_AUX_NDFT>;
+>> +      clock-names = "aclk_mst", "aclk_slv",
+>> +                    "aclk_dbi", "pclk",
+>> +                    "aux";
+>> +      msi-map = <0x2000 &its 0x2000 0x1000>;
+>> +      num-lanes = <2>;
+>> +      phys = <&pcie30phy>;
+>> +      phy-names = "pcie-phy";
+>      power-domains = <&power RK3568_PD_PIPE>;
+>
+>> +      ranges = <0x00000800 0x0 0x80000000 0x3 0x80000000 0x0 0x800000
+>> +                0x81000000 0x0 0x80800000 0x3 0x80800000 0x0 0x100000
+>> +                0x83000000 0x0 0x80900000 0x3 0x80900000 0x0 0x3f700000>;
+>> +      resets = <&cru SRST_PCIE30X2_POWERUP>;
+>> +      reset-names = "pipe";
+>> +    };
+> };
+>
+>> +
+>> +...
+>>
+> Make sure that all properties that show up in this node are checked!
+>
+> 	pcie2x1: pcie@fe260000 {
+> 		compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
+> 		#address-cells = <3>;
+> 		#size-cells = <2>;
+> 		bus-range = <0x0 0xf>;
+> 		clocks = <&cru ACLK_PCIE20_MST>, <&cru ACLK_PCIE20_SLV>,
+> 			 <&cru ACLK_PCIE20_DBI>, <&cru PCLK_PCIE20>,
+> 			 <&cru CLK_PCIE20_AUX_NDFT>;
+> 		clock-names = "aclk_mst", "aclk_slv",
+> 			      "aclk_dbi", "pclk", "aux";
+> 		device_type = "pci";
+> 		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+> 			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+> 			     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+> 			     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+> 			     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+> 		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
+> 		linux,pci-domain = <0>;
+> 		num-ib-windows = <6>;
+> 		num-ob-windows = <2>;
+> 		max-link-speed = <2>;
+> 		msi-map = <0x0 &its 0x0 0x1000>;
+> 		num-lanes = <1>;
+> 		phys = <&combphy2_psq PHY_TYPE_PCIE>;
+> 		phy-names = "pcie-phy";
+> 		power-domains = <&power RK3568_PD_PIPE>;
+> 		ranges = <0x00000800 0x0 0x00000000 0x3 0x00000000 0x0 0x800000
+> 			  0x81000000 0x0 0x00800000 0x3 0x00800000 0x0 0x100000
+> 			  0x83000000 0x0 0x00900000 0x3 0x00900000 0x0 0x3f700000>;
+> 		reg = <0x3 0xc0000000 0x0 0x400000>,
+> 		      <0x0 0xfe260000 0x0 0x10000>;
+> 		reg-names = "pcie-dbi", "pcie-apb";
+> 		resets = <&cru SRST_PCIE20_POWERUP>;
+> 		reset-names = "pipe";
+> 		status = "disabled";
+> 	};
+>
 >
 >
 
-This is for offloading, no matter what type of offloading.
-I made the hooks generically and can be used for usb audio on the xhci
-which is not including the usb audio sideband capability.
 
-
-- Howard
