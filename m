@@ -2,130 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E4E2FD69A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:15:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DFC62FD691
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jan 2021 18:13:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387809AbhATRMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 12:12:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59480 "EHLO
+        id S2403800AbhATRKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 12:10:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403809AbhATRK0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 12:10:26 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A0EC061757
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 09:09:46 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id z1so20139424ybr.4
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 09:09:46 -0800 (PST)
+        with ESMTP id S2390851AbhATRJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 12:09:38 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F2CC061575;
+        Wed, 20 Jan 2021 09:08:57 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id d4so12850413plh.5;
+        Wed, 20 Jan 2021 09:08:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=WPDT0PVm4/aPIbV0EAFgXlokPV1lvrypzi2ZcvT8T1I=;
-        b=rFRBi4r7OH8297hz1xcaXSPUbNFKEfIqzd2Rx6NTH6Y+ffjagOVvyD11mOjKIK6B0O
-         EnTvixK2CI5mbaIucjkharRIVAqkKZG5jXeLsZt8H/leQjyUZfpCU/YrMuoQYOs7zzkz
-         L3qyIDLjN5iwMYQDLHDxV5/WN03ot8PPm69Pjib6KSymHmyH+aT+P9pOLSe4amUP9zgH
-         CITfFpa4KGafOK3wMO9DHmi/sQr8tpA4uiCLdHLID2eCDdqnrsUfY98E2eqIgUP/aMEh
-         Fp/feg0UkH6IqjyNqHlfmOLP3AmpJpT9w9xsPjzaL1gKQTdRETZyG3AN8dWBD/XddnwN
-         0T7g==
+        bh=ptEn4M/4h5MW2qLMCPiuNB3Z51Vfz0q0JdsXATxLpEM=;
+        b=c2hYlVq98Chql/KXUc9uAOGLV/73KgjxyJXzz0kDS1RB9OAE7lluf/CP3+r+kQstjB
+         7m7EKSUS/P6wpk72hMavSemdDA3XB6oItn9KTtM1pP3GH7KcwxQ3gzeZnC36X+m1BWYW
+         gpz3X3O6QNoWLeriGkxcBWlTnGnuCfEhvYqgvV+1GigdUupve08u/nSJLpGYzn82lfA+
+         KCC9XP/pmKwL87w2UYPN8Fl8jCrX+Jl7e6846JD+4gV2wJ6PaYtrOhlpmbepo+EBEKGg
+         NOSvf8kAh2GjvyaovvWc26OBKTM3JbZhNTEYFLWT6JntRvm1wQnc//WyyU/tv4GKW4Et
+         rqfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=WPDT0PVm4/aPIbV0EAFgXlokPV1lvrypzi2ZcvT8T1I=;
-        b=UaZR9rLbNzgbW6FsoTgtCBJeM8IRUDjAluRbUeR0uKBdOwM8nV3L+pAHmYeNozbabP
-         Az6lzriMuUtdUFcA8X591W3oLWUbaQp11BTX1TmmNHZb/xRkwPk/O+T9GgkAnIFrxxah
-         UuOwxfFF1dnZp8FVrAwSPqHeFouIaxNG5wvkoBGHVkSxbB/9IZBGpBMJWVEokyv3ACZN
-         yNKGi8vVzu94hxRQFCzksLLpMBIaDeDTJm1YqA7oby39DT17PNirrXoblOObFRkO1lJ6
-         Rd58fOxTTSQwaKEZj7xdveHm+FwzWfrygflhLkg9fD9wx11h1dHVV1goW7HujXQDtm1m
-         U7wQ==
-X-Gm-Message-State: AOAM533YsYem+w7cDlOByBZRCrresMxTuD2ZW+6doo0nJcX8JntSFWWd
-        n24ZoSSVegL9CqBiAlzvSlWF7CsKb8UB7ItEaVumlA==
-X-Google-Smtp-Source: ABdhPJwgt9Cxc/JcL4f7pl9d8H1GVMqWeXV7Rq5bFY8Gar7UAQgJ9hjlLUp5Y+jDcGNKkVZXb2EOADxVGcwvFJ6fju0=
-X-Received: by 2002:a25:3345:: with SMTP id z66mr7809991ybz.466.1611162585610;
- Wed, 20 Jan 2021 09:09:45 -0800 (PST)
+        bh=ptEn4M/4h5MW2qLMCPiuNB3Z51Vfz0q0JdsXATxLpEM=;
+        b=uY2awQFB6kLWE1HVFTaep1nbpfQ5ghgBCc2ozUX2193/HlboGZ0MEwcIYPnBDJj6L9
+         arhMUzG2iTzUdZKLS2QR25fCctBs+Vx2fJf78nnJlGzxBKcWIFs6cwJVKuBkvUOqHCbC
+         FWuvCYDxJbI1OpY6eL510q+AKzv98Czj1Ad7ls8eLmSdZQT2pdtS/3yVD/Ex64OSZRKG
+         /DGqsqhnAISB3Yrxq8O+2FJPF6srbf5wO9W9RTl9lr+5zY+flZu/2BqK/mPQCbNrTb5O
+         Xh2An8mCjePWIEqwhTEv65n6/Z3L7EakUPhBPfXZOh8AjB92i4B6u2QykIenjdEDMI+/
+         s6xA==
+X-Gm-Message-State: AOAM533IW14/+7l+rQEFaLRIbaEn0HWb9lBsTycUBoNrkvKyrZV1YBc9
+        nWoCFV+HpKXuwQGIRZHO2dYMrt6kukBoqiocZz4=
+X-Google-Smtp-Source: ABdhPJwYti8YPHWOXLYtaMeAapgAALfqTD5H6Up/eShdPNst1ffO+zrAYs43yfMRfH7gknDvlFqOMB43ovExCJI4ypI=
+X-Received: by 2002:a17:902:7b96:b029:de:7ae6:b8db with SMTP id
+ w22-20020a1709027b96b02900de7ae6b8dbmr10782173pll.0.1611162537358; Wed, 20
+ Jan 2021 09:08:57 -0800 (PST)
 MIME-Version: 1.0
-References: <20210120142323.2203705-1-geert+renesas@glider.be>
-In-Reply-To: <20210120142323.2203705-1-geert+renesas@glider.be>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 20 Jan 2021 09:09:09 -0800
-Message-ID: <CAGETcx-ZcXB9Zw_RnMjA0G2oKAyeK3VfKgha=Mvqnn_dDREuOw@mail.gmail.com>
-Subject: Re: [PATCH/RFC] soc: renesas: rcar-sysc: Mark device node
- OF_POPULATED after init
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+References: <20210115211543.33563-1-alcooperx@gmail.com> <20210115211543.33563-3-alcooperx@gmail.com>
+ <CAHp75VdQPQK8jTF3QDKx6mF1QzOg-qiuHrTiojnWn7GskokfoA@mail.gmail.com>
+ <71d58a3e-2707-69d7-8074-c67235912e06@gmail.com> <CAHp75VfNumFBwbytCuA_YK1w-+kN20vRF+GhogtU+DDG3EB_7g@mail.gmail.com>
+ <YAhiw+6UiUplNcLq@kroah.com>
+In-Reply-To: <YAhiw+6UiUplNcLq@kroah.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 20 Jan 2021 19:09:46 +0200
+Message-ID: <CAHp75Vf-ZmPuOjRYwNbURJXP3g_-m1LUDbsWtKHMvP49jseprw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] serial: 8250: Add new 8250-core based Broadcom STB driver
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 6:23 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> The R-Car System Controller (SYSC) driver registers PM domains from an
-> early_initcall().  It does not use a platform driver, as secondary CPU
-> startup on R-Car H1 needs to control the CPU power domains, before
-> initialization of the driver framework.
->
-> As fw_devlink only considers platform devices,
+On Wed, Jan 20, 2021 at 7:05 PM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+> On Wed, Jan 20, 2021 at 06:47:52PM +0200, Andy Shevchenko wrote:
+> > On Tue, Jan 19, 2021 at 8:16 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+> > > On 1/19/2021 7:21 AM, Andy Shevchenko wrote:
+> > > > On Fri, Jan 15, 2021 at 11:19 PM Al Cooper <alcooperx@gmail.com> wrote:
 
-Correction. It only considers devices. As in, devices on all types of
-busses are supported.
+...
 
-> it does not know that the
-> System Controller is ready.  Hence probing of on-chip devices that are
-> part of the SYSC PM domain fail:
+> > > Not sure this makes sense, given that the DMA hardware that was added to
+> > > this UART block is only used by the UART block and no other pieces of HW
+> > > in the system, nor will they ever be. Not sure it makes sense to pay the
+> > > cost of an extra indirection and subsystem unless there are at least two
+> > > consumers of that DMA hardware to warrant modeling it after a dmaengine
+> > > driver. I also remember that Al researched before whether 8250_dma.c
+> > > could work, and came to the conclusion that it would not, but I will let
+> > > him comment on the specifics.
+> >
+> > I see. In any case I still believe that the driver can be shrinked by
+> > a notable amount of lines.
 >
->     probe deferral - supplier e6180000.system-controller not ready
->
-> Fix this by setting the OF_POPULATED flag for the SYSC device node after
-> successful initialization.  This will make of_link_to_phandle() ignore
-> the SYSC device node as a dependency, and consumer devices will be
-> probed again.
+> Patches always gladly accepted :)
 
-It'd still be nice if you could (maybe in a later patch), at least
-probe all the power domains that aren't really needed this early.
-Using the driver core framework (when it's possible), gives you nice
-things :)
+Or a good review... :-)
 
-+Rob. I know he hates people using OF_POPULATED, but I think this case
-is reasonable and want to make sure he's aware of this.
-
-Once you fix my commit nitpick, you can add:
-Reviewed-by: Saravana Kannan <saravanak@google.com>
-
--Saravana
-
->
-> Fixes: e590474768f1cc04 ("driver core: Set fw_devlink=on by default")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  drivers/soc/renesas/rcar-sysc.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/soc/renesas/rcar-sysc.c b/drivers/soc/renesas/rcar-sysc.c
-> index 9b235fc900273405..a00bb098e1fe7488 100644
-> --- a/drivers/soc/renesas/rcar-sysc.c
-> +++ b/drivers/soc/renesas/rcar-sysc.c
-> @@ -439,6 +439,8 @@ static int __init rcar_sysc_pd_init(void)
->         }
->
->         error = of_genpd_add_provider_onecell(np, &domains->onecell_data);
-> +       if (!error)
-> +               of_node_set_flag(np, OF_POPULATED);
->
->  out_put:
->         of_node_put(np);
-> --
-> 2.25.1
->
+-- 
+With Best Regards,
+Andy Shevchenko
