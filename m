@@ -2,99 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3DAA2FEFBC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 17:04:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 098C82FEFE6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 17:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387576AbhAUQDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 11:03:01 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:41361 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730948AbhAUQCo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 11:02:44 -0500
-Received: by mail-ot1-f46.google.com with SMTP id k8so2049079otr.8;
-        Thu, 21 Jan 2021 08:02:28 -0800 (PST)
+        id S2387667AbhAUQKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 11:10:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731893AbhAUQKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 11:10:03 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F7EEC0613D6;
+        Thu, 21 Jan 2021 08:09:22 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id b8so1507371plh.12;
+        Thu, 21 Jan 2021 08:09:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=z7oVga7Escj/c6BU5fn9u2qNIv4eQlnHp8uz/6apHm8=;
+        b=u13qVxp+ZtSHi+YnVRLB3wpgmSKmpNWCcNZUbEumSVrAjePaV7jzEOA1BNcokSMm5K
+         bb3cWcZ0R7Xzx0+2YBcJI6XQAMflPW1QUHNRf0Wb4fNYY3P59R262N2ZrHLs7wkQNvuT
+         xNPAu9mlC5g0WJoVyGbN5+EdhNJ+knPl81IiiFYACckKVWftkHgTI1AlS1V+IAAG3O5L
+         q/cDvnpumIrADAEIxyVXg48ada/aXIZr82dB3SFykrn4yA+vaxt/BLnir2ZHhTPPvF5E
+         0iBiWUQ9xn7qsj5c5Fxo99lG/A22xWjkVBdWzXLz+D4EFR2LYsr6p2mAybN+REoeWSrE
+         t4Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=R7T+rwQb5qFYaX5d/2NvmgUHeg2xX0pNv3pOpEsj5EQ=;
-        b=SBbpcdZs75+uuVyamxKETSWX910avja5NY+d6wzMBrQ/Ix8h3qaMtsvhysaK7Bua5E
-         09e2LEVWN3ssjaveSoA4mStlCF56nCR9bOWBHKkNU9Agrz6hnWcDH2VGY/Bpms2i9lWt
-         ujf+bgWfH1TgkWbTcuqNohkakFwYy+Sl5wuiXlFQYM52UpxbWB/zpS2EYtatlyhgQ79T
-         o1ddZ9z41xcBV5h3ShPOOSlNpV9S9UnG/9G9kfJoe8ejtqxi5Q9VEx78d+J9cHcw220b
-         uD+GFJZn5qcVWX14Bh8CAI1MhoIRUe0pWAPGmvp2GuKUAAYYF2qUOL1BE52ZPmkkJeDm
-         rOIA==
-X-Gm-Message-State: AOAM533uzxgOTbUznwquxBjMBxDhVGGi/eFHrP4WFhQoEwEJQou1ob0t
-        fLc2WxXULIdJK69ChOibDQ==
-X-Google-Smtp-Source: ABdhPJwS6VjtPTdD/z11/eIoNH9msXpk4/83WflzvJ8QoI9+UatXRZ93RUwX3ZrBn6ZL8LWIEaPb3w==
-X-Received: by 2002:a9d:66da:: with SMTP id t26mr8416980otm.279.1611244923483;
-        Thu, 21 Jan 2021 08:02:03 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q6sm1115776otm.68.2021.01.21.08.02.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jan 2021 08:02:02 -0800 (PST)
-Received: (nullmailer pid 2814842 invoked by uid 1000);
-        Thu, 21 Jan 2021 16:01:58 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        max.oss.09@gmail.com, todor.too@gmail.com, mchehab@kernel.org,
-        michael@walle.cc,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Tomasz Figa <tfiga@chromium.org>, catalin.marinas@arm.com,
-        vkoul@kernel.org, shawnguo@kernel.org,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        will@kernel.org, devicetree@vger.kernel.org, leoyang.li@nxp.com,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Jonathan Marek <jonathan@marek.ca>, robh+dt@kernel.org,
-        agx@sigxcpu.org,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        linux-arm-kernel@lists.infradead.org, bjorn.andersson@linaro.org,
-        geert+renesas@glider.be, Anson.Huang@nxp.com
-In-Reply-To: <20210120134357.1522254-14-robert.foss@linaro.org>
-References: <20210120134357.1522254-1-robert.foss@linaro.org> <20210120134357.1522254-14-robert.foss@linaro.org>
-Subject: Re: [PATCH v2 14/22] dt-bindings: media: camss: Add qcom, msm8996-camss binding
-Date:   Thu, 21 Jan 2021 10:01:58 -0600
-Message-Id: <1611244918.520900.2814841.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=z7oVga7Escj/c6BU5fn9u2qNIv4eQlnHp8uz/6apHm8=;
+        b=YwPt7yxXw11UHG6uW8ttXO844UtbTurtepDaROsL1I296cGdSsS+XX407Ud2gB3zUz
+         xzM4FwKt9yAZ0gxsYY5hdAzwW1JaDbtp5AKyN2ALY1YuGYmBzVJy408Z6Erjmwa0y5hB
+         55xOD3FVMrxq4hYRXHnqxODciPeQaKsLG/LaGtzyAvRV6kaLfUPWn1cHEmxUjuwI6TVZ
+         uPH2W/svRCHW9TmyebCAb5ddNJM/kN9vYT0TRB+aeNmQxKZl8MX3zw+GFOJ1RytuAAFu
+         5kOdmYJLwxpYEpqEJ0GzWQyNHP9J+FVoOAdDNpcvPM6q7H7Vja5SPNXGUcpnunJsiThC
+         tB5A==
+X-Gm-Message-State: AOAM533Xk+ahvjg09dTToVGt+SFOPIqnbIanXvqO5Wfg6/3bzvJoG/xP
+        aLVMzXsC7Pfb0lsdYnuxtYh4dlD/TWH70idkPr0=
+X-Google-Smtp-Source: ABdhPJz810rj4uEh3NOSZjkte6BAAPp2lkFigFSpC0lmoi8bADNmSJpDd6MCWI3LiIBOxL+SgTYdC7FnQIAMX/83wZI=
+X-Received: by 2002:a17:902:7b96:b029:de:7ae6:b8db with SMTP id
+ w22-20020a1709027b96b02900de7ae6b8dbmr425254pll.0.1611245361597; Thu, 21 Jan
+ 2021 08:09:21 -0800 (PST)
+MIME-Version: 1.0
+References: <20210121142716.6374-1-o.rempel@pengutronix.de> <20210121142716.6374-3-o.rempel@pengutronix.de>
+In-Reply-To: <20210121142716.6374-3-o.rempel@pengutronix.de>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 21 Jan 2021 18:10:10 +0200
+Message-ID: <CAHp75VfnV+A=BpXGqf=xC=RTozfNrmq7X5V0o8aK2ptMyZF9YA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] counter: add GPIO based pulse counters
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio <linux-iio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jan 2021 14:43:49 +0100, Robert Foss wrote:
-> Add bindings for qcom,msm8996-camss in order to support the camera
-> subsystem on MSM8996.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
-> 
-> Changes since v1:
->  - Laurent: Reworked driver to use dtschema
-> 
-> 
->  .../bindings/media/qcom,msm8996-camss.yaml    | 418 ++++++++++++++++++
->  1 file changed, 418 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> 
+On Thu, Jan 21, 2021 at 4:32 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+>
+> Add simple GPIO base pulse counter. This device is used to measure
+> rotation speed of some agricultural devices, so no high frequency on the
+> counter pin is expected.
+>
+> The maximal measurement frequency depends on the CPU and system load. On
+> the idle iMX6S I was able to measure up to 20kHz without count drops.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+...
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml:418:7: [error] no new line character at the end of file (new-line-at-end-of-file)
+> +#include <linux/of_gpio.h>
 
-dtschema/dtc warnings/errors:
+It would be better to see OF agnostic code WRT GPIOs.
 
-See https://patchwork.ozlabs.org/patch/1429444
+...
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+> +static ssize_t gpio_pulse_count_enable_read(struct counter_device *counter,
+> +                                           struct counter_count *count,
+> +                                           void *private, char *buf)
+> +{
+> +       struct gpio_pulse_priv *priv = counter->priv;
+> +
+> +       return scnprintf(buf, PAGE_SIZE, "%d\n", priv->enabled);
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+sysfs_emit()
 
-pip3 install dtschema --upgrade
+> +}
+> +
+> +static ssize_t gpio_pulse_count_enable_write(struct counter_device *counter,
+> +                                            struct counter_count *count,
+> +                                            void *private,
+> +                                            const char *buf, size_t len)
+> +{
+> +       struct gpio_pulse_priv *priv = counter->priv;
+> +       bool enable;
+> +       ssize_t ret;
+> +
+> +       ret = kstrtobool(buf, &enable);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (priv->enabled == enable)
+> +               return len;
+> +
+> +       if (enable)
+> +               enable_irq(priv->irq);
+> +       else
+> +               disable_irq(priv->irq);
 
-Please check and re-submit.
+Oops, if IRQ happens here, shouldn't we have priv->enabled already set properly?
 
+> +       priv->enabled = enable;
+> +
+> +       return len;
+> +}
+> +
+> +static const struct counter_count_ext gpio_pulse_count_ext[] = {
+> +       {
+> +               .name = "enable",
+> +               .read = gpio_pulse_count_enable_read,
+> +               .write = gpio_pulse_count_enable_write
+
+Leave the comma here.
+
+> +       },
+> +};
+
+...
+
+> +static struct counter_signal gpio_pulse_signals[] = {
+> +       {
+> +               .id = 0,
+> +               .name = "Channel 0 signal"
+
+Leave the comma.
+
+> +       },
+> +};
+> +
+> +static struct counter_synapse gpio_pulse_count_synapses[] = {
+> +       {
+> +               .actions_list = gpio_pulse_synapse_actions,
+> +               .num_actions = ARRAY_SIZE(gpio_pulse_synapse_actions),
+> +               .signal = &gpio_pulse_signals[0]
+
+Ditto.
+
+> +       },
+> +};
+
+...
+
+> +static struct counter_count gpio_pulse_counts[] = {
+> +       {
+> +               .id = 0,
+> +               .name = "Channel 1 Count",
+> +               .functions_list = gpio_pulse_count_functions,
+> +               .num_functions = ARRAY_SIZE(gpio_pulse_count_functions),
+> +               .synapses = gpio_pulse_count_synapses,
+> +               .num_synapses = ARRAY_SIZE(gpio_pulse_count_synapses),
+> +               .ext = gpio_pulse_count_ext,
+> +               .num_ext = ARRAY_SIZE(gpio_pulse_count_ext)
+
+Ditto
+
+> +       },
+> +};
+> +
+
+...
+
+> +       struct device_node *np = pdev->dev.of_node;
+
+> +       if (of_gpio_count(np) != 1) {
+> +               dev_err(dev, "Error, need exactly 1 gpio for device\n");
+> +               return -EINVAL;
+> +       }
+
+gpiod_count() ?
+
+> +       priv->gpio = devm_fwnode_gpiod_get(dev, of_fwnode_handle(np),
+> +                                          NULL, GPIOD_IN, GPIO_PULSE_NAME);
+
+of node to fwnode, can we avoid dragging this here to there?
+
+Why is devm_gpiod_get() followed by a label setting not good enough?
+
+> +       if (IS_ERR(priv->gpio))
+> +               return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get gpio\n");
+
+...
+
+> +static const struct of_device_id gpio_pulse_cnt_of_match[] = {
+> +       { .compatible = "virtual,gpio-pulse-counter", },
+> +       {},
+
+No comma needed for real terminator entry.
+
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
