@@ -2,131 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0F122FE842
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 12:01:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A09F2FE8B3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 12:26:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729871AbhAULAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 06:00:01 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:54672 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729212AbhAUK64 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 05:58:56 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 37D872016D6;
-        Thu, 21 Jan 2021 11:58:09 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 891F7200C68;
-        Thu, 21 Jan 2021 11:58:06 +0100 (CET)
-Received: from lsv03124.swis.in-blr01.nxp.com (lsv03124.swis.in-blr01.nxp.com [92.120.146.121])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 1D7E940291;
-        Thu, 21 Jan 2021 11:58:03 +0100 (CET)
-From:   Kuldeep Singh <kuldeep.singh@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>
-Subject: [Patch v2 1/3] arm64: dts: lx2160a: Add flexcan support
-Date:   Thu, 21 Jan 2021 16:27:37 +0530
-Message-Id: <1611226659-30129-2-git-send-email-kuldeep.singh@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1611226659-30129-1-git-send-email-kuldeep.singh@nxp.com>
-References: <1611226659-30129-1-git-send-email-kuldeep.singh@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726849AbhAULZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 06:25:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729214AbhAULYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 06:24:42 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BED2C0613D3;
+        Thu, 21 Jan 2021 03:24:02 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id g3so1132341plp.2;
+        Thu, 21 Jan 2021 03:24:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=lslmnlQrtpTIRDu3hWAi8sXwnSjS9donHChZd58khQg=;
+        b=UXQlAdc3hwbMzWm7xePYi4qK9KThp0aPF+Fo8eaQ1m454i2Id/Fg4/2lnzVZNTBgSE
+         FZWOCaKhIZ/w/ivuLaSJ2B1OBAtTUEy9gkaKWYiRQ631x4j4pJWFj7xbmWPflAoho9nx
+         5TqVyroutmHFUHB3pls8vsLs3fXIoJ2ZtRZAJaKus50gRaXz5TP52PHIYHudHBo2KmHG
+         d+wMkNBWjxiMYQD5ck/jol9G1dyhM3Ai4rZa8pdVwNDxsrUkX7iVLPJzc/Hd+9sbPMgD
+         NRqXfPjni1Qj/64G4G1gha7qiLB0sgr0aWfZF2C/TG2c5iOX0QsU488ufpKl/6YGiDHA
+         2ayQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=lslmnlQrtpTIRDu3hWAi8sXwnSjS9donHChZd58khQg=;
+        b=RvhidB7FxsCjnltIexnNR1wTtSJCrp4hQXN7x4M7rXE1rbQgjtAmJqqxcxavFdkX6v
+         ksL+OPz/gwhpjglFzfFTn2CEDbsVdb+Io9eSxCVhRvCkGL+SJYi2G7Rpx4oHOcZHwaXV
+         SJdC5mBa6Xnv2toWPt/+N3+StJxpsi4b2myc/PY/N5ktdx5tJWe79HZwOo3WvSLR/E70
+         UIEHNyhYyXPw/TMOI0j/T66NUURsXWoecCRWxN6dzZY/9Su6axY/+uYodnpy1hPSgWca
+         4oKWHVvRlPtoDwdpx94F2ngzb2dJP4I65Om7xN1a1Mkj7qubsXcsQ3lsdKfnMI14+xQb
+         Vv9Q==
+X-Gm-Message-State: AOAM530/A6XmWVT8B1ziuQrjW54XcyXuXwqBVQhrV8Vl7kQ8VGoTf5Bp
+        jfhBCt1LrUQQWOTcAgacig6Apo1Y3dFH4Hgp
+X-Google-Smtp-Source: ABdhPJxR2pyo41CIdOAqik7/AVjtgJxP91xCIN/od+oVRsP+mpgZY+ChDoR6zqNG4YsSW2ZmSO108w==
+X-Received: by 2002:a17:902:e5cc:b029:df:bc77:3aba with SMTP id u12-20020a170902e5ccb02900dfbc773abamr9115606plf.72.1611228241858;
+        Thu, 21 Jan 2021 03:24:01 -0800 (PST)
+Received: from ubt.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id me5sm5404797pjb.19.2021.01.21.03.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jan 2021 03:24:01 -0800 (PST)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Sheng Xu <sheng.xu@unisoc.com>,
+        Kevin Tang <kevin.tang@unisoc.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+Subject: [PATCH v1 1/2] dt-bindings: iommu: add bindings for sprd iommu
+Date:   Thu, 21 Jan 2021 19:23:48 +0800
+Message-Id: <20210121112349.421464-2-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210121112349.421464-1-zhang.lyra@gmail.com>
+References: <20210121112349.421464-1-zhang.lyra@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LX2160A supports two flexcan controllers. Add the support.
-Enable support further for LX2160A-RDB/QDS.
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+This patch adds bindings to support display and Image codec(jpeg) iommu
+instance.
+
+The iommu support for others would be added once finished tests with those
+devices, such as a few signal processors, including VSP(video),
+GSP(graphic), ISP(image), and camera CPP, etc.
+
+Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 ---
- arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dts |  8 ++++++++
- arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts | 16 +++++++++++++++
- arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi    | 24 +++++++++++++++++++++++
- 3 files changed, 48 insertions(+)
+ .../devicetree/bindings/iommu/sprd,iommu.yaml | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dts
-index 16ae3b0..d858d9c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dts
-@@ -33,6 +33,14 @@
- 	};
- };
- 
-+&can0 {
-+	status = "okay";
-+};
+diff --git a/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+new file mode 100644
+index 000000000000..4b912857c112
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iommu/sprd,iommu.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2020 Unisoc Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iommu/sprd,iommu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&can1 {
-+	status = "okay";
-+};
++title: Unisoc IOMMU and Multi-media MMU
 +
- &crypto {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-index 6f82759..5dbf274 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-@@ -89,6 +89,22 @@
- 	};
- };
- 
-+&can0 {
-+	status = "okay";
++maintainers:
++  - Chunyan Zhang <zhang.lyra@gmail.com>
 +
-+	can-transceiver {
-+		max-bitrate = <5000000>;
-+	};
-+};
++properties:
++  compatible:
++    enum:
++      - sprd,iommu-v1-disp
++      - sprd,iommu-v1-jpg
 +
-+&can1 {
-+	status = "okay";
++  reg:
++    maxItems: 1
 +
-+	can-transceiver {
-+		max-bitrate = <5000000>;
-+	};
-+};
++  "#iommu-cells":
++    const: 0
++    description:
++      Unisoc IOMMUs are all single-master IOMMU devices, therefore no
++      additional information needs to associate with its master device.
++      Please refer to the generic bindings document for more details,
++      Documentation/devicetree/bindings/iommu/iommu.txt
 +
- &esdhc0 {
- 	sd-uhs-sdr104;
- 	sd-uhs-sdr50;
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-index 451e443..0551f6f 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-@@ -895,6 +895,30 @@
- 			status = "disabled";
- 		};
- 
-+		can0: can@2180000 {
-+			compatible = "fsl,lx2160ar1-flexcan";
-+			reg = <0x0 0x2180000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>,
-+				 <&clockgen QORIQ_CLK_SYSCLK 0>;
-+			clock-names = "ipg", "per";
-+			fsl,clk-source = <0>;
-+			status = "disabled";
-+		};
++required:
++  - compatible
++  - reg
++  - "#iommu-cells"
 +
-+		can1: can@2190000 {
-+			compatible = "fsl,lx2160ar1-flexcan";
-+			reg = <0x0 0x2190000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>,
-+				 <&clockgen QORIQ_CLK_SYSCLK 0>;
-+			clock-names = "ipg", "per";
-+			fsl,clk-source = <0>;
-+			status = "disabled";
-+		};
++additionalProperties: false
 +
- 		uart0: serial@21c0000 {
- 			compatible = "arm,sbsa-uart","arm,pl011";
- 			reg = <0x0 0x21c0000 0x0 0x1000>;
++examples:
++  - |
++    iommu_disp: iommu@63000000 {
++      compatible = "sprd,iommu-v1-disp";
++      reg = <0x63000000 0x880>;
++      #iommu-cells = <0>;
++    };
++
++...
 -- 
-2.7.4
+2.25.1
 
