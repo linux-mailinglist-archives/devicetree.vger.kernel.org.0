@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B392FF52A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:56:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFEF02FF539
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:59:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726662AbhAUTy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 14:54:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
+        id S1726754AbhAUTzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 14:55:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726382AbhAUTyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:54:19 -0500
+        with ESMTP id S1726917AbhAUTzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:55:02 -0500
 Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF46C061756;
-        Thu, 21 Jan 2021 11:52:54 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45440C061788
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 11:52:55 -0800 (PST)
 Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B5B303EEBD;
-        Thu, 21 Jan 2021 20:52:52 +0100 (CET)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7F6093EECF;
+        Thu, 21 Jan 2021 20:52:53 +0100 (CET)
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
 To:     viresh.kumar@linaro.org
@@ -30,10 +30,11 @@ Cc:     bjorn.andersson@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
         konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
         martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v5 1/7] cpufreq: blacklist SDM630/636/660 in cpufreq-dt-platdev
-Date:   Thu, 21 Jan 2021 20:52:44 +0100
-Message-Id: <20210121195250.492500-2-angelogioacchino.delregno@somainline.org>
+        <angelogioacchino.delregno@somainline.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v5 3/7] dt-bindings: arm: cpus: Document 'qcom,freq-domain' property
+Date:   Thu, 21 Jan 2021 20:52:46 +0100
+Message-Id: <20210121195250.492500-4-angelogioacchino.delregno@somainline.org>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210121195250.492500-1-angelogioacchino.delregno@somainline.org>
 References: <20210121195250.492500-1-angelogioacchino.delregno@somainline.org>
@@ -43,28 +44,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the SDM630, SDM636 and SDM660 to the blacklist since the CPU
-scaling is handled out of this.
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
+Add devicetree documentation for 'qcom,freq-domain' property specific
+to Qualcomm CPUs. This property is used to reference the CPUFREQ node
+along with Domain ID (0/1).
+
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 ---
- drivers/cpufreq/cpufreq-dt-platdev.c | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-index bd2db0188cbb..f82f4ec17ff2 100644
---- a/drivers/cpufreq/cpufreq-dt-platdev.c
-+++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-@@ -135,6 +135,9 @@ static const struct of_device_id blacklist[] __initconst = {
- 	{ .compatible = "qcom,msm8996", },
- 	{ .compatible = "qcom,qcs404", },
- 	{ .compatible = "qcom,sc7180", },
-+	{ .compatible = "qcom,sdm630", },
-+	{ .compatible = "qcom,sdm636", },
-+	{ .compatible = "qcom,sdm660", },
- 	{ .compatible = "qcom,sdm845", },
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index 14cd727d3c4b..1d60975df23a 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -290,6 +290,12 @@ properties:
  
- 	{ .compatible = "st,stih407", },
+       * arm/msm/qcom,kpss-acc.txt
+ 
++  qcom,freq-domain:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    description: |
++      CPUs supporting freq-domain must set their "qcom,freq-domain" property
++      with phandle to a cpufreq_hw node followed by the Domain ID(0/1).
++
+   rockchip,pmu:
+     $ref: '/schemas/types.yaml#/definitions/phandle'
+     description: |
 -- 
 2.30.0
 
