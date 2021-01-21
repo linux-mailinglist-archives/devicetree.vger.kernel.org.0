@@ -2,196 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4432FF438
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 182F02FF44F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:25:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727087AbhAUTTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 14:19:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58882 "EHLO
+        id S1727582AbhAUTYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 14:24:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726998AbhAUTTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:19:51 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8FABC06174A;
-        Thu, 21 Jan 2021 11:19:05 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id g3so1854412plp.2;
-        Thu, 21 Jan 2021 11:19:05 -0800 (PST)
+        with ESMTP id S1727556AbhAUTYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:24:33 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E916C06174A;
+        Thu, 21 Jan 2021 11:23:53 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id j12so2259380pjy.5;
+        Thu, 21 Jan 2021 11:23:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OJPeUr95r7qe0zay9wgTNA4xYQ3SP/NdIq7pjxqRZ8w=;
-        b=HwPxn2l58r0mlOJ5V17hBBWQWQ8RWvyoGCk7idFJgDHwiHm4hU5bxPTKC9i5KpaySY
-         wmbxfKvRSxdRPpXH08VrqK66CZ2D8HtoDpv6YEJ2nsjKGLVRA0aU1sZMnBW1TPwdt22g
-         KBOA0k5SWkrL4FkgQyLwNWcsHe3rFDgJfHaDwhKCpeyViT2qA0FsbiyMJ+yBoaU9CPpI
-         0mTZNCGkyUxWOj1L0CNmtWtGcR7h8vW2lDewM3/EHv2rFK/AQNX6toLgVW7Vs7GjGyiV
-         MYoX1VbsJTfBoMWZiE6dy9SfaWuP5fbLTTdlTtUEwQ4xuTIhx7gUmF8KkV4DYhNq6rcA
-         2jgg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=yiY7HD46FUvTU9Oj6CSOT7lbeUEzegOMDCYKa4T7F94=;
+        b=Z5XiKLNwDOfUbX/CovSxaboSwcc188M6BVytHUDexBth6QFlcnD5g1k4HK9xyE69U3
+         LVu/SPf9QcFY7885bLrdrcCFaOxTAAUFkWpByOPaNTCA4P3Z8IWcIqUB6RNQZaiZjax2
+         82cgY9Ry6x1W1+CPCBOqJ+wsxw6yarxPoKI4UlBaIu2uD5MeuAo+xqC0qlW03GYI6Uq3
+         MLkiYkzx11ASlkIH5DnVlZbL83eeWwR9LDx0bpDd7lviKlQfpNIcC2CyqngHxNG00Bwv
+         NeaMnLJhSUvr+o1rxaHqX8IUyjEf7Q7G8juZ8cu38zGgDWMIIS6Rbq/qzygYo30I2WVM
+         RRDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=OJPeUr95r7qe0zay9wgTNA4xYQ3SP/NdIq7pjxqRZ8w=;
-        b=DiBpmwH+eY0Gl+kqwJJ25cz4g75osd3sWKMOPL8vjtD3Qe8UBFxhL4JsGIAPDBWjeU
-         eSgoqHSVDM6TnlN2IOrXvkF1+DFJht+v41r4R8IZjwD8FDC4LM3JeRSF8Rcfn5iGPWIr
-         CqlfWLumCruqhhqlIDO9t/t3dPFVP3cN4H59GoBT4wzHw5Dg8t9xN16nhQmhlBakfFHj
-         0hyRq6fRIX6ARS9TZj6xlhRcOizU5UMdww9ufAsejGmLbbgI1wJfvmbd8e4iBV1rGNx4
-         zpL0z1X8f61XASbR538+i+JhL00MwgIEk09PSGF2UCymGRNgeKu8Lw9Fn3GsPD7ERrxi
-         XiOA==
-X-Gm-Message-State: AOAM533InT5noqHhasxxtbogdOpaPSXKNJBug084A+zX8rN2Zy7I51pg
-        XFm8e5wRShNAz/LZnHjuiOg=
-X-Google-Smtp-Source: ABdhPJwYb7y1Ji+aONNbWB23QbRQS4m+r3yjm/gsBwxmFeyTtTWF580sv9zaKPvIsBRZ5dBPId7c5g==
-X-Received: by 2002:a17:902:724b:b029:de:229a:47f1 with SMTP id c11-20020a170902724bb02900de229a47f1mr915587pll.10.1611256745320;
-        Thu, 21 Jan 2021 11:19:05 -0800 (PST)
-Received: from ansuel-xps20.localdomain (host-80-182-172-197.pool80182.interbusiness.it. [80.182.172.197])
-        by smtp.googlemail.com with ESMTPSA id p9sm6559634pfq.136.2021.01.21.11.18.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jan 2021 11:19:04 -0800 (PST)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Amit Kucheria <amitk@kernel.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v8 8/8] dt-bindings: thermal: tsens: Document ipq8064 bindings
-Date:   Thu, 21 Jan 2021 20:18:53 +0100
-Message-Id: <20210121191853.14600-1-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.29.2
+        bh=yiY7HD46FUvTU9Oj6CSOT7lbeUEzegOMDCYKa4T7F94=;
+        b=opUMVKqe0TUZg28QJRVaUymy5kQmHRhWeqiSp8hZwcV/y6uptLK5KStD2z789wZz2A
+         xaIyJ2PUfpbmcS5NiwmV86dkBnF7VEY7+JdIp/o+4WFsLEjWMzZeH0t7VGQVVj0DVf5n
+         MwCFUCzRvKRKmRSbAPtN2fvKpPa9EaTdIwkQhVasF+g8D2/+OZ09iu3fYZcWo5wbE/U7
+         i7Sy3UGAVb7aRKGyI95gryKx7EXIdqXCagYJ/TtJTn85w6uZVVdY6VfvelegzQbmiE2z
+         CxAK++VgKeDaCWzTmld8J0ChJWdhl8lgyANy0fgA3WVzi2nlzG21JcnYW1BQ8btl0gfy
+         xZMw==
+X-Gm-Message-State: AOAM530AJBALIawd/2qdqVnBmQvjXlxBnj+03p2wWK4HAHxVGKyRSfMB
+        mTQndGnGk4Sw4Bsb26c++j7POJm+oS0=
+X-Google-Smtp-Source: ABdhPJy1tIhNY3xUiRniEpUrqJK1i7hcf9RFMz6Nv1JgC1ejFXtwfrgX7yX6kHVQbn0QSa3gxct6wg==
+X-Received: by 2002:a17:90a:c902:: with SMTP id v2mr1015256pjt.144.1611257032397;
+        Thu, 21 Jan 2021 11:23:52 -0800 (PST)
+Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
+        by smtp.gmail.com with ESMTPSA id r14sm6783315pgi.27.2021.01.21.11.23.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jan 2021 11:23:51 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: stingray: remove sata
+To:     Scott Branden <scott.branden@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20210120185140.16929-1-scott.branden@broadcom.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <5430df77-4364-7cc1-48dc-a335ca4c409a@gmail.com>
+Date:   Thu, 21 Jan 2021 11:23:43 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210120185140.16929-1-scott.branden@broadcom.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the use of bindings used for msm8960 tsens based devices.
-msm8960 use the same gcc regs and is set as a child of the qcom gcc.
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- .../bindings/thermal/qcom-tsens.yaml          | 75 ++++++++++++++++---
- 1 file changed, 65 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index 95462e071ab4..11ce1d7da679 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -19,6 +19,11 @@ description: |
- properties:
-   compatible:
-     oneOf:
-+      - description: msm9860 TSENS based
-+        items:
-+          - enum:
-+            - qcom,ipq8064-tsens
-+
-       - description: v0.1 of TSENS
-         items:
-           - enum:
-@@ -71,9 +76,6 @@ properties:
-   nvmem-cell-names:
-     minItems: 1
-     maxItems: 2
--    items:
--      - const: calib
--      - const: calib_sel
- 
-   "#qcom,sensors":
-     description:
-@@ -88,12 +90,40 @@ properties:
-       Number of cells required to uniquely identify the thermal sensors. Since
-       we have multiple sensors this is set to 1
- 
-+required:
-+  - compatible
-+  - interrupts
-+  - interrupt-names
-+  - "#thermal-sensor-cells"
-+  - "#qcom,sensors"
-+
- allOf:
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-+              - qcom,ipq8064-tsens
-+    then:
-+      properties:
-+        nvmem-cell-names:
-+          items:
-+            - const: calib
-+            - const: calib_backup
-+
-+    else:
-+      properties:
-+        nvmem-cell-names:
-+          items:
-+            - const: calib
-+            - const: calib_sel
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq8064-tsens
-               - qcom,msm8916-tsens
-               - qcom,msm8974-tsens
-               - qcom,msm8976-tsens
-@@ -114,17 +144,42 @@ allOf:
-         interrupt-names:
-           minItems: 2
- 
--required:
--  - compatible
--  - reg
--  - "#qcom,sensors"
--  - interrupts
--  - interrupt-names
--  - "#thermal-sensor-cells"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,tsens-v0_1
-+              - qcom,tsens-v1
-+              - qcom,tsens-v2
-+
-+    then:
-+      required:
-+        - reg
- 
- additionalProperties: false
- 
- examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    // Example msm9860 based SoC (ipq8064):
-+    gcc: clock-controller {
-+
-+           /* ... */
-+
-+           tsens: thermal-sensor {
-+                compatible = "qcom,ipq8064-tsens";
-+
-+                 nvmem-cells = <&tsens_calib>, <&tsens_calib_backup>;
-+                 nvmem-cell-names = "calib", "calib_backup";
-+                 interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+                 interrupt-names = "uplow";
-+
-+                 #qcom,sensors = <11>;
-+                 #thermal-sensor-cells = <1>;
-+          };
-+    };
-+
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     // Example 1 (legacy: for pre v1 IP):
+On 1/20/2021 10:51 AM, Scott Branden wrote:
+> Remove sata from stingray as it is unsupported.
+> 
+> Signed-off-by: Scott Branden <scott.branden@broadcom.com>
+
+Applied to devicetree-arm64/next with a slightly reworded subject and
+commit message along with Ray's acked-by tag:
+
+https://github.com/Broadcom/stblinux/commit/142836ca820a7ad3b397bbdda7c35971f4b9772d
+
+Thanks!
 -- 
-2.29.2
-
+Florian
