@@ -2,92 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6552FE675
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 10:36:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AE552FE6CE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 10:55:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728704AbhAUJgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 04:36:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45426 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728852AbhAUJgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 04:36:18 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9F36C061575;
-        Thu, 21 Jan 2021 01:35:29 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id CEAD822F99;
-        Thu, 21 Jan 2021 10:35:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1611221728;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=+gbRSGE0nWUH9bFF7dDE4htsRr0J7rGI/rc6n7Svmns=;
-        b=EtcfjVUJ/wecaAdfo5GWmzWJ/1iDt9eeRVDeuJIB9jb/dFWT0aaye6XcrKNyeAhs/5OgQF
-        eY/5crAqpcbBLXDVQzBN31uB/o89bl8O5WQA6Nrm45mZGdKGUjhgxxreCMucxkqiT9rb+K
-        B3zVORwDZnBhII5cLn0YRZKKqEyiWdg=
+        id S1726251AbhAUJyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 04:54:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47696 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728404AbhAUJxn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 04:53:43 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2C04F239D3;
+        Thu, 21 Jan 2021 09:52:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611222778;
+        bh=a08eyup4zJE1nHo7/wnywsrNQvl9GOKRtX1mXLpx1cc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qUI/+bor81BVLA2oAEt3YXH61AuVXFOqs2vML32Oky6wuoxgHJTd18vJBOkpF14tD
+         FMCbb4sL+FJAIkCk7llaN91kgfjZhelcLDXVTS0zTBmXlwIFG+GqcFm6lrl31vJ+59
+         vRCU7HKQVoiQbgzcO9AZAdjyt5727YTY1CL53PHK7VrOAlrQE3l9i95c0E9p9Et3Hx
+         Qok7dHzPEd3dTDMjzzgwmfQgJA3qk2z6OXwX13ijUmrcjbwVqKxdvMzb0VMdMCHVxE
+         yH+TaPNaS/9CojxbC8euWxee2FJTWNZl/bik4oNljk73NwXkeIABN3cX5PrDHRfhEa
+         6pQXJPNvtpdxw==
+Received: by mail-oi1-f177.google.com with SMTP id r189so1537640oih.4;
+        Thu, 21 Jan 2021 01:52:58 -0800 (PST)
+X-Gm-Message-State: AOAM531hLDQYdXyTa8cHEGD/OeBulQ5VLXLvxKOOM1eDnvFa0mrP50R5
+        vefX8OMnxccjSYxVuRlRA6TO2u369FeL1B/Z6e4=
+X-Google-Smtp-Source: ABdhPJxZ6Cr+9tUOMy2rww2iNs0wN+clKncz07X1bCQJ+ajvUIdUWeMJH4iHBFIhPXqVmnhbjr1EtkypNriDJ2IKQ98=
+X-Received: by 2002:aca:d98a:: with SMTP id q132mr5525447oig.33.1611222777308;
+ Thu, 21 Jan 2021 01:52:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 21 Jan 2021 10:35:27 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org
-Subject: Re: [PATCH 0/3] add Ebang EBAZ4205 support
-In-Reply-To: <fff420d1-fc9a-23ce-0d07-58a3c6f10c4d@xilinx.com>
-References: <20210120194033.26970-1-michael@walle.cc>
- <fff420d1-fc9a-23ce-0d07-58a3c6f10c4d@xilinx.com>
-User-Agent: Roundcube Webmail/1.4.10
-Message-ID: <aa96fcaa362181d4b6fef9f1de0aa914@walle.cc>
-X-Sender: michael@walle.cc
+References: <20201217172101.381772-1-daniele.alessandrelli@linux.intel.com>
+ <CY4PR1101MB2326ED0E6C23D1D868D53365E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <20210104113148.GA20575@gondor.apana.org.au> <CY4PR1101MB23260DF5A317CA05BBA3C2F9E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CY4PR1101MB232696B49BA1A3441E8B335EE7A80@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CAMj1kXH9sHm_=dXS7646MbPQoQST9AepfHORSJgj0AxzWB4SvQ@mail.gmail.com>
+ <CY4PR1101MB232656080E3F457EC345E7B2E7A40@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CAMj1kXF9yUVEdPeF6EUCSOdb44HdFuVPk6G2cKOAUAn-mVjCzw@mail.gmail.com> <7ae7890f52226e75bf9e368808d6377e8c5efc2d.camel@intel.com>
+In-Reply-To: <7ae7890f52226e75bf9e368808d6377e8c5efc2d.camel@intel.com>
+From:   Ard Biesheuvel <ardb@kernel.org>
+Date:   Thu, 21 Jan 2021 10:52:46 +0100
+X-Gmail-Original-Message-ID: <CAMj1kXE8TnHvZrp2NQv9SJ4CfUOxy1sVXVusjrSWaiXOjRTQ5g@mail.gmail.com>
+Message-ID: <CAMj1kXE8TnHvZrp2NQv9SJ4CfUOxy1sVXVusjrSWaiXOjRTQ5g@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/6] Keem Bay OCS ECC crypto driver
+To:     "Alessandrelli, Daniele" <daniele.alessandrelli@intel.com>
+Cc:     "Reshetova, Elena" <elena.reshetova@intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Khurana, Prabhjot" <prabhjot.khurana@intel.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
+On Wed, 20 Jan 2021 at 20:00, Alessandrelli, Daniele
+<daniele.alessandrelli@intel.com> wrote:
+>
+> Hi Ard,
+>
+> Thank you very much for your valuable feedback.
+>
+> On Mon, 2021-01-18 at 13:09 +0100, Ard Biesheuvel wrote:
+> > This is rather unusual compared with how the crypto API is typically
+> > used, but if this is really what you want to implement, you can do so
+> > by:
+> > - having a "ecdh" implementation that implements the entire range, and
+> > uses a fallback for curves that it does not implement
+> > - export the same implementation again as "ecdh" and with a known
+> > driver name "ecdh-keembay-ocs", but with a slightly lower priority,
+> > and in this case, return an error when the unimplemented curve is
+> > requested.
+> >
+> > That way, you fully adhere to the API, by providing implementations of
+> > all curves by default. And if a user requests "ecdh-keembay-ocs"
+> > explicitly, it will not be able to use the P192 curve inadvertently.
+>
+> I tried to implement this, but it looks like the driver name is
+> mandatory, so I specified one also for the first implementation.
+>
+> Basically I defined two 'struct kpp_alg' variables; both with cra_name
+> = "ecdh", but with different 'cra_driver_name' (one with
+> cra_driver_name = "ecdh-keembay-ocs-fallback" and the other one with
+> cra_driver_name = "ecdh-keembay-ocs").
+>
+> Is this what you were suggesting?
+>
+> Anyway, that works (i.e., 'ecdh-keembay-ocs' returns an error when the
+> unimplemented curve is requested; while 'ecdh-keembay-ocs' and 'ecdh'
+> work fine with any curve), but I have to set the priority of 'ecdh-
+> keembay-ocs' to something lower than the 'ecdh_generic' priority.
+> Otherwise the implementation with fallback ends up using my "ecdh-
+> keembay-ocs" as fallback (so it ends up using a fallback that still
+> does not support the P-192 curve).
+>
+> Also, the implementation without fallback is still failing crypto self-
+> tests (as expected I guess).
+>
+> Therefore, I tried with a slightly different solution. Still two
+> implementations, but with different cra_names (one with cra_name =
+> "ecdh" and the other one with cra_name = "ecdh-keembay"). This solution
+> seems to be working, since, the "ecdh-keembay" is not tested by the
+> self tests and is not picked up as fallback for "ecdh" (since, if I
+> understand it correctly, it's like if I'm defining a new kind of kpp
+> algorithm), but it's still picked when calling crypto_alloc_kpp("ecdh-
+> keembay").
+>
+> Does this second solution looks okay to you? Or does it have some
+> pitfall that I'm missing?
+>
 
-Am 2021-01-21 10:25, schrieb Michal Simek:
-> On 1/20/21 8:40 PM, Michael Walle wrote:
->> Add support for the Ebang EBAZ4205 board. This board was once used as 
->> a
->> control board for a bitcoin mining device. Nowawdays it is sold as a 
->> cheap
->> Zynq-7000 eval board.
->> 
->> Michael Walle (3):
->>   dt-bindings: add ebang vendor prefix
->>   dt-bindings: arm: add Ebang EBAZ4205 board
->>   ARM: dts: add Ebang EBAZ4205 device tree
->> 
->>  .../devicetree/bindings/arm/xilinx.yaml       |   1 +
->>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->>  arch/arm/boot/dts/Makefile                    |   1 +
->>  arch/arm/boot/dts/zynq-ebaz4205.dts           | 109 
->> ++++++++++++++++++
->>  4 files changed, 113 insertions(+)
->>  create mode 100644 arch/arm/boot/dts/zynq-ebaz4205.dts
->> 
-> 
-> any link with schematics?
-
-https://github.com/xjtuecho/EBAZ4205, looks like these are
-reverse engineered (from a layout file?) though.
-
-> I will let dt guys to comment 1/3 but series look good to me.
-> The board doesn't look interesting from description point of view 
-> that's
-> why all the time thinking if makes sense to add it to kernel.
-
-What do you want to tell me? That for the time being, it didn't
-appear to you to add the board yourself - or do you thing it
-doesn't make sense at all. If its the latter, what would be
-actual reason to have a board in mainline?
-
--michael
+You should set the CRYPTO_ALG_NEED_FALLBACK flag on both
+implementations, to ensure that neither of them are considered as
+fallbacks themselves.
