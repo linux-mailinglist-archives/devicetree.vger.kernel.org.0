@@ -2,204 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D772FE998
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 13:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3CBA2FEA94
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 13:49:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728093AbhAUMEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 07:04:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731037AbhAUMDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 07:03:47 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AD4DC0613CF
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 04:03:06 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id x23so2161830lji.7
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 04:03:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+GxUh6LdEbxJRv07F8Bu1ZiZVv45b/NrzvE6NyqT1jY=;
-        b=s6KAF+5hcJQnVyHzHpbcpB7ECymmyrl7oGTDfTYzwH3PY5ecmMgw1jvDZV4g0xUtYr
-         jYRNlddph6y6QV9hFmR6uKANTqpnTfgCT2BkCJTCCT9/5ucYQ3rNxz+tPGwumMlA0bWn
-         UiKMRRWD3dsKp8HEegO1OYp+ApOw+VkXxbu0/AQWM2Qmhf7OeE8qJz+eb7Os/XLfUjEI
-         b3X5/TAdVhEOSALW0v1ASCCRK3izsRNgGrtTAlI42G+IyOUMN+v+GcgMjguB6IB0bYkg
-         vnveHBqsN+dFGzxkvlwsYyd5eC9s5Xo4D/uFSgd3SjZ3wsFU9rl4VfYu7lbnav3WjuS5
-         fRGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+GxUh6LdEbxJRv07F8Bu1ZiZVv45b/NrzvE6NyqT1jY=;
-        b=VXeDpnynaZGriRPw00jTS0AhbuNfnMmEY8JLK0FhR+lmqxEbJAPcozeLcDKND5eNWP
-         yaE1CHFSRwBJOM6yPfwQplC8RYIoxHF6TdoMyd2QJt0Ab6hgVUzBvjsLVnYcwyECsLL1
-         pNauR+q3yaWnSaYLDf8jl6ELiMaItMl4alAiDtC6PU9XBmjokZwHU+8ZIJY4HDa8qAFd
-         /r5Y7nwCyOOM9EU8+vaiWWvIrtxv9FIws1dmVXCKLzIiR9hY0DBUEzttBtWaFnOiEuRj
-         iI14bUVgJ5HWqzF2f70OzgHuRulb9Ljx28LICd/3vK7sE9UKHGp/IYw3zynfNnTQNfN7
-         Vl7A==
-X-Gm-Message-State: AOAM531Zs5cXALgcdFr1pWKccu+2UqjLyjMRKxcRJuakceTXKJdGgf1z
-        kWdznZIm5mw+VA/Rbm0hVMlGAAru4p9oXXWX7gjavjSBBwk=
-X-Google-Smtp-Source: ABdhPJz+q9Yw0jbUW6lR6xs6Pfi5vKPGh8TQE9gQI/nGSHzpiOWheAJLzVPUMQnfMkkXGPlgIgZOAhbG8sWOxwPnwrU=
-X-Received: by 2002:a2e:9ed5:: with SMTP id h21mr6815528ljk.125.1611230584561;
- Thu, 21 Jan 2021 04:03:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20210115234947.44014-1-vitaly.wool@konsulko.com> <CAM4kBBLhKsysQCf1GgpSvnGKVV2HsOoVP+4VvYmQaqfpKJ45+A@mail.gmail.com>
-In-Reply-To: <CAM4kBBLhKsysQCf1GgpSvnGKVV2HsOoVP+4VvYmQaqfpKJ45+A@mail.gmail.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Thu, 21 Jan 2021 17:32:52 +0530
-Message-ID: <CAAhSdy0DJZKhtSwiVvFMTqka6Piym2DTiqTYJq16CJrOPO4ktQ@mail.gmail.com>
-Subject: Re: [PATCH v3] riscv: add BUILTIN_DTB support for MMU-enabled targets
-To:     Vitaly Wool <vitaly.wool@konsulko.com>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
+        id S1730427AbhAUMXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 07:23:38 -0500
+Received: from mga05.intel.com ([192.55.52.43]:1666 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727900AbhAUKpc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 05:45:32 -0500
+IronPort-SDR: iK5J0kb9pZGcqoCW7frbpLwcVx4x4tEv/SnXNx2dCvHDirUIS2V3dnozK1sMGpwdaZOhK+0SYa
+ yYc0AuVXF9cg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="264064898"
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
+   d="scan'208";a="264064898"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 02:44:46 -0800
+IronPort-SDR: U/BYs4TmlOYrAtGVLsA7+bIfaTy9EHPUgEBoKcsPjK8LMAhldQtUt8//yq1Uy7y/n0191HJrTS
+ jG5m0DHJu6Ow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
+   d="scan'208";a="356417382"
+Received: from jsia-hp-z620-workstation.png.intel.com ([10.221.118.135])
+  by fmsmga008.fm.intel.com with ESMTP; 21 Jan 2021 02:44:43 -0800
+From:   Sia Jee Heng <jee.heng.sia@intel.com>
+To:     vkoul@kernel.org, Eugeniy.Paltsev@synopsys.com, robh+dt@kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, jee.heng.sia@intel.com,
+        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH v11 00/16] dmaengine: dw-axi-dmac: support Intel KeemBay AxiDMA
+Date:   Thu, 21 Jan 2021 18:27:10 +0800
+Message-Id: <20210121102726.22805-1-jee.heng.sia@intel.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 2:51 PM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
->
-> On Sat, Jan 16, 2021 at 12:57 AM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
-> >
-> > Sometimes, especially in a production system we may not want to
-> > use a "smart bootloader" like u-boot to load kernel, ramdisk and
-> > device tree from a filesystem on eMMC, but rather load the kernel
-> > from a NAND partition and just run it as soon as we can, and in
-> > this case it is convenient to have device tree compiled into the
-> > kernel binary. Since this case is not limited to MMU-less systems,
-> > let's support it for these which have MMU enabled too.
-> >
-> > While at it, provide __dtb_start as a parameter to setup_vm() in
-> > BUILTIN_DTB case, so we don't have to duplicate BUILTIN_DTB specific
-> > processing in MMU-enabled and MMU-disabled versions of setup_vm().
->
-> @Palmer: ping :)
->
-> > Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
->
-> While at it, since this is just a respin/concatenation:
-> @Damien: are you okay with re-adding 'Tested-By:' ?
-> @Anup: are you okay with adding 'Reviewed-by:' since you have reviewed
-> both v1 patches that were concatenated?
+The below patch series are to support AxiDMA running on Intel KeemBay SoC.
+The base driver is dw-axi-dmac. This driver only support DMA memory copy transfers.
+Code refactoring is needed so that additional features can be supported.
+The features added in this patch series are:
+- Replacing Linked List with virtual descriptor management.
+- Remove unrelated hw desc stuff from dma memory pool.
+- Manage dma memory pool alloc/destroy based on channel activity.
+- Support dmaengine device_sync() callback.
+- Support dmaengine device_config().
+- Support dmaengine device_prep_slave_sg().
+- Support dmaengine device_prep_dma_cyclic().
+- Support of_dma_controller_register().
+- Support burst residue granularity.
+- Support Intel KeemBay AxiDMA registers.
+- Support Intel KeemBay AxiDMA device handshake.
+- Support Intel KeemBay AxiDMA BYTE and HALFWORD device operation.
+- Add constraint to Max segment size.
+- Virtually split the linked-list.
 
-Yes, my Reviewed-by holds on this patch as well.
+This patch series are tested on Intel KeemBay platform.
+Eugeniy Paltsev has runtime tested this patch series on HSDK SoC/board.
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+v11:
+- Fixed bot build warning.
 
-Best Regards,
-Anup
+v10:
+- Rebased to kernel v5.11-rc4
+- Added Reviewed-by and Tested-by tag from Eugeniy Paltsev.
 
->
-> Best regards,
->    Vitaly
->
-> > ---
-> > Changes from v2:
-> > * folded "RISC-V: simplify BUILTIN_DTB processing" patch
-> > [http://lists.infradead.org/pipermail/linux-riscv/2021-January/004153.html]
-> > Changes from v1:
-> > * no direct initial_boot_params assignment
-> > * skips the temporary mapping for DT if BUILTIN_DTB=y
-> >
-> >  arch/riscv/Kconfig       |  1 -
-> >  arch/riscv/kernel/head.S |  4 ++++
-> >  arch/riscv/mm/init.c     | 19 +++++++++++++------
-> >  3 files changed, 17 insertions(+), 7 deletions(-)
-> >
-> > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > index 2ef05ef921b5..444a1ed1e847 100644
-> > --- a/arch/riscv/Kconfig
-> > +++ b/arch/riscv/Kconfig
-> > @@ -445,7 +445,6 @@ endmenu
-> >
-> >  config BUILTIN_DTB
-> >         def_bool n
-> > -       depends on RISCV_M_MODE
-> >         depends on OF
-> >
-> >  menu "Power management options"
-> > diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
-> > index 16e9941900c4..f5a9bad86e58 100644
-> > --- a/arch/riscv/kernel/head.S
-> > +++ b/arch/riscv/kernel/head.S
-> > @@ -260,7 +260,11 @@ clear_bss_done:
-> >
-> >         /* Initialize page tables and relocate to virtual addresses */
-> >         la sp, init_thread_union + THREAD_SIZE
-> > +#ifdef CONFIG_BUILTIN_DTB
-> > +       la a0, __dtb_start
-> > +#else
-> >         mv a0, s1
-> > +#endif /* CONFIG_BUILTIN_DTB */
-> >         call setup_vm
-> >  #ifdef CONFIG_MMU
-> >         la a0, early_pg_dir
-> > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> > index 30b61f2c6b87..45faad7c4291 100644
-> > --- a/arch/riscv/mm/init.c
-> > +++ b/arch/riscv/mm/init.c
-> > @@ -192,10 +192,13 @@ void __init setup_bootmem(void)
-> >  #endif /* CONFIG_BLK_DEV_INITRD */
-> >
-> >         /*
-> > -        * Avoid using early_init_fdt_reserve_self() since __pa() does
-> > +        * If DTB is built in, no need to reserve its memblock.
-> > +        * Otherwise, do reserve it but avoid using
-> > +        * early_init_fdt_reserve_self() since __pa() does
-> >          * not work for DTB pointers that are fixmap addresses
-> >          */
-> > -       memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-> > +       if (!IS_ENABLED(CONFIG_BUILTIN_DTB))
-> > +               memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-> >
-> >         early_init_fdt_scan_reserved_mem();
-> >         dma_contiguous_reserve(dma32_phys_limit);
-> > @@ -499,6 +502,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
-> >         /* Setup early PMD for DTB */
-> >         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
-> >                            (uintptr_t)early_dtb_pmd, PGDIR_SIZE, PAGE_TABLE);
-> > +#ifndef CONFIG_BUILTIN_DTB
-> >         /* Create two consecutive PMD mappings for FDT early scan */
-> >         pa = dtb_pa & ~(PMD_SIZE - 1);
-> >         create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA,
-> > @@ -506,7 +510,11 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
-> >         create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA + PMD_SIZE,
-> >                            pa + PMD_SIZE, PMD_SIZE, PAGE_KERNEL);
-> >         dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PMD_SIZE - 1));
-> > +#else /* CONFIG_BUILTIN_DTB */
-> > +       dtb_early_va = __va(dtb_pa);
-> > +#endif /* CONFIG_BUILTIN_DTB */
-> >  #else
-> > +#ifndef CONFIG_BUILTIN_DTB
-> >         /* Create two consecutive PGD mappings for FDT early scan */
-> >         pa = dtb_pa & ~(PGDIR_SIZE - 1);
-> >         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
-> > @@ -514,6 +522,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
-> >         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA + PGDIR_SIZE,
-> >                            pa + PGDIR_SIZE, PGDIR_SIZE, PAGE_KERNEL);
-> >         dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PGDIR_SIZE - 1));
-> > +#else /* CONFIG_BUILTIN_DTB */
-> > +       dtb_early_va = __va(dtb_pa);
-> > +#endif /* CONFIG_BUILTIN_DTB */
-> >  #endif
-> >         dtb_early_pa = dtb_pa;
-> >
-> > @@ -604,11 +615,7 @@ static void __init setup_vm_final(void)
-> >  #else
-> >  asmlinkage void __init setup_vm(uintptr_t dtb_pa)
-> >  {
-> > -#ifdef CONFIG_BUILTIN_DTB
-> > -       dtb_early_va = (void *) __dtb_start;
-> > -#else
-> >         dtb_early_va = (void *)dtb_pa;
-> > -#endif
-> >         dtb_early_pa = dtb_pa;
-> >  }
-> >
-> > --
-> > 2.20.1
-> >
+v9:
+- Logic checked on apb_regs inside the function.
+- Improved code scalability so that missing of apb_regs wouldn't failed
+  the common callback functions.
+
+v8:
+- Rebased to kernel v5.11-rc1.
+- Added reviewed-by tag from Rob.
+
+v7:
+- Added 'allOf' and '$ref:dma-controller.yaml#' in DT binding.
+- Removed the dma-channels common description in DT binding.
+- Removed the default fields in DT binding.
+
+v6:
+- Removed 'allOf' cases in DT binding.
+- Added '>' at the end of the email address.
+- Removed additional '|' at the start of description.
+- Fixed space indent.
+- Added proper constraint in DT binding.
+- Removed second example in DT binding.
+
+v5:
+- Added comment to the Apb registers used by Intel KeemBay Soc.
+- Renamed "hs_num" to "handshake_num".
+- Conditional check for the compatible property and return error
+  instead of printing warning.
+- Added patch 16th to virtually split the linked-list as per
+  request from ALSA team.
+
+v4:
+- Fixed bot found errors running make_dt_binding_check.
+- Added minItems: 1 to the YAML schemas DT binding.
+- Updated "reg" field to the YAML schemas DT binding.
+
+v3:
+- Added additionalProperties: false to the YAML schemas DT binding.
+- Reordered patch sequence for patch 10th, 11th and 12th so that
+  DT binding come first, follow by adding Intel KeemBay SoC registers
+  and update .compatible field.
+- Checked txstate NULL condition.
+- Created helper function dw_axi_dma_set_hw_desc() to handle common code.
+
+v2:
+- Rebased to v5.10-rc1 kernel.
+- Added support for dmaengine device_config().
+- Added support for dmaengine device_prep_slave_sg().
+- Added support for dmaengine device_prep_dma_cyclic().
+- Added support for of_dma_controller_register().
+- Added support for burst residue granularity.
+- Added support for Intel KeemBay AxiDMA registers.
+- Added support for Intel KeemBay AxiDMA device handshake.
+- Added support for Intel KeemBay AxiDMA BYTE and HALFWORD device operation.
+- Added constraint to Max segment size.
+
+v1:
+- Initial version. Patch on top of dw-axi-dma driver. This version improve
+  the descriptor management by replacing Linked List Item (LLI) with
+  virtual descriptor management, only allocate hardware LLI memories from
+  DMA memory pool, manage DMA memory pool alloc/destroy based on channel
+  activity and to support device_sync callback.
+
+Sia Jee Heng (16):
+  dt-bindings: dma: Add YAML schemas for dw-axi-dmac
+  dmaengine: dw-axi-dmac: simplify descriptor management
+  dmaengine: dw-axi-dmac: move dma_pool_create() to
+    alloc_chan_resources()
+  dmaengine: dw-axi-dmac: Add device_synchronize() callback
+  dmaengine: dw-axi-dmac: Add device_config operation
+  dmaengine: dw-axi-dmac: Support device_prep_slave_sg
+  dmaegine: dw-axi-dmac: Support device_prep_dma_cyclic()
+  dmaengine: dw-axi-dmac: Support of_dma_controller_register()
+  dmaengine: dw-axi-dmac: Support burst residue granularity
+  dt-binding: dma: dw-axi-dmac: Add support for Intel KeemBay AxiDMA
+  dmaengine: dw-axi-dmac: Add Intel KeemBay DMA register fields
+  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA support
+  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA handshake
+  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA BYTE and HALFWORD
+    registers
+  dmaengine: dw-axi-dmac: Set constraint to the Max segment size
+  dmaengine: dw-axi-dmac: Virtually split the linked-list
+
+ .../bindings/dma/snps,dw-axi-dmac.txt         |  39 -
+ .../bindings/dma/snps,dw-axi-dmac.yaml        | 126 ++++
+ .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 696 +++++++++++++++---
+ drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  34 +-
+ 4 files changed, 763 insertions(+), 132 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt
+ create mode 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+
+
+base-commit: 9791581c049c10929e97098374dd1716a81fefcc
+-- 
+2.18.0
+
