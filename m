@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 426852FEA33
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 13:37:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFEC52FEA39
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 13:39:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731234AbhAUMhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 07:37:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56102 "EHLO
+        id S1729227AbhAUMio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 07:38:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730933AbhAUMg4 (ORCPT
+        with ESMTP id S1731078AbhAUMg4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 07:36:56 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A78D7C0613ED
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 04:36:13 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id 6so2372894ejz.5
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 04:36:13 -0800 (PST)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37ED3C061793
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 04:36:15 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id j13so2273513edp.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 04:36:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=YTFXwXdhA76nlO7wgXmqDdaEsv1ovAQtRZb+8A/uvFc=;
-        b=UgEuEx3c7+UKHNwa/u1l/T8bA0/okmbKRJWRNfPLbF+zXd0deLCXrU+2uChBcozEzR
-         4VVrkVHWu86x/DSx3bGnF9FOIVWJYwZEo/c+rM0TSlTnNbiRCybFFFmIJfh7wv721Tki
-         flLMvIhNTiGxmU0qQcFbivhPfyJQK9fxtlVCSYQCH3qeOHQAfpSevXVEi5bXrQ1Dspkc
-         uPabyefAfcaZkHM+IZJ8KucYGczREA+5br8WKqzw7fiHlS4xZMbwblqjzhdGDiE/5HLu
-         qe02o3EPjeV9Wa8Nnw7wOJ1iirrZVlSSjpYB5fjeqHsHBSENK7k8+Qzekmt4xwBPbifT
-         Gd1g==
+        bh=yvQMuexDbhMSXwYbNjPquFBOfzpSEFh9WcFXAwIfqIo=;
+        b=RPjMKN4Cw7l30TUpPlC9C10+HLQlZRMnvHYK3X8rEmCC+WQrV+eWSrXQ9l0ui3SANf
+         MJjjskuZAza5KVUrz7ha5z8poBzPMTJDhaBN7H+CCEVHCCo4lE6Fjdhiefits2l/4kSG
+         Q2vW5uXdVwpMp5tzQdtNQ6YMe0fyM3rffOy4K844a+jwQ5qAA6w5an0KTHE3ZpiNdh6d
+         RP+04glJ1qdkk3zIp2vwTEaq2Y0kAxDh+iBWTuvTBVEmJMKKgYFoPF38IHXhDRpA1oQR
+         g68L2UmN2aJsxUtlIBMvwO4ge5+pjofs/YT+2Tt4mFzKAila7jRyionzi45/IyiIjimQ
+         DYCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=YTFXwXdhA76nlO7wgXmqDdaEsv1ovAQtRZb+8A/uvFc=;
-        b=ZjhHU6iFyejnDA7/qLF1Eit852Gu/rk9lJGl9PeT6xDt3Ij0Moab5GcVtAbxg81nn9
-         sYmuGemUWtiH9dWrxgFfAQExZda2LbOBXEpS+BwMTwRrANJbwC7GTKdpUbE8sO1LFoDI
-         HSonevqRYd8FnLB43cg1VXabIuEafudhkO+jpURKMK5I2v9PODRtcOXSKVXYq9Mky6d8
-         8ebjnDq5MXxNpPv8MdPhO+4BlhXAAhD8EM8lthUqBmjyqxoNqRFBFlWuo0FVPyfKQC23
-         7uxtrSFhGJ1HNcA66lG/IT5Yg3ovmekRvPu2mGkivytm5QiMpELaKGGBjeCsHN5zWxuT
-         eURA==
-X-Gm-Message-State: AOAM532EulnCpKsA3UXPrdPtMUeH9tU68CWkOQDziwGFvdoWhXhJj5Bq
-        5f7fB5PScx/Utj4IHlPDZ0l/Jg==
-X-Google-Smtp-Source: ABdhPJzFiSdExPMCSf+KXkZzrlZ4imxwer+cNiCwygFGHnjU5txkAzkYAqarN/Ln18I26XOe5E8AMA==
-X-Received: by 2002:a17:906:5585:: with SMTP id y5mr4729152ejp.486.1611232572459;
-        Thu, 21 Jan 2021 04:36:12 -0800 (PST)
+        bh=yvQMuexDbhMSXwYbNjPquFBOfzpSEFh9WcFXAwIfqIo=;
+        b=SV6GItFFEeSv5rvb3tGQyBP+QUA/Km/YJZGfoGdxSPVxOgSmK/w4H42g68ss2gFAMO
+         6srONe+8sFCEsg8A4lDNQsZtpLkSisnZd0IHkKMjF9ZOZvsR4Lv8jMjS3P3z6o92yYum
+         BT1PZ9dJWWNj2tycDqJ02ogVi2iX/JQW3gBlJxCymkDjeGd+gSrfkz15eYoiKFqPy0pu
+         HUQA6IBtHeqTtgjkdU6rZ30I4V6ltlfFWJwFGoiMJ8qI5U0I5oEjOYr6jpEUHfRKqGdS
+         kogOvI78ElOmDp9fC1gkDk5vrhfc1qtuLNcDTUJNqy55xWwVb+L6+f+Wv+jSTuppHjNU
+         gD7A==
+X-Gm-Message-State: AOAM5305BRtAcCMFpt3TEpRvTYsixzOuVUKC70/Vma07klRTryqLaKWS
+        FVJWxsCCKYtsQcmyTTnefoQvMoyR4Wdu3ukn
+X-Google-Smtp-Source: ABdhPJy6IVsFSZTBKZ2z3IxDESTrY9sQpHaFjC+3KqiYDyRYVVmhyPMbbr8z+Qbas0Z4odhzdxoJYA==
+X-Received: by 2002:aa7:d8c6:: with SMTP id k6mr11070408eds.265.1611232574012;
+        Thu, 21 Jan 2021 04:36:14 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id z1sm2754108edm.89.2021.01.21.04.36.11
+        by smtp.gmail.com with ESMTPSA id gt12sm2168052ejb.38.2021.01.21.04.36.13
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 21 Jan 2021 04:36:11 -0800 (PST)
+        Thu, 21 Jan 2021 04:36:13 -0800 (PST)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/3] arm64: dts: zynqmp: Add DisplayPort subsystem
-Date:   Thu, 21 Jan 2021 13:36:06 +0100
-Message-Id: <4d978aef852cacdfb35aa8e50d648a787e73b90c.1611232558.git.michal.simek@xilinx.com>
+Subject: [PATCH 3/3] arm64: dts: zynqmp: Wire up the DisplayPort subsystem
+Date:   Thu, 21 Jan 2021 13:36:07 +0100
+Message-Id: <9769d4d103b6eb75e3324825117f6832a746004e.1611232558.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <cover.1611232558.git.michal.simek@xilinx.com>
 References: <cover.1611232558.git.michal.simek@xilinx.com>
@@ -68,72 +67,183 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a DT node for the DisplayPort subsystem, a hard IP present in the
-Zynq Ultrascale+ MPSoC.
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+Enable the dpsub device and wire it up to the PS-GTR PHY lanes routed to
+the DisplayPort connector.
 
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
-Change node position and label.
----
- .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  6 +++++
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 22 +++++++++++++++++++
- 2 files changed, 28 insertions(+)
+Wire all the boards
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-index c676afc95f6d..cf5295224750 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-@@ -231,3 +231,9 @@ &lpd_watchdog {
- &zynqmp_dpdma {
- 	clocks = <&zynqmp_clk DPDMA_REF>;
+---
+ .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 31 +++++++++++++++++++
+ .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 10 ++++++
+ .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 11 +++++++
+ .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 11 +++++++
+ .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 11 +++++++
+ .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 11 +++++++
+ 6 files changed, 85 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+index 71ebcaadb7c8..a53598c3624b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+@@ -15,6 +15,7 @@
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/phy/phy.h>
+ 
+ / {
+ 	model = "ZynqMP ZCU100 RevC";
+@@ -108,6 +109,18 @@ ina226 {
+ 		compatible = "iio-hwmon";
+ 		io-channels = <&u35 0>, <&u35 1>, <&u35 2>, <&u35 3>;
+ 	};
++
++	si5335a_0: clk26 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <26000000>;
++	};
++
++	si5335a_1: clk27 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <27000000>;
++	};
  };
-+
-+&zynqmp_dpsub {
-+	clocks = <&zynqmp_clk TOPSW_LSBUS>,
-+		 <&zynqmp_clk DP_AUDIO_REF>,
-+		 <&zynqmp_clk DP_VIDEO_REF>;
-+};
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index f12cd24adbee..a3b391d18787 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -12,6 +12,7 @@
-  * the License, or (at your option) any later version.
-  */
  
-+#include <dt-bindings/dma/xlnx-zynqmp-dpdma.h>
- #include <dt-bindings/power/xlnx-zynqmp-power.h>
- #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
- 
-@@ -857,5 +858,26 @@ zynqmp_dpdma: dma-controller@fd4c0000 {
- 			clock-names = "axi_clk";
- 			#dma-cells = <1>;
- 		};
-+
-+		zynqmp_dpsub: display@fd4a0000 {
-+			compatible = "xlnx,zynqmp-dpsub-1.7";
-+			status = "disabled";
-+			reg = <0x0 0xfd4a0000 0x0 0x1000>,
-+			      <0x0 0xfd4aa000 0x0 0x1000>,
-+			      <0x0 0xfd4ab000 0x0 0x1000>,
-+			      <0x0 0xfd4ac000 0x0 0x1000>;
-+			reg-names = "dp", "blend", "av_buf", "aud";
-+			interrupts = <0 119 4>;
-+			interrupt-parent = <&gic>;
-+			clock-names = "dp_apb_clk", "dp_aud_clk",
-+				      "dp_vtc_pixel_clk_in";
-+			power-domains = <&zynqmp_firmware PD_DP>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_DP>;
-+			dma-names = "vid0", "vid1", "vid2", "gfx0";
-+			dmas = <&zynqmp_dpdma ZYNQMP_DPDMA_VIDEO0>,
-+			       <&zynqmp_dpdma ZYNQMP_DPDMA_VIDEO1>,
-+			       <&zynqmp_dpdma ZYNQMP_DPDMA_VIDEO2>,
-+			       <&zynqmp_dpdma ZYNQMP_DPDMA_GRAPHICS>;
-+		};
+ &dcc {
+@@ -224,6 +237,13 @@ i2csw_7: i2c@7 {
  	};
  };
+ 
++&psgtr {
++	status = "okay";
++	/* usb3, dps */
++	clocks = <&si5335a_0>, <&si5335a_1>;
++	clock-names = "ref0", "ref1";
++};
++
+ &rtc {
+ 	status = "okay";
+ };
+@@ -295,3 +315,14 @@ &usb1 {
+ &watchdog0 {
+ 	status = "okay";
+ };
++
++&zynqmp_dpdma {
++	status = "okay";
++};
++
++&zynqmp_dpsub {
++	status = "okay";
++	phy-names = "dp-phy0", "dp-phy1";
++	phys = <&psgtr 1 PHY_TYPE_DP 0 1>,
++	       <&psgtr 0 PHY_TYPE_DP 1 1>;
++};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index 9abd10f6785a..12e8bd48dc8c 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -714,3 +714,13 @@ &usb0 {
+ &watchdog0 {
+ 	status = "okay";
+ };
++
++&zynqmp_dpdma {
++	status = "okay";
++};
++
++&zynqmp_dpsub {
++	status = "okay";
++	phy-names = "dp-phy0";
++	phys = <&psgtr 1 PHY_TYPE_DP 0 3>;
++};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+index 8ede619fea52..5637e1c17fdf 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+@@ -224,3 +224,14 @@ &usb0 {
+ &watchdog0 {
+ 	status = "okay";
+ };
++
++&zynqmp_dpdma {
++	status = "okay";
++};
++
++&zynqmp_dpsub {
++	status = "okay";
++	phy-names = "dp-phy0", "dp-phy1";
++	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
++	       <&psgtr 0 PHY_TYPE_DP 1 3>;
++};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+index 414f98f1831e..7f2e32831b05 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+@@ -280,3 +280,14 @@ &usb0 {
+ &watchdog0 {
+ 	status = "okay";
+ };
++
++&zynqmp_dpdma {
++	status = "okay";
++};
++
++&zynqmp_dpsub {
++	status = "okay";
++	phy-names = "dp-phy0", "dp-phy1";
++	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
++	       <&psgtr 0 PHY_TYPE_DP 1 3>;
++};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index d60a30787022..18771e868399 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -156,6 +156,17 @@ &dcc {
+ 	status = "okay";
+ };
+ 
++&zynqmp_dpdma {
++	status = "okay";
++};
++
++&zynqmp_dpsub {
++	status = "okay";
++	phy-names = "dp-phy0", "dp-phy1";
++	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
++	       <&psgtr 0 PHY_TYPE_DP 1 3>;
++};
++
+ /* fpd_dma clk 667MHz, lpd_dma 500MHz */
+ &fpd_dma_chan1 {
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index 758de05c4a4b..d4b68f0d0098 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -584,3 +584,14 @@ &usb0 {
+ 	status = "okay";
+ 	dr_mode = "host";
+ };
++
++&zynqmp_dpdma {
++	status = "okay";
++};
++
++&zynqmp_dpsub {
++	status = "okay";
++	phy-names = "dp-phy0", "dp-phy1";
++	phys = <&psgtr 1 PHY_TYPE_DP 0 1>,
++	       <&psgtr 0 PHY_TYPE_DP 1 1>;
++};
 -- 
 2.30.0
 
