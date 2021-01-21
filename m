@@ -2,104 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3712FED6F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 15:51:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA8102FED63
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 15:51:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726514AbhAUOuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 09:50:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54944 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731020AbhAUOkl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 09:40:41 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47AA5C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 06:27:26 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l2ave-0002Qm-GF; Thu, 21 Jan 2021 15:27:18 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l2avd-0001fv-Uc; Thu, 21 Jan 2021 15:27:17 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: counter: add gpio-pulse-counter binding
-Date:   Thu, 21 Jan 2021 15:27:15 +0100
-Message-Id: <20210121142716.6374-2-o.rempel@pengutronix.de>
+        id S1728162AbhAUOsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 09:48:39 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56444 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731630AbhAUOlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 09:41:11 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10LEdTv9051335;
+        Thu, 21 Jan 2021 08:39:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611239969;
+        bh=HEYx0WhJ/WC+GG0aPtahiX5hNdCNKqPT5FoP0156VfM=;
+        h=From:To:CC:Subject:Date;
+        b=CfckBLwLfuXeY9SkiOkzT+Nkqj4T5RhHRMSlRBw4qFghxki5niMCqRr3pA0voL4wY
+         RBkl/ZufDnRqZ0w/69/2tkoDjSgMvSM745jqwGCn0l/Oc94NcNTxExvZyQQ06pYmCf
+         K+CJ0Tys2dPDSj0LCJEkNafBUUo/oD6f9u0ZfGCA=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10LEdTVd049303
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 Jan 2021 08:39:29 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
+ Jan 2021 08:39:28 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 21 Jan 2021 08:39:28 -0600
+Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10LEdOxr130369;
+        Thu, 21 Jan 2021 08:39:25 -0600
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>, Vignesh R <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH 0/2] arm64: Initial support for Texas Instruments AM642 SK
+Date:   Thu, 21 Jan 2021 20:09:22 +0530
+Message-ID: <20210121143924.26213-1-lokeshvutla@ti.com>
 X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210121142716.6374-1-o.rempel@pengutronix.de>
-References: <20210121142716.6374-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for GPIO based pulse counter node
+AM642 StarterKit (SK) board is a low cost, small form factor board
+designed for TI’s AM642 SoC. This series introduces basic support for
+AM642 SK.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- .../bindings/counter/gpio-pulse-counter.yaml  | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/counter/gpio-pulse-counter.yaml
+Depends on Dave's series for adding AM642 SoC:
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=418539
 
-diff --git a/Documentation/devicetree/bindings/counter/gpio-pulse-counter.yaml b/Documentation/devicetree/bindings/counter/gpio-pulse-counter.yaml
-new file mode 100644
-index 000000000000..dfa93956f15c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/counter/gpio-pulse-counter.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/counter/gpio-pulse-counter.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GPIO base pulse counter
-+
-+maintainers:
-+  - Oleksij Rempel <o.rempel@pengutronix.de>
-+
-+properties:
-+  compatible:
-+    const: virtual,gpio-pulse-counter
-+
-+  gpios:
-+    maxItems: 1
-+
-+required:
-+  - gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    counter-0 {
-+        compatible = "virtual,gpio-pulse-counter";
-+        gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
-+    };
-+
-+    counter-1 {
-+        compatible = "virtual,gpio-pulse-counter";
-+        gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
-+    };
-+
-+...
+Lokesh Vutla (2):
+  dt-bindings: arm: ti: Add bindings for AM642 SK
+  arm64: dts: ti: Add support for AM642 SK
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   3 +-
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        | 145 ++++++++++++++++++
+ 3 files changed, 148 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-sk.dts
+
 -- 
 2.30.0
 
