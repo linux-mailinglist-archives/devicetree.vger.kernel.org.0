@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A402FE057
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:06:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54F092FE053
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:05:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727113AbhAUEFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 23:05:25 -0500
-Received: from mail.v3.sk ([167.172.186.51]:43720 "EHLO shell.v3.sk"
+        id S1726013AbhAUED6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 23:03:58 -0500
+Received: from mail.v3.sk ([167.172.186.51]:43650 "EHLO shell.v3.sk"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727470AbhAUD7U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 22:59:20 -0500
+        id S1732046AbhAUD4X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 22:56:23 -0500
 Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 4E37FE0AA4;
-        Thu, 21 Jan 2021 03:37:41 +0000 (UTC)
+        by zimbra.v3.sk (Postfix) with ESMTP id 8C4EDE0AA8;
+        Thu, 21 Jan 2021 03:37:42 +0000 (UTC)
 Received: from shell.v3.sk ([127.0.0.1])
         by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id HsLto3Ueifax; Thu, 21 Jan 2021 03:37:41 +0000 (UTC)
+        with ESMTP id 2JNnj_TqY2T5; Thu, 21 Jan 2021 03:37:42 +0000 (UTC)
 Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 0DF9CE0A82;
-        Thu, 21 Jan 2021 03:37:41 +0000 (UTC)
+        by zimbra.v3.sk (Postfix) with ESMTP id 4D5E4E0AA6;
+        Thu, 21 Jan 2021 03:37:42 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at zimbra.v3.sk
 Received: from shell.v3.sk ([127.0.0.1])
         by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 1CLtL-kJSw_c; Thu, 21 Jan 2021 03:37:40 +0000 (UTC)
+        with ESMTP id Bcor7PXMo3ki; Thu, 21 Jan 2021 03:37:42 +0000 (UTC)
 Received: from localhost (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id CEB8BE0AA5;
-        Thu, 21 Jan 2021 03:37:40 +0000 (UTC)
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 0B45CE0AA5;
+        Thu, 21 Jan 2021 03:37:41 +0000 (UTC)
 From:   Lubomir Rintel <lkundrak@v3.sk>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
 Cc:     Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Lubomir Rintel <lkundrak@v3.sk>
-Subject: [PATCH 04/12] ARM: dts: mmp2-olpc-xo-1-75: Drop linux,usable-memory from /memory
-Date:   Thu, 21 Jan 2021 04:41:22 +0100
-Message-Id: <20210121034130.1381872-5-lkundrak@v3.sk>
+Subject: [PATCH 06/12] ARM: dts: mmp3: Extend the MPMU reg range
+Date:   Thu, 21 Jan 2021 04:41:24 +0100
+Message-Id: <20210121034130.1381872-7-lkundrak@v3.sk>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210121034130.1381872-1-lkundrak@v3.sk>
 References: <20210121034130.1381872-1-lkundrak@v3.sk>
@@ -44,38 +44,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the linux,usable-memory properties; the schema is unhappy about
-them:
-
-  mmp2-olpc-xo-1-75.dt.yaml: /: memory: False schema does not allow
-  {'linux,usable-memory': [[0, 528482304]],
-   'available': [[847872, 519245824, 4096, 782336]],
-   'reg': [[0, 536870912]], 'device_type': ['memory']}
-
-They've been cargo-culted from Open Firmware and I don't know what
-purpose they serve. Perhaps they are meant to provide the OFW runtime.
-In that case it's still okay to drop them from here; OFW is welcome to ad=
-d
-it upon boot.
+The ACGR register is at the offset of 0x1024, beyond the 4k originally
+assigned to the MPMU range.
 
 Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
 ---
- arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/mmp3.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts b/arch/arm/boot/dts/=
-mmp2-olpc-xo-1-75.dts
-index e16171ddd93ec..0f8b5ad48deed 100644
---- a/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts
-+++ b/arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts
-@@ -33,7 +33,6 @@ framebuffer@1fc00000 {
- 	};
+diff --git a/arch/arm/boot/dts/mmp3.dtsi b/arch/arm/boot/dts/mmp3.dtsi
+index 4ae630d37d094..9f2b059f0900b 100644
+--- a/arch/arm/boot/dts/mmp3.dtsi
++++ b/arch/arm/boot/dts/mmp3.dtsi
+@@ -567,7 +567,7 @@ l2: cache-controller@d0020000 {
 =20
- 	memory@0 {
--		linux,usable-memory =3D <0x0 0x1f800000>;
- 		available =3D <0xcf000 0x1ef31000 0x1000 0xbf000>;
- 		reg =3D <0x0 0x20000000>;
- 		device_type =3D "memory";
+ 		soc_clocks: clocks@d4050000 {
+ 			compatible =3D "marvell,mmp3-clock";
+-			reg =3D <0xd4050000 0x1000>,
++			reg =3D <0xd4050000 0x2000>,
+ 			      <0xd4282800 0x400>,
+ 			      <0xd4015000 0x1000>;
+ 			reg-names =3D "mpmu", "apmu", "apbc";
 --=20
 2.29.2
 
