@@ -2,165 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C21CD2FE78B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:28:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA3D92FE798
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:30:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729214AbhAUK1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:27:23 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:14001 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728582AbhAUK1J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:27:09 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B600956d40000>; Thu, 21 Jan 2021 02:26:28 -0800
-Received: from [10.26.72.207] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 21 Jan
- 2021 10:26:25 +0000
-Subject: Re: [PATCH] arm64: tegra: Enable Jetson-Xavier J512 USB host
-To:     JC Kuo <jckuo@nvidia.com>, <gregkh@linuxfoundation.org>,
-        <thierry.reding@gmail.com>, <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <stable@vger.kernel.org>
-References: <20210119022349.136453-1-jckuo@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <4790de5a-f299-219b-1d50-6fe98942c2e1@nvidia.com>
-Date:   Thu, 21 Jan 2021 10:26:23 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729348AbhAUK3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 05:29:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56768 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729332AbhAUK2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:28:48 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325E3C061798
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:17 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id g12so1840999ejf.8
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=TTcoPBZF7B/GvLemNDb8587uLFmrB6rGDabgy89PTP4=;
+        b=TEYoQY/HXH30/FU9hcm1kXWqGckPQS6NxjIoRLAdEeLK8kleLFQ8EM9Pqo5Z9r8WXB
+         cdhyF48FB6Olh0alNKS4uo+riEY3kRBCCEYMhwvwb/0y01o0jIImwIZRmwpcZ36XWBlX
+         wpHEk/UX3xW+uVTxD7Axe4sWnFfCwu8WuDCeOmqWvB6t3iSctRlPOnOTjvKiKSw97FqL
+         Yk2HSjUndYUdiiMXDldijtUemPDvso6ZTJui3CugePfdmE0/ztYZ4a2isFKB6axqCVon
+         c751xumC2Orf/m3etAmCjvXpznIQFgdNEc+U2bL1RNBOAc0D373doXWMChI2e2Sp3bu7
+         ruaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :in-reply-to:references:mime-version:content-transfer-encoding;
+        bh=TTcoPBZF7B/GvLemNDb8587uLFmrB6rGDabgy89PTP4=;
+        b=Qqr2ju0dfWf3V5WrX0nCmM0YTf9K7Z8QQeJOTvn5AW26PxGljv3cWLc4IeNZg6KO6J
+         1REIo71aGg6POGuGo3FlqRuGBw8emEmt/l4UagYpp1ArDDqnjJRZFLMb4CfAAy+x1w1d
+         Pncf4/GbVgyrujLmwz/Vu0xcZJfgYPO+LQvBLBZSMwr078O5wI68BdsUMfOYJdcN8+dE
+         9qPWnwZC9Lh11Uw/KDtx+ZuWoke++tKJPWNf+0QPR5uUzQEKqRqaDBmQoZJFCRU7fdlR
+         tdpeOc3ePwzLDiGdLbX1z4mGz4xLzzHqGmDq6P/7ONTpGqT0OqCheNfdsAEsQVqfYSTE
+         p10A==
+X-Gm-Message-State: AOAM5325OJntfkKCv4mv6EiQ/4q/UI/iuk7beH2T0CF+XLSvMR/809Cr
+        t2SoeToG4Dcg31k7QmfWLlozBg==
+X-Google-Smtp-Source: ABdhPJw4qwOTlqkMBMTMkuvtyA2bxt8juhpHrfhcIHgtWdsR0pHzpYHK7J0t56W8r/+vOuYZit9omg==
+X-Received: by 2002:a17:906:d0c2:: with SMTP id bq2mr8700744ejb.1.1611224836000;
+        Thu, 21 Jan 2021 02:27:16 -0800 (PST)
+Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id u2sm2547805edp.12.2021.01.21.02.27.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 21 Jan 2021 02:27:15 -0800 (PST)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 06/12] arm64: dts: zynqmp: Add label for zynqmp_ipi
+Date:   Thu, 21 Jan 2021 11:26:54 +0100
+Message-Id: <3dc8416abdd3498e61edcd83830a12af295c5c6d.1611224800.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <cover.1611224800.git.michal.simek@xilinx.com>
+References: <cover.1611224800.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
-In-Reply-To: <20210119022349.136453-1-jckuo@nvidia.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1611224788; bh=sct4guh8tyVx7wvx6PCrh8j4kV3LgnQtah4P1FR8Wxo=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Language:
-         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-        b=nltaLyNWSpKaTMH9c/msvna7xDzoq2b3KsD2bo5FEO3SzddIuvp3u/L0mAJc9Sbi4
-         axH5JGLSi3Dp55nekMmDW2JIiEvvIkGRs5y++pa/5ySgv+qq7E1Nlu6jhJTyBzULMv
-         c5pBGPGb7q4vVrpfKlELi8kiXBYGFjgRvfrlkKBcInAIRdv0h36EUg3NZfICk+RwBm
-         9WQ/CPLV1lZAqE7iTvzGD7a1VGffM693MJDFjXB3tAaQEBtXmJLZBR5YFlMjbKXe0N
-         SKXOiMlYuWTQvk3aWSIyrfpucqiQEWG9GtUH79b40jFWCI+2KBqVfCzR9MdkBTfY1u
-         4xlA3+Oe3CbKQ==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add label which is used by bootloader for adding bootloader specific flag.
 
-On 19/01/2021 02:23, JC Kuo wrote:
-> This commit enables USB host mode at J512 type-C port of Jetson-Xavier.
-> 
-> Signed-off-by: JC Kuo <jckuo@nvidia.com>
-> ---
->  .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi |  8 +++++++
->  .../boot/dts/nvidia/tegra194-p2972-0000.dts   | 24 +++++++++++++++++--
->  2 files changed, 30 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-> index d71b7a1140fe..7e7b0eb90c80 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-> @@ -93,6 +93,10 @@ padctl@3520000 {
->  			vclamp-usb-supply = <&vdd_1v8ao>;
->  
->  			ports {
-> +				usb2-0 {
-> +					vbus-supply = <&vdd_5v0_sys>;
-> +				};
-> +
->  				usb2-1 {
->  					vbus-supply = <&vdd_5v0_sys>;
->  				};
-> @@ -105,6 +109,10 @@ usb3-0 {
->  					vbus-supply = <&vdd_5v0_sys>;
->  				};
->  
-> +				usb3-2 {
-> +					vbus-supply = <&vdd_5v0_sys>;
-> +				};
-> +
->  				usb3-3 {
->  					vbus-supply = <&vdd_5v0_sys>;
->  				};
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> index 54d057beec59..8697927b1fe7 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> @@ -57,6 +57,10 @@ padctl@3520000 {
->  			pads {
->  				usb2 {
->  					lanes {
-> +						usb2-0 {
-> +							status = "okay";
-> +						};
-> +
->  						usb2-1 {
->  							status = "okay";
->  						};
-> @@ -73,6 +77,10 @@ usb3-0 {
->  							status = "okay";
->  						};
->  
-> +						usb3-2 {
-> +							status = "okay";
-> +						};
-> +
->  						usb3-3 {
->  							status = "okay";
->  						};
-> @@ -81,6 +89,11 @@ usb3-3 {
->  			};
->  
->  			ports {
-> +				usb2-0 {
-> +					mode = "host";
-> +					status = "okay";
-> +				};
-> +
->  				usb2-1 {
->  					mode = "host";
->  					status = "okay";
-> @@ -96,6 +109,11 @@ usb3-0 {
->  					status = "okay";
->  				};
->  
-> +				usb3-2 {
-> +					nvidia,usb2-companion = <0>;
-> +					status = "okay";
-> +				};
-> +
->  				usb3-3 {
->  					nvidia,usb2-companion = <3>;
->  					maximum-speed = "super-speed";
-> @@ -107,11 +125,13 @@ usb3-3 {
->  		usb@3610000 {
->  			status = "okay";
->  
-> -			phys =	<&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-1}>,
-> +			phys =	<&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-0}>,
-> +				<&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-1}>,
->  				<&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-3}>,
->  				<&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-0}>,
-> +				<&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-2}>,
->  				<&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-3}>;
-> -			phy-names = "usb2-1", "usb2-3", "usb3-0", "usb3-3";
-> +			phy-names = "usb2-0", "usb2-1", "usb2-3", "usb3-0", "usb3-2", "usb3-3";
->  		};
->  
->  		pwm@c340000 {
-> 
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
-Thanks. Works for me.
+Changes in v2: None
 
-Acked-by: Jon Hunter <jonathanh@nvidia.com>
-Tested-by: Jon Hunter <jonathanh@nvidia.com>
+U-Boot needs to add u-boot,dm-pre-reloc; property
+---
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Cheers
-Jon
-
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 94a2e1f2b713..31c6943c6217 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -99,7 +99,7 @@ opp03 {
+ 		};
+ 	};
+ 
+-	zynqmp_ipi {
++	zynqmp_ipi: zynqmp_ipi {
+ 		compatible = "xlnx,zynqmp-ipi-mailbox";
+ 		interrupt-parent = <&gic>;
+ 		interrupts = <0 35 4>;
 -- 
-nvpublic
+2.30.0
+
