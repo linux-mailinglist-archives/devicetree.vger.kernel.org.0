@@ -2,133 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED0F12FF26B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 18:52:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE452FF2A3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:00:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389131AbhAURr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 12:47:57 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51870 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389120AbhAURrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 12:47:42 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10LHkdW4043759;
-        Thu, 21 Jan 2021 11:46:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611251199;
-        bh=LtCWC+zfplDvxwmdpuGPDRkT7qfes0Jn/RdPmeQXLiU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=DDkIwG12oHc3YjxVXd1LhaxwzB79AzfjBjnJT02VUEeVIPVh0PDueP7EMLUq/5/QE
-         j5ir/k0TEEPyXMNOKwCIcMSoJscxUY/X3dKOXmgOQADtbknPIbQe0qit/K9JsPZzbi
-         bv7bQa/Sx/1L2WqTd5C6dqSzJRaP0JntOS7Pu2Oo=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10LHkddc026988
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 21 Jan 2021 11:46:39 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
- Jan 2021 11:46:39 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 21 Jan 2021 11:46:38 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10LHkdwJ016319;
-        Thu, 21 Jan 2021 11:46:39 -0600
-Date:   Thu, 21 Jan 2021 11:46:39 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Dave Gerlach <d-gerlach@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: Re: [PATCH v3 3/5] arm64: dts: ti: Add support for AM642 SoC
-Message-ID: <20210121174639.jqbvem6b4ozd3six@sterling>
-References: <20210120202532.9011-1-d-gerlach@ti.com>
- <20210120202532.9011-4-d-gerlach@ti.com>
- <197af185-d2ea-3c76-d0bf-714485f8f195@ti.com>
+        id S2389084AbhAUR7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 12:59:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40752 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388837AbhAURzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 12:55:49 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED884C06174A;
+        Thu, 21 Jan 2021 09:55:08 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id m6so1954848pfm.6;
+        Thu, 21 Jan 2021 09:55:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lIeZgxiGCsLILQUzar0fN74yeBikTXjhSQrKP1TVbyY=;
+        b=jS+vKFbZa38LNSPxMW8UUy2WyAZczTi8cqUZ8Vw7R9TKkQGeMLimDs4yHnSciY+ftd
+         Ixya86WbgEW3Df77hJx6pHgYlKeTA3dm3xrC9i5P5ddd6Yi1+Br7KNojGx825Gr+KbHX
+         /mN47KYt9ao1PLRr1vC1A0mUkDYRRA0oSrPQGov1JyHVoekE2avecMMSNw7RlFUoXFkI
+         Yv+s513YWQNaR3bDwo3D5R8nGscWbtMvYop1wJopXj/e+l+SYVwRWp0wcyU2p4pDDZdD
+         pU2+wR148BChhKCpD4OQmWSBs/TmfkqZP4ZkgUzx/M1xr70whN01dPoMnf2kcQ5RCE2M
+         GHSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=lIeZgxiGCsLILQUzar0fN74yeBikTXjhSQrKP1TVbyY=;
+        b=KkXwUpJyrUA+nafw+0k6ox6yNeza+35tI4VYhNsgtiORfnjtpUlG23y1NiYpZcSybm
+         2kTG0b0vTuOTnYfSZv1eDaFY80u87+ahMxUJExbJz0Hl2QCO+eWIFMT3EqwDhlocV1zU
+         ofOmTHX6pr5M0x+u+9bhNclPOKDiXBlr7J0f0a/U+mKwM+b5J920gt+/fcYkygufyZTG
+         j+tYU6nVH2T+j2L4U4k7C7No2warjDGyFF4Ssmvn0ns6Z8NWAwbS+WShErC+KROM888T
+         DO9qB2Aq/K8XBhTXDecbsEA/FvG4pOf7OhXvbox/m0a7k51F4w/7CFgRSgm2yo2gvsCu
+         JkQg==
+X-Gm-Message-State: AOAM531ZCOZ96e/xXZ2uyVZZDj6phRnraggTW8z+SauRPdmp1r+VEKt8
+        T9p4LVTS99Zvsu5rWmXBWEc=
+X-Google-Smtp-Source: ABdhPJwtihxfcT7CpRtx34TZuGHZTSg1DELFPxcH324ViojdMpZTcYglQ8vCxZ6nbMkVxVbk2hfbpA==
+X-Received: by 2002:a05:6a00:15cc:b029:1ba:5282:3ab8 with SMTP id o12-20020a056a0015ccb02901ba52823ab8mr792072pfu.77.1611251708510;
+        Thu, 21 Jan 2021 09:55:08 -0800 (PST)
+Received: from bbox-1.mtv.corp.google.com ([2620:15c:211:201:74d0:bb24:e25e:dc4d])
+        by smtp.gmail.com with ESMTPSA id t2sm6897317pju.19.2021.01.21.09.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jan 2021 09:55:07 -0800 (PST)
+Sender: Minchan Kim <minchan.kim@gmail.com>
+From:   Minchan Kim <minchan@kernel.org>
+To:     Andrew Morton <akpm@linux-foundation.org>
+Cc:     linux-mm <linux-mm@kvack.org>, LKML <linux-kernel@vger.kernel.org>,
+        hyesoo.yu@samsung.com, david@redhat.com, mhocko@suse.com,
+        surenb@google.com, pullip.cho@samsung.com, joaodias@google.com,
+        hridya@google.com, john.stultz@linaro.org, sumit.semwal@linaro.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        hch@infradead.org, robh+dt@kernel.org,
+        linaro-mm-sig@lists.linaro.org, Minchan Kim <minchan@kernel.org>
+Subject: [PATCH v4 0/4] Chunk Heap Support on DMA-HEAP
+Date:   Thu, 21 Jan 2021 09:54:58 -0800
+Message-Id: <20210121175502.274391-1-minchan@kernel.org>
+X-Mailer: git-send-email 2.30.0.296.g2bfb1c46d8-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <197af185-d2ea-3c76-d0bf-714485f8f195@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11:25-20210121, Suman Anna wrote:
-> On 1/20/21 2:25 PM, Dave Gerlach wrote:
-> > The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
-> > providing advanced system integration to enable applications such as
-> > Motor Drives, PLC, Remote IO and IoT Gateways.
-> > 
-> > Some highlights of this SoC are:
-> > * Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
-> >   MCUs, and a single Cortex-M4F.
-> > * Two Gigabit Industrial Communication Subsystems (ICSSG).
-> > * Integrated Ethernet switch supporting up to a total of two external
-> >   ports.
-> > * PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
-> >   controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
-> >   peripherals.
-> > * Centralized System Controller for Security, Power, and Resource
-> >   Management (DMSC).
-> > 
-> > See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
-> > for further details: https://www.ti.com/lit/pdf/spruim2
-> > 
-> > Introduce basic support for the AM642 SoC to enable ramdisk or MMC
-> > boot. Introduce the sdhci, i2c, spi, and uart MAIN domain periperhals
-> > under cbass_main and the i2c, spi, and uart MCU domain periperhals
-> > under cbass_mcu.
-> > 
-> > Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-> > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> 
-> Hmm, there are a few pieces contributed by me, so please do add
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
+This patchset introduces a new dma heap, "chunk-heap" that makes it
+easy to perform the bulk allocation of high order pages.
+It has been created to help optimize the 4K/8K HDR video playback
+with secure DRM HW to protect contents on memory. The HW needs
+physically contiguous memory chunks(e.g, 64K) up to several hundred
+MB memory.
 
-Sure, thanks..
+To make such high-order big bulk allocations work, chunk-heap uses
+CMA area. To avoid CMA allocation long stall on blocking pages(e.g.,
+page writeback and/or page locking), it uses failfast mode of the
+CMA API(i.e., __GFP_NORETRY) so it will continue to find easy
+migratable pages in different pageblocks without stalling. At last
+resort, it will allow the blocking only if it couldn't find the
+available memory in the end.
 
-[...]
+First two patches introduces the failfast mode as __GFP_NORETRY
+in alloc_contig_range and the allow to use it from the CMA API.
+Third patch introduces device tree syntax for chunk-heap to bind
+the specific CMA area with chunk-heap.
+Finally, last patch implements chunk-heap as dma-buf heap.
 
-> > +
-> > +	sdhci0: mmc@fa10000 {
-> > +		compatible = "ti,am64-sdhci-8bit";
-> 
-> Hmm, I tried booting this series on top of 5.11-rc1 + Nishanth's current
-> ti-k3-dts-next. So, boot of these patches using this baseline fails when using
-> MMC rootfs, but is ok when using initramfs. This particular compatible and the
-> corresponding driver change are only in linux-next coming through couple of
-> patches from the MMC subsystem.
-> 
-> I am not sure why we would be including stuff that's dependent on some other
-> patches being merged from a different sub-system? Strangely, this ought to be
-> caught by dtbs_check, but it is not throwing any errors.
-> 
-> IMHO, these should only be added if you have no other external dependencies
-> especially when you are applying on a 5.11-rc baseline. The MMC pull-requests
-> would not go through arm-soc either.
-> 
+* since v3 - https://lore.kernel.org/linux-mm/20210113012143.1201105-1-minchan@kernel.org/
+  * use prefix for chunk-name - John
+  * fix yamllint error - Rob
+  * add reviewed-by - Suren
 
-Yes, I am aware of this - this is no different from integration we have
-done in the past as well.. intent is to get bindings in via subsystem
-trees and dts changes via arm-soc. I always insist that basic ramdisk
-boot always in the basic introduction tree. mmc, nfs are add-ons that
-get added via subsystem tree and I host the dts changes - in this case
-every dts node binding is fine with subsystems already queued in
-linux-next. And this is no different from what I have noticed on other
-ARM SoC maintainer trees as well.
+* since v2 - https://lore.kernel.org/linux-mm/20201201175144.3996569-1-minchan@kernel.org/
+  * introduce gfp_mask with __GFP_NORETRY on cma_alloc - Michal
+  * do not expoert CMA APIs - Christoph
+  * use compatible string for DT instead of dma-heap specific property - Hridya
+
+* Since v1 - https://lore.kernel.org/linux-mm/20201117181935.3613581-1-minchan@kernel.org/
+  * introduce alloc_contig_mode - David
+  * use default CMA instead of device tree - John
+
+Hyesoo Yu (2):
+  dt-bindings: reserved-memory: Make DMA-BUF CMA heap DT-configurable
+  dma-buf: heaps: add chunk heap to dmabuf heaps
+
+Minchan Kim (2):
+  mm: cma: introduce gfp flag in cma_alloc instead of no_warn
+  mm: failfast mode with __GFP_NORETRY in alloc_contig_range
+
+ .../reserved-memory/dma_heap_chunk.yaml       |  56 ++
+ drivers/dma-buf/heaps/Kconfig                 |   8 +
+ drivers/dma-buf/heaps/Makefile                |   1 +
+ drivers/dma-buf/heaps/chunk_heap.c            | 492 ++++++++++++++++++
+ drivers/dma-buf/heaps/cma_heap.c              |   2 +-
+ drivers/s390/char/vmcp.c                      |   2 +-
+ include/linux/cma.h                           |   2 +-
+ kernel/dma/contiguous.c                       |   3 +-
+ mm/cma.c                                      |  12 +-
+ mm/cma_debug.c                                |   2 +-
+ mm/hugetlb.c                                  |   6 +-
+ mm/page_alloc.c                               |   8 +-
+ mm/secretmem.c                                |   3 +-
+ 13 files changed, 581 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/dma_heap_chunk.yaml
+ create mode 100644 drivers/dma-buf/heaps/chunk_heap.c
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.30.0.296.g2bfb1c46d8-goog
+
