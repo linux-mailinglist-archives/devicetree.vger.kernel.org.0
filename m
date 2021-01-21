@@ -2,132 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D9EC2FEC75
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 14:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23E2C2FEC38
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 14:48:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729347AbhAUN6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 08:58:02 -0500
-Received: from mout.gmx.net ([212.227.15.15]:36961 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726427AbhAUNkc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 08:40:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1611236325;
-        bh=m6qKMnH5Rh7C8WKydAeDn5ZLGZSTdrd+y3h31CvJaXw=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=YnsxD6IPIWywl4OCg0aheB/Ap+2jBzZqLwJGHvU6S7AWqybi6+ugjcgUL43KHqyuY
-         Y08G3SI8NUy/FPVRzaU4lk+4FsqUYeYNpSqJsythbRu6eWWygfAgyp2/CpYlj3Bk0C
-         vybRRI607dOuxC6XhXdCMud6RKZxieESZmQCCafI=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.209]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MQ5vW-1lOfOn2yYq-00M1z1; Thu, 21
- Jan 2021 14:38:45 +0100
-Date:   Thu, 21 Jan 2021 14:38:42 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Conor.Dooley@microchip.com
-Cc:     j.neuschaefer@gmx.net, robh+dt@kernel.org, damien.lemoal@wdc.com,
-        jassisinghbrar@gmail.com, aou@eecs.berkeley.edu,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Lewis.Hanly@microchip.com, Cyril.Jean@microchip.com,
-        Daire.McNamara@microchip.com, atish.patra@wdc.com,
-        anup.patel@wdc.com, david.abdurachmanov@gmail.com
-Subject: Re: [PATCH v3 1/5] mbox: add polarfire soc system controller mailbox
-Message-ID: <YAmD4h9vssAQlXPh@latitude>
-References: <20201223163247.28923-1-conor.dooley@microchip.com>
- <20201223163255.28992-1-conor.dooley@microchip.com>
- <X/BuucfqPGpE/S1r@latitude>
- <3425400b-889f-5393-6c26-bf708f2734f1@microchip.com>
+        id S1729720AbhAUNrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 08:47:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729110AbhAUNpW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 08:45:22 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40009C061575
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:44:42 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id g24so2488648edw.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:44:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M3W0oGnqVx8sZXTH4B/8UbtQ0KbCZpqf+zZKCBCuHVA=;
+        b=NhqMXLkK9ZCnJF+OAdzuMV/V0Cxz1WeCrswp/hbFEE4WdzkO1vjW/CHtLiTt8/6Zwx
+         8zxorKBYllOyPIS0JbykVhnCyh5rRMl40zhBrSZYt2QUQsZ5oyXXDzUZpnUhSEdUurYm
+         xRTVJd2yHwlMeOrLOgosTusd6xN9ho99nx+tB655Tmr1Y8uto52RAG5BV+p5EWVlVAp6
+         dlBKLkhqAEP2qhKRBqt5tki0hWm3Gzv/12QLSp7oaqflIJTqBaVan3ROSKZPfmylJO8H
+         +kqRSDS+zsFUkybdKGtd0/CmJGgCbjeNghBTEyD851by0YfnTNYsdmFoeGRqyIUq22FV
+         XOvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M3W0oGnqVx8sZXTH4B/8UbtQ0KbCZpqf+zZKCBCuHVA=;
+        b=WPPMjmKhlaVd9+Zs1QojNKRkkjmglDjwW+/WXGdreyrq0CQtrpLEdH8EgfY3V+dtUM
+         XtwYU1jG6ZV/s1QG7+iIvUKGNP6Dmm7yxcR2prKRjYKGmaQOVpT7+5PMJ2irjA1iMwCl
+         WU4Rm72p/szaEtBPn8OTTs2w4395mUi9OLMbSQy9wtXvb94xrm6nvN/SEKrv6wjxePls
+         cXZWJf3g7/nPLs44SJV7u9i6KryRkWGQ+N2UbO0+/+gP7PDFLsw950jyWR8FV1WM1daR
+         U7jYKtyBpk9hZaJJFoGdry1jQrr3smPo5+wl+SghXMrKg3Z3C1qE14FRk4cBs3aOuvKX
+         YqFA==
+X-Gm-Message-State: AOAM5325eU8t6823EqLiEsYT7zCNiLTSPYdBbbZ8lVqaltCjjb/1Kxc3
+        oE9cMjnSzPNtkdL5JxDhNveCeS8Su3AgXA==
+X-Google-Smtp-Source: ABdhPJxzh7fdy0hjbeRujkeb2zjTAnYR6ILI5AnRB6OEZ73CFwsCetWprX2FMc4SYrSxpd9w7FPJsQ==
+X-Received: by 2002:a05:6402:8cd:: with SMTP id d13mr7982151edz.335.1611236680889;
+        Thu, 21 Jan 2021 05:44:40 -0800 (PST)
+Received: from localhost.localdomain (dh207-99-51.xnet.hr. [88.207.99.51])
+        by smtp.googlemail.com with ESMTPSA id j18sm2246376ejv.18.2021.01.21.05.44.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jan 2021 05:44:40 -0800 (PST)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, corbet@lwn.net,
+        linux-doc@vger.kernel.org
+Cc:     Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>
+Subject: [PATCH v5 1/3] dt-bindings: hwmon: Add TI TPS23861 bindings
+Date:   Thu, 21 Jan 2021 14:44:32 +0100
+Message-Id: <20210121134434.2782405-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Z8R9FYvCpqVMARl9"
-Content-Disposition: inline
-In-Reply-To: <3425400b-889f-5393-6c26-bf708f2734f1@microchip.com>
-X-Provags-ID: V03:K1:zDJIKr9tFywt30l8s1XGjz9gQyZUTSl93guw5L+Qgm4G/SpGErn
- s3oNEn2k5zlf2Qq6qi8WIxjmTJVMJuZ2MAAyk5IyUrcZyr7lCg4XDfEouH/7O9VTo78/9Y7
- M/GxCO/CTDi9iUrv6s5XPcaeArsbfT+Sc73rYLmjDCUYq4n0pws6VZFtQhDC4B9Z2GnmBuT
- vCji8WC5IdwAabHKvFTNg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:g0LPXy86K5k=:XRoQ0fs5PIE5H6NSS4zlTS
- MgfYcLaX6QgtALwY1hQRUL1XUVO7m5ZTOQxegYUX4NCXPt4cBvyoytqw0EMqqySfvvCxZdP4Q
- OsgGY/XLwXTNoNYK6jj861y2q1GaKFk8RDgYUEfUPwHJyq4DCdK7dJ6NHKtquexkJGAc9o8d+
- SwE+VmUtpBdJkj7qjdpWHRcEJNS8/t1iyof9yQvkCB4hfilqk19j8i18/zCy9XRU8ZdwBRC1e
- BMrllrlEYGkObGkzIbzAOm1jTu353eF1+5pfg/+XD/UKyYDJ3uFGdHzvkmi2loT3pzS6KC6+Y
- qrMdcH2Th9YD7n7t3UwZYnD3VoRc6M8pY0VMQIs5NgwmIWJjL0TC2DJaSTKcrdoXSDSs4MJY0
- 0SIBdn6u8X6tMOpcVpnAhfgL5q0huAsTfenOwCyANIOasr+z7Nt9Gb3nYtvg2AbnHeRALKsCB
- PR/6fSr2vZWep1njUsAFTYbcr2rt9tZrMNeEImDDQuziKoQH3SwNFg9bvPTYdfmyCsrAgukUA
- Vjzl0TC7L2z5Kns6aQoS9PaZQOY4D/R4e6s++q1M9YUZHr0+CqPADm+gaZshS8RmexizsisDm
- AKa2e/1xYgnAdYVzjlAFs4F0KnwX7S1VNqiOLNVhQK7u6Jq8Psl+jxEZ5xx39P3Kxbt7rfd5s
- IoPGhZAwO/8mySlIcKIKpJM5/E3X7r50FV5nPkutaFpHkjLrax1fKqLEA29Y5GiCwsYK6K6QU
- fUGi2TiRsMQzwsmp813je1z7WjdXl/a3obY3S7GkEAK29xCb2OSb9Y18OQLkMSX6Z2p+y2wtM
- +mygkLHsNQVTKwDiy1cEaBuJlNPnu2dtI/FOItujzbIGLbEpcGvPXNvRSn1w1rss19j0m01j0
- hb5amxdwfKhYIgXs3FHg==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document bindings for the Texas Instruments TPS23861 driver.
 
---Z8R9FYvCpqVMARl9
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Cc: Luka Perkov <luka.perkov@sartura.hr>
+---
+Changes in v5:
+* Drop uint32 reference
 
-On Thu, Jan 21, 2021 at 12:46:42PM +0000, Conor.Dooley@microchip.com wrote:
-> On 02/01/2021 13:01, Jonathan Neusch=C3=A4fer wrote
->=20
-> >Hello,
-> >
-> >I've added review comments below. Some of them might be more detailed
-> >than necessary, and reflect my opinion rather than something that must
-> >be fixed. Anyway, I hope my comments make sense.
-> >
-> the more detailed feedback the better in my book, if i dont mention it yo=
-ull probably see in changed in the next day or two
+Changes in v4:
+* Correct shunt binding
 
-Great.
+ .../bindings/hwmon/ti,tps23861.yaml           | 51 +++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
 
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
+new file mode 100644
+index 000000000000..3bc8e73dfbf0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/ti,tps23861.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI TPS23861 PoE PSE
++
++maintainers:
++  - Robert Marko <robert.marko@sartura.hr>
++
++description: |
++  The TPS23861 is a IEEE 802.3at Quad Port Power-over-Ethernet PSE Controller.
++
++  Datasheets:
++  https://www.ti.com/lit/gpn/tps23861
++
++
++properties:
++  compatible:
++    enum:
++      - ti,tps23861
++
++  reg:
++    maxItems: 1
++
++  shunt-resistor-micro-ohms:
++    description: The value of curent sense resistor in microohms.
++    default: 255000
++    minimum: 250000
++    maximum: 255000
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          tps23861@30 {
++              compatible = "ti,tps23861";
++              reg = <0x30>;
++              shunt-resistor-micro-ohms = <255000>;
++          };
++    };
+-- 
+2.29.2
 
-> >> +static irqreturn_t mpfs_mbox_inbox_isr(int irq, void *data)
-> >> +{
-> >> +=C2=A0=C2=A0=C2=A0 struct mbox_chan *chan =3D (struct mbox_chan *)dat=
-a;
-> >
-> >This cast and the one at the end of mpfs_mbox_rx_data are somewhat
-> >uncessary, because C allows implicit conversion of void pointers to and
-> >from other pointer types.
-> >
->=20
-> true, i had put them in thinking it made it more clear, but on reflection=
- it doesnt.
-
-The main problem that I personally have with explicit pointer casts is
-that they are accepted by the compiler even when they would be a bad
-idea (casting from one non-void pointer type to another (incompatible)
-non-void pointer type), so they can hide a class of bugs.
-
-
-
-Thanks,
-Jonathan Neusch=C3=A4fer
-
---Z8R9FYvCpqVMARl9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmAJg9EACgkQCDBEmo7z
-X9t9YBAAhvyAmTwOyAFdkDT1o54Z2auXNT9IW9/rT4Cbd1wFFpS0Zm2KABkKGTug
-MGANNMYZCAwMwKclayzGgGLRegIOII03LeTVaTJJHlhnNpgvDv6BXAl3GuuhcWvK
-guPfLuj8F4tlb/t/DH4oAnq7F2oL460MpSovrVUi5sXQtC8qM3iJkRoN2yXTicGq
-c3drOTaWXmm1FcrQCl5tklcRhitVuG/PZALRsxFjU/wTOI05PXEmI8RcQLWlFeSW
-6/9N0r5HXBu9lBPRjqHjtmFgLQMo1TcBvPotmxDyxpMSsSRU2d5WMqnNfX4n+zr+
-m2NsfHpvUalCpd14G144uSY+mWtqv2N+WwAHw89gQhVTBmqaC+4+qlWNFT1kAU1N
-wlL4J0abJITEpnwRSFVugU5S5Ia/Z8rB0glkAEQRdAGkXc+0ZgYOZKF+JHwtmPJz
-FTXmN/nX5YVQYdy1XKKY1aOH67cda89yUmHiVlRpLheQ/Vkr8o2AowvIs3VICa2H
-kA0BqtAWasEDSAQCuO2jlAtuMdHiEnhW1WLfGnjybbr5AOLYcxtOvX3j/v+/fAWe
-DG1lpRQsqX2oWkIwgtkPYEQt1vgEdl0b0s97oWibwS07fNTJv6sH58pNyC/AUoXQ
-g49iSh1okNdw2Qk5MjNEYY3LD8cCGxJr2xzvFyiMJjujdYncvV8=
-=3qcO
------END PGP SIGNATURE-----
-
---Z8R9FYvCpqVMARl9--
