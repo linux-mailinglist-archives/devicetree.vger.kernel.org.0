@@ -2,87 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 396042FF160
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 18:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79CF32FF1A9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 18:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388056AbhAURHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 12:07:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39218 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388318AbhAURHC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 12:07:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C448E23A54;
-        Thu, 21 Jan 2021 17:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611248781;
-        bh=AcrmoB+h/zi8HkyQOGW0ipwVsjuiLu5lEygPUCOSziI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nHwYplwmzmV/RgR+6OYNo7t5ugwqY1LFSFDMmoTsgv9ZzpwgKB/K/O/nNVbn2Y653
-         piCZylP722MxqXNb7GrPCno1NAnfpzdK/4+6kp4kRJH7599ZcrmmrUidUMPbOdmE3I
-         EvKlcQpbKdhZr47y7YPDuVPspLgfwtWDcyjKPrOn6ZOCt+sG8tCp0EAd4EcmqheOef
-         T7Le/hL4SbIjXHV2cZCIPUAIIzBrE6OHE0ZXBicNALu8RkFT3LKuGQr8fncLEjQbPP
-         sDAG23r6UJUzh0EAoZOO8a1dpVjeDv0caIiLHqy4ljsYuDJfVp/ZrY2G+b4cVFTJ0o
-         zTJZlscreZQ+A==
-Date:   Thu, 21 Jan 2021 22:36:17 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: qcom: Define common TLMM
- binding
-Message-ID: <20210121170617.GH2771@vkoul-mobl>
-References: <20210120222114.1609779-1-bjorn.andersson@linaro.org>
- <20210120222114.1609779-2-bjorn.andersson@linaro.org>
- <CACRpkdY6G_EP8QAp1C-eghdbgcgwQezA1ap=nDtSHPNqjuDF6Q@mail.gmail.com>
+        id S1733263AbhAURTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 12:19:35 -0500
+Received: from relay.uni-heidelberg.de ([129.206.100.212]:11869 "EHLO
+        relay.uni-heidelberg.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388731AbhAURT1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 12:19:27 -0500
+X-Greylist: delayed 604 seconds by postgrey-1.27 at vger.kernel.org; Thu, 21 Jan 2021 12:19:25 EST
+X-IPAS-Result: =?us-ascii?q?A2BdBgC3tAlg/1BqzoFiHgEBCxIMQIRbbGKEQI89kXeMb?=
+ =?us-ascii?q?gEBAQEBAQEBAQksAQIEAQGGQwIlOBMCAwEBAQMCAwEBAQEGAQEBAQEGBIZeh?=
+ =?us-ascii?q?h0wJjUCJgIWKDSGLbI1gTKJFYFDgQ4qjWAPgU0/hGiEBYEGgkw0giwEgkWBD?=
+ =?us-ascii?q?oEDghuPJwkXpliBWSwHgWiBEoEcC5oyAg0ikw2PYpFWhWCeYYFtgXozGiSDO?=
+ =?us-ascii?q?FAZDZxrQzA3AgYKAQEDCVkBAYhygkYBAQ?=
+X-IronPort-Anti-Spam-Filtered: true
+Received: from lemon.iwr.uni-heidelberg.de ([129.206.106.80])
+  by relay.uni-heidelberg.de with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Jan 2021 18:08:37 +0100
+Received: from hlauer by lemon.iwr.uni-heidelberg.de with local (Exim 4.92)
+        (envelope-from <hlauer@lemon.iwr.uni-heidelberg.de>)
+        id 1l2dRk-0001IQ-Db; Thu, 21 Jan 2021 18:08:36 +0100
+Date:   Thu, 21 Jan 2021 18:08:36 +0100
+From:   Hermann Lauer <Hermann.Lauer@iwr.uni-heidelberg.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: sun7i: a20: bananapro: Fix ethernet node
+Message-ID: <20210121170836.GA4948@lemon.iwr.uni-heidelberg.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CACRpkdY6G_EP8QAp1C-eghdbgcgwQezA1ap=nDtSHPNqjuDF6Q@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-01-21, 14:20, Linus Walleij wrote:
-> On Wed, Jan 20, 2021 at 11:21 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> 
-> > Several properties are shared between all TLMM bindings. By providing a
-> > common binding to define these properties each platform's binding can be
-> > reduced to just listing which of these properties should be checked for
-> > - or further specified.
-> >
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+BPi Pro needs TX and RX delay for Gbit to work reliable and avoid high
+packet loss rates. The realtek phy driver overrides the settings of the
+pull ups for the delays, so fix this for Banana Pro.
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Hermann Lauer <Hermann.Lauer@uni-heidelberg.de>
+---
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> Overall it looks good, just cutting some slack for reviewers (especially
-> DT people) before applying.
-
-Yeah it does clean stuff up. I have rebased on SM8350 series on top of this, will post soon.
-
-> > +description:
-> > +  This defines the common properties used to describe all Qualcomm TLMM
-> > +  bindings and pinconf/pinmux states for these.
-> 
-> I vaguely recall asking you in the past what the acronym TLMM actually
-> means. This would be a good place to expand the acronym so people
-> know what these four letters actually represent.
-
-It is Top Level Mode Multiplexer (TLMM) it is actually used in the
-binding doc :)
-
-> 
-> (There, I finally gave you an official reason to go and poke Qualcomm
-> hardware engineers about this. ;)
-> 
-> Yours,
-> Linus Walleij
-
--- 
-~Vinod
+diff --git a/arch/arm/boot/dts/sun7i-a20-bananapro.dts b/arch/arm/boot/dts/sun7i-a20-bananapro.dts
+--- a/arch/arm/boot/dts/sun7i-a20-bananapro.dts
++++ b/arch/arm/boot/dts/sun7i-a20-bananapro.dts
+@@ -110,7 +110,7 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	phy-supply = <&reg_gmac_3v3>;
+ 	status = "okay";
+ };
