@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2C9F2FEB6C
+	by mail.lfdr.de (Postfix) with ESMTP id 401B92FEB6B
 	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 14:19:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729343AbhAUK3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:29:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56552 "EHLO
+        id S1728448AbhAUNSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 08:18:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728944AbhAUK2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:28:01 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6430EC0613D3
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:10 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id f1so1776465edr.12
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:10 -0800 (PST)
+        with ESMTP id S1729361AbhAUK3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:29:19 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEEAC0617A1
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:24 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id b21so1803154edy.6
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=1eHEW+QzC2xwdpZCYQ8B7dxLc9e/zDObheOb3Ploj10=;
-        b=guzBJXAKzZINhmhHwTrjm3eh0IPQZQ7C3LnaL2ALWBfoeUyUiOtXx75JK6r+5Wigpw
-         TLKpctJEAXyca+hk0AC+7ryXiilWnsPI4ybDILjHPjoJyU2d2rzXpPjE/9oEaPHZZeUa
-         xfoND877EpzerU3IPAtyf87+zuvO79I1+iaj/yPa1tevvuBhyzAjn/1xQRF+eC0yqG4w
-         bzoS/BCSRlVepvRc6uQP0qtiJcen7s1CnQzslJmX81J1WjZ+JVXGFfzz3/Rpy8F3ntIT
-         kOSbaUb7/fkaGiArq32yPXy6hMZAr3XO7+a7+SaN7dNv7a9p3esECI5f2tPAAl7asHYv
-         jl+A==
+        bh=03jDdVsHWABmgrMGYxTKqglWcTZOSBLi2r7Msa4qweQ=;
+        b=T/YvtqUIJ3VyoZ7WhYeu6vpUvItqA1Yb4ORxmREBN+CU7//I522B+QqPB8vi95g36b
+         w4E7jwfdcuVNE09+z4if7JX1kHI7tNy7PzLmoEh+o72ZanrgR/4rfYhIAEoM88094VaF
+         bqxSmSBLYIqB9GoL+8Ip0euyNmN8e/iY0uYC85x9/wyxkCZA7JmPueOKpUPYXCrgo1Oa
+         rceE9K+BOanw2Nl6w27pHQUwNIqoyMb9QcHqm1hpY/vFZe7mveumXVm8u4sc7tfRIwFS
+         1UZJa0/QJR9lHxrN0vkPDsIv4XPL2z9xxtH+0ZDcluDULkbbckR9/cbIcE1lm0DF6+8j
+         +BpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=1eHEW+QzC2xwdpZCYQ8B7dxLc9e/zDObheOb3Ploj10=;
-        b=cuZphyes36nPOq8qL6aWr1gk9qfGpTfVW51MGhnCcIXuX2FEfN138fHPoubDFIPa1q
-         LtcGHvXE+SGkkFBPqAhOgfENTfu0dSiNQ8I0kEyr8TFE2TuTZPYq/NDSUoU8v9po5zQP
-         NHxuTJ6wJayJkX1QOOPhCbTNq3W8HXI7cp2ek8nYdfamrlN4GV/EVP4hZKT5XdWN4MxW
-         WkR7keuTwZORfcDMnG+m6A/+8pW0mYajtzmN1coCbrH5oaKFBh2SGO0qBMgR61csP9X/
-         KrSkKCjUr2XwE+Mnm2YPsKTYDoYMYLe2vEHpGBIE56TvwEb4p3qkQpYUh6BJbEZ8t5+o
-         jaRg==
-X-Gm-Message-State: AOAM532WSvVaUsxFbYRQsxLFyIorCLiMLG3nT766HQv0HWSmdBqEEl3o
-        nm+4Ltve8/nCAmSeemoQ2Pb/XA==
-X-Google-Smtp-Source: ABdhPJwXZ72+lpmAS2fYndbpRecB2/4p1VcDXYFnZ7DWsTNNJRr1y4Zjd3cA2SPjf3aH6MdaYPehkA==
-X-Received: by 2002:a05:6402:1041:: with SMTP id e1mr11156595edu.54.1611224829153;
-        Thu, 21 Jan 2021 02:27:09 -0800 (PST)
+        bh=03jDdVsHWABmgrMGYxTKqglWcTZOSBLi2r7Msa4qweQ=;
+        b=I9t6dm/qbe47Un1ApYG6jzjSwqPNiE8ccAxekUwEfg9r5o50e6OVzIPWtZwXAzCAlX
+         8b3T/ASvcy14DMVxvQ6Lu+bf/fDSclTSOaFGLKINGcsbYOVSTUcwSHGtjZ38G/poNbyL
+         +sp5Rp/JENebJOOg6L0o2Uzr2zYklMOj10cy1t9V35lnP9cti5B9dgsA3DDMoefP+MZb
+         PCvPr51UQ5GbHc7Jkx/9p0EtnYEq6o7CqBiXg7kx2mzvvdBemvuLbR9hVos+QG34uAjP
+         o2Og5LgS8Ahlgjo6RiBbb2kCRfbdFg9B4kAnL1rLOUQ7s6RmRgS1OVJDX6mjm6HMUvgk
+         byEQ==
+X-Gm-Message-State: AOAM5303FIegS9mL2JzSPsd5BW/cqvmoKLbaA1jBq6yZxOA65chYAy6+
+        wEV//H3YcNc9rj78/9tEbloFvw==
+X-Google-Smtp-Source: ABdhPJx8PBmtDReaqzLSbecIS9e3NitrNGV2VYA7XqRpLcVAB+ZAhdOlA9FWgJtwpzTk+DlHbKG7pQ==
+X-Received: by 2002:a05:6402:1701:: with SMTP id y1mr10362420edu.251.1611224842778;
+        Thu, 21 Jan 2021 02:27:22 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id u23sm2487904edt.78.2021.01.21.02.27.08
+        by smtp.gmail.com with ESMTPSA id j23sm2562857edv.45.2021.01.21.02.27.22
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 21 Jan 2021 02:27:08 -0800 (PST)
+        Thu, 21 Jan 2021 02:27:22 -0800 (PST)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 02/12] arm64: dts: zynqmp: Add DT description for si5328 for zcu102/zcu106
-Date:   Thu, 21 Jan 2021 11:26:50 +0100
-Message-Id: <82b2b13006307f108ace81c50c213c3857078b57.1611224800.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 10/12] arm64: dts: zynqmp: Add missing lpd watchdog node
+Date:   Thu, 21 Jan 2021 11:26:58 +0100
+Message-Id: <0489a1d5528614f1d570ea153d38b813f0c1eb9f.1611224800.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <cover.1611224800.git.michal.simek@xilinx.com>
 References: <cover.1611224800.git.michal.simek@xilinx.com>
@@ -66,94 +68,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Origin DT binding just specify driver but wasn't aligned with DT binding
-which came later. Extend description for zcu102 and zcu106 to cover latest
-binding.
+Xilinx ZynqMP SoC has FPD (Full Power Domain) and LPD (Low Power Domain)
+watchdogs. There are cases where also LPD WDT should be used by Arm cores
+that's why list it with disabled status.
 
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
 Changes in v2: None
 
- .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 17 ++++++++++++++
- .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 22 +++++++++++++++++++
- 2 files changed, 39 insertions(+)
+ arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 4 ++++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi         | 9 +++++++++
+ 2 files changed, 13 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-index f1255f635dfd..5ff7ab665374 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-@@ -132,6 +132,12 @@ ina226-u75 {
- 		compatible = "iio-hwmon";
- 		io-channels = <&u75 0>, <&u75 1>, <&u75 2>, <&u75 3>;
- 	};
-+
-+	refhdmi: refhdmi {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <114285000>;
-+	};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+index 6a577e1383c1..3ca7e4ee51b5 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+@@ -223,3 +223,7 @@ &usb1 {
+ &watchdog0 {
+ 	clocks = <&zynqmp_clk WDT>;
  };
- 
- &can1 {
-@@ -526,6 +532,17 @@ si5328: clock-generator@69 {/* SI5328 - u20 */
- 				 * interrupt-parent = <&>;
- 				 * interrupts = <>;
- 				 */
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				#clock-cells = <1>;
-+				clocks = <&refhdmi>;
-+				clock-names = "xtal";
-+				clock-output-names = "si5328";
 +
-+				si5328_clk: clk0@0 {
-+					reg = <0>;
-+					clock-frequency = <27000000>;
-+				};
- 			};
++&lpd_watchdog {
++	clocks = <&zynqmp_clk LPD_WDT>;
++};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 533c19b80283..467f92c2044b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -786,5 +786,14 @@ watchdog0: watchdog@fd4d0000 {
+ 			reg = <0x0 0xfd4d0000 0x0 0x1000>;
+ 			timeout-sec = <10>;
  		};
- 		/* 5 - 7 unconnected */
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-index 6e9efe233838..7910ac125101 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-@@ -132,6 +132,12 @@ ina226-u75 {
- 		compatible = "iio-hwmon";
- 		io-channels = <&u75 0>, <&u75 1>, <&u75 2>, <&u75 3>;
++
++		lpd_watchdog: watchdog@ff150000 {
++			compatible = "cdns,wdt-r1p2";
++			status = "disabled";
++			interrupt-parent = <&gic>;
++			interrupts = <0 52 1>;
++			reg = <0x0 0xff150000 0x0 0x1000>;
++			timeout-sec = <10>;
++		};
  	};
-+
-+	refhdmi: refhdmi {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <114285000>;
-+	};
  };
- 
- &can1 {
-@@ -520,6 +526,22 @@ i2c@4 {
- 			reg = <4>;
- 			si5328: clock-generator@69 {/* SI5328 - u20 */
- 				reg = <0x69>;
-+				/*
-+				 * Chip has interrupt present connected to PL
-+				 * interrupt-parent = <&>;
-+				 * interrupts = <>;
-+				 */
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				#clock-cells = <1>;
-+				clocks = <&refhdmi>;
-+				clock-names = "xtal";
-+				clock-output-names = "si5328";
-+
-+				si5328_clk: clk0@0 {
-+					reg = <0>;
-+					clock-frequency = <27000000>;
-+				};
- 			};
- 		};
- 		i2c@5 {
 -- 
 2.30.0
 
