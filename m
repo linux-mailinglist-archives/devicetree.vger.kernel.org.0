@@ -2,143 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 357A32FEFA5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 17:00:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 785CE2FEFB8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 17:03:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732424AbhAUP73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 10:59:29 -0500
-Received: from atl4mhfb02.myregisteredsite.com ([209.17.115.118]:38618 "EHLO
-        atl4mhfb02.myregisteredsite.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1732706AbhAUP7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 10:59:20 -0500
-Received: from jax4mhob01.registeredsite.com (jax4mhob01.myregisteredsite.com [64.69.218.81])
-        by atl4mhfb02.myregisteredsite.com (8.14.4/8.14.4) with ESMTP id 10LFwMRs027332
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 10:58:22 -0500
-Received: from mailpod.hostingplatform.com ([10.30.71.205])
-        by jax4mhob01.registeredsite.com (8.14.4/8.14.4) with ESMTP id 10LFv9DD008139
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 10:57:09 -0500
-Received: (qmail 16974 invoked by uid 0); 21 Jan 2021 15:57:09 -0000
-X-TCPREMOTEIP: 83.128.90.119
-X-Authenticated-UID: mike@milosoftware.com
-Received: from unknown (HELO phenom.domain?not?set.invalid) (mike@milosoftware.com@83.128.90.119)
-  by 0 with ESMTPA; 21 Jan 2021 15:57:09 -0000
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-To:     linux-iio@vger.kernel.org
-Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v7 1/2] dt-bindings: iio: accel: Add bmi088 accelerometer bindings
-Date:   Thu, 21 Jan 2021 16:56:58 +0100
-Message-Id: <20210121155700.9267-1-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.17.1
+        id S1732040AbhAUQCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 11:02:48 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:43185 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387448AbhAUQCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 11:02:46 -0500
+Received: by mail-oi1-f171.google.com with SMTP id q25so2602522oij.10;
+        Thu, 21 Jan 2021 08:02:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=cmep6JspATXIylAow9lAiAF/n8EW1TwVpkVN9kbuivw=;
+        b=ezgCmqe+KHm5nYi4YDAjFCEPIxtbfmIDhsqMUgv2yYZJwdZlBaKlXPIOIdEQ+W596o
+         3DV2wVfTrppZIx5vzcTu+o9jrGuxExjNWgKHs7eRQxMbtTJ4ckkar/wwKyi18VRU7M8a
+         S3rtJjDXc9zL+PHd3dYNJib3WVIjqM4UVvvZD/lOIVEgJkP9vSJI/TyW7FrrLokp61fh
+         BZHrQ9lCVKs1ACo+V82SZczy4+whskdSosNLbyevHOznV5NX2AVg5Sjim/zz7gfc4Upt
+         BiFgzTx990WWImBDqGXjVMA+WL07n0aqci8A66wi2Y1NaC1XuVqYxcYS/D7IhpSsaUvE
+         5YOw==
+X-Gm-Message-State: AOAM532Qdgr8L6JiNfpOVmUKpLsGdUcYoCzCODifhqnztn7NF19/hbaR
+        zGmhrL/qOFXiW4eiidJ6gCPvXCw5sg==
+X-Google-Smtp-Source: ABdhPJwQuvyNnC8G3jMr15hUy4CMoEEljRSmzFihPPgZerPZt2dLRLvUAxW75wOWf6efyoCyWghTfg==
+X-Received: by 2002:aca:5185:: with SMTP id f127mr201045oib.18.1611244925371;
+        Thu, 21 Jan 2021 08:02:05 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s66sm1024169ooa.37.2021.01.21.08.02.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jan 2021 08:02:04 -0800 (PST)
+Received: (nullmailer pid 2814850 invoked by uid 1000);
+        Thu, 21 Jan 2021 16:01:58 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Vincent Knecht <vincent.knecht@mailoo.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        ~postmarketos/upstreaming@lists.sr.ht, linux-input@vger.kernel.org,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+In-Reply-To: <20210121113904.1272852-1-vincent.knecht@mailoo.org>
+References: <20210121113904.1272852-1-vincent.knecht@mailoo.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input/touchscreen: add bindings for msg26xx
+Date:   Thu, 21 Jan 2021 10:01:58 -0600
+Message-Id: <1611244918.552726.2814849.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the device-tree bindings for the Bosch Sensortec BMI088 IMU,
-the accelerometer part.
+On Thu, 21 Jan 2021 12:38:52 +0100, Vincent Knecht wrote:
+> This adds dts bindings for the mstar msg26xx touchscreen.
+> 
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+> Changed in v2:
+> - changed M-Star to MStar in title line
+> - changed reset gpio to active-low in example section
+> ---
+>  .../input/touchscreen/mstar,msg26xx.yaml      | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml
+> 
 
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+My bot found errors running 'make dt_binding_check' on your patch:
 
----
+yamllint warnings/errors:
 
-Changes in v7:
-Add additionalProperties
-Change bmi088_accel to bmi088-accel
-Add interrupt-names and adjust description
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.example.dt.yaml: touchscreen@26: 'touchscreen-size-x', 'touchscreen-size-y' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml
 
-Changes in v6:
-I't been almost a year since the last commit, sorry...
-Fixed the yaml errors
-Add interrupt, vdd and vddio properties
+See https://patchwork.ozlabs.org/patch/1429752
 
-Changes in v5:
-submit together with driver code as patch series
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Changes in v2:
-convert to yaml format
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
- .../bindings/iio/accel/bosch,bmi088.yaml      | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
+pip3 install dtschema --upgrade
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-new file mode 100644
-index 000000000000..db5dbaf80fa2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/accel/bosch,bmi088.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Bosch BMI088 IMU accelerometer part
-+
-+maintainers:
-+  - Mike Looijmans <mike.looijmans@topic.nl>
-+
-+description: |
-+  Acceleration part of the IMU sensor with an SPI interface
-+  Specifications about the sensor can be found at:
-+    https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - bosch,bmi088-accel
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+  vddio-supply: true
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      Type should be either IRQ_TYPE_LEVEL_HIGH or IRQ_TYPE_LEVEL_LOW.
-+      Two configurable interrupt lines exist.
-+
-+  interrupt-names:
-+    description: Specify which interrupt line is in use.
-+    items:
-+      enum:
-+        - INT1
-+        - INT2
-+    minItems: 1
-+    maxItems: 2
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      bmi088-accel@1 {
-+        compatible = "bosch,bmi088-accel";
-+        reg = <1>;
-+        spi-max-frequency = <10000000>;
-+        interrupt-parent = <&gpio6>;
-+        interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
-+        interrupt-names = "INT2";
-+      };
-+    };
-+...
--- 
-2.17.1
+Please check and re-submit.
 
