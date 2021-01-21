@@ -2,153 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA5602FE3E8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 08:28:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF4D52FE3C8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 08:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727630AbhAUH1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 02:27:42 -0500
-Received: from mail-eopbgr50043.outbound.protection.outlook.com ([40.107.5.43]:2560
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727383AbhAUH1C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 02:27:02 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T5Vtm0bDUcCg/8Pj+veV3U4beOyEIXkkUS1j33mMFg2n7ot+t0FxeZGWEGkWOieRpbE6NfICgfCUEtZOQRKKKlLyTqDg6alsHChORLPO67hfdgiCuGTXs+o8IyQzTslbjCMUQvnoHtaJrhOHJjzFw41S/B80+4y359G/eB/Dy0U4wT+12pMrBZCSbQxiD1sxuGqQ2fcWZuEUZ8PCL9ZcRIdffdh9jdKwbaE+LJnQHzClHgNlgn8zSaKCS/1Gd4w/oJOcV8LQlOjFCblGMl7SrIJTe+x5FMB3Ua7FCA6DX8NIqsnidmgGNZrl1w1vEUkNtzMM9dvfKcaCGnBsm3P6iA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zlFSIcG5Ei4Mxd8wGUBn5rBrszATKOpYvSeszeHDS+k=;
- b=c+fc4Fl6ojXx0fQ9/s9W/HaBEKH3Qmhz3kMwvNMXkbiXHLHOsiUa5XveMCq2W4oYiuQuEbkJ+XclTbES5KMFHaQWdnfQGgZ3jicMHwU5KToaHe1TAZEN46H68J6NWRBjDGq9aEJV64kkZDtrS368LHDFMxexm+Y35GaC8m5aMFSC4UhMhkhiErHYiUyzWmXyOiclrCTXtVkLhe1KCJ6+RYQ8qKnTn0RoqzRF8DS2NCrVLFzvoB3FfZQAySRl8goZSC4SfztqI3QPiYrE75hGXkJaYDTa55UFNeC+6W9XkBsmHybekSprzA3pbYE8kRAcY+gctYz+MandSop4Q6R/CQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zlFSIcG5Ei4Mxd8wGUBn5rBrszATKOpYvSeszeHDS+k=;
- b=K7U+sklj+LZ4S+qCa7iY4r8r3AWBB68mBb/TfTrH1OglKz6TCvwroXUMzFCIIv+HGZaRZ8jZeSCHhQcFh2J9AaHbJFo2Jv78syk506o3ee3sgg9xp42mHm1pyU6v+EsC27hOw0S0nTAGx/9+u08ArxwAYOwSMWpyAR/bZVb+LP0=
-Authentication-Results: lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=none action=none
- header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR0402MB2880.eurprd04.prod.outlook.com (2603:10a6:800:b4::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12; Thu, 21 Jan
- 2021 07:25:41 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3784.011; Thu, 21 Jan 2021
- 07:25:41 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, laurentiu.palcu@oss.nxp.com,
-        guido.gunther@puri.sm
-Subject: [PATCH v6 6/6] MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
-Date:   Thu, 21 Jan 2021 15:14:23 +0800
-Message-Id: <1611213263-7245-7-git-send-email-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1611213263-7245-1-git-send-email-victor.liu@nxp.com>
-References: <1611213263-7245-1-git-send-email-victor.liu@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR06CA0123.apcprd06.prod.outlook.com
- (2603:1096:1:1d::25) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+        id S1727271AbhAUHUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 02:20:41 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40566 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727237AbhAUHUD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 02:20:03 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F02D239EB;
+        Thu, 21 Jan 2021 07:18:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611213508;
+        bh=BH323A96671wBxsWq5JSNzrGgyPy3nPY3HxuAVj+PcE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=LQcSN3iS+RCjsfFHrcP6OvJVnUytFjJeop6yQ/3qGV6KN//xoOmtBHUP7+PcOop9I
+         UZRQWm9GJgweHmyTB1xxTUHZ31/LDGrbVntvsTY5f9JmomuWuKOn53RcTV39an4SFC
+         ubTEg+GWGsFcHTu8QvzawMI+/53xUrQS76LRjkItV3wYluNxGAfpLbBX/ND1h8hlgM
+         qw09hc63LmJxDGJtGSUhmX6yyjZ3gVwa6y3CLnrgVM9uMYh0/fikqTH20P0M1jtSHR
+         dDK0Cb07OmgbAmBuG7JFUbGKKTO1wlvmhuM4v8r+isRdDcgFR20Gs+SyyUA0onVdcL
+         0MbYxU1WlNOtQ==
+Received: by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1l2UEb-004Bru-9D; Thu, 21 Jan 2021 08:18:25 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Colin Ian King <colin.king@canonical.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mayulong <mayulong1@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
+        YueHaibing <yuehaibing@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 00/21] Move Hisilicon 6421v600 SPMI driver set out of staging
+Date:   Thu, 21 Jan 2021 08:18:02 +0100
+Message-Id: <cover.1611212783.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR06CA0123.apcprd06.prod.outlook.com (2603:1096:1:1d::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 07:25:36 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 20bab642-a1c0-489f-4ea3-08d8bdddc1b4
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB2880:
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB288063126D8ED957A9C0F99098A10@VI1PR0402MB2880.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:901;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YZnfrtvpEkn3ygHExe4egxKldTY7wSWSvoHBMqvQ7cCHh6v+ygqYZIQqmzQ+HinCRFDsJz+a+D+oe532du0c978Ewy/MF2jT4e0vegK34AfESZNj0pW7o0YpacPij0Ckjh3/et00EmD2xgsyisDowBMXNbLyokOxAeSpiCCRl68ZMktPQBIOswLe3RG50dYFEnhLfdp8rKs7EYoShqq20fWG+W2pQh+l6ohPS5Ae5fxLtBrn2S0rxbTgIXUk4Wp/tmzdmqBwIw5fEO4wlDtxIQLG+A8YoDg6ASSh4vG+KkuQcca1C2X1Fxp66ONRDVUdbeJ7BXUDEz4YF5xUh62dFBK7NMSgMpvLhbqpW1ulaCp1WHQQzpQhcJyzdpJkMcR2zi7eakSMSyV2B0GfJ1IjMWguy9gIdyTly/7+dDUBBP4Tg2KcpJ8omPxaV2KaVm01LQr3wBYhYXQkf+j0ZzDkfQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(366004)(39860400002)(136003)(346002)(6486002)(52116002)(66476007)(66946007)(36756003)(4326008)(478600001)(66556008)(86362001)(6512007)(6666004)(2906002)(8936002)(5660300002)(316002)(2616005)(7416002)(956004)(16526019)(186003)(26005)(6506007)(69590400011)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Fios2023ukv/5yb66Q4S2nX4Zou/bjRPKnZpYwks5Ta9W6Bi5htx7c9HAr5j?=
- =?us-ascii?Q?3nfLkXN+aqkqUZ3w7krE4neeJ4QH1X8SfpHh+RUImMKoAYiWdNfXugeSU6qN?=
- =?us-ascii?Q?fxfeeJM1F40GoC6wX3R0+82mhTPaXJCb2BmfuEMbo292/eSbQ1hYf3ALYR2P?=
- =?us-ascii?Q?fmmEBCC/I8OtTvasoxdPUtE3cXh4yzkVnJzc61EiBl/h6GYr8hkh1sJhV5d+?=
- =?us-ascii?Q?5J4eEm1f8dGW3QaciNig2UWusbrwA/KykGDjAhZ3YwMjadQ2m20QCFqYUmvf?=
- =?us-ascii?Q?tr1p69ao+bHzSL4Q0r09AFE1OrCFg3dsizCNRbEgm/vWfExkILZQl5HgtpXh?=
- =?us-ascii?Q?ic5d/RQq1P7EaN9dTXD4DXc9xasOyyNNwdxsSTLd8dlvZJJ6TdB5i3PxdAc4?=
- =?us-ascii?Q?BeSX+x3iyWNaV74l8mwlk/5yOgPX/IW6Ifbd5wzoGpxjK3i9Fcsfz2UC7XQI?=
- =?us-ascii?Q?SKkKWqBloogdgTi9iNmI6ztK4JarYg3ZK6UxPSTvrgA3jYuTPRw/7lVsQvKd?=
- =?us-ascii?Q?re54a3qWDPa9brPb91fwIT4N3dDYoFblxTiAJez7pqS6ReKP6hf2WgGzsXYS?=
- =?us-ascii?Q?hU2Pf5yK5c6a+hJacV0b9Zmz3856R8E2Z2Q6XTxyF4Jw73FeimuWruYAFG9W?=
- =?us-ascii?Q?wNJLuzTP4QkPMzyngFOFWIQM6L1AjSUsJxQYId4Sh+nkc68WPx+MFaQ1paBo?=
- =?us-ascii?Q?VoiM0OVsazUO6+P6Gf2ilYjStAMx4tA+4FKLBCfLGRgDMOSR5Lw6gKsl2ZSU?=
- =?us-ascii?Q?XJ8hwhYu6IPCZ/JAZsfJhXhKgeR6zXfWIdIyVTvP5VjK2f7Ne8wcVskYao6Y?=
- =?us-ascii?Q?L4gUe4XLC2LDKa0nnFXZxExnZJFcNcSBd7VG+BZxSZwle1RxkYXO7T/qjymF?=
- =?us-ascii?Q?wX5GZ0XPRBDh7GNMjN1x/JZXzMEErfj5Ul63AI1+g8Ubraja+YWP/OMRlrmU?=
- =?us-ascii?Q?7jD3iGuf4w4ueoKcj/a4SAwWaBLYKmXtJi77chuRUUsBkd/SJ+nNy4/VLLMC?=
- =?us-ascii?Q?Nhwn?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20bab642-a1c0-489f-4ea3-08d8bdddc1b4
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 07:25:41.2534
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8Y/ajF231i88Sj/vNDFvPBBzemOK54yDv/tArQU9uvJJaDvNpMc/LcEyKFPPWrfUSjSwZbifXR4v8aGJps90Mw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2880
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as the maintainer of the i.MX8qxp DPU DRM driver.
+Hi Mark/Lee,
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v5->v6:
-* No change.
+This patch series finish addressing support for Hikey 970
+SPMI controller, PMIC and regulators.
 
-v4->v5:
-* No change.
+This version was generated with -M, in order to make easier
+to merge upstream.  Also, rebased on the top of v5.10,
+without any dependencies from the other patch series
+I'm submitting for this board.
 
-v3->v4:
-* No change.
+Yet,  patch 18 to 20 modifies drivers/staging/hikey9xx/Kconfig
+and drivers/staging/hikey9xx/Makefile. So, trivial conflicts
+will rise if they're applied via different trees, as they all
+remove some lines from such files. 
 
-v2->v3:
-* No change.
+Regards,
+Mauro
 
-v1->v2:
-* No change.
+v5:
+- rebased to not depend on USB PHY patchset;
+- removed an USB-specific DT binding;
+- changed the subject of one of the patches;
+- no driver nor DT contents were changed.
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+v4:
+- use regmap for mfd and spmi drivers;
+- a few minor cleanups at the mfd driver.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d082757..12c8e5b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5892,6 +5892,15 @@ F:	Documentation/devicetree/bindings/display/imx/
- F:	drivers/gpu/drm/imx/
- F:	drivers/gpu/ipu-v3/
- 
-+DRM DRIVERS FOR FREESCALE i.MX8QXP
-+M:	Liu Ying <victor.liu@nxp.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
-+F:	Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
-+F:	drivers/gpu/drm/imx/dpu/
-+
- DRM DRIVERS FOR GMA500 (Poulsbo, Moorestown and derivative chipsets)
- M:	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
- L:	dri-devel@lists.freedesktop.org
+v3:
+- fixed a bug with eco-mode at get_optimum_mode;
+- changed the sleep logic when enabling/disabling a power line;
+- additional cleanups, as requested by Mark.
+
+v2:
+
+- this driver's probe routine is very similar to the one at the non-SPMI
+  variant of Hisilicon 6421;
+- The register/voltage data were moved from DT into the driver itself;
+- It doesn't have anymore any static data;
+- All debug messages got removed;
+- Addressed a few be32 warnings from sparse.
+
+Mauro Carvalho Chehab (21):
+  staging: hikey9xx: hisilicon,hisi-spmi-controller.yaml fix bindings
+  staging: hikey9xx: hisilicon,hi6421-spmi-pmic.yaml: simplify props
+  staging: hikey9xx: hisi-spmi-controller: clean sparse warnings
+  staging: hikey9xx: hi6421v600-regulator: do some cleanups
+  staging: hikey9xx: hi6421v600-regulator: move LDO config from DT
+  staging: hikey9xx: hi6421v600-regulator: cleanup debug msgs
+  staging: hikey9xx: hi6421v600-regulator: get rid of an static data
+  staging: hikey9xx: hi6421v600-regulator: do some cleanups
+  staging: hikey9xx: hi6421v600-regulator: update copyright
+  staging: hikey9xx: hi6421v600-regulator: fix delay logic
+  staging: hikey9xx: hi6421v600-regulator: cleanup comments
+  staging: hikey9xx: hi6421v600-regulator: fix get_optimum_mode
+  staging: hikey9xx: hisilicon,hi6421-spmi-pmic.yaml: cleanup a warning
+  staging: hikey9xx: spmi driver: convert to regmap
+  staging: hikey9xx: hi6421-spmi-pmic: update copyright
+  staging: hikey9xx: hi6421-spmi-pmic: simplify includes
+  staging: hikey9xx: hi6421v600-regulator: use some regmap helpers
+  spmi: hisi-spmi-controller: move driver from staging
+  mfd: hi6421-spmi-pmic: move driver from staging
+  regulator: hi6421v600-regulator: move it from staging
+  dts: hisilicon: add support for the PMIC found on Hikey 970
+
+ .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 135 +++++
+ .../spmi}/hisilicon,hisi-spmi-controller.yaml |  19 +-
+ MAINTAINERS                                   |  15 +-
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    |  22 +-
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  87 ++++
+ drivers/mfd/Kconfig                           |  15 +
+ drivers/mfd/Makefile                          |   1 +
+ .../hikey9xx => mfd}/hi6421-spmi-pmic.c       | 147 ++----
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/hi6421v600-regulator.c      | 299 +++++++++++
+ drivers/spmi/Kconfig                          |   9 +
+ drivers/spmi/Makefile                         |   1 +
+ .../hikey9xx => spmi}/hisi-spmi-controller.c  |   4 +-
+ drivers/staging/Kconfig                       |   2 -
+ drivers/staging/Makefile                      |   1 -
+ drivers/staging/hikey9xx/Kconfig              |  37 --
+ drivers/staging/hikey9xx/Makefile             |   4 -
+ .../staging/hikey9xx/hi6421v600-regulator.c   | 478 ------------------
+ .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 159 ------
+ include/linux/mfd/hi6421-spmi-pmic.h          |   8 +-
+ 21 files changed, 634 insertions(+), 818 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+ rename {drivers/staging/hikey9xx => Documentation/devicetree/bindings/spmi}/hisilicon,hisi-spmi-controller.yaml (84%)
+ create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+ rename drivers/{staging/hikey9xx => mfd}/hi6421-spmi-pmic.c (65%)
+ create mode 100644 drivers/regulator/hi6421v600-regulator.c
+ rename drivers/{staging/hikey9xx => spmi}/hisi-spmi-controller.c (99%)
+ delete mode 100644 drivers/staging/hikey9xx/hi6421v600-regulator.c
+ delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
+
 -- 
-2.7.4
+2.29.2
+
 
