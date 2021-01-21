@@ -2,96 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B31E62FEE3D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 16:17:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A9CF2FEEEC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 16:35:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732706AbhAUPQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 10:16:35 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:60617 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732645AbhAUPPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 10:15:48 -0500
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id AD5FD22F99;
-        Thu, 21 Jan 2021 16:14:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1611242092;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=NCqhHiLG+HIy/KpgWMep43uHSdTreIHEy2UEo+8BPmQ=;
-        b=HNjygoJezksRVrvq/4vj1sKQDQb5mPiv2rc55WUhpe3aopQ7M2LIyyuEPBUtf9o03Zl113
-        ma8PB8ark1Pj8VS9ssD5D8gx0rIK3rVUkV83Aqzl/lPBfBF8KGHwKC+ZlgMxM6GkFwpo+/
-        IOYx1Od4kLHNbdITzw+8WcWLZ9lTJNU=
+        id S1731933AbhAUPdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 10:33:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731902AbhAUNV5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 08:21:57 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886CFC0613CF
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:21:08 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id v24so2455252lfr.7
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:21:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=op8j6R+4g48Fa+r3T9cI5xuzEnP9tzeqMgjxOehUVnQ=;
+        b=KOqidmz/CNyqEKehs2nWu23QUqIuHHvV8BJ4khGA4+VCmdaIvawUrg0n3clUglYtHQ
+         5sH8Rka2lKSp3BBHtLiPfEp6BCPmQL+B8KbwEq8SwUczwlwBELUnAHiujJ/oe3PKpWP8
+         QZkVdVEV4eXJ1yzbjli5R2kJb/U29jmdl8ksIRgxV6ceR6fm7+2sAPDly16MmHrvRpiP
+         TaSihqF6tt2OfDgtxLzUNFPNdNNogXDiti+c6DNiFtcb4y1jMaoRcva4cTXFbY2/Zqi5
+         xeTFjUHjJvoNqrtr/g5BL+b7hl81Ok8GyUvjTvJ68kU5sPgZffhiQqSOkHLMGKGgvMpJ
+         88QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=op8j6R+4g48Fa+r3T9cI5xuzEnP9tzeqMgjxOehUVnQ=;
+        b=G7FwkEActH94ojS8WPgkamqD0a/TXveDLObKQG6UK7C/p6RD7Jx7hOny7o0gD5OVz0
+         cUNuneeZWduBU1iBkmgI5T3bKeyAUO81ThIW0vF9RgcSVdW29IMzhSzfSo6kjDOW847V
+         s3zz4kuqaTVk7vcvlvk/+uDhU7dqz38Dh5dCwuVCZ7ihzuBcighZ9GX3Kh18ikwazb4B
+         tSZTeWQoPPIYpiKP1eOfwraCQDgqsiVmtv9uldDLpUZYKpJSNf/1jWat3KNw00dkzYKK
+         OuX8gWcYQPAIbYDiAeeFMzDwVZsOtwLxdfKZ8hUcbFThDoGdwk4d++6bHQjxvJENq/2L
+         g8tA==
+X-Gm-Message-State: AOAM532m6UW/PQkd8ygh8yeFQeqJ4AXU9fhc+T4VAo2KxkCSajgsnTrA
+        Nz7kwzSPF7Sa0LgDJ9B8eHPVsdy9YquLbhSFS5pAlA==
+X-Google-Smtp-Source: ABdhPJzjolIGs0g1G1QMpgs9c5ZxqJOsxS9rir1XxYZUkDea4S/zurMDNfneRGbRqCXReCG1CXXIURIgom29HL1H5uI=
+X-Received: by 2002:a05:6512:3238:: with SMTP id f24mr6846302lfe.29.1611235266996;
+ Thu, 21 Jan 2021 05:21:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 21 Jan 2021 16:14:52 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org
-Subject: Re: [PATCH 0/3] add Ebang EBAZ4205 support
-In-Reply-To: <cbfc4899-eb92-938a-95f2-23ca9485beaf@xilinx.com>
-References: <20210120194033.26970-1-michael@walle.cc>
- <fff420d1-fc9a-23ce-0d07-58a3c6f10c4d@xilinx.com>
- <aa96fcaa362181d4b6fef9f1de0aa914@walle.cc>
- <0a1c6ebf-1d5b-4f06-56db-f04e87d2ae9a@xilinx.com>
- <bd86194a13882ce472764d0c91029e33@walle.cc>
- <8917c9a1-09e9-0a39-5732-da7f555ae9ad@xilinx.com>
- <df072e37bb6f3500d713be565cfa1328@walle.cc>
- <cbfc4899-eb92-938a-95f2-23ca9485beaf@xilinx.com>
-User-Agent: Roundcube Webmail/1.4.10
-Message-ID: <a346e761397a14d2effd4806e53395e5@walle.cc>
-X-Sender: michael@walle.cc
+References: <20210120222114.1609779-1-bjorn.andersson@linaro.org> <20210120222114.1609779-2-bjorn.andersson@linaro.org>
+In-Reply-To: <20210120222114.1609779-2-bjorn.andersson@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 21 Jan 2021 14:20:55 +0100
+Message-ID: <CACRpkdY6G_EP8QAp1C-eghdbgcgwQezA1ap=nDtSHPNqjuDF6Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: qcom: Define common TLMM binding
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-01-21 14:16, schrieb Michal Simek:
-> On 1/21/21 11:41 AM, Michael Walle wrote:
->> Am 2021-01-21 11:23, schrieb Michal Simek:
->>>>> Back to your case. Board is cheap which is not all the time case 
->>>>> for
->>>>> any
->>>>> xilinx board but you have only uart, sd and partially described
->>>>> ethernet
->>>>> which doesn't work without PL. Is it worth to have this described?
->>>> 
->>>> I got your point. But it is at least a jump start for the users if 
->>>> that
->>>> board boots out of the box. And yes, its unfortunate, that ethernet
->>>> just works if the PL is configured. This is already done by the
->>>> bootloader, because there I do have the same problem.
->>> 
->>> Zynq/ZynqMP boards can use U-Boot SPL. "Advantage" of this solution
->>> especially for Zynq is that in u-boot there is open a way for adding
->>> ps7_init file which is determined by device tree name.
->>> I think it would make sense to add these DTs and also ps7_init to 
->>> U-Boot
->>> project and wire it up with zynq_virt platform and then you can boot
->>> Linux with using U-Boot's DT pointed by $fdtcontroladdr.
->>> Then you will get support from scratch to be able to boot.
->> 
->> I already have patches for u-boot (using SPL). But my impression was
->> that linux is the master for the device trees. Esp. if there are some
->> problems with the board its often useful to have an in-tree device
->> tree.
->> 
->> What is the difference between this board and the other zynq boards
->> in the kernel?
->> 
->> In any case, please make this decision now: will you accept this
->> device tree or not?
-> 
-> If you promise to regularly test it I am fine with it.
+On Wed, Jan 20, 2021 at 11:21 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
 
-I might even integrate it into our lava lab.
+> Several properties are shared between all TLMM bindings. By providing a
+> common binding to define these properties each platform's binding can be
+> reduced to just listing which of these properties should be checked for
+> - or further specified.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
--michael
+Overall it looks good, just cutting some slack for reviewers (especially
+DT people) before applying.
+
+> +description:
+> +  This defines the common properties used to describe all Qualcomm TLMM
+> +  bindings and pinconf/pinmux states for these.
+
+I vaguely recall asking you in the past what the acronym TLMM actually
+means. This would be a good place to expand the acronym so people
+know what these four letters actually represent.
+
+(There, I finally gave you an official reason to go and poke Qualcomm
+hardware engineers about this. ;)
+
+Yours,
+Linus Walleij
