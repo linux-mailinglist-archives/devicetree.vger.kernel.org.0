@@ -2,179 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C8712FE739
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:12:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D9692FE749
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:16:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728066AbhAUKLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:11:46 -0500
-Received: from mail-eopbgr760040.outbound.protection.outlook.com ([40.107.76.40]:62939
-        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728469AbhAUKLP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 05:11:15 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fxbqf/usKPyuAbIinmdsQzwFJEaLH4Lv8eX3+9q3RBknphdXptx4s9HTE0p0FQYOS0F9BgTic8sduCXkW9zpyE2NlGDbBPJzDTbFbI+QM+k1pbsTb/1J+QbUw9m7dgKFuqYuesRTsNquyutwDtubLL0JPYy1R/MoDMFXVRw/ND2nmK8MLSFy58gDdpYEjFm4BAWmt1nNOFRPZ5TdOndcu9DudhSmgX2uY8AEgsPPVfUblP7gPzxkQjNQwZAsJqWKduZsMTkhqz06aq7U+jsKqZ/+mMGcH+IqlxRcdA3bBMKeaOH8qaBtdBSiA7I7aJhoE3pGd7QSxYmZTmRNIBFUsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yS7yU5sUlSO2Q3Ui6v3Nky50meJEIllnE4EAjjSxEOY=;
- b=RFddAq2ksqYeKvpy3YCURbYJyRrstJNNcobJzhkGkjWdI+NpA/UqsyoTBcKfxusfimbrZVzt6Fgz+abcWTrcwO1uOu4Sph75WiA8n5RgZY+xJvUab/NX08wG0mjAPA4LRp99b/ZYcSVedIeSaBl2AZzLCnmKZzuHcCaCd+VgBEKaBEN/q8+nOXEBnIGuOZbib4o4MpVFrui/4lMtR8/lMV3N4HJ8F5fBT2fHsfkWqXpYbDI0/gVZepkWgfA+347kjr2CyajfsX2QZOZVwDYMwdPv28sQg92i+QbC+WiX7IJV+rtYYR3hJ+tpfOacnqwJLzxcge8osLibzTFp7D3ahw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yS7yU5sUlSO2Q3Ui6v3Nky50meJEIllnE4EAjjSxEOY=;
- b=s8sTaAXfOdFbv4M7VVKD1FcSfte/oPipJ3bpX+d08Pd0oeAWNn8Da6N9vZ85mHjhImAtXZtm2eMuXx2dO63Frj/7pMHnEUUTNXcD5dxSzfgihfmZgvVsmys2u32JCAwwcu7j80B9LND4wywN2yGIINz79tYB/byygE1TToCwGZo=
-Received: from CY4PR18CA0056.namprd18.prod.outlook.com (2603:10b6:903:13f::18)
- by MN2PR02MB5904.namprd02.prod.outlook.com (2603:10b6:208:113::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.14; Thu, 21 Jan
- 2021 10:10:21 +0000
-Received: from CY1NAM02FT037.eop-nam02.prod.protection.outlook.com
- (2603:10b6:903:13f:cafe::4b) by CY4PR18CA0056.outlook.office365.com
- (2603:10b6:903:13f::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11 via Frontend
- Transport; Thu, 21 Jan 2021 10:10:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- CY1NAM02FT037.mail.protection.outlook.com (10.152.75.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 10:10:21 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Thu, 21 Jan 2021 02:10:10 -0800
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Thu, 21 Jan 2021 02:10:10 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- rajan.vaja@xilinx.com,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- robh+dt@kernel.org,
- krzk@kernel.org,
- monstr@monstr.eu,
- linux-kernel@vger.kernel.org,
- laurent.pinchart@ideasonboard.com
-Received: from [172.30.17.109] (port=45914)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1l2Wun-0002sH-2D; Thu, 21 Jan 2021 02:10:09 -0800
-Subject: Re: [PATCH 04/12] arm64: dts: zynqmp: Enable and wire reset
- controller
-To:     Michal Simek <michal.simek@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <git@xilinx.com>, Kalyani Akula <kalyani.akula@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <cover.1606917949.git.michal.simek@xilinx.com>
- <c0a99c5b0438e34073429624d99a2c3f16532016.1606917949.git.michal.simek@xilinx.com>
- <X81dXV0uCccZ3360@pendragon.ideasonboard.com>
- <dd199853-71b1-aeef-fe17-57a4110d2da9@xilinx.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <6543a8d1-bf0b-ed44-8ccd-115f14e48dcc@xilinx.com>
-Date:   Thu, 21 Jan 2021 11:10:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1726181AbhAUKOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 05:14:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53674 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728469AbhAUKOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:14:23 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949CBC061575;
+        Thu, 21 Jan 2021 02:13:39 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id EBF8522FAD;
+        Thu, 21 Jan 2021 11:13:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1611224018;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=I4dLSkqJXtXHKLU0U+8YrniJxd+5nWGvaigg4fV1hAc=;
+        b=SaKNVZKxfgcGcg2JHt7BBiGpOI/zUgMnud/Si+cf7OFIUUWbsZUaKmESPwdKR2Iu8A+krE
+        fKxfc4D4j84vWKYeiLatvNJ9GKYzRrN6GKvGjXGiWZvHvB2TYRW4dnJi1NkwCOR9Nd2zNX
+        H/6+PYgGfZ0RWFUsxIdOsdRXDzHXckc=
 MIME-Version: 1.0
-In-Reply-To: <dd199853-71b1-aeef-fe17-57a4110d2da9@xilinx.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4e992a93-c2d5-4c9f-de13-08d8bdf4c330
-X-MS-TrafficTypeDiagnostic: MN2PR02MB5904:
-X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-X-Microsoft-Antispam-PRVS: <MN2PR02MB5904F7324D50AA591CC4C760C6A10@MN2PR02MB5904.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lMiDrn4DFpiaoZVpLFD1oiNlfAQpUoEy8r0mG+XlMw1CFBh8DLBSY5ZgX/pB7XjX/svMPqspPorRZkMcvD0C5AQyPddF4fiA39YB+EmmHTd37qp1wUB2zSxSY6dzI6lLd7Ofz817gUEtd3Y9EoPEfA5MU278yqsincBoC5PydCBiZeYghtM4THPSg0TuDooE1wRIj7bZXGcXrox3cdnAPYtunXjxc5E99fu6L3u6yTNwVydsfxVkwpIGjQMkA0qow4c8yJIQrBQXwgHWA0U/pMV0WaWhiEGShYf3znt1Jzqd2jA5viZHJA8S3zJPvkiTsvJILB+P1tOF6mp1xzvdifqZxVb4VE7IDSEji/p7w/DGyH6GU2mfcW1CzxU7GB280R/TkA++jz6D4CMEActbN8wFkCud1kWfCy1mHNQCc0rhR0RrlR8jcI6viv2384ZSyJI0CQZbx6ZItLF+vVnHC/UAp2inzBpmEO7+6QCYQoiW/Zxiu23u+jmiazbM1og4uf0Pj6r+A1RNQHS+8AvmEQ==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(39860400002)(136003)(46966006)(82740400003)(36756003)(8936002)(53546011)(8676002)(6666004)(44832011)(31686004)(47076005)(356005)(2906002)(83380400001)(9786002)(316002)(186003)(26005)(70206006)(2616005)(478600001)(36906005)(82310400003)(31696002)(336012)(5660300002)(54906003)(4326008)(110136005)(7636003)(70586007)(426003)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 10:10:21.6735
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e992a93-c2d5-4c9f-de13-08d8bdf4c330
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT037.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB5904
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Thu, 21 Jan 2021 11:13:37 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org
+Subject: Re: [PATCH 0/3] add Ebang EBAZ4205 support
+In-Reply-To: <0a1c6ebf-1d5b-4f06-56db-f04e87d2ae9a@xilinx.com>
+References: <20210120194033.26970-1-michael@walle.cc>
+ <fff420d1-fc9a-23ce-0d07-58a3c6f10c4d@xilinx.com>
+ <aa96fcaa362181d4b6fef9f1de0aa914@walle.cc>
+ <0a1c6ebf-1d5b-4f06-56db-f04e87d2ae9a@xilinx.com>
+User-Agent: Roundcube Webmail/1.4.10
+Message-ID: <bd86194a13882ce472764d0c91029e33@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On 12/7/20 10:32 AM, Michal Simek wrote:
+Am 2021-01-21 10:57, schrieb Michal Simek:
+> Hi,
 > 
-> 
-> On 06. 12. 20 23:38, Laurent Pinchart wrote:
+> On 1/21/21 10:35 AM, Michael Walle wrote:
 >> Hi Michal,
->>
->> Thank you for the patch.
->>
->> On Wed, Dec 02, 2020 at 03:06:03PM +0100, Michal Simek wrote:
->>> Enable reset controller for several IPs.
->>>
->>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
->>> ---
->>>
->>>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 29 ++++++++++++++++++++++++++
->>>  1 file changed, 29 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>> index 68923fbd0e89..4fa820f78d76 100644
->>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>> @@ -187,6 +187,11 @@ zynqmp_pcap: pcap {
->>>  			xlnx_aes: zynqmp-aes {
->>>  				compatible = "xlnx,zynqmp-aes";
->>>  			};
->>> +
->>> +			zynqmp_reset: reset-controller {
->>> +				compatible = "xlnx,zynqmp-reset";
->>> +				#reset-cells = <1>;
->>> +			};
->>>  		};
->>>  	};
->>>  
->>> @@ -466,6 +471,8 @@ gem0: ethernet@ff0b0000 {
->>>  			#address-cells = <1>;
->>>  			#size-cells = <0>;
->>>  			power-domains = <&zynqmp_firmware PD_ETH_0>;
->>> +			resets = <&zynqmp_reset ZYNQMP_RESET_GEM0>;
->>> +			reset-names = "gem0_rst";
->>
->> I don't see any of the reset-names used in this patch defined in DT
->> bindings (or used in drivers). For all devices but the USB controllers
->> it seems they can be dropped. For the USB controllers, the bindings need
->> to be updated first.
+>> 
+>> Am 2021-01-21 10:25, schrieb Michal Simek:
+>>> On 1/20/21 8:40 PM, Michael Walle wrote:
+>>>> Add support for the Ebang EBAZ4205 board. This board was once used 
+>>>> as a
+>>>> control board for a bitcoin mining device. Nowawdays it is sold as a
+>>>> cheap
+>>>> Zynq-7000 eval board.
+>>>> 
+>>>> Michael Walle (3):
+>>>>   dt-bindings: add ebang vendor prefix
+>>>>   dt-bindings: arm: add Ebang EBAZ4205 board
+>>>>   ARM: dts: add Ebang EBAZ4205 device tree
+>>>> 
+>>>>  .../devicetree/bindings/arm/xilinx.yaml       |   1 +
+>>>>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>>>>  arch/arm/boot/dts/Makefile                    |   1 +
+>>>>  arch/arm/boot/dts/zynq-ebaz4205.dts           | 109 
+>>>> ++++++++++++++++++
+>>>>  4 files changed, 113 insertions(+)
+>>>>  create mode 100644 arch/arm/boot/dts/zynq-ebaz4205.dts
+>>>> 
+>>> 
+>>> any link with schematics?
+>> 
+>> https://github.com/xjtuecho/EBAZ4205, looks like these are
+>> reverse engineered (from a layout file?) though.
 > 
-> Let me double check it. IIRC if there is just one there is likely no
-> need to list the name but if there are more then one names should be
-> also there. But you are right it should be the part of dt binding.
+> Interesting but at least something.
+> 
+>> 
+>>> I will let dt guys to comment 1/3 but series look good to me.
+>>> The board doesn't look interesting from description point of view 
+>>> that's
+>>> why all the time thinking if makes sense to add it to kernel.
+>> 
+>> What do you want to tell me? That for the time being, it didn't
+>> appear to you to add the board yourself - or do you thing it
+>> doesn't make sense at all. If its the latter, what would be
+>> actual reason to have a board in mainline?
+> 
+> I have bad experience with for example Avnet boards which people add 
+> and
+> none is really updating them and they are in the same state for years.
 
-I will skip this patch.
+Wouldn't it be better then to pull the plug at some time and remove 
+these
+boards.
 
-Thanks,
-Michal
+TBH I was a bit disappointed by your statement. It sounded like "nah
+this board isn't worth it". Esp. because it is just one (small) file.
+But more below.
 
+> Long time ago we agreed that doesn't make sense to describe PL in
+> upstream projects and we only describe PS part. It means you likely 
+> miss
+> several things which are useful and the reason for using these SoCs is 
+> PL.
+> 
+> As you likely know Xilinx has Versal device and I didn't push any 
+> device
+> tree to any upstream project and thinking not to add any description 
+> for
+> boards and stay in sort of space that "virtual" description for SoC
+> should be enough. Maybe just versal.dtsi and one kitchen sink DT should
+> be added but not description for all boards.
+> 
+> The same is if make sense to push all DTs for all standard xilinx 
+> zynqmp
+> evaluation boards. If there is something interesting/new I thought it
+> makes sense to add it as pattern to follow. But for boards which looks
+> very similar from PS point of view I don't think there is real value to
+> add and invest time for maintaining.
+> 
+> Back to your case. Board is cheap which is not all the time case for 
+> any
+> xilinx board but you have only uart, sd and partially described 
+> ethernet
+> which doesn't work without PL. Is it worth to have this described?
+
+I got your point. But it is at least a jump start for the users if that
+board boots out of the box. And yes, its unfortunate, that ethernet
+just works if the PL is configured. This is already done by the
+bootloader, because there I do have the same problem.
+
+> Especially when it is visible that you need to describe custom PL and 
+> DT
+> overlays are not solid yet.
+> 
+> Thanks,
+> Michal
+
+-- 
+-michael
