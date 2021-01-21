@@ -2,175 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30CA52FE158
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 06:01:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9778D2FE16F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 06:19:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726382AbhAUDvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 22:51:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46250 "EHLO
+        id S1726204AbhAUFSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 00:18:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727980AbhAUAx7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 19:53:59 -0500
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F7D9C061798;
-        Wed, 20 Jan 2021 16:51:55 -0800 (PST)
-Received: by ozlabs.org (Postfix, from userid 1007)
-        id 4DLkP40CpCz9sWq; Thu, 21 Jan 2021 11:51:51 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-        d=gibson.dropbear.id.au; s=201602; t=1611190312;
-        bh=HiVHioXSTKBtutywfp29ji3JhD+pMtjFZIbPJ1HuoHs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TvJ+rIHjsw9DsHDBiXVGgbeuHmbFgmjYc926+sjsJ3jfs0NmqTm1md+tQKurHmHd3
-         Bl9YWhd4c8KL/q39oEyIbn6x789IzznnUQ4AaNP52eb2jJKxgP+q2QfNeEmFWnLreo
-         B9EOOBUj5bnjxvv5wR3AejfKHjjV/jEhl5rlti9g=
-Date:   Thu, 21 Jan 2021 11:49:55 +1100
-From:   David Gibson <david@gibson.dropbear.id.au>
+        with ESMTP id S1725981AbhAUFBB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 00:01:01 -0500
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36125C061757;
+        Wed, 20 Jan 2021 21:00:20 -0800 (PST)
+Received: by mail-qt1-x836.google.com with SMTP id d15so720730qtw.12;
+        Wed, 20 Jan 2021 21:00:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=OgcU6Vo2JESkISHfmFMW6Btb8cYekxf929MSFIsRpr0=;
+        b=XIZ7JBHMD/GaAtG0PAm5XpneYmPFKYXdZLVh7yN+pGV5YFLRa7+xuL5dnI55gaFGlo
+         dmSS2TEK8nV+gu4eKbG5uhdHx88N1yh9wXJy2vU2wJ1d1PYN5UYxHHHs128r/NT4Fs2n
+         5PpzzoMWbU5K1g68Xf1u0ZTDzA6GXicd+CpteQFZSTxp61MtDrlBfhmvomy56gxyLYpL
+         0pUlL2NUSxzRohys+4qpdKV8jwd7qFc5tRGpC180rmyLr46WtOXvWLlgASll9zX6oUto
+         Xz4iv33prB7opWKOCslj6dn+vKW7vW7Sekzmwti/Q3T4oT0rZsJPyVD/pkprsQFFZ8iY
+         eDFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OgcU6Vo2JESkISHfmFMW6Btb8cYekxf929MSFIsRpr0=;
+        b=KTKw4FGgSgw7g4QMYPc1fD0DlRe2w17Lrx6Ic274JMJHjD+2taA90oWJ78xYpbsf4s
+         wvj3wPp9kKQubAthP2Cys38ifziwgIfmAX/srN4Xsy6dWTY2D3DRhRDE0mJVV2dIywwl
+         BTh1thYMb1FnCHwrwG3vjyPT90sL5fUIXgSTeVp/iF8OrR96KxQX7iuATdi9J+zjWqB/
+         +jDp0Ky2NBtjhZ/fIBp6UVVinHZYVkytXD7cYY2oR2jIw4ISx+c3vPjq2Bzm7FcNJnp/
+         z4K5RDvwccBhPChKKHRz4nrLoBkAtebwsSjltiwXn2b9lcoVeI5E8UwfGLmvNgVDmLcR
+         dQtA==
+X-Gm-Message-State: AOAM533hDqTzefBqWxbC/pm2taODFfL3u6yjW0mFygC1M1jf68LcIuXp
+        quey1K6RsasONDdh5S9vtXQ=
+X-Google-Smtp-Source: ABdhPJzjlSJO9KthfDIZl7vPp5sks1xfacnUYjRy60Ur7aLMh9WdvYIKfZRJUvzxFmtCgxU41EJ8iw==
+X-Received: by 2002:ac8:6d0a:: with SMTP id o10mr11883346qtt.113.1611205219347;
+        Wed, 20 Jan 2021 21:00:19 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id z132sm2833849qka.131.2021.01.20.21.00.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Jan 2021 21:00:18 -0800 (PST)
+Subject: Re: [PATCH] of: unittest: Statically apply overlays using fdtoverlay
 To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
+Cc:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
         Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        linux-kbuild@vger.kernel.org
-Subject: Re: [PATCH V5 4/5] kbuild: Add support to build overlays (%.dtbo)
-Message-ID: <20210121004955.GE5174@yekko.fritz.box>
-References: <cover.1611124778.git.viresh.kumar@linaro.org>
- <6e57e9c84429416c628f1f4235c42a5809747c4c.1611124778.git.viresh.kumar@linaro.org>
+        Masahiro Yamada <masahiroy@kernel.org>,
+        David Gibson <david@gibson.dropbear.id.au>
+References: <1e42183ccafa1afba33b3e79a4e3efd3329fd133.1610095159.git.viresh.kumar@linaro.org>
+ <20210119022154.2338781-1-frowand.list@gmail.com>
+ <20210119080546.dzec3jatsz2662qs@vireshk-i7>
+ <f7133d16-510b-f730-a43b-89edab08aabe@gmail.com>
+ <20210120050606.b2m4jssh73wexybx@vireshk-i7>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <95cfc497-3d12-fd46-6e42-2a77612236ea@gmail.com>
+Date:   Wed, 20 Jan 2021 23:00:17 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="FEz7ebHBGB6b2e8X"
-Content-Disposition: inline
-In-Reply-To: <6e57e9c84429416c628f1f4235c42a5809747c4c.1611124778.git.viresh.kumar@linaro.org>
+In-Reply-To: <20210120050606.b2m4jssh73wexybx@vireshk-i7>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---FEz7ebHBGB6b2e8X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
++David
 
-On Wed, Jan 20, 2021 at 12:36:46PM +0530, Viresh Kumar wrote:
-> Add support for building DT overlays (%.dtbo). The overlay's source file
-> will have the usual extension, i.e. .dts, though the blob will have
-> .dtbo extension to distinguish it from normal blobs.
->=20
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-> ---
->  .gitignore               | 3 +--
->  Makefile                 | 4 ++--
->  scripts/Makefile.dtbinst | 3 +++
->  scripts/Makefile.lib     | 4 +++-
->  4 files changed, 9 insertions(+), 5 deletions(-)
->=20
-> diff --git a/.gitignore b/.gitignore
-> index d01cda8e1177..0458c36f3cb2 100644
-> --- a/.gitignore
-> +++ b/.gitignore
-> @@ -17,8 +17,7 @@
->  *.bz2
->  *.c.[012]*.*
->  *.dt.yaml
-> -*.dtb
-> -*.dtb.S
-> +*.dtb*
->  *.dwo
->  *.elf
->  *.gcno
-> diff --git a/Makefile b/Makefile
-> index 9e73f82e0d86..b84f5e0b46ab 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1334,7 +1334,7 @@ endif
-> =20
->  ifneq ($(dtstree),)
-> =20
-> -%.dtb: include/config/kernel.release scripts_dtc
-> +%.dtb %.dtbo: include/config/kernel.release scripts_dtc
->  	$(Q)$(MAKE) $(build)=3D$(dtstree) $(dtstree)/$@
-> =20
->  PHONY +=3D dtbs dtbs_install dtbs_check
-> @@ -1816,7 +1816,7 @@ clean: $(clean-dirs)
->  	@find $(if $(KBUILD_EXTMOD), $(KBUILD_EXTMOD), .) $(RCS_FIND_IGNORE) \
->  		\( -name '*.[aios]' -o -name '*.ko' -o -name '.*.cmd' \
->  		-o -name '*.ko.*' \
-> -		-o -name '*.dtb' -o -name '*.dtb.S' -o -name '*.dt.yaml' \
-> +		-o -name '*.dtb' -o -name '*.dtbo' -o -name '*.dtb.S' -o -name '*.dt.y=
-aml' \
->  		-o -name '*.dwo' -o -name '*.lst' \
->  		-o -name '*.su' -o -name '*.mod' \
->  		-o -name '.*.d' -o -name '.*.tmp' -o -name '*.mod.c' \
-> diff --git a/scripts/Makefile.dtbinst b/scripts/Makefile.dtbinst
-> index 50d580d77ae9..ba01f5ba2517 100644
-> --- a/scripts/Makefile.dtbinst
-> +++ b/scripts/Makefile.dtbinst
-> @@ -29,6 +29,9 @@ quiet_cmd_dtb_install =3D INSTALL $@
->  $(dst)/%.dtb: $(obj)/%.dtb
->  	$(call cmd,dtb_install)
-> =20
-> +$(dst)/%.dtbo: $(obj)/%.dtbo
-> +	$(call cmd,dtb_install)
-> +
->  PHONY +=3D $(subdirs)
->  $(subdirs):
->  	$(Q)$(MAKE) $(dtbinst)=3D$@ dst=3D$(patsubst $(obj)/%,$(dst)/%,$@)
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index 213677a5ed33..30bc0a8e0087 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -86,7 +86,9 @@ extra-$(CONFIG_OF_ALL_DTBS)	+=3D $(dtb-)
-> =20
->  ifneq ($(CHECK_DTBS),)
->  extra-y +=3D $(patsubst %.dtb,%.dt.yaml, $(dtb-y))
-> +extra-y +=3D $(patsubst %.dtbo,%.dt.yaml, $(dtb-y))
->  extra-$(CONFIG_OF_ALL_DTBS) +=3D $(patsubst %.dtb,%.dt.yaml, $(dtb-))
-> +extra-$(CONFIG_OF_ALL_DTBS) +=3D $(patsubst %.dtbo,%.dt.yaml, $(dtb-))
->  endif
-> =20
->  # Add subdir path
-> @@ -324,7 +326,7 @@ cmd_dtc =3D $(HOSTCC) -E $(dtc_cpp_flags) -x assemble=
-r-with-cpp -o $(dtc-tmp) $< ;
->  		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
->  	cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
-> =20
-> -$(obj)/%.dtb: $(src)/%.dts $(DTC) FORCE
-> +$(obj)/%.dtb $(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
->  	$(call if_changed_dep,dtc)
+so I don't have to repeat this in another thread
 
-If you're using overlays, you probably need the -@ flag, for both the
-base file and the overlays, which AFAICT is not already the case.
+On 1/19/21 11:06 PM, Viresh Kumar wrote:
+> On 19-01-21, 09:44, Frank Rowand wrote:
+>> No.  overlay_base.dts is intentionally compiled into a base FDT, not
+>> an overlay.  Unittest intentionally unflattens this FDT in early boot,
+>> in association with unflattening the system FDT.  One key intent
+>> behind this is to use the same memory allocation method that is
+>> used for the system FDT.
+>>
+>> Do not try to convert overlay_base.dts into an overlay.
+> 
+> Okay, but why does it have /plugin/; specified in it then ?
 
-> =20
->  DT_CHECKER ?=3D dt-validate
+OK, so I sortof lied about overlay_base.dts not being an overlay.  It is
+a Frankenstein monster or a Schrodinger's dts/dtb.  It is not a normal
+object.  Nobody who is not looking at how it is abused inside unittest.c
+should be trying to touch it or understand it.
 
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
+unittest.c first unflattens overlay_base.dtb during early boot.  Then later
+it does some phandle resolution using the overlay metadata from overlay_base.
+Then it removes the overlay metadata from the in kernel devicetree data
+structure.  It is a hack, it is ugly, but it enables some overlay unit
+tests.
 
---FEz7ebHBGB6b2e8X
-Content-Type: application/pgp-signature; name="signature.asc"
+Quit trying to change overlay_base.dts.
 
------BEGIN PGP SIGNATURE-----
+In my suggested changes to the base patch I put overlay_base.dtb in the
+list of overlays for fdtoverlay to apply (apply_static_overlay in the
+Makefile) because overlay_base.dts is compiled as an overlay into
+overlay_base.dtb and it can be applied on top of the base tree
+testcases.dtb.  This gives a little bit more testcase data for
+fdtoverlay from an existing dtb.
 
-iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmAIz7IACgkQbDjKyiDZ
-s5LNVQ/+J1yNGFsJCG7bQzYaJ/gdL8oMx4bjOpmsu0hTzJGWTx6PrcqKESor8A0W
-bAw6ZWccNsbi/6SvVWm9nMzKHCT+XUzvvH9n1qMb9bzoqYZKQq/JHyv/awJRoRmB
-EoB5qtbn9qjyQgFR93n4DfIpN+Ex+8ln5Iho+7RHdrqbpOoGI7Ox0YxIr/D4A4+k
-nFKT00H7pT1H30Rvn9UdjxCz1vt1LT+aXRfN4L3QKwESLYnuhsE3IJAm+/co35fy
-PUOnox9zZ/x2b/RE3j0ghptAWCbEQ6r27abHCK1TqgbguAh5VMVIgsLHlVJakqpS
-YQjKir4MnLpPPNeUSYL3r/iPonXcGqh5G9z/PuuudDi+ZRlXRUJxHENDrzXMWp7E
-EoVTipJhwJNxA67FQWHAmoWOgDvsadvNP6ncjVVsaJcamKchwIQW1mojd4zWEeLH
-HD3XfAW1+AX86POKZQlJ5RdcyraZEctMnfV2m7Ae9symBiAtX84cyAVZVYckNzv8
-BTvaZYfodoxWZZVxh6SWgl0UHnAElD15sMyalYfuUVFFXtbEm68w6U3quxhSumw0
-qSRcCWBzyCXLTt512kkv+gwOKqtQdoUuBpWW9dxzMrNlCpUev5QJYrkvXl5ftwii
-Kokiz2dY2rKo2jh2YTy2+YtKH4SK5uR43+z3Bx8FpUvmU4D2n0A=
-=ZOFm
------END PGP SIGNATURE-----
+If you keep trying to change overlay_base.dts I will just tell you
+to remove overlay_base.dtb from apply_static_overlay, and then the
+test coverage will become smaller.  I do not see that as a good change.
 
---FEz7ebHBGB6b2e8X--
+If you want more extensive testing of fdtoverlay, then create your
+own specific test cases from scratch and submit patches for them
+to the kernel or to the dtc compiler project.
+
+> 
+> And shouldn't we create two separate dtb-s now, static_test.dtb and
+> static_overlay_test.dtb ? As fdtoverlay will not be able to merge it with
+> testcase.dtb anyway.
+> 
+> Or maybe we can create another file static_overlay.dts (like testcases.dts)
+> which can include both testcases.dts and overlay_base.dts, and then we can
+> create static_test.dtb out of it ? That won't impact the runtime tests at all.
+> 
+
+Stop trying to use all of the unittest .dts test data files.  It is convenient
+that so many of them can be used in their current form.  That is goodness
+and nice leveraging.  Just ignore the .dts test data files that are not
+easily consumed by fdtoverlay.
+
+The email threads around the various versions of this patch series show how
+normal devicetree knowledgeable people look at the contents of some of the
+.dts test data files and think that they are incorrect.  That is because
+the way that unittest uses them is not normal.  Trying to modify one or two
+of the many unittest .dts test data files so that they are usable by both
+the static fdtoverlay and the run time unittest is not worth it.
+
+-Frank
