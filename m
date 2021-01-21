@@ -2,85 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F1842FF319
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3315F2FF34B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:39:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726821AbhAUSZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 13:25:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60030 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727457AbhAUSS2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 13:18:28 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9A83423A3A;
-        Thu, 21 Jan 2021 18:17:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611253054;
-        bh=K7MU5q7tdkr5vyIPyOgPh9VwES77OWz5XH2UBN04YNU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Gr1KnQqIE58OCbsdj+RYzLgiqTk2+MQv3Nt7Li3FKrHYGLN0p8GZieJHo68vXnuRf
-         Qycv1yW1F6e7dpkLF+MacJ4GqHUSFUE7aEDRkHhskBexkDX9Ix+Y+5+83iqGw7vlqj
-         grajGkIvNu4iPlxrqBR7NK/SjMbTKhAuMpymIjwXj39J9J8kKuL9/Tv90t7eC2PmkZ
-         grQFrwKosKzYFsf/G4fcbISkDSVUYprsXQlz+aDOm4EpfMcjcJElqYcgR1fzNjqhYw
-         ujNrVlQU6RRPlf9qNCGjCrCKx3flmJ31OplyBYCGUw+8RkQcirPFcV7Ad6UI+Vkcs0
-         OYQGmHGEO9MyQ==
-Date:   Thu, 21 Jan 2021 10:17:32 -0800
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
-        Satya Tangirala <satyat@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: Re: [PATCH v5 4/9] mmc: cqhci: add support for inline encryption
-Message-ID: <YAnFPC0f4vJsKbuL@sol.localdomain>
-References: <20210121090140.326380-1-ebiggers@kernel.org>
- <20210121090140.326380-5-ebiggers@kernel.org>
- <CAPDyKFqCz=N9R6RpEoMO+zoKhJbds1rbvgzHJ2z+6k2U2Wq6Yg@mail.gmail.com>
+        id S1726953AbhAUSd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 13:33:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728703AbhAUSbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 13:31:11 -0500
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE41EC061756
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 10:30:30 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id b11so2964963ybj.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 10:30:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZMx/E/2jxeFQ/OIv6Rd62p8bKvIIXSarZZ/uxbDSpwY=;
+        b=pB8CSuCQ1t5NAIwfgQPsRbm4+N0eqdS2xb3sYibQkm9BQS2mwqlUtyPpO6iLIpNvTf
+         ka2NAi+p0KSBwruk+USrd4lKF2udHHqkPF0ROeViCgN+c39XCGmlkVQrEnBDBBfQb1Rg
+         jP8JiSiRCC6E5j7+BBHU/UFYNf7FaNMZNfB0EbDL8QQf4rIGpMEWlKackhI+O0PYy7/V
+         Wk0AsR7mxPL1ZgKcB7pW6DIXFGPDn2CG7XE3S4u+4mHhCA7Xy7EQC+JAgzutVdOnplRI
+         joaAAbzHTBkH+075AARQ5Rv/iJXt2YomkRDsTnU502319R63zcWAh7Zb47O8SRgVGtv+
+         Oelg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZMx/E/2jxeFQ/OIv6Rd62p8bKvIIXSarZZ/uxbDSpwY=;
+        b=H3FzstBhmea80CP+ZkXUKVXNgoZgLD0eCFcloSxajz07zCHn/g2gmb1CWfPVSo562m
+         H3EGzlZVI4bcgJry6RomKip97cuDBruk6b9T3d+UDjjE5wsoUjQeGYsaXJp/+3t7V8a4
+         Rbgi4LfQ7sONXWXhhaAiYixgHDxu/2TAXUE8MxYfzk44DYkrFuwZ13x7yPN38mpGwU/K
+         gjQgoXosPYLT1w76uHtDzrgy0GIYdoVBlZUoFhYg/cMP1lsXKOySgvLtN0AHYQpQhxBf
+         IScZvhsi/hgehDTqQ0y1sjrBiZ73GnWL0ZuU7GvwHUTtYsp/APXMsUQ3Uggw06PyCKcl
+         3XbQ==
+X-Gm-Message-State: AOAM532HAuddl3T6y2BrfE2E+shxcqmzr7jTYwHY8j1wqa4JfVyNdzet
+        u21oZh5+axQWi20eg3KVJ5etgVkl5XQeIrzbowgSbw==
+X-Google-Smtp-Source: ABdhPJwnZpmvD+AZqcXVdjUOu32h6NtnBg2N1jGh81MiZd0VG0aCJtfW7+8+aKL/Muz7mdDJKzVA4r+78/0mqdECUOs=
+X-Received: by 2002:a25:dfcb:: with SMTP id w194mr883475ybg.346.1611253829911;
+ Thu, 21 Jan 2021 10:30:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFqCz=N9R6RpEoMO+zoKhJbds1rbvgzHJ2z+6k2U2Wq6Yg@mail.gmail.com>
+References: <20210120080522.471120-1-saravanak@google.com> <20210120080522.471120-2-saravanak@google.com>
+ <CACRpkdbEC6duR=fJQD_Nw9o=HW0DEe2_Ks3SYCgJmkOjzKz3Jg@mail.gmail.com>
+In-Reply-To: <CACRpkdbEC6duR=fJQD_Nw9o=HW0DEe2_Ks3SYCgJmkOjzKz3Jg@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 21 Jan 2021 10:29:54 -0800
+Message-ID: <CAGETcx9HFtnuA=XDdbXOq+HEEkbtpQ7J7Nz4uTWhoswZbHpsfw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] of: property: Add fw_devlink support for "gpio"
+ and "gpios" binding
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 02:04:37PM +0100, Ulf Hansson wrote:
-> > +#else /* CONFIG_MMC_CRYPTO */
+On Thu, Jan 21, 2021 at 5:11 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Wed, Jan 20, 2021 at 9:05 AM Saravana Kannan <saravanak@google.com> wrote:
+>
+> > To provide backward compatibility for boards that use deprecated DT
+> > bindings, we need to add fw_devlink support for "gpio" and "gpios".
+>
+> You do some more stuff in the patch so describe that too.
+> Especially the check for hogs and #gpio-cells.
+> Describe why you do that. Maybe even with a comment in
+> the code because I don't think everyone will understand.
+
+Ack
+
+>
+> > +       if (strcmp(prop_name, "gpio") && strcmp(prop_name, "gpios"))
+> > +               return NULL;
+>
+> This part is easy to understand.
+>
+> > +       if (of_find_property(np, "gpio-hog", NULL))
+> > +               return NULL;
 > > +
-> > +static inline int cqhci_crypto_init(struct cqhci_host *host)
-> > +{
-> > +       return 0;
-> 
-> The host calling this function may have MMC_CAP2_CRYPTO set for it.
-> 
-> When CONFIG_MMC_CRYPTO is set, cqhci_crypto_init() may unset
-> MMC_CAP2_CRYPTO if initialization fails. It seems like we should unset
-> MMC_CAP2_CRYPTO in this stub function as well, right?
+> > +       if (of_parse_phandle_with_args(np, prop_name, "#gpio-cells", index,
+> > +                                      &sup_args))
+> > +               return NULL;
+>
+> This part is hard to understand. Insert comments and tell the reader
+> of the code what is going on and why.
 
-The code in sdhci-msm.c that sets MMC_CAP2_CRYPTO is conditional on
-CONFIG_MMC_CRYPTO.  So, MMC_CAP2_CRYPTO won't be set when !CONFIG_MMC_CRYPTO.
+I assume the "hard to understand" part is the gpio-hog part? Because
+the last line is pretty straightforward -- it's returning the index-th
+phandle. Also, it's a copy-paste from the DEFINE_SIMPLE_PROP macro.
 
-I suppose we might as well do something to stop other drivers from accidentally
-getting that wrong, though.
 
-How about just defining the flag to 0 when !CONFIG_MMC_CRYPTO:
-
-#ifdef CONFIG_MMC_CRYPTO
-#define MMC_CAP2_CRYPTO         (1 << 27)       /* Host supports inline encryption */
-#else
-#define MMC_CAP2_CRYPTO         0
-#endif
-
-That would be more reliable than relying on the flag getting cleared by
-something.
-
-- Eric
+-Saravana
