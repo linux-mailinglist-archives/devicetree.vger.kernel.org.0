@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 983ED2FE1F4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 06:45:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DBFD2FE1FB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 06:46:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727303AbhAUFoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 00:44:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52114 "EHLO
+        id S1726179AbhAUFqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 00:46:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726686AbhAUFoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 00:44:23 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA14C061757
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 21:43:43 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id w14so861104pfi.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 21:43:43 -0800 (PST)
+        with ESMTP id S1726061AbhAUFqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 00:46:06 -0500
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD964C061575;
+        Wed, 20 Jan 2021 21:45:25 -0800 (PST)
+Received: by mail-qt1-x82b.google.com with SMTP id z22so791037qto.7;
+        Wed, 20 Jan 2021 21:45:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=FxeqQLlBiVEtjte3uU6yOLE+0q+1Ny/d8SvyqMBGIDI=;
-        b=Q3kMn01PavYDRljikwVmoQ58SNnRJItCYD6sarzeW8s8LO0t0IMFKCLlz3eNSN8ckC
-         EIldqudUpuGq9Kivpeh1G1+cWWyjJ7vJh810dS7exPn3x9dz5f70bNpgF/puARWHqx3H
-         gV5CLBdl1frMxKC4ERSA3ryWH7z/TupbULZGeRQe0YkqSxVCmEAOJTzpFcSiJ1iRWbvj
-         qWDPUHJTtl5dEwUOPvUzEbTv9upx+/XrPuGBB0uEFYzqQGYZWHfTs0jnf/WjyJyj3WIc
-         F7yD7B0f8bVNCKx4NfrFChEsoq4AuqsF+2KshGjUW7bMUbaiyHcLGAEz+cF9rM5CsKbz
-         tXfw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=YuenuPcIMSAFG1N1r41eV0meYVfjDDNayQuIYb1dHOA=;
+        b=bGkystrN6DozAxdsd/ui49OciuzFQMMde0teysSzup/W2tswIvehRAcTqq1GQ9VCv5
+         YzRYZICpTLHnVBuMdzH0Nr+LUZQU3R2pCa8htUSbXYNupwsLxXkwjBmytE4cIja+FU1n
+         9xT0NYdU4juWrZT4RdcdiYI8624y4NIJSOfOivoBkD079imGXWiXxcw8iRHjgtN7kKx6
+         T2iQil88BNyTD4vygvMlS4fM24SblRSZv5s0ssu+EIdyTsn0KU+Utamc5kmmFFdrelm4
+         JZYSfZ9Ug8UzyH9xGcurs1kjh6btmv26Si4nD0k+rE++ZVAOmVGemizoD1CEuWiI02pV
+         PCbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=FxeqQLlBiVEtjte3uU6yOLE+0q+1Ny/d8SvyqMBGIDI=;
-        b=q81Rzf9RfPQm4f4Jy853ywWT3RKmUOEXzURCFFUVjpF+4lYeVlwXdg8Xb6hiGr0Mmh
-         1IgUfc1/8dsJE6PDogUkgTivA6DzbYc1Zu+TVIEsq3MgFz50e3k/G5bO6dl9x4Fdyxan
-         jA8pFqS5U+q4IVA79cK1lLcMGJPhBtA8cPASrHDhmSCr+VlVirEBIrbph+iwWydQsHM/
-         e/rcj8zOe1EvnrBFfm7MwRDF6xpar7ovXf6fOIwpXf1/TONEo/oE+1FWuKvUIJtxPiWP
-         8vrBIGC0ycr4bnPqlQykNEwn7CTdBJ1/FheuGZp7TvzuMLrlphm2NgUfv5iMV3yYSwPP
-         Vi2g==
-X-Gm-Message-State: AOAM531D9+1+27od1MKBstc1LalZSgLvs5R1sZYIpu16OuA6bqaT8vWF
-        jbil1RX6HzMYGsm+mJtSzo5JlA==
-X-Google-Smtp-Source: ABdhPJw0AnPHHwfumz8a2zUwBYbd0YwKQu95oy53lAPbg35dVCJzU93t4cxmezlMjwUlH+mJub0JxA==
-X-Received: by 2002:a63:ca51:: with SMTP id o17mr12851031pgi.314.1611207823111;
-        Wed, 20 Jan 2021 21:43:43 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id k9sm4200309pji.8.2021.01.20.21.43.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 20 Jan 2021 21:43:42 -0800 (PST)
-Date:   Thu, 21 Jan 2021 11:13:40 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Frank Rowand <frowand.list@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YuenuPcIMSAFG1N1r41eV0meYVfjDDNayQuIYb1dHOA=;
+        b=uRb2b5JbpOm0zWn1F243xrDn0GiO0mMFnHKU+tox8+/ysfdy+b8iHBxPbgl7D/2rz0
+         od/EYMdv6jlkseexJd5XlGy7MNp6GhGw3+mqWqiKRzeDckefZKxh6vutPB3V6lYwooMf
+         OnYZihyYNXAoLIK9Z9jEJsZTUkKqYMYu2DYXONLY9rrQCTY574GTmpP8C7WdpY0hWIiK
+         Dc4tnTQ05qIzv57wUQSwCcDOXY7HEyAAtUcZDSEPxzFlfVPlkvJgY72w1X2TZtwCcHct
+         fMMNsyyFe6JirXoBim5GcTKW/In4AJkB3U722Yso2KOoOsr8kT4N9jMqfWCLeoH5nE3x
+         ZMcw==
+X-Gm-Message-State: AOAM532vMzKw3wCNcySSxIvfJoGv/R8if59eD/qGSzaAsHdyeOGqHlwt
+        sRmL5wV5O9JlBJv5ENZK1UABU4kgMsf2vA==
+X-Google-Smtp-Source: ABdhPJzUJvZZVLZRw2gaUDP+9z9uGn7QdTJh6Fj+tI8FPAblytHtu46WIRXqYtnPMzLjgdU6u0a3Og==
+X-Received: by 2002:ac8:7101:: with SMTP id z1mr12161237qto.210.1611207925194;
+        Wed, 20 Jan 2021 21:45:25 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id v67sm3189649qkd.94.2021.01.20.21.45.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Jan 2021 21:45:24 -0800 (PST)
+Subject: Re: [PATCH V5 5/5] of: unittest: Statically apply overlays using
+ fdtoverlay
+To:     Viresh Kumar <viresh.kumar@linaro.org>
 Cc:     David Gibson <david@gibson.dropbear.id.au>,
         Rob Herring <robh+dt@kernel.org>,
         Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
@@ -57,49 +58,57 @@ Cc:     David Gibson <david@gibson.dropbear.id.au>,
         Masahiro Yamada <masahiroy@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
-Subject: Re: [PATCH V5 5/5] of: unittest: Statically apply overlays using
- fdtoverlay
-Message-ID: <20210121054340.e4do45uvdns5bl5f@vireshk-i7>
 References: <cover.1611124778.git.viresh.kumar@linaro.org>
  <696c137461be8ec4395c733c559c269bb4ad586e.1611124778.git.viresh.kumar@linaro.org>
  <20210121005145.GF5174@yekko.fritz.box>
  <7d6adfd9-da1e-d4ca-3a04-b192f0cf36b0@gmail.com>
- <a6b5e6ac-90ec-9571-4fce-de7344bfcee9@gmail.com>
+ <20210121053426.4dw5oqz7qb4y7hvm@vireshk-i7>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <1cbafa2a-fe9e-04ec-35cc-d675a781a5b6@gmail.com>
+Date:   Wed, 20 Jan 2021 23:45:23 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a6b5e6ac-90ec-9571-4fce-de7344bfcee9@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20210121053426.4dw5oqz7qb4y7hvm@vireshk-i7>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
-
-On 20-01-21, 23:34, Frank Rowand wrote:
-> It should be possible to apply this same concept to copying overlay_base.dts
-> to overlay_base_base.dts, removing the "/plugin/;" from overlay_base_base.dts
-> and using an additional rule to use fdtoverlay to apply overlay.dtb on top
-> of overlay_base_base.dtb.
-
-Are you suggesting to then merge this with testcases.dtb to get
-static_test.dtb or keep two output files (static_test.dtb from
-testcases.dtb + overlays and static_test2.dtb from overlay_base.dtb
-and overlay.dtb) ?
-
-Asking because as I mentioned earlier, overlay_base.dtb doesn't have
-__overlay__ property for its nodes and we can't apply that to
-testcases.dtb using fdtoverlay.
-
-> Yes, overlay_base_base is a terrible name.  Just used to illustrate the point.
+On 1/20/21 11:34 PM, Viresh Kumar wrote:
+> On 20-01-21, 23:14, Frank Rowand wrote:
+>> It is a convenient FDT to use because it provides the frame that the overlays
+>> require to be applied.  It is fortunate that fdtoverlay does not reject the use
+>> of an FDT with overlay metadata as the base blob.
 > 
-> I tried this by hand and am failing miserably.  But I am not using the proper
-> environment (just a quick hack to see if the method might work).  So I would
-> have to set things up properly to really test this.
+>> This is probably a good idea instead of depending on the leniency of fdtoverlay.
 > 
-> If this does work, it would remove my objections to you trying to transform
-> the existing unittest .dts test data files (because you would not have to
-> actually modify the existing .dts files).
+> I believe fdtoverlay allows that intentionally, that would be required
+> for the cases where we have a hierarchy of extension boards or
+> overlays.
+> 
+> A platform can have a base dtb (with /plugin/;), then we can have an
+> overlay (1) for an extension board (with /plugin/;) and then an
+> overlay (2) for an extension board for the previous extension board.
+> 
+> In such a case overlay-(2) can't be applied directly to the base dtb
+> as it may not find all the nodes it is trying to update. And so
+> overlay-(2) needs to be applied to overlay-(1) and then the output of
+> this can be applied to the base dtb.
 
--- 
-viresh
+I have only the most surface knowledge of fdtoverlay, mostly from
+"fdtoverlay --help", but you can apply multiple overlays with a
+single invocation of fdtoverlay.  My _assumption_ was that the
+overlays would be applied in order, and after any given overlay
+was applied, subsequent overlays could reference the previously
+applied overlay.
+
+Is my assumption incorrect?
+
+> 
+> This is very similar to what I tried with the intermediate.dtb
+> earlier.
+> 
+
