@@ -2,159 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C61BC2FF318
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:27:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F1842FF319
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726533AbhAUSZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 13:25:31 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59588 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728901AbhAUSPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 13:15:42 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10LIDqDc054677;
-        Thu, 21 Jan 2021 12:13:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611252832;
-        bh=SVoJMpFjcXZUAp3amM4tD1iVoWQhrYMVdaSU/VpM2Fc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Rhm6HSO70F+a7Cx6ARa9LaUc4HbDp4SpL9ch27UQDSVQZy2lxhjD/ohMqBBaNUqte
-         soiMGSzs76r4C+kZ3ty1kLxnzyboozErbxuyx5RwVDE7K6mpQpJaeA//mU1WuKbKup
-         p9KK/LCvBC+iamPdRQ062EYqfF+vmjf3BAhfAEag=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10LIDqGA072707
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 21 Jan 2021 12:13:52 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
- Jan 2021 12:13:52 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 21 Jan 2021 12:13:51 -0600
-Received: from [10.250.35.71] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10LIDpST113912;
-        Thu, 21 Jan 2021 12:13:51 -0600
-Subject: Re: [PATCH v3 3/5] arm64: dts: ti: Add support for AM642 SoC
-To:     Nishanth Menon <nm@ti.com>
-CC:     Dave Gerlach <d-gerlach@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-References: <20210120202532.9011-1-d-gerlach@ti.com>
- <20210120202532.9011-4-d-gerlach@ti.com>
- <197af185-d2ea-3c76-d0bf-714485f8f195@ti.com>
- <20210121174639.jqbvem6b4ozd3six@sterling>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <4ee6f005-2eee-42b2-b573-e10602839e1b@ti.com>
-Date:   Thu, 21 Jan 2021 12:13:46 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726821AbhAUSZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 13:25:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60030 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727457AbhAUSS2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 13:18:28 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9A83423A3A;
+        Thu, 21 Jan 2021 18:17:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611253054;
+        bh=K7MU5q7tdkr5vyIPyOgPh9VwES77OWz5XH2UBN04YNU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Gr1KnQqIE58OCbsdj+RYzLgiqTk2+MQv3Nt7Li3FKrHYGLN0p8GZieJHo68vXnuRf
+         Qycv1yW1F6e7dpkLF+MacJ4GqHUSFUE7aEDRkHhskBexkDX9Ix+Y+5+83iqGw7vlqj
+         grajGkIvNu4iPlxrqBR7NK/SjMbTKhAuMpymIjwXj39J9J8kKuL9/Tv90t7eC2PmkZ
+         grQFrwKosKzYFsf/G4fcbISkDSVUYprsXQlz+aDOm4EpfMcjcJElqYcgR1fzNjqhYw
+         ujNrVlQU6RRPlf9qNCGjCrCKx3flmJ31OplyBYCGUw+8RkQcirPFcV7Ad6UI+Vkcs0
+         OYQGmHGEO9MyQ==
+Date:   Thu, 21 Jan 2021 10:17:32 -0800
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
+        Satya Tangirala <satyat@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH v5 4/9] mmc: cqhci: add support for inline encryption
+Message-ID: <YAnFPC0f4vJsKbuL@sol.localdomain>
+References: <20210121090140.326380-1-ebiggers@kernel.org>
+ <20210121090140.326380-5-ebiggers@kernel.org>
+ <CAPDyKFqCz=N9R6RpEoMO+zoKhJbds1rbvgzHJ2z+6k2U2Wq6Yg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210121174639.jqbvem6b4ozd3six@sterling>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFqCz=N9R6RpEoMO+zoKhJbds1rbvgzHJ2z+6k2U2Wq6Yg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/21/21 11:46 AM, Nishanth Menon wrote:
-> On 11:25-20210121, Suman Anna wrote:
->> On 1/20/21 2:25 PM, Dave Gerlach wrote:
->>> The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
->>> providing advanced system integration to enable applications such as
->>> Motor Drives, PLC, Remote IO and IoT Gateways.
->>>
->>> Some highlights of this SoC are:
->>> * Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
->>>   MCUs, and a single Cortex-M4F.
->>> * Two Gigabit Industrial Communication Subsystems (ICSSG).
->>> * Integrated Ethernet switch supporting up to a total of two external
->>>   ports.
->>> * PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
->>>   controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
->>>   peripherals.
->>> * Centralized System Controller for Security, Power, and Resource
->>>   Management (DMSC).
->>>
->>> See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
->>> for further details: https://www.ti.com/lit/pdf/spruim2
->>>
->>> Introduce basic support for the AM642 SoC to enable ramdisk or MMC
->>> boot. Introduce the sdhci, i2c, spi, and uart MAIN domain periperhals
->>> under cbass_main and the i2c, spi, and uart MCU domain periperhals
->>> under cbass_mcu.
->>>
->>> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
->>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>
->> Hmm, there are a few pieces contributed by me, so please do add
->>
->> Signed-off-by: Suman Anna <s-anna@ti.com>
+On Thu, Jan 21, 2021 at 02:04:37PM +0100, Ulf Hansson wrote:
+> > +#else /* CONFIG_MMC_CRYPTO */
+> > +
+> > +static inline int cqhci_crypto_init(struct cqhci_host *host)
+> > +{
+> > +       return 0;
 > 
-> Sure, thanks..
+> The host calling this function may have MMC_CAP2_CRYPTO set for it.
 > 
-> [...]
-> 
->>> +
->>> +	sdhci0: mmc@fa10000 {
->>> +		compatible = "ti,am64-sdhci-8bit";
->>
->> Hmm, I tried booting this series on top of 5.11-rc1 + Nishanth's current
->> ti-k3-dts-next. So, boot of these patches using this baseline fails when using
->> MMC rootfs, but is ok when using initramfs. This particular compatible and the
->> corresponding driver change are only in linux-next coming through couple of
->> patches from the MMC subsystem.
->>
->> I am not sure why we would be including stuff that's dependent on some other
->> patches being merged from a different sub-system? Strangely, this ought to be
->> caught by dtbs_check, but it is not throwing any errors.
->>
->> IMHO, these should only be added if you have no other external dependencies
->> especially when you are applying on a 5.11-rc baseline. The MMC pull-requests
->> would not go through arm-soc either.
->>
-> 
-> Yes, I am aware of this - this is no different from integration we have
-> done in the past as well.. intent is to get bindings in via subsystem
-> trees and dts changes via arm-soc. I always insist that basic ramdisk
-> boot always in the basic introduction tree. mmc, nfs are add-ons that
-> get added via subsystem tree and I host the dts changes - in this case
-> every dts node binding is fine with subsystems already queued in
-> linux-next. And this is no different from what I have noticed on other
-> ARM SoC maintainer trees as well.
-> 
+> When CONFIG_MMC_CRYPTO is set, cqhci_crypto_init() may unset
+> MMC_CAP2_CRYPTO if initialization fails. It seems like we should unset
+> MMC_CAP2_CRYPTO in this stub function as well, right?
 
-Hmm, this is kinda counter-intuitive. When I see a dts node, I am expecting the
-required driver functionality to have been in (or atleast the binding as per
-documentation), and not having to need to pick additional patches.
+The code in sdhci-msm.c that sets MMC_CAP2_CRYPTO is conditional on
+CONFIG_MMC_CRYPTO.  So, MMC_CAP2_CRYPTO won't be set when !CONFIG_MMC_CRYPTO.
 
-If the intent is to verify/test everything against linux-next and not the
-baseline tree, then I guess this works. But in general, this kinda goes against
-the rules set in submitting patches. For example, see
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/submitting-patches.rst#n44
+I suppose we might as well do something to stop other drivers from accidentally
+getting that wrong, though.
 
-And sure enough, this is what I get when I run checkpatch against your tree.
+How about just defining the flag to 0 when !CONFIG_MMC_CRYPTO:
 
-WARNING: DT compatible string "ti,am64-sdhci-8bit" appears un-documented --
-check ./Documentation/devicetree/bindings/
-#347: FILE: arch/arm64/boot/dts/ti/k3-am64-main.dtsi:298:
-+		compatible = "ti,am64-sdhci-8bit";
+#ifdef CONFIG_MMC_CRYPTO
+#define MMC_CAP2_CRYPTO         (1 << 27)       /* Host supports inline encryption */
+#else
+#define MMC_CAP2_CRYPTO         0
+#endif
 
-WARNING: DT compatible string "ti,am64-sdhci-4bit" appears un-documented --
-check ./Documentation/devicetree/bindings/
-#365: FILE: arch/arm64/boot/dts/ti/k3-am64-main.dtsi:316:
-+		compatible = "ti,am64-sdhci-4bit";
+That would be more reliable than relying on the flag getting cleared by
+something.
 
-regards
-Suman
-
-
+- Eric
