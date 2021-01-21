@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA7D2FF2BA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:03:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7007B2FF2C7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:04:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728941AbhAUK2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:28:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56542 "EHLO
+        id S1729335AbhAUSDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 13:03:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729206AbhAUK1t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:27:49 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F198C0613C1
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:08 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id w1so1818724ejf.11
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:08 -0800 (PST)
+        with ESMTP id S1729152AbhAUK2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:28:45 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24DE4C0613ED
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:12 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id bx12so1797252edb.8
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=LSCVpYUnbF/iwkll9PDRzd42GEI1bF94/HSaocuDHZw=;
-        b=1S5GqVPBdt8g6I9aOE9sWC2hzjK4PpwpsafOKYxQvfq/kNM1TGt6CvDHDpCr76QcY9
-         0dLM3mArjI1BWMy8HALayN0HhPsEkc/gWd99lY5lkcL7Ql0odIk0jJSiBryaN+QLOETe
-         Fc5dHdRgIlpVtRCN4J3rWxjBctd3W2dCEhoMZP9IWJYWyQgIhBPEVOc7i4BSNzWrCmOA
-         /5Hd1CkHMBY73yTB3NkRJp/YjQ+PWqBvl1IphLhfXs+DT1kccPVg+bBwxeTbn8C1+z0Y
-         U6eNrZ8raMUgRVvalJQN9w8rNkMfY5i4loxVVdYS6CUJ8W30bNQHdNSRm3zV0i+Mm9qR
-         NVGg==
+        bh=XftOrF3pZsYjg7wIL3rdWbwK37uOKDGUWg/X4U2EjrY=;
+        b=mX9O08H2hRdIKpnalbY1xKILUPly7ewHKlxmtthed1+gAaX8dU78Eh4VqpSANCk2ZB
+         4feghOQ/vWhhi7l0klj2UBLiq50hdPs7sPGIoUdI3YuNdwJStjaSBK79DUcTJDvULNM4
+         pfruVtOVg+qtJZEt1qRhCbDE2Km53mdUZTDYfhv7OVnpNr2sMcmG3u0NbDpX56gWx2Tx
+         o83ZUGv5Hr+zONv4F9VZ44NEo17nBUdwu4NYCT8i1N024aHZb3Fyyhf9NDSfNuyx+7b0
+         mJxEJQcTVU91iMdYJPWgKaD5jzR/3rYmyjkmB16VxmeLpTwn4fOziZwpwV/Ygne7JKZN
+         b30g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=LSCVpYUnbF/iwkll9PDRzd42GEI1bF94/HSaocuDHZw=;
-        b=CrqGELmQAKn8jP+ptP2htwoIH0MZZs/tZqbW7MRl57UXe6o2TrsGq83Jj/ZU+k404M
-         oYDkMiabmJ+vKJtG9u19xQoLsvhb8V0VO8sL4hebqfsSK1m26TuHbxfI7a30/1C/ImNS
-         OUXqNucv70WUqjqGebKvGnaKt/7N9z4ucPjof6Y/T9ajJRR2UPYkBgaFvUpMl82uZXk/
-         idDD4atbqmiYWZRrAWPUOURyPd1hymgA0ZvE3lT3H0swjKsuJp3zNbgV16DyMJhlHyix
-         F75v5S9HpyYRm/SH9vwi/J8BXcS9dnHHGhIZhY14FYx6OjE8Zw9Iny7eYDjTwZTSZcd6
-         t6Nw==
-X-Gm-Message-State: AOAM5328cJLNPwLjdc0DHUwemwvW07ShTyW1PF2gUN5060RKc7rIYiUS
-        2q30lEni+d6pCvmW5yMzy/cisg==
-X-Google-Smtp-Source: ABdhPJxUn2eGSg86H6sk9lDGPsuATsvqPZPN0+lhXDQUsO+oW74tiGDP/pAYHDbjBQ1jS0D+s/n6FQ==
-X-Received: by 2002:a17:906:6087:: with SMTP id t7mr9016712ejj.90.1611224827450;
-        Thu, 21 Jan 2021 02:27:07 -0800 (PST)
+        bh=XftOrF3pZsYjg7wIL3rdWbwK37uOKDGUWg/X4U2EjrY=;
+        b=UFOEvMbVC/cA2nH4Z3rcXgV/cfa2859p/zNcgc5c9yuLH5wghAziOZjNW2OYjTsd4a
+         vgGPep1+LjI8e49iwmz+GhRpjRE7JtS5l6oToMSF4gHdR/IAdhrG2K3D6LFtb3zrbKm6
+         nXRgUes8VfQmbPlYNU6j5sac5fBm5CEI33cgIjXBspWB37aQpOkXA0UtWjUBhouSky4V
+         rQji37HFB8FUNvO0+pE7pR+kLneOWBlT5w4VQF4isS3+a8tWHzMQSm+oh9n+DPGPwf7q
+         MWn8Vrt0magr+/D87C8rnrLm5jZ2InocyMuYz12N2U10Inu4e+JV2fE1twSUti4RLHSa
+         JTOw==
+X-Gm-Message-State: AOAM5307ejKb769KeqDGMiB++HBrmUizehl95QDt+96v+8O60rX2sECj
+        o4IfY3SArzE0XM0bK4kB9pAGVw==
+X-Google-Smtp-Source: ABdhPJwY5pg2RtH8aQ5Rnp6MIrsjUFDiGOUgrRGRGZBuP9GV7gwas3P3b9m84MSsrwMpwSLTTiuSJA==
+X-Received: by 2002:aa7:c384:: with SMTP id k4mr10349733edq.23.1611224830847;
+        Thu, 21 Jan 2021 02:27:10 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id cw21sm2438052edb.85.2021.01.21.02.27.06
+        by smtp.gmail.com with ESMTPSA id a22sm2518005edv.67.2021.01.21.02.27.10
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 21 Jan 2021 02:27:06 -0800 (PST)
+        Thu, 21 Jan 2021 02:27:10 -0800 (PST)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 01/12] arm64: dts: zynqmp: Fix u48 si5382 chip on zcu111
-Date:   Thu, 21 Jan 2021 11:26:49 +0100
-Message-Id: <cefda1a894fb54059aa1b018e4ecad0eb36fdc9d.1611224800.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 03/12] arm64: dts: zynqmp: Enable si5341 driver for zcu102/106/111
+Date:   Thu, 21 Jan 2021 11:26:51 +0100
+Message-Id: <b93f13297684704a60e8d7274009a20aa98d14f7.1611224800.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <cover.1611224800.git.michal.simek@xilinx.com>
 References: <cover.1611224800.git.michal.simek@xilinx.com>
@@ -65,29 +66,251 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-u48 chip on zcu111 is si5382 not si5328.
+Enable si5341 driver is the main chip for providing preprogrammed clocks
+for the whole platform.
+
+ # cat /sys/kernel/debug/clk/clk_summary
+...
+ refhdmi                              1        1        0   114285000          0     0  50000
+    xtal_0                            0        0        0   114285000          0     0  50000
+       pll_0                          0        0        0 40731174000000          0     0  50000
+          clk1_0                      0        0        0    27000000          0     0  50000
+          clk0_0                      0        0        0    27000000          0     0  50000
+ ref48M                               1        2        0    48000000          0     0  50000
+    si5341                            0        4        0    14000000          0     0  50000
+       clock-generator.N4             0        0        0           0          0     0  50000
+       clock-generator.N3             0        1        0   733260000          0     0  50000
+          clock-generator.9           0        1        0    33330000          0     0  50000
+       clock-generator.N2             0        1        0   104000000          0     0  50000
+          clock-generator.2           0        1        0    26000000          0     0  50000
+       clock-generator.N1             0        2        0   594000000          0     0  50000
+          clock-generator.7           0        1        0    74250000          0     0  50000
+          clock-generator.0           0        1        0    27000000          0     0  50000
+       clock-generator.N0             0        4        0  1000000000          0     0  50000
+          clock-generator.8           0        0        0           0          0     0  50000
+          clock-generator.6           0        1        0   125000000          0     0  50000
+          clock-generator.5           0        1        0   100000000          0     0  50000
+          clock-generator.4           0        1        0   100000000          0     0  50000
+          clock-generator.3           0        1        0   125000000          0     0  50000
+          clock-generator.1           0        0        0           0          0     0  50000
+...
 
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
 Changes in v2: None
 
- arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 56 ++++++++++++++++++-
+ .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 45 +++++++++++++++
+ .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 46 ++++++++++++++-
+ 3 files changed, 145 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index 5ff7ab665374..68c2ad30d62d 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -133,6 +133,13 @@ ina226-u75 {
+ 		io-channels = <&u75 0>, <&u75 1>, <&u75 2>, <&u75 3>;
+ 	};
+ 
++	/* 48MHz reference crystal */
++	ref48: ref48M {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <48000000>;
++	};
++
+ 	refhdmi: refhdmi {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -489,9 +496,56 @@ i2c@1 {
+ 			#size-cells = <0>;
+ 			reg = <1>;
+ 			si5341: clock-generator@36 { /* SI5341 - u69 */
++				compatible = "silabs,si5341";
+ 				reg = <0x36>;
+-			};
++				#clock-cells = <2>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&ref48>;
++				clock-names = "xtal";
++				clock-output-names = "si5341";
+ 
++				si5341_0: out@0 {
++					/* refclk0 for PS-GT, used for DP */
++					reg = <0>;
++					always-on;
++				};
++				si5341_2: out@2 {
++					/* refclk2 for PS-GT, used for USB3 */
++					reg = <2>;
++					always-on;
++				};
++				si5341_3: out@3 {
++					/* refclk3 for PS-GT, used for SATA */
++					reg = <3>;
++					always-on;
++				};
++				si5341_4: out@4 {
++					/* refclk4 for PS-GT, used for PCIE slot */
++					reg = <4>;
++					always-on;
++				};
++				si5341_5: out@5 {
++					/* refclk5 for PS-GT, used for PCIE */
++					reg = <5>;
++					always-on;
++				};
++				si5341_6: out@6 {
++					/* refclk6 PL CLK125 */
++					reg = <6>;
++					always-on;
++				};
++				si5341_7: out@7 {
++					/* refclk7 PL CLK74 */
++					reg = <7>;
++					always-on;
++				};
++				si5341_9: out@9 {
++					/* refclk9 used for PS_REF_CLK 33.3 MHz */
++					reg = <9>;
++					always-on;
++				};
++			};
+ 		};
+ 		i2c@2 {
+ 			#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index 7910ac125101..a29ff20090ce 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -133,6 +133,13 @@ ina226-u75 {
+ 		io-channels = <&u75 0>, <&u75 1>, <&u75 2>, <&u75 3>;
+ 	};
+ 
++	/* 48MHz reference crystal */
++	ref48: ref48M {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <48000000>;
++	};
++
+ 	refhdmi: refhdmi {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -488,7 +495,45 @@ i2c@1 {
+ 			#size-cells = <0>;
+ 			reg = <1>;
+ 			si5341: clock-generator@36 { /* SI5341 - u69 */
++				compatible = "silabs,si5341";
+ 				reg = <0x36>;
++				#clock-cells = <2>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&ref48>;
++				clock-names = "xtal";
++				clock-output-names = "si5341";
++
++				si5341_0: out@0 {
++					/* refclk0 for PS-GT, used for DP */
++					reg = <0>;
++					always-on;
++				};
++				si5341_2: out@2 {
++					/* refclk2 for PS-GT, used for USB3 */
++					reg = <2>;
++					always-on;
++				};
++				si5341_3: out@3 {
++					/* refclk3 for PS-GT, used for SATA */
++					reg = <3>;
++					always-on;
++				};
++				si5341_6: out@6 {
++					/* refclk6 PL CLK125 */
++					reg = <6>;
++					always-on;
++				};
++				si5341_7: out@7 {
++					/* refclk7 PL CLK74 */
++					reg = <7>;
++					always-on;
++				};
++				si5341_9: out@9 {
++					/* refclk9 used for PS_REF_CLK 33.3 MHz */
++					reg = <9>;
++					always-on;
++				};
+ 			};
+ 
+ 		};
 diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-index 2e92634c77f9..d9a8fdbbcae8 100644
+index d9a8fdbbcae8..92b3cee62d11 100644
 --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
 +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-@@ -410,7 +410,7 @@ i2c@4 {
- 			#address-cells = <1>;
+@@ -116,6 +116,13 @@ ina226-u79 {
+ 		compatible = "iio-hwmon";
+ 		io-channels = <&u79 0>, <&u79 1>, <&u79 2>, <&u79 3>;
+ 	};
++
++	/* 48MHz reference crystal */
++	ref48: ref48M {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <48000000>;
++	};
+ };
+ 
+ &dcc {
+@@ -374,9 +381,46 @@ i2c@1 {
  			#size-cells = <0>;
- 			reg = <4>;
--			si5328: clock-generator@69 { /* SI5328 - u48 */
-+			si5382: clock-generator@69 { /* SI5382 - u48 */
- 				reg = <0x69>;
+ 			reg = <1>;
+ 			si5341: clock-generator@36 { /* SI5341 - u46 */
++				compatible = "silabs,si5341";
+ 				reg = <0x36>;
++				#clock-cells = <2>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&ref48>;
++				clock-names = "xtal";
++				clock-output-names = "si5341";
++
++				si5341_0: out@0 {
++					/* refclk0 for PS-GT, used for DP */
++					reg = <0>;
++					always-on;
++				};
++				si5341_2: out@2 {
++					/* refclk2 for PS-GT, used for USB3 */
++					reg = <2>;
++					always-on;
++				};
++				si5341_3: out@3 {
++					/* refclk3 for PS-GT, used for SATA */
++					reg = <3>;
++					always-on;
++				};
++				si5341_5: out@5 {
++					/* refclk5 PL CLK100 */
++					reg = <5>;
++					always-on;
++				};
++				si5341_6: out@6 {
++					/* refclk6 PL CLK125 */
++					reg = <6>;
++					always-on;
++				};
++				si5341_9: out@9 {
++					/* refclk9 used for PS_REF_CLK 33.3 MHz */
++					reg = <9>;
++					always-on;
++				};
  			};
+-
  		};
+ 		i2c@2 {
+ 			#address-cells = <1>;
 -- 
 2.30.0
 
