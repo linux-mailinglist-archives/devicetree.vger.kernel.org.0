@@ -2,138 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3958F2FE020
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 04:52:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A2192FE025
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 04:52:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727085AbhAUDvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 22:51:06 -0500
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:52687 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388069AbhATXrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 18:47:39 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id D40315C0136;
-        Wed, 20 Jan 2021 18:46:21 -0500 (EST)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Wed, 20 Jan 2021 18:46:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=Osf2ELJTbWcLwWlfylNHUcxi3LV4y9b
-        ORwKF8hqOZGw=; b=jOAydszf3n1jDn8jWiGmW8H/hzbrEB96l5TAiKCLXPCgFeK
-        H19QuUPhFWn8fAPgcohYz4bpI5Stebdx7ad55gk25yBT4fIdE+3jfS/wn3ijhvFg
-        vc9w4EUFMjnBLJJQGjs8KZMMfvuJNnlO2AdeR4bt6jYsBiRITJhrlOHX9681bV5L
-        UbWWLP2VdUtNgHvjWfjehUiOX2zo98vsgGExG3RBQ2lj5DydfwLm0pwXPzLqezfr
-        vGUbGIgDQuCnSfXsSXZsy+pqFykTmS88lW8IG+9oMYWf5NxzLQTTK/IvpKBXLuSj
-        8xI6YKjdiS8Hvo1aGX/aFi6K8ymQxnpZEVsJHtg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Osf2EL
-        JTbWcLwWlfylNHUcxi3LV4y9bORwKF8hqOZGw=; b=ePZO5PHcT+F/5lxask8Z4B
-        ylukggbKy+OtlTGpxvqkg0s+hwXrzrTWHUk3K4W4L9aUgVZx4MtW3XxdAT9H3cQk
-        cFanGoZNGUaEe4MQzeFC5RxKq8zHSDoEclXnQQHJQlewu+tm3Dw10tfpwQoY8N17
-        d4CqPKy8qGTVNkWWe2wFcT4rG8B1AxoV7HTkc0Mte2k4Q3JKB+a1B+gcYpkamzxL
-        FzFIMZU+ZUFy/2Fh6SxgamPxnYJ9nt9OIZsTdxLL07vhFvr1E0Ox4V3rUlrDovVB
-        QwUbVNoONeiCu5KGiDN9Qh4TPlfVMUmsEPd+4ZDlZMCYUjBdwcSh9/E4FxeDEiTQ
-        ==
-X-ME-Sender: <xms:zMAIYDqjI8n-vorK9RHJAlNUNZEWheGuLkH8I2qv3KUdjR5cLA7iGA>
-    <xme:zMAIYNq3QLZzYVqVNgTRvGy_TFlZZ9kVOXKPT2AZXBs8ZHEM5wwUhzvaq-6Mr-NPA
-    KSJWFCj7u3QJzbQ4g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudefgdduvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
-    htthgvrhhnpeduffdtvdevkeffgfetffffueevgeejleeghfffjedthedthfelgfekfefh
-    feekieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:zcAIYAN8FD9QayNBy0WYXSo2ZCywtzPr83V4YgpPcsIuUPoEDOjEgQ>
-    <xmx:zcAIYG7rynQYuNjz1tCZ85i69e3DU2d58HnXQUhCPjWlMcZVgDpcMA>
-    <xmx:zcAIYC7WlrNW6gkz4mn3XUxLn6urpUcAZ712PgR2bmIJf8Jds92ngw>
-    <xmx:zcAIYJbsD8kysw-wCz4vgVfFbZq1ra8djnrtJMWz2FXRyZoBSABx2Q>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id E4A3DA0005D; Wed, 20 Jan 2021 18:46:20 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-78-g36b56e88ef-fm-20210120.001-g36b56e88
-Mime-Version: 1.0
-Message-Id: <9f2dcef2-0b76-475c-9bb4-b029589763bf@www.fastmail.com>
-In-Reply-To: <CAPDyKFqBOWLBbAxZNhN5r=qjXTG9+3tX4nT8+Gz+Xbppsxh5_g@mail.gmail.com>
-References: <20210114031433.2388532-1-andrew@aj.id.au>
- <CAPDyKFqBOWLBbAxZNhN5r=qjXTG9+3tX4nT8+Gz+Xbppsxh5_g@mail.gmail.com>
-Date:   Thu, 21 Jan 2021 10:16:00 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Ulf Hansson" <ulf.hansson@linaro.org>
-Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH v7 0/6] mmc: sdhci-of-aspeed: Expose phase delay tuning
-Content-Type: text/plain
+        id S1727121AbhAUDvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 22:51:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46248 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727908AbhAUAx7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 19:53:59 -0500
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DC3C061796;
+        Wed, 20 Jan 2021 16:51:55 -0800 (PST)
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 4DLkP40vbhz9sWt; Thu, 21 Jan 2021 11:51:52 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1611190312;
+        bh=XCQTcDeBk9ThpWK+HiEI+uHeQVOfoWaAQXNuOfsN0X8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ESM9gLcLpj0k+xsPlGmWsIoGT1yx5nbmBWFMmdeKU+C95C2jccsyDfBNk2StY8Vwo
+         xIFKQIeQijJrNNiY/C2uTbWbTJ7ehYw6lHsbejl62W+41AnhQNFDmPrEK7iDnmr6O+
+         PC7BNSezBrk+putfD2/VU1vRHStKxofqree+gw68=
+Date:   Thu, 21 Jan 2021 11:51:45 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
+Subject: Re: [PATCH V5 5/5] of: unittest: Statically apply overlays using
+ fdtoverlay
+Message-ID: <20210121005145.GF5174@yekko.fritz.box>
+References: <cover.1611124778.git.viresh.kumar@linaro.org>
+ <696c137461be8ec4395c733c559c269bb4ad586e.1611124778.git.viresh.kumar@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="p8PhoBjPxaQXD0vg"
+Content-Disposition: inline
+In-Reply-To: <696c137461be8ec4395c733c559c269bb4ad586e.1611124778.git.viresh.kumar@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--p8PhoBjPxaQXD0vg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 21 Jan 2021, at 00:26, Ulf Hansson wrote:
-> On Thu, 14 Jan 2021 at 04:14, Andrew Jeffery <andrew@aj.id.au> wrote:
-> >
-> > Hello,
-> >
-> > This series implements support for the MMC core clk-phase-* devicetree bindings
-> > in the Aspeed SD/eMMC driver. The relevant register was exposed on the AST2600
-> > and is present for both the SD/MMC controller and the dedicated eMMC
-> > controller.
-> >
-> > v7 is just a small change to the the kunit testing in response to Adrian's
-> > feedback.
-> >
-> > I've just done a quick build test of v7 given the small change and more
-> > extensive testing done with v5.
-> >
-> > v6 can be found here:
-> >
-> > https://lore.kernel.org/linux-mmc/20201218035338.1130849-1-andrew@aj.id.au/
-> >
-> > Please review!
-> >
-> > Cheers,
-> >
-> > Andrew
-> >
-> > Andrew Jeffery (6):
-> >   mmc: core: Add helper for parsing clock phase properties
-> >   mmc: sdhci-of-aspeed: Expose clock phase controls
-> >   mmc: sdhci-of-aspeed: Add AST2600 bus clock support
-> >   mmc: sdhci-of-aspeed: Add KUnit tests for phase calculations
-> >   MAINTAINERS: Add entry for the ASPEED SD/MMC driver
-> >   ARM: dts: rainier: Add eMMC clock phase compensation
-> >
-> >  MAINTAINERS                                  |   9 +
-> >  arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts |   1 +
-> >  drivers/mmc/core/host.c                      |  44 ++++
-> >  drivers/mmc/host/Kconfig                     |  14 +
-> >  drivers/mmc/host/sdhci-of-aspeed-test.c      |  98 +++++++
-> >  drivers/mmc/host/sdhci-of-aspeed.c           | 255 ++++++++++++++++++-
-> >  include/linux/mmc/host.h                     |  13 +
-> >  7 files changed, 423 insertions(+), 11 deletions(-)
-> >  create mode 100644 drivers/mmc/host/sdhci-of-aspeed-test.c
-> >
-> 
-> Applied patch 1 to patch 5 applied for next (patch 6 should go via arm
-> soc), thanks!
+On Wed, Jan 20, 2021 at 12:36:47PM +0530, Viresh Kumar wrote:
+> Now that fdtoverlay is part of the kernel build, start using it to test
+> the unitest overlays we have by applying them statically.
+>=20
+> Some unittest overlays deliberately contain errors that unittest checks
+> for. These overlays will cause fdtoverlay to fail, and are thus not
+> included in the static_test.dtb.
+>=20
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> ---
+>  drivers/of/unittest-data/Makefile | 50 +++++++++++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>=20
+> diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data=
+/Makefile
+> index 009f4045c8e4..ece7dfd5cafa 100644
+> --- a/drivers/of/unittest-data/Makefile
+> +++ b/drivers/of/unittest-data/Makefile
+> @@ -38,3 +38,53 @@ DTC_FLAGS_testcases +=3D -@
+> =20
+>  # suppress warnings about intentional errors
+>  DTC_FLAGS_testcases +=3D -Wno-interrupts_property
+> +
+> +# Apply overlays statically with fdtoverlay.  This is a build time test =
+that
+> +# the overlays can be applied successfully by fdtoverlay.  This does not
+> +# guarantee that the overlays can be applied successfully at run time by
+> +# unittest, but it provides a bit of build time test coverage for those
+> +# who do not execute unittest.
+> +#
+> +# The overlays are applied on top of testcases.dtb to create static_test=
+=2Edtb
+> +# If fdtoverlay detects an error than the kernel build will fail.
+> +# static_test.dtb is not consumed by unittest.
+> +#
+> +# Some unittest overlays deliberately contain errors that unittest check=
+s for.
+> +# These overlays will cause fdtoverlay to fail, and are thus not included
+> +# in the static test:
+> +#			overlay.dtb \
+> +#			overlay_bad_add_dup_node.dtb \
+> +#			overlay_bad_add_dup_prop.dtb \
+> +#			overlay_bad_phandle.dtb \
+> +#			overlay_bad_symbol.dtb \
+> +#			overlay_base.dtb \
+> +
+> +apply_static_overlay :=3D overlay_0.dtb \
+> +			overlay_1.dtb \
+> +			overlay_2.dtb \
+> +			overlay_3.dtb \
+> +			overlay_4.dtb \
+> +			overlay_5.dtb \
+> +			overlay_6.dtb \
+> +			overlay_7.dtb \
+> +			overlay_8.dtb \
+> +			overlay_9.dtb \
+> +			overlay_10.dtb \
+> +			overlay_11.dtb \
+> +			overlay_12.dtb \
+> +			overlay_13.dtb \
+> +			overlay_15.dtb \
+> +			overlay_gpio_01.dtb \
+> +			overlay_gpio_02a.dtb \
+> +			overlay_gpio_02b.dtb \
+> +			overlay_gpio_03.dtb \
+> +			overlay_gpio_04a.dtb \
+> +			overlay_gpio_04b.dtb
+> +
+> +quiet_cmd_fdtoverlay =3D FDTOVERLAY $@
+> +      cmd_fdtoverlay =3D $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $^
+> +
+> +$(obj)/static_test.dtb: $(obj)/testcases.dtb $(addprefix $(obj)/,$(apply=
+_static_overlay))
+> +	$(call if_changed,fdtoverlay)
+> +
+> +always-$(CONFIG_OF_OVERLAY) +=3D static_test.dtb
 
-Yep. Joel, can you pick it up?
+The fact that testcases.dts includes /plugin/ still seems completely
+wrong, if it's being used as the base tree.
 
-> 
-> Thanks for stepping and helping with maintenance as well!
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
 
-Happy to help :)
+--p8PhoBjPxaQXD0vg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Andrew
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmAI0CEACgkQbDjKyiDZ
+s5KWpA//XKFWax5fvZ0Ui8pkT8mN4sCuWFYhph+/TjkzEVRxum+7qL7IqWsoUSsO
+2uIodUXlN5SmRiIOsYWzv7dbamIstWsOfX1j2OFVrwrvWdYfG/IqsiDgzjlblqJ2
+ejEYv0hFaXzNlkzFfhe5Bg8OGoSOvInSYZo2KLyzTOkTYl93qkSUf13uj4vvy6lK
+J5JKuwuGeLGjVxiB0Y4v7Q8fa6KvW5NaspbBi7l1UuwgGHo6DNhFX1MYqGoQuwKc
+iVeoMIvE2KK7bXkdgjcwWMcnKswKN1qEf2mQznmfhx/wCfXYb/P2kfYJmd9oyX9j
+uFA3SDVSXcNKRJsVNeEiRNu+s+fVSqb3v+kl2nigzH/3wXuseWtyIb8kBHtnls8p
+Mp4hUNw/efQSgIguQlVXv9trCnxHXDeoU/MUVE2c1rbQOpR8+et3zO0CALL2xsA5
+4HRZZ3+Ld5xuzXgNQxmM0apMmg8VoZtJ9KFuyXdWD+64JaDWexEIOwR3qYHSSm2C
+N4Ldcy6hiFChYz+vgMJLvDxGoMvo+FdhfRFe4KTg7G1DSkV2V1tfXsReCSIFdSrR
+KTxL2hPny/fUzjmJFr4qavo+z0BUBoYOA2duT21PAwiZ3AMtg0dBWkVhDoz+i3lI
+mUiDD6gXw93wNy7Gt2eCnHC7H7t/VyZLDcbpmSRrNDeBcSro4u0=
+=8Qsy
+-----END PGP SIGNATURE-----
+
+--p8PhoBjPxaQXD0vg--
