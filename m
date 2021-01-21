@@ -2,87 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41D402FE13B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:59:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DD852FE13F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:59:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729069AbhAUDwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 22:52:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392606AbhAUBq7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 20:46:59 -0500
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18CC3C061757
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:45:59 -0800 (PST)
-Received: by mail-oi1-x235.google.com with SMTP id r189so524550oih.4
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:45:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=I4DFohxjHJSYNY3a+F05NUS9S7JPybkMexC8rsO+oRU=;
-        b=QsPAqX9TY/BWe9zTDe6MxhOhDLgbLrq8BstQ+sJAkugA/rnzPM6ja1bsYcfTsm5I8d
-         MgiH0ztalwjuv5+RngCemJMBt8Bky4zzLuYGfv+8KEUwgMvcXB0fhi1ibjKq/i0gttxv
-         RtArzsqusPCsGo9qu/6k1MBMI4xzg7kvxdTP+dMHBiwNmsC3183swtdVLO+AH5JQDdYV
-         3sla7AhsXRIZLi+Zz+OGTnMwNXm28VRWy/dYaTlFySMJNLUI3w7JaeOckvj26ovVZWQo
-         e0G9ngI5LgmEt6uDeNgc0XKq5R3GSrOWRV8apOeHQIkOBa41G2v1B/oi6UzkM07UEVR6
-         l9DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=I4DFohxjHJSYNY3a+F05NUS9S7JPybkMexC8rsO+oRU=;
-        b=E+WmjxUyDFPcmUpfCQsBs2/xESbp4C5nwx7RgPWsgnzv4uuSVdmH3+FVYyIDGnM2kp
-         t/5vtjI+lW6E5hQLWfZX9XCX9tGDA41nCOsFZWg4yoWxxrN2qVhreKqaHlz+hE8MYMX9
-         so52OwEkPIGMT9N9IRe7L72UCH35LcIXr8N9pgMhbcd5cx5WQTOxXTGAOs3XJIYnWCgx
-         0YGNrcbKreZLICx+ISaQhPsoK5Xo3afevgxPHCe44n8qkhT3gWq3Njoqgtp8i5+CXoua
-         /dUz6WazGRATWxfX9cwPBASQXCZtSmvUfUF7qOazw13HcnYir9gSD4/+4K64J/P3is72
-         W5sQ==
-X-Gm-Message-State: AOAM531jSEj05TDPMBRW0jD3LuPJjQGx3LJQYOKDEkRjzBulV+4+XePe
-        K/sV3qIrltwmqmGlzcFUqVNsJg==
-X-Google-Smtp-Source: ABdhPJwAmlA1rQnLnws7DJI21S9hRZV/VftP5Ut+N8wK9cAeCbbQ4jQCPO3EaDOyxJZth9/GPjKI1Q==
-X-Received: by 2002:aca:3784:: with SMTP id e126mr4573366oia.170.1611193558556;
-        Wed, 20 Jan 2021 17:45:58 -0800 (PST)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j17sm784398otj.52.2021.01.20.17.45.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 17:45:58 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: soc: qcom: aoss: Add SC8180X compatible
-Date:   Wed, 20 Jan 2021 17:46:05 -0800
-Message-Id: <20210121014606.1612668-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
+        id S1729147AbhAUDwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 22:52:49 -0500
+Received: from mail-eopbgr70047.outbound.protection.outlook.com ([40.107.7.47]:28976
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730293AbhAUDWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 22:22:08 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ff3lnm6n2rD2SE5BBLJvMsixHx1TTCyyq6k4GQVuYhDoBhvwde3kL8IKT9iX5nM7e2nWu5RQuRQEdVygFtLVd7dzufLbJeRxZyjuwIBpQNbqMQ8fZ87TmQLD2nMWV9TDHzSzFRUrymo2dvE3qGF5q3JznPZc82ZD0c5sfDB1Yk+guEbVwrmD40IGaff6FmmRZDmwvNEbV0May8Rt71U2LgE2w/auQB5a3tSf34o9mbC13eKW6ZQNnY5WMN2CjmivZ767lqtz1HTGA5ANc2qJFOf6gCP3Kq5KuJYRQEBxo3JVFb8xPVhXhP3dCyfAAmef28vjPv3VgbELU18+KEgicQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FC0fiW4kqg+fXBAbX9P1q/wW5nakAbxyUMDhKkRcuVU=;
+ b=ZXK1fwDXc/EONjQAEo7E+3Sqgldyf+qK6cjeIsi5zfORrVMAImKZGAaLAy+LrmV64vR6lthgp8H+cuAcZaByZhmU4TdKyPNjtu7+qZ6hzqF+7u0ICQxdxZgXmIDqLBI7VAT7hkWCIUhJHjaQuCvdbHn3TMiTRaYILEb+ugHy4Bye5gNZS9sKGfQjx2DzSFPRjWABiX7IanvPRoCt6A4cx6Tm9PzZh8zquL+g4QlEnB6bjt9VsTzUWX5a8C+06gY8XQIAQJ63NtEXBkw3JC7USRKJz3L7lDKUIxOPscqkAivqvT/fAdbD2k2tcIUXsxf+4gwCo3uj1MiuHGxSSVOsjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FC0fiW4kqg+fXBAbX9P1q/wW5nakAbxyUMDhKkRcuVU=;
+ b=n/dcQ81cOfhHwqjcmoFHGcYAi+PcWBWsWyFpkSHXx2VTTaMGQBYBRI+zyEtnn8bv1RXowSMgrYN+j469dqk2dpj011pWgUczHqyypHz1H1EuJaO1XRUE128uHSmzv/ickmCczS+w0CG+AN2Z71Dt2fzN7RVVMVEdOFB3AEzk5p0=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB8PR04MB6858.eurprd04.prod.outlook.com (2603:10a6:10:113::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Thu, 21 Jan
+ 2021 03:20:20 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5%10]) with mapi id 15.20.3763.016; Thu, 21 Jan 2021
+ 03:20:20 +0000
+From:   peng.fan@nxp.com
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        adrian.hunter@intel.com
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2 1/4] dt-bindings: mmc: fsl-imx-esdhc: add pinctrl bindings
+Date:   Thu, 21 Jan 2021 11:09:50 +0800
+Message-Id: <1611198593-16287-2-git-send-email-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1611198593-16287-1-git-send-email-peng.fan@nxp.com>
+References: <1611198593-16287-1-git-send-email-peng.fan@nxp.com>
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SGXP274CA0005.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::17)
+ To DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SGXP274CA0005.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 03:20:15 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 75b05bd5-abc3-4b1c-c605-08d8bdbb7b13
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6858:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB6858CDEA31D45519D9BBD60D88A10@DB8PR04MB6858.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2043;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 48M7GwN7dPLZOH97CKLcL/ajZ2HMtZYyaTXJW444PBuLXshic3SxE4+XxWzJOff9BFhmMUSNaAegGsWnaXXL+YV2WoOKTg+goXYHP6joMdUQW81X9tR4WKAMfeiQuMBiDZVjuU6gE+qAtIqAJrS6AL9zePlgCQtUxyl+2OiXcX+uNOpL5kuO7HxPJzTgl0EglyitovCxiix6LlAzNBkNTKfLhaq7wNTlQmKgBTkUqTY5H0YjJvq9AoQ360tAsDgYNCJRWK6zdlUDb89DEbXiK/SYNcr229HmR/wMb4LpX6tWJDhhgBCQnAeWbHCLRRkJTJH8z1LiNBJALsPH+5pCBZsK9jhYb/0UKyQy8IKFdeVowzU/cOCkjlpDUY8fCXRSdnjVkLQzyefGOEkFHTnMYJXcACVFAnfbYbxf5G6CNoxwcWvFPL/M154HYevG40BEG6T07tH6iueVWB/9qQaT2Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(136003)(376002)(396003)(366004)(86362001)(4744005)(36756003)(6486002)(8936002)(186003)(16526019)(6666004)(66476007)(7416002)(316002)(6512007)(8676002)(5660300002)(66556008)(52116002)(478600001)(66946007)(2906002)(4326008)(6506007)(26005)(956004)(9686003)(2616005)(69590400011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?BKDbHHcpaEdoPDbxHEuWqLIYg3fwF52ahTHOYNyznX+tm96SSvFMs3Rg8cnP?=
+ =?us-ascii?Q?6V9SbtqFFj1xwac+mGwbp5JRBZY7mRXurrYKms0lId337ZYTWqmX9Z/nrw+v?=
+ =?us-ascii?Q?LVRp0AYblrCjq+hJwjfh/A5YjNSVN7MlD/ZDWUrLsy5PQL6X/EPgZiLe4T/L?=
+ =?us-ascii?Q?RtVzwi3e/Otw/aQXB2alPjfR1AO6q8TPuCxqZQyi7IsywM4hgHT+VUMlAg9g?=
+ =?us-ascii?Q?m2xdvvDj5T5TjOd65g8FYq5P6Fb4o3xz4wKs5Xo7NqRZg4p7Imrd4pR/crBx?=
+ =?us-ascii?Q?CwIRjN8/duIn+oGfjIWmE7E95rl3cQhXNa9BE7Tw4omv1IoPJeFNUu7bzm1n?=
+ =?us-ascii?Q?UQVKTl3iqb7utt5I9G1Wk4TXk63bG7Zcs/Q1qbzpgqLcePc89CSsG74JbLH1?=
+ =?us-ascii?Q?dSONsVLnTfKCMGu7T9LkEyTE1p5QXAEZxyfWc12A2/Ew0vQtM+x1ccJ3+8Fd?=
+ =?us-ascii?Q?PdetcV+a2vc049riHHirxhG4lYVsHJ/Y4bW09sKk669Hu183siSx1jHIcPEr?=
+ =?us-ascii?Q?S0pBpQKCoxvrFVpurlPZ/L9YG1WVtyeSQk3J5+yeKrRfmygUfGfm5XEvLtuC?=
+ =?us-ascii?Q?MABCwcxAnu4iPznYfEkFs90C4929ZjIotMlAOixrq4dK21g1DRDEQL+7qXMG?=
+ =?us-ascii?Q?C8RAXCP25vQ7IEMsd3U2u1SpJdOqef0MMKTfH3CqROJsgdkargkdALga+TlF?=
+ =?us-ascii?Q?HcVDajP4j3fOsrTCo2FMF5J95nHHntAxX54RRaAS35K7S3pOhRmsA7nCye6d?=
+ =?us-ascii?Q?Uo4SveiE5ZfZDzFbzyQ6M+JSB52AEsF17hwZVZa4TONXXySQR/FrLSC9mZDM?=
+ =?us-ascii?Q?YfFm1hvMjFAut9Jo9A1kmtMaFYxEQemNb4Vso/dFMMLjra0sPVXor1/B1sJ+?=
+ =?us-ascii?Q?sPHZoOEpYLDdExxNBF1DnIR+LDNaZFdiKcZ7RWmIgIHbV4c9+ioCq7138rTf?=
+ =?us-ascii?Q?TQrG1uSpqNz5Jt4QhLhKkdAIvHYhFEkfxq2O4AkQcaFCwhohyjoC0/Wp69+I?=
+ =?us-ascii?Q?TDEy?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75b05bd5-abc3-4b1c-c605-08d8bdbb7b13
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 03:20:20.1159
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nqVbUQtrhPv4mln0qjtpR0mOvinrE3KT0K8rJKMkDUXFEOUOfw4DvZwwBo/3blbnArDbgrx6nPPsdKy7C6hFsg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6858
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for the Qualcomm SC8180x platform to the AOSS QMP
-binding.
+From: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Add pinctrl bindings for fsl-imx-esdhc yaml
+
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
- Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/mmc/fsl-imx-esdhc.yaml           | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
-index 953add19e937..007139b9a58b 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
-@@ -17,6 +17,7 @@ power-domains.
- 	Value type: <string>
- 	Definition: must be one of:
- 		    "qcom,sc7180-aoss-qmp"
-+		    "qcom,sc8180x-aoss-qmp"
- 		    "qcom,sdm845-aoss-qmp"
- 		    "qcom,sm8150-aoss-qmp"
- 		    "qcom,sm8250-aoss-qmp"
+diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+index 802c9df23752..f91e97cd7d4e 100644
+--- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
++++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+@@ -103,6 +103,31 @@ properties:
+       Only eMMC HS400 mode need to take care of this property.
+     default: 0
+ 
++  pinctrl-0:
++    minItems: 1
++    maxItems: 2
++
++  pinctrl-1:
++    minItems: 1
++    maxItems: 2
++
++  pinctrl-2:
++    minItems: 1
++    maxItems: 2
++
++  pinctrl-3:
++    minItems: 1
++    maxItems: 2
++
++  pinctrl-names:
++    minItems: 1
++    maxItems: 4
++    items:
++      - const: default
++      - const: state_100mhz
++      - const: state_200mhz
++      - const: sleep
++
+ required:
+   - compatible
+   - reg
 -- 
-2.29.2
+2.28.0
 
