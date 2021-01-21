@@ -2,108 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3315F2FF34B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:39:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1BF32FF377
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:47:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726953AbhAUSd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 13:33:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48366 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728703AbhAUSbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 13:31:11 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE41EC061756
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 10:30:30 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id b11so2964963ybj.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 10:30:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZMx/E/2jxeFQ/OIv6Rd62p8bKvIIXSarZZ/uxbDSpwY=;
-        b=pB8CSuCQ1t5NAIwfgQPsRbm4+N0eqdS2xb3sYibQkm9BQS2mwqlUtyPpO6iLIpNvTf
-         ka2NAi+p0KSBwruk+USrd4lKF2udHHqkPF0ROeViCgN+c39XCGmlkVQrEnBDBBfQb1Rg
-         jP8JiSiRCC6E5j7+BBHU/UFYNf7FaNMZNfB0EbDL8QQf4rIGpMEWlKackhI+O0PYy7/V
-         Wk0AsR7mxPL1ZgKcB7pW6DIXFGPDn2CG7XE3S4u+4mHhCA7Xy7EQC+JAgzutVdOnplRI
-         joaAAbzHTBkH+075AARQ5Rv/iJXt2YomkRDsTnU502319R63zcWAh7Zb47O8SRgVGtv+
-         Oelg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZMx/E/2jxeFQ/OIv6Rd62p8bKvIIXSarZZ/uxbDSpwY=;
-        b=H3FzstBhmea80CP+ZkXUKVXNgoZgLD0eCFcloSxajz07zCHn/g2gmb1CWfPVSo562m
-         H3EGzlZVI4bcgJry6RomKip97cuDBruk6b9T3d+UDjjE5wsoUjQeGYsaXJp/+3t7V8a4
-         Rbgi4LfQ7sONXWXhhaAiYixgHDxu/2TAXUE8MxYfzk44DYkrFuwZ13x7yPN38mpGwU/K
-         gjQgoXosPYLT1w76uHtDzrgy0GIYdoVBlZUoFhYg/cMP1lsXKOySgvLtN0AHYQpQhxBf
-         IScZvhsi/hgehDTqQ0y1sjrBiZ73GnWL0ZuU7GvwHUTtYsp/APXMsUQ3Uggw06PyCKcl
-         3XbQ==
-X-Gm-Message-State: AOAM532HAuddl3T6y2BrfE2E+shxcqmzr7jTYwHY8j1wqa4JfVyNdzet
-        u21oZh5+axQWi20eg3KVJ5etgVkl5XQeIrzbowgSbw==
-X-Google-Smtp-Source: ABdhPJwnZpmvD+AZqcXVdjUOu32h6NtnBg2N1jGh81MiZd0VG0aCJtfW7+8+aKL/Muz7mdDJKzVA4r+78/0mqdECUOs=
-X-Received: by 2002:a25:dfcb:: with SMTP id w194mr883475ybg.346.1611253829911;
- Thu, 21 Jan 2021 10:30:29 -0800 (PST)
+        id S1725779AbhAUSqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 13:46:35 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37450 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726662AbhAUSky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 13:40:54 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10LIdA2B064006;
+        Thu, 21 Jan 2021 12:39:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611254350;
+        bh=/qd7LEfp7P1X46YckUfvATyn9+fX0DnQt8qNqExcLQ8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=uZs9yjsXVOpDoo/IhBcEtobiqlJKuQ0jfhwsKzM8W+C9RbgleaLGOvKP/RAMcI5TK
+         pRpW9Ug5xnFReSBGzeEtDVAP5kIeF6Ar6QqMDFXyWvfLZIDozdghryZwiG8X6NltKc
+         62ShucG9WAUqcPfaXJi8JgJyMtwj/Hn/oI/HP2U0=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10LIdA8n041093
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 Jan 2021 12:39:10 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
+ Jan 2021 12:39:10 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 21 Jan 2021 12:39:09 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10LId9ln067401;
+        Thu, 21 Jan 2021 12:39:09 -0600
+Date:   Thu, 21 Jan 2021 12:39:09 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Dave Gerlach <d-gerlach@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH v3 3/5] arm64: dts: ti: Add support for AM642 SoC
+Message-ID: <20210121183909.pwpboiptqbof2dfu@squint>
+References: <20210120202532.9011-1-d-gerlach@ti.com>
+ <20210120202532.9011-4-d-gerlach@ti.com>
+ <197af185-d2ea-3c76-d0bf-714485f8f195@ti.com>
+ <20210121174639.jqbvem6b4ozd3six@sterling>
+ <4ee6f005-2eee-42b2-b573-e10602839e1b@ti.com>
 MIME-Version: 1.0
-References: <20210120080522.471120-1-saravanak@google.com> <20210120080522.471120-2-saravanak@google.com>
- <CACRpkdbEC6duR=fJQD_Nw9o=HW0DEe2_Ks3SYCgJmkOjzKz3Jg@mail.gmail.com>
-In-Reply-To: <CACRpkdbEC6duR=fJQD_Nw9o=HW0DEe2_Ks3SYCgJmkOjzKz3Jg@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 21 Jan 2021 10:29:54 -0800
-Message-ID: <CAGETcx9HFtnuA=XDdbXOq+HEEkbtpQ7J7Nz4uTWhoswZbHpsfw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] of: property: Add fw_devlink support for "gpio"
- and "gpios" binding
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <4ee6f005-2eee-42b2-b573-e10602839e1b@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 5:11 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Wed, Jan 20, 2021 at 9:05 AM Saravana Kannan <saravanak@google.com> wrote:
->
-> > To provide backward compatibility for boards that use deprecated DT
-> > bindings, we need to add fw_devlink support for "gpio" and "gpios".
->
-> You do some more stuff in the patch so describe that too.
-> Especially the check for hogs and #gpio-cells.
-> Describe why you do that. Maybe even with a comment in
-> the code because I don't think everyone will understand.
+On 12:13-20210121, Suman Anna wrote:
+> On 1/21/21 11:46 AM, Nishanth Menon wrote:
+> > On 11:25-20210121, Suman Anna wrote:
+> >> On 1/20/21 2:25 PM, Dave Gerlach wrote:
+> >>> The AM642 SoC belongs to the K3 Multicore SoC architecture platform,
+> >>> providing advanced system integration to enable applications such as
+> >>> Motor Drives, PLC, Remote IO and IoT Gateways.
+> >>>
+> >>> Some highlights of this SoC are:
+> >>> * Dual Cortex-A53s in a single cluster, two clusters of dual Cortex-R5F
+> >>>   MCUs, and a single Cortex-M4F.
+> >>> * Two Gigabit Industrial Communication Subsystems (ICSSG).
+> >>> * Integrated Ethernet switch supporting up to a total of two external
+> >>>   ports.
+> >>> * PCIe-GEN2x1L, USB3/USB2, 2xCAN-FD, eMMC and SD, UFS, OSPI memory
+> >>>   controller, QSPI, I2C, eCAP/eQEP, ePWM, ADC, among other
+> >>>   peripherals.
+> >>> * Centralized System Controller for Security, Power, and Resource
+> >>>   Management (DMSC).
+> >>>
+> >>> See AM64X Technical Reference Manual (SPRUIM2, Nov 2020)
+> >>> for further details: https://www.ti.com/lit/pdf/spruim2
+> >>>
+> >>> Introduce basic support for the AM642 SoC to enable ramdisk or MMC
+> >>> boot. Introduce the sdhci, i2c, spi, and uart MAIN domain periperhals
+> >>> under cbass_main and the i2c, spi, and uart MCU domain periperhals
+> >>> under cbass_mcu.
+> >>>
+> >>> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+> >>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> >>
+> >> Hmm, there are a few pieces contributed by me, so please do add
+> >>
+> >> Signed-off-by: Suman Anna <s-anna@ti.com>
+> > 
+> > Sure, thanks..
+> > 
+> > [...]
+> > 
+> >>> +
+> >>> +	sdhci0: mmc@fa10000 {
+> >>> +		compatible = "ti,am64-sdhci-8bit";
+> >>
+> >> Hmm, I tried booting this series on top of 5.11-rc1 + Nishanth's current
+> >> ti-k3-dts-next. So, boot of these patches using this baseline fails when using
+> >> MMC rootfs, but is ok when using initramfs. This particular compatible and the
+> >> corresponding driver change are only in linux-next coming through couple of
+> >> patches from the MMC subsystem.
+> >>
+> >> I am not sure why we would be including stuff that's dependent on some other
+> >> patches being merged from a different sub-system? Strangely, this ought to be
+> >> caught by dtbs_check, but it is not throwing any errors.
+> >>
+> >> IMHO, these should only be added if you have no other external dependencies
+> >> especially when you are applying on a 5.11-rc baseline. The MMC pull-requests
+> >> would not go through arm-soc either.
+> >>
+> > 
+> > Yes, I am aware of this - this is no different from integration we have
+> > done in the past as well.. intent is to get bindings in via subsystem
+> > trees and dts changes via arm-soc. I always insist that basic ramdisk
+> > boot always in the basic introduction tree. mmc, nfs are add-ons that
+> > get added via subsystem tree and I host the dts changes - in this case
+> > every dts node binding is fine with subsystems already queued in
+> > linux-next. And this is no different from what I have noticed on other
+> > ARM SoC maintainer trees as well.
+> > 
+> 
+> Hmm, this is kinda counter-intuitive. When I see a dts node, I am expecting the
 
-Ack
+What is counter intutive about a -next branch be tested against
+linux-next tree?
 
->
-> > +       if (strcmp(prop_name, "gpio") && strcmp(prop_name, "gpios"))
-> > +               return NULL;
->
-> This part is easy to understand.
->
-> > +       if (of_find_property(np, "gpio-hog", NULL))
-> > +               return NULL;
-> > +
-> > +       if (of_parse_phandle_with_args(np, prop_name, "#gpio-cells", index,
-> > +                                      &sup_args))
-> > +               return NULL;
->
-> This part is hard to understand. Insert comments and tell the reader
-> of the code what is going on and why.
+> required driver functionality to have been in (or atleast the binding as per
+> documentation), and not having to need to pick additional patches.
+> 
+> If the intent is to verify/test everything against linux-next and not the
+> baseline tree, then I guess this works. But in general, this kinda goes against
+> the rules set in submitting patches. For example, see
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/submitting-patches.rst#n44
+> 
+> And sure enough, this is what I get when I run checkpatch against your tree.
 
-I assume the "hard to understand" part is the gpio-hog part? Because
-the last line is pretty straightforward -- it's returning the index-th
-phandle. Also, it's a copy-paste from the DEFINE_SIMPLE_PROP macro.
+Also read https://www.kernel.org/doc/html/v5.11-rc4/process/2.Process.html#next-trees
+
+You should probably realize linux-next is an integral part of the
+process for us now.
+
+> 
+> WARNING: DT compatible string "ti,am64-sdhci-8bit" appears un-documented --
+> check ./Documentation/devicetree/bindings/
+> #347: FILE: arch/arm64/boot/dts/ti/k3-am64-main.dtsi:298:
+> +		compatible = "ti,am64-sdhci-8bit";
+> 
+> WARNING: DT compatible string "ti,am64-sdhci-4bit" appears un-documented --
+> check ./Documentation/devicetree/bindings/
+> #365: FILE: arch/arm64/boot/dts/ti/k3-am64-main.dtsi:316:
+> +		compatible = "ti,am64-sdhci-4bit";
 
 
--Saravana
+you are saying basically - wait a complete kernel cycle after a driver
+is introduced before we can even test a driver SoC support introduced
+without an user in the same kernel version.. which is a disaster and bit-rot
+
+OR
+
+Let the subsystem maintainers also carry the patches for dts - which is
+going to be another disaster and creates all kind of avoidable merge
+conflicts.
+
+OR
+
+I stage a rc1 and rc2 merge cycle - which makes no sense - these nodes
+dont get activated without a compatible match, which gets enabled only
+when the corresponding subsystem is merged - they dont break existing
+functionality even when the subsystem is merged, it just increases
+the functionality as it should. (not to mention that all my follow on
+kernel merge trees will have to be rc2 based - since majority nodes
+will be introduced there)
+
+dts already has a pain point that we are trying to manage logically
+here, this is not a MISRA-C ASIL-D process - follow and exact verbatim
+word to word process, that is just plain ridiculous.
+
+When rc1 comes together, which is what my next branch is for, things
+should be cohesive - we dont introduce regressions and broken trees -
+which is exactly what the -next process makes sure happens.
+
+
+Now, if you want to launch a product with my -next branch - go ahead, I
+don't intent it for current kernel version - you are on your own.
+
+If there is a real risk of upstream next-breaking - speakup with an
+real example - All I care about is keeping upstream functional and
+useable.
+
+I recheck the linux-next tree almost daily basis for consistency, and I
+do appreciate the concern here (and passion) - point is, I think we
+might be a bit of an over-reaction if we just look at the other options
+in front of us - not to mention, maybe drop the entire idea of dt coming
+in from ARM SoC - let the subsystem member create merge conflict and
+duke it out.. I don't think any of us want to see that kind of mayhem.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
