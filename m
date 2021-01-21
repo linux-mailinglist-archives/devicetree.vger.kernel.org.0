@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3700A2FE260
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 07:13:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 225A72FE264
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 07:13:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725950AbhAUGNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 01:13:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58192 "EHLO
+        id S1726513AbhAUGNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 01:13:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726477AbhAUGMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 01:12:33 -0500
+        with ESMTP id S1726477AbhAUGNf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 01:13:35 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19802C061575
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 22:11:53 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD6ABC06179B
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 22:12:22 -0800 (PST)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1l2TC4-0006PG-3g; Thu, 21 Jan 2021 07:11:44 +0100
+        id 1l2TC4-0006PH-3s; Thu, 21 Jan 2021 07:11:44 +0100
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1l2TC2-00061C-4D; Thu, 21 Jan 2021 07:11:42 +0100
+        id 1l2TC2-00061L-5H; Thu, 21 Jan 2021 07:11:42 +0100
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -39,10 +39,12 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         David Jander <david@protonic.nl>,
         Robin van der Gracht <robin@protonic.nl>,
         dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 0/7] devicetree fixes for Protonic and Plymovent boards
-Date:   Thu, 21 Jan 2021 07:11:34 +0100
-Message-Id: <20210121061141.23062-1-o.rempel@pengutronix.de>
+Subject: [PATCH v2 1/7] dt-bindings: display: simple: add Innolux G070Y2-T02 panel
+Date:   Thu, 21 Jan 2021 07:11:35 +0100
+Message-Id: <20210121061141.23062-2-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210121061141.23062-1-o.rempel@pengutronix.de>
+References: <20210121061141.23062-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
@@ -53,24 +55,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-changes v2:
-- imx6dl-prtvt7: remove touchscreen-inverted-*
+Add binding for the Innolux G070Y2-T02 panel. It is 7" WVGA (800x480)
+TFT LCD panel with TTL interface and a backlight unit.
 
-Oleksij Rempel (7):
-  dt-bindings: display: simple: add Innolux G070Y2-T02 panel
-  drm: panel-simple: Add support for the Innolux G070Y2-T02 panel
-  ARM: dts: imx6dl-prtvt7: Add display and panel nodes
-  ARM: dts: imx6dl-prtvt7: add TSC2046 touchscreen node
-  ARM: dts: imx6dl-prtvt7: Remove backlight enable gpio
-  ARM: dts: imx6dl-prtvt7: fix PWM cell count for the backlight node.
-  ARM: dts: imx6dl-plym2m: remove touchscreen-size-* properties
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../bindings/display/panel/panel-simple.yaml  |  2 +
- arch/arm/boot/dts/imx6dl-plym2m.dts           |  2 -
- arch/arm/boot/dts/imx6dl-prtvt7.dts           | 74 ++++++++++++++++---
- drivers/gpu/drm/panel/panel-simple.c          | 16 ++++
- 4 files changed, 81 insertions(+), 13 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 3207608d1178..f7a1465313db 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -152,6 +152,8 @@ properties:
+       - innolux,at070tn92
+         # Innolux G070Y2-L01 7" WVGA (800x480) TFT LCD panel
+       - innolux,g070y2-l01
++        # Innolux G070Y2-T02 7" WVGA (800x480) TFT LCD TTL panel
++      - innolux,g070y2-t02
+         # Innolux Corporation 10.1" G101ICE-L01 WXGA (1280x800) LVDS panel
+       - innolux,g101ice-l01
+         # Innolux Corporation 12.1" WXGA (1280x800) TFT LCD panel
 -- 
 2.30.0
 
