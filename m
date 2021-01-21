@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E23202FE2E3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 07:31:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7832FE2E2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 07:31:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726580AbhAUGbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 01:31:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58464 "EHLO
+        id S1726514AbhAUGa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 01:30:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726576AbhAUGNn (ORCPT
+        with ESMTP id S1726580AbhAUGNn (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 01:13:43 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C3D2C061795
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 22:12:06 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7E7C061798
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 22:12:13 -0800 (PST)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1l2TC4-0006PJ-3b; Thu, 21 Jan 2021 07:11:44 +0100
+        id 1l2TC4-0006PN-3b; Thu, 21 Jan 2021 07:11:44 +0100
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1l2TC2-00061d-7S; Thu, 21 Jan 2021 07:11:42 +0100
+        id 1l2TC2-00062E-Bo; Thu, 21 Jan 2021 07:11:42 +0100
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -32,16 +32,16 @@ To:     Mark Rutland <mark.rutland@arm.com>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>
 Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Robin van der Gracht <robin@protonic.nl>,
         devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
         dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 3/7] ARM: dts: imx6dl-prtvt7: Add display and panel nodes
-Date:   Thu, 21 Jan 2021 07:11:37 +0100
-Message-Id: <20210121061141.23062-4-o.rempel@pengutronix.de>
+Subject: [PATCH v2 7/7] ARM: dts: imx6dl-plym2m: remove touchscreen-size-* properties
+Date:   Thu, 21 Jan 2021 07:11:41 +0100
+Message-Id: <20210121061141.23062-8-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210121061141.23062-1-o.rempel@pengutronix.de>
 References: <20210121061141.23062-1-o.rempel@pengutronix.de>
@@ -55,93 +55,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Innolux G070Y2-T02 panel to the Protonic VT7 board.
+Remove touchscreen-size-* properties.  This values are not correct, event if it
+works with ts_test tool, it fails to work properly with weston.
+And the real range of values reported by the driver (or measured by the
+controller) is close to max values and may change with time on resistive
+panels. So, it make no sense to keep this values in the device tree.
 
-Signed-off-by: Robin van der Gracht <robin@protonic.nl>
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- arch/arm/boot/dts/imx6dl-prtvt7.dts | 47 +++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ arch/arm/boot/dts/imx6dl-plym2m.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx6dl-prtvt7.dts b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-index ae6da241f13e..d9cb1e41cc10 100644
---- a/arch/arm/boot/dts/imx6dl-prtvt7.dts
-+++ b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-@@ -31,6 +31,30 @@ backlight_lcd: backlight-lcd {
- 		enable-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
- 	};
+diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
+index 4d0d3d3386af..c97274f0df07 100644
+--- a/arch/arm/boot/dts/imx6dl-plym2m.dts
++++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
+@@ -138,8 +138,6 @@ touchscreen@0 {
+ 		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
+ 		pendown-gpio = <&gpio3 20 GPIO_ACTIVE_LOW>;
  
-+	display {
-+		compatible = "fsl,imx-parallel-display";
-+		pinctrl-0 = <&pinctrl_ipu1_disp>;
-+		pinctrl-names = "default";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			display_in: endpoint {
-+				remote-endpoint = <&ipu1_di0_disp0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			display_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+
- 	keys {
- 		compatible = "gpio-keys";
- 		autorepeat;
-@@ -138,6 +162,18 @@ led-debug0 {
- 		};
- 	};
- 
-+	panel {
-+		compatible = "innolux,g070y2-t02";
-+		backlight = <&backlight_lcd>;
-+		power-supply = <&reg_3v3>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
-+
- 	reg_bl_12v0: regulator-bl-12v0 {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
-@@ -149,6 +185,13 @@ reg_bl_12v0: regulator-bl-12v0 {
- 		enable-active-high;
- 	};
- 
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	reg_1v8: regulator-1v8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "1v8";
-@@ -260,6 +303,10 @@ &ipu1 {
- 	status = "okay";
- };
- 
-+&ipu1_di0_disp0 {
-+	remote-endpoint = <&display_in>;
-+};
-+
- &pwm1 {
- 	#pwm-cells = <2>;
- 	pinctrl-names = "default";
+-		touchscreen-size-x = <800>;
+-		touchscreen-size-y = <480>;
+ 		touchscreen-inverted-x;
+ 		touchscreen-inverted-y;
+ 		touchscreen-max-pressure = <4095>;
 -- 
 2.30.0
 
