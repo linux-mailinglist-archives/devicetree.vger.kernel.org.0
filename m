@@ -2,90 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 549082FE0AE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:30:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 752FE2FE14F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 06:00:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732464AbhAUE3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 23:29:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35992 "EHLO
+        id S1727443AbhAUDvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 22:51:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727418AbhAUE3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 23:29:20 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D442DC061757;
-        Wed, 20 Jan 2021 20:28:37 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id f6so435450ots.9;
-        Wed, 20 Jan 2021 20:28:37 -0800 (PST)
+        with ESMTP id S2392230AbhAUBkj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 20:40:39 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A0AC0613CF
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:39:58 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id v1so151918ott.10
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:39:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sEz/iLIdTw9v5WxUC29+q1wZ0vu+7s3YddxeSahPgM0=;
-        b=DFUJkNHbazeR7OGjGEldoAx3hJrrb/8aMvXHpvsX6zSPYjQo1YvkfVAlhUjhA2+1i+
-         Yw99LWlssvLnZ7JoK3YWdByLBl679kA9ALPU3U4MDc1M8dodj1Hm06fiATQrHQjuGeE1
-         pbGNXX21WBBq2kh3/XW7c8FAA+NYf0jhk+oSGQxYY7tS1PZrT2PstR7GXq+a/8pyfjo/
-         PF7sPxZwSQ2POTncI3sb0Ef3Bwt9Y1vo3WdTnxDIMzumkWb51r3mjastToBJnl3EF37w
-         yP1eRVdaUprqvG4h5IQzoF5pI8IunB3tKA/Q5YLHHsl5yXGl9ybC7ZzMs/MgxBAbSm03
-         Bdcg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mTIkLf8P7rQ1csosNj9MYUkt9q/vHpvdvB2piAeWYvg=;
+        b=vhLT4V2HYiuaF9zhU4e6fcDxilz0aj429uzh1g2Z6NkymbGcO+tJxJ861jlAOraYgr
+         DCBG0R+yHMznzEVyIEe5pJpX6Yf1qSAK4BMdj2ZE0FzGXeo+UVxwF7yxjyRpBb8V2BaD
+         n1IuRU/tqoyintLDZsJJyqM4jXlSuScmngjD3uBy6lTfI/V+8gHCi+fI+BsM983KXLcx
+         DT9Z/NIAjkD/GgVuLNFd91mwNaQFxD4B2fSqm+kPbwMrDvdspRZn4vvhyz3kCvALApYz
+         Nv06cvwlyydo5TqGIAXlEWo/ENmJY/xfEfHhlPcInADzxx4OsHkxPsWqgpOxzQYCDj8y
+         l+ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sEz/iLIdTw9v5WxUC29+q1wZ0vu+7s3YddxeSahPgM0=;
-        b=gMEm6zf4M8pvEF8A9y+0v3bh0v4AC4i27wkRcFRzF7CVnWw6/LtRQENTKQiOYDMrwj
-         XOt4AVZAv33kQXFNksI0Qqg/W9TB6LZsplGKj4c1w76fIh9gaF4piS2fMmAA4BhcJGy+
-         TSGH8MQWpSCqPL/uuP1PdLIu2hjv7psNdmbiLirDVLPGt2oHenV/xnlb3xz01HlaHeA9
-         F0cZHGVBVt8cuaAVEaOzoEetNe4760NI2ID3Xw4E+HufR9vRNrVkqfpleJLLdhna7cQL
-         Phvt5M1MjRsR7ekFgymMueIaCbrgZDIfSIFLWhOe8tv0W5NaOtdXf8tBJ/2rwsZJxLUK
-         ChyA==
-X-Gm-Message-State: AOAM5314bokxz5UcoygFfxnfQkaZ0kBtKebM+2E2FppP9s7Nmjx/3+VQ
-        Nis63JMKVNHrXhVM07oDGiK8FyEYGk+2BTkU328=
-X-Google-Smtp-Source: ABdhPJyxCiEV+f+RiJbu5bYWFH5Mi6vlzsXNdJt9JvjH/4TG73sO4Nd/q0sC6TuVsDRpFmrME1l/M8WE36ThKzrww9A=
-X-Received: by 2002:a9d:6f14:: with SMTP id n20mr2136998otq.285.1611203317361;
- Wed, 20 Jan 2021 20:28:37 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mTIkLf8P7rQ1csosNj9MYUkt9q/vHpvdvB2piAeWYvg=;
+        b=MVMKHQnyPcvzm34l0Q6V5DX5jeY4xciZFqKPo916deF7VGtvuy1HffERbLayLV7S+W
+         hqz1Ul4TPNuYbRJX9zZqiw2yWDq5OPHvLqWoz24q37UTf/oJKfA0XtpBDfVvVq7QwCES
+         3xU4uipMsXKd9JudqCMUqImjz59R+DtDUS2D+4tV1EHwISnNpByKDjTWIB0jE4lyn10o
+         YMYJuRSH/8Q0FEr45PBBXkcgCV89+pQTkCByU0YHv+UrFo+p0fDn5TECHJSA3ZRLVr89
+         7ifW/AvsX3hWnfsF/TvaSVGddoZz0jbVhJu+rNQ03lK/IGzPpSUzJhuAzO9x9YZxGHuP
+         /NOA==
+X-Gm-Message-State: AOAM5317IK5/TYcbzoDXElMMoKm8GgiW8E/4/XlwbSGBr/SZgSNaokI6
+        hzjg2b9N2Ff4qxjhwvPWg9N0tF6WGhdwJg==
+X-Google-Smtp-Source: ABdhPJyBR58mQmQLd8XYcUP0EsBRHHD8FexvMM+wKw949cEidpIIPaHyDJpA57juJjwwsTdOX2Ujvg==
+X-Received: by 2002:a9d:688:: with SMTP id 8mr2431369otx.22.1611193198020;
+        Wed, 20 Jan 2021 17:39:58 -0800 (PST)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s2sm729597oov.35.2021.01.20.17.39.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jan 2021 17:39:57 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm-smmu-qcom: Add Qualcomm SC8180X compatible
+Date:   Wed, 20 Jan 2021 17:40:04 -0800
+Message-Id: <20210121014005.1612382-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20200902181234.13955-1-lindsey.stanpoor@gmail.com>
- <CAEr9=gsH2UhjMO_55FKmGKS0DYrT_-XKf0iwCKCNc93epbiXNw@mail.gmail.com> <87ft5ly5nh.fsf@kernel.org>
-In-Reply-To: <87ft5ly5nh.fsf@kernel.org>
-From:   Lindsey Stanpoor <lindsey.stanpoor@gmail.com>
-Date:   Wed, 20 Jan 2021 20:28:26 -0800
-Message-ID: <CAEr9=gsc0L=rn5YDLrArqbOMSt25HhHF7cwhp7sxdPa6-PQGpg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: usb: add rk3328 dwc3 docs
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, heiko@sntech.de, cnemo@tutanota.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 6, 2020 at 11:42 PM Felipe Balbi <balbi@kernel.org> wrote:
->
->
-> Hi,
->
-> Lindsey Stanpoor <lindsey.stanpoor@gmail.com> writes:
-> > On Wed, Sep 2, 2020 at 11:12 AM <lindsey.stanpoor@gmail.com> wrote:
-> >>
-> >> From: Cameron Nemo <cnemo@tutanota.com>
-> >>
-> >> Document compatible for dwc3 on the Rockchip rk3328 platform.
-> >
-> > Hi all,
-> >
-> > Wanted to give this patch submission a gentle ping.
-> >
-> > Rob Herring acked the documentation changes, but I have not heard
-> > anything
-> > from the USB or Rockchip maintainers. This patchset would facilitate USB3
-> > support for Rockchip rk3328 devices like the Pine Rock64.
-> >
-> > If there is anything I can do to help move this along, please let me know.
->
-> Sorry, it had fallen through the cracks. It's now in my testing/next.
+Add compatible for the ARM SMMU found in the Qualcomm SC8180x platform.
 
-Following up on this. Will this move out of your testing/next?
---
-Cameron
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index 3b63f2ae24db..c50198e17d52 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -34,6 +34,7 @@ properties:
+         items:
+           - enum:
+               - qcom,sc7180-smmu-500
++              - qcom,sc8180x-smmu-500
+               - qcom,sdm845-smmu-500
+               - qcom,sm8150-smmu-500
+               - qcom,sm8250-smmu-500
+-- 
+2.29.2
+
