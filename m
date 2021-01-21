@@ -2,114 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B16182FF2D4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:07:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EA7D2FF2BA
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 19:03:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729040AbhAUK2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:28:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56536 "EHLO
+        id S1728941AbhAUK2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 05:28:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729204AbhAUK1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:27:48 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 905E8C061757
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:07 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id r12so1835842ejb.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:07 -0800 (PST)
+        with ESMTP id S1729206AbhAUK1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:27:49 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F198C0613C1
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:08 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id w1so1818724ejf.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DfMSFudun+anv2LjcyHW76ve89ofZ9gUeHwZ5HSVpu4=;
-        b=WwFE68crGt6fDZU5YL1I0ZBRRPvAgCQGHWpCLUaqbRdH81ei/1hItxNRePP6TGyTvg
-         v2sV9gpjGwGtGaGzNnE2g8QGXQjkPCkaZpFRcZg1ONzDKUKvBTQGjAqHsznhvslTyNxC
-         u/xHEyoiTiEqOBWYVIwr6tHoTLESfVBuSkSDHmcpOeuenodJ7LGke1qB23aqTgbCwoCX
-         vvJZDSl4Lco90wosRRALcW8K9arXnlzSl9rkcl9dxu3SPg1vbmosbLOlDSsnCb5caSw8
-         x6zCG+XFinS/lWBGfycY76YPQVZLa+KeqXAUPbWfR4uNdfJ5vSMVNhGWFSeo2VwWZJUr
-         WxHA==
+        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=LSCVpYUnbF/iwkll9PDRzd42GEI1bF94/HSaocuDHZw=;
+        b=1S5GqVPBdt8g6I9aOE9sWC2hzjK4PpwpsafOKYxQvfq/kNM1TGt6CvDHDpCr76QcY9
+         0dLM3mArjI1BWMy8HALayN0HhPsEkc/gWd99lY5lkcL7Ql0odIk0jJSiBryaN+QLOETe
+         Fc5dHdRgIlpVtRCN4J3rWxjBctd3W2dCEhoMZP9IWJYWyQgIhBPEVOc7i4BSNzWrCmOA
+         /5Hd1CkHMBY73yTB3NkRJp/YjQ+PWqBvl1IphLhfXs+DT1kccPVg+bBwxeTbn8C1+z0Y
+         U6eNrZ8raMUgRVvalJQN9w8rNkMfY5i4loxVVdYS6CUJ8W30bNQHdNSRm3zV0i+Mm9qR
+         NVGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=DfMSFudun+anv2LjcyHW76ve89ofZ9gUeHwZ5HSVpu4=;
-        b=ebMJ2PUbs/W4oYr5hJ8Cdx5/KexFp3f3sS/LG6w1DYF9nyESLaY/axx3ze3WbIQoqf
-         6raZz8SMdeyCsbQ5AQbYBGW9i4ca5b5PMGhJpmKE/lCsI6lWXHmRbCIqLrPM5ZCQYrod
-         rJwcuWivVt9gr6FBijgs/mvYkwg65C9B1XWxY8zLF8u79Cm/MYefPqdU7MEuvebQl6lU
-         iR5Vei712LduBGnYsCAneio36sOq12JE/6VrSEv6J9hLzqNpyFrDvNc5OPTMKS8mC0v4
-         Z/R3wUmun9fLVHOTvYeeSAtNpG7fPtRxVhwMPoRjudGKkUVsAwRGIRmoWlC3f6orjjlo
-         qAhg==
-X-Gm-Message-State: AOAM5314YpI6ClQb6J2didtgjGNwgh2ZoITFeGWwnbpu03oquPVkBqk9
-        7pAFMtZf324m6418yqn7xu+8rg==
-X-Google-Smtp-Source: ABdhPJzr2gLg590eajsWBEmfwiHVPih3A1AF1IxkQRSqPLyG6b1hs5iBAETcC2Rh4d2pq7UxLxMY0A==
-X-Received: by 2002:a17:906:490d:: with SMTP id b13mr8882407ejq.307.1611224825792;
-        Thu, 21 Jan 2021 02:27:05 -0800 (PST)
+         :in-reply-to:references:mime-version:content-transfer-encoding;
+        bh=LSCVpYUnbF/iwkll9PDRzd42GEI1bF94/HSaocuDHZw=;
+        b=CrqGELmQAKn8jP+ptP2htwoIH0MZZs/tZqbW7MRl57UXe6o2TrsGq83Jj/ZU+k404M
+         oYDkMiabmJ+vKJtG9u19xQoLsvhb8V0VO8sL4hebqfsSK1m26TuHbxfI7a30/1C/ImNS
+         OUXqNucv70WUqjqGebKvGnaKt/7N9z4ucPjof6Y/T9ajJRR2UPYkBgaFvUpMl82uZXk/
+         idDD4atbqmiYWZRrAWPUOURyPd1hymgA0ZvE3lT3H0swjKsuJp3zNbgV16DyMJhlHyix
+         F75v5S9HpyYRm/SH9vwi/J8BXcS9dnHHGhIZhY14FYx6OjE8Zw9Iny7eYDjTwZTSZcd6
+         t6Nw==
+X-Gm-Message-State: AOAM5328cJLNPwLjdc0DHUwemwvW07ShTyW1PF2gUN5060RKc7rIYiUS
+        2q30lEni+d6pCvmW5yMzy/cisg==
+X-Google-Smtp-Source: ABdhPJxUn2eGSg86H6sk9lDGPsuATsvqPZPN0+lhXDQUsO+oW74tiGDP/pAYHDbjBQ1jS0D+s/n6FQ==
+X-Received: by 2002:a17:906:6087:: with SMTP id t7mr9016712ejj.90.1611224827450;
+        Thu, 21 Jan 2021 02:27:07 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id r26sm2707738edc.95.2021.01.21.02.27.04
+        by smtp.gmail.com with ESMTPSA id cw21sm2438052edb.85.2021.01.21.02.27.06
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 21 Jan 2021 02:27:04 -0800 (PST)
+        Thu, 21 Jan 2021 02:27:06 -0800 (PST)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 00/12] arm64: dts: zynqmp: DT updates to match latest drivers
-Date:   Thu, 21 Jan 2021 11:26:48 +0100
-Message-Id: <cover.1611224800.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 01/12] arm64: dts: zynqmp: Fix u48 si5382 chip on zcu111
+Date:   Thu, 21 Jan 2021 11:26:49 +0100
+Message-Id: <cefda1a894fb54059aa1b018e4ecad0eb36fdc9d.1611224800.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.30.0
+In-Reply-To: <cover.1611224800.git.michal.simek@xilinx.com>
+References: <cover.1611224800.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+u48 chip on zcu111 is si5382 not si5328.
 
-I am sending this series to reflect the latest drivers which have been
-merged to mainline kernel. I have boot it on zcu102-rev1.0 and also
-zcu104-rev1.0. That's why I have also added DT for this newer revision.
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
-The series is based on https://github.com/Xilinx/linux-xlnx/tree/zynqmp/dt.
-And mio-bank patch requires update in dt-binding which has been posted here
-https://lore.kernel.org/r/5fa17dfe4b42abefd84b4cbb7b8bcd4d31398f40.1606914986.git.michal.simek@xilinx.com
+Changes in v2: None
 
-Thanks,
-Michal
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v2:
-- Remove reset description for IPs from this patch. IPs will be enabled
-  separately with DT binding update.
-- Change patch subject
-
-Michal Simek (12):
-  arm64: dts: zynqmp: Fix u48 si5382 chip on zcu111
-  arm64: dts: zynqmp: Add DT description for si5328 for zcu102/zcu106
-  arm64: dts: zynqmp: Enable si5341 driver for zcu102/106/111
-  arm64: dts: zynqmp: Enable reset controller driver
-  arm64: dts: zynqmp: Enable phy driver for Sata on zcu102/zcu104/zcu106
-  arm64: dts: zynqmp: Add label for zynqmp_ipi
-  arm64: dts: zynqmp: Add missing mio-bank properties to sdhcis
-  arm64: dts: zynqmp: Wire arasan nand controller
-  arm64: dts: zynqmp: Wire zynqmp qspi controller
-  arm64: dts: zynqmp: Add missing lpd watchdog node
-  arm64: dts: zynqmp: Add missing iommu IDs
-  arm64: dts: zynqmp: Add description for zcu104 revC
-
- arch/arm64/boot/dts/xilinx/Makefile           |   1 +
- .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  12 +
- .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    |   2 +
- .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    |  84 +++++-
- .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    |  29 ++
- .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 282 ++++++++++++++++++
- .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    |  78 +++++
- .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    |  59 +++-
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  94 +++++-
- 9 files changed, 637 insertions(+), 4 deletions(-)
- create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index 2e92634c77f9..d9a8fdbbcae8 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -410,7 +410,7 @@ i2c@4 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <4>;
+-			si5328: clock-generator@69 { /* SI5328 - u48 */
++			si5382: clock-generator@69 { /* SI5382 - u48 */
+ 				reg = <0x69>;
+ 			};
+ 		};
 -- 
 2.30.0
 
