@@ -2,98 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD9412FE152
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 06:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F0C2FE14C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:59:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727908AbhAUDvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 22:51:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56558 "EHLO
+        id S1728219AbhAUDwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 22:52:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727385AbhAUBlk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 20:41:40 -0500
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A337EC0613ED
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:39:59 -0800 (PST)
-Received: by mail-ot1-x32d.google.com with SMTP id i20so163239otl.7
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:39:59 -0800 (PST)
+        with ESMTP id S1731127AbhAUBmO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 20:42:14 -0500
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8706EC0613C1
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:41:23 -0800 (PST)
+Received: by mail-oi1-x233.google.com with SMTP id q205so462078oig.13
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:41:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OzybDX/Xt3GwRPQyEqB7XUFKbLslFfqKE8yCIx/zRK0=;
-        b=Ic4hbBuNyAhH77UympHAdRhVtmjkRRK7AuwrbOo083hrfT222pag7ZdAcjU+coGOBG
-         SegTBROdZyDXrIHKHPpD7OKNSP+S2Bp8aEu3r2C5bIpaSoi3+BbvZqAgaTsA/nHcFFxD
-         hGqfU772nEHnlswa5nwbY1oEB7toAR0dr3ZS9LQDqFVqehrYakJD18wdgS7RmbiBmo6n
-         3VmR8dzHxAkcx5IqcyKmmutDJnRDm8A3fV4luzraAFmRJGNrE4B5OhpfhEbsw/7atDVd
-         O5evtHnFyC8CjcgSrcdi7mEtyHgvThZxqzHvTpSx1VAAjl/9QRQ1Xcgd+gg0T/JjUX8F
-         A+yA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SDflA4yuNTlUbw0Uk2L5jr8nyCGDHDhgCKlPACVW+1g=;
+        b=K3YD9LsG8u5dpfbZjWZY3o2EqkT0dLIbH8Str3bKPZKDO/xTC7248HblIFSQdH6gq3
+         Hj8dRyuAXAJms2l20d+A9dohnMqld/goXJxUs1KNc/ZyfQL8GiDwLYaP8BAQ9lrRBUHd
+         o6scXg/wrc1UL0ZljC9NszpZBLl2epW0z+kqT8XbsBC1wAKN38uz4a7HVuDLeg8amBgC
+         fYittVc06ERjaytZlUs/LFmI0df40TqrP1ABqz+gOk4jdE4NLrBn7Q3lXYS9Vry400Jc
+         lb6y3dXuQkmAsVXq2Tq6rIHZtxEpHiWLZRkGuovGYnpt6+g+Z8aiEHkrKOCuR9J9PDgo
+         swfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OzybDX/Xt3GwRPQyEqB7XUFKbLslFfqKE8yCIx/zRK0=;
-        b=TMra6RgUEZEtDvipAdFMjayowSr6Iy5CxhHtdlDj1h5XcAp8cHar2fvOX+OSq3k62Q
-         eA915KFVHzzLHYziGzrzgQMsK7AB9KaI2sIUZW6SA8OwvvunoXh6BQMxivsjMKsuWhRw
-         +6H5h6J6QlDblCqXWXqaIumPxAsFeTQfFp5xzaVXFoaj6ZQkKyroC85EfqamjlnFXX9I
-         yy+UZVB8H+wXnq9/0Ngu9bO3NlImyWX5yMwFZ0OYvtbKjXe98mGZBhPvHhUjX1nWU8t3
-         3kIYy4HIA4aSS/VxoL1ZGXgYoH+TdXkimPfuA8zagMCZAJQ2I6AYXCDZ8xcW5R6dPQ/q
-         xLbg==
-X-Gm-Message-State: AOAM530t17x+PZze//R7wco0kcPwVVaubkgv7RWQfsoJId5JEKdaLfOs
-        WHAsIQSwV8lUKjXMDT5bM6mggw==
-X-Google-Smtp-Source: ABdhPJzSuzuFRbQfleUmMZxwP8jChSlAgkL5r/QPnevAdK69YCOfcV2uckVZyBhzjOw5Qnz8X5Yqfw==
-X-Received: by 2002:a9d:84d:: with SMTP id 71mr8916828oty.338.1611193199082;
-        Wed, 20 Jan 2021 17:39:59 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SDflA4yuNTlUbw0Uk2L5jr8nyCGDHDhgCKlPACVW+1g=;
+        b=UW7HpzJXdRIuvQQcYufUua+/5jCwxyep8eJTHSpbh0UzsyGyTDjs4l/miFR2Z1GuzH
+         kLGcH3aNCq5LyeQxmRv19eoOBXv5SUj4TtQ2zFpr+dHZQeeLnsOaqxcofB4VVtPIq6FN
+         NqcSY/askkpmOS/LS/Av/StFmUyfWxRtmH/AsemdBqwVsAEltMA1ZVZI4fB1Wio03De0
+         LErB/MEhX6WH3xVRdMVdGS7bbFLrTz1/6CUDsWT3Dh1XV7v/DSOw5GMqWjozYXxhgym5
+         ptFfqHBMRxTaz+VK2i87OygIVNYppv3BZrrR/rBNKqRGC6tFbYU43gIliRBZdPhKjYWo
+         KZQA==
+X-Gm-Message-State: AOAM533kipbkH0tC7if5h+Gv+Gi9z5adOBRWs4Tt6cVwDtKmIALiyrOQ
+        aFoyVd64JGPEF27jD5NyCknwasMFyOYIlg==
+X-Google-Smtp-Source: ABdhPJybFlKXr/4AOpsYKgduJCZR1R1j77s4XDXoJeasKfYBlC8PNPODPG3h/YsrzpMmQ/xyhgvVEw==
+X-Received: by 2002:aca:c4ca:: with SMTP id u193mr3298388oif.178.1611193282998;
+        Wed, 20 Jan 2021 17:41:22 -0800 (PST)
 Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s2sm729597oov.35.2021.01.20.17.39.58
+        by smtp.gmail.com with ESMTPSA id j1sm766978oiw.50.2021.01.20.17.41.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 17:39:58 -0800 (PST)
+        Wed, 20 Jan 2021 17:41:22 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iommu/arm-smmu-qcom: Add Qualcomm SC8180X impl
-Date:   Wed, 20 Jan 2021 17:40:05 -0800
-Message-Id: <20210121014005.1612382-2-bjorn.andersson@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: mailbox: qcom: Add SC8180X APCS compatible
+Date:   Wed, 20 Jan 2021 17:41:29 -0800
+Message-Id: <20210121014130.1612454-1-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210121014005.1612382-1-bjorn.andersson@linaro.org>
-References: <20210121014005.1612382-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The primary SMMU found in Qualcomm SC8180X platform needs to use the
-Qualcomm implementation, so add a specific compatible for this.
+Add compatible for the Qualcomm SC8180x APCS block to the Qualcomm APCS
+binding.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index bcda17012aee..82c7edc6e025 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -166,6 +166,7 @@ static const struct of_device_id qcom_smmu_client_of_match[] __maybe_unused = {
- 	{ .compatible = "qcom,mdss" },
- 	{ .compatible = "qcom,sc7180-mdss" },
- 	{ .compatible = "qcom,sc7180-mss-pil" },
-+	{ .compatible = "qcom,sc8180x-mdss" },
- 	{ .compatible = "qcom,sdm845-mdss" },
- 	{ .compatible = "qcom,sdm845-mss-pil" },
- 	{ }
-@@ -327,6 +328,7 @@ static struct arm_smmu_device *qcom_smmu_create(struct arm_smmu_device *smmu,
- static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
- 	{ .compatible = "qcom,msm8998-smmu-v2" },
- 	{ .compatible = "qcom,sc7180-smmu-500" },
-+	{ .compatible = "qcom,sc8180x-smmu-500" },
- 	{ .compatible = "qcom,sdm630-smmu-v2" },
- 	{ .compatible = "qcom,sdm845-smmu-500" },
- 	{ .compatible = "qcom,sm8150-smmu-500" },
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+index ffd09b664ff5..ec4054087bc1 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
++++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+@@ -24,6 +24,7 @@ properties:
+       - qcom,msm8998-apcs-hmss-global
+       - qcom,qcs404-apcs-apps-global
+       - qcom,sc7180-apss-shared
++      - qcom,sc8180x-apss-shared
+       - qcom,sdm660-apcs-hmss-global
+       - qcom,sdm845-apss-shared
+       - qcom,sm8150-apss-shared
 -- 
 2.29.2
 
