@@ -2,166 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5245F2FE3C7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 08:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EAA02FE454
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 08:49:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727001AbhAUHUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 02:20:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40550 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727195AbhAUHUA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 02:20:00 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4CF91239E7;
-        Thu, 21 Jan 2021 07:18:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611213508;
-        bh=pNzT4ZXdfbyQJ787t9mEl9rU6uPQH/3r0bnIT/3lt4U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nkPi4gPBWQfXAYQvAC08IA8EJv2L9M5QpSUabfH0P8/HfUJK5RX7OAXiNGwuzOSy9
-         IVt9SymCk+IXEVu6fzoS2Ucv3txg6mA1BJ/J8EXrrXgTIoBn0z0KKDZWahyit6+OVH
-         yon+Ir5TqFmQ4ec5OefKBQgEJzl3ah+cjIARJVwyjyDRCRjl8wYozUdUZaykn0Qgu7
-         cAAHln8Kj4fB00YawJ5221GIWxLHpfiW2MY9TLMbxjg2eR6K6nQNZ7mK3ufXYT47ZJ
-         2ZTyTSlZPyG+/EE5x5L3ZIyCcSwGmM0EjoC2mU4n2OOGziPHBRyb16gQ8pPm0Lp8TV
-         vYlcMIWBmnfyA==
-Received: by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1l2UEb-004BsZ-QE; Thu, 21 Jan 2021 08:18:25 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mayulong <mayulong1@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 19/21] mfd: hi6421-spmi-pmic: move driver from staging
-Date:   Thu, 21 Jan 2021 08:18:21 +0100
-Message-Id: <97696bbe44202ae4af15c4f799de65dca7de6d37.1611212783.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1611212783.git.mchehab+huawei@kernel.org>
-References: <cover.1611212783.git.mchehab+huawei@kernel.org>
+        id S1726777AbhAUHsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 02:48:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726600AbhAUG6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 01:58:14 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29EFC0613CF
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 22:57:32 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id b5so1032144pjl.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 22:57:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=rUtmDYOZWBTxf9UWZYyTgxEJymEAYD1V+CFm2Cwj5oE=;
+        b=zKWYsAaGAVfkuVwHuXb2le1Ng7fKUWMobE0WXs3dqRKkU7n5Wv1zcU3wNMT76oiTUz
+         lLVzgAHjb16iIK2ipXv5aBuUDH1vLeJBVPM325Qpf5SXYOkyopMaPwuzj3nGvEh3oyCZ
+         vgEJoAVBW7R8zdFmazofWHebI4dxKvt9zxdt0Dn8Qjx63oYuy7nbAnnjomTJxo7vm22G
+         GjD4th4VSyw84uD8FnaejQWDFGH8CYHr9zFqz0K4TT0kTjNzRo5mI/6sXlTdPLQqukqU
+         L0vHeWu+0istqq10w3eS3yE3urL9XpPvd8KdVeC7OIz6a8ktEPhgf4wjmXBK9dzx6y/h
+         NkNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rUtmDYOZWBTxf9UWZYyTgxEJymEAYD1V+CFm2Cwj5oE=;
+        b=G1Fn0e3xZq3jFFyUjw6DPRTgFfnMbTbisFdH7e3znJMSJP2SN2gmcKGOUiJXRgl+ne
+         GQXaAzZ8kNmi9SKCh+jtYmWw3FviWXnN+ghGqTEv0QMmwEhWxghwGiXgiZQyPPGjwN2d
+         OQgsM62vdSdhX5GH6MXtgynjvmIEwZWCjCMH2XVvDe4dli1zAOobqOygFNaC7EKf6FCj
+         4zF9KZ590ALPUvFhawuOWaWpMU9WV02T/OWTw86OcTCPMAZWaA9CmlHuDsKXe2tv0gq9
+         R+enC/ubXDdOLjNRs2oOtZJBts3qklWRPLghyQQiiFUUh9PMCyThOEkfLYQWZpjjNwv5
+         4LtA==
+X-Gm-Message-State: AOAM531hxYNNJkurOXuOu/QEccHB+7XK9UHOdxTbuvSGuSt3qP5X14Hj
+        n8kWH7ZxAdAjh7z+ikDGqPHMQA==
+X-Google-Smtp-Source: ABdhPJzhOl0HtEqutqCzxnWljZBU8BwIKjgI+j16tebtc4O5786lYFY0Hbxtp5+iVNVOGNHTqKEsXA==
+X-Received: by 2002:a17:902:ff04:b029:df:d5e5:9acc with SMTP id f4-20020a170902ff04b02900dfd5e59accmr334016plj.1.1611212252012;
+        Wed, 20 Jan 2021 22:57:32 -0800 (PST)
+Received: from localhost ([122.172.59.240])
+        by smtp.gmail.com with ESMTPSA id t2sm4593111pju.19.2021.01.20.22.57.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 20 Jan 2021 22:57:31 -0800 (PST)
+Date:   Thu, 21 Jan 2021 12:27:28 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     David Gibson <david@gibson.dropbear.id.au>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
+Subject: Re: [PATCH V5 5/5] of: unittest: Statically apply overlays using
+ fdtoverlay
+Message-ID: <20210121065728.trqph5uwvp43k46l@vireshk-i7>
+References: <cover.1611124778.git.viresh.kumar@linaro.org>
+ <696c137461be8ec4395c733c559c269bb4ad586e.1611124778.git.viresh.kumar@linaro.org>
+ <20210121005145.GF5174@yekko.fritz.box>
+ <7d6adfd9-da1e-d4ca-3a04-b192f0cf36b0@gmail.com>
+ <20210121053426.4dw5oqz7qb4y7hvm@vireshk-i7>
+ <20210121063438.GJ5174@yekko.fritz.box>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210121063438.GJ5174@yekko.fritz.box>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver is ready for mainstream. So, move it out of staging.
+On 21-01-21, 17:34, David Gibson wrote:
+> No, this is the wrong way around.  The expected operation here is that
+> you apply overlay (1) to the base tree, giving you, say, output1.dtb.
+> output1.dtb is (effectively) a base tree itself, to which you can then
+> apply overlay-(2).
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../mfd}/hisilicon,hi6421-spmi-pmic.yaml         |  0
- MAINTAINERS                                      |  7 +++++++
- drivers/mfd/Kconfig                              | 15 +++++++++++++++
- drivers/mfd/Makefile                             |  1 +
- .../{staging/hikey9xx => mfd}/hi6421-spmi-pmic.c |  0
- drivers/staging/hikey9xx/Kconfig                 | 16 ----------------
- drivers/staging/hikey9xx/Makefile                |  1 -
- 7 files changed, 23 insertions(+), 17 deletions(-)
- rename {drivers/staging/hikey9xx => Documentation/devicetree/bindings/mfd}/hisilicon,hi6421-spmi-pmic.yaml (100%)
- rename drivers/{staging/hikey9xx => mfd}/hi6421-spmi-pmic.c (100%)
+Thanks for the confirmation about this.
 
-diff --git a/drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-similarity index 100%
-rename from drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
-rename to Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 056777397c68..120f14620f56 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8006,6 +8006,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
- F:	drivers/spmi/hisi-spmi-controller.c
- 
-+HISILICON SPMI PMIC DRIVER FOR HIKEY 6421v600
-+M:	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+L:	linux-kernel@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-+F:	drivers/mfd/hi6421-spmi-pmic.c
-+
- HISILICON STAGING DRIVERS FOR HIKEY 960/970
- M:	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
- L:	devel@driverdev.osuosl.org
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 8b99a13669bf..c04c2f6be1d9 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -509,6 +509,21 @@ config MFD_HI6421_PMIC
- 	  menus in order to enable them.
- 	  We communicate with the Hi6421 via memory-mapped I/O.
- 
-+config MFD_HI6421_SPMI
-+	tristate "HiSilicon Hi6421v600 SPMI PMU/Codec IC"
-+	depends on OF
-+	depends on SPMI
-+	select MFD_CORE
-+	help
-+	  Add support for HiSilicon Hi6421v600 SPMI PMIC. Hi6421 includes
-+	  multi-functions, such as regulators, RTC, codec, Coulomb counter,
-+	  etc.
-+
-+	  This driver includes core APIs _only_. You have to select
-+	  individual components like voltage regulators under corresponding
-+	  menus in order to enable them.
-+	  We communicate with the Hi6421v600 via a SPMI bus.
-+
- config MFD_HI655X_PMIC
- 	tristate "HiSilicon Hi655X series PMU/Codec IC"
- 	depends on ARCH_HISI || COMPILE_TEST
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index 1780019d2474..7744993c42bc 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -233,6 +233,7 @@ obj-$(CONFIG_MFD_IPAQ_MICRO)	+= ipaq-micro.o
- obj-$(CONFIG_MFD_IQS62X)	+= iqs62x.o
- obj-$(CONFIG_MFD_MENF21BMC)	+= menf21bmc.o
- obj-$(CONFIG_MFD_HI6421_PMIC)	+= hi6421-pmic-core.o
-+obj-$(CONFIG_MFD_HI6421_SPMI)	+= hi6421-spmi-pmic.o
- obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
- obj-$(CONFIG_MFD_DLN2)		+= dln2.o
- obj-$(CONFIG_MFD_RT5033)	+= rt5033.o
-diff --git a/drivers/staging/hikey9xx/hi6421-spmi-pmic.c b/drivers/mfd/hi6421-spmi-pmic.c
-similarity index 100%
-rename from drivers/staging/hikey9xx/hi6421-spmi-pmic.c
-rename to drivers/mfd/hi6421-spmi-pmic.c
-diff --git a/drivers/staging/hikey9xx/Kconfig b/drivers/staging/hikey9xx/Kconfig
-index 6dc9f9307510..76337be330f8 100644
---- a/drivers/staging/hikey9xx/Kconfig
-+++ b/drivers/staging/hikey9xx/Kconfig
-@@ -11,22 +11,6 @@ config PHY_HI3670_USB
- 
- 	  To compile this driver as a module, choose M here.
- 
--# to be placed at drivers/mfd
--config MFD_HI6421_SPMI
--	tristate "HiSilicon Hi6421v600 SPMI PMU/Codec IC"
--	depends on OF
--	depends on SPMI
--	select MFD_CORE
--	help
--	  Add support for HiSilicon Hi6421v600 SPMI PMIC. Hi6421 includes
--	  multi-functions, such as regulators, RTC, codec, Coulomb counter,
--	  etc.
--
--	  This driver includes core APIs _only_. You have to select
--	  individual components like voltage regulators under corresponding
--	  menus in order to enable them.
--	  We communicate with the Hi6421v600 via a SPMI bus.
--
- # to be placed at drivers/regulator
- config REGULATOR_HI6421V600
- 	tristate "HiSilicon Hi6421v600 PMIC voltage regulator support"
-diff --git a/drivers/staging/hikey9xx/Makefile b/drivers/staging/hikey9xx/Makefile
-index 64b419cf7bca..d26af65baf8b 100644
---- a/drivers/staging/hikey9xx/Makefile
-+++ b/drivers/staging/hikey9xx/Makefile
-@@ -2,5 +2,4 @@
- 
- obj-$(CONFIG_PHY_HI3670_USB)		+= phy-hi3670-usb3.o
- 
--obj-$(CONFIG_MFD_HI6421_SPMI)		+= hi6421-spmi-pmic.o
- obj-$(CONFIG_REGULATOR_HI6421V600)	+= hi6421v600-regulator.o
+> Merging overlays is
+> something that could make sense, but fdtoverlay will not do it at
+> present.
+
+FWIW, I think it works fine right now even if it not intentional. I
+did inspect the output dtb (made by merging two overlays) using
+fdtdump and it looked okay. But yeah, I understand that we shouldn't
+do it.
+
 -- 
-2.29.2
-
+viresh
