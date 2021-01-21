@@ -2,93 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B185E2FF46E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:29:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 369FE2FF3DE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727127AbhAUT3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 14:29:08 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2397 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727339AbhAUTSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:18:48 -0500
-Received: from fraeml740-chm.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4DMBRF3rJgz67Yc3;
-        Fri, 22 Jan 2021 02:55:21 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml740-chm.china.huawei.com (10.206.15.221) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 21 Jan 2021 19:58:32 +0100
-Received: from localhost (10.47.68.198) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Thu, 21 Jan
- 2021 18:58:31 +0000
-Date:   Thu, 21 Jan 2021 18:57:50 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-CC:     <joro@8bytes.org>, <will@kernel.org>, <lorenzo.pieralisi@arm.com>,
-        <robh+dt@kernel.org>, <guohanjun@huawei.com>,
-        <sudeep.holla@arm.com>, <rjw@rjwysocki.net>, <lenb@kernel.org>,
-        <robin.murphy@arm.com>, <eric.auger@redhat.com>,
-        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-acpi@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-accelerators@lists.ozlabs.org>, <baolu.lu@linux.intel.com>,
-        <jacob.jun.pan@linux.intel.com>, <kevin.tian@intel.com>,
-        <vdumpa@nvidia.com>, <zhangfei.gao@linaro.org>,
-        <shameerali.kolothum.thodi@huawei.com>, <vivek.gautam@arm.com>
-Subject: Re: [PATCH v10 09/10] ACPI/IORT: Enable stall support for platform
- devices
-Message-ID: <20210121185750.000006d8@Huawei.com>
-In-Reply-To: <20210121123623.2060416-10-jean-philippe@linaro.org>
-References: <20210121123623.2060416-1-jean-philippe@linaro.org>
-        <20210121123623.2060416-10-jean-philippe@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1725320AbhAUTKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 14:10:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726942AbhAUTJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:09:55 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62C8FC06178B;
+        Thu, 21 Jan 2021 10:59:37 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id z11so2724533qkj.7;
+        Thu, 21 Jan 2021 10:59:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=RDTUmyi6TX1dMW73o3akqz8xuDPvL4pb5fyygLXF4I8=;
+        b=qhXcdVQsNa91XXCzLVDPU/KqxOxUQZkfZtbeQrwUU4IlsbysGk6QJ+Q3vOXbR9dmGl
+         r9jKgAaSXICozJbVVlFl0Qye8z7BCSKijeJM1ijBLLjv0vcbalesCtsDnUwoFXf90rPq
+         6+jgC6lftZJ2ESX97wnAn+KAARFJbSNugo9OHNnkP7rIaAscP84QXuvGsYe1G6eEM8XZ
+         DEDEql0vKSNM5ktuSfDfROgZbzSax7OQnCbuctNmmYeTZOy0KDyfVOC7PMrESzXHEdM/
+         1rtpIVkXx3jhDr+pSt4jN3gnXS+SwLQSEScht/y+OnRi3jqfmH1VjqVllnE4glJZeCIz
+         jiPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=RDTUmyi6TX1dMW73o3akqz8xuDPvL4pb5fyygLXF4I8=;
+        b=AfbOfDoK7aNb4gc6wzSdwXu4xAfJ7KGUNXfo3+izhJ8iT+iEYLSc3Bq2G1jqdGQgva
+         7Lkq+2S5317Mcp8ZENare8anhguQPese4LQSZEINDFj1WzKIWnDmCOzKToXFSAeXWiys
+         dO+aRylsgm09UuSBuMYdtc8c9gCdFWx2lul2taaXdOx85rDKXJYBEQfMsYF566vUEajO
+         ZLNiYtFDeD1Ijns2P1ZwB2gCUNZCXO1zxOKb8FC4wBaOUUNyI1G3ZsK7/qSWLZ/7+1Oe
+         CcfYRP5a2/tQcGfnNueIW91xD6vluMoixG8I8FcTyhgWllulOoMK5N5GSy97wsz70zzN
+         WexQ==
+X-Gm-Message-State: AOAM530Q5vCg3hEx5CsxvdZeyiZkG8pBoP4qtzePtCGekEJD+ouZ6BeP
+        L07xAiOfKOKCvCcbjX5uKf8=
+X-Google-Smtp-Source: ABdhPJwohk2DIFAJlac5ohtlYAVxOFCDRj/GRbEUUa3RQ01XDV7/9jInryHqvORzkYAcKk6YUf52KA==
+X-Received: by 2002:a05:620a:1206:: with SMTP id u6mr1183789qkj.209.1611255576713;
+        Thu, 21 Jan 2021 10:59:36 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id 196sm2961883qkl.4.2021.01.21.10.59.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jan 2021 10:59:35 -0800 (PST)
+Date:   Thu, 21 Jan 2021 19:59:33 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com,
+        kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sharadg@nvidia.com
+Subject: Re: [RESEND PATCH v6 4/6] arm64: defconfig: Enable Tegra audio graph
+ card driver
+Message-ID: <YAnPFV6WBDmJR7uU@ulmo>
+References: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
+ <1611048496-24650-5-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.68.198]
-X-ClientProxiedBy: lhreml719-chm.china.huawei.com (10.201.108.70) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="UNXIJuGPFxobgmD3"
+Content-Disposition: inline
+In-Reply-To: <1611048496-24650-5-git-send-email-spujar@nvidia.com>
+User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Jan 2021 13:36:23 +0100
-Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
 
-> Copy the "Stall supported" bit, that tells whether a named component
-> supports stall, into the dma-can-stall device property.
-> 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+--UNXIJuGPFxobgmD3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-FWIW given how simple this is :
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
+On Tue, Jan 19, 2021 at 02:58:14PM +0530, Sameer Pujar wrote:
+> This commit enables Tegra audio graph card driver which is based on
+> the generic audio-graph card driver. This is intended to be used
+> on platforms based on Tegra210 and later chips.
+>=20
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  drivers/acpi/arm64/iort.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
-> index c9a8bbb74b09..42820d7eb869 100644
-> --- a/drivers/acpi/arm64/iort.c
-> +++ b/drivers/acpi/arm64/iort.c
-> @@ -968,13 +968,15 @@ static int iort_pci_iommu_init(struct pci_dev *pdev, u16 alias, void *data)
->  static void iort_named_component_init(struct device *dev,
->  				      struct acpi_iort_node *node)
->  {
-> -	struct property_entry props[2] = {};
-> +	struct property_entry props[3] = {};
->  	struct acpi_iort_named_component *nc;
->  
->  	nc = (struct acpi_iort_named_component *)node->node_data;
->  	props[0] = PROPERTY_ENTRY_U32("pasid-num-bits",
->  				      FIELD_GET(ACPI_IORT_NC_PASID_BITS,
->  						nc->node_flags));
-> +	if (nc->node_flags & ACPI_IORT_NC_STALL_SUPPORTED)
-> +		props[1] = PROPERTY_ENTRY_BOOL("dma-can-stall");
->  
->  	if (device_add_properties(dev, props))
->  		dev_warn(dev, "Could not add device properties\n");
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
 
+Applied, thanks.
+
+Thierry
+
+--UNXIJuGPFxobgmD3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAJzxUACgkQ3SOs138+
+s6HJ3Q/+L0jCt+mm47rX9vykjTeqtyF8JyoUyIhqNIhYPtlqgW/Em7qfuq/lZ2M2
+dZysuBm51BUIZXN1mVZwBVXpvv7lbITPA2lbBaIA85hFvVThA2/wKrEC6GlEIiCx
+boRAWs3lDqFzU6sha+t6BIizmePN3rWMkvuJeuLCK6F4xov819o1NGRlG/uJJ4B4
+d6Q4CpGVvJDCU0h3raq+bXKRoXgzOUUX9xuCT6ZLzmQ2hRzuLi5M7pKm6TGGTxTw
+2ySGWiOaOouDqKErnq7KqOBEKHAdjfeelmU0gHMCBziO4fKG/Tcj1mv+8P/pg/HS
+TZSQRY7ExONu2W7UQB5SHxvFU/TLpnS15UF1+r426KkdPueCqQRdeDc5se8YzVuc
+VadOQGvEaOArxddyyyFSeWL7NFFVLG7ZB9B11hvsx71XGOFMJ3BNBEP8kwrr+thl
+azMw+U0JAu8Hikbd9UoqTl8xoRg3ihKJKmS1ilXPmnsx7ztHx1BhGojMW2bv8S4l
+Lf3VzmI9yGu/AbQ4wCB1WZShVr5nx36TpbZzorg72cBJx7zXjkNFadGpjfdRYnwb
+SXFuwnQIXngaAoRVlFH5MGRcY2klZRHU1DPdnm2FxH1F8DewCK6AfF0aWHGmrXHp
+RgsS7NHpckY8lQ3acKsx53I0B9XV8nYxNhtB291SLwkTP9Y5Je0=
+=n94E
+-----END PGP SIGNATURE-----
+
+--UNXIJuGPFxobgmD3--
