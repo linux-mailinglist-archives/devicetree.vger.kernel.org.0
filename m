@@ -2,173 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 858F62FE311
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 07:40:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E23202FE2E3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 07:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730858AbhATXny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 18:43:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54556 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733269AbhATVcT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 16:32:19 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 59FD52368A;
-        Wed, 20 Jan 2021 21:31:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611178292;
-        bh=9CXXn3DwKkTTYhGUSuO/SI53HoPSF8zgyeHYS4YvRdY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZmvEQDVtsexRf8n+ZOC1JbuBQnuBhbV+r3jD4kU3Q1tMAid8yX+yqYfJEbOdcXgMA
-         rj/QXs5sTJEgKtheY4gImRh4zCXvn8N2ChQdofm3pHRivCgOB+sxuai3yKlikVUe8k
-         0BmRxe14MAaAn1jeMSxzxdQbEaIjPFqRcdtyHRGAO007v7GUojsrvuJx0vbYiLCW4y
-         CE8T7v8FgFjOOFzn6XDR1a3R7a15VGz6LfvNskEJWJ+wrvKK3PCEo/X4rrgHOkc5EU
-         75qDn57wy4vXYALFVoUbkz6Mt+vLxPPKyyUcaTDi5ZRLHNNoPHr3mcqRXma66ALKFJ
-         ALtCNmZmqRqOg==
-Received: by mail-ed1-f49.google.com with SMTP id d22so76419edy.1;
-        Wed, 20 Jan 2021 13:31:32 -0800 (PST)
-X-Gm-Message-State: AOAM532/KVUKVt254MTD6P8nSQDMd2LjTVg/rD0zc+DIZF+ZlLMvwNBt
-        vB7ykdKkCU5Pwo1LmWdSaHIzxhd9Xi0AhQ6/oQ==
-X-Google-Smtp-Source: ABdhPJxxe7bmkr1qiyEvYmjNhUT8+sw1iAGIkRYDudgLedU+OdBCuc6+RqAv/YoEJ2MAoQJ7R76moo3AN8Iijs+CzYU=
-X-Received: by 2002:a05:6402:1751:: with SMTP id v17mr8944895edx.289.1611178290171;
- Wed, 20 Jan 2021 13:31:30 -0800 (PST)
+        id S1726580AbhAUGbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 01:31:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58464 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726576AbhAUGNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 01:13:43 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C3D2C061795
+        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 22:12:06 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l2TC4-0006PJ-3b; Thu, 21 Jan 2021 07:11:44 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l2TC2-00061d-7S; Thu, 21 Jan 2021 07:11:42 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Robin van der Gracht <robin@protonic.nl>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 3/7] ARM: dts: imx6dl-prtvt7: Add display and panel nodes
+Date:   Thu, 21 Jan 2021 07:11:37 +0100
+Message-Id: <20210121061141.23062-4-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210121061141.23062-1-o.rempel@pengutronix.de>
+References: <20210121061141.23062-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-References: <20210106034124.30560-1-tientzu@chromium.org> <20210106034124.30560-6-tientzu@chromium.org>
- <20210120165348.GA220770@robh.at.kernel.org> <313f8052-a591-75de-c4c2-ee9ea8f02e7f@arm.com>
-In-Reply-To: <313f8052-a591-75de-c4c2-ee9ea8f02e7f@arm.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 20 Jan 2021 15:31:17 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKjTqcCbCLksRbCh7=f-A3Y09A3jNqtUApaA+p=RKd_Eg@mail.gmail.com>
-Message-ID: <CAL_JsqKjTqcCbCLksRbCh7=f-A3Y09A3jNqtUApaA+p=RKd_Eg@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Grant Likely <grant.likely@arm.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Thierry Reding <treding@nvidia.com>,
-        Ingo Molnar <mingo@kernel.org>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        xen-devel@lists.xenproject.org, Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 11:30 AM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2021-01-20 16:53, Rob Herring wrote:
-> > On Wed, Jan 06, 2021 at 11:41:23AM +0800, Claire Chang wrote:
-> >> Introduce the new compatible string, restricted-dma-pool, for restricted
-> >> DMA. One can specify the address and length of the restricted DMA memory
-> >> region by restricted-dma-pool in the device tree.
-> >
-> > If this goes into DT, I think we should be able to use dma-ranges for
-> > this purpose instead. Normally, 'dma-ranges' is for physical bus
-> > restrictions, but there's no reason it can't be used for policy or to
-> > express restrictions the firmware has enabled.
->
-> There would still need to be some way to tell SWIOTLB to pick up the
-> corresponding chunk of memory and to prevent the kernel from using it
-> for anything else, though.
+Add Innolux G070Y2-T02 panel to the Protonic VT7 board.
 
-Don't we already have that problem if dma-ranges had a very small
-range? We just get lucky because the restriction is generally much
-more RAM than needed.
+Signed-off-by: Robin van der Gracht <robin@protonic.nl>
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ arch/arm/boot/dts/imx6dl-prtvt7.dts | 47 +++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
-In any case, wouldn't finding all the dma-ranges do this? We're
-already walking the tree to find the max DMA address now.
+diff --git a/arch/arm/boot/dts/imx6dl-prtvt7.dts b/arch/arm/boot/dts/imx6dl-prtvt7.dts
+index ae6da241f13e..d9cb1e41cc10 100644
+--- a/arch/arm/boot/dts/imx6dl-prtvt7.dts
++++ b/arch/arm/boot/dts/imx6dl-prtvt7.dts
+@@ -31,6 +31,30 @@ backlight_lcd: backlight-lcd {
+ 		enable-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+ 	};
+ 
++	display {
++		compatible = "fsl,imx-parallel-display";
++		pinctrl-0 = <&pinctrl_ipu1_disp>;
++		pinctrl-names = "default";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++
++			display_in: endpoint {
++				remote-endpoint = <&ipu1_di0_disp0>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++
++			display_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++
+ 	keys {
+ 		compatible = "gpio-keys";
+ 		autorepeat;
+@@ -138,6 +162,18 @@ led-debug0 {
+ 		};
+ 	};
+ 
++	panel {
++		compatible = "innolux,g070y2-t02";
++		backlight = <&backlight_lcd>;
++		power-supply = <&reg_3v3>;
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&display_out>;
++			};
++		};
++	};
++
+ 	reg_bl_12v0: regulator-bl-12v0 {
+ 		compatible = "regulator-fixed";
+ 		pinctrl-names = "default";
+@@ -149,6 +185,13 @@ reg_bl_12v0: regulator-bl-12v0 {
+ 		enable-active-high;
+ 	};
+ 
++	reg_3v3: regulator-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
+ 	reg_1v8: regulator-1v8 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "1v8";
+@@ -260,6 +303,10 @@ &ipu1 {
+ 	status = "okay";
+ };
+ 
++&ipu1_di0_disp0 {
++	remote-endpoint = <&display_in>;
++};
++
+ &pwm1 {
+ 	#pwm-cells = <2>;
+ 	pinctrl-names = "default";
+-- 
+2.30.0
 
-> >> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> >> ---
-> >>   .../reserved-memory/reserved-memory.txt       | 24 +++++++++++++++++++
-> >>   1 file changed, 24 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> >> index e8d3096d922c..44975e2a1fd2 100644
-> >> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> >> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> >> @@ -51,6 +51,20 @@ compatible (optional) - standard definition
-> >>             used as a shared pool of DMA buffers for a set of devices. It can
-> >>             be used by an operating system to instantiate the necessary pool
-> >>             management subsystem if necessary.
-> >> +        - restricted-dma-pool: This indicates a region of memory meant to be
-> >> +          used as a pool of restricted DMA buffers for a set of devices. The
-> >> +          memory region would be the only region accessible to those devices.
-> >> +          When using this, the no-map and reusable properties must not be set,
-> >> +          so the operating system can create a virtual mapping that will be used
-> >> +          for synchronization. The main purpose for restricted DMA is to
-> >> +          mitigate the lack of DMA access control on systems without an IOMMU,
-> >> +          which could result in the DMA accessing the system memory at
-> >> +          unexpected times and/or unexpected addresses, possibly leading to data
-> >> +          leakage or corruption. The feature on its own provides a basic level
-> >> +          of protection against the DMA overwriting buffer contents at
-> >> +          unexpected times. However, to protect against general data leakage and
-> >> +          system memory corruption, the system needs to provide way to restrict
-> >> +          the DMA to a predefined memory region.
-> >>           - vendor specific string in the form <vendor>,[<device>-]<usage>
-> >>   no-map (optional) - empty property
-> >>       - Indicates the operating system must not create a virtual mapping
-> >> @@ -120,6 +134,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
-> >>                      compatible = "acme,multimedia-memory";
-> >>                      reg = <0x77000000 0x4000000>;
-> >>              };
-> >> +
-> >> +            restricted_dma_mem_reserved: restricted_dma_mem_reserved {
-> >> +                    compatible = "restricted-dma-pool";
-> >> +                    reg = <0x50000000 0x400000>;
-> >> +            };
-> >>      };
-> >>
-> >>      /* ... */
-> >> @@ -138,4 +157,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
-> >>              memory-region = <&multimedia_reserved>;
-> >>              /* ... */
-> >>      };
-> >> +
-> >> +    pcie_device: pcie_device@0,0 {
-> >> +            memory-region = <&restricted_dma_mem_reserved>;
-> >
-> > PCI hosts often have inbound window configurations that limit the
-> > address range and translate PCI to bus addresses. Those windows happen
-> > to be configured by dma-ranges. In any case, wouldn't you want to put
-> > the configuration in the PCI host node? Is there a usecase of
-> > restricting one PCIe device and not another?
->
-> The general design seems to accommodate devices having their own pools
-> such that they can't even snoop on each others' transient DMA data. If
-> the interconnect had a way of wiring up, say, PCI RIDs to AMBA NSAIDs,
-> then in principle you could certainly apply that to PCI endpoints too
-> (presumably you'd also disallow them from peer-to-peer transactions at
-> the PCI level too).
-
-At least for PCI, I think we can handle this. We have the BDF in the
-3rd address cell in dma-ranges. The Openfirmware spec says those are 0
-in the case of ranges. It doesn't talk about dma-ranges though. But I
-think we could extend it to allow for BDF. Though typically with PCIe
-every device is behind its own bridge and each bridge node can have a
-dma-ranges.
-
-Rob
