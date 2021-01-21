@@ -2,84 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD742FE0E5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:41:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6173B2FE0BB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:32:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726176AbhAUEkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 23:40:47 -0500
-Received: from mail.v3.sk ([167.172.186.51]:43646 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732044AbhAUDzp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 22:55:45 -0500
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 8290FE0AAE;
-        Thu, 21 Jan 2021 03:37:45 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id LcSkUZQy2OKO; Thu, 21 Jan 2021 03:37:45 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 025ECE0AA6;
-        Thu, 21 Jan 2021 03:37:45 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id pXgSsFwuFnmt; Thu, 21 Jan 2021 03:37:44 +0000 (UTC)
-Received: from localhost (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id C10F2E0AA9;
-        Thu, 21 Jan 2021 03:37:44 +0000 (UTC)
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lubomir Rintel <lkundrak@v3.sk>
-Subject: [PATCH 10/12] ARM: dts: mmp3-dell-ariel: Add the power button node
-Date:   Thu, 21 Jan 2021 04:41:28 +0100
-Message-Id: <20210121034130.1381872-11-lkundrak@v3.sk>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210121034130.1381872-1-lkundrak@v3.sk>
-References: <20210121034130.1381872-1-lkundrak@v3.sk>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        id S1727964AbhAUEb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 23:31:28 -0500
+Received: from mga06.intel.com ([134.134.136.31]:11852 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726123AbhAUEOU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 23:14:20 -0500
+IronPort-SDR: zF5tu2wdk9LnvIgCINtJSg1rgLf2Mr7CMGdnqrgXnN0XMNIG906Fa2V379FjLLfQJ3rkxEIrm8
+ WKvDmASWGrjg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="240755743"
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
+   d="scan'208";a="240755743"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2021 20:12:22 -0800
+IronPort-SDR: njPOBu4LcriKX6PHAigfnEp1F4PwrR+KhFjsYXuGIvbaXpGf84K2YcvI1oY4Sy1uhoNerTI9I/
+ J7X+i7eFSDCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
+   d="scan'208";a="400021030"
+Received: from sgsxdev004.isng.phoenix.local (HELO localhost) ([10.226.81.179])
+  by fmsmga004.fm.intel.com with ESMTP; 20 Jan 2021 20:12:20 -0800
+From:   Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+To:     dmaengine@vger.kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, chuanhua.lei@linux.intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        mallikarjunax.reddy@linux.intel.com, malliamireddy009@gmail.com
+Subject: [PATCH 1/1] dt-bindings: dma: intel-ldma: Fix for JSON pointers syntax error
+Date:   Thu, 21 Jan 2021 12:12:18 +0800
+Message-Id: <2c0d0d87352a3af132c4eb18e9e1581e03b03eba.1611202226.git.mallikarjunax.reddy@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for the power button attached to the Embedded Controlle=
-r
-on a Dell Wyse 3020 "Ariel" board.
+There have been some fixes for JSON pointers and tools check now got this is missing a '/'.
+Add missing a '/' in '/schemas/types.yaml#definitions/uint32'
 
-However, while the EC itself is controlled via I2C, the input capability
-for the power button acts as a separate device attached to the SPI, hence
-it has a separate device node.
-
-Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+Signed-off-by: Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
 ---
- arch/arm/boot/dts/mmp3-dell-ariel.dts | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/dma/intel,ldma.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/mmp3-dell-ariel.dts b/arch/arm/boot/dts/mm=
-p3-dell-ariel.dts
-index 565cd0fadf3d3..c4a6bd876d849 100644
---- a/arch/arm/boot/dts/mmp3-dell-ariel.dts
-+++ b/arch/arm/boot/dts/mmp3-dell-ariel.dts
-@@ -119,8 +119,16 @@ firmware-flash@0 {
- };
-=20
- &ssp2 {
--	cs-gpios =3D <&gpio 56 GPIO_ACTIVE_LOW>;
- 	status =3D "okay";
-+	cs-gpios =3D <&gpio 56 GPIO_ACTIVE_LOW>;
-+
-+	power-button@0 {
-+		reg =3D <0>;
-+		interrupt-parent =3D <&gpio>;
-+		interrupts =3D <60 IRQ_TYPE_EDGE_RISING>;
-+		compatible =3D "dell,wyse-ariel-ec-input", "ene,kb3930-input";
-+		spi-max-frequency =3D <33000000>;
-+	};
- };
-=20
- &gpu_2d {
---=20
-2.29.2
+diff --git a/Documentation/devicetree/bindings/dma/intel,ldma.yaml b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+index 866d4c758a7a..a5c4be783593 100644
+--- a/Documentation/devicetree/bindings/dma/intel,ldma.yaml
++++ b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+@@ -56,7 +56,7 @@ properties:
+     maxItems: 1
+ 
+   intel,dma-poll-cnt:
+-    $ref: /schemas/types.yaml#definitions/uint32
++    $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+       DMA descriptor polling counter is used to control the poling mechanism
+       for the descriptor fetching for all channels.
+-- 
+2.17.1
 
