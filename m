@@ -2,89 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E7EB2FE02D
+	by mail.lfdr.de (Postfix) with ESMTP id ABF672FE02E
 	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 04:52:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727155AbhAUDwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 22:52:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733244AbhAUBr1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 20:47:27 -0500
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2552C06179B
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:45:59 -0800 (PST)
-Received: by mail-oo1-xc2b.google.com with SMTP id x203so122865ooa.9
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 17:45:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6KQrJpxzoEOP183dwS54dhdJ00ZQkcSYlNAckMrfyS4=;
-        b=pWN+Q8SFX0/VoEi62+5ReF1K5LVJ8inQdlJsatRbtoMa9Or+sx8ejT9jJ7YkPOvzlU
-         mKLchPlYnhLgHBRTt90Kln+V0lXx0QutBR5YeXqVCkxuZ8I4nLHsj2nE9NgOqIqlCCOJ
-         NMNvqyJihw6wqTUCccLQXOAoHPRhHzegPzrg5qqetLwqCxBumeiaqBqZNEiuALRgD9qx
-         OGpTwXSF5PgxONbhZPcT/qm67ZhKr4yObFx5PoRcJNt4Ger4FMuHf48qWG8m+3+aK9PF
-         xRW52FzedpD6N7xXriTG8t2lngDRnNnqBz8eaITE62Jf8+z8DljEU2NSqRRZCmR0ON06
-         Q8Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6KQrJpxzoEOP183dwS54dhdJ00ZQkcSYlNAckMrfyS4=;
-        b=CD82m3OJ6q6UBGtOyp7gOcYVU/Gl6jtSmHiRcbZJ6NaEl15VCjoe8KN8zdW4JYMJxK
-         Y+REiS49RvEgRvyjPgQupdufggEbRe/p4rc6fpy+/Ujh9tzq8b6ylSXDGHdDLyUAhOtL
-         SNAo6rh9hCwjvTYidSOfpnj2EB1KqgHAASkKKhHNfW99/FE1CA5lHP1yQAtyQyYvZ++a
-         8YQkTQthSlIT+sRTT/MEsaiXpZbCdJ7qFCELh+9e7koHFcBhUuYxXgTdEYLRauEXqDdv
-         PziAgk+cps2I0YYPlvOXUMvW80zg1LbEeKak+nNn6YSEMZnh1g3ByFeoR9tGU9AlHe07
-         Pp/g==
-X-Gm-Message-State: AOAM532MCR7mJMpUrCUYsgEmLwGYE6qBPD4AGU2I8ekU8T6F25j4PQEj
-        Uo+qLmc7K+g8gZyxUdnICilCQw==
-X-Google-Smtp-Source: ABdhPJw7hcw3C3V4C4SQV3doWhAKFFrJsBA2zpYFqPvJYlRSPdw9RtlatXpFYUcp9cqtI/6r1ZGBTQ==
-X-Received: by 2002:a4a:9608:: with SMTP id q8mr3051298ooi.79.1611193559419;
-        Wed, 20 Jan 2021 17:45:59 -0800 (PST)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j17sm784398otj.52.2021.01.20.17.45.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jan 2021 17:45:58 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] soc: qcom: aoss: Add SC8180X compatible
-Date:   Wed, 20 Jan 2021 17:46:06 -0800
-Message-Id: <20210121014606.1612668-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210121014606.1612668-1-bjorn.andersson@linaro.org>
-References: <20210121014606.1612668-1-bjorn.andersson@linaro.org>
+        id S1727760AbhAUDwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 22:52:46 -0500
+Received: from mail-eopbgr130058.outbound.protection.outlook.com ([40.107.13.58]:35302
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731553AbhAUDV2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 22:21:28 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i8x59aWAAPEgHqAkn6o4eEaOXend9GBDUQRy7/jrVaCzauvASkHQoTCQnk7MpwAlqLrbRPVp/4qtQgbc4H69oBLolvxEilDqiEQvUfq9hm3RPPJHGEBZ7dzRDoITD6A++PPkSEAJgQMMaRCfAo/BJoWzevbjD4Ge56VDikoYXKuRiENrd8s7y0qhM3b/Q3qt9djxplw8eXnZ+eOi2VXeLmDpRHrzCpYY/WtIg5JMq34ETqYl8iUWzYlsbXBOTH3zM9ijQm1noliP/DexU6jPv1K35PWDMK7YxnT797u75xb+bdVGZ+xlTnL48pWDkmB9OpfRjkKNM3Vy9wmu7mWN3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WAAIPKJbSEtADFFLlSVi/BaMTbhTcAAhRRXIR31n108=;
+ b=dA8tyGc1ZtcvdYtluzs13UQjL2LmzfBJGklCQqBjn2B7y9FDG5om6wSpv9e1fcvX3/aPM1qhKfAKPAfYEyZrguhJzafIn927VvQC9X/xfYgNX+SmW6q1Nil5hyflAPNHq2qfQwZDJNW4861HnnkSmEKVy8nAjY6vnDRnX66JFXzaruvC4u3hQvVEg+fAs65PMEt1lMK4tEm2ddO5bQzUPqnSLFBKBvTl6mC5Yvayg9PUuyIki+nIciy4J9N8shsDTwL+sn14WUmLUd5Int/TNPloVIMweryHIzMHrpLBuliIRRV7nJJ0TixR2ExAdGbbG7g90x0axtiJtr6UUtdyYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WAAIPKJbSEtADFFLlSVi/BaMTbhTcAAhRRXIR31n108=;
+ b=svB9iy7paqTERkpd252yTnfgrorZOBhi6iXF1vomvMMqCRcl7w7ezABQfowhfFXLvpwSBlA4eMfrFYS+veRc87Hw7uPCgkRhKBGKEUwAMyJlEVZwEFfeeXmxMLub6teHIDWoyQD0fTc3/93GETlU82Ens0Ml1Y8Xwrf9oW7H4AQ=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB8PR04MB6858.eurprd04.prod.outlook.com (2603:10a6:10:113::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Thu, 21 Jan
+ 2021 03:20:15 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c964:9:850a:fc5%10]) with mapi id 15.20.3763.016; Thu, 21 Jan 2021
+ 03:20:15 +0000
+From:   peng.fan@nxp.com
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, shawnguo@kernel.org,
+        adrian.hunter@intel.com
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2 0/4] imx esdhc dt/driver update
+Date:   Thu, 21 Jan 2021 11:09:49 +0800
+Message-Id: <1611198593-16287-1-git-send-email-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SGXP274CA0005.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::17)
+ To DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SGXP274CA0005.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 03:20:10 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 3f61199a-0a6f-4229-f9a6-08d8bdbb7839
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6858:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB68583F395126D856221411F688A10@DB8PR04MB6858.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: P4TyBOU7DU1qNozgBmTcyuy1yQIeepi2AoRBqJTh4D+Id+qGRVD86wfajPp5oUGpX6np67cNa8x8D8v70RJtOe8NmCg3txb3kJWuECjetqtvtaXC6YapQ3eu7Ep5pfNlI4mTDOcWFbPFPMGsODmZpRsdtJo5TaVNksDheJfc1E8ZigpEYltmw7qBOcPhjq4iZAuV7JZZhGLaGw6FAWNfKS7UcEfDWpWNlH16BErS5JhLBiR91PEm09BikldNBmyJupxoE/x9/+/BIqSCUFaJlyAIa6AsYTS/fERg9CRySNzlnhrijlsSpXU98b+270WbXCq5Hh0/sNzzlCU4rUl57qSfFy6ctJg9tfJ/LZgSfk8KOT0Ya/FhEnYRxg6mZI/NOjsVQ9zvYOvnBcB9/fwYhs85wzVRXhzXP6vK030oGkixKPSX2Im0CUsbKK9QM8NS
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(136003)(376002)(396003)(366004)(86362001)(4744005)(36756003)(6486002)(8936002)(186003)(16526019)(15650500001)(6666004)(66476007)(7416002)(316002)(6512007)(8676002)(5660300002)(66556008)(52116002)(83380400001)(478600001)(66946007)(2906002)(4326008)(6506007)(26005)(956004)(9686003)(2616005)(69590400011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?HT00WrN1ftHm6CDgfHRcABtL5em49E+HxSZ07xox7yLefIcSLDDTBp6+Np2i?=
+ =?us-ascii?Q?BUjwx52MKwUGcBhUbM1BTX7QynndLqyZJqQ9TqCnT4hEWparD5QwkdsuQx+4?=
+ =?us-ascii?Q?fUthSaxDOrvOxNz4A9Scu850KZS5vVW60AWIcJlTzB8oWJ4EbZXW+npOTSfB?=
+ =?us-ascii?Q?y/pue8oOZQq2Q1BGwS7VtrSIbkJP3+04J9f+9haRWGgXMDvuwFOty84quf1m?=
+ =?us-ascii?Q?F30BHJN0MU67WbFnYJpa6sjBzxmURWGsdOaZv9XrmLJHjyYYQAS0oEXffA7F?=
+ =?us-ascii?Q?n9FQgLN3dkmJojDGcsXGdoBb6z9w51VZ6W6mLg0SalZPeuLllu8+inPkfpnh?=
+ =?us-ascii?Q?QKWxNbgh4H9bj+0wOiUbXJ7StQM5t1yqLFy8jO4DeparAmASGxgNgD6uROoz?=
+ =?us-ascii?Q?bJdEutPCdoI3LzlzBBvObidczDJwXbQ1+nCW2z0gNGbxAHERPwF9nuRQ5tfd?=
+ =?us-ascii?Q?KXsCLpHc1sd9HBVu8ZaKYqnnzU0ZGuamQ0LtC8eCQsl4G/MTJqmOV60WdfAp?=
+ =?us-ascii?Q?693sD5bzcSe54gfOeaGWRsVJe9HZRJOcwXV3mr3L/0uxQCL7bf2Dzz1cXEJo?=
+ =?us-ascii?Q?hIipzlqpKPBzsW1yLjJd8NjeN3TwUynTgQ96SXxGYDYNyCeZQOLhpfVaDX4Z?=
+ =?us-ascii?Q?+c86lAJNCYZTA28d6xBqDBxXwL7cXKH44wnrJYflPMITCcxRwTUdW/P48Fei?=
+ =?us-ascii?Q?7VHemhbQ3bfFqDWiVWiIFs77V+Hct71DJBbDyoPUkDOmRiLELPIDxUIt49jy?=
+ =?us-ascii?Q?i5aUepx2jx0XjoHgLfhdDVkEnUIIE6MLif5sXli1xqCRPtPvx3EzuhSCS9Hq?=
+ =?us-ascii?Q?ocPjX9f4ng1y3wYtqqkHYTCK47vxsSzngZnZwcxdzNm8FtxLbaWYkgKVu1ca?=
+ =?us-ascii?Q?usQ7svl8AkRw+iWLKf7zV7/cMIh8bIWg1PtpLcpBSFLiOwhWG5fnKUuH4Gsm?=
+ =?us-ascii?Q?/NznryEQ/FUswyDFRguqtvYFSw8Inn66veTGyV2yzho6IjnrhPdg5BjCy8Iy?=
+ =?us-ascii?Q?AerN?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f61199a-0a6f-4229-f9a6-08d8bdbb7839
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 03:20:15.3371
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BQ4HnPTjxwBI6XHpo6DQcJvWfNmSrtsLiKgybDkvqMqTqh6N6J1CdhK5swzRdBbStP1650UHA7hY7JmO5m3i4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6858
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm SC8180X platform has an AOSS that needs to be communicated
-with, add a compatible for this.
+From: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/soc/qcom/qcom_aoss.c | 1 +
- 1 file changed, 1 insertion(+)
+Patch V2:
+ patch 1, 2, 3 is new
+ patch 4 is not changed
 
-diff --git a/drivers/soc/qcom/qcom_aoss.c b/drivers/soc/qcom/qcom_aoss.c
-index b5840d624bc6..bc01ff7c5d3f 100644
---- a/drivers/soc/qcom/qcom_aoss.c
-+++ b/drivers/soc/qcom/qcom_aoss.c
-@@ -597,6 +597,7 @@ static int qmp_remove(struct platform_device *pdev)
- 
- static const struct of_device_id qmp_dt_match[] = {
- 	{ .compatible = "qcom,sc7180-aoss-qmp", },
-+	{ .compatible = "qcom,sc8180x-aoss-qmp", },
- 	{ .compatible = "qcom,sdm845-aoss-qmp", },
- 	{ .compatible = "qcom,sm8150-aoss-qmp", },
- 	{ .compatible = "qcom,sm8250-aoss-qmp", },
+Peng Fan (4):
+  dt-bindings: mmc: fsl-imx-esdhc: add pinctrl bindings
+  dt-bindings: mmc: fsl-imx-esdhc: add clock bindings
+  arm64: dts: imx8qxp: correct usdhc clock-names sequence
+  mmc: sdhci-esdhc-imx: validate pinctrl before use it
+
+ .../bindings/mmc/fsl-imx-esdhc.yaml           | 36 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 18 +++++-----
+ drivers/mmc/host/sdhci-esdhc-imx.c            |  2 +-
+ 3 files changed, 46 insertions(+), 10 deletions(-)
+
 -- 
-2.29.2
+2.28.0
 
