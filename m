@@ -2,161 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2F62FEB66
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 14:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1980E2FEBB5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 14:26:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731770AbhAUNRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 08:17:46 -0500
-Received: from mail-dm6nam10on2056.outbound.protection.outlook.com ([40.107.93.56]:40001
-        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729362AbhAUNRo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 08:17:44 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Bz8u95dt58gqTHOSgHayp0CH/FWEKRMMfsWHn/v56H4tHMmvp7Dvz6sNL2OLbayjywPIcnYyjqv1VjA2GNqe5N50cN0o0pS+N325T6IfSegoFnu9nEPnuwZ8CTUnakabYQN2L47ce6TvZkZtnP1fBgQJiBQNcwT+TU6wqrovU80+L0DgVZwsTwHsBO5PWF+S6hYWpKY6cQlEeEpu7+ZrCzpJhVsFmTrJQFd9J8jiuhmtmh+D6yP+F5ch4t1AGhYkK4jVlR4GM/AUMx4WSnk4FS9Llza5mxRC8xBUjK2piGP3FmXcw2J42od7scVL8u9UojY+CTvQdx1Kpo3Zopjgsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W4iV8JlrChXVwJNcCPnJ3slBnEfdEFuAvc3z0g4cwaM=;
- b=LsFOG8XstqG+FNtolkda8EVlXDeOmTPowtMSdUivpPyRSEzZxepmSPPveqE77BFYlFk6b0aIHY6k+cW1zjat7qbeCj8O/ULlys/b0BAbNQD5s1upfXTR4tB5VKJUhgd3dS/m0SX7IquMmR9Rfj4Gv2mQXI2ViOCy7ZO/5c/3ZY+i3b7HCZgq5EjOD7qfPylzji1AN/DMRib8S0TxNtYYIOtt39D1LuYd0jeV8jtWR1zyT1sALynF7iDQU+ljkm6jFt8R8EZtD87qxjwHhBU+4L+KpsPtsCowy494c3yRyAJJLsR3lrK2iLC/nKH64iS+PbjdAXma8ZTUpwk728dpNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W4iV8JlrChXVwJNcCPnJ3slBnEfdEFuAvc3z0g4cwaM=;
- b=Z/mv30mWdNXHitSxklq5eynbdBC+YQqQDpOlyjEij3diYuVtxEreq9lQAD9Zec8P55pBtv+A+iIobeX8k45A1OwFEiYk0oKx6t8L9pgUqjE/ISZMMEUQkm4v2lfzWw/TsAAyGi+oqc3wS6iY4U9ieU6L6v/MjubZo2o8Hc6byz0=
-Received: from CY4PR03CA0021.namprd03.prod.outlook.com (2603:10b6:903:33::31)
- by CH2PR02MB6822.namprd02.prod.outlook.com (2603:10b6:610:a5::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Thu, 21 Jan
- 2021 13:16:44 +0000
-Received: from CY1NAM02FT024.eop-nam02.prod.protection.outlook.com
- (2603:10b6:903:33:cafe::79) by CY4PR03CA0021.outlook.office365.com
- (2603:10b6:903:33::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11 via Frontend
- Transport; Thu, 21 Jan 2021 13:16:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- CY1NAM02FT024.mail.protection.outlook.com (10.152.74.210) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 13:16:44 +0000
-Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Thu, 21 Jan 2021 05:16:43 -0800
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Thu, 21 Jan 2021 05:16:43 -0800
-Envelope-to: michal.simek@xilinx.com,
- soc@kernel.org,
- olof@lixom.net,
- arnd@arndb.de,
- robh+dt@kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- michael@walle.cc
-Received: from [172.30.17.109] (port=33970)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1l2ZpL-0005T1-Ej; Thu, 21 Jan 2021 05:16:43 -0800
-Subject: Re: [PATCH 0/3] add Ebang EBAZ4205 support
-To:     Michael Walle <michael@walle.cc>,
-        Michal Simek <michal.simek@xilinx.com>
+        id S1731763AbhAUN0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 08:26:25 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:58272 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732039AbhAUNXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 08:23:47 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10LDMlUh064165;
+        Thu, 21 Jan 2021 07:22:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611235367;
+        bh=ShM+zA/H2YNuNsAncetEgSAH/khbyu9SxLHrWCGPxlI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=sTO2EXVBpOvd1d+JuZb+Bb7ph/RO+wb+diHik5mgphdmkUOydu6UoHI/wF4v+gsHD
+         YxA+DGNlGusP8VCz/3d29d8lYOBNhmyq+2ATIwdjKhSEOq5rS8jshBByzfdIq6JZjF
+         xXq0XyaZZUetM3wNZPtSq1JgxocZsQqxNSC4T8Lk=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10LDMlbA130278
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 Jan 2021 07:22:47 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
+ Jan 2021 07:22:47 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 21 Jan 2021 07:22:47 -0600
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10LDMiWn111013;
+        Thu, 21 Jan 2021 07:22:45 -0600
+Subject: Re: [PATCH v2 0/5] arm64: Initial support for Texas Instruments AM642
+ Platform
+To:     Dave Gerlach <d-gerlach@ti.com>, Nishanth Menon <nm@ti.com>
 CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Arnd Bergmann" <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        <soc@kernel.org>
-References: <20210120194033.26970-1-michael@walle.cc>
- <fff420d1-fc9a-23ce-0d07-58a3c6f10c4d@xilinx.com>
- <aa96fcaa362181d4b6fef9f1de0aa914@walle.cc>
- <0a1c6ebf-1d5b-4f06-56db-f04e87d2ae9a@xilinx.com>
- <bd86194a13882ce472764d0c91029e33@walle.cc>
- <8917c9a1-09e9-0a39-5732-da7f555ae9ad@xilinx.com>
- <df072e37bb6f3500d713be565cfa1328@walle.cc>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <cbfc4899-eb92-938a-95f2-23ca9485beaf@xilinx.com>
-Date:   Thu, 21 Jan 2021 14:16:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tony Lindgren <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210119163927.774-1-d-gerlach@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <efa935e2-72d3-cc9f-d182-ab852bc9ce6c@ti.com>
+Date:   Thu, 21 Jan 2021 15:22:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <df072e37bb6f3500d713be565cfa1328@walle.cc>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20210119163927.774-1-d-gerlach@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8c605587-92dc-48a9-593b-08d8be0ecc76
-X-MS-TrafficTypeDiagnostic: CH2PR02MB6822:
-X-Microsoft-Antispam-PRVS: <CH2PR02MB68225FF1E0499E7E055F2C23C6A10@CH2PR02MB6822.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w0ejWB0UxGQmDvvC45adH/vso9xDsSKzNutt0RMx877DGCXJ78BCDU6cVYvYjTve0B8e7EVoPQspMJjd763l7787d3aXePr0RnrFF6DfVWnl710ABEY6rqpNjvtV1qg3qxGDZLkpQIEVz01I1WoQTB1up+pjtcy71ajRdBa857xyAA0Tis+i70vOlKiT24tIOGreW0eXVnhiakZ+n03ZAl58PObLorXRkBdEFYtw9a9wjeop/Utuva96UPMmzReZ0onTMmtWLXP0op0ZZl5MojogNOyU57UyeW6Y9TAD52zn62rLhYhVrPh66izSuzOJzzuFx/KXzMfkVaTTvNJ+1vkRbseQmpnWN9LInEuESZ5plMBeXKINyqn0JE8NWHgYz/9eMWrQj+TyZjF62yPW4fgnfiFTiYZSUA+5pOiyd/p2FbJdpjiKdhFXOJiUso4+WjfplkXjAEcswmhV0N0iEYiIfk4dwz1nLTOsnZWPliIGv/IyHFV0iEt1dFnke+9IQ8sbNjbvRg87Ae5+93ZNqw==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(136003)(346002)(396003)(39860400002)(46966006)(4326008)(70586007)(9786002)(82310400003)(70206006)(82740400003)(110136005)(83380400001)(336012)(44832011)(31686004)(54906003)(2616005)(31696002)(36906005)(356005)(8936002)(186003)(478600001)(7636003)(53546011)(5660300002)(2906002)(8676002)(47076005)(316002)(36756003)(26005)(426003)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 13:16:44.1423
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c605587-92dc-48a9-593b-08d8be0ecc76
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT024.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6822
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 1/21/21 11:41 AM, Michael Walle wrote:
-> Hi,
+On 19/01/2021 18:39, Dave Gerlach wrote:
+> This is v2 of the series to add initial support for the latest new SoC,
+> AM642, from Texas Instruments. Version 1 can be found at [1]. Additional
+> detail can be found in the patch descriptions, also see AM64X Technical
+> Reference Manual (SPRUIM2, Nov 2020) for further details:
+> https://www.ti.com/lit/pdf/spruim2
 > 
-> Am 2021-01-21 11:23, schrieb Michal Simek:
->>>> Back to your case. Board is cheap which is not all the time case for
->>>> any
->>>> xilinx board but you have only uart, sd and partially described
->>>> ethernet
->>>> which doesn't work without PL. Is it worth to have this described?
->>>
->>> I got your point. But it is at least a jump start for the users if that
->>> board boots out of the box. And yes, its unfortunate, that ethernet
->>> just works if the PL is configured. This is already done by the
->>> bootloader, because there I do have the same problem.
->>
->> Zynq/ZynqMP boards can use U-Boot SPL. "Advantage" of this solution
->> especially for Zynq is that in u-boot there is open a way for adding
->> ps7_init file which is determined by device tree name.
->> I think it would make sense to add these DTs and also ps7_init to U-Boot
->> project and wire it up with zynq_virt platform and then you can boot
->> Linux with using U-Boot's DT pointed by $fdtcontroladdr.
->> Then you will get support from scratch to be able to boot.
+> Since v1, several new bindings have made it in linux-next so we can
+> now include those nodes using them here. The spi, i2c, and mmc nodes
+> have now been added along with DMA support. Specifics about changes
+> from v1 are included with each patch.
 > 
-> I already have patches for u-boot (using SPL). But my impression was
-> that linux is the master for the device trees. Esp. if there are some
-> problems with the board its often useful to have an in-tree device
-> tree.
+> Regards,
+> Dave
 > 
-> What is the difference between this board and the other zynq boards
-> in the kernel?
+> [1] https://lore.kernel.org/linux-arm-kernel/20201125052004.17823-1-d-gerlach@ti.com/
 > 
-> In any case, please make this decision now: will you accept this
-> device tree or not?
+> Dave Gerlach (4):
+>    dt-bindings: arm: ti: Add bindings for AM642 SoC
+>    dt-bindings: pinctrl: k3: Introduce pinmux definitions for AM64
+>    arm64: dts: ti: Add support for AM642 SoC
+>    arm64: dts: ti: Add support for AM642 EVM
+> 
+> Peter Ujfalusi (1):
+>    arm64: dts: ti: k3-am64-main: Enable DMA support
+> 
+>   .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+>   arch/arm64/boot/dts/ti/Makefile               |   2 +
+>   arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 406 ++++++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi       |  76 ++++
+>   arch/arm64/boot/dts/ti/k3-am64.dtsi           | 103 +++++
+>   arch/arm64/boot/dts/ti/k3-am642-evm.dts       | 258 +++++++++++
+>   arch/arm64/boot/dts/ti/k3-am642.dtsi          |  65 +++
+>   include/dt-bindings/pinctrl/k3.h              |   5 +-
+>   8 files changed, 920 insertions(+), 1 deletion(-)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am64.dtsi
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am642.dtsi
+> 
 
-If you promise to regularly test it I am fine with it.
+Tested-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
-Thanks,
-Michal
+-- 
+Best regards,
+grygorii
