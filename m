@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3D92FE798
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA0622FE79F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:30:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729348AbhAUK3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:29:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56768 "EHLO
+        id S1729409AbhAUK3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 05:29:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729332AbhAUK2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:28:48 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325E3C061798
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:17 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id g12so1840999ejf.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:17 -0800 (PST)
+        with ESMTP id S1729400AbhAUK3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:29:35 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A124FC06179C
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:20 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id bx12so1797725edb.8
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=TTcoPBZF7B/GvLemNDb8587uLFmrB6rGDabgy89PTP4=;
-        b=TEYoQY/HXH30/FU9hcm1kXWqGckPQS6NxjIoRLAdEeLK8kleLFQ8EM9Pqo5Z9r8WXB
-         cdhyF48FB6Olh0alNKS4uo+riEY3kRBCCEYMhwvwb/0y01o0jIImwIZRmwpcZ36XWBlX
-         wpHEk/UX3xW+uVTxD7Axe4sWnFfCwu8WuDCeOmqWvB6t3iSctRlPOnOTjvKiKSw97FqL
-         Yk2HSjUndYUdiiMXDldijtUemPDvso6ZTJui3CugePfdmE0/ztYZ4a2isFKB6axqCVon
-         c751xumC2Orf/m3etAmCjvXpznIQFgdNEc+U2bL1RNBOAc0D373doXWMChI2e2Sp3bu7
-         ruaQ==
+        bh=DDHtgVgCI3xoR+2tl7rSC8UaomaVNk4TcynImS9GqP0=;
+        b=ew4E+0kbc9NbV8dzIIhFrWdPPYQfUke68fhFjgy5mYLF3hFUsZmOuGMO/0cHt2i6KL
+         KQvAfS6eaFOr3hRpdQPhsg9D9umot9ObpJiXz3UiMlOpLTQDmXNp7xBsG39uPKurZjdi
+         6FxEvqv+rP4hYQxtUYStYKn85KGLMU6wZo/54oMwE7RwICSELCUyw+W1cgEayR0T0vXa
+         WUmkDstsP/hScUX59RQlP4tTDZUfE15IERhCKx/SFidpw3bjSYDHR6Fy1u6QjJCtdCGN
+         E3jiN7CpuCXRD5diXgky2WL4CYqmajScw4nEAg0iGT2yZizl0I6O03nynB8jRoq1jhBr
+         lpgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=TTcoPBZF7B/GvLemNDb8587uLFmrB6rGDabgy89PTP4=;
-        b=Qqr2ju0dfWf3V5WrX0nCmM0YTf9K7Z8QQeJOTvn5AW26PxGljv3cWLc4IeNZg6KO6J
-         1REIo71aGg6POGuGo3FlqRuGBw8emEmt/l4UagYpp1ArDDqnjJRZFLMb4CfAAy+x1w1d
-         Pncf4/GbVgyrujLmwz/Vu0xcZJfgYPO+LQvBLBZSMwr078O5wI68BdsUMfOYJdcN8+dE
-         9qPWnwZC9Lh11Uw/KDtx+ZuWoke++tKJPWNf+0QPR5uUzQEKqRqaDBmQoZJFCRU7fdlR
-         tdpeOc3ePwzLDiGdLbX1z4mGz4xLzzHqGmDq6P/7ONTpGqT0OqCheNfdsAEsQVqfYSTE
-         p10A==
-X-Gm-Message-State: AOAM5325OJntfkKCv4mv6EiQ/4q/UI/iuk7beH2T0CF+XLSvMR/809Cr
-        t2SoeToG4Dcg31k7QmfWLlozBg==
-X-Google-Smtp-Source: ABdhPJw4qwOTlqkMBMTMkuvtyA2bxt8juhpHrfhcIHgtWdsR0pHzpYHK7J0t56W8r/+vOuYZit9omg==
-X-Received: by 2002:a17:906:d0c2:: with SMTP id bq2mr8700744ejb.1.1611224836000;
-        Thu, 21 Jan 2021 02:27:16 -0800 (PST)
+        bh=DDHtgVgCI3xoR+2tl7rSC8UaomaVNk4TcynImS9GqP0=;
+        b=Gqe3PZKqXBRVUjK71b+PmUNv3U47Xb0snzH+OLLMbC36t2TvTVp63wDmQkaAYxq+Jx
+         BF1sec116R9nfYSxEYpg8YrJSbjTZ6Rv5eyIXgllfg/R9j0tPJAok1K6MVJtm3A0GVUN
+         Vc515ZHf9KmuEp7mr6MbMwy1Nvqubq17xhvSnV5sbla4F4YZuz5PVLamDbXGI/Dm0GD2
+         0wX4RXwlQlbp8bbDY0x0Gtvsr4GLPioAChpPl6idp0eQtoWG9tOr19/UETpnV+AWWcQC
+         JujWSziTSPHnMHPelRQbPkqyUpnODxKr956uxHvZZQLyd7ENUIBJaZ6PWoC8Zkpq3iiM
+         /EBg==
+X-Gm-Message-State: AOAM530kC5X8m8pa9AIF4TwsDF5wVFJcglf62hQHPdS3ReMzca/Boenq
+        DDgNu/eFmoF0a7wwIiSkyWhpBQ==
+X-Google-Smtp-Source: ABdhPJz4uD0K+vtOESSsSJK86HYEPo8ADdZBd22vXjc3E/Uw6nZmyagvbLHsSDq62fuPuI5QTUIfiA==
+X-Received: by 2002:a05:6402:1809:: with SMTP id g9mr2324851edy.2.1611224839412;
+        Thu, 21 Jan 2021 02:27:19 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id u2sm2547805edp.12.2021.01.21.02.27.15
+        by smtp.gmail.com with ESMTPSA id q2sm2528621edn.91.2021.01.21.02.27.18
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 21 Jan 2021 02:27:15 -0800 (PST)
+        Thu, 21 Jan 2021 02:27:18 -0800 (PST)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
@@ -56,9 +56,9 @@ Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 06/12] arm64: dts: zynqmp: Add label for zynqmp_ipi
-Date:   Thu, 21 Jan 2021 11:26:54 +0100
-Message-Id: <3dc8416abdd3498e61edcd83830a12af295c5c6d.1611224800.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 08/12] arm64: dts: zynqmp: Wire arasan nand controller
+Date:   Thu, 21 Jan 2021 11:26:56 +0100
+Message-Id: <05cc1ce7973ac5200aeca428c137b422c827c5e8.1611224800.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <cover.1611224800.git.michal.simek@xilinx.com>
 References: <cover.1611224800.git.michal.simek@xilinx.com>
@@ -68,31 +68,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add label which is used by bootloader for adding bootloader specific flag.
+Add missing arasan controller with clocks. Disable it by default. Every
+board can enable it with specifying others properties.
 
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
 Changes in v2: None
 
-U-Boot needs to add u-boot,dm-pre-reloc; property
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  4 ++++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi         | 12 ++++++++++++
+ 2 files changed, 16 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+index c94c3bb67edc..7af57619436d 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+@@ -116,6 +116,10 @@ &lpd_dma_chan8 {
+ 	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+ };
+ 
++&nand0 {
++	clocks = <&zynqmp_clk NAND_REF>, <&zynqmp_clk LPD_LSBUS>;
++};
++
+ &gem0 {
+ 	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM0_REF>,
+ 		 <&zynqmp_clk GEM0_TX>, <&zynqmp_clk GEM0_RX>,
 diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 94a2e1f2b713..31c6943c6217 100644
+index 31c6943c6217..19b349f00ce7 100644
 --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
 +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -99,7 +99,7 @@ opp03 {
+@@ -462,6 +462,18 @@ mc: memory-controller@fd070000 {
+ 			interrupts = <0 112 4>;
  		};
- 	};
  
--	zynqmp_ipi {
-+	zynqmp_ipi: zynqmp_ipi {
- 		compatible = "xlnx,zynqmp-ipi-mailbox";
- 		interrupt-parent = <&gic>;
- 		interrupts = <0 35 4>;
++		nand0: nand-controller@ff100000 {
++			compatible = "xlnx,zynqmp-nand-controller", "arasan,nfc-v3p10";
++			status = "disabled";
++			reg = <0x0 0xff100000 0x0 0x1000>;
++			clock-names = "controller", "bus";
++			interrupt-parent = <&gic>;
++			interrupts = <0 14 4>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			power-domains = <&zynqmp_firmware PD_NAND>;
++		};
++
+ 		gem0: ethernet@ff0b0000 {
+ 			compatible = "cdns,zynqmp-gem", "cdns,gem";
+ 			status = "disabled";
 -- 
 2.30.0
 
