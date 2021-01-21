@@ -2,112 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D59902FE443
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 08:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D95132FE44B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 08:47:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727458AbhAUHoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 02:44:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49434 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726690AbhAUHns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 02:43:48 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537A5C0613C1;
-        Wed, 20 Jan 2021 23:43:07 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id g10so743276wrx.1;
-        Wed, 20 Jan 2021 23:43:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kgam/JcAMv4/Hclb81fC+FVrhWIpAb1YZ0aXLXlhAoU=;
-        b=tGcaXPu2LOMfxg2jDro99XXVO4QDl9TAdMXYImUZZpAzTfVfLuV+7+4TeKdjso38EZ
-         ki/MN1Mbn6qQjl/+vdOiYLRcfAr6TZHUKRhcaecJehpzoYSXcwirGlaOSUK2faF4//7p
-         O8zLHUbXiMrKyAPbN2pkwWS05Kl7AsGeAZdNK5v1Idh6D0FwYi+6zjeAg1kVHv7P4v4p
-         Ti2M5kTAPCGSzfCqQi8knReYvvqdvVeHrE/Sm8M/jMDbHpIKAtNvZJanq5vL+4+dkzgB
-         yXsoFRN2ZZbuK+zLKPNAYkcyOZWgw53p8BzUHcT6j62g6eLz76TTXMRpemvM4LcM4kvP
-         LJeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kgam/JcAMv4/Hclb81fC+FVrhWIpAb1YZ0aXLXlhAoU=;
-        b=YPmKVcEb5wiOwtRogNsw6SAWUPZgRw1uTBJB8nSd21vGLHuAfoVOyQU/skXySJ5N22
-         QxCTv4dnK31BQPY0SUakQXk+1fB2m2ZcEF40zK67MvZccG1EODoIw/iZWCTiuxOk8U/7
-         Z8tC9vvrfOOm7CeA0XUX9k2jhgpwJvLFNVgjG9N//hhu/PHKWnihK03bgqmwsOjmtePD
-         Nqh7yckPc6wfozY0rAeqQHNrZRmLB3RaafL37gynv2u4R28tKWZy5/fPXBlEms7I1SJR
-         0BKccxhkwYNuGbiDIa0VAG6CacXU9HPJpM5yeakaQebV9OOgNPOKJZApFGCnxm6YbWrn
-         xDWg==
-X-Gm-Message-State: AOAM5315R9uiuA8L3XZnSf6uGlzC5u8UI3B9Bn0+d9oVFiDwilOfY7a9
-        U+gFAdh+5V0ddTNLeMIkgv/Vhw2//O33NUZLpfw/bQf7/W3igZGe
-X-Google-Smtp-Source: ABdhPJwzMl4PpyMqGnMviLbKnQbsLou+EJWi88QswY7xQEmVfHG1Cs+1CbAzbJ4rIlMeILSLe4VqP+/Abfquaw+c/vo=
-X-Received: by 2002:adf:9427:: with SMTP id 36mr12828885wrq.271.1611214986136;
- Wed, 20 Jan 2021 23:43:06 -0800 (PST)
+        id S1727049AbhAUHqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 02:46:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46378 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727718AbhAUHqe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 02:46:34 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 367BC2396F;
+        Thu, 21 Jan 2021 07:45:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611215153;
+        bh=jaWMXBe7gnB8W5jif/JfABLr8mo1KpxJERzgLN9oXZo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OIDIMftRkRi5Tl0tyXx+ZfQIiktUN9xr0cGBGwWiV3B05YmzMI7mQh/rqhcdylAk2
+         1Sx9vkp4ogpH4hgwRwG/MRGCdmgSw42h+/aLshnTE+Pz3sYTsh6vjN9GOsY9jjkMvB
+         KsR5DjRqcQ8QKqwTJrk5D68VwH7eE6Hd2b0y5xTsi70MkOejjM3G4k3gMqgzXhT8ou
+         GawbG31BRe0AgsWemiWFo7HlHfgRyjIvQ/++wn5al8FF0ny9XFqKVwSYetumffqwK9
+         nHOkG54I3m7qaWH8hgmhvGlbNk25E9pHnCZT6EvEEWlkzVs+fNUJW1Ryx48ORKNJQo
+         Lk5ldJLBn0vsw==
+Date:   Wed, 20 Jan 2021 23:45:51 -0800
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
+        Satya Tangirala <satyat@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH v4 1/9] mmc: add basic support for inline encryption
+Message-ID: <YAkxLx4JiAtSlx1E@sol.localdomain>
+References: <20210104184542.4616-1-ebiggers@kernel.org>
+ <20210104184542.4616-2-ebiggers@kernel.org>
+ <CAPDyKFq717teu2HPZLCn9QVxLOwZHdi_iS+Ji69S0kYX1o52PQ@mail.gmail.com>
+ <YAHXPREJaKjK/z7+@sol.localdomain>
+ <CAPDyKFopKy6dwENJ6YQQ0KRPQdT25R_zmhrNH7jyu=+p6bKpNA@mail.gmail.com>
+ <YAdGbqU12cbJr78K@sol.localdomain>
 MIME-Version: 1.0
-References: <20210108113851.354947-1-zhang.lyra@gmail.com> <20210108113851.354947-3-zhang.lyra@gmail.com>
- <47f73502-15fe-5d65-6fc9-22eb078d7797@arm.com> <CAAfSe-vd5eRopOBZMuTi8vq1FqY1qAVSdMHscVuA+uHtL2H=gw@mail.gmail.com>
- <3a2561fc-65a6-4c68-fdb7-a5b670706f43@arm.com>
-In-Reply-To: <3a2561fc-65a6-4c68-fdb7-a5b670706f43@arm.com>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Thu, 21 Jan 2021 15:42:30 +0800
-Message-ID: <CAAfSe-tgyTp7BYwfhH7xevhdgj5riNET53A=+K6vKsGwrxtFDw@mail.gmail.com>
-Subject: Re: [RFC PATCH V2 2/2] iommu: add Unisoc iommu basic driver
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Sheng Xu <sheng.xu@unisoc.com>,
-        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
-        Kevin Tang <kevin.tang@unisoc.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YAdGbqU12cbJr78K@sol.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jan 2021 at 20:29, Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2021-01-20 11:40, Chunyan Zhang wrote:
-> [...]
-> >>> +     pgt_base_iova = dom->pgt_va +
-> >>> +             ((iova - mdata->iova_start) >> SPRD_IOMMU_PAGE_SHIFT);
-> >>> +
-> >>> +     spin_lock_irqsave(&dom->pgtlock, flags);
-> >>> +     for (i = 0; i < page_num; i++) {
-> >>> +             pgt_base_iova[i] = pabase >> SPRD_IOMMU_PAGE_SHIFT;
-> >>
-> >> Out of curiosity, is the pagetable walker cache-coherent, or is this
-> >> currently managing to work by pure chance and natural cache churn?
-> >
-> > ->iotlb_sync_map() was implemented in this driver, I guess that has
-> > done what you say here?
->
-> No, sync_map only ensures that the previous (invalid) PTE isn't held in
-> the IOMMU's TLB. If pgt_va is a regular page allocation then you're
-> writing the new PTE to normal kernel memory, with nothing to guarantee
-> that write goes any further than the CPU's L1 cache. Thus either the
-> IOMMU has capable of snooping the CPU caches in order to see the updated
-> PTE value (rather than refetching the stale value from DRAM), or you're
-> just incredibly lucky that by the time the IOMMU *does* go to fetch the
-> PTE for that address, that updated cache line has already been evicted
-> out to DRAM naturally.
->
+On Tue, Jan 19, 2021 at 12:52:00PM -0800, Eric Biggers wrote:
+> > To free up the data structures, blk_ksm_destroy() is called from
+> > mmc_free_host().
+> > 
+> > To me, this can be made more consistent. For example, it looks like
+> > blk_ksm_destroy() could be called, even if blk_ksm_init() hasn't been
+> > called (depending on the probe error path of the mmc host).
+> 
+> blk_ksm_destroy() is a no-op on an all-zeroed struct, so it's fine to call it
+> unnecessarily.  We could call it unconditionally, if that would be clearer.
+> 
+> > There are a couple of options to better deal with this.
+> > 1) Extend the blk_ksm interface with a devm_blk_ksm_init() function
+> > (thus let it deal with lifecycle problems for us) and simply drop the
+> > call to blk_ksm_destroy().
+> 
+> This would require adding APIs to devm to support zeroing buffers on free and to
+> use kvmalloc() instead of kmalloc().  It looks like these new APIs wouldn't be
+> useful for many drivers (since almost everyone else just wants regular kmalloc
+> with no special behavior on free), so they don't seem worth adding yet.
 
-Got it, thanks for the detailed explanation.
-In order to make clear why this code can work, I made a test, and
-found that if I wrote more than 1024 PTEs, the value would be updated
-to DRAM immediately, otherwise the cache line seems not updated even
-if I wrote 1023 PTEs.
+Actually devres is more flexible than I thought; it's possible to register
+custom actions to be executed.  I'll send out a patchset that adds
+devm_blk_ksm_init() and converts the UFS driver to use it.
 
-> This is not an issue if you use the proper DMA allocator, since that
-> will ensure you get a non-cacheable buffer if you need one.
->
-
-I will switch to use dma_alloc_coherent().
-
-Thanks again.
-
-Chunyan
-
-> Robin.
+- Eric
