@@ -2,191 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AA8F2FE647
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 10:25:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 630DC2FE686
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 10:40:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728413AbhAUJXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 04:23:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728647AbhAUJWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 04:22:41 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E56FC0613ED
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 01:22:00 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id f11so1655336ljm.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 01:22:00 -0800 (PST)
+        id S1726521AbhAUJ3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 04:29:10 -0500
+Received: from mail-bn7nam10on2051.outbound.protection.outlook.com ([40.107.92.51]:59968
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728688AbhAUJ05 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 04:26:57 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Kg4QNJNRH6AZKn3MtMBxN6uY+jJC49XBaFOAcA3h5+aCJBtFXgDAlLiFPp6RMSwoGZ5hJJQh4pUNt/VLORzoMxuIXdWGHJR7/dQfqfuf4ejSJcTTd3FoA4hnMIRUkDYRGjm+bgCQ0e33W5Hr1B+323MnKIi7OB6+mnTbZ0HNQMscoDjTH2SWBjPxcTwOuSNMFjvvyijFLHJuAMvqOStiP3MjpARto3e6VS1wDFn4GzWooBmfdJi3B2AF4sgeTVsGEdv1sl6ALFXDzuHCGj6shM4/oeIS3fnB3kVkXxG96Qo8fr9QLTsuj4Hewjc5xmvCUExTZDy1ztLdTD6kOQsxtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BQ3Gg+3Zn7mYCMiSxlvE6gso6Eeb6ZCM/zCkVKOW0Y8=;
+ b=k2GTdH6Mc7cfLkLZWq1zNgik0Uexuv0kI+50FgcmGqLAqMcHzzj4Esepl+9WbEWco+Ww95Q09xuKqbvl5JR/o3KGICT60R6s4ZftT48nE+gvZMKDReY1ZjyqESdcKitESanmpp3ZM4wyR+VbQaeQNAkuTmsrfmvthRbpSrUJFmv4ckTGyd6EhonQ6fFpP9oLtYX3W3lCiHC91bF3yPiku/zRagdFWFpUX5401Get5cY5uexC93SQWt1ldR59SC/40xSlRIzeoCofFjTZXvYv2C12lvfR37bPgyViCATjsCDkPQqLD4WE4dcgi/lSk9r1aNQs+jc3Ww8eG2vGdqClhQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=W2RjDBv9P3j9wxeJUAoiB4MW/LqAwK6JSb2C7o1dWoM=;
-        b=bvWPlHHLe3bjw7pTPhEw3rCRornram+wtOuO7NizVyZiYTs1Dp7QoZch+nmjgd4Y62
-         dTz3pgnSeHVqydBNPjiNGgE2J1QtzPhuS3xKaIhuBLXJNJWV7gPz0hz/m7hmftjNlhE8
-         VvFtH83jLfsaGHVNMD0Rkf81VeVsG1O9dwU2o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=W2RjDBv9P3j9wxeJUAoiB4MW/LqAwK6JSb2C7o1dWoM=;
-        b=XTaWJOMdxEcmX1B9VR/cYckbSJsrPBAJ8iSn/O5xEzc2CbU1v6PJ2vthiOrfDh+fJu
-         Bsr+Dq1AVeC/ik1+b5r44ua0tj6HFGsdBxxOiG0OFxm4cDKJmWOydOa3JghSu4W+LK2I
-         bK6wkRZvBZ9L6DsBNDEkoo4qctIl6HPr+Aa7pwZbFARlGcRy6pJxuj2uVRVIpHSeujvb
-         YfQGC1vMZC9qkXfcoOY8u/KBTmHE3NDIgQrlvanncZ/vZPoFnQg+ykaJ3vG6yNwbRoF2
-         bKNdUay7rHnjo7Ux/YuKgcalHfWfnr9xFPMAiN8IE7XCeBUibkHXNT7g6q8CHpHzhp5X
-         qtvg==
-X-Gm-Message-State: AOAM533jqyAxLzcBabr4h9x3jL3gmldkEr6ot5yBymH6ch5j7mFoV9j/
-        MQJK3amLLt/N+/miNgdCPLR2rC9uo8lotr2tUktO+w==
-X-Google-Smtp-Source: ABdhPJxNj6MOr6RpfwzZgv0VI4M3/od8Hezr+/6Jep8v6YkBDlSuq6ZVsP1gXCdC/IcnmjZecIOBtzvoa/VOt+c+cHE=
-X-Received: by 2002:a2e:9153:: with SMTP id q19mr6211843ljg.173.1611220919160;
- Thu, 21 Jan 2021 01:21:59 -0800 (PST)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BQ3Gg+3Zn7mYCMiSxlvE6gso6Eeb6ZCM/zCkVKOW0Y8=;
+ b=SwPWxKWrKOMoL2lAz1YgQjnkngqMuJJfT68cegFRAleqxTQm+vgXVZerlmhQNZT0lv0mS1B8IXDw3IqAvDmIEZ8iS14LxXUJltWbbne7/lCIMulRPSyYa1c0hT9qmSKkSq0Rp4ejEoMDqkXizotVlaWTbrztxSZy7kd2r69a+CU=
+Received: from DM6PR08CA0016.namprd08.prod.outlook.com (2603:10b6:5:80::29) by
+ SJ0PR02MB7472.namprd02.prod.outlook.com (2603:10b6:a03:29d::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.9; Thu, 21 Jan
+ 2021 09:26:04 +0000
+Received: from CY1NAM02FT060.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:5:80:cafe::78) by DM6PR08CA0016.outlook.office365.com
+ (2603:10b6:5:80::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12 via Frontend
+ Transport; Thu, 21 Jan 2021 09:26:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT060.mail.protection.outlook.com (10.152.74.252) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3784.12 via Frontend Transport; Thu, 21 Jan 2021 09:26:03 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Thu, 21 Jan 2021 01:26:03 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Thu, 21 Jan 2021 01:26:03 -0800
+Envelope-to: michal.simek@xilinx.com,
+ soc@kernel.org,
+ olof@lixom.net,
+ arnd@arndb.de,
+ robh+dt@kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ michael@walle.cc
+Received: from [172.30.17.109] (port=42074)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1l2WE6-0002OZ-SM; Thu, 21 Jan 2021 01:26:03 -0800
+To:     Michael Walle <michael@walle.cc>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        <soc@kernel.org>
+References: <20210120194033.26970-1-michael@walle.cc>
+From:   Michal Simek <michal.simek@xilinx.com>
+Subject: Re: [PATCH 0/3] add Ebang EBAZ4205 support
+Message-ID: <fff420d1-fc9a-23ce-0d07-58a3c6f10c4d@xilinx.com>
+Date:   Thu, 21 Jan 2021 10:25:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-References: <20210115234947.44014-1-vitaly.wool@konsulko.com>
-In-Reply-To: <20210115234947.44014-1-vitaly.wool@konsulko.com>
-From:   Vitaly Wool <vitaly.wool@konsulko.com>
-Date:   Thu, 21 Jan 2021 10:21:48 +0100
-Message-ID: <CAM4kBBLhKsysQCf1GgpSvnGKVV2HsOoVP+4VvYmQaqfpKJ45+A@mail.gmail.com>
-Subject: Re: [PATCH v3] riscv: add BUILTIN_DTB support for MMU-enabled targets
-To:     linux-riscv <linux-riscv@lists.infradead.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210120194033.26970-1-michael@walle.cc>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f52d5e02-6271-4036-c2c9-08d8bdee930a
+X-MS-TrafficTypeDiagnostic: SJ0PR02MB7472:
+X-Microsoft-Antispam-PRVS: <SJ0PR02MB7472AFF50948F47461AB390EC6A10@SJ0PR02MB7472.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0oMKDQ9Uxa8T/TysGswLKfrmWWbmyduxicZk6xOkHpaOiVb6GG4RQgpLhp6TOhigrTdLAbJeEqP1dnyFGvsQBFBSANfB8Is4yzqcW05kdz7NERT8HrTIx1nrLVCa9liXsXDm2JNvwB5H6MtkekazQWcdvJEgxuC3CWqt3MuQDYgzf6/NshuKKL1MHmuGoGb6JJ9aKHr97DG0lxgSJHS6XM4NuThcICOCXpk+a6lXNeBPMVlttTb8vl4hQO23DV6bWPv1okxHucu29U4HaBnHr7rJ/f0wdz+e4K6q0ygZUOaTSf5aX5Q5ZIRryBX8AleWz5Rc6879xHty+Hj4eL/6x0+wGpwhcH/3TxBzdoMTRDKq5BQl1g+4v7mVjwj8kOQAttn7EC/zsaNDhKI9m+z+SgZ95Zs55Y/J5lbBwRfKph9X1XSmDZwr7TGAynXkUgKrYN221JYrKim10DQ0NMFMN46I4s2VF4xYmEjkFxcP5Q98TpH88w5z5dVqVRga2uuv3lGG/JLw3elFGhLj0kFvA3ywGQzAq4CFYOvUzfuKiUU=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(136003)(396003)(39860400002)(346002)(46966006)(478600001)(82740400003)(426003)(44832011)(53546011)(36756003)(7636003)(70206006)(336012)(66574015)(4744005)(6666004)(9786002)(356005)(31696002)(31686004)(8676002)(83380400001)(8936002)(2616005)(70586007)(5660300002)(2906002)(82310400003)(316002)(54906003)(26005)(47076005)(4326008)(110136005)(186003)(50156003)(2101003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2021 09:26:03.9107
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f52d5e02-6271-4036-c2c9-08d8bdee930a
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT060.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR02MB7472
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 16, 2021 at 12:57 AM Vitaly Wool <vitaly.wool@konsulko.com> wrote:
->
-> Sometimes, especially in a production system we may not want to
-> use a "smart bootloader" like u-boot to load kernel, ramdisk and
-> device tree from a filesystem on eMMC, but rather load the kernel
-> from a NAND partition and just run it as soon as we can, and in
-> this case it is convenient to have device tree compiled into the
-> kernel binary. Since this case is not limited to MMU-less systems,
-> let's support it for these which have MMU enabled too.
->
-> While at it, provide __dtb_start as a parameter to setup_vm() in
-> BUILTIN_DTB case, so we don't have to duplicate BUILTIN_DTB specific
-> processing in MMU-enabled and MMU-disabled versions of setup_vm().
+Hi
 
-@Palmer: ping :)
+On 1/20/21 8:40 PM, Michael Walle wrote:
+> Add support for the Ebang EBAZ4205 board. This board was once used as a
+> control board for a bitcoin mining device. Nowawdays it is sold as a cheap
+> Zynq-7000 eval board.
+> 
+> Michael Walle (3):
+>   dt-bindings: add ebang vendor prefix
+>   dt-bindings: arm: add Ebang EBAZ4205 board
+>   ARM: dts: add Ebang EBAZ4205 device tree
+> 
+>  .../devicetree/bindings/arm/xilinx.yaml       |   1 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  arch/arm/boot/dts/zynq-ebaz4205.dts           | 109 ++++++++++++++++++
+>  4 files changed, 113 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/zynq-ebaz4205.dts
+> 
 
-> Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
+any link with schematics?
 
-While at it, since this is just a respin/concatenation:
-@Damien: are you okay with re-adding 'Tested-By:' ?
-@Anup: are you okay with adding 'Reviewed-by:' since you have reviewed
-both v1 patches that were concatenated?
+I will let dt guys to comment 1/3 but series look good to me.
+The board doesn't look interesting from description point of view that's
+why all the time thinking if makes sense to add it to kernel.
 
-Best regards,
-   Vitaly
+Thanks,
+Michal
 
-> ---
-> Changes from v2:
-> * folded "RISC-V: simplify BUILTIN_DTB processing" patch
-> [http://lists.infradead.org/pipermail/linux-riscv/2021-January/004153.html]
-> Changes from v1:
-> * no direct initial_boot_params assignment
-> * skips the temporary mapping for DT if BUILTIN_DTB=y
->
->  arch/riscv/Kconfig       |  1 -
->  arch/riscv/kernel/head.S |  4 ++++
->  arch/riscv/mm/init.c     | 19 +++++++++++++------
->  3 files changed, 17 insertions(+), 7 deletions(-)
->
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index 2ef05ef921b5..444a1ed1e847 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -445,7 +445,6 @@ endmenu
->
->  config BUILTIN_DTB
->         def_bool n
-> -       depends on RISCV_M_MODE
->         depends on OF
->
->  menu "Power management options"
-> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
-> index 16e9941900c4..f5a9bad86e58 100644
-> --- a/arch/riscv/kernel/head.S
-> +++ b/arch/riscv/kernel/head.S
-> @@ -260,7 +260,11 @@ clear_bss_done:
->
->         /* Initialize page tables and relocate to virtual addresses */
->         la sp, init_thread_union + THREAD_SIZE
-> +#ifdef CONFIG_BUILTIN_DTB
-> +       la a0, __dtb_start
-> +#else
->         mv a0, s1
-> +#endif /* CONFIG_BUILTIN_DTB */
->         call setup_vm
->  #ifdef CONFIG_MMU
->         la a0, early_pg_dir
-> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> index 30b61f2c6b87..45faad7c4291 100644
-> --- a/arch/riscv/mm/init.c
-> +++ b/arch/riscv/mm/init.c
-> @@ -192,10 +192,13 @@ void __init setup_bootmem(void)
->  #endif /* CONFIG_BLK_DEV_INITRD */
->
->         /*
-> -        * Avoid using early_init_fdt_reserve_self() since __pa() does
-> +        * If DTB is built in, no need to reserve its memblock.
-> +        * Otherwise, do reserve it but avoid using
-> +        * early_init_fdt_reserve_self() since __pa() does
->          * not work for DTB pointers that are fixmap addresses
->          */
-> -       memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-> +       if (!IS_ENABLED(CONFIG_BUILTIN_DTB))
-> +               memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
->
->         early_init_fdt_scan_reserved_mem();
->         dma_contiguous_reserve(dma32_phys_limit);
-> @@ -499,6 +502,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->         /* Setup early PMD for DTB */
->         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
->                            (uintptr_t)early_dtb_pmd, PGDIR_SIZE, PAGE_TABLE);
-> +#ifndef CONFIG_BUILTIN_DTB
->         /* Create two consecutive PMD mappings for FDT early scan */
->         pa = dtb_pa & ~(PMD_SIZE - 1);
->         create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA,
-> @@ -506,7 +510,11 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->         create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA + PMD_SIZE,
->                            pa + PMD_SIZE, PMD_SIZE, PAGE_KERNEL);
->         dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PMD_SIZE - 1));
-> +#else /* CONFIG_BUILTIN_DTB */
-> +       dtb_early_va = __va(dtb_pa);
-> +#endif /* CONFIG_BUILTIN_DTB */
->  #else
-> +#ifndef CONFIG_BUILTIN_DTB
->         /* Create two consecutive PGD mappings for FDT early scan */
->         pa = dtb_pa & ~(PGDIR_SIZE - 1);
->         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
-> @@ -514,6 +522,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->         create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA + PGDIR_SIZE,
->                            pa + PGDIR_SIZE, PGDIR_SIZE, PAGE_KERNEL);
->         dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PGDIR_SIZE - 1));
-> +#else /* CONFIG_BUILTIN_DTB */
-> +       dtb_early_va = __va(dtb_pa);
-> +#endif /* CONFIG_BUILTIN_DTB */
->  #endif
->         dtb_early_pa = dtb_pa;
->
-> @@ -604,11 +615,7 @@ static void __init setup_vm_final(void)
->  #else
->  asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->  {
-> -#ifdef CONFIG_BUILTIN_DTB
-> -       dtb_early_va = (void *) __dtb_start;
-> -#else
->         dtb_early_va = (void *)dtb_pa;
-> -#endif
->         dtb_early_pa = dtb_pa;
->  }
->
-> --
-> 2.20.1
->
