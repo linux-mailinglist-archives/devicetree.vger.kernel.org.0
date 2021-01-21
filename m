@@ -2,116 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE3F42FF7EE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 23:31:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEBED2FF814
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 23:39:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725805AbhAUWaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 17:30:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43184 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725764AbhAUWaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 17:30:14 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07F9C06174A;
-        Thu, 21 Jan 2021 14:29:33 -0800 (PST)
+        id S1725823AbhAUWin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 17:38:43 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:35602 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726215AbhAUWil (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 17:38:41 -0500
 Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 78ECF50E;
-        Thu, 21 Jan 2021 23:29:29 +0100 (CET)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1E35A50E;
+        Thu, 21 Jan 2021 23:37:56 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1611268169;
-        bh=bSpsB6iz35fpcRamCYl6FESXLSgAPyQnt/ONPb0XVR0=;
+        s=mail; t=1611268676;
+        bh=mWURBj6RaXT6C5m2AXt2YVFGkQ1ZtlccLo1/SMFcSWA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pzSbXgjIq0gMeq5GoIgz737IVoY3jMy839L7SJo+VjITuzzFWGvHFXyi989Nj5y8+
-         uPx4iYyo6wP/vjx3b8CJp83GEb47dqEFDHYxBy+lOAxmSMMGDapf9ALgnwsKMRLYm5
-         vpLAm2py/mSCZoCQYTh/D71qwqNxY+dFLyw2XDaE=
-Date:   Fri, 22 Jan 2021 00:29:11 +0200
+        b=qbWAd+5RdXT6IMz1qh1A4vJDeBfKtbmfIzfhb4OMxTg4W/M4Dau9r9bK9COk/4bXi
+         ItPL60lN55I1TX7zKGWN36rjkNCQOOLh9McJfXtgzFIUM1FKmQ2qKP39WwAB8TvKoR
+         ZwEwberf0+cL019Mq0BnXESyH3tRk2fiwtr9rjds=
+Date:   Fri, 22 Jan 2021 00:37:38 +0200
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     Michal Simek <michal.simek@xilinx.com>
 Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
-        Kalyani Akula <kalyani.akula@xilinx.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 06/12] arm64: dts: zynqmp: Add label for zynqmp_ipi
-Message-ID: <YAoAN3JF27zWnjn5@pendragon.ideasonboard.com>
-References: <cover.1606917949.git.michal.simek@xilinx.com>
- <272e23e0123f02c559bfa4ada9de73eb197aced8.1606917949.git.michal.simek@xilinx.com>
- <X81fXtxvsc7KE7cK@pendragon.ideasonboard.com>
- <99008851-6c12-3acc-6530-25af08429ff5@xilinx.com>
- <X86poiQSzv5Uva1r@pendragon.ideasonboard.com>
- <4010c2d4-bee1-827b-1079-1f1bbf1f10d1@xilinx.com>
+Subject: Re: [PATCH 3/3] arm64: dts: zynqmp: Wire up the DisplayPort subsystem
+Message-ID: <YAoCMqq/hpY0Jz6A@pendragon.ideasonboard.com>
+References: <cover.1611232558.git.michal.simek@xilinx.com>
+ <9769d4d103b6eb75e3324825117f6832a746004e.1611232558.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <4010c2d4-bee1-827b-1079-1f1bbf1f10d1@xilinx.com>
+In-Reply-To: <9769d4d103b6eb75e3324825117f6832a746004e.1611232558.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Michal,
 
-I've just realized I forgot to reply to this e-mail, sorry.
+Thank you for the patch.
 
-On Tue, Dec 08, 2020 at 08:26:41AM +0100, Michal Simek wrote:
-> On 07. 12. 20 23:16, Laurent Pinchart wrote:
-> > On Mon, Dec 07, 2020 at 10:39:25AM +0100, Michal Simek wrote:
-> >> On 06. 12. 20 23:46, Laurent Pinchart wrote:
-> >>> On Wed, Dec 02, 2020 at 03:06:05PM +0100, Michal Simek wrote:
-> >>>> Add label which is used by bootloader for adding bootloader specific flag.
-> >>>>
-> >>>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> >>>> ---
-> >>>>
-> >>>> U-Boot needs to add u-boot,dm-pre-reloc; property
-> >>>
-> >>> I'm not entirely sure what best practice rules are in this area, but
-> >>> shouldn't U-Boot locate the node by name instead of label ?
-> >>
-> >> Labels are not listed in dt binding and there are two approaches how to
-> >> reference nodes. Via full path with node name or via labels.
-> >> I do normally use labels which are much simple.
-> > 
-> > Note that labels require the DTB to be compiled with the -@ option,
-> > otherwise they're not present in the binary.
+On Thu, Jan 21, 2021 at 01:36:07PM +0100, Michal Simek wrote:
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > 
-> U-Boot is using different concept. You can see that there are a lot of
-> -u-boot.dtsi files in dts folders. These are automatically included to
-> DTS before DTC is called. It means you don't need to build overlay to
-> get merged.
+> Enable the dpsub device and wire it up to the PS-GTR PHY lanes routed to
+> the DisplayPort connector.
 > 
-> >> And also if you take a look how dtb looks like (convert back to dts) you
-> >> can see that for example aliases are using full path (just &label) but
-> >> clocks/gic which is the part of <> is handled via phandles as numbers.
-> >>
-> >> And labels names can vary and shouldn't be the part of binding doc as
-> >> far as I know. But I can be wrong of course.
-> > 
-> > The DT bindings should document the interface with the operating system,
-> > and if applicable, the boot loader. If the boot loader requires a
-> > particular label, then it becomes part of the ABI, and I think it should
-> > be documented in the bindings.
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
 > 
-> We have been discussing with Rob some month ago but didn't have a time
-> to do step further. Just keep it short Rob was ok to keep bootloader
-> binding inside Linux repo.
+> Wire all the boards
+> 
+> ---
+>  .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 31 +++++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 10 ++++++
+>  .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 11 +++++++
+>  .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 11 +++++++
+>  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 11 +++++++
+>  .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 11 +++++++
+>  6 files changed, 85 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> index 71ebcaadb7c8..a53598c3624b 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> @@ -15,6 +15,7 @@
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/phy/phy.h>
+>  
+>  / {
+>  	model = "ZynqMP ZCU100 RevC";
+> @@ -108,6 +109,18 @@ ina226 {
+>  		compatible = "iio-hwmon";
+>  		io-channels = <&u35 0>, <&u35 1>, <&u35 2>, <&u35 3>;
+>  	};
+> +
+> +	si5335a_0: clk26 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <26000000>;
+> +	};
+> +
+> +	si5335a_1: clk27 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <27000000>;
+> +	};
 
-I think that makes sense, DT bindings are meant to be OS-agnostic, so
-boot loader requirements should be documented there.
+This is fine as a workaround for now, but I'm still wondering how we'll
+solve this properly. We can declare the SI5335A in DT without wiring the
+output that provides the clock to the PS, otherwise it will be disabled
+as part of the boot process.
 
-> There is no hardcoding for a particular name. There is just a need to
-> have any label. U-Boot needs to have one property(e.g.
-> u-boot,dm-pre-reloc;) just to do early allocation.
-> The name is just reference and none is really looking for it. It is just
-> a way how to include it in much easier way.
-
-Just to make sure I understand this issue correctly, does this mean that
-you need to reference the node in a *-u-boot.dtsi file, and want a label
-to do so ? The label name needs to be the same in the base file (taken
-from the Linux source tree) and the *-u-boot.dtsi file (in the U-Boot
-source tree) in that case. Isn't it the role of DT bindings to document
-such requirements ?
+>  };
+>  
+>  &dcc {
+> @@ -224,6 +237,13 @@ i2csw_7: i2c@7 {
+>  	};
+>  };
+>  
+> +&psgtr {
+> +	status = "okay";
+> +	/* usb3, dps */
+> +	clocks = <&si5335a_0>, <&si5335a_1>;
+> +	clock-names = "ref0", "ref1";
+> +};
+> +
+>  &rtc {
+>  	status = "okay";
+>  };
+> @@ -295,3 +315,14 @@ &usb1 {
+>  &watchdog0 {
+>  	status = "okay";
+>  };
+> +
+> +&zynqmp_dpdma {
+> +	status = "okay";
+> +};
+> +
+> +&zynqmp_dpsub {
+> +	status = "okay";
+> +	phy-names = "dp-phy0", "dp-phy1";
+> +	phys = <&psgtr 1 PHY_TYPE_DP 0 1>,
+> +	       <&psgtr 0 PHY_TYPE_DP 1 1>;
+> +};
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> index 9abd10f6785a..12e8bd48dc8c 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> @@ -714,3 +714,13 @@ &usb0 {
+>  &watchdog0 {
+>  	status = "okay";
+>  };
+> +
+> +&zynqmp_dpdma {
+> +	status = "okay";
+> +};
+> +
+> +&zynqmp_dpsub {
+> +	status = "okay";
+> +	phy-names = "dp-phy0";
+> +	phys = <&psgtr 1 PHY_TYPE_DP 0 3>;
+> +};
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> index 8ede619fea52..5637e1c17fdf 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> @@ -224,3 +224,14 @@ &usb0 {
+>  &watchdog0 {
+>  	status = "okay";
+>  };
+> +
+> +&zynqmp_dpdma {
+> +	status = "okay";
+> +};
+> +
+> +&zynqmp_dpsub {
+> +	status = "okay";
+> +	phy-names = "dp-phy0", "dp-phy1";
+> +	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
+> +	       <&psgtr 0 PHY_TYPE_DP 1 3>;
+> +};
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> index 414f98f1831e..7f2e32831b05 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> @@ -280,3 +280,14 @@ &usb0 {
+>  &watchdog0 {
+>  	status = "okay";
+>  };
+> +
+> +&zynqmp_dpdma {
+> +	status = "okay";
+> +};
+> +
+> +&zynqmp_dpsub {
+> +	status = "okay";
+> +	phy-names = "dp-phy0", "dp-phy1";
+> +	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
+> +	       <&psgtr 0 PHY_TYPE_DP 1 3>;
+> +};
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> index d60a30787022..18771e868399 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> @@ -156,6 +156,17 @@ &dcc {
+>  	status = "okay";
+>  };
+>  
+> +&zynqmp_dpdma {
+> +	status = "okay";
+> +};
+> +
+> +&zynqmp_dpsub {
+> +	status = "okay";
+> +	phy-names = "dp-phy0", "dp-phy1";
+> +	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
+> +	       <&psgtr 0 PHY_TYPE_DP 1 3>;
+> +};
+> +
+>  /* fpd_dma clk 667MHz, lpd_dma 500MHz */
+>  &fpd_dma_chan1 {
+>  	status = "okay";
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+> index 758de05c4a4b..d4b68f0d0098 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+> @@ -584,3 +584,14 @@ &usb0 {
+>  	status = "okay";
+>  	dr_mode = "host";
+>  };
+> +
+> +&zynqmp_dpdma {
+> +	status = "okay";
+> +};
+> +
+> +&zynqmp_dpsub {
+> +	status = "okay";
+> +	phy-names = "dp-phy0", "dp-phy1";
+> +	phys = <&psgtr 1 PHY_TYPE_DP 0 1>,
+> +	       <&psgtr 0 PHY_TYPE_DP 1 1>;
+> +};
 
 -- 
 Regards,
