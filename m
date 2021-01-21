@@ -2,90 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C71BC2FE268
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 07:15:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEAB72FE298
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 07:21:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726652AbhAUGOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 01:14:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58530 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726634AbhAUGOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 01:14:00 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C81FCC06179E
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 22:12:29 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l2TC4-0006PM-3l; Thu, 21 Jan 2021 07:11:44 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1l2TC2-000625-Al; Thu, 21 Jan 2021 07:11:42 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
+        id S1726777AbhAUGTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 01:19:35 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:44647 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727036AbhAUGTL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 01:19:11 -0500
+X-UUID: 9b1b27e1bc9944ceaab791692b99a727-20210121
+X-UUID: 9b1b27e1bc9944ceaab791692b99a727-20210121
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1829408630; Thu, 21 Jan 2021 14:18:09 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 21 Jan 2021 14:18:07 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 21 Jan 2021 14:18:06 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 6/7] ARM: dts: imx6dl-prtvt7: fix PWM cell count for the backlight node.
-Date:   Thu, 21 Jan 2021 07:11:40 +0100
-Message-Id: <20210121061141.23062-7-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210121061141.23062-1-o.rempel@pengutronix.de>
-References: <20210121061141.23062-1-o.rempel@pengutronix.de>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>
+CC:     Irui Wang <irui.wang@mediatek.com>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH 1/3] dt-bindings: media: mtk-vcodec: Separating mtk vcodec encoder node
+Date:   Thu, 21 Jan 2021 14:18:02 +0800
+Message-ID: <20210121061804.26423-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-At some point PWM cell count was changed, but it didn't triggered any
-error, since this DT was overwriting "#pwm-cells".
-To make sure, we are in sync with the kernel driver, remove this
-property and fix the pwm consumer.
+Updates binding document since the avc and vp8 hardware encoder in
+MT8173 are now separated. Separate "mediatek,mt8173-vcodec-enc" to
+"mediatek,mt8173-vcodec-vp8-enc" and "mediatek,mt8173-vcodec-avc-enc".
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
+Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+
 ---
- arch/arm/boot/dts/imx6dl-prtvt7.dts | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ .../bindings/media/mediatek-vcodec.txt        | 58 ++++++++++---------
+ 1 file changed, 31 insertions(+), 27 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx6dl-prtvt7.dts b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-index 8a1491975da8..83b461eb33a2 100644
---- a/arch/arm/boot/dts/imx6dl-prtvt7.dts
-+++ b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-@@ -21,7 +21,7 @@ memory@10000000 {
+diff --git a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+index 8217424fd4bd..f85276e629bf 100644
+--- a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
++++ b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+@@ -4,7 +4,9 @@ Mediatek Video Codec is the video codec hw present in Mediatek SoCs which
+ supports high resolution encoding and decoding functionalities.
  
- 	backlight_lcd: backlight-lcd {
- 		compatible = "pwm-backlight";
--		pwms = <&pwm1 0 500000>;
-+		pwms = <&pwm1 0 500000 0>;
- 		brightness-levels = <0 20 81 248 1000>;
- 		default-brightness-level = <20>;
- 		num-interpolated-steps = <21>;
-@@ -320,7 +320,6 @@ &ipu1_di0_disp0 {
- };
+ Required properties:
+-- compatible : "mediatek,mt8173-vcodec-enc" for MT8173 encoder
++- compatible : must be one of the following string:
++  "mediatek,mt8173-vcodec-vp8-enc" for mt8173 vp8 encoder.
++  "mediatek,mt8173-vcodec-avc-enc" for mt8173 avc encoder.
+   "mediatek,mt8183-vcodec-enc" for MT8183 encoder.
+   "mediatek,mt8173-vcodec-dec" for MT8173 decoder.
+ - reg : Physical base address of the video codec registers and length of
+@@ -13,10 +15,11 @@ Required properties:
+ - mediatek,larb : must contain the local arbiters in the current Socs.
+ - clocks : list of clock specifiers, corresponding to entries in
+   the clock-names property.
+-- clock-names: encoder must contain "venc_sel_src", "venc_sel",,
+-  "venc_lt_sel_src", "venc_lt_sel", decoder must contain "vcodecpll",
+-  "univpll_d2", "clk_cci400_sel", "vdec_sel", "vdecpll", "vencpll",
+-  "venc_lt_sel", "vdec_bus_clk_src".
++- clock-names:
++   avc venc must contain "venc_sel";
++   vp8 venc must contain "venc_lt_sel";
++   decoder  must contain "vcodecpll", "univpll_d2", "clk_cci400_sel",
++   "vdec_sel", "vdecpll", "vencpll", "venc_lt_sel", "vdec_bus_clk_src".
+ - iommus : should point to the respective IOMMU block with master port as
+   argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+   for details.
+@@ -80,14 +83,10 @@ vcodec_dec: vcodec@16000000 {
+     assigned-clock-rates = <0>, <0>, <0>, <1482000000>, <800000000>;
+   };
  
- &pwm1 {
--	#pwm-cells = <2>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pwm1>;
- 	status = "okay";
+-  vcodec_enc: vcodec@18002000 {
+-    compatible = "mediatek,mt8173-vcodec-enc";
+-    reg = <0 0x18002000 0 0x1000>,    /*VENC_SYS*/
+-          <0 0x19002000 0 0x1000>;    /*VENC_LT_SYS*/
+-    interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>,
+-		 <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
+-    mediatek,larb = <&larb3>,
+-		    <&larb5>;
++vcodec_enc: vcodec@18002000 {
++    compatible = "mediatek,mt8173-vcodec-avc-enc";
++    reg = <0 0x18002000 0 0x1000>;
++    interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>;
+     iommus = <&iommu M4U_PORT_VENC_RCPU>,
+              <&iommu M4U_PORT_VENC_REC>,
+              <&iommu M4U_PORT_VENC_BSDMA>,
+@@ -98,8 +97,20 @@ vcodec_dec: vcodec@16000000 {
+              <&iommu M4U_PORT_VENC_REF_LUMA>,
+              <&iommu M4U_PORT_VENC_REF_CHROMA>,
+              <&iommu M4U_PORT_VENC_NBM_RDMA>,
+-             <&iommu M4U_PORT_VENC_NBM_WDMA>,
+-             <&iommu M4U_PORT_VENC_RCPU_SET2>,
++             <&iommu M4U_PORT_VENC_NBM_WDMA>;
++    mediatek,larb = <&larb3>;
++    mediatek,vpu = <&vpu>;
++    clocks = <&topckgen CLK_TOP_VENC_SEL>;
++    clock-names = "venc_sel";
++    assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
++    assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
++  };
++
++vcodec_enc_lt: vcodec@19002000 {
++    compatible = "mediatek,mt8173-vcodec-vp8-enc";
++    reg =  <0 0x19002000 0 0x1000>;	/* VENC_LT_SYS */
++    interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
++    iommus = <&iommu M4U_PORT_VENC_RCPU_SET2>,
+              <&iommu M4U_PORT_VENC_REC_FRM_SET2>,
+              <&iommu M4U_PORT_VENC_BSDMA_SET2>,
+              <&iommu M4U_PORT_VENC_SV_COMA_SET2>,
+@@ -108,17 +119,10 @@ vcodec_dec: vcodec@16000000 {
+              <&iommu M4U_PORT_VENC_CUR_CHROMA_SET2>,
+              <&iommu M4U_PORT_VENC_REF_LUMA_SET2>,
+              <&iommu M4U_PORT_VENC_REC_CHROMA_SET2>;
++    mediatek,larb = <&larb5>;
+     mediatek,vpu = <&vpu>;
+-    clocks = <&topckgen CLK_TOP_VENCPLL_D2>,
+-             <&topckgen CLK_TOP_VENC_SEL>,
+-             <&topckgen CLK_TOP_UNIVPLL1_D2>,
+-             <&topckgen CLK_TOP_VENC_LT_SEL>;
+-    clock-names = "venc_sel_src",
+-                  "venc_sel",
+-                  "venc_lt_sel_src",
+-                  "venc_lt_sel";
+-    assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>,
+-                      <&topckgen CLK_TOP_VENC_LT_SEL>;
+-    assigned-clock-parents = <&topckgen CLK_TOP_VENCPLL_D2>,
+-                             <&topckgen CLK_TOP_UNIVPLL1_D2>;
++    clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
++    clock-names = "venc_lt_sel";
++    assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
++    assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL_370P5>;
+   };
 -- 
-2.30.0
+2.18.0
 
