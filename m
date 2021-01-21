@@ -2,101 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D91422FEC65
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 14:58:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8864D2FECC4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 15:19:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729195AbhAUNzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 08:55:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43090 "EHLO
+        id S1726294AbhAUOS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 09:18:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729549AbhAUNqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 08:46:50 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A340C061796
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:44:46 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id rv9so2617432ejb.13
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:44:46 -0800 (PST)
+        with ESMTP id S1728351AbhAUOSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 09:18:36 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D95CC061757;
+        Thu, 21 Jan 2021 06:17:55 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id e7so2626541ljg.10;
+        Thu, 21 Jan 2021 06:17:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MHgMDVFVKDKvtDgBJ6bSsn28+Hx3KTR2/9Rg1yeA1/0=;
-        b=Epwg9MmfT84c7AZZSAtt3VkZJXSsj7soBPEhI9/0szwu/a7jQ/4TyrgBWqo2W3aFbu
-         LMvaxbnkL23je/wK4jW17vQvw3ya02FEgNyU1/8YzKqq00rSXTZqNN4LzAcE9pDtqe8p
-         jPGaThFu2UI8UuVqxW3fJFDeCl0U3YJRu3GFt92vr3FxqMWbv+jPMHgz2H4v82ocFTs8
-         sLYqRvLcYJ98CJH/WET1F6wa+Oi+L1cghXBgEEppRk9lfVxoZLuSmDRfM6NmBkYUetkv
-         mner/MhldDpbAVP6hI6RSyzfowsl8ThOcpxog3bsHPdXNwLn+1gduH+OxbiJMHd7exqZ
-         QwWA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=qTWjoxSYUi4JL7bGI6mfUa/FE+ddTQPHgoii5uzinw0=;
+        b=MfQrvkEZK9CkOFzUT8cOGuJ6bH8ktiBx14mSDSXrvWsZpQHpVcQH3oqhZkf02lJF0C
+         Fawh5Yj42LIU4ovM2ZcxYgMFbrH7e+8xzu+RRpGB5kK0gxuyQAacbPRoVpQOGBxubkuv
+         DtPe5FJRwE0fvVXkS2m6LIwTEd4pqFPCDMm1KUE1dpTR86T5M7+a/HcgMDT77MIYRAzc
+         QHApmZahkmLmhcobgWFK7LJJcoJYtaE2FGcXjCUUvuIFQxajNOwAs+Dho48CrkhVwIJE
+         b5jHi0XPOrSspT+N/DMLeU/HSPr2Yj9MoBMhY4uF83wL1YF1squYKfYXhqI/WtjwJ1Ey
+         ddTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MHgMDVFVKDKvtDgBJ6bSsn28+Hx3KTR2/9Rg1yeA1/0=;
-        b=mctD0HCX2SwBV6qb4FR5pPkDUFtV6KOqfYJlMa7Qg4n86hwwmqXuctI/6d79FVmU6j
-         MM5DIwxoaxxX+m16xFV68evxjoyJ8pmGAhbMmytL1FCJCwZlfj88b0l8BfQvaDReB2Y+
-         FXrOTmFh5sIrW35QNmrAJFftzqisSRLQ5XS6HJ6BR3MwkcSwvfTZzNBiZZxayxWtJAh/
-         7yzukJWTRqmW+b9iQt0EBYB4f2wAFLl+A6usZSuqiFSVwpHvkRKjRYoTFls4lMIodA7+
-         ncMUrsRQrklHxD6bQroJ9KG06lWcghr/Od/ppPEP3RUOmQlk/b7RQmcHcRW4SYc3H+cX
-         RzDA==
-X-Gm-Message-State: AOAM531pLauDZX3wy51dzj23DximXNlFIEeaDRoQdSCqsgYgpj71fH5C
-        V0zQf7ln+oGQTtZGwUKZdNc86Uzskp10QA==
-X-Google-Smtp-Source: ABdhPJw3ZMcxnyc5Cnx5632MdTcRNssQjZ+YXRIFuTN+Zk3DUq06EZWaz1Nq8Laiz6fUfz7LyHJAjg==
-X-Received: by 2002:a17:906:7798:: with SMTP id s24mr9380830ejm.19.1611236685185;
-        Thu, 21 Jan 2021 05:44:45 -0800 (PST)
-Received: from localhost.localdomain (dh207-99-51.xnet.hr. [88.207.99.51])
-        by smtp.googlemail.com with ESMTPSA id j18sm2246376ejv.18.2021.01.21.05.44.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jan 2021 05:44:44 -0800 (PST)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, corbet@lwn.net,
-        linux-doc@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Subject: [PATCH v5 3/3] MAINTAINERS: Add entry for Texas Instruments TPS23861 PoE PSE
-Date:   Thu, 21 Jan 2021 14:44:34 +0100
-Message-Id: <20210121134434.2782405-3-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210121134434.2782405-1-robert.marko@sartura.hr>
-References: <20210121134434.2782405-1-robert.marko@sartura.hr>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=qTWjoxSYUi4JL7bGI6mfUa/FE+ddTQPHgoii5uzinw0=;
+        b=FWWhzm9e1FoTcfBxr0N3lGiPSb/UvQ7gFOH77meWa268YXOOWX5+gb4cYfZXTbZPJL
+         HdYB9Iqqdhh+PcHYftAWW2ktuogFP8drQhrB8106bhQs+choSM9CbMjfe6baRKxbpfZs
+         X4733kxVSXQSUgEE44WBLBZxO8GFcHqbB48tnTSCSxBhpCrsAdFIfleMLi6GXfj2P0MA
+         DlHcZtPW2AbwtI0MRrC7YHV3d1lvBAluUq4QCPK4JFqeopImrp2zx6Y3KxJ7O3L2EsA7
+         SZaUczxvlh6OQNBXJnzMmRG2nzVoGMbyJ/tGJzzkdA0uATMRJ4Ho5hGH4Ztoh5fiU39v
+         lpMg==
+X-Gm-Message-State: AOAM53205ZKiEy6ZqCoyQERgFuVxcNqUsjGXCPjlC8qcwDAOhfa+jFXm
+        +izf5xvvG5MyyQ+6VjZWcf3xFQnzl2Udt+yep0o=
+X-Google-Smtp-Source: ABdhPJx93WQ8CoZI8mE7J68rG71XZsqOVgjBEeJUDpRKtaIMDc+3RuxzVQHDmOsEOMzo8NVMKPVAttXNgcLqJcxtfB4=
+X-Received: by 2002:a2e:b556:: with SMTP id a22mr6794328ljn.264.1611238673776;
+ Thu, 21 Jan 2021 06:17:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210121061141.23062-1-o.rempel@pengutronix.de> <20210121061141.23062-7-o.rempel@pengutronix.de>
+In-Reply-To: <20210121061141.23062-7-o.rempel@pengutronix.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 21 Jan 2021 11:17:42 -0300
+Message-ID: <CAOMZO5C6RM2vEMFJB-+Nen1Et8wn39JJVM1UcOcar0aMebKykQ@mail.gmail.com>
+Subject: Re: [PATCH v2 6/7] ARM: dts: imx6dl-prtvt7: fix PWM cell count for
+ the backlight node.
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainers entry for the Texas Instruments TPS23861 PoE PSE driver.
+Hi Oleksij,
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Cc: Luka Perkov <luka.perkov@sartura.hr>
----
-Changes in v4:
-* Add documentation file
+On Thu, Jan 21, 2021 at 3:12 AM Oleksij Rempel <o.rempel@pengutronix.de> wr=
+ote:
+>
+> At some point PWM cell count was changed, but it didn't triggered any
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+It changed in this commit:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f95e887e5d76..2a7f22587774 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17602,6 +17602,15 @@ F:	include/dt-bindings/soc/ti,sci_pm_domain.h
- F:	include/linux/soc/ti/ti_sci_inta_msi.h
- F:	include/linux/soc/ti/ti_sci_protocol.h
- 
-+TEXAS INSTRUMENTS TPS23861 PoE PSE DRIVER
-+M:	Robert Marko <robert.marko@sartura.hr>
-+M:	Luka Perkov <luka.perkov@sartura.hr>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
-+F:	Documentation/hwmon/tps23861.rst
-+F:	drivers/hwmon/tps23861.c
-+
- THANKO'S RAREMONO AM/FM/SW RADIO RECEIVER USB DRIVER
- M:	Hans Verkuil <hverkuil@xs4all.nl>
- L:	linux-media@vger.kernel.org
--- 
-2.29.2
+commit fa28d8212ede9c533ae87a737571a9d3b3eebb29
+Author: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+Date:   Fri Jul 10 07:19:37 2020 +0200
 
+    ARM: dts: imx: default to #pwm-cells =3D <3> in the SoC dtsi files
+
+    The imx-pwm driver supports 3 cells and this is the more flexible setti=
+ng.
+    So use it by default and overwrite it back to two for the files that
+    reference the PWMs with just 2 cells to minimize changes.
+
+    This allows to drop explicit setting to 3 cells for the boards that alr=
+eady
+    depend on this. The boards that are now using 2 cells explicitly can be
+    converted to 3 individually.
+
+    Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+    Signed-off-by: Shawn Guo <shawnguo@kernel.org>
