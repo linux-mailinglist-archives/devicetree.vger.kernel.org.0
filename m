@@ -2,153 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 830FF2FF916
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 00:51:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F11E2FF938
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 01:06:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726116AbhAUXvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 18:51:05 -0500
-Received: from bilbo.ozlabs.org ([203.11.71.1]:43407 "EHLO ozlabs.org"
+        id S1726448AbhAVAGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 19:06:46 -0500
+Received: from mout.perfora.net ([74.208.4.196]:43365 "EHLO mout.perfora.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725918AbhAUXvC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 18:51:02 -0500
-Received: by ozlabs.org (Postfix, from userid 1007)
-        id 4DMJzb64BMz9sB4; Fri, 22 Jan 2021 10:50:19 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-        d=gibson.dropbear.id.au; s=201602; t=1611273019;
-        bh=Fft6pWIJCCE1z0Xgrl/5owEfMcAMg0noSxLROl4cxvA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kooLkeky/2rOolxJVwXBIx4krNxon30ZQvzeCTqsDq++Y7jscpc/ccnl4cGcu2WP/
-         hGVPigYyrNPk7mrHwQZRyXFQmtdvcHG+K070zkF+FP2rwZuqSh6AmDYZDs48ZBuyqQ
-         e070wakrBkJW2wNRQLdPWKkZBDp7IwNXE+TiWE2U=
-Date:   Fri, 22 Jan 2021 10:41:38 +1100
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
-Subject: Re: [PATCH V5 5/5] of: unittest: Statically apply overlays using
- fdtoverlay
-Message-ID: <20210121234138.GB4400@yekko.fritz.box>
-References: <cover.1611124778.git.viresh.kumar@linaro.org>
- <696c137461be8ec4395c733c559c269bb4ad586e.1611124778.git.viresh.kumar@linaro.org>
- <20210121005145.GF5174@yekko.fritz.box>
- <7d6adfd9-da1e-d4ca-3a04-b192f0cf36b0@gmail.com>
- <a6b5e6ac-90ec-9571-4fce-de7344bfcee9@gmail.com>
- <20210121054340.e4do45uvdns5bl5f@vireshk-i7>
- <91dadafc-26e1-13c1-37a2-d05ebd7b151f@gmail.com>
- <20210121055820.e5z3uykfttvxffhe@vireshk-i7>
- <3431c306-a62c-76c6-f236-fef35fa7ebc7@gmail.com>
+        id S1726435AbhAVAGl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 19:06:41 -0500
+X-Greylist: delayed 413 seconds by postgrey-1.27 at vger.kernel.org; Thu, 21 Jan 2021 19:06:40 EST
+Received: from localhost.localdomain ([81.221.216.133]) by mrelay.perfora.net
+ (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MXanQ-1lYAcw2uRS-00WX3t;
+ Fri, 22 Jan 2021 00:58:25 +0100
+Message-ID: <23c78a3592efab9b2261e384398957819b5e016d.camel@ziswiler.com>
+Subject: Re: [PATCH 1/2] arm64: boot: dts: add new dts for hellcat & petra
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     Daniel Walker <danielwa@cisco.com>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, xe-linux-external@cisco.com,
+        Daniel Walker <dwalker@fifo99.com>,
+        linux-arm-kernel@lists.infradead.org
+Date:   Fri, 22 Jan 2021 00:58:21 +0100
+In-Reply-To: <20210121231237.30664-1-danielwa@cisco.com>
+References: <20210121231237.30664-1-danielwa@cisco.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.2 (3.38.2-1.module_f33+10736+4f8d5006) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="K8nIJk4ghYZn606h"
-Content-Disposition: inline
-In-Reply-To: <3431c306-a62c-76c6-f236-fef35fa7ebc7@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:Qmw0h7kExStXWq5NOHbP7vhVO7EaZ8EPeDx/2Vdrdu2h+JwJODh
+ S3IxBPAaS+kbJiHhzTTQK0AiA54vgg89ZN1ll8Lfv2WHRWhZ244G2+SSHwPdxKLW1Z+xGpF
+ SPYEImuXx4uqMVsBXb4ruRfws+z5M95z0Imr3jrUJz41E/VO2iW6pvL1UL3WljNvzcVJHtD
+ 37jgvYj868SdGWySAOuuA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:KP/hmN7afJU=:Uis286NEbHxZJ0slUL71dd
+ OsHpXtbLPBM3YkSvuF1VUn1nzKOZJFXLJGOeEcrsiWAlk8/ZTaQKczHcIksp+PmPJjSK9+BzC
+ f2KoGz+YPIvZJfQNxflOsz9LSdW+X+gu1DBE21svZbn7ywNCEajLn8AJKm8iCPGXEK5GloTHc
+ 2evalJyA+F2xCl3ewQWsPbGzwOdlLzAVj0uUsqIU1NI2sWBhvd6bTC1oMct4lYojtu05CeSiu
+ Kb7b0iDuiFopVZ6Ds+vafdMf/obicv/027DGmgC4DiVLA9tz92FdiMHO3NXWtqSDxnk1V8J3u
+ M0tAoF+SRRuU0Z8Wvp2qRBYE8j/w5WW3ldSRRgKpkbbkw1/0xjg9SsiIj89QCkyLhhhuDrkj+
+ zmEZ1C//6pq8K2hAggg44LMMXY9PbFIWZIEn1v5nITVz3IM4pCWJTsozrRE44/Q8UXjYKujZH
+ xIrUExzehg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Daniel
 
---K8nIJk4ghYZn606h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Is it just me or something looks rather askew with the indentation of your dts' (e.g. tabs vs. spaces)?
 
-On Thu, Jan 21, 2021 at 01:04:46AM -0600, Frank Rowand wrote:
-> On 1/20/21 11:58 PM, Viresh Kumar wrote:
-> > On 20-01-21, 23:55, Frank Rowand wrote:
-> >> yes, but using the modified versions ("/plugin/;" removed) of
-> >> testcases.dtb and overlay_base.dtb.
-> >=20
-> > Okay, that would work fine I guess. I will try to implement this in
-> > the new version.
-> >=20
-> >> I apologize in advance if I get confused in these threads or cause con=
-fusion.
-> >> I find myself going in circles and losing track of how things fit toge=
-ther as
-> >> I move through the various pieces of unittest.
-> >=20
-> > Me too :)
-> >=20
-> > Today is the first time where we have some overlap in our work hours
-> > (probably you working late :)), and we are able to get this sorted out
-> > quickly enough.
->=20
-> Working quite late.  I swear I stopped working 3 hours ago and that was
-> already late.
->=20
-> I reacted quite negatively to the attempt to restructure the unittest
-> .dts file in the original patch.  Now after walking around the problem
-> space a bit, and reviewing the ugly things that unittest.c does, and
-> coming up with the approach of sed to copy and modify the two base
-> .dts files, I think I finally have my head wrapped around an easier
-> and cleaner approach than sed.
->=20
-> I'll describe it for just one of the two base files, but the same
-> concept would apply to the other.  Don't take my file names as
-> good suggestions, I am avoiding using the brain power to come up
-> with good names at the moment.
->=20
-> 1) rename overlay_base.dts to overlay_base.dtsi
->=20
-> 2) remove "/dtgs-v1/" and "/plugin/:" from overlay_base.dtsi
->=20
-> 3) create a new overlay_base.dts:
->    // SPDX-License-Identifier: GPL-2.0
->    /dts-v1/;
->    /plugin/;
->    #include overlay_base_dtsi
+Cheers
 
-"overlay_base" is a terrible name - it's not clear if it's supposed to
-be a base tree or an overlay.  I'm still not seeing any reasonable
-use for the plugin version either, fwiw.
+Marcel
 
->=20
-> 4) create a new file overlay_base_static.dts:
->    // SPDX-License-Identifier: GPL-2.0
->    /dts-v1/;
->    #include overlay_base_dtsi
->=20
-> 5) then use overlay_base_static.dtb as the base blob for ftdoverlay
->    applying overlay.dtb
->=20
-> Untested, hand typed, hopefully no typos.
->=20
-> -Frank
->=20
-> >=20
-> > Thanks for your feedback Frank.
-> >=20
->=20
+On Thu, 2021-01-21 at 15:12 -0800, Daniel Walker wrote:
+> Add Petra and Hellcat dts file. These platforms are based on
+> the Xilinx Zynqmp platform.
+> 
+> Signed-off-by: Daniel Walker <dwalker@fifo99.com>
+> Cc: xe-linux-external@cisco.com
+> ---
+>  arch/arm64/boot/dts/xilinx/Makefile           |   2 +
+>  .../boot/dts/xilinx/zynqmp-petra-hellcat.dts  | 856 ++++++++++++++++++
+>  arch/arm64/boot/dts/xilinx/zynqmp-petra.dts   | 847 +++++++++++++++++
+>  3 files changed, 1705 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-petra-hellcat.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-petra.dts
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/Makefile b/arch/arm64/boot/dts/xilinx/Makefile
+> index 60f5443f3ef4..d9eacb3c60e5 100644
+> --- a/arch/arm64/boot/dts/xilinx/Makefile
+> +++ b/arch/arm64/boot/dts/xilinx/Makefile
+> @@ -15,3 +15,5 @@ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-rev1.0.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revA.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu106-revA.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu111-revA.dtb
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-petra.dts
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-petra-hellcat.dts
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-petra-hellcat.dts b/arch/arm64/boot/dts/xilinx/zynqmp-petra-
+> hellcat.dts
+> new file mode 100644
+> index 000000000000..87e23c1cac65
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-petra-hellcat.dts
+> @@ -0,0 +1,856 @@
+> +/*
+> + * dts file for Cisco Petra-Hellcat Switching IOT platform
+> + *
+> + * (C) Copyright 2016-2018, Cisco Systems, Inc.
+> + *
+> + * This program is free software; you can redistribute it and/or
+> + * modify it under the terms of the GNU General Public License as
+> + * published by the Free Software Foundation; either version 2 of
+> + * the License, or (at your option) any later version.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "zynqmp.dtsi"
+> +#include "zynqmp-clk-ccf.dtsi"
+> +
+> +/*
+> + ********************* PL *********************
+> + */
+> +
+> +/ {
+> +    reserved-memory {
+> +        #address-cells = <0x2>;
+> +        #size-cells = <0x2>;
+> +        ranges;
+> +
+> +        rproc@3ed00000 {
+> +            no-map;
+> +            reg = <0x0 0x3ed00000 0x0 0x1000000>;
+> +        };
+> +        zynqmp_sha_reserved: buffer@0 {
+> +            compatible = "shared-dma-pool";
+> +            no-map;
+> +            reg = <0x0 0x78000000 0x0 0x00020000>;
+> +        };
+> +    }; 
+> +
+> +    sha384 {
+> +        compatible = "xlnx,zynqmp-keccak-384";
+> +        memory-region = <&zynqmp_sha_reserved>;
+> +    };
+> +
+> +       amba_pl: amba_pl@0 {
+> +               #address-cells = <2>;
+> +               #size-cells = <2>;
+> +               compatible = "simple-bus";
+> +               ranges ;
+> +               design_1_i_axi_iic_BP: i2c@80104000 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +            clocks = <0x3 0x47>;
 
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
+Spaces above vs. tabs before.
 
---K8nIJk4ghYZn606h
-Content-Type: application/pgp-signature; name="signature.asc"
+> ...
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmAKETEACgkQbDjKyiDZ
-s5K0yhAAwCkVaxbqv5aRtfwY6wUEEovCVfjUbUAFMENyD/850dxeErl53pywQr2+
-9cidj/u+uSQVD5rKCUeliO0WmEXaVjxmmW3OY2uLmIRGaBzUihSpO/0qN+fW0voZ
-MIziJp1wIjU8EgRyippocI6O8yRD5Csb/NLABle+38ayf9HoQoWDO4EE0TQVOxXC
-zd29gYy89sKtZMb+2cOI1HJYZC5eqcRYHH9t1TB8J4TFoB7j3RFBL/Un92254XtQ
-GKHMN/eAUlHeK0RN1wSrVr6ZNBUl05GZWaKdbrcHxXPVaz/qN8Ch093wJ/BqIwWO
-1CW9Nmr+0lON5xf9ecvn/olHcHIc+V2pYJYgu8IZ9d33uOMYZxibDgxv8l1lS3sy
-31G52JlTV9HzgEpNuMjjgXUF1tcg12cTUyCJ+t0AkjoR8nnhD3WF4+R9x90dUaYo
-NXwT0CgLq7KhTch9g9H7vMqgL/9HK/qhomXormm2lB6bOsN8EIdNkhZ5nJxBqZS4
-nxmABnIpJR1R1gEIffVX0Zi9z7+WxLCsF5IOtMOUCCsP0wbF9bFgTFLdH8KWsoku
-NECFIj65EXYJ1XyJ1IOBn/YmSZ231qQ6kR26N5achOMDHEf3s1iq8T+mXE4/JOm8
-R9lEEdylp5qxOyoN4xIdtftobxOIylezGinenbxHQhf2A5OhkjE=
-=CRoR
------END PGP SIGNATURE-----
-
---K8nIJk4ghYZn606h--
