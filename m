@@ -2,95 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB5F62FF1E7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 18:29:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAF6D2FF202
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 18:34:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388036AbhAUR15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 12:27:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34742 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388240AbhAUR1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 12:27:53 -0500
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D7EDC0613D6
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 09:27:08 -0800 (PST)
-Received: by mail-oo1-xc33.google.com with SMTP id g46so321458ooi.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 09:27:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=oa/WlyzI1t1uo49jIQ3nlsFVHbY2DgsZWB05ly/k8lg=;
-        b=QluiuTKvgz/tsNDHzWjmgWjImUK5Qq6O9z8ss/nQki7j71tJHadQnqp/nLjuAPY/iY
-         pZtRtkK8OLtO/CPidiugOZzJ+ZVa0omO/8B8cECJgHsSP7xh/zrVLvd1kxmjRmMmNF5S
-         Nb+HY8UvcFoQiwwSbZ4HcNXiKRqlv6PlZDQxIMnMePpwQi3uMdi3nA/p5TuYyifdy0Qp
-         sp6pIoZmspMP934FKTDyYCsgRGtSWbMel1dmNftC8T0/6Ue6XdmxJSEnNZAd75FtV/Y0
-         agQZqX2KvO2buP9AGvHRi3BKxEvysCpWgPOOsrR0bSGLaX9iOBLD/qTEXrY7jyu8x8U3
-         1PRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oa/WlyzI1t1uo49jIQ3nlsFVHbY2DgsZWB05ly/k8lg=;
-        b=aXt/8+kbdGxEuaXVUqEW/QTa7m5o8JlPCpks4TNvSAPzLq371D3CELHcLPEDgoLK8Z
-         /K6TdePDfaZYuaHwZ1jgC4gDcdwLyDDWKD7DubKmCQtsIGY93scXItcYFDG/b1ZOdlZU
-         Kz9UnF8LtGNP+RCWag7SqI2BKOb2p5IKD8LcPS+NXIb0L9CKQfdcH0jTjYeSEDjxENLH
-         u2GfyELdH5nTxt/YVjokUtmP0rU5huq/RcW+uwGq5exsiBeOjIwHKAVP8V4pFtTenghq
-         mAENxXLPr2r7YA7RWy0e4O1UqdkPYCTaVO5FCiA0nvAVzNg4A5XgxcBBezypfQuy/x4X
-         h+Iw==
-X-Gm-Message-State: AOAM53086Y+Py2YoqEbOEfJdrdbG52AR27tgCHYwc3U4rMWE9nH7vEZr
-        VTputt+/Y7CnA9e6icjarQhS0w==
-X-Google-Smtp-Source: ABdhPJyBs3fFzgKIzhqWkdoZMbLxqO+3+KDvlPsoaZCMvaTQqmg6dx9sfO9UItazUxpFXL0ceEb/eg==
-X-Received: by 2002:a05:6820:255:: with SMTP id b21mr572162ooe.0.1611250027694;
-        Thu, 21 Jan 2021 09:27:07 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 69sm1151286otc.76.2021.01.21.09.27.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jan 2021 09:27:07 -0800 (PST)
-Date:   Thu, 21 Jan 2021 11:27:05 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Raghavendra Rao Ananta <rananta@codeaurora.org>,
-        Jeevan Shriram <jshriram@codeaurora.org>
-Subject: Re: [PATCH v5 2/2] pinctrl: qcom: Add SM8350 pinctrl driver
-Message-ID: <YAm5afOWs95tN0vf@builder.lan>
-References: <20210121171747.3161543-1-vkoul@kernel.org>
- <20210121171747.3161543-3-vkoul@kernel.org>
+        id S2388053AbhAURcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 12:32:42 -0500
+Received: from foss.arm.com ([217.140.110.172]:42200 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388541AbhAURaI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 12:30:08 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B74E611B3;
+        Thu, 21 Jan 2021 09:29:20 -0800 (PST)
+Received: from [10.57.39.58] (unknown [10.57.39.58])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 13E233F66E;
+        Thu, 21 Jan 2021 09:29:14 -0800 (PST)
+Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
+To:     Rob Herring <robh@kernel.org>
+Cc:     Claire Chang <tientzu@chromium.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+        Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Grant Likely <grant.likely@arm.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Thierry Reding <treding@nvidia.com>,
+        Ingo Molnar <mingo@kernel.org>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        xen-devel@lists.xenproject.org, Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+References: <20210106034124.30560-1-tientzu@chromium.org>
+ <20210106034124.30560-6-tientzu@chromium.org>
+ <20210120165348.GA220770@robh.at.kernel.org>
+ <313f8052-a591-75de-c4c2-ee9ea8f02e7f@arm.com>
+ <CAL_JsqKjTqcCbCLksRbCh7=f-A3Y09A3jNqtUApaA+p=RKd_Eg@mail.gmail.com>
+ <c0d631de-8840-4f6e-aebf-41bb8449f78c@arm.com>
+ <CAL_JsqLv-FaiY_k+wS=iXG5AtccsXSBtvTfEGHvsN-VNqXdwpA@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <1a570c5c-e0da-7d86-4384-4a4c50193c94@arm.com>
+Date:   Thu, 21 Jan 2021 17:29:13 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210121171747.3161543-3-vkoul@kernel.org>
+In-Reply-To: <CAL_JsqLv-FaiY_k+wS=iXG5AtccsXSBtvTfEGHvsN-VNqXdwpA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 21 Jan 11:17 CST 2021, Vinod Koul wrote:
-
-> This adds pincontrol driver for tlmm block found in SM8350 SoC
+On 2021-01-21 15:48, Rob Herring wrote:
+> On Wed, Jan 20, 2021 at 7:10 PM Robin Murphy <robin.murphy@arm.com>
+> wrote:
+>> 
+>> On 2021-01-20 21:31, Rob Herring wrote:
+>>> On Wed, Jan 20, 2021 at 11:30 AM Robin Murphy
+>>> <robin.murphy@arm.com> wrote:
+>>>> 
+>>>> On 2021-01-20 16:53, Rob Herring wrote:
+>>>>> On Wed, Jan 06, 2021 at 11:41:23AM +0800, Claire Chang
+>>>>> wrote:
+>>>>>> Introduce the new compatible string, restricted-dma-pool,
+>>>>>> for restricted DMA. One can specify the address and length
+>>>>>> of the restricted DMA memory region by restricted-dma-pool
+>>>>>> in the device tree.
+>>>>> 
+>>>>> If this goes into DT, I think we should be able to use
+>>>>> dma-ranges for this purpose instead. Normally, 'dma-ranges'
+>>>>> is for physical bus restrictions, but there's no reason it
+>>>>> can't be used for policy or to express restrictions the
+>>>>> firmware has enabled.
+>>>> 
+>>>> There would still need to be some way to tell SWIOTLB to pick
+>>>> up the corresponding chunk of memory and to prevent the kernel
+>>>> from using it for anything else, though.
+>>> 
+>>> Don't we already have that problem if dma-ranges had a very
+>>> small range? We just get lucky because the restriction is
+>>> generally much more RAM than needed.
+>> 
+>> Not really - if a device has a naturally tiny addressing capability
+>> that doesn't even cover ZONE_DMA32 where the regular SWIOTLB buffer
+>> will be allocated then it's unlikely to work well, but that's just
+>> crap system design. Yes, memory pressure in ZONE_DMA{32} is
+>> particularly problematic for such limited devices, but it's
+>> irrelevant to the issue at hand here.
 > 
-> This patch is based on initial code downstream by Raghavendra.
+> Yesterday's crap system design is today's security feature. Couldn't 
+> this feature make crap system design work better?
+
+Indeed! Say you bring out your shiny new "Strawberry Flan 4" machine
+with all the latest connectivity, but tragically its PCIe can only
+address 25% of the RAM. So you decide to support deploying it in two
+configurations: one where it runs normally for best performance, and
+another "secure" one where it dedicates that quarter of RAM as a 
+restricted DMA pool for any PCIe devices - that way, even if that hotel 
+projector you plug in turns out to be a rogue Thunderbolt endpoint, it 
+can never snarf your private keys off your eMMC out of the page cache.
+
+(Yes, is is the thinnest of strawmen, but it sets the scene for the 
+point you raised...)
+
+...which is that in both cases the dma-ranges will still be identical. 
+So how is the kernel going to know whether to steal that whole area from 
+memblock before anything else can allocate from it, or not?
+
+I don't disagree that even in Claire's original intended case it would 
+be semantically correct to describe the hardware-firewalled region with 
+dma-ranges. It just turns out not to be necessary, and you're already 
+arguing for not adding anything in DT that doesn't need to be.
+
+>> What we have here is a device that's not allowed to see *kernel*
+>> memory at all. It's been artificially constrained to a particular
+>> region by a TZASC or similar, and the only data which should ever
+>> be placed in that
 > 
+> May have been constrained, but that's entirely optional.
+> 
+> In the optional case where the setup is entirely up to the OS, I
+> don't think this belongs in the DT at all. Perhaps that should be
+> solved first.
 
-> Signed-off-by: Raghavendra Rao Ananta <rananta@codeaurora.org>
+Yes! Let's definitely consider that case! Say you don't have any 
+security or physical limitations but want to use a bounce pool for some 
+device anyway because reasons (perhaps copying streaming DMA data to a 
+better guaranteed alignment gives an overall performance win). Now the 
+*only* relevant thing to communicate to the kernel is to, ahem, reserve 
+a large chunk of memory, and use it for this special purpose. Isn't that 
+literally what reserved-memory bindings are for?
 
-With Raghavendra's s-o-b here he should be From:, but based on the
-changes you've done I don't think he has certified the origin of this
-patch anymore.
+>> region is data intended for that device to see. That way if it
+>> tries to go rogue it physically can't start slurping data intended
+>> for other devices or not mapped for DMA at all. The bouncing is an
+>> important part of this - I forget the title off-hand but there was
+>> an interesting paper a few years ago which demonstrated that even
+>> with an IOMMU, streaming DMA of in-place buffers could reveal
+>> enough adjacent data from the same page to mount an attack on the
+>> system. Memory pressure should be immaterial since the size of each
+>> bounce pool carveout will presumably be tuned for the needs of the
+>> given device.
+>> 
+>>> In any case, wouldn't finding all the dma-ranges do this? We're 
+>>> already walking the tree to find the max DMA address now.
+>> 
+>> If all you can see are two "dma-ranges" properties, how do you
+>> propose to tell that one means "this is the extent of what I can
+>> address, please set my masks and dma-range-map accordingly and try
+>> to allocate things where I can reach them" while the other means
+>> "take this output range away from the page allocator and hook it up
+>> as my dedicated bounce pool, because it is Serious Security Time"?
+>> Especially since getting that choice wrong either way would be a
+>> Bad Thing.
+> 
+> Either we have some heuristic based on the size or we add some hint. 
+> The point is let's build on what we already have for defining DMA 
+> accessible memory in DT rather than some parallel mechanism.
 
-So the line crediting his work above and your alone S-o-b seems more
-reasonable.
+The point I'm trying to bang home is that it's really not about the DMA 
+accessibility, it's about the purpose of the memory itself. Even when 
+DMA accessibility *is* relevant it's already implied by that purpose, 
+from the point of view of the implementation. The only difference it 
+might make is to the end user if they want to ascertain whether the 
+presence of such a pool represents protection against an untrusted 
+device or just some DMA optimisation tweak.
 
-
-For the content of the patch:
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
-> Signed-off-by: Jeevan Shriram <jshriram@codeaurora.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Robin.
