@@ -2,120 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4070E2FEDCD
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 15:59:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 422C02FEDD8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 16:01:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731961AbhAUO6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 09:58:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58740 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732265AbhAUO6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 09:58:05 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC6B0C0613ED
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 06:57:24 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id bx12so2804928edb.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 06:57:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=4VYGCkLUZ2VNqZ5zWsKUgngBtD/KSgWDqt4NWk1tf8I=;
-        b=G9+bYhym20Gy8sKvTn2y4XwvP9B8L9faNAe3F5Zvr8BvD92iG39xcV6dwfR127YLus
-         BPEJ3wSsYg6oMjAM/9KiqEH0eARKM6RYAq6K9LWPpBB7rRpwK4AFiC3rD3sm0wYhe4rQ
-         n3lSQwddEOL/N/RI+FjLqOFjZ3iWLLBl0W7h+4ObFy+v7GUl5sSjRssV+NngP/V6t0QV
-         VUAXtwnqGN9woKPYd3rHnpudfOvy/85BkporsYGDFwxIaNWGPAUuWvgaraS/spoQHoz2
-         VcJLH1YOs4DM8GILGBjoDmAFgY6r7tCiOuH3bj/w96mR77mkQPHisODuo5DUH4NP5ynd
-         /gcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=4VYGCkLUZ2VNqZ5zWsKUgngBtD/KSgWDqt4NWk1tf8I=;
-        b=GMc2Sil/SAGHLg5IpYuhHO73ZmIM9vn2ph/rynI0vJPUS16X0DQACwDiVITN3lLZSS
-         1OKTyycTeFihrtRi9nLN4/lkKCznV7Dt5UqGeiUtssFylLtTSy1767mLE2nao91BHUGD
-         MYvCAMt3OocFZR04BBZcsurg8BQGymdKT1ARGZwRAPNJ4xrd7j7rljuccPPSrkPeznnk
-         +04jZrffgovs0jyKDtJSwM4IIJthVqQmUXWcWM2V2KmuXfnB+ZgMm9zXTCAMEqcdsAxf
-         MFRAnvuu84uYJzs3D65nxAzRMb3SlJsXqQQmrj/dRR2mVC1lgeFlflVdfcWviuGmY+gK
-         OfhA==
-X-Gm-Message-State: AOAM533xd4gAvh+NQQixz+nVJ4AmH3r7O6zBaEaloP7W4Ezjwsn64nRT
-        x+3EdMRvoe1f/US2ZzqJs9AWbnOQyB9iDgvGXNQ=
-X-Google-Smtp-Source: ABdhPJz5LO70j52ZXk2ESX3wrVOtuN7i91U8cVIKMqqoc/Cyi8mTR9WfRuDeCMZiN1d2gQmatqhmuXxwCiab8YL1e6M=
-X-Received: by 2002:aa7:dd16:: with SMTP id i22mr11264397edv.215.1611241043705;
- Thu, 21 Jan 2021 06:57:23 -0800 (PST)
+        id S1731982AbhAUPAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 10:00:40 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:56770 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731290AbhAUPA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 10:00:26 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10LExUt6103084;
+        Thu, 21 Jan 2021 08:59:30 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611241170;
+        bh=PtWXpPfLZmHaEBTIn274KmXUHiXL6U3L2tnVRzASGNg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=mDGAmtXxyag52vzhTWCN2mOpZs/hK+8BI+HWCAo0F7iVGgThb97cCndAyXR0mvhvO
+         p+Ae7O5zwy62G435roqg7yHCnX4fPGDHweYy70cS2lI0mB3JfMo13w4s90jle9sIE1
+         dACGvlRsdc8yqBqOZsSrV7o0LKcgeN26QUe6jMzY=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10LExU5J081746
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 Jan 2021 08:59:30 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
+ Jan 2021 08:59:30 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 21 Jan 2021 08:59:30 -0600
+Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10LExQLJ087763;
+        Thu, 21 Jan 2021 08:59:27 -0600
+Subject: Re: [PATCH] arm64: dts: ti: k3: mmc: fix dtbs_check warnings
+To:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Faiz Abbas <faiz_abbas@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+References: <20210115193016.5581-1-grygorii.strashko@ti.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <ae44e940-9e74-27d9-8641-b682d3e2b65b@ti.com>
+Date:   Thu, 21 Jan 2021 20:29:25 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Sender: donnalouise11954@gmail.com
-Received: by 2002:a54:32c9:0:0:0:0:0 with HTTP; Thu, 21 Jan 2021 06:57:23
- -0800 (PST)
-From:   Mrs Nadia Emaan <mrsnadiaemaan50@gmail.com>
-Date:   Thu, 21 Jan 2021 14:57:23 +0000
-X-Google-Sender-Auth: NvNOG5w_IGteFm3f3rzP1s8OhOc
-Message-ID: <CADncvCvYqL0egS6j3NHppS1JQpkAFdJrBOPA6eHJ4aa5PJ6Jag@mail.gmail.com>
-Subject: May the peace of God be with You;
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210115193016.5581-1-grygorii.strashko@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello My beloved,
+On 16/01/21 1:00 am, Grygorii Strashko wrote:
+> Now the dtbs_check produces below warnings
+>  sdhci@4f80000: clock-names:0: 'clk_ahb' was expected
+>  sdhci@4f80000: clock-names:1: 'clk_xin' was expected
+>  $nodename:0: 'sdhci@4f80000' does not match '^mmc(@.*)?$'
+> 
+> Fix above warnings by updating mmc DT definitions to follow
+> sdhci-am654.yaml bindings:
+>  - rename sdhci dt nodes to 'mmc@'
+>  - swap clk_xin/clk_ahb clocks, the clk_ahb clock expected to be defined
+> first
+> 
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
-I am contacting you through this means because I need your urgent
-assistance and also help me to carry a charity project in your
-country. I found your email address as a true child of God for past
-few days now that I have been praying to know if you are really the
-chosen one for this great charity project, according to God's
-direction, after all prayers I am convinced, and I have decided to
-contact you. Please, i want you use the funds for the Lord's work,
-with confidence, read and respond now.
+Reviewed-by: Aswath Govindraju <a-govindraju@ti.com>
 
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi  |  4 ++--
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi |  8 ++++----
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 18 +++++++++---------
+>  3 files changed, 15 insertions(+), 15 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 12591a854020..ceb579fb427d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -256,7 +256,7 @@
+>  		#size-cells = <0>;
+>  	};
+>  
+> -	sdhci0: sdhci@4f80000 {
+> +	sdhci0: mmc@4f80000 {
+>  		compatible = "ti,am654-sdhci-5.1";
+>  		reg = <0x0 0x4f80000 0x0 0x260>, <0x0 0x4f90000 0x0 0x134>;
+>  		power-domains = <&k3_pds 47 TI_SCI_PD_EXCLUSIVE>;
+> @@ -280,7 +280,7 @@
+>  		dma-coherent;
+>  	};
+>  
+> -	sdhci1: sdhci@4fa0000 {
+> +	sdhci1: mmc@4fa0000 {
+>  		compatible = "ti,am654-sdhci-5.1";
+>  		reg = <0x0 0x4fa0000 0x0 0x260>, <0x0 0x4fb0000 0x0 0x134>;
+>  		power-domains = <&k3_pds 48 TI_SCI_PD_EXCLUSIVE>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> index 4e39f0325c03..3f23b913b498 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -506,8 +506,8 @@
+>  		reg = <0x00 0x04f80000 0x00 0x260>, <0x00 0x4f88000 0x00 0x134>;
+>  		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+>  		power-domains = <&k3_pds 91 TI_SCI_PD_EXCLUSIVE>;
+> -		clock-names = "clk_xin", "clk_ahb";
+> -		clocks = <&k3_clks 91 3>, <&k3_clks 91 0>;
+> +		clock-names = "clk_ahb", "clk_xin";
+> +		clocks = <&k3_clks 91 0>, <&k3_clks 91 3>;
+>  		ti,otap-del-sel-legacy = <0x0>;
+>  		ti,otap-del-sel-mmc-hs = <0x0>;
+>  		ti,otap-del-sel-ddr52 = <0x6>;
+> @@ -525,8 +525,8 @@
+>  		reg = <0x00 0x04fb0000 0x00 0x260>, <0x00 0x4fb8000 0x00 0x134>;
+>  		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+>  		power-domains = <&k3_pds 92 TI_SCI_PD_EXCLUSIVE>;
+> -		clock-names = "clk_xin", "clk_ahb";
+> -		clocks = <&k3_clks 92 2>, <&k3_clks 92 1>;
+> +		clock-names = "clk_ahb", "clk_xin";
+> +		clocks = <&k3_clks 92 1>, <&k3_clks 92 2>;
+>  		ti,otap-del-sel-legacy = <0x0>;
+>  		ti,otap-del-sel-sd-hs = <0x0>;
+>  		ti,otap-del-sel-sdr12 = <0xf>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 2d526ea44a85..8c84dafb7125 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1032,13 +1032,13 @@
+>  		clock-names = "gpio";
+>  	};
+>  
+> -	main_sdhci0: sdhci@4f80000 {
+> +	main_sdhci0: mmc@4f80000 {
+>  		compatible = "ti,j721e-sdhci-8bit";
+>  		reg = <0x0 0x4f80000 0x0 0x1000>, <0x0 0x4f88000 0x0 0x400>;
+>  		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+>  		power-domains = <&k3_pds 91 TI_SCI_PD_EXCLUSIVE>;
+> -		clock-names = "clk_xin", "clk_ahb";
+> -		clocks = <&k3_clks 91 1>, <&k3_clks 91 0>;
+> +		clock-names = "clk_ahb", "clk_xin";
+> +		clocks = <&k3_clks 91 0>, <&k3_clks 91 1>;
+>  		assigned-clocks = <&k3_clks 91 1>;
+>  		assigned-clock-parents = <&k3_clks 91 2>;
+>  		bus-width = <8>;
+> @@ -1054,13 +1054,13 @@
+>  		dma-coherent;
+>  	};
+>  
+> -	main_sdhci1: sdhci@4fb0000 {
+> +	main_sdhci1: mmc@4fb0000 {
+>  		compatible = "ti,j721e-sdhci-4bit";
+>  		reg = <0x0 0x04fb0000 0x0 0x1000>, <0x0 0x4fb8000 0x0 0x400>;
+>  		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+>  		power-domains = <&k3_pds 92 TI_SCI_PD_EXCLUSIVE>;
+> -		clock-names = "clk_xin", "clk_ahb";
+> -		clocks = <&k3_clks 92 0>, <&k3_clks 92 5>;
+> +		clock-names = "clk_ahb", "clk_xin";
+> +		clocks = <&k3_clks 92 5>, <&k3_clks 92 0>;
+>  		assigned-clocks = <&k3_clks 92 0>;
+>  		assigned-clock-parents = <&k3_clks 92 1>;
+>  		ti,otap-del-sel-legacy = <0x0>;
+> @@ -1074,13 +1074,13 @@
+>  		dma-coherent;
+>  	};
+>  
+> -	main_sdhci2: sdhci@4f98000 {
+> +	main_sdhci2: mmc@4f98000 {
+>  		compatible = "ti,j721e-sdhci-4bit";
+>  		reg = <0x0 0x4f98000 0x0 0x1000>, <0x0 0x4f90000 0x0 0x400>;
+>  		interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+>  		power-domains = <&k3_pds 93 TI_SCI_PD_EXCLUSIVE>;
+> -		clock-names = "clk_xin", "clk_ahb";
+> -		clocks = <&k3_clks 93 0>, <&k3_clks 93 5>;
+> +		clock-names = "clk_ahb", "clk_xin";
+> +		clocks = <&k3_clks 93 5>, <&k3_clks 93 0>;
+>  		assigned-clocks = <&k3_clks 93 0>;
+>  		assigned-clock-parents = <&k3_clks 93 1>;
+>  		ti,otap-del-sel-legacy = <0x0>;
+> 
 
-My name is Ms. Nadia Faroul Emaan , a widow, but currently based in West
-Africa since my life with my late husband, who was a businessman in
-this country before dying some years ago. We were married to many
-years without a child. He died after a brief illness that lasted only
-six days and I myself have been suffering from an ovarian cancer
-disease. At this moment I am about to finish the race in this way
-because the disease has reached a very bad stage, without any family
-member and without children. I hope you do not expose or betray this
-trust and I am sure that I am about to trust you for the mutual
-benefit of orphans and the less privileged. I have some funds that I
-inherited from my late husband, the total sum of ($ 12,500,000.00)
-deposited at a bank here in Burkina Faso. After knowing my current
-state of health, I decided to trust you with this fund, believing that
-you will use it in the way I will instruct here.
-
-
-you will use this $12.5 Million for public benefit as follows;
-
-1. Establish An Orphanage Home To Help The Orphanages Children.
-2. Build A Hospital To Help The Poor.
-3. Build A Nursing Home For Elderly People Need Care & Meal.
-
-You will named them after my late husband.Therefore, I need you to
-help me and claim this money and use it for charities, for orphanages
-and provide justice and help to the poor, needy and to promote the
-words of God and the effort to maintain the house of God, according to
-the bible in the book of. Jeremiah 22: 15-16, not minding out
-different religions.
-
-It will be a pleasure to compensate with 40% percent of the total
-money for your effort in handling the transaction, while 60% of the
-money will go to charity project.
-
-All I need from you is sincerity and ability to complete the task of
-God without any failure. It will be my pleasure to see that the bank
-has finally released and transferred the fund to your bank account in
-the country, even before I die here in the hospital, due to my current
-state of health, everything must be processed as soon as possible.
-
-I am waiting for your immediate response, if you are only interested
-in obtaining more details about the transaction and execution of this
-humanitarian project for the glory and honor of God.
-
-Sorry if you received this letter in your spam, is due to recent
-connection/network error here in the country.
-
-Please I am waiting for your urgent reply now.
-
-May God Bless you,
-Mrs. Faroul Nadia Emaan.
