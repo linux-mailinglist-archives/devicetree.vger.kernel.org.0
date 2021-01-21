@@ -2,116 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9E642FEF11
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 16:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 672E82FEF2B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 16:42:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732928AbhAUPjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 10:39:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39102 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733020AbhAUPhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 10:37:37 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D72AC0613ED
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 07:36:56 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id i63so1825781wma.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 07:36:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JcVTg+smuk+JvjKNodQ46EIl4LUKQrz4MgqUhJc2c80=;
-        b=JiBVAej+mj5P09SDTOqy/z13p3dfmhJLUGqUlhdCTWBgsEh4vciDlpLWsRf8TL4lvi
-         sNqqBZluOfTslKoM48OG8EjkDvHT/8XFUcUCgycz+OvAN8p9j3lyD5HbXCldJSLwkzqK
-         JYjvMxQgkPIUGjMPRxzaF97kve0KuVZebypAlN8uJqY6G1HiUo8Is+OfXsjeBYgBQL3U
-         T88HHH7F4w5U819uM4sV8QWcHSbhGRsbACOP/kercgXBHMRsxcea6g5faDvCqUJqb6te
-         KOCp/cR0z4xjU0+OnWCfQmhTdEsWtgiD54SNU1h8bDxJk2n0BCCckVasXzLfIjSSwWs2
-         uL8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JcVTg+smuk+JvjKNodQ46EIl4LUKQrz4MgqUhJc2c80=;
-        b=J9p1vtpZmV3TBsAc4+mzegU4S9XaFkdXm8ENQ2/6LM33tkVCTRdptNJlw+NYUbvMn5
-         Vk5rBVYZq1SpUqXXf72r/ascP8MX1s3v/GSn4XF7T84/CvIQCJ5CfBrOJQ8ELwnuz0b4
-         kdup/yN6OJ8K6as67oM0hRNBH5Zh46YQElZleGHF/BqsltdJxrU06/hwTdrQb+c8kya0
-         Xm1bKV9psuMb/KaZUqvCL8m5mdu8Gf+7H4HD63+kIlzmLfSdf/ZlO9Skan37EJRVITSx
-         THWt79OW7MkpFqb4Iq5ZZOZoGXYTuKO3tXPOBjEkGEbzZ3vZox1UwaioAgH+8lsI5Jfz
-         sJgA==
-X-Gm-Message-State: AOAM530NPjZj6eqpzu6JDWIXBsYaCjcFwkviOtyaTe+FRA8wUzR/8NuR
-        /UblIcoH8/N5adbftuHK+J3OPafnYkk9Tg==
-X-Google-Smtp-Source: ABdhPJyfXqxxgqOmtoSnJpiF3iqSkYaC/yU+/103LNk7Ep1oDZ5J01CBAR32cmExYpf+0vSeN4/3KQ==
-X-Received: by 2002:a1c:608b:: with SMTP id u133mr9438737wmb.140.1611243415109;
-        Thu, 21 Jan 2021 07:36:55 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:1539:1c19:f5a3:71b8? ([2a01:e34:ed2f:f020:1539:1c19:f5a3:71b8])
-        by smtp.googlemail.com with ESMTPSA id p17sm8602926wmg.46.2021.01.21.07.36.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jan 2021 07:36:54 -0800 (PST)
-Subject: Re: [PATCH v12 0/5] qcom: pm8150: add support for thermal monitoring
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-References: <20210119054848.592329-1-dmitry.baryshkov@linaro.org>
- <078a7025-ce5c-a252-f8f4-694c56153b3a@linaro.org>
- <YAmedqs9/1oDSWvK@builder.lan>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <49eb2533-e6ba-9310-a4f8-5b633c7a0253@linaro.org>
-Date:   Thu, 21 Jan 2021 16:36:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1733058AbhAUPjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 10:39:10 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44912 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733244AbhAUPiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 10:38:54 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10LFbvKL075454;
+        Thu, 21 Jan 2021 09:37:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611243477;
+        bh=sccTMsDumYePut3U4kZmgrZPlKDI7gFo8qWSL7vNxzs=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=vSbAx3VQYi2FXca0QO7qRaG9BPJOsN3b7bxc/P3XeAd2zgwAgbvev8XmjgKono4gA
+         e5ikg8p0S02Amkb+GrfZW3xX850vv8WOLQfgXTAOVgTyqC+mwMknhBmOzfwfhDEzXw
+         gejFcJj5Tc9akuDgsOYpk0jChpy3Km4HigwwJdNA=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10LFbvPe086149
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 Jan 2021 09:37:57 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 21
+ Jan 2021 09:37:57 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 21 Jan 2021 09:37:57 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10LFbvl9031115;
+        Thu, 21 Jan 2021 09:37:57 -0600
+Date:   Thu, 21 Jan 2021 09:37:57 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am65-main: Add ICSSG nodes
+Message-ID: <20210121153757.kuknwzrzc3xmnase@machine>
+References: <20210114194805.8231-1-s-anna@ti.com>
+ <20210114194805.8231-2-s-anna@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <YAmedqs9/1oDSWvK@builder.lan>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210114194805.8231-2-s-anna@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/01/2021 16:32, Bjorn Andersson wrote:
-> On Tue 19 Jan 14:57 CST 2021, Daniel Lezcano wrote:
-> 
->> On 19/01/2021 06:48, Dmitry Baryshkov wrote:
->>> This patch serie adds support for thermal monitoring block on Qualcomm's
->>> PMIC5 chips. PM8150{,b,l}, qrb5165-rb5 board and sm8250-mtp board device
->>> trees are extended to support thermal zones provided by this thermal
->>> monitoring block.  Unlike the rest of PMIC thermal senses, these thermal
->>> zones describe particular thermistors, which differ between from board
->>> to board.
->>>
->>> Dependencies: https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/log/?h=ib-iio-thermal-5.11-rc1
->>
->> Shall I pick 3,4,5 also ?
->>
-> 
-> I believe I have some adjacent changes staged in these files, so I'll
-> prefer to pick them through the Qualcomm tree.
+On 13:48-20210114, Suman Anna wrote:
+[...]
 
-Ok, thanks
+> +
+> +		icssg1_intc: interrupt-controller@20000 {
+> +			compatible = "ti,icssg-intc";
+> +			reg = <0x20000 0x2000>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "host_intr0", "host_intr1",
+> +					  "host_intr2", "host_intr3",
+> +					  "host_intr4", "host_intr5",
+> +					  "host_intr6", "host_intr7";
 
->> -- 
->> <http://www.linaro.org/> Linaro.org ??? Open source software for ARM SoCs
->>
->> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
->> <http://twitter.com/#!/linaroorg> Twitter |
->> <http://www.linaro.org/linaro-blog/> Blog
+
+Could you look at https://pastebin.ubuntu.com/p/rbZrv3sDFk/
 
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
