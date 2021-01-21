@@ -2,89 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A9CF2FEEEC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 16:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE5A72FEF0D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 16:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731933AbhAUPdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 10:33:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37608 "EHLO
+        id S1731902AbhAUPdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 10:33:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731902AbhAUNV5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 08:21:57 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886CFC0613CF
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:21:08 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id v24so2455252lfr.7
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:21:08 -0800 (PST)
+        with ESMTP id S1731852AbhAUPcx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 10:32:53 -0500
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FB3EC06174A
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 07:32:09 -0800 (PST)
+Received: by mail-oo1-xc35.google.com with SMTP id q3so589910oog.4
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 07:32:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=op8j6R+4g48Fa+r3T9cI5xuzEnP9tzeqMgjxOehUVnQ=;
-        b=KOqidmz/CNyqEKehs2nWu23QUqIuHHvV8BJ4khGA4+VCmdaIvawUrg0n3clUglYtHQ
-         5sH8Rka2lKSp3BBHtLiPfEp6BCPmQL+B8KbwEq8SwUczwlwBELUnAHiujJ/oe3PKpWP8
-         QZkVdVEV4eXJ1yzbjli5R2kJb/U29jmdl8ksIRgxV6ceR6fm7+2sAPDly16MmHrvRpiP
-         TaSihqF6tt2OfDgtxLzUNFPNdNNogXDiti+c6DNiFtcb4y1jMaoRcva4cTXFbY2/Zqi5
-         xeTFjUHjJvoNqrtr/g5BL+b7hl81Ok8GyUvjTvJ68kU5sPgZffhiQqSOkHLMGKGgvMpJ
-         88QA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HrC/BtIGOSMmK8LojhA7HYYtVauAes9ugHyEOOmaStM=;
+        b=zsmsXfxPeN1c5q6BDDydKmojMbFwdYUFugqo1wUWW1HoXkSCQFm9y6uswYIqP3tTED
+         kYDlANpbvajQyu9x3lqlOHpBtwx0NzL4XL/RR781HzWDFzEyW6gj0yzhftTRYOPV/Wnu
+         pTDD1RUi183xe0Op5lF1MzDEZK+w9VEYTI1yeRLEk0R9BD/5ZAUzqgbPsv1wtXH5JcyB
+         dfTw+b//4KUx5OVqB5jhF1A3TokWKQaBoQK/ipVZQoxKvRmCd4WNs5Mbg1eaR4hF+q4e
+         6nr7IqWCQOT96DahxU6HiLUdZ5VyKXgIUMnVVgBJMCueASom2HIK7QG3oeGdkjhu61W/
+         G4Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=op8j6R+4g48Fa+r3T9cI5xuzEnP9tzeqMgjxOehUVnQ=;
-        b=G7FwkEActH94ojS8WPgkamqD0a/TXveDLObKQG6UK7C/p6RD7Jx7hOny7o0gD5OVz0
-         cUNuneeZWduBU1iBkmgI5T3bKeyAUO81ThIW0vF9RgcSVdW29IMzhSzfSo6kjDOW847V
-         s3zz4kuqaTVk7vcvlvk/+uDhU7dqz38Dh5dCwuVCZ7ihzuBcighZ9GX3Kh18ikwazb4B
-         tSZTeWQoPPIYpiKP1eOfwraCQDgqsiVmtv9uldDLpUZYKpJSNf/1jWat3KNw00dkzYKK
-         OuX8gWcYQPAIbYDiAeeFMzDwVZsOtwLxdfKZ8hUcbFThDoGdwk4d++6bHQjxvJENq/2L
-         g8tA==
-X-Gm-Message-State: AOAM532m6UW/PQkd8ygh8yeFQeqJ4AXU9fhc+T4VAo2KxkCSajgsnTrA
-        Nz7kwzSPF7Sa0LgDJ9B8eHPVsdy9YquLbhSFS5pAlA==
-X-Google-Smtp-Source: ABdhPJzjolIGs0g1G1QMpgs9c5ZxqJOsxS9rir1XxYZUkDea4S/zurMDNfneRGbRqCXReCG1CXXIURIgom29HL1H5uI=
-X-Received: by 2002:a05:6512:3238:: with SMTP id f24mr6846302lfe.29.1611235266996;
- Thu, 21 Jan 2021 05:21:06 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HrC/BtIGOSMmK8LojhA7HYYtVauAes9ugHyEOOmaStM=;
+        b=V4yqsYBq7x8aW24X6v/F5tNzTzqhzYNov2ufNC91AYeraCa6/w5rNyzzM+psuZm5NC
+         uiOFsoGlk9kyzrTEXh7CqZtfKbzDLGU06k+hQG/7cZ90KEcOdcPHUFxIxzXTGu5QQ6jq
+         ktlSB+Ou2xnILOb0kcIxtjCQKVgO1cy3g+Yz5iy4RH0VvBNoU7kVppEfmZX3b0bRdrkk
+         OiZqcisvTofOGS542ycr3VMo/cHusGObGnnUb/wzYqHrvCRcH1LTYp5FUZdKxJuYIuHC
+         ZZVo08Nv7J0cRqi3TP63yJejchY/uToSSHbVU8Qz00QUEaamOwsPXnfQytpAagmVCtpw
+         XNIg==
+X-Gm-Message-State: AOAM5327GvNxtrAhCxEDMUVXbgRZSOZbgYNJZxvoOKso2PT5qUW8pzWD
+        +u4OapBvBLGQUjaihDpB3s1usA==
+X-Google-Smtp-Source: ABdhPJzRDqEsIBxCVlEnwYonZwjyr88XzHSrBOjAp45xooIVZZMHYE2AVKTNIKCNX1WxITcrXDFSSA==
+X-Received: by 2002:a4a:c692:: with SMTP id m18mr85815ooq.59.1611243128557;
+        Thu, 21 Jan 2021 07:32:08 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id y24sm1031116oos.44.2021.01.21.07.32.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jan 2021 07:32:07 -0800 (PST)
+Date:   Thu, 21 Jan 2021 09:32:06 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+Subject: Re: [PATCH v12 0/5] qcom: pm8150: add support for thermal monitoring
+Message-ID: <YAmedqs9/1oDSWvK@builder.lan>
+References: <20210119054848.592329-1-dmitry.baryshkov@linaro.org>
+ <078a7025-ce5c-a252-f8f4-694c56153b3a@linaro.org>
 MIME-Version: 1.0
-References: <20210120222114.1609779-1-bjorn.andersson@linaro.org> <20210120222114.1609779-2-bjorn.andersson@linaro.org>
-In-Reply-To: <20210120222114.1609779-2-bjorn.andersson@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 21 Jan 2021 14:20:55 +0100
-Message-ID: <CACRpkdY6G_EP8QAp1C-eghdbgcgwQezA1ap=nDtSHPNqjuDF6Q@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: qcom: Define common TLMM binding
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <078a7025-ce5c-a252-f8f4-694c56153b3a@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 11:21 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
+On Tue 19 Jan 14:57 CST 2021, Daniel Lezcano wrote:
 
-> Several properties are shared between all TLMM bindings. By providing a
-> common binding to define these properties each platform's binding can be
-> reduced to just listing which of these properties should be checked for
-> - or further specified.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> On 19/01/2021 06:48, Dmitry Baryshkov wrote:
+> > This patch serie adds support for thermal monitoring block on Qualcomm's
+> > PMIC5 chips. PM8150{,b,l}, qrb5165-rb5 board and sm8250-mtp board device
+> > trees are extended to support thermal zones provided by this thermal
+> > monitoring block.  Unlike the rest of PMIC thermal senses, these thermal
+> > zones describe particular thermistors, which differ between from board
+> > to board.
+> > 
+> > Dependencies: https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/log/?h=ib-iio-thermal-5.11-rc1
+> 
+> Shall I pick 3,4,5 also ?
+> 
 
-Overall it looks good, just cutting some slack for reviewers (especially
-DT people) before applying.
+I believe I have some adjacent changes staged in these files, so I'll
+prefer to pick them through the Qualcomm tree.
 
-> +description:
-> +  This defines the common properties used to describe all Qualcomm TLMM
-> +  bindings and pinconf/pinmux states for these.
+Thank you,
+Bjorn
 
-I vaguely recall asking you in the past what the acronym TLMM actually
-means. This would be a good place to expand the acronym so people
-know what these four letters actually represent.
-
-(There, I finally gave you an official reason to go and poke Qualcomm
-hardware engineers about this. ;)
-
-Yours,
-Linus Walleij
+> 
+> -- 
+> <http://www.linaro.org/> Linaro.org ??? Open source software for ARM SoCs
+> 
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
