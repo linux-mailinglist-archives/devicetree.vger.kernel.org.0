@@ -2,93 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 243412FE948
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 12:50:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D089F2FE9E0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 13:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730552AbhAULtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 06:49:13 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:10102 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730758AbhAULs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 06:48:56 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10LBeD83029618;
-        Thu, 21 Jan 2021 06:47:58 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 3668rbp83x-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 21 Jan 2021 06:47:58 -0500
-Received: from SCSQMBX10.ad.analog.com (SCSQMBX10.ad.analog.com [10.77.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 10LBluwd033333
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 21 Jan 2021 06:47:57 -0500
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQMBX10.ad.analog.com (10.77.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.721.2;
- Thu, 21 Jan 2021 03:47:55 -0800
-Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Thu, 21 Jan 2021 03:47:55 -0800
-Received: from nsa.sphairon.box ([10.44.3.51])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 10LBllDj013729;
-        Thu, 21 Jan 2021 06:47:53 -0500
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH 4/4] dt-bindings: adis16475: remove property
-Date:   Thu, 21 Jan 2021 12:49:54 +0100
-Message-ID: <20210121114954.64156-5-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210121114954.64156-1-nuno.sa@analog.com>
-References: <20210121114954.64156-1-nuno.sa@analog.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-21_04:2021-01-21,2021-01-21 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 malwarescore=0 impostorscore=0 spamscore=0 mlxscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 adultscore=0 mlxlogscore=999
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2101210064
+        id S1729924AbhAUMWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 07:22:03 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:54690 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729784AbhAUK64 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 05:58:56 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id AA55D200C68;
+        Thu, 21 Jan 2021 11:58:09 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 05D4B200C74;
+        Thu, 21 Jan 2021 11:58:07 +0100 (CET)
+Received: from lsv03124.swis.in-blr01.nxp.com (lsv03124.swis.in-blr01.nxp.com [92.120.146.121])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8F92740297;
+        Thu, 21 Jan 2021 11:58:03 +0100 (CET)
+From:   Kuldeep Singh <kuldeep.singh@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+Subject: [Patch v2 2/3] arm64: dtsi: ls1028a: Update flexcan properties
+Date:   Thu, 21 Jan 2021 16:27:38 +0530
+Message-Id: <1611226659-30129-3-git-send-email-kuldeep.singh@nxp.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1611226659-30129-1-git-send-email-kuldeep.singh@nxp.com>
+References: <1611226659-30129-1-git-send-email-kuldeep.singh@nxp.com>
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-`adi,scaled-output-hz` is no longer used by the driver.
+LS1028A supports two flexcan controllers similar to LX2160A.
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+There's already a compatible entry defined i.e "fsl,lx2160ar1-flexcan"
+which can be further reused for LS1028A.
+Please note, "fsl,ls1028ar1-flexcan" compatible entry doesn't exists and
+can be safely removed.
+
+LS1028A has a single peripheral clock (i.e platform clock) source
+connected to both "ipg" and "per" and therefore, remove "sysclk" as
+clock source from device-tree.
+
+Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
 ---
- .../devicetree/bindings/iio/imu/adi,adis16475.yaml       | 9 ---------
- 1 file changed, 9 deletions(-)
+Hi Shawn,
+I would like to mention the motivation behind compatible string change.
+There's no ls1028a compatible entry i.e " fsl,ls1028ar1-flexcan" in flexcan
+driver. See below.
+https://elixir.bootlin.com/linux/latest/source/drivers/net/can/flexcan.c#L1913
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-index 79fba1508e89..a7574210175a 100644
---- a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-@@ -71,15 +71,6 @@ properties:
-     minimum: 0
-     maximum: 3
+And the documentation says that ls1028a entry should be followed by lx2160a.
+https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml#L42
+
+Since ls1028a entry is not present, anyway lx2160a entry will be eventually used.
+Please let me know your views.
+
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index e00acad..d28bd52 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -408,21 +408,25 @@
+ 		};
  
--  adi,scaled-output-hz:
--    description:
--      This property must be present if the clock mode is scaled-sync through
--      clock-names property. In this mode, the input clock can have a range
--      of 1Hz to 128HZ which must be scaled to originate an allowable sample
--      rate. This property specifies that rate.
--    minimum: 1900
--    maximum: 2100
--
- required:
-   - compatible
-   - reg
+ 		can0: can@2180000 {
+-			compatible = "fsl,ls1028ar1-flexcan", "fsl,lx2160ar1-flexcan";
++			compatible = "fsl,lx2160ar1-flexcan";
+ 			reg = <0x0 0x2180000 0x0 0x10000>;
+ 			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&sysclk>, <&clockgen QORIQ_CLK_PLATFORM_PLL
+-						       QORIQ_CLK_PLL_DIV(2)>;
++			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
++					    QORIQ_CLK_PLL_DIV(2)>,
++				 <&clockgen QORIQ_CLK_PLATFORM_PLL
++					    QORIQ_CLK_PLL_DIV(2)>;
+ 			clock-names = "ipg", "per";
+ 			status = "disabled";
+ 		};
+ 
+ 		can1: can@2190000 {
+-			compatible = "fsl,ls1028ar1-flexcan", "fsl,lx2160ar1-flexcan";
++			compatible = "fsl,lx2160ar1-flexcan";
+ 			reg = <0x0 0x2190000 0x0 0x10000>;
+ 			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&sysclk>, <&clockgen QORIQ_CLK_PLATFORM_PLL
+-						       QORIQ_CLK_PLL_DIV(2)>;
++			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
++					    QORIQ_CLK_PLL_DIV(2)>,
++				 <&clockgen QORIQ_CLK_PLATFORM_PLL
++					    QORIQ_CLK_PLL_DIV(2)>;
+ 			clock-names = "ipg", "per";
+ 			status = "disabled";
+ 		};
 -- 
-2.30.0
+2.7.4
 
