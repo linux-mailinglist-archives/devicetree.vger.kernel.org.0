@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D2262FF55A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 21:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF5D92FF557
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 21:04:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726650AbhAUUDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 15:03:38 -0500
-Received: from relay08.th.seeweb.it ([5.144.164.169]:45731 "EHLO
-        relay08.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726287AbhAUTyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:54:18 -0500
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1B7673EEC5;
-        Thu, 21 Jan 2021 20:52:53 +0100 (CET)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     viresh.kumar@linaro.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v5 2/7] cpufreq: blacklist MSM8998 in cpufreq-dt-platdev
-Date:   Thu, 21 Jan 2021 20:52:45 +0100
-Message-Id: <20210121195250.492500-3-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210121195250.492500-1-angelogioacchino.delregno@somainline.org>
-References: <20210121195250.492500-1-angelogioacchino.delregno@somainline.org>
+        id S1726740AbhAUUEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 15:04:40 -0500
+Received: from helcar.hmeau.com ([216.24.177.18]:51784 "EHLO fornost.hmeau.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726674AbhAUUEA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 15:04:00 -0500
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.103.7])
+        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
+        id 1l2gAT-0007bn-Je; Fri, 22 Jan 2021 07:02:58 +1100
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Fri, 22 Jan 2021 07:02:57 +1100
+Date:   Fri, 22 Jan 2021 07:02:57 +1100
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     "Alessandrelli, Daniele" <daniele.alessandrelli@intel.com>
+Cc:     "ardb@kernel.org" <ardb@kernel.org>,
+        "Khurana, Prabhjot" <prabhjot.khurana@intel.com>,
+        "Reshetova, Elena" <elena.reshetova@intel.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [RFC PATCH 0/6] Keem Bay OCS ECC crypto driver
+Message-ID: <20210121200257.GB27184@gondor.apana.org.au>
+References: <CY4PR1101MB2326ED0E6C23D1D868D53365E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <20210104113148.GA20575@gondor.apana.org.au>
+ <CY4PR1101MB23260DF5A317CA05BBA3C2F9E7D20@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CY4PR1101MB232696B49BA1A3441E8B335EE7A80@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CAMj1kXH9sHm_=dXS7646MbPQoQST9AepfHORSJgj0AxzWB4SvQ@mail.gmail.com>
+ <CY4PR1101MB232656080E3F457EC345E7B2E7A40@CY4PR1101MB2326.namprd11.prod.outlook.com>
+ <CAMj1kXF9yUVEdPeF6EUCSOdb44HdFuVPk6G2cKOAUAn-mVjCzw@mail.gmail.com>
+ <7ae7890f52226e75bf9e368808d6377e8c5efc2d.camel@intel.com>
+ <CAMj1kXE8TnHvZrp2NQv9SJ4CfUOxy1sVXVusjrSWaiXOjRTQ5g@mail.gmail.com>
+ <711536383d5e829bd128a41e1a56ae50399b6c26.camel@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <711536383d5e829bd128a41e1a56ae50399b6c26.camel@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the MSM8998 to the blacklist since the CPU scaling is handled
-out of this.
+On Thu, Jan 21, 2021 at 04:13:51PM +0000, Alessandrelli, Daniele wrote:
+>
+> As expected, the second implementation does not pass self-tests and
+> crypto_alloc_kpp() returns -ELIBBAD when trying to allocate it, but
+> I've seen that I can avoid the error (and have it allocated properly)
+> by passing the CRYPTO_ALG_TESTED flag in the 'type' argument, like
+> below:
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
----
- drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
- 1 file changed, 1 insertion(+)
+Did you set your algorithm's name to ecdh? I think Ard was suggesting
+you to not do that.  As long as you're not using the same name as a
+recognised algorithm, then you won't need to pass any self-tests at
+all.
 
-diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-index f82f4ec17ff2..061de3031787 100644
---- a/drivers/cpufreq/cpufreq-dt-platdev.c
-+++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-@@ -133,6 +133,7 @@ static const struct of_device_id blacklist[] __initconst = {
- 
- 	{ .compatible = "qcom,apq8096", },
- 	{ .compatible = "qcom,msm8996", },
-+	{ .compatible = "qcom,msm8998", },
- 	{ .compatible = "qcom,qcs404", },
- 	{ .compatible = "qcom,sc7180", },
- 	{ .compatible = "qcom,sdm630", },
+Cheers,
 -- 
-2.30.0
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
