@@ -2,155 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D9692FE749
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 385F52FE761
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:20:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726181AbhAUKOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:14:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53674 "EHLO
+        id S1727976AbhAUKTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 05:19:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728469AbhAUKOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:14:23 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949CBC061575;
-        Thu, 21 Jan 2021 02:13:39 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id EBF8522FAD;
-        Thu, 21 Jan 2021 11:13:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1611224018;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=I4dLSkqJXtXHKLU0U+8YrniJxd+5nWGvaigg4fV1hAc=;
-        b=SaKNVZKxfgcGcg2JHt7BBiGpOI/zUgMnud/Si+cf7OFIUUWbsZUaKmESPwdKR2Iu8A+krE
-        fKxfc4D4j84vWKYeiLatvNJ9GKYzRrN6GKvGjXGiWZvHvB2TYRW4dnJi1NkwCOR9Nd2zNX
-        H/6+PYgGfZ0RWFUsxIdOsdRXDzHXckc=
+        with ESMTP id S1729073AbhAUKS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:18:27 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A0D4C061575
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:17:46 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id j13so1797303edp.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:17:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=RD/8ns8LC0PdbNWt+iQG/KV2R5v83Sdo9CyiF4bWX1o=;
+        b=vf5Jbu/q5u7SHlc4hZuiryXWtFKPfUFP+bZ3uqbgPYpdThKM6PeiFDtm3XSaqfM/da
+         6cEK56z+I7PBPiHlgyInHRJy+T3ZxrE5XGHWK3FoBuTSGr1amVlZCEN5G9e509Em8fp/
+         aVy4ldv+lK/7wOc2TUUj4c+eeFd1O8pXnQqFGh7xOs3qWXrt/wpx4hAZHTkRs4hPp6WI
+         ENCxzR8T/G6Gq06iD/pxtGB+WGz0kWzQZLjIaKN/FqZmGkIy9rdr0/CE/71yqzYDGp7M
+         n/SxSoAXoUIn48J3NGOXFQfmLpXueEYEzEOQdPK1PNfkl0bNKNtkgcnRlcGM51Epb5Jg
+         T9uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=RD/8ns8LC0PdbNWt+iQG/KV2R5v83Sdo9CyiF4bWX1o=;
+        b=W9gSGQItaujyYy1b57Dp64altSFN6lwJLipvfXUiVUHAzYlW31h++Ja52z9ah+tIvV
+         /OYqycLpncCkSinqzy2IOwaDp1gWjFCrbX6P/TU+DL6GvwJ05YOqvPdBeKXuMOEsKXuw
+         eFW+GcKousU8l4eR4W8tLIhl8qmivoTelZ/jYWub4kgKhlFLLFsuhIMVUxnwPJcwS+FY
+         w0Ony/I17fMiBV41FdMak4QvMT6bVvmbp2wlI4YJbTYhAGLgdDk5gxN7wL+0o4ClH5ee
+         Hg3T97xU9v8bV6lziitZY/qEmZ22f0AICh4hvCRotFZygXZ7XcP5LZt4NfBJKTNFbbWg
+         9nMg==
+X-Gm-Message-State: AOAM533L5OZUX1DpnP6p9evs8J4oa1YxQhvq8LEy8ZRD+Uo378lsKjCI
+        XXnjWS7VSZfCJSBHErM1AMF99jg5Kn7nuvrmUOnjiQ==
+X-Google-Smtp-Source: ABdhPJxI3jGQxl+dd58Z+ityvuWkj1UAYYO/jX7lXr/vGjwCCTSkE0EF1ZxzbObxO4A1IzUUFOqTovb8ayXFoLT3XRY=
+X-Received: by 2002:a50:c94c:: with SMTP id p12mr4465602edh.154.1611224265265;
+ Thu, 21 Jan 2021 02:17:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Thu, 21 Jan 2021 11:13:37 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org
-Subject: Re: [PATCH 0/3] add Ebang EBAZ4205 support
-In-Reply-To: <0a1c6ebf-1d5b-4f06-56db-f04e87d2ae9a@xilinx.com>
-References: <20210120194033.26970-1-michael@walle.cc>
- <fff420d1-fc9a-23ce-0d07-58a3c6f10c4d@xilinx.com>
- <aa96fcaa362181d4b6fef9f1de0aa914@walle.cc>
- <0a1c6ebf-1d5b-4f06-56db-f04e87d2ae9a@xilinx.com>
-User-Agent: Roundcube Webmail/1.4.10
-Message-ID: <bd86194a13882ce472764d0c91029e33@walle.cc>
-X-Sender: michael@walle.cc
+References: <e4f54ddce33b79a783aa7c76e0dc6e9787933610.1606918493.git.michal.simek@xilinx.com>
+In-Reply-To: <e4f54ddce33b79a783aa7c76e0dc6e9787933610.1606918493.git.michal.simek@xilinx.com>
+From:   Michal Simek <monstr@monstr.eu>
+Date:   Thu, 21 Jan 2021 11:17:34 +0100
+Message-ID: <CAHTX3d+dubuetK634YnM3UM-ZFz8b6xCY8CxQ5FFCBoT+dVsWQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: zynqmp: Add address-cells property to
+ interrupt controllers
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+st 2. 12. 2020 v 15:14 odes=C3=ADlatel Michal Simek <michal.simek@xilinx.co=
+m> napsal:
+>
+> The commit 3eb619b2f7d8 ("scripts/dtc: Update to upstream version
+> v1.6.0-11-g9d7888cbf19c") updated dtc version which also contained DTC
+> commit
+> "81e0919a3e21 checks: Add interrupt provider test"
+> where reasons for this checking are mentioned as
+> "A missing #address-cells property is less critical, but creates
+> ambiguities when used in interrupt-map properties, so warn about this as
+> well now."
+>
+> That's why add address-cells property to gic and gpio nodes to get rid of
+> this warning.
+>
+> CC: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+>
+> I was grepping DTSes in the kernel and most of them list it as 0.
+> In gicv3 case where its node is added it needs to be filled property that=
+'s
+> why also non 0 values are there.
+> Definitely please let me know if 0 is not the right value here.
+>
+> Based on https://lore.kernel.org/r/cover.1606917949.git.michal.simek@xili=
+nx.com/
+>
+> ---
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts=
+/xilinx/zynqmp.dtsi
+> index 14a2e69cf98b..5b2051ac6965 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -368,6 +368,7 @@ fpd_dma_chan8: dma@fd570000 {
+>
+>                 gic: interrupt-controller@f9010000 {
+>                         compatible =3D "arm,gic-400";
+> +                       #address-cells =3D <0>;
+>                         #interrupt-cells =3D <3>;
+>                         reg =3D <0x0 0xf9010000 0x0 0x10000>,
+>                               <0x0 0xf9020000 0x0 0x20000>,
+> @@ -574,6 +575,7 @@ gem3: ethernet@ff0e0000 {
+>                 gpio: gpio@ff0a0000 {
+>                         compatible =3D "xlnx,zynqmp-gpio-1.0";
+>                         status =3D "disabled";
+> +                       #address-cells =3D <0>;
+>                         #gpio-cells =3D <0x2>;
+>                         gpio-controller;
+>                         interrupt-parent =3D <&gic>;
+> --
+> 2.29.2
+>
 
-Am 2021-01-21 10:57, schrieb Michal Simek:
-> Hi,
-> 
-> On 1/21/21 10:35 AM, Michael Walle wrote:
->> Hi Michal,
->> 
->> Am 2021-01-21 10:25, schrieb Michal Simek:
->>> On 1/20/21 8:40 PM, Michael Walle wrote:
->>>> Add support for the Ebang EBAZ4205 board. This board was once used 
->>>> as a
->>>> control board for a bitcoin mining device. Nowawdays it is sold as a
->>>> cheap
->>>> Zynq-7000 eval board.
->>>> 
->>>> Michael Walle (3):
->>>>   dt-bindings: add ebang vendor prefix
->>>>   dt-bindings: arm: add Ebang EBAZ4205 board
->>>>   ARM: dts: add Ebang EBAZ4205 device tree
->>>> 
->>>>  .../devicetree/bindings/arm/xilinx.yaml       |   1 +
->>>>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->>>>  arch/arm/boot/dts/Makefile                    |   1 +
->>>>  arch/arm/boot/dts/zynq-ebaz4205.dts           | 109 
->>>> ++++++++++++++++++
->>>>  4 files changed, 113 insertions(+)
->>>>  create mode 100644 arch/arm/boot/dts/zynq-ebaz4205.dts
->>>> 
->>> 
->>> any link with schematics?
->> 
->> https://github.com/xjtuecho/EBAZ4205, looks like these are
->> reverse engineered (from a layout file?) though.
-> 
-> Interesting but at least something.
-> 
->> 
->>> I will let dt guys to comment 1/3 but series look good to me.
->>> The board doesn't look interesting from description point of view 
->>> that's
->>> why all the time thinking if makes sense to add it to kernel.
->> 
->> What do you want to tell me? That for the time being, it didn't
->> appear to you to add the board yourself - or do you thing it
->> doesn't make sense at all. If its the latter, what would be
->> actual reason to have a board in mainline?
-> 
-> I have bad experience with for example Avnet boards which people add 
-> and
-> none is really updating them and they are in the same state for years.
+Applied.
+M
 
-Wouldn't it be better then to pull the plug at some time and remove 
-these
-boards.
 
-TBH I was a bit disappointed by your statement. It sounded like "nah
-this board isn't worth it". Esp. because it is just one (small) file.
-But more below.
-
-> Long time ago we agreed that doesn't make sense to describe PL in
-> upstream projects and we only describe PS part. It means you likely 
-> miss
-> several things which are useful and the reason for using these SoCs is 
-> PL.
-> 
-> As you likely know Xilinx has Versal device and I didn't push any 
-> device
-> tree to any upstream project and thinking not to add any description 
-> for
-> boards and stay in sort of space that "virtual" description for SoC
-> should be enough. Maybe just versal.dtsi and one kitchen sink DT should
-> be added but not description for all boards.
-> 
-> The same is if make sense to push all DTs for all standard xilinx 
-> zynqmp
-> evaluation boards. If there is something interesting/new I thought it
-> makes sense to add it as pattern to follow. But for boards which looks
-> very similar from PS point of view I don't think there is real value to
-> add and invest time for maintaining.
-> 
-> Back to your case. Board is cheap which is not all the time case for 
-> any
-> xilinx board but you have only uart, sd and partially described 
-> ethernet
-> which doesn't work without PL. Is it worth to have this described?
-
-I got your point. But it is at least a jump start for the users if that
-board boots out of the box. And yes, its unfortunate, that ethernet
-just works if the PL is configured. This is already done by the
-bootloader, because there I do have the same problem.
-
-> Especially when it is visible that you need to describe custom PL and 
-> DT
-> overlays are not solid yet.
-> 
-> Thanks,
-> Michal
-
--- 
--michael
+--=20
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
