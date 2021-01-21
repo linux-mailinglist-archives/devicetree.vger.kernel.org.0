@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2962FEB3F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 14:14:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 930D12FEB5C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 14:17:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731694AbhAUNNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 08:13:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
+        id S1731448AbhAUNOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 08:14:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731650AbhAUNMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 08:12:17 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7F48C0613C1
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:11:36 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id o10so2385651lfl.13
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:11:36 -0800 (PST)
+        with ESMTP id S1731293AbhAUNNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 08:13:00 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CCD9C061575
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:12:20 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id 3so2421477ljc.4
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 05:12:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=5SfYgMEZhXd25eYi6qDsESTLBn/H15YeTrdDgpcnnLg=;
-        b=XqZam54V6WNMaJGpQ/zvStXdECi0C+QtAqbDl16uTP8QioYtk1POCI5rq4ekLBZUIz
-         kqDKzYSX8IHExWGey4zMVWfm90PVJegAsI9pSoEhlbTENGMDh6pSp4b5tlefIzBvwoB7
-         swLIZazE6kk/8MNF4dLmLSJIrM8sHNzVLmNYgrRKEF5y/duOdwPTw5jSGwqDUcPL2yOW
-         /3gI2Ht6mM2RpqVZMAsGhxcMSW0j4+Drz600DkSUVF++LOFmjgQVLj7ePlqSQPMe6O5m
-         RCXQMtC2csH8UIsDZyKtdZkpiiK+RX3uZ5/KpaVAust1eNvovi0wfgU+mm2jEKTPOJXO
-         r0IQ==
+        bh=47HDQmqatFJEKXLv4r1tqHnGg1O7gF/kMf8JxqyY3HI=;
+        b=B+ofP3N9cw2DRKlNdxTQ0Am4niyM+1VvQaVipuUYDJNl1BN6r57YuCfMkAfRVsN28q
+         oihxt7uvf7TlY+yjyh57UPU5tYQAlgX3ei1F/1yIRMvNlPmMjA/c1II9dO2/PVxrklqg
+         AN0w0MCJZzaf3si/HIBxibUQc3hdrUFM7b1OZ37lDnFufpg/Pt/9z4xHcgWFPEf/R79i
+         iEog+RvVlWuMlW/g4bYKDc4iituhzoLAmvecRs71S2l7yii+S70b2sulEiht14Z45xVJ
+         x7OMpyiNZd/yz0rdichaytWAlSAIjdmo+UqDFIfHto6dTp5SDqF1DsE8udHUu1HTHb9g
+         bM+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=5SfYgMEZhXd25eYi6qDsESTLBn/H15YeTrdDgpcnnLg=;
-        b=Jc9biKqqaFbhV5uM4kwGh04KSg3BEwyBV03nhydI3KQRH0KsjIHc23t44BPtTqRXl2
-         PxgFtGYNv/SlJcbh8G76zwgtQZQNP7iWZh0nBKJlE8Pmnx7IzVwssfEN39p6ItIQp9zt
-         wIhckMSGjYvHrds/LfsOjYRq/OzffrNlngH1l8UVHeAImgbqBb64Actt/kMXfppZ2Qf/
-         WGSsLoISnaZgHqGw+5YgH6umgNBIXbzWn/IMeglzerBJVH3RfDRxzMVZS4Hv73IV/YWI
-         01759jJuzA5leZd75oqq9XO+6GSLywf7K1PTp9oYi/n7dSF9fz6VnM2Qw8EPlUiJj/8a
-         Lhog==
-X-Gm-Message-State: AOAM530O3GNzp25I8cxehsXz1mwAdHuiy1iGmaBvn0p1lnZSj9PZ4cJp
-        cY/R7TH57Uv7eg62g7szPG5Qml7L/rmNWovvBxeX0g==
-X-Google-Smtp-Source: ABdhPJwFTZwp0woXY9zVcoMioOYsSx1rGdrNSXqJ/is4tl/LS3ywlrqFOWHMdDa3yy6WG1BJ0UNlQtoKVhMMhIRbxeI=
-X-Received: by 2002:ac2:5597:: with SMTP id v23mr6289121lfg.649.1611234695050;
- Thu, 21 Jan 2021 05:11:35 -0800 (PST)
+        bh=47HDQmqatFJEKXLv4r1tqHnGg1O7gF/kMf8JxqyY3HI=;
+        b=CVLXW0Ezm0wpOOMbaSi5YDIU+iNQEv641qUgXh311DyIBVaY6Ps1ZOTY5+In4gzPgA
+         x3RO3DZ8pyInGDH9LY4z/C0ag9phipAy+FOn85i/kkJawCQ86J9pAIrvS0snNI3/NpMr
+         wr0bwy16CSVw5e6BCvM+9Mn+bwTpNOOoRe86QB4As7bo6s3gtxmi/cSm0nCdOGsDA07l
+         S+WfcuwhpkYuX987LV/b4741lUS8XwIAjC+znLO5EPUVaPynmjCfXJfTYvQ622MCE3D0
+         cP2SI3j1lM02Vaqx2Dri7fpz5ua+qH3XeXZv2kGY94WN0KN/bvE4vI/GyPFz1GjW+mGb
+         jRyA==
+X-Gm-Message-State: AOAM531gwBeNdLOAQQaoRZdBDYy6XgDzPcXuLAqy+3Lq9qPThfZP/lQH
+        DBLUtQYYzL++JeDMHEd/xyUxDsoVJUxPPblAZ4JVSw==
+X-Google-Smtp-Source: ABdhPJyYLUDoklQU++7GwvgK4FZhhv5diXxOMOA4kImyzoS22TfNc7EWPRXHO/OybdPh/v1SQ5NWE47oJiAfepcUFro=
+X-Received: by 2002:a05:651c:205b:: with SMTP id t27mr6868618ljo.368.1611234738978;
+ Thu, 21 Jan 2021 05:12:18 -0800 (PST)
 MIME-Version: 1.0
-References: <20210120080522.471120-1-saravanak@google.com> <20210120080522.471120-2-saravanak@google.com>
-In-Reply-To: <20210120080522.471120-2-saravanak@google.com>
+References: <20210120080522.471120-1-saravanak@google.com> <20210120080522.471120-3-saravanak@google.com>
+In-Reply-To: <20210120080522.471120-3-saravanak@google.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 21 Jan 2021 14:11:24 +0100
-Message-ID: <CACRpkdbEC6duR=fJQD_Nw9o=HW0DEe2_Ks3SYCgJmkOjzKz3Jg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] of: property: Add fw_devlink support for "gpio"
- and "gpios" binding
+Date:   Thu, 21 Jan 2021 14:12:07 +0100
+Message-ID: <CACRpkdYon8jc_Twa83ynGVnWg7mnZ-ix3=mg2xn1XoFQ+Hq-_A@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] of: property: Add fw_devlink support for interrupts
 To:     Saravana Kannan <saravanak@google.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -72,28 +71,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed, Jan 20, 2021 at 9:05 AM Saravana Kannan <saravanak@google.com> wrote:
 
-> To provide backward compatibility for boards that use deprecated DT
-> bindings, we need to add fw_devlink support for "gpio" and "gpios".
+> This allows fw_devlink to create device links between consumers of an
+> interrupt and the supplier of the interrupt.
+>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-You do some more stuff in the patch so describe that too.
-Especially the check for hogs and #gpio-cells.
-Describe why you do that. Maybe even with a comment in
-the code because I don't think everyone will understand.
-
-> +       if (strcmp(prop_name, "gpio") && strcmp(prop_name, "gpios"))
-> +               return NULL;
-
-This part is easy to understand.
-
-> +       if (of_find_property(np, "gpio-hog", NULL))
-> +               return NULL;
-> +
-> +       if (of_parse_phandle_with_args(np, prop_name, "#gpio-cells", index,
-> +                                      &sup_args))
-> +               return NULL;
-
-This part is hard to understand. Insert comments and tell the reader
-of the code what is going on and why.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
