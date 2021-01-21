@@ -2,163 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3CBA2FEA94
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 13:49:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C808E2FEA32
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 13:37:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730427AbhAUMXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 07:23:38 -0500
-Received: from mga05.intel.com ([192.55.52.43]:1666 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727900AbhAUKpc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 05:45:32 -0500
-IronPort-SDR: iK5J0kb9pZGcqoCW7frbpLwcVx4x4tEv/SnXNx2dCvHDirUIS2V3dnozK1sMGpwdaZOhK+0SYa
- yYc0AuVXF9cg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="264064898"
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
-   d="scan'208";a="264064898"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 02:44:46 -0800
-IronPort-SDR: U/BYs4TmlOYrAtGVLsA7+bIfaTy9EHPUgEBoKcsPjK8LMAhldQtUt8//yq1Uy7y/n0191HJrTS
- jG5m0DHJu6Ow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
-   d="scan'208";a="356417382"
-Received: from jsia-hp-z620-workstation.png.intel.com ([10.221.118.135])
-  by fmsmga008.fm.intel.com with ESMTP; 21 Jan 2021 02:44:43 -0800
-From:   Sia Jee Heng <jee.heng.sia@intel.com>
-To:     vkoul@kernel.org, Eugeniy.Paltsev@synopsys.com, robh+dt@kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, jee.heng.sia@intel.com,
-        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v11 00/16] dmaengine: dw-axi-dmac: support Intel KeemBay AxiDMA
-Date:   Thu, 21 Jan 2021 18:27:10 +0800
-Message-Id: <20210121102726.22805-1-jee.heng.sia@intel.com>
-X-Mailer: git-send-email 2.18.0
+        id S1728800AbhAUMhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 07:37:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56084 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730994AbhAUMgw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 07:36:52 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FDC0C061575
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 04:36:10 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id ke15so2322337ejc.12
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 04:36:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=48e+OLm0ER6iWCSKD8u4Ws9vRmX1gNHTsb3YXOXSYS8=;
+        b=copFDABFS89Vhx33PEDHJHERGoFy2Vuqtucq5WJKiGGcsc6yW/ffOxkjxFEXAPXdfe
+         8+cgtzDqhgsG7JI1DRVhGIJA70TV+ge7RU3kREubDrzlqkYrF62abD+ZKO+fPzmIw8iA
+         B1lzfhO1Ru5q9xfXx1tlyZwobE7K/Al2snjPrNxk7GOb2lBTzVUSqh2Anv3G0VfDYFPa
+         U3g/vHoKT+eh4l7Pwl2ZnX5qximeGen1MD7I31R2DH9HhLEqAU3UfZ+nFSNeLpX/7FxK
+         vb29cekjaXkEadfyLXrpZ7Vv4wiZoJt4KaYUzUy8XaDeqnYHwmJwantaL2ioWKXDlttt
+         F76Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=48e+OLm0ER6iWCSKD8u4Ws9vRmX1gNHTsb3YXOXSYS8=;
+        b=eCvi0QSA9DKAfvNvf9br40CH93BSC4hDUYyWOHLdPpGr5eXjutysavOyAI66umy9vf
+         Xb+cqFGmfwxVMTsTFYrbHVhgok+gieH8XsCrkX7dvFMV0FckF0otyp7MrzUMp78b0CRG
+         Ldn0OAd1PehBdzByL84SRlkNNrn69jLeyPSAPMRCq9OZRzrHWCjvF23NFYXjBhIuXjR3
+         rBTlbnA1WP+rKKEz1S4gvcb5euIXGS3JeWYLj54y7gbL8cgBR40DhJgZvHTWvmxWuEe9
+         1NcM/tLt0CYMm77LNVvztq7DJwyEV48WLqALMKmHXLrRYwUyaZXgiWyO88NqYicXA3od
+         U10g==
+X-Gm-Message-State: AOAM531Za0QMD6b+JdVkSsVlRLoLuRtp/I1p70UXTlGier+QRaxfjQ+r
+        bToIeB2EFlfoFYfacj0rr5lsLg==
+X-Google-Smtp-Source: ABdhPJxA0ioWQq2rM25QOBXr65kL+/AQPugIlhse28klBj9oVCJOq84+cEEgbISNMspGQBBBX+HkfA==
+X-Received: by 2002:a17:906:94d2:: with SMTP id d18mr9045527ejy.94.1611232569099;
+        Thu, 21 Jan 2021 04:36:09 -0800 (PST)
+Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id z25sm2180530ejd.23.2021.01.21.04.36.08
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 21 Jan 2021 04:36:08 -0800 (PST)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] arm64: dts: zynqmp: Enable and Wire DP
+Date:   Thu, 21 Jan 2021 13:36:04 +0100
+Message-Id: <cover.1611232558.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The below patch series are to support AxiDMA running on Intel KeemBay SoC.
-The base driver is dw-axi-dmac. This driver only support DMA memory copy transfers.
-Code refactoring is needed so that additional features can be supported.
-The features added in this patch series are:
-- Replacing Linked List with virtual descriptor management.
-- Remove unrelated hw desc stuff from dma memory pool.
-- Manage dma memory pool alloc/destroy based on channel activity.
-- Support dmaengine device_sync() callback.
-- Support dmaengine device_config().
-- Support dmaengine device_prep_slave_sg().
-- Support dmaengine device_prep_dma_cyclic().
-- Support of_dma_controller_register().
-- Support burst residue granularity.
-- Support Intel KeemBay AxiDMA registers.
-- Support Intel KeemBay AxiDMA device handshake.
-- Support Intel KeemBay AxiDMA BYTE and HALFWORD device operation.
-- Add constraint to Max segment size.
-- Virtually split the linked-list.
+Hi,
 
-This patch series are tested on Intel KeemBay platform.
-Eugeniy Paltsev has runtime tested this patch series on HSDK SoC/board.
+I am updating DT patches which were there part of DP v11 series sent by
+Laurent in past [1]. Patches have been removed in v12 [2].
+The series is rebased on the top of [3] which wired si5341 clock chip.
 
-v11:
-- Fixed bot build warning.
+[1] http://lore.kernel.org/r/20200318153728.25843-1-laurent.pinchart@ideasonboard.com
+[2] http://lore.kernel.org/r/20200718001347.25451-1-laurent.pinchart@ideasonboard.com
+[3] http://lore.kernel.org/r/cover.1611224800.git.michal.simek@xilinx.com
 
-v10:
-- Rebased to kernel v5.11-rc4
-- Added Reviewed-by and Tested-by tag from Eugeniy Paltsev.
-
-v9:
-- Logic checked on apb_regs inside the function.
-- Improved code scalability so that missing of apb_regs wouldn't failed
-  the common callback functions.
-
-v8:
-- Rebased to kernel v5.11-rc1.
-- Added reviewed-by tag from Rob.
-
-v7:
-- Added 'allOf' and '$ref:dma-controller.yaml#' in DT binding.
-- Removed the dma-channels common description in DT binding.
-- Removed the default fields in DT binding.
-
-v6:
-- Removed 'allOf' cases in DT binding.
-- Added '>' at the end of the email address.
-- Removed additional '|' at the start of description.
-- Fixed space indent.
-- Added proper constraint in DT binding.
-- Removed second example in DT binding.
-
-v5:
-- Added comment to the Apb registers used by Intel KeemBay Soc.
-- Renamed "hs_num" to "handshake_num".
-- Conditional check for the compatible property and return error
-  instead of printing warning.
-- Added patch 16th to virtually split the linked-list as per
-  request from ALSA team.
-
-v4:
-- Fixed bot found errors running make_dt_binding_check.
-- Added minItems: 1 to the YAML schemas DT binding.
-- Updated "reg" field to the YAML schemas DT binding.
-
-v3:
-- Added additionalProperties: false to the YAML schemas DT binding.
-- Reordered patch sequence for patch 10th, 11th and 12th so that
-  DT binding come first, follow by adding Intel KeemBay SoC registers
-  and update .compatible field.
-- Checked txstate NULL condition.
-- Created helper function dw_axi_dma_set_hw_desc() to handle common code.
-
-v2:
-- Rebased to v5.10-rc1 kernel.
-- Added support for dmaengine device_config().
-- Added support for dmaengine device_prep_slave_sg().
-- Added support for dmaengine device_prep_dma_cyclic().
-- Added support for of_dma_controller_register().
-- Added support for burst residue granularity.
-- Added support for Intel KeemBay AxiDMA registers.
-- Added support for Intel KeemBay AxiDMA device handshake.
-- Added support for Intel KeemBay AxiDMA BYTE and HALFWORD device operation.
-- Added constraint to Max segment size.
-
-v1:
-- Initial version. Patch on top of dw-axi-dma driver. This version improve
-  the descriptor management by replacing Linked List Item (LLI) with
-  virtual descriptor management, only allocate hardware LLI memories from
-  DMA memory pool, manage DMA memory pool alloc/destroy based on channel
-  activity and to support device_sync callback.
-
-Sia Jee Heng (16):
-  dt-bindings: dma: Add YAML schemas for dw-axi-dmac
-  dmaengine: dw-axi-dmac: simplify descriptor management
-  dmaengine: dw-axi-dmac: move dma_pool_create() to
-    alloc_chan_resources()
-  dmaengine: dw-axi-dmac: Add device_synchronize() callback
-  dmaengine: dw-axi-dmac: Add device_config operation
-  dmaengine: dw-axi-dmac: Support device_prep_slave_sg
-  dmaegine: dw-axi-dmac: Support device_prep_dma_cyclic()
-  dmaengine: dw-axi-dmac: Support of_dma_controller_register()
-  dmaengine: dw-axi-dmac: Support burst residue granularity
-  dt-binding: dma: dw-axi-dmac: Add support for Intel KeemBay AxiDMA
-  dmaengine: dw-axi-dmac: Add Intel KeemBay DMA register fields
-  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA support
-  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA handshake
-  dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA BYTE and HALFWORD
-    registers
-  dmaengine: dw-axi-dmac: Set constraint to the Max segment size
-  dmaengine: dw-axi-dmac: Virtually split the linked-list
-
- .../bindings/dma/snps,dw-axi-dmac.txt         |  39 -
- .../bindings/dma/snps,dw-axi-dmac.yaml        | 126 ++++
- .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 696 +++++++++++++++---
- drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  34 +-
- 4 files changed, 763 insertions(+), 132 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt
- create mode 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+Thanks,
+Michal
 
 
-base-commit: 9791581c049c10929e97098374dd1716a81fefcc
+Laurent Pinchart (2):
+  arm64: dts: zynqmp: Add DPDMA node
+  arm64: dts: zynqmp: Wire up the DisplayPort subsystem
+
+Michal Simek (1):
+  arm64: dts: zynqmp: Add DisplayPort subsystem
+
+ .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 10 ++++++
+ .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 31 ++++++++++++++++++
+ .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 10 ++++++
+ .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 11 +++++++
+ .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 11 +++++++
+ .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 11 +++++++
+ .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 11 +++++++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 32 +++++++++++++++++++
+ 8 files changed, 127 insertions(+)
+
 -- 
-2.18.0
+2.30.0
 
