@@ -2,108 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 405792FF486
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:32:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B6F2FF4DD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:44:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726609AbhAUTbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 14:31:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726344AbhAUTFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:05:06 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE0E0C0613D6;
-        Thu, 21 Jan 2021 10:53:53 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id b5so2767896wrr.10;
-        Thu, 21 Jan 2021 10:53:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=GSNo4GQaMF01CN3jcOZYky+NX759MUu9sdXp7CoIzS0=;
-        b=nAQr/sRJATdK0DqAwkGDw0KKvUrP1/VyLrtLabyHoZZQAjVySysTjzEjvXARgPpYQS
-         ivx/E8XQ+kStGQummVVzsk8djxm1W5e5QVWTn0mTvSRLxnU20fmx8EGKMRtn7VBQiatZ
-         p0nHYtI+edbkBt+ad0HJIw4xjgaSo5IO6tMSopKQkoIi/5nAj5SbnVG8x1HQqLIO7r9M
-         XyM98dnWNXdkccXdZ1VPDdi3ks+6GawTeU+YDT1YW6MPfXgMXA5ZubrOBB4mnKQAmTOz
-         B/4NGdLPWqiW2W9WN2d4z2vItET0EZ8rQmJlnaZzpRN7Ykkg6Yai5BDrTFrFf730Lj9M
-         tucQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GSNo4GQaMF01CN3jcOZYky+NX759MUu9sdXp7CoIzS0=;
-        b=efT1Ka00wc0UgxK14fVrOCygS83lM8vp9wp4uj2pRz38fZN86SHAwTmNc6hoTRNUE3
-         wpq9GlpXUg4p7TumsjqbPjx5EobXtjfJ/7k7BqvSY1NoqPciz6Q8WtwaUhLOlnBp3lyu
-         Rn2PhGephgYZytx1sbY2X9MHbUHqb1eszEw+cx5B51HLjVJdnJFl0GkSRmNBZiVX33lV
-         YXeGPh7xM87lD4ncImzK/GbItFmf8KB+/lOiQRLbSC7z/6Ga+Ut7X6PPmxErglOWKyQf
-         6BsJozdXBWpbJlXmuHqylR2ltJQ7LGz8guGzNo5J/h5/5t2WLTpjpWwzVQjBvrpfhF9n
-         eqsw==
-X-Gm-Message-State: AOAM532V3CtOqtqygvqNS26Ikxa908WrbaP8qhUCfufYzftctN/Ebk64
-        YvXShec688mMN7ST3QnPktRulfucW+I=
-X-Google-Smtp-Source: ABdhPJz5DlIzazgq+BpxAwHtAA/1THEgWazEtaOcDMZtKX1BTXdxh2SoRvXrjAQxa2kh0FKvRjOjbQ==
-X-Received: by 2002:adf:f5c5:: with SMTP id k5mr893553wrp.286.1611255232632;
-        Thu, 21 Jan 2021 10:53:52 -0800 (PST)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id h16sm8830498wmb.41.2021.01.21.10.53.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jan 2021 10:53:51 -0800 (PST)
-Date:   Thu, 21 Jan 2021 19:53:49 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, jonathanh@nvidia.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Enable Jetson-Xavier J512 USB host
-Message-ID: <YAnNvTtlx8jHyRG3@ulmo>
-References: <20210119022349.136453-1-jckuo@nvidia.com>
+        id S1726663AbhAUTmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 14:42:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47326 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727069AbhAUTmT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 14:42:19 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 26EA923A5A;
+        Thu, 21 Jan 2021 19:41:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611258092;
+        bh=Chxeu+g19JLsrGMWeKplIRP6g6WFenfG7k7lC/ePb1E=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=pUFsvjIiPxCW6jnr1GDLL+RimioFgWewhbcDTV8VZKTBZ1784Wdj2znDzokbterxw
+         4xHHkBoCNn5VpT4/BKawLUFdoQT9yPl7J6AsxVJ5EmmVf8MDt1v0G+OUvpnDHNGiim
+         wYxXLPuTxBoTO7wHNOcZbm3WeXkkaUduE0RsW1W9Miybzj89ljmQUqaBZ9GOGQOjNj
+         PTAnk0GTUNuadN6RdDqgrDNLHhjpk/83YjeLqzW1vo0FqPZm7DQf9+nHI85kK9ar41
+         PvP7TOKifqg5HdRihgx1WzPWtVMSs4FP/91WN0NjHYUH2oWUe1zGORKcsYILgIRgRZ
+         7wb1E9WmTdCqg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+In-Reply-To: <20210120224901.1611232-1-bjorn.andersson@linaro.org>
+References: <20210120224901.1611232-1-bjorn.andersson@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: qcom-rpmh: Add pmc8180 and pmc8180c
+Message-Id: <161125803281.35944.8325193773140119701.b4-ty@kernel.org>
+Date:   Thu, 21 Jan 2021 19:40:32 +0000
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="RWasVtTkUFJY1dK5"
-Content-Disposition: inline
-In-Reply-To: <20210119022349.136453-1-jckuo@nvidia.com>
-User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 20 Jan 2021 14:49:00 -0800, Bjorn Andersson wrote:
+> Add RPMH regulator compatibles for two of the PMIC variants used on the
+> SC8180x platform.
 
---RWasVtTkUFJY1dK5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-On Tue, Jan 19, 2021 at 10:23:49AM +0800, JC Kuo wrote:
-> This commit enables USB host mode at J512 type-C port of Jetson-Xavier.
->=20
-> Signed-off-by: JC Kuo <jckuo@nvidia.com>
-> ---
->  .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi |  8 +++++++
->  .../boot/dts/nvidia/tegra194-p2972-0000.dts   | 24 +++++++++++++++++--
->  2 files changed, 30 insertions(+), 2 deletions(-)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Applied, thanks.
+Thanks!
 
-Thierry
+[1/2] dt-bindings: regulator: qcom-rpmh: Add pmc8180 and pmc8180c
+      commit: 71ca776a8885aff469f2aa45382518513ecce883
+[2/2] regulator: qcom-rpmh: Add pmc8180 and pmc8180c
+      commit: e46c52f7efa25a1cd72c7a7399af9fddc41f5a8e
 
---RWasVtTkUFJY1dK5
-Content-Type: application/pgp-signature; name="signature.asc"
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
------BEGIN PGP SIGNATURE-----
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmAJzbUACgkQ3SOs138+
-s6FGwA//XuVbtQA6LY/Mptb4ENgPKL5kotvFnpTGdmQRuBhTV/Ga+zORCUVCSiRt
-P9x5LUnMSHpgyZn+TKaNiZIrcxdV8m//TnjrwL+bDIlEZDBxHVOmapanhTjkNEhY
-MNZ0NGXZsmzFRXeb2q6FC51lQEQeBT9yC33fe/5/KTCnMr+15NcmCy9nd+aWmImH
-PHx7OJwoen7dXfcTKR/Q6Kxc0yKjcujyXKH64gXlSRjWJUnInF114Gc6GnGIMSOu
-CBnW2i63lw21RAiR3s7Ys91pnjhXudoP/GogEeK05Zf/LufuW3vZ7hhLrk/sqG/g
-LFbhE1UKGc44wuoMq2OFT/HwHsg9PcvNOaJ3sil1/9Pzjak4xeLHsF5W3NFWyiCj
-LeqICBXqCqABTKckIjWy0U+LCcieHxVACb3gltOzASiJ5EA7ivzu4nebtPGuy4O3
-PF2vC8xHO6beTQwYYAjK9J6cydttiOqrJeY0d5mhla6U0hR+YeSONeLJ+hNNfI8u
-Y9gwJ53QRLW6t79av1NcBe5I+O9fguko3fqlnVwhvW0saqpIneYBy8J7a61KvqvH
-PcLk4M2rfIMsWUTraaRw2q5gpM/ApPz46Nbdv+U17wJZQL5QbbIQeI7pYXeXulAG
-4vz3q57PdpLkEMt0dfmflHZx0k2LxPRBkb3hcx4vrfPUPwYZf5E=
-=Pioz
------END PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
---RWasVtTkUFJY1dK5--
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
