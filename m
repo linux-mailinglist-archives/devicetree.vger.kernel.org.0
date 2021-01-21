@@ -2,38 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E334E2FDEC0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 02:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E514B2FDEA0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 02:19:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726282AbhAUA7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 19:59:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53928 "EHLO mail.kernel.org"
+        id S1733140AbhAUA7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 19:59:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53894 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387742AbhAUAIB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Jan 2021 19:08:01 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 96F5523731;
-        Thu, 21 Jan 2021 00:07:17 +0000 (UTC)
+        id S2387798AbhAUAIC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Jan 2021 19:08:02 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 88C542054F;
+        Thu, 21 Jan 2021 00:07:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611187638;
-        bh=q2ZTBy/GMJKRUdA87t2kPuxFQS8sPWRWpmZxf4B5WZw=;
+        s=k20201202; t=1611187633;
+        bh=FDFIu182DIZzhgxiOXveNlHA/Hh6Y4tQs85NKRtax5E=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=g2+cM8NWD1hKgEPNQrvsuKvIAvkCC+K0aLHdyDPTSjm7q1b69lV904geZC9cnNIBK
-         H8Hpm+KBO2GbwUbfwKvWBePgmlBYcSV3H9hyLFAfVC0OQ7AAaBCm/BYRJPsBT4SjmO
-         VZUvFT4vHZ+06rT7DkgySHrWf6p257TkbnCw/g5xVOgfUqd1ygUWaaPxRBSfyAyUin
-         IogOaPW8jcLTlo6sUhsi7rqykapkWUWqN/5ShkgzJeeowCdjSPFiEVU9sOjtFVXj61
-         T6dnemTJJDqnJy2pt76eqigPi5Qdqiy9PRYz2lOWBEALC4I0ne8ts1NqyIuX7SI36w
-         udU2Tr9OIaeOA==
+        b=TR/KEC/Bwo32KzXpHkqnfIrklnvHUmXpSJJnc0vRkqgpnBHQxcjXQSdPnRcZCDMC3
+         E5pRo3O5xMr0Lc58wMEfNZ2cOFm/zBtbY0of69XvAhilS2Rn1I8bmQ9WC6LOHUJp2n
+         JiwHLc09udsgWHR6u/nA5VwLXpTZV74EOHbaD47G8eduQwzsh6Iqv1S3vVqSyCg88y
+         Fo5q4EZVB0Av2J0PVlEIgqazzrr/iWqvl1SpV6ADebJOUi+uQz5YRCLnif05FprFka
+         lSElmHfN/7qmuSMHDzwVOnXiYgqu75INn8Tq9fvVz0GpUZqBhnF1HKGSLzaaosWy6E
+         Wd5Yba0MAprMA==
 From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, Sameer Pujar <spujar@nvidia.com>,
-        thierry.reding@gmail.com
-Cc:     sharadg@nvidia.com, linux-tegra@vger.kernel.org,
-        jonathanh@nvidia.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        kuninori.morimoto.gx@renesas.com
-In-Reply-To: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
-References: <1611048496-24650-1-git-send-email-spujar@nvidia.com>
-Subject: Re: (subset) [RESEND PATCH v6 0/6] Tegra210 audio graph card
-Message-Id: <161118753483.45718.690579581482519791.b4-ty@kernel.org>
+To:     robh+dt@kernel.org, Tzung-Bi Shih <tzungbi@google.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+In-Reply-To: <20210120080850.699354-1-tzungbi@google.com>
+References: <20210120080850.699354-1-tzungbi@google.com>
+Subject: Re: [PATCH 0/5] ASoC: mediatek: mt8192-mt6359: support DP audio
+Message-Id: <161118753485.45718.14478394591214975243.b4-ty@kernel.org>
 Date:   Thu, 21 Jan 2021 00:05:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -42,17 +38,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jan 2021 14:58:10 +0530, Sameer Pujar wrote:
-> This series adds audio graph based sound card support for Tegra210
-> platforms like Jetson-TX1 an Jetson-Nano. The following preparatory
-> audio graph enhancement series is already merged.
->  * https://patchwork.kernel.org/project/alsa-devel/list/?series=375629&state=*
+On Wed, 20 Jan 2021 16:08:45 +0800, Tzung-Bi Shih wrote:
+> The 1st and 2nd patches refactor the machine driver.
 > 
-> Following are the summary of changes:
->  * Add graph/audio-graph based schemas or schema updates for Tegra210
->    component and machine drivers.
->  * Add Tegra audio graph machine driver.
->  * Add required DT support for Jetson-TX1/Nano.
+> The 3rd patch changes the platform driver to support TDM 8 channel output.
+> 
+> The 4th patch adds an optional DT property.
+> 
+> The 5th patch makes the machine driver support DP audio if the optional DT
+> property is specified.
 > 
 > [...]
 
@@ -62,12 +56,16 @@ Applied to
 
 Thanks!
 
-[1/6] ASoC: dt-bindings: tegra: Add graph bindings
-      commit: 9e0f86fdcdab6a0e183ad4ec2410453985b4cf3c
-[2/6] ASoC: dt-bindings: tegra: Add json-schema for Tegra audio graph card
-      commit: a9f22c03a8ac5d21ce7a9b9307d9654c963a1f9c
-[3/6] ASoC: tegra: Add audio graph based card driver
-      commit: 202e2f7745437aa5b694de92cbd30bb43b23fbed
+[1/5] ASoC: mediatek: mt8192-mt6359: move headset_jack to card specific data
+      commit: 4e37528a97bfffb2cd4f645c945759e76d583848
+[2/5] ASoC: mediatek: mt8192-mt6359: simplify mt8192_rt5682_init
+      commit: 12295ef97078db19683d8c0a23abc6f633ef0e23
+[3/5] ASoC: mediatek: mt8192: change mclk_multiple of TDM from 128 to 512
+      commit: df369921d726410a093de48d33e605fd4e0ee33c
+[4/5] ASoC: dt-bindings: mt8192-mt6359: add hdmi-codec property
+      commit: 9bc20e8076c96a54c9fb20228d12ff35c88447d5
+[5/5] ASoC: mediatek: mt8192-mt6359: support audio over DP
+      commit: 0d80c48c847842de488e76ae434ccb74397623c3
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
