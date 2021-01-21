@@ -2,383 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C1032FE7A3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:31:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 597C22FE817
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:52:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729451AbhAUKac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:30:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729432AbhAUKaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:30:03 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B815C0617A5
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:27 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id g12so1841646ejf.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:27:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MMnhToLH/oL7+PAHD1u5/+z7FjzPl/2S18N2vJzcyBA=;
-        b=i+klUy9WjEUr+17aVZv9DBOyUwn7IqC9ra2z4JJWj6qLigrNZ+kjk8xv6F/OLJV8mO
-         NyNDo3kHTgoXb5/qtbGyRUrMxX3n07Noc3myIfBIEJh4Rf4cnyU1sygBt+0a44275del
-         vVwAKoBDMHphjxZmMfFYJxfFhCacUN+hCMKhXnzWmYHa0jW/YcCQxSyskmgd9i43e66D
-         TT3BI5T2ofaOPagZb0KRaXmXpP/HanLBsnEkQrym5XXoBtPnWk+AzMQX7DdG+f39J9uz
-         XBAvB8NPj5j6F5SqwxYaQzFND7dFXjkOuRIr4l4XIw3ari8AeuuUFHp8TU2kGp5kew9D
-         uojQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=MMnhToLH/oL7+PAHD1u5/+z7FjzPl/2S18N2vJzcyBA=;
-        b=QO+5aBiedRqlWYm7lkNt8RlduL/SwM5owTvmAOMX4+WGQywlZw3UWpltX4kCfEMLBH
-         +NY523lWI1arfmLe/nspO6rez+CKDKJca7aavP9xlDxtEsTJZKiNf5GeSAWsRCtDNrNQ
-         fWAwZPLuqAMPdRu70NAznoxMmaiNMgdq1Hf1/XKGlM5C5Y8lqDjEedsYsjmEGAF/O+CU
-         ojPNJv7Q9OjTPyNiY4yKWC1ZN8cWR1Np9kuZRcts/QVT0qoZFu7fGWfbx489ID9eOWyt
-         74QOdzwzWgOntu9W6vfDGB/JaZ29cB8sRWqVsSS5NJa/LV5H/8pQe2Yp2Zyj65ShIZz5
-         QCpg==
-X-Gm-Message-State: AOAM531D3kp73HvGVKoNzB11XKcNa/5BGhDLmXwQYBx/rP0fSJFs9/uC
-        zYUOmD06NE4RXhrNuym/Hj6e84+0ngo+mrJK
-X-Google-Smtp-Source: ABdhPJxEK9a59OCZZGcDUX0yer/EG45ono5rDJ/IWsHFAXAQkJmX0wu2su9i9tgiq4WwcfjEONqk9A==
-X-Received: by 2002:a17:906:5958:: with SMTP id g24mr8555243ejr.377.1611224846258;
-        Thu, 21 Jan 2021 02:27:26 -0800 (PST)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id q16sm858657ejd.39.2021.01.21.02.27.25
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 21 Jan 2021 02:27:25 -0800 (PST)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 12/12] arm64: dts: zynqmp: Add description for zcu104 revC
-Date:   Thu, 21 Jan 2021 11:27:00 +0100
-Message-Id: <17f68c235ea1ce96c3293ca0cf3178951d6663f7.1611224800.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <cover.1611224800.git.michal.simek@xilinx.com>
-References: <cover.1611224800.git.michal.simek@xilinx.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729924AbhAUKwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 05:52:34 -0500
+Received: from mga06.intel.com ([134.134.136.31]:36489 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728910AbhAUKpm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 05:45:42 -0500
+IronPort-SDR: bO20NOh1e2Yxss7hxW9Brd1lUm/ckAz7ijSzxv/hFA5ST6CczXAdJFJsl6OXsB7X8WxDmWeBKa
+ PhR/uGzE2ntw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9870"; a="240790254"
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
+   d="scan'208";a="240790254"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 02:44:53 -0800
+IronPort-SDR: SBw4UhJ5+6nb+asXMniJyb+hneeXwEf5gGJSVuAd9RhC+pW1O6weQr5dtccPFnD77rJoA0ZLad
+ GWWA1bmYEeUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,363,1602572400"; 
+   d="scan'208";a="356417437"
+Received: from jsia-hp-z620-workstation.png.intel.com ([10.221.118.135])
+  by fmsmga008.fm.intel.com with ESMTP; 21 Jan 2021 02:44:48 -0800
+From:   Sia Jee Heng <jee.heng.sia@intel.com>
+To:     vkoul@kernel.org, Eugeniy.Paltsev@synopsys.com, robh+dt@kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, jee.heng.sia@intel.com,
+        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v11 01/16] dt-bindings: dma: Add YAML schemas for dw-axi-dmac
+Date:   Thu, 21 Jan 2021 18:27:11 +0800
+Message-Id: <20210121102726.22805-2-jee.heng.sia@intel.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210121102726.22805-1-jee.heng.sia@intel.com>
+References: <20210121102726.22805-1-jee.heng.sia@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Xilinx ZynqMP zcu104 revC and newer board revisions have different i2c
-structure compare to revA. The rest of the board is the same from software
-perspective.
-Also enable DMAs and QSPI.
+YAML schemas Device Tree (DT) binding is the new format for DT to replace
+the old format. Introduce YAML schemas DT binding for dw-axi-dmac and
+remove the old version.
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
+Reviewed-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
+ .../bindings/dma/snps,dw-axi-dmac.txt         |  39 ------
+ .../bindings/dma/snps,dw-axi-dmac.yaml        | 121 ++++++++++++++++++
+ 2 files changed, 121 insertions(+), 39 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt
+ create mode 100644 Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
 
-Changes in v2: None
-
- arch/arm64/boot/dts/xilinx/Makefile           |   1 +
- .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 282 ++++++++++++++++++
- 2 files changed, 283 insertions(+)
- create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-
-diff --git a/arch/arm64/boot/dts/xilinx/Makefile b/arch/arm64/boot/dts/xilinx/Makefile
-index 60f5443f3ef4..11fb4fd3ebd4 100644
---- a/arch/arm64/boot/dts/xilinx/Makefile
-+++ b/arch/arm64/boot/dts/xilinx/Makefile
-@@ -13,5 +13,6 @@ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-revA.dtb
- dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-revB.dtb
- dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-rev1.0.dtb
- dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revA.dtb
-+dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revC.dtb
- dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu106-revA.dtb
- dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu111-revA.dtb
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt
+deleted file mode 100644
+index dbe160400adc..000000000000
+--- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.txt
++++ /dev/null
+@@ -1,39 +0,0 @@
+-Synopsys DesignWare AXI DMA Controller
+-
+-Required properties:
+-- compatible: "snps,axi-dma-1.01a"
+-- reg: Address range of the DMAC registers. This should include
+-  all of the per-channel registers.
+-- interrupt: Should contain the DMAC interrupt number.
+-- dma-channels: Number of channels supported by hardware.
+-- snps,dma-masters: Number of AXI masters supported by the hardware.
+-- snps,data-width: Maximum AXI data width supported by hardware.
+-  (0 - 8bits, 1 - 16bits, 2 - 32bits, ..., 6 - 512bits)
+-- snps,priority: Priority of channel. Array size is equal to the number of
+-  dma-channels. Priority value must be programmed within [0:dma-channels-1]
+-  range. (0 - minimum priority)
+-- snps,block-size: Maximum block size supported by the controller channel.
+-  Array size is equal to the number of dma-channels.
+-
+-Optional properties:
+-- snps,axi-max-burst-len: Restrict master AXI burst length by value specified
+-  in this property. If this property is missing the maximum AXI burst length
+-  supported by DMAC is used. [1:256]
+-
+-Example:
+-
+-dmac: dma-controller@80000 {
+-	compatible = "snps,axi-dma-1.01a";
+-	reg = <0x80000 0x400>;
+-	clocks = <&core_clk>, <&cfgr_clk>;
+-	clock-names = "core-clk", "cfgr-clk";
+-	interrupt-parent = <&intc>;
+-	interrupts = <27>;
+-
+-	dma-channels = <4>;
+-	snps,dma-masters = <2>;
+-	snps,data-width = <3>;
+-	snps,block-size = <4096 4096 4096 4096>;
+-	snps,priority = <0 1 2 3>;
+-	snps,axi-max-burst-len = <16>;
+-};
+diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
 new file mode 100644
-index 000000000000..414f98f1831e
+index 000000000000..3d2515463d56
 --- /dev/null
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-@@ -0,0 +1,282 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dts file for Xilinx ZynqMP ZCU104
-+ *
-+ * (C) Copyright 2017 - 2020, Xilinx, Inc.
-+ *
-+ * Michal Simek <michal.simek@xilinx.com>
-+ */
++++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/snps,dw-axi-dmac.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
++title: Synopsys DesignWare AXI DMA Controller
 +
-+#include "zynqmp.dtsi"
-+#include "zynqmp-clk-ccf.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/phy/phy.h>
++maintainers:
++  - Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
 +
-+/ {
-+	model = "ZynqMP ZCU104 RevC";
-+	compatible = "xlnx,zynqmp-zcu104-revC", "xlnx,zynqmp-zcu104", "xlnx,zynqmp";
++description:
++  Synopsys DesignWare AXI DMA Controller DT Binding
 +
-+	aliases {
-+		ethernet0 = &gem3;
-+		i2c0 = &i2c1;
-+		mmc0 = &sdhci1;
-+		rtc0 = &rtc;
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &dcc;
-+	};
++allOf:
++  - $ref: "dma-controller.yaml#"
 +
-+	chosen {
-+		bootargs = "earlycon";
-+		stdout-path = "serial0:115200n8";
-+	};
++properties:
++  compatible:
++    enum:
++      - snps,axi-dma-1.01a
 +
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
++  reg:
++    items:
++      - description: Address range of the DMAC registers
 +
-+	ina226 {
-+		compatible = "iio-hwmon";
-+		io-channels = <&u183 0>, <&u183 1>, <&u183 2>, <&u183 3>;
-+	};
++  reg-names:
++    items:
++      - const: axidma_ctrl_regs
 +
-+	clock_8t49n287_5: clk125 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <125000000>;
-+	};
++  interrupts:
++    maxItems: 1
 +
-+	clock_8t49n287_2: clk26 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <26000000>;
-+	};
++  clocks:
++    items:
++      - description: Bus Clock
++      - description: Module Clock
 +
-+	clock_8t49n287_3: clk27 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <27000000>;
-+	};
-+};
++  clock-names:
++    items:
++      - const: core-clk
++      - const: cfgr-clk
 +
-+&can1 {
-+	status = "okay";
-+};
++  '#dma-cells':
++    const: 1
 +
-+&dcc {
-+	status = "okay";
-+};
++  dma-channels:
++    minimum: 1
++    maximum: 8
 +
-+&fpd_dma_chan1 {
-+	status = "okay";
-+};
++  snps,dma-masters:
++    description: |
++      Number of AXI masters supported by the hardware.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2]
 +
-+&fpd_dma_chan2 {
-+	status = "okay";
-+};
++  snps,data-width:
++    description: |
++      AXI data width supported by hardware.
++      (0 - 8bits, 1 - 16bits, 2 - 32bits, ..., 6 - 512bits)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3, 4, 5, 6]
 +
-+&fpd_dma_chan3 {
-+	status = "okay";
-+};
++  snps,priority:
++    description: |
++      Channel priority specifier associated with the DMA channels.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 8
 +
-+&fpd_dma_chan4 {
-+	status = "okay";
-+};
++  snps,block-size:
++    description: |
++      Channel block size specifier associated with the DMA channels.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 8
 +
-+&fpd_dma_chan5 {
-+	status = "okay";
-+};
++  snps,axi-max-burst-len:
++    description: |
++      Restrict master AXI burst length by value specified in this property.
++      If this property is missing the maximum AXI burst length supported by
++      DMAC is used.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 1
++    maximum: 256
 +
-+&fpd_dma_chan6 {
-+	status = "okay";
-+};
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++  - '#dma-cells'
++  - dma-channels
++  - snps,dma-masters
++  - snps,data-width
++  - snps,priority
++  - snps,block-size
 +
-+&fpd_dma_chan7 {
-+	status = "okay";
-+};
++additionalProperties: false
 +
-+&fpd_dma_chan8 {
-+	status = "okay";
-+};
-+
-+&gem3 {
-+	status = "okay";
-+	phy-handle = <&phy0>;
-+	phy-mode = "rgmii-id";
-+	phy0: ethernet-phy@c {
-+		reg = <0xc>;
-+		ti,rx-internal-delay = <0x8>;
-+		ti,tx-internal-delay = <0xa>;
-+		ti,fifo-depth = <0x1>;
-+		ti,dp83867-rxctrl-strap-quirk;
-+	};
-+};
-+
-+&gpio {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	tca6416_u97: gpio@20 {
-+		compatible = "ti,tca6416";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		/*
-+		 * IRQ not connected
-+		 * Lines:
-+		 * 0 - IRPS5401_ALERT_B
-+		 * 1 - HDMI_8T49N241_INT_ALM
-+		 * 2 - MAX6643_OT_B
-+		 * 3 - MAX6643_FANFAIL_B
-+		 * 5 - IIC_MUX_RESET_B
-+		 * 6 - GEM3_EXP_RESET_B
-+		 * 7 - FMC_LPC_PRSNT_M2C_B
-+		 * 4, 10 - 17 - not connected
-+		 */
-+	};
-+
-+	/* Another connection to this bus via PL i2c via PCA9306 - u45 */
-+	i2c-mux@74 { /* u34 */
-+		compatible = "nxp,pca9548";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x74>;
-+		i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+			/*
-+			 * IIC_EEPROM 1kB memory which uses 256B blocks
-+			 * where every block has different address.
-+			 *    0 - 256B address 0x54
-+			 * 256B - 512B address 0x55
-+			 * 512B - 768B address 0x56
-+			 * 768B - 1024B address 0x57
-+			 */
-+			eeprom: eeprom@54 { /* u23 */
-+				compatible = "atmel,24c08";
-+				reg = <0x54>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+			};
-+		};
-+
-+		i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+			clock_8t49n287: clock-generator@6c { /* 8T49N287 - u182 */
-+				reg = <0x6c>;
-+			};
-+		};
-+
-+		i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+			irps5401_43: irps5401@43 { /* IRPS5401 - u175 */
-+				compatible = "infineon,irps5401";
-+				reg = <0x43>; /* pmbus / i2c 0x13 */
-+			};
-+			irps5401_44: irps5401@44 { /* IRPS5401 - u180 */
-+				compatible = "infineon,irps5401";
-+				reg = <0x44>; /* pmbus / i2c 0x14 */
-+			};
-+		};
-+
-+		i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+			u183: ina226@40 { /* u183 */
-+				compatible = "ti,ina226";
-+				#io-channel-cells = <1>;
-+				reg = <0x40>;
-+				shunt-resistor = <5000>;
-+			};
-+		};
-+
-+		i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+		};
-+
-+		i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+		};
-+
-+		/* 4, 6 not connected */
-+	};
-+};
-+
-+&qspi {
-+	status = "okay";
-+	flash@0 {
-+		compatible = "m25p80", "jedec,spi-nor"; /* n25q512a 128MiB */
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		reg = <0x0>;
-+	};
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&psgtr {
-+	status = "okay";
-+	/* nc, sata, usb3, dp */
-+	clocks = <&clock_8t49n287_5>, <&clock_8t49n287_2>, <&clock_8t49n287_3>;
-+	clock-names = "ref1", "ref2", "ref3";
-+};
-+
-+&sata {
-+	status = "okay";
-+	/* SATA OOB timing settings */
-+	ceva,p0-cominit-params = /bits/ 8 <0x18 0x40 0x18 0x28>;
-+	ceva,p0-comwake-params = /bits/ 8 <0x06 0x14 0x08 0x0E>;
-+	ceva,p0-burst-params = /bits/ 8 <0x13 0x08 0x4A 0x06>;
-+	ceva,p0-retry-params = /bits/ 16 <0x96A4 0x3FFC>;
-+	ceva,p1-cominit-params = /bits/ 8 <0x18 0x40 0x18 0x28>;
-+	ceva,p1-comwake-params = /bits/ 8 <0x06 0x14 0x08 0x0E>;
-+	ceva,p1-burst-params = /bits/ 8 <0x13 0x08 0x4A 0x06>;
-+	ceva,p1-retry-params = /bits/ 16 <0x96A4 0x3FFC>;
-+	phy-names = "sata-phy";
-+	phys = <&psgtr 3 PHY_TYPE_SATA 1 1>;
-+};
-+
-+/* SD1 with level shifter */
-+&sdhci1 {
-+	status = "okay";
-+	no-1-8-v;
-+	xlnx,mio-bank = <1>;
-+	disable-wp;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+/* ULPI SMSC USB3320 */
-+&usb0 {
-+	status = "okay";
-+	dr_mode = "host";
-+};
-+
-+&watchdog0 {
-+	status = "okay";
-+};
++examples:
++  - |
++     #include <dt-bindings/interrupt-controller/arm-gic.h>
++     #include <dt-bindings/interrupt-controller/irq.h>
++     /* example with snps,dw-axi-dmac */
++     dmac: dma-controller@80000 {
++         compatible = "snps,axi-dma-1.01a";
++         reg = <0x80000 0x400>;
++         clocks = <&core_clk>, <&cfgr_clk>;
++         clock-names = "core-clk", "cfgr-clk";
++         interrupt-parent = <&intc>;
++         interrupts = <27>;
++         #dma-cells = <1>;
++         dma-channels = <4>;
++         snps,dma-masters = <2>;
++         snps,data-width = <3>;
++         snps,block-size = <4096 4096 4096 4096>;
++         snps,priority = <0 1 2 3>;
++         snps,axi-max-burst-len = <16>;
++     };
 -- 
-2.30.0
+2.18.0
 
