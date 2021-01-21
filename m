@@ -2,104 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8864D2FECC4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 15:19:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E15FF2FECC7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 15:19:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726294AbhAUOS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 09:18:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50098 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728351AbhAUOSg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 09:18:36 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D95CC061757;
-        Thu, 21 Jan 2021 06:17:55 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id e7so2626541ljg.10;
-        Thu, 21 Jan 2021 06:17:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=qTWjoxSYUi4JL7bGI6mfUa/FE+ddTQPHgoii5uzinw0=;
-        b=MfQrvkEZK9CkOFzUT8cOGuJ6bH8ktiBx14mSDSXrvWsZpQHpVcQH3oqhZkf02lJF0C
-         Fawh5Yj42LIU4ovM2ZcxYgMFbrH7e+8xzu+RRpGB5kK0gxuyQAacbPRoVpQOGBxubkuv
-         DtPe5FJRwE0fvVXkS2m6LIwTEd4pqFPCDMm1KUE1dpTR86T5M7+a/HcgMDT77MIYRAzc
-         QHApmZahkmLmhcobgWFK7LJJcoJYtaE2FGcXjCUUvuIFQxajNOwAs+Dho48CrkhVwIJE
-         b5jHi0XPOrSspT+N/DMLeU/HSPr2Yj9MoBMhY4uF83wL1YF1squYKfYXhqI/WtjwJ1Ey
-         ddTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=qTWjoxSYUi4JL7bGI6mfUa/FE+ddTQPHgoii5uzinw0=;
-        b=FWWhzm9e1FoTcfBxr0N3lGiPSb/UvQ7gFOH77meWa268YXOOWX5+gb4cYfZXTbZPJL
-         HdYB9Iqqdhh+PcHYftAWW2ktuogFP8drQhrB8106bhQs+choSM9CbMjfe6baRKxbpfZs
-         X4733kxVSXQSUgEE44WBLBZxO8GFcHqbB48tnTSCSxBhpCrsAdFIfleMLi6GXfj2P0MA
-         DlHcZtPW2AbwtI0MRrC7YHV3d1lvBAluUq4QCPK4JFqeopImrp2zx6Y3KxJ7O3L2EsA7
-         SZaUczxvlh6OQNBXJnzMmRG2nzVoGMbyJ/tGJzzkdA0uATMRJ4Ho5hGH4Ztoh5fiU39v
-         lpMg==
-X-Gm-Message-State: AOAM53205ZKiEy6ZqCoyQERgFuVxcNqUsjGXCPjlC8qcwDAOhfa+jFXm
-        +izf5xvvG5MyyQ+6VjZWcf3xFQnzl2Udt+yep0o=
-X-Google-Smtp-Source: ABdhPJx93WQ8CoZI8mE7J68rG71XZsqOVgjBEeJUDpRKtaIMDc+3RuxzVQHDmOsEOMzo8NVMKPVAttXNgcLqJcxtfB4=
-X-Received: by 2002:a2e:b556:: with SMTP id a22mr6794328ljn.264.1611238673776;
- Thu, 21 Jan 2021 06:17:53 -0800 (PST)
+        id S1728351AbhAUOTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 09:19:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59396 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729755AbhAUOTL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 09:19:11 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C1BF3239EE;
+        Thu, 21 Jan 2021 14:18:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611238704;
+        bh=iHZmCfgCE5DMYwibpiRYlS9ExKJIU87VXIrkTuIKNkY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DORrOr8SB5+NAdAAUknQyiGXTPuLvDgJsjLcVG+tJD1WA/uMjImtRsVsbcydhI8iH
+         U2o/+CLu2oczpm+rFQ3XptV0vzx2dq7XAYk60JD379rVHoyZv8qFJGJ00YHrsAeRxo
+         sNng+WglD184bTAgathgK0ZMdbAA4p2dx02XKt9NiX0NKReUioZ7nPKiOMTxgTRHE5
+         NVcJoCZ6sNf4jS+bfs7wWKpQJ6LtCGON0+jRADldux9uofHKGDlF7mDsOc0QdMH/CX
+         qIJF44ovTgdIeoxt3PQF2Fde5YlWNqfRJHtT72Vs3zS/UOMpxwH8lQeIFYHndP7v2N
+         BUiyVHemgvdkw==
+Received: by mail-ej1-f46.google.com with SMTP id r12so2798899ejb.9;
+        Thu, 21 Jan 2021 06:18:23 -0800 (PST)
+X-Gm-Message-State: AOAM5310sbLuKihiYRXCQGweahpSgTc1Tta7cQp05I5lbOeJdTD6/2qg
+        OfuWdd43RTh5HaCpm+oe0O1VCwRO/FM/aYiJtw==
+X-Google-Smtp-Source: ABdhPJx4TK68KC3wwDUFgodvSUbxRGBlIwqIAoHuahg0TDvWYSAJ6OQpB3WAFwhKjs60p6epbftliklSpSFimjV6wiE=
+X-Received: by 2002:a17:906:ce49:: with SMTP id se9mr9519806ejb.341.1611238702312;
+ Thu, 21 Jan 2021 06:18:22 -0800 (PST)
 MIME-Version: 1.0
-References: <20210121061141.23062-1-o.rempel@pengutronix.de> <20210121061141.23062-7-o.rempel@pengutronix.de>
-In-Reply-To: <20210121061141.23062-7-o.rempel@pengutronix.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 21 Jan 2021 11:17:42 -0300
-Message-ID: <CAOMZO5C6RM2vEMFJB-+Nen1Et8wn39JJVM1UcOcar0aMebKykQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] ARM: dts: imx6dl-prtvt7: fix PWM cell count for
- the backlight node.
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>
+References: <cover.1611124778.git.viresh.kumar@linaro.org> <f63b3fd7fadf8912e8e7e8653df45b5b78f5d005.1611124778.git.viresh.kumar@linaro.org>
+ <20210121004457.GD5174@yekko.fritz.box> <20210121041757.cskxlai5e7a2pfgb@vireshk-i7>
+ <20210121062622.GI5174@yekko.fritz.box>
+In-Reply-To: <20210121062622.GI5174@yekko.fritz.box>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 21 Jan 2021 08:18:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKy7xJ6MSUdE4dy=7WLz=V_NL=1x=5B4sxfeHDRPKy5Ag@mail.gmail.com>
+Message-ID: <CAL_JsqKy7xJ6MSUdE4dy=7WLz=V_NL=1x=5B4sxfeHDRPKy5Ag@mail.gmail.com>
+Subject: Re: [PATCH V5 3/5] scripts: dtc: Remove the unused fdtdump.c file
+To:     David Gibson <david@gibson.dropbear.id.au>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Anmar Oueja <anmar.oueja@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oleksij,
-
-On Thu, Jan 21, 2021 at 3:12 AM Oleksij Rempel <o.rempel@pengutronix.de> wr=
-ote:
+On Thu, Jan 21, 2021 at 12:43 AM David Gibson
+<david@gibson.dropbear.id.au> wrote:
 >
-> At some point PWM cell count was changed, but it didn't triggered any
+> On Thu, Jan 21, 2021 at 09:47:57AM +0530, Viresh Kumar wrote:
+> > On 21-01-21, 11:44, David Gibson wrote:
+> > > On Wed, Jan 20, 2021 at 12:36:45PM +0530, Viresh Kumar wrote:
+> > > > This was copied from external DTC repository long back and isn't used
+> > > > anymore. Over that the dtc tool can be used to generate the dts source
+> > > > back from the dtb. Remove the unused fdtdump.c file.
+> > > >
+> > > > Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> > >
+> > > Doesn't this make updating the kernel dtc from upstream needlessly
+> > > more difficult?
+> >
+> > Hmm, I am not sure I understand the concern well. The kernel keeps a
+> > list of files[1] it needs to automatically copy (using a script) from
+> > the upstream dtc repo and fdtdump.c was never part of that. Keeping it
+> > there isn't going to make any difficulty I believe.
+>
+> Hm, ok.  Seems a bit clunky compared to embedding the whole directory,
+> but whatever.
 
-It changed in this commit:
+Either way, it's a list of what to keep or what to omit as we don't
+want build files nor tests. If we were to take the whole thing, then
+we should do a submodule, but so far no one wants submodules in the
+kernel tree. There is a git subtree feature now that could do the same
+thing as the script. But the script is good enough only needing small
+tweaks occasionally, and anything else is work.
 
-commit fa28d8212ede9c533ae87a737571a9d3b3eebb29
-Author: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-Date:   Fri Jul 10 07:19:37 2020 +0200
-
-    ARM: dts: imx: default to #pwm-cells =3D <3> in the SoC dtsi files
-
-    The imx-pwm driver supports 3 cells and this is the more flexible setti=
-ng.
-    So use it by default and overwrite it back to two for the files that
-    reference the PWMs with just 2 cells to minimize changes.
-
-    This allows to drop explicit setting to 3 cells for the boards that alr=
-eady
-    depend on this. The boards that are now using 2 cells explicitly can be
-    converted to 3 individually.
-
-    Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-    Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Rob
