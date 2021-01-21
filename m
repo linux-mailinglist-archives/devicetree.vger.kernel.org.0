@@ -2,84 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D752FF125
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 17:56:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6F382FF05F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 17:32:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729227AbhAUPya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 10:54:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732426AbhAUPyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 10:54:16 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CBBC06178A
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 07:52:59 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id n11so3033533lji.5
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 07:52:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id;
-        bh=JgJ9soxybA1o27bKejN8yKs9EOx9gsIQCO6dTbQVL9c=;
-        b=ZwI8PpIUolJOdFomVXItWc6Ei9K6Xlnxm5Je1UlruTVxwV8/5MKEhFHUNJy2RelrSR
-         mVjJkRTv9PGcoVSw6cCjitPuJ21NHvqakZ0U+qGjOXrwURslvqFzFx7U7jkDGKFPjVFw
-         +1mjDQcArQjUoPInkCnHSvriac5lShzk07L5IiODdLW8xZpJgXX1yLjBNQdIa8AXzn0m
-         tUZJtbm4H+JIYl0yfXq41+dIyrP4VI8eBWfS015dtAjorV62ukH9PAQqf9eNP44WW3RL
-         s7hGPD/RH1YCrs9xGMJYCQLA4bRyRvYR/PfC/EXFKB98kwa+Jt3HuLU0y9d512V7Vx5Q
-         qA2g==
+        id S1733217AbhAUQcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 11:32:05 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:41370 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732253AbhAUQCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 11:02:52 -0500
+Received: by mail-ot1-f43.google.com with SMTP id k8so2049358otr.8;
+        Thu, 21 Jan 2021 08:02:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=JgJ9soxybA1o27bKejN8yKs9EOx9gsIQCO6dTbQVL9c=;
-        b=l2gvLX6AAaYVegr8xfv3wJHArm2mPcClxhWUSJOIh3w7MLkiGFuRcPDm/f4wR3ZEk7
-         S3OvnXD4mHew7CSGQW2PzX16X7VXaC4leSnWStEqRHX8aHSDOKrTz32D2hYUPzxxXFLy
-         UKt861xEuwD8/k5UMsWf8Mneq+h1GizfXV4l99DLRV7uvHh/WLaZgR7CCx/aPtoYbeAZ
-         l3cuTvvyMaJFCbF3+d347FjIMl4c8FW5EF8Q2NRKqoO898e0WxGi2zzTX3R+YzYFNKWU
-         uh+iwoiHD1W4NdPHu1+glc4Y9Ykc74hgjzq5Vd9HBk3JP4Tgh8cVA9N1MtsL+PJiJApI
-         z1jQ==
-X-Gm-Message-State: AOAM530A+RHa0Jojj7MmQTantJI9xFa8ml8Oxh56B2Q7fq5AyCWeGhJt
-        nqGzUohLU2ESFiVZcFRmhrH2+w==
-X-Google-Smtp-Source: ABdhPJzBas/8VImlBe+3srXin6AiXd1AubNON2XkPDcrMPRT0OoveVfac9pRS6bgKYVKOKxw6/sV2w==
-X-Received: by 2002:a2e:5018:: with SMTP id e24mr7505282ljb.425.1611244378214;
-        Thu, 21 Jan 2021 07:52:58 -0800 (PST)
-Received: from zr.local ([185.200.81.30])
-        by smtp.gmail.com with ESMTPSA id l7sm616628lja.15.2021.01.21.07.52.57
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=iPS8KYGvDCMZBW9Bd66TN2/ZYPxfM8AgyY5LXqUt8EA=;
+        b=C+bjC7wATEX4YcbBkrprKraGj4A08ABZdWo/0dNaluWyQmKDe3OmG+PV+0k/cEgkx9
+         VyNcLKXdAerifWDsSd+8oScrwdznn850pqcEudQlexv7DY/f1aW7U8vP4Oq4TNm0cM9E
+         5G1xs6DU9vDo9hPVuvDh8i7IOmXIDrxoJolGWatdXmWk2FjM+zjrWEXbk0yaCzQk8bS/
+         tHfWL7aVu5f6hTUqaqyV4AXOYspwHH/dVsy+uioGb64qMAUCFiGzRIwSctgYuH+IdH5u
+         MfyVPc99QgWZwBQzPN00Gd+mkeUdWnxDJhmFXj0ebDHUmMcJFGW+Y08ERAE373ej6Mxh
+         bKWg==
+X-Gm-Message-State: AOAM533aZAIlRbkmNGLHKYwN/4uO8NTMsF4grSqKThe3Z8u+MKkDht4X
+        xYcixQohD8p6mZzxksUAHw==
+X-Google-Smtp-Source: ABdhPJzn834Px5M7k9xi4eRDYRx+iVifQaTS4PmZA5nghDXcJpx0MLp8oEr2SSf1ujrQ0M2iXhI2VA==
+X-Received: by 2002:a9d:8c9:: with SMTP id 67mr10410484otf.29.1611244927549;
+        Thu, 21 Jan 2021 08:02:07 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e20sm849213otr.14.2021.01.21.08.02.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jan 2021 07:52:57 -0800 (PST)
-From:   Zyta Szpak <zr@semihalf.com>
-To:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     stable@vger.kernel.org
-Subject: [PATCH] arm64: dts: freescale: fix dcfg address range
-Date:   Thu, 21 Jan 2021 16:52:37 +0100
-Message-Id: <20210121155237.15517-1-zr@semihalf.com>
-X-Mailer: git-send-email 2.17.1
+        Thu, 21 Jan 2021 08:02:06 -0800 (PST)
+Received: (nullmailer pid 2814844 invoked by uid 1000);
+        Thu, 21 Jan 2021 16:01:58 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        michael@walle.cc, shawnguo@kernel.org,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        agross@kernel.org, leoyang.li@nxp.com, agx@sigxcpu.org,
+        Anson.Huang@nxp.com, linux-arm-kernel@lists.infradead.org,
+        todor.too@gmail.com,
+        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
+        linux-kernel@vger.kernel.org, vkoul@kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        will@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, catalin.marinas@arm.com,
+        max.oss.09@gmail.com, Jonathan Marek <jonathan@marek.ca>,
+        mchehab@kernel.org, bjorn.andersson@linaro.org,
+        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
+        geert+renesas@glider.be, Tomasz Figa <tfiga@chromium.org>
+In-Reply-To: <20210120134357.1522254-15-robert.foss@linaro.org>
+References: <20210120134357.1522254-1-robert.foss@linaro.org> <20210120134357.1522254-15-robert.foss@linaro.org>
+Subject: Re: [PATCH v2 15/22] dt-bindings: media: camss: Add qcom, sdm660-camss binding
+Date:   Thu, 21 Jan 2021 10:01:58 -0600
+Message-Id: <1611244918.532478.2814843.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dcfg was overlapping with clockgen address space which resulted
-in failure in memory allocation for dcfg. According regs description
-dcfg size should not be bigger than 4KB.
+On Wed, 20 Jan 2021 14:43:50 +0100, Robert Foss wrote:
+> Add bindings for qcom,sdm660-camss in order to support the camera
+> subsystem on SDM630/660 and SDA variants.
+> 
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> ---
+> 
+> Changes since v1:
+>  - Laurent: Reworked driver to use dtschema
+> 
+> 
+>  .../bindings/media/qcom,sdm660-camss.yaml     | 416 ++++++++++++++++++
+>  1 file changed, 416 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
+> 
 
-Signed-off-by: Zyta Szpak <zr@semihalf.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-index 025e1f587662..565934cbfa28 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-@@ -385,7 +385,7 @@
- 
- 		dcfg: dcfg@1ee0000 {
- 			compatible = "fsl,ls1046a-dcfg", "syscon";
--			reg = <0x0 0x1ee0000 0x0 0x10000>;
-+			reg = <0x0 0x1ee0000 0x0 0x1000>;
- 			big-endian;
- 		};
- 
--- 
-2.17.1
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/media/qcom,sdm660-camss.example.dts:21:18: fatal error: dt-bindings/clock/qcom,mmcc-sdm660.h: No such file or directory
+   21 |         #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:344: Documentation/devicetree/bindings/media/qcom,sdm660-camss.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1370: dt_binding_check] Error 2
+
+See https://patchwork.ozlabs.org/patch/1429447
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
