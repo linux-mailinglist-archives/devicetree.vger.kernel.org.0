@@ -2,103 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62DAB2FE07F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 549082FE0AE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 05:30:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726472AbhAUERJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jan 2021 23:17:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32928 "EHLO
+        id S1732464AbhAUE3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jan 2021 23:29:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728070AbhAUEPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 23:15:01 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574AFC061793
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 20:14:21 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id p18so519606pgm.11
-        for <devicetree@vger.kernel.org>; Wed, 20 Jan 2021 20:14:21 -0800 (PST)
+        with ESMTP id S1727418AbhAUE3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jan 2021 23:29:20 -0500
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D442DC061757;
+        Wed, 20 Jan 2021 20:28:37 -0800 (PST)
+Received: by mail-ot1-x336.google.com with SMTP id f6so435450ots.9;
+        Wed, 20 Jan 2021 20:28:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/js51H5j8YEkJ1QAw4QUNhESpoDZcZaipkmvSBF3vJ8=;
-        b=jnfP/qhXcbEDwzaMplikgATYtZSVhAMgAERfcc+QbcAAHWoiuPaZZwIqTw1GHNSwJi
-         YE0BkUGg1NnruNPc23VaSZUq+d/l8ymq1LaCCQXBB4sWgDsEDyofNnfAF1U1BnwhaTli
-         tBfRJ9+7mlOtv13cI/s8LErc9jEEjAcboQahMLpCqx4dx+a6aDQ3fMtLXAQN2vNewO/5
-         u4y/QM44MVVb9D3Lc47AZCvQgp4gjs9P1zuyqu9y46fQuAnChNnhDf0NmbCTjZ1fyoI/
-         IepsQI4PhkGUBdEEa+XsTWjy6p/ZdaJlXncJ4KstLhL4cZ8k3Oi/EGe9KSR6JE2jjjWD
-         9S+Q==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sEz/iLIdTw9v5WxUC29+q1wZ0vu+7s3YddxeSahPgM0=;
+        b=DFUJkNHbazeR7OGjGEldoAx3hJrrb/8aMvXHpvsX6zSPYjQo1YvkfVAlhUjhA2+1i+
+         Yw99LWlssvLnZ7JoK3YWdByLBl679kA9ALPU3U4MDc1M8dodj1Hm06fiATQrHQjuGeE1
+         pbGNXX21WBBq2kh3/XW7c8FAA+NYf0jhk+oSGQxYY7tS1PZrT2PstR7GXq+a/8pyfjo/
+         PF7sPxZwSQ2POTncI3sb0Ef3Bwt9Y1vo3WdTnxDIMzumkWb51r3mjastToBJnl3EF37w
+         yP1eRVdaUprqvG4h5IQzoF5pI8IunB3tKA/Q5YLHHsl5yXGl9ybC7ZzMs/MgxBAbSm03
+         Bdcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/js51H5j8YEkJ1QAw4QUNhESpoDZcZaipkmvSBF3vJ8=;
-        b=GhTopO6fWk9sxnB9Ss/wfmzo9n1DKw0Y/BpqYTO877Au7ydu4Z+AAax47rhvFBjOGN
-         tcBP+5xboL2ozrP230c1m+6bL5wf8cLz+fbHHuKxyHuhmgLL1QDSb4VWo/1NHEvKyJmE
-         dn7S17gCzC+eoatTukxZ+oQ4/y5tYNTdVauiygzKTc/4x1pv3DCdjc5BH/rzlEnkHdPX
-         6muylbONHNMARlFnTzYLd3/ZsyXjFYdOwu8J4K4quG4gUrcRLIT2FPyU9NKbKJqCD3UN
-         EEblYrVuJ76/T+OuSXMAwESh7DzEu1k/otDmK85nOQGdSmxuthM2Zct0GfpRaB1h26F6
-         avIg==
-X-Gm-Message-State: AOAM530T8jcWfpE+91pyVTAAtg/TP8ECimum3iGEJhQ6FtIWggwmiDhx
-        LiJJ3vVSZzexP+96sGQHUX7YzQ==
-X-Google-Smtp-Source: ABdhPJyNfu1oKhNTMhCWniKsJbvK5Z/+fGSCjJ0F7YGqkrUuyMSmojyCynTGUOGPqX23gVBM6LLiaQ==
-X-Received: by 2002:a63:c54c:: with SMTP id g12mr12427133pgd.449.1611202460901;
-        Wed, 20 Jan 2021 20:14:20 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id k141sm1520411pfd.9.2021.01.20.20.14.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 20 Jan 2021 20:14:20 -0800 (PST)
-Date:   Thu, 21 Jan 2021 09:44:18 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Bill Mills <bill.mills@linaro.org>,
-        Anmar Oueja <anmar.oueja@linaro.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
-Subject: Re: [PATCH V5 0/5] dt: build overlays
-Message-ID: <20210121041418.jcruqgfxnkblluah@vireshk-i7>
-References: <cover.1611124778.git.viresh.kumar@linaro.org>
- <CAL_JsqLoxHGphf4TbQtGPggq=kEUnpoR2QqCQD77ttjnVNt0wg@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sEz/iLIdTw9v5WxUC29+q1wZ0vu+7s3YddxeSahPgM0=;
+        b=gMEm6zf4M8pvEF8A9y+0v3bh0v4AC4i27wkRcFRzF7CVnWw6/LtRQENTKQiOYDMrwj
+         XOt4AVZAv33kQXFNksI0Qqg/W9TB6LZsplGKj4c1w76fIh9gaF4piS2fMmAA4BhcJGy+
+         TSGH8MQWpSCqPL/uuP1PdLIu2hjv7psNdmbiLirDVLPGt2oHenV/xnlb3xz01HlaHeA9
+         F0cZHGVBVt8cuaAVEaOzoEetNe4760NI2ID3Xw4E+HufR9vRNrVkqfpleJLLdhna7cQL
+         Phvt5M1MjRsR7ekFgymMueIaCbrgZDIfSIFLWhOe8tv0W5NaOtdXf8tBJ/2rwsZJxLUK
+         ChyA==
+X-Gm-Message-State: AOAM5314bokxz5UcoygFfxnfQkaZ0kBtKebM+2E2FppP9s7Nmjx/3+VQ
+        Nis63JMKVNHrXhVM07oDGiK8FyEYGk+2BTkU328=
+X-Google-Smtp-Source: ABdhPJyxCiEV+f+RiJbu5bYWFH5Mi6vlzsXNdJt9JvjH/4TG73sO4Nd/q0sC6TuVsDRpFmrME1l/M8WE36ThKzrww9A=
+X-Received: by 2002:a9d:6f14:: with SMTP id n20mr2136998otq.285.1611203317361;
+ Wed, 20 Jan 2021 20:28:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLoxHGphf4TbQtGPggq=kEUnpoR2QqCQD77ttjnVNt0wg@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20200902181234.13955-1-lindsey.stanpoor@gmail.com>
+ <CAEr9=gsH2UhjMO_55FKmGKS0DYrT_-XKf0iwCKCNc93epbiXNw@mail.gmail.com> <87ft5ly5nh.fsf@kernel.org>
+In-Reply-To: <87ft5ly5nh.fsf@kernel.org>
+From:   Lindsey Stanpoor <lindsey.stanpoor@gmail.com>
+Date:   Wed, 20 Jan 2021 20:28:26 -0800
+Message-ID: <CAEr9=gsc0L=rn5YDLrArqbOMSt25HhHF7cwhp7sxdPa6-PQGpg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: usb: add rk3328 dwc3 docs
+To:     Felipe Balbi <balbi@kernel.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, heiko@sntech.de, cnemo@tutanota.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-01-21, 09:43, Rob Herring wrote:
-> On Wed, Jan 20, 2021 at 1:07 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+On Fri, Nov 6, 2020 at 11:42 PM Felipe Balbi <balbi@kernel.org> wrote:
+>
+>
+> Hi,
+>
+> Lindsey Stanpoor <lindsey.stanpoor@gmail.com> writes:
+> > On Wed, Sep 2, 2020 at 11:12 AM <lindsey.stanpoor@gmail.com> wrote:
+> >>
+> >> From: Cameron Nemo <cnemo@tutanota.com>
+> >>
+> >> Document compatible for dwc3 on the Rockchip rk3328 platform.
 > >
-> > Hi Frank/Rob,
+> > Hi all,
 > >
-> > I have picked all the related patches together into a single patchset,
-> > so they can be properly reviewed/tested.
+> > Wanted to give this patch submission a gentle ping.
 > >
-> > This patchset makes necessary changes to the kernel to add support for
-> > building overlays (%.dtbo) and the required fdtoverlay tool. This also
-> > builds static_test.dtb using some of the existing overlay tests present
-> > in drivers/of/unittest-data/ for better test coverage.
+> > Rob Herring acked the documentation changes, but I have not heard
+> > anything
+> > from the USB or Rockchip maintainers. This patchset would facilitate USB3
+> > support for Rockchip rk3328 devices like the Pine Rock64.
 > >
-> > Note that in order for anyone to test this stuff, you need to manually
-> > run the ./update-dtc-source.sh script once to fetch the necessary
-> > changes from the external DTC project (i.e. fdtoverlay.c and this[1]
-> > patch).
-> 
-> Do we need a fdtoverlay fix for applying root node changes?
+> > If there is anything I can do to help move this along, please let me know.
+>
+> Sorry, it had fallen through the cracks. It's now in my testing/next.
 
-I have dropped the overlay files which were updating the root-node as
-it looks like it shouldn't be done. Frank suggested (in his patch) to
-drop overlay.dtb and I dropped overlay_base.dtb as well.
-
-With that no other fixes are required.
-
--- 
-viresh
+Following up on this. Will this move out of your testing/next?
+--
+Cameron
