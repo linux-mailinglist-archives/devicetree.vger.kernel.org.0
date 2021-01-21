@@ -2,86 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 182F02FF44F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:25:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4C962FF4C7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 20:40:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727582AbhAUTYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 14:24:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59900 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727556AbhAUTYd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 14:24:33 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E916C06174A;
-        Thu, 21 Jan 2021 11:23:53 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id j12so2259380pjy.5;
-        Thu, 21 Jan 2021 11:23:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=yiY7HD46FUvTU9Oj6CSOT7lbeUEzegOMDCYKa4T7F94=;
-        b=Z5XiKLNwDOfUbX/CovSxaboSwcc188M6BVytHUDexBth6QFlcnD5g1k4HK9xyE69U3
-         LVu/SPf9QcFY7885bLrdrcCFaOxTAAUFkWpByOPaNTCA4P3Z8IWcIqUB6RNQZaiZjax2
-         82cgY9Ry6x1W1+CPCBOqJ+wsxw6yarxPoKI4UlBaIu2uD5MeuAo+xqC0qlW03GYI6Uq3
-         MLkiYkzx11ASlkIH5DnVlZbL83eeWwR9LDx0bpDd7lviKlQfpNIcC2CyqngHxNG00Bwv
-         NeaMnLJhSUvr+o1rxaHqX8IUyjEf7Q7G8juZ8cu38zGgDWMIIS6Rbq/qzygYo30I2WVM
-         RRDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=yiY7HD46FUvTU9Oj6CSOT7lbeUEzegOMDCYKa4T7F94=;
-        b=opUMVKqe0TUZg28QJRVaUymy5kQmHRhWeqiSp8hZwcV/y6uptLK5KStD2z789wZz2A
-         xaIyJ2PUfpbmcS5NiwmV86dkBnF7VEY7+JdIp/o+4WFsLEjWMzZeH0t7VGQVVj0DVf5n
-         MwCFUCzRvKRKmRSbAPtN2fvKpPa9EaTdIwkQhVasF+g8D2/+OZ09iu3fYZcWo5wbE/U7
-         i7Sy3UGAVb7aRKGyI95gryKx7EXIdqXCagYJ/TtJTn85w6uZVVdY6VfvelegzQbmiE2z
-         CxAK++VgKeDaCWzTmld8J0ChJWdhl8lgyANy0fgA3WVzi2nlzG21JcnYW1BQ8btl0gfy
-         xZMw==
-X-Gm-Message-State: AOAM530AJBALIawd/2qdqVnBmQvjXlxBnj+03p2wWK4HAHxVGKyRSfMB
-        mTQndGnGk4Sw4Bsb26c++j7POJm+oS0=
-X-Google-Smtp-Source: ABdhPJy1tIhNY3xUiRniEpUrqJK1i7hcf9RFMz6Nv1JgC1ejFXtwfrgX7yX6kHVQbn0QSa3gxct6wg==
-X-Received: by 2002:a17:90a:c902:: with SMTP id v2mr1015256pjt.144.1611257032397;
-        Thu, 21 Jan 2021 11:23:52 -0800 (PST)
-Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
-        by smtp.gmail.com with ESMTPSA id r14sm6783315pgi.27.2021.01.21.11.23.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jan 2021 11:23:51 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: stingray: remove sata
-To:     Scott Branden <scott.branden@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20210120185140.16929-1-scott.branden@broadcom.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <5430df77-4364-7cc1-48dc-a335ca4c409a@gmail.com>
-Date:   Thu, 21 Jan 2021 11:23:43 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.6.1
+        id S1726410AbhAUTko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 14:40:44 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:39843 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726442AbhAUSs2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 13:48:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1611254821;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=S+Ku3Ce/RlpmoJYQD8InrfxdVWhR01oEy0SQfdERl30=;
+        b=aEoeJdpWvIYo50rfa03NCIbIumlzUa87vjMCjTqKCxhcSoLR9bEdzUHw212VWzMY/qGLL3
+        w8rGuoMaSKpY9jlSlJ/CPdsaXZVOr87vOyqaCoiytxL2DkGcs4X8dymmP8nKPKXjxgPml+
+        GuBKmkUDmWki1qMYvsR9AAXzpqu96nE=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-149-Zy5nkR7ONPqf5PZD0-wpbQ-1; Thu, 21 Jan 2021 13:46:56 -0500
+X-MC-Unique: Zy5nkR7ONPqf5PZD0-wpbQ-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 32ABC192AB71;
+        Thu, 21 Jan 2021 18:46:54 +0000 (UTC)
+Received: from [10.36.115.70] (ovpn-115-70.ams2.redhat.com [10.36.115.70])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 635AA5D749;
+        Thu, 21 Jan 2021 18:46:50 +0000 (UTC)
+Subject: Re: [PATCH v4 1/4] mm: cma: introduce gfp flag in cma_alloc instead
+ of no_warn
+To:     Minchan Kim <minchan@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     linux-mm <linux-mm@kvack.org>, LKML <linux-kernel@vger.kernel.org>,
+        hyesoo.yu@samsung.com, mhocko@suse.com, surenb@google.com,
+        pullip.cho@samsung.com, joaodias@google.com, hridya@google.com,
+        john.stultz@linaro.org, sumit.semwal@linaro.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        hch@infradead.org, robh+dt@kernel.org,
+        linaro-mm-sig@lists.linaro.org
+References: <20210121175502.274391-1-minchan@kernel.org>
+ <20210121175502.274391-2-minchan@kernel.org>
+From:   David Hildenbrand <david@redhat.com>
+Organization: Red Hat GmbH
+Message-ID: <a8906f32-cc15-928c-2638-76cee4b7054d@redhat.com>
+Date:   Thu, 21 Jan 2021 19:46:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <20210120185140.16929-1-scott.branden@broadcom.com>
+In-Reply-To: <20210121175502.274391-2-minchan@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1/20/2021 10:51 AM, Scott Branden wrote:
-> Remove sata from stingray as it is unsupported.
+On 21.01.21 18:54, Minchan Kim wrote:
+> The upcoming patch will introduce __GFP_NORETRY semantic
+> in alloc_contig_range which is a failfast mode of the API.
+> Instead of adding a additional parameter for gfp, replace
+> no_warn with gfp flag.
 > 
-> Signed-off-by: Scott Branden <scott.branden@broadcom.com>
+> To keep old behaviors, it follows the rule below.
+> 
+>   no_warn 			gfp_flags
+> 
+>   false         		GFP_KERNEL
+>   true          		GFP_KERNEL|__GFP_NOWARN
+>   gfp & __GFP_NOWARN		GFP_KERNEL | (gfp & __GFP_NOWARN)
+> 
+> Reviewed-by: Suren Baghdasaryan <surenb@google.com>
+> Signed-off-by: Minchan Kim <minchan@kernel.org>
+> ---
+>  drivers/dma-buf/heaps/cma_heap.c |  2 +-
+>  drivers/s390/char/vmcp.c         |  2 +-
+>  include/linux/cma.h              |  2 +-
+>  kernel/dma/contiguous.c          |  3 ++-
+>  mm/cma.c                         | 12 ++++++------
+>  mm/cma_debug.c                   |  2 +-
+>  mm/hugetlb.c                     |  6 ++++--
+>  mm/secretmem.c                   |  3 ++-
+>  8 files changed, 18 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/dma-buf/heaps/cma_heap.c b/drivers/dma-buf/heaps/cma_heap.c
+> index 364fc2f3e499..0afc1907887a 100644
+> --- a/drivers/dma-buf/heaps/cma_heap.c
+> +++ b/drivers/dma-buf/heaps/cma_heap.c
+> @@ -298,7 +298,7 @@ static int cma_heap_allocate(struct dma_heap *heap,
+>  	if (align > CONFIG_CMA_ALIGNMENT)
+>  		align = CONFIG_CMA_ALIGNMENT;
+>  
+> -	cma_pages = cma_alloc(cma_heap->cma, pagecount, align, false);
+> +	cma_pages = cma_alloc(cma_heap->cma, pagecount, align, GFP_KERNEL);
+>  	if (!cma_pages)
+>  		goto free_buffer;
+>  
+> diff --git a/drivers/s390/char/vmcp.c b/drivers/s390/char/vmcp.c
+> index 9e066281e2d0..78f9adf56456 100644
+> --- a/drivers/s390/char/vmcp.c
+> +++ b/drivers/s390/char/vmcp.c
+> @@ -70,7 +70,7 @@ static void vmcp_response_alloc(struct vmcp_session *session)
+>  	 * anymore the system won't work anyway.
+>  	 */
+>  	if (order > 2)
+> -		page = cma_alloc(vmcp_cma, nr_pages, 0, false);
+> +		page = cma_alloc(vmcp_cma, nr_pages, 0, GFP_KERNEL);
+>  	if (page) {
+>  		session->response = (char *)page_to_phys(page);
+>  		session->cma_alloc = 1;
+> diff --git a/include/linux/cma.h b/include/linux/cma.h
+> index 217999c8a762..d6c02d08ddbc 100644
+> --- a/include/linux/cma.h
+> +++ b/include/linux/cma.h
+> @@ -45,7 +45,7 @@ extern int cma_init_reserved_mem(phys_addr_t base, phys_addr_t size,
+>  					const char *name,
+>  					struct cma **res_cma);
+>  extern struct page *cma_alloc(struct cma *cma, size_t count, unsigned int align,
+> -			      bool no_warn);
+> +			      gfp_t gfp_mask);
+>  extern bool cma_release(struct cma *cma, const struct page *pages, unsigned int count);
+>  
+>  extern int cma_for_each_area(int (*it)(struct cma *cma, void *data), void *data);
+> diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
+> index 3d63d91cba5c..552ed531c018 100644
+> --- a/kernel/dma/contiguous.c
+> +++ b/kernel/dma/contiguous.c
+> @@ -260,7 +260,8 @@ struct page *dma_alloc_from_contiguous(struct device *dev, size_t count,
+>  	if (align > CONFIG_CMA_ALIGNMENT)
+>  		align = CONFIG_CMA_ALIGNMENT;
+>  
+> -	return cma_alloc(dev_get_cma_area(dev), count, align, no_warn);
+> +	return cma_alloc(dev_get_cma_area(dev), count, align, GFP_KERNEL |
+> +			(no_warn ? __GFP_NOWARN : 0));
+>  }
+>  
+>  /**
+> diff --git a/mm/cma.c b/mm/cma.c
+> index 0ba69cd16aeb..d50627686fec 100644
+> --- a/mm/cma.c
+> +++ b/mm/cma.c
+> @@ -419,13 +419,13 @@ static inline void cma_debug_show_areas(struct cma *cma) { }
+>   * @cma:   Contiguous memory region for which the allocation is performed.
+>   * @count: Requested number of pages.
+>   * @align: Requested alignment of pages (in PAGE_SIZE order).
+> - * @no_warn: Avoid printing message about failed allocation
+> + * @gfp_mask: GFP mask to use during the cma allocation.
+>   *
+>   * This function allocates part of contiguous memory on specific
+>   * contiguous memory area.
+>   */
+>  struct page *cma_alloc(struct cma *cma, size_t count, unsigned int align,
+> -		       bool no_warn)
+> +		       gfp_t gfp_mask)
+>  {
+>  	unsigned long mask, offset;
+>  	unsigned long pfn = -1;
+> @@ -438,8 +438,8 @@ struct page *cma_alloc(struct cma *cma, size_t count, unsigned int align,
+>  	if (!cma || !cma->count || !cma->bitmap)
+>  		return NULL;
+>  
+> -	pr_debug("%s(cma %p, count %zu, align %d)\n", __func__, (void *)cma,
+> -		 count, align);
+> +	pr_debug("%s(cma %p, count %zu, align %d gfp_mask 0x%x)\n", __func__,
+> +			(void *)cma, count, align, gfp_mask);
+>  
+>  	if (!count)
+>  		return NULL;
+> @@ -471,7 +471,7 @@ struct page *cma_alloc(struct cma *cma, size_t count, unsigned int align,
+>  
+>  		pfn = cma->base_pfn + (bitmap_no << cma->order_per_bit);
+>  		ret = alloc_contig_range(pfn, pfn + count, MIGRATE_CMA,
+> -				     GFP_KERNEL | (no_warn ? __GFP_NOWARN : 0));
+> +						gfp_mask);
+>  
+>  		if (ret == 0) {
+>  			page = pfn_to_page(pfn);
+> @@ -500,7 +500,7 @@ struct page *cma_alloc(struct cma *cma, size_t count, unsigned int align,
+>  			page_kasan_tag_reset(page + i);
+>  	}
+>  
+> -	if (ret && !no_warn) {
+> +	if (ret && !(gfp_mask & __GFP_NOWARN)) {
+>  		pr_err("%s: alloc failed, req-size: %zu pages, ret: %d\n",
+>  			__func__, count, ret);
+>  		cma_debug_show_areas(cma);
+> diff --git a/mm/cma_debug.c b/mm/cma_debug.c
+> index d5bf8aa34fdc..00170c41cf81 100644
+> --- a/mm/cma_debug.c
+> +++ b/mm/cma_debug.c
+> @@ -137,7 +137,7 @@ static int cma_alloc_mem(struct cma *cma, int count)
+>  	if (!mem)
+>  		return -ENOMEM;
+>  
+> -	p = cma_alloc(cma, count, 0, false);
+> +	p = cma_alloc(cma, count, 0, GFP_KERNEL);
+>  	if (!p) {
+>  		kfree(mem);
+>  		return -ENOMEM;
+> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+> index a6bad1f686c5..4209a2ed1e1b 100644
+> --- a/mm/hugetlb.c
+> +++ b/mm/hugetlb.c
+> @@ -1266,7 +1266,8 @@ static struct page *alloc_gigantic_page(struct hstate *h, gfp_t gfp_mask,
+>  
+>  		if (hugetlb_cma[nid]) {
+>  			page = cma_alloc(hugetlb_cma[nid], nr_pages,
+> -					huge_page_order(h), true);
+> +					huge_page_order(h),
+> +					GFP_KERNEL | __GFP_NOWARN);
+>  			if (page)
+>  				return page;
+>  		}
+> @@ -1277,7 +1278,8 @@ static struct page *alloc_gigantic_page(struct hstate *h, gfp_t gfp_mask,
+>  					continue;
+>  
+>  				page = cma_alloc(hugetlb_cma[node], nr_pages,
+> -						huge_page_order(h), true);
+> +						huge_page_order(h),
+> +						GFP_KERNEL | __GFP_NOWARN);
+>  				if (page)
+>  					return page;
+>  			}
+> diff --git a/mm/secretmem.c b/mm/secretmem.c
+> index b8a32954ac68..585d55b9f9d8 100644
+> --- a/mm/secretmem.c
+> +++ b/mm/secretmem.c
+> @@ -86,7 +86,8 @@ static int secretmem_pool_increase(struct secretmem_ctx *ctx, gfp_t gfp)
+>  	struct page *page;
+>  	int err;
+>  
+> -	page = cma_alloc(secretmem_cma, nr_pages, PMD_SIZE, gfp & __GFP_NOWARN);
+> +	page = cma_alloc(secretmem_cma, nr_pages, PMD_SIZE,
+> +				GFP_KERNEL | (gfp & __GFP_NOWARN));
+>  	if (!page)
+>  		return -ENOMEM;
+>  
+> 
 
-Applied to devicetree-arm64/next with a slightly reworded subject and
-commit message along with Ray's acked-by tag:
+Acked-by: David Hildenbrand <david@redhat.com>
 
-https://github.com/Broadcom/stblinux/commit/142836ca820a7ad3b397bbdda7c35971f4b9772d
-
-Thanks!
 -- 
-Florian
+Thanks,
+
+David / dhildenb
+
