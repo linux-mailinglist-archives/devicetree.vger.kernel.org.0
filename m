@@ -2,92 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE0832FE7D7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:43:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 109E72FE832
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 11:58:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729372AbhAUKmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 05:42:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59680 "EHLO
+        id S1730019AbhAUK47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 05:56:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729366AbhAUKmK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:42:10 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0278C0613D3;
-        Thu, 21 Jan 2021 02:41:28 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 0B01622FAD;
-        Thu, 21 Jan 2021 11:41:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1611225687;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=JDILWN2Qt0CRRMnHqdXZCjQvogas/S8Dy2MJuaJxQKk=;
-        b=jC+SKLV/orq38gIrVKvQRdKd4J76RPnn0LqF4Vr8EwOfVD+f7XzPpnSFWHjDxMBql+/Ieb
-        SUfOJajVatGzvLP2keWDGOdIYF9LNZAo00vXfO4Hil4mGO+XRb/PAOiOw1/hH5jsZbW4jp
-        fyYxBLtSI35wjK6PQLFjp3ngBkrfckQ=
+        with ESMTP id S1729820AbhAUK4r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 05:56:47 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825CAC061757
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:56:06 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id l9so1987794ejx.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 02:56:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n7vyQPX3uPALE1358gqAQz7N/ntgLKSkbInGXz9Zji0=;
+        b=qkjQ/pFvBgp/gCR2gs/tVKcH5GN+kzHscswOAkoKSyS1cVEGYw8/sHS1xhj9jKEs3p
+         AmThCgKnnIxrggbPdz64RPdUa7Pe49ngYGEDNKss5f3VuQV93wQnzpJ/iEHKjiBJbYr/
+         XzrmXMG48li+vFJlbrnWa3RnC3CyXUqjL9KerL/wShthDbEbPrDOAW5j7nQjtdpOfqEA
+         8zJP3UXcJa0hVd2ITQUEcHlnYew5II/ylCNlolW+X8bRGW676pz6H3EUrlKhffQSZQaa
+         oVKssRoQ/ER8hZCXw3lkQ/IQc5NOrqSD44762o2whdTpLWyLnG9sBnOtVYu6l7S+7Ywn
+         5XhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=n7vyQPX3uPALE1358gqAQz7N/ntgLKSkbInGXz9Zji0=;
+        b=h7cbZOebpzKNBZmlPzxqoB56+9/CIS7I5O5WE8+s+BYOqUBju0AqZlmrLx1LWukbs/
+         Hxp+67WF/pXzlC7FbBSW9SU3B4dXsQJeYUynH3W1AzaKML/73ux581QLVb3j4JA+RBo7
+         Bj3aZWSNZD7/FdiWa22IGMAZJ5/ckjK5Q23ekjXbC7mW1l2QWCbliH+j6t6MC2vnPzIW
+         fjYzyYVHDlNbghKvapn/2ueHyWUbB3EElHMEwBFJ2PnPDg4uM3JMrPVfc30ZEmHKxroW
+         Gjj8TlBoqkbWYkzoa0/3ZdAFpbbfW/n+ACJFKOLxs2CeIp/8b6RouGFHxjjVXMOKVV0G
+         n5UQ==
+X-Gm-Message-State: AOAM531pzSuHuwroVqSbyVw/OO3VKR6fhvW0Z9K6FxvRGReEOL7PIKGv
+        mGjCv4eJyo8aCfRfjE9hme+azw==
+X-Google-Smtp-Source: ABdhPJx2VleGnV3dYNc5W+JH4VynG0VP7pjQieyjcOK2I4jPVke98qWCngKJk8awVb+J79c4V6XIZQ==
+X-Received: by 2002:a17:906:a115:: with SMTP id t21mr8704788ejy.549.1611226565283;
+        Thu, 21 Jan 2021 02:56:05 -0800 (PST)
+Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id j23sm2603035edv.45.2021.01.21.02.56.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 21 Jan 2021 02:56:04 -0800 (PST)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: arm: Fix typo in zcu111 board
+Date:   Thu, 21 Jan 2021 11:56:03 +0100
+Message-Id: <13d064fc4850f96904a04e330cea5295d3751e46.1611226560.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 21 Jan 2021 11:41:26 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org
-Subject: Re: [PATCH 0/3] add Ebang EBAZ4205 support
-In-Reply-To: <8917c9a1-09e9-0a39-5732-da7f555ae9ad@xilinx.com>
-References: <20210120194033.26970-1-michael@walle.cc>
- <fff420d1-fc9a-23ce-0d07-58a3c6f10c4d@xilinx.com>
- <aa96fcaa362181d4b6fef9f1de0aa914@walle.cc>
- <0a1c6ebf-1d5b-4f06-56db-f04e87d2ae9a@xilinx.com>
- <bd86194a13882ce472764d0c91029e33@walle.cc>
- <8917c9a1-09e9-0a39-5732-da7f555ae9ad@xilinx.com>
-User-Agent: Roundcube Webmail/1.4.10
-Message-ID: <df072e37bb6f3500d713be565cfa1328@walle.cc>
-X-Sender: michael@walle.cc
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Trivial fix.
 
-Am 2021-01-21 11:23, schrieb Michal Simek:
->>> Back to your case. Board is cheap which is not all the time case for 
->>> any
->>> xilinx board but you have only uart, sd and partially described 
->>> ethernet
->>> which doesn't work without PL. Is it worth to have this described?
->> 
->> I got your point. But it is at least a jump start for the users if 
->> that
->> board boots out of the box. And yes, its unfortunate, that ethernet
->> just works if the PL is configured. This is already done by the
->> bootloader, because there I do have the same problem.
-> 
-> Zynq/ZynqMP boards can use U-Boot SPL. "Advantage" of this solution
-> especially for Zynq is that in u-boot there is open a way for adding
-> ps7_init file which is determined by device tree name.
-> I think it would make sense to add these DTs and also ps7_init to 
-> U-Boot
-> project and wire it up with zynq_virt platform and then you can boot
-> Linux with using U-Boot's DT pointed by $fdtcontroladdr.
-> Then you will get support from scratch to be able to boot.
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
-I already have patches for u-boot (using SPL). But my impression was
-that linux is the master for the device trees. Esp. if there are some
-problems with the board its often useful to have an in-tree device
-tree.
+ Documentation/devicetree/bindings/arm/xilinx.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-What is the difference between this board and the other zynq boards
-in the kernel?
+diff --git a/Documentation/devicetree/bindings/arm/xilinx.yaml b/Documentation/devicetree/bindings/arm/xilinx.yaml
+index ae0ef1bf7965..97e77b4e077c 100644
+--- a/Documentation/devicetree/bindings/arm/xilinx.yaml
++++ b/Documentation/devicetree/bindings/arm/xilinx.yaml
+@@ -108,7 +108,7 @@ properties:
+         items:
+           - enum:
+               - xlnx,zynqmp-zcu111-revA
+-              - xlnx,zynqmp-zcu11-rev1.0
++              - xlnx,zynqmp-zcu111-rev1.0
+           - const: xlnx,zynqmp-zcu111
+           - const: xlnx,zynqmp
+ 
+-- 
+2.30.0
 
-In any case, please make this decision now: will you accept this
-device tree or not?
-
--michael
