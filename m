@@ -2,189 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAF6D2FF202
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 18:34:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1694C2FF24A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jan 2021 18:46:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388053AbhAURcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 12:32:42 -0500
-Received: from foss.arm.com ([217.140.110.172]:42200 "EHLO foss.arm.com"
+        id S2388997AbhAURp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 12:45:59 -0500
+Received: from msg-2.mailo.com ([213.182.54.12]:49144 "EHLO msg-2.mailo.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388541AbhAURaI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 12:30:08 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B74E611B3;
-        Thu, 21 Jan 2021 09:29:20 -0800 (PST)
-Received: from [10.57.39.58] (unknown [10.57.39.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 13E233F66E;
-        Thu, 21 Jan 2021 09:29:14 -0800 (PST)
-Subject: Re: [RFC PATCH v3 5/6] dt-bindings: of: Add restricted DMA pool
-To:     Rob Herring <robh@kernel.org>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Boris Ostrovsky <boris.ostrovsky@oracle.com>,
-        Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Grant Likely <grant.likely@arm.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Thierry Reding <treding@nvidia.com>,
-        Ingo Molnar <mingo@kernel.org>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        xen-devel@lists.xenproject.org, Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-6-tientzu@chromium.org>
- <20210120165348.GA220770@robh.at.kernel.org>
- <313f8052-a591-75de-c4c2-ee9ea8f02e7f@arm.com>
- <CAL_JsqKjTqcCbCLksRbCh7=f-A3Y09A3jNqtUApaA+p=RKd_Eg@mail.gmail.com>
- <c0d631de-8840-4f6e-aebf-41bb8449f78c@arm.com>
- <CAL_JsqLv-FaiY_k+wS=iXG5AtccsXSBtvTfEGHvsN-VNqXdwpA@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <1a570c5c-e0da-7d86-4384-4a4c50193c94@arm.com>
-Date:   Thu, 21 Jan 2021 17:29:13 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S2388987AbhAURps (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 12:45:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1611251056; bh=yDRRZw5pkRK++DBQV9BF8M/0EOWbSJfi9/2x6S2Gfqo=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=bNnntQ2OEwj+eMYrLUf4wNUEOtoAGH5+/JQdJGMeunLwOYAmmT+etU2JbV2wrju2c
+         /QSGXenFyKshNRcXIWDx/VfAmvUOAk6q3QIiFQ6jZz/d+Ysnt4kK9T6ITTr1EDLBrc
+         t4YLk5Hob83RI1vd8rmTTAGzfuYk1Ji3np6+fWjE=
+Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Thu, 21 Jan 2021 18:44:16 +0100 (CET)
+X-EA-Auth: yvnxX2YCMXfd8+j5vum/rlMzFImFoka0+8XUJVCOReMxMR5Cci/wevHfDaVtigmpJxionMsX21uMIXROVD/F7cehNkoysxV80Su6uSka/Lw=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v3 1/2] dt-bindings: input/touchscreen: add bindings for msg26xx
+Date:   Thu, 21 Jan 2021 18:43:47 +0100
+Message-Id: <20210121174359.1455393-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLv-FaiY_k+wS=iXG5AtccsXSBtvTfEGHvsN-VNqXdwpA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-21 15:48, Rob Herring wrote:
-> On Wed, Jan 20, 2021 at 7:10 PM Robin Murphy <robin.murphy@arm.com>
-> wrote:
->> 
->> On 2021-01-20 21:31, Rob Herring wrote:
->>> On Wed, Jan 20, 2021 at 11:30 AM Robin Murphy
->>> <robin.murphy@arm.com> wrote:
->>>> 
->>>> On 2021-01-20 16:53, Rob Herring wrote:
->>>>> On Wed, Jan 06, 2021 at 11:41:23AM +0800, Claire Chang
->>>>> wrote:
->>>>>> Introduce the new compatible string, restricted-dma-pool,
->>>>>> for restricted DMA. One can specify the address and length
->>>>>> of the restricted DMA memory region by restricted-dma-pool
->>>>>> in the device tree.
->>>>> 
->>>>> If this goes into DT, I think we should be able to use
->>>>> dma-ranges for this purpose instead. Normally, 'dma-ranges'
->>>>> is for physical bus restrictions, but there's no reason it
->>>>> can't be used for policy or to express restrictions the
->>>>> firmware has enabled.
->>>> 
->>>> There would still need to be some way to tell SWIOTLB to pick
->>>> up the corresponding chunk of memory and to prevent the kernel
->>>> from using it for anything else, though.
->>> 
->>> Don't we already have that problem if dma-ranges had a very
->>> small range? We just get lucky because the restriction is
->>> generally much more RAM than needed.
->> 
->> Not really - if a device has a naturally tiny addressing capability
->> that doesn't even cover ZONE_DMA32 where the regular SWIOTLB buffer
->> will be allocated then it's unlikely to work well, but that's just
->> crap system design. Yes, memory pressure in ZONE_DMA{32} is
->> particularly problematic for such limited devices, but it's
->> irrelevant to the issue at hand here.
-> 
-> Yesterday's crap system design is today's security feature. Couldn't 
-> this feature make crap system design work better?
+This adds dts bindings for the mstar msg26xx touchscreen.
 
-Indeed! Say you bring out your shiny new "Strawberry Flan 4" machine
-with all the latest connectivity, but tragically its PCIe can only
-address 25% of the RAM. So you decide to support deploying it in two
-configurations: one where it runs normally for best performance, and
-another "secure" one where it dedicates that quarter of RAM as a 
-restricted DMA pool for any PCIe devices - that way, even if that hotel 
-projector you plug in turns out to be a rogue Thunderbolt endpoint, it 
-can never snarf your private keys off your eMMC out of the page cache.
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+Changed in v3:
+- added `touchscreen-size-x: true` and `touchscreen-size-y: true` properties
+Changed in v2:
+- changed M-Star to MStar in title line
+- changed reset gpio to active-low in example section
+---
+ .../input/touchscreen/mstar,msg26xx.yaml      | 69 +++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml
 
-(Yes, is is the thinnest of strawmen, but it sets the scene for the 
-point you raised...)
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml
+new file mode 100644
+index 000000000000..5d26a1008bf1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/mstar,msg26xx.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/mstar,msg26xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MStar msg26xx touchscreen controller Bindings
++
++maintainers:
++  - Vincent Knecht <vincent.knecht@mailoo.org>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    const: mstar,msg26xx
++
++  reg:
++    const: 0x26
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  vdd-supply:
++    description: Power supply regulator for the chip
++
++  vddio-supply:
++    description: Power supply regulator for the I2C bus
++
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++  - touchscreen-size-x
++  - touchscreen-size-y
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      touchscreen@26 {
++        compatible = "mstar,msg26xx";
++        reg = <0x26>;
++        interrupt-parent = <&msmgpio>;
++        interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++        reset-gpios = <&msmgpio 100 GPIO_ACTIVE_LOW>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&ts_int_active>;
++        vdd-supply = <&pm8916_l17>;
++        vddio-supply = <&pm8916_l5>;
++        touchscreen-size-x = <720>;
++        touchscreen-size-y = <1280>;
++      };
++    };
++
++...
+-- 
+2.29.2
 
-...which is that in both cases the dma-ranges will still be identical. 
-So how is the kernel going to know whether to steal that whole area from 
-memblock before anything else can allocate from it, or not?
 
-I don't disagree that even in Claire's original intended case it would 
-be semantically correct to describe the hardware-firewalled region with 
-dma-ranges. It just turns out not to be necessary, and you're already 
-arguing for not adding anything in DT that doesn't need to be.
 
->> What we have here is a device that's not allowed to see *kernel*
->> memory at all. It's been artificially constrained to a particular
->> region by a TZASC or similar, and the only data which should ever
->> be placed in that
-> 
-> May have been constrained, but that's entirely optional.
-> 
-> In the optional case where the setup is entirely up to the OS, I
-> don't think this belongs in the DT at all. Perhaps that should be
-> solved first.
-
-Yes! Let's definitely consider that case! Say you don't have any 
-security or physical limitations but want to use a bounce pool for some 
-device anyway because reasons (perhaps copying streaming DMA data to a 
-better guaranteed alignment gives an overall performance win). Now the 
-*only* relevant thing to communicate to the kernel is to, ahem, reserve 
-a large chunk of memory, and use it for this special purpose. Isn't that 
-literally what reserved-memory bindings are for?
-
->> region is data intended for that device to see. That way if it
->> tries to go rogue it physically can't start slurping data intended
->> for other devices or not mapped for DMA at all. The bouncing is an
->> important part of this - I forget the title off-hand but there was
->> an interesting paper a few years ago which demonstrated that even
->> with an IOMMU, streaming DMA of in-place buffers could reveal
->> enough adjacent data from the same page to mount an attack on the
->> system. Memory pressure should be immaterial since the size of each
->> bounce pool carveout will presumably be tuned for the needs of the
->> given device.
->> 
->>> In any case, wouldn't finding all the dma-ranges do this? We're 
->>> already walking the tree to find the max DMA address now.
->> 
->> If all you can see are two "dma-ranges" properties, how do you
->> propose to tell that one means "this is the extent of what I can
->> address, please set my masks and dma-range-map accordingly and try
->> to allocate things where I can reach them" while the other means
->> "take this output range away from the page allocator and hook it up
->> as my dedicated bounce pool, because it is Serious Security Time"?
->> Especially since getting that choice wrong either way would be a
->> Bad Thing.
-> 
-> Either we have some heuristic based on the size or we add some hint. 
-> The point is let's build on what we already have for defining DMA 
-> accessible memory in DT rather than some parallel mechanism.
-
-The point I'm trying to bang home is that it's really not about the DMA 
-accessibility, it's about the purpose of the memory itself. Even when 
-DMA accessibility *is* relevant it's already implied by that purpose, 
-from the point of view of the implementation. The only difference it 
-might make is to the end user if they want to ascertain whether the 
-presence of such a pool represents protection against an untrusted 
-device or just some DMA optimisation tweak.
-
-Robin.
