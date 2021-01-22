@@ -2,108 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D471300593
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 15:36:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE05F3005A7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 15:40:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728622AbhAVOgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 09:36:09 -0500
-Received: from mail-lf1-f51.google.com ([209.85.167.51]:34346 "EHLO
-        mail-lf1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728767AbhAVOgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 09:36:01 -0500
-Received: by mail-lf1-f51.google.com with SMTP id o19so7836591lfo.1;
-        Fri, 22 Jan 2021 06:35:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=W0bWAxw7Duy+uLOZDJETbEeOscyuN+nYdQEuaqxHD6w=;
-        b=RlI7oRzuT2Dz2JW0wfiPq8/GNvJCTi39kvajn0w/zKqRFW23cKevydmRNEqfVB5eD9
-         ed/3ahSt7tvVvySCMp1xwJ/4B2GMVj/ch3DdCuCPtGoOhjq13RKAO5zj6Ujeo/6zfYtt
-         sMy0gc0au/mdSuwseMa35Uog0SRPVEeMoK4MmnLaO3JW99rJGYXeZnlsNMtu7S6tbdea
-         dAlqVj+27e05drqLL6HyqLjQYBj39278wQUZAFGThIqnIUclPiXMW0V6sGP688ZYw5qC
-         49cNg6IircdWvqdMdop8GP7Ev9kF9tNqQzjLaknrByDih1CwqJqXFORquixKgy+pqby+
-         zYnw==
-X-Gm-Message-State: AOAM531ZdU0eW8xxrvonYDgUl8FuawI+NPZYnR19Atxjjd9RHpSQ6xdX
-        YxMIX0iKiFRatCKb1M6ei7A=
-X-Google-Smtp-Source: ABdhPJyQTWffI7ubf2/sPrTT64dF+zlHAKB01iX/ksdzUe3NgF7bFfLGyecAvQvKnSbOIFA373kVKA==
-X-Received: by 2002:ac2:5a41:: with SMTP id r1mr2382219lfn.117.1611326118006;
-        Fri, 22 Jan 2021 06:35:18 -0800 (PST)
-Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id p23sm907026lfe.243.2021.01.22.06.35.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jan 2021 06:35:17 -0800 (PST)
-Date:   Fri, 22 Jan 2021 16:35:10 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v7 5/6] MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF drivers
-Message-ID: <d4a658492fd9168a3e8a922b941f45f8ac23934d.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
+        id S1728725AbhAVOim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 09:38:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59154 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728302AbhAVOgh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 09:36:37 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A208123A03;
+        Fri, 22 Jan 2021 14:35:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611326155;
+        bh=sxU5ASqXndusi2Pnkt13POYjDtxsqPbJSrYN5sC4qMA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DspgRbbQSxH0UVx3G/npkwoGZzLfHbc2AnMNW3FldFQg0VCUjK6nbPTF2iRI4z742
+         gwqpSx1PNPh3eZLiLQ4GYL3RiwYaQG+A/v6t1q6J15rl3svZx+eW+76QxqeSiXnTJH
+         rTeMMmLQdgSqAK4rXjEm8zS614VC+QvY9LtTIFNa3r83MiGvLS580iHpYDu//o9lVv
+         9kIb689VHgouJqQxklkqPVVOBOAME6iICW/1XHk2vYjKTDqF0KsqBPsN5VO1TJ4GR9
+         vPb1cCn10nmhjCzV3Vz1kjKAbci2NLXTOAz1whWZpGyJeRRGZxhC7hJvvQBOeszY3q
+         M0B3zUIvUkk8g==
+Received: by mail-ej1-f50.google.com with SMTP id kg20so7480857ejc.4;
+        Fri, 22 Jan 2021 06:35:55 -0800 (PST)
+X-Gm-Message-State: AOAM530lWcs1YCpmlLNFGPRs/4+LxtNuBA0M9deqfuxyijE033ITV9o9
+        g9itO37YF+4z4K0xTILFGXxpu+QrYUxCiDrIfg==
+X-Google-Smtp-Source: ABdhPJytgMMsVBCluQGg80czJH2LtDa1jEg+wimwNUTBj1vfLN81d97r1tsHb5RSTOK+iRG6xynU/IIgkyijEkO3jd4=
+X-Received: by 2002:a17:907:968e:: with SMTP id hd14mr2126942ejc.108.1611326154238;
+ Fri, 22 Jan 2021 06:35:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
+References: <20210120115945.29046-1-paul@crapouillou.net>
+In-Reply-To: <20210120115945.29046-1-paul@crapouillou.net>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 22 Jan 2021 08:35:42 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLS-oFn4kGm7GeU+W2BvVeon9k9+gzVojypcJCJLwbaEQ@mail.gmail.com>
+Message-ID: <CAL_JsqLS-oFn4kGm7GeU+W2BvVeon9k9+gzVojypcJCJLwbaEQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings/phy: ingenic: Add compatibles for
+ JZ4760(B) SoCs
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, od@zcrc.me,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer entries for ROHM BD9576MUF and ROHM BD9573MUF drivers.
-MFD, regulator and watchdog drivers were introduced for these PMICs.
+On Wed, Jan 20, 2021 at 5:59 AM Paul Cercueil <paul@crapouillou.net> wrote:
+>
+> Add the ingenic,jz4760-phy and ingenic,jz4760b-phy compatible strings,
+> and make the ingenic,jz4770-phy compatible string require
+> ingenic,jz4760-phy as a fallback, since both work the same, and the
+> JZ4760 SoC is older.
+>
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+>  .../bindings/phy/ingenic,phy-usb.yaml         | 22 ++++++++++++-------
+>  1 file changed, 14 insertions(+), 8 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml b/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+> index 0fd93d71fe5a..3c65dfcf352b 100644
+> --- a/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+> +++ b/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+> @@ -15,13 +15,19 @@ properties:
+>      pattern: '^usb-phy@.*'
+>
+>    compatible:
+> -    enum:
+> -      - ingenic,jz4770-phy
+> -      - ingenic,jz4775-phy
+> -      - ingenic,jz4780-phy
+> -      - ingenic,x1000-phy
+> -      - ingenic,x1830-phy
+> -      - ingenic,x2000-phy
+> +    oneOf:
+> +      - enum:
+> +        - ingenic,jz4760-phy
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
-Changes since v6:
- - no changes
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+This should be 2 more spaces indentation. Indent is always 2 more than
+the above keyword and ignores '-'.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cc1e6a5ee6e6..b59b7877258c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15336,16 +15336,20 @@ F:	drivers/gpio/gpio-bd71828.c
- F:	drivers/mfd/rohm-bd70528.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
-+F:	drivers/mfd/rohm-bd9576.c
- F:	drivers/power/supply/bd70528-charger.c
- F:	drivers/regulator/bd70528-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
-+F:	drivers/regulator/bd9576-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
- F:	drivers/watchdog/bd70528_wdt.c
-+F:	drivers/watchdog/bd9576_wdt.c
- F:	include/linux/mfd/rohm-bd70528.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
-+F:	include/linux/mfd/rohm-bd957x.h
- F:	include/linux/mfd/rohm-generic.h
- F:	include/linux/mfd/rohm-shared.h
- 
--- 
-2.25.4
-
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
+> +        - ingenic,jz4775-phy
+> +        - ingenic,jz4780-phy
+> +        - ingenic,x1000-phy
+> +        - ingenic,x1830-phy
+> +        - ingenic,x2000-phy
+> +      - items:
+> +        - enum:
+> +          - ingenic,jz4760b-phy
+> +          - ingenic,jz4770-phy
+> +        - const: ingenic,jz4760-phy
+>
+>    reg:
+>      maxItems: 1
+> @@ -48,7 +54,7 @@ examples:
+>    - |
+>      #include <dt-bindings/clock/jz4770-cgu.h>
+>      otg_phy: usb-phy@3c {
+> -      compatible = "ingenic,jz4770-phy";
+> +      compatible = "ingenic,jz4770-phy", "ingenic,jz4760-phy";
+>        reg = <0x3c 0x10>;
+>
+>        vcc-supply = <&vcc>;
+> --
+> 2.29.2
+>
