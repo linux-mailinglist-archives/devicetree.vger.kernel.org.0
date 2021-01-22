@@ -2,128 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F8A2FF9FF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 02:37:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F4952FFA48
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 03:04:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbhAVBfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 20:35:05 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:42205 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725275AbhAVBfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 20:35:04 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id EF2C21834;
-        Thu, 21 Jan 2021 20:33:56 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Thu, 21 Jan 2021 20:33:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=W
-        gcBGgOaSIyMT8TligKY0WdxImQrH4d4UDt8M5c2E80=; b=iOfCLLqy7jE+oy9Tm
-        FhfVVQfpKpWcSK5kRV4YW2x3A6HGerEFT6Lm4uCiAsS1p5O1T31cJCcA0w97bu1a
-        03cvxRmRrSKfwXguipyfGGIrp1YlG9B0uZqI4184M4qu5o4iR2oAJ0lI1XNBmTgc
-        ERSRe1OgMM3IKmuTFcHb2Ppd0Jn404LYOx/mjkRYDny7xRt+Atscbujt/b1r0zjj
-        WPpEPXdSKpC6ibr5zkt1FBAPiir1ovgojgDsG253y/FnhXdijk90hwZhgQUkomss
-        qgXmJ5mP7kDgewqIfOIBUStwTna5igjlVOoOrGYMoC99nGJSgV2h8IuSgfBUptl+
-        cTBfQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=WgcBGgOaSIyMT8TligKY0WdxImQrH4d4UDt8M5c2E
-        80=; b=He/s5kEOHVPgcWaZuL6C9CEhWl1jI8cXbha1jjRgZzRJ3WyFrj0Y6usCM
-        AhAW8bnScpLo1EQ69fyBXLifIuPqicPB1x7aeqSFRN270OVTixblui1JC/9mKYzP
-        Fu9ghPkNCwOR0BpMyeTJrqAK5OYhDAvxpwVIyT/ZaxKc+qILCIBmkPg+rNOjHPUJ
-        /sbbNaMpPzhFjhb9vVRC5DNcFW4D+0w3oaEpRlQP8ZHBD2scGvcCqeJyCSYwDCO2
-        Lf0Qs4prMo3tFQvWOsaRfCbvVTca9H1RHqFuaaRnb0OpCYVQGACE4bZ1ZifsXsU4
-        +egMyZw82O4RsFoBLUJmfPlsvNnjg==
-X-ME-Sender: <xms:gysKYP3aAfG0q6b0zB9_cZbIXVocCZzmKZtrozwNhkvB--LBTHdCMA>
-    <xme:gysKYOGnu9e6BD2vQIVY23fcLr9Ki-71Qr_f-sfbKIPI8_82nncjfu-HNJQW1pqba
-    zKmF3qN5g6oTQ8sjg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehgdefiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpedvvddttdefhefgieektdeuvdduhfeileevieeujeehuefggedvueei
-    tdduleffieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeejtddrudefhe
-    drudegkedrudehudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
-    fhhrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:gysKYP74hkzMl0CGu0a3FwwX5FQKwBN80obSbH-6FdsKkHZtudmG0g>
-    <xmx:gysKYE2kN-yYa-1GnUHbXYyeqdPEJw6QevJdTM585aP1b5BgzjFN5w>
-    <xmx:gysKYCHnjQqIgLzbKcziJtl1_McZVPeWHAOFP1EfEmdjpjJCC4NSYw>
-    <xmx:hCsKYF3sUqLRBTmAIINE7sazIHMmBPl9sf0ySDYQktS1Ik1BPSMQOQ>
-Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 01AEE1080059;
-        Thu, 21 Jan 2021 20:33:54 -0500 (EST)
-To:     Marc Zyngier <maz@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     Ondrej Jirman <megous@megous.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210118055040.21910-1-samuel@sholland.org>
- <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v5 00/10] sunxi: Support IRQ wakeup from deep sleep
-Message-ID: <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org>
-Date:   Thu, 21 Jan 2021 19:33:54 -0600
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        id S1726462AbhAVCEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 21:04:21 -0500
+Received: from mga18.intel.com ([134.134.136.126]:59189 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726044AbhAVCEQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 21:04:16 -0500
+IronPort-SDR: 99dEDPAi4MSJtr5wjwt9uUZGOCSNIENSQBNG7A9g3l5x5yU/h2P9NLBCWsD7vS5lTHCJIRij5g
+ +Ts3P8ABF43Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9871"; a="167055292"
+X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; 
+   d="scan'208";a="167055292"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2021 18:02:25 -0800
+IronPort-SDR: Xbl5c/D865xh6OlMgMyL0U1IZOcNA6WvEvPrOI/eUbFuSdvCK6xN46A2PhCPSr8KiBbjTQoRZM
+ DDbMHc3lOXNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,365,1602572400"; 
+   d="scan'208";a="467684968"
+Received: from allen-box.sh.intel.com (HELO [10.239.159.28]) ([10.239.159.28])
+  by fmsmga001.fm.intel.com with ESMTP; 21 Jan 2021 18:02:16 -0800
+Cc:     baolu.lu@linux.intel.com, lorenzo.pieralisi@arm.com,
+        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
+        rjw@rjwysocki.net, lenb@kernel.org, robin.murphy@arm.com,
+        Jonathan.Cameron@huawei.com, eric.auger@redhat.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, jacob.jun.pan@linux.intel.com,
+        kevin.tian@intel.com, vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        David Woodhouse <dwmw2@infradead.org>
+Subject: Re: [PATCH v10 04/10] iommu/vt-d: Support IOMMU_DEV_FEAT_IOPF
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org
+References: <20210121123623.2060416-1-jean-philippe@linaro.org>
+ <20210121123623.2060416-5-jean-philippe@linaro.org>
+From:   Lu Baolu <baolu.lu@linux.intel.com>
+Message-ID: <d834784c-2d96-a4be-8d9b-3a5d3939325d@linux.intel.com>
+Date:   Fri, 22 Jan 2021 09:54:01 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210121123623.2060416-5-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/21/21 2:35 PM, Marc Zyngier wrote:
-> On Sun, 17 Jan 2021 23:50:30 -0600, Samuel Holland wrote:
->> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
->> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC handles
->> the external NMI pin, and provides 32+ IRQs to the ARISC. The first 16
->> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
->> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
->>
->> This series replaces the existing chained irqchip driver that could only
->> control the NMI, with a stacked irqchip driver that also provides wakeup
->> capability for those multiplexed SPI IRQs. The idea is to preconfigure
->> the ARISC's IRQ controller, and then the ARISC firmware knows to wake up
->> as soon as it receives an IRQ. It can also decide how deep it can
->> suspend based on the enabled wakeup IRQs.
->>
->> [...]
-> 
-> Applied to irq/irqchip-5.12, thanks!
-> 
-> [01/10] dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
->         commit: ad6b47cdef760410311f41876b21eb0c6fda4717
-> [02/10] dt-bindings: irq: sun6i-r: Add a compatible for the H3
->         commit: 6436eb4417094ea3308b33d8392fc02a1068dc78
-> [03/10] irqchip/sun6i-r: Use a stacked irqchip driver
->         commit: 4e34614636b31747b190488240a95647c227021f
-> [04/10] irqchip/sun6i-r: Add wakeup support
->         commit: 7ab365f6cd6de1e2b0cb1e1e3873dbf68e6f1003
-> 
-> Please route the dts patches via the soc tree. Also, I had to
-> manually fix the first patch as it wouldn't apply on top of
-> 5.11-rc4 (which tree has it been diffed against?). Please
-> check that the resolution is correct.
+Hi Jean,
 
-This series was based on sunxi/for-next, which contains commit
-752b0aac99c7 ("dt-bindings: irq: sun7i-nmi: Add binding documentation
-for the V3s NMI")[1].
-
-[1]:
-https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git/commit/?h=sunxi/for-next&id=752b0aac99c7e0b179875cdfa102d378ccb794a2
-
-> Cheers,
+On 1/21/21 8:36 PM, Jean-Philippe Brucker wrote:
+> Allow drivers to query and enable IOMMU_DEV_FEAT_IOPF, which amounts to
+> checking whether PRI is enabled.
 > 
-> 	M.
-> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 
+Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+
+Best regards,
+baolu
+
+> ---
+> Cc: David Woodhouse <dwmw2@infradead.org>
+> Cc: Lu Baolu <baolu.lu@linux.intel.com>
+> ---
+>   drivers/iommu/intel/iommu.c | 11 ++++++++---
+>   1 file changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
+> index f665322a0991..c777bd94df5d 100644
+> --- a/drivers/iommu/intel/iommu.c
+> +++ b/drivers/iommu/intel/iommu.c
+> @@ -5330,6 +5330,8 @@ static int siov_find_pci_dvsec(struct pci_dev *pdev)
+>   static bool
+>   intel_iommu_dev_has_feat(struct device *dev, enum iommu_dev_features feat)
+>   {
+> +	struct device_domain_info *info = get_domain_info(dev);
+> +
+>   	if (feat == IOMMU_DEV_FEAT_AUX) {
+>   		int ret;
+>   
+> @@ -5344,13 +5346,13 @@ intel_iommu_dev_has_feat(struct device *dev, enum iommu_dev_features feat)
+>   		return !!siov_find_pci_dvsec(to_pci_dev(dev));
+>   	}
+>   
+> -	if (feat == IOMMU_DEV_FEAT_SVA) {
+> -		struct device_domain_info *info = get_domain_info(dev);
+> +	if (feat == IOMMU_DEV_FEAT_IOPF)
+> +		return info && info->pri_supported;
+>   
+> +	if (feat == IOMMU_DEV_FEAT_SVA)
+>   		return info && (info->iommu->flags & VTD_FLAG_SVM_CAPABLE) &&
+>   			info->pasid_supported && info->pri_supported &&
+>   			info->ats_supported;
+> -	}
+>   
+>   	return false;
+>   }
+> @@ -5361,6 +5363,9 @@ intel_iommu_dev_enable_feat(struct device *dev, enum iommu_dev_features feat)
+>   	if (feat == IOMMU_DEV_FEAT_AUX)
+>   		return intel_iommu_enable_auxd(dev);
+>   
+> +	if (feat == IOMMU_DEV_FEAT_IOPF)
+> +		return intel_iommu_dev_has_feat(dev, feat) ? 0 : -ENODEV;
+> +
+>   	if (feat == IOMMU_DEV_FEAT_SVA) {
+>   		struct device_domain_info *info = get_domain_info(dev);
+>   
+> 
