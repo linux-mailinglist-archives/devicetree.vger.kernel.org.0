@@ -2,180 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A5B2FF99E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 01:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F8A2FF9FF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 02:37:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbhAVAzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 19:55:54 -0500
-Received: from mail-am6eur05on2058.outbound.protection.outlook.com ([40.107.22.58]:45984
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725831AbhAVAzv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Jan 2021 19:55:51 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fAShxNaj3i5o05cYgCwHF07jyV0O6CkBpapXKp3YDI8wGpkGPRcDJzSbp8CqZG5GCViYF6M0s5fj1sra3x2Y0OqwAUh6NfdfgyidYyhr4BRIeHw8AzwblHs7LsoDkexWnH2+zYx3ROz8ewpdyjo9OS70mpPEG7BNYAA6Ae2HfyprAHe7Yh6OyFMffQpZZQqiCN3gKLEQt+Wmw8fZQbBemba2Lg7h7U7tgm4FkI7TTp0AB14tqL9Qn8svQOjPmwpS+kQyswYSyuwdwZLC5S7PQUGjveXDcZ3mFTFS+Nfz0blgWhM+48f1+FLH07qfYgbXtLJhwiaQfh9orx7GRW0Hfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rm1f5xyAhpwlg9rXv//B2JDwCcZkMY3eIHHVdIgxyLc=;
- b=mXQS3pozsOpQUeEOAmDuMT4BtFXQI0n1qHTcPewHelAd60+SFtvGkk6G+COk1JyjalknpKVVI8i7bLs2Rre8Hoyfod/WO4O0YK2UwiayDQlUDMsAaqq5/LQ3ha0SywfmO95wfZK6PtU1GeqhAMrivtfB7jWx4E8Y7rz0FjYoFe8uMNluGy++/sTIP36KPFWvBnI/KmxEkh/1yiEmHXoXzpenXI8+1b/2HePu/PuohRDO7acFpLUwiEqwytQkZUAKpG4Dn3pOrfBkUvssD1hfZ1uOYoocIX3OWWFkMokiWOXy6w468glcjBpUPVJIRfiesCeJa/0QLJI1LoTENp4ulw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rm1f5xyAhpwlg9rXv//B2JDwCcZkMY3eIHHVdIgxyLc=;
- b=XBFNrhdVXnhtSqKJ02c/tFHwPVknjPjCZwdgEFeXxdQi5k9F+LX4DJN7FgYA9HtJhTZSlgrdO68WB6BAMd3lONQCPWMzR8oi5ataMpG2l5YQDXkdCTLXm7rvaVmjYgH8FyAVgiYjL8lyPj+DPicySrPpkd2PUCnl9kqJV0jXq1A=
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB6PR04MB3014.eurprd04.prod.outlook.com (2603:10a6:6:8::27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3763.14; Fri, 22 Jan 2021 00:55:00 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c964:9:850a:fc5]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c964:9:850a:fc5%10]) with mapi id 15.20.3763.016; Fri, 22 Jan 2021
- 00:55:00 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Subject: RE: [PATCH V2 2/4] dt-bindings: mmc: fsl-imx-esdhc: add clock
- bindings
-Thread-Topic: [PATCH V2 2/4] dt-bindings: mmc: fsl-imx-esdhc: add clock
- bindings
-Thread-Index: AQHW76RbnTiL5ZvX1kWERWBmR+4aWKoyPjUAgACUjIA=
-Date:   Fri, 22 Jan 2021 00:55:00 +0000
-Message-ID: <DB6PR0402MB27606B6ADC13EC6F889D9A9D88A00@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-References: <1611198593-16287-1-git-send-email-peng.fan@nxp.com>
- <1611198593-16287-3-git-send-email-peng.fan@nxp.com>
- <1611244918.545866.2814847.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1611244918.545866.2814847.nullmailer@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [92.121.68.129]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: afa00dec-1822-4b6a-7542-08d8be705886
-x-ms-traffictypediagnostic: DB6PR04MB3014:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB6PR04MB30148DD8BFEBA5F9B2BCC86888A00@DB6PR04MB3014.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 8U7/AK1U+bmqFIpIpzTAybuX7xxLZrY9+IGdOlW0EWr6a3Omu30EDrFdRY6+l94rWamunlu3FN/34cI2iiOKZdb/S8jj8hv9s9FhQwCf6lOZhQxji9Nnv27e1FFmBij8hs1IBCm/UqDF6yRxlv4LA/slbj+SOUijd8H9S1mhlX+c5tsGyJzReHxkedYKjW8yOOYJYSL0l4itSYmyYC75CHvZqyf3cp0hEl3ui7/zRl4XHkVAp1rlgC/IAs6R3HeVzcagY+QofzQoAIaip25/orz6cuCt/x45PwKXQBhrmEbXcoZCUWMzIMypdPxpuB23+mpQBAcimIQLTnbsrukokKPQB/utYaQk2twedT0fDgCdejlO+gwxLSmPBAuqyk5w6U5vYnA0slx1MuGVCeaNdfoFa3HhasDY4y7MDOp78e1yJuyCng+EdX/+gB86s2s0P8A2O6ouY3p68yGvtDLg+A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(366004)(55016002)(966005)(76116006)(5660300002)(8936002)(45080400002)(26005)(7416002)(9686003)(4326008)(316002)(2906002)(186003)(71200400001)(6506007)(54906003)(478600001)(6916009)(8676002)(86362001)(64756008)(52536014)(83380400001)(7696005)(44832011)(33656002)(66446008)(66556008)(66946007)(66476007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?NFuAqprfKSZrl3Zvf7SCz3zTowPaGJ7WdQ1nFGPoqqkJYyiSlsOkGTNtXxpr?=
- =?us-ascii?Q?9cDu0L8IHWc5bN6CEvfbLKGggpPN9LV97KM+E1ZT+RnhFAPWvEUqXhfT5PCk?=
- =?us-ascii?Q?p+GEONX5sBfYsUT+weOLBZQnihdzJd5D00O+27PJzXI/PoL/DkyyqyBXvZ1u?=
- =?us-ascii?Q?RY5GUrGyUD1K/vss8GtFDVxLhtJhk8+x8MiyeHE5v2wzCmcmbVaMSsQ4UpFm?=
- =?us-ascii?Q?g0CoMgirqtNRAcjV4pNhvRlRpTLaaEot6DZh5I6GcEWrjvHBd4zkB8bzMpHG?=
- =?us-ascii?Q?ByDJJUuTvBL6Z3d5nd8chF4pOQRhzhuN7SicMuvT9FhWv7vYje8sOxIlqR3o?=
- =?us-ascii?Q?cie0xeOVWxV/qYyQu+CPWGa5AfBIa77iTWbwd7WxG4Q+RKDFi/A5Jd4zX4AT?=
- =?us-ascii?Q?zZAXoPO2C323iUl1QHNhSMK+uPn3qeq6XyB+ON3vvQSO0nP3pykAwgqMZOoF?=
- =?us-ascii?Q?XwiNlYQYxj5SKfsqMc/YXCetkCKrGeZ4D7MhTW+L9QMhQpp3/++eeNxAiDEa?=
- =?us-ascii?Q?YwRjiztxqtNqsMy0FLx+RNI+oUY9gRPc1bP+SGbbOcSWP8XqfwaN9PlTAZzj?=
- =?us-ascii?Q?+41IqJ9Fi0VJ5E3r6sUDehHON15K37mfxj4rk9kfALPWING2XKb6d9Xq1fya?=
- =?us-ascii?Q?fkL/2S9inBelHYS/Od8/FXAeBd9jMljiXMkrf3YPjriu1skouA8DZrhF6vje?=
- =?us-ascii?Q?FwoTytCzrxhdKc4XNAdv1sk7Es7Ia+8siKwUdeffFTOLuwtFUswaiLBf7l53?=
- =?us-ascii?Q?I0V5BpUNucMbeFcI4vwy3jSvhqtmqDixekXY1xG4rarxvRMY9j8PiXIqBFXj?=
- =?us-ascii?Q?7n2RTfPsU19DWKmgBC1Z0vZN441xDdV42SwsVqyS58kJPfFtWzgaON6C+30T?=
- =?us-ascii?Q?css7r6hVJDcABt+nD2/nGQDjqwLQ26FYCfLOmEAagXgDVmHMTw9iRhbPR1Bf?=
- =?us-ascii?Q?jhvXko/O+k0CJ6/TGLeopsBZPMNJ32JjCFCQm/gweF8=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1725823AbhAVBfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 20:35:05 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:42205 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725275AbhAVBfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Jan 2021 20:35:04 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id EF2C21834;
+        Thu, 21 Jan 2021 20:33:56 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Thu, 21 Jan 2021 20:33:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=W
+        gcBGgOaSIyMT8TligKY0WdxImQrH4d4UDt8M5c2E80=; b=iOfCLLqy7jE+oy9Tm
+        FhfVVQfpKpWcSK5kRV4YW2x3A6HGerEFT6Lm4uCiAsS1p5O1T31cJCcA0w97bu1a
+        03cvxRmRrSKfwXguipyfGGIrp1YlG9B0uZqI4184M4qu5o4iR2oAJ0lI1XNBmTgc
+        ERSRe1OgMM3IKmuTFcHb2Ppd0Jn404LYOx/mjkRYDny7xRt+Atscbujt/b1r0zjj
+        WPpEPXdSKpC6ibr5zkt1FBAPiir1ovgojgDsG253y/FnhXdijk90hwZhgQUkomss
+        qgXmJ5mP7kDgewqIfOIBUStwTna5igjlVOoOrGYMoC99nGJSgV2h8IuSgfBUptl+
+        cTBfQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=WgcBGgOaSIyMT8TligKY0WdxImQrH4d4UDt8M5c2E
+        80=; b=He/s5kEOHVPgcWaZuL6C9CEhWl1jI8cXbha1jjRgZzRJ3WyFrj0Y6usCM
+        AhAW8bnScpLo1EQ69fyBXLifIuPqicPB1x7aeqSFRN270OVTixblui1JC/9mKYzP
+        Fu9ghPkNCwOR0BpMyeTJrqAK5OYhDAvxpwVIyT/ZaxKc+qILCIBmkPg+rNOjHPUJ
+        /sbbNaMpPzhFjhb9vVRC5DNcFW4D+0w3oaEpRlQP8ZHBD2scGvcCqeJyCSYwDCO2
+        Lf0Qs4prMo3tFQvWOsaRfCbvVTca9H1RHqFuaaRnb0OpCYVQGACE4bZ1ZifsXsU4
+        +egMyZw82O4RsFoBLUJmfPlsvNnjg==
+X-ME-Sender: <xms:gysKYP3aAfG0q6b0zB9_cZbIXVocCZzmKZtrozwNhkvB--LBTHdCMA>
+    <xme:gysKYOGnu9e6BD2vQIVY23fcLr9Ki-71Qr_f-sfbKIPI8_82nncjfu-HNJQW1pqba
+    zKmF3qN5g6oTQ8sjg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehgdefiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpedvvddttdefhefgieektdeuvdduhfeileevieeujeehuefggedvueei
+    tdduleffieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeejtddrudefhe
+    drudegkedrudehudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+    fhhrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:gysKYP74hkzMl0CGu0a3FwwX5FQKwBN80obSbH-6FdsKkHZtudmG0g>
+    <xmx:gysKYE2kN-yYa-1GnUHbXYyeqdPEJw6QevJdTM585aP1b5BgzjFN5w>
+    <xmx:gysKYCHnjQqIgLzbKcziJtl1_McZVPeWHAOFP1EfEmdjpjJCC4NSYw>
+    <xmx:hCsKYF3sUqLRBTmAIINE7sazIHMmBPl9sf0ySDYQktS1Ik1BPSMQOQ>
+Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 01AEE1080059;
+        Thu, 21 Jan 2021 20:33:54 -0500 (EST)
+To:     Marc Zyngier <maz@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>
+Cc:     Ondrej Jirman <megous@megous.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210118055040.21910-1-samuel@sholland.org>
+ <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v5 00/10] sunxi: Support IRQ wakeup from deep sleep
+Message-ID: <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org>
+Date:   Thu, 21 Jan 2021 19:33:54 -0600
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: afa00dec-1822-4b6a-7542-08d8be705886
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2021 00:55:00.2507
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YvpuE1MLGcPG5ZW6MRW7LmD9Nx/xU+SKKB/0ELr1TwiMnpz+/999JAUJhj12JlfMnCVaoNz/v7NQY3L5pKz4vQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3014
+In-Reply-To: <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 1/21/21 2:35 PM, Marc Zyngier wrote:
+> On Sun, 17 Jan 2021 23:50:30 -0600, Samuel Holland wrote:
+>> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
+>> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC handles
+>> the external NMI pin, and provides 32+ IRQs to the ARISC. The first 16
+>> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
+>> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
+>>
+>> This series replaces the existing chained irqchip driver that could only
+>> control the NMI, with a stacked irqchip driver that also provides wakeup
+>> capability for those multiplexed SPI IRQs. The idea is to preconfigure
+>> the ARISC's IRQ controller, and then the ARISC firmware knows to wake up
+>> as soon as it receives an IRQ. It can also decide how deep it can
+>> suspend based on the enabled wakeup IRQs.
+>>
+>> [...]
+> 
+> Applied to irq/irqchip-5.12, thanks!
+> 
+> [01/10] dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
+>         commit: ad6b47cdef760410311f41876b21eb0c6fda4717
+> [02/10] dt-bindings: irq: sun6i-r: Add a compatible for the H3
+>         commit: 6436eb4417094ea3308b33d8392fc02a1068dc78
+> [03/10] irqchip/sun6i-r: Use a stacked irqchip driver
+>         commit: 4e34614636b31747b190488240a95647c227021f
+> [04/10] irqchip/sun6i-r: Add wakeup support
+>         commit: 7ab365f6cd6de1e2b0cb1e1e3873dbf68e6f1003
+> 
+> Please route the dts patches via the soc tree. Also, I had to
+> manually fix the first patch as it wouldn't apply on top of
+> 5.11-rc4 (which tree has it been diffed against?). Please
+> check that the resolution is correct.
 
-> Subject: Re: [PATCH V2 2/4] dt-bindings: mmc: fsl-imx-esdhc: add clock
-> bindings
->=20
-> On Thu, 21 Jan 2021 11:09:51 +0800, peng.fan@nxp.com wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > Add clock bindings for fsl-imx-esdhc yaml
-> >
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml        | 11
-> +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
+This series was based on sunxi/for-next, which contains commit
+752b0aac99c7 ("dt-bindings: irq: sun7i-nmi: Add binding documentation
+for the V3s NMI")[1].
 
-Patch 3/4 addresses the dts, actually I think it is the dts not use correct
-clock order.
+[1]:
+https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git/commit/?h=sunxi/for-next&id=752b0aac99c7e0b179875cdfa102d378ccb794a2
 
-Thanks,
-Peng.
-
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cloc=
-k
-> /imx8qxp-lpcg.example.dt.yaml: mmc@5b010000: clock-names:1: 'ahb' was
-> expected
-> 	From schema:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc
-> /fsl-imx-esdhc.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cloc=
-k
-> /imx8qxp-lpcg.example.dt.yaml: mmc@5b010000: clock-names:2: 'per' was
-> expected
-> 	From schema:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc
-> /fsl-imx-esdhc.yaml
->=20
-> See
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch
-> work.ozlabs.org%2Fpatch%2F1429619&amp;data=3D04%7C01%7Cpeng.fan%40
-> nxp.com%7Cc543c002a0b54348d48408d8be25ec0b%7C686ea1d3bc2b4c6fa
-> 92cd99c5c301635%7C0%7C0%7C637468417375412086%7CUnknown%7CT
-> WFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLC
-> JXVCI6Mn0%3D%7C1000&amp;sdata=3DcISWAn3kYIoqvxr39Mu5NL6rwkebmk
-> VN1drRi%2BDNwAs%3D&amp;reserved=3D0
->=20
-> This check can fail if there are any dependencies. The base for a patch s=
-eries
-> is generally the most recent rc1.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above error=
-(s),
-> then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit.
+> Cheers,
+> 
+> 	M.
+> 
 
