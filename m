@@ -2,86 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E13B30058F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 15:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D471300593
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 15:36:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728628AbhAVOfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 09:35:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57010 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728607AbhAVOeC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 09:34:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 45B6F23A5B;
-        Fri, 22 Jan 2021 14:33:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611326001;
-        bh=apHhMVnZDv807tnG5lsX2afABBdRarhLvKdToqKf3J4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YH8kw24AeSk/pWjakZLTtH/JxuyrgSyGwuvnA2kurv7j+hUMYkpUIOO41kDbfiHWJ
-         Dos/St2uVj37LyP/PcAoxAz36dK0sWnTKYvYcKvDq0obxQl3hxeOW69e6XSXOZoSCW
-         MC64wBQBehVf0at6fs6bkIUCvMT/qc5xdCQU3cijiudNgSLHsuShwhFlQUQ3X1Vryd
-         VUR5/xWwAyrHCKXidi71X5EFX5SmvfHxcHsNyHTXOJjtTc/VtK28ysTnGCaBGTiu06
-         own9oVwhy890NC/6IPtgUhk+3KgOg2NRb7NusGHQQCyIUzZ1xEUyL9p4FdX+tu3ZUG
-         cqq/eXO2HOW8g==
-Received: by mail-ed1-f54.google.com with SMTP id n6so6764582edt.10;
-        Fri, 22 Jan 2021 06:33:21 -0800 (PST)
-X-Gm-Message-State: AOAM533v47YNWTnIjG91cMpBcqnJ77gkCGlUPmAaDWwMldFYwf0dxHcL
-        GEXn+wsrtq1HkzHN0mohyU8x9jG1+2Rr1iN9/Q==
-X-Google-Smtp-Source: ABdhPJyiGWu+Haib1SUyIoKfLUZdyEg7BDyYy2k0wtkK949TXAyLM01zcXdsjBnmtjRctBO9IxlreUujOfXnQgxU3mQ=
-X-Received: by 2002:a50:fc04:: with SMTP id i4mr3464684edr.137.1611325999872;
- Fri, 22 Jan 2021 06:33:19 -0800 (PST)
+        id S1728622AbhAVOgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 09:36:09 -0500
+Received: from mail-lf1-f51.google.com ([209.85.167.51]:34346 "EHLO
+        mail-lf1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728767AbhAVOgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 09:36:01 -0500
+Received: by mail-lf1-f51.google.com with SMTP id o19so7836591lfo.1;
+        Fri, 22 Jan 2021 06:35:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=W0bWAxw7Duy+uLOZDJETbEeOscyuN+nYdQEuaqxHD6w=;
+        b=RlI7oRzuT2Dz2JW0wfiPq8/GNvJCTi39kvajn0w/zKqRFW23cKevydmRNEqfVB5eD9
+         ed/3ahSt7tvVvySCMp1xwJ/4B2GMVj/ch3DdCuCPtGoOhjq13RKAO5zj6Ujeo/6zfYtt
+         sMy0gc0au/mdSuwseMa35Uog0SRPVEeMoK4MmnLaO3JW99rJGYXeZnlsNMtu7S6tbdea
+         dAlqVj+27e05drqLL6HyqLjQYBj39278wQUZAFGThIqnIUclPiXMW0V6sGP688ZYw5qC
+         49cNg6IircdWvqdMdop8GP7Ev9kF9tNqQzjLaknrByDih1CwqJqXFORquixKgy+pqby+
+         zYnw==
+X-Gm-Message-State: AOAM531ZdU0eW8xxrvonYDgUl8FuawI+NPZYnR19Atxjjd9RHpSQ6xdX
+        YxMIX0iKiFRatCKb1M6ei7A=
+X-Google-Smtp-Source: ABdhPJyQTWffI7ubf2/sPrTT64dF+zlHAKB01iX/ksdzUe3NgF7bFfLGyecAvQvKnSbOIFA373kVKA==
+X-Received: by 2002:ac2:5a41:: with SMTP id r1mr2382219lfn.117.1611326118006;
+        Fri, 22 Jan 2021 06:35:18 -0800 (PST)
+Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id p23sm907026lfe.243.2021.01.22.06.35.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Jan 2021 06:35:17 -0800 (PST)
+Date:   Fri, 22 Jan 2021 16:35:10 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v7 5/6] MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF drivers
+Message-ID: <d4a658492fd9168a3e8a922b941f45f8ac23934d.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
+References: <cover.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-References: <1611198593-16287-1-git-send-email-peng.fan@nxp.com>
- <1611198593-16287-3-git-send-email-peng.fan@nxp.com> <1611244918.545866.2814847.nullmailer@robh.at.kernel.org>
- <DB6PR0402MB27606B6ADC13EC6F889D9A9D88A00@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-In-Reply-To: <DB6PR0402MB27606B6ADC13EC6F889D9A9D88A00@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 22 Jan 2021 08:33:08 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ1SJuBAP2917LrsXy=JG74-CmUzky0rMSoninDP=zOFQ@mail.gmail.com>
-Message-ID: <CAL_JsqJ1SJuBAP2917LrsXy=JG74-CmUzky0rMSoninDP=zOFQ@mail.gmail.com>
-Subject: Re: [PATCH V2 2/4] dt-bindings: mmc: fsl-imx-esdhc: add clock bindings
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 6:55 PM Peng Fan <peng.fan@nxp.com> wrote:
->
-> Hi Rob,
->
-> > Subject: Re: [PATCH V2 2/4] dt-bindings: mmc: fsl-imx-esdhc: add clock
-> > bindings
-> >
-> > On Thu, 21 Jan 2021 11:09:51 +0800, peng.fan@nxp.com wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > Add clock bindings for fsl-imx-esdhc yaml
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml        | 11
-> > +++++++++++
-> > >  1 file changed, 11 insertions(+)
-> > >
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
->
-> Patch 3/4 addresses the dts, actually I think it is the dts not use correct
-> clock order.
+Add maintainer entries for ROHM BD9576MUF and ROHM BD9573MUF drivers.
+MFD, regulator and watchdog drivers were introduced for these PMICs.
 
-These errors are on the example.
+Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+---
+Changes since v6:
+ - no changes
+ MAINTAINERS | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Rob
+diff --git a/MAINTAINERS b/MAINTAINERS
+index cc1e6a5ee6e6..b59b7877258c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15336,16 +15336,20 @@ F:	drivers/gpio/gpio-bd71828.c
+ F:	drivers/mfd/rohm-bd70528.c
+ F:	drivers/mfd/rohm-bd71828.c
+ F:	drivers/mfd/rohm-bd718x7.c
++F:	drivers/mfd/rohm-bd9576.c
+ F:	drivers/power/supply/bd70528-charger.c
+ F:	drivers/regulator/bd70528-regulator.c
+ F:	drivers/regulator/bd71828-regulator.c
+ F:	drivers/regulator/bd718x7-regulator.c
++F:	drivers/regulator/bd9576-regulator.c
+ F:	drivers/regulator/rohm-regulator.c
+ F:	drivers/rtc/rtc-bd70528.c
+ F:	drivers/watchdog/bd70528_wdt.c
++F:	drivers/watchdog/bd9576_wdt.c
+ F:	include/linux/mfd/rohm-bd70528.h
+ F:	include/linux/mfd/rohm-bd71828.h
+ F:	include/linux/mfd/rohm-bd718x7.h
++F:	include/linux/mfd/rohm-bd957x.h
+ F:	include/linux/mfd/rohm-generic.h
+ F:	include/linux/mfd/rohm-shared.h
+ 
+-- 
+2.25.4
+
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
