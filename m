@@ -2,152 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F37212FFDF8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 09:15:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C81AA2FFE57
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 09:40:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726924AbhAVIO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 03:14:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55770 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726751AbhAVIO2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 03:14:28 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4832C06174A
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 00:13:43 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id m6so3212864pfm.6
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 00:13:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gC7rk0hC8Zt8EImbc+l8NzK6TAlu0aggpClSObCpidU=;
-        b=P3JxhjaIvdObM6aJYWr90L23Dzb8CMOC0rk24BlBQjbWg/a16XWIpqlZWm2eUo8MLW
-         hAs74iu2Wt4jV6QJsRLQAVEpMGT5NJZFEcij38O9sWPaYQK5UdpoJAXoPHotHG61HZZo
-         1q26pUDgt46Qtt/6ZhJ9VvrCNSaGD2get1xX4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gC7rk0hC8Zt8EImbc+l8NzK6TAlu0aggpClSObCpidU=;
-        b=Kpyr/ff2IELc1EfbK6XSrqJYK8YIwx5CH70Bb6GJ7VDwqXYWTi/x+DKxY78c76txnY
-         Jy7XJNvOpUHgHT7943lE5DdI0k4mKPlxtfG+usOr4P8Jd9/HvjoLzFyGMHU3e/iIkI8m
-         Wgncua4S9KsppRIDUF8qUs6meWBVSAp4TTxWCX9ULh01gKK8hl0Q8wOv7jJfCvO6hUrl
-         /PZ3Uveb/oBxYUDgJasaCVRJicguRNLcE8iIbuvlwae0BEt58eGPUI7RvsvYbWVddBtJ
-         8MdFW4S/94JjR9HWscX+dYC8NCg53aS1wtBItaiuBq31E25+KpdcofbRSnX18Kd4LEjX
-         5bXQ==
-X-Gm-Message-State: AOAM530TKijY90g2R4eenjYzNb+/0IRuFM88EhcXdwJXUgwBBKrV+AcJ
-        XaheTIgmuWqGKujbPF3Htktpppy9qjaC7dOZcojXNQ==
-X-Google-Smtp-Source: ABdhPJyM3pSZTW1WdYHk/1SR5PgWHt193cq01FIJIaGqXj4HpsTsYOx/wM/7f75n5uC4pyDdv/SsJX4z0m21si6nkEA=
-X-Received: by 2002:a62:8895:0:b029:19e:92ec:6886 with SMTP id
- l143-20020a6288950000b029019e92ec6886mr3625801pfd.12.1611303223430; Fri, 22
- Jan 2021 00:13:43 -0800 (PST)
+        id S1727110AbhAVIjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 03:39:23 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52444 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727142AbhAVIi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 03:38:27 -0500
+X-UUID: 6be9fd9f647a492380ef63eac5be8551-20210122
+X-UUID: 6be9fd9f647a492380ef63eac5be8551-20210122
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <stanley.chu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1481106957; Fri, 22 Jan 2021 16:36:41 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 22 Jan 2021 16:36:38 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 22 Jan 2021 16:36:38 +0800
+From:   Stanley Chu <stanley.chu@mediatek.com>
+To:     <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <robh@kernel.org>,
+        <martin.petersen@oracle.com>, <jejb@linux.ibm.com>,
+        <avri.altman@wdc.com>, <alim.akhtar@samsung.com>
+CC:     <linux-mediatek@lists.infradead.org>, <yingjoe.chen@mediatek.com>,
+        <matthias.bgg@gmail.com>, <kuohong.wang@mediatek.com>,
+        <peter.wang@mediatek.com>, <chun-hung.wu@mediatek.com>,
+        <andy.teng@mediatek.com>, <alice.chao@mediatek.com>,
+        <chaotian.jing@mediatek.com>, <cc.chou@mediatek.com>,
+        <jiajie.hao@mediatek.com>, <hanks.chen@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>
+Subject: [PATCH v3 1/2] arm64: configs: Support Universal Flash Storage on MediaTek platforms
+Date:   Fri, 22 Jan 2021 16:36:26 +0800
+Message-ID: <20210122083627.2893-2-stanley.chu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210122083627.2893-1-stanley.chu@mediatek.com>
+References: <20210122083627.2893-1-stanley.chu@mediatek.com>
 MIME-Version: 1.0
-References: <20210115112331.27434-1-crystal.guo@mediatek.com> <20210115112331.27434-2-crystal.guo@mediatek.com>
-In-Reply-To: <20210115112331.27434-2-crystal.guo@mediatek.com>
-From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Fri, 22 Jan 2021 16:13:32 +0800
-Message-ID: <CAATdQgA5pKhjOf5gxo+h7cs7kCts3DeKGU5axeX2t+OaJFHyBg@mail.gmail.com>
-Subject: Re: [v7,1/2] dt-binding: reset-controller: mediatek: add YAML schemas
-To:     Crystal Guo <crystal.guo@mediatek.com>
-Cc:     p.zabel@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
-        <stanley.chu@mediatek.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
-        <seiya.wang@mediatek.com>,
-        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Yingjoe Chen <Yingjoe.Chen@mediatek.com>, s-anna@ti.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>, Yidi.Lin@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-TM-SNTS-SMTP: F1840B8654F83275B0B86B7812F4FA79CD6A7E398873C42452E32310C25006012000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 7:23 PM Crystal Guo <crystal.guo@mediatek.com> wrote:
->
-> Add a YAML documentation for Mediatek, which uses ti reset-controller
-> driver directly. The TI reset controller provides a common reset
-> management, and is suitable for Mediatek SoCs.
->
-> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
-> ---
->  .../bindings/reset/mediatek-syscon-reset.yaml | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml
->
-> diff --git a/Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml b/Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml
-> new file mode 100644
-> index 000000000000..85d241cdb0ea
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/mediatek-syscon-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek Reset Controller
-> +
-> +maintainers:
-> +  - Crystal Guo <crystal.guo@mediatek.com>
-> +
-> +description:
-> +  The bindings describe the reset-controller for Mediatek SoCs,
-> +  which is based on TI reset controller. For more detail, please
-> +  visit Documentation/devicetree/bindings/reset/ti-syscon-reset.txt.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,syscon-reset
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  ti,reset-bits:
-> +    description: >
-> +      Contains the reset control register information, please refer to
-> +      Documentation/devicetree/bindings/reset/ti-syscon-reset.txt.
-> +
+Support UFS on MediaTek platforms by enabling CONFIG_SCSI_UFS_MEDIATEK.
 
-I remember that Rob didn't like adding new users of this property,
+Reviewed-by: Hanks Chen <hanks.chen@mediatek.com>
+Signed-off-by: Stanley Chu <stanley.chu@mediatek.com>
+---
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-How about removing this from here and using a hardcoded version of
-register layouts into driver code (and match it with compatible) ?
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 838301650a79..12ff990b2691 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -283,6 +283,7 @@ CONFIG_SCSI_MPT3SAS=m
+ CONFIG_SCSI_UFSHCD=y
+ CONFIG_SCSI_UFSHCD_PLATFORM=y
+ CONFIG_SCSI_UFS_QCOM=m
++CONFIG_SCSI_UFS_MEDIATEK=m
+ CONFIG_SCSI_UFS_HISI=y
+ CONFIG_ATA=y
+ CONFIG_SATA_AHCI=y
+-- 
+2.18.0
 
-e.g.
-struct ti_syscon_reset_data mt8192_reset_data { ... }
-
-> +required:
-> +  - compatible
-> +  - '#reset-cells'
-> +  - ti,reset-bits
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/reset/ti-syscon.h>
-> +    infracfg: infracfg@10001000 {
-> +        compatible = "mediatek,mt8192-infracfg", "syscon", "simple-mfd";
-> +        reg = <0 0x10001000>;
-> +        #clock-cells = <1>;
-> +
-> +        infracfg_rst: reset-controller {
-> +            compatible = "mediatek,syscon-reset";
-> +            #reset-cells = <1>;
-> +            ti,reset-bits = <
-> +               0x140 15 0x144 15 0 0 (ASSERT_SET | DEASSERT_SET | STATUS_NONE)
-> +            >;
-> +        };
-> +    };
-> --
-> 2.18.0
->
