@@ -2,83 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 655E12FFCC8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 07:31:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF0E22FFCF9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 07:50:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbhAVGaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 01:30:08 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:59275 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726977AbhAVG3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 01:29:25 -0500
-X-UUID: 9d6240ae4fc242a597856c57dd3fbfba-20210122
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=a0rTMIFWNhk4fs2TtcDCGY9yzd82v4FlQ9IFV80sxHw=;
-        b=rGS4MfrO6UxPnX9KpApF9R8LGFPhVVtwNTFRr3AZY6vuI7yaO0+K5c5qaojB5n68agLAlCMr3dP2U8LDuNT6flT/zJQ0jy+0IhsjYRtSmVsXjke98EKvCLga+/7Rs5xucozUBenT740KfjpGLAiF+N7rT9jn98S/eRd9drhrmug=;
-X-UUID: 9d6240ae4fc242a597856c57dd3fbfba-20210122
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yz.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 580443827; Fri, 22 Jan 2021 14:28:33 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 22 Jan 2021 14:28:31 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 22 Jan 2021 14:28:31 +0800
-Message-ID: <1611296911.30262.5.camel@mtksdccf07>
-Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: mediatek: add support for
- MediaTek mt8192 SoC
-From:   mtk23264 <Yz.Wu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Fri, 22 Jan 2021 14:28:31 +0800
-In-Reply-To: <20210103162540.GA3983563@robh.at.kernel.org>
-References: <20201221061018.18503-1-Yz.Wu@mediatek.com>
-         <20201221061018.18503-2-Yz.Wu@mediatek.com>
-         <20210103162540.GA3983563@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+        id S1726134AbhAVGuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 01:50:05 -0500
+Received: from bilbo.ozlabs.org ([203.11.71.1]:43065 "EHLO ozlabs.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725854AbhAVGt5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 01:49:57 -0500
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 4DMVGz2TNGz9sVF; Fri, 22 Jan 2021 17:49:15 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1611298155;
+        bh=oQR2S4ROGJ/SaMWvZTeUe6GZ+oSDsT/AQoYniKUVQZc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=o9eBv5tgJMz7YuomxAo5VrRMT4+M67ZLPz9Z+u2qab/N5f29uTDXdbaFaNPTuvVdr
+         MHBasgVyKS7MxTYUY2Apik9qKvgGpVQP7qoff/8JliSuj1DTQNHnlwq6BX5XoJXIck
+         lFLAl/Fdm1JaEhLbY9/y4oTtGNx7ERxxuZiDSFYc=
+Date:   Fri, 22 Jan 2021 17:34:55 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH V4 0/3] scripts: dtc: Build fdtoverlay
+Message-ID: <20210122063455.GE4400@yekko.fritz.box>
+References: <cover.1610431620.git.viresh.kumar@linaro.org>
+ <74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com>
+ <20210120051740.yph4v7zldvs7szdz@vireshk-i7>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="RpqchZ26BWispMcB"
+Content-Disposition: inline
+In-Reply-To: <20210120051740.yph4v7zldvs7szdz@vireshk-i7>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gU3VuLCAyMDIxLTAxLTAzIGF0IDA5OjI1IC0wNzAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gTW9uLCBEZWMgMjEsIDIwMjAgYXQgMDI6MTA6MTlQTSArMDgwMCwgWXouV3VAbWVkaWF0ZWsu
-Y29tIHdyb3RlOg0KPiA+IEZyb206IFJ5YW4gV3UgPFl6Lld1QG1lZGlhdGVrLmNvbT4NCj4gPiAN
-Cj4gPiBUaGlzIHVwZGF0ZXMgZHQtYmluZGluZyBkb2N1bWVudGF0aW9uIGZvciBNZWRpYVRlayBt
-dDgxOTINCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBSeWFuIFd1IDxZei5XdUBtZWRpYXRlay5j
-b20+DQo+ID4gLS0tDQo+ID4gVGhpcyBwYXRjaCBpcyBiYXNlZCBvbiB2NS4xMC1yYzcuDQo+ID4g
-LS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9tdGstZWZ1
-c2UudHh0IHwgMSArDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+IA0K
-PiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0v
-bXRrLWVmdXNlLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9t
-dGstZWZ1c2UudHh0DQo+ID4gaW5kZXggMDY2OGM0NWExNTZkLi5lMmYwYzBmMzRkMTAgMTAwNjQ0
-DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL210ay1l
-ZnVzZS50eHQNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZt
-ZW0vbXRrLWVmdXNlLnR4dA0KPiA+IEBAIC03LDYgKzcsNyBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVz
-Og0KPiA+ICAJICAgICAgIm1lZGlhdGVrLG10NzYyMi1lZnVzZSIsICJtZWRpYXRlayxlZnVzZSI6
-IGZvciBNVDc2MjINCj4gPiAgCSAgICAgICJtZWRpYXRlayxtdDc2MjMtZWZ1c2UiLCAibWVkaWF0
-ZWssZWZ1c2UiOiBmb3IgTVQ3NjIzDQo+ID4gIAkgICAgICAibWVkaWF0ZWssbXQ4MTczLWVmdXNl
-IiBvciAibWVkaWF0ZWssZWZ1c2UiOiBmb3IgTVQ4MTczDQo+ID4gKwkgICAgICAibWVkaWF0ZWss
-bXQ4MTkyLWVmdXNlIiBvciAibWVkaWF0ZWssZWZ1c2UiOiBmb3IgTVQ4MTkyDQo+IA0KPiBObywg
-Im1lZGlhdGVrLGVmdXNlIiBieSBpdHNlbGYgaXMgb25seSBmb3IgTVQ4MTczLg0KSXMgaXQgc2hv
-dWxkIGJlIG1vZGlmeSBmcm9tICJtZWRpYXRlayxtdDgxOTItZWZ1c2UiIG9yICJtZWRpYXRlayxl
-ZnVzZSINCnRvICJtZWRpYXRlayxtdDgxOTItZWZ1c2UiLCAibWVkaWF0ZWssZWZ1c2UiID8NCg0K
-UmVnYXJkcywNCll6DQo+IA0KPiA+ICAtIHJlZzogU2hvdWxkIGNvbnRhaW4gcmVnaXN0ZXJzIGxv
-Y2F0aW9uIGFuZCBsZW5ndGgNCj4gPiAgDQo+ID4gID0gRGF0YSBjZWxscyA9DQo+ID4gLS0gDQo+
-ID4gMi4xOC4wDQo+ID4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXw0KPiBMaW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gTGludXgtbWVk
-aWF0ZWtAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2xpbnV4LW1lZGlhdGVrDQoNCg==
 
+--RpqchZ26BWispMcB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jan 20, 2021 at 10:47:40AM +0530, Viresh Kumar wrote:
+> +David.
+>=20
+> On 19-01-21, 11:12, Frank Rowand wrote:
+> > On 1/12/21 2:28 AM, Viresh Kumar wrote:
+> > > We will start building overlays for platforms soon in the kernel and
+> > > would need fdtoverlay tool going forward. Lets start fetching and
+> > > building it.
+> > >=20
+> > > While at it, also remove fdtdump.c file, which isn't used by the kern=
+el.
+> > >=20
+> > > V4:
+> > > - Don't fetch and build fdtdump.c
+> > > - Remove fdtdump.c
+> > >=20
+> > > Viresh Kumar (3):
+> > >   scripts: dtc: Add fdtoverlay.c to DTC_SOURCE
+> > >   scripts: dtc: Build fdtoverlay tool
+> > >   scripts: dtc: Remove the unused fdtdump.c file
+> > >=20
+> > >  scripts/dtc/Makefile             |   6 +-
+> > >  scripts/dtc/fdtdump.c            | 163 -----------------------------=
+--
+> > >  scripts/dtc/update-dtc-source.sh |   6 +-
+> > >  3 files changed, 8 insertions(+), 167 deletions(-)
+> > >  delete mode 100644 scripts/dtc/fdtdump.c
+> > >=20
+> >=20
+> > My first inclination was to accept fdtoverlay, as is, from the upstream
+> > project.
+> >=20
+> > But my experiences debugging use of fdtoverlay against the existing
+> > unittest overlay files has me very wary of accepting fdtoverlay in
+> > it's current form.
+> >=20
+> > As an exmple, adding an overlay that fails to reply results in the
+> > following build messages:
+> >=20
+> >    linux--5.11-rc> make zImage
+> >    make[1]: Entering directory '/local/frowand_nobackup/src/git_linus/b=
+uild/dragon_linus_5.11-rc'
+> >      GEN     Makefile
+> >      CALL    /local/frowand_nobackup/src/git_linus/linux--5.11-rc/scrip=
+ts/checksyscalls.sh
+> >      CALL    /local/frowand_nobackup/src/git_linus/linux--5.11-rc/scrip=
+ts/atomic/check-atomics.sh
+> >      CHK     include/generated/compile.h
+> >      FDTOVERLAY drivers/of/unittest-data/static_test.dtb
+> >=20
+> >    Failed to apply 'drivers/of/unittest-data/overlay.dtb': FDT_ERR_NOTF=
+OUND
+> >    make[4]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/d=
+rivers/of/unittest-data/Makefile:96: drivers/of/unittest-data/static_test.d=
+tb] Error 1
+> >    make[3]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/s=
+cripts/Makefile.build:496: drivers/of/unittest-data] Error 2
+> >    make[2]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/s=
+cripts/Makefile.build:496: drivers/of] Error 2
+> >    make[1]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/M=
+akefile:1805: drivers] Error 2
+> >    make[1]: Leaving directory '/local/frowand_nobackup/src/git_linus/bu=
+ild/dragon_linus_5.11-rc'
+> >    make: *** [Makefile:185: __sub-make] Error 2
+> >=20
+> >=20
+> > The specific error message (copied from above) is:
+> >=20
+> >    Failed to apply 'drivers/of/unittest-data/overlay.dtb': FDT_ERR_NOTF=
+OUND
+> >=20
+> > which is cryptic and does not even point to the location in the overlay=
+ that
+> > is problematic.  If you look at the source of fdtoverlay / libfdt, you =
+will
+> > find that FDT_ERR_NOTFOUND may be generated in one of many places.
+> >=20
+> > I do _not_ want to do a full review of fdtoverlay, but I think that it =
+is
+> > reasonable to request enhancing fdtoverlay in the parent project to gen=
+erate
+> > usable error messages before enabling fdtoverlay in the Linux kernel tr=
+ee.
+
+That's... actually much harder than it sounds.  fdtoverlay is
+basically a trivial wrapper around the fdt_overlay_apply() function in
+libfdt.  Matching the conventions of the rest of the library, really
+it's only way to report errors is a single error code.
+
+Returning richer errors is not an easy problem in a C library,
+especially one designed to be usable in embedded systems, without an
+allocator or much else available.
+
+Of course it would be possible to write a friendly command line tool
+specifically for applying overlays, which could give better errors.
+fdtoverlay as it stands isn't really that - it was pretty much written
+just to invoke fdt_overlay_apply() in testcases.
+
+> > fdtoverlay in it's current form adds a potential maintenance burden to =
+me
+> > (as the overlay maintainer).  I now have the experience of how difficul=
+t it
+> > was to debug the use of fdtoverlay in the context of the proposed patch=
+ to
+> > use it with the devicetree unittest overlay .dtb files.
+> >=20
+> > -Frank
+>=20
+
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
+
+--RpqchZ26BWispMcB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmAKcg8ACgkQbDjKyiDZ
+s5K7OQ/+IyVyWMa/f4/HD38/TgC7EzN+DMeEtHZK8A1z93dhGsJ2GTyOkU0Cx1yI
+PsrLdCR5lxoo3zJkMys+Qe0gvPvfM++K3AQZ7UD70GmIgfE24RpbwUbbiZLJHTOR
+e/bjllZjyc2PNcWjgbJNhCOop9uwg+Ff5iBfj/Opk4Kmms5U3ng5utRhXSf3y9yq
+hUXQC1B3u3/C20qKAIM3DqAaLqChkK2BqQDm8dWQgcnWln3LtCrVUjyH2N+g3Pl3
+8P8RofdUKJC5GhyMlPyZaFVsOZqp07K47A6nmzFyk7LuH8MnsJLpCsCtrO7hbL0S
+t3LhqNd+EjsT2+xGNfSDTmi1gQwgpD5DHHGhcuXkr7NxcdbWbaLj+OMeuf44/c2q
+q4h+ucL/Fc0gRSdme/xMcHSM/mPcHa20kaHrt9a6z/XKu5HnHka14fmMV4DssCqX
+gIITEXmtIfxAXOhH3C0lTyWDxzw5Y/ez+KckKkDF25M/HL8t0WDJPa7MFQmGAnvl
+f/GP9oFDakGtTtNcUXpXTfq4pKwPrDRQNq4teZKrjzjthZNoZYwqb+p6Rwn24NYb
+jnIw9Xr7JVjR5iXoG2GL5+HhpLD9bouhdurfZMi9zeSU09UXuhze6wJZ0NdSuFqj
+ngGc6yHLqoPfNCsHBKfhDkBXEh5WLiHsNqtZKs+xo3ZbehNWQhc=
+=NJeB
+-----END PGP SIGNATURE-----
+
+--RpqchZ26BWispMcB--
