@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A443300373
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 13:50:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81B4C300377
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 13:51:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726739AbhAVMuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 07:50:00 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59020 "EHLO
+        id S1727190AbhAVMvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 07:51:47 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59148 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726579AbhAVMt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 07:49:59 -0500
+        with ESMTP id S1726997AbhAVMvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 07:51:41 -0500
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10MCn5Pl080707;
-        Fri, 22 Jan 2021 06:49:05 -0600
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10MCntfR080870;
+        Fri, 22 Jan 2021 06:49:55 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611319745;
-        bh=r+Xc54hnzt0PojdqoqVpWanpF4+nvNDLjwFQ4ikTjXA=;
+        s=ti-com-17Q1; t=1611319795;
+        bh=vpLR1jA8DPCM6b5GBCm4iu9IbosfT8CPoAtVlNsYcXA=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=AhCRmqUDh+xIEh63gYsbGv7aSaoXsHVgpiN+1yvRxFGB1MiJxeK+mUZYZjtCNBXHd
-         IkHP8ckc/2InmKYHQJg5oQ4i19C6w9V9T7F1OF9zWevOCaN8vXs9sV/CUgGY2VcHgB
-         Co8LbWto02hbaKGhwQUxrddnVh00/iKxbox/yrKE=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10MCn5LG006460
+        b=jVcMmc3aOHdY+7LEvgYmffQcYlDaCpuJPGCNoEjIl5o46XcVmjimoRwvAFkbfg/jM
+         xjEJZ3fAuH4OIA8P9z3pak306n9cbSxP877cPTwuWNL0WxRVi3nOir+//Kq1xioXrE
+         ygg8K9THXI9rQ3i+obWVhVHifn0RjrYC9MqBvj74=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10MCntAd007169
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 22 Jan 2021 06:49:05 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 22 Jan 2021 06:49:55 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 22
- Jan 2021 06:49:04 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2021 06:49:54 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 22 Jan 2021 06:49:04 -0600
+ Frontend Transport; Fri, 22 Jan 2021 06:49:54 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10MCn4oW057379;
-        Fri, 22 Jan 2021 06:49:04 -0600
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10MCns1F058135;
+        Fri, 22 Jan 2021 06:49:54 -0600
 From:   Nishanth Menon <nm@ti.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Nishanth Menon <nm@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4] arm64: dts: ti: k3: squelch warnings regarding no #address-cells for interrupt-controller
-Date:   Fri, 22 Jan 2021 06:49:04 -0600
-Message-ID: <161131973654.21299.8023411678794984222.b4-ty@ti.com>
+To:     Dave Gerlach <d-gerlach@ti.com>, Suman Anna <s-anna@ti.com>,
+        Nishanth Menon <nm@ti.com>, Sudeep Holla <sudeep.holla@arm.com>
+CC:     Tero Kristo <kristo@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3*: Fixup PMU compatibility to be CPU specific
+Date:   Fri, 22 Jan 2021 06:49:53 -0600
+Message-ID: <161131975585.21423.9075334839139359625.b4-ty@ti.com>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210121060305.29133-1-lokeshvutla@ti.com>
-References: <20210121060305.29133-1-lokeshvutla@ti.com>
+In-Reply-To: <20210120195145.32259-1-nm@ti.com>
+References: <20210120195145.32259-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -57,24 +56,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Jan 2021 11:33:05 +0530, Lokesh Vutla wrote:
-> With dtc 1.6.0, building TI device-tree files with W=2 results in warnings
-> like below for all interrupt controllers.
-> 
-> /bus@100000/bus@30000000/interrupt-controller1: Missing #address-cells in interrupt provider
-> 
-> Fix these by adding #address-cells = <0>; for all interrupt controllers in
-> TI device-tree files. Any other #address-cells value is really only needed
-> if interrupt-map property is being used (which is not the case for existing
-> TI device-tree files)
+On Wed, 20 Jan 2021 13:51:45 -0600, Nishanth Menon wrote:
+> We can use CPU specific pmu configuration to expose the appropriate
+> CPU specific events rather than just the basic generic pmuv3 perf
+> events.
 
-Hi Lokesh Vutla,
+Hi Nishanth Menon,
 
-I have applied the following to branch ti-k3-next on [1].
+I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3: squelch warnings regarding no #address-cells for interrupt-controller
-      commit: 73d0af633c4bed02f8e71658c9e25ac8250b08c4
+[1/1] arm64: dts: ti: k3*: Fixup PMU compatibility to be CPU specific
+      commit: c72bf319f12803d8c8ddc3dbf54927380fc65b50
 
 
 All being well this means that it will be integrated into the linux-next
