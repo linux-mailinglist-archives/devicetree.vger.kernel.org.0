@@ -2,355 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD18300081
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 11:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 830043000AB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 11:50:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727021AbhAVKlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 05:41:15 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:50814 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727649AbhAVKhA (ORCPT
+        id S1727244AbhAVKtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 05:49:42 -0500
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:36743 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726791AbhAVKsV (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 05:37:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1611311729;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=rJpAF0F6/yRizZbnJSgO+nhn6SnENjuGQrkVAh9wnHY=;
-        b=Ynf1VtZ2GaxPtshX2YDQWgHaRCfJDZtcb+2HTu7qfzz9kIlAz9RV2ZzFW55bFMEjgn/kvM
-        v378ZDinoR+C95GJ8il50D7s7ToVuJme1WQ3ari93BLOYVlg+SrE5tx+oBT3QL0XkOBvGj
-        6lDotCajO63QNuE9/E3g3E2gRDxXAww=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-211-wAZxtwSsM--Xf04mqNSi-g-1; Fri, 22 Jan 2021 05:35:25 -0500
-X-MC-Unique: wAZxtwSsM--Xf04mqNSi-g-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com [10.5.11.14])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id DE841107ACE3;
-        Fri, 22 Jan 2021 10:35:21 +0000 (UTC)
-Received: from [10.36.112.67] (ovpn-112-67.ams2.redhat.com [10.36.112.67])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 53F115D9FC;
-        Fri, 22 Jan 2021 10:35:16 +0000 (UTC)
-Subject: Re: [PATCH v10 07/10] iommu/arm-smmu-v3: Maintain a SID->device
- structure
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
-        will@kernel.org
-Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
-        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
-        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
-        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
-        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com
-References: <20210121123623.2060416-1-jean-philippe@linaro.org>
- <20210121123623.2060416-8-jean-philippe@linaro.org>
-From:   Auger Eric <eric.auger@redhat.com>
-Message-ID: <218349c7-4ee4-1362-da69-fd79bc0432f2@redhat.com>
-Date:   Fri, 22 Jan 2021 11:35:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        Fri, 22 Jan 2021 05:48:21 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id B4CE91719;
+        Fri, 22 Jan 2021 05:47:09 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Fri, 22 Jan 2021 05:47:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=TuLz8uyT/KsWR+GLOl1HI6AK7nd
+        v/I2HMlxYHOPNOxQ=; b=uu1yGzRJ4IvXW0i0Y9Z4///3SXnTtMXGMVqc53Y8Zrr
+        fotYuWK0kTA02pEk71tSYANAJtNAGcVu6YHMZn3z1MZw+INFO2TfUFVEWHV1WpB3
+        63gBRgNIdWl38gYEw1GwGDGCL4JDxsbhWNBpFLuXSvfjS7MhagD2PlrDnkV649Qm
+        7uo1D3gOWkIvPRp7EtY1fjI2e3NG5Od+fNuCHEoo1EUlSbnHZinUQ3dqLUtUw7qD
+        xUGRu4YPBNYWtlLx2AdLCctLfFvr+9rXfc0Mo+9ip/xj1cMsrEaNhhYZnmBVJ9XP
+        HagurlFWjTIqlsLTY9jR6OqJconA0y7eUJ8sjnHXS2g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=TuLz8u
+        yT/KsWR+GLOl1HI6AK7ndv/I2HMlxYHOPNOxQ=; b=V6AG+QBXg0kci+LdLwA7Sa
+        HPBFXJndc2RzFaYsF3TK4Rquanm093BEYCPeo/vSB6m2RrzffTsMqTHwQVQJYYu8
+        cnsFZMvv65tCfa5tQzFjVA6FE4meYDzMrS+1B/HuV7BnaBhlJ0PolJwyp0o+Ufyl
+        qMdCbz/8UZIKC0xYg8Wea6AS4czCtFynVpg/6YIKhV1eVE+gDoPkApx0pxQjYyMX
+        wD6ueKVHykqWzVYlUn7Vdhr5ofNZjayoNu+0Hlbf1uAXcY+7SRFhS/aW4Xk25eK0
+        4c8RqfS3H6IgYEGzHbNORUnGNYWGr4+PkjKodZXHN58UqnKYmgZnheaXfTQwTytA
+        ==
+X-ME-Sender: <xms:LK0KYCrKIvwC1wuRdSGLCbouRYc8rTO4teS3X1eFswyyzL2fdL2guw>
+    <xme:LK0KYArsH6-X15HN9zeJ23EbmhyZha6ausgrwfYz034YHo0j0b7h1CQcOeufX5o_4
+    EYi5qlbjaICP-jLEF0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeigddvudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:LK0KYHPUQHsnteEKCpqJXJ7U6suuZ5lXSVKnOgrTYHP8ee6EXsFcJw>
+    <xmx:LK0KYB4zYZLywfUaXs5Uq5cJqLRW_AeQlD4FYF5LFF8ngYZ3sC6yaw>
+    <xmx:LK0KYB58OwfYelivVrtIOKLV4jt6E6Wrf52POsBAvaviqf2RWkLiOA>
+    <xmx:La0KYMaM5F1QWHLE1CgiZtxGODpdp2ciQGNRrUrbb2Pr_y7VDymeCw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id DC47224005C;
+        Fri, 22 Jan 2021 05:47:07 -0500 (EST)
+Date:   Fri, 22 Jan 2021 11:47:05 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Ondrej Jirman <megous@megous.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 00/10] sunxi: Support IRQ wakeup from deep sleep
+Message-ID: <20210122104705.bo2x22ef56hdj26q@gilmour>
+References: <20210118055040.21910-1-samuel@sholland.org>
+ <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
+ <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org>
 MIME-Version: 1.0
-In-Reply-To: <20210121123623.2060416-8-jean-philippe@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6nduqjefy55djukm"
+Content-Disposition: inline
+In-Reply-To: <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean,
 
-On 1/21/21 1:36 PM, Jean-Philippe Brucker wrote:
-> When handling faults from the event or PRI queue, we need to find the
-> struct device associated with a SID. Add a rb_tree to keep track of
-> SIDs.
-> 
-> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+--6nduqjefy55djukm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Eric
+On Thu, Jan 21, 2021 at 07:33:54PM -0600, Samuel Holland wrote:
+> On 1/21/21 2:35 PM, Marc Zyngier wrote:
+> > On Sun, 17 Jan 2021 23:50:30 -0600, Samuel Holland wrote:
+> >> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
+> >> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC handl=
+es
+> >> the external NMI pin, and provides 32+ IRQs to the ARISC. The first 16
+> >> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
+> >> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
+> >>
+> >> This series replaces the existing chained irqchip driver that could on=
+ly
+> >> control the NMI, with a stacked irqchip driver that also provides wake=
+up
+> >> capability for those multiplexed SPI IRQs. The idea is to preconfigure
+> >> the ARISC's IRQ controller, and then the ARISC firmware knows to wake =
+up
+> >> as soon as it receives an IRQ. It can also decide how deep it can
+> >> suspend based on the enabled wakeup IRQs.
+> >>
+> >> [...]
+> >=20
+> > Applied to irq/irqchip-5.12, thanks!
+> >=20
+> > [01/10] dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
+> >         commit: ad6b47cdef760410311f41876b21eb0c6fda4717
+> > [02/10] dt-bindings: irq: sun6i-r: Add a compatible for the H3
+> >         commit: 6436eb4417094ea3308b33d8392fc02a1068dc78
+> > [03/10] irqchip/sun6i-r: Use a stacked irqchip driver
+> >         commit: 4e34614636b31747b190488240a95647c227021f
+> > [04/10] irqchip/sun6i-r: Add wakeup support
+> >         commit: 7ab365f6cd6de1e2b0cb1e1e3873dbf68e6f1003
+> >=20
+> > Please route the dts patches via the soc tree. Also, I had to
+> > manually fix the first patch as it wouldn't apply on top of
+> > 5.11-rc4 (which tree has it been diffed against?). Please
+> > check that the resolution is correct.
+>=20
+> This series was based on sunxi/for-next, which contains commit
+> 752b0aac99c7 ("dt-bindings: irq: sun7i-nmi: Add binding documentation
+> for the V3s NMI")[1].
 
-> ---
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h |  13 +-
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 161 ++++++++++++++++----
->  2 files changed, 144 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-> index 96c2e9565e00..8ef6a1c48635 100644
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-> @@ -636,6 +636,15 @@ struct arm_smmu_device {
->  
->  	/* IOMMU core code handle */
->  	struct iommu_device		iommu;
-> +
-> +	struct rb_root			streams;
-> +	struct mutex			streams_mutex;
-> +};
-> +
-> +struct arm_smmu_stream {
-> +	u32				id;
-> +	struct arm_smmu_master		*master;
-> +	struct rb_node			node;
->  };
->  
->  /* SMMU private data for each master */
-> @@ -644,8 +653,8 @@ struct arm_smmu_master {
->  	struct device			*dev;
->  	struct arm_smmu_domain		*domain;
->  	struct list_head		domain_head;
-> -	u32				*sids;
-> -	unsigned int			num_sids;
-> +	struct arm_smmu_stream		*streams;
-> +	unsigned int			num_streams;
->  	bool				ats_enabled;
->  	bool				sva_enabled;
->  	struct list_head		bonds;
-> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> index 6a53b4edf054..db5d6aa76c3a 100644
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> @@ -912,8 +912,8 @@ static void arm_smmu_sync_cd(struct arm_smmu_domain *smmu_domain,
->  
->  	spin_lock_irqsave(&smmu_domain->devices_lock, flags);
->  	list_for_each_entry(master, &smmu_domain->devices, domain_head) {
-> -		for (i = 0; i < master->num_sids; i++) {
-> -			cmd.cfgi.sid = master->sids[i];
-> +		for (i = 0; i < master->num_streams; i++) {
-> +			cmd.cfgi.sid = master->streams[i].id;
->  			arm_smmu_cmdq_batch_add(smmu, &cmds, &cmd);
->  		}
->  	}
-> @@ -1355,6 +1355,32 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
->  	return 0;
->  }
->  
-> +__maybe_unused
-> +static struct arm_smmu_master *
-> +arm_smmu_find_master(struct arm_smmu_device *smmu, u32 sid)
-> +{
-> +	struct rb_node *node;
-> +	struct arm_smmu_stream *stream;
-> +	struct arm_smmu_master *master = NULL;
-> +
-> +	mutex_lock(&smmu->streams_mutex);
-> +	node = smmu->streams.rb_node;
-> +	while (node) {
-> +		stream = rb_entry(node, struct arm_smmu_stream, node);
-> +		if (stream->id < sid) {
-> +			node = node->rb_right;
-> +		} else if (stream->id > sid) {
-> +			node = node->rb_left;
-> +		} else {
-> +			master = stream->master;
-> +			break;
-> +		}
-> +	}
-> +	mutex_unlock(&smmu->streams_mutex);
-> +
-> +	return master;
-> +}
-> +
->  /* IRQ and event handlers */
->  static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
->  {
-> @@ -1588,8 +1614,8 @@ static int arm_smmu_atc_inv_master(struct arm_smmu_master *master)
->  
->  	arm_smmu_atc_inv_to_cmd(0, 0, 0, &cmd);
->  
-> -	for (i = 0; i < master->num_sids; i++) {
-> -		cmd.atc.sid = master->sids[i];
-> +	for (i = 0; i < master->num_streams; i++) {
-> +		cmd.atc.sid = master->streams[i].id;
->  		arm_smmu_cmdq_issue_cmd(master->smmu, &cmd);
->  	}
->  
-> @@ -1632,8 +1658,8 @@ int arm_smmu_atc_inv_domain(struct arm_smmu_domain *smmu_domain, int ssid,
->  		if (!master->ats_enabled)
->  			continue;
->  
-> -		for (i = 0; i < master->num_sids; i++) {
-> -			cmd.atc.sid = master->sids[i];
-> +		for (i = 0; i < master->num_streams; i++) {
-> +			cmd.atc.sid = master->streams[i].id;
->  			arm_smmu_cmdq_batch_add(smmu_domain->smmu, &cmds, &cmd);
->  		}
->  	}
-> @@ -2040,13 +2066,13 @@ static void arm_smmu_install_ste_for_dev(struct arm_smmu_master *master)
->  	int i, j;
->  	struct arm_smmu_device *smmu = master->smmu;
->  
-> -	for (i = 0; i < master->num_sids; ++i) {
-> -		u32 sid = master->sids[i];
-> +	for (i = 0; i < master->num_streams; ++i) {
-> +		u32 sid = master->streams[i].id;
->  		__le64 *step = arm_smmu_get_step_for_sid(smmu, sid);
->  
->  		/* Bridged PCI devices may end up with duplicated IDs */
->  		for (j = 0; j < i; j++)
-> -			if (master->sids[j] == sid)
-> +			if (master->streams[j].id == sid)
->  				break;
->  		if (j < i)
->  			continue;
-> @@ -2319,11 +2345,101 @@ static bool arm_smmu_sid_in_range(struct arm_smmu_device *smmu, u32 sid)
->  	return sid < limit;
->  }
->  
-> +static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
-> +				  struct arm_smmu_master *master)
-> +{
-> +	int i;
-> +	int ret = 0;
-> +	struct arm_smmu_stream *new_stream, *cur_stream;
-> +	struct rb_node **new_node, *parent_node = NULL;
-> +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(master->dev);
-> +
-> +	master->streams = kcalloc(fwspec->num_ids,
-> +				  sizeof(*master->streams), GFP_KERNEL);
-> +	if (!master->streams)
-> +		return -ENOMEM;
-> +	master->num_streams = fwspec->num_ids;
-> +
-> +	mutex_lock(&smmu->streams_mutex);
-> +	for (i = 0; i < fwspec->num_ids && !ret; i++) {
-> +		u32 sid = fwspec->ids[i];
-> +
-> +		new_stream = &master->streams[i];
-> +		new_stream->id = sid;
-> +		new_stream->master = master;
-> +
-> +		/*
-> +		 * Check the SIDs are in range of the SMMU and our stream table
-> +		 */
-> +		if (!arm_smmu_sid_in_range(smmu, sid)) {
-> +			ret = -ERANGE;
-> +			break;
-> +		}
-> +
-> +		/* Ensure l2 strtab is initialised */
-> +		if (smmu->features & ARM_SMMU_FEAT_2_LVL_STRTAB) {
-> +			ret = arm_smmu_init_l2_strtab(smmu, sid);
-> +			if (ret)
-> +				break;
-> +		}
-> +
-> +		/* Insert into SID tree */
-> +		new_node = &(smmu->streams.rb_node);
-> +		while (*new_node) {
-> +			cur_stream = rb_entry(*new_node, struct arm_smmu_stream,
-> +					      node);
-> +			parent_node = *new_node;
-> +			if (cur_stream->id > new_stream->id) {
-> +				new_node = &((*new_node)->rb_left);
-> +			} else if (cur_stream->id < new_stream->id) {
-> +				new_node = &((*new_node)->rb_right);
-> +			} else {
-> +				dev_warn(master->dev,
-> +					 "stream %u already in tree\n",
-> +					 cur_stream->id);
-> +				ret = -EINVAL;
-> +				break;
-> +			}
-> +		}
-> +
-> +		if (!ret) {
-> +			rb_link_node(&new_stream->node, parent_node, new_node);
-> +			rb_insert_color(&new_stream->node, &smmu->streams);
-> +		}
-> +	}
-> +
-> +	if (ret) {
-> +		for (; i > 0; i--)
-> +			rb_erase(&master->streams[i].node, &smmu->streams);
-> +		kfree(master->streams);
-> +	}
-> +	mutex_unlock(&smmu->streams_mutex);
-> +
-> +	return ret;
-> +}
-> +
-> +static void arm_smmu_remove_master(struct arm_smmu_master *master)
-> +{
-> +	int i;
-> +	struct arm_smmu_device *smmu = master->smmu;
-> +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(master->dev);
-> +
-> +	if (!smmu || !master->streams)
-> +		return;
-> +
-> +	mutex_lock(&smmu->streams_mutex);
-> +	for (i = 0; i < fwspec->num_ids; i++)
-> +		rb_erase(&master->streams[i].node, &smmu->streams);
-> +	mutex_unlock(&smmu->streams_mutex);
-> +
-> +	kfree(master->streams);
-> +}
-> +
->  static struct iommu_ops arm_smmu_ops;
->  
->  static struct iommu_device *arm_smmu_probe_device(struct device *dev)
->  {
-> -	int i, ret;
-> +	int ret;
->  	struct arm_smmu_device *smmu;
->  	struct arm_smmu_master *master;
->  	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-> @@ -2344,27 +2460,12 @@ static struct iommu_device *arm_smmu_probe_device(struct device *dev)
->  
->  	master->dev = dev;
->  	master->smmu = smmu;
-> -	master->sids = fwspec->ids;
-> -	master->num_sids = fwspec->num_ids;
->  	INIT_LIST_HEAD(&master->bonds);
->  	dev_iommu_priv_set(dev, master);
->  
-> -	/* Check the SIDs are in range of the SMMU and our stream table */
-> -	for (i = 0; i < master->num_sids; i++) {
-> -		u32 sid = master->sids[i];
-> -
-> -		if (!arm_smmu_sid_in_range(smmu, sid)) {
-> -			ret = -ERANGE;
-> -			goto err_free_master;
-> -		}
-> -
-> -		/* Ensure l2 strtab is initialised */
-> -		if (smmu->features & ARM_SMMU_FEAT_2_LVL_STRTAB) {
-> -			ret = arm_smmu_init_l2_strtab(smmu, sid);
-> -			if (ret)
-> -				goto err_free_master;
-> -		}
-> -	}
-> +	ret = arm_smmu_insert_master(smmu, master);
-> +	if (ret)
-> +		goto err_free_master;
->  
->  	device_property_read_u32(dev, "pasid-num-bits", &master->ssid_bits);
->  	master->ssid_bits = min(smmu->ssid_bits, master->ssid_bits);
-> @@ -2403,6 +2504,7 @@ static void arm_smmu_release_device(struct device *dev)
->  	WARN_ON(arm_smmu_master_sva_enabled(master));
->  	arm_smmu_detach_dev(master);
->  	arm_smmu_disable_pasid(master);
-> +	arm_smmu_remove_master(master);
->  	kfree(master);
->  	iommu_fwspec_free(dev);
->  }
-> @@ -2825,6 +2927,9 @@ static int arm_smmu_init_structures(struct arm_smmu_device *smmu)
->  {
->  	int ret;
->  
-> +	mutex_init(&smmu->streams_mutex);
-> +	smmu->streams = RB_ROOT;
-> +
->  	ret = arm_smmu_init_queues(smmu);
->  	if (ret)
->  		return ret;
-> 
+I assume merging the DT bits alone would break things? If so, I guess we
+can wait for 5.12 to be released before merging it
 
+Maxime
+
+--6nduqjefy55djukm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAqtKQAKCRDj7w1vZxhR
+xXIiAQCF77s6vDL5LxjULCf7wDCYyp/5nflTWRqwSN4qMhpvTQD/eM8WCGM/ggUS
+0IkX6WMGWFm2/SO55RdvBY1Q7p/sqgc=
+=lbbe
+-----END PGP SIGNATURE-----
+
+--6nduqjefy55djukm--
