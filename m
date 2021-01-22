@@ -2,121 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B67E72FFC05
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 06:18:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 964962FFC0D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 06:20:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbhAVFRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 00:17:55 -0500
-Received: from mail-pj1-f43.google.com ([209.85.216.43]:37317 "EHLO
-        mail-pj1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726014AbhAVFRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 00:17:53 -0500
-Received: by mail-pj1-f43.google.com with SMTP id g15so3100443pjd.2;
-        Thu, 21 Jan 2021 21:17:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6N5TXJ6yeDofpR8GczZbN8MhQVoOYTknC4OkzyK0VI0=;
-        b=qtc6SVgYI9JXzfpBB13nYv/e0Nc1/2vUoivc6Dyvw+5z0u/PgnbXiRDS8BdyhcCr2k
-         CoLIl9NwBzZUyfqLCZ68cwFlzGJzzgZYLZFCsOjPanpjjkXQ54rUdD/s/Zr2IKWT2rT2
-         C8flRSdyqNofPYfcbTk4t8x6VllQzRQnzJ00VFABca/MFs/YY3YO6h9aJ3WO6mFN33zi
-         V1akFw6iJP6kqZq5KApdxRS9NbqtTZRuG9QrwQ5FpOb2v6/2Tio3ExWcAPAHRYAll0S6
-         WPy0w/nQVC3mO9Cx7JGWShaaBC6ddalAUtFfAEDshARKLWRgQRfD0+QAK/mhJfTIvWWP
-         xh3g==
-X-Gm-Message-State: AOAM5327fngw0wKQTx15n7IxRJ897RUK9wXokQo+xexxiwnj8eT57ZiF
-        Qun4qrkPDP6OfUTq4064A9M=
-X-Google-Smtp-Source: ABdhPJzZqdfEXnKRH17QQSUd97gL9kLCf7mSygNMIaNfZJoW2mQsbnwaUmDee7o4T0jZcW6cZYyOEA==
-X-Received: by 2002:a17:90a:de97:: with SMTP id n23mr3405825pjv.216.1611292633004;
-        Thu, 21 Jan 2021 21:17:13 -0800 (PST)
-Received: from localhost ([2601:647:5b00:1162:1ac0:17a6:4cc6:d1ef])
-        by smtp.gmail.com with ESMTPSA id m195sm7585191pfd.215.2021.01.21.21.17.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jan 2021 21:17:12 -0800 (PST)
-Date:   Thu, 21 Jan 2021 21:17:10 -0800
-From:   Moritz Fischer <mdf@kernel.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     mdf@kernel.org, trix@redhat.com, robh+dt@kernel.org,
-        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com,
-        chinnikishore369@gmail.com
-Subject: Re: [PATCH 1/2] fpga: mgr: Adds secure BitStream loading support
-Message-ID: <YApf1jlEghbnDFo/@archbook>
-References: <20210118025058.10051-1-nava.manne@xilinx.com>
+        id S1726545AbhAVFSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 00:18:49 -0500
+Received: from m42-8.mailgun.net ([69.72.42.8]:52175 "EHLO m42-8.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726472AbhAVFSs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 00:18:48 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1611292701; h=In-Reply-To: Content-Type: MIME-Version:
+ References: Message-ID: Subject: Cc: To: From: Date: Sender;
+ bh=vOZ8V3PI+mLIfXX89NrnhfpLX937QB0x9p+EEU3L+2Q=; b=HlCmoaNilgSthiI/NGZvu8xUqX3PdzfK2p+Bl4CR7trBT3MKzHf6pdrrej9hiCjEdUJMfiKR
+ B/9jbGo9EooobFj74BFTfuv6h4Ken2+rKYkgg5AbcJmY5DYSMimqU8vM7M8PThMK2PaGzwZw
+ FgdVJlWwUDN/q5G3Oo4XzScVkFc=
+X-Mailgun-Sending-Ip: 69.72.42.8
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 600a5ffb5677aca7bd0baefb (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 22 Jan 2021 05:17:47
+ GMT
+Sender: jackp=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0ADF2C43463; Fri, 22 Jan 2021 05:17:47 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: jackp)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C17D0C433CA;
+        Fri, 22 Jan 2021 05:17:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C17D0C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jackp@codeaurora.org
+Date:   Thu, 21 Jan 2021 21:17:43 -0800
+From:   Jack Pham <jackp@codeaurora.org>
+To:     Wesley Cheng <wcheng@codeaurora.org>
+Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        peter.chen@nxp.com
+Subject: Re: [PATCH v6 1/4] usb: gadget: udc: core: Introduce check_config to
+ verify USB configuration
+Message-ID: <20210122051743.GE31406@jackp-linux.qualcomm.com>
+References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
+ <1611288100-31118-2-git-send-email-wcheng@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210118025058.10051-1-nava.manne@xilinx.com>
+In-Reply-To: <1611288100-31118-2-git-send-email-wcheng@codeaurora.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 08:20:57AM +0530, Nava kishore Manne wrote:
-> This commit adds secure flags to the framework to support
-> secure BitStream Loading.
+Hi Wesley,
+
+On Thu, Jan 21, 2021 at 08:01:37PM -0800, Wesley Cheng wrote:
+> Some UDCs may have constraints on how many high bandwidth endpoints it can
+> support in a certain configuration.  This API allows for the composite
+> driver to pass down the total number of endpoints to the UDC so it can verify
+> it has the required resources to support the configuration.
 > 
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
 > ---
->  drivers/fpga/of-fpga-region.c | 10 ++++++++++
->  include/linux/fpga/fpga-mgr.h | 12 ++++++++++++
->  2 files changed, 22 insertions(+)
+>  drivers/usb/gadget/udc/core.c | 9 +++++++++
+>  include/linux/usb/gadget.h    | 2 ++
+>  2 files changed, 11 insertions(+)
 > 
-> diff --git a/drivers/fpga/of-fpga-region.c b/drivers/fpga/of-fpga-region.c
-> index e405309baadc..3a5eb4808888 100644
-> --- a/drivers/fpga/of-fpga-region.c
-> +++ b/drivers/fpga/of-fpga-region.c
-> @@ -228,6 +228,16 @@ static struct fpga_image_info *of_fpga_region_parse_ov(
->  	if (of_property_read_bool(overlay, "encrypted-fpga-config"))
->  		info->flags |= FPGA_MGR_ENCRYPTED_BITSTREAM;
+> diff --git a/drivers/usb/gadget/udc/core.c b/drivers/usb/gadget/udc/core.c
+> index 4173acd..469962f 100644
+> --- a/drivers/usb/gadget/udc/core.c
+> +++ b/drivers/usb/gadget/udc/core.c
+> @@ -1003,6 +1003,15 @@ int usb_gadget_ep_match_desc(struct usb_gadget *gadget,
+>  }
+>  EXPORT_SYMBOL_GPL(usb_gadget_ep_match_desc);
 >  
-> +	if (of_property_read_bool(overlay, "userkey-encrypted-fpga-config"))
-> +		info->flags |= FPGA_MGR_USERKEY_ENCRYPTED_BITSTREAM;
+> +int usb_gadget_check_config(struct usb_gadget *gadget, unsigned long ep_map)
 
-Can this just be encrypted-fpga-config/FPGA_MGR_ENCRYPTED?
-> +
-> +	if (of_property_read_bool(overlay, "ddrmem-authenticated-fpga-config"))
-> +		info->flags |= FPGA_MGR_DDR_MEM_AUTH_BITSTREAM;
-> +
-> +	if (of_property_read_bool(overlay,
-> +				  "securemem-authenticated-fpga-config"))
-> +		info->flags |= FPGA_MGR_SECURE_MEM_AUTH_BITSTREAM;
-> +
->  	if (!of_property_read_string(overlay, "firmware-name",
->  				     &firmware_name)) {
->  		info->firmware_name = devm_kstrdup(dev, firmware_name,
-> diff --git a/include/linux/fpga/fpga-mgr.h b/include/linux/fpga/fpga-mgr.h
-> index 2bc3030a69e5..2f7455a60666 100644
-> --- a/include/linux/fpga/fpga-mgr.h
-> +++ b/include/linux/fpga/fpga-mgr.h
-> @@ -67,12 +67,24 @@ enum fpga_mgr_states {
->   * %FPGA_MGR_BITSTREAM_LSB_FIRST: SPI bitstream bit order is LSB first
->   *
->   * %FPGA_MGR_COMPRESSED_BITSTREAM: FPGA bitstream is compressed
-> + *
-> + * %FPGA_MGR_USERKEY_ENCRYPTED_BITSTREAM: indicates bitstream is encrypted with
-> + *                                        user key
-> + *
-> + * %FPGA_MGR_DDR_MEM_AUTH_BITSTREAM: do bitstream authentication using DDR
-> + *                                   memory if supported
-> + *
-> + * %FPGA_MGR_SECURE_MEM_AUTH_BITSTREAM: do bitstream authentication using secure
-> + *                                      memory if supported
->   */
->  #define FPGA_MGR_PARTIAL_RECONFIG	BIT(0)
->  #define FPGA_MGR_EXTERNAL_CONFIG	BIT(1)
->  #define FPGA_MGR_ENCRYPTED_BITSTREAM	BIT(2)
->  #define FPGA_MGR_BITSTREAM_LSB_FIRST	BIT(3)
->  #define FPGA_MGR_COMPRESSED_BITSTREAM	BIT(4)
-> +#define FPGA_MGR_USERKEY_ENCRYPTED_BITSTREAM	BIT(5)
-> +#define FPGA_MGR_DDR_MEM_AUTH_BITSTREAM		BIT(6)
-> +#define FPGA_MGR_SECURE_MEM_AUTH_BITSTREAM	BIT(7)
->  
->  /**
->   * struct fpga_image_info - information specific to a FPGA image
-> -- 
-> 2.18.0
-> 
+You should probably add a kernel-doc for this function.
 
-Thanks,
-Moritz
+Jack
+-- 
+The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
