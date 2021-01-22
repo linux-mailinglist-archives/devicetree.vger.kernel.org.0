@@ -2,130 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B579630105F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 23:56:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2DE301113
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 00:40:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728298AbhAVWzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 17:55:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48372 "EHLO
+        id S1725969AbhAVXkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 18:40:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728589AbhAVWz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 17:55:28 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86CAC0617AA
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 14:54:47 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id q7so4815742pgm.5
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 14:54:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TCpMQt807YfEcZdAppn4nUQWg8RV5dkORnfM2cJGiws=;
-        b=GyRDl7sp0dtyUfCDl5HO9xPItncqAWM6Tc4EvX3IkIW8rzXYaWMcilC2XbVLXaraUb
-         fosVbBfXNGPnxyU0OwomVFp0SzmipHwJ1DZ4mOKfkUmHE17J9dtDjPuXMK5inKsi/r+X
-         XcX5KI8C347+LjeSxwXt/PimsB+hqPmW6hMYw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TCpMQt807YfEcZdAppn4nUQWg8RV5dkORnfM2cJGiws=;
-        b=YVFe0fiaofESIi4MoRCZ4iSzxppIBryGhfHX0gMEuqdi1cL05F82OX6zD5NZxaweQZ
-         h6zKJkNIihkwxbicx5tN5jZ11W/2OkgQN21ggJjHrvJOsyorpKkijTCLDUb64d/698ZN
-         7AHCShUMOQBPFmjB0wOuKv1Q9MxS1yKxgTHKlAKLpv+co5uiGA5ufP3A13kIqgVzOQbC
-         8A0QxgQoascYvBsPJtUFidkNGX6M8lH4HD8a/HL6TWbm1tvSRxBTd6FsuhQ93duhc4ID
-         yFsVzX9N926JBCFEO/vjQjx2GZzTFkJpXM9XdnsmPU+O61cf4LMDKe+niacvhnvOmIwy
-         1tqQ==
-X-Gm-Message-State: AOAM530r3mQRGcW0OQgWSAqWbi0fqRk5o17pNm9EOA0KiHAuP7cAV275
-        U9H0TyHK+C6NWr9wmWZF9AgmCg==
-X-Google-Smtp-Source: ABdhPJzfKBQiaAswAZ8TMCEFXHh2DRTfPXYvu6GVRfiPMkLTzLmMgr+i4DwSvTbM1yzXAKBQEfzmFQ==
-X-Received: by 2002:aa7:8b10:0:b029:1be:ab7d:3743 with SMTP id f16-20020aa78b100000b02901beab7d3743mr565125pfd.79.1611356087565;
-        Fri, 22 Jan 2021 14:54:47 -0800 (PST)
-Received: from smtp.gmail.com ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id i62sm6433509pfe.84.2021.01.22.14.54.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jan 2021 14:54:47 -0800 (PST)
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 2/3] dt-bindings: iio: Add cros ec proximity yaml doc
-Date:   Fri, 22 Jan 2021 14:54:42 -0800
-Message-Id: <20210122225443.186184-3-swboyd@chromium.org>
-X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
-In-Reply-To: <20210122225443.186184-1-swboyd@chromium.org>
-References: <20210122225443.186184-1-swboyd@chromium.org>
+        with ESMTP id S1725274AbhAVXkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 18:40:14 -0500
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CED1C061786
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 15:39:18 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 77B203EEDE;
+        Sat, 23 Jan 2021 00:39:13 +0100 (CET)
+Subject: Re: [PATCH v2 1/2] pinctrl: Add driver for Awinic AW9523/B I2C GPIO
+ Expander
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, phone-devel@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+References: <20210111182928.587285-1-angelogioacchino.delregno@somainline.org>
+ <CACRpkdZp3oqj4VeUZEPu=POwAdf-7R3NzNoN9XehtEi_R_fgkw@mail.gmail.com>
+ <1e34145b-a04a-1cbb-7fbc-87c69b8dcfd7@somainline.org>
+ <CACRpkdacfa6usOZtc+A=ZxEpB1ij_gAKX2PLMOaX0mY_0qHp6A@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <f9cc7046-1855-cbe5-51ed-ab5f76716805@somainline.org>
+Date:   Sat, 23 Jan 2021 00:39:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdacfa6usOZtc+A=ZxEpB1ij_gAKX2PLMOaX0mY_0qHp6A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some cros ECs support a front proximity MKBP event via
-'EC_MKBP_FRONT_PROXIMITY'. Add a DT binding to document this feature via
-a node that is a child of the main cros_ec device node. Devices that
-have this ability will describe this in firmware.
+Il 22/01/21 10:59, Linus Walleij ha scritto:
+> On Mon, Jan 18, 2021 at 3:38 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@somainline.org> wrote:
+> 
+>> By the way, this is really LEVEL irq, not EDGE... To avoid any
+>> misunderstanding, I think that the best way to show you what I
+>> am seeing is to just copy-paste the relevant piece from the
+>> datasheet for this hardware (it's not a confidential datasheet
+>> and freely found on the internet).
+>>
+>> Check this out:
+>> " External MCU is required acknowledge by INTN pin. INTN is open-drain
+>> out-
+>> put, low-level active, and need external pull-up resistor.
+> 
+> This talks about what polarity (active low) the pin from the expander
+> to the SoC/CPU is. It has nothing to do with the line into the
+> expander.
+> 
+>> When AW9523B detect port change, any input state from high-level to
+>> low-level or from
+>>    low-level to high-level will generate interrupt after
+>> 8us internal deglitch. "
+>>
+>> ...but since the datasheet is sometimes unclear about "things" (I am
+>> mostly sure that they have translated it to english from chinese), I
+>> have actually checked whether the INTN pin was pushed LOW when one of
+>> the inputs goes from HIGH to LOW.. and.. it does... and as you imagine
+>> yeah.. it's slow.. and yes, as slow as you can imagine. :)
+>>
+>> So, in short, this chip is raising an interrupt when any input changes
+>> state, regardless of the change being LOW->HIGH or HIGH->LOW.
+> 
+> This means that the expander only supports
+> IRQ_TYPE_EDGE_BOTH and nothing else.
+> 
+> "port change" above means edges.
+> 
+> Augment your driver to only accept this type.
+> 
+> The consumers better request IRQ_TYPE_EDGE_BOTH
+> (from a device tree for example) and consumers better
+> handle the fact that they get interrupts on both rising
+> and falling edge as well, else they may need special
+> code to handle it. This is not a very nice feature of
+> the expander, it would be more helpful to users to
+> get interrupts on only rising or only falling edges, but
+> as written, it will generate interrupts on both transitions.
+> 
+> Yours,
+> Linus Walleij
+> 
 
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Benson Leung <bleung@chromium.org>
-Cc: Guenter Roeck <groeck@chromium.org>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Gwendal Grignou <gwendal@chromium.org>
-Cc: <devicetree@vger.kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
- .../proximity/google,cros-ec-proximity.yaml   | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/proximity/google,cros-ec-proximity.yaml
+I see the reading mistake now... oh wow, that was... sad, from me.
+I will fix this ASAP and will send back a v3.
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-proximity.yaml b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-proximity.yaml
-new file mode 100644
-index 000000000000..c0a34bdfe4fd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-proximity.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/iio/proximity/google,cros-ec-proximity.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ChromeOS EC MKBP Proximity Sensor
-+
-+maintainers:
-+  - Stephen Boyd <swboyd@chromium.org>
-+  - Benson Leung <bleung@chromium.org>
-+  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-+
-+description: |
-+  Google's ChromeOS EC sometimes has the ability to detect user proximity.
-+  This is implemented on the EC as near/far logic and exposed to the OS
-+  via an MKBP switch bit.
-+
-+properties:
-+  compatible:
-+    const: google,cros-ec-proximity
-+
-+  label:
-+    description: Name for proximity sensor
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    proximity {
-+        compatible = "google,cros-ec-proximity";
-+        label = "proximity-wifi-lte";
-+    };
--- 
-https://chromeos.dev
+Thank you!
 
+- Angelo
