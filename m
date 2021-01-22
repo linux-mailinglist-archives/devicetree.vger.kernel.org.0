@@ -2,87 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41AD7300623
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 15:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0868B300626
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 15:54:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728537AbhAVOxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 09:53:40 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:15866 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728715AbhAVOxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 09:53:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1611327189; x=1642863189;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=Y6cYRDZBHofXC1+fMpkWazCbSAWSF9dRS/TDToGnCxg=;
-  b=QKz2GiX1OF6SUSmd0wI06GaxBYmj8v+Se/nmwoVtkJiRbhk6uRhh3hwX
-   GoK7bi1XwjamNM0USTCSEcCEQUJmXMyW/2km0W27B+0vB45xzS9o7f8FM
-   eHvLeM/NViu76h8h5q9NU6LMg40KwQoNFLx3VVHYPJP5/TFLMNOUkqa7J
-   r6n9+FYB7qUWpJFbBa059Y9xNK0z0ZD6tit0hgh2Tz0ZFw61TOHbsCB9/
-   Cx4VQ/CU4meDvlbWgaGOqdipSbGl14z6D97Wn1ULeDXOgZ2Ff2fT8mX72
-   nov2LSQZ9mLlht2D6MC5nV89Q6Lc0/tnZLKh1vPpCw0HbyuNRlDN30+Dz
-   A==;
-IronPort-SDR: RrTTLCCVroj2hS3rAsvdwXeVsxNTwPsrwxBZIpprINLnzEifO6zHoxRoOPYOVKawOagJzdkpTt
- V7eK+ftx1DAgVAhZZdCQ2HKnL1f716zr7PWnyRP3cHny7xmbeETiIJ0/enzYT5JE5HRrdnpA9f
- ffBZX/TVTIuexNMM6/CCl+Jiu1Rlk8qu4V3dkjORwD25sKG6nz8RthrrZweKgLQ09aS/0qw3w9
- p/HKI1zC7T4CTPwJ9UTAd9xliIgKLID3IfQZgJYjoChLFAdnTh7m+UhG3W3bHD9zbEhMNPuUYt
- mVo=
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; 
-   d="scan'208";a="112095804"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Jan 2021 07:51:53 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Fri, 22 Jan 2021 07:51:53 -0700
-Received: from ryzen.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Fri, 22 Jan 2021 07:51:51 -0700
-From:   <daire.mcnamara@microchip.com>
-To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh@kernel.org>, <linux-pci@vger.kernel.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <david.abdurachmanov@gmail.com>, <cyril.jean@microchip.com>,
-        "Daire McNamara" <daire.mcnamara@microchip.com>
-Subject: [PATCH v20 4/4] MAINTAINERS: Add Daire McNamara as maintainer for the Microchip PCIe driver
-Date:   Fri, 22 Jan 2021 14:51:37 +0000
-Message-ID: <20210122145137.29023-5-daire.mcnamara@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210122145137.29023-1-daire.mcnamara@microchip.com>
-References: <20210122145137.29023-1-daire.mcnamara@microchip.com>
+        id S1728544AbhAVOxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 09:53:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53412 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728775AbhAVOwf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 09:52:35 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6EDE7239EE;
+        Fri, 22 Jan 2021 14:51:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611327110;
+        bh=UVENJ8SwAaMEVSup4KUp9M6Y7Hntoo9gwFOVgUT8oGQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FXrG7NjANZ8HxnMna/ny1zUy2Mogyuxbnz68QCBd7kO7NiPV4/2q6lG4MmLu17UyP
+         N470/R1kO9y720A/M8CIWiEtI6/ZYhgDSciZzrb/sxt8dG4gZ/W9qpM4iOIbneZ4Q2
+         mkfLYceaRA9yzfbWJilCgSxiElOahehcDT5Ec+CvZO6OZLF+v3F+q49Noajl0xHaVF
+         83N6BsYCD5zW59qlJS1XwAW+DxYT77YXEgLtvruEKU5u97ZJMjZcgRlR3GCfMCM77z
+         4yXf/4IzZEteQTB3dZSVqDOYUWnU6NLDkGiv7e1OMBmLMkt1Qri8c5pZgwwntxuGz6
+         LwYyRaAXt/BLA==
+Received: by mail-ej1-f49.google.com with SMTP id rv9so8000151ejb.13;
+        Fri, 22 Jan 2021 06:51:50 -0800 (PST)
+X-Gm-Message-State: AOAM532IivjpDsZ7ZWYnug0xQJfLv/5FZ1tUGH7CDjXcTPTc4KBRLSNM
+        VOrYewvW4pgc98IUc3j+qOwtQDn5BfjvegQFLw==
+X-Google-Smtp-Source: ABdhPJwFUeGwf7xQOBtjPmx0ccgY3V7Y6xkhTkG4GkyffTDYwU7UDugMKHbPhpv6LP4LwMNjyZNgYQiLoTUE2SV2tmw=
+X-Received: by 2002:a17:906:958f:: with SMTP id r15mr3085496ejx.360.1611327109003;
+ Fri, 22 Jan 2021 06:51:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <cover.1610645385.git.mchehab+huawei@kernel.org>
+ <78e54d594b9e31d603d913048a7bc89d3a089608.1610645385.git.mchehab+huawei@kernel.org>
+ <20210115014731.GA4077569@robh.at.kernel.org> <20210119112653.46f26ce3@coco.lan>
+In-Reply-To: <20210119112653.46f26ce3@coco.lan>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 22 Jan 2021 08:51:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKyMy010vOjSdbDPXs13ygvfHpK5pb_1TN0pLM9pwL97w@mail.gmail.com>
+Message-ID: <CAL_JsqKyMy010vOjSdbDPXs13ygvfHpK5pb_1TN0pLM9pwL97w@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] phy: phy-hi3670-usb3: move driver from staging
+ into phy
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Alex Dewar <alex.dewar90@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daire McNamara <daire.mcnamara@microchip.com>
+On Tue, Jan 19, 2021 at 4:26 AM Mauro Carvalho Chehab
+<mchehab+huawei@kernel.org> wrote:
+>
+> Em Thu, 14 Jan 2021 19:47:31 -0600
+> Rob Herring <robh@kernel.org> escreveu:
+>
+> > On Thu, Jan 14, 2021 at 06:35:44PM +0100, Mauro Carvalho Chehab wrote:
+> > > The phy USB3 driver for Hisilicon 970 (hi3670) is ready
+> > > for mainstream. Mode it from staging into the main driver's
+> > > phy/ directory.
+> > >
+> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > > ---
+> > >  .../bindings/phy/phy-hi3670-usb3.yaml         |  72 ++
+> > >  MAINTAINERS                                   |   9 +-
+> > >  drivers/phy/hisilicon/Kconfig                 |  10 +
+> > >  drivers/phy/hisilicon/Makefile                |   1 +
+> > >  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 668 ++++++++++++++++++
+> > >  drivers/staging/hikey9xx/Kconfig              |  11 -
+> > >  drivers/staging/hikey9xx/Makefile             |   2 -
+> > >  drivers/staging/hikey9xx/phy-hi3670-usb3.c    | 668 ------------------
+> > >  drivers/staging/hikey9xx/phy-hi3670-usb3.yaml |  72 --
+> > >  9 files changed, 759 insertions(+), 754 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml
+> > >  create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
+> > >  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.c
+> > >  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml
+> > > new file mode 100644
+> > > index 000000000000..125a5d6546ae
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml
+> > > @@ -0,0 +1,72 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/phy/hisilicon,hi3670-usb3.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Hisilicon Kirin970 USB PHY
+> > > +
+> > > +maintainers:
+> > > +  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> >
+> > Blank line.
+>
+> Ok.
+>
+> >
+> > > +description: |+
+> > > +  Bindings for USB3 PHY on HiSilicon Kirin 970.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: hisilicon,hi3670-usb-phy
+> > > +
+> > > +  "#phy-cells":
+> > > +    const: 0
+> > > +
+> > > +  hisilicon,pericrg-syscon:
+> > > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> > > +    description: phandle of syscon used to control iso refclk.
+> > > +
+> > > +  hisilicon,pctrl-syscon:
+> > > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> > > +    description: phandle of syscon used to control usb tcxo.
+> > > +
+> > > +  hisilicon,sctrl-syscon:
+> > > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> > > +    description: phandle of syscon used to control phy deep sleep.
+> > > +
+> > > +  hisilicon,eye-diagram-param:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: Eye diagram for phy.
+> > > +
+> > > +  hisilicon,tx-vboost-lvl:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: TX level vboost for phy.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - hisilicon,pericrg-syscon
+> > > +  - hisilicon,pctrl-syscon
+> > > +  - hisilicon,sctrl-syscon
+> > > +  - hisilicon,eye-diagram-param
+> > > +  - hisilicon,tx-vboost-lvl
+> > > +  - "#phy-cells"
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    bus {
+> > > +      #address-cells = <2>;
+> > > +      #size-cells = <2>;
+> > > +
+> > > +      usb3_otg_bc: usb3_otg_bc@ff200000 {
+> > > +        compatible = "syscon", "simple-mfd";
+> > > +        reg = <0x0 0xff200000 0x0 0x1000>;
+> > > +
+> > > +        usb_phy {
+> >
+> > Is there a contiguous register region for this sub-block? If so, add
+> > 'reg' even though Linux doesn't need it currently.
+>
+> No. The driver uses 4 syscon regions in order to access the needed
+> registers:
 
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+I meant just for the parent device node. I assume these are the 'main'
+registers? If not, then maybe it should be a child of one of the other
+syscons.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..f2dafbf3393c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13628,6 +13628,13 @@ S:	Supported
- F:	Documentation/devicetree/bindings/pci/mediatek*
- F:	drivers/pci/controller/*mediatek*
- 
-+PCIE DRIVER FOR MICROCHIP
-+M:	Daire McNamara <daire.mcnamara@microchip.com>
-+L:	linux-pci@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/pci/microchip*
-+F:	drivers/pci/controller/*microchip*
-+
- PCIE DRIVER FOR QUALCOMM MSM
- M:	Stanimir Varbanov <svarbanov@mm-sol.com>
- L:	linux-pci@vger.kernel.org
--- 
-2.25.1
+'reg' would just be for documentation ATM. However, if the subblock
+was reused on another chip, but at a different offset then reg would
+become useful. You could handle that with a fixed offset when 'reg' is
+missing, but adding it later would be too late.
 
+Rob
