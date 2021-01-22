@@ -2,80 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF1E300376
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 13:51:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1967B300393
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 13:59:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726672AbhAVMvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 07:51:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59158 "EHLO
+        id S1726633AbhAVM7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 07:59:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726160AbhAVMva (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 07:51:30 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DFB9C06174A
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 04:50:50 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id f17so6352999ljg.12
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 04:50:50 -0800 (PST)
+        with ESMTP id S1727470AbhAVM7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 07:59:19 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F894C061786
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 04:58:36 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id l12so3865855ljc.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 04:58:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=QO7Q+Bo33zbKnfaEHa+E7ZPJqNq7QkLPG7LoF8C4d3A=;
-        b=SL1MkqdG64CwdvkhfXYSrqOrM8jouPAzIskR9ioxGZEGYVr+LPhxO3T8H/nksBdLOb
-         CbIVcTHnzQh3T9v+a1Wjht2/fpG0vuMJT84bG0x32AYxuDxxwoeLBI+7l5dJTvabgc6a
-         XpjrEOUqSdNv6j4rWkEwkooIxq0NahTmHQe1is4N6EMrNJGy6L8Wy5cdcr5ksbl2TIeL
-         4Z5Vx51aSdIYZ4NFkqxkZfD9nOd624I+sv1rNq2JLm2BKioaHCOEhPIFCcXEukJNzbP+
-         8w5h6pR5T/OoSGb2mJZQgc3M4uorEtBFccLjjOxSqhm7zJf9TUr0R2hIW607eINllEdo
-         d0iw==
+        bh=4seuth170OHrpzcvrGxWNmFx5FHFxq8P84afz/6Z5Xo=;
+        b=HDnNK/PLHiVdfRkWV5yeyxOxcoyCn24hwPU4U5xCPwq9vE8u2n7RaykoB9INj9iET2
+         qUuiJw/ezJMAYKqwQ7h8IxlVNfZwDGlZZF6GpSe26TrDgk/w6HvHpeAWDxUbbe+E/xty
+         IP3BH3yzs6HK2qPiedEnoeSTrLmR1CdeJX7crvwKs2nTNUQGoeTHl0catxZTLfTkXsVO
+         Pda4DDu/6DrlmZtvXnU1vRjCKW/8QMLlU7aoEzt2FFKEwyeRxBe3+Eec4bzCujuiac+y
+         R0N+yTNXq7d2rzCjwGs9Ed3mh/bpNkyn7x+uz4CdUJEgwTkIsaF0BiCl9WNM0uZmSfN/
+         Popw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=QO7Q+Bo33zbKnfaEHa+E7ZPJqNq7QkLPG7LoF8C4d3A=;
-        b=Sfyi6VuwDmYeaY7tPE5xV6YSH0uRG3FxCEs6tryt6/LZAeO6a384J7fmbeLR6ZZ/kk
-         jS8D+V5YFnaMWwoo0WpkXFb2ixSygwqBy6lLHQbEmKeyB4ZN3B3cTbC9asZFwz4gCivx
-         IWCGW+YMRGpVwIReyDi6FABQpoHH1og4VhwiRbcsAgGeqVf3+tegpLr/WbEr1mDK6lZ3
-         TCdke/fVPjP3WKz+HuVClvqWs8ONcRAQ9vE4cySi7yw8S8SR+fMvMG65NvKFkADOiPce
-         kp9rF8muHEfslSv7XflZWhkJDdd+7JJm40YRMypVDK9l9Sd6tDoFnCGj4ZlOvzx/dtR5
-         uQww==
-X-Gm-Message-State: AOAM533qSPyzj4Q43TvrWVt71WVacln2Sq87xs37p+9U3/z47ERgKUiw
-        G6Ke6OPJlSdNP9SSmUl3+BSa78fyhpTAX07HT9UTVQVJuhanAQ==
-X-Google-Smtp-Source: ABdhPJzrQ3mW9M5Y//9pmvu5f6Du0SUf66RDCzTfz6ifwbqkhCcvEypYapctjRN3IVFznyLy+t5TLNmK8ZHFt3ytEWI=
-X-Received: by 2002:a2e:9dc3:: with SMTP id x3mr720600ljj.326.1611319848907;
- Fri, 22 Jan 2021 04:50:48 -0800 (PST)
+        bh=4seuth170OHrpzcvrGxWNmFx5FHFxq8P84afz/6Z5Xo=;
+        b=P+luFZF1rzv5pik+pH/6we2OO46gCJBfH9TBy7/CZK9ysGvAt1LxO1+iUDWyNqUFwW
+         YtxDtPhaTKUEDH+cmrpVAzW+v0E5OSa7Cnz+4W4Y2GwSSM8d+c7nbFrTx/qH6PHYrNO1
+         GSsl687igsKiGK+jrsd8ymXykbcTnIyyA1RVmmdm+j1FiVrRf/ByeR+Rkoe7xFrG6X4L
+         zc/CglOncODnbzR3K7HabotMqBIPb26oLuGOH6WVdJMjx0cRrTCrIR0hlPJmPDIp3ziF
+         mD9jjbxJxZosBuQlwGqPps/Cyv3GgcP9QciimDAjeGyTVc4gV3MpyoMjCg5lak5f5U8H
+         4IAw==
+X-Gm-Message-State: AOAM530mc1vqDTgj/Nei0U4B7HA6+vxF63ZJEqKqRsLpd5jtn9lawWlH
+        MR6q0Y+yohMJsZSQWLR/+yn48zAwaQMZaDK24EZAhQ==
+X-Google-Smtp-Source: ABdhPJzj59F+7XmvRLWmVdxewFMrw4mj2TMxm/ZMG2OB+xID5A+BKHAHHzn8FfIafN2lCelvrEVeOCnbUajF+SnUnUI=
+X-Received: by 2002:a05:651c:205b:: with SMTP id t27mr218754ljo.368.1611320314554;
+ Fri, 22 Jan 2021 04:58:34 -0800 (PST)
 MIME-Version: 1.0
-References: <1611034054-63867-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1611034054-63867-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-In-Reply-To: <1611034054-63867-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+References: <20210121225712.1118239-1-saravanak@google.com> <20210121225712.1118239-2-saravanak@google.com>
+In-Reply-To: <20210121225712.1118239-2-saravanak@google.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 22 Jan 2021 13:50:37 +0100
-Message-ID: <CACRpkdYH_ZdwF_aXTrp-5rYCifmHF2X8172513q9P+t4vy_RLg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] firmware: xilinx: Added pinctrl support
-To:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>
+Date:   Fri, 22 Jan 2021 13:58:23 +0100
+Message-ID: <CACRpkdbR+W_prw-ONbU90q2hYrm9vTvFUDXHCvtDcbdZ8UwXsg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] of: property: Add fw_devlink support for "gpio"
+ and "gpios" binding
+To:     Saravana Kannan <saravanak@google.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>, saikrishna12468@gmail.com
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 6:28 AM Sai Krishna Potthuri
-<lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
+On Thu, Jan 21, 2021 at 11:57 PM Saravana Kannan <saravanak@google.com> wrote:
 
-> Add pinctrl support to query platform specific information (pins)
-> from firmware.
+> To provide backward compatibility for boards that use deprecated DT
+> bindings, we need to add fw_devlink support for "gpio" and "gpios".
 >
-> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+> We also need to ignore these properties on nodes with "gpio-hog"
+> property because their gpio[s] are all supplied by the parent node.
+>
+> Cc: linux-tegra <linux-tegra@vger.kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+> Fixes: e590474768f1 ("driver core: Set fw_devlink=on by default")
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Thierry Reding <treding@nvidia.com>
+> Tested-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-I need an ACK from the maintainer of this file to merge it with the rest to
-the pinctrl tree. I suppose Michal?
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
