@@ -2,115 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60B532FFC08
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 06:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 089982FFBF9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 06:06:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726284AbhAVFSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 00:18:25 -0500
-Received: from bilbo.ozlabs.org ([203.11.71.1]:40069 "EHLO ozlabs.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726094AbhAVFSY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 00:18:24 -0500
-Received: by ozlabs.org (Postfix, from userid 1007)
-        id 4DMSFF71C7z9sCD; Fri, 22 Jan 2021 16:17:37 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-        d=gibson.dropbear.id.au; s=201602; t=1611292657;
-        bh=i1DcXl93lSfMMtoG7izlw54QZ4IZck6Ry2AtX9KRgPE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UqHqjq6bzprqJxazvkReHWJiX28Cvjf9bL2Tkb1UmszDRPFcWedidS77w6SzNYYol
-         Czjn/80/HCx9+bNPk2Zv97XxM9pP55kZlensX1RAXbej0VW32vwkecbTLIdV006nrK
-         Q1bdI0RA9r17bMKuKngrAzOgV+c0c5iy3pgjIszM=
-Date:   Fri, 22 Jan 2021 15:27:04 +1100
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
-Subject: Re: [PATCH V5 5/5] of: unittest: Statically apply overlays using
- fdtoverlay
-Message-ID: <20210122042704.GC4400@yekko.fritz.box>
-References: <cover.1611124778.git.viresh.kumar@linaro.org>
- <696c137461be8ec4395c733c559c269bb4ad586e.1611124778.git.viresh.kumar@linaro.org>
- <20210121005145.GF5174@yekko.fritz.box>
- <7d6adfd9-da1e-d4ca-3a04-b192f0cf36b0@gmail.com>
- <20210121053426.4dw5oqz7qb4y7hvm@vireshk-i7>
- <20210121063438.GJ5174@yekko.fritz.box>
- <20210121065728.trqph5uwvp43k46l@vireshk-i7>
- <20210121233957.GA4400@yekko.fritz.box>
- <20210122031049.u3nmxxzzhue5rniu@vireshk-i7>
+        id S1726248AbhAVFGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 00:06:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725468AbhAVFGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 00:06:08 -0500
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96872C06174A;
+        Thu, 21 Jan 2021 21:05:28 -0800 (PST)
+Received: by mail-io1-xd2a.google.com with SMTP id q1so8750706ion.8;
+        Thu, 21 Jan 2021 21:05:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lahaIHRrNL60/+aroPUgLnMzQ3P0dsmaC2hv6/9gxHU=;
+        b=BQ3fIhHlZuIGRLHUfcLCGcr6PzwzB1+PdSfEhs6JHS39XN36Gyglz21sz6dBS0MPUY
+         EBJIgjuizVnuj3QN+sNHqzj4Am7h3SeAzJ1ZNe3f0PRq2/jTgzFfsjgV3PGADaX5jFVN
+         tcIZj58eMWKvBLARyElMI9OLQd5lSkrZG5Ac1pFjkreMxmWbNFU9pevjGXT7El1okbTD
+         lmSN9YucSAhccv8vvQCfv5lun5VLrcHMZ3JU09oRTH7b1Q0a2RTGzobfhDlEc/KNShmA
+         vg9sfpId1aR0V0Ur9HlI+GjumfYx+u/u8CLVzFuL0XQffg8bmVgJngFVNNej0KvEgyWx
+         kqDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lahaIHRrNL60/+aroPUgLnMzQ3P0dsmaC2hv6/9gxHU=;
+        b=SmAe0Xlp6W+UMafDB8teSUYHlaT/WNnreCYbO2o4jwB3ZgbX7q7K52aKwPPxvJkGhI
+         Yl0jg8/cMsJSXCjNjnr6LH5f8WzXX4B80xvmuHcsHX+ggV/y9z0zwrJm+FxtfIVxGTTj
+         /HmeoxfK9lIR+Upmk2OyWiHFAEDlW8tbI2Kt9xIXPXIMJ+gXlx2xr/UKKKJe2on15RXO
+         ctFeUNJSgvL3w4DNjCSl8SB7P8ONEtRb/DRa78QiRepsQI+8L0OpOujafqL/5aTbEdDU
+         ynM3bahPE38klc41IbspWJqQ8h14th+0MSKeVPVXFuGqhc/v41aTIytAuAP2adlI3Iqa
+         3kCw==
+X-Gm-Message-State: AOAM5328B8y+LVVSxngdNtfaBXz84GQHKbIrPiJa3sXAwP9+KyeTFLNf
+        mIx7XqPGQn6LiEX/9Yu61B+tzVsIPNDscjyvvrg=
+X-Google-Smtp-Source: ABdhPJyIRCQ3wHacOdebj1xQyQi0f3EALmC62NZRM5UngeLXChYpf+8EkG+gVLTRNhYpljSsdwCf5F6KA2BgoxXR8u4=
+X-Received: by 2002:a5e:850b:: with SMTP id i11mr2216317ioj.42.1611291928082;
+ Thu, 21 Jan 2021 21:05:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="CblX+4bnyfN0pR09"
-Content-Disposition: inline
-In-Reply-To: <20210122031049.u3nmxxzzhue5rniu@vireshk-i7>
+References: <20210117042539.1609-1-alistair@alistair23.me> <20210117042539.1609-3-alistair@alistair23.me>
+ <20210118123519.GF4455@sirena.org.uk> <20210118124213.GA10975@sirena.org.uk>
+In-Reply-To: <20210118124213.GA10975@sirena.org.uk>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Thu, 21 Jan 2021 21:05:02 -0800
+Message-ID: <CAKmqyKNNMgY=qR0gGnffXhuTD+ekQjmvqXMbrTu7O4CMX95P4A@mail.gmail.com>
+Subject: Re: [PATCH 3/6] devicetree/bindings: Initial commit of silergy,sy7636a-regulator.yaml
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Alistair Francis <alistair@alistair23.me>, lee.jones@linaro.org,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jan 18, 2021 at 4:42 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Mon, Jan 18, 2021 at 12:35:19PM +0000, Mark Brown wrote:
+> > On Sat, Jan 16, 2021 at 08:25:36PM -0800, Alistair Francis wrote:
+>
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - sy7636a-regulator
+>
+> > Compatible strings should be in the form vendor,device.
+>
+> You should not have separate binding documents for MFD subfunctions that
+> don't have separate compatible strings in DT, include the documentation
+> for the properties used by those subfunctions in the main MFD binding
+> document.
 
---CblX+4bnyfN0pR09
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for the review. I have updated the patch and will send a v2.
 
-On Fri, Jan 22, 2021 at 08:40:49AM +0530, Viresh Kumar wrote:
-> On 22-01-21, 10:39, David Gibson wrote:
-> > No, it definitely will not work in general.  It might kinda work in a
-> > few trivial cases, but it absolutely will not do the neccessary
-> > handling in some cases.
-> >=20
-> > > I
-> > > did inspect the output dtb (made by merging two overlays) using
-> > > fdtdump and it looked okay.
-> >=20
-> > Ok.. but if you're using these bizarre messed up "dtbs" that this test
-> > code seems to be, I don't really trust that tells you much.
->=20
-> I only looked if the changes from the second overlay were present in
-> the merge and they were. And so I assumed that it must have worked.
->=20
-> What about checking the base dtb for /plugin/; in fdtoverlay and fail
-> the whole thing in case it is present ? I think it is possible for
-> people to get confused otherwise, like I did.
-
-/plugin/ doesn't exist in the dtb, only in the dts.  From the dtb
-encoding point of view, there's no difference between a dtb and a
-dtbo, a dtbo is just a dtb that follows some conventions for its
-content.
-
-If we were doing this from scratch, it would be better for dtbos to
-have a different magic number from regular dtbs.  I think I actually
-suggested that sometime in the past, but by the time that came up,
-dtbos were already in pretty widespread use with the existing format.
-
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
-
---CblX+4bnyfN0pR09
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmAKVBYACgkQbDjKyiDZ
-s5KBwBAAhmYCf1xBVR2o9aVhiRoPo6T65geIcthIYGsA07vLvsabGOHv+F5LemnK
-lHpfG9C1SFrkrpI1Eb/Es1cRTX66p+Ih3CJTjCcjuPlLBrRJo/x3d4SvgbyLz0pJ
-jW/BjU2ft5DJHC8fZX2q0jSXULR4yw1Uyme6v0X5kXjHbvRfyCUd4pDwb+pQRWjG
-7bwYQgDadQ8z0JS2N7IH93vdZdj0mYEjVsVBctebglTqE6O13xdWdkSunTcvRWhf
-XUtWbCoiCCJ5qZn7Wr7vrcS+fBagJZSyE6rAVCcDXIbuu1iV2tN4hlM+9j7pft/J
-ddMGaObnk6cXunLlhUu5Kd+ELBy7A1k9BlVLE6ssgArJ3P39vYke6ZhjapFM0Vdq
-FEEivxZ9SAx527O+lzAIkOWAWH7ilfY3R3jYF/5lpThQ+DSYUdsQJshocTzaM1jr
-yQAhjoKgjJ1bVh5cuRd857pnkclpwotIVoVNblFtfAswj1VKDKRx01gWRhrHXsdP
-nQ2U05uSTYBA7S+N5gB1geQeNyIsQWq7fQkizaIB4NTsso8OrxOUN5VHcK2AJSTF
-8XMyUVbx2efitQDi8RmJjlUG+h7/hVk/vO9ODz42CYSPFGKUDmDS7xc0Yg9xnunZ
-OPbFVKJUTqEkY03S1Iw7OT50w5RJnTfIliLjE7uarzyiUQ2Y7m0=
-=B+Jq
------END PGP SIGNATURE-----
-
---CblX+4bnyfN0pR09--
+Alistair
