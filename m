@@ -2,99 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF5202FFADA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 04:12:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2011E2FFB05
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 04:27:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726691AbhAVDLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 22:11:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47414 "EHLO
+        id S1726292AbhAVD0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 22:26:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726683AbhAVDLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 22:11:33 -0500
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E7AAC061756
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 19:10:52 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id b5so2970128pjl.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 19:10:52 -0800 (PST)
+        with ESMTP id S1726264AbhAVD0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 22:26:40 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A23DBC0613D6
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 19:25:59 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id 11so2814280pfu.4
+        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 19:25:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=HzV/QdB1V+22ttG1OqjI8H9Tv8gExB2vH6oIJa3FoFY=;
-        b=qBVEYUC2QwHEXoHH4XoAKIYeFzFwY3IxEIj/cKU9a4JMIxEQ+9psf1z2oWK5uTHnao
-         2nC17bLd/zkImx6/h/9NJn9ak/jpmeiSi5N7DUYEiIxOt7u3SIlQFi9XfAFEc1pzQpnA
-         Ftk4YLbQfJ0f/iQf6LFokQLUdTYEg7dRNSMtqYRP9oY+Vz7iFM+ajymInLTjxWh0HKlG
-         ZHwOckX3v0LFStvxpWmnBz9Lfj/2Qy0Tab21YjueH6NS1pTaXcM7Idlnw2WGAu//cHQp
-         fahaARgNx0C4Om4tp9DaV63uuWSNzqJETVmtOZ/ySUWqJZaqZJFA1aPROVplo+3SYPOv
-         rUgA==
+        d=google.com; s=20161025;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Gsjy534BQS56SU6SeFB/WjmC/NWzmnXhGpzGJe7xB60=;
+        b=SG2JTRlpXpM4jYWnQLSpXSQqE1+M9/S0sKrdBaso1OszGUCKVrQPawHx1rQXdi28e/
+         QvnG3RO7Y6iSNHtt7uaomykbpXiMdzyQJuvCqTRaj1qwFwwbcM/eMz2Q6pSeJmWeEna8
+         LGe8DTS2wY1zx8ShTQSiqiJYutZx42G2Jo9R0WrJynYvRfrfTtIAIQrx/x9NVCJ9FrAZ
+         p3COnS7W/dv8Y6AIxI2qybJGS3SM0C3lM6JOGNHG/JVTZBEr6LI1zdMjPqAKvgSKsjYg
+         +nNccJ4jfcIyegU+I8KMgRhIx2B7LkAQPvWcy4t26jkVv8jPrdmrmtpcj6KKH0dQ0DUS
+         UbwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=HzV/QdB1V+22ttG1OqjI8H9Tv8gExB2vH6oIJa3FoFY=;
-        b=GPF+e8ehR0jZziqxG94TBs7pKSvw5sDmP8ElJhMna3AULPOYNILNNjOUU/XSt743xh
-         PAjpN4Q5kpJu47vMfJf5zpzJ+ldOFauE9mSpuNe+N/gVpJc2eqPyCuxEaCcEAEKn2r/D
-         8Nn7M+NokPGMtu6lNE4S2ddAC+OKU7dBHMFk8CR2htgpM4/k6N0RZkqGim7Oz15luD6I
-         +zuKIMR8WhZYHUHBXB9t3SOguzlbU7l4lhjefAWwZOXZEHOXl8yp20OBYvpZC551zzR1
-         ALIFKZpMzT7JlaM4FmCmYFayPUxGESd+mnE8W3XNkkh7w0lAnkHBzdFtrAaDSg5SEx6e
-         xStA==
-X-Gm-Message-State: AOAM530BlH0JusgUjofatOCdM+gGSceNu6KRY5IaHCG/liGQGk/1e8Sx
-        jkep9szL/PBELjX4X+zErlExq/uepTA9/Q==
-X-Google-Smtp-Source: ABdhPJyupWax8WdpNUqEY+LgYIg8eTFUoGEKXp2u/aQpkUNNACz6Jd/SEr0jElZEhM/Z6cuvozCB8A==
-X-Received: by 2002:a17:90a:ae07:: with SMTP id t7mr2719959pjq.115.1611285052073;
-        Thu, 21 Jan 2021 19:10:52 -0800 (PST)
-Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id f29sm6715389pgm.76.2021.01.21.19.10.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 21 Jan 2021 19:10:51 -0800 (PST)
-Date:   Fri, 22 Jan 2021 08:40:49 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     David Gibson <david@gibson.dropbear.id.au>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
-Subject: Re: [PATCH V5 5/5] of: unittest: Statically apply overlays using
- fdtoverlay
-Message-ID: <20210122031049.u3nmxxzzhue5rniu@vireshk-i7>
-References: <cover.1611124778.git.viresh.kumar@linaro.org>
- <696c137461be8ec4395c733c559c269bb4ad586e.1611124778.git.viresh.kumar@linaro.org>
- <20210121005145.GF5174@yekko.fritz.box>
- <7d6adfd9-da1e-d4ca-3a04-b192f0cf36b0@gmail.com>
- <20210121053426.4dw5oqz7qb4y7hvm@vireshk-i7>
- <20210121063438.GJ5174@yekko.fritz.box>
- <20210121065728.trqph5uwvp43k46l@vireshk-i7>
- <20210121233957.GA4400@yekko.fritz.box>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210121233957.GA4400@yekko.fritz.box>
-User-Agent: NeoMutt/20180716-391-311a52
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=Gsjy534BQS56SU6SeFB/WjmC/NWzmnXhGpzGJe7xB60=;
+        b=YuSwYTs768s3DxDCni01axrSd2CQy5+NN6r23/n69VLGdinQJ1/0R5kvra+acPuxvF
+         FuWr3PgqVq2w91jWUEuTB4VpKOhqUD2QVr+YHDZZGs1sZgY34LeR0dDcuJDcKi/t9G+7
+         DH5zKIB8yQ1qNGbaR4d0Rlj+xTtkyYWU2WXANsNKeC3AgNG9FZx4jgXe8jgX0dmGdH3q
+         JJWAAHymaSQIuZ+M8/IQ5RyisaoJV4RHh3FWT/x1cy+3TBmvnWSOR8TOl/4yJkNbVaRg
+         8YmlZgr6PsBpJwqV/8U2zMSEySa1mwDPscwIyHcTeBlKYcpbxI/4CsZrwM3jf0at44yH
+         VhSQ==
+X-Gm-Message-State: AOAM533ijBHJCeSKTwfaN72KbxOqQx0fOeV/e2RRIoaTkMtB6ETjOl3v
+        ohwEah39Ejqa6PrYIubA8I4Dwg==
+X-Google-Smtp-Source: ABdhPJzv+pZUIoh5eVCAREqwtrXilW4g0JNeb6u7OH+Lq191AYyMZ4OmtpuMycM9Wqk4ungdHbcaxw==
+X-Received: by 2002:a62:ddcf:0:b029:1b7:baca:6c71 with SMTP id w198-20020a62ddcf0000b02901b7baca6c71mr2734869pff.43.1611285958914;
+        Thu, 21 Jan 2021 19:25:58 -0800 (PST)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id c11sm7153264pjv.3.2021.01.21.19.25.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jan 2021 19:25:58 -0800 (PST)
+Date:   Thu, 21 Jan 2021 19:25:58 -0800 (PST)
+X-Google-Original-Date: Thu, 21 Jan 2021 19:23:53 PST (-0800)
+Subject:     Re: [PATCH v3] riscv: add BUILTIN_DTB support for MMU-enabled targets
+In-Reply-To: <20210115234947.44014-1-vitaly.wool@konsulko.com>
+CC:     linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        anup@brainfault.org, Damien Le Moal <Damien.LeMoal@wdc.com>,
+        devicetree@vger.kernel.org, vitaly.wool@konsulko.com
+From:   Palmer Dabbelt <palmerdabbelt@google.com>
+To:     vitaly.wool@konsulko.com
+Message-ID: <mhng-44310bfb-e106-449b-830c-78b5e140fadb@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-01-21, 10:39, David Gibson wrote:
-> No, it definitely will not work in general.  It might kinda work in a
-> few trivial cases, but it absolutely will not do the neccessary
-> handling in some cases.
-> 
-> > I
-> > did inspect the output dtb (made by merging two overlays) using
-> > fdtdump and it looked okay.
-> 
-> Ok.. but if you're using these bizarre messed up "dtbs" that this test
-> code seems to be, I don't really trust that tells you much.
+On Fri, 15 Jan 2021 15:49:48 PST (-0800), vitaly.wool@konsulko.com wrote:
+> Sometimes, especially in a production system we may not want to
+> use a "smart bootloader" like u-boot to load kernel, ramdisk and
+> device tree from a filesystem on eMMC, but rather load the kernel
+> from a NAND partition and just run it as soon as we can, and in
+> this case it is convenient to have device tree compiled into the
+> kernel binary. Since this case is not limited to MMU-less systems,
+> let's support it for these which have MMU enabled too.
+>
+> While at it, provide __dtb_start as a parameter to setup_vm() in
+> BUILTIN_DTB case, so we don't have to duplicate BUILTIN_DTB specific
+> processing in MMU-enabled and MMU-disabled versions of setup_vm().
+>
+> Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
+> ---
+> Changes from v2:
+> * folded "RISC-V: simplify BUILTIN_DTB processing" patch
+> [http://lists.infradead.org/pipermail/linux-riscv/2021-January/004153.html]
+> Changes from v1:
+> * no direct initial_boot_params assignment
+> * skips the temporary mapping for DT if BUILTIN_DTB=y
+>
+>  arch/riscv/Kconfig       |  1 -
+>  arch/riscv/kernel/head.S |  4 ++++
+>  arch/riscv/mm/init.c     | 19 +++++++++++++------
+>  3 files changed, 17 insertions(+), 7 deletions(-)
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 2ef05ef921b5..444a1ed1e847 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -445,7 +445,6 @@ endmenu
+>
+>  config BUILTIN_DTB
+>  	def_bool n
+> -	depends on RISCV_M_MODE
+>  	depends on OF
+>
+>  menu "Power management options"
+> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
+> index 16e9941900c4..f5a9bad86e58 100644
+> --- a/arch/riscv/kernel/head.S
+> +++ b/arch/riscv/kernel/head.S
+> @@ -260,7 +260,11 @@ clear_bss_done:
+>
+>  	/* Initialize page tables and relocate to virtual addresses */
+>  	la sp, init_thread_union + THREAD_SIZE
+> +#ifdef CONFIG_BUILTIN_DTB
+> +	la a0, __dtb_start
+> +#else
+>  	mv a0, s1
+> +#endif /* CONFIG_BUILTIN_DTB */
+>  	call setup_vm
+>  #ifdef CONFIG_MMU
+>  	la a0, early_pg_dir
+> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> index 30b61f2c6b87..45faad7c4291 100644
+> --- a/arch/riscv/mm/init.c
+> +++ b/arch/riscv/mm/init.c
+> @@ -192,10 +192,13 @@ void __init setup_bootmem(void)
+>  #endif /* CONFIG_BLK_DEV_INITRD */
+>
+>  	/*
+> -	 * Avoid using early_init_fdt_reserve_self() since __pa() does
+> +	 * If DTB is built in, no need to reserve its memblock.
+> +	 * Otherwise, do reserve it but avoid using
+> +	 * early_init_fdt_reserve_self() since __pa() does
+>  	 * not work for DTB pointers that are fixmap addresses
+>  	 */
+> -	memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
+> +	if (!IS_ENABLED(CONFIG_BUILTIN_DTB))
+> +		memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
+>
+>  	early_init_fdt_scan_reserved_mem();
+>  	dma_contiguous_reserve(dma32_phys_limit);
+> @@ -499,6 +502,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>  	/* Setup early PMD for DTB */
+>  	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
+>  			   (uintptr_t)early_dtb_pmd, PGDIR_SIZE, PAGE_TABLE);
+> +#ifndef CONFIG_BUILTIN_DTB
+>  	/* Create two consecutive PMD mappings for FDT early scan */
+>  	pa = dtb_pa & ~(PMD_SIZE - 1);
+>  	create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA,
+> @@ -506,7 +510,11 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>  	create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA + PMD_SIZE,
+>  			   pa + PMD_SIZE, PMD_SIZE, PAGE_KERNEL);
+>  	dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PMD_SIZE - 1));
+> +#else /* CONFIG_BUILTIN_DTB */
+> +	dtb_early_va = __va(dtb_pa);
+> +#endif /* CONFIG_BUILTIN_DTB */
+>  #else
+> +#ifndef CONFIG_BUILTIN_DTB
+>  	/* Create two consecutive PGD mappings for FDT early scan */
+>  	pa = dtb_pa & ~(PGDIR_SIZE - 1);
+>  	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
+> @@ -514,6 +522,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>  	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA + PGDIR_SIZE,
+>  			   pa + PGDIR_SIZE, PGDIR_SIZE, PAGE_KERNEL);
+>  	dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PGDIR_SIZE - 1));
+> +#else /* CONFIG_BUILTIN_DTB */
+> +	dtb_early_va = __va(dtb_pa);
+> +#endif /* CONFIG_BUILTIN_DTB */
+>  #endif
+>  	dtb_early_pa = dtb_pa;
+>
+> @@ -604,11 +615,7 @@ static void __init setup_vm_final(void)
+>  #else
+>  asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+>  {
+> -#ifdef CONFIG_BUILTIN_DTB
+> -	dtb_early_va = (void *) __dtb_start;
+> -#else
+>  	dtb_early_va = (void *)dtb_pa;
+> -#endif
+>  	dtb_early_pa = dtb_pa;
+>  }
 
-I only looked if the changes from the second overlay were present in
-the merge and they were. And so I assumed that it must have worked.
-
-What about checking the base dtb for /plugin/; in fdtoverlay and fail
-the whole thing in case it is present ? I think it is possible for
-people to get confused otherwise, like I did.
-
--- 
-viresh
+Thanks, this is on for-next.
