@@ -2,71 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E81B3006B7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:10:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FBBC30074D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:30:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728807AbhAVPIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 10:08:46 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:34563 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728580AbhAVPG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 10:06:59 -0500
-Received: by mail-oi1-f179.google.com with SMTP id h192so6300010oib.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 07:06:44 -0800 (PST)
+        id S1728976AbhAVP2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 10:28:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728822AbhAVP2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 10:28:36 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E67FC06174A
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 07:27:55 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id b5so5450005wrr.10
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 07:27:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=VGeW9EARaoJCpPpoau57S098VzTUAKw4Gh0s4w2uBRw=;
+        b=LCgQySMGrcqfO061iCqVejbCMPpFXQ2o/6PkmCcMBoZ/CBRvYO2TlLOYdlFtIt0lr9
+         Z/5R8IiQYbTmWus1WpUbDRtBUl6+cqjQSeV3/mUr/4vbeXWYjnRXkyJqBw584E7C8qRN
+         1/mEWLsQ/0FIkHQRRk3e0w8D9tcnTkIcJTMUipnDEcD7QCzZsVcvYoAmmaWYa8XhF2+d
+         /7vWT3tDirfT2SPsNLcP+7pglO/LuUK2HN+UEws5u1YvPb9DPlpP0JbUwKNS6I15eNft
+         iil9Q4opl5uHz6p8nqVg8PA+yBiYhwOcMZFenAZE7I4gpfzl6CUHFej9H+s7AeBprXz4
+         xZgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=a+tNIRPFsQZNo0iJpQuhv55n/0RmSsDH8TXaDaa4xLk=;
-        b=Zz7dvRnHGqhVhG4+UovuC2bbvnyE3B+TWjiDssn7q5WDIxEpRPJVlFw0NL6o5h4hkj
-         Sm/97TqTOZWpnfR/bZ9fPvD5AWM7org3UEvrplBLO9NGwl+exq97Z+Hk49j91tZ5qEz1
-         1R36jBdUd9MlgR0exGpRz53aVFk2R3kqxepg9yS5NjiebemUf9MDPcdByWxWozxjrfk/
-         EUujW6yEcvDL7WLY/bwNHMnsuC7+flZ4HG5MH7n2GmhTgvNxfgl6x8nBkXnMAMkBDSe7
-         X1zibUKfrWuFvgjtzaGXUbOgqYZOT0GpfDPqJotRS3oEpLc1A0OnnkP7XkVRpxVtikFZ
-         0lXQ==
-X-Gm-Message-State: AOAM531ZeUbqsb3SDncfpyqkjmbu4kcFDnC0s7s/KUyUlQfu9nDnKnXM
-        kceH+1kzwmIztKYwb0nW0AYt+wIwfQ==
-X-Google-Smtp-Source: ABdhPJzr/xDORwzWodRvwYpOAr5mW3eIufe+a+D0WslquHp50TAZWeIpBw3IeBAgAhoX/1hhqBjiyA==
-X-Received: by 2002:aca:cc03:: with SMTP id c3mr3354569oig.137.1611327978719;
-        Fri, 22 Jan 2021 07:06:18 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i126sm1717121oif.22.2021.01.22.07.06.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jan 2021 07:06:17 -0800 (PST)
-Received: (nullmailer pid 788624 invoked by uid 1000);
-        Fri, 22 Jan 2021 15:06:15 -0000
-Date:   Fri, 22 Jan 2021 09:06:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: Re: [PATCH v3 0/3] dt-bindings: display: Convert mxsfb DT bindings
- to YAML
-Message-ID: <20210122150615.GA750442@robh.at.kernel.org>
-References: <20210115222304.5427-1-laurent.pinchart@ideasonboard.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=VGeW9EARaoJCpPpoau57S098VzTUAKw4Gh0s4w2uBRw=;
+        b=uQdZlJZngarK+5RQs9FgvyOEhj/zW4AvlGHgLtl/mOU+GlGcBy7FfOgaOtIEaZEhvx
+         Iyy8LpxHxWeoA6x1FnGEC5AinlssuCsxdv1nrdo2y10ui0v+h/Zgk5b6bp/SXtoS2y6Q
+         xrWW2OL1whFHs58ahrqjjJwT7xValbaTHCdrTWGf/vgrr9YF1eTRWD4MUA+/XMHC/BCq
+         zp7EG6M5MIb5Hhcr8mReu9O6xVfb2Fg+B2DoLiW6VwM1YaBM4eNttkzHHp0wS0o8Ykub
+         lZQirhWBicBQ6Sdwo2KxW75aSLLXeu/CFItg3UXqCKHzue7LDO2m7Ceh9+FT5g2dUiKn
+         xqiQ==
+X-Gm-Message-State: AOAM531IUmUdyPSCTq+Y6ErVFRsDgosfA9iV8JUsh5o6crC4vYSJWiNG
+        YFyRWzhOHPTWr95L3UGypdminUXJU4NdjQ==
+X-Google-Smtp-Source: ABdhPJy3A+p+2NUo2ofccX8Pbxyvfw+mH50UN0umZAvck0PU8OJhNu/uj3T1n9PrBF16AfBNTkBVZw==
+X-Received: by 2002:adf:ee09:: with SMTP id y9mr5054851wrn.74.1611329274055;
+        Fri, 22 Jan 2021 07:27:54 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id r12sm859015wrp.13.2021.01.22.07.27.52
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 22 Jan 2021 07:27:53 -0800 (PST)
+Subject: Re: [PATCH v4] nvmem: core: skip child nodes not matching binding
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Kamel Bouhara <kamel.bouhara@bootlin.com>, ceggers@arri.de,
+        kernel@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210118132411.6268-1-a.fatoum@pengutronix.de>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <6b90cdd0-a710-943d-b444-f7ae44c5875b@linaro.org>
+Date:   Fri, 22 Jan 2021 15:27:52 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210115222304.5427-1-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20210118132411.6268-1-a.fatoum@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 16, 2021 at 12:23:01AM +0200, Laurent Pinchart wrote:
-> Hello,
-> 
-> This patch series has previously been posted as part of "[PATCH v2 0/7]
-> drm: mxsfb: Allow overriding bus width". I've split the DT bindings
-> conversion to a separate series as I believe they're ready, and Martin
-> has a patch that he would like to submit to the bindings.
-> 
-> All the patches have been acked, and changes to v2 are minor. Rob, could
-> you take this through your tree ?
 
-Better to go thru drm-misc-next given other changes coming, so I applied 
-the series there.
 
-Rob
+On 18/01/2021 13:24, Ahmad Fatoum wrote:
+> The nvmem cell binding applies to all eeprom child nodes matching
+> "^.*@[0-9a-f]+$" without taking a compatible into account.
+> 
+> Linux drivers, like at24, are even more extensive and assume
+> _all_ at24 eeprom child nodes to be nvmem cells since e888d445ac33
+> ("nvmem: resolve cells from DT at registration time").
+> 
+> Since df5f3b6f5357 ("dt-bindings: nvmem: stm32: new property for
+> data access"), the additionalProperties: True means it's Ok to have
+> other properties as long as they don't match "^.*@[0-9a-f]+$".
+> 
+> The barebox bootloader extends the MTD partitions binding to
+> EEPROM and can fix up following device tree node:
+> 
+>    &eeprom {
+>      partitions {
+>        compatible = "fixed-partitions";
+>      };
+>    };
+> 
+> This is allowed binding-wise, but drivers using nvmem_register()
+> like at24 will fail to parse because the function expects all child
+> nodes to have a reg property present. This results in the whole
+> EEPROM driver probe failing despite the device tree being correct.
+> 
+> Fix this by skipping nodes lacking a reg property instead of
+> returning an error. This effectively makes the drivers adhere
+> to the binding because all nodes with a unit address must have
+> a reg property and vice versa.
+> 
+> Fixes: e888d445ac33 ("nvmem: resolve cells from DT at registration time").
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> 
+> ---
+> Previous Discussion: https://lore.kernel.org/lkml/20200428111829.2215-1-a.fatoum@pengutronix.de/
+> v1:
+>    - Ignore all nodes with a unit address (i.e. contain @)
+> v1 -> v2:
+>    - use ->full_name instead of ->name as to not break existing correct
+>      cells (Christian)
+> v2 -> v3:
+>    - use optional compatible property to weed out nodes instead of name
+>    - extend binding documentation (Srini)
+> v3 -> v4:
+>    - drop optional nvmem-cell compatible because it's redundant (Rob)
+>    - Make driver adhere to binding instead of changing binding
+> 
+> As review feedback on v3, Rob suggested moving nvmem cells into a
+> separate MTD partition. This sound good for people who want MTD
+> partitions and nvmem to coexist, but my problem described above where
+> MTD partitions are already fixed up top level into an EEPROM node isn't
+> solved by this. Revisiting the issue, I think the correct way forward is
+> along the lines of v1 & v2, where the driver is fixed to actually adhere
+> to the existing binding. Srini didn't like string matching for @ in driver
+> code, so I now check for presence of reg instead. They are equivalent
+> per device tree specification. From v0.3:
+> 
+>    "The unit-address must match the first address specified in the
+>    reg property of the node. If the node has no reg property, the
+>    @unit-address must be omitted"...
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+>   drivers/nvmem/core.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+
+
+Applied thanks,
+
+--srini
+
+> 
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index 177f5bf27c6d..f114df55f403 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -682,7 +682,9 @@ static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
+>   
+>   	for_each_child_of_node(parent, child) {
+>   		addr = of_get_property(child, "reg", &len);
+> -		if (!addr || (len < 2 * sizeof(u32))) {
+> +		if (!addr)
+> +			continue;
+> +		if (len < 2 * sizeof(u32)) {
+>   			dev_err(dev, "nvmem: invalid reg on %pOF\n", child);
+>   			return -EINVAL;
+>   		}
+> 
