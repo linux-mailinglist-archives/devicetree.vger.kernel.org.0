@@ -2,74 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C81300039
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 11:28:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9E58300062
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 11:37:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727571AbhAVK0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 05:26:50 -0500
-Received: from mail-qk1-f173.google.com ([209.85.222.173]:37384 "EHLO
-        mail-qk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727973AbhAVKYk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 05:24:40 -0500
-Received: by mail-qk1-f173.google.com with SMTP id h22so4606431qkk.4;
-        Fri, 22 Jan 2021 02:24:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=D4xyWvJd0WQhoba1JvK+CVM+ObhZqX1GLAzkWEi51KY=;
-        b=ZzsPuZAj4hAKu4/zWg/6ti+jIDO7hGsh/5ST+AwExtpH7/KHruDIjDlpw3gae7h7P/
-         OKKIdBE1iYZze75GOfPWOZjfQSn9vA4/8yuJcodKCA4tkZabYJOXRVH/T/Qp8nKnltG1
-         jOZu51woZ9T30S7YtZcg0dK3O7Aw2OlzyYl8Byz6eP00tOVdrmn3O3dqCjA4Eu4JLwaN
-         zibt3YQA6ZWL0NlNKaGnX4fJd+U6RgEBWnacQHc3fkfTcgAyF1C8IIn0VVrKTayi0E3p
-         47QzD85nrU05CDUp6cFup14TtNcbWQBFlL3MN0fiuOCPk3G6H2pyLErttvoR3EGsd1I4
-         6MpA==
-X-Gm-Message-State: AOAM532J3MZBP1j6MGStqh5B777A8yL5E1aV8wL1G6MfDdziBcYHA5mS
-        wScZPEBTtqJu5riQ02N8vc9PrZyGroHVPF8yqSI=
-X-Google-Smtp-Source: ABdhPJxP8xuLCKDXPGjecsOw3R++y/Dp+lR7nxfBpnjyU1JcsmSF4+wwAvijTtYt9nn7d7OqTw7cQbLS+PXPW3H+bD8=
-X-Received: by 2002:a37:4c88:: with SMTP id z130mr4041558qka.122.1611311038016;
- Fri, 22 Jan 2021 02:23:58 -0800 (PST)
+        id S1726904AbhAVK0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 05:26:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45052 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727648AbhAVJer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 04:34:47 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 287AAC061794
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 01:34:07 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l2spM-0003Hq-IH; Fri, 22 Jan 2021 10:34:00 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l2spL-000478-PY; Fri, 22 Jan 2021 10:33:59 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: counter: add gpio-pulse-counter binding
+Date:   Fri, 22 Jan 2021 10:33:56 +0100
+Message-Id: <20210122093357.15750-2-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210122093357.15750-1-o.rempel@pengutronix.de>
+References: <20210122093357.15750-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-References: <20210121100619.5653-1-wsa+renesas@sang-engineering.com> <20210121100619.5653-5-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20210121100619.5653-5-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 22 Jan 2021 11:23:46 +0100
-Message-ID: <CAMuHMdWTi2_oCbpxewVBzr1fsva1voC9PNE5SU=Y80spgyMcDQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] arm64: dts: renesas: falcon: Add Ethernet-AVB0 support
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 11:06 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
-> Change since v1:
->
-> * removed avb1-5 which couldn't be tested
-> * added alias for avb0 so firmware can add MAC address
-> * added custom tx-internal-delay-ps
-> * dropped '_tx' suffix from 'pins_mii' config
-> * moved entries to Falcon CPU dtsi
+Add binding for GPIO based pulse counter node
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.12.
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ .../bindings/counter/gpio-pulse-counter.yaml  | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/counter/gpio-pulse-counter.yaml
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/counter/gpio-pulse-counter.yaml b/Documentation/devicetree/bindings/counter/gpio-pulse-counter.yaml
+new file mode 100644
+index 000000000000..dfa93956f15c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/counter/gpio-pulse-counter.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/counter/gpio-pulse-counter.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO base pulse counter
++
++maintainers:
++  - Oleksij Rempel <o.rempel@pengutronix.de>
++
++properties:
++  compatible:
++    const: virtual,gpio-pulse-counter
++
++  gpios:
++    maxItems: 1
++
++required:
++  - gpios
++
++additionalProperties: false
++
++examples:
++  - |
++
++    #include <dt-bindings/gpio/gpio.h>
++
++    counter-0 {
++        compatible = "virtual,gpio-pulse-counter";
++        gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
++    };
++
++    counter-1 {
++        compatible = "virtual,gpio-pulse-counter";
++        gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
++    };
++
++...
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
