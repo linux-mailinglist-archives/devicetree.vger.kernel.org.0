@@ -2,206 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD4772FFCB1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 07:28:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 655E12FFCC8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 07:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726791AbhAVGZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 01:25:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60678 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726525AbhAVGZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 01:25:18 -0500
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A6EC06174A;
-        Thu, 21 Jan 2021 22:24:38 -0800 (PST)
-Received: by mail-io1-xd30.google.com with SMTP id n2so9021822iom.7;
-        Thu, 21 Jan 2021 22:24:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=A/ouGLWd79J95AmhZ3hY8iaM6/NouWMMdBryf01BORc=;
-        b=RXFwy0WF/4kocTU07A5dF5GGXbJz3CjLlvt61D+pzNFK3I/C+br6ZXBFJ8cWlT2l9m
-         /P9+H0hEiMm+CBClCPtVzobsEiga0u/FR9DfeM9as6FgSPrW55e57feCn0X7EcdEl+oX
-         v9R+Pw7yrWimMPyrstkAtk/z0XuXUwCER9hg6Px0nkBBPoxSR3OMDRorvwTC2mzwXqCI
-         Byw8s8EVw9bTr3Fn6D7rZ2JXMP5bH/glwce/aIuRuhUgjWElkvyo+YVJx6m/GjhRUuZz
-         lUX/sRWieJ31368TuS06y9Q8n8rT1x8XLcsDnTcU0c8fEWYZqhm5I9bipS/35v5AXyDZ
-         qwPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=A/ouGLWd79J95AmhZ3hY8iaM6/NouWMMdBryf01BORc=;
-        b=oKkQugc4Rd9OD7DqcxCdIroRZbYEe+5yt2jfYOzsaOEPdc9Jf4x568L/+dnFSrDfvL
-         K55aMwsKDV0BLjWHmUCHE5drEYFaK25l0hVtw7erWty+7Ou0nfRcBt/+3sI1qmxeOL0N
-         gm9hKLuvmTLI5xlSpgjxFohZbTTHqTutJFfs02OSWqyJOfmNqCpgspnKQtbbTc5KrnJ/
-         eXrYUCJj2QkP7fD0uDdkF7D9m1pv49yU7IIFqwjqYD/uJd/YlBbRHA7fd4Vhtq5k6y5G
-         Zq03kN2KnT14LdG63TisLWI7yPWMt8FRsiVsKsJqUVDws16yQq10o72clHLGrNovNh0A
-         zODA==
-X-Gm-Message-State: AOAM5314esVV2zUGE3qWQ+lFx+MehTFSJMbFw7i48ueYC0XP4wfLe1k3
-        qNeM4HxXaQmMp+dfJNYBU11XxGBQegammpRqDgs=
-X-Google-Smtp-Source: ABdhPJwFaraYlekAdxing6lHVD5SUikcrEqdByp/yD9aiuP1wvyj94fVw+Mr8VCNwwyW1ncR96fWPcM2KirJkrwPyX8=
-X-Received: by 2002:a92:4b06:: with SMTP id m6mr2721405ilg.177.1611296677491;
- Thu, 21 Jan 2021 22:24:37 -0800 (PST)
-MIME-Version: 1.0
-References: <20210117042539.1609-1-alistair@alistair23.me> <20210117042539.1609-4-alistair@alistair23.me>
- <20210118123158.GE4455@sirena.org.uk>
-In-Reply-To: <20210118123158.GE4455@sirena.org.uk>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Thu, 21 Jan 2021 22:24:10 -0800
-Message-ID: <CAKmqyKMyXk_OjTKD24Qxn4QXJ4FwP4yDQqtmTsxAJMJzy34PcA@mail.gmail.com>
-Subject: Re: [PATCH 4/6] regulator: Initial commit of sy7636a
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Alistair Francis <alistair@alistair23.me>, lee.jones@linaro.org,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        id S1726891AbhAVGaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 01:30:08 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:59275 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726977AbhAVG3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 01:29:25 -0500
+X-UUID: 9d6240ae4fc242a597856c57dd3fbfba-20210122
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=a0rTMIFWNhk4fs2TtcDCGY9yzd82v4FlQ9IFV80sxHw=;
+        b=rGS4MfrO6UxPnX9KpApF9R8LGFPhVVtwNTFRr3AZY6vuI7yaO0+K5c5qaojB5n68agLAlCMr3dP2U8LDuNT6flT/zJQ0jy+0IhsjYRtSmVsXjke98EKvCLga+/7Rs5xucozUBenT740KfjpGLAiF+N7rT9jn98S/eRd9drhrmug=;
+X-UUID: 9d6240ae4fc242a597856c57dd3fbfba-20210122
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <yz.wu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 580443827; Fri, 22 Jan 2021 14:28:33 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 22 Jan 2021 14:28:31 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 22 Jan 2021 14:28:31 +0800
+Message-ID: <1611296911.30262.5.camel@mtksdccf07>
+Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: mediatek: add support for
+ MediaTek mt8192 SoC
+From:   mtk23264 <Yz.Wu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Fri, 22 Jan 2021 14:28:31 +0800
+In-Reply-To: <20210103162540.GA3983563@robh.at.kernel.org>
+References: <20201221061018.18503-1-Yz.Wu@mediatek.com>
+         <20201221061018.18503-2-Yz.Wu@mediatek.com>
+         <20210103162540.GA3983563@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 4:32 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Sat, Jan 16, 2021 at 08:25:37PM -0800, Alistair Francis wrote:
->
-> > --- /dev/null
-> > +++ b/drivers/regulator/sy7636a-regulator.c
-> > @@ -0,0 +1,233 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Functions to access SY3686A power management chip voltages
-> > + *
->
-> Please make the entire comment a C++ one so things look more
-> intentional.
+T24gU3VuLCAyMDIxLTAxLTAzIGF0IDA5OjI1IC0wNzAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gTW9uLCBEZWMgMjEsIDIwMjAgYXQgMDI6MTA6MTlQTSArMDgwMCwgWXouV3VAbWVkaWF0ZWsu
+Y29tIHdyb3RlOg0KPiA+IEZyb206IFJ5YW4gV3UgPFl6Lld1QG1lZGlhdGVrLmNvbT4NCj4gPiAN
+Cj4gPiBUaGlzIHVwZGF0ZXMgZHQtYmluZGluZyBkb2N1bWVudGF0aW9uIGZvciBNZWRpYVRlayBt
+dDgxOTINCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBSeWFuIFd1IDxZei5XdUBtZWRpYXRlay5j
+b20+DQo+ID4gLS0tDQo+ID4gVGhpcyBwYXRjaCBpcyBiYXNlZCBvbiB2NS4xMC1yYzcuDQo+ID4g
+LS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9tdGstZWZ1
+c2UudHh0IHwgMSArDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+IA0K
+PiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0v
+bXRrLWVmdXNlLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9t
+dGstZWZ1c2UudHh0DQo+ID4gaW5kZXggMDY2OGM0NWExNTZkLi5lMmYwYzBmMzRkMTAgMTAwNjQ0
+DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL210ay1l
+ZnVzZS50eHQNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZt
+ZW0vbXRrLWVmdXNlLnR4dA0KPiA+IEBAIC03LDYgKzcsNyBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVz
+Og0KPiA+ICAJICAgICAgIm1lZGlhdGVrLG10NzYyMi1lZnVzZSIsICJtZWRpYXRlayxlZnVzZSI6
+IGZvciBNVDc2MjINCj4gPiAgCSAgICAgICJtZWRpYXRlayxtdDc2MjMtZWZ1c2UiLCAibWVkaWF0
+ZWssZWZ1c2UiOiBmb3IgTVQ3NjIzDQo+ID4gIAkgICAgICAibWVkaWF0ZWssbXQ4MTczLWVmdXNl
+IiBvciAibWVkaWF0ZWssZWZ1c2UiOiBmb3IgTVQ4MTczDQo+ID4gKwkgICAgICAibWVkaWF0ZWss
+bXQ4MTkyLWVmdXNlIiBvciAibWVkaWF0ZWssZWZ1c2UiOiBmb3IgTVQ4MTkyDQo+IA0KPiBObywg
+Im1lZGlhdGVrLGVmdXNlIiBieSBpdHNlbGYgaXMgb25seSBmb3IgTVQ4MTczLg0KSXMgaXQgc2hv
+dWxkIGJlIG1vZGlmeSBmcm9tICJtZWRpYXRlayxtdDgxOTItZWZ1c2UiIG9yICJtZWRpYXRlayxl
+ZnVzZSINCnRvICJtZWRpYXRlayxtdDgxOTItZWZ1c2UiLCAibWVkaWF0ZWssZWZ1c2UiID8NCg0K
+UmVnYXJkcywNCll6DQo+IA0KPiA+ICAtIHJlZzogU2hvdWxkIGNvbnRhaW4gcmVnaXN0ZXJzIGxv
+Y2F0aW9uIGFuZCBsZW5ndGgNCj4gPiAgDQo+ID4gID0gRGF0YSBjZWxscyA9DQo+ID4gLS0gDQo+
+ID4gMi4xOC4wDQo+ID4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KPiBMaW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gTGludXgtbWVk
+aWF0ZWtAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2xpbnV4LW1lZGlhdGVrDQoNCg==
 
-Fixed.
-
->
-> > + * Copyright (C) 2019 reMarkable AS - http://www.remarkable.com/
-> > + *
-> > + * Author: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
->
-> This probably needs an update.
->
-> > + * This program is free software; you can redistribute it and/or
-> > + * modify it under the terms of the GNU General Public License as
-> > + * published by the Free Software Foundation version 2.
-> > + *
-> > + * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-> > + * kind, whether express or implied; without even the implied warranty
-> > + * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> > + * GNU General Public License for more details.
->
-> This boilerplate is redundant and should be removed.
-
-Fixed.
-
->
-> > +static int get_vcom_voltage_op(struct regulator_dev *rdev)
-> > +{
-> > +     int ret = get_vcom_voltage_mv(rdev->regmap);
-> > +
->
-> Why is this get_vcom_voltage_mv() function not in the regulator driver,
-> and why is it not just inline here?  It also needs namespacing.
-
-I'm not sure what you mean, can you please explain?
-
->
-> > +static int disable_regulator(struct regulator_dev *rdev)
-> > +{
-> > +     struct sy7636a *sy7636a = dev_get_drvdata(rdev->dev.parent);
-> > +     int ret = 0;
-> > +
-> > +     mutex_lock(&sy7636a->reglock);
-> > +     ret = regulator_disable_regmap(rdev);
-> > +     usleep_range(30000, 35000);
-> > +     mutex_unlock(&sy7636a->reglock);
->
-> Why do you need this delay here, and what purpose is this lock intended
-
-The delay is to allow a power ramp up, I have added a comment.
-
-> to serve?  I can't understand what it's intended to protect.
-
-Apparently the mutex is to protect enable/disable, I don't think it's
-required and I will remove it.
-
->
-> > +     mutex_lock(&sy7636a->reglock);
-> > +     ret = regulator_is_enabled_regmap(rdev);
-> > +     mutex_unlock(&sy7636a->reglock);
->
-> This lock usage in particular looks confused.
->
-> > +     ret = regulator_enable_regmap(rdev);
-> > +     if (ret)
-> > +             goto finish;
->
-> > +     if (!pwr_good) {
-> > +             dev_err(&rdev->dev, "Power good signal timeout after %u ms\n",
-> > +                             jiffies_to_msecs(t1 - t0));
-> > +             ret = -ETIME;
-> > +             goto finish;
-> > +     }
->
-> This doesn't undo the underlying enable, leaving the regulator in a
-> partially enabled state.
-
-Thanks, fixed.
-
->
-> > +static const struct regulator_ops sy7636a_vcom_volt_ops = {
-> > +     .get_voltage = get_vcom_voltage_op,
-> > +     .enable = enable_regulator_pgood,
-> > +     .disable = disable_regulator,
-> > +     .is_enabled = sy7636a_regulator_is_enabled,
-> > +};
->
-> The namespacing for functions is very random and prone to clashes.
-
-Fixed.
-
-> Given the power good signal I'd also expect a get_status() operation.
-
-Added.
-
->
-> > +static int sy7636a_regulator_suspend(struct device *dev)
-> > +{
-> > +     int ret;
-> > +     struct sy7636a *sy7636a = dev_get_drvdata(dev->parent);
-> > +
-> > +     ret = get_vcom_voltage_mv(sy7636a->regmap);
-> > +
-> > +     if (ret > 0)
-> > +             sy7636a->vcom = (unsigned int)ret;
-> > +
-> > +     return 0;
-> > +}
->
-> What's going on here, and if you are going to store this value over
-> suspend why not store it in a variable of the correct type?  In general
-
-It is part of the vendor's kernel, they specifically added it to
-ensure vcom is set on resume.
-
-I have fixed the variable type.
-
-> it's surprising to need a suspend operation for a regulator.
->
-> > +     sy7636a->pgood_gpio = gdp;
-> > +     dev_info(sy7636a->dev,
-> > +             "Power good GPIO registered (gpio# %d)\n",
-> > +             desc_to_gpio(sy7636a->pgood_gpio));
->
-> This print is just adding noise to the boot process.
-
-Removed.
-
-
-Alistair
