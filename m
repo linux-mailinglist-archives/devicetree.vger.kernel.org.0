@@ -2,120 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6CC830083D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 17:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A09D530086F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 17:18:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729473AbhAVQIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 11:08:05 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:34940 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729463AbhAVQHb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 11:07:31 -0500
-Received: by mail-ot1-f53.google.com with SMTP id 36so5549938otp.2;
-        Fri, 22 Jan 2021 08:07:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=XsEWssMCPfLIPwZeIDg292psce+OBhutMUuJWbGwGBg=;
-        b=l4TagOEVLPJzBWjNIPDwuUc3gkVWlmZRXAqFGevK0qcAdhrMXgYnIvDhcYcQwmpb79
-         sYK7cx0F+9nmboGzjJ7ZekoqRjMhdNrH6PpLGM6MaeiC8VWuqKIe+lXXdx/b/gx5w2i2
-         pCHoSCYrBGhOG5+zGWeCYWULwB/4xSOQ7ZesF67I/0Dsdo0IhK5LIVeasEhcW8h9HpBH
-         bOb+u8NS/szxLXLtXLuqgAHMvX/5Fe8F8AqddcWFySo/I2l0kuZVx2560bu34XUNylN/
-         uQx6GJzvob6zgKt8vjrtywuz9wi+vC4EFOcLhXG+BZiMiajUjs4ElCtUWIB7AnqG/kp4
-         t6zg==
-X-Gm-Message-State: AOAM530ILGIqF7qGUndahAgwPWtZtFwAXtFUPmTXTuR+Au/X/pkdn9r1
-        0TOrj1vUDV20P3yvTOUM8Q==
-X-Google-Smtp-Source: ABdhPJyc9igyMeLfK7ygeNj0+UjaZn/4fYN1oUjwoJ0z7bd92UkR5kJYgaRjyUNo2ZDVg+SkLKEIAA==
-X-Received: by 2002:a05:6830:1f02:: with SMTP id u2mr3931925otg.124.1611331605445;
-        Fri, 22 Jan 2021 08:06:45 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t65sm1746041oie.25.2021.01.22.08.06.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jan 2021 08:06:44 -0800 (PST)
-Received: (nullmailer pid 882044 invoked by uid 1000);
-        Fri, 22 Jan 2021 16:06:43 -0000
-Date:   Fri, 22 Jan 2021 10:06:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, od@zcrc.me,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings/phy: ingenic: Add compatibles for??
- JZ4760(B) SoCs
-Message-ID: <20210122160643.GA865022@robh.at.kernel.org>
-References: <20210120115945.29046-1-paul@crapouillou.net>
- <CAL_JsqLS-oFn4kGm7GeU+W2BvVeon9k9+gzVojypcJCJLwbaEQ@mail.gmail.com>
- <SIBCNQ.SZL9QXM6XX3N2@crapouillou.net>
+        id S1729256AbhAVQRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 11:17:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34954 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729529AbhAVQQ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 11:16:56 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 212F323A9A;
+        Fri, 22 Jan 2021 16:16:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611332175;
+        bh=1mxjcxDniCvxUAxOKwFFiFDSqjzi1cRxOC70wCic4U8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=RV8swPyrj87Hi1E6siSqigY+H2F5XcJyThGBd6izulfSy9C5yRwimeFbPQM8/i2b9
+         D+bnyOlZyiiXgqg971lLkHQmQC2FfEgSXamgU/8K9TBMRdB4D+9L+1pvd/Bp1wT3LK
+         nrFKDOfKP4uq/DvNNzOKupL6t8EAkQzi7Y17i8OEyQnaeXN5Q9OeabBs7ArbRbWoue
+         COZnO+Ry3YSFvDg0KTOmker1sbC7FNn0xCUA+Y+o+XQ/E7AGWtcwxD/BIqZA4eTG+r
+         KhbM30sR1/Mf1F1NUl8S28vAiTtpErS9LQWYj5s+IZ5c7au/d4f8iQe4JLmA/5t8mF
+         QkbMM/5m2EN4w==
+Received: by mail-ed1-f41.google.com with SMTP id g24so7151753edw.9;
+        Fri, 22 Jan 2021 08:16:15 -0800 (PST)
+X-Gm-Message-State: AOAM532U56c4IZtvW2YK1R1QTKcM4Z0PxzMZZR47x0ViMWnTTT56sFWY
+        xdtZm4qlgkcGnFy2AxML8DNIWYLxwRDLUJV9iQ==
+X-Google-Smtp-Source: ABdhPJx6fXlF/B/n7s/fyNDQXIXcJX5/Z04VOxgaGoEnSITfzIvWEnsCH6iJJ3U9OQ4bKHEb1Q5UjuIjgQI6HG3gfuI=
+X-Received: by 2002:a50:e78b:: with SMTP id b11mr3761778edn.165.1611332173622;
+ Fri, 22 Jan 2021 08:16:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <SIBCNQ.SZL9QXM6XX3N2@crapouillou.net>
+References: <cover.1609380663.git.xji@analogixsemi.com> <d13442f84fefccc992d6c5e48ac1e6129882af31.1609380663.git.xji@analogixsemi.com>
+ <20210111221435.GA3138373@robh.at.kernel.org> <20210112085737.GC5827@pc-user>
+In-Reply-To: <20210112085737.GC5827@pc-user>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 22 Jan 2021 10:16:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ1B6JzpdgtP=ZNtWasjW5R0rYyUGV3RTDxT1LPa1rz5w@mail.gmail.com>
+Message-ID: <CAL_JsqJ1B6JzpdgtP=ZNtWasjW5R0rYyUGV3RTDxT1LPa1rz5w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag and
+ swing setting
+To:     Xin Ji <xji@analogixsemi.com>
+Cc:     David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        =?UTF-8?Q?Ricardo_Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 22, 2021 at 02:42:28PM +0000, Paul Cercueil wrote:
-> Hi Rob,
-> 
-> Le ven. 22 janv. 2021 à 8:35, Rob Herring <robh+dt@kernel.org> a écrit :
-> > On Wed, Jan 20, 2021 at 5:59 AM Paul Cercueil <paul@crapouillou.net>
-> > wrote:
-> > > 
-> > >  Add the ingenic,jz4760-phy and ingenic,jz4760b-phy compatible
-> > > strings,
-> > >  and make the ingenic,jz4770-phy compatible string require
-> > >  ingenic,jz4760-phy as a fallback, since both work the same, and the
-> > >  JZ4760 SoC is older.
-> > > 
-> > >  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> > >  ---
-> > >   .../bindings/phy/ingenic,phy-usb.yaml         | 22
-> > > ++++++++++++-------
-> > >   1 file changed, 14 insertions(+), 8 deletions(-)
-> > > 
-> > >  diff --git
-> > > a/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
-> > > b/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
-> > >  index 0fd93d71fe5a..3c65dfcf352b 100644
-> > >  --- a/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
-> > >  +++ b/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
-> > >  @@ -15,13 +15,19 @@ properties:
-> > >       pattern: '^usb-phy@.*'
-> > > 
-> > >     compatible:
-> > >  -    enum:
-> > >  -      - ingenic,jz4770-phy
-> > >  -      - ingenic,jz4775-phy
-> > >  -      - ingenic,jz4780-phy
-> > >  -      - ingenic,x1000-phy
-> > >  -      - ingenic,x1830-phy
-> > >  -      - ingenic,x2000-phy
-> > >  +    oneOf:
-> > >  +      - enum:
-> > >  +        - ingenic,jz4760-phy
-> > 
-> > This should be 2 more spaces indentation. Indent is always 2 more than
-> > the above keyword and ignores '-'.
-> 
-> Pretty confusing. But alright.
+On Tue, Jan 12, 2021 at 2:57 AM Xin Ji <xji@analogixsemi.com> wrote:
+>
+> Hi Rob Herring, thanks for the comments.
+>
+> On Mon, Jan 11, 2021 at 04:14:35PM -0600, Rob Herring wrote:
+> > On Thu, Dec 31, 2020 at 10:21:12AM +0800, Xin Ji wrote:
+> > > Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
+> > > swing setting for adjusting DP tx PHY swing
+> > >
+> > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> > > ---
+> > >  .../bindings/display/bridge/analogix,anx7625.yaml  | 25 ++++++++++++++++++++--
+> > >  1 file changed, 23 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > index 60585a4..4eb0ea3 100644
+> > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > @@ -34,6 +34,16 @@ properties:
+> > >      description: used for reset chip control, RESET_N pin B7.
+> > >      maxItems: 1
+> > >
+> > > +  analogix,swing-setting:
+> > > +    type: uint8-array
+> >
+> > Humm, this should have be rejected by the meta-schema.
+> We needs define an array to adjust DP tx PHY swing, the developer hopes these
+> settings are changeable, so I moved the register data to DT. Can you
+> give me some suggestion if it is rejected by the meta-schema?
+> >
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> >
+> > This is how types are defined other than boolean or nodes (object).
+> >
+> > > +    description: an array of swing register setting for DP tx PHY
+> > > +
+> > > +  analogix,mipi-dpi-in:
+> > > +    type: int
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: indicate the MIPI rx signal type is DPI or DSI
+> >
+> > Why does this need to be in DT, you should be able to determine this
+> > based on what you are connected to.
+> As the anx7625 can receive MIPI DSI and DPI data (depends on hardware
+> implement, we have a project which have two anx7625, one is DSI input,
+> the other is DPI input), we needs to let driver know what kind of MIPI
+> rx signal input. And there is no other way to tell driver the MIPI rx
+> signal type, we needs define this flag.
 
-TBC, either way is functional and these are the 2 main styles, so we 
-picked one. In some sequences, it's easy to miss a '-' where a space 
-would also be valid. For example:
+That's only true if what's driving the output is a single h/w block
+that can drive either. But typically you have 2 blocks: an LCD
+controller driving parallel signals and a DSI controller in front of
+it doing parallel to DSI conversion. The anx7625 would be connected to
+the LCD controller or DSI controller via the graph binding depending
+on the h/w connection.
 
-items:
-- items:
-    enum: ...
-
-vs:
-
-items:
-  items:
-    enum: ...
-
-Both are valid (as items can be a list or sub-schema).
+However, if you do need this, then let's extend video-interfaces.yaml
+'bus-type' to include DSI (it already has parallel).
 
 Rob
