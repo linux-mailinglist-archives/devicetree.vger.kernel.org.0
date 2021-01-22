@@ -2,183 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2011E2FFB05
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 04:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2E362FFB8E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 05:05:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726292AbhAVD0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 22:26:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50738 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726264AbhAVD0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 22:26:40 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A23DBC0613D6
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 19:25:59 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id 11so2814280pfu.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Jan 2021 19:25:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Gsjy534BQS56SU6SeFB/WjmC/NWzmnXhGpzGJe7xB60=;
-        b=SG2JTRlpXpM4jYWnQLSpXSQqE1+M9/S0sKrdBaso1OszGUCKVrQPawHx1rQXdi28e/
-         QvnG3RO7Y6iSNHtt7uaomykbpXiMdzyQJuvCqTRaj1qwFwwbcM/eMz2Q6pSeJmWeEna8
-         LGe8DTS2wY1zx8ShTQSiqiJYutZx42G2Jo9R0WrJynYvRfrfTtIAIQrx/x9NVCJ9FrAZ
-         p3COnS7W/dv8Y6AIxI2qybJGS3SM0C3lM6JOGNHG/JVTZBEr6LI1zdMjPqAKvgSKsjYg
-         +nNccJ4jfcIyegU+I8KMgRhIx2B7LkAQPvWcy4t26jkVv8jPrdmrmtpcj6KKH0dQ0DUS
-         UbwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=Gsjy534BQS56SU6SeFB/WjmC/NWzmnXhGpzGJe7xB60=;
-        b=YuSwYTs768s3DxDCni01axrSd2CQy5+NN6r23/n69VLGdinQJ1/0R5kvra+acPuxvF
-         FuWr3PgqVq2w91jWUEuTB4VpKOhqUD2QVr+YHDZZGs1sZgY34LeR0dDcuJDcKi/t9G+7
-         DH5zKIB8yQ1qNGbaR4d0Rlj+xTtkyYWU2WXANsNKeC3AgNG9FZx4jgXe8jgX0dmGdH3q
-         JJWAAHymaSQIuZ+M8/IQ5RyisaoJV4RHh3FWT/x1cy+3TBmvnWSOR8TOl/4yJkNbVaRg
-         8YmlZgr6PsBpJwqV/8U2zMSEySa1mwDPscwIyHcTeBlKYcpbxI/4CsZrwM3jf0at44yH
-         VhSQ==
-X-Gm-Message-State: AOAM533ijBHJCeSKTwfaN72KbxOqQx0fOeV/e2RRIoaTkMtB6ETjOl3v
-        ohwEah39Ejqa6PrYIubA8I4Dwg==
-X-Google-Smtp-Source: ABdhPJzv+pZUIoh5eVCAREqwtrXilW4g0JNeb6u7OH+Lq191AYyMZ4OmtpuMycM9Wqk4ungdHbcaxw==
-X-Received: by 2002:a62:ddcf:0:b029:1b7:baca:6c71 with SMTP id w198-20020a62ddcf0000b02901b7baca6c71mr2734869pff.43.1611285958914;
-        Thu, 21 Jan 2021 19:25:58 -0800 (PST)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id c11sm7153264pjv.3.2021.01.21.19.25.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jan 2021 19:25:58 -0800 (PST)
-Date:   Thu, 21 Jan 2021 19:25:58 -0800 (PST)
-X-Google-Original-Date: Thu, 21 Jan 2021 19:23:53 PST (-0800)
-Subject:     Re: [PATCH v3] riscv: add BUILTIN_DTB support for MMU-enabled targets
-In-Reply-To: <20210115234947.44014-1-vitaly.wool@konsulko.com>
-CC:     linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        anup@brainfault.org, Damien Le Moal <Damien.LeMoal@wdc.com>,
-        devicetree@vger.kernel.org, vitaly.wool@konsulko.com
-From:   Palmer Dabbelt <palmerdabbelt@google.com>
-To:     vitaly.wool@konsulko.com
-Message-ID: <mhng-44310bfb-e106-449b-830c-78b5e140fadb@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1726735AbhAVEEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jan 2021 23:04:14 -0500
+Received: from a1.mail.mailgun.net ([198.61.254.60]:22915 "EHLO
+        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726694AbhAVECd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 23:02:33 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1611288132; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=DQZAtvavund/9OBwiAQlADma1bn2t2367yC/DGsBIag=; b=tGZR5BUbPOAgLukR4jTeELNbantN/goyXt38AVp0wrMd+3onYNJ9I0J5kyImYFCC5HjVKUsG
+ bCcC0nyTGgY1No9vp+W7O640jjv83itlhlE+7WPfichMQ+DQaZtUe0leTEamsWyQPfY2wbCU
+ B7tzOnec+R94dkQzm2CYfEx0jm4=
+X-Mailgun-Sending-Ip: 198.61.254.60
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 600a4e2972b7c29fd5fbaaf4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 22 Jan 2021 04:01:45
+ GMT
+Sender: wcheng=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9DBA6C433ED; Fri, 22 Jan 2021 04:01:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4F5BDC433CA;
+        Fri, 22 Jan 2021 04:01:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4F5BDC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
+From:   Wesley Cheng <wcheng@codeaurora.org>
+To:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        peter.chen@nxp.com, jackp@codeaurora.org,
+        Wesley Cheng <wcheng@codeaurora.org>
+Subject: [PATCH v6 0/4] Re-introduce TX FIFO resize for larger EP bursting
+Date:   Thu, 21 Jan 2021 20:01:36 -0800
+Message-Id: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jan 2021 15:49:48 PST (-0800), vitaly.wool@konsulko.com wrote:
-> Sometimes, especially in a production system we may not want to
-> use a "smart bootloader" like u-boot to load kernel, ramdisk and
-> device tree from a filesystem on eMMC, but rather load the kernel
-> from a NAND partition and just run it as soon as we can, and in
-> this case it is convenient to have device tree compiled into the
-> kernel binary. Since this case is not limited to MMU-less systems,
-> let's support it for these which have MMU enabled too.
->
-> While at it, provide __dtb_start as a parameter to setup_vm() in
-> BUILTIN_DTB case, so we don't have to duplicate BUILTIN_DTB specific
-> processing in MMU-enabled and MMU-disabled versions of setup_vm().
->
-> Signed-off-by: Vitaly Wool <vitaly.wool@konsulko.com>
-> ---
-> Changes from v2:
-> * folded "RISC-V: simplify BUILTIN_DTB processing" patch
-> [http://lists.infradead.org/pipermail/linux-riscv/2021-January/004153.html]
-> Changes from v1:
-> * no direct initial_boot_params assignment
-> * skips the temporary mapping for DT if BUILTIN_DTB=y
->
->  arch/riscv/Kconfig       |  1 -
->  arch/riscv/kernel/head.S |  4 ++++
->  arch/riscv/mm/init.c     | 19 +++++++++++++------
->  3 files changed, 17 insertions(+), 7 deletions(-)
->
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index 2ef05ef921b5..444a1ed1e847 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -445,7 +445,6 @@ endmenu
->
->  config BUILTIN_DTB
->  	def_bool n
-> -	depends on RISCV_M_MODE
->  	depends on OF
->
->  menu "Power management options"
-> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
-> index 16e9941900c4..f5a9bad86e58 100644
-> --- a/arch/riscv/kernel/head.S
-> +++ b/arch/riscv/kernel/head.S
-> @@ -260,7 +260,11 @@ clear_bss_done:
->
->  	/* Initialize page tables and relocate to virtual addresses */
->  	la sp, init_thread_union + THREAD_SIZE
-> +#ifdef CONFIG_BUILTIN_DTB
-> +	la a0, __dtb_start
-> +#else
->  	mv a0, s1
-> +#endif /* CONFIG_BUILTIN_DTB */
->  	call setup_vm
->  #ifdef CONFIG_MMU
->  	la a0, early_pg_dir
-> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> index 30b61f2c6b87..45faad7c4291 100644
-> --- a/arch/riscv/mm/init.c
-> +++ b/arch/riscv/mm/init.c
-> @@ -192,10 +192,13 @@ void __init setup_bootmem(void)
->  #endif /* CONFIG_BLK_DEV_INITRD */
->
->  	/*
-> -	 * Avoid using early_init_fdt_reserve_self() since __pa() does
-> +	 * If DTB is built in, no need to reserve its memblock.
-> +	 * Otherwise, do reserve it but avoid using
-> +	 * early_init_fdt_reserve_self() since __pa() does
->  	 * not work for DTB pointers that are fixmap addresses
->  	 */
-> -	memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
-> +	if (!IS_ENABLED(CONFIG_BUILTIN_DTB))
-> +		memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
->
->  	early_init_fdt_scan_reserved_mem();
->  	dma_contiguous_reserve(dma32_phys_limit);
-> @@ -499,6 +502,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->  	/* Setup early PMD for DTB */
->  	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
->  			   (uintptr_t)early_dtb_pmd, PGDIR_SIZE, PAGE_TABLE);
-> +#ifndef CONFIG_BUILTIN_DTB
->  	/* Create two consecutive PMD mappings for FDT early scan */
->  	pa = dtb_pa & ~(PMD_SIZE - 1);
->  	create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA,
-> @@ -506,7 +510,11 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->  	create_pmd_mapping(early_dtb_pmd, DTB_EARLY_BASE_VA + PMD_SIZE,
->  			   pa + PMD_SIZE, PMD_SIZE, PAGE_KERNEL);
->  	dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PMD_SIZE - 1));
-> +#else /* CONFIG_BUILTIN_DTB */
-> +	dtb_early_va = __va(dtb_pa);
-> +#endif /* CONFIG_BUILTIN_DTB */
->  #else
-> +#ifndef CONFIG_BUILTIN_DTB
->  	/* Create two consecutive PGD mappings for FDT early scan */
->  	pa = dtb_pa & ~(PGDIR_SIZE - 1);
->  	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA,
-> @@ -514,6 +522,9 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->  	create_pgd_mapping(early_pg_dir, DTB_EARLY_BASE_VA + PGDIR_SIZE,
->  			   pa + PGDIR_SIZE, PGDIR_SIZE, PAGE_KERNEL);
->  	dtb_early_va = (void *)DTB_EARLY_BASE_VA + (dtb_pa & (PGDIR_SIZE - 1));
-> +#else /* CONFIG_BUILTIN_DTB */
-> +	dtb_early_va = __va(dtb_pa);
-> +#endif /* CONFIG_BUILTIN_DTB */
->  #endif
->  	dtb_early_pa = dtb_pa;
->
-> @@ -604,11 +615,7 @@ static void __init setup_vm_final(void)
->  #else
->  asmlinkage void __init setup_vm(uintptr_t dtb_pa)
->  {
-> -#ifdef CONFIG_BUILTIN_DTB
-> -	dtb_early_va = (void *) __dtb_start;
-> -#else
->  	dtb_early_va = (void *)dtb_pa;
-> -#endif
->  	dtb_early_pa = dtb_pa;
->  }
+Changes in V6:
+ - Rebased patches to usb-testing.
+ - Renamed to PATCH series instead of RFC.
+ - Checking for fs_descriptors instead of ss_descriptors for determining the
+   endpoint count for a particular configuration.
+ - Re-ordered patch series to fix patch dependencies.
 
-Thanks, this is on for-next.
+Changes in V5:
+ - Added check_config() logic, which is used to communicate the number of EPs
+   used in a particular configuration.  Based on this, the DWC3 gadget driver
+   has the ability to know the maximum number of eps utilized in all configs.
+   This helps reduce unnecessary allocation to unused eps, and will catch fifo
+   allocation issues at bind() time.
+ - Fixed variable declaration to single line per variable, and reverse xmas.
+ - Created a helper for fifo clearing, which is used by ep0.c
+
+Changes in V4:
+ - Removed struct dwc3* as an argument for dwc3_gadget_resize_tx_fifos()
+ - Removed WARN_ON(1) in case we run out of fifo space
+ 
+Changes in V3:
+ - Removed "Reviewed-by" tags
+ - Renamed series back to RFC
+ - Modified logic to ensure that fifo_size is reset if we pass the minimum
+   threshold.  Tested with binding multiple FDs requesting 6 FIFOs.
+
+Changes in V2:
+ - Modified TXFIFO resizing logic to ensure that each EP is reserved a
+   FIFO.
+ - Removed dev_dbg() prints and fixed typos from patches
+ - Added some more description on the dt-bindings commit message
+
+Currently, there is no functionality to allow for resizing the TXFIFOs, and
+relying on the HW default setting for the TXFIFO depth.  In most cases, the
+HW default is probably sufficient, but for USB compositions that contain
+multiple functions that require EP bursting, the default settings
+might not be enough.  Also to note, the current SW will assign an EP to a
+function driver w/o checking to see if the TXFIFO size for that particular
+EP is large enough. (this is a problem if there are multiple HW defined
+values for the TXFIFO size)
+
+It is mentioned in the SNPS databook that a minimum of TX FIFO depth = 3
+is required for an EP that supports bursting.  Otherwise, there may be
+frequent occurences of bursts ending.  For high bandwidth functions,
+such as data tethering (protocols that support data aggregation), mass
+storage, and media transfer protocol (over FFS), the bMaxBurst value can be
+large, and a bigger TXFIFO depth may prove to be beneficial in terms of USB
+throughput. (which can be associated to system access latency, etc...)  It
+allows for a more consistent burst of traffic, w/o any interruptions, as
+data is readily available in the FIFO.
+
+With testing done using the mass storage function driver, the results show
+that with a larger TXFIFO depth, the bandwidth increased significantly.
+
+Test Parameters:
+ - Platform: Qualcomm SM8150
+ - bMaxBurst = 6
+ - USB req size = 256kB
+ - Num of USB reqs = 16
+ - USB Speed = Super-Speed
+ - Function Driver: Mass Storage (w/ ramdisk)
+ - Test Application: CrystalDiskMark
+
+Results:
+
+TXFIFO Depth = 3 max packets
+
+Test Case | Data Size | AVG tput (in MB/s)
+-------------------------------------------
+Sequential|1 GB x     | 
+Read      |9 loops    | 193.60
+	  |           | 195.86
+          |           | 184.77
+          |           | 193.60
+-------------------------------------------
+
+TXFIFO Depth = 6 max packets
+
+Test Case | Data Size | AVG tput (in MB/s)
+-------------------------------------------
+Sequential|1 GB x     | 
+Read      |9 loops    | 287.35
+	  |           | 304.94
+          |           | 289.64
+          |           | 293.61
+-------------------------------------------
+Wesley Cheng (4):
+  usb: gadget: udc: core: Introduce check_config to verify USB
+    configuration
+  usb: gadget: configfs: Check USB configuration before adding
+  usb: dwc3: Resize TX FIFOs to meet EP bursting requirements
+  arm64: boot: dts: qcom: sm8150: Enable dynamic TX FIFO resize logic
+
+ arch/arm64/boot/dts/qcom/sm8150.dtsi |   1 +
+ drivers/usb/dwc3/core.c              |   2 +
+ drivers/usb/dwc3/core.h              |   8 ++
+ drivers/usb/dwc3/ep0.c               |   2 +
+ drivers/usb/dwc3/gadget.c            | 194 +++++++++++++++++++++++++++++++++++
+ drivers/usb/gadget/configfs.c        |  22 ++++
+ drivers/usb/gadget/udc/core.c        |   9 ++
+ include/linux/usb/gadget.h           |   2 +
+ 8 files changed, 240 insertions(+)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
