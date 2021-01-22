@@ -2,88 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E02830089A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 17:27:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0149030089E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 17:27:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729687AbhAVQZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 11:25:27 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44200 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729694AbhAVQZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 11:25:17 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10MGOGE3034194;
-        Fri, 22 Jan 2021 10:24:16 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611332656;
-        bh=dSXJV1hTN8RWx0vzQNw7CasGpjJJ8wWLngDeuxPMTL8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=LbWgAHrTU9gCttpjyvsyZPMcYISUTSTALUnkLDjU6KH4J3Ip8tdsXnKQSVNwC295J
-         Vu+EWvUBQ5PjmPkDuZCzdC4jvZhHbwMGdcw4cWzSmNVmOx5FZxNrMXy8RBJunwwvdS
-         9Yza5Ko0x7KC1DOnQ1VqgKgi+5d2etRpg/+XyS+k=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10MGOGMJ119957
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 22 Jan 2021 10:24:16 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 22
- Jan 2021 10:24:15 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 22 Jan 2021 10:24:16 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10MGO59h099178;
-        Fri, 22 Jan 2021 10:24:11 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/2] arm64: dts: ti: k3-j7200-main: Add support for HS200 and HS400 modes in MMCSD0 subsystem
-Date:   Fri, 22 Jan 2021 21:54:02 +0530
-Message-ID: <20210122162403.20700-2-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210122162403.20700-1-a-govindraju@ti.com>
-References: <20210122162403.20700-1-a-govindraju@ti.com>
+        id S1729602AbhAVQ0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 11:26:20 -0500
+Received: from netrider.rowland.org ([192.131.102.5]:57521 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1729700AbhAVQZ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 11:25:28 -0500
+Received: (qmail 45724 invoked by uid 1000); 22 Jan 2021 11:24:47 -0500
+Date:   Fri, 22 Jan 2021 11:24:47 -0500
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Wesley Cheng <wcheng@codeaurora.org>
+Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        peter.chen@nxp.com, jackp@codeaurora.org
+Subject: Re: [PATCH v6 1/4] usb: gadget: udc: core: Introduce check_config to
+ verify USB configuration
+Message-ID: <20210122162447.GC43566@rowland.harvard.edu>
+References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
+ <1611288100-31118-2-git-send-email-wcheng@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1611288100-31118-2-git-send-email-wcheng@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HS200 and HS400 modes at 1.8 V card voltage, are now supported in MMCSD0
-subsystem of J7200 SoC[1].
+On Thu, Jan 21, 2021 at 08:01:37PM -0800, Wesley Cheng wrote:
+> Some UDCs may have constraints on how many high bandwidth endpoints it can
+> support in a certain configuration.  This API allows for the composite
+> driver to pass down the total number of endpoints to the UDC so it can verify
+> it has the required resources to support the configuration.
+> 
+> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
 
-Set respective tags to indicate it.
 
-[1] - https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf
+> --- a/include/linux/usb/gadget.h
+> +++ b/include/linux/usb/gadget.h
+> @@ -328,6 +328,7 @@ struct usb_gadget_ops {
+>  	struct usb_ep *(*match_ep)(struct usb_gadget *,
+>  			struct usb_endpoint_descriptor *,
+>  			struct usb_ss_ep_comp_descriptor *);
+> +	int	(*check_config)(struct usb_gadget *gadget, unsigned long ep_map);
+>  };
+>  
+>  /**
+> @@ -607,6 +608,7 @@ int usb_gadget_connect(struct usb_gadget *gadget);
+>  int usb_gadget_disconnect(struct usb_gadget *gadget);
+>  int usb_gadget_deactivate(struct usb_gadget *gadget);
+>  int usb_gadget_activate(struct usb_gadget *gadget);
+> +int usb_gadget_check_config(struct usb_gadget *gadget, unsigned long ep_map);
+>  #else
+>  static inline int usb_gadget_frame_number(struct usb_gadget *gadget)
+>  { return 0; }
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Don't you also need an entry for the case where CONFIG_USB_GADGET isn't 
+enabled?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index 4cc2e9094d0e..03486395e492 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -517,6 +517,8 @@
- 		ti,trm-icp = <0x8>;
- 		bus-width = <8>;
- 		mmc-ddr-1_8v;
-+		mmc-hs200-1_8v;
-+		mmc-hs400-1_8v;
- 		dma-coherent;
- 	};
- 
--- 
-2.17.1
-
+Alan Stern
