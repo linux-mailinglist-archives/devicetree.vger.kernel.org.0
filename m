@@ -2,85 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 510D72FFB7A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 05:04:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B532FFC08
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 06:20:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726698AbhAVECh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jan 2021 23:02:37 -0500
-Received: from a1.mail.mailgun.net ([198.61.254.60]:31361 "EHLO
-        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726736AbhAVECe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jan 2021 23:02:34 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1611288134; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=sun6PXmkpTos03dKinPR3tyIdnLtxhROStSolQ4hmZw=; b=mP14DI58FwGq36VYOkOYO04dePK4Bo800bytAos+c7Bt1BQyUccbFvsJ0EqFIhlmJOZVE3Rr
- 0DlsV93VQ2826yLv/J+D1QWppX58IkoccA3bIyJTCg5tQi3QQez8RQ1COUXGKzmXXVoxcZZk
- sqv5y3diSMaEQtTVxRRcnBr4+eA=
-X-Mailgun-Sending-Ip: 198.61.254.60
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 600a4e2c5677aca7bdeb3b5c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 22 Jan 2021 04:01:48
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B681DC43467; Fri, 22 Jan 2021 04:01:48 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 62CCFC43461;
-        Fri, 22 Jan 2021 04:01:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 62CCFC43461
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-From:   Wesley Cheng <wcheng@codeaurora.org>
-To:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        peter.chen@nxp.com, jackp@codeaurora.org,
-        Wesley Cheng <wcheng@codeaurora.org>
-Subject: [PATCH v6 4/4] arm64: boot: dts: qcom: sm8150: Enable dynamic TX FIFO resize logic
-Date:   Thu, 21 Jan 2021 20:01:40 -0800
-Message-Id: <1611288100-31118-5-git-send-email-wcheng@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
-References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
+        id S1726284AbhAVFSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 00:18:25 -0500
+Received: from bilbo.ozlabs.org ([203.11.71.1]:40069 "EHLO ozlabs.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726094AbhAVFSY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 00:18:24 -0500
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 4DMSFF71C7z9sCD; Fri, 22 Jan 2021 16:17:37 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1611292657;
+        bh=i1DcXl93lSfMMtoG7izlw54QZ4IZck6Ry2AtX9KRgPE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UqHqjq6bzprqJxazvkReHWJiX28Cvjf9bL2Tkb1UmszDRPFcWedidS77w6SzNYYol
+         Czjn/80/HCx9+bNPk2Zv97XxM9pP55kZlensX1RAXbej0VW32vwkecbTLIdV006nrK
+         Q1bdI0RA9r17bMKuKngrAzOgV+c0c5iy3pgjIszM=
+Date:   Fri, 22 Jan 2021 15:27:04 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org
+Subject: Re: [PATCH V5 5/5] of: unittest: Statically apply overlays using
+ fdtoverlay
+Message-ID: <20210122042704.GC4400@yekko.fritz.box>
+References: <cover.1611124778.git.viresh.kumar@linaro.org>
+ <696c137461be8ec4395c733c559c269bb4ad586e.1611124778.git.viresh.kumar@linaro.org>
+ <20210121005145.GF5174@yekko.fritz.box>
+ <7d6adfd9-da1e-d4ca-3a04-b192f0cf36b0@gmail.com>
+ <20210121053426.4dw5oqz7qb4y7hvm@vireshk-i7>
+ <20210121063438.GJ5174@yekko.fritz.box>
+ <20210121065728.trqph5uwvp43k46l@vireshk-i7>
+ <20210121233957.GA4400@yekko.fritz.box>
+ <20210122031049.u3nmxxzzhue5rniu@vireshk-i7>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CblX+4bnyfN0pR09"
+Content-Disposition: inline
+In-Reply-To: <20210122031049.u3nmxxzzhue5rniu@vireshk-i7>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the flexible TX FIFO resize logic on SM8150.  Using a larger TX FIFO
-SZ can help account for situations when system latency is greater than the
-USB bus transmission latency.
 
-Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+--CblX+4bnyfN0pR09
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 5270bda..c7706f4 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -1569,6 +1569,7 @@
- 				iommus = <&apps_smmu 0x140 0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
-+				tx-fifo-resize;
- 				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 			};
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+On Fri, Jan 22, 2021 at 08:40:49AM +0530, Viresh Kumar wrote:
+> On 22-01-21, 10:39, David Gibson wrote:
+> > No, it definitely will not work in general.  It might kinda work in a
+> > few trivial cases, but it absolutely will not do the neccessary
+> > handling in some cases.
+> >=20
+> > > I
+> > > did inspect the output dtb (made by merging two overlays) using
+> > > fdtdump and it looked okay.
+> >=20
+> > Ok.. but if you're using these bizarre messed up "dtbs" that this test
+> > code seems to be, I don't really trust that tells you much.
+>=20
+> I only looked if the changes from the second overlay were present in
+> the merge and they were. And so I assumed that it must have worked.
+>=20
+> What about checking the base dtb for /plugin/; in fdtoverlay and fail
+> the whole thing in case it is present ? I think it is possible for
+> people to get confused otherwise, like I did.
 
+/plugin/ doesn't exist in the dtb, only in the dts.  From the dtb
+encoding point of view, there's no difference between a dtb and a
+dtbo, a dtbo is just a dtb that follows some conventions for its
+content.
+
+If we were doing this from scratch, it would be better for dtbos to
+have a different magic number from regular dtbs.  I think I actually
+suggested that sometime in the past, but by the time that came up,
+dtbos were already in pretty widespread use with the existing format.
+
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
+
+--CblX+4bnyfN0pR09
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmAKVBYACgkQbDjKyiDZ
+s5KBwBAAhmYCf1xBVR2o9aVhiRoPo6T65geIcthIYGsA07vLvsabGOHv+F5LemnK
+lHpfG9C1SFrkrpI1Eb/Es1cRTX66p+Ih3CJTjCcjuPlLBrRJo/x3d4SvgbyLz0pJ
+jW/BjU2ft5DJHC8fZX2q0jSXULR4yw1Uyme6v0X5kXjHbvRfyCUd4pDwb+pQRWjG
+7bwYQgDadQ8z0JS2N7IH93vdZdj0mYEjVsVBctebglTqE6O13xdWdkSunTcvRWhf
+XUtWbCoiCCJ5qZn7Wr7vrcS+fBagJZSyE6rAVCcDXIbuu1iV2tN4hlM+9j7pft/J
+ddMGaObnk6cXunLlhUu5Kd+ELBy7A1k9BlVLE6ssgArJ3P39vYke6ZhjapFM0Vdq
+FEEivxZ9SAx527O+lzAIkOWAWH7ilfY3R3jYF/5lpThQ+DSYUdsQJshocTzaM1jr
+yQAhjoKgjJ1bVh5cuRd857pnkclpwotIVoVNblFtfAswj1VKDKRx01gWRhrHXsdP
+nQ2U05uSTYBA7S+N5gB1geQeNyIsQWq7fQkizaIB4NTsso8OrxOUN5VHcK2AJSTF
+8XMyUVbx2efitQDi8RmJjlUG+h7/hVk/vO9ODz42CYSPFGKUDmDS7xc0Yg9xnunZ
+OPbFVKJUTqEkY03S1Iw7OT50w5RJnTfIliLjE7uarzyiUQ2Y7m0=
+=B+Jq
+-----END PGP SIGNATURE-----
+
+--CblX+4bnyfN0pR09--
