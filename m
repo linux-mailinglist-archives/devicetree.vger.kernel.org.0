@@ -2,140 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDB342FFEBC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 09:54:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D8C12FFEFE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 10:24:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726652AbhAVIxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 03:53:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35824 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727072AbhAVIwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 03:52:22 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B18A9C061786
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 00:51:41 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id o10so6295976wmc.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 00:51:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vrASp/RtgpnkhA58OvyJAdDc1T+gTz0RiPx6wduZk8c=;
-        b=up1a2h2iDNc3JdPf9XWIf2bOEaBA5o+PTzwpwYGlMWM3ZPj/bERowdcDTXhk7MzMw/
-         0IFYO6oW0pkXjX1cb3hU7fdkG5CpEdf5p2OrQuENFNur3mXO1UNPNNoA78V26IXInBoj
-         TajCQT15iimZzsSU1SJAar/pCn1bCAmu7IeSTP9dwglQQsZGde0nTViozhqrE/WuU4wa
-         gbsoMIH3ZTkUTJskvTs16R6tGViSYH17JSudaIueKcawYY5Tbj2U9x+w96OIJ1XQBqcy
-         tHESxQyCoAjop66UARHym1LLJEipIIbc8xAb1bYp5sSgO+3CD+f4WOOCCsBpjXXfzNH9
-         O73Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vrASp/RtgpnkhA58OvyJAdDc1T+gTz0RiPx6wduZk8c=;
-        b=d2K/zQivKdgASDWHbRQrhyIkGkeqGgZwAfHkLuTT6kWxthDbVE4xXPqPJP2DDdMOnW
-         v3NqROg0OzP9NDVnfIuiE5pxMc+3xEZP9nsqHLxAHfiRRw2RUaossK3GB8cuPz4Sm2G/
-         cXeoIwlOdSh0pnZsUnVdIuj15tF9C17EAGDUft03BLIi0/jV3EgHXGcGs2s+miK/4L+X
-         Xt3rk42CR4D486JkuxqRE+8fsBSUUaQFayWm9VlHNAXLJeGpMhdVuJ6+eQWjbgHOH81O
-         mpyXHBqhXoddv31uRiTyKAbu08+VBJ5p+LKWza1tbREahXU4wfSOoTxXPbSCttTIxLR2
-         gGFQ==
-X-Gm-Message-State: AOAM530iTLd4jvFj6yEYbLlTJqjCYHn/09KCTQHTwkJ5C9vaRIyul4zH
-        Dvtiw0C1Zq1ziokeEhEj1qLvmQ==
-X-Google-Smtp-Source: ABdhPJwPXJQhdUZQz8TZ2CsHYCjCHXTUgo1cueUoveXyLgzD7Ys+eUwGva42rD/7MMLN1jYZ/pNjIQ==
-X-Received: by 2002:a1c:1d12:: with SMTP id d18mr2803870wmd.121.1611305500497;
-        Fri, 22 Jan 2021 00:51:40 -0800 (PST)
-Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id l5sm11088232wrv.44.2021.01.22.00.51.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jan 2021 00:51:39 -0800 (PST)
-Date:   Fri, 22 Jan 2021 09:51:20 +0100
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc:     joro@8bytes.org, will@kernel.org, lorenzo.pieralisi@arm.com,
-        robh+dt@kernel.org, guohanjun@huawei.com, sudeep.holla@arm.com,
-        rjw@rjwysocki.net, lenb@kernel.org, robin.murphy@arm.com,
-        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
-        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
-        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
-        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com
-Subject: Re: [PATCH v10 10/10] iommu/arm-smmu-v3: Add stall support for
- platform devices
-Message-ID: <YAqSCKeN2o+GsISZ@myrica>
-References: <20210121123623.2060416-1-jean-philippe@linaro.org>
- <20210121123623.2060416-11-jean-philippe@linaro.org>
- <20210121191236.00000103@Huawei.com>
+        id S1726678AbhAVIjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 03:39:15 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52444 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727100AbhAVIhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 03:37:46 -0500
+X-UUID: 5258720654404e1ca9824f5c0e002279-20210122
+X-UUID: 5258720654404e1ca9824f5c0e002279-20210122
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <stanley.chu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 957812370; Fri, 22 Jan 2021 16:36:39 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 22 Jan 2021 16:36:38 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 22 Jan 2021 16:36:38 +0800
+From:   Stanley Chu <stanley.chu@mediatek.com>
+To:     <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <robh@kernel.org>,
+        <martin.petersen@oracle.com>, <jejb@linux.ibm.com>,
+        <avri.altman@wdc.com>, <alim.akhtar@samsung.com>
+CC:     <linux-mediatek@lists.infradead.org>, <yingjoe.chen@mediatek.com>,
+        <matthias.bgg@gmail.com>, <kuohong.wang@mediatek.com>,
+        <peter.wang@mediatek.com>, <chun-hung.wu@mediatek.com>,
+        <andy.teng@mediatek.com>, <alice.chao@mediatek.com>,
+        <chaotian.jing@mediatek.com>, <cc.chou@mediatek.com>,
+        <jiajie.hao@mediatek.com>, <hanks.chen@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>
+Subject: [PATCH v3 0/2] arm64: Support Universal Flash Storage on MediaTek MT6779 platform
+Date:   Fri, 22 Jan 2021 16:36:25 +0800
+Message-ID: <20210122083627.2893-1-stanley.chu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210121191236.00000103@Huawei.com>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 07:12:36PM +0000, Jonathan Cameron wrote:
-> > @@ -2502,6 +2647,7 @@ static void arm_smmu_release_device(struct device *dev)
-> >  
-> >  	master = dev_iommu_priv_get(dev);
-> >  	WARN_ON(arm_smmu_master_sva_enabled(master));
-> > +	iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
-> >  	arm_smmu_detach_dev(master);
-> >  	arm_smmu_disable_pasid(master);
-> >  	arm_smmu_remove_master(master);
-> 
-> The lack of symmetry here bothers me a bit, but it's already true, so I guess
-> this case is fine as well.
+Hi,
+This series adds UFS (Universal Flash Storage) support on MediaTek MT6779 SoC platform.
 
-Normally the device driver calls iommu_dev_feat_disable(SVA) which does
-iopf_queue_remove_device(). This is just a safety net in case the device
-gets removed without the driver properly cleaning up (which will WARN as
-well) 
+Changes since v2:
+  - Rebase to Martin's 5.12/scsi-queue branch
 
-> 
-> ...
-> >  
-> > @@ -2785,6 +2946,7 @@ static int arm_smmu_cmdq_init(struct arm_smmu_device *smmu)
-> >  static int arm_smmu_init_queues(struct arm_smmu_device *smmu)
-> >  {
-> >  	int ret;
-> > +	bool sva = smmu->features & ARM_SMMU_FEAT_STALLS;
-> 
-> FEAT_SVA?
+Changes since v1:
+  - Fix irq attribute in dts in patch [2/2]
 
-Ugh yes, thanks. I left this as a bool instead of moving into the test
-below because the PRI patch reuses it, but I think I'll just move it down
-when resending.
+Stanley Chu (2):
+  arm64: configs: Support Universal Flash Storage on MediaTek platforms
+  arm64: dts: mt6779: Support ufshci and ufsphy
 
-Thanks,
-Jean
+ arch/arm64/boot/dts/mediatek/mt6779.dtsi | 36 +++++++++++++++++++++++-
+ arch/arm64/configs/defconfig             |  1 +
+ 2 files changed, 36 insertions(+), 1 deletion(-)
 
-> 
-> >  
-> >  	/* cmdq */
-> >  	ret = arm_smmu_init_one_queue(smmu, &smmu->cmdq.q, ARM_SMMU_CMDQ_PROD,
-> > @@ -2804,6 +2966,12 @@ static int arm_smmu_init_queues(struct arm_smmu_device *smmu)
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > +	if (sva && smmu->features & ARM_SMMU_FEAT_STALLS) {
-> 
-> Isn't this checking same thing twice?
-> 
-> > +		smmu->evtq.iopf = iopf_queue_alloc(dev_name(smmu->dev));
-> > +		if (!smmu->evtq.iopf)
-> > +			return -ENOMEM;
-> > +	}
-> > +
-> >  	/* priq */
-> >  	if (!(smmu->features & ARM_SMMU_FEAT_PRI))
-> >  		return 0;
-> > @@ -3718,6 +3886,7 @@ static int arm_smmu_device_remove(struct platform_device *pdev)
-> >  	iommu_device_unregister(&smmu->iommu);
-> >  	iommu_device_sysfs_remove(&smmu->iommu);
-> >  	arm_smmu_device_disable(smmu);
-> > +	iopf_queue_free(smmu->evtq.iopf);
-> >  
-> >  	return 0;
-> >  }
-> 
+-- 
+2.18.0
+
