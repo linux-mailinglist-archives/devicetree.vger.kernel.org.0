@@ -2,392 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0BD30016D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 12:25:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E59FC300179
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 12:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727788AbhAVLYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 06:24:41 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:35103 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728268AbhAVLYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 06:24:06 -0500
-X-UUID: fe811c0e40b6453497b76bd4b2f51ae3-20210122
-X-UUID: fe811c0e40b6453497b76bd4b2f51ae3-20210122
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1220637426; Fri, 22 Jan 2021 19:19:58 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 22 Jan 2021 19:19:43 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 22 Jan 2021 19:19:43 +0800
-From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>
-CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        Ran Bi <ran.bi@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Wen Su <wen.su@mediatek.com>
-Subject: [PATCH v5 8/8] arm64: dts: mt6359: add PMIC MT6359 related nodes
-Date:   Fri, 22 Jan 2021 19:19:41 +0800
-Message-ID: <1611314381-19517-9-git-send-email-hsin-hsiung.wang@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1611314381-19517-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1611314381-19517-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+        id S1728005AbhAVLZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 06:25:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57400 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728031AbhAVLYn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 06:24:43 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 01B7F23A54
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 11:24:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611314643;
+        bh=3J0wWtjdWX0hlvoGts9QOuTD/DXkCp3jEun8Gmwd6js=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FghxDv/FAkF9nItr0h2ziDB6kcI8uQy/XvpDhTC8uwEeyrzxLL6UKcLqxOXbv4czQ
+         r2QmGJsEavrUfyAjrZevkolQRpUyYR/jfCCTRaxgX/tvOqkjeyHsk8Ampdtx4aqps8
+         JTo97zJKNWv5MqHgNWVPoajr00fcJGLIcHLLdo4oboIBtbbFUNXe9lSsTLa6IapHeS
+         kb/Y6ZWuLqT8WdbOJXdqy++XGKEJF2PMSzkHev4qai8ISS/1lZQh9t5mFN9BE/YO6d
+         67hc7fgHANtDJFWHRCNBYzlp8zfwUpXRo7+Lx+TKXb02G9yEJth6uz2B/UuYEn2wRn
+         qx6R4GSEyVzpA==
+Received: by mail-oo1-f48.google.com with SMTP id q6so1311775ooo.8
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 03:24:02 -0800 (PST)
+X-Gm-Message-State: AOAM533KFeDYmsRELkLpiOfwHU4svXJtdWDk1foPkPb6weNbYMEhgUqC
+        d/3VMDE6C2LuL6Fm/P1sLiPQwm5wsU8v2JkfelU=
+X-Google-Smtp-Source: ABdhPJxovFO4IsOlNFY29q/0HB86v0k+lR+NKH0wmMm7XLwLssV/9BbwcFhgz6mxMbSpl0aLH5aXje3NQnl5CQxzaFk=
+X-Received: by 2002:a4a:bb01:: with SMTP id f1mr3414383oop.66.1611314642145;
+ Fri, 22 Jan 2021 03:24:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210120202532.9011-1-d-gerlach@ti.com> <20210120202532.9011-4-d-gerlach@ti.com>
+ <197af185-d2ea-3c76-d0bf-714485f8f195@ti.com> <20210121174639.jqbvem6b4ozd3six@sterling>
+ <4ee6f005-2eee-42b2-b573-e10602839e1b@ti.com> <20210121183909.pwpboiptqbof2dfu@squint>
+ <2b35fb8b-0477-f66d-bcbd-ad640664a888@ti.com>
+In-Reply-To: <2b35fb8b-0477-f66d-bcbd-ad640664a888@ti.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Fri, 22 Jan 2021 12:23:46 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0O5cibBfL96ktSsXWTr09qxi4egFYizGO0oaSf3__Fgg@mail.gmail.com>
+Message-ID: <CAK8P3a0O5cibBfL96ktSsXWTr09qxi4egFYizGO0oaSf3__Fgg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] arm64: dts: ti: Add support for AM642 SoC
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+        Tony Lindgren <tony@atomide.com>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Wen Su <wen.su@mediatek.com>
+On Thu, Jan 21, 2021 at 8:57 PM Suman Anna <s-anna@ti.com> wrote:
+> On 1/21/21 12:39 PM, Nishanth Menon wrote:
+> > On 12:13-20210121, Suman Anna wrote:
+> >>
+> >> Hmm, this is kinda counter-intuitive. When I see a dts node, I am expecting the
+> >
+> > What is counter intutive about a -next branch be tested against
+> > linux-next tree?
+>
+> The -next process is well understood. FWIW, you are not sending your PR against
+> -next branch, but against primarily a -rc1 or -rc2 baseline.
+>
+> As a developer, when I am submitting patches, I am making sure that things are
+> functional against the baseline you use. For example, when I split functionality
+> into a driver portions and dts portions, I need to make sure both those
+> individual pieces boot fine and do not cause regressions, even though for the
+> final functionality, you need both.
+> >
+> >
+> > Now, if you want to launch a product with my -next branch - go ahead, I
+> > don't intent it for current kernel version - you are on your own.
+> >
+> > If there is a real risk of upstream next-breaking - speakup with an
+> > real example - All I care about is keeping upstream functional and
+> > useable.
+>
+> This is all moot when your own tree doesn't boot properly. In this case, you are
+> adding MMC nodes, but yet for a boot test, you are saying use linux-next for the
+> nodes that were added or you need additional driver patches (which is not how
+> maintainer-level trees are verified).
+>
+> Arnd,
+> Can you please guide us here as to what is expected in general, given that the
+> pull-request from Nishanth goes through you, and if there is some pre-existing
+> norms around this?
 
-add PMIC MT6359 related nodes which is for MT6779 platform
+There are two very different cases to consider, and I'm not sure which one
+we have here:
 
-Signed-off-by: Wen Su <wen.su@mediatek.com>
-Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
----
-changes since v4:
-- add pmic MT6359 support in the MT8192 evb dts.
----
- arch/arm64/boot/dts/mediatek/mt6359.dtsi    | 298 ++++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt8192-evb.dts |   1 +
- 2 files changed, 299 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt6359.dtsi
+- When submitting any changes to a working platform, each patch on
+  a branch that gets merged needs to work incrementally, e.g. a device
+  tree change merged through the soc tree must never stop a platform
+  from booting without a patch that gets merged through another branch
+  in the same merge window, or vice versa.
+  As an extension of this, I would actually appreciate if we never do
+  incompatible binding changes at all. If a driver patch enables a new
+  binding for already supported hardware, a second patch changes
+  the dts file to use the new binding, and a third patch removes the
+  original binding, this could still be done without regressions over
+  multiple merge windows, but it breaks the assumption that a new
+  kernel can boot with an old dtb (or vice versa). This second one
+  is a softer requirement, and we can make exceptions for particularly
+  good reasons, but please explain those in the patch description and
+  discuss with upstream maintainers before submitting patches that do
+  this.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-new file mode 100644
-index 000000000000..4bd85e33a4c9
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-@@ -0,0 +1,298 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2020 MediaTek Inc.
-+ */
-+
-+&pwrap {
-+	pmic: pmic {
-+		compatible = "mediatek,mt6359";
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+
-+		mt6359codec: mt6359codec {
-+		};
-+
-+		mt6359regulator: regulators {
-+			mt6359_vs1_buck_reg: buck_vs1 {
-+				regulator-name = "vs1";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <2200000>;
-+				regulator-enable-ramp-delay = <0>;
-+				regulator-always-on;
-+			};
-+			mt6359_vgpu11_buck_reg: buck_vgpu11 {
-+				regulator-name = "vgpu11";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-enable-ramp-delay = <200>;
-+				regulator-allowed-modes = <0 1 2>;
-+			};
-+			mt6359_vmodem_buck_reg: buck_vmodem {
-+				regulator-name = "vmodem";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-ramp-delay = <10760>;
-+				regulator-enable-ramp-delay = <200>;
-+			};
-+			mt6359_vpu_buck_reg: buck_vpu {
-+				regulator-name = "vpu";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-enable-ramp-delay = <200>;
-+				regulator-allowed-modes = <0 1 2>;
-+			};
-+			mt6359_vcore_buck_reg: buck_vcore {
-+				regulator-name = "vcore";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-enable-ramp-delay = <200>;
-+				regulator-allowed-modes = <0 1 2>;
-+			};
-+			mt6359_vs2_buck_reg: buck_vs2 {
-+				regulator-name = "vs2";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1600000>;
-+				regulator-enable-ramp-delay = <0>;
-+				regulator-always-on;
-+			};
-+			mt6359_vpa_buck_reg: buck_vpa {
-+				regulator-name = "vpa";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3650000>;
-+				regulator-enable-ramp-delay = <300>;
-+			};
-+			mt6359_vproc2_buck_reg: buck_vproc2 {
-+				regulator-name = "vproc2";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-ramp-delay = <7500>;
-+				regulator-enable-ramp-delay = <200>;
-+				regulator-allowed-modes = <0 1 2>;
-+			};
-+			mt6359_vproc1_buck_reg: buck_vproc1 {
-+				regulator-name = "vproc1";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-ramp-delay = <7500>;
-+				regulator-enable-ramp-delay = <200>;
-+				regulator-allowed-modes = <0 1 2>;
-+			};
-+			mt6359_vcore_sshub_buck_reg: buck_vcore_sshub {
-+				regulator-name = "vcore_sshub";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1193750>;
-+			};
-+			mt6359_vgpu11_sshub_buck_reg: buck_vgpu11_sshub {
-+				regulator-name = "vgpu11_sshub";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1193750>;
-+			};
-+			mt6359_vaud18_ldo_reg: ldo_vaud18 {
-+				regulator-name = "vaud18";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-enable-ramp-delay = <240>;
-+			};
-+			mt6359_vsim1_ldo_reg: ldo_vsim1 {
-+				regulator-name = "vsim1";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <3100000>;
-+			};
-+			mt6359_vibr_ldo_reg: ldo_vibr {
-+				regulator-name = "vibr";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+			mt6359_vrf12_ldo_reg: ldo_vrf12 {
-+				regulator-name = "vrf12";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
-+			mt6359_vusb_ldo_reg: ldo_vusb {
-+				regulator-name = "vusb";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-enable-ramp-delay = <960>;
-+				regulator-always-on;
-+			};
-+			mt6359_vsram_proc2_ldo_reg: ldo_vsram_proc2 {
-+				regulator-name = "vsram_proc2";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1293750>;
-+				regulator-ramp-delay = <7500>;
-+				regulator-enable-ramp-delay = <240>;
-+				regulator-always-on;
-+			};
-+			mt6359_vio18_ldo_reg: ldo_vio18 {
-+				regulator-name = "vio18";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <1900000>;
-+				regulator-enable-ramp-delay = <960>;
-+				regulator-always-on;
-+			};
-+			mt6359_vcamio_ldo_reg: ldo_vcamio {
-+				regulator-name = "vcamio";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <1900000>;
-+			};
-+			mt6359_vcn18_ldo_reg: ldo_vcn18 {
-+				regulator-name = "vcn18";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-enable-ramp-delay = <240>;
-+			};
-+			mt6359_vfe28_ldo_reg: ldo_vfe28 {
-+				regulator-name = "vfe28";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-enable-ramp-delay = <120>;
-+			};
-+			mt6359_vcn13_ldo_reg: ldo_vcn13 {
-+				regulator-name = "vcn13";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
-+			mt6359_vcn33_1_bt_ldo_reg: ldo_vcn33_1_bt {
-+				regulator-name = "vcn33_1_bt";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <3500000>;
-+			};
-+			mt6359_vcn33_1_wifi_ldo_reg: ldo_vcn33_1_wifi {
-+				regulator-name = "vcn33_1_wifi";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <3500000>;
-+			};
-+			mt6359_vaux18_ldo_reg: ldo_vaux18 {
-+				regulator-name = "vaux18";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-enable-ramp-delay = <240>;
-+				regulator-always-on;
-+			};
-+			mt6359_vsram_others_ldo_reg: ldo_vsram_others {
-+				regulator-name = "vsram_others";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1293750>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-enable-ramp-delay = <240>;
-+			};
-+			mt6359_vefuse_ldo_reg: ldo_vefuse {
-+				regulator-name = "vefuse";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <2000000>;
-+			};
-+			mt6359_vxo22_ldo_reg: ldo_vxo22 {
-+				regulator-name = "vxo22";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <2200000>;
-+				regulator-always-on;
-+			};
-+			mt6359_vrfck_ldo_reg: ldo_vrfck {
-+				regulator-name = "vrfck";
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1700000>;
-+			};
-+			mt6359_vrfck_1_ldo_reg: ldo_vrfck_1 {
-+				regulator-name = "vrfck";
-+				regulator-min-microvolt = <1240000>;
-+				regulator-max-microvolt = <1600000>;
-+			};
-+			mt6359_vbif28_ldo_reg: ldo_vbif28 {
-+				regulator-name = "vbif28";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-enable-ramp-delay = <240>;
-+			};
-+			mt6359_vio28_ldo_reg: ldo_vio28 {
-+				regulator-name = "vio28";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+			mt6359_vemc_ldo_reg: ldo_vemc {
-+				regulator-name = "vemc";
-+				regulator-min-microvolt = <2900000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+			mt6359_vemc_1_ldo_reg: ldo_vemc_1 {
-+				regulator-name = "vemc";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+			mt6359_vcn33_2_bt_ldo_reg: ldo_vcn33_2_bt {
-+				regulator-name = "vcn33_2_bt";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <3500000>;
-+			};
-+			mt6359_vcn33_2_wifi_ldo_reg: ldo_vcn33_2_wifi {
-+				regulator-name = "vcn33_2_wifi";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <3500000>;
-+			};
-+			mt6359_va12_ldo_reg: ldo_va12 {
-+				regulator-name = "va12";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-always-on;
-+			};
-+			mt6359_va09_ldo_reg: ldo_va09 {
-+				regulator-name = "va09";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1200000>;
-+			};
-+			mt6359_vrf18_ldo_reg: ldo_vrf18 {
-+				regulator-name = "vrf18";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <1810000>;
-+			};
-+			mt6359_vsram_md_ldo_reg: ldo_vsram_md {
-+				regulator-name = "vsram_md";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1293750>;
-+				regulator-ramp-delay = <10760>;
-+				regulator-enable-ramp-delay = <240>;
-+			};
-+			mt6359_vufs_ldo_reg: ldo_vufs {
-+				regulator-name = "vufs";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <1900000>;
-+			};
-+			mt6359_vm18_ldo_reg: ldo_vm18 {
-+				regulator-name = "vm18";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <1900000>;
-+				regulator-always-on;
-+			};
-+			mt6359_vbbck_ldo_reg: ldo_vbbck {
-+				regulator-name = "vbbck";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1200000>;
-+			};
-+			mt6359_vsram_proc1_ldo_reg: ldo_vsram_proc1 {
-+				regulator-name = "vsram_proc1";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1293750>;
-+				regulator-ramp-delay = <7500>;
-+				regulator-enable-ramp-delay = <240>;
-+				regulator-always-on;
-+			};
-+			mt6359_vsim2_ldo_reg: ldo_vsim2 {
-+				regulator-name = "vsim2";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <3100000>;
-+			};
-+			mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub {
-+				regulator-name = "vsram_others_sshub";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1293750>;
-+			};
-+		};
-+
-+		mt6359rtc: mt6359rtc {
-+			compatible = "mediatek,mt6358-rtc";
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-index 0205837fa698..808be492e970 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-@@ -5,6 +5,7 @@
-  */
- /dts-v1/;
- #include "mt8192.dtsi"
-+#include "mt6359.dtsi"
- 
- / {
- 	model = "MediaTek MT8192 evaluation board";
--- 
-2.18.0
+- For a newly added hardware support, having a runtime dependency
+  on another branch is not a problem, we do that all the time: Adding
+  a device node for an existing board (or a new board) and the driver
+  code in another branch is not a regression because each branch
+  only has incremental changes that improve hardware support, and
+  it will work as soon as both are merged.
+  You raised the point about device bindings, which is best addressed
+  by having one commit that adds the (reviewed) binding document
+  first, and then have the driver branch and the dts branch based on
+  the same commit.
 
+I hope that clarifies the case you are interested in, let me know if I
+missed something for the specific case at hand.
+
+       Arnd
