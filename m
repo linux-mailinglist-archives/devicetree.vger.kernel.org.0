@@ -2,162 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE376300F82
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 23:03:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B0230105E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 23:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730134AbhAVV6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 16:58:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40534 "EHLO
+        id S1728882AbhAVWzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 17:55:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730918AbhAVUIc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 15:08:32 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D88C0613D6;
-        Fri, 22 Jan 2021 12:07:52 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id p13so7954528ljg.2;
-        Fri, 22 Jan 2021 12:07:51 -0800 (PST)
+        with ESMTP id S1728346AbhAVWzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 17:55:25 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B1B6C061794
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 14:54:45 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id f63so4773932pfa.13
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 14:54:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/Q9Reap3GWCAihxatXXr3FfVYUJhLMEM+4qTRCJHb9Q=;
-        b=EbYQVnYZe4+A4cZVNvsovFd+Uj5FB5Xx8OMwr0ixsUNq6fSZ6bNtgtrkD3lWMls0so
-         NW6aDSVA7UUPlHXJTi0FDP108Il2GhkrJvERU02VfGPGY/EU8OikhVdnLW9rjeyw5iZr
-         slVuzONZOgaLJEtm0hTBbJIysddZkBZuxk6T3i4auNRUV9CZxDzjajozm+TZ10FPZp9r
-         gErWpgszLu4EZTM8EJulC3F2ySreOf/tc8s9PJTOivYhO4tLRArx7Uepr/WhWHaFdBI+
-         SDf8pqs4xXzgrRWqcacgcCzoTL/UWe0iCGUaxQUC+dB2L87dhTBR+0UBg+ZaYtsWl6Pb
-         hl4w==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C89gw6YvNATURTK9LTqx+RBcivfIy7/zRAMs6G4Hk8A=;
+        b=PsvLEMzbpQV8uTWCDWCZe12J/6HFr573xVJJKHzUv9sGJufSbhhY5mVyf/kYxLTpC9
+         8hyHGdZmMDFRxly2ZNJ8oCCxRpayaUrJ3H9+LdezSpGIK+mxuEv1bgelLzyyaOVspW5z
+         hUl6/enhunBTGLj+zsCufXjIVTeBwkMUQn4so=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/Q9Reap3GWCAihxatXXr3FfVYUJhLMEM+4qTRCJHb9Q=;
-        b=P0jOrHPVJfkomMtdkWb9MrvvZpKqstoEt3r27WlnrtPvn0uASjaV9qr5jJATDbdX9j
-         dfnOtN7DIfgc778ezU0FDEs8EBFBvB7WiDrFsfbr/uSHl4T20OQcDnRZI90cFguxnBKO
-         6NyIzs4aDyQETvqakEPInF3/ixeX/4PYESxWwyt9DwBjL4rvx9VfvtUciZNHBj3+V9Yf
-         /8ravBD1d5n5JbSVVj+JCpQ11VAPHu0fKITWMzVdQfmsUB97CAoK0wuq+3zCCU+uXVN+
-         fexUZnA4yzn3d06rxdrF8Qo6+1NOGJ/reOlNMGOA+M9ST/li/IQCv9HlXEgJDZw0szSj
-         XfZw==
-X-Gm-Message-State: AOAM531ch/4HV5qFTG/1DBug521/cKJH8NfqKS19jnyUTQ38eLLfQvZY
-        Rl6gtyZNt+yU+rt8ETMgJPk=
-X-Google-Smtp-Source: ABdhPJwwc8pKbByXTk7VYPWfy3Qn6WAYf7oG0/n7cLmvx4xCmuxZysQOwKgv8fORvnxUx6ZMupmXgw==
-X-Received: by 2002:a2e:9214:: with SMTP id k20mr1643215ljg.45.1611346070383;
-        Fri, 22 Jan 2021 12:07:50 -0800 (PST)
-Received: from localhost.localdomain (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
-        by smtp.gmail.com with ESMTPSA id u6sm994589lfk.127.2021.01.22.12.07.49
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C89gw6YvNATURTK9LTqx+RBcivfIy7/zRAMs6G4Hk8A=;
+        b=OTPPHJHR2oJ+MuO0lE9mJhebRtLAyDd3QjmOJzt49S/+r0GcWeyrvfapJnPcNrXcBu
+         25pq4qx3uKxbEv8QLQeHiCnpfFlXk+ydYlrobExrzgeXw+d0QiC1rErKjXG1H4v4+tBA
+         8sDATFrC3asBOEcpq4RkFGPOcWaqwywC3rdkVj0RRo9Plg79PjhueEQfG+8MZR6LwRsE
+         5dIZTHD/kldYvXtoqGoKifqMRq1lOVPEY93Gh/Qlj58h3NDZmr+txOcHuXvjdi3/Ma1t
+         hDApXr41SVnTSw39rndapJvohQ9Ao09fI0NMBPOxFfO3xTjfPu7ljMDu7/CZ0yLHCAWX
+         a5Hw==
+X-Gm-Message-State: AOAM530E6U3VvSR5YfsmHO8L5XFpHju9vIaUiE3p1y0G2+Ei5UxF827K
+        XLu87M6Td2kXFle1JTmvl+qEHSrvJRe7lQ==
+X-Google-Smtp-Source: ABdhPJzr0zZEMTiv6i0Pk6M0VCXjUpl8GGjXkZL3oXFmtA2iioxrMcptT2U+p+0okuzjCesuPlu4ZA==
+X-Received: by 2002:a05:6a00:2296:b029:1b6:6972:2f2a with SMTP id f22-20020a056a002296b02901b669722f2amr7012104pfe.69.1611356085048;
+        Fri, 22 Jan 2021 14:54:45 -0800 (PST)
+Received: from smtp.gmail.com ([2620:15c:202:201:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id i62sm6433509pfe.84.2021.01.22.14.54.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jan 2021 12:07:49 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Nick Dyer <nick@shmanahar.org>,
+        Fri, 22 Jan 2021 14:54:44 -0800 (PST)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jiada Wang <jiada_wang@mentor.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/3] dt-bindings: input: atmel_mxt_ts: Document atmel,wakeup-method and WAKE line GPIO
-Date:   Fri, 22 Jan 2021 23:06:57 +0300
-Message-Id: <20210122200659.7404-2-digetx@gmail.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210122200659.7404-1-digetx@gmail.com>
-References: <20210122200659.7404-1-digetx@gmail.com>
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 0/3] iio: Add a ChromeOS EC MKBP proximity driver
+Date:   Fri, 22 Jan 2021 14:54:40 -0800
+Message-Id: <20210122225443.186184-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Atmel touchscreen controllers have a WAKE line that needs to be
-asserted low in order to wake up controller from a deep sleep. Document
-the wakeup methods and the new GPIO properties.
+This is a different approach to [1] where I tried to add this proximity
+sensor logic to the input subsystem. Instead, we'll take the approach of
+making a small IIO proximity driver that parses the EC switch bitmap to
+find out if the front proximity sensor is detecting something or not.
+This allows us to treat proximity sensors as IIO devices all the time in
+userspace instead of handling this switch on the EC via the input
+subsystem and then other proximity sensors via IIO.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- .../bindings/input/atmel,maxtouch.yaml        | 29 +++++++++++++++++++
- include/dt-bindings/input/atmel-maxtouch.h    | 10 +++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 include/dt-bindings/input/atmel-maxtouch.h
+[1] https://lore.kernel.org/r/20201205004709.3126266-1-swboyd@chromium.org
 
-diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-index 8c6418f76e94..e6b03a1e7c30 100644
---- a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-+++ b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-@@ -39,6 +39,13 @@ properties:
-       (active low). The line must be flagged with
-       GPIO_ACTIVE_LOW.
- 
-+  wake-gpios:
-+    maxItems: 1
-+    description:
-+      Optional GPIO specifier for the touchscreen's wake pin
-+      (active low). The line must be flagged with
-+      GPIO_ACTIVE_LOW.
-+
-   linux,gpio-keymap:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     description: |
-@@ -53,6 +60,26 @@ properties:
-       or experiment to determine which bit corresponds to which input. Use
-       KEY_RESERVED for unused padding values.
- 
-+  atmel,wakeup-method:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      The WAKE line is an active-low input that is used to wake up the touch
-+      controller from deep-sleep mode before communication with the controller
-+      could be started. This optional feature used to minimize current
-+      consumption when the controller is in deep sleep mode. This feature is
-+      relevant only to some controller families, like mXT1386 controller for
-+      example.
-+
-+      The WAKE pin can be connected in one of the following ways:
-+       1) left permanently low
-+       2) connected to the I2C-compatible SCL pin
-+       3) connected to a GPIO pin on the host
-+    enum:
-+      - 0 # ATMEL_MXT_WAKEUP_NONE
-+      - 1 # ATMEL_MXT_WAKEUP_I2C_SCL
-+      - 2 # ATMEL_MXT_WAKEUP_GPIO
-+    default: 0
-+
- required:
-   - compatible
-   - reg
-@@ -63,6 +90,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/input/atmel-maxtouch.h>
-     #include <dt-bindings/gpio/gpio.h>
-     i2c {
-       #address-cells = <1>;
-@@ -75,6 +103,7 @@ examples:
-         reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
-         vdda-supply = <&ab8500_ldo_aux2_reg>;
-         vdd-supply = <&ab8500_ldo_aux5_reg>;
-+        atmel,wakeup-method = <ATMEL_MXT_WAKEUP_I2C_SCL>;
-       };
-     };
- 
-diff --git a/include/dt-bindings/input/atmel-maxtouch.h b/include/dt-bindings/input/atmel-maxtouch.h
-new file mode 100644
-index 000000000000..7345ab32224d
---- /dev/null
-+++ b/include/dt-bindings/input/atmel-maxtouch.h
-@@ -0,0 +1,10 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+
-+#ifndef _DT_BINDINGS_ATMEL_MAXTOUCH_H
-+#define _DT_BINDINGS_ATMEL_MAXTOUCH_H
-+
-+#define ATMEL_MXT_WAKEUP_NONE		0
-+#define ATMEL_MXT_WAKEUP_I2C_SCL	1
-+#define ATMEL_MXT_WAKEUP_GPIO		2
-+
-+#endif /* _DT_BINDINGS_ATMEL_MAXTOUCH_H */
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Benson Leung <bleung@chromium.org>
+Cc: Guenter Roeck <groeck@chromium.org>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Gwendal Grignou <gwendal@chromium.org>
+Cc: <devicetree@vger.kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+
+Stephen Boyd (3):
+  platform/chrome: cros_ec: Add SW_FRONT_PROXIMITY MKBP define
+  dt-bindings: iio: Add cros ec proximity yaml doc
+  iio: proximity: Add a ChromeOS EC MKBP proximity driver
+
+ .../proximity/google,cros-ec-proximity.yaml   |  37 +++
+ drivers/iio/proximity/Kconfig                 |  11 +
+ drivers/iio/proximity/Makefile                |   1 +
+ drivers/iio/proximity/cros_ec_proximity.c     | 252 ++++++++++++++++++
+ .../linux/platform_data/cros_ec_commands.h    |   1 +
+ 5 files changed, 302 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/google,cros-ec-proximity.yaml
+ create mode 100644 drivers/iio/proximity/cros_ec_proximity.c
+
+
+base-commit: 19c329f6808995b142b3966301f217c831e7cf31
 -- 
-2.29.2
+https://chromeos.dev
 
