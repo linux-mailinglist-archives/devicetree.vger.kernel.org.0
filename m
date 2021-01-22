@@ -2,84 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 089982FFBF9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 06:06:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C7682FFC00
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 06:16:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726248AbhAVFGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 00:06:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43766 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725468AbhAVFGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 00:06:08 -0500
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96872C06174A;
-        Thu, 21 Jan 2021 21:05:28 -0800 (PST)
-Received: by mail-io1-xd2a.google.com with SMTP id q1so8750706ion.8;
-        Thu, 21 Jan 2021 21:05:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lahaIHRrNL60/+aroPUgLnMzQ3P0dsmaC2hv6/9gxHU=;
-        b=BQ3fIhHlZuIGRLHUfcLCGcr6PzwzB1+PdSfEhs6JHS39XN36Gyglz21sz6dBS0MPUY
-         EBJIgjuizVnuj3QN+sNHqzj4Am7h3SeAzJ1ZNe3f0PRq2/jTgzFfsjgV3PGADaX5jFVN
-         tcIZj58eMWKvBLARyElMI9OLQd5lSkrZG5Ac1pFjkreMxmWbNFU9pevjGXT7El1okbTD
-         lmSN9YucSAhccv8vvQCfv5lun5VLrcHMZ3JU09oRTH7b1Q0a2RTGzobfhDlEc/KNShmA
-         vg9sfpId1aR0V0Ur9HlI+GjumfYx+u/u8CLVzFuL0XQffg8bmVgJngFVNNej0KvEgyWx
-         kqDw==
+        id S1725943AbhAVFP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 00:15:58 -0500
+Received: from mail-pf1-f177.google.com ([209.85.210.177]:34442 "EHLO
+        mail-pf1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725912AbhAVFP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 00:15:57 -0500
+Received: by mail-pf1-f177.google.com with SMTP id m6so2965576pfk.1;
+        Thu, 21 Jan 2021 21:15:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lahaIHRrNL60/+aroPUgLnMzQ3P0dsmaC2hv6/9gxHU=;
-        b=SmAe0Xlp6W+UMafDB8teSUYHlaT/WNnreCYbO2o4jwB3ZgbX7q7K52aKwPPxvJkGhI
-         Yl0jg8/cMsJSXCjNjnr6LH5f8WzXX4B80xvmuHcsHX+ggV/y9z0zwrJm+FxtfIVxGTTj
-         /HmeoxfK9lIR+Upmk2OyWiHFAEDlW8tbI2Kt9xIXPXIMJ+gXlx2xr/UKKKJe2on15RXO
-         ctFeUNJSgvL3w4DNjCSl8SB7P8ONEtRb/DRa78QiRepsQI+8L0OpOujafqL/5aTbEdDU
-         ynM3bahPE38klc41IbspWJqQ8h14th+0MSKeVPVXFuGqhc/v41aTIytAuAP2adlI3Iqa
-         3kCw==
-X-Gm-Message-State: AOAM5328B8y+LVVSxngdNtfaBXz84GQHKbIrPiJa3sXAwP9+KyeTFLNf
-        mIx7XqPGQn6LiEX/9Yu61B+tzVsIPNDscjyvvrg=
-X-Google-Smtp-Source: ABdhPJyIRCQ3wHacOdebj1xQyQi0f3EALmC62NZRM5UngeLXChYpf+8EkG+gVLTRNhYpljSsdwCf5F6KA2BgoxXR8u4=
-X-Received: by 2002:a5e:850b:: with SMTP id i11mr2216317ioj.42.1611291928082;
- Thu, 21 Jan 2021 21:05:28 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=w2BUoSFxpHPMOrylOUmPX8q+87J66EYimkKpLqnA9D0=;
+        b=J8oPajG17GVN5MLPB9FQe8FiHeGMwPmTerCnqWiD/ub7wbmpRjAgOgtJq0uMLQc0ds
+         KIQSQQCIcIKlFIvEyXuIKxF3EaB8u2aSmuoPs8M3hmyAu3yXJrxzfgs1iim91OFpAL3V
+         4TONfUp6rBkYARPzAeM+/ezeaTTpwtn8Pv9ms3xY9gtU2/QaTnjn9B0C68j/Fm5OO43k
+         mx4bs3kTuw0XYn4v5RkbIzIsUJ5XJctemqmX+c8DX5edSKIL5rLb/GRt8Gmw+Tf7Ruos
+         oqqAevlAxcm5RPVZttURjhi+rkmrXcotPlRTI95ycdDPlCvlgzQ3gTVwU1YlCvNwQklu
+         gM0Q==
+X-Gm-Message-State: AOAM5329tLO0YI7dPOIKaw3V+8zhL+vvlYy5FfwMq55x6DBu16toAukO
+        3vmb/L/ow5HmQwSLt7fGmrkrveO6UztaPQ==
+X-Google-Smtp-Source: ABdhPJwwCT/KQcIsUg8IFsTLdderKKnMglqlaCXjA6kzauEIBMwS6qd4OmSK9/GFYMf4CQBpKf77RQ==
+X-Received: by 2002:a62:800d:0:b029:1bc:9cd1:8ee1 with SMTP id j13-20020a62800d0000b02901bc9cd18ee1mr3276232pfd.69.1611292515962;
+        Thu, 21 Jan 2021 21:15:15 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1162:1ac0:17a6:4cc6:d1ef])
+        by smtp.gmail.com with ESMTPSA id e5sm7040733pfc.76.2021.01.21.21.15.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jan 2021 21:15:15 -0800 (PST)
+Date:   Thu, 21 Jan 2021 21:15:12 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Nava kishore Manne <navam@xilinx.com>
+Cc:     Moritz Fischer <mdf@kernel.org>,
+        "trix@redhat.com" <trix@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>
+Subject: Re: [PATCH 2/2] fpga: Add support for Xilinx DFX AXI Shutdown manager
+Message-ID: <YApfYL5swV46IsQG@archbook>
+References: <20210115013431.27667-1-nava.manne@xilinx.com>
+ <20210115013431.27667-2-nava.manne@xilinx.com>
+ <YAJWT4IDPmHneam1@epycbox.lan>
+ <MWHPR02MB262353F2D236B6AD787FD5EFC2A30@MWHPR02MB2623.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210117042539.1609-1-alistair@alistair23.me> <20210117042539.1609-3-alistair@alistair23.me>
- <20210118123519.GF4455@sirena.org.uk> <20210118124213.GA10975@sirena.org.uk>
-In-Reply-To: <20210118124213.GA10975@sirena.org.uk>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Thu, 21 Jan 2021 21:05:02 -0800
-Message-ID: <CAKmqyKNNMgY=qR0gGnffXhuTD+ekQjmvqXMbrTu7O4CMX95P4A@mail.gmail.com>
-Subject: Re: [PATCH 3/6] devicetree/bindings: Initial commit of silergy,sy7636a-regulator.yaml
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Alistair Francis <alistair@alistair23.me>, lee.jones@linaro.org,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MWHPR02MB262353F2D236B6AD787FD5EFC2A30@MWHPR02MB2623.namprd02.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 4:42 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Mon, Jan 18, 2021 at 12:35:19PM +0000, Mark Brown wrote:
-> > On Sat, Jan 16, 2021 at 08:25:36PM -0800, Alistair Francis wrote:
->
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - sy7636a-regulator
->
-> > Compatible strings should be in the form vendor,device.
->
-> You should not have separate binding documents for MFD subfunctions that
-> don't have separate compatible strings in DT, include the documentation
-> for the properties used by those subfunctions in the main MFD binding
-> document.
+On Tue, Jan 19, 2021 at 06:34:54AM +0000, Nava kishore Manne wrote:
+> Hi Moritz,
+> 
+> 	Thanks for the review.
+> Please find my response inline.
+> 
+> > -----Original Message-----
+> > From: Moritz Fischer <mdf@kernel.org>
+> > Sent: Saturday, January 16, 2021 8:28 AM
+> > To: Nava kishore Manne <navam@xilinx.com>
+> > Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal Simek
+> > <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > kernel@vger.kernel.org; git <git@xilinx.com>; chinnikishore369@gmail.com
+> > Subject: Re: [PATCH 2/2] fpga: Add support for Xilinx DFX AXI Shutdown
+> > manager
+> > 
+> > Hi,
+> > 
+> > On Fri, Jan 15, 2021 at 07:04:31AM +0530, Nava kishore Manne wrote:
+> > > This patch adds support for Xilinx Dynamic Function eXchange(DFX) AXI
+> > > shutdown manager IP. It can be used to safely handling the AXI traffic
+> > > on a Reconfigurable Partition when it is undergoing dynamic
+> > > reconfiguration and there by preventing system deadlock that may occur
+> > > if AXI transactions are interrupted during reconfiguration.
+> > >
+> > > PR-Decoupler and AXI shutdown manager are completely different IPs.
+> > > But both the IP registers are compatible and also both belong to the
+> > > same sub-system (fpga-bridge).So using same driver for both IP's.
+> > 
+> > I'm a bit confused, the whole goal here is to give the thing a different name?
+> 
+> 
+> Both the PR Decoupler and AXI Shutdown IP manager IP's are follows same register spec.
+> Most of the code is common so we thought of reusing  same driver for AXI shutdown manager as well.
 
-Thanks for the review. I have updated the patch and will send a v2.
-
-Alistair
+What are the differences, though other than it shows a different name?
+> 
+> > >
+> > > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> > > ---
+> > >  drivers/fpga/xilinx-pr-decoupler.c | 35
+> > > ++++++++++++++++++++++++++----
+> > >  1 file changed, 31 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/drivers/fpga/xilinx-pr-decoupler.c
+> > > b/drivers/fpga/xilinx-pr-decoupler.c
+> > > index 7d69af230567..c95f3d065ccb 100644
+> > > --- a/drivers/fpga/xilinx-pr-decoupler.c
+> > > +++ b/drivers/fpga/xilinx-pr-decoupler.c
+> > > @@ -19,10 +19,15 @@
+> > >  #define CTRL_OFFSET		0
+> > >
+> > >  struct xlnx_pr_decoupler_data {
+> > > +	const struct xlnx_config_data *ipconfig;
+> > >  	void __iomem *io_base;
+> > >  	struct clk *clk;
+> > >  };
+> > >
+> > > +struct xlnx_config_data {
+> > > +	char *name;
+> > > +};
+> > > +
+> > >  static inline void xlnx_pr_decoupler_write(struct xlnx_pr_decoupler_data
+> > *d,
+> > >  					   u32 offset, u32 val)
+> > >  {
+> > > @@ -76,15 +81,28 @@ static const struct fpga_bridge_ops
+> > xlnx_pr_decoupler_br_ops = {
+> > >  	.enable_show = xlnx_pr_decoupler_enable_show,  };
+> > >
+> > > +static const struct xlnx_config_data decoupler_config = {
+> > > +	.name = "Xilinx PR Decoupler",
+> > > +};
+> > > +
+> > > +static const struct xlnx_config_data shutdown_config = {
+> > > +	.name = "Xilinx DFX AXI shutdown mgr", };
+> > 
+> > If it's just the strings, why not store them as is?
+> 
+> In order to differentiate the IP's at probe time we are using this name filed.
+> 
+> > > +
+> > >  static const struct of_device_id xlnx_pr_decoupler_of_match[] = {
+> > > -	{ .compatible = "xlnx,pr-decoupler-1.00", },
+> > > -	{ .compatible = "xlnx,pr-decoupler", },
+> > > +	{ .compatible = "xlnx,pr-decoupler-1.00", .data = &decoupler_config
+> > },
+> > > +	{ .compatible = "xlnx,pr-decoupler", .data = &decoupler_config },
+> > > +	{ .compatible = "xlnx,dfx-axi-shutdown-manager-1.00",
+> > > +					.data = &shutdown_config },
+> > > +	{ .compatible = "xlnx,dfx-axi-shutdown-manager",
+> > > +					.data = &shutdown_config },
+> > >  	{},
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, xlnx_pr_decoupler_of_match);
+> > >
+> > >  static int xlnx_pr_decoupler_probe(struct platform_device *pdev)  {
+> > > +	struct device_node *np = pdev->dev.of_node;
+> > >  	struct xlnx_pr_decoupler_data *priv;
+> > >  	struct fpga_bridge *br;
+> > >  	int err;
+> > > @@ -94,6 +112,14 @@ static int xlnx_pr_decoupler_probe(struct
+> > platform_device *pdev)
+> > >  	if (!priv)
+> > >  		return -ENOMEM;
+> > >
+> > > +	if (np) {
+> > > +		const struct of_device_id *match;
+> > > +
+> > > +		match = of_match_node(xlnx_pr_decoupler_of_match, np);
+> > > +		if (match && match->data)
+> > > +			priv->ipconfig = match->data;
+> > > +	}
+> > > +
+> > >  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > >  	priv->io_base = devm_ioremap_resource(&pdev->dev, res);
+> > >  	if (IS_ERR(priv->io_base))
+> > > @@ -114,7 +140,7 @@ static int xlnx_pr_decoupler_probe(struct
+> > > platform_device *pdev)
+> > >
+> > >  	clk_disable(priv->clk);
+> > >
+> > > -	br = devm_fpga_bridge_create(&pdev->dev, "Xilinx PR Decoupler",
+> > > +	br = devm_fpga_bridge_create(&pdev->dev, priv->ipconfig->name,
+> > >  				     &xlnx_pr_decoupler_br_ops, priv);
+> > >  	if (!br) {
+> > >  		err = -ENOMEM;
+> > > @@ -125,7 +151,8 @@ static int xlnx_pr_decoupler_probe(struct
+> > > platform_device *pdev)
+> > >
+> > >  	err = fpga_bridge_register(br);
+> > >  	if (err) {
+> > > -		dev_err(&pdev->dev, "unable to register Xilinx PR
+> > Decoupler");
+> > > +		dev_err(&pdev->dev, "unable to register %s",
+> > > +			priv->ipconfig->name);
+> > >  		goto err_clk;
+> > >  	}
+> > >
+> > > --
+> > > 2.18.0
+> > >
+> > 
+> 
+> Regards,
+> Navakishore.
+- Moritz
