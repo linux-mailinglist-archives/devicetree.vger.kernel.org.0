@@ -2,95 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 964962FFC0D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 06:20:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD4772FFCB1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 07:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726545AbhAVFSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 00:18:49 -0500
-Received: from m42-8.mailgun.net ([69.72.42.8]:52175 "EHLO m42-8.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726472AbhAVFSs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 00:18:48 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1611292701; h=In-Reply-To: Content-Type: MIME-Version:
- References: Message-ID: Subject: Cc: To: From: Date: Sender;
- bh=vOZ8V3PI+mLIfXX89NrnhfpLX937QB0x9p+EEU3L+2Q=; b=HlCmoaNilgSthiI/NGZvu8xUqX3PdzfK2p+Bl4CR7trBT3MKzHf6pdrrej9hiCjEdUJMfiKR
- B/9jbGo9EooobFj74BFTfuv6h4Ken2+rKYkgg5AbcJmY5DYSMimqU8vM7M8PThMK2PaGzwZw
- FgdVJlWwUDN/q5G3Oo4XzScVkFc=
-X-Mailgun-Sending-Ip: 69.72.42.8
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 600a5ffb5677aca7bd0baefb (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 22 Jan 2021 05:17:47
- GMT
-Sender: jackp=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0ADF2C43463; Fri, 22 Jan 2021 05:17:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: jackp)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C17D0C433CA;
-        Fri, 22 Jan 2021 05:17:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C17D0C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jackp@codeaurora.org
-Date:   Thu, 21 Jan 2021 21:17:43 -0800
-From:   Jack Pham <jackp@codeaurora.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        peter.chen@nxp.com
-Subject: Re: [PATCH v6 1/4] usb: gadget: udc: core: Introduce check_config to
- verify USB configuration
-Message-ID: <20210122051743.GE31406@jackp-linux.qualcomm.com>
-References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
- <1611288100-31118-2-git-send-email-wcheng@codeaurora.org>
+        id S1726791AbhAVGZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 01:25:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60678 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726525AbhAVGZS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 01:25:18 -0500
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A6EC06174A;
+        Thu, 21 Jan 2021 22:24:38 -0800 (PST)
+Received: by mail-io1-xd30.google.com with SMTP id n2so9021822iom.7;
+        Thu, 21 Jan 2021 22:24:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=A/ouGLWd79J95AmhZ3hY8iaM6/NouWMMdBryf01BORc=;
+        b=RXFwy0WF/4kocTU07A5dF5GGXbJz3CjLlvt61D+pzNFK3I/C+br6ZXBFJ8cWlT2l9m
+         /P9+H0hEiMm+CBClCPtVzobsEiga0u/FR9DfeM9as6FgSPrW55e57feCn0X7EcdEl+oX
+         v9R+Pw7yrWimMPyrstkAtk/z0XuXUwCER9hg6Px0nkBBPoxSR3OMDRorvwTC2mzwXqCI
+         Byw8s8EVw9bTr3Fn6D7rZ2JXMP5bH/glwce/aIuRuhUgjWElkvyo+YVJx6m/GjhRUuZz
+         lUX/sRWieJ31368TuS06y9Q8n8rT1x8XLcsDnTcU0c8fEWYZqhm5I9bipS/35v5AXyDZ
+         qwPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=A/ouGLWd79J95AmhZ3hY8iaM6/NouWMMdBryf01BORc=;
+        b=oKkQugc4Rd9OD7DqcxCdIroRZbYEe+5yt2jfYOzsaOEPdc9Jf4x568L/+dnFSrDfvL
+         K55aMwsKDV0BLjWHmUCHE5drEYFaK25l0hVtw7erWty+7Ou0nfRcBt/+3sI1qmxeOL0N
+         gm9hKLuvmTLI5xlSpgjxFohZbTTHqTutJFfs02OSWqyJOfmNqCpgspnKQtbbTc5KrnJ/
+         eXrYUCJj2QkP7fD0uDdkF7D9m1pv49yU7IIFqwjqYD/uJd/YlBbRHA7fd4Vhtq5k6y5G
+         Zq03kN2KnT14LdG63TisLWI7yPWMt8FRsiVsKsJqUVDws16yQq10o72clHLGrNovNh0A
+         zODA==
+X-Gm-Message-State: AOAM5314esVV2zUGE3qWQ+lFx+MehTFSJMbFw7i48ueYC0XP4wfLe1k3
+        qNeM4HxXaQmMp+dfJNYBU11XxGBQegammpRqDgs=
+X-Google-Smtp-Source: ABdhPJwFaraYlekAdxing6lHVD5SUikcrEqdByp/yD9aiuP1wvyj94fVw+Mr8VCNwwyW1ncR96fWPcM2KirJkrwPyX8=
+X-Received: by 2002:a92:4b06:: with SMTP id m6mr2721405ilg.177.1611296677491;
+ Thu, 21 Jan 2021 22:24:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1611288100-31118-2-git-send-email-wcheng@codeaurora.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210117042539.1609-1-alistair@alistair23.me> <20210117042539.1609-4-alistair@alistair23.me>
+ <20210118123158.GE4455@sirena.org.uk>
+In-Reply-To: <20210118123158.GE4455@sirena.org.uk>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Thu, 21 Jan 2021 22:24:10 -0800
+Message-ID: <CAKmqyKMyXk_OjTKD24Qxn4QXJ4FwP4yDQqtmTsxAJMJzy34PcA@mail.gmail.com>
+Subject: Re: [PATCH 4/6] regulator: Initial commit of sy7636a
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Alistair Francis <alistair@alistair23.me>, lee.jones@linaro.org,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wesley,
+On Mon, Jan 18, 2021 at 4:32 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Sat, Jan 16, 2021 at 08:25:37PM -0800, Alistair Francis wrote:
+>
+> > --- /dev/null
+> > +++ b/drivers/regulator/sy7636a-regulator.c
+> > @@ -0,0 +1,233 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * Functions to access SY3686A power management chip voltages
+> > + *
+>
+> Please make the entire comment a C++ one so things look more
+> intentional.
 
-On Thu, Jan 21, 2021 at 08:01:37PM -0800, Wesley Cheng wrote:
-> Some UDCs may have constraints on how many high bandwidth endpoints it can
-> support in a certain configuration.  This API allows for the composite
-> driver to pass down the total number of endpoints to the UDC so it can verify
-> it has the required resources to support the configuration.
-> 
-> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> ---
->  drivers/usb/gadget/udc/core.c | 9 +++++++++
->  include/linux/usb/gadget.h    | 2 ++
->  2 files changed, 11 insertions(+)
-> 
-> diff --git a/drivers/usb/gadget/udc/core.c b/drivers/usb/gadget/udc/core.c
-> index 4173acd..469962f 100644
-> --- a/drivers/usb/gadget/udc/core.c
-> +++ b/drivers/usb/gadget/udc/core.c
-> @@ -1003,6 +1003,15 @@ int usb_gadget_ep_match_desc(struct usb_gadget *gadget,
->  }
->  EXPORT_SYMBOL_GPL(usb_gadget_ep_match_desc);
->  
-> +int usb_gadget_check_config(struct usb_gadget *gadget, unsigned long ep_map)
+Fixed.
 
-You should probably add a kernel-doc for this function.
+>
+> > + * Copyright (C) 2019 reMarkable AS - http://www.remarkable.com/
+> > + *
+> > + * Author: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
+>
+> This probably needs an update.
+>
+> > + * This program is free software; you can redistribute it and/or
+> > + * modify it under the terms of the GNU General Public License as
+> > + * published by the Free Software Foundation version 2.
+> > + *
+> > + * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+> > + * kind, whether express or implied; without even the implied warranty
+> > + * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> > + * GNU General Public License for more details.
+>
+> This boilerplate is redundant and should be removed.
 
-Jack
--- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Fixed.
+
+>
+> > +static int get_vcom_voltage_op(struct regulator_dev *rdev)
+> > +{
+> > +     int ret = get_vcom_voltage_mv(rdev->regmap);
+> > +
+>
+> Why is this get_vcom_voltage_mv() function not in the regulator driver,
+> and why is it not just inline here?  It also needs namespacing.
+
+I'm not sure what you mean, can you please explain?
+
+>
+> > +static int disable_regulator(struct regulator_dev *rdev)
+> > +{
+> > +     struct sy7636a *sy7636a = dev_get_drvdata(rdev->dev.parent);
+> > +     int ret = 0;
+> > +
+> > +     mutex_lock(&sy7636a->reglock);
+> > +     ret = regulator_disable_regmap(rdev);
+> > +     usleep_range(30000, 35000);
+> > +     mutex_unlock(&sy7636a->reglock);
+>
+> Why do you need this delay here, and what purpose is this lock intended
+
+The delay is to allow a power ramp up, I have added a comment.
+
+> to serve?  I can't understand what it's intended to protect.
+
+Apparently the mutex is to protect enable/disable, I don't think it's
+required and I will remove it.
+
+>
+> > +     mutex_lock(&sy7636a->reglock);
+> > +     ret = regulator_is_enabled_regmap(rdev);
+> > +     mutex_unlock(&sy7636a->reglock);
+>
+> This lock usage in particular looks confused.
+>
+> > +     ret = regulator_enable_regmap(rdev);
+> > +     if (ret)
+> > +             goto finish;
+>
+> > +     if (!pwr_good) {
+> > +             dev_err(&rdev->dev, "Power good signal timeout after %u ms\n",
+> > +                             jiffies_to_msecs(t1 - t0));
+> > +             ret = -ETIME;
+> > +             goto finish;
+> > +     }
+>
+> This doesn't undo the underlying enable, leaving the regulator in a
+> partially enabled state.
+
+Thanks, fixed.
+
+>
+> > +static const struct regulator_ops sy7636a_vcom_volt_ops = {
+> > +     .get_voltage = get_vcom_voltage_op,
+> > +     .enable = enable_regulator_pgood,
+> > +     .disable = disable_regulator,
+> > +     .is_enabled = sy7636a_regulator_is_enabled,
+> > +};
+>
+> The namespacing for functions is very random and prone to clashes.
+
+Fixed.
+
+> Given the power good signal I'd also expect a get_status() operation.
+
+Added.
+
+>
+> > +static int sy7636a_regulator_suspend(struct device *dev)
+> > +{
+> > +     int ret;
+> > +     struct sy7636a *sy7636a = dev_get_drvdata(dev->parent);
+> > +
+> > +     ret = get_vcom_voltage_mv(sy7636a->regmap);
+> > +
+> > +     if (ret > 0)
+> > +             sy7636a->vcom = (unsigned int)ret;
+> > +
+> > +     return 0;
+> > +}
+>
+> What's going on here, and if you are going to store this value over
+> suspend why not store it in a variable of the correct type?  In general
+
+It is part of the vendor's kernel, they specifically added it to
+ensure vcom is set on resume.
+
+I have fixed the variable type.
+
+> it's surprising to need a suspend operation for a regulator.
+>
+> > +     sy7636a->pgood_gpio = gdp;
+> > +     dev_info(sy7636a->dev,
+> > +             "Power good GPIO registered (gpio# %d)\n",
+> > +             desc_to_gpio(sy7636a->pgood_gpio));
+>
+> This print is just adding noise to the boot process.
+
+Removed.
+
+
+Alistair
