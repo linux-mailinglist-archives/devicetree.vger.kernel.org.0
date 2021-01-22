@@ -2,187 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE8903007AB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:46:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8573007E2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:56:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729125AbhAVPoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 10:44:08 -0500
-Received: from mga06.intel.com ([134.134.136.31]:63805 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729084AbhAVPn4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 10:43:56 -0500
-IronPort-SDR: +DnACV0wGxOILPzIwTQW9HZrAZHZP6Qw3Rb2PgSANa0dXSe8fVeRZaa0kiQkU/G0LfRfGg03YR
- MzbLntBAwN2w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="241001783"
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; 
-   d="scan'208";a="241001783"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 07:43:14 -0800
-IronPort-SDR: HhVvVYp9UNmAue99p2JpAnb8MYodJe2PpnP5Q2H5t3j+vb7w+TRaAAehQbJmESyDt/fKxv9iqK
- jTA3C8i7r2Gg==
-X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; 
-   d="scan'208";a="367469522"
-Received: from djiang5-mobl1.amr.corp.intel.com (HELO [10.212.160.72]) ([10.212.160.72])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 07:43:12 -0800
-Subject: Re: [PATCH v9 05/10] uacce: Enable IOMMU_DEV_FEAT_IOPF
-To:     Zhou Wang <wangzhou1@hisilicon.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        joro@8bytes.org, will@kernel.org
-Cc:     vivek.gautam@arm.com, guohanjun@huawei.com,
-        linux-acpi@vger.kernel.org, zhangfei.gao@linaro.org,
-        lenb@kernel.org, devicetree@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, eric.auger@redhat.com,
-        vdumpa@nvidia.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        rjw@rjwysocki.net, shameerali.kolothum.thodi@huawei.com,
-        iommu@lists.linux-foundation.org, sudeep.holla@arm.com,
-        robin.murphy@arm.com, linux-accelerators@lists.ozlabs.org,
-        baolu.lu@linux.intel.com, Dan Williams <dan.j.williams@intel.com>,
-        "Pan, Jacob jun" <jacob.jun.pan@intel.com>
-References: <20210108145217.2254447-1-jean-philippe@linaro.org>
- <20210108145217.2254447-6-jean-philippe@linaro.org>
- <e14f47bd-1b0c-1905-3bb7-62e1c5b096c7@intel.com>
- <d25faa15-eaaf-a3b8-adaf-f7c81653f688@hisilicon.com>
-From:   Dave Jiang <dave.jiang@intel.com>
-Message-ID: <ee066d95-c8ef-887b-35bc-d47d641c9f58@intel.com>
-Date:   Fri, 22 Jan 2021 08:43:11 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1728800AbhAVPzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 10:55:48 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:35318 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729016AbhAVPzq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 10:55:46 -0500
+Received: by mail-ot1-f45.google.com with SMTP id 36so5508981otp.2;
+        Fri, 22 Jan 2021 07:55:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=b+Blmlo5/G343X4GJ/Rd6bvnggbhUWj/TZr//zejW8U=;
+        b=NZgjaPTLlYll7mva98KMj0NRhxCBUMGe/eR6LS+ybfR/Y/wsshte5cGBpyVZlRLVys
+         fIh7TmdgpdS3aYfAs95hS4DIE1IMtnsHc3cQ9ha1b16xpaSJAMThQOvDuslHIx7I9QTu
+         ddbdkTwRfzdmIxQaSFtubnO9jV6rN+W64vgVKrp5WMjHF1o167qUzJF7TPsBlXnAXPgH
+         oMnH6TPrzdFbkpbnhFuMIx9RuLTSiAHnuDhGy2KP5MTGcTsFQeUgevEW7JTrhNzS0Qf1
+         YRAWkFxIOIoqbrugux9taVtSgygwzCcffJkKIpTtx3eYeVnXrEcBkFwvtj3RfHthOl3h
+         vJmg==
+X-Gm-Message-State: AOAM530NIwkhkcD006hr8bUqDmH3yjqMBU+R2HvdcY4ZlqtyL0Ld+tGk
+        /eXJbu54Qqgc7Y5GxAWpLvdLBhUuNQ==
+X-Google-Smtp-Source: ABdhPJyJqKvwJn/o/cYm8DTTbgPOgWIx77c0lSo5V9uwOCGEsJ1kcCpBGX5Hh5syHMjZTSUFVXb5RA==
+X-Received: by 2002:a9d:66d1:: with SMTP id t17mr3651979otm.163.1611330905408;
+        Fri, 22 Jan 2021 07:55:05 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id j1sm1751786oiw.50.2021.01.22.07.55.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Jan 2021 07:55:04 -0800 (PST)
+Received: (nullmailer pid 864183 invoked by uid 1000);
+        Fri, 22 Jan 2021 15:55:03 -0000
+Date:   Fri, 22 Jan 2021 09:55:03 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Simon Xue <xxm@rock-chips.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH v2 1/2] dt-bindings: rockchip: Add DesignWare based PCIe
+ controller
+Message-ID: <20210122155503.GA860027@robh.at.kernel.org>
+References: <20210120101554.241029-1-xxm@rock-chips.com>
+ <3af70037-c05d-1759-2bae-41db1e8e2768@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <d25faa15-eaaf-a3b8-adaf-f7c81653f688@hisilicon.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3af70037-c05d-1759-2bae-41db1e8e2768@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 20, 2021 at 06:07:29PM +0100, Johan Jonker wrote:
+> Hi Simon,
+> 
+> Thanks you for version 2.
+> A few comments, have a look if it is useful or that you disagree.
+> 
+> This patch has no commit message. Add one in version 3.
+> 
+> Submit all patches in one batch with the same sort message ID to all
+> maintainers including Heiko.
+> 
+> Heiko Stuebner <heiko@sntech.de>
+> 
+> Example message ID:
+> 20210120101554.241029-1-xxm@rock-chips.com
+> 
+> /////
+> 
+> Included is a copy of the Rockchip pcie nodes in a sort of test.dts below.
+> Could you confirm that the properties in that dts are the one that we
+> can expect for Linux mainline and can base our YAML document on?
+> 
+> With rk3568-cru.h and rk3568-power.h manualy added we do some tests with
+> the following commands:
+> 
+> make ARCH=arm64 dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> 
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> 
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> 
+> /////
+> 
+> Example notifications:
+> 
+> /arch/arm64/boot/dts/rockchip/test.dt.yaml: pcie@fe270000: reg: [[3,
+> 3225419776, 0, 4194304], [0, 4263968768, 0, 65536]] is too long
+> 
+> /arch/arm64/boot/dts/rockchip/test.dt.yaml: pcie@fe270000: ranges:
+> 'oneOf' conditional failed, one must be fixed:
+> 
+> Before you submit version 3 make sure that all warnings gone as much as
+> possible.
+> 
+> On 1/20/21 11:15 AM, Simon Xue wrote:
+> > Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> > ---
+> >  .../bindings/pci/rockchip-dw-pcie.yaml        | 140 ++++++++++++++++++
+> >  1 file changed, 140 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > new file mode 100644
+> > index 000000000000..9d3a57f5305e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > @@ -0,0 +1,140 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: DesignWare based PCIe RC controller on Rockchip SoCs
+> > +
+> > +maintainers:
+> > +  - Shawn Lin <shawn.lin@rock-chips.com>
+> > +  - Simon Xue <xxm@rock-chips.com>
+>      - Heiko Stuebner <heiko@sntech.de> ;)
+> > +
+> > +description: |+
+> > +  RK3568 SoC PCIe host controller is based on the Synopsys DesignWare
+> > +  PCIe IP and thus inherits all the common properties defined in
+> > +  designware-pcie.txt.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > +
+> > +# We need a select here so we don't match all nodes with 'snps,dw-pcie'
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: rockchip,rk3568-pcie
+> > +  required:
+> > +    - compatible
+> > +
+> > +properties:
+> > +  compatible:
+> 
+> > +    item:
+> 
+>     items:
+> 
+> > +      - const: rockchip,rk3568-pcie
+> > +      - const: snps,dw-pcie
+> 
+> Add empty line
+> 
+> > +  reg:    items:
+>       - description:
+>       - description:
+> 
+> Add some description for regs.
+> 
+> > +    maxItems: 1
+> remove
+> 
+> This reg maxItems gives errors.
+> 
+> > +
+> 
+> > +  interrupt:
+> interrupts:
+>    items:
+> 
+> > +      - description: system information
+> > +      - description: power management control
+> > +      - description: PCIe message
+> > +      - description: legacy interrupt
+> > +      - description: error report
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: sys
+> > +      - const: pmc
+> > +      - const: msg
 
-On 1/22/2021 4:53 AM, Zhou Wang wrote:
-> On 2021/1/21 4:47, Dave Jiang wrote:
->> On 1/8/2021 7:52 AM, Jean-Philippe Brucker wrote:
->>> The IOPF (I/O Page Fault) feature is now enabled independently from the
->>> SVA feature, because some IOPF implementations are device-specific and
->>> do not require IOMMU support for PCIe PRI or Arm SMMU stall.
->>>
->>> Enable IOPF unconditionally when enabling SVA for now. In the future, if
->>> a device driver implementing a uacce interface doesn't need IOPF
->>> support, it will need to tell the uacce module, for example with a new
->>> flag.
->>>
->>> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
->>> ---
->>> Cc: Arnd Bergmann <arnd@arndb.de>
->>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->>> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
->>> Cc: Zhou Wang <wangzhou1@hisilicon.com>
->>> ---
->>>    drivers/misc/uacce/uacce.c | 32 +++++++++++++++++++++++++-------
->>>    1 file changed, 25 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/misc/uacce/uacce.c b/drivers/misc/uacce/uacce.c
->>> index d07af4edfcac..41ef1eb62a14 100644
->>> --- a/drivers/misc/uacce/uacce.c
->>> +++ b/drivers/misc/uacce/uacce.c
->>> @@ -385,6 +385,24 @@ static void uacce_release(struct device *dev)
->>>        kfree(uacce);
->>>    }
->>>    +static unsigned int uacce_enable_sva(struct device *parent, unsigned int flags)
->>> +{
->>> +    if (!(flags & UACCE_DEV_SVA))
->>> +        return flags;
->>> +
->>> +    flags &= ~UACCE_DEV_SVA;
->>> +
->>> +    if (iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_IOPF))
->>> +        return flags;
->>> +
->>> +    if (iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_SVA)) {
->>> +        iommu_dev_disable_feature(parent, IOMMU_DEV_FEAT_IOPF);
->>> +        return flags;
->>> +    }
->> Sorry to jump in a bit late on this and not specifically towards the
->> intent of this patch. But I'd like to start a discussion on if we want
->> to push the iommu dev feature enabling to the device driver itself rather
->> than having UACCE control this? Maybe allow the device driver to manage
->> the feature bits and UACCE only verify that they are enabled?
->>
->> 1. The device driver knows what platform it's on and what specific
->>     feature bits its devices supports. Maybe in the future if there are
->>     feature bits that's needed on one platform and not on another?
-> Hi Dave,
->
->  From the discussion in this series, the meaning of IOMMU_DEV_FEAT_IOPF here
-> is the IOPF capability of iommu device itself. So I think check it in UACCE
-> will be fine.
->
->> 2. This allows the possibility of multiple uacce device registered to 1
->>     pci dev, which for a device with asymmetric queues (Intel DSA/idxd
->>     driver) that is desirable feature. The current setup forces a single
->>     uacce device per pdev. If additional uacce devs are registered, the
->>     first removal of uacce device will disable the feature bit for the
->>     rest of the registered devices. With uacce managing the feature bit,
->>     it would need to add device context to the parent pdev and ref
->>     counting. It may be cleaner to just allow device driver to manage
->>     the feature bits and the driver should have all the information on
->>     when the feature needs to be turned on and off.
-> Yes, we have this problem, however, this problem exists for IOMMU_DEV_FEAT_SVA
-> too. How about to fix it in another patch?
+MSI? If so, use 'msi'. The DWC core will handle setting it up now.
 
-Hi Zhou,
+> > +      - const: legacy
+> > +      - const: err
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: AHB clock for PCIe master
+> > +      - description: AHB clock for PCIe slave
+> > +      - description: AHB clock for PCIe dbi
+> > +      - description: APB clock for PCIe
+> > +      - description: Auxiliary clock for PCIe
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: aclk_mst
+> > +      - const: aclk_slv
+> > +      - const: aclk_dbi
+> > +      - const: pclk
+> > +      - const: aux
+> > +
+> > +  msi-map: true
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> 
+> /////
+> These properties come from designware-pcie.txt
+> Maybe add them here for now till there's a common yaml?
+> 
+>   num-ib-windows: number of inbound address translation windows
+>   num-ob-windows: number of outbound address translation windows
 
-Right that's what I'm implying. I'm not pushing back on the IOPF feature 
-set. Just trying to survey  the opinions from people on moving the 
-feature settings to the actual drivers rather than having it in UACCE. I 
-will create some patches to show what I mean for comments.
+These can be and are now detected at runtime.
 
-
->
-> Best,
-> Zhou
->
->> - DaveJ
->>
->>
->>> +
->>> +    return flags | UACCE_DEV_SVA;
->>> +}
->>> +
->>>    /**
->>>     * uacce_alloc() - alloc an accelerator
->>>     * @parent: pointer of uacce parent device
->>> @@ -404,11 +422,7 @@ struct uacce_device *uacce_alloc(struct device *parent,
->>>        if (!uacce)
->>>            return ERR_PTR(-ENOMEM);
->>>    -    if (flags & UACCE_DEV_SVA) {
->>> -        ret = iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_SVA);
->>> -        if (ret)
->>> -            flags &= ~UACCE_DEV_SVA;
->>> -    }
->>> +    flags = uacce_enable_sva(parent, flags);
->>>          uacce->parent = parent;
->>>        uacce->flags = flags;
->>> @@ -432,8 +446,10 @@ struct uacce_device *uacce_alloc(struct device *parent,
->>>        return uacce;
->>>      err_with_uacce:
->>> -    if (flags & UACCE_DEV_SVA)
->>> +    if (flags & UACCE_DEV_SVA) {
->>>            iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_SVA);
->>> +        iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_IOPF);
->>> +    }
->>>        kfree(uacce);
->>>        return ERR_PTR(ret);
->>>    }
->>> @@ -487,8 +503,10 @@ void uacce_remove(struct uacce_device *uacce)
->>>        mutex_unlock(&uacce->queues_lock);
->>>          /* disable sva now since no opened queues */
->>> -    if (uacce->flags & UACCE_DEV_SVA)
->>> +    if (uacce->flags & UACCE_DEV_SVA) {
->>>            iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_SVA);
->>> +        iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_IOPF);
->>> +    }
->>>          if (uacce->cdev)
->>>            cdev_device_del(uacce->cdev, &uacce->dev);
->> .
->>
+Rob
