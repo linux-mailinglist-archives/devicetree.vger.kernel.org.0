@@ -2,391 +2,355 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCD25300079
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 11:37:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CD18300081
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 11:41:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727498AbhAVKgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 05:36:35 -0500
-Received: from mail-bn7nam10on2044.outbound.protection.outlook.com ([40.107.92.44]:8897
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728067AbhAVKfO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 05:35:14 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lL1wmdi01d+FHjuPQYuXHGeq462HbRaMz9yiGXpK/1gheTFm5kbtHZTUutBHi+bsqImv/wKfdirXfTgpSIowYzRgvmwhLdxXWSKIHgdXuYMcxCA3RrxI83rLQrCPnVRaPvFrI7KZaH5uWeMPxMQbB37GtNOvydasLOtf0bSS1oxyDqLoDrB32sA7/pyMK/fHmDcK5CheGv7cupYiEGMJFOsJCA5zPQqDNbGwyN5WQxRDDcgvxri1fsp7GJODZSQtTx3O4iHjGk3N9N1e5538FmqpVaUn+0eWYEXQoy+beXMAp6vHUz9SkiweWLuceb5LKQxl6JCVbiu+4nODIlKmdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lQIijxbWmv6pUY108OO4ofrfCpckci1uH3ncWl3f43E=;
- b=d4PHpASbUvr+B5CUklPySGfrwluCNt5IomxDZ/FUdpnJZhmikcmEPi0J+STW3Ql2f4m56mYiU61mmo9ojNcJsloDRWpCYnvpiidJ81ZZtngM+VIqGIkcVh9NZN6J1j6DIbW2DEu40jMpaiRhT+ollhKrqvlXi8KuGYswDG/44XXizLOwM9tR6YpFbpwiSsrGNjFbxNdD+D6B9HDWewqIeiX3PRyTV1ODalL5X4esrfN7N5npDK1iDw6Bkie2oDrmZ8Mq+j2HUcAcaugQs8X2DzZfXxGtNvyC88VTi6lQKaE+hIuHlF+K8yo2BOO+Y0medHAjyLOC3IOyYntIoxBTpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lQIijxbWmv6pUY108OO4ofrfCpckci1uH3ncWl3f43E=;
- b=gUzp7oeVggwFMoKtnCsx0sG7OezlGbh+Ht+Pn3JHcHh7BPAdLi7iAvVA3b2F+N+En89kW93HbDBXzErUUlk3P+DH8N94qve7cBQ99CqyI9pRc7XVnNB1gKRhALDq8fv+VM628WpYxfffhvytm8KfNPIR+107Xul3D4bVROohwk4=
-Received: from MWHPR02MB2623.namprd02.prod.outlook.com (2603:10b6:300:44::9)
- by MWHPR0201MB3611.namprd02.prod.outlook.com (2603:10b6:301:76::33) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.14; Fri, 22 Jan
- 2021 10:34:15 +0000
-Received: from MWHPR02MB2623.namprd02.prod.outlook.com
- ([fe80::c4a8:8d45:c13b:9942]) by MWHPR02MB2623.namprd02.prod.outlook.com
- ([fe80::c4a8:8d45:c13b:9942%3]) with mapi id 15.20.3784.015; Fri, 22 Jan 2021
- 10:34:15 +0000
-From:   Nava kishore Manne <navam@xilinx.com>
-To:     Moritz Fischer <mdf@kernel.org>
-CC:     "trix@redhat.com" <trix@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        git <git@xilinx.com>,
-        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>,
-        Appana Durga Kedareswara Rao <appanad@xilinx.com>
-Subject: RE: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
-Thread-Topic: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
-Thread-Index: AQHW7USLyeY5b3FOfkKTbQUTtVqUFaouGt0AgAVRbYA=
-Date:   Fri, 22 Jan 2021 10:34:15 +0000
-Message-ID: <MWHPR02MB26239A3F539DE8E053D512D5C2A09@MWHPR02MB2623.namprd02.prod.outlook.com>
-References: <20210118024318.9530-1-nava.manne@xilinx.com>
- <20210118024318.9530-3-nava.manne@xilinx.com> <YAYo1ksLfMMNxPuL@epycbox.lan>
-In-Reply-To: <YAYo1ksLfMMNxPuL@epycbox.lan>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
-x-originating-ip: [149.199.50.130]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: acfdc08d-b632-4efa-f5b0-08d8bec14451
-x-ms-traffictypediagnostic: MWHPR0201MB3611:
-x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR0201MB361106AB8D2D1F42F7829291C2A00@MWHPR0201MB3611.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GVbMQiwldz56WpZyuzx3DhTYy99wL+X1OSUfWN+4R34Uj2bp8HDtqCIYWmsFaVDWKXRsNvas+j510GEIABb5TEQlCQ4sId86FfHuPNpZhYHCYUXrXiIfdebmaCcSjZn2toMv9ZelTo9JnmqVA4x9d4UuvTAjo5heY4vP7heQnrz2ltAlGFhpsgYO5eb/HIu1JW65+vMSDPurIEGXj61gw1++yFG3yeP2qPn4h95JZSU8ko9MhvxYVWNvnT1dp7Y1RH5SB49WbT2KwvgZKVAoXuBVAPUWwiLI+/qwyuxgGKHvo1bsVPlxoRv2Lf8CmAC1T5kIp0ffGANhjxgLdNhkqw0EtzpgwValhT2r24nPcHwjRJefuPUvyTpAwhzcXZ1DmaKdW4FOp+dnXOErXYaGIQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2623.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(396003)(39860400002)(366004)(346002)(66476007)(186003)(76116006)(8676002)(33656002)(5660300002)(6916009)(9686003)(52536014)(64756008)(4326008)(8936002)(71200400001)(66446008)(66946007)(55016002)(83380400001)(107886003)(86362001)(6506007)(7696005)(66556008)(478600001)(316002)(2906002)(54906003)(53546011)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?OZplxRlTXB43zEfsWZZDxYw18kjI+E58C4Oq/d5zbJ+uAe/BUQV8qT6vA0DJ?=
- =?us-ascii?Q?K9/Kg/OW78KQBsi5T86eE362oORjG16Tgx2tqCBAosF7DeMZ6ByjUppY7w42?=
- =?us-ascii?Q?mQE+Fa1YEkTDx4g4OQ2slKMly38ai4S3rh6wWtvkYp3Yr4Nk975/W0f0rf8/?=
- =?us-ascii?Q?CYtLDZmAiKPSPohVmQdDFDya/wqHM3Ld7DtlG/YMOSaGleEgcjI2lEMTEzLu?=
- =?us-ascii?Q?fay1T0hN84m78Wk1tng+cKm0/wZ18ykKsBKyOYNaS8CQdpQRL90CZqz1kLz6?=
- =?us-ascii?Q?4Be5QGp/1I7D0o4aU34Hgut51Q+Yr5LwdbJG8cCFarL2JC5vxmeA1yZDp+AI?=
- =?us-ascii?Q?LdHY8HTB1e9gNe6Ai3nO4Kykmc9ZnS2AsRTSRYipb55DpBLwuQDiCISt0C/M?=
- =?us-ascii?Q?Pwj5tekIrKKuabgQST5XietzoB4h749FHJXP7hXnfLFqvF6OSJb7OiYupRIk?=
- =?us-ascii?Q?CTMTia21VT1+4dPq//Ao0fLVl8UBqmfTW1xZrSSEk2b9X0Uya8R5V2hC+a8K?=
- =?us-ascii?Q?ifmctpHa8jjYiawrRZ6qJ5Nk8AVh9dlmLn6RYZ+OjDeWQ4pwn3gx5nWBIIDs?=
- =?us-ascii?Q?XN9ZN5V9b8s+YjiJXwFdIvVJTyjMPsESRFQmQN1hzv+lgorwK0zHHD4x1HFn?=
- =?us-ascii?Q?MggLbRsNb+6jjYXLoMcyIOSpnsnGtvq9KtafuB2N/piDk+cwqw9nvfeEPPyn?=
- =?us-ascii?Q?Ud8g+2RHraz7/ukiMJpFDR5C2i5da8syxmke+Kq0jrsy3q7UHCcu6deF1ORz?=
- =?us-ascii?Q?VyQ+foGu57Qi99vvntARLhaf6bBEIyhHy0oeGR4wifIbWT630S72WrQJ+kLZ?=
- =?us-ascii?Q?ETWh2156ln+bxiIheDjsvLWm8DO6hxJ5Wf/uY33gWbuDlKIiJ79CzIkufYMa?=
- =?us-ascii?Q?ZF8ukXQJxUxoC0lgQfU1LJoxsFO+0X2ir5OTYfVQfGMeRljfN3WCmHvDShv4?=
- =?us-ascii?Q?is/96oQ78KyuIDtJ95bmwooxX++emXuIQ71P0Hi+vcqrZyMFmdNKFa/zTH8h?=
- =?us-ascii?Q?wKZLrQ4B7A+0xpBpiNYGB5+zj2DTumhaR5l0clnIpHw0zkCbr2M9XpmhWW9Z?=
- =?us-ascii?Q?mx5TdZ1J?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1727021AbhAVKlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 05:41:15 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:50814 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727649AbhAVKhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 05:37:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1611311729;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=rJpAF0F6/yRizZbnJSgO+nhn6SnENjuGQrkVAh9wnHY=;
+        b=Ynf1VtZ2GaxPtshX2YDQWgHaRCfJDZtcb+2HTu7qfzz9kIlAz9RV2ZzFW55bFMEjgn/kvM
+        v378ZDinoR+C95GJ8il50D7s7ToVuJme1WQ3ari93BLOYVlg+SrE5tx+oBT3QL0XkOBvGj
+        6lDotCajO63QNuE9/E3g3E2gRDxXAww=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-211-wAZxtwSsM--Xf04mqNSi-g-1; Fri, 22 Jan 2021 05:35:25 -0500
+X-MC-Unique: wAZxtwSsM--Xf04mqNSi-g-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com [10.5.11.14])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id DE841107ACE3;
+        Fri, 22 Jan 2021 10:35:21 +0000 (UTC)
+Received: from [10.36.112.67] (ovpn-112-67.ams2.redhat.com [10.36.112.67])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 53F115D9FC;
+        Fri, 22 Jan 2021 10:35:16 +0000 (UTC)
+Subject: Re: [PATCH v10 07/10] iommu/arm-smmu-v3: Maintain a SID->device
+ structure
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org
+Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com
+References: <20210121123623.2060416-1-jean-philippe@linaro.org>
+ <20210121123623.2060416-8-jean-philippe@linaro.org>
+From:   Auger Eric <eric.auger@redhat.com>
+Message-ID: <218349c7-4ee4-1362-da69-fd79bc0432f2@redhat.com>
+Date:   Fri, 22 Jan 2021 11:35:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2623.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: acfdc08d-b632-4efa-f5b0-08d8bec14451
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2021 10:34:15.5033
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WWl32RRmx/1dOxq0cglw41UdsDrFdlZNjSnCap6VxHdUETZ3rTotkSSdfDFpR7kBeHZkO+tb1zji4rU1IgJhsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR0201MB3611
+In-Reply-To: <20210121123623.2060416-8-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Moritz,
+Hi Jean,
 
-	Thanks for the review.
-Please find my response inline.
+On 1/21/21 1:36 PM, Jean-Philippe Brucker wrote:
+> When handling faults from the event or PRI queue, we need to find the
+> struct device associated with a SID. Add a rb_tree to keep track of
+> SIDs.
+> 
+> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
 
-> -----Original Message-----
-> From: Moritz Fischer <mdf@kernel.org>
-> Sent: Tuesday, January 19, 2021 6:03 AM
-> To: Nava kishore Manne <navam@xilinx.com>
-> Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal Simek
-> <michals@xilinx.com>; linux-fpga@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org; git <git@xilinx.com>; chinnikishore369@gmail.com;
-> Appana Durga Kedareswara Rao <appanad@xilinx.com>
-> Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager drive=
-r
->=20
-> Hi Nava,
->=20
-> On Mon, Jan 18, 2021 at 08:13:18AM +0530, Nava kishore Manne wrote:
-> > This patch adds driver for versal fpga manager.
-> Nit: Add support for Xilinx Versal FPGA manager
+Eric
 
-Will fix in v2.
+> ---
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h |  13 +-
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 161 ++++++++++++++++----
+>  2 files changed, 144 insertions(+), 30 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> index 96c2e9565e00..8ef6a1c48635 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
+> @@ -636,6 +636,15 @@ struct arm_smmu_device {
+>  
+>  	/* IOMMU core code handle */
+>  	struct iommu_device		iommu;
+> +
+> +	struct rb_root			streams;
+> +	struct mutex			streams_mutex;
+> +};
+> +
+> +struct arm_smmu_stream {
+> +	u32				id;
+> +	struct arm_smmu_master		*master;
+> +	struct rb_node			node;
+>  };
+>  
+>  /* SMMU private data for each master */
+> @@ -644,8 +653,8 @@ struct arm_smmu_master {
+>  	struct device			*dev;
+>  	struct arm_smmu_domain		*domain;
+>  	struct list_head		domain_head;
+> -	u32				*sids;
+> -	unsigned int			num_sids;
+> +	struct arm_smmu_stream		*streams;
+> +	unsigned int			num_streams;
+>  	bool				ats_enabled;
+>  	bool				sva_enabled;
+>  	struct list_head		bonds;
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> index 6a53b4edf054..db5d6aa76c3a 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> @@ -912,8 +912,8 @@ static void arm_smmu_sync_cd(struct arm_smmu_domain *smmu_domain,
+>  
+>  	spin_lock_irqsave(&smmu_domain->devices_lock, flags);
+>  	list_for_each_entry(master, &smmu_domain->devices, domain_head) {
+> -		for (i = 0; i < master->num_sids; i++) {
+> -			cmd.cfgi.sid = master->sids[i];
+> +		for (i = 0; i < master->num_streams; i++) {
+> +			cmd.cfgi.sid = master->streams[i].id;
+>  			arm_smmu_cmdq_batch_add(smmu, &cmds, &cmd);
+>  		}
+>  	}
+> @@ -1355,6 +1355,32 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
+>  	return 0;
+>  }
+>  
+> +__maybe_unused
+> +static struct arm_smmu_master *
+> +arm_smmu_find_master(struct arm_smmu_device *smmu, u32 sid)
+> +{
+> +	struct rb_node *node;
+> +	struct arm_smmu_stream *stream;
+> +	struct arm_smmu_master *master = NULL;
+> +
+> +	mutex_lock(&smmu->streams_mutex);
+> +	node = smmu->streams.rb_node;
+> +	while (node) {
+> +		stream = rb_entry(node, struct arm_smmu_stream, node);
+> +		if (stream->id < sid) {
+> +			node = node->rb_right;
+> +		} else if (stream->id > sid) {
+> +			node = node->rb_left;
+> +		} else {
+> +			master = stream->master;
+> +			break;
+> +		}
+> +	}
+> +	mutex_unlock(&smmu->streams_mutex);
+> +
+> +	return master;
+> +}
+> +
+>  /* IRQ and event handlers */
+>  static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+>  {
+> @@ -1588,8 +1614,8 @@ static int arm_smmu_atc_inv_master(struct arm_smmu_master *master)
+>  
+>  	arm_smmu_atc_inv_to_cmd(0, 0, 0, &cmd);
+>  
+> -	for (i = 0; i < master->num_sids; i++) {
+> -		cmd.atc.sid = master->sids[i];
+> +	for (i = 0; i < master->num_streams; i++) {
+> +		cmd.atc.sid = master->streams[i].id;
+>  		arm_smmu_cmdq_issue_cmd(master->smmu, &cmd);
+>  	}
+>  
+> @@ -1632,8 +1658,8 @@ int arm_smmu_atc_inv_domain(struct arm_smmu_domain *smmu_domain, int ssid,
+>  		if (!master->ats_enabled)
+>  			continue;
+>  
+> -		for (i = 0; i < master->num_sids; i++) {
+> -			cmd.atc.sid = master->sids[i];
+> +		for (i = 0; i < master->num_streams; i++) {
+> +			cmd.atc.sid = master->streams[i].id;
+>  			arm_smmu_cmdq_batch_add(smmu_domain->smmu, &cmds, &cmd);
+>  		}
+>  	}
+> @@ -2040,13 +2066,13 @@ static void arm_smmu_install_ste_for_dev(struct arm_smmu_master *master)
+>  	int i, j;
+>  	struct arm_smmu_device *smmu = master->smmu;
+>  
+> -	for (i = 0; i < master->num_sids; ++i) {
+> -		u32 sid = master->sids[i];
+> +	for (i = 0; i < master->num_streams; ++i) {
+> +		u32 sid = master->streams[i].id;
+>  		__le64 *step = arm_smmu_get_step_for_sid(smmu, sid);
+>  
+>  		/* Bridged PCI devices may end up with duplicated IDs */
+>  		for (j = 0; j < i; j++)
+> -			if (master->sids[j] == sid)
+> +			if (master->streams[j].id == sid)
+>  				break;
+>  		if (j < i)
+>  			continue;
+> @@ -2319,11 +2345,101 @@ static bool arm_smmu_sid_in_range(struct arm_smmu_device *smmu, u32 sid)
+>  	return sid < limit;
+>  }
+>  
+> +static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
+> +				  struct arm_smmu_master *master)
+> +{
+> +	int i;
+> +	int ret = 0;
+> +	struct arm_smmu_stream *new_stream, *cur_stream;
+> +	struct rb_node **new_node, *parent_node = NULL;
+> +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(master->dev);
+> +
+> +	master->streams = kcalloc(fwspec->num_ids,
+> +				  sizeof(*master->streams), GFP_KERNEL);
+> +	if (!master->streams)
+> +		return -ENOMEM;
+> +	master->num_streams = fwspec->num_ids;
+> +
+> +	mutex_lock(&smmu->streams_mutex);
+> +	for (i = 0; i < fwspec->num_ids && !ret; i++) {
+> +		u32 sid = fwspec->ids[i];
+> +
+> +		new_stream = &master->streams[i];
+> +		new_stream->id = sid;
+> +		new_stream->master = master;
+> +
+> +		/*
+> +		 * Check the SIDs are in range of the SMMU and our stream table
+> +		 */
+> +		if (!arm_smmu_sid_in_range(smmu, sid)) {
+> +			ret = -ERANGE;
+> +			break;
+> +		}
+> +
+> +		/* Ensure l2 strtab is initialised */
+> +		if (smmu->features & ARM_SMMU_FEAT_2_LVL_STRTAB) {
+> +			ret = arm_smmu_init_l2_strtab(smmu, sid);
+> +			if (ret)
+> +				break;
+> +		}
+> +
+> +		/* Insert into SID tree */
+> +		new_node = &(smmu->streams.rb_node);
+> +		while (*new_node) {
+> +			cur_stream = rb_entry(*new_node, struct arm_smmu_stream,
+> +					      node);
+> +			parent_node = *new_node;
+> +			if (cur_stream->id > new_stream->id) {
+> +				new_node = &((*new_node)->rb_left);
+> +			} else if (cur_stream->id < new_stream->id) {
+> +				new_node = &((*new_node)->rb_right);
+> +			} else {
+> +				dev_warn(master->dev,
+> +					 "stream %u already in tree\n",
+> +					 cur_stream->id);
+> +				ret = -EINVAL;
+> +				break;
+> +			}
+> +		}
+> +
+> +		if (!ret) {
+> +			rb_link_node(&new_stream->node, parent_node, new_node);
+> +			rb_insert_color(&new_stream->node, &smmu->streams);
+> +		}
+> +	}
+> +
+> +	if (ret) {
+> +		for (; i > 0; i--)
+> +			rb_erase(&master->streams[i].node, &smmu->streams);
+> +		kfree(master->streams);
+> +	}
+> +	mutex_unlock(&smmu->streams_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static void arm_smmu_remove_master(struct arm_smmu_master *master)
+> +{
+> +	int i;
+> +	struct arm_smmu_device *smmu = master->smmu;
+> +	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(master->dev);
+> +
+> +	if (!smmu || !master->streams)
+> +		return;
+> +
+> +	mutex_lock(&smmu->streams_mutex);
+> +	for (i = 0; i < fwspec->num_ids; i++)
+> +		rb_erase(&master->streams[i].node, &smmu->streams);
+> +	mutex_unlock(&smmu->streams_mutex);
+> +
+> +	kfree(master->streams);
+> +}
+> +
+>  static struct iommu_ops arm_smmu_ops;
+>  
+>  static struct iommu_device *arm_smmu_probe_device(struct device *dev)
+>  {
+> -	int i, ret;
+> +	int ret;
+>  	struct arm_smmu_device *smmu;
+>  	struct arm_smmu_master *master;
+>  	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+> @@ -2344,27 +2460,12 @@ static struct iommu_device *arm_smmu_probe_device(struct device *dev)
+>  
+>  	master->dev = dev;
+>  	master->smmu = smmu;
+> -	master->sids = fwspec->ids;
+> -	master->num_sids = fwspec->num_ids;
+>  	INIT_LIST_HEAD(&master->bonds);
+>  	dev_iommu_priv_set(dev, master);
+>  
+> -	/* Check the SIDs are in range of the SMMU and our stream table */
+> -	for (i = 0; i < master->num_sids; i++) {
+> -		u32 sid = master->sids[i];
+> -
+> -		if (!arm_smmu_sid_in_range(smmu, sid)) {
+> -			ret = -ERANGE;
+> -			goto err_free_master;
+> -		}
+> -
+> -		/* Ensure l2 strtab is initialised */
+> -		if (smmu->features & ARM_SMMU_FEAT_2_LVL_STRTAB) {
+> -			ret = arm_smmu_init_l2_strtab(smmu, sid);
+> -			if (ret)
+> -				goto err_free_master;
+> -		}
+> -	}
+> +	ret = arm_smmu_insert_master(smmu, master);
+> +	if (ret)
+> +		goto err_free_master;
+>  
+>  	device_property_read_u32(dev, "pasid-num-bits", &master->ssid_bits);
+>  	master->ssid_bits = min(smmu->ssid_bits, master->ssid_bits);
+> @@ -2403,6 +2504,7 @@ static void arm_smmu_release_device(struct device *dev)
+>  	WARN_ON(arm_smmu_master_sva_enabled(master));
+>  	arm_smmu_detach_dev(master);
+>  	arm_smmu_disable_pasid(master);
+> +	arm_smmu_remove_master(master);
+>  	kfree(master);
+>  	iommu_fwspec_free(dev);
+>  }
+> @@ -2825,6 +2927,9 @@ static int arm_smmu_init_structures(struct arm_smmu_device *smmu)
+>  {
+>  	int ret;
+>  
+> +	mutex_init(&smmu->streams_mutex);
+> +	smmu->streams = RB_ROOT;
+> +
+>  	ret = arm_smmu_init_queues(smmu);
+>  	if (ret)
+>  		return ret;
+> 
 
-> >
-> > PDI source type can be DDR, OCM, QSPI flash etc..
-> No idea what PDI is :)
-
-Programmable device image (PDI).=20
-This file is generated by Xilinx Vivado tool and it contains configuration =
-data objects.
-
-> > But driver allocates memory always from DDR, Since driver supports
-> > only DDR source type.
-> >
-> > Signed-off-by: Appana Durga Kedareswara rao
-> > <appana.durga.rao@xilinx.com>
-> > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> > ---
-> >  drivers/fpga/Kconfig       |   8 ++
-> >  drivers/fpga/Makefile      |   1 +
-> >  drivers/fpga/versal-fpga.c | 149
-> > +++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 158 insertions(+)
-> >  create mode 100644 drivers/fpga/versal-fpga.c
-> >
-> > diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig index
-> > 5645226ca3ce..9f779c3a6739 100644
-> > --- a/drivers/fpga/Kconfig
-> > +++ b/drivers/fpga/Kconfig
-> > @@ -216,4 +216,12 @@ config FPGA_MGR_ZYNQMP_FPGA
-> >  	  to configure the programmable logic(PL) through PS
-> >  	  on ZynqMP SoC.
-> >
-> > +config FPGA_MGR_VERSAL_FPGA
-> > +        tristate "Xilinx Versal FPGA"
-> > +        depends on ARCH_ZYNQMP || COMPILE_TEST
-> > +        help
-> > +          Select this option to enable FPGA manager driver support for
-> > +          Xilinx Versal SOC. This driver uses the versal soc firmware
-> > +          interface to load programmable logic(PL) images
-> > +          on versal soc.
-> >  endif # FPGA
-> > diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile index
-> > d8e21dfc6778..40c9adb6a644 100644
-> > --- a/drivers/fpga/Makefile
-> > +++ b/drivers/fpga/Makefile
-> > @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+=3D
-> ts73xx-fpga.o
-> >  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+=3D xilinx-spi.o
-> >  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+=3D zynq-fpga.o
-> >  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+=3D zynqmp-fpga.o
-> > +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      +=3D versal-fpga.o
-> >  obj-$(CONFIG_ALTERA_PR_IP_CORE)         +=3D altera-pr-ip-core.o
-> >  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    +=3D altera-pr-ip-core-plat.o
-> >
-> > diff --git a/drivers/fpga/versal-fpga.c b/drivers/fpga/versal-fpga.c
-> > new file mode 100644 index 000000000000..2a42aa78b182
-> > --- /dev/null
-> > +++ b/drivers/fpga/versal-fpga.c
-> > @@ -0,0 +1,149 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright (C) 2021 Xilinx, Inc.
-> > + */
-> > +
-> > +#include <linux/dma-mapping.h>
-> > +#include <linux/fpga/fpga-mgr.h>
-> > +#include <linux/io.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/string.h>
-> > +#include <linux/firmware/xlnx-zynqmp.h>
-> > +
-> > +/* Constant Definitions */
-> > +#define PDI_SOURCE_TYPE	0xF
-> > +
-> > +/**
-> > + * struct versal_fpga_priv - Private data structure
-> > + * @dev:	Device data structure
-> > + * @flags:	flags which is used to identify the PL Image type
-> > + */
-> > +struct versal_fpga_priv {
-> > +	struct device *dev;
-> > +	u32 flags;
-> This seems unused ... please introduce them when/if you start using them.
-
-Will fix in v2.
-
-> > +};
-> > +
-> > +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
-> > +				      struct fpga_image_info *info,
-> > +				      const char *buf, size_t size) {
-> > +	struct versal_fpga_priv *priv;
-> > +
-> > +	priv =3D mgr->priv;
-> > +	priv->flags =3D info->flags;
-> ? What uses this ? It seems this function could just be 'return 0' right =
-now.
-
-Will fix in v2.
-
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int versal_fpga_ops_write(struct fpga_manager *mgr,
-> > +				 const char *buf, size_t size)
-> > +{
-> > +	struct versal_fpga_priv *priv;
-> > +	dma_addr_t dma_addr =3D 0;
-> > +	char *kbuf;
-> > +	int ret;
-> > +
-> > +	priv =3D mgr->priv;
-> > +
-> > +	kbuf =3D dma_alloc_coherent(priv->dev, size, &dma_addr,
-> GFP_KERNEL);
-> > +	if (!kbuf)
-> > +		return -ENOMEM;
-> > +
-> > +	memcpy(kbuf, buf, size);
-> > +
-> > +	wmb(); /* ensure all writes are done before initiate FW call */
-> > +
-> > +	ret =3D zynqmp_pm_load_pdi(PDI_SOURCE_TYPE, dma_addr);
-> > +
-> > +	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
-> > +					  struct fpga_image_info *info)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> > +static enum fpga_mgr_states versal_fpga_ops_state(struct fpga_manager
-> > +*mgr) {
-> > +	return FPGA_MGR_STATE_OPERATING;
-> Is that always the case? Shouldn't that be FPGA_MGR_STATE_UNKNOWN?
-
-For Versal SoC base PDI is always configured prior to Linux boot up. So I m=
-ake the fpga state as OPERATING.
-Please let know if it is not a proper implementation will think about the a=
-lternate solution.=20
-
-> > +}
-> > +
-> > +static const struct fpga_manager_ops versal_fpga_ops =3D {
-> > +	.state =3D versal_fpga_ops_state,
-> > +	.write_init =3D versal_fpga_ops_write_init,
-> > +	.write =3D versal_fpga_ops_write,
-> > +	.write_complete =3D versal_fpga_ops_write_complete, };
-> > +
-> > +static int versal_fpga_probe(struct platform_device *pdev) {
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct versal_fpga_priv *priv;
-> > +	struct fpga_manager *mgr;
-> > +	int err, ret;
-> Please pick one, err or ret. 'err' seems unused?
-
-Will fix in v2.
-
-> > +
-> > +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +	if (!priv)
-> > +		return -ENOMEM;
-> > +
-> > +	priv->dev =3D dev;
-> > +	ret =3D dma_set_mask_and_coherent(&pdev->dev,
-> DMA_BIT_MASK(32));
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "no usable DMA configuration");
-> Nit: "no usable DMA configuration\n"
-
-Will fix in v2.
-
-> > +		return ret;
-> > +	}
-> > +
-> > +	mgr =3D devm_fpga_mgr_create(dev, "Xilinx Versal FPGA Manager",
-> > +				   &versal_fpga_ops, priv);
-> > +	if (!mgr)
-> > +		return -ENOMEM;
-> > +
-> > +	platform_set_drvdata(pdev, mgr);
-> > +
->=20
-> Replace this part:
-> > +	err =3D fpga_mgr_register(mgr);
-> > +	if (err) {
-> > +		dev_err(dev, "unable to register FPGA manager");
-> > +		fpga_mgr_free(mgr);
-> > +		return err;
-> > +	}
->=20
-> with:
-> 	return devm_fpga_mgr_register(mgr);
->=20
-> I tried to get rid of the boilerplate, since every driver repeats it (and=
- above
-> calling fpga_mgr_free(mgr) on a devm_fpga_mgr_create() created FPGA
-> manager is wrong?) :)
-
-Thanks for pointing it. Will fix in v2.
-
-> > +
-> > +	return 0;
-> > +}
-> > +
->=20
-> Then
-> > +static int versal_fpga_remove(struct platform_device *pdev) {
-> > +	struct fpga_manager *mgr =3D platform_get_drvdata(pdev);
-> > +
-> > +	fpga_mgr_unregister(mgr);
-> > +	fpga_mgr_free(mgr);
-> > +
-> > +	return 0;
-> > +}
-> drop this since cleanup is now automatic.
-
-Thanks for pointing it. Will fix in v2.
-
-> > +
-> > +static const struct of_device_id versal_fpga_of_match[] =3D {
-> > +	{ .compatible =3D "xlnx,versal-fpga", },
-> > +	{},
-> > +};
-> > +
-> Nit: Drop the newline
-
-Will fix in v2.
-
-> > +MODULE_DEVICE_TABLE(of, versal_fpga_of_match);
-> > +
-> > +static struct platform_driver versal_fpga_driver =3D {
-> > +	.probe =3D versal_fpga_probe,
-> > +	.remove =3D versal_fpga_remove,
-> > +	.driver =3D {
-> > +		.name =3D "versal_fpga_manager",
-> > +		.of_match_table =3D of_match_ptr(versal_fpga_of_match),
-> > +	},
-> > +};
-> > +
-> Nit: Drop the newline
-
-Will fix in v2.
-
-Regards,
-Navakishore.
