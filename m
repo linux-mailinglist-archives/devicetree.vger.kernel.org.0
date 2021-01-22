@@ -2,104 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29AAC300232
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 12:59:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA6230021E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 12:57:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727317AbhAVK5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 05:57:43 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:35770 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727658AbhAVKwX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 05:52:23 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10MAlUGJ011277;
-        Fri, 22 Jan 2021 11:51:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=tRfkUbsOHdsqqLC7XEqLwhsAVzj6M9H/lhJ1kalkBTY=;
- b=i/N24KvBNjMxlVMSsZ/V9qlY7SqHiKNM8JNoXCOKK3CjcOuhh284iH3uNp7ylO2Z68rn
- CIBByFnYMgfZSOMx2FW88lCrmJYKxklP6ezKmeyhhGbjD8O793+0v69kMDn+pFhJ/YZ7
- S8dhqd24XO0l59TlLkFoqz/HAVeqdFBN5DmLqrpZTE3Cy3bKEPz97fZn9Q7nJPQjBnF2
- Lt/87kyCxAqL94x0tb/VpwycU4aVDrGV936dPGGPaPjM8DAI215p23lmlWaby3Fovmao
- 2xtsql6RXGnFbo7ywE9NjrnomOcd2fHju+DTbMwzYOP9yoV71FhGBvhRzvFdP3WZUArt LA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3668pe1e2e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 22 Jan 2021 11:51:28 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 41FC310002A;
-        Fri, 22 Jan 2021 11:51:28 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3348B22DBCA;
-        Fri, 22 Jan 2021 11:51:28 +0100 (CET)
-Received: from localhost (10.75.127.51) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 22 Jan 2021 11:51:27
- +0100
-From:   <gabriel.fernandez@foss.st.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Etienne Carriere <etienne.carriere@st.com>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
+        id S1727275AbhAVLz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 06:55:57 -0500
+Received: from frasgout.his.huawei.com ([185.176.79.56]:2399 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728020AbhAVK76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 05:59:58 -0500
+Received: from fraeml710-chm.china.huawei.com (unknown [172.18.147.207])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4DMbkY5sG2z67dSX;
+        Fri, 22 Jan 2021 18:55:01 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml710-chm.china.huawei.com (10.206.15.59) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Fri, 22 Jan 2021 11:59:15 +0100
+Received: from localhost (10.47.73.222) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 22 Jan
+ 2021 10:59:13 +0000
+Date:   Fri, 22 Jan 2021 10:58:32 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+CC:     <joro@8bytes.org>, <will@kernel.org>, <lorenzo.pieralisi@arm.com>,
+        <robh+dt@kernel.org>, <guohanjun@huawei.com>,
+        <sudeep.holla@arm.com>, <rjw@rjwysocki.net>, <lenb@kernel.org>,
+        <robin.murphy@arm.com>, <eric.auger@redhat.com>,
+        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        <linux-acpi@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 13/14] dt-bindings: clock: stm32mp1 new compatible for secure rcc
-Date:   Fri, 22 Jan 2021 11:51:00 +0100
-Message-ID: <20210122105101.27374-14-gabriel.fernandez@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210122105101.27374-1-gabriel.fernandez@foss.st.com>
-References: <20210122105101.27374-1-gabriel.fernandez@foss.st.com>
+        <linux-accelerators@lists.ozlabs.org>, <baolu.lu@linux.intel.com>,
+        <jacob.jun.pan@linux.intel.com>, <kevin.tian@intel.com>,
+        <vdumpa@nvidia.com>, <zhangfei.gao@linaro.org>,
+        <shameerali.kolothum.thodi@huawei.com>, <vivek.gautam@arm.com>
+Subject: Re: [PATCH v10 10/10] iommu/arm-smmu-v3: Add stall support for
+ platform devices
+Message-ID: <20210122105832.00002dcb@Huawei.com>
+In-Reply-To: <YAqSCKeN2o+GsISZ@myrica>
+References: <20210121123623.2060416-1-jean-philippe@linaro.org>
+        <20210121123623.2060416-11-jean-philippe@linaro.org>
+        <20210121191236.00000103@Huawei.com>
+        <YAqSCKeN2o+GsISZ@myrica>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-22_06:2021-01-21,2021-01-22 signatures=0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.73.222]
+X-ClientProxiedBy: lhreml750-chm.china.huawei.com (10.201.108.200) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+On Fri, 22 Jan 2021 09:51:20 +0100
+Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
 
-Introduce new compatible string "st,stm32mp1-rcc-secure" for
-stm32mp1 clock driver when the device is configured with RCC
-security support hardened.
+> On Thu, Jan 21, 2021 at 07:12:36PM +0000, Jonathan Cameron wrote:
+> > > @@ -2502,6 +2647,7 @@ static void arm_smmu_release_device(struct device *dev)
+> > >  
+> > >  	master = dev_iommu_priv_get(dev);
+> > >  	WARN_ON(arm_smmu_master_sva_enabled(master));
+> > > +	iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
+> > >  	arm_smmu_detach_dev(master);
+> > >  	arm_smmu_disable_pasid(master);
+> > >  	arm_smmu_remove_master(master);  
+> > 
+> > The lack of symmetry here bothers me a bit, but it's already true, so I guess
+> > this case is fine as well.  
+> 
+> Normally the device driver calls iommu_dev_feat_disable(SVA) which does
+> iopf_queue_remove_device(). This is just a safety net in case the device
+> gets removed without the driver properly cleaning up (which will WARN as
+> well) 
 
-Signed-off-by: Etienne Carriere <etienne.carriere@st.com>
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
----
- Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Ah makes sense.  Maybe it's worth a comment in the code for future generations
+of tired code readers?
 
-diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-index 4e385508f516..95f5990775c4 100644
---- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-@@ -54,6 +54,7 @@ properties:
- 
-   compatible:
-     items:
-+      - const: st,stm32mp1-rcc-secure
-       - const: st,stm32mp1-rcc
-       - const: syscon
- 
-@@ -71,7 +72,7 @@ additionalProperties: false
- examples:
-   - |
-     rcc: rcc@50000000 {
--        compatible = "st,stm32mp1-rcc", "syscon";
-+        compatible = "st,stm32mp1-rcc-secure", "syscon";
-         reg = <0x50000000 0x1000>;
-         #clock-cells = <1>;
-         #reset-cells = <1>;
--- 
-2.17.1
+> 
+> > 
+> > ...  
+> > >  
+> > > @@ -2785,6 +2946,7 @@ static int arm_smmu_cmdq_init(struct arm_smmu_device *smmu)
+> > >  static int arm_smmu_init_queues(struct arm_smmu_device *smmu)
+> > >  {
+> > >  	int ret;
+> > > +	bool sva = smmu->features & ARM_SMMU_FEAT_STALLS;  
+> > 
+> > FEAT_SVA?  
+> 
+> Ugh yes, thanks. I left this as a bool instead of moving into the test
+> below because the PRI patch reuses it, but I think I'll just move it down
+> when resending.
+
+Makes sense.
+
+> 
+> Thanks,
+> Jean
+> 
+> >   
+> > >  
+> > >  	/* cmdq */
+> > >  	ret = arm_smmu_init_one_queue(smmu, &smmu->cmdq.q, ARM_SMMU_CMDQ_PROD,
+> > > @@ -2804,6 +2966,12 @@ static int arm_smmu_init_queues(struct arm_smmu_device *smmu)
+> > >  	if (ret)
+> > >  		return ret;
+> > >  
+> > > +	if (sva && smmu->features & ARM_SMMU_FEAT_STALLS) {  
+> > 
+> > Isn't this checking same thing twice?
+> >   
+> > > +		smmu->evtq.iopf = iopf_queue_alloc(dev_name(smmu->dev));
+> > > +		if (!smmu->evtq.iopf)
+> > > +			return -ENOMEM;
+> > > +	}
+> > > +
+> > >  	/* priq */
+> > >  	if (!(smmu->features & ARM_SMMU_FEAT_PRI))
+> > >  		return 0;
+> > > @@ -3718,6 +3886,7 @@ static int arm_smmu_device_remove(struct platform_device *pdev)
+> > >  	iommu_device_unregister(&smmu->iommu);
+> > >  	iommu_device_sysfs_remove(&smmu->iommu);
+> > >  	arm_smmu_device_disable(smmu);
+> > > +	iopf_queue_free(smmu->evtq.iopf);
+> > >  
+> > >  	return 0;
+> > >  }  
+> >   
 
