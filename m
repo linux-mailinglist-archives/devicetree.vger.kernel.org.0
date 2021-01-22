@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C487300F15
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 22:44:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FE67300F1C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 22:45:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728368AbhAVVnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 16:43:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60046 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730458AbhAVVig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 16:38:36 -0500
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD39C061786;
-        Fri, 22 Jan 2021 13:37:55 -0800 (PST)
-Received: by mail-qk1-x72f.google.com with SMTP id d14so6632483qkc.13;
-        Fri, 22 Jan 2021 13:37:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Z01sMEM1BHDDDy4DLJ6CtoFG8LkWlK4WVMit2bUEiks=;
-        b=exvIKpbaQJKw7viwBDrWQchThnS0qFGB2za1m3aBoBnhTpOWkyw3IDmeFY02EwPo8S
-         XFvhW1HFLhHvp4VBrzHpAcrjy3rexoNvhBIIN7aVtsUtwLl4AmmDcobelXXt4OMwCsuw
-         l4d8/GbHvv3DG3lFX5GvTt6Iq1SnfL7z/3ozFBVm9dwQo6pJwLmKVAg+VvSnRGZ5DM23
-         54oO8OUWlUbQDdU09Q4RtKMH9vtDUvPk1AbzFdS4eKVcgElCWo5+z6kF61dvOXiXr2dU
-         rJGpK8/dpfFW2AkzDaRFF3eIZOa4dU5Z2vNWK6syiJ0r/JfQVUtdVr+6TKrVp4QD2k/e
-         /hqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Z01sMEM1BHDDDy4DLJ6CtoFG8LkWlK4WVMit2bUEiks=;
-        b=CTOlMh5ShoEkcpYbbV1dIqMKwxgO+Up08drEnUIMGcK/jJd+YfBzrunEFBdhaj5nNV
-         JpfCW4OUNT2bE12iFKkVnFjtF0ZFTorG/6AyC33M+zsZsr8O1WAkQ7CZblX+YvIC4jnV
-         d/mzpuGpL9RflJaaYGsc97FML9tkgJSyAYiPZI7TZDc0CBsP9A+HRFchRyjLHibKobvh
-         yMuN3NdgGRE2N6z+7LheNQKTIgvb+zqWUbTlvEJD8CQJPrgNjbf4yUXXnpJNuEy2d4U8
-         U8xfpksvUuuR73g6lGxLgnrAj6wQm7IcuI8EVV3FRSi/3BWPtRVXW/+Rwmlj2Cgv9fma
-         sI5w==
-X-Gm-Message-State: AOAM531R1MD1yWjsDusJb9AFNkPXeZRZNEcwadYZHFMT0Ny1qAbQxkjP
-        GoO5zSB4VBXnAyvp6ontMdoA+vJ4ZwOOfyT3BElX0nW+
-X-Google-Smtp-Source: ABdhPJyjIS6wf1++BNEZehaFXPvE86D5YfbbVJc2+dJNt/eYNRD17y136paRfTW2VVbvirqQPmfvLC15rRHQkWoHo3o=
-X-Received: by 2002:a05:620a:22ab:: with SMTP id p11mr6727935qkh.237.1611351474358;
- Fri, 22 Jan 2021 13:37:54 -0800 (PST)
+        id S1728474AbhAVVn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 16:43:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59848 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730259AbhAVVnt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 16:43:49 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7CEDB23ACA;
+        Fri, 22 Jan 2021 21:43:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611351789;
+        bh=mmFjhRYntRGF7JqBKKJ7VPcPiMpsAqOeWWCtqwgMXRg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZGcTKDnupr/AkOmJbxevkLLmBc/FqDw1DUfnOY3B+dJqILUoEQJbIC1SSHU3uafk5
+         ZU2+d4+mzczOnSVeRwD1XT8eoy1zW4yvkwiJXW+EVVVBB5OquTtS4i7nX8TznH2QKA
+         X1zdToO6zLXwRLWUyI9ahaSg/jlHyJGcHe29bNxz7QvvYd98SdikOg8PpAiahkOC+I
+         /o8KwmuLkDYrDi450TQQRf/ZRUDOsg+0rtziO7vR7lvFQqbH2ZiqtDrWYgBEiorG2c
+         EyGc7E9QF7+Qcds8gBRwKXo4nNPJ6VwCCkWxRR3NmN1+j0nsit1Am4W2lpOxdCgAGY
+         ox56qV9egC9Rw==
+Date:   Fri, 22 Jan 2021 22:43:03 +0100
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
+        Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v4 1/2] media: dt-bindings: Convert video-interfaces.txt
+ properties to schemas
+Message-ID: <20210122224303.6a743c83@coco.lan>
+In-Reply-To: <20210122170144.GE27155@paasikivi.fi.intel.com>
+References: <20210104165808.2166686-1-robh@kernel.org>
+        <20210104165808.2166686-2-robh@kernel.org>
+        <CAL_Jsq+dpVvA0iOMzaPf50Decc1hj7zH0eq-RyuVkdzp729vEQ@mail.gmail.com>
+        <20210122170144.GE27155@paasikivi.fi.intel.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20210115153901.31052-1-zajec5@gmail.com> <20210115153901.31052-3-zajec5@gmail.com>
- <20210119165138.4982ae46@xps13>
-In-Reply-To: <20210119165138.4982ae46@xps13>
-From:   Richard Weinberger <richard.weinberger@gmail.com>
-Date:   Fri, 22 Jan 2021 22:37:43 +0100
-Message-ID: <CAFLxGvxu0Fd1bgHzuKER_R+kG+jet2oKBUyBFVi9NqDTwv-aZQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] mtd: parsers: ofpart: support BCM4908 fixed partitions
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 5:01 PM Miquel Raynal <miquel.raynal@bootlin.com> w=
-rote:
-> > Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->
-> The approach looks fine by me, let's see what other maintainers think.
+Em Fri, 22 Jan 2021 19:01:44 +0200
+Sakari Ailus <sakari.ailus@linux.intel.com> escreveu:
 
-Same, looks good to me! :-)
+> Hi Rob,
+> 
+> On Fri, Jan 22, 2021 at 10:23:44AM -0600, Rob Herring wrote:
+> > On Mon, Jan 4, 2021 at 10:58 AM Rob Herring <robh@kernel.org> wrote:  
+> > >
+> > > Convert video-interfaces.txt to DT schema. As it contains a mixture of
+> > > device level and endpoint properties, split it up into 2 schemas.  
+> > 
+> > Ping!
+> > 
+> > Can this please be applied to the media tree so I can tell folks to
+> > use it in reviews of media bindings.  
 
---=20
+Just merged both patches.
+
+> Yes, it can. It's in my tree now.
+
+
+
 Thanks,
-//richard
+Mauro
