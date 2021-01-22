@@ -2,103 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84198300491
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 14:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C03693004BE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 15:03:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727883AbhAVNvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 08:51:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43886 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727960AbhAVNvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 08:51:43 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE9BC0613D6
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 05:51:02 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id 11so3720912pfu.4
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 05:51:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=1DGptUPlPUDIn46y7qVQ8wP/NzkZbz3BOz3IJ/t3Ri4=;
-        b=K5ZxW5R6zCAWwRlAyqFvab6iy9nUnoYhM+Hfj1cVsyl4Dur1lEoF432t4M1p+3ym+6
-         3bmcSqExz+TlsKo27fgffGVoHS5tqJqltp2pW0jsEAX1Csq8V4zEnGeCoT4gMqvBFtYu
-         N2foheRcmuoMdvJheolSLC9I2sQ46YUWH9PsubGu044f8UlgsffKfd96TrdpntMaXZsg
-         8S+rinNqdJdX8gGnpu4zg0QfL2MF7X3KdnKXEhC06epLv9CRrL2sCkQeU/GZ9ZSZVcWK
-         T/LeKssx7reL5o4KUHBkO7c4ozEZaO0U0OZH7TRbyc/uUcH0SiNJIKlkeSXyz9lHq5DE
-         W/3g==
+        id S1728133AbhAVOCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 09:02:17 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:35799 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728099AbhAVOBk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 09:01:40 -0500
+Received: by mail-oi1-f180.google.com with SMTP id w8so6074034oie.2;
+        Fri, 22 Jan 2021 06:01:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1DGptUPlPUDIn46y7qVQ8wP/NzkZbz3BOz3IJ/t3Ri4=;
-        b=RGZ9VyK/BIoHYizOchjA5Q5pzjs28z1sXQLNA5UK4tOqbVAWQY2ZTVbCOPdug7OR+v
-         se3cegmQyjJiEgg1H7KxMmNo7RX2IGwBwl/s9n0o8KAFnqrytzlGHBpwJ65NUxtExLn0
-         jfhmeUeKxJFDBb8EF9WkqyLuBbMfD2MibvEzp+4v8c0GhMzWYiCaWtXHpH8Y9HTRFl6g
-         L5OlnsGvifO9tT2illFILrB7JO9iXPMhUCA5TkI71BYeUK3S/DXu4jdhO2qR12UcxBPw
-         sFGd7F+qbqCVCeYNo71wZKwTukXWbVCHq3c+HFAzeUj6fCPggA6PtUZkNBalNMZzDgwm
-         P7WA==
-X-Gm-Message-State: AOAM533n8XsxJPd1erYzuu4kZVzhHHd7yamH6MeYW60AGXIOuk/1XIsy
-        +D+wj9OMjY/RxLEezo7BaoJM
-X-Google-Smtp-Source: ABdhPJyLPLAM/0qyg6GdxdI1af+ix4NN6PsYGYu3BDKebA3E1Sak2EbnzgI+kYjzh2sCnSCMx8qqPQ==
-X-Received: by 2002:a63:e20b:: with SMTP id q11mr4804757pgh.396.1611323462136;
-        Fri, 22 Jan 2021 05:51:02 -0800 (PST)
-Received: from work ([103.77.37.137])
-        by smtp.gmail.com with ESMTPSA id m18sm5971806pfd.206.2021.01.22.05.50.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 22 Jan 2021 05:51:01 -0800 (PST)
-Date:   Fri, 22 Jan 2021 19:20:57 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Will Deacon <will@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=EUaxXtMWBR0BSS8k6na/vc+HlfNaGeb+7ZCL4OicyZo=;
+        b=tcNcQFTa9eTkeefyMNo0nbaKZoEjRJl04HKsP9c03B8EaIIhh7+o0lSd3fh+rp4AN4
+         Jtz23oimntuw3KWgeWKWoBCPL6Cuap7wqy2H8d4CLaCzrH7SAY0ANJP62VfeR5yxVFZr
+         G5yGlyhAtWMU0ZdF8oGBAs7vZBd17llLUDi3GesY7HKu4oqXxOSaPvyvEa305vM5vmjm
+         C6yL5/6Wk4LZZvg0Ggdpx2S1AT7fmDZBWdtVPov5R9tsg1q02iQ9+ekxEFFak/glbmYV
+         v8g01Yd9oSabaRaDyvgEwWnMsX3RgWd38z8eliAXl3LGkFl7m5bW2eoaIc47uUHDSp1t
+         hwHQ==
+X-Gm-Message-State: AOAM531ZvPVExek1+izjzKzDoT6ox6ahcrY3kDVkczqw7KBJw3PBjVxT
+        PGncIKO4VrdCRAWqX0zSFA==
+X-Google-Smtp-Source: ABdhPJzuup2G8I4By0nwY5GjTeCgXxvfBNcb5i/dqcjgAbP+KwX1KNzEuKUqEobX9LeiIvN8oDTXpw==
+X-Received: by 2002:aca:3cc5:: with SMTP id j188mr3361372oia.54.1611324054240;
+        Fri, 22 Jan 2021 06:00:54 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p4sm1719630oib.24.2021.01.22.06.00.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Jan 2021 06:00:53 -0800 (PST)
+Received: (nullmailer pid 674375 invoked by uid 1000);
+        Fri, 22 Jan 2021 14:00:45 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     gabriel.fernandez@foss.st.com
+Cc:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Etienne Carriere <etienne.carriere@st.com>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Michael Turquette <mturquette@baylibre.com>,
         linux-arm-kernel@lists.infradead.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vinod Koul <vkoul@kernel.org>, robh+dt@kernel.org,
-        iommu@lists.linux-foundation.org, bjorn.andersson@linaro.org,
-        linux-kernel@vger.kernel.org, Joerg Roedel <joro@8bytes.org>
-Subject: Re: [PATCH 2/2] dt-bindings: arm-smmu: Add binding for Qcom SDX55
- SMMU
-Message-ID: <20210122135056.GA32437@work>
-References: <20210107143118.2386-1-manivannan.sadhasivam@linaro.org>
- <20210107143118.2386-2-manivannan.sadhasivam@linaro.org>
- <20210113032223.GA1467511@robh.at.kernel.org>
- <20210122131448.GE24102@willie-the-truck>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210122131448.GE24102@willie-the-truck>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20210122105101.27374-14-gabriel.fernandez@foss.st.com>
+References: <20210122105101.27374-1-gabriel.fernandez@foss.st.com> <20210122105101.27374-14-gabriel.fernandez@foss.st.com>
+Subject: Re: [PATCH 13/14] dt-bindings: clock: stm32mp1 new compatible for secure rcc
+Date:   Fri, 22 Jan 2021 08:00:45 -0600
+Message-Id: <1611324045.701742.674374.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 22, 2021 at 01:14:49PM +0000, Will Deacon wrote:
-> On Tue, Jan 12, 2021 at 09:22:23PM -0600, Rob Herring wrote:
-> > On Thu, 07 Jan 2021 20:01:18 +0530, Manivannan Sadhasivam wrote:
-> > > Add devicetree binding for Qualcomm SDX55 SMMU.
-> > > 
-> > > Cc: Will Deacon <will@kernel.org>
-> > > Cc: Robin Murphy <robin.murphy@arm.com>
-> > > Cc: Joerg Roedel <joro@8bytes.org>
-> > > Cc: iommu@lists.linux-foundation.org
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > 
-> > Acked-by: Rob Herring <robh@kernel.org>
+On Fri, 22 Jan 2021 11:51:00 +0100, gabriel.fernandez@foss.st.com wrote:
+> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 > 
-> Is there another patch adding driver support for matching this new binding?
+> Introduce new compatible string "st,stm32mp1-rcc-secure" for
+> stm32mp1 clock driver when the device is configured with RCC
+> security support hardened.
+> 
+> Signed-off-by: Etienne Carriere <etienne.carriere@st.com>
+> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+> ---
+>  Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 
-Nope. But the compatible is used as a fallback with "arm,mmu-500". The
-dts patch is merged into qcom tree:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=dts-for-5.12&id=a2bdfdfba2afb532f2a2c8082bdb7de8379a4b6c
+yamllint warnings/errors:
 
-Thanks,
-Mani
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dt.yaml: rcc@50000000: compatible:1: 'st,stm32mp1-rcc' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.example.dt.yaml: rcc@50000000: compatible: ['st,stm32mp1-rcc-secure', 'syscon'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
 
-> Will
+See https://patchwork.ozlabs.org/patch/1430316
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
