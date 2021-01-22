@@ -2,108 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2DE301113
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 00:40:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45AD5301117
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 00:44:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725969AbhAVXkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 18:40:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58016 "EHLO
+        id S1726121AbhAVXoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 18:44:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725274AbhAVXkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 18:40:14 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CED1C061786
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 15:39:18 -0800 (PST)
+        with ESMTP id S1726013AbhAVXoA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 18:44:00 -0500
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFFF1C06174A;
+        Fri, 22 Jan 2021 15:43:19 -0800 (PST)
 Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 77B203EEDE;
-        Sat, 23 Jan 2021 00:39:13 +0100 (CET)
-Subject: Re: [PATCH v2 1/2] pinctrl: Add driver for Awinic AW9523/B I2C GPIO
- Expander
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 47CC13EEDE;
+        Sat, 23 Jan 2021 00:43:18 +0100 (CET)
+Subject: Re: [PATCH v5 0/7] cpufreq-qcom-hw: Implement full OSM programming
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
         konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, phone-devel@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-References: <20210111182928.587285-1-angelogioacchino.delregno@somainline.org>
- <CACRpkdZp3oqj4VeUZEPu=POwAdf-7R3NzNoN9XehtEi_R_fgkw@mail.gmail.com>
- <1e34145b-a04a-1cbb-7fbc-87c69b8dcfd7@somainline.org>
- <CACRpkdacfa6usOZtc+A=ZxEpB1ij_gAKX2PLMOaX0mY_0qHp6A@mail.gmail.com>
+        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com
+References: <20210121195250.492500-1-angelogioacchino.delregno@somainline.org>
+ <20210122094646.35d6wrbj73jrhk7v@vireshk-i7>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
-Message-ID: <f9cc7046-1855-cbe5-51ed-ab5f76716805@somainline.org>
-Date:   Sat, 23 Jan 2021 00:39:13 +0100
+Message-ID: <31a1ad25-30f5-8741-fa85-90b93f070f9d@somainline.org>
+Date:   Sat, 23 Jan 2021 00:43:18 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdacfa6usOZtc+A=ZxEpB1ij_gAKX2PLMOaX0mY_0qHp6A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210122094646.35d6wrbj73jrhk7v@vireshk-i7>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 22/01/21 10:59, Linus Walleij ha scritto:
-> On Mon, Jan 18, 2021 at 3:38 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@somainline.org> wrote:
-> 
->> By the way, this is really LEVEL irq, not EDGE... To avoid any
->> misunderstanding, I think that the best way to show you what I
->> am seeing is to just copy-paste the relevant piece from the
->> datasheet for this hardware (it's not a confidential datasheet
->> and freely found on the internet).
+Il 22/01/21 10:46, Viresh Kumar ha scritto:
+> On 21-01-21, 20:52, AngeloGioacchino Del Regno wrote:
+>>    **
+>>    ** NOTE: To "view the full picture", please look at the following
+>>    ** patch series:
+>>    ** https://patchwork.kernel.org/project/linux-arm-msm/list/?series=413355
+>>    **              This is a subset of that series.
+>>    **
 >>
->> Check this out:
->> " External MCU is required acknowledge by INTN pin. INTN is open-drain
->> out-
->> put, low-level active, and need external pull-up resistor.
+>> Changes in v5:
+>> - Fixed OPP table API abuse, in conjunction with the CPR3 driver
+>> - Some minor cleanups
 > 
-> This talks about what polarity (active low) the pin from the expander
-> to the SoC/CPU is. It has nothing to do with the line into the
-> expander.
-> 
->> When AW9523B detect port change, any input state from high-level to
->> low-level or from
->>    low-level to high-level will generate interrupt after
->> 8us internal deglitch. "
->>
->> ...but since the datasheet is sometimes unclear about "things" (I am
->> mostly sure that they have translated it to english from chinese), I
->> have actually checked whether the INTN pin was pushed LOW when one of
->> the inputs goes from HIGH to LOW.. and.. it does... and as you imagine
->> yeah.. it's slow.. and yes, as slow as you can imagine. :)
->>
->> So, in short, this chip is raising an interrupt when any input changes
->> state, regardless of the change being LOW->HIGH or HIGH->LOW.
-> 
-> This means that the expander only supports
-> IRQ_TYPE_EDGE_BOTH and nothing else.
-> 
-> "port change" above means edges.
-> 
-> Augment your driver to only accept this type.
-> 
-> The consumers better request IRQ_TYPE_EDGE_BOTH
-> (from a device tree for example) and consumers better
-> handle the fact that they get interrupts on both rising
-> and falling edge as well, else they may need special
-> code to handle it. This is not a very nice feature of
-> the expander, it would be more helpful to users to
-> get interrupts on only rising or only falling edges, but
-> as written, it will generate interrupts on both transitions.
-> 
-> Yours,
-> Linus Walleij
+> Tanya had some comments about the driver in the previous version,
+> please let such discussions close before sending any new versions. I
+> haven't seen any reviews for the major driver changes until this
+> version and we are already on V5. Please wait for some time for people
+> to review the patches.
 > 
 
-I see the reading mistake now... oh wow, that was... sad, from me.
-I will fix this ASAP and will send back a v3.
+Well, okay... it's just that I didn't want reviewers to lose time with
+something that had to be fixed, as it wasn't working anymore on the
+newest RC, due to a commit that was (rightfully!) blocking the abuse of
+the OPP API.
 
-Thank you!
+I know that it may be not practical to send a new version while a
+discussion is in progress, but this looked like being a critical fix
+for the driver that I'm sending.
 
-- Angelo
+In any case, this time it is a "final" version and will not get any more
+changes unless requested by reviewers/maintainers.
+
+-- Angelo
