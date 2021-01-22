@@ -2,187 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF0E22FFCF9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 07:50:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4831F2FFD44
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 08:21:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726134AbhAVGuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 01:50:05 -0500
-Received: from bilbo.ozlabs.org ([203.11.71.1]:43065 "EHLO ozlabs.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725854AbhAVGt5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 01:49:57 -0500
-Received: by ozlabs.org (Postfix, from userid 1007)
-        id 4DMVGz2TNGz9sVF; Fri, 22 Jan 2021 17:49:15 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-        d=gibson.dropbear.id.au; s=201602; t=1611298155;
-        bh=oQR2S4ROGJ/SaMWvZTeUe6GZ+oSDsT/AQoYniKUVQZc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o9eBv5tgJMz7YuomxAo5VrRMT4+M67ZLPz9Z+u2qab/N5f29uTDXdbaFaNPTuvVdr
-         MHBasgVyKS7MxTYUY2Apik9qKvgGpVQP7qoff/8JliSuj1DTQNHnlwq6BX5XoJXIck
-         lFLAl/Fdm1JaEhLbY9/y4oTtGNx7ERxxuZiDSFYc=
-Date:   Fri, 22 Jan 2021 17:34:55 +1100
-From:   David Gibson <david@gibson.dropbear.id.au>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>, anmar.oueja@linaro.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH V4 0/3] scripts: dtc: Build fdtoverlay
-Message-ID: <20210122063455.GE4400@yekko.fritz.box>
-References: <cover.1610431620.git.viresh.kumar@linaro.org>
- <74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com>
- <20210120051740.yph4v7zldvs7szdz@vireshk-i7>
+        id S1726931AbhAVHUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 02:20:42 -0500
+Received: from mail-mw2nam10on2041.outbound.protection.outlook.com ([40.107.94.41]:17248
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726094AbhAVHUj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 02:20:39 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OcF6EywG2Hd+YUedgH9p+oU/CPmyNDubaXHfwJNk/7kytxXQGGKveC+mY6Hq3e2kpunOkGcAfC/ccHUG4Lf0ZHCg1g7+iP8EGaZ5oQ5qtSgsbUrNv0RVns/M+1vtDP5/H3Ju6NW856M21tcKXrf8ke1N5kaQiSF74LmKiypXfn9Lo4hv5QkqUVFYGjXdCOhqfxdk8oP9XK4+lu3j5KX6//C1zbLP/T/jncIvrFkg4RnelU3lFOTbeKHoP5NuGOhgKsGp/5jwY5FFoIVj+MCnkd30kOuhTQEIG4eweUoPoSZikj/TNK2HvRyVs35HSjw8LiJb1slubDYCqjFOfzljOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Btzz8jsmL4cWPEqdsMaKM7bZIk9/0TLj38mreigJxqs=;
+ b=GXbCcKFVxR/5hYtuhNzieZGNcUFcxT9TQQ8WN5sYPawaqYHbUuHc7VnwEtzuPtsBy6RubaOMivsTMCfiXPeWTel+AU2LufcsFDZIIADGKsAxFobI89nMVYQg72rhAbQ7UM3TsXV5daoxkEu+Sw7AEnmTzm68EPpUDo9+H0wsjIS73waY87drdu0gKc6+GTW4yjrmGaeoSw7/1AM4aWdKDbOelwaxhFep6CB491KdZMKw3E2SxTDj4YsNSaIoFNENN5K8EZ1w2VzeLOntkqLxtMUknUaO7zemYh7IFrxBFOcn37K2n9jQQzW53xXCBKdvXJdEt6J/paTc0UGGOiEVUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Btzz8jsmL4cWPEqdsMaKM7bZIk9/0TLj38mreigJxqs=;
+ b=Vti6v7Ew/bgqIlqZE50MkIIE97M/eZeTSmWdRuXeioAALaMtZODycFolLpXfwBnU5BXhtNS8FF3x221duEc/CADC0Z6d7BwxZzpyseCXUZ1JEbfQ8XozHMjWCzUdNQ/XgvDjXdpN6aSccIXppgy5GU0gSORwuY/RL8cHsyXFu3Q=
+Received: from SA9PR13CA0240.namprd13.prod.outlook.com (2603:10b6:806:25::35)
+ by MN2PR02MB6173.namprd02.prod.outlook.com (2603:10b6:208:1bd::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.11; Fri, 22 Jan
+ 2021 07:19:46 +0000
+Received: from SN1NAM02FT003.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:25:cafe::8f) by SA9PR13CA0240.outlook.office365.com
+ (2603:10b6:806:25::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.6 via Frontend
+ Transport; Fri, 22 Jan 2021 07:19:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT003.mail.protection.outlook.com (10.152.73.29) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3784.12 via Frontend Transport; Fri, 22 Jan 2021 07:19:45 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Thu, 21 Jan 2021 23:19:19 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Thu, 21 Jan 2021 23:19:19 -0800
+Envelope-to: git@xilinx.com,
+ michal.simek@xilinx.com,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ robh+dt@kernel.org,
+ krzk@kernel.org,
+ monstr@monstr.eu,
+ linux-kernel@vger.kernel.org,
+ laurent.pinchart@ideasonboard.com
+Received: from [172.30.17.109] (port=40844)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1l2qj0-0004Ul-AH; Thu, 21 Jan 2021 23:19:18 -0800
+Subject: Re: [PATCH 3/3] arm64: dts: zynqmp: Wire up the DisplayPort subsystem
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <michal.simek@xilinx.com>
+CC:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <git@xilinx.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <cover.1611232558.git.michal.simek@xilinx.com>
+ <9769d4d103b6eb75e3324825117f6832a746004e.1611232558.git.michal.simek@xilinx.com>
+ <YAoCMqq/hpY0Jz6A@pendragon.ideasonboard.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <80b7a167-86ad-3012-b080-b380e7013f18@xilinx.com>
+Date:   Fri, 22 Jan 2021 08:19:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="RpqchZ26BWispMcB"
-Content-Disposition: inline
-In-Reply-To: <20210120051740.yph4v7zldvs7szdz@vireshk-i7>
+In-Reply-To: <YAoCMqq/hpY0Jz6A@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2988c758-0199-45e2-bf05-08d8bea61863
+X-MS-TrafficTypeDiagnostic: MN2PR02MB6173:
+X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+X-Microsoft-Antispam-PRVS: <MN2PR02MB6173A5CCDDF450101E8D3F31C6A00@MN2PR02MB6173.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XSmenvzVmwlGRiL1YQKb60RLl3l4WuTl0HmsoUXhynjDhrUPcOo9sWURo/vsrD+L2sEqqSyWEOiHWa5Ipoi/YZdANq0YGLrnfCSqWVESeBYgywIqWv/TbJAW6yC4Sv5mAy2nancmRzWcTaImWx20s2EEfnh6TkdxKRC6Z32YiJLRLDJpN2DUzsKKsFoKDuLcqGoWoFLLpCUZXkweely7Z0lR+ZrqMXigjEa9xdp6pOpqB8MkXdI6x0oD4OiYMb8Kfh8Ohk0hcPm9qTV4QDosBtloJ9spaRyNGH1xbnZdydZJpc4Up+8TmepSlkrKvj/oITf0oTYDSVf+4xEUaKWvD9FR/FJ0pz21Do6K8m5eLoy35s53XM/nFNNQFyQmXBq/EtQzvLmJ3sg9tV+LkZCItOid2/vBPT2Qwp5dHrxxcUC2i3XuVXEZvjqJ9/CmrCkGeEAm/xdTzAw5H+8dziyyoMvR6CyfbKeJQcGsvuJsvMjlM9yYSFUwi7e3aFsQlJsrwdx7CzmP4QHLtzBFi7+0JQ==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(39860400002)(396003)(46966006)(316002)(70586007)(36906005)(26005)(6666004)(70206006)(83380400001)(5660300002)(31696002)(7636003)(336012)(54906003)(82310400003)(478600001)(9786002)(186003)(82740400003)(53546011)(44832011)(2616005)(356005)(47076005)(4326008)(31686004)(8676002)(36756003)(2906002)(8936002)(426003)(110136005)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2021 07:19:45.5084
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2988c758-0199-45e2-bf05-08d8bea61863
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT003.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6173
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
 
---RpqchZ26BWispMcB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 1/21/21 11:37 PM, Laurent Pinchart wrote:
+> Hi Michal,
+> 
+> Thank you for the patch.
+> 
+> On Thu, Jan 21, 2021 at 01:36:07PM +0100, Michal Simek wrote:
+>> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>
+>> Enable the dpsub device and wire it up to the PS-GTR PHY lanes routed to
+>> the DisplayPort connector.
+>>
+>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+>> ---
+>>
+>> Wire all the boards
+>>
+>> ---
+>>  .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 31 +++++++++++++++++++
+>>  .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 10 ++++++
+>>  .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 11 +++++++
+>>  .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 11 +++++++
+>>  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 11 +++++++
+>>  .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 11 +++++++
+>>  6 files changed, 85 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>> index 71ebcaadb7c8..a53598c3624b 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>> @@ -15,6 +15,7 @@
+>>  #include <dt-bindings/input/input.h>
+>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>  #include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/phy/phy.h>
+>>  
+>>  / {
+>>  	model = "ZynqMP ZCU100 RevC";
+>> @@ -108,6 +109,18 @@ ina226 {
+>>  		compatible = "iio-hwmon";
+>>  		io-channels = <&u35 0>, <&u35 1>, <&u35 2>, <&u35 3>;
+>>  	};
+>> +
+>> +	si5335a_0: clk26 {
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <26000000>;
+>> +	};
+>> +
+>> +	si5335a_1: clk27 {
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <27000000>;
+>> +	};
+> 
+> This is fine as a workaround for now, but I'm still wondering how we'll
+> solve this properly. We can declare the SI5335A in DT without wiring the
+> output that provides the clock to the PS, otherwise it will be disabled
+> as part of the boot process.
 
-On Wed, Jan 20, 2021 at 10:47:40AM +0530, Viresh Kumar wrote:
-> +David.
->=20
-> On 19-01-21, 11:12, Frank Rowand wrote:
-> > On 1/12/21 2:28 AM, Viresh Kumar wrote:
-> > > We will start building overlays for platforms soon in the kernel and
-> > > would need fdtoverlay tool going forward. Lets start fetching and
-> > > building it.
-> > >=20
-> > > While at it, also remove fdtdump.c file, which isn't used by the kern=
-el.
-> > >=20
-> > > V4:
-> > > - Don't fetch and build fdtdump.c
-> > > - Remove fdtdump.c
-> > >=20
-> > > Viresh Kumar (3):
-> > >   scripts: dtc: Add fdtoverlay.c to DTC_SOURCE
-> > >   scripts: dtc: Build fdtoverlay tool
-> > >   scripts: dtc: Remove the unused fdtdump.c file
-> > >=20
-> > >  scripts/dtc/Makefile             |   6 +-
-> > >  scripts/dtc/fdtdump.c            | 163 -----------------------------=
---
-> > >  scripts/dtc/update-dtc-source.sh |   6 +-
-> > >  3 files changed, 8 insertions(+), 167 deletions(-)
-> > >  delete mode 100644 scripts/dtc/fdtdump.c
-> > >=20
-> >=20
-> > My first inclination was to accept fdtoverlay, as is, from the upstream
-> > project.
-> >=20
-> > But my experiences debugging use of fdtoverlay against the existing
-> > unittest overlay files has me very wary of accepting fdtoverlay in
-> > it's current form.
-> >=20
-> > As an exmple, adding an overlay that fails to reply results in the
-> > following build messages:
-> >=20
-> >    linux--5.11-rc> make zImage
-> >    make[1]: Entering directory '/local/frowand_nobackup/src/git_linus/b=
-uild/dragon_linus_5.11-rc'
-> >      GEN     Makefile
-> >      CALL    /local/frowand_nobackup/src/git_linus/linux--5.11-rc/scrip=
-ts/checksyscalls.sh
-> >      CALL    /local/frowand_nobackup/src/git_linus/linux--5.11-rc/scrip=
-ts/atomic/check-atomics.sh
-> >      CHK     include/generated/compile.h
-> >      FDTOVERLAY drivers/of/unittest-data/static_test.dtb
-> >=20
-> >    Failed to apply 'drivers/of/unittest-data/overlay.dtb': FDT_ERR_NOTF=
-OUND
-> >    make[4]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/d=
-rivers/of/unittest-data/Makefile:96: drivers/of/unittest-data/static_test.d=
-tb] Error 1
-> >    make[3]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/s=
-cripts/Makefile.build:496: drivers/of/unittest-data] Error 2
-> >    make[2]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/s=
-cripts/Makefile.build:496: drivers/of] Error 2
-> >    make[1]: *** [/local/frowand_nobackup/src/git_linus/linux--5.11-rc/M=
-akefile:1805: drivers] Error 2
-> >    make[1]: Leaving directory '/local/frowand_nobackup/src/git_linus/bu=
-ild/dragon_linus_5.11-rc'
-> >    make: *** [Makefile:185: __sub-make] Error 2
-> >=20
-> >=20
-> > The specific error message (copied from above) is:
-> >=20
-> >    Failed to apply 'drivers/of/unittest-data/overlay.dtb': FDT_ERR_NOTF=
-OUND
-> >=20
-> > which is cryptic and does not even point to the location in the overlay=
- that
-> > is problematic.  If you look at the source of fdtoverlay / libfdt, you =
-will
-> > find that FDT_ERR_NOTFOUND may be generated in one of many places.
-> >=20
-> > I do _not_ want to do a full review of fdtoverlay, but I think that it =
-is
-> > reasonable to request enhancing fdtoverlay in the parent project to gen=
-erate
-> > usable error messages before enabling fdtoverlay in the Linux kernel tr=
-ee.
+All these clock chips are preprogrammed to certain rate and enabled by
+default. It means there doesn't need to be any SW handling to enable it.
+When driver for these clock chips comes we can change this that's why I
+used labels which are saying which output it is.
 
-That's... actually much harder than it sounds.  fdtoverlay is
-basically a trivial wrapper around the fdt_overlay_apply() function in
-libfdt.  Matching the conventions of the rest of the library, really
-it's only way to report errors is a single error code.
-
-Returning richer errors is not an easy problem in a C library,
-especially one designed to be usable in embedded systems, without an
-allocator or much else available.
-
-Of course it would be possible to write a friendly command line tool
-specifically for applying overlays, which could give better errors.
-fdtoverlay as it stands isn't really that - it was pretty much written
-just to invoke fdt_overlay_apply() in testcases.
-
-> > fdtoverlay in it's current form adds a potential maintenance burden to =
-me
-> > (as the overlay maintainer).  I now have the experience of how difficul=
-t it
-> > was to debug the use of fdtoverlay in the context of the proposed patch=
- to
-> > use it with the devicetree unittest overlay .dtb files.
-> >=20
-> > -Frank
->=20
-
---=20
-David Gibson			| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
-				| _way_ _around_!
-http://www.ozlabs.org/~dgibson
-
---RpqchZ26BWispMcB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmAKcg8ACgkQbDjKyiDZ
-s5K7OQ/+IyVyWMa/f4/HD38/TgC7EzN+DMeEtHZK8A1z93dhGsJ2GTyOkU0Cx1yI
-PsrLdCR5lxoo3zJkMys+Qe0gvPvfM++K3AQZ7UD70GmIgfE24RpbwUbbiZLJHTOR
-e/bjllZjyc2PNcWjgbJNhCOop9uwg+Ff5iBfj/Opk4Kmms5U3ng5utRhXSf3y9yq
-hUXQC1B3u3/C20qKAIM3DqAaLqChkK2BqQDm8dWQgcnWln3LtCrVUjyH2N+g3Pl3
-8P8RofdUKJC5GhyMlPyZaFVsOZqp07K47A6nmzFyk7LuH8MnsJLpCsCtrO7hbL0S
-t3LhqNd+EjsT2+xGNfSDTmi1gQwgpD5DHHGhcuXkr7NxcdbWbaLj+OMeuf44/c2q
-q4h+ucL/Fc0gRSdme/xMcHSM/mPcHa20kaHrt9a6z/XKu5HnHka14fmMV4DssCqX
-gIITEXmtIfxAXOhH3C0lTyWDxzw5Y/ez+KckKkDF25M/HL8t0WDJPa7MFQmGAnvl
-f/GP9oFDakGtTtNcUXpXTfq4pKwPrDRQNq4teZKrjzjthZNoZYwqb+p6Rwn24NYb
-jnIw9Xr7JVjR5iXoG2GL5+HhpLD9bouhdurfZMi9zeSU09UXuhze6wJZ0NdSuFqj
-ngGc6yHLqoPfNCsHBKfhDkBXEh5WLiHsNqtZKs+xo3ZbehNWQhc=
-=NJeB
------END PGP SIGNATURE-----
-
---RpqchZ26BWispMcB--
+Thanks,
+Michal
