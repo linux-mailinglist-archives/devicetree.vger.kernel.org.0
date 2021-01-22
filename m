@@ -2,146 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F24D3000E4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 11:57:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF5B53000E0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 11:57:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726740AbhAVKzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 05:55:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33378 "EHLO
+        id S1727190AbhAVKzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 05:55:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727489AbhAVKvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 05:51:39 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 793ABC06178B
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 02:50:59 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id h15so478910pli.8
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 02:50:59 -0800 (PST)
+        with ESMTP id S1727497AbhAVKvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 05:51:42 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF72C061794
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 02:51:02 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id 15so3438136pgx.7
+        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 02:51:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PuwWd5eA6p3dY7AgrjavmP5cmvVmC3ijlW6z53nJI7E=;
-        b=DUgiZdV+iGgfJqja6zA0bbGFa0O/OMijUZOXcsGQ3eukmae3Un8i9t0w4ItT3H63Cv
-         le5PyLNxsPvu9EDPmBOpLQeNJWxO5BWoGcrUKWO/hDuBUtMt+mgysSsPBDmDY1ZTRhEh
-         R/fpAdxOXVg84jfBQ53awzLXwMMqquOKhh0S562hQLbwycf2WV0gYWjlAeDDCGE9Fom9
-         hNnPr5+rtVszC6eyKUy68IXMSMnVhABiWVuZPhHcLaXSxPYB97NOV5jdnPpUuU1BxR9V
-         Y23kJlK4hxUfOh83VU2kY+47DJQmULwjyINtkMm7CWOKkDVxzvUDxLi64w0h0rPhlkd4
-         87lA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=PYJHN29z38YJQy9+aRfXhxK7SVaDLVhX0WgONtRAors=;
+        b=AP04QnPEq4omjlVd+XdVlwgJ67Xem0dBgHqNS1NMAk3e7DwbaWW8RgDO+sQnmk2ARX
+         GXttGe+eUwii441N+kRqjfw+Nmtm3EQLerO+0c3mptkNBWOXHKMF2BiY6Dc3zrv+16U5
+         cMfFkO8sy/tywJhIyqwV1UyWjPk9fF04TYurPsgJvwhAcHHFX+0WOq6p1VB6b6taJiED
+         ARoPTT0Wtw5Skh++d6MVcWawwTedLM3WJHGiN3m/nL5/aTrGOi/2hUrJP7GSOhAGK54w
+         jjpV3CYIJGNLPoW/HXSoC8PjvTYpgOxPzxT2B+qXt0gXHkKojMdMEaMsfok103U3xGpH
+         j7JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PuwWd5eA6p3dY7AgrjavmP5cmvVmC3ijlW6z53nJI7E=;
-        b=NGb0oSVA/Xb+45FKaAbUEYOukSEYs3PC1eZSwEi+MG+MRSQETv3evgZ7YPNaYbDmLE
-         djdwRoarCrmxTH6ObX6q61UefvEXu9rQPvxs9iaNnLcqgJjPjLDaAf41uQ2MAisbTBAc
-         MFHpckpBAyxfxppbtiRYM7OEKAXIv/8OfDzmwb0pAuzOHWV3hvTWQou9wrnN7eVDsTiC
-         o/Z76+EsUqutJTldV7QRAzpjHp92horAruN4WjpNdWO0+UICiKy0Lsl0GMJUa5wE9Vi2
-         s3Es6uJf0x5ALzdPCpdQdm2miHNK6W0hlMKv4P8xrc+idY9ULmQE1fa/P8hU9TfSzTh9
-         kBWA==
-X-Gm-Message-State: AOAM531xg1MdeRdTXgpRvnbyBDop9LnYiugjgyBEDvP9Ko6EDXDhV/Rb
-        udyHOYLSPgRLe/Ckm0zzcn7iUA==
-X-Google-Smtp-Source: ABdhPJxqIPhYQksDYkM6roGKyJKmwpyizUIISOxol2yt6kqR07tlYnLJzTCe04O547qEdTCr5b3I6Q==
-X-Received: by 2002:a17:90b:1046:: with SMTP id gq6mr4481021pjb.203.1611312658928;
-        Fri, 22 Jan 2021 02:50:58 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=PYJHN29z38YJQy9+aRfXhxK7SVaDLVhX0WgONtRAors=;
+        b=DvR8q6cqjERrueK9JXpwlRWl+6A4K2w+1dcZfNl5WyEs5xqT8Zog7gGLwAKPexO0hZ
+         6tCGyg70NwI0Ix+C7F/byKOdBoHJaVv+sOgTL6CcregGZHWjAtSDLYK3430A2o3ORdEi
+         N1u/q54A1le2DZmSd/C4owY/Xp/WCKXBYafaY3khPDY8RWNDcsT4m/sf/zl5WA0X+ghL
+         sCeCOtrFgUJfVSOiHyrFQV8rV675G6lzvRJUYDfDg+RD3E5+f0jj1odcB41uJKr+OOvU
+         kVf39hv5/BDcaP2L1kZr0y+7nPh+RxiGh49i653w37dAVhNR8KVeQrEoEMzgiVo+L4r7
+         jQCQ==
+X-Gm-Message-State: AOAM5305xy+604a+NWQDXZzMAKBu9IHsOgdrdoPt3v3xhwAVGX0zCtJv
+        2xfO1bucHASnPsWEx+WeHtFwwg==
+X-Google-Smtp-Source: ABdhPJzMDKgsXcHTNjkAK8idSBD+8LqnsqtyCcKAjRIZ3d6iRLMd2Qg5S5AlRQCOi9Jhpq7agsAiTg==
+X-Received: by 2002:a63:574c:: with SMTP id h12mr4116854pgm.79.1611312661973;
+        Fri, 22 Jan 2021 02:51:01 -0800 (PST)
 Received: from localhost ([122.172.59.240])
-        by smtp.gmail.com with ESMTPSA id k128sm8613204pfd.137.2021.01.22.02.50.57
+        by smtp.gmail.com with ESMTPSA id s9sm1776905pfd.38.2021.01.22.02.51.00
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 22 Jan 2021 02:50:58 -0800 (PST)
+        Fri, 22 Jan 2021 02:51:01 -0800 (PST)
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Frank Rowand <frowand.list@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>
+        Masahiro Yamada <masahiroy@kernel.org>
 Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
         Vincent Guittot <vincent.guittot@linaro.org>,
         linux-kernel@vger.kernel.org, anmar.oueja@linaro.org,
         Bill Mills <bill.mills@linaro.org>,
         David Gibson <david@gibson.dropbear.id.au>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org
-Subject: [PATCH V6 0/6] dt: build overlays
-Date:   Fri, 22 Jan 2021 16:20:30 +0530
-Message-Id: <cover.1611312122.git.viresh.kumar@linaro.org>
+        devicetree@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>
+Subject: [PATCH V6 1/6] scripts: dtc: Fetch fdtoverlay.c from external DTC project
+Date:   Fri, 22 Jan 2021 16:20:31 +0530
+Message-Id: <41f7158a707f20980e71a8d254c1d7aed84ad371.1611312122.git.viresh.kumar@linaro.org>
 X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
+In-Reply-To: <cover.1611312122.git.viresh.kumar@linaro.org>
+References: <cover.1611312122.git.viresh.kumar@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank/Rob,
+We will start building overlays for platforms soon in the kernel and
+would need fdtoverlay tool going forward. Lets start fetching it.
 
-This patchset makes necessary changes to the kernel to add support for
-building overlays (%.dtbo) and the required fdtoverlay tool. This also
-builds static_test.dtb using most of the existing overlay tests present
-in drivers/of/unittest-data/ for better test coverage.
+Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+---
+ scripts/dtc/update-dtc-source.sh | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Note that in order for anyone to test this stuff, you need to manually
-run the ./update-dtc-source.sh script once to fetch the necessary
-changes from the external DTC project (i.e. fdtoverlay.c and this[1]
-patch).
-
-Also note that Frank has already shared his concerns towards the error
-reporting done by fdtoverlay tool [2], and David said it is not that
-straight forward to make such changes in fdtoverlay. I have still
-included the patch in this series for completeness.
-
-FWIW, with fdtoverlay we generate a new build warning now, not sure why
-though:
-
-drivers/of/unittest-data/tests-interrupts.dtsi:20.5-28: Warning (interrupts_property): /testcase-data/testcase-device2:#interrupt-cells: size is (4), expected multiple of 8
-
-V6:
-- Create separate rules for dtbo-s and separate entries in .gitignore in
-  4/6 (Masahiro).
-- A new file layout for handling all overlays for existing and new tests
-  5/6 (Frank).
-- Include overlay.dts as well now in 6/6 (Frank).
-
-V5:
-
-- Don't reuse DTC_SOURCE for fdtoverlay.c in patch 1/5 (Frank).
-
-- Update .gitignore and scripts/Makefile.dtbinst, drop dtbo-y syntax and
-  DTC_FLAGS += -@ in patch 4/5 (Masahiro).
-
-- Remove the intermediate dtb, rename output to static_test.dtb, don't
-  use overlay.dtb and overlay_base.dtb for static builds, improved
-  layout/comments in Makefile for patch 5/5 (Frank).
-
---
-Viresh
-
-[1] https://github.com/dgibson/dtc/commit/163f0469bf2ed8b2fe5aa15bc796b93c70243ddc
-[2] https://lore.kernel.org/lkml/74f8aa8f-ffab-3b0f-186f-31fb7395ebbb@gmail.com/
-
-Viresh Kumar (6):
-  scripts: dtc: Fetch fdtoverlay.c from external DTC project
-  scripts: dtc: Build fdtoverlay tool
-  scripts: dtc: Remove the unused fdtdump.c file
-  kbuild: Add support to build overlays (%.dtbo)
-  of: unittest: Create overlay_common.dtsi and testcases_common.dtsi
-  of: unittest: Statically apply overlays using fdtoverlay
-
- .gitignore                                    |   1 +
- Makefile                                      |   5 +-
- drivers/of/unittest-data/Makefile             |  51 ++++++
- drivers/of/unittest-data/overlay_base.dts     |  90 +---------
- drivers/of/unittest-data/overlay_common.dtsi  |  91 ++++++++++
- drivers/of/unittest-data/static_base.dts      |   5 +
- drivers/of/unittest-data/testcases.dts        |  17 +-
- .../of/unittest-data/testcases_common.dtsi    |  18 ++
- scripts/Makefile.dtbinst                      |   3 +
- scripts/Makefile.lib                          |   5 +
- scripts/dtc/Makefile                          |   6 +-
- scripts/dtc/fdtdump.c                         | 163 ------------------
- scripts/dtc/update-dtc-source.sh              |   3 +-
- 13 files changed, 187 insertions(+), 271 deletions(-)
- create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
- create mode 100644 drivers/of/unittest-data/static_base.dts
- create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
- delete mode 100644 scripts/dtc/fdtdump.c
-
+diff --git a/scripts/dtc/update-dtc-source.sh b/scripts/dtc/update-dtc-source.sh
+index bc704e2a6a4a..32ff17ffd089 100755
+--- a/scripts/dtc/update-dtc-source.sh
++++ b/scripts/dtc/update-dtc-source.sh
+@@ -37,6 +37,7 @@ DTC_SOURCE="checks.c data.c dtc.c dtc.h flattree.c fstree.c livetree.c srcpos.c
+ LIBFDT_SOURCE="fdt.c fdt.h fdt_addresses.c fdt_empty_tree.c \
+ 		fdt_overlay.c fdt_ro.c fdt_rw.c fdt_strerror.c fdt_sw.c \
+ 		fdt_wip.c libfdt.h libfdt_env.h libfdt_internal.h"
++FDTOVERLAY_SOURCE=fdtoverlay.c
+ 
+ get_last_dtc_version() {
+ 	git log --oneline scripts/dtc/ | grep 'upstream' | head -1 | sed -e 's/^.* \(.*\)/\1/'
+@@ -54,7 +55,7 @@ dtc_log=$(git log --oneline ${last_dtc_ver}..)
+ 
+ # Copy the files into the Linux tree
+ cd $DTC_LINUX_PATH
+-for f in $DTC_SOURCE; do
++for f in $DTC_SOURCE $FDTOVERLAY_SOURCE; do
+ 	cp ${DTC_UPSTREAM_PATH}/${f} ${f}
+ 	git add ${f}
+ done
 -- 
 2.25.0.rc1.19.g042ed3e048af
 
