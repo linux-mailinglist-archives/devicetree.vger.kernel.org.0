@@ -2,224 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8573007E2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CC830083D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 17:09:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728800AbhAVPzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 10:55:48 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:35318 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729016AbhAVPzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 10:55:46 -0500
-Received: by mail-ot1-f45.google.com with SMTP id 36so5508981otp.2;
-        Fri, 22 Jan 2021 07:55:30 -0800 (PST)
+        id S1729473AbhAVQIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 11:08:05 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:34940 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729463AbhAVQHb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 11:07:31 -0500
+Received: by mail-ot1-f53.google.com with SMTP id 36so5549938otp.2;
+        Fri, 22 Jan 2021 08:07:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=b+Blmlo5/G343X4GJ/Rd6bvnggbhUWj/TZr//zejW8U=;
-        b=NZgjaPTLlYll7mva98KMj0NRhxCBUMGe/eR6LS+ybfR/Y/wsshte5cGBpyVZlRLVys
-         fIh7TmdgpdS3aYfAs95hS4DIE1IMtnsHc3cQ9ha1b16xpaSJAMThQOvDuslHIx7I9QTu
-         ddbdkTwRfzdmIxQaSFtubnO9jV6rN+W64vgVKrp5WMjHF1o167qUzJF7TPsBlXnAXPgH
-         oMnH6TPrzdFbkpbnhFuMIx9RuLTSiAHnuDhGy2KP5MTGcTsFQeUgevEW7JTrhNzS0Qf1
-         YRAWkFxIOIoqbrugux9taVtSgygwzCcffJkKIpTtx3eYeVnXrEcBkFwvtj3RfHthOl3h
-         vJmg==
-X-Gm-Message-State: AOAM530NIwkhkcD006hr8bUqDmH3yjqMBU+R2HvdcY4ZlqtyL0Ld+tGk
-        /eXJbu54Qqgc7Y5GxAWpLvdLBhUuNQ==
-X-Google-Smtp-Source: ABdhPJyJqKvwJn/o/cYm8DTTbgPOgWIx77c0lSo5V9uwOCGEsJ1kcCpBGX5Hh5syHMjZTSUFVXb5RA==
-X-Received: by 2002:a9d:66d1:: with SMTP id t17mr3651979otm.163.1611330905408;
-        Fri, 22 Jan 2021 07:55:05 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=XsEWssMCPfLIPwZeIDg292psce+OBhutMUuJWbGwGBg=;
+        b=l4TagOEVLPJzBWjNIPDwuUc3gkVWlmZRXAqFGevK0qcAdhrMXgYnIvDhcYcQwmpb79
+         sYK7cx0F+9nmboGzjJ7ZekoqRjMhdNrH6PpLGM6MaeiC8VWuqKIe+lXXdx/b/gx5w2i2
+         pCHoSCYrBGhOG5+zGWeCYWULwB/4xSOQ7ZesF67I/0Dsdo0IhK5LIVeasEhcW8h9HpBH
+         bOb+u8NS/szxLXLtXLuqgAHMvX/5Fe8F8AqddcWFySo/I2l0kuZVx2560bu34XUNylN/
+         uQx6GJzvob6zgKt8vjrtywuz9wi+vC4EFOcLhXG+BZiMiajUjs4ElCtUWIB7AnqG/kp4
+         t6zg==
+X-Gm-Message-State: AOAM530ILGIqF7qGUndahAgwPWtZtFwAXtFUPmTXTuR+Au/X/pkdn9r1
+        0TOrj1vUDV20P3yvTOUM8Q==
+X-Google-Smtp-Source: ABdhPJyc9igyMeLfK7ygeNj0+UjaZn/4fYN1oUjwoJ0z7bd92UkR5kJYgaRjyUNo2ZDVg+SkLKEIAA==
+X-Received: by 2002:a05:6830:1f02:: with SMTP id u2mr3931925otg.124.1611331605445;
+        Fri, 22 Jan 2021 08:06:45 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j1sm1751786oiw.50.2021.01.22.07.55.03
+        by smtp.gmail.com with ESMTPSA id t65sm1746041oie.25.2021.01.22.08.06.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jan 2021 07:55:04 -0800 (PST)
-Received: (nullmailer pid 864183 invoked by uid 1000);
-        Fri, 22 Jan 2021 15:55:03 -0000
-Date:   Fri, 22 Jan 2021 09:55:03 -0600
+        Fri, 22 Jan 2021 08:06:44 -0800 (PST)
+Received: (nullmailer pid 882044 invoked by uid 1000);
+        Fri, 22 Jan 2021 16:06:43 -0000
+Date:   Fri, 22 Jan 2021 10:06:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Simon Xue <xxm@rock-chips.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v2 1/2] dt-bindings: rockchip: Add DesignWare based PCIe
- controller
-Message-ID: <20210122155503.GA860027@robh.at.kernel.org>
-References: <20210120101554.241029-1-xxm@rock-chips.com>
- <3af70037-c05d-1759-2bae-41db1e8e2768@gmail.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, od@zcrc.me,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings/phy: ingenic: Add compatibles for??
+ JZ4760(B) SoCs
+Message-ID: <20210122160643.GA865022@robh.at.kernel.org>
+References: <20210120115945.29046-1-paul@crapouillou.net>
+ <CAL_JsqLS-oFn4kGm7GeU+W2BvVeon9k9+gzVojypcJCJLwbaEQ@mail.gmail.com>
+ <SIBCNQ.SZL9QXM6XX3N2@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <3af70037-c05d-1759-2bae-41db1e8e2768@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <SIBCNQ.SZL9QXM6XX3N2@crapouillou.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 06:07:29PM +0100, Johan Jonker wrote:
-> Hi Simon,
+On Fri, Jan 22, 2021 at 02:42:28PM +0000, Paul Cercueil wrote:
+> Hi Rob,
 > 
-> Thanks you for version 2.
-> A few comments, have a look if it is useful or that you disagree.
-> 
-> This patch has no commit message. Add one in version 3.
-> 
-> Submit all patches in one batch with the same sort message ID to all
-> maintainers including Heiko.
-> 
-> Heiko Stuebner <heiko@sntech.de>
-> 
-> Example message ID:
-> 20210120101554.241029-1-xxm@rock-chips.com
-> 
-> /////
-> 
-> Included is a copy of the Rockchip pcie nodes in a sort of test.dts below.
-> Could you confirm that the properties in that dts are the one that we
-> can expect for Linux mainline and can base our YAML document on?
-> 
-> With rk3568-cru.h and rk3568-power.h manualy added we do some tests with
-> the following commands:
-> 
-> make ARCH=arm64 dt_binding_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> 
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> 
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/schemas/pci/pci-bus.yaml
-> 
-> /////
-> 
-> Example notifications:
-> 
-> /arch/arm64/boot/dts/rockchip/test.dt.yaml: pcie@fe270000: reg: [[3,
-> 3225419776, 0, 4194304], [0, 4263968768, 0, 65536]] is too long
-> 
-> /arch/arm64/boot/dts/rockchip/test.dt.yaml: pcie@fe270000: ranges:
-> 'oneOf' conditional failed, one must be fixed:
-> 
-> Before you submit version 3 make sure that all warnings gone as much as
-> possible.
-> 
-> On 1/20/21 11:15 AM, Simon Xue wrote:
-> > Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> > ---
-> >  .../bindings/pci/rockchip-dw-pcie.yaml        | 140 ++++++++++++++++++
-> >  1 file changed, 140 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> Le ven. 22 janv. 2021 à 8:35, Rob Herring <robh+dt@kernel.org> a écrit :
+> > On Wed, Jan 20, 2021 at 5:59 AM Paul Cercueil <paul@crapouillou.net>
+> > wrote:
+> > > 
+> > >  Add the ingenic,jz4760-phy and ingenic,jz4760b-phy compatible
+> > > strings,
+> > >  and make the ingenic,jz4770-phy compatible string require
+> > >  ingenic,jz4760-phy as a fallback, since both work the same, and the
+> > >  JZ4760 SoC is older.
+> > > 
+> > >  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> > >  ---
+> > >   .../bindings/phy/ingenic,phy-usb.yaml         | 22
+> > > ++++++++++++-------
+> > >   1 file changed, 14 insertions(+), 8 deletions(-)
+> > > 
+> > >  diff --git
+> > > a/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+> > > b/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+> > >  index 0fd93d71fe5a..3c65dfcf352b 100644
+> > >  --- a/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+> > >  +++ b/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+> > >  @@ -15,13 +15,19 @@ properties:
+> > >       pattern: '^usb-phy@.*'
+> > > 
+> > >     compatible:
+> > >  -    enum:
+> > >  -      - ingenic,jz4770-phy
+> > >  -      - ingenic,jz4775-phy
+> > >  -      - ingenic,jz4780-phy
+> > >  -      - ingenic,x1000-phy
+> > >  -      - ingenic,x1830-phy
+> > >  -      - ingenic,x2000-phy
+> > >  +    oneOf:
+> > >  +      - enum:
+> > >  +        - ingenic,jz4760-phy
 > > 
-> > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > new file mode 100644
-> > index 000000000000..9d3a57f5305e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > @@ -0,0 +1,140 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: DesignWare based PCIe RC controller on Rockchip SoCs
-> > +
-> > +maintainers:
-> > +  - Shawn Lin <shawn.lin@rock-chips.com>
-> > +  - Simon Xue <xxm@rock-chips.com>
->      - Heiko Stuebner <heiko@sntech.de> ;)
-> > +
-> > +description: |+
-> > +  RK3568 SoC PCIe host controller is based on the Synopsys DesignWare
-> > +  PCIe IP and thus inherits all the common properties defined in
-> > +  designware-pcie.txt.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > +
-> > +# We need a select here so we don't match all nodes with 'snps,dw-pcie'
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: rockchip,rk3568-pcie
-> > +  required:
-> > +    - compatible
-> > +
-> > +properties:
-> > +  compatible:
+> > This should be 2 more spaces indentation. Indent is always 2 more than
+> > the above keyword and ignores '-'.
 > 
-> > +    item:
-> 
->     items:
-> 
-> > +      - const: rockchip,rk3568-pcie
-> > +      - const: snps,dw-pcie
-> 
-> Add empty line
-> 
-> > +  reg:    items:
->       - description:
->       - description:
-> 
-> Add some description for regs.
-> 
-> > +    maxItems: 1
-> remove
-> 
-> This reg maxItems gives errors.
-> 
-> > +
-> 
-> > +  interrupt:
-> interrupts:
->    items:
-> 
-> > +      - description: system information
-> > +      - description: power management control
-> > +      - description: PCIe message
-> > +      - description: legacy interrupt
-> > +      - description: error report
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: sys
-> > +      - const: pmc
-> > +      - const: msg
+> Pretty confusing. But alright.
 
-MSI? If so, use 'msi'. The DWC core will handle setting it up now.
+TBC, either way is functional and these are the 2 main styles, so we 
+picked one. In some sequences, it's easy to miss a '-' where a space 
+would also be valid. For example:
 
-> > +      - const: legacy
-> > +      - const: err
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: AHB clock for PCIe master
-> > +      - description: AHB clock for PCIe slave
-> > +      - description: AHB clock for PCIe dbi
-> > +      - description: APB clock for PCIe
-> > +      - description: Auxiliary clock for PCIe
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: aclk_mst
-> > +      - const: aclk_slv
-> > +      - const: aclk_dbi
-> > +      - const: pclk
-> > +      - const: aux
-> > +
-> > +  msi-map: true
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> 
-> /////
-> These properties come from designware-pcie.txt
-> Maybe add them here for now till there's a common yaml?
-> 
->   num-ib-windows: number of inbound address translation windows
->   num-ob-windows: number of outbound address translation windows
+items:
+- items:
+    enum: ...
 
-These can be and are now detected at runtime.
+vs:
+
+items:
+  items:
+    enum: ...
+
+Both are valid (as items can be a list or sub-schema).
 
 Rob
