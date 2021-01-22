@@ -2,121 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3C1F300763
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE8903007AB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:46:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729091AbhAVPc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 10:32:57 -0500
-Received: from mga14.intel.com ([192.55.52.115]:33225 "EHLO mga14.intel.com"
+        id S1729125AbhAVPoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 10:44:08 -0500
+Received: from mga06.intel.com ([134.134.136.31]:63805 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729040AbhAVPct (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 10:32:49 -0500
-IronPort-SDR: GBd63PaVdaHk0GBhWPWPNhfj7i8UfMeaP6GvfnB4B51q/n2ewMGf5GSF25pv3PWcYChFIyMl6J
- 8+/CcOF8VXrQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="178680811"
+        id S1729084AbhAVPn4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 10:43:56 -0500
+IronPort-SDR: +DnACV0wGxOILPzIwTQW9HZrAZHZP6Qw3Rb2PgSANa0dXSe8fVeRZaa0kiQkU/G0LfRfGg03YR
+ MzbLntBAwN2w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="241001783"
 X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; 
-   d="scan'208";a="178680811"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 07:30:59 -0800
-IronPort-SDR: OtUq2s9zwphiU3lxtddnvRt3t/ACFbw02R1tYE41jZmmEvsUbqwn4MgNtoDpcAtImDQqvTsnXD
- jHMLwu7rQzwg==
-X-ExtLoop1: 1
+   d="scan'208";a="241001783"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 07:43:14 -0800
+IronPort-SDR: HhVvVYp9UNmAue99p2JpAnb8MYodJe2PpnP5Q2H5t3j+vb7w+TRaAAehQbJmESyDt/fKxv9iqK
+ jTA3C8i7r2Gg==
 X-IronPort-AV: E=Sophos;i="5.79,366,1602572400"; 
-   d="scan'208";a="348297792"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.170]) ([10.237.72.170])
-  by fmsmga007.fm.intel.com with ESMTP; 22 Jan 2021 07:30:57 -0800
-Subject: Re: [PATCH 0/4] add xhci hooks for USB offload
-To:     Howard Yen <howardyen@google.com>,
-        Mathias Nyman <mathias.nyman@intel.com>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210119101044.1637023-1-howardyen@google.com>
- <af91bbf1-6731-3e87-4086-de0dbba22c22@intel.com>
- <CAJDAHvbTY3Z_bRg+++uLefWSvCWo_nGq+3OOQX3QHJ2w3X1SQw@mail.gmail.com>
-From:   Mathias Nyman <mathias.nyman@linux.intel.com>
-Autocrypt: addr=mathias.nyman@linux.intel.com; prefer-encrypt=mutual; keydata=
- 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 fiD/
-Message-ID: <ca442ca7-a434-2527-9945-861dafa685cc@linux.intel.com>
-Date:   Fri, 22 Jan 2021 17:32:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+   d="scan'208";a="367469522"
+Received: from djiang5-mobl1.amr.corp.intel.com (HELO [10.212.160.72]) ([10.212.160.72])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 07:43:12 -0800
+Subject: Re: [PATCH v9 05/10] uacce: Enable IOMMU_DEV_FEAT_IOPF
+To:     Zhou Wang <wangzhou1@hisilicon.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        joro@8bytes.org, will@kernel.org
+Cc:     vivek.gautam@arm.com, guohanjun@huawei.com,
+        linux-acpi@vger.kernel.org, zhangfei.gao@linaro.org,
+        lenb@kernel.org, devicetree@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, eric.auger@redhat.com,
+        vdumpa@nvidia.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        rjw@rjwysocki.net, shameerali.kolothum.thodi@huawei.com,
+        iommu@lists.linux-foundation.org, sudeep.holla@arm.com,
+        robin.murphy@arm.com, linux-accelerators@lists.ozlabs.org,
+        baolu.lu@linux.intel.com, Dan Williams <dan.j.williams@intel.com>,
+        "Pan, Jacob jun" <jacob.jun.pan@intel.com>
+References: <20210108145217.2254447-1-jean-philippe@linaro.org>
+ <20210108145217.2254447-6-jean-philippe@linaro.org>
+ <e14f47bd-1b0c-1905-3bb7-62e1c5b096c7@intel.com>
+ <d25faa15-eaaf-a3b8-adaf-f7c81653f688@hisilicon.com>
+From:   Dave Jiang <dave.jiang@intel.com>
+Message-ID: <ee066d95-c8ef-887b-35bc-d47d641c9f58@intel.com>
+Date:   Fri, 22 Jan 2021 08:43:11 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAJDAHvbTY3Z_bRg+++uLefWSvCWo_nGq+3OOQX3QHJ2w3X1SQw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <d25faa15-eaaf-a3b8-adaf-f7c81653f688@hisilicon.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.1.2021 12.04, Howard Yen wrote:
-> On Tue, Jan 19, 2021 at 8:47 PM Mathias Nyman <mathias.nyman@intel.com> wrote:
->>
->> On 19.1.2021 12.10, Howard Yen wrote:
->>> To let the xhci driver support USB offload, add hooks for vendor to have
->>> customized behavior for the initialization, memory allocation, irq work, and
->>> device context synchronization. Detail is in each patch commit message.
->>
->> Is this related to the usb audio sideband capability that was added to the xHCI specification?
->> If yes, then we should probably implement the generic parts first, and then add
->> the vendor specific hooks.
->>
->> -Mathias
->>
->>
-> 
-> This is for offloading, no matter what type of offloading.
-> I made the hooks generically and can be used for usb audio on the xhci
-> which is not including the usb audio sideband capability.
-> 
 
-Ok, before adding hooks like this I think we need to see how they are used.
-Do you have the rest of the patches that go on top of this series?
+On 1/22/2021 4:53 AM, Zhou Wang wrote:
+> On 2021/1/21 4:47, Dave Jiang wrote:
+>> On 1/8/2021 7:52 AM, Jean-Philippe Brucker wrote:
+>>> The IOPF (I/O Page Fault) feature is now enabled independently from the
+>>> SVA feature, because some IOPF implementations are device-specific and
+>>> do not require IOMMU support for PCIe PRI or Arm SMMU stall.
+>>>
+>>> Enable IOPF unconditionally when enabling SVA for now. In the future, if
+>>> a device driver implementing a uacce interface doesn't need IOPF
+>>> support, it will need to tell the uacce module, for example with a new
+>>> flag.
+>>>
+>>> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+>>> ---
+>>> Cc: Arnd Bergmann <arnd@arndb.de>
+>>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>>> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+>>> Cc: Zhou Wang <wangzhou1@hisilicon.com>
+>>> ---
+>>>    drivers/misc/uacce/uacce.c | 32 +++++++++++++++++++++++++-------
+>>>    1 file changed, 25 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/misc/uacce/uacce.c b/drivers/misc/uacce/uacce.c
+>>> index d07af4edfcac..41ef1eb62a14 100644
+>>> --- a/drivers/misc/uacce/uacce.c
+>>> +++ b/drivers/misc/uacce/uacce.c
+>>> @@ -385,6 +385,24 @@ static void uacce_release(struct device *dev)
+>>>        kfree(uacce);
+>>>    }
+>>>    +static unsigned int uacce_enable_sva(struct device *parent, unsigned int flags)
+>>> +{
+>>> +    if (!(flags & UACCE_DEV_SVA))
+>>> +        return flags;
+>>> +
+>>> +    flags &= ~UACCE_DEV_SVA;
+>>> +
+>>> +    if (iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_IOPF))
+>>> +        return flags;
+>>> +
+>>> +    if (iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_SVA)) {
+>>> +        iommu_dev_disable_feature(parent, IOMMU_DEV_FEAT_IOPF);
+>>> +        return flags;
+>>> +    }
+>> Sorry to jump in a bit late on this and not specifically towards the
+>> intent of this patch. But I'd like to start a discussion on if we want
+>> to push the iommu dev feature enabling to the device driver itself rather
+>> than having UACCE control this? Maybe allow the device driver to manage
+>> the feature bits and UACCE only verify that they are enabled?
+>>
+>> 1. The device driver knows what platform it's on and what specific
+>>     feature bits its devices supports. Maybe in the future if there are
+>>     feature bits that's needed on one platform and not on another?
+> Hi Dave,
+>
+>  From the discussion in this series, the meaning of IOMMU_DEV_FEAT_IOPF here
+> is the IOPF capability of iommu device itself. So I think check it in UACCE
+> will be fine.
+>
+>> 2. This allows the possibility of multiple uacce device registered to 1
+>>     pci dev, which for a device with asymmetric queues (Intel DSA/idxd
+>>     driver) that is desirable feature. The current setup forces a single
+>>     uacce device per pdev. If additional uacce devs are registered, the
+>>     first removal of uacce device will disable the feature bit for the
+>>     rest of the registered devices. With uacce managing the feature bit,
+>>     it would need to add device context to the parent pdev and ref
+>>     counting. It may be cleaner to just allow device driver to manage
+>>     the feature bits and the driver should have all the information on
+>>     when the feature needs to be turned on and off.
+> Yes, we have this problem, however, this problem exists for IOMMU_DEV_FEAT_SVA
+> too. How about to fix it in another patch?
 
-Maybe it could make sense to use overrides for the functions in struct hc_driver
-instead in some cases? There is support for that already.
+Hi Zhou,
 
-Thanks
--Mathias  
+Right that's what I'm implying. I'm not pushing back on the IOPF feature 
+set. Just trying to survey  the opinions from people on moving the 
+feature settings to the actual drivers rather than having it in UACCE. I 
+will create some patches to show what I mean for comments.
 
+
+>
+> Best,
+> Zhou
+>
+>> - DaveJ
+>>
+>>
+>>> +
+>>> +    return flags | UACCE_DEV_SVA;
+>>> +}
+>>> +
+>>>    /**
+>>>     * uacce_alloc() - alloc an accelerator
+>>>     * @parent: pointer of uacce parent device
+>>> @@ -404,11 +422,7 @@ struct uacce_device *uacce_alloc(struct device *parent,
+>>>        if (!uacce)
+>>>            return ERR_PTR(-ENOMEM);
+>>>    -    if (flags & UACCE_DEV_SVA) {
+>>> -        ret = iommu_dev_enable_feature(parent, IOMMU_DEV_FEAT_SVA);
+>>> -        if (ret)
+>>> -            flags &= ~UACCE_DEV_SVA;
+>>> -    }
+>>> +    flags = uacce_enable_sva(parent, flags);
+>>>          uacce->parent = parent;
+>>>        uacce->flags = flags;
+>>> @@ -432,8 +446,10 @@ struct uacce_device *uacce_alloc(struct device *parent,
+>>>        return uacce;
+>>>      err_with_uacce:
+>>> -    if (flags & UACCE_DEV_SVA)
+>>> +    if (flags & UACCE_DEV_SVA) {
+>>>            iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_SVA);
+>>> +        iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_IOPF);
+>>> +    }
+>>>        kfree(uacce);
+>>>        return ERR_PTR(ret);
+>>>    }
+>>> @@ -487,8 +503,10 @@ void uacce_remove(struct uacce_device *uacce)
+>>>        mutex_unlock(&uacce->queues_lock);
+>>>          /* disable sva now since no opened queues */
+>>> -    if (uacce->flags & UACCE_DEV_SVA)
+>>> +    if (uacce->flags & UACCE_DEV_SVA) {
+>>>            iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_SVA);
+>>> +        iommu_dev_disable_feature(uacce->parent, IOMMU_DEV_FEAT_IOPF);
+>>> +    }
+>>>          if (uacce->cdev)
+>>>            cdev_device_del(uacce->cdev, &uacce->dev);
+>> .
+>>
