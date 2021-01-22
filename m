@@ -2,75 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0B70300AD5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 19:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7D71300AD7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 19:19:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729016AbhAVRYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 12:24:34 -0500
-Received: from mga02.intel.com ([134.134.136.20]:41761 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729553AbhAVRDj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 12:03:39 -0500
-IronPort-SDR: gLBTn5FpTDUnpRFoVT0rLXvirqqC4Aqhwx0QibHa5K9lxZGUvBUSNa3SsJzLb3f08EhR6zTA8M
- kqrlLawIiT0w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="166573825"
-X-IronPort-AV: E=Sophos;i="5.79,367,1602572400"; 
-   d="scan'208";a="166573825"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 09:01:49 -0800
-IronPort-SDR: UckGca5CZ28evMMRtzlVJOWlrAwGXsPkrkuvGCW2bDBrnTf/ZTUpqa3HsL7T8anjjaPAQnJd68
- 1lQ9C9/EJWsw==
-X-IronPort-AV: E=Sophos;i="5.79,367,1602572400"; 
-   d="scan'208";a="348335508"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 09:01:46 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 29C6C20690; Fri, 22 Jan 2021 19:01:44 +0200 (EET)
-Date:   Fri, 22 Jan 2021 19:01:44 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
-        Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v4 1/2] media: dt-bindings: Convert video-interfaces.txt
- properties to schemas
-Message-ID: <20210122170144.GE27155@paasikivi.fi.intel.com>
-References: <20210104165808.2166686-1-robh@kernel.org>
- <20210104165808.2166686-2-robh@kernel.org>
- <CAL_Jsq+dpVvA0iOMzaPf50Decc1hj7zH0eq-RyuVkdzp729vEQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+dpVvA0iOMzaPf50Decc1hj7zH0eq-RyuVkdzp729vEQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1729371AbhAVRZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 12:25:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59240 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729826AbhAVRNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 12:13:36 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B0CC061793;
+        Fri, 22 Jan 2021 09:12:52 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id n6so7373197edt.10;
+        Fri, 22 Jan 2021 09:12:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=roMb/tyW1M9NQnpXqSRx9W00sUX6gkBYwKxG+CPcXzI=;
+        b=fLRYxC7AMQdGJXu08Ng+pctI1fQayyxI5Mz88cRgUvTT/OSddQ/AcIiNEH9kw33TK/
+         +UfJwsrO5GROpkmcYFqrBFeu+8xbk9a0lE590S+wqWy0ChKCnv3u/Ewvw/IdjYmm7dpj
+         9HNXAamxY3/Q3fK3qIW0wddC/Xq0omP6MDZNhkcIwWaLaSt+Pkb4s6n4YSdRW7mhfImo
+         30LZS8vS+Ar59oX9n4anGZYzdDSdaQiMsN0yprVzaYQuHrGc/VEebcmVMNAhqrEtKRsi
+         amjz1dgF6fo8UbyCN35YZwIq/I7w3kN5IKib6y7yJStE28dqo0OK0QwkdySp3CrhfsFn
+         5EZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=roMb/tyW1M9NQnpXqSRx9W00sUX6gkBYwKxG+CPcXzI=;
+        b=k+tT3/L4NyLBrOrlQUikEEfGqPbGOiOQxDN05xfDZlL2YaAiqGFv+Rq9a6yGDs4Z4d
+         kyDM4t5aV0lOOUqtl9PUxuPYwx3rBgSa0R+IO2Pr8cDVKWQz2M2UtsSgd4rDmvoAAGur
+         /GlJATFURituWS+EZzu9/bIO+srLQpf85cNoSyhOjoyjpyOB9RrDuMZLQozg1hmhEyPI
+         CNmJFf29qbv99P+CQxe/z2T6LRM49iki6jp5N3THHQ5hXevmOwjQP+ktMXri8OfLlQWA
+         JWcM/B7RCVu5FFeEzXx/PdHKLenyPsWqZyjWcP99XLl+SJwvw68de/hRQ6s5E1R1sdIh
+         bnMQ==
+X-Gm-Message-State: AOAM533bO3p+Xj7nLdQ6AVLuSKMMZkkueh4KNXPkcbKwrTSD9zEr0gGr
+        /YJr6SfYgT4PSFLsCc4lxu3g4DArE1s=
+X-Google-Smtp-Source: ABdhPJwRQf20pEeRaLSU0zk5VFjq9xuFDxAISiKNGEbg4TZWmEW3jx8FO8sHyg3W/Zz7tgjMVG8XnQ==
+X-Received: by 2002:aa7:d98a:: with SMTP id u10mr3972073eds.275.1611335571524;
+        Fri, 22 Jan 2021 09:12:51 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id t21sm5927429edv.82.2021.01.22.09.12.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 22 Jan 2021 09:12:51 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: fix ranges property format for rk3399 pcie node
+Date:   Fri, 22 Jan 2021 18:12:43 +0100
+Message-Id: <20210122171243.16138-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+A test with the command below gives for example this error:
+/arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml: pcie@f8000000:
+ranges: 'oneOf' conditional failed, one must be fixed:
 
-On Fri, Jan 22, 2021 at 10:23:44AM -0600, Rob Herring wrote:
-> On Mon, Jan 4, 2021 at 10:58 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > Convert video-interfaces.txt to DT schema. As it contains a mixture of
-> > device level and endpoint properties, split it up into 2 schemas.
-> 
-> Ping!
-> 
-> Can this please be applied to the media tree so I can tell folks to
-> use it in reviews of media bindings.
+The pcie ranges property is an array. The dt-check expects that
+each array item is wrapped with angle brackets, so fix that ranges
+property format for the rk3399 pcie node.
 
-Yes, it can. It's in my tree now.
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/
+schemas/pci/pci-bus.yaml
 
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 15f8b212c..28459d194 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -259,8 +259,8 @@
+ 		       <&pcie_phy 2>, <&pcie_phy 3>;
+ 		phy-names = "pcie-phy-0", "pcie-phy-1",
+ 			    "pcie-phy-2", "pcie-phy-3";
+-		ranges = <0x83000000 0x0 0xfa000000 0x0 0xfa000000 0x0 0x1e00000
+-			  0x81000000 0x0 0xfbe00000 0x0 0xfbe00000 0x0 0x100000>;
++		ranges = <0x83000000 0x0 0xfa000000 0x0 0xfa000000 0x0 0x1e00000>,
++			 <0x81000000 0x0 0xfbe00000 0x0 0xfbe00000 0x0 0x100000>;
+ 		resets = <&cru SRST_PCIE_CORE>, <&cru SRST_PCIE_MGMT>,
+ 			 <&cru SRST_PCIE_MGMT_STICKY>, <&cru SRST_PCIE_PIPE>,
+ 			 <&cru SRST_PCIE_PM>, <&cru SRST_P_PCIE>,
 -- 
-Kind regards,
+2.11.0
 
-Sakari Ailus
