@@ -2,262 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC8D6300DFA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 21:46:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C2E9300F76
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 22:59:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728171AbhAVUo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 15:44:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48092 "EHLO
+        id S1729750AbhAVV6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 16:58:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731041AbhAVUnh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 15:43:37 -0500
-Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B74C0617AA
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 12:42:57 -0800 (PST)
-Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1l33Gh-00EhbM-Dz
-        for devicetree@vger.kernel.org; Fri, 22 Jan 2021 21:42:55 +0100
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
-Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8] (helo=sumner.biot.com)
-        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1l33GT-00EhYK-Td; Fri, 22 Jan 2021 21:42:41 +0100
-Received: from bert by sumner.biot.com with local (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1l33GT-0028SZ-Fx; Fri, 22 Jan 2021 21:42:41 +0100
-From:   Bert Vermeulen <bert@biot.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S1730922AbhAVUId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 15:08:33 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C3FC061786;
+        Fri, 22 Jan 2021 12:07:52 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id 3so7951400ljc.4;
+        Fri, 22 Jan 2021 12:07:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=TUaRvOEi60+ahDPC5dNjnTAB3VCzFhob4s0bHzIKzHo=;
+        b=UwVVvouUG50Vz6ATGPnsgqdzGSzdXv9VsXob8FH39XMmOU8zoHl607wNWjWvndxJgE
+         vffAMvrMI3wPlHGCz8KtV/5v3mr47JOxVdH6H+Nwq29Th1d/WIj45OgcE6sVHIMAfSll
+         j2WYb+4bzHi9bMxKruYI69x3SrRu/ns8GJ/SduRP5AfuDJSfeV9SODT1bsW0MAUMBG5q
+         l6zzorJUa/vU2jldyaOuhppBsZ93hQRVgIl229s37i4zOBmqjxA0rNV3jszy8U05Wvx0
+         1ron6QYAu7RLn12lsidgA6AuhWOt6Y3EwGlR/hnNR/bzPbwtfTrSOKHHOYEeRdx8wst1
+         W2Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=TUaRvOEi60+ahDPC5dNjnTAB3VCzFhob4s0bHzIKzHo=;
+        b=SIoP2pvDDfm7zirU/9QA/hMCYnanOo481nZM1I3ntuItKksZWvIg8cBjK1+zsvGwaj
+         jhqrHcRVoirM4r6zHrDim61o4wc5BKlvk2yBP5vFmVQK5gp5ydtJTjokvKTv1dVmAkcG
+         oGuOHhRbRl82DPClOjSczvIlbOo6ag5HtckWFkYtrDPExcazdy8EsYcYq5iYF/81kszp
+         6q0IUTvj/bnf2He1N1yzW2uM6yIciP0Q6Tf+Ke78Fv8crIRqfRxIxWCQvpQlO90A2Lp0
+         GjskCFL3ZPtDmJ4RILI5LKbC+vRBrL5pSITUZ37Car/n9680esK5FSK07oIQamoCy1KN
+         auZw==
+X-Gm-Message-State: AOAM533QcmV95pnWrtyTWIU1IDM4ixFq+WNvotISMtaSl7f3xS7tGDDj
+        GnHtExFKNiypJMDlzzYviWOza2nlveo=
+X-Google-Smtp-Source: ABdhPJym7rSzCr1amFziXRW7kdcc8YolwZobl05sojSG2dBuUcho85+VbasTrLfoiLYlfPVQFl74Qg==
+X-Received: by 2002:a05:651c:1356:: with SMTP id j22mr997521ljb.237.1611346071448;
+        Fri, 22 Jan 2021 12:07:51 -0800 (PST)
+Received: from localhost.localdomain (109-252-192-57.dynamic.spd-mgts.ru. [109.252.192.57])
+        by smtp.gmail.com with ESMTPSA id u6sm994589lfk.127.2021.01.22.12.07.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Jan 2021 12:07:50 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Nick Dyer <nick@shmanahar.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        Bert Vermeulen <bert@biot.com>,
-        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 2/2] irqchip: Add support for Realtek RTL838x/RTL839x interrupt controller
-Date:   Fri, 22 Jan 2021 21:42:24 +0100
-Message-Id: <20210122204224.509124-3-bert@biot.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210122204224.509124-1-bert@biot.com>
-References: <20210122204224.509124-1-bert@biot.com>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jiada Wang <jiada_wang@mentor.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 2/3] Input: atmel_mxt_ts - support wakeup methods
+Date:   Fri, 22 Jan 2021 23:06:58 +0300
+Message-Id: <20210122200659.7404-3-digetx@gmail.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210122200659.7404-1-digetx@gmail.com>
+References: <20210122200659.7404-1-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a standard IRQ driver with only status and mask registers.
+According to datasheets, chips like mXT1386 have a WAKE line, it is used
+to wake the chip up from deep sleep mode before communicating with it via
+the I2C-compatible interface.
 
-The mapping from SoC interrupts (18-31) to MIPS core interrupts is
-done via an interrupt-map in device tree.
+If the WAKE line is connected to a GPIO line, the line must be asserted
+25 ms before the host attempts to communicate with the controller. If the
+WAKE line is connected to the SCL pin, the controller will send a NACK on
+the first attempt to address it, the host must then retry 25 ms later.
 
-Signed-off-by: Bert Vermeulen <bert@biot.com>
-Signed-off-by: Birger Koblitz <mail@birger-koblitz.de>
+Implement the wake-up methods in the driver. Touchscreen now works
+properly on devices like Acer A500 tablet, fixing problems like this:
+
+ atmel_mxt_ts 0-004c: __mxt_read_reg: i2c transfer failed (-121)
+ atmel_mxt_ts 0-004c: mxt_bootloader_read: i2c recv failed (-121)
+ atmel_mxt_ts 0-004c: Trying alternate bootloader address
+ atmel_mxt_ts 0-004c: mxt_bootloader_read: i2c recv failed (-121)
+ atmel_mxt_ts: probe of 0-004c failed with error -121
+
+Signed-off-by: Jiada Wang <jiada_wang@mentor.com>
+Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 ---
- drivers/irqchip/Makefile          |   1 +
- drivers/irqchip/irq-realtek-rtl.c | 180 ++++++++++++++++++++++++++++++
- 2 files changed, 181 insertions(+)
- create mode 100644 drivers/irqchip/irq-realtek-rtl.c
+ drivers/input/touchscreen/atmel_mxt_ts.c | 78 ++++++++++++++++++++++++
+ 1 file changed, 78 insertions(+)
 
-diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-index 0ac93bfaec61..4fc1086bed7e 100644
---- a/drivers/irqchip/Makefile
-+++ b/drivers/irqchip/Makefile
-@@ -113,3 +113,4 @@ obj-$(CONFIG_LOONGSON_PCH_PIC)		+= irq-loongson-pch-pic.o
- obj-$(CONFIG_LOONGSON_PCH_MSI)		+= irq-loongson-pch-msi.o
- obj-$(CONFIG_MST_IRQ)			+= irq-mst-intc.o
- obj-$(CONFIG_SL28CPLD_INTC)		+= irq-sl28cpld.o
-+obj-$(CONFIG_MACH_REALTEK_RTL)		+= irq-realtek-rtl.o
-diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-realtek-rtl.c
-new file mode 100644
-index 000000000000..b57c67dfab5b
---- /dev/null
-+++ b/drivers/irqchip/irq-realtek-rtl.c
-@@ -0,0 +1,180 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2020 Birger Koblitz <mail@birger-koblitz.de>
-+ * Copyright (C) 2020 Bert Vermeulen <bert@biot.com>
-+ * Copyright (C) 2020 John Crispin <john@phrozen.org>
-+ */
+diff --git a/drivers/input/touchscreen/atmel_mxt_ts.c b/drivers/input/touchscreen/atmel_mxt_ts.c
+index 383a848eb601..5ed23689047b 100644
+--- a/drivers/input/touchscreen/atmel_mxt_ts.c
++++ b/drivers/input/touchscreen/atmel_mxt_ts.c
+@@ -31,6 +31,7 @@
+ #include <media/v4l2-ioctl.h>
+ #include <media/videobuf2-v4l2.h>
+ #include <media/videobuf2-vmalloc.h>
++#include <dt-bindings/input/atmel-maxtouch.h>
+ 
+ /* Firmware files */
+ #define MXT_FW_NAME		"maxtouch.fw"
+@@ -199,6 +200,7 @@ enum t100_type {
+ #define MXT_CRC_TIMEOUT		1000	/* msec */
+ #define MXT_FW_RESET_TIME	3000	/* msec */
+ #define MXT_FW_CHG_TIMEOUT	300	/* msec */
++#define MXT_WAKEUP_TIME		25	/* msec */
+ 
+ /* Command to unlock bootloader */
+ #define MXT_UNLOCK_CMD_MSB	0xaa
+@@ -312,6 +314,7 @@ struct mxt_data {
+ 	struct mxt_dbg dbg;
+ 	struct regulator_bulk_data regulators[2];
+ 	struct gpio_desc *reset_gpio;
++	struct gpio_desc *wake_gpio;
+ 	bool use_retrigen_workaround;
+ 
+ 	/* Cached parameters from object table */
+@@ -342,6 +345,8 @@ struct mxt_data {
+ 	unsigned int t19_num_keys;
+ 
+ 	enum mxt_suspend_mode suspend_mode;
 +
-+#include <linux/of_irq.h>
-+#include <linux/irqchip.h>
-+#include <linux/spinlock.h>
-+#include <linux/of_address.h>
-+#include <linux/irqchip/chained_irq.h>
-+
-+/* Global Interrupt Mask Register */
-+#define RTL_ICTL_GIMR		0x00
-+/* Global Interrupt Status Register */
-+#define RTL_ICTL_GISR		0x04
-+/* Interrupt Routing Registers */
-+#define RTL_ICTL_IRR0		0x08
-+#define RTL_ICTL_IRR1		0x0c
-+#define RTL_ICTL_IRR2		0x10
-+#define RTL_ICTL_IRR3		0x14
-+
-+#define REG(x)		(realtek_ictl_base + x)
-+
-+static DEFINE_RAW_SPINLOCK(irq_lock);
-+static void __iomem *realtek_ictl_base;
-+
-+static void realtek_ictl_unmask_irq(struct irq_data *i)
++	u32 wakeup_method;
+ };
+ 
+ struct mxt_vb2_buffer {
+@@ -621,10 +626,42 @@ static int mxt_send_bootloader_cmd(struct mxt_data *data, bool unlock)
+ 	return mxt_bootloader_write(data, buf, sizeof(buf));
+ }
+ 
++static bool mxt_wakeup_toggle(struct i2c_client *client,
++			      bool wake_up, bool in_i2c)
 +{
-+	unsigned long flags;
-+	u32 value;
++	struct mxt_data *data = i2c_get_clientdata(client);
 +
-+	raw_spin_lock_irqsave(&irq_lock, flags);
++	switch (data->wakeup_method) {
++	case ATMEL_MXT_WAKEUP_I2C_SCL:
++		if (!in_i2c)
++			return false;
++		break;
 +
-+	value = readl(REG(RTL_ICTL_GIMR));
-+	value |= BIT(i->hwirq);
-+	writel(value, REG(RTL_ICTL_GIMR));
++	case ATMEL_MXT_WAKEUP_GPIO:
++		if (in_i2c)
++			return false;
 +
-+	raw_spin_unlock_irqrestore(&irq_lock, flags);
-+}
++		gpiod_set_value(data->wake_gpio, wake_up);
++		break;
 +
-+static void realtek_ictl_mask_irq(struct irq_data *i)
-+{
-+	unsigned long flags;
-+	u32 value;
-+
-+	raw_spin_lock_irqsave(&irq_lock, flags);
-+
-+	value = readl(REG(RTL_ICTL_GIMR));
-+	value &= ~BIT(i->hwirq);
-+	writel(value, REG(RTL_ICTL_GIMR));
-+
-+	raw_spin_unlock_irqrestore(&irq_lock, flags);
-+}
-+
-+static struct irq_chip realtek_ictl_irq = {
-+	.name = "realtek-rtl-intc",
-+	.irq_mask = realtek_ictl_mask_irq,
-+	.irq_unmask = realtek_ictl_unmask_irq,
-+};
-+
-+static int intc_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
-+{
-+	irq_set_chip_and_handler(hw, &realtek_ictl_irq, handle_level_irq);
-+
-+	return 0;
-+}
-+
-+static const struct irq_domain_ops irq_domain_ops = {
-+	.map = intc_map,
-+	.xlate = irq_domain_xlate_onecell,
-+};
-+
-+static void realtek_irq_dispatch(struct irq_desc *desc)
-+{
-+	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	struct irq_domain *domain;
-+	unsigned int pending;
-+
-+	chained_irq_enter(chip, desc);
-+	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR));
-+	if (unlikely(!pending)) {
-+		spurious_interrupt();
-+		goto out;
-+	}
-+	domain = irq_desc_get_handler_data(desc);
-+	generic_handle_irq(irq_find_mapping(domain, __ffs(pending)));
-+
-+out:
-+	chained_irq_exit(chip, desc);
-+}
-+
-+/*
-+ * SoC interrupts are cascaded to MIPS CPU interrupts according to the
-+ * interrupt-map in the device tree. Each SoC interrupt gets 4 bits for
-+ * the CPU interrupt in an Interrupt Routing Register. Max 32 SoC interrupts
-+ * thus go into 4 IRRs.
-+ */
-+static int __init map_interrupts(struct device_node *node, struct irq_domain *domain)
-+{
-+	struct device_node *cpu_ictl;
-+	const __be32 *imap;
-+	u32 imaplen, soc_int, cpu_int, tmp, regs[4];
-+	int ret, i, irr_regs[] = {
-+		RTL_ICTL_IRR3,
-+		RTL_ICTL_IRR2,
-+		RTL_ICTL_IRR1,
-+		RTL_ICTL_IRR0,
-+	};
-+	u8 mips_irqs_set;
-+
-+	ret = of_property_read_u32(node, "#address-cells", &tmp);
-+	if (ret || tmp)
-+		return -EINVAL;
-+
-+	imap = of_get_property(node, "interrupt-map", &imaplen);
-+	if (!imap || imaplen % 3)
-+		return -EINVAL;
-+
-+	mips_irqs_set = 0;
-+	memset(regs, 0, sizeof(regs));
-+	for (i = 0; i < imaplen; i += 3 * sizeof(u32)) {
-+		soc_int = be32_to_cpup(imap);
-+		if (soc_int > 31)
-+			return -EINVAL;
-+
-+		cpu_ictl = of_find_node_by_phandle(be32_to_cpup(imap + 1));
-+		if (!cpu_ictl)
-+			return -EINVAL;
-+		ret = of_property_read_u32(cpu_ictl, "#interrupt-cells", &tmp);
-+		if (ret || tmp != 1)
-+			return -EINVAL;
-+		of_node_put(cpu_ictl);
-+
-+		cpu_int = be32_to_cpup(imap + 2);
-+		if (cpu_int > 7)
-+			return -EINVAL;
-+
-+		if (!(mips_irqs_set & BIT(cpu_int))) {
-+			irq_set_chained_handler_and_data(cpu_int, realtek_irq_dispatch,
-+							 domain);
-+			mips_irqs_set |= BIT(cpu_int);
-+		}
-+
-+		regs[(soc_int * 4) / 32] |= cpu_int << (soc_int * 4) % 32;
-+		imap += 3;
++	default:
++		return false;
 +	}
 +
-+	for (i = 0; i < 4; i++)
-+		writel(regs[i], REG(irr_regs[i]));
++	if (wake_up) {
++		dev_dbg(&client->dev, "waking up controller\n");
 +
-+	return 0;
-+}
-+
-+static int __init realtek_rtl_of_init(struct device_node *node, struct device_node *parent)
-+{
-+	struct irq_domain *domain;
-+	int ret;
-+
-+	realtek_ictl_base = of_iomap(node, 0);
-+	if (!realtek_ictl_base)
-+		return -ENXIO;
-+
-+	/* Disable all cascaded interrupts */
-+	writel(0, REG(RTL_ICTL_GIMR));
-+
-+	domain = irq_domain_add_simple(node, 32, 0,
-+				       &irq_domain_ops, NULL);
-+
-+	ret = map_interrupts(node, domain);
-+	if (ret) {
-+		pr_err("invalid interrupt map\n");
-+		return ret;
++		msleep(MXT_WAKEUP_TIME);
 +	}
 +
-+	return 0;
++	return true;
 +}
 +
-+IRQCHIP_DECLARE(realtek_rtl_intc, "realtek,rtl-intc", realtek_rtl_of_init);
+ static int __mxt_read_reg(struct i2c_client *client,
+ 			       u16 reg, u16 len, void *val)
+ {
+ 	struct i2c_msg xfer[2];
++	bool retried = false;
+ 	u8 buf[2];
+ 	int ret;
+ 
+@@ -643,9 +680,13 @@ static int __mxt_read_reg(struct i2c_client *client,
+ 	xfer[1].len = len;
+ 	xfer[1].buf = val;
+ 
++retry:
+ 	ret = i2c_transfer(client->adapter, xfer, 2);
+ 	if (ret == 2) {
+ 		ret = 0;
++	} else if (!retried && mxt_wakeup_toggle(client, true, true)) {
++		retried = true;
++		goto retry;
+ 	} else {
+ 		if (ret >= 0)
+ 			ret = -EIO;
+@@ -659,6 +700,7 @@ static int __mxt_read_reg(struct i2c_client *client,
+ static int __mxt_write_reg(struct i2c_client *client, u16 reg, u16 len,
+ 			   const void *val)
+ {
++	bool retried = false;
+ 	u8 *buf;
+ 	size_t count;
+ 	int ret;
+@@ -672,9 +714,13 @@ static int __mxt_write_reg(struct i2c_client *client, u16 reg, u16 len,
+ 	buf[1] = (reg >> 8) & 0xff;
+ 	memcpy(&buf[2], val, len);
+ 
++retry:
+ 	ret = i2c_master_send(client, buf, count);
+ 	if (ret == count) {
+ 		ret = 0;
++	} else if (!retried && mxt_wakeup_toggle(client, true, true)) {
++		retried = true;
++		goto retry;
+ 	} else {
+ 		if (ret >= 0)
+ 			ret = -EIO;
+@@ -2975,6 +3021,8 @@ static const struct attribute_group mxt_attr_group = {
+ 
+ static void mxt_start(struct mxt_data *data)
+ {
++	mxt_wakeup_toggle(data->client, true, false);
++
+ 	switch (data->suspend_mode) {
+ 	case MXT_SUSPEND_T9_CTRL:
+ 		mxt_soft_reset(data);
+@@ -3009,6 +3057,8 @@ static void mxt_stop(struct mxt_data *data)
+ 		mxt_set_t7_power_cfg(data, MXT_POWER_CFG_DEEPSLEEP);
+ 		break;
+ 	}
++
++	mxt_wakeup_toggle(data->client, false, false);
+ }
+ 
+ static int mxt_input_open(struct input_dev *dev)
+@@ -3155,6 +3205,15 @@ static int mxt_probe(struct i2c_client *client, const struct i2c_device_id *id)
+ 		return error;
+ 	}
+ 
++	/* Request the WAKE line as asserted so we go out of sleep */
++	data->wake_gpio = devm_gpiod_get_optional(&client->dev,
++						  "wake", GPIOD_OUT_HIGH);
++	if (IS_ERR(data->wake_gpio)) {
++		error = PTR_ERR(data->wake_gpio);
++		dev_err(&client->dev, "Failed to get wake gpio: %d\n", error);
++		return error;
++	}
++
+ 	error = devm_request_threaded_irq(&client->dev, client->irq,
+ 					  NULL, mxt_interrupt, IRQF_ONESHOT,
+ 					  client->name, data);
+@@ -3185,6 +3244,25 @@ static int mxt_probe(struct i2c_client *client, const struct i2c_device_id *id)
+ 		msleep(MXT_RESET_INVALID_CHG);
+ 	}
+ 
++	/*
++	 * Controllers like mXT1386 have a dedicated WAKE line that could be
++	 * connected to a GPIO or to I2C SCL pin, or permanently asserted low.
++	 *
++	 * This WAKE line is used for waking controller from a deep-sleep and
++	 * it needs to be asserted low for 25 milliseconds before I2C transfers
++	 * could be accepted by controller if it was in a deep-sleep mode.
++	 * Controller will go into sleep automatically after 2 seconds of
++	 * inactivity if WAKE line is deasserted and deep sleep is activated.
++	 *
++	 * If WAKE line is connected to I2C SCL pin, then the first I2C transfer
++	 * will get an instant NAK and transfer needs to be retried after 25ms.
++	 *
++	 * If WAKE line is connected to a GPIO line, the line must be asserted
++	 * 25ms before the host attempts to communicate with the controller.
++	 */
++	device_property_read_u32(&client->dev, "atmel,wakeup-method",
++				 &data->wakeup_method);
++
+ 	error = mxt_initialize(data);
+ 	if (error)
+ 		goto err_disable_regulators;
 -- 
-2.25.1
+2.29.2
 
