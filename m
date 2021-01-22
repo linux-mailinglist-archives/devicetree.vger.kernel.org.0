@@ -2,196 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61907300D6E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 21:12:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C869C300DD2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 21:35:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730944AbhAVULy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 15:11:54 -0500
-Received: from mga02.intel.com ([134.134.136.20]:56020 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727626AbhAVUJq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 15:09:46 -0500
-IronPort-SDR: VKZMcN9OG7svXAC9OrmzR2yIlgqNsGfj126Bf2LrkX3Hlj3I6nU04tfiNfteDz3g4vhjsH4kRp
- xdXU6zuPxzBg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="166600809"
-X-IronPort-AV: E=Sophos;i="5.79,367,1602572400"; 
-   d="scan'208";a="166600809"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 12:08:55 -0800
-IronPort-SDR: WpdbPtEcOckpDq5P8Bb/GnL/s+gMOJSY3YQKAKW0PJVvnpRI4WpTFiWE0ZrgBk3H4mRqfkD4Pu
- 2TDMTTGyTCxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,367,1602572400"; 
-   d="scan'208";a="357152222"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
-  by fmsmga008.fm.intel.com with ESMTP; 22 Jan 2021 12:08:54 -0800
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Fri, 22 Jan 2021 12:08:53 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 22 Jan 2021 12:08:53 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Fri, 22 Jan 2021 12:08:53 -0800
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com (104.47.46.57) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Fri, 22 Jan 2021 12:08:52 -0800
+        id S1730414AbhAVUf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 15:35:29 -0500
+Received: from alln-iport-2.cisco.com ([173.37.142.89]:45837 "EHLO
+        alln-iport-2.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731062AbhAVUd1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 15:33:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=1293; q=dns/txt; s=iport;
+  t=1611347607; x=1612557207;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=tx0xwUXfPkQnqxp4jHNy4TQ8O2VlOEJcdLEfzzww1hU=;
+  b=hB2ryvQYuvoKlz7thX0/YL13ge4Ye55Ixuy+xLXiWqL4DwhHu3hp/x9p
+   BKTvYgMVcCg2g1nbqT5APxDVgbMgWqY+UsQq7sOvEgrHvXhmozjVQfmbA
+   aGqDRg6u12Dp6z81QEcyP18gGaXgSXUz7bFYDcWyEDJjxAlN4WIHyzaNB
+   c=;
+X-IPAS-Result: =?us-ascii?q?A0BJAAABNQtgkIsNJK1iHAEBAQEBAQcBARIBAQQEAQFAg?=
+ =?us-ascii?q?TwGAQELAYFSUX1bLy8Kh34Di3SCGo9wFoZOgkOBLoElA1QLAQEBDQEBHw4CB?=
+ =?us-ascii?q?AEBg0t/AoF4AiU1CA4CAwEBAQMCAwEBAQEFAQEBAgEGBBQBAQEBAQGGOAyFc?=
+ =?us-ascii?q?wEBAQMBOgYBATcBDwIBCBgeEBQeJwQOBYMmAYJVAw4gAQ6oKQKKJXSBNIMFA?=
+ =?us-ascii?q?QEGgTMBg1cYghEDBhSBJAGCdoptG4FBP4QqPoQ+hXmCSYEOASsigW+5CQqCd?=
+ =?us-ascii?q?4kwkiwxD6JlnEqCcpY1AgQCBAUCDgEBBoFYAzOBWXAVgyQfMRcCDY4hDA4Jg?=
+ =?us-ascii?q?06FFIVEdDcCBgoBAQMJfIoIAYEQAQE?=
+IronPort-PHdr: =?us-ascii?q?9a23=3AM/Zh5RR8y1r+A0NfAZ+t4dL0zdpsv++ubAcI9p?=
+ =?us-ascii?q?oqja5Pea2//pPkeVbS/uhpkESQBNuJ+/NAiuzG9avnXD9I7ZWAtSUEd5pBH1?=
+ =?us-ascii?q?8AhN4NlgMtSMiCFQXgLfHsYiB7eaYKVFJs83yhd0QAHsH4ag7Co3mz6y5UER?=
+ =?us-ascii?q?L6ZkJ5I+3vEdvUiMK6n+m555zUZVBOgzywKbN/JRm7t0PfrM4T1IBjMa02jB?=
+ =?us-ascii?q?DOpyhF?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.79,367,1602547200"; 
+   d="scan'208";a="656296344"
+Received: from alln-core-6.cisco.com ([173.36.13.139])
+  by alln-iport-2.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 22 Jan 2021 20:32:45 +0000
+Received: from XCH-ALN-001.cisco.com (xch-aln-001.cisco.com [173.36.7.11])
+        by alln-core-6.cisco.com (8.15.2/8.15.2) with ESMTPS id 10MKWjXZ016710
+        (version=TLSv1.2 cipher=AES256-SHA bits=256 verify=FAIL);
+        Fri, 22 Jan 2021 20:32:45 GMT
+Received: from xhs-rcd-001.cisco.com (173.37.227.246) by XCH-ALN-001.cisco.com
+ (173.36.7.11) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 22 Jan
+ 2021 14:32:44 -0600
+Received: from xhs-aln-003.cisco.com (173.37.135.120) by xhs-rcd-001.cisco.com
+ (173.37.227.246) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 22 Jan
+ 2021 14:32:44 -0600
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (173.37.151.57)
+ by xhs-aln-003.cisco.com (173.37.135.120) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2 via Frontend Transport; Fri, 22 Jan 2021 14:32:44 -0600
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k6bkpl1TxtfVML8fdiVVdDC/6/7+d6ffOXz4fr6XpyxG95/9/6xkU8QoBvQmOmtA6pSgiv1A9frobLzBUkfTR66W68tZ5mp8UXc5QAYHgdkfjJ3GitZTveHrcfLQbd+DuutALT0aK7ekjxbAjLiEPzWJx9cBe1UlIInaMmLsY/HFteEdyKBmMEcwBq4D9wuJBqRBMLcX8HC70KUMOhPLb6XjZQ1xPGoMICNknKbCmkwKNJHRsy3JUEUVrzi3xB84zMhr3HPzD5xXPuAUjQOQ3JiUYU7P+OTgBtYTKmEr13PYPa6R0dYv1DryYdZELhk42R+UOvJECOKnej2sRPpKyQ==
+ b=Ume8460MJN88VqQD6m/8y031Ppyt9lv0D2cDxor1dM9+eoL8qC9oqIdDyOytyY6SYjuiBoTRFrDDad+EC80oo7fjRJ0U5b2fXljRJmF+hAaxw4cOVB0rlG4Y9J03xBlHIbNzeLjDXLpSu0E5TylXoV82MPH8uau6J2v3qcevJPQrdZkycUSQFto0+U3yVOO2qPI3fYOdKvTZf0Ae3KJxGLxV86NLc/kh6q5tN1yZ5/KFNINq66uudjBkYNU9k2Y5NmGF0NtGvUgQmZhnqVOSp2UteZNwKLTx4zTUEiueYoCo9P+Rh4HDJ/y9R9bDJofiGEVwgHHOJqM0if8ly86bzg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cK7elhIbo3/6WSB/1IEytWz+5SriR1ompn/htUZCqSY=;
- b=JoSh89lPQY6vR/LIOjM/x8pUUbexuoNiYE21KCjKofVKKhNlEHxlr4nD0fh4HGqmHF5z7+cgMozGWlD4AE3wrsgt14DMBfqas0vaJ6PpVDp+OMf4wfCy8tYAIKBGTopsXM++Ts6uA9AQ7D2OaLi0r5JHqQsnMztlglb18JMR470umTPFfG0jmYdm9ye76mR/8J3n+bp2wANpS7UepuAsiwrcW4FjebbqfKyEIzB9Z2qllhoY44085MOlCTpOUGwTMqK/TcRb3jrAVYWaxJGvAaslXNYD6vNT0/sUeIbhApswr1AiPC47ArZ1oNGjMo9KL3yp136zC5tE5BErDbdWxA==
+ bh=DcqSz9vqyEj9h0Lvvlm3LY/3/FpUZTEXOWcc+N4P7ss=;
+ b=FIWrUptn2ijeDj5/33DcKdEtaE8A9HH8rWGEvIa2vD9eTQ5P/Bv6WlOV9WAkMJD0Un/TBr7qw3kAisn6sCa/80BZjHQkZ1dzPf8HXVStckaESmQMH8wqckgss3scZSCox+poqjwHT5oLtveb7YuZeswaAVmatt5LpNGdkTi+VOpLA20TElR36G2ZkQDSxIcAxjyOCY2bf8Ias1veMW8owia+SGhpyl5q9lFB2Y6uD6mm+yKsHqZuIYixk4Ai+AIFhNX0g7Ij4JrdxjUSGv0JtlZOHHN5Gp+SMd0Tgzh1plojqx+PUK5sATC+5XDovdg1/ZfU9P+yojC2C1wmoS0dMg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=cisco.com; dmarc=pass action=none header.from=cisco.com;
+ dkim=pass header.d=cisco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cisco.onmicrosoft.com;
+ s=selector2-cisco-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cK7elhIbo3/6WSB/1IEytWz+5SriR1ompn/htUZCqSY=;
- b=YqB879iK/M08w1ZK+mkWcDMUqN/+M7/SJrBBoM/WU21ym4YWkwXr7SNuoIRezYwzC7OD3CCQBAyV4qnIZZQ3ogAe/f9GsNiBgfrJVlNPrMp8f0B+NApqnupskUy4bchmCs+lpLfyC/1XdyVdXqOXd/wnS/1QrMh7zQaQla5Kh7Y=
-Received: from MWHPR11MB1406.namprd11.prod.outlook.com (2603:10b6:300:23::18)
- by MW3PR11MB4700.namprd11.prod.outlook.com (2603:10b6:303:2d::10) with
+ bh=DcqSz9vqyEj9h0Lvvlm3LY/3/FpUZTEXOWcc+N4P7ss=;
+ b=lGdglXxvvMC40THf9Qrp5KgmT0Tb1fhlpminC/sE1cE1l/3B3gfnN/bCMXgjo7UEHGQ42OAOhKgW0FigHhWPxQhSX7DEi2Z3yEULat2GrCMROenUIYMUHZTjuhhG05eEe4/tvEpeSDCdKKWfXf4UXu12D+sv4fX6p5exw/QNJgA=
+Received: from SJ0PR11MB5037.namprd11.prod.outlook.com (2603:10b6:a03:2ac::21)
+ by BY5PR11MB3861.namprd11.prod.outlook.com (2603:10b6:a03:18d::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Fri, 22 Jan
- 2021 20:08:50 +0000
-Received: from MWHPR11MB1406.namprd11.prod.outlook.com
- ([fe80::2835:4cc2:edf6:3c0d]) by MWHPR11MB1406.namprd11.prod.outlook.com
- ([fe80::2835:4cc2:edf6:3c0d%9]) with mapi id 15.20.3763.017; Fri, 22 Jan 2021
- 20:08:50 +0000
-From:   "Thokala, Srikanth" <srikanth.thokala@intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Bjorn Helgaas <helgaas@kernel.org>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.9; Fri, 22 Jan
+ 2021 20:32:41 +0000
+Received: from SJ0PR11MB5037.namprd11.prod.outlook.com
+ ([fe80::f5b5:4b05:475a:f82c]) by SJ0PR11MB5037.namprd11.prod.outlook.com
+ ([fe80::f5b5:4b05:475a:f82c%7]) with mapi id 15.20.3763.014; Fri, 22 Jan 2021
+ 20:32:41 +0000
+From:   "Daniel Walker (danielwa)" <danielwa@cisco.com>
+To:     Michal Simek <michal.simek@xilinx.com>
+CC:     Daniel Walker <dwalker@fifo99.com>,
+        "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
+        Rob Herring <robh+dt@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        "Sangannavar, Mallikarjunappa" 
-        <mallikarjunappa.sangannavar@intel.com>
-Subject: RE: [PATCH v6 2/2] PCI: keembay: Add support for Intel Keem Bay
-Thread-Topic: [PATCH v6 2/2] PCI: keembay: Add support for Intel Keem Bay
-Thread-Index: AQHW8CxEYqglrlTf6UWr0PjVJmm9saoyfXIAgAAN1ACAAXwv8A==
-Date:   Fri, 22 Jan 2021 20:08:50 +0000
-Message-ID: <MWHPR11MB1406A5779B2B45036ECB01C485A00@MWHPR11MB1406.namprd11.prod.outlook.com>
-References: <20210122032610.4958-3-srikanth.thokala@intel.com>
- <20210121195206.GA2678455@bjorn-Precision-5520>
- <YAnnALx/ZHJ+Euhq@smile.fi.intel.com>
-In-Reply-To: <YAnnALx/ZHJ+Euhq@smile.fi.intel.com>
-Accept-Language: en-US
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] arm64: boot: dts: add new dts for hellcat & petra
+Thread-Topic: [PATCH 1/2] arm64: boot: dts: add new dts for hellcat & petra
+Thread-Index: AQHW8P27mGDl3zHar0GeD3nuSvVt0w==
+Date:   Fri, 22 Jan 2021 20:32:41 +0000
+Message-ID: <20210122203240.GS3710@zorba>
+References: <20210121231237.30664-1-danielwa@cisco.com>
+ <185100f4-67f1-140b-ad01-9997891e68da@xilinx.com>
+In-Reply-To: <185100f4-67f1-140b-ad01-9997891e68da@xilinx.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [122.167.96.157]
+user-agent: Mutt/1.9.4 (2018-02-28)
+authentication-results: xilinx.com; dkim=none (message not signed)
+ header.d=none;xilinx.com; dmarc=none action=none header.from=cisco.com;
+x-originating-ip: [128.107.241.189]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a7e16c59-3f8a-4780-80fe-08d8bf1188fc
-x-ms-traffictypediagnostic: MW3PR11MB4700:
+x-ms-office365-filtering-correlation-id: 43ace85b-9ed4-41ec-f5ca-08d8bf14ddeb
+x-ms-traffictypediagnostic: BY5PR11MB3861:
+x-ld-processed: 5ae1af62-9505-4097-a69a-c1553ef7840e,ExtAddr
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MW3PR11MB47001FA41043683C8550A61E85A09@MW3PR11MB4700.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
+x-microsoft-antispam-prvs: <BY5PR11MB386111388652016B32F5B09BDDA00@BY5PR11MB3861.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2887;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 49ark8L0atS0kSsbT6GQZeLscY2c1KszgXvQtQDLChKJNIPcFUiL1WRFxxAQpFhjDwg+O+B5U5gR1hympkEiqUSfdZHWe+mTUfnf+4f9ww7TZqvqqqjaStuC/uMSyZ2IhpU2Sua8GE8vae6A07k0WWkMlDAO93JwboPSUe9xCgq8Oy3jtaXS/poHvVBO3SHah8pxx8ehGn36XLDBczumZOXefCaOllNO5Ct7e2X0GMlHTwMVmFgcz3G2PcFpHi62I/nQzVAdpwUHgza7yNNZkQtlyuNaiwtGfixvFULBjLFaluVwKneLL8hUDwTnNpJdkfjDvZSHqQbg8esTSoNs1s1ZwrTmEnrj06+LBhyl/gieIfHLB0gTRV2UpRgYhN8s4qjB+qHPV3ExcxGaCqqxSg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR11MB1406.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(366004)(136003)(346002)(376002)(55016002)(86362001)(83380400001)(8936002)(478600001)(9686003)(33656002)(54906003)(316002)(8676002)(7696005)(110136005)(66946007)(2906002)(66476007)(4326008)(52536014)(5660300002)(66556008)(64756008)(66446008)(6506007)(76116006)(53546011)(26005)(186003)(71200400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?e1QUyEvfez8tJwzTyYzYcRvDExW4sNJHMGM1lZalf1PJygLqMpbFy8SGv6D3?=
- =?us-ascii?Q?cXULKWJeCFZZfHBR7fxxddoUHSMWxmPPQgSeQtTVXbaz/J/5XXzFtLwTPz9l?=
- =?us-ascii?Q?HD0czYxgOqlp29hCmORMKFZURnzv2Wa9aSTM5IQ6N6oKCu9vLbHSLTWg1QxM?=
- =?us-ascii?Q?NPCLd9c+7jtHcH0sPi3sBUlr2+aULZ099so8CWCTuie/Yy7vqZ7vmZy6Qukz?=
- =?us-ascii?Q?wMcUdrFl9QGUXouryriwgtFdq2tf8aQbuy+i9B6GqJvvF2J0WKiyQqW1LnFa?=
- =?us-ascii?Q?q1hkFLdsQeD9GePFDRgPu87GNji1KiAGoq2Rf8lcGXjV0cootFDqxqxIHmz1?=
- =?us-ascii?Q?jcncp/XXCwL608f4KtYzQp9rPVYbedOHuWtLnPigqe3k6tcMA9QlfK2tneNj?=
- =?us-ascii?Q?Urf1V26wWPiktOiEQDsxTG7SomNMSZB31OmID5umyD0oxl/9ACiHNYUMRZxX?=
- =?us-ascii?Q?SMpBMKL182OhQIR67s0ULOjYU5IbV8O2hT3rKX4RryaaClvreuGI843gYhjo?=
- =?us-ascii?Q?97GkgDbNVBSKt4AsR7zZfY4LzCZMGFgSVSTbCngHfu/NKUKrQ5hYkVaBcCze?=
- =?us-ascii?Q?22QBKPMbN6iRa/Jk40fwwbYz74U9B6XkVj9MmSfVVB9AL+WxgalkfMoQh12a?=
- =?us-ascii?Q?eHUHIa6Fld/vULXZjGEOD+PRnKE8y19asLHC+5D5HuRneO/Dj6HWCDqpNl9m?=
- =?us-ascii?Q?KlejQadMRz5zHtTl9M6rr3A+6emv4NAhU8ufoR2pP1SfLJSatwhcZtEKGhfb?=
- =?us-ascii?Q?nu/oX0yz58XwCSc6KrlZDVszDmTfxO+J4hMXm+X+0LUc+SYVLykYk+DLA0+3?=
- =?us-ascii?Q?UhfAMNHWBEhrmSCgvU5ZAtHlG+CXVGuKAgUGHs3HXJ9gA9QbV8FGfsG6/6A8?=
- =?us-ascii?Q?p2xENjVmeuCd0Ot/rE503W+1HxvLncybyIDQHxNboiOTNVMVz+hYvhvmB8FL?=
- =?us-ascii?Q?YSOfvp6Kumu+HOPrDaOamEbOh0jKTTflFuYiuo3Odxc=3D?=
+x-microsoft-antispam-message-info: /tzuhmjAchgz1ce+ozQceMC6WebU0HnUFcy9lxE+fpWq/rhU4yRu640Ox0A/BkC/Vrw4rweDAp/snMjQBL8+q9X1r5hohVYlpzlSynDstEgYRA283CLiioTCJo5tmkTyYWlXw/HdkuZ93caj33hjE1Xff/oQLbk15YURfgJkZYk0bWM7ffH9cPJzctPPdAak1cHDvi9+YoRNfIHMVf64u78gpwwzWVFysj9TnwEpv0MUUCIYb4T+0j8mb6sTjVnuaEJdi2M+eD+Aoz+5sFHlD0zUAVts3QV+Uaf7VSCX+MzNKAsnhIFoBG93+Iqv2Bth0KvW6ZqakBJKMOZyN/8i+Z6uleNYz4g5IhWccA+AUIaGoiVLO3HraQU6hQmblEhuvoAwQpHkQJkNukClZy4bscSvyKp6PI4Ly2tzseAYda9XXf5MS/ml7q/t9Z765+UAXPZJCMb3eTYIFtgUGArC215znrUHNXw9HOm+aGbOodrofk6ae8SPPDqkWGt+5R/hB4uuvZC5Ft7c9enpGP9k6F524ZgPCfjGeJoFcqAxHaeBVuLTUnwtD6jaulFXFJOuK4JOlSEGjXruDXNOtZ647yzIwEppvWuuxAkGrjfixH8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB5037.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(346002)(39860400002)(376002)(136003)(396003)(366004)(86362001)(966005)(53546011)(5660300002)(478600001)(76116006)(1076003)(33716001)(6512007)(6486002)(8676002)(26005)(66476007)(6506007)(54906003)(4326008)(2906002)(66556008)(316002)(8936002)(66446008)(186003)(66946007)(64756008)(71200400001)(9686003)(33656002)(6916009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?efbqk/5HRQBF9T8432useV01PJ7xF2txqBvsth7aAWMJD+fhkZOmnaYNRhHw?=
+ =?us-ascii?Q?9udeDoNU0QctAQc+8hJgaRi3lbYBPhCfPgZt1yhPBJ9OgqJoClpSozeunD51?=
+ =?us-ascii?Q?Tu07yRqbgWa3s1ezhG9W7jQdyw32kOh9r+L2wWMP7gtn+YYkZ4rI4lmmjm1K?=
+ =?us-ascii?Q?5cchGPmk2G1q5xO9MDG/QSF3fYaULUyeFk518WM0IKJcrAmIG8gHmAHMI1Ss?=
+ =?us-ascii?Q?LFwOup3BdjDp7Eky55F2eIvrbeFstz2l8p13rQ3e70BwV4H2LL4Ih50hbAMH?=
+ =?us-ascii?Q?MegQUCd/MxprhWemFU/+7JiYsq/mVXW0Mjig2cN5U+TfbxEg+M/saehl8frb?=
+ =?us-ascii?Q?/b3fXANlDlVxuKCZzZ2LdgUQ9VjOerkikwcwUfzDyTwDb3btTKOpd1tWg4La?=
+ =?us-ascii?Q?7hEZj5IV/J8SEqUq6eo4wcDP3Gp3rA1mbfbqw04Y2r8cbydEfxyxzjG/9bsZ?=
+ =?us-ascii?Q?7rGIiy+pvKhaLf0yaLngJA7USG1aPE3+hPta3DFIK8dfMaio0PSwfQEqnOCm?=
+ =?us-ascii?Q?0CbfWNM068VEtGOpdBhD6xIE/c+L4VyX8kMNmzhqqdizaoHTHp6Oe9BAd4Ff?=
+ =?us-ascii?Q?11zYQi+zrOG0Gqqeckg6Y5kmW+WpuUeHhWbufoUrhcsr0Hco13bQIzdzAzM2?=
+ =?us-ascii?Q?RYzbbbRcqU4i6eoDGkHRuUnJJ7MVDDN6Iv98UgAq2+xu/3PcakCUqCAeiY9P?=
+ =?us-ascii?Q?2o1CbF1JcDB6D1to7P7iPl8hwrGVvV0NaK2FVNyTlHCMH5lVj7BZlVQfAZCV?=
+ =?us-ascii?Q?Fnt1pE6lkO77M/DpxbMIBKRDZI+YLu04GcMkrocR4JiHRDpvuxl1SpMdBZ+8?=
+ =?us-ascii?Q?QkijpkrAkhsCH97v3ZOb//gJaItLXu+Qa42jwir9UfXjY/jiCTOydxINwah6?=
+ =?us-ascii?Q?vleSZm8guQBe31EBoQKDD9R7p0BUAfTittPTor6mgVku2vItWX6bBnxlXXaW?=
+ =?us-ascii?Q?DSAMqwEjflgl2Ph77o+ZmP9cOqAvMvaYAWsv4m1kYzWqFtvP9Lxb77gKuIH1?=
+ =?us-ascii?Q?wX2dgVIr26ZNRCa3UwAYfru6EL64srqlgaqF+CsSq9AkV4Ok1rbHI60HR0s4?=
+ =?us-ascii?Q?AkAe1l3kKlAbCpyvNxJ/N1O8bi3DSw=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
+Content-ID: <5B214B43DCF8D64D8D385437719CD234@namprd11.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1406.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7e16c59-3f8a-4780-80fe-08d8bf1188fc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2021 20:08:50.5184
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB5037.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43ace85b-9ed4-41ec-f5ca-08d8bf14ddeb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2021 20:32:41.5140
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: 5ae1af62-9505-4097-a69a-c1553ef7840e
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NSeS9zhxQyrQTFVuCKzQAeVKwM4fDbthhSmvsyFn6cdwfYn4cGTPY8J8Ni79OlG4jgGkb7pSHnP3u+wJ08VRKlLNodPRgEdY7iBF3g/31fk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4700
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-userprincipalname: nSKK+cV7ETy19fqPdV2bRPEprflhkZANv0TRnH5ezBTi5q/F0Oig6qyG2leasKs4D0CvNBj4Uo2zN+NvWqgi9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3861
+X-OriginatorOrg: cisco.com
+X-Outbound-SMTP-Client: 173.36.7.11, xch-aln-001.cisco.com
+X-Outbound-Node: alln-core-6.cisco.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
-
-Thanks for the review.
-
-> -----Original Message-----
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Sent: Friday, January 22, 2021 2:12 AM
-> To: Bjorn Helgaas <helgaas@kernel.org>
-> Cc: Thokala, Srikanth <srikanth.thokala@intel.com>; bhelgaas@google.com;
-> robh+dt@kernel.org; lorenzo.pieralisi@arm.com; linux-pci@vger.kernel.org;
-> devicetree@vger.kernel.org; mgross@linux.intel.com; Raja Subramanian,
-> Lakshmi Bai <lakshmi.bai.raja.subramanian@intel.com>; Sangannavar,
-> Mallikarjunappa <mallikarjunappa.sangannavar@intel.com>
-> Subject: Re: [PATCH v6 2/2] PCI: keembay: Add support for Intel Keem Bay
+On Fri, Jan 22, 2021 at 09:48:53AM +0100, Michal Simek wrote:
+> Hi Daniel,
 >=20
-> On Thu, Jan 21, 2021 at 01:52:06PM -0600, Bjorn Helgaas wrote:
-> > On Fri, Jan 22, 2021 at 08:56:10AM +0530, srikanth.thokala@intel.com
-> wrote:
+> On 1/22/21 12:12 AM, Daniel Walker wrote:
+> > Add Petra and Hellcat dts file. These platforms are based on
+> > the Xilinx Zynqmp platform.
+> >=20
+> > Signed-off-by: Daniel Walker <dwalker@fifo99.com>
+> > Cc: xe-linux-external@cisco.com
+> > ---
+> >  arch/arm64/boot/dts/xilinx/Makefile           |   2 +
+> >  .../boot/dts/xilinx/zynqmp-petra-hellcat.dts  | 856 ++++++++++++++++++
+> >  arch/arm64/boot/dts/xilinx/zynqmp-petra.dts   | 847 +++++++++++++++++
+> >  3 files changed, 1705 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-petra-hellcat.dts
+> >  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-petra.dts
 >=20
-> > > Signed-off-by: Wan Ahmad Zainie
-> <wan.ahmad.zainie.wan.mohamad@intel.com>
-> > > Signed-off-by: Srikanth Thokala <srikanth.thokala@intel.com>
->=20
-> This list seems strange. Shouldn't be your SoB last?
+> First of all I can't see 2/2.
+=20
+It wasn't being submitted to you. But here it is if you care to look at it.
 
-Sure, I will fix it.
+https://lkml.org/lkml/2021/1/21/1468
 
 >=20
-> ...
->=20
-> > <checks MAINTAINERS> ... yep, all previous entries are in alphabetical
-> > order.  This new one just got dropped at the end.
-> >
-> > I feel like a broken record, but please, please, take a look at the
-> > surrounding code/text/whatever, and MAKE YOUR NEW STUFF MATCH THE
-> > EXISTING STYLE.  We want the whole thing to be reasonably consistent
-> > so readers can make sense of it without being confused by the
-> > idiosyncrasies of every contributor.
->=20
-> I guess even checkpatch.pl should complain about this these days.
+> Long time ago we said that we are not going to push any PL related
+> configurations. It means all below can't be merged.
+> And there are also coding style issues.
 
-Sorry I missed, but there are not any checkpatch warnings.  I will fix it
-in my next version of the patch.
+You'll need to explain this more. It's likely this was added at the suggest=
+ion of
+Xilinx. If it can't be upstreamed what should we replace it with ?
 
-Thanks!
-Srikanth
+I will review your other comments and re-submit.
 
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
->=20
-
+Daniel=
