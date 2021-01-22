@@ -2,141 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C9193003B2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 14:04:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 793733003A9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 14:03:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727431AbhAVNB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 08:01:57 -0500
-Received: from mail-co1nam11on2045.outbound.protection.outlook.com ([40.107.220.45]:19123
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727280AbhAVNBt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 08:01:49 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Md/GhxzlNxb5WEHpZowEGSNjKVATfxg/UVzjXG0SSDB3EOW6s7gCBkHHdrRjrSp9ZcWoXOetagxINlCNHNvzwtkEB9HqYr3GJI0RJhTwcLCNJALU3PiXZ3tRIGyfkHM/mHYbVKue29PJ04wwBGfBgyZUw73GaKXGDBtv4kn81CFtv1koNyOh/T/JjMYwFoCw+Io4168tNQhtQtYNFjrW7k3t8iuZjrdFSSm7MnWaicWGHX+38ZMT+VY/s8MB47Zty/5+NMi1Sb7p/GNxEac92bkkviypf2AFjdlHxJFSF3jyzMYzPbo2dtbFmCwtvJINu8uDsWYg5NMzhnGsQwkz8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pNiMaO9n4BBApteukGPPmEIi3lrJT2YhUqoWvzuIQ5s=;
- b=WsDzQ2Bsrjnaeo0BwlI1Ct88kojSZT3tUZlYy03y8HvZxdskrxM+a3itICk1p4j2Rhmdp6OvFdB8XnCBcW1+PjqiPcZtw8+N4fy9DuKvX97e+1DAWBHHOm3rBy5OMmDDi91eavBNDOEy2jyNwCmU5SJa1Z1IK61FOmAZgTaJBdEwztzdLSb6TlVT3sr/E+xqusflmA9We3MBfD+VFe0+3QBTWlywEq8Un1FpmQlWf1YrEuxL1bU+jb1fABEKeCHpAZtls9o0pubPLWRw25zbspLCKm7R/TTtmfMPMD+68nRcxPZwWvbRE2iRJ0tT62QNxQo6Rk+1i3zDqLyBVZXGmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pNiMaO9n4BBApteukGPPmEIi3lrJT2YhUqoWvzuIQ5s=;
- b=AgB9rRqoThI6h+v4/FAymYe9wj7lp4u5lnyiHNpmQykrlmxzhTd9YeHrg6C0IpsT5mQDpCyjaQ08rlZ5bRaS5zmJwksxR5RG/CWTw2FNhMfTvcG9PmWV8PfAZCMmi+gc+pwT2v0WUuZ1dx9Wgxh2pi+t2Y3ZipmuvGl5VERe0Cs=
-Received: from SN4PR0401CA0044.namprd04.prod.outlook.com
- (2603:10b6:803:2a::30) by CY4PR02MB2759.namprd02.prod.outlook.com
- (2603:10b6:903:11a::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.9; Fri, 22 Jan
- 2021 13:00:32 +0000
-Received: from SN1NAM02FT057.eop-nam02.prod.protection.outlook.com
- (2603:10b6:803:2a:cafe::24) by SN4PR0401CA0044.outlook.office365.com
- (2603:10b6:803:2a::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12 via Frontend
- Transport; Fri, 22 Jan 2021 13:00:32 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT057.mail.protection.outlook.com (10.152.73.105) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3784.12 via Frontend Transport; Fri, 22 Jan 2021 13:00:31 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Fri, 22 Jan 2021 05:00:07 -0800
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Fri, 22 Jan 2021 05:00:07 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- saikrishna12468@gmail.com,
- linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- gregkh@linuxfoundation.org,
- robh+dt@kernel.org,
- linus.walleij@linaro.org
-Received: from [172.30.17.109] (port=43336)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1l2w2m-0002j7-Sd; Fri, 22 Jan 2021 05:00:06 -0800
-Subject: Re: [PATCH v2 1/3] firmware: xilinx: Added pinctrl support
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S1727521AbhAVNBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 08:01:41 -0500
+Received: from muru.com ([72.249.23.125]:52796 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727512AbhAVNBe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 08:01:34 -0500
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id E0C6580B3;
+        Fri, 22 Jan 2021 13:00:46 +0000 (UTC)
+Date:   Fri, 22 Jan 2021 15:00:43 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Suman Anna <s-anna@ti.com>, Nishanth Menon <nm@ti.com>,
+        Arnd Bergmann <arnd@arndb.de>, Dave Gerlach <d-gerlach@ti.com>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>, <saikrishna12468@gmail.com>
-References: <1611034054-63867-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1611034054-63867-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <CACRpkdYH_ZdwF_aXTrp-5rYCifmHF2X8172513q9P+t4vy_RLg@mail.gmail.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <aa09f5e1-ad52-4ae4-aaae-7a2e70054236@xilinx.com>
-Date:   Fri, 22 Jan 2021 14:00:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH v3 3/5] arm64: dts: ti: Add support for AM642 SoC
+Message-ID: <YArMe2ahPxAjRHsY@atomide.com>
+References: <20210120202532.9011-1-d-gerlach@ti.com>
+ <20210120202532.9011-4-d-gerlach@ti.com>
+ <197af185-d2ea-3c76-d0bf-714485f8f195@ti.com>
+ <20210121174639.jqbvem6b4ozd3six@sterling>
+ <4ee6f005-2eee-42b2-b573-e10602839e1b@ti.com>
+ <20210121183909.pwpboiptqbof2dfu@squint>
+ <2b35fb8b-0477-f66d-bcbd-ad640664a888@ti.com>
+ <CAK8P3a0O5cibBfL96ktSsXWTr09qxi4egFYizGO0oaSf3__Fgg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdYH_ZdwF_aXTrp-5rYCifmHF2X8172513q9P+t4vy_RLg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1ad2cd72-3269-4c4b-32fa-08d8bed5b36f
-X-MS-TrafficTypeDiagnostic: CY4PR02MB2759:
-X-Microsoft-Antispam-PRVS: <CY4PR02MB27599455D701B97836385B19C6A00@CY4PR02MB2759.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cTV2C1XCSOOq9EQV+TiIjq6aibjm0KHo6GqIobTJsmOhDw8ZwGVoo4H9r/t6bGR5/A4tn+7jbTulerV3QkOebJESwDiq2vJgrYLKJfb20Jhd9NdRbfuHcp6sKUVt0EcJx9BD/oLJ0APLk2sRKT4uuK24jzFAVMvPSNWwLLgGhbPLvjVaC6/RKnKdSJZ549PTxN867NoLKQeU3Vja1Qlgqe7wKHGt1rLpmN+ObBJyHEi9U3Eqccm0xW7TQNepOIaAlBn2uG7St6W9WeRE7dAJRu26khTsPjDcz77mvCvH087p8a0QVjnExiOdsw6N/MUWtq+jcljT2pnkmMAcrzuJjiRgyT0U53mrfs2BEhxb+WbGGBWC7j6bfAXVbj8o+/cQnL00wb75JlJbnWlpDZyBs0GqV3EMDgw/OKqNPnSqdaqbgq1EwzJbfNkAn0tcIsuXzPfuPz4QFpU/mljJFdv3WvB8opZqcS5zmi/vrSZ1Z0wa6xmAz3GqNmqNkMgJNZ+spjJCquNG54gaFE88LTtThg==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(46966006)(110136005)(316002)(54906003)(36906005)(8676002)(82310400003)(5660300002)(6666004)(356005)(8936002)(36756003)(4744005)(9786002)(336012)(53546011)(2906002)(44832011)(7636003)(426003)(4326008)(2616005)(478600001)(82740400003)(31686004)(186003)(47076005)(70206006)(70586007)(31696002)(26005)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2021 13:00:31.9836
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ad2cd72-3269-4c4b-32fa-08d8bed5b36f
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT057.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR02MB2759
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a0O5cibBfL96ktSsXWTr09qxi4egFYizGO0oaSf3__Fgg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 1/22/21 1:50 PM, Linus Walleij wrote:
-> On Tue, Jan 19, 2021 at 6:28 AM Sai Krishna Potthuri
-> <lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
+* Arnd Bergmann <arnd@kernel.org> [210122 11:24]:
+> On Thu, Jan 21, 2021 at 8:57 PM Suman Anna <s-anna@ti.com> wrote:
+> > On 1/21/21 12:39 PM, Nishanth Menon wrote:
+> > > On 12:13-20210121, Suman Anna wrote:
+> > >>
+> > >> Hmm, this is kinda counter-intuitive. When I see a dts node, I am expecting the
+> > >
+> > > What is counter intutive about a -next branch be tested against
+> > > linux-next tree?
+> >
+> > The -next process is well understood. FWIW, you are not sending your PR against
+> > -next branch, but against primarily a -rc1 or -rc2 baseline.
+> >
+> > As a developer, when I am submitting patches, I am making sure that things are
+> > functional against the baseline you use. For example, when I split functionality
+> > into a driver portions and dts portions, I need to make sure both those
+> > individual pieces boot fine and do not cause regressions, even though for the
+> > final functionality, you need both.
+> > >
+> > >
+> > > Now, if you want to launch a product with my -next branch - go ahead, I
+> > > don't intent it for current kernel version - you are on your own.
+> > >
+> > > If there is a real risk of upstream next-breaking - speakup with an
+> > > real example - All I care about is keeping upstream functional and
+> > > useable.
+> >
+> > This is all moot when your own tree doesn't boot properly. In this case, you are
+> > adding MMC nodes, but yet for a boot test, you are saying use linux-next for the
+> > nodes that were added or you need additional driver patches (which is not how
+> > maintainer-level trees are verified).
+> >
+> > Arnd,
+> > Can you please guide us here as to what is expected in general, given that the
+> > pull-request from Nishanth goes through you, and if there is some pre-existing
+> > norms around this?
 > 
->> Add pinctrl support to query platform specific information (pins)
->> from firmware.
->>
->> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+> There are two very different cases to consider, and I'm not sure which one
+> we have here:
 > 
-> I need an ACK from the maintainer of this file to merge it with the rest to
-> the pinctrl tree. I suppose Michal?
+> - When submitting any changes to a working platform, each patch on
+>   a branch that gets merged needs to work incrementally, e.g. a device
+>   tree change merged through the soc tree must never stop a platform
+>   from booting without a patch that gets merged through another branch
+>   in the same merge window, or vice versa.
+>   As an extension of this, I would actually appreciate if we never do
+>   incompatible binding changes at all. If a driver patch enables a new
+>   binding for already supported hardware, a second patch changes
+>   the dts file to use the new binding, and a third patch removes the
+>   original binding, this could still be done without regressions over
+>   multiple merge windows, but it breaks the assumption that a new
+>   kernel can boot with an old dtb (or vice versa). This second one
+>   is a softer requirement, and we can make exceptions for particularly
+>   good reasons, but please explain those in the patch description and
+>   discuss with upstream maintainers before submitting patches that do
+>   this.
+> 
+> - For a newly added hardware support, having a runtime dependency
+>   on another branch is not a problem, we do that all the time: Adding
+>   a device node for an existing board (or a new board) and the driver
+>   code in another branch is not a regression because each branch
+>   only has incremental changes that improve hardware support, and
+>   it will work as soon as both are merged.
+>   You raised the point about device bindings, which is best addressed
+>   by having one commit that adds the (reviewed) binding document
+>   first, and then have the driver branch and the dts branch based on
+>   the same commit.
+> 
+> I hope that clarifies the case you are interested in, let me know if I
+> missed something for the specific case at hand.
 
-here it is.
-Acked-by: Michal Simek <michal.simek@xilinx.com>
+Hmm and additionally few more mostly obvious things that have helped
+quite a bit:
 
-Thanks,
-Michal
+- Each commit in each topic branch should compile and boot so git
+  bisect works
+
+- Each topic branch should be ideally based on -rc1 to leave out
+  dependencies to other branches
+
+- Aiming for a working and usable -rc1 is worth the effort in case
+  git bisect is needed for any top branches based on it :) Otherwise
+  you'll be wasting the -rc cycle chasing regressions..
+
+Regards,
+
+Tony
