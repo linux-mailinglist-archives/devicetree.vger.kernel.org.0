@@ -2,163 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FBBC30074D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 422333007A0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 16:43:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728976AbhAVP2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 10:28:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36602 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728822AbhAVP2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 10:28:36 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E67FC06174A
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 07:27:55 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id b5so5450005wrr.10
-        for <devicetree@vger.kernel.org>; Fri, 22 Jan 2021 07:27:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VGeW9EARaoJCpPpoau57S098VzTUAKw4Gh0s4w2uBRw=;
-        b=LCgQySMGrcqfO061iCqVejbCMPpFXQ2o/6PkmCcMBoZ/CBRvYO2TlLOYdlFtIt0lr9
-         Z/5R8IiQYbTmWus1WpUbDRtBUl6+cqjQSeV3/mUr/4vbeXWYjnRXkyJqBw584E7C8qRN
-         1/mEWLsQ/0FIkHQRRk3e0w8D9tcnTkIcJTMUipnDEcD7QCzZsVcvYoAmmaWYa8XhF2+d
-         /7vWT3tDirfT2SPsNLcP+7pglO/LuUK2HN+UEws5u1YvPb9DPlpP0JbUwKNS6I15eNft
-         iil9Q4opl5uHz6p8nqVg8PA+yBiYhwOcMZFenAZE7I4gpfzl6CUHFej9H+s7AeBprXz4
-         xZgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VGeW9EARaoJCpPpoau57S098VzTUAKw4Gh0s4w2uBRw=;
-        b=uQdZlJZngarK+5RQs9FgvyOEhj/zW4AvlGHgLtl/mOU+GlGcBy7FfOgaOtIEaZEhvx
-         Iyy8LpxHxWeoA6x1FnGEC5AinlssuCsxdv1nrdo2y10ui0v+h/Zgk5b6bp/SXtoS2y6Q
-         xrWW2OL1whFHs58ahrqjjJwT7xValbaTHCdrTWGf/vgrr9YF1eTRWD4MUA+/XMHC/BCq
-         zp7EG6M5MIb5Hhcr8mReu9O6xVfb2Fg+B2DoLiW6VwM1YaBM4eNttkzHHp0wS0o8Ykub
-         lZQirhWBicBQ6Sdwo2KxW75aSLLXeu/CFItg3UXqCKHzue7LDO2m7Ceh9+FT5g2dUiKn
-         xqiQ==
-X-Gm-Message-State: AOAM531IUmUdyPSCTq+Y6ErVFRsDgosfA9iV8JUsh5o6crC4vYSJWiNG
-        YFyRWzhOHPTWr95L3UGypdminUXJU4NdjQ==
-X-Google-Smtp-Source: ABdhPJy3A+p+2NUo2ofccX8Pbxyvfw+mH50UN0umZAvck0PU8OJhNu/uj3T1n9PrBF16AfBNTkBVZw==
-X-Received: by 2002:adf:ee09:: with SMTP id y9mr5054851wrn.74.1611329274055;
-        Fri, 22 Jan 2021 07:27:54 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id r12sm859015wrp.13.2021.01.22.07.27.52
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 22 Jan 2021 07:27:53 -0800 (PST)
-Subject: Re: [PATCH v4] nvmem: core: skip child nodes not matching binding
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     Kamel Bouhara <kamel.bouhara@bootlin.com>, ceggers@arri.de,
-        kernel@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210118132411.6268-1-a.fatoum@pengutronix.de>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <6b90cdd0-a710-943d-b444-f7ae44c5875b@linaro.org>
-Date:   Fri, 22 Jan 2021 15:27:52 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728595AbhAVOXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 09:23:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38774 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728567AbhAVOXA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 09:23:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0482A23B77;
+        Fri, 22 Jan 2021 14:17:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611325021;
+        bh=EdgThWKuEJVBx6lw9RiAM+60bMd/eseSJsce1dNI5Tc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KRKLwOHYIVsR7XuLTVTpQD7208q8McTaMEHkdKBDP63/aJoS48i2dvRErmWsBkch7
+         zrsL96vBZ5dNlQlNFXvoY6luLbOA9aEsD5ah5gaBsv04QGJA6coJ/GCFf9btjeH/Aj
+         yRok8twcjtNQ28J1J1YD32IY9nlMMlMOk+bxu85NzuZP+FaAWpg9pyx3lkijj9GPXz
+         8Kgw9NByP+HNr8elkMY745STYsiYWNF/C7uYFy0aHTGy9U40vCBjhj1I5dC9On7n2Y
+         ASR6wgwz72SB9qjb2Z2EfucRRhVjXHjqVtVoTnVmBsw8OlAgoxF1vGGiPDMndlTN09
+         IQcJL5T5rKFxw==
+Received: by mail-ej1-f43.google.com with SMTP id hs11so7892068ejc.1;
+        Fri, 22 Jan 2021 06:17:00 -0800 (PST)
+X-Gm-Message-State: AOAM533VUz1TNLPRcOz9XImMLLaSQxW9jJLQq2TBCaVlsBaLnf10HVmL
+        nmjBmcDd5vfB1k2nHJIHeKDZyJhVgvHwhYE63g==
+X-Google-Smtp-Source: ABdhPJyi+FdecRS65MOWvr18vvimJ4MGPuhOEb2VgQQcPu72/6AkpAPIOPYRBYirdMn66EiWCscPvbwrtWPtCjnGMdU=
+X-Received: by 2002:a17:907:968e:: with SMTP id hd14mr2074447ejc.108.1611325019650;
+ Fri, 22 Jan 2021 06:16:59 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210118132411.6268-1-a.fatoum@pengutronix.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1611318097-8970-1-git-send-email-claudiu.beznea@microchip.com> <1611318097-8970-2-git-send-email-claudiu.beznea@microchip.com>
+In-Reply-To: <1611318097-8970-2-git-send-email-claudiu.beznea@microchip.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 22 Jan 2021 08:16:46 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKjpMkMyzydpchWdbSRSo9vnvKRu5hg+Uc9Hm9hwB4VPQ@mail.gmail.com>
+Message-ID: <CAL_JsqKjpMkMyzydpchWdbSRSo9vnvKRu5hg+Uc9Hm9hwB4VPQ@mail.gmail.com>
+Subject: Re: [PATCH 1/7] drivers: soc: atmel: add spdx licence identifier
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 22, 2021 at 6:21 AM Claudiu Beznea
+<claudiu.beznea@microchip.com> wrote:
+>
+> Add SPDX-Licence-Identifier.
 
+License
 
-On 18/01/2021 13:24, Ahmad Fatoum wrote:
-> The nvmem cell binding applies to all eeprom child nodes matching
-> "^.*@[0-9a-f]+$" without taking a compatible into account.
-> 
-> Linux drivers, like at24, are even more extensive and assume
-> _all_ at24 eeprom child nodes to be nvmem cells since e888d445ac33
-> ("nvmem: resolve cells from DT at registration time").
-> 
-> Since df5f3b6f5357 ("dt-bindings: nvmem: stm32: new property for
-> data access"), the additionalProperties: True means it's Ok to have
-> other properties as long as they don't match "^.*@[0-9a-f]+$".
-> 
-> The barebox bootloader extends the MTD partitions binding to
-> EEPROM and can fix up following device tree node:
-> 
->    &eeprom {
->      partitions {
->        compatible = "fixed-partitions";
->      };
->    };
-> 
-> This is allowed binding-wise, but drivers using nvmem_register()
-> like at24 will fail to parse because the function expects all child
-> nodes to have a reg property present. This results in the whole
-> EEPROM driver probe failing despite the device tree being correct.
-> 
-> Fix this by skipping nodes lacking a reg property instead of
-> returning an error. This effectively makes the drivers adhere
-> to the binding because all nodes with a unit address must have
-> a reg property and vice versa.
-> 
-> Fixes: e888d445ac33 ("nvmem: resolve cells from DT at registration time").
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> 
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 > ---
-> Previous Discussion: https://lore.kernel.org/lkml/20200428111829.2215-1-a.fatoum@pengutronix.de/
-> v1:
->    - Ignore all nodes with a unit address (i.e. contain @)
-> v1 -> v2:
->    - use ->full_name instead of ->name as to not break existing correct
->      cells (Christian)
-> v2 -> v3:
->    - use optional compatible property to weed out nodes instead of name
->    - extend binding documentation (Srini)
-> v3 -> v4:
->    - drop optional nvmem-cell compatible because it's redundant (Rob)
->    - Make driver adhere to binding instead of changing binding
-> 
-> As review feedback on v3, Rob suggested moving nvmem cells into a
-> separate MTD partition. This sound good for people who want MTD
-> partitions and nvmem to coexist, but my problem described above where
-> MTD partitions are already fixed up top level into an EEPROM node isn't
-> solved by this. Revisiting the issue, I think the correct way forward is
-> along the lines of v1 & v2, where the driver is fixed to actually adhere
-> to the existing binding. Srini didn't like string matching for @ in driver
-> code, so I now check for presence of reg instead. They are equivalent
-> per device tree specification. From v0.3:
-> 
->    "The unit-address must match the first address specified in the
->    reg property of the node. If the node has no reg property, the
->    @unit-address must be omitted"...
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->   drivers/nvmem/core.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
+>  drivers/soc/atmel/soc.c | 1 +
+>  drivers/soc/atmel/soc.h | 1 +
+>  2 files changed, 2 insertions(+)
+>
+> diff --git a/drivers/soc/atmel/soc.c b/drivers/soc/atmel/soc.c
+> index 728d461ad6d6..1a6cb4bc7d67 100644
+> --- a/drivers/soc/atmel/soc.c
+> +++ b/drivers/soc/atmel/soc.c
+> @@ -1,3 +1,4 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
 
+Kernel sources are generally GPL-2.0-only and that was the default.
+The commit should note the relicensing and why that is okay (if it
+is).
 
-Applied thanks,
-
---srini
-
-> 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index 177f5bf27c6d..f114df55f403 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -682,7 +682,9 @@ static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
->   
->   	for_each_child_of_node(parent, child) {
->   		addr = of_get_property(child, "reg", &len);
-> -		if (!addr || (len < 2 * sizeof(u32))) {
-> +		if (!addr)
-> +			continue;
-> +		if (len < 2 * sizeof(u32)) {
->   			dev_err(dev, "nvmem: invalid reg on %pOF\n", child);
->   			return -EINVAL;
->   		}
-> 
+Rob
