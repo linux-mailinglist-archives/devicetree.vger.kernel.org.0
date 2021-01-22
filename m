@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 700C5300AD4
+	by mail.lfdr.de (Postfix) with ESMTP id E0B70300AD5
 	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 19:19:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727738AbhAVRYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 12:24:14 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:44312 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729280AbhAVPtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 10:49:25 -0500
-Received: by mail-ot1-f44.google.com with SMTP id e70so5440844ote.11;
-        Fri, 22 Jan 2021 07:49:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IJdsjZNSCEQvolS06e2LzBH4VLzd6i5FaqMcJkm05UE=;
-        b=JaFcrWDLx4S0hWLW3sp71XroteKRD32LY3j2iDy/vQPSHhsJ38NYI0MpGlUu+sn7e7
-         V/WIKavZ9Lfl4pdzv/AJRF9CzvGcL7zVVegHdpR95+h1WUamYDlQkbaTWsKoa4ykKppe
-         zkJhg4ob3OJis6gBTFo25g49OwTKQb4kge1QjsaGFVuGlG0UDVEMr09BwqARB+ezD+X2
-         K2ql5pdQub5bY22rjx3NfUhQ26Qq2i7Lxz7B84VSmk513rBLqmi1IcU/jvB959N8q8DN
-         QC2DShgqkW18TZP/IBnQDaVRXI+lEZgxoaSiF/XtSHE+ASoQpJ1XPQW/VHPDd9oXdH3u
-         p9Bw==
-X-Gm-Message-State: AOAM533lZAxxFHO7lqduXRqub4p9miCjwNMY2IG9F5Boz4IVq4Z7OUPK
-        B0GfFN6Gpq1v5F7VFwpKjFMHlmONmQ==
-X-Google-Smtp-Source: ABdhPJzGN0HB/SjLoRL/FYxZrHlQD+EhxhrSpXrs/2UptZxyd2R/mBjbaPonONY27jl1HXzgQW5NRg==
-X-Received: by 2002:a9d:17aa:: with SMTP id j39mr3435004otj.255.1611330524488;
-        Fri, 22 Jan 2021 07:48:44 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q26sm269282otg.28.2021.01.22.07.48.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jan 2021 07:48:43 -0800 (PST)
-Received: (nullmailer pid 854341 invoked by uid 1000);
-        Fri, 22 Jan 2021 15:48:42 -0000
-Date:   Fri, 22 Jan 2021 09:48:42 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bert Vermeulen <bert@biot.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>, John Crispin <john@phrozen.org>,
+        id S1729016AbhAVRYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 12:24:34 -0500
+Received: from mga02.intel.com ([134.134.136.20]:41761 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729553AbhAVRDj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Jan 2021 12:03:39 -0500
+IronPort-SDR: gLBTn5FpTDUnpRFoVT0rLXvirqqC4Aqhwx0QibHa5K9lxZGUvBUSNa3SsJzLb3f08EhR6zTA8M
+ kqrlLawIiT0w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9872"; a="166573825"
+X-IronPort-AV: E=Sophos;i="5.79,367,1602572400"; 
+   d="scan'208";a="166573825"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 09:01:49 -0800
+IronPort-SDR: UckGca5CZ28evMMRtzlVJOWlrAwGXsPkrkuvGCW2bDBrnTf/ZTUpqa3HsL7T8anjjaPAQnJd68
+ 1lQ9C9/EJWsw==
+X-IronPort-AV: E=Sophos;i="5.79,367,1602572400"; 
+   d="scan'208";a="348335508"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2021 09:01:46 -0800
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 29C6C20690; Fri, 22 Jan 2021 19:01:44 +0200 (EET)
+Date:   Fri, 22 Jan 2021 19:01:44 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
         devicetree@vger.kernel.org,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: interrupt-controller: Add Realtek
- RTL838x/RTL839x support
-Message-ID: <20210122154842.GA854287@robh.at.kernel.org>
-References: <20210120101018.237693-1-bert@biot.com>
- <20210120101018.237693-2-bert@biot.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
+        Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v4 1/2] media: dt-bindings: Convert video-interfaces.txt
+ properties to schemas
+Message-ID: <20210122170144.GE27155@paasikivi.fi.intel.com>
+References: <20210104165808.2166686-1-robh@kernel.org>
+ <20210104165808.2166686-2-robh@kernel.org>
+ <CAL_Jsq+dpVvA0iOMzaPf50Decc1hj7zH0eq-RyuVkdzp729vEQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210120101018.237693-2-bert@biot.com>
+In-Reply-To: <CAL_Jsq+dpVvA0iOMzaPf50Decc1hj7zH0eq-RyuVkdzp729vEQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jan 2021 11:10:17 +0100, Bert Vermeulen wrote:
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
-> ---
->  .../realtek,rtl-intc.yaml                     | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
-> 
+Hi Rob,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Fri, Jan 22, 2021 at 10:23:44AM -0600, Rob Herring wrote:
+> On Mon, Jan 4, 2021 at 10:58 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > Convert video-interfaces.txt to DT schema. As it contains a mixture of
+> > device level and endpoint properties, split it up into 2 schemas.
+> 
+> Ping!
+> 
+> Can this please be applied to the media tree so I can tell folks to
+> use it in reviews of media bindings.
+
+Yes, it can. It's in my tree now.
+
+-- 
+Kind regards,
+
+Sakari Ailus
