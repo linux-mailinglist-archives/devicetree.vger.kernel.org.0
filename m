@@ -2,69 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7D71300AD7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 19:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC837300ABC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jan 2021 19:11:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729371AbhAVRZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 12:25:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59240 "EHLO
+        id S1729347AbhAVSHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 13:07:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729826AbhAVRNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 12:13:36 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B0CC061793;
-        Fri, 22 Jan 2021 09:12:52 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id n6so7373197edt.10;
-        Fri, 22 Jan 2021 09:12:52 -0800 (PST)
+        with ESMTP id S1729376AbhAVSGt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 13:06:49 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E84ABC0613D6;
+        Fri, 22 Jan 2021 10:06:08 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id kg20so8455530ejc.4;
+        Fri, 22 Jan 2021 10:06:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id;
-        bh=roMb/tyW1M9NQnpXqSRx9W00sUX6gkBYwKxG+CPcXzI=;
-        b=fLRYxC7AMQdGJXu08Ng+pctI1fQayyxI5Mz88cRgUvTT/OSddQ/AcIiNEH9kw33TK/
-         +UfJwsrO5GROpkmcYFqrBFeu+8xbk9a0lE590S+wqWy0ChKCnv3u/Ewvw/IdjYmm7dpj
-         9HNXAamxY3/Q3fK3qIW0wddC/Xq0omP6MDZNhkcIwWaLaSt+Pkb4s6n4YSdRW7mhfImo
-         30LZS8vS+Ar59oX9n4anGZYzdDSdaQiMsN0yprVzaYQuHrGc/VEebcmVMNAhqrEtKRsi
-         amjz1dgF6fo8UbyCN35YZwIq/I7w3kN5IKib6y7yJStE28dqo0OK0QwkdySp3CrhfsFn
-         5EZQ==
+        bh=wKv3VmvCnRntCHs4GsLyXTyeF0OtsFtLwN9+DR5TApY=;
+        b=q/OW5+LTAhKirNLQ41QsLZvmlnxyuynyWAqLO/aXU31JMwlut9p058w9Fj6cy50CK/
+         jC1bpnRARTNMUBfafadfCbh/E/N+4+pXHtQrWlohSlsMrv80yXr+MGkoGvEkttO56suc
+         I2STnzbcX2mZZWMBv92/U/GGwiQz7teaCgvg5dKe6kYqhAUfhdtD/VRepeZWqAg1A8Pn
+         6qUjvwrg6ikDYFfwM+MkdROd0u7uhexMLEQOoj4kEC8MUQAG517GtB/6lsDN5IpDHYV6
+         2Qxe9PUe2RBUqrBQcjTBF+YMd5gY3ZlqlLvzAmDcbzDtnsHQAkHIpKyU3FjUAQf5RK/t
+         qsnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=roMb/tyW1M9NQnpXqSRx9W00sUX6gkBYwKxG+CPcXzI=;
-        b=k+tT3/L4NyLBrOrlQUikEEfGqPbGOiOQxDN05xfDZlL2YaAiqGFv+Rq9a6yGDs4Z4d
-         kyDM4t5aV0lOOUqtl9PUxuPYwx3rBgSa0R+IO2Pr8cDVKWQz2M2UtsSgd4rDmvoAAGur
-         /GlJATFURituWS+EZzu9/bIO+srLQpf85cNoSyhOjoyjpyOB9RrDuMZLQozg1hmhEyPI
-         CNmJFf29qbv99P+CQxe/z2T6LRM49iki6jp5N3THHQ5hXevmOwjQP+ktMXri8OfLlQWA
-         JWcM/B7RCVu5FFeEzXx/PdHKLenyPsWqZyjWcP99XLl+SJwvw68de/hRQ6s5E1R1sdIh
-         bnMQ==
-X-Gm-Message-State: AOAM533bO3p+Xj7nLdQ6AVLuSKMMZkkueh4KNXPkcbKwrTSD9zEr0gGr
-        /YJr6SfYgT4PSFLsCc4lxu3g4DArE1s=
-X-Google-Smtp-Source: ABdhPJwRQf20pEeRaLSU0zk5VFjq9xuFDxAISiKNGEbg4TZWmEW3jx8FO8sHyg3W/Zz7tgjMVG8XnQ==
-X-Received: by 2002:aa7:d98a:: with SMTP id u10mr3972073eds.275.1611335571524;
-        Fri, 22 Jan 2021 09:12:51 -0800 (PST)
+        bh=wKv3VmvCnRntCHs4GsLyXTyeF0OtsFtLwN9+DR5TApY=;
+        b=HAnSPEJx49c58CN8DRDC5ZnuxU+SJMVBwuiksyp37BAJWYuQa13tfVuAcio6GuISq+
+         kWkO9eTx9kcy641N0Yj5B5JYjWt3jpofy2ioAlWFWSSIGCqtdtK/IJtwUd6FEHz8oNRV
+         P4L+r3g0+fV0bwx15fvpQ6u+h+hHH3NyaZS+tnBXeyaP/xMcKwlzD5NTGPaG+NhM8Yva
+         7LPnqaL6NgQDzAT8k0VrlO5qg0YWIieS5Yqp6f+7Xikz1Unyqn6i+Eq2h+FG81821hnz
+         oRHopwvFOnwYO8FxTKDEZY5qkU0+do5syTDM5tuvPWby0HifPOoTkZpEcmvi0sawuviR
+         4TvA==
+X-Gm-Message-State: AOAM531nd/bd20ErwWKHvgKudXrvd2IOmGmXC4PijUsnRhrUBzGA1RlB
+        drRlkmGK/6RmYFqaOXk5oYs=
+X-Google-Smtp-Source: ABdhPJxxvW7RLs53Cx3f5saY+QeYl9nXt+zXf5wqPCizp1q/YFEfCG8tUtf3y8zlCu3XY+IFW5lsoQ==
+X-Received: by 2002:a17:907:3e04:: with SMTP id hp4mr3966801ejc.188.1611338767623;
+        Fri, 22 Jan 2021 10:06:07 -0800 (PST)
 Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id t21sm5927429edv.82.2021.01.22.09.12.50
+        by smtp.gmail.com with ESMTPSA id w6sm4885858ejj.116.2021.01.22.10.06.06
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 22 Jan 2021 09:12:51 -0800 (PST)
+        Fri, 22 Jan 2021 10:06:07 -0800 (PST)
 From:   Johan Jonker <jbx6244@gmail.com>
 To:     heiko@sntech.de
 Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: fix ranges property format for rk3399 pcie node
-Date:   Fri, 22 Jan 2021 18:12:43 +0100
-Message-Id: <20210122171243.16138-1-jbx6244@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: add device_type property to rk3399 pcie node
+Date:   Fri, 22 Jan 2021 19:05:59 +0100
+Message-Id: <20210122180559.18171-1-jbx6244@gmail.com>
 X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 A test with the command below gives for example this error:
-/arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml: pcie@f8000000:
-ranges: 'oneOf' conditional failed, one must be fixed:
+/arch/arm64/boot/dts/rockchip/rk3399-rock960.dt.yaml:
+pcie@f8000000: 'device_type' is a required property
 
-The pcie ranges property is an array. The dt-check expects that
-each array item is wrapped with angle brackets, so fix that ranges
-property format for the rk3399 pcie node.
+Fix this by adding a device_type property to the rk3399 pcie node.
 
 make ARCH=arm64 dtbs_check
 DT_SCHEMA_FILES=~/.local/lib/python3.5/site-packages/dtschema/
@@ -72,24 +70,21 @@ schemas/pci/pci-bus.yaml
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 15f8b212c..28459d194 100644
+index 28459d194..6c571fee8 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -259,8 +259,8 @@
- 		       <&pcie_phy 2>, <&pcie_phy 3>;
- 		phy-names = "pcie-phy-0", "pcie-phy-1",
- 			    "pcie-phy-2", "pcie-phy-3";
--		ranges = <0x83000000 0x0 0xfa000000 0x0 0xfa000000 0x0 0x1e00000
--			  0x81000000 0x0 0xfbe00000 0x0 0xfbe00000 0x0 0x100000>;
-+		ranges = <0x83000000 0x0 0xfa000000 0x0 0xfa000000 0x0 0x1e00000>,
-+			 <0x81000000 0x0 0xfbe00000 0x0 0xfbe00000 0x0 0x100000>;
- 		resets = <&cru SRST_PCIE_CORE>, <&cru SRST_PCIE_MGMT>,
- 			 <&cru SRST_PCIE_MGMT_STICKY>, <&cru SRST_PCIE_PIPE>,
- 			 <&cru SRST_PCIE_PM>, <&cru SRST_P_PCIE>,
+@@ -252,6 +252,7 @@
+ 				<0 0 0 2 &pcie0_intc 1>,
+ 				<0 0 0 3 &pcie0_intc 2>,
+ 				<0 0 0 4 &pcie0_intc 3>;
++		device_type = "pci";
+ 		linux,pci-domain = <0>;
+ 		max-link-speed = <1>;
+ 		msi-map = <0x0 &its 0x0 0x1000>;
 -- 
 2.11.0
 
