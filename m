@@ -2,95 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EDB53018CC
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 00:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD3C3018E9
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 00:34:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726400AbhAWXAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 18:00:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47038 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726388AbhAWXAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 18:00:25 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5657DC061793
-        for <devicetree@vger.kernel.org>; Sat, 23 Jan 2021 14:59:45 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p21so7554569lfu.11
-        for <devicetree@vger.kernel.org>; Sat, 23 Jan 2021 14:59:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5sd27o0ULTlZ3D/LwNE5ATuhVJKEaDj8IKxEHxs/DWY=;
-        b=waLW7xR2wqrSAt8xfwNa1xcBOmt8wXwU5pu7RArop4szuT4hcsrhMvOTifJ5AFyqhE
-         eY3qgShI3Bw1WU+TPtmGuLK6C9+C/V8hSHtXtUNxwTHczvplVmBlttzf2i3f1z8kUFn3
-         MMKxZ2liqGA6dtxbgVch9u5We1c5CtqaXwyT+1udKheHvJ5N0L+id5ZSTk/rYpHjSDpc
-         +1I7Mp4rvpJsraM7SuvhREuqLHvNrA6LGSeotYc/vrq/SFoUdk8tj58bx6ETkGiZC1MA
-         i/P59NcD3u1JwjZDo7Bz5fH7jMk8hPlqo/4kz13y5MSnw5Ya/Ei79eHoe7UEqTQnoJII
-         8Igw==
+        id S1726426AbhAWXef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 18:34:35 -0500
+Received: from mail-pg1-f171.google.com ([209.85.215.171]:35570 "EHLO
+        mail-pg1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726367AbhAWXeZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 18:34:25 -0500
+Received: by mail-pg1-f171.google.com with SMTP id n7so6439451pgg.2;
+        Sat, 23 Jan 2021 15:34:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5sd27o0ULTlZ3D/LwNE5ATuhVJKEaDj8IKxEHxs/DWY=;
-        b=gccwaCsL+v9JIK8kWAkJY0GsbYRgK/Zo5sw246mJQQ5PyiO+j7Txo2gx3FPzg9rJ1d
-         kfcCIbQXpLd+rX1Zujx8jWgKX3ifIqc+YAqlS4s0srktz7LJxl/KCWlr+Ay26CKACJfA
-         /b/rvEoZck8OpAEJASNcR+xHyemLANcn+UcwL8mRJ1i05ek8r1VpCvOLxL3huYXxAWxS
-         xM+F7eILtTT0PHM0OKjgAkdtFXAeDuIFhfYOo5e1ZNtCoQ/mWkSqdFD2yGp4+JOxsryz
-         XxWkdqdPKGbWfJBV3RransG5dkblhOPk8rTGCCnyNJQ75p5iGbuZeNbIZcl7gVQSaWcB
-         wVZg==
-X-Gm-Message-State: AOAM533FjYM59/YMEwlzTOzzc+GyPJnKbinz1TSv9JhT68ImXkngOZIX
-        +EcV7Wb/PU7t8jFmmWBZRxUAeT1dje7ULreRJNIYkw==
-X-Google-Smtp-Source: ABdhPJyDNDGCqP2Bd1AdnHhAXHNuNpfFuS/5NG0c2yWkXKQF+uPmhZnSFD5ts5Fh/vSnt2I87AwTpBGxL+DEu8Q1GCw=
-X-Received: by 2002:a19:6557:: with SMTP id c23mr1720677lfj.157.1611442783800;
- Sat, 23 Jan 2021 14:59:43 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QAiIP8gQDPwczslWL4ZzqONRkPCYYFJ6gqUffbnV6eM=;
+        b=f2Ll14H+KP8LaVgeLgMKPRqNWBlk/wFHcCewI6UdeLdcNTJaRHNS8JEz97B9iB6oCt
+         6bSJyvBU0t40v1sI2hBP5pHgdFvG8uD0RWO5JKLDyTvoxcGKVQGRwvoG6uvI7nxkHfsi
+         T1hixYCToPOZ945LImyXX2HxCtPx5ZHA2nBlfBZnuFm+3JHZ0AEcNIBsSI+ET5mGsCky
+         Y4f/stA61LWH3Io/rpMjGsRKyd4Fdl5EedWRhoBEl0aQ9u12OKUp6Vaq86NftQm6gjcu
+         E8+z52gg1r4UXTQfsxJwyf9jU30UwsGkAgkEJJkn5Tl5OVRcvm2ORsC7LlhYiPfLYjQg
+         /wRg==
+X-Gm-Message-State: AOAM531Jmm82M6tNHNX3NOYMihh3HTpFU6FubD+VGskNbLXCQWvZJ0lB
+        BFZmv3TJDAbjjPG6hbkpAFo9d0sYhkA=
+X-Google-Smtp-Source: ABdhPJy2ENJOW2QIEdiQN7/uOoLww1B1cg9Ku7TYBwT4NyGrzyHZ9NM59BBFaHrY65oIDcr86ZBVFQ==
+X-Received: by 2002:a63:fc56:: with SMTP id r22mr8420141pgk.3.1611444822071;
+        Sat, 23 Jan 2021 15:33:42 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
+        by smtp.gmail.com with ESMTPSA id y67sm12890498pfb.211.2021.01.23.15.33.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Jan 2021 15:33:40 -0800 (PST)
+Date:   Sat, 23 Jan 2021 15:33:39 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Nava kishore Manne <navam@xilinx.com>
+Cc:     Moritz Fischer <mdf@kernel.org>,
+        "trix@redhat.com" <trix@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>,
+        Appana Durga Kedareswara Rao <appanad@xilinx.com>
+Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
+Message-ID: <YAyyU9dybSdmOAQL@epycbox.lan>
+References: <20210118024318.9530-1-nava.manne@xilinx.com>
+ <20210118024318.9530-3-nava.manne@xilinx.com>
+ <YAYo1ksLfMMNxPuL@epycbox.lan>
+ <MWHPR02MB26239A3F539DE8E053D512D5C2A09@MWHPR02MB2623.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210122200659.7404-1-digetx@gmail.com> <20210122200659.7404-3-digetx@gmail.com>
-In-Reply-To: <20210122200659.7404-3-digetx@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 23 Jan 2021 23:59:33 +0100
-Message-ID: <CACRpkda+wjjr3+=taNmKgj4HH8A6pSAmMwtB3CZh4ixnhDt_Dw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] Input: atmel_mxt_ts - support wakeup methods
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Nick Dyer <nick@shmanahar.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Jiada Wang <jiada_wang@mentor.com>,
-        Linux Input <linux-input@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MWHPR02MB26239A3F539DE8E053D512D5C2A09@MWHPR02MB2623.namprd02.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 22, 2021 at 9:07 PM Dmitry Osipenko <digetx@gmail.com> wrote:
+Hi Nava,
 
-> According to datasheets, chips like mXT1386 have a WAKE line, it is used
-> to wake the chip up from deep sleep mode before communicating with it via
-> the I2C-compatible interface.
->
-> If the WAKE line is connected to a GPIO line, the line must be asserted
-> 25 ms before the host attempts to communicate with the controller. If the
-> WAKE line is connected to the SCL pin, the controller will send a NACK on
-> the first attempt to address it, the host must then retry 25 ms later.
->
-> Implement the wake-up methods in the driver. Touchscreen now works
-> properly on devices like Acer A500 tablet, fixing problems like this:
->
->  atmel_mxt_ts 0-004c: __mxt_read_reg: i2c transfer failed (-121)
->  atmel_mxt_ts 0-004c: mxt_bootloader_read: i2c recv failed (-121)
->  atmel_mxt_ts 0-004c: Trying alternate bootloader address
->  atmel_mxt_ts 0-004c: mxt_bootloader_read: i2c recv failed (-121)
->  atmel_mxt_ts: probe of 0-004c failed with error -121
->
-> Signed-off-by: Jiada Wang <jiada_wang@mentor.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+On Fri, Jan 22, 2021 at 10:34:15AM +0000, Nava kishore Manne wrote:
+> Hi Moritz,
+> 
+> 	Thanks for the review.
+> Please find my response inline.
+> 
+> > -----Original Message-----
+> > From: Moritz Fischer <mdf@kernel.org>
+> > Sent: Tuesday, January 19, 2021 6:03 AM
+> > To: Nava kishore Manne <navam@xilinx.com>
+> > Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal Simek
+> > <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > kernel@vger.kernel.org; git <git@xilinx.com>; chinnikishore369@gmail.com;
+> > Appana Durga Kedareswara Rao <appanad@xilinx.com>
+> > Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
+> > 
+> > Hi Nava,
+> > 
+> > On Mon, Jan 18, 2021 at 08:13:18AM +0530, Nava kishore Manne wrote:
+> > > This patch adds driver for versal fpga manager.
+> > Nit: Add support for Xilinx Versal FPGA manager
+> 
+> Will fix in v2.
+> 
+> > >
+> > > PDI source type can be DDR, OCM, QSPI flash etc..
+> > No idea what PDI is :)
+> 
+> Programmable device image (PDI). 
+> This file is generated by Xilinx Vivado tool and it contains configuration data objects.
+> 
+> > > But driver allocates memory always from DDR, Since driver supports
+> > > only DDR source type.
+> > >
+> > > Signed-off-by: Appana Durga Kedareswara rao
+> > > <appana.durga.rao@xilinx.com>
+> > > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> > > ---
+> > >  drivers/fpga/Kconfig       |   8 ++
+> > >  drivers/fpga/Makefile      |   1 +
+> > >  drivers/fpga/versal-fpga.c | 149
+> > > +++++++++++++++++++++++++++++++++++++
+> > >  3 files changed, 158 insertions(+)
+> > >  create mode 100644 drivers/fpga/versal-fpga.c
+> > >
+> > > diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig index
+> > > 5645226ca3ce..9f779c3a6739 100644
+> > > --- a/drivers/fpga/Kconfig
+> > > +++ b/drivers/fpga/Kconfig
+> > > @@ -216,4 +216,12 @@ config FPGA_MGR_ZYNQMP_FPGA
+> > >  	  to configure the programmable logic(PL) through PS
+> > >  	  on ZynqMP SoC.
+> > >
+> > > +config FPGA_MGR_VERSAL_FPGA
+> > > +        tristate "Xilinx Versal FPGA"
+> > > +        depends on ARCH_ZYNQMP || COMPILE_TEST
+> > > +        help
+> > > +          Select this option to enable FPGA manager driver support for
+> > > +          Xilinx Versal SOC. This driver uses the versal soc firmware
+> > > +          interface to load programmable logic(PL) images
+> > > +          on versal soc.
+> > >  endif # FPGA
+> > > diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile index
+> > > d8e21dfc6778..40c9adb6a644 100644
+> > > --- a/drivers/fpga/Makefile
+> > > +++ b/drivers/fpga/Makefile
+> > > @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+=
+> > ts73xx-fpga.o
+> > >  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
+> > >  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
+> > >  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
+> > > +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      += versal-fpga.o
+> > >  obj-$(CONFIG_ALTERA_PR_IP_CORE)         += altera-pr-ip-core.o
+> > >  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    += altera-pr-ip-core-plat.o
+> > >
+> > > diff --git a/drivers/fpga/versal-fpga.c b/drivers/fpga/versal-fpga.c
+> > > new file mode 100644 index 000000000000..2a42aa78b182
+> > > --- /dev/null
+> > > +++ b/drivers/fpga/versal-fpga.c
+> > > @@ -0,0 +1,149 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Copyright (C) 2021 Xilinx, Inc.
+> > > + */
+> > > +
+> > > +#include <linux/dma-mapping.h>
+> > > +#include <linux/fpga/fpga-mgr.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/kernel.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_address.h>
+> > > +#include <linux/string.h>
+> > > +#include <linux/firmware/xlnx-zynqmp.h>
+> > > +
+> > > +/* Constant Definitions */
+> > > +#define PDI_SOURCE_TYPE	0xF
+> > > +
+> > > +/**
+> > > + * struct versal_fpga_priv - Private data structure
+> > > + * @dev:	Device data structure
+> > > + * @flags:	flags which is used to identify the PL Image type
+> > > + */
+> > > +struct versal_fpga_priv {
+> > > +	struct device *dev;
+> > > +	u32 flags;
+> > This seems unused ... please introduce them when/if you start using them.
+> 
+> Will fix in v2.
+> 
+> > > +};
+> > > +
+> > > +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
+> > > +				      struct fpga_image_info *info,
+> > > +				      const char *buf, size_t size) {
+> > > +	struct versal_fpga_priv *priv;
+> > > +
+> > > +	priv = mgr->priv;
+> > > +	priv->flags = info->flags;
+> > ? What uses this ? It seems this function could just be 'return 0' right now.
+> 
+> Will fix in v2.
+> 
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int versal_fpga_ops_write(struct fpga_manager *mgr,
+> > > +				 const char *buf, size_t size)
+> > > +{
+> > > +	struct versal_fpga_priv *priv;
+> > > +	dma_addr_t dma_addr = 0;
+> > > +	char *kbuf;
+> > > +	int ret;
+> > > +
+> > > +	priv = mgr->priv;
+> > > +
+> > > +	kbuf = dma_alloc_coherent(priv->dev, size, &dma_addr,
+> > GFP_KERNEL);
+> > > +	if (!kbuf)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	memcpy(kbuf, buf, size);
+> > > +
+> > > +	wmb(); /* ensure all writes are done before initiate FW call */
+> > > +
+> > > +	ret = zynqmp_pm_load_pdi(PDI_SOURCE_TYPE, dma_addr);
+> > > +
+> > > +	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
+> > > +					  struct fpga_image_info *info)
+> > > +{
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static enum fpga_mgr_states versal_fpga_ops_state(struct fpga_manager
+> > > +*mgr) {
+> > > +	return FPGA_MGR_STATE_OPERATING;
+> > Is that always the case? Shouldn't that be FPGA_MGR_STATE_UNKNOWN?
+> 
+> For Versal SoC base PDI is always configured prior to Linux boot up. So I make the fpga state as OPERATING.
+> Please let know if it is not a proper implementation will think about the alternate solution. 
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+So you're saying I can't boot a Versal SoC without a PDI / Bitstream
+loaded? Interesting :)
+> 
+> > > +}
+> > > +
+> > > +static const struct fpga_manager_ops versal_fpga_ops = {
+> > > +	.state = versal_fpga_ops_state,
+> > > +	.write_init = versal_fpga_ops_write_init,
+> > > +	.write = versal_fpga_ops_write,
+> > > +	.write_complete = versal_fpga_ops_write_complete, };
+> > > +
+> > > +static int versal_fpga_probe(struct platform_device *pdev) {
+> > > +	struct device *dev = &pdev->dev;
+> > > +	struct versal_fpga_priv *priv;
+> > > +	struct fpga_manager *mgr;
+> > > +	int err, ret;
+> > Please pick one, err or ret. 'err' seems unused?
+> 
+> Will fix in v2.
+> 
+> > > +
+> > > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > > +	if (!priv)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	priv->dev = dev;
+> > > +	ret = dma_set_mask_and_coherent(&pdev->dev,
+> > DMA_BIT_MASK(32));
+> > > +	if (ret < 0) {
+> > > +		dev_err(dev, "no usable DMA configuration");
+> > Nit: "no usable DMA configuration\n"
+> 
+> Will fix in v2.
+> 
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	mgr = devm_fpga_mgr_create(dev, "Xilinx Versal FPGA Manager",
+> > > +				   &versal_fpga_ops, priv);
+> > > +	if (!mgr)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	platform_set_drvdata(pdev, mgr);
+> > > +
+> > 
+> > Replace this part:
+> > > +	err = fpga_mgr_register(mgr);
+> > > +	if (err) {
+> > > +		dev_err(dev, "unable to register FPGA manager");
+> > > +		fpga_mgr_free(mgr);
+> > > +		return err;
+> > > +	}
+> > 
+> > with:
+> > 	return devm_fpga_mgr_register(mgr);
+> > 
+> > I tried to get rid of the boilerplate, since every driver repeats it (and above
+> > calling fpga_mgr_free(mgr) on a devm_fpga_mgr_create() created FPGA
+> > manager is wrong?) :)
+> 
+> Thanks for pointing it. Will fix in v2.
+> 
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > 
+> > Then
+> > > +static int versal_fpga_remove(struct platform_device *pdev) {
+> > > +	struct fpga_manager *mgr = platform_get_drvdata(pdev);
+> > > +
+> > > +	fpga_mgr_unregister(mgr);
+> > > +	fpga_mgr_free(mgr);
+> > > +
+> > > +	return 0;
+> > > +}
+> > drop this since cleanup is now automatic.
+> 
+> Thanks for pointing it. Will fix in v2.
+> 
+> > > +
+> > > +static const struct of_device_id versal_fpga_of_match[] = {
+> > > +	{ .compatible = "xlnx,versal-fpga", },
+> > > +	{},
+> > > +};
+> > > +
+> > Nit: Drop the newline
+> 
+> Will fix in v2.
+> 
+> > > +MODULE_DEVICE_TABLE(of, versal_fpga_of_match);
+> > > +
+> > > +static struct platform_driver versal_fpga_driver = {
+> > > +	.probe = versal_fpga_probe,
+> > > +	.remove = versal_fpga_remove,
+> > > +	.driver = {
+> > > +		.name = "versal_fpga_manager",
+> > > +		.of_match_table = of_match_ptr(versal_fpga_of_match),
+> > > +	},
+> > > +};
+> > > +
+> > Nit: Drop the newline
+> 
+> Will fix in v2.
+> 
+> Regards,
+> Navakishore.
+- Moritz
