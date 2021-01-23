@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B75301494
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 11:45:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99D2D301547
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 13:48:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726379AbhAWKpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 05:45:24 -0500
-Received: from msg-2.mailo.com ([213.182.54.12]:49512 "EHLO msg-2.mailo.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726335AbhAWKpY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 23 Jan 2021 05:45:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1611398676; bh=nNig1wsMtDRJMUEXSq3QZYMxFydCeLaGA3yt4uND37Q=;
-        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
-         MIME-Version:Content-Transfer-Encoding;
-        b=edkNrN2aM/5h7b0xsBZRlqmExJG+tK50TBu49DnkBx9A9H0ybqjwt/Z5s6M26bqd1
-         F85MvnasaB5tt9L09kMT4upb+xwEhYsrQyQsX21Iy9U5cyuxwHCtygxoVHf4nCJU6P
-         8yo1uXWeTHTINxSGapic8hI2wMihW3ReKAL0i3/Y=
-Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Sat, 23 Jan 2021 11:44:36 +0100 (CET)
-X-EA-Auth: 9q8yNSchJIdYU+iW7B2awtAIZlb9jt+7sW6wZeUEjq5dVhtUu+orVpcnEDHn1wHsb5DXycevENO61fUx3QoJAnssuRU/c9w+s40l3sCHslg=
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: [PATCH] arm64: dts: msm8916: Fix reserved and rfsa nodes unit address
-Date:   Sat, 23 Jan 2021 11:44:16 +0100
-Message-Id: <20210123104417.518105-1-vincent.knecht@mailoo.org>
-X-Mailer: git-send-email 2.29.2
+        id S1725766AbhAWMsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 07:48:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57534 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725440AbhAWMsi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 07:48:38 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 405F1C06174A;
+        Sat, 23 Jan 2021 04:47:58 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id p185so8294720ybg.8;
+        Sat, 23 Jan 2021 04:47:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aN7EytHww5N3j3kFCgyO4SKFxPdfz9Op56FRrH/YQkM=;
+        b=iuaePtEUtbUdGJqILq35UWZCIWyMWPyZFLybCS6Cg638mLIi1lzVhMYxNy1C9cg/f3
+         Df8p0EHIakqHY4LWWL7SrwarNlvzuKgcF+SU57SkWseLOIDkhEE7xNm2Y5DMLwdGssqk
+         1sc1XTGdjIx2buyaCoosL/RLYEcNxpaxTRCWC8iuz9d9582mSFt8KlO86JSQD2JcC6ZO
+         yHneLKZRPu5XYqtaAgwAMLS+ydsmrzcb+Lo/x1NCpmcSixeq6MzKsSSVtOvB0cl3Jj23
+         h1ifLx9qDFubl1wVnDY/e5NU7ZM0Fnlai7QWadm8jm6bSOll5dLXw29yVWv6c0F5fznu
+         3nIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aN7EytHww5N3j3kFCgyO4SKFxPdfz9Op56FRrH/YQkM=;
+        b=nhFqIIYWjmS8R2ab47FNAE4UjHDxbncP3BYK+ubOVi9ANKaRYkr4QhkdbLxmORN2KH
+         nhIVU3tSIjW69rlrgDh6wQBZea7kUMpkIoNpJOcSDp2I0h4BkB39WIs4K60pqTXNsdQH
+         nS3mZzsZN3LEX3L0dRLmva0M+NIHXbwvrGb0+pc7KACGYU/KvztVKX9rs4bOr3VnrDB2
+         Tf+XBhUOi5/YA3v/J3fJ8IsRz/WvaxP/WD85VCoMvz14KpCX1UFqIB84BeDTbxr734fh
+         WHuG1NQ8XDezvgLz8LR6E7kaKHXjFOZq00QqgBYlPV5tDYO5qCV4/kOxAmj/oY8Mo43Z
+         fW6w==
+X-Gm-Message-State: AOAM533UmBC0fHwtAYwkv4eTGVyxQBSzO1COXsoHYfHC6D95UT5EaUvL
+        SSNMKeazEXu1vH5E8EM8scOIIuR3Dwq8sqCEmGvHp7uno1A=
+X-Google-Smtp-Source: ABdhPJwNDSQYB0qrlV678QhKNABKUuL0Jnc5SUIaiSKyPSHV8/HbWsx/7zQBQ8epfsYNBWSApO8cBu2gFTyauQSBWqk=
+X-Received: by 2002:a25:d84d:: with SMTP id p74mr12182691ybg.135.1611406077522;
+ Sat, 23 Jan 2021 04:47:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210118123538.564597-1-geert@linux-m68k.org> <14593d82cd227439a9763d6277186f76@protonic.nl>
+In-Reply-To: <14593d82cd227439a9763d6277186f76@protonic.nl>
+From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date:   Sat, 23 Jan 2021 13:47:46 +0100
+Message-ID: <CANiq72k0JOpfvcf6uFFbdBFnmwBVPmrBDuPRPmrqOKrDAKjCKg@mail.gmail.com>
+Subject: Re: [PATCH 0/3] auxdisplay: ht16k33: Improvement, fix, and
+ json-schema conversion
+To:     Robin van der Gracht <robin@protonic.nl>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix `reserved` and `rfsa` unit address according to their reg address
+On Mon, Jan 18, 2021 at 2:36 PM robin <robin@protonic.nl> wrote:
+>
+> Thanks for digging this up. Not sure why this was dropped. I still think
+> it's usefull.
 
-Fixes: 7258e10e6a0b ("ARM: dts: msm8916: Update reserved-memory")
+Not intentional -- probably slipped, sorry.
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 402e891a84ab..d25f6dc751e9 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -56,7 +56,7 @@ tz@86500000 {
- 			no-map;
- 		};
- 
--		reserved@8668000 {
-+		reserved@86680000 {
- 			reg = <0x0 0x86680000 0x0 0x80000>;
- 			no-map;
- 		};
-@@ -69,7 +69,7 @@ rmtfs@86700000 {
- 			qcom,client-id = <1>;
- 		};
- 
--		rfsa@867e00000 {
-+		rfsa@867e0000 {
- 			reg = <0x0 0x867e0000 0x0 0x20000>;
- 			no-map;
- 		};
--- 
-2.29.2
-
-
-
+Cheers,
+Miguel
