@@ -2,127 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA6863013EC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 09:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85B75301494
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 11:45:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726539AbhAWIfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 03:35:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60074 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725766AbhAWIfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 03:35:52 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCE5C06174A;
-        Sat, 23 Jan 2021 00:35:11 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id q1so16195096ion.8;
-        Sat, 23 Jan 2021 00:35:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S6S1XUbpw3sWz7PK1At9O27hDXZ4W5lBRqtANOwgjMg=;
-        b=s+5D3eXqnSvljv1ptw/fN2geCT5dzJJXlUh/4TKf71d8gh+skSUSU9iXCastD8SNsv
-         dsVtMvYRBSawQzzFURmXpL22zwRqTyvP7qf0QeQpPY7tUmec5VIwohyENlObvnhC56Zd
-         5Mmt/fUl/EyH1Nx78oohQuxyj8lYXfp83yI5oxQqV+ZLdmkePcAFTtm9qGzWlcR3bkuu
-         Rn7d6mWkNGXpzhtbQ4wl9PtBv11vqW0eyih/p5ZiufHMdSozRUOjJHJQ1y6/+3+BRJzP
-         V8SusR6Y6NBghdSeiFe7UdWz3DxpdNRHU1BxXQ/Xw8Z0h4bMn2X4Kc18P6EXai6ST/gu
-         VDdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S6S1XUbpw3sWz7PK1At9O27hDXZ4W5lBRqtANOwgjMg=;
-        b=O3qGUviSJJ3mHLIorptCQMfKRiIcUxibsxDiL4JXZNvmAD26x/ziawBf8G0WJ2Xq+E
-         HIvhSCx1T/lgnsWpSPRJkXUU5FRvPGAvFEN4jVgSd8Nvg38LNMa00/MinTZHEmkOGscs
-         SG7xd4rm1DL2m0nx7rWxs2mYm2lJcOeCGG0kzu9H8ekNyqZFsFBBn/QVHX+QQ/ksaNEE
-         OFyzFnrctl7+xSf2NaBu4BpyOLzUDMhba3PD8Bbl1i1tPCimmgyzkKjK3fYvRH56aI+m
-         XSy5MSMJqt6lOcRiwsWsnT6+R+tujTjOnGGgADDcz5xJ32E05TX1NSuvjUP8EAJxcMRT
-         YPxw==
-X-Gm-Message-State: AOAM531nF0DFyEjPX0JmLRWsvyZDrelH3Dj+M3V2pIU86y7PNf7sktXK
-        5cPYxD6NaZOOiJLk+hSZiM2zZO+lpFHlKc0K1sg=
-X-Google-Smtp-Source: ABdhPJz2LKVhsK2qEpXCGfrtqDhLtJuXz1SLCCaVUUJbnxp4DfeTSjRNi8D06Ro2Jg9XkjMLPxgPw2zS/ncDdOEpZnU=
-X-Received: by 2002:a6b:7d42:: with SMTP id d2mr6124418ioq.176.1611390910963;
- Sat, 23 Jan 2021 00:35:10 -0800 (PST)
+        id S1726379AbhAWKpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 05:45:24 -0500
+Received: from msg-2.mailo.com ([213.182.54.12]:49512 "EHLO msg-2.mailo.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726335AbhAWKpY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 23 Jan 2021 05:45:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1611398676; bh=nNig1wsMtDRJMUEXSq3QZYMxFydCeLaGA3yt4uND37Q=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=edkNrN2aM/5h7b0xsBZRlqmExJG+tK50TBu49DnkBx9A9H0ybqjwt/Z5s6M26bqd1
+         F85MvnasaB5tt9L09kMT4upb+xwEhYsrQyQsX21Iy9U5cyuxwHCtygxoVHf4nCJU6P
+         8yo1uXWeTHTINxSGapic8hI2wMihW3ReKAL0i3/Y=
+Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Sat, 23 Jan 2021 11:44:36 +0100 (CET)
+X-EA-Auth: 9q8yNSchJIdYU+iW7B2awtAIZlb9jt+7sW6wZeUEjq5dVhtUu+orVpcnEDHn1wHsb5DXycevENO61fUx3QoJAnssuRU/c9w+s40l3sCHslg=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH] arm64: dts: msm8916: Fix reserved and rfsa nodes unit address
+Date:   Sat, 23 Jan 2021 11:44:16 +0100
+Message-Id: <20210123104417.518105-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210117042539.1609-1-alistair@alistair23.me> <20210117042539.1609-4-alistair@alistair23.me>
- <20210118123158.GE4455@sirena.org.uk> <CAKmqyKMyXk_OjTKD24Qxn4QXJ4FwP4yDQqtmTsxAJMJzy34PcA@mail.gmail.com>
- <20210122133718.GB6391@sirena.org.uk>
-In-Reply-To: <20210122133718.GB6391@sirena.org.uk>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Sat, 23 Jan 2021 00:34:44 -0800
-Message-ID: <CAKmqyKPsVkUDts=X1sLMyc7hWs_E=1hW6ydzPDXMDMNVWa1u0A@mail.gmail.com>
-Subject: Re: [PATCH 4/6] regulator: Initial commit of sy7636a
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 22, 2021 at 5:37 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Thu, Jan 21, 2021 at 10:24:10PM -0800, Alistair Francis wrote:
-> > On Mon, Jan 18, 2021 at 4:32 AM Mark Brown <broonie@kernel.org> wrote:
-> > > On Sat, Jan 16, 2021 at 08:25:37PM -0800, Alistair Francis wrote:
->
-> > > > +static int get_vcom_voltage_op(struct regulator_dev *rdev)
-> > > > +{
-> > > > +     int ret = get_vcom_voltage_mv(rdev->regmap);
-> > > > +
->
-> > > Why is this get_vcom_voltage_mv() function not in the regulator driver,
-> > > and why is it not just inline here?  It also needs namespacing.
->
-> > I'm not sure what you mean, can you please explain?
->
-> This is a wrapper for a function that has exactly one caller but is not
-> only a separate function but also in the MFD header, part of a separate
-> driver.  This seems at best pointless.
+Fix `reserved` and `rfsa` unit address according to their reg address
 
-Ah I see. I think I have fixed this.
+Fixes: 7258e10e6a0b ("ARM: dts: msm8916: Update reserved-memory")
 
->
-> > > Why do you need this delay here, and what purpose is this lock intended
->
-> > The delay is to allow a power ramp up, I have added a comment.
->
-> Use the standard ramp_delay, don't open code it.
->
-> > > > +static int sy7636a_regulator_suspend(struct device *dev)
-> > > > +{
-> > > > +     int ret;
-> > > > +     struct sy7636a *sy7636a = dev_get_drvdata(dev->parent);
-> > > > +
-> > > > +     ret = get_vcom_voltage_mv(sy7636a->regmap);
-> > > > +
-> > > > +     if (ret > 0)
-> > > > +             sy7636a->vcom = (unsigned int)ret;
-> > > > +
-> > > > +     return 0;
-> > > > +}
->
-> > > What's going on here, and if you are going to store this value over
-> > > suspend why not store it in a variable of the correct type?  In general
->
-> > It is part of the vendor's kernel, they specifically added it to
-> > ensure vcom is set on resume.
->
-> "I copied this from the vendor" isn't really a great explanation...  If
-> the device is likely to get completely powered off and loosing settings
-> then presumably the entire register map, not just this one value, needs
-> to be saved and restored instead of just this one value.  If that is the
-> case it's probably best to use a register cache and just resync it on
-> resume.
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Good point.
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 402e891a84ab..d25f6dc751e9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -56,7 +56,7 @@ tz@86500000 {
+ 			no-map;
+ 		};
+ 
+-		reserved@8668000 {
++		reserved@86680000 {
+ 			reg = <0x0 0x86680000 0x0 0x80000>;
+ 			no-map;
+ 		};
+@@ -69,7 +69,7 @@ rmtfs@86700000 {
+ 			qcom,client-id = <1>;
+ 		};
+ 
+-		rfsa@867e00000 {
++		rfsa@867e0000 {
+ 			reg = <0x0 0x867e0000 0x0 0x20000>;
+ 			no-map;
+ 		};
+-- 
+2.29.2
 
-I don't have a good answer so I have removed the suspend/resume part.
-I'll have to investigate in the future if/why this is required.
 
-Alistair
+
