@@ -2,133 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E767D301395
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 07:27:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4111330140D
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 09:57:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725940AbhAWG1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 01:27:37 -0500
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:40837 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725298AbhAWG1g (ORCPT
+        id S1726063AbhAWI5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 03:57:00 -0500
+Received: from mx07-002cda01.pphosted.com ([185.132.180.122]:22554 "EHLO
+        mx07-002cda01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725940AbhAWI46 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sat, 23 Jan 2021 01:27:36 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 80D835C0083;
-        Sat, 23 Jan 2021 01:26:29 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Sat, 23 Jan 2021 01:26:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=U
-        z8v846aA9eOU/XvvproYzUdaenbuCP7/Eyc2BOJtnA=; b=fDhKFD/C4QCWPQSvj
-        yPezBFdQrsCgTT2lWS8uWaqW6IsXVVTnSzWC9/edS7J8JD049oneIYiV+X5ztSTa
-        qxSlPaGIdWhf1DFBtVZhNSfitVrdUDm6y7XzJ6hJEa3wO42AVvh0hncoMPsNO5Ml
-        FbJHQ0M758PtXVPyenjn01gpsILjVMJSEremE2nDHr5C8sYqak/ZS7LLUn7Z4P+t
-        W8sGxYBpyv4h0PdFcY00D88FEVw7SuSEmkHossJ67L8/oh+9b7aUj7kvzJulMazF
-        z/dc5LBBI0hNskqLWSR5EH/Cu3k9k2HIlQI7nYl/GoC7Gvsblv/dPDPMUrgD3o2c
-        7C8SQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=Uz8v846aA9eOU/XvvproYzUdaenbuCP7/Eyc2BOJt
-        nA=; b=nUVNdlRAtH0t9inZtYXzFtxT/8X8UwJqROXqMX4D2E25TsM8NNPIcBGPc
-        wweYTkKsFxE/r6A4ufixPawRJ9gZxozhap4I0CQNDu4SQofhHbFVLvt4RAA9B8Lu
-        toy4IPlEXWfBJdOzWkFTH99VAI6vG9T83iR6W/YfTYZLCOgjhQTMgtlfWTeWmWWE
-        k1iDu87TKdOxO+9XHAjySwh378ar5ju9tUMUdCYYTjapszPQuBL8eecx8o5LIsb+
-        o/ZmBQ5saSjCGjOTtXDEjYE/gd93YuSRUsatI3wfmmKTh8ssys4MTwlaN3NPY0jc
-        QVq5vPfjUXZKGSsjeaDZJF1z/VO7g==
-X-ME-Sender: <xms:k8ELYJML65koE-7K-ekWTecBOkkASwd9y1h1mBco_6qybIBETpoGzw>
-    <xme:k8ELYL8b9CJAAFvCKhjK_geZVhP2-2e1OIqaB4R-E7oT0heRQ1F47kThjUyg2oIop
-    4ADA616JqOOA_aYqg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudejgdelgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeehnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeehjeeghfdufeefteelieeggfehteevieetueffhefhffekuedvffev
-    ffevtedufeenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:k8ELYITCUWBmNUSqRBjumnoEAiykKr4FOf0Y8p-YVa-Kg-95L-E2TQ>
-    <xmx:k8ELYFvWJYajeULLyZvb7VKsOlsi_woPVIRw3-dC5PolISpLUEqd1w>
-    <xmx:k8ELYBfL2d7HKN--uDrLmbVMCbFa2vmKtY1Q5OetXDS0QI0qgchGSw>
-    <xmx:lcELYLsTKO0wx46ZScD2CqjoEYGvJkDAhualqPzi2R3E2_b5O7eBqg>
-Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 790D8108005B;
-        Sat, 23 Jan 2021 01:26:27 -0500 (EST)
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Ondrej Jirman <megous@megous.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210118055040.21910-1-samuel@sholland.org>
- <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
- <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org>
- <20210122104705.bo2x22ef56hdj26q@gilmour>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v5 00/10] sunxi: Support IRQ wakeup from deep sleep
-Message-ID: <52b9c9bb-ff75-d1e6-e198-0d388d1c6d73@sholland.org>
-Date:   Sat, 23 Jan 2021 00:26:26 -0600
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
-MIME-Version: 1.0
-In-Reply-To: <20210122104705.bo2x22ef56hdj26q@gilmour>
-Content-Type: text/plain; charset=windows-1252
+        Sat, 23 Jan 2021 03:56:58 -0500
+X-Greylist: delayed 1646 seconds by postgrey-1.27 at vger.kernel.org; Sat, 23 Jan 2021 03:56:57 EST
+Received: from pps.filterd (m0135534.ppops.net [127.0.0.1])
+        by mx07-002cda01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10N8Rhev006243;
+        Sat, 23 Jan 2021 08:28:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=avl.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=28082020;
+ bh=DZ8KioJUOVnVLtXrYrjAS4tslBp0x8bz6f7YrGxdj4c=;
+ b=NzyZ9ieA/wtfBMH6LAs61kPEOBj0cQKT4I7eULsu8ojp2aE2D4HKoBgEnLWmkPB4KEO+
+ DgbsccVDsCh+SP05FoygMMcA8I+4UYfBV0zBSjigM3ufTLQrzPthHM+rn+8DLio9EX/j
+ oNZ4OD/fKFyMgVyu1PlSNNMwg+8yPgaWWvRw4v51OAsKlWslupLHtOb4ik+R1d51W4ki
+ 36gq3hUIpMhga40POZA9+fPfmpC/0utb3hRXKpDDUI7WUE6yUMLwgHLsfv+eXYrNO/T7
+ Wqmszwjp1SiQ9pK/vzamZlrahL96plmdzMf+FdcJwSjnKtqL4zmqmGmhumD28jMOsq6n zA== 
+Received: from atgrzso8133.avl01.avlcorp.lan ([192.102.17.76])
+        by mx07-002cda01.pphosted.com with ESMTP id 368a1c8b0x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 23 Jan 2021 08:28:44 +0000
+Received: from pps.filterd (atgrzso8133.avl01.avlcorp.lan [127.0.0.1])
+        by atgrzso8133.avl01.avlcorp.lan (8.16.0.42/8.16.0.42) with SMTP id 10N8ShcP021802;
+        Sat, 23 Jan 2021 09:28:43 +0100
+Received: from atgrzsw3762.avl01.avlcorp.lan ([10.13.100.86])
+        by atgrzso8133.avl01.avlcorp.lan with ESMTP id 368b8pr1cc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 23 Jan 2021 09:28:43 +0100
+Received: from atgrzsw3758.avl01.avlcorp.lan (10.37.149.11) by
+ atgrzsw3762.avl01.avlcorp.lan (10.37.149.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2044.4; Sat, 23 Jan 2021 09:28:43 +0100
+Received: from atgrzsw3758.avl01.avlcorp.lan ([fe80::14f0:7a25:9759:e330]) by
+ atgrzsw3758.avl01.avlcorp.lan ([fe80::14f0:7a25:9759:e330%6]) with mapi id
+ 15.01.2044.012; Sat, 23 Jan 2021 09:28:43 +0100
+From:   "Denis, Tomislav AVL DiTEST" <Tomislav.Denis@avl.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v3 1/2] iio: adc: Add driver for Texas Instruments
+ ADS131E0x ADC family
+Thread-Topic: [PATCH v3 1/2] iio: adc: Add driver for Texas Instruments
+ ADS131E0x ADC family
+Thread-Index: AQHW6MiBIvJeN/5N9Em2fnxAURj3QaoyRmaAgAG9XlA=
+Date:   Sat, 23 Jan 2021 08:28:42 +0000
+Message-ID: <7474dd07191545b0bb9ae091e54c2013@avl.com>
+References: <20210112095128.7112-1-tomislav.denis@avl.com>
+ <20210112095128.7112-2-tomislav.denis@avl.com>
+ <CAHp75VfNweJyXgzCcvZUWj=3mCVkP=+HaFmG2XaKmKP1cATa=Q@mail.gmail.com>
+In-Reply-To: <CAHp75VfNweJyXgzCcvZUWj=3mCVkP=+HaFmG2XaKmKP1cATa=Q@mail.gmail.com>
+Accept-Language: en-US, de-AT
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.12.100.12]
+x-exclaimer-md-config: f9e74532-fb7d-4806-8539-2b9574eafa9a
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-23_04:2021-01-22,2021-01-23 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ mlxlogscore=999 bulkscore=0 mlxscore=0 spamscore=0 malwarescore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101230046
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-23_04:2021-01-22,2021-01-23 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ suspectscore=0 bulkscore=0 mlxlogscore=999 adultscore=0 lowpriorityscore=0
+ spamscore=0 impostorscore=0 clxscore=1011 priorityscore=1501 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101230046
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/22/21 4:47 AM, Maxime Ripard wrote:
-> On Thu, Jan 21, 2021 at 07:33:54PM -0600, Samuel Holland wrote:
->> On 1/21/21 2:35 PM, Marc Zyngier wrote:
->>> On Sun, 17 Jan 2021 23:50:30 -0600, Samuel Holland wrote:
->>>> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
->>>> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC handles
->>>> the external NMI pin, and provides 32+ IRQs to the ARISC. The first 16
->>>> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
->>>> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
->>>>
->>>> This series replaces the existing chained irqchip driver that could only
->>>> control the NMI, with a stacked irqchip driver that also provides wakeup
->>>> capability for those multiplexed SPI IRQs. The idea is to preconfigure
->>>> the ARISC's IRQ controller, and then the ARISC firmware knows to wake up
->>>> as soon as it receives an IRQ. It can also decide how deep it can
->>>> suspend based on the enabled wakeup IRQs.
->>>>
->>>> [...]
->>>
->>> Applied to irq/irqchip-5.12, thanks!
->>>
->>> [01/10] dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
->>>         commit: ad6b47cdef760410311f41876b21eb0c6fda4717
->>> [02/10] dt-bindings: irq: sun6i-r: Add a compatible for the H3
->>>         commit: 6436eb4417094ea3308b33d8392fc02a1068dc78
->>> [03/10] irqchip/sun6i-r: Use a stacked irqchip driver
->>>         commit: 4e34614636b31747b190488240a95647c227021f
->>> [04/10] irqchip/sun6i-r: Add wakeup support
->>>         commit: 7ab365f6cd6de1e2b0cb1e1e3873dbf68e6f1003
->>>
->>> Please route the dts patches via the soc tree. Also, I had to
->>> manually fix the first patch as it wouldn't apply on top of
->>> 5.11-rc4 (which tree has it been diffed against?). Please
->>> check that the resolution is correct.
->>
->> This series was based on sunxi/for-next, which contains commit
->> 752b0aac99c7 ("dt-bindings: irq: sun7i-nmi: Add binding documentation
->> for the V3s NMI")[1].
-> 
-> I assume merging the DT bits alone would break things? If so, I guess we
-> can wait for 5.12 to be released before merging it
-
-Patch 5 does not depend on the new driver, so it could be merged at any
-time. Yes, the remaining patches would break things if merged without
-the driver.
-
-Cheers,
-Samuel
+SGkgQW5keSwNCg0KRmlyc3QsIHRoYW5rcyBmb3IgdGhlIGdyZWF0IHJldmlldy4gSSBhZ3JlZSB3
+aXRoIGFsbCBvZiB5b3VyIGNvbW1lbnRzLCBqdXN0IG9uZSBxdWVzdGlvbi9jb21tZW50IGlubGlu
+ZS4NCg0KQmVzdCBSZWdhcmRzLA0KVG9taXNsYXYNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQ0KPiBGcm9tOiBBbmR5IFNoZXZjaGVua28gPGFuZHkuc2hldmNoZW5rb0BnbWFpbC5jb20+
+DQo+IFNlbnQ6IDIxIEphbnVhcnkgMjAyMSAxNzo0Mg0KPiBUbzogRGVuaXMsIFRvbWlzbGF2IEFW
+TCBEaVRFU1QgPFRvbWlzbGF2LkRlbmlzQGF2bC5jb20+DQo+IENjOiBKb25hdGhhbiBDYW1lcm9u
+IDxqaWMyM0BrZXJuZWwub3JnPjsgbGludXgtaWlvIDxsaW51eC1paW9Admdlci5rZXJuZWwub3Jn
+PjsNCj4gZGV2aWNldHJlZSA8ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+DQo+IFN1YmplY3Q6
+IFJlOiBbUEFUQ0ggdjMgMS8yXSBpaW86IGFkYzogQWRkIGRyaXZlciBmb3IgVGV4YXMgSW5zdHJ1
+bWVudHMNCj4gQURTMTMxRTB4IEFEQyBmYW1pbHkNCj4gDQo+IE9uIFR1ZSwgSmFuIDEyLCAyMDIx
+IGF0IDI6MzcgUE0gPHRvbWlzbGF2LmRlbmlzQGF2bC5jb20+IHdyb3RlOg0KPiA+DQo+ID4gRnJv
+bTogVG9taXNsYXYgRGVuaXMgPHRvbWlzbGF2LmRlbmlzQGF2bC5jb20+DQo+ID4NCj4gPiBUaGUg
+QURTMTMxRTB4IGFyZSBhIGZhbWlseSBvZiBtdWx0aWNoYW5uZWwsIHNpbXVsdGFuZW91cyBzYW1w
+bGluZywNCj4gPiAyNC1iaXQsIGRlbHRhLXNpZ21hLCBhbmFsb2ctdG8tZGlnaXRhbCBjb252ZXJ0
+ZXJzIChBRENzKSB3aXRoIGENCj4gPiBidWlsdC1pbiBwcm9ncmFtbWFibGUgZ2FpbiBhbXBsaWZp
+ZXIgKFBHQSksIGludGVybmFsIHJlZmVyZW5jZSBhbmQgYW4NCj4gPiBvbmJvYXJkIG9zY2lsbGF0
+b3IuDQo+IA0KDQouLi4NCg0KPiANCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBhZHMxMzFlMDhf
+ZGF0YV9yYXRlX2Rlc2MgYWRzMTMxZTA4X2RhdGFfcmF0ZV90YmxbXSA9IHsNCj4gPiArICAgICAg
+IHsgLnJhdGUgPSA2NCwgICAucmVnID0gMHgwMCB9LA0KPiA+ICsgICAgICAgeyAucmF0ZSA9IDMy
+LCAgIC5yZWcgPSAweDAxIH0sDQo+ID4gKyAgICAgICB7IC5yYXRlID0gMTYsICAgLnJlZyA9IDB4
+MDIgfSwNCj4gPiArICAgICAgIHsgLnJhdGUgPSA4LCAgICAucmVnID0gMHgwMyB9LA0KPiA+ICsg
+ICAgICAgeyAucmF0ZSA9IDQsICAgIC5yZWcgPSAweDA0IH0sDQo+ID4gKyAgICAgICB7IC5yYXRl
+ID0gMiwgICAgLnJlZyA9IDB4MDUgfSwNCj4gPiArICAgICAgIHsgLnJhdGUgPSAxLCAgICAucmVn
+ID0gMHgwNiB9LA0KPiA+ICt9Ow0KPiANCj4gQ2FuJ3QgeW91IHVzZSBzaW1wbGUgYml0IG9wZXJh
+dGlvbnMgb24gdGhpcz8NCj4gDQo+IHJhdGUgPSBCSVQoNiAtIGluZGV4KQ0KPiByZWcgPSBpbmRl
+eA0KPiANCj4gLi4uDQo+IA0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGFkczEzMWUwOF9wZ2Ff
+Z2Fpbl9kZXNjIGFkczEzMWUwOF9wZ2FfZ2Fpbl90YmxbXSA9IHsNCj4gPiArICAgICAgIHsgLmdh
+aW4gPSAxLCAgIC5yZWcgPSAweDAxIH0sDQo+ID4gKyAgICAgICB7IC5nYWluID0gMiwgICAucmVn
+ID0gMHgwMiB9LA0KPiANCj4gcmVnID09IDMgdmFsaWQ/DQo+IA0KPiA+ICsgICAgICAgeyAuZ2Fp
+biA9IDQsICAgLnJlZyA9IDB4MDQgfSwNCj4gPiArICAgICAgIHsgLmdhaW4gPSA4LCAgIC5yZWcg
+PSAweDA1IH0sDQo+ID4gKyAgICAgICB7IC5nYWluID0gMTIsICAucmVnID0gMHgwNiB9LA0KPiA+
+ICt9Ow0KPiANCj4gQWxzbyBjYW4gYmUgY2hhbmdlZCBieSBmb3JtdWxhLCBidXQgSSByZW1lbWJl
+ciB0aGF0IGluIHNvbWUgY2FzZXMgdGFibGVzIGFyZQ0KPiBwcmVmZXJhYmxlLg0KPiANCj4NCg0K
+SSB3b3VsZCBsaWtlIHRvIGtlZXAgdGhvc2UgdGFibGVzIGFzIHRoZXkgYXJlLCBiZWNhdXNlIEkg
+ZmluZCB0aGVtIG1vcmUgaW50dWl0aXZlIGFuZCBlYXN5IHVuZGVyc3RhbmRhYmxlIT8NCg0KPg0K
+PiA+ICtzdGF0aWMgaW50IGFkczEzMWUwOF9leGVjX2NtZChzdHJ1Y3QgYWRzMTMxZTA4X3N0YXRl
+ICpzdCwgdTggY21kKSB7DQo+ID4gKyAgICAgICBpbnQgcmV0Ow0KPiA+ICsNCg0KLi4uLg0KDQo+
+IA0KPiAtLQ0KPiBXaXRoIEJlc3QgUmVnYXJkcywNCj4gQW5keSBTaGV2Y2hlbmtvDQo=
