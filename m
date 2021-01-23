@@ -2,78 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A21A3015C5
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 15:21:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E4E301675
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 16:39:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725881AbhAWOUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 09:20:04 -0500
-Received: from aposti.net ([89.234.176.197]:32860 "EHLO aposti.net"
+        id S1725891AbhAWPjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 10:39:12 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46130 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725290AbhAWOUD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 23 Jan 2021 09:20:03 -0500
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0?= <zhouyanjie@wanyeetech.com>,
-        od@zcrc.me, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>
-Subject: [PATCH v2 2/2] phy: ingenic: Add support for the JZ4760(B)
-Date:   Sat, 23 Jan 2021 14:18:25 +0000
-Message-Id: <20210123141825.15481-2-paul@crapouillou.net>
-In-Reply-To: <20210123141825.15481-1-paul@crapouillou.net>
-References: <20210123141825.15481-1-paul@crapouillou.net>
+        id S1725798AbhAWPjM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 23 Jan 2021 10:39:12 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 30B88230FC;
+        Sat, 23 Jan 2021 15:38:30 +0000 (UTC)
+Date:   Sat, 23 Jan 2021 15:38:26 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Mike Looijmans <mike.looijmans@topic.nl>
+Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] dt-bindings: iio: accel: Add bmi088
+ accelerometer bindings
+Message-ID: <20210123153826.0368bf61@archlinux>
+In-Reply-To: <20210121155700.9267-1-mike.looijmans@topic.nl>
+References: <20210121155700.9267-1-mike.looijmans@topic.nl>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the JZ4760 and JZ4760B SoCs, which behave exactly as the
-(newer) JZ4770 SoC.
+On Thu, 21 Jan 2021 16:56:58 +0100
+Mike Looijmans <mike.looijmans@topic.nl> wrote:
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
----
+> This adds the device-tree bindings for the Bosch Sensortec BMI088 IMU,
+> the accelerometer part.
+> 
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+Just the issue the build bot found.  Otherwise looks good to me.
 
-Notes:
-    v2: No change
+Jonathan
 
- drivers/phy/ingenic/phy-ingenic-usb.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+> 
+> ---
+> 
+> Changes in v7:
+> Add additionalProperties
+> Change bmi088_accel to bmi088-accel
+> Add interrupt-names and adjust description
+> 
+> Changes in v6:
+> I't been almost a year since the last commit, sorry...
+> Fixed the yaml errors
+> Add interrupt, vdd and vddio properties
+> 
+> Changes in v5:
+> submit together with driver code as patch series
+> 
+> Changes in v2:
+> convert to yaml format
+> 
+>  .../bindings/iio/accel/bosch,bmi088.yaml      | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
+> new file mode 100644
+> index 000000000000..db5dbaf80fa2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/accel/bosch,bmi088.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bosch BMI088 IMU accelerometer part
+> +
+> +maintainers:
+> +  - Mike Looijmans <mike.looijmans@topic.nl>
+> +
+> +description: |
+> +  Acceleration part of the IMU sensor with an SPI interface
+> +  Specifications about the sensor can be found at:
+> +    https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - bosch,bmi088-accel
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +  vddio-supply: true
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description: |
+> +      Type should be either IRQ_TYPE_LEVEL_HIGH or IRQ_TYPE_LEVEL_LOW.
+> +      Two configurable interrupt lines exist.
+> +
+> +  interrupt-names:
+> +    description: Specify which interrupt line is in use.
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
+> +    minItems: 1
+> +    maxItems: 2
 
-diff --git a/drivers/phy/ingenic/phy-ingenic-usb.c b/drivers/phy/ingenic/phy-ingenic-usb.c
-index ea127b177f46..42902a0278cc 100644
---- a/drivers/phy/ingenic/phy-ingenic-usb.c
-+++ b/drivers/phy/ingenic/phy-ingenic-usb.c
-@@ -201,7 +201,7 @@ static const struct phy_ops ingenic_usb_phy_ops = {
- 	.owner		= THIS_MODULE,
- };
- 
--static void jz4770_usb_phy_init(struct phy *phy)
-+static void jz4760_usb_phy_init(struct phy *phy)
- {
- 	struct ingenic_usb_phy *priv = phy_get_drvdata(phy);
- 	u32 reg;
-@@ -288,8 +288,8 @@ static void x2000_usb_phy_init(struct phy *phy)
- 	writel(reg, priv->base + REG_USBPCR_OFFSET);
- }
- 
--static const struct ingenic_soc_info jz4770_soc_info = {
--	.usb_phy_init = jz4770_usb_phy_init,
-+static const struct ingenic_soc_info jz4760_soc_info = {
-+	.usb_phy_init = jz4760_usb_phy_init,
- };
- 
- static const struct ingenic_soc_info jz4775_soc_info = {
-@@ -363,7 +363,8 @@ static int ingenic_usb_phy_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id ingenic_usb_phy_of_matches[] = {
--	{ .compatible = "ingenic,jz4770-phy", .data = &jz4770_soc_info },
-+	{ .compatible = "ingenic,jz4760-phy", .data = &jz4760_soc_info },
-+	{ .compatible = "ingenic,jz4770-phy", .data = &jz4760_soc_info },
- 	{ .compatible = "ingenic,jz4775-phy", .data = &jz4775_soc_info },
- 	{ .compatible = "ingenic,jz4780-phy", .data = &jz4780_soc_info },
- 	{ .compatible = "ingenic,x1000-phy", .data = &x1000_soc_info },
--- 
-2.29.2
+As per Rob's build bot you need.
+
+spi-max-frequency: true
+
+If that's all that comes up and Rob is happy with this I can fix that up whilst
+applying.  Please try to run the checks suggested in Rob's build bot message
+before submitting binding patches though.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      bmi088-accel@1 {
+> +        compatible = "bosch,bmi088-accel";
+> +        reg = <1>;
+> +        spi-max-frequency = <10000000>;
+> +        interrupt-parent = <&gpio6>;
+> +        interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+> +        interrupt-names = "INT2";
+> +      };
+> +    };
+> +...
 
