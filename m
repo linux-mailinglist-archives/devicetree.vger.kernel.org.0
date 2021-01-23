@@ -2,98 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FFA2301726
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 18:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3D2F301736
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 18:30:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725922AbhAWRVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 12:21:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59196 "EHLO
+        id S1725765AbhAWRaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 12:30:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726021AbhAWRVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 12:21:08 -0500
-Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6DEC06174A;
-        Sat, 23 Jan 2021 09:20:28 -0800 (PST)
-Received: by mail-oo1-xc2c.google.com with SMTP id j8so2239128oon.3;
-        Sat, 23 Jan 2021 09:20:28 -0800 (PST)
+        with ESMTP id S1725550AbhAWRaY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 12:30:24 -0500
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B14E5C06174A;
+        Sat, 23 Jan 2021 09:29:43 -0800 (PST)
+Received: by mail-ot1-x32d.google.com with SMTP id k8so8452619otr.8;
+        Sat, 23 Jan 2021 09:29:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=aa2zhNGEVZtl6VmccV5UFZrKiIyp17kWyCqdcVHVHY0=;
-        b=fFgA0NUqXaku8+W69UNv8VLzwja6322eL+nb1CEUI8rHNjci1SrnWagoUhhKcYNVzR
-         kut4i68WxVLtWiQDlN1ki+KXEph7jxbi1jGXmqveBXRMNWN1QG6HlmCkvUWoKxmxaDXb
-         LlAorBsUsFHMI381z3B2NojUO7WQg4UnVcNH2lTCHZroJo9/VzDYq5LjTqkKzQA2JVfC
-         vuTuSimWUwOr0HQ/u1vL2Jz9vhtPSQcv6gKuBDRCZ5nIEEWgJzOoQ/l1HRauvhjSdonD
-         nQ5z68gV44lLI6TWOZzm2p5R2osgY7PhZJgEm/IBogzIQvyarRhUxa9xMGsW5pDT3S9i
-         ipug==
+        bh=3puvH5L1KRDWtKEUAlvHXEZu8I1zk2cc6t75N2DvFJQ=;
+        b=PHZGgoWYjgxoPgVrPav8gdm5QNNWhMtJCnk7UeI1/TuenY5z4kiRy8kqpivL28llPo
+         zUopJJznFJ7wgsGlUTEyXPmbbHhFpsvAkpbh0biKLbCoefJp8ggP2BbntJXZuysvWF7C
+         o/QvXotsRkFG62gmwtA0KR5Sop/fIHQLuu4FTX1ZXfTkJIs/5jShZcQjOqOI+yraA83K
+         Ww2fQ3krquw5naCiHybbkY68o1KSqzaH/xPicIwvS74yS0oKQtoL0gCdpgtMSBIQQOjt
+         zTHPQI7j/j1TzeifkUn5blg7MyGJA/2LzNP6n/MLtedATmytM70qyFONxl1QeLnYpz9g
+         UkMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
          :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=aa2zhNGEVZtl6VmccV5UFZrKiIyp17kWyCqdcVHVHY0=;
-        b=NjYeioXpbaCR8SphrWomUKFnnRvBUuZdJCkLs7ugDqerjkF1COWb3oN/ECE8dSXPjd
-         UgVbQcweSsW+YPsvDhScYAfRK+jwtshGKWTszNw/iXfHEITs5xz7VCE4KnhhLuD+qs/y
-         4IgXy/xc87Taq6L+farvwHdA6OsLJulUurPZ67Z4jX1T3krY2zdzpw5pYUbqGDxr8iQA
-         C4shBUnmlt5hX3jbtfrLbTS7JCVRzz77z6c/aKVqf/8zGGYk0lPJGNIS9pEP9UPsBwTc
-         Pbeb28Lej72zeg7z4YMp3LTLasYeV4uKXNGAv+JkX4HcIE6vern7NDYMNa25OWED8Qc5
-         otLg==
-X-Gm-Message-State: AOAM533qayWiag7qCS7kK/aDoRgsmnfeEsQM+ntO8hs13a8/che96G9a
-        uyIjLe+axqs4CDfZnLbon2spKJSc+uA=
-X-Google-Smtp-Source: ABdhPJxIrr1yJazmxH5j1L9GZit8rfkCVzkbmVq+v2Wd1FaMruoXoZN6zhL3sJEScO+XSeyhTeRZ9A==
-X-Received: by 2002:a4a:901a:: with SMTP id i26mr7575583oog.42.1611422427977;
-        Sat, 23 Jan 2021 09:20:27 -0800 (PST)
+        bh=3puvH5L1KRDWtKEUAlvHXEZu8I1zk2cc6t75N2DvFJQ=;
+        b=RAZmezFdpmmWtcoBDOhSQ8z7QuVCww3/iX/3RJMKPWrcfXfhp/lwoW3PGIQnPIh66R
+         lGzr1hMOnTZoR4XHnD9wFmThLY73O9Td5Ey87+MfbTSuqFVA8vtMN7owAlUlJzeM5My/
+         s34oyTX00reTfT1e1QpYeqntO3uCA6wmAC+QKOqXxoWsVnknMAmVm78kEDw8BiXdmtiV
+         j5yZW5qJ45qj4gxYLXenx5Pan/fGS3i12jv4ZD965JXExmLeZVLJinjNXs3FvD+RDOdz
+         yr0wsEEIh5RzSbWnxT6YXxmKxzF4QoCQ2xafomMpdghlCrim3wilFw+SMgK0UE9fwG3W
+         MFGw==
+X-Gm-Message-State: AOAM531R2YGQ9Bax2aOfrAn+1YU8ZxNuduVwmipkdpUzqrH0cQft1ktG
+        EjFs1GslE2nwlvmfPF/T3eo=
+X-Google-Smtp-Source: ABdhPJweF+RoTeM5djHPKGZzJlsU49ZZwkEIDxupe1PHBGnmv3SSsdQUbOF2XX0bRzDUZWgkG5kq5g==
+X-Received: by 2002:a9d:1710:: with SMTP id i16mr7120046ota.260.1611422983198;
+        Sat, 23 Jan 2021 09:29:43 -0800 (PST)
 Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i126sm2399054oif.22.2021.01.23.09.20.26
+        by smtp.gmail.com with ESMTPSA id v10sm2392545otj.59.2021.01.23.09.29.42
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 23 Jan 2021 09:20:27 -0800 (PST)
+        Sat, 23 Jan 2021 09:29:42 -0800 (PST)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 23 Jan 2021 09:20:26 -0800
+Date:   Sat, 23 Jan 2021 09:29:41 -0800
 From:   Guenter Roeck <linux@roeck-us.net>
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
         Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: watchdog: renesas,wdt: add r8a779a0
- (V3U) support
-Message-ID: <20210123172026.GA56070@roeck-us.net>
-References: <20201218173731.12839-1-wsa+renesas@sang-engineering.com>
- <20201218173731.12839-2-wsa+renesas@sang-engineering.com>
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 17/21] dt-bindings: watchdog: sun4i: Add H616
+ compatible string
+Message-ID: <20210123172941.GA56996@roeck-us.net>
+References: <20201211011934.6171-1-andre.przywara@arm.com>
+ <20201211011934.6171-18-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201218173731.12839-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20201211011934.6171-18-andre.przywara@arm.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 18, 2020 at 06:37:26PM +0100, Wolfram Sang wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Fri, Dec 11, 2020 at 01:19:30AM +0000, Andre Przywara wrote:
+> Use enums to group all compatible devices together on the way.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > Acked-by: Rob Herring <robh@kernel.org>
 
 Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
 > ---
+>  .../bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
 > 
-> Please apply it to the watchdog-tree.
-> 
->  Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> index 6933005b52bd..ab66d3f0c476 100644
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> @@ -50,6 +50,7 @@ properties:
->                - renesas,r8a77980-wdt     # R-Car V3H
->                - renesas,r8a77990-wdt     # R-Car E3
->                - renesas,r8a77995-wdt     # R-Car D3
-> +              - renesas,r8a779a0-wdt     # R-Car V3U
->            - const: renesas,rcar-gen3-wdt # R-Car Gen3 and RZ/G2
->  
->    reg:
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> index 5ac607de8be4..9aa3c313c49f 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> @@ -19,13 +19,11 @@ properties:
+>        - const: allwinner,sun4i-a10-wdt
+>        - const: allwinner,sun6i-a31-wdt
+>        - items:
+> -          - const: allwinner,sun50i-a64-wdt
+> -          - const: allwinner,sun6i-a31-wdt
+> -      - items:
+> -          - const: allwinner,sun50i-a100-wdt
+> -          - const: allwinner,sun6i-a31-wdt
+> -      - items:
+> -          - const: allwinner,sun50i-h6-wdt
+> +          - enum:
+> +              - allwinner,sun50i-a64-wdt
+> +              - allwinner,sun50i-a100-wdt
+> +              - allwinner,sun50i-h6-wdt
+> +              - allwinner,sun50i-h616-wdt
+>            - const: allwinner,sun6i-a31-wdt
+>        - items:
+>            - const: allwinner,suniv-f1c100s-wdt
