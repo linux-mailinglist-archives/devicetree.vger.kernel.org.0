@@ -2,77 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4388B301232
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 03:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73AD13012B9
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 04:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726274AbhAWCLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jan 2021 21:11:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33176 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726111AbhAWCKv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Jan 2021 21:10:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPS id 1EEAC23B6B;
-        Sat, 23 Jan 2021 02:10:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611367811;
-        bh=j2maiTRuhEXfhvX1tZ6FlvXc5uCSziBJ6V0SPMSL+cQ=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=k1rXjqDZtyAjOXvT//wL0d4lAZXo/m3dvT1kAbdV4JDPvQ9jl1vGOXq8i0dhokizP
-         gJuoHlbjW8s3S6+DvNcRtsjO5SKrCPgN/gGDBL56DwDhjMz4BdibjOEwE5qv3avwFc
-         DMY7S5IB9rkikW3dYVVtI+kib3Ar7nbjKpIHrJ9nJuAUr+AXjKQqQsovechoHCCDhC
-         WuFIaTT/SrGP8i5z3wLJ/DfolhFqRskh77IwUKBMFfNAj6KxOWzc0stSo2bfa9t0qR
-         qjCuEXGnzEorCcfp408D7JROtSvRhcp2eGIfGKH02dS47FevmSJ22EQNmZUbQwNuwN
-         uPr9Zucmib3Xg==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 146D5652DC;
-        Sat, 23 Jan 2021 02:10:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S1726691AbhAWDl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jan 2021 22:41:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726689AbhAWDly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jan 2021 22:41:54 -0500
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEDADC061786;
+        Fri, 22 Jan 2021 19:41:13 -0800 (PST)
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 4DN23V0cSmz9sT6; Sat, 23 Jan 2021 14:41:09 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1611373270;
+        bh=0Bk8PAXdPpGaUR83uiG5snZucbQTwM70iFqUMjlN/4I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VaMFHhgk1Cw90cPZ14YakAtzUQXp5NcsM8znT/von49UPvC119XmIbHtLNu4msQp+
+         uiKC/4qEbVNBqrj1a7d2ULZxX6FxEAZ6SIJdkHeCv6RbToEBPmLylZ32EbLGof3Xtj
+         U+3YMTO2BK+A5ZEJqZ5k1w8e99gn8kzbSMsfUUuc=
+Date:   Sat, 23 Jan 2021 14:07:09 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-kernel@vger.kernel.org, anmar.oueja@linaro.org,
+        Bill Mills <bill.mills@linaro.org>, devicetree@vger.kernel.org,
+        Michal Marek <michal.lkml@markovi.net>
+Subject: Re: [PATCH V6 5/6] of: unittest: Create overlay_common.dtsi and
+ testcases_common.dtsi
+Message-ID: <20210123030709.GI4400@yekko.fritz.box>
+References: <cover.1611312122.git.viresh.kumar@linaro.org>
+ <94180731aa4a17e4834458a979de7de782dc73d4.1611312122.git.viresh.kumar@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 net-next 0/4] net: ipa: remove a build dependency
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161136781107.1188.14482443015217936169.git-patchwork-notify@kernel.org>
-Date:   Sat, 23 Jan 2021 02:10:11 +0000
-References: <20210120212606.12556-1-elder@linaro.org>
-In-Reply-To: <20210120212606.12556-1-elder@linaro.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     davem@davemloft.net, kuba@kernel.org, elder@kernel.org,
-        bjorn.andersson@linaro.org, agross@kernel.org,
-        evgreen@chromium.org, cpratapa@codeaurora.org,
-        subashab@codeaurora.org, robh+dt@kernel.org, rdunlap@infradead.org,
-        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="BghK6+krpKHjj+jk"
+Content-Disposition: inline
+In-Reply-To: <94180731aa4a17e4834458a979de7de782dc73d4.1611312122.git.viresh.kumar@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+--BghK6+krpKHjj+jk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 20 Jan 2021 15:26:02 -0600 you wrote:
-> (David/Jakub, please take these all through net-next if they are
-> acceptable to you, once Rob has acked the binding.  Rob, please ack
-> if the binding looks OK to you.)
-> 
-> Version 3 removes the "Fixes" tag from the first patch, and updates
-> the addressee list to include some people I apparently missed.
-> 
-> [...]
+On Fri, Jan 22, 2021 at 04:20:35PM +0530, Viresh Kumar wrote:
+> In order to build-test the same unit-test files using fdtoverlay tool,
+> move the device nodes from the existing overlay_base.dts and
+> testcases_common.dts files to .dtsi files. The .dts files now include
+> the new .dtsi files, resulting in exactly the same behavior as earlier.
+>=20
+> The .dtsi files can now be reused for compile time tests using
+> fdtoverlay (will be done in a later patch).
+>=20
+> This is required because the base files passed to fdtoverlay tool
+> shouldn't be overlays themselves (i.e. shouldn't have the /plugin/;
+> tag).
+>=20
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> ---
+>  drivers/of/unittest-data/overlay_base.dts     | 90 +-----------------
+>  drivers/of/unittest-data/overlay_common.dtsi  | 91 +++++++++++++++++++
+>  drivers/of/unittest-data/testcases.dts        | 17 +---
+>  .../of/unittest-data/testcases_common.dtsi    | 18 ++++
+>  4 files changed, 111 insertions(+), 105 deletions(-)
+>  create mode 100644 drivers/of/unittest-data/overlay_common.dtsi
+>  create mode 100644 drivers/of/unittest-data/testcases_common.dtsi
+>=20
+> diff --git a/drivers/of/unittest-data/overlay_base.dts b/drivers/of/unitt=
+est-data/overlay_base.dts
+> index 99ab9d12d00b..ab9014589c5d 100644
+> --- a/drivers/of/unittest-data/overlay_base.dts
+> +++ b/drivers/of/unittest-data/overlay_base.dts
+> @@ -2,92 +2,4 @@
+>  /dts-v1/;
+>  /plugin/;
 
-Here is the summary with links:
-  - [v3,net-next,1/4] net: ipa: remove a remoteproc dependency
-    https://git.kernel.org/netdev/net-next/c/86fdf1fc60e9
-  - [v3,net-next,2/4] dt-bindings: net: remove modem-remoteproc property
-    https://git.kernel.org/netdev/net-next/c/27bb36ed7775
-  - [v3,net-next,3/4] arm64: dts: qcom: sc7180: kill IPA modem-remoteproc property
-    https://git.kernel.org/netdev/net-next/c/8535c8e30010
-  - [v3,net-next,4/4] arm64: dts: qcom: sdm845: kill IPA modem-remoteproc property
-    https://git.kernel.org/netdev/net-next/c/5da1fca9eb73
+This still makes no sense to me.  Is this data intended as a base
+tree, or as an overlay?  If it's an overlay, what are the constraints
+on the base tree it's supposed to apply to.
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+This patch is treating it as both in different places, but that's such
+a bizarre usecase it needs detailed justification.  It really looks
+like the unittest stuff is doing some very bogus stuff that should be
+fixed first, before trying to do this on top.
 
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
 
+--BghK6+krpKHjj+jk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAmALktgACgkQbDjKyiDZ
+s5JdTw//ZayM/f75OV69BKFAZfSz1pYOPBRJivYgbz4BiSb4QAFUQx8xR8a6JaYD
+YM8Kuj5rg4rC/8W3Cf2oqQhpHaf7gmrYMAFUQrtRL7vekEUcwFGWvBk7YSPMzyNv
+rFhr3uJAVBSLCc5oJ7Sd3qMRHdPsrSZgI6I+X5q3zA1y8pjkFrY5PMvCp5HM4yRF
+xvwwXHiruV8ncmr1F/xTp8lEwZ49DE54kIhi/y4YIEbOBu26++81Hyc0S7QRA8yz
+xgxjDdibGDl9DhfJvH2zhKENT2zlfp2dHB44UZYk7JKFYhErYK7dlrjgMw2bTKW+
+hjsbZ92QwyKsk6RwtNSf5wQoGlJV5qhg5D1DRjRIlXxcDTVOE7k9/WnxQAESooWw
+AAerOd1Gjf9HnylcQmcWJyVuv4wy/xcQJla05NSqzD7RwXBQvF4dVckcMiU93uG9
+reEkGVd8TUU57asM24lAjIrxHmabIYyT3ei8cdelqgzvgFX9srWAYXWRzj+3uYv6
+ASS/KLRec7ViDv8pQPUZTlh+uqm3JQbV8J/kxyrgdOmO3rZu9RYlvWUW3inSFAve
+cizdm5S6ZKiewlh7UhnQrwy0kWlienuwCY4Da2FpRdXvylyr9IY+8ornL5knWXGi
+8BoKLSzbMCviwyi0FDITRgFkMKNNkc1ZEppe0IaN5N4Y2ZnKjNU=
+=4p5B
+-----END PGP SIGNATURE-----
+
+--BghK6+krpKHjj+jk--
