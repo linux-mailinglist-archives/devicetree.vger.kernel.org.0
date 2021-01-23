@@ -2,154 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5E4E301675
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 16:39:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE2013016AE
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 17:15:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725891AbhAWPjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 10:39:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46130 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725798AbhAWPjM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 23 Jan 2021 10:39:12 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 30B88230FC;
-        Sat, 23 Jan 2021 15:38:30 +0000 (UTC)
-Date:   Sat, 23 Jan 2021 15:38:26 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 1/2] dt-bindings: iio: accel: Add bmi088
- accelerometer bindings
-Message-ID: <20210123153826.0368bf61@archlinux>
-In-Reply-To: <20210121155700.9267-1-mike.looijmans@topic.nl>
-References: <20210121155700.9267-1-mike.looijmans@topic.nl>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1726016AbhAWQOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 11:14:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725932AbhAWQOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 11:14:48 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1363C0613D6;
+        Sat, 23 Jan 2021 08:14:07 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id j25so4325130oii.0;
+        Sat, 23 Jan 2021 08:14:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=aGOwdo7IiEjB/o8PzIQ44cs8SlfL93ZRbT69u9ZgBSA=;
+        b=vBfeVFCOy6eV/pI2NrmOSdW6HDuYebvlWjjpg3Zc3Bl+xLB0PPQUw2FXULxuLp03mX
+         z9Wj9DWEi8zTyhwvjdA3feOpjdwaWcSuCHtRKlENDryeqOG2zCGWMB3/8ykTyZ0r5HV7
+         sAgv5E/OfpqrR0+kUmAg6kh1N3I+wwpuwiagAP+C4sqnD+N9ihP7HlfSc7540kce76Qp
+         wkhWgyQKihteORYFEDPUBy/pC/9SCfggequ9pfvktOk0iUUWwUoFbzrWJcxzVUymoPZN
+         iQUQ3nYFj9f3cxJwKwg13Vnbj/cuucvoQAqK7v3QJvBYDBJJah2F3FP1QWudGTAMKnqm
+         iDzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=aGOwdo7IiEjB/o8PzIQ44cs8SlfL93ZRbT69u9ZgBSA=;
+        b=mnoaRBVtAZphLrAVFV/W/oZqud1S7T9evEDo9OM2tvuL2hs2OvCR8xM5Bmc7if4x5E
+         4EsqH6yLg4ML0rRgPTeHBoSslFwv/FzlVHMpANSvZhQ9RXo1nScuwyjoXfYvi6nHmcgN
+         EyZQzu3vYJuJ0Nt1AIG/nz6BSzrAoBsq+t/cdBDVKZLP/k5Ioy/fpsezRu08mK8n8CDW
+         tHo46jT7QQUAzey5d7B8EROeGcuesLeo7S4qDbV6iRXYDZNMplS79tvSwovi4ArsYw0w
+         HbmM8ECExsvNjfJ5x9n/KY6t1RHH3sJEpUUAT1qaJGQ796+1Vg6QkaU85CUFGo8/o1Nz
+         22Cw==
+X-Gm-Message-State: AOAM533BfOmClIBfDU6IJXiZmdESRMKAIdu5Egidm//MuAS5lGgF+4Kk
+        bLAqZ76/CJI07NDOumnby4c=
+X-Google-Smtp-Source: ABdhPJwUX1wZ0HjqJqPPmC6y8f3rdsNa8J0yV/pB7b5Xzuxhi7oi8U92QTpcFe8nyjssXaaj3SuVKQ==
+X-Received: by 2002:aca:b5d6:: with SMTP id e205mr6465360oif.15.1611418447275;
+        Sat, 23 Jan 2021 08:14:07 -0800 (PST)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id r8sm2406529oth.20.2021.01.23.08.14.05
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 23 Jan 2021 08:14:06 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Sat, 23 Jan 2021 08:14:05 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Troy Lee <troy_lee@aspeedtech.com>
+Cc:     openbmc@lists.ozlabs.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        chiawei_wang@aspeedtech.com, leetroy@gmail.com
+Subject: Re: [PATCH v2 4/4] hwmon: Support Aspeed AST2600 PWM/Fan tachometer
+Message-ID: <20210123161405.GA50622@roeck-us.net>
+References: <20210113070850.1184506-1-troy_lee@aspeedtech.com>
+ <20210113070850.1184506-5-troy_lee@aspeedtech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210113070850.1184506-5-troy_lee@aspeedtech.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Jan 2021 16:56:58 +0100
-Mike Looijmans <mike.looijmans@topic.nl> wrote:
-
-> This adds the device-tree bindings for the Bosch Sensortec BMI088 IMU,
-> the accelerometer part.
+On Wed, Jan 13, 2021 at 07:08:48AM +0000, Troy Lee wrote:
+> Add Aspeed AST2600 PWM/Fan tacho driver. AST2600 has 16 PWM channel and
+> 16 FAN tacho channel.
 > 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-Just the issue the build bot found.  Otherwise looks good to me.
-
-Jonathan
-
+> Changes since v1:
+> - fixed review comments
+> - fixed double-looped calculation of div_h and div_l
+> - moving configuration to device tree
+> - register hwmon driver with devm_hwmon_device_register_with_info()
 > 
-> ---
-> 
-> Changes in v7:
-> Add additionalProperties
-> Change bmi088_accel to bmi088-accel
-> Add interrupt-names and adjust description
-> 
-> Changes in v6:
-> I't been almost a year since the last commit, sorry...
-> Fixed the yaml errors
-> Add interrupt, vdd and vddio properties
-> 
-> Changes in v5:
-> submit together with driver code as patch series
-> 
-> Changes in v2:
-> convert to yaml format
-> 
->  .../bindings/iio/accel/bosch,bmi088.yaml      | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> new file mode 100644
-> index 000000000000..db5dbaf80fa2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bmi088.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/bosch,bmi088.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bosch BMI088 IMU accelerometer part
-> +
-> +maintainers:
-> +  - Mike Looijmans <mike.looijmans@topic.nl>
-> +
-> +description: |
-> +  Acceleration part of the IMU sensor with an SPI interface
-> +  Specifications about the sensor can be found at:
-> +    https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - bosch,bmi088-accel
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +  vddio-supply: true
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      Type should be either IRQ_TYPE_LEVEL_HIGH or IRQ_TYPE_LEVEL_LOW.
-> +      Two configurable interrupt lines exist.
-> +
-> +  interrupt-names:
-> +    description: Specify which interrupt line is in use.
-> +    items:
-> +      enum:
-> +        - INT1
-> +        - INT2
-> +    minItems: 1
-> +    maxItems: 2
+> Signed-off-by: Troy Lee <troy_lee@aspeedtech.com>
 
-As per Rob's build bot you need.
+checkpatch says:
 
-spi-max-frequency: true
+total: 0 errors, 9 warnings, 26 checks, 779 lines checked
 
-If that's all that comes up and Rob is happy with this I can fix that up whilst
-applying.  Please try to run the checks suggested in Rob's build bot message
-before submitting binding patches though.
+This is a bit much. Please run checkpatch --strict and fix the issues
+it reports. Please also fix the issues reported by 0-day as well as
+the issues reported by the bindings robot, and resubmit.
 
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      bmi088-accel@1 {
-> +        compatible = "bosch,bmi088-accel";
-> +        reg = <1>;
-> +        spi-max-frequency = <10000000>;
-> +        interrupt-parent = <&gpio6>;
-> +        interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
-> +        interrupt-names = "INT2";
-> +      };
-> +    };
-> +...
-
+Thanks,
+Guenter
