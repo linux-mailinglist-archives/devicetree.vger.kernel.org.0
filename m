@@ -2,114 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C098E3017AF
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 19:41:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EDB53018CC
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 00:01:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726057AbhAWSjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 13:39:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47652 "EHLO
+        id S1726400AbhAWXAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 18:00:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725883AbhAWSjK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 13:39:10 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 780A1C0613D6;
-        Sat, 23 Jan 2021 10:38:30 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id s2so6383862otp.5;
-        Sat, 23 Jan 2021 10:38:30 -0800 (PST)
+        with ESMTP id S1726388AbhAWXAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 18:00:25 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5657DC061793
+        for <devicetree@vger.kernel.org>; Sat, 23 Jan 2021 14:59:45 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id p21so7554569lfu.11
+        for <devicetree@vger.kernel.org>; Sat, 23 Jan 2021 14:59:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=9w1ACYrjetOei7hZUsBBvPCJPsWF7Ne5M1xRXd9d4sQ=;
-        b=qZTihFUCVboiFghtWNilWnT4seuou1bvz2HBiIvesddva2V72V0vjEPlSuvXKpf7d7
-         cNkuwP6MZYJ4gLOh2Ws7mLqkjE/wonlKYoPLpV5Ow7Z3YrsHCpIyPPRSQI0AzD4XDwS+
-         WobQnB6EyH71uJ2ZeO9ZiX1aPwkJu5K3YJbpTRUrltIYRbUJytWdDrXW08cC883HjZXr
-         DH/5Aa+xVQYPrbtR4/VxNZYTf0TLjqPVnlRetUS8DxDmGnNuYuiOiBnz7NQC2NJi+NGE
-         Lra6t/7Xo37ByV35ovv93n9T8y3n8kZtfvZbIGOdbcQpdIF2HopzGFAmMlUfHmn57+bE
-         L6TQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5sd27o0ULTlZ3D/LwNE5ATuhVJKEaDj8IKxEHxs/DWY=;
+        b=waLW7xR2wqrSAt8xfwNa1xcBOmt8wXwU5pu7RArop4szuT4hcsrhMvOTifJ5AFyqhE
+         eY3qgShI3Bw1WU+TPtmGuLK6C9+C/V8hSHtXtUNxwTHczvplVmBlttzf2i3f1z8kUFn3
+         MMKxZ2liqGA6dtxbgVch9u5We1c5CtqaXwyT+1udKheHvJ5N0L+id5ZSTk/rYpHjSDpc
+         +1I7Mp4rvpJsraM7SuvhREuqLHvNrA6LGSeotYc/vrq/SFoUdk8tj58bx6ETkGiZC1MA
+         i/P59NcD3u1JwjZDo7Bz5fH7jMk8hPlqo/4kz13y5MSnw5Ya/Ei79eHoe7UEqTQnoJII
+         8Igw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=9w1ACYrjetOei7hZUsBBvPCJPsWF7Ne5M1xRXd9d4sQ=;
-        b=A7ei+DsFIN1dIhtdJ9T48RI3XTNSzxR+wrDCijf+Hggn2dPTVlu97Zbb8Z7IxQaFWE
-         XIPtCfDEaOBg0p4NVnDMs+G7SX07w4MtrBbFhUdfhNZ0XEyCHptYbqV2oSHwqrh5ai+7
-         bpzKHAryFxTwpsPf5M+iSAU11lYngQL+AN8dpRlYFyptehasoKghjtNobbLSoi9rtDj9
-         8VWaLKOvr73iCM4jR/HOtfArzqQj8Vw1ZxT4Cj73bQHRSL/oWDtMye1H7xSDlFC0RiBY
-         NnGcjgYw+Dl9p0QcWjiDjLv5Pk2UCLMRbnPHvQ9rTSsq1gTWaGkV3Ji2vOUIqmlVtvtJ
-         FTyw==
-X-Gm-Message-State: AOAM533opm0gAiW37lqoJNOLC26psvmTrYJi6GOA2Gsa4md5C3A0BlR4
-        Ti7O4IWB/WUJzev7SDsUwvM=
-X-Google-Smtp-Source: ABdhPJzKUhl6X69rC8uzYMDjUWGzNYKUrqW/crUwIBle057SrecnEOULohMxPW2ng6zoVS0YK0jPRw==
-X-Received: by 2002:a05:6830:1b6b:: with SMTP id d11mr7220330ote.254.1611427109905;
-        Sat, 23 Jan 2021 10:38:29 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l10sm2445089otn.56.2021.01.23.10.38.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 23 Jan 2021 10:38:29 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 23 Jan 2021 10:38:28 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v7 5/6] MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF
- drivers
-Message-ID: <20210123183828.GA61238@roeck-us.net>
-References: <cover.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
- <d4a658492fd9168a3e8a922b941f45f8ac23934d.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5sd27o0ULTlZ3D/LwNE5ATuhVJKEaDj8IKxEHxs/DWY=;
+        b=gccwaCsL+v9JIK8kWAkJY0GsbYRgK/Zo5sw246mJQQ5PyiO+j7Txo2gx3FPzg9rJ1d
+         kfcCIbQXpLd+rX1Zujx8jWgKX3ifIqc+YAqlS4s0srktz7LJxl/KCWlr+Ay26CKACJfA
+         /b/rvEoZck8OpAEJASNcR+xHyemLANcn+UcwL8mRJ1i05ek8r1VpCvOLxL3huYXxAWxS
+         xM+F7eILtTT0PHM0OKjgAkdtFXAeDuIFhfYOo5e1ZNtCoQ/mWkSqdFD2yGp4+JOxsryz
+         XxWkdqdPKGbWfJBV3RransG5dkblhOPk8rTGCCnyNJQ75p5iGbuZeNbIZcl7gVQSaWcB
+         wVZg==
+X-Gm-Message-State: AOAM533FjYM59/YMEwlzTOzzc+GyPJnKbinz1TSv9JhT68ImXkngOZIX
+        +EcV7Wb/PU7t8jFmmWBZRxUAeT1dje7ULreRJNIYkw==
+X-Google-Smtp-Source: ABdhPJyDNDGCqP2Bd1AdnHhAXHNuNpfFuS/5NG0c2yWkXKQF+uPmhZnSFD5ts5Fh/vSnt2I87AwTpBGxL+DEu8Q1GCw=
+X-Received: by 2002:a19:6557:: with SMTP id c23mr1720677lfj.157.1611442783800;
+ Sat, 23 Jan 2021 14:59:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d4a658492fd9168a3e8a922b941f45f8ac23934d.1611324968.git.matti.vaittinen@fi.rohmeurope.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210122200659.7404-1-digetx@gmail.com> <20210122200659.7404-3-digetx@gmail.com>
+In-Reply-To: <20210122200659.7404-3-digetx@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 23 Jan 2021 23:59:33 +0100
+Message-ID: <CACRpkda+wjjr3+=taNmKgj4HH8A6pSAmMwtB3CZh4ixnhDt_Dw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] Input: atmel_mxt_ts - support wakeup methods
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Nick Dyer <nick@shmanahar.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jiada Wang <jiada_wang@mentor.com>,
+        Linux Input <linux-input@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 22, 2021 at 04:35:10PM +0200, Matti Vaittinen wrote:
-> Add maintainer entries for ROHM BD9576MUF and ROHM BD9573MUF drivers.
-> MFD, regulator and watchdog drivers were introduced for these PMICs.
-> 
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+On Fri, Jan 22, 2021 at 9:07 PM Dmitry Osipenko <digetx@gmail.com> wrote:
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+> According to datasheets, chips like mXT1386 have a WAKE line, it is used
+> to wake the chip up from deep sleep mode before communicating with it via
+> the I2C-compatible interface.
+>
+> If the WAKE line is connected to a GPIO line, the line must be asserted
+> 25 ms before the host attempts to communicate with the controller. If the
+> WAKE line is connected to the SCL pin, the controller will send a NACK on
+> the first attempt to address it, the host must then retry 25 ms later.
+>
+> Implement the wake-up methods in the driver. Touchscreen now works
+> properly on devices like Acer A500 tablet, fixing problems like this:
+>
+>  atmel_mxt_ts 0-004c: __mxt_read_reg: i2c transfer failed (-121)
+>  atmel_mxt_ts 0-004c: mxt_bootloader_read: i2c recv failed (-121)
+>  atmel_mxt_ts 0-004c: Trying alternate bootloader address
+>  atmel_mxt_ts 0-004c: mxt_bootloader_read: i2c recv failed (-121)
+>  atmel_mxt_ts: probe of 0-004c failed with error -121
+>
+> Signed-off-by: Jiada Wang <jiada_wang@mentor.com>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 
-> ---
-> Changes since v6:
->  - no changes
->  MAINTAINERS | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index cc1e6a5ee6e6..b59b7877258c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15336,16 +15336,20 @@ F:	drivers/gpio/gpio-bd71828.c
->  F:	drivers/mfd/rohm-bd70528.c
->  F:	drivers/mfd/rohm-bd71828.c
->  F:	drivers/mfd/rohm-bd718x7.c
-> +F:	drivers/mfd/rohm-bd9576.c
->  F:	drivers/power/supply/bd70528-charger.c
->  F:	drivers/regulator/bd70528-regulator.c
->  F:	drivers/regulator/bd71828-regulator.c
->  F:	drivers/regulator/bd718x7-regulator.c
-> +F:	drivers/regulator/bd9576-regulator.c
->  F:	drivers/regulator/rohm-regulator.c
->  F:	drivers/rtc/rtc-bd70528.c
->  F:	drivers/watchdog/bd70528_wdt.c
-> +F:	drivers/watchdog/bd9576_wdt.c
->  F:	include/linux/mfd/rohm-bd70528.h
->  F:	include/linux/mfd/rohm-bd71828.h
->  F:	include/linux/mfd/rohm-bd718x7.h
-> +F:	include/linux/mfd/rohm-bd957x.h
->  F:	include/linux/mfd/rohm-generic.h
->  F:	include/linux/mfd/rohm-shared.h
->  
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
