@@ -2,163 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19B1A301385
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 07:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E767D301395
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jan 2021 07:27:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725776AbhAWGKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 01:10:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56960 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725730AbhAWGKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jan 2021 01:10:12 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6EEC06174A;
-        Fri, 22 Jan 2021 22:09:32 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id h192so8675990oib.1;
-        Fri, 22 Jan 2021 22:09:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/mjmVI5gF3/N0cEnj1sHAD/0LAdxcCppsyC3PEGIIMY=;
-        b=FtSdM/UmqHH/Te7JtIIR+Ni35pVa8buSkobOaLI76OyI0y0fO/WJev6jOCOWok/Pi3
-         /2SHMxBHruarJ/jMoEk4ujSwqLXZ7202LKQ2fRdweOSBU3SFEGYQV6Rd45jMfgNUiBMa
-         cer8VJiRrvM4NhRxnsMXSr1SoPXshwhLjTXO3IttlF5bFKvmEruorQrbdqCZdr3YaD54
-         jqBdOSO6Qsldi5lcUdliOSkU9Gtj+hhqz4WJwDwnrHz6hiJEAFxjqUKNobhqQgPvJl0B
-         7nWtpGsP3EzmTiIDIN4nzgSxLFxMK7pT057TE3tVM4Q8GDG3S1SFZvtDy84OTKseD37g
-         EDmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=/mjmVI5gF3/N0cEnj1sHAD/0LAdxcCppsyC3PEGIIMY=;
-        b=UY+RwaQ0DDKLQ8x+NB+QOt1d2YzHzH5ba6iVEzoFxx5gNduoGJagwllv7ufB0CJRqt
-         xEya33ksdx6AVuKCvoKfpn82y0Pj6goPMInusMkS0V5wqtD9CmDOFAA6xRJASc8qzS4B
-         5ApHE7NLWa2wrgOQxR9v566PQaR6ZKQYlFGm7LcGBbVqfs2g/gY59WTSdCYKCw6q3wT3
-         LgEtLWIkSPqB3ERN8y/YcTMw5va1EaQWxzwPkKPK8hEKKtQBxfDBKVZPRFWErnEuJR+m
-         BSeWIS55CdnQ80i2hVBb8M9kHgxWcU3EHVPWWhHsueQMFHSXN7l9H5DGd6KRtGjufSbT
-         Y/JQ==
-X-Gm-Message-State: AOAM532aXZ988JNwM9/sXvwbUk0fBgrsJNEYvnTlaAA5bYpEWKZX3qhk
-        RAXoQDuZaJXlBo5mjfb0syWP5u3ysaQ=
-X-Google-Smtp-Source: ABdhPJzeXpQlC4Y4xJ1MTrbaIqxWqJEvjFpuzoSQ89HzCZvNxYIwfHIjrNog3bMVCkNWMjZpXMxmBA==
-X-Received: by 2002:aca:911:: with SMTP id 17mr5463867oij.162.1611382171408;
-        Fri, 22 Jan 2021 22:09:31 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l70sm2190717oih.56.2021.01.22.22.09.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jan 2021 22:09:30 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v2 5/6] hwmon: (lm70) Avoid undefined reference to match
- table
-To:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-hwmon@vger.kernel.org
-References: <20210123034428.2841052-1-swboyd@chromium.org>
- <20210123034428.2841052-6-swboyd@chromium.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <ef06de66-5f8b-29a6-083d-dc8a0fcf3eb8@roeck-us.net>
-Date:   Fri, 22 Jan 2021 22:09:28 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1725940AbhAWG1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jan 2021 01:27:37 -0500
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:40837 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725298AbhAWG1g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 23 Jan 2021 01:27:36 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 80D835C0083;
+        Sat, 23 Jan 2021 01:26:29 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Sat, 23 Jan 2021 01:26:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=U
+        z8v846aA9eOU/XvvproYzUdaenbuCP7/Eyc2BOJtnA=; b=fDhKFD/C4QCWPQSvj
+        yPezBFdQrsCgTT2lWS8uWaqW6IsXVVTnSzWC9/edS7J8JD049oneIYiV+X5ztSTa
+        qxSlPaGIdWhf1DFBtVZhNSfitVrdUDm6y7XzJ6hJEa3wO42AVvh0hncoMPsNO5Ml
+        FbJHQ0M758PtXVPyenjn01gpsILjVMJSEremE2nDHr5C8sYqak/ZS7LLUn7Z4P+t
+        W8sGxYBpyv4h0PdFcY00D88FEVw7SuSEmkHossJ67L8/oh+9b7aUj7kvzJulMazF
+        z/dc5LBBI0hNskqLWSR5EH/Cu3k9k2HIlQI7nYl/GoC7Gvsblv/dPDPMUrgD3o2c
+        7C8SQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=Uz8v846aA9eOU/XvvproYzUdaenbuCP7/Eyc2BOJt
+        nA=; b=nUVNdlRAtH0t9inZtYXzFtxT/8X8UwJqROXqMX4D2E25TsM8NNPIcBGPc
+        wweYTkKsFxE/r6A4ufixPawRJ9gZxozhap4I0CQNDu4SQofhHbFVLvt4RAA9B8Lu
+        toy4IPlEXWfBJdOzWkFTH99VAI6vG9T83iR6W/YfTYZLCOgjhQTMgtlfWTeWmWWE
+        k1iDu87TKdOxO+9XHAjySwh378ar5ju9tUMUdCYYTjapszPQuBL8eecx8o5LIsb+
+        o/ZmBQ5saSjCGjOTtXDEjYE/gd93YuSRUsatI3wfmmKTh8ssys4MTwlaN3NPY0jc
+        QVq5vPfjUXZKGSsjeaDZJF1z/VO7g==
+X-ME-Sender: <xms:k8ELYJML65koE-7K-ekWTecBOkkASwd9y1h1mBco_6qybIBETpoGzw>
+    <xme:k8ELYL8b9CJAAFvCKhjK_geZVhP2-2e1OIqaB4R-E7oT0heRQ1F47kThjUyg2oIop
+    4ADA616JqOOA_aYqg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudejgdelgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeehnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpeehjeeghfdufeefteelieeggfehteevieetueffhefhffekuedvffev
+    ffevtedufeenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
+    ugdrohhrgh
+X-ME-Proxy: <xmx:k8ELYITCUWBmNUSqRBjumnoEAiykKr4FOf0Y8p-YVa-Kg-95L-E2TQ>
+    <xmx:k8ELYFvWJYajeULLyZvb7VKsOlsi_woPVIRw3-dC5PolISpLUEqd1w>
+    <xmx:k8ELYBfL2d7HKN--uDrLmbVMCbFa2vmKtY1Q5OetXDS0QI0qgchGSw>
+    <xmx:lcELYLsTKO0wx46ZScD2CqjoEYGvJkDAhualqPzi2R3E2_b5O7eBqg>
+Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 790D8108005B;
+        Sat, 23 Jan 2021 01:26:27 -0500 (EST)
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Ondrej Jirman <megous@megous.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210118055040.21910-1-samuel@sholland.org>
+ <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
+ <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org>
+ <20210122104705.bo2x22ef56hdj26q@gilmour>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v5 00/10] sunxi: Support IRQ wakeup from deep sleep
+Message-ID: <52b9c9bb-ff75-d1e6-e198-0d388d1c6d73@sholland.org>
+Date:   Sat, 23 Jan 2021 00:26:26 -0600
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-In-Reply-To: <20210123034428.2841052-6-swboyd@chromium.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210122104705.bo2x22ef56hdj26q@gilmour>
+Content-Type: text/plain; charset=windows-1252
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/22/21 7:44 PM, Stephen Boyd wrote:
-> We're going to remove of_match_ptr() from the definition of
-> of_match_device() when CONFIG_OF=n. This way we can always be certain
-> that of_match_device() acts the same when CONFIG_OF is set and when it
-> isn't. Add of_match_ptr() here so that this doesn't break when that
-> change is made to the of_match_device() API.
+On 1/22/21 4:47 AM, Maxime Ripard wrote:
+> On Thu, Jan 21, 2021 at 07:33:54PM -0600, Samuel Holland wrote:
+>> On 1/21/21 2:35 PM, Marc Zyngier wrote:
+>>> On Sun, 17 Jan 2021 23:50:30 -0600, Samuel Holland wrote:
+>>>> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
+>>>> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC handles
+>>>> the external NMI pin, and provides 32+ IRQs to the ARISC. The first 16
+>>>> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
+>>>> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
+>>>>
+>>>> This series replaces the existing chained irqchip driver that could only
+>>>> control the NMI, with a stacked irqchip driver that also provides wakeup
+>>>> capability for those multiplexed SPI IRQs. The idea is to preconfigure
+>>>> the ARISC's IRQ controller, and then the ARISC firmware knows to wake up
+>>>> as soon as it receives an IRQ. It can also decide how deep it can
+>>>> suspend based on the enabled wakeup IRQs.
+>>>>
+>>>> [...]
+>>>
+>>> Applied to irq/irqchip-5.12, thanks!
+>>>
+>>> [01/10] dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
+>>>         commit: ad6b47cdef760410311f41876b21eb0c6fda4717
+>>> [02/10] dt-bindings: irq: sun6i-r: Add a compatible for the H3
+>>>         commit: 6436eb4417094ea3308b33d8392fc02a1068dc78
+>>> [03/10] irqchip/sun6i-r: Use a stacked irqchip driver
+>>>         commit: 4e34614636b31747b190488240a95647c227021f
+>>> [04/10] irqchip/sun6i-r: Add wakeup support
+>>>         commit: 7ab365f6cd6de1e2b0cb1e1e3873dbf68e6f1003
+>>>
+>>> Please route the dts patches via the soc tree. Also, I had to
+>>> manually fix the first patch as it wouldn't apply on top of
+>>> 5.11-rc4 (which tree has it been diffed against?). Please
+>>> check that the resolution is correct.
+>>
+>> This series was based on sunxi/for-next, which contains commit
+>> 752b0aac99c7 ("dt-bindings: irq: sun7i-nmi: Add binding documentation
+>> for the V3s NMI")[1].
 > 
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> Acked-by: Guenter Roeck <linux@roeck-us.net>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: <linux-hwmon@vger.kernel.org>
-> ---
-> 
-> Please ack so Rob can apply.
-> 
+> I assume merging the DT bits alone would break things? If so, I guess we
+> can wait for 5.12 to be released before merging it
 
-This patch already has my Acked-by: above.
+Patch 5 does not depend on the new driver, so it could be merged at any
+time. Yes, the remaining patches would break things if merged without
+the driver.
 
-Guenter
-
->  drivers/hwmon/lm70.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/hwmon/lm70.c b/drivers/hwmon/lm70.c
-> index ae2b84263a44..e3153ae80634 100644
-> --- a/drivers/hwmon/lm70.c
-> +++ b/drivers/hwmon/lm70.c
-> @@ -178,7 +178,7 @@ static int lm70_probe(struct spi_device *spi)
->  	struct lm70 *p_lm70;
->  	int chip;
->  
-> -	of_match = of_match_device(lm70_of_ids, &spi->dev);
-> +	of_match = of_match_device(of_match_ptr(lm70_of_ids), &spi->dev);
->  	if (of_match)
->  		chip = (int)(uintptr_t)of_match->data;
->  	else {
-> 
-
+Cheers,
+Samuel
