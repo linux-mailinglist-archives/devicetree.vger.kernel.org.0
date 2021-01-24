@@ -2,102 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 273AA301C6F
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 15:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B79301CA8
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 15:21:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726164AbhAXN54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 08:57:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726127AbhAXN5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 08:57:39 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8312EC06178B;
-        Sun, 24 Jan 2021 05:56:52 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id by1so14239249ejc.0;
-        Sun, 24 Jan 2021 05:56:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aTj+3LRHlPTMkRPTqwqbdcRuQaEmUjPAcJHSK59V7eE=;
-        b=TgIPmOlIH01hQEsYLswEntf3+gTcgZv0o43D6l8n6fjBzRsxFtebQN4mutAT2ZHwW+
-         coLaDTGkQE8YRFX8xcQwCA6Jf83L1nrgnvp/G5UY/nF87hC2cUddRDMxSA1es0qtYJys
-         laSM/3ov9ihJj6ulsPig+YCLqcgxHqMY7MP0t/lj+UKdGPj1j8K4Wz/TBx7p9e4fOq4A
-         Zapj2UDbISzXTprXn2nWqYKVXRn3PEBI9aBsDnwyc9d+mkAigGRFDXjZrdxjD948ZkiY
-         SNAWEXxyT3xyPRj9pCpTaxQTXTkEkqToUFAiE98IS1o8Aum1zaZX8s22BYN7WL0lNzW4
-         BiAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aTj+3LRHlPTMkRPTqwqbdcRuQaEmUjPAcJHSK59V7eE=;
-        b=Xec8DEMRqnDpSknsjBqfQcre13yJc+z+soU+yyERPvsTJ91FkjveS6jZegF1gjgrdU
-         IrwRiVw32A0++2gCjL6GBpOAEa1uW1llLQUD1iHlXaZTRrViW/uPhoBVmGg/Nu/9Z/H9
-         0v3Dxjl4uk7HNeOAqNqYvPuw8Mn+T4IKk53DqjwHowdXRn7oqvtnfhw+bzn3G+cIcbkc
-         4Q3tfYtQUlPtJVTRD63Ta9gqwbUxKIkNwlnz5L6+d0xVF+sbcIvNRGb0TVN7uW+2zono
-         S0JtuyJdyClFvOsnnTFRWcwb+AOVJKqzkoJonWZuozsl8WMZNvFI+BQzCNnEN0z00l5E
-         Ob2A==
-X-Gm-Message-State: AOAM533pnX1tIYCdNjVrVkJFeyKJ6wPzAnRtm9jrG5l+1S3eaYhJNUCI
-        1d/7dRZCwBGqpyOpG5ybaHY=
-X-Google-Smtp-Source: ABdhPJzlSsvl6ptXhJwb/5k0iM8/bKA8Bici88RxgfbYGtIFRg6cWhKVTw3+eR0aTA9/4F3ol2glGQ==
-X-Received: by 2002:a17:906:1741:: with SMTP id d1mr773792eje.182.1611496611284;
-        Sun, 24 Jan 2021 05:56:51 -0800 (PST)
-Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
-        by smtp.gmail.com with ESMTPSA id k27sm6965635eje.67.2021.01.24.05.56.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Jan 2021 05:56:50 -0800 (PST)
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Iskren Chernev <iskren.chernev@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Samuel Pascua <pascua.samuel.14@gmail.com>,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>
-Subject: [PATCH 4/4] ARM: dts: qcom: msm8974-klte: Mark essential regulators
-Date:   Sun, 24 Jan 2021 15:56:10 +0200
-Message-Id: <20210124135610.1779295-4-iskren.chernev@gmail.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210124135610.1779295-1-iskren.chernev@gmail.com>
-References: <20210124135610.1779295-1-iskren.chernev@gmail.com>
+        id S1725779AbhAXOV2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 24 Jan 2021 09:21:28 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54360 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725440AbhAXOVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 Jan 2021 09:21:22 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E616D22D6E;
+        Sun, 24 Jan 2021 14:20:39 +0000 (UTC)
+Date:   Sun, 24 Jan 2021 14:20:36 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
+Cc:     <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: Re: [PATCH 0/4] Fix/Improve sync clock mode handling
+Message-ID: <20210124142036.44f7d58f@archlinux>
+In-Reply-To: <20210121114954.64156-1-nuno.sa@analog.com>
+References: <20210121114954.64156-1-nuno.sa@analog.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-s1 and l12 regulators are used for the memory and cache on the Samsung
-S5 (klte). If they are turned off the phone shuts down. So mark them as
-always-on to prevent that from happening.
+On Thu, 21 Jan 2021 12:49:50 +0100
+Nuno Sá <nuno.sa@analog.com> wrote:
 
-Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-Tested-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
----
- arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts | 2 ++
- 1 file changed, 2 insertions(+)
+> The first patch in this series is just a simple helper to lock/unlock
+> the device. Having these helpers make the code slightly neater (IMHO).
+> 
+> The following patches introduces changes in the sampling frequency
+> calculation when sync scale/pps modes are used. First, it's important
+> to understand the purpose of this mode and how it should be used. Let's
+> say our part has an internal rate of 4250 (e.g adis1649x family) and the
+> user wants an output rate of 200SPS. Obviously, we can't use this
+> sampling rate and divide back down to get 200 SPS with decimation on.
+> Hence, we can use this mode to give an input clock of 1HZ, scale it to
+> something like 4200 or 4000 SPS and then use the decimation filter to get
+> the exact desired 200SPS. There are also some limits that should be
+> taken into account when scaling:
+> 
+>  * For the devices in the adis16475 driver:
+>      - Input sync frequency range is 1 to 128 Hz
+>      - Native sample rate: 2 kSPS.  Optimal range: 1900-2100 sps
+> 
+>  * For the adis1649x family (adis16480 driver):
+>     - Input sync frequency range is 1 to 128 Hz
+>     - Native sample rate: 4.25 kSPS.  Optimal range: 4000-4250 sps 
+> 
+> I'm not 100% convinced on how to handle the optimal minimum. For now,
+> I'm just throwing a warning saying we might get into trouble if we get a
+> value lower than that. I was also tempted to just return -EINVAL or
+> clamp the value. However, I know that there are ADI customers that
+> (for some reason) are using a sampling rate lower than the minimum
+> advised.
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
-index 19c96b47a5dbd..27323403aa71d 100644
---- a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
-@@ -30,6 +30,7 @@ pma8084-regulators {
- 					pma8084_s1: s1 {
- 						regulator-min-microvolt = <675000>;
- 						regulator-max-microvolt = <1050000>;
-+						regulator-always-on;
- 					};
- 
- 					pma8084_s2: s2 {
-@@ -115,6 +116,7 @@ pma8084_l11: l11 {
- 					pma8084_l12: l12 {
- 						regulator-min-microvolt = <1800000>;
- 						regulator-max-microvolt = <1800000>;
-+						regulator-always-on;
- 					};
- 
- 					pma8084_l13: l13 {
--- 
-2.30.0
+So the opening question I'd have here is how critical is the actual
+userspace sampling rate to your users?   Often they don't mind
+getting a little more data than they asked for (say 200.5Hz when asking
+for 200) and can always read back the attribute after writing it to
+discover this has happened. 
+
+As such, once you've discovered that value doesn't have an exact
+match, perhaps tweak the output data rate until it fits nicely?
+A bit of quick investigation suggests (by my wife who happened
+to be sat across the room) suggests that you have a hideous set
+of local minima so your best bet is to brute force search
+(not that bad and we don't expect to change this a lot!)
+
+> 
+> That said, the patch for the adis16480 driver is a fix as this mode was
+> being wrongly handled. There should not be a "separation" between using
+> the sync_scale and the dec_rate registers. The way things were being done,
+> we could easily get into a situation where the part could be running with
+> an internal rate way lower than the optimal minimum.
+> 
+> For the adis16475 drivers, things were not really wrong. They were just
+> not optimal as we were forcing users to specify the IMU scaled internal
+> rate once in the devicetree. Calculating things at runtime gives much
+> more flexibility to choose the output rate.
+> 
+> Nuno Sá (4):
+>   iio: adis: add helpers for locking
+>   iio: adis16480: fix pps mode sampling frequency math
+>   iio: adis16475: improve sync scale mode handling
+>   dt-bindings: adis16475: remove property
+> 
+>  .../bindings/iio/imu/adi,adis16475.yaml       |   9 --
+>  drivers/iio/imu/adis16475.c                   | 110 ++++++++++++----
+>  drivers/iio/imu/adis16480.c                   | 120 +++++++++++++-----
+>  include/linux/iio/imu/adis.h                  |  10 ++
+>  4 files changed, 178 insertions(+), 71 deletions(-)
+> 
 
