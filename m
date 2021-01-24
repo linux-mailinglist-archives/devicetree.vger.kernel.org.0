@@ -2,89 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29070301F40
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 23:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE96301F47
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 23:35:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726103AbhAXWcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 17:32:51 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:34988 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725968AbhAXWcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 17:32:50 -0500
-Received: by mail-ot1-f44.google.com with SMTP id 36so11007624otp.2;
-        Sun, 24 Jan 2021 14:32:34 -0800 (PST)
+        id S1726678AbhAXWew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 17:34:52 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:43041 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726648AbhAXWel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 17:34:41 -0500
+Received: by mail-ot1-f54.google.com with SMTP id v1so10992061ott.10;
+        Sun, 24 Jan 2021 14:34:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=m6wHg4CcRH88zHTgFz/tvg+1KvfQYJ5bN5Bm8kD7yRg=;
-        b=Jxm0dmZ4MCBfpbGVqI3++HssjvqNHUtoUrvwnEMmmZqViLVjbrv/X0x2l/BNSWzOrE
-         Hrh/kpC8DSge+3n02BnJQBhh/A2bEzFV9MVy+2MAxqbgqbP87x4N4K4LKa/61+T1ATJP
-         ZFzWfUPL+DSDMT1WRuMNXKv/2y6MwjGDYhO3jDc8+Hjy350pwiPSVXbZIWAoAwefcFqA
-         TIiBFF4txgyhuFZ8kmWauQWn5/rByOvANA46AvlK6mwdicJmNzFKqWnm06KK3cVby7f9
-         tZBCxv5ghhJMjo2iZTpyzBCrrJHwUhIfu1Y5tSeKdGazzFM+kUlg9T9QM7yc/bm3oItU
-         dgWA==
-X-Gm-Message-State: AOAM533txCDrSP1mpMeQ3S9+OYJCyYURtUdSwEkCcJCafouRycVLNU1b
-        rNOziCQY/XEGhS2DEoe12A==
-X-Google-Smtp-Source: ABdhPJz9WA7Y/UPNnKKLntkH/tFcind9g1csMhNYkPPBXbcW+heCsZ0Y6nK7bCtXl9o3899XN/yFzg==
-X-Received: by 2002:a9d:67d5:: with SMTP id c21mr2912287otn.247.1611527529363;
-        Sun, 24 Jan 2021 14:32:09 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=sUxV2b7wGawYEC5FIv++pO5NHfyG0Mp9G5syyI9rZCg=;
+        b=TKe74aFSYylTZ19okTaYPbklIHhx4T+RyTTUTev5Ro88qIqhEaWhGv3Jz2/lt9nWVp
+         es1g+Ip5y6ArIv/hX9T83d00zE3rK8wduA8Ph5P3QbrX5sY79x4T5RnAfF8up8ve6g4O
+         R9n/wOrmYnm1j4tCtBYmTKQYTgjQ2dyU1dPYkJDtY7i5WVPwe4cGbCrb5M7N26vQ+iPA
+         SnjGPcP8pdDHvfTkXMSMSBzVKJ4IhfJ7Se8op7De7vzbbPVLGlZUn7lErrNPn+3k8H+b
+         jcOuv8AyHY20vlg0st78Mgxq3N8wtasfqoeKBtFyzvs8YYqWZ8BHWERjDS+ybn4xj3II
+         nrGw==
+X-Gm-Message-State: AOAM532Io4DsAdYJX3Qrl2j/RPNhBCyZORsHJnRgCpEQOS5DzUP3g2aA
+        T3GhcbwDDqywT0rLA+Fatg==
+X-Google-Smtp-Source: ABdhPJxqG8WwSxKIMV6aju0QMF8agto2b2/nh8Cn7sFNdg46AD/44AxS+S0LjOBlip94axow/YXSqA==
+X-Received: by 2002:a9d:6d91:: with SMTP id x17mr27596otp.16.1611527640710;
+        Sun, 24 Jan 2021 14:34:00 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a52sm3185158otc.46.2021.01.24.14.32.07
+        by smtp.gmail.com with ESMTPSA id z10sm3125666otk.8.2021.01.24.14.33.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Jan 2021 14:32:08 -0800 (PST)
-Received: (nullmailer pid 2737276 invoked by uid 1000);
-        Sun, 24 Jan 2021 22:32:06 -0000
-Date:   Sun, 24 Jan 2021 16:32:06 -0600
+        Sun, 24 Jan 2021 14:33:59 -0800 (PST)
+Received: (nullmailer pid 2741591 invoked by uid 1000);
+        Sun, 24 Jan 2021 22:33:56 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     tzimmermann@suse.de, shawnguo@kernel.org, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, guido.gunther@puri.sm,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        laurentiu.palcu@oss.nxp.com, devicetree@vger.kernel.org,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 1/6] dt-bindings: display: imx: Add i.MX8qxp/qm DPU
- binding
-Message-ID: <20210124223206.GA2737091@robh.at.kernel.org>
-References: <1611213263-7245-1-git-send-email-victor.liu@nxp.com>
- <1611213263-7245-2-git-send-email-victor.liu@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1611213263-7245-2-git-send-email-victor.liu@nxp.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        od@zcrc.me, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+        =?utf-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+In-Reply-To: <20210123141825.15481-1-paul@crapouillou.net>
+References: <20210123141825.15481-1-paul@crapouillou.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings/phy: ingenic: Add compatibles for JZ4760(B) SoCs
+Date:   Sun, 24 Jan 2021 16:33:56 -0600
+Message-Id: <1611527636.618832.2741590.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Jan 2021 15:14:18 +0800, Liu Ying wrote:
-> This patch adds bindings for i.MX8qxp/qm Display Processing Unit.
+On Sat, 23 Jan 2021 14:18:24 +0000, Paul Cercueil wrote:
+> Add the ingenic,jz4760-phy and ingenic,jz4760b-phy compatible strings,
+> and make the ingenic,jz4770-phy compatible string require
+> ingenic,jz4760-phy as a fallback, since both work the same, and the
+> JZ4760 SoC is older.
 > 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
-> v5->v6:
-> * Use graph schema. So, drop Rob's R-b tag as review is needed.
 > 
-> v4->v5:
-> * No change.
+> Notes:
+>     v2: Fix indentation
 > 
-> v3->v4:
-> * Improve compatible property by using enum instead of oneOf+const. (Rob)
-> * Add Rob's R-b tag.
-> 
-> v2->v3:
-> * No change.
-> 
-> v1->v2:
-> * Fix yamllint warnings.
-> * Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm, as the
->   display controller subsystem spec does say that they exist.
-> * Use new dt binding way to add clocks in the example.
-> * Trivial tweaks for the example.
-> 
->  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml      | 387 +++++++++++++++++++++
->  1 file changed, 387 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+>  .../bindings/phy/ingenic,phy-usb.yaml         | 22 ++++++++++++-------
+>  1 file changed, 14 insertions(+), 8 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/ingenic,cgu.example.dt.yaml: clock-controller@10000000: usb-phy@3c:compatible: 'oneOf' conditional failed, one must be fixed:
+	['ingenic,jz4770-phy'] is too short
+	'ingenic,jz4770-phy' is not one of ['ingenic,jz4760-phy', 'ingenic,jz4775-phy', 'ingenic,jz4780-phy', 'ingenic,x1000-phy', 'ingenic,x1830-phy', 'ingenic,x2000-phy']
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/ingenic,cgu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/ingenic,cgu.example.dt.yaml: usb-phy@3c: compatible: 'oneOf' conditional failed, one must be fixed:
+	['ingenic,jz4770-phy'] is too short
+	'ingenic,jz4770-phy' is not one of ['ingenic,jz4760-phy', 'ingenic,jz4775-phy', 'ingenic,jz4780-phy', 'ingenic,x1000-phy', 'ingenic,x1830-phy', 'ingenic,x2000-phy']
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+
+See https://patchwork.ozlabs.org/patch/1430732
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
