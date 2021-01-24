@@ -2,96 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A6A301CE9
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 16:08:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4F1D301CF4
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 16:10:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725910AbhAXPIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 10:08:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55542 "EHLO
+        id S1726365AbhAXPJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 10:09:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725860AbhAXPID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 10:08:03 -0500
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D0F6C061573
-        for <devicetree@vger.kernel.org>; Sun, 24 Jan 2021 07:07:22 -0800 (PST)
-Received: from [192.168.1.101] (abaf224.neoplus.adsl.tpnet.pl [83.6.169.224])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id AE0EE3EC75;
-        Sun, 24 Jan 2021 16:07:20 +0100 (CET)
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8916-longcheer-l8910: Add
- imu/magnetometer
-To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, stephan@gerhold.net,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210124135409.5473-1-jonathan.albrieux@gmail.com>
- <20210124135409.5473-4-jonathan.albrieux@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <e5a65871-08bb-7da9-c298-921395ebf1f8@somainline.org>
-Date:   Sun, 24 Jan 2021 16:07:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        with ESMTP id S1726041AbhAXPJ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 10:09:27 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246FBC06174A;
+        Sun, 24 Jan 2021 07:08:47 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id m187so8392633wme.2;
+        Sun, 24 Jan 2021 07:08:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+7mf2JB6YFkZrTT9eOh8fpRwRlqBA16q//wOPgh3f9w=;
+        b=LNH33GfYNRs4v32KhZGrq2haAa6pCHeZg293Ea8BzUSeu2hwzylO0rlVHWGCqMZ/j3
+         EPUluEZFI/6Q4dDGV1e0U8E/QhIAPMAdnK6Z/Daj3EVB2ehlkPtaNr5FRPCO2daceX0p
+         lkqMZwQpYcM49zfxfMHsSXEzNi0F7FXuAnefhkBt3ZEs0JaT9jRTX9TN40TV+/r+z704
+         14wYxuNXoiRSuUkhRNufVbulq7pnCmclSKmNZq5Hi06oilzz4fZq1z/FpdOHbQcCVMG1
+         OwplXYHCQA+OgtjC0r47gZmpYpcAD14rUFMhRBJpE2W4ICz+D9ljxCUtBm7Y/ujvX45y
+         eL5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+7mf2JB6YFkZrTT9eOh8fpRwRlqBA16q//wOPgh3f9w=;
+        b=GPUg3ul2att9MPIC1Q8GG8kEv+zGsWxB4mbu4JgXQ6P7BHqE7c9NfY4CZEYS7HBHuS
+         gO8QpVV0uG3EWs61B3jBA8iyXNHoJoWb+BQtsjM3Ml+07Ug12oVt6S2AyrEXC0p0rVq2
+         RfrxPRr02FSMRNTOS3lIz09/30o/rZPqXtSsV7DQJXSYb4d61UddanvQB0LKvuxvHzGO
+         QCJwNas5gkyiMTFqzUVQMuCauMHELChEPgS2KBM7b+xievDEDGXGgONarUuuXYdCNjgT
+         8MShSL6LnyshFq/aKF2Zm48jvxAQkZREWmBGD6f5/aWuH4QAyB8mrS4rztkO7yG3cD9O
+         e4GA==
+X-Gm-Message-State: AOAM533pqaRJeksb5IvD/e51pjuhJQ9jLz5IN/hbroIn9jKZj9XcjEgZ
+        U9DAchkbhIETHyB85UdDPvU=
+X-Google-Smtp-Source: ABdhPJyAmReBbU3ln/hSsIhpgah/YIgPZ86g83LwMM0taGgJ5gMNjLPV5MPbFmcE8OLbiKpTQw1LeA==
+X-Received: by 2002:a05:600c:4417:: with SMTP id u23mr2999987wmn.100.1611500925353;
+        Sun, 24 Jan 2021 07:08:45 -0800 (PST)
+Received: from adgra-XPS-15-9570.home (2a01cb0008bd2700e58e9e649f9020b2.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:e58e:9e64:9f90:20b2])
+        by smtp.gmail.com with ESMTPSA id m18sm244608wrx.17.2021.01.24.07.08.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 Jan 2021 07:08:44 -0800 (PST)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        a.hajda@samsung.com, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH 0/2] Add support of Lontium lt8912 MIPI to HDMI bridge
+Date:   Sun, 24 Jan 2021 16:08:32 +0100
+Message-Id: <20210124150835.1522899-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210124135409.5473-4-jonathan.albrieux@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
+this patch set adds the support of the Lontium lt8912 MIPI to HDMI
+bridge in the kernel.
 
-> +&blsp_i2c3 {
-> +	status = "okay";
-> +
-> +	imu@68 {
-> +		compatible = "bosch,bmi160";
-> +		reg = <0x68>;
-> +
-> +		vdd-supply = <&pm8916_l17>;
-> +		vddio-supply = <&pm8916_l6>;
-> +
-> +		mount-matrix = "0", "1", "0",
-> +			      "-1", "0", "0",
-> +			       "0", "0", "1";
-> +	};
-> +
-> +	magnetometer@d {
-> +		compatible = "asahi-kasei,ak09911";
-> +		reg = <0x0d>;
-> +
-> +		vdd-supply = <&pm8916_l17>;
-> +		vid-supply = <&pm8916_l6>;
-> +
-> +		reset-gpios = <&msmgpio 111 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mag_reset_default>;
-> +	};
-> +};
+It's only support the video part, not the audio part yet
+since I don't have the datasheet of this component.
+I get the current i2c configuration from Digi and
+Boundary drivers.
+Developed using the DB_DSIHD board from BoundaryDevices.
 
-Please sort I2C devices by their address.
+Thanks,
+Adrien Grassein
 
+Adrien Grassein (2):
+  dt-bindings: display: bridge: Add documentation for LT8912
+  drm/bridge: Introduce LT8912 DSI to HDMI bridge
 
->  	};
->  
-> +	mag_reset_default: mag-reset-default {
-> +		pins = "gpio111";
-> +		function = "gpio";
-> +
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
+ .../display/bridge/lontium,lt8912.yaml        |  92 +++
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/bridge/Kconfig                |  14 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/lontium-lt8912.c       | 749 ++++++++++++++++++
+ 5 files changed, 862 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt8912.yaml
+ create mode 100644 drivers/gpu/drm/bridge/lontium-lt8912.c
 
-Please add this after gpio110 to keep it sorted gpio-number-wise.
-
-
-Konrad
+-- 
+2.25.1
 
