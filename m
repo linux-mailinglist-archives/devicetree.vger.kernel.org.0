@@ -2,57 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA31301EE1
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 22:13:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D699301EDE
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 22:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725986AbhAXVNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 16:13:09 -0500
-Received: from antares.kleine-koenig.org ([94.130.110.236]:46192 "EHLO
-        antares.kleine-koenig.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725968AbhAXVNI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 16:13:08 -0500
-X-Greylist: delayed 536 seconds by postgrey-1.27 at vger.kernel.org; Sun, 24 Jan 2021 16:13:08 EST
-Received: by antares.kleine-koenig.org (Postfix, from userid 1000)
-        id CDBA7ADC8EE; Sun, 24 Jan 2021 22:03:30 +0100 (CET)
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Aditya Prayoga <aditya@kobol.io>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Rely on SoC external pull up on pmic-int-l
-Date:   Sun, 24 Jan 2021 22:03:28 +0100
-Message-Id: <20210124210328.611707-2-uwe@kleine-koenig.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210124210328.611707-1-uwe@kleine-koenig.org>
-References: <20210124210328.611707-1-uwe@kleine-koenig.org>
+        id S1726501AbhAXVG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 16:06:26 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:40856 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726493AbhAXVGZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 16:06:25 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id BBA871C0B78; Sun, 24 Jan 2021 22:05:27 +0100 (CET)
+Date:   Sun, 24 Jan 2021 22:05:27 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Iskren Chernev <iskren.chernev@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Samuel Pascua <pascua.samuel.14@gmail.com>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        Brian Masney <masneyb@onstation.org>
+Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974: add gpu support
+Message-ID: <20210124210527.GB27676@amd>
+References: <20210124135610.1779295-1-iskren.chernev@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="5/uDoXvLw7AC5HRs"
+Content-Disposition: inline
+In-Reply-To: <20210124135610.1779295-1-iskren.chernev@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the schematic there is an external pull up, so there is no
-need to enable the internal one additionally. Using no pull up matches
-the vendor device tree.
 
-Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
----
- arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--5/uDoXvLw7AC5HRs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-index d6446c32b91e..1e880a0a3f69 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-@@ -331,7 +331,7 @@ sys_red_led_on: sys-red-led-on {
- 
- 	pmic {
- 		pmic_int_l: pmic-int-l {
--			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
-+			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
- 
--- 
-2.29.2
+On Sun 2021-01-24 15:56:07, Iskren Chernev wrote:
+> From: Brian Masney <masneyb@onstation.org>
+>=20
+> Add support for the a3xx GPU
 
+This is phone, right? Can I ask phone-devel@vger.kernel.org to be
+cc-ed?
+
+Thank you,
+							Pavel
+						=09
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--5/uDoXvLw7AC5HRs
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAmAN4RcACgkQMOfwapXb+vJXJQCdEvHfi1ndvzZuPs2feAnKvD+r
+2+cAmgN2iD+5OeFjASmherXWndApKwEg
+=GIeC
+-----END PGP SIGNATURE-----
+
+--5/uDoXvLw7AC5HRs--
