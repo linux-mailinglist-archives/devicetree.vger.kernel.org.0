@@ -2,126 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36D6C30198C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 05:57:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 572C6301A26
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 07:18:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726408AbhAXE5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jan 2021 23:57:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726367AbhAXE5o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 23 Jan 2021 23:57:44 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8BC0A22C9F;
-        Sun, 24 Jan 2021 04:57:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611464223;
-        bh=+Dv2W7xUrIowE8lzvyg7LMXioDkpmKs4Tk/Bc5dD3ac=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=prxBeikQt0KHNBec0XCwiIrxyhDRs5m11VZV4O+vUx9PV25en2+tYSzhelYr2OUdB
-         1h3PXl5DgRhk7QeQCqoO4/4k4N90VQErSruYiXtZVnp7ltNt8qn9Un+bi9BzNr/G93
-         mlM/GrTlw39LKBbsza6Akhjt8kCE20GnK+9rzIWRFR4X7blMBdfmgOdJCNGxhVvfEP
-         NbbwJnLPXKa/v+Vb2XcgwdiOs05z9QduAFWc+tvgjY0XApV3g//X2Hwf1rhGgBFEBF
-         7v1QOOlghhLaT7xhldqbmG0/3SdTABCx1Jtm9XoAS/l0Wnr1TcXHRyQiLuc3yrjSnv
-         6x2UKyZAuaWVA==
-Received: by mail-ed1-f48.google.com with SMTP id g24so11270602edw.9;
-        Sat, 23 Jan 2021 20:57:03 -0800 (PST)
-X-Gm-Message-State: AOAM531E9ozVK1F4cv+Cd6dKjF/auxBlQRuT8OwUuceNA5/t/01vmACu
-        9pvnP1ZsREP6MMQNTN/gVr0j2wYIUtevLpMNjw==
-X-Google-Smtp-Source: ABdhPJwSMImeoz+A6pH+O3PAla2mGiOTiQQ5C2GVf4VJbqxKYrHrXCj9enw3rYIbJLnELNxQr2L4gK4y4v3aX1He228=
-X-Received: by 2002:a50:c3c5:: with SMTP id i5mr67225edf.166.1611464222173;
- Sat, 23 Jan 2021 20:57:02 -0800 (PST)
+        id S1726092AbhAXGRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 01:17:54 -0500
+Received: from guitar.tcltek.co.il ([192.115.133.116]:57288 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725803AbhAXGRx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 Jan 2021 01:17:53 -0500
+Received: from tarshish (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id 29867440205;
+        Sun, 24 Jan 2021 08:17:07 +0200 (IST)
+References: <cover.1610364681.git.baruch@tkos.co.il>
+ <ba8d5d482a98690140e02c3a35506490e0c6ecb4.1610364681.git.baruch@tkos.co.il>
+ <CAMpxmJUGHqJ0C9A84LBF_xzwjbqwFnUnYqFTGBg2CXhKUWd-zg@mail.gmail.com>
+User-agent: mu4e 1.4.14; emacs 27.1
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K?= =?utf-8?Q?=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ralph Sennhauser <ralph.sennhauser@gmail.com>,
+        linux-pwm@vger.kernel.org, linux-gpio <linux-gpio@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        linux-devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v7 1/3] gpio: mvebu: add pwm support for Armada 8K/7K
+In-reply-to: <CAMpxmJUGHqJ0C9A84LBF_xzwjbqwFnUnYqFTGBg2CXhKUWd-zg@mail.gmail.com>
+Date:   Sun, 24 Jan 2021 08:17:06 +0200
+Message-ID: <87a6syeu59.fsf@tarshish>
 MIME-Version: 1.0
-References: <20210122120323.4337-1-chunfeng.yun@mediatek.com>
- <20210122120323.4337-3-chunfeng.yun@mediatek.com> <CAAOTY__O=z-AOo1RCRGfJYuSsXs1cUZgWFaTQz_3W_Tj=CeFBQ@mail.gmail.com>
-In-Reply-To: <CAAOTY__O=z-AOo1RCRGfJYuSsXs1cUZgWFaTQz_3W_Tj=CeFBQ@mail.gmail.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sun, 24 Jan 2021 12:56:51 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8X35EpvLiSOuNdj4dVu7KBocw9mhaKG4TJy24LizvHNg@mail.gmail.com>
-Message-ID: <CAAOTY_8X35EpvLiSOuNdj4dVu7KBocw9mhaKG4TJy24LizvHNg@mail.gmail.com>
-Subject: Re: [PATCH next v2 03/17] dt-bindings: phy: mediatek: dsi-phy: modify
- compatible dependence
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Min Guo <min.guo@mediatek.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Chunfeng:
+Hi Bartosz,
 
-Chun-Kuang Hu <chunkuang.hu@kernel.org> =E6=96=BC 2021=E5=B9=B41=E6=9C=8824=
-=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8812:47=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Hi, Chunfeng:
->
-> Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2021=E5=B9=B41=E6=9C=
-=8822=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=888:04=E5=AF=AB=E9=81=93=
-=EF=BC=9A
-> >
-> > The compatilbe "mediatek,mt7623-mipi-tx" is not supported in driver,
-> > and in fact uses "mediatek,mt2701-mipi-tx" instead on MT7623, so change=
-s
-> > the compatible items to make dependence clear.
->
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Thanks for you review.
 
-Sorry, please remove my reviewed-by tag. We should not define the
-binding document according to the implementation of driver. We define
-the binding document according to the hardware. So the description
-should be like "mt7623-mipi-tx is compatible to mt2701-mipi-tx".
+On Fri, Jan 22 2021, Bartosz Golaszewski wrote:
+> On Mon, Jan 11, 2021 at 12:47 PM Baruch Siach <baruch@tkos.co.il> wrote:
+>> Use the marvell,pwm-offset DT property to store the location of PWM
+>> signal duration registers.
+>>
+>> Since we have more than two GPIO chips per system, we can't use the
+>> alias id to differentiate between them. Use the offset value for that.
+>>
+>> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
 
-Regards,
-Chun-Kuang.
+[...]
 
+>> +       regmap_write(mvchip->regs,
+>> +                    GPIO_BLINK_CNT_SELECT_OFF + mvchip->offset, set);
 >
-> >
-> > Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> > Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > ---
-> > v2: separate two patches suggested by CK
-> > ---
-> >  .../devicetree/bindings/phy/mediatek,dsi-phy.yaml   | 13 ++++++++-----
-> >  1 file changed, 8 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yam=
-l b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> > index 71d4acea1f66..6e4d795f9b02 100644
-> > --- a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> > @@ -19,11 +19,14 @@ properties:
-> >      pattern: "^dsi-phy@[0-9a-f]+$"
-> >
-> >    compatible:
-> > -    enum:
-> > -      - mediatek,mt2701-mipi-tx
-> > -      - mediatek,mt7623-mipi-tx
-> > -      - mediatek,mt8173-mipi-tx
-> > -      - mediatek,mt8183-mipi-tx
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - mediatek,mt7623-mipi-tx
-> > +          - const: mediatek,mt2701-mipi-tx
-> > +      - const: mediatek,mt2701-mipi-tx
-> > +      - const: mediatek,mt8173-mipi-tx
-> > +      - const: mediatek,mt8183-mipi-tx
-> >
-> >    reg:
-> >      maxItems: 1
-> > --
-> > 2.18.0
+> Can you confirm that this line is on purpose and that it should be
+> executed even for chips that use a separate regmap for PWM?
+
+Yes. The blink counter selection register is at the same offset is all
+chips that support the GPIO blink feature. Only the on/off registers
+offset is different.
+
+baruch
+
+-- 
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
