@@ -2,123 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4AA2301D5B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 16:56:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83BDC301D50
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 16:54:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726414AbhAXPzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 10:55:42 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:33832 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726302AbhAXPzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 10:55:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1611503567;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Subject:Sender;
-        bh=hXjBU9JyESKm7fyW04/N/0toB1V1shGmq3XnBTE9hFY=;
-        b=KQYbo+ylFJ8NSvGQKh4dxhRydyJIMgwERaJOadLigjESh0kzcbSu92I4ow3Xdu6IDK
-        ikUpxkhBGOMZvvPoNpnhQS9xVemifPWgXg0S2Mq/Z3jaAlElBpbNsH5LVUXoiiYOawPV
-        +TK48UtXj5YJKtyoCX8feXtx6OijgyYPk1JhGLQ9BPxTmRpTLz1vbD1XFaw0X8EcOM2X
-        VTpsMXRLfF1fmDQ0ONHSczU+r+pFIpdZ6ywAw1noTfttIUBl7Aw4d3Mn6HNRK4K9f1p1
-        2ynf6/pVs+M8zNNDkpexR+zViS12W3ZdUpnaPjgcfnjC1x6/yLDAGWxhmHU9sKUNhGWI
-        IeLQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7IczBa4o="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 47.12.1 DYNA|AUTH)
-        with ESMTPSA id R0a218x0OFqggSU
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Sun, 24 Jan 2021 16:52:42 +0100 (CET)
-Date:   Sun, 24 Jan 2021 16:52:40 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8916: Add blsp_i2c3
-Message-ID: <YA2XyLbrEzN3tvJr@gerhold.net>
-References: <20210124135409.5473-1-jonathan.albrieux@gmail.com>
- <20210124135409.5473-3-jonathan.albrieux@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210124135409.5473-3-jonathan.albrieux@gmail.com>
+        id S1725798AbhAXPy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 10:54:27 -0500
+Received: from mga06.intel.com ([134.134.136.31]:51749 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725268AbhAXPy0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 Jan 2021 10:54:26 -0500
+IronPort-SDR: GeYNa1U3l4/vH4J3Ks964OV0Cs3PmnW0KpWgLrvfmukinjeT0Bnw+6FvfgNbkoxIJdkiUYHvJ7
+ mY46+F+5/yPw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9874"; a="241159668"
+X-IronPort-AV: E=Sophos;i="5.79,371,1602572400"; 
+   d="scan'208";a="241159668"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2021 07:53:45 -0800
+IronPort-SDR: zeGyZZ07kQMxVpXkBsoj5hPqDWpQjtJa28sRXW38txIHetyCak5vsg7R5BX7+roddY7RBDMNg1
+ VahTJJS4pDsw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,371,1602572400"; 
+   d="scan'208";a="409263466"
+Received: from intel-z390-ud.iind.intel.com ([10.223.252.51])
+  by FMSMGA003.fm.intel.com with ESMTP; 24 Jan 2021 07:53:41 -0800
+From:   srikanth.thokala@intel.com
+To:     bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        mallikarjunappa.sangannavar@intel.com, srikanth.thokala@intel.com
+Subject: [PATCH v7 0/2] PCI: keembay: Add support for Intel Keem Bay
+Date:   Mon, 25 Jan 2021 05:17:00 +0530
+Message-Id: <20210124234702.21074-1-srikanth.thokala@intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 24, 2021 at 02:54:06PM +0100, Jonathan Albrieux wrote:
-> MSM8916 has another I2C QUP controller that can be enabled on
-> GPIO 10 and 11.
-> 
-> Add blsp_i2c3 to msm8916.dtsi and disable it by default.
-> 
-> Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+From: Srikanth Thokala <srikanth.thokala@intel.com>
 
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+Hi,
 
-> ---
->  arch/arm64/boot/dts/qcom/msm8916-pins.dtsi | 16 ++++++++++++++++
->  arch/arm64/boot/dts/qcom/msm8916.dtsi      | 15 +++++++++++++++
->  2 files changed, 31 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-pins.dtsi b/arch/arm64/boot/dts/qcom/msm8916-pins.dtsi
-> index 4dc437f13fa5..7dedb91b9930 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-pins.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-pins.dtsi
-> @@ -220,6 +220,22 @@
->  		bias-disable;
->  	};
->  
-> +	i2c3_default: i2c3-default {
-> +		pins = "gpio10", "gpio11";
-> +		function = "blsp_i2c3";
-> +
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	i2c3_sleep: i2c3-sleep {
-> +		pins = "gpio10", "gpio11";
-> +		function = "gpio";
-> +
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
->  	i2c4_default: i2c4-default {
->  		pins = "gpio14", "gpio15";
->  		function = "blsp_i2c4";
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index 402e891a84ab..1045d7e518f3 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -1528,6 +1528,21 @@
->  			status = "disabled";
->  		};
->  
-> +		blsp_i2c3: i2c@78b7000 {
-> +			compatible = "qcom,i2c-qup-v2.2.1";
-> +			reg = <0x078b7000 0x500>;
-> +			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
-> +				 <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>;
-> +			clock-names = "iface", "core";
-> +			pinctrl-names = "default", "sleep";
-> +			pinctrl-0 = <&i2c3_default>;
-> +			pinctrl-1 = <&i2c3_sleep>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->  		blsp_spi3: spi@78b7000 {
->  			compatible = "qcom,spi-qup-v2.2.1";
->  			reg = <0x078b7000 0x500>;
-> -- 
-> 2.17.1
-> 
+The first patch is to document DT bindings for Keem Bay PCIe controller
+for both Root Complex and Endpoint modes.
+
+The second patch is the driver file, a glue driver. Keem Bay PCIe
+controller is based on DesignWare PCIe IP.
+
+The patch was tested with Keem Bay evaluation module board, with A0
+stepping.
+
+Kindly review.
+
+Thanks!
+Srikanth
+
+Changes since v6:
+- Arrange SoB in chronological order.
+- Alphabetized and modified status of entry in MAINTAINERS.
+- Added a comment to specify the PCIe spec section about the delay.
+
+Changes since v5:
+- Rebased to v5.11-rc4.
+- Updated maintainers to add myself in DT binding documents.
+- Fix checkpatch issues.
+
+Changes since v4:
+- Rebased to v5.11-rc1 and retest.
+
+Changes since v3:
+- Add Reviewed-by: Rob Herring <robh@kernel.org> tag in dt-bindings
+  patch.
+- Remove the keembay_pcie_{readl,writel} wrappers. And replace them with
+  readl() and writel().
+- Remove the dead code related to unused irqs.
+- Remove unused definition for unused irqs.
+- In keembay_pcie_ep_init(), initialize enabled interrupts to known state.
+- Rebased to next-20201215.
+
+Changes since v2:
+- In keembay_pcie_probe(), use return keembay_pcie_add_pcie_port(pcie,
+  pdev); statement and remove return 0; at the end of the function.
+
+Changes since v1:
+- In dt-bindings patch.
+  - Fixed indent warning for compatible property.
+  - Rename interrupt-names to pcie, pcie_ev, pcie_err and
+    pcie_mem_access, similar to the name used in datasheet.
+  - Remove device_type, #address-cells and #size-cells property.
+  - Remove num-viewport, num-ib-windows and num-ob-windows property.
+  - Replace additionalProperties with unevaluatedProperties, for RC
+    only.
+  - Add dbi2 and atu property.
+  - Remove description for regs and interrupts property.
+  - Change enum value for num-lanes to 1 and 2 only.
+- In driver patch.
+  - In Kconfig file, remove dependency on ARM64.
+  - Add new define, PCIE_REGS_PCIE_SII_LINK_UP.
+  - Remove PCIE_DBI2_MASK.
+  - In struct keembay_pcie, declare pci member as struct, not pointer.
+    And remove irq number members.
+  - Rename and rework keembay_pcie_establish_link(), to
+    keembay_pcie_start_link().
+  - Remove unneeded BAR disable steps.
+  - Remove unused interrupt handlers; keembay_pcie_ev_irq_handler(),
+    keembay_pcie_err_irq_handler().
+  - Remove keembay_pcie_enable_interrupts().
+  - Rework keembay_pcie_setup_irq() and call it from
+    keembay_pcie_probe().
+  - Remove keembay_pcie_host_init() and make keembay_pcie_host_ops
+    empty.
+  - Keep and rework keembay_pcie_add_pcie_port() a little.
+  - Remove keembay_pcie_add_pcie_ep() and call dw_pcie_ep_init() from
+    keembay_pcie_probe().
+  - In keembay_pcie_probe(), remove dbi setup as it will be handled in
+    dwc common code.
+  - In keembay_pcie_link_up(), use return (val &
+    PCIE_REGS_PCIE_SII_LINK_UP) == PCIE_REGS_PCIE_SII_LINK_UP.
+  - In keembay_pcie_ep_raise_irq(), rework error message for
+    PCI_EPC_IRQ_LEGACY and default cases.
+- Rebased to next-20201124, that has dwc pci refactoring,
+  https://lore.kernel.org/linux-pci/20201105211159.1814485-1-robh@kernel.org/.
+
+Srikanth Thokala (2):
+  dt-bindings: PCI: Add Intel Keem Bay PCIe controller
+  PCI: keembay: Add support for Intel Keem Bay
+
+ .../bindings/pci/intel,keembay-pcie-ep.yaml   |  69 +++
+ .../bindings/pci/intel,keembay-pcie.yaml      |  97 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/pci/controller/dwc/Kconfig            |  28 ++
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-keembay.c     | 451 ++++++++++++++++++
+ 6 files changed, 653 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/intel,keembay-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/intel,keembay-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-keembay.c
+
+
+base-commit: 45dfb8a5659ad286c28fa59008271dbc4e5e3f2d
+-- 
+2.17.1
+
