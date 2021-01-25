@@ -2,57 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2988130325B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 04:02:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85DE23032C0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:38:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728813AbhAYNY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 08:24:57 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:57908 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728803AbhAYNY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 08:24:27 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1l41qC-002XAc-9w; Mon, 25 Jan 2021 14:23:36 +0100
-Date:   Mon, 25 Jan 2021 14:23:36 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     DENG Qingfang <dqfext@gmail.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: dsa: add MT7530 GPIO
- controller binding
-Message-ID: <YA7GWHKazc6fYAcQ@lunn.ch>
-References: <20210125044322.6280-1-dqfext@gmail.com>
- <20210125044322.6280-2-dqfext@gmail.com>
+        id S1726299AbhAZEik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:38:40 -0500
+Received: from mail-ua1-f52.google.com ([209.85.222.52]:40497 "EHLO
+        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726094AbhAYJQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 04:16:36 -0500
+Received: by mail-ua1-f52.google.com with SMTP id t43so4215326uad.7;
+        Mon, 25 Jan 2021 01:15:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OGkZAUg3iH9IYza5zJbjuo/RDsxxCiTyQgGN6eBtR1Q=;
+        b=pLKXhGeY3TeU9wPCpefNLIT3xishBz3Pq+6yWvPs0J/CbPmxkboJy05FDqLhsgUvUV
+         OrYEWDVhO+QQ3Z7+6HybgEo5en9GT2hT60e6FpBW4aUr0mVOKSCI46ckz+FzZ8kJUjDZ
+         LlM4ezdj5wRBeB30TXKLf1pWv/J0r7ih6oNT5whr60KM13DOXKUk2I+UYcsJjJ9JhIMQ
+         Hux7ZQzZocEWDaMLStZ7B3VVSEiy6KGxB9Cmu9EBO00EFWRHyaIKV9e1qw1K4NGDxgkb
+         NKa2RXSNXxSrlPbTE88XRE/AeHFbAqdteOS+LnaXdf2H79QpYFOBlpvUML88ZEYQxfs4
+         1DHQ==
+X-Gm-Message-State: AOAM5322RlMtiU116IYncqs9ozn3stU9EDaRSTLHBJ5v1Yp9UmjLPH8n
+        /P9DEPh7TrWZHxN2Z0BbxKCjWQJwSBjzDDR5LHck+Cl5U5g=
+X-Google-Smtp-Source: ABdhPJxE0V4U1AtCVDBgSlqmD/qcahsGGxzJ6rIjakkFSuo/ECAxKcrQLWJbs3QWRCMrXka8I6gsPRWsfj2qgMEO9QE=
+X-Received: by 2002:a05:6830:15cc:: with SMTP id j12mr184otr.145.1611564197475;
+ Mon, 25 Jan 2021 00:43:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210125044322.6280-2-dqfext@gmail.com>
+References: <20210125075845.3864-1-wsa+renesas@sang-engineering.com> <20210125075845.3864-3-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20210125075845.3864-3-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 25 Jan 2021 09:43:06 +0100
+Message-ID: <CAMuHMdWDo5NGOi-r=N9iULmxR1NOOBjTFbHxzD99WL5HuUjRMA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: renesas: falcon: Enable MMC
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Takeshi Saito <takeshi.saito.xv@renesas.com>,
+        Koji Matsuoka <koji.matsuoka.xm@renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 12:43:21PM +0800, DENG Qingfang wrote:
-> Add device tree binding to support MT7530 GPIO controller.
-> 
-> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
+On Mon, Jan 25, 2021 at 8:58 AM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Takeshi Saito <takeshi.saito.xv@renesas.com>
+>
+> Enable MMC on the Falcon board.
+>
+> Signed-off-by: Takeshi Saito <takeshi.saito.xv@renesas.com>
+> Signed-off-by: Koji Matsuoka <koji.matsuoka.xm@renesas.com>
+> [wsa: double checked, rebased, slightly improved, moved to falcon-cpu]
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>
+> Changes since v2: added tags
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Thx, will queue in renesas-devel for v5.12.
 
-    Andrew
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
