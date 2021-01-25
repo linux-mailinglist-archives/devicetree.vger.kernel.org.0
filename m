@@ -2,85 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79655302FEF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 00:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A09CA303026
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 00:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732678AbhAYXQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 18:16:28 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:36838 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732105AbhAYXQY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 18:16:24 -0500
-Received: by mail-oi1-f176.google.com with SMTP id d18so7298832oic.3;
-        Mon, 25 Jan 2021 15:16:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Y8SknRKxss8n7RfRK+E579gYfvmeVKOv/GKQ9rXhrh0=;
-        b=Urah7uwSgd2PA2c2r+A7cpSLD0LQIm86eUVvfBQHN9MmjExOPikbtEJCy36khYd+RO
-         Qb5a/Z7RBGrNbHMNg5rXz0NWwxLMxGo1ZfBV7LCkAjBSUJQSS63zEJxoFoR7PpcpY0Fn
-         V1oNA1eoE3vOHWeOCdojpKx2NHZgJxmpvA72k9ljIZeMQ1fksmkjLx5kP8x6/K0782lw
-         uURwe46gPq4qsFdCo3K/z4p1/ugKOzhbR/8zTv4ifAgmpmV9dWTvgCAGDeI9oDUfx9cb
-         mBCPcjnfRhmzv21pDUHBOGjuBIm1Z0EsErzFdC+ynXtyLts4aEFrPh0vGKBktS6S9hqO
-         tdsg==
-X-Gm-Message-State: AOAM531BNcUHikuEcEdNWOQt8fNRQcywOAvSJE7+dJsWt8Xdi3IveYaa
-        8BgUiDmASBvue2f90kV8vA==
-X-Google-Smtp-Source: ABdhPJwIBZW25e9WtD04Zr3vYWJmXgdb7ZxllQ0ztfFBEaWagU0lR/CU0LZeiVeyq6iwXSBtBIlsdA==
-X-Received: by 2002:aca:cc03:: with SMTP id c3mr1451686oig.137.1611616543400;
-        Mon, 25 Jan 2021 15:15:43 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b188sm3799998oif.49.2021.01.25.15.15.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 15:15:42 -0800 (PST)
-Received: (nullmailer pid 1223567 invoked by uid 1000);
-        Mon, 25 Jan 2021 23:15:40 -0000
-Date:   Mon, 25 Jan 2021 17:15:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Philip Chen <philipchen@chromium.org>
-Cc:     devicetree@vger.kernel.org, Guenter Roeck <groeck@chromium.org>,
-        swboyd@chromium.org, linux-input@vger.kernel.org,
-        dianders@chromium.org, Simon Glass <sjg@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>, dmitry.torokhov@gmail.com,
-        LKML <linux-kernel@vger.kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: input: cros-ec-keyb: Add a new
- property
-Message-ID: <20210125231540.GA1223505@robh.at.kernel.org>
-References: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+        id S1732293AbhAYXaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 18:30:12 -0500
+Received: from foss.arm.com ([217.140.110.172]:37928 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732876AbhAYX3X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 18:29:23 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CBE6CD6E;
+        Mon, 25 Jan 2021 15:28:18 -0800 (PST)
+Received: from [10.57.40.145] (unknown [10.57.40.145])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B84673F68F;
+        Mon, 25 Jan 2021 15:28:16 -0800 (PST)
+Subject: Re: [PATCH V2 06/11] dts: bindings: Document device tree bindings for
+ ETE
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+To:     Rob Herring <robh@kernel.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        mathieu.poirier@linaro.org, mike.leach@linaro.org,
+        Linu Cherian <lcherian@marvell.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1610511498-4058-1-git-send-email-anshuman.khandual@arm.com>
+ <1610511498-4058-7-git-send-email-anshuman.khandual@arm.com>
+ <20210125192253.GA791043@robh.at.kernel.org>
+ <9417218b-6eda-373b-a2cb-869089ffc7cd@arm.com>
+Message-ID: <1528d7ce-6765-7adf-3e24-6da1a705331d@arm.com>
+Date:   Mon, 25 Jan 2021 23:28:10 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210115122412.v7.1.I025fb861cd5fa0ef5286b7dce514728e9df7ae74@changeid>
+In-Reply-To: <9417218b-6eda-373b-a2cb-869089ffc7cd@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Jan 2021 12:24:29 -0800, Philip Chen wrote:
-> Add a new property `function-row-physmap` to the
-> device tree for the custom keyboard top row design.
+On 1/25/21 10:20 PM, Suzuki K Poulose wrote:
+> Hi Rob
 > 
-> The property describes the rows/columns of the top row keys
-> from left to right.
+> On 1/25/21 7:22 PM, Rob Herring wrote:
+>> On Wed, Jan 13, 2021 at 09:48:13AM +0530, Anshuman Khandual wrote:
+>>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>>
+>>> Document the device tree bindings for Embedded Trace Extensions.
+>>> ETE can be connected to legacy coresight components and thus
+>>> could optionally contain a connection graph as described by
+>>> the CoreSight bindings.
+>>>
+>>> Cc: devicetree@vger.kernel.org
+>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>> Cc: Mike Leach <mike.leach@linaro.org>
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/arm/ete.yaml | 71 ++++++++++++++++++++++++++
+>>>   1 file changed, 71 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/ete.yaml 
+>>> b/Documentation/devicetree/bindings/arm/ete.yaml
+>>> new file mode 100644
+>>> index 0000000..00e6a77
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/ete.yaml
+>>> @@ -0,0 +1,71 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>>> +# Copyright 2021, Arm Ltd
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: "http://devicetree.org/schemas/arm/ete.yaml#"
+>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>>> +
+>>> +title: ARM Embedded Trace Extensions
+>>> +
+>>> +maintainers:
+>>> +  - Suzuki K Poulose <suzuki.poulose@arm.com>
+>>> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
+>>> +
+>>> +description: |
+>>> +  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
+>>> +  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
+>>> +  architecture and has extended support for future architecture changes.
+>>> +  The trace generated by the ETE could be stored via legacy CoreSight
+>>> +  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
+>>> +  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
+>>> +  legacy CoreSight components, a node must be listed per instance, along
+>>> +  with any optional connection graph as per the coresight bindings.
+>>> +  See bindings/arm/coresight.txt.
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    pattern: "^ete([0-9a-f]+)$"
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: arm,embedded-trace-extension
+>>> +
+>>> +  cpu:
+>>
+>> We use 'cpus' in a couple of other places, let's do that here for
+>> consistency.
 > 
-> Signed-off-by: Philip Chen <philipchen@chromium.org>
-> ---
+> This is following the existing CoreSight bindings for ETM. The same driver
+> probes both. Also there can only ever be a single CPU for ete/etm. So, we
+> would prefer to keep it aligned with the existing bindings to avoid causing
+> confusion.
 > 
-> Changes in v7:
-> - Use MATRIX_KEY macro to describe `function-row-physmap`
+>>
+>>> +    description: |
+>>> +      Handle to the cpu this ETE is bound to.
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +
+>>> +  out-ports:
+>>> +    description: |
+>>> +      Out put connections from the ETE to legacy CoreSight trace bus.
+>>
+>> Output
 > 
-> Changes in v6:
-> - remove $ref and add `function-row-physmap` to the example
+> Will fix.
 > 
-> Changes in v5:
-> - add minItems and maxItems for `function-row-physmap`
+>>
+>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>
+>> You have to define what each 'port' is if there can be more than 1. If
+>> there's only ever 1 then you just need 'port' though maybe all the
+>> coresight bindings require 'out-ports'. And the port nodes need a $ref
+>> to '/schemas/graph.yaml#/properties/port'.
 > 
-> Changes in v2:
-> - add `function-row-physmap` instead of `google,custom-keyb-top-row`
+> All CoreSight components require an out-ports and/or in-ports. The ETM/ETE
+> always has one port, but must be under out-ports in line with the CoreSight
+> bindings.
 > 
->  .../bindings/input/google,cros-ec-keyb.yaml   | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
+> Does this look more apt:
 > 
+>     out-ports:
+>       description: |
+>         Output connection from the ETE to legacy CoreSight trace bus.
+>       poperties:
+>          port:
+>            $ref: /schemas/graph.yaml#/properties/port
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Correction, the above should be :
+
++  out-ports:
++    type: object
++    description: |
++      Output connections from the ETE to legacy CoreSight trace bus.
++    properties:
++      port:
++        $ref: /schemas/graph.yaml#/properties/port
+
+
+That works fine for me. Does that look fine ?  Some day, we should convert the
+coresight dt bindings to yaml and import the out-ports/in-ports from the scheme :-)
+
+Cheers
+Suzuki
+
