@@ -2,213 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0675304B75
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:28:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BC01304B67
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:28:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727349AbhAZEpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:45:24 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:45443 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730074AbhAYPiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 10:38:21 -0500
-Received: by mail-ot1-f49.google.com with SMTP id n42so13098269ota.12;
-        Mon, 25 Jan 2021 07:38:05 -0800 (PST)
+        id S1727398AbhAZEqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:46:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730307AbhAYPn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 10:43:27 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B27C061225
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 07:40:29 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id n42so13108536ota.12
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 07:40:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HMhlvN/0qUkxkBvn42Qzst+rDXv1nNg5raUrF0ceYAg=;
+        b=gniULOJp9n/TmdR7IKubbTansYJHXAkcvl0wE24MWhslCE4CPOqqRk24xAkIPYOzEB
+         dhgcZKbe5kBZLAgFIYxEev4AGNLcGBf55ZCAovc4r0OV1n93NPKaQJJ3q4LGotg1YQQL
+         iD2L7IidOriAdCFJ0blAPkwRxOPniy8wC4Q6Xf06V6pigOkKQk/oZEbptwMoHH+UZDBi
+         KxnQI6IJFviEUChlh7hgfigXXf7cqczov1wkjuWge/cYmpAqv/tFyidObNpifrc5at15
+         quucr4NG+yfB0eYwAi9oA0ZBFXff7IVuzaoPwaYm5g1QB+QbOKl1MI9SKb8NV9peT7wt
+         B/BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=f18aNlf+CBP0yuuR02rWziM5RLBYLipwk+rx5Ec7GS8=;
-        b=QFd6Q1pxY6fNeAuXRDZLa871Cu1jUJtc/g5v7sL+W3kHdSw3UtoVUWarB030pk65lH
-         yXPuyIOfOKSIom588SIvZb8BccogjHhL7CZbgOPWNDJdwjzpACr7z6019CvO7L4TPnhB
-         h33Fud+Wyl2Wzg+xwj0id4CRMfRsDVqXAwtO5iwnaansRVSR6PiotwdI4v+jMPXWiTk2
-         iZ5QSV5Dkx9h3oaG9P2eazHMLiSkJOXAD8XhTynAxTT2vvrJezEEkS+VL9GZ+OgKAPGV
-         F1UFin9wiyaBPivqf7VA3j8EMQA6W+1p6UXjwGCKpJ622dOst2gjNqTHSpQD9Ih3s9wI
-         RT5Q==
-X-Gm-Message-State: AOAM530A9vIYIg66eHaG8bJKqWnkLjzp0vgbLv5WQihC0vpCYhSZvKkm
-        IYaClWHUuxda18ANjuqg9lcm71XOBw==
-X-Google-Smtp-Source: ABdhPJwBLRd3UYnmCyIIcmDPrWI9kJuiZLJQ+nSP8vtT2LMcRfAerKqDfj2xYImFVdFMovdkZAB/Qg==
-X-Received: by 2002:a9d:6e98:: with SMTP id a24mr797090otr.351.1611588394589;
-        Mon, 25 Jan 2021 07:26:34 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l5sm3593187oth.41.2021.01.25.07.26.33
+        bh=HMhlvN/0qUkxkBvn42Qzst+rDXv1nNg5raUrF0ceYAg=;
+        b=Mbyhuh1NQz6VbLuMI3MExIf86nusrd04ivat5WyOVJ1EUcyyMUXFDKHMvRO3QQOgVE
+         aR860MzPrZxEQIBH3ULljvM3GZ6bq//mWmov6l7mVCvghOa7cKfOa7xVf0K8cMX040yJ
+         40Y6UYpicvRRzJ3zqgnon9qQv2OPp7TsIxgX6qnwVXud9jL8PTucqJC1d0wb6fOH3dGY
+         goK4JdBumLU6hjU7r1zfxVLc+EUtq/JV8Jgasy0F7eKnsWYtwWPTqx6iGybvU9WSki7e
+         1UHW4SIkpBofNpLJaWniSshPQwAB6X8NySjy+EQmn2PutPYBDnIc2ggjgZjP/ZVPWoPP
+         K5sQ==
+X-Gm-Message-State: AOAM530MDes5TZmmKQFiCT6TNeGYnF1Ign14AZwjchyV5fHde32pw7N3
+        aRab+585YryApJ1JoT4ISbesSQ==
+X-Google-Smtp-Source: ABdhPJwhv4969ipyc9wnZkQqK9xyIYx8poGZOlPgc9l0x3BhcmMOT2vPALgymgrWZGST/QrzZBgiHw==
+X-Received: by 2002:a05:6830:1d0:: with SMTP id r16mr853016ota.54.1611589228341;
+        Mon, 25 Jan 2021 07:40:28 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id m185sm3563782oib.48.2021.01.25.07.40.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 07:26:33 -0800 (PST)
-Received: (nullmailer pid 390270 invoked by uid 1000);
-        Mon, 25 Jan 2021 15:26:32 -0000
-Date:   Mon, 25 Jan 2021 09:26:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Simon Xue <xxm@rock-chips.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v3 1/2] dt-bindings: rockchip: Add DesignWare based PCIe
- controller
-Message-ID: <20210125152632.GA381616@robh.at.kernel.org>
-References: <20210125024824.634583-1-xxm@rock-chips.com>
+        Mon, 25 Jan 2021 07:40:27 -0800 (PST)
+Date:   Mon, 25 Jan 2021 09:40:25 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Samuel Pascua <pascua.samuel.14@gmail.com>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>
+Subject: Re: [PATCH 3/4] ARM: dts: qcom: msm8974-klte: add support for display
+Message-ID: <YA7maSZdp1EphINK@builder.lan>
+References: <20210124135610.1779295-1-iskren.chernev@gmail.com>
+ <20210124135610.1779295-3-iskren.chernev@gmail.com>
+ <282b07a1-2e39-2dbe-dd7b-eed2ae9e25fb@somainline.org>
+ <6632821.dtBD41K2ms@g550jk>
+ <f02b945f-5546-6e15-17b5-74be8af8a501@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210125024824.634583-1-xxm@rock-chips.com>
+In-Reply-To: <f02b945f-5546-6e15-17b5-74be8af8a501@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 10:48:24AM +0800, Simon Xue wrote:
-> Document DT bindings for PCIe controller found on Rockchip SoC.
-> 
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> ---
->  .../bindings/pci/rockchip-dw-pcie.yaml        | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> new file mode 100644
-> index 000000000000..24ea42203c14
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> @@ -0,0 +1,133 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DesignWare based PCIe RC controller on Rockchip SoCs
-> +
-> +maintainers:
-> +  - Shawn Lin <shawn.lin@rock-chips.com>
-> +  - Simon Xue <xxm@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +description: |+
-> +  RK3568 SoC PCIe host controller is based on the Synopsys DesignWare
-> +  PCIe IP and thus inherits all the common properties defined in
-> +  designware-pcie.txt.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +# We need a select here so we don't match all nodes with 'snps,dw-pcie'
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: rockchip,rk3568-pcie
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: rockchip,rk3568-pcie
-> +      - const: snps,dw-pcie
-> +
-> +  reg:
-> +    items:
-> +      - description: Data Bus Interface (DBI) registers
-> +      - description: Rockchip designed configuration registers
-> +
-> +  clocks:
-> +    items:
-> +      - description: AHB clock for PCIe master
-> +      - description: AHB clock for PCIe slave
-> +      - description: AHB clock for PCIe dbi
-> +      - description: APB clock for PCIe
-> +      - description: Auxiliary clock for PCIe
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk_mst
-> +      - const: aclk_slv
-> +      - const: aclk_dbi
-> +      - const: pclk
-> +      - const: aux
-> +
-> +  msi-map: true
-> +
-> +  num-lanes: true
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    const: pcie-phy
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ranges:
-> +    maxItems: 3
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: pipe
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - msi-map
-> +  - num-lanes
-> +  - phys
-> +  - phy-names
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie3x2: pcie@fe280000 {
-> +            compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
-> +            reg = <0x3 0xc0800000 0x0 0x400000>,
-> +                  <0x0 0xfe280000 0x0 0x10000>;
-> +            reg-names = "pcie-dbi", "pcie-apb";
+On Sun 24 Jan 11:33 CST 2021, Konrad Dybcio wrote:
 
-I believe I already said use 'dbi'. The DBI is also not 4MB. The config 
-space goes here too, not in 'ranges'.
+> 
+> > All msm8974 dts(i) files use this style. Deviating from it for this doesn't 
+> > make sense. And yes msm8974 should probably be converted to the newer label 
+> > style (as was done with msm8916 a while ago).
+> 
+> I have a >3k lines commit fixing that. Adding more code that strays
+> from the new style doesn't really help.
+> 
 
-> +            bus-range = <0x20 0x2f>;
-> +            clocks = <&cru 143>, <&cru 144>,
-> +                     <&cru 145>, <&cru 146>,
-> +                     <&cru 147>;
-> +            clock-names = "aclk_mst", "aclk_slv",
-> +                          "aclk_dbi", "pclk",
-> +                          "aux";
-> +            device_type = "pci";
-> +            linux,pci-domain = <2>;
-> +            max-link-speed = <2>;
-> +            msi-map = <0x2000 &its 0x2000 0x1000>;
-> +            num-lanes = <2>;
-> +            phys = <&pcie30phy>;
-> +            phy-names = "pcie-phy";
-> +            power-domains = <&power 15>;
-> +            ranges = <0x00000800 0x0 0x80000000 0x3 0x80000000 0x0 0x800000>,
-> +                     <0x81000000 0x0 0x80800000 0x3 0x80800000 0x0 0x100000>,
-> +                     <0x83000000 0x0 0x80900000 0x3 0x80900000 0x0 0x3f700000>;
-> +            resets = <&cru 193>;
-> +            reset-names = "pipe";
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.25.1
-> 
-> 
-> 
+I know how bad it is, so I understand your desire to not have to rebase
+that, but I will merge things as they become ready on the list.
+
+So please post your change (perhaps it's posted and I'm failing to find
+it in my inbox?) and I'd be happy to merge it so we get it cleaned up!
+
+Thanks,
+Bjorn
