@@ -2,212 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C9F9302C93
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 21:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 684D4302C8C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 21:32:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726157AbhAYU2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 15:28:34 -0500
-Received: from mail-oo1-f53.google.com ([209.85.161.53]:37436 "EHLO
-        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726642AbhAYU07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 15:26:59 -0500
-Received: by mail-oo1-f53.google.com with SMTP id q3so3585528oog.4;
-        Mon, 25 Jan 2021 12:26:42 -0800 (PST)
+        id S1732202AbhAYUaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 15:30:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38776 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732309AbhAYU3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 15:29:49 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEBEFC061573
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 12:29:08 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id h15so5888616pli.8
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 12:29:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=L7hcJowvgJK8XV5T2kSWijbbIn+FH0xsHHJJGhXiQE0=;
+        b=O0ld6mWRMFPALAbHEFHcpFb3ogYdK765/sIFvWxcavPzvG3UvEenEJG/4gDiZpQxp3
+         dKdkzZEU1UiaGk3ow1+GBrlKcORtjunc2W2f+ouEhzj0sVyZp+sHgSv5dzqdgwEmk1Fr
+         TXufxTyI0yW8X5HVP7fhfvH7h0DHQKCtx8zZg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FSg4INHSggtMiAtH0ajTU964cpIOeVyZUnN9S+EGu08=;
-        b=CmpCUDfpuRUSAmb6shFrFLKveQjc59AL0JcSWc2PMDavvQQrg4NDuh7BiQ7XG2RPO3
-         B67coYrR/7ydx8ez2pssBi3POHfDJo3tF+m/aaP0HlP8hwXDSmqivRnu3QQQVJxhmIaV
-         LQw3FQjrc7BO1B1URpF1mYYVaUTtl2NjLECG+DldC32CjTL5+uNbbSbMUvXzMr/Fd7RJ
-         9OM14TkiSQJYmGPefzNT3M665zg13iI58W5a4pbRpbXC+cLxwmJqnm0gT6KWTYC8EqoZ
-         ljMY15owpRbrw/0AQwtq5uRmp03h6Fu2s6jqwX3zok2dGN1RRzCHnUaqygAtvuN+oFhX
-         7waA==
-X-Gm-Message-State: AOAM533T7swLJVa4+9BBTYKQQO2gm3to+SfZkbuTdH5Nnv6uid4yI2fG
-        jgnImaMpv+aFJdnpj/GuEQ==
-X-Google-Smtp-Source: ABdhPJzL7dMxUvAQG2Fb/Nrbe0hA/9aUsmo+HOrMyQqwNhQHrIWJfmlR/OLuRmMavJvbMa+ChT92kg==
-X-Received: by 2002:a4a:4302:: with SMTP id k2mr1612446ooj.50.1611606377371;
-        Mon, 25 Jan 2021 12:26:17 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m15sm3682391otl.11.2021.01.25.12.26.15
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=L7hcJowvgJK8XV5T2kSWijbbIn+FH0xsHHJJGhXiQE0=;
+        b=hmbqcXFZMuFZspWkrEyf++omPlyAvmgJztHIJZJiAJAD7t6NhWCieGdFYnsVoriZBt
+         C27lOlW53soNkegA0UtV7LjTyehwdAT/oQCSL/57ZfPgg57UiXE1Szi5U1Hs0yMQRWDy
+         MrhIBFbA+B3yCMTIaNrXhoODEJoAIUUmRTwiwZIUqNovQEChQcYGImhcVzB0UlgWeZm0
+         V6KJC7YMk73zjybM+p+CS12bvU6y5nQ+sOFXA1f4U72+HbDqfjK0fE2wtgQkVeZ9QLFA
+         S3ww3jmAcYRUyZ7H5htF6iyHA8JzqGyS4mLSDGWyiEzDz8iWCH/cqkqPTYUGr7MVR9oQ
+         7Mfg==
+X-Gm-Message-State: AOAM533YY7GdspbohwnLmI8wJjwhssv/Wd0mB4GsuAoy1TocaOiqBJpx
+        xOQ7DdDtdWJRnYOu9AUHBk/5ew==
+X-Google-Smtp-Source: ABdhPJxsTjN0zorpk0zOXXWw8UDdJVB06DcpY582k8+LI0wqcMj42Yy6RVlk3j+kBGaTZOz/Ysc8AA==
+X-Received: by 2002:a17:90a:4dc1:: with SMTP id r1mr2045991pjl.12.1611606548517;
+        Mon, 25 Jan 2021 12:29:08 -0800 (PST)
+Received: from chromium.org ([2620:15c:202:201:1066:b437:97cd:2278])
+        by smtp.gmail.com with ESMTPSA id i62sm14073923pfe.84.2021.01.25.12.29.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 12:26:16 -0800 (PST)
-Received: (nullmailer pid 919151 invoked by uid 1000);
-        Mon, 25 Jan 2021 20:26:15 -0000
-Date:   Mon, 25 Jan 2021 14:26:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org
-Subject: Re: [PATCH v4 2/2] media: dt-bindings: media: i2c: Add IMX300 CMOS
- sensor binding
-Message-ID: <20210125202615.GA912502@robh.at.kernel.org>
-References: <20210113182934.444727-1-angelogioacchino.delregno@somainline.org>
- <20210113182934.444727-3-angelogioacchino.delregno@somainline.org>
+        Mon, 25 Jan 2021 12:29:08 -0800 (PST)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210113182934.444727-3-angelogioacchino.delregno@somainline.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210115144345.v2.4.I6889e21811df6adaff5c5b8a8c80fda0669ab3a5@changeid>
+References: <20210115224420.1635017-1-dianders@chromium.org> <20210115144345.v2.4.I6889e21811df6adaff5c5b8a8c80fda0669ab3a5@changeid>
+Subject: Re: [PATCH v2 4/5] dt-bindings: dt-bindings: display: simple: Add N116BCA-EA1
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     Rob Clark <robdclark@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To:     Douglas Anderson <dianders@chromium.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Date:   Mon, 25 Jan 2021 12:29:06 -0800
+Message-ID: <161160654656.76967.8777176702304883328@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 07:29:34PM +0100, AngeloGioacchino Del Regno wrote:
-> Add YAML device tree binding for IMX300 CMOS image sensor, and
-> the relevant MAINTAINERS entries.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Quoting Douglas Anderson (2021-01-15 14:44:19)
+> Another simple eDP panel.
+>=20
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  .../bindings/media/i2c/sony,imx300.yaml       | 112 ++++++++++++++++++
->  MAINTAINERS                                   |   7 ++
->  2 files changed, 119 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
-> new file mode 100644
-> index 000000000000..4fa767feea80
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
-> @@ -0,0 +1,112 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/sony,imx300.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sony 1/2.3-Inch 25Mpixel Stacked CMOS Digital Image Sensor
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> +
-> +description: |-
-> +  The Sony IMX300 is a 1/2.3-inch Stacked CMOS (Exmor-RS) digital image
-> +  sensor with a pixel size of 1.08um and an active array size of
-> +  5948H x 4140V. It is programmable through I2C interface at address 0x10.
-> +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
-> +  4 data lanes.
-> +
-> +properties:
-> +  compatible:
-> +    const: sony,imx300
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  vdig-supply:
-> +    description:
-> +      Digital I/O voltage supply, 1.15-1.20 volts
-> +
-> +  vana-supply:
-> +    description:
-> +      Analog voltage supply, 2.2 volts
-> +
-> +  vddl-supply:
-> +    description:
-> +      Digital core voltage supply, 1.8 volts
-> +
-> +  reset-gpios:
-> +    description: |-
-> +      Reference to the GPIO connected to the xclr pin, if any.
-> +      Must be released (set high) after all supplies are applied.
-> +
-> +  # See ../video-interfaces.txt for more details
-> +  port:
-> +    type: object
-> +    properties:
-> +      endpoint:
 
-This now needs to reference the graph.yaml and video-interfaces.yaml 
-schemas. See the media tree or linux-next for examples.
+With subject fixed
 
-> +        type: object
-> +
-> +        properties:
-> +          data-lanes:
-> +            description: |-
-> +              The driver only supports four-lane operation.
-> +            items:
-> +              - const: 0
-> +              - const: 1
-> +              - const: 2
-> +              - const: 3
-> +
-> +          clock-noncontinuous: true
-> +
-> +          link-frequencies:
-> +            $ref: /schemas/types.yaml#/definitions/uint64-array
-> +            description:
-> +              Allowed data bus frequencies. The driver currently needs
-> +              to switch between 780000000 and 480000000 Hz in order to
-> +              guarantee functionality of all modes.
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - vana-supply
-> +  - vdig-supply
-> +  - vddl-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        imx300: sensor@10 {
-> +            compatible = "sony,imx300";
-> +            reg = <0x10>;
-> +            clocks = <&imx300_xclk>;
-> +            vana-supply = <&imx300_vana>;   /* 2.2v */
-> +            vdig-supply = <&imx300_vdig>;   /* 1.2v */
-> +            vddl-supply = <&imx300_vddl>;   /* 1.8v */
-> +
-> +            port {
-> +                imx300_0: endpoint {
-> +                    remote-endpoint = <&csi1_ep>;
-> +                    data-lanes = <0 1 2 3>;
-> +                    clock-noncontinuous;
-> +                    link-frequencies = /bits/ 64 <780000000 480000000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ad9abb42f852..5e0f08f48d48 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -16633,6 +16633,13 @@ T:	git git://linuxtv.org/media_tree.git
->  F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
->  F:	drivers/media/i2c/imx290.c
->  
-> +SONY IMX300 SENSOR DRIVER
-> +M:	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
-> +F:	drivers/media/i2c/imx300.c
-> +
->  SONY IMX319 SENSOR DRIVER
->  M:	Bingbu Cao <bingbu.cao@intel.com>
->  L:	linux-media@vger.kernel.org
-> -- 
-> 2.29.2
-> 
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
