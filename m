@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9590B302138
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 05:38:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C618B30215D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 05:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727109AbhAYEiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 23:38:06 -0500
-Received: from aserp2120.oracle.com ([141.146.126.78]:51930 "EHLO
+        id S1727029AbhAYErH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 23:47:07 -0500
+Received: from aserp2120.oracle.com ([141.146.126.78]:56830 "EHLO
         aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727068AbhAYEh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 23:37:58 -0500
+        with ESMTP id S1726894AbhAYErC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 23:47:02 -0500
 Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10P4YmDE139655;
-        Mon, 25 Jan 2021 04:37:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
+        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10P4iSPF160005;
+        Mon, 25 Jan 2021 04:45:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=mime-version :
+ message-id : date : from : to : cc : subject : references : in-reply-to :
  content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=szoXrV/RFeXwfntAWWK5Bt/AJH3TXlpRkFzpc71lSSA=;
- b=ju0q6P16syKbWSwjYL1i958OzTdIcL9OPeFLr44Xvl7LBmzzf1/w5h86TXES761DLY6U
- h/avO6gWVRbgzsQ6yrDg8f9Rip/J0ZVzPV3EQbQWGUvOCPrIKeuMg+NaTusOHT1PtAat
- lKsdCIAcJI1YienytqboopOxZqMh9jHzB2Me9oFGbv3GptASCysey5LH0Xk3Ugt5SUCw
- yB6mbbDLvPP6W7tZMpbUcu89N0gDis+PU9CRSgvZLQcfyPxZz0rCqmgbzr48lDF5mQdk
- kS6rwpmix9QZObfVgu+fmusRlUNoVEYtSsGcoaXDoyfJuHjaXAJ5RT+tvEreV8Q88lre lg== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
-        by aserp2120.oracle.com with ESMTP id 368brkbdpb-1
+ bh=TLncA71vshE7G5s6VEqFUz6kf2+cMWqNp6LoX3eY794=;
+ b=TdJq/4Zz/jqHF0WKbcu/oeWC2H7AKNt6BPutTT/PuRP4cFAnQc0oNhzNi/K93rMvwQnY
+ /7LxqHa/MXa9Z2KJdyvTrq2lptJ2juFe3h4uzBbQfI9bUWEgZYMPaV+uPGZ/FGH7QS0M
+ ciX8VH2AKAOrvO8H4MDWMmrcPPrumqOG1qRNMMddRh2uR4FD+8/njrCJiFXZuX7PNOsc
+ NWO2LqzDx98Kt6vZUKMcVoKMDjr1+nGfrjzAZ6SbaLFiEUw3RyJzeHCJpkxawB8wNiIH
+ FxnDq0TwkCVyy0Qzk6kjDFdo9IpomxtKLQRZhvoD+O06vlCGZv+v9UFJQnxMb8Ws7pd7 Lw== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+        by aserp2120.oracle.com with ESMTP id 368brkbe5w-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 25 Jan 2021 04:36:59 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
-        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10P4Yvr4144538;
-        Mon, 25 Jan 2021 04:34:59 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by aserp3030.oracle.com with ESMTP id 368wck37gb-1
+        Mon, 25 Jan 2021 04:45:34 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+        by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10P4a1sI053121;
+        Mon, 25 Jan 2021 04:43:33 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+        by userp3030.oracle.com with ESMTP id 368wqueddb-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 25 Jan 2021 04:34:59 +0000
-Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 10P4Ytjt010237;
-        Mon, 25 Jan 2021 04:34:55 GMT
-Received: from santoshs-mbp-3.lan (/69.181.241.203)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Sun, 24 Jan 2021 20:34:54 -0800
-Subject: Re: [PATCH v2 0/5] Introduce PRU remoteproc consumer API
-To:     Suman Anna <s-anna@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>, ohad@wizery.com,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        ssantosh@kernel.org, linux-remoteproc@vger.kernel.org,
-        lee.jones@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
-        rogerq@kernel.org
-References: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
- <20210106232704.GE9149@xps15> <11303a1b-5ab4-def5-77b1-c500894c9c87@ti.com>
- <20210107224448.GB43045@xps15> <75365443-57e3-e2e0-5865-f78af9d5890b@ti.com>
-From:   "santosh.shilimkar@oracle.com" <santosh.shilimkar@oracle.com>
-Organization: Oracle Corporation
-Message-ID: <b0e32ad0-487f-9d57-7287-835eee836514@oracle.com>
-Date:   Sun, 24 Jan 2021 20:34:38 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:78.0)
+        Mon, 25 Jan 2021 04:43:33 +0000
+Received: from abhmp0006.oracle.com (abhmp0006.oracle.com [141.146.116.12])
+        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 10P4hV35025889;
+        Mon, 25 Jan 2021 04:43:31 GMT
+Received: from santoshs-mbp-3.lan (/69.181.241.203) by default (Oracle Beehive
+ Gateway v4.0) with ESMTP ; Sun, 24 Jan 2021 20:42:07 -0800
+ORGANIZATION: Oracle Corporation
+USER-AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:78.0)
  Gecko/20100101 Thunderbird/78.5.0
-MIME-Version: 1.0
-In-Reply-To: <75365443-57e3-e2e0-5865-f78af9d5890b@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
+MIME-Version: 1.0
+Message-ID: <3d9c2585-1636-2542-15b8-9ae89995456c@oracle.com>
+Date:   Sun, 24 Jan 2021 20:42:06 -0800 (PST)
+From:   "santosh.shilimkar@oracle.com" <santosh.shilimkar@oracle.com>
+To:     David Lechner <david@lechnology.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Suman Anna <s-anna@ti.com>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for TI AM18XX/OMAP-L138 PRUSS
+References: <20210104183021.330112-1-david@lechnology.com>
+In-Reply-To: <20210104183021.330112-1-david@lechnology.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9874 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 mlxscore=0 suspectscore=0
- phishscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0 spamscore=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 spamscore=0 phishscore=0
+ adultscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0 bulkscore=0
  classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
  definitions=main-2101250024
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9874 signatures=668683
@@ -74,31 +71,22 @@ X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 impo
  phishscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999
  lowpriorityscore=0 spamscore=0 mlxscore=0 suspectscore=0 malwarescore=0
  clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2101250024
+ engine=8.12.0-2009150000 definitions=main-2101250025
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suman, Mathieu,
-
-On 1/7/21 2:49 PM, Suman Anna wrote:
-> On 1/7/21 4:44 PM, Mathieu Poirier wrote:
->> On Wed, Jan 06, 2021 at 06:03:25PM -0600, Suman Anna wrote:
->>> Hi Mathieu,
->>>
-[...]
->> I only see input from Andy and Lars in the thread you point out, nothing from
->> Greg.  I have also taken a look at the patch [1] that made checkpatch complain
->> about ENOTSUPP.  From what I see in that commit log the goal is to prevent new
->> additions of ENOTSUPP to the kernel.
->>
->> Please modify and resend, otherwise I'm sure someone will send another patch to
->> fix it before the end of the cycle.
+On 1/4/21 10:30 AM, David Lechner wrote:
+> This is the first step for adding support for the PRUSS on TI AM18XX/OMAP-L138
+> SoCs. This series adds support in the top-level PRUSS driver. (Patches for the
+> interrupt controller and individual PRUs are independent of this change and
+> will be submitted separately.)
 > 
-> Yeah ok. I will send out a v3.
+> David Lechner (2):
+>    dt-bindings: soc: ti: ti,pruss: add ti,am1806-pruss
+>    soc: ti: pruss: add support for AM18XX/OMAP-L138 PRUSS
 > 
-I haven't seen v3 of this series yet. Please post it
-if you would like to include it for 5.12.
+Please post updated series after fixing patch 2 as discussed with Suman.
 
 Regards,
 Santosh
