@@ -2,136 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CACC3021CE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 06:28:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B8F13021ED
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 06:49:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726171AbhAYF1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 00:27:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41276 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725944AbhAYF1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 00:27:52 -0500
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3279C061573
-        for <devicetree@vger.kernel.org>; Sun, 24 Jan 2021 21:27:11 -0800 (PST)
-Received: by mail-qv1-xf2f.google.com with SMTP id dj6so5690277qvb.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Jan 2021 21:27:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jonmasters-org.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GKTBOeeUx6wXeRV6P9Jfat4kGoUSJVEmxQdNQfrFvYE=;
-        b=j695vV5wc3nWbcMyhTthhn8OdI8FeBU0NIYpfGjClWPlG3p0NydLWU3g8ZsUMYwpBb
-         KW2JNRKyHSLj5NbF3zgv98LTNXR/FI39adb5P8g5Ov78xV8+1I3sJLAx/58VQjev1KK9
-         XKN6U58W3kDgBuh9ixEWML+5uiYTRljv9/vcApapM+BuN0SafT8eT2cq36/M2Nhx4pOJ
-         J+dP+esVrOb1dc6faQd7ITFMjpT86ScCGU+zUJalRsk7qImxfM17ctgNIbj4tyIuQypR
-         1Iiztz5jbMamKVvZAj8X7V/REhVlSgRHspm0lD1mMncTqhuBLErXKvrpx0VXyNdgEZ0T
-         x3Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=GKTBOeeUx6wXeRV6P9Jfat4kGoUSJVEmxQdNQfrFvYE=;
-        b=q63MIj/tO0W95BnrxFwn2KpzJY2XehDvcwEerUdVWJWtXh87fq03ZBPZRZajoxMflv
-         WZYKzaTHYMGAnhM6kGAfr8MIvbgF/xZ/ODBwFigWMQUaoRO6tcjUxTbV0ZSVe9gZJ1j2
-         IM1UGGwiYqaQb5dxx8g7ghayHbTGZ9+XeClz0YnjuqNiOa3MGVPXn17umGQxmESgBW+H
-         fQRTi45z2H/a7yiWy6mBiNuX35IDMiaVDVnjXXJ2NdfoCbH9o6RWqsbeabJK8aNtxW3+
-         oG0NAm7zU0V7eiloy8717P7OL3AoCnhVFNnEtLc9NNk56b5k+cT/7OaHTN9cSVrSsmU6
-         nQKw==
-X-Gm-Message-State: AOAM532n5CZCengb1Tkwr1RdUEPcQw6stNDMXoG3cJpFSuJ0aVyRarVt
-        zbf/FFFMvTUlXRbMtT4RXTcUSg==
-X-Google-Smtp-Source: ABdhPJx6twpOFiNUXkHrytF4tAaeP9jbL+fIEfsueCOWmVBETzURbZy1jFgpbjKAN/zJfi4NlaTIRA==
-X-Received: by 2002:ad4:4e86:: with SMTP id dy6mr6025332qvb.4.1611552430534;
-        Sun, 24 Jan 2021 21:27:10 -0800 (PST)
-Received: from independence.bos.jonmasters.org (Boston.jonmasters.org. [50.195.43.97])
-        by smtp.gmail.com with ESMTPSA id x49sm10447908qth.95.2021.01.24.21.27.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Jan 2021 21:27:09 -0800 (PST)
-Subject: Re: [RFC PATCH v3 2/6] swiotlb: Add restricted DMA pool
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Claire Chang <tientzu@chromium.org>
-Cc:     heikki.krogerus@linux.intel.com, peterz@infradead.org,
-        grant.likely@arm.com, paulus@samba.org,
-        Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
-        Joerg Roedel <joro@8bytes.org>, rafael.j.wysocki@intel.com,
-        Christoph Hellwig <hch@lst.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        xen-devel@lists.xenproject.org,
-        Thierry Reding <treding@nvidia.com>,
-        linux-devicetree <devicetree@vger.kernel.org>, will@kernel.org,
-        dan.j.williams@intel.com, linuxppc-dev@lists.ozlabs.org,
-        Rob Herring <robh+dt@kernel.org>, boris.ostrovsky@oracle.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        jgross@suse.com, Nicolas Boichat <drinkcat@chromium.org>,
-        Greg KH <gregkh@linuxfoundation.org>, rdunlap@infradead.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        iommu@lists.linux-foundation.org, xypron.glpk@gmx.de,
-        Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
-References: <20210106034124.30560-1-tientzu@chromium.org>
- <20210106034124.30560-3-tientzu@chromium.org>
- <20210106185241.GA109735@localhost.localdomain>
- <CALiNf2-HDf6tFcvVgCttr-ta=88ZMH=OvB5XoryTPc6MNvwV+Q@mail.gmail.com>
- <20210107175740.GA16519@char.us.oracle.com>
- <aa5af7d1-779e-f0f6-e6ba-8040e603523f@gmail.com>
-From:   Jon Masters <jcm@jonmasters.org>
-Organization: World Organi{s,z}ation of Broken Dreams
-Message-ID: <a843a970-afec-6541-c54b-4bc2a3c4750a@jonmasters.org>
-Date:   Mon, 25 Jan 2021 00:26:52 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        id S1726929AbhAYFtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 00:49:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40898 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726866AbhAYFt3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 00:49:29 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3286229C5;
+        Mon, 25 Jan 2021 05:48:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611553720;
+        bh=WqX9z3Tyf51Y7O4Bji4gtz4U4/COk472fTyBc1SfjnE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EjSgU2aBv0w53xT6zWv59X/rSO/b2sq80H1mBu6ELwEEBPeiq319gpar4ZApCBVHG
+         +ggCDUOJ4iJun6T6wtehl4rHQ0hRKGH1h99cHN7YHlLgleLgHaOjUlEJzrYfpc3t2Q
+         XVELFCmSNSA53wxtoZlna/LGurFYfTPTGX3PVWoH0snsCrnDu5gqGTPgdcHN42+xnZ
+         PAQ/Cg8bna6FGavfqqFoV4YCSvi5W/6c5s8PAFrtogLXMjEQbMIb5QlOApXQYz1Kh3
+         n8gIB5up1G/zd7Canu1ohM82ttOmC+xFiB+KCxDi/y1LCysU1osjIrJNzsXT99CuZY
+         F8I0Kiav157qg==
+Date:   Mon, 25 Jan 2021 07:48:36 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Simon Xue <xxm@rock-chips.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>
+Subject: Re: [PATCH v3 2/2] PCI: rockchip: add DesignWare based PCIe
+ controller
+Message-ID: <20210125054836.GB579511@unreal>
+References: <20210125024824.634583-1-xxm@rock-chips.com>
+ <20210125024927.634634-1-xxm@rock-chips.com>
 MIME-Version: 1.0
-In-Reply-To: <aa5af7d1-779e-f0f6-e6ba-8040e603523f@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210125024927.634634-1-xxm@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/7/21 1:09 PM, Florian Fainelli wrote:
-> On 1/7/21 9:57 AM, Konrad Rzeszutek Wilk wrote:
->> On Fri, Jan 08, 2021 at 01:39:18AM +0800, Claire Chang wrote:
->>> Hi Greg and Konrad,
->>>
->>> This change is intended to be non-arch specific. Any arch that lacks DMA access
->>> control and has devices not behind an IOMMU can make use of it. Could you share
->>> why you think this should be arch specific?
->>
->> The idea behind non-arch specific code is it to be generic. The devicetree
->> is specific to PowerPC, Sparc, and ARM, and not to x86 - hence it should
->> be in arch specific code.
-> 
-> In premise the same code could be used with an ACPI enabled system with
-> an appropriate service to identify the restricted DMA regions and unlock
-> them.
-> 
-> More than 1 architecture requiring this function (ARM and ARM64 are the
-> two I can think of needing this immediately) sort of calls for making
-> the code architecture agnostic since past 2, you need something that scales.
-> 
-> There is already code today under kernel/dma/contiguous.c that is only
-> activated on a CONFIG_OF=y && CONFIG_OF_RESERVED_MEM=y system, this is
-> no different.
+On Mon, Jan 25, 2021 at 10:49:27AM +0800, Simon Xue wrote:
+> pcie-dw-rockchip is based on DWC IP. But pcie-rockchip-host
+> is Rockchip designed IP which is only used for RK3399. So all the following
+> non-RK3399 SoCs should use this driver.
+>
+> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> ---
+>  drivers/pci/controller/dwc/Kconfig            |   9 +
+>  drivers/pci/controller/dwc/Makefile           |   1 +
+>  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 286 ++++++++++++++++++
+>  3 files changed, 296 insertions(+)
+>  create mode 100644 drivers/pci/controller/dwc/pcie-dw-rockchip.c
+>
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index 22c5529e9a65..aee408fe9283 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -214,6 +214,15 @@ config PCIE_ARTPEC6_EP
+>  	  Enables support for the PCIe controller in the ARTPEC-6 SoC to work in
+>  	  endpoint mode. This uses the DesignWare core.
+>
+> +config PCIE_ROCKCHIP_DW_HOST
+> +	bool "Rockchip DesignWare PCIe controller"
+> +	select PCIE_DW
+> +	select PCIE_DW_HOST
+> +	depends on ARCH_ROCKCHIP || COMPILE_TEST
+> +	depends on OF
+> +	help
+> +	  Enables support for the DW PCIe controller in the Rockchip SoC.
+> +
+>  config PCIE_INTEL_GW
+>  	bool "Intel Gateway PCIe host controller support"
+>  	depends on OF && (X86 || COMPILE_TEST)
+> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
+> index a751553fa0db..30eef8e9ee8a 100644
+> --- a/drivers/pci/controller/dwc/Makefile
+> +++ b/drivers/pci/controller/dwc/Makefile
+> @@ -13,6 +13,7 @@ obj-$(CONFIG_PCI_LAYERSCAPE_EP) += pci-layerscape-ep.o
+>  obj-$(CONFIG_PCIE_QCOM) += pcie-qcom.o
+>  obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
+>  obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
+> +obj-$(CONFIG_PCIE_ROCKCHIP_DW_HOST) += pcie-dw-rockchip.o
+>  obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
+>  obj-$(CONFIG_PCIE_KIRIN) += pcie-kirin.o
+>  obj-$(CONFIG_PCIE_HISI_STB) += pcie-histb.o
+> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> new file mode 100644
+> index 000000000000..07f6d1cd5853
+> --- /dev/null
+> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> @@ -0,0 +1,286 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * PCIe host controller driver for Rockchip SoCs
+> + *
+> + * Copyright (C) 2021 Rockchip Electronics Co., Ltd.
+> + *		http://www.rock-chips.com
+> + *
+> + * Author: Simon Xue <xxm@rock-chips.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +
+> +#include "pcie-designware.h"
+> +
+> +/*
+> + * The upper 16 bits of PCIE_CLIENT_CONFIG are a write
+> + * mask for the lower 16 bits.  This allows atomic updates
+> + * of the register without locking.
+> + */
 
-<unrelated to these patches, which are useful for the case cited>
+This is correct only for the variables that naturally aligned, I imagine
+that this is the case here and in the Linux, but better do not write comments
+in the code that are not accurate.
 
-Just a note for history/archives that this approach would not be 
-appropriate on general purpose Arm systems, such as SystemReady-ES 
-edge/non-server platforms seeking to run general purpose distros. I want 
-to have that in the record before someone at Arm (or NVidia, or a bunch 
-of others that come to mind who have memory firewalls) gets an idea.
-
-If you're working at an Arm vendor and come looking at this later 
-thinking "wow, what a great idea!", please fix your hardware to have a 
-real IOMMU/SMMU and real PCIe. You'll be pointed at this reply.
-
-Jon.
-
--- 
-Computer Architect
+Thanks
