@@ -2,75 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60C66302BB9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 20:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6ABD302BC0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 20:37:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731811AbhAYTfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 14:35:41 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:37244 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731830AbhAYTfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 14:35:22 -0500
-Received: by mail-ot1-f50.google.com with SMTP id h14so13902862otr.4;
-        Mon, 25 Jan 2021 11:35:02 -0800 (PST)
+        id S1731687AbhAYTh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 14:37:27 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:33979 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731937AbhAYThP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 14:37:15 -0500
+Received: by mail-ot1-f47.google.com with SMTP id a109so13937399otc.1;
+        Mon, 25 Jan 2021 11:37:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=nrzIYcJaC27vd9nGfsmTdb5Bn759r1uAoAX6/LzWCPs=;
-        b=NGrwKo2qEzZZ6PwV6UUv8xdV8wE9xZlF+IAUNqHnnRGsQfs7BqnjKQp1NZhAEAtsJj
-         /HMBeMVvpUr5HOTW3YaxznkuQx4kkrrlFuMe8p+dq6Hs9aXAXOi8SLORAVWjuK1ptyBD
-         j0u5o2o3Zldx1HLdCEskEgnvOT4pfUHhh5TxANp1iHruq7pHz6Z+RSODMo8w18++5SNi
-         g9SiD0xFY+Ccjfa5C3HIChNEb7YLebVwoa26eu1gacTvPxJDORPLBD6qmY0O9cl027uc
-         cTLw8184NFEkJynHQoaNOp9vNr1yyJLpfFpcZgBH0t/ROtuCQcKO4lFAECl5tuSRJug9
-         vGHQ==
-X-Gm-Message-State: AOAM533iBjQysAWXnU29+V94877XbmmHBMQ5O8oUnV/TVeAKuXK86mNd
-        Pui/IVbvmRWJJ0Z719oFkQ==
-X-Google-Smtp-Source: ABdhPJyijhW8AYwSxyVmK4BOFt9iIwV1Dz1LEgyrj0WDTVlSe0I/nBQEXyJDkHgjsrV7xcz12Mtd7w==
-X-Received: by 2002:a9d:7344:: with SMTP id l4mr1523845otk.181.1611603277224;
-        Mon, 25 Jan 2021 11:34:37 -0800 (PST)
+        bh=BqRRksk+3G/r1SIptHOITJUnap9kkWd8tCAejk57+/w=;
+        b=OwDDLGBJC02p/vvd2mM+hSDHhk3Ez96B/97S5tAG3a7vN/2KRlQuhOpB2/nJ/NIri4
+         cEDkrm0wkyYLo7XmVVIed6GErHzOzWzmV4tQcQqZxmKvysz6NDqeoP6Bd3MdWYC9w6yx
+         sUJWFNVGSXtI4RG2/pPtBbzAp5vQha7glDGm4bPlvxdDZfCgNIvzuV9NzARAz1tJtESo
+         klG55b822artdGoIq6+nBgqJJBVnZ1ZZuxBmQT/pzMwd60lH26NjOSVq8HGahoHQziX7
+         en9KTBFriJPv1jU8qPbsw7RAnDUiusx2vEjxWjTNjCelgYeaIKuJ93KxxppY4uggS6fj
+         DX3A==
+X-Gm-Message-State: AOAM533EpgavPz5L9Hf7reE+UMfBuDDjOQnb3EYGmB9JXDIHcWaW9Rce
+        ex0oWeliaFJt+fgR7QZ0jw==
+X-Google-Smtp-Source: ABdhPJzlEW0dIRUFPrRvLWdmFeuR1WWHyjf3aQ+xypxGsQfZC/kKhBP3Saz9yuCGB7AFW3Nx6YZPOg==
+X-Received: by 2002:a05:6830:13d3:: with SMTP id e19mr1527569otq.157.1611603394687;
+        Mon, 25 Jan 2021 11:36:34 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e17sm3674840otf.32.2021.01.25.11.34.35
+        by smtp.gmail.com with ESMTPSA id l110sm2623884otc.25.2021.01.25.11.36.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 11:34:36 -0800 (PST)
-Received: (nullmailer pid 826799 invoked by uid 1000);
-        Mon, 25 Jan 2021 19:34:35 -0000
-Date:   Mon, 25 Jan 2021 13:34:35 -0600
+        Mon, 25 Jan 2021 11:36:33 -0800 (PST)
+Received: (nullmailer pid 830912 invoked by uid 1000);
+        Mon, 25 Jan 2021 19:36:32 -0000
+Date:   Mon, 25 Jan 2021 13:36:32 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Alexandru Gagniuc <mr.nuke.me@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 20/24] ASoC: audio-graph-card: update
- audio-graph-card.yaml reference
-Message-ID: <20210125193435.GA826683@robh.at.kernel.org>
-References: <cover.1610535349.git.mchehab+huawei@kernel.org>
- <8a779e6b9644d19c5d77b382059f6ccf9781434d.1610535350.git.mchehab+huawei@kernel.org>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] dt-bindings: arm64: dts: mediatek: Add krane sku0
+Message-ID: <20210125193632.GA830825@robh.at.kernel.org>
+References: <20210113110400.616319-1-hsinyi@chromium.org>
+ <20210113110400.616319-3-hsinyi@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8a779e6b9644d19c5d77b382059f6ccf9781434d.1610535350.git.mchehab+huawei@kernel.org>
+In-Reply-To: <20210113110400.616319-3-hsinyi@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Jan 2021 11:59:21 +0100, Mauro Carvalho Chehab wrote:
-> Changeset 97198614f6c3 ("ASoC: audio-graph-card: switch to yaml base Documentation")
-> renamed: Documentation/devicetree/bindings/sound/audio-graph-card.txt
-> to: Documentation/devicetree/bindings/sound/audio-graph-card.yaml.
+On Wed, 13 Jan 2021 19:04:03 +0800, Hsin-Yi Wang wrote:
+> Krane-sku0 is similar to krane-sku176 but using a different panel
+> source.
 > 
-> Update its cross-reference accordingly.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 > ---
->  Documentation/devicetree/bindings/display/bridge/sii902x.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
