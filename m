@@ -2,75 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5AD9303285
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 04:14:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26D5B303277
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 04:11:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727035AbhAYJkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 04:40:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38466 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726954AbhAYJjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 04:39:52 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89B4C0612F2
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 01:38:30 -0800 (PST)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1l3yKJ-000619-Om; Mon, 25 Jan 2021 10:38:27 +0100
-Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1l3yKI-00019Y-UN; Mon, 25 Jan 2021 10:38:26 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     linux-usb@vger.kernel.org
-Cc:     Minas Harutyunyan <hminas@synopsys.com>,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 1/2] dt-bindings: usb: dwc2: Add support for additional clock
-Date:   Mon, 25 Jan 2021 10:38:24 +0100
-Message-Id: <20210125093825.4292-2-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210125093825.4292-1-s.hauer@pengutronix.de>
-References: <20210125093825.4292-1-s.hauer@pengutronix.de>
+        id S1727395AbhAYKYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 05:24:49 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:63942 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727483AbhAYKWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 05:22:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1611570144; x=1643106144;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=Jaf5ap+iRlOkRyLK7k0c5JvNu7KlWsQcAxQtQYo01tc=;
+  b=aGJd+h8+0Owe0neCTCaabz+DqXWI4Ucb7djpKxWdQPVltjeztuil/anu
+   rwPIeZfGFjIYLfPxUkYY0Fz/TSayNvYHzUJ5wjjSm49Dw1PEsFJf4VOY8
+   JXvEGqJYPDLqyoTLd5SACz151TLklHSCWfSwot23Plx8E3OZR0DeG6EJV
+   wEGqks6OwcR0AsRCH6iJzF5bELjg2IIJYJFdeMfUTHVlY2gqVppjtyI2j
+   W5Ntsu54bg3UWgV5Ym2+wHWkZJxgCh0X2zUHymvq7ZUnV+90Sf6sce/UR
+   TgyTMk/JsV7OdKI1/DJVDqoBZ42qn64rs83lYorEZQ95c0Tu2n6/7uVPf
+   Q==;
+IronPort-SDR: auLMmQbeDPZdalqB8hS/UqSVzeM4BRKpKA7JIztoIeE5szefrpMWTYy6fhnnOVnieEAkNyMHmx
+ EtJhqrj92HMS6eV77nMpNNvQCM3LAykk2XUtRCrF54+xI7cZuQ6AMCg84G5Da2x9SLBB7oVHNX
+ lb7kk12CK+U0dcasoQmuXWyEc6dpqipjN16+MjWQsvdg6REE+lCoO2HovSZdNT4OVui55xjVQa
+ fBGUFr3dWDG7vXY/vvo9ig4IPuIEp2gZsUaOH65ROGcNXkaEpiKq1dLgHy67ZWAIHdclni0A2l
+ jzg=
+X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; 
+   d="scan'208";a="107162032"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Jan 2021 03:19:26 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 25 Jan 2021 03:19:26 -0700
+Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 25 Jan 2021 03:19:21 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>
+CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 1/3] dt-bindings: pinctrl: at91-pio4: add slew-rate
+Date:   Mon, 25 Jan 2021 12:19:12 +0200
+Message-ID: <1611569954-23279-2-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1611569954-23279-1-git-send-email-claudiu.beznea@microchip.com>
+References: <1611569954-23279-1-git-send-email-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for an additional clock for the dwc2 core in case
-there is another clock to the phy which must be enabled.
+Document slew-rate DT binding for SAMA7G5.
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 ---
- Documentation/devicetree/bindings/usb/dwc2.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt       | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-index e5ee51b7b470..56dd0d18d535 100644
---- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-@@ -57,11 +57,14 @@ properties:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt
+index 265015bc0603..e2b861ce16d8 100644
+--- a/Documentation/devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt
++++ b/Documentation/devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt
+@@ -35,9 +35,11 @@ ioset settings. Use the macros from boot/dts/<soc>-pinfunc.h file to get the
+ right representation of the pin.
  
-   clocks:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 2
+ Optional properties:
+-- GENERIC_PINCONFIG: generic pinconfig options to use, bias-disable,
+-bias-pull-down, bias-pull-up, drive-open-drain, input-schmitt-enable,
+-input-debounce, output-low, output-high.
++- GENERIC_PINCONFIG: generic pinconfig options to use:
++	- bias-disable, bias-pull-down, bias-pull-up, drive-open-drain,
++	  input-schmitt-enable, input-debounce, output-low, output-high.
++	- for microchip,sama7g5-pinctrl only:
++		- slew-rate: 0 - disabled, 1 - enabled (default)
+ - atmel,drive-strength: 0 or 1 for low drive, 2 for medium drive and 3 for
+ high drive. The default value is low drive.
  
-   clock-names:
-     items:
-       - const: otg
-+      - const: phy
-+    minItems: 1
- 
-   resets:
-     items:
 -- 
-2.20.1
+2.7.4
 
