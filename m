@@ -2,70 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC2463032D6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:39:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3AC3032D8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:39:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726691AbhAZEiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:38:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44462 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727339AbhAYKLh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 05:11:37 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 45DBE225A9;
-        Mon, 25 Jan 2021 10:09:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611569365;
-        bh=/caSJlOzi9QwZYCHXZhLX4f0JgFeqHckEpX4/pNTF1c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jIb89LY/RphhYgJMIj8DSE0x9sKFQnKTMasNpMzLiZJlXQ4gXjCoPVV/0ZcO8F1db
-         +NcRsq4f8PDU95GKM8iLSQoG34eu+47I0iEcSHjVLkEpDNq1Yp7+yPx3Y/JbFw3FvS
-         9DUxaxD7MdehfLVjQGO+p8NdAJfNxwgWpnaZEKCTtUif3bXdNLWNPTQZOY/Dl/MWJe
-         5vmIaFk1+FjT5ZzJ6p4QByYbyhggwrb9iQKgpc9OABiQtf2Fgq/ApbaHemnIvdUCj6
-         DpNBjvzfK5gDyLQacny6OXy6DCx0lbwPTisgdUmg1XCUuO5oFy76mXUKMAyvCU7fah
-         MsoqWvn16iGjg==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     "Martin K . Petersen" <martin.petersen@oracle.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/4] scsi: dt-bindings: ufs: Add sm8250, sm8350 compatible strings
-Date:   Mon, 25 Jan 2021 15:39:03 +0530
-Message-Id: <20210125100906.4004908-2-vkoul@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210125100906.4004908-1-vkoul@kernel.org>
-References: <20210125100906.4004908-1-vkoul@kernel.org>
+        id S1726741AbhAZEi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:38:57 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:58926 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727482AbhAYKV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 05:21:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1611570117; x=1643106117;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=/xTjRJ1bLejdTjp9C85JvYhy0rTQE1UU6MDdrOu0ods=;
+  b=Ed0uFo8i2VmGQzGzqvI9OGQKOP9FNGMV30vYk5poThAIIRn6P2sfGRCT
+   x8ONMGYaOpyambfLYc9jYrsNzbaebUxbHo7cHdxJsn+Dj54XElSen2LM7
+   9+PfV88uSvXNDeMe3rrKnjneUxEjAWu1pZw3cfz/+GBXRZgfT1Jav6U3v
+   W5RGAFSMB/IzZt5Eq+hFwzh8StvgeQdcKusCB/qpnybz+DwV/qjfI2N+l
+   D9roTA2jVcASn2KvQLjH7IaOH7RgNYkpth57c2j9vh1H4/KbsI6fOBqDL
+   uxDkP2Ob7ubSD+DnXr0PJkmHw5v0PbNyfDVlmqSPbH/9CYAYMONdNw+6A
+   Q==;
+IronPort-SDR: bSW5M+nbxfHJQTZwv7VPZ1q13WaLHZ1/dgk7MKAOXMYMcHgHTYoyofdau2R6w/uLbcBqvlYq6c
+ 7cngtAmHbbqcJKVlPDEdhKaP9GaMCB22xATbuthvsGPVKWT3UqU0lFPr6rcsSabT1qt3QjGWCc
+ tgiJ4K9ZPLCWVi2lCYvcHEDjT0iPNUJ6vhnVINKqXeRQzJWZCbH75UxbUlzm7lrWs3Rd9tSzpi
+ D0OU0HX0/HE2QnzVBpyC5ze1bDpnndwU6WDjXyqwCxqUtV1yKeAagYA9n97yij0bZcKj0fC3ar
+ NKA=
+X-IronPort-AV: E=Sophos;i="5.79,373,1602572400"; 
+   d="scan'208";a="41611477"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Jan 2021 03:19:21 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Mon, 25 Jan 2021 03:19:21 -0700
+Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Mon, 25 Jan 2021 03:19:16 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>
+CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 0/3] pinctrl: at91-pio4: add support for slew-rate
+Date:   Mon, 25 Jan 2021 12:19:11 +0200
+Message-ID: <1611569954-23279-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document "qcom,sm8250-ufshc" and "qcom,sm8350-ufshc" compatible string.
-Use of "qcom,sm8250-ufshc" is already present upstream, so add misiing
-documentation. "qcom,sm8350-ufshc" is for UFS HC found in SM8350 SoC.
+Hi,
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
- 1 file changed, 2 insertions(+)
+This series adds support for slew rate on SAMA7G5. Along with this
+patch 3/3 fixes some checkpatch.pl warnings.
 
-diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-index 415ccdd7442d..d8fd4df81743 100644
---- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-+++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-@@ -14,6 +14,8 @@ Required properties:
- 			    "qcom,msm8998-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
- 			    "qcom,sdm845-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
- 			    "qcom,sm8150-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
-+			    "qcom,sm8250-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
-+			    "qcom,sm8350-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
- - interrupts        : <interrupt mapping for UFS host controller IRQ>
- - reg               : <registers mapping>
- 
+Thank you,
+Claudiu Beznea
+
+Claudiu Beznea (3):
+  dt-bindings: pinctrl: at91-pio4: add slew-rate
+  pinctrl: at91-pio4: add support for slew-rate
+  pinctrl: at91-pio4: fix "Prefer 'unsigned int' to bare use of    
+    'unsigned'"
+
+ .../bindings/pinctrl/atmel,at91-pio4-pinctrl.txt   |   8 +-
+ drivers/pinctrl/pinctrl-at91-pio4.c                | 137 +++++++++++++--------
+ 2 files changed, 89 insertions(+), 56 deletions(-)
+
 -- 
-2.26.2
+2.7.4
 
