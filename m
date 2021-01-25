@@ -2,97 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69CEE304B56
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E564304B52
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:28:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727681AbhAZErS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:47:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51660 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730018AbhAYRLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 12:11:14 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8053C06178C
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:10:31 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id w8so15540133oie.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:10:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=CiQwU0uQMl0x2LLoEUfiYuSqNBnhBy8hs2yd2mhpH0A=;
-        b=cDbyQlsCCe8Cot3vrfN5F/iXSU/8y9dODtuV7WZ2sjlCDEP7cN9foP1BzFPJc6SFlW
-         Vdy0MGAths5Uo9w3678VYa+qxbIBd4ZkSsa2iPexeQDp+4AZQjhJVIhsh4/xdQCaTt+6
-         u7VN2XBVyIthAijZX2yYZqwQkrvvXs2NcCcU7a6Fcs0+kDIBw5c9QJlVD3OCbNVeUny/
-         jenR4l1nMdwRbj2J5Ts38jT2O5iESUd9xyqMUXZOIsjOVmx1wSaH/rrSloptYzGamNTW
-         uaoPSPdKqwD3PW3HzZJ2V+5bSksP6P1TwRE1o97fANuVx1pPQET0HopxxUkWcXBqNL25
-         09MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CiQwU0uQMl0x2LLoEUfiYuSqNBnhBy8hs2yd2mhpH0A=;
-        b=At4DQpPDbwTgntX2VEbWeCIcHoxgqqAnFFnlikfLTZHRZ9gTffER2P/TbdjzK8Akhg
-         d8I4e0b1gDPLJ6VvKcWsi2wd9RSmUPox2qul127oap+AgAPtc8WNbyeU0NZqk41zZQ20
-         uupUtLk63g5qLGLZOn2Koa/ejoP9c0rdq+HyT8upnif4l/FjzUGreYItoETnhS3Qzqf5
-         BQAtjoCvXdjVYQ+fvjs6sl31jds6zOIoOu2jYl8IRmGn0cTLyh4sTSscyT7VoJxMIRb7
-         wVO62ckV3wgxKJECS/vSnt7LDZB4TNoRcn40INoeUy8tBOf6cE47xsvFBl1GNtN7waPH
-         Pudw==
-X-Gm-Message-State: AOAM5327xfoT/93Vxq0+LUGsOKpEZ0z7YMXF7f7IQ/7W9VL4UCjVhlgS
-        Jp1x+0YRLeUdKpStZlDl/pXxCw==
-X-Google-Smtp-Source: ABdhPJwvzgGBdYbZSP0vhyScwPdNWTzVfw20HDZVrDrLYGkEsg2A9FYv4lzLJATK9Kj9OG46uvpb+A==
-X-Received: by 2002:aca:f551:: with SMTP id t78mr721431oih.34.1611594631387;
-        Mon, 25 Jan 2021 09:10:31 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n18sm702450oov.4.2021.01.25.09.10.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 09:10:30 -0800 (PST)
-Date:   Mon, 25 Jan 2021 11:10:29 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
+        id S1727727AbhAZErg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:47:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57742 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727232AbhAYSlL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 13:41:11 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 68E3920665;
+        Mon, 25 Jan 2021 18:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611600030;
+        bh=ameHPCB/oz4/BeevZFfLSTXuBt6P8JY+tdmpWZqMTOI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=LA4m4N6FXgHyOFlkbB/vbDdcKkTsOWHGq8aVNiWl+NeRe0qUBrXa8hgPXNCGvDFtj
+         62V5wwoCzzlD8OD4Dis6MC5G0ILs+073C78v5IdZW/l33ujfNiPJxBHnvGTb6VWJLA
+         EvdUzjmbhxFRVrLjPQf/ie8xajj5MnQv1oCGhugQl7K6o5Yh87fXTFIBat8+zlEbkT
+         6Qp+sX6NuanSlGnG6YuXhfDvD0jV5AiN1+JzvZo7x3OoWzVSrNS2DxIjD1Yu8p6dux
+         xlpu30CkBvnrFJuoR7njdD4tadMMOFHtjMqdGQ2Ae8jQIRzsAMZVRjGH3vr5aP9Okh
+         qdF+vn2F1q5gg==
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     linux-mmc@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
         Asutosh Das <asutoshd@codeaurora.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: phy: qcom,qmp: Add SM8350 UFS PHY
- bindings
-Message-ID: <YA77hbH6aOW7mzbF@builder.lan>
-References: <20210125100906.4004908-1-vkoul@kernel.org>
- <20210125100906.4004908-3-vkoul@kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: [PATCH v6 2/9] mmc: cqhci: rename cqhci.c to cqhci-core.c
+Date:   Mon, 25 Jan 2021 10:38:03 -0800
+Message-Id: <20210125183810.198008-3-ebiggers@kernel.org>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210125183810.198008-1-ebiggers@kernel.org>
+References: <20210125183810.198008-1-ebiggers@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210125100906.4004908-3-vkoul@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 25 Jan 04:09 CST 2021, Vinod Koul wrote:
+From: Eric Biggers <ebiggers@google.com>
 
-> Add the compatible strings for the UFS PHY found on SM8350 SoC.
-> 
+Rename cqhci.c to cqhci-core.c so that another source file can be added
+to the cqhci module without having to rename the module.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+Reviewed-and-tested-by: Peng Zhou <peng.zhou@mediatek.com>
+Signed-off-by: Eric Biggers <ebiggers@google.com>
+---
+ drivers/mmc/host/Makefile                  | 1 +
+ drivers/mmc/host/{cqhci.c => cqhci-core.c} | 0
+ 2 files changed, 1 insertion(+)
+ rename drivers/mmc/host/{cqhci.c => cqhci-core.c} (100%)
 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> index 62c4f2ba5b9f..bf804c12fa5f 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> @@ -38,6 +38,7 @@ properties:
->        - qcom,sm8250-qmp-modem-pcie-phy
->        - qcom,sm8250-qmp-usb3-phy
->        - qcom,sm8250-qmp-usb3-uni-phy
-> +      - qcom,sm8350-qmp-ufs-phy
->        - qcom,sm8350-qmp-usb3-phy
->        - qcom,sm8350-qmp-usb3-uni-phy
->        - qcom,sdx55-qmp-usb3-uni-phy
-> -- 
-> 2.26.2
-> 
+diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+index d2ec428cc8086..19687ad42c6b4 100644
+--- a/drivers/mmc/host/Makefile
++++ b/drivers/mmc/host/Makefile
+@@ -102,6 +102,7 @@ obj-$(CONFIG_MMC_SDHCI_BRCMSTB)		+= sdhci-brcmstb.o
+ obj-$(CONFIG_MMC_SDHCI_OMAP)		+= sdhci-omap.o
+ obj-$(CONFIG_MMC_SDHCI_SPRD)		+= sdhci-sprd.o
+ obj-$(CONFIG_MMC_CQHCI)			+= cqhci.o
++cqhci-y					+= cqhci-core.o
+ obj-$(CONFIG_MMC_HSQ)			+= mmc_hsq.o
+ 
+ ifeq ($(CONFIG_CB710_DEBUG),y)
+diff --git a/drivers/mmc/host/cqhci.c b/drivers/mmc/host/cqhci-core.c
+similarity index 100%
+rename from drivers/mmc/host/cqhci.c
+rename to drivers/mmc/host/cqhci-core.c
+-- 
+2.30.0
+
