@@ -2,84 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 316E4303114
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 02:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A668303125
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 02:25:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731968AbhAYThC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 14:37:02 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:43639 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731959AbhAYTgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 14:36:47 -0500
-Received: by mail-ot1-f47.google.com with SMTP id v1so13898520ott.10;
-        Mon, 25 Jan 2021 11:36:32 -0800 (PST)
+        id S2387460AbhAZBY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 20:24:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56832 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731549AbhAYTnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 14:43:18 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44755C061573;
+        Mon, 25 Jan 2021 11:42:38 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id h15so5817742pli.8;
+        Mon, 25 Jan 2021 11:42:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5fVcl4vKZHTggDm2blzFERgcHQ62HSz/1Q2cJ06nrTg=;
+        b=LL0FJhwoQrn7tUXdzpAdVeTxvpcnKljV3FZHqFh2MW1Nn7kU9DyudKg56dc5WEr9b6
+         ELm2u/F2CynFbqQtnbVH2jrvb8lb1owWggFXMi984iR8HTHAcY72RwkpQdyg8kYvD0M1
+         RisgAaxjOP+vvR3/e714JnzZEN1qwfV0D1os8EX74vck3vQUmCO2GgBK9koYeN27koOW
+         Oq/LfzpLUKcvcfMc32E+juzk5/cvnCxX4FrhUoAcKQP0Bjh2fnlHpW4kRlYQMjxX55tt
+         +nQ1Esa8G7u99N3yLi5Bo5MB2j6DnvTMZuy699sUzV5zcXDX1JNVbLcKFO77mPxxlt2v
+         2tgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mH2q1AZz5irHrvq/3t1+Obhg0JHH2TFjERBNOT0hM0Q=;
-        b=kHRTcon5gkg8SRuDD2vKcTtr8mLEKrRVRfUepR+vwUkVTALUi0qhZHnOLAQfpGA8nO
-         v9hFkNl7ovck8fRU91TRDhgHikzmEieptoGufXz5mz1YGNtSACKppmmrX4NykT7g6VpR
-         72t+3vJcc+u7J78XwED+D5a2C8oh5EsKfGVxXkHybN9qVQHSWGWB9FEM/DWi+nLX3jDI
-         fi/m+93Lu8UikDho+vYay+J8XTaltFtYD7c5Mr/t5PlVy1HW3gqwXT9wuKDsQwC4MRgH
-         tgKLdFoaYykFv+KNMEqnUInQJdCd58X/AEALBrPPGHz2TVuuBu6/Y3R0DbWsc1CiCXvL
-         IyUg==
-X-Gm-Message-State: AOAM530SgHShS7lzmroF8duZEsmO+lmdV2ltjkhGO+gpcXiIMyQJFtVO
-        Rf6UVEG7ZrBo77I7NQdNfQ==
-X-Google-Smtp-Source: ABdhPJwBqs6kpkcYrx/aXfe/1e/07a9bQgMjrd1YtHP4Jbg6s9G1TE28GLJ8saSbZE8IZ5BXrEU1qg==
-X-Received: by 2002:a05:6830:2f3:: with SMTP id r19mr1513671ote.299.1611603366943;
-        Mon, 25 Jan 2021 11:36:06 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z4sm551224ooz.5.2021.01.25.11.36.05
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=5fVcl4vKZHTggDm2blzFERgcHQ62HSz/1Q2cJ06nrTg=;
+        b=i03k0fd5SFCR/P2q+aG2QbMbCD8RKiJUHNGbuyFrbAm6++jmxQe1ZRmU2eeeghOan5
+         vy6ZzLvsgil6LRMwKmJMXAznPxEzQJJRwwZtfflmpQ/zDILFxQqF+uw4JZPOAsOQhdjH
+         hrkXRPGUcmmlnySOqQRTh+L928sYPFBhh7GDoRmaCKJ0PXyCaGm59tYNxMYpFJ0NYcDV
+         mj+sJJUwtZBbMDfgcNM7TfQJ8uDmDE3XJtEIcJn1Z3vfmZTkciQE2pwFbpCsFZHVcFNb
+         i/9k33YRAqM83VsIhiuqVJXM1O4uTDsMxE/eE7mIzi4UByLtv3nLA2LCXljuB5fEBr28
+         REAg==
+X-Gm-Message-State: AOAM532LhUvSpwFa+3riBkTuRtv0iHP9331HZalQvq6Cq+EHHZjg3VKr
+        mhXPnppKPqmZ/u45M6dUks4=
+X-Google-Smtp-Source: ABdhPJwT/YZ72o8PzSOo3q/xaeqNAkBX8xQi8IOdnfyF1Y2kFh41Roa9xrm8PNLtM8E9l0D9llOWOA==
+X-Received: by 2002:a17:90a:7e90:: with SMTP id j16mr1784454pjl.163.1611603757872;
+        Mon, 25 Jan 2021 11:42:37 -0800 (PST)
+Received: from google.com ([2620:15c:211:201:e8b4:4688:79de:94f3])
+        by smtp.gmail.com with ESMTPSA id h6sm17733599pfr.47.2021.01.25.11.42.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 11:36:06 -0800 (PST)
-Received: (nullmailer pid 830007 invoked by uid 1000);
-        Mon, 25 Jan 2021 19:36:04 -0000
-Date:   Mon, 25 Jan 2021 13:36:04 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Bin Liu <bin.liu@mediatek.com>, David Airlie <airlied@linux.ie>,
-        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rick Chang <rick.chang@mediatek.com>
-Subject: Re: [PATCH 22/24] dt-bindings: memory: mediatek: update mediatek,
- smi-larb.yaml references
-Message-ID: <20210125193604.GA829546@robh.at.kernel.org>
-References: <cover.1610535349.git.mchehab+huawei@kernel.org>
- <c70bd79b311a65babe7374eaf81974563400a943.1610535350.git.mchehab+huawei@kernel.org>
+        Mon, 25 Jan 2021 11:42:36 -0800 (PST)
+Sender: Minchan Kim <minchan.kim@gmail.com>
+Date:   Mon, 25 Jan 2021 11:42:34 -0800
+From:   Minchan Kim <minchan@kernel.org>
+To:     Michal Hocko <mhocko@suse.com>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
+        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
+        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
+        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
+        linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v4 1/4] mm: cma: introduce gfp flag in cma_alloc instead
+ of no_warn
+Message-ID: <YA8fKgFLuOi/rSez@google.com>
+References: <20210121175502.274391-1-minchan@kernel.org>
+ <20210121175502.274391-2-minchan@kernel.org>
+ <20210125130701.GF827@dhcp22.suse.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c70bd79b311a65babe7374eaf81974563400a943.1610535350.git.mchehab+huawei@kernel.org>
+In-Reply-To: <20210125130701.GF827@dhcp22.suse.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Jan 2021 11:59:23 +0100, Mauro Carvalho Chehab wrote:
-> Changeset 27bb0e42855a ("dt-bindings: memory: mediatek: Convert SMI to DT schema")
-> renamed: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
-> to: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml.
+On Mon, Jan 25, 2021 at 02:07:01PM +0100, Michal Hocko wrote:
+> On Thu 21-01-21 09:54:59, Minchan Kim wrote:
+> > The upcoming patch will introduce __GFP_NORETRY semantic
+> > in alloc_contig_range which is a failfast mode of the API.
+> > Instead of adding a additional parameter for gfp, replace
+> > no_warn with gfp flag.
+> > 
+> > To keep old behaviors, it follows the rule below.
+> > 
+> >   no_warn 			gfp_flags
+> > 
+> >   false         		GFP_KERNEL
+> >   true          		GFP_KERNEL|__GFP_NOWARN
+> >   gfp & __GFP_NOWARN		GFP_KERNEL | (gfp & __GFP_NOWARN)
+> > 
+> > Reviewed-by: Suren Baghdasaryan <surenb@google.com>
+> > Signed-off-by: Minchan Kim <minchan@kernel.org>
+> [...]
+> > diff --git a/mm/cma.c b/mm/cma.c
+> > index 0ba69cd16aeb..d50627686fec 100644
+> > --- a/mm/cma.c
+> > +++ b/mm/cma.c
+> > @@ -419,13 +419,13 @@ static inline void cma_debug_show_areas(struct cma *cma) { }
+> >   * @cma:   Contiguous memory region for which the allocation is performed.
+> >   * @count: Requested number of pages.
+> >   * @align: Requested alignment of pages (in PAGE_SIZE order).
+> > - * @no_warn: Avoid printing message about failed allocation
+> > + * @gfp_mask: GFP mask to use during the cma allocation.
 > 
-> Update its cross-references accordingly.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,disp.txt      | 2 +-
->  .../devicetree/bindings/media/mediatek-jpeg-decoder.txt         | 2 +-
->  .../devicetree/bindings/media/mediatek-jpeg-encoder.txt         | 2 +-
->  Documentation/devicetree/bindings/media/mediatek-mdp.txt        | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
-> 
+> Call out supported gfp flags explicitly. Have a look at kvmalloc_node
+> for a guidance.
 
-Applied, thanks!
+How about this?
+
+
+diff --git a/mm/cma.c b/mm/cma.c
+index d50627686fec..b94727b694d6 100644
+--- a/mm/cma.c
++++ b/mm/cma.c
+@@ -423,6 +423,10 @@ static inline void cma_debug_show_areas(struct cma *cma) { }
+  *
+  * This function allocates part of contiguous memory on specific
+  * contiguous memory area.
++ *
++ * For gfp_mask, GFP_KERNEL and __GFP_NORETRY are supported. __GFP_NORETRY
++ * will avoid costly functions(e.g., waiting on page_writeback and locking)
++ * at current implementaion during the page migration.
+  */
+ struct page *cma_alloc(struct cma *cma, size_t count, unsigned int align,
+                       gfp_t gfp_mask)
+
