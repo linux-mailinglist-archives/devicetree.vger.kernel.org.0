@@ -2,91 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F5C3032F8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:43:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93BE2303305
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:45:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726801AbhAZEn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:43:29 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:46344 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729372AbhAYOUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 09:20:06 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10PEIQcL034678;
-        Mon, 25 Jan 2021 08:18:26 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611584306;
-        bh=l8MqkTrspZlMfkzgo3/5nS3QIQbMMeHh3WA/tS5Z+wA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=ThDlTgJPRdOf6dgZg1BQ74EIZVBODtg3S7RY1yp7nU91rNJzrEnLXZsCGDDb3l4y9
-         7jb/rTweB20iG6GykQJ2FlsJuHoWwI/+Qbsdf1LfMs5QHeEFbKJajYt8ocVzg1cvL8
-         ztLqZE7hXu2jJsJZ0eShTH0JbLyHqKrs+4YnHe2A=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10PEIQsU098221
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 25 Jan 2021 08:18:26 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 25
- Jan 2021 08:18:25 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 25 Jan 2021 08:18:26 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10PEIQk2058681;
-        Mon, 25 Jan 2021 08:18:26 -0600
-Date:   Mon, 25 Jan 2021 08:18:26 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/2] mmc: J7200: Add support for higher speed modes in
- MMCSD subsystems
-Message-ID: <20210125141826.b7gfv6molvunzzwb@generous>
-References: <20210122162403.20700-1-a-govindraju@ti.com>
- <20210122180629.3j3aoueiwiib4gso@cavalier>
- <5341eeb2-e637-424f-3328-60dbddee1376@ti.com>
- <20210125135112.gvddr4uv7vx7kfrq@triangle>
- <fd7ac744-a6dc-9f1f-c13f-96faca14d75b@ti.com>
+        id S1727163AbhAZEol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:44:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729591AbhAYOh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 09:37:29 -0500
+Received: from leibniz.telenet-ops.be (leibniz.telenet-ops.be [IPv6:2a02:1800:110:4::f00:d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADD4C06178C
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 06:36:01 -0800 (PST)
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by leibniz.telenet-ops.be (Postfix) with ESMTPS id 4DPXG700yzzMsJq4
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 15:25:35 +0100 (CET)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by andre.telenet-ops.be with bizsmtp
+        id M2QZ2400D4C55Sk012QZ6m; Mon, 25 Jan 2021 15:24:34 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1l42nA-000eiW-OS; Mon, 25 Jan 2021 15:24:32 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1l42nA-004P5E-7x; Mon, 25 Jan 2021 15:24:32 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 3/4] dmaengine: rcar-dmac: Add helpers for clearing DMA channel status
+Date:   Mon, 25 Jan 2021 15:24:30 +0100
+Message-Id: <20210125142431.1049668-4-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210125142431.1049668-1-geert+renesas@glider.be>
+References: <20210125142431.1049668-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <fd7ac744-a6dc-9f1f-c13f-96faca14d75b@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:43-20210125, Aswath Govindraju wrote:
-> >>> Will also help to provide some verification log along with this.
-> >>>
-> >>
-> >> May I know what sort of logs would be best to provide. Would enumeration
-> >> logs during boot suffice ?
-> >>
-> >> Like this,
-> >> https://pastebin.ubuntu.com/p/v9NRV7GwMw/ ?
-> > 
-> > That just says we detected the cards, no?
-> > I thought we had tests around this? Something including /sys/kernel/debug/mmc*/ios
-> > 
-> > Something that demonstrates that this actually runs at the claimed
-> > speeds? That would be nice on linux-next, if possible as well..
-> > 
-> 
-> Yes there are tests which confirm that claimed speeds are functional. I
-> will add them in the respin.
+Extract the code to clear the status of one or all channels into their
+own helpers, to prepare for the different handling of the R-Car V3U SoC.
 
-Awesome.  much appreciated.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v2:
+  - No changes.
+---
+ drivers/dma/sh/rcar-dmac.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/dma/sh/rcar-dmac.c b/drivers/dma/sh/rcar-dmac.c
+index 537550b4121bbc22..7a0f802c61e5152d 100644
+--- a/drivers/dma/sh/rcar-dmac.c
++++ b/drivers/dma/sh/rcar-dmac.c
+@@ -336,6 +336,17 @@ static void rcar_dmac_chan_write(struct rcar_dmac_chan *chan, u32 reg, u32 data)
+ 		writel(data, chan->iomem + reg);
+ }
+ 
++static void rcar_dmac_chan_clear(struct rcar_dmac *dmac,
++				 struct rcar_dmac_chan *chan)
++{
++	rcar_dmac_write(dmac, RCAR_DMACHCLR, BIT(chan->index));
++}
++
++static void rcar_dmac_chan_clear_all(struct rcar_dmac *dmac)
++{
++	rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
++}
++
+ /* -----------------------------------------------------------------------------
+  * Initialization and configuration
+  */
+@@ -451,7 +462,7 @@ static int rcar_dmac_init(struct rcar_dmac *dmac)
+ 	u16 dmaor;
+ 
+ 	/* Clear all channels and enable the DMAC globally. */
+-	rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
++	rcar_dmac_chan_clear_all(dmac);
+ 	rcar_dmac_write(dmac, RCAR_DMAOR,
+ 			RCAR_DMAOR_PRI_FIXED | RCAR_DMAOR_DME);
+ 
+@@ -1566,7 +1577,7 @@ static irqreturn_t rcar_dmac_isr_channel(int irq, void *dev)
+ 		 * because channel is already stopped in error case.
+ 		 * We need to clear register and check DE bit as recovery.
+ 		 */
+-		rcar_dmac_write(dmac, RCAR_DMACHCLR, 1 << chan->index);
++		rcar_dmac_chan_clear(dmac, chan);
+ 		rcar_dmac_chcr_de_barrier(chan);
+ 		reinit = true;
+ 		goto spin_lock_end;
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.25.1
+
