@@ -2,219 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4466830253D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 14:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6D51302550
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 14:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728238AbhAYM72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 07:59:28 -0500
-Received: from mail-dm6nam10on2103.outbound.protection.outlook.com ([40.107.93.103]:54822
-        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728548AbhAYM65 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 07:58:57 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y7lZQ2Kf5Nupm7wFPbZImN2sglRFvYuhDEkh1iP8o5loch2V8VuAxPYsPCphjDT0k4sO/hT2mYEuUUZ5Nlq2T6lRpjv5KxsFrs8uGow+Mp73jZfMeqCKVIbwA4I/ofnFqhv9fzyH+s0dGKANanNYDMKr4Tn62+V3GQFz5FV0ug3Y2njs1U/XOyzILDon37JHkDYbXeT2qa3gZSkHtG7g/fG5rF0MwNTnuDFQr3icZ+ekEyxlHJwoN5H8ufhnwLcrx+mtkpxQHQ0YgZOeP/Zsn8eF20aTxEJwEledw7/xbHWnSJdQLetZ8sMg3Z+jZQKHfvpDvFEO2Jl+qo+9f7DmQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lxg3+JEk2NgPu096kffKI0yZ8DWEXezdVXlEc/xTh/I=;
- b=gjVaWjXK9GDRA6hmhikgQ9qbMabeRos8mJYXQj9s95kWGYdIJMu7Zfn1DB834TGwdewj15i2tR1FXJ9fIyRoZt+Jy1KiPLqqeuG5DYRflUhsgBWIkiNNvxAQy440QbHYXpgUKLi9S/ooQTSu/tZWM3Tk+dRRy6KZL/8sC86mbsLot6JgJ5SKS/WjSeEIVQSLWCrs6tepaMZQ1CwGILyCo2kS+qBV10Lvn03A0BLzvoltVfp9gZP9tqQOGcfONlFwKmu96lJOnF7WSDwory5H33cafNGn5BZgsqOiMQK2g0Aq87ViZTMI/elJCYqtNzrAgm1nbdB5aGauiG8iMYmbig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lxg3+JEk2NgPu096kffKI0yZ8DWEXezdVXlEc/xTh/I=;
- b=pKDgeIHVZy6E4U4JdTGTkEz6wh5B4MZVfa9xNCXUHFy2c6bJE4fVZYq+E+4MTjM4TWTc0ctTP2qjhAfV+kCJoNf4iHWgZnxNhPnmY9J+yTwngA0X0u2Cf4PypAbdkOj/dEcZXg11ZfzxjsnaI4kUACCAQQwY5GkilEsv9x6xxY4=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by BYAPR04MB6262.namprd04.prod.outlook.com (2603:10b6:a03:e3::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Mon, 25 Jan
- 2021 11:12:50 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::5813:96a7:b2d6:132]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::5813:96a7:b2d6:132%6]) with mapi id 15.20.3763.015; Mon, 25 Jan 2021
- 11:12:50 +0000
-Date:   Mon, 25 Jan 2021 19:12:21 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/3] dt-bindings:drm/bridge:anx7625:add HDCP support flag
- and swing reg
-Message-ID: <75e29d7386df2ebca4a8e3f0b91c8370a4a8f74f.1611572143.git.xji@analogixsemi.com>
-References: <cover.1611572142.git.xji@analogixsemi.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1611572142.git.xji@analogixsemi.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Originating-IP: [61.148.116.10]
-X-ClientProxiedBy: HK0PR03CA0114.apcprd03.prod.outlook.com
- (2603:1096:203:b0::30) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
+        id S1728612AbhAYNIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 08:08:45 -0500
+Received: from de-deferred1.bosch-org.com ([139.15.180.216]:58264 "EHLO
+        de-deferred1.bosch-org.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728454AbhAYNIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 08:08:00 -0500
+X-Greylist: delayed 522 seconds by postgrey-1.27 at vger.kernel.org; Mon, 25 Jan 2021 08:07:03 EST
+Received: from de-out1.bosch-org.com (snat-lb41g3-dmz-psi-sl1-maildeferred.fe.ssn.bosch.com [139.15.180.215])
+        by si0vms0224.rbdmz01.com (Postfix) with ESMTPS id 4DPVHx1sYbzVfF;
+        Mon, 25 Jan 2021 13:57:01 +0100 (CET)
+Received: from si0vm1948.rbesz01.com (lb41g3-ha-dmz-psi-sl1-mailout.fe.ssn.bosch.com [139.15.230.188])
+        by fe0vms0187.rbdmz01.com (Postfix) with ESMTPS id 4DPVFx0TyVz1XLDQx;
+        Mon, 25 Jan 2021 13:55:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=de.bosch.com;
+        s=key2-intmail; t=1611579317;
+        bh=fP74M6HwZDCum3+vzeaerJPkseKxvj4gZV75mefECbo=; l=10;
+        h=From:Subject:From:Reply-To:Sender;
+        b=BqHGY9dggG91LOMyyOmva32qC8WOQ4Nx2jja3O1e9UG+7WlP5sF3m5pHDhdsG4jwf
+         74zArTTcqoEdwJPHNYJrtghuZF9TB+wVXTMl32R03eR6vfnLq2LP+W5eU581xX5840
+         NSm0umCe0RSlQuR3iOUmqWZfJd7VwhyrDn4Vi9Ow=
+Received: from fe0vm02900.rbesz01.com (unknown [10.58.172.176])
+        by si0vm1948.rbesz01.com (Postfix) with ESMTPS id 4DPVFx0BXpz5Nv;
+        Mon, 25 Jan 2021 13:55:17 +0100 (CET)
+X-AuditID: 0a3aad0c-f29ff700000020da-f7-600ebfb4e9fc
+Received: from si0vm1950.rbesz01.com ( [10.58.173.29])
+        (using TLS with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by fe0vm02900.rbesz01.com (SMG Outbound) with SMTP id 85.80.08410.4BFBE006; Mon, 25 Jan 2021 13:55:16 +0100 (CET)
+Received: from SI-HUB2000.de.bosch.com (si-hub2000.de.bosch.com [10.4.103.108])
+        by si0vm1950.rbesz01.com (Postfix) with ESMTPS id 4DPVFw6XHBzW7n;
+        Mon, 25 Jan 2021 13:55:16 +0100 (CET)
+Received: from luchador.grb-fir.grb.de.bosch.com (10.19.187.97) by
+ SI-HUB2000.de.bosch.com (10.4.103.108) with Microsoft SMTP Server id
+ 15.1.2106.2; Mon, 25 Jan 2021 13:55:16 +0100
+From:   Mark Jonas <mark.jonas@de.bosch.com>
+To:     Support Opensource <support.opensource@diasemi.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <Adam.Thomson.Opensource@diasemi.com>,
+        <stwiss.opensource@diasemi.com>, <marek.vasut@gmail.com>,
+        <tingquan.ruan@cn.bosch.com>, <hubert.streidl@de.bosch.com>,
+        Mark Jonas <mark.jonas@de.bosch.com>
+Subject: [PATCH 1/1] mfd: da9063: Support SMBus and I2C mode
+Date:   Mon, 25 Jan 2021 13:54:58 +0100
+Message-ID: <20210125125458.1302525-2-mark.jonas@de.bosch.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210125125458.1302525-1-mark.jonas@de.bosch.com>
+References: <20210125125458.1302525-1-mark.jonas@de.bosch.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from zhaomy-pc (61.148.116.10) by HK0PR03CA0114.apcprd03.prod.outlook.com (2603:1096:203:b0::30) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3784.12 via Frontend Transport; Mon, 25 Jan 2021 11:12:49 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0f332bf7-b1c0-4867-3720-08d8c1222715
-X-MS-TrafficTypeDiagnostic: BYAPR04MB6262:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR04MB62620BEB534C07B46F5B46D8C7BD9@BYAPR04MB6262.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N99Di+zqQLAG4OHDj4qsVPB27BxX7EUQbisob9KAU1vScOH8JCHAwFLGNsZ4RnSOCjmUiBsKr+CZrdMrjy+HVTiHObJg1JN64sNAuIp/tvs7YkNczO+5kLMDMrq8Gpnjtdd1nuc5IjV4sv0vH3otX2d5SgINEYGjeGz6coHVaYWQ8Lu1FP3LOUbqAGD+iW3ICex8iYzGHP0i/Rleu14+MJi7Cd8Jf7XzqbX0+ybFgBbNaYG8VcAcOtPKC70bA+hR0lKHkOg8VBmj92C/1NrAmMN85bbiDNdEwPaku3SXvKx2Yy/GGHOuoVDz8z5aevJicCUGwolX8TNcvIyaIWpCrrpZGcJoI6Qsoroo6qrKxhYt2JH9ej9YeRq4Rh+2jFQ5gJaVmH+ZgiCk8MExTmoQWtbAyySlvweKztp/W0iWOTBR6MF40H13b26QK+p/hz8BLMuEKNHYADJ6xVPtaHUhhEEs9l/ikzs1fXq1BowT5XVQ0H0bLtlkSDvbrP3JIpBJqs7u8Tbmuy2xfhcHlGBVzP8Ln++UZhzlzKtTdjxxRmt4Hkjr9sY2nnDHfZ/2Fi4JnYwmU5Y8GuzmWw4RY986QQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(366004)(39840400004)(136003)(376002)(346002)(26005)(186003)(6486002)(16526019)(83380400001)(2616005)(956004)(478600001)(66946007)(316002)(110136005)(54906003)(8676002)(8936002)(6496006)(66476007)(52116002)(4326008)(66556008)(86362001)(36756003)(7416002)(5660300002)(2906002)(6666004)(16060500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Rbt/tmeuh986rSU2+gYYJa+xPQIQ+Pck+davhooul3VWLYsxqFYczGmkOAqf?=
- =?us-ascii?Q?GLaa2k+HqjjRiwcmr+DKMIwnd6DT0VFHXspP6UWhWDcQy1torvq3O+79Rq70?=
- =?us-ascii?Q?+Xl7YNWtplXbuKxXTBDc1qH2dmVU7epr2lg2TyToiJVvmCFLq8qIusjqAIHw?=
- =?us-ascii?Q?pwck8gyLOrEzTrMwCmJyMMmlZDFas1X0ISDLGXtCyRzNHVR4Ks3aCpuDuCQg?=
- =?us-ascii?Q?h+ftbEpHw2/FeYTQd+pw4+8l35LEOO8dbPtp3kcZejFIfeenLzGWwsCEoiYm?=
- =?us-ascii?Q?SudcqIL3M1wD4JvYOQLUVcxM37Wmo25Oc7gvnYnOxKgOkcrdzAgADcRFdrzB?=
- =?us-ascii?Q?2WEZ0nOcnTVCV6w3jRD13cBtQna4E78VmW75gm9JSh72hDMVIGIOpcuVk0gC?=
- =?us-ascii?Q?dx3SAaBpsFa+4KKaMHHNom5+8h3LLt0hZZVXpe71mC4zLs+xEp3TMdGKVcl7?=
- =?us-ascii?Q?jpWK73HH3HW0cEtYLRzOPwZ8pjFW7QS26q03W6lmJCOJA6f+FE/OZsf2IaTR?=
- =?us-ascii?Q?6pimMTq+W9uH4s7ep+s9IUrm9zHC5GQUEJrpqGzxTiramWY/xi+YqKsOXpR7?=
- =?us-ascii?Q?ThOILYUESZP6b76czIu7jKAU43FJombVRbOgDu2sUddmzE+w2U+ZzKVvgJcm?=
- =?us-ascii?Q?0MuSuWvG8azrJVS314wJqoduZ54QcbkyjYSsOc0MqP2vvRcRbA1lLnbnwIjY?=
- =?us-ascii?Q?ETtBpInJ37iEgWlN+fEcM77YcFTN/78uTc9BSpktrUlSmD5v6o+JBgqP4/q6?=
- =?us-ascii?Q?SRMqR1Ar5WQeH1j/ikW/UPR4WVLlu21+NDpdZvurDyC1STHIiXcUxmHAqX/s?=
- =?us-ascii?Q?p6jD8WfgMwWG0PqdWSpjcT2/gZvOCDo+3sQJ8dTqB7MLB7WchQdHrJUWxpGr?=
- =?us-ascii?Q?Z+SqNBrWARMIkC/E3NY25SiTygK1LVJtXheFh5DGiFlW+Zv2hQq2/5VuOMAB?=
- =?us-ascii?Q?xCfSUs9Hu0ge5kmuwsu7xpbIOC7E+m0hpQVX/8gKSwgPEDgsH8GsmiCgQ+9h?=
- =?us-ascii?Q?Yqm0jm79exp3cOHhmjfkPtZy0ZTL2T3LxApjG+7jBuDjkdgIJM79X6g7KZej?=
- =?us-ascii?Q?bU2a0e4W?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f332bf7-b1c0-4867-3720-08d8c1222715
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2021 11:12:50.4802
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bnzdPO5zEaieu1iUcRHszYqbg0mGev9Nl1l+TVL17LRHvdRuu0fUWvMpJiRFAgcf9yZvcYc73EnsojLKWsk9xA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB6262
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrMLMWRmVeSWpSXmKPExsXCZbVWVnfLfr4EgxtrbCyWvl/KbDH/yDlW
+        i/tfjzJaXN41h83i6J57zBate4+wW1z9vZ7FYm/rRWYHDo8Vn/Q9ds66y+6xaVUnm8eda3vY
+        PD5vkgtgjeKySUnNySxLLdK3S+DKeNewhrVgq2rFsaO9zA2Ml+S6GDk4JARMJNqvVncxcnEI
+        Ccxgkjg3/wcjhLObUWLpsslMEM4OIOfPN/YuRk4ONgEtiZsndjCD2CICtRLrtm4AK2IW6GKS
+        eDv5MytIQljARqL35hewIhYBVYljn1exgqzjFbCTmHbbFiQsISAvMfPSd7CZnAL2EhOPPWQG
+        KRECKvm7LxUkzCsgKHFy5hMWEJsZqLx562xmCFtC4uCLF8wTGAVmISmbhaRsFpKyBYzMqxjF
+        0lINynINjCwNDPSKklKLqwwM9ZLzczcxQsKdZwfjqZ4PeocYmTgYDzFKcDArifDu1uNJEOJN
+        SaysSi3Kjy8qzUktPsQozcGiJM6rwrMxTkggPbEkNTs1tSC1CCbLxMEp1cDU/6OjSzJrkZ6E
+        S7xN2PU3MhO8X7MKs8ne7Hsy9/iDQB2ma4W8vEm/HTtvLDs/kz+jxXGnvanjCk43pq4XdRbx
+        tS90Yh876Skm3Ti4aoGcgqX10nVThP+rKR1btMXhXc1uLjFLtQXlGR5TF259NntT3+57k479
+        SereP/dhfdWTMJcop//KH+UdFtrdf14u9z/hZvhi7tTNcxac661VOH8w6p3vjAemRepLt1zP
+        mVo0ZZn348nv87zbbp7p1WvXWzr5C0tC/cPqPRfPODA5NBcW2L+4tUOebZc4+674sLCNsbFL
+        c5mvc31nY+Y+8KRuvURB+cyKStbZ1gu3/mxSM8mvPMfGFrrbdsvs+zPNG+qVWIozEg21mIuK
+        EwHzuIHI5gIAAA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add 'bus-type' and 'data-lanes' define for port0, add HDCP support
-flag and DP tx lane0 and lane1 swing register array define.
+From: Hubert Streidl <hubert.streidl@de.bosch.com>
 
-Signed-off-by: Xin Ji <xji@analogixsemi.com>
+By default the PMIC DA9063 2-wire interface is SMBus compliant. This
+means the PMIC will automatically reset the interface when the clock
+signal ceases for more than the SMBus timeout of 35 ms.
+
+If the I2C driver / device is not capable of creating atomic I2C
+transactions, a context change can cause a ceasing of the the clock
+signal. This can happen if for example a real-time thread is scheduled.
+Then the DA9063 in SMBus mode will reset the 2-wire interface.
+Subsequently a write message could end up in the wrong register. This
+could cause unpredictable system behavior.
+
+The DA9063 PMIC also supports an I2C compliant mode for the 2-wire
+interface. This mode does not reset the interface when the clock
+signal ceases. Thus the problem depicted above does not occur.
+
+This patch makes the I2C mode configurable by device tree. The SMBus
+compliant mode is kept as the default.
+
+Signed-off-by: Hubert Streidl <hubert.streidl@de.bosch.com>
+Signed-off-by: Mark Jonas <mark.jonas@de.bosch.com>
 ---
- .../bindings/display/bridge/analogix,anx7625.yaml  | 57 ++++++++++++++++++++--
- 1 file changed, 54 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/mfd/da9063.txt |  7 +++++++
+ drivers/mfd/da9063-core.c                        |  9 +++++++++
+ drivers/mfd/da9063-i2c.c                         | 13 +++++++++++++
+ include/linux/mfd/da9063/core.h                  |  1 +
+ include/linux/mfd/da9063/registers.h             |  3 +++
+ 5 files changed, 33 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-index 60585a4..3b1cbe0 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -34,23 +34,69 @@ properties:
-     description: used for reset chip control, RESET_N pin B7.
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/mfd/da9063.txt b/Documentation/devicetree/bindings/mfd/da9063.txt
+index 8da879935c59..256f2a25fe0a 100644
+--- a/Documentation/devicetree/bindings/mfd/da9063.txt
++++ b/Documentation/devicetree/bindings/mfd/da9063.txt
+@@ -19,6 +19,12 @@ Required properties:
+ - interrupts : IRQ line information.
+ - interrupt-controller
  
-+  analogix,lane0-swing:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      an array of swing register setting for DP tx lane0 PHY, please don't
-+      add this property, or contact vendor.
++Optional properties:
 +
-+  analogix,lane1-swing:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      an array of swing register setting for DP tx lane1 PHY, please don't
-+      add this property, or contact vendor.
++- i2c-mode : Switch serial 2-wire interface into I2C mode. Without this
++  property the PMIC uses the SMBus mode (resets the interface if the clock
++  ceases for a longer time than the SMBus timeout).
 +
-+  analogix,hdcp-support:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: indicate the DP tx HDCP support or not.
-+
-   ports:
-     type: object
-+    additionalProperties: false
+ Sub-nodes:
  
-     properties:
-       port@0:
-         type: object
-         description:
--          Video port for MIPI DSI input.
-+          Video port for MIPI input.
-+
-+        properties:
-+          endpoint:
-+            type: object
-+            additionalProperties: false
-+
-+            # Properties described in
-+            # Documentation/devicetree/bindings/media/video-interfaces.txt
-+            properties:
-+              remote-endpoint: true
-+              bus-type: true
-+              data-lanes: true
-+
-+            required:
-+              - remote-endpoint
-+
-+        required:
-+          - endpoint
+ - regulators : This node defines the settings for the LDOs and BUCKs.
+@@ -77,6 +83,7 @@ Example:
+ 		interrupt-parent = <&gpio6>;
+ 		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-controller;
++		i2c-mode;
  
-       port@1:
-         type: object
-         description:
-           Video port for panel or connector.
+ 		rtc {
+ 			compatible = "dlg,da9063-rtc";
+diff --git a/drivers/mfd/da9063-core.c b/drivers/mfd/da9063-core.c
+index df407c3afce3..baa1e4310c8c 100644
+--- a/drivers/mfd/da9063-core.c
++++ b/drivers/mfd/da9063-core.c
+@@ -162,6 +162,15 @@ int da9063_device_init(struct da9063 *da9063, unsigned int irq)
+ {
+ 	int ret;
  
-+        properties:
-+          endpoint:
-+            type: object
-+            additionalProperties: false
++	if (da9063->i2cmode) {
++		ret = regmap_update_bits(da9063->regmap, DA9063_REG_CONFIG_J,
++				DA9063_TWOWIRE_TO, 0);
++		if (ret < 0) {
++			dev_err(da9063->dev, "Cannot enable I2C mode.\n");
++			return -EIO;
++		}
++	}
 +
-+            required:
-+              - remote-endpoint
+ 	ret = da9063_clear_fault_log(da9063);
+ 	if (ret < 0)
+ 		dev_err(da9063->dev, "Cannot clear fault log\n");
+diff --git a/drivers/mfd/da9063-i2c.c b/drivers/mfd/da9063-i2c.c
+index 3781d0bb7786..af0bf13ab43e 100644
+--- a/drivers/mfd/da9063-i2c.c
++++ b/drivers/mfd/da9063-i2c.c
+@@ -351,6 +351,17 @@ static const struct of_device_id da9063_dt_ids[] = {
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, da9063_dt_ids);
 +
-+        required:
-+          - endpoint
++static void da9063_i2c_parse_dt(struct i2c_client *client, struct da9063 *da9063)
++{
++	struct device_node *np = client->dev.of_node;
 +
-     required:
--        - port@0
--        - port@1
-+      - port@0
-+      - port@1
++	if (of_property_read_bool(np, "i2c-mode"))
++		da9063->i2cmode = true;
++	else
++		da9063->i2cmode = false;
++}
++
+ static int da9063_i2c_probe(struct i2c_client *i2c,
+ 			    const struct i2c_device_id *id)
+ {
+@@ -366,6 +377,8 @@ static int da9063_i2c_probe(struct i2c_client *i2c,
+ 	da9063->chip_irq = i2c->irq;
+ 	da9063->type = id->driver_data;
  
- required:
-   - compatible
-@@ -73,6 +119,10 @@ examples:
-             enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-             reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
- 
-+            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-+            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-+            analogix,hdcp-support = <0>;
++	da9063_i2c_parse_dt(i2c, da9063);
 +
-             ports {
-                 #address-cells = <1>;
-                 #size-cells = <0>;
-@@ -81,6 +131,7 @@ examples:
-                     reg = <0>;
-                     anx7625_in: endpoint {
-                         remote-endpoint = <&mipi_dsi>;
-+                        bus-type = <5>;
-                     };
-                 };
+ 	ret = da9063_get_device_type(i2c, da9063);
+ 	if (ret)
+ 		return ret;
+diff --git a/include/linux/mfd/da9063/core.h b/include/linux/mfd/da9063/core.h
+index fa7a43f02f27..866864c50f78 100644
+--- a/include/linux/mfd/da9063/core.h
++++ b/include/linux/mfd/da9063/core.h
+@@ -77,6 +77,7 @@ struct da9063 {
+ 	enum da9063_type type;
+ 	unsigned char	variant_code;
+ 	unsigned int	flags;
++	bool	i2cmode;
  
+ 	/* Control interface */
+ 	struct regmap	*regmap;
+diff --git a/include/linux/mfd/da9063/registers.h b/include/linux/mfd/da9063/registers.h
+index 1dbabf1b3cb8..6e0f66a2e727 100644
+--- a/include/linux/mfd/da9063/registers.h
++++ b/include/linux/mfd/da9063/registers.h
+@@ -1037,6 +1037,9 @@
+ #define		DA9063_NONKEY_PIN_AUTODOWN	0x02
+ #define		DA9063_NONKEY_PIN_AUTOFLPRT	0x03
+ 
++/* DA9063_REG_CONFIG_J (addr=0x10F) */
++#define DA9063_TWOWIRE_TO			0x40
++
+ /* DA9063_REG_MON_REG_5 (addr=0x116) */
+ #define DA9063_MON_A8_IDX_MASK			0x07
+ #define		DA9063_MON_A8_IDX_NONE		0x00
 -- 
-2.7.4
+2.25.1
 
