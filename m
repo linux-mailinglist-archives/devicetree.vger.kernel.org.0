@@ -2,182 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC2BF3020C9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 04:20:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 444D43020FC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 05:14:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727024AbhAYDSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 22:18:41 -0500
-Received: from mail-bn8nam12on2122.outbound.protection.outlook.com ([40.107.237.122]:1633
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727078AbhAYDSe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 24 Jan 2021 22:18:34 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YCS65KE+QhM2pKYniFHJ+QYNCwXvfwtYo0sxBlj2yLiQ/kxV7RF8QraFjpme4aIZ6cSOnHSKG3ehqdkhH5BNndocWqE7p/EJ6ZJ5JOi8RiEQ3zmulMQ4Usz97lo756zsMIKbYn05p2DCtpQQvg0skw/JbkjlhtACTYQKDcMn48hYSKljYEQN+LZYVX9ybB1jFsHY1p5nzAdDjBlI7zIAwHtQ2ewCZbHj7/59HbQDfarbRYNeSgdFwpnWxJxwH9gXt8Gj7PsS7LgRlz+6KD1S8bXqAYLf3QohzA/9rhAw2N5G8ECmToXq0A7svAyiPQf2AceXqN5Hfqr+J05QLL6VDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gi/wzaBUE598SByZGw7LmXSSBOYLYdOUD/PyH6HPmZg=;
- b=RzwCwC919JkIibVMVlq+P9iH0fuEFb3DPq87y61mhI9rJ0hFrbFY1YNjXtsCQCceQ3ZGGauNcto0+8vFoZ/BemMY05UCPDXwqyPcBvm2WiWACqtqOpo55iaZhDJXtAThHC/+JH5xrub7P4nqNJLcmM7bVMLOLf3dUMeLdpZaFy0nZBSgHMSr4yYQWh/3X8e5lRfnj/tl6HvfATNIvq40XkYlMtO7ZWIAJEXamAsSTjGWzlPngCJbtQcB4fQJtWGQdtG0OrVGtXks67tN1uUlMkpNuRJcLbges1NdTGbeGH5wtmx2raN7xdHWYZVmubPKBlBP1FGbWnDIQuRZmuwqjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gi/wzaBUE598SByZGw7LmXSSBOYLYdOUD/PyH6HPmZg=;
- b=Uk1dptyncPcBOMr/CBjv/KJv4vz389f1J2thyR8wL0LB4a7V0Ux74JEYkvnpp19N7lbWFx9OtFdCFYSm6pO6my16pvC5/NhS6Xvh5wO5jaudIgb1ztNk72GSSVCjUwUYB9CFAhTnYj38edPqU/oC30WsKbxNzYXmdKYGqKPQkJY=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by BYAPR04MB4741.namprd04.prod.outlook.com (2603:10b6:a03:12::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Mon, 25 Jan
- 2021 03:17:39 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::5813:96a7:b2d6:132]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::5813:96a7:b2d6:132%6]) with mapi id 15.20.3763.015; Mon, 25 Jan 2021
- 03:17:39 +0000
-Date:   Mon, 25 Jan 2021 11:17:10 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: anx7625: add DPI flag
- and swing setting
-Message-ID: <20210125031709.GA12296@zhaomy-pc>
-References: <cover.1609380663.git.xji@analogixsemi.com>
- <d13442f84fefccc992d6c5e48ac1e6129882af31.1609380663.git.xji@analogixsemi.com>
- <20210111221435.GA3138373@robh.at.kernel.org>
- <20210112085737.GC5827@pc-user>
- <CAL_JsqJ1B6JzpdgtP=ZNtWasjW5R0rYyUGV3RTDxT1LPa1rz5w@mail.gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJ1B6JzpdgtP=ZNtWasjW5R0rYyUGV3RTDxT1LPa1rz5w@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Originating-IP: [61.148.116.10]
-X-ClientProxiedBy: HK2PR0401CA0023.apcprd04.prod.outlook.com
- (2603:1096:202:2::33) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from zhaomy-pc (61.148.116.10) by HK2PR0401CA0023.apcprd04.prod.outlook.com (2603:1096:202:2::33) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3784.12 via Frontend Transport; Mon, 25 Jan 2021 03:17:38 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f0deb1d3-5f75-4caf-19c8-08d8c0dfc50c
-X-MS-TrafficTypeDiagnostic: BYAPR04MB4741:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR04MB474167D271B9CAA3D6A2EFAFC7BD9@BYAPR04MB4741.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hKX6PAcLQG9lAEEP0dmIsIbQJv1MDy+4wMGwSKjhOCWGwMq4r2UKvdoEXw6CG6jS7X7wOZbakmnvcn9IcsnCIBX6eFVYh4Tduv+U5Fcv/33V3Zta1jXbMy8uXrWj5vJXZPlmiJI/hFcAx9npweDKUDgwsDESI6kVelKy/nQP9lbMIPVc/xcaGVzBNqS9nl3h6X4eRmmH+0KXAffJZ16Q7Wylfna/oDpHskPim3LoIvk+1XYcrYjnlt8d2zNw802xVm2HpgPlnZ0vYeYJoaf6MG5GBDysrSHjhVbKmg6k3YgJ5bOdTjNfo1f4kUzh+DuEaFmIk+w/liAL2bT86VIHFqlRj/sIHJyA82ew/DegHj8z327budbVFUPREB6toWeAWZB1MlTfPi2SpSuAuHqxur97BiqRwvqv9iQKDEnFmZDUrU5NN8k8l6xIcd32f2/F
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(136003)(39840400004)(376002)(346002)(396003)(33656002)(6496006)(52116002)(956004)(83380400001)(316002)(2906002)(8676002)(54906003)(33716001)(4326008)(478600001)(86362001)(5660300002)(1076003)(55016002)(66476007)(66556008)(26005)(16526019)(6916009)(8936002)(66946007)(9686003)(186003)(53546011)(7416002)(6666004)(16060500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?vJwwbLgR37v6gbGQ9RMiIim0pYBc8OIpeXiBOV2D0Gr6UAYR/ZBJtfLLUCDv?=
- =?us-ascii?Q?V/oxCQpaXH/czn2AzP0B2n0IdWupsOu6RGrfyAEb0r0kf2YytvvzO8zGz26C?=
- =?us-ascii?Q?/2BWnzzWKxkQnhHoci4IF0jpdefpo9rtj5uHUeGI1tjwlpHBjV68jJIKGOdy?=
- =?us-ascii?Q?OKCrdQzApoPyiFsNwmgEpoWlj1Hvac5VlqWF7U2pIf8WNZWl5WVqucpDJGgg?=
- =?us-ascii?Q?U3c0Wu96i31lTQ5/VYMzHGUfdeGoQAcn+CJrXTRdRnt2FrPew4tC0kKRDY45?=
- =?us-ascii?Q?7gPeLN//6U+oSmGZXRjfOj6kK+RiN8KsD5pKGX5pRZIlxydNpuvTuHWWJrwc?=
- =?us-ascii?Q?BxrdYZsD8e7NVH4B2ksJoDztpospwP00xz2k16r8bY3jUxJWYiUTJTuAmU40?=
- =?us-ascii?Q?8D3b4mbEl8eAxlSuXIe4N6VThJXRjzB2Q4LCjlI92qBUCTvUThNkrv91PDj9?=
- =?us-ascii?Q?uyFawFl9sz6PtzpHxeqMSGDJWqwJmz73IacirDA6IkywXPQUKQvJ/t5KJA8w?=
- =?us-ascii?Q?2eModwtEOC5rCu/hBhpe4ozgsjWFPy/V8R7N0Wc3pdXSbqggIshbpYsEfTqO?=
- =?us-ascii?Q?wOyLSkrktFw9HT+bXrtfv9mUIEaVrpsYVwXR/Ka6wr5KclOwi3Qyt5Y9t9cV?=
- =?us-ascii?Q?xkMBX5vZqGzi4Rdjl6SyC+jNvroNTmQU4eIUtQY4XZ0hdXpFQnukvKt+vGmC?=
- =?us-ascii?Q?CW9l+GxHAtT1p3pbLJpuCrEano3CbWrdpQJY/yCezUkQPQH5Z1qL/lQudgf4?=
- =?us-ascii?Q?oB/XND8jH/IvD9bUSFk3QjTEqHHVJTZujo9hOEtDJikeciBD20fI2TH71Kp7?=
- =?us-ascii?Q?yDU97POVXdmMzQD/hObo4y6ipA/nK0ZixASC4vCCt4vEO/KvtVlbFxydGC3N?=
- =?us-ascii?Q?GroGePAwygGA7E/yxC1kD/KxwUBu/CDqf5q/xlIWvLrbysEtR4f9VrPZrN9F?=
- =?us-ascii?Q?75qTfv6bcePcAZPcHf9AC6afkr2zi8VraGskjYCnfxmMVXTbCD3r4r5Pgy1J?=
- =?us-ascii?Q?vXr+YjIQ5TyXBA79G9SjrRNrrt7WijDSOH23VNnpRDET/LS4L/ME3Q5D9CuN?=
- =?us-ascii?Q?Jh5i4/Q4?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0deb1d3-5f75-4caf-19c8-08d8c0dfc50c
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2021 03:17:39.2176
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6G+ByPT6h5mqaVNu26eLVhk9GItFgbyclurLVSIjDO+LPHn/xc+SpdfgEL5iK7q/syHFDCiuLY+xLsiPStEslQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4741
+        id S1726852AbhAYEOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 23:14:00 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:43017 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726630AbhAYEN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 Jan 2021 23:13:56 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 6ED495807D1;
+        Sun, 24 Jan 2021 23:13:09 -0500 (EST)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Sun, 24 Jan 2021 23:13:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=GTLpuJENuXu/9veLzAJYxFan+D7b3di
+        4Fck02B7mcmI=; b=P6kP2F0MHdA2xPLtwetdDp54jp17pVt4kIXzJ/ZqtSKsKdX
+        py1B2DmMZclFKmdLrHK39NqzPIVe9HqxvQfa4jxeHrJyXRKrY8cR+t5LYgXDy27b
+        zrtkon0vOSyA6WLsudV8BQs8BCd9LuK/so3t62zATEKdcgnY88jqw7J9HxhoR/Yk
+        S8OlWW7Djwl39ilIr/ynhSrhz5SbvWnELsUxWf9H+e77RanD6FFIK5ZRoH+ajyo9
+        zqj8Qc8sHOw/Qt/Tve4zmlGuIEWK5UxeGT83IJz1lKIwhK8VgFYKl0IHnwxxi4Zb
+        c4qwnKE8JzcjtmXJsuLTpNIuHHBTrCJK0yIaZSw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=GTLpuJ
+        ENuXu/9veLzAJYxFan+D7b3di4Fck02B7mcmI=; b=VId8n7gqDILYFOWy6nGtOx
+        +1LhbAGWyDmPQmWpKwbPwwW9Af6NQsu6+A+rtJOcj2qAT5lcwLUDNN7Hl3HZYGY+
+        tASc8XWadVqQd9bvUOp7ynuRf34zVlpBM6CURROXazbhoio+HESwj3mnAUcqc6cV
+        MmGEWMfKOYKwnRlHhrhneE8tAy55ar4s+fS8365XLheRisfeBUHGzJWFkkJl+F6d
+        mTOewDwMR9qRTdUetcUE45GRhnKs92C3jAFO3a4GJ3/UV1vKZlClJDgXZQ6xFI1w
+        qa0K0wW5hqDJfrq9WQhhmpqUMMVr3IxX+LzqpMa3MemwEiFsVDPpXnwPgjMfDStg
+        ==
+X-ME-Sender: <xms:UUUOYByRDv06BoWB_8O9QSzaJBgccs-WAzAc1OMdqZlzbAWW81dfqQ>
+    <xme:UUUOYBQNWSusRrQ6JWccOxnceb9k2X92nidNMo14hczkVD_zUyok6fe9PMl_5Hk7q
+    sH85oE96kwVKcZssw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddvgdeikecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
+    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
+    veeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:UUUOYLXhetRHUUq4af_d08QCH4TFkVUDeSmp5x37aZZK1Lc89d4uWQ>
+    <xmx:UUUOYDgk2ixvp47a6tUiXCs99ZWfbVhqg5OrKausGjnyc_8mER-8Og>
+    <xmx:UUUOYDCAT0WcCcOhxA5EnJghDkZZiQAy5_fjue5M16SX0pOkadAxEA>
+    <xmx:VUUOYH6IcZSOD6O3E_rAIhvA6DdVXBIg_nKmHyC1i0GgDmQ-PmWe-Q>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 6AA73A0005D; Sun, 24 Jan 2021 23:13:05 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-78-g36b56e88ef-fm-20210120.001-g36b56e88
+Mime-Version: 1.0
+Message-Id: <db4964a9-e78b-465b-850d-711c2a23e910@www.fastmail.com>
+In-Reply-To: <20210114131622.8951-3-chiawei_wang@aspeedtech.com>
+References: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
+ <20210114131622.8951-3-chiawei_wang@aspeedtech.com>
+Date:   Mon, 25 Jan 2021 14:42:45 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Lee Jones" <lee.jones@linaro.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Corey Minyard" <minyard@acm.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Cc:     BMC-SW@aspeedtech.com, "Haiyue Wang" <haiyue.wang@linux.intel.com>,
+        "Cyril Bur" <cyrilbur@gmail.com>,
+        "Robert Lippert" <rlippert@google.com>
+Subject: Re: [PATCH v5 2/5] ARM: dts: Remove LPC BMC and Host partitions
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 23, 2021 at 12:16:02AM +0800, Rob Herring wrote:
-> On Tue, Jan 12, 2021 at 2:57 AM Xin Ji <xji@analogixsemi.com> wrote:
-> >
-> > Hi Rob Herring, thanks for the comments.
-> >
-> > On Mon, Jan 11, 2021 at 04:14:35PM -0600, Rob Herring wrote:
-> > > On Thu, Dec 31, 2020 at 10:21:12AM +0800, Xin Ji wrote:
-> > > > Add DPI flag for distinguish MIPI input signal type, DSI or DPI. Add
-> > > > swing setting for adjusting DP tx PHY swing
-> > > >
-> > > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > > > ---
-> > > >  .../bindings/display/bridge/analogix,anx7625.yaml  | 25 ++++++++++++++++++++--
-> > > >  1 file changed, 23 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > index 60585a4..4eb0ea3 100644
-> > > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > @@ -34,6 +34,16 @@ properties:
-> > > >      description: used for reset chip control, RESET_N pin B7.
-> > > >      maxItems: 1
-> > > >
-> > > > +  analogix,swing-setting:
-> > > > +    type: uint8-array
-> > >
-> > > Humm, this should have be rejected by the meta-schema.
-> > We needs define an array to adjust DP tx PHY swing, the developer hopes these
-> > settings are changeable, so I moved the register data to DT. Can you
-> > give me some suggestion if it is rejected by the meta-schema?
-> > >
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > >
-> > > This is how types are defined other than boolean or nodes (object).
-> > >
-> > > > +    description: an array of swing register setting for DP tx PHY
-> > > > +
-> > > > +  analogix,mipi-dpi-in:
-> > > > +    type: int
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    description: indicate the MIPI rx signal type is DPI or DSI
-> > >
-> > > Why does this need to be in DT, you should be able to determine this
-> > > based on what you are connected to.
-> > As the anx7625 can receive MIPI DSI and DPI data (depends on hardware
-> > implement, we have a project which have two anx7625, one is DSI input,
-> > the other is DPI input), we needs to let driver know what kind of MIPI
-> > rx signal input. And there is no other way to tell driver the MIPI rx
-> > signal type, we needs define this flag.
+
+
+On Thu, 14 Jan 2021, at 23:46, Chia-Wei, Wang wrote:
+> The LPC controller has no concept of the BMC and the Host partitions.
 > 
-> That's only true if what's driving the output is a single h/w block
-> that can drive either. But typically you have 2 blocks: an LCD
-> controller driving parallel signals and a DSI controller in front of
-> it doing parallel to DSI conversion. The anx7625 would be connected to
-> the LCD controller or DSI controller via the graph binding depending
-> on the h/w connection.
+> A concrete instance is that the HICRB[5:4] are for the I/O port address
+> configurtaion of KCS channel 1/2. However, the KCS driver cannot access
+> HICRB for channel 1/2 initialization via syscon regmap interface due to
+> the parition boundary. (i.e. offset 80h)
 > 
-> However, if you do need this, then let's extend video-interfaces.yaml
-> 'bus-type' to include DSI (it already has parallel).
+> In addition, for the HW design backward compatibility, a newly added HW
+> control bit could be located at any reserved one over the LPC addressing
+> space. Thereby, this patch removes the lpc-bmc and lpc-host child node
+> and thus the LPC partitioning.
 > 
-> Rob
-Hi Rob, thanks, I'll add 'bus-type' in the next version.
-Thanks,
-Xin
+> Note that this change requires the synchronization between device tree
+> change and the driver change. To prevent the misuse of old devicetrees
+> with new drivers, or vice versa, the v2 compatible strings are adopted
+> for the LPC device as listed:
+> 
+> 	"aspeed,ast2400-lpc-v2"
+> 	"aspeed,ast2500-lpc-v2"
+> 	"aspeed,ast2600-lpc-v2"
+> 
+> Signed-off-by: Chia-Wei, Wang <chiawei_wang@aspeedtech.com>
+> ---
+>  arch/arm/boot/dts/aspeed-g4.dtsi |  74 +++++++----------
+>  arch/arm/boot/dts/aspeed-g5.dtsi | 135 ++++++++++++++-----------------
+>  arch/arm/boot/dts/aspeed-g6.dtsi | 135 ++++++++++++++-----------------
+
+I've booted a Witherspoon BMC and host with these patches applied, so for 
+aspeed-g5.dtsi:
+
+Tested-by: Andrew Jeffery <andrew@aj.id.au>
