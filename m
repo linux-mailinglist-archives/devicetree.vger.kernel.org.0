@@ -2,199 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AF633023F6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 11:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D05D13023FE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 12:00:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbhAYKyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 05:54:13 -0500
-Received: from lb3-smtp-cloud7.xs4all.net ([194.109.24.31]:34145 "EHLO
-        lb3-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727649AbhAYKuv (ORCPT
+        id S1727690AbhAYK5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 05:57:54 -0500
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:50741 "EHLO
+        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727667AbhAYK5e (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 05:50:51 -0500
-X-Greylist: delayed 386 seconds by postgrey-1.27 at vger.kernel.org; Mon, 25 Jan 2021 05:48:13 EST
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id 3zIdlTG1UiWRg3zIglfwSD; Mon, 25 Jan 2021 11:40:51 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1611571251; bh=s3QZt++3CI0A5wvLqKyK0CtL2x0R4G1sMDc99hjaLQ4=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=rZ+IlOyqzB7JMg4VTO8qd/+RwewVIaFAKbor7bLIym4IFKfUReLfDs1EMN1us85CS
-         FvTksenzg2/rmMljQz3+hfWvBYkGKffHSYA473m9i15pkp0166ItP9qf0PsyDDeEHN
-         YQSghW2gZ21IMyjbtx3IapgK+OAwRXVnC7qQCCV3ZCaxP1xH+4MLQGJkXbVsFcpfX/
-         e9WHXaHUDoysUSpJNbGG0bQfSLm3PJyTCSST6s7/F+/yTbH/Nqx4GMQA8amtRfASTn
-         fyvGvlXgtC3UkKVSuqwZIMIfMp9os7+iUjV8qxGRYPojWfXjUNSr+2vT9hwjJEHs6z
-         uvtC6Xymw+Tig==
-Subject: Re: [PATCH 1/2] media: venus: core: Add sdm660 DT compatible and
- resource struct
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, phone-devel@vger.kernel.org
-References: <20210115185252.333562-1-angelogioacchino.delregno@somainline.org>
- <20210115185252.333562-2-angelogioacchino.delregno@somainline.org>
- <2dc8a95f-110f-526f-18a8-6393e508c3a6@linaro.org>
- <eabc91cc-de96-08ef-756c-87fe43d6fadc@somainline.org>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <cfc1998f-8d9b-5237-f286-7fdc69874b30@xs4all.nl>
-Date:   Mon, 25 Jan 2021 11:40:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        Mon, 25 Jan 2021 05:57:34 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 81850C94;
+        Mon, 25 Jan 2021 05:56:28 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 25 Jan 2021 05:56:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=giywbTdzkGwixTIPyZn+CKrGjsS
+        8u+GMH7bvqQezP/w=; b=lj8l6n6k+m4GCen06yUSgFqcRv62lImUqGBSlMc/Qq8
+        IZENWWsttIMjDGM7xPVtxDS38KuzJQKOq+eUTQPCTWz3NYOYJDO2VVbfYs31tn/T
+        hMrtGnOjEKxGAVHyNhCwJMF/QcXfwltPSmQBdlNa1KTP43a04ofp4n3kpsbWdsBQ
+        St1K7EtVwY3B0JK74ZdSO6eivRG9D0RFjPzlaBLjmLyu9escmlN9X3XgSzs3d0tr
+        MowhUiNTx/JFpmbPeUnihd7S8SqDo5VvsWR0A6SmvtCS2OPugkJnW/YdZVmrvNXj
+        sFRGpjcmDZ2uvAJXIgCndXj9PXdi9vz5r3mfOZ9BCLw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=giywbT
+        dzkGwixTIPyZn+CKrGjsS8u+GMH7bvqQezP/w=; b=T3X6teYyRO1kXbKsCjvtiJ
+        rPcJjcWFJjsf9vStgkwd4ujyOyNPX8bjZ+Q6sdHL81FwM8yLO8zmadkscnbngnn5
+        Hv38bp0geRGuV9PJOZoGiPWUoI0Mal3lkdsJVdPQ4Utx6ZGI1/2wz9W2sHdOJB5p
+        9SkLZ2gICKgYnOIw9d3A1FCmoXTAZNeiGnDV8TNPIaPqnptxSVk/X0Xvksz69Uxg
+        tLyciOGM9S2OCHSJaAeOgLb2CZxHmgCRNThxL6Xm00lSVok7Yt3/0zN07ww3ci8t
+        4POuAQvsWodaTPgnwqnFO8xqW7DO/NyT8mRyM0QcGCxvTembvbbs9+yq/7v9Ow0A
+        ==
+X-ME-Sender: <xms:26MOYJhd_ZzUmZXGk4HUPXT8GrJSQWCUwvQEkdYrI1-wbbk1GpIKdg>
+    <xme:26MOYOCFDdpqel7llnnh9FwxRk2kSIJ4Z_fBvGG1rEiUGDMk5kufUd3lnDGuSvmAL
+    BSkexACE0t4MpJVX_A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdefgddulecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:26MOYJGY6Z-lFe-RLbBbHtQSb-4PuuVwayBrSgUko4R2v0ADKnfESg>
+    <xmx:26MOYOSnF55TzH8473JPEhKhHi6ByApBzJs6CIVBx-I_leEGLqycdA>
+    <xmx:26MOYGwYXUt0Yt1Qx0I0OAEasO8Wm3QgzAM0kZXu9vFAPjOLYNA_Ag>
+    <xmx:3KMOYBxIZBQr3Z7TD0aymHcctv3miIglavLdKRDG30HW2kQRXWcuuQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 165521080059;
+        Mon, 25 Jan 2021 05:56:27 -0500 (EST)
+Date:   Mon, 25 Jan 2021 11:56:26 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Ondrej Jirman <megous@megous.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 00/10] sunxi: Support IRQ wakeup from deep sleep
+Message-ID: <20210125105626.fz75dxhi6f7jtcqm@gilmour>
+References: <20210118055040.21910-1-samuel@sholland.org>
+ <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
+ <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org>
+ <20210122104705.bo2x22ef56hdj26q@gilmour>
+ <52b9c9bb-ff75-d1e6-e198-0d388d1c6d73@sholland.org>
 MIME-Version: 1.0
-In-Reply-To: <eabc91cc-de96-08ef-756c-87fe43d6fadc@somainline.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfCqz0evgKVotePnsCokWrF5dG7lxrkLaVMWwSPa/i/tgineJVMYuGpipFITOjzGLjbSPom8RHRC6xVlYRnG2fXhA9/kwL6o2cT7TexnGdWaNnV/X37Yv
- 0mIXC0vaPDmyCR1ibq6Jz6gcpCLg9u5E6p3br7OQmFrwBqfBXLhaWATFGjtvy7J20QSqTpG6srzefZXyltNn5MGmXveYfSTq/G025/cYxFWLJAL0PLy/JhPD
- 7L4PhPK4b44BUvCpp33dz3sIX4AIdnbWrNBLRsPoSmsr0u+dcSeTCh/AF9x8jAIUyYPzH045u2cM2sKYB16CGOLpvxO0riOP+LGSMxcq0f+aTpi5pYGafI6X
- EzkJuOeHRK0dzmmqGm61DCIOGVlJifgz4Go9J4N0GaTlLsb9twGno2BmAtZukwY20mWwNbdIl0L7vzsQkK8G9TUhvqsiZaI0kiqsXc0z8StWwUcSaou6jvnF
- XiXm5Kw39lTLDuIdJj3qujaZQbk6h7uy/c1E72FwucUsirUx5bvzZNm8AlU2RCyWhqVT3f4GkwE9Bji91zLlL02eiOPOeMCMJu3m7Ycl9yZjdV7EGQb7mxGe
- xmz2m/dPgY++XKqgIifi5vSBukWKgModXHAsTpQI5zCtWY+FNN7xUA5twwzvTdBlhNBuN61XAvAh0Lsy+wVZYlge
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="67rbkf5xfhl6dmyc"
+Content-Disposition: inline
+In-Reply-To: <52b9c9bb-ff75-d1e6-e198-0d388d1c6d73@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/01/2021 18:45, AngeloGioacchino Del Regno wrote:
-> Il 18/01/21 18:21, Stanimir Varbanov ha scritto:
->> Hi Angelo,
->>
->> Thanks for the patch!
->>
->> On 1/15/21 8:52 PM, AngeloGioacchino Del Regno wrote:
->>> Add the SDM660 DT compatible and its resource structure, also
->>> including support for the Venus pmdomains, in order to support
->>> the Venus block in SDM630, SDM636, SDM660 and SDA variants.
->>>
->>> This SoC features Venus 4.4 (HFI3XX), with one vcodec used for
->>> both encoding and decoding, switched on through two GDSCs.
->>> The core clock for this Venus chip is powered by the RPM VDD_CX
->>> power domain.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>> ---
->>>   drivers/media/platform/qcom/venus/core.c | 66 ++++++++++++++++++++++++
->>>   1 file changed, 66 insertions(+)
->>>
->>> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
->>> index bdd293faaad0..83ca86a63241 100644
->>> --- a/drivers/media/platform/qcom/venus/core.c
->>> +++ b/drivers/media/platform/qcom/venus/core.c
->>> @@ -565,6 +565,71 @@ static const struct venus_resources sdm845_res_v2 = {
->>>   	.fwname = "qcom/venus-5.2/venus.mdt",
->>>   };
->>>   
->>> +static const struct freq_tbl sdm660_freq_table[] = {
->>> +	{ 0, 518400000 },
->>> +	{ 0, 441600000 },
->>> +	{ 0, 404000000 },
->>> +	{ 0, 320000000 },
->>> +	{ 0, 269330000 },
->>> +	{ 0, 133330000 },
->>> +};
->>> +
->>> +static const struct reg_val sdm660_reg_preset[] = {
->>> +	{ 0x80010, 0x001f001f },
->>> +	{ 0x80018, 0x00000156 },
->>> +	{ 0x8001C, 0x00000156 },
->>> +};
->>> +
->>> +static const struct bw_tbl sdm660_bw_table_enc[] = {
->>> +	{  979200,  1044000, 0, 2446336, 0 },	/* 4k UHD @ 30 */
->>> +	{  864000,   887000, 0, 2108416, 0 },	/* 720p @ 240 */
->>> +	{  489600,   666000, 0, 1207296, 0 },	/* 1080p @ 60 */
->>> +	{  432000,   578000, 0, 1058816, 0 },	/* 720p @ 120 */
->>> +	{  244800,   346000, 0,  616448, 0 },	/* 1080p @ 30 */
->>> +	{  216000,   293000, 0,  534528, 0 },	/* 720p @ 60 */
->>> +	{  108000,   151000, 0,  271360, 0 },	/* 720p @ 30 */
->>> +};
->>> +
->>> +static const struct bw_tbl sdm660_bw_table_dec[] = {
->>> +	{  979200,  2365000, 0, 1892000, 0 },	/* 4k UHD @ 30 */
->>> +	{  864000,  1978000, 0, 1554000, 0 },	/* 720p @ 240 */
->>> +	{  489600,  1133000, 0,  895000, 0 },	/* 1080p @ 60 */
->>> +	{  432000,   994000, 0,  781000, 0 },	/* 720p @ 120 */
->>> +	{  244800,   580000, 0,  460000, 0 },	/* 1080p @ 30 */
->>> +	{  216000,   501000, 0,  301000, 0 },	/* 720p @ 60 */
->>> +	{  108000,   255000, 0,  202000, 0 },	/* 720p @ 30 */
->>> +};
->>> +
->>> +static const struct venus_resources sdm660_res = {
->>> +	.freq_tbl = sdm660_freq_table,
->>> +	.freq_tbl_size = ARRAY_SIZE(sdm660_freq_table),
->>> +	.reg_tbl = sdm660_reg_preset,
->>> +	.reg_tbl_size = ARRAY_SIZE(sdm660_reg_preset),
->>> +	.bw_tbl_enc = sdm660_bw_table_enc,
->>> +	.bw_tbl_enc_size = ARRAY_SIZE(sdm660_bw_table_enc),
->>> +	.bw_tbl_dec = sdm660_bw_table_dec,
->>> +	.bw_tbl_dec_size = ARRAY_SIZE(sdm660_bw_table_dec),
->>> +	.clks = {"core", "iface", "bus_throttle", "bus" },
->>> +	.clks_num = 4,
->>> +	.vcodec0_clks = { "vcodec0_core" },
->>> +	.vcodec_clks_num = 1,
->>> +	.vcodec_pmdomains = { "venus", "vcodec0" },
->>> +	.vcodec_pmdomains_num = 2,
->>> +	.opp_pmdomain = (const char *[]) { "cx", NULL },
->>> +	.vcodec_num = 1,
->>> +	.max_load = 1036800,
->>> +	.hfi_version = HFI_VERSION_3XX,
->>> +	.vmem_id = VIDC_RESOURCE_NONE,
->>> +	.vmem_size = 0,
->>> +	.vmem_addr = 0,
->>> +	.cp_start = 0,
->>> +	.cp_size = 0x79000000,
->>> +	.cp_nonpixel_start = 0x1000000,
->>> +	.cp_nonpixel_size = 0x28000000,
->>> +	.dma_mask = 0xd9000000 - 1,
->>> +	.fwname = "qcom/venus-4.4/venus.mdt",
->>
->> Did you try venus-4.2 firmware from linux-firmware tree [1] ?
->>
-> 
-> No I haven't.. and I can't... my Sony devices (but I think that this is
-> a practice of all OEMs/ODMs) are using a Sony signed venus firmware, so
-> I am totally limited to use the firmware that comes with the device.
-> 
-> Besides that, the version is still different so, even if I had any
-> possibility to try that, I don't think that it would work anyway...
 
-I'm a bit confused. "qcom/venus-4.4/venus.mdt" is the Sony signed FW?
+--67rbkf5xfhl6dmyc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This patch can't be merged unless there is a corresponding firmware available
-in linux-firmware. Is the current 4.2 firmware in linux-firmware signed by
-Qualcomm? Can they provided 4.4 firmware as well?
+On Sat, Jan 23, 2021 at 12:26:26AM -0600, Samuel Holland wrote:
+> On 1/22/21 4:47 AM, Maxime Ripard wrote:
+> > On Thu, Jan 21, 2021 at 07:33:54PM -0600, Samuel Holland wrote:
+> >> On 1/21/21 2:35 PM, Marc Zyngier wrote:
+> >>> On Sun, 17 Jan 2021 23:50:30 -0600, Samuel Holland wrote:
+> >>>> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
+> >>>> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC han=
+dles
+> >>>> the external NMI pin, and provides 32+ IRQs to the ARISC. The first =
+16
+> >>>> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
+> >>>> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
+> >>>>
+> >>>> This series replaces the existing chained irqchip driver that could =
+only
+> >>>> control the NMI, with a stacked irqchip driver that also provides wa=
+keup
+> >>>> capability for those multiplexed SPI IRQs. The idea is to preconfigu=
+re
+> >>>> the ARISC's IRQ controller, and then the ARISC firmware knows to wak=
+e up
+> >>>> as soon as it receives an IRQ. It can also decide how deep it can
+> >>>> suspend based on the enabled wakeup IRQs.
+> >>>>
+> >>>> [...]
+> >>>
+> >>> Applied to irq/irqchip-5.12, thanks!
+> >>>
+> >>> [01/10] dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
+> >>>         commit: ad6b47cdef760410311f41876b21eb0c6fda4717
+> >>> [02/10] dt-bindings: irq: sun6i-r: Add a compatible for the H3
+> >>>         commit: 6436eb4417094ea3308b33d8392fc02a1068dc78
+> >>> [03/10] irqchip/sun6i-r: Use a stacked irqchip driver
+> >>>         commit: 4e34614636b31747b190488240a95647c227021f
+> >>> [04/10] irqchip/sun6i-r: Add wakeup support
+> >>>         commit: 7ab365f6cd6de1e2b0cb1e1e3873dbf68e6f1003
+> >>>
+> >>> Please route the dts patches via the soc tree. Also, I had to
+> >>> manually fix the first patch as it wouldn't apply on top of
+> >>> 5.11-rc4 (which tree has it been diffed against?). Please
+> >>> check that the resolution is correct.
+> >>
+> >> This series was based on sunxi/for-next, which contains commit
+> >> 752b0aac99c7 ("dt-bindings: irq: sun7i-nmi: Add binding documentation
+> >> for the V3s NMI")[1].
+> >=20
+> > I assume merging the DT bits alone would break things? If so, I guess we
+> > can wait for 5.12 to be released before merging it
+>=20
+> Patch 5 does not depend on the new driver, so it could be merged at any
+> time. Yes, the remaining patches would break things if merged without
+> the driver.
 
-I have no idea how this works for the venus driver, but I hope Stanimir does.
+I've applied patch 5 then, could you send the rest of the DT patches
+when 5.13-rc1 is out?
 
-Regards,
+Thanks!
+Maxime
 
-	Hans
+--67rbkf5xfhl6dmyc
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
->>> +};
->>> +
->>>   static const struct freq_tbl sc7180_freq_table[] = {
->>>   	{  0, 500000000 },
->>>   	{  0, 434000000 },
->>> @@ -613,6 +678,7 @@ static const struct venus_resources sc7180_res = {
->>>   static const struct of_device_id venus_dt_match[] = {
->>>   	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
->>>   	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
->>> +	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
->>>   	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
->>>   	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
->>>   	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
->>>
->>
->> Reviewed-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
->>
-> 
-> Thank you!
-> - Angelo
-> 
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYA6j2QAKCRDj7w1vZxhR
+xYcpAP91ABOYBXnLhbPFLoxRDI3hcFTpJzj4wbHeKnZQsH04KgD/UpIbE3RYPXqZ
+nEg++6cCHvC0ym6NPIdLM/3ufqLqrAs=
+=JBYr
+-----END PGP SIGNATURE-----
+
+--67rbkf5xfhl6dmyc--
