@@ -2,54 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419833030BD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 01:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9C033030C1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 01:03:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732658AbhAYX6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 18:58:47 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:33998 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732075AbhAYX5N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 18:57:13 -0500
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1l4Big-00066j-EY; Tue, 26 Jan 2021 00:56:30 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: rename pinctrl nodename to gmac2io for nanopi-r2s board
-Date:   Tue, 26 Jan 2021 00:56:20 +0100
-Message-Id: <161161878917.2050283.17759962582911912279.b4-ty@sntech.de>
+        id S1732242AbhAZABy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 19:01:54 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:57916 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732633AbhAYX6r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 18:58:47 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10PNv55x122241;
+        Mon, 25 Jan 2021 17:57:05 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611619025;
+        bh=ihr9DKYldcHIliHzENLCBXu8ilCX6+CT5/SvXOqjD/Y=;
+        h=From:To:CC:Subject:Date;
+        b=pfmP7WnjszOhA9THPpLyAxjy53PnSSWXKOfRWBDAgS0ogElva+6hJ/6GDyT0d7oJe
+         5jZEXo8lUMVnZwHNh5XDVTdEvkDM2C6eFUqHRHn+XczBEgvM7bAjbxnGwJppDdWzXa
+         nMDmPEmqrN95yoGdTYBIRWGzKnZqZ/mrE+lr0NSI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10PNv5BX088196
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 25 Jan 2021 17:57:05 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 25
+ Jan 2021 17:57:04 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 25 Jan 2021 17:57:04 -0600
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10PNv434035608;
+        Mon, 25 Jan 2021 17:57:04 -0600
+Received: from localhost ([10.250.35.71])
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 10PNv3vo117156;
+        Mon, 25 Jan 2021 17:57:04 -0600
+From:   Suman Anna <s-anna@ti.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 0/2] Add HwSpinlock support for TI K3 AM64x SoCs
+Date:   Mon, 25 Jan 2021 17:56:51 -0600
+Message-ID: <20210125235653.24385-1-s-anna@ti.com>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210110194851.10207-1-jbx6244@gmail.com>
-References: <20210110194851.10207-1-jbx6244@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 10 Jan 2021 20:48:51 +0100, Johan Jonker wrote:
-> A test with the command below gives this error:
-> /arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dt.yaml:
-> ethernet-phy: 'reg' is a required property
-> 
-> The pinctrl nodename "ethernet-phy" conflicts with the rules
-> in the "ethernet-phy.yaml" document, so rename it to "gmac2io".
-> 
-> [...]
+Hi Bjorn,
 
-Applied, thanks!
+The following series extends the OMAP HwSpinlock driver to enable the
+HwSpinlock IP present on the most recent TI K3 AM64x SoCs [1]. I will
+post the DT nodes once the binding is acked and merged.
 
-[1/1] arm64: dts: rockchip: rename pinctrl nodename to gmac2io for nanopi-r2s board
-      commit: 16459ecac6d6bf6a817d9c0cf78d696461fdcd26
+regards
+Suman
 
-Best regards,
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210120202532.9011-1-d-gerlach@ti.com/
+
+Suman Anna (2):
+  dt-bindings: hwlock: Update OMAP HwSpinlock binding for AM64x SoCs
+  hwspinlock: omap: Add support for K3 AM64x SoCs
+
+ .../bindings/hwlock/ti,omap-hwspinlock.yaml   | 26 +++++++++++++++++++
+ drivers/hwspinlock/omap_hwspinlock.c          |  4 ++-
+ 2 files changed, 29 insertions(+), 1 deletion(-)
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.29.2
+
