@@ -2,147 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85132302EE4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 23:24:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49599302EF8
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 23:26:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732207AbhAYWWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 17:22:48 -0500
-Received: from foss.arm.com ([217.140.110.172]:35766 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732358AbhAYWVq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 17:21:46 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A7A6CD6E;
-        Mon, 25 Jan 2021 14:21:00 -0800 (PST)
-Received: from [10.57.40.145] (unknown [10.57.40.145])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 93E223F68F;
-        Mon, 25 Jan 2021 14:20:58 -0800 (PST)
-Subject: Re: [PATCH V2 06/11] dts: bindings: Document device tree bindings for
- ETE
-To:     Rob Herring <robh@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        mathieu.poirier@linaro.org, mike.leach@linaro.org,
-        Linu Cherian <lcherian@marvell.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1610511498-4058-1-git-send-email-anshuman.khandual@arm.com>
- <1610511498-4058-7-git-send-email-anshuman.khandual@arm.com>
- <20210125192253.GA791043@robh.at.kernel.org>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-Message-ID: <9417218b-6eda-373b-a2cb-869089ffc7cd@arm.com>
-Date:   Mon, 25 Jan 2021 22:20:52 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1732139AbhAYWYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 17:24:52 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:37670 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732252AbhAYWYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 17:24:39 -0500
+Received: by mail-oi1-f175.google.com with SMTP id r189so16502989oih.4;
+        Mon, 25 Jan 2021 14:24:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=0NjYeDD1lzj1UZeJ9nl8y/ztWhDb5GAabmpEUTqpWuo=;
+        b=EPYRiaMo/U0wTmAtZgPZ6/IdxUwf6GhlWKE7iQfzHiP0qD9M2dLXd/+AOcMJOVr8qn
+         HTiZwX959eQL71CiH07RNzcHnDTBjEf46Scw/jhcqYDUxoi9nZPg2skURGlY1+AZeOVC
+         WnjAWJ649JX3EsLNBMM0se8DJZ2QSjA0kprueXennEkR+/Ji5UAPOiakjSVnsnJ/A1xp
+         anW3/rfSwpmxrDZCfgD6NnDO2ePlx2LUoPVlezd7AqyTVgbwe3Fjnf1SxR5P2+Ec9xgO
+         BF06HY/hsBzFka8muq/I4DML9lnowZyAjucRF8865vWXAVPb/lwdaluC98kt0ikRTIN5
+         3ilQ==
+X-Gm-Message-State: AOAM531KLZ1QkXzCURtgeG63PhbVF/wUR9iBV6iaGvgQ4NNoBGnIgDTh
+        hVVl5elAqtSSX0cclHGEoQ==
+X-Google-Smtp-Source: ABdhPJyiC85YjLm3GdEPgUAZ01e4BVRyZ2WIvAASAZ4Nfi00rOeQsMsqQRoTcgV1oRHZeeEIutbAsw==
+X-Received: by 2002:a05:6808:c:: with SMTP id u12mr1364028oic.163.1611613436039;
+        Mon, 25 Jan 2021 14:23:56 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id d10sm3459431ooh.32.2021.01.25.14.23.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 14:23:55 -0800 (PST)
+Received: (nullmailer pid 1131708 invoked by uid 1000);
+        Mon, 25 Jan 2021 22:23:54 -0000
+Date:   Mon, 25 Jan 2021 16:23:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     linux-mtd@lists.infradead.org,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-kernel@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: mtd: move partition binding to its own
+ file
+Message-ID: <20210125222354.GA1131674@robh.at.kernel.org>
+References: <20210115153901.31052-1-zajec5@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210125192253.GA791043@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210115153901.31052-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
-
-On 1/25/21 7:22 PM, Rob Herring wrote:
-> On Wed, Jan 13, 2021 at 09:48:13AM +0530, Anshuman Khandual wrote:
->> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>
->> Document the device tree bindings for Embedded Trace Extensions.
->> ETE can be connected to legacy coresight components and thus
->> could optionally contain a connection graph as described by
->> the CoreSight bindings.
->>
->> Cc: devicetree@vger.kernel.org
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: Mike Leach <mike.leach@linaro.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->> ---
->>   Documentation/devicetree/bindings/arm/ete.yaml | 71 ++++++++++++++++++++++++++
->>   1 file changed, 71 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
->> new file mode 100644
->> index 0000000..00e6a77
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/ete.yaml
->> @@ -0,0 +1,71 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +# Copyright 2021, Arm Ltd
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/arm/ete.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: ARM Embedded Trace Extensions
->> +
->> +maintainers:
->> +  - Suzuki K Poulose <suzuki.poulose@arm.com>
->> +  - Mathieu Poirier <mathieu.poirier@linaro.org>
->> +
->> +description: |
->> +  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
->> +  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
->> +  architecture and has extended support for future architecture changes.
->> +  The trace generated by the ETE could be stored via legacy CoreSight
->> +  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
->> +  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
->> +  legacy CoreSight components, a node must be listed per instance, along
->> +  with any optional connection graph as per the coresight bindings.
->> +  See bindings/arm/coresight.txt.
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^ete([0-9a-f]+)$"
->> +  compatible:
->> +    items:
->> +      - const: arm,embedded-trace-extension
->> +
->> +  cpu:
+On Fri, 15 Jan 2021 16:38:59 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> We use 'cpus' in a couple of other places, let's do that here for
-> consistency.
-
-This is following the existing CoreSight bindings for ETM. The same driver
-probes both. Also there can only ever be a single CPU for ete/etm. So, we
-would prefer to keep it aligned with the existing bindings to avoid causing
-confusion.
-
+> Single partition binding is quite common and may be:
+> 1. Used by multiple parsers
+> 2. Extended for more specific cases
 > 
->> +    description: |
->> +      Handle to the cpu this ETE is bound to.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +  out-ports:
->> +    description: |
->> +      Out put connections from the ETE to legacy CoreSight trace bus.
+> Move it to separated file to avoid code duplication.
 > 
-> Output
-
-Will fix.
-
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../mtd/partitions/fixed-partitions.yaml      | 33 +------------
+>  .../bindings/mtd/partitions/partition.yaml    | 47 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 32 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/partition.yaml
 > 
->> +    $ref: /schemas/graph.yaml#/properties/ports
-> 
-> You have to define what each 'port' is if there can be more than 1. If
-> there's only ever 1 then you just need 'port' though maybe all the
-> coresight bindings require 'out-ports'. And the port nodes need a $ref
-> to '/schemas/graph.yaml#/properties/port'.
 
-All CoreSight components require an out-ports and/or in-ports. The ETM/ETE
-always has one port, but must be under out-ports in line with the CoreSight
-bindings.
-
-Does this look more apt:
-
-    out-ports:
-      description: |
-        Output connection from the ETE to legacy CoreSight trace bus.
-      poperties:
-         port:
-           $ref: /schemas/graph.yaml#/properties/port
-
-Suzuki
+Reviewed-by: Rob Herring <robh@kernel.org>
