@@ -2,159 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D05D13023FE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 12:00:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7441F302446
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 12:30:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727690AbhAYK5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 05:57:54 -0500
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:50741 "EHLO
-        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727667AbhAYK5e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 05:57:34 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 81850C94;
-        Mon, 25 Jan 2021 05:56:28 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 25 Jan 2021 05:56:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=giywbTdzkGwixTIPyZn+CKrGjsS
-        8u+GMH7bvqQezP/w=; b=lj8l6n6k+m4GCen06yUSgFqcRv62lImUqGBSlMc/Qq8
-        IZENWWsttIMjDGM7xPVtxDS38KuzJQKOq+eUTQPCTWz3NYOYJDO2VVbfYs31tn/T
-        hMrtGnOjEKxGAVHyNhCwJMF/QcXfwltPSmQBdlNa1KTP43a04ofp4n3kpsbWdsBQ
-        St1K7EtVwY3B0JK74ZdSO6eivRG9D0RFjPzlaBLjmLyu9escmlN9X3XgSzs3d0tr
-        MowhUiNTx/JFpmbPeUnihd7S8SqDo5VvsWR0A6SmvtCS2OPugkJnW/YdZVmrvNXj
-        sFRGpjcmDZ2uvAJXIgCndXj9PXdi9vz5r3mfOZ9BCLw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=giywbT
-        dzkGwixTIPyZn+CKrGjsS8u+GMH7bvqQezP/w=; b=T3X6teYyRO1kXbKsCjvtiJ
-        rPcJjcWFJjsf9vStgkwd4ujyOyNPX8bjZ+Q6sdHL81FwM8yLO8zmadkscnbngnn5
-        Hv38bp0geRGuV9PJOZoGiPWUoI0Mal3lkdsJVdPQ4Utx6ZGI1/2wz9W2sHdOJB5p
-        9SkLZ2gICKgYnOIw9d3A1FCmoXTAZNeiGnDV8TNPIaPqnptxSVk/X0Xvksz69Uxg
-        tLyciOGM9S2OCHSJaAeOgLb2CZxHmgCRNThxL6Xm00lSVok7Yt3/0zN07ww3ci8t
-        4POuAQvsWodaTPgnwqnFO8xqW7DO/NyT8mRyM0QcGCxvTembvbbs9+yq/7v9Ow0A
-        ==
-X-ME-Sender: <xms:26MOYJhd_ZzUmZXGk4HUPXT8GrJSQWCUwvQEkdYrI1-wbbk1GpIKdg>
-    <xme:26MOYOCFDdpqel7llnnh9FwxRk2kSIJ4Z_fBvGG1rEiUGDMk5kufUd3lnDGuSvmAL
-    BSkexACE0t4MpJVX_A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdefgddulecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:26MOYJGY6Z-lFe-RLbBbHtQSb-4PuuVwayBrSgUko4R2v0ADKnfESg>
-    <xmx:26MOYOSnF55TzH8473JPEhKhHi6ByApBzJs6CIVBx-I_leEGLqycdA>
-    <xmx:26MOYGwYXUt0Yt1Qx0I0OAEasO8Wm3QgzAM0kZXu9vFAPjOLYNA_Ag>
-    <xmx:3KMOYBxIZBQr3Z7TD0aymHcctv3miIglavLdKRDG30HW2kQRXWcuuQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 165521080059;
-        Mon, 25 Jan 2021 05:56:27 -0500 (EST)
-Date:   Mon, 25 Jan 2021 11:56:26 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Ondrej Jirman <megous@megous.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 00/10] sunxi: Support IRQ wakeup from deep sleep
-Message-ID: <20210125105626.fz75dxhi6f7jtcqm@gilmour>
-References: <20210118055040.21910-1-samuel@sholland.org>
- <161126112131.135928.7664552660827790510.b4-ty@kernel.org>
- <08e9bc97-c18d-9b8f-28be-3892d77730bf@sholland.org>
- <20210122104705.bo2x22ef56hdj26q@gilmour>
- <52b9c9bb-ff75-d1e6-e198-0d388d1c6d73@sholland.org>
+        id S1727639AbhAYL2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 06:28:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57946 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727711AbhAYLJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 06:09:24 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54867C06174A
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 03:08:43 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id m187so10307832wme.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 03:08:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L6FzDVWaEEDJLy1ZljH6o/Vmgdxo9JDDb7VAWw5br1s=;
+        b=z15BQeUBB8VJb9yD2URB91vmkJHi2zOy3Q34XsHOPk0xk5wiDYl7tdaS4gsd+3N2T+
+         fMYFFOFRh3dxoSEmiWempbG7aD9RfYjINgLwMfkhkTxhO/Itm+Mh5sFd3VGII8HUAWR4
+         br9XJRJWbB8OcvgDNLmdwgl0H52zwg9lChy3GAEXZMtuAx8MRrjcuhnddLNlKvjRzEp2
+         zQR3KB6jWakZURZ2hVfPGVPxo5sTSy8UD+WchIijFKZS/nzuW6Wvya7RtHfwZkMQci1W
+         Q9JiRc/cmrkiwa3XOJcH5PtKJFX9S8yPk+nh5JwoGjzc4+VyqxHi1m/HLHN14yjSDWs3
+         stog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L6FzDVWaEEDJLy1ZljH6o/Vmgdxo9JDDb7VAWw5br1s=;
+        b=eRR6pkTD6vHJeEFfbWdcE6ntNBQhlcrTCYuvI+Nfs/rwNk8FrrY8Pv+pTP5De15lMk
+         1EKbx49BVHl5x18O4oIcsXS/NYS9/fIrBN883y68xjCvfag/Rf+XHne2iEyOtggqxAcV
+         eKAkCTpcubLFuiWtjOvBq+2L08MvMWrxxcnGm+zmtOoy4jzntxfi8J9laC4eBQnXwQPu
+         8bUlaM0gbkMFXpEI7j9VVS8lp5X/aup+1zfhJx3+Vzu++VuOrfHxTEIUfmcYnzHlMOFH
+         KkIQHlWMmGEqwTXQTujjH3sdaBnP2vzOJ/SJLYYQO7H2RyEPVo6HYEL3NA+HtpprPhPt
+         18NA==
+X-Gm-Message-State: AOAM532RZA7hoocdMF7k/VvX8JpAawBFAd32SN4tpxwKw2FEbkH0K2WQ
+        cFrfhv3YgXCgy9P6BtNxR+B+Nw==
+X-Google-Smtp-Source: ABdhPJx4ipeZUtiOJeZtJOpzaet9OUvA/7DVVO4eH4Qnc3/pg38U0sy5ZrThSKDxr751NTEqfXQ9qQ==
+X-Received: by 2002:a1c:7413:: with SMTP id p19mr6006695wmc.39.1611572921919;
+        Mon, 25 Jan 2021 03:08:41 -0800 (PST)
+Received: from localhost.localdomain ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
+        by smtp.gmail.com with ESMTPSA id u6sm16636014wro.75.2021.01.25.03.08.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 03:08:41 -0800 (PST)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     joro@8bytes.org, will@kernel.org
+Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v11 00/10] iommu: I/O page faults for SMMUv3
+Date:   Mon, 25 Jan 2021 12:06:41 +0100
+Message-Id: <20210125110650.3232195-1-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="67rbkf5xfhl6dmyc"
-Content-Disposition: inline
-In-Reply-To: <52b9c9bb-ff75-d1e6-e198-0d388d1c6d73@sholland.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add stall support to the SMMUv3, along with a common I/O Page Fault
+handler.
 
---67rbkf5xfhl6dmyc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This version fixes a typo introduced in v10 [1] and adds review tags
+(thanks!) You can find the range diff for v10->v11 below.
 
-On Sat, Jan 23, 2021 at 12:26:26AM -0600, Samuel Holland wrote:
-> On 1/22/21 4:47 AM, Maxime Ripard wrote:
-> > On Thu, Jan 21, 2021 at 07:33:54PM -0600, Samuel Holland wrote:
-> >> On 1/21/21 2:35 PM, Marc Zyngier wrote:
-> >>> On Sun, 17 Jan 2021 23:50:30 -0600, Samuel Holland wrote:
-> >>>> Allwinner sun6i/sun8i/sun50i SoCs (A31 and newer) have two interrupt
-> >>>> controllers: GIC and R_INTC. GIC does not support wakeup. R_INTC han=
-dles
-> >>>> the external NMI pin, and provides 32+ IRQs to the ARISC. The first =
-16
-> >>>> of these correspond 1:1 to a block of GIC IRQs starting with the NMI.
-> >>>> The last 13-16 multiplex the first (up to) 128 GIC SPIs.
-> >>>>
-> >>>> This series replaces the existing chained irqchip driver that could =
-only
-> >>>> control the NMI, with a stacked irqchip driver that also provides wa=
-keup
-> >>>> capability for those multiplexed SPI IRQs. The idea is to preconfigu=
-re
-> >>>> the ARISC's IRQ controller, and then the ARISC firmware knows to wak=
-e up
-> >>>> as soon as it receives an IRQ. It can also decide how deep it can
-> >>>> suspend based on the enabled wakeup IRQs.
-> >>>>
-> >>>> [...]
-> >>>
-> >>> Applied to irq/irqchip-5.12, thanks!
-> >>>
-> >>> [01/10] dt-bindings: irq: sun6i-r: Split the binding from sun7i-nmi
-> >>>         commit: ad6b47cdef760410311f41876b21eb0c6fda4717
-> >>> [02/10] dt-bindings: irq: sun6i-r: Add a compatible for the H3
-> >>>         commit: 6436eb4417094ea3308b33d8392fc02a1068dc78
-> >>> [03/10] irqchip/sun6i-r: Use a stacked irqchip driver
-> >>>         commit: 4e34614636b31747b190488240a95647c227021f
-> >>> [04/10] irqchip/sun6i-r: Add wakeup support
-> >>>         commit: 7ab365f6cd6de1e2b0cb1e1e3873dbf68e6f1003
-> >>>
-> >>> Please route the dts patches via the soc tree. Also, I had to
-> >>> manually fix the first patch as it wouldn't apply on top of
-> >>> 5.11-rc4 (which tree has it been diffed against?). Please
-> >>> check that the resolution is correct.
-> >>
-> >> This series was based on sunxi/for-next, which contains commit
-> >> 752b0aac99c7 ("dt-bindings: irq: sun7i-nmi: Add binding documentation
-> >> for the V3s NMI")[1].
-> >=20
-> > I assume merging the DT bits alone would break things? If so, I guess we
-> > can wait for 5.12 to be released before merging it
->=20
-> Patch 5 does not depend on the new driver, so it could be merged at any
-> time. Yes, the remaining patches would break things if merged without
-> the driver.
+[1] https://lore.kernel.org/linux-iommu/20210121123623.2060416-1-jean-philippe@linaro.org/
 
-I've applied patch 5 then, could you send the rest of the DT patches
-when 5.13-rc1 is out?
+Jean-Philippe Brucker (10):
+  iommu: Fix comment for struct iommu_fwspec
+  iommu/arm-smmu-v3: Use device properties for pasid-num-bits
+  iommu: Separate IOMMU_DEV_FEAT_IOPF from IOMMU_DEV_FEAT_SVA
+  iommu/vt-d: Support IOMMU_DEV_FEAT_IOPF
+  uacce: Enable IOMMU_DEV_FEAT_IOPF
+  iommu: Add a page fault handler
+  iommu/arm-smmu-v3: Maintain a SID->device structure
+  dt-bindings: document stall property for IOMMU masters
+  ACPI/IORT: Enable stall support for platform devices
+  iommu/arm-smmu-v3: Add stall support for platform devices
 
-Thanks!
-Maxime
+ drivers/iommu/Makefile                        |   1 +
+ .../devicetree/bindings/iommu/iommu.txt       |  18 +
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  56 ++-
+ drivers/iommu/iommu-sva-lib.h                 |  53 ++
+ include/linux/iommu.h                         |  26 +-
+ drivers/acpi/arm64/iort.c                     |  15 +-
+ .../iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c   |  59 ++-
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   | 349 +++++++++++--
+ drivers/iommu/intel/iommu.c                   |  11 +-
+ drivers/iommu/io-pgfault.c                    | 461 ++++++++++++++++++
+ drivers/iommu/of_iommu.c                      |   5 -
+ drivers/misc/uacce/uacce.c                    |  39 +-
+ 12 files changed, 1019 insertions(+), 74 deletions(-)
+ create mode 100644 drivers/iommu/io-pgfault.c
 
---67rbkf5xfhl6dmyc
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+-- 
+ @@ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c: static void arm_smmu_release_device(struct device *dev)
+    master = dev_iommu_priv_get(dev);
+-   WARN_ON(arm_smmu_master_sva_enabled(master));
+-+  iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
++-  WARN_ON(arm_smmu_master_sva_enabled(master));
+++  if (WARN_ON(arm_smmu_master_sva_enabled(master)))
+++          iopf_queue_remove_device(master->smmu->evtq.iopf, dev);
+    arm_smmu_detach_dev(master);
+    arm_smmu_disable_pasid(master);
+    arm_smmu_remove_master(master);
+@@ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c: static struct iommu_ops arm_smmu_op
+    .pgsize_bitmap          = -1UL, /* Restricted during device attach */
+  };
+  
+-@@ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c: static int arm_smmu_cmdq_init(struct arm_smmu_device *smmu)
+- static int arm_smmu_init_queues(struct arm_smmu_device *smmu)
+- {
+-   int ret;
+-+  bool sva = smmu->features & ARM_SMMU_FEAT_STALLS;
+- 
+-   /* cmdq */
+-   ret = arm_smmu_init_one_queue(smmu, &smmu->cmdq.q, ARM_SMMU_CMDQ_PROD,
+ @@ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c: static int arm_smmu_init_queues(struct arm_smmu_device *smmu)
+    if (ret)
+            return ret;
+  
+-+  if (sva && smmu->features & ARM_SMMU_FEAT_STALLS) {
+++  if ((smmu->features & ARM_SMMU_FEAT_SVA) &&
+++      (smmu->features & ARM_SMMU_FEAT_STALLS)) {
+ +          smmu->evtq.iopf = iopf_queue_alloc(dev_name(smmu->dev));
+ +          if (!smmu->evtq.iopf)
+ +                  return -ENOMEM;
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYA6j2QAKCRDj7w1vZxhR
-xYcpAP91ABOYBXnLhbPFLoxRDI3hcFTpJzj4wbHeKnZQsH04KgD/UpIbE3RYPXqZ
-nEg++6cCHvC0ym6NPIdLM/3ufqLqrAs=
-=JBYr
------END PGP SIGNATURE-----
-
---67rbkf5xfhl6dmyc--
