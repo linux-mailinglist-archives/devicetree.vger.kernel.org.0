@@ -2,270 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9334C302C78
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 21:27:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66B6A302C95
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 21:35:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732008AbhAYUXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 15:23:54 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:35417 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731647AbhAYUXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 15:23:05 -0500
-Received: by mail-oi1-f178.google.com with SMTP id w8so16181911oie.2;
-        Mon, 25 Jan 2021 12:22:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=flH03nsBpe00qQdsxJOcf2ps7GrLZPGe76i1E36MC1w=;
-        b=gOXNX+0k6xYzBLbgkk+c1iflRQC9AreciGxXDhQC2opllTLufH4xDsPldtcTBlmH7h
-         PjEXb1nU3RwaOI56rOPCwny+ngr+T4zrEZZO+F45SFw6hjRzJ/RfrHwZ3TAT6dtNJ/Xb
-         rOKCwt0laXMlYV2LjI4SczPSwNA278YHRHbQOWYz86E5KlVtD4HCJSrD334nWGgBYhW/
-         8HD9rkcJD+Obo5vz/odp4Qe5/14LKBgg3131Dt6azdXyy32FRqez/poZgS/u6WC5EWT/
-         R14zLIZQXN/o6Q6ayo4vt6FgdnfklrJ9ZVb/sDVsokjMNX3sX92Vl2Go6hdB90ciZU8D
-         uLTA==
-X-Gm-Message-State: AOAM5334Fh0ES8cjOat8hFpMc5hdYQZIKrVSuUcZtcYrjB34TQukXLPD
-        8AYMZmrYKLDpq0/sUAjgTZaEwCkAUg==
-X-Google-Smtp-Source: ABdhPJw8JJtpG3VCKMiMILQJceIiVEob/sgewfQC9q50O2WEX+Mur0PRRcu7fqAgtWlD3ee1xKkv4Q==
-X-Received: by 2002:aca:c48b:: with SMTP id u133mr1195539oif.105.1611606143985;
-        Mon, 25 Jan 2021 12:22:23 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l5sm3761987oth.41.2021.01.25.12.22.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 12:22:22 -0800 (PST)
-Received: (nullmailer pid 912195 invoked by uid 1000);
-        Mon, 25 Jan 2021 20:22:20 -0000
-Date:   Mon, 25 Jan 2021 14:22:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, maz@kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com, drinkcat@chromium.org,
-        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-Subject: Re: [v7,1/7] dt-bindings: PCI: mediatek-gen3: Add YAML schema
-Message-ID: <20210125202220.GA905995@robh.at.kernel.org>
-References: <20210113114001.5804-1-jianjun.wang@mediatek.com>
- <20210113114001.5804-2-jianjun.wang@mediatek.com>
+        id S1732268AbhAYU2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 15:28:55 -0500
+Received: from mout.gmx.net ([212.227.15.19]:39601 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732252AbhAYU2J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 15:28:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1611606373;
+        bh=EFre/a3jxQxs6PpHV4GixbvePX8KFTSbRFMlZ4ilUP0=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=UWn9olG0oI9NA/RcFbkJaLiYqGfDVsh+50NSnMeT1qA7kjDcHplPK5IJzr0Zb0rED
+         v1xWm/O0t1irWT6lHSefCD0laydTVu8OWwyWhtMteaVTIxUhmlBbWcgLodgrPKnQ+t
+         2k5id9nzP5phY77G7pntxzy11Ir30zDhoMRO1kdA=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.215.209]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N95e9-1m6Otm0KZj-0166Bd; Mon, 25
+ Jan 2021 21:26:13 +0100
+Date:   Mon, 25 Jan 2021 21:26:10 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, j.neuschaefer@gmx.net
+Subject: Re: [PATCH] ARM: dts: imx6sl-tolino-shine2hd: Add Netronix embedded
+ controller
+Message-ID: <YA8pYv1944Y7uaT0@latitude>
+References: <20210124214127.3631530-8-j.neuschaefer@gmx.net>
+ <20210125190804.12552-1-andreas@kemnade.info>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kTqtERsJ9y+2H155"
 Content-Disposition: inline
-In-Reply-To: <20210113114001.5804-2-jianjun.wang@mediatek.com>
+In-Reply-To: <20210125190804.12552-1-andreas@kemnade.info>
+X-Provags-ID: V03:K1:o6uNvkYzVOedAmld+ISO/GuuMIygh/it05hbmQLNE9GlRObmwEc
+ T6CfoHJ12oCWRev4lwMiF6lBzGQ4N4UignoFzTtg9ctm5+LhjJ3znqQUa9k6FJE5nInHjLV
+ FdfLWpv9Sj70b5BEGPjak5WZEe97P5MeoFSu7C+V4Lir0fbCTd+CIUCyvqPpFK0R5BmUH0Y
+ WZfm8WUbcV28LpWKvpl3Q==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:iR91ag/I62I=:MovJrX+Kyx+YKy4XnmrS1c
+ v+u/wrh7RTEy75SlPcfhk01NRl/rjmkDG/M0rQRgp8wzqH+8L69bMMLiDlfdnI9N+CKYMvRop
+ KfZ6huQBBDTvD9Wkd52tfRUt+jyii2qXe4uCkvlPajy6JOOwFh9CrpxV/FlkMC6k7opkkdg5d
+ MBhLIB43De7eMeT/zteEdx8dPz+29dEhcDKckQPJYqEYWyMhtAxDKKNqfQ3c4hNy+wVTJ79WH
+ lR2ddH9vQpnamlh9FOuyUWLDgYEmTBL0kzoaZkE5qOohz+EpZvPr5BDPOUaiXRiJZDjFhjceN
+ jgwY3BFtglj6sgl/W7pWKfPJpMk+LEm3LwW3TXLnU6XVp+iHpxQsfu9OzttJtaJsRyIrnl9gU
+ +1pWMfsXN6Qot7BDgwyTER/jvey8K3l/wBq806iZgqn8kS5/tsGic3fvMhTzg8KiWr7Ztvw/1
+ O0TExe+c9iNPwDbzB1DMcrx2foUkr/c8BbhTIdVzDS6Qb4nwk5+kkwDvEJm+l8z4lWZaecZIi
+ 7RQEtspfTJ48pfk5CvMNjnx/3FCEYjxG0XOMhOkODV6NdxRAMjWUe/Bd9FrODNxlYmgYeyat6
+ pxYOE07ju5SceL7u8ym4SvG2uJ5X3lHt7Cipy91H9WPJkCp050sZJQKSJ5H22VRilGDvHdbqJ
+ hDKLXIhajJOUtiznomfOhkW/AfBKWb+1/8T0eCQ5K1DZZ8F+AdTHkbxHFKhjltbWgoGyXfOro
+ tN3JjGHCsuX3YqgRPkJ113lSyWOAZlUHwTClEyD+KJIdKF5PZF2286BMKquS/UPxuIbxWiXVj
+ bns5JEolycShzHuu4PhNc8/ei97IqltfwWKf6CQx9yC52iPhEe7t0YYaRcfBK9z5xWO00gH6e
+ 5OL0fYoHJw4/HInvR7vA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 13, 2021 at 07:39:55PM +0800, Jianjun Wang wrote:
-> Add YAML schemas documentation for Gen3 PCIe controller on
-> MediaTek SoCs.
-> 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+
+--kTqtERsJ9y+2H155
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jan 25, 2021 at 08:08:04PM +0100, Andreas Kemnade wrote:
+> For now, the driver detects an incompatible version, but since
+> that can be handled by auto-detection, add the controller to the
+> devicetree now. Only PWM seems to be available, there is no RTC
+> in that controller.
+>=20
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
->  .../bindings/pci/mediatek-pcie-gen3.yaml      | 172 ++++++++++++++++++
->  1 file changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> new file mode 100644
-> index 000000000000..f133fb0184f1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -0,0 +1,172 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/mediatek-pcie-gen3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Gen3 PCIe controller on MediaTek SoCs
-> +
-> +maintainers:
-> +  - Jianjun Wang <jianjun.wang@mediatek.com>
-> +
-> +description: |+
-> +  PCIe Gen3 MAC controller for MediaTek SoCs, it supports Gen3 speed
-> +  and compatible with Gen2, Gen1 speed.
-> +
-> +  This PCIe controller supports up to 256 MSI vectors, the MSI hardware
-> +  block diagram is as follows:
-> +
-> +                    +-----+
-> +                    | GIC |
-> +                    +-----+
-> +                       ^
-> +                       |
-> +                   port->irq
-> +                       |
-> +               +-+-+-+-+-+-+-+-+
-> +               |0|1|2|3|4|5|6|7| (PCIe intc)
-> +               +-+-+-+-+-+-+-+-+
-> +                ^ ^           ^
-> +                | |    ...    |
-> +        +-------+ +------+    +-----------+
-> +        |                |                |
-> +  +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
-> +  |0|1|...|30|31|  |0|1|...|30|31|  |0|1|...|30|31| (MSI sets)
-> +  +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
-> +   ^ ^      ^  ^    ^ ^      ^  ^    ^ ^      ^  ^
-> +   | |      |  |    | |      |  |    | |      |  |  (MSI vectors)
-> +   | |      |  |    | |      |  |    | |      |  |
-> +
-> +    (MSI SET0)       (MSI SET1)  ...   (MSI SET7)
-> +
-> +  With 256 MSI vectors supported, the MSI vectors are composed of 8 sets,
-> +  each set has its own address for MSI message, and supports 32 MSI vectors
-> +  to generate interrupt.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8192-pcie
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ranges:
-> +    minItems: 1
-> +    maxItems: 8
-> +
-> +  resets:
-> +    minItems: 1
-> +    maxItems: 2
 
-Why the range? The SoC either has the reset lines or it doesn't.
+Reviewed-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
 
-> +
-> +  reset-names:
-> +    anyOf:
-> +      - const: mac
-> +      - const: phy
+>  arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts b/arch/arm/boot=
+/dts/imx6sl-tolino-shine2hd.dts
+> index caa279608803..c26bc5e10593 100644
+> --- a/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
+> +++ b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
+> @@ -97,8 +97,11 @@ &i2c1 {
+>  	pinctrl-1 =3D <&pinctrl_i2c1_sleep>;
+>  	status =3D "okay";
+> =20
+> -	/* TODO: embedded controller at 0x43 (driver missing) */
+> -
+> +	ec: embedded-controller@43 {
+> +		compatible =3D "netronix,ntxec";
+> +		reg =3D <0x43>;
+> +		#pwm-cells =3D <2>;
+> +	};
 
-I don't think this should stay, but if so, better expressed like this:
-
-minItems: 1
-maxItems: 2
-items:
-  enum: [ mac, phy ]
+Looks good.
 
 
-> +
-> +  clocks:
-> +    maxItems: 6
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pl_250m
-> +      - const: tl_26m
-> +      - const: tl_96m
-> +      - const: tl_32k
-> +      - const: peri_26m
-> +      - const: top_133m
-> +
-> +  assigned-clocks:
-> +    maxItems: 1
-> +
-> +  assigned-clock-parents:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  interrupt-controller:
-> +    description: Interrupt controller node for handling legacy PCI interrupts.
-> +    type: object
-> +    properties:
-> +      '#address-cells':
-> +        const: 0
-> +      '#interrupt-cells':
-> +        const: 1
-> +      interrupt-controller: true
-> +
-> +    required:
-> +      - '#address-cells'
-> +      - '#interrupt-cells'
-> +      - interrupt-controller
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - ranges
-> +  - clocks
-> +  - '#interrupt-cells'
-> +  - interrupt-controller
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie: pcie@11230000 {
-> +            compatible = "mediatek,mt8192-pcie";
-> +            device_type = "pci";
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            reg = <0x00 0x11230000 0x00 0x4000>;
-> +            reg-names = "pcie-mac";
+Thanks,
+Jonathan
 
-Not documented. Drop.
+--kTqtERsJ9y+2H155
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +            interrupts = <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            bus-range = <0x00 0xff>;
-> +            ranges = <0x82000000 0x00 0x12000000 0x00
-> +                      0x12000000 0x00 0x1000000>;
-> +            clocks = <&infracfg 44>,
-> +                     <&infracfg 40>,
-> +                     <&infracfg 43>,
-> +                     <&infracfg 97>,
-> +                     <&infracfg 99>,
-> +                     <&infracfg 111>;
-> +            clock-names = "pl_250m", "tl_26m", "tl_96m",
-> +                          "tl_32k", "peri_26m", "top_133m";
-> +            assigned-clocks = <&topckgen 50>;
-> +            assigned-clock-parents = <&topckgen 91>;
-> +
-> +            phys = <&pciephy>;
-> +            phy-names = "pcie-phy";
-> +            resets = <&infracfg_rst 0>;
-> +            reset-names = "phy";
-> +
-> +            #interrupt-cells = <1>;
-> +            interrupt-map-mask = <0 0 0 0x7>;
-> +            interrupt-map = <0 0 0 1 &pcie_intc 0>,
-> +                            <0 0 0 2 &pcie_intc 1>,
-> +                            <0 0 0 3 &pcie_intc 2>,
-> +                            <0 0 0 4 &pcie_intc 3>;
-> +            pcie_intc: interrupt-controller {
-> +                      #address-cells = <0>;
-> +                      #interrupt-cells = <1>;
-> +                      interrupt-controller;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.25.1
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmAPKUoACgkQCDBEmo7z
+X9u9ag//S/K5DO3ayaScrll9NlC74fZcgRkDT5nttrbR2oI2+Sek0ed+0S3jCAXJ
+JkkPbjLUhIKLc3dzANimLEmmG6BNTdANoz0kHMWNMg3tqgf2MaHeIS2mGFKKs+FT
+xtnfezH1ZXNUpONGIk+fp9KvDLibSsflQZyyR32F+OqWH7GpXcmi8Gaz6kk1jxmk
+qsPpqRcB3RiFJjkeywnacOoS+zoRw4eOthu2KunHTQodNH/oFhQF47GD+mNUOrlT
+NCvapl6RbRWB3NNvHSWmNmpoVSuMkFXwC/dShAtVpaVd0NmuxonXw+4MpP1KoBmi
+K+piVAv8jmf3PMSDLZY15ShowDplIgwqmtKiVpMEqkD3uiaKu5xT245v/1yhLcr6
+ja9kKuTP853VIs2zjqrC2wIWEFmd979WofnR9Oev5uE4WP/iY5dbIp7Ny3iZSyl7
+3oytpKKvIaj9kRbAqvWnpA6ZoHksu3/bXWaDAMe4HbZDukfeczKnfF1Xgb0mbIhQ
+PkY8kStCSXmg+91JryzEFkMP5WhgjYCqUV3ibx5vcBnUM4Bg40/lZmS7TGlZUJIM
+YSPTiFY0cOyyh5ZXDCUPk2GHl9lLxuDj7/SvI4eDb/rREbcqUGwck4HNYTlh7FSH
+/fitjSt+2r2ypFs16yKg3S/+Exm9iCRW+qjyK220WvBxeaiUd4o=
+=Jnph
+-----END PGP SIGNATURE-----
+
+--kTqtERsJ9y+2H155--
