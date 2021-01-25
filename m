@@ -2,114 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B87973032C4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:38:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CB583032C5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:39:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726498AbhAZEip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:38:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38500 "EHLO
+        id S1726369AbhAZEiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:38:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726961AbhAYJjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 04:39:52 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63199C06121F
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 01:38:39 -0800 (PST)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1l3yKJ-00061A-Om; Mon, 25 Jan 2021 10:38:27 +0100
-Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1l3yKI-00019b-Ur; Mon, 25 Jan 2021 10:38:26 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     linux-usb@vger.kernel.org
-Cc:     Minas Harutyunyan <hminas@synopsys.com>,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 2/2] usb: dwc2: use clk bulk API for supporting additional clocks
-Date:   Mon, 25 Jan 2021 10:38:25 +0100
-Message-Id: <20210125093825.4292-3-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210125093825.4292-1-s.hauer@pengutronix.de>
-References: <20210125093825.4292-1-s.hauer@pengutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        with ESMTP id S1727166AbhAYJrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 04:47:14 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA2DC061786;
+        Mon, 25 Jan 2021 01:46:27 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id c127so10118336wmf.5;
+        Mon, 25 Jan 2021 01:46:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=TV0xw0urZWA7yxhi2valt8DXJLxBV/z7jKveKN9m6ds=;
+        b=ksPQsC1nyqO+hH9ep9+kZ9SMdnnJhY6fJ9CkJknO3o36nva3MH/duQt3Udm7n/flT9
+         Jm8qaUB8ragyj99W6FbJ1bx12lcMj0ajZsLh5MfUSX6UoSZlNIeIQ3IS4Cs807DaLdv5
+         M6raw4K7eljJYmIjxavEeoAEMDr+aBaL8I1WUg2eA93aQKcllkmaGfsj7Zes6fQpQmLP
+         vRW22Y9IB8DHC9a4pe8zANO5roi20X9hHWyYjZ5NSDOlwLxi/1T+VxXV5ZdtPvZy300r
+         6X4hmcF+A6rf6YD1G4p46vVTboNpZu2xAbCRZngsHrWl9NYtJWh3hozj9qbkhBWM46Ft
+         Jsbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=TV0xw0urZWA7yxhi2valt8DXJLxBV/z7jKveKN9m6ds=;
+        b=qE0yAAZcfbAbhhqgkICuJH5OY5zw6IR803A2cvr0wlsRpMWI43JVEpXF+ctWyOk9JZ
+         25QG9hYeSmLRzMAqRQ5F8ynyKFkJyD5bdJR9fIkZBcTSBewPTs/zEAGBBV1khzegmsIo
+         2CgXRPdhPBaaRC5cmT8wMD4ycQoVHT3ACRglldTytKPLIQ7ks+gnnPTrPDTyL3tdTCn+
+         tpVr0ToT6/qg6mkTjSx/uCi0wbplnhDP1+KmiLpxPnukaYlzO3e2+icZV3JlRxvaKodN
+         9s7x+H63QGpsro7SLHUKnPLeZIpOb6RSiP5QF+vKSYeRCQ1il5GkeNR7S4IPLpxWKSXz
+         Nijg==
+X-Gm-Message-State: AOAM533/tvIye7/YGXjnzbqDMRu3s3R6felbR7kiiKUBRZoRT4VntN48
+        n5tXOiaBZbF3+D1E0Ad6lqTeJZi0OCU=
+X-Google-Smtp-Source: ABdhPJy1oQ/Ef4RY0U1iiHDEM5BlNCP4W/7PSDGr2G5l/6GJTQZunZNIiiPPIokMN5NYb0I0QoxUeg==
+X-Received: by 2002:a05:600c:2253:: with SMTP id a19mr1599635wmm.75.1611567985825;
+        Mon, 25 Jan 2021 01:46:25 -0800 (PST)
+Received: from jonathan-N53SV.station ([151.81.101.204])
+        by smtp.googlemail.com with ESMTPSA id u5sm22154052wmg.9.2021.01.25.01.46.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 01:46:25 -0800 (PST)
+From:   Jonathan Albrieux <jonathan.albrieux@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, stephan@gerhold.net,
+        phone-devel@vger.kernel.org,
+        Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] Add initial support for BQ Aquaris X5
+Date:   Mon, 25 Jan 2021 10:44:29 +0100
+Message-Id: <20210125094435.7528-1-jonathan.albrieux@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This switches to the clk bulk API for the dwc2 driver. With this
-additional clocks can be supported.
+v2:
+ - reorder I2C devices sorting them by address
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
- drivers/usb/dwc2/core.h     |  2 ++
- drivers/usb/dwc2/platform.c | 18 ++++++++----------
- 2 files changed, 10 insertions(+), 10 deletions(-)
+v1:
+ - initial patch submission
+https://lore.kernel.org/linux-arm-msm/20210124135409.5473-1-jonathan.albrieux@gmail.com/
 
-diff --git a/drivers/usb/dwc2/core.h b/drivers/usb/dwc2/core.h
-index 7161344c6522..4c9e2c75f3dd 100644
---- a/drivers/usb/dwc2/core.h
-+++ b/drivers/usb/dwc2/core.h
-@@ -1075,6 +1075,8 @@ struct dwc2_hsotg {
- 	spinlock_t lock;
- 	void *priv;
- 	int     irq;
-+	struct clk_bulk_data *clocks;
-+	int num_clocks;
- 	struct clk *clk;
- 	struct reset_control *reset;
- 	struct reset_control *reset_ecc;
-diff --git a/drivers/usb/dwc2/platform.c b/drivers/usb/dwc2/platform.c
-index 5f18acac7406..d4a1a26103da 100644
---- a/drivers/usb/dwc2/platform.c
-+++ b/drivers/usb/dwc2/platform.c
-@@ -143,11 +143,9 @@ static int __dwc2_lowlevel_hw_enable(struct dwc2_hsotg *hsotg)
- 	if (ret)
- 		return ret;
- 
--	if (hsotg->clk) {
--		ret = clk_prepare_enable(hsotg->clk);
--		if (ret)
--			return ret;
--	}
-+	ret = clk_bulk_prepare_enable(hsotg->num_clocks, hsotg->clocks);
-+	if (ret)
-+		return ret;
- 
- 	if (hsotg->uphy) {
- 		ret = usb_phy_init(hsotg->uphy);
-@@ -195,8 +193,7 @@ static int __dwc2_lowlevel_hw_disable(struct dwc2_hsotg *hsotg)
- 	if (ret)
- 		return ret;
- 
--	if (hsotg->clk)
--		clk_disable_unprepare(hsotg->clk);
-+	clk_bulk_disable_unprepare(hsotg->num_clocks, hsotg->clocks);
- 
- 	return 0;
- }
-@@ -281,11 +278,12 @@ static int dwc2_lowlevel_hw_init(struct dwc2_hsotg *hsotg)
- 	hsotg->plat = dev_get_platdata(hsotg->dev);
- 
- 	/* Clock */
--	hsotg->clk = devm_clk_get_optional(hsotg->dev, "otg");
--	if (IS_ERR(hsotg->clk)) {
-+	ret = devm_clk_bulk_get_all(hsotg->dev, &hsotg->clocks);
-+	if (ret < 0) {
- 		dev_err(hsotg->dev, "cannot get otg clock\n");
--		return PTR_ERR(hsotg->clk);
-+		return ret;
- 	}
-+	hsotg->num_clocks = ret;
- 
- 	/* Regulators */
- 	for (i = 0; i < ARRAY_SIZE(hsotg->supplies); i++)
+Aquaris X5 (Longcheer L8910) is a smartphone released by BQ in 2015.
+
+As part of msm8916-mainline project, this series aims to bring initial
+mainline support for it.
+
+Features added:
+ - SDHCI (internal and external storage)
+ - USB Device Mode
+ - UART
+ - Regulators
+ - WiFi/BT
+ - Volume buttons
+ - Vibrator
+ - Touchkeys backlight
+ - Accelerometer and gyroscope sensor
+ - Magnetometer sensor
+
+Jonathan Albrieux (3):
+  arm64: dts: qcom: Add device tree for BQ Aquaris X5 (Longcheer L8910)
+  arm64: dts: qcom: msm8916: Add blsp_i2c3
+  arm64: dts: qcom: msm8916-longcheer-l8910: Add imu/magnetometer
+
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/msm8916-longcheer-l8910.dts | 267 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8916-pins.dtsi    |  16 ++
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |  15 +
+ 4 files changed, 299 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+
 -- 
-2.20.1
+2.17.1
 
