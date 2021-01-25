@@ -2,667 +2,461 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB91A30243C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 12:28:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 668163024AA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 13:10:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbhAYL1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 06:27:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58504 "EHLO
+        id S1727755AbhAYMJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 07:09:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727753AbhAYLMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 06:12:36 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83CAC0617AB
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 03:08:50 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id 6so11881991wri.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 03:08:50 -0800 (PST)
+        with ESMTP id S1727707AbhAYLDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 06:03:14 -0500
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361D7C0613D6
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 03:02:33 -0800 (PST)
+Received: by mail-io1-xd36.google.com with SMTP id q129so25634191iod.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 03:02:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=j4gQVr3WKH1e0317BI6PolZ4g0GU2TEiJ+uV7JsOhgI=;
-        b=aNSSkAbba01LOdMn/CcQTcAnpXvTV4R+5GgiIm9APXL7xhYZQhr5E4qj4dyw7w7Atq
-         ed0l3Pu7K80yjF1RzvioOnmbtZnI4T4ll3/qJGz271MhtREv//33YfwTx5O8xNaYXfJl
-         /+3L0fdhc8YRNZ0l4+Wi4fqClryKZQVsWU3HdQQym34mU8yuY/zEWdM0ssy2zlyo7K1s
-         75LRds4/ll1SmWromsmEWUqHYBImP5tglVw6DkMphoyK4URrO02RMBhZCKuGdhyc8Kg4
-         BIeYDBcdQTNjZC20fiMnXXOsKV8uiPr6gt3dSK8ACWC/02ATjpXU/GdsPb4ljqpVpREv
-         /5hA==
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=l8oRndeKEP3ue0fCeGtfqJXoFVoj6o71flyQ1jEJgiM=;
+        b=rwGg0uM7mdSCgjHFhcepOjwGxATWjLrSKUPLlN/2B3s7LDwFx+pFSSJ/Uwwy6Cp5RV
+         Eu7fBNWH5dzWU3GzVgMotBDHhfXr7G8js3bItkTCTUazMLj0WSWAlP/Dcq4+x2TKQmys
+         Ollbs1kff4JiobnXvfdDgBvcbCUhU6ldtDRkHt7/5pI2GLpM3gMGzfSlJv0JSZrcfWuv
+         THLrogT/7Y3NdMnEz3DOVlUzbvCwjVKQ8jyZzA6h2USWQenJaG9LI2PuSk4l95I9iWEH
+         dytkUfZceK3v6J5wr7VYjDHiy6b0fs6ztvf3610N8Sm9OYum3eXZ9G1Gj3tjxYOZgS9H
+         peZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=j4gQVr3WKH1e0317BI6PolZ4g0GU2TEiJ+uV7JsOhgI=;
-        b=sLOwinRxDaP6lS/BwFZnkx4ceVxEmtFrRyHtaeNXoWniftgOayNBD1H+b+b5fnLDnv
-         +rNjv7Vh8RKrV94ZgmUUJez5UwJVClLp0dbx+IHX3GyPdZIj4pPcyTgsd4WTWykAEHgH
-         /iRDCF4TxZYvJGA4DJJj8YhCrXySXKwPZmKq2JBCMytojVeORDInplSNjbcgpZBsS8DQ
-         Du30YmuB0Ny5NRYbUZAPCIiI/O7Gk1z6mk3vi9KdoIU5WUfgdCVdmQvg/C5yloVewHp3
-         HPtJguJ22AuQqNCWWjoIXdge46fe8tHjDqnVVkAnIFG4TmRt83SGMVqQsG6iDrVli8yQ
-         ceNg==
-X-Gm-Message-State: AOAM532uUfKK/88nviUKwGFtvyk5CP8IOsobWogtT5MisTt5wulP4cBK
-        d0EIWj2kEx2F+R+z3kjT313qRQ==
-X-Google-Smtp-Source: ABdhPJzaPcT51DWtN/ktygEZ2FLCeErFJOkP1NE5EurDPspUhfPAoSiF1Go6GScibFrPJXDabIEYKA==
-X-Received: by 2002:a5d:6311:: with SMTP id i17mr290139wru.195.1611572929375;
-        Mon, 25 Jan 2021 03:08:49 -0800 (PST)
-Received: from localhost.localdomain ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id u6sm16636014wro.75.2021.01.25.03.08.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 03:08:48 -0800 (PST)
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     joro@8bytes.org, will@kernel.org
-Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
-        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
-        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
-        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
-        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
-        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH v11 06/10] iommu: Add a page fault handler
-Date:   Mon, 25 Jan 2021 12:06:47 +0100
-Message-Id: <20210125110650.3232195-7-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210125110650.3232195-1-jean-philippe@linaro.org>
-References: <20210125110650.3232195-1-jean-philippe@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l8oRndeKEP3ue0fCeGtfqJXoFVoj6o71flyQ1jEJgiM=;
+        b=T3RbaZe9nM0AvL/I8fPrTuFwJ7EnwyIQaAZJlluoOeU1CFbvTZfguXhHTNgUYr7bvZ
+         8JOGDlrQkrkCw279vkPJqYUfTVzCEXDKydqTO2ppmN1MpcDdXsnUac2pA6noM8Bx7PHK
+         gDl8afl6LNcrJ7jnNBohxCCRcfi2P9hVgOw7tjKroQyfNXAQYE7CYY1OzaeQhffmxRkv
+         5X2epew789D5xY7i3D+9oAYdyPRI3V96t8RXNsMWIDdzU2EbwHyF0NlWTidKHd64O9bU
+         NbLEC2h5Gv/dXE8+OifJ8wYwNPWiH6D828E3jYOeDGM0GIUl9pvscCTMIdJh4Ekzeajv
+         IPWg==
+X-Gm-Message-State: AOAM531ihhNZ/XQOlu+gUSvJkpH2NdFIp95EUAr+aUENXMYDjj5H1bQZ
+        WzBJ/hm+G31jDndze0YgYdTH8dvMdpsIkIX/Ju0ENQ==
+X-Google-Smtp-Source: ABdhPJzyTFadXoGGZjPk5yID07BPttXFd/2XAim50yKiesvP9Qt2lYedLwdgXKZNiXo8ncmB/pnDXZLLesRES69OfM8=
+X-Received: by 2002:a92:6907:: with SMTP id e7mr211878ilc.134.1611572552463;
+ Mon, 25 Jan 2021 03:02:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200909195640.3127341-1-robert.marko@sartura.hr>
+ <20200909195640.3127341-5-robert.marko@sartura.hr> <CA+HBbNEkmYMi5KutwrBVh3uqzjdEmHrbJnPbH43C9B-Kq1MBNA@mail.gmail.com>
+ <YAsf9aZ8mXU8vLZK@builder.lan>
+In-Reply-To: <YAsf9aZ8mXU8vLZK@builder.lan>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Mon, 25 Jan 2021 12:02:21 +0100
+Message-ID: <CA+HBbNHoyCAKcDGkaiguVV3eQz2ZUFRzEVupBD9CWVaJEinw7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] arm: dts: add 8devices Habanero DVK
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, robh+dt@kernel.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luka Perkov <luka.perkov@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some systems allow devices to handle I/O Page Faults in the core mm. For
-example systems implementing the PCIe PRI extension or Arm SMMU stall
-model. Infrastructure for reporting these recoverable page faults was
-added to the IOMMU core by commit 0c830e6b3282 ("iommu: Introduce device
-fault report API"). Add a page fault handler for host SVA.
+On Fri, Jan 22, 2021 at 7:56 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Fri 02 Oct 12:41 CDT 2020, Robert Marko wrote:
+>
+> > On Wed, Sep 9, 2020 at 9:56 PM Robert Marko <robert.marko@sartura.hr> wrote:
+> > >
+> > > 8devices Habanero DVK is a dual-band SoM development kit based on Qualcomm
+> > > IPQ4019 + QCA8075 platform.
+> > >
+> > > Specs are:
+> > > CPU: QCA IPQ4019
+> > > RAM: DDR3L 512MB
+> > > Storage: 32MB SPI-NOR and optional Parallel SLC NAND(Some boards ship with it and some without)
+> > > WLAN1: 2.4 GHz built into IPQ4019 (802.11n) 2x2
+> > > WLAN2: 5 GHz built into IPO4019 (802.11ac Wawe-2) 2x2
+> > > Ethernet: 5x Gbit LAN (QCA 8075)
+> > > USB: 1x USB 2.0 and 1x USB 3.0 (Both built into IPQ4019)
+> > > MicroSD slot (Uses SD controller built into IPQ4019)
+> > > SDIO3.0/EMMC slot (Uses the same SD controller)
+> > > Mini PCI-E Gen 2.0 slot (Built into IPQ4019)
+> > > 5x LEDs (4 GPIO controllable)
+> > > 2x Pushbutton (1 is connected to GPIO, other to SoC reset)
+> > > LCD ZIF socket (Uses the LCD controller built into IPQ4019 which has no driver support)
+> > > 1x UART 115200 rate on J18
+> > >
+> > > 2x breakout development headers
+> > > 12V DC Jack for power
+> > > DIP switch for bootstrap configuration
+> > >
+> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > > Cc: Luka Perkov <luka.perkov@sartura.hr>
+> > > ---
+> > > Changes since v1:
+> > > * Drop include that does not exist
+> > >
+> > >  arch/arm/boot/dts/Makefile                    |   1 +
+> > >  .../boot/dts/qcom-ipq4019-habanero-dvk.dts    | 304 ++++++++++++++++++
+> > >  2 files changed, 305 insertions(+)
+> > >  create mode 100644 arch/arm/boot/dts/qcom-ipq4019-habanero-dvk.dts
+> > >
+> > > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > > index 246d82fc5fcd..004262e0d699 100644
+> > > --- a/arch/arm/boot/dts/Makefile
+> > > +++ b/arch/arm/boot/dts/Makefile
+> > > @@ -898,6 +898,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+> > >         qcom-ipq4019-ap.dk04.1-c3.dtb \
+> > >         qcom-ipq4019-ap.dk07.1-c1.dtb \
+> > >         qcom-ipq4019-ap.dk07.1-c2.dtb \
+> > > +       qcom-ipq4019-habanero-dvk.dtb \
+> > >         qcom-ipq8064-ap148.dtb \
+> > >         qcom-ipq8064-rb3011.dtb \
+> > >         qcom-msm8660-surf.dtb \
+> > > diff --git a/arch/arm/boot/dts/qcom-ipq4019-habanero-dvk.dts b/arch/arm/boot/dts/qcom-ipq4019-habanero-dvk.dts
+> > > new file mode 100644
+> > > index 000000000000..fe054adda0a7
+> > > --- /dev/null
+> > > +++ b/arch/arm/boot/dts/qcom-ipq4019-habanero-dvk.dts
+> > > @@ -0,0 +1,304 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > > +/* Copyright (c) 2019, Robert Marko <robimarko@gmail.com> */
+> > > +
+> > > +#include "qcom-ipq4019.dtsi"
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/input/input.h>
+> > > +
+> > > +/ {
+> > > +       model = "8devices Habanero DVK";
+> > > +       compatible = "8dev,habanero-dvk";
+> > > +
+> > > +       keys {
+> > > +               compatible = "gpio-keys";
+> > > +
+> > > +               reset {
+> > > +                       label = "reset";
+> > > +                       gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
+> > > +                       linux,code = <KEY_RESTART>;
+> > > +               };
+> > > +       };
+> > > +
+> > > +       leds {
+> > > +               compatible = "gpio-leds";
+> > > +
+> > > +               led_status: status {
+> > > +                       label = "habanero-dvk:green:status";
+> > > +                       gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
+> > > +                       panic-indicator;
+> > > +               };
+> > > +
+> > > +               led_upgrade: upgrade {
+> > > +                       label = "habanero-dvk:green:upgrade";
+> > > +                       gpios = <&tlmm 40 GPIO_ACTIVE_HIGH>;
+> > > +               };
+> > > +
+> > > +               wlan2g {
+> > > +                       label = "habanero-dvk:green:wlan2g";
+> > > +                       gpios = <&tlmm 46 GPIO_ACTIVE_HIGH>;
+> > > +                       linux,default-trigger = "phy0tpt";
+> > > +               };
+> > > +
+> > > +               wlan5g {
+> > > +                       label = "habanero-dvk:green:wlan5g";
+> > > +                       gpios = <&tlmm 48 GPIO_ACTIVE_HIGH>;
+> > > +                       linux,default-trigger = "phy1tpt";
+> > > +               };
+> > > +       };
+> > > +};
+> > > +
+> > > +&vqmmc {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&sdhci {
+> > > +       status = "okay";
+> > > +
+> > > +       pinctrl-0 = <&sd_pins>;
+> > > +       pinctrl-names = "default";
+> > > +       cd-gpios = <&tlmm 22 GPIO_ACTIVE_LOW>;
+> > > +       vqmmc-supply = <&vqmmc>;
+> > > +};
+> > > +
+> > > +&qpic_bam {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&tlmm {
+> > > +       mdio_pins: mdio_pinmux {
+> > > +               mux_1 {
+> > > +                       pins = "gpio6";
+> > > +                       function = "mdio";
+> > > +                       bias-pull-up;
+> > > +               };
+> > > +
+> > > +               mux_2 {
+> > > +                       pins = "gpio7";
+> > > +                       function = "mdc";
+> > > +                       bias-pull-up;
+> > > +               };
+> > > +       };
+> > > +
+> > > +       serial_pins: serial_pinmux {
+> > > +               mux {
+> > > +                       pins = "gpio16", "gpio17";
+> > > +                       function = "blsp_uart0";
+> > > +                       bias-disable;
+> > > +               };
+> > > +       };
+> > > +
+> > > +       spi_0_pins: spi_0_pinmux {
+> > > +               pinmux {
+> > > +                       function = "blsp_spi0";
+> > > +                       pins = "gpio13", "gpio14", "gpio15";
+> > > +                       drive-strength = <12>;
+> > > +                       bias-disable;
+> > > +               };
+> > > +
+> > > +               pinmux_cs {
+> > > +                       function = "gpio";
+> > > +                       pins = "gpio12";
+> > > +                       drive-strength = <2>;
+> > > +                       bias-disable;
+> > > +                       output-high;
+> > > +               };
+> > > +       };
+> > > +
+> > > +       nand_pins: nand_pins {
+> > > +               pullups {
+> > > +                       pins =  "gpio52", "gpio53", "gpio58", "gpio59";
+> > > +                       function = "qpic";
+> > > +                       bias-pull-up;
+> > > +               };
+> > > +
+> > > +               pulldowns {
+> > > +                       pins = "gpio54", "gpio55", "gpio56", "gpio57",
+> > > +                               "gpio60", "gpio62", "gpio63", "gpio64",
+> > > +                               "gpio65", "gpio66", "gpio67", "gpio68",
+> > > +                               "gpio69";
+> > > +                       function = "qpic";
+> > > +                       bias-pull-down;
+> > > +               };
+> > > +       };
+> > > +
+> > > +       sd_pins: sd_pins {
+> > > +               pinmux {
+> > > +                       function = "sdio";
+> > > +                       pins = "gpio23", "gpio24", "gpio25", "gpio26",
+> > > +                               "gpio28", "gpio29", "gpio30", "gpio31";
+> > > +                       drive-strength = <10>;
+> > > +               };
+> > > +
+> > > +               pinmux_sd_clk {
+> > > +                       function = "sdio";
+> > > +                       pins = "gpio27";
+> > > +                       drive-strength = <16>;
+> > > +               };
+> > > +
+> > > +               pinmux_sd7 {
+> > > +                       function = "sdio";
+> > > +                       pins = "gpio32";
+> > > +                       drive-strength = <10>;
+> > > +                       bias-disable;
+> > > +               };
+> > > +       };
+> > > +};
+> > > +
+> > > +&watchdog {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&prng {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&blsp_dma {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&blsp1_spi1 {
+> > > +       status = "okay";
+> > > +
+> > > +       pinctrl-0 = <&spi_0_pins>;
+> > > +       pinctrl-names = "default";
+> > > +       cs-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+> > > +
+> > > +       flash@0 {
+> > > +               compatible = "jedec,spi-nor";
+> > > +               spi-max-frequency = <24000000>;
+> > > +               reg = <0>;
+> > > +
+> > > +               partitions {
+> > > +                       compatible = "fixed-partitions";
+> > > +                       #address-cells = <1>;
+> > > +                       #size-cells = <1>;
+> > > +
+> > > +                       partition@0 {
+> > > +                               label = "SBL1";
+> > > +                               reg = <0x00000000 0x00040000>;
+> > > +                               read-only;
+> > > +                       };
+> > > +                       partition@40000 {
+> > > +                               label = "MIBIB";
+> > > +                               reg = <0x00040000 0x00020000>;
+> > > +                               read-only;
+> > > +                       };
+> > > +                       partition@60000 {
+> > > +                               label = "QSEE";
+> > > +                               reg = <0x00060000 0x00060000>;
+> > > +                               read-only;
+> > > +                       };
+> > > +                       partition@c0000 {
+> > > +                               label = "CDT";
+> > > +                               reg = <0x000c0000 0x00010000>;
+> > > +                               read-only;
+> > > +                       };
+> > > +                       partition@d0000 {
+> > > +                               label = "DDRPARAMS";
+> > > +                               reg = <0x000d0000 0x00010000>;
+> > > +                               read-only;
+> > > +                       };
+> > > +                       partition@e0000 {
+> > > +                               label = "APPSBLENV"; /* uboot env */
+> > > +                               reg = <0x000e0000 0x00010000>;
+> > > +                               read-only;
+> > > +                       };
+> > > +                       partition@f0000 {
+> > > +                               label = "APPSBL"; /* uboot */
+> > > +                               reg = <0x000f0000 0x00080000>;
+> > > +                               read-only;
+> > > +                       };
+> > > +                       partition@170000 {
+> > > +                               label = "ART";
+> > > +                               reg = <0x00170000 0x00010000>;
+> > > +                               read-only;
+> > > +                       };
+> > > +                       partition@180000 {
+> > > +                               label = "cfg";
+> > > +                               reg = <0x00180000 0x00040000>;
+> > > +                       };
+> > > +                       partition@1c0000 {
+> > > +                               label = "firmware";
+> > > +                               compatible = "denx,fit";
+> > > +                               reg = <0x001c0000 0x01e40000>;
+> > > +                       };
+> > > +               };
+> > > +       };
+> > > +};
+> > > +
+> > > +/* Some DVK boards ship without NAND */
+> > > +&nand {
+> > > +       status = "okay";
+> > > +
+> > > +       pinctrl-0 = <&nand_pins>;
+> > > +       pinctrl-names = "default";
+> > > +};
+> > > +
+> > > +&blsp1_uart1 {
+> > > +       status = "okay";
+> > > +
+> > > +       pinctrl-0 = <&serial_pins>;
+> > > +       pinctrl-names = "default";
+> > > +};
+> > > +
+> > > +&cryptobam {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&crypto {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&mdio {
+> > > +       status = "okay";
+> > > +
+> > > +       pinctrl-0 = <&mdio_pins>;
+> > > +       pinctrl-names = "default";
+> > > +};
+> > > +
+> > > +&pcie0 {
+> > > +       status = "okay";
+> > > +
+> > > +       perst-gpio = <&tlmm 38 GPIO_ACTIVE_LOW>;
+> > > +       wake-gpio = <&tlmm 50 GPIO_ACTIVE_LOW>;
+> > > +
+> > > +       /* Free slot for use */
+> > > +       bridge@0,0 {
+> > > +               reg = <0x00000000 0 0 0 0>;
+> > > +               #address-cells = <3>;
+> > > +               #size-cells = <2>;
+> > > +               ranges;
+> > > +       };
+> > > +};
+> > > +
+> > > +&wifi0 {
+> > > +       status = "okay";
+> > > +
+> > > +       qcom,ath10k-calibration-variant = "8devices-Habanero";
+> > > +};
+> > > +
+> > > +&wifi1 {
+> > > +       status = "okay";
+> > > +
+> > > +       qcom,ath10k-calibration-variant = "8devices-Habanero";
+> > > +};
+> > > +
+> > > +&usb3_ss_phy {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&usb3_hs_phy {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&usb3 {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&usb2_hs_phy {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&usb2 {
+> > > +       status = "okay";
+> > > +};
+> > > --
+> > > 2.26.2
+> > >
+> >
+> > Hi,
+> > Is there an issue with the patch preventing the review?
+> >
+>
+> Found this in my inbox and I don't know why I never replied to you,
+> perhaps because kernel test robot says it doesn't build...
+>
+> I tried to apply it now but there's no "vqmmc" so it doesn't build :/
+>
+>
+> If you're still interested in this I'd be happy to merge it if you can
+> fix up the vqmmc - and if respinning it I would appreciate if you could
+> sort the nodes alphabetically.
+>
+> Regards,
+> Bjorn
 
-IOMMU driver can now instantiate several fault workqueues and link them
-to IOPF-capable devices. Drivers can choose between a single global
-workqueue, one per IOMMU device, one per low-level fault queue, one per
-domain, etc.
+Hi,
+This patch series depends on:
+https://patchwork.kernel.org/patch/11765789/
+https://patchwork.kernel.org/patch/11760437/
 
-When it receives a fault event, most commonly in an IRQ handler, the
-IOMMU driver reports the fault using iommu_report_device_fault(), which
-calls the registered handler. The page fault handler then calls the mm
-fault handler, and reports either success or failure with
-iommu_page_response(). After the handler succeeds, the hardware retries
-the access.
+USB nodes appear to finally be picked for the Qcom tree while the VQMMC LDO
+is still pending.
 
-The iopf_param pointer could be embedded into iommu_fault_param. But
-putting iopf_param into the iommu_param structure allows us not to care
-about ordering between calls to iopf_queue_add_device() and
-iommu_register_device_fault_handler().
+I am still interested in this and was planning to send the updated
+versions anyway soon.
+I Will respin these and reorder the nodes.
 
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
- drivers/iommu/Makefile        |   1 +
- drivers/iommu/iommu-sva-lib.h |  53 ++++
- include/linux/iommu.h         |   2 +
- drivers/iommu/io-pgfault.c    | 461 ++++++++++++++++++++++++++++++++++
- 4 files changed, 517 insertions(+)
- create mode 100644 drivers/iommu/io-pgfault.c
-
-diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
-index 61bd30cd8369..60fafc23dee6 100644
---- a/drivers/iommu/Makefile
-+++ b/drivers/iommu/Makefile
-@@ -28,3 +28,4 @@ obj-$(CONFIG_S390_IOMMU) += s390-iommu.o
- obj-$(CONFIG_HYPERV_IOMMU) += hyperv-iommu.o
- obj-$(CONFIG_VIRTIO_IOMMU) += virtio-iommu.o
- obj-$(CONFIG_IOMMU_SVA_LIB) += iommu-sva-lib.o
-+obj-$(CONFIG_IOMMU_SVA_LIB) += io-pgfault.o
-diff --git a/drivers/iommu/iommu-sva-lib.h b/drivers/iommu/iommu-sva-lib.h
-index b40990aef3fd..031155010ca8 100644
---- a/drivers/iommu/iommu-sva-lib.h
-+++ b/drivers/iommu/iommu-sva-lib.h
-@@ -12,4 +12,57 @@ int iommu_sva_alloc_pasid(struct mm_struct *mm, ioasid_t min, ioasid_t max);
- void iommu_sva_free_pasid(struct mm_struct *mm);
- struct mm_struct *iommu_sva_find(ioasid_t pasid);
- 
-+/* I/O Page fault */
-+struct device;
-+struct iommu_fault;
-+struct iopf_queue;
-+
-+#ifdef CONFIG_IOMMU_SVA_LIB
-+int iommu_queue_iopf(struct iommu_fault *fault, void *cookie);
-+
-+int iopf_queue_add_device(struct iopf_queue *queue, struct device *dev);
-+int iopf_queue_remove_device(struct iopf_queue *queue,
-+			     struct device *dev);
-+int iopf_queue_flush_dev(struct device *dev);
-+struct iopf_queue *iopf_queue_alloc(const char *name);
-+void iopf_queue_free(struct iopf_queue *queue);
-+int iopf_queue_discard_partial(struct iopf_queue *queue);
-+
-+#else /* CONFIG_IOMMU_SVA_LIB */
-+static inline int iommu_queue_iopf(struct iommu_fault *fault, void *cookie)
-+{
-+	return -ENODEV;
-+}
-+
-+static inline int iopf_queue_add_device(struct iopf_queue *queue,
-+					struct device *dev)
-+{
-+	return -ENODEV;
-+}
-+
-+static inline int iopf_queue_remove_device(struct iopf_queue *queue,
-+					   struct device *dev)
-+{
-+	return -ENODEV;
-+}
-+
-+static inline int iopf_queue_flush_dev(struct device *dev)
-+{
-+	return -ENODEV;
-+}
-+
-+static inline struct iopf_queue *iopf_queue_alloc(const char *name)
-+{
-+	return NULL;
-+}
-+
-+static inline void iopf_queue_free(struct iopf_queue *queue)
-+{
-+}
-+
-+static inline int iopf_queue_discard_partial(struct iopf_queue *queue)
-+{
-+	return -ENODEV;
-+}
-+#endif /* CONFIG_IOMMU_SVA_LIB */
- #endif /* _IOMMU_SVA_LIB_H */
-diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-index 00348e4c3c26..edc9be443a74 100644
---- a/include/linux/iommu.h
-+++ b/include/linux/iommu.h
-@@ -366,6 +366,7 @@ struct iommu_fault_param {
-  * struct dev_iommu - Collection of per-device IOMMU data
-  *
-  * @fault_param: IOMMU detected device fault reporting data
-+ * @iopf_param:	 I/O Page Fault queue and data
-  * @fwspec:	 IOMMU fwspec data
-  * @iommu_dev:	 IOMMU device this device is linked to
-  * @priv:	 IOMMU Driver private data
-@@ -376,6 +377,7 @@ struct iommu_fault_param {
- struct dev_iommu {
- 	struct mutex lock;
- 	struct iommu_fault_param	*fault_param;
-+	struct iopf_device_param	*iopf_param;
- 	struct iommu_fwspec		*fwspec;
- 	struct iommu_device		*iommu_dev;
- 	void				*priv;
-diff --git a/drivers/iommu/io-pgfault.c b/drivers/iommu/io-pgfault.c
-new file mode 100644
-index 000000000000..1df8c1dcae77
---- /dev/null
-+++ b/drivers/iommu/io-pgfault.c
-@@ -0,0 +1,461 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Handle device page faults
-+ *
-+ * Copyright (C) 2020 ARM Ltd.
-+ */
-+
-+#include <linux/iommu.h>
-+#include <linux/list.h>
-+#include <linux/sched/mm.h>
-+#include <linux/slab.h>
-+#include <linux/workqueue.h>
-+
-+#include "iommu-sva-lib.h"
-+
-+/**
-+ * struct iopf_queue - IO Page Fault queue
-+ * @wq: the fault workqueue
-+ * @devices: devices attached to this queue
-+ * @lock: protects the device list
-+ */
-+struct iopf_queue {
-+	struct workqueue_struct		*wq;
-+	struct list_head		devices;
-+	struct mutex			lock;
-+};
-+
-+/**
-+ * struct iopf_device_param - IO Page Fault data attached to a device
-+ * @dev: the device that owns this param
-+ * @queue: IOPF queue
-+ * @queue_list: index into queue->devices
-+ * @partial: faults that are part of a Page Request Group for which the last
-+ *           request hasn't been submitted yet.
-+ */
-+struct iopf_device_param {
-+	struct device			*dev;
-+	struct iopf_queue		*queue;
-+	struct list_head		queue_list;
-+	struct list_head		partial;
-+};
-+
-+struct iopf_fault {
-+	struct iommu_fault		fault;
-+	struct list_head		list;
-+};
-+
-+struct iopf_group {
-+	struct iopf_fault		last_fault;
-+	struct list_head		faults;
-+	struct work_struct		work;
-+	struct device			*dev;
-+};
-+
-+static int iopf_complete_group(struct device *dev, struct iopf_fault *iopf,
-+			       enum iommu_page_response_code status)
-+{
-+	struct iommu_page_response resp = {
-+		.version		= IOMMU_PAGE_RESP_VERSION_1,
-+		.pasid			= iopf->fault.prm.pasid,
-+		.grpid			= iopf->fault.prm.grpid,
-+		.code			= status,
-+	};
-+
-+	if ((iopf->fault.prm.flags & IOMMU_FAULT_PAGE_REQUEST_PASID_VALID) &&
-+	    (iopf->fault.prm.flags & IOMMU_FAULT_PAGE_RESPONSE_NEEDS_PASID))
-+		resp.flags = IOMMU_PAGE_RESP_PASID_VALID;
-+
-+	return iommu_page_response(dev, &resp);
-+}
-+
-+static enum iommu_page_response_code
-+iopf_handle_single(struct iopf_fault *iopf)
-+{
-+	vm_fault_t ret;
-+	struct mm_struct *mm;
-+	struct vm_area_struct *vma;
-+	unsigned int access_flags = 0;
-+	unsigned int fault_flags = FAULT_FLAG_REMOTE;
-+	struct iommu_fault_page_request *prm = &iopf->fault.prm;
-+	enum iommu_page_response_code status = IOMMU_PAGE_RESP_INVALID;
-+
-+	if (!(prm->flags & IOMMU_FAULT_PAGE_REQUEST_PASID_VALID))
-+		return status;
-+
-+	mm = iommu_sva_find(prm->pasid);
-+	if (IS_ERR_OR_NULL(mm))
-+		return status;
-+
-+	mmap_read_lock(mm);
-+
-+	vma = find_extend_vma(mm, prm->addr);
-+	if (!vma)
-+		/* Unmapped area */
-+		goto out_put_mm;
-+
-+	if (prm->perm & IOMMU_FAULT_PERM_READ)
-+		access_flags |= VM_READ;
-+
-+	if (prm->perm & IOMMU_FAULT_PERM_WRITE) {
-+		access_flags |= VM_WRITE;
-+		fault_flags |= FAULT_FLAG_WRITE;
-+	}
-+
-+	if (prm->perm & IOMMU_FAULT_PERM_EXEC) {
-+		access_flags |= VM_EXEC;
-+		fault_flags |= FAULT_FLAG_INSTRUCTION;
-+	}
-+
-+	if (!(prm->perm & IOMMU_FAULT_PERM_PRIV))
-+		fault_flags |= FAULT_FLAG_USER;
-+
-+	if (access_flags & ~vma->vm_flags)
-+		/* Access fault */
-+		goto out_put_mm;
-+
-+	ret = handle_mm_fault(vma, prm->addr, fault_flags, NULL);
-+	status = ret & VM_FAULT_ERROR ? IOMMU_PAGE_RESP_INVALID :
-+		IOMMU_PAGE_RESP_SUCCESS;
-+
-+out_put_mm:
-+	mmap_read_unlock(mm);
-+	mmput(mm);
-+
-+	return status;
-+}
-+
-+static void iopf_handle_group(struct work_struct *work)
-+{
-+	struct iopf_group *group;
-+	struct iopf_fault *iopf, *next;
-+	enum iommu_page_response_code status = IOMMU_PAGE_RESP_SUCCESS;
-+
-+	group = container_of(work, struct iopf_group, work);
-+
-+	list_for_each_entry_safe(iopf, next, &group->faults, list) {
-+		/*
-+		 * For the moment, errors are sticky: don't handle subsequent
-+		 * faults in the group if there is an error.
-+		 */
-+		if (status == IOMMU_PAGE_RESP_SUCCESS)
-+			status = iopf_handle_single(iopf);
-+
-+		if (!(iopf->fault.prm.flags &
-+		      IOMMU_FAULT_PAGE_REQUEST_LAST_PAGE))
-+			kfree(iopf);
-+	}
-+
-+	iopf_complete_group(group->dev, &group->last_fault, status);
-+	kfree(group);
-+}
-+
-+/**
-+ * iommu_queue_iopf - IO Page Fault handler
-+ * @fault: fault event
-+ * @cookie: struct device, passed to iommu_register_device_fault_handler.
-+ *
-+ * Add a fault to the device workqueue, to be handled by mm.
-+ *
-+ * This module doesn't handle PCI PASID Stop Marker; IOMMU drivers must discard
-+ * them before reporting faults. A PASID Stop Marker (LRW = 0b100) doesn't
-+ * expect a response. It may be generated when disabling a PASID (issuing a
-+ * PASID stop request) by some PCI devices.
-+ *
-+ * The PASID stop request is issued by the device driver before unbind(). Once
-+ * it completes, no page request is generated for this PASID anymore and
-+ * outstanding ones have been pushed to the IOMMU (as per PCIe 4.0r1.0 - 6.20.1
-+ * and 10.4.1.2 - Managing PASID TLP Prefix Usage). Some PCI devices will wait
-+ * for all outstanding page requests to come back with a response before
-+ * completing the PASID stop request. Others do not wait for page responses, and
-+ * instead issue this Stop Marker that tells us when the PASID can be
-+ * reallocated.
-+ *
-+ * It is safe to discard the Stop Marker because it is an optimization.
-+ * a. Page requests, which are posted requests, have been flushed to the IOMMU
-+ *    when the stop request completes.
-+ * b. The IOMMU driver flushes all fault queues on unbind() before freeing the
-+ *    PASID.
-+ *
-+ * So even though the Stop Marker might be issued by the device *after* the stop
-+ * request completes, outstanding faults will have been dealt with by the time
-+ * the PASID is freed.
-+ *
-+ * Return: 0 on success and <0 on error.
-+ */
-+int iommu_queue_iopf(struct iommu_fault *fault, void *cookie)
-+{
-+	int ret;
-+	struct iopf_group *group;
-+	struct iopf_fault *iopf, *next;
-+	struct iopf_device_param *iopf_param;
-+
-+	struct device *dev = cookie;
-+	struct dev_iommu *param = dev->iommu;
-+
-+	lockdep_assert_held(&param->lock);
-+
-+	if (fault->type != IOMMU_FAULT_PAGE_REQ)
-+		/* Not a recoverable page fault */
-+		return -EOPNOTSUPP;
-+
-+	/*
-+	 * As long as we're holding param->lock, the queue can't be unlinked
-+	 * from the device and therefore cannot disappear.
-+	 */
-+	iopf_param = param->iopf_param;
-+	if (!iopf_param)
-+		return -ENODEV;
-+
-+	if (!(fault->prm.flags & IOMMU_FAULT_PAGE_REQUEST_LAST_PAGE)) {
-+		iopf = kzalloc(sizeof(*iopf), GFP_KERNEL);
-+		if (!iopf)
-+			return -ENOMEM;
-+
-+		iopf->fault = *fault;
-+
-+		/* Non-last request of a group. Postpone until the last one */
-+		list_add(&iopf->list, &iopf_param->partial);
-+
-+		return 0;
-+	}
-+
-+	group = kzalloc(sizeof(*group), GFP_KERNEL);
-+	if (!group) {
-+		/*
-+		 * The caller will send a response to the hardware. But we do
-+		 * need to clean up before leaving, otherwise partial faults
-+		 * will be stuck.
-+		 */
-+		ret = -ENOMEM;
-+		goto cleanup_partial;
-+	}
-+
-+	group->dev = dev;
-+	group->last_fault.fault = *fault;
-+	INIT_LIST_HEAD(&group->faults);
-+	list_add(&group->last_fault.list, &group->faults);
-+	INIT_WORK(&group->work, iopf_handle_group);
-+
-+	/* See if we have partial faults for this group */
-+	list_for_each_entry_safe(iopf, next, &iopf_param->partial, list) {
-+		if (iopf->fault.prm.grpid == fault->prm.grpid)
-+			/* Insert *before* the last fault */
-+			list_move(&iopf->list, &group->faults);
-+	}
-+
-+	queue_work(iopf_param->queue->wq, &group->work);
-+	return 0;
-+
-+cleanup_partial:
-+	list_for_each_entry_safe(iopf, next, &iopf_param->partial, list) {
-+		if (iopf->fault.prm.grpid == fault->prm.grpid) {
-+			list_del(&iopf->list);
-+			kfree(iopf);
-+		}
-+	}
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(iommu_queue_iopf);
-+
-+/**
-+ * iopf_queue_flush_dev - Ensure that all queued faults have been processed
-+ * @dev: the endpoint whose faults need to be flushed.
-+ *
-+ * The IOMMU driver calls this before releasing a PASID, to ensure that all
-+ * pending faults for this PASID have been handled, and won't hit the address
-+ * space of the next process that uses this PASID. The driver must make sure
-+ * that no new fault is added to the queue. In particular it must flush its
-+ * low-level queue before calling this function.
-+ *
-+ * Return: 0 on success and <0 on error.
-+ */
-+int iopf_queue_flush_dev(struct device *dev)
-+{
-+	int ret = 0;
-+	struct iopf_device_param *iopf_param;
-+	struct dev_iommu *param = dev->iommu;
-+
-+	if (!param)
-+		return -ENODEV;
-+
-+	mutex_lock(&param->lock);
-+	iopf_param = param->iopf_param;
-+	if (iopf_param)
-+		flush_workqueue(iopf_param->queue->wq);
-+	else
-+		ret = -ENODEV;
-+	mutex_unlock(&param->lock);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(iopf_queue_flush_dev);
-+
-+/**
-+ * iopf_queue_discard_partial - Remove all pending partial fault
-+ * @queue: the queue whose partial faults need to be discarded
-+ *
-+ * When the hardware queue overflows, last page faults in a group may have been
-+ * lost and the IOMMU driver calls this to discard all partial faults. The
-+ * driver shouldn't be adding new faults to this queue concurrently.
-+ *
-+ * Return: 0 on success and <0 on error.
-+ */
-+int iopf_queue_discard_partial(struct iopf_queue *queue)
-+{
-+	struct iopf_fault *iopf, *next;
-+	struct iopf_device_param *iopf_param;
-+
-+	if (!queue)
-+		return -EINVAL;
-+
-+	mutex_lock(&queue->lock);
-+	list_for_each_entry(iopf_param, &queue->devices, queue_list) {
-+		list_for_each_entry_safe(iopf, next, &iopf_param->partial,
-+					 list) {
-+			list_del(&iopf->list);
-+			kfree(iopf);
-+		}
-+	}
-+	mutex_unlock(&queue->lock);
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(iopf_queue_discard_partial);
-+
-+/**
-+ * iopf_queue_add_device - Add producer to the fault queue
-+ * @queue: IOPF queue
-+ * @dev: device to add
-+ *
-+ * Return: 0 on success and <0 on error.
-+ */
-+int iopf_queue_add_device(struct iopf_queue *queue, struct device *dev)
-+{
-+	int ret = -EBUSY;
-+	struct iopf_device_param *iopf_param;
-+	struct dev_iommu *param = dev->iommu;
-+
-+	if (!param)
-+		return -ENODEV;
-+
-+	iopf_param = kzalloc(sizeof(*iopf_param), GFP_KERNEL);
-+	if (!iopf_param)
-+		return -ENOMEM;
-+
-+	INIT_LIST_HEAD(&iopf_param->partial);
-+	iopf_param->queue = queue;
-+	iopf_param->dev = dev;
-+
-+	mutex_lock(&queue->lock);
-+	mutex_lock(&param->lock);
-+	if (!param->iopf_param) {
-+		list_add(&iopf_param->queue_list, &queue->devices);
-+		param->iopf_param = iopf_param;
-+		ret = 0;
-+	}
-+	mutex_unlock(&param->lock);
-+	mutex_unlock(&queue->lock);
-+
-+	if (ret)
-+		kfree(iopf_param);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(iopf_queue_add_device);
-+
-+/**
-+ * iopf_queue_remove_device - Remove producer from fault queue
-+ * @queue: IOPF queue
-+ * @dev: device to remove
-+ *
-+ * Caller makes sure that no more faults are reported for this device.
-+ *
-+ * Return: 0 on success and <0 on error.
-+ */
-+int iopf_queue_remove_device(struct iopf_queue *queue, struct device *dev)
-+{
-+	int ret = -EINVAL;
-+	struct iopf_fault *iopf, *next;
-+	struct iopf_device_param *iopf_param;
-+	struct dev_iommu *param = dev->iommu;
-+
-+	if (!param || !queue)
-+		return -EINVAL;
-+
-+	mutex_lock(&queue->lock);
-+	mutex_lock(&param->lock);
-+	iopf_param = param->iopf_param;
-+	if (iopf_param && iopf_param->queue == queue) {
-+		list_del(&iopf_param->queue_list);
-+		param->iopf_param = NULL;
-+		ret = 0;
-+	}
-+	mutex_unlock(&param->lock);
-+	mutex_unlock(&queue->lock);
-+	if (ret)
-+		return ret;
-+
-+	/* Just in case some faults are still stuck */
-+	list_for_each_entry_safe(iopf, next, &iopf_param->partial, list)
-+		kfree(iopf);
-+
-+	kfree(iopf_param);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(iopf_queue_remove_device);
-+
-+/**
-+ * iopf_queue_alloc - Allocate and initialize a fault queue
-+ * @name: a unique string identifying the queue (for workqueue)
-+ *
-+ * Return: the queue on success and NULL on error.
-+ */
-+struct iopf_queue *iopf_queue_alloc(const char *name)
-+{
-+	struct iopf_queue *queue;
-+
-+	queue = kzalloc(sizeof(*queue), GFP_KERNEL);
-+	if (!queue)
-+		return NULL;
-+
-+	/*
-+	 * The WQ is unordered because the low-level handler enqueues faults by
-+	 * group. PRI requests within a group have to be ordered, but once
-+	 * that's dealt with, the high-level function can handle groups out of
-+	 * order.
-+	 */
-+	queue->wq = alloc_workqueue("iopf_queue/%s", WQ_UNBOUND, 0, name);
-+	if (!queue->wq) {
-+		kfree(queue);
-+		return NULL;
-+	}
-+
-+	INIT_LIST_HEAD(&queue->devices);
-+	mutex_init(&queue->lock);
-+
-+	return queue;
-+}
-+EXPORT_SYMBOL_GPL(iopf_queue_alloc);
-+
-+/**
-+ * iopf_queue_free - Free IOPF queue
-+ * @queue: queue to free
-+ *
-+ * Counterpart to iopf_queue_alloc(). The driver must not be queuing faults or
-+ * adding/removing devices on this queue anymore.
-+ */
-+void iopf_queue_free(struct iopf_queue *queue)
-+{
-+	struct iopf_device_param *iopf_param, *next;
-+
-+	if (!queue)
-+		return;
-+
-+	list_for_each_entry_safe(iopf_param, next, &queue->devices, queue_list)
-+		iopf_queue_remove_device(queue, iopf_param->dev);
-+
-+	destroy_workqueue(queue->wq);
-+	kfree(queue);
-+}
-+EXPORT_SYMBOL_GPL(iopf_queue_free);
--- 
-2.30.0
-
+Regards,
+Robert
