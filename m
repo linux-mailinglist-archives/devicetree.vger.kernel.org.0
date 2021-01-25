@@ -2,152 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27095302940
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 18:47:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8046302956
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 18:54:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730492AbhAYRqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 12:46:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52332 "EHLO
+        id S1730974AbhAYRwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 12:52:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730723AbhAYROT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 12:14:19 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97267C06178A
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:13:37 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id j25so10104324oii.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:13:37 -0800 (PST)
+        with ESMTP id S1731164AbhAYRwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 12:52:19 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194C5C06178B
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:51:38 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id v15so13852107wrx.4
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:51:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/I3oxK4amWeY6JM4WB4hq97bbAQje0bKtzkLMEKFCM0=;
-        b=dIaqdQaule2cx9LNlLLl50ARGJBLDuPdOExdVL4U1RE3BZA1xYHUP6R7lYMsLonzWF
-         afyExQRqwODpYNJRYUv/xWEnI+Bt4M2sBJplPIO74Rv0UZQFY/sq4PRRXUsxwnyb5VoU
-         tl7DENuM3t8UR0b0MfUuhLo9cUCNEQ7cfeZo8wwYK+Ifc2fX9O1vFpuIDgzyM/i6KvRm
-         Av/TydVeMMVbMwBQjP8GBf7UHHzRphyjlT3SyPiwofLtB08x7ys+L17BiOJdCjPb7oET
-         KzzT0KLKDMW//KUbcM799OKEepqFF6Do+99oavPYOFbLQQ4dN3DWhuZSTUQ99+4WzqqW
-         wm6A==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=0snvcNaYNGpV/k+7WdqZD7n4s15hYF8lRKnrHcT9zcs=;
+        b=BtcA8Bf0tWpg53PhU7aSoui0E3BpWfWCGjqofDJ+lP3yBnl5dwdung0WUSxXzvTvA6
+         WTu0tUvkwAXT3Cq0iMGsPbfl59hMfy9/EW2erNyZaTvlylVVwGwXwBqddWaBT3BIrZSZ
+         szt2OKUvwyMX7g2nAaDniEzmcScpvK2uXK2FUX/B8kO35o/a5Bx7cLy+XFV68farduPZ
+         RXmB0aaZMFxEo1a+abC3GeeawXzwnaq7G2FLyEvxRjdRPrR8idbR1k+RyOJQe84ZOVJH
+         Eu6mnLruo8fA0Wi+cgYcDCt2WXKASkVR4Nkm0uuXK0BOtazXaqSUOfOkCWKMVpzE2dNl
+         +dLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/I3oxK4amWeY6JM4WB4hq97bbAQje0bKtzkLMEKFCM0=;
-        b=OGcp+hh1VGyLBKiuLusBv1ydVtAiIG+gRG0rGYj8lBDMtf82q4e/qE+KBrHO1YGmS0
-         T1HQ82KUDryTPRfhNnFkAwslX3e6Rwm4mtkX/RQnJjk6ErB5KBDNyFqy1oqzskKRj6sz
-         gT1pDIOyP9zKxEQ3P7dDyyK2R5R/uAQC+N+NBxLB8hcbwFsaeRHck7Z4G5ejW4YFYLYT
-         rveH2d19XoYe5Zt1gglaCurY2j+ug8gBYOd9lCPukmM4fRe9Ynx11SW6UsNtVNaMOaAn
-         k4h/HbaHe4J4bfhdlRyoDqZTFnNiyoS7zWL+oJEFjL6xhWNtmxupBhtgNyJxSGPLS/r4
-         t4EA==
-X-Gm-Message-State: AOAM533aq/I6rSgaoVdj3qtI7waCYBBSaP4V+2ZOiK20jsvPQQlrm/tg
-        wFjM8HYPdSDYv5BqzjislX/sUA==
-X-Google-Smtp-Source: ABdhPJwWHHl92I1orCm3swRqt//ofsW/9z3B+zRrv1KNBe58xYdZqc01bzkh7ZocorwUb6+00aFgsg==
-X-Received: by 2002:aca:afd7:: with SMTP id y206mr744441oie.51.1611594816845;
-        Mon, 25 Jan 2021 09:13:36 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 66sm2687017otw.75.2021.01.25.09.13.35
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=0snvcNaYNGpV/k+7WdqZD7n4s15hYF8lRKnrHcT9zcs=;
+        b=StpgOf3QRERmO0TwCy838dXOzD+6wapSEb3aiF7wCAozOnR7Ii85RE96ET+Oq2E9PG
+         8fVdTmw7D+qNu8o5XBvt2bD1XXompYFWFBsqIWvCqcRjoS2d79tE81DrTAp2vxeVH/QA
+         A38s2jYkLRyuWNsqAIhmbpqLkOlLd90OqV7Qx0edKr9Zbv27ZES8F8drs7QXmvq5X123
+         3GxzeRky79sECEmW19leTuSbeIFuIqeulYtPZs/QjqGusMNUoeLb415aOccYAytDfWn8
+         X4FyJDlpLSF8qxcIynpBVzyDIU+KZZJsEELDHecD638JGLckThVk9UT+elKvvcSHvVL4
+         bSyA==
+X-Gm-Message-State: AOAM532tK+Ak7vVInCx/aF+lUVI/HekvdjjJOAFSifg0iTslliVI/ntO
+        QVH515cI55MWHpD1UvJRi6kUyg==
+X-Google-Smtp-Source: ABdhPJzfEafFozbxGGxAYvRjvaBNZaQlhERyvwak6AebaeXwdOrGAa45QDqKfniSaEX6MY+MkoOeMg==
+X-Received: by 2002:a5d:6a01:: with SMTP id m1mr2243274wru.318.1611597096632;
+        Mon, 25 Jan 2021 09:51:36 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id r124sm62707wmr.16.2021.01.25.09.51.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 09:13:36 -0800 (PST)
-Date:   Mon, 25 Jan 2021 11:13:34 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/5] clk: qcom: clk-alpha-pll: replace regval with val
-Message-ID: <YA78PvE4hDLc2Lo9@builder.lan>
-References: <20210118044321.2571775-1-vkoul@kernel.org>
- <20210118044321.2571775-2-vkoul@kernel.org>
+        Mon, 25 Jan 2021 09:51:35 -0800 (PST)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org
+Cc:     ohad@wizery.com, devicetree@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/5] Amlogic Meson Always-On ARC remote-processor
+ support
+In-Reply-To: <20210102205904.2691120-1-martin.blumenstingl@googlemail.com>
+References: <20210102205904.2691120-1-martin.blumenstingl@googlemail.com>
+Date:   Mon, 25 Jan 2021 09:51:33 -0800
+Message-ID: <7hmtwwx5ui.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210118044321.2571775-2-vkoul@kernel.org>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 17 Jan 22:43 CST 2021, Vinod Koul wrote:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Driver uses regval variable for holding register values, replace with a
-> shorter one val
-> 
+> Amlogic Meson6/8/8b/8m2 come with an ARC core in the Always-On (AO)
+> power-domain. This is typically used for waking up the ARM CPU after
+> powering it down for system suspend.
+>
+> The exact ARC core used on Meson6 and earlier is not known. I believe
+> it is an ARC625, but I am not sure about this. Meson8/8b/8m2 uses an
+> ARC EM4 core.
+> They all have in common that they use a section of the SoCs SRAM for
+> running code on the ARC core.
+>
+> Unfortunately there's no information about the remote-processor control
+> registers in the public Meson8b (S805) datasheet. All information is
+> either taken from Amlogic's 3.10 kernel and 2011-03 u-boot or found by
+> testing (for example the clock input is not mentioned anywhere in the
+> reference code, but disabling it stops the AO ARC core from working).
+>
+> This series consists of five patches:
+>  1: dt-bindings for the SRAM section
+>  2: dt-bindings for the SECBUS2 syscon region which contains a few
+>     bits for controlling this remote processor
+>  3: dt-bindings for the AO ARC remote processor
+>  4: the driver for booting code on the AO ARC remote processor
+>  5: (only included for documentation purposes) dts changes (these will
+>     be re-sent separately)
+>
+> Patches #3 and #4 should go through the remoteproc tree. Patches #1
+> and #2 may go through Rob's (devicetree) tree, Kevin's linux-amlogic
+> tree or through the remoteproc tree. Personally I have no preference
+> here.
+>
+> To test this series I ported the Amlogic serial driver and added the
+> board files for the Amlogic AO ARC EM4 to the Zephyr RTOS. The code can
+> be found here: [0] (the resulting zephyr.elf can then be loaded as
+> remote-processor firmware from Linux).
+>
+>
+> Changes since v1 at [1]:
+> - fixed yamllint warnings (after installing the package these now also
+>   show up on my build machine) in patches #2 and #3. Thanks for the
+>   hint Rob
+> - dropped the explicit "select" statement from the dt-bindings in patch
+>   #2 as suggested by Rob (thanks)
+>
+>
+> [0] https://github.com/xdarklight/zephyr-rtos/commits/amlogic_ao_em4-20201229
+> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?series=407349
+>
+>
+> Martin Blumenstingl (5):
+>   dt-bindings: sram: Add compatible strings for the Meson AO ARC SRAM
+>   dt-bindings: Amlogic: add the documentation for the SECBUS2 registers
+>   dt-bindings: remoteproc: Add the documentation for Meson AO ARC rproc
+>   remoteproc: meson-mx-ao-arc: Add a driver for the AO ARC remote
+>     procesor
+>   ARM: dts: meson: add the AO ARC remote processor
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Patches 1-2, 5 queued for v5.12 via the amlogic tree.
 
-Regards,
-Bjorn
-
-> Suggested-by: Stephen Boyd <sboyd@kernel.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 20 ++++++++++----------
->  1 file changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index 21c357c26ec4..f7721088494c 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -777,15 +777,15 @@ static long alpha_pll_huayra_round_rate(struct clk_hw *hw, unsigned long rate,
->  static int trion_pll_is_enabled(struct clk_alpha_pll *pll,
->  				struct regmap *regmap)
->  {
-> -	u32 mode_regval, opmode_regval;
-> +	u32 mode_val, opmode_val;
->  	int ret;
->  
-> -	ret = regmap_read(regmap, PLL_MODE(pll), &mode_regval);
-> -	ret |= regmap_read(regmap, PLL_OPMODE(pll), &opmode_regval);
-> +	ret = regmap_read(regmap, PLL_MODE(pll), &mode_val);
-> +	ret |= regmap_read(regmap, PLL_OPMODE(pll), &opmode_val);
->  	if (ret)
->  		return 0;
->  
-> -	return ((opmode_regval & PLL_RUN) && (mode_regval & PLL_OUTCTRL));
-> +	return ((opmode_val & PLL_RUN) && (mode_val & PLL_OUTCTRL));
->  }
->  
->  static int clk_trion_pll_is_enabled(struct clk_hw *hw)
-> @@ -1445,12 +1445,12 @@ EXPORT_SYMBOL_GPL(clk_trion_pll_configure);
->  static int __alpha_pll_trion_prepare(struct clk_hw *hw, u32 pcal_done)
->  {
->  	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> -	u32 regval;
-> +	u32 val;
->  	int ret;
->  
->  	/* Return early if calibration is not needed. */
-> -	regmap_read(pll->clkr.regmap, PLL_STATUS(pll), &regval);
-> -	if (regval & pcal_done)
-> +	regmap_read(pll->clkr.regmap, PLL_STATUS(pll), &val);
-> +	if (val & pcal_done)
->  		return 0;
->  
->  	/* On/off to calibrate */
-> @@ -1476,7 +1476,7 @@ static int alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
->  {
->  	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
->  	unsigned long rrate;
-> -	u32 regval, l, alpha_width = pll_alpha_width(pll);
-> +	u32 val, l, alpha_width = pll_alpha_width(pll);
->  	u64 a;
->  	int ret;
->  
-> @@ -1497,8 +1497,8 @@ static int alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
->  
->  	/* Wait for 2 reference cycles before checking the ACK bit. */
->  	udelay(1);
-> -	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &regval);
-> -	if (!(regval & ALPHA_PLL_ACK_LATCH)) {
-> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
-> +	if (!(val & ALPHA_PLL_ACK_LATCH)) {
->  		pr_err("Lucid PLL latch failed. Output may be unstable!\n");
->  		return -EINVAL;
->  	}
-> -- 
-> 2.26.2
-> 
+Kevin
