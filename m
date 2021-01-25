@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CB583032C5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:39:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3470B3032C7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:39:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726369AbhAZEiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:38:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40224 "EHLO
+        id S1726558AbhAZEis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:38:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727166AbhAYJrO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 04:47:14 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA2DC061786;
-        Mon, 25 Jan 2021 01:46:27 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id c127so10118336wmf.5;
-        Mon, 25 Jan 2021 01:46:27 -0800 (PST)
+        with ESMTP id S1727182AbhAYJrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 04:47:47 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEE5EC06174A;
+        Mon, 25 Jan 2021 01:47:27 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id u14so10121459wmq.4;
+        Mon, 25 Jan 2021 01:47:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=TV0xw0urZWA7yxhi2valt8DXJLxBV/z7jKveKN9m6ds=;
-        b=ksPQsC1nyqO+hH9ep9+kZ9SMdnnJhY6fJ9CkJknO3o36nva3MH/duQt3Udm7n/flT9
-         Jm8qaUB8ragyj99W6FbJ1bx12lcMj0ajZsLh5MfUSX6UoSZlNIeIQ3IS4Cs807DaLdv5
-         M6raw4K7eljJYmIjxavEeoAEMDr+aBaL8I1WUg2eA93aQKcllkmaGfsj7Zes6fQpQmLP
-         vRW22Y9IB8DHC9a4pe8zANO5roi20X9hHWyYjZ5NSDOlwLxi/1T+VxXV5ZdtPvZy300r
-         6X4hmcF+A6rf6YD1G4p46vVTboNpZu2xAbCRZngsHrWl9NYtJWh3hozj9qbkhBWM46Ft
-         Jsbw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=B+TvUBR4F7qwpXaxM7BOb6i7WPhpcifu1ieFC/m280w=;
+        b=NpAlLEnnFQO/egJf0teABmtLY0tYXbVxOCE0f2ARR7GrOvA0y3ldkHMrFIorWa4hjY
+         QL5TC82p4VDJzXWiw0MS6V2KsLUM/y8YpgisO12rmokoVqfFEsIXjQuqnbboGDyf5OoP
+         b3Qc3BuWvP3RoWqdHQrBytVfPntkdOUWnzw98x6oKgl6K3va6I/Uawj4ShS2cp7qXghl
+         OEB7xkgzdDJq9q5ZUpE30AcD04xwik7tkLcqBO0qYFdVtQPN6mpBJuFfkgMlmO/J1JM5
+         uMTBcVUBANxrIYE2SiPJ+wrw28BF0RAMz2ZkHAvM6MA2n6GItbpk1Z5xFFIXTkU/lHaY
+         mqWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=TV0xw0urZWA7yxhi2valt8DXJLxBV/z7jKveKN9m6ds=;
-        b=qE0yAAZcfbAbhhqgkICuJH5OY5zw6IR803A2cvr0wlsRpMWI43JVEpXF+ctWyOk9JZ
-         25QG9hYeSmLRzMAqRQ5F8ynyKFkJyD5bdJR9fIkZBcTSBewPTs/zEAGBBV1khzegmsIo
-         2CgXRPdhPBaaRC5cmT8wMD4ycQoVHT3ACRglldTytKPLIQ7ks+gnnPTrPDTyL3tdTCn+
-         tpVr0ToT6/qg6mkTjSx/uCi0wbplnhDP1+KmiLpxPnukaYlzO3e2+icZV3JlRxvaKodN
-         9s7x+H63QGpsro7SLHUKnPLeZIpOb6RSiP5QF+vKSYeRCQ1il5GkeNR7S4IPLpxWKSXz
-         Nijg==
-X-Gm-Message-State: AOAM533/tvIye7/YGXjnzbqDMRu3s3R6felbR7kiiKUBRZoRT4VntN48
-        n5tXOiaBZbF3+D1E0Ad6lqTeJZi0OCU=
-X-Google-Smtp-Source: ABdhPJy1oQ/Ef4RY0U1iiHDEM5BlNCP4W/7PSDGr2G5l/6GJTQZunZNIiiPPIokMN5NYb0I0QoxUeg==
-X-Received: by 2002:a05:600c:2253:: with SMTP id a19mr1599635wmm.75.1611567985825;
-        Mon, 25 Jan 2021 01:46:25 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=B+TvUBR4F7qwpXaxM7BOb6i7WPhpcifu1ieFC/m280w=;
+        b=L3ZUZIum1McsTZlp1JmB4Ozu8s/2fBAbv0p1rfvAiLnRZ5LBJLyZpq7ye2v6e2c4We
+         1vnyA8IOkesyK0YuRJuPJpV8HOMLzpVZu0XO7RJVm3e7MwE2XBjXWandEyspLTHX7UPl
+         Fstks/kIosmjIlVyUdWRvYKLlE2B8W8+6nponXg6QAT4f6qf1Dae/DlzhU8KL6Qwtho3
+         AkpL+RhmSSaq0oKMLcnVtsoPBh/VswxoPu4YAEjR7dqzLhZvqgC5AHuUoLph7hdxSFpY
+         lgTwq0L0FaodGK0h+ZOfOJ0pZMdgM/NjYJ64MV7Ll9UEdijBLYqf4/FdVmO64DaWCiYh
+         hPlQ==
+X-Gm-Message-State: AOAM531MnkKlA8MbVumRFqL4xBUT1FDfg35JyLv8XGhUHnZK5/HUB+ON
+        B9/KtOnFfQ4fgux77haAjcq28USOIwY=
+X-Google-Smtp-Source: ABdhPJxwOgzRO2LRzg4hgbYCV3I3MTgNqxlNi5sJ3TNssmvgKKgFfqvu54+tu53gd10WGUEjbQTd9Q==
+X-Received: by 2002:a1c:e043:: with SMTP id x64mr696120wmg.48.1611568046155;
+        Mon, 25 Jan 2021 01:47:26 -0800 (PST)
 Received: from jonathan-N53SV.station ([151.81.101.204])
-        by smtp.googlemail.com with ESMTPSA id u5sm22154052wmg.9.2021.01.25.01.46.24
+        by smtp.googlemail.com with ESMTPSA id u5sm22154052wmg.9.2021.01.25.01.47.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 01:46:25 -0800 (PST)
+        Mon, 25 Jan 2021 01:47:25 -0800 (PST)
 From:   Jonathan Albrieux <jonathan.albrieux@gmail.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, stephan@gerhold.net,
@@ -54,50 +55,82 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, stephan@gerhold.net,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 0/3] Add initial support for BQ Aquaris X5
-Date:   Mon, 25 Jan 2021 10:44:29 +0100
-Message-Id: <20210125094435.7528-1-jonathan.albrieux@gmail.com>
+Subject: [PATCH v2 2/3] arm64: dts: qcom: msm8916: Add blsp_i2c3
+Date:   Mon, 25 Jan 2021 10:44:31 +0100
+Message-Id: <20210125094435.7528-3-jonathan.albrieux@gmail.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210125094435.7528-1-jonathan.albrieux@gmail.com>
+References: <20210125094435.7528-1-jonathan.albrieux@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v2:
- - reorder I2C devices sorting them by address
+MSM8916 has another I2C QUP controller that can be enabled on
+GPIO 10 and 11.
 
-v1:
- - initial patch submission
-https://lore.kernel.org/linux-arm-msm/20210124135409.5473-1-jonathan.albrieux@gmail.com/
+Add blsp_i2c3 to msm8916.dtsi and disable it by default.
 
-Aquaris X5 (Longcheer L8910) is a smartphone released by BQ in 2015.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/msm8916-pins.dtsi | 16 ++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8916.dtsi      | 15 +++++++++++++++
+ 2 files changed, 31 insertions(+)
 
-As part of msm8916-mainline project, this series aims to bring initial
-mainline support for it.
-
-Features added:
- - SDHCI (internal and external storage)
- - USB Device Mode
- - UART
- - Regulators
- - WiFi/BT
- - Volume buttons
- - Vibrator
- - Touchkeys backlight
- - Accelerometer and gyroscope sensor
- - Magnetometer sensor
-
-Jonathan Albrieux (3):
-  arm64: dts: qcom: Add device tree for BQ Aquaris X5 (Longcheer L8910)
-  arm64: dts: qcom: msm8916: Add blsp_i2c3
-  arm64: dts: qcom: msm8916-longcheer-l8910: Add imu/magnetometer
-
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/msm8916-longcheer-l8910.dts | 267 ++++++++++++++++++
- arch/arm64/boot/dts/qcom/msm8916-pins.dtsi    |  16 ++
- arch/arm64/boot/dts/qcom/msm8916.dtsi         |  15 +
- 4 files changed, 299 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-pins.dtsi b/arch/arm64/boot/dts/qcom/msm8916-pins.dtsi
+index 4dc437f13fa5..7dedb91b9930 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-pins.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-pins.dtsi
+@@ -220,6 +220,22 @@
+ 		bias-disable;
+ 	};
+ 
++	i2c3_default: i2c3-default {
++		pins = "gpio10", "gpio11";
++		function = "blsp_i2c3";
++
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	i2c3_sleep: i2c3-sleep {
++		pins = "gpio10", "gpio11";
++		function = "gpio";
++
++		drive-strength = <2>;
++		bias-disable;
++	};
++
+ 	i2c4_default: i2c4-default {
+ 		pins = "gpio14", "gpio15";
+ 		function = "blsp_i2c4";
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 402e891a84ab..1045d7e518f3 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -1528,6 +1528,21 @@
+ 			status = "disabled";
+ 		};
+ 
++		blsp_i2c3: i2c@78b7000 {
++			compatible = "qcom,i2c-qup-v2.2.1";
++			reg = <0x078b7000 0x500>;
++			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
++				 <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>;
++			clock-names = "iface", "core";
++			pinctrl-names = "default", "sleep";
++			pinctrl-0 = <&i2c3_default>;
++			pinctrl-1 = <&i2c3_sleep>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
+ 		blsp_spi3: spi@78b7000 {
+ 			compatible = "qcom,spi-qup-v2.2.1";
+ 			reg = <0x078b7000 0x500>;
 -- 
 2.17.1
 
