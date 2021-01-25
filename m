@@ -2,94 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC01304B67
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:28:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 887A1304B63
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:28:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727398AbhAZEqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:46:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730307AbhAYPn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 10:43:27 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B27C061225
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 07:40:29 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id n42so13108536ota.12
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 07:40:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=HMhlvN/0qUkxkBvn42Qzst+rDXv1nNg5raUrF0ceYAg=;
-        b=gniULOJp9n/TmdR7IKubbTansYJHXAkcvl0wE24MWhslCE4CPOqqRk24xAkIPYOzEB
-         dhgcZKbe5kBZLAgFIYxEev4AGNLcGBf55ZCAovc4r0OV1n93NPKaQJJ3q4LGotg1YQQL
-         iD2L7IidOriAdCFJ0blAPkwRxOPniy8wC4Q6Xf06V6pigOkKQk/oZEbptwMoHH+UZDBi
-         KxnQI6IJFviEUChlh7hgfigXXf7cqczov1wkjuWge/cYmpAqv/tFyidObNpifrc5at15
-         quucr4NG+yfB0eYwAi9oA0ZBFXff7IVuzaoPwaYm5g1QB+QbOKl1MI9SKb8NV9peT7wt
-         B/BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HMhlvN/0qUkxkBvn42Qzst+rDXv1nNg5raUrF0ceYAg=;
-        b=Mbyhuh1NQz6VbLuMI3MExIf86nusrd04ivat5WyOVJ1EUcyyMUXFDKHMvRO3QQOgVE
-         aR860MzPrZxEQIBH3ULljvM3GZ6bq//mWmov6l7mVCvghOa7cKfOa7xVf0K8cMX040yJ
-         40Y6UYpicvRRzJ3zqgnon9qQv2OPp7TsIxgX6qnwVXud9jL8PTucqJC1d0wb6fOH3dGY
-         goK4JdBumLU6hjU7r1zfxVLc+EUtq/JV8Jgasy0F7eKnsWYtwWPTqx6iGybvU9WSki7e
-         1UHW4SIkpBofNpLJaWniSshPQwAB6X8NySjy+EQmn2PutPYBDnIc2ggjgZjP/ZVPWoPP
-         K5sQ==
-X-Gm-Message-State: AOAM530MDes5TZmmKQFiCT6TNeGYnF1Ign14AZwjchyV5fHde32pw7N3
-        aRab+585YryApJ1JoT4ISbesSQ==
-X-Google-Smtp-Source: ABdhPJwhv4969ipyc9wnZkQqK9xyIYx8poGZOlPgc9l0x3BhcmMOT2vPALgymgrWZGST/QrzZBgiHw==
-X-Received: by 2002:a05:6830:1d0:: with SMTP id r16mr853016ota.54.1611589228341;
-        Mon, 25 Jan 2021 07:40:28 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m185sm3563782oib.48.2021.01.25.07.40.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 07:40:27 -0800 (PST)
-Date:   Mon, 25 Jan 2021 09:40:25 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>,
-        Iskren Chernev <iskren.chernev@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Samuel Pascua <pascua.samuel.14@gmail.com>,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>
-Subject: Re: [PATCH 3/4] ARM: dts: qcom: msm8974-klte: add support for display
-Message-ID: <YA7maSZdp1EphINK@builder.lan>
-References: <20210124135610.1779295-1-iskren.chernev@gmail.com>
- <20210124135610.1779295-3-iskren.chernev@gmail.com>
- <282b07a1-2e39-2dbe-dd7b-eed2ae9e25fb@somainline.org>
- <6632821.dtBD41K2ms@g550jk>
- <f02b945f-5546-6e15-17b5-74be8af8a501@somainline.org>
+        id S1727426AbhAZEqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:46:35 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38760 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730339AbhAYPpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 10:45:18 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10PFhJOw068695;
+        Mon, 25 Jan 2021 09:43:19 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611589399;
+        bh=vpK8KsGh4di2NeiKW/oNr1WDemKXSP0tZVJsjl+yK2I=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Pm76+CeI0lFGxKuMy53JoY+o4Um3hoRNRan78X6YFK0td+dwpiEPKQEL6Y2rY+jSq
+         dN58ujcgdNdYXFPFzCpVMx3GcHeVf8HePFsVsZ+p36uw1rSl4vzzOaZ793XoJ3BJHz
+         DQTJ0BRf2KRPpmmUE0W4ZGktfal7c3aEFEn2iHDA=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10PFhJ8v042342
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 25 Jan 2021 09:43:19 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 25
+ Jan 2021 09:43:19 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 25 Jan 2021 09:43:19 -0600
+Received: from [10.250.35.71] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10PFhIGL112819;
+        Mon, 25 Jan 2021 09:43:19 -0600
+Subject: Re: [PATCH v2 0/5] Introduce PRU remoteproc consumer API
+To:     "santosh.shilimkar@oracle.com" <santosh.shilimkar@oracle.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        <ohad@wizery.com>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <ssantosh@kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <lee.jones@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <praneeth@ti.com>,
+        <rogerq@kernel.org>
+References: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
+ <20210106232704.GE9149@xps15> <11303a1b-5ab4-def5-77b1-c500894c9c87@ti.com>
+ <20210107224448.GB43045@xps15> <75365443-57e3-e2e0-5865-f78af9d5890b@ti.com>
+ <b0e32ad0-487f-9d57-7287-835eee836514@oracle.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <c5252e8d-094a-dcb7-7ccb-172e58ab3413@ti.com>
+Date:   Mon, 25 Jan 2021 09:43:18 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f02b945f-5546-6e15-17b5-74be8af8a501@somainline.org>
+In-Reply-To: <b0e32ad0-487f-9d57-7287-835eee836514@oracle.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 24 Jan 11:33 CST 2021, Konrad Dybcio wrote:
+Hi Santosh,
 
+On 1/24/21 10:34 PM, santosh.shilimkar@oracle.com wrote:
+> Hi Suman, Mathieu,
 > 
-> > All msm8974 dts(i) files use this style. Deviating from it for this doesn't 
-> > make sense. And yes msm8974 should probably be converted to the newer label 
-> > style (as was done with msm8916 a while ago).
-> 
-> I have a >3k lines commit fixing that. Adding more code that strays
-> from the new style doesn't really help.
-> 
+> On 1/7/21 2:49 PM, Suman Anna wrote:
+>> On 1/7/21 4:44 PM, Mathieu Poirier wrote:
+>>> On Wed, Jan 06, 2021 at 06:03:25PM -0600, Suman Anna wrote:
+>>>> Hi Mathieu,
+>>>>
+> [...]
+>>> I only see input from Andy and Lars in the thread you point out, nothing from
+>>> Greg.  I have also taken a look at the patch [1] that made checkpatch complain
+>>> about ENOTSUPP.  From what I see in that commit log the goal is to prevent new
+>>> additions of ENOTSUPP to the kernel.
+>>>
+>>> Please modify and resend, otherwise I'm sure someone will send another patch to
+>>> fix it before the end of the cycle.
+>>
+>> Yeah ok. I will send out a v3.
+>>
+> I haven't seen v3 of this series yet. Please post it
+> if you would like to include it for 5.12.
 
-I know how bad it is, so I understand your desire to not have to rebase
-that, but I will merge things as they become ready on the list.
+This series is dependent on couple of patches that would have to come through
+the remoteproc tree first, and I need to post the next versions of those as
+well. So, let me sort out those first. You can drop this from your queue for 5.12.
 
-So please post your change (perhaps it's posted and I'm failing to find
-it in my inbox?) and I'd be happy to merge it so we get it cleaned up!
-
-Thanks,
-Bjorn
+regards
+Suman
