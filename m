@@ -2,87 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 424E13027DE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 17:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DF3E30280E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 17:39:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730729AbhAYQbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 11:31:41 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:31940 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727840AbhAYQbH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 11:31:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1611592266; x=1643128266;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=Y6cYRDZBHofXC1+fMpkWazCbSAWSF9dRS/TDToGnCxg=;
-  b=e3inWXgvz39YTPy8FIiOTx9ZpqmAqhm10KlPLdDSYtRSPN09QS6N6EFN
-   2MtfdlnPXwB4Q/05uM+rhl7Lw2hVwlESnFZ1IifETPzNKGjQZvhfYALfp
-   7lAGQ+0hoTR8fLqXgt2SejYuu68FgRHlRZnfM20kKoHFrSHMCX1dFhTwn
-   P85I5n2rb7vzBmD0aXM/zzCCs2ypfs9nwNuMz2a7lp8VY0SeFi5GCMqTM
-   1pOmwI1p2pojusM+kMf+E+HsSWLCDsRPWG7sovMC6cpmmfR7uImcy1lc+
-   KP2ACxK1ZYuIRulLA1WyVa9CQF4ptUwrWli0GxcQNQ7PZmzpYdXOWlSIi
-   g==;
-IronPort-SDR: QcCEgNQK5upIbX+b+qnkA7bBFXzY3TOPYZ4ralwBmfiJEGG16OKSCkKG2J4OGphoyD5WSiVrnA
- W+E0TSgkDyU/tcnoq+jF3/BOxWMbWccKvwnh4e3zWsFc4D6tkNRydA5WAb23oQGkBnxrniBayY
- DoAkeC1OBkPRDlevi5/zMqnZ/NV2iFfu8TMenE29gVxAjGfeMrSQRpnU5+GRO+yX4gg8ljcWh+
- 4/WZp8vgW9atBYchYboT35ESEUuo+buEj3kinZKzMRrdcOR1IEPaFHoZ0CNIhrrvOlIIbGJhfE
- 36Q=
+        id S1730828AbhAYQjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 11:39:40 -0500
+Received: from mga01.intel.com ([192.55.52.88]:1958 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730850AbhAYQja (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 11:39:30 -0500
+IronPort-SDR: azYh0cuT/aHiuOcApl7xlFSbj22JhDu/UXMb16FpQseeAeLNNUwGfg4LNvgHhMvVIzmopuyOYl
+ 7BHNAKlE/tBg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="198537418"
 X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; 
-   d="scan'208";a="112382968"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Jan 2021 09:29:49 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 25 Jan 2021 09:29:49 -0700
-Received: from ryzen.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Mon, 25 Jan 2021 09:29:47 -0700
-From:   <daire.mcnamara@microchip.com>
-To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh@kernel.org>, <linux-pci@vger.kernel.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <david.abdurachmanov@gmail.com>, <cyril.jean@microchip.com>,
-        "Daire McNamara" <daire.mcnamara@microchip.com>
-Subject: [PATCH v21 4/4] MAINTAINERS: Add Daire McNamara as maintainer for the Microchip PCIe driver
-Date:   Mon, 25 Jan 2021 16:29:34 +0000
-Message-ID: <20210125162934.5335-5-daire.mcnamara@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210125162934.5335-1-daire.mcnamara@microchip.com>
-References: <20210125162934.5335-1-daire.mcnamara@microchip.com>
+   d="scan'208";a="198537418"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2021 08:37:37 -0800
+IronPort-SDR: yfCAYGbxbIvJckOqR5h6a1HNvd0IAp6wiQN/tnZYc4gRfKrq/eqYKjtJzPlpajiT0cVkW0xRod
+ dhXTIaEns1lg==
+X-IronPort-AV: E=Sophos;i="5.79,374,1602572400"; 
+   d="scan'208";a="387454327"
+Received: from mkrastex-mobl.ger.corp.intel.com (HELO mkrastexMOBL) ([10.104.84.23])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2021 08:37:35 -0800
+From:   "Martina Krasteva" <martinax.krasteva@linux.intel.com>
+To:     "'Sakari Ailus'" <sakari.ailus@linux.intel.com>
+Cc:     <linux-media@vger.kernel.org>, <mchehab@kernel.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <daniele.alessandrelli@linux.intel.com>,
+        <paul.j.murphy@linux.intel.com>,
+        <gjorgjix.rosikopulos@linux.intel.com>
+References: <20201211105633.708-1-martinax.krasteva@linux.intel.com> <20201211105633.708-3-martinax.krasteva@linux.intel.com> <20201211113153.GA23771@paasikivi.fi.intel.com> <011701d6cfb3$eaa5ac30$bff10490$@linux.intel.com> <20210125125502.GJ27155@paasikivi.fi.intel.com>
+In-Reply-To: <20210125125502.GJ27155@paasikivi.fi.intel.com>
+Subject: RE: [PATCH v4 2/2] media: i2c: Add imx334 camera sensor driver
+Date:   Mon, 25 Jan 2021 16:37:32 -0000
+Message-ID: <000001d6f338$63dbddc0$2b939940$@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain;
+        charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJ+AAXszZC+XWREX7U1zNfsFhfiYwHZem/YAhZDBKIB8boiXwJ2B7zvqKe0ZgA=
+Content-Language: en-us
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daire McNamara <daire.mcnamara@microchip.com>
+Hi Sakari,
 
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+> -----Original Message-----
+> From: 'Sakari Ailus' <sakari.ailus@linux.intel.com>
+> Sent: Monday, January 25, 2021 12:55 PM
+> To: Martina Krasteva <martinax.krasteva@linux.intel.com>
+> Cc: linux-media@vger.kernel.org; mchehab@kernel.org; robh+dt@kernel.org;
+> devicetree@vger.kernel.org; daniele.alessandrelli@linux.intel.com;
+> paul.j.murphy@linux.intel.com; gjorgjix.rosikopulos@linux.intel.com
+> Subject: Re: [PATCH v4 2/2] media: i2c: Add imx334 camera sensor driver
+> 
+> Hi Martina,
+> 
+> On Fri, Dec 11, 2020 at 11:51:05AM -0000, Martina Krasteva wrote:
+> > Hi Sakari,
+> >
+> > > -----Original Message-----
+> > > From: Sakari Ailus <sakari.ailus@linux.intel.com>
+> > > Sent: Friday, December 11, 2020 11:32 AM
+> > > To: Martina Krasteva <martinax.krasteva@linux.intel.com>
+> > > Cc: linux-media@vger.kernel.org; mchehab@kernel.org;
+> > > robh+dt@kernel.org; devicetree@vger.kernel.org;
+> > > daniele.alessandrelli@linux.intel.com;
+> > > paul.j.murphy@linux.intel.com; gjorgjix.rosikopulos@linux.intel.com
+> > > Subject: Re: [PATCH v4 2/2] media: i2c: Add imx334 camera sensor
+> > > driver
+> > >
+> > > Hi Martina,
+> > >
+> > > On Fri, Dec 11, 2020 at 10:56:33AM +0000, Martina Krasteva wrote:
+> > > ...
+> > > > +static int imx334_read_reg(struct imx334 *imx334, u16 reg, u32
+> > > > +len,
+> > > > +u32 *val) {
+> > > > +	struct i2c_client *client =
+v4l2_get_subdevdata(&imx334->sd);
+> > > > +	struct i2c_msg msgs[2] = { 0 };
+> > > > +	u8 addr_buf[2] = { 0 };
+> > > > +	u8 data_buf[4] = { 0 };
+> > > > +	int ret;
+> > > > +
+> > > > +	if (WARN_ON(len > 4))
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	put_unaligned_be16(reg, addr_buf);
+> > > > +
+> > > > +	/* Write register address */
+> > > > +	msgs[0].addr = client->addr;
+> > > > +	msgs[0].flags = 0;
+> > > > +	msgs[0].len = ARRAY_SIZE(addr_buf);
+> > > > +	msgs[0].buf = addr_buf;
+> > > > +
+> > > > +	/* Read data from register */
+> > > > +	msgs[1].addr = client->addr;
+> > > > +	msgs[1].flags = I2C_M_RD;
+> > > > +	msgs[1].len = len;
+> > > > +	msgs[1].buf = &data_buf[4 - len];
+> > > > +
+> > > > +	ret = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+> > > > +	if (ret != ARRAY_SIZE(msgs))
+> > > > +		return -EIO;
+> > > > +
+> > > > +	*val = get_unaligned_le32(data_buf + (4 - len));
+> > >
+> > > Hmm. The device native endianness is big (on control interface)
+> > > unless something very unexpected happened in hardware development.
+> > >
+> > > You also can't do this as this will overrun data_buf.
+> >
+> > Imx334 uses little endian so I have to convert the values.
+> 
+> Ack. That's very unusual, and probably the first raw camera sensor
+implemented
+> that way.
+> 
+> Could you fix the data_buf overrun?
+> 
+Yes, will be fixed in next version :)
+> --
+> Sakari Ailus
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..f2dafbf3393c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13628,6 +13628,13 @@ S:	Supported
- F:	Documentation/devicetree/bindings/pci/mediatek*
- F:	drivers/pci/controller/*mediatek*
- 
-+PCIE DRIVER FOR MICROCHIP
-+M:	Daire McNamara <daire.mcnamara@microchip.com>
-+L:	linux-pci@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/pci/microchip*
-+F:	drivers/pci/controller/*microchip*
-+
- PCIE DRIVER FOR QUALCOMM MSM
- M:	Stanimir Varbanov <svarbanov@mm-sol.com>
- L:	linux-pci@vger.kernel.org
--- 
-2.25.1
+Kind Regards,
+Martina
 
