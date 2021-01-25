@@ -2,106 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BF313030D2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 01:08:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 316E4303114
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 02:25:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732111AbhAZAHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 19:07:25 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:33898 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732186AbhAZAF0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 19:05:26 -0500
-Received: by mail-oi1-f175.google.com with SMTP id h192so16788019oib.1;
-        Mon, 25 Jan 2021 16:05:11 -0800 (PST)
+        id S1731968AbhAYThC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 14:37:02 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:43639 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731959AbhAYTgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 14:36:47 -0500
+Received: by mail-ot1-f47.google.com with SMTP id v1so13898520ott.10;
+        Mon, 25 Jan 2021 11:36:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=5FTRQMQR2ih35r3X59niVzE0TzLmbbqDggAUfz/28Wg=;
-        b=sp6ZAoTDBNoGmEeC2KtVdItQarMIelaetUTgjQ82b/BUjC5Y2jhlpPcAs96G+6K+hC
-         KfVn5ZLSdRix8K1laR/VQCwYvYzdbB1u2alwkjU4hELAV3ln8KRvDiBkqY6X00Lkrcdf
-         z5hph3IY9GCrJbJSBQr8soBBUO/5Ifvwhqp5/khum+DA97OLGi5fb2IHQ8kjIb/WpEHB
-         O4LFC9heoK39BqapAicBaSe2LnKt1phdNXW/Z6/75yrPOvwN6baKkSOyzSNoSeHsfnWh
-         Vp+YZn587xkHL4EtsGCLAXcnGWOuWpbPDLTl7GVKyQjnM/eBGUyESkP9uTzrd4ByyGfe
-         LawA==
-X-Gm-Message-State: AOAM533Hzqkik3BK01OjxquPkmNhPu7XlfqtYddNNAOuO5vcp+iGvu8I
-        hgqWW4HWOQxpx8zPpO8cOg==
-X-Google-Smtp-Source: ABdhPJwPgy6Zz8wcdpbFSAg+p6w1ktKW/dTzzjT0M0bJrrHC9Mb1T96ctJ6h2nxHB0K1dup7VArzPQ==
-X-Received: by 2002:aca:d5cf:: with SMTP id m198mr1592801oig.99.1611619485613;
-        Mon, 25 Jan 2021 16:04:45 -0800 (PST)
+        bh=mH2q1AZz5irHrvq/3t1+Obhg0JHH2TFjERBNOT0hM0Q=;
+        b=kHRTcon5gkg8SRuDD2vKcTtr8mLEKrRVRfUepR+vwUkVTALUi0qhZHnOLAQfpGA8nO
+         v9hFkNl7ovck8fRU91TRDhgHikzmEieptoGufXz5mz1YGNtSACKppmmrX4NykT7g6VpR
+         72t+3vJcc+u7J78XwED+D5a2C8oh5EsKfGVxXkHybN9qVQHSWGWB9FEM/DWi+nLX3jDI
+         fi/m+93Lu8UikDho+vYay+J8XTaltFtYD7c5Mr/t5PlVy1HW3gqwXT9wuKDsQwC4MRgH
+         tgKLdFoaYykFv+KNMEqnUInQJdCd58X/AEALBrPPGHz2TVuuBu6/Y3R0DbWsc1CiCXvL
+         IyUg==
+X-Gm-Message-State: AOAM530SgHShS7lzmroF8duZEsmO+lmdV2ltjkhGO+gpcXiIMyQJFtVO
+        Rf6UVEG7ZrBo77I7NQdNfQ==
+X-Google-Smtp-Source: ABdhPJwBqs6kpkcYrx/aXfe/1e/07a9bQgMjrd1YtHP4Jbg6s9G1TE28GLJ8saSbZE8IZ5BXrEU1qg==
+X-Received: by 2002:a05:6830:2f3:: with SMTP id r19mr1513671ote.299.1611603366943;
+        Mon, 25 Jan 2021 11:36:06 -0800 (PST)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s8sm2359022ood.39.2021.01.25.16.04.44
+        by smtp.gmail.com with ESMTPSA id z4sm551224ooz.5.2021.01.25.11.36.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 16:04:44 -0800 (PST)
-Received: (nullmailer pid 1310160 invoked by uid 1000);
-        Tue, 26 Jan 2021 00:04:43 -0000
-Date:   Mon, 25 Jan 2021 18:04:43 -0600
+        Mon, 25 Jan 2021 11:36:06 -0800 (PST)
+Received: (nullmailer pid 830007 invoked by uid 1000);
+        Mon, 25 Jan 2021 19:36:04 -0000
+Date:   Mon, 25 Jan 2021 13:36:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        David Lechner <david@lechnology.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Subject: Re: [PATCH] dt-bindings: irqchip: Add #address-cells to PRUSS INTC
-Message-ID: <20210126000443.GA1223706@robh.at.kernel.org>
-References: <20210115205819.19426-1-s-anna@ti.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Bin Liu <bin.liu@mediatek.com>, David Airlie <airlied@linux.ie>,
+        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rick Chang <rick.chang@mediatek.com>
+Subject: Re: [PATCH 22/24] dt-bindings: memory: mediatek: update mediatek,
+ smi-larb.yaml references
+Message-ID: <20210125193604.GA829546@robh.at.kernel.org>
+References: <cover.1610535349.git.mchehab+huawei@kernel.org>
+ <c70bd79b311a65babe7374eaf81974563400a943.1610535350.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210115205819.19426-1-s-anna@ti.com>
+In-Reply-To: <c70bd79b311a65babe7374eaf81974563400a943.1610535350.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 15, 2021 at 02:58:19PM -0600, Suman Anna wrote:
-> The '#address-cells' property looks to be a required property for
-> interrupt controller nodes as indicated by a warning message seen
-> when building dtbs with W=2. Adding the property to the PRUSS INTC
-> dts nodes though fails the dtbs_check. Add this property to the
-> PRUSS INTC binding to make it compliant with both dtbs_check and
-> building dtbs.
+On Wed, 13 Jan 2021 11:59:23 +0100, Mauro Carvalho Chehab wrote:
+> Changeset 27bb0e42855a ("dt-bindings: memory: mediatek: Convert SMI to DT schema")
+> renamed: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+> to: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml.
 > 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Update its cross-references accordingly.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
-> Hi Rob,
+>  .../devicetree/bindings/display/mediatek/mediatek,disp.txt      | 2 +-
+>  .../devicetree/bindings/media/mediatek-jpeg-decoder.txt         | 2 +-
+>  .../devicetree/bindings/media/mediatek-jpeg-encoder.txt         | 2 +-
+>  Documentation/devicetree/bindings/media/mediatek-mdp.txt        | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> This patch is also part of our effort to get rid of the warnings seen
-> around interrupt providers on TI K3 dtbs [1]. I needed this in the PRUSS
-> INTC bindings to not get a warning with dtbs_check while also ensuring
-> no warnings while building dtbs with W=2.
-> 
-> I would have expected the '#address-cells' requirement to be inherited
-> automatically. And looking through the schema files, I actually do not
-> see the interrupt-controller.yaml included automatically anywhere. You
-> had asked us to drop the inclusion in this binding in our first version
-> with YAML [3]. Am I missing something, and how do we ensure that this
-> is enforced automatically for everyone?
 
-interrupt-controller.yaml is applied to any node named 
-'interrupt-controller'. More generally, if 'compatible' is not present, 
-then we look at $nodename for the default 'select'. In your case, you 
-didn't name the node appropriately.
- 
-We can't check this in interrupt-controller.yaml because #address-cells 
-is not always 0. GICv3 is one notable exception.
-
-> 
-> regards
-> Suman
-> 
-> [1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210115083003.27387-1-lokeshvutla@ti.com/
-
-I've commented on this thread now in regards to #address-cells.
-
-Rob
-
-> [2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210114194805.8231-1-s-anna@ti.com/
-> [3] https://patchwork.kernel.org/comment/23484523/
-> 
->  .../bindings/interrupt-controller/ti,pruss-intc.yaml        | 6 ++++++
->  1 file changed, 6 insertions(+)
+Applied, thanks!
