@@ -2,127 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E75923032D4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:39:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC2463032D6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:39:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726702AbhAZEix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:38:53 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.167]:34358 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727445AbhAYKSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 05:18:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1611569717;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Subject:Sender;
-        bh=/pQs1UTSU8NSB7mRfB8RlJZdZ2fKeEBAAIz/2cLj9Tw=;
-        b=fi60aqgEQ0Rsai3QYlY8ZYz3Bn6PDOe1lr4WCMn2GyYiNVz8XQ/MYPNqLc0kxmUAu8
-        LLc/H99y721a+m1g21/g2lehn0lFM/MkwFh6o/4QvFlmznygtDrH3NITwA+PpTNek/BX
-        p2LeHyfzM3pEnw0CobGEaWtBi+54Si4NBeE0Oj8n4Hl6Bo6cB1Rw+tOl3e4z8oUfenEH
-        szTwlyu5/xvyTG1Jyjn0slA/genVitiFPkD9BCOEN1DEbzl8MTZC2hd1P/wRmAhMnKsX
-        Mq/TmZHgS7rSPXJZuPsx0sb4N70XZcghiwcp0/iBLRTFB6qmqmSrxBO0RwzG7bfSP2yF
-        T4tA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j9IczEaYo="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 47.12.1 DYNA|AUTH)
-        with ESMTPSA id R0a218x0PA72kv7
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Mon, 25 Jan 2021 11:07:02 +0100 (CET)
-Date:   Mon, 25 Jan 2021 11:06:56 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
+        id S1726691AbhAZEiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:38:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44462 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727339AbhAYKLh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 05:11:37 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 45DBE225A9;
+        Mon, 25 Jan 2021 10:09:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611569365;
+        bh=/caSJlOzi9QwZYCHXZhLX4f0JgFeqHckEpX4/pNTF1c=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=jIb89LY/RphhYgJMIj8DSE0x9sKFQnKTMasNpMzLiZJlXQ4gXjCoPVV/0ZcO8F1db
+         +NcRsq4f8PDU95GKM8iLSQoG34eu+47I0iEcSHjVLkEpDNq1Yp7+yPx3Y/JbFw3FvS
+         9DUxaxD7MdehfLVjQGO+p8NdAJfNxwgWpnaZEKCTtUif3bXdNLWNPTQZOY/Dl/MWJe
+         5vmIaFk1+FjT5ZzJ6p4QByYbyhggwrb9iQKgpc9OABiQtf2Fgq/ApbaHemnIvdUCj6
+         DpNBjvzfK5gDyLQacny6OXy6DCx0lbwPTisgdUmg1XCUuO5oFy76mXUKMAyvCU7fah
+         MsoqWvn16iGjg==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     "Martin K . Petersen" <martin.petersen@oracle.com>
+Cc:     linux-arm-msm@vger.kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8916-longcheer-l8910: Add
- imu/magnetometer
-Message-ID: <YA6YQMHDk4Nx1dDE@gerhold.net>
-References: <20210125094435.7528-1-jonathan.albrieux@gmail.com>
- <20210125094435.7528-4-jonathan.albrieux@gmail.com>
+        Vinod Koul <vkoul@kernel.org>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] scsi: dt-bindings: ufs: Add sm8250, sm8350 compatible strings
+Date:   Mon, 25 Jan 2021 15:39:03 +0530
+Message-Id: <20210125100906.4004908-2-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210125100906.4004908-1-vkoul@kernel.org>
+References: <20210125100906.4004908-1-vkoul@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210125094435.7528-4-jonathan.albrieux@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 10:44:32AM +0100, Jonathan Albrieux wrote:
-> BQ Aquaris X5 (Longcheer L8910) has:
->  - BMI160 accelerometer and gyroscope sensor
->  - AK09911 magnetometer sensor
-> Add them to the device tree.
-> 
-> This patch depends on patch "arm64: dts: qcom: msm8916: Add blsp_i2c3".
-> 
-> Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Document "qcom,sm8250-ufshc" and "qcom,sm8350-ufshc" compatible string.
+Use of "qcom,sm8250-ufshc" is already present upstream, so add misiing
+documentation. "qcom,sm8350-ufshc" is for UFS HC found in SM8350 SoC.
 
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> ---
->  .../boot/dts/qcom/msm8916-longcheer-l8910.dts | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-> index 7d5eff922f41..27845189ac2b 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-> @@ -56,6 +56,35 @@
->  	};
->  };
->  
-> +&blsp_i2c3 {
-> +	status = "okay";
-> +
-> +	magnetometer@d {
-> +		compatible = "asahi-kasei,ak09911";
-> +		reg = <0x0d>;
-> +
-> +		vdd-supply = <&pm8916_l17>;
-> +		vid-supply = <&pm8916_l6>;
-> +
-> +		reset-gpios = <&msmgpio 111 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mag_reset_default>;
-> +	};
-> +
-> +	imu@68 {
-> +		compatible = "bosch,bmi160";
-> +		reg = <0x68>;
-> +
-> +		vdd-supply = <&pm8916_l17>;
-> +		vddio-supply = <&pm8916_l6>;
-> +
-> +		mount-matrix = "0", "1", "0",
-> +			      "-1", "0", "0",
-> +			       "0", "0", "1";
-> +	};
-> +};
-> +
->  &blsp1_uart2 {
->  	status = "okay";
->  };
-> @@ -220,6 +249,14 @@
->  		bias-pull-up;
->  	};
->  
-> +	mag_reset_default: mag-reset-default {
-> +		pins = "gpio111";
-> +		function = "gpio";
-> +
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
->  	usb_id_default: usb-id-default {
->  		pins = "gpio110";
->  		function = "gpio";
-> -- 
-> 2.17.1
-> 
+diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+index 415ccdd7442d..d8fd4df81743 100644
+--- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
++++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+@@ -14,6 +14,8 @@ Required properties:
+ 			    "qcom,msm8998-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
+ 			    "qcom,sdm845-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
+ 			    "qcom,sm8150-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
++			    "qcom,sm8250-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
++			    "qcom,sm8350-ufshc", "qcom,ufshc", "jedec,ufs-2.0"
+ - interrupts        : <interrupt mapping for UFS host controller IRQ>
+ - reg               : <registers mapping>
+ 
+-- 
+2.26.2
+
