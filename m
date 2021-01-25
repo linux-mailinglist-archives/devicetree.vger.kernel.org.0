@@ -2,93 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8634F30332C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:47:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89861303330
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:47:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727827AbhAZErr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:47:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58348 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726586AbhAYSmF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 13:42:05 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A769B206FA;
-        Mon, 25 Jan 2021 18:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611600035;
-        bh=G16sIENRX9EMyT17x8UvaimcQGeqHoMJpMYb9LmaK3k=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lxXvobahmBexVbR80EMa8QXk0stwHxVUyECEStOVYqjbcx0CMuqD0ME0i+boBzAdw
-         2zPKXSM6mf1nOeVSR4iqUFsLJQPqDF++ogzs/uFCTdYnXGCAXCP8sviUuPMsKSJutq
-         k31ny/cXGIsXjd+TxLdhJ9WWRDvfUE1G1zehMv+ctAuYNnwJU2Bxe7aDIp2roLQXOu
-         t/Q4+2Lhp6s5xBksAaCe0Y9EqM2sKVh6JbI8S7AXfmp5MFcQL4M6o6NlnKGFKfDeBi
-         cpgJxXXo0YUbkRYgmm0ggQc3oxZnxgdOTNbw8vorLY41IVkIy6dcmLn4sS8RDNe4HS
-         1BT2mCzktY4yg==
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     linux-mmc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: [PATCH v6 9/9] arm64: dts: qcom: sdm630: add ICE registers and clocks
-Date:   Mon, 25 Jan 2021 10:38:10 -0800
-Message-Id: <20210125183810.198008-10-ebiggers@kernel.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210125183810.198008-1-ebiggers@kernel.org>
-References: <20210125183810.198008-1-ebiggers@kernel.org>
+        id S1727863AbhAZErv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:47:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44652 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730610AbhAYSsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 13:48:00 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFB7C0613D6;
+        Mon, 25 Jan 2021 10:47:19 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id g1so16761332edu.4;
+        Mon, 25 Jan 2021 10:47:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=nDehBXC5CPnwPawQZMlRv9xTC6ikQPcXUSWi8mtNNCM=;
+        b=bFCjrLXgHhYQFWM05dJfAnHtfh9k/ZIWNa+ZXxtNtEcHRgf2YRrSHPidxK2p3hzpjK
+         jPgGX/IhNMA4EG1zXRnXlC644Ah2yojB3EZrVisNuCyjrel4cSWWLUw8WQ6PfhIXE+RY
+         wm+T0/u/d3kA2jT9taZ2oq1HDMmBEgwmPvgSbxs7+UHz6TrX5xZzhUExGS4rSB2JlYIe
+         3YT/1PpKMeuLi7uoWoYE2ofK2w1Ebo/QxKsfjZ8hrYtTrFhnDvZZg2DBEjAJlcPUCAz8
+         taLFzpa3PD3RiXa9jOdjEU1SzXFmI2IEHqkjvq6W53zQs+00uyF5mwIox2pza2EyJs3Q
+         iwBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=nDehBXC5CPnwPawQZMlRv9xTC6ikQPcXUSWi8mtNNCM=;
+        b=FX1MiI4QpIX8UOqEsYUeJK09F1QrCQmSQz28jaZk1jVhvkc+z2+bRYOsoc67fq9Amg
+         W46dNjKQDa/Mfz2uZtq04xPtfuPn+Y+z6s13c5delRlvVcFwHxnDo6yxvZTRXYYJUrHn
+         hejx+QpXxmwL8SdA/JdJN0ZEZH4+v7gHcIMPmmn7Vrj/3ZBoJRc2RCPexH0wrkKkx8+a
+         vKMI74L8loUxW+YTKnBy14ZDn49gBbXfoWhX0TokYxR0IGoMMmapMXwhDZA6AeVzUDPv
+         cJSW/D+nYC6WA4S9qIWTf4ot8AKzzjph3maOtEJ33d69gJIZ0GcL1QvDfwE+KSs6Prui
+         3AUw==
+X-Gm-Message-State: AOAM532SbhMA7MQoDKe6vW578nMtqTr00qHEMm4bghEMzpN8f+VtRoXK
+        qZgm1Z+eyRjcffImGHqr2MMmXWctlCw=
+X-Google-Smtp-Source: ABdhPJy3nYjnWIw/wvYkqBmyMQLIZ/bguKH8rV+PJA7vyKO58ToviMoMPnwQCxTouI22RmDwtQ60TA==
+X-Received: by 2002:a05:6402:1152:: with SMTP id g18mr1698932edw.18.1611600438569;
+        Mon, 25 Jan 2021 10:47:18 -0800 (PST)
+Received: from BV030612LT ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id x2sm9652071eds.51.2021.01.25.10.47.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 10:47:17 -0800 (PST)
+Date:   Mon, 25 Jan 2021 20:47:15 +0200
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v6 3/7] mfd: Add MFD driver for ATC260x PMICs
+Message-ID: <20210125184715.GA1061394@BV030612LT>
+References: <cover.1611165200.git.cristian.ciocaltea@gmail.com>
+ <4bc76f9e3dc7204d7f407af6ee61c9f193a789d3.1611165200.git.cristian.ciocaltea@gmail.com>
+ <20210125142558.GA4903@dell>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210125142558.GA4903@dell>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eric Biggers <ebiggers@google.com>
+Hi Lee,
 
-Add the registers and clock for the Inline Crypto Engine (ICE) to the
-device tree node for the sdhci-msm host controller on sdm630.  This
-allows sdhci-msm to support inline encryption on sdm630.
-
-Signed-off-by: Eric Biggers <ebiggers@google.com>
----
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 37d5cc32f6b62..afb3d20c31fa0 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -808,8 +808,9 @@ spmi_bus: spmi@800f000 {
- 		sdhc_1: sdhci@c0c4000 {
- 			compatible = "qcom,sdm630-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x0c0c4000 0x1000>,
--				<0x0c0c5000 0x1000>;
--			reg-names = "hc", "cqhci";
-+				<0x0c0c5000 0x1000>,
-+				<0x0c0c8000 0x8000>;
-+			reg-names = "hc", "cqhci", "ice";
+On Mon, Jan 25, 2021 at 02:25:58PM +0000, Lee Jones wrote:
+> On Wed, 20 Jan 2021, Cristian Ciocaltea wrote:
+> 
+> > Add initial support for the Actions Semi ATC260x PMICs which integrates
+> > Audio Codec, Power management, Clock generation and GPIO controller
+> > blocks.
+> > 
+> > For the moment this driver only supports Regulator, Poweroff and Onkey
+> > functionalities for the ATC2603C and ATC2609A chip variants.
  
- 			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-@@ -817,8 +818,9 @@ sdhc_1: sdhci@c0c4000 {
- 
- 			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
- 					<&gcc GCC_SDCC1_AHB_CLK>,
--					<&xo_board>;
--			clock-names = "core", "iface", "xo";
-+					<&xo_board>,
-+					<&gcc GCC_SDCC1_ICE_CORE_CLK>;
-+			clock-names = "core", "iface", "xo", "ice";
- 
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on &sdc1_rclk_on>;
--- 
-2.30.0
+[...]
 
+> > +static void regmap_lock_mutex(void *__mutex)
+> > +{
+> > +	struct mutex *mutex = __mutex;
+> > +
+> > +	/*
+> > +	 * Using regmap within an atomic context (e.g. accessing a PMIC when
+> > +	 * powering system down) is normally allowed only if the regmap type
+> > +	 * is MMIO and the regcache type is either REGCACHE_NONE or
+> > +	 * REGCACHE_FLAT. For slow buses like I2C and SPI, the regmap is
+> > +	 * internally protected by a mutex which is acquired non-atomically.
+> > +	 *
+> > +	 * Let's improve this by using a customized locking scheme inspired
+> > +	 * from I2C atomic transfer. See i2c_in_atomic_xfer_mode() for a
+> > +	 * starting point.
+> > +	 */
+> > +	if (system_state > SYSTEM_RUNNING && irqs_disabled())
+> > +		mutex_trylock(mutex);
+> > +	else
+> > +		mutex_lock(mutex);
+> > +}
+> 
+> Would this be useful to anyone else?
+
+If you refer to the locking scheme, it is currently required by the
+power-off driver to handle atomic contexts.
+
+> For my own reference (apply this as-is to your sign-off block):
+
+Please note the patches "[4/7] regulator: ..." and "[5/7] power: ..."
+have been already picked up by Mark and Sebastian, respectively, while
+Dmitry suggested to merge "[6/7] input: ..." through MFD.
+
+>   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> 
+> -- 
+> Lee Jones [李琼斯]
+> Senior Technical Lead - Developer Services
+> Linaro.org │ Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
+
+Thanks,
+Cristi
