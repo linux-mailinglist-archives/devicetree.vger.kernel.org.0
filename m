@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD90B30230D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 09:59:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79E4830234C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 10:43:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725779AbhAYI61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 03:58:27 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:41083 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725961AbhAYImu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 03:42:50 -0500
-Received: by mail-oi1-f181.google.com with SMTP id m13so6012743oig.8;
-        Mon, 25 Jan 2021 00:42:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zmj0pdUkoSOT9BVVzR68XbIFYjfQOs5SmAGy80cJE7o=;
-        b=Z44rU/wlfJSroV8sJ0m8ziX6jvyZwMUbmsBUAGP1Qfm2CyCAWMQLXT/zkGJH37+Yha
-         bT+gmH8hSN9e1xCJNN8FwJdovbomeZBziDULjFBPA5tTbvQ9ynMEkI6qZPAW5FPYpIX5
-         7RbWzA1lshd0uRhc5AHPdW1eiVQlIdBDbh4xib0iLEtElr74LGehSZ7+JpluQFV3x4DY
-         7VNlOhep0GqL7kZVL0z/iMgthn5HaXw1WwaOjgUlm5I1NQf0Vjs+Y4IWnZpduAyc2DRQ
-         ykSveUudPhCOSQw8z+SwDoGc4fy/wsXyGtWEjBPoZ9WLbnNDkE+EwQpOlY4UBQXgqGaW
-         MYmQ==
-X-Gm-Message-State: AOAM532ZI8UN48JFjIqHNBvu7aqg9T+Qdtb4fI1nCisgpbTTM1hVESW+
-        AhivUjxIauAX+KVUfuLEuWOiEgZigNGpYxD1Zg678BBnoEM=
-X-Google-Smtp-Source: ABdhPJyTWLWZmMxdcI7462DBg5yWwgpm5xCAF4I7k9Dy02CzyoVSjGxhTP9XQyrZv3WdwrMDaYqkqjDiNAkBv7iEDKY=
-X-Received: by 2002:aca:1219:: with SMTP id 25mr524863ois.54.1611563618938;
- Mon, 25 Jan 2021 00:33:38 -0800 (PST)
+        id S1726834AbhAYJka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 04:40:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726953AbhAYJja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 04:39:30 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E392EC06121C
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 01:38:30 -0800 (PST)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1l3yKJ-000618-Op; Mon, 25 Jan 2021 10:38:27 +0100
+Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1l3yKI-00019W-Ts; Mon, 25 Jan 2021 10:38:26 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     linux-usb@vger.kernel.org
+Cc:     Minas Harutyunyan <hminas@synopsys.com>,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v2 0/2] usb: dwc2: Use clk bulk API for supporting multiple clocks
+Date:   Mon, 25 Jan 2021 10:38:23 +0100
+Message-Id: <20210125093825.4292-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20210123034428.2841052-1-swboyd@chromium.org> <20210123034428.2841052-7-swboyd@chromium.org>
-In-Reply-To: <20210123034428.2841052-7-swboyd@chromium.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 25 Jan 2021 09:33:28 +0100
-Message-ID: <CAMuHMdVaZ1L0n=bFB=__xYwpw6q+fa0U+CuLBpSgDy0djPjwFA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] of/device: Don't NULLify match table in
- of_match_device() with CONFIG_OF=n
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 23, 2021 at 4:44 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> This effectively reverts 1db73ae39a97 ("of/device: Nullify match table
-> in of_match_device() for CONFIG_OF=n") because that commit makes it more
-> surprising to users of this API that the arguments may never be
-> referenced by any code. This is because the pre-processor will replace
-> the argument with NULL and then the match table will be left unreferenced
-> by any code but the compiler optimizer doesn't know to drop it. This can
-> lead to compilers warning that match tables are unused, when we really
-> want to pass the match table to the API but have the compiler see that
-> it's all inlined and not used and then drop the match table while
-> silencing the warning. We're being too smart here and not giving the
-> compiler the chance to do dead code elimination.
->
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> Acked-by: Frank Rowand <frowand.list@gmail.com>
+Currently the dwc2 driver only supports a single clock. I have a board
+here which has a dwc2 controller with a somewhat special clock routing
+to the phy. Both the dwc2 controller and the ULPI phy get their phy
+clock from a SI5351 clock generator. This clock generator has multiple
+clock outputs which each is modelled as a separate clk in Linux.
+Unfortunately the clock to the phy and the clock to the dwc2 core are on
+two different output pins of the SI5351, so we have two clocks which
+must be enabled.  The phy is driven by the usb-nop-xceiver driver which
+supports a single clock. My first approach was to add support for a
+second clock to that driver, but technically the other clock is
+connected to the dwc2 core, so instead I added support for a second
+clock to the dwc2 driver.  This can easily be archieved with the clk
+bulk API as done in this series.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Changes since v1:
+- Add minItems to dec2 clock/clock-names property to avoid
+  dt_binding_check warning
 
-Gr{oetje,eeting}s,
+Sascha Hauer (2):
+  dt-bindings: usb: dwc2: Add support for additional clock
+  usb: dwc2: use clk bulk API for supporting additional clocks
 
-                        Geert
+ .../devicetree/bindings/usb/dwc2.yaml          |  5 ++++-
+ drivers/usb/dwc2/core.h                        |  2 ++
+ drivers/usb/dwc2/platform.c                    | 18 ++++++++----------
+ 3 files changed, 14 insertions(+), 11 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.20.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
