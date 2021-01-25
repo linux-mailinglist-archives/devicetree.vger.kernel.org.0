@@ -2,93 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A72D430320D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 03:45:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDCC530321F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 03:50:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730350AbhAYPpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 10:45:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730292AbhAYPpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 10:45:05 -0500
-X-Greylist: delayed 2430 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Jan 2021 07:44:24 PST
-Received: from newton.telenet-ops.be (newton.telenet-ops.be [IPv6:2a02:1800:120:4::f00:d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADE1EC061797
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 07:44:24 -0800 (PST)
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by newton.telenet-ops.be (Postfix) with ESMTPS id 4DPXG702hTzMsLHk
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 15:25:35 +0100 (CET)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by andre.telenet-ops.be with bizsmtp
-        id M2QZ240084C55Sk012QZ6k; Mon, 25 Jan 2021 15:24:34 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l42nA-000eiT-MP; Mon, 25 Jan 2021 15:24:32 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1l42nA-004P50-4V; Mon, 25 Jan 2021 15:24:32 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 0/4] dmaengine: rcar-dmac: Add support for R-Car V3U
-Date:   Mon, 25 Jan 2021 15:24:27 +0100
-Message-Id: <20210125142431.1049668-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S1729514AbhAYOiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 09:38:54 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:3152 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729594AbhAYOhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 09:37:31 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10PERDlX031593;
+        Mon, 25 Jan 2021 15:36:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=wWIxKXclgLdylfMZwg4le6uLRNhXM5uQkriSpG1L/VE=;
+ b=xDacxuGMlftE4qlGtMteqLhPLAIvOkN3Z1TeDzs4R++YvsQHgM4XkOxD4jBHRR2dgT8h
+ GMu9NLW9gvQzYS26/JetULJEJZETzjFnJqALYpp5bgbn4i4W6m0tTL1ofi/erdhF+5wt
+ mimEReF7fo5Yac3mCVYLzTAg65qw7z5HbhLx0m2ujduoWLG654WGjFODZrph2EshXwqo
+ nCMsX/+kQ5ywqpF9oOrDNl4/Npp3dy0UqHzdBOS8/ELMxS0aMPREwBZz8ApPhLGIyNdJ
+ ZwykXOZpV2FxlvoX/HO9Zuuhjr2DCzWwHbCjG8C/bSDyUfwFMC4Xmo3PDi0HRJV7hJ+M oA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 368a56bh4r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 25 Jan 2021 15:36:22 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8427E10002A;
+        Mon, 25 Jan 2021 15:36:19 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6892222743F;
+        Mon, 25 Jan 2021 15:36:19 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 25 Jan
+ 2021 15:36:18 +0100
+Subject: Re: [PATCH] ARM: multi_v7_defconfig: add STM32 CEC support
+To:     Yannick Fertre <yannick.fertre@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210115143236.27675-1-yannick.fertre@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <687e3445-ffc3-7133-db2a-14e6c7c8efea@foss.st.com>
+Date:   Mon, 25 Jan 2021 15:36:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210115143236.27675-1-yannick.fertre@foss.st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-25_04:2021-01-25,2021-01-25 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-	Hi Vinod,
+Hi Yannick
 
-This patch series adds support for the Direct Memory Access Controller
-variant in the Renesas R-Car V3U (R8A779A0) SoC, to both DT bindings and
-driver.
+On 1/15/21 3:32 PM, Yannick Fertre wrote:
+> Enable CEC support for STMicroelectronics as loadable module.
+> 
+> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+> ---
+>   arch/arm/configs/multi_v7_defconfig | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+> index c5f25710fedc..05cc0607a9ad 100644
+> --- a/arch/arm/configs/multi_v7_defconfig
+> +++ b/arch/arm/configs/multi_v7_defconfig
+> @@ -656,6 +656,7 @@ CONFIG_V4L_TEST_DRIVERS=y
+>   CONFIG_VIDEO_VIVID=m
+>   CONFIG_CEC_PLATFORM_DRIVERS=y
+>   CONFIG_CEC_SAMSUNG_S5P=m
+> +CONFIG_CEC_STM32=m
+>   CONFIG_VIDEO_ADV7180=m
+>   CONFIG_VIDEO_ADV7604=m
+>   CONFIG_VIDEO_ADV7604_CEC=y
+> 
 
-Changes compared to v1:
-  - Add Reviewed-by,
-  - Put the full loop control of for_each_rcar_dmac_chan() on a single
-    line, to improve readability,
-  - Use two separate named regions instead of array,
-  - Drop rcar_dmac_of_data.chan_reg_block, check for
-    !rcar_dmac_of_data.chan_offset_base instead,
-  - Precalculate chan_base in rcar_dmac_probe().
+Applied on stm32-next.
 
-This has been tested on the Renesas Falcon board, using external SPI
-loopback (spi-loopback-test) on MSIOF1 and MSIOF2.
-
-Thanks!
-
-Geert Uytterhoeven (4):
-  dt-bindings: renesas,rcar-dmac: Add r8a779a0 support
-  dmaengine: rcar-dmac: Add for_each_rcar_dmac_chan() helper
-  dmaengine: rcar-dmac: Add helpers for clearing DMA channel status
-  dmaengine: rcar-dmac: Add support for R-Car V3U
-
- .../bindings/dma/renesas,rcar-dmac.yaml       |  76 ++++++++-----
- drivers/dma/sh/rcar-dmac.c                    | 105 +++++++++++++-----
- 2 files changed, 123 insertions(+), 58 deletions(-)
-
--- 
-2.25.1
-
-Gr{oetje,eeting}s,
-
-						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-							    -- Linus Torvalds
+Thanks.
+Alex
