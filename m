@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 068A13028E0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 18:30:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA2F3028A1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 18:20:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731048AbhAYRXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 12:23:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52822 "EHLO
+        id S1729829AbhAYRTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 12:19:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730925AbhAYRQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 12:16:57 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C884FC061793
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:14:44 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id k25so1396952oik.13
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:14:44 -0800 (PST)
+        with ESMTP id S1729819AbhAYRS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 12:18:58 -0500
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BAACC061788
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:18:12 -0800 (PST)
+Received: by mail-ot1-x32c.google.com with SMTP id s2so11267903otp.5
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 09:18:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=rkROO57uKmnnVbP7K6y85+srohQ8Aw0WBhKWTRvOvuk=;
-        b=qgTYaOuVerpQyuW7/OT7xgdxL/eIy9BR0U7tKWpiGaesQ856FT/YQXBEd0OLn2MwuX
-         Yb8HW0gE+QCWRBjAYIoePlDKPITP3O8q/WWPiEYK6ecNWLCovrMyXFV5yRHE9MdVQPl3
-         CFiDxFx2kWfJzQgmkn7G+HjnGfQUgSzzAuLM9eqAiBFM+BgnM3osOyKnHiiRMa1loP9d
-         yge8S5E3okSsZUh+SXCNPDDutt+uvAitg86zRzNyT66g6SIeGMWfPzQ7sjhVkXyfeXCE
-         D4EU1frNjuc+CrTpUckeZgwvaVWUnq8OJoY/3UyRS3zv/hsyz0tfMg6h4T4NQMS7vhgR
-         L86A==
+        bh=ezmAm6nOvax9k/hdZ3S4Bw2223KEqVuV2WE0GJMSK0I=;
+        b=CDlaboiVoAK5xbM8BtWeOumETZLuJawZjwEn8LF2Ob+LXSFZgonwUcx/R6aQP/NLva
+         aoe4OdcraYwSpo8ETIC9jTpcHbDFr2Pwc6mqYsg0RMfEH9NpzXCGi2kx0YCisQT3mla5
+         N+XeVQMi2QcCP9+ayH2YhnP1xrplQCUrxsbNrszMJRK7ZIu1mQyVOSr2nkelvsjK8Kkt
+         szwHDlISErvzRMIMJ6NMMzCCc07EkPSR9tW8iKob5LJ718ccvXzDSt8pSXH9eRDDdN8E
+         niGlIdEdFECECoBQTfvUquR6LEOQIoMfUlbyDL8JyTjk93Rw/dZ+doh0Ywx4yPpqKcFV
+         VOqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=rkROO57uKmnnVbP7K6y85+srohQ8Aw0WBhKWTRvOvuk=;
-        b=McXRrsdhZLBY9l5DMzFXp9jBcdtjgjKMPXn49+UmPsrFTe0j6B0zPUIXDsc18kvOVq
-         G5Kc1Qidu8stz7hwB4rUb1n/e8MW5leb4Xyh/2n8fE6VeEScRRlyUHVFg6WyIHZBLLOV
-         wN20jf2QRLWMlwyqSJ3JJcDrdMKWicrwbe0J9IhxVgY+F0yJlVhLMCMYeONV76sx+ich
-         pc0nPtzRwGcbU8n6CBsMQJ8AJUEzqTGstAxhrMZX1Pts+C4Jybm5RxIZWW4Ax0QUY0o+
-         KyiSTjygpD3cbJs710oV4NHz+PQ4Lu7ods/Hsk5GQPIAPSpGNzFQtg8k0Eh+X3Q0rLhL
-         A0bg==
-X-Gm-Message-State: AOAM531zUvlI2Slqofz50sNu+V4Sq0aDTB8CkNv1da58PErP6Se3HhcO
-        uIyzfbv15pPmtZRHoaEo6MlEvP0b1u0uEA==
-X-Google-Smtp-Source: ABdhPJw13+EEDGOa7bk2nm+Fm+WInSkBPXZIdTqkY0j7a39sHq56ZNWSCPmD3OUyb1YIo3KdyHVRhw==
-X-Received: by 2002:aca:4c85:: with SMTP id z127mr755076oia.124.1611594884125;
-        Mon, 25 Jan 2021 09:14:44 -0800 (PST)
+        bh=ezmAm6nOvax9k/hdZ3S4Bw2223KEqVuV2WE0GJMSK0I=;
+        b=cdEMUXyBPJeAEg/kpWk9cGlyMo2ZIP2TNrwNx8LzQShW7iHg7Z78YOHHmdv/mPunjc
+         JU0Rk/ktbNO8LYJj9ak3RMMZYr1lPCHcqWKW+JSUjSG4IyHq0JOYmb7xJtwIKGhMcvEy
+         HZq2dQpAwG+ALkhCWKqVLubh1RJin/KxT//s7F62aYbqeVyKq+WQ3eqlRkoUhnSZhiQ/
+         5b/cqr5d+PFffldbGY/j+wC+PLuoxeN3c+x2CFPROT2gJcUjdfjuW8bNW2QFxRTFWfkV
+         vH0bUa8798GGdCGTER182f8ZuDj69RkmjOVVUG8vtdrYHVoIStDFwO20ZsrbZ6lTQ2TG
+         mdJg==
+X-Gm-Message-State: AOAM533WFRAb8g4uMUdbqjm53Wn1lcuL+HQu6JGQQi1547xXpB51RLQa
+        qUSR2H8+tgwYqdPVCq6GQy9W3Q==
+X-Google-Smtp-Source: ABdhPJxw/bosntKhmEmnnXkonTWsBXUcYE/ZJMm6awCzajkx5b61oK9PymMjB2S3P/0b+wNRmNYZjw==
+X-Received: by 2002:a05:6830:309b:: with SMTP id f27mr1128443ots.118.1611595091314;
+        Mon, 25 Jan 2021 09:18:11 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id g13sm3540748otl.60.2021.01.25.09.14.43
+        by smtp.gmail.com with ESMTPSA id j8sm3612709oie.47.2021.01.25.09.18.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 09:14:43 -0800 (PST)
-Date:   Mon, 25 Jan 2021 11:14:40 -0600
+        Mon, 25 Jan 2021 09:18:10 -0800 (PST)
+Date:   Mon, 25 Jan 2021 11:18:08 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>
 Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Vivek Aknurwar <viveka@codeaurora.org>,
         Andy Gross <agross@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -58,92 +59,249 @@ Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] clk: qcom: clk-alpha-pll: modularize
- alpha_pll_trion_set_rate()
-Message-ID: <YA78gO7xEoZSb+Wy@builder.lan>
+        linux-kernel@vger.kernel.org,
+        Jeevan Shriram <jshriram@codeaurora.org>
+Subject: Re: [PATCH v4 3/5] clk: qcom: clk-alpha-pll: Add support for Lucid
+ 5LPE PLL
+Message-ID: <YA79UPODso3cmMFU@builder.lan>
 References: <20210118044321.2571775-1-vkoul@kernel.org>
- <20210118044321.2571775-3-vkoul@kernel.org>
+ <20210118044321.2571775-4-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210118044321.2571775-3-vkoul@kernel.org>
+In-Reply-To: <20210118044321.2571775-4-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun 17 Jan 22:43 CST 2021, Vinod Koul wrote:
 
-> Trion 5LPE set rate uses code similar to alpha_pll_trion_set_rate() but
-> with different registers. Modularize these by moving out latch and latch
-> ack bits so that we can reuse the function.
+> From: Vivek Aknurwar <viveka@codeaurora.org>
 > 
+> Lucid 5LPE is a slightly different Lucid PLL with different offsets and
+> porgramming sequence so add support for these
+> 
+> Signed-off-by: Vivek Aknurwar <viveka@codeaurora.org>
+> Signed-off-by: Jeevan Shriram <jshriram@codeaurora.org>
+> [vkoul: rebase and tidy up for upstream]
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  drivers/clk/qcom/clk-alpha-pll.c | 173 +++++++++++++++++++++++++++++++
+>  drivers/clk/qcom/clk-alpha-pll.h |   4 +
+>  2 files changed, 177 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> index a30ea7b09224..f9c48da21bd1 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -156,6 +156,12 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
+>  /* LUCID PLL specific settings and offsets */
+>  #define LUCID_PCAL_DONE		BIT(27)
+>  
+> +/* LUCID 5LPE PLL specific settings and offsets */
+> +#define LUCID_5LPE_PCAL_DONE		BIT(11)
+> +#define LUCID_5LPE_ALPHA_PLL_ACK_LATCH	BIT(13)
+> +#define LUCID_5LPE_PLL_LATCH_INPUT	BIT(14)
+> +#define LUCID_5LPE_ENABLE_VOTE_RUN	BIT(21)
+> +
+>  #define pll_alpha_width(p)					\
+>  		((PLL_ALPHA_VAL_U(p) - PLL_ALPHA_VAL(p) == 4) ?	\
+>  				 ALPHA_REG_BITWIDTH : ALPHA_REG_16BIT_WIDTH)
+> @@ -1604,3 +1610,170 @@ const struct clk_ops clk_alpha_pll_agera_ops = {
+>  	.set_rate = clk_alpha_pll_agera_set_rate,
+>  };
+>  EXPORT_SYMBOL_GPL(clk_alpha_pll_agera_ops);
+> +
+> +static int alpha_pll_lucid_5lpe_enable(struct clk_hw *hw)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* If in FSM mode, just vote for it */
+> +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN) {
+> +		ret = clk_enable_regmap(hw);
+> +		if (ret)
+> +			return ret;
+> +		return wait_for_pll_enable_lock(pll);
+> +	}
+> +
+> +	/* Check if PLL is already enabled, return if enabled */
+> +	ret = trion_pll_is_enabled(pll, pll->clkr.regmap);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_RUN);
+> +
+> +	ret = wait_for_pll_enable_lock(pll);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable the PLL outputs */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, PLL_OUT_MASK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable the global PLL outputs */
+> +	return regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
+> +}
+> +
+> +static void alpha_pll_lucid_5lpe_disable(struct clk_hw *hw)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return;
+> +
+> +	/* If in FSM mode, just unvote it */
+> +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN) {
+> +		clk_disable_regmap(hw);
+> +		return;
+> +	}
+> +
+> +	/* Disable the global PLL output */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
+> +	if (ret)
+> +		return;
+> +
+> +	/* Disable the PLL outputs */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, 0);
+> +	if (ret)
+> +		return;
+> +
+> +	/* Place the PLL mode in STANDBY */
+> +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_STANDBY);
+> +}
+> +
+> +/*
+> + * The Lucid 5LPE PLL requires a power-on self-calibration which happens
+> + * when the PLL comes out of reset. Calibrate in case it is not completed.
+> + */
+> +static int alpha_pll_lucid_5lpe_prepare(struct clk_hw *hw)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	struct clk_hw *p;
+> +	u32 val;
+> +	int ret;
+> +
+> +	/* Return early if calibration is not needed. */
+> +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+I doubt this will ever fail, but static analysis tools would complain
+about val possibly being uninitialized after this.
+
+And the return value is checked in the other functions.
 
 Regards,
 Bjorn
 
-> Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 18 +++++++++++-------
->  1 file changed, 11 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index f7721088494c..a30ea7b09224 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -1471,8 +1471,8 @@ static int alpha_pll_lucid_prepare(struct clk_hw *hw)
->  	return __alpha_pll_trion_prepare(hw, LUCID_PCAL_DONE);
->  }
->  
-> -static int alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
-> -				    unsigned long prate)
-> +static int __alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
-> +				      unsigned long prate, u32 latch_bit, u32 latch_ack)
->  {
->  	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
->  	unsigned long rrate;
-> @@ -1490,22 +1490,20 @@ static int alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
->  	regmap_write(pll->clkr.regmap, PLL_ALPHA_VAL(pll), a);
->  
->  	/* Latch the PLL input */
-> -	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll),
-> -				 PLL_UPDATE, PLL_UPDATE);
-> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), latch_bit, latch_bit);
->  	if (ret)
->  		return ret;
->  
->  	/* Wait for 2 reference cycles before checking the ACK bit. */
->  	udelay(1);
->  	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
-> -	if (!(val & ALPHA_PLL_ACK_LATCH)) {
-> +	if (!(val & latch_ack)) {
->  		pr_err("Lucid PLL latch failed. Output may be unstable!\n");
->  		return -EINVAL;
->  	}
->  
->  	/* Return the latch input to 0 */
-> -	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll),
-> -				 PLL_UPDATE, 0);
-> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), latch_bit, 0);
->  	if (ret)
->  		return ret;
->  
-> @@ -1520,6 +1518,12 @@ static int alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
->  	return 0;
->  }
->  
-> +static int alpha_pll_trion_set_rate(struct clk_hw *hw, unsigned long rate,
-> +				    unsigned long prate)
-> +{
-> +	return __alpha_pll_trion_set_rate(hw, rate, prate, PLL_UPDATE, ALPHA_PLL_ACK_LATCH);
+> +	if (val & LUCID_5LPE_PCAL_DONE)
+> +		return 0;
+> +
+> +	p = clk_hw_get_parent(hw);
+> +	if (!p)
+> +		return -EINVAL;
+> +
+> +	ret = alpha_pll_lucid_5lpe_enable(hw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	alpha_pll_lucid_5lpe_disable(hw);
+> +
+> +	return 0;
 > +}
 > +
->  const struct clk_ops clk_alpha_pll_trion_ops = {
->  	.prepare = alpha_pll_trion_prepare,
->  	.enable = clk_trion_pll_enable,
+> +static int alpha_pll_lucid_5lpe_set_rate(struct clk_hw *hw, unsigned long rate,
+> +					 unsigned long prate)
+> +{
+> +	return __alpha_pll_trion_set_rate(hw, rate, prate,
+> +					  LUCID_5LPE_PLL_LATCH_INPUT,
+> +					  LUCID_5LPE_ALPHA_PLL_ACK_LATCH);
+> +}
+> +
+> +static int clk_lucid_5lpe_pll_postdiv_set_rate(struct clk_hw *hw, unsigned long rate,
+> +					       unsigned long parent_rate)
+> +{
+> +	struct clk_alpha_pll_postdiv *pll = to_clk_alpha_pll_postdiv(hw);
+> +	int i, val = 0, div, ret;
+> +	u32 mask;
+> +
+> +	/*
+> +	 * If the PLL is in FSM mode, then treat set_rate callback as a
+> +	 * no-operation.
+> +	 */
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN)
+> +		return 0;
+> +
+> +	div = DIV_ROUND_UP_ULL((u64)parent_rate, rate);
+> +	for (i = 0; i < pll->num_post_div; i++) {
+> +		if (pll->post_div_table[i].div == div) {
+> +			val = pll->post_div_table[i].val;
+> +			break;
+> +		}
+> +	}
+> +
+> +	mask = GENMASK(pll->width + pll->post_div_shift - 1, pll->post_div_shift);
+> +	return regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll),
+> +				  mask, val << pll->post_div_shift);
+> +}
+> +
+> +const struct clk_ops clk_alpha_pll_lucid_5lpe_ops = {
+> +	.prepare = alpha_pll_lucid_5lpe_prepare,
+> +	.enable = alpha_pll_lucid_5lpe_enable,
+> +	.disable = alpha_pll_lucid_5lpe_disable,
+> +	.is_enabled = clk_trion_pll_is_enabled,
+> +	.recalc_rate = clk_trion_pll_recalc_rate,
+> +	.round_rate = clk_alpha_pll_round_rate,
+> +	.set_rate = alpha_pll_lucid_5lpe_set_rate,
+> +};
+> +EXPORT_SYMBOL(clk_alpha_pll_lucid_5lpe_ops);
+> +
+> +const struct clk_ops clk_alpha_pll_fixed_lucid_5lpe_ops = {
+> +	.enable = alpha_pll_lucid_5lpe_enable,
+> +	.disable = alpha_pll_lucid_5lpe_disable,
+> +	.is_enabled = clk_trion_pll_is_enabled,
+> +	.recalc_rate = clk_trion_pll_recalc_rate,
+> +	.round_rate = clk_alpha_pll_round_rate,
+> +};
+> +EXPORT_SYMBOL(clk_alpha_pll_fixed_lucid_5lpe_ops);
+> +
+> +const struct clk_ops clk_alpha_pll_postdiv_lucid_5lpe_ops = {
+> +	.recalc_rate = clk_alpha_pll_postdiv_fabia_recalc_rate,
+> +	.round_rate = clk_alpha_pll_postdiv_fabia_round_rate,
+> +	.set_rate = clk_lucid_5lpe_pll_postdiv_set_rate,
+> +};
+> +EXPORT_SYMBOL(clk_alpha_pll_postdiv_lucid_5lpe_ops);
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+> index 0ea30d2f3da1..6943e933be0f 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.h
+> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+> @@ -144,6 +144,10 @@ extern const struct clk_ops clk_alpha_pll_lucid_ops;
+>  extern const struct clk_ops clk_alpha_pll_postdiv_lucid_ops;
+>  extern const struct clk_ops clk_alpha_pll_agera_ops;
+>  
+> +extern const struct clk_ops clk_alpha_pll_lucid_5lpe_ops;
+> +extern const struct clk_ops clk_alpha_pll_fixed_lucid_5lpe_ops;
+> +extern const struct clk_ops clk_alpha_pll_postdiv_lucid_5lpe_ops;
+> +
+>  void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>  			     const struct alpha_pll_config *config);
+>  void clk_fabia_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
 > -- 
 > 2.26.2
 > 
