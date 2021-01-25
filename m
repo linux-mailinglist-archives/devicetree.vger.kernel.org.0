@@ -2,307 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 010A230210F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 05:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9590B302138
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 05:38:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726692AbhAYETx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 23:19:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54876 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726686AbhAYETo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 23:19:44 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D48BC061573
-        for <devicetree@vger.kernel.org>; Sun, 24 Jan 2021 20:18:58 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id r12so15982956ejb.9
-        for <devicetree@vger.kernel.org>; Sun, 24 Jan 2021 20:18:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7721dlJPZvDFhnAf95LAPXT+oZp1lxviWE77mw7HK+U=;
-        b=SXq9WvCYjx+sURGFGLAN6Wm6XqFMMchLtBACjmn9qBfKXDuuUZ3Fo/ER0ztlotmV/v
-         PY0hEUxGJS/NL8sHDk7inym5NljXC56SLvLIAIG1DZHLVAJ2oyZXPDKEW3SgxTcZH1ak
-         WuH9jtCc6/IjW2/0Z/HdQUbhnKUOu53QnVcvI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7721dlJPZvDFhnAf95LAPXT+oZp1lxviWE77mw7HK+U=;
-        b=ch/8fiFDkRdyr/Kltk2gJK/RLq0d5JP8DppziQRWfs/88bY322IscuM6sdKyQesgGX
-         5zKR3kfw6oH9OWW+5P2Nb1xVueAbMeGoI/iYKLmztc+65MTi1WX2v00ZxJ3mta2qG3/k
-         P1VsvDoNh+Nt5vUKp817Sygcz9PFQ1FgF/O9v3/NNG/J2QbIrT8X3oEZ+2tRiG2kWqAE
-         0DvW+vwvwFDAKc/n+IuPEKPwQK+YrqIz/AVKWz9L3+ciBoHHzck6LjBbisWxvvl3QPld
-         jZ8L9651Vf+dX6lcYA0+4oEfgqW3aora+IpoVOjtBjAJcO1SC7KTOlj1+kmT883Spm5d
-         3RyQ==
-X-Gm-Message-State: AOAM533klrcO+IZiu6q2OnCtGQMvqWBBKht1j94eQEJYGjIlSE2lnW3S
-        yzP7UWOD0uyY0uyw2FYKvKn58V+pnt9Leg==
-X-Google-Smtp-Source: ABdhPJw/tetKhVLjNnY9MLGibfvKtomh8R0s5I/swt5jQRFGL9S6In+aSSSfdDj008wEEzYskDh+0A==
-X-Received: by 2002:a17:906:a00e:: with SMTP id p14mr464013ejy.532.1611548336641;
-        Sun, 24 Jan 2021 20:18:56 -0800 (PST)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com. [209.85.221.41])
-        by smtp.gmail.com with ESMTPSA id s18sm9932857edw.66.2021.01.24.20.18.55
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Jan 2021 20:18:55 -0800 (PST)
-Received: by mail-wr1-f41.google.com with SMTP id l12so10856159wry.2
-        for <devicetree@vger.kernel.org>; Sun, 24 Jan 2021 20:18:55 -0800 (PST)
-X-Received: by 2002:adf:8295:: with SMTP id 21mr150008wrc.32.1611548334703;
- Sun, 24 Jan 2021 20:18:54 -0800 (PST)
+        id S1727109AbhAYEiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 23:38:06 -0500
+Received: from aserp2120.oracle.com ([141.146.126.78]:51930 "EHLO
+        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727068AbhAYEh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 23:37:58 -0500
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10P4YmDE139655;
+        Mon, 25 Jan 2021 04:37:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=szoXrV/RFeXwfntAWWK5Bt/AJH3TXlpRkFzpc71lSSA=;
+ b=ju0q6P16syKbWSwjYL1i958OzTdIcL9OPeFLr44Xvl7LBmzzf1/w5h86TXES761DLY6U
+ h/avO6gWVRbgzsQ6yrDg8f9Rip/J0ZVzPV3EQbQWGUvOCPrIKeuMg+NaTusOHT1PtAat
+ lKsdCIAcJI1YienytqboopOxZqMh9jHzB2Me9oFGbv3GptASCysey5LH0Xk3Ugt5SUCw
+ yB6mbbDLvPP6W7tZMpbUcu89N0gDis+PU9CRSgvZLQcfyPxZz0rCqmgbzr48lDF5mQdk
+ kS6rwpmix9QZObfVgu+fmusRlUNoVEYtSsGcoaXDoyfJuHjaXAJ5RT+tvEreV8Q88lre lg== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+        by aserp2120.oracle.com with ESMTP id 368brkbdpb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 25 Jan 2021 04:36:59 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10P4Yvr4144538;
+        Mon, 25 Jan 2021 04:34:59 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+        by aserp3030.oracle.com with ESMTP id 368wck37gb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 25 Jan 2021 04:34:59 +0000
+Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
+        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 10P4Ytjt010237;
+        Mon, 25 Jan 2021 04:34:55 GMT
+Received: from santoshs-mbp-3.lan (/69.181.241.203)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Sun, 24 Jan 2021 20:34:54 -0800
+Subject: Re: [PATCH v2 0/5] Introduce PRU remoteproc consumer API
+To:     Suman Anna <s-anna@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>, ohad@wizery.com,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        ssantosh@kernel.org, linux-remoteproc@vger.kernel.org,
+        lee.jones@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, praneeth@ti.com,
+        rogerq@kernel.org
+References: <20201216165239.2744-1-grzegorz.jaszczyk@linaro.org>
+ <20210106232704.GE9149@xps15> <11303a1b-5ab4-def5-77b1-c500894c9c87@ti.com>
+ <20210107224448.GB43045@xps15> <75365443-57e3-e2e0-5865-f78af9d5890b@ti.com>
+From:   "santosh.shilimkar@oracle.com" <santosh.shilimkar@oracle.com>
+Organization: Oracle Corporation
+Message-ID: <b0e32ad0-487f-9d57-7287-835eee836514@oracle.com>
+Date:   Sun, 24 Jan 2021 20:34:38 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:78.0)
+ Gecko/20100101 Thunderbird/78.5.0
 MIME-Version: 1.0
-References: <20201209080102.26626-1-yong.wu@mediatek.com> <20201209080102.26626-7-yong.wu@mediatek.com>
- <X+L9XpkoII7tw/tX@chromium.org> <1608809713.26323.262.camel@mhfsdcap03>
- <CAAFQd5CCJv=0q=V45Z7mtq7FSq1c5TcH6vyqfp3MWxaA=ZexJQ@mail.gmail.com>
- <1610520301.31716.27.camel@mhfsdcap03> <CAAFQd5A26tZo3gpsmqbRSa3x7a1KThzt9Jw74jWsqQGrBsabhw@mail.gmail.com>
- <1611126445.19055.34.camel@mhfsdcap03>
-In-Reply-To: <1611126445.19055.34.camel@mhfsdcap03>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Mon, 25 Jan 2021 13:18:44 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5C3G=eE+dwOK0Vg=tcSR8LFWWG1YDta3=9nZ1G0Bv7dcA@mail.gmail.com>
-Message-ID: <CAAFQd5C3G=eE+dwOK0Vg=tcSR8LFWWG1YDta3=9nZ1G0Bv7dcA@mail.gmail.com>
-Subject: Re: [PATCH v5 06/27] dt-bindings: mediatek: Add binding for mt8192 IOMMU
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, youlin.pei@mediatek.com,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        chao.hao@mediatek.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        "open list:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>, anan.sun@mediatek.com,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <75365443-57e3-e2e0-5865-f78af9d5890b@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9874 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 mlxscore=0 suspectscore=0
+ phishscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101250024
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9874 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 impostorscore=0
+ phishscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999
+ lowpriorityscore=0 spamscore=0 mlxscore=0 suspectscore=0 malwarescore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101250024
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 20, 2021 at 4:08 PM Yong Wu <yong.wu@mediatek.com> wrote:
->
-> On Wed, 2021-01-20 at 13:15 +0900, Tomasz Figa wrote:
-> > On Wed, Jan 13, 2021 at 3:45 PM Yong Wu <yong.wu@mediatek.com> wrote:
-> > >
-> > > On Wed, 2021-01-13 at 14:30 +0900, Tomasz Figa wrote:
-> > > > On Thu, Dec 24, 2020 at 8:35 PM Yong Wu <yong.wu@mediatek.com> wrote:
-> > > > >
-> > > > > On Wed, 2020-12-23 at 17:18 +0900, Tomasz Figa wrote:
-> > > > > > On Wed, Dec 09, 2020 at 04:00:41PM +0800, Yong Wu wrote:
-> > > > > > > This patch adds decriptions for mt8192 IOMMU and SMI.
-> > > > > > >
-> > > > > > > mt8192 also is MTK IOMMU gen2 which uses ARM Short-Descriptor translation
-> > > > > > > table format. The M4U-SMI HW diagram is as below:
-> > > > > > >
-> > > > > > >                           EMI
-> > > > > > >                            |
-> > > > > > >                           M4U
-> > > > > > >                            |
-> > > > > > >                       ------------
-> > > > > > >                        SMI Common
-> > > > > > >                       ------------
-> > > > > > >                            |
-> > > > > > >   +-------+------+------+----------------------+-------+
-> > > > > > >   |       |      |      |       ......         |       |
-> > > > > > >   |       |      |      |                      |       |
-> > > > > > > larb0   larb1  larb2  larb4     ......      larb19   larb20
-> > > > > > > disp0   disp1   mdp    vdec                   IPE      IPE
-> > > > > > >
-> > > > > > > All the connections are HW fixed, SW can NOT adjust it.
-> > > > > > >
-> > > > > > > mt8192 M4U support 0~16GB iova range. we preassign different engines
-> > > > > > > into different iova ranges:
-> > > > > > >
-> > > > > > > domain-id  module     iova-range                  larbs
-> > > > > > >    0       disp        0 ~ 4G                      larb0/1
-> > > > > > >    1       vcodec      4G ~ 8G                     larb4/5/7
-> > > > > > >    2       cam/mdp     8G ~ 12G             larb2/9/11/13/14/16/17/18/19/20
-> > > > > >
-> > > > > > Why do we preassign these addresses in DT? Shouldn't it be a user's or
-> > > > > > integrator's decision to split the 16 GB address range into sub-ranges
-> > > > > > and define which larbs those sub-ranges are shared with?
-> > > > >
-> > > > > The problem is that we can't split the 16GB range with the larb as unit.
-> > > > > The example is the below ccu0(larb13 port9/10) is a independent
-> > > > > range(domain), the others ports in larb13 is in another domain.
-> > > > >
-> > > > > disp/vcodec/cam/mdp don't have special iova requirement, they could
-> > > > > access any range. vcodec also can locate 8G~12G. it don't care about
-> > > > > where its iova locate. here I preassign like this following with our
-> > > > > internal project setting.
-> > > >
-> > > > Let me try to understand this a bit more. Given the split you're
-> > > > proposing, is there actually any isolation enforced between particular
-> > > > domains? For example, if I program vcodec to with a DMA address from
-> > > > the 0-4G range, would the IOMMU actually generate a fault, even if
-> > > > disp had some memory mapped at that address?
-> > >
-> > > In this case. we will get fault in current SW setting.
-> > >
-> >
-> > Okay, thanks.
-> >
-> > > >
-> > > > >
-> > > > > Why set this in DT?, this is only for simplifying the code. Assume we
-> > > > > put it in the platform data. We have up to 32 larbs, each larb has up to
-> > > > > 32 ports, each port may be in different iommu domains. we should have a
-> > > > > big array for this..however we only use a macro to get the domain in the
-> > > > > DT method.
-> > > > >
-> > > > > When replying this mail, I happen to see there is a "dev->dev_range_map"
-> > > > > which has "dma-range" information, I think I could use this value to get
-> > > > > which domain the device belong to. then no need put domid in DT. I will
-> > > > > test this.
-> > > >
-> > > > My feeling is that the only part that needs to be enforced statically
-> > > > is the reserved IOVA range for CCUs. The other ranges should be
-> > > > determined dynamically, although I think I need to understand better
-> > > > how the hardware and your proposed design work to tell what would be
-> > > > likely the best choice here.
-> > >
-> > > I have removed the domid patch in v6. and get the domain id in [27/33]
-> > > in v6..
-> > >
-> > > About the other ranges should be dynamical, the commit message [30/33]
-> > > of v6 should be helpful. the problem is that we have a bank_sel setting
-> > > for the iova[32:33]. currently we preassign this value. thus, all the
-> > > ranges are fixed. If you adjust this setting, you can let vcodec access
-> > > 0~4G.
-> >
-> > Okay, so it sounds like we effectively have four 4G address spaces and
-> > we can assign the master devices to them. I guess each of these
-> > address spaces makes for an IOMMU group.
->
-> Yes. Each a address spaces is an IOMMU group.
->
-> >
-> > It's fine to pre-assign the devices to those groups for now, but it
-> > definitely shouldn't be hardcoded in DT, because it depends on the use
-> > case of the device. I'll take a look at v6, but it sounds like it
-> > should be fine if it doesn't take the address space assignment from DT
-> > anymore.
->
-> Thanks very much for your review.
->
+Hi Suman, Mathieu,
 
-Hmm, I had a look at v6 and it still has the address spaces hardcoded
-in the DTS. Could we move the fixed assignment to the MTK IOMMU driver
-code instead, so that it can be easily adjusted as the kernel code
-evolves without the need to update the DTS?
+On 1/7/21 2:49 PM, Suman Anna wrote:
+> On 1/7/21 4:44 PM, Mathieu Poirier wrote:
+>> On Wed, Jan 06, 2021 at 06:03:25PM -0600, Suman Anna wrote:
+>>> Hi Mathieu,
+>>>
+[...]
+>> I only see input from Andy and Lars in the thread you point out, nothing from
+>> Greg.  I have also taken a look at the patch [1] that made checkpatch complain
+>> about ENOTSUPP.  From what I see in that commit log the goal is to prevent new
+>> additions of ENOTSUPP to the kernel.
+>>
+>> Please modify and resend, otherwise I'm sure someone will send another patch to
+>> fix it before the end of the cycle.
+> 
+> Yeah ok. I will send out a v3.
+> 
+I haven't seen v3 of this series yet. Please post it
+if you would like to include it for 5.12.
 
-> >
-> > >
-> > > Currently we have no interface to adjust this setting. Suppose we add a
-> > > new interface for this. It would be something like:
-> > >
-> > >    int mtk_smi_larb_config_banksel(struct device *larb, int banksel)
-> > >
-> > >    Then, all the MM drivers should call it before the HW works every
-> > > time, and its implement will be a bit complex since we aren't sure if
-> > > the larb has power at that time. the important thing is that the MM
-> > > devices have already not known which larb it connects with as we plan to
-> > > delete "mediatek,larb" in their dtsi nodes.
-> >
-> > From the practical point of view, it doesn't look like setting this on
-> > a per-larb basis would make much sense. The reason to switch the
-> > bank_sel would be to decide which MM devices can share the same
-> > address space. This is a security aspect, because it effectively
-> > determines which devices are isolated from each other.
-> >
-> > That said, I agree that for now we can just start with a fixed
-> > assignment. We can think of the API if there is a need to adjust the
-> > assignment.
->
-> Sorry for here. I forgot a thing here. that interface above still will
-> not be helpful. If we don't divide the whole 16GB ranges into 4
-> regions(let all the other ranges be dynamical), It won't work since we
-> can only adjust bank_sel with the larb as unit. This is a problem. there
-> are many ports in a larb. Take a example, the address for vcodec read
-> port is 32bits while the address for vcodec write port is 33bit, then it
-> will fail since we only have one bank_sel setting for one larb.
-
-That's exactly why I proposed to have the API operate based on the
-struct device, rather than individual DMA ports. Although I guess the
-CCU case is different, because it's the same larb as the camera.
-
-Anyway, I agree that we don't have to come up with such an API right now.
-
-> Thus we
-> have to use current design.
->
-> >
-> > >
-> > >    In current design, the MM device don't need care about it and 4GB
-> > > range is enough for them.
-> > >
-> >
-> > Actually, is the current assignment correct?
->
-> Oh. In the code (patch [32/33] of v6), I put CCU0/1 in the cam/mdp
-> region which start at 8G since CCU0/1 is a module of camera.
->
-> >
-> > domain-id  module     iova-range                  larbs
-> >    0       disp        0 ~ 4G                      larb0/1
-> >    1       vcodec      4G ~ 8G                     larb4/5/7
-> >    2       cam/mdp     8G ~ 12G             larb2/9/11/13/14/16/17/18/19/20
-> >    3       CCU0    0x4000_0000 ~ 0x43ff_ffff     larb13: port 9/10
-> >    4       CCU1    0x4400_0000 ~ 0x47ff_ffff     larb14: port 4/5
-> >
-> > Wouldn't CCU0 and CCU1 conflict with disp?
->
-> About the conflict, I use patch [29/33] of v6 for this. I will reserve
-> this special iova region when the full domain(0-4G in this example)
-> initialize.
->
-> > Should perhaps disp be assigned 12G ~ 16G instead?
->
-> I think no need put it to 12G-16G, In previous SoC, we have only 4GB
-> ranges for whole MM engines. currently only cam/mdp domain exclude 128M
-> for CCU. it should be something wrong if this is not enough.
->
-
-Indeed, space is not a problem, but from the security point of view
-it's undesirable. I believe CCU would be running proprietary firmware,
-so it should be isolated as much as possible from other components.
-And, after all, why waste the remaining 4G of address space?
-
-Best regards,
-Tomasz
-
-> >
-> > Best regards,
-> > Tomasz
-> >
-> > > >
-> > > > Best regards,
-> > > > Tomasz
-> > > >
-> > > > >
-> > > > > Thanks.
-> > > > > >
-> > > > > > Best regards,
-> > > > > > Tomasz
-> > > > > >
-> > > > > > >    3       CCU0    0x4000_0000 ~ 0x43ff_ffff     larb13: port 9/10
-> > > > > > >    4       CCU1    0x4400_0000 ~ 0x47ff_ffff     larb14: port 4/5
-> > > > > > >
-> > > > > > > The iova range for CCU0/1(camera control unit) is HW requirement.
-> > > > > > >
-> > > > > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > > > > ---
-> > > > > > >  .../bindings/iommu/mediatek,iommu.yaml        |  18 +-
-> > > > > > >  include/dt-bindings/memory/mt8192-larb-port.h | 240 ++++++++++++++++++
-> > > > > > >  2 files changed, 257 insertions(+), 1 deletion(-)
-> > > > > > >  create mode 100644 include/dt-bindings/memory/mt8192-larb-port.h
-> > > > > > >
-> > > > > [snip]
-> > >
->
+Regards,
+Santosh
