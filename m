@@ -2,113 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8284303307
+	by mail.lfdr.de (Postfix) with ESMTP id 6C172303306
 	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:45:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727222AbhAZEow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:44:52 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:34550 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729674AbhAYOlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 09:41:10 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10PEbl9t026481;
-        Mon, 25 Jan 2021 15:38:51 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=MIuVa7N9W1Fh67WY3zuMzD4+gl2zGit1w7lDqAqbRls=;
- b=b1WJZHMLUdC7ufEVjoNaD2PTQ7Oq27HEbSh2fiOjDzvji4HlrISf2xHfUJJ8DIqBaHwy
- F4Af9dAvwggjoqgNDGKhR4bqiySfhsRSlfR3Ce8AUm3SppsHe+/Go7HxWxc3j5RMOiQC
- koMGaEt67eUgsn9PlUQex5M8sXsAvW6vfjoasTahByc6cV4FPZDlnSS/LWa8sUSSCwbH
- hgq+xGcDTrD6X69408bBYjfJNUf/lz6JHQZvXIXowNdts0SZwwaqCpGejHV/Il+ScUqB
- 9IB86VzOuOIvyV3kAtfT10EgxOtZYe4WsTjSooMaYbZsMkOksrEioPxTgY1EOU/8S+uH Lg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 368bjn3ddn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 25 Jan 2021 15:38:51 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A4A4A100034;
-        Mon, 25 Jan 2021 15:38:50 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5CD202288B4;
-        Mon, 25 Jan 2021 15:38:50 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.51) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 25 Jan
- 2021 15:38:49 +0100
-Subject: Re: [PATCH] ARM: dts: stm32: Add STM32MP1 I2C6 SDA/SCL pinmux
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-amarula@amarulasolutions.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20201223110757.126937-1-jagan@amarulasolutions.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <06748341-211c-c956-7ac2-d85ca0b582e2@foss.st.com>
-Date:   Mon, 25 Jan 2021 15:38:49 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727180AbhAZEop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:44:45 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51278 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729681AbhAYOlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 09:41:06 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10PEdE2j043042;
+        Mon, 25 Jan 2021 08:39:14 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611585554;
+        bh=meyGc8VfIK05SKEQ/tVeeAe4qecMSgqA+fRYr+q07vA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=GvYX/5cBYxoedt2d4SqIGXm8G+kqLCYatbu1iQKFvHoKGZTxhWvC12vLG4blKMK53
+         hEzwkhG49XZUXFqW+iWSnH3lKqyGNhcwCVjKDszMcRccZ60mh3r7CaN+kIldbKe3M8
+         AEkSD6jxMmo/ac9hnSt7O4gPZMWni+IGP4JT/LOY=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10PEdE5u071173
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 25 Jan 2021 08:39:14 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 25
+ Jan 2021 08:39:13 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 25 Jan 2021 08:39:14 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10PEdDRo113591;
+        Mon, 25 Jan 2021 08:39:14 -0600
+Date:   Mon, 25 Jan 2021 08:39:13 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Dave Gerlach <d-gerlach@ti.com>, Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH v3 2/5] dt-bindings: pinctrl: k3: Introduce pinmux
+ definitions for AM64
+Message-ID: <20210125143913.2cfuyk2dri33xbz2@foothold>
+References: <20210120202532.9011-1-d-gerlach@ti.com>
+ <20210120202532.9011-3-d-gerlach@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20201223110757.126937-1-jagan@amarulasolutions.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-25_04:2021-01-25,2021-01-25 signatures=0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210120202532.9011-3-d-gerlach@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 14:25-20210120, Dave Gerlach wrote:
+> Add pinctrl macros for AM64 SoC. These macro definitions are similar to
+> that of previous platforms, but adding new definitions to avoid any
+> naming confusions in the soc dts files.
+> 
+> Unlike what checkpatch insists, we do not need parentheses enclosing
+> the values for this macro as we do intend it to generate two separate
+> values as has been done for other similar platforms.
+> 
+> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
 
-On 12/23/20 12:07 PM, Jagan Teki wrote:
-> Add SDA/SCL pinmux lines for I2C6 on STM32MP1.
-> 
-> This support adds both in default and sleep states.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+I need Rob's ack to apply this patch.
+
 > ---
->   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 17 +++++++++++++++++
->   1 file changed, 17 insertions(+)
+>  include/dt-bindings/pinctrl/k3.h | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> index 20a59e8f7a33..2036c1d0d798 100644
-> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> @@ -2018,6 +2018,23 @@ pins {
->   		};
->   	};
->   
-> +	i2c6_pins_a: i2c6-0 {
-> +		pins {
-> +			pinmux = <STM32_PINMUX('Z', 6, AF2)>, /* I2C6_SCL */
-> +				 <STM32_PINMUX('Z', 7, AF2)>; /* I2C6_SDA */
-> +			bias-disable;
-> +			drive-open-drain;
-> +			slew-rate = <0>;
-> +		};
-> +	};
+> diff --git a/include/dt-bindings/pinctrl/k3.h b/include/dt-bindings/pinctrl/k3.h
+> index b0eea7cc6e23..e085f102b283 100644
+> --- a/include/dt-bindings/pinctrl/k3.h
+> +++ b/include/dt-bindings/pinctrl/k3.h
+> @@ -3,7 +3,7 @@
+>   * This header provides constants for pinctrl bindings for TI's K3 SoC
+>   * family.
+>   *
+> - * Copyright (C) 2018 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2018-2021 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  #ifndef _DT_BINDINGS_PINCTRL_TI_K3_H
+>  #define _DT_BINDINGS_PINCTRL_TI_K3_H
+> @@ -35,4 +35,7 @@
+>  #define J721E_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+>  #define J721E_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
+>  
+> +#define AM64X_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+> +#define AM64X_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
 > +
-> +	i2c6_sleep_pins_a: i2c6-sleep-0 {
-> +		pins {
-> +			pinmux = <STM32_PINMUX('Z', 6, ANALOG)>, /* I2C6_SCL */
-> +				 <STM32_PINMUX('Z', 7, ANALOG)>; /* I2C6_SDA */
-> +		};
-> +	};
-> +
->   	spi1_pins_a: spi1-0 {
->   		pins1 {
->   			pinmux = <STM32_PINMUX('Z', 0, AF5)>, /* SPI1_SCK */
+>  #endif
+> -- 
+> 2.28.0
 > 
 
-Applied on stm32-next.
-
-Thanks.
-Alex
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
