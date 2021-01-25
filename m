@@ -2,444 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 366BE302A85
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 19:43:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 329C8302AA0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 19:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726988AbhAYSmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 13:42:17 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58344 "EHLO mail.kernel.org"
+        id S1730445AbhAYSqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 13:46:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33350 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726725AbhAYSmG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 13:42:06 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1B5FD221E7;
-        Mon, 25 Jan 2021 18:40:34 +0000 (UTC)
+        id S1730064AbhAYSqS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 13:46:18 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2320522DFB;
+        Mon, 25 Jan 2021 18:45:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611600034;
-        bh=IL3fKoYywx8E3sEg7Ojvw5iaWwEK8cFMa0PYN3PSCdQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=uBngGyjERhk8wT16r4R3c20Rc/glumV4htW9AdAdxdZOh1uCsvjGn9VoKR+vMguIW
-         Cez3YdC8sBhjCzIr2PrdujKrTRJZPxBoJlEBErKwa7gUCvMO5R1vmGN/P3rBL4ypYP
-         EBtx6+r6r9Wbg45JIpz91IQrA7xSxCriWRrxEE/C2YZkowMvQJsLI5b+3hVDM8AJnm
-         kdWlxquMGpeKcKPKGDaf6hsR9g0gZLHtri9MhcZWJMGDQlCTxRoDfLqHiKwdQcfPJa
-         TKUmsKFHhQAbOmtQiwIUwIL/2YEPcc8uIBBvPZSxHU0gUNgRH/C7QnsrLB53Tpf77k
-         pCX839G7l2aew==
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     linux-mmc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: [PATCH v6 8/9] mmc: sdhci-msm: add Inline Crypto Engine support
-Date:   Mon, 25 Jan 2021 10:38:09 -0800
-Message-Id: <20210125183810.198008-9-ebiggers@kernel.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210125183810.198008-1-ebiggers@kernel.org>
-References: <20210125183810.198008-1-ebiggers@kernel.org>
+        s=k20201202; t=1611600344;
+        bh=Z0PYkD5c8k6V+L+B6WcLlwfL+2n9gR6KhmRw0jJXIlE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iAjAaIRatmibVWZrqxhrA/wafXH0y9jZSaTxrxsPjuYzcBqELg5GSXY/hHJIfeT0n
+         Ow0qoLYVHRIBadT7JqOv3CmqlQLEBWbX00eZ1wf97Fk03eH2PQA0mmtWpWDXnRZZGM
+         nKYAjbF7HG07gMlCOTP5ErrdEfu6+ot8H4ENWqpnN3F95f2W0vpGREmkcRZ8PnXH5E
+         mVNlXIQ2a9FOCq+2Hp4DvsfJLiRfya8VaUwmOgb7ZE0XG/EkqgEG9u8Ll/8KJtwTyA
+         uSXarDER2z+3KIBFVz97OL9klmlWeb83MNwemtU3yDkOvTZrxKLgcCwpafRE7Imn9c
+         vjk9snNlD9cqw==
+Date:   Mon, 25 Jan 2021 20:45:41 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     xxm <xxm@rock-chips.com>, devicetree@vger.kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Johan Jonker <jbx6244@gmail.com>
+Subject: Re: [PATCH v3 2/2] PCI: rockchip: add DesignWare based PCIe
+ controller
+Message-ID: <20210125184541.GJ579511@unreal>
+References: <20210125024824.634583-1-xxm@rock-chips.com>
+ <20210125024927.634634-1-xxm@rock-chips.com>
+ <20210125054836.GB579511@unreal>
+ <0b65ca38-ff7a-f9cd-5406-1f275fbbecd1@rock-chips.com>
+ <20210125090129.GF579511@unreal>
+ <e7ed6586-06f3-52e3-b2db-38887a5a37e4@arm.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <e7ed6586-06f3-52e3-b2db-38887a5a37e4@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eric Biggers <ebiggers@google.com>
+On Mon, Jan 25, 2021 at 03:53:38PM +0000, Robin Murphy wrote:
+> On 2021-01-25 09:01, Leon Romanovsky wrote:
+> > On Mon, Jan 25, 2021 at 02:40:10PM +0800, xxm wrote:
+> > > Hi Leon,
+> > >
+> > > Thanks for your reply.
+> > >
+> > > 在 2021/1/25 13:48, Leon Romanovsky 写道:
+> > > > On Mon, Jan 25, 2021 at 10:49:27AM +0800, Simon Xue wrote:
+> > > > > pcie-dw-rockchip is based on DWC IP. But pcie-rockchip-host
+> > > > > is Rockchip designed IP which is only used for RK3399. So all the following
+> > > > > non-RK3399 SoCs should use this driver.
+> > > > >
+> > > > > Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> > > > > Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> > > > > ---
+> > > > >    drivers/pci/controller/dwc/Kconfig            |   9 +
+> > > > >    drivers/pci/controller/dwc/Makefile           |   1 +
+> > > > >    drivers/pci/controller/dwc/pcie-dw-rockchip.c | 286 ++++++++++++++++++
+> > > > >    3 files changed, 296 insertions(+)
+> > > > >    create mode 100644 drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > > >
+> > > > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> > > > > index 22c5529e9a65..aee408fe9283 100644
+> > > > > --- a/drivers/pci/controller/dwc/Kconfig
+> > > > > +++ b/drivers/pci/controller/dwc/Kconfig
+> > > > > @@ -214,6 +214,15 @@ config PCIE_ARTPEC6_EP
+> > > > >    	  Enables support for the PCIe controller in the ARTPEC-6 SoC to work in
+> > > > >    	  endpoint mode. This uses the DesignWare core.
+> > > > >
+> > > > > +config PCIE_ROCKCHIP_DW_HOST
+> > > > > +	bool "Rockchip DesignWare PCIe controller"
+> > > > > +	select PCIE_DW
+> > > > > +	select PCIE_DW_HOST
+> > > > > +	depends on ARCH_ROCKCHIP || COMPILE_TEST
+> > > > > +	depends on OF
+> > > > > +	help
+> > > > > +	  Enables support for the DW PCIe controller in the Rockchip SoC.
+> > > > > +
+> > > > >    config PCIE_INTEL_GW
+> > > > >    	bool "Intel Gateway PCIe host controller support"
+> > > > >    	depends on OF && (X86 || COMPILE_TEST)
+> > > > > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
+> > > > > index a751553fa0db..30eef8e9ee8a 100644
+> > > > > --- a/drivers/pci/controller/dwc/Makefile
+> > > > > +++ b/drivers/pci/controller/dwc/Makefile
+> > > > > @@ -13,6 +13,7 @@ obj-$(CONFIG_PCI_LAYERSCAPE_EP) += pci-layerscape-ep.o
+> > > > >    obj-$(CONFIG_PCIE_QCOM) += pcie-qcom.o
+> > > > >    obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
+> > > > >    obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
+> > > > > +obj-$(CONFIG_PCIE_ROCKCHIP_DW_HOST) += pcie-dw-rockchip.o
+> > > > >    obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
+> > > > >    obj-$(CONFIG_PCIE_KIRIN) += pcie-kirin.o
+> > > > >    obj-$(CONFIG_PCIE_HISI_STB) += pcie-histb.o
+> > > > > diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..07f6d1cd5853
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > > > @@ -0,0 +1,286 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > > +/*
+> > > > > + * PCIe host controller driver for Rockchip SoCs
+> > > > > + *
+> > > > > + * Copyright (C) 2021 Rockchip Electronics Co., Ltd.
+> > > > > + *		http://www.rock-chips.com
+> > > > > + *
+> > > > > + * Author: Simon Xue <xxm@rock-chips.com>
+> > > > > + */
+> > > > > +
+> > > > > +#include <linux/clk.h>
+> > > > > +#include <linux/gpio/consumer.h>
+> > > > > +#include <linux/mfd/syscon.h>
+> > > > > +#include <linux/module.h>
+> > > > > +#include <linux/of_device.h>
+> > > > > +#include <linux/phy/phy.h>
+> > > > > +#include <linux/platform_device.h>
+> > > > > +#include <linux/regmap.h>
+> > > > > +#include <linux/reset.h>
+> > > > > +
+> > > > > +#include "pcie-designware.h"
+> > > > > +
+> > > > > +/*
+> > > > > + * The upper 16 bits of PCIE_CLIENT_CONFIG are a write
+> > > > > + * mask for the lower 16 bits.  This allows atomic updates
+> > > > > + * of the register without locking.
+> > > > > + */
+> > > > This is correct only for the variables that naturally aligned, I imagine
+> > > > that this is the case here and in the Linux, but better do not write comments
+> > > > in the code that are not accurate.
+> > >
+> > > Ok, will remove.
+> > > I wonder what it would be when outside the Linux? Could you share some information?
+> >
+> > The C standard says nothing about atomicity, integer assignment maybe atomic,
+> > maybe it isn’t. There is no guarantee, plain integer assignment in C is non-atomic
+> > by definition.
+> >
+> > The atomicity of u32 is very dependent on hardware vendor, memory model and compiler,
+> > for example x86 and ARMs guarantee atomicity for u32. This is why I said that probably
+> > here (Linux) it is ok and you are not alone in expecting lockless write.
+>
+> Huh? What do variables and the abstract machine of the C language
+> environment have to do with the definition of *hardware MMIO registers*? We
+> don't write to registers with plain integer assignment of u32, we use
+> writel() (precisely in order to bypass that abstract C environment).
+>
+> I appreciate that the comment is not universally true if taken completely
+> out of context, but I that's true of pretty much all comments ever. If
+> someone really were trying to learn basic programming principles from random
+> comments in Linux drivers, then it's already a bit late for us to try and
+> save them from themselves.
 
-Add support for Qualcomm Inline Crypto Engine (ICE) to sdhci-msm.
+So what? Does it mean that new code should have comments that are not
+correct? As you can see from this conversation, even the author didn't
+know what u32 isn’t guaranteed to be atomic, so yes, the comments should
+be correct.
 
-The standard-compliant parts, such as querying the crypto capabilities
-and enabling crypto for individual MMC requests, are already handled by
-cqhci-crypto.c, which itself is wired into the blk-crypto framework.
-However, ICE requires vendor-specific init, enable, and resume logic,
-and it requires that keys be programmed and evicted by vendor-specific
-SMC calls.  Make the sdhci-msm driver handle these details.
-
-This is heavily inspired by the similar changes made for UFS, since the
-UFS and eMMC ICE instances are very similar.  See commit df4ec2fa7a4d
-("scsi: ufs-qcom: Add Inline Crypto Engine support").
-
-I tested this on a Sony Xperia 10, which uses the Snapdragon 630 SoC,
-which has basic upstream support.  Mainly, I used android-xfstests
-(https://github.com/tytso/xfstests-bld/blob/master/Documentation/android-xfstests.md)
-to run the ext4 and f2fs encryption tests in a Debian chroot:
-
-	android-xfstests -c ext4,f2fs -g encrypt -m inlinecrypt
-
-These tests included tests which verify that the on-disk ciphertext is
-identical to that produced by a software implementation.  I also
-verified that ICE was actually being used.
-
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-Reviewed-by: Satya Tangirala <satyat@google.com>
-Signed-off-by: Eric Biggers <ebiggers@google.com>
----
- drivers/mmc/host/Kconfig     |   1 +
- drivers/mmc/host/sdhci-msm.c | 276 ++++++++++++++++++++++++++++++++++-
- 2 files changed, 273 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index bbf6989e36386..a29411ca626f5 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -546,6 +546,7 @@ config MMC_SDHCI_MSM
- 	depends on MMC_SDHCI_PLTFM
- 	select MMC_SDHCI_IO_ACCESSORS
- 	select MMC_CQHCI
-+	select QCOM_SCM if MMC_CRYPTO && ARCH_QCOM
- 	help
- 	  This selects the Secure Digital Host Controller Interface (SDHCI)
- 	  support present in Qualcomm SOCs. The controller supports
-diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-index 97902616a695e..5e1da4df096f6 100644
---- a/drivers/mmc/host/sdhci-msm.c
-+++ b/drivers/mmc/host/sdhci-msm.c
-@@ -13,6 +13,7 @@
- #include <linux/pm_opp.h>
- #include <linux/slab.h>
- #include <linux/iopoll.h>
-+#include <linux/qcom_scm.h>
- #include <linux/regulator/consumer.h>
- #include <linux/interconnect.h>
- #include <linux/pinctrl/consumer.h>
-@@ -255,10 +256,12 @@ struct sdhci_msm_variant_info {
- struct sdhci_msm_host {
- 	struct platform_device *pdev;
- 	void __iomem *core_mem;	/* MSM SDCC mapped address */
-+	void __iomem *ice_mem;	/* MSM ICE mapped address (if available) */
- 	int pwr_irq;		/* power irq */
- 	struct clk *bus_clk;	/* SDHC bus voter clock */
- 	struct clk *xo_clk;	/* TCXO clk needed for FLL feature of cm_dll*/
--	struct clk_bulk_data bulk_clks[4]; /* core, iface, cal, sleep clocks */
-+	/* core, iface, cal, sleep, and ice clocks */
-+	struct clk_bulk_data bulk_clks[5];
- 	unsigned long clk_rate;
- 	struct mmc_host *mmc;
- 	struct opp_table *opp_table;
-@@ -1792,6 +1795,246 @@ static void sdhci_msm_set_clock(struct sdhci_host *host, unsigned int clock)
- 	__sdhci_msm_set_clock(host, clock);
- }
- 
-+/*****************************************************************************\
-+ *                                                                           *
-+ * Inline Crypto Engine (ICE) support                                        *
-+ *                                                                           *
-+\*****************************************************************************/
-+
-+#ifdef CONFIG_MMC_CRYPTO
-+
-+#define AES_256_XTS_KEY_SIZE			64
-+
-+/* QCOM ICE registers */
-+
-+#define QCOM_ICE_REG_VERSION			0x0008
-+
-+#define QCOM_ICE_REG_FUSE_SETTING		0x0010
-+#define QCOM_ICE_FUSE_SETTING_MASK		0x1
-+#define QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK	0x2
-+#define QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK	0x4
-+
-+#define QCOM_ICE_REG_BIST_STATUS		0x0070
-+#define QCOM_ICE_BIST_STATUS_MASK		0xF0000000
-+
-+#define QCOM_ICE_REG_ADVANCED_CONTROL		0x1000
-+
-+#define sdhci_msm_ice_writel(host, val, reg)	\
-+	writel((val), (host)->ice_mem + (reg))
-+#define sdhci_msm_ice_readl(host, reg)	\
-+	readl((host)->ice_mem + (reg))
-+
-+static bool sdhci_msm_ice_supported(struct sdhci_msm_host *msm_host)
-+{
-+	struct device *dev = mmc_dev(msm_host->mmc);
-+	u32 regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_VERSION);
-+	int major = regval >> 24;
-+	int minor = (regval >> 16) & 0xFF;
-+	int step = regval & 0xFFFF;
-+
-+	/* For now this driver only supports ICE version 3. */
-+	if (major != 3) {
-+		dev_warn(dev, "Unsupported ICE version: v%d.%d.%d\n",
-+			 major, minor, step);
-+		return false;
-+	}
-+
-+	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
-+		 major, minor, step);
-+
-+	/* If fuses are blown, ICE might not work in the standard way. */
-+	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_FUSE_SETTING);
-+	if (regval & (QCOM_ICE_FUSE_SETTING_MASK |
-+		      QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK |
-+		      QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK)) {
-+		dev_warn(dev, "Fuses are blown; ICE is unusable!\n");
-+		return false;
-+	}
-+	return true;
-+}
-+
-+static inline struct clk *sdhci_msm_ice_get_clk(struct device *dev)
-+{
-+	return devm_clk_get(dev, "ice");
-+}
-+
-+static int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
-+			      struct cqhci_host *cq_host)
-+{
-+	struct mmc_host *mmc = msm_host->mmc;
-+	struct device *dev = mmc_dev(mmc);
-+	struct resource *res;
-+	int err;
-+
-+	if (!(cqhci_readl(cq_host, CQHCI_CAP) & CQHCI_CAP_CS))
-+		return 0;
-+
-+	res = platform_get_resource_byname(msm_host->pdev, IORESOURCE_MEM,
-+					   "ice");
-+	if (!res) {
-+		dev_warn(dev, "ICE registers not found\n");
-+		goto disable;
-+	}
-+
-+	if (!qcom_scm_ice_available()) {
-+		dev_warn(dev, "ICE SCM interface not found\n");
-+		goto disable;
-+	}
-+
-+	msm_host->ice_mem = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(msm_host->ice_mem)) {
-+		err = PTR_ERR(msm_host->ice_mem);
-+		dev_err(dev, "Failed to map ICE registers; err=%d\n", err);
-+		return err;
-+	}
-+
-+	if (!sdhci_msm_ice_supported(msm_host))
-+		goto disable;
-+
-+	mmc->caps2 |= MMC_CAP2_CRYPTO;
-+	return 0;
-+
-+disable:
-+	dev_warn(dev, "Disabling inline encryption support\n");
-+	return 0;
-+}
-+
-+static void sdhci_msm_ice_low_power_mode_enable(struct sdhci_msm_host *msm_host)
-+{
-+	u32 regval;
-+
-+	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_ADVANCED_CONTROL);
-+	/*
-+	 * Enable low power mode sequence
-+	 * [0]-0, [1]-0, [2]-0, [3]-E, [4]-0, [5]-0, [6]-0, [7]-0
-+	 */
-+	regval |= 0x7000;
-+	sdhci_msm_ice_writel(msm_host, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
-+}
-+
-+static void sdhci_msm_ice_optimization_enable(struct sdhci_msm_host *msm_host)
-+{
-+	u32 regval;
-+
-+	/* ICE Optimizations Enable Sequence */
-+	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_ADVANCED_CONTROL);
-+	regval |= 0xD807100;
-+	/* ICE HPG requires delay before writing */
-+	udelay(5);
-+	sdhci_msm_ice_writel(msm_host, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
-+	udelay(5);
-+}
-+
-+/*
-+ * Wait until the ICE BIST (built-in self-test) has completed.
-+ *
-+ * This may be necessary before ICE can be used.
-+ *
-+ * Note that we don't really care whether the BIST passed or failed; we really
-+ * just want to make sure that it isn't still running.  This is because (a) the
-+ * BIST is a FIPS compliance thing that never fails in practice, (b) ICE is
-+ * documented to reject crypto requests if the BIST fails, so we needn't do it
-+ * in software too, and (c) properly testing storage encryption requires testing
-+ * the full storage stack anyway, and not relying on hardware-level self-tests.
-+ */
-+static int sdhci_msm_ice_wait_bist_status(struct sdhci_msm_host *msm_host)
-+{
-+	u32 regval;
-+	int err;
-+
-+	err = readl_poll_timeout(msm_host->ice_mem + QCOM_ICE_REG_BIST_STATUS,
-+				 regval, !(regval & QCOM_ICE_BIST_STATUS_MASK),
-+				 50, 5000);
-+	if (err)
-+		dev_err(mmc_dev(msm_host->mmc),
-+			"Timed out waiting for ICE self-test to complete\n");
-+	return err;
-+}
-+
-+static void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
-+{
-+	if (!(msm_host->mmc->caps2 & MMC_CAP2_CRYPTO))
-+		return;
-+	sdhci_msm_ice_low_power_mode_enable(msm_host);
-+	sdhci_msm_ice_optimization_enable(msm_host);
-+	sdhci_msm_ice_wait_bist_status(msm_host);
-+}
-+
-+static int __maybe_unused sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
-+{
-+	if (!(msm_host->mmc->caps2 & MMC_CAP2_CRYPTO))
-+		return 0;
-+	return sdhci_msm_ice_wait_bist_status(msm_host);
-+}
-+
-+/*
-+ * Program a key into a QC ICE keyslot, or evict a keyslot.  QC ICE requires
-+ * vendor-specific SCM calls for this; it doesn't support the standard way.
-+ */
-+static int sdhci_msm_program_key(struct cqhci_host *cq_host,
-+				 const union cqhci_crypto_cfg_entry *cfg,
-+				 int slot)
-+{
-+	struct device *dev = mmc_dev(cq_host->mmc);
-+	union cqhci_crypto_cap_entry cap;
-+	union {
-+		u8 bytes[AES_256_XTS_KEY_SIZE];
-+		u32 words[AES_256_XTS_KEY_SIZE / sizeof(u32)];
-+	} key;
-+	int i;
-+	int err;
-+
-+	if (!(cfg->config_enable & CQHCI_CRYPTO_CONFIGURATION_ENABLE))
-+		return qcom_scm_ice_invalidate_key(slot);
-+
-+	/* Only AES-256-XTS has been tested so far. */
-+	cap = cq_host->crypto_cap_array[cfg->crypto_cap_idx];
-+	if (cap.algorithm_id != CQHCI_CRYPTO_ALG_AES_XTS ||
-+	    cap.key_size != CQHCI_CRYPTO_KEY_SIZE_256) {
-+		dev_err_ratelimited(dev,
-+				    "Unhandled crypto capability; algorithm_id=%d, key_size=%d\n",
-+				    cap.algorithm_id, cap.key_size);
-+		return -EINVAL;
-+	}
-+
-+	memcpy(key.bytes, cfg->crypto_key, AES_256_XTS_KEY_SIZE);
-+
-+	/*
-+	 * The SCM call byte-swaps the 32-bit words of the key.  So we have to
-+	 * do the same, in order for the final key be correct.
-+	 */
-+	for (i = 0; i < ARRAY_SIZE(key.words); i++)
-+		__cpu_to_be32s(&key.words[i]);
-+
-+	err = qcom_scm_ice_set_key(slot, key.bytes, AES_256_XTS_KEY_SIZE,
-+				   QCOM_SCM_ICE_CIPHER_AES_256_XTS,
-+				   cfg->data_unit_size);
-+	memzero_explicit(&key, sizeof(key));
-+	return err;
-+}
-+#else /* CONFIG_MMC_CRYPTO */
-+static inline struct clk *sdhci_msm_ice_get_clk(struct device *dev)
-+{
-+	return NULL;
-+}
-+
-+static inline int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
-+				     struct cqhci_host *cq_host)
-+{
-+	return 0;
-+}
-+
-+static inline void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
-+{
-+}
-+
-+static inline int __maybe_unused
-+sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
-+{
-+	return 0;
-+}
-+#endif /* !CONFIG_MMC_CRYPTO */
-+
- /*****************************************************************************\
-  *                                                                           *
-  * MSM Command Queue Engine (CQE)                                            *
-@@ -1810,6 +2053,16 @@ static u32 sdhci_msm_cqe_irq(struct sdhci_host *host, u32 intmask)
- 	return 0;
- }
- 
-+static void sdhci_msm_cqe_enable(struct mmc_host *mmc)
-+{
-+	struct sdhci_host *host = mmc_priv(mmc);
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-+
-+	sdhci_cqe_enable(mmc);
-+	sdhci_msm_ice_enable(msm_host);
-+}
-+
- static void sdhci_msm_cqe_disable(struct mmc_host *mmc, bool recovery)
- {
- 	struct sdhci_host *host = mmc_priv(mmc);
-@@ -1842,8 +2095,11 @@ static void sdhci_msm_cqe_disable(struct mmc_host *mmc, bool recovery)
- }
- 
- static const struct cqhci_host_ops sdhci_msm_cqhci_ops = {
--	.enable		= sdhci_cqe_enable,
-+	.enable		= sdhci_msm_cqe_enable,
- 	.disable	= sdhci_msm_cqe_disable,
-+#ifdef CONFIG_MMC_CRYPTO
-+	.program_key	= sdhci_msm_program_key,
-+#endif
- };
- 
- static int sdhci_msm_cqe_add_host(struct sdhci_host *host,
-@@ -1879,6 +2135,10 @@ static int sdhci_msm_cqe_add_host(struct sdhci_host *host,
- 
- 	dma64 = host->flags & SDHCI_USE_64_BIT_DMA;
- 
-+	ret = sdhci_msm_ice_init(msm_host, cq_host);
-+	if (ret)
-+		goto cleanup;
-+
- 	ret = cqhci_init(cq_host, host->mmc, dma64);
- 	if (ret) {
- 		dev_err(&pdev->dev, "%s: CQE init: failed (%d)\n",
-@@ -2319,6 +2579,11 @@ static int sdhci_msm_probe(struct platform_device *pdev)
- 		clk = NULL;
- 	msm_host->bulk_clks[3].clk = clk;
- 
-+	clk = sdhci_msm_ice_get_clk(&pdev->dev);
-+	if (IS_ERR(clk))
-+		clk = NULL;
-+	msm_host->bulk_clks[4].clk = clk;
-+
- 	ret = clk_bulk_prepare_enable(ARRAY_SIZE(msm_host->bulk_clks),
- 				      msm_host->bulk_clks);
- 	if (ret)
-@@ -2532,12 +2797,15 @@ static __maybe_unused int sdhci_msm_runtime_resume(struct device *dev)
- 	 * Whenever core-clock is gated dynamically, it's needed to
- 	 * restore the SDR DLL settings when the clock is ungated.
- 	 */
--	if (msm_host->restore_dll_config && msm_host->clk_rate)
-+	if (msm_host->restore_dll_config && msm_host->clk_rate) {
- 		ret = sdhci_msm_restore_sdr_dll_config(host);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	dev_pm_opp_set_rate(dev, msm_host->clk_rate);
- 
--	return ret;
-+	return sdhci_msm_ice_resume(msm_host);
- }
- 
- static const struct dev_pm_ops sdhci_msm_pm_ops = {
--- 
-2.30.0
-
+Thanks
