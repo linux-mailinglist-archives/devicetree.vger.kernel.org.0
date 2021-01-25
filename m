@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 684D4302C8C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 21:32:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9433F302CF3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 21:51:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732202AbhAYUaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 15:30:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38776 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732309AbhAYU3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 15:29:49 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEBEFC061573
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 12:29:08 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id h15so5888616pli.8
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 12:29:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=L7hcJowvgJK8XV5T2kSWijbbIn+FH0xsHHJJGhXiQE0=;
-        b=O0ld6mWRMFPALAbHEFHcpFb3ogYdK765/sIFvWxcavPzvG3UvEenEJG/4gDiZpQxp3
-         dKdkzZEU1UiaGk3ow1+GBrlKcORtjunc2W2f+ouEhzj0sVyZp+sHgSv5dzqdgwEmk1Fr
-         TXufxTyI0yW8X5HVP7fhfvH7h0DHQKCtx8zZg=
+        id S1732189AbhAYUuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 15:50:55 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:43641 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732182AbhAYUui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 15:50:38 -0500
+Received: by mail-oi1-f175.google.com with SMTP id i25so4817196oie.10;
+        Mon, 25 Jan 2021 12:50:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=L7hcJowvgJK8XV5T2kSWijbbIn+FH0xsHHJJGhXiQE0=;
-        b=hmbqcXFZMuFZspWkrEyf++omPlyAvmgJztHIJZJiAJAD7t6NhWCieGdFYnsVoriZBt
-         C27lOlW53soNkegA0UtV7LjTyehwdAT/oQCSL/57ZfPgg57UiXE1Szi5U1Hs0yMQRWDy
-         MrhIBFbA+B3yCMTIaNrXhoODEJoAIUUmRTwiwZIUqNovQEChQcYGImhcVzB0UlgWeZm0
-         V6KJC7YMk73zjybM+p+CS12bvU6y5nQ+sOFXA1f4U72+HbDqfjK0fE2wtgQkVeZ9QLFA
-         S3ww3jmAcYRUyZ7H5htF6iyHA8JzqGyS4mLSDGWyiEzDz8iWCH/cqkqPTYUGr7MVR9oQ
-         7Mfg==
-X-Gm-Message-State: AOAM533YY7GdspbohwnLmI8wJjwhssv/Wd0mB4GsuAoy1TocaOiqBJpx
-        xOQ7DdDtdWJRnYOu9AUHBk/5ew==
-X-Google-Smtp-Source: ABdhPJxsTjN0zorpk0zOXXWw8UDdJVB06DcpY582k8+LI0wqcMj42Yy6RVlk3j+kBGaTZOz/Ysc8AA==
-X-Received: by 2002:a17:90a:4dc1:: with SMTP id r1mr2045991pjl.12.1611606548517;
-        Mon, 25 Jan 2021 12:29:08 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:201:1066:b437:97cd:2278])
-        by smtp.gmail.com with ESMTPSA id i62sm14073923pfe.84.2021.01.25.12.29.07
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=If+LyBK3ZLwHImhlgUCrxNda868hqAi6J5PrkdR7cAg=;
+        b=qbKr+Px3tGm9ty/9lo9qz9WGXelWO00XexEf8MjzKwGr/OyTBrPIzz3RSW46kRn+EW
+         BXUTi+WiluLLKGFy/5F4AM5sBkWkbz2rktAedJmjRT1bG9YLaqO1r5saEEA+lVWMHe6g
+         mZtnqfn5rwWzv0HKNXQI7B8d2+6UGCxyTtH77SNCrNpq748eO543MoAj6YJcqp8Lf3R9
+         ok3DcjtjzSLmmcSGogzzLQ5HkSWUBeN92CwXtpo2r5H9Ni/QO+0dxZtyrT7k5wzOEHcZ
+         Wj87vLaJQXN/tMNtMnPKdtmG+wHwlkxMz3FSQVeFAFqVJLyBF3a3P28sg7XFnsUD3GVi
+         jrrw==
+X-Gm-Message-State: AOAM533/akpjASd73rNS7vyROPM7HHH3Kqgjg4whcYjS/hFZeD+NznPS
+        Wl//azLLBGIGOMSHmtaWQ49dJ/lPwQ==
+X-Google-Smtp-Source: ABdhPJyA3+gXnHWwNRsfxas0aBBe6nBZ/V52aHml7J/D3sJRq/7hrx8ikgvJNDtJhYle1VVYGt1Fxg==
+X-Received: by 2002:aca:4c85:: with SMTP id z127mr1251964oia.124.1611607797791;
+        Mon, 25 Jan 2021 12:49:57 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y17sm3676343oie.7.2021.01.25.12.49.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 12:29:08 -0800 (PST)
-Content-Type: text/plain; charset="utf-8"
+        Mon, 25 Jan 2021 12:49:56 -0800 (PST)
+Received: (nullmailer pid 961138 invoked by uid 1000);
+        Mon, 25 Jan 2021 20:49:55 -0000
+Date:   Mon, 25 Jan 2021 14:49:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     robh+dt@kernel.org, konrad.dybcio@somainline.org,
+        martin.botka@somainline.org, linux-arm-msm@vger.kernel.org,
+        mturquette@baylibre.com, phone-devel@vger.kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        marijn.suijten@somainline.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 4/9] dt-bindings: clock: Add support for the SDM630
+ and SDM660 mmcc
+Message-ID: <20210125204955.GA960821@robh.at.kernel.org>
+References: <20210113183817.447866-1-angelogioacchino.delregno@somainline.org>
+ <20210113183817.447866-5-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210115144345.v2.4.I6889e21811df6adaff5c5b8a8c80fda0669ab3a5@changeid>
-References: <20210115224420.1635017-1-dianders@chromium.org> <20210115144345.v2.4.I6889e21811df6adaff5c5b8a8c80fda0669ab3a5@changeid>
-Subject: Re: [PATCH v2 4/5] dt-bindings: dt-bindings: display: simple: Add N116BCA-EA1
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Clark <robdclark@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-To:     Douglas Anderson <dianders@chromium.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Date:   Mon, 25 Jan 2021 12:29:06 -0800
-Message-ID: <161160654656.76967.8777176702304883328@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210113183817.447866-5-angelogioacchino.delregno@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2021-01-15 14:44:19)
-> Another simple eDP panel.
->=20
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+On Wed, 13 Jan 2021 19:38:12 +0100, AngeloGioacchino Del Regno wrote:
+> Document the multimedia clock controller found on SDM630/660.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > ---
+>  Documentation/devicetree/bindings/clock/qcom,mmcc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-With subject fixed
-
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Acked-by: Rob Herring <robh@kernel.org>
