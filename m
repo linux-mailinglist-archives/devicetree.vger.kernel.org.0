@@ -2,88 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F6B6301F70
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jan 2021 23:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AB26301FAF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 01:17:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726007AbhAXWwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jan 2021 17:52:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41852 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726023AbhAXWwi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jan 2021 17:52:38 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2427C061574
-        for <devicetree@vger.kernel.org>; Sun, 24 Jan 2021 14:51:57 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id f11so13059820ljm.8
-        for <devicetree@vger.kernel.org>; Sun, 24 Jan 2021 14:51:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4HuGZS3FXmpI/CZ9WRJi1GTxY4eR6JlbnQlmIWJDvhs=;
-        b=NUPplP+vwWcGNZku67kF6v0Zc3+oX52TgC4UVnC9NbzphbJ7yOo3lZgx0NHXvAzi4/
-         xnRCAIHE0ruAJ8HvkZDbaiyl/5VEQFlcXHUyUOg5W0tXmw8xRR/9ZGxYRibTCKQd2Em3
-         JGzKjFrj8IqxAGlyzt9x8qfsWUU1NwCPVqpRz2nhXoRxd+1G7sHECm9fdWqcPoKOiUDE
-         xoPn9xr3ZkalTIBSogHq2aR3gkTcYeyYoFzZivXKeIY/XR4ENYkwdlJ7WamTamtbwtXi
-         hTYSsVxmsDFQD9NO4GyfrEW+6KtsLs3TFca+J5YdXQ+PCtX8ME9+98DFYwf/wy+DY0Rd
-         Gc0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4HuGZS3FXmpI/CZ9WRJi1GTxY4eR6JlbnQlmIWJDvhs=;
-        b=h85ZKevtQaTtGpy0XygmLI1jmcO1Oyb7VFSsj42D2tWQxB6xj3V/Kf+yme7xNW0gHu
-         tpdEuISsHbGms6GhxaYHG3OMBHuKXC4k1ZDs0pSXyJR2KFYG6jshyb4BdF5EVmQNBqsG
-         019hsseEjzDnfMPitXs8Kirzl/ZQiYCigfDuZHNJuajtJ5+n9Bylknl9CF1ZV87moyKi
-         wNHgotw6MteJ10d+5ofMnFdlAOger/AbRoO05GtJn/FLJ0JufPvDAeWrIENAB/H90Aww
-         xafMJy23VIAxhM1o5lFkBJMtzz50ndLC9RoON2+JQV9z33hFuf+ewc5YvCwgZrU3jLYg
-         pXzg==
-X-Gm-Message-State: AOAM530qe0pZmG230wTZx5FBW/oVZF/M2DBZbl8oh+2aOhZbYivRTIHG
-        su7GMD5KXQftjHA9ZJPniE8v48uQVwuVW/TIx/bEAg==
-X-Google-Smtp-Source: ABdhPJxQyfKzJabalN+bedwoS7NGWpYLLpd54boyq2sKBZ7lVn6U5490067UEc04d3r+vv3OMoYA394NyqYfuciT6KQ=
-X-Received: by 2002:a2e:9ec3:: with SMTP id h3mr120887ljk.200.1611528716487;
- Sun, 24 Jan 2021 14:51:56 -0800 (PST)
-MIME-Version: 1.0
-References: <20210124170258.32862-1-marex@denx.de>
-In-Reply-To: <20210124170258.32862-1-marex@denx.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 24 Jan 2021 23:51:45 +0100
-Message-ID: <CACRpkdaLN_Q9rmMnuVhB8wuZJzMMzqdc+O54WOKfc4a2bgnUwQ@mail.gmail.com>
-Subject: Re: [PATCH V2 1/4] mmc: mmci: Add bindings to operate CMD, CK, CKIN
- pins as GPIO
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Ludovic Barre <ludovic.barre@st.com>,
+        id S1726655AbhAYAM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jan 2021 19:12:57 -0500
+Received: from onstation.org ([52.200.56.107]:35086 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726593AbhAYALe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 Jan 2021 19:11:34 -0500
+Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id D68943EA88;
+        Mon, 25 Jan 2021 00:09:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1611533357;
+        bh=NX04KDq22imvna2j2KPjU62cAJRCEXT8lTRLg6sU+9M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZTys71IW91sT6zb8BsXKM4Z3CwcgI6qowbfvayR2iwYFDP+Dcwdtph0pjhHUik6ik
+         Qjqhko3nVgog/EN8ikkXbaf+DTy14IgQZoe6pgCURs1+IHao6gUlhFnCjwIyF7WE4d
+         ODQtZGIouWhWgkLKWc4j/1grPYVXDigIT9++KJVU=
+Date:   Sun, 24 Jan 2021 19:09:16 -0500
+From:   Brian Masney <masneyb@onstation.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Samuel Pascua <pascua.samuel.14@gmail.com>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>
+Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974: add gpu support
+Message-ID: <20210125000916.GA22513@onstation.org>
+References: <20210124135610.1779295-1-iskren.chernev@gmail.com>
+ <f1438c9d-458b-2ff7-cae9-f7bf4228ef4c@somainline.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f1438c9d-458b-2ff7-cae9-f7bf4228ef4c@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 24, 2021 at 6:03 PM Marek Vasut <marex@denx.de> wrote:
+On Sun, Jan 24, 2021 at 03:56:06PM +0100, Konrad Dybcio wrote:
+> Hi,
+> 
+> 
+> > +		gpu_opp_table: opp_table {
+> > +			status = "disabled";
+> 
+> 
+> Is there a good reason to disable this?
+> 
+> 
+> > +			opp-800000000 {
+> > +				opp-hz = /bits/ 64 <800000000>;
+> > +			};
+> 
+> No. A330 can't go lightspeed (unless there's some secret ultra-binned msm8974pro-v4-ad-5g). [1]
 
-> Add DT bindings to describe GPIO line associated with CMD, CK, CKIN pins.
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Alexandre Torgue <alexandre.torgue@st.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Ludovic Barre <ludovic.barre@st.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> Cc: devicetree@vger.kernel.org
-> ---
-> V2: Rebase on next-20210122
+Hi Iskren,
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+I believe that the Nexus 5 GPU frequencies are documented in the
+downstream kernel at:
+https://github.com/AICP/kernel_lge_hammerhead/blob/n7.1/arch/arm/boot/dts/msm8974-gpu.dtsi#L67
 
-I would probably add an example as well, but that can be
-done separately and isn't super-important.
+I am fairly certain that the qcom,bus-freq property is an index into the
+qcom,msm-bus,vectors-KBps property above. This will map to the
+interconnect and operating points in the upstream kernel.
 
-Yours,
-Linus Walleij
+Note that the actual implementation in a3xx_gpu.c and a4xx_gpu.c
+currently has this snippet to set the bus speed:
+
+    /*
+     * Set the ICC path to maximum speed for now by multiplying the fastest
+     * frequency by the bus width (8). We'll want to scale this later on to
+     * improve battery life.
+     */
+    icc_set_bw(icc_path, 0, Bps_to_icc(gpu->fast_rate) * 8);
+    icc_set_bw(ocmem_icc_path, 0, Bps_to_icc(gpu->fast_rate) * 8);
+
+This should be fine for the time being. You'll want to document it
+correctly in device tree though.
+
+If the v2 changes too much, then feel free to drop my name from the
+patch. I thought that I had made these changes already but apparently
+not. :/
+
+Brian
