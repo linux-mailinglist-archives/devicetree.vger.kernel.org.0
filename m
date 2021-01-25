@@ -2,240 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4935303219
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 03:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFB89303200
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 03:43:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729817AbhAYO4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 09:56:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49740 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729821AbhAYOwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 09:52:47 -0500
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E475C06174A;
-        Mon, 25 Jan 2021 06:51:58 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id A764B1F8AC;
-        Mon, 25 Jan 2021 15:51:54 +0100 (CET)
-Subject: Re: [PATCH 1/2] media: venus: core: Add sdm660 DT compatible and
- resource struct
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, phone-devel@vger.kernel.org
-References: <20210115185252.333562-1-angelogioacchino.delregno@somainline.org>
- <20210115185252.333562-2-angelogioacchino.delregno@somainline.org>
- <2dc8a95f-110f-526f-18a8-6393e508c3a6@linaro.org>
- <eabc91cc-de96-08ef-756c-87fe43d6fadc@somainline.org>
- <cfc1998f-8d9b-5237-f286-7fdc69874b30@xs4all.nl>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <40c38734-a69d-2314-c342-244ee5a0e6b1@somainline.org>
-Date:   Mon, 25 Jan 2021 15:51:54 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1728359AbhAYP5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 10:57:40 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:48086 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730382AbhAYP5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 10:57:09 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10PF1YUQ029834;
+        Mon, 25 Jan 2021 16:05:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=iCz92iVqfHGteRU+hU/TvcxooA89t1WUlYOEoi877eE=;
+ b=e2ixu6nDXMeNFxQMc8yCSH7pB0ubJ5Cqo8V0EukSC1NytFpSTZI3hjyv8j1UCOk1H8X8
+ Wu8L/OMSjafFJ0H1yJnCKc63EdBpE2cFCWxajGuIu4Sqhvs5MfEkeGhHHzu5TrNghdvR
+ wtOvmrBHKJMA0WmtuvxHyoVp4Rch+i5R5rK7ajYoAUCc3fg++m48Bd1doQbtYhfBlfRY
+ wdV5PE3bnP47WXKLlR7nHV8tG+r8sdKt7g7ppfFxh8taxsJgC7Vx3UOaScRjHgWizuWw
+ FTgtBrP4mh4DUOQebvmx0Vc3FN0x2UKdqYXoILtxgwov+OqUvg/y6Jq9zN+C7y7g/9rF +w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 368c15k9wc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 25 Jan 2021 16:05:32 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 82DBE10002A;
+        Mon, 25 Jan 2021 16:05:31 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5AA1522B283;
+        Mon, 25 Jan 2021 16:05:31 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 25 Jan
+ 2021 16:05:30 +0100
+Subject: Re: [PATCH 2/5] ARM: dts: stm32: Add Engicam MicroGEA STM32MP1 SoM
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-amarula@amarulasolutions.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Francesco Utel <francesco.utel@engicam.com>,
+        Mirko Ardinghi <mirko.ardinghi@engicam.com>
+References: <20201223191402.378560-1-jagan@amarulasolutions.com>
+ <20201223191402.378560-3-jagan@amarulasolutions.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <21398844-c334-f753-0fac-144a0cdc29dc@foss.st.com>
+Date:   Mon, 25 Jan 2021 16:05:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <cfc1998f-8d9b-5237-f286-7fdc69874b30@xs4all.nl>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20201223191402.378560-3-jagan@amarulasolutions.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-25_05:2021-01-25,2021-01-25 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/01/21 11:40, Hans Verkuil ha scritto:
-> On 18/01/2021 18:45, AngeloGioacchino Del Regno wrote:
->> Il 18/01/21 18:21, Stanimir Varbanov ha scritto:
->>> Hi Angelo,
->>>
->>> Thanks for the patch!
->>>
->>> On 1/15/21 8:52 PM, AngeloGioacchino Del Regno wrote:
->>>> Add the SDM660 DT compatible and its resource structure, also
->>>> including support for the Venus pmdomains, in order to support
->>>> the Venus block in SDM630, SDM636, SDM660 and SDA variants.
->>>>
->>>> This SoC features Venus 4.4 (HFI3XX), with one vcodec used for
->>>> both encoding and decoding, switched on through two GDSCs.
->>>> The core clock for this Venus chip is powered by the RPM VDD_CX
->>>> power domain.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>>> ---
->>>>    drivers/media/platform/qcom/venus/core.c | 66 ++++++++++++++++++++++++
->>>>    1 file changed, 66 insertions(+)
->>>>
->>>> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
->>>> index bdd293faaad0..83ca86a63241 100644
->>>> --- a/drivers/media/platform/qcom/venus/core.c
->>>> +++ b/drivers/media/platform/qcom/venus/core.c
->>>> @@ -565,6 +565,71 @@ static const struct venus_resources sdm845_res_v2 = {
->>>>    	.fwname = "qcom/venus-5.2/venus.mdt",
->>>>    };
->>>>    
->>>> +static const struct freq_tbl sdm660_freq_table[] = {
->>>> +	{ 0, 518400000 },
->>>> +	{ 0, 441600000 },
->>>> +	{ 0, 404000000 },
->>>> +	{ 0, 320000000 },
->>>> +	{ 0, 269330000 },
->>>> +	{ 0, 133330000 },
->>>> +};
->>>> +
->>>> +static const struct reg_val sdm660_reg_preset[] = {
->>>> +	{ 0x80010, 0x001f001f },
->>>> +	{ 0x80018, 0x00000156 },
->>>> +	{ 0x8001C, 0x00000156 },
->>>> +};
->>>> +
->>>> +static const struct bw_tbl sdm660_bw_table_enc[] = {
->>>> +	{  979200,  1044000, 0, 2446336, 0 },	/* 4k UHD @ 30 */
->>>> +	{  864000,   887000, 0, 2108416, 0 },	/* 720p @ 240 */
->>>> +	{  489600,   666000, 0, 1207296, 0 },	/* 1080p @ 60 */
->>>> +	{  432000,   578000, 0, 1058816, 0 },	/* 720p @ 120 */
->>>> +	{  244800,   346000, 0,  616448, 0 },	/* 1080p @ 30 */
->>>> +	{  216000,   293000, 0,  534528, 0 },	/* 720p @ 60 */
->>>> +	{  108000,   151000, 0,  271360, 0 },	/* 720p @ 30 */
->>>> +};
->>>> +
->>>> +static const struct bw_tbl sdm660_bw_table_dec[] = {
->>>> +	{  979200,  2365000, 0, 1892000, 0 },	/* 4k UHD @ 30 */
->>>> +	{  864000,  1978000, 0, 1554000, 0 },	/* 720p @ 240 */
->>>> +	{  489600,  1133000, 0,  895000, 0 },	/* 1080p @ 60 */
->>>> +	{  432000,   994000, 0,  781000, 0 },	/* 720p @ 120 */
->>>> +	{  244800,   580000, 0,  460000, 0 },	/* 1080p @ 30 */
->>>> +	{  216000,   501000, 0,  301000, 0 },	/* 720p @ 60 */
->>>> +	{  108000,   255000, 0,  202000, 0 },	/* 720p @ 30 */
->>>> +};
->>>> +
->>>> +static const struct venus_resources sdm660_res = {
->>>> +	.freq_tbl = sdm660_freq_table,
->>>> +	.freq_tbl_size = ARRAY_SIZE(sdm660_freq_table),
->>>> +	.reg_tbl = sdm660_reg_preset,
->>>> +	.reg_tbl_size = ARRAY_SIZE(sdm660_reg_preset),
->>>> +	.bw_tbl_enc = sdm660_bw_table_enc,
->>>> +	.bw_tbl_enc_size = ARRAY_SIZE(sdm660_bw_table_enc),
->>>> +	.bw_tbl_dec = sdm660_bw_table_dec,
->>>> +	.bw_tbl_dec_size = ARRAY_SIZE(sdm660_bw_table_dec),
->>>> +	.clks = {"core", "iface", "bus_throttle", "bus" },
->>>> +	.clks_num = 4,
->>>> +	.vcodec0_clks = { "vcodec0_core" },
->>>> +	.vcodec_clks_num = 1,
->>>> +	.vcodec_pmdomains = { "venus", "vcodec0" },
->>>> +	.vcodec_pmdomains_num = 2,
->>>> +	.opp_pmdomain = (const char *[]) { "cx", NULL },
->>>> +	.vcodec_num = 1,
->>>> +	.max_load = 1036800,
->>>> +	.hfi_version = HFI_VERSION_3XX,
->>>> +	.vmem_id = VIDC_RESOURCE_NONE,
->>>> +	.vmem_size = 0,
->>>> +	.vmem_addr = 0,
->>>> +	.cp_start = 0,
->>>> +	.cp_size = 0x79000000,
->>>> +	.cp_nonpixel_start = 0x1000000,
->>>> +	.cp_nonpixel_size = 0x28000000,
->>>> +	.dma_mask = 0xd9000000 - 1,
->>>> +	.fwname = "qcom/venus-4.4/venus.mdt",
->>>
->>> Did you try venus-4.2 firmware from linux-firmware tree [1] ?
->>>
->>
->> No I haven't.. and I can't... my Sony devices (but I think that this is
->> a practice of all OEMs/ODMs) are using a Sony signed venus firmware, so
->> I am totally limited to use the firmware that comes with the device.
->>
->> Besides that, the version is still different so, even if I had any
->> possibility to try that, I don't think that it would work anyway...
+Hi,
 
-Hello!
-
+On 12/23/20 8:13 PM, Jagan Teki wrote:
+> MicroGEA STM32MP1 is an EDIMM SoM based on STM32MP157A from Engicam.
 > 
-> I'm a bit confused. "qcom/venus-4.4/venus.mdt" is the Sony signed FW?
+> General features:
+> - STM32MP157AAC
+> - Up to 1GB DDR3L-800
+> - 512MB Nand flash
+> - I2S
 > 
-
-In my case it is, but this follows the generic firmware path as was done
-for all the other Venus firmwares, so my code is not pointing at Sony
-specific things, but just generic ones.
-
-Every Qualcomm-powered consumer device (smartphones, tablets etc) have
-got a double sigcheck: one for qcom, one for OEM specific and most of
-the times the TZ is configured to accept only firmwares that also have
-the OEM signature.
-
-This is not true for all the firmwares - for example, Adreno has this
-mechanism only for the ZAP part - but unfortunately I'm not aware of
-any consumer device accepting a Venus firmware with the "generic"
-Qualcomm signature only (so - without the OEM signature).
-
-Short answer:
-1. qcom/venus-4.4/venus.mdt is a generic firmware for Venus
-2. 99% of the people needs a different firmware for signature issues
-
-
-> This patch can't be merged unless there is a corresponding firmware available
-> in linux-firmware. Is the current 4.2 firmware in linux-firmware signed by
-> Qualcomm? Can they provided 4.4 firmware as well?
+> MicroGEA STM32MP1 needs to mount on top of Engicam MicroDev carrier
+> boards for creating complete platform solutions.
 > 
-
-If there is such issue, then maybe we should do "something" about it: I
-would then propose to remove all references to fwname and just get this
-done in DT, where every qcom board already specifies its own path for
-its own firmware.
-
-In any case, the issue that you're raising here has been raised multiple
-times on LKML, I don't precisely remember, but I recall seeing this for
-something like 4 years (or even more) being raised every now and then...
-
-> I have no idea how this works for the venus driver, but I hope Stanimir does.
+> Add support for it.
 > 
-
-As far as I've understood, this driver just uses the firmware which
-path is hardcoded in fwname, even though at this point I would like
-to get an opinion from Stanimir.
-
-Would you be ok if we start parsing firmware-name from DT for this
-driver? The flow would be something like:
-
-Is firmware-name DT property present?
-    Yes -> Use FW path from firmware-name property
-    No  -> Use the FW path from the fwname field of struct
-           venus_resources
-
-This is a common flow in at least freedreno and remoteproc (modem).
-
--- Angelo
-
-> Regards,
+> Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
+> Signed-off-by: Francesco Utel <francesco.utel@engicam.com>
+> Signed-off-by: Mirko Ardinghi <mirko.ardinghi@engicam.com>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>   .../dts/stm32mp157a-microgea-stm32mp1.dtsi    | 147 ++++++++++++++++++
+>   1 file changed, 147 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
 > 
-> 	Hans
-> 
->>
->>>> +};
->>>> +
->>>>    static const struct freq_tbl sc7180_freq_table[] = {
->>>>    	{  0, 500000000 },
->>>>    	{  0, 434000000 },
->>>> @@ -613,6 +678,7 @@ static const struct venus_resources sc7180_res = {
->>>>    static const struct of_device_id venus_dt_match[] = {
->>>>    	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
->>>>    	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
->>>> +	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
->>>>    	{ .compatible = "qcom,sdm845-venus", .data = &sdm845_res, },
->>>>    	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
->>>>    	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
->>>>
->>>
->>> Reviewed-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
->>>
->>
->> Thank you!
->> - Angelo
->>
-> 
+> diff --git a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
+> new file mode 100644
+> index 000000000000..97d569107bfe
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
+> @@ -0,0 +1,147 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+> + * Copyright (c) 2020 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutons(India)
+> + */
+> +
 
+If STM32MP157AAC is soldered onto this board, you should include SoC 
+dtsi here and no into MicroDev 2.0 board. No ?
+
++#include "stm32mp15-pinctrl.dtsi"
++#include "stm32mp15xxaa-pinctrl.dtsi"
+
+
+Regards
+Alex
+
+> +/ {
+> +	compatible = "engicam,microgea-stm32mp1", "st,stm32mp157";
+> +
+> +	memory@c0000000 {
+> +		reg = <0xc0000000 0x10000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		mcuram2: mcuram2@10000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10000000 0x40000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring0: vdev0vring0@10040000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10040000 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring1: vdev0vring1@10041000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10041000 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0buffer: vdev0buffer@10042000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10042000 0x4000>;
+> +			no-map;
+> +		};
+> +
+> +		mcuram: mcuram@30000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x30000000 0x40000>;
+> +			no-map;
+> +		};
+> +
+> +		retram: retram@38000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x38000000 0x10000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	vin: regulator-vin {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vin";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddcore: regulator-vddcore {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vddcore";
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vin>;
+> +	};
+> +
+> +	vdd: regulator-vdd {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vin>;
+> +	};
+> +
+> +	vddq_ddr: regulator-vddq-ddr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vddq_ddr";
+> +		regulator-min-microvolt = <1350000>;
+> +		regulator-max-microvolt = <1350000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vin>;
+> +	};
+> +};
+> +
+> +&dts {
+> +	status = "okay";
+> +};
+> +
+> +&fmc {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&fmc_pins_a>;
+> +	pinctrl-1 = <&fmc_sleep_pins_a>;
+> +	status = "okay";
+> +
+> +	nand-controller@4,0 {
+> +		status = "okay";
+> +
+> +		nand@0 {
+> +			reg = <0>;
+> +			nand-on-flash-bbt;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +		};
+> +	};
+> +};
+> +
+> +&ipcc {
+> +	status = "okay";
+> +};
+> +
+> +&iwdg2{
+> +	timeout-sec = <32>;
+> +	status = "okay";
+> +};
+> +
+> +&m4_rproc{
+> +	memory-region = <&retram>, <&mcuram>, <&mcuram2>, <&vdev0vring0>,
+> +			<&vdev0vring1>, <&vdev0buffer>;
+> +	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+> +	mbox-names = "vq0", "vq1", "shutdown";
+> +	interrupt-parent = <&exti>;
+> +	interrupts = <68 1>;
+> +	status = "okay";
+> +};
+> +
+> +&rng1 {
+> +	status = "okay";
+> +};
+> +
+> +&rtc{
+> +	status = "okay";
+> +};
+> +
+> +&vrefbuf {
+> +	regulator-min-microvolt = <2500000>;
+> +	regulator-max-microvolt = <2500000>;
+> +	vdda-supply = <&vdd>;
+> +	status = "okay";
+> +};
+> 
