@@ -2,119 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBB2430255B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 14:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EECF3302562
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 14:17:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728652AbhAYNMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 08:12:55 -0500
-Received: from mx2.suse.de ([195.135.220.15]:37966 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728608AbhAYNMv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 08:12:51 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-        t=1611580322; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gWGUX5BQka/TYr2ZK97IOPcurnLuL5UlU4w1UDBIDS0=;
-        b=S+u9xiNJ/Y4QHOvsaNZi3Tr/iedHMRiBhIjW1BWvXuuMLQOIPa+GFfFxUJMPT7JjIGmHqB
-        1DjahGJq23HDdtJO0cXw7I4Sa7DvBuH/47YZpWQLcYyJlOHyiaCSqr0q5s6Fmq0ZdLVmZc
-        R/vSTXP1DwuGAf8EX7FBJrFNUYDo0HY=
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 1FD60AC45;
-        Mon, 25 Jan 2021 13:12:02 +0000 (UTC)
-Date:   Mon, 25 Jan 2021 14:12:00 +0100
-From:   Michal Hocko <mhocko@suse.com>
-To:     Minchan Kim <minchan@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        linux-mm <linux-mm@kvack.org>,
-        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
-        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
-        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
-        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
-        linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v4 2/4] mm: failfast mode with __GFP_NORETRY in
- alloc_contig_range
-Message-ID: <20210125131200.GG827@dhcp22.suse.cz>
-References: <20210121175502.274391-1-minchan@kernel.org>
- <20210121175502.274391-3-minchan@kernel.org>
+        id S1728704AbhAYNPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 08:15:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56796 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728685AbhAYNOC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 08:14:02 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D96BC06178B
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 05:13:17 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id m22so17653047lfg.5
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 05:13:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dkjGH+G3sbPs0AwBpKTZTNMo6PAnhVg3Vk9O+oPBcYo=;
+        b=Jh7/FEpR91Kn0N8agvzoZbDt8Vo0Re5umfDss3QUmF1BVvSaj9lIq8UbWi6u8L58yZ
+         DZA92Cn7qbWCqYz+j1NHBTG9c95BbJLfjZbNc+pHZqcNlBjqsl2f930JkVnnekbroya/
+         Pan4OWOrhztzpXYSMxzPpkCTRDLqxWFcnqDGUIyMiYCLgt+7Sf2HKwR6WGphRoXg+IY7
+         NioWkdeZjyDA17yR1tK0y8Ze1vyNNDByrWKrewGm+9VSIHFtkyCC+5uIrIwx/gNTBdKf
+         4bYbf3cNy0fKzaUDFkIO1IUc3smoFFfFAop5sisWtetjF7iKYE4KGd/KvXhrF/aGLwoS
+         3R7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dkjGH+G3sbPs0AwBpKTZTNMo6PAnhVg3Vk9O+oPBcYo=;
+        b=N6+Msfc2Fm+injXC9Mg1k9vkCWkDpxA5TFxPsYERKcgF+F+IAHLgQ5uiTm4lcfPocJ
+         KEFlV+2sh1D4XCstawgFLCII3eCz3Ete87Kkmm8c87Q2p9PSF3l801NTdqWUTk/eLI61
+         ODbsHsjf8VmlKabXJML2OcqLv2ng69J3iX5MkPOWw1I7DvNaK/m/9Qt7GUKDyFuoDWlF
+         2GzRDv/Yn/xmRXZJe6NhNf58MeaeXDk42l2JeC2bQuMq7YeQyT8ah+d78iSr0pYgVL1A
+         N/qgwBjvuJ0kAuZXAFDhx95Cwi5EZXbug/ipUeKUqJZtZ1o0hv7tTJ3oCDTXCKQvd401
+         v1JA==
+X-Gm-Message-State: AOAM532qpIR9l6F+A2HgNoijdZ+ReAB/bo5Gw4untzRVDK7j1ckD04b3
+        lYRoVmNOe6N11/HHf4UJSrpSF3zAq0ouoIcQ48UvbA==
+X-Google-Smtp-Source: ABdhPJxb7i93hzji/0XqwZuGFblpA4aj5dMHr9srYEFMDhw8118iclkxarMinp3+461hMdPJxmB4BxSJZ/B8GxjDcRU=
+X-Received: by 2002:ac2:5c45:: with SMTP id s5mr250905lfp.586.1611580395894;
+ Mon, 25 Jan 2021 05:13:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210121175502.274391-3-minchan@kernel.org>
+References: <20210125044322.6280-1-dqfext@gmail.com> <20210125044322.6280-2-dqfext@gmail.com>
+In-Reply-To: <20210125044322.6280-2-dqfext@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 25 Jan 2021 14:13:05 +0100
+Message-ID: <CACRpkdag3P7yGVmzkcdi8zw=3WJFNDDTQDOWujBB54YgFZJ22g@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: dsa: add MT7530 GPIO
+ controller binding
+To:     DENG Qingfang <dqfext@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 21-01-21 09:55:00, Minchan Kim wrote:
-> Contiguous memory allocation can be stalled due to waiting
-> on page writeback and/or page lock which causes unpredictable
-> delay. It's a unavoidable cost for the requestor to get *big*
-> contiguous memory but it's expensive for *small* contiguous
-> memory(e.g., order-4) because caller could retry the request
-> in different range where would have easy migratable pages
-> without stalling.
-> 
-> This patch introduce __GFP_NORETRY as compaction gfp_mask in
-> alloc_contig_range so it will fail fast without blocking
-> when it encounters pages needed waiting.
+On Mon, Jan 25, 2021 at 5:43 AM DENG Qingfang <dqfext@gmail.com> wrote:
 
-I am not against controling how hard this allocator tries with gfp mask
-but this changelog is rather void on any data and any user.
+> Add device tree binding to support MT7530 GPIO controller.
+>
+> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
 
-It is also rather dubious to have retries when then caller says to not
-retry.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Also why didn't you consider GFP_NOWAIT semantic for non blocking mode?
-
-> Signed-off-by: Minchan Kim <minchan@kernel.org>
-> ---
->  mm/page_alloc.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-> index b031a5ae0bd5..1cdc3ee0b22e 100644
-> --- a/mm/page_alloc.c
-> +++ b/mm/page_alloc.c
-> @@ -8491,12 +8491,16 @@ static int __alloc_contig_migrate_range(struct compact_control *cc,
->  	unsigned int nr_reclaimed;
->  	unsigned long pfn = start;
->  	unsigned int tries = 0;
-> +	unsigned int max_tries = 5;
->  	int ret = 0;
->  	struct migration_target_control mtc = {
->  		.nid = zone_to_nid(cc->zone),
->  		.gfp_mask = GFP_USER | __GFP_MOVABLE | __GFP_RETRY_MAYFAIL,
->  	};
->  
-> +	if (cc->alloc_contig && cc->mode == MIGRATE_ASYNC)
-> +		max_tries = 1;
-> +
->  	migrate_prep();
->  
->  	while (pfn < end || !list_empty(&cc->migratepages)) {
-> @@ -8513,7 +8517,7 @@ static int __alloc_contig_migrate_range(struct compact_control *cc,
->  				break;
->  			}
->  			tries = 0;
-> -		} else if (++tries == 5) {
-> +		} else if (++tries == max_tries) {
->  			ret = ret < 0 ? ret : -EBUSY;
->  			break;
->  		}
-> @@ -8564,7 +8568,7 @@ int alloc_contig_range(unsigned long start, unsigned long end,
->  		.nr_migratepages = 0,
->  		.order = -1,
->  		.zone = page_zone(pfn_to_page(start)),
-> -		.mode = MIGRATE_SYNC,
-> +		.mode = gfp_mask & __GFP_NORETRY ? MIGRATE_ASYNC : MIGRATE_SYNC,
->  		.ignore_skip_hint = true,
->  		.no_set_skip_hint = true,
->  		.gfp_mask = current_gfp_context(gfp_mask),
-> -- 
-> 2.30.0.296.g2bfb1c46d8-goog
-
--- 
-Michal Hocko
-SUSE Labs
+Yours,
+Linus Walleij
