@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF15302D99
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 22:27:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D59302D85
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jan 2021 22:25:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732562AbhAYV0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 16:26:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49980 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731932AbhAYVVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 16:21:45 -0500
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58B1C061573;
-        Mon, 25 Jan 2021 13:21:04 -0800 (PST)
-Received: by mail-yb1-xb33.google.com with SMTP id r32so14740443ybd.5;
-        Mon, 25 Jan 2021 13:21:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=z3lCPZHOlWCqOFxwlNBZvwznnjkRC7QjnUuvoRMU1js=;
-        b=AWfk7f2W5VMVwnBdqUIg2d7rqamzb4Yv1IDg4ZdKjHwmcoU0cfFgonTlu8aYVrIjdl
-         2zHwkZP1rUF6NmjZHL37d/JSECgfSFS+jLu35oNLOSK90efm7k0BDRHE59X89vFzv6xa
-         nIBXOs4vzGfCbXF4yHBxy893bj75YsgAHCjcCOUwiH+YWLsS18THsVR4Xi4jr/S9rCs7
-         Q0OKmKNYBilicr18C8VdebXxch0K2pWmCat2/BxWDxjr81pLfoI6XCgSpv06Goq3MOlN
-         UDXZ8a1Q0GHpWPR7GK+P46L8gzxJpf9LReDeDyaR1gxu0x1MsYtM7yMdB+K40dfAHE+F
-         7tHw==
+        id S1732612AbhAYVXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 16:23:38 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:34749 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732613AbhAYVWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 16:22:33 -0500
+Received: by mail-oi1-f169.google.com with SMTP id h192so16375116oib.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 13:22:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=z3lCPZHOlWCqOFxwlNBZvwznnjkRC7QjnUuvoRMU1js=;
-        b=nx5b22W5F5Upi8Fp9em7JNK5W5sEA0T2lYDlgbmbAcOFpqMo+IlC7sjaimu1Isw5Xz
-         fZkUWn58nJ7VEyHXnWdcSmrIjDq2QdPxzjFflhsN/5ZKjTtF8fmhgmgCYmaSPwG47ON3
-         R/Ufphc9WLzxLHaLefNfeQPybf1ebE5zYobaElPaHsk5Alq8YrJ0DMRy3T3hRnjG5bGD
-         /cPdNLpgRLARbB+bW1CbxiS5hxie3tBdBwlQpUF87B3YETrKJfEptXxJr3ik5hpTfmdP
-         e6pneIyaa7Eslw2VHY9t+Jho4fOQL9YxcVYkbQqZiYAkKUCSifzZjkNVyxqV3oAfEXWe
-         rFgw==
-X-Gm-Message-State: AOAM532/zaHWGhBmwiQYYPVHDaD/N8tkZ6XJqsUsmkOuIDJ8YwaZZTCv
-        BpMxFE//SnE73PPeBmMfYHmevKESglhILNxHHIU=
-X-Google-Smtp-Source: ABdhPJz/qrVrI1+It/goUqbBAtWieAunYcdLPQ/h/BJBfBU3NKOQ6Dgn3qZyis7KHACFTh0bSoVnaAJa7SdLQeWR+Nk=
-X-Received: by 2002:a25:d84d:: with SMTP id p74mr3490418ybg.135.1611609664337;
- Mon, 25 Jan 2021 13:21:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20210118123538.564597-1-geert@linux-m68k.org> <20210118123538.564597-4-geert@linux-m68k.org>
-In-Reply-To: <20210118123538.564597-4-geert@linux-m68k.org>
-From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date:   Mon, 25 Jan 2021 22:20:53 +0100
-Message-ID: <CANiq72=UPoJh4oaoev2a4+iYO1T0YwtCRPXjZ=gatHyAi_OC=g@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: auxdisplay: ht16k33: Convert to json-schema
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UgNVnk+XjrBbFMJvHyH+j8J+c8Weu78JzV/h+7zSoyw=;
+        b=X5z2o1hLqVifsw1J5LLWRNjdbwIb6Yr3yqhngfRx3TFgIZ60sSgEdKQe7a617nMsQD
+         6hVpRHfCFF4BwSghuyAXIkKn4AprloPjbbaKtFgCIvsvc1mNt81TaNC3Ipr0KLLOrHnF
+         oyS7GIqvxcTNSJoolPnifWKHukYaapQWPpUjhShE9bFobA61lC+mRMYWMMn4irjposyp
+         OrVzjK/QrIofJJ8ZRIjB4CPHwHj6jmViMMM4F83C912bY4OViGxxl6H664SilBIuVjMt
+         IDR++W5HPfzqDtZbz9CNvff4JhIqCbv0I6TeSejGDt+0UImTaZFCZCk8pb4BGDUMWif6
+         wVPw==
+X-Gm-Message-State: AOAM533Kn5Hm2/f0J8gxKu6pOyQmkdibe0MICuXlHKVuO+v6niYov7Ns
+        oqinIsGxVuaBP2fCUPMvEA==
+X-Google-Smtp-Source: ABdhPJzlcqwNpM2lircOFled+hpymLHLWYDsf4uk22g6xF7gWa+OWHBBlJ2XOHS+n4qtbramJ03bLA==
+X-Received: by 2002:aca:c3d2:: with SMTP id t201mr1301884oif.7.1611609712037;
+        Mon, 25 Jan 2021 13:21:52 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v2sm1940816ooq.25.2021.01.25.13.21.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 13:21:51 -0800 (PST)
+Received: (nullmailer pid 1019226 invoked by uid 1000);
+        Mon, 25 Jan 2021 21:21:49 -0000
+Date:   Mon, 25 Jan 2021 15:21:49 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH 04/19] dt-bindings: bridge: simple: Add corpro, gm7123
+ compatible
+Message-ID: <20210125212149.GA1019138@robh.at.kernel.org>
+References: <20210114113538.1233933-1-maxime@cerno.tech>
+ <20210114113538.1233933-4-maxime@cerno.tech>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210114113538.1233933-4-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 18, 2021 at 1:35 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Convert the Holtek HT16K33 LED controller with keyscan Device Tree
-> binding documentation to json-schema.
+On Thu, 14 Jan 2021 12:35:23 +0100, Maxime Ripard wrote:
+> The corpro,gm7123 was in use in a DT but was never properly documented,
+> let's add it.
+> 
+> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  .../devicetree/bindings/display/bridge/simple-bridge.yaml     | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-Applied to -next, thanks!
-
-Cheers,
-Miguel
+Reviewed-by: Rob Herring <robh@kernel.org>
