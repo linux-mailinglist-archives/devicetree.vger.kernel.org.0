@@ -2,79 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4E2304B69
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE62304B79
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:28:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727267AbhAZEqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:46:23 -0500
-Received: from mail-ej1-f49.google.com ([209.85.218.49]:43586 "EHLO
-        mail-ej1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730194AbhAYPlV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 10:41:21 -0500
-Received: by mail-ej1-f49.google.com with SMTP id a10so18660156ejg.10;
-        Mon, 25 Jan 2021 07:41:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MyL4/WcGTvpdZCqJcJOECqlMmr535n6usxLfE/ynu/E=;
-        b=OmKAX6AXDbIaHj6DxVhAjBDkt8kuosO27VpAuYtykF9a5Lk2bXbaxz/gz6cXTIry1W
-         fZs+T1H+a7eVAMCpjZOgvOaZhBAPdq3pbkTC9OJSalFD6JY6HVhdLG4+xdq0qZ6GblyL
-         LMKSiAm2LYhSaisDJqah165Yz1bS7uV+W8ceBh6oKQIcXz19UA8WlTtUyl3iO92AhhPn
-         /Kzm64h4KBd9B0e5au146kgMiU15Ja2X4KRaG00bVPhHAkX6gYsRLwkuUq+rxBOztE+h
-         fGvG6YLESO5CC3EK+Lyt7XH/d6EVrvfp8Th9r6z0oakizciRGkV5xFd+VPbKvyE0PfXN
-         D1pg==
-X-Gm-Message-State: AOAM5323AETr9sArthylyCGF496qdWuvUj9UCdAQQX5yP0Yllp3N8gGC
-        9EKuevDxScD5S3r/rgQKaW1PCPKG2DCZDbbs
-X-Google-Smtp-Source: ABdhPJxNL9mFYGBYTgwnzqwNNdcwYvxvlFDBQLNsO+Oqe40jZ1WlQMWAHq+CbRtCbi0fUFMKsd2yTQ==
-X-Received: by 2002:a05:6000:11c5:: with SMTP id i5mr1488164wrx.302.1611587044960;
-        Mon, 25 Jan 2021 07:04:04 -0800 (PST)
-Received: from rocinante ([95.155.85.46])
-        by smtp.gmail.com with ESMTPSA id r16sm23200794wrx.36.2021.01.25.07.04.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 07:04:04 -0800 (PST)
-Date:   Mon, 25 Jan 2021 16:04:03 +0100
-From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To:     daire.mcnamara@microchip.com
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh@kernel.org,
-        linux-pci@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, david.abdurachmanov@gmail.com,
-        cyril.jean@microchip.com
-Subject: Re: [PATCH v20 3/4] PCI: microchip: Add host driver for Microchip
- PCIe controller
-Message-ID: <YA7d43I5V2ITG1H/@rocinante>
-References: <20210122145137.29023-1-daire.mcnamara@microchip.com>
- <20210122145137.29023-4-daire.mcnamara@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210122145137.29023-4-daire.mcnamara@microchip.com>
+        id S1727337AbhAZEpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:45:22 -0500
+Received: from foss.arm.com ([217.140.110.172]:49648 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730044AbhAYPhC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 10:37:02 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E5EEF16F8;
+        Mon, 25 Jan 2021 07:18:55 -0800 (PST)
+Received: from localhost.localdomain (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A72DA3F68F;
+        Mon, 25 Jan 2021 07:18:53 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
+Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
+        Samuel Holland <samuel@sholland.org>,
+        Icenowy Zheng <icenowy@aosc.io>, Rob Herring <robh@kernel.org>,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
+        Shuosheng Huang <huangshuosheng@allwinnertech.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 01/21] dt-bindings: clk: sunxi-ccu: Add compatible string for Allwinner H616
+Date:   Mon, 25 Jan 2021 15:17:51 +0000
+Message-Id: <20210125151811.11871-2-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.14.1
+In-Reply-To: <20210125151811.11871-1-andre.przywara@arm.com>
+References: <20210125151811.11871-1-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daire,
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Maxime Ripard <mripard@kernel.org>
+---
+ .../devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml      | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thank you for working on this!
+diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml
+index 3b45344ed758..b7e891803bb4 100644
+--- a/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml
++++ b/Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml
+@@ -41,6 +41,8 @@ properties:
+       - allwinner,sun50i-h5-ccu
+       - allwinner,sun50i-h6-ccu
+       - allwinner,sun50i-h6-r-ccu
++      - allwinner,sun50i-h616-ccu
++      - allwinner,sun50i-h616-r-ccu
+       - allwinner,suniv-f1c100s-ccu
+       - nextthing,gr8-ccu
+ 
+-- 
+2.17.5
 
-[...]
-> +static const struct pci_ecam_ops mc_ecam_ops = {
-> +	.bus_shift = 20,
-> +	.init = mc_platform_init,
-> +	.pci_ops = {
-> +		.map_bus = pci_ecam_map_bus,
-> +		.read = pci_generic_config_read,
-> +		.write = pci_generic_config_write,
-> +	}
-> +};
-[...]
-
-If you are using standard ECAM, and it looks like you do, then you can
-omit the .bus_shift initializer, as since the e7708f5b10e2 ("PCI: Unify
-ECAM constants in native PCI Express drivers") we use the proper shift
-value automatically for you, if you don't provide a custom one.
-
-Alternatively, you can use the PCIE_ECAM_BUS_SHIFT constant, to avoid
-open-coding the shift value.
-
-Krzysztof
