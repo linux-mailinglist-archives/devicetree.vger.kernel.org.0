@@ -2,93 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE25B3044C8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A343304752
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 20:00:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726437AbhAZRNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:13:32 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38602 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406000AbhAZQf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 11:35:28 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10QGWxhX087660;
-        Tue, 26 Jan 2021 10:32:59 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611678779;
-        bh=zT5rXzi404sanDCD+FhX1p4eVM2SYSfy/bavMPjgsZ4=;
-        h=From:To:CC:Subject:Date;
-        b=cNY76W8khMWDiihJY+w8MLZDKUuaH3lNcFQ2hrFVzOT3LkWgLVJVkV29RAv+hniF2
-         zGTVg5PzHG3AUCBbMo1N6PvrvxxpmfQVCALvx9zoPYa58ImdqQNMoNgck+QUPDWGUA
-         cwgXcGJmus1xbwREQpFqeGuiFxg+UCaMcyLP5j3U=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10QGWxR0082334
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 26 Jan 2021 10:32:59 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 26
- Jan 2021 10:32:58 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 26 Jan 2021 10:32:58 -0600
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10QGWwpA069669;
-        Tue, 26 Jan 2021 10:32:58 -0600
-Received: from localhost ([10.250.35.71])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 10QGWwbq111807;
-        Tue, 26 Jan 2021 10:32:58 -0600
-From:   Suman Anna <s-anna@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-CC:     Jan Kiszka <jan.kiszka@siemens.com>,
-        David Lechner <david@lechnology.com>,
-        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Suman Anna <s-anna@ti.com>
-Subject: [PATCH] dt-bindings: irqchip: Add node name to PRUSS INTC
-Date:   Tue, 26 Jan 2021 10:32:51 -0600
-Message-ID: <20210126163251.29468-1-s-anna@ti.com>
-X-Mailer: git-send-email 2.29.2
+        id S2388622AbhAZRGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:06:49 -0500
+Received: from muru.com ([72.249.23.125]:52982 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390014AbhAZI2J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 03:28:09 -0500
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 2CE5183B4;
+        Tue, 26 Jan 2021 08:27:32 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Balaji T K <balajitk@ti.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-pci@vger.kernel.org
+Subject: [PATCH 04/27] ARM: dts: Properly configure dra7 edma sysconfig registers
+Date:   Tue, 26 Jan 2021 10:26:53 +0200
+Message-Id: <20210126082716.54358-5-tony@atomide.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210126082716.54358-1-tony@atomide.com>
+References: <20210126082716.54358-1-tony@atomide.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current PRUSS Interrupt Controller binding doesn't exactly specify
-the convention for the node name. These interrupt-controllers will always
-have a unit address. Update the binding with the '$nodename' using the
-expected generic name, this shall ensure the interrupt-controller.yaml
-is automatically applied to this binding.
+Looks like the TRM is not listing the sysconfig for edma, let's add it
+based on am437x TRM edma registers as listed in sections "Table 10-26.
+EDMA3CC Registers" and "Table 10-99. EDMA3TC Registers".
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
-This patch is a result of the previous discussion at
-https://patchwork.kernel.org/comment/23926133/
+ arch/arm/boot/dts/dra7.dtsi | 33 +++++++++++++++++++++++++++------
+ 1 file changed, 27 insertions(+), 6 deletions(-)
 
- .../bindings/interrupt-controller/ti,pruss-intc.yaml           | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-index c2ce215501a5..9731dd4421a1 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-@@ -33,6 +33,9 @@ description: |
-   corresponding PRUSS node. The node should be named "interrupt-controller".
+diff --git a/arch/arm/boot/dts/dra7.dtsi b/arch/arm/boot/dts/dra7.dtsi
+--- a/arch/arm/boot/dts/dra7.dtsi
++++ b/arch/arm/boot/dts/dra7.dtsi
+@@ -369,8 +369,15 @@ dra7_iodelay_core: padconf@4844a000 {
  
- properties:
-+  $nodename:
-+    pattern: "^interrupt-controller@[0-9a-f]+$"
-+
-   compatible:
-     enum:
-       - ti,pruss-intc
+ 		target-module@43300000 {
+ 			compatible = "ti,sysc-omap4", "ti,sysc";
+-			reg = <0x43300000 0x4>;
+-			reg-names = "rev";
++			reg = <0x43300000 0x4>,
++			      <0x43300010 0x4>;
++			reg-names = "rev", "sysc";
++			ti,sysc-midle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
+ 			clocks = <&l3main1_clkctrl DRA7_L3MAIN1_TPCC_CLKCTRL 0>;
+ 			clock-names = "fck";
+ 			#address-cells = <1>;
+@@ -402,8 +409,15 @@ edma: dma@0 {
+ 
+ 		target-module@43400000 {
+ 			compatible = "ti,sysc-omap4", "ti,sysc";
+-			reg = <0x43400000 0x4>;
+-			reg-names = "rev";
++			reg = <0x43400000 0x4>,
++			      <0x43400010 0x4>;
++			reg-names = "rev", "sysc";
++			ti,sysc-midle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
+ 			clocks = <&l3main1_clkctrl DRA7_L3MAIN1_TPTC0_CLKCTRL 0>;
+ 			clock-names = "fck";
+ 			#address-cells = <1>;
+@@ -420,8 +434,15 @@ edma_tptc0: dma@0 {
+ 
+ 		target-module@43500000 {
+ 			compatible = "ti,sysc-omap4", "ti,sysc";
+-			reg = <0x43500000 0x4>;
+-			reg-names = "rev";
++			reg = <0x43500000 0x4>,
++			      <0x43500010 0x4>;
++			reg-names = "rev", "sysc";
++			ti,sysc-midle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
+ 			clocks = <&l3main1_clkctrl DRA7_L3MAIN1_TPTC1_CLKCTRL 0>;
+ 			clock-names = "fck";
+ 			#address-cells = <1>;
 -- 
-2.29.2
-
+2.30.0
