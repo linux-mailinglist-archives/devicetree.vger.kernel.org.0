@@ -2,115 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C26303F3D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:49:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 353CF303F6F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404941AbhAZNnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 08:43:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46498 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404748AbhAZNnm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 08:43:42 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7816A2223D;
-        Tue, 26 Jan 2021 13:43:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611668581;
-        bh=gZmSYgI/wa2/JnuwHcpAdHOfBP02jfH9AVoTNyQbgPc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nWwXoa8f5j/f3gLzJfb7C9m7/sFDrLHniZrrgAr3k2Zu3c66CVjRNMxSWU5xSb82l
-         xkhszdemIvKTLDQEn/CA3Prn09unXNPsfylBVtz0NWF3xhFUXP6/xNwbeEb4x2nHAm
-         iEauYN0wy4xpv3vvbtmFWBixLfgryqrihSe9YIGeNFLbszkFD3WISoI/eGC8gN77VG
-         WP4VXgt+jg3IslYG6sSXafeRZvIxj6IdlyD/5lzQ6XslXEZR/dLn9wP5PzVInhrUds
-         8U6PrAPO0jaaVWObpmUklbMTVpVSiUKZG5E1AhSmm3pWa2M4cGUKOq5gdYy0zEysqE
-         mKV/13nCeXk+Q==
-Received: by mail-ed1-f50.google.com with SMTP id s11so19790292edd.5;
-        Tue, 26 Jan 2021 05:43:01 -0800 (PST)
-X-Gm-Message-State: AOAM531ztYVgbFC7mYXKPFi4ClaRRBRgZz4lns3RNcteLNyVkKNB0CQe
-        vZgzmJK1dZgaGHU5l0iYB/vtSIv6T7hpTadaJA==
-X-Google-Smtp-Source: ABdhPJyedjeaKb7Y7yFDeXhCNsA7wEgX8BmR5Dj0sgd1WrT81hG16uP3pAjOTds7G2dy9MdFeUk38Ykxu3sHpbfk3lQ=
-X-Received: by 2002:a50:fc04:: with SMTP id i4mr4670026edr.137.1611668580145;
- Tue, 26 Jan 2021 05:43:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20210125105757.661240-1-uwe@kleine-koenig.org>
- <CAK7LNAS5t1wew0MMFjdB5HGCAMerhU7pAGiFhcTtCRUAAjGLpw@mail.gmail.com> <9d9bb0f6-d4f4-b1b9-a4c4-786987578085@kleine-koenig.org>
-In-Reply-To: <9d9bb0f6-d4f4-b1b9-a4c4-786987578085@kleine-koenig.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 26 Jan 2021 07:42:48 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJQjnNULke5uyNbrj5kkS=3MSxug2BFXAia1ucyaDhx5Q@mail.gmail.com>
-Message-ID: <CAL_JsqJQjnNULke5uyNbrj5kkS=3MSxug2BFXAia1ucyaDhx5Q@mail.gmail.com>
-Subject: Re: [PATCH] cmd_dtc: Enable generation of device tree symbols
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>
-Cc:     Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        cyril@debamax.com, Arnd Bergmann <arnd@arndb.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S2404062AbhAZN4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 08:56:30 -0500
+Received: from mail-vi1eur05on2041.outbound.protection.outlook.com ([40.107.21.41]:36033
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2405324AbhAZNt6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 08:49:58 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JDGOQQpmG1+rMPmNyT3U8Q/3UAv0wdpiZ2Usf4U/8rfAhC2Cty9qQ7e7x8daeABcrmHdTfrWkwZ8cO0cxeP1r+MZOQFyde4WBcsqo0GdAHsszayLrZrHulnotf6Cwj2Rv8E9NO3sIU+UgMVGUfAFbDX10DYHcU++45TCH+zH5pjQKe1Wa6v/sILaB6g6khe4dakgWjYxPN5cYMYaVMoFtdSU2U8JWChy9AbC7jybEC/twmgZlM9bvqMrqWlwyDaUKNS5YUp/z+BkuBt3cIOvOieS8UXX1+QZH6D4K4JIKliDh75DJAGf+lk4MJAxfzb0MsQBF3XxsIhoH1L+F5P41A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M1JA0sJy9eutZnQlJ+efnB8pueuNZzGjwaZdaGFH5p8=;
+ b=lT6Ckm5t5iVgClN1o1wBLIY+xeJ+siNqi8DKuBOLnvkegVxIFhNofLtXXr/Y1PKx9XX1dXhnZY6ncjPfOwQ7Z/F410qx2wWf2Ot2cUC2zaAJYC9LTK0DJ29eZbI24b+ShEfa3/bRhUfupH6rCffEJvrx7wMS+o7/K33HUVUbBp2OscxBwf8VE3nXR7/URRNJNSnFDHcA4Ardq1KzTToTuaH9DmMCcdKYCtH5NxkdFKuqt/9ghhtCaqysDGJf6NZyQP/HbjuGYbdEkZ3Kvj3g7LIGAtFt8aIVlL6oKt8VhCDJ4KxA7HZnzWr0ByvY65vzydH3hC7duWyvzpsOVJ9mbg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M1JA0sJy9eutZnQlJ+efnB8pueuNZzGjwaZdaGFH5p8=;
+ b=sEnqeT4ZS3MsZ4srTuJZi5u1bWWU708SYerRPteL/HoDF2K+C2iWpU4Alhw622nl1zLgqv2pIck67gGTNTqCMxSn5aqoUmqpXEN1BeulPDsmuK7StPHv53I5kqQFAdJfGALArf+FziZsFgHSjwfmA0mE1jsWtOj8fr1Fnry+iLI=
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DBBPR04MB7593.eurprd04.prod.outlook.com (2603:10a6:10:20c::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.15; Tue, 26 Jan
+ 2021 13:49:07 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d58c:d479:d094:43d0]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::d58c:d479:d094:43d0%9]) with mapi id 15.20.3784.019; Tue, 26 Jan 2021
+ 13:49:07 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     "ohad@wizery.com" <ohad@wizery.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "paul@crapouillou.net" <paul@crapouillou.net>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "patrice.chotard@st.com" <patrice.chotard@st.com>
+Subject: RE: [PATCH V9 01/10] dt-bindings: remoteproc: convert imx rproc
+ bindings to json-schema
+Thread-Topic: [PATCH V9 01/10] dt-bindings: remoteproc: convert imx rproc
+ bindings to json-schema
+Thread-Index: AQHW75K8L0MhP7c9CUeTrDqB4eKp76o59BSg
+Date:   Tue, 26 Jan 2021 13:49:06 +0000
+Message-ID: <DB6PR0402MB2760432F84DC98247148477288BC0@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+References: <1611191015-22584-1-git-send-email-peng.fan@nxp.com>
+ <1611191015-22584-2-git-send-email-peng.fan@nxp.com>
+In-Reply-To: <1611191015-22584-2-git-send-email-peng.fan@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: wizery.com; dkim=none (message not signed)
+ header.d=none;wizery.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [49.65.215.117]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 3c8e9e31-7c09-4962-a0a0-08d8c2012690
+x-ms-traffictypediagnostic: DBBPR04MB7593:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DBBPR04MB7593258F75E249A01CA00E8388BC0@DBBPR04MB7593.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0JOOZWF4Nz35AsUM9ZSZwW5kEtJXkGD/JYCbaObNtlvITgKorLRmPegkWHpIDk0QIBkf4p7fTLX+DFbr3EMI0HXtUajiuf+eoN5psKbiqpX72wc5TISCmaAIraJxHlBasE0vm6wGOd/UuOgueg6JQz2jbF6/2tSJ/Fq1/rAsLJCeXi3Ki4+7Qlfdw9cGPZv+SRpAuWl+9RPS6MyBgLTBYv5+q6GCKV5CCzmb8sjdW5GeKgUQps89YSdAhKLEUxCBprKq27kT+Lx7r+ZlVv2Un1qCSHeRj7Bm11ZJ8+Wze6GsZjINT6gblCbH9E3zWs5DNTNv2gWl9xrhPZJyanVf4/T9fWEtNsaAb+UXZKHvyY4bQmvBmOdLMCoCkK92wM58P/6WjoVCnJrEZ+4aUQYetRYHVbdDI2yMHFYl1z7zKogIKbRkt1KDMW3QPleJQvu9grDOXOsPdfubWXH+66zQiUlwzuYJ3HRwhbs37QM5XdEYNXVzJr5Oui4PgTZQWmlK33Wy6E7R1g3ngllg4X0Fz+liXeZqa0tylBmgs53quV5kmuZpuWqekY9UhwLv1l3v+BFGqSl5kGMO0uashKpI3sbInbvCYYX/kaco1iZLC/Y=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(39850400004)(376002)(346002)(366004)(6506007)(110136005)(186003)(71200400001)(33656002)(4326008)(8936002)(8676002)(7696005)(83380400001)(54906003)(316002)(26005)(9686003)(44832011)(76116006)(55016002)(2906002)(478600001)(7416002)(966005)(52536014)(64756008)(66446008)(86362001)(66476007)(5660300002)(66946007)(66556008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?5nZDlHUnn/dRg+VqAGGv6pCfzGMxRBMwhg7G2GeYbvYlZ3BGzf9aPzh+SITE?=
+ =?us-ascii?Q?B/ZUj3cUjDrtfO5s6MCF7cq2qMP30q9Qqe05Rxu4Votn11/snjjP7eicmkpd?=
+ =?us-ascii?Q?rDOKjB30ad02fiPgtmzMGNxt+gJYGQEO687NZTD6pVepCy9p1enXzAXX/oRZ?=
+ =?us-ascii?Q?nI+o4tFtcO6nevI4r6o6Yo8v5IgCY7fOe2zx1HH4ahkIzl7CL61VjGkNRucx?=
+ =?us-ascii?Q?w+7IXxgwtJ4kQScfWagMkH7GzlgNDYNdEPCTl2xAsryuTePwzWD/12Vqlemv?=
+ =?us-ascii?Q?vB8CgY212j0uuHc/BWd3Mz1QfMXfpR6w17vsXW31/WR/jc72aNedISQuVSI7?=
+ =?us-ascii?Q?s+CAbKFsJbbZybDP1JRnOWO5j3TuhIrBvCupnM6f++HinaBEiVp0zmC7phOh?=
+ =?us-ascii?Q?YHBFqWnThC6hXidk3/9F8hnwehUuhx8eKmcc1xoKHWchmKoJtR8AUuxJr2gQ?=
+ =?us-ascii?Q?fo+txG+bQIpeGRO71WMW+80NNjkF0jtUw4NeiksakroTYPEfrfDiGDPdLA+0?=
+ =?us-ascii?Q?Qk6tTCSYMgYA1zPmCFlFAhfdEgdP7xHgXUcFwQ/QbHvjpyNWzv6VKYysqN8E?=
+ =?us-ascii?Q?GGCMuNLZwOtCttx4DS8aEPI9+TbjoQZws/N4J2ncLWfgR2gs+Isl9sUj/O7H?=
+ =?us-ascii?Q?lHTjONhNrRN7sTvhU5N3Eh6fgPxKqCXTE/N1OKKqu61NwZFVfuJ1M0KX+ryG?=
+ =?us-ascii?Q?9neZQThPhVbuExIamKIwq6FvktCuM7xiIWf26nWikA7JEwHRVf2hbLb6AN7f?=
+ =?us-ascii?Q?EYPNTLxPE2EGkRDdIWnXIQ4lKuX0paDB3hYLLFMntRi1N3RZFLls75/5tcWt?=
+ =?us-ascii?Q?mg1diZxVqCbKkUekHAi1XN1B4hl41M6PfK1J/G4NcLg1Bu5w4hLREh5fxgEH?=
+ =?us-ascii?Q?KNh5bG6zfsaQOEXTzr9IQ0J2z/uJJPe50lPlqJ73Bz56lsWeyRQjFmEQLoQK?=
+ =?us-ascii?Q?7jFBRgAUIODK8b3emX390mI+G1voYJDxFZYI7J0ui0Qd9yriqzdGyVE+Bf8t?=
+ =?us-ascii?Q?jrrvVF+7W381mh20wl27a+PzDVP3OlfJmDd4KSzwd8p8I8kKgRi5BZGeE3Ea?=
+ =?us-ascii?Q?Nsyt4792?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c8e9e31-7c09-4962-a0a0-08d8c2012690
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2021 13:49:06.8404
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tvUThoRxXw/j+JW2s1W9p423RCMS3//lXhehtpbx0iDlgOUCeRcGkVd6Q0kVeHisRxqFE6fNgFFhuI5iw+4YYQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7593
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 26, 2021 at 1:27 AM Uwe Kleine-K=C3=B6nig <uwe@kleine-koenig.or=
-g> wrote:
->
-> Hello Masahiro,
->
-> On 1/25/21 10:53 PM, Masahiro Yamada wrote:
-> > On Mon, Jan 25, 2021 at 8:07 PM Uwe Kleine-K=C3=B6nig <uwe@kleine-koeni=
-g.org> wrote:
-> >>
-> >> Adding the -@ switch to dtc results in the binary devicetrees containi=
-ng
-> >> a list of symbolic references and their paths. This is necessary to
-> >> apply device tree overlays e.g. on Raspberry Pi as described on
-> >> https://www.raspberrypi.org/documentation/configuration/device-tree.md=
-.
-> >>
-> >> Obviously the downside of this change is an increas of the size of the
-> >> generated dtbs, for an arm out-of-tree build (multi_v7_defconfig):
-> >>
-> >>          $ du -s arch/arm/boot/dts*
-> >>          101380  arch/arm/boot/dts-pre
-> >>          114308  arch/arm/boot/dts-post
-> >>
-> >> so this is in average an increase of 12.8% in size.
-> >>
-> >> Signed-off-by: Uwe Kleine-K=C3=B6nig <uwe@kleine-koenig.org>
-> >
-> >
-> > (CCing DT ML.)
->
-> makes sense, thanks.
->
-> > https://www.spinics.net/lists/linux-kbuild/msg27904.html
-> >
-> > See Rob's comment:
-> >
-> > "We've already rejected doing that. Turning on '-@' can grow the dtb
-> > size by a significant amount which could be problematic for some
-> > boards."
->
-> The patch was created after some conversation on irc which continued
-> after I sent the patch. I added the participating parties to Cc:.
->
-> The (relevant) followups were:
->
-> Geert suggested to always generate the symbols and provide a way to
-> strip the symbols for installation if and when they are not needed.
->
-> Rob said: "I'm less concerned with the size increases, but rather that
-> labels go from purely source syntax to an ABI. I'd rather see some
-> decision as to which labels are enabled or not."
+Hi Rob,
 
-I've also said move the arm32 dts files to family subdirectories and
-enable '-@' per directory. I've posted a script to do the whole thing,
-but I think the preference is one-by-one. This is needed anyways if
-we're going to start adding overlays which Viresh is working on.
+> Subject: [PATCH V9 01/10] dt-bindings: remoteproc: convert imx rproc
+> bindings to json-schema
 
-Rob
+Do you have time to give a look and including
+https://patchwork.kernel.org/project/linux-remoteproc/
+patch/1611191015-22584-3-git-send-email-peng.fan@nxp.com/
+
+If could get your R-b or A-b tag, we could have the whole patchset
+merge into remoteproc tree.
+
+Thanks,
+Peng.
+
+>=20
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> Convert the imx rproc binding to DT schema format using json-schema.
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 59 +++++++++++++++++++
+>  .../bindings/remoteproc/imx-rproc.txt         | 33 -----------
+>  2 files changed, 59 insertions(+), 33 deletions(-)  create mode 100644
+> Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>  delete mode 100644
+> Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+>=20
+> diff --git
+> a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> new file mode 100644
+> index 000000000000..bce6ccfe1538
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: NXP iMX6SX/iMX7D Co-Processor Bindings
+> +
+> +description:
+> +  This binding provides support for ARM Cortex M4 Co-processor found on
+> some NXP iMX SoCs.
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx7d-cm4
+> +      - fsl,imx6sx-cm4
+> +
+> +  clocks:
+> +    description:
+> +      Clock for co-processor (See ../clock/clock-bindings.txt)
+> +
+> +  syscon:
+> +    description:
+> +      Phandle to syscon block which provide access to System Reset
+> + Controller
+> +
+> +  memory-region:
+> +    description:
+> +      list of phandels to the reserved memory regions.
+> +      (see ../reserved-memory/reserved-memory.txt)
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - syscon
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx7d-clock.h>
+> +    m4_reserved_sysmem1: cm4@80000000 {
+> +      reg =3D <0x80000000 0x80000>;
+> +    };
+> +
+> +    m4_reserved_sysmem2: cm4@81000000 {
+> +      reg =3D <0x81000000 0x80000>;
+> +    };
+> +
+> +    imx7d-cm4 {
+> +      compatible	=3D "fsl,imx7d-cm4";
+> +      memory-region	=3D <&m4_reserved_sysmem1>,
+> <&m4_reserved_sysmem2>;
+> +      syscon		=3D <&src>;
+> +      clocks		=3D <&clks IMX7D_ARM_M4_ROOT_CLK>;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> b/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> deleted file mode 100644
+> index fbcefd965dc4..000000000000
+> --- a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
+> +++ /dev/null
+> @@ -1,33 +0,0 @@
+> -NXP iMX6SX/iMX7D Co-Processor Bindings
+> -----------------------------------------
+> -
+> -This binding provides support for ARM Cortex M4 Co-processor found on
+> some -NXP iMX SoCs.
+> -
+> -Required properties:
+> -- compatible		Should be one of:
+> -				"fsl,imx7d-cm4"
+> -				"fsl,imx6sx-cm4"
+> -- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
+> -- syscon		Phandle to syscon block which provide access to
+> -			System Reset Controller
+> -
+> -Optional properties:
+> -- memory-region		list of phandels to the reserved memory regions.
+> -			(See: ../reserved-memory/reserved-memory.txt)
+> -
+> -Example:
+> -	m4_reserved_sysmem1: cm4@80000000 {
+> -		reg =3D <0x80000000 0x80000>;
+> -	};
+> -
+> -	m4_reserved_sysmem2: cm4@81000000 {
+> -		reg =3D <0x81000000 0x80000>;
+> -	};
+> -
+> -	imx7d-cm4 {
+> -		compatible	=3D "fsl,imx7d-cm4";
+> -		memory-region	=3D <&m4_reserved_sysmem1>,
+> <&m4_reserved_sysmem2>;
+> -		syscon		=3D <&src>;
+> -		clocks		=3D <&clks IMX7D_ARM_M4_ROOT_CLK>;
+> -	};
+> --
+> 2.28.0
+
