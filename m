@@ -2,99 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20AB030446C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:02:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A25AA304493
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:16:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727718AbhAZRB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:01:56 -0500
-Received: from mx2.suse.de ([195.135.220.15]:57470 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389618AbhAZHqI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 02:46:08 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-        t=1611647092; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=UxnV2Q2IfU/Q0fbAsdCetFfyoOedKL7i2YrptqeNa2E=;
-        b=lahMzuU+ag9/sX/CLQCQiREJf8LBSBH3CqFMSQM3RvfOQAMeUNABPAotP/f4l/cr4ZPbmL
-        wzy/E9KMfnniD6ACXw9yM/g0vTSlrj2mSsEW7MCIOfjsfM8A790QkDHlroNOAU1fUALtRm
-        AVqLpqVe+3af7gMLFvxf43dsbq1HCBE=
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id D5971ADC4;
-        Tue, 26 Jan 2021 07:44:51 +0000 (UTC)
-Date:   Tue, 26 Jan 2021 08:44:49 +0100
-From:   Michal Hocko <mhocko@suse.com>
-To:     Minchan Kim <minchan@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        linux-mm <linux-mm@kvack.org>,
-        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
-        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
-        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
-        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
-        linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v4 2/4] mm: failfast mode with __GFP_NORETRY in
- alloc_contig_range
-Message-ID: <20210126074449.GA827@dhcp22.suse.cz>
-References: <20210121175502.274391-1-minchan@kernel.org>
- <20210121175502.274391-3-minchan@kernel.org>
- <20210125131200.GG827@dhcp22.suse.cz>
- <YA8dEFSrHBb9muFr@google.com>
+        id S1729735AbhAZREy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:04:54 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:35882 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2387490AbhAZIHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:07:50 -0500
+X-UUID: 9104bc5961f042f5ba77c8054e9999a6-20210126
+X-UUID: 9104bc5961f042f5ba77c8054e9999a6-20210126
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <henryc.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2056946874; Tue, 26 Jan 2021 16:03:57 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 26 Jan 2021 16:03:56 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jan 2021 16:03:56 +0800
+From:   Henry Chen <henryc.chen@mediatek.com>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Arvin Wang <arvin.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Henry Chen <henryc.chen@mediatek.com>
+Subject: [PATCH V8 05/12] arm64: dts: mt8183: add dvfsrc related nodes
+Date:   Tue, 26 Jan 2021 16:03:47 +0800
+Message-ID: <1611648234-15043-6-git-send-email-henryc.chen@mediatek.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1611648234-15043-1-git-send-email-henryc.chen@mediatek.com>
+References: <1611648234-15043-1-git-send-email-henryc.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YA8dEFSrHBb9muFr@google.com>
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 188E172D5CBED80A4BB8EA5BDA54E4BFBBEE0C947A866B92273FEEAEFFC543972000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 25-01-21 11:33:36, Minchan Kim wrote:
-> On Mon, Jan 25, 2021 at 02:12:00PM +0100, Michal Hocko wrote:
-> > On Thu 21-01-21 09:55:00, Minchan Kim wrote:
-> > > Contiguous memory allocation can be stalled due to waiting
-> > > on page writeback and/or page lock which causes unpredictable
-> > > delay. It's a unavoidable cost for the requestor to get *big*
-> > > contiguous memory but it's expensive for *small* contiguous
-> > > memory(e.g., order-4) because caller could retry the request
-> > > in different range where would have easy migratable pages
-> > > without stalling.
-> > > 
-> > > This patch introduce __GFP_NORETRY as compaction gfp_mask in
-> > > alloc_contig_range so it will fail fast without blocking
-> > > when it encounters pages needed waiting.
-> > 
-> > I am not against controling how hard this allocator tries with gfp mask
-> > but this changelog is rather void on any data and any user.
-> > 
-> > It is also rather dubious to have retries when then caller says to not
-> > retry.
-> 
-> Since max_tries is 1 with ++tries, it shouldn't retry.
+Enable dvfsrc on mt8183 platform.
 
-OK, I have missed that. This is a tricky code. ASYNC mode should be
-completely orthogonal to the retries count. Those are different things.
-Page allocator does an explicit bail out based on __GFP_NORETRY. You
-should be doing the same.
+Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> > 
-> > Also why didn't you consider GFP_NOWAIT semantic for non blocking mode?
-> 
-> GFP_NOWAIT seems to be low(specific) flags rather than the one I want to
-> express. Even though I said only page writeback/lock in the description,
-> the goal is to avoid costly operations we might find later so such
-> "failfast", I thought GFP_NORETRY would be good fit.
-
-I suspect you are too focused on implementation details here. Think
-about the indended semantic. Callers of this functionality will not
-think about those (I hope because if they rely on these details then the
-whole thing will become unmaintainable because any change would require
-an audit of all existing users). All you should be caring about is to
-control how expensive the call can be. GFP_NOWAIT is not really low
-level from that POV. It gives you a very lightweight non-sleeping
-attempt to allocate. GFP_NORETRY will give you potentially sleeping but
-an opportunistic-easy-to-fail attempt. And so on. See how that is
-absolutely free of any page writeback or any specific locking.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 5b782a4..062afe8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -497,6 +497,11 @@
+ 			#clock-cells = <1>;
+ 		};
+ 
++		ddr_emi: dvfsrc@10012000 {
++			compatible = "mediatek,mt8183-dvfsrc";
++			reg = <0 0x10012000 0 0x1000>;
++		};
++
+ 		pwrap: pwrap@1000d000 {
+ 			compatible = "mediatek,mt8183-pwrap";
+ 			reg = <0 0x1000d000 0 0x1000>;
 -- 
-Michal Hocko
-SUSE Labs
+1.9.1
+
