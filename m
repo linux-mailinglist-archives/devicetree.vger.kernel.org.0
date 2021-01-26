@@ -2,326 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF99C3038A6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 10:07:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A35293038F3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 10:26:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389115AbhAZJGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 04:06:00 -0500
-Received: from mail-eopbgr80075.outbound.protection.outlook.com ([40.107.8.75]:17223
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        id S2389731AbhAZJZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 04:25:18 -0500
+Received: from mail-bn7nam10on2061.outbound.protection.outlook.com ([40.107.92.61]:39556
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2390851AbhAZJFU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 04:05:20 -0500
+        id S2390519AbhAZJVX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 04:21:23 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VXMDSZ7TIXr2kYGKj0tno/4Zw1DFpeR8itrr+96gHKezIrKWy+CfmlFIrRZjuKAnSr3famFiCPBgsCKkhZ3BZRNbEpiBAZJYmmy4ImHC/zwX6mEkiKGfrjHKxVlbdVXoLeY8nl6dwZj3S5EcLncZ1Oib22SZteLv62V3IrBOkxKn3mSjEm+OIT7CjZjQsnc+lIc1Y7o7mVIZ/Zu2VYfbrcS0knr4yTYIt03WCmvQskHRG64u7gFiAxrvmjbXL6PHiUyAV1aqtF9PnYsxgnNsNBI8votoKzrTw1SPRPDhcqBEYXVbiBuwTDymvv9Eeqecns9/2nIL1x3C5sSDjkirow==
+ b=Bp7TqQ2rtJHUeyW4paPs5zHewXnBfZUs1eVoyUkBjSYUKLL5KLdNPjtQGxNBweEZC1/C4sYyWTe/5uumP7sSybWmfdRbZ/4EhnSObvFjbQSOqapZJ+/0f04Kh8Qh4XYs3D20fzmzxpvN2vxmVB5ZLBMu+e9Qi9y2MrPGe9gcbzoa6sHGPkVhu/LsaQRUKaUpjTAzutgDuoN0qYR55WL2eVS3bsajQA+g56x03N5li29AqmA2A7iZNHOcXC5Kysepj65iowenRp7WgDzkBZCREKeCp+NnzpS5eoR5KqXl8K4uk/zCzP7hh+noRboFNCqwUblI7+wVEqXahX8SdOkmMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dQdYn1JdqkH7EJfZtIVXwZDBsvewaVHNQ/W6We4jDjY=;
- b=eYhmBGwojPFhRKhcnG0wtfSd6g4n/zF+RnsAGCuIEh7MXN5N1LP2f2hy/SyHaQYsVYjUy/RYaPzD5SbIlE3/iLm8GUXhRCocGKB/er325oMNLsCAYxfmYviPy376IDLOy8mGFeOcld9V3d4XVo6kEoesawDwn1oeCMbxldFTTKwIj51IzGc2gBkf0hwLiCuR0ZpuiyjD0+shynjRKIyupOz3LXXtv4nYXJZRY16COTSNuODy/70+UDifeGOrzRIWorsObVpTffca1npqrStGIDYpB+G+QIsJL6qL6smpnXOlV392MDxAGtV9V0DYhi/F/VZ/KTG1yzBCOkym4FPZfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=ux1ccx0k19Cv6pSNDOvaZtddX5MspYBbtJrkbVRcrCg=;
+ b=nVVcnVqGrythvQ5cQSgTjjkPdKfaon2YkMDikOHrMFrOCWE+7cpnydqCn/7rERgVsJ1qCuoSQ7bue0+io+Uoa7xtbGX3/FWj4hcbSn98e3Rul++w8KHYYs14S+eqxm16KHt2e1RncvwwH9MJppbKFm81I0MGQ2KOYDx8dbZjzdDl57zDR9pVqa49qiZo6t65ZWSSkrfKB6zwEhtm1GwV2pEBI4Hu9dTtCFHcYXc1KOrjAPVSWnOP3xnYDFvZbtoJDgEvS/8lTvE0c2tpOybB+HXincg7HNd4+OdU2NjDY/y1mYrwYN0F5AoFAKwUI5XIiJet1pPyACIGDtxUR99rfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dQdYn1JdqkH7EJfZtIVXwZDBsvewaVHNQ/W6We4jDjY=;
- b=GV8i22dlkxGJOfRf/95U6I+oC545pb9BHnQ4KZisi/6muRMfRMqZINK2nr9+0jLrj1fbIiHm801WwiA91gopNksO1/Qer2KpyK50KTJtAwWZl4W3pg5qZkl9DfNWIEP8iqGpAx3f8dcBS0uqQryK1MEa9wBM3qaAHLxAlkSFq90=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB3974.eurprd04.prod.outlook.com (2603:10a6:209:50::12)
- by AS8PR04MB7878.eurprd04.prod.outlook.com (2603:10a6:20b:2af::24) with
+ bh=ux1ccx0k19Cv6pSNDOvaZtddX5MspYBbtJrkbVRcrCg=;
+ b=dB4Iq6yUGpPLznw6zCMBVB+KbbIjbg7GWdY6EDv7cYNCT/Siu1S8e9Z+674c41cxZUjqKZ2fO2q6FCiPlPAyfAxY1YoffkABWEr89hVcjREcCWWZwbcQKd4lBndcylCtN1mS7AKDvQzYyiaeaSl4M9MXTsyJ3g1qIiZEVfJpb7g=
+Received: from CY4PR22CA0091.namprd22.prod.outlook.com (2603:10b6:903:ad::29)
+ by DM6PR02MB3932.namprd02.prod.outlook.com (2603:10b6:5:a6::30) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12; Tue, 26 Jan
- 2021 09:04:31 +0000
-Received: from AM6PR04MB3974.eurprd04.prod.outlook.com
- ([fe80::64a8:cb73:cfb:1674]) by AM6PR04MB3974.eurprd04.prod.outlook.com
- ([fe80::64a8:cb73:cfb:1674%5]) with mapi id 15.20.3784.012; Tue, 26 Jan 2021
- 09:04:31 +0000
-Message-ID: <1bf7a341d5c09c8f3b535f6d3325a68cd3aa4fc3.camel@nxp.com>
-Subject: Re: [PATCH v2 11/14] dt-bindings: display: bridge: Add i.MX8qm/qxp
- LVDS display bridge binding
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
-        a.hajda@samsung.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, kishon@ti.com, vkoul@kernel.org
-Date:   Tue, 26 Jan 2021 17:02:50 +0800
-In-Reply-To: <20210125211910.GA1004310@robh.at.kernel.org>
-References: <1610616132-8220-1-git-send-email-victor.liu@nxp.com>
-         <1610616132-8220-12-git-send-email-victor.liu@nxp.com>
-         <20210125211910.GA1004310@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.4-0ubuntu1 
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR03CA0089.apcprd03.prod.outlook.com
- (2603:1096:4:7c::17) To AM6PR04MB3974.eurprd04.prod.outlook.com
- (2603:10a6:209:50::12)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.17; Tue, 26 Jan
+ 2021 09:20:20 +0000
+Received: from CY1NAM02FT010.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:903:ad:cafe::f0) by CY4PR22CA0091.outlook.office365.com
+ (2603:10b6:903:ad::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.16 via Frontend
+ Transport; Tue, 26 Jan 2021 09:20:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT010.mail.protection.outlook.com (10.152.75.50) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3784.12 via Frontend Transport; Tue, 26 Jan 2021 09:20:19 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Tue, 26 Jan 2021 01:20:19 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Tue, 26 Jan 2021 01:20:19 -0800
+Envelope-to: michal.simek@xilinx.com,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ robh+dt@kernel.org,
+ xe-linux-external@cisco.com,
+ dwalker@fifo99.com,
+ broonie@kernel.org,
+ danielwa@cisco.com
+Received: from [172.30.17.109] (port=32906)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1l4KSn-0005b7-5L; Tue, 26 Jan 2021 01:16:41 -0800
+Subject: Re: [PATCH 1/2] arm64: boot: dts: add new dts for hellcat & petra
+To:     "Daniel Walker (danielwa)" <danielwa@cisco.com>,
+        Michal Simek <michal.simek@xilinx.com>
+CC:     Mark Brown <broonie@kernel.org>,
+        Daniel Walker <dwalker@fifo99.com>,
+        "xe-linux-external(mailer list)" <xe-linux-external@cisco.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210121231237.30664-1-danielwa@cisco.com>
+ <185100f4-67f1-140b-ad01-9997891e68da@xilinx.com>
+ <20210122203240.GS3710@zorba>
+ <849cc330-8545-f1cd-1715-5244e399897e@xilinx.com>
+ <20210125210419.GU3710@zorba>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <f2306899-f084-2cca-b67e-ed6255609597@xilinx.com>
+Date:   Tue, 26 Jan 2021 10:16:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR03CA0089.apcprd03.prod.outlook.com (2603:1096:4:7c::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.6 via Frontend Transport; Tue, 26 Jan 2021 09:04:25 +0000
-X-MS-PublicTrafficType: Email
+In-Reply-To: <20210125210419.GU3710@zorba>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: df51b692-e3a3-498b-0395-08d8c1d9646d
-X-MS-TrafficTypeDiagnostic: AS8PR04MB7878:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <AS8PR04MB7878DBBA1C551A59AAE7BBD998BC0@AS8PR04MB7878.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 38ba5643-e59b-4b6c-99a4-08d8c1db9a0f
+X-MS-TrafficTypeDiagnostic: DM6PR02MB3932:
+X-Microsoft-Antispam-PRVS: <DM6PR02MB39327C1D9755DDB0D1F81C08C6BC9@DM6PR02MB3932.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gtR+SRAHwbGE9jdnMFA2Lr1LUUwErLL2XCadxzyXNKz+pT4onzuZG2dHu0CGz3wZBOliiK7lrSTMck6rTRjeOFrsJDgGeMNUOOSQ8wCHa+4KkejqdOAtr+ZZKznDjBW2JafTILcylrta9MKc0PQHL8LNvZlPRR8y+1yFHRBbfMXE0+fyToGWGGpfwzFuYoNRad0l2lWqKWFWF2AyfyT6igUqasAGX/oLezHMBOfwT0Q58k86onNkQVaiOelaE2+Mf/YZHPJ+jVlsJchwxTWUIlr1H+D4WWTTN0+uxGNejXdHcOARySK4XBAox6XPy0H58kvXfZeVHLymLFXW6daCJR9g01QaNIGathZ38hKNU0ki2JOiCLm4TVZkq7KMGIRij4okhgTAyYOdwrSf5ydklt/IeNxH7RfQVbL0hIhz9rMPJbUZ2wIsr44wmSGSIOBvhiBQIIH3olj9eBQdKfhU02zjAV/aAHNydqfDljwh7rqKfmwvVeEm56ufSW8keEHJLdXnj9Wc13k6BPZL9z4Vp+xo5TXgGgZ5UqDECg4lLGjB8ySwBfL3nMCdxb1HAZXS8LJTxdh6MXaTuafpwnHtT3zKRLY4XNtgrGxGZGRIx8I=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB3974.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39860400002)(376002)(136003)(396003)(346002)(4326008)(26005)(6512007)(86362001)(52116002)(8936002)(7416002)(66556008)(66946007)(36756003)(316002)(2906002)(478600001)(966005)(6916009)(6506007)(8676002)(66476007)(186003)(2616005)(956004)(6486002)(83380400001)(6666004)(45080400002)(5660300002)(16526019);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?NGhWaXp5YU1tekx6c1VESVJvK1ZQOUdqZzk4QysvOURGOW5abTBjKys2c1Jm?=
- =?utf-8?B?NEhGVzBUeEdpTjZBTElzV3JLYjU2TWNaTlJseWd0MEZyaWZXRHpyOVNUcVNk?=
- =?utf-8?B?K3l3MllnUnVJWFNDQUs5Qis1Zm15d2lkRC9XajlvQmgzTVljRm9KaVordnRD?=
- =?utf-8?B?bk9QQ3VOZGFDbE1jZGNLT2tGZkxCMkdWTFR4M1hJdDNVaThJNVpHUThQUzVj?=
- =?utf-8?B?TmJQTW5lUndFaDlUdXZvcW1RMXh0UWtZdEN4Znc4OHQxNStHZEZXenUrM1lC?=
- =?utf-8?B?Y2MybGN2WHFodEcyRTBSUUI2RVcvcGh2TzJyU04vRXFiRmg3N0x1cmlQUEhR?=
- =?utf-8?B?OE1uaUJVM1FrMFpVdFdGQ1NvYm0rMFhqTEVEN0tJUDNCdFkwUDlzSUtmOUVJ?=
- =?utf-8?B?ZUVVcytLek01Nzh4N2JMK3EzanlFRUpHK1VERHJlRnFGYi9SWGhVQ1YyS3hD?=
- =?utf-8?B?ODhmMm90b2pJTTZvcVZBNHo2S001N0JWdWFSZDJGYURpQ3I2K0RNdFAwdnk1?=
- =?utf-8?B?MHU5eEFuWDdLUitGTlBra2JTdWxmMEFvU0ZiRUxOTDlSb01FeXVsalloTEU5?=
- =?utf-8?B?TnZveDBlRnUxdEFkQkJlVlNyc1d6NUNrTHhsdERSTXJvVkpUWnpsMWdNUW52?=
- =?utf-8?B?S1k3MHlUWUN0K1VCdVNPQW1GYzdEVlNKeXgxa1pFZFQ1elVsS0h3aVQ3WktS?=
- =?utf-8?B?anZPTHNGL3l0NlFURUp3cFAvWkY3QWhQU0pHamIwNjdtbW5id3hnWmlJdWJM?=
- =?utf-8?B?VDFnZ0VPNzNscGRqNERKODBTOUJ1WmJSRkh0T1RBS3JyS01QUlZTeWk1TTFq?=
- =?utf-8?B?WlhTQ09CQ1Q3TWxuUVVXeHZRa01Qdk5QWGRHMDBuR1lZZWgwVWFOdmk2Tmtv?=
- =?utf-8?B?MVVnMEVHVmVLL29RcmFhWTRhYllvNWpFWEk3OWFFY1hEUGxoQjZ0THNEdkRj?=
- =?utf-8?B?N3Q2QTZ0MDdmdTlQTHFVT2xTeUhMd0V5TGxvTFNDdEVFeDlGd2NieS9FcEtD?=
- =?utf-8?B?MzZXUEVCV2xrSHMwWm1XbE1NQlBZNDBGOXFSeFgwYUR2TUtUdkM2bWgzdjJ0?=
- =?utf-8?B?bCtIQlg5Ukx2MWtvTjZLNlQ3TWdNQkRYOStaTUhFUXNpaElDcEdVNkNOaWFH?=
- =?utf-8?B?N1VmZ0taZDBpSEtjaUdhS2N5djdMaHN3VS81b1BiUWFiWWQxMklualhpMkFr?=
- =?utf-8?B?UnFYY0RhbGNyRitDb0xCTTZPcGh1K3lBVngrR1JBOXpzU1ZOcUtQZDFJc3Vv?=
- =?utf-8?B?U0ZzNXJYQXZzNVIvZzdkSTR5TkM0WTFSNDE0WnVvMWpjWVBOcWdTMHI0d2sr?=
- =?utf-8?B?Q1N5d3JtTmVrbTVJTzY4S0pRSXBRTytIV2Naa3p0cU5TNE82MkdLbVUwbW1Z?=
- =?utf-8?B?YmZNbTNOZFIxd2g0ZkVKa0w0NmhDVDRCWnNIKzRFOWRNeGpQbUEwVkxIQWJ1?=
- =?utf-8?Q?lv0KEKVx?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: df51b692-e3a3-498b-0395-08d8c1d9646d
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB3974.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 09:04:31.5192
+X-Microsoft-Antispam-Message-Info: +HSuhA5rcmKnMHwn9lvIqTCLZ6jmiMRD6QGweephuIHozZln6QPPhvcPjnuSBKx1j8jjt/NIZWoblke49xigFlLFLrqdB5Unp04REgNF4Z74h2rQYvAkE2Z+NDBldMdlFjMU+JiEWIqHPsnBWTTXTHaG1b543NKKcxsVmYoQ+U+2n3nMFDvHj0jJaDQt+9jKxgnF1nFlUklFQ+m456AcVqcFBfY9Mg7TGCDZynaJZR01t/n5E7CFMAH2Jvas0QsSE8kKI0Mp8GeCXsnUzaxnnFoCWVzSNY3gY1NUq/o4Z0gr+BSvPjQzD7yAGc2tjAAw7HTmJbgaC2W3kswxeoTMPm8oUQUi7cwHd6bGwd26K0tQVh4N7u0IofIV3bO71Ln3/EbiFZ61oXRkJ1Pqy46yBzlf9DLOyPvMnku7AZvrjqUl8a86FFiZppFtIcFFnolwriImKh9pICEUmzf3yfITL6iv0dg0VakwgGpP5IHcPf2ucXzDbdrUpQ5nNGLhQtcWvRbFuqEiQE3PnYhWqX/9DA==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(136003)(396003)(39860400002)(346002)(46966006)(7636003)(4326008)(47076005)(336012)(6666004)(2616005)(2906002)(70206006)(82310400003)(82740400003)(356005)(83380400001)(5660300002)(31696002)(70586007)(8936002)(26005)(36756003)(36906005)(54906003)(53546011)(8676002)(316002)(110136005)(478600001)(9786002)(426003)(31686004)(186003)(44832011)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 09:20:19.9007
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vohRGquFyyiGLVrjLZSbguLueBkgojvQ/Dj0MlQjJQ5fzHFQpyRQlMgoIxSr0EpRve6Q6UgJdUREnLDygwMAkA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7878
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38ba5643-e59b-4b6c-99a4-08d8c1db9a0f
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT010.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB3932
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-01-25 at 15:19 -0600, Rob Herring wrote:
-> On Thu, Jan 14, 2021 at 05:22:09PM +0800, Liu Ying wrote:
-> > This patch adds bindings for i.MX8qm/qxp LVDS display bridge(LDB).
-> > 
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > ---
-> > v1->v2:
-> > * Use graph schema. (Laurent)
-> > * Side note i.MX8qxp LDB official name 'pixel mapper'. (Laurent)
-> > 
-> >  .../bindings/display/bridge/fsl,imx8qxp-ldb.yaml   | 176 +++++++++++++++++++++
-> >  1 file changed, 176 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
-> > new file mode 100644
-> > index 00000000..514ac90
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
-> > @@ -0,0 +1,176 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fdisplay%2Fbridge%2Ffsl%2Cimx8qxp-ldb.yaml%23&amp;data=04%7C01%7Cvictor.liu%40nxp.com%7Cd0b03e396918477bc51d08d8c176df8d%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637472063608912397%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=utcLOZodmKCEAcBi8vuTHpqiDrRqlia09LpcDDT%2Bm1s%3D&amp;reserved=0
-> > +$schema: https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cvictor.liu%40nxp.com%7Cd0b03e396918477bc51d08d8c176df8d%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637472063608912397%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=aB4XwL7EjuHcIvbPJSUhzyqizpiUA2%2BOenkWmcpIkX0%3D&amp;reserved=0
-> > +
-> > +title: Freescale i.MX8qm/qxp LVDS Display Bridge
-> > +
-> > +maintainers:
-> > +  - Liu Ying <victor.liu@nxp.com>
-> > +
-> > +description: |
-> > +  The Freescale i.MX8qm/qxp LVDS Display Bridge(LDB) has two channels.
-> > +
-> > +  For i.MX8qxp LDB, each channel supports up to 24bpp parallel input color
-> > +  format and can map the input to VESA or JEIDA standards.  The two channels
-> > +  cannot be used simultaneously, that is to say, the user should pick one of
-> > +  them to use.  Two LDB channels from two LDB instances can work together in
-> > +  LDB split mode to support a dual link LVDS display.  The channel indexes
-> > +  have to be different.  Channel0 outputs odd pixels and channel1 outputs
-> > +  even pixels.
-> > +
-> > +  For i.MX8qm LDB, each channel additionally supports up to 30bpp parallel
-> > +  input color format.  The two channels can be used simultaneously, either
-> > +  in dual mode or split mode.  In dual mode, the two channels output identical
-> > +  data.  In split mode, channel0 outputs odd pixels and channel1 outputs even
-> > +  pixels.
-> > +
-> > +  A side note is that i.MX8qm/qxp LDB is officially called pixel mapper in
-> > +  the SoC reference manuals.  The pixel mapper uses logic of LDBs embedded in
-> > +  i.MX6qdl/sx SoCs, i.e., it is essentially based on them.  To keep the naming
-> > +  consistency, this binding calls it LDB.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,imx8qm-ldb
-> > +      - fsl,imx8qxp-ldb
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: pixel clock
-> > +      - description: bypass clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: pixel
-> > +      - const: bypass
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  fsl,syscon:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: |
-> > +      A phandle which points to Control and Status Registers(CSR) module.
-> 
-> Again, seems like this binding should be a child of the syscon.
 
-Will do.
+
+On 1/25/21 10:04 PM, Daniel Walker (danielwa) wrote:
+> On Mon, Jan 25, 2021 at 08:52:01AM +0100, Michal Simek wrote:
+>>>
+>>>>
+>>>> Long time ago we said that we are not going to push any PL related
+>>>> configurations. It means all below can't be merged.
+>>>> And there are also coding style issues.
+>>>
+>>> You'll need to explain this more. It's likely this was added at the suggestion of
+>>> Xilinx. If it can't be upstreamed what should we replace it with ?
+>>
+>> No idea who gave you this suggestion from Xilinx.
+>  
+> Just an FYI , I didn't write this dts or work on it's original development so I
+> can't name names.
+
+ok.
+
+> 
+>> I had similar thread with Michael Walle about supporting Ebang board.
+>> PL depends on your custom design and can change quite quickly that's
+>> there is no good/bad configuration. That's why all of them can be valid
+>> and kernel is not the right location to store thousands of
+>> configurations (likely in overlay form). That's why only fixed
+>> configurations for PS are added to kernel.
+>> And I prefer if there is any good reason behind why these platforms
+>> should be added.
+> 
+> I'm not sure what your talking about above .. Are you suggesting the changes in
+> my DTS will change quickly ? They have been the same for years , we don't plan
+> to change them. This DTS is not a prototype it's a released Cisco product.
+
+I am saying that I will NACK all DT changes which target PL. No matter
+that you didn't change hw design for years. You can add PL to DT overlay
+and apply it in Linux or do it via bootloader.
+
+> If I did delete this "PL configuration" where would you expect it to re-appear ?
+> Typically things which aren't upstreamable are transformed into something else,
+> it's rare that something is just removed and has no transformation.
+
+dt overlay in your distribution, rootfs as separate file and base DT in
+mainline.
 
 Thanks,
-Liu Ying
-
-> 
-> > +
-> > +  fsl,companion-ldb:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: |
-> > +      A phandle which points to companion LDB which is used in LDB split mode.
-> > +
-> > +patternProperties:
-> > +  "^channel@[0-1]$":
-> > +    type: object
-> > +    description: Represents a channel of LDB.
-> > +
-> > +    properties:
-> > +      "#address-cells":
-> > +        const: 1
-> > +
-> > +      "#size-cells":
-> > +        const: 0
-> > +
-> > +      reg:
-> > +        description: The channel index.
-> > +        enum: [ 0, 1 ]
-> > +
-> > +      phys:
-> > +        description: A phandle to the phy module representing the LVDS PHY.
-> > +        maxItems: 1
-> > +
-> > +      phy-names:
-> > +        const: lvds_phy
-> > +
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Input port of the channel.
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Output port of the channel.
-> > +
-> > +    required:
-> > +      - "#address-cells"
-> > +      - "#size-cells"
-> > +      - reg
-> > +      - phys
-> > +      - phy-names
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +  - clocks
-> > +  - clock-names
-> > +  - power-domains
-> > +  - fsl,syscon
-> > +  - channel@0
-> > +  - channel@1
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: fsl,imx8qm-ldb
-> > +    then:
-> > +      properties:
-> > +        fsl,companion-ldb: false
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/firmware/imx/rsrc.h>
-> > +    ldb {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +        compatible = "fsl,imx8qxp-ldb";
-> > +        clocks = <&clk IMX_SC_R_LVDS_0 IMX_SC_PM_CLK_MISC2>,
-> > +                 <&clk IMX_SC_R_LVDS_0 IMX_SC_PM_CLK_BYPASS>;
-> > +        clock-names = "pixel", "bypass";
-> > +        power-domains = <&pd IMX_SC_R_LVDS_0>;
-> > +        fsl,syscon = <&mipi_lvds_0_csr>;
-> > +
-> > +        channel@0 {
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +            reg = <0>;
-> > +            phys = <&mipi_lvds_0_phy>;
-> > +            phy-names = "lvds_phy";
-> > +
-> > +            port@0 {
-> > +                reg = <0>;
-> > +
-> > +                mipi_lvds_0_ldb_ch0_mipi_lvds_0_pxl2dpi: endpoint {
-> > +                    remote-endpoint = <&mipi_lvds_0_pxl2dpi_mipi_lvds_0_ldb_ch0>;
-> > +                };
-> > +            };
-> > +        };
-> > +
-> > +        channel@1 {
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +            reg = <1>;
-> > +            phys = <&mipi_lvds_0_phy>;
-> > +            phy-names = "lvds_phy";
-> > +
-> > +            port@0 {
-> > +                reg = <0>;
-> > +
-> > +                mipi_lvds_0_ldb_ch1_mipi_lvds_0_pxl2dpi: endpoint {
-> > +                    remote-endpoint = <&mipi_lvds_0_pxl2dpi_mipi_lvds_0_ldb_ch1>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > -- 
-> > 2.7.4
-> > 
+Michal
 
