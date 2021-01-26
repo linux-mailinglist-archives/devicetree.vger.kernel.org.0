@@ -2,38 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E8E63044BA
+	by mail.lfdr.de (Postfix) with ESMTP id C00CD3044BB
 	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:17:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390404AbhAZRIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:08:00 -0500
-Received: from szxga07-in.huawei.com ([45.249.212.35]:11879 "EHLO
-        szxga07-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730203AbhAZIyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:54:19 -0500
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4DQ0q25myxz7b4D;
-        Tue, 26 Jan 2021 16:52:14 +0800 (CST)
+        id S2390420AbhAZRIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:08:01 -0500
+Received: from szxga05-in.huawei.com ([45.249.212.191]:11501 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390413AbhAZI4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:56:49 -0500
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.58])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4DQ0t821rZzjD1q;
+        Tue, 26 Jan 2021 16:54:56 +0800 (CST)
 Received: from [10.40.166.221] (10.40.166.221) by
- DGGEMS407-HUB.china.huawei.com (10.3.19.207) with Microsoft SMTP Server id
- 14.3.498.0; Tue, 26 Jan 2021 16:53:18 +0800
-Message-ID: <600FD87D.1080600@hisilicon.com>
-Date:   Tue, 26 Jan 2021 16:53:17 +0800
+ DGGEMS401-HUB.china.huawei.com (10.3.19.201) with Microsoft SMTP Server id
+ 14.3.498.0; Tue, 26 Jan 2021 16:56:01 +0800
+Message-ID: <600FD921.2030108@hisilicon.com>
+Date:   Tue, 26 Jan 2021 16:56:01 +0800
 From:   Wei Xu <xuwei5@hisilicon.com>
 User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
 To:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v3 2/4] arm64: dts: correct vendor prefix hisi to hisilicon
-References: <20201208124641.1787-1-thunder.leizhen@huawei.com> <20201208124641.1787-3-thunder.leizhen@huawei.com>
-In-Reply-To: <20201208124641.1787-3-thunder.leizhen@huawei.com>
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 0/6] further clean up Hisilicon-related errors detected
+ by DT schema on arm64
+References: <20210118031634.934-1-thunder.leizhen@huawei.com>
+In-Reply-To: <20210118031634.934-1-thunder.leizhen@huawei.com>
 Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.40.166.221]
@@ -44,60 +40,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Zhen Lei,
 
-On 2020/12/8 20:46, Zhen Lei wrote:
-> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
-> stated in "vendor-prefixes.yaml".
+On 2021/1/18 11:16, Zhen Lei wrote:
+> I've solved all the errors that can be fixed this time. The rest will require
+> more time and energy to analyze in depth.
 > 
-> Fixes: 35ca8168133c ("arm64: dts: Add dts files for Hisilicon Hi3660 SoC")
-> Fixes: dd8c7b78c11b ("arm64: dts: Add devicetree for Hisilicon Hi3670 SoC")
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> Cc: Chen Feng <puck.chen@hisilicon.com>
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Zhen Lei (6):
+>   arm64: dts: hisilicon: separate each group of data in the property
+>     "ranges"
+>   arm64: dts: hisilicon: place clock-names "bus" before "core"
+>   arm64: dts: hisilicon: normalize the node name of the module thermal
+>   arm64: dts: hisilicon: normalize the node name of the localbus
+>   arm64: dts: hisilicon: avoid irrelevant nodes being mistakenly
+>     identified as PHY nodes
+>   arm64: dts: hisilicon: delete unused property smmu-cb-memtype
+> 
+>  arch/arm64/boot/dts/hisilicon/hi3660.dtsi      | 6 +++---
+>  arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 8 ++++----
+>  arch/arm64/boot/dts/hisilicon/hi6220.dtsi      | 8 ++++----
+>  arch/arm64/boot/dts/hisilicon/hip05.dtsi       | 2 +-
+>  arch/arm64/boot/dts/hisilicon/hip06.dtsi       | 6 ++----
+>  arch/arm64/boot/dts/hisilicon/hip07.dtsi       | 9 ++-------
+>  6 files changed, 16 insertions(+), 23 deletions(-)
+> 
 
 Thanks!
-Applied to the hisilicon arm64 dt tree.
+Series applied to the hisilicon arm64 dt tree.
 
 Best Regards,
 Wei
-
-> ---
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> index 49c19c6879f95ce..bfb1375426d2b58 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> @@ -345,7 +345,7 @@
->  		crg_rst: crg_rst_controller {
->  			compatible = "hisilicon,hi3660-reset";
->  			#reset-cells = <2>;
-> -			hisi,rst-syscon = <&crg_ctrl>;
-> +			hisilicon,rst-syscon = <&crg_ctrl>;
->  		};
->  
->  
-> @@ -376,7 +376,7 @@
->  
->  		iomcu_rst: reset {
->  			compatible = "hisilicon,hi3660-reset";
-> -			hisi,rst-syscon = <&iomcu>;
-> +			hisilicon,rst-syscon = <&iomcu>;
->  			#reset-cells = <2>;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 85b0dfb35d6d396..5c5a5dc964ea848 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -155,7 +155,7 @@
->  			compatible = "hisilicon,hi3670-reset",
->  				     "hisilicon,hi3660-reset";
->  			#reset-cells = <2>;
-> -			hisi,rst-syscon = <&crg_ctrl>;
-> +			hisilicon,rst-syscon = <&crg_ctrl>;
->  		};
->  
->  		pctrl: pctrl@e8a09000 {
-> 
