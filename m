@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C5D303FD7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D852E304005
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:19:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731532AbhAZOLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 09:11:36 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:47057 "EHLO
+        id S2405803AbhAZOSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 09:18:55 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:51769 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2405771AbhAZOKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:10:07 -0500
-X-UUID: c8408ea7ad494aabbad222b78a77b1c1-20210126
-X-UUID: c8408ea7ad494aabbad222b78a77b1c1-20210126
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        with ESMTP id S2405739AbhAZOSw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:18:52 -0500
+X-UUID: 0c6e45220c2e4bb796f58014467b5dd1-20210126
+X-UUID: 0c6e45220c2e4bb796f58014467b5dd1-20210126
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
         (envelope-from <mason.zhang@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1475293282; Tue, 26 Jan 2021 22:09:08 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 26 Jan 2021 22:09:06 +0800
-Received: from localhost.localdomain (10.15.20.246) by mtkcas10.mediatek.inc
+        with ESMTP id 701339535; Tue, 26 Jan 2021 22:18:06 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 26 Jan 2021 22:18:04 +0800
+Received: from localhost.localdomain (10.15.20.246) by MTKCAS06.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 26 Jan 2021 22:09:06 +0800
+ Transport; Tue, 26 Jan 2021 22:18:03 +0800
 From:   Mason Zhang <mason.zhang@mediatek.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
@@ -32,11 +32,12 @@ CC:     <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
         Mason Zhang <mason.zhang@mediatek.com>
 Subject: [PATCH v1] arm64: dts: add spi node for MT6779
-Date:   Tue, 26 Jan 2021 21:56:26 +0800
-Message-ID: <20210126135626.31352-1-mason.zhang@mediatek.com>
+Date:   Tue, 26 Jan 2021 22:02:57 +0800
+Message-ID: <20210126140257.20328-1-mason.zhang@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
 Content-Type: text/plain
+X-TM-SNTS-SMTP: 9307BA1698631B02047F630344A561CE0E9377C7793C68A5BBF640C938DF1F5F2000:8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
