@@ -2,99 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71663304CFC
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 00:01:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D437304CFE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 00:01:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731336AbhAZXAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 18:00:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48712 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390018AbhAZSbw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 13:31:52 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 620E32224C;
-        Tue, 26 Jan 2021 18:31:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611685871;
-        bh=hwpSfinBZDh5+w+x/QjBXQLW3oRDY80SILSq+Y5HHDo=;
+        id S1731366AbhAZXAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 18:00:39 -0500
+Received: from conssluserg-03.nifty.com ([210.131.2.82]:17200 "EHLO
+        conssluserg-03.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727923AbhAZShh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 13:37:37 -0500
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48]) (authenticated)
+        by conssluserg-03.nifty.com with ESMTP id 10QIaGw3020487;
+        Wed, 27 Jan 2021 03:36:17 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com 10QIaGw3020487
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1611686177;
+        bh=jdWLcQFJpvkL7fnNbIXEjnV5zSV4ldy1W6fJJer0SS0=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DbOc4zipI517A/lToLn+hLdBxnb+4ETZgccGUoDS8yTx9I8CKUKe43KkrBpH2KNhG
-         e0TC9cE2cVJ36WFnsJ5mT095cOpAHT5QBmTtwlylevIm6IP0hcaSUAzzfro3uxMJIF
-         ftPMqQ63SPF0NLgoBnzcnp/s94+cuxluyG8rzolofAm/h1bKrECj7/ccYV4kmB1vRP
-         F3OJZfdJjkZSOKkNmVSk39VQGoAJkWiDpZdGvacm5sx9jttzp/E0xjt64kZQM1LItN
-         4uizTTRZqSBEgLk+gwWSVJbledYwceh17445fTuiVRxVGoXCXXuARoGHCK/hClwAoG
-         sMu42Mx2KdqFg==
-Received: by mail-qk1-f175.google.com with SMTP id x81so14041717qkb.0;
-        Tue, 26 Jan 2021 10:31:11 -0800 (PST)
-X-Gm-Message-State: AOAM532aqv1C31Bb7aQWOAOMfsnMtd3ajgVQFfokF2vfpvpQBkAUz0Yy
-        g6+e7zqNEHRYM4iHXVAoFNYOnpZ4D1fK8nGDrw==
-X-Google-Smtp-Source: ABdhPJx5ciP8LyJGQSq/H1+pseWon7Ig+U4yOWlMwo2IZRc9cg1vUsBdUbLWYhYdqnQx92cYs4tCNXh/KuAPK0M0fVw=
-X-Received: by 2002:a37:642:: with SMTP id 63mr6985257qkg.311.1611685870559;
- Tue, 26 Jan 2021 10:31:10 -0800 (PST)
+        b=vZ/bW+lTZyrd1ERgU+miNz8+GOlqwTLVOxxzyQasaF86h98Ay6qOjXhWuULGJqKM5
+         4z0X+NPL3o3SXxb8sugDW+V96GjyO8LJGIbkTltMuPaaexC7hTuXQymVd9kVXx3xIt
+         M59p3RVAhxPGJIbLGtDIMcTEHzCk3AuPUHHNzVXWI4h8HM9cXZOXZD1KbO7F0Xuq+O
+         IDejtgYMTP+WsY2imeqglLzgoFd263QtQdDQft8FNDcAwrztsHTgHzlDmNfWkXy7sZ
+         gHs/PaHuMLLlXqWAx95l8qKaJof9ym1H10wBL2jg72B+onuMC65bDq1FCmdLPAfw3K
+         ZwGcG9UUQ2o+g==
+X-Nifty-SrcIP: [209.85.216.48]
+Received: by mail-pj1-f48.google.com with SMTP id l18so2751623pji.3;
+        Tue, 26 Jan 2021 10:36:17 -0800 (PST)
+X-Gm-Message-State: AOAM532JH5rHQWuJ1wk8pqRPf/4+Y7+rlW6Ah8pXVbw1sRTqkzUqYtDd
+        F9PFlzGJkbhzJAl0UAi4uoQcDbd0rt3uOjcqz54=
+X-Google-Smtp-Source: ABdhPJzm8VWDgbWt/Qh9yT3e9UPSeoJupJWOrfVdaMJGhEFCxF7zQGgkjL8RLxx7C1vvctvqdHBbnBzSIJslbdB9RU8=
+X-Received: by 2002:a17:902:a5c5:b029:de:30b0:f1d with SMTP id
+ t5-20020a170902a5c5b02900de30b00f1dmr7207458plq.1.1611686176307; Tue, 26 Jan
+ 2021 10:36:16 -0800 (PST)
 MIME-Version: 1.0
-References: <20210123034428.2841052-1-swboyd@chromium.org> <20210123034428.2841052-6-swboyd@chromium.org>
-In-Reply-To: <20210123034428.2841052-6-swboyd@chromium.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 26 Jan 2021 12:30:58 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJbdfhqNF4xgues0Rm7KS8_8Xq2767q7DcdyeQ_Vqb58Q@mail.gmail.com>
-Message-ID: <CAL_JsqJbdfhqNF4xgues0Rm7KS8_8Xq2767q7DcdyeQ_Vqb58Q@mail.gmail.com>
-Subject: Re: [PATCH v2 5/6] hwmon: (lm70) Avoid undefined reference to match table
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>
+References: <20210120062351.3011786-1-masahiroy@kernel.org> <20210120213929.GA875847@robh.at.kernel.org>
+In-Reply-To: <20210120213929.GA875847@robh.at.kernel.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Wed, 27 Jan 2021 03:35:39 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQe9Vq4KEZJwqL=3etTedGVnieKA5vyVoXFr7-a03Nwgg@mail.gmail.com>
+Message-ID: <CAK7LNAQe9Vq4KEZJwqL=3etTedGVnieKA5vyVoXFr7-a03Nwgg@mail.gmail.com>
+Subject: Re: [PATCH] kbuild: use always-y instead of extra-y
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Kieran Bingham <kbingham@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        intel-gfx@lists.freedesktop.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 22, 2021 at 9:44 PM Stephen Boyd <swboyd@chromium.org> wrote:
+On Thu, Jan 21, 2021 at 6:39 AM Rob Herring <robh@kernel.org> wrote:
 >
-> We're going to remove of_match_ptr() from the definition of
-> of_match_device() when CONFIG_OF=n. This way we can always be certain
-> that of_match_device() acts the same when CONFIG_OF is set and when it
-> isn't. Add of_match_ptr() here so that this doesn't break when that
-> change is made to the of_match_device() API.
+> On Wed, Jan 20, 2021 at 03:23:51PM +0900, Masahiro Yamada wrote:
+> > As commit d0e628cd817f ("kbuild: doc: clarify the difference between
+> > extra-y and always-y") explained, extra-y should be used for listing
+> > the prerequsites of vmlinux. always-y is a better fix here.
 >
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> Acked-by: Guenter Roeck <linux@roeck-us.net>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: <linux-hwmon@vger.kernel.org>
-> ---
->
-> Please ack so Rob can apply.
->
->  drivers/hwmon/lm70.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/hwmon/lm70.c b/drivers/hwmon/lm70.c
-> index ae2b84263a44..e3153ae80634 100644
-> --- a/drivers/hwmon/lm70.c
-> +++ b/drivers/hwmon/lm70.c
-> @@ -178,7 +178,7 @@ static int lm70_probe(struct spi_device *spi)
->         struct lm70 *p_lm70;
->         int chip;
->
-> -       of_match = of_match_device(lm70_of_ids, &spi->dev);
-> +       of_match = of_match_device(of_match_ptr(lm70_of_ids), &spi->dev);
->         if (of_match)
->                 chip = (int)(uintptr_t)of_match->data;
+> prerequisites
 
-Why can't this do:
+Thanks.
 
-if (spi->dev.of_node)
-    chip = (int)(uintptr_t)of_device_get_match_data();
-else {
+I fixed it up, and applied to linux-kbuild.
 
->         else {
-> --
-> https://chromeos.dev
+
+
+> Glad to see this clarified. I think just tried both and picked one.
 >
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> > ---
+> >
+> >  Documentation/devicetree/bindings/Makefile |  8 ++++----
+> >  drivers/gpu/drm/i915/Makefile              |  2 +-
+> >  scripts/Makefile.lib                       | 10 +++++-----
+> >  scripts/gdb/linux/Makefile                 |  2 +-
+> >  4 files changed, 11 insertions(+), 11 deletions(-)
+
+
+
+-- 
+Best Regards
+Masahiro Yamada
