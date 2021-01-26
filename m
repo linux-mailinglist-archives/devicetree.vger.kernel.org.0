@@ -2,417 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B98E7304CD9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 23:58:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0241304CDA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 23:58:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727085AbhAZW6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 17:58:04 -0500
-Received: from mail-db8eur05on2066.outbound.protection.outlook.com ([40.107.20.66]:40448
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        id S1731081AbhAZW6S convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 26 Jan 2021 17:58:18 -0500
+Received: from mail-eopbgr1300090.outbound.protection.outlook.com ([40.107.130.90]:9568
+        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732394AbhAZFXC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 00:23:02 -0500
+        id S2388875AbhAZFxg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 00:53:36 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gr7r32zE7vudvy6nnvT3/x4zuEns4MXyASx44/SqNthJmvFqY8CGou/672HaqWyBnIX49MSJtMY13z15+D+GSwKr4A1ndEDxYKwbONdaFE6TIWlJNR1lq3nMlj0xxsAJ8VBTEBzruuxjUnesdzfYhbfQF1q0ScTFLICuBqmievvZKjlNzg8VtmNxh07IirqVP9yapNZGs9QKOi9vyGzS2XA+g1bvXburruQmu71hnTPVJ3r6ES0KkRdD2Y6XQJcCJaEcFCC1sqDauptXnlW9ZH/LWOUKfhEug+6INAwlPMubtJygXmCNln0stRID9IJOccPMzW2B4OI2LZyT/udAyg==
+ b=U2zzwP0+rk0azXgGPmgfTf8wynz6bBX8p8cHF4xjvtgoQulnwuswpdN1SCH7aYBtlo2gEwgICNW1SRKn5vffH2O78RqF1/E8sAYD+KMQUHS78Lx+g2tD+cJdAsognMAjcNUp3iPN+4Cd+WxqDKL3a4bVZyIRvtjhR0jO4cjxrhOtHwM3tp5Tv9kozBqZ6tiEnAOXnw5VWckh9ew+LdWG3uDwjMdzP+oQDmk9Op8Fnli0scC3CiNNQpygtNkSCW4NLk+Cv31dE6g8HDLztGndUXQ7DQDkyVEJ7CRxcylBqTfuk1fzdbLms5fF7WmgUPxlncCpCUA7XD2vVSYCPHwaPg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U/Vh3lWp5AtBt98yhtXCON8fB7T7LlsT7vwen9eQO2M=;
- b=fFNlwGJiUnjlvDJSa3aV0cThCUa8822W50yrBbNfW3zyLN2FuB56w4hM/wn0U1gmjjebHnbJxo6Gq2HNuVHOHT1bFyoJLMTgeo3CQdLVJOgou2crfuwrTWxhdLfRtiWC0LAK2dRKP8t4hyaT014pK0PKuveU84Gm5JcvpuvH003plWGsgk19gg7qPrUdY5ETj3VNxCrNsh/MqDWMOCI1F78wTOpQpoql3xhnbJu/QGYhtuyt4t90mIPhPW6zMydPknvhzzj7YxbwZNLPBK/Lb7Yr5PuM1nQyeIRuZYVYoXUq3d6SDksK3r7SLQEKm9wXPXsfppfDRGvOQX3bNStvrg==
+ bh=N9v8W6qAoC4oyhp61hVfnvGdJvtvF8KTYUTHzlsyiao=;
+ b=Jq5i3xaPfB7lNsGZlv1R6oX865x6cMMykCrymrFnMijYCvt28yC2P2GUrZPXsADKmH2sLkj1Ld+rrvA7RNAE8UAPpR3TBvOkdG5bu7v0li6p2/xlcYkuW8vr/7bIJWxfdhbJhtbzcZ1zOJmaNLTzeEKmsHOntoWlFwH7Ds9HE1mn2+Xrd+J1yNmxLVvbgHxZq3IH01Zp7ZYDT2lDQRzwvOpA0WSD+DIQSSo+AAwOmghr6MgKLxjnWShVLG7hnQwUunF5pyqk5Bsatn8YR51K/l9HLyaKRaKx56ceQel30bKZoqrxrSGQZoHxt5znQrIobll9tVPKIJD1XJViObuogg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U/Vh3lWp5AtBt98yhtXCON8fB7T7LlsT7vwen9eQO2M=;
- b=B8N5Kc3vrruDK9LNEIh00jVc7EkLsNVDCUedT0BMjv7rb3imvgJ7x/v/f7AYIrZnX+A9nIjx2xWfXmW0J0splDE8KyV0qgMlk6Efc2MOTzwb393VjgcSzWyvsm7cOrVFprdwdikwNINt9CL4NoJxUA3Pi347mX9Qv/KoOA07h7A=
-Authentication-Results: oss.nxp.com; dkim=none (message not signed)
- header.d=none;oss.nxp.com; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR04MB6990.eurprd04.prod.outlook.com (2603:10a6:803:138::16) with
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
+ by HK0PR06MB2369.apcprd06.prod.outlook.com (2603:1096:203:4d::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Tue, 26 Jan
- 2021 05:22:13 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3784.017; Tue, 26 Jan 2021
- 05:22:13 +0000
-Message-ID: <9233b33c789a2b207a437df9abcff1dd7fd89b16.camel@nxp.com>
-Subject: Re: [PATCH v6 5/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        airlied@linux.ie, daniel@ffwll.ch, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, robh+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, guido.gunther@puri.sm
-Date:   Tue, 26 Jan 2021 13:20:32 +0800
-In-Reply-To: <20210125134806.w77bdrx2wbb4kirz@fsr-ub1864-141>
-References: <1611213263-7245-1-git-send-email-victor.liu@nxp.com>
-         <1611213263-7245-6-git-send-email-victor.liu@nxp.com>
-         <20210125134806.w77bdrx2wbb4kirz@fsr-ub1864-141>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.4-0ubuntu1 
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR03CA0122.apcprd03.prod.outlook.com
- (2603:1096:4:91::26) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Tue, 26 Jan
+ 2021 05:51:54 +0000
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::394c:29f2:cb4c:55ed]) by HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::394c:29f2:cb4c:55ed%3]) with mapi id 15.20.3784.019; Tue, 26 Jan 2021
+ 05:51:54 +0000
+From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "minyard@acm.org" <minyard@acm.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
+CC:     BMC-SW <BMC-SW@aspeedtech.com>,
+        "haiyue.wang@linux.intel.com" <haiyue.wang@linux.intel.com>,
+        "cyrilbur@gmail.com" <cyrilbur@gmail.com>,
+        "rlippert@google.com" <rlippert@google.com>
+Subject: RE: [PATCH v5 0/5] Remove LPC register partitioning
+Thread-Topic: [PATCH v5 0/5] Remove LPC register partitioning
+Thread-Index: AQHW6ndsqox3ADhVhEe3UJldn3lkl6o5ddtQ
+Date:   Tue, 26 Jan 2021 05:51:54 +0000
+Message-ID: <HK0PR06MB377998280F185FC90D98A63E91BC0@HK0PR06MB3779.apcprd06.prod.outlook.com>
+References: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
+In-Reply-To: <20210114131622.8951-1-chiawei_wang@aspeedtech.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=aspeedtech.com;
+x-originating-ip: [211.20.114.70]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: beca8082-7fd5-4f34-9c8c-08d8c1be7c4b
+x-ms-traffictypediagnostic: HK0PR06MB2369:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HK0PR06MB2369F54A193094D1080C4CC891BC0@HK0PR06MB2369.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: mesdh5lIVWmrutRHLat8jV6vYnyy3dYkOUh4Pcr/QPPspyVtmItpsXLoiDsBbqGhgPoLog+vXV3P12bCNd/MLClU+vlRNoIibgbuRqkVRBZhgHkJ/yoOsomPgN0Kd8I1SR6jvAYtsovdAO49LwpizVzgNiPFtBdcE9FrK2DFRaW151mNEwdI+gDUTvRQZwwh6hnyc5HEUcRTPiAo49+2cFY27QSQag3t1rGYdIDGRZOzHJ+PBCZw7K3t0IX8iltljcPJD79tkzuOJ/ofHT/5n2Gm4NQGq2yYhefVkaYYP4jj7u9OOw7N2e8ITghFlAc2YwWq/xFKNBLL2IN9ybrYsrnP80zCywLo/6xvpVLPnhEbCuRZrCUWsb+65U3a8DrPlyuhQNhmsJ25A1qTyoDXctBeKyr2mjXZe4VAbgCl85/zaRkna4VkPbnXtbnsL3pDrrDFElc79sFSihovquqwCQiDG+A8zSpSWIn5687rvxX9/lvhiYImSIJuvpiDzcyzniErMmD19Q21oJUGXC3fDKhCRAcFlCtn7+zyK2WY0ttjCR9+DM8mT6b/of23njpX
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(346002)(136003)(366004)(396003)(39850400004)(921005)(7416002)(52536014)(66946007)(71200400001)(33656002)(8676002)(55236004)(6506007)(2906002)(64756008)(53546011)(66556008)(66476007)(478600001)(66446008)(7696005)(76116006)(26005)(110136005)(5660300002)(4326008)(55016002)(186003)(86362001)(54906003)(8936002)(9686003)(316002)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?8JlfrQsGlL6R3qLfUQcZUpUtgJ6arAo/1WV094t/f2saH5bzfGCpgtYSD2tq?=
+ =?us-ascii?Q?ZVn9hGLI8rEchld5V5Caraalh6wre8znNSCM3rdI8Spgc0ldsuQe0CF2ZlNY?=
+ =?us-ascii?Q?gLB8xYycUbd/X99wCES9uHkH4wb/mNrCu5nb014M+tSPEnN33KT2/5Gl8RLz?=
+ =?us-ascii?Q?aaBcNwq1QwWz7xLHcHdT37vAKVxxKXcDzGqUMUtOHQQ8kp06Ji0xKQtRydvM?=
+ =?us-ascii?Q?OwyY4tyDVfGUv9qhB49RN2Zyao9hNWh7UxOs6OtkOW3M/cT5q3+OjrbY1B+y?=
+ =?us-ascii?Q?gDUymQE1c29sePKYMjf1c77O3riQPQ7yven9Xd1pInWbp8f5moKy+OFXUeju?=
+ =?us-ascii?Q?xYe1Rv/aPS6jMdo13KgmznQpmdROg7PuCJXGpRM3aPx5S3j/G259OV0fxuap?=
+ =?us-ascii?Q?obPajQSYifEFXjrVy6va/1lokmF4fbe38H7odgYd7C+Ugduo1PUMkcsJu4Sg?=
+ =?us-ascii?Q?wJMDrFlGGZrGf7sVoH8Q5d7XxS+sCLa2bFpmP2d0egwI5Hueg/Q1LRSDY92g?=
+ =?us-ascii?Q?OmYohIKcBXgM/XflYXLzOfgExd7J2RheI32AXYc7iFVxji33DW2D13i6NEje?=
+ =?us-ascii?Q?OhOL7yaIM2zq/3BAwV0hnAebgbG+AtewV8KJeEO2r5graeLpVwmpYhWk+7Xx?=
+ =?us-ascii?Q?nHRZHs/7I1z4POMX6RkzS7BGZawJ49ktHcckQWDrZ/5M1AEeVwUK+2z80BLv?=
+ =?us-ascii?Q?4GXA0hDPID30sMfzVpzJpdi1GwZL9B9g5HqlaKsrU/8zmD2guEzenYWC735t?=
+ =?us-ascii?Q?eJbahxEhpBRal76XVRSuZDxyGs6fa4UQCmMI8IZ6VBT8yilMLxh3UOfYCkS5?=
+ =?us-ascii?Q?TIp5J3wpzNt+pDjIpoLV+XCcPBU3CRgCCG9J/DkDmqFN+OQ8+kFvUXxGih5H?=
+ =?us-ascii?Q?OY+LDrlIHKEaPi3JvDquwxD3Gxharlk7BhOGjfZ3YYHBmHsGTOyLMUzC9M6b?=
+ =?us-ascii?Q?jtAYWtdo0w12YCwD1cL43u2Zv5LRIaKtJg2lsFh/EPS+HL84ADLS7ATFlwsE?=
+ =?us-ascii?Q?lJRPGTPuPlzIbv4AM9jMYWmwr51BClvvbY6bm4kCZ+Icxz7hvXcXYGqhIheI?=
+ =?us-ascii?Q?g942r9wu?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR03CA0122.apcprd03.prod.outlook.com (2603:1096:4:91::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.7 via Frontend Transport; Tue, 26 Jan 2021 05:22:07 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b9ca8570-6b5b-443e-827a-08d8c1ba5609
-X-MS-TrafficTypeDiagnostic: VI1PR04MB6990:
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB699014674158B9C467F1B4E298BC0@VI1PR04MB6990.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lFFs2EDhqikDwZCjVzz8GFBO1APSiQCh0poSSqy37Ao2FlQ6xPg4+wnE3JNZT6k4ZTIf4bz5ss+DvLVwWe0zKkrKnwcMAE2yI0wvVkco8O9OdcKBniAk4eaJBdEC3zjV6yGPMROjmXSw9NVx3qrRcMtzheGzGgyMIALJyUSo82v6ifE5lusqVhEjSGKgi7YsKtLpLccB5L3yA2w/fX5oDCPO50C0ZmcgaXV0Lr5eVDC+xrpDiyiv2kqI9HfmZkvUmkok/bvD8YagdzzHCt+W65aAUCrR6hjZ24bM9M5wIK9AyHLgE+zGjNtsIpoFyXq5OALI5YYxweVaNUlMrEHHdTu2BymEaigZH7Gh7pJ09749c3kq37nRwywLQFcVdKeyU0UWu12/x1dN/463pvFtYLNiD9SmVFT7ByX7dUCc12oCCAO4yjcibzDoyA7niyKIn+x5CmFWFk5usSzyaDaRVB/faDs+lUQBHF7sX8lEpPlFx8FvfWpBhiFp6Zja5PnjfuCN7TCO26bqW5gGpfKxLlT+5eDMv8hjIirqF5xmGz7zuyW45RffoGySUjIoVeWxdYrKYrpxClK3TljXO81yHTQlUFICD0U4qg25yX+tr8A=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(376002)(396003)(136003)(346002)(5660300002)(26005)(6486002)(66556008)(66946007)(36756003)(52116002)(66476007)(7416002)(83380400001)(2906002)(6506007)(30864003)(2616005)(186003)(8676002)(86362001)(8936002)(6666004)(956004)(478600001)(4326008)(316002)(6862004)(16526019)(6512007)(966005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?WUFRcjc4anZlT1NHams3dXJHMGE4aXJmTmlrR1oyL3d6U3RYT1BGdG5qdnZy?=
- =?utf-8?B?eFgyTkZnOEdIdFdCL3VLK2c3Q25HMlZwdXNxcUg1T3g5a0NiOS9nV1RtZVpn?=
- =?utf-8?B?NVY3VkEyVmsyWnZ6YU16cHVidGIxdWlPUXFLUVI2WlpzbWtFanlabTRyUnM2?=
- =?utf-8?B?cUc3Z0djdkpZVytPN2dMR2tJaFY4aTBFSzI1U3NxVWEyNU94d1pmcXJJUkNo?=
- =?utf-8?B?dW80ZExBQStDK0dzdjBwVzh1OGFSS1pHMjdmd3AvRGs0TlRWT3FRM0NOeUZ4?=
- =?utf-8?B?WnE2dEJmKzRsS1ZCWnJGOWFlckJnS2w3RHBPL0Y1a0dDbU1neUFpemlQT1ZV?=
- =?utf-8?B?RXZ3QkdqeVBDQVdyZkw1cG54MnRCWVR5QXR0NTBBTkdqUzl3ek9XaDZ1TmFI?=
- =?utf-8?B?dzgvS3h1TWpxNm5ZakluQVBwQTRCY0ZubDQvZkNvUWtSQzFCTFNwajVzR2Fk?=
- =?utf-8?B?SVI0eTRocUJxSVBBMWQzTkR0UGltL0IvdmI1UDE2MjBPbCtDcElKemZHR2hU?=
- =?utf-8?B?cEcyL29QRTArYlhYbzhLUlBkdk8yNWFnU2IzRTNaZ3VvRU5TRnlBNi9EaTVX?=
- =?utf-8?B?Vytjd2swTmk4UkEzeXZnNXF4Y1VGU2k4cUQ2T2NYdUhybnBudTloTmFuazFz?=
- =?utf-8?B?RDMyMEtDd0hGaW1ZYUpYNUNVTTE3cUJhM3Eza1d1b0JEckl0YmZKOWhrdktv?=
- =?utf-8?B?MnRuZ1ZhM0gzWVJ0MVlrQ0NxYlpTbzJMRVB2dmY1Y3lsZG8valNxNWJJYzNC?=
- =?utf-8?B?Ynhkalp0ZlZYV3dwRDI3dTlIbXhSU0lqTThyMFN5QjdBL3ZMT3NzcTMxWUJx?=
- =?utf-8?B?SC9ndjRIdzRYMjU4MW5LYjV3cE9DR2t2aVl2enVYVE5JY0E1Z2hoM1l2YUJZ?=
- =?utf-8?B?WUJMYlRSbjhKR2w0TDJMZExlNDNkdldnRkMxcjRwMUpVUno1SHlWeTVTQ3dU?=
- =?utf-8?B?REhlcEF0VjhUNmpIdzBPd3UwL1pWUGVlSDJkSUZwTXJVbDBSYzYrc2ZqaEkv?=
- =?utf-8?B?OGtqYWp5SzhXemNRa3kraXZUdUNWcHlHRWQ2MHNoeXlPZWFtbU9tSi94dFV0?=
- =?utf-8?B?MU1tcmtlNkptUFRnNENpRFRxcUpKRllyYnE4d0ZhWWN2dkI3S21tWTZMemZ1?=
- =?utf-8?B?TUg5cG9WRFUvYU1zSFUzbEZ0K3ZXZitYaHJXQUw4emZCRFlDNzM0OE5rY09L?=
- =?utf-8?B?RWFuN2IzZkc1OUtJYzFLQml0RHQwbEtjYitnT1RhS2Y5dTByNW1KTlZjRC95?=
- =?utf-8?B?Ry8xcXBmTXErWjZ4YU9vdjUxcmh2akdsbk55T0gwa3d5d3BVTS81ZHBDaDFV?=
- =?utf-8?B?cXFtLzJsWDdEMm0rYS9KbWRBUS8rNVREUU1JK2FvU2ZVVkxZdEZOWi82bG1R?=
- =?utf-8?B?UERRdlMxNU5qZE55SGJIOHdqSzV3R0o1QVUyRFpxSlRmTjk5Rk1ZVTVTZlBW?=
- =?utf-8?Q?9uxK8cG7?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9ca8570-6b5b-443e-827a-08d8c1ba5609
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-OriginatorOrg: aspeedtech.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 05:22:13.1222
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: beca8082-7fd5-4f34-9c8c-08d8c1be7c4b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2021 05:51:54.5752
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iefcsRAjy9acTL7JY9a+WNNiP4kHViyoAmM1GjTS6Wca8yFDOVetOUKhsaps2JExURJzW3Q7ByLgF5guXu28ww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6990
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DaLwd8ldvdqwffbe5dYsha6dntSqS0NArxevQwGzTFQlW+oEtaXTmcu0a+LrXc5z0SnFjReEC3lmh6N5gwyPd7N2raZr6S4Xz09rj5v0Png=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB2369
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-01-25 at 15:48 +0200, Laurentiu Palcu wrote:
-> Hi Liu Ying,
-> 
-> Just some minor comments below.
-> 
-> On Thu, Jan 21, 2021 at 03:14:22PM +0800, Liu Ying wrote:
-> > This patch introduces i.MX8qm/qxp Display Processing Unit(DPU) DRM support.
-> > 
-> > DPU is comprised of two main components that include a blit engine for
-> > 2D graphics accelerations(with composition support) and a display controller
-> > for display output processing, as well as a command sequencer.  Outside of
-> > DPU, optional prefetch engines, a.k.a, Prefetch Resolve Gasket(PRG) and
-> > Display Prefetch Resolve(DPR), can fetch data from memory prior to some DPU
-> > fetchunits of blit engine and display controller.  The prefetch engines
-> > support reading linear formats and resolving Vivante GPU tile formats.
-> > 
-> > This patch adds kernel modesetting support for the display controller part.
-> > The driver supports two CRTCs per display controller, planes backed by
-> > four fetchunits(decode0/1, fetchlayer, fetchwarp), fetchunit allocation
-> > logic for the two CRTCs, prefetch engines(with tile resolving supported),
-> > plane upscaling/deinterlacing/yuv2rgb CSC/alpha blending and CRTC gamma
-> > correction.  The registers of the controller is accessed without command
-> > sequencer involved, instead just by using CPU.
-> > 
-> > Reference manual can be found at:
-> > https://www.nxp.com/webapp/Download?colCode=IMX8DQXPRM
-> > 
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > ---
-> > v5->v6:
-> > * Do not use macros where possible. (Laurentiu)
-> > * Break dpu_plane_atomic_check() into some smaller functions. (Laurentiu)
-> > * Address some minor comments from Laurentiu.
-> > * Add dpu_crtc_err() helper marco to tell dmesg which CRTC generates error.
-> > * Drop calling dev_set_drvdata() from dpu_drm_bind/unbind() as it is done
-> >   in dpu_drm_probe().
-> > * Some trivial tweaks.
-> > 
-> > v4->v5:
-> > * Rebase up onto the latest drm-misc-next branch and remove the hook to
-> >   drm_atomic_helper_legacy_gamma_set(), because it was dropped by the newly
-> >   landed commit 'drm: automatic legacy gamma support'.
-> > * Remove a redundant blank line from dpu_plane_atomic_update().
-> > 
-> > v3->v4:
-> > * No change.
-> > 
-> > v2->v3:
-> > * Fix build warnings Reported-by: kernel test robot <lkp@intel.com>.
-> > * Drop build dependency on IMX_SCU, as dummy SCU functions have been added in
-> >   header files by the patch 'firmware: imx: add dummy functions' which has
-> >   landed in linux-next/master branch.
-> > 
-> > v1->v2:
-> > * Add compatible for i.MX8qm DPU, as this is tested with i.MX8qm LVDS displays.
-> >   (Laurentiu)
-> > * Fix PRG burst size and stride. (Laurentiu)
-> > * Put 'ports' OF node to fix the bail-out logic in dpu_drm_probe(). (Laurentiu)
-> > 
-> >  drivers/gpu/drm/imx/Kconfig               |    1 +
-> >  drivers/gpu/drm/imx/Makefile              |    1 +
-> >  drivers/gpu/drm/imx/dpu/Kconfig           |   10 +
-> >  drivers/gpu/drm/imx/dpu/Makefile          |   10 +
-> >  drivers/gpu/drm/imx/dpu/dpu-constframe.c  |  171 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-core.c        | 1094 +++++++++++++++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-crtc.c        |  967 +++++++++++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-crtc.h        |   66 ++
-> >  drivers/gpu/drm/imx/dpu/dpu-disengcfg.c   |  117 +++
-> >  drivers/gpu/drm/imx/dpu/dpu-dprc.c        |  718 +++++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-dprc.h        |   40 ++
-> >  drivers/gpu/drm/imx/dpu/dpu-drv.c         |  292 ++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-drv.h         |   28 +
-> >  drivers/gpu/drm/imx/dpu/dpu-extdst.c      |  299 ++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c |  294 ++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetcheco.c    |  224 ++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c  |  154 ++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.c   |  609 ++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.h   |  191 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c   |  250 +++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-framegen.c    |  395 +++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-gammacor.c    |  223 ++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-hscaler.c     |  275 ++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-kms.c         |  540 ++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-kms.h         |   23 +
-> >  drivers/gpu/drm/imx/dpu/dpu-layerblend.c  |  348 +++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-plane.c       |  799 +++++++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-plane.h       |   56 ++
-> >  drivers/gpu/drm/imx/dpu/dpu-prg.c         |  433 ++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-prg.h         |   45 ++
-> >  drivers/gpu/drm/imx/dpu/dpu-prv.h         |  233 ++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-tcon.c        |  250 +++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-vscaler.c     |  308 ++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu.h             |  385 ++++++++++
-> >  34 files changed, 9849 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
-> > 
-> 
-> [...]
-> 
-> > diff --git a/drivers/gpu/drm/imx/dpu/dpu-core.c b/drivers/gpu/drm/imx/dpu/dpu-core.c
-> > new file mode 100644
-> > index 00000000..7dab6cc
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/imx/dpu/dpu-core.c
-> 
-> [...]
-> 
-> > +static int dpu_get_irqs(struct platform_device *pdev, struct dpu_soc *dpu)
-> > +{
-> > +	unsigned int i, j;
-> > +
-> > +	/* do not get the reserved irq */
-> > +	for (i = 0, j = 0; i < DPU_IRQ_COUNT - 1; i++, j++) {
-> > +		if (i == DPU_IRQ_RESERVED)
-> > +			j++;
-> > +
-> > +		dpu->irq[j] = platform_get_irq(pdev, i);
-> > +		if (dpu->irq[j] < 0) {
-> > +			dev_err_probe(dpu->dev, dpu->irq[j],
-> > +				      "failed to get irq\n");
-> > +			return dpu->irq[i];
-> 
-> I think you want 'return dpu->irq[j]'.
+Thank you all for the reviewing effort.
 
-Good catch.
+Hi Joel,
 
-> 
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> 
-> [...]
-> 
-> > +static const struct dpu_irq_handler_map {
-> > +	void (*handler)(struct irq_desc *desc);
-> > +} dpu_irq_handler_maps[DPU_IRQ_COUNT] = {
-> > +	{},						/* 0 */
-> > +	{},						/* 1 */
-> > +	{},						/* 2 */
-> > +	{dpu_extdst0_shdload_irq_handler},		/* 3 */
-> > +	{},						/* 4 */
-> > +	{},						/* 5 */
-> > +	{dpu_extdst4_shdload_irq_handler},		/* 6 */
-> > +	{},						/* 7 */
-> > +	{},						/* 8 */
-> > +	{dpu_extdst1_shdload_irq_handler},		/* 9 */
-> > +	{},						/* 10 */
-> > +	{},						/* 11 */
-> > +	{dpu_extdst5_shdload_irq_handler},		/* 12 */
-> > +	{},						/* 13 */
-> > +	{},						/* 14 */
-> > +	{dpu_disengcfg_shdload0_irq_handler},		/* 15 */
-> > +	{dpu_disengcfg_framecomplete0_irq_handler},	/* 16 */
-> > +	{dpu_disengcfg_seqcomplete0_irq_handler},	/* 17 */
-> > +	{},						/* 18 */
-> > +	{},						/* 19 */
-> > +	{},						/* 20 */
-> > +	{},						/* 21 */
-> > +	{},						/* 22 */
-> > +	{},						/* 23 */
-> > +	{},						/* 24 */
-> > +	{dpu_disengcfg_shdload1_irq_handler},		/* 25 */
-> > +	{dpu_disengcfg_framecomplete1_irq_handler},	/* 26 */
-> > +	{dpu_disengcfg_seqcomplete1_irq_handler},	/* 27 */
-> > +	{},						/* 28 */
-> > +	{},						/* 29 */
-> > +	{},						/* 30 */
-> > +	{},						/* 31 */
-> > +	{},						/* 32 */
-> > +	{},						/* 33 */
-> > +	{},						/* 34 */
-> > +	{/* reserved */},				/* 35 */
-> > +	{},						/* 36 */
-> > +	{},						/* 37 */
-> > +	{},						/* 38 */
-> > +	{},						/* 39 */
-> > +	{},						/* 40 */
-> > +	{},						/* 41 */
-> > +	{},						/* 42 */
-> > +	{},						/* 43 */
-> > +	{},						/* 44 */
-> > +	{},						/* 45 */
-> > +	{},						/* 46 */
-> > +	{},						/* 47 */
-> > +	{},						/* 48 */
-> > +};
-> 
-> Why not make this an array of pointers to functions. Do we need a struct?
-> Something like:
-> 
-> static void (* const dpu_irq_handler[DPU_IRQ_COUNT])(struct irq_desc *) = {
-> 	[3] = dpu_extdst0_shdload_irq_handler,
-> 	[6] = dpu_extdst4_shdload_irq_handler,
-> 	...
-> };
-
-Alright, will use the function array.
-
-> 
-> [...]
-> 
-> > +static int
-> > +dpu_get_fetchunits_for_plane_grp(struct dpu_soc *dpu,
-> > +				 const struct dpu_units *us,
-> > +				 struct dpu_fetchunit ***fu,
-> > +				 unsigned int *cnt,
-> > +				 struct dpu_fetchunit *
-> > +						(*get)(struct dpu_soc *dpu,
-> > +						       unsigned int id))
-> > +{
-> > +	unsigned int fu_cnt = 0;
-> > +	int i, j, ret;
-> > +
-> > +	for (i = 0; i < us->cnt; i++) {
-> > +		if (us->types[i] == DPU_DISP)
-> > +			fu_cnt++;
-> > +	}
-> > +
-> > +	*cnt = fu_cnt;
-> > +
-> > +	*fu = devm_kcalloc(dpu->dev, fu_cnt, sizeof(**fu), GFP_KERNEL);
-> > +	if (!(*fu))
-> > +		return -ENOMEM;
-> > +
-> > +	for (i = 0, j = 0; i < us->cnt; i++) {
-> > +		if (us->types[i] != DPU_DISP)
-> > +			continue;
-> > +
-> > +		(*fu)[j] = (*get)(dpu, us->ids[i]);
-> 
-> You can also call get() directly. No need to dereference function
-> pointers.
-
-Will do.
-
-> 
-> > +		if (IS_ERR((*fu)[j])) {
-> > +			ret = PTR_ERR((*fu)[j]);
-> > +			dev_err(dpu->dev, "failed to get %s%d: %d\n",
-> > +						us->name, us->ids[i], ret);
-> > +			return ret;
-> > +		}
-> > +		j++;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> 
-> [...]
-> 
-> > +static void
-> > +dpu_put_fetchunits_for_plane_grp(struct dpu_fetchunit ***fu,
-> > +				 unsigned int *cnt,
-> > +				 void (*put)(struct dpu_fetchunit *fu))
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < *cnt; i++)
-> > +		(*put)((*fu)[i]);
-> 
-> Same here, you can call put() directly.
-
-Will do.
+Would you help to merge these patches into Aspeed tree?
+If yes, we should also notify Linus Walleij to apply the pinctrl one to the pinctrl tree.
 
 Thanks,
-Liu Ying
+Chiawei
+
+> -----Original Message-----
+> From: ChiaWei Wang <chiawei_wang@aspeedtech.com>
+> Sent: Thursday, January 14, 2021 9:16 PM
+> To: robh+dt@kernel.org; lee.jones@linaro.org; joel@jms.id.au;
+> andrew@aj.id.au; linus.walleij@linaro.org; minyard@acm.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org;
+> openbmc@lists.ozlabs.org
+> Cc: BMC-SW <BMC-SW@aspeedtech.com>; haiyue.wang@linux.intel.com;
+> cyrilbur@gmail.com; rlippert@google.com
+> Subject: [PATCH v5 0/5] Remove LPC register partitioning
+> 
+> The LPC controller has no concept of the BMC and the Host partitions.
+> The incorrect partitioning can impose unnecessary range restrictions on
+> register access through the syscon regmap interface.
+> 
+> For instance, HICRB contains the I/O port address configuration of KCS channel
+> 1/2. However, the KCS#1/#2 drivers cannot access HICRB as it is located at the
+> other LPC partition.
+> 
+> In addition, to be backward compatible, the newly added HW control bits could
+> be located at any reserved bits over the LPC addressing space.
+> 
+> Thereby, this patch series aims to remove the LPC partitioning for better driver
+> development and maintenance. This requires the change to both the device
+> tree and the driver implementation. To ensure both sides are synchronously
+> updated, a v2 binding check is added.
+> 
+> Chagnes since v4:
+> 	- Add child node example in dt-bindings.
+> 
+> Chagnes since v3:
+> 	- Revise binding check as suggested by Haiyue Wang.
+> 
+> Changes since v2:
+> 	- Add v2 binding check to ensure the synchronization between the
+> 	  device tree change and the driver register offset fix.
+> 
+> Changes since v1:
+> 	- Add the fix to the aspeed-lpc binding documentation.
+> 
+> Chia-Wei, Wang (5):
+>   dt-bindings: aspeed-lpc: Remove LPC partitioning
+>   ARM: dts: Remove LPC BMC and Host partitions
+>   ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+>   pinctrl: aspeed-g5: Adapt to new LPC device tree layout
+>   soc: aspeed: Adapt to new LPC device tree layout
+> 
+>  .../devicetree/bindings/mfd/aspeed-lpc.txt    | 100 ++++---------
+>  arch/arm/boot/dts/aspeed-g4.dtsi              |  74 ++++------
+>  arch/arm/boot/dts/aspeed-g5.dtsi              | 135 ++++++++----------
+>  arch/arm/boot/dts/aspeed-g6.dtsi              | 135 ++++++++----------
+>  drivers/char/ipmi/kcs_bmc_aspeed.c            |  27 ++--
+>  drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c    |  17 ++-
+>  drivers/soc/aspeed/aspeed-lpc-ctrl.c          |  20 ++-
+>  drivers/soc/aspeed/aspeed-lpc-snoop.c         |  23 +--
+>  8 files changed, 229 insertions(+), 302 deletions(-)
+> 
+> --
+> 2.17.1
 
