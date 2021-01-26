@@ -2,181 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01333303D41
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 13:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3529E303D1A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 13:37:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391603AbhAZMkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 07:40:52 -0500
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:42026 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403859AbhAZKOO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 05:14:14 -0500
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20210126101322euoutp020b4e0b2578308c7c33ca126f141ef64d~dwJiGCfw91531515315euoutp02c;
-        Tue, 26 Jan 2021 10:13:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20210126101322euoutp020b4e0b2578308c7c33ca126f141ef64d~dwJiGCfw91531515315euoutp02c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1611656003;
-        bh=tenaChUOPWN+TjdSN94yGfg4JVgE422Qow8mGZKWxmU=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=PQbFYlUwWphocIp18Zkw995lGKR0ECAnGMqg1rfjLHGLghqqoYZRjWgK+/Dyq2Nas
-         UrgAx8sBe9GXcjH9NJ5+V7r4Pjqu7rdwLqtNqItc7HBwY2dwY9AgLxKWmvb02O8Irz
-         D6qW90gdzHZhdkXiJoFXVSALNh1469FpiMtRfcVg=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20210126101322eucas1p1bde65ae9ec10e0fd6a2f05840a345a99~dwJh6P9Mk0756807568eucas1p19;
-        Tue, 26 Jan 2021 10:13:22 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id AC.57.45488.24BEF006; Tue, 26
-        Jan 2021 10:13:22 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20210126101322eucas1p2a54daff89cfebe5aaf3a9b5b0fa281ad~dwJhSBHa31256412564eucas1p2r;
-        Tue, 26 Jan 2021 10:13:22 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20210126101322eusmtrp1503a93e4c3dd78b1e6117c5f441fca2d~dwJhQtVYK2213122131eusmtrp1L;
-        Tue, 26 Jan 2021 10:13:22 +0000 (GMT)
-X-AuditID: cbfec7f5-c5fff7000000b1b0-a7-600feb4271a3
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 66.5E.21957.14BEF006; Tue, 26
-        Jan 2021 10:13:21 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20210126101320eusmtip250948c1ccaa4131b5c43f5f9d697581e~dwJfjH2nZ0723407234eusmtip2d;
-        Tue, 26 Jan 2021 10:13:20 +0000 (GMT)
-Subject: Re: [PATCH RFC 1/2] dt: pci: designware-pcie.txt: convert it to
- yaml
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Jesper Nilsson <jesper.nilsson@axis.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Jonathan Chocron <jonnyc@amazon.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Zhou Wang <wangzhou1@hisilicon.com>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <b6ab7110-fc87-85d7-d591-dffad32985ec@samsung.com>
-Date:   Tue, 26 Jan 2021 11:13:20 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.6.1
+        id S1726744AbhAZMhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 07:37:15 -0500
+Received: from mail-eopbgr760123.outbound.protection.outlook.com ([40.107.76.123]:1920
+        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730559AbhAZKXt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 05:23:49 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OsnOPcDNo4wl5JaZG+m0TS+sv6rTLQ70jVebnuYdWBVRd36I9FXl1OeSCHaCEbPpq7WyoHOW27eRQ+KOTxnR4ydT2QpgBpqM0PxB47O85++KNWjOZmUct/eQpXy1bCKcebt6bvcj3b1in8eKIRqLhBGR4Pbrzo/3aWu7J/Wf4bfiXB+eoC65922Z6862zxxJNRG74mkwq5ifk2w0Z9z0EaghtMKyoLTLevGwTw/1mpct0qfvbxLntkBaNxDMZ/JR4F0bfuhc/k11i95KTJSyPGt46RXnAJfMNN9dZGPIw08Z9GyWwMGi/DG/g2ehfn5GTvuu3i459R1Iyr+RPHuPwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dxaxSv7khV0h79q7HjXhhbYDA8bi69GJiDvHV8aA3AM=;
+ b=LGQ7tbQEo+p64PoQ+iVIT86MPX9P7f+Abqf+c9F0erS+YWS1ThEiOPr992AUioFUxxFzY1KobGUQ+pnyqzaIqNGhhAXKL7jlQNxs1Ebg5YPfO7NKVLxFMQWdjYatewIO7kHRx7reRdqf0nItp8ySUUW8cdBcRaD4g1Vk80bme0wvCoYu297zgRYSNZbihT6jgmoyPz3uGsTywFoWTlQkEoZvcZY35vbunWZIisJnOcSisRL6l+gQ1s42SoFB7c+xYL41MCb1V8t+gpGlfdaVmuZoBeFGFWi5AK6hpJzEflNU+deZBC5ygNNpsOPHOftO2f0uhnyv4DTwxP+oPG/P1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dxaxSv7khV0h79q7HjXhhbYDA8bi69GJiDvHV8aA3AM=;
+ b=Jc6Yf8sIwC0E2lNbjtbxxYDhRkSzs1WzrzHtR8oGAEmZtLuX5DBDR5VEZpQXZ/WTrcJuEVUJJIGMxrg5yTqdoCNSIIWDDLUeD6s7NpdqWuyviWiOKxO9F9UPNZKBENkd58nSxNBH8LkZbG5DvId+5G5eoIwKgbDEzLYqG4IAj/o=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by BYAPR04MB5077.namprd04.prod.outlook.com (2603:10b6:a03:41::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.17; Tue, 26 Jan
+ 2021 10:23:00 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::5813:96a7:b2d6:132]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::5813:96a7:b2d6:132%6]) with mapi id 15.20.3763.019; Tue, 26 Jan 2021
+ 10:23:00 +0000
+Date:   Tue, 26 Jan 2021 18:22:28 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings:drm/bridge:anx7625:add HDCP support
+ flag and swing reg
+Message-ID: <20210126102228.GB32321@zhaomy-pc>
+References: <cover.1611572142.git.xji@analogixsemi.com>
+ <75e29d7386df2ebca4a8e3f0b91c8370a4a8f74f.1611572143.git.xji@analogixsemi.com>
+ <20210125154143.GA390777@robh.at.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210125154143.GA390777@robh.at.kernel.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Originating-IP: [61.148.116.10]
+X-ClientProxiedBy: HK2P15301CA0005.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:202:1::15) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
-In-Reply-To: <55f479324098b66d7dba89c8f9c3e455731df4f7.1611645945.git.mchehab+huawei@kernel.org>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA01TaVBTZxTt997Le4/Q0JcIw1e0Y2Wki20Rq3a+KQytbae8bgMzdnQqVojy
-        BhzWJuDSqnVAlgRkiyyGtUARGAoSUpR0iQUkpJBARZZSoOygQBwLyDZggact/84999x77vlx
-        aVwyRDrQJ0PCOVmINMiRFBI1jYvmN96bfM7XpThmJzIPLxOoKDIANestBMprMAvQYIcn0vXF
-        Uai+OxIgdU0OQFNDDTgar1PjqGT2KoUuqQsI1P/oH4DK0moJtBirxVDbaAKJWluvU2gg508M
-        5WdZI72hFEOa4U4BStGbKKRcKsVRuy6bRFlFSQQy5RpIlNn6K4YUs2oSNRYYCTSY1QFQXaI3
-        iv6lgUIrNzQEmtDao0VdLoEUUxYKDXVmY+86sSVtSgHbVeHFPuiOptjc8m/YWnUfxeZrItjR
-        ZBXFDudUUaymTEGyvZ0/k2x10bfs5SgLyVZZbmJs0ooL25QxT7Ba/QzwkhwRuvlxQSdPcbLd
-        7r7CgKnvYwRhDTZnJnJnqYsgzVoJrGjI7IOFI3pCCYS0hCkBMNM4gPPFLIBXTIkCvpgBMHF8
-        GDwdWRjMFKxjCXMNwJbuo7zoIYBxxcvkemML4wlT9Ty2Zb6ApvJMYh3jzF9CmF54bh2TzB6o
-        nFZuaESMO1zOzt5YSjBO8N54zIaZHXMc9vXWY7xGDI1XRzb2WDG+0LCURPI7t8Mb09k4j+1h
-        z0getn4QZBaEsFHVQ/FXfwDLC+cJHm+B9w3aJ/w22KxKIPiBKAAHzT9QfJEAYHtk5pPMrrDX
-        vLRmR69ZvAordbt5+gDMqMjfoCFjA7unxfwRNjC1JgPnaRGMi5Hw6peg2lDxn+1vbXfwZOCo
-        3hRNvSmOelMc9f+++YAoA/ZchDzYn5PvDeFOO8ulwfKIEH/nE6HBGrD2Bs2rhrmboOT+Q+c6
-        gNGgDkAad7QV/eT8rK9E5Cc9+zUnC/WRRQRx8jqwlSYc7UW6H8t9JIy/NJwL5LgwTva0i9FW
-        DhcxO7srGc/XV1empy8OFWgdyg4lFLoH7Q80hPtJjRfSW1c/ZVXWC8Vdhx88Vv+x6/RnA5+f
-        7837ROVxTjfz3YvbPoz1GGWvpUSJxG3Ml69l3fvo/IQnfsI1gzpT8fEF53mTePptt7tH0opf
-        77JVxN9lj1ZqWkJjZyeD7ZJLLTvpF+LfHGsPbTIp/DzoaKw26VFp4djhHitF/KEdI07B5ttT
-        E9e73YrJfqGPwHJ5rmX7K/3vbHUau33rq9/D9p0NOObzd6rflFdTldXqgYOhgXM7XCYrjwVc
-        qrIJci0Ve1NztrdExx9bDqYw2pkmaumZvS9HGsEp4x3fphSxR8f+PO8VTlAteP8tR0IeIN2z
-        C5fJpf8CadsTXnUEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUwTdxjH9+td71oEdhYMJ1uEdCHuxZ0UofuBjqBs7hamEF2WTeZKlRPI
-        oCU9ujH8A8Z4sY0O1OnoUQpj4BQbI6UIgqOzY1YkQKeh6jLYeJM6CkToFHBlo9Ql/PdJnufz
-        ffIkXwEicvNDBVmKPEalkGeLMT+0d9k2/PrOqefTIm3fxMH+sacobCjOhL2WGRTWdvfz4chg
-        MuwYOobDn+8VA8hdqQHQNdqNwEkrh8Dzbh0OS7h6FA4/ngOw6cxVFC6Wm3nQPnEcgwMDl3H4
-        Z819HqyrXgcttgs8aBpz8OFJSx8OtUsXEHinQ4/B6oYKFPYZbBisGujiQY2bw+CN+h4UjlQP
-        Amj9OhWW/tiNQ0+bCYVOcwhc7DCgUOOaweGoQ89LiKDP27V8+u6lFHr2XilOG4xH6avcEE7X
-        mdT0ROVpnB6racZpU5MGo393XMPoloZC+sRXMxjdPNPOoys8kfTNb5+gtNkyD1JEB6gdKqU6
-        jwnPVLJ5b4pTJTCKksRCKio6lpJse+NgXFSMeGv8jnQmO+szRrU1Po3KdDWW8XO7A/OdBjde
-        BM6s0wKhgCSiyYWRKr4W+AlERCMgWycf8n2DF8mes0XPOIj8x6HFfEuzgHT9bQbeQRCxh5xb
-        vIN7OZj4iDxmrFllhPjDj2zVhHtZRDwA5C3dES9jhITUTnuDhIIAIp58qtevHkCJCPLhZNlq
-        5gbiEHmTm0N8O+vJHt046mUhkUbaliowX76UNLSMID4OI9um9c84hPxtvJZXCUTcGp1bo3Br
-        FG6NUgfQJhDMqNmcjBxWQrHyHFatyKAOK3NMYKV+V24strQDw1+PKCvgCYAVkAJEHBzQSfmn
-        iQLS5V8UMCqlTKXOZlgriFn55yQSuuGwcqW/ijyZRBoZI4mWxkbGxEq3iUMCWmuMMhGRIc9j
-        PmWYXEb1v8cTCEOLeDB1emG+bzf/y3Mek1r3yeWh5V0JokSzaz7Y6FhwckcLl18eX+gUENLE
-        wY9va8/6bbHLZm7d/S6pZb1/gj1RWv7k3ZykromuMHCq6lTg9WhF6r76jqae5Djl8T2Tpe9P
-        Uhu5INZjoB6MLLfdbvA/Xb+P3VRreefSe0HFu6eQt9hw+0ZMUpDfN/zCxdlkxYevtB96+8jS
-        dOEvnl/dgZv+LSiR6a5Xlnfej/je1Juy/0S3Q1DyEozt6zfufNR8Lnd2XmZuvOaaCq88ULvd
-        +VNretRjfdYPF1/7IEldNW30ROzaUv952X5xnP9onV9hmLtwabvj4F6NW/fcZqcwge/Kl9qc
-        YWKUzZRLXkVUrPw/SLJQEAcEAAA=
-X-CMS-MailID: 20210126101322eucas1p2a54daff89cfebe5aaf3a9b5b0fa281ad
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20210126074127eucas1p1dd8f2d1704d708d64458922566b934f1
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210126074127eucas1p1dd8f2d1704d708d64458922566b934f1
-References: <cover.1611645945.git.mchehab+huawei@kernel.org>
-        <CGME20210126074127eucas1p1dd8f2d1704d708d64458922566b934f1@eucas1p1.samsung.com>
-        <55f479324098b66d7dba89c8f9c3e455731df4f7.1611645945.git.mchehab+huawei@kernel.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from zhaomy-pc (61.148.116.10) by HK2P15301CA0005.APCP153.PROD.OUTLOOK.COM (2603:1096:202:1::15) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3825.2 via Frontend Transport; Tue, 26 Jan 2021 10:22:59 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2db8a370-1fab-4e8a-cb09-08d8c1e45b1e
+X-MS-TrafficTypeDiagnostic: BYAPR04MB5077:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BYAPR04MB5077FE45873820FFB9FC1119C7BC9@BYAPR04MB5077.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7EQXkotNRBTrRZY3DeYLSKihrybkDA3iuRbI6lAwhLUE5VQJuiX+28mdHkxHruBpmrNUJGtI8jn6nAtyapn2V0+UJHNL501x6MLYz+8H/QAcR0tZY0fjnb5ltVp/yDGNh1rOTrKvWp1XKFeA4eOhu0hIyOzzONng9qEBzQX68Sr3x7r3NjEk/HLgwFAaBHQ/i7H/L64aqvOYHP62NO8/CGVRjjcHT8b9ckoPO6duWb5tuPq9C2IYG/ZM+OrC5sjILk7CDp5TmKS6Oi1bXcBpU2Zl6CHkrb4ni2qOX1ssrKkt52krw8/jgT+mmKdU5jhw1XMMrm/RO8qnomABgieziZNZXmJd2j4sYJk5xVVwzp5OyARdPoQzGq+jbFztSXjvmsrc1IXHa8YSmTRkXXG5c+7IsvKoJNpaFHzjrnK5DYa/engUwnzizFZcp7Aox9ilwRef3WwohbFud9cNSZPST36/TeBQF+W83C8aZpUeNeYEnewxCXitnPxK+OPNTNyHfZTbEv1AGtlmy2nAt6Iui1pTT2NUIq9K30FijDOTOn30gNTc2tp3fDDfB1ldA4JQ
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39850400004)(366004)(376002)(396003)(136003)(346002)(478600001)(16526019)(66946007)(7416002)(316002)(66556008)(186003)(5660300002)(26005)(6496006)(8936002)(4326008)(54906003)(9686003)(1076003)(33716001)(6666004)(8676002)(55016002)(66476007)(52116002)(33656002)(83380400001)(2906002)(86362001)(6916009)(956004)(16060500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ROZ7lYXaDf85sS2kh0sX4pHi4SFd77OnqnKB8K6jy8KrIrqXeh78vgwbGn2S?=
+ =?us-ascii?Q?mQtv/RE/UuzSzmYcc3Sv7yFHmk+dFRAIbIkCXtUrWypnSfHQGjFUgUOVUuce?=
+ =?us-ascii?Q?cwe3frWkjMW+4Suu610ynjnwlFUFYIfZ86bwtmjLbpA9nE2HSH4JdWfuLXv+?=
+ =?us-ascii?Q?LTzyA3ed8Q28UcwFsOkPFGdKVyL7bxXCTx8eSMJGAp440LMsrXhkyA3/af2+?=
+ =?us-ascii?Q?cX+LaXYvFyoUOKEHarXpsh2Q5OtKjcaNGVoQG02pcPcVJw+NyKMUh49stzjQ?=
+ =?us-ascii?Q?aiolqjDO9vJQpS24g9vE/GOjiuH1fAViM6rmcbb8zpfA5SZryRhkqFViIlJQ?=
+ =?us-ascii?Q?PX2OTlAT1uSM6zls+TFIxM6Ne5fpKtfnpAg4FNf48l5XvyIseyyT0AXBPTaA?=
+ =?us-ascii?Q?8jp/ejB0BB3P81SseDgKybg9Ze4hOznNgoFHwcwsuAIVrIUzWu6VynhCTCKd?=
+ =?us-ascii?Q?EjKLkqQ+gc+R+LffSKGnQku9Rqby8riHiVw6QXA+6bwKHKrFDyIJKznooNub?=
+ =?us-ascii?Q?jnbLkS5xjoA9li04wPtuHp1xgWu8oP1waf8YTfE0jyWeeZsTq3HkaP6XYYyT?=
+ =?us-ascii?Q?ecnChGkgNKzoVjnCLD43AI3x4qQ9/ibNnWNDmsXvFRo902i3NJsume2cdcFs?=
+ =?us-ascii?Q?CBCd153nuPvB0w30qHSETeZ5pIz/6PnIbDq1jVQY8k6auKGwhBrc/4A1lQtT?=
+ =?us-ascii?Q?1fpbOhjIqYltXeLttxvWYL8Olh+NOQQ7o+FAIZM0oaQJHiSp6DEt7u7oBAw/?=
+ =?us-ascii?Q?TDw24jh3BqnnxJ+A/pEr46WpDigq7c1xXMpgeT4GkeBsz7H8TuGTjMAq6v39?=
+ =?us-ascii?Q?dSz7/LCPVpfH9rV98Z8HZ8hQWc8KasPnwOPTuysN+zU5tDW3wXGAXaW9+rFt?=
+ =?us-ascii?Q?3uFB8SEdMz5HXrJhmenVy8IljkVArehpriDZK5XgbZmFgjkX8iFa+VZL8BAv?=
+ =?us-ascii?Q?NTlErOKqzQbWL9tAv4Dng26YOWOtiqKywVYOWwfIgtbRF+jp5a9vPf72FEfX?=
+ =?us-ascii?Q?+TKRdEwbpdVk5szdelv4Iro4JWouz5WfmNUfyi82/11vVuQNCavp1lCgn5OF?=
+ =?us-ascii?Q?eyrUHtdB?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2db8a370-1fab-4e8a-cb09-08d8c1e45b1e
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 10:23:00.0445
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tr/DhkwEcQFDaQjdDECb+ZOqZo27tXkMmvVqAcFPTHWVYHKzneDoVKf2r29dSA8QRZtTm3PUn3Vk+ZOJ5yWShA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB5077
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+Hi Rob, thanks for the comments, I'll fix the issue on the next serial.
+Thanks,
+Xin
 
-On 26.01.2021 08:35, Mauro Carvalho Chehab wrote:
-> Convert the file into a JSON description at the yaml format.
->
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->   .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
->   .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
->   .../bindings/pci/designware,pcie.yaml         | 194 ++++++++++++++++++
->   .../bindings/pci/designware-pcie.txt          |  77 -------
->   .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
->   .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
->   .../bindings/pci/hisilicon-pcie.txt           |   2 +-
->   .../devicetree/bindings/pci/kirin-pcie.txt    |   2 +-
->   .../bindings/pci/layerscape-pci.txt           |   2 +-
->   .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
->   .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
->   .../devicetree/bindings/pci/pci-keystone.txt  |  10 +-
->   .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
->   .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
->   .../bindings/pci/samsung,exynos5440-pcie.txt  |   4 +-
-You must have used an old tree for preparing this patchset. The above 
-file is gone in v5.11-rc1 and there is 
-Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml instead.
->   .../pci/socionext,uniphier-pcie-ep.yaml       |   2 +-
->   .../devicetree/bindings/pci/ti-pci.txt        |   4 +-
->   .../devicetree/bindings/pci/uniphier-pcie.txt |   2 +-
->   MAINTAINERS                                   |   2 +-
->   19 files changed, 225 insertions(+), 108 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/pci/designware,pcie.yaml
->   delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie.txt
-> ...
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+On Mon, Jan 25, 2021 at 09:41:43AM -0600, Rob Herring wrote:
+> On Mon, Jan 25, 2021 at 07:12:21PM +0800, Xin Ji wrote:
+> > Add 'bus-type' and 'data-lanes' define for port0, add HDCP support
+> > flag and DP tx lane0 and lane1 swing register array define.
+> > 
+> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> > ---
+> >  .../bindings/display/bridge/analogix,anx7625.yaml  | 57 ++++++++++++++++++++--
+> >  1 file changed, 54 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > index 60585a4..3b1cbe0 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > @@ -34,23 +34,69 @@ properties:
+> >      description: used for reset chip control, RESET_N pin B7.
+> >      maxItems: 1
+> >  
+> > +  analogix,lane0-swing:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    description:
+> > +      an array of swing register setting for DP tx lane0 PHY, please don't
+> > +      add this property, or contact vendor.
+> > +
+> > +  analogix,lane1-swing:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    description:
+> > +      an array of swing register setting for DP tx lane1 PHY, please don't
+> > +      add this property, or contact vendor.
+> > +
+> > +  analogix,hdcp-support:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: indicate the DP tx HDCP support or not.
+> 
+> Sounds like a boolean.
+OK, I'll change it to boolean.
+> 
+> > +
+> >    ports:
+> >      type: object
+> > +    additionalProperties: false
+> >  
+> >      properties:
+> >        port@0:
+> >          type: object
+> >          description:
+> > -          Video port for MIPI DSI input.
+> > +          Video port for MIPI input.
+> 
+> You're going to need to rebase this one drm-misc-next which uses the 
+> graph schema now.
+OK, I'll rebase it.
+> 
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            type: object
+> > +            additionalProperties: false
+> > +
+> > +            # Properties described in
+> > +            # Documentation/devicetree/bindings/media/video-interfaces.txt
+> > +            properties:
+> > +              remote-endpoint: true
+> > +              bus-type: true
+> > +              data-lanes: true
+> > +
+> > +            required:
+> > +              - remote-endpoint
+> > +
+> > +        required:
+> > +          - endpoint
+> >  
+> >        port@1:
+> >          type: object
+> >          description:
+> >            Video port for panel or connector.
+> >  
+> > +        properties:
+> > +          endpoint:
+> > +            type: object
+> > +            additionalProperties: false
+> > +
+> > +            required:
+> > +              - remote-endpoint
+> > +
+> > +        required:
+> > +          - endpoint
+> > +
+> >      required:
+> > -        - port@0
+> > -        - port@1
+> > +      - port@0
+> > +      - port@1
+> >  
+> >  required:
+> >    - compatible
+> > @@ -73,6 +119,10 @@ examples:
+> >              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
+> >              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
+> >  
+> > +            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
+> > +            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
+> > +            analogix,hdcp-support = <0>;
+> > +
+> >              ports {
+> >                  #address-cells = <1>;
+> >                  #size-cells = <0>;
+> > @@ -81,6 +131,7 @@ examples:
+> >                      reg = <0>;
+> >                      anx7625_in: endpoint {
+> >                          remote-endpoint = <&mipi_dsi>;
+> > +                        bus-type = <5>;
+> >                      };
+> >                  };
+> >  
+> > -- 
+> > 2.7.4
+> > 
