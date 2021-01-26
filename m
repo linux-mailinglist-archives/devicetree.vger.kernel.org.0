@@ -2,111 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA67304D0F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 00:02:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29BEF304D12
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 00:02:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731500AbhAZXCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 18:02:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57316 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727034AbhAZV4a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 16:56:30 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 617F9C061756;
-        Tue, 26 Jan 2021 13:55:50 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E61EC2E0;
-        Tue, 26 Jan 2021 22:55:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1611698149;
-        bh=SMDoBPaHZPP3ApaQVHa76WRBiwdWB84rlo2LUhpd7TM=;
+        id S1731537AbhAZXCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 18:02:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51976 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728620AbhAZWXx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 17:23:53 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D75302065D;
+        Tue, 26 Jan 2021 22:23:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611699792;
+        bh=fdRIENxKcgc5beyovt2puqoCoi+rEtNpR+KyZhmJt9I=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jJYbmAfPeZAHaajRkyl/x4hwkTWg78Pl4ptDbG3UV7q+iLA2znt32qHJ8OLBBjZ+S
-         AcvFmlrmCTK019WdLWetY/fepre4sSnsMzqX62PjnB1CHkxlF05LFJOhgLyHe/Qzu+
-         +3zVNiy64UFdmYZdxg6JNkLFGkhrmwxdXneyoIVk=
-Date:   Tue, 26 Jan 2021 23:55:29 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] dmaengine: rcar-dmac: Add helpers for clearing
- DMA channel status
-Message-ID: <YBCP0cXXu5Sd+nUL@pendragon.ideasonboard.com>
-References: <20210125142431.1049668-1-geert+renesas@glider.be>
- <20210125142431.1049668-4-geert+renesas@glider.be>
+        b=achoEHu8k4uN8E83dNG429NPT1uvW4BKjuDha0qFlXbMfhUNqyWIOkGFmn5FIYQjx
+         AAQs2T+cmT/3KagO8qWzYc02+OPzJ8Y0qoV6PONAnxAgS75ryj9A2u9zfPw9P6NK8M
+         cHG5i9P/T7hfT5C7tU+Gu5rsDwAD1jYs0hcLmgrgWzCKcc2j5HXL5Tr/whN3VyMMdQ
+         bx4w3RT7i0ULUk3PrLkCR1ZpN3A9ZiqNQD7ru816XaXg4IngNyw1pIqGVHsHxZ/upn
+         BHC4hf5TqThjyZuxdwR0BPmGGFv4S+W11JMY00+TYtCZw7qigBK4Q9XevrSXLk7/eK
+         peDrVc1pqOHww==
+Date:   Tue, 26 Jan 2021 22:23:06 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com
+Subject: Re: [PATCH v6 07/33] iommu: Avoid reallocate default domain for a
+ group
+Message-ID: <20210126222305.GB30460@willie-the-truck>
+References: <20210111111914.22211-1-yong.wu@mediatek.com>
+ <20210111111914.22211-8-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210125142431.1049668-4-geert+renesas@glider.be>
+In-Reply-To: <20210111111914.22211-8-yong.wu@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-Thank you for the patch.
-
-On Mon, Jan 25, 2021 at 03:24:30PM +0100, Geert Uytterhoeven wrote:
-> Extract the code to clear the status of one or all channels into their
-> own helpers, to prepare for the different handling of the R-Car V3U SoC.
+On Mon, Jan 11, 2021 at 07:18:48PM +0800, Yong Wu wrote:
+> If group->default_domain exists, avoid reallocate it.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
-> v2:
->   - No changes.
-> ---
->  drivers/dma/sh/rcar-dmac.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
+> In some iommu drivers, there may be several devices share a group. Avoid
+> realloc the default domain for this case.
 > 
-> diff --git a/drivers/dma/sh/rcar-dmac.c b/drivers/dma/sh/rcar-dmac.c
-> index 537550b4121bbc22..7a0f802c61e5152d 100644
-> --- a/drivers/dma/sh/rcar-dmac.c
-> +++ b/drivers/dma/sh/rcar-dmac.c
-> @@ -336,6 +336,17 @@ static void rcar_dmac_chan_write(struct rcar_dmac_chan *chan, u32 reg, u32 data)
->  		writel(data, chan->iomem + reg);
->  }
->  
-> +static void rcar_dmac_chan_clear(struct rcar_dmac *dmac,
-> +				 struct rcar_dmac_chan *chan)
-> +{
-> +	rcar_dmac_write(dmac, RCAR_DMACHCLR, BIT(chan->index));
-> +}
-> +
-> +static void rcar_dmac_chan_clear_all(struct rcar_dmac *dmac)
-> +{
-> +	rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
-> +}
-> +
->  /* -----------------------------------------------------------------------------
->   * Initialization and configuration
->   */
-> @@ -451,7 +462,7 @@ static int rcar_dmac_init(struct rcar_dmac *dmac)
->  	u16 dmaor;
->  
->  	/* Clear all channels and enable the DMAC globally. */
-> -	rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
-> +	rcar_dmac_chan_clear_all(dmac);
->  	rcar_dmac_write(dmac, RCAR_DMAOR,
->  			RCAR_DMAOR_PRI_FIXED | RCAR_DMAOR_DME);
->  
-> @@ -1566,7 +1577,7 @@ static irqreturn_t rcar_dmac_isr_channel(int irq, void *dev)
->  		 * because channel is already stopped in error case.
->  		 * We need to clear register and check DE bit as recovery.
->  		 */
-> -		rcar_dmac_write(dmac, RCAR_DMACHCLR, 1 << chan->index);
-> +		rcar_dmac_chan_clear(dmac, chan);
->  		rcar_dmac_chcr_de_barrier(chan);
->  		reinit = true;
->  		goto spin_lock_end;
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/iommu/iommu.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
+> index 3d099a31ddca..f4b87e6abe80 100644
+> --- a/drivers/iommu/iommu.c
+> +++ b/drivers/iommu/iommu.c
+> @@ -266,7 +266,8 @@ int iommu_probe_device(struct device *dev)
+>  	 * support default domains, so the return value is not yet
+>  	 * checked.
+>  	 */
+> -	iommu_alloc_default_domain(group, dev);
+> +	if (!group->default_domain)
+> +		iommu_alloc_default_domain(group, dev);
 
--- 
-Regards,
+I don't really get what this achieves, since iommu_alloc_default_domain()
+looks like this:
 
-Laurent Pinchart
+static int iommu_alloc_default_domain(struct iommu_group *group,
+				      struct device *dev)
+{
+	unsigned int type;
+
+	if (group->default_domain)
+		return 0;
+
+	...
+
+in which case, it should be fine?
+
+Will
