@@ -2,86 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D6DE303E15
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C94C303E74
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:20:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391991AbhAZMyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 07:54:47 -0500
-Received: from muru.com ([72.249.23.125]:53472 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403971AbhAZMuY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 07:50:24 -0500
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id DE3DB8057;
-        Tue, 26 Jan 2021 12:49:45 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCHv2 00/12] Drop legacy platform data for dra7
-Date:   Tue, 26 Jan 2021 14:49:25 +0200
-Message-Id: <20210126124937.52994-1-tony@atomide.com>
-X-Mailer: git-send-email 2.30.0
+        id S2404105AbhAZNU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 08:20:28 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:48094 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2392106AbhAZNTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 08:19:10 -0500
+X-UUID: 09c21eeeb4cf4e2dbd905fcc12b92921-20210126
+X-UUID: 09c21eeeb4cf4e2dbd905fcc12b92921-20210126
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <mason.zhang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1321847218; Tue, 26 Jan 2021 21:18:24 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 26 Jan 2021 21:18:22 +0800
+Received: from localhost.localdomain (10.15.20.246) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jan 2021 21:18:22 +0800
+From:   Mason Zhang <mason.zhang@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>
+Subject: [PATCH v1] arm64: dts: add spi host nodes for MT6779
+Date:   Tue, 26 Jan 2021 21:05:42 +0800
+Message-ID: <20210126130543.21793-1-mason.zhang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 1E9C39A89B9F8F3B2A7C2F25B47ECE25B242B18EB3EE10651F9513162462C4612000:8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+This patch adds spi host nodes for MT6779 SOC
 
-Here's v2 series to update dra7 to probe with ti-sysc and genpd like we've
-already done for am3 and 4. This series depends on the related driver
-and dts changes:
 
-[PATCHv2 00/15] Update dra7 devicetree files to probe with genpd
-
-Note that the driver and device tree changes series has dependencies
-listed in the cover letter.
-
-Please review and test. I've also pushed out a temporary testing branch
-with all the related patches to make testing easier, the test branch is
-at [0][1] below.
-
-Regards,
-
-Tony
-
-Changes since v1:
-
-- Split the series into two parts, looks like most of the emails did not
-  make it to the lists
-
-- Dropped Balaji from Cc as the email address bounces
-
-[0] git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap.git tmp-testing-genpd-dra7
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap.git/log/?h=omap-for-v5.12/tmp-testing-genpd-dra7
-
-Tony Lindgren (12):
-  ARM: OMAP2+: Drop legacy platform data for dra7 pcie
-  ARM: OMAP2+: Drop legacy platform data for dra7 qspi
-  ARM: OMAP2+: Drop legacy platform data for dra7 sata
-  ARM: OMAP2+: Drop legacy platform data for dra7 mpu
-  ARM: OMAP2+: Drop legacy platform data for dra7 dmm
-  ARM: OMAP2+: Drop legacy platform data for dra7 l4_wkup
-  ARM: OMAP2+: Drop legacy platform data for dra7 l4_per1
-  ARM: OMAP2+: Drop legacy platform data for dra7 l4_per2
-  ARM: OMAP2+: Drop legacy platform data for dra7 l4_per3
-  ARM: OMAP2+: Drop legacy platform data for dra7 l4_cfg
-  ARM: OMAP2+: Drop legacy platform data for dra7 l3
-  ARM: OMAP2+: Drop legacy platform data for dra7 hwmod
-
- arch/arm/boot/dts/dra7-l4.dtsi            |   1 -
- arch/arm/boot/dts/dra7.dtsi               |   6 -
- arch/arm/mach-omap2/Kconfig               |   1 -
- arch/arm/mach-omap2/Makefile              |   1 -
- arch/arm/mach-omap2/common.h              |   9 -
- arch/arm/mach-omap2/io.c                  |   2 -
- arch/arm/mach-omap2/omap_hwmod.c          |   8 -
- arch/arm/mach-omap2/omap_hwmod_7xx_data.c | 719 ----------------------
- 8 files changed, 747 deletions(-)
- delete mode 100644 arch/arm/mach-omap2/omap_hwmod_7xx_data.c
-
--- 
-2.30.0
