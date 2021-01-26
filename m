@@ -2,92 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA9F6303CD5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 13:22:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB71303CC8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 13:20:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392572AbhAZMVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 07:21:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404774AbhAZLDM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 06:03:12 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD5E4C06174A;
-        Tue, 26 Jan 2021 03:02:31 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id hs11so22372548ejc.1;
-        Tue, 26 Jan 2021 03:02:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=9ExoicPWb9nj37ivHRf0sfAyfETbOTvzRxB/xRvmXmU=;
-        b=gULRw+fQvf6cEe5Jiju+B7Su1M7tU8zPqZgjfo1mPadYvRypYxul3cs9pu/COoyDJT
-         TRlb4Scm0NubDKK0NBbvUatnV0YGTkpjdl74Xti1i8GIbMCKw5CIlvBziTw7n3rpzL09
-         pdwRh9qRCXaGe535cg5CLr3UEFRR0VJ201z1cAcaf2+DdP9NVGVHHLqzvH0vrm+Y5wry
-         K5iE0r9CmUnRa59orDPb8uyQbcHydzTjhCysHH8uDPJiUaeh9IooxMCNLgSrOYEoQRei
-         7lZINf5OB3Q29V5fwqh4KIcH0B1iXxoWG449ZVeBp2rs/odQyk9POcMXrhB0zXpkhF2W
-         uIUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=9ExoicPWb9nj37ivHRf0sfAyfETbOTvzRxB/xRvmXmU=;
-        b=CErrLEWiBkdpVAZ/A7WU5cuGITaNwd+CsfnSHBGQzoDi7TUK1O7qagrjkz4+lUXSo0
-         IfRHHt7hcnod7MvUifSrpPQdxBdsdp7QMDm/QTPqHsiTd9DO7/NwdnCZKBkFbmuLnAP8
-         Q+7WhMTObMVAAnv2v2jrcgH1g78mxuWfEC4Ni3/JYvJFuRDRcssSVQp1NsomuEwWQVo9
-         Kq2Ys9kvK/52KectT35P5FJa5n9svF9lyrMhlrYwTbefXHMOnF0xpmUm1gj6rwcBsPS7
-         nXt1G5/X/Rb+n/mBijlWlVFn+PBGgwEDuH3m1G4/44ezLCOspYBgH5bY7gM3ZxbdYn8r
-         DsHg==
-X-Gm-Message-State: AOAM533FRQR47skPz7ew+apiy2v3RcqeSDRd4kGl2w+77ZTmBeZhgjOX
-        fwAv4yA4j+3apOKCGxtttNs=
-X-Google-Smtp-Source: ABdhPJwD9bEZYnFDqHJRo/ilNGeJy4pvg35s/7WkgPHClbyyzEy8XmUpbC8NKCoi6q6Eq7z2G7aUrw==
-X-Received: by 2002:a17:907:94d4:: with SMTP id dn20mr3126122ejc.397.1611658950596;
-        Tue, 26 Jan 2021 03:02:30 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id a2sm9533408ejk.80.2021.01.26.03.02.29
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 26 Jan 2021 03:02:29 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: fix pinctrl sleep nodename for rk3399.dtsi
-Date:   Tue, 26 Jan 2021 12:02:21 +0100
-Message-Id: <20210126110221.10815-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210126110221.10815-1-jbx6244@gmail.com>
-References: <20210126110221.10815-1-jbx6244@gmail.com>
+        id S2392103AbhAZMTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 07:19:32 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:62982 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2404979AbhAZLG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 06:06:29 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10QB0Jgm002104;
+        Tue, 26 Jan 2021 06:05:33 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com with ESMTP id 368ehahqmn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 26 Jan 2021 06:05:33 -0500
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 10QB5Wp3028966
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Tue, 26 Jan 2021 06:05:32 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Tue, 26 Jan
+ 2021 06:05:31 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Tue, 26 Jan 2021 06:05:31 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 10QB5PQd007159;
+        Tue, 26 Jan 2021 06:05:28 -0500
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <lars@metafoo.de>,
+        <linux-fpga@vger.kernel.org>, <mdf@kernel.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: [PATCH v2 1/3] clk: axi-clkgen: remove ARCH dependency in Kconfig
+Date:   Tue, 26 Jan 2021 13:08:24 +0200
+Message-ID: <20210126110826.24221-2-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210126110826.24221-1-alexandru.ardelean@analog.com>
+References: <20210126110826.24221-1-alexandru.ardelean@analog.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-26_06:2021-01-25,2021-01-26 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ mlxlogscore=821 mlxscore=0 spamscore=0 priorityscore=1501 bulkscore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101260058
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below aimed at powerpc generates
-notifications in the Rockchip arm64 tree.
+The intent is to be able to run this driver to access the IP core in setups
+where FPGA board is also connected via a PCIe bus. In such cases the number
+of combinations explodes, where the host system can be an x86 with Xilinx
+Zynq/ZynqMP/Microblaze board connected via PCIe.
+Or even a ZynqMP board with a ZynqMP/Zynq/Microblaze connected via PCIe.
 
-Fix pinctrl "sleep" nodename by renaming it to "suspend"
-for rk3399.dtsi
+To accommodate for these cases, this change removes the limitation for this
+driver to be compilable only on Zynq/Microblaze architectures.
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/powerpc/sleep.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Signed-off-by: Dragos Bogdan <dragos.bogdan@analog.com>
+Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index d0602f62f..6c571fee8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -2347,7 +2347,7 @@
- 			};
- 		};
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+index 85856cff506c..d8c2d4593926 100644
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -247,7 +247,6 @@ config CLK_TWL6040
  
--		sleep {
-+		suspend {
- 			ap_pwroff: ap-pwroff {
- 				rockchip,pins = <1 RK_PA5 1 &pcfg_pull_none>;
- 			};
+ config COMMON_CLK_AXI_CLKGEN
+ 	tristate "AXI clkgen driver"
+-	depends on ARCH_ZYNQ || MICROBLAZE || COMPILE_TEST
+ 	help
+ 	  Support for the Analog Devices axi-clkgen pcore clock generator for Xilinx
+ 	  FPGAs. It is commonly used in Analog Devices' reference designs.
 -- 
-2.11.0
+2.17.1
 
