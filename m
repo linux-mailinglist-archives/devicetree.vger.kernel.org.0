@@ -2,106 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A641D30334F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8895D303348
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728330AbhAZEtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:49:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53996 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731817AbhAZCDc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:03:32 -0500
-X-Greylist: delayed 1174 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Jan 2021 16:53:00 PST
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B4FCC0611C1
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 16:53:00 -0800 (PST)
-Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id DD59A891B0;
-        Tue, 26 Jan 2021 13:33:21 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1611621201;
-        bh=c2VQN3yGJUcZRIEn9Gqn0Veg7N1cQep6pkqN2/xRino=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=WqbrwvMiuWjsDg+vHcdznD+lzfLwLRIbvAdm7KdnSPcHLKM01OPEtipnybDGgV2dm
-         DER2VYDk6ssqBIEZvGgRuJCOCzbwDirLvXoxMtqWacqqtvERHZzZLQtZKIMf6/6y49
-         a7Dj32XPkBncS5YuDbnOOFwRPHgqR618oMA331V2Ckff3xQtRVL52VLEqqtxI4aJ3L
-         KPqrwTrqCvNtxyK0eQ9tu5p9Sa6m1QpHgS6Ou1jSSD2SiVLTum/e/ejy3zDy4R8VnN
-         cWsFOpPr4N6NY3i33zZychtDIuKG++AQmdJPdHfUSgycSw4Br/a5bg0hdVqGLib4YN
-         pAOw5gDCJoBCg==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[10.32.16.77]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
-        id <B600f63510001>; Tue, 26 Jan 2021 13:33:21 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Tue, 26 Jan 2021 13:33:21 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.010; Tue, 26 Jan 2021 13:33:21 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Qi Zheng <arch0.zheng@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "frowand.list@gmail.com" <frowand.list@gmail.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] of/fdt: Remove redundant kbasename function call
-Thread-Topic: [PATCH v2] of/fdt: Remove redundant kbasename function call
-Thread-Index: AQHW83rZib9EpB92fkGwiPfIm/1ogQ==
-Date:   Tue, 26 Jan 2021 00:33:21 +0000
-Message-ID: <ebbba4ac-ea65-472c-5a3a-201dfe59e402@alliedtelesis.co.nz>
-References: <20200528132541.463300-1-arch0.zheng@gmail.com>
-In-Reply-To: <20200528132541.463300-1-arch0.zheng@gmail.com>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <116F44733432FC48A5E52BD93D9E5306@atlnz.lc>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
+        id S1728233AbhAZEti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:49:38 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:32931 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1732006AbhAZBey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 20:34:54 -0500
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 25 Jan 2021 16:38:43 -0800
+X-QCInternal: smtphost
+Received: from gurus-linux.qualcomm.com ([10.46.162.81])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP; 25 Jan 2021 16:38:42 -0800
+Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
+        id 1723418DB; Mon, 25 Jan 2021 16:38:35 -0800 (PST)
+From:   Guru Das Srinagesh <gurus@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Guru Das Srinagesh <gurus@codeaurora.org>
+Subject: [RESEND PATCH v6 1/3] bindings: pm8941-misc: Convert bindings to YAML
+Date:   Mon, 25 Jan 2021 16:38:30 -0800
+Message-Id: <b8dcd61fdd8674b79d81c94b424fce79b86d8979.1611621365.git.gurus@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <cover.1611621365.git.gurus@codeaurora.org>
+References: <cover.1611621365.git.gurus@codeaurora.org>
+In-Reply-To: <cover.1611621365.git.gurus@codeaurora.org>
+References: <cover.1611621365.git.gurus@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQWxsLA0KDQpPbiAyOS8wNS8yMCAxOjI1IGFtLCBRaSBaaGVuZyB3cm90ZToNCj4gRm9yIHZl
-cnNpb24gMSB0byAzIG9mIHRoZSBkZXZpY2UgdHJlZSwgdGhpcyBpcyB0aGUgbm9kZSBmdWxsDQo+
-IHBhdGggYXMgYSB6ZXJvIHRlcm1pbmF0ZWQgc3RyaW5nLCBzdGFydGluZyB3aXRoICIvIi4gVGhl
-DQo+IGZvbGxvd2luZyBlcXVhdGlvbiB3aWxsIG5vdCBob2xkLCBzaW5jZSB0aGUgbm9kZSBuYW1l
-IGhhcw0KPiBiZWVuIHByb2Nlc3NlZCBpbiB0aGUgZmR0X2dldF9uYW1lKCkuDQo+DQo+IAkqcGF0
-aHAgPT0gJy8nDQo+DQo+IEZvciB2ZXJzaW9uIDE2IGFuZCBsYXRlciwgdGhpcyBpcyB0aGUgbm9k
-ZSB1bml0IG5hbWUgb25seQ0KPiAob3IgYW4gZW1wdHkgc3RyaW5nIGZvciB0aGUgcm9vdCBub2Rl
-KS4gU28gdGhlIGFib3ZlDQo+IGVxdWF0aW9uIHdpbGwgc3RpbGwgbm90IGhvbGQuDQo+DQo+IFNv
-IHRoZSBrYmFzZW5hbWUoKSBpcyByZWR1bmRhbnQsIGp1c3QgcmVtb3ZlIGl0Lg0KPg0KPiBTaWdu
-ZWQtb2ZmLWJ5OiBRaSBaaGVuZyA8YXJjaDAuemhlbmdAZ21haWwuY29tPg0KPiAtLS0NCj4NCj4g
-Q2hhbmdlIGluIHYyOg0KPiAJcmVtb3ZlIGFub3RoZXIga2Jhc2VuYW1lKCkgYWxzby4NCj4NCj4g
-ICBkcml2ZXJzL29mL2ZkdC5jIHwgNCAtLS0tDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDQgZGVsZXRp
-b25zKC0pDQo+DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL29mL2ZkdC5jIGIvZHJpdmVycy9vZi9m
-ZHQuYw0KPiBpbmRleCAzODYxOWU5ZWY2YjIuLjQ2MDJlNDY3Y2E4YiAxMDA2NDQNCj4gLS0tIGEv
-ZHJpdmVycy9vZi9mZHQuYw0KPiArKysgYi9kcml2ZXJzL29mL2ZkdC5jDQo+IEBAIC02NDMsOCAr
-NjQzLDYgQEAgaW50IF9faW5pdCBvZl9zY2FuX2ZsYXRfZHQoaW50ICgqaXQpKHVuc2lnbmVkIGxv
-bmcgbm9kZSwNCj4gICAJICAgICBvZmZzZXQgPSBmZHRfbmV4dF9ub2RlKGJsb2IsIG9mZnNldCwg
-JmRlcHRoKSkgew0KPiAgIA0KPiAgIAkJcGF0aHAgPSBmZHRfZ2V0X25hbWUoYmxvYiwgb2Zmc2V0
-LCBOVUxMKTsNCj4gLQkJaWYgKCpwYXRocCA9PSAnLycpDQo+IC0JCQlwYXRocCA9IGtiYXNlbmFt
-ZShwYXRocCk7DQo+ICAgCQlyYyA9IGl0KG9mZnNldCwgcGF0aHAsIGRlcHRoLCBkYXRhKTsNCj4g
-ICAJfQ0KPiAgIAlyZXR1cm4gcmM7DQo+IEBAIC02NzEsOCArNjY5LDYgQEAgaW50IF9faW5pdCBv
-Zl9zY2FuX2ZsYXRfZHRfc3Vibm9kZXModW5zaWduZWQgbG9uZyBwYXJlbnQsDQo+ICAgCQlpbnQg
-cmM7DQo+ICAgDQo+ICAgCQlwYXRocCA9IGZkdF9nZXRfbmFtZShibG9iLCBub2RlLCBOVUxMKTsN
-Cj4gLQkJaWYgKCpwYXRocCA9PSAnLycpDQo+IC0JCQlwYXRocCA9IGtiYXNlbmFtZShwYXRocCk7
-DQo+ICAgCQlyYyA9IGl0KG5vZGUsIHBhdGhwLCBkYXRhKTsNCj4gICAJCWlmIChyYykNCj4gICAJ
-CQlyZXR1cm4gcmM7DQoNCkknbSB0cnlpbmcgdG8ga2VlcCBvdXIgYm9hcmRzIHVwIHRvIGRhdGUg
-d2l0aCBuZXdlciBrZXJuZWxzLg0KDQpJJ3ZlIGp1c3QgaGl0IGEgcHJvYmxlbSBvbiBhbiBvbGRl
-ciBib2FyZCB0aGF0IHVzZXMgDQpDT05GSUdfQVJNX0FQUEVOREVEX0RUQiBhbmQgaGFzIGEgbnVt
-YmVyIG9mIGNvbW1hbmQgbGluZSBhcmdzIHBhc3NlZCB1cCANCmZyb20gdGhlIGJvb3Rsb2FkZXIg
-dGhhdCBhcmUgcmVxdWlyZWQgZm9yIGEgc3VjY2Vzc2Z1bCBib290Lg0KDQpJJ20gc3RlcHBpbmcg
-dGhyb3VnaCBrZXJuZWwgdmVyc2lvbnMgaW4gdGhlIGhvcGUgdGhhdCBrZWVwaW5nIHRoaW5ncyAN
-CnJ1bm5pbmcgaXMgZWFzaWVyIGluIHNtYWxsZXIgaW5jcmVtZW50cyBJJ20gdXAgdG8gdjUuOC4g
-SSdtIG5vdCANCmN1cnJlbnRseSBhYmxlIHRvIGNoZWNrIGEgbmV3ZXIga2VybmVsIG9uIHRoaXMg
-Ym9hcmQgYnV0IGxvb2tpbmcgYXQgdGhlIA0KY29kZSB0aGUgcHJvYmxlbSBzdGlsbCBzZWVtcyB0
-byBleGlzdCBpbiB0aGUgbGF0ZXN0IHRyZWUuDQoNCmVhcmx5X2luaXRfZHRfc2Nhbl9jaG9zZW4o
-KSBzZWFyY2hlcyBmb3IgImNob3NlbiIgcHJpb3IgdG8gdGhpcyBjaGFuZ2UgDQp0aGUgIi9jaG9z
-ZW4iIG5vZGUgdGhhdCBnZXRzIGluc2VydGVkIGJ5IGF0YWdzX3RvX2ZkdC5jIGJ1dCB3aXRoIHRo
-aXMgDQpjaGFuZ2UgaXQgY2FuJ3QgZmluZCBpdCBhbmQgZmFpbHMgdG8gYm9vdC4NCg0K
+Convert bindings from txt to YAML.
+
+Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/extcon/qcom,pm8941-misc.txt           | 41 ---------------
+ .../bindings/extcon/qcom,pm8941-misc.yaml          | 59 ++++++++++++++++++++++
+ 2 files changed, 59 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.txt
+ create mode 100644 Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+
+diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.txt b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.txt
+deleted file mode 100644
+index 35383adb..0000000
+--- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-Qualcomm's PM8941 USB ID Extcon device
+-
+-Some Qualcomm PMICs have a "misc" module that can be used to detect when
+-the USB ID pin has been pulled low or high.
+-
+-PROPERTIES
+-
+-- compatible:
+-    Usage: required
+-    Value type: <string>
+-    Definition: Should contain "qcom,pm8941-misc";
+-
+-- reg:
+-    Usage: required
+-    Value type: <u32>
+-    Definition: Should contain the offset to the misc address space
+-
+-- interrupts:
+-    Usage: required
+-    Value type: <prop-encoded-array>
+-    Definition: Should contain the usb id interrupt
+-
+-- interrupt-names:
+-    Usage: required
+-    Value type: <stringlist>
+-    Definition: Should contain the string "usb_id" for the usb id interrupt
+-
+-Example:
+-
+-	pmic {
+-		usb_id: misc@900 {
+-			compatible = "qcom,pm8941-misc";
+-			reg = <0x900>;
+-			interrupts = <0x0 0x9 0 IRQ_TYPE_EDGE_BOTH>;
+-			interrupt-names = "usb_id";
+-		};
+-	}
+-
+-	usb-controller {
+-		extcon = <&usb_id>;
+-	};
+diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+new file mode 100644
+index 0000000..e8eea83
+--- /dev/null
++++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/extcon/qcom,pm8941-misc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. PM8941 USB ID Extcon device
++
++maintainers:
++  - Guru Das Srinagesh <gurus@codeaurora.org>
++
++description: |
++  Some Qualcomm PMICs have a "misc" module that can be used to detect when
++  the USB ID pin has been pulled low or high.
++
++properties:
++  compatible:
++    items:
++      - const: qcom,pm8941-misc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    items:
++      - const: usb_id
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    pmic {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            interrupt-controller;
++            #interrupt-cells = <4>;
++
++            usb_id: misc@900 {
++                    compatible = "qcom,pm8941-misc";
++                    reg = <0x900>;
++                    interrupts = <0x0 0x9 0 IRQ_TYPE_EDGE_BOTH>;
++                    interrupt-names = "usb_id";
++            };
++    };
++
++    usb-controller {
++           extcon = <&usb_id>;
++    };
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
