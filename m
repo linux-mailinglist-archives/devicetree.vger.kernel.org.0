@@ -2,134 +2,417 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01113304CD8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 23:58:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B98E7304CD9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 23:58:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729505AbhAZW55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 17:57:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38644 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727085AbhAZFPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 00:15:51 -0500
-Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73FD6C06178B
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 21:15:03 -0800 (PST)
-Received: by mail-oo1-xc2f.google.com with SMTP id x23so3862886oop.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 21:15:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WEj3tmR62zGvDZoGCGiPRerSzNBbdxbd1rRwr/9kJUk=;
-        b=P49sxvgT7xsvQvhm489+UNNHRjydA/7wRy7XhqQbQIEkgQQAJ3Ky16ENSRxcKRMsku
-         k/7TmktrWpSOkzI7k/20H5wHVS2SGi0YbY5HGLE53sqXPhVr2wo/NpOooPbYSQdU34Th
-         VBiPWougzOxqABN3qvXy7YNvpWcY6w7UNtQtxoAoswujsC2EWr3NxiczgXM2u5/HQfUJ
-         LrYERBbGVl9yBkB6uzN0NsKTR4wJpcH5jAlCdV1KToNzMym5qVxYxIbTP3TXsKB3rNPf
-         YAimxbu0HMBI1BBPkEWfvePe+eS4LQX5r7rOmyYjBxH4L8adq6dBB7mzBCOL2xoUrgJN
-         30Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WEj3tmR62zGvDZoGCGiPRerSzNBbdxbd1rRwr/9kJUk=;
-        b=OPmWfWbGZykeAgFQ5K8e8fHq5ltJql0HmRwVkcx6/tl5ISRcBMj2ScWxjv2F58kV2m
-         MS7POTfnACYxdptOt43gjGpzqvYwYNa4v9bt8bt+oICQe4TMcgkPL7AW/SagioF3tZhZ
-         VMFOqiKl9xFa8uFQJvbPsBfJ9bDG7gc/rcjwbB5k3++cyrbMouBvyCZtC5tBMTtvLeFd
-         MSQLJL4EqZnjIFkK7BlI04tRTGlay9gjvgBvz33TR1k6RlFQQaqBLY1oGC6WXm4B/WxG
-         L9kmnLcxop/PhYyE0UOAPDYMwSW3EOHlcblX89uA9+5DraX7yrm0/kt8ZLsRqlck/om2
-         p+wA==
-X-Gm-Message-State: AOAM532604jz2bSh4cqgeftX3wyMV302w04P2RGtiL5aAzRNxRepO2we
-        vAljFxVJ10RgfawdWXYcGcFYmg==
-X-Google-Smtp-Source: ABdhPJxQy38LYIBO8JfsuhJvZQAab+eu72Dtx+aE1TieErPJ/G0DWwha/Ormwzl0NukmD+JYSYVKPw==
-X-Received: by 2002:a4a:9092:: with SMTP id j18mr1040063oog.19.1611638102791;
-        Mon, 25 Jan 2021 21:15:02 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id f10sm2357672oom.18.2021.01.25.21.15.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 21:15:02 -0800 (PST)
-Date:   Mon, 25 Jan 2021 23:15:00 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, peter.chen@nxp.com,
-        jackp@codeaurora.org
-Subject: Re: [PATCH v6 3/4] usb: dwc3: Resize TX FIFOs to meet EP bursting
- requirements
-Message-ID: <YA+lVFWlBDvN4MTF@builder.lan>
-References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
- <1611288100-31118-4-git-send-email-wcheng@codeaurora.org>
- <YAsHbj/mITeiY5Cq@builder.lan>
- <724cb274-36ce-fb48-a156-4eaf9e686fdf@codeaurora.org>
- <20210126015543.GB1241218@yoga>
- <99dd9419-a8fd-9eb2-9582-d24f865ecf70@codeaurora.org>
+        id S1727085AbhAZW6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 17:58:04 -0500
+Received: from mail-db8eur05on2066.outbound.protection.outlook.com ([40.107.20.66]:40448
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1732394AbhAZFXC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 00:23:02 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Gr7r32zE7vudvy6nnvT3/x4zuEns4MXyASx44/SqNthJmvFqY8CGou/672HaqWyBnIX49MSJtMY13z15+D+GSwKr4A1ndEDxYKwbONdaFE6TIWlJNR1lq3nMlj0xxsAJ8VBTEBzruuxjUnesdzfYhbfQF1q0ScTFLICuBqmievvZKjlNzg8VtmNxh07IirqVP9yapNZGs9QKOi9vyGzS2XA+g1bvXburruQmu71hnTPVJ3r6ES0KkRdD2Y6XQJcCJaEcFCC1sqDauptXnlW9ZH/LWOUKfhEug+6INAwlPMubtJygXmCNln0stRID9IJOccPMzW2B4OI2LZyT/udAyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U/Vh3lWp5AtBt98yhtXCON8fB7T7LlsT7vwen9eQO2M=;
+ b=fFNlwGJiUnjlvDJSa3aV0cThCUa8822W50yrBbNfW3zyLN2FuB56w4hM/wn0U1gmjjebHnbJxo6Gq2HNuVHOHT1bFyoJLMTgeo3CQdLVJOgou2crfuwrTWxhdLfRtiWC0LAK2dRKP8t4hyaT014pK0PKuveU84Gm5JcvpuvH003plWGsgk19gg7qPrUdY5ETj3VNxCrNsh/MqDWMOCI1F78wTOpQpoql3xhnbJu/QGYhtuyt4t90mIPhPW6zMydPknvhzzj7YxbwZNLPBK/Lb7Yr5PuM1nQyeIRuZYVYoXUq3d6SDksK3r7SLQEKm9wXPXsfppfDRGvOQX3bNStvrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U/Vh3lWp5AtBt98yhtXCON8fB7T7LlsT7vwen9eQO2M=;
+ b=B8N5Kc3vrruDK9LNEIh00jVc7EkLsNVDCUedT0BMjv7rb3imvgJ7x/v/f7AYIrZnX+A9nIjx2xWfXmW0J0splDE8KyV0qgMlk6Efc2MOTzwb393VjgcSzWyvsm7cOrVFprdwdikwNINt9CL4NoJxUA3Pi347mX9Qv/KoOA07h7A=
+Authentication-Results: oss.nxp.com; dkim=none (message not signed)
+ header.d=none;oss.nxp.com; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR04MB6990.eurprd04.prod.outlook.com (2603:10a6:803:138::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Tue, 26 Jan
+ 2021 05:22:13 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3784.017; Tue, 26 Jan 2021
+ 05:22:13 +0000
+Message-ID: <9233b33c789a2b207a437df9abcff1dd7fd89b16.camel@nxp.com>
+Subject: Re: [PATCH v6 5/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        airlied@linux.ie, daniel@ffwll.ch, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, robh+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, guido.gunther@puri.sm
+Date:   Tue, 26 Jan 2021 13:20:32 +0800
+In-Reply-To: <20210125134806.w77bdrx2wbb4kirz@fsr-ub1864-141>
+References: <1611213263-7245-1-git-send-email-victor.liu@nxp.com>
+         <1611213263-7245-6-git-send-email-victor.liu@nxp.com>
+         <20210125134806.w77bdrx2wbb4kirz@fsr-ub1864-141>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.4-0ubuntu1 
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR03CA0122.apcprd03.prod.outlook.com
+ (2603:1096:4:91::26) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <99dd9419-a8fd-9eb2-9582-d24f865ecf70@codeaurora.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR03CA0122.apcprd03.prod.outlook.com (2603:1096:4:91::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.7 via Frontend Transport; Tue, 26 Jan 2021 05:22:07 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: b9ca8570-6b5b-443e-827a-08d8c1ba5609
+X-MS-TrafficTypeDiagnostic: VI1PR04MB6990:
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB699014674158B9C467F1B4E298BC0@VI1PR04MB6990.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lFFs2EDhqikDwZCjVzz8GFBO1APSiQCh0poSSqy37Ao2FlQ6xPg4+wnE3JNZT6k4ZTIf4bz5ss+DvLVwWe0zKkrKnwcMAE2yI0wvVkco8O9OdcKBniAk4eaJBdEC3zjV6yGPMROjmXSw9NVx3qrRcMtzheGzGgyMIALJyUSo82v6ifE5lusqVhEjSGKgi7YsKtLpLccB5L3yA2w/fX5oDCPO50C0ZmcgaXV0Lr5eVDC+xrpDiyiv2kqI9HfmZkvUmkok/bvD8YagdzzHCt+W65aAUCrR6hjZ24bM9M5wIK9AyHLgE+zGjNtsIpoFyXq5OALI5YYxweVaNUlMrEHHdTu2BymEaigZH7Gh7pJ09749c3kq37nRwywLQFcVdKeyU0UWu12/x1dN/463pvFtYLNiD9SmVFT7ByX7dUCc12oCCAO4yjcibzDoyA7niyKIn+x5CmFWFk5usSzyaDaRVB/faDs+lUQBHF7sX8lEpPlFx8FvfWpBhiFp6Zja5PnjfuCN7TCO26bqW5gGpfKxLlT+5eDMv8hjIirqF5xmGz7zuyW45RffoGySUjIoVeWxdYrKYrpxClK3TljXO81yHTQlUFICD0U4qg25yX+tr8A=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(376002)(396003)(136003)(346002)(5660300002)(26005)(6486002)(66556008)(66946007)(36756003)(52116002)(66476007)(7416002)(83380400001)(2906002)(6506007)(30864003)(2616005)(186003)(8676002)(86362001)(8936002)(6666004)(956004)(478600001)(4326008)(316002)(6862004)(16526019)(6512007)(966005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?WUFRcjc4anZlT1NHams3dXJHMGE4aXJmTmlrR1oyL3d6U3RYT1BGdG5qdnZy?=
+ =?utf-8?B?eFgyTkZnOEdIdFdCL3VLK2c3Q25HMlZwdXNxcUg1T3g5a0NiOS9nV1RtZVpn?=
+ =?utf-8?B?NVY3VkEyVmsyWnZ6YU16cHVidGIxdWlPUXFLUVI2WlpzbWtFanlabTRyUnM2?=
+ =?utf-8?B?cUc3Z0djdkpZVytPN2dMR2tJaFY4aTBFSzI1U3NxVWEyNU94d1pmcXJJUkNo?=
+ =?utf-8?B?dW80ZExBQStDK0dzdjBwVzh1OGFSS1pHMjdmd3AvRGs0TlRWT3FRM0NOeUZ4?=
+ =?utf-8?B?WnE2dEJmKzRsS1ZCWnJGOWFlckJnS2w3RHBPL0Y1a0dDbU1neUFpemlQT1ZV?=
+ =?utf-8?B?RXZ3QkdqeVBDQVdyZkw1cG54MnRCWVR5QXR0NTBBTkdqUzl3ek9XaDZ1TmFI?=
+ =?utf-8?B?dzgvS3h1TWpxNm5ZakluQVBwQTRCY0ZubDQvZkNvUWtSQzFCTFNwajVzR2Fk?=
+ =?utf-8?B?SVI0eTRocUJxSVBBMWQzTkR0UGltL0IvdmI1UDE2MjBPbCtDcElKemZHR2hU?=
+ =?utf-8?B?cEcyL29QRTArYlhYbzhLUlBkdk8yNWFnU2IzRTNaZ3VvRU5TRnlBNi9EaTVX?=
+ =?utf-8?B?Vytjd2swTmk4UkEzeXZnNXF4Y1VGU2k4cUQ2T2NYdUhybnBudTloTmFuazFz?=
+ =?utf-8?B?RDMyMEtDd0hGaW1ZYUpYNUNVTTE3cUJhM3Eza1d1b0JEckl0YmZKOWhrdktv?=
+ =?utf-8?B?MnRuZ1ZhM0gzWVJ0MVlrQ0NxYlpTbzJMRVB2dmY1Y3lsZG8valNxNWJJYzNC?=
+ =?utf-8?B?Ynhkalp0ZlZYV3dwRDI3dTlIbXhSU0lqTThyMFN5QjdBL3ZMT3NzcTMxWUJx?=
+ =?utf-8?B?SC9ndjRIdzRYMjU4MW5LYjV3cE9DR2t2aVl2enVYVE5JY0E1Z2hoM1l2YUJZ?=
+ =?utf-8?B?WUJMYlRSbjhKR2w0TDJMZExlNDNkdldnRkMxcjRwMUpVUno1SHlWeTVTQ3dU?=
+ =?utf-8?B?REhlcEF0VjhUNmpIdzBPd3UwL1pWUGVlSDJkSUZwTXJVbDBSYzYrc2ZqaEkv?=
+ =?utf-8?B?OGtqYWp5SzhXemNRa3kraXZUdUNWcHlHRWQ2MHNoeXlPZWFtbU9tSi94dFV0?=
+ =?utf-8?B?MU1tcmtlNkptUFRnNENpRFRxcUpKRllyYnE4d0ZhWWN2dkI3S21tWTZMemZ1?=
+ =?utf-8?B?TUg5cG9WRFUvYU1zSFUzbEZ0K3ZXZitYaHJXQUw4emZCRFlDNzM0OE5rY09L?=
+ =?utf-8?B?RWFuN2IzZkc1OUtJYzFLQml0RHQwbEtjYitnT1RhS2Y5dTByNW1KTlZjRC95?=
+ =?utf-8?B?Ry8xcXBmTXErWjZ4YU9vdjUxcmh2akdsbk55T0gwa3d5d3BVTS81ZHBDaDFV?=
+ =?utf-8?B?cXFtLzJsWDdEMm0rYS9KbWRBUS8rNVREUU1JK2FvU2ZVVkxZdEZOWi82bG1R?=
+ =?utf-8?B?UERRdlMxNU5qZE55SGJIOHdqSzV3R0o1QVUyRFpxSlRmTjk5Rk1ZVTVTZlBW?=
+ =?utf-8?Q?9uxK8cG7?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9ca8570-6b5b-443e-827a-08d8c1ba5609
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 05:22:13.1222
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iefcsRAjy9acTL7JY9a+WNNiP4kHViyoAmM1GjTS6Wca8yFDOVetOUKhsaps2JExURJzW3Q7ByLgF5guXu28ww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6990
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 25 Jan 22:32 CST 2021, Wesley Cheng wrote:
-> On 1/25/2021 5:55 PM, Bjorn Andersson wrote:
-> > On Mon 25 Jan 19:14 CST 2021, Wesley Cheng wrote:
+On Mon, 2021-01-25 at 15:48 +0200, Laurentiu Palcu wrote:
+> Hi Liu Ying,
+> 
+> Just some minor comments below.
+> 
+> On Thu, Jan 21, 2021 at 03:14:22PM +0800, Liu Ying wrote:
+> > This patch introduces i.MX8qm/qxp Display Processing Unit(DPU) DRM support.
 > > 
-> >>
-> >>
-> >> On 1/22/2021 9:12 AM, Bjorn Andersson wrote:
-> >>> On Thu 21 Jan 22:01 CST 2021, Wesley Cheng wrote:
-> >>>
-> >>
-> >> Hi Bjorn,
-> >>>
-> >>> Under what circumstances should we specify this? And in particular are
-> >>> there scenarios (in the Qualcomm platforms) where this must not be set?
-> >>> The TXFIFO dynamic allocation is actually a feature within the DWC3
-> >> controller, and isn't specifically for QCOM based platforms.  It won't
-> >> do any harm functionally if this flag is not set, as this is meant for
-> >> enhancing performance/bandwidth.
-> >>
-> >>> In particular, the composition can be changed in runtime, so should we
-> >>> set this for all Qualcomm platforms?
-> >>>
-> >> Ideally yes, if we want to increase bandwith for situations where SS
-> >> endpoint bursting is set to a higher value.
-> >>
-> >>> And if that's the case, can we not just set it from the qcom driver?
-> >>>
-> >> Since this is a common DWC3 core feature, I think it would make more
-> >> sense to have it in DWC3 core instead of a vendor's DWC3 glue driver.
-> >>
+> > DPU is comprised of two main components that include a blit engine for
+> > 2D graphics accelerations(with composition support) and a display controller
+> > for display output processing, as well as a command sequencer.  Outside of
+> > DPU, optional prefetch engines, a.k.a, Prefetch Resolve Gasket(PRG) and
+> > Display Prefetch Resolve(DPR), can fetch data from memory prior to some DPU
+> > fetchunits of blit engine and display controller.  The prefetch engines
+> > support reading linear formats and resolving Vivante GPU tile formats.
 > > 
-> > I don't have any objections to implementing it in the core driver, but
-> > my question is can we just skip the DT binding and just enable it from
-> > the vendor driver?
+> > This patch adds kernel modesetting support for the display controller part.
+> > The driver supports two CRTCs per display controller, planes backed by
+> > four fetchunits(decode0/1, fetchlayer, fetchwarp), fetchunit allocation
+> > logic for the two CRTCs, prefetch engines(with tile resolving supported),
+> > plane upscaling/deinterlacing/yuv2rgb CSC/alpha blending and CRTC gamma
+> > correction.  The registers of the controller is accessed without command
+> > sequencer involved, instead just by using CPU.
 > > 
-> > Regards,
-> > Bjorn
+> > Reference manual can be found at:
+> > https://www.nxp.com/webapp/Download?colCode=IMX8DQXPRM
+> > 
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > v5->v6:
+> > * Do not use macros where possible. (Laurentiu)
+> > * Break dpu_plane_atomic_check() into some smaller functions. (Laurentiu)
+> > * Address some minor comments from Laurentiu.
+> > * Add dpu_crtc_err() helper marco to tell dmesg which CRTC generates error.
+> > * Drop calling dev_set_drvdata() from dpu_drm_bind/unbind() as it is done
+> >   in dpu_drm_probe().
+> > * Some trivial tweaks.
+> > 
+> > v4->v5:
+> > * Rebase up onto the latest drm-misc-next branch and remove the hook to
+> >   drm_atomic_helper_legacy_gamma_set(), because it was dropped by the newly
+> >   landed commit 'drm: automatic legacy gamma support'.
+> > * Remove a redundant blank line from dpu_plane_atomic_update().
+> > 
+> > v3->v4:
+> > * No change.
+> > 
+> > v2->v3:
+> > * Fix build warnings Reported-by: kernel test robot <lkp@intel.com>.
+> > * Drop build dependency on IMX_SCU, as dummy SCU functions have been added in
+> >   header files by the patch 'firmware: imx: add dummy functions' which has
+> >   landed in linux-next/master branch.
+> > 
+> > v1->v2:
+> > * Add compatible for i.MX8qm DPU, as this is tested with i.MX8qm LVDS displays.
+> >   (Laurentiu)
+> > * Fix PRG burst size and stride. (Laurentiu)
+> > * Put 'ports' OF node to fix the bail-out logic in dpu_drm_probe(). (Laurentiu)
+> > 
+> >  drivers/gpu/drm/imx/Kconfig               |    1 +
+> >  drivers/gpu/drm/imx/Makefile              |    1 +
+> >  drivers/gpu/drm/imx/dpu/Kconfig           |   10 +
+> >  drivers/gpu/drm/imx/dpu/Makefile          |   10 +
+> >  drivers/gpu/drm/imx/dpu/dpu-constframe.c  |  171 +++++
+> >  drivers/gpu/drm/imx/dpu/dpu-core.c        | 1094 +++++++++++++++++++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-crtc.c        |  967 +++++++++++++++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-crtc.h        |   66 ++
+> >  drivers/gpu/drm/imx/dpu/dpu-disengcfg.c   |  117 +++
+> >  drivers/gpu/drm/imx/dpu/dpu-dprc.c        |  718 +++++++++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-dprc.h        |   40 ++
+> >  drivers/gpu/drm/imx/dpu/dpu-drv.c         |  292 ++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-drv.h         |   28 +
+> >  drivers/gpu/drm/imx/dpu/dpu-extdst.c      |  299 ++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c |  294 ++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetcheco.c    |  224 ++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c  |  154 ++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.c   |  609 ++++++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.h   |  191 +++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c   |  250 +++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-framegen.c    |  395 +++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-gammacor.c    |  223 ++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-hscaler.c     |  275 ++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-kms.c         |  540 ++++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-kms.h         |   23 +
+> >  drivers/gpu/drm/imx/dpu/dpu-layerblend.c  |  348 +++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-plane.c       |  799 +++++++++++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-plane.h       |   56 ++
+> >  drivers/gpu/drm/imx/dpu/dpu-prg.c         |  433 ++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-prg.h         |   45 ++
+> >  drivers/gpu/drm/imx/dpu/dpu-prv.h         |  233 ++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-tcon.c        |  250 +++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-vscaler.c     |  308 ++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu.h             |  385 ++++++++++
+> >  34 files changed, 9849 insertions(+)
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
 > > 
 > 
-> Hi Bjorn,
+> [...]
 > 
-> I see.  I think there are some designs which don't have a DWC3 glue
-> driver, so assuming there may be other platforms using this, there may
-> not always be a vendor driver to set this.
+> > diff --git a/drivers/gpu/drm/imx/dpu/dpu-core.c b/drivers/gpu/drm/imx/dpu/dpu-core.c
+> > new file mode 100644
+> > index 00000000..7dab6cc
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/imx/dpu/dpu-core.c
 > 
+> [...]
+> 
+> > +static int dpu_get_irqs(struct platform_device *pdev, struct dpu_soc *dpu)
+> > +{
+> > +	unsigned int i, j;
+> > +
+> > +	/* do not get the reserved irq */
+> > +	for (i = 0, j = 0; i < DPU_IRQ_COUNT - 1; i++, j++) {
+> > +		if (i == DPU_IRQ_RESERVED)
+> > +			j++;
+> > +
+> > +		dpu->irq[j] = platform_get_irq(pdev, i);
+> > +		if (dpu->irq[j] < 0) {
+> > +			dev_err_probe(dpu->dev, dpu->irq[j],
+> > +				      "failed to get irq\n");
+> > +			return dpu->irq[i];
+> 
+> I think you want 'return dpu->irq[j]'.
 
-You mean that there are implementations of dwc3 without an associated
-glue driver that haven't yet realized that they need this feature?
+Good catch.
 
-I would suggest then that we implement the core code necessary, we
-enable it from the Qualcomm glue layer and when someone realize that
-they need this without a glue driver it's going to be trivial to add the
-DT binding.
+> 
+> > +		}
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> [...]
+> 
+> > +static const struct dpu_irq_handler_map {
+> > +	void (*handler)(struct irq_desc *desc);
+> > +} dpu_irq_handler_maps[DPU_IRQ_COUNT] = {
+> > +	{},						/* 0 */
+> > +	{},						/* 1 */
+> > +	{},						/* 2 */
+> > +	{dpu_extdst0_shdload_irq_handler},		/* 3 */
+> > +	{},						/* 4 */
+> > +	{},						/* 5 */
+> > +	{dpu_extdst4_shdload_irq_handler},		/* 6 */
+> > +	{},						/* 7 */
+> > +	{},						/* 8 */
+> > +	{dpu_extdst1_shdload_irq_handler},		/* 9 */
+> > +	{},						/* 10 */
+> > +	{},						/* 11 */
+> > +	{dpu_extdst5_shdload_irq_handler},		/* 12 */
+> > +	{},						/* 13 */
+> > +	{},						/* 14 */
+> > +	{dpu_disengcfg_shdload0_irq_handler},		/* 15 */
+> > +	{dpu_disengcfg_framecomplete0_irq_handler},	/* 16 */
+> > +	{dpu_disengcfg_seqcomplete0_irq_handler},	/* 17 */
+> > +	{},						/* 18 */
+> > +	{},						/* 19 */
+> > +	{},						/* 20 */
+> > +	{},						/* 21 */
+> > +	{},						/* 22 */
+> > +	{},						/* 23 */
+> > +	{},						/* 24 */
+> > +	{dpu_disengcfg_shdload1_irq_handler},		/* 25 */
+> > +	{dpu_disengcfg_framecomplete1_irq_handler},	/* 26 */
+> > +	{dpu_disengcfg_seqcomplete1_irq_handler},	/* 27 */
+> > +	{},						/* 28 */
+> > +	{},						/* 29 */
+> > +	{},						/* 30 */
+> > +	{},						/* 31 */
+> > +	{},						/* 32 */
+> > +	{},						/* 33 */
+> > +	{},						/* 34 */
+> > +	{/* reserved */},				/* 35 */
+> > +	{},						/* 36 */
+> > +	{},						/* 37 */
+> > +	{},						/* 38 */
+> > +	{},						/* 39 */
+> > +	{},						/* 40 */
+> > +	{},						/* 41 */
+> > +	{},						/* 42 */
+> > +	{},						/* 43 */
+> > +	{},						/* 44 */
+> > +	{},						/* 45 */
+> > +	{},						/* 46 */
+> > +	{},						/* 47 */
+> > +	{},						/* 48 */
+> > +};
+> 
+> Why not make this an array of pointers to functions. Do we need a struct?
+> Something like:
+> 
+> static void (* const dpu_irq_handler[DPU_IRQ_COUNT])(struct irq_desc *) = {
+> 	[3] = dpu_extdst0_shdload_irq_handler,
+> 	[6] = dpu_extdst4_shdload_irq_handler,
+> 	...
+> };
 
+Alright, will use the function array.
 
-The alternative is that we're lugging around a requirement to specify
-this property in all past, present and future Qualcomm dts files - and
-then we'll need to hard code it for ACPI anyways.
+> 
+> [...]
+> 
+> > +static int
+> > +dpu_get_fetchunits_for_plane_grp(struct dpu_soc *dpu,
+> > +				 const struct dpu_units *us,
+> > +				 struct dpu_fetchunit ***fu,
+> > +				 unsigned int *cnt,
+> > +				 struct dpu_fetchunit *
+> > +						(*get)(struct dpu_soc *dpu,
+> > +						       unsigned int id))
+> > +{
+> > +	unsigned int fu_cnt = 0;
+> > +	int i, j, ret;
+> > +
+> > +	for (i = 0; i < us->cnt; i++) {
+> > +		if (us->types[i] == DPU_DISP)
+> > +			fu_cnt++;
+> > +	}
+> > +
+> > +	*cnt = fu_cnt;
+> > +
+> > +	*fu = devm_kcalloc(dpu->dev, fu_cnt, sizeof(**fu), GFP_KERNEL);
+> > +	if (!(*fu))
+> > +		return -ENOMEM;
+> > +
+> > +	for (i = 0, j = 0; i < us->cnt; i++) {
+> > +		if (us->types[i] != DPU_DISP)
+> > +			continue;
+> > +
+> > +		(*fu)[j] = (*get)(dpu, us->ids[i]);
+> 
+> You can also call get() directly. No need to dereference function
+> pointers.
 
-Regards,
-Bjorn
+Will do.
+
+> 
+> > +		if (IS_ERR((*fu)[j])) {
+> > +			ret = PTR_ERR((*fu)[j]);
+> > +			dev_err(dpu->dev, "failed to get %s%d: %d\n",
+> > +						us->name, us->ids[i], ret);
+> > +			return ret;
+> > +		}
+> > +		j++;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> [...]
+> 
+> > +static void
+> > +dpu_put_fetchunits_for_plane_grp(struct dpu_fetchunit ***fu,
+> > +				 unsigned int *cnt,
+> > +				 void (*put)(struct dpu_fetchunit *fu))
+> > +{
+> > +	int i;
+> > +
+> > +	for (i = 0; i < *cnt; i++)
+> > +		(*put)((*fu)[i]);
+> 
+> Same here, you can call put() directly.
+
+Will do.
+
+Thanks,
+Liu Ying
+
