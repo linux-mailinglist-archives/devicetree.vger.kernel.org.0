@@ -2,110 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F360A3040D3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21F253040DA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:50:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405971AbhAZOsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 09:48:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405900AbhAZOsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:48:08 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF8FC061D7F
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:47:28 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id r14so1149375ljc.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:47:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NSov9hCAZmBO4f5IqjzRfZw8GiUqBpiKDFVieekbDjQ=;
-        b=XTzDRCOtBTWBSE3rewHEzJrNlvVeSIhNA5fbCfyK9IVdizTEaqec2Jtz7smGsVOFhr
-         MGp6EPKN4EftzMuKXxYIRfwdMsCW7R3SZHwYVlXZTXsc8netYQbJFeW1zHaWf4LTYfcI
-         VpSAYwinvUj29oPYsTojeXQuqiWjkLlZv9eciwpPy9Nprj8Br8ioQWrVzwWk3Ye6eEdc
-         dh5DBUCu8Qad8BZvxhMqs8a+DL4OuVDNxDn7JDw3jQarZ9iJsNgsJLd3/PjcNBuAurKv
-         mg2zQyvt+QbEyAiCOyKE6poVvzlw3nIysmCZjLL8iGX7VYNkO8nYvBwwJKQUpH7jXpXo
-         jeAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NSov9hCAZmBO4f5IqjzRfZw8GiUqBpiKDFVieekbDjQ=;
-        b=fr9xOk4KFmIzvXPa3GhK4UOJFMEyuW+7V6felLAW6V05AA5MaLVdZpJxi6pCXfbaOn
-         04Z6f3QxH57dI4nTdVtddLHjfDIYKsKLGnl/ERsopcDpIZ20Hh/ixdmRNmjcuWnfvaAE
-         WoDjpyuyrAzpT4hwod8B336oDtUd68J8k1fKUbBNCLa5eg3VYyqkIXWFTHA2OHvJh/d9
-         6m5P5TYmm8MhX+rf9Ifnxu6t/RWgJnlsbvxCq/Zej1Q25Yf6U3U51x575yNf7gPsKMzZ
-         NsTigPcj5/6BCN4NJM2mKB86QfaGyj1vwS8blzwQxRRd8+HWuHmWItFa/MsejVoJev8o
-         Rd5Q==
-X-Gm-Message-State: AOAM533uqd515iNGPVeSujiSqSjXoyELCy6tTBZzwfjvWWXyXKjyO9eD
-        +8pnS86Zmo4ALtdbCX2pbweJytAUpDPsB4s31+6YfljNvHDtY+yi
-X-Google-Smtp-Source: ABdhPJw8hdQrVaqBGeCLGaRM3DlKvQ/5Mw07r+te2YaR5i4prOqwouxQgGsOT1+3HdIfrvpQQdvZEAfrsaB7XSvfBY8=
-X-Received: by 2002:a2e:8ec3:: with SMTP id e3mr2958932ljl.467.1611672446814;
- Tue, 26 Jan 2021 06:47:26 -0800 (PST)
+        id S2405973AbhAZOtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 09:49:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33132 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391343AbhAZOte (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 09:49:34 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0200C23101;
+        Tue, 26 Jan 2021 14:48:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611672533;
+        bh=G/T0jPwLGg8lM5WaMFH8R28YFCg05xkzcrFyW7ZCPQ8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Dq6nQ9AVkEDX3HsZpsZJN7dp/GBweFeek9jOCUXcVoW64SJkJHIJaBP8fafURMFip
+         rOov4+9+g8wMzfS08IOKRplGuXsREEwhwwVgrp+GP3nkiH3T8TpC3cHqIpHy3uZZnY
+         HgN6larYeLzTtYBHgzldyKL1vADTENCi0EokpjUElcUn5l0So6KRruefXxQVoqI9ce
+         yAVZTHZK1jVqYoGTBU4MpvENU14eUnQ0YS4r8HG1hmdCBDvUSxjLGDNZJjC1AZeB1z
+         Jt6iOtz1zT2nXiDPooQI/wESx8jwsZ9iPUfKfwxLEwzQLUZ+J2MUzhfKMKdk7xkkPg
+         eyO3A2n7WiIXQ==
+Received: by mail-ej1-f49.google.com with SMTP id ke15so23269935ejc.12;
+        Tue, 26 Jan 2021 06:48:52 -0800 (PST)
+X-Gm-Message-State: AOAM533lSga2MxUa6M4Sr0WCFjB6eZhov5QiuZq03hdvnn6pkd6ljRxr
+        sdEzsov8l7BurKbFBAq+eilQ659c5b2Qmb6Jvg==
+X-Google-Smtp-Source: ABdhPJz5uL45LCjYMSeSUuhgl7Xo+mvSzco3ZHqNBiKXImdAUCiZ6mpo5aHUEBCt7/kYu2Qj402kAGhAxp2DUZ4ZcOs=
+X-Received: by 2002:a17:906:a94:: with SMTP id y20mr3484816ejf.525.1611672531542;
+ Tue, 26 Jan 2021 06:48:51 -0800 (PST)
 MIME-Version: 1.0
-References: <20210125182219.213214-1-angelogioacchino.delregno@somainline.org>
-In-Reply-To: <20210125182219.213214-1-angelogioacchino.delregno@somainline.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 26 Jan 2021 15:47:15 +0100
-Message-ID: <CACRpkdZWX6iacZxhBaeboAgy0HbvesuVBBMLxaCPLASfGbRURA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] pinctrl: Add driver for Awinic AW9523/B I2C GPIO Expander
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, phone-devel@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+References: <20210125024824.634583-1-xxm@rock-chips.com> <20210125152632.GA381616@robh.at.kernel.org>
+ <e22ea1ed-9b3b-98ae-5b78-6c3c10af3589@rock-chips.com>
+In-Reply-To: <e22ea1ed-9b3b-98ae-5b78-6c3c10af3589@rock-chips.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 26 Jan 2021 08:48:40 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJLEmCFP5D1SN-BuOC=ZNsA216RMLT-aAN4Bqst7Kb=TQ@mail.gmail.com>
+Message-ID: <CAL_JsqJLEmCFP5D1SN-BuOC=ZNsA216RMLT-aAN4Bqst7Kb=TQ@mail.gmail.com>
+Subject: =?UTF-8?B?UmU6IFtQQVRDSCB2MyAxLzJdIGR0LWJpbmRpbmdzOiByb2NrY2hpcDogQWRkIERlc2lnbg==?=
+        =?UTF-8?B?V2FyZSBiYXNlZCBQQ0llIGNvbnRyb2xsZXLjgJDor7fms6jmhI/vvIzpgq7ku7bnlLFyb2JoZXJyaW5n?=
+        =?UTF-8?B?MkBnbWFpbC5jb23ku6Plj5HjgJE=?=
+To:     xxm <xxm@rock-chips.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 7:22 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@somainline.org> wrote:
-
-> The Awinic AW9523(B) is a multi-function I2C gpio expander in a
-> TQFN-24L package, featuring PWM (max 37mA per pin, or total max
-> power 3.2Watts) for LED driving capability.
+On Mon, Jan 25, 2021 at 8:44 PM xxm <xxm@rock-chips.com> wrote:
 >
-> It has two ports with 8 pins per port (for a total of 16 pins),
-> configurable as either PWM with 1/256 stepping or GPIO input/output,
-> 1.8V logic input; each GPIO can be configured as input or output
-> independently from each other.
+> Hi Rob,
 >
-> This IC also has an internal interrupt controller, which is capable
-> of generating an interrupt for each GPIO, depending on the
-> configuration, and will raise an interrupt on the INTN pin to
-> advertise this to an external interrupt controller.
+> Thanks for reply.
 >
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-(...)
-> +static int aw9523_gpio_irq_type(struct irq_data *d, unsigned int type)
-> +{
-> +       switch (type) {
-> +       case IRQ_TYPE_NONE:
-> +       case IRQ_TYPE_EDGE_BOTH:
-> +               return 0;
-> +       default:
-> +               return -EINVAL;
-> +       };
-> +}
+> =E5=9C=A8 2021/1/25 23:26, Rob Herring =E5=86=99=E9=81=93:
+> > On Mon, Jan 25, 2021 at 10:48:24AM +0800, Simon Xue wrote:
+> >> Document DT bindings for PCIe controller found on Rockchip SoC.
+> >>
+> >> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> >> ---
+> >>   .../bindings/pci/rockchip-dw-pcie.yaml        | 133 ++++++++++++++++=
+++
+> >>   1 file changed, 133 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw=
+-pcie.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.ya=
+ml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> >> new file mode 100644
+> >> index 000000000000..24ea42203c14
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> >> @@ -0,0 +1,133 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: DesignWare based PCIe RC controller on Rockchip SoCs
+> >> +
+> >> +maintainers:
+> >> +  - Shawn Lin <shawn.lin@rock-chips.com>
+> >> +  - Simon Xue <xxm@rock-chips.com>
+> >> +  - Heiko Stuebner <heiko@sntech.de>
+> >> +
+> >> +description: |+
+> >> +  RK3568 SoC PCIe host controller is based on the Synopsys DesignWare
+> >> +  PCIe IP and thus inherits all the common properties defined in
+> >> +  designware-pcie.txt.
+> >> +
+> >> +allOf:
+> >> +  - $ref: /schemas/pci/pci-bus.yaml#
+> >> +
+> >> +# We need a select here so we don't match all nodes with 'snps,dw-pci=
+e'
+> >> +select:
+> >> +  properties:
+> >> +    compatible:
+> >> +      contains:
+> >> +        const: rockchip,rk3568-pcie
+> >> +  required:
+> >> +    - compatible
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    items:
+> >> +      - const: rockchip,rk3568-pcie
+> >> +      - const: snps,dw-pcie
+> >> +
+> >> +  reg:
+> >> +    items:
+> >> +      - description: Data Bus Interface (DBI) registers
+> >> +      - description: Rockchip designed configuration registers
+> >> +
+> >> +  clocks:
+> >> +    items:
+> >> +      - description: AHB clock for PCIe master
+> >> +      - description: AHB clock for PCIe slave
+> >> +      - description: AHB clock for PCIe dbi
+> >> +      - description: APB clock for PCIe
+> >> +      - description: Auxiliary clock for PCIe
+> >> +
+> >> +  clock-names:
+> >> +    items:
+> >> +      - const: aclk_mst
+> >> +      - const: aclk_slv
+> >> +      - const: aclk_dbi
+> >> +      - const: pclk
+> >> +      - const: aux
+> >> +
+> >> +  msi-map: true
+> >> +
+> >> +  num-lanes: true
+> >> +
+> >> +  phys:
+> >> +    maxItems: 1
+> >> +
+> >> +  phy-names:
+> >> +    const: pcie-phy
+> >> +
+> >> +  power-domains:
+> >> +    maxItems: 1
+> >> +
+> >> +  ranges:
+> >> +    maxItems: 3
+> >> +
+> >> +  resets:
+> >> +    maxItems: 1
+> >> +
+> >> +  reset-names:
+> >> +    const: pipe
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +  - reg-names
+> >> +  - clocks
+> >> +  - clock-names
+> >> +  - msi-map
+> >> +  - num-lanes
+> >> +  - phys
+> >> +  - phy-names
+> >> +  - power-domains
+> >> +  - resets
+> >> +  - reset-names
+> >> +
+> >> +unevaluatedProperties: false
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >> +
+> >> +    bus {
+> >> +        #address-cells =3D <2>;
+> >> +        #size-cells =3D <2>;
+> >> +
+> >> +        pcie3x2: pcie@fe280000 {
+> >> +            compatible =3D "rockchip,rk3568-pcie", "snps,dw-pcie";
+> >> +            reg =3D <0x3 0xc0800000 0x0 0x400000>,
+> >> +                  <0x0 0xfe280000 0x0 0x10000>;
+> >> +            reg-names =3D "pcie-dbi", "pcie-apb";
+> > I believe I already said use 'dbi'. The DBI is also not 4MB. The config
+> > space goes here too, not in 'ranges'.
+>
+> Sorry for missing  update in yaml.
+>
+> I think yaml is used to describe the resources of specific SoC, it
+> reserves 4MB for DBI on Rockchip SoC.
+>
+> So, I think assign 4MB here is reasonable.
 
-This looks better.
+Not if there's nothing there. Otherwise you are wasting almost 4MB of
+virtual space. Doesn't matter so much on 64-bit, but for 32-bit it
+really does.
 
-> +static int aw9523_init_irq(struct aw9523 *awi, int irq)
-> +{
-(...)
-> +       gpioirq = &awi->gpio.irq;
-> +       gpioirq->chip = irqchip;
-> +       gpioirq->parent_handler = NULL;
-> +       gpioirq->num_parents = 0;
-> +       gpioirq->parents = NULL;
-> +       gpioirq->default_type = IRQ_TYPE_LEVEL_MASK;
-
-This looks wrong. IRQ_TYPE_EDGE_BOTH?
-
-Yours,
-Linus Walleij
+Rob
