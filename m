@@ -2,109 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F20F93044B4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:17:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 706973044B5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:17:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390238AbhAZRH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:07:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54972 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390407AbhAZInt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:43:49 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E26C061756
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:43:08 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id bx12so18722938edb.8
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:43:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=t2z1NGbSv+92Iq3y3cHfX8r3rHSgzWMGOLngnUuImF8=;
-        b=HqvMQYpbjsMs5FO0qw8p+bYpP7RjH7vBlf6l0HF5VNPGglgnOsbLVfBqJljbCsIasF
-         NaYGE3B0ARKF9zXOk8iR5t9vxzgRRMOUE7jeQ4cqURu19xi64IpFfjsjuzIBdl51A+hC
-         kmyXKCuwFkg/seQLV8IzyJL2tsx1vEJpZJMh5o2b5n2r1ko4f3p5zXbHSOPZiwd68r+Y
-         EuLylY5VI4sLkTuc+4qAJhM/6vvPKW0T8NjQmIhBfqQ8EzuNyprvsXrov4AKw2qPm1ZO
-         eWgrDM2jc3tKXYPKcV11SGdwMUuRoBXLTR/iSN8Xl6lBGJSYDPLMJUv6bQ+lcwKpb08+
-         VXEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=t2z1NGbSv+92Iq3y3cHfX8r3rHSgzWMGOLngnUuImF8=;
-        b=j1+KFcaZ/BnK1iBFaaEr2rzw1E0bumarSTqQx2/ClKhm8Fhe1LAb2ZdpBZcQa99OHs
-         5qnK17nwlZAKF8NVivV/l0A3H9i0KNp8/+agiqWXasa1BoXnRdcz4/Lc7dsZVtuPu3dC
-         Fc49QaTVTCTYHhlGEFjlV2NqXjUjny6zeOl2u0cqCPQbiHHSiSxgdHDaInHIXrXkrUOx
-         Zp/4xd3iO4v6d7jgQrPKkmbGuR9K+jm2bBTmakBpRZqgI1I+b4UvG+4wZ78tN7XVGXam
-         LXpX735E29dFEyZk/xHoWo7FtVgFoNqr+Lwwmw1+SNNh/BMhzWpCG/jRxkHXofHx9cHk
-         FQLw==
-X-Gm-Message-State: AOAM530yhDee7/w7SnXgy4LSYj1Sxf4io/Jpotuy6LpSKYDnNfy64NwA
-        /Rr8buGgGZkNK4SwIJMwexchzw==
-X-Google-Smtp-Source: ABdhPJwXmN0+EIt8RzL3ueMP/CCxmZVMUAxRmK9RWZ7CZYPhgMXX2MhPsEKA8AQcrWMlG54ahj8c1Q==
-X-Received: by 2002:aa7:cc98:: with SMTP id p24mr3854242edt.126.1611650587275;
-        Tue, 26 Jan 2021 00:43:07 -0800 (PST)
-Received: from localhost.localdomain (hst-221-9.medicom.bg. [84.238.221.9])
-        by smtp.gmail.com with ESMTPSA id i4sm9511524eje.90.2021.01.26.00.43.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jan 2021 00:43:06 -0800 (PST)
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-To:     linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Subject: [PATCH] venus: core: Parse firmware-name DT property
-Date:   Tue, 26 Jan 2021 10:42:52 +0200
-Message-Id: <20210126084252.238078-1-stanimir.varbanov@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        id S2390353AbhAZRH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:07:58 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:39889 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2390476AbhAZIot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:44:49 -0500
+X-UUID: af7472dcf452493c9fa798d59ada99d3-20210126
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=04ladyiJRe/ET+NLC+Ueie0MAKsGM3sYbgSIARsb4xc=;
+        b=W9Glj4pDyj/pQML/c30JpqQsxQwUeXAHj2HymHX+klG7UxnHKJ15vGBhtZy1/Dhi95D8b+cRmLQ9wd/rzMVqzF3W7dcsCGowR2MB7FxK1znSJIj4nph1eWL+YF2mqeilo8OzWVS4vJzJYT7WIr6kyKk1xJuT0D27OBWw7psKLuU=;
+X-UUID: af7472dcf452493c9fa798d59ada99d3-20210126
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
+        (envelope-from <tiffany.lin@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2020072515; Tue, 26 Jan 2021 16:44:01 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 26 Jan 2021 16:43:59 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jan 2021 16:43:59 +0800
+Message-ID: <1611650639.20687.2.camel@mtksdaap41>
+Subject: Re: [PATCH 2/3] arm64: dts: mt8173: Separating mtk-vcodec-enc
+ device node
+From:   Tiffany Lin <tiffany.lin@mediatek.com>
+To:     Irui Wang <irui.wang@mediatek.com>
+CC:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Tomasz Figa" <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <linux-mediatek@lists.infradead.org>
+Date:   Tue, 26 Jan 2021 16:43:59 +0800
+In-Reply-To: <20210121061804.26423-2-irui.wang@mediatek.com>
+References: <20210121061804.26423-1-irui.wang@mediatek.com>
+         <20210121061804.26423-2-irui.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On production devices the firmware could be located on different
-places, this path could be provided by special firmware-name DT
-property.
-
-Here we check for existence of such DT property and if it exist
-take the firmware path from there. Otherwise, if the property
-is missing we fallback to the predefined path from driver resource
-structure.
-
-Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
----
- drivers/media/platform/qcom/venus/firmware.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/media/platform/qcom/venus/firmware.c b/drivers/media/platform/qcom/venus/firmware.c
-index d03e2dd5808c..56c8fb5a019b 100644
---- a/drivers/media/platform/qcom/venus/firmware.c
-+++ b/drivers/media/platform/qcom/venus/firmware.c
-@@ -187,6 +187,7 @@ int venus_boot(struct venus_core *core)
- {
- 	struct device *dev = core->dev;
- 	const struct venus_resources *res = core->res;
-+	const char *fwpath = NULL;
- 	phys_addr_t mem_phys;
- 	size_t mem_size;
- 	int ret;
-@@ -195,7 +196,12 @@ int venus_boot(struct venus_core *core)
- 	    (core->use_tz && !qcom_scm_is_available()))
- 		return -EPROBE_DEFER;
- 
--	ret = venus_load_fw(core, core->res->fwname, &mem_phys, &mem_size);
-+	ret = of_property_read_string_index(dev->of_node, "firmware-name", 0,
-+					    &fwpath);
-+	if (ret)
-+		fwpath = core->res->fwname;
-+
-+	ret = venus_load_fw(core, fwpath, &mem_phys, &mem_size);
- 	if (ret) {
- 		dev_err(dev, "fail to load video firmware\n");
- 		return -EINVAL;
--- 
-2.25.1
+T24gVGh1LCAyMDIxLTAxLTIxIGF0IDE0OjE4ICswODAwLCBJcnVpIFdhbmcgd3JvdGU6DQo+IFRo
+ZXJlIGFyZSB0d28gc2VwYXJhdGUgaGFyZHdhcmUgZW5jb2RlciBibG9ja3MgaW5zaWRlIE1UODE3
+My4NCj4gU3BsaXQgdGhlIGN1cnJlbnQgbXRrLXZjb2RlYy1lbmMgbm9kZSB0byBtYXRjaCB0aGUg
+aGFyZHdhcmUgYXJjaGl0ZWN0dXJlLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogSHNpbi1ZaSBXYW5n
+IDxoc2lueWlAY2hyb21pdW0ub3JnPg0KPiBTaWduZWQtb2ZmLWJ5OiBNYW9ndWFuZyBNZW5nIDxt
+YW9ndWFuZy5tZW5nQG1lZGlhdGVrLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSXJ1aSBXYW5nIDxp
+cnVpLndhbmdAbWVkaWF0ZWsuY29tPg0KPiANCkFja2VkLWJ5OiBUaWZmYW55IExpbiA8dGlmZmFu
+eS5saW5AbWVkaWF0ZWsuY29tPg0KDQo+IC0tLQ0KPiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
+YXRlay9tdDgxNzMuZHRzaSB8IDYwICsrKysrKysrKysrKy0tLS0tLS0tLS0tLQ0KPiAgMSBmaWxl
+IGNoYW5nZWQsIDMxIGluc2VydGlvbnMoKyksIDI5IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAt
+LWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTczLmR0c2kgYi9hcmNoL2Fy
+bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE3My5kdHNpDQo+IGluZGV4IDdmYTg3MGU0Mzg2YS4u
+ZDY2N2IyOTZjNTEyIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVr
+L210ODE3My5kdHNpDQo+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTcz
+LmR0c2kNCj4gQEAgLTE0NTksMTMgKzE0NTksMTAgQEANCj4gIAkJfTsNCj4gIA0KPiAgCQl2Y29k
+ZWNfZW5jOiB2Y29kZWNAMTgwMDIwMDAgew0KPiAtCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxt
+dDgxNzMtdmNvZGVjLWVuYyI7DQo+IC0JCQlyZWcgPSA8MCAweDE4MDAyMDAwIDAgMHgxMDAwPiwJ
+LyogVkVOQ19TWVMgKi8NCj4gLQkJCSAgICAgIDwwIDB4MTkwMDIwMDAgMCAweDEwMDA+OwkvKiBW
+RU5DX0xUX1NZUyAqLw0KPiAtCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE5OCBJUlFfVFlQRV9M
+RVZFTF9MT1c+LA0KPiAtCQkJCSAgICAgPEdJQ19TUEkgMjAyIElSUV9UWVBFX0xFVkVMX0xPVz47
+DQo+IC0JCQltZWRpYXRlayxsYXJiID0gPCZsYXJiMz4sDQo+IC0JCQkJCTwmbGFyYjU+Ow0KPiAr
+CQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxNzMtdmNvZGVjLWF2Yy1lbmMiOw0KPiArCQkJ
+cmVnID0gPDAgMHgxODAwMjAwMCAwIDB4MTAwMD47CS8qIFZFTkNfU1lTICovDQo+ICsJCQlpbnRl
+cnJ1cHRzID0gPEdJQ19TUEkgMTk4IElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQltZWRpYXRl
+ayxsYXJiID0gPCZsYXJiMz47DQo+ICAJCQlpb21tdXMgPSA8JmlvbW11IE00VV9QT1JUX1ZFTkNf
+UkNQVT4sDQo+ICAJCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19SRUM+LA0KPiAgCQkJCSA8Jmlv
+bW11IE00VV9QT1JUX1ZFTkNfQlNETUE+LA0KPiBAQCAtMTQ3NiwyOSArMTQ3MywxMiBAQA0KPiAg
+CQkJCSA8JmlvbW11IE00VV9QT1JUX1ZFTkNfUkVGX0xVTUE+LA0KPiAgCQkJCSA8JmlvbW11IE00
+VV9QT1JUX1ZFTkNfUkVGX0NIUk9NQT4sDQo+ICAJCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19O
+Qk1fUkRNQT4sDQo+IC0JCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19OQk1fV0RNQT4sDQo+IC0J
+CQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19SQ1BVX1NFVDI+LA0KPiAtCQkJCSA8JmlvbW11IE00
+VV9QT1JUX1ZFTkNfUkVDX0ZSTV9TRVQyPiwNCj4gLQkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5D
+X0JTRE1BX1NFVDI+LA0KPiAtCQkJCSA8JmlvbW11IE00VV9QT1JUX1ZFTkNfU1ZfQ09NQV9TRVQy
+PiwNCj4gLQkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5DX1JEX0NPTUFfU0VUMj4sDQo+IC0JCQkJ
+IDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19DVVJfTFVNQV9TRVQyPiwNCj4gLQkJCQkgPCZpb21tdSBN
+NFVfUE9SVF9WRU5DX0NVUl9DSFJPTUFfU0VUMj4sDQo+IC0JCQkJIDwmaW9tbXUgTTRVX1BPUlRf
+VkVOQ19SRUZfTFVNQV9TRVQyPiwNCj4gLQkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5DX1JFQ19D
+SFJPTUFfU0VUMj47DQo+ICsJCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19OQk1fV0RNQT47DQo+
+ICAJCQltZWRpYXRlayx2cHUgPSA8JnZwdT47DQo+IC0JCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENM
+S19UT1BfVkVOQ1BMTF9EMj4sDQo+IC0JCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9WRU5DX1NFTD4s
+DQo+IC0JCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9VTklWUExMMV9EMj4sDQo+IC0JCQkJIDwmdG9w
+Y2tnZW4gQ0xLX1RPUF9WRU5DX0xUX1NFTD47DQo+IC0JCQljbG9jay1uYW1lcyA9ICJ2ZW5jX3Nl
+bF9zcmMiLA0KPiAtCQkJCSAgICAgICJ2ZW5jX3NlbCIsDQo+IC0JCQkJICAgICAgInZlbmNfbHRf
+c2VsX3NyYyIsDQo+IC0JCQkJICAgICAgInZlbmNfbHRfc2VsIjsNCj4gLQkJCWFzc2lnbmVkLWNs
+b2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9WRU5DX1NFTD4sDQo+IC0JCQkJCSAgPCZ0b3Bja2dl
+biBDTEtfVE9QX1ZFTkNfTFRfU0VMPjsNCj4gLQkJCWFzc2lnbmVkLWNsb2NrLXBhcmVudHMgPSA8
+JnRvcGNrZ2VuIENMS19UT1BfVkNPREVDUExMPiwNCj4gLQkJCQkJCSA8JnRvcGNrZ2VuIENMS19U
+T1BfVkNPREVDUExMXzM3MFA1PjsNCj4gKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9W
+RU5DX1NFTD47DQo+ICsJCQljbG9jay1uYW1lcyA9ICJ2ZW5jX3NlbCI7DQo+ICsJCQlhc3NpZ25l
+ZC1jbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfVkVOQ19TRUw+Ow0KPiArCQkJYXNzaWduZWQt
+Y2xvY2stcGFyZW50cyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9WQ09ERUNQTEw+Ow0KPiAgCQl9Ow0K
+PiAgDQo+ICAJCWpwZWdkZWM6IGpwZWdkZWNAMTgwMDQwMDAgew0KPiBAQCAtMTUzMCw1ICsxNTEw
+LDI3IEBADQo+ICAJCQkJIDwmdmVuY2x0c3lzIENMS19WRU5DTFRfQ0tFMD47DQo+ICAJCQljbG9j
+ay1uYW1lcyA9ICJhcGIiLCAic21pIjsNCj4gIAkJfTsNCj4gKw0KPiArCQl2Y29kZWNfZW5jX2x0
+OiB2Y29kZWNAMTkwMDIwMDAgew0KPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxNzMt
+dmNvZGVjLXZwOC1lbmMiOw0KPiArCQkJcmVnID0gIDwwIDB4MTkwMDIwMDAgMCAweDEwMDA+OyAv
+KiBWRU5DX0xUX1NZUyAqLw0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIwMiBJUlFfVFlQ
+RV9MRVZFTF9MT1c+Ow0KPiArCQkJaW9tbXVzID0gPCZpb21tdSBNNFVfUE9SVF9WRU5DX1JDUFVf
+U0VUMj4sDQo+ICsJCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19SRUNfRlJNX1NFVDI+LA0KPiAr
+CQkJCSA8JmlvbW11IE00VV9QT1JUX1ZFTkNfQlNETUFfU0VUMj4sDQo+ICsJCQkJIDwmaW9tbXUg
+TTRVX1BPUlRfVkVOQ19TVl9DT01BX1NFVDI+LA0KPiArCQkJCSA8JmlvbW11IE00VV9QT1JUX1ZF
+TkNfUkRfQ09NQV9TRVQyPiwNCj4gKwkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5DX0NVUl9MVU1B
+X1NFVDI+LA0KPiArCQkJCSA8JmlvbW11IE00VV9QT1JUX1ZFTkNfQ1VSX0NIUk9NQV9TRVQyPiwN
+Cj4gKwkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5DX1JFRl9MVU1BX1NFVDI+LA0KPiArCQkJCSA8
+JmlvbW11IE00VV9QT1JUX1ZFTkNfUkVDX0NIUk9NQV9TRVQyPjsNCj4gKwkJCW1lZGlhdGVrLGxh
+cmIgPSA8JmxhcmI1PjsNCj4gKwkJCW1lZGlhdGVrLHZwdSA9IDwmdnB1PjsNCj4gKwkJCWNsb2Nr
+cyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9WRU5DX0xUX1NFTD47DQo+ICsJCQljbG9jay1uYW1lcyA9
+ICJ2ZW5jX2x0X3NlbCI7DQo+ICsJCQlhc3NpZ25lZC1jbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19U
+T1BfVkVOQ19MVF9TRUw+Ow0KPiArCQkJYXNzaWduZWQtY2xvY2stcGFyZW50cyA9DQo+ICsJCQkJ
+IDwmdG9wY2tnZW4gQ0xLX1RPUF9WQ09ERUNQTExfMzcwUDU+Ow0KPiArCQl9Ow0KPiAgCX07DQo+
+ICB9Ow0KDQo=
 
