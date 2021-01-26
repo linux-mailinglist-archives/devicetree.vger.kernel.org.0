@@ -2,136 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00AE7303852
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 09:50:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4112B3038A9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 10:07:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729815AbhAZIsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 03:48:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55772 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390549AbhAZIr3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:47:29 -0500
-Received: from mail-qv1-xf4a.google.com (mail-qv1-xf4a.google.com [IPv6:2607:f8b0:4864:20::f4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D32BEC061794
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:46:01 -0800 (PST)
-Received: by mail-qv1-xf4a.google.com with SMTP id ew14so2779115qvb.21
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:46:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=13RTRRkuJBA1iS7bzOjv8CDTQaS3ruEs+RukYe640Ag=;
-        b=ltdXf/8CWegN4aNEm3Qv64DdKvxQ6NjblvbaRNZOQKTRepQsCCU5pE3q3qDttLI5Hc
-         Bi8armxZm1149Vgs6y2mmLKfa7BjfScoc/3mQGL6n3/tgl9kODx5vLL9ZTMvsLaFevy/
-         zwUTH0y3WjW7Dpa/ZThusgOQFXsEOlDULmL80l00NucCVqixWx1/HWRjblTxSjwhkSnt
-         pl6aEb7cEmL/xWeJwHSzXmTMvFbLpzaD/PLxHeCcjVsnZImyU9gAevj0xUxdQEyOTm0y
-         SzGgYa9lhr9cKZiT79jxlYKIQZFXgs+cu5xnsgrtZoW3sbNq4W/4vx/ssNZ164/Tinw0
-         3f/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=13RTRRkuJBA1iS7bzOjv8CDTQaS3ruEs+RukYe640Ag=;
-        b=ILqfa0hHZ16sctFDtBzOnKNUoMyXOHNMZvJ9tzjty5fbCoe8qsyIoM2dMYNisupr4O
-         UTQhcdDYtj4sifT6QcokH4swrR84Erb+Bkdo5dJCjoAsclon11NbKtxuPotpxv+98ybc
-         mZd6lCITHXDBo5hXpv6rSM4/oEOyhrt/z8fP5XoIljQU1+6pEejfbLoNC5Wv9K/7GpEZ
-         5qJGSnxlzbzswWD2hLgf65atmJH/D0b2AWYIpMWc4+ltGqswnwS2DD4xO8vYnNzLKP3d
-         gZYlRIs/9Yy5XHSk/3KK5h+tk34HivlxhzJ3hb9SAEC9LPmrx/ma+OMTaw6UtIk8sWMc
-         jV8Q==
-X-Gm-Message-State: AOAM533x0R40we8ubYqN8e7V4BeWJdV92xadn15YrCZBfeXoeIsYbi+n
-        XEmCMvLv3J+c7A71zxepZYLfI4blNkqH
-X-Google-Smtp-Source: ABdhPJwzo95+gApcUFFb4G8JVDYACZBRI9FkC+KW93AO8mtcr584+2UBXFHEMh5J5ITd+wqZt3a63Fu3yDub
-Sender: "kyletso via sendgmr" <kyletso@kyletso.ntc.corp.google.com>
-X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:4430:c29c:1e76:3e65])
- (user=kyletso job=sendgmr) by 2002:a0c:a8e0:: with SMTP id
- h32mr4572012qvc.30.1611650761077; Tue, 26 Jan 2021 00:46:01 -0800 (PST)
-Date:   Tue, 26 Jan 2021 16:45:43 +0800
-In-Reply-To: <20210126084544.682641-1-kyletso@google.com>
-Message-Id: <20210126084544.682641-3-kyletso@google.com>
-Mime-Version: 1.0
-References: <20210126084544.682641-1-kyletso@google.com>
-X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
-Subject: [PATCH 2/3] dt-bindings: connector: Add SVDM VDO properties
-From:   Kyle Tso <kyletso@google.com>
-To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        hdegoede@redhat.com, badhri@google.com
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Kyle Tso <kyletso@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S2389181AbhAZJGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 04:06:16 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:41610 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2390857AbhAZJF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 04:05:28 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10Q8tfZi000604;
+        Tue, 26 Jan 2021 10:04:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=selector1;
+ bh=Q06f/KAD9XiJFMzy4zCgRAg32NGIrZOP5jBj4gOdWrA=;
+ b=yqFRdUlEqm38LwHz0rR1VxsDxjp6GQ12A4pnb+GHUS858o1LXnnGf8zDjDxWkrlygonu
+ gmjd0cHa47xtsnlstehbbOdXqWSrPZ1hyCSIcmEJ5lmVLF1TjDCmekoYd1o4PGhJ+/TS
+ OVLUYDbl2svvgXn4+CIiBcI5UagWy07XW3yRXeUiEMxiYqQ/MTZ+zWKsYk4v14jXddH6
+ f0UI2ggD6oszlBWMkXjXhyDQDo8NqRVCs6B50J+vdvuVHNZP/paWPFcne2d/9Eftd25y
+ IiRZcNiVWeWrHzhI8GGEkzMpGL4RN5eeKApM7u317ViiaUg8NWt0gKewtkuyukpMqDa0 Uw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 368c15qghj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 26 Jan 2021 10:04:32 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A32C0100034;
+        Tue, 26 Jan 2021 10:04:31 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 92E7A22A4A4;
+        Tue, 26 Jan 2021 10:04:31 +0100 (CET)
+Received: from localhost (10.75.127.44) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 26 Jan 2021 10:04:31
+ +0100
+From:   <gabriel.fernandez@foss.st.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Etienne Carriere <etienne.carriere@st.com>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        <marex@denx.de>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 05/14] clk: stm32mp1: move RCC reset controller into RCC clock driver
+Date:   Tue, 26 Jan 2021 10:01:11 +0100
+Message-ID: <20210126090120.19900-6-gabriel.fernandez@foss.st.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
+References: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-26_06:2021-01-25,2021-01-26 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings of VDO properties of USB PD SVDM so that they can be
-defined in device tree.
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
-Signed-off-by: Kyle Tso <kyletso@google.com>
+RCC clock and reset controller shared same memory mapping.
+As RCC clock driver is now a module, the best way to register clock
+and reset controller is to do it in same driver.
+
+Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 ---
- include/dt-bindings/usb/pd.h | 53 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 52 insertions(+), 1 deletion(-)
+ drivers/clk/clk-stm32mp1.c | 157 ++++++++++++++++++++++++++++++++++---
+ 1 file changed, 144 insertions(+), 13 deletions(-)
 
-diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
-index 0352893697f0..b99cb4a0cd12 100644
---- a/include/dt-bindings/usb/pd.h
-+++ b/include/dt-bindings/usb/pd.h
-@@ -93,4 +93,55 @@
- #define FRS_DEFAULT_POWER      1
- #define FRS_5V_1P5A            2
- #define FRS_5V_3A              3
-- #endif /* __DT_POWER_DELIVERY_H */
+diff --git a/drivers/clk/clk-stm32mp1.c b/drivers/clk/clk-stm32mp1.c
+index 530babc4c4b6..25e3f272344c 100644
+--- a/drivers/clk/clk-stm32mp1.c
++++ b/drivers/clk/clk-stm32mp1.c
+@@ -14,6 +14,7 @@
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+ #include <linux/platform_device.h>
++#include <linux/reset-controller.h>
+ #include <linux/slab.h>
+ #include <linux/spinlock.h>
+ 
+@@ -2050,16 +2051,18 @@ static const struct clock_config stm32mp1_clock_cfg[] = {
+ 		  _DIV(RCC_DBGCFGR, 0, 3, 0, ck_trace_div_table)),
+ };
+ 
+-struct stm32_clock_match_data {
++struct stm32_rcc_match_data {
+ 	const struct clock_config *cfg;
+ 	unsigned int num;
+ 	unsigned int maxbinding;
++	u32 clear_offset;
+ };
+ 
+-static struct stm32_clock_match_data stm32mp1_data = {
++static struct stm32_rcc_match_data stm32mp1_data = {
+ 	.cfg		= stm32mp1_clock_cfg,
+ 	.num		= ARRAY_SIZE(stm32mp1_clock_cfg),
+ 	.maxbinding	= STM32MP1_LAST_CLK,
++	.clear_offset	= RCC_CLR,
+ };
+ 
+ static const struct of_device_id stm32mp1_match_data[] = {
+@@ -2095,23 +2098,122 @@ static int stm32_register_hw_clk(struct device *dev,
+ 	return 0;
+ }
+ 
+-static int stm32_rcc_init(struct device *dev, void __iomem *base,
+-			  const struct of_device_id *match_data)
++#define STM32_RESET_ID_MASK GENMASK(15, 0)
 +
-+/*
-+ * SVDM Identity Header
-+ * --------------------
-+ * <31>     :: data capable as a USB host
-+ * <30>     :: data capable as a USB device
-+ * <29:27>  :: product type (UFP / Cable / VPD)
-+ * <26>     :: modal operation supported (1b == yes)
-+ * <25:23>  :: product type (DFP) (SVDM version 2.0+ only; set to zero in version 1.0)
-+ * <22:21>  :: connector type (SVDM version 2.0+ only; set to zero in version 1.0)
-+ * <20:16>  :: Reserved, Shall be set to zero
-+ * <15:0>   :: USB-IF assigned VID for this cable vendor
-+ */
-+/* SOP Product Type (UFP) */
-+#define IDH_PTYPE_NOT_UFP       0
-+#define IDH_PTYPE_HUB           1
-+#define IDH_PTYPE_PERIPH        2
-+#define IDH_PTYPE_PSD           3
-+#define IDH_PTYPE_AMA           5
++struct stm32_reset_data {
++	/* reset lock */
++	spinlock_t			lock;
++	struct reset_controller_dev	rcdev;
++	void __iomem			*membase;
++	u32				clear_offset;
++};
 +
-+/* SOP' Product Type (Cable Plug / VPD) */
-+#define IDH_PTYPE_NOT_CABLE     0
-+#define IDH_PTYPE_PCABLE        3
-+#define IDH_PTYPE_ACABLE        4
-+#define IDH_PTYPE_VPD           6
++static inline struct stm32_reset_data *
++to_stm32_reset_data(struct reset_controller_dev *rcdev)
+ {
+-	struct clk_hw_onecell_data *clk_data;
+-	struct clk_hw **hws;
+-	const struct of_device_id *match;
+-	const struct stm32_clock_match_data *data;
+-	int err, n, max_binding;
++	return container_of(rcdev, struct stm32_reset_data, rcdev);
++}
+ 
+-	match = of_match_node(match_data, dev_of_node(dev));
+-	if (!match) {
+-		dev_err(dev, "match data not found\n");
+-		return -ENODEV;
++static int stm32_reset_update(struct reset_controller_dev *rcdev,
++			      unsigned long id, bool assert)
++{
++	struct stm32_reset_data *data = to_stm32_reset_data(rcdev);
++	int reg_width = sizeof(u32);
++	int bank = id / (reg_width * BITS_PER_BYTE);
++	int offset = id % (reg_width * BITS_PER_BYTE);
 +
-+/* SOP Product Type (DFP) */
-+#define IDH_PTYPE_NOT_DFP       0
-+#define IDH_PTYPE_DFP_HUB       1
-+#define IDH_PTYPE_DFP_HOST      2
-+#define IDH_PTYPE_DFP_PB        3
++	if (data->clear_offset) {
++		void __iomem *addr;
 +
-+#define VDO_IDH(usbh, usbd, ufp_cable, is_modal, dfp, conn, vid)                \
-+	((usbh) << 31 | (usbd) << 30 | ((ufp_cable) & 0x7) << 27                \
-+	 | (is_modal) << 26 | ((dfp) & 0x7) << 23 | ((conn) & 0x3) << 21        \
-+	 | ((vid) & 0xffff))
++		addr = data->membase + (bank * reg_width);
++		if (!assert)
++			addr += data->clear_offset;
 +
-+/*
-+ * Cert Stat VDO
-+ * -------------
-+ * <31:0>  : USB-IF assigned XID for this cable
-+ */
-+#define VDO_CERT(xid)		((xid) & 0xffffffff)
++		writel(BIT(offset), addr);
 +
-+/*
-+ * Product VDO
-+ * -----------
-+ * <31:16> : USB Product ID
-+ * <15:0>  : USB bcdDevice
-+ */
-+#define VDO_PRODUCT(pid, bcd)   (((pid) & 0xffff) << 16 | ((bcd) & 0xffff))
-+#endif /* __DT_POWER_DELIVERY_H */
++	} else {
++		unsigned long flags;
++		u32 reg;
++
++		spin_lock_irqsave(&data->lock, flags);
++
++		reg = readl(data->membase + (bank * reg_width));
++
++		if (assert)
++			reg |= BIT(offset);
++		else
++			reg &= ~BIT(offset);
++
++		writel(reg, data->membase + (bank * reg_width));
++
++		spin_unlock_irqrestore(&data->lock, flags);
+ 	}
+ 
++	return 0;
++}
++
++static int stm32_reset_assert(struct reset_controller_dev *rcdev,
++			      unsigned long id)
++{
++	return stm32_reset_update(rcdev, id, true);
++}
++
++static int stm32_reset_deassert(struct reset_controller_dev *rcdev,
++				unsigned long id)
++{
++	return stm32_reset_update(rcdev, id, false);
++}
++
++static int stm32_reset_status(struct reset_controller_dev *rcdev,
++			      unsigned long id)
++{
++	struct stm32_reset_data *data = to_stm32_reset_data(rcdev);
++	int reg_width = sizeof(u32);
++	int bank = id / (reg_width * BITS_PER_BYTE);
++	int offset = id % (reg_width * BITS_PER_BYTE);
++	u32 reg;
++
++	reg = readl(data->membase + (bank * reg_width));
++
++	return !!(reg & BIT(offset));
++}
++
++static const struct reset_control_ops stm32_reset_ops = {
++	.assert		= stm32_reset_assert,
++	.deassert	= stm32_reset_deassert,
++	.status		= stm32_reset_status,
++};
++
++static int stm32_rcc_reset_init(struct device *dev, void __iomem *base,
++				const struct of_device_id *match)
++{
++	const struct stm32_rcc_match_data *data = match->data;
++	struct stm32_reset_data *reset_data = NULL;
++
+ 	data = match->data;
+ 
++	reset_data = kzalloc(sizeof(*reset_data), GFP_KERNEL);
++	if (!reset_data)
++		return -ENOMEM;
++
++	reset_data->membase = base;
++	reset_data->rcdev.owner = THIS_MODULE;
++	reset_data->rcdev.ops = &stm32_reset_ops;
++	reset_data->rcdev.of_node = dev_of_node(dev);
++	reset_data->rcdev.nr_resets = STM32_RESET_ID_MASK;
++	reset_data->clear_offset = data->clear_offset;
++
++	return reset_controller_register(&reset_data->rcdev);
++}
++
++static int stm32_rcc_clock_init(struct device *dev, void __iomem *base,
++				const struct of_device_id *match)
++{
++	const struct stm32_rcc_match_data *data = match->data;
++	struct clk_hw_onecell_data *clk_data;
++	struct clk_hw **hws;
++	int err, n, max_binding;
++
+ 	max_binding =  data->maxbinding;
+ 
+ 	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, max_binding),
+@@ -2140,6 +2242,35 @@ static int stm32_rcc_init(struct device *dev, void __iomem *base,
+ 	return of_clk_add_hw_provider(dev_of_node(dev), of_clk_hw_onecell_get, clk_data);
+ }
+ 
++static int stm32_rcc_init(struct device *dev, void __iomem *base,
++			  const struct of_device_id *match_data)
++{
++	const struct of_device_id *match;
++	int err;
++
++	match = of_match_node(match_data, dev_of_node(dev));
++	if (!match) {
++		dev_err(dev, "match data not found\n");
++		return -ENODEV;
++	}
++
++	/* RCC Reset Configuration */
++	err = stm32_rcc_reset_init(dev, base, match);
++	if (err) {
++		pr_err("stm32mp1 reset failed to initialize\n");
++		return err;
++	}
++
++	/* RCC Clock Configuration */
++	err = stm32_rcc_clock_init(dev, base, match);
++	if (err) {
++		pr_err("stm32mp1 clock failed to initialize\n");
++		return err;
++	}
++
++	return 0;
++}
++
+ static int stm32mp1_rcc_init(struct device *dev)
+ {
+ 	void __iomem *base;
 -- 
-2.30.0.280.ga3ce27912f-goog
+2.17.1
 
