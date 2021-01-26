@@ -2,96 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3001230473B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 19:57:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2DA8304734
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 19:56:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390324AbhAZRH6 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 26 Jan 2021 12:07:58 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:36004 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390459AbhAZIoc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:44:32 -0500
-Received: by mail-oi1-f169.google.com with SMTP id d18so8399842oic.3;
-        Tue, 26 Jan 2021 00:44:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=EXJh9ZT/mvfwax+nixCrjPTJXYuqqPBVeOG7xO3uNAk=;
-        b=P5kjfsXF4eVwNN/x2V9svoy/RVQENJ7Gb7+MvcdHorkEVvtocxifZ3RyLCZZWWLClA
-         Fc+lBo2S/p6uwWJ39uoc28hvtfI5Q3DgMvnBPhLm/Qsrgjzo5bxUdqK0s3nINY9ld23r
-         9jLSvNSCx8DZ0EG4WVwoBKy1Of9zkI+6BLdi+gO8jPHY9RLoVSbIlPer0ZfjdbST19YG
-         h2pMjQ0/Poo/eTOX10lRXMw4u0xrQ+o03kxYMANAPriVkWjFibYQpVQA5w2DLrElmZM+
-         EN/BSiBPAJznKsMMNOR8TcabzJS8QsDczShuIxaxShSYDMhlErGGy1iBsu4h/lNP4tWC
-         eUvg==
-X-Gm-Message-State: AOAM532VItrCX/llp7lHdWE5g2aMejmGDfX55u7KOAySHF4orc7/wAJD
-        kulsk+PvetQK7auZ0NxKthVDhVV/3xSJMREMr+I=
-X-Google-Smtp-Source: ABdhPJz69UTE8gkwG80/J5ZbUiyydKm7p5q+Aw+6h4wCZBltJqGhh7YnurqET0vyfKoWa/Kgs60FxF84yB88WrQBhmk=
-X-Received: by 2002:aca:1219:: with SMTP id 25mr2591995ois.54.1611650632111;
- Tue, 26 Jan 2021 00:43:52 -0800 (PST)
+        id S1728491AbhAZRID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:08:03 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:52936 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2390854AbhAZJF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 04:05:28 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10Q8vtTK029076;
+        Tue, 26 Jan 2021 10:04:28 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=K5tpOZ2cHNz58gyUgyMnu5PnB/MyKYaWCm9NlO5fwiA=;
+ b=3cp7sfo0vqWNVQBH4aGCFuk9xBfXVe6CwhcxZmhrpy4FziizbI/JRsEXvtLNx9JtEJwv
+ BOcichCHATGPOrU/c6eslmHuNUdwdgvjDVIuKnpC/z7coCOFZizgysWECwxjo8+UFPUT
+ AbGi+9BJdmvz153DB+FYmVYcZ8P6Cs/WCQykUIwWlwzpPOA9kh27wzNNXeraSTsou1Yd
+ M6d7GUH/UNTtQLdEfg0YyTnwuVo4JpIfMkCCsXhLrt4B4M/bd1dri/ZsMk2Qh8QOd0nU
+ lgadDGPMBr9+r+wgQxx3rRWY15V5Btdj8yhxzP/3XdqlGmTnMpMclH+E+sD/oV6t33JW IQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 368bjn7rm6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 26 Jan 2021 10:04:28 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0198110002A;
+        Tue, 26 Jan 2021 10:04:28 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D9D7522A4A4;
+        Tue, 26 Jan 2021 10:04:27 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 26 Jan 2021 10:04:27
+ +0100
+From:   <gabriel.fernandez@foss.st.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Etienne Carriere <etienne.carriere@st.com>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        <marex@denx.de>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 00/14] Introduce STM32MP1 RCC in secured mode
+Date:   Tue, 26 Jan 2021 10:01:06 +0100
+Message-ID: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210125105757.661240-1-uwe@kleine-koenig.org>
- <CAK7LNAS5t1wew0MMFjdB5HGCAMerhU7pAGiFhcTtCRUAAjGLpw@mail.gmail.com> <9d9bb0f6-d4f4-b1b9-a4c4-786987578085@kleine-koenig.org>
-In-Reply-To: <9d9bb0f6-d4f4-b1b9-a4c4-786987578085@kleine-koenig.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 26 Jan 2021 09:43:41 +0100
-Message-ID: <CAMuHMdUmtMxucQ9DWvROVPVv2uGEzpRmtv1=jrjm09xU=gHHyw@mail.gmail.com>
-Subject: Re: [PATCH] cmd_dtc: Enable generation of device tree symbols
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>
-Cc:     Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        cyril@debamax.com, Arnd Bergmann <arnd@arndb.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-26_06:2021-01-25,2021-01-26 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
-On Tue, Jan 26, 2021 at 8:21 AM Uwe Kleine-König <uwe@kleine-koenig.org> wrote:
-> And then I learned with hints from Rob and Geert that symbols are not
-> really necessary for overlays, you just cannot use named labels. But
-> using
->
->         target-path = "/soc/i2c@23473245";
->
-> or
->
->         target = <&{/soc/i2c@23473245}>;
->
-> instead of
->
->         target = <&i2c1>;
->
-> works fine. (And if you need to add a phandle the &{/path/to/node}
-> construct should work, too (but I didn't test).) Using labels is a tad
-> nicer, but the problem I wanted to address with my patch now has a known
-> different solution.
+Platform STM32MP1 can be used in configuration where some clocks and
+IP resets can relate as secure resources.
+These resources are moved from a RCC clock/reset handle to a SCMI
+clock/reset_domain handle.
 
-Please don't use "target" and "target-path".  Since the introduction of
-sugar syntax support in v4.15[1], you can just use "&label", like in a normal
-DTS file.  Paths do need the special "&{/path/to/node}" syntax instead
-of "/path/to/node", though.
+The RCC clock driver is now dependent of the SCMI driver, then we have
+to manage now the probe defering.
 
-As usual, you can find lots of examples of DT overlays in my repo[2].
+v1 -> v2:
+  - fix yamllint warnings.
 
-[1] commit 4201d057ea91c3d6 ("scripts/dtc: Update to upstream version
-v1.4.5-3-gb1a60033c110")
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/renesas-overlays
+Gabriel Fernandez (14):
+  clk: stm32mp1: merge 'clk-hsi-div' and 'ck_hsi' into one clock
+  clk: stm32mp1: merge 'ck_hse_rtc' and 'ck_rtc' into one clock
+  clk: stm32mp1: remove intermediate pll clocks
+  clk: stm32mp1: convert to module driver
+  clk: stm32mp1: move RCC reset controller into RCC clock driver
+  reset: stm32mp1: remove stm32mp1 reset
+  dt-bindings: clock: add IDs for SCMI clocks on stm32mp15
+  dt-bindings: reset: add IDs for SCMI reset domains on stm32mp15
+  dt-bindings: reset: add MCU HOLD BOOT ID for SCMI reset domains on
+    stm32mp15
+  clk: stm32mp1: new compatible for secure RCC support
+  ARM: dts: stm32: define SCMI resources on stm32mp15
+  ARM: dts: stm32: move clocks/resets to SCMI resources for stm32mp15
+  dt-bindings: clock: stm32mp1 new compatible for secure rcc
+  ARM: dts: stm32: introduce basic boot include on stm32mp15x board
 
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/clock/st,stm32mp1-rcc.yaml       |   6 +-
+ arch/arm/boot/dts/stm32mp15-no-scmi.dtsi      | 158 ++++++
+ arch/arm/boot/dts/stm32mp151.dtsi             | 127 +++--
+ arch/arm/boot/dts/stm32mp153.dtsi             |   4 +-
+ arch/arm/boot/dts/stm32mp157.dtsi             |   2 +-
+ arch/arm/boot/dts/stm32mp15xc.dtsi            |   4 +-
+ drivers/clk/Kconfig                           |  10 +
+ drivers/clk/clk-stm32mp1.c                    | 495 +++++++++++++++---
+ drivers/reset/Kconfig                         |   6 -
+ drivers/reset/Makefile                        |   1 -
+ drivers/reset/reset-stm32mp1.c                | 115 ----
+ include/dt-bindings/clock/stm32mp1-clks.h     |  27 +
+ include/dt-bindings/reset/stm32mp1-resets.h   |  15 +
+ 13 files changed, 704 insertions(+), 266 deletions(-)
+ create mode 100644 arch/arm/boot/dts/stm32mp15-no-scmi.dtsi
+ delete mode 100644 drivers/reset/reset-stm32mp1.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
