@@ -2,80 +2,432 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F29D304771
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 20:05:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7259B30475E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 20:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728310AbhAZREe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:04:34 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:37658 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1732008AbhAZIHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:07:50 -0500
-X-UUID: f84fd27263b64f908ba0397cf2faa767-20210126
-X-UUID: f84fd27263b64f908ba0397cf2faa767-20210126
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <henryc.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 320729952; Tue, 26 Jan 2021 16:03:59 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 26 Jan 2021 16:03:58 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 26 Jan 2021 16:03:58 +0800
-From:   Henry Chen <henryc.chen@mediatek.com>
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Arvin Wang <arvin.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        Henry Chen <henryc.chen@mediatek.com>
-Subject: [PATCH V8 12/12] arm64: dts: mt8192: add dvfsrc regulator nodes
-Date:   Tue, 26 Jan 2021 16:03:54 +0800
-Message-ID: <1611648234-15043-13-git-send-email-henryc.chen@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1611648234-15043-1-git-send-email-henryc.chen@mediatek.com>
-References: <1611648234-15043-1-git-send-email-henryc.chen@mediatek.com>
+        id S1732568AbhAZRF0 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 26 Jan 2021 12:05:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47418 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728795AbhAZIIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:08:51 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4FBDC061573
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:08:02 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l4JOH-0005lV-Sf; Tue, 26 Jan 2021 09:07:57 +0100
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l4JOH-0007m2-0x; Tue, 26 Jan 2021 09:07:57 +0100
+Date:   Tue, 26 Jan 2021 09:07:57 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Robin van der Gracht <robin@protonic.nl>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v3 2/2] counter: add GPIO based pulse counters
+Message-ID: <20210126080756.xi637l6ne3g4vgb7@pengutronix.de>
+References: <20210122112434.27886-1-o.rempel@pengutronix.de>
+ <20210122112434.27886-3-o.rempel@pengutronix.de>
+ <20210124144737.7978d3c8@archlinux>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20210124144737.7978d3c8@archlinux>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:48:52 up 54 days, 21:55, 25 users,  load average: 0.00, 0.01,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dvfsrc regulator nodes which is for MT8192-based platforms
+Hi Jonathan,
 
-Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Sun, Jan 24, 2021 at 02:47:37PM +0000, Jonathan Cameron wrote:
+> On Fri, 22 Jan 2021 12:24:34 +0100
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> 
+> > Add simple GPIO base pulse counter. This device is used to measure
+> > rotation speed of some agricultural devices, so no high frequency on the
+> > counter pin is expected.
+> > 
+> > The maximal measurement frequency depends on the CPU and system load. On
+> > the idle iMX6S I was able to measure up to 20kHz without count drops.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> 
+> Hi Oleksij,
+> 
+> A few comments inline.
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+> > ---
+> >  drivers/counter/Kconfig          |   9 ++
+> >  drivers/counter/Makefile         |   1 +
+> >  drivers/counter/gpio-pulse-cnt.c | 244 +++++++++++++++++++++++++++++++
+> >  3 files changed, 254 insertions(+)
+> >  create mode 100644 drivers/counter/gpio-pulse-cnt.c
+> > 
+> > diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
+> > index 2de53ab0dd25..9ad1d9d49dd1 100644
+> > --- a/drivers/counter/Kconfig
+> > +++ b/drivers/counter/Kconfig
+> > @@ -29,6 +29,15 @@ config 104_QUAD_8
+> >  	  The base port addresses for the devices may be configured via the base
+> >  	  array module parameter.
+> >  
+> > +config GPIO_PULSE_CNT
+> > +	tristate "GPIO pulse counter driver"
+> > +	depends on GPIOLIB
+> > +	help
+> > +	  Select this option to enable GPIO pulse counter driver.
+> > +
+> > +	  To compile this driver as a module, choose M here: the
+> > +	  module will be called gpio-pulse-cnt.
+> > +
+> >  config STM32_TIMER_CNT
+> >  	tristate "STM32 Timer encoder counter driver"
+> >  	depends on MFD_STM32_TIMERS || COMPILE_TEST
+> > diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
+> > index 0a393f71e481..6a5c3fc6f2a0 100644
+> > --- a/drivers/counter/Makefile
+> > +++ b/drivers/counter/Makefile
+> > @@ -6,6 +6,7 @@
+> >  obj-$(CONFIG_COUNTER) += counter.o
+> >  
+> >  obj-$(CONFIG_104_QUAD_8)	+= 104-quad-8.o
+> > +obj-$(CONFIG_GPIO_PULSE_CNT)	+= gpio-pulse-cnt.o
+> >  obj-$(CONFIG_STM32_TIMER_CNT)	+= stm32-timer-cnt.o
+> >  obj-$(CONFIG_STM32_LPTIMER_CNT)	+= stm32-lptimer-cnt.o
+> >  obj-$(CONFIG_TI_EQEP)		+= ti-eqep.o
+> > diff --git a/drivers/counter/gpio-pulse-cnt.c b/drivers/counter/gpio-pulse-cnt.c
+> > new file mode 100644
+> > index 000000000000..9454345c77ad
+> > --- /dev/null
+> > +++ b/drivers/counter/gpio-pulse-cnt.c
+> > @@ -0,0 +1,244 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2021 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
+> > + */
+> > +
+> > +#include <linux/counter.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_device.h>
+> 
+> why of_device.h?  Probably want mod_devicetable.h instead.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 81d7d05..1cf91a4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -470,6 +470,12 @@
- 				     "mediatek,mt6873-dvfsrc";
- 			reg = <0 0x10012000 0 0x1000>;
- 			#interconnect-cells = <1>;
-+			dvfsrc_vcore: dvfsrc-vcore {
-+				regulator-name = "dvfsrc-vcore";
-+				regulator-min-microvolt = <575000>;
-+				regulator-max-microvolt = <725000>;
-+				regulator-always-on;
-+			};
- 		};
- 
- 		systimer: timer@10017000 {
+done
+
+> > +#include <linux/platform_device.h>
+> > +
+> > +#define GPIO_PULSE_NAME		"gpio-pulse-counter"
+> > +
+> > +struct gpio_pulse_priv {
+> > +	struct counter_device counter;
+> > +	struct gpio_desc *gpio;
+> > +	int irq;
+> > +	bool enabled;
+> > +	atomic_t count;
+> > +};
+> > +
+> > +static irqreturn_t gpio_pulse_irq_isr(int irq, void *dev_id)
+> > +{
+> > +	struct gpio_pulse_priv *priv = dev_id;
+> > +
+> > +	if (!priv->enabled)
+> > +		return IRQ_NONE;
+> > +
+> > +	atomic_inc(&priv->count);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> > +static ssize_t gpio_pulse_count_enable_read(struct counter_device *counter,
+> > +					    struct counter_count *count,
+> > +					    void *private, char *buf)
+> > +{
+> > +	struct gpio_pulse_priv *priv = counter->priv;
+> > +
+> > +	return sysfs_emit(buf, "%d\n", priv->enabled);
+> > +}
+> > +
+> > +static ssize_t gpio_pulse_count_enable_write(struct counter_device *counter,
+> > +					     struct counter_count *count,
+> > +					     void *private,
+> > +					     const char *buf, size_t len)
+> > +{
+> > +	struct gpio_pulse_priv *priv = counter->priv;
+> > +	bool enable;
+> > +	ssize_t ret;
+> > +
+> > +	ret = kstrtobool(buf, &enable);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (priv->enabled == enable)
+> > +		return len;
+> > +
+> > +	priv->enabled = enable;
+> > +
+> > +	if (enable)
+> > +		enable_irq(priv->irq);
+> > +	else
+> > +		disable_irq(priv->irq);
+> 
+> As pointed out by Ahmad, this is all racy.
+> Personally I'd just let the race happen, and don't
+> bother with the priv->enabled at all.
+
+yes, i forgot about existence of IRQ_NOAUTOEN
+
+> We aren't going to be dealing with shared interrupts
+> here so if we get a race, it's between userspace write
+> getting through to enable / disable the interrupt and
+> a pulse coming in.  The userspace part is so unpredictable on
+> timing etc the race isn't pretty meaningless (you might count
+> one extra, but then if userspace took a bit longer you might
+> do that anyway).
+> 
+> 
+> > +
+> > +	return len;
+> > +}
+> > +
+> > +static const struct counter_count_ext gpio_pulse_count_ext[] = {
+> > +	{
+> > +		.name = "enable",
+> > +		.read = gpio_pulse_count_enable_read,
+> > +		.write = gpio_pulse_count_enable_write,
+> > +	},
+> > +};
+> > +
+> > +static enum counter_synapse_action gpio_pulse_synapse_actions[] = {
+> > +	COUNTER_SYNAPSE_ACTION_RISING_EDGE,
+> > +};
+> > +
+> > +static int gpio_pulse_action_get(struct counter_device *counter,
+> > +			    struct counter_count *count,
+> > +			    struct counter_synapse *synapse,
+> > +			    size_t *action)
+> > +{
+> > +	*action = COUNTER_SYNAPSE_ACTION_RISING_EDGE;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int gpio_pulse_count_read(struct counter_device *counter,
+> > +				 struct counter_count *count,
+> > +				 unsigned long *val)
+> > +{
+> > +	struct gpio_pulse_priv *priv = counter->priv;
+> > +
+> > +	*val = atomic_read(&priv->count);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int gpio_pulse_count_write(struct counter_device *counter,
+> > +				  struct counter_count *count,
+> > +				  const unsigned long val)
+> > +{
+> > +	struct gpio_pulse_priv *priv = counter->priv;
+> > +
+> > +	atomic_set(&priv->count, val);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int gpio_pulse_count_function_get(struct counter_device *counter,
+> > +					 struct counter_count *count,
+> > +					 size_t *function)
+> > +{
+> > +	*function = COUNTER_COUNT_FUNCTION_INCREASE;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int gpio_pulse_count_signal_read(struct counter_device *counter,
+> > +					struct counter_signal *signal,
+> > +					enum counter_signal_value *val)
+> > +{
+> > +	struct gpio_pulse_priv *priv = counter->priv;
+> > +	int ret;
+> > +
+> > +	ret = gpiod_get_value(priv->gpio);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	*val = ret ? COUNTER_SIGNAL_HIGH : COUNTER_SIGNAL_LOW;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct counter_ops gpio_pulse_cnt_ops = {
+> > +	.action_get = gpio_pulse_action_get,
+> > +	.count_read = gpio_pulse_count_read,
+> > +	.count_write = gpio_pulse_count_write,
+> > +	.function_get = gpio_pulse_count_function_get,
+> > +	.signal_read  = gpio_pulse_count_signal_read,
+> > +};
+> > +
+> > +static struct counter_signal gpio_pulse_signals[] = {
+> > +	{
+> > +		.id = 0,
+> > +		.name = "Channel 0 signal",
+> > +	},
+> > +};
+> > +
+> > +static struct counter_synapse gpio_pulse_count_synapses[] = {
+> > +	{
+> > +		.actions_list = gpio_pulse_synapse_actions,
+> > +		.num_actions = ARRAY_SIZE(gpio_pulse_synapse_actions),
+> > +		.signal = &gpio_pulse_signals[0]
+> > +	},
+> > +};
+> > +
+> > +static enum counter_count_function gpio_pulse_count_functions[] = {
+> > +	COUNTER_COUNT_FUNCTION_INCREASE,
+> > +};
+> > +
+> > +static struct counter_count gpio_pulse_counts[] = {
+> > +	{
+> > +		.id = 0,
+> > +		.name = "Channel 1 Count",
+> > +		.functions_list = gpio_pulse_count_functions,
+> > +		.num_functions = ARRAY_SIZE(gpio_pulse_count_functions),
+> > +		.synapses = gpio_pulse_count_synapses,
+> > +		.num_synapses = ARRAY_SIZE(gpio_pulse_count_synapses),
+> > +		.ext = gpio_pulse_count_ext,
+> > +		.num_ext = ARRAY_SIZE(gpio_pulse_count_ext),
+> > +	},
+> > +};
+> > +
+> > +static int gpio_pulse_cnt_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct gpio_pulse_priv *priv;
+> > +	int ret;
+> > +
+> > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > +	if (!priv)
+> > +		return -ENOMEM;
+> > +
+> > +	if (gpiod_count(dev, NULL) != 1) {
+> > +		dev_err(dev, "Error, need exactly 1 gpio for device\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	priv->gpio = devm_gpiod_get(dev, NULL, GPIOD_IN);
+> > +	if (IS_ERR(priv->gpio))
+> > +		return dev_err_probe(dev, PTR_ERR(priv->gpio), "failed to get gpio\n");
+> 
+> My gut feeling here is that it probably makes sense to drop
+> the direct read of the signal level, and hence allow the driver
+> to be provided with an interrupt instead of a gpio.
+> 
+> Afterall, not all gpio lines are interrupt capable.
+
+Hm, .. I need to be able to sense GPIO level for diagnostic interface.
+So, in this case i'll need to get irq and gpio separately 
+
+> > +
+> > +	priv->irq = gpiod_to_irq(priv->gpio);
+> > +	if (priv->irq < 0) {
+> > +		dev_err(dev, "failed to map GPIO to IRQ: %d\n", priv->irq);
+> > +		return priv->irq;
+> > +	}
+> > +
+> > +	priv->counter.name = dev_name(dev);
+> > +	priv->counter.parent = dev;
+> > +	priv->counter.ops = &gpio_pulse_cnt_ops;
+> > +	priv->counter.counts = gpio_pulse_counts;
+> > +	priv->counter.num_counts = ARRAY_SIZE(gpio_pulse_counts);
+> > +	priv->counter.signals = gpio_pulse_signals;
+> > +	priv->counter.num_signals = ARRAY_SIZE(gpio_pulse_signals);
+> > +	priv->counter.priv = priv;
+> > +
+> > +	ret = devm_request_irq(dev, priv->irq, gpio_pulse_irq_isr,
+> > +			       IRQF_TRIGGER_RISING | IRQF_NO_THREAD,
+> > +			       GPIO_PULSE_NAME, priv);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	disable_irq(priv->irq);
+> 
+> Race condition here (messy at least) that we can close down.
+
+ACK
+
+> Note there is ongoing work to try and do this in a nice generic
+> fashion, but in the meantime call
+>
+> irq_set_status_flags(priv->irq, IRQ_NOAUTOEN);
+
+^^ yes! this is what i was seeking! Thx.
+
+> before the devm_request_irq()
+> 
+> https://lore.kernel.org/lkml/20210107223926.35284-2-song.bao.hua@hisilicon.com/
+
+Nice!
+
+> There are a lot of cases that series will tidy up, but let us do the best
+> we can in the meantime!
+>  
+> > +
+> > +	platform_set_drvdata(pdev, priv);
+> > +
+> > +	return devm_counter_register(dev, &priv->counter);
+> > +}
+> > +
+> > +static const struct of_device_id gpio_pulse_cnt_of_match[] = {
+> > +	{ .compatible = "virtual,gpio-pulse-counter", },
+> > +	{}
+> > +};
+> > +MODULE_DEVICE_TABLE(of, gpio_pulse_cnt_of_match);
+> > +
+> > +static struct platform_driver gpio_pulse_cnt_driver = {
+> > +	.probe = gpio_pulse_cnt_probe,
+> > +	.driver = {
+> > +		.name = GPIO_PULSE_NAME,
+> > +		.of_match_table = gpio_pulse_cnt_of_match,
+> > +	},
+> > +};
+> > +module_platform_driver(gpio_pulse_cnt_driver);
+> > +
+> > +MODULE_ALIAS("platform:gpio-pulse-counter");
+> > +MODULE_AUTHOR("Oleksij Rempel <o.rempel@pengutronix.de>");
+> > +MODULE_DESCRIPTION("GPIO pulse counter driver");
+> > +MODULE_LICENSE("GPL v2");
+
+Thank you.
+
+Regards,
+Oleksij
 -- 
-1.9.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
