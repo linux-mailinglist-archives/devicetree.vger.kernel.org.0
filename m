@@ -2,236 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2C7A303371
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D737303372
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:56:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729018AbhAZEyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:54:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57076 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730813AbhAZEaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 23:30:03 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BFA0C06178C
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 20:26:50 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id a109so15113859otc.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 20:26:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Sxs612cpeWk15s9IRsZQmGfQWRxEVp1NyNx2VAk5PQg=;
-        b=pLxjBRSUifb+FQNiC5QIELRNYUDee8Q/998g8Xz+9uTbKm2/PeB+SMw5G3wj/othVN
-         0RmH6L36rIVwRog1w3xBrSZGaNVb9FDdyxIoj3lTKMhRt/3Pz2NVq0Y3TpHFAAttq5cf
-         Bxib/8d6lZZhIWBBmvLy2EF3LHzo6PLEq/2eYFC7OkbPQc+CKFb3ZeF8U+w2UDef1Je9
-         VZoGkAvWiXFLH8GwiFKkLyqdkAuSJp7MKufFB3P4cVaH/VMnpSg7HSZSjTqfrh7vbCix
-         aYpkgpgQg2iR/C42fH6ktfxQ2+MlUIWf1f4Aybic7pqDGZ1hsjtJ0ZHzStuAzfjFaJPN
-         VC+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Sxs612cpeWk15s9IRsZQmGfQWRxEVp1NyNx2VAk5PQg=;
-        b=b/PV3UKxp9C2RF+YMsLvIMfsFvFMkJQVyghSk3Y4x3NdXjcBIEQSUVHcn/aCskWU73
-         5xSpTvWK64M1vH6K6AWBHbNTsA15jXwNazQOTQ3WYA/FPKm7BQjEANPuDimKNaFirDtW
-         n+PAqr1CaAJlSAaCBe59uPrnHmALvoM07BWzBCMixa8VUWjEAY4+mIqE2PhYH5w6QJyN
-         WjVNz7Qgvebi3fbvVVQi3mcySopPVSJPUOF8AEOf4vuHUOVpvAEplfx+4Cy2SqLMwau/
-         CZoG3YDqlVr0g6zyzU6eo+d751ZwbmSXex35mmoqLuS7C6wzXYVHvWPRBckkdaw10nOg
-         IpgA==
-X-Gm-Message-State: AOAM5328vJ8vyOQ/yPAIIKUOcJj+y20mp2SvhJGCS9eGtNlGJPKCW//M
-        EevKbuzcxbcfX0cQcRcY3VivvQ==
-X-Google-Smtp-Source: ABdhPJwIgqPvhOuEMX2vL3suWxRX/QP8lNokACHAx9Lh9I02IwyKl4hFXECw0s1y7YEUUVS0/hgCPA==
-X-Received: by 2002:a9d:3985:: with SMTP id y5mr2700391otb.202.1611635209827;
-        Mon, 25 Jan 2021 20:26:49 -0800 (PST)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w129sm3930638oig.23.2021.01.25.20.26.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 20:26:49 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/3] dt-bindings: pinctrl: qcom: Add sc8180x binding
-Date:   Mon, 25 Jan 2021 20:26:49 -0800
-Message-Id: <20210126042650.1725176-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210126042650.1725176-1-bjorn.andersson@linaro.org>
-References: <20210126042650.1725176-1-bjorn.andersson@linaro.org>
+        id S1729087AbhAZEyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:54:49 -0500
+Received: from m42-8.mailgun.net ([69.72.42.8]:36815 "EHLO m42-8.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726654AbhAZEeA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 23:34:00 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1611635616; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=YoZ7b2gqHviotf0RFHsePw2Vtw+XQmyfSKqQucAiqTU=; b=NPA0NozxXTC3Lngu5bdmjCX8CmhhOFJnffv/BwHSuBEMosRVxuySmGVbMs9DPtJHWAtKwXWJ
+ kOEOVVphkPHPbly1gD1fOHPGc83B6M9OiGow3x4M5lfT0N4kXGHJnYIFjc86Qrw7ZF7mpN3L
+ CvC1Ft2HgQHz72OBtR/IWytsplg=
+X-Mailgun-Sending-Ip: 69.72.42.8
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 600f9b72bdcf468287eeb285 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 26 Jan 2021 04:32:50
+ GMT
+Sender: wcheng=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 755FEC43464; Tue, 26 Jan 2021 04:32:49 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [10.110.78.65] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1E8F0C433C6;
+        Tue, 26 Jan 2021 04:32:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1E8F0C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
+Subject: Re: [PATCH v6 3/4] usb: dwc3: Resize TX FIFOs to meet EP bursting
+ requirements
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, peter.chen@nxp.com,
+        jackp@codeaurora.org
+References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
+ <1611288100-31118-4-git-send-email-wcheng@codeaurora.org>
+ <YAsHbj/mITeiY5Cq@builder.lan>
+ <724cb274-36ce-fb48-a156-4eaf9e686fdf@codeaurora.org>
+ <20210126015543.GB1241218@yoga>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <99dd9419-a8fd-9eb2-9582-d24f865ecf70@codeaurora.org>
+Date:   Mon, 25 Jan 2021 20:32:47 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210126015543.GB1241218@yoga>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for the TLMM block in the Qualcomm SC8180X platform.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- .../pinctrl/qcom,sc8180x-pinctrl.yaml         | 152 ++++++++++++++++++
- 1 file changed, 152 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
-new file mode 100644
-index 000000000000..a82dab898395
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
-@@ -0,0 +1,152 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/qcom,sc8180x-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Technologies, Inc. SC8180X TLMM block
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+description: |
-+  This binding describes the Top Level Mode Multiplexer block found in the
-+  SC8180X platform.
-+
-+allOf:
-+  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: qcom,sc8180x-tlmm
-+
-+  reg:
-+    maxItems: 3
-+
-+  reg-names:
-+    items:
-+      - const: "west"
-+      - const: "east"
-+      - const: "south"
-+
-+  interrupts: true
-+  interrupt-controller: true
-+  '#interrupt-cells': true
-+  gpio-controller: true
-+  gpio-reserved-ranges: true
-+  '#gpio-cells': true
-+  gpio-ranges: true
-+  wakeup-parent: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+
-+additionalProperties: false
-+
-+patternProperties:
-+  '-state$':
-+    oneOf:
-+      - $ref: "#/$defs/qcom-sc8180x-tlmm-state"
-+      - patternProperties:
-+          ".*":
-+            $ref: "#/$defs/qcom-sc8180x-tlmm-state"
-+
-+'$defs':
-+  qcom-sc8180x-tlmm-state:
-+    type: object
-+    description:
-+      Pinctrl node's client devices use subnodes for desired pin configuration.
-+      Client device subnodes use below standard properties.
-+    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-+
-+    properties:
-+      pins:
-+        description:
-+          List of gpio pins affected by the properties specified in this
-+          subnode.
-+        items:
-+          oneOf:
-+            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-8][0-9])$"
-+            - enum: [ sdc2_clk, sdc2_cmd, sdc2_data, ufs_reset ]
-+        minItems: 1
-+        maxItems: 16
-+
-+      function:
-+        description:
-+          Specify the alternative function to be configured for the specified
-+          pins.
-+
-+        enum: [ adsp_ext, agera_pll, aoss_cti, atest_char, atest_tsens,
-+                atest_tsens2, atest_usb0, atest_usb1, atest_usb2, atest_usb3,
-+                atest_usb4, audio_ref, btfm_slimbus, cam_mclk, cci_async,
-+                cci_i2c, cci_timer0, cci_timer1, cci_timer2, cci_timer3,
-+                cci_timer4, cci_timer5, cci_timer6, cci_timer7, cci_timer8,
-+                cci_timer9, cri_trng, dbg_out, ddr_bist, ddr_pxi, debug_hot,
-+                dp_hot, edp_hot, edp_lcd, emac_phy, emac_pps, gcc_gp1, gcc_gp2,
-+                gcc_gp3, gcc_gp4, gcc_gp5, gpio, gps, grfc, hs1_mi2s, hs2_mi2s,
-+                hs3_mi2s, jitter_bist, lpass_slimbus, m_voc, mdp_vsync,
-+                mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3, mdp_vsync4,
-+                mdp_vsync5, mss_lte, nav_pps, pa_indicator, pci_e0, pci_e1,
-+                pci_e2, pci_e3, phase_flag, pll_bist, pll_bypassnl, pll_reset,
-+                pri_mi2s, pri_mi2s_ws, prng_rosc, qdss_cti, qdss_gpio, qlink,
-+                qspi0, qspi0_clk, qspi0_cs, qspi1, qspi1_clk, qspi1_cs,
-+                qua_mi2s, qup0, qup1, qup2, qup3, qup4, qup5, qup6, qup7, qup8,
-+                qup9, qup10, qup11, qup12, qup13, qup14, qup15, qup16, qup17,
-+                qup18, qup19, qup_l4, qup_l5, qup_l6, rgmii, sd_write, sdc4,
-+                sdc4_clk, sdc4_cmd, sec_mi2s, sp_cmu, spkr_i2s, ter_mi2s, tgu,
-+                tsense_pwm1, tsense_pwm2, tsif1, tsif2, uim1, uim2, uim_batt,
-+                usb0_phy, usb1_phy, usb2phy_ac, vfr_1, vsense_trigger,
-+                wlan1_adc, wlan2_adc, wmss_reset ]
-+
-+      bias-disable: true
-+      bias-pull-down: true
-+      bias-pull-up: true
-+      drive-strength: true
-+      input-enable: true
-+      output-high: true
-+      output-low: true
-+
-+    required:
-+      - pins
-+      - function
-+
-+    additionalProperties: false
-+
-+examples:
-+  - |
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-+        pinctrl@3100000 {
-+                compatible = "qcom,sc8180x-tlmm";
-+                reg = <0x03100000 0x300000>,
-+                      <0x03500000 0x700000>,
-+                      <0x03d00000 0x300000>;
-+                reg-names = "west", "east", "south";
-+                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-+                gpio-controller;
-+                #gpio-cells = <2>;
-+                interrupt-controller;
-+                #interrupt-cells = <2>;
-+                gpio-ranges = <&tlmm 0 0 190>;
-+
-+                gpio-wo-subnode-state {
-+                        pins = "gpio1";
-+                        function = "gpio";
-+                };
-+
-+                uart-w-subnodes-state {
-+                        rx {
-+                                pins = "gpio4";
-+                                function = "qup6";
-+                                bias-pull-up;
-+                        };
-+
-+                        tx {
-+                                pins = "gpio5";
-+                                function = "qup6";
-+                                bias-disable;
-+                        };
-+                };
-+        };
-+...
+On 1/25/2021 5:55 PM, Bjorn Andersson wrote:
+> On Mon 25 Jan 19:14 CST 2021, Wesley Cheng wrote:
+> 
+>>
+>>
+>> On 1/22/2021 9:12 AM, Bjorn Andersson wrote:
+>>> On Thu 21 Jan 22:01 CST 2021, Wesley Cheng wrote:
+>>>
+>>
+>> Hi Bjorn,
+>>>
+>>> Under what circumstances should we specify this? And in particular are
+>>> there scenarios (in the Qualcomm platforms) where this must not be set?
+>>> The TXFIFO dynamic allocation is actually a feature within the DWC3
+>> controller, and isn't specifically for QCOM based platforms.  It won't
+>> do any harm functionally if this flag is not set, as this is meant for
+>> enhancing performance/bandwidth.
+>>
+>>> In particular, the composition can be changed in runtime, so should we
+>>> set this for all Qualcomm platforms?
+>>>
+>> Ideally yes, if we want to increase bandwith for situations where SS
+>> endpoint bursting is set to a higher value.
+>>
+>>> And if that's the case, can we not just set it from the qcom driver?
+>>>
+>> Since this is a common DWC3 core feature, I think it would make more
+>> sense to have it in DWC3 core instead of a vendor's DWC3 glue driver.
+>>
+> 
+> I don't have any objections to implementing it in the core driver, but
+> my question is can we just skip the DT binding and just enable it from
+> the vendor driver?
+> 
+> Regards,
+> Bjorn
+> 
+
+Hi Bjorn,
+
+I see.  I think there are some designs which don't have a DWC3 glue
+driver, so assuming there may be other platforms using this, there may
+not always be a vendor driver to set this.
+
+Thanks
+Wesley Cheng
+
 -- 
-2.29.2
-
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
