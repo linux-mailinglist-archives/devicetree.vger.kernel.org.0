@@ -2,218 +2,570 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B90C303796
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 09:03:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC0633037A3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 09:11:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731028AbhAZICk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 03:02:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43996 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389643AbhAZIBp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 03:01:45 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1DF5B206FB;
-        Tue, 26 Jan 2021 08:01:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611648063;
-        bh=aa2bH7Ml2N6u9IL2Q2DMHdUm/C/GjwCOvIhYPhIyEmw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IokureFN2AQ9Q6/LL/jf9dZV3w3bY7I9BlmyWOu/ETswXoW708lBNYhV5pPgOlQ72
-         vjP5hgdn2TCFiKmMPAbJJ/zF+ZqvyDW58B56xPywLB3wq8Wp2MD/1G69Z1UpRHHIl8
-         hJXNC3aYd9TO4uwIjI5g63OnC8csnGD9moh6fbWhQ7+gu4SpsU6LYBlhhjZ64yQUOZ
-         S5VzOEfpyCnuox0Ii3UgDKbgdv4aTduNuDV5rjpn9wJtiQS+w/qThg/CkGcvbnscga
-         0FIJs14wl0sSbKU8J84uxKQzV4eE/THzAnKNgr1PorAM+TuNNk4bHr1j4LmzvfH+kW
-         urSjolNvFNk3A==
-Date:   Tue, 26 Jan 2021 13:30:58 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S1728406AbhAZIJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 03:09:54 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:35889 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2389665AbhAZIIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:08:39 -0500
+X-UUID: 36f44e781c804cc4a930a4aad0b18915-20210126
+X-UUID: 36f44e781c804cc4a930a4aad0b18915-20210126
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <henryc.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 956547362; Tue, 26 Jan 2021 16:03:57 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 26 Jan 2021 16:03:56 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jan 2021 16:03:56 +0800
+From:   Henry Chen <henryc.chen@mediatek.com>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 4/5] dt-bindings: clock: Add SM8350 GCC clock bindings
-Message-ID: <20210126080058.GN2771@vkoul-mobl>
-References: <20210118044321.2571775-1-vkoul@kernel.org>
- <20210118044321.2571775-5-vkoul@kernel.org>
- <YA7+9xaAY0JT5csh@builder.lan>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Arvin Wang <arvin.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Henry Chen <henryc.chen@mediatek.com>
+Subject: [PATCH V8 03/12] soc: mediatek: add driver for dvfsrc support
+Date:   Tue, 26 Jan 2021 16:03:45 +0800
+Message-ID: <1611648234-15043-4-git-send-email-henryc.chen@mediatek.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1611648234-15043-1-git-send-email-henryc.chen@mediatek.com>
+References: <1611648234-15043-1-git-send-email-henryc.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YA7+9xaAY0JT5csh@builder.lan>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25-01-21, 11:25, Bjorn Andersson wrote:
-> On Sun 17 Jan 22:43 CST 2021, Vinod Koul wrote:
-> 
-> > Add device tree bindings for global clock controller on SM8350 SoCs.
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  .../bindings/clock/qcom,gcc-sm8350.yaml       |  96 +++++++
-> >  include/dt-bindings/clock/qcom,gcc-sm8350.h   | 261 ++++++++++++++++++
-> >  2 files changed, 357 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
-> >  create mode 100644 include/dt-bindings/clock/qcom,gcc-sm8350.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
-> > new file mode 100644
-> > index 000000000000..78f35832aa41
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
-> > @@ -0,0 +1,96 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/qcom,gcc-sm8350.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Global Clock & Reset Controller Binding for SM8350
-> > +
-> > +maintainers:
-> > +  - Vinod Koul <vkoul@kernel.org>
-> > +
-> > +description: |
-> > +  Qualcomm global clock control module which supports the clocks, resets and
-> > +  power domains on SM8350.
-> > +
-> > +  See also:
-> > +  - dt-bindings/clock/qcom,gcc-sm8350.h
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,gcc-sm8350
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Board XO source
-> > +      - description: Sleep clock source
-> > +      - description: PLL test clock source (Optional clock)
-> > +      - description: PCIE 0 Pipe clock source (Optional clock)
-> > +      - description: PCIE 1 Pipe clock source (Optional clock)
-> > +      - description: UFS card Rx symbol 0 clock source (Optional clock)
-> > +      - description: UFS card Rx symbol 1 clock source (Optional clock)
-> > +      - description: UFS card Tx symbol 0 clock source (Optional clock)
-> > +      - description: UFS phy Rx symbol 0 clock source (Optional clock)
-> > +      - description: UFS phy Rx symbol 1 clock source (Optional clock)
-> > +      - description: UFS phy Tx symbol 0 clock source (Optional clock)
-> > +      - description: USB3 phy wrapper pipe clock source (Optional clock)
-> > +      - description: USB3 phy sec pipe clock source (Optional clock)
-> > +    minItems: 2
-> > +    maxItems: 13
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bi_tcxo
-> > +      - const: sleep_clk
-> > +      - const: core_bi_pll_test_se # Optional clock
-> > +      - const: pcie_0_pipe_clk # Optional clock
-> > +      - const: pcie_1_pipe_clk # Optional clock
-> > +      - const: ufs_card_rx_symbol_0_clk # Optional clock
-> > +      - const: ufs_card_rx_symbol_1_clk # Optional clock
-> > +      - const: ufs_card_tx_symbol_0_clk # Optional clock
-> > +      - const: ufs_phy_rx_symbol_0_clk # Optional clock
-> > +      - const: ufs_phy_rx_symbol_1_clk # Optional clock
-> > +      - const: ufs_phy_tx_symbol_0_clk # Optional clock
-> > +      - const: usb3_phy_wrapper_gcc_usb30_pipe_clk # Optional clock
-> > +      - const: usb3_uni_phy_sec_gcc_usb30_pipe_clk # Optional clock
-> > +    minItems: 2
-> > +    maxItems: 13
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +
-> > +  '#reset-cells':
-> > +    const: 1
-> > +
-> > +  '#power-domain-cells':
-> > +    const: 1
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - clocks
-> > +  - clock-names
-> > +  - reg
-> > +  - '#clock-cells'
-> > +  - '#reset-cells'
-> > +  - '#power-domain-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/qcom,rpmh.h>
-> > +    clock-controller@100000 {
-> > +      compatible = "qcom,gcc-sm8350";
-> > +      reg = <0x00100000 0x1f0000>;
-> > +      clocks = <&rpmhcc RPMH_CXO_CLK>,
-> > +               <&sleep_clk>;
-> > +      clock-names = "bi_tcxo", "sleep_clk";
-> > +      #clock-cells = <1>;
-> > +      #reset-cells = <1>;
-> > +      #power-domain-cells = <1>;
-> > +    };
-> > +
-> > +...
-> > diff --git a/include/dt-bindings/clock/qcom,gcc-sm8350.h b/include/dt-bindings/clock/qcom,gcc-sm8350.h
-> > new file mode 100644
-> > index 000000000000..2b289c5c109f
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/qcom,gcc-sm8350.h
-> > @@ -0,0 +1,261 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-> > + * Copyright (c) 2020-2021, Linaro Limited
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLK_QCOM_GCC_SM8350_H
-> > +#define _DT_BINDINGS_CLK_QCOM_GCC_SM8350_H
-> > +
-> > +/* GCC HW clocks */
-> > +#define CORE_BI_PLL_TEST_SE					0
-> > +#define PCIE_0_PIPE_CLK						1
-> > +#define PCIE_1_PIPE_CLK						2
-> > +#define UFS_CARD_RX_SYMBOL_0_CLK				3
-> > +#define UFS_CARD_RX_SYMBOL_1_CLK				4
-> > +#define UFS_CARD_TX_SYMBOL_0_CLK				5
-> > +#define UFS_PHY_RX_SYMBOL_0_CLK					6
-> > +#define UFS_PHY_RX_SYMBOL_1_CLK					7
-> > +#define UFS_PHY_TX_SYMBOL_0_CLK					8
-> > +#define USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK			9
-> > +#define USB3_UNI_PHY_SEC_GCC_USB30_PIPE_CLK			10
-> > +
-> > +/* GCC clocks */
-> > +#define GCC_AGGRE_NOC_PCIE_0_AXI_CLK				11
-> > +#define GCC_AGGRE_NOC_PCIE_1_AXI_CLK				12
-> > +#define GCC_AGGRE_NOC_PCIE_TBU_CLK				13
-> > +#define GCC_AGGRE_UFS_CARD_AXI_CLK				14
-> > +#define GCC_AGGRE_UFS_CARD_AXI_HW_CTL_CLK			15
-> > +#define GCC_AGGRE_UFS_PHY_AXI_CLK				16
-> > +#define GCC_AGGRE_UFS_PHY_AXI_HW_CTL_CLK			17
-> > +#define GCC_AGGRE_USB3_PRIM_AXI_CLK				18
-> > +#define GCC_AGGRE_USB3_SEC_AXI_CLK				19
-> > +#define GCC_BOOT_ROM_AHB_CLK					20
-> > +#define GCC_CAMERA_AHB_CLK					21
-> 
-> You removed these from the driver, so no need to expose them in the
-> dt-binding either.
+Add dvfsrc driver for MT6873/MT8183/MT8192
 
-I did think about that and thought maybe it is better to leave the
-defines. We can always update the driver to use if we ever felt the
-need.
+Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+---
+ drivers/soc/mediatek/Kconfig            |  11 +
+ drivers/soc/mediatek/Makefile           |   1 +
+ drivers/soc/mediatek/mtk-dvfsrc.c       | 421 ++++++++++++++++++++++++++++++++
+ include/linux/soc/mediatek/mtk_dvfsrc.h |  35 +++
+ 4 files changed, 468 insertions(+)
+ create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
+ create mode 100644 include/linux/soc/mediatek/mtk_dvfsrc.h
 
-But then I dont think we will ever do that so makes sense, will update
-this and send with acks collected
-
+diff --git a/drivers/soc/mediatek/Kconfig b/drivers/soc/mediatek/Kconfig
+index fdd8bc0..2dcf023 100644
+--- a/drivers/soc/mediatek/Kconfig
++++ b/drivers/soc/mediatek/Kconfig
+@@ -26,6 +26,17 @@ config MTK_DEVAPC
+ 	  The violation information is logged for further analysis or
+ 	  countermeasures.
+ 
++config MTK_DVFSRC
++	tristate "MediaTek DVFSRC Support"
++	depends on ARCH_MEDIATEK
++	help
++	  Say yes here to add support for the MediaTek DVFSRC (dynamic voltage
++	  and frequency scaling resource collector) found
++	  on different MediaTek SoCs. The DVFSRC is a proprietary
++	  hardware which is used to collect all the requests from
++	  system and turn into the decision of minimum Vcore voltage
++	  and minimum DRAM frequency to fulfill those requests.
++
+ config MTK_INFRACFG
+ 	bool "MediaTek INFRACFG Support"
+ 	select REGMAP
+diff --git a/drivers/soc/mediatek/Makefile b/drivers/soc/mediatek/Makefile
+index b6908db..4ead103 100644
+--- a/drivers/soc/mediatek/Makefile
++++ b/drivers/soc/mediatek/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-$(CONFIG_MTK_CMDQ) += mtk-cmdq-helper.o
+ obj-$(CONFIG_MTK_DEVAPC) += mtk-devapc.o
++obj-$(CONFIG_MTK_DVFSRC) += mtk-dvfsrc.o
+ obj-$(CONFIG_MTK_INFRACFG) += mtk-infracfg.o
+ obj-$(CONFIG_MTK_PMIC_WRAP) += mtk-pmic-wrap.o
+ obj-$(CONFIG_MTK_SCPSYS) += mtk-scpsys.o
+diff --git a/drivers/soc/mediatek/mtk-dvfsrc.c b/drivers/soc/mediatek/mtk-dvfsrc.c
+new file mode 100644
+index 0000000..c0c6d91
+--- /dev/null
++++ b/drivers/soc/mediatek/mtk-dvfsrc.c
+@@ -0,0 +1,421 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2021 MediaTek Inc.
++ */
++
++#include <linux/arm-smccc.h>
++#include <linux/io.h>
++#include <linux/iopoll.h>
++#include <linux/module.h>
++#include <linux/notifier.h>
++#include <linux/of_device.h>
++#include <linux/platform_device.h>
++#include <linux/soc/mediatek/mtk_dvfsrc.h>
++#include <linux/soc/mediatek/mtk_sip_svc.h>
++
++#define DVFSRC_IDLE     0x00
++#define DVFSRC_GET_TARGET_LEVEL(x)  (((x) >> 0) & 0x0000ffff)
++#define DVFSRC_GET_CURRENT_LEVEL(x) (((x) >> 16) & 0x0000ffff)
++#define kbps_to_mbps(x) ((x) / 1000)
++
++#define POLL_TIMEOUT        1000
++#define STARTUP_TIME        1
++
++#define MTK_SIP_DVFSRC_INIT		0x00
++
++#define DVFSRC_OPP_DESC(_opp_table)	\
++{	\
++	.opps = _opp_table,	\
++	.num_opp = ARRAY_SIZE(_opp_table),	\
++}
++
++struct dvfsrc_opp {
++	u32 vcore_opp;
++	u32 dram_opp;
++};
++
++struct dvfsrc_opp_desc {
++	const struct dvfsrc_opp *opps;
++	u32 num_opp;
++};
++
++struct mtk_dvfsrc;
++struct dvfsrc_soc_data {
++	const int *regs;
++	const struct dvfsrc_opp_desc *opps_desc;
++	int (*get_target_level)(struct mtk_dvfsrc *dvfsrc);
++	int (*get_current_level)(struct mtk_dvfsrc *dvfsrc);
++	u32 (*get_vcore_level)(struct mtk_dvfsrc *dvfsrc);
++	u32 (*get_vcp_level)(struct mtk_dvfsrc *dvfsrc);
++	void (*set_dram_bw)(struct mtk_dvfsrc *dvfsrc, u64 bw);
++	void (*set_dram_peak_bw)(struct mtk_dvfsrc *dvfsrc, u64 bw);
++	void (*set_dram_hrtbw)(struct mtk_dvfsrc *dvfsrc, u64 bw);
++	void (*set_opp_level)(struct mtk_dvfsrc *dvfsrc, u32 level);
++	void (*set_vcore_level)(struct mtk_dvfsrc *dvfsrc, u32 level);
++	void (*set_vscp_level)(struct mtk_dvfsrc *dvfsrc, u32 level);
++	int (*wait_for_opp_level)(struct mtk_dvfsrc *dvfsrc, u32 level);
++	int (*wait_for_vcore_level)(struct mtk_dvfsrc *dvfsrc, u32 level);
++};
++
++struct mtk_dvfsrc {
++	struct device *dev;
++	struct platform_device *icc;
++	struct platform_device *regulator;
++	const struct dvfsrc_soc_data *dvd;
++	int dram_type;
++	const struct dvfsrc_opp_desc *curr_opps;
++	void __iomem *regs;
++	spinlock_t req_lock;
++	struct mutex pstate_lock;
++	struct notifier_block scpsys_notifier;
++};
++
++static u32 dvfsrc_read(struct mtk_dvfsrc *dvfs, u32 offset)
++{
++	return readl(dvfs->regs + dvfs->dvd->regs[offset]);
++}
++
++static void dvfsrc_write(struct mtk_dvfsrc *dvfs, u32 offset, u32 val)
++{
++	writel(val, dvfs->regs + dvfs->dvd->regs[offset]);
++}
++
++#define dvfsrc_rmw(dvfs, offset, val, mask, shift) \
++	dvfsrc_write(dvfs, offset, \
++		(dvfsrc_read(dvfs, offset) & ~(mask << shift)) | (val << shift))
++
++enum dvfsrc_regs {
++	DVFSRC_SW_REQ,
++	DVFSRC_SW_REQ2,
++	DVFSRC_LEVEL,
++	DVFSRC_TARGET_LEVEL,
++	DVFSRC_SW_BW,
++	DVFSRC_SW_PEAK_BW,
++	DVFSRC_SW_HRT_BW,
++	DVFSRC_VCORE_REQUEST,
++};
++
++static const int mt8183_regs[] = {
++	[DVFSRC_SW_REQ] =	0x4,
++	[DVFSRC_SW_REQ2] =	0x8,
++	[DVFSRC_LEVEL] =	0xDC,
++	[DVFSRC_SW_BW] =	0x160,
++};
++
++static const struct dvfsrc_opp *get_current_opp(struct mtk_dvfsrc *dvfsrc)
++{
++	int level;
++
++	level = dvfsrc->dvd->get_current_level(dvfsrc);
++	return &dvfsrc->curr_opps->opps[level];
++}
++
++static int dvfsrc_is_idle(struct mtk_dvfsrc *dvfsrc)
++{
++	if (!dvfsrc->dvd->get_target_level)
++		return true;
++
++	return dvfsrc->dvd->get_target_level(dvfsrc);
++}
++
++static int dvfsrc_wait_for_vcore_level(struct mtk_dvfsrc *dvfsrc, u32 level)
++{
++	const struct dvfsrc_opp *curr;
++
++	return readx_poll_timeout_atomic(get_current_opp, dvfsrc, curr,
++					 curr->vcore_opp >= level, STARTUP_TIME,
++					 POLL_TIMEOUT);
++}
++
++static int mt8183_wait_for_opp_level(struct mtk_dvfsrc *dvfsrc, u32 level)
++{
++	const struct dvfsrc_opp *target, *curr;
++	int ret;
++
++	target = &dvfsrc->curr_opps->opps[level];
++	ret = readx_poll_timeout(get_current_opp, dvfsrc, curr,
++				 curr->dram_opp >= target->dram_opp &&
++				 curr->vcore_opp >= target->vcore_opp,
++				 STARTUP_TIME, POLL_TIMEOUT);
++	if (ret < 0) {
++		dev_warn(dvfsrc->dev,
++			 "timeout, target: %u, dram: %d, vcore: %d\n", level,
++			 curr->dram_opp, curr->vcore_opp);
++		return ret;
++	}
++
++	return 0;
++}
++
++static int mt8183_get_target_level(struct mtk_dvfsrc *dvfsrc)
++{
++	return DVFSRC_GET_TARGET_LEVEL(dvfsrc_read(dvfsrc, DVFSRC_LEVEL));
++}
++
++static int mt8183_get_current_level(struct mtk_dvfsrc *dvfsrc)
++{
++	int level;
++
++	/* HW level 0 is begin from 0x10000 */
++	level = DVFSRC_GET_CURRENT_LEVEL(dvfsrc_read(dvfsrc, DVFSRC_LEVEL));
++	/* Array index start from 0 */
++	return ffs(level) - 1;
++}
++
++static u32 mt8183_get_vcore_level(struct mtk_dvfsrc *dvfsrc)
++{
++	return (dvfsrc_read(dvfsrc, DVFSRC_SW_REQ2) >> 2) & 0x3;
++}
++
++static void mt8183_set_dram_bw(struct mtk_dvfsrc *dvfsrc, u64 bw)
++{
++	dvfsrc_write(dvfsrc, DVFSRC_SW_BW, div_u64(kbps_to_mbps(bw), 100));
++}
++
++static void mt8183_set_opp_level(struct mtk_dvfsrc *dvfsrc, u32 level)
++{
++	int vcore_opp, dram_opp;
++	const struct dvfsrc_opp *opp;
++
++	/* translate pstate to dvfsrc level, and set it to DVFSRC HW */
++	opp = &dvfsrc->curr_opps->opps[level];
++	vcore_opp = opp->vcore_opp;
++	dram_opp = opp->dram_opp;
++
++	dev_dbg(dvfsrc->dev, "vcore_opp: %d, dram_opp: %d\n",
++		vcore_opp, dram_opp);
++	dvfsrc_write(dvfsrc, DVFSRC_SW_REQ, dram_opp | vcore_opp << 2);
++}
++
++static void mt8183_set_vcore_level(struct mtk_dvfsrc *dvfsrc, u32 level)
++{
++	dvfsrc_write(dvfsrc, DVFSRC_SW_REQ2, level << 2);
++}
++
++void mtk_dvfsrc_send_request(const struct device *dev, u32 cmd, u64 data)
++{
++	int ret, state;
++	struct mtk_dvfsrc *dvfsrc = dev_get_drvdata(dev);
++
++	dev_dbg(dvfsrc->dev, "cmd: %d, data: %llu\n", cmd, data);
++
++	switch (cmd) {
++	case MTK_DVFSRC_CMD_BW_REQUEST:
++		dvfsrc->dvd->set_dram_bw(dvfsrc, data);
++		return;
++	case MTK_DVFSRC_CMD_PEAK_BW_REQUEST:
++		if (dvfsrc->dvd->set_dram_peak_bw)
++			dvfsrc->dvd->set_dram_peak_bw(dvfsrc, data);
++		return;
++	case MTK_DVFSRC_CMD_OPP_REQUEST:
++		if (dvfsrc->dvd->set_opp_level)
++			dvfsrc->dvd->set_opp_level(dvfsrc, data);
++		break;
++	case MTK_DVFSRC_CMD_VCORE_REQUEST:
++		dvfsrc->dvd->set_vcore_level(dvfsrc, data);
++		break;
++	case MTK_DVFSRC_CMD_HRTBW_REQUEST:
++		if (dvfsrc->dvd->set_dram_hrtbw)
++			dvfsrc->dvd->set_dram_hrtbw(dvfsrc, data);
++		else
++			return;
++		break;
++	case MTK_DVFSRC_CMD_VSCP_REQUEST:
++		dvfsrc->dvd->set_vscp_level(dvfsrc, data);
++		break;
++	default:
++		dev_err(dvfsrc->dev, "unknown command: %d\n", cmd);
++		return;
++	}
++
++	/* DVFSRC need to wait at least 2T(~196ns) to handle request
++	 * after recieving command
++	 */
++	udelay(STARTUP_TIME);
++
++	ret = readx_poll_timeout(dvfsrc_is_idle, dvfsrc,
++				 state, state == DVFSRC_IDLE,
++				 STARTUP_TIME, POLL_TIMEOUT);
++
++	if (ret < 0) {
++		dev_warn(dvfsrc->dev,
++			 "%d: idle timeout, data: %llu, last: %d -> %d\n",
++			 cmd, data,
++			 dvfsrc->dvd->get_current_level(dvfsrc),
++			 dvfsrc->dvd->get_target_level(dvfsrc));
++		return;
++	}
++
++	/* The previous change may be requested by previous request.
++	 * So we delay 1us, then start checking opp is reached enough.
++	 */
++	udelay(STARTUP_TIME);
++
++	if (cmd == MTK_DVFSRC_CMD_OPP_REQUEST)
++		ret = dvfsrc->dvd->wait_for_opp_level(dvfsrc, data);
++	else
++		ret = dvfsrc->dvd->wait_for_vcore_level(dvfsrc, data);
++
++	if (ret < 0) {
++		dev_warn(dvfsrc->dev,
++			 "%d: wait timeout, data: %llu, last: %d -> %d\n",
++			 cmd, data,
++			 dvfsrc->dvd->get_current_level(dvfsrc),
++			 dvfsrc->dvd->get_target_level(dvfsrc));
++	}
++
++}
++EXPORT_SYMBOL(mtk_dvfsrc_send_request);
++
++int mtk_dvfsrc_query_info(const struct device *dev, u32 cmd, int *data)
++{
++	struct mtk_dvfsrc *dvfsrc = dev_get_drvdata(dev);
++
++	switch (cmd) {
++	case MTK_DVFSRC_CMD_VCORE_LEVEL_QUERY:
++		*data = dvfsrc->dvd->get_vcore_level(dvfsrc);
++		break;
++	case MTK_DVFSRC_CMD_VSCP_LEVEL_QUERY:
++		*data = dvfsrc->dvd->get_vcp_level(dvfsrc);
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	return 0;
++}
++EXPORT_SYMBOL(mtk_dvfsrc_query_info);
++
++static int mtk_dvfsrc_probe(struct platform_device *pdev)
++{
++	struct arm_smccc_res ares;
++	struct resource *res;
++	struct mtk_dvfsrc *dvfsrc;
++	int ret;
++
++	dvfsrc = devm_kzalloc(&pdev->dev, sizeof(*dvfsrc), GFP_KERNEL);
++	if (!dvfsrc)
++		return -ENOMEM;
++
++	dvfsrc->dvd = of_device_get_match_data(&pdev->dev);
++	dvfsrc->dev = &pdev->dev;
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	dvfsrc->regs = devm_ioremap_resource(&pdev->dev, res);
++	if (IS_ERR(dvfsrc->regs))
++		return PTR_ERR(dvfsrc->regs);
++
++	spin_lock_init(&dvfsrc->req_lock);
++	mutex_init(&dvfsrc->pstate_lock);
++
++	arm_smccc_smc(MTK_SIP_VCOREFS_CONTROL, MTK_SIP_DVFSRC_INIT, 0, 0, 0,
++		0, 0, 0, &ares);
++
++	if (!ares.a0) {
++		dvfsrc->dram_type = ares.a1;
++		dev_info(dvfsrc->dev, "dram_type: %d\n", dvfsrc->dram_type);
++	} else {
++		dev_err(dvfsrc->dev, "init fails: %lu\n", ares.a0);
++		return ares.a0;
++	}
++
++	dvfsrc->curr_opps = &dvfsrc->dvd->opps_desc[dvfsrc->dram_type];
++	platform_set_drvdata(pdev, dvfsrc);
++
++	dvfsrc->regulator = platform_device_register_data(dvfsrc->dev,
++			"mtk-dvfsrc-regulator", -1, NULL, 0);
++	if (IS_ERR(dvfsrc->regulator)) {
++		dev_err(dvfsrc->dev, "Failed create regulator device\n");
++		ret = PTR_ERR(dvfsrc->regulator);
++		goto err;
++	}
++
++	dvfsrc->icc = platform_device_register_data(dvfsrc->dev,
++			"mediatek-emi-icc", -1, NULL, 0);
++	if (IS_ERR(dvfsrc->icc)) {
++		dev_err(dvfsrc->dev, "Failed create icc device\n");
++		ret = PTR_ERR(dvfsrc->icc);
++		goto unregister_regulator;
++	}
++
++	ret = devm_of_platform_populate(&pdev->dev);
++	if (ret)
++		platform_device_unregister(dvfsrc->icc);
++
++	return 0;
++
++unregister_regulator:
++	platform_device_unregister(dvfsrc->regulator);
++err:
++	return ret;
++}
++
++static const struct dvfsrc_opp dvfsrc_opp_mt8183_lp4[] = {
++	{0, 0}, {0, 1}, {0, 2}, {1, 2},
++};
++
++static const struct dvfsrc_opp dvfsrc_opp_mt8183_lp3[] = {
++	{0, 0}, {0, 1}, {1, 1}, {1, 2},
++};
++
++static const struct dvfsrc_opp_desc dvfsrc_opp_mt8183_desc[] = {
++	DVFSRC_OPP_DESC(dvfsrc_opp_mt8183_lp4),
++	DVFSRC_OPP_DESC(dvfsrc_opp_mt8183_lp3),
++	DVFSRC_OPP_DESC(dvfsrc_opp_mt8183_lp3),
++};
++
++static const struct dvfsrc_soc_data mt8183_data = {
++	.opps_desc = dvfsrc_opp_mt8183_desc,
++	.regs = mt8183_regs,
++	.get_target_level = mt8183_get_target_level,
++	.get_current_level = mt8183_get_current_level,
++	.get_vcore_level = mt8183_get_vcore_level,
++	.set_dram_bw = mt8183_set_dram_bw,
++	.set_opp_level = mt8183_set_opp_level,
++	.set_vcore_level = mt8183_set_vcore_level,
++	.wait_for_opp_level = mt8183_wait_for_opp_level,
++	.wait_for_vcore_level = dvfsrc_wait_for_vcore_level,
++};
++
++static int mtk_dvfsrc_remove(struct platform_device *pdev)
++{
++	struct mtk_dvfsrc *dvfsrc = platform_get_drvdata(pdev);
++
++	platform_device_unregister(dvfsrc->regulator);
++	platform_device_unregister(dvfsrc->icc);
++
++	return 0;
++}
++
++static const struct of_device_id mtk_dvfsrc_of_match[] = {
++	{
++		.compatible = "mediatek,mt8183-dvfsrc",
++		.data = &mt8183_data,
++	}, {
++		/* sentinel */
++	},
++};
++
++static struct platform_driver mtk_dvfsrc_driver = {
++	.probe	= mtk_dvfsrc_probe,
++	.remove	= mtk_dvfsrc_remove,
++	.driver = {
++		.name = "mtk-dvfsrc",
++		.of_match_table = of_match_ptr(mtk_dvfsrc_of_match),
++	},
++};
++
++static int __init mtk_dvfsrc_init(void)
++{
++	return platform_driver_register(&mtk_dvfsrc_driver);
++}
++subsys_initcall(mtk_dvfsrc_init);
++
++static void __exit mtk_dvfsrc_exit(void)
++{
++	platform_driver_unregister(&mtk_dvfsrc_driver);
++}
++module_exit(mtk_dvfsrc_exit);
++
++MODULE_LICENSE("GPL v2");
++MODULE_DESCRIPTION("MTK DVFSRC driver");
+diff --git a/include/linux/soc/mediatek/mtk_dvfsrc.h b/include/linux/soc/mediatek/mtk_dvfsrc.h
+new file mode 100644
+index 0000000..823eff9
+--- /dev/null
++++ b/include/linux/soc/mediatek/mtk_dvfsrc.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: GPL-2.0
++ *
++ * Copyright (c) 2021 MediaTek Inc.
++ */
++
++#ifndef __SOC_MTK_DVFSRC_H
++#define __SOC_MTK_DVFSRC_H
++
++#define MTK_DVFSRC_CMD_BW_REQUEST		0
++#define MTK_DVFSRC_CMD_OPP_REQUEST		1
++#define MTK_DVFSRC_CMD_VCORE_REQUEST		2
++#define MTK_DVFSRC_CMD_HRTBW_REQUEST		3
++#define MTK_DVFSRC_CMD_VSCP_REQUEST		4
++#define MTK_DVFSRC_CMD_PEAK_BW_REQUEST		5
++
++#define MTK_DVFSRC_CMD_VCORE_LEVEL_QUERY	0
++#define MTK_DVFSRC_CMD_VSCP_LEVEL_QUERY		1
++
++#if IS_ENABLED(CONFIG_MTK_DVFSRC)
++void mtk_dvfsrc_send_request(const struct device *dev, u32 cmd, u64 data);
++int mtk_dvfsrc_query_info(const struct device *dev, u32 cmd, int *data);
++
++#else
++
++static inline void mtk_dvfsrc_send_request(const struct device *dev, u32 cmd,
++					   u64 data)
++{ return -ENODEV; }
++
++static inline int mtk_dvfsrc_query_info(const struct device *dev, u32 cmd,
++					int *data);
++{ return -ENODEV; }
++
++#endif /* CONFIG_MTK_DVFSRC */
++
++#endif
 -- 
-~Vinod
+1.9.1
+
