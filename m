@@ -2,128 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7E1303FCE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AB8A303FDF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405550AbhAZOL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 09:11:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391768AbhAZOLY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:11:24 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6535CC0611C2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:10:44 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E15602C1;
-        Tue, 26 Jan 2021 15:10:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1611670242;
-        bh=WQ7PZkJAI5LGgDKAbdMJf4gHNVYYYdDYBmqgv1rqQew=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XD/Yx8A3Vx0BvOy3NV9cifiHPUc/PXZNJAU7nWnKpKEUaFmhrnrdXdoCjT4ElopjY
-         jJJclLaAnuSIOOL16lRQ92LetMQs5lakQwqgf6L2gl/K5NI96d3Ppih5/iHLC3wN19
-         Kc/QPQU3+MJ+VAZrdPPuZ/+IolACq8X3/CpXqdtU=
-Date:   Tue, 26 Jan 2021 16:10:22 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RESEND v3 1/6] drm/of: Change the prototype of
- drm_of_lvds_get_dual_link_pixel_order
-Message-ID: <YBAiztjg0Jji9voK@pendragon.ideasonboard.com>
-References: <cover.6cdb798a6b393c8faa9c1297bbdfb8db81238141.1601910923.git-series.maxime@cerno.tech>
- <6169dd15782627c8415583881fa94ba39c4f5221.1601910923.git-series.maxime@cerno.tech>
- <20201011230030.GD3944@pendragon.ideasonboard.com>
- <20201118174805.cm67sluusovz5n6a@gilmour.lan>
+        id S2405709AbhAZOM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 09:12:58 -0500
+Received: from m-r2.th.seeweb.it ([5.144.164.171]:38743 "EHLO
+        m-r2.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405667AbhAZOM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:12:56 -0500
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 8105C3F277;
+        Tue, 26 Jan 2021 15:11:53 +0100 (CET)
+Subject: Re: [PATCH v2 3/9] clk: qcom: Add SDM660 Multimedia Clock Controller
+ (MMCC) driver
+To:     Stanimir Varbanov <stanimir.varbanov@linaro.org>, agross@kernel.org
+Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org
+References: <20210113183817.447866-1-angelogioacchino.delregno@somainline.org>
+ <20210113183817.447866-4-angelogioacchino.delregno@somainline.org>
+ <2453cbae-bd30-416c-4432-9b27754670e1@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <6ba8ac3c-d33b-3ab2-5855-f99d431b397a@somainline.org>
+Date:   Tue, 26 Jan 2021 15:11:53 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201118174805.cm67sluusovz5n6a@gilmour.lan>
+In-Reply-To: <2453cbae-bd30-416c-4432-9b27754670e1@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
-
-On Wed, Nov 18, 2020 at 06:48:05PM +0100, Maxime Ripard wrote:
-> On Mon, Oct 12, 2020 at 02:00:30AM +0300, Laurent Pinchart wrote:
-> > > -static int drm_of_lvds_get_remote_pixels_type(
-> > > -			const struct device_node *port_node)
-> > > +static int drm_of_lvds_get_remote_pixels_type(const struct device_node *endpoint)
-> > >  {
-> > > -	struct device_node *endpoint = NULL;
-> > > -	int pixels_type = -EPIPE;
-> > > +	struct device_node *remote_port;
-> > > +	int pixels_type;
-> > >  
-> > > -	for_each_child_of_node(port_node, endpoint) {
-> > > -		struct device_node *remote_port;
-> > > -		int current_pt;
-> > > -
-> > > -		if (!of_node_name_eq(endpoint, "endpoint"))
-> > > -			continue;
-> > > -
-> > > -		remote_port = of_graph_get_remote_port(endpoint);
-> > > -		if (!remote_port) {
-> > > -			of_node_put(remote_port);
-> > > -			return -EPIPE;
-> > > -		}
-> > > -
-> > > -		current_pt = drm_of_lvds_get_port_pixels_type(remote_port);
-> > > +	remote_port = of_graph_get_remote_port(endpoint);
-> > > +	if (!remote_port) {
-> > >  		of_node_put(remote_port);
-> > 
-> > You can drop this line.
-> > 
-> > > -		if (pixels_type < 0)
-> > > -			pixels_type = current_pt;
-> > > -
-> > > -		/*
-> > > -		 * Sanity check, ensure that all remote endpoints have the same
-> > > -		 * pixel type. We may lift this restriction later if we need to
-> > > -		 * support multiple sinks with different dual-link
-> > > -		 * configurations by passing the endpoints explicitly to
-> > > -		 * drm_of_lvds_get_dual_link_pixel_order().
-> > > -		 */
-> > 
-> > Shouldn't we keep this check when endpoint_id is -1 in
-> > drm_of_lvds_get_dual_link_pixel_order() ?
+Il 26/01/21 14:39, Stanimir Varbanov ha scritto:
 > 
-> I tried to do that, and I'm not quite really sure how to go around it.
 > 
-> This scans all the endpoints in a given port.
+> On 1/13/21 8:38 PM, AngeloGioacchino Del Regno wrote:
+>> From: Martin Botka <martin.botka@somainline.org>
+>>
+>> Add a driver for the multimedia clock controller found on SDM660
+>> based devices. This should allow most multimedia device drivers
+>> to probe and control their clocks.
+>>
+>> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+>> Co-developed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> [angelogioacchino.delregno@somainline.org: Cleaned up SDM630 clock fixups]
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>> ---
+>>   drivers/clk/qcom/Kconfig                     |    9 +
+>>   drivers/clk/qcom/Makefile                    |    1 +
+>>   drivers/clk/qcom/mmcc-sdm660.c               | 2864 ++++++++++++++++++
+>>   include/dt-bindings/clock/qcom,mmcc-sdm660.h |  162 +
+>>   4 files changed, 3036 insertions(+)
+>>   create mode 100644 drivers/clk/qcom/mmcc-sdm660.c
+>>   create mode 100644 include/dt-bindings/clock/qcom,mmcc-sdm660.h
+>>
+>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>> index d32bb12cd8d0..eb9746e84556 100644
+>> --- a/drivers/clk/qcom/Kconfig
+>> +++ b/drivers/clk/qcom/Kconfig
+>> @@ -366,6 +366,15 @@ config SDM_GCC_660
+>>   	  Say Y if you want to use peripheral devices such as UART, SPI,
+>>   	  i2C, USB, UFS, SDDC, PCIe, etc.
+>>   
+>> +config SDM_MMCC_660
+>> +	tristate "SDM660 Multimedia Clock Controller"
+>> +	select SDM_GCC_660
+>> +	select QCOM_GDSC
+>> +	help
+>> +	  Support for the multimedia clock controller on SDM660 devices.
+>> +	  Say Y if you want to support multimedia devices such as display,
+>> +	  graphics, video encode/decode, camera, etc.
+>> +
+>>   config QCS_TURING_404
+>>   	tristate "QCS404 Turing Clock Controller"
+>>   	help
+>> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+>> index 9e5e0e3cb7b4..bfa8350f088d 100644
+>> --- a/drivers/clk/qcom/Makefile
+>> +++ b/drivers/clk/qcom/Makefile
+>> @@ -62,6 +62,7 @@ obj-$(CONFIG_SC_VIDEOCC_7180) += videocc-sc7180.o
+>>   obj-$(CONFIG_SDM_CAMCC_845) += camcc-sdm845.o
+>>   obj-$(CONFIG_SDM_DISPCC_845) += dispcc-sdm845.o
+>>   obj-$(CONFIG_SDM_GCC_660) += gcc-sdm660.o
+>> +obj-$(CONFIG_SDM_MMCC_660) += mmcc-sdm660.o
+>>   obj-$(CONFIG_SDM_GCC_845) += gcc-sdm845.o
+>>   obj-$(CONFIG_SDM_GPUCC_845) += gpucc-sdm845.o
+>>   obj-$(CONFIG_SDM_LPASSCC_845) += lpasscc-sdm845.o
+>> diff --git a/drivers/clk/qcom/mmcc-sdm660.c b/drivers/clk/qcom/mmcc-sdm660.c
+>> new file mode 100644
+>> index 000000000000..d268e1c89f57
+>> --- /dev/null
+>> +++ b/drivers/clk/qcom/mmcc-sdm660.c
+>> @@ -0,0 +1,2864 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2020, Martin Botka <martin.botka@somainline.org>
+>> + * Copyright (c) 2020, Konrad Dybcio <konrad.dybcio@somainline.org>
+>> + */
+>> +
+>> +#include <linux/kernel.h>
+>> +#include <linux/bitops.h>
+>> +#include <linux/err.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/reset-controller.h>
+>> +#include <linux/clk.h>
+>> +
+>> +
+>> +#include <dt-bindings/clock/qcom,mmcc-sdm660.h>
+>> +
+>> +#include "common.h"
+>> +#include "clk-regmap.h"
+>> +#include "clk-regmap-divider.h"
+>> +#include "clk-alpha-pll.h"
+>> +#include "clk-rcg.h"
+>> +#include "clk-branch.h"
+>> +#include "reset.h"
+>> +#include "gdsc.h"
+>> +
 > 
-> However, now that we have the device, port id and endpoint id, we need
-> to use of_graph_get_port_by_id to get the port matching the device and
-> port id, and iterate over all its endpoint as done here.
+> <cut>
 > 
-> The trouble is that of_graph_get_port_by_id expects a !const
-> device_node, yet drm_of_lvds_get_dual_link_pixel_order (and seems to be
-> doing so rightfully), so that creates a warning because we drop the
-> const there.
-
-of_graph_get_port_by_id() doesn't seem to modify the device_node passed
-to it, couldn't it be modified to take a const pointer ?
-
-> Changing the prototype to passing only the port device_node doesn't
-> really work either, since it would be const, and we would need to call
-> of_graph_get_endpoint_by_regs (so having the parent device_node, through
-> of_graph_get_port_parent) and of_graph_get_port_parent takes a !const
-> port device_node.
+>> +
+>> +static struct gdsc venus_gdsc = {
+>> +	.gdscr = 0x1024,
+>> +	.pd = {
+>> +		.name = "venus",
+>> +	},
+>> +	.pwrsts = PWRSTS_OFF_ON,
+>> +};
+>> +
+>> +static struct gdsc venus_core0_gdsc = {
+>> +	.gdscr = 0x1040,
+>> +	.pd = {
+>> +		.name = "venus_core0",
+>> +	},
+>> +	.parent = &venus_gdsc.pd,
+>> +	.pwrsts = PWRSTS_OFF_ON,
 > 
-> I guess we could drop const entirely from our function, but that doesn't
-> look right either..
+> I think this gdsc should be under hw control?
+> 
+> +	.flags = HW_CTRL,
+> 
 
--- 
-Regards,
+Feels strange, eh? Was the same for me, but then noupe, there is no
+hw control for this GDSC downstream, nor a hw_ctrl address for it, so
+on this SoC it shouldn't be under hw control.
 
-Laurent Pinchart
+Besides that, testing also agrees with this (enc/dec works)...
+
+P.S.: Thanks for the review!
+-- Angelo
+
+>> +};
+>> +
+
