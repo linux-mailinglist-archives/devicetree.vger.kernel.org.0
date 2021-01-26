@@ -2,154 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D181303345
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3978730334E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728210AbhAZEtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:49:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47050 "EHLO
+        id S1728311AbhAZEtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:49:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726758AbhAZBbZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 20:31:25 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FFDBC061D7F
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 17:18:10 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id b8so8740324plh.12
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 17:18:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iWbVQO5R0FpQjPeleTL5ZQxXMwOKE8gz64YVQB09gIE=;
-        b=M8/QV0mlc2v2R8DUyzcSmv2ah8W3t/Zyct7N54o+QNG5dYc72k3Goi4nwckpZUxBKY
-         OLzUjzQ069Xg0Mwox3AdKaNd2sH8efxb8MswfwAeVssIrhd+5npraQUBmohEdUUtPBi+
-         tnkK7aKAGBIFCJRX+MW31GV68uGwQMAPlaYME=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iWbVQO5R0FpQjPeleTL5ZQxXMwOKE8gz64YVQB09gIE=;
-        b=NiWBvQLlgNHdc82wot1/12EI7MuBxxA8+eMWPTTaLgIqngJc7nXM7BF9DomQQFV7nV
-         N5zcCpW57XEwI7NT2KcR7v56ij/KFzFTOTLthe7rVO+fxvHcUjXonyo3CM3ASmZ2njKL
-         Rlz+SqCUgTVPnmwaKUYntE7gg3XZ73lfDSJE5A11YHmayO+cT+gtbNoAmzLcA5/eXArI
-         pdwfgAYfEK48kB3wCsEAkV+Bunqvqn0G+Nh/5AWvVop/4gbWLnmdjzGg5qN35G8DSyix
-         Rroj+qSwo8+XL8yaeI0yqI3x4H8uskCdmQ/5q4rdxI398T6DuBG9S5r11thAFM2noIq/
-         uajQ==
-X-Gm-Message-State: AOAM532DG8GR8mReDQta7fZvza1AgIJnl3mZ0ylUWFSjXEaBVCNcQIeW
-        QcO2IZbHrD6sVL5S7/r2gOM8gw==
-X-Google-Smtp-Source: ABdhPJyjPaSweKNxNtO2gkziAaXPMrY4Rp0Kuls26ijdkAvAyf1Ku0oC++DgRuy/WatKIEzuLxGMZA==
-X-Received: by 2002:a17:90a:d255:: with SMTP id o21mr3117952pjw.151.1611623889956;
-        Mon, 25 Jan 2021 17:18:09 -0800 (PST)
-Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:50cc:9282:4fdd:3979])
-        by smtp.gmail.com with ESMTPSA id k9sm522248pji.8.2021.01.25.17.18.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 17:18:09 -0800 (PST)
-From:   Nicolas Boichat <drinkcat@chromium.org>
-To:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-Cc:     fshao@chromium.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        hoegsberg@chromium.org, boris.brezillon@collabora.com,
-        hsinyi@chromium.org, Nicolas Boichat <drinkcat@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v11 0/4] drm/panfrost: Add support for mt8183 GPU
-Date:   Tue, 26 Jan 2021 09:17:55 +0800
-Message-Id: <20210126011759.1605641-1-drinkcat@chromium.org>
-X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
+        with ESMTP id S1732029AbhAZCDZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:03:25 -0500
+X-Greylist: delayed 555 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Jan 2021 18:02:08 PST
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0D8C061225
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 18:02:08 -0800 (PST)
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 14A1283646;
+        Tue, 26 Jan 2021 14:52:02 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1611625922;
+        bh=oP2TIidX81eGT1h2x2myyqVlxaXwQ5UVYXVVX5Ngep0=;
+        h=From:To:Cc:Subject:Date;
+        b=h+YiTMWssfTinGHD8tqDCQYgSS5axw4LFeegeYEH4pU+Ro3vr63wmG4O5Sregpto7
+         sqAXeHBp/7uTcONZcXDLRojaXsApegUg4n+zFkVGlMGtK2oQBj0wJrgXViOuP0OA2A
+         oPUQsoMMqy6jbLZWdEVDGCCQqeXZ4XqE8p5YkoY/OP3AWZ+vDf0ze9LduqCv/mq+vP
+         THoZAimk3DyIKaegsBOpHMukbNdL8oGNPGv2N+z/0hHyfLetUt+aCYKAVtD2MMJtQW
+         KNfXSO0m39xZSV5mwOZZQE1VYA2EKVXsMOax2dA4kJjOU/Z69QXjae5bCIqJrayk+5
+         Nuj4Gp+joQFdA==
+Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B600f75c10000>; Tue, 26 Jan 2021 14:52:01 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
+        by smtp (Postfix) with ESMTP id E3FD013EECA;
+        Tue, 26 Jan 2021 14:52:03 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id D2917288C85; Tue, 26 Jan 2021 14:52:01 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     robh+dt@kernel.org, frowand.list@gmail.com, arch0.zheng@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH] of/fdt: Check against '/chosen' in early_init_dt_scan_chosen
+Date:   Tue, 26 Jan 2021 14:51:59 +1300
+Message-Id: <20210126015159.23923-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+x-atlnz-ls: pat
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+of_scan_flat_dt() passes the name of the visited node to the iterator.
+In the case of '/chosen' this includes the leading '/'. Update
+early_init_dt_scan_chosen() to expect this.
 
-Follow-up on the v5 [1], things have gotten significantly
-better in the last 9 months, thanks to the efforts on Bifrost
-support by the Collabora team (and probably others I'm not
-aware of).
+Fixes: 7536c7e03e74 ("of/fdt: Remove redundant kbasename function call")
+Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+---
+ drivers/of/fdt.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-I've been testing this series on a MT8183/kukui device, with a
-chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
-mesa 20.3.2 (lots of artifacts though).
-
-devfreq is currently not supported, as we'll need:
- - Clock core support for switching the GPU core clock (see 2/4).
- - Platform-specific handling of the 2-regulator (see 3/4).
-
-Since the latter is easy to detect, patch 3/4 just disables
-devfreq if the more than one regulator is specified in the
-compatible matching table.
-
-[1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
-[2] https://crrev.com/c/2608070
-
-Changes in v11:
- - binding: power-domain-names not power-domainS-names
- - mt8183*.dts: remove incorrect supply-names
-
-Changes in v10:
- - Fix the binding to make sure sram-supply property can be provided.
-
-Changes in v9:
- - Explain why devfreq needs to be disabled for GPUs with >1
-   regulators.
-
-Changes in v8:
- - Use DRM_DEV_INFO instead of ERROR
-
-Changes in v7:
- - Fix GPU ID in commit message
- - Fix GPU ID in commit message
-
-Changes in v6:
- - Rebased, actually tested with recent mesa driver.
- - Add gpu regulators to kukui dtsi as well.
- - Power domains are now attached to spm, not scpsys
- - Drop R-B.
- - devfreq: New change
- - Context conflicts, reflow the code.
- - Use ARRAY_SIZE for power domains too.
-
-Changes in v5:
- - Rename "2d" power domain to "core2"
- - Rename "2d" power domain to "core2" (keep R-B again).
- - Change power domain name from 2d to core2.
-
-Changes in v4:
- - Add power-domain-names description
-   (kept Alyssa's reviewed-by as the change is minor)
- - Add power-domain-names to describe the 3 domains.
-   (kept Alyssa's reviewed-by as the change is minor)
- - Add power domain names.
-
-Changes in v3:
- - Match mt8183-mali instead of bifrost, as we require special
-   handling for the 2 regulators and 3 power domains.
-
-Changes in v2:
- - Use sram instead of mali_sram as SRAM supply name.
- - Rename mali@ to gpu@.
-
-Nicolas Boichat (4):
-  dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
-  arm64: dts: mt8183: Add node for the Mali GPU
-  drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
-  drm/panfrost: Add mt8183-mali compatible string
-
- .../bindings/gpu/arm,mali-bifrost.yaml        |  28 +++++
- arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
- arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
- drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
- drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
- 6 files changed, 162 insertions(+)
-
--- 
-2.30.0.280.ga3ce27912f-goog
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index feb0f2d67fc5..861aedf0bb7c 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1043,7 +1043,10 @@ int __init early_init_dt_scan_chosen(unsigned long=
+ node, const char *uname,
+ 	pr_debug("search \"chosen\", depth: %d, uname: %s\n", depth, uname);
+=20
+ 	if (depth !=3D 1 || !data ||
+-	    (strcmp(uname, "chosen") !=3D 0 && strcmp(uname, "chosen@0") !=3D 0=
+))
++	    (strcmp(uname, "chosen") !=3D 0 &&
++	     strcmp(uname, "chosen@0") !=3D 0 &&
++	     strcmp(uname, "/chosen") !=3D 0 &&
++	     strcmp(uname, "/chosen@0") !=3D 0))
+ 		return 0;
+=20
+ 	early_init_dt_check_for_initrd(node);
+--=20
+2.30.0
 
