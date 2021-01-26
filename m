@@ -2,100 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34965303EDD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:38:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2C90303EC6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:33:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404414AbhAZNfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 08:35:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59784 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392592AbhAZN07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 08:26:59 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B3DC0698C0
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 05:26:19 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id n6so19700655edt.10
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 05:26:19 -0800 (PST)
+        id S2404486AbhAZNcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 08:32:31 -0500
+Received: from mail-dm6nam11on2065.outbound.protection.outlook.com ([40.107.223.65]:53090
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2391732AbhAZNcX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 08:32:23 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I7bnKWAndy79UDuQoQDZPdyEiFeYKiF9t9FGzpnfnutFM4nlQD+B+MsowLwXHZ2yC4ctFHRJzZf0l6dmC57N7oX3Nz+qxxop5+YlEtG7MUBdWra3lZV5CnMHDxcqdeMvyj8BJo9Tpv3r34xubjlWOGT4laGYkMWHdOEipjxc1YnFfo9dgSlPnhqqiX4N7e8XX49KiqlSBwVeztmR68KVBpt+921YfH9t7g09LIobJDv4GFuuJ/6lhpQ/vtXchm1zeN8TaF0QHNbMAjkG8Fie4DrPdCGFasV922kKGCvdh+tEXNnk3i12Xefi0S8aQktgr3BqlRl22NYhxl0bOBbECQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/Pp2k/NVh3nxaf4qwoAb6Tugz99Owemk5UPc8qRhpyE=;
+ b=m9Nt6hCA01qdEn/Od9ScGxSdtIdVlkTa3DSFpHhNjs8AqijmMfL+Ndo+UI0gSiLOwAMQHDchAkDg9+DqkBjZSTXMHV6OkgRuQjXk1S97GOPDnEbKr/T0zrTWBIRGB1gfQJg3Ydpq4zzcPKMIz9p9KyrGqFW2ytANotZex1caZK8KbOcpYKWUxjJ1f1XwXs/gpAZHwyxOuBGrLodXUlJ7o0eLTqFwWJzEDSCl5UWu9FhiA7tmVtkxkzYE0bUgT2VGGJ8193s9YwvG1H/3JpW1jbk1umjWf2HuHglfAFP/060zgiBOKJWGbb1oKTDHYhjuoLuF9rC6Lz+QcpoMrVFLMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jJsyBSQ5fnIh7z+EGO1ct3NYyuJeKMfKI26SOZHy/5M=;
-        b=nreZNHlarXxqqf5v1K41FArfFksX47QMYvpuQazuFPHcwCsFArVTbduVnLIzt9WudS
-         TV8fBmKsTd6KRZXO+6PmPol6JoQevANIt/52yoKVyl7u7SOoOLr1JaKVIIBURin13/OS
-         ozXZaN2EPwkbo5YSiSjLBn81LbdbKH14+6EUwaxblzZXRq5+WCCvCJmFjTFManR/E0Ml
-         zFr3Tk1CYCjXMJELN7gy4dBmw/5tuQTNDQGrds//v6ZcmvXvGYwQmcW2Uwizfp5yJ08b
-         LpFFLzJbO0gbmSnkj8OzClOly8qROT5daNyeuDJWHIXgEGW2Zk27TvJNn6Sist2aTXSR
-         6/3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jJsyBSQ5fnIh7z+EGO1ct3NYyuJeKMfKI26SOZHy/5M=;
-        b=ZFOlbjTy0+NAIsD5YkREhXWKbyHrJgAfQd2cPQd8Z4Ci2COV0QG+/85ssOxIkHBUh4
-         lIUcbYSe0UoDd9yvR8hQMc672G+dShoRr4CEg5zi45ccg238xWwAGSkHW8C7cCAdxqbv
-         BeNpdhGXwRo20Tup2VlUSz6umy7gJRyFDhH559WnMPcWOwqOrZNGyCaYQwQYRpqF7Gm7
-         UyzJZisZlvwi6uYIbC6FDP72Kotv+tw0P4To+84fQefPCKeGJzGlSayW33aowz+nKTJQ
-         uiHDYoBeBg29eWpyD2P/j5o63rDre78SQXAWoy6mRzT8rC7blIbglad64dym+1KW9oci
-         pPbA==
-X-Gm-Message-State: AOAM531Nno3EChyQdhwl1hZkgxJTuFBFwDG7bmT5HJYDI2ICCXYzTgXx
-        xlY+zz5G1KtIP0LaFLZY+05dow==
-X-Google-Smtp-Source: ABdhPJxbhLHk4eGRreEqF4cTHMfjlD/b2feroKVc/aXltYt5dPKG1lCH+uD6Eh2WG04mPRzB26UreQ==
-X-Received: by 2002:a05:6402:438d:: with SMTP id o13mr4500539edc.135.1611667577953;
-        Tue, 26 Jan 2021 05:26:17 -0800 (PST)
-Received: from localhost.localdomain ([2a02:2450:102f:d6a:65c9:91eb:731f:f2c8])
-        by smtp.gmail.com with ESMTPSA id dh14sm12236010edb.11.2021.01.26.05.26.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jan 2021 05:26:17 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
-        UNGLinuxDriver@microchip.com, lgirdwood@gmail.com,
-        broonie@kernel.org, matthias.bgg@gmail.com, jiaxin.yu@mediatek.com,
-        shane.chien@mediatek.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v1 2/2] dt-bindings: mediatek: mt8192: Fix dt_binding_check warning
-Date:   Tue, 26 Jan 2021 14:25:31 +0100
-Message-Id: <20210126132531.2084711-2-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210126132531.2084711-1-robert.foss@linaro.org>
-References: <20210126132531.2084711-1-robert.foss@linaro.org>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/Pp2k/NVh3nxaf4qwoAb6Tugz99Owemk5UPc8qRhpyE=;
+ b=aG83L1f4Qt6uzEhotGHxDfJvDSI10IOj+LIVTcwdPstjXBJJJJgxlS2f7hhfQ0fiKcWOAmBEzCwPfBOhl1Cn4TzTF/J2nr1c7t6l75g3S6Smsab79fOkrwb8l8daJwtjoM1yuaqFHRZygq9OJUN9wva6bpDZa3kjAHJ/EvzO2FE=
+Received: from BL1PR13CA0175.namprd13.prod.outlook.com (2603:10b6:208:2bd::30)
+ by MWHPR02MB3390.namprd02.prod.outlook.com (2603:10b6:301:6b::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.19; Tue, 26 Jan
+ 2021 13:31:30 +0000
+Received: from BL2NAM02FT031.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:208:2bd:cafe::70) by BL1PR13CA0175.outlook.office365.com
+ (2603:10b6:208:2bd::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.6 via Frontend
+ Transport; Tue, 26 Jan 2021 13:31:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ BL2NAM02FT031.mail.protection.outlook.com (10.152.77.173) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3784.12 via Frontend Transport; Tue, 26 Jan 2021 13:31:29 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Tue, 26 Jan 2021 05:31:29 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Tue, 26 Jan 2021 05:31:26 -0800
+Envelope-to: michal.simek@xilinx.com,
+ soc@kernel.org,
+ olof@lixom.net,
+ arnd@arndb.de,
+ robh+dt@kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ michael@walle.cc
+Received: from [172.30.17.109] (port=58936)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1l4ORK-000082-HY; Tue, 26 Jan 2021 05:31:26 -0800
+Subject: Re: [PATCH 0/3] add Ebang EBAZ4205 support
+To:     Michael Walle <michael@walle.cc>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        <soc@kernel.org>
+References: <20210120194033.26970-1-michael@walle.cc>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <6a9ce151-820a-a280-7137-804837f4b5a5@xilinx.com>
+Date:   Tue, 26 Jan 2021 14:31:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210120194033.26970-1-michael@walle.cc>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 96f943ff-90be-400b-1cca-08d8c1feb06a
+X-MS-TrafficTypeDiagnostic: MWHPR02MB3390:
+X-Microsoft-Antispam-PRVS: <MWHPR02MB33903EBA4A69A0A8C3E35218C6BC9@MWHPR02MB3390.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: F/JhTSG6jwTnW0EsIfHfqRS4V8RjMLQwwRkCZFewjEVkdS3+4skmhPf90n9ORfrzk7m9GmNQzBHe2fM2isE5q/vrAr0JWAjP8bQr9n45hRrPu1cpCro/0SuQNbbGldWdFUlD2a1QepCMSnkVWmDpwD9LKM9pOAEkrCZ8zxQxeFhIDHxJg7M8BtmBDF+43aaW5U/2QQeIy2NC8oX3A4EVVN/6VCC5iZgQaw3Uoz1WUARMKlVouq6g4ejwWMbYAPzE2dYdn6ChsAfqTvK7fQVUfRTE3RMRHhbzpjmeEh7fQWciiNmTCyqrKvgrDhFWAZyyjp1hARsZawVvJpildTcBA715G6gZJNTb7zIisV9tLVgQBiBTcnzFvLhebmLFl4RetR6XAJui3/w0knmBJ8EC1OUMzcm2tHc53hrN55jtD4XVPc0tNQZyv/72Pe1ktbROHzKbzVz+DoRfrrZM7A6mOvxNMywk6CPeB0I+xDQphNyGzUkJzAepoDG5BpwmYfcP1RMFToSsKLcEbZiUV77CV9m2LOPniCvzA+ke98BNCyFmFHpMBQgzQRFnv0UcNEu+9wo27hFGPrc7jfHW2+NasFIUJrPRa/am5zDbP3GPaPZyLXVirdRNei2OX3eXFxMwWm06EZD2A1tbPyFaZ2RUReOfGv0XGwXQBLMMmlo5pjc=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(346002)(39860400002)(136003)(376002)(46966006)(36756003)(6666004)(8676002)(36906005)(186003)(8936002)(4744005)(82310400003)(31696002)(9786002)(7636003)(83380400001)(478600001)(31686004)(2906002)(82740400003)(356005)(66574015)(426003)(4326008)(44832011)(336012)(110136005)(53546011)(26005)(70586007)(47076005)(70206006)(5660300002)(2616005)(54906003)(316002)(50156003)(2101003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 13:31:29.7103
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96f943ff-90be-400b-1cca-08d8c1feb06a
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT031.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB3390
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Silence indentation level warning reported by dt_binding_check in
-order to reduce noise during routine checks.
 
-$ make dt_binding_check
-mt8192-mt6359-rt1015-rt5682.yaml:10:4: [warning] wrong indentation:
-expected 2 but found 3 (indentation)
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
----
- .../bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml           | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 1/20/21 8:40 PM, Michael Walle wrote:
+> Add support for the Ebang EBAZ4205 board. This board was once used as a
+> control board for a bitcoin mining device. Nowawdays it is sold as a cheap
+> Zynq-7000 eval board.
+> 
+> Michael Walle (3):
+>   dt-bindings: add ebang vendor prefix
+>   dt-bindings: arm: add Ebang EBAZ4205 board
+>   ARM: dts: add Ebang EBAZ4205 device tree
+> 
+>  .../devicetree/bindings/arm/xilinx.yaml       |   1 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  arch/arm/boot/dts/zynq-ebaz4205.dts           | 109 ++++++++++++++++++
+>  4 files changed, 113 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/zynq-ebaz4205.dts
+> 
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-index bf8c8ba25009..54650823b29a 100644
---- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
-@@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Mediatek MT8192 with MT6359, RT1015 and RT5682 ASoC sound card driver
- 
- maintainers:
--   - Jiaxin Yu <jiaxin.yu@mediatek.com>
--   - Shane Chien <shane.chien@mediatek.com>
-+  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-+  - Shane Chien <shane.chien@mediatek.com>
- 
- description:
-   This binding describes the MT8192 sound card.
--- 
-2.27.0
+Applied all.
 
+Thanks,
+Michal
