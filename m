@@ -2,187 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D645304773
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 20:05:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84096304765
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 20:03:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728853AbhAZRCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:02:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43878 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729094AbhAZIAO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 03:00:14 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 419AC206D7;
-        Tue, 26 Jan 2021 07:59:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611647974;
-        bh=ndO0PMKXJOqvpOvK3ZfF6AN3TVTIqf62iPD8PKPIV64=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Nfa38lZYBYPy3CRuYp5nri0FGpaDkLPA0mMhc2zNJAAR/oTwAlu388u7agEK2/ZQj
-         iOaPKSv4RKXM+f62m//GrWChQtRXA2qNV1KvxE1M6h752qq0G7l3KzzKx5ar3pSgJg
-         zrw/QTXEfAjfn7eocwlP34P9iPkxN+infrtdfJOh6Dvhgm3/gxEYc6GRozPcnSOtUc
-         e6RJcKV9WQvkjz99JKbFxq/11a5f8QgWiP7J6wdECOHg7UAE0V+EKbW/n/UYFyiK/g
-         kitr/0ux0fe3koWJxE271FwtJO8clhldffSDWc+Bk9/kqKVuRB74LorFDplsyixq+b
-         Jkyg74UKbUp7Q==
-Date:   Tue, 26 Jan 2021 13:29:29 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Vivek Aknurwar <viveka@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S1728320AbhAZRFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:05:01 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:35889 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1732970AbhAZIHv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:07:51 -0500
+X-UUID: f9171628db3544a3b65753ff863172cd-20210126
+X-UUID: f9171628db3544a3b65753ff863172cd-20210126
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <henryc.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1072506722; Tue, 26 Jan 2021 16:03:56 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 26 Jan 2021 16:03:55 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jan 2021 16:03:55 +0800
+From:   Henry Chen <henryc.chen@mediatek.com>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jeevan Shriram <jshriram@codeaurora.org>
-Subject: Re: [PATCH v4 3/5] clk: qcom: clk-alpha-pll: Add support for Lucid
- 5LPE PLL
-Message-ID: <20210126075929.GM2771@vkoul-mobl>
-References: <20210118044321.2571775-1-vkoul@kernel.org>
- <20210118044321.2571775-4-vkoul@kernel.org>
- <YA79UPODso3cmMFU@builder.lan>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Arvin Wang <arvin.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH V8 00/13] Add driver for dvfsrc, support for interconnect
+Date:   Tue, 26 Jan 2021 16:03:42 +0800
+Message-ID: <1611648234-15043-1-git-send-email-henryc.chen@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YA79UPODso3cmMFU@builder.lan>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25-01-21, 11:18, Bjorn Andersson wrote:
-> On Sun 17 Jan 22:43 CST 2021, Vinod Koul wrote:
-> 
-> > From: Vivek Aknurwar <viveka@codeaurora.org>
-> > 
-> > Lucid 5LPE is a slightly different Lucid PLL with different offsets and
-> > porgramming sequence so add support for these
-> > 
-> > Signed-off-by: Vivek Aknurwar <viveka@codeaurora.org>
-> > Signed-off-by: Jeevan Shriram <jshriram@codeaurora.org>
-> > [vkoul: rebase and tidy up for upstream]
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  drivers/clk/qcom/clk-alpha-pll.c | 173 +++++++++++++++++++++++++++++++
-> >  drivers/clk/qcom/clk-alpha-pll.h |   4 +
-> >  2 files changed, 177 insertions(+)
-> > 
-> > diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> > index a30ea7b09224..f9c48da21bd1 100644
-> > --- a/drivers/clk/qcom/clk-alpha-pll.c
-> > +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> > @@ -156,6 +156,12 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
-> >  /* LUCID PLL specific settings and offsets */
-> >  #define LUCID_PCAL_DONE		BIT(27)
-> >  
-> > +/* LUCID 5LPE PLL specific settings and offsets */
-> > +#define LUCID_5LPE_PCAL_DONE		BIT(11)
-> > +#define LUCID_5LPE_ALPHA_PLL_ACK_LATCH	BIT(13)
-> > +#define LUCID_5LPE_PLL_LATCH_INPUT	BIT(14)
-> > +#define LUCID_5LPE_ENABLE_VOTE_RUN	BIT(21)
-> > +
-> >  #define pll_alpha_width(p)					\
-> >  		((PLL_ALPHA_VAL_U(p) - PLL_ALPHA_VAL(p) == 4) ?	\
-> >  				 ALPHA_REG_BITWIDTH : ALPHA_REG_16BIT_WIDTH)
-> > @@ -1604,3 +1610,170 @@ const struct clk_ops clk_alpha_pll_agera_ops = {
-> >  	.set_rate = clk_alpha_pll_agera_set_rate,
-> >  };
-> >  EXPORT_SYMBOL_GPL(clk_alpha_pll_agera_ops);
-> > +
-> > +static int alpha_pll_lucid_5lpe_enable(struct clk_hw *hw)
-> > +{
-> > +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> > +	u32 val;
-> > +	int ret;
-> > +
-> > +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* If in FSM mode, just vote for it */
-> > +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN) {
-> > +		ret = clk_enable_regmap(hw);
-> > +		if (ret)
-> > +			return ret;
-> > +		return wait_for_pll_enable_lock(pll);
-> > +	}
-> > +
-> > +	/* Check if PLL is already enabled, return if enabled */
-> > +	ret = trion_pll_is_enabled(pll, pll->clkr.regmap);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_RUN);
-> > +
-> > +	ret = wait_for_pll_enable_lock(pll);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Enable the PLL outputs */
-> > +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, PLL_OUT_MASK);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Enable the global PLL outputs */
-> > +	return regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
-> > +}
-> > +
-> > +static void alpha_pll_lucid_5lpe_disable(struct clk_hw *hw)
-> > +{
-> > +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> > +	u32 val;
-> > +	int ret;
-> > +
-> > +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
-> > +	if (ret)
-> > +		return;
-> > +
-> > +	/* If in FSM mode, just unvote it */
-> > +	if (val & LUCID_5LPE_ENABLE_VOTE_RUN) {
-> > +		clk_disable_regmap(hw);
-> > +		return;
-> > +	}
-> > +
-> > +	/* Disable the global PLL output */
-> > +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
-> > +	if (ret)
-> > +		return;
-> > +
-> > +	/* Disable the PLL outputs */
-> > +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, 0);
-> > +	if (ret)
-> > +		return;
-> > +
-> > +	/* Place the PLL mode in STANDBY */
-> > +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_STANDBY);
-> > +}
-> > +
-> > +/*
-> > + * The Lucid 5LPE PLL requires a power-on self-calibration which happens
-> > + * when the PLL comes out of reset. Calibrate in case it is not completed.
-> > + */
-> > +static int alpha_pll_lucid_5lpe_prepare(struct clk_hw *hw)
-> > +{
-> > +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> > +	struct clk_hw *p;
-> > +	u32 val;
-> > +	int ret;
-> > +
-> > +	/* Return early if calibration is not needed. */
-> > +	regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
-> 
-> I doubt this will ever fail, but static analysis tools would complain
-> about val possibly being uninitialized after this.
-> 
-> And the return value is checked in the other functions.
+This series is based on v5.11-rc1.
 
-Yes agreed, will update this. Somehow I dont this my checked W=1
-complained about this, maybe some others would..
+The patchsets add support for MediaTek hardware module named DVFSRC
+(dynamic voltage and frequency scaling resource collector). The DVFSRC is
+a HW module which is used to collect all the requests from both software
+and hardware and turn into the decision of minimum operating voltage and
+minimum DRAM frequency to fulfill those requests.
 
--- 
-~Vinod
+So, This series is to implement the dvfsrc driver to collect all the
+requests of operating voltage or DRAM bandwidth from other device drivers
+likes GPU/Camera through 3 frameworks basically:
+
+1. interconnect framework: to aggregate the bandwidth
+   requirements from different clients
+
+[1] https://patchwork.kernel.org/cover/10766329/
+
+There has a hw module "DRAM scheduler", which used to control the throughput.
+The DVFSRC will collect forecast data of dram bandwidth from
+SW consumers(camera/gpu...), and according the forecast to change the DRAM
+frequency
+
+2. Regualtor framework: to handle the operating voltage requirement from user or
+   cosumer which not belong any power domain
+
+Changes in V8:
+* Fixed the dt_binding_check error of dvfsrc.yaml. (Rob)
+* Remove Kconfig dependency of DVFSRC
+
+Changes in V7:
+* Fixed the dt_binding_check error of dvfsrc.yaml. (Rob)
+* Fixed the checkpatch complains of "Signed-off-by: email name mismatch". (Georgi)
+* Fixed coding style of interconnect driver. (Georgi)
+* Upate comment of the years to 2021. (Georgi)
+
+Changes in V6:
+* Remove the performace state support, because the request from consumer can be
+replaced by using interconnect and regulator framework.
+* Update the DT patches and convert them to DT schema. (Georgi)
+* Modify the comment format and coding style. (Mark)
+
+Changes in V5:
+* Support more platform mt6873/mt8192
+* Drop the compatible and interconnect provider node and make the parent node an
+interconnect provider. (Rob/Georgi)
+* Make modification of interconnect driver from coding suggestion. (Georgi)
+* Move interconnect diagram into the commit text of patch. (Georgi)
+* Register the interconnect provider as a platform sub-device. (Georgi)
+
+Changes in V4:
+* Add acked TAG on dt-bindings patches. (Rob)
+* Declaration of emi_icc_aggregate since the prototype of aggregate function
+has changed meanwhile. (Georgi)
+* Used emi_icc_remove instead of icc_provider_del on probe. (Georgi)
+* Add dvfsrc regulator driver into series.
+* Bug fixed of mt8183_get_current_level.
+* Add mutex protection for pstate operation on dvfsrc_set_performance.
+
+Changes in V3:
+* Remove RFC from the subject prefix of the series
+* Combine dt-binding patch and move interconnect dt-binding document into
+dvfsrc. (Rob)
+* Remove unused header, add unit descirption to the bandwidth, rename compatible
+name on interconnect driver. (Georgi)
+* Fixed some coding style: check flow, naming, used readx_poll_timeout
+on dvfsrc driver. (Ryan)
+* Rename interconnect driver mt8183.c to mtk-emi.c
+* Rename interconnect header mtk,mt8183.h to mtk,emi.h
+* mtk-scpsys.c: Add opp table check first to avoid OF runtime parse failed
+
+Changes in RFC V2:
+* Remove the DT property dram_type. (Rob)
+* Used generic dts property 'opp-level' to get the performace state. (Stephen)
+* Remove unecessary dependency config on Kconfig. (Stephen)
+* Remove unused header file, fixed some coding style issue, typo,
+error handling on dvfsrc driver. (Nicolas/Stephen)
+* Remove irq handler on dvfsrc driver. (Stephen)
+* Remove init table on dvfsrc driver, combine hw init on trustzone.
+* Add interconnect support of mt8183 to aggregate the emi bandwidth.
+(Georgi)
+
+V7: https://patchwork.kernel.org/project/linux-mediatek/list/?series=411057
+V6: https://patchwork.kernel.org/project/linux-mediatek/list/?series=406077
+V5: https://patchwork.kernel.org/project/linux-mediatek/list/?series=348065
+V4: https://lore.kernel.org/patchwork/cover/1209284/
+V3: https://patchwork.kernel.org/cover/11118867/
+RFC V2: https://lore.kernel.org/patchwork/patch/1068113/
+RFC V1: https://lore.kernel.org/patchwork/cover/1028535/
+
