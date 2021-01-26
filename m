@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 972F4304CEA
+	by mail.lfdr.de (Postfix) with ESMTP id A8FF6304CEB
 	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 23:59:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730247AbhAZW7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 17:59:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41134 "EHLO mail.kernel.org"
+        id S1731149AbhAZW7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 17:59:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42172 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389909AbhAZRui (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 12:50:38 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CF4BD2224C;
-        Tue, 26 Jan 2021 17:49:57 +0000 (UTC)
+        id S2393622AbhAZRzk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 12:55:40 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A7EE222210;
+        Tue, 26 Jan 2021 17:54:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1611683398;
-        bh=ix5zJ6JWxdoag7Pi/sGk5niBB/BRtMgouJs8I7834qI=;
+        s=korg; t=1611683699;
+        bh=sWdJkC0XV13qzG3cgYLFyf1qRUk6OlIgEZOFy1MdMrs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QlmBe9gDOtXQz1sz7N3XMxwQGKMs/kj/5q94ltAL+JYThZi2SOYOO/qoDyHa5+qIr
-         JE56dqfoBYM7SOGJj1LFEGSI5KdlbEsJ1OGvB+asxu+UzpPRMyQS7HCEl9ZC9EWHK3
-         qdcDshfRJ7tGjJ2edO1Aw8EDjHUUgKxBPkG1eAKs=
-Date:   Tue, 26 Jan 2021 18:49:53 +0100
+        b=YPgYpVMXj6hKPm4YzKQvuYAr3i+s5n8xqAxzJjpH8Hs0NDADyx3v4tMhoi82ajkWo
+         ILg7eNmfjEzCSlHo6DSL3j5tX0omyvqQdRTIhen1MbywJ0F7fFc+cFaQJEiAx+jG13
+         dOFjyNNANY3dxyB6XqprCEnCS62KeqbiDwEO7fWg=
+Date:   Tue, 26 Jan 2021 18:54:57 +0100
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+Cc:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>,
         devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        Yu Chen <chenyu56@huawei.com>, linux-kernel@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Alex Dewar <alex.dewar90@gmail.com>
-Subject: Re: [PATCH v4 0/5] Promote Hikey 970 USB phy out of staging
-Message-ID: <YBBWQeglmuDn1g11@kroah.com>
-References: <cover.1611052729.git.mchehab+huawei@kernel.org>
+        Mayulong <mayulong1@huawei.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Colin Ian King <colin.king@canonical.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>
+Subject: Re: [PATCH v5 00/21] Move Hisilicon 6421v600 SPMI driver set out of
+ staging
+Message-ID: <YBBXcdLbj92yMJhw@kroah.com>
+References: <cover.1611212783.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1611052729.git.mchehab+huawei@kernel.org>
+In-Reply-To: <cover.1611212783.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 19, 2021 at 11:44:38AM +0100, Mauro Carvalho Chehab wrote:
-> Hi Vinod/Rob,
+On Thu, Jan 21, 2021 at 08:18:02AM +0100, Mauro Carvalho Chehab wrote:
+> Hi Mark/Lee,
 > 
-> This series moves  the Hikey 970 USB PHY driver out of staging.
+> This patch series finish addressing support for Hikey 970
+> SPMI controller, PMIC and regulators.
 > 
-> Patches 1 to 4 contain the fixes from staging. Patch 5 moves the
-> driver from staging:
+> This version was generated with -M, in order to make easier
+> to merge upstream.  Also, rebased on the top of v5.10,
+> without any dependencies from the other patch series
+> I'm submitting for this board.
 > 
-> 	$ git show 82ce73ac9a38 --summary
-> 	...
-> 	 rename drivers/staging/hikey9xx/phy-hi3670-usb3.yaml => Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml (100%)
-> 	 rename drivers/{staging/hikey9xx => phy/hisilicon}/phy-hi3670-usb3.c (100%)
-> 
-> I opted to use --no-renames on this series in order to make easier to
-> review via e-mail, as the entire driver and DT bindings will be seen
-> at the last patch on this series.
+> Yet,  patch 18 to 20 modifies drivers/staging/hikey9xx/Kconfig
+> and drivers/staging/hikey9xx/Makefile. So, trivial conflicts
+> will rise if they're applied via different trees, as they all
+> remove some lines from such files. 
 
-First 4 patches applied to my tree, thanks.
+I've applied the first 13 patches, except for patch 3, as that did not
+apply, to my tree, thanks.
 
 greg k-h
