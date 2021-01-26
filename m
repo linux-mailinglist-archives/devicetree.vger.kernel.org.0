@@ -2,129 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4DD73040E9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA0F3040F7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:54:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388435AbhAZOv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 09:51:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50128 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391308AbhAZOvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:51:16 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B0D5C061D7F
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:50:35 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id f11so19853822ljm.8
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:50:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=b6f1LvYnA5FB026vF4qzvowPNXCZxvMKvprMD5ct7zk=;
-        b=DNO3emq0sg1yGJui5VGqWLdncnYiEqU0KPFmhDvnstsqjSeS7b8hvHznoqrQHY+XSr
-         yZp/SYsBIjadcn9HN+QuFWFQtWsyu8QXadKPwo2wWhh3EtE7QkWGLm269oRP1LAYUu/S
-         Pwd/tIzVJlBBKAvh7Wu8OJS9Bu/UTTvDjd8WYtR9e/7gU/WVqkoXlmpAZhXwmrpSM/dK
-         f3XvrmFRNm3LpSVViZxKaVGoH0VBTgXmG+3G5HIOdZbbRSeIPWrunBhGoxDepef4MOHU
-         T6N8Hy9dW6yzemGneJyghsQpfUlfUVAbUNwJilajVJaish2yyW3GaG9LqAarEdgCmD5C
-         cWTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b6f1LvYnA5FB026vF4qzvowPNXCZxvMKvprMD5ct7zk=;
-        b=exd881m15VshpOUoOfHdSkW1w9ORugtC3zkM6SP5SRKXlllKbz/i4FAIIIiGGLvMXA
-         PRjOBB2AfLg+/zteoV9SyULOvwOgh3kQrWAOz0krR3DFvuVYOqjW7dL4h2ll718g+VUm
-         AL62zlfLRtQL4fq4L9PoBj2vJ299kPBGxNvAUFGs3WwAc5BCc0Kc74i3udHWdt78IhNp
-         cQ0RCioLHe42+gyPtdFS+X9mGU3RAc81pOqRJZQ+AMnZous2eQu8oVhfYh8Oy+VDAG4w
-         FSr3dayU1jHEAmZvzoZrTZxg8X7fylSjsgRqlNYSAmjWgjlmqv9EBpYH7+3j/5YjIFPb
-         q+HA==
-X-Gm-Message-State: AOAM533C75gMf7zNIrv/GXgFYkkqASoW9KjpDALUIBkm5rmTgdaRZ4Zt
-        yvUVNdatWsU9igSng55aEBmU04yla69aZTY8tk2dfA==
-X-Google-Smtp-Source: ABdhPJzrFkum4g7iaOZRLr9RsdK0/FQdTk4i3qqWYXYLKw/VBZRQbPjTjiU3XlNLJirttc3OXQuYiQBwIXWegbs4fN4=
-X-Received: by 2002:a2e:8746:: with SMTP id q6mr3098828ljj.326.1611672634129;
- Tue, 26 Jan 2021 06:50:34 -0800 (PST)
+        id S2391483AbhAZOxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 09:53:30 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34728 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391314AbhAZOx1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 09:53:27 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 98F9223103;
+        Tue, 26 Jan 2021 14:52:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611672764;
+        bh=3yBxzjkgZhuyNBbMaccqgbZLYAKuOFoO0Q29PtcedmU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XTkQNv8Sbs4GgCocet74Y0iwGHu2J4vtK6ffoT2EiaLXhKdv6+gXprNgC/91C2sld
+         ZdA2w1TSkTamreVLY6tGDje+3rgiY/G57iiXOcRNzUccxx5vGIuxJCLGrSV8il8/4B
+         E7rhmyrQHEx/wB+Z9CW1wz96IvEq+hC3edpHow4/1eTbnupidGt+9Y4Fa+lfqO7EUi
+         OLJR+AZHucIYJ6M/mt5yxzyfzBigbeI3Fgz7JjLZav62AiDzmFxr4GICriOU09G/Hj
+         /4lzkpmLdlThZBbb8qpP0amMjjFfNYgQv1iTpHyCJ9lBxDS05/+TWgR4SLys4qxRmI
+         USD7Klh2QhO6A==
+Received: by mail-ed1-f52.google.com with SMTP id bx12so20053883edb.8;
+        Tue, 26 Jan 2021 06:52:44 -0800 (PST)
+X-Gm-Message-State: AOAM532mxoCYUZskT8JnAZTaq3NVBVwRZ2QadjOFshXApMWunMFh/maH
+        sgU61iG4N3yQKQQALrNsJm9o3X8s3GskZZvEgg==
+X-Google-Smtp-Source: ABdhPJx9p+Z7FBDf1hYI1Kfn/L638Nk9D11uIpYesw9n6jxClik4PWGyAIMoLFtqYSEQp7jkpV+XQhsyE8iIOyuGiv0=
+X-Received: by 2002:aa7:c895:: with SMTP id p21mr4836358eds.165.1611672763215;
+ Tue, 26 Jan 2021 06:52:43 -0800 (PST)
 MIME-Version: 1.0
-References: <20210125182153.212998-1-angelogioacchino.delregno@somainline.org> <20210125182153.212998-2-angelogioacchino.delregno@somainline.org>
-In-Reply-To: <20210125182153.212998-2-angelogioacchino.delregno@somainline.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 26 Jan 2021 15:50:23 +0100
-Message-ID: <CACRpkdYeDw68MhBBWnLhd-1PKg9MkzP1FO_cijjvq-2fPBSQ-g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: Add bindings for Awinic AW9523/AW9523B
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, phone-devel@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+References: <20210125024824.634583-1-xxm@rock-chips.com> <20210125024927.634634-1-xxm@rock-chips.com>
+ <20210125054836.GB579511@unreal> <0b65ca38-ff7a-f9cd-5406-1f275fbbecd1@rock-chips.com>
+ <20210125090129.GF579511@unreal>
+In-Reply-To: <20210125090129.GF579511@unreal>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 26 Jan 2021 08:52:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJET8-gn-uy11EVHJAz057FVH3-BErwyL41W2WpxhgQUQ@mail.gmail.com>
+Message-ID: <CAL_JsqJET8-gn-uy11EVHJAz057FVH3-BErwyL41W2WpxhgQUQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] PCI: rockchip: add DesignWare based PCIe controller
+To:     Leon Romanovsky <leon@kernel.org>
+Cc:     xxm <xxm@rock-chips.com>, Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 7:21 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@somainline.org> wrote:
-
-> Add bindings for the Awinic AW9523/AW9523B I2C GPIO Expander driver.
+On Mon, Jan 25, 2021 at 3:01 AM Leon Romanovsky <leon@kernel.org> wrote:
 >
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-(...)
-> +  '#interrupt-cells':
-> +    description:
-> +      Specifies the PIN numbers and Flags, as defined in defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-> +    const: 2
+> On Mon, Jan 25, 2021 at 02:40:10PM +0800, xxm wrote:
+> > Hi Leon,
+> >
+> > Thanks for your reply.
+> >
+> > =E5=9C=A8 2021/1/25 13:48, Leon Romanovsky =E5=86=99=E9=81=93:
+> > > On Mon, Jan 25, 2021 at 10:49:27AM +0800, Simon Xue wrote:
+> > > > pcie-dw-rockchip is based on DWC IP. But pcie-rockchip-host
+> > > > is Rockchip designed IP which is only used for RK3399. So all the f=
+ollowing
+> > > > non-RK3399 SoCs should use this driver.
+> > > >
+> > > > Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> > > > Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> > > > ---
+> > > >   drivers/pci/controller/dwc/Kconfig            |   9 +
+> > > >   drivers/pci/controller/dwc/Makefile           |   1 +
+> > > >   drivers/pci/controller/dwc/pcie-dw-rockchip.c | 286 +++++++++++++=
++++++
+> > > >   3 files changed, 296 insertions(+)
+> > > >   create mode 100644 drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > >
+> > > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/contr=
+oller/dwc/Kconfig
+> > > > index 22c5529e9a65..aee408fe9283 100644
+> > > > --- a/drivers/pci/controller/dwc/Kconfig
+> > > > +++ b/drivers/pci/controller/dwc/Kconfig
+> > > > @@ -214,6 +214,15 @@ config PCIE_ARTPEC6_EP
+> > > >             Enables support for the PCIe controller in the ARTPEC-6=
+ SoC to work in
+> > > >             endpoint mode. This uses the DesignWare core.
+> > > >
+> > > > +config PCIE_ROCKCHIP_DW_HOST
+> > > > + bool "Rockchip DesignWare PCIe controller"
+> > > > + select PCIE_DW
+> > > > + select PCIE_DW_HOST
+> > > > + depends on ARCH_ROCKCHIP || COMPILE_TEST
+> > > > + depends on OF
+> > > > + help
+> > > > +   Enables support for the DW PCIe controller in the Rockchip SoC.
+> > > > +
+> > > >   config PCIE_INTEL_GW
+> > > >           bool "Intel Gateway PCIe host controller support"
+> > > >           depends on OF && (X86 || COMPILE_TEST)
+> > > > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/cont=
+roller/dwc/Makefile
+> > > > index a751553fa0db..30eef8e9ee8a 100644
+> > > > --- a/drivers/pci/controller/dwc/Makefile
+> > > > +++ b/drivers/pci/controller/dwc/Makefile
+> > > > @@ -13,6 +13,7 @@ obj-$(CONFIG_PCI_LAYERSCAPE_EP) +=3D pci-layersca=
+pe-ep.o
+> > > >   obj-$(CONFIG_PCIE_QCOM) +=3D pcie-qcom.o
+> > > >   obj-$(CONFIG_PCIE_ARMADA_8K) +=3D pcie-armada8k.o
+> > > >   obj-$(CONFIG_PCIE_ARTPEC6) +=3D pcie-artpec6.o
+> > > > +obj-$(CONFIG_PCIE_ROCKCHIP_DW_HOST) +=3D pcie-dw-rockchip.o
+> > > >   obj-$(CONFIG_PCIE_INTEL_GW) +=3D pcie-intel-gw.o
+> > > >   obj-$(CONFIG_PCIE_KIRIN) +=3D pcie-kirin.o
+> > > >   obj-$(CONFIG_PCIE_HISI_STB) +=3D pcie-histb.o
+> > > > diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/driver=
+s/pci/controller/dwc/pcie-dw-rockchip.c
+> > > > new file mode 100644
+> > > > index 000000000000..07f6d1cd5853
+> > > > --- /dev/null
+> > > > +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > > @@ -0,0 +1,286 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * PCIe host controller driver for Rockchip SoCs
+> > > > + *
+> > > > + * Copyright (C) 2021 Rockchip Electronics Co., Ltd.
+> > > > + *               http://www.rock-chips.com
+> > > > + *
+> > > > + * Author: Simon Xue <xxm@rock-chips.com>
+> > > > + */
+> > > > +
+> > > > +#include <linux/clk.h>
+> > > > +#include <linux/gpio/consumer.h>
+> > > > +#include <linux/mfd/syscon.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/of_device.h>
+> > > > +#include <linux/phy/phy.h>
+> > > > +#include <linux/platform_device.h>
+> > > > +#include <linux/regmap.h>
+> > > > +#include <linux/reset.h>
+> > > > +
+> > > > +#include "pcie-designware.h"
+> > > > +
+> > > > +/*
+> > > > + * The upper 16 bits of PCIE_CLIENT_CONFIG are a write
+> > > > + * mask for the lower 16 bits.  This allows atomic updates
+> > > > + * of the register without locking.
+> > > > + */
+> > > This is correct only for the variables that naturally aligned, I imag=
+ine
+> > > that this is the case here and in the Linux, but better do not write =
+comments
+> > > in the code that are not accurate.
+> >
+> > Ok, will remove.
+> > I wonder what it would be when outside the Linux? Could you share some =
+information?
+>
+> The C standard says nothing about atomicity, integer assignment maybe ato=
+mic,
+> maybe it isn=E2=80=99t. There is no guarantee, plain integer assignment i=
+n C is non-atomic
+> by definition.
+>
+> The atomicity of u32 is very dependent on hardware vendor, memory model a=
+nd compiler,
+> for example x86 and ARMs guarantee atomicity for u32. This is why I said =
+that probably
+> here (Linux) it is ok and you are not alone in expecting lockless write.
 
-Not really. Expand this to at least say in the description that the interrupt
-must be IRQ_TYPE_EDGE_BOTH.
+But this is a mmio register accessed thru writel() which does have all
+those guarantees.
 
-Preferably we should enforce it with the schema but I don't know if
-that is possible in any easy way.
-
-> +examples:
-> +  # Example configuration to drive pins for a keyboard matrix
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        aw9523: gpio-expander@58 {
-> +                compatible = "awinic,aw9523-pinctrl";
-> +                reg = <0x58>;
-> +                interrupt-parent = <&tlmm>;
-> +                interrupts = <50 IRQ_TYPE_EDGE_FALLING>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +                gpio-ranges = <&tlmm 0 0 16>;
-> +                interrupt-controller;
-> +                #interrupt-cells = <2>;
-> +                reset-gpios = <&tlmm 51 GPIO_ACTIVE_HIGH>;
-> +
-> +                keyboard-matrix-col-pins {
-> +                        pins = "gpio8", "gpio9", "gpio10", "gpio11",
-> +                               "gpio12", "gpio13", "gpio14", "gpio15";
-> +                        function = "gpio";
-> +                        input-disable;
-> +                        output-low;
-> +                };
-> +
-> +                keyboard-matrix-row-pins {
-> +                        pins = "gpio0", "gpio1", "gpio2", "gpio3",
-> +                               "gpio4", "gpio5", "gpio6", "gpio7";
-> +                        function = "gpio";
-> +                        bias-pull-up;
-> +                        drive-open-drain;
-> +                        input-enable;
-> +                };
-> +        };
-> +    };
-
-This is fine, but what about adding an example consumer using
-<&aw9523 0 IRQ_TYPE_EDGE_BOTH>?
-
-Yours,
-Linus Walleij
+Rob
