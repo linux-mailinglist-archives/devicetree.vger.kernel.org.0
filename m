@@ -2,229 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0A96304B13
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:14:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D351F304B11
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:14:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728786AbhAZEwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:52:01 -0500
-Received: from regular1.263xmail.com ([211.150.70.203]:56484 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727237AbhAZCuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:50:06 -0500
-Received: from localhost (unknown [192.168.167.13])
-        by regular1.263xmail.com (Postfix) with ESMTP id 89F66842;
-        Tue, 26 Jan 2021 10:44:24 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [192.168.31.83] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P11934T140583622674176S1611629063737209_;
-        Tue, 26 Jan 2021 10:44:24 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <3500669ea1cd2ec8e8f0b3c623afdafc>
-X-RL-SENDER: xxm@rock-chips.com
-X-SENDER: xxm@rock-chips.com
-X-LOGIN-NAME: xxm@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: =?UTF-8?Q?Re=3a_=5bPATCH_v3_1/2=5d_dt-bindings=3a_rockchip=3a_Add_D?=
- =?UTF-8?B?ZXNpZ25XYXJlIGJhc2VkIFBDSWUgY29udHJvbGxlcuOAkOivt+azqOaEj++8jA==?=
- =?UTF-8?B?6YKu5Lu255Sxcm9iaGVycmluZzJAZ21haWwuY29t5Luj5Y+R44CR?=
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>
-References: <20210125024824.634583-1-xxm@rock-chips.com>
- <20210125152632.GA381616@robh.at.kernel.org>
-From:   xxm <xxm@rock-chips.com>
-Message-ID: <e22ea1ed-9b3b-98ae-5b78-6c3c10af3589@rock-chips.com>
-Date:   Tue, 26 Jan 2021 10:44:23 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1726551AbhAZEvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:51:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42012 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729771AbhAZCsF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Jan 2021 21:48:05 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 865C322EBF;
+        Tue, 26 Jan 2021 02:47:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611629244;
+        bh=LwqYiU3oRlYo9FShj+CR8F39sEMecoUEsL8JexS7mlk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Ytpa+AJgfdSkPhWvfrCLezbbz355uloVnAK/2fKFQowbfA7lckWbiPn6NoxlBkrnu
+         5lfD+IlN9yrOP5buiZRptqOt56rvqd0mOQyYpSXM4E8NT/ggkTGpHV/0HLoY5D+EiY
+         YMjJhjvEBNl1LKp5ZjV97nYWBX08ak0aS0XtjjaepdSTfopPsNCBTYQcf1qIDrn+29
+         n/wtiPxcTkTFBUmUA7G/gke7Z0eytD8X8ZFXJUM5vLerJnOTKJhj2m6ZWdz7NftPJO
+         jfsrRHCYxJ67dpXzOFr5MBwDARwWlRonY5N0c+V6+6YiCYvJPchobIAFYxH80IznUW
+         dqr3/w0ervbYQ==
+Received: by mail-ej1-f45.google.com with SMTP id ox12so21016791ejb.2;
+        Mon, 25 Jan 2021 18:47:24 -0800 (PST)
+X-Gm-Message-State: AOAM531LUtRKVvxE8UkeGh+nwI1tehCA1EAYu7KK62B8gromemeBM635
+        ktJcCAAwjIbhF7B65Sy/05pKcql9JBih+AXtPg==
+X-Google-Smtp-Source: ABdhPJzhkSY6hKt7+GAS1hDt9h/064YyPtrM+ZOJ1MWC9e2hwRKo3F2kv3CME3814mJk+ka7plMlgXPIv5fl/5/2FYo=
+X-Received: by 2002:a17:906:a94:: with SMTP id y20mr2013640ejf.525.1611629243021;
+ Mon, 25 Jan 2021 18:47:23 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210125152632.GA381616@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20210115205819.19426-1-s-anna@ti.com> <20210126000443.GA1223706@robh.at.kernel.org>
+ <8f4a47f8-18dc-cb73-10db-033e5e5adb25@ti.com>
+In-Reply-To: <8f4a47f8-18dc-cb73-10db-033e5e5adb25@ti.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 25 Jan 2021 20:47:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLYfGvJ=zYbdJp4pUjmmJ_ROu1u_0dVwTj06Cw5+23fGw@mail.gmail.com>
+Message-ID: <CAL_JsqLYfGvJ=zYbdJp4pUjmmJ_ROu1u_0dVwTj06Cw5+23fGw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: irqchip: Add #address-cells to PRUSS INTC
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        David Lechner <david@lechnology.com>,
+        devicetree@vger.kernel.org,
+        linux-omap <linux-omap@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thanks for reply.
-
-在 2021/1/25 23:26, Rob Herring 写道:
-> On Mon, Jan 25, 2021 at 10:48:24AM +0800, Simon Xue wrote:
->> Document DT bindings for PCIe controller found on Rockchip SoC.
->>
->> Signed-off-by: Simon Xue <xxm@rock-chips.com>
->> ---
->>   .../bindings/pci/rockchip-dw-pcie.yaml        | 133 ++++++++++++++++++
->>   1 file changed, 133 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->> new file mode 100644
->> index 000000000000..24ea42203c14
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
->> @@ -0,0 +1,133 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: DesignWare based PCIe RC controller on Rockchip SoCs
->> +
->> +maintainers:
->> +  - Shawn Lin <shawn.lin@rock-chips.com>
->> +  - Simon Xue <xxm@rock-chips.com>
->> +  - Heiko Stuebner <heiko@sntech.de>
->> +
->> +description: |+
->> +  RK3568 SoC PCIe host controller is based on the Synopsys DesignWare
->> +  PCIe IP and thus inherits all the common properties defined in
->> +  designware-pcie.txt.
->> +
->> +allOf:
->> +  - $ref: /schemas/pci/pci-bus.yaml#
->> +
->> +# We need a select here so we don't match all nodes with 'snps,dw-pcie'
->> +select:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        const: rockchip,rk3568-pcie
->> +  required:
->> +    - compatible
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: rockchip,rk3568-pcie
->> +      - const: snps,dw-pcie
->> +
->> +  reg:
->> +    items:
->> +      - description: Data Bus Interface (DBI) registers
->> +      - description: Rockchip designed configuration registers
->> +
->> +  clocks:
->> +    items:
->> +      - description: AHB clock for PCIe master
->> +      - description: AHB clock for PCIe slave
->> +      - description: AHB clock for PCIe dbi
->> +      - description: APB clock for PCIe
->> +      - description: Auxiliary clock for PCIe
->> +
->> +  clock-names:
->> +    items:
->> +      - const: aclk_mst
->> +      - const: aclk_slv
->> +      - const: aclk_dbi
->> +      - const: pclk
->> +      - const: aux
->> +
->> +  msi-map: true
->> +
->> +  num-lanes: true
->> +
->> +  phys:
->> +    maxItems: 1
->> +
->> +  phy-names:
->> +    const: pcie-phy
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  ranges:
->> +    maxItems: 3
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  reset-names:
->> +    const: pipe
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - clocks
->> +  - clock-names
->> +  - msi-map
->> +  - num-lanes
->> +  - phys
->> +  - phy-names
->> +  - power-domains
->> +  - resets
->> +  - reset-names
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    bus {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        pcie3x2: pcie@fe280000 {
->> +            compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
->> +            reg = <0x3 0xc0800000 0x0 0x400000>,
->> +                  <0x0 0xfe280000 0x0 0x10000>;
->> +            reg-names = "pcie-dbi", "pcie-apb";
-> I believe I already said use 'dbi'. The DBI is also not 4MB. The config
-> space goes here too, not in 'ranges'.
-
-Sorry for missing  update in yaml.
-
-I think yaml is used to describe the resources of specific SoC, it 
-reserves 4MB for DBI on Rockchip SoC.
-
-So, I think assign 4MB here is reasonable.
-
->> +            bus-range = <0x20 0x2f>;
->> +            clocks = <&cru 143>, <&cru 144>,
->> +                     <&cru 145>, <&cru 146>,
->> +                     <&cru 147>;
->> +            clock-names = "aclk_mst", "aclk_slv",
->> +                          "aclk_dbi", "pclk",
->> +                          "aux";
->> +            device_type = "pci";
->> +            linux,pci-domain = <2>;
->> +            max-link-speed = <2>;
->> +            msi-map = <0x2000 &its 0x2000 0x1000>;
->> +            num-lanes = <2>;
->> +            phys = <&pcie30phy>;
->> +            phy-names = "pcie-phy";
->> +            power-domains = <&power 15>;
->> +            ranges = <0x00000800 0x0 0x80000000 0x3 0x80000000 0x0 0x800000>,
->> +                     <0x81000000 0x0 0x80800000 0x3 0x80800000 0x0 0x100000>,
->> +                     <0x83000000 0x0 0x80900000 0x3 0x80900000 0x0 0x3f700000>;
->> +            resets = <&cru 193>;
->> +            reset-names = "pipe";
->> +            #address-cells = <3>;
->> +            #size-cells = <2>;
->> +        };
->> +    };
->> +...
->> -- 
->> 2.25.1
->>
->>
->>
+On Mon, Jan 25, 2021 at 6:16 PM Suman Anna <s-anna@ti.com> wrote:
 >
+> Hi Rob,
 >
+> On 1/25/21 6:04 PM, Rob Herring wrote:
+> > On Fri, Jan 15, 2021 at 02:58:19PM -0600, Suman Anna wrote:
+> >> The '#address-cells' property looks to be a required property for
+> >> interrupt controller nodes as indicated by a warning message seen
+> >> when building dtbs with W=2. Adding the property to the PRUSS INTC
+> >> dts nodes though fails the dtbs_check. Add this property to the
+> >> PRUSS INTC binding to make it compliant with both dtbs_check and
+> >> building dtbs.
+> >>
+> >> Signed-off-by: Suman Anna <s-anna@ti.com>
+> >> ---
+> >> Hi Rob,
+> >>
+> >> This patch is also part of our effort to get rid of the warnings seen
+> >> around interrupt providers on TI K3 dtbs [1]. I needed this in the PRUSS
+> >> INTC bindings to not get a warning with dtbs_check while also ensuring
+> >> no warnings while building dtbs with W=2.
+> >>
+> >> I would have expected the '#address-cells' requirement to be inherited
+> >> automatically. And looking through the schema files, I actually do not
+> >> see the interrupt-controller.yaml included automatically anywhere. You
+> >> had asked us to drop the inclusion in this binding in our first version
+> >> with YAML [3]. Am I missing something, and how do we ensure that this
+> >> is enforced automatically for everyone?
+> >
+> > interrupt-controller.yaml is applied to any node named
+> > 'interrupt-controller'. More generally, if 'compatible' is not present,
+> > then we look at $nodename for the default 'select'. In your case, you
+> > didn't name the node appropriately.
+>
+> Thanks for the clarification. Yeah, I didn't add anything specifically, since
+> the expectation is interrupt-controller. Should I be adding that to this binding?
 
+No, either interrupt-controller.yaml needs to learn a new node name or
+your node names need to be fixed. I prefer the latter, but if you have
+more than 1 and don't have a unit-address (and in turn a 'reg' prop)
+we'd have to do the former. How are the interrupts controllers
+accessed if there's no way to address them?
 
+>
+> >
+> > We can't check this in interrupt-controller.yaml because #address-cells
+> > is not always 0. GICv3 is one notable exception.
+> >
+> >>
+> >> regards
+> >> Suman
+> >>
+> >> [1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210115083003.27387-1-lokeshvutla@ti.com/
+> >
+> > I've commented on this thread now in regards to #address-cells.
+>
+> I suppose I still need this patch to be defined to unblock the ICSSG nodes
+> getting accepted by our dts maintainer. Care to give your Reviewed-by for the
+> change? Or I can spin a v2 with $nodename added as well if that's needed too.
+
+No, I don't think you have to add #address-cells. We need to fix the
+warning in dtc.
+
+Rob
