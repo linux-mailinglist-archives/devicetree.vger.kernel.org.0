@@ -2,514 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0419A303F78
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:59:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5326F303F8E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:03:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404812AbhAZN6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 08:58:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49668 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390849AbhAZN62 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 08:58:28 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7CF9E229C9;
-        Tue, 26 Jan 2021 13:57:46 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1l4Oqm-00A8kA-Ij; Tue, 26 Jan 2021 13:57:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 26 Jan 2021 13:57:44 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        id S2404932AbhAZOCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 09:02:49 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:42227 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392696AbhAZOC1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:02:27 -0500
+X-Greylist: delayed 1365 seconds by postgrey-1.27 at vger.kernel.org; Tue, 26 Jan 2021 09:02:26 EST
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1l4OYU-0004yG-UA; Tue, 26 Jan 2021 14:38:51 +0100
+Received: from [IPv6:2a03:f580:87bc:d400:7fe8:65df:d446:b04e] (unknown [IPv6:2a03:f580:87bc:d400:7fe8:65df:d446:b04e])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id B2FE75CE557;
+        Tue, 26 Jan 2021 13:18:37 +0000 (UTC)
+Subject: Re: [PATCH v4 0/2] add support for GPIO based counter
+To:     Oleksij Rempel <o.rempel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com, drinkcat@chromium.org,
-        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-Subject: Re: [v7,5/7] PCI: mediatek-gen3: Add MSI support
-In-Reply-To: <20210113114001.5804-6-jianjun.wang@mediatek.com>
-References: <20210113114001.5804-1-jianjun.wang@mediatek.com>
- <20210113114001.5804-6-jianjun.wang@mediatek.com>
-User-Agent: Roundcube Webmail/1.4.10
-Message-ID: <661df220100e0d4e69f5cde90c083f4a@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: jianjun.wang@mediatek.com, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com, p.zabel@pengutronix.de, matthias.bgg@gmail.com, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com, youlin.pei@mediatek.com, chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com, sin_jieyang@mediatek.com, drinkcat@chromium.org, Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        William Breathitt Gray <vilhelm.gray@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+References: <20210126131239.8335-1-o.rempel@pengutronix.de>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <84d94006-44d3-70ac-2054-2419b0555a87@pengutronix.de>
+Date:   Tue, 26 Jan 2021 14:18:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <20210126131239.8335-1-o.rempel@pengutronix.de>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="xVRJ6V4ppET5HwV0BzagYBcihLWPxOlgU"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-13 11:39, Jianjun Wang wrote:
-> Add MSI support for MediaTek Gen3 PCIe controller.
-> 
-> This PCIe controller supports up to 256 MSI vectors, the MSI hardware
-> block diagram is as follows:
-> 
->                   +-----+
->                   | GIC |
->                   +-----+
->                      ^
->                      |
->                  port->irq
->                      |
->              +-+-+-+-+-+-+-+-+
->              |0|1|2|3|4|5|6|7| (PCIe intc)
->              +-+-+-+-+-+-+-+-+
->               ^ ^           ^
->               | |    ...    |
->       +-------+ +------+    +-----------+
->       |                |                |
-> +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
-> |0|1|...|30|31|  |0|1|...|30|31|  |0|1|...|30|31| (MSI sets)
-> +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
->  ^ ^      ^  ^    ^ ^      ^  ^    ^ ^      ^  ^
->  | |      |  |    | |      |  |    | |      |  |  (MSI vectors)
->  | |      |  |    | |      |  |    | |      |  |
-> 
->   (MSI SET0)       (MSI SET1)  ...   (MSI SET7)
-> 
-> With 256 MSI vectors supported, the MSI vectors are composed of 8 sets,
-> each set has its own address for MSI message, and supports 32 MSI 
-> vectors
-> to generate interrupt.
-> 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
-> ---
->  drivers/pci/controller/pcie-mediatek-gen3.c | 261 ++++++++++++++++++++
->  1 file changed, 261 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c
-> b/drivers/pci/controller/pcie-mediatek-gen3.c
-> index 7979a2856c35..471d97cd1ef9 100644
-> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-> @@ -14,6 +14,7 @@
->  #include <linux/irqdomain.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> +#include <linux/msi.h>
->  #include <linux/of_address.h>
->  #include <linux/of_clk.h>
->  #include <linux/of_pci.h>
-> @@ -52,11 +53,28 @@
->  #define PCIE_LINK_STATUS_REG		0x154
->  #define PCIE_PORT_LINKUP		BIT(8)
-> 
-> +#define PCIE_MSI_SET_NUM		8
-> +#define PCIE_MSI_IRQS_PER_SET		32
-> +#define PCIE_MSI_IRQS_NUM \
-> +	(PCIE_MSI_IRQS_PER_SET * (PCIE_MSI_SET_NUM))
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--xVRJ6V4ppET5HwV0BzagYBcihLWPxOlgU
+Content-Type: multipart/mixed; boundary="iF03qGfb7cEw9BByzAPwwWqz3IIyHUFzY";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Oleksij Rempel <o.rempel@pengutronix.de>, Rob Herring
+ <robh+dt@kernel.org>, William Breathitt Gray <vilhelm.gray@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ Robin van der Gracht <robin@protonic.nl>, linux-kernel@vger.kernel.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ David Jander <david@protonic.nl>
+Message-ID: <84d94006-44d3-70ac-2054-2419b0555a87@pengutronix.de>
+Subject: Re: [PATCH v4 0/2] add support for GPIO based counter
+References: <20210126131239.8335-1-o.rempel@pengutronix.de>
+In-Reply-To: <20210126131239.8335-1-o.rempel@pengutronix.de>
 
-Spurious inner bracketing.
+--iF03qGfb7cEw9BByzAPwwWqz3IIyHUFzY
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-> +
->  #define PCIE_INT_ENABLE_REG		0x180
-> +#define PCIE_MSI_ENABLE			GENMASK(PCIE_MSI_SET_NUM + 8 - 1, 8)
-> +#define PCIE_MSI_SHIFT			8
->  #define PCIE_INTX_SHIFT			24
->  #define PCIE_INTX_MASK			GENMASK(27, 24)
-> 
->  #define PCIE_INT_STATUS_REG		0x184
-> +#define PCIE_MSI_SET_ENABLE_REG		0x190
-> +#define PCIE_MSI_SET_ENABLE		GENMASK(PCIE_MSI_SET_NUM - 1, 0)
-> +
-> +#define PCIE_MSI_SET_BASE_REG		0xc00
-> +#define PCIE_MSI_SET_OFFSET		0x10
-> +#define PCIE_MSI_SET_STATUS_OFFSET	0x04
-> +#define PCIE_MSI_SET_ENABLE_OFFSET	0x08
-> +
-> +#define PCIE_MSI_SET_ADDR_HI_BASE	0xc80
-> +#define PCIE_MSI_SET_ADDR_HI_OFFSET	0x04
-> 
->  #define PCIE_TRANS_TABLE_BASE_REG	0x800
->  #define PCIE_ATR_SRC_ADDR_MSB_OFFSET	0x4
-> @@ -76,6 +94,18 @@
->  #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
->  #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
-> 
-> +/**
-> + * struct mtk_pcie_msi - MSI information for each set
-> + * @dev: pointer to PCIe device
-> + * @base: IO mapped register base
-> + * @msg_addr: MSI message address
-> + */
-> +struct mtk_msi_set {
-> +	struct device *dev;
-> +	void __iomem *base;
-> +	phys_addr_t msg_addr;
-> +};
-> +
->  /**
->   * struct mtk_pcie_port - PCIe port information
->   * @dev: pointer to PCIe device
-> @@ -88,6 +118,11 @@
->   * @num_clks: PCIe clocks count for this port
->   * @irq: PCIe controller interrupt number
->   * @intx_domain: legacy INTx IRQ domain
-> + * @msi_domain: MSI IRQ domain
-> + * @msi_bottom_domain: MSI IRQ bottom domain
-> + * @msi_sets: MSI sets information
-> + * @lock: lock protecting IRQ bit map
-> + * @msi_irq_in_use: bit map for assigned MSI IRQ
->   */
->  struct mtk_pcie_port {
->  	struct device *dev;
-> @@ -101,6 +136,11 @@ struct mtk_pcie_port {
-> 
->  	int irq;
->  	struct irq_domain *intx_domain;
-> +	struct irq_domain *msi_domain;
-> +	struct irq_domain *msi_bottom_domain;
-> +	struct mtk_msi_set msi_sets[PCIE_MSI_SET_NUM];
-> +	struct mutex lock;
-> +	DECLARE_BITMAP(msi_irq_in_use, PCIE_MSI_IRQS_NUM);
->  };
-> 
->  /**
-> @@ -243,6 +283,15 @@ static int mtk_pcie_startup_port(struct
-> mtk_pcie_port *port)
->  		return err;
->  	}
-> 
-> +	/* Enable MSI */
-> +	val = readl_relaxed(port->base + PCIE_MSI_SET_ENABLE_REG);
-> +	val |= PCIE_MSI_SET_ENABLE;
-> +	writel_relaxed(val, port->base + PCIE_MSI_SET_ENABLE_REG);
-> +
-> +	val = readl_relaxed(port->base + PCIE_INT_ENABLE_REG);
-> +	val |= PCIE_MSI_ENABLE;
-> +	writel_relaxed(val, port->base + PCIE_INT_ENABLE_REG);
-> +
->  	/* Set PCIe translation windows */
->  	resource_list_for_each_entry(entry, &host->windows) {
->  		struct resource *res = entry->res;
-> @@ -286,6 +335,129 @@ static int mtk_pcie_set_affinity(struct irq_data 
-> *data,
->  	return -EINVAL;
->  }
-> 
-> +static struct irq_chip mtk_msi_irq_chip = {
-> +	.name = "MSI",
-> +	.irq_ack = irq_chip_ack_parent,
-> +};
-> +
-> +static struct msi_domain_info mtk_msi_domain_info = {
-> +	.flags		= (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_PCI_MSIX |
-> +			   MSI_FLAG_USE_DEF_CHIP_OPS | MSI_FLAG_MULTI_PCI_MSI),
-> +	.chip		= &mtk_msi_irq_chip,
-> +};
-> +
-> +static void mtk_compose_msi_msg(struct irq_data *data, struct msi_msg 
-> *msg)
-> +{
-> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
-> +	unsigned long hwirq;
-> +
-> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
-> +
-> +	msg->address_hi = upper_32_bits(msi_set->msg_addr);
-> +	msg->address_lo = lower_32_bits(msi_set->msg_addr);
-> +	msg->data = hwirq;
-> +	dev_dbg(msi_set->dev, "msi#%#lx address_hi %#x address_lo %#x data 
-> %d\n",
-> +		hwirq, msg->address_hi, msg->address_lo, msg->data);
-> +}
-> +
-> +static void mtk_msi_bottom_irq_ack(struct irq_data *data)
-> +{
-> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
-> +	unsigned long hwirq;
-> +
-> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
-> +
-> +	writel_relaxed(BIT(hwirq), msi_set->base + 
-> PCIE_MSI_SET_STATUS_OFFSET);
-> +}
-> +
-> +static struct irq_chip mtk_msi_bottom_irq_chip = {
-> +	.irq_ack		= mtk_msi_bottom_irq_ack,
-> +	.irq_compose_msi_msg	= mtk_compose_msi_msg,
-> +	.irq_set_affinity	= mtk_pcie_set_affinity,
-> +	.name			= "PCIe",
+On 1/26/21 2:12 PM, Oleksij Rempel wrote:
+> changes v4:
+> - use IRQ_NOAUTOEN to not enable IRQ by default
+> - rename gpio_ from name pattern and make this driver work any IRQ
+>   source.
+>=20
+> changes v3:
+> - convert counter to atomic_t
 
-nit: "MSI", rather than "PCIe".
+What's the guaranteed width of atomic_t? IIRC a long time ago it was 24 b=
+it only....
 
-> +};
-> +
-> +static int mtk_msi_bottom_domain_alloc(struct irq_domain *domain,
-> +				       unsigned int virq, unsigned int nr_irqs,
-> +				       void *arg)
-> +{
-> +	struct mtk_pcie_port *port = domain->host_data;
-> +	struct mtk_msi_set *msi_set;
-> +	int i, hwirq, set_idx;
-> +
-> +	mutex_lock(&port->lock);
-> +
-> +	hwirq = bitmap_find_free_region(port->msi_irq_in_use, 
-> PCIE_MSI_IRQS_NUM,
-> +					order_base_2(nr_irqs));
-> +
-> +	mutex_unlock(&port->lock);
-> +
-> +	if (hwirq < 0)
-> +		return -ENOSPC;
-> +
-> +	set_idx = hwirq / PCIE_MSI_IRQS_PER_SET;
-> +	msi_set = &port->msi_sets[set_idx];
-> +
-> +	for (i = 0; i < nr_irqs; i++)
-> +		irq_domain_set_info(domain, virq + i, hwirq + i,
-> +				    &mtk_msi_bottom_irq_chip, msi_set,
-> +				    handle_edge_irq, NULL, NULL);
-> +
-> +	return 0;
-> +}
-> +
-> +static void mtk_msi_bottom_domain_free(struct irq_domain *domain,
-> +				       unsigned int virq, unsigned int nr_irqs)
-> +{
-> +	struct mtk_pcie_port *port = domain->host_data;
-> +	struct irq_data *data = irq_domain_get_irq_data(domain, virq);
-> +
-> +	mutex_lock(&port->lock);
-> +
-> +	bitmap_clear(port->msi_irq_in_use, data->hwirq, nr_irqs);
-> +
-> +	mutex_unlock(&port->lock);
-> +
-> +	irq_domain_free_irqs_common(domain, virq, nr_irqs);
-> +}
-> +
-> +static int mtk_msi_bottom_domain_activate(struct irq_domain *domain,
-> +					  struct irq_data *data, bool reserve)
-> +{
-> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
-> +	unsigned long hwirq;
-> +	u32 val;
-> +
-> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
-> +
-> +	val = readl_relaxed(msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
-> +	val |= BIT(hwirq);
-> +	writel_relaxed(val, msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
+Marc
 
-This isn't an activate. This is an unmask, which suffers from the same
-issue as its INTx sibling.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
-> +
-> +	return 0;
-> +}
-> +
-> +static void mtk_msi_bottom_domain_deactivate(struct irq_domain 
-> *domain,
-> +					     struct irq_data *data)
-> +{
-> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
-> +	unsigned long hwirq;
-> +	u32 val;
-> +
-> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
-> +
-> +	val = readl_relaxed(msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
-> +	val &= ~BIT(hwirq);
-> +	writel_relaxed(val, msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
-> +}
 
-Same thing, this is a mask. I don't think this block requires any
-activate/deactivate callbacks for its lower irqdomain.
+--iF03qGfb7cEw9BByzAPwwWqz3IIyHUFzY--
 
-As it stands, you can't mask a MSI at the low-level, which is
-pretty bad (you need to mask them at the PCI source, which can
-end-up disabling all vectors in the case of Multi-MSI).
+--xVRJ6V4ppET5HwV0BzagYBcihLWPxOlgU
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-> +
-> +static const struct irq_domain_ops mtk_msi_bottom_domain_ops = {
-> +	.alloc = mtk_msi_bottom_domain_alloc,
-> +	.free = mtk_msi_bottom_domain_free,
-> +	.activate = mtk_msi_bottom_domain_activate,
-> +	.deactivate = mtk_msi_bottom_domain_deactivate,
-> +};
-> +
->  static void mtk_intx_mask(struct irq_data *data)
->  {
->  	struct mtk_pcie_port *port = irq_data_get_irq_chip_data(data);
-> @@ -350,6 +522,9 @@ static int mtk_pcie_init_irq_domains(struct
-> mtk_pcie_port *port,
->  {
->  	struct device *dev = port->dev;
->  	struct device_node *intc_node;
-> +	struct fwnode_handle *fwnode = of_node_to_fwnode(node);
-> +	struct msi_domain_info *info;
-> +	int i, ret;
-> 
->  	/* Setup INTx */
->  	intc_node = of_get_child_by_name(node, "interrupt-controller");
-> @@ -365,7 +540,57 @@ static int mtk_pcie_init_irq_domains(struct
-> mtk_pcie_port *port,
->  		return -ENODEV;
->  	}
-> 
-> +	/* Setup MSI */
-> +	mutex_init(&port->lock);
-> +
-> +	port->msi_bottom_domain = irq_domain_add_linear(node, 
-> PCIE_MSI_IRQS_NUM,
-> +				  &mtk_msi_bottom_domain_ops, port);
-> +	if (!port->msi_bottom_domain) {
-> +		dev_info(dev, "failed to create MSI bottom domain\n");
-> +		ret = -ENODEV;
-> +		goto err_msi_bottom_domain;
-> +	}
-> +
-> +	info = devm_kzalloc(dev, sizeof(*info), GFP_KERNEL);
-> +	if (!info) {
-> +		ret = -ENOMEM;
-> +		goto err_msi_bottom_domain;
-> +	}
-> +
-> +	memcpy(info, &mtk_msi_domain_info, sizeof(*info));
+-----BEGIN PGP SIGNATURE-----
 
-Why the memcpy()? There is nothing in mtk_msi_domain_info that is
-per-domain, and you should be able to use this structure for all
-ports, shouldn't you?
+iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmAQFqoACgkQqclaivrt
+76nvKQf/YqnL3E33E6FjqGa1cIGmdbaH/Kck4MW7um71jfT3rBJnG1LwXE5HoFZ4
+3kNEX3GcKhRVIsNKZt0L8D8dMMxKOE7Wm2RbK4DH2EHgUiK7FWKRA+8Tmot3pYk4
+pwSxAkjvv3prBKB5d2skF8eUvqnOJht8rryS3isUNXZXIPA7ApMRYSDALV/h+4s7
+hfKIZvkrKNlicKCbJkwuaXPI7Sq8U1/0/Vvv76/28trJU4DvRxWNlRXcW5ojYo0s
+MSBVN5Odjgnb/wfE+ZrEYs8ppMFNxRfGMtv0ySEXheGZv0lCPXpht/z2ya3MfM78
+MtuSqeVQKjlIMp9ScDtuS6KQiPEUcg==
+=w/13
+-----END PGP SIGNATURE-----
 
-> +	info->chip_data = port;
-> +
-> +	port->msi_domain = pci_msi_create_irq_domain(fwnode, info,
-> +						     port->msi_bottom_domain);
-> +	if (!port->msi_domain) {
-> +		dev_info(dev, "failed to create MSI domain\n");
-> +		ret = -ENODEV;
-> +		goto err_msi_domain;
-> +	}
-> +
-> +	for (i = 0; i < PCIE_MSI_SET_NUM; i++) {
-> +		struct mtk_msi_set *msi_set = &port->msi_sets[i];
-> +
-> +		msi_set->dev = port->dev;
-
-Given that this is only used in a debug message, and that the addresses
-are already non-ambiguous, you can probably remove this field.
-
-> +		msi_set->base = port->base + PCIE_MSI_SET_BASE_REG +
-> +				i * PCIE_MSI_SET_OFFSET;
-> +		msi_set->msg_addr = port->reg_base + PCIE_MSI_SET_BASE_REG +
-> +				    i * PCIE_MSI_SET_OFFSET;
-> +
-> +		writel_relaxed(lower_32_bits(msi_set->msg_addr), msi_set->base);
-> +		writel_relaxed(upper_32_bits(msi_set->msg_addr),
-> +			       port->base + PCIE_MSI_SET_ADDR_HI_BASE +
-> +			       i * PCIE_MSI_SET_ADDR_HI_OFFSET);
-
-Please a comment on what this is doing...
-
-> +	}
-> +
->  	return 0;
-> +
-> +err_msi_domain:
-> +	irq_domain_remove(port->msi_bottom_domain);
-> +err_msi_bottom_domain:
-> +	irq_domain_remove(port->intx_domain);
-> +
-> +	return ret;
->  }
-> 
->  static void mtk_pcie_irq_teardown(struct mtk_pcie_port *port)
-> @@ -375,9 +600,34 @@ static void mtk_pcie_irq_teardown(struct
-> mtk_pcie_port *port)
->  	if (port->intx_domain)
->  		irq_domain_remove(port->intx_domain);
-> 
-> +	if (port->msi_domain)
-> +		irq_domain_remove(port->msi_domain);
-> +
-> +	if (port->msi_bottom_domain)
-> +		irq_domain_remove(port->msi_bottom_domain);
-> +
->  	irq_dispose_mapping(port->irq);
->  }
-> 
-> +static void mtk_pcie_msi_handler(struct mtk_pcie_port *port, int 
-> set_idx)
-> +{
-> +	struct mtk_msi_set *msi_set = &port->msi_sets[set_idx];
-> +	unsigned long msi_enable, msi_status;
-> +	unsigned int virq;
-> +	irq_hw_number_t bit, hwirq;
-> +
-> +	msi_enable = readl_relaxed(msi_set->base + 
-> PCIE_MSI_SET_ENABLE_OFFSET);
-> +	while ((msi_status =
-> +		readl_relaxed(msi_set->base + PCIE_MSI_SET_STATUS_OFFSET) &
-> +			      msi_enable)) {
-> +		for_each_set_bit(bit, &msi_status, PCIE_MSI_IRQS_PER_SET) {
-> +			hwirq = bit + set_idx * PCIE_MSI_IRQS_PER_SET;
-> +			virq = irq_find_mapping(port->msi_bottom_domain, hwirq);
-> +			generic_handle_irq(virq);
-> +		}
-> +	}
-
-This doesn't look very readable. How about something like:
-
-         do {
-                 msi_status = readl_relaxed(...) & msi_enable;
-                 if (!msi_status)
-                         break;
-
-                 for_each_set_bit(...) {
-                         ...
-                 }
-         } while(true);
-
-> +}
-> +
->  static void mtk_pcie_irq_handler(struct irq_desc *desc)
->  {
->  	struct mtk_pcie_port *port = irq_desc_get_handler_data(desc);
-> @@ -398,6 +648,17 @@ static void mtk_pcie_irq_handler(struct irq_desc 
-> *desc)
->  		}
->  	}
-> 
-> +	if (status & PCIE_MSI_ENABLE) {
-
-Same comment has for INTx.
-
-> +		irq_bit = PCIE_MSI_SHIFT;
-> +		for_each_set_bit_from(irq_bit, &status, PCIE_MSI_SET_NUM +
-> +				      PCIE_MSI_SHIFT) {
-> +			mtk_pcie_msi_handler(port, irq_bit - PCIE_MSI_SHIFT);
-> +
-> +			writel_relaxed(BIT(irq_bit),
-> +				       port->base + PCIE_INT_STATUS_REG);
-> +		}
-> +	}
-> +
->  	chained_irq_exit(irqchip, desc);
->  }
-
-Thanks,
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
+--xVRJ6V4ppET5HwV0BzagYBcihLWPxOlgU--
