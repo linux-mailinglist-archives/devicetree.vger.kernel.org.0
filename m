@@ -2,93 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C595E303356
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B916303351
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726379AbhAZEt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:49:58 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37336 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729983AbhAZCGQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 21:06:16 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 51EB222D50;
-        Tue, 26 Jan 2021 00:15:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611620117;
-        bh=G16sIENRX9EMyT17x8UvaimcQGeqHoMJpMYb9LmaK3k=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iEufz0HdZJC1U8LIy/seQ34aF3gVSFXWEmeHUby/eUKsm5lI4Ci13ZXStoKWIUWik
-         poGDxnRQkvDK8XZK7nJCc7cSTyFwRAZkCEnId29adMDNCfd8RRfXcXuYj7aKAdWClK
-         FhOXpue4UMeZo4yaHpDc9XvNmcd3sUD4J7Sjy6fUxLVu3I8fZPTOVCuPV27CzzyC7m
-         iN8LJOnKZ5NYpwtnJqUD6H4YXmLToAQIJkwW9jaKZ0Qq6eQ3bBSOScbHUky4vBf+b4
-         SQiAPwaXbiGrBDLDfJVsmDVLyMeY5CqbmCchFRU752siOfKe9go46VcxbfouG5rr4b
-         J/KyEepdMXghg==
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     linux-mmc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fscrypt@vger.kernel.org, Satya Tangirala <satyat@google.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Subject: [PATCH RESEND v6 9/9] arm64: dts: qcom: sdm630: add ICE registers and clocks
-Date:   Mon, 25 Jan 2021 16:14:56 -0800
-Message-Id: <20210126001456.382989-10-ebiggers@kernel.org>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210126001456.382989-1-ebiggers@kernel.org>
-References: <20210126001456.382989-1-ebiggers@kernel.org>
+        id S1728352AbhAZEtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:49:53 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:45960 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730878AbhAZCFm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:05:42 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10Q0GdCH124859;
+        Mon, 25 Jan 2021 18:16:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611620199;
+        bh=L+f4ohZrdj488CP3I7uIPQegEJlAgJImjluiVuvJrcA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=SvdgqdQS3ePBAKHWoAKSIOh32WDJ+cxGIFBElawyaWhStFSv569KvJA+sx84x2f6E
+         3yIjZq8TUh857IyO1M0YpXcPcQOOsbr9jG96QKAfogSsDBdF/LoRXFh7Z4psbqqnrx
+         IqrA2p762TzawbT/tnwaamFTLnq/c1nMHi0XQob8=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10Q0Gdcd047151
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 25 Jan 2021 18:16:39 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 25
+ Jan 2021 18:16:38 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 25 Jan 2021 18:16:38 -0600
+Received: from [10.250.69.64] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10Q0GcAE007721;
+        Mon, 25 Jan 2021 18:16:38 -0600
+Subject: Re: [PATCH] dt-bindings: irqchip: Add #address-cells to PRUSS INTC
+To:     Rob Herring <robh@kernel.org>
+CC:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        David Lechner <david@lechnology.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+References: <20210115205819.19426-1-s-anna@ti.com>
+ <20210126000443.GA1223706@robh.at.kernel.org>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <8f4a47f8-18dc-cb73-10db-033e5e5adb25@ti.com>
+Date:   Mon, 25 Jan 2021 18:16:38 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210126000443.GA1223706@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eric Biggers <ebiggers@google.com>
-
-Add the registers and clock for the Inline Crypto Engine (ICE) to the
-device tree node for the sdhci-msm host controller on sdm630.  This
-allows sdhci-msm to support inline encryption on sdm630.
-
-Signed-off-by: Eric Biggers <ebiggers@google.com>
----
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 37d5cc32f6b62..afb3d20c31fa0 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -808,8 +808,9 @@ spmi_bus: spmi@800f000 {
- 		sdhc_1: sdhci@c0c4000 {
- 			compatible = "qcom,sdm630-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x0c0c4000 0x1000>,
--				<0x0c0c5000 0x1000>;
--			reg-names = "hc", "cqhci";
-+				<0x0c0c5000 0x1000>,
-+				<0x0c0c8000 0x8000>;
-+			reg-names = "hc", "cqhci", "ice";
- 
- 			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-@@ -817,8 +818,9 @@ sdhc_1: sdhci@c0c4000 {
- 
- 			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
- 					<&gcc GCC_SDCC1_AHB_CLK>,
--					<&xo_board>;
--			clock-names = "core", "iface", "xo";
-+					<&xo_board>,
-+					<&gcc GCC_SDCC1_ICE_CORE_CLK>;
-+			clock-names = "core", "iface", "xo", "ice";
- 
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on &sdc1_rclk_on>;
--- 
-2.30.0
-
+<<< No Message Collected >>>
