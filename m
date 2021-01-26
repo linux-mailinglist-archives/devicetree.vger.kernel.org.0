@@ -2,259 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE70A3044C2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:18:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 415F33044C5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:18:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732597AbhAZRLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:11:10 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:41666 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730085AbhAZJFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 04:05:33 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10Q8tdYR000542;
-        Tue, 26 Jan 2021 10:04:40 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=kRCOrBeFGjNMGabv3jnFxPA/ESyauEQxaJvQYb9duZA=;
- b=k4Yp9VUvvFZcZ24vb2fNsOgkTyE8tyH8MguISDncLdyKHf2BfB7tV8dPtwTYuOPCLOy1
- hlwE+Y7N8+UVZoUcIFCxMiBfDbIFFNiaW3aBf0jQyNY4YTNcJjNOZtJNrKczP0oTyaIG
- Qo+fX4yUWFYaO08zMpRfil9DeFBwS2DdWHrK/OEa6ijWRNmm/nAZAxEofUHM7GotKiZ+
- 999cS52om6EPYC5D8G+yIW2JrgwcD0ITuJUL5d/y7KWd/T+BHb17FvGvmMva4XrZhH1b
- IXF/pGv6en3lyxWbAD7qE68xO/TthVIyrorLwBJOKyscQIa4GIFDalrxICNfpuV4IOlt aw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 368c15qgjs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 26 Jan 2021 10:04:40 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5815D10002A;
-        Tue, 26 Jan 2021 10:04:40 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 412832288C8;
-        Tue, 26 Jan 2021 10:04:40 +0100 (CET)
-Received: from localhost (10.75.127.45) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 26 Jan 2021 10:04:39
- +0100
-From:   <gabriel.fernandez@foss.st.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Etienne Carriere <etienne.carriere@st.com>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-        <marex@denx.de>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
+        id S1729076AbhAZRLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:11:48 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:37324 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731859AbhAZJRo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 04:17:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1611652664; x=1643188664;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=OH2dq4QjZrtTsSwEVA0B0d10Au9NQwZtMDAzMeLqlJI=;
+  b=avdtXgy2Qu8Z3dT99BTAuND+1I2rIFd4p/3oUZOuwXRJ6soQYAD8MGC/
+   fDw3Jc9BqY69sdA5A/4yDwXxIWFgPBMBep4xK3coGh7EeQqpSvXg1KkJe
+   /v66uEcTnKjW2MA37yWG8lF1a658ffSnu7W+oHUEnlSlJuaBheoATTVRQ
+   cHFEP3+CFhoHmJf3/CoWNXZx7PFPritywUNtzczwE4v+jlXksXKZIQ1+k
+   tnDQwZmim+cilfIymdtrSKASpKsu0LmgBNzGNY3ZDLFlv58qUYqaFijgk
+   jyBMZWODD2YSzTsdnjQK3H+NtKtQSO8HFuwGqhDdYCDsb509ALlhfZXCW
+   w==;
+IronPort-SDR: 52QEk1qPl5PR1Iqmbn77pFv6Gq8jTdIcEj0BwfSI5+MHhvedDWzjM2sgg70nWAdjUoDYNSFDYA
+ hmRtwMDDYKZpWh0TIIwjEF3a728qKb+muuNSlIfjuMn78xyIYzHZBzfFwmVR7i21P9LVeGC9uS
+ dmh7Qx1EZkoetOPU+1kpfuj48b5/s5DtxZ6TNM4folcJd6Nqrj4u0qWTxouv8PYssrMXlUDPUI
+ L+e/AFnoFtm6ILQuSNkgEiPSsyeSPfWdbqzOXcZncL0ywbDo5yFM6pE0xc7vKjb5jYyk5FJMTJ
+ nQI=
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; 
+   d="scan'208";a="106799457"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Jan 2021 02:16:12 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 26 Jan 2021 02:16:11 -0700
+Received: from [10.171.246.120] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Tue, 26 Jan 2021 02:16:08 -0700
+Subject: Re: [PATCH 0/7] drivers: soc: atmel: add support for sama7g5
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 10/14] clk: stm32mp1: new compatible for secure RCC support
-Date:   Tue, 26 Jan 2021 10:01:16 +0100
-Message-ID: <20210126090120.19900-11-gabriel.fernandez@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
-References: <20210126090120.19900-1-gabriel.fernandez@foss.st.com>
+References: <1611318097-8970-1-git-send-email-claudiu.beznea@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <dc9a7739-791f-7f5f-e6bb-009d0e6dfcab@microchip.com>
+Date:   Tue, 26 Jan 2021 10:16:07 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-26_06:2021-01-25,2021-01-26 signatures=0
+In-Reply-To: <1611318097-8970-1-git-send-email-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+On 22/01/2021 at 13:21, Claudiu Beznea wrote:
+> Hi,
+> 
+> This series adds support for SAMA7G5 identification. Along with this
+> included also some fixes.
+> 
+> Thank you,
+> Claudiu Beznea
+> 
+> Claudiu Beznea (7):
+>    drivers: soc: atmel: add spdx licence identifier
 
-Platform STM32MP1 can be used in configuration where some clock
-resources cannot be accessed by Linux kernel when executing in non-secure
-state of the CPU(s).
-In such configuration, the RCC clock driver must not register clocks
-it cannot access.
-They are expected to be registered from another clock driver such
-as the SCMI clock driver.
-This change uses specific compatible string "st,stm32mp1-rcc-secure"
-to specify RCC clock driver configuration where RCC is secure.
+I leave this one aside for now.
 
-Signed-off-by: Etienne Carriere <etienne.carriere@st.com>
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
----
- drivers/clk/Kconfig        |  10 ++++
- drivers/clk/clk-stm32mp1.c | 101 ++++++++++++++++++++++++++++++++++++-
- 2 files changed, 110 insertions(+), 1 deletion(-)
+>    drivers: soc: atmel: use GENMASK
+>    drivers: soc: atmel: fix "__initconst should be placed after socs[]"
+>        warning
+>    drivers: soc: atmel: add null entry at the end of
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 85856cff506c..52e9cf36731c 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -334,6 +334,16 @@ config COMMON_CLK_STM32MP157
- 	help
- 	  Support for stm32mp157 SoC family clocks
- 
-+config COMMON_CLK_STM32MP157_SCMI
-+	bool "stm32mp157 Clock driver with Trusted Firmware"
-+	depends on COMMON_CLK_STM32MP157
-+	select COMMON_CLK_SCMI
-+	select ARM_SCMI_PROTOCOL
-+	default y
-+	help
-+	  Support for stm32mp157 SoC family clocks with Trusted Firmware using
-+	  SCMI protocol.
-+
- config COMMON_CLK_STM32F
- 	def_bool COMMON_CLK && (MACH_STM32F429 || MACH_STM32F469 || MACH_STM32F746)
- 	help
-diff --git a/drivers/clk/clk-stm32mp1.c b/drivers/clk/clk-stm32mp1.c
-index 25e3f272344c..132e1dd42dbd 100644
---- a/drivers/clk/clk-stm32mp1.c
-+++ b/drivers/clk/clk-stm32mp1.c
-@@ -2051,11 +2051,61 @@ static const struct clock_config stm32mp1_clock_cfg[] = {
- 		  _DIV(RCC_DBGCFGR, 0, 3, 0, ck_trace_div_table)),
- };
- 
-+static const u32 stm32mp1_clock_secured[] = {
-+	CK_HSE,
-+	CK_HSI,
-+	CK_CSI,
-+	CK_LSI,
-+	CK_LSE,
-+	PLL1,
-+	PLL2,
-+	PLL1_P,
-+	PLL2_P,
-+	PLL2_Q,
-+	PLL2_R,
-+	CK_MPU,
-+	CK_AXI,
-+	SPI6,
-+	I2C4,
-+	I2C6,
-+	USART1,
-+	RTCAPB,
-+	TZC1,
-+	TZC2,
-+	TZPC,
-+	IWDG1,
-+	BSEC,
-+	STGEN,
-+	GPIOZ,
-+	CRYP1,
-+	HASH1,
-+	RNG1,
-+	BKPSRAM,
-+	RNG1_K,
-+	STGEN_K,
-+	SPI6_K,
-+	I2C4_K,
-+	I2C6_K,
-+	USART1_K,
-+	RTC,
-+};
-+
-+static bool stm32_check_security(const struct clock_config *cfg)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(stm32mp1_clock_secured); i++)
-+		if (cfg->id == stm32mp1_clock_secured[i])
-+			return true;
-+	return false;
-+}
-+
- struct stm32_rcc_match_data {
- 	const struct clock_config *cfg;
- 	unsigned int num;
- 	unsigned int maxbinding;
- 	u32 clear_offset;
-+	bool (*check_security)(const struct clock_config *cfg);
- };
- 
- static struct stm32_rcc_match_data stm32mp1_data = {
-@@ -2065,11 +2115,23 @@ static struct stm32_rcc_match_data stm32mp1_data = {
- 	.clear_offset	= RCC_CLR,
- };
- 
-+static struct stm32_rcc_match_data stm32mp1_data_secure = {
-+	.cfg		= stm32mp1_clock_cfg,
-+	.num		= ARRAY_SIZE(stm32mp1_clock_cfg),
-+	.maxbinding	= STM32MP1_LAST_CLK,
-+	.clear_offset	= RCC_CLR,
-+	.check_security = &stm32_check_security
-+};
-+
- static const struct of_device_id stm32mp1_match_data[] = {
- 	{
- 		.compatible = "st,stm32mp1-rcc",
- 		.data = &stm32mp1_data,
- 	},
-+	{
-+		.compatible = "st,stm32mp1-rcc-secure",
-+		.data = &stm32mp1_data_secure,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, stm32mp1_match_data);
-@@ -2229,6 +2291,9 @@ static int stm32_rcc_clock_init(struct device *dev, void __iomem *base,
- 		hws[n] = ERR_PTR(-ENOENT);
- 
- 	for (n = 0; n < data->num; n++) {
-+		if (data->check_security && data->check_security(&data->cfg[n]))
-+			continue;
-+
- 		err = stm32_register_hw_clk(dev, clk_data, base, &rlock,
- 					    &data->cfg[n]);
- 		if (err) {
-@@ -2296,11 +2361,45 @@ static int stm32mp1_rcc_init(struct device *dev)
- 	return ret;
- }
- 
-+static int get_clock_deps(struct device *dev)
-+{
-+	static const char * const clock_deps_name[] = {
-+		"hsi", "hse", "csi", "lsi", "lse",
-+	};
-+	size_t deps_size = sizeof(struct clk *) * ARRAY_SIZE(clock_deps_name);
-+	struct clk **clk_deps;
-+	int i;
-+
-+	clk_deps = devm_kzalloc(dev, deps_size, GFP_KERNEL);
-+	if (!clk_deps)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < ARRAY_SIZE(clock_deps_name); i++) {
-+		struct clk *clk = of_clk_get_by_name(dev_of_node(dev),
-+						     clock_deps_name[i]);
-+
-+		if (IS_ERR(clk)) {
-+			if (PTR_ERR(clk) != -EINVAL && PTR_ERR(clk) != -ENOENT)
-+				return PTR_ERR(clk);
-+		} else {
-+			/* Device gets a reference count on the clock */
-+			clk_deps[i] = devm_clk_get(dev, __clk_get_name(clk));
-+			clk_put(clk);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int stm32mp1_rcc_clocks_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	int ret = get_clock_deps(dev);
-+
-+	if (!ret)
-+		ret = stm32mp1_rcc_init(dev);
- 
--	return stm32mp1_rcc_init(dev);
-+	return ret;
- }
- 
- static int stm32mp1_rcc_clocks_remove(struct platform_device *pdev)
+This one was taken by Arnd in arm-soc/arm/fixes branch.
+
+>      at91_soc_allowed_list[]
+>    drivers: soc: atmel: add per soc id and version match masks
+>    dt-bindings: atmel-sysreg: add "microchip,sama7g5-chipid"
+>    drivers: soc: atmel: add support for sama7g5
+
+For the rest:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+I take the rest in at91-soc branch. It appears in at91-next right now.
+
+Once the license patch is done, I can integrate it easily.
+
+Best regards,
+   Nicolas
+
+> 
+>   .../devicetree/bindings/arm/atmel-sysregs.txt      |   2 +-
+>   drivers/soc/atmel/soc.c                            | 225 ++++++++++++++-------
+>   drivers/soc/atmel/soc.h                            |  14 +-
+>   3 files changed, 171 insertions(+), 70 deletions(-)
+> 
+
+
 -- 
-2.17.1
-
+Nicolas Ferre
