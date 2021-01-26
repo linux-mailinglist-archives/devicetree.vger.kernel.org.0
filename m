@@ -2,250 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E51EE304003
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C46AC304014
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:21:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405783AbhAZOSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 09:18:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42846 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405791AbhAZOSW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:18:22 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0735C061A31
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:17:41 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id d18so9268357oic.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:17:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=snAymklEUhwSnE6aOil+eGqTT5ec5tFwcRj260sAvks=;
-        b=AMFZuV9yP/xMgYabEyMv/EUu/qJ/qpAPDwpK8EMDiOG6J7DiOGO2GDX2qxUne9vKEP
-         u1OnjabAO8O9DMwyNPu2gvLtW0363Hqu9SRiuOU7Kt+z2L9hYJgtau8tbQ/3WqjaW7fU
-         y1KToE8sVncgKcwdejK80E+YSzDtUGNMGSCjgrr1EY0UQm/J/Rt4v8/w0PurijO+E+YY
-         KjA2quD1t4ux6L0T1q4lt652Y1D+Nbu/1LSpwWOCqiriN+L3uLKeLIseKFsGGF/2iCh2
-         HTSwbt9lDbkJ65B4yUQan7lg6YhdawnuMk1cIRG2p0AGvuYr21M0X7dUmb0+LPpM13jo
-         ZvLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=snAymklEUhwSnE6aOil+eGqTT5ec5tFwcRj260sAvks=;
-        b=tZT81I+RZnv2rO9aqkp6aJy45efUv8NiYOKALbck6dmJHVnDoWGF+dUkq2JGwOVbMG
-         AXkG0z7Bu8aRqa7iPvLQRwvkmk3bIshNY4TNiCqbYcBO9P8z47391LQV8y+FbCB3hvvn
-         mW1ZZdjgThzUy8mcXJ298woUuwrbvRiny9ri8+8fVGFVOGEwEEPZ/luV1rQxRwNtYQPJ
-         er+cEStlSPhR8PG8R8I6CX4tWsllQ0d60p0Zy8ESxjqms1ER+mhWyZ3LR5i2FN05JJiG
-         AfoR1+L/DBx8yMNOBu+aemIGt1z3SlIWzk11X9hgTHI+O/M3bs/T/6fRtMMBLmUYw5mZ
-         29GQ==
-X-Gm-Message-State: AOAM533NjS/sMk40czBt9D20lnKB84PHAB+LHgge1bLXIBEOmhyM0eWO
-        JFpYUfrJAm8orPROXcMGAGsoSg==
-X-Google-Smtp-Source: ABdhPJxNTGPmEEttjHeUpsyXi818x5CmAZskBGX+az9F3WmnzzxmjbDFdzfNlsG1QuNSweOXoCQn/g==
-X-Received: by 2002:a05:6808:115:: with SMTP id b21mr9995oie.16.1611670661326;
-        Tue, 26 Jan 2021 06:17:41 -0800 (PST)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e14sm1851753oou.19.2021.01.26.06.17.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jan 2021 06:17:40 -0800 (PST)
-Date:   Tue, 26 Jan 2021 08:17:38 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 4/5] dt-bindings: clock: Add SM8350 GCC clock bindings
-Message-ID: <20210126141738.GH1241218@yoga>
-References: <20210118044321.2571775-1-vkoul@kernel.org>
- <20210118044321.2571775-5-vkoul@kernel.org>
- <YA7+9xaAY0JT5csh@builder.lan>
- <20210126080058.GN2771@vkoul-mobl>
+        id S2405820AbhAZOUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 09:20:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53882 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405882AbhAZOUK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 09:20:10 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3B0B2206CA;
+        Tue, 26 Jan 2021 14:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1611670769;
+        bh=b+c5T4n9jRaht6O5yOfV/FqKLavfrxzcJDIn1MjA930=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=2lBpWeSC29oVeuZA6cKzBaKlSzU0oEFOh2eh/D3NFKYLCkzk4YH+deCKOwPHnwzfE
+         B75IGiTpdEHsT2OvpqsSPcj0p1TrDSTL7t5eAmB8JJ29CzJ3wAUlEpg4aL9dbwVkaf
+         qBznZa5/CL4hGZXjIZlnS586fJo49ogasQOXQKrk=
+Date:   Tue, 26 Jan 2021 15:19:27 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Mathias Nyman <mathias.nyman@linux.intel.com>
+Cc:     Howard Yen <howardyen@google.com>,
+        Mathias Nyman <mathias.nyman@intel.com>, robh+dt@kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] add xhci hooks for USB offload
+Message-ID: <YBAk795ccXBPgJWp@kroah.com>
+References: <20210119101044.1637023-1-howardyen@google.com>
+ <af91bbf1-6731-3e87-4086-de0dbba22c22@intel.com>
+ <CAJDAHvbTY3Z_bRg+++uLefWSvCWo_nGq+3OOQX3QHJ2w3X1SQw@mail.gmail.com>
+ <ca442ca7-a434-2527-9945-861dafa685cc@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210126080058.GN2771@vkoul-mobl>
+In-Reply-To: <ca442ca7-a434-2527-9945-861dafa685cc@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 26 Jan 02:00 CST 2021, Vinod Koul wrote:
-
-> On 25-01-21, 11:25, Bjorn Andersson wrote:
-> > On Sun 17 Jan 22:43 CST 2021, Vinod Koul wrote:
+On Fri, Jan 22, 2021 at 05:32:58PM +0200, Mathias Nyman wrote:
+> On 20.1.2021 12.04, Howard Yen wrote:
+> > On Tue, Jan 19, 2021 at 8:47 PM Mathias Nyman <mathias.nyman@intel.com> wrote:
+> >>
+> >> On 19.1.2021 12.10, Howard Yen wrote:
+> >>> To let the xhci driver support USB offload, add hooks for vendor to have
+> >>> customized behavior for the initialization, memory allocation, irq work, and
+> >>> device context synchronization. Detail is in each patch commit message.
+> >>
+> >> Is this related to the usb audio sideband capability that was added to the xHCI specification?
+> >> If yes, then we should probably implement the generic parts first, and then add
+> >> the vendor specific hooks.
+> >>
+> >> -Mathias
+> >>
+> >>
 > > 
-> > > Add device tree bindings for global clock controller on SM8350 SoCs.
-> > > 
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > ---
-> > >  .../bindings/clock/qcom,gcc-sm8350.yaml       |  96 +++++++
-> > >  include/dt-bindings/clock/qcom,gcc-sm8350.h   | 261 ++++++++++++++++++
-> > >  2 files changed, 357 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
-> > >  create mode 100644 include/dt-bindings/clock/qcom,gcc-sm8350.h
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
-> > > new file mode 100644
-> > > index 000000000000..78f35832aa41
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
-> > > @@ -0,0 +1,96 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/clock/qcom,gcc-sm8350.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Qualcomm Global Clock & Reset Controller Binding for SM8350
-> > > +
-> > > +maintainers:
-> > > +  - Vinod Koul <vkoul@kernel.org>
-> > > +
-> > > +description: |
-> > > +  Qualcomm global clock control module which supports the clocks, resets and
-> > > +  power domains on SM8350.
-> > > +
-> > > +  See also:
-> > > +  - dt-bindings/clock/qcom,gcc-sm8350.h
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: qcom,gcc-sm8350
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: Board XO source
-> > > +      - description: Sleep clock source
-> > > +      - description: PLL test clock source (Optional clock)
-> > > +      - description: PCIE 0 Pipe clock source (Optional clock)
-> > > +      - description: PCIE 1 Pipe clock source (Optional clock)
-> > > +      - description: UFS card Rx symbol 0 clock source (Optional clock)
-> > > +      - description: UFS card Rx symbol 1 clock source (Optional clock)
-> > > +      - description: UFS card Tx symbol 0 clock source (Optional clock)
-> > > +      - description: UFS phy Rx symbol 0 clock source (Optional clock)
-> > > +      - description: UFS phy Rx symbol 1 clock source (Optional clock)
-> > > +      - description: UFS phy Tx symbol 0 clock source (Optional clock)
-> > > +      - description: USB3 phy wrapper pipe clock source (Optional clock)
-> > > +      - description: USB3 phy sec pipe clock source (Optional clock)
-> > > +    minItems: 2
-> > > +    maxItems: 13
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: bi_tcxo
-> > > +      - const: sleep_clk
-> > > +      - const: core_bi_pll_test_se # Optional clock
-> > > +      - const: pcie_0_pipe_clk # Optional clock
-> > > +      - const: pcie_1_pipe_clk # Optional clock
-> > > +      - const: ufs_card_rx_symbol_0_clk # Optional clock
-> > > +      - const: ufs_card_rx_symbol_1_clk # Optional clock
-> > > +      - const: ufs_card_tx_symbol_0_clk # Optional clock
-> > > +      - const: ufs_phy_rx_symbol_0_clk # Optional clock
-> > > +      - const: ufs_phy_rx_symbol_1_clk # Optional clock
-> > > +      - const: ufs_phy_tx_symbol_0_clk # Optional clock
-> > > +      - const: usb3_phy_wrapper_gcc_usb30_pipe_clk # Optional clock
-> > > +      - const: usb3_uni_phy_sec_gcc_usb30_pipe_clk # Optional clock
-> > > +    minItems: 2
-> > > +    maxItems: 13
-> > > +
-> > > +  '#clock-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#reset-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#power-domain-cells':
-> > > +    const: 1
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - reg
-> > > +  - '#clock-cells'
-> > > +  - '#reset-cells'
-> > > +  - '#power-domain-cells'
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/qcom,rpmh.h>
-> > > +    clock-controller@100000 {
-> > > +      compatible = "qcom,gcc-sm8350";
-> > > +      reg = <0x00100000 0x1f0000>;
-> > > +      clocks = <&rpmhcc RPMH_CXO_CLK>,
-> > > +               <&sleep_clk>;
-> > > +      clock-names = "bi_tcxo", "sleep_clk";
-> > > +      #clock-cells = <1>;
-> > > +      #reset-cells = <1>;
-> > > +      #power-domain-cells = <1>;
-> > > +    };
-> > > +
-> > > +...
-> > > diff --git a/include/dt-bindings/clock/qcom,gcc-sm8350.h b/include/dt-bindings/clock/qcom,gcc-sm8350.h
-> > > new file mode 100644
-> > > index 000000000000..2b289c5c109f
-> > > --- /dev/null
-> > > +++ b/include/dt-bindings/clock/qcom,gcc-sm8350.h
-> > > @@ -0,0 +1,261 @@
-> > > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > > +/*
-> > > + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-> > > + * Copyright (c) 2020-2021, Linaro Limited
-> > > + */
-> > > +
-> > > +#ifndef _DT_BINDINGS_CLK_QCOM_GCC_SM8350_H
-> > > +#define _DT_BINDINGS_CLK_QCOM_GCC_SM8350_H
-> > > +
-> > > +/* GCC HW clocks */
-> > > +#define CORE_BI_PLL_TEST_SE					0
-> > > +#define PCIE_0_PIPE_CLK						1
-> > > +#define PCIE_1_PIPE_CLK						2
-> > > +#define UFS_CARD_RX_SYMBOL_0_CLK				3
-> > > +#define UFS_CARD_RX_SYMBOL_1_CLK				4
-> > > +#define UFS_CARD_TX_SYMBOL_0_CLK				5
-> > > +#define UFS_PHY_RX_SYMBOL_0_CLK					6
-> > > +#define UFS_PHY_RX_SYMBOL_1_CLK					7
-> > > +#define UFS_PHY_TX_SYMBOL_0_CLK					8
-> > > +#define USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK			9
-> > > +#define USB3_UNI_PHY_SEC_GCC_USB30_PIPE_CLK			10
-> > > +
-> > > +/* GCC clocks */
-> > > +#define GCC_AGGRE_NOC_PCIE_0_AXI_CLK				11
-> > > +#define GCC_AGGRE_NOC_PCIE_1_AXI_CLK				12
-> > > +#define GCC_AGGRE_NOC_PCIE_TBU_CLK				13
-> > > +#define GCC_AGGRE_UFS_CARD_AXI_CLK				14
-> > > +#define GCC_AGGRE_UFS_CARD_AXI_HW_CTL_CLK			15
-> > > +#define GCC_AGGRE_UFS_PHY_AXI_CLK				16
-> > > +#define GCC_AGGRE_UFS_PHY_AXI_HW_CTL_CLK			17
-> > > +#define GCC_AGGRE_USB3_PRIM_AXI_CLK				18
-> > > +#define GCC_AGGRE_USB3_SEC_AXI_CLK				19
-> > > +#define GCC_BOOT_ROM_AHB_CLK					20
-> > > +#define GCC_CAMERA_AHB_CLK					21
+> > This is for offloading, no matter what type of offloading.
+> > I made the hooks generically and can be used for usb audio on the xhci
+> > which is not including the usb audio sideband capability.
 > > 
-> > You removed these from the driver, so no need to expose them in the
-> > dt-binding either.
 > 
-> I did think about that and thought maybe it is better to leave the
-> defines. We can always update the driver to use if we ever felt the
-> need.
+> Ok, before adding hooks like this I think we need to see how they are used.
+> Do you have the rest of the patches that go on top of this series?
 > 
-> But then I dont think we will ever do that so makes sense, will update
-> this and send with acks collected
-> 
+> Maybe it could make sense to use overrides for the functions in struct hc_driver
+> instead in some cases? There is support for that already.
 
-Given that the actual value isn't significant (just need to be stable),
-we can easily add those as new defines at the end of the list when that
-day comes.
+What overrides could be done for these changes?  At first glance that
+would seem to require a lot of duplicated code in whatever override
+happens to be needed.
 
-Regards,
-Bjorn
+thanks,
+
+greg k-h
