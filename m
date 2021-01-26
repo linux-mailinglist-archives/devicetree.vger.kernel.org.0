@@ -2,176 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 058A630336F
+	by mail.lfdr.de (Postfix) with ESMTP id E2C7A303371
 	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:56:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729005AbhAZEyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:54:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56714 "EHLO
+        id S1729018AbhAZEyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:54:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729719AbhAZE2W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 23:28:22 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98AB0C061786
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 20:26:49 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id w124so17263388oia.6
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 20:26:49 -0800 (PST)
+        with ESMTP id S1730813AbhAZEaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 23:30:03 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BFA0C06178C
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 20:26:50 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id a109so15113859otc.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 20:26:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7OfSmxia+d3pqBmg2qua9BIWvPfSArrmZHl7lfwH9bI=;
-        b=m/+KjqM5Hx+G7dpkXv2YKNv2H2FKgj16d8e49AOFfqtI8ojbKwxLyV1BwuN3jgH8sR
-         2tHPgGOIqQYMqT7VybYxf4p4+QWDfpHsSovRGXaZJS4Kp8EI/AQ8yvIhZssSSfAvkfLw
-         ErbX1J+b9l4o0crsP13U33C69sAY0H3Y18Uaoi8tfF7GNgbgibsrVGVzE62Cj5NBiNqL
-         sEf5TWbT/ur1c0WXwvpqITkDO8j9cxy1d6M6oItz7DXudrcyiemiBg3aqoJSK7JqhRf+
-         WHZnkE91LhaMw4sZjLR1K77jX1zUWW9ewfWV11hYDMISzVGwz8FggRWb1kOsJtI0IA5K
-         kIVg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Sxs612cpeWk15s9IRsZQmGfQWRxEVp1NyNx2VAk5PQg=;
+        b=pLxjBRSUifb+FQNiC5QIELRNYUDee8Q/998g8Xz+9uTbKm2/PeB+SMw5G3wj/othVN
+         0RmH6L36rIVwRog1w3xBrSZGaNVb9FDdyxIoj3lTKMhRt/3Pz2NVq0Y3TpHFAAttq5cf
+         Bxib/8d6lZZhIWBBmvLy2EF3LHzo6PLEq/2eYFC7OkbPQc+CKFb3ZeF8U+w2UDef1Je9
+         VZoGkAvWiXFLH8GwiFKkLyqdkAuSJp7MKufFB3P4cVaH/VMnpSg7HSZSjTqfrh7vbCix
+         aYpkgpgQg2iR/C42fH6ktfxQ2+MlUIWf1f4Aybic7pqDGZ1hsjtJ0ZHzStuAzfjFaJPN
+         VC+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7OfSmxia+d3pqBmg2qua9BIWvPfSArrmZHl7lfwH9bI=;
-        b=qKo+xuZl8vVZwn7v7Pz/iWzKaQvERfqWRcdtD9RIChO18Lu0G1UvRQD7HaynCTj9zj
-         Xcnt7vGUPp2IRX9VF+bWlW8af89LTPpwi5TtntU/Ykgzn5iswftE2SXlnVyqBkeCrVh+
-         vs1YqwvULN+K8FNXgHzmO4lY0DR3bH7LqDQlqRRXmBujQj9KMqA+w+4cwagZoORKike3
-         s+xaNONcFyttLzjh1VL85G2CQkDIe8/U3zCuLVpWDsl9KzX/UseMDPW944yASxj8MTI9
-         W1hTiWGtWknyj3sYkU+kjC6lkv/FyszPFYdd4t9NxiIt7fNy0fPqSHPVmFWrpb0iPb1V
-         a3ww==
-X-Gm-Message-State: AOAM533CNLBPOi+WtWZAwxG4gYYqT/TmI1Sd7YV6M3Ldx/n9CUMnZDgp
-        HuiDElYT7dpgoJkwzHyF5oU0kQ==
-X-Google-Smtp-Source: ABdhPJx42pEiS0LPCsrnXU+9YGM8qZfwg0kcwZPz3gbIhhaxDspxI48nk8487EJaDBRxB9leW1KXkQ==
-X-Received: by 2002:aca:5088:: with SMTP id e130mr2069256oib.78.1611635208790;
-        Mon, 25 Jan 2021 20:26:48 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Sxs612cpeWk15s9IRsZQmGfQWRxEVp1NyNx2VAk5PQg=;
+        b=b/PV3UKxp9C2RF+YMsLvIMfsFvFMkJQVyghSk3Y4x3NdXjcBIEQSUVHcn/aCskWU73
+         5xSpTvWK64M1vH6K6AWBHbNTsA15jXwNazQOTQ3WYA/FPKm7BQjEANPuDimKNaFirDtW
+         n+PAqr1CaAJlSAaCBe59uPrnHmALvoM07BWzBCMixa8VUWjEAY4+mIqE2PhYH5w6QJyN
+         WjVNz7Qgvebi3fbvVVQi3mcySopPVSJPUOF8AEOf4vuHUOVpvAEplfx+4Cy2SqLMwau/
+         CZoG3YDqlVr0g6zyzU6eo+d751ZwbmSXex35mmoqLuS7C6wzXYVHvWPRBckkdaw10nOg
+         IpgA==
+X-Gm-Message-State: AOAM5328vJ8vyOQ/yPAIIKUOcJj+y20mp2SvhJGCS9eGtNlGJPKCW//M
+        EevKbuzcxbcfX0cQcRcY3VivvQ==
+X-Google-Smtp-Source: ABdhPJwIgqPvhOuEMX2vL3suWxRX/QP8lNokACHAx9Lh9I02IwyKl4hFXECw0s1y7YEUUVS0/hgCPA==
+X-Received: by 2002:a9d:3985:: with SMTP id y5mr2700391otb.202.1611635209827;
+        Mon, 25 Jan 2021 20:26:49 -0800 (PST)
 Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w129sm3930638oig.23.2021.01.25.20.26.47
+        by smtp.gmail.com with ESMTPSA id w129sm3930638oig.23.2021.01.25.20.26.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jan 2021 20:26:48 -0800 (PST)
+        Mon, 25 Jan 2021 20:26:49 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH v2 1/3] dt-bindings: pinctrl: qcom: Define common TLMM binding
-Date:   Mon, 25 Jan 2021 20:26:48 -0800
-Message-Id: <20210126042650.1725176-1-bjorn.andersson@linaro.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 2/3] dt-bindings: pinctrl: qcom: Add sc8180x binding
+Date:   Mon, 25 Jan 2021 20:26:49 -0800
+Message-Id: <20210126042650.1725176-2-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210126042650.1725176-1-bjorn.andersson@linaro.org>
+References: <20210126042650.1725176-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Several properties are shared between all TLMM bindings. By providing a
-common binding to define these properties each platform's binding can be
-reduced to just listing which of these properties should be checked for
-- or further specified.
+Add binding for the TLMM block in the Qualcomm SC8180X platform.
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
+ .../pinctrl/qcom,sc8180x-pinctrl.yaml         | 152 ++++++++++++++++++
+ 1 file changed, 152 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
 
-Changes since v1:
-- Dropped "phandle", as Rob pushed this to the dt-schema instead
-- Expanded the "TLMM" abbreviation
-
- .../bindings/pinctrl/qcom,tlmm-common.yaml    | 85 +++++++++++++++++++
- 1 file changed, 85 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
 new file mode 100644
-index 000000000000..3b37cf102d41
+index 000000000000..a82dab898395
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml
-@@ -0,0 +1,85 @@
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
+@@ -0,0 +1,152 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pinctrl/qcom,tlmm-common.yaml#
++$id: http://devicetree.org/schemas/pinctrl/qcom,sc8180x-pinctrl.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm Technologies, Inc. Top Level Mode Multiplexer (TLMM) definitions
++title: Qualcomm Technologies, Inc. SC8180X TLMM block
 +
 +maintainers:
 +  - Bjorn Andersson <bjorn.andersson@linaro.org>
 +
-+description:
-+  This defines the common properties used to describe all Qualcomm Top Level
-+  Mode Multiplexer bindings and pinconf/pinmux states for these.
++description: |
++  This binding describes the Top Level Mode Multiplexer block found in the
++  SC8180X platform.
++
++allOf:
++  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
 +
 +properties:
-+  interrupts:
-+    description:
-+      Specifies the TLMM summary IRQ
-+    maxItems: 1
++  compatible:
++    const: qcom,sc8180x-tlmm
 +
++  reg:
++    maxItems: 3
++
++  reg-names:
++    items:
++      - const: "west"
++      - const: "east"
++      - const: "south"
++
++  interrupts: true
 +  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    description:
-+      Specifies the PIN numbers and Flags, as defined in defined in
-+      include/dt-bindings/interrupt-controller/irq.h
-+    const: 2
-+
++  '#interrupt-cells': true
 +  gpio-controller: true
-+
-+  '#gpio-cells':
-+    description:
-+      Specifying the pin number and flags, as defined in
-+      include/dt-bindings/gpio/gpio.h
-+    const: 2
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  wakeup-parent:
-+    description:
-+      Specifying the interrupt-controller used to wake up the system when the
-+      TLMM block has been powered down.
-+    maxItems: 1
-+
-+  gpio-reserved-ranges:
-+    description:
-+      Pins can be reserved for trusted applications and thereby unaccessible
-+      from the OS.  This property can be used to mark the pins which resources
-+      should not be accessed by the OS. Please see the ../gpio/gpio.txt for more
-+      information.
++  gpio-reserved-ranges: true
++  '#gpio-cells': true
++  gpio-ranges: true
++  wakeup-parent: true
 +
 +required:
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
++  - compatible
++  - reg
++  - reg-names
 +
-+additionalProperties: true
++additionalProperties: false
 +
-+$defs:
-+  qcom-tlmm-state:
-+    allOf:
-+      - $ref: pincfg-node.yaml#
-+      - $ref: pinmux-node.yaml#
++patternProperties:
++  '-state$':
++    oneOf:
++      - $ref: "#/$defs/qcom-sc8180x-tlmm-state"
++      - patternProperties:
++          ".*":
++            $ref: "#/$defs/qcom-sc8180x-tlmm-state"
++
++'$defs':
++  qcom-sc8180x-tlmm-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
 +
 +    properties:
-+      drive-strength:
-+        enum: [2, 4, 6, 8, 10, 12, 14, 16]
-+        default: 2
++      pins:
 +        description:
-+          Selects the drive strength for the specified pins, in mA.
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-8][0-9])$"
++            - enum: [ sdc2_clk, sdc2_cmd, sdc2_data, ufs_reset ]
++        minItems: 1
++        maxItems: 16
 +
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++        enum: [ adsp_ext, agera_pll, aoss_cti, atest_char, atest_tsens,
++                atest_tsens2, atest_usb0, atest_usb1, atest_usb2, atest_usb3,
++                atest_usb4, audio_ref, btfm_slimbus, cam_mclk, cci_async,
++                cci_i2c, cci_timer0, cci_timer1, cci_timer2, cci_timer3,
++                cci_timer4, cci_timer5, cci_timer6, cci_timer7, cci_timer8,
++                cci_timer9, cri_trng, dbg_out, ddr_bist, ddr_pxi, debug_hot,
++                dp_hot, edp_hot, edp_lcd, emac_phy, emac_pps, gcc_gp1, gcc_gp2,
++                gcc_gp3, gcc_gp4, gcc_gp5, gpio, gps, grfc, hs1_mi2s, hs2_mi2s,
++                hs3_mi2s, jitter_bist, lpass_slimbus, m_voc, mdp_vsync,
++                mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3, mdp_vsync4,
++                mdp_vsync5, mss_lte, nav_pps, pa_indicator, pci_e0, pci_e1,
++                pci_e2, pci_e3, phase_flag, pll_bist, pll_bypassnl, pll_reset,
++                pri_mi2s, pri_mi2s_ws, prng_rosc, qdss_cti, qdss_gpio, qlink,
++                qspi0, qspi0_clk, qspi0_cs, qspi1, qspi1_clk, qspi1_cs,
++                qua_mi2s, qup0, qup1, qup2, qup3, qup4, qup5, qup6, qup7, qup8,
++                qup9, qup10, qup11, qup12, qup13, qup14, qup15, qup16, qup17,
++                qup18, qup19, qup_l4, qup_l5, qup_l6, rgmii, sd_write, sdc4,
++                sdc4_clk, sdc4_cmd, sec_mi2s, sp_cmu, spkr_i2s, ter_mi2s, tgu,
++                tsense_pwm1, tsense_pwm2, tsif1, tsif2, uim1, uim2, uim_batt,
++                usb0_phy, usb1_phy, usb2phy_ac, vfr_1, vsense_trigger,
++                wlan1_adc, wlan2_adc, wmss_reset ]
++
++      bias-disable: true
 +      bias-pull-down: true
 +      bias-pull-up: true
-+      bias-disable: true
++      drive-strength: true
 +      input-enable: true
 +      output-high: true
 +      output-low: true
 +
-+    additionalProperties: true
++    required:
++      - pins
++      - function
++
++    additionalProperties: false
++
++examples:
++  - |
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++        pinctrl@3100000 {
++                compatible = "qcom,sc8180x-tlmm";
++                reg = <0x03100000 0x300000>,
++                      <0x03500000 0x700000>,
++                      <0x03d00000 0x300000>;
++                reg-names = "west", "east", "south";
++                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++                gpio-ranges = <&tlmm 0 0 190>;
++
++                gpio-wo-subnode-state {
++                        pins = "gpio1";
++                        function = "gpio";
++                };
++
++                uart-w-subnodes-state {
++                        rx {
++                                pins = "gpio4";
++                                function = "qup6";
++                                bias-pull-up;
++                        };
++
++                        tx {
++                                pins = "gpio5";
++                                function = "qup6";
++                                bias-disable;
++                        };
++                };
++        };
 +...
 -- 
 2.29.2
