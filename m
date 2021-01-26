@@ -2,84 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04AFC3058FD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 11:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD84305992
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 12:24:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236159AbhA0K7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 05:59:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236191AbhA0K4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 05:56:48 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB64C06174A
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 02:56:07 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id e15so1231248wme.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 02:56:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=5ZypdbGue2nFWiMnP3sDxiiEiuMQbxRDc+4h+Q/e794=;
-        b=pNrZuakhy4nMglczzFTxUJnnX/9b0g7MGkGsWCJ84IeQcC8u2mhBI+a4Wcw/p1b4yH
-         4JCC3dw6bgLAiAQljagvI4VsBiR+Usw6qrCYpm+VaPyUh+L60ix3fmTqRQwsrll6ZwHQ
-         AcOKpudZCn6/StlgzEnqWKLmuEG9Pv+bCqc1iX5lfrj5KUT6LSnH3d4xFpojxm+eqzh7
-         fCJ9vFjx4V5ka9riCsTNExqUB4jP4x0qNDUMkisfVsLICGXn4TWmw3GPDzhNH7F39iYX
-         Nv5SRtpENSirwyBD+YR7NcFCr8zp8EE+jG7PyuxlHKDbLA9+jti28l6gOwRhYVZyH7ZR
-         kwww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=5ZypdbGue2nFWiMnP3sDxiiEiuMQbxRDc+4h+Q/e794=;
-        b=f8bmSM4M6GO5hVU9TmIeJmypqkdxgvK6rcIXFYv+nqyT10XCacxnL6eaaWUBLzEggf
-         U8uauR43xbbpswkMOvjc5k0AeYwy1iXFgyH5O9xg+nKgX702tnKa9LynzLnoIMB8hqT1
-         PVJRMI9bJCjsf2DwsuJ5IIoE5ZaW9cYbP2/sLfuAQHQhllujLEydRWMzgQjJKHBhJcUw
-         Gh5zbZw0BBe7NSreBwtrkYECHEIoJIrbue53yMD07Cp0Gb9z72j8GA1/KqjqKexigOqU
-         RX8XP8z2HsyndI1qpa/Cjv1wHeJas62KKbMQDPSHw6PCddAkqfWtxcavhpNyCnPsOLWe
-         PpJA==
-X-Gm-Message-State: AOAM530jtkrcTe8R19MucyMN+DsnaIDFo+Hea7q9Kkv79l3rGkhV+4AJ
-        bjmbPcAr0uceYpa5+IpiuHz9sw==
-X-Google-Smtp-Source: ABdhPJze1zv39dN3foB3pelQvWpQEDLYXG7Q4xIRAOPF4Qy58C+fieDmIVrY+Znepr5x1AX+M8whVw==
-X-Received: by 2002:a1c:2905:: with SMTP id p5mr3651337wmp.156.1611744966607;
-        Wed, 27 Jan 2021 02:56:06 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id l11sm2375202wrt.23.2021.01.27.02.56.05
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 27 Jan 2021 02:56:05 -0800 (PST)
-Subject: Re: [PATCH] ASoC: qcom: lpass-cpu: Remove bit clock state check
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210127063038.1399-1-srivasam@codeaurora.org>
- <16199fa8-7a87-6e7f-9db6-1d5cd8493d4c@linaro.org>
- <d33fd359-9dbf-b03c-ccd1-d93c7d207ccf@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <0bdf2a43-799b-1c89-940d-8dd0f54ab24e@linaro.org>
-Date:   Wed, 27 Jan 2021 10:56:04 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <d33fd359-9dbf-b03c-ccd1-d93c7d207ccf@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S313712AbhAZW6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 17:58:07 -0500
+Received: from mga12.intel.com ([192.55.52.136]:36176 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388333AbhAZFmg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 00:42:36 -0500
+IronPort-SDR: /xu2OpLgAuDur+7K+A2D2Aq9QfNREKKF3dz+CXW+Vuk0GbHblqdgjyvjWm8qL8cm2KJNEXpGmv
+ TU8KKohrpjaQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9875"; a="159028886"
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; 
+   d="scan'208";a="159028886"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2021 21:40:42 -0800
+IronPort-SDR: tcScTWdAP7qZEACFRmSHHhY7/yMzCkqsbW155suT35MCpG8iSBGpbhtbJT/oiOddoyJsm7Q/5W
+ iQtsOrddIg/Q==
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; 
+   d="scan'208";a="353335758"
+Received: from smtp.ostc.intel.com ([10.54.29.231])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2021 21:40:42 -0800
+Received: from mtg-dev.jf.intel.com (mtg-dev.jf.intel.com [10.54.74.10])
+        by smtp.ostc.intel.com (Postfix) with ESMTP id 6065B6365;
+        Mon, 25 Jan 2021 21:40:40 -0800 (PST)
+Received: by mtg-dev.jf.intel.com (Postfix, from userid 1000)
+        id 53FE8362FAE; Mon, 25 Jan 2021 21:40:40 -0800 (PST)
+From:   mgross@linux.intel.com
+To:     markgross@kernel.org, mgross@linux.intel.com, arnd@arndb.de,
+        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
+        gregkh@linuxfoundation.org, corbet@lwn.net,
+        palmerdabbelt@google.com, paul.walmsley@sifive.com,
+        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        jassisinghbrar@gmail.com
+Cc:     linux-kernel@vger.kernel.org,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 04/34] dt-bindings: Add bindings for Keem Bay IPC driver
+Date:   Mon, 25 Jan 2021 21:40:06 -0800
+Message-Id: <20210126054036.61587-5-mgross@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210126054036.61587-1-mgross@linux.intel.com>
+References: <20210126054036.61587-1-mgross@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
 
+Add DT binding documentation for the Intel Keem Bay IPC driver, which
+enables communication between the Computing Sub-System (CSS) and the
+Multimedia Sub-System (MSS) of the Intel Movidius SoC code named Keem
+Bay.
 
-On 27/01/2021 10:54, Srinivasa Rao Mandadapu wrote:
->>
-> Actually this is MI2S OSR clock disable on failure of bit clock enable.
-> 
-> Do You think it's redundant?
-My Bad!! Just ignore my comment on removing this!
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Mark Gross <mgross@linux.intel.com>
+Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+---
+ .../bindings/soc/intel/intel,keembay-ipc.yaml | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
 
---srini
+diff --git a/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+new file mode 100644
+index 000000000000..586fe73f4cd4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/intel/intel,keembay-ipc.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Intel Corporation
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/intel/intel,keembay-ipc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Keem Bay IPC
++
++maintainers:
++  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
++
++description:
++  The Keem Bay IPC driver enables Inter-Processor Communication (IPC) with the
++  Visual Processor Unit (VPU) embedded in the Intel Movidius SoC code named
++  Keem Bay.
++
++properties:
++  compatible:
++    const: intel,keembay-ipc
++
++  memory-region:
++    items:
++      - description:
++          Reserved memory region used by the CPU to allocate IPC packets.
++      - description:
++          Reserved memory region used by the VPU to allocate IPC packets.
++
++  mboxes:
++    description: VPU IPC Mailbox.
++
++required:
++  - compatible
++  - memory-region
++  - mboxes
++
++additionalProperties: false
++
++examples:
++  - |
++    ipc {
++          compatible = "intel,keembay-ipc";
++          memory-region = <&ipc_cpu_reserved>, <&ipc_vpu_reserved>;
++          mboxes = <&vpu_ipc_mbox 0>;
++    };
+-- 
+2.17.1
+
