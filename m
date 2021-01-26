@@ -2,221 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A5623037F6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 09:33:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3CA130382B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 09:40:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390166AbhAZIcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 03:32:12 -0500
-Received: from muru.com ([72.249.23.125]:53190 "EHLO muru.com"
+        id S2390324AbhAZIix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 03:38:53 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:36088 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390152AbhAZIbr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 03:31:47 -0500
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id C3E348BE9;
-        Tue, 26 Jan 2021 08:28:17 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, Balaji T K <balajitk@ti.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-pci@vger.kernel.org
-Subject: [PATCH 26/27] ARM: OMAP2+: Drop legacy platform data for dra7 l3
-Date:   Tue, 26 Jan 2021 10:27:15 +0200
-Message-Id: <20210126082716.54358-27-tony@atomide.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210126082716.54358-1-tony@atomide.com>
-References: <20210126082716.54358-1-tony@atomide.com>
+        id S2390306AbhAZIir (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 03:38:47 -0500
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1l4JrB-0000Yx-Vl; Tue, 26 Jan 2021 09:37:50 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     robh+dt@kernel.org, wim@linux-watchdog.org, jamie@jamieiles.com,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/8] dt-binding: watchdog: add more Rockchip compatibles to snps,dw-wdt.yaml
+Date:   Tue, 26 Jan 2021 09:37:49 +0100
+Message-ID: <2221632.MzOyzyC30C@diego>
+In-Reply-To: <d6814912-ebbe-642d-161f-a005f40634d6@roeck-us.net>
+References: <20201218120534.13788-1-jbx6244@gmail.com> <11680602.O9o76ZdvQC@phil> <d6814912-ebbe-642d-161f-a005f40634d6@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can now probe interconnects with simple-pm-bus and genpd.
+Hi Guenter,
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/mach-omap2/omap_hwmod_7xx_data.c | 162 ----------------------
- 1 file changed, 162 deletions(-)
+Am Dienstag, 26. Januar 2021, 05:55:59 CET schrieb Guenter Roeck:
+> On 1/25/21 3:40 PM, Heiko Stuebner wrote:
+> > Am Samstag, 23. Januar 2021, 18:34:01 CET schrieb Guenter Roeck:
+> >> On Fri, Dec 18, 2020 at 01:05:27PM +0100, Johan Jonker wrote:
+> >>> The watchdog compatible strings are suppose to be SoC orientated.
+> >>> In the more recently added Rockchip SoC dtsi files only
+> >>> the fallback string "snps,dw-wdt" is used, so add the following
+> >>> compatible strings:
+> >>>
+> >>> "rockchip,px30-wdt", "snps,dw-wdt"
+> >>> "rockchip,rk3228-wdt", "snps,dw-wdt"
+> >>> "rockchip,rk3308-wdt", "snps,dw-wdt"
+> >>> "rockchip,rk3328-wdt", "snps,dw-wdt"
+> >>> "rockchip,rk3399-wdt", "snps,dw-wdt"
+> >>> "rockchip,rv1108-wdt", "snps,dw-wdt"
+> >>>
+> >>> make ARCH=arm dtbs_check
+> >>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> >>>
+> >>> make ARCH=arm64 dtbs_check
+> >>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> >>>
+> >>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> >>> Acked-by: Rob Herring <robh@kernel.org>
+> >>> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> >>
+> >> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> > 
+> > just to clarify, do you expect me to pick up the dt-binding patch
+> > with the devicetree patches or do you want to take this individual
+> > patch through the watchdog tree instead?
+> > 
+> 
+> You'd have to ask Wim since he takes care of actually sending pull requests.
+> But didn't you say earlier that you wanted to apply the rest of the series
+> after this one is applied through the watchdog tree ?
 
-diff --git a/arch/arm/mach-omap2/omap_hwmod_7xx_data.c b/arch/arm/mach-omap2/omap_hwmod_7xx_data.c
---- a/arch/arm/mach-omap2/omap_hwmod_7xx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_7xx_data.c
-@@ -26,172 +26,10 @@
- /* Base offset for all DRA7XX interrupts external to MPUSS */
- #define DRA7XX_IRQ_GIC_START	32
- 
--/*
-- * IP blocks
-- */
--
--/*
-- * 'l3' class
-- * instance(s): l3_instr, l3_main_1, l3_main_2
-- */
--static struct omap_hwmod_class dra7xx_l3_hwmod_class = {
--	.name	= "l3",
--};
--
--/* l3_instr */
--static struct omap_hwmod dra7xx_l3_instr_hwmod = {
--	.name		= "l3_instr",
--	.class		= &dra7xx_l3_hwmod_class,
--	.clkdm_name	= "l3instr_clkdm",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = DRA7XX_CM_L3INSTR_L3_INSTR_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_L3INSTR_L3_INSTR_CONTEXT_OFFSET,
--			.modulemode   = MODULEMODE_HWCTRL,
--		},
--	},
--};
--
--/* l3_main_1 */
--static struct omap_hwmod dra7xx_l3_main_1_hwmod = {
--	.name		= "l3_main_1",
--	.class		= &dra7xx_l3_hwmod_class,
--	.clkdm_name	= "l3main1_clkdm",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = DRA7XX_CM_L3MAIN1_L3_MAIN_1_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_L3MAIN1_L3_MAIN_1_CONTEXT_OFFSET,
--		},
--	},
--};
--
--/* l3_main_2 */
--static struct omap_hwmod dra7xx_l3_main_2_hwmod = {
--	.name		= "l3_main_2",
--	.class		= &dra7xx_l3_hwmod_class,
--	.clkdm_name	= "l3instr_clkdm",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = DRA7XX_CM_L3INSTR_L3_MAIN_2_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_L3INSTR_L3_MAIN_2_CONTEXT_OFFSET,
--			.modulemode   = MODULEMODE_HWCTRL,
--		},
--	},
--};
--
--/*
-- * 'bb2d' class
-- *
-- */
--
--static struct omap_hwmod_class dra7xx_bb2d_hwmod_class = {
--	.name	= "bb2d",
--};
--
--/* bb2d */
--static struct omap_hwmod dra7xx_bb2d_hwmod = {
--	.name		= "bb2d",
--	.class		= &dra7xx_bb2d_hwmod_class,
--	.clkdm_name	= "dss_clkdm",
--	.main_clk	= "dpll_core_h24x2_ck",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = DRA7XX_CM_DSS_BB2D_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_DSS_BB2D_CONTEXT_OFFSET,
--			.modulemode   = MODULEMODE_SWCTRL,
--		},
--	},
--};
--
--/*
-- * 'vcp' class
-- *
-- */
--
--static struct omap_hwmod_class dra7xx_vcp_hwmod_class = {
--	.name	= "vcp",
--};
--
--/* vcp1 */
--static struct omap_hwmod dra7xx_vcp1_hwmod = {
--	.name		= "vcp1",
--	.class		= &dra7xx_vcp_hwmod_class,
--	.clkdm_name	= "l3main1_clkdm",
--	.main_clk	= "l3_iclk_div",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = DRA7XX_CM_L3MAIN1_VCP1_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_L3MAIN1_VCP1_CONTEXT_OFFSET,
--		},
--	},
--};
--
--/* vcp2 */
--static struct omap_hwmod dra7xx_vcp2_hwmod = {
--	.name		= "vcp2",
--	.class		= &dra7xx_vcp_hwmod_class,
--	.clkdm_name	= "l3main1_clkdm",
--	.main_clk	= "l3_iclk_div",
--	.prcm = {
--		.omap4 = {
--			.clkctrl_offs = DRA7XX_CM_L3MAIN1_VCP2_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_L3MAIN1_VCP2_CONTEXT_OFFSET,
--		},
--	},
--};
--
--
--
- /*
-  * Interfaces
-  */
--
--/* l3_main_2 -> l3_instr */
--static struct omap_hwmod_ocp_if dra7xx_l3_main_2__l3_instr = {
--	.master		= &dra7xx_l3_main_2_hwmod,
--	.slave		= &dra7xx_l3_instr_hwmod,
--	.clk		= "l3_iclk_div",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
--/* l3_main_1 -> l3_main_2 */
--static struct omap_hwmod_ocp_if dra7xx_l3_main_1__l3_main_2 = {
--	.master		= &dra7xx_l3_main_1_hwmod,
--	.slave		= &dra7xx_l3_main_2_hwmod,
--	.clk		= "l3_iclk_div",
--	.user		= OCP_USER_MPU,
--};
--
--/* l3_main_1 -> bb2d */
--static struct omap_hwmod_ocp_if dra7xx_l3_main_1__bb2d = {
--	.master		= &dra7xx_l3_main_1_hwmod,
--	.slave		= &dra7xx_bb2d_hwmod,
--	.clk		= "l3_iclk_div",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
--/* l3_main_1 -> vcp1 */
--static struct omap_hwmod_ocp_if dra7xx_l3_main_1__vcp1 = {
--	.master		= &dra7xx_l3_main_1_hwmod,
--	.slave		= &dra7xx_vcp1_hwmod,
--	.clk		= "l3_iclk_div",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
--/* l3_main_1 -> vcp2 */
--static struct omap_hwmod_ocp_if dra7xx_l3_main_1__vcp2 = {
--	.master		= &dra7xx_l3_main_1_hwmod,
--	.slave		= &dra7xx_vcp2_hwmod,
--	.clk		= "l3_iclk_div",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
- static struct omap_hwmod_ocp_if *dra7xx_hwmod_ocp_ifs[] __initdata = {
--	&dra7xx_l3_main_2__l3_instr,
--	&dra7xx_l3_main_1__l3_main_2,
--	&dra7xx_l3_main_1__bb2d,
--	&dra7xx_l3_main_1__vcp1,
--	&dra7xx_l3_main_1__vcp2,
- 	NULL,
- };
- 
--- 
-2.30.0
+Yep that was my intent, though somehow I mistook you as also being
+a watchdog maintainer, hence the confusion.
+
+So I'll wait for Wim to apply this patch and then I'll take the rest of
+the series.
+
+Thanks
+Heiko
+
+
+> >>> ---
+> >>>  Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 6 ++++++
+> >>>  1 file changed, 6 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> >>> index f7ee9229c..b58596b18 100644
+> >>> --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> >>> +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> >>> @@ -18,10 +18,16 @@ properties:
+> >>>        - const: snps,dw-wdt
+> >>>        - items:
+> >>>            - enum:
+> >>> +              - rockchip,px30-wdt
+> >>>                - rockchip,rk3066-wdt
+> >>>                - rockchip,rk3188-wdt
+> >>> +              - rockchip,rk3228-wdt
+> >>>                - rockchip,rk3288-wdt
+> >>> +              - rockchip,rk3308-wdt
+> >>> +              - rockchip,rk3328-wdt
+> >>>                - rockchip,rk3368-wdt
+> >>> +              - rockchip,rk3399-wdt
+> >>> +              - rockchip,rv1108-wdt
+> >>>            - const: snps,dw-wdt
+> >>>  
+> >>>    reg:
+> >>
+> > 
+> > 
+> > 
+> > 
+> 
+> 
+
+
+
+
