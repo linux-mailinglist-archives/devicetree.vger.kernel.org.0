@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6326530472C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 19:55:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CD5230471B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 19:54:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729820AbhAZRLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:11:39 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:11193 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390804AbhAZJIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 04:08:37 -0500
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4DQ17F5MMJzl9y1;
-        Tue, 26 Jan 2021 17:06:17 +0800 (CST)
-Received: from [10.40.166.221] (10.40.166.221) by
- DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
- 14.3.498.0; Tue, 26 Jan 2021 17:07:26 +0800
-Message-ID: <600FDBCE.8000405@hisilicon.com>
-Date:   Tue, 26 Jan 2021 17:07:26 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S2388135AbhAZRMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:12:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43388 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392736AbhAZQ2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 11:28:47 -0500
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D998DC061574
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 08:28:01 -0800 (PST)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by xavier.telenet-ops.be with bizsmtp
+        id MUTz2400X4C55Sk01UTzMR; Tue, 26 Jan 2021 17:27:59 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1l4RCB-000wY3-7j; Tue, 26 Jan 2021 17:27:59 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1l4RCA-0086nF-QY; Tue, 26 Jan 2021 17:27:58 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH dt-schema 0/2] dt-schema: Add percentage
+Date:   Tue, 26 Jan 2021 17:27:54 +0100
+Message-Id: <20210126162756.1932692-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/3] Added some missing DT settings for Hikey 970
-References: <cover.1610710288.git.mchehab+huawei@kernel.org>
-In-Reply-To: <cover.1610710288.git.mchehab+huawei@kernel.org>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.166.221]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+	Hi Rob,
 
-On 2021/1/15 19:53, Mauro Carvalho Chehab wrote:
-> The Hikey 970 device tree has a few missing pieces that are required
-> in order for it to be able to support USB and DRM drivers upstream.
-> 
-> Besides PM, USB and DRM specific bits, the hardware's binding
-> for I2C buses and pinctrl are missing.
-> 
-> Those DT bindings come from the official Linaro Hikey 970 tree:
-> 
-> 	https://github.com/96boards-hikey/linux/tree/hikey970-v4.9
-> 
-> Changed in order to apply cleanly upstream.
-> 
-> PS.: The changes from this series were submitted initially on this
-> patch series:
-> 	Move Hikey 970 USB support out of staging and add DT
-> 	https://lore.kernel.org/lkml/cover.1605530560.git.mchehab+huawei@kernel.org/
-> 
-> I'm opting to split such series into separate patch series, in order to 
-> make easier for review and upstream merge, as the original series
-> was mixing patches for different subsystems.
-> 
-> Mauro Carvalho Chehab (3):
->   arm64: dts: hisilicon: hi3670.dtsi: add iomcu_rst
->   arm64: dts: hikey970-pinctrl.dtsi: add missing pinctrl settings
->   arm64: dts: hisilicon: hi3670.dtsi: add I2C settings
-> 
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  77 +++
->  .../boot/dts/hisilicon/hikey970-pinctrl.dtsi  | 548 +++++++++++++++++-
->  2 files changed, 614 insertions(+), 11 deletions(-)
-> 
+This patch series adds percentages to the lists of recognized
+properties, as requested in[1].
 
 Thanks!
-Series applied to the hisilicon arm64 dt tree with minor changes to align with
-the dtschema.
 
-Best Regards,
-Wei
+[1] "Re: [PATCH v2] dt-bindings: clk: versaclock5: Miscellaneous fixes
+     and improvements:"
+    https://lore.kernel.org/linux-devicetree/20210125212442.GA1019390@robh.at.kernel.org/
+
+Geert Uytterhoeven (2):
+  schemas: property-units: Add percentage
+  meta-schemas: vendor-props: Add percentage
+
+ meta-schemas/vendor-props.yaml | 2 +-
+ schemas/property-units.yaml    | 5 +++++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
