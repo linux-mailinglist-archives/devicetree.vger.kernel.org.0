@@ -2,235 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17B1C304793
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 20:09:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6264304797
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 20:09:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727428AbhAZRAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:00:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40560 "EHLO mail.kernel.org"
+        id S1727992AbhAZRBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:01:11 -0500
+Received: from mx2.suse.de ([195.135.220.15]:55270 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730395AbhAZHf4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 02:35:56 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id ADD342251D;
-        Tue, 26 Jan 2021 07:35:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611646514;
-        bh=nc2VyaHuWhB2Rn3GSSxeXz9nYEjWg42v9pO+xztLTwk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=uwW/MOfiG/ypoEqvBFY8ATzeSRK8wdOeWtHpRYw0R5EOhOiYEJnrT2ivf57aQfEOE
-         wWWcv4jBA2STuXCsjF+W8OITvW1gQ5lazEO7pS1ztRUjF8W/+6AIb1CRMyDlmlW5qk
-         IP1btKusjBPT9ySR34oN8CCCQ5E2uVQLArxrWkhJ59Sx1cXACfN0x+VXf6G8yIvSw0
-         sGWqjEeZUZ/7wlvZJ5s2SMLJ7o74cthQOsMxWB4SBx7pgvjOH0nGBQ/Uae8vufPLPi
-         FOH+F3NVFcIQppIc8Twm1miQ2mIgOZdeMmR1N8/3rBzuHyrcMU4fzGdm56vV0lQmSI
-         hhZjjpy/skm/g==
-Received: by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1l4Isa-00BqrO-Js; Tue, 26 Jan 2021 08:35:12 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: [PATCH RFC 2/2] dt: pci: kirin-pcie.txt: convert it to yaml
-Date:   Tue, 26 Jan 2021 08:35:07 +0100
-Message-Id: <30795b4a1cea54292d49881d5843e2bdbc496e4d.1611645945.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1611645945.git.mchehab+huawei@kernel.org>
-References: <cover.1611645945.git.mchehab+huawei@kernel.org>
+        id S2389499AbhAZHj3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 02:39:29 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+        t=1611646694; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=M0mfPAgr5/mcN1gE3PCuv5bB2pgiXjtbaOMlL4p0sos=;
+        b=dsN+HPpNY9OXHC9dhykB1ubNv7WY+/ssIg+VKsRreb5xETHkTsTy8aRfsyHDwwgKdOPzP0
+        qKyX9kw9S0Bk0tz8DxM73Y+gzQhzQ+8sLd8bNWurnabNn6pNiENZhfoXXBGczpWSztCK9H
+        QDqCpDzJ61X1KCI15VL6J8c5NJdRVsc=
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id BF732AE56;
+        Tue, 26 Jan 2021 07:38:14 +0000 (UTC)
+Date:   Tue, 26 Jan 2021 08:38:08 +0100
+From:   Michal Hocko <mhocko@suse.com>
+To:     Minchan Kim <minchan@kernel.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
+        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
+        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
+        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
+        linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v4 1/4] mm: cma: introduce gfp flag in cma_alloc instead
+ of no_warn
+Message-ID: <20210126073808.GZ827@dhcp22.suse.cz>
+References: <20210121175502.274391-1-minchan@kernel.org>
+ <20210121175502.274391-2-minchan@kernel.org>
+ <20210125130701.GF827@dhcp22.suse.cz>
+ <YA8fKgFLuOi/rSez@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YA8fKgFLuOi/rSez@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert	the file into a	JSON description at the	yaml format.
+On Mon 25-01-21 11:42:34, Minchan Kim wrote:
+> On Mon, Jan 25, 2021 at 02:07:01PM +0100, Michal Hocko wrote:
+> > On Thu 21-01-21 09:54:59, Minchan Kim wrote:
+> > > The upcoming patch will introduce __GFP_NORETRY semantic
+> > > in alloc_contig_range which is a failfast mode of the API.
+> > > Instead of adding a additional parameter for gfp, replace
+> > > no_warn with gfp flag.
+> > > 
+> > > To keep old behaviors, it follows the rule below.
+> > > 
+> > >   no_warn 			gfp_flags
+> > > 
+> > >   false         		GFP_KERNEL
+> > >   true          		GFP_KERNEL|__GFP_NOWARN
+> > >   gfp & __GFP_NOWARN		GFP_KERNEL | (gfp & __GFP_NOWARN)
+> > > 
+> > > Reviewed-by: Suren Baghdasaryan <surenb@google.com>
+> > > Signed-off-by: Minchan Kim <minchan@kernel.org>
+> > [...]
+> > > diff --git a/mm/cma.c b/mm/cma.c
+> > > index 0ba69cd16aeb..d50627686fec 100644
+> > > --- a/mm/cma.c
+> > > +++ b/mm/cma.c
+> > > @@ -419,13 +419,13 @@ static inline void cma_debug_show_areas(struct cma *cma) { }
+> > >   * @cma:   Contiguous memory region for which the allocation is performed.
+> > >   * @count: Requested number of pages.
+> > >   * @align: Requested alignment of pages (in PAGE_SIZE order).
+> > > - * @no_warn: Avoid printing message about failed allocation
+> > > + * @gfp_mask: GFP mask to use during the cma allocation.
+> > 
+> > Call out supported gfp flags explicitly. Have a look at kvmalloc_node
+> > for a guidance.
+> 
+> How about this?
+> 
+> 
+> diff --git a/mm/cma.c b/mm/cma.c
+> index d50627686fec..b94727b694d6 100644
+> --- a/mm/cma.c
+> +++ b/mm/cma.c
+> @@ -423,6 +423,10 @@ static inline void cma_debug_show_areas(struct cma *cma) { }
+>   *
+>   * This function allocates part of contiguous memory on specific
+>   * contiguous memory area.
+> + *
+> + * For gfp_mask, GFP_KERNEL and __GFP_NORETRY are supported. __GFP_NORETRY
+> + * will avoid costly functions(e.g., waiting on page_writeback and locking)
+> + * at current implementaion during the page migration.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../bindings/pci/hisilicon,kirin-pcie.yaml    | 98 +++++++++++++++++++
- .../devicetree/bindings/pci/kirin-pcie.txt    | 50 ----------
- MAINTAINERS                                   |  2 +-
- 3 files changed, 99 insertions(+), 51 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/kirin-pcie.txt
+rather than explicitly mentioning what the flag implies I think it would
+be more useful to state the intended usecase. See how kvmalloc_node says
+"__GFP_RETRY_MAYFAIL is supported, and it should be used only if kmalloc is
+preferable to the vmalloc fallback, due to visible performance
+drawbacks.
+__GFP_NOWARN is also supported to suppress allocation failure messages."
 
-diff --git a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-new file mode 100644
-index 000000000000..8d8112b2aca0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/hisilicon,kirin-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon Kirin SoCs PCIe host DT description
-+
-+maintainers:
-+  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+
-+description: |
-+  Kirin PCIe host controller is based on the Synopsys DesignWare PCI core.
-+  It shares common functions with the PCIe DesignWare core driver and
-+  inherits common properties defined in
-+  Documentation/devicetree/bindings/pci/designware-pcie.yaml.
-+
-+properties:
-+  compatible:
-+    const: hisilicon,kirin960-pcie
-+
-+  reg:
-+    description: |
-+      Should contain rc_dbi, apb, phy, config registers location and length.
-+
-+  reg-names:
-+    description: |
-+      Must include the following entries:
-+      "dbi": controller configuration registers;
-+      "apb": apb Ctrl register defined by Kirin;
-+      "phy": apb PHY register defined by Kirin;
-+      "config": PCIe configuration space registers.
-+
-+  "#address-cells":
-+    const: 3
-+
-+  "#size-cells":
-+    const: 2
-+
-+  reset-gpios:
-+    description: The GPIO to generate PCIe PERST# assert and deassert signal.
-+    maxItems: 1
-+
-+allOf:
-+  - $ref: "designware,pcie.yaml#"
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - reset-gpios
-+  - "#address-cells"
-+  - "#size-cells"
-+  - device_type
-+  - ranges
-+  - "#interrupt-cells"
-+  - interrupt-map-mask
-+  - interrupt-map
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/hi3660-clock.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      pcie@f4000000 {
-+        compatible = "hisilicon,kirin960-pcie";
-+        reg = <0x0 0xf4000000 0x0 0x1000>,
-+              <0x0 0xff3fe000 0x0 0x1000>,
-+              <0x0 0xf3f20000 0x0 0x40000>,
-+              <0x0 0xF4000000 0 0x2000>;
-+        reg-names = "dbi","apb","phy", "config";
-+        bus-range = <0x0  0x1>;
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        device_type = "pci";
-+        ranges = <0x02000000 0x0 0x00000000 0x0 0xf5000000 0x0 0x2000000>;
-+        num-lanes = <1>;
-+        #interrupt-cells = <1>;
-+        interrupt-map-mask = <0xf800 0 0 7>;
-+        interrupt-map = <0x0 0 0 1 &gic 0 0 0  282 4>,
-+                        <0x0 0 0 2 &gic 0 0 0  283 4>,
-+                        <0x0 0 0 3 &gic 0 0 0  284 4>,
-+                        <0x0 0 0 4 &gic 0 0 0  285 4>;
-+        clocks = <&crg_ctrl HI3660_PCIEPHY_REF>,
-+                 <&crg_ctrl HI3660_CLK_GATE_PCIEAUX>,
-+                 <&crg_ctrl HI3660_PCLK_GATE_PCIE_PHY>,
-+                 <&crg_ctrl HI3660_PCLK_GATE_PCIE_SYS>,
-+                 <&crg_ctrl HI3660_ACLK_GATE_PCIE>;
-+        clock-names = "pcie_phy_ref", "pcie_aux", "pcie_apb_phy",
-+                      "pcie_apb_sys", "pcie_aclk";
-+        reset-gpios = <&gpio11 1 0 >;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/pci/kirin-pcie.txt b/Documentation/devicetree/bindings/pci/kirin-pcie.txt
-deleted file mode 100644
-index 8e4fe7fc50f9..000000000000
---- a/Documentation/devicetree/bindings/pci/kirin-pcie.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--HiSilicon Kirin SoCs PCIe host DT description
--
--Kirin PCIe host controller is based on the Synopsys DesignWare PCI core.
--It shares common functions with the PCIe DesignWare core driver and
--inherits common properties defined in
--Documentation/devicetree/bindings/pci/designware,pcie.yaml.
--
--Additional properties are described here:
--
--Required properties
--- compatible:
--	"hisilicon,kirin960-pcie" for PCIe of Kirin960 SoC
--- reg: Should contain rc_dbi, apb, phy, config registers location and length.
--- reg-names: Must include the following entries:
--  "dbi": controller configuration registers;
--  "apb": apb Ctrl register defined by Kirin;
--  "phy": apb PHY register defined by Kirin;
--  "config": PCIe configuration space registers.
--- reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
--
--Optional properties:
--
--Example based on kirin960:
--
--	pcie@f4000000 {
--		compatible = "hisilicon,kirin-pcie";
--		reg = <0x0 0xf4000000 0x0 0x1000>, <0x0 0xff3fe000 0x0 0x1000>,
--		      <0x0 0xf3f20000 0x0 0x40000>, <0x0 0xF4000000 0 0x2000>;
--		reg-names = "dbi","apb","phy", "config";
--		bus-range = <0x0  0x1>;
--		#address-cells = <3>;
--		#size-cells = <2>;
--		device_type = "pci";
--		ranges = <0x02000000 0x0 0x00000000 0x0 0xf5000000 0x0 0x2000000>;
--		num-lanes = <1>;
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0xf800 0 0 7>;
--		interrupt-map = <0x0 0 0 1 &gic 0 0 0  282 4>,
--				<0x0 0 0 2 &gic 0 0 0  283 4>,
--				<0x0 0 0 3 &gic 0 0 0  284 4>,
--				<0x0 0 0 4 &gic 0 0 0  285 4>;
--		clocks = <&crg_ctrl HI3660_PCIEPHY_REF>,
--			 <&crg_ctrl HI3660_CLK_GATE_PCIEAUX>,
--			 <&crg_ctrl HI3660_PCLK_GATE_PCIE_PHY>,
--			 <&crg_ctrl HI3660_PCLK_GATE_PCIE_SYS>,
--			 <&crg_ctrl HI3660_ACLK_GATE_PCIE>;
--		clock-names = "pcie_phy_ref", "pcie_aux",
--			      "pcie_apb_phy", "pcie_apb_sys", "pcie_aclk";
--		reset-gpios = <&gpio11 1 0 >;
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3bb3233830ec..2b98a4763724 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13611,7 +13611,7 @@ M:	Xiaowei Song <songxiaowei@hisilicon.com>
- M:	Binghui Wang <wangbinghui@hisilicon.com>
- L:	linux-pci@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/pci/kirin-pcie.txt
-+F:	Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
- F:	drivers/pci/controller/dwc/pcie-kirin.c
- 
- PCIE DRIVER FOR HISILICON STB
+This would help people not familiar with internals to see whether this
+flag is a good fit for them.
+
+In this case I woul go with
+"
+@flags: gfp mask. Must be compatible (superset) with GFP_KERNEL.
+[...]
+Reclaim modifiers (__GFP_RETRY_MAYFAIL, __GFP_NOFAIL) are not supported.
+__GFP_NORETRY is supported, and it should be used for opportunistic
+allocation attempts that should rather fail quickly when the caller has
+a fallback strategy.
+"
+
+Obviously for this patch you will go with a simple statement that
+Reclaim modifiers are not supported at all.
+
+>   */
+>  struct page *cma_alloc(struct cma *cma, size_t count, unsigned int align,
+>                        gfp_t gfp_mask)
+> 
+
 -- 
-2.29.2
-
+Michal Hocko
+SUSE Labs
