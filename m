@@ -2,132 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 111D330335D
+	by mail.lfdr.de (Postfix) with ESMTP id 7DC4D30335E
 	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728697AbhAZEv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:51:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40480 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732030AbhAZCfq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Jan 2021 21:35:46 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D0BE7230FC;
-        Tue, 26 Jan 2021 02:35:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611628505;
-        bh=vY8skLmS8gAa3C2YdwzeUu+thyB3c8wHH/g4ryiz9X0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=q4Mb5OgJuGjK7oUVR8+iQTwJOU1sO2dAJ2Y/Gq6QBS/d24d0GFw8apcYotLbkjE4M
-         XFsen8tTjwgYOl1MSZvPSPLqICNQEJ+xqLOAx3dPfPWZVdBl3EBKOvMAQGeoTk3WQs
-         Li3xZa+YhBC6jpDW31QYHS/reTejSaMZmeGFkYlYPA5culIXC3qOl9bjHLsOX1F12i
-         Zk0A90+hKvDPXe1iaHt3mpf0QssWI1Q9jZV0HBvprsahuz0qAv/3w+PdQ2QQyHWpGE
-         Z/lkmq1Pz7KcxNTdY7XaTJEqmlIJTZrMxIwWRb2iF+1hjJlgH6F1dMGdfI1WemBswG
-         uSOSHuoxrRdiQ==
-Received: by mail-ed1-f48.google.com with SMTP id j13so18005989edp.2;
-        Mon, 25 Jan 2021 18:35:04 -0800 (PST)
-X-Gm-Message-State: AOAM530RpFFkvsub3mn6LSBhs3WFnUyb1FIWx7Y21ypGhLqQNJm2b4Bk
-        97T3oUvNWcCptRXqpTiJezKj0bFsObLsd2/pYQ==
-X-Google-Smtp-Source: ABdhPJz3LoRDEKajGyRaIcQrswahRbzqtudpMO1X5AbaHvIxQ1oYjpkVNNCcTzAZoKzXVR+JMPIGAIb/6bvMZMlUj/k=
-X-Received: by 2002:a05:6402:5246:: with SMTP id t6mr2877008edd.62.1611628503416;
- Mon, 25 Jan 2021 18:35:03 -0800 (PST)
+        id S1728738AbhAZEvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:51:41 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:37996 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732240AbhAZCjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:39:49 -0500
+Received: by mail-ot1-f48.google.com with SMTP id s2so12712565otp.5
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 18:39:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LyjWMQi/Wg/LetZuSHt99dOJAsiyEjqk3II+kk6Ybdc=;
+        b=drT0wEd++raUXuiR3DLOyn+5AbyZaFbn5H1CVs0AbFkzv1xpV2z/Z881PfXDSP31d6
+         //CnBTDo9WwZCjnpjMiklDo354f/txCUaSc/biXMT3bofQHzM9KtxyuDXkFSUIK4emBx
+         wJwwL1AgAb8ZMwUYq4yHbVOlBIWxUG2ykNuAAVUkTdnXXl/A4E+JuO/R0EUOvOiAlkSB
+         rxoRUptIThCEVqhCGx1t0+bPDsWjCjTsg9pjvirAdu4GreovTomX6eVxahLy6eVVck6/
+         IiusblyREmYDGlKZQA2dQJYfXLTvSb/XPXnTWu4rpphQa2WuVXB2PKoD09Q5xvsof4g7
+         8zGA==
+X-Gm-Message-State: AOAM530RfPury1SVnU0XdC/s/Ixf+6u/P1CEJ2HLrNzxx2r43q5wt+68
+        YtOLEF6pGeidD8H14jaL1Q==
+X-Google-Smtp-Source: ABdhPJzVz6r4O2ks+3G24uVhIq7vNxlpW/6RIVcGGmctLSSwXYn3iryXLjWs2HpIt6iQCJjA+fYVug==
+X-Received: by 2002:a05:6830:1ac3:: with SMTP id r3mr2633669otc.363.1611628747483;
+        Mon, 25 Jan 2021 18:39:07 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id k20sm78376otr.34.2021.01.25.18.39.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 18:39:06 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Russell King <linux@armlinux.org.uk>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Qi Zheng <arch0.zheng@gmail.com>
+Subject: [PATCH] ARM: zImage: atags_to_fdt: Fix node names on added root nodes
+Date:   Mon, 25 Jan 2021 20:39:05 -0600
+Message-Id: <20210126023905.1631161-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200528132541.463300-1-arch0.zheng@gmail.com>
- <ebbba4ac-ea65-472c-5a3a-201dfe59e402@alliedtelesis.co.nz> <CAL_Jsq+8TDagRWyxZHo+qeeV7zDok2mnq10B-B9-L2QoqMr=FQ@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+8TDagRWyxZHo+qeeV7zDok2mnq10B-B9-L2QoqMr=FQ@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 25 Jan 2021 20:34:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLpy+8DdXjYAJJyHmcaQe8MBftWbzftaCAkvt9nr6pQEg@mail.gmail.com>
-Message-ID: <CAL_JsqLpy+8DdXjYAJJyHmcaQe8MBftWbzftaCAkvt9nr6pQEg@mail.gmail.com>
-Subject: Re: [PATCH v2] of/fdt: Remove redundant kbasename function call
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     Qi Zheng <arch0.zheng@gmail.com>,
-        "frowand.list@gmail.com" <frowand.list@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 8:06 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> +LAKML given it's an Arm issue
->
-> On Mon, Jan 25, 2021 at 6:47 PM Chris Packham
-> <Chris.Packham@alliedtelesis.co.nz> wrote:
-> >
-> > Hi All,
-> >
-> > On 29/05/20 1:25 am, Qi Zheng wrote:
-> > > For version 1 to 3 of the device tree, this is the node full
-> > > path as a zero terminated string, starting with "/". The
-> > > following equation will not hold, since the node name has
-> > > been processed in the fdt_get_name().
-> > >
-> > >       *pathp == '/'
-> > >
-> > > For version 16 and later, this is the node unit name only
-> > > (or an empty string for the root node). So the above
-> > > equation will still not hold.
-> > >
-> > > So the kbasename() is redundant, just remove it.
-> > >
-> > > Signed-off-by: Qi Zheng <arch0.zheng@gmail.com>
-> > > ---
-> > >
-> > > Change in v2:
-> > >       remove another kbasename() also.
-> > >
-> > >   drivers/of/fdt.c | 4 ----
-> > >   1 file changed, 4 deletions(-)
-> > >
-> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > index 38619e9ef6b2..4602e467ca8b 100644
-> > > --- a/drivers/of/fdt.c
-> > > +++ b/drivers/of/fdt.c
-> > > @@ -643,8 +643,6 @@ int __init of_scan_flat_dt(int (*it)(unsigned long node,
-> > >            offset = fdt_next_node(blob, offset, &depth)) {
-> > >
-> > >               pathp = fdt_get_name(blob, offset, NULL);
-> > > -             if (*pathp == '/')
-> > > -                     pathp = kbasename(pathp);
-> > >               rc = it(offset, pathp, depth, data);
-> > >       }
-> > >       return rc;
-> > > @@ -671,8 +669,6 @@ int __init of_scan_flat_dt_subnodes(unsigned long parent,
-> > >               int rc;
-> > >
-> > >               pathp = fdt_get_name(blob, node, NULL);
-> > > -             if (*pathp == '/')
-> > > -                     pathp = kbasename(pathp);
-> > >               rc = it(node, pathp, data);
-> > >               if (rc)
-> > >                       return rc;
-> >
-> > I'm trying to keep our boards up to date with newer kernels.
-> >
-> > I've just hit a problem on an older board that uses
-> > CONFIG_ARM_APPENDED_DTB and has a number of command line args passed up
-> > from the bootloader that are required for a successful boot.
-> >
-> > I'm stepping through kernel versions in the hope that keeping things
-> > running is easier in smaller increments I'm up to v5.8. I'm not
-> > currently able to check a newer kernel on this board but looking at the
-> > code the problem still seems to exist in the latest tree.
-> >
-> > early_init_dt_scan_chosen() searches for "chosen" prior to this change
-> > the "/chosen" node that gets inserted by atags_to_fdt.c but with this
-> > change it can't find it and fails to boot.
->
-> Given this code works for normal cases, I'm guessing the problem is in
-> atags_to_fdt.c or libfdt. Is it possible to add an empty chosen node
-> to the DT and see if that makes any difference.
+Commit 7536c7e03e74 ("of/fdt: Remove redundant kbasename function
+call") exposed a bug creating DT nodes in the ATAGS to DT fixup code.
+Non-existent nodes would mistaken get created with a leading '/'. The
+problem was fdt_path_offset() takes a full path while creating a node
+with fdt_add_subnode() takes just the basename.
 
-This will work. It's a atags_to_fdt.c bug. In node_offset(), we search
-by path (/chosen) with fdt_path_offset. If not found, then we add a
-subnode called '/chosen' (instead of 'chosen') with fdt_add_subnode().
-Though arguably, libfdt could catch and handle this. I'll send a patch
-in a minute.
+Since this we only add root child nodes, we can just skip over the '/'.
 
-Rob
+Fixes: 7536c7e03e74 ("of/fdt: Remove redundant kbasename function call")
+Reported-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: Qi Zheng <arch0.zheng@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ arch/arm/boot/compressed/atags_to_fdt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/compressed/atags_to_fdt.c b/arch/arm/boot/compressed/atags_to_fdt.c
+index 8452753efebe..31927d2fe297 100644
+--- a/arch/arm/boot/compressed/atags_to_fdt.c
++++ b/arch/arm/boot/compressed/atags_to_fdt.c
+@@ -15,7 +15,8 @@ static int node_offset(void *fdt, const char *node_path)
+ {
+ 	int offset = fdt_path_offset(fdt, node_path);
+ 	if (offset == -FDT_ERR_NOTFOUND)
+-		offset = fdt_add_subnode(fdt, 0, node_path);
++		/* Add the node to root if not found, dropping the leading '/' */
++		offset = fdt_add_subnode(fdt, 0, node_path + 1);
+ 	return offset;
+ }
+ 
+-- 
+2.27.0
+
