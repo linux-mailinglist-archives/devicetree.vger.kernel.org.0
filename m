@@ -2,125 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34811303FB6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59438303FC4
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:10:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405716AbhAZOHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 09:07:54 -0500
-Received: from mail-40136.protonmail.ch ([185.70.40.136]:56573 "EHLO
-        mail-40136.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405712AbhAZOHv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:07:51 -0500
-Date:   Tue, 26 Jan 2021 14:06:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1611670025;
-        bh=salyD/WHDIurAfXLaRdlHjy/N3gO/EgJ38mXhbWj+8A=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=q+HTsB7Uqut7TDSqzeqkeRLfypg5t9zC4sq5LSGRFXYLjJ4ngWqoirWhUky/juxGQ
-         rN7eNCEZGezvPUctVw4/tc5Rbg+bY8AbpHw33S4jL4mdDogThy2JFU+eLWJNfBLAma
-         fJu7BQd7ZQmcn9HjcaXfniqfIEedKnoIcXypjjEw=
-To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-From:   =?utf-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= 
-        <nfraprado@protonmail.com>
-Cc:     linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Brian Masney <masneyb@onstation.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Russell King <linux@armlinux.org.uk>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        lkcamp@lists.libreplanetbr.org, andrealmeid@collabora.com
-Reply-To: =?utf-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= 
-          <nfraprado@protonmail.com>
-Subject: [PATCH v2 4/4] ARM: dts: qcom: pm8941: Add nodes for QCOM SPMI Flash LEDs
-Message-ID: <20210126140240.1517044-5-nfraprado@protonmail.com>
-In-Reply-To: <20210126140240.1517044-1-nfraprado@protonmail.com>
-References: <20210126140240.1517044-1-nfraprado@protonmail.com>
+        id S2405800AbhAZOJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 09:09:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40610 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405719AbhAZOIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:08:21 -0500
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5CAC0611C2
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:07:24 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7A49C3E7D4;
+        Tue, 26 Jan 2021 15:07:19 +0100 (CET)
+Subject: Re: [PATCH] venus: core: Parse firmware-name DT property
+To:     Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>
+References: <20210126084252.238078-1-stanimir.varbanov@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <b2afcf41-5135-1ac0-c603-6394bb0ab492@somainline.org>
+Date:   Tue, 26 Jan 2021 15:07:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+In-Reply-To: <20210126084252.238078-1-stanimir.varbanov@linaro.org>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the necessary devicetree nodes for the Qualcomm SPMI Flash LEDs
-present in PM8941.
+Il 26/01/21 09:42, Stanimir Varbanov ha scritto:
+> On production devices the firmware could be located on different
+> places, this path could be provided by special firmware-name DT
+> property.
+> 
+> Here we check for existence of such DT property and if it exist
+> take the firmware path from there. Otherwise, if the property
+> is missing we fallback to the predefined path from driver resource
+> structure.
+> 
+> Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
+> ---
+>   drivers/media/platform/qcom/venus/firmware.c | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/media/platform/qcom/venus/firmware.c b/drivers/media/platform/qcom/venus/firmware.c
+> index d03e2dd5808c..56c8fb5a019b 100644
+> --- a/drivers/media/platform/qcom/venus/firmware.c
+> +++ b/drivers/media/platform/qcom/venus/firmware.c
+> @@ -187,6 +187,7 @@ int venus_boot(struct venus_core *core)
+>   {
+>   	struct device *dev = core->dev;
+>   	const struct venus_resources *res = core->res;
+> +	const char *fwpath = NULL;
+>   	phys_addr_t mem_phys;
+>   	size_t mem_size;
+>   	int ret;
+> @@ -195,7 +196,12 @@ int venus_boot(struct venus_core *core)
+>   	    (core->use_tz && !qcom_scm_is_available()))
+>   		return -EPROBE_DEFER;
+>   
+> -	ret = venus_load_fw(core, core->res->fwname, &mem_phys, &mem_size);
+> +	ret = of_property_read_string_index(dev->of_node, "firmware-name", 0,
+> +					    &fwpath);
+> +	if (ret)
+> +		fwpath = core->res->fwname;
+> +
+> +	ret = venus_load_fw(core, fwpath, &mem_phys, &mem_size);
+>   	if (ret) {
+>   		dev_err(dev, "fail to load video firmware\n");
+>   		return -EINVAL;
+> 
 
-Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@protonmail.com>
----
-Changes in v2:
-- Moved from hammerhead dts to pm8941 dtsi, as it was this way downstream
-- Now using values from leds-qcom-spmi-flash.h
+Super! As you surely know, I totally agree.
 
- arch/arm/boot/dts/qcom-pm8941.dtsi | 38 ++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm=
-8941.dtsi
-index c1f2012d1c8b..89309d3c777c 100644
---- a/arch/arm/boot/dts/qcom-pm8941.dtsi
-+++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
-@@ -2,6 +2,8 @@
- #include <dt-bindings/iio/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/leds/leds-qcom-spmi-flash.h>
-=20
- &spmi_bus {
-=20
-@@ -189,5 +191,41 @@ pm8941_5vs2: 5vs2 {
- =09=09=09=09regulator-initial-mode =3D <1>;
- =09=09=09};
- =09=09};
-+
-+=09=09qcom,spmi-flash@d300 {
-+=09=09=09status =3D "okay";
-+
-+=09=09=09compatible =3D "qcom,spmi-flash";
-+=09=09=09reg =3D <0xd300 0x100>;
-+=09=09=09flash-boost-supply =3D <&pm8941_5vs1>;
-+=09=09=09torch-boost-supply =3D <&pm8941_5v>;
-+=09=09=09pm8941_flash0: led0 {
-+=09=09=09=09led-sources =3D <0>;
-+=09=09=09=09function =3D LED_FUNCTION_FLASH;
-+=09=09=09=09color =3D <LED_COLOR_ID_WHITE>;
-+=09=09=09=09led-max-microamp =3D <200000>;
-+=09=09=09=09flash-max-microamp =3D <1000000>;
-+=09=09=09=09flash-max-timeout-us =3D <1280000>;
-+=09=09=09=09default-state =3D "off";
-+=09=09=09=09qcom,clamp-curr =3D <200000>;
-+=09=09=09=09qcom,headroom =3D <QCOM_SPMI_FLASH_HEADROOM_500MV>;
-+=09=09=09=09qcom,startup-dly =3D <QCOM_SPMI_FLASH_STARTUP_DLY_128US>;
-+=09=09=09=09qcom,safety-timer;
-+=09=09=09};
-+
-+=09=09=09pm8941_flash1: led1 {
-+=09=09=09=09led-sources =3D <1>;
-+=09=09=09=09function =3D LED_FUNCTION_FLASH;
-+=09=09=09=09color =3D <LED_COLOR_ID_WHITE>;
-+=09=09=09=09led-max-microamp =3D <200000>;
-+=09=09=09=09flash-max-microamp =3D <1000000>;
-+=09=09=09=09flash-max-timeout-us =3D <1280000>;
-+=09=09=09=09default-state =3D "off";
-+=09=09=09=09qcom,clamp-curr =3D <200000>;
-+=09=09=09=09qcom,headroom =3D <QCOM_SPMI_FLASH_HEADROOM_500MV>;
-+=09=09=09=09qcom,startup-dly =3D <QCOM_SPMI_FLASH_STARTUP_DLY_128US>;
-+=09=09=09=09qcom,safety-timer;
-+=09=09=09};
-+=09=09};
- =09};
- };
---=20
-2.30.0
-
-
+It may not have huge value, but:
+Reviewed-By: AngeloGioacchino Del Regno 
+<angelogioacchino.delregno@somainline.org>
