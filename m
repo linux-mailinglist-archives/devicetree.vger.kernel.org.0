@@ -2,132 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 706973044B5
+	by mail.lfdr.de (Postfix) with ESMTP id E217F3044B6
 	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:17:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390353AbhAZRH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:07:58 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:39889 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2390476AbhAZIot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:44:49 -0500
-X-UUID: af7472dcf452493c9fa798d59ada99d3-20210126
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=04ladyiJRe/ET+NLC+Ueie0MAKsGM3sYbgSIARsb4xc=;
-        b=W9Glj4pDyj/pQML/c30JpqQsxQwUeXAHj2HymHX+klG7UxnHKJ15vGBhtZy1/Dhi95D8b+cRmLQ9wd/rzMVqzF3W7dcsCGowR2MB7FxK1znSJIj4nph1eWL+YF2mqeilo8OzWVS4vJzJYT7WIr6kyKk1xJuT0D27OBWw7psKLuU=;
-X-UUID: af7472dcf452493c9fa798d59ada99d3-20210126
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
-        (envelope-from <tiffany.lin@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2020072515; Tue, 26 Jan 2021 16:44:01 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 26 Jan 2021 16:43:59 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 26 Jan 2021 16:43:59 +0800
-Message-ID: <1611650639.20687.2.camel@mtksdaap41>
-Subject: Re: [PATCH 2/3] arm64: dts: mt8173: Separating mtk-vcodec-enc
- device node
-From:   Tiffany Lin <tiffany.lin@mediatek.com>
-To:     Irui Wang <irui.wang@mediatek.com>
-CC:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Tomasz Figa" <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <linux-mediatek@lists.infradead.org>
-Date:   Tue, 26 Jan 2021 16:43:59 +0800
-In-Reply-To: <20210121061804.26423-2-irui.wang@mediatek.com>
-References: <20210121061804.26423-1-irui.wang@mediatek.com>
-         <20210121061804.26423-2-irui.wang@mediatek.com>
+        id S2390375AbhAZRH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:07:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55566 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390393AbhAZIql (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:46:41 -0500
+Received: from mail-pj1-x104a.google.com (mail-pj1-x104a.google.com [IPv6:2607:f8b0:4864:20::104a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E43B1C061573
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:45:53 -0800 (PST)
+Received: by mail-pj1-x104a.google.com with SMTP id o4so1391877pjw.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:45:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=TvDirtp33tQ52/+xfhxSiL9lDOUp03iq0TnEaNmWwQQ=;
+        b=bo/qYJO/oWZGzk/RT0zMkXs3Ry7yVRr04zttXknovn8ZuFXa85/EcnqhgYLpg/kLbC
+         ZWi25BKBWd+66y9XCGYfS6iWMVwQyMFbxQnPtFE8O4lfNB667xGyiY56IChHH5YB/1Nr
+         xVMu7drtb+kPwQrKYh2Sw6cQ9XyZIw3C/RCMG0kob1M7vsf9ESRo+z08g+QqZ2eFABBj
+         z/a75c12n1yZwUHSTUZm5dRT4imd4DyIWQZav4p6wRf1k7jP9DU2GkqN9z+2VY2meGig
+         SYmGDNQNvt73YAgmYVacSqt671mlNnaohCuusHnX1z3PrqM7efAL/R9V5CEAK4bL1z52
+         Mjog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=TvDirtp33tQ52/+xfhxSiL9lDOUp03iq0TnEaNmWwQQ=;
+        b=aenSMQoAn1P4rkeQg1AX7YNCt26oWHzB+2y6l+s3GMkna71iOftdWW1zyclTs5cWFA
+         eZVeFvEhA9uxZmuiGKF9qygoxm1AE+rQ6tpwVVAfq+sqd4CjYOa0LH2K1b1dTta45pJ3
+         kRiP3nL0tak2UihhN01FQR2QbhPhMGP5VRnu0ALZMO5WN67QGdC5fzmaW0ttZ9qo2TMY
+         1dS/KC+BQuA5wDXh6n1ebPsD1QjHzUYL0Zt25JVDsAN8sA2bZ64sCMeKlQc2v69DG5Ad
+         fJTpCodk7IEtruMpMWu1lWCnHyMJoCsOahO2Zb5h5QZBJdqbwuiSFYwNTlr3UARZ/HVj
+         FZVQ==
+X-Gm-Message-State: AOAM531WB05bak7WEKdBgwVLUibWWLpB9pKseeSQRTr82ixd12Y0Wb4k
+        3HF0w5zjHKs36PVrnitFP4z3IJP5bZKb
+X-Google-Smtp-Source: ABdhPJwpx0HIv3y1JBgyuhRp7JMI+b0CQQDa80hg7y5P3WpuD9CFOIEDueuJD8x6PH4eP17R4/5Rq0r2uH0y
+Sender: "kyletso via sendgmr" <kyletso@kyletso.ntc.corp.google.com>
+X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:4430:c29c:1e76:3e65])
+ (user=kyletso job=sendgmr) by 2002:a17:90b:3789:: with SMTP id
+ mz9mr5203328pjb.4.1611650753479; Tue, 26 Jan 2021 00:45:53 -0800 (PST)
+Date:   Tue, 26 Jan 2021 16:45:41 +0800
+Message-Id: <20210126084544.682641-1-kyletso@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
+Subject: [PATCH 0/3] common SVDM version and VDO from dt
+From:   Kyle Tso <kyletso@google.com>
+To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        hdegoede@redhat.com, badhri@google.com
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Kyle Tso <kyletso@google.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTAxLTIxIGF0IDE0OjE4ICswODAwLCBJcnVpIFdhbmcgd3JvdGU6DQo+IFRo
-ZXJlIGFyZSB0d28gc2VwYXJhdGUgaGFyZHdhcmUgZW5jb2RlciBibG9ja3MgaW5zaWRlIE1UODE3
-My4NCj4gU3BsaXQgdGhlIGN1cnJlbnQgbXRrLXZjb2RlYy1lbmMgbm9kZSB0byBtYXRjaCB0aGUg
-aGFyZHdhcmUgYXJjaGl0ZWN0dXJlLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogSHNpbi1ZaSBXYW5n
-IDxoc2lueWlAY2hyb21pdW0ub3JnPg0KPiBTaWduZWQtb2ZmLWJ5OiBNYW9ndWFuZyBNZW5nIDxt
-YW9ndWFuZy5tZW5nQG1lZGlhdGVrLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSXJ1aSBXYW5nIDxp
-cnVpLndhbmdAbWVkaWF0ZWsuY29tPg0KPiANCkFja2VkLWJ5OiBUaWZmYW55IExpbiA8dGlmZmFu
-eS5saW5AbWVkaWF0ZWsuY29tPg0KDQo+IC0tLQ0KPiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
-YXRlay9tdDgxNzMuZHRzaSB8IDYwICsrKysrKysrKysrKy0tLS0tLS0tLS0tLQ0KPiAgMSBmaWxl
-IGNoYW5nZWQsIDMxIGluc2VydGlvbnMoKyksIDI5IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAt
-LWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTczLmR0c2kgYi9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE3My5kdHNpDQo+IGluZGV4IDdmYTg3MGU0Mzg2YS4u
-ZDY2N2IyOTZjNTEyIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVr
-L210ODE3My5kdHNpDQo+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTcz
-LmR0c2kNCj4gQEAgLTE0NTksMTMgKzE0NTksMTAgQEANCj4gIAkJfTsNCj4gIA0KPiAgCQl2Y29k
-ZWNfZW5jOiB2Y29kZWNAMTgwMDIwMDAgew0KPiAtCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxt
-dDgxNzMtdmNvZGVjLWVuYyI7DQo+IC0JCQlyZWcgPSA8MCAweDE4MDAyMDAwIDAgMHgxMDAwPiwJ
-LyogVkVOQ19TWVMgKi8NCj4gLQkJCSAgICAgIDwwIDB4MTkwMDIwMDAgMCAweDEwMDA+OwkvKiBW
-RU5DX0xUX1NZUyAqLw0KPiAtCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE5OCBJUlFfVFlQRV9M
-RVZFTF9MT1c+LA0KPiAtCQkJCSAgICAgPEdJQ19TUEkgMjAyIElSUV9UWVBFX0xFVkVMX0xPVz47
-DQo+IC0JCQltZWRpYXRlayxsYXJiID0gPCZsYXJiMz4sDQo+IC0JCQkJCTwmbGFyYjU+Ow0KPiAr
-CQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxNzMtdmNvZGVjLWF2Yy1lbmMiOw0KPiArCQkJ
-cmVnID0gPDAgMHgxODAwMjAwMCAwIDB4MTAwMD47CS8qIFZFTkNfU1lTICovDQo+ICsJCQlpbnRl
-cnJ1cHRzID0gPEdJQ19TUEkgMTk4IElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ICsJCQltZWRpYXRl
-ayxsYXJiID0gPCZsYXJiMz47DQo+ICAJCQlpb21tdXMgPSA8JmlvbW11IE00VV9QT1JUX1ZFTkNf
-UkNQVT4sDQo+ICAJCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19SRUM+LA0KPiAgCQkJCSA8Jmlv
-bW11IE00VV9QT1JUX1ZFTkNfQlNETUE+LA0KPiBAQCAtMTQ3NiwyOSArMTQ3MywxMiBAQA0KPiAg
-CQkJCSA8JmlvbW11IE00VV9QT1JUX1ZFTkNfUkVGX0xVTUE+LA0KPiAgCQkJCSA8JmlvbW11IE00
-VV9QT1JUX1ZFTkNfUkVGX0NIUk9NQT4sDQo+ICAJCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19O
-Qk1fUkRNQT4sDQo+IC0JCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19OQk1fV0RNQT4sDQo+IC0J
-CQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19SQ1BVX1NFVDI+LA0KPiAtCQkJCSA8JmlvbW11IE00
-VV9QT1JUX1ZFTkNfUkVDX0ZSTV9TRVQyPiwNCj4gLQkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5D
-X0JTRE1BX1NFVDI+LA0KPiAtCQkJCSA8JmlvbW11IE00VV9QT1JUX1ZFTkNfU1ZfQ09NQV9TRVQy
-PiwNCj4gLQkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5DX1JEX0NPTUFfU0VUMj4sDQo+IC0JCQkJ
-IDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19DVVJfTFVNQV9TRVQyPiwNCj4gLQkJCQkgPCZpb21tdSBN
-NFVfUE9SVF9WRU5DX0NVUl9DSFJPTUFfU0VUMj4sDQo+IC0JCQkJIDwmaW9tbXUgTTRVX1BPUlRf
-VkVOQ19SRUZfTFVNQV9TRVQyPiwNCj4gLQkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5DX1JFQ19D
-SFJPTUFfU0VUMj47DQo+ICsJCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19OQk1fV0RNQT47DQo+
-ICAJCQltZWRpYXRlayx2cHUgPSA8JnZwdT47DQo+IC0JCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENM
-S19UT1BfVkVOQ1BMTF9EMj4sDQo+IC0JCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9WRU5DX1NFTD4s
-DQo+IC0JCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9VTklWUExMMV9EMj4sDQo+IC0JCQkJIDwmdG9w
-Y2tnZW4gQ0xLX1RPUF9WRU5DX0xUX1NFTD47DQo+IC0JCQljbG9jay1uYW1lcyA9ICJ2ZW5jX3Nl
-bF9zcmMiLA0KPiAtCQkJCSAgICAgICJ2ZW5jX3NlbCIsDQo+IC0JCQkJICAgICAgInZlbmNfbHRf
-c2VsX3NyYyIsDQo+IC0JCQkJICAgICAgInZlbmNfbHRfc2VsIjsNCj4gLQkJCWFzc2lnbmVkLWNs
-b2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9WRU5DX1NFTD4sDQo+IC0JCQkJCSAgPCZ0b3Bja2dl
-biBDTEtfVE9QX1ZFTkNfTFRfU0VMPjsNCj4gLQkJCWFzc2lnbmVkLWNsb2NrLXBhcmVudHMgPSA8
-JnRvcGNrZ2VuIENMS19UT1BfVkNPREVDUExMPiwNCj4gLQkJCQkJCSA8JnRvcGNrZ2VuIENMS19U
-T1BfVkNPREVDUExMXzM3MFA1PjsNCj4gKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9W
-RU5DX1NFTD47DQo+ICsJCQljbG9jay1uYW1lcyA9ICJ2ZW5jX3NlbCI7DQo+ICsJCQlhc3NpZ25l
-ZC1jbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfVkVOQ19TRUw+Ow0KPiArCQkJYXNzaWduZWQt
-Y2xvY2stcGFyZW50cyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9WQ09ERUNQTEw+Ow0KPiAgCQl9Ow0K
-PiAgDQo+ICAJCWpwZWdkZWM6IGpwZWdkZWNAMTgwMDQwMDAgew0KPiBAQCAtMTUzMCw1ICsxNTEw
-LDI3IEBADQo+ICAJCQkJIDwmdmVuY2x0c3lzIENMS19WRU5DTFRfQ0tFMD47DQo+ICAJCQljbG9j
-ay1uYW1lcyA9ICJhcGIiLCAic21pIjsNCj4gIAkJfTsNCj4gKw0KPiArCQl2Y29kZWNfZW5jX2x0
-OiB2Y29kZWNAMTkwMDIwMDAgew0KPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxNzMt
-dmNvZGVjLXZwOC1lbmMiOw0KPiArCQkJcmVnID0gIDwwIDB4MTkwMDIwMDAgMCAweDEwMDA+OyAv
-KiBWRU5DX0xUX1NZUyAqLw0KPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIwMiBJUlFfVFlQ
-RV9MRVZFTF9MT1c+Ow0KPiArCQkJaW9tbXVzID0gPCZpb21tdSBNNFVfUE9SVF9WRU5DX1JDUFVf
-U0VUMj4sDQo+ICsJCQkJIDwmaW9tbXUgTTRVX1BPUlRfVkVOQ19SRUNfRlJNX1NFVDI+LA0KPiAr
-CQkJCSA8JmlvbW11IE00VV9QT1JUX1ZFTkNfQlNETUFfU0VUMj4sDQo+ICsJCQkJIDwmaW9tbXUg
-TTRVX1BPUlRfVkVOQ19TVl9DT01BX1NFVDI+LA0KPiArCQkJCSA8JmlvbW11IE00VV9QT1JUX1ZF
-TkNfUkRfQ09NQV9TRVQyPiwNCj4gKwkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5DX0NVUl9MVU1B
-X1NFVDI+LA0KPiArCQkJCSA8JmlvbW11IE00VV9QT1JUX1ZFTkNfQ1VSX0NIUk9NQV9TRVQyPiwN
-Cj4gKwkJCQkgPCZpb21tdSBNNFVfUE9SVF9WRU5DX1JFRl9MVU1BX1NFVDI+LA0KPiArCQkJCSA8
-JmlvbW11IE00VV9QT1JUX1ZFTkNfUkVDX0NIUk9NQV9TRVQyPjsNCj4gKwkJCW1lZGlhdGVrLGxh
-cmIgPSA8JmxhcmI1PjsNCj4gKwkJCW1lZGlhdGVrLHZwdSA9IDwmdnB1PjsNCj4gKwkJCWNsb2Nr
-cyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9WRU5DX0xUX1NFTD47DQo+ICsJCQljbG9jay1uYW1lcyA9
-ICJ2ZW5jX2x0X3NlbCI7DQo+ICsJCQlhc3NpZ25lZC1jbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19U
-T1BfVkVOQ19MVF9TRUw+Ow0KPiArCQkJYXNzaWduZWQtY2xvY2stcGFyZW50cyA9DQo+ICsJCQkJ
-IDwmdG9wY2tnZW4gQ0xLX1RPUF9WQ09ERUNQTExfMzcwUDU+Ow0KPiArCQl9Ow0KPiAgCX07DQo+
-ICB9Ow0KDQo=
+The correct SVDM version we should use is the lowest common version             
+between the port partners (plug) as stated in the PD3 Spec 6.4.4.2.3.           
+It is determined in the Discovery Identity command so cache it and set          
+the value to the version field of the VDM header in every later SVDM.           
+                                                                                
+Like the previous patch "usb: typec: tcpm: Create legacy PDOs for PD2           
+connection"                                                                     
+(https://lore.kernel.org/linux-usb/20210115163311.391332-1-kyletso@google.com/) 
+The field is changed before sending it out of the port. I know this is          
+not a good idea but at least it works.                                          
+                                                                                
+The other two patches are about to get the VDO from fwnode so as to give         
+more flexibility.
+
+Kyle Tso (3):
+  usb: typec: Determine common SVDM Versions
+  dt-bindings: connector: Add SVDM VDO properties
+  usb: typec: tcpm: Get Sink VDO from fwnode
+
+ drivers/usb/typec/altmodes/displayport.c |  6 ++-
+ drivers/usb/typec/class.c                |  8 ++--
+ drivers/usb/typec/tcpm/tcpm.c            | 56 ++++++++++++++++++++----
+ drivers/usb/typec/ucsi/displayport.c     | 12 +++--
+ include/dt-bindings/usb/pd.h             | 53 +++++++++++++++++++++-
+ include/linux/usb/pd_vdo.h               | 40 ++++++++++++-----
+ 6 files changed, 147 insertions(+), 28 deletions(-)
+
+-- 
+2.30.0.280.ga3ce27912f-goog
 
