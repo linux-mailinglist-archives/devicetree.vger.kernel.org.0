@@ -2,94 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E81AB3043CF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 17:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D21FE304437
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:00:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392878AbhAZQ0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 11:26:33 -0500
-Received: from www.zeus03.de ([194.117.254.33]:35134 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392842AbhAZQ0Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 11:26:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=Xqs1mtjaC3nVZ+Jiv8DQnPtyMH32
-        zxsqqXVsjiZLZ4M=; b=O3xUFAq9kmMnUmXFuiX6D6aJL8zxM3+INUWh1huJwjvQ
-        bXwC96aEOrz8/4yntpUaDUAiEIfc7CCi3nAblU6htd3hTiXLJPj3olX0iEYwzXJz
-        0AVRHKqFho3n1b8nedkQj1jrfttYDusi0+kfjuOFfzOmjcArf+Gg+wxzmL2Dsv4=
-Received: (qmail 3783984 invoked from network); 26 Jan 2021 17:25:34 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Jan 2021 17:25:34 +0100
-X-UD-Smtp-Session: l3s3148p1@IoeUGtC5KuUgAwDPXyX1AEdA8SGgn5QT
-Date:   Tue, 26 Jan 2021 17:25:33 +0100
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] dmaengine: rcar-dmac: Add support for R-Car V3U
-Message-ID: <20210126162533.GC928@ninjato>
-References: <20210125142431.1049668-1-geert+renesas@glider.be>
- <20210125142431.1049668-5-geert+renesas@glider.be>
+        id S1726548AbhAZRAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:00:33 -0500
+Received: from mail-vi1eur05on2071.outbound.protection.outlook.com ([40.107.21.71]:35296
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729120AbhAZG0h (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 01:26:37 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CUOvQPHwOulBhlt2XLokFdJ0F13G0wXkXGT+pr+Rm+QUhNTS8PpEWyjK4/rdDtKfoKnaSjeWTJu0n1DubQqsLCtu3GFv3q5jDBdbdCwmz9voKvyrBE91tcbSGRLDWdjWz57yCVtgEiZy5OkL/MbszD1uLPrU4GVIg/66l1Ef5VNMXNiXo7bKomVHVYGJ7wblNkYKf5+isGz/XFD29EPJdHpV3a08cb/NZz6y9nRWL9tZbd8jyXOcCGYJzRzER3oME2X6OT+avs5T1kN2NW3ut1SnT2i2taT2fzZYex3MQMYQlC3Pk2qxECqHWtpJTOneE9k6rmZrYoc5BwHWsE36dw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=G9fPPnFzkJWIqM55LxLZRJYO8EpcKOFsM97CMqD0qxM=;
+ b=lgV/yCELkdmGy+SXlhLDv9voqOh26AxHTDkB6x6j/Xhst0eIN/dlL8zggakHAHFuESLAcxGk0Qb4WeTw5hTbfc478Bp0jj/ocqbYnY8eTCLkfPExS3rRQlfeIfWhSQjG3nd4LeYdhtEA1EWAk7U9pWVLDXC40kQ1Gn9H1zXZOPnutlgGCZen4T2n0kNuedm1s3DORmo85rKFYMUdfpwcohn4nLpXtIDOs7xm4vFyj7AahHenvIWP1nVphxLgqiM3IHp9CPuguOvDTp6ODxk8qYQgfpVFQ7XkxPryrucPaoIX9OM814CNSWWATxykPvo1V7PY3h5zrTMzjNFEVd1qBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=G9fPPnFzkJWIqM55LxLZRJYO8EpcKOFsM97CMqD0qxM=;
+ b=W67YddkAPGHee4yLsId8mMfX5Fvyh7xaEu1zI3AbRSyuC1K1hJKnx5XErJ0Xhl/7MeBu/FgMYYAIPGlFi7BvKtZuNAARdnYxlCckae+X0T6MDziKjpKXUuJs72DAcDANOWyZY5lYm9alFuvZIMZVA7+DqDIhchtv1tJdtYrT45A=
+Authentication-Results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR04MB3134.eurprd04.prod.outlook.com (2603:10a6:802:d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.15; Tue, 26 Jan
+ 2021 06:25:45 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3784.017; Tue, 26 Jan 2021
+ 06:25:45 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, laurentiu.palcu@oss.nxp.com,
+        guido.gunther@puri.sm
+Subject: [PATCH v7 2/6] dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
+Date:   Tue, 26 Jan 2021 14:14:47 +0800
+Message-Id: <1611641691-17554-3-git-send-email-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1611641691-17554-1-git-send-email-victor.liu@nxp.com>
+References: <1611641691-17554-1-git-send-email-victor.liu@nxp.com>
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR03CA0108.apcprd03.prod.outlook.com
+ (2603:1096:4:7c::36) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="JWEK1jqKZ6MHAcjA"
-Content-Disposition: inline
-In-Reply-To: <20210125142431.1049668-5-geert+renesas@glider.be>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR03CA0108.apcprd03.prod.outlook.com (2603:1096:4:7c::36) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3805.6 via Frontend Transport; Tue, 26 Jan 2021 06:25:40 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: a9fc1716-5028-4b78-6e81-08d8c1c33677
+X-MS-TrafficTypeDiagnostic: VI1PR04MB3134:
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB3134290B4AF0629042B0F4A498BC0@VI1PR04MB3134.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GzOjV6nqOYPiGGTls8smZ9bOid4aafV4eRS6HGjuQJFRTjRLINpGKqHFboXR8kI+MbSHoaqyG4I7hwVNiScdUaQKiYJkIetVu2TDrRE1hFkEeGbBS4gnxaUohyK9mHWWZatUE8RmebAjIuvlEIeQeIWlKEWF28y1M5Ion+9oWHyL/e4p3KqCGqgoXode/6MIOFeh1a6sp79f/BrUgKiX864pVzVFvZ7TIqSkgof1FBGi/gX2lA0I0bssxjpCGU2XWEhlC/2H8H7cLV1JU0zhTM8aAJtnfXAPTdMz2vQif/WwImX4yR/r5o8inzvMiNlaZPjX58gLcunjyC3gI+9CPkA6N7ODlFjBhLDz3ABJ5zd4Sy7Y2YuuBzSUXczAfOLrql5L4n8pSqvBaw8z6JYY97KL8RLicYaGxwwmj9uZWB2zytkbZPL7GUPmLiGoDhWg4sbsPJvZ9Zh5goaCYxzo7VtugHPPvWNCgU/fBY7sZXh7kjtbEljIxH6xtHb5IeVAFuWXZOvIcLBXdS1C21ijE7O0wLIFZ0hr0i+vesL8K7nLGKiLoGfzdodqWagidDgQD27dlYn6onuqa1FH6jn/lfCVNfSI3HQ+jhn4K/2EIrcIZw/VV5rFTPkejOGxJRStAZjxJ3qchvGxyJ0wRoN4eI8NY91lwVEi3CHvZRiC8XA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(366004)(346002)(136003)(396003)(7416002)(69590400011)(36756003)(966005)(66556008)(66476007)(86362001)(2906002)(66946007)(6512007)(4326008)(5660300002)(83380400001)(6486002)(956004)(478600001)(6506007)(26005)(16526019)(186003)(8936002)(8676002)(52116002)(2616005)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?s0cBTO4YYhB15QjGZrOvP4YrJ4sCJm0Px9cLAjgf/NSHkVxuP8kB0ar1mMXE?=
+ =?us-ascii?Q?f8+Bg+uHXlngEnGVNa9GdfdPhQ6d/Uvlc+t667SPnptnm3CCx6X/5dx7TATk?=
+ =?us-ascii?Q?3ymctcq5D8mGjMZ6ahzrIaf7QYQgnjhFGKXSf6izlqQRS9Mq/HTarl7Jwuun?=
+ =?us-ascii?Q?qDj0iRQGfijKm7ZBFWXIZQBJ+Kvt8rn6N9bmEnBOf1VNhNbZGtPW3wRGxj05?=
+ =?us-ascii?Q?7H5KUIeqxj4zV8/G/1a5CqHaTo/WUvqGgpk1K6FAQ/OAZS30Jt76Q8s8RVLj?=
+ =?us-ascii?Q?y6sEo2SlZxhXnD2ypXZTVIeK6gVXREegVrlweL1/vf93IL5CDMLPa2y/Aucv?=
+ =?us-ascii?Q?pW4qH999EZCc7i1+j1XmyyOSncegeqHrBOpKzQMH5MGZ0KU1JU/8dPIh3iUG?=
+ =?us-ascii?Q?aDhEOeklwEmDM34T/R+LYqupoy8W7m9UUuLaBHWO5SY/e7M/Sz6B/Mn4AOJd?=
+ =?us-ascii?Q?AG0eZqZh4Jut8CfFptQf3N2ycLTT1HzVbNGTb0KJ4+1+X+jw2jNahAPd1yKv?=
+ =?us-ascii?Q?mZCTlt8afhdeliCyWvB6n285yCQgvFc4tJKjL0WAofe28tpyWnGc60iXht+s?=
+ =?us-ascii?Q?WyxSsw5KBOTemQLStKLiZ237ZPO2vuXXSk3kLPKOok3vqJG0uElXYC9AR3RU?=
+ =?us-ascii?Q?kM8hMVuq1NsF4t6h8VkQtAhmWj08BkFETPTuEwDvhnwqfHzs3ruUZ+584emq?=
+ =?us-ascii?Q?hXs7WHq+/wqPo4msuQQeCjX0ZO3IAvDM5hUBbXOnZ8mOUEXDQrUeQ1lcXkDl?=
+ =?us-ascii?Q?kbIw1C3t6Wn6UZOZRlDHtU3tm4PTrouLFTspZPQ9rfWyTQIvpSf0g6Op2cyd?=
+ =?us-ascii?Q?eBgYuqwiyL/9iuqOM0kK+DRLacvXFeKFw+PCG120E6Oi+kmKHJvvDT0YZogO?=
+ =?us-ascii?Q?ykTuGf4klxjNpanYo4wtv2bnXH0ZZWJfihcSWeBEdB1kHoC/m4+myJTkmXf7?=
+ =?us-ascii?Q?ssF4W5jlxYmpRnNNEPrdmem6UjAqaujxnLuD23qhyuHzMBYBvUI4E46CpnKF?=
+ =?us-ascii?Q?jPkMcAvvBLxgJf9WvAV3UkHyJmWFNWo+WKgrVIF8cGZrrbDLlnX8BAdomafJ?=
+ =?us-ascii?Q?3JZ8vszJ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a9fc1716-5028-4b78-6e81-08d8c1c33677
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 06:25:45.1554
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7U1ReT1mIjS2XFRYa6TpGmO5Adup1OBKEAF6eH7BUOg2k7MeIEYp4J5nA4sQDSQyfgM9qPYSPNrk+QGmZlBxeA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3134
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds bindings for i.MX8qxp/qm Display Prefetch Resolve Gasket.
 
---JWEK1jqKZ6MHAcjA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Liu Ying <victor.liu@nxp.com>
+---
+v6->v7:
+* No change.
 
-On Mon, Jan 25, 2021 at 03:24:31PM +0100, Geert Uytterhoeven wrote:
-> The DMACs (both SYS-DMAC and RT-DMAC) on R-Car V3U differ slightly from
-> the DMACs on R-Car Gen2 and other R-Car Gen3 SoCs:
->   1. The per-channel registers are located in a second register block.
->      Add support for mapping the second block, using the appropriate
->      offsets and stride.
->   2. The common Channel Clear Register (DMACHCLR) was replaced by a
->      per-channel register.
->      Update rcar_dmac_chan_clear{,_all}() to handle this.
->      As rcar_dmac_init() needs to clear the status before the individual
->      channels are probed, channel index and base address initialization
->      are moved forward.
->=20
-> Inspired by a patch in the BSP by Phong Hoang
-> <phong.hoang.wz@renesas.com>.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+v5->v6:
+* No change.
 
-Apporach looks good, didn't check the gory details. However, it still
-works fine with I2C + DMA on V3U, so:
+v4->v5:
+* No change.
 
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+v3->v4:
+* Improve compatible property by using enum instead of oneOf+const. (Rob)
+* Add Rob's R-b tag.
 
+v2->v3:
+* No change.
 
---JWEK1jqKZ6MHAcjA
-Content-Type: application/pgp-signature; name="signature.asc"
+v1->v2:
+* Use new dt binding way to add clocks in the example.
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/display/imx/fsl,imx8qxp-prg.yaml      | 60 ++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmAQQn0ACgkQFA3kzBSg
-KbZi4w/9Eeda53xRTs5EXMmbccCC/SLtFJBLKhFFO0GyoiQxmU4OrFfnrL60vcJ1
-WCc3uJBPIf20FKLwOIt8b+lXotJalWh6aCl4iZj7BgeKSNdPNkBjtqcCMR0nQBbg
-Ps33xRRhp8pO0r1K91o37GnW/NKWYTshUz9loB4j/OCpiIob4tiBb/hTRLNJ3loI
-x3RgLCi7269RqC47cq+T+VbNk8ftbzWBXEcFTT5+We+Enr2qPM58XRSXRgZv79NI
-/ChfzGotu5KHUrxQPPknyb9+OCmG7RM6g+AOxiYjBy3jk51IoW+tZxhrjliAkktI
-+C/+PPbtwAocwLgTKJwQMzU6XUoXaeqPgHRpoCfl4ZXMnbsoObYwtD82SoTjZUCM
-nkEvzt9FHN6/xd5WTZscHmSXGY7sVmM6I83chFNzcfukv9/iIV7SSWbN8ir3ashL
-SYeUB6yrgk2Br3UpufdS8/Ptddmq6WlXWStSoBloUukB+WEvyK9D6uWJfIKW1655
-Ny5y11hrhmPdRmVFnZbbfcEMq3tLM+06jj8+VuenlNTg9in6IqEQFaqo+nzesfWZ
-q+Dtr30W3Qptp/ktWLHUiEHqKC2Ww09O6y5pJfBpGEzgJpblhqJP6XMv/42RKKYV
-zzUEnGFsgtnwXgWAzEmmWanoXDmiMYP0PyvP7gzJS9OjF7c2hB0=
-=6eRP
------END PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
+new file mode 100644
+index 00000000..3ff46e0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-prg.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX8qm/qxp Display Prefetch Resolve Gasket
++
++maintainers:
++  - Liu Ying <victor.liu@nxp.com>
++
++description: |
++  The i.MX8qm/qxp Prefetch Resolve Gasket (PRG) is a gasket interface between
++  RTRAM controller and Display Controller.  The main function is to convert
++  the AXI interface to the RTRAM interface, which includes re-mapping the
++  ARADDR to a RTRAM address.
++
++properties:
++  compatible:
++    enum:
++      - fsl,imx8qxp-prg
++      - fsl,imx8qm-prg
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: rtram clock
++      - description: apb clock
++
++  clock-names:
++    items:
++      - const: rtram
++      - const: apb
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - power-domains
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx8-lpcg.h>
++    #include <dt-bindings/firmware/imx/rsrc.h>
++    prg@56040000 {
++        compatible = "fsl,imx8qxp-prg";
++        reg = <0x56040000 0x10000>;
++        clocks = <&dc0_prg0_lpcg IMX_LPCG_CLK_0>,
++                 <&dc0_prg0_lpcg IMX_LPCG_CLK_4>;
++        clock-names = "rtram", "apb";
++        power-domains = <&pd IMX_SC_R_DC_0>;
++    };
+-- 
+2.7.4
 
---JWEK1jqKZ6MHAcjA--
