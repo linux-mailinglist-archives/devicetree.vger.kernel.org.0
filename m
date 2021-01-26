@@ -2,99 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E35E6303E78
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:21:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66AE7303EDF
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:38:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391772AbhAZNVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 08:21:11 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:44998 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2404326AbhAZNRR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 08:17:17 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10QDBudM001701;
-        Tue, 26 Jan 2021 14:16:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=xa70l9azV9gym1p2Ripu8D6jOM/EugA2+SDeRh0kXyk=;
- b=bi8dvUsDIojjZW9RBUV6RKY2HotQGbjq2Cbe6j/LhP3ck3z9ezQMoRCW3cHcDyT6EMGb
- q7jike30y135mSloXCFi9EwFiVmPweh9Gn9rWhvybj/YuUdum9gIrLMD2lSQv/DAmI2q
- GcImUFHmNAZ+nND5uCFsZ4CmCNGCvKgrT1o+YGiPkvKESqc01NVidoVB+DCk/phfZctp
- 2rYgN9ERsO+zhwJIYADOqbs+6VERt8WGkTHfB/dKgw1bAM5JXiBVYuev7jVWqGF4iLQz
- ltvPA4MO1h1sSKzDlyBq0mVSBrlyOUyGaCwX5yXSIIwRPfEXaBg9/Y2vpiu6g4FAdDfm WA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 368bjn94de-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 26 Jan 2021 14:16:22 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AF6FB10002A;
-        Tue, 26 Jan 2021 14:16:20 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9BEA7243718;
-        Tue, 26 Jan 2021 14:16:20 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.44) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 26 Jan
- 2021 14:16:20 +0100
-Subject: Re: [PATCH v2 0/3] ARM: stm32: USBPHYC updates on stm32mp15
-To:     Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210114131524.3298-1-amelie.delaunay@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <9e6fe1ab-bbd7-e313-b491-570070be3e6e@foss.st.com>
-Date:   Tue, 26 Jan 2021 14:16:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2404532AbhAZNfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 08:35:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404755AbhAZNf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 08:35:28 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF40FC061A29
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 05:34:29 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l4O9C-0001l2-9a; Tue, 26 Jan 2021 14:12:42 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l4O9A-0002CP-U5; Tue, 26 Jan 2021 14:12:40 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org
+Subject: [PATCH v4 1/2] dt-bindings: counter: add pulse-counter binding
+Date:   Tue, 26 Jan 2021 14:12:38 +0100
+Message-Id: <20210126131239.8335-2-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210126131239.8335-1-o.rempel@pengutronix.de>
+References: <20210126131239.8335-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20210114131524.3298-1-amelie.delaunay@foss.st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-26_07:2021-01-26,2021-01-26 signatures=0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Amélie,
+Add binding for the pulse counter node
 
-On 1/14/21 2:15 PM, Amelie Delaunay wrote:
-> This series updates usbphyc parent and child nodes to follow latest DT
-> bindings.
-> 
-> ---
-> Changes in v2:
-> - squash all DT board patches in one patch
-> - update also non-ST DT
-> 
-> Amelie Delaunay (3):
->    ARM: dts: stm32: add usbphyc vdda1v1 and vdda1v8 supplies on
->      stm32mp151
->    ARM: dts: stm32: remove usbphyc ports vdda1v1 & vdda1v8 on stm32mp15
->      boards
->    ARM: dts: stm32: add #clock-cells property to usbphyc node on
->      stm32mp151
-> 
->   arch/arm/boot/dts/stm32mp151.dtsi                  | 3 +++
->   arch/arm/boot/dts/stm32mp157a-stinger96.dtsi       | 4 ----
->   arch/arm/boot/dts/stm32mp157c-ed1.dts              | 4 ----
->   arch/arm/boot/dts/stm32mp15xx-dhcom-drc02.dtsi     | 2 --
->   arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi      | 4 ----
->   arch/arm/boot/dts/stm32mp15xx-dhcom-picoitx.dtsi   | 4 ----
->   arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 4 ----
->   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi             | 4 ----
->   8 files changed, 3 insertions(+), 26 deletions(-)
-> 
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ .../bindings/counter/pulse-counter.yaml       | 52 +++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/counter/pulse-counter.yaml
 
-DT patches applied on stm32-next.
+diff --git a/Documentation/devicetree/bindings/counter/pulse-counter.yaml b/Documentation/devicetree/bindings/counter/pulse-counter.yaml
+new file mode 100644
+index 000000000000..8a82091edd65
+--- /dev/null
++++ b/Documentation/devicetree/bindings/counter/pulse-counter.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/counter/pulse-counter.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Pulse counter
++
++maintainers:
++  - Oleksij Rempel <o.rempel@pengutronix.de>
++
++description: |
++  A generic pulse counter to measure pulse frequency. It was developed and used
++  for agricultural devices to measure rotation speed of wheels or other tools.
++  Since the direction of rotation is not important, only one signal line is
++  needed.
++
++properties:
++  compatible:
++    const: virtual,pulse-counter
++
++  interrupts:
++    maxItems: 1
++
++  gpios:
++    description: Optional diagnostic interface to measure signal level
++    maxItems: 1
++
++required:
++  - compatible
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    counter-0 {
++        compatible = "virtual,pulse-counter";
++        interrupts-extended = <&gpio 0 IRQ_TYPE_EDGE_RISING>;
++    };
++
++    counter-1 {
++        compatible = "virtual,pulse-counter";
++        interrupts-extended = <&gpio 1 IRQ_TYPE_EDGE_RISING>;
++        gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
++    };
++
++...
+-- 
+2.30.0
 
-Thanks
-Alex
