@@ -2,84 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3978730334E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5421B30334C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728311AbhAZEtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:49:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53894 "EHLO
+        id S1728288AbhAZEts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:49:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732029AbhAZCDZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:03:25 -0500
-X-Greylist: delayed 555 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Jan 2021 18:02:08 PST
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0D8C061225
-        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 18:02:08 -0800 (PST)
-Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 14A1283646;
-        Tue, 26 Jan 2021 14:52:02 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1611625922;
-        bh=oP2TIidX81eGT1h2x2myyqVlxaXwQ5UVYXVVX5Ngep0=;
-        h=From:To:Cc:Subject:Date;
-        b=h+YiTMWssfTinGHD8tqDCQYgSS5axw4LFeegeYEH4pU+Ro3vr63wmG4O5Sregpto7
-         sqAXeHBp/7uTcONZcXDLRojaXsApegUg4n+zFkVGlMGtK2oQBj0wJrgXViOuP0OA2A
-         oPUQsoMMqy6jbLZWdEVDGCCQqeXZ4XqE8p5YkoY/OP3AWZ+vDf0ze9LduqCv/mq+vP
-         THoZAimk3DyIKaegsBOpHMukbNdL8oGNPGv2N+z/0hHyfLetUt+aCYKAVtD2MMJtQW
-         KNfXSO0m39xZSV5mwOZZQE1VYA2EKVXsMOax2dA4kJjOU/Z69QXjae5bCIqJrayk+5
-         Nuj4Gp+joQFdA==
-Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
-        id <B600f75c10000>; Tue, 26 Jan 2021 14:52:01 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
-        by smtp (Postfix) with ESMTP id E3FD013EECA;
-        Tue, 26 Jan 2021 14:52:03 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id D2917288C85; Tue, 26 Jan 2021 14:52:01 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     robh+dt@kernel.org, frowand.list@gmail.com, arch0.zheng@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH] of/fdt: Check against '/chosen' in early_init_dt_scan_chosen
-Date:   Tue, 26 Jan 2021 14:51:59 +1300
-Message-Id: <20210126015159.23923-1-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.30.0
+        with ESMTP id S1731448AbhAZB42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 20:56:28 -0500
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE05CC061351
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 17:55:46 -0800 (PST)
+Received: by mail-ot1-x336.google.com with SMTP id 63so14840226oty.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 17:55:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9KzooEzNJudfs8vdN5QNNjT5ojSccFf8tRCUDI4AzCU=;
+        b=DrrZxszCva3FTmhjfGLJzJrc3wB1j9Eo1KC1LtQ1FsXEAot/Ybv1blTIhPyYfOyNgm
+         T+EnnqpzXEgGxvkc5i5z3xWPJFSweRtK1ezOLRhZqB9KkPfVkAJgZe+QbwttIrq6o+KV
+         P037KGFPglzPjXgxTXJS39oLXUzxdz5TXf6EzvuL3hKV7vjf1eejNoUmuw3U2b6RzyQZ
+         L6Q3IVVx+LIhLxC56CMMwW7q/y3HgIeMJ1R3w4HPKVYpiGvapKZzdhqMPfXaWX6WiDuO
+         WGSGo6/tKzYFvFHEgNt/XsbxjzZZ32UPz4bALilazsw8kaZcw0CPfmpBk9M+MS0mnh39
+         dFuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9KzooEzNJudfs8vdN5QNNjT5ojSccFf8tRCUDI4AzCU=;
+        b=NZSZfQBVuZLaKShBo7m19i/oRJI5krSzI1Q1/AL8KEpXYqpm3bOcRTvgOyac34l70W
+         DEUpohYQeiyKrDf/4tGtQshZKJoFoUMF52TBZ1Smcgfd9FnksJ+s9FzCuB2zh5sp7Gkb
+         Fn9pePmK0agKKL4WGoPiridB9HPPS45m3y4g3Wnneyd7ROht41/b9GkHV1OSJ1e6fmqM
+         wkAvURfOYeq3gvxnGPMHB9rg6HURc/zjKoNLtqbRhPvdNpzR8TPUwpUzsD6HtgXRMlsc
+         in1ey6YX8otFAplVIJvUZJREKPLIbbv+P1HUbIXiwfHbLhT9sDNSHEbLJKOtmpLtoY1A
+         Np/A==
+X-Gm-Message-State: AOAM533EZczSco1M2kZpRNT5jlyj+lAaBecUYHuRp9APgEO0SQ/5QZZ+
+        BlBnSnJTKtLBiDoXXKIMkrl7Hw==
+X-Google-Smtp-Source: ABdhPJy0I4DahIrO5X9v/d1v+VookruyQO2N2rKgJW3rTf5Kc3BH3ob0xCJT8rOz43pd7Lzf+gYM+A==
+X-Received: by 2002:a9d:4e89:: with SMTP id v9mr2322939otk.171.1611626146046;
+        Mon, 25 Jan 2021 17:55:46 -0800 (PST)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id d10sm3570160ooh.32.2021.01.25.17.55.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 17:55:45 -0800 (PST)
+Date:   Mon, 25 Jan 2021 19:55:43 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Wesley Cheng <wcheng@codeaurora.org>
+Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, peter.chen@nxp.com,
+        jackp@codeaurora.org
+Subject: Re: [PATCH v6 3/4] usb: dwc3: Resize TX FIFOs to meet EP bursting
+ requirements
+Message-ID: <20210126015543.GB1241218@yoga>
+References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
+ <1611288100-31118-4-git-send-email-wcheng@codeaurora.org>
+ <YAsHbj/mITeiY5Cq@builder.lan>
+ <724cb274-36ce-fb48-a156-4eaf9e686fdf@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <724cb274-36ce-fb48-a156-4eaf9e686fdf@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-of_scan_flat_dt() passes the name of the visited node to the iterator.
-In the case of '/chosen' this includes the leading '/'. Update
-early_init_dt_scan_chosen() to expect this.
+On Mon 25 Jan 19:14 CST 2021, Wesley Cheng wrote:
 
-Fixes: 7536c7e03e74 ("of/fdt: Remove redundant kbasename function call")
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- drivers/of/fdt.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> 
+> On 1/22/2021 9:12 AM, Bjorn Andersson wrote:
+> > On Thu 21 Jan 22:01 CST 2021, Wesley Cheng wrote:
+> > 
+> 
+> Hi Bjorn,
+> > 
+> > Under what circumstances should we specify this? And in particular are
+> > there scenarios (in the Qualcomm platforms) where this must not be set?
+> >The TXFIFO dynamic allocation is actually a feature within the DWC3
+> controller, and isn't specifically for QCOM based platforms.  It won't
+> do any harm functionally if this flag is not set, as this is meant for
+> enhancing performance/bandwidth.
+> 
+> > In particular, the composition can be changed in runtime, so should we
+> > set this for all Qualcomm platforms?
+> > 
+> Ideally yes, if we want to increase bandwith for situations where SS
+> endpoint bursting is set to a higher value.
+> 
+> > And if that's the case, can we not just set it from the qcom driver?
+> > 
+> Since this is a common DWC3 core feature, I think it would make more
+> sense to have it in DWC3 core instead of a vendor's DWC3 glue driver.
+> 
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index feb0f2d67fc5..861aedf0bb7c 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1043,7 +1043,10 @@ int __init early_init_dt_scan_chosen(unsigned long=
- node, const char *uname,
- 	pr_debug("search \"chosen\", depth: %d, uname: %s\n", depth, uname);
-=20
- 	if (depth !=3D 1 || !data ||
--	    (strcmp(uname, "chosen") !=3D 0 && strcmp(uname, "chosen@0") !=3D 0=
-))
-+	    (strcmp(uname, "chosen") !=3D 0 &&
-+	     strcmp(uname, "chosen@0") !=3D 0 &&
-+	     strcmp(uname, "/chosen") !=3D 0 &&
-+	     strcmp(uname, "/chosen@0") !=3D 0))
- 		return 0;
-=20
- 	early_init_dt_check_for_initrd(node);
---=20
-2.30.0
+I don't have any objections to implementing it in the core driver, but
+my question is can we just skip the DT binding and just enable it from
+the vendor driver?
 
+Regards,
+Bjorn
