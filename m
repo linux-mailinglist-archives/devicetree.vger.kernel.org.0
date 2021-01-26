@@ -2,123 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE3F2303E45
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:13:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F362D303E4C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:14:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392459AbhAZNM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 08:12:27 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:44150 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391394AbhAZNMY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 08:12:24 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10QDBL5Z008181;
-        Tue, 26 Jan 2021 07:11:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611666681;
-        bh=OIxGDssUznp79R7M1f90S5wax2WpL57deA7dDnGEwwA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=fe1LJKhE3Y3iZRsBL2BvM55jbAq2kKHkEoGsJlp9dcb9zcJ4QQHXbSC7CNeTdbl3R
-         CurkbvL9QmudLAUQJ/+HThQpACqKIqHbFSj0SPBhBr31YVRiU7YUnBsFY5cX4jGOiL
-         WpMrI8euqqv50Ze0zUdR1V70MfjOlxlwt8ElDpJc=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10QDBLt9106335
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 26 Jan 2021 07:11:21 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 26
- Jan 2021 07:11:20 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 26 Jan 2021 07:11:21 -0600
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10QDBHET129147;
-        Tue, 26 Jan 2021 07:11:18 -0600
-Subject: Re: [PATCH v2 2/6] drivers: net: davinci_mdio: Use
- of_device_get_match_data()
-To:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <linux-omap@vger.kernel.org>
-References: <20210123034428.2841052-1-swboyd@chromium.org>
- <20210123034428.2841052-3-swboyd@chromium.org>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <b0ed5a7f-920d-6732-f146-4d184a7c8661@ti.com>
-Date:   Tue, 26 Jan 2021 15:11:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2404114AbhAZNNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 08:13:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56892 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403767AbhAZNNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 08:13:36 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8280C061A31
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 05:12:50 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l4O9C-0001l1-9b; Tue, 26 Jan 2021 14:12:42 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l4O9A-0002CG-Sx; Tue, 26 Jan 2021 14:12:40 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org
+Subject: [PATCH v4 0/2] add support for GPIO based counter 
+Date:   Tue, 26 Jan 2021 14:12:37 +0100
+Message-Id: <20210126131239.8335-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-In-Reply-To: <20210123034428.2841052-3-swboyd@chromium.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+changes v4:
+- use IRQ_NOAUTOEN to not enable IRQ by default
+- rename gpio_ from name pattern and make this driver work any IRQ
+  source.
 
+changes v3:
+- convert counter to atomic_t
 
-On 23/01/2021 05:44, Stephen Boyd wrote:
-> Use the more modern API to get the match data out of the of match table.
-> This saves some code, lines, and nicely avoids referencing the match
-> table when it is undefined with configurations where CONFIG_OF=n.
-> 
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> Cc: Grygorii Strashko <grygorii.strashko@ti.com>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: <linux-omap@vger.kernel.org>
-> ---
-> 
-> Please ack so Rob can apply.
-> 
->   drivers/net/ethernet/ti/davinci_mdio.c | 12 ++++--------
->   1 file changed, 4 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/ti/davinci_mdio.c b/drivers/net/ethernet/ti/davinci_mdio.c
-> index cfff3d48807a..a4efd5e35158 100644
-> --- a/drivers/net/ethernet/ti/davinci_mdio.c
-> +++ b/drivers/net/ethernet/ti/davinci_mdio.c
-> @@ -358,20 +358,16 @@ static int davinci_mdio_probe(struct platform_device *pdev)
->   	}
->   
->   	if (IS_ENABLED(CONFIG_OF) && dev->of_node) {
-> -		const struct of_device_id	*of_id;
-> +		const struct davinci_mdio_of_param *of_mdio_data;
->   
->   		ret = davinci_mdio_probe_dt(&data->pdata, pdev);
->   		if (ret)
->   			return ret;
->   		snprintf(data->bus->id, MII_BUS_ID_SIZE, "%s", pdev->name);
->   
-> -		of_id = of_match_device(davinci_mdio_of_mtable, &pdev->dev);
-> -		if (of_id) {
-> -			const struct davinci_mdio_of_param *of_mdio_data;
-> -
-> -			of_mdio_data = of_id->data;
-> -			if (of_mdio_data)
-> -				autosuspend_delay_ms =
-> +		of_mdio_data = of_device_get_match_data(&pdev->dev);
-> +		if (of_mdio_data) {
-> +			autosuspend_delay_ms =
->   					of_mdio_data->autosuspend_delay_ms;
->   		}
->   	} else {
-> 
+changes v2:
+- add commas
+- avoid possible unhandled interrupts in the enable path
+- do not use of_ specific gpio functions
 
-Thank you.
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Add support for GPIO based pulse counter. For now it can only count
+pulses. With counter char device support, we will be able to attach
+timestamps and measure actual pulse frequency.
+
+Never the less, it is better to mainline this driver now (before chardev
+patches go mainline), to provide developers additional use case for the counter
+framework with chardev support.
+
+Oleksij Rempel (2):
+  dt-bindings: counter: add pulse-counter binding
+  counter: add IRQ or GPIO based pulse counter
+
+ .../bindings/counter/pulse-counter.yaml       |  52 ++++
+ drivers/counter/Kconfig                       |  10 +
+ drivers/counter/Makefile                      |   1 +
+ drivers/counter/pulse-cnt.c                   | 235 ++++++++++++++++++
+ 4 files changed, 298 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/counter/pulse-counter.yaml
+ create mode 100644 drivers/counter/pulse-cnt.c
 
 -- 
-Best regards,
-grygorii
+2.30.0
+
