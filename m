@@ -2,110 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 415F33044C5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:18:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE25B3044C8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:18:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729076AbhAZRLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:11:48 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:37324 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731859AbhAZJRo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 04:17:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1611652664; x=1643188664;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=OH2dq4QjZrtTsSwEVA0B0d10Au9NQwZtMDAzMeLqlJI=;
-  b=avdtXgy2Qu8Z3dT99BTAuND+1I2rIFd4p/3oUZOuwXRJ6soQYAD8MGC/
-   fDw3Jc9BqY69sdA5A/4yDwXxIWFgPBMBep4xK3coGh7EeQqpSvXg1KkJe
-   /v66uEcTnKjW2MA37yWG8lF1a658ffSnu7W+oHUEnlSlJuaBheoATTVRQ
-   cHFEP3+CFhoHmJf3/CoWNXZx7PFPritywUNtzczwE4v+jlXksXKZIQ1+k
-   tnDQwZmim+cilfIymdtrSKASpKsu0LmgBNzGNY3ZDLFlv58qUYqaFijgk
-   jyBMZWODD2YSzTsdnjQK3H+NtKtQSO8HFuwGqhDdYCDsb509ALlhfZXCW
-   w==;
-IronPort-SDR: 52QEk1qPl5PR1Iqmbn77pFv6Gq8jTdIcEj0BwfSI5+MHhvedDWzjM2sgg70nWAdjUoDYNSFDYA
- hmRtwMDDYKZpWh0TIIwjEF3a728qKb+muuNSlIfjuMn78xyIYzHZBzfFwmVR7i21P9LVeGC9uS
- dmh7Qx1EZkoetOPU+1kpfuj48b5/s5DtxZ6TNM4folcJd6Nqrj4u0qWTxouv8PYssrMXlUDPUI
- L+e/AFnoFtm6ILQuSNkgEiPSsyeSPfWdbqzOXcZncL0ywbDo5yFM6pE0xc7vKjb5jYyk5FJMTJ
- nQI=
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; 
-   d="scan'208";a="106799457"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Jan 2021 02:16:12 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 26 Jan 2021 02:16:11 -0700
-Received: from [10.171.246.120] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Tue, 26 Jan 2021 02:16:08 -0700
-Subject: Re: [PATCH 0/7] drivers: soc: atmel: add support for sama7g5
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
+        id S1726437AbhAZRNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:13:32 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38602 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406000AbhAZQf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 11:35:28 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10QGWxhX087660;
+        Tue, 26 Jan 2021 10:32:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611678779;
+        bh=zT5rXzi404sanDCD+FhX1p4eVM2SYSfy/bavMPjgsZ4=;
+        h=From:To:CC:Subject:Date;
+        b=cNY76W8khMWDiihJY+w8MLZDKUuaH3lNcFQ2hrFVzOT3LkWgLVJVkV29RAv+hniF2
+         zGTVg5PzHG3AUCBbMo1N6PvrvxxpmfQVCALvx9zoPYa58ImdqQNMoNgck+QUPDWGUA
+         cwgXcGJmus1xbwREQpFqeGuiFxg+UCaMcyLP5j3U=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10QGWxR0082334
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 26 Jan 2021 10:32:59 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 26
+ Jan 2021 10:32:58 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 26 Jan 2021 10:32:58 -0600
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10QGWwpA069669;
+        Tue, 26 Jan 2021 10:32:58 -0600
+Received: from localhost ([10.250.35.71])
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 10QGWwbq111807;
+        Tue, 26 Jan 2021 10:32:58 -0600
+From:   Suman Anna <s-anna@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+CC:     Jan Kiszka <jan.kiszka@siemens.com>,
+        David Lechner <david@lechnology.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1611318097-8970-1-git-send-email-claudiu.beznea@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <dc9a7739-791f-7f5f-e6bb-009d0e6dfcab@microchip.com>
-Date:   Tue, 26 Jan 2021 10:16:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        <linux-kernel@vger.kernel.org>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Suman Anna <s-anna@ti.com>
+Subject: [PATCH] dt-bindings: irqchip: Add node name to PRUSS INTC
+Date:   Tue, 26 Jan 2021 10:32:51 -0600
+Message-ID: <20210126163251.29468-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <1611318097-8970-1-git-send-email-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/01/2021 at 13:21, Claudiu Beznea wrote:
-> Hi,
-> 
-> This series adds support for SAMA7G5 identification. Along with this
-> included also some fixes.
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> Claudiu Beznea (7):
->    drivers: soc: atmel: add spdx licence identifier
+The current PRUSS Interrupt Controller binding doesn't exactly specify
+the convention for the node name. These interrupt-controllers will always
+have a unit address. Update the binding with the '$nodename' using the
+expected generic name, this shall ensure the interrupt-controller.yaml
+is automatically applied to this binding.
 
-I leave this one aside for now.
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+This patch is a result of the previous discussion at
+https://patchwork.kernel.org/comment/23926133/
 
->    drivers: soc: atmel: use GENMASK
->    drivers: soc: atmel: fix "__initconst should be placed after socs[]"
->        warning
->    drivers: soc: atmel: add null entry at the end of
+ .../bindings/interrupt-controller/ti,pruss-intc.yaml           | 3 +++
+ 1 file changed, 3 insertions(+)
 
-This one was taken by Arnd in arm-soc/arm/fixes branch.
-
->      at91_soc_allowed_list[]
->    drivers: soc: atmel: add per soc id and version match masks
->    dt-bindings: atmel-sysreg: add "microchip,sama7g5-chipid"
->    drivers: soc: atmel: add support for sama7g5
-
-For the rest:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-I take the rest in at91-soc branch. It appears in at91-next right now.
-
-Once the license patch is done, I can integrate it easily.
-
-Best regards,
-   Nicolas
-
-> 
->   .../devicetree/bindings/arm/atmel-sysregs.txt      |   2 +-
->   drivers/soc/atmel/soc.c                            | 225 ++++++++++++++-------
->   drivers/soc/atmel/soc.h                            |  14 +-
->   3 files changed, 171 insertions(+), 70 deletions(-)
-> 
-
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+index c2ce215501a5..9731dd4421a1 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+@@ -33,6 +33,9 @@ description: |
+   corresponding PRUSS node. The node should be named "interrupt-controller".
+ 
+ properties:
++  $nodename:
++    pattern: "^interrupt-controller@[0-9a-f]+$"
++
+   compatible:
+     enum:
+       - ti,pruss-intc
 -- 
-Nicolas Ferre
+2.29.2
+
