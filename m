@@ -2,103 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D929303B07
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 12:04:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1252C303B1B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 12:07:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404810AbhAZLD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 06:03:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56754 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404791AbhAZLDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 06:03:11 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C63C061573;
-        Tue, 26 Jan 2021 03:02:30 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id w1so22290987ejf.11;
-        Tue, 26 Jan 2021 03:02:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=tGus94grLYPWSUM0bMFUmChMXn+Sc5UCDSiVFm8Bk1g=;
-        b=ReLxtoNk/T9yXEhHKg8pHbxSJw3aJoyT/IEKEoIyVyeulTYz+4TP45B5rr4TihDhhv
-         17I+sgm2Ant/VgPBELLeO5DsCELkpNd8VASufye+/0aURAJIDZddTMAgWF7ImRzyxQEA
-         rVq9VqepJAu29BhI3wx9AQTCzqmObuq5/kZH5Qu9GKKX5zBbOtfoawLHK57+eYd71VZm
-         kH/TAv0BLQGfAcq04zf7TOp5jS+IlbY+qvgrzTUoVwHJDGAsmEEIla5U/PABcEf5J9NM
-         hxSDeyQezd8wS6bI7OppyoHqfzpcNfjWa9NJUp+k2Szj5UKgvfcm/3cHrdv9ptGGBSpS
-         yAlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=tGus94grLYPWSUM0bMFUmChMXn+Sc5UCDSiVFm8Bk1g=;
-        b=ETS/UVs7nLTb+/wp+jZnnWr327SfBP/EJPS1PH+xuhOaoaNk53NWWzbqpR25I0Wq3A
-         i9CkYaKtw78EyP7brTHiXAf2/rXO1EWw+/0YUNZpQLWngTvwqJDcdIWYyBLW2HapPjwe
-         0oRP1Yn65lZTXxRkVfcdVT+FHLO3JilfMdpEvyeWZQT2yFVXS34OVQ9MywsSPBNw6SiY
-         25ovuz7OGH0idvvOLSdoaKH5eh/xeE1gyFnsr7cQs+i/mctXUdbz6lcoY6wiI5hO2Gyd
-         +3zuWqdEMSXlAEH5YuZl0CQBhGQqRuoYz0SIvq/nsUdaBgE/1dC6n8mOZAO4R/eAY5Ha
-         PR5g==
-X-Gm-Message-State: AOAM531U4nnS7O4Or4naFJzRBS2DaeUv1hYqyTAfZHWE/bGVXt1AMoGE
-        9FcyrfvzXAQD4FnaNEA0PYgZHnmkS+E=
-X-Google-Smtp-Source: ABdhPJweKLVCgdb55W52Fgzza7M8uQ3muJw6gFw6GteiCpKniAv8SkhaI6jSnMSRGamCzzANptF5tQ==
-X-Received: by 2002:a17:906:c954:: with SMTP id fw20mr3076916ejb.342.1611658949575;
-        Tue, 26 Jan 2021 03:02:29 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id a2sm9533408ejk.80.2021.01.26.03.02.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 26 Jan 2021 03:02:28 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] ARM: dts: rockchip: fix pinctrl sleep nodename for rk3036-kylin and rk3288
-Date:   Tue, 26 Jan 2021 12:02:20 +0100
-Message-Id: <20210126110221.10815-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S2404809AbhAZLHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 06:07:22 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:61968 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2404978AbhAZLG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 06:06:29 -0500
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10QB1JIl001769;
+        Tue, 26 Jan 2021 06:05:33 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 368hk9hnpr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 26 Jan 2021 06:05:33 -0500
+Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 10QB5V4F032142
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Tue, 26 Jan 2021 06:05:32 -0500
+Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
+ SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Tue, 26 Jan 2021 03:05:30 -0800
+Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by
+ SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.721.2;
+ Tue, 26 Jan 2021 03:05:30 -0800
+Received: from zeus.spd.analog.com (10.66.68.11) by scsqmbx10.ad.analog.com
+ (10.77.17.5) with Microsoft SMTP Server id 15.2.721.2 via Frontend Transport;
+ Tue, 26 Jan 2021 03:05:30 -0800
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 10QB5PQc007159;
+        Tue, 26 Jan 2021 06:05:26 -0500
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <lars@metafoo.de>,
+        <linux-fpga@vger.kernel.org>, <mdf@kernel.org>,
+        "Alexandru Ardelean" <alexandru.ardelean@analog.com>
+Subject: [PATCH v2 0/3] clk: clk-axiclgen: add support for ZynqMP
+Date:   Tue, 26 Jan 2021 13:08:23 +0200
+Message-ID: <20210126110826.24221-1-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-26_06:2021-01-25,2021-01-26 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 impostorscore=0 mlxscore=0 priorityscore=1501 adultscore=0
+ mlxlogscore=717 suspectscore=0 spamscore=0 bulkscore=0 phishscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101260058
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below aimed at powerpc generates
-notifications in the Rockchip ARM tree.
+Previous set:
+ https://lore.kernel.org/linux-clk/20201221144224.50814-1-alexandru.ardelean@analog.com/
 
-Fix pinctrl "sleep" nodename by renaming it to "suspend"
-for rk3036-kylin and rk3288
+Changelog v1 -> v2:
+* split patch 'clk: axi-clkgen: add support for ZynqMP (UltraScale)'
+  into:
+   - clk: axi-clkgen: remove ARCH dependency in Kconfig
+   - clk: clk-axiclkgen: add ZynqMP PFD and VCO limits
+* essentially removed the 'adi,zynq-axi-clkgen-2.00.a' compat string
+* removed architecture dependency on build for driver; the driver should
+  be usable also on PCIe setups
 
-make ARCH=arm dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/powerpc/sleep.yaml
+Alexandru Ardelean (3):
+  clk: axi-clkgen: remove ARCH dependency in Kconfig
+  clk: clk-axiclkgen: add ZynqMP PFD and VCO limits
+  dt-bindings: clock: adi,axi-clkgen: add compatible string for ZynqMP
+    support
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm/boot/dts/rk3036-kylin.dts | 2 +-
- arch/arm/boot/dts/rk3288.dtsi      | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/clock/adi,axi-clkgen.yaml     |  1 +
+ drivers/clk/Kconfig                                   |  1 -
+ drivers/clk/clk-axi-clkgen.c                          | 11 +++++++++++
+ 3 files changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/rk3036-kylin.dts b/arch/arm/boot/dts/rk3036-kylin.dts
-index 7154b827e..e817eba8c 100644
---- a/arch/arm/boot/dts/rk3036-kylin.dts
-+++ b/arch/arm/boot/dts/rk3036-kylin.dts
-@@ -390,7 +390,7 @@
- 		};
- 	};
- 
--	sleep {
-+	suspend {
- 		global_pwroff: global-pwroff {
- 			rockchip,pins = <2 RK_PA7 1 &pcfg_pull_none>;
- 		};
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index 29ffe2eb9..7dec6935f 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -1593,7 +1593,7 @@
- 			drive-strength = <12>;
- 		};
- 
--		sleep {
-+		suspend {
- 			global_pwroff: global-pwroff {
- 				rockchip,pins = <0 RK_PA0 1 &pcfg_pull_none>;
- 			};
 -- 
-2.11.0
+2.17.1
 
