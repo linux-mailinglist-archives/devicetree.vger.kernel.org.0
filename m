@@ -2,145 +2,344 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CFE630445F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9132A304465
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:02:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726765AbhAZRAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:00:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40580 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730672AbhAZHf4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 02:35:56 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 121D9230FE;
-        Tue, 26 Jan 2021 07:35:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611646515;
-        bh=+VAs2ymsR3wvwxQFkon4/lt3ON1FUNprV+UepWushio=;
-        h=From:To:Cc:Subject:Date:From;
-        b=DH2Lp/8Ef0k9WGN0ll9FmubItN0Z4unrWnNQS2pyl2CUBL7o4QsLZbVTFfKsobAFJ
-         rqis4X+XbAgqsLOIi2xs0N9LOezi8R1B3MJRlaAf+t5K7louVm5tILOwBOPekx54Dp
-         gxGYVH9sPqyKT9rTqpWuBYCY/4Ml/MC0cOYw5dSCTJwQMG0iNcMSQJWPiMJQGz01Ki
-         A22EreErsNsWRT1n182mAs2KUT0HFIOn49DPq47GwhpEw133zKoi2C3eSrEIDvRSro
-         yals0i+X72Z5A+lrvA7iUlU3O1m7Ebf/8Fx9SxxtUcGSuay+HFsCn+KXGiyEhuM4Q0
-         ot6GUJlxXOVnw==
-Received: by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1l4Isa-00BqrJ-FX; Tue, 26 Jan 2021 08:35:12 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Jesper Nilsson <jesper.nilsson@axis.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Jonathan Chocron <jonnyc@amazon.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        Zhou Wang <wangzhou1@hisilicon.com>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: [PATCH RFC 0/2] Convert designware-pcie and kirin-pcie to yaml
-Date:   Tue, 26 Jan 2021 08:35:05 +0100
-Message-Id: <cover.1611645945.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.29.2
+        id S1728268AbhAZRBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:01:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387494AbhAZHnK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 02:43:10 -0500
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13501C0613ED
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 23:41:56 -0800 (PST)
+Received: by mail-io1-xd30.google.com with SMTP id q129so31849182iod.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 23:41:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yTEzEls579DZ3BH7hVcyPhp2fOCUcEmP44D/dLy0dWM=;
+        b=lhkvH0huBJvc9H+HHJT5oD2JJfLRkNYrzMGtQpHmHbrcyuVVO75mflEeMeVGM5SLeV
+         Nvz2LpNpnG4NLXQS3PzviLTmcoJ28ZzcjvSuunpWVNA8XdJ5QA/GD6hAbJMtxdnbxWmo
+         TblN5TW94Rysnh9stZJyH71Ylpu5BK5dkAgLs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yTEzEls579DZ3BH7hVcyPhp2fOCUcEmP44D/dLy0dWM=;
+        b=RYfdkmVvmL1uVL/K0XPLYV/TOqNKjyyumqP/dSC4GU+ZT5Pxaf0METbjiYFIVIFItO
+         cKKJP8Q+sLW97+02OYjIIFsAGrigCR9FIUNSjOi2bDPIHbwWYj8JJJ0HBWpBSRMUrZvF
+         dWBgu5SOlzHGPUfwJUr3Ry/PAimpXy+pID8okOuVpstvI+oQ4uPqMaaasV8zhBBYkf+3
+         9MnSkAJuS0Rmr43/HwTyHEsy5kjwQnLOdMpaD0RzzcJJGQG1QqiV/5jw4wIPlaJF0NKq
+         NQYKEj2bu4w0f3BuEpZr/DipCd9xqZvHy53hgs+uIwMzb7GaAGmFrDcqBOlqmmbnx+FM
+         MvtQ==
+X-Gm-Message-State: AOAM531y+0fc0q5dlNOzZgrl+PDKh1oJrPFVKDQ4VHzM/8UUMiCLMCVj
+        9PHpwNeEmmHSAy3LJhuVoyvh/JdvNepYLQcnRqLePQ==
+X-Google-Smtp-Source: ABdhPJwlpBCKAL7fXLH9DDApVCKASF37ZecJUvGno+yw0iUERuo8IehQdIP5bitm9orrlTzk/WX0NRpPQ8lzpIqZxIQ=
+X-Received: by 2002:a05:6638:b12:: with SMTP id a18mr3834357jab.114.1611646915306;
+ Mon, 25 Jan 2021 23:41:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <1610351031-21133-1-git-send-email-yongqiang.niu@mediatek.com> <1610351031-21133-6-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1610351031-21133-6-git-send-email-yongqiang.niu@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Tue, 26 Jan 2021 15:41:29 +0800
+Message-ID: <CAJMQK-g_+7h0vo7758aoY6304pqULJpHgSWE3HhvF8FWjkze_w@mail.gmail.com>
+Subject: Re: [PATCH v3, 05/15] drm/mediatek: add component POSTMASK
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
+On Mon, Jan 11, 2021 at 3:44 PM Yongqiang Niu
+<yongqiang.niu@mediatek.com> wrote:
+>
+> This patch add component POSTMASK,
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/Makefile            |   1 +
+>  drivers/gpu/drm/mediatek/mtk_disp_postmask.c | 160 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c  |   2 +
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h  |   1 +
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c       |   4 +-
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.h       |   1 +
+>  6 files changed, 168 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_postmask.c
+>
+> diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
+> index 17a08e2..ce5ad59 100644
+> --- a/drivers/gpu/drm/mediatek/Makefile
+> +++ b/drivers/gpu/drm/mediatek/Makefile
+> @@ -3,6 +3,7 @@
+>  mediatek-drm-y := mtk_disp_color.o \
+>                   mtk_disp_gamma.o \
+>                   mtk_disp_ovl.o \
+> +                 mtk_disp_postmask.o \
+>                   mtk_disp_rdma.o \
+>                   mtk_drm_crtc.o \
+>                   mtk_drm_ddp.o \
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_postmask.c b/drivers/gpu/drm/mediatek/mtk_disp_postmask.c
+> new file mode 100644
+> index 0000000..736224c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_postmask.c
+> @@ -0,0 +1,160 @@
+> +/*
+> + * SPDX-License-Identifier:
+> + *
+> + * Copyright (c) 2020 MediaTek Inc.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/component.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/soc/mediatek/mtk-cmdq.h>
+> +
+> +#include "mtk_drm_crtc.h"
+> +#include "mtk_drm_ddp_comp.h"
+> +
+> +#define DISP_POSTMASK_EN                       0x0000
+> +#define POSTMASK_EN                                    BIT(0)
+> +#define DISP_POSTMASK_CFG                      0x0020
+> +#define POSTMASK_RELAY_MODE                            BIT(0)
+> +#define DISP_POSTMASK_SIZE                     0x0030
+> +
+> +struct mtk_disp_postmask_data {
+> +       u32 reserved;
+> +};
+> +
 
-As I'm preparing some upstream patches for kirin-pcie driver to support
-Hikey 970, I opted to try first to convert the existing schema to yaml.
-
-It should be noticed that those two patches currently won't pass
-cleanly with dtbs_check/dt_binding_check.
-
-I'm out of ideas about how to fix. It sounds to me that the checking
-tools are trying to enforce different types of reference types than
-the ones used by designware drivers.:
-
-$ make CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/designware,pcie.yaml dt_binding_check
-  LINT    Documentation/devicetree/bindings
-  DTEX    Documentation/devicetree/bindings/pci/designware,pcie.example.dts
-  CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-  DTC     Documentation/devicetree/bindings/pci/designware,pcie.example.dt.yaml
-  CHECK   Documentation/devicetree/bindings/pci/designware,pcie.example.dt.yaml
-
-
-		[[2164260864, 0, 0, 3724541952, 0, 65536, 2181038080, 0, 3493855232, 3493855232, 0, 218103808]] is not of type 'boolean'
-		True was expected
-		[[2164260864, 0, 0, 3724541952, 0, 65536, 2181038080, 0, 3493855232, 3493855232, 0, 218103808]] is not of type 'null'
-	[2164260864, 0, 0, 3724541952, 0, 65536, 2181038080, 0, 3493855232, 3493855232, 0, 218103808] is too long
-	From schema: /home/mchehab/.local/lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
-
-$ make CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml dt_binding_check
-  DTEX    Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dts
-  DTC     Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dt.yaml
-  CHECK   Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dt.yaml
-/devel/v4l/hikey970/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dt.yaml: pcie@f4000000: 'reset-gpios' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /devel/v4l/hikey970/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-/devel/v4l/hikey970/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dt.yaml: pcie@f4000000: '#interrupt-cells', 'bus-range', 'clock-names', 'clocks', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'num-lanes', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /devel/v4l/hikey970/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-
-I ran out of ideas about how to solve that. So, I'm posting it as a RFC.
-
-Mauro Carvalho Chehab (2):
-  dt: pci: designware-pcie.txt: convert it to yaml
-  dt: pci: kirin-pcie.txt: convert it to yaml
-
- .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
- .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
- .../bindings/pci/designware,pcie.yaml         | 194 ++++++++++++++++++
- .../bindings/pci/designware-pcie.txt          |  77 -------
- .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
- .../bindings/pci/hisilicon,kirin-pcie.yaml    |  98 +++++++++
- .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
- .../bindings/pci/hisilicon-pcie.txt           |   2 +-
- .../devicetree/bindings/pci/kirin-pcie.txt    |  50 -----
- .../bindings/pci/layerscape-pci.txt           |   2 +-
- .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
- .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
- .../devicetree/bindings/pci/pci-keystone.txt  |  10 +-
- .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
- .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
- .../bindings/pci/samsung,exynos5440-pcie.txt  |   4 +-
- .../pci/socionext,uniphier-pcie-ep.yaml       |   2 +-
- .../devicetree/bindings/pci/ti-pci.txt        |   4 +-
- .../devicetree/bindings/pci/uniphier-pcie.txt |   2 +-
- MAINTAINERS                                   |   4 +-
- 20 files changed, 323 insertions(+), 158 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pci/designware,pcie.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie.txt
- create mode 100644 Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/kirin-pcie.txt
-
--- 
-2.29.2
+Will there be more data and config for different soc in the future? If
+not, it can be put in mtk_drm_ddp_comp.c and use struct
+mtk_ddp_comp_dev, like ddp_dither or ddp_aal.
 
 
+> +/**
+> + * struct mtk_disp_postmask - DISP_postmask driver structure
+> + * @ddp_comp - structure containing type enum and hardware resources
+> + * @crtc - associated crtc to report irq events to
+> + */
+> +struct mtk_disp_postmask {
+> +       struct mtk_ddp_comp                     ddp_comp;
+> +       const struct mtk_disp_postmask_data     *data;
+> +};
+> +
+> +static inline struct mtk_disp_postmask *comp_to_postmask(struct mtk_ddp_comp *comp)
+> +{
+> +       return container_of(comp, struct mtk_disp_postmask, ddp_comp);
+> +}
+> +
+> +static void mtk_postmask_config(struct mtk_ddp_comp *comp, unsigned int w,
+> +                             unsigned int h, unsigned int vrefresh,
+> +                             unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
+> +{
+> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, comp, DISP_POSTMASK_SIZE);
+> +       mtk_ddp_write(cmdq_pkt, POSTMASK_RELAY_MODE, comp, DISP_POSTMASK_CFG);
+> +}
+> +
+> +static void mtk_postmask_start(struct mtk_ddp_comp *comp)
+> +{
+> +       writel(POSTMASK_EN, comp->regs + DISP_POSTMASK_EN);
+> +}
+> +
+> +static void mtk_postmask_stop(struct mtk_ddp_comp *comp)
+> +{
+> +       writel_relaxed(0x0, comp->regs + DISP_POSTMASK_EN);
+> +}
+> +
+> +static const struct mtk_ddp_comp_funcs mtk_disp_postmask_funcs = {
+> +       .config = mtk_postmask_config,
+> +       .start = mtk_postmask_start,
+> +       .stop = mtk_postmask_stop,
+> +};
+> +
+> +static int mtk_disp_postmask_bind(struct device *dev, struct device *master, void *data)
+> +{
+> +       struct mtk_disp_postmask *priv = dev_get_drvdata(dev);
+> +       struct drm_device *drm_dev = data;
+> +       int ret;
+> +
+> +       ret = mtk_ddp_comp_register(drm_dev, &priv->ddp_comp);
+> +       if (ret < 0) {
+> +               dev_err(dev, "Failed to register component %pOF: %d\n",
+> +                       dev->of_node, ret);
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static void mtk_disp_postmask_unbind(struct device *dev, struct device *master,
+> +                                 void *data)
+> +{
+> +       struct mtk_disp_postmask *priv = dev_get_drvdata(dev);
+> +       struct drm_device *drm_dev = data;
+> +
+> +       mtk_ddp_comp_unregister(drm_dev, &priv->ddp_comp);
+> +}
+> +
+> +static const struct component_ops mtk_disp_postmask_component_ops = {
+> +       .bind   = mtk_disp_postmask_bind,
+> +       .unbind = mtk_disp_postmask_unbind,
+> +};
+> +
+> +static int mtk_disp_postmask_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct mtk_disp_postmask *priv;
+> +       int comp_id;
+> +       int ret;
+> +
+> +       priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       comp_id = mtk_ddp_comp_get_id(dev->of_node, MTK_DISP_POSTMASK);
+> +       if (comp_id < 0) {
+> +               dev_err(dev, "Failed to identify by alias: %d\n", comp_id);
+> +               return comp_id;
+> +       }
+> +
+> +       ret = mtk_ddp_comp_init(dev, dev->of_node, &priv->ddp_comp, comp_id,
+> +                               &mtk_disp_postmask_funcs);
+> +       if (ret) {
+> +               if (ret != -EPROBE_DEFER)
+> +                       dev_err(dev, "Failed to initialize component: %d\n",
+> +                               ret);
+> +
+> +               return ret;
+> +       }
+> +
+> +       priv->data = of_device_get_match_data(dev);
+> +
+> +       platform_set_drvdata(pdev, priv);
+> +
+> +       pm_runtime_enable(dev);
+> +
+> +       ret = component_add(dev, &mtk_disp_postmask_component_ops);
+> +       if (ret)
+> +               dev_err(dev, "Failed to add component: %d\n", ret);
+> +
+> +       return ret;
+> +}
+> +
+> +static int mtk_disp_postmask_remove(struct platform_device *pdev)
+> +{
+> +       pm_runtime_disable(&pdev->dev);
+> +
+> +       component_del(&pdev->dev, &mtk_disp_postmask_component_ops);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id mtk_disp_postmask_driver_dt_match[] = {
+> +       {},
+> +};
+> +MODULE_DEVICE_TABLE(of, mtk_disp_postmask_driver_dt_match);
+> +
+> +struct platform_driver mtk_disp_postmask_driver = {
+> +       .probe          = mtk_disp_postmask_probe,
+> +       .remove         = mtk_disp_postmask_remove,
+> +       .driver         = {
+> +               .name   = "mediatek-disp-postmask",
+> +               .owner  = THIS_MODULE,
+> +               .of_match_table = mtk_disp_postmask_driver_dt_match,
+> +       },
+> +};
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> index a715127..bc6b10a 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -354,6 +354,7 @@ static void mtk_dither_stop(struct mtk_ddp_comp *comp)
+>         [MTK_DISP_MUTEX] = "mutex",
+>         [MTK_DISP_OD] = "od",
+>         [MTK_DISP_BLS] = "bls",
+> +       [MTK_DISP_POSTMASK] = "postmask",
+>  };
+>
+>  struct mtk_ddp_comp_match {
+> @@ -384,6 +385,7 @@ struct mtk_ddp_comp_match {
+>         [DDP_COMPONENT_OVL_2L0] = { MTK_DISP_OVL_2L,    0, NULL },
+>         [DDP_COMPONENT_OVL_2L1] = { MTK_DISP_OVL_2L,    1, NULL },
+>         [DDP_COMPONENT_OVL_2L2] = { MTK_DISP_OVL_2L,    2, NULL },
+> +       [DDP_COMPONENT_POSTMASK0]       = { MTK_DISP_POSTMASK,  0, NULL },
+>         [DDP_COMPONENT_PWM0]    = { MTK_DISP_PWM,       0, NULL },
+>         [DDP_COMPONENT_PWM1]    = { MTK_DISP_PWM,       1, NULL },
+>         [DDP_COMPONENT_PWM2]    = { MTK_DISP_PWM,       2, NULL },
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> index 178fae9..0b23b5c 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> @@ -29,6 +29,7 @@ enum mtk_ddp_comp_type {
+>         MTK_DISP_UFOE,
+>         MTK_DSI,
+>         MTK_DPI,
+> +       MTK_DISP_POSTMASK,
+>         MTK_DISP_PWM,
+>         MTK_DISP_MUTEX,
+>         MTK_DISP_OD,
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> index b6e963e..bc205e9 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -533,7 +533,7 @@ static int mtk_drm_probe(struct platform_device *pdev)
+>                 private->comp_node[comp_id] = of_node_get(node);
+>
+>                 /*
+> -                * Currently only the COLOR, GAMMA, OVL, RDMA, DSI, and DPI blocks have
+> +                * Currently only the COLOR, GAMMA, OVL, POSTMASK, RDMA, DSI, and DPI blocks have
+>                  * separate component platform drivers and initialize their own
+>                  * DDP component structure. The others are initialized here.
+>                  */
+> @@ -541,6 +541,7 @@ static int mtk_drm_probe(struct platform_device *pdev)
+>                     comp_type == MTK_DISP_GAMMA ||
+>                     comp_type == MTK_DISP_OVL ||
+>                     comp_type == MTK_DISP_OVL_2L ||
+> +                   comp_type == MTK_DISP_POSTMASK ||
+>                     comp_type == MTK_DISP_RDMA ||
+>                     comp_type == MTK_DSI ||
+>                     comp_type == MTK_DPI) {
+> @@ -654,6 +655,7 @@ static SIMPLE_DEV_PM_OPS(mtk_drm_pm_ops, mtk_drm_sys_suspend,
+>         &mtk_disp_color_driver,
+>         &mtk_disp_gamma_driver,
+>         &mtk_disp_ovl_driver,
+> +       &mtk_disp_postmask_driver,
+>         &mtk_disp_rdma_driver,
+>         &mtk_dpi_driver,
+>         &mtk_drm_platform_driver,
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+> index bbd362b..8a9544b 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
+> @@ -50,6 +50,7 @@ struct mtk_drm_private {
+>  extern struct platform_driver mtk_disp_color_driver;
+>  extern struct platform_driver mtk_disp_gamma_driver;
+>  extern struct platform_driver mtk_disp_ovl_driver;
+> +extern struct platform_driver mtk_disp_postmask_driver;
+>  extern struct platform_driver mtk_disp_rdma_driver;
+>  extern struct platform_driver mtk_dpi_driver;
+>  extern struct platform_driver mtk_dsi_driver;
+> --
+> 1.8.1.1.dirty
+>
