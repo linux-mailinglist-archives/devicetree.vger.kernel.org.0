@@ -2,75 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23D1D304D14
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 00:02:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7A13050F8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 05:36:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731547AbhAZXCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 18:02:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52162 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728766AbhAZWYk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 17:24:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1136A2068D;
-        Tue, 26 Jan 2021 22:23:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611699839;
-        bh=NkXN+L+8iyIlAKPft4v6rZMUGxnSOffa491D61R1whA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=At289oMxLQNUwHAJs4AQDWij3EeNKTLBbt1i0D2ws3tEW1LvYPw4K/rpUmie/GsXf
-         tuL9ugR4oRXsCOhS1/tpb+E3MDGJ/4Aau+DFhiRCrtoDQQyOAt3q93oa2l8wy7Aldh
-         BN5OFdDXSnTyakM22d7EgUxqYxg0FGzK2Vy0iedR0Ofr11LShTohrOJ+rvJH3wmstr
-         L2vWLW509YWsvfDetji81zGqKyTvFmvX4oxGPCn5Fko3eCHQVXMnMoCcq56SOEwJdb
-         GIfbpHHmn80LlgK55EyYiVTxur4jlHayiVoSbVTQC6o1SHlPV5oJOwWrKEeS9Mo86F
-         OuuegsW6LwAew==
-Received: by mail-ot1-f43.google.com with SMTP id i20so17886657otl.7;
-        Tue, 26 Jan 2021 14:23:59 -0800 (PST)
-X-Gm-Message-State: AOAM532e5fpRzNQiwm+/rt+GZES6g77ciC/y54TSCiXGxencQE/zjYkM
-        S29JzttAB3o1aVsxknf/XQfWYkvAgwOgBnUeP9E=
-X-Google-Smtp-Source: ABdhPJwQupZYv7n4Uglws8oEtTR4FjjYUwdD9OeK7zjDxyL4f5IKB59OT2WpYu4cYL7I0h04inMqQL8z5/Vzu6rlseY=
-X-Received: by 2002:a9d:3bb7:: with SMTP id k52mr5673345otc.251.1611699838382;
- Tue, 26 Jan 2021 14:23:58 -0800 (PST)
+        id S231761AbhA0Ecp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 23:32:45 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:35219 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2388496AbhAZXXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 18:23:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1611703315;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=FFsgQkQMHGcNuO7prFnbNLIMkPeBzSiQZrxd3POXfNg=;
+        b=Kihxvzlqq1MbbO//yqVeXlI28T68f/yMLOkgQLQGqwxAr3EC59yoyeuZIJ9ki1NeL6VLbk
+        Jt72GxB8vjukeVG2vsZFYMp/hZYK+W1K1tKwmbwafkvMCQgb0tR2ZI4vaM8cYi9a2x9fZj
+        ZO4KoaXtLKXLUPD2GTa81ZV4ukjrg8Q=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-478-4FeLg38EN4uJEVDlGGUCcA-1; Tue, 26 Jan 2021 18:21:53 -0500
+X-MC-Unique: 4FeLg38EN4uJEVDlGGUCcA-1
+Received: by mail-qt1-f199.google.com with SMTP id f5so10207981qtf.15
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 15:21:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=FFsgQkQMHGcNuO7prFnbNLIMkPeBzSiQZrxd3POXfNg=;
+        b=WRARw8bDCIj52OpALbncs3ORahbEe41SsgxXPbLlY+HPuVAmbF+DD1CPA05HUV8bN1
+         qYwKOD2JvI6X9e3dGL/HimHeAUCmvXtVOp6iSLdbnSbQFsauFAgKzLz2tVuP6SpI36wP
+         XicvEtrkjr2glDMmfWXbyhB5M59U062gI9NvqvDHV14G1WuYv84uesyBfPLl1kKjvkFI
+         lGms4xaF23ep5ftW15ciXGj5fGQNFO9sITtVNVJBYCT3AMmBvoUU7hXnESAZibNKZCg/
+         DmT7PlfsS7bhaKvhHKK8Xseho2TiKlPjyOkoYJN08nl1fDozhvy+PhpXnQELZIE7EjLA
+         eFwA==
+X-Gm-Message-State: AOAM530g3RPbdaQDAZ1NYG4/1UQ/RmEyIN2i3QkqnUAPWXLqdpaw5wVB
+        VRl1Qc4TYFokX7k99E4kKfSz+L96/iY5HwpK8gFUJGtBFPM72Kd2xjInaKH583p7bQTr3EHpuIZ
+        L2RgTpYDERbTqgzqRk+I59Q==
+X-Received: by 2002:a0c:c384:: with SMTP id o4mr8011136qvi.21.1611703313446;
+        Tue, 26 Jan 2021 15:21:53 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyQwxGlyfMcY1NOcyyinpE4uDbuVGu0DgI2XyVdUzWX/kxECSPbaveR0jaQIYaDyMXFFNGuVg==
+X-Received: by 2002:a0c:c384:: with SMTP id o4mr8011119qvi.21.1611703313228;
+        Tue, 26 Jan 2021 15:21:53 -0800 (PST)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id c12sm154500qtq.76.2021.01.26.15.21.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Jan 2021 15:21:52 -0800 (PST)
+Subject: Re: [PATCH v2 0/3] clk: clk-axiclgen: add support for ZynqMP
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        lars@metafoo.de, linux-fpga@vger.kernel.org, mdf@kernel.org
+References: <20210126110826.24221-1-alexandru.ardelean@analog.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <eba46db2-b528-0f6f-7e23-f61fa3e265b2@redhat.com>
+Date:   Tue, 26 Jan 2021 15:21:50 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-References: <20201208124641.1787-1-thunder.leizhen@huawei.com> <20201208124641.1787-3-thunder.leizhen@huawei.com>
-In-Reply-To: <20201208124641.1787-3-thunder.leizhen@huawei.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 26 Jan 2021 23:23:42 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a3xie1-rLzKY+Y3Z2VKEJkDqAco6b75Af6FgyhsnzorsA@mail.gmail.com>
-Message-ID: <CAK8P3a3xie1-rLzKY+Y3Z2VKEJkDqAco6b75Af6FgyhsnzorsA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] arm64: dts: correct vendor prefix hisi to hisilicon
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210126110826.24221-1-alexandru.ardelean@analog.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 8, 2020 at 1:46 PM Zhen Lei <thunder.leizhen@huawei.com> wrote:
+
+On 1/26/21 3:08 AM, Alexandru Ardelean wrote:
+> Previous set:
+>  https://lore.kernel.org/linux-clk/20201221144224.50814-1-alexandru.ardelean@analog.com/
 >
-> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
-> stated in "vendor-prefixes.yaml".
+> Changelog v1 -> v2:
+> * split patch 'clk: axi-clkgen: add support for ZynqMP (UltraScale)'
+>   into:
+>    - clk: axi-clkgen: remove ARCH dependency in Kconfig
+>    - clk: clk-axiclkgen: add ZynqMP PFD and VCO limits
+> * essentially removed the 'adi,zynq-axi-clkgen-2.00.a' compat string
+> * removed architecture dependency on build for driver; the driver should
+>   be usable also on PCIe setups
 >
-> Fixes: 35ca8168133c ("arm64: dts: Add dts files for Hisilicon Hi3660 SoC")
-> Fixes: dd8c7b78c11b ("arm64: dts: Add devicetree for Hisilicon Hi3670 SoC")
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> Cc: Chen Feng <puck.chen@hisilicon.com>
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Alexandru Ardelean (3):
+>   clk: axi-clkgen: remove ARCH dependency in Kconfig
+>   clk: clk-axiclkgen: add ZynqMP PFD and VCO limits
+>   dt-bindings: clock: adi,axi-clkgen: add compatible string for ZynqMP
+>     support
+>
+>  .../devicetree/bindings/clock/adi,axi-clkgen.yaml     |  1 +
+>  drivers/clk/Kconfig                                   |  1 -
+>  drivers/clk/clk-axi-clkgen.c                          | 11 +++++++++++
+>  3 files changed, 12 insertions(+), 1 deletion(-)
 
-I see this change in the pull request I got, but I'm a bit worried about the
-incompatible binding change. Wouldn't the correct path forward be to
-list both the correct and the incorrect properties, both in the dts file
-and in the driver that interprets the properties?
+This whole set looks fine.
 
-The binding file in this case would need to list the old name as deprecated,
-though I'm not sure how that would work without causing a warning about
-the unknown vendor prefix.
+Reviewed-by: Tom Rix <trix@redhat.com>
 
-        Arnd
