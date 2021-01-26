@@ -2,196 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74DBD304B0E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:14:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 730C8304B0C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:14:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728633AbhAZEvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:51:44 -0500
-Received: from regular1.263xmail.com ([211.150.70.200]:47082 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732258AbhAZCkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:40:33 -0500
-Received: from localhost (unknown [192.168.167.69])
-        by regular1.263xmail.com (Postfix) with ESMTP id 8F5531D84;
-        Tue, 26 Jan 2021 10:34:26 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [192.168.31.83] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P19895T139773254842112S1611628456710507_;
-        Tue, 26 Jan 2021 10:34:25 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <f4a2667adf4e7ccc101c1c7abede742c>
-X-RL-SENDER: xxm@rock-chips.com
-X-SENDER: xxm@rock-chips.com
-X-LOGIN-NAME: xxm@rock-chips.com
-X-FST-TO: jbx6244@gmail.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: Re: [PATCH v3 2/2] PCI: rockchip: add DesignWare based PCIe
- controller
-To:     Leon Romanovsky <leon@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     devicetree@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Johan Jonker <jbx6244@gmail.com>
-References: <20210125024824.634583-1-xxm@rock-chips.com>
- <20210125024927.634634-1-xxm@rock-chips.com> <20210125054836.GB579511@unreal>
- <0b65ca38-ff7a-f9cd-5406-1f275fbbecd1@rock-chips.com>
- <20210125090129.GF579511@unreal>
- <e7ed6586-06f3-52e3-b2db-38887a5a37e4@arm.com>
- <20210125184541.GJ579511@unreal>
-From:   xxm <xxm@rock-chips.com>
-Message-ID: <79885f84-5c89-b21a-b0e1-dcb870736b05@rock-chips.com>
-Date:   Tue, 26 Jan 2021 10:34:16 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1728709AbhAZEvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:51:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60900 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732074AbhAZCfv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:35:51 -0500
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA953C061574
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 18:35:09 -0800 (PST)
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 2ED91891AE;
+        Tue, 26 Jan 2021 15:34:26 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1611628466;
+        bh=m5uDdpbuJTSI/WPVlKJlXtE2RvNIiiR/S4ReZ69L8Vo=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=lyT70DihNk7PkqV5gna38Acod+BTwM7vlviESqaiTeqdaXLHUUOuBXuWgnQSj/6qI
+         kCAMSwZ8Q/FoUNsenle6qDF1tk23jbZe1Swr6JrMU70Q3hZS7g5Ve8vSzoqthErWbG
+         RuJxwJwrrQ37dBWbUA4Cc8A28iJnVH5o2t0DCgmLubpB17tQYv1qtd++ppv+mW1YQv
+         5/GmA5O4X7Zp53hIYCcTR+VbE/1U6w0+KsgcPt73liaM9ELxg/gcJE679YVx//lPEO
+         DrRRkRPTo3fJn+4byzxCm2GssT/CopRDa2m6wLVnU18w4lkrV/nR9QLKbvptTdFlzt
+         rfCHHlO49WtJg==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[10.32.16.77]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B600f7fb10001>; Tue, 26 Jan 2021 15:34:25 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 26 Jan 2021 15:34:25 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.010; Tue, 26 Jan 2021 15:34:25 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Qi Zheng <arch0.zheng@gmail.com>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] of/fdt: Remove redundant kbasename function call
+Thread-Topic: [PATCH v2] of/fdt: Remove redundant kbasename function call
+Thread-Index: AQHW83rZib9EpB92fkGwiPfIm/1ogao4Tr0AgAAH5YA=
+Date:   Tue, 26 Jan 2021 02:34:25 +0000
+Message-ID: <2d09d5b7-b2b8-7526-df80-c87db92e608f@alliedtelesis.co.nz>
+References: <20200528132541.463300-1-arch0.zheng@gmail.com>
+ <ebbba4ac-ea65-472c-5a3a-201dfe59e402@alliedtelesis.co.nz>
+ <CAL_Jsq+8TDagRWyxZHo+qeeV7zDok2mnq10B-B9-L2QoqMr=FQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+8TDagRWyxZHo+qeeV7zDok2mnq10B-B9-L2QoqMr=FQ@mail.gmail.com>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9973956A99A31C4F83F579765CBDFF77@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-In-Reply-To: <20210125184541.GJ579511@unreal>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Leon,
-
-Thanks for your reply.
-
-在 2021/1/26 2:45, Leon Romanovsky 写道:
-> On Mon, Jan 25, 2021 at 03:53:38PM +0000, Robin Murphy wrote:
->> On 2021-01-25 09:01, Leon Romanovsky wrote:
->>> On Mon, Jan 25, 2021 at 02:40:10PM +0800, xxm wrote:
->>>> Hi Leon,
->>>>
->>>> Thanks for your reply.
->>>>
->>>> 在 2021/1/25 13:48, Leon Romanovsky 写道:
->>>>> On Mon, Jan 25, 2021 at 10:49:27AM +0800, Simon Xue wrote:
->>>>>> pcie-dw-rockchip is based on DWC IP. But pcie-rockchip-host
->>>>>> is Rockchip designed IP which is only used for RK3399. So all the following
->>>>>> non-RK3399 SoCs should use this driver.
->>>>>>
->>>>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
->>>>>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
->>>>>> ---
->>>>>>     drivers/pci/controller/dwc/Kconfig            |   9 +
->>>>>>     drivers/pci/controller/dwc/Makefile           |   1 +
->>>>>>     drivers/pci/controller/dwc/pcie-dw-rockchip.c | 286 ++++++++++++++++++
->>>>>>     3 files changed, 296 insertions(+)
->>>>>>     create mode 100644 drivers/pci/controller/dwc/pcie-dw-rockchip.c
->>>>>>
->>>>>> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
->>>>>> index 22c5529e9a65..aee408fe9283 100644
->>>>>> --- a/drivers/pci/controller/dwc/Kconfig
->>>>>> +++ b/drivers/pci/controller/dwc/Kconfig
->>>>>> @@ -214,6 +214,15 @@ config PCIE_ARTPEC6_EP
->>>>>>     	  Enables support for the PCIe controller in the ARTPEC-6 SoC to work in
->>>>>>     	  endpoint mode. This uses the DesignWare core.
->>>>>>
->>>>>> +config PCIE_ROCKCHIP_DW_HOST
->>>>>> +	bool "Rockchip DesignWare PCIe controller"
->>>>>> +	select PCIE_DW
->>>>>> +	select PCIE_DW_HOST
->>>>>> +	depends on ARCH_ROCKCHIP || COMPILE_TEST
->>>>>> +	depends on OF
->>>>>> +	help
->>>>>> +	  Enables support for the DW PCIe controller in the Rockchip SoC.
->>>>>> +
->>>>>>     config PCIE_INTEL_GW
->>>>>>     	bool "Intel Gateway PCIe host controller support"
->>>>>>     	depends on OF && (X86 || COMPILE_TEST)
->>>>>> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
->>>>>> index a751553fa0db..30eef8e9ee8a 100644
->>>>>> --- a/drivers/pci/controller/dwc/Makefile
->>>>>> +++ b/drivers/pci/controller/dwc/Makefile
->>>>>> @@ -13,6 +13,7 @@ obj-$(CONFIG_PCI_LAYERSCAPE_EP) += pci-layerscape-ep.o
->>>>>>     obj-$(CONFIG_PCIE_QCOM) += pcie-qcom.o
->>>>>>     obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
->>>>>>     obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
->>>>>> +obj-$(CONFIG_PCIE_ROCKCHIP_DW_HOST) += pcie-dw-rockchip.o
->>>>>>     obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
->>>>>>     obj-$(CONFIG_PCIE_KIRIN) += pcie-kirin.o
->>>>>>     obj-$(CONFIG_PCIE_HISI_STB) += pcie-histb.o
->>>>>> diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
->>>>>> new file mode 100644
->>>>>> index 000000000000..07f6d1cd5853
->>>>>> --- /dev/null
->>>>>> +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
->>>>>> @@ -0,0 +1,286 @@
->>>>>> +// SPDX-License-Identifier: GPL-2.0
->>>>>> +/*
->>>>>> + * PCIe host controller driver for Rockchip SoCs
->>>>>> + *
->>>>>> + * Copyright (C) 2021 Rockchip Electronics Co., Ltd.
->>>>>> + *		http://www.rock-chips.com
->>>>>> + *
->>>>>> + * Author: Simon Xue <xxm@rock-chips.com>
->>>>>> + */
->>>>>> +
->>>>>> +#include <linux/clk.h>
->>>>>> +#include <linux/gpio/consumer.h>
->>>>>> +#include <linux/mfd/syscon.h>
->>>>>> +#include <linux/module.h>
->>>>>> +#include <linux/of_device.h>
->>>>>> +#include <linux/phy/phy.h>
->>>>>> +#include <linux/platform_device.h>
->>>>>> +#include <linux/regmap.h>
->>>>>> +#include <linux/reset.h>
->>>>>> +
->>>>>> +#include "pcie-designware.h"
->>>>>> +
->>>>>> +/*
->>>>>> + * The upper 16 bits of PCIE_CLIENT_CONFIG are a write
->>>>>> + * mask for the lower 16 bits.  This allows atomic updates
->>>>>> + * of the register without locking.
->>>>>> + */
->>>>> This is correct only for the variables that naturally aligned, I imagine
->>>>> that this is the case here and in the Linux, but better do not write comments
->>>>> in the code that are not accurate.
->>>> Ok, will remove.
->>>> I wonder what it would be when outside the Linux? Could you share some information?
->>> The C standard says nothing about atomicity, integer assignment maybe atomic,
->>> maybe it isn’t. There is no guarantee, plain integer assignment in C is non-atomic
->>> by definition.
->>>
->>> The atomicity of u32 is very dependent on hardware vendor, memory model and compiler,
->>> for example x86 and ARMs guarantee atomicity for u32. This is why I said that probably
->>> here (Linux) it is ok and you are not alone in expecting lockless write.
->> Huh? What do variables and the abstract machine of the C language
->> environment have to do with the definition of *hardware MMIO registers*? We
->> don't write to registers with plain integer assignment of u32, we use
->> writel() (precisely in order to bypass that abstract C environment).
->>
->> I appreciate that the comment is not universally true if taken completely
->> out of context, but I that's true of pretty much all comments ever. If
->> someone really were trying to learn basic programming principles from random
->> comments in Linux drivers, then it's already a bit late for us to try and
->> save them from themselves.
-> So what? Does it mean that new code should have comments that are not
-> correct? As you can see from this conversation, even the author didn't
-> know what u32 isn’t guaranteed to be atomic, so yes, the comments should
-> be correct.
-
-What I do know is writel() will do the right things(like mem barrier, 
-atomic...) to update the registers correctly
-
-in "ARM + Linux" platform. But I have no idear if out of  this specific 
-platform, so I asked for more information to learn.
-
-Anyway, I will keep the first part of comment to illustrate how to use 
-PCIE_CLIENT_REGISTER, and remove the "atomic" part.
-
-> Thanks
->
->
-
-
+DQpPbiAyNi8wMS8yMSAzOjA2IHBtLCBSb2IgSGVycmluZyB3cm90ZToNCj4gK0xBS01MIGdpdmVu
+IGl0J3MgYW4gQXJtIGlzc3VlDQo+DQo+IE9uIE1vbiwgSmFuIDI1LCAyMDIxIGF0IDY6NDcgUE0g
+Q2hyaXMgUGFja2hhbQ0KPiA8Q2hyaXMuUGFja2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56PiB3cm90
+ZToNCj4+IEhpIEFsbCwNCj4+DQo+PiBPbiAyOS8wNS8yMCAxOjI1IGFtLCBRaSBaaGVuZyB3cm90
+ZToNCj4+PiBGb3IgdmVyc2lvbiAxIHRvIDMgb2YgdGhlIGRldmljZSB0cmVlLCB0aGlzIGlzIHRo
+ZSBub2RlIGZ1bGwNCj4+PiBwYXRoIGFzIGEgemVybyB0ZXJtaW5hdGVkIHN0cmluZywgc3RhcnRp
+bmcgd2l0aCAiLyIuIFRoZQ0KPj4+IGZvbGxvd2luZyBlcXVhdGlvbiB3aWxsIG5vdCBob2xkLCBz
+aW5jZSB0aGUgbm9kZSBuYW1lIGhhcw0KPj4+IGJlZW4gcHJvY2Vzc2VkIGluIHRoZSBmZHRfZ2V0
+X25hbWUoKS4NCj4+Pg0KPj4+ICAgICAgICAqcGF0aHAgPT0gJy8nDQo+Pj4NCj4+PiBGb3IgdmVy
+c2lvbiAxNiBhbmQgbGF0ZXIsIHRoaXMgaXMgdGhlIG5vZGUgdW5pdCBuYW1lIG9ubHkNCj4+PiAo
+b3IgYW4gZW1wdHkgc3RyaW5nIGZvciB0aGUgcm9vdCBub2RlKS4gU28gdGhlIGFib3ZlDQo+Pj4g
+ZXF1YXRpb24gd2lsbCBzdGlsbCBub3QgaG9sZC4NCj4+Pg0KPj4+IFNvIHRoZSBrYmFzZW5hbWUo
+KSBpcyByZWR1bmRhbnQsIGp1c3QgcmVtb3ZlIGl0Lg0KPj4+DQo+Pj4gU2lnbmVkLW9mZi1ieTog
+UWkgWmhlbmcgPGFyY2gwLnpoZW5nQGdtYWlsLmNvbT4NCj4+PiAtLS0NCj4+Pg0KPj4+IENoYW5n
+ZSBpbiB2MjoNCj4+PiAgICAgICAgcmVtb3ZlIGFub3RoZXIga2Jhc2VuYW1lKCkgYWxzby4NCj4+
+Pg0KPj4+ICAgIGRyaXZlcnMvb2YvZmR0LmMgfCA0IC0tLS0NCj4+PiAgICAxIGZpbGUgY2hhbmdl
+ZCwgNCBkZWxldGlvbnMoLSkNCj4+Pg0KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL29mL2ZkdC5j
+IGIvZHJpdmVycy9vZi9mZHQuYw0KPj4+IGluZGV4IDM4NjE5ZTllZjZiMi4uNDYwMmU0NjdjYThi
+IDEwMDY0NA0KPj4+IC0tLSBhL2RyaXZlcnMvb2YvZmR0LmMNCj4+PiArKysgYi9kcml2ZXJzL29m
+L2ZkdC5jDQo+Pj4gQEAgLTY0Myw4ICs2NDMsNiBAQCBpbnQgX19pbml0IG9mX3NjYW5fZmxhdF9k
+dChpbnQgKCppdCkodW5zaWduZWQgbG9uZyBub2RlLA0KPj4+ICAgICAgICAgICAgIG9mZnNldCA9
+IGZkdF9uZXh0X25vZGUoYmxvYiwgb2Zmc2V0LCAmZGVwdGgpKSB7DQo+Pj4NCj4+PiAgICAgICAg
+ICAgICAgICBwYXRocCA9IGZkdF9nZXRfbmFtZShibG9iLCBvZmZzZXQsIE5VTEwpOw0KPj4+IC0g
+ICAgICAgICAgICAgaWYgKCpwYXRocCA9PSAnLycpDQo+Pj4gLSAgICAgICAgICAgICAgICAgICAg
+IHBhdGhwID0ga2Jhc2VuYW1lKHBhdGhwKTsNCj4+PiAgICAgICAgICAgICAgICByYyA9IGl0KG9m
+ZnNldCwgcGF0aHAsIGRlcHRoLCBkYXRhKTsNCj4+PiAgICAgICAgfQ0KPj4+ICAgICAgICByZXR1
+cm4gcmM7DQo+Pj4gQEAgLTY3MSw4ICs2NjksNiBAQCBpbnQgX19pbml0IG9mX3NjYW5fZmxhdF9k
+dF9zdWJub2Rlcyh1bnNpZ25lZCBsb25nIHBhcmVudCwNCj4+PiAgICAgICAgICAgICAgICBpbnQg
+cmM7DQo+Pj4NCj4+PiAgICAgICAgICAgICAgICBwYXRocCA9IGZkdF9nZXRfbmFtZShibG9iLCBu
+b2RlLCBOVUxMKTsNCj4+PiAtICAgICAgICAgICAgIGlmICgqcGF0aHAgPT0gJy8nKQ0KPj4+IC0g
+ICAgICAgICAgICAgICAgICAgICBwYXRocCA9IGtiYXNlbmFtZShwYXRocCk7DQo+Pj4gICAgICAg
+ICAgICAgICAgcmMgPSBpdChub2RlLCBwYXRocCwgZGF0YSk7DQo+Pj4gICAgICAgICAgICAgICAg
+aWYgKHJjKQ0KPj4+ICAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHJjOw0KPj4gSSdtIHRy
+eWluZyB0byBrZWVwIG91ciBib2FyZHMgdXAgdG8gZGF0ZSB3aXRoIG5ld2VyIGtlcm5lbHMuDQo+
+Pg0KPj4gSSd2ZSBqdXN0IGhpdCBhIHByb2JsZW0gb24gYW4gb2xkZXIgYm9hcmQgdGhhdCB1c2Vz
+DQo+PiBDT05GSUdfQVJNX0FQUEVOREVEX0RUQiBhbmQgaGFzIGEgbnVtYmVyIG9mIGNvbW1hbmQg
+bGluZSBhcmdzIHBhc3NlZCB1cA0KPj4gZnJvbSB0aGUgYm9vdGxvYWRlciB0aGF0IGFyZSByZXF1
+aXJlZCBmb3IgYSBzdWNjZXNzZnVsIGJvb3QuDQo+Pg0KPj4gSSdtIHN0ZXBwaW5nIHRocm91Z2gg
+a2VybmVsIHZlcnNpb25zIGluIHRoZSBob3BlIHRoYXQga2VlcGluZyB0aGluZ3MNCj4+IHJ1bm5p
+bmcgaXMgZWFzaWVyIGluIHNtYWxsZXIgaW5jcmVtZW50cyBJJ20gdXAgdG8gdjUuOC4gSSdtIG5v
+dA0KPj4gY3VycmVudGx5IGFibGUgdG8gY2hlY2sgYSBuZXdlciBrZXJuZWwgb24gdGhpcyBib2Fy
+ZCBidXQgbG9va2luZyBhdCB0aGUNCj4+IGNvZGUgdGhlIHByb2JsZW0gc3RpbGwgc2VlbXMgdG8g
+ZXhpc3QgaW4gdGhlIGxhdGVzdCB0cmVlLg0KPj4NCj4+IGVhcmx5X2luaXRfZHRfc2Nhbl9jaG9z
+ZW4oKSBzZWFyY2hlcyBmb3IgImNob3NlbiIgcHJpb3IgdG8gdGhpcyBjaGFuZ2UNCj4+IHRoZSAi
+L2Nob3NlbiIgbm9kZSB0aGF0IGdldHMgaW5zZXJ0ZWQgYnkgYXRhZ3NfdG9fZmR0LmMgYnV0IHdp
+dGggdGhpcw0KPj4gY2hhbmdlIGl0IGNhbid0IGZpbmQgaXQgYW5kIGZhaWxzIHRvIGJvb3QuDQo+
+IEdpdmVuIHRoaXMgY29kZSB3b3JrcyBmb3Igbm9ybWFsIGNhc2VzLCBJJ20gZ3Vlc3NpbmcgdGhl
+IHByb2JsZW0gaXMgaW4NCj4gYXRhZ3NfdG9fZmR0LmMgb3IgbGliZmR0Lg0KDQpJdCBtaWdodCBi
+ZSByZWxhdGVkIHRvdCB0aGlzIHNuaXBwZXQgb2YgbGliZmR0DQoNCmNvbnN0IGNoYXIgKmZkdF9n
+ZXRfbmFtZShjb25zdCB2b2lkICpmZHQsIGludCBub2Rlb2Zmc2V0LCBpbnQgKmxlbikNCnsNCg0K
+Li4uDQoNCiDCoMKgwqDCoMKgwqDCoCBpZiAoIWNhbl9hc3N1bWUoTEFURVNUKSAmJiBmZHRfdmVy
+c2lvbihmZHQpIDwgMHgxMCkgew0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvKg0K
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogRm9yIG9sZCBGRFQgdmVyc2lvbnMs
+IG1hdGNoIHRoZSBuYW1pbmcgY29udmVudGlvbnMgDQpvZiBWMTY6DQogwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgKiBnaXZlIG9ubHkgdGhlIGxlYWYgbmFtZSAoYWZ0ZXIgYWxsIC8p
+LiBUaGUgYWN0dWFsIHRyZWUNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIGNv
+bnRlbnRzIGFyZSBsb29zZWx5IGNoZWNrZWQuDQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgKi8NCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3QgY2hhciAqbGVh
+ZjsNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbGVhZiA9IHN0cnJjaHIobmFtZXB0
+ciwgJy8nKTsNCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKGxlYWYgPT0gTlVM
+TCkgew0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZXJy
+ID0gLUZEVF9FUlJfQkFEU1RSVUNUVVJFOw0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgZ290byBmYWlsOw0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCB9DQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG5hbWVwdHIgPSBsZWFmKzE7
+DQogwqDCoMKgwqDCoMKgwqAgfQ0KDQouLi4NCg0KfQ0KDQpPbiBteSBzeXN0ZW0gdGhhdCBpZiBl
+dmFsdWF0ZXMgdG8gMA0KDQo+IElzIGl0IHBvc3NpYmxlIHRvIGFkZCBhbiBlbXB0eSBjaG9zZW4g
+bm9kZQ0KPiB0byB0aGUgRFQgYW5kIHNlZSBpZiB0aGF0IG1ha2VzIGFueSBkaWZmZXJlbmNlLg0K
+SSdsbCBnaXZlIHRoYXQgYSB0cnku
