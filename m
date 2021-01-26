@@ -2,147 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9722303940
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 10:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5F3303950
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 10:47:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731055AbhAZJmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 04:42:09 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:20082 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391306AbhAZJjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 04:39:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1611653942; x=1643189942;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=13AMwCZ6qcfg0VkHbBn4I9vHrDIxJT8mXVzUrrVXQvo=;
-  b=oV4HnHYQzc119a7Xuld7/hxFz54lxwgfuG+c6ZJm2qfmEiiKOEBK1Qxq
-   9sGgtHpRY+yN5v+UheAnwN/DxMTAvQuMFVeHKKULSnrZ0/iwv12iYxpYl
-   HaaJXkqRJKzg+viN8n1+I5V4HH6SYWN+8bQtmgydUTe+HzUXNBtdWmGn+
-   28ImPEulQqmG2+TYAVanJJzOTeIOeAUXv6f4avCJO3BaJdnuMvkWSe4kt
-   NNgNFfAj7d8WOigWgzcvaOYuNOyZEy9NuZNd4Xpr/Hvd7K/ITYWMkDkUx
-   0Bo/QKTe9p7dRNFOk9YkZAiN5UFvn9KsvKHwdsBlQd4DCHJIh7DUN8Ag5
-   A==;
-IronPort-SDR: 8oi87UC4YRBuVdFxvpygPis0sAnwqN9N/qpI2vg0Pl76DvqVIoi3m03AabSAjECGHxgE/Wgagc
- ezvzcvJqYzp8EvuHPIfZZVXIYjJXJr0FiVFw923LBc03Zcy1Tnihl+ejaRUod+niITxJUGmCj4
- pDJopUxaa3zDj499dc+QF2ch4RSNg5AdjuYzKXDh6GLXiarYyEbUShkn/IsJ5bil+mPPlZgyZr
- 6ec/5z+L1lzPCWSoeb7vM0kNhOCkvSFZ4two3g+8hwWcpOcIEkmwCc/hO//L87tvDy5T8omYMt
- mYA=
-X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; 
-   d="scan'208";a="101448962"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Jan 2021 02:37:04 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 26 Jan 2021 02:37:03 -0700
-Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Tue, 26 Jan 2021 02:37:01 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>
-CC:     <sudeep.holla@arm.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v2 7/7] drivers: soc: atmel: add support for sama7g5
-Date:   Tue, 26 Jan 2021 11:29:36 +0200
-Message-ID: <1611653376-24168-8-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1611653376-24168-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1611653376-24168-1-git-send-email-claudiu.beznea@microchip.com>
+        id S2390192AbhAZJqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 04:46:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732240AbhAZJqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 04:46:19 -0500
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F28CC0613D6
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 01:45:39 -0800 (PST)
+Received: by mail-io1-xd34.google.com with SMTP id d81so32333917iof.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 01:45:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gOpOeDQD5Go0RVdYH+VTIlpj6PaHDPuBI8q5wmtvzOg=;
+        b=a/A3cexkUnnDK9ZGgLuDOiFeuS+vxOSHuV5qBm86n6bj7xrnraMi3lnPjJd+omzfQf
+         ZZZJt6XGrtQfM4dt9ayuEt/FSgLWtchFjtyWb7RGBakPyB5XvS4Xr/z0+E64Qp+QeQnK
+         SUXcThrcTB+zRAIaJwMt0thW39vuy545z6BmH7kL40MgX8tjWqB1A3S2Fr7IRDbHc+m3
+         60Un2PWCjqF26G1DYTjcnRgXAtZIfg9Cm355tqzqL4h0Q+HvvH8xGxn8pjYxsfXSvPxP
+         GSW2juxe7LX+p9GPNzrob4nXHZ3KSbmp1079QEQQudHQU2/vmPmdcocu7ALiLR8AU7el
+         s5oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gOpOeDQD5Go0RVdYH+VTIlpj6PaHDPuBI8q5wmtvzOg=;
+        b=erD+HvFfDpv/3pzxPfuN9nSyHSDgyReFllh64cXcYr4BjkqWtSZAwPDDhDK7ZXIwmI
+         f/3hyWsVbxmlG9yoOY8uOrTPQXNh9qMet2TmYLNzOC/4fzLo2WkbqBEm6wXhUHhZTkpK
+         50gnkuRxeoS+ox+MwwCJlkZnkwdgfNdyteTfJcgn46RMiPeYnB67wYdkp0ul2WCulJOu
+         ehmRpg3N9rQXXcLraj/i8b/mU0M8oUOFN8a/hzqtgi9wI/0/KSgrSHTEYqv/AqUWq6X+
+         PjXO4d9cm3rlYfZoRESgcK9ya1COSHkYLRoKwdb/DzzGhOpo1pXBPUr/qrt+CVVoQiDs
+         gW+A==
+X-Gm-Message-State: AOAM530Oge68yFzkvKW0ZWnazYB69F4DiWEpVRYb0OZI76lBJdPH6nzk
+        LMpGEzK3ROhmEivIaCjSPDWsR0Dh6RD/UNWBlB7DUQ==
+X-Google-Smtp-Source: ABdhPJwGarMzyBQLp8/ym6smCnWYbz228goyl9dzwfGe6sTozFenoI0EWqNvfXUwR6ErJUVwjROTsxnSZKni/0czFNc=
+X-Received: by 2002:a92:cda1:: with SMTP id g1mr3864461ild.267.1611654338730;
+ Tue, 26 Jan 2021 01:45:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20200907101937.10155-1-robert.marko@sartura.hr> <YA72ufb10QEZc5VH@builder.lan>
+In-Reply-To: <YA72ufb10QEZc5VH@builder.lan>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Tue, 26 Jan 2021 10:45:28 +0100
+Message-ID: <CA+HBbNHiya-4bbOr_iMbJXNaZ-e-+GfsJm3S7H8Y+ZD_=f7gyQ@mail.gmail.com>
+Subject: Re: [PATCH] arm: dts: IPQ4019: add SDHCI VQMMC LDO node
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, robh+dt@kernel.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luka Perkov <luka.perkov@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for SAMA7G5 SoCs.
+On Mon, Jan 25, 2021 at 5:50 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Mon 07 Sep 05:19 CDT 2020, Robert Marko wrote:
+>
+> > Since we now have driver for the SDHCI VQMMC LDO needed
+> > for I/0 voltage levels lets introduce the necessary node for it.
+> >
+> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > Cc: Luka Perkov <luka.perkov@sartura.hr>
+> > ---
+> >  arch/arm/boot/dts/qcom-ipq4019.dtsi | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+> > index 6741a1972e55..7774dbd3cec7 100644
+> > --- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
+> > +++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+> > @@ -211,6 +211,16 @@ tlmm: pinctrl@1000000 {
+> >                       interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> >               };
+> >
+> > +             vqmmc: regulator@1948000 {
+> > +                     compatible = "qcom,vqmmc-ipq4019-regulator";
+> > +                     reg = <0x01948000 0x4>;
+>
+> The actual hardware block where this register is found is the "TCSR"
+> which is 0x01947000 of size 0x21000 - making this the register at offset
+> 0x11000.
+>
+> Perhaps it would have been better represented as a simple-mfd with this
+> regulator as a child node thereof.
+>
+>
+> That said, this has been sitting long enough, so I'll merge it as is and
+> we can rework it once we need more pieces of tcsr.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- drivers/soc/atmel/soc.c | 18 ++++++++++++++++++
- drivers/soc/atmel/soc.h |  6 ++++++
- 2 files changed, 24 insertions(+)
+Thanks,
+I was unaware that it is part of TCSR as I don't have datasheets
+and this was ported from multiple versions of the downstream driver.
 
-diff --git a/drivers/soc/atmel/soc.c b/drivers/soc/atmel/soc.c
-index 813052dc9fce..e7c873134f59 100644
---- a/drivers/soc/atmel/soc.c
-+++ b/drivers/soc/atmel/soc.c
-@@ -28,8 +28,10 @@
- #define AT91_CHIPID_EXID		0x04
- #define AT91_CIDR_VERSION(x, m)		((x) & (m))
- #define AT91_CIDR_VERSION_MASK		GENMASK(4, 0)
-+#define AT91_CIDR_VERSION_MASK_SAMA7G5	GENMASK(3, 0)
- #define AT91_CIDR_EXT			BIT(31)
- #define AT91_CIDR_MATCH_MASK		GENMASK(30, 5)
-+#define AT91_CIDR_MASK_SAMA7G5		GENMASK(27, 5)
- 
- static const struct at91_soc socs[] __initconst = {
- #ifdef CONFIG_SOC_AT91RM9200
-@@ -212,6 +214,20 @@ static const struct at91_soc socs[] __initconst = {
- 		 AT91_CIDR_VERSION_MASK, SAMV70Q19_EXID_MATCH,
- 		 "samv70q19", "samv7"),
- #endif
-+#ifdef CONFIG_SOC_SAMA7
-+	AT91_SOC(SAMA7G5_CIDR_MATCH, AT91_CIDR_MATCH_MASK,
-+		 AT91_CIDR_VERSION_MASK_SAMA7G5, SAMA7G51_EXID_MATCH,
-+		 "sama7g51", "sama7g5"),
-+	AT91_SOC(SAMA7G5_CIDR_MATCH, AT91_CIDR_MATCH_MASK,
-+		 AT91_CIDR_VERSION_MASK_SAMA7G5, SAMA7G52_EXID_MATCH,
-+		 "sama7g52", "sama7g5"),
-+	AT91_SOC(SAMA7G5_CIDR_MATCH, AT91_CIDR_MATCH_MASK,
-+		 AT91_CIDR_VERSION_MASK_SAMA7G5, SAMA7G53_EXID_MATCH,
-+		 "sama7g53", "sama7g5"),
-+	AT91_SOC(SAMA7G5_CIDR_MATCH, AT91_CIDR_MATCH_MASK,
-+		 AT91_CIDR_VERSION_MASK_SAMA7G5, SAMA7G54_EXID_MATCH,
-+		 "sama7g54", "sama7g5"),
-+#endif
- 	{ /* sentinel */ },
- };
- 
-@@ -249,6 +265,7 @@ static int __init at91_get_cidr_exid_from_chipid(u32 *cidr, u32 *exid)
- 	void __iomem *regs;
- 	static const struct of_device_id chipids[] = {
- 		{ .compatible = "atmel,sama5d2-chipid" },
-+		{ .compatible = "microchip,sama7g5-chipid" },
- 		{ },
- 	};
- 
-@@ -336,6 +353,7 @@ static const struct of_device_id at91_soc_allowed_list[] __initconst = {
- 	{ .compatible = "atmel,at91sam9", },
- 	{ .compatible = "atmel,sama5", },
- 	{ .compatible = "atmel,samv7", },
-+	{ .compatible = "microchip,sama7g5", },
- 	{ }
- };
- 
-diff --git a/drivers/soc/atmel/soc.h b/drivers/soc/atmel/soc.h
-index 8a51cd973103..14c249c98c49 100644
---- a/drivers/soc/atmel/soc.h
-+++ b/drivers/soc/atmel/soc.h
-@@ -49,6 +49,7 @@ at91_soc_init(const struct at91_soc *socs);
- #define AT91SAM9X5_CIDR_MATCH		0x019a05a0
- #define AT91SAM9N12_CIDR_MATCH		0x019a07a0
- #define SAM9X60_CIDR_MATCH		0x019b35a0
-+#define SAMA7G5_CIDR_MATCH		0x00162100
- 
- #define AT91SAM9M11_EXID_MATCH		0x00000001
- #define AT91SAM9M10_EXID_MATCH		0x00000002
-@@ -67,6 +68,11 @@ at91_soc_init(const struct at91_soc *socs);
- 
- #define SAM9X60_EXID_MATCH		0x00000000
- 
-+#define SAMA7G51_EXID_MATCH		0x3
-+#define SAMA7G52_EXID_MATCH		0x2
-+#define SAMA7G53_EXID_MATCH		0x1
-+#define SAMA7G54_EXID_MATCH		0x0
-+
- #define AT91SAM9XE128_CIDR_MATCH	0x329973a0
- #define AT91SAM9XE256_CIDR_MATCH	0x329a93a0
- #define AT91SAM9XE512_CIDR_MATCH	0x329aa3a0
--- 
-2.7.4
-
+Regards,
+Robert
+>
+> Thanks,
+> Bjorn
+>
+> > +                     regulator-name = "vqmmc";
+> > +                     regulator-min-microvolt = <1500000>;
+> > +                     regulator-max-microvolt = <3000000>;
+> > +                     regulator-always-on;
+> > +                     status = "disabled";
+> > +             };
+> > +
+> >               sdhci: sdhci@7824900 {
+> >                       compatible = "qcom,sdhci-msm-v4";
+> >                       reg = <0x7824900 0x11c>, <0x7824000 0x800>;
+> > --
+> > 2.26.2
+> >
