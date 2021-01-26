@@ -2,466 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3D03039B3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 11:01:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E60303A05
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 11:18:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391497AbhAZJ6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 04:58:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42510 "EHLO
+        id S2391895AbhAZKRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 05:17:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391744AbhAZJ5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 04:57:24 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA9DC06178A;
-        Tue, 26 Jan 2021 01:56:11 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id j13so19011363edp.2;
-        Tue, 26 Jan 2021 01:56:11 -0800 (PST)
+        with ESMTP id S2391676AbhAZKQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 05:16:22 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 042A0C061573;
+        Tue, 26 Jan 2021 02:15:42 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id b21so19042193edy.6;
+        Tue, 26 Jan 2021 02:15:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GySJjpfefsNkWLU93YJjB76kZdXclficIG0DNh+a2+c=;
-        b=q0Bkt6Sk6naiHinhDNtLc7NCgeYxdo6FNwMytn9g9HXk458vBaBX4qlueIFSID4Oxe
-         NsQq6uf9tCQQASLWH4qSYyb4/kDV1C7BHSFY5VyPjyvycrFJbHzMP61OtEm3PArPuYMX
-         7e7af1b1cZBG7I0Q35VPugjevHZrtnFv1l2vy+NZAsu7YlstR/d1/5/B0Aiwg52jTQfl
-         kpHZGvhL3A7MkS9fYo664O6M7EaSlej8tSz/RnfsANz1TSyet+1UWmiAwR0x4Fip32M8
-         f3zvEk+gT7rxBfOPPWpIsCZ/YD1iWbWApLAjqmhw4cKvNyS8WHh/DO/7YLx+w3d/ELko
-         YbTA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=/rct3g+soQkZfk4LEwZexkLFSPahpYR/2YSKQ5JilcY=;
+        b=pzIvfmjkT8KVjUuO0izY/r1FVdyMrORT5Z1F8W9NRLH+n4u2t4OZiUj7y1hQsBOQya
+         Szy1e+Rv+WzRWD+c4ebD8n+s4gaITnsfJv3woXVKSYZWYZxeie4aBY7U6/b8Xwl0zRTR
+         eHZE8OxOmFFJC4n740aYtRue57KYhdFVvfJyPKvRuQRuO/e0PZkHBbpzKLFwUGbzFaYT
+         4skZU0F+MI9j5ComzDmcdVEqveQUbSNpX4nDJhJ9UAGHE/KBipYxTL9d4V/TIT89wpmP
+         wBpd6sucjsTVFnK/m3GoUqgFvB1FiXauvo3Hff2cB00wYuNc6AXTY7rPHSxVmHTyaU/A
+         Wy2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GySJjpfefsNkWLU93YJjB76kZdXclficIG0DNh+a2+c=;
-        b=BVEJGf2p+nWkKWOrs6V0M4kQhzrcnGQjwFCMH3nUZZ5cyagl3PPWvrOrSf8jBk9zf5
-         0npkJPEKGg1ubIC+/kRzGRK/1u7m6D5sap0LsS/c21ykpqJFT1S4Ii1n8/eYh+D8bf3G
-         16Hn2rQKMBsL6dWOJQi603JmW+P3H4yBI/na4FIwbMfBkkpHV+AxDPavj5jWrHhkKC5Z
-         EqCyn9OWTpwiT4zbLmI2+0bjryWkJqcK3k0cIj+pqHdu5sX6yEnu2Sz4Yiiu2pMHxCDI
-         wSld+SA1UycZoEv38kwBiJJ9I4LnUQniSYGaPYDxmYVxCGF3YDi+YQgQuBnasiDjcn2X
-         69Vw==
-X-Gm-Message-State: AOAM531oFqohwuE6wJM4ytmEMPHriSLopboRXC1FpQjvMDVNYvDpuzGU
-        7/9IHnKw5h/SL/XOamQLVjM=
-X-Google-Smtp-Source: ABdhPJwHKIWhQdEvlneIggADSIxohq/qc6srqIyGBtQ9QW7CDygx+Yjire2ATNwmzJCt37rZDF14nQ==
-X-Received: by 2002:a05:6402:b07:: with SMTP id bm7mr4015392edb.104.1611654970520;
-        Tue, 26 Jan 2021 01:56:10 -0800 (PST)
-Received: from localhost.localdomain ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id h12sm11648310edb.16.2021.01.26.01.56.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=/rct3g+soQkZfk4LEwZexkLFSPahpYR/2YSKQ5JilcY=;
+        b=IGVr98UqZE6V7yd0cGN/x1AEvtmH9QQWjCTq9RATumNU+9LFJTXdLqBRBVdZD1dIIV
+         dNuVIqQX2HzwCogjIZou4jXpaVQ/CSKytY0vOkZNoxK2a8hns0fP9PXkWX+BlrsPRsHd
+         glg1jQLsmImHlIsnhZzociGGhFkXtUCZeqT24MNdMDw501bxHQxDq5X005DBMQcO93x1
+         Xe7jX9EmqwJcomPIbNLD2ppCAsPrR3DawsoQzAkdn/8wzrzvICKBR0UVMqLVO0keBA2G
+         A1yWAINtH2JBHrZAZLsI+GKow2FZ+ikXN/sJ8wjCqahvJDiJWcz1A8tnn+CttYeCOmR0
+         qg0Q==
+X-Gm-Message-State: AOAM532fkuBjaqAk258pEv1DFmKT3u2nXnDgmSc4ZjoY4nsm3uZuyMws
+        YYl1fe3q5zUM4CjqpHb3yyY=
+X-Google-Smtp-Source: ABdhPJzXiP/L6TlYulI6WQYvMi/C3+rPzj3ZcqLihXWoiJ7jInOnxySpjFmOkMqjeDts0pMV3hQclg==
+X-Received: by 2002:a05:6402:1655:: with SMTP id s21mr3861428edx.360.1611656140787;
+        Tue, 26 Jan 2021 02:15:40 -0800 (PST)
+Received: from BV030612LT ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id br6sm7707782ejb.46.2021.01.26.02.15.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jan 2021 01:56:09 -0800 (PST)
+        Tue, 26 Jan 2021 02:15:40 -0800 (PST)
+Date:   Tue, 26 Jan 2021 12:15:37 +0200
 From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
         Linus Walleij <linus.walleij@linaro.org>,
         linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
         linux-pm@vger.kernel.org
-Subject: [PATCH v7 4/5] input: atc260x: Add onkey driver for ATC260x PMICs
-Date:   Tue, 26 Jan 2021 11:56:00 +0200
-Message-Id: <36d74cbc50124541a234f835398d3f476e1f64a2.1611653995.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <cover.1611653995.git.cristian.ciocaltea@gmail.com>
-References: <cover.1611653995.git.cristian.ciocaltea@gmail.com>
+Subject: Re: [PATCH v6 3/7] mfd: Add MFD driver for ATC260x PMICs
+Message-ID: <20210126101537.GA1112736@BV030612LT>
+References: <cover.1611165200.git.cristian.ciocaltea@gmail.com>
+ <4bc76f9e3dc7204d7f407af6ee61c9f193a789d3.1611165200.git.cristian.ciocaltea@gmail.com>
+ <20210125142558.GA4903@dell>
+ <20210125184715.GA1061394@BV030612LT>
+ <20210126081535.GB4903@dell>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210126081535.GB4903@dell>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Actions Semi ATC260x PMICs are able to manage an onkey button.
-This driver exposes the ATC260x onkey as an input device. It can also
-be configured to force a system reset on a long key-press with an
-adjustable duration.
+On Tue, Jan 26, 2021 at 08:15:35AM +0000, Lee Jones wrote:
+> On Mon, 25 Jan 2021, Cristian Ciocaltea wrote:
+> 
+> > Hi Lee,
+> > 
+> > On Mon, Jan 25, 2021 at 02:25:58PM +0000, Lee Jones wrote:
+> > > On Wed, 20 Jan 2021, Cristian Ciocaltea wrote:
+> > > 
+> > > > Add initial support for the Actions Semi ATC260x PMICs which integrates
+> > > > Audio Codec, Power management, Clock generation and GPIO controller
+> > > > blocks.
+> > > > 
+> > > > For the moment this driver only supports Regulator, Poweroff and Onkey
+> > > > functionalities for the ATC2603C and ATC2609A chip variants.
+> >  
+> > [...]
+> > 
+> > > > +static void regmap_lock_mutex(void *__mutex)
+> > > > +{
+> > > > +	struct mutex *mutex = __mutex;
+> > > > +
+> > > > +	/*
+> > > > +	 * Using regmap within an atomic context (e.g. accessing a PMIC when
+> > > > +	 * powering system down) is normally allowed only if the regmap type
+> > > > +	 * is MMIO and the regcache type is either REGCACHE_NONE or
+> > > > +	 * REGCACHE_FLAT. For slow buses like I2C and SPI, the regmap is
+> > > > +	 * internally protected by a mutex which is acquired non-atomically.
+> > > > +	 *
+> > > > +	 * Let's improve this by using a customized locking scheme inspired
+> > > > +	 * from I2C atomic transfer. See i2c_in_atomic_xfer_mode() for a
+> > > > +	 * starting point.
+> > > > +	 */
+> > > > +	if (system_state > SYSTEM_RUNNING && irqs_disabled())
+> > > > +		mutex_trylock(mutex);
+> > > > +	else
+> > > > +		mutex_lock(mutex);
+> > > > +}
+> > > 
+> > > Would this be useful to anyone else?
+> > 
+> > If you refer to the locking scheme, it is currently required by the
+> > power-off driver to handle atomic contexts.
+> 
+> Right, but would this be helpful to any non-Actions drivers?
+> 
+> If so, perhaps it should reside as a Regmap helper?
 
-The currently supported chip variants are ATC2603C and ATC2609A.
+I got it now, thanks for the suggestion. As a matter of fact this was
+my initial intention, but since I was not aware of any other use case
+I decided to keep it private for the moment.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
----
-Changes in v7:
- - None
+Most probably this hardware design is not specific to Actions only, so
+it might be helpful to other drivers as well. Therefore I am going to
+reconsider this and if/when it is accepted upstream, I will come back
+with a separate update patch for this driver.
 
-Changes in v6:
- - None
+> > > For my own reference (apply this as-is to your sign-off block):
+> > 
+> > Please note the patches "[4/7] regulator: ..." and "[5/7] power: ..."
+> > have been already picked up by Mark and Sebastian, respectively, while
+> > Dmitry suggested to merge "[6/7] input: ..." through MFD.
+> 
+> That's fine.
+> 
+> Please re-submit the patches which have not been applied already.
 
-Changes in v5:
- - None
+I have just submitted v7 with the two patches dropped.
 
-Changes in v4:
- - Added Acked-by from Dmitry
-
-Changes in v3: 
- - Integrated Dmitry's review:
-   * Dropped the logic around the check for 'pdev->dev.of_node'
-   * Renamed 'ret' variable in 'atc260x_onkey_probe()' to 'error'
-   * Used 'dev_dbg' instead of 'dev_info' on status KEY_RESET_DISABLED
-   * Dropped 'input_dev->evbit[0] = BIT_MASK(EV_KEY);'
-   * Removed IRQF_TRIGGER_HIGH flag on 'devm_request_threaded_irq()'
-   * Implemented open/close to mitigate the racing issue in
-     'atc260x_onkey_remove()' which has been dropped now
- - Removed the unnecessary driver compatibles
- - Used 'reset-time-sec' property of the parent device instead of
-   'actions,reset-time-sec' of now obsolete and removed 'onkey' DT node
-
- drivers/input/misc/Kconfig         |  11 ++
- drivers/input/misc/Makefile        |   2 +-
- drivers/input/misc/atc260x-onkey.c | 305 +++++++++++++++++++++++++++++
- 3 files changed, 317 insertions(+), 1 deletion(-)
- create mode 100644 drivers/input/misc/atc260x-onkey.c
-
-diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-index ad1b6c90bc4d..7237dc440b98 100644
---- a/drivers/input/misc/Kconfig
-+++ b/drivers/input/misc/Kconfig
-@@ -94,6 +94,17 @@ config INPUT_ARIZONA_HAPTICS
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called arizona-haptics.
- 
-+config INPUT_ATC260X_ONKEY
-+	tristate "Actions Semi ATC260x PMIC ONKEY"
-+	depends on MFD_ATC260X
-+	help
-+	  Support the ONKEY of ATC260x PMICs as an input device reporting
-+	  power button status. ONKEY can be used to wakeup from low power
-+	  modes and force a reset on long press.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called atc260x-onkey.
-+
- config INPUT_ATMEL_CAPTOUCH
- 	tristate "Atmel Capacitive Touch Button Driver"
- 	depends on OF || COMPILE_TEST
-diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-index 7f202ba8f775..46db664a8bc4 100644
---- a/drivers/input/misc/Makefile
-+++ b/drivers/input/misc/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_INPUT_ADXL34X_SPI)		+= adxl34x-spi.o
- obj-$(CONFIG_INPUT_APANEL)		+= apanel.o
- obj-$(CONFIG_INPUT_ARIEL_PWRBUTTON)	+= ariel-pwrbutton.o
- obj-$(CONFIG_INPUT_ARIZONA_HAPTICS)	+= arizona-haptics.o
-+obj-$(CONFIG_INPUT_ATC260X_ONKEY)	+= atc260x-onkey.o
- obj-$(CONFIG_INPUT_ATI_REMOTE2)		+= ati_remote2.o
- obj-$(CONFIG_INPUT_ATLAS_BTNS)		+= atlas_btns.o
- obj-$(CONFIG_INPUT_ATMEL_CAPTOUCH)	+= atmel_captouch.o
-@@ -86,4 +87,3 @@ obj-$(CONFIG_INPUT_WM831X_ON)		+= wm831x-on.o
- obj-$(CONFIG_INPUT_XEN_KBDDEV_FRONTEND)	+= xen-kbdfront.o
- obj-$(CONFIG_INPUT_YEALINK)		+= yealink.o
- obj-$(CONFIG_INPUT_IDEAPAD_SLIDEBAR)	+= ideapad_slidebar.o
--
-diff --git a/drivers/input/misc/atc260x-onkey.c b/drivers/input/misc/atc260x-onkey.c
-new file mode 100644
-index 000000000000..999aabf9dcbd
---- /dev/null
-+++ b/drivers/input/misc/atc260x-onkey.c
-@@ -0,0 +1,305 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Onkey driver for Actions Semi ATC260x PMICs.
-+ *
-+ * Copyright (c) 2020 Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/input.h>
-+#include <linux/interrupt.h>
-+#include <linux/mfd/atc260x/core.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+/* <2s for short press, >2s for long press */
-+#define KEY_PRESS_TIME_SEC	2
-+
-+/* Driver internals */
-+enum atc260x_onkey_reset_status {
-+	KEY_RESET_HW_DEFAULT,
-+	KEY_RESET_DISABLED,
-+	KEY_RESET_USER_SEL,
-+};
-+
-+struct atc260x_onkey_params {
-+	u32 reg_int_ctl;
-+	u32 kdwn_state_bm;
-+	u32 long_int_pnd_bm;
-+	u32 short_int_pnd_bm;
-+	u32 kdwn_int_pnd_bm;
-+	u32 press_int_en_bm;
-+	u32 kdwn_int_en_bm;
-+	u32 press_time_bm;
-+	u32 reset_en_bm;
-+	u32 reset_time_bm;
-+};
-+
-+struct atc260x_onkey {
-+	struct atc260x *atc260x;
-+	const struct atc260x_onkey_params *params;
-+	struct input_dev *input_dev;
-+	struct delayed_work work;
-+	int irq;
-+};
-+
-+static const struct atc260x_onkey_params atc2603c_onkey_params = {
-+	.reg_int_ctl		= ATC2603C_PMU_SYS_CTL2,
-+	.long_int_pnd_bm	= ATC2603C_PMU_SYS_CTL2_ONOFF_LONG_PRESS,
-+	.short_int_pnd_bm	= ATC2603C_PMU_SYS_CTL2_ONOFF_SHORT_PRESS,
-+	.kdwn_int_pnd_bm	= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_PD,
-+	.press_int_en_bm	= ATC2603C_PMU_SYS_CTL2_ONOFF_INT_EN,
-+	.kdwn_int_en_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_INT_EN,
-+	.kdwn_state_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS,
-+	.press_time_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_TIME,
-+	.reset_en_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_RESET_EN,
-+	.reset_time_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_RESET_TIME_SEL,
-+};
-+
-+static const struct atc260x_onkey_params atc2609a_onkey_params = {
-+	.reg_int_ctl		= ATC2609A_PMU_SYS_CTL2,
-+	.long_int_pnd_bm	= ATC2609A_PMU_SYS_CTL2_ONOFF_LONG_PRESS,
-+	.short_int_pnd_bm	= ATC2609A_PMU_SYS_CTL2_ONOFF_SHORT_PRESS,
-+	.kdwn_int_pnd_bm	= ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS_PD,
-+	.press_int_en_bm	= ATC2609A_PMU_SYS_CTL2_ONOFF_LSP_INT_EN,
-+	.kdwn_int_en_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS_INT_EN,
-+	.kdwn_state_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS,
-+	.press_time_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS_TIME,
-+	.reset_en_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_RESET_EN,
-+	.reset_time_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_RESET_TIME_SEL,
-+};
-+
-+static int atc2603x_onkey_hw_init(struct atc260x_onkey *onkey,
-+				  enum atc260x_onkey_reset_status reset_status,
-+				  u32 reset_time, u32 press_time)
-+{
-+	u32 reg_bm, reg_val;
-+
-+	reg_bm = onkey->params->long_int_pnd_bm |
-+		 onkey->params->short_int_pnd_bm |
-+		 onkey->params->kdwn_int_pnd_bm |
-+		 onkey->params->press_int_en_bm |
-+		 onkey->params->kdwn_int_en_bm;
-+
-+	reg_val = reg_bm | press_time;
-+	reg_bm |= onkey->params->press_time_bm;
-+
-+	if (reset_status == KEY_RESET_DISABLED) {
-+		reg_bm |= onkey->params->reset_en_bm;
-+	} else if (reset_status == KEY_RESET_USER_SEL) {
-+		reg_bm |= onkey->params->reset_en_bm |
-+			  onkey->params->reset_time_bm;
-+		reg_val |= onkey->params->reset_en_bm | reset_time;
-+	}
-+
-+	return regmap_update_bits(onkey->atc260x->regmap,
-+				  onkey->params->reg_int_ctl, reg_bm, reg_val);
-+}
-+
-+static void atc260x_onkey_query(struct atc260x_onkey *onkey)
-+{
-+	u32 reg_bits;
-+	int ret, key_down;
-+
-+	ret = regmap_read(onkey->atc260x->regmap,
-+			  onkey->params->reg_int_ctl, &key_down);
-+	if (ret) {
-+		key_down = 1;
-+		dev_err(onkey->atc260x->dev,
-+			"Failed to read onkey status: %d\n", ret);
-+	} else {
-+		key_down &= onkey->params->kdwn_state_bm;
-+	}
-+
-+	/*
-+	 * The hardware generates interrupt only when the onkey pin is
-+	 * asserted. Hence, the deassertion of the pin is simulated through
-+	 * work queue.
-+	 */
-+	if (key_down) {
-+		schedule_delayed_work(&onkey->work, msecs_to_jiffies(200));
-+		return;
-+	}
-+
-+	/*
-+	 * The key-down status bit is cleared when the On/Off button
-+	 * is released.
-+	 */
-+	input_report_key(onkey->input_dev, KEY_POWER, 0);
-+	input_sync(onkey->input_dev);
-+
-+	reg_bits = onkey->params->long_int_pnd_bm |
-+		   onkey->params->short_int_pnd_bm |
-+		   onkey->params->kdwn_int_pnd_bm |
-+		   onkey->params->press_int_en_bm |
-+		   onkey->params->kdwn_int_en_bm;
-+
-+	/* Clear key press pending events and enable key press interrupts. */
-+	regmap_update_bits(onkey->atc260x->regmap, onkey->params->reg_int_ctl,
-+			   reg_bits, reg_bits);
-+}
-+
-+static void atc260x_onkey_work(struct work_struct *work)
-+{
-+	struct atc260x_onkey *onkey = container_of(work, struct atc260x_onkey,
-+						   work.work);
-+	atc260x_onkey_query(onkey);
-+}
-+
-+static irqreturn_t atc260x_onkey_irq(int irq, void *data)
-+{
-+	struct atc260x_onkey *onkey = data;
-+	int ret;
-+
-+	/* Disable key press interrupts. */
-+	ret = regmap_update_bits(onkey->atc260x->regmap,
-+				 onkey->params->reg_int_ctl,
-+				 onkey->params->press_int_en_bm |
-+				 onkey->params->kdwn_int_en_bm, 0);
-+	if (ret)
-+		dev_err(onkey->atc260x->dev,
-+			"Failed to disable interrupts: %d\n", ret);
-+
-+	input_report_key(onkey->input_dev, KEY_POWER, 1);
-+	input_sync(onkey->input_dev);
-+
-+	atc260x_onkey_query(onkey);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int atc260x_onkey_open(struct input_dev *dev)
-+{
-+	struct atc260x_onkey *onkey = input_get_drvdata(dev);
-+
-+	enable_irq(onkey->irq);
-+
-+	return 0;
-+}
-+
-+static void atc260x_onkey_close(struct input_dev *dev)
-+{
-+	struct atc260x_onkey *onkey = input_get_drvdata(dev);
-+
-+	disable_irq(onkey->irq);
-+	cancel_delayed_work_sync(&onkey->work);
-+}
-+
-+static int atc260x_onkey_probe(struct platform_device *pdev)
-+{
-+	struct atc260x *atc260x = dev_get_drvdata(pdev->dev.parent);
-+	struct atc260x_onkey *onkey;
-+	struct input_dev *input_dev;
-+	enum atc260x_onkey_reset_status reset_status;
-+	u32 press_time = KEY_PRESS_TIME_SEC, reset_time = 0;
-+	int val, error;
-+
-+	onkey = devm_kzalloc(&pdev->dev, sizeof(*onkey), GFP_KERNEL);
-+	if (!onkey)
-+		return -ENOMEM;
-+
-+	error = device_property_read_u32(pdev->dev.parent,
-+					 "reset-time-sec", &val);
-+	if (error) {
-+		reset_status = KEY_RESET_HW_DEFAULT;
-+	} else if (val) {
-+		if (val < 6 || val > 12) {
-+			dev_err(&pdev->dev, "reset-time-sec out of range\n");
-+			return -EINVAL;
-+		}
-+
-+		reset_status = KEY_RESET_USER_SEL;
-+		reset_time = (val - 6) / 2;
-+	} else {
-+		reset_status = KEY_RESET_DISABLED;
-+		dev_dbg(&pdev->dev, "Disabled reset on long-press\n");
-+	}
-+
-+	switch (atc260x->ic_type) {
-+	case ATC2603C:
-+		onkey->params = &atc2603c_onkey_params;
-+		press_time = FIELD_PREP(ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_TIME,
-+					press_time);
-+		reset_time = FIELD_PREP(ATC2603C_PMU_SYS_CTL2_ONOFF_RESET_TIME_SEL,
-+					reset_time);
-+		break;
-+	case ATC2609A:
-+		onkey->params = &atc2609a_onkey_params;
-+		press_time = FIELD_PREP(ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS_TIME,
-+					press_time);
-+		reset_time = FIELD_PREP(ATC2609A_PMU_SYS_CTL2_ONOFF_RESET_TIME_SEL,
-+					reset_time);
-+		break;
-+	default:
-+		dev_err(&pdev->dev,
-+			"OnKey not supported for ATC260x PMIC type: %u\n",
-+			atc260x->ic_type);
-+		return -EINVAL;
-+	}
-+
-+	input_dev = devm_input_allocate_device(&pdev->dev);
-+	if (!input_dev) {
-+		dev_err(&pdev->dev, "Failed to allocate input device\n");
-+		return -ENOMEM;
-+	}
-+
-+	onkey->input_dev = input_dev;
-+	onkey->atc260x = atc260x;
-+
-+	input_dev->name = "atc260x-onkey";
-+	input_dev->phys = "atc260x-onkey/input0";
-+	input_dev->open = atc260x_onkey_open;
-+	input_dev->close = atc260x_onkey_close;
-+
-+	input_set_capability(input_dev, EV_KEY, KEY_POWER);
-+	input_set_drvdata(input_dev, onkey);
-+
-+	INIT_DELAYED_WORK(&onkey->work, atc260x_onkey_work);
-+
-+	onkey->irq = platform_get_irq(pdev, 0);
-+	if (onkey->irq < 0)
-+		return onkey->irq;
-+
-+	error = devm_request_threaded_irq(&pdev->dev, onkey->irq, NULL,
-+					  atc260x_onkey_irq, IRQF_ONESHOT,
-+					  dev_name(&pdev->dev), onkey);
-+	if (error) {
-+		dev_err(&pdev->dev,
-+			"Failed to register IRQ %d: %d\n", onkey->irq, error);
-+		return error;
-+	}
-+
-+	/* Keep IRQ disabled until atc260x_onkey_open() is called. */
-+	disable_irq(onkey->irq);
-+
-+	error = input_register_device(input_dev);
-+	if (error) {
-+		dev_err(&pdev->dev,
-+			"Failed to register input device: %d\n", error);
-+		return error;
-+	}
-+
-+	error = atc2603x_onkey_hw_init(onkey, reset_status,
-+				       reset_time, press_time);
-+	if (error)
-+		return error;
-+
-+	device_init_wakeup(&pdev->dev, true);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver atc260x_onkey_driver = {
-+	.probe	= atc260x_onkey_probe,
-+	.driver	= {
-+		.name = "atc260x-onkey",
-+	},
-+};
-+
-+module_platform_driver(atc260x_onkey_driver);
-+
-+MODULE_DESCRIPTION("Onkey driver for ATC260x PMICs");
-+MODULE_AUTHOR("Cristian Ciocaltea <cristian.ciocaltea@gmail.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.30.0
-
+> > >   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> > > 
+> > 
+> > Thanks,
+> > Cristi
+> 
+> -- 
+> Lee Jones [李琼斯]
+> Senior Technical Lead - Developer Services
+> Linaro.org │ Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
