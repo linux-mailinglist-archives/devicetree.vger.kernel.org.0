@@ -2,129 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 930E8303364
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:53:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A641D30334F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728815AbhAZEwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:52:36 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34250 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729110AbhAZDK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 22:10:58 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10Q0GdCH124859;
-        Mon, 25 Jan 2021 18:16:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611620199;
-        bh=L+f4ohZrdj488CP3I7uIPQegEJlAgJImjluiVuvJrcA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=SvdgqdQS3ePBAKHWoAKSIOh32WDJ+cxGIFBElawyaWhStFSv569KvJA+sx84x2f6E
-         3yIjZq8TUh857IyO1M0YpXcPcQOOsbr9jG96QKAfogSsDBdF/LoRXFh7Z4psbqqnrx
-         IqrA2p762TzawbT/tnwaamFTLnq/c1nMHi0XQob8=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10Q0Gdcd047151
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 25 Jan 2021 18:16:39 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 25
- Jan 2021 18:16:38 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 25 Jan 2021 18:16:38 -0600
-Received: from [10.250.69.64] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10Q0GcAE007721;
-        Mon, 25 Jan 2021 18:16:38 -0600
-Subject: Re: [PATCH] dt-bindings: irqchip: Add #address-cells to PRUSS INTC
-To:     Rob Herring <robh@kernel.org>
-CC:     Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        David Lechner <david@lechnology.com>,
-        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-References: <20210115205819.19426-1-s-anna@ti.com>
- <20210126000443.GA1223706@robh.at.kernel.org>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <8f4a47f8-18dc-cb73-10db-033e5e5adb25@ti.com>
-Date:   Mon, 25 Jan 2021 18:16:38 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210126000443.GA1223706@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        id S1728330AbhAZEtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:49:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53996 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731817AbhAZCDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 21:03:32 -0500
+X-Greylist: delayed 1174 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Jan 2021 16:53:00 PST
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B4FCC0611C1
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 16:53:00 -0800 (PST)
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id DD59A891B0;
+        Tue, 26 Jan 2021 13:33:21 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1611621201;
+        bh=c2VQN3yGJUcZRIEn9Gqn0Veg7N1cQep6pkqN2/xRino=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=WqbrwvMiuWjsDg+vHcdznD+lzfLwLRIbvAdm7KdnSPcHLKM01OPEtipnybDGgV2dm
+         DER2VYDk6ssqBIEZvGgRuJCOCzbwDirLvXoxMtqWacqqtvERHZzZLQtZKIMf6/6y49
+         a7Dj32XPkBncS5YuDbnOOFwRPHgqR618oMA331V2Ckff3xQtRVL52VLEqqtxI4aJ3L
+         KPqrwTrqCvNtxyK0eQ9tu5p9Sa6m1QpHgS6Ou1jSSD2SiVLTum/e/ejy3zDy4R8VnN
+         cWsFOpPr4N6NY3i33zZychtDIuKG++AQmdJPdHfUSgycSw4Br/a5bg0hdVqGLib4YN
+         pAOw5gDCJoBCg==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[10.32.16.77]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B600f63510001>; Tue, 26 Jan 2021 13:33:21 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.2; Tue, 26 Jan 2021 13:33:21 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.010; Tue, 26 Jan 2021 13:33:21 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Qi Zheng <arch0.zheng@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] of/fdt: Remove redundant kbasename function call
+Thread-Topic: [PATCH v2] of/fdt: Remove redundant kbasename function call
+Thread-Index: AQHW83rZib9EpB92fkGwiPfIm/1ogQ==
+Date:   Tue, 26 Jan 2021 00:33:21 +0000
+Message-ID: <ebbba4ac-ea65-472c-5a3a-201dfe59e402@alliedtelesis.co.nz>
+References: <20200528132541.463300-1-arch0.zheng@gmail.com>
+In-Reply-To: <20200528132541.463300-1-arch0.zheng@gmail.com>
+Accept-Language: en-NZ, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <116F44733432FC48A5E52BD93D9E5306@atlnz.lc>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 1/25/21 6:04 PM, Rob Herring wrote:
-> On Fri, Jan 15, 2021 at 02:58:19PM -0600, Suman Anna wrote:
->> The '#address-cells' property looks to be a required property for
->> interrupt controller nodes as indicated by a warning message seen
->> when building dtbs with W=2. Adding the property to the PRUSS INTC
->> dts nodes though fails the dtbs_check. Add this property to the
->> PRUSS INTC binding to make it compliant with both dtbs_check and
->> building dtbs.
->>
->> Signed-off-by: Suman Anna <s-anna@ti.com>
->> ---
->> Hi Rob,
->>
->> This patch is also part of our effort to get rid of the warnings seen
->> around interrupt providers on TI K3 dtbs [1]. I needed this in the PRUSS
->> INTC bindings to not get a warning with dtbs_check while also ensuring
->> no warnings while building dtbs with W=2.
->>
->> I would have expected the '#address-cells' requirement to be inherited
->> automatically. And looking through the schema files, I actually do not
->> see the interrupt-controller.yaml included automatically anywhere. You
->> had asked us to drop the inclusion in this binding in our first version
->> with YAML [3]. Am I missing something, and how do we ensure that this
->> is enforced automatically for everyone?
-> 
-> interrupt-controller.yaml is applied to any node named 
-> 'interrupt-controller'. More generally, if 'compatible' is not present, 
-> then we look at $nodename for the default 'select'. In your case, you 
-> didn't name the node appropriately.
-
-Thanks for the clarification. Yeah, I didn't add anything specifically, since
-the expectation is interrupt-controller. Should I be adding that to this binding?
-
->  
-> We can't check this in interrupt-controller.yaml because #address-cells 
-> is not always 0. GICv3 is one notable exception.
-> 
->>
->> regards
->> Suman
->>
->> [1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210115083003.27387-1-lokeshvutla@ti.com/
-> 
-> I've commented on this thread now in regards to #address-cells.
-
-I suppose I still need this patch to be defined to unblock the ICSSG nodes
-getting accepted by our dts maintainer. Care to give your Reviewed-by for the
-change? Or I can spin a v2 with $nodename added as well if that's needed too.
-
-regards
-Suman
-
-> 
-> Rob
-> 
->> [2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210114194805.8231-1-s-anna@ti.com/
->> [3] https://patchwork.kernel.org/comment/23484523/
->>
->>  .../bindings/interrupt-controller/ti,pruss-intc.yaml        | 6 ++++++
->>  1 file changed, 6 insertions(+)
-
+SGkgQWxsLA0KDQpPbiAyOS8wNS8yMCAxOjI1IGFtLCBRaSBaaGVuZyB3cm90ZToNCj4gRm9yIHZl
+cnNpb24gMSB0byAzIG9mIHRoZSBkZXZpY2UgdHJlZSwgdGhpcyBpcyB0aGUgbm9kZSBmdWxsDQo+
+IHBhdGggYXMgYSB6ZXJvIHRlcm1pbmF0ZWQgc3RyaW5nLCBzdGFydGluZyB3aXRoICIvIi4gVGhl
+DQo+IGZvbGxvd2luZyBlcXVhdGlvbiB3aWxsIG5vdCBob2xkLCBzaW5jZSB0aGUgbm9kZSBuYW1l
+IGhhcw0KPiBiZWVuIHByb2Nlc3NlZCBpbiB0aGUgZmR0X2dldF9uYW1lKCkuDQo+DQo+IAkqcGF0
+aHAgPT0gJy8nDQo+DQo+IEZvciB2ZXJzaW9uIDE2IGFuZCBsYXRlciwgdGhpcyBpcyB0aGUgbm9k
+ZSB1bml0IG5hbWUgb25seQ0KPiAob3IgYW4gZW1wdHkgc3RyaW5nIGZvciB0aGUgcm9vdCBub2Rl
+KS4gU28gdGhlIGFib3ZlDQo+IGVxdWF0aW9uIHdpbGwgc3RpbGwgbm90IGhvbGQuDQo+DQo+IFNv
+IHRoZSBrYmFzZW5hbWUoKSBpcyByZWR1bmRhbnQsIGp1c3QgcmVtb3ZlIGl0Lg0KPg0KPiBTaWdu
+ZWQtb2ZmLWJ5OiBRaSBaaGVuZyA8YXJjaDAuemhlbmdAZ21haWwuY29tPg0KPiAtLS0NCj4NCj4g
+Q2hhbmdlIGluIHYyOg0KPiAJcmVtb3ZlIGFub3RoZXIga2Jhc2VuYW1lKCkgYWxzby4NCj4NCj4g
+ICBkcml2ZXJzL29mL2ZkdC5jIHwgNCAtLS0tDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDQgZGVsZXRp
+b25zKC0pDQo+DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL29mL2ZkdC5jIGIvZHJpdmVycy9vZi9m
+ZHQuYw0KPiBpbmRleCAzODYxOWU5ZWY2YjIuLjQ2MDJlNDY3Y2E4YiAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9vZi9mZHQuYw0KPiArKysgYi9kcml2ZXJzL29mL2ZkdC5jDQo+IEBAIC02NDMsOCAr
+NjQzLDYgQEAgaW50IF9faW5pdCBvZl9zY2FuX2ZsYXRfZHQoaW50ICgqaXQpKHVuc2lnbmVkIGxv
+bmcgbm9kZSwNCj4gICAJICAgICBvZmZzZXQgPSBmZHRfbmV4dF9ub2RlKGJsb2IsIG9mZnNldCwg
+JmRlcHRoKSkgew0KPiAgIA0KPiAgIAkJcGF0aHAgPSBmZHRfZ2V0X25hbWUoYmxvYiwgb2Zmc2V0
+LCBOVUxMKTsNCj4gLQkJaWYgKCpwYXRocCA9PSAnLycpDQo+IC0JCQlwYXRocCA9IGtiYXNlbmFt
+ZShwYXRocCk7DQo+ICAgCQlyYyA9IGl0KG9mZnNldCwgcGF0aHAsIGRlcHRoLCBkYXRhKTsNCj4g
+ICAJfQ0KPiAgIAlyZXR1cm4gcmM7DQo+IEBAIC02NzEsOCArNjY5LDYgQEAgaW50IF9faW5pdCBv
+Zl9zY2FuX2ZsYXRfZHRfc3Vibm9kZXModW5zaWduZWQgbG9uZyBwYXJlbnQsDQo+ICAgCQlpbnQg
+cmM7DQo+ICAgDQo+ICAgCQlwYXRocCA9IGZkdF9nZXRfbmFtZShibG9iLCBub2RlLCBOVUxMKTsN
+Cj4gLQkJaWYgKCpwYXRocCA9PSAnLycpDQo+IC0JCQlwYXRocCA9IGtiYXNlbmFtZShwYXRocCk7
+DQo+ICAgCQlyYyA9IGl0KG5vZGUsIHBhdGhwLCBkYXRhKTsNCj4gICAJCWlmIChyYykNCj4gICAJ
+CQlyZXR1cm4gcmM7DQoNCkknbSB0cnlpbmcgdG8ga2VlcCBvdXIgYm9hcmRzIHVwIHRvIGRhdGUg
+d2l0aCBuZXdlciBrZXJuZWxzLg0KDQpJJ3ZlIGp1c3QgaGl0IGEgcHJvYmxlbSBvbiBhbiBvbGRl
+ciBib2FyZCB0aGF0IHVzZXMgDQpDT05GSUdfQVJNX0FQUEVOREVEX0RUQiBhbmQgaGFzIGEgbnVt
+YmVyIG9mIGNvbW1hbmQgbGluZSBhcmdzIHBhc3NlZCB1cCANCmZyb20gdGhlIGJvb3Rsb2FkZXIg
+dGhhdCBhcmUgcmVxdWlyZWQgZm9yIGEgc3VjY2Vzc2Z1bCBib290Lg0KDQpJJ20gc3RlcHBpbmcg
+dGhyb3VnaCBrZXJuZWwgdmVyc2lvbnMgaW4gdGhlIGhvcGUgdGhhdCBrZWVwaW5nIHRoaW5ncyAN
+CnJ1bm5pbmcgaXMgZWFzaWVyIGluIHNtYWxsZXIgaW5jcmVtZW50cyBJJ20gdXAgdG8gdjUuOC4g
+SSdtIG5vdCANCmN1cnJlbnRseSBhYmxlIHRvIGNoZWNrIGEgbmV3ZXIga2VybmVsIG9uIHRoaXMg
+Ym9hcmQgYnV0IGxvb2tpbmcgYXQgdGhlIA0KY29kZSB0aGUgcHJvYmxlbSBzdGlsbCBzZWVtcyB0
+byBleGlzdCBpbiB0aGUgbGF0ZXN0IHRyZWUuDQoNCmVhcmx5X2luaXRfZHRfc2Nhbl9jaG9zZW4o
+KSBzZWFyY2hlcyBmb3IgImNob3NlbiIgcHJpb3IgdG8gdGhpcyBjaGFuZ2UgDQp0aGUgIi9jaG9z
+ZW4iIG5vZGUgdGhhdCBnZXRzIGluc2VydGVkIGJ5IGF0YWdzX3RvX2ZkdC5jIGJ1dCB3aXRoIHRo
+aXMgDQpjaGFuZ2UgaXQgY2FuJ3QgZmluZCBpdCBhbmQgZmFpbHMgdG8gYm9vdC4NCg0K
