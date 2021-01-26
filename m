@@ -2,238 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3529E303D1A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 13:37:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 123B4303D17
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 13:37:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbhAZMhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 07:37:15 -0500
-Received: from mail-eopbgr760123.outbound.protection.outlook.com ([40.107.76.123]:1920
-        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730559AbhAZKXt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 05:23:49 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OsnOPcDNo4wl5JaZG+m0TS+sv6rTLQ70jVebnuYdWBVRd36I9FXl1OeSCHaCEbPpq7WyoHOW27eRQ+KOTxnR4ydT2QpgBpqM0PxB47O85++KNWjOZmUct/eQpXy1bCKcebt6bvcj3b1in8eKIRqLhBGR4Pbrzo/3aWu7J/Wf4bfiXB+eoC65922Z6862zxxJNRG74mkwq5ifk2w0Z9z0EaghtMKyoLTLevGwTw/1mpct0qfvbxLntkBaNxDMZ/JR4F0bfuhc/k11i95KTJSyPGt46RXnAJfMNN9dZGPIw08Z9GyWwMGi/DG/g2ehfn5GTvuu3i459R1Iyr+RPHuPwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dxaxSv7khV0h79q7HjXhhbYDA8bi69GJiDvHV8aA3AM=;
- b=LGQ7tbQEo+p64PoQ+iVIT86MPX9P7f+Abqf+c9F0erS+YWS1ThEiOPr992AUioFUxxFzY1KobGUQ+pnyqzaIqNGhhAXKL7jlQNxs1Ebg5YPfO7NKVLxFMQWdjYatewIO7kHRx7reRdqf0nItp8ySUUW8cdBcRaD4g1Vk80bme0wvCoYu297zgRYSNZbihT6jgmoyPz3uGsTywFoWTlQkEoZvcZY35vbunWZIisJnOcSisRL6l+gQ1s42SoFB7c+xYL41MCb1V8t+gpGlfdaVmuZoBeFGFWi5AK6hpJzEflNU+deZBC5ygNNpsOPHOftO2f0uhnyv4DTwxP+oPG/P1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dxaxSv7khV0h79q7HjXhhbYDA8bi69GJiDvHV8aA3AM=;
- b=Jc6Yf8sIwC0E2lNbjtbxxYDhRkSzs1WzrzHtR8oGAEmZtLuX5DBDR5VEZpQXZ/WTrcJuEVUJJIGMxrg5yTqdoCNSIIWDDLUeD6s7NpdqWuyviWiOKxO9F9UPNZKBENkd58nSxNBH8LkZbG5DvId+5G5eoIwKgbDEzLYqG4IAj/o=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by BYAPR04MB5077.namprd04.prod.outlook.com (2603:10b6:a03:41::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.17; Tue, 26 Jan
- 2021 10:23:00 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::5813:96a7:b2d6:132]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::5813:96a7:b2d6:132%6]) with mapi id 15.20.3763.019; Tue, 26 Jan 2021
- 10:23:00 +0000
-Date:   Tue, 26 Jan 2021 18:22:28 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings:drm/bridge:anx7625:add HDCP support
- flag and swing reg
-Message-ID: <20210126102228.GB32321@zhaomy-pc>
-References: <cover.1611572142.git.xji@analogixsemi.com>
- <75e29d7386df2ebca4a8e3f0b91c8370a4a8f74f.1611572143.git.xji@analogixsemi.com>
- <20210125154143.GA390777@robh.at.kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210125154143.GA390777@robh.at.kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Originating-IP: [61.148.116.10]
-X-ClientProxiedBy: HK2P15301CA0005.APCP153.PROD.OUTLOOK.COM
- (2603:1096:202:1::15) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
+        id S1727801AbhAZMfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 07:35:09 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:24085 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403894AbhAZKaQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 05:30:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1611657016; x=1643193016;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=7DPQRXFrlX+u7KxDE5WzIgzALAuas9XxehDfgOsVGl0=;
+  b=tjj/sE56Mmo9+XOLPMSEgr0UrG9bXwg2KNnbqIcrqB3a4xEdGURzl+r8
+   kONwrGjuSOA6C2yXc2fTnJ98pEIQGd1VJWGeSd3vim0U1p+Kly9Y8Dbgw
+   3UTMK6oNvTldzoOT4ZvKKiu5PQL3K7x9YqimeBzmENRfx4PKjKBOMM4pg
+   iHJdtKLlsAUAEkoMgo4tvlyI/ueAoIrine2xJuYqDLXtKYN/C0VTzqt65
+   WWo0+c17IXOevNnzNflgY8E8aENoFVx46H7wyq8vn62ETOmyCP/bCwDHb
+   +Z2oIM6nPfYKpIRwF+c0d72IhMPLTNxiFB8SKVTWEqXGKgJL3khfEKdXF
+   g==;
+IronPort-SDR: gAcIQArD9brbJfyyN2rRrkQ8Eu3w7MDn7HSG5V+u7d34L3xANwU676dEUVRrL0PtF5kLfjmTkT
+ TlRnz/Oj1Gn6yHa9M52QUuiH4rvYcshZuUcgZqXm+aA/dF5EpOqgZ5IJesloeuLHclaSSAR8GV
+ hCb2wUiMj+aSyyR22BnR9q6kO05TFKxe8Zs1mBAKEk6mTbV8lml4JZqD6LwN42SXijfuqgCEQl
+ /fANdCrBUbX/zkFV0XE490nU9Lp5DG42kwbKyZRxDkGutzSi8puSuCZwEQGhjiq9/R33YP1AQI
+ dmU=
+X-IronPort-AV: E=Sophos;i="5.79,375,1602572400"; 
+   d="scan'208";a="41786281"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Jan 2021 03:29:00 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 26 Jan 2021 03:29:00 -0700
+Received: from [10.171.246.120] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Tue, 26 Jan 2021 03:28:57 -0700
+Subject: Re: [PATCH v2 1/7] drivers: soc: atmel: add spdx license identifier
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>
+CC:     <sudeep.holla@arm.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1611653376-24168-1-git-send-email-claudiu.beznea@microchip.com>
+ <1611653376-24168-2-git-send-email-claudiu.beznea@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <436dfb02-cab0-fffe-d0c3-5b34476a05f6@microchip.com>
+Date:   Tue, 26 Jan 2021 11:28:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from zhaomy-pc (61.148.116.10) by HK2P15301CA0005.APCP153.PROD.OUTLOOK.COM (2603:1096:202:1::15) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3825.2 via Frontend Transport; Tue, 26 Jan 2021 10:22:59 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2db8a370-1fab-4e8a-cb09-08d8c1e45b1e
-X-MS-TrafficTypeDiagnostic: BYAPR04MB5077:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR04MB5077FE45873820FFB9FC1119C7BC9@BYAPR04MB5077.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7EQXkotNRBTrRZY3DeYLSKihrybkDA3iuRbI6lAwhLUE5VQJuiX+28mdHkxHruBpmrNUJGtI8jn6nAtyapn2V0+UJHNL501x6MLYz+8H/QAcR0tZY0fjnb5ltVp/yDGNh1rOTrKvWp1XKFeA4eOhu0hIyOzzONng9qEBzQX68Sr3x7r3NjEk/HLgwFAaBHQ/i7H/L64aqvOYHP62NO8/CGVRjjcHT8b9ckoPO6duWb5tuPq9C2IYG/ZM+OrC5sjILk7CDp5TmKS6Oi1bXcBpU2Zl6CHkrb4ni2qOX1ssrKkt52krw8/jgT+mmKdU5jhw1XMMrm/RO8qnomABgieziZNZXmJd2j4sYJk5xVVwzp5OyARdPoQzGq+jbFztSXjvmsrc1IXHa8YSmTRkXXG5c+7IsvKoJNpaFHzjrnK5DYa/engUwnzizFZcp7Aox9ilwRef3WwohbFud9cNSZPST36/TeBQF+W83C8aZpUeNeYEnewxCXitnPxK+OPNTNyHfZTbEv1AGtlmy2nAt6Iui1pTT2NUIq9K30FijDOTOn30gNTc2tp3fDDfB1ldA4JQ
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39850400004)(366004)(376002)(396003)(136003)(346002)(478600001)(16526019)(66946007)(7416002)(316002)(66556008)(186003)(5660300002)(26005)(6496006)(8936002)(4326008)(54906003)(9686003)(1076003)(33716001)(6666004)(8676002)(55016002)(66476007)(52116002)(33656002)(83380400001)(2906002)(86362001)(6916009)(956004)(16060500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ROZ7lYXaDf85sS2kh0sX4pHi4SFd77OnqnKB8K6jy8KrIrqXeh78vgwbGn2S?=
- =?us-ascii?Q?mQtv/RE/UuzSzmYcc3Sv7yFHmk+dFRAIbIkCXtUrWypnSfHQGjFUgUOVUuce?=
- =?us-ascii?Q?cwe3frWkjMW+4Suu610ynjnwlFUFYIfZ86bwtmjLbpA9nE2HSH4JdWfuLXv+?=
- =?us-ascii?Q?LTzyA3ed8Q28UcwFsOkPFGdKVyL7bxXCTx8eSMJGAp440LMsrXhkyA3/af2+?=
- =?us-ascii?Q?cX+LaXYvFyoUOKEHarXpsh2Q5OtKjcaNGVoQG02pcPcVJw+NyKMUh49stzjQ?=
- =?us-ascii?Q?aiolqjDO9vJQpS24g9vE/GOjiuH1fAViM6rmcbb8zpfA5SZryRhkqFViIlJQ?=
- =?us-ascii?Q?PX2OTlAT1uSM6zls+TFIxM6Ne5fpKtfnpAg4FNf48l5XvyIseyyT0AXBPTaA?=
- =?us-ascii?Q?8jp/ejB0BB3P81SseDgKybg9Ze4hOznNgoFHwcwsuAIVrIUzWu6VynhCTCKd?=
- =?us-ascii?Q?EjKLkqQ+gc+R+LffSKGnQku9Rqby8riHiVw6QXA+6bwKHKrFDyIJKznooNub?=
- =?us-ascii?Q?jnbLkS5xjoA9li04wPtuHp1xgWu8oP1waf8YTfE0jyWeeZsTq3HkaP6XYYyT?=
- =?us-ascii?Q?ecnChGkgNKzoVjnCLD43AI3x4qQ9/ibNnWNDmsXvFRo902i3NJsume2cdcFs?=
- =?us-ascii?Q?CBCd153nuPvB0w30qHSETeZ5pIz/6PnIbDq1jVQY8k6auKGwhBrc/4A1lQtT?=
- =?us-ascii?Q?1fpbOhjIqYltXeLttxvWYL8Olh+NOQQ7o+FAIZM0oaQJHiSp6DEt7u7oBAw/?=
- =?us-ascii?Q?TDw24jh3BqnnxJ+A/pEr46WpDigq7c1xXMpgeT4GkeBsz7H8TuGTjMAq6v39?=
- =?us-ascii?Q?dSz7/LCPVpfH9rV98Z8HZ8hQWc8KasPnwOPTuysN+zU5tDW3wXGAXaW9+rFt?=
- =?us-ascii?Q?3uFB8SEdMz5HXrJhmenVy8IljkVArehpriDZK5XgbZmFgjkX8iFa+VZL8BAv?=
- =?us-ascii?Q?NTlErOKqzQbWL9tAv4Dng26YOWOtiqKywVYOWwfIgtbRF+jp5a9vPf72FEfX?=
- =?us-ascii?Q?+TKRdEwbpdVk5szdelv4Iro4JWouz5WfmNUfyi82/11vVuQNCavp1lCgn5OF?=
- =?us-ascii?Q?eyrUHtdB?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2db8a370-1fab-4e8a-cb09-08d8c1e45b1e
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 10:23:00.0445
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tr/DhkwEcQFDaQjdDECb+ZOqZo27tXkMmvVqAcFPTHWVYHKzneDoVKf2r29dSA8QRZtTm3PUn3Vk+ZOJ5yWShA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB5077
+In-Reply-To: <1611653376-24168-2-git-send-email-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, thanks for the comments, I'll fix the issue on the next serial.
-Thanks,
-Xin
+On 26/01/2021 at 10:29, Claudiu Beznea wrote:
+> Add SPDX-License-Identifier.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 
-On Mon, Jan 25, 2021 at 09:41:43AM -0600, Rob Herring wrote:
-> On Mon, Jan 25, 2021 at 07:12:21PM +0800, Xin Ji wrote:
-> > Add 'bus-type' and 'data-lanes' define for port0, add HDCP support
-> > flag and DP tx lane0 and lane1 swing register array define.
-> > 
-> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > ---
-> >  .../bindings/display/bridge/analogix,anx7625.yaml  | 57 ++++++++++++++++++++--
-> >  1 file changed, 54 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > index 60585a4..3b1cbe0 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > @@ -34,23 +34,69 @@ properties:
-> >      description: used for reset chip control, RESET_N pin B7.
-> >      maxItems: 1
-> >  
-> > +  analogix,lane0-swing:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    description:
-> > +      an array of swing register setting for DP tx lane0 PHY, please don't
-> > +      add this property, or contact vendor.
-> > +
-> > +  analogix,lane1-swing:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    description:
-> > +      an array of swing register setting for DP tx lane1 PHY, please don't
-> > +      add this property, or contact vendor.
-> > +
-> > +  analogix,hdcp-support:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: indicate the DP tx HDCP support or not.
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+I remove license boilerplate text now that it's useless and queue this 
+one on top of at91-soc.
+
+Thanks, best regards,
+   Nicolas
+
+> ---
+>   drivers/soc/atmel/soc.c | 1 +
+>   drivers/soc/atmel/soc.h | 1 +
+>   2 files changed, 2 insertions(+)
 > 
-> Sounds like a boolean.
-OK, I'll change it to boolean.
+> diff --git a/drivers/soc/atmel/soc.c b/drivers/soc/atmel/soc.c
+> index 2dc86728b132..755a82502ef4 100644
+> --- a/drivers/soc/atmel/soc.c
+> +++ b/drivers/soc/atmel/soc.c
+> @@ -1,3 +1,4 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+>   /*
+>    * Copyright (C) 2015 Atmel
+>    *
+> diff --git a/drivers/soc/atmel/soc.h b/drivers/soc/atmel/soc.h
+> index ee652e4841a5..77b27124362c 100644
+> --- a/drivers/soc/atmel/soc.h
+> +++ b/drivers/soc/atmel/soc.h
+> @@ -1,3 +1,4 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+>   /*
+>    * Copyright (C) 2015 Atmel
+>    *
 > 
-> > +
-> >    ports:
-> >      type: object
-> > +    additionalProperties: false
-> >  
-> >      properties:
-> >        port@0:
-> >          type: object
-> >          description:
-> > -          Video port for MIPI DSI input.
-> > +          Video port for MIPI input.
-> 
-> You're going to need to rebase this one drm-misc-next which uses the 
-> graph schema now.
-OK, I'll rebase it.
-> 
-> > +
-> > +        properties:
-> > +          endpoint:
-> > +            type: object
-> > +            additionalProperties: false
-> > +
-> > +            # Properties described in
-> > +            # Documentation/devicetree/bindings/media/video-interfaces.txt
-> > +            properties:
-> > +              remote-endpoint: true
-> > +              bus-type: true
-> > +              data-lanes: true
-> > +
-> > +            required:
-> > +              - remote-endpoint
-> > +
-> > +        required:
-> > +          - endpoint
-> >  
-> >        port@1:
-> >          type: object
-> >          description:
-> >            Video port for panel or connector.
-> >  
-> > +        properties:
-> > +          endpoint:
-> > +            type: object
-> > +            additionalProperties: false
-> > +
-> > +            required:
-> > +              - remote-endpoint
-> > +
-> > +        required:
-> > +          - endpoint
-> > +
-> >      required:
-> > -        - port@0
-> > -        - port@1
-> > +      - port@0
-> > +      - port@1
-> >  
-> >  required:
-> >    - compatible
-> > @@ -73,6 +119,10 @@ examples:
-> >              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-> >              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
-> >  
-> > +            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-> > +            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-> > +            analogix,hdcp-support = <0>;
-> > +
-> >              ports {
-> >                  #address-cells = <1>;
-> >                  #size-cells = <0>;
-> > @@ -81,6 +131,7 @@ examples:
-> >                      reg = <0>;
-> >                      anx7625_in: endpoint {
-> >                          remote-endpoint = <&mipi_dsi>;
-> > +                        bus-type = <5>;
-> >                      };
-> >                  };
-> >  
-> > -- 
-> > 2.7.4
-> > 
+
+
+-- 
+Nicolas Ferre
