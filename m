@@ -2,95 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D437304CFE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 00:01:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53F95304D00
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 00:01:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731366AbhAZXAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 18:00:39 -0500
-Received: from conssluserg-03.nifty.com ([210.131.2.82]:17200 "EHLO
-        conssluserg-03.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727923AbhAZShh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 13:37:37 -0500
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48]) (authenticated)
-        by conssluserg-03.nifty.com with ESMTP id 10QIaGw3020487;
-        Wed, 27 Jan 2021 03:36:17 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com 10QIaGw3020487
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1611686177;
-        bh=jdWLcQFJpvkL7fnNbIXEjnV5zSV4ldy1W6fJJer0SS0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vZ/bW+lTZyrd1ERgU+miNz8+GOlqwTLVOxxzyQasaF86h98Ay6qOjXhWuULGJqKM5
-         4z0X+NPL3o3SXxb8sugDW+V96GjyO8LJGIbkTltMuPaaexC7hTuXQymVd9kVXx3xIt
-         M59p3RVAhxPGJIbLGtDIMcTEHzCk3AuPUHHNzVXWI4h8HM9cXZOXZD1KbO7F0Xuq+O
-         IDejtgYMTP+WsY2imeqglLzgoFd263QtQdDQft8FNDcAwrztsHTgHzlDmNfWkXy7sZ
-         gHs/PaHuMLLlXqWAx95l8qKaJof9ym1H10wBL2jg72B+onuMC65bDq1FCmdLPAfw3K
-         ZwGcG9UUQ2o+g==
-X-Nifty-SrcIP: [209.85.216.48]
-Received: by mail-pj1-f48.google.com with SMTP id l18so2751623pji.3;
-        Tue, 26 Jan 2021 10:36:17 -0800 (PST)
-X-Gm-Message-State: AOAM532JH5rHQWuJ1wk8pqRPf/4+Y7+rlW6Ah8pXVbw1sRTqkzUqYtDd
-        F9PFlzGJkbhzJAl0UAi4uoQcDbd0rt3uOjcqz54=
-X-Google-Smtp-Source: ABdhPJzm8VWDgbWt/Qh9yT3e9UPSeoJupJWOrfVdaMJGhEFCxF7zQGgkjL8RLxx7C1vvctvqdHBbnBzSIJslbdB9RU8=
-X-Received: by 2002:a17:902:a5c5:b029:de:30b0:f1d with SMTP id
- t5-20020a170902a5c5b02900de30b00f1dmr7207458plq.1.1611686176307; Tue, 26 Jan
- 2021 10:36:16 -0800 (PST)
+        id S1731420AbhAZXA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 18:00:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395189AbhAZTLD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 14:11:03 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DD71C061573;
+        Tue, 26 Jan 2021 11:10:23 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id lw17so1722736pjb.0;
+        Tue, 26 Jan 2021 11:10:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/pySoVPj6x2FMVMDC3PwlkUp7Fwc7oRZb5nCpTSbyxQ=;
+        b=Kno6Uq1KChTjup+cYxZsCvQQHrWKR+TvGJmKwMtOI7jpjF3oTBKfkjxna4GAaQnzUe
+         PyfN4sriJBZGjz+UGvJ23ap8wPDZNDcbGSW1x0bu386315/oa7rPYe4mOOni01Hu+Mb0
+         wN9iTOneC4o/FGqSazvRUfiHj4cD9QIPNlv26j7kMA+4vj93pRp+ix8IMpblCuztyp+b
+         L2a5nkRL6tzM3I64JhXq5e53tqETri0b6mAt7wHFGjZteY01SB3Js485e6csvtse6dSX
+         DWdCyPGkqo8hT56y6ZBKNRHRNbhI7L5q+pQbR5mhexFnjPcoZAnlnme/uuKufbZTupV4
+         nikg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=/pySoVPj6x2FMVMDC3PwlkUp7Fwc7oRZb5nCpTSbyxQ=;
+        b=aB/Ma5Q+Out15FtT6/DbB7w3AQY5vDv1+19+vYO3FP4zwKgT+vlbNjUtW8E5UQmBUO
+         SNn+c4RyJewoiwKnSCdJjTVKeUIX4XW2X42ecZjAMSWF6VJ4qJXkwA1FfRENVe52+3g1
+         uSIMxVQ22ZfmrFU3uE0voqL/Ikbdb7RYUPgjQ/dRbzvDCMQLNTc5AAhEw//6hLw8XuvF
+         4XmPPPco+cHb8K2NBQOHmAZ5unF9BA1vbv+faqJxNbHhsign64Pi4pe30yVULTz1EcEm
+         zSeduERGWes+W2jtuhXk9PNshNPLx6QXxtkrbFj9Bce/9lIOyqjo3zTSFhNBITxKFrsM
+         dbaw==
+X-Gm-Message-State: AOAM531UlybmpaMR1dPiEZlz359bxKgnZjkO10LAD5fw3miJaKb6gHLn
+        QElTFfAzG9E1JULld2PHN68=
+X-Google-Smtp-Source: ABdhPJwWecYPRIlieWfot1SXaGDWSpfbRFecAz3my6DVfWYKNjOZ1cQl+qt2qR2hJDfOo2isASG1lQ==
+X-Received: by 2002:a17:902:9049:b029:da:efd6:4c12 with SMTP id w9-20020a1709029049b02900daefd64c12mr7512150plz.12.1611688222672;
+        Tue, 26 Jan 2021 11:10:22 -0800 (PST)
+Received: from google.com ([2620:15c:211:201:9dd5:b47b:bb84:dede])
+        by smtp.gmail.com with ESMTPSA id v2sm18941836pgs.50.2021.01.26.11.10.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Jan 2021 11:10:21 -0800 (PST)
+Sender: Minchan Kim <minchan.kim@gmail.com>
+Date:   Tue, 26 Jan 2021 11:10:18 -0800
+From:   Minchan Kim <minchan@kernel.org>
+To:     Michal Hocko <mhocko@suse.com>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
+        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
+        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
+        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
+        linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v4 2/4] mm: failfast mode with __GFP_NORETRY in
+ alloc_contig_range
+Message-ID: <YBBpGji3BJYHidHs@google.com>
+References: <20210121175502.274391-1-minchan@kernel.org>
+ <20210121175502.274391-3-minchan@kernel.org>
+ <20210125131200.GG827@dhcp22.suse.cz>
+ <YA8dEFSrHBb9muFr@google.com>
+ <20210126074449.GA827@dhcp22.suse.cz>
 MIME-Version: 1.0
-References: <20210120062351.3011786-1-masahiroy@kernel.org> <20210120213929.GA875847@robh.at.kernel.org>
-In-Reply-To: <20210120213929.GA875847@robh.at.kernel.org>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Wed, 27 Jan 2021 03:35:39 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQe9Vq4KEZJwqL=3etTedGVnieKA5vyVoXFr7-a03Nwgg@mail.gmail.com>
-Message-ID: <CAK7LNAQe9Vq4KEZJwqL=3etTedGVnieKA5vyVoXFr7-a03Nwgg@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: use always-y instead of extra-y
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Kieran Bingham <kbingham@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        intel-gfx@lists.freedesktop.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210126074449.GA827@dhcp22.suse.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 21, 2021 at 6:39 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Jan 20, 2021 at 03:23:51PM +0900, Masahiro Yamada wrote:
-> > As commit d0e628cd817f ("kbuild: doc: clarify the difference between
-> > extra-y and always-y") explained, extra-y should be used for listing
-> > the prerequsites of vmlinux. always-y is a better fix here.
->
-> prerequisites
+On Tue, Jan 26, 2021 at 08:44:49AM +0100, Michal Hocko wrote:
+> On Mon 25-01-21 11:33:36, Minchan Kim wrote:
+> > On Mon, Jan 25, 2021 at 02:12:00PM +0100, Michal Hocko wrote:
+> > > On Thu 21-01-21 09:55:00, Minchan Kim wrote:
+> > > > Contiguous memory allocation can be stalled due to waiting
+> > > > on page writeback and/or page lock which causes unpredictable
+> > > > delay. It's a unavoidable cost for the requestor to get *big*
+> > > > contiguous memory but it's expensive for *small* contiguous
+> > > > memory(e.g., order-4) because caller could retry the request
+> > > > in different range where would have easy migratable pages
+> > > > without stalling.
+> > > > 
+> > > > This patch introduce __GFP_NORETRY as compaction gfp_mask in
+> > > > alloc_contig_range so it will fail fast without blocking
+> > > > when it encounters pages needed waiting.
+> > > 
+> > > I am not against controling how hard this allocator tries with gfp mask
+> > > but this changelog is rather void on any data and any user.
+> > > 
+> > > It is also rather dubious to have retries when then caller says to not
+> > > retry.
+> > 
+> > Since max_tries is 1 with ++tries, it shouldn't retry.
+> 
+> OK, I have missed that. This is a tricky code. ASYNC mode should be
+> completely orthogonal to the retries count. Those are different things.
+> Page allocator does an explicit bail out based on __GFP_NORETRY. You
+> should be doing the same.
 
-Thanks.
+A concern with __GFP_NOWAIT is regardless of flags passed to cma_alloc,
+internal implementation of alloc_contig_range inside will use blockable
+operation. See __alloc_contig_migrate_range.
 
-I fixed it up, and applied to linux-kbuild.
+If we go with __GFP_NOWAIT, we should propagate the gfp_mask inside of
+__alloc_contig_migrate_range to make cma_alloc consistent with alloc_pages.
+(IIUC, that's what you want - make gfp_mask consistent between cma_alloc
+and alloc_pages) but I am worry about the direction will make complicate
+situation since cma invovles migration context as well as target page
+allocation context. Sometime, the single gfp flag could be trouble
+to express both contexts all at once. 
 
+> 
+> > > 
+> > > Also why didn't you consider GFP_NOWAIT semantic for non blocking mode?
+> > 
+> > GFP_NOWAIT seems to be low(specific) flags rather than the one I want to
+> > express. Even though I said only page writeback/lock in the description,
+> > the goal is to avoid costly operations we might find later so such
+> > "failfast", I thought GFP_NORETRY would be good fit.
+> 
+> I suspect you are too focused on implementation details here. Think
+> about the indended semantic. Callers of this functionality will not
+> think about those (I hope because if they rely on these details then the
+> whole thing will become unmaintainable because any change would require
+> an audit of all existing users). All you should be caring about is to
+> control how expensive the call can be. GFP_NOWAIT is not really low
+> level from that POV. It gives you a very lightweight non-sleeping
+> attempt to allocate. GFP_NORETRY will give you potentially sleeping but
+> an opportunistic-easy-to-fail attempt. And so on. See how that is
+> absolutely free of any page writeback or any specific locking.
 
+With above reason I mentioned, I wanted to express __GFP_NORETRY as 
+"opportunistic-easy-to-fail attempt" to support cma_alloc as "failfast"
+for migration context.
 
-> Glad to see this clarified. I think just tried both and picked one.
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> > ---
-> >
-> >  Documentation/devicetree/bindings/Makefile |  8 ++++----
-> >  drivers/gpu/drm/i915/Makefile              |  2 +-
-> >  scripts/Makefile.lib                       | 10 +++++-----
-> >  scripts/gdb/linux/Makefile                 |  2 +-
-> >  4 files changed, 11 insertions(+), 11 deletions(-)
-
-
-
--- 
-Best Regards
-Masahiro Yamada
+> -- 
+> Michal Hocko
+> SUSE Labs
