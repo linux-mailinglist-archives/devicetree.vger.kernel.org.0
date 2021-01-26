@@ -2,52 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66C9B304CE4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 23:59:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7823304CE5
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 23:59:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730578AbhAZW6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 17:58:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34364 "EHLO mail.kernel.org"
+        id S1731127AbhAZW6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 17:58:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35418 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729419AbhAZRQv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 12:16:51 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 115A8230FD;
-        Tue, 26 Jan 2021 17:16:06 +0000 (UTC)
+        id S2391190AbhAZRWK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 12:22:10 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 643C420829;
+        Tue, 26 Jan 2021 17:21:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611681368;
-        bh=ZlMjWTDue1boFQPXRJs+qaamE0yY7UzDgg4PLAB1LAs=;
+        s=k20201202; t=1611681680;
+        bh=rdBQGgtRC6g1GAnUIOAav3Aud5HLHMk8F/g0t4XS8Og=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qC1CerS4hbhJLOPVLo7DQADgwFjYNmxnwM3yop9BM3tj0quYYv/joaUvrZVyRKHSZ
-         LKBqSRTSgl/2nUeXiVcGjQBIN+LYoyeN/gVYE6dy3meYywpUf1kQTwPQTpTuU7TH8t
-         r6sIdWD95qo8u7lPvc3uY9yzUgXlLJlrlQ8sorIec+Nm8WGBWTxMI9Jw15upzQBQG2
-         p0Mixp307Px8FPwgppi5bOw1pwr/Y5c4Z+OSlwnHR2foVoAvfcdf/9B1JuXDYJdJ7A
-         4MlnNmVuDZpGwzb5sv5IcC4IugZMhS9yrL9GFYGFWuTp4YM65ghOnUwePRld/1tpRj
-         5NrgKQY+PAgvA==
-Date:   Tue, 26 Jan 2021 22:46:01 +0530
+        b=IlNwl/PR35t9YK+vq4a2j0oWS94SnoBThYTMMoerbxPfbzA99wSF7To/81LdGF+vv
+         aSaAJ14X1XJSTJxn8tt3Kq0ErLU8/py3ypeh4LSZhWJWvIs6ACJ6bgbugsrlEnb+bZ
+         usvPkrPjoA+AwvJ2YmcZOG54Sz80MA/Z+FzXP16mCUgAx7OW4WYKoLGfx6TeFEZyw8
+         VZGKhJvBs9pv+vmiOxCuGPQ9iwmpgCKi0wnFf6UwnsjwQzUkv5LPast3arl0fUVOix
+         Nzz9oOW1SFcRyBe4UEIO7YEl93ebcRcO2a5p4L8YmoNp985mvaiH/uZPvH68+ZlqK3
+         a9vOXgQuzxbCw==
+Date:   Tue, 26 Jan 2021 22:51:16 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, od@zcrc.me,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH 2/2] dma: jz4780: Add support for the JZ4760(B)
-Message-ID: <20210126171601.GS2771@vkoul-mobl>
-References: <20210120105322.16116-1-paul@crapouillou.net>
- <20210120105322.16116-2-paul@crapouillou.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, chuanhua.lei@intel.com,
+        Amireddy Mallikarjuna reddy 
+        <mallikarjunax.reddy@linux.intel.com>, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: dma: intel-ldma: Fix $ref specifier
+Message-ID: <20210126172116.GT2771@vkoul-mobl>
+References: <20210120180939.1580984-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210120105322.16116-2-paul@crapouillou.net>
+In-Reply-To: <20210120180939.1580984-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-01-21, 10:53, Paul Cercueil wrote:
-> Add support for the JZ4760 and JZ4760B SoCs.
-> 
-> Both SoCs have only 5 DMA channels per chip. The JZ4760B introduced the
-> DCKES/DCKEC registers.
+On 20-01-21, 10:09, Bjorn Andersson wrote:
+> The $ref for "intel,dma-poll-cnt" is missing an '/', causing
+> dt_binding_check to fail. Fix this.
 
-Applied after fixing subsystem name, thanks
+Applied, thanks
 
 -- 
 ~Vinod
