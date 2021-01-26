@@ -2,263 +2,514 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 353CF303F6F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:57:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0419A303F78
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:59:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404062AbhAZN4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 08:56:30 -0500
-Received: from mail-vi1eur05on2041.outbound.protection.outlook.com ([40.107.21.41]:36033
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2405324AbhAZNt6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 08:49:58 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JDGOQQpmG1+rMPmNyT3U8Q/3UAv0wdpiZ2Usf4U/8rfAhC2Cty9qQ7e7x8daeABcrmHdTfrWkwZ8cO0cxeP1r+MZOQFyde4WBcsqo0GdAHsszayLrZrHulnotf6Cwj2Rv8E9NO3sIU+UgMVGUfAFbDX10DYHcU++45TCH+zH5pjQKe1Wa6v/sILaB6g6khe4dakgWjYxPN5cYMYaVMoFtdSU2U8JWChy9AbC7jybEC/twmgZlM9bvqMrqWlwyDaUKNS5YUp/z+BkuBt3cIOvOieS8UXX1+QZH6D4K4JIKliDh75DJAGf+lk4MJAxfzb0MsQBF3XxsIhoH1L+F5P41A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M1JA0sJy9eutZnQlJ+efnB8pueuNZzGjwaZdaGFH5p8=;
- b=lT6Ckm5t5iVgClN1o1wBLIY+xeJ+siNqi8DKuBOLnvkegVxIFhNofLtXXr/Y1PKx9XX1dXhnZY6ncjPfOwQ7Z/F410qx2wWf2Ot2cUC2zaAJYC9LTK0DJ29eZbI24b+ShEfa3/bRhUfupH6rCffEJvrx7wMS+o7/K33HUVUbBp2OscxBwf8VE3nXR7/URRNJNSnFDHcA4Ardq1KzTToTuaH9DmMCcdKYCtH5NxkdFKuqt/9ghhtCaqysDGJf6NZyQP/HbjuGYbdEkZ3Kvj3g7LIGAtFt8aIVlL6oKt8VhCDJ4KxA7HZnzWr0ByvY65vzydH3hC7duWyvzpsOVJ9mbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M1JA0sJy9eutZnQlJ+efnB8pueuNZzGjwaZdaGFH5p8=;
- b=sEnqeT4ZS3MsZ4srTuJZi5u1bWWU708SYerRPteL/HoDF2K+C2iWpU4Alhw622nl1zLgqv2pIck67gGTNTqCMxSn5aqoUmqpXEN1BeulPDsmuK7StPHv53I5kqQFAdJfGALArf+FziZsFgHSjwfmA0mE1jsWtOj8fr1Fnry+iLI=
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DBBPR04MB7593.eurprd04.prod.outlook.com (2603:10a6:10:20c::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.15; Tue, 26 Jan
- 2021 13:49:07 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::d58c:d479:d094:43d0]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::d58c:d479:d094:43d0%9]) with mapi id 15.20.3784.019; Tue, 26 Jan 2021
- 13:49:07 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "paul@crapouillou.net" <paul@crapouillou.net>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "patrice.chotard@st.com" <patrice.chotard@st.com>
-Subject: RE: [PATCH V9 01/10] dt-bindings: remoteproc: convert imx rproc
- bindings to json-schema
-Thread-Topic: [PATCH V9 01/10] dt-bindings: remoteproc: convert imx rproc
- bindings to json-schema
-Thread-Index: AQHW75K8L0MhP7c9CUeTrDqB4eKp76o59BSg
-Date:   Tue, 26 Jan 2021 13:49:06 +0000
-Message-ID: <DB6PR0402MB2760432F84DC98247148477288BC0@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-References: <1611191015-22584-1-git-send-email-peng.fan@nxp.com>
- <1611191015-22584-2-git-send-email-peng.fan@nxp.com>
-In-Reply-To: <1611191015-22584-2-git-send-email-peng.fan@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: wizery.com; dkim=none (message not signed)
- header.d=none;wizery.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [49.65.215.117]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 3c8e9e31-7c09-4962-a0a0-08d8c2012690
-x-ms-traffictypediagnostic: DBBPR04MB7593:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DBBPR04MB7593258F75E249A01CA00E8388BC0@DBBPR04MB7593.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 0JOOZWF4Nz35AsUM9ZSZwW5kEtJXkGD/JYCbaObNtlvITgKorLRmPegkWHpIDk0QIBkf4p7fTLX+DFbr3EMI0HXtUajiuf+eoN5psKbiqpX72wc5TISCmaAIraJxHlBasE0vm6wGOd/UuOgueg6JQz2jbF6/2tSJ/Fq1/rAsLJCeXi3Ki4+7Qlfdw9cGPZv+SRpAuWl+9RPS6MyBgLTBYv5+q6GCKV5CCzmb8sjdW5GeKgUQps89YSdAhKLEUxCBprKq27kT+Lx7r+ZlVv2Un1qCSHeRj7Bm11ZJ8+Wze6GsZjINT6gblCbH9E3zWs5DNTNv2gWl9xrhPZJyanVf4/T9fWEtNsaAb+UXZKHvyY4bQmvBmOdLMCoCkK92wM58P/6WjoVCnJrEZ+4aUQYetRYHVbdDI2yMHFYl1z7zKogIKbRkt1KDMW3QPleJQvu9grDOXOsPdfubWXH+66zQiUlwzuYJ3HRwhbs37QM5XdEYNXVzJr5Oui4PgTZQWmlK33Wy6E7R1g3ngllg4X0Fz+liXeZqa0tylBmgs53quV5kmuZpuWqekY9UhwLv1l3v+BFGqSl5kGMO0uashKpI3sbInbvCYYX/kaco1iZLC/Y=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(39850400004)(376002)(346002)(366004)(6506007)(110136005)(186003)(71200400001)(33656002)(4326008)(8936002)(8676002)(7696005)(83380400001)(54906003)(316002)(26005)(9686003)(44832011)(76116006)(55016002)(2906002)(478600001)(7416002)(966005)(52536014)(64756008)(66446008)(86362001)(66476007)(5660300002)(66946007)(66556008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?5nZDlHUnn/dRg+VqAGGv6pCfzGMxRBMwhg7G2GeYbvYlZ3BGzf9aPzh+SITE?=
- =?us-ascii?Q?B/ZUj3cUjDrtfO5s6MCF7cq2qMP30q9Qqe05Rxu4Votn11/snjjP7eicmkpd?=
- =?us-ascii?Q?rDOKjB30ad02fiPgtmzMGNxt+gJYGQEO687NZTD6pVepCy9p1enXzAXX/oRZ?=
- =?us-ascii?Q?nI+o4tFtcO6nevI4r6o6Yo8v5IgCY7fOe2zx1HH4ahkIzl7CL61VjGkNRucx?=
- =?us-ascii?Q?w+7IXxgwtJ4kQScfWagMkH7GzlgNDYNdEPCTl2xAsryuTePwzWD/12Vqlemv?=
- =?us-ascii?Q?vB8CgY212j0uuHc/BWd3Mz1QfMXfpR6w17vsXW31/WR/jc72aNedISQuVSI7?=
- =?us-ascii?Q?s+CAbKFsJbbZybDP1JRnOWO5j3TuhIrBvCupnM6f++HinaBEiVp0zmC7phOh?=
- =?us-ascii?Q?YHBFqWnThC6hXidk3/9F8hnwehUuhx8eKmcc1xoKHWchmKoJtR8AUuxJr2gQ?=
- =?us-ascii?Q?fo+txG+bQIpeGRO71WMW+80NNjkF0jtUw4NeiksakroTYPEfrfDiGDPdLA+0?=
- =?us-ascii?Q?Qk6tTCSYMgYA1zPmCFlFAhfdEgdP7xHgXUcFwQ/QbHvjpyNWzv6VKYysqN8E?=
- =?us-ascii?Q?GGCMuNLZwOtCttx4DS8aEPI9+TbjoQZws/N4J2ncLWfgR2gs+Isl9sUj/O7H?=
- =?us-ascii?Q?lHTjONhNrRN7sTvhU5N3Eh6fgPxKqCXTE/N1OKKqu61NwZFVfuJ1M0KX+ryG?=
- =?us-ascii?Q?9neZQThPhVbuExIamKIwq6FvktCuM7xiIWf26nWikA7JEwHRVf2hbLb6AN7f?=
- =?us-ascii?Q?EYPNTLxPE2EGkRDdIWnXIQ4lKuX0paDB3hYLLFMntRi1N3RZFLls75/5tcWt?=
- =?us-ascii?Q?mg1diZxVqCbKkUekHAi1XN1B4hl41M6PfK1J/G4NcLg1Bu5w4hLREh5fxgEH?=
- =?us-ascii?Q?KNh5bG6zfsaQOEXTzr9IQ0J2z/uJJPe50lPlqJ73Bz56lsWeyRQjFmEQLoQK?=
- =?us-ascii?Q?7jFBRgAUIODK8b3emX390mI+G1voYJDxFZYI7J0ui0Qd9yriqzdGyVE+Bf8t?=
- =?us-ascii?Q?jrrvVF+7W381mh20wl27a+PzDVP3OlfJmDd4KSzwd8p8I8kKgRi5BZGeE3Ea?=
- =?us-ascii?Q?Nsyt4792?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2404812AbhAZN6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 08:58:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49668 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390849AbhAZN62 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 08:58:28 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7CF9E229C9;
+        Tue, 26 Jan 2021 13:57:46 +0000 (UTC)
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1l4Oqm-00A8kA-Ij; Tue, 26 Jan 2021 13:57:44 +0000
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c8e9e31-7c09-4962-a0a0-08d8c2012690
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2021 13:49:06.8404
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tvUThoRxXw/j+JW2s1W9p423RCMS3//lXhehtpbx0iDlgOUCeRcGkVd6Q0kVeHisRxqFE6fNgFFhuI5iw+4YYQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7593
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 26 Jan 2021 13:57:44 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, drinkcat@chromium.org,
+        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
+Subject: Re: [v7,5/7] PCI: mediatek-gen3: Add MSI support
+In-Reply-To: <20210113114001.5804-6-jianjun.wang@mediatek.com>
+References: <20210113114001.5804-1-jianjun.wang@mediatek.com>
+ <20210113114001.5804-6-jianjun.wang@mediatek.com>
+User-Agent: Roundcube Webmail/1.4.10
+Message-ID: <661df220100e0d4e69f5cde90c083f4a@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: jianjun.wang@mediatek.com, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com, p.zabel@pengutronix.de, matthias.bgg@gmail.com, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com, youlin.pei@mediatek.com, chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com, sin_jieyang@mediatek.com, drinkcat@chromium.org, Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 2021-01-13 11:39, Jianjun Wang wrote:
+> Add MSI support for MediaTek Gen3 PCIe controller.
+> 
+> This PCIe controller supports up to 256 MSI vectors, the MSI hardware
+> block diagram is as follows:
+> 
+>                   +-----+
+>                   | GIC |
+>                   +-----+
+>                      ^
+>                      |
+>                  port->irq
+>                      |
+>              +-+-+-+-+-+-+-+-+
+>              |0|1|2|3|4|5|6|7| (PCIe intc)
+>              +-+-+-+-+-+-+-+-+
+>               ^ ^           ^
+>               | |    ...    |
+>       +-------+ +------+    +-----------+
+>       |                |                |
+> +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
+> |0|1|...|30|31|  |0|1|...|30|31|  |0|1|...|30|31| (MSI sets)
+> +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
+>  ^ ^      ^  ^    ^ ^      ^  ^    ^ ^      ^  ^
+>  | |      |  |    | |      |  |    | |      |  |  (MSI vectors)
+>  | |      |  |    | |      |  |    | |      |  |
+> 
+>   (MSI SET0)       (MSI SET1)  ...   (MSI SET7)
+> 
+> With 256 MSI vectors supported, the MSI vectors are composed of 8 sets,
+> each set has its own address for MSI message, and supports 32 MSI 
+> vectors
+> to generate interrupt.
+> 
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> ---
+>  drivers/pci/controller/pcie-mediatek-gen3.c | 261 ++++++++++++++++++++
+>  1 file changed, 261 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c
+> b/drivers/pci/controller/pcie-mediatek-gen3.c
+> index 7979a2856c35..471d97cd1ef9 100644
+> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
+> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/irqdomain.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+> +#include <linux/msi.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_clk.h>
+>  #include <linux/of_pci.h>
+> @@ -52,11 +53,28 @@
+>  #define PCIE_LINK_STATUS_REG		0x154
+>  #define PCIE_PORT_LINKUP		BIT(8)
+> 
+> +#define PCIE_MSI_SET_NUM		8
+> +#define PCIE_MSI_IRQS_PER_SET		32
+> +#define PCIE_MSI_IRQS_NUM \
+> +	(PCIE_MSI_IRQS_PER_SET * (PCIE_MSI_SET_NUM))
 
-> Subject: [PATCH V9 01/10] dt-bindings: remoteproc: convert imx rproc
-> bindings to json-schema
+Spurious inner bracketing.
 
-Do you have time to give a look and including
-https://patchwork.kernel.org/project/linux-remoteproc/
-patch/1611191015-22584-3-git-send-email-peng.fan@nxp.com/
+> +
+>  #define PCIE_INT_ENABLE_REG		0x180
+> +#define PCIE_MSI_ENABLE			GENMASK(PCIE_MSI_SET_NUM + 8 - 1, 8)
+> +#define PCIE_MSI_SHIFT			8
+>  #define PCIE_INTX_SHIFT			24
+>  #define PCIE_INTX_MASK			GENMASK(27, 24)
+> 
+>  #define PCIE_INT_STATUS_REG		0x184
+> +#define PCIE_MSI_SET_ENABLE_REG		0x190
+> +#define PCIE_MSI_SET_ENABLE		GENMASK(PCIE_MSI_SET_NUM - 1, 0)
+> +
+> +#define PCIE_MSI_SET_BASE_REG		0xc00
+> +#define PCIE_MSI_SET_OFFSET		0x10
+> +#define PCIE_MSI_SET_STATUS_OFFSET	0x04
+> +#define PCIE_MSI_SET_ENABLE_OFFSET	0x08
+> +
+> +#define PCIE_MSI_SET_ADDR_HI_BASE	0xc80
+> +#define PCIE_MSI_SET_ADDR_HI_OFFSET	0x04
+> 
+>  #define PCIE_TRANS_TABLE_BASE_REG	0x800
+>  #define PCIE_ATR_SRC_ADDR_MSB_OFFSET	0x4
+> @@ -76,6 +94,18 @@
+>  #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
+>  #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
+> 
+> +/**
+> + * struct mtk_pcie_msi - MSI information for each set
+> + * @dev: pointer to PCIe device
+> + * @base: IO mapped register base
+> + * @msg_addr: MSI message address
+> + */
+> +struct mtk_msi_set {
+> +	struct device *dev;
+> +	void __iomem *base;
+> +	phys_addr_t msg_addr;
+> +};
+> +
+>  /**
+>   * struct mtk_pcie_port - PCIe port information
+>   * @dev: pointer to PCIe device
+> @@ -88,6 +118,11 @@
+>   * @num_clks: PCIe clocks count for this port
+>   * @irq: PCIe controller interrupt number
+>   * @intx_domain: legacy INTx IRQ domain
+> + * @msi_domain: MSI IRQ domain
+> + * @msi_bottom_domain: MSI IRQ bottom domain
+> + * @msi_sets: MSI sets information
+> + * @lock: lock protecting IRQ bit map
+> + * @msi_irq_in_use: bit map for assigned MSI IRQ
+>   */
+>  struct mtk_pcie_port {
+>  	struct device *dev;
+> @@ -101,6 +136,11 @@ struct mtk_pcie_port {
+> 
+>  	int irq;
+>  	struct irq_domain *intx_domain;
+> +	struct irq_domain *msi_domain;
+> +	struct irq_domain *msi_bottom_domain;
+> +	struct mtk_msi_set msi_sets[PCIE_MSI_SET_NUM];
+> +	struct mutex lock;
+> +	DECLARE_BITMAP(msi_irq_in_use, PCIE_MSI_IRQS_NUM);
+>  };
+> 
+>  /**
+> @@ -243,6 +283,15 @@ static int mtk_pcie_startup_port(struct
+> mtk_pcie_port *port)
+>  		return err;
+>  	}
+> 
+> +	/* Enable MSI */
+> +	val = readl_relaxed(port->base + PCIE_MSI_SET_ENABLE_REG);
+> +	val |= PCIE_MSI_SET_ENABLE;
+> +	writel_relaxed(val, port->base + PCIE_MSI_SET_ENABLE_REG);
+> +
+> +	val = readl_relaxed(port->base + PCIE_INT_ENABLE_REG);
+> +	val |= PCIE_MSI_ENABLE;
+> +	writel_relaxed(val, port->base + PCIE_INT_ENABLE_REG);
+> +
+>  	/* Set PCIe translation windows */
+>  	resource_list_for_each_entry(entry, &host->windows) {
+>  		struct resource *res = entry->res;
+> @@ -286,6 +335,129 @@ static int mtk_pcie_set_affinity(struct irq_data 
+> *data,
+>  	return -EINVAL;
+>  }
+> 
+> +static struct irq_chip mtk_msi_irq_chip = {
+> +	.name = "MSI",
+> +	.irq_ack = irq_chip_ack_parent,
+> +};
+> +
+> +static struct msi_domain_info mtk_msi_domain_info = {
+> +	.flags		= (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_PCI_MSIX |
+> +			   MSI_FLAG_USE_DEF_CHIP_OPS | MSI_FLAG_MULTI_PCI_MSI),
+> +	.chip		= &mtk_msi_irq_chip,
+> +};
+> +
+> +static void mtk_compose_msi_msg(struct irq_data *data, struct msi_msg 
+> *msg)
+> +{
+> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
+> +	unsigned long hwirq;
+> +
+> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
+> +
+> +	msg->address_hi = upper_32_bits(msi_set->msg_addr);
+> +	msg->address_lo = lower_32_bits(msi_set->msg_addr);
+> +	msg->data = hwirq;
+> +	dev_dbg(msi_set->dev, "msi#%#lx address_hi %#x address_lo %#x data 
+> %d\n",
+> +		hwirq, msg->address_hi, msg->address_lo, msg->data);
+> +}
+> +
+> +static void mtk_msi_bottom_irq_ack(struct irq_data *data)
+> +{
+> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
+> +	unsigned long hwirq;
+> +
+> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
+> +
+> +	writel_relaxed(BIT(hwirq), msi_set->base + 
+> PCIE_MSI_SET_STATUS_OFFSET);
+> +}
+> +
+> +static struct irq_chip mtk_msi_bottom_irq_chip = {
+> +	.irq_ack		= mtk_msi_bottom_irq_ack,
+> +	.irq_compose_msi_msg	= mtk_compose_msi_msg,
+> +	.irq_set_affinity	= mtk_pcie_set_affinity,
+> +	.name			= "PCIe",
 
-If could get your R-b or A-b tag, we could have the whole patchset
-merge into remoteproc tree.
+nit: "MSI", rather than "PCIe".
+
+> +};
+> +
+> +static int mtk_msi_bottom_domain_alloc(struct irq_domain *domain,
+> +				       unsigned int virq, unsigned int nr_irqs,
+> +				       void *arg)
+> +{
+> +	struct mtk_pcie_port *port = domain->host_data;
+> +	struct mtk_msi_set *msi_set;
+> +	int i, hwirq, set_idx;
+> +
+> +	mutex_lock(&port->lock);
+> +
+> +	hwirq = bitmap_find_free_region(port->msi_irq_in_use, 
+> PCIE_MSI_IRQS_NUM,
+> +					order_base_2(nr_irqs));
+> +
+> +	mutex_unlock(&port->lock);
+> +
+> +	if (hwirq < 0)
+> +		return -ENOSPC;
+> +
+> +	set_idx = hwirq / PCIE_MSI_IRQS_PER_SET;
+> +	msi_set = &port->msi_sets[set_idx];
+> +
+> +	for (i = 0; i < nr_irqs; i++)
+> +		irq_domain_set_info(domain, virq + i, hwirq + i,
+> +				    &mtk_msi_bottom_irq_chip, msi_set,
+> +				    handle_edge_irq, NULL, NULL);
+> +
+> +	return 0;
+> +}
+> +
+> +static void mtk_msi_bottom_domain_free(struct irq_domain *domain,
+> +				       unsigned int virq, unsigned int nr_irqs)
+> +{
+> +	struct mtk_pcie_port *port = domain->host_data;
+> +	struct irq_data *data = irq_domain_get_irq_data(domain, virq);
+> +
+> +	mutex_lock(&port->lock);
+> +
+> +	bitmap_clear(port->msi_irq_in_use, data->hwirq, nr_irqs);
+> +
+> +	mutex_unlock(&port->lock);
+> +
+> +	irq_domain_free_irqs_common(domain, virq, nr_irqs);
+> +}
+> +
+> +static int mtk_msi_bottom_domain_activate(struct irq_domain *domain,
+> +					  struct irq_data *data, bool reserve)
+> +{
+> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
+> +	unsigned long hwirq;
+> +	u32 val;
+> +
+> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
+> +
+> +	val = readl_relaxed(msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
+> +	val |= BIT(hwirq);
+> +	writel_relaxed(val, msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
+
+This isn't an activate. This is an unmask, which suffers from the same
+issue as its INTx sibling.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void mtk_msi_bottom_domain_deactivate(struct irq_domain 
+> *domain,
+> +					     struct irq_data *data)
+> +{
+> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
+> +	unsigned long hwirq;
+> +	u32 val;
+> +
+> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
+> +
+> +	val = readl_relaxed(msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
+> +	val &= ~BIT(hwirq);
+> +	writel_relaxed(val, msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
+> +}
+
+Same thing, this is a mask. I don't think this block requires any
+activate/deactivate callbacks for its lower irqdomain.
+
+As it stands, you can't mask a MSI at the low-level, which is
+pretty bad (you need to mask them at the PCI source, which can
+end-up disabling all vectors in the case of Multi-MSI).
+
+> +
+> +static const struct irq_domain_ops mtk_msi_bottom_domain_ops = {
+> +	.alloc = mtk_msi_bottom_domain_alloc,
+> +	.free = mtk_msi_bottom_domain_free,
+> +	.activate = mtk_msi_bottom_domain_activate,
+> +	.deactivate = mtk_msi_bottom_domain_deactivate,
+> +};
+> +
+>  static void mtk_intx_mask(struct irq_data *data)
+>  {
+>  	struct mtk_pcie_port *port = irq_data_get_irq_chip_data(data);
+> @@ -350,6 +522,9 @@ static int mtk_pcie_init_irq_domains(struct
+> mtk_pcie_port *port,
+>  {
+>  	struct device *dev = port->dev;
+>  	struct device_node *intc_node;
+> +	struct fwnode_handle *fwnode = of_node_to_fwnode(node);
+> +	struct msi_domain_info *info;
+> +	int i, ret;
+> 
+>  	/* Setup INTx */
+>  	intc_node = of_get_child_by_name(node, "interrupt-controller");
+> @@ -365,7 +540,57 @@ static int mtk_pcie_init_irq_domains(struct
+> mtk_pcie_port *port,
+>  		return -ENODEV;
+>  	}
+> 
+> +	/* Setup MSI */
+> +	mutex_init(&port->lock);
+> +
+> +	port->msi_bottom_domain = irq_domain_add_linear(node, 
+> PCIE_MSI_IRQS_NUM,
+> +				  &mtk_msi_bottom_domain_ops, port);
+> +	if (!port->msi_bottom_domain) {
+> +		dev_info(dev, "failed to create MSI bottom domain\n");
+> +		ret = -ENODEV;
+> +		goto err_msi_bottom_domain;
+> +	}
+> +
+> +	info = devm_kzalloc(dev, sizeof(*info), GFP_KERNEL);
+> +	if (!info) {
+> +		ret = -ENOMEM;
+> +		goto err_msi_bottom_domain;
+> +	}
+> +
+> +	memcpy(info, &mtk_msi_domain_info, sizeof(*info));
+
+Why the memcpy()? There is nothing in mtk_msi_domain_info that is
+per-domain, and you should be able to use this structure for all
+ports, shouldn't you?
+
+> +	info->chip_data = port;
+> +
+> +	port->msi_domain = pci_msi_create_irq_domain(fwnode, info,
+> +						     port->msi_bottom_domain);
+> +	if (!port->msi_domain) {
+> +		dev_info(dev, "failed to create MSI domain\n");
+> +		ret = -ENODEV;
+> +		goto err_msi_domain;
+> +	}
+> +
+> +	for (i = 0; i < PCIE_MSI_SET_NUM; i++) {
+> +		struct mtk_msi_set *msi_set = &port->msi_sets[i];
+> +
+> +		msi_set->dev = port->dev;
+
+Given that this is only used in a debug message, and that the addresses
+are already non-ambiguous, you can probably remove this field.
+
+> +		msi_set->base = port->base + PCIE_MSI_SET_BASE_REG +
+> +				i * PCIE_MSI_SET_OFFSET;
+> +		msi_set->msg_addr = port->reg_base + PCIE_MSI_SET_BASE_REG +
+> +				    i * PCIE_MSI_SET_OFFSET;
+> +
+> +		writel_relaxed(lower_32_bits(msi_set->msg_addr), msi_set->base);
+> +		writel_relaxed(upper_32_bits(msi_set->msg_addr),
+> +			       port->base + PCIE_MSI_SET_ADDR_HI_BASE +
+> +			       i * PCIE_MSI_SET_ADDR_HI_OFFSET);
+
+Please a comment on what this is doing...
+
+> +	}
+> +
+>  	return 0;
+> +
+> +err_msi_domain:
+> +	irq_domain_remove(port->msi_bottom_domain);
+> +err_msi_bottom_domain:
+> +	irq_domain_remove(port->intx_domain);
+> +
+> +	return ret;
+>  }
+> 
+>  static void mtk_pcie_irq_teardown(struct mtk_pcie_port *port)
+> @@ -375,9 +600,34 @@ static void mtk_pcie_irq_teardown(struct
+> mtk_pcie_port *port)
+>  	if (port->intx_domain)
+>  		irq_domain_remove(port->intx_domain);
+> 
+> +	if (port->msi_domain)
+> +		irq_domain_remove(port->msi_domain);
+> +
+> +	if (port->msi_bottom_domain)
+> +		irq_domain_remove(port->msi_bottom_domain);
+> +
+>  	irq_dispose_mapping(port->irq);
+>  }
+> 
+> +static void mtk_pcie_msi_handler(struct mtk_pcie_port *port, int 
+> set_idx)
+> +{
+> +	struct mtk_msi_set *msi_set = &port->msi_sets[set_idx];
+> +	unsigned long msi_enable, msi_status;
+> +	unsigned int virq;
+> +	irq_hw_number_t bit, hwirq;
+> +
+> +	msi_enable = readl_relaxed(msi_set->base + 
+> PCIE_MSI_SET_ENABLE_OFFSET);
+> +	while ((msi_status =
+> +		readl_relaxed(msi_set->base + PCIE_MSI_SET_STATUS_OFFSET) &
+> +			      msi_enable)) {
+> +		for_each_set_bit(bit, &msi_status, PCIE_MSI_IRQS_PER_SET) {
+> +			hwirq = bit + set_idx * PCIE_MSI_IRQS_PER_SET;
+> +			virq = irq_find_mapping(port->msi_bottom_domain, hwirq);
+> +			generic_handle_irq(virq);
+> +		}
+> +	}
+
+This doesn't look very readable. How about something like:
+
+         do {
+                 msi_status = readl_relaxed(...) & msi_enable;
+                 if (!msi_status)
+                         break;
+
+                 for_each_set_bit(...) {
+                         ...
+                 }
+         } while(true);
+
+> +}
+> +
+>  static void mtk_pcie_irq_handler(struct irq_desc *desc)
+>  {
+>  	struct mtk_pcie_port *port = irq_desc_get_handler_data(desc);
+> @@ -398,6 +648,17 @@ static void mtk_pcie_irq_handler(struct irq_desc 
+> *desc)
+>  		}
+>  	}
+> 
+> +	if (status & PCIE_MSI_ENABLE) {
+
+Same comment has for INTx.
+
+> +		irq_bit = PCIE_MSI_SHIFT;
+> +		for_each_set_bit_from(irq_bit, &status, PCIE_MSI_SET_NUM +
+> +				      PCIE_MSI_SHIFT) {
+> +			mtk_pcie_msi_handler(port, irq_bit - PCIE_MSI_SHIFT);
+> +
+> +			writel_relaxed(BIT(irq_bit),
+> +				       port->base + PCIE_INT_STATUS_REG);
+> +		}
+> +	}
+> +
+>  	chained_irq_exit(irqchip, desc);
+>  }
 
 Thanks,
-Peng.
 
->=20
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> Convert the imx rproc binding to DT schema format using json-schema.
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 59 +++++++++++++++++++
->  .../bindings/remoteproc/imx-rproc.txt         | 33 -----------
->  2 files changed, 59 insertions(+), 33 deletions(-)  create mode 100644
-> Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->  delete mode 100644
-> Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
->=20
-> diff --git
-> a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> new file mode 100644
-> index 000000000000..bce6ccfe1538
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/remoteproc/fsl,imx-rproc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: NXP iMX6SX/iMX7D Co-Processor Bindings
-> +
-> +description:
-> +  This binding provides support for ARM Cortex M4 Co-processor found on
-> some NXP iMX SoCs.
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx7d-cm4
-> +      - fsl,imx6sx-cm4
-> +
-> +  clocks:
-> +    description:
-> +      Clock for co-processor (See ../clock/clock-bindings.txt)
-> +
-> +  syscon:
-> +    description:
-> +      Phandle to syscon block which provide access to System Reset
-> + Controller
-> +
-> +  memory-region:
-> +    description:
-> +      list of phandels to the reserved memory regions.
-> +      (see ../reserved-memory/reserved-memory.txt)
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - syscon
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx7d-clock.h>
-> +    m4_reserved_sysmem1: cm4@80000000 {
-> +      reg =3D <0x80000000 0x80000>;
-> +    };
-> +
-> +    m4_reserved_sysmem2: cm4@81000000 {
-> +      reg =3D <0x81000000 0x80000>;
-> +    };
-> +
-> +    imx7d-cm4 {
-> +      compatible	=3D "fsl,imx7d-cm4";
-> +      memory-region	=3D <&m4_reserved_sysmem1>,
-> <&m4_reserved_sysmem2>;
-> +      syscon		=3D <&src>;
-> +      clocks		=3D <&clks IMX7D_ARM_M4_ROOT_CLK>;
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> b/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> deleted file mode 100644
-> index fbcefd965dc4..000000000000
-> --- a/Documentation/devicetree/bindings/remoteproc/imx-rproc.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -NXP iMX6SX/iMX7D Co-Processor Bindings
-> -----------------------------------------
-> -
-> -This binding provides support for ARM Cortex M4 Co-processor found on
-> some -NXP iMX SoCs.
-> -
-> -Required properties:
-> -- compatible		Should be one of:
-> -				"fsl,imx7d-cm4"
-> -				"fsl,imx6sx-cm4"
-> -- clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
-> -- syscon		Phandle to syscon block which provide access to
-> -			System Reset Controller
-> -
-> -Optional properties:
-> -- memory-region		list of phandels to the reserved memory regions.
-> -			(See: ../reserved-memory/reserved-memory.txt)
-> -
-> -Example:
-> -	m4_reserved_sysmem1: cm4@80000000 {
-> -		reg =3D <0x80000000 0x80000>;
-> -	};
-> -
-> -	m4_reserved_sysmem2: cm4@81000000 {
-> -		reg =3D <0x81000000 0x80000>;
-> -	};
-> -
-> -	imx7d-cm4 {
-> -		compatible	=3D "fsl,imx7d-cm4";
-> -		memory-region	=3D <&m4_reserved_sysmem1>,
-> <&m4_reserved_sysmem2>;
-> -		syscon		=3D <&src>;
-> -		clocks		=3D <&clks IMX7D_ARM_M4_ROOT_CLK>;
-> -	};
-> --
-> 2.28.0
-
+         M.
+-- 
+Jazz is not dead. It just smells funny...
