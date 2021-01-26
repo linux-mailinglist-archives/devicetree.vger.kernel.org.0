@@ -2,335 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5F99303CF4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 13:27:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C9CB303D76
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 13:45:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404570AbhAZM0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 07:26:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59446 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404481AbhAZMZv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 07:25:51 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A605C23109;
-        Tue, 26 Jan 2021 12:25:10 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1l4NPA-00A7Mc-LG; Tue, 26 Jan 2021 12:25:08 +0000
+        id S1732170AbhAZMpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 07:45:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42714 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391772AbhAZJ7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 04:59:12 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8B98C0617AA
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 01:58:40 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id v23so5410140uam.8
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 01:58:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2s091ZCbXkY5kPsLe1N1zqI9t9bafuafJrjbGry9Cmw=;
+        b=me7uH48huC1WigZiogNpzBPm61ucNewUzZWg0f4fVWUAqnmeg73oSGMw4cvVl2YpMt
+         m72B812Vm8Ep+efiP0kM/1TqNPHPscNieVwDInZRX0ifjLlx7FYHf0cjb/OWBrgf+ds3
+         7Cm4pWLLKay1jkb2Am2XSCfPDKoCsGwe5kZUCEOC7qxwgW3sIxWZc7vU+iaeWgbxrVDa
+         Xq70GMRtoA/80D1FIAh2KEknoBJOHZrlCLUt4lij3HI0+7RRLYvLyiQPJLbr2jX9NL2E
+         BWfnkt8ZX7GJ10s1XK+eQD4cJd9K9b1tVPCy+zQbvLokDBSOJt2nc+bg6qNEbkTLVDx4
+         9Qrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2s091ZCbXkY5kPsLe1N1zqI9t9bafuafJrjbGry9Cmw=;
+        b=S4ppL6MDS0XUsKxkxp/idiGHpRoCmOKndpsSWrEWjv2y1TDrUTZgb1N84CHHzoF4d4
+         c74lwwS6Bv7mTkjiCPBZvlgY7z3VQq9GXlKINT2MURsQn7EnZ8f5Xhjro4Ps2cLUg+1S
+         f5zecqWxrWwBZ3fi8Llk9vzt+86LGmwIJKK6ykT7nAMSPL+Wi+r0IH0szK5nipE9MqiZ
+         Hnf99kLvgityZNsUYSMPeEp19fa5uu5sw1SqQ85m5l8oKDF73avoisboHV4TvKlY0fZY
+         JvsczE9tnt27ZJzqwrdDWDzNuBMEOwArdhRQioA6wAEMjevafbx8eVnLjvAm7Tmk3oCt
+         YyyQ==
+X-Gm-Message-State: AOAM531gBk4x5cQYOj8qOVmft4C6BTlMQvgLFl0uX6ByZ+KmrE79Lcz1
+        00z/auCXwQW7+3IL4OIysiQX/IQCE6+j/4gnsvqSFw==
+X-Google-Smtp-Source: ABdhPJzoOxmNVPAsa+mo+p6s77bXk9Znkd/2lfcQFCTupY7epko0u8YpeILwE6V0/D1n9mDNs1+v+nrLYpCm/DmzQUA=
+X-Received: by 2002:ab0:338c:: with SMTP id y12mr3373917uap.19.1611655120019;
+ Tue, 26 Jan 2021 01:58:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 26 Jan 2021 12:25:08 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+References: <20210126001456.382989-1-ebiggers@kernel.org>
+In-Reply-To: <20210126001456.382989-1-ebiggers@kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 26 Jan 2021 10:58:03 +0100
+Message-ID: <CAPDyKFqLVtiYkjeQmuYOf8K8k=oQSZ18928PPHvJDiUtTw2F-g@mail.gmail.com>
+Subject: Re: [PATCH RESEND v6 0/9] eMMC inline encryption support
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
+        Satya Tangirala <satyat@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Asutosh Das <asutoshd@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com, drinkcat@chromium.org,
-        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-Subject: Re: [v7,4/7] PCI: mediatek-gen3: Add INTx support
-In-Reply-To: <20210113114001.5804-5-jianjun.wang@mediatek.com>
-References: <20210113114001.5804-1-jianjun.wang@mediatek.com>
- <20210113114001.5804-5-jianjun.wang@mediatek.com>
-User-Agent: Roundcube Webmail/1.4.10
-Message-ID: <123724a33c29d1f078f2a65795c6e208@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: jianjun.wang@mediatek.com, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com, p.zabel@pengutronix.de, matthias.bgg@gmail.com, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com, youlin.pei@mediatek.com, chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com, sin_jieyang@mediatek.com, drinkcat@chromium.org, Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-13 11:39, Jianjun Wang wrote:
-> Add INTx support for MediaTek Gen3 PCIe controller.
-> 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
-> ---
->  drivers/pci/controller/pcie-mediatek-gen3.c | 163 ++++++++++++++++++++
->  1 file changed, 163 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c
-> b/drivers/pci/controller/pcie-mediatek-gen3.c
-> index c00ea7c167de..7979a2856c35 100644
-> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-> @@ -9,6 +9,9 @@
->  #include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/iopoll.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqchip/chained_irq.h>
-> +#include <linux/irqdomain.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/of_address.h>
-> @@ -49,6 +52,12 @@
->  #define PCIE_LINK_STATUS_REG		0x154
->  #define PCIE_PORT_LINKUP		BIT(8)
-> 
-> +#define PCIE_INT_ENABLE_REG		0x180
-> +#define PCIE_INTX_SHIFT			24
-> +#define PCIE_INTX_MASK			GENMASK(27, 24)
+On Tue, 26 Jan 2021 at 01:15, Eric Biggers <ebiggers@kernel.org> wrote:
+>
+> [Resending because most of the patches didn't make it to the lists for
+> some reason...]
+>
+> Hello,
+>
+> This patchset adds support for eMMC inline encryption, as specified by
+> the upcoming version of the eMMC specification and as already
+> implemented and used on many devices.  Building on that, it then adds
+> Qualcomm ICE support and wires it up for the Snapdragon 630 SoC.
+>
+> Inline encryption hardware improves the performance of storage
+> encryption and reduces power usage.  See
+> Documentation/block/inline-encryption.rst for more information about
+> inline encryption and the blk-crypto framework (upstreamed in v5.8)
+> which supports it.  Most mobile devices already use UFS or eMMC inline
+> encryption hardware; UFS support was already upstreamed in v5.9.
+>
+> Patches 1-4 add support for the standard eMMC inline encryption.
+>
+> However, as with UFS, host controller-specific patches are needed on top
+> of the standard support.  Therefore, patches 5-9 add Qualcomm ICE
+> (Inline Crypto Engine) support and wire it up on the Snapdragon 630 SoC.
+>
+> To test this I took advantage of the recently upstreamed support for the
+> Snapdragon 630 SoC, plus work-in-progress patches from the SoMainline
+> project (https://github.com/SoMainline/linux/tree/konrad/v5.10-rc3).  In
+> particular, I was able to run the fscrypt xfstests for ext4 and f2fs in
+> a Debian chroot.  Among other things, these tests verified that the
+> correct ciphertext is written to disk (the same as software encryption).
+>
+> It will also be possible to add support for Mediatek eMMC inline
+> encryption hardware in mtk-sd, and it should be easier than the Qualcomm
+> hardware since the Mediatek hardware follows the standard more closely.
+> I.e., patches 1-4 should be almost enough for the Mediatek hardware.
+>
+> This patchset is based on the "next" branch (commit 42af8761bc84) of
+> https://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc.git,
+> plus the patch "block/keyslot-manager: introduce devm_blk_ksm_init()"
+> (https://lkml.kernel.org/r/20210121082155.111333-2-ebiggers@kernel.org).
+> It can also be retrieved from tag "mmc-crypto-v6" of
+> https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
+>
+> Changed in v6:
+>   - Define MMC_CAP2_CRYPTO to 0 when !CONFIG_MMC_CRYPTO.
+>   - Moved the sdm630 device tree update to the end of the series,
+>     since it will go in through a different tree.
+>   - Added an Acked-by.
+>
+> Changed in v5:
+>   - Use the proposed resource-managed variant of blk_ksm_init().
+>   - Removed an unnecessary call to devm_kfree().
+>
+> Changed in v4:
+>   - Added Acked-by and Reviewed-and-tested-by tags.
+>   - Rebased onto v5.11-rc2.
+>
+> Changed in v3:
+>   - Improved comment for sdhci_msm_ice_wait_bist_status()
+>   - Removed an unhelpful comment in union cqhci_crypto_cfg_entry.
+>   - Fixed the commit message of "mmc: cqhci: initialize upper 64 bits of
+>     128-bit task descriptors".
+>   - Added Reviewed-by's and Acked-by's.
+>
+> Changed in v2:
+>   - Only select QCOM_SCM if ARCH_QCOM.  (Fixes a build break.)
+>   - Split most of the cqhci_prep_task_desc() change into its own patch.
+>   - Made sdhci_msm_ice_wait_bist_status() use readl_poll_timeout().
+>   - Added a couple more comments.
+>   - Added some Acked-by's.
+>
+> Eric Biggers (9):
+>   mmc: add basic support for inline encryption
+>   mmc: cqhci: rename cqhci.c to cqhci-core.c
+>   mmc: cqhci: initialize upper 64 bits of 128-bit task descriptors
+>   mmc: cqhci: add support for inline encryption
+>   mmc: cqhci: add cqhci_host_ops::program_key
+>   firmware: qcom_scm: update comment for ICE-related functions
+>   dt-bindings: mmc: sdhci-msm: add ICE registers and clock
+>   mmc: sdhci-msm: add Inline Crypto Engine support
+>   arm64: dts: qcom: sdm630: add ICE registers and clocks
+>
+>  .../devicetree/bindings/mmc/sdhci-msm.txt     |   3 +
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi          |  10 +-
+>  drivers/firmware/qcom_scm.c                   |  16 +-
+>  drivers/mmc/core/Kconfig                      |   8 +
+>  drivers/mmc/core/Makefile                     |   1 +
+>  drivers/mmc/core/block.c                      |   3 +
+>  drivers/mmc/core/core.c                       |   3 +
+>  drivers/mmc/core/crypto.c                     |  48 +++
+>  drivers/mmc/core/crypto.h                     |  40 +++
+>  drivers/mmc/core/host.c                       |   1 +
+>  drivers/mmc/core/queue.c                      |   3 +
+>  drivers/mmc/host/Kconfig                      |   1 +
+>  drivers/mmc/host/Makefile                     |   2 +
+>  drivers/mmc/host/{cqhci.c => cqhci-core.c}    |  69 ++++-
+>  drivers/mmc/host/cqhci-crypto.c               | 242 +++++++++++++++
+>  drivers/mmc/host/cqhci-crypto.h               |  47 +++
+>  drivers/mmc/host/cqhci.h                      |  84 +++++-
+>  drivers/mmc/host/sdhci-msm.c                  | 276 +++++++++++++++++-
+>  include/linux/mmc/core.h                      |   6 +
+>  include/linux/mmc/host.h                      |  11 +
+>  20 files changed, 849 insertions(+), 25 deletions(-)
+>  create mode 100644 drivers/mmc/core/crypto.c
+>  create mode 100644 drivers/mmc/core/crypto.h
+>  rename drivers/mmc/host/{cqhci.c => cqhci-core.c} (94%)
+>  create mode 100644 drivers/mmc/host/cqhci-crypto.c
+>  create mode 100644 drivers/mmc/host/cqhci-crypto.h
+>
+> --
+> 2.30.0
+>
 
-I guess this '24' is actually PCIE_INTX_SHIFT? In this case,
-please write it as
+Applied for next (leaving patch9 for arm soc), thanks!
 
-GENMASK(PCIE_INTX_SHIFT + PCI_NUM_INTX - 1, PCIE_INTX_SHIFT)
-
-to make it clear that you are dealing with one bit per INTx.
-
-> +
-> +#define PCIE_INT_STATUS_REG		0x184
-> +
->  #define PCIE_TRANS_TABLE_BASE_REG	0x800
->  #define PCIE_ATR_SRC_ADDR_MSB_OFFSET	0x4
->  #define PCIE_ATR_TRSL_ADDR_LSB_OFFSET	0x8
-> @@ -77,6 +86,8 @@
->   * @phy: PHY controller block
->   * @clks: PCIe clocks
->   * @num_clks: PCIe clocks count for this port
-> + * @irq: PCIe controller interrupt number
-> + * @intx_domain: legacy INTx IRQ domain
->   */
->  struct mtk_pcie_port {
->  	struct device *dev;
-> @@ -87,6 +98,9 @@ struct mtk_pcie_port {
->  	struct phy *phy;
->  	struct clk_bulk_data *clks;
->  	int num_clks;
-> +
-> +	int irq;
-> +	struct irq_domain *intx_domain;
->  };
-> 
->  /**
-> @@ -266,6 +280,149 @@ static int mtk_pcie_startup_port(struct
-> mtk_pcie_port *port)
->  	return 0;
->  }
-> 
-> +static int mtk_pcie_set_affinity(struct irq_data *data,
-> +				 const struct cpumask *mask, bool force)
-> +{
-> +	return -EINVAL;
-> +}
-> +
-> +static void mtk_intx_mask(struct irq_data *data)
-> +{
-> +	struct mtk_pcie_port *port = irq_data_get_irq_chip_data(data);
-> +	u32 val;
-> +
-> +	val = readl_relaxed(port->base + PCIE_INT_ENABLE_REG);
-> +	val &= ~BIT(data->hwirq + PCIE_INTX_SHIFT);
-> +	writel_relaxed(val, port->base + PCIE_INT_ENABLE_REG);
-
-This is missing some locking. Otherwise, two concurrent mask/unmask
-for different interrupts will corrupt each other's state.
-
-> +}
-> +
-> +static void mtk_intx_unmask(struct irq_data *data)
-> +{
-> +	struct mtk_pcie_port *port = irq_data_get_irq_chip_data(data);
-> +	u32 val;
-> +
-> +	val = readl_relaxed(port->base + PCIE_INT_ENABLE_REG);
-> +	val |= BIT(data->hwirq + PCIE_INTX_SHIFT);
-> +	writel_relaxed(val, port->base + PCIE_INT_ENABLE_REG);
-
-Same thing here.
-
-> +}
-> +
-> +/**
-> + * mtk_intx_eoi
-> + * @data: pointer to chip specific data
-> + *
-> + * As an emulated level IRQ, its interrupt status will remain
-> + * until the corresponding de-assert message is received; hence that
-> + * the status can only be cleared when the interrupt has been 
-> serviced.
-> + */
-> +static void mtk_intx_eoi(struct irq_data *data)
-> +{
-> +	struct mtk_pcie_port *port = irq_data_get_irq_chip_data(data);
-> +	unsigned long hwirq;
-> +
-> +	hwirq = data->hwirq + PCIE_INTX_SHIFT;
-> +	writel_relaxed(BIT(hwirq), port->base + PCIE_INT_STATUS_REG);
-> +}
-> +
-> +static struct irq_chip mtk_intx_irq_chip = {
-> +	.irq_mask		= mtk_intx_mask,
-> +	.irq_unmask		= mtk_intx_unmask,
-> +	.irq_eoi		= mtk_intx_eoi,
-> +	.irq_set_affinity	= mtk_pcie_set_affinity,
-> +	.name			= "PCIe",
-
-nit: "PCIe" is not really descriptive. "INTx" would be a bit better.
-
-> +};
-> +
-> +static int mtk_pcie_intx_map(struct irq_domain *domain, unsigned int 
-> irq,
-> +			     irq_hw_number_t hwirq)
-> +{
-> +	irq_set_chip_and_handler_name(irq, &mtk_intx_irq_chip,
-> +				      handle_fasteoi_irq, "INTx");
-> +	irq_set_chip_data(irq, domain->host_data);
-
-You probably want to set the chip_data *before* wiring
-the handler, as otherwise you could end-up with a NULL
-pointer in any of the callbacks if the interrupt fires
-between the two.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct irq_domain_ops intx_domain_ops = {
-> +	.map = mtk_pcie_intx_map,
-> +};
-> +
-> +static int mtk_pcie_init_irq_domains(struct mtk_pcie_port *port,
-> +				     struct device_node *node)
-> +{
-> +	struct device *dev = port->dev;
-> +	struct device_node *intc_node;
-> +
-> +	/* Setup INTx */
-> +	intc_node = of_get_child_by_name(node, "interrupt-controller");
-> +	if (!intc_node) {
-> +		dev_err(dev, "missing PCIe Intc node\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	port->intx_domain = irq_domain_add_linear(intc_node, PCI_NUM_INTX,
-> +						  &intx_domain_ops, port);
-> +	if (!port->intx_domain) {
-> +		dev_err(dev, "failed to get INTx IRQ domain\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void mtk_pcie_irq_teardown(struct mtk_pcie_port *port)
-> +{
-> +	irq_set_chained_handler_and_data(port->irq, NULL, NULL);
-> +
-> +	if (port->intx_domain)
-> +		irq_domain_remove(port->intx_domain);
-> +
-> +	irq_dispose_mapping(port->irq);
-> +}
-> +
-> +static void mtk_pcie_irq_handler(struct irq_desc *desc)
-> +{
-> +	struct mtk_pcie_port *port = irq_desc_get_handler_data(desc);
-> +	struct irq_chip *irqchip = irq_desc_get_chip(desc);
-> +	unsigned long status;
-> +	unsigned int virq;
-> +	irq_hw_number_t irq_bit = PCIE_INTX_SHIFT;
-> +
-> +	chained_irq_enter(irqchip, desc);
-> +
-> +	status = readl_relaxed(port->base + PCIE_INT_STATUS_REG);
-> +	if (status & PCIE_INTX_MASK) {
-
-This "if (status & PCIE_INTX_MASK)" is already implicit from
-the for_each_set_bit_from() iterator, and you can drop it.
-
-> +		for_each_set_bit_from(irq_bit, &status, PCI_NUM_INTX +
-> +				      PCIE_INTX_SHIFT) {
-> +			virq = irq_find_mapping(port->intx_domain,
-> +						irq_bit - PCIE_INTX_SHIFT);
-> +			generic_handle_irq(virq);
-> +		}
-> +	}
-> +
-> +	chained_irq_exit(irqchip, desc);
-> +}
-> +
-> +static int mtk_pcie_setup_irq(struct mtk_pcie_port *port,
-> +			      struct device_node *node)
-> +{
-> +	struct device *dev = port->dev;
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	int err;
-> +
-> +	err = mtk_pcie_init_irq_domains(port, node);
-> +	if (err) {
-> +		dev_err(dev, "failed to init PCIe IRQ domain\n");
-> +		return err;
-> +	}
-> +
-> +	port->irq = platform_get_irq(pdev, 0);
-> +	if (port->irq < 0)
-> +		return port->irq;
-> +
-> +	irq_set_chained_handler_and_data(port->irq, mtk_pcie_irq_handler, 
-> port);
-
-You seem to be missing something that will mask all INTx interrupts
-as an initial state.
-
-> +
-> +	return 0;
-> +}
-> +
->  static int mtk_pcie_clk_init(struct mtk_pcie_port *port)
->  {
->  	int ret;
-> @@ -388,6 +545,10 @@ static int mtk_pcie_setup(struct mtk_pcie_port 
-> *port)
->  		goto err_setup;
->  	}
-> 
-> +	err = mtk_pcie_setup_irq(port, dev->of_node);
-> +	if (err)
-> +		goto err_setup;
-> +
->  	dev_info(dev, "PCIe link up success!\n");
-> 
->  	return 0;
-> @@ -423,6 +584,7 @@ static int mtk_pcie_probe(struct platform_device 
-> *pdev)
-> 
->  	err = pci_host_probe(host);
->  	if (err) {
-> +		mtk_pcie_irq_teardown(port);
->  		mtk_pcie_power_down(port);
->  		return err;
->  	}
-> @@ -440,6 +602,7 @@ static int mtk_pcie_remove(struct platform_device 
-> *pdev)
->  	pci_remove_root_bus(host->bus);
->  	pci_unlock_rescan_remove();
-> 
-> +	mtk_pcie_irq_teardown(port);
->  	mtk_pcie_power_down(port);
-> 
->  	return 0;
-
-Thanks,
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
+Kind regards
+Uffe
