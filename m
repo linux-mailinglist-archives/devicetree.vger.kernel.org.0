@@ -2,93 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F29D305877
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 11:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB41305879
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 11:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S314174AbhAZXAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 18:00:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45524 "EHLO mail.kernel.org"
+        id S314178AbhAZXAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 18:00:23 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47448 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2394229AbhAZSMr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 13:12:47 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 20A7820780;
-        Tue, 26 Jan 2021 18:12:05 +0000 (UTC)
+        id S1729073AbhAZSV7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 13:21:59 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7E859207BC;
+        Tue, 26 Jan 2021 18:21:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611684726;
-        bh=37j/jpNataYZFpVX890tq37uguJ0zy2E+OtjeAdyp2o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J83Q2v41VJpXFMJIOWBdp4DJpkzdEYeoFYDsIp4a8KAYHxSgYYnep3uo6HcGZSA4L
-         AY3zMhC3ZlacogVThGHaGC7SQcfdO3iOMc0f2LKBLCcSo4hZSCjlxD8Aa2l3zalngu
-         QwEzYUs8sd5X3UtMjtaIfq9tHtGYfZBsNEHn3Yt/2mjs1rp6fkB/xEh9b5cGL35DjR
-         lu9YOQUgEA2Pyq7ibf6hZgi7ZSOSpP6jIp6S1wZFKFu6uvNOBWLkZzAExQCu8Iifz5
-         PAHlJiQPpoC/4+7smILuum5+EwZLHp1Ye1Y5ch56xmCMdVvx7vSulpmGZmPPl5XNaD
-         okzdqScSd+wzw==
-Date:   Tue, 26 Jan 2021 18:11:24 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        Mayulong <mayulong1@huawei.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-arm-msm@vger.kernel.org, YueHaibing <yuehaibing@huawei.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Colin Ian King <colin.king@canonical.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 00/21] Move Hisilicon 6421v600 SPMI driver set out of
- staging
-Message-ID: <20210126181124.GG4839@sirena.org.uk>
-References: <cover.1611212783.git.mchehab+huawei@kernel.org>
- <YBBXcdLbj92yMJhw@kroah.com>
- <20210126175752.GF4839@sirena.org.uk>
- <YBBZP9LjXPi/rzfP@kroah.com>
+        s=k20201202; t=1611685277;
+        bh=MXfhwHib5lhIxe0d2EionO+qD1p7JOcTGIR5T//GcjU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Vyv6zeCgPBGRmLOGE+ZvJN/iEJbaZMbXGNiKs6W7mrLLyXtdvyXRRMjhIUG4flGz0
+         SObPNEWXGHHwcJfUJNuiMDGYMFH/8ozn34f5YEANN+7bqYaurnkm8GG9NwrvNlziq/
+         O+icUTumPpIZFw8RhAofdIEpRpC2YkiAovXOWMQqJg9uQPP3e+v84gtclOugTGmOcV
+         ++aSNFIc4sQpch4zq96vzAnzS+3zaa/mBeaevzYjYP5n9QywZGVOgMQYAiyYmOP+pZ
+         Sq1U3Xwms5ZLaHqaPI4yniW31jcyXpj/T+SM9Ctu5ovfB008PliOds9wV4CCoDyhwc
+         GyVUoh4d1+tyA==
+Received: by mail-ed1-f43.google.com with SMTP id c6so20960185ede.0;
+        Tue, 26 Jan 2021 10:21:17 -0800 (PST)
+X-Gm-Message-State: AOAM531+bSa8/wfSUxTkMkqCWoYP6KAcEK0RB3tUKorghTKbVy0gruDu
+        l16YNSHn7Vbd0RkSMdhlUX5JAJttecisG/5fnw==
+X-Google-Smtp-Source: ABdhPJwqon1vbLCOlmss6J+2GsHVOo4w9BY+GyxQEwzER9kIB9CkFOtLUal0HAuyf9bfo2h5vrYSv5GPYVZbdJOig20=
+X-Received: by 2002:a05:6402:1751:: with SMTP id v17mr5717873edx.289.1611685276124;
+ Tue, 26 Jan 2021 10:21:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lQSB8Tqijvu1+4Ba"
-Content-Disposition: inline
-In-Reply-To: <YBBZP9LjXPi/rzfP@kroah.com>
-X-Cookie: I don't understand you anymore.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210123034428.2841052-1-swboyd@chromium.org>
+In-Reply-To: <20210123034428.2841052-1-swboyd@chromium.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 26 Jan 2021 12:21:04 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+voSRnHEEkUZSasdKGrXiBs3yCmzHp6Ua4WNuAgnh4AQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+voSRnHEEkUZSasdKGrXiBs3yCmzHp6Ua4WNuAgnh4AQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] Stop NULLifying match pointer in of_match_device()
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Jean Delvare <jdelvare@suse.com>, Jiri Slaby <jslaby@suse.com>,
+        Linux HWMON List <linux-hwmon@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 22, 2021 at 9:44 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> (This is a continuation of this series[1] per Rob's request. I've picked
+> up the acks, etc. with b4 and compile tested the patches along with an
+> arm64 allmodconfig build. Presumably Rob will pick these up directly.)
+>
+> of_match_device() uses of_match_ptr() to make the match table argument
+> NULL via the pre-processor when CONFIG_OF=n. This makes life harder for
+> compilers who think that match tables are never used and warn about
+> unused variables when CONFIG_OF=n. This series changes various callers
+> to use of_device_get_match_data() instead, which doesn't have this
+> problem, and removes the of_match_ptr() usage from of_match_device() so
+> that the compiler can stop complaining about unused variables. It will
+> do dead code elimination instead and remove the match table if it isn't
+> actually used.
+>
+> [1] https://lore.kernel.org/r/20191004214334.149976-1-swboyd@chromium.org
+>
+> Cc: Alexandre Torgue <alexandre.torgue@st.com>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Grygorii Strashko <grygorii.strashko@ti.com>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jacopo Mondi <jacopo@jmondi.org>
+> Cc: Jean Delvare <jdelvare@suse.com>
+> Cc: Jiri Slaby <jslaby@suse.com>
+> Cc: <linux-hwmon@vger.kernel.org>
+> Cc: <linux-kernel@vger.kernel.org>,
+> Cc: <linux-media@vger.kernel.org>
+> Cc: <linux-omap@vger.kernel.org>
+> Cc: <linux-renesas-soc@vger.kernel.org>
+> Cc: <linux-serial@vger.kernel.org>
+> Cc: <linux-usb@vger.kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Richard Leitner <richard.leitner@skidata.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+>
+> Stephen Boyd (6):
+>   media: renesas-ceu: Use of_device_get_match_data()
+>   drivers: net: davinci_mdio: Use of_device_get_match_data()
+>   serial: stm32: Use of_device_get_match_data()
+>   usb: usb251xb: Use of_device_get_match_data()
+>   hwmon: (lm70) Avoid undefined reference to match table
+>   of/device: Don't NULLify match table in of_match_device() with
+>     CONFIG_OF=n
+>
+>  drivers/hwmon/lm70.c                   |  2 +-
+>  drivers/media/platform/renesas-ceu.c   |  2 +-
+>  drivers/net/ethernet/ti/davinci_mdio.c | 12 ++---
+>  drivers/tty/serial/stm32-usart.c       | 71 ++++++++++++--------------
+>  drivers/tty/serial/stm32-usart.h       |  2 +-
+>  drivers/usb/misc/usb251xb.c            | 12 ++---
+>  include/linux/of_device.h              |  4 +-
+>  7 files changed, 47 insertions(+), 58 deletions(-)
 
---lQSB8Tqijvu1+4Ba
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Series applied.
 
-On Tue, Jan 26, 2021 at 07:02:39PM +0100, Greg Kroah-Hartman wrote:
-> On Tue, Jan 26, 2021 at 05:57:52PM +0000, Mark Brown wrote:
 
-> > Is there a branch we can pull from?
-
-> Once 0-day passes, you can pull from my staging-testing branch from
-> staging.git on git.kernel.org if you want.  Give it 24 hours to pass
-> before it hits that location.
-
-Thanks.
-
-> Do you need a tag to pull from?
-
-It'd be nice but not essential.
-
---lQSB8Tqijvu1+4Ba
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmAQW0sACgkQJNaLcl1U
-h9DkuAf+I7C5HDi8sRGbQ5BB8gnyBQc1J1NvPGhgCZLqgcZ/C6kaERvIEIUx415Z
-tKXNEW2y1+JCItwwxaggUZntczggAKTsttUr05nZLfggBZVfOaRlHTSocejd8ybT
-8J1A5onhtDBcHHYfKOeET14kS4ie1HLWqIdOAnN/rsIcaQ+v7w+LFvJ6NxdbI1d3
-LsiWeEPsfgqNZOtlP4h8cCvo2Oky2TbXFvKFz0mKa9iKb+QXfEPjdgTlJj9uJaG3
-38HRI8sr652FqHQQAacySWVyKFELguBd+AOqDxTdpxrYod2vJuhgPYS+4j/eiYHp
-MlLwWUv9cc+VvM2Hlx3f8g+5lWxcXQ==
-=v1EX
------END PGP SIGNATURE-----
-
---lQSB8Tqijvu1+4Ba--
+Rob
