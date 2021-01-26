@@ -2,152 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3482303A23
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 11:23:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D929303B07
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 12:04:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727697AbhAZKXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 05:23:43 -0500
-Received: from mail-bn7nam10on2131.outbound.protection.outlook.com ([40.107.92.131]:35296
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732989AbhAZKT7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 05:19:59 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PeFLs7vwLAVhIylNkMRL3W4Uajyj0N2FwUMkXQVMhHydgcKH0fFxzyk0YoE++2S+juBZ9EZcZMwNMsjicNvbh6Ml6tMkiIwNiwMij9eWzIyAduMpNZRGWCNRKCEXKKJOiaS28/rDHbpCbcjTTMDU4ON1l+ImB9/Ca6kObJplVI049tyPTPL3kr+ISUWh/fEkk0JkFbFXXyIA+S/G/E3csnr29n3YBVq5z77iVX7ftkYTXCuU1jLD2USTXvfFLC+g2+zUstuG6JV9lLGo7eT9CFiiWotJWDr8M4V5EuFxKClPX4z81tZT3OiNRix946EGuM8mVWUSELz5SbwFqBMmIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E+Z7Elnhm3BhrgNeRyrqBv5JwYYEJY57zgz/EOQdRlg=;
- b=Rt/xGsYs8Q0krRJF7rqXnGZAmN5pevRDryaLUEBDw/HVGFuIbm9qfxv4CxKkMj0u/5BFb1eynUd+svmzkjW56cNn3dGFA90MGUuLIQBPXKBsUIvvVO1nffGikWCDN96htwUhseOs4mLx3u+c1E7Hds/NXGy3hwnq4PqOVEg72c7fjhEUm0q10gJ4NrywyIcum+MK3bx7K5/38fHt+NA11bZV0daWbUoUp1I0kqARXV982UErjdzwybV3e4QkMuuv8hSdKdSQ00SVaywKTM8MrGEwe/tc8lws744jLYVhKw0vw4Vz/FxMOqWbujWcEjgkLiBiVWvOAPdjWY8lWmSOpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+        id S2404810AbhAZLD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 06:03:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56754 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404791AbhAZLDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 06:03:11 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C63C061573;
+        Tue, 26 Jan 2021 03:02:30 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id w1so22290987ejf.11;
+        Tue, 26 Jan 2021 03:02:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E+Z7Elnhm3BhrgNeRyrqBv5JwYYEJY57zgz/EOQdRlg=;
- b=euDil4XuXMZkJoPfqVc5+ciA3EeOfz0M/yjrda5SEw+IAsZmR7Gm4NNMfENuuzlklWJ/fw8IqBsqehDEU3s+SV3qysH83PoRtszNXmRxQf77GVzM7WXe9OJJUfL83HkRuCx4XSalMshWHKDfuIUZjjVo4OaPNrRWQGBpXWQo79Q=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by SJ0PR04MB7359.namprd04.prod.outlook.com (2603:10b6:a03:2a0::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Tue, 26 Jan
- 2021 10:19:05 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::5813:96a7:b2d6:132]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::5813:96a7:b2d6:132%6]) with mapi id 15.20.3763.019; Tue, 26 Jan 2021
- 10:19:04 +0000
-Date:   Tue, 26 Jan 2021 18:18:30 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=tGus94grLYPWSUM0bMFUmChMXn+Sc5UCDSiVFm8Bk1g=;
+        b=ReLxtoNk/T9yXEhHKg8pHbxSJw3aJoyT/IEKEoIyVyeulTYz+4TP45B5rr4TihDhhv
+         17I+sgm2Ant/VgPBELLeO5DsCELkpNd8VASufye+/0aURAJIDZddTMAgWF7ImRzyxQEA
+         rVq9VqepJAu29BhI3wx9AQTCzqmObuq5/kZH5Qu9GKKX5zBbOtfoawLHK57+eYd71VZm
+         kH/TAv0BLQGfAcq04zf7TOp5jS+IlbY+qvgrzTUoVwHJDGAsmEEIla5U/PABcEf5J9NM
+         hxSDeyQezd8wS6bI7OppyoHqfzpcNfjWa9NJUp+k2Szj5UKgvfcm/3cHrdv9ptGGBSpS
+         yAlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=tGus94grLYPWSUM0bMFUmChMXn+Sc5UCDSiVFm8Bk1g=;
+        b=ETS/UVs7nLTb+/wp+jZnnWr327SfBP/EJPS1PH+xuhOaoaNk53NWWzbqpR25I0Wq3A
+         i9CkYaKtw78EyP7brTHiXAf2/rXO1EWw+/0YUNZpQLWngTvwqJDcdIWYyBLW2HapPjwe
+         0oRP1Yn65lZTXxRkVfcdVT+FHLO3JilfMdpEvyeWZQT2yFVXS34OVQ9MywsSPBNw6SiY
+         25ovuz7OGH0idvvOLSdoaKH5eh/xeE1gyFnsr7cQs+i/mctXUdbz6lcoY6wiI5hO2Gyd
+         +3zuWqdEMSXlAEH5YuZl0CQBhGQqRuoYz0SIvq/nsUdaBgE/1dC6n8mOZAO4R/eAY5Ha
+         PR5g==
+X-Gm-Message-State: AOAM531U4nnS7O4Or4naFJzRBS2DaeUv1hYqyTAfZHWE/bGVXt1AMoGE
+        9FcyrfvzXAQD4FnaNEA0PYgZHnmkS+E=
+X-Google-Smtp-Source: ABdhPJweKLVCgdb55W52Fgzza7M8uQ3muJw6gFw6GteiCpKniAv8SkhaI6jSnMSRGamCzzANptF5tQ==
+X-Received: by 2002:a17:906:c954:: with SMTP id fw20mr3076916ejb.342.1611658949575;
+        Tue, 26 Jan 2021 03:02:29 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id a2sm9533408ejk.80.2021.01.26.03.02.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 26 Jan 2021 03:02:28 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings:drm/bridge:anx7625:add HDCP support
- flag and swing reg
-Message-ID: <20210126101830.GA32321@zhaomy-pc>
-References: <cover.1611572142.git.xji@analogixsemi.com>
- <75e29d7386df2ebca4a8e3f0b91c8370a4a8f74f.1611572143.git.xji@analogixsemi.com>
- <1611586295.672940.327907.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1611586295.672940.327907.nullmailer@robh.at.kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Originating-IP: [61.148.116.10]
-X-ClientProxiedBy: HKAPR04CA0018.apcprd04.prod.outlook.com
- (2603:1096:203:d0::28) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from zhaomy-pc (61.148.116.10) by HKAPR04CA0018.apcprd04.prod.outlook.com (2603:1096:203:d0::28) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3784.11 via Frontend Transport; Tue, 26 Jan 2021 10:19:03 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e26b7eb2-498b-4fb0-9c30-08d8c1e3cec3
-X-MS-TrafficTypeDiagnostic: SJ0PR04MB7359:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SJ0PR04MB73590A0BAC31D3E4C148DA62C7BC9@SJ0PR04MB7359.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iy2A/mwol1B6HCLgx//k4msxzh/2LEdVr0AWGn9sd28ANU9fuwGhhg5nKDDVHEXj4ZcEowTAM6auG1KBTD26PkSea3y/KmqO5rWTkzNqeLtHe62e9noi2jJdF9nEznPIj0Wk9PIMVTx2JTw1AEy98SZlaFQ1zb4T8lenUDAttID3Eoh2Wunv13UqNEp30ZxxklyofqpK+iAeaNN4YeSCsp3twAwbiXGFUh3eEbGzK8Yg0oRigxLOR6UFElAd+E1InE/g7iclDyp1fFsA0uo/MGteT9JJCsgCRDI7CoE7jm2omtgihJa5qRzow0aKXl4xOG7enOL6wtQF3ztnwu4irOqmvCcJoJC1GiCBWERLZziXvYFh+VYKwcGKcC3B7ITYnF65i0N0nkE7crKU8Ar5ml4cEmSuUgvQeR1RezB6P3vQj5JJ4NZT4uiIJ+0BTDpSaBnoRiXu/KnPu2FpoDyYhG6Q9sUFFsni9v9CGqe6EAOkfes5N/ck1/W5yOZO0qcA6Z5OHuCkL266RISaR2MqCsgC8etUaIuWV+9nP1vvwak5Js9CetR8YH1r/hKmD2BwvWecwy9Sm59G5/Slxpq1u/6TY+zK3/LlhIhfxKA8jKt6hv4aOLp6kbdjjTJPoujvM1eVqR5JxuCyPugbs6HaWg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39850400004)(396003)(136003)(346002)(376002)(366004)(9686003)(1076003)(83380400001)(8676002)(52116002)(2906002)(33716001)(6916009)(16526019)(6666004)(26005)(5660300002)(66556008)(6496006)(33656002)(55016002)(966005)(66476007)(54906003)(956004)(4326008)(8936002)(478600001)(66946007)(7416002)(86362001)(316002)(186003)(16060500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Nf7YoK9A0FmNDPAumgnGIShN/pAAFaH2MtUdNmatHw8tCVPRO7zRdknjM692?=
- =?us-ascii?Q?nx0UJCG4K1CVfNiolENiWsHGA0Zp1s8A/IcHUFSRTOBX/n+zAMGpyLkoIDoa?=
- =?us-ascii?Q?6hiMAEBxL0SFuxEcShLu+MHkWbYTgdFblXSBlQRgMVjfapPMexmZgaVfF1qY?=
- =?us-ascii?Q?TJekb56CLNgfbAHKRhBsKZkXj25iDTIWFBMjX3A9XnMnYX/W/DKXwFFXNI1I?=
- =?us-ascii?Q?5TDrWR+hqoX4p5031ruWmE9OBYxZei/mpoaiPNyAfOs/4KSs9gfjNe5oPfYi?=
- =?us-ascii?Q?G5LGTKb71SZzOrVb4yuAleIfyD+KX0+HXbyu4tJtARSAA/jzjlYidRgF+5Pj?=
- =?us-ascii?Q?YLHhyXhuGoKhiqqwwqlhDzlC3o4VNLDiBv2ee+dJqT82M2IrKhUbov2vTIAC?=
- =?us-ascii?Q?8idho1jhJlferi48vIljUXqAdGaeXAkt5l0wWrHxNxtpfd1jKgGhQ0aq9Zxy?=
- =?us-ascii?Q?o+Y9pHr2KE4pPQfqxuAm3yFZUmjofxKwGJU+tlzD01fzYJLtGnmsDy3gs/ot?=
- =?us-ascii?Q?PJtorzzNQ3K6IeZlFU3EFLNxPHRJptwcabwyxiUtMmnJmeu46EOecoqKy5p8?=
- =?us-ascii?Q?a9a0fCVogyOw54PV+65aiGZpxmAAksuhmragO83TcFCrrjPXx+S4DgF5kPjO?=
- =?us-ascii?Q?M69788nd2XmmqtS1zFB3WKoTFQB75FSGuFnFZhfGerRr+zKjOPLFDNy8Jxuf?=
- =?us-ascii?Q?+des9P7Vybzy8Cn8NqnIde2d2cSKIWX8Dd57AELeSLGVmkLVg4WwH6Q5MjLV?=
- =?us-ascii?Q?GvQY8O7MtJGsm1z7M0S39WS+PONxJl18M5HwrHlOGnwDM/l5nXrNQr420W6F?=
- =?us-ascii?Q?X5cDPsRYr5OKryZ52FuWUL+eIbwbV1soEweuB1wk6nY9XbqkQRs7xOmKRlRA?=
- =?us-ascii?Q?jBADp+1sWjbgx1ejUkN189QpmpZVkozHHmWKV859LLT5RGU9VnjEM7l4e9sy?=
- =?us-ascii?Q?ETFK/Gozt095gFuOQf5CUzTWGdn4e4W/2DxJbLikw81Jt5thUQThXrHZpvgg?=
- =?us-ascii?Q?hZR5OukP/SAvHNfKCFyp68SUAS+p4xGWzxr5Y1BMZYahmhwx71kXcO9v+kAi?=
- =?us-ascii?Q?M/8yKOPf?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e26b7eb2-498b-4fb0-9c30-08d8c1e3cec3
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 10:19:04.6694
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bDG5m1TzXiFLGzuYP2njiEn3PauXMCShi1Nmf4vcRoJ2MCx1QXdRoo7iKs7sMrC7S4PRdUgZgXzTNWtSg93p8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7359
+Subject: [PATCH 1/2] ARM: dts: rockchip: fix pinctrl sleep nodename for rk3036-kylin and rk3288
+Date:   Tue, 26 Jan 2021 12:02:20 +0100
+Message-Id: <20210126110221.10815-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 08:51:35AM -0600, Rob Herring wrote:
-> On Mon, 25 Jan 2021 19:12:21 +0800, Xin Ji wrote:
-> > Add 'bus-type' and 'data-lanes' define for port0, add HDCP support
-> > flag and DP tx lane0 and lane1 swing register array define.
-> > 
-> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > ---
-> >  .../bindings/display/bridge/analogix,anx7625.yaml  | 57 ++++++++++++++++++++--
-> >  1 file changed, 54 insertions(+), 3 deletions(-)
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-Hi Rob, OK, I'll fix it in the next serial.
-Thanks,
-Xin
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.example.dt.yaml: encoder@58: ports: '#address-cells', '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.example.dt.yaml: encoder@58: ports:port@1:endpoint: Additional properties are not allowed ('remote-endpoint' was unexpected)
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> 
-> See https://patchwork.ozlabs.org/patch/1431199
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+A test with the command below aimed at powerpc generates
+notifications in the Rockchip ARM tree.
+
+Fix pinctrl "sleep" nodename by renaming it to "suspend"
+for rk3036-kylin and rk3288
+
+make ARCH=arm dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/powerpc/sleep.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3036-kylin.dts | 2 +-
+ arch/arm/boot/dts/rk3288.dtsi      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/rk3036-kylin.dts b/arch/arm/boot/dts/rk3036-kylin.dts
+index 7154b827e..e817eba8c 100644
+--- a/arch/arm/boot/dts/rk3036-kylin.dts
++++ b/arch/arm/boot/dts/rk3036-kylin.dts
+@@ -390,7 +390,7 @@
+ 		};
+ 	};
+ 
+-	sleep {
++	suspend {
+ 		global_pwroff: global-pwroff {
+ 			rockchip,pins = <2 RK_PA7 1 &pcfg_pull_none>;
+ 		};
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index 29ffe2eb9..7dec6935f 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -1593,7 +1593,7 @@
+ 			drive-strength = <12>;
+ 		};
+ 
+-		sleep {
++		suspend {
+ 			global_pwroff: global-pwroff {
+ 				rockchip,pins = <0 RK_PA0 1 &pcfg_pull_none>;
+ 			};
+-- 
+2.11.0
+
