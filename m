@@ -2,104 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63303303341
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D181303345
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 05:52:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728155AbhAZEtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:49:24 -0500
-Received: from a1.mail.mailgun.net ([198.61.254.60]:28468 "EHLO
-        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387449AbhAZBYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 20:24:00 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1611624220; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=7OsIShq8IRb2YDHJ4/j58ebi3yNhkVmimR5GqE3wAqY=; b=ffkg1KF1BUELs0kXin/54tyDsdpZTLLwy4F2DxJ/1vqjUcTWNST5Q0CG/anLY09E3YzqVyCH
- tYxb7gehb5O/tYqV1VsMO9rQyc/0VJf/3xqB1n6ZA9F2Y1VkTZSqWie38dBDj3rztw0YyO+T
- bafgiSGEBgdCNgiU3P9bzSr1/lk=
-X-Mailgun-Sending-Ip: 198.61.254.60
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 600f6cfe5677aca7bd490abe (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 26 Jan 2021 01:14:38
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D725AC43463; Tue, 26 Jan 2021 01:14:37 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.110.78.65] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 91F3AC433C6;
-        Tue, 26 Jan 2021 01:14:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 91F3AC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v6 3/4] usb: dwc3: Resize TX FIFOs to meet EP bursting
- requirements
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, peter.chen@nxp.com,
-        jackp@codeaurora.org
-References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
- <1611288100-31118-4-git-send-email-wcheng@codeaurora.org>
- <YAsHbj/mITeiY5Cq@builder.lan>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <724cb274-36ce-fb48-a156-4eaf9e686fdf@codeaurora.org>
-Date:   Mon, 25 Jan 2021 17:14:35 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1728210AbhAZEtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:49:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726758AbhAZBbZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 20:31:25 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FFDBC061D7F
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 17:18:10 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id b8so8740324plh.12
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 17:18:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iWbVQO5R0FpQjPeleTL5ZQxXMwOKE8gz64YVQB09gIE=;
+        b=M8/QV0mlc2v2R8DUyzcSmv2ah8W3t/Zyct7N54o+QNG5dYc72k3Goi4nwckpZUxBKY
+         OLzUjzQ069Xg0Mwox3AdKaNd2sH8efxb8MswfwAeVssIrhd+5npraQUBmohEdUUtPBi+
+         tnkK7aKAGBIFCJRX+MW31GV68uGwQMAPlaYME=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iWbVQO5R0FpQjPeleTL5ZQxXMwOKE8gz64YVQB09gIE=;
+        b=NiWBvQLlgNHdc82wot1/12EI7MuBxxA8+eMWPTTaLgIqngJc7nXM7BF9DomQQFV7nV
+         N5zcCpW57XEwI7NT2KcR7v56ij/KFzFTOTLthe7rVO+fxvHcUjXonyo3CM3ASmZ2njKL
+         Rlz+SqCUgTVPnmwaKUYntE7gg3XZ73lfDSJE5A11YHmayO+cT+gtbNoAmzLcA5/eXArI
+         pdwfgAYfEK48kB3wCsEAkV+Bunqvqn0G+Nh/5AWvVop/4gbWLnmdjzGg5qN35G8DSyix
+         Rroj+qSwo8+XL8yaeI0yqI3x4H8uskCdmQ/5q4rdxI398T6DuBG9S5r11thAFM2noIq/
+         uajQ==
+X-Gm-Message-State: AOAM532DG8GR8mReDQta7fZvza1AgIJnl3mZ0ylUWFSjXEaBVCNcQIeW
+        QcO2IZbHrD6sVL5S7/r2gOM8gw==
+X-Google-Smtp-Source: ABdhPJyjPaSweKNxNtO2gkziAaXPMrY4Rp0Kuls26ijdkAvAyf1Ku0oC++DgRuy/WatKIEzuLxGMZA==
+X-Received: by 2002:a17:90a:d255:: with SMTP id o21mr3117952pjw.151.1611623889956;
+        Mon, 25 Jan 2021 17:18:09 -0800 (PST)
+Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:50cc:9282:4fdd:3979])
+        by smtp.gmail.com with ESMTPSA id k9sm522248pji.8.2021.01.25.17.18.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 17:18:09 -0800 (PST)
+From:   Nicolas Boichat <drinkcat@chromium.org>
+To:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     fshao@chromium.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        hoegsberg@chromium.org, boris.brezillon@collabora.com,
+        hsinyi@chromium.org, Nicolas Boichat <drinkcat@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v11 0/4] drm/panfrost: Add support for mt8183 GPU
+Date:   Tue, 26 Jan 2021 09:17:55 +0800
+Message-Id: <20210126011759.1605641-1-drinkcat@chromium.org>
+X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
 MIME-Version: 1.0
-In-Reply-To: <YAsHbj/mITeiY5Cq@builder.lan>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi!
 
+Follow-up on the v5 [1], things have gotten significantly
+better in the last 9 months, thanks to the efforts on Bifrost
+support by the Collabora team (and probably others I'm not
+aware of).
 
-On 1/22/2021 9:12 AM, Bjorn Andersson wrote:
-> On Thu 21 Jan 22:01 CST 2021, Wesley Cheng wrote:
-> 
+I've been testing this series on a MT8183/kukui device, with a
+chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
+mesa 20.3.2 (lots of artifacts though).
 
-Hi Bjorn,
-> 
-> Under what circumstances should we specify this? And in particular are
-> there scenarios (in the Qualcomm platforms) where this must not be set?
->The TXFIFO dynamic allocation is actually a feature within the DWC3
-controller, and isn't specifically for QCOM based platforms.  It won't
-do any harm functionally if this flag is not set, as this is meant for
-enhancing performance/bandwidth.
+devfreq is currently not supported, as we'll need:
+ - Clock core support for switching the GPU core clock (see 2/4).
+ - Platform-specific handling of the 2-regulator (see 3/4).
 
-> In particular, the composition can be changed in runtime, so should we
-> set this for all Qualcomm platforms?
-> 
-Ideally yes, if we want to increase bandwith for situations where SS
-endpoint bursting is set to a higher value.
+Since the latter is easy to detect, patch 3/4 just disables
+devfreq if the more than one regulator is specified in the
+compatible matching table.
 
-> And if that's the case, can we not just set it from the qcom driver?
-> 
-Since this is a common DWC3 core feature, I think it would make more
-sense to have it in DWC3 core instead of a vendor's DWC3 glue driver.
+[1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
+[2] https://crrev.com/c/2608070
 
-Thanks
-Wesley Cheng
+Changes in v11:
+ - binding: power-domain-names not power-domainS-names
+ - mt8183*.dts: remove incorrect supply-names
 
-> Regards,
-> Bjorn
+Changes in v10:
+ - Fix the binding to make sure sram-supply property can be provided.
 
+Changes in v9:
+ - Explain why devfreq needs to be disabled for GPUs with >1
+   regulators.
+
+Changes in v8:
+ - Use DRM_DEV_INFO instead of ERROR
+
+Changes in v7:
+ - Fix GPU ID in commit message
+ - Fix GPU ID in commit message
+
+Changes in v6:
+ - Rebased, actually tested with recent mesa driver.
+ - Add gpu regulators to kukui dtsi as well.
+ - Power domains are now attached to spm, not scpsys
+ - Drop R-B.
+ - devfreq: New change
+ - Context conflicts, reflow the code.
+ - Use ARRAY_SIZE for power domains too.
+
+Changes in v5:
+ - Rename "2d" power domain to "core2"
+ - Rename "2d" power domain to "core2" (keep R-B again).
+ - Change power domain name from 2d to core2.
+
+Changes in v4:
+ - Add power-domain-names description
+   (kept Alyssa's reviewed-by as the change is minor)
+ - Add power-domain-names to describe the 3 domains.
+   (kept Alyssa's reviewed-by as the change is minor)
+ - Add power domain names.
+
+Changes in v3:
+ - Match mt8183-mali instead of bifrost, as we require special
+   handling for the 2 regulators and 3 power domains.
+
+Changes in v2:
+ - Use sram instead of mali_sram as SRAM supply name.
+ - Rename mali@ to gpu@.
+
+Nicolas Boichat (4):
+  dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+  arm64: dts: mt8183: Add node for the Mali GPU
+  drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
+  drm/panfrost: Add mt8183-mali compatible string
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        |  28 +++++
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
+ 6 files changed, 162 insertions(+)
 
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.30.0.280.ga3ce27912f-goog
+
