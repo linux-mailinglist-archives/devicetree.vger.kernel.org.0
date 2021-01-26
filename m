@@ -2,166 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0FCE303EC8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:33:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F4B5303ED0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 14:36:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404559AbhAZNcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 08:32:39 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55618 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2404444AbhAZNcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 08:32:07 -0500
-X-UUID: 1c850dbb11be4f359ea5f03d2d240bd8-20210126
-X-UUID: 1c850dbb11be4f359ea5f03d2d240bd8-20210126
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <mason.zhang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1390792882; Tue, 26 Jan 2021 21:31:20 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 26 Jan 2021 21:31:18 +0800
-Received: from localhost.localdomain (10.15.20.246) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 26 Jan 2021 21:31:18 +0800
-From:   Mason Zhang <mason.zhang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
-        mtk22786 <Mason.Zhang@mediatek.com>,
-        Mason Zhang <mason.zhang@mediatek.com>
-Subject: [PATCH v1 1/1] arm64: dts: mt6779: add spi host dts nodes
-Date:   Tue, 26 Jan 2021 21:18:39 +0800
-Message-ID: <20210126131839.2168-2-mason.zhang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210126131839.2168-1-mason.zhang@mediatek.com>
-References: <20210126131839.2168-1-mason.zhang@mediatek.com>
+        id S2391736AbhAZNfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 08:35:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59778 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392554AbhAZN07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 08:26:59 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8997C061D73
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 05:26:17 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id c6so19752758ede.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 05:26:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=g1bWSW2j2AzUWAFhSJZFlC66uupPeLjnhszVJrACnuw=;
+        b=hlqR1UTITl2IrZgG52KTylgq694xBqCbP2uOK7UZErWX5UjUpEj26bNjp5I2ASQBcy
+         NrcqZa4u3g3cCNc8N7TLmoBGqiGH1+bGVporc+AfMztQJ2p1PPcDWUiv4yVhdV71ynt9
+         zhO8mtfBn0jWkMcGdvAqEUX+KRg6J9KBy1ZSV3aMTJP5RVUM6LWrbv2CAqkDK7igHTDp
+         idIAgBkeXHS44OaKJttLbc8GPjeNt/E5oIbJIOcphXtf9MVQIccRPRnvfI+7Y2FzJtkg
+         jpkaaIpJ+ImQuaKCAhoaxVAO8rv1G/1pXNAo8p5YkzVm1v5vv6lH49uXzdSUhLIgMh8Q
+         G9IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=g1bWSW2j2AzUWAFhSJZFlC66uupPeLjnhszVJrACnuw=;
+        b=dgklvq6LEhWwnjE8w51EJHSgHT5PvoaqjxRGx9A7kufTNJpCUVyyijOw70QvzG1K5d
+         MN7uwVxVLfUl50OulSy4p8zVJS8pQ21N+2u7ksFjAxfOgh3qq/mvd5F4DPFvNrIcfx2L
+         HDSbGW8bYVSlv1Q6t9dVX55Tgl1d5DdDxkJxAFV5g1Exwm1FjQMZ5KQXBiZ4zDdMI7dI
+         BK8C0ctJ1sI1q/B1yKVvqbgtnOawGaKEg3k+X8DrPuuAizt0M8Mbl4YI75EimVIVSz31
+         4INHfkyVwlWwwMexyI4s4MPVaM684aNB2zidz8Yw/OPuof8gaVtqKTCpJ17VWxh+5DWC
+         08BQ==
+X-Gm-Message-State: AOAM532pjQLGEndWElXEYGuwXv8DJr3MO3gPu0r4fQl77DjiSGnycep7
+        ofnifkBBtWKLyjLKEY3OJbkDiA==
+X-Google-Smtp-Source: ABdhPJxYoOhqu0uVmrPjAm/2q9G4E+XPc6EQ2qooE1FG/uuK4u7WYvLoeIqvmMnqRM5oH2BRxbWCfg==
+X-Received: by 2002:aa7:c981:: with SMTP id c1mr4786033edt.90.1611667576505;
+        Tue, 26 Jan 2021 05:26:16 -0800 (PST)
+Received: from localhost.localdomain ([2a02:2450:102f:d6a:65c9:91eb:731f:f2c8])
+        by smtp.gmail.com with ESMTPSA id dh14sm12236010edb.11.2021.01.26.05.26.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Jan 2021 05:26:15 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
+        UNGLinuxDriver@microchip.com, lgirdwood@gmail.com,
+        broonie@kernel.org, matthias.bgg@gmail.com, jiaxin.yu@mediatek.com,
+        shane.chien@mediatek.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Robert Foss <robert.foss@linaro.org>
+Subject: [PATCH v1 1/2] dt-bindings: pinctrl: pinctrl-microchip-sgpio: Fix dt_binding_check warning
+Date:   Tue, 26 Jan 2021 14:25:30 +0100
+Message-Id: <20210126132531.2084711-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 3CEE20003B000953DADB1DA8BE2D11D7441859CF93F43EF4A6FEB6449928E85B2000:8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: mtk22786 <Mason.Zhang@mediatek.com>
+Silence indentation level warning reported by dt_binding_check in
+order to reduce noise during routine checks.
 
-this patch add spi host dts nodes for mt6779 IC.
+$ make dt_binding_check
+mt8192-mt6359-rt1015-rt5682.yaml:10:4: [warning] wrong indentation:
+expected 2 but found 3 (indentation)
 
-Change-Id: If4a3cbb09843f472210b390352db4b9886f5c00c
-Signed-off-by: Mason Zhang <mason.zhang@mediatek.com>
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- arch/arm64/boot/dts/mediatek/mt6779.dtsi | 96 ++++++++++++++++++++++++
- 1 file changed, 96 insertions(+)
+ .../devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-index 370f309d32de..272f4346d35e 100644
---- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-@@ -219,6 +219,102 @@
- 			status = "disabled";
- 		};
+diff --git a/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
+index df0c83cb1c6e..4fe35e650909 100644
+--- a/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
+@@ -99,8 +99,8 @@ patternProperties:
  
-+		spi0: spi0@1100a000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x1100a000 0 0x1000>;
-+			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				<&topckgen CLK_TOP_SPI>,
-+				<&infracfg_ao CLK_INFRA_SPI0>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi1: spi1@11010000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11010000 0 0x1000>;
-+			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				<&topckgen CLK_TOP_SPI>,
-+				<&infracfg_ao CLK_INFRA_SPI1>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi2: spi2@11012000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11012000 0 0x1000>;
-+			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				<&infracfg_ao CLK_INFRA_SPI2>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi3: spi3@11013000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11013000 0 0x1000>;
-+			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_SPI3>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi4: spi4@11018000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11018000 0 0x1000>;
-+			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_SPI4>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi5: spi5@11019000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11019000 0 0x1000>;
-+			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				<&topckgen CLK_TOP_SPI>,
-+				<&infracfg_ao CLK_INFRA_SPI5>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi6: spi6@1101d000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x1101d000 0 0x1000>;
-+			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_SPI6>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi7: spi7@1101e000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x1101e000 0 0x1000>;
-+			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_SPI7>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
- 		audio: clock-controller@11210000 {
- 			compatible = "mediatek,mt6779-audio", "syscon";
- 			reg = <0 0x11210000 0 0x1000>;
+       '#interrupt-cells':
+         description:
+-         Specifies the pin (port and bit) and flags, as defined in
+-         defined in include/dt-bindings/interrupt-controller/irq.h
++          Specifies the pin (port and bit) and flags, as defined in
++          defined in include/dt-bindings/interrupt-controller/irq.h
+         const: 3
+ 
+       ngpios:
 -- 
-2.18.0
+2.27.0
 
