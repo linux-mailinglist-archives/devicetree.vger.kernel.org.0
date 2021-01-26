@@ -2,195 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F04DF30420B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 16:17:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D856304293
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 16:30:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406237AbhAZPQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 10:16:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55774 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406232AbhAZPQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 10:16:42 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E23C0698C1;
-        Tue, 26 Jan 2021 07:16:02 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id w124so18804929oia.6;
-        Tue, 26 Jan 2021 07:16:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Zpobjr8cydpUMwWxANyp1xlUOzZG3PHs5brNhMOWooM=;
-        b=f+0ZQqhHHTVwPxxu8wj3FFWbSId8HWWt7OotjUFHSGiNSAB8WUdK9CrNnl66VVCHDb
-         2TQNQmtnBFZpTkIiaJxGEx+5bVpm8tuTpfojFMR12cAZi66XQGMW1detPESoRGkzzlJU
-         W0xjmxxvRY+nFVpgBGmSfWj4KRIbVWeUghLcB7Lm+wqTRC1VYOCC+2IdF01mStmS2iff
-         lq8v6rLO9EydXYIRq80BlAMIP+9SUIuXXVJtMm6qaVf31jpAtdCU8VVnyFvUY6J18O96
-         XWCkwdZFNsh2u+O+Pw9rqMeX64ptzWK5KB5QqSLxT39wCM5eNP/azVrkBxb1OwuIoF7D
-         tZgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Zpobjr8cydpUMwWxANyp1xlUOzZG3PHs5brNhMOWooM=;
-        b=o5+bXezHfr6MoTyYpjf/qUqReoEsVj43t7GR4rd4hZyjvzwYBbv/EOpH6xgLAwVnuq
-         9XbYGkslUjTSLY0Z0OCID0MHthJ6Ebu4xPDI76PoOTmexuMjPzu56iMVPOUoePw79tUR
-         YzADaNdbJR5XucU3yAqs9Wg219JCcHgIqvEcerpFRY1rBKJYjl5q5iEHap1GCsTbpYvG
-         8f8clzt/ypymDGLh6HY8I7zMHwwJu/6vGrjWrdGf3girgx7Y2+U1PVspnJcsc3X1xhwn
-         zlBH4M39oV6wgC0N0pBMLBpngxHYnpvTDP6u+Hbq1AU48OlcF4z3zngrtfTEy/nY66p/
-         msqA==
-X-Gm-Message-State: AOAM533Uv1K4JXhPcXvPNUGBxxhzjYOgnXtbP4fkQ68Mfnf8uALqzzwh
-        GlyWOAgSFPQDk92op/S3dmpMEqvsDM8=
-X-Google-Smtp-Source: ABdhPJyR2RT/MEh+fireg0P1i60eSIJ9JoCy5JFpqFnX3086b7crRx/Kf921nTfInmz08HCE7Zt5EA==
-X-Received: by 2002:aca:3b89:: with SMTP id i131mr103487oia.102.1611674161804;
-        Tue, 26 Jan 2021 07:16:01 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 66sm3263912otw.75.2021.01.26.07.16.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jan 2021 07:16:01 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: connector: Add SVDM VDO properties
-To:     Kyle Tso <kyletso@google.com>, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        hdegoede@redhat.com, badhri@google.com
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210126084544.682641-1-kyletso@google.com>
- <20210126084544.682641-3-kyletso@google.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <55d175fe-863e-7fb5-073a-d18f62e59038@roeck-us.net>
-Date:   Tue, 26 Jan 2021 07:15:59 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2406289AbhAZP2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 10:28:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42256 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405624AbhAZP0Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 10:26:25 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 10CA122D58;
+        Tue, 26 Jan 2021 15:25:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611674743;
+        bh=yRdFQkspLQ1wcj3eSoQvsMygISsSCmwBA/F43gsmILw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IR4TSOCgx/IzvDxuN+32Q2VLHU3lkfQ+BmwPa3knsv1srjbUUX48c0Q//GfjJOK/o
+         hYc7Em9qp/jl9mkh55mAjQRBqQjlmg3AFTNT8jRuPQqy9+ZtcIbwoLreC2qSxN45y8
+         AdT+5uWSugjzE7/xL3SwAiryAa7UP2UxoEtIaYn/KZFe7rkkbGg6hiTYahobFRroES
+         ElbOTg9Ofy9qJXImuHB2SE7vOe+ZOjE0OmRMozorTAVY4V/5a2IkC2q5zaYd0+oibu
+         ZbVYqL2rcn2RBtb/DjS1lK3IkSYjS3G/v1Bb2i1C5XQ/rEvCq06z0GFain88M7Qn+8
+         GTQ+Shgaq49sA==
+Date:   Tue, 26 Jan 2021 17:25:39 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     xxm <xxm@rock-chips.com>, Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>
+Subject: Re: [PATCH v3 2/2] PCI: rockchip: add DesignWare based PCIe
+ controller
+Message-ID: <20210126152539.GI1053290@unreal>
+References: <20210125024824.634583-1-xxm@rock-chips.com>
+ <20210125024927.634634-1-xxm@rock-chips.com>
+ <20210125054836.GB579511@unreal>
+ <0b65ca38-ff7a-f9cd-5406-1f275fbbecd1@rock-chips.com>
+ <20210125090129.GF579511@unreal>
+ <CAL_JsqJET8-gn-uy11EVHJAz057FVH3-BErwyL41W2WpxhgQUQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210126084544.682641-3-kyletso@google.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqJET8-gn-uy11EVHJAz057FVH3-BErwyL41W2WpxhgQUQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/26/21 12:45 AM, Kyle Tso wrote:
-> Add bindings of VDO properties of USB PD SVDM so that they can be
-> defined in device tree.
-> 
-> Signed-off-by: Kyle Tso <kyletso@google.com>
+On Tue, Jan 26, 2021 at 08:52:31AM -0600, Rob Herring wrote:
+> On Mon, Jan 25, 2021 at 3:01 AM Leon Romanovsky <leon@kernel.org> wrote:
+> >
+> > On Mon, Jan 25, 2021 at 02:40:10PM +0800, xxm wrote:
+> > > Hi Leon,
+> > >
+> > > Thanks for your reply.
+> > >
+> > > 在 2021/1/25 13:48, Leon Romanovsky 写道:
+> > > > On Mon, Jan 25, 2021 at 10:49:27AM +0800, Simon Xue wrote:
+> > > > > pcie-dw-rockchip is based on DWC IP. But pcie-rockchip-host
+> > > > > is Rockchip designed IP which is only used for RK3399. So all the following
+> > > > > non-RK3399 SoCs should use this driver.
+> > > > >
+> > > > > Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> > > > > Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> > > > > ---
+> > > > >   drivers/pci/controller/dwc/Kconfig            |   9 +
+> > > > >   drivers/pci/controller/dwc/Makefile           |   1 +
+> > > > >   drivers/pci/controller/dwc/pcie-dw-rockchip.c | 286 ++++++++++++++++++
+> > > > >   3 files changed, 296 insertions(+)
+> > > > >   create mode 100644 drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > > >
+> > > > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> > > > > index 22c5529e9a65..aee408fe9283 100644
+> > > > > --- a/drivers/pci/controller/dwc/Kconfig
+> > > > > +++ b/drivers/pci/controller/dwc/Kconfig
+> > > > > @@ -214,6 +214,15 @@ config PCIE_ARTPEC6_EP
+> > > > >             Enables support for the PCIe controller in the ARTPEC-6 SoC to work in
+> > > > >             endpoint mode. This uses the DesignWare core.
+> > > > >
+> > > > > +config PCIE_ROCKCHIP_DW_HOST
+> > > > > + bool "Rockchip DesignWare PCIe controller"
+> > > > > + select PCIE_DW
+> > > > > + select PCIE_DW_HOST
+> > > > > + depends on ARCH_ROCKCHIP || COMPILE_TEST
+> > > > > + depends on OF
+> > > > > + help
+> > > > > +   Enables support for the DW PCIe controller in the Rockchip SoC.
+> > > > > +
+> > > > >   config PCIE_INTEL_GW
+> > > > >           bool "Intel Gateway PCIe host controller support"
+> > > > >           depends on OF && (X86 || COMPILE_TEST)
+> > > > > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
+> > > > > index a751553fa0db..30eef8e9ee8a 100644
+> > > > > --- a/drivers/pci/controller/dwc/Makefile
+> > > > > +++ b/drivers/pci/controller/dwc/Makefile
+> > > > > @@ -13,6 +13,7 @@ obj-$(CONFIG_PCI_LAYERSCAPE_EP) += pci-layerscape-ep.o
+> > > > >   obj-$(CONFIG_PCIE_QCOM) += pcie-qcom.o
+> > > > >   obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
+> > > > >   obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
+> > > > > +obj-$(CONFIG_PCIE_ROCKCHIP_DW_HOST) += pcie-dw-rockchip.o
+> > > > >   obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
+> > > > >   obj-$(CONFIG_PCIE_KIRIN) += pcie-kirin.o
+> > > > >   obj-$(CONFIG_PCIE_HISI_STB) += pcie-histb.o
+> > > > > diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..07f6d1cd5853
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > > > > @@ -0,0 +1,286 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > > +/*
+> > > > > + * PCIe host controller driver for Rockchip SoCs
+> > > > > + *
+> > > > > + * Copyright (C) 2021 Rockchip Electronics Co., Ltd.
+> > > > > + *               http://www.rock-chips.com
+> > > > > + *
+> > > > > + * Author: Simon Xue <xxm@rock-chips.com>
+> > > > > + */
+> > > > > +
+> > > > > +#include <linux/clk.h>
+> > > > > +#include <linux/gpio/consumer.h>
+> > > > > +#include <linux/mfd/syscon.h>
+> > > > > +#include <linux/module.h>
+> > > > > +#include <linux/of_device.h>
+> > > > > +#include <linux/phy/phy.h>
+> > > > > +#include <linux/platform_device.h>
+> > > > > +#include <linux/regmap.h>
+> > > > > +#include <linux/reset.h>
+> > > > > +
+> > > > > +#include "pcie-designware.h"
+> > > > > +
+> > > > > +/*
+> > > > > + * The upper 16 bits of PCIE_CLIENT_CONFIG are a write
+> > > > > + * mask for the lower 16 bits.  This allows atomic updates
+> > > > > + * of the register without locking.
+> > > > > + */
+> > > > This is correct only for the variables that naturally aligned, I imagine
+> > > > that this is the case here and in the Linux, but better do not write comments
+> > > > in the code that are not accurate.
+> > >
+> > > Ok, will remove.
+> > > I wonder what it would be when outside the Linux? Could you share some information?
+> >
+> > The C standard says nothing about atomicity, integer assignment maybe atomic,
+> > maybe it isn’t. There is no guarantee, plain integer assignment in C is non-atomic
+> > by definition.
+> >
+> > The atomicity of u32 is very dependent on hardware vendor, memory model and compiler,
+> > for example x86 and ARMs guarantee atomicity for u32. This is why I said that probably
+> > here (Linux) it is ok and you are not alone in expecting lockless write.
+>
+> But this is a mmio register accessed thru writel() which does have all
+> those guarantees.
 
-Are you also going to update
-Documentation/devicetree/bindings/connector/usb-connector.yaml ?
+The author didn't write "The writel() guarantees atomic updates
+without need of locking".
 
-Thanks,
-Guenter
+Anyway, this is not important.
 
-> ---
->  include/dt-bindings/usb/pd.h | 53 +++++++++++++++++++++++++++++++++++-
->  1 file changed, 52 insertions(+), 1 deletion(-)
-> 
-> diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
-> index 0352893697f0..b99cb4a0cd12 100644
-> --- a/include/dt-bindings/usb/pd.h
-> +++ b/include/dt-bindings/usb/pd.h
-> @@ -93,4 +93,55 @@
->  #define FRS_DEFAULT_POWER      1
->  #define FRS_5V_1P5A            2
->  #define FRS_5V_3A              3
-> - #endif /* __DT_POWER_DELIVERY_H */
-> +
-> +/*
-> + * SVDM Identity Header
-> + * --------------------
-> + * <31>     :: data capable as a USB host
-> + * <30>     :: data capable as a USB device
-> + * <29:27>  :: product type (UFP / Cable / VPD)
-> + * <26>     :: modal operation supported (1b == yes)
-> + * <25:23>  :: product type (DFP) (SVDM version 2.0+ only; set to zero in version 1.0)
-> + * <22:21>  :: connector type (SVDM version 2.0+ only; set to zero in version 1.0)
-> + * <20:16>  :: Reserved, Shall be set to zero
-> + * <15:0>   :: USB-IF assigned VID for this cable vendor
-> + */
-> +/* SOP Product Type (UFP) */
-> +#define IDH_PTYPE_NOT_UFP       0
-> +#define IDH_PTYPE_HUB           1
-> +#define IDH_PTYPE_PERIPH        2
-> +#define IDH_PTYPE_PSD           3
-> +#define IDH_PTYPE_AMA           5
-> +
-> +/* SOP' Product Type (Cable Plug / VPD) */
-> +#define IDH_PTYPE_NOT_CABLE     0
-> +#define IDH_PTYPE_PCABLE        3
-> +#define IDH_PTYPE_ACABLE        4
-> +#define IDH_PTYPE_VPD           6
-> +
-> +/* SOP Product Type (DFP) */
-> +#define IDH_PTYPE_NOT_DFP       0
-> +#define IDH_PTYPE_DFP_HUB       1
-> +#define IDH_PTYPE_DFP_HOST      2
-> +#define IDH_PTYPE_DFP_PB        3
-> +
-> +#define VDO_IDH(usbh, usbd, ufp_cable, is_modal, dfp, conn, vid)                \
-> +	((usbh) << 31 | (usbd) << 30 | ((ufp_cable) & 0x7) << 27                \
-> +	 | (is_modal) << 26 | ((dfp) & 0x7) << 23 | ((conn) & 0x3) << 21        \
-> +	 | ((vid) & 0xffff))
-> +
-> +/*
-> + * Cert Stat VDO
-> + * -------------
-> + * <31:0>  : USB-IF assigned XID for this cable
-> + */
-> +#define VDO_CERT(xid)		((xid) & 0xffffffff)
-> +
-> +/*
-> + * Product VDO
-> + * -----------
-> + * <31:16> : USB Product ID
-> + * <15:0>  : USB bcdDevice
-> + */
-> +#define VDO_PRODUCT(pid, bcd)   (((pid) & 0xffff) << 16 | ((bcd) & 0xffff))
-> +#endif /* __DT_POWER_DELIVERY_H */
-> 
+Thanks
 
+>
+> Rob
