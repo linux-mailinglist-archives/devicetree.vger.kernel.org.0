@@ -2,117 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92554304B2B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:19:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F10304B29
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 22:17:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728140AbhAZEtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jan 2021 23:49:12 -0500
-Received: from a1.mail.mailgun.net ([198.61.254.60]:31148 "EHLO
-        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387446AbhAZBXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 20:23:48 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1611624208; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=O9V4up07IpE1qF4+xHCrvY2NGhcP/Eg6BkRDYO1CsiU=; b=OY+OUd//RpCyqHybisFRI61ylxOTpH8xFalTqRWReFC18SYDnP0rnk5m0yKvrqiZyk82u+Zg
- RbluJxPAg9N5ZmWjpIMuqosSOvjykt0w3ngOWR+tq/ogcIPvJN/mZmlBlhQtmrv+lGGAdK3f
- qZ+MPc8ATOOPHGo3ETYYowxED+M=
-X-Mailgun-Sending-Ip: 198.61.254.60
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 600f6a462c36b2106d3966e5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 26 Jan 2021 01:03:02
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 08905C43461; Tue, 26 Jan 2021 01:03:02 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.110.78.65] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 51560C433ED;
-        Tue, 26 Jan 2021 01:03:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 51560C433ED
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v6 1/4] usb: gadget: udc: core: Introduce check_config to
- verify USB configuration
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        peter.chen@nxp.com, jackp@codeaurora.org
-References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
- <1611288100-31118-2-git-send-email-wcheng@codeaurora.org>
- <20210122162447.GC43566@rowland.harvard.edu>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <784ce67c-d4ef-63ae-8f81-c52fc5b2e794@codeaurora.org>
-Date:   Mon, 25 Jan 2021 17:02:59 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1728226AbhAZEtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jan 2021 23:49:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47076 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730734AbhAZBeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jan 2021 20:34:10 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 108F7C0698C1
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 17:18:14 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id e9so787110pjj.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 17:18:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=0BZifB+iVMGmxp83gSV8xBJi4ZuHE+jJzS5b46pYB0A=;
+        b=buRZJlIfAEszu7DTDxrGpStS4yJ+JlArTcXt0x76ycaU2bjFQCHidprSrOBF3N1xve
+         e2RNFHNjUFXkRgFexKzldGH0QtYp6XGsa/hwV2THVKhJrBrbOYGfciG0gbWd3kkjhV6l
+         hJasfeZTmZ6+c6txPNSZExg1rsZfom+QZAd74=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=0BZifB+iVMGmxp83gSV8xBJi4ZuHE+jJzS5b46pYB0A=;
+        b=Wweasr31dBKEng3brjYrp1Meu3m1BbHF6IWB8hcXVqBRva8rnEbDh+dNCE5tVypPYf
+         8WXc3IXVLb9aJKtPP2dab7lWgX6EwTs+Dtmp1woMxQZNkEduntXP7vgDDQm+oc5APznb
+         lt9pw2fVDOIyr1wyZZL4Rl0PKpKtQWjxsfQuGcaiWYKn9TrfB6OaEKYnEA3QxAV93o/A
+         V1exGyg+cw/4F7Z3aQJi3wyATT5u9cO3mqcWTVbP96hcTRAn98Tc6oVI3XgujclFwxF4
+         /pKA+SFB57EQNH870JfZyG8XnwNFpcaUE7yKFFNqGkjzRfV9Z8FOP+kTSYFcrgCjpYyN
+         oL+w==
+X-Gm-Message-State: AOAM531K6qMFe/6cDuuk+3aJ5mu+KtsMIt75+1Q8M2tN4shkQbJKUuP4
+        CpYlByNMCPKmzKS1WaYDk3fPIQ==
+X-Google-Smtp-Source: ABdhPJzq03UOZA3rzW/Jku1UL/Q9+LLv9sYit5RxxJUopLFrSfRQH8oSRCQ/AdGoGrss8ksnQD4EKg==
+X-Received: by 2002:a17:90a:77c1:: with SMTP id e1mr3157796pjs.141.1611623893652;
+        Mon, 25 Jan 2021 17:18:13 -0800 (PST)
+Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:50cc:9282:4fdd:3979])
+        by smtp.gmail.com with ESMTPSA id k9sm522248pji.8.2021.01.25.17.18.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jan 2021 17:18:12 -0800 (PST)
+From:   Nicolas Boichat <drinkcat@chromium.org>
+To:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     fshao@chromium.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        hoegsberg@chromium.org, boris.brezillon@collabora.com,
+        hsinyi@chromium.org, Nicolas Boichat <drinkcat@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v11 1/4] dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+Date:   Tue, 26 Jan 2021 09:17:56 +0800
+Message-Id: <20210126091747.v11.1.Ie74d3355761aab202d4825ac6f66d990bba0130e@changeid>
+X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
+In-Reply-To: <20210126011759.1605641-1-drinkcat@chromium.org>
+References: <20210126011759.1605641-1-drinkcat@chromium.org>
 MIME-Version: 1.0
-In-Reply-To: <20210122162447.GC43566@rowland.harvard.edu>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Define a compatible string for the Mali Bifrost GPU found in
+Mediatek's MT8183 SoCs.
 
+Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+---
 
-On 1/22/2021 8:24 AM, Alan Stern wrote:
-> On Thu, Jan 21, 2021 at 08:01:37PM -0800, Wesley Cheng wrote:
->> Some UDCs may have constraints on how many high bandwidth endpoints it can
->> support in a certain configuration.  This API allows for the composite
->> driver to pass down the total number of endpoints to the UDC so it can verify
->> it has the required resources to support the configuration.
->>
->> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> 
-> 
->> --- a/include/linux/usb/gadget.h
->> +++ b/include/linux/usb/gadget.h
->> @@ -328,6 +328,7 @@ struct usb_gadget_ops {
->>  	struct usb_ep *(*match_ep)(struct usb_gadget *,
->>  			struct usb_endpoint_descriptor *,
->>  			struct usb_ss_ep_comp_descriptor *);
->> +	int	(*check_config)(struct usb_gadget *gadget, unsigned long ep_map);
->>  };
->>  
->>  /**
->> @@ -607,6 +608,7 @@ int usb_gadget_connect(struct usb_gadget *gadget);
->>  int usb_gadget_disconnect(struct usb_gadget *gadget);
->>  int usb_gadget_deactivate(struct usb_gadget *gadget);
->>  int usb_gadget_activate(struct usb_gadget *gadget);
->> +int usb_gadget_check_config(struct usb_gadget *gadget, unsigned long ep_map);
->>  #else
->>  static inline int usb_gadget_frame_number(struct usb_gadget *gadget)
->>  { return 0; }
-> 
-> Don't you also need an entry for the case where CONFIG_USB_GADGET isn't 
-> enabled?
-> 
-> Alan Stern
-> 
-Hi Alan,
+Changes in v11:
+ - binding: power-domain-names not power-domainS-names
 
-Thanks for pointing that out.  I missed that, and will add it to the
-next rev.
+Changes in v10:
+ - Fix the binding to make sure sram-supply property can be provided.
 
-Thanks
-Wesley Cheng
+Changes in v9: None
+Changes in v8: None
+Changes in v7: None
+Changes in v6:
+ - Rebased, actually tested with recent mesa driver.
 
+Changes in v5:
+ - Rename "2d" power domain to "core2"
 
+Changes in v4:
+ - Add power-domain-names description
+   (kept Alyssa's reviewed-by as the change is minor)
+
+Changes in v3: None
+Changes in v2: None
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+index 184492162e7e..3e758f88e2cd 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+@@ -17,6 +17,7 @@ properties:
+     items:
+       - enum:
+           - amlogic,meson-g12a-mali
++          - mediatek,mt8183-mali
+           - realtek,rtd1619-mali
+           - rockchip,px30-mali
+       - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
+@@ -41,6 +42,8 @@ properties:
+ 
+   mali-supply: true
+ 
++  sram-supply: true
++
+   operating-points-v2: true
+ 
+   power-domains:
+@@ -87,6 +90,31 @@ allOf:
+     then:
+       required:
+         - resets
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt8183-mali
++    then:
++      properties:
++        power-domains:
++          description:
++            List of phandle and PM domain specifier as documented in
++            Documentation/devicetree/bindings/power/power_domain.txt
++          minItems: 3
++          maxItems: 3
++        power-domain-names:
++          items:
++            - const: core0
++            - const: core1
++            - const: core2
++      required:
++        - sram-supply
++        - power-domains
++        - power-domain-names
++    else:
++      properties:
++        sram-supply: false
+ 
+ examples:
+   - |
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.30.0.280.ga3ce27912f-goog
+
