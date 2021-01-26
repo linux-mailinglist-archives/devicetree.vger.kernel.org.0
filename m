@@ -2,170 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2431304459
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCFFF30446A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:02:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727381AbhAZRAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:00:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37410 "EHLO
+        id S1727170AbhAZRBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:01:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389555AbhAZHV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 02:21:58 -0500
-X-Greylist: delayed 73382 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Jan 2021 23:21:12 PST
-Received: from antares.kleine-koenig.org (antares.kleine-koenig.org [IPv6:2a01:4f8:c0c:3a97::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55F52C061573;
-        Mon, 25 Jan 2021 23:21:12 -0800 (PST)
-Received: from antares.kleine-koenig.org (localhost [127.0.0.1])
-        by antares.kleine-koenig.org (Postfix) with ESMTP id 46AFDADE69D;
-        Tue, 26 Jan 2021 08:21:09 +0100 (CET)
-Received: from antares.kleine-koenig.org ([94.130.110.236])
-        by antares.kleine-koenig.org (antares.kleine-koenig.org [94.130.110.236]) (amavisd-new, port 10024)
-        with ESMTP id V7DnAz6ZVq0I; Tue, 26 Jan 2021 08:21:07 +0100 (CET)
-Received: from taurus.defre.kleine-koenig.org (unknown [IPv6:2a02:8071:b5ad:20fc:e287:a8e4:9290:29e6])
-        by antares.kleine-koenig.org (Postfix) with ESMTPSA;
-        Tue, 26 Jan 2021 08:21:07 +0100 (CET)
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Michal Marek <michal.lkml@markovi.net>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        cyril@debamax.com, Arnd Bergmann <arnd@arndb.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>
-References: <20210125105757.661240-1-uwe@kleine-koenig.org>
- <CAK7LNAS5t1wew0MMFjdB5HGCAMerhU7pAGiFhcTtCRUAAjGLpw@mail.gmail.com>
-From:   =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
-Subject: Re: [PATCH] cmd_dtc: Enable generation of device tree symbols
-Message-ID: <9d9bb0f6-d4f4-b1b9-a4c4-786987578085@kleine-koenig.org>
-Date:   Tue, 26 Jan 2021 08:20:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        with ESMTP id S2389614AbhAZHqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 02:46:04 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073BCC0617AB
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 23:33:11 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id a8so21463173lfi.8
+        for <devicetree@vger.kernel.org>; Mon, 25 Jan 2021 23:33:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W32USTVMA4Na4R83P1ldiQToO8MF00oSxMXfGmTH1mg=;
+        b=iGGad8ZvGGCQxu9TMHL9veAeJhvUmkKrwjjKMwaNwfuM6xAnAIXUTRwKpHFa4HSTRx
+         KeLwL2AaM4YYKmMFkxUUIAjBjJ1lXLdFg7bTMbgQpY3t2/F7y1zx/+8I+17UEvgsQf9U
+         hb4wGQznDB3Has2Qt7crmDWfW3NkLi3VoHXXcZ3yOj8xzStYt3rajuw/v+hhfch2WAuP
+         UX/D0jb+Hgzg4/WnIvILyeVnI04EY8zOR1i7wnNHkbtvHlgmSZzrpLWh5Ziab6y5ZUoS
+         W8Wfi5503gqbWmfVrzYR7xOw37OYR258L7zhQPidFOK0I8WFj04u7Wv3BRwwDvqSdUqN
+         zl9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W32USTVMA4Na4R83P1ldiQToO8MF00oSxMXfGmTH1mg=;
+        b=aKGg9RULmUp+ha6tXAeJsm/aHRJW9qU7tbSA1tPsWNX2JInTEEMrZxfnlZPOPJu/7M
+         emaeahQsK+ZtIn2t0oUBE+SAkBCVlyP1nMUnDHzsfGqKjpg8bJCcOz4G9VXH5dvrf6CR
+         gBR1EoGhyL1TPMtdFizCwZH6jFMDa29JOYD1JonXqRmJ0+AOuZf0vq5AY2fpqxkBNDZM
+         HL1fGN+5FX6HXytfRn6a8wUku1H3nRcZH8/ZLY5LYoFQFSq+z6I85EZLLqCmkrvQTslH
+         SPtznyO6ehPNSs+ovgauJLf7C+NJ10BJRmsF0M8pvYZ/kIh2qUtUq+LnNjqk8RbwHRA5
+         TtTg==
+X-Gm-Message-State: AOAM530nJELgMPRWqBOvy9YfTt6xZ6P3kw3tmHRcZrktlCcdB5GFyeVt
+        oLIaqOrVyn0Dq5Lo+kKOqSfnAKGOsjRxcqFEDXsdOQ==
+X-Google-Smtp-Source: ABdhPJwXsF0xWCBhNsrr3s7doyV+JBsu/u9FZtgybX1V7crrHD588JGqYQnNs8eBrkRozy2tjTrONdtwgSFuQwqnwis=
+X-Received: by 2002:a19:48d0:: with SMTP id v199mr2093711lfa.535.1611646389475;
+ Mon, 25 Jan 2021 23:33:09 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAK7LNAS5t1wew0MMFjdB5HGCAMerhU7pAGiFhcTtCRUAAjGLpw@mail.gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="Md9uBspQZ8si26wbTEXGrXNDQsO6WS1FX"
+References: <20210121175502.274391-1-minchan@kernel.org> <20210121175502.274391-5-minchan@kernel.org>
+In-Reply-To: <20210121175502.274391-5-minchan@kernel.org>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Mon, 25 Jan 2021 23:32:57 -0800
+Message-ID: <CALAqxLWJDo=pM8bvt9YWrzJ+VyK5gojoL-v7ch1fQC=cjGwJOw@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] dma-buf: heaps: add chunk heap to dmabuf heaps
+To:     Minchan Kim <minchan@kernel.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Hyesoo Yu <hyesoo.yu@samsung.com>, david@redhat.com,
+        Michal Hocko <mhocko@suse.com>,
+        Suren Baghdasaryan <surenb@google.com>,
+        KyongHo Cho <pullip.cho@samsung.com>,
+        John Dias <joaodias@google.com>,
+        Hridya Valsaraju <hridya@google.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Christoph Hellwig <hch@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
+        <linaro-mm-sig@lists.linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---Md9uBspQZ8si26wbTEXGrXNDQsO6WS1FX
-Content-Type: multipart/mixed; boundary="bIO7wac1lK89xpNlKc4oBcYpFRZsCPvJE";
- protected-headers="v1"
-From: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: Michal Marek <michal.lkml@markovi.net>,
- Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, cyril@debamax.com,
- Arnd Bergmann <arnd@arndb.de>, Maxime Ripard <mripard@kernel.org>,
- DTML <devicetree@vger.kernel.org>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>
-Message-ID: <9d9bb0f6-d4f4-b1b9-a4c4-786987578085@kleine-koenig.org>
-Subject: Re: [PATCH] cmd_dtc: Enable generation of device tree symbols
-References: <20210125105757.661240-1-uwe@kleine-koenig.org>
- <CAK7LNAS5t1wew0MMFjdB5HGCAMerhU7pAGiFhcTtCRUAAjGLpw@mail.gmail.com>
-In-Reply-To: <CAK7LNAS5t1wew0MMFjdB5HGCAMerhU7pAGiFhcTtCRUAAjGLpw@mail.gmail.com>
+On Thu, Jan 21, 2021 at 9:55 AM Minchan Kim <minchan@kernel.org> wrote:
 
---bIO7wac1lK89xpNlKc4oBcYpFRZsCPvJE
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Hey Minchan,
+  Thanks for sending this out! I'm still working through testing with
+this patch set, so I may have some more feedback tomorrow, but a few
+quick items I did hit below.
 
-Hello Masahiro,
+> +
+> +#define CHUNK_PREFIX "chunk-"
+> +
+> +static int register_chunk_heap(struct chunk_heap *chunk_heap_info)
+> +{
+> +       struct dma_heap_export_info exp_info;
+> +       const char *name = cma_get_name(chunk_heap_info->cma);
+> +       size_t len = strlen(CHUNK_PREFIX) + strlen(name) + 1;
+> +       char *buf = kmalloc(len, GFP_KERNEL);
+> +
+> +       if (!buf)
+> +               return -ENOMEM;
+> +
+> +       sprintf(buf, CHUNK_PREFIX"%s", cma_get_name(chunk_heap_info->cma));
+> +       buf[len] = '\0';
+> +
+> +       exp_info.name = buf;
+> +       exp_info.name = cma_get_name(chunk_heap_info->cma);
 
-On 1/25/21 10:53 PM, Masahiro Yamada wrote:
-> On Mon, Jan 25, 2021 at 8:07 PM Uwe Kleine-K=C3=B6nig <uwe@kleine-koeni=
-g.org> wrote:
->>
->> Adding the -@ switch to dtc results in the binary devicetrees containi=
-ng
->> a list of symbolic references and their paths. This is necessary to
->> apply device tree overlays e.g. on Raspberry Pi as described on
->> https://www.raspberrypi.org/documentation/configuration/device-tree.md=
-=2E
->>
->> Obviously the downside of this change is an increas of the size of the=
+I think you intended to delete this line, as it's overwriting your
+prefixed name.
 
->> generated dtbs, for an arm out-of-tree build (multi_v7_defconfig):
->>
->>          $ du -s arch/arm/boot/dts*
->>          101380  arch/arm/boot/dts-pre
->>          114308  arch/arm/boot/dts-post
->>
->> so this is in average an increase of 12.8% in size.
->>
->> Signed-off-by: Uwe Kleine-K=C3=B6nig <uwe@kleine-koenig.org>
->=20
->=20
-> (CCing DT ML.)
+> +       exp_info.ops = &chunk_heap_ops;
+> +       exp_info.priv = chunk_heap_info;
+> +
+> +       chunk_heap_info->heap = dma_heap_add(&exp_info);
+> +       if (IS_ERR(chunk_heap_info->heap)) {
+> +               kfree(buf);
+> +               return PTR_ERR(chunk_heap_info->heap);
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int __init chunk_heap_init(void)
+> +{
+> +       unsigned int i;
+> +
+> +       for (i = 0; i < chunk_heap_count; i++)
+> +               register_chunk_heap(&chunk_heaps[i]);
+> +
+> +       return 0;
+> +}
+> +module_init(chunk_heap_init);
+> +
+> +#ifdef CONFIG_OF_EARLY_FLATTREE
+> +
+> +static int __init dmabuf_chunk_heap_area_init(struct reserved_mem *rmem)
+> +{
+> +       int ret;
+> +       struct cma *cma;
+> +       struct chunk_heap *chunk_heap_info;
+> +       const __be32 *chunk_order;
+> +
+> +       phys_addr_t align = PAGE_SIZE << max(MAX_ORDER - 1, pageblock_order);
+> +       phys_addr_t mask = align - 1;
+> +
+> +       if ((rmem->base & mask) || (rmem->size & mask)) {
+> +               pr_err("Incorrect alignment for CMA region\n");
+> +               return -EINVAL;
 
-makes sense, thanks.
+Passing this check can be tough if you're using dynamically assigned
+rmem, so it might be helpful for debugging to print the base/size/mask
+values?
 
-> https://www.spinics.net/lists/linux-kbuild/msg27904.html
->=20
-> See Rob's comment:
->=20
-> "We've already rejected doing that. Turning on '-@' can grow the dtb
-> size by a significant amount which could be problematic for some
-> boards."
-
-The patch was created after some conversation on irc which continued
-after I sent the patch. I added the participating parties to Cc:.
-
-The (relevant) followups were:
-
-Geert suggested to always generate the symbols and provide a way to
-strip the symbols for installation if and when they are not needed.
-
-Rob said: "I'm less concerned with the size increases, but rather that
-labels go from purely source syntax to an ABI. I'd rather see some
-decision as to which labels are enabled or not."
-
-And then I learned with hints from Rob and Geert that symbols are not
-really necessary for overlays, you just cannot use named labels. But
-using
-
-	target-path =3D "/soc/i2c@23473245";
-
-or
-
-	target =3D <&{/soc/i2c@23473245}>;
-
-instead of
-
-	target =3D <&i2c1>;
-
-works fine. (And if you need to add a phandle the &{/path/to/node}
-construct should work, too (but I didn't test).) Using labels is a tad=20
-nicer, but the problem I wanted to address with my patch now has a known =
-
-different solution.
-
-Best regards
-Uwe
-
-
---bIO7wac1lK89xpNlKc4oBcYpFRZsCPvJE--
-
---Md9uBspQZ8si26wbTEXGrXNDQsO6WS1FX
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmAPwtwACgkQwfwUeK3K
-7AlKXwgAm+kcs8YKGPW7BkNgCAJ44hDVJaUMseUumkbzSu+J7mJb/cEZ0bG87K+J
-SzhQcJQ2LoASq0ZMg6dTn2PyqBDv63nnKmHiFVa+3z9J9EWPK+ZvZSyvoX0PLjiO
-/IoBG+Vaei0hav2poeDjBdSWybhP567KYiYPkrmlbUyt9Aq6fgaEqgOGnnaZbxII
-YOJ51Aec1JjAzlb8uD9dOYPmNKAFqlfONfBcr9abIACfc6FEKQytp/yvn6UvkHrL
-tdP1lubPpzJXFJp8Md4yCPRRUbTpB8b7qvLXIge0YVUeU641roNdDnX9TY818ffA
-qXrWfwyBKeMboKt30RTEfkHmEmIDew==
-=nA4F
------END PGP SIGNATURE-----
-
---Md9uBspQZ8si26wbTEXGrXNDQsO6WS1FX--
+thanks
+-john
