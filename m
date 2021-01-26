@@ -2,105 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC9830449A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:16:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE2930449C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 18:16:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387732AbhAZRGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 12:06:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50710 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389905AbhAZIYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 03:24:02 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F25C061573
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:23:19 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id a1so15480384wrq.6
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 00:23:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+1Lc4O6nG4WhNY0kjZTVH5GmXcujH+6YTZBb0u4ztaw=;
-        b=NCLjOPCeW0kVxk3yrO3M6dYXo8ICaFIYVCPHHQHMbAIcSB2UiiivZ/bCnB+HvgeLqg
-         PRDdIo9OnDOMnNppoAtmhPaFkxBlmAGOVCiVJVzahSK5U3j0dmNbm6q2bPrVoMRzNL7C
-         MBXylqhLEdzBqWCVQbqclV5j4/GUwRsB0S5RcegmujdDg1G/TthoTLENaueZWFz/Tl6p
-         SGfkm28PzhXCxLQqyZ6lvSM/qF/yVzA+AQmOVr1/bPYJb6J/d7ow4StilDfrA88xFTkm
-         hebdStlzclls7lwSekV3tWVl2dABxUO3o9b8M9yMWUsDzXeJV8Hdxko7KsiuKMI0gtiS
-         4kqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+1Lc4O6nG4WhNY0kjZTVH5GmXcujH+6YTZBb0u4ztaw=;
-        b=XAXaiJW6hjSteQacRDXCqmUmVz4kKBarbzB3fRBYHeuujU2/JnuxXQkxt1XtPWn/kn
-         Joxa1TRxB9JjE4WH7bk3E0snRhGckieHsMPCFtZ49wDEQO8kVSPeayaQ3gudX/p57ANN
-         Zoz6Bo8UHq2xht6U40j7jQ1unGyZCBfoEVrYWSGa2R7sGNVpbMkUiS0MYsjP6aIIB9YE
-         Dwjdv4IZr/gIZL88UMavP8T9h60DI1iuwX0H6ZlKGVRXUszduoztyqQHROU+gQY2MNZx
-         vf+H817+6OtUVLdv/uXri5ZE17MdP/GfaBHo1QF8YukNso1AUcN5Pq2y4MvBETQ523Te
-         UE1A==
-X-Gm-Message-State: AOAM533LsATfM6DLF+F3iwD70pmZ2IcohzF0CmlEMNAl6/SFkBjBEd4I
-        PmSjOzDTZcAWILsnSpujuncnJQ==
-X-Google-Smtp-Source: ABdhPJxFtksMoT7z7tmcaIzciXM5Yo4ztSCBt2/7Yj5l1ZVRcewTk7AyaBxzF/54i5daAIhUQmoq8Q==
-X-Received: by 2002:adf:d4ce:: with SMTP id w14mr4596712wrk.89.1611649397976;
-        Tue, 26 Jan 2021 00:23:17 -0800 (PST)
-Received: from dell ([91.110.221.188])
-        by smtp.gmail.com with ESMTPSA id v1sm2227852wmj.31.2021.01.26.00.23.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jan 2021 00:23:17 -0800 (PST)
-Date:   Tue, 26 Jan 2021 08:23:15 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Mark Jonas <toertel@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Adam.Thomson.Opensource@diasemi.com, stwiss.opensource@diasemi.com,
-        marek.vasut@gmail.com,
-        "RUAN Tingquan (BT-FIR/ENG1-Zhu)" <Tingquan.Ruan@cn.bosch.com>,
-        "Streidl Hubert (BT-FIR/ENG1-Grb)" <Hubert.Streidl@de.bosch.com>,
-        "Jonas Mark (BT-FIR/ENG1-Grb)" <Mark.Jonas@de.bosch.com>
-Subject: Re: [PATCH 1/1] mfd: da9063: Support SMBus and I2C mode
-Message-ID: <20210126082315.GE4903@dell>
-References: <20210125125458.1302525-1-mark.jonas@de.bosch.com>
- <20210125125458.1302525-2-mark.jonas@de.bosch.com>
- <CAEE5dN34ywfT9DUqwzrog_ujEANYioYxJbJ8M=8Om_-=7uJHcg@mail.gmail.com>
+        id S2387922AbhAZRG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 12:06:27 -0500
+Received: from muru.com ([72.249.23.125]:52952 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390009AbhAZI2D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 03:28:03 -0500
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id C430C814C;
+        Tue, 26 Jan 2021 08:27:25 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Balaji T K <balajitk@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH 01/27] PCI: pci-dra7xx: Prepare for deferred probe with module_platform_driver
+Date:   Tue, 26 Jan 2021 10:26:50 +0200
+Message-Id: <20210126082716.54358-2-tony@atomide.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210126082716.54358-1-tony@atomide.com>
+References: <20210126082716.54358-1-tony@atomide.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEE5dN34ywfT9DUqwzrog_ujEANYioYxJbJ8M=8Om_-=7uJHcg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Jan 2021, Mark Jonas wrote:
+After updating pci-dra7xx driver to probe with ti-sysc and genpd, I
+noticed that dra7xx_pcie_probe() would not run if a power-domains property
+was configured for the interconnect target module.
 
-> Hi,
-> 
-> I also intended to send a cover-letter but it was somehow lost on the
-> way. Here it is:
-> 
-> On an NXP i.MX6 Solo processor we are running an application which
-> makes use of real-time threads (SCHED_RR). In combination with a
-> DA9063 we experienced (rare) random shut-downs and reboots. We found
-> that the issue was caused by a combination of the (default) DA9063
-> SMBus mode and non-atomic I2C transactions of the i.MX6 I2C driver.
-> Because a transaction could be idle for longer than the SMBus clock
-> time-out due to a real-time thread the DA9063 would time-out and
-> receive the second half of the transaction as an unintended message.
-> 
-> The solution we are giving to review in this patch is to allow using
-> the I2C mode of the DA9063. We kindly ask for feedback and eventually
-> hope for an integration to the mainline.
-> 
-> Because we are on a vendor kernel we were not able to test this patch
-> on the current mainline kernel. Though, we tested a (very similar)
-> patch on our (close to mainline) Linux 4.14 and 5.4 vendor kernels.
+Turns out that module_platform_driver_probe uses platform_driver_probe(),
+while module_platform_driver_probe uses platform_driver_register().
 
-This is the 3rd cover-letter I've received now! :)
+Only platform_driver_register() works for deferred probe as noted in the
+comments for __platform_driver_probe() in drivers/base/platform.c with a
+line saying "Note that this is incompatible with deferred probing".
 
+With module_platform_driver_probe, we have platform_driver_probe() produce
+-ENODEV error at device_initcall() level, and no further attempts are done.
+Let's fix this by using module_platform_driver instead.
+
+Note this is not an issue currently as we probe devices with simple-bus,
+and only is needed as we start probing the device with ti-sysc, or when
+probed with simple-pm-bus.
+
+Note that we must now also remove __init for probe related functions to
+avoid a section mismatch warning.
+
+Cc: linux-pci@vger.kernel.org
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Kishon Vijay Abraham I <kishon@ti.com>
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+
+Can you guys please review test and ack if this looks OK? I'd like to
+apply this together with the series to drop dra7 platform data as it's
+not needed earlier.
+
+---
+ drivers/pci/controller/dwc/pci-dra7xx.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/pci/controller/dwc/pci-dra7xx.c b/drivers/pci/controller/dwc/pci-dra7xx.c
+--- a/drivers/pci/controller/dwc/pci-dra7xx.c
++++ b/drivers/pci/controller/dwc/pci-dra7xx.c
+@@ -443,8 +443,8 @@ static const struct dw_pcie_ep_ops pcie_ep_ops = {
+ 	.get_features = dra7xx_pcie_get_features,
+ };
+ 
+-static int __init dra7xx_add_pcie_ep(struct dra7xx_pcie *dra7xx,
+-				     struct platform_device *pdev)
++static int dra7xx_add_pcie_ep(struct dra7xx_pcie *dra7xx,
++			      struct platform_device *pdev)
+ {
+ 	int ret;
+ 	struct dw_pcie_ep *ep;
+@@ -472,8 +472,8 @@ static int __init dra7xx_add_pcie_ep(struct dra7xx_pcie *dra7xx,
+ 	return 0;
+ }
+ 
+-static int __init dra7xx_add_pcie_port(struct dra7xx_pcie *dra7xx,
+-				       struct platform_device *pdev)
++static int dra7xx_add_pcie_port(struct dra7xx_pcie *dra7xx,
++				struct platform_device *pdev)
+ {
+ 	int ret;
+ 	struct dw_pcie *pci = dra7xx->pci;
+@@ -682,7 +682,7 @@ static int dra7xx_pcie_configure_two_lane(struct device *dev,
+ 	return 0;
+ }
+ 
+-static int __init dra7xx_pcie_probe(struct platform_device *pdev)
++static int dra7xx_pcie_probe(struct platform_device *pdev)
+ {
+ 	u32 reg;
+ 	int ret;
+@@ -938,6 +938,7 @@ static const struct dev_pm_ops dra7xx_pcie_pm_ops = {
+ };
+ 
+ static struct platform_driver dra7xx_pcie_driver = {
++	.probe = dra7xx_pcie_probe,
+ 	.driver = {
+ 		.name	= "dra7-pcie",
+ 		.of_match_table = of_dra7xx_pcie_match,
+@@ -946,4 +947,4 @@ static struct platform_driver dra7xx_pcie_driver = {
+ 	},
+ 	.shutdown = dra7xx_pcie_shutdown,
+ };
+-builtin_platform_driver_probe(dra7xx_pcie_driver, dra7xx_pcie_probe);
++builtin_platform_driver(dra7xx_pcie_driver);
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.30.0
