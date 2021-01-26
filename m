@@ -2,157 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00E60303A05
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 11:18:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3482303A23
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 11:23:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391895AbhAZKRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 05:17:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46618 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391676AbhAZKQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 05:16:22 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 042A0C061573;
-        Tue, 26 Jan 2021 02:15:42 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id b21so19042193edy.6;
-        Tue, 26 Jan 2021 02:15:41 -0800 (PST)
+        id S1727697AbhAZKXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 05:23:43 -0500
+Received: from mail-bn7nam10on2131.outbound.protection.outlook.com ([40.107.92.131]:35296
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1732989AbhAZKT7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 05:19:59 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PeFLs7vwLAVhIylNkMRL3W4Uajyj0N2FwUMkXQVMhHydgcKH0fFxzyk0YoE++2S+juBZ9EZcZMwNMsjicNvbh6Ml6tMkiIwNiwMij9eWzIyAduMpNZRGWCNRKCEXKKJOiaS28/rDHbpCbcjTTMDU4ON1l+ImB9/Ca6kObJplVI049tyPTPL3kr+ISUWh/fEkk0JkFbFXXyIA+S/G/E3csnr29n3YBVq5z77iVX7ftkYTXCuU1jLD2USTXvfFLC+g2+zUstuG6JV9lLGo7eT9CFiiWotJWDr8M4V5EuFxKClPX4z81tZT3OiNRix946EGuM8mVWUSELz5SbwFqBMmIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E+Z7Elnhm3BhrgNeRyrqBv5JwYYEJY57zgz/EOQdRlg=;
+ b=Rt/xGsYs8Q0krRJF7rqXnGZAmN5pevRDryaLUEBDw/HVGFuIbm9qfxv4CxKkMj0u/5BFb1eynUd+svmzkjW56cNn3dGFA90MGUuLIQBPXKBsUIvvVO1nffGikWCDN96htwUhseOs4mLx3u+c1E7Hds/NXGy3hwnq4PqOVEg72c7fjhEUm0q10gJ4NrywyIcum+MK3bx7K5/38fHt+NA11bZV0daWbUoUp1I0kqARXV982UErjdzwybV3e4QkMuuv8hSdKdSQ00SVaywKTM8MrGEwe/tc8lws744jLYVhKw0vw4Vz/FxMOqWbujWcEjgkLiBiVWvOAPdjWY8lWmSOpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=/rct3g+soQkZfk4LEwZexkLFSPahpYR/2YSKQ5JilcY=;
-        b=pzIvfmjkT8KVjUuO0izY/r1FVdyMrORT5Z1F8W9NRLH+n4u2t4OZiUj7y1hQsBOQya
-         Szy1e+Rv+WzRWD+c4ebD8n+s4gaITnsfJv3woXVKSYZWYZxeie4aBY7U6/b8Xwl0zRTR
-         eHZE8OxOmFFJC4n740aYtRue57KYhdFVvfJyPKvRuQRuO/e0PZkHBbpzKLFwUGbzFaYT
-         4skZU0F+MI9j5ComzDmcdVEqveQUbSNpX4nDJhJ9UAGHE/KBipYxTL9d4V/TIT89wpmP
-         wBpd6sucjsTVFnK/m3GoUqgFvB1FiXauvo3Hff2cB00wYuNc6AXTY7rPHSxVmHTyaU/A
-         Wy2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/rct3g+soQkZfk4LEwZexkLFSPahpYR/2YSKQ5JilcY=;
-        b=IGVr98UqZE6V7yd0cGN/x1AEvtmH9QQWjCTq9RATumNU+9LFJTXdLqBRBVdZD1dIIV
-         dNuVIqQX2HzwCogjIZou4jXpaVQ/CSKytY0vOkZNoxK2a8hns0fP9PXkWX+BlrsPRsHd
-         glg1jQLsmImHlIsnhZzociGGhFkXtUCZeqT24MNdMDw501bxHQxDq5X005DBMQcO93x1
-         Xe7jX9EmqwJcomPIbNLD2ppCAsPrR3DawsoQzAkdn/8wzrzvICKBR0UVMqLVO0keBA2G
-         A1yWAINtH2JBHrZAZLsI+GKow2FZ+ikXN/sJ8wjCqahvJDiJWcz1A8tnn+CttYeCOmR0
-         qg0Q==
-X-Gm-Message-State: AOAM532fkuBjaqAk258pEv1DFmKT3u2nXnDgmSc4ZjoY4nsm3uZuyMws
-        YYl1fe3q5zUM4CjqpHb3yyY=
-X-Google-Smtp-Source: ABdhPJzXiP/L6TlYulI6WQYvMi/C3+rPzj3ZcqLihXWoiJ7jInOnxySpjFmOkMqjeDts0pMV3hQclg==
-X-Received: by 2002:a05:6402:1655:: with SMTP id s21mr3861428edx.360.1611656140787;
-        Tue, 26 Jan 2021 02:15:40 -0800 (PST)
-Received: from BV030612LT ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id br6sm7707782ejb.46.2021.01.26.02.15.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jan 2021 02:15:40 -0800 (PST)
-Date:   Tue, 26 Jan 2021 12:15:37 +0200
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v6 3/7] mfd: Add MFD driver for ATC260x PMICs
-Message-ID: <20210126101537.GA1112736@BV030612LT>
-References: <cover.1611165200.git.cristian.ciocaltea@gmail.com>
- <4bc76f9e3dc7204d7f407af6ee61c9f193a789d3.1611165200.git.cristian.ciocaltea@gmail.com>
- <20210125142558.GA4903@dell>
- <20210125184715.GA1061394@BV030612LT>
- <20210126081535.GB4903@dell>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E+Z7Elnhm3BhrgNeRyrqBv5JwYYEJY57zgz/EOQdRlg=;
+ b=euDil4XuXMZkJoPfqVc5+ciA3EeOfz0M/yjrda5SEw+IAsZmR7Gm4NNMfENuuzlklWJ/fw8IqBsqehDEU3s+SV3qysH83PoRtszNXmRxQf77GVzM7WXe9OJJUfL83HkRuCx4XSalMshWHKDfuIUZjjVo4OaPNrRWQGBpXWQo79Q=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by SJ0PR04MB7359.namprd04.prod.outlook.com (2603:10b6:a03:2a0::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Tue, 26 Jan
+ 2021 10:19:05 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::5813:96a7:b2d6:132]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::5813:96a7:b2d6:132%6]) with mapi id 15.20.3763.019; Tue, 26 Jan 2021
+ 10:19:04 +0000
+Date:   Tue, 26 Jan 2021 18:18:30 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Sheng Pan <span@analogixsemi.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings:drm/bridge:anx7625:add HDCP support
+ flag and swing reg
+Message-ID: <20210126101830.GA32321@zhaomy-pc>
+References: <cover.1611572142.git.xji@analogixsemi.com>
+ <75e29d7386df2ebca4a8e3f0b91c8370a4a8f74f.1611572143.git.xji@analogixsemi.com>
+ <1611586295.672940.327907.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210126081535.GB4903@dell>
+In-Reply-To: <1611586295.672940.327907.nullmailer@robh.at.kernel.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Originating-IP: [61.148.116.10]
+X-ClientProxiedBy: HKAPR04CA0018.apcprd04.prod.outlook.com
+ (2603:1096:203:d0::28) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from zhaomy-pc (61.148.116.10) by HKAPR04CA0018.apcprd04.prod.outlook.com (2603:1096:203:d0::28) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3784.11 via Frontend Transport; Tue, 26 Jan 2021 10:19:03 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e26b7eb2-498b-4fb0-9c30-08d8c1e3cec3
+X-MS-TrafficTypeDiagnostic: SJ0PR04MB7359:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SJ0PR04MB73590A0BAC31D3E4C148DA62C7BC9@SJ0PR04MB7359.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iy2A/mwol1B6HCLgx//k4msxzh/2LEdVr0AWGn9sd28ANU9fuwGhhg5nKDDVHEXj4ZcEowTAM6auG1KBTD26PkSea3y/KmqO5rWTkzNqeLtHe62e9noi2jJdF9nEznPIj0Wk9PIMVTx2JTw1AEy98SZlaFQ1zb4T8lenUDAttID3Eoh2Wunv13UqNEp30ZxxklyofqpK+iAeaNN4YeSCsp3twAwbiXGFUh3eEbGzK8Yg0oRigxLOR6UFElAd+E1InE/g7iclDyp1fFsA0uo/MGteT9JJCsgCRDI7CoE7jm2omtgihJa5qRzow0aKXl4xOG7enOL6wtQF3ztnwu4irOqmvCcJoJC1GiCBWERLZziXvYFh+VYKwcGKcC3B7ITYnF65i0N0nkE7crKU8Ar5ml4cEmSuUgvQeR1RezB6P3vQj5JJ4NZT4uiIJ+0BTDpSaBnoRiXu/KnPu2FpoDyYhG6Q9sUFFsni9v9CGqe6EAOkfes5N/ck1/W5yOZO0qcA6Z5OHuCkL266RISaR2MqCsgC8etUaIuWV+9nP1vvwak5Js9CetR8YH1r/hKmD2BwvWecwy9Sm59G5/Slxpq1u/6TY+zK3/LlhIhfxKA8jKt6hv4aOLp6kbdjjTJPoujvM1eVqR5JxuCyPugbs6HaWg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(39850400004)(396003)(136003)(346002)(376002)(366004)(9686003)(1076003)(83380400001)(8676002)(52116002)(2906002)(33716001)(6916009)(16526019)(6666004)(26005)(5660300002)(66556008)(6496006)(33656002)(55016002)(966005)(66476007)(54906003)(956004)(4326008)(8936002)(478600001)(66946007)(7416002)(86362001)(316002)(186003)(16060500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Nf7YoK9A0FmNDPAumgnGIShN/pAAFaH2MtUdNmatHw8tCVPRO7zRdknjM692?=
+ =?us-ascii?Q?nx0UJCG4K1CVfNiolENiWsHGA0Zp1s8A/IcHUFSRTOBX/n+zAMGpyLkoIDoa?=
+ =?us-ascii?Q?6hiMAEBxL0SFuxEcShLu+MHkWbYTgdFblXSBlQRgMVjfapPMexmZgaVfF1qY?=
+ =?us-ascii?Q?TJekb56CLNgfbAHKRhBsKZkXj25iDTIWFBMjX3A9XnMnYX/W/DKXwFFXNI1I?=
+ =?us-ascii?Q?5TDrWR+hqoX4p5031ruWmE9OBYxZei/mpoaiPNyAfOs/4KSs9gfjNe5oPfYi?=
+ =?us-ascii?Q?G5LGTKb71SZzOrVb4yuAleIfyD+KX0+HXbyu4tJtARSAA/jzjlYidRgF+5Pj?=
+ =?us-ascii?Q?YLHhyXhuGoKhiqqwwqlhDzlC3o4VNLDiBv2ee+dJqT82M2IrKhUbov2vTIAC?=
+ =?us-ascii?Q?8idho1jhJlferi48vIljUXqAdGaeXAkt5l0wWrHxNxtpfd1jKgGhQ0aq9Zxy?=
+ =?us-ascii?Q?o+Y9pHr2KE4pPQfqxuAm3yFZUmjofxKwGJU+tlzD01fzYJLtGnmsDy3gs/ot?=
+ =?us-ascii?Q?PJtorzzNQ3K6IeZlFU3EFLNxPHRJptwcabwyxiUtMmnJmeu46EOecoqKy5p8?=
+ =?us-ascii?Q?a9a0fCVogyOw54PV+65aiGZpxmAAksuhmragO83TcFCrrjPXx+S4DgF5kPjO?=
+ =?us-ascii?Q?M69788nd2XmmqtS1zFB3WKoTFQB75FSGuFnFZhfGerRr+zKjOPLFDNy8Jxuf?=
+ =?us-ascii?Q?+des9P7Vybzy8Cn8NqnIde2d2cSKIWX8Dd57AELeSLGVmkLVg4WwH6Q5MjLV?=
+ =?us-ascii?Q?GvQY8O7MtJGsm1z7M0S39WS+PONxJl18M5HwrHlOGnwDM/l5nXrNQr420W6F?=
+ =?us-ascii?Q?X5cDPsRYr5OKryZ52FuWUL+eIbwbV1soEweuB1wk6nY9XbqkQRs7xOmKRlRA?=
+ =?us-ascii?Q?jBADp+1sWjbgx1ejUkN189QpmpZVkozHHmWKV859LLT5RGU9VnjEM7l4e9sy?=
+ =?us-ascii?Q?ETFK/Gozt095gFuOQf5CUzTWGdn4e4W/2DxJbLikw81Jt5thUQThXrHZpvgg?=
+ =?us-ascii?Q?hZR5OukP/SAvHNfKCFyp68SUAS+p4xGWzxr5Y1BMZYahmhwx71kXcO9v+kAi?=
+ =?us-ascii?Q?M/8yKOPf?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e26b7eb2-498b-4fb0-9c30-08d8c1e3cec3
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2021 10:19:04.6694
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bDG5m1TzXiFLGzuYP2njiEn3PauXMCShi1Nmf4vcRoJ2MCx1QXdRoo7iKs7sMrC7S4PRdUgZgXzTNWtSg93p8Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7359
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 26, 2021 at 08:15:35AM +0000, Lee Jones wrote:
-> On Mon, 25 Jan 2021, Cristian Ciocaltea wrote:
-> 
-> > Hi Lee,
+On Mon, Jan 25, 2021 at 08:51:35AM -0600, Rob Herring wrote:
+> On Mon, 25 Jan 2021 19:12:21 +0800, Xin Ji wrote:
+> > Add 'bus-type' and 'data-lanes' define for port0, add HDCP support
+> > flag and DP tx lane0 and lane1 swing register array define.
 > > 
-> > On Mon, Jan 25, 2021 at 02:25:58PM +0000, Lee Jones wrote:
-> > > On Wed, 20 Jan 2021, Cristian Ciocaltea wrote:
-> > > 
-> > > > Add initial support for the Actions Semi ATC260x PMICs which integrates
-> > > > Audio Codec, Power management, Clock generation and GPIO controller
-> > > > blocks.
-> > > > 
-> > > > For the moment this driver only supports Regulator, Poweroff and Onkey
-> > > > functionalities for the ATC2603C and ATC2609A chip variants.
-> >  
-> > [...]
+> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> > ---
+> >  .../bindings/display/bridge/analogix,anx7625.yaml  | 57 ++++++++++++++++++++--
+> >  1 file changed, 54 insertions(+), 3 deletions(-)
 > > 
-> > > > +static void regmap_lock_mutex(void *__mutex)
-> > > > +{
-> > > > +	struct mutex *mutex = __mutex;
-> > > > +
-> > > > +	/*
-> > > > +	 * Using regmap within an atomic context (e.g. accessing a PMIC when
-> > > > +	 * powering system down) is normally allowed only if the regmap type
-> > > > +	 * is MMIO and the regcache type is either REGCACHE_NONE or
-> > > > +	 * REGCACHE_FLAT. For slow buses like I2C and SPI, the regmap is
-> > > > +	 * internally protected by a mutex which is acquired non-atomically.
-> > > > +	 *
-> > > > +	 * Let's improve this by using a customized locking scheme inspired
-> > > > +	 * from I2C atomic transfer. See i2c_in_atomic_xfer_mode() for a
-> > > > +	 * starting point.
-> > > > +	 */
-> > > > +	if (system_state > SYSTEM_RUNNING && irqs_disabled())
-> > > > +		mutex_trylock(mutex);
-> > > > +	else
-> > > > +		mutex_lock(mutex);
-> > > > +}
-> > > 
-> > > Would this be useful to anyone else?
-> > 
-> > If you refer to the locking scheme, it is currently required by the
-> > power-off driver to handle atomic contexts.
 > 
-> Right, but would this be helpful to any non-Actions drivers?
+> My bot found errors running 'make dt_binding_check' on your patch:
+Hi Rob, OK, I'll fix it in the next serial.
+Thanks,
+Xin
 > 
-> If so, perhaps it should reside as a Regmap helper?
-
-I got it now, thanks for the suggestion. As a matter of fact this was
-my initial intention, but since I was not aware of any other use case
-I decided to keep it private for the moment.
-
-Most probably this hardware design is not specific to Actions only, so
-it might be helpful to other drivers as well. Therefore I am going to
-reconsider this and if/when it is accepted upstream, I will come back
-with a separate update patch for this driver.
-
-> > > For my own reference (apply this as-is to your sign-off block):
-> > 
-> > Please note the patches "[4/7] regulator: ..." and "[5/7] power: ..."
-> > have been already picked up by Mark and Sebastian, respectively, while
-> > Dmitry suggested to merge "[6/7] input: ..." through MFD.
+> yamllint warnings/errors:
 > 
-> That's fine.
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.example.dt.yaml: encoder@58: ports: '#address-cells', '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.example.dt.yaml: encoder@58: ports:port@1:endpoint: Additional properties are not allowed ('remote-endpoint' was unexpected)
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
 > 
-> Please re-submit the patches which have not been applied already.
-
-I have just submitted v7 with the two patches dropped.
-
-> > >   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> > > 
-> > 
-> > Thanks,
-> > Cristi
+> See https://patchwork.ozlabs.org/patch/1431199
 > 
-> -- 
-> Lee Jones [李琼斯]
-> Senior Technical Lead - Developer Services
-> Linaro.org │ Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
