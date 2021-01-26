@@ -2,197 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54DAA303FE9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:15:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E3D303F88
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 15:02:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392690AbhAZNls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 08:41:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34516 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391747AbhAZNkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 08:40:35 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22CACC0611C2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 05:39:55 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id z22so5081415edb.9
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 05:39:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lk4JPRwUYALCNG2igi4afiTcBYEM/7rNUk9OAWBcEKk=;
-        b=UdoDKTi1sbPTjTJ0MhX4Kqhq+E/25MT5yDvXGL4Lw/8bOvznJXP0tqAV6gvt012HI+
-         Ev2hEmfTso5JGXBtKJzZbcauz+6G/Vvob9aAIfSyQNzR3UP9aahETacfBhUH4NMTqJfG
-         28ukc1xDY2V1dNFw8EENwGvTAvF4JJm+odDaZLsWpTT+zftemxavbyks/bP4UmIwGc93
-         385PhrWn3eVRLJ3fIQnswzQTh+fCRfMHcTyBLtbwzr8FDksAL/nOSFGlZVaegBrGmeG3
-         OUUASyq5mxgl8H68jPCJmXHuT4pZgDs9KVTjHiZQ2L9LRUYwbKzH/atU7ZJ1n3Ht+28F
-         lKVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lk4JPRwUYALCNG2igi4afiTcBYEM/7rNUk9OAWBcEKk=;
-        b=NoC6eR7w2il4bq57BNO6tCkOD8KgyILrXPWjBKvJPFX3pQFVfEXw1VH8vq6L1Cezsw
-         Dt3fYCQvvlSx5ZPKOII0Cq5Dv75iyek1Qx3cL2nzH+9q/HwfeKp0d2u7d7808UutyYiO
-         0wIL0cnFeoxVagIZ1TvPHYgzWZ9kriLO+0vwjdA+hTU9cA9i+CE695MJbzo4rP4FsUAj
-         FnTFQqPhBSrsDdpyPZw3FDqDrhgPAOzgSvl64psquTWjCQY2zIayWCgdFtAkzI6hmm7r
-         TQDDND7wr0iPL7QZibfLsNihhztYsZyTeYJct/CcMqyjpjG/9N3Gnyq8WvoBEIkLneWD
-         bUvw==
-X-Gm-Message-State: AOAM532m2nnWfDWc1pjN8z3wXa6g/77fYgAT3g60GVkH5HASDNmMbxhv
-        9nhV7SOwsJzAYJePJPiStxvGwQ==
-X-Google-Smtp-Source: ABdhPJzfsUKl3nbwig8RQGGsmtTC3iiYEKOK8dCvoMmrGeiWyq+JIptIf9wgNf3sl7zWKgCI0XMpiQ==
-X-Received: by 2002:a50:fc97:: with SMTP id f23mr4882928edq.307.1611668393900;
-        Tue, 26 Jan 2021 05:39:53 -0800 (PST)
-Received: from [192.168.0.4] (hst-221-115.medicom.bg. [84.238.221.115])
-        by smtp.googlemail.com with ESMTPSA id w2sm9932644ejn.73.2021.01.26.05.39.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jan 2021 05:39:53 -0800 (PST)
-Subject: Re: [PATCH v2 3/9] clk: qcom: Add SDM660 Multimedia Clock Controller
- (MMCC) driver
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>, agross@kernel.org
-Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org
-References: <20210113183817.447866-1-angelogioacchino.delregno@somainline.org>
- <20210113183817.447866-4-angelogioacchino.delregno@somainline.org>
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Message-ID: <2453cbae-bd30-416c-4432-9b27754670e1@linaro.org>
-Date:   Tue, 26 Jan 2021 15:39:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S2405639AbhAZOBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 09:01:32 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:42565 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2405633AbhAZOB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 09:01:29 -0500
+X-UUID: cf337740d68741399c61c9713e7ba2bb-20210126
+X-UUID: cf337740d68741399c61c9713e7ba2bb-20210126
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <mason.zhang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1811361804; Tue, 26 Jan 2021 22:00:40 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 26 Jan 2021 22:00:32 +0800
+Received: from localhost.localdomain (10.15.20.246) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jan 2021 22:00:32 +0800
+From:   Mason Zhang <mason.zhang@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
+        Mason Zhang <mason.zhang@mediatek.com>
+Subject: [PATCH v1] arm64: dts: add spi node for MT6779
+Date:   Tue, 26 Jan 2021 21:44:09 +0800
+Message-ID: <20210126134408.615-1-mason.zhang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <20210113183817.447866-4-angelogioacchino.delregno@somainline.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: DCD03F50F081BFCDA3250A18BA3985F5E3288A8F9CB9D2A38654EDCD11947AEE2000:8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds support spi to MT6779 SOC
 
+Signed-off-by: Mason Zhang <mason.zhang@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt6779.dtsi | 96 ++++++++++++++++++++++++
+ 1 file changed, 96 insertions(+)
 
-On 1/13/21 8:38 PM, AngeloGioacchino Del Regno wrote:
-> From: Martin Botka <martin.botka@somainline.org>
-> 
-> Add a driver for the multimedia clock controller found on SDM660
-> based devices. This should allow most multimedia device drivers
-> to probe and control their clocks.
-> 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> Co-developed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> [angelogioacchino.delregno@somainline.org: Cleaned up SDM630 clock fixups]
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> ---
->  drivers/clk/qcom/Kconfig                     |    9 +
->  drivers/clk/qcom/Makefile                    |    1 +
->  drivers/clk/qcom/mmcc-sdm660.c               | 2864 ++++++++++++++++++
->  include/dt-bindings/clock/qcom,mmcc-sdm660.h |  162 +
->  4 files changed, 3036 insertions(+)
->  create mode 100644 drivers/clk/qcom/mmcc-sdm660.c
->  create mode 100644 include/dt-bindings/clock/qcom,mmcc-sdm660.h
-> 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index d32bb12cd8d0..eb9746e84556 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -366,6 +366,15 @@ config SDM_GCC_660
->  	  Say Y if you want to use peripheral devices such as UART, SPI,
->  	  i2C, USB, UFS, SDDC, PCIe, etc.
->  
-> +config SDM_MMCC_660
-> +	tristate "SDM660 Multimedia Clock Controller"
-> +	select SDM_GCC_660
-> +	select QCOM_GDSC
-> +	help
-> +	  Support for the multimedia clock controller on SDM660 devices.
-> +	  Say Y if you want to support multimedia devices such as display,
-> +	  graphics, video encode/decode, camera, etc.
-> +
->  config QCS_TURING_404
->  	tristate "QCS404 Turing Clock Controller"
->  	help
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index 9e5e0e3cb7b4..bfa8350f088d 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -62,6 +62,7 @@ obj-$(CONFIG_SC_VIDEOCC_7180) += videocc-sc7180.o
->  obj-$(CONFIG_SDM_CAMCC_845) += camcc-sdm845.o
->  obj-$(CONFIG_SDM_DISPCC_845) += dispcc-sdm845.o
->  obj-$(CONFIG_SDM_GCC_660) += gcc-sdm660.o
-> +obj-$(CONFIG_SDM_MMCC_660) += mmcc-sdm660.o
->  obj-$(CONFIG_SDM_GCC_845) += gcc-sdm845.o
->  obj-$(CONFIG_SDM_GPUCC_845) += gpucc-sdm845.o
->  obj-$(CONFIG_SDM_LPASSCC_845) += lpasscc-sdm845.o
-> diff --git a/drivers/clk/qcom/mmcc-sdm660.c b/drivers/clk/qcom/mmcc-sdm660.c
-> new file mode 100644
-> index 000000000000..d268e1c89f57
-> --- /dev/null
-> +++ b/drivers/clk/qcom/mmcc-sdm660.c
-> @@ -0,0 +1,2864 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020, Martin Botka <martin.botka@somainline.org>
-> + * Copyright (c) 2020, Konrad Dybcio <konrad.dybcio@somainline.org>
-> + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/bitops.h>
-> +#include <linux/err.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset-controller.h>
-> +#include <linux/clk.h>
-> +
-> +
-> +#include <dt-bindings/clock/qcom,mmcc-sdm660.h>
-> +
-> +#include "common.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "clk-alpha-pll.h"
-> +#include "clk-rcg.h"
-> +#include "clk-branch.h"
-> +#include "reset.h"
-> +#include "gdsc.h"
-> +
-
-<cut>
-
-> +
-> +static struct gdsc venus_gdsc = {
-> +	.gdscr = 0x1024,
-> +	.pd = {
-> +		.name = "venus",
-> +	},
-> +	.pwrsts = PWRSTS_OFF_ON,
-> +};
-> +
-> +static struct gdsc venus_core0_gdsc = {
-> +	.gdscr = 0x1040,
-> +	.pd = {
-> +		.name = "venus_core0",
-> +	},
-> +	.parent = &venus_gdsc.pd,
-> +	.pwrsts = PWRSTS_OFF_ON,
-
-I think this gdsc should be under hw control?
-
-+	.flags = HW_CTRL,
-
-> +};
-> +
+diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+index 370f309d32de..272f4346d35e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+@@ -219,6 +219,102 @@
+ 			status = "disabled";
+ 		};
+ 
++		spi0: spi0@1100a000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x1100a000 0 0x1000>;
++			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				<&topckgen CLK_TOP_SPI>,
++				<&infracfg_ao CLK_INFRA_SPI0>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi1: spi1@11010000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11010000 0 0x1000>;
++			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				<&topckgen CLK_TOP_SPI>,
++				<&infracfg_ao CLK_INFRA_SPI1>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi2: spi2@11012000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11012000 0 0x1000>;
++			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				<&infracfg_ao CLK_INFRA_SPI2>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi3: spi3@11013000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11013000 0 0x1000>;
++			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				 <&infracfg_ao CLK_INFRA_SPI3>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi4: spi4@11018000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11018000 0 0x1000>;
++			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				 <&infracfg_ao CLK_INFRA_SPI4>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi5: spi5@11019000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x11019000 0 0x1000>;
++			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				<&topckgen CLK_TOP_SPI>,
++				<&infracfg_ao CLK_INFRA_SPI5>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi6: spi6@1101d000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x1101d000 0 0x1000>;
++			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				 <&infracfg_ao CLK_INFRA_SPI6>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
++		spi7: spi7@1101e000 {
++			compatible = "mediatek,mt6779-spi",
++				     "mediatek,mt6765-spi";
++			mediatek,pad-select = <0>;
++			reg = <0 0x1101e000 0 0x1000>;
++			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
++				 <&topckgen CLK_TOP_SPI>,
++				 <&infracfg_ao CLK_INFRA_SPI7>;
++			clock-names = "parent-clk", "sel-clk", "spi-clk";
++		};
++
+ 		audio: clock-controller@11210000 {
+ 			compatible = "mediatek,mt6779-audio", "syscon";
+ 			reg = <0 0x11210000 0 0x1000>;
 -- 
--- 
-regards,
-Stan
+2.18.0
