@@ -2,267 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF0B305844
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 11:25:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35A3C305845
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 11:25:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S314243AbhAZXCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 18:02:03 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:57594 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727759AbhAZWBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 17:01:53 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 68B952C1;
-        Tue, 26 Jan 2021 23:01:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1611698469;
-        bh=BHmdZYv8ApW4Hf+sURWB/QQiokPoXSvuXZA2UdxlKPM=;
+        id S314249AbhAZXCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 18:02:14 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52258 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727304AbhAZWZ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Jan 2021 17:25:59 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1CEA920665;
+        Tue, 26 Jan 2021 22:25:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611699917;
+        bh=CoU9O01KVr4DWjJVSl5ku8nkaGtSHWQMM1dUjHH4D1Y=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mnE6mk3z0HeahmaHus4994p1XTBWRXS1xkTSLPO8TYlpYt8lcA85Lg2Mn3RZkiGaT
-         seKVNeO9oKMjfv+u+SB3Wub6Fgf/APLaeW5svtwREj5Do4Rbn4Crjzs7qcJVbzWwws
-         MDvzmALLU4q2UGrhlKOu7N8Hb5IvExQv9iIS43RQ=
-Date:   Wed, 27 Jan 2021 00:00:49 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] dmaengine: rcar-dmac: Add support for R-Car V3U
-Message-ID: <YBCREUMJ0/LgxDlJ@pendragon.ideasonboard.com>
-References: <20210125142431.1049668-1-geert+renesas@glider.be>
- <20210125142431.1049668-5-geert+renesas@glider.be>
+        b=twPNmo72uAXJ6QVBm5A2LBiUtuDjPMG42HhkdXLbE+weZFsQlg7VkaAwFA4q/UvFa
+         86KzGPMwOveXMNXjZGo8EeZzEuTqv3F9dmQN5N/kZdl7+Cy6OJ6eg1T7fr8Lc2HRzT
+         m/BGqx9FZkBz0CMw8PO+fPN2XloBzUXQD81i28Msgq+LOI1IBjommGcyKhfR0d5gj6
+         JgHKSLMQ+d9OeAPsKBZI6XmdYud34aWreyxXvA/bi2EsXnbRNHVuHz44OBK01tILr0
+         xYswsSiZUrXH82JPkovBHMLXRjYNTICd0RBj/4BmnVRIJx1OBOehfmdE/wSL9kPLBV
+         nJQv94OUZU3zw==
+Date:   Tue, 26 Jan 2021 22:25:12 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com
+Subject: Re: [PATCH v6 00/33] MT8192 IOMMU support
+Message-ID: <20210126222511.GC30460@willie-the-truck>
+References: <20210111111914.22211-1-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210125142431.1049668-5-geert+renesas@glider.be>
+In-Reply-To: <20210111111914.22211-1-yong.wu@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-Thank you for the patch.
-
-On Mon, Jan 25, 2021 at 03:24:31PM +0100, Geert Uytterhoeven wrote:
-> The DMACs (both SYS-DMAC and RT-DMAC) on R-Car V3U differ slightly from
-> the DMACs on R-Car Gen2 and other R-Car Gen3 SoCs:
->   1. The per-channel registers are located in a second register block.
->      Add support for mapping the second block, using the appropriate
->      offsets and stride.
->   2. The common Channel Clear Register (DMACHCLR) was replaced by a
->      per-channel register.
->      Update rcar_dmac_chan_clear{,_all}() to handle this.
->      As rcar_dmac_init() needs to clear the status before the individual
->      channels are probed, channel index and base address initialization
->      are moved forward.
+On Mon, Jan 11, 2021 at 07:18:41PM +0800, Yong Wu wrote:
+> This patch mainly adds support for mt8192 Multimedia IOMMU and SMI.
 > 
-> Inspired by a patch in the BSP by Phong Hoang
-> <phong.hoang.wz@renesas.com>.
+> mt8192 also is MTK IOMMU gen2 which uses ARM Short-Descriptor translation
+> table format. The M4U-SMI HW diagram is as below:
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v2:
->   - Use two separate named regions instead of an iomem[] array,
->   - Drop rcar_dmac_of_data.chan_reg_block, check for
->     !rcar_dmac_of_data.chan_offset_base instead,
->   - Precalculate chan_base in rcar_dmac_probe().
-> ---
->  drivers/dma/sh/rcar-dmac.c | 74 ++++++++++++++++++++++++++++----------
->  1 file changed, 55 insertions(+), 19 deletions(-)
+>                           EMI
+>                            |
+>                           M4U
+>                            |
+>                       ------------
+>                        SMI Common
+>                       ------------
+>                            |
+>   +-------+------+------+----------------------+-------+
+>   |       |      |      |       ......         |       |
+>   |       |      |      |                      |       |
+> larb0   larb1  larb2  larb4     ......      larb19   larb20
+> disp0   disp1   mdp    vdec                   IPE      IPE
 > 
-> diff --git a/drivers/dma/sh/rcar-dmac.c b/drivers/dma/sh/rcar-dmac.c
-> index 7a0f802c61e5152d..d9589eea98083215 100644
-> --- a/drivers/dma/sh/rcar-dmac.c
-> +++ b/drivers/dma/sh/rcar-dmac.c
-> @@ -189,7 +189,8 @@ struct rcar_dmac_chan {
->   * struct rcar_dmac - R-Car Gen2 DMA Controller
->   * @engine: base DMA engine object
->   * @dev: the hardware device
-> - * @iomem: remapped I/O memory base
-> + * @dmac_base: remapped base register block
-> + * @chan_base: remapped channel register block (optional)
->   * @n_channels: number of available channels
->   * @channels: array of DMAC channels
->   * @channels_mask: bitfield of which DMA channels are managed by this driver
-> @@ -198,7 +199,8 @@ struct rcar_dmac_chan {
->  struct rcar_dmac {
->  	struct dma_device engine;
->  	struct device *dev;
-> -	void __iomem *iomem;
-> +	void __iomem *dmac_base;
-> +	void __iomem *chan_base;
->  
->  	unsigned int n_channels;
->  	struct rcar_dmac_chan *channels;
-> @@ -234,7 +236,7 @@ struct rcar_dmac_of_data {
->  #define RCAR_DMAOR_PRI_ROUND_ROBIN	(3 << 8)
->  #define RCAR_DMAOR_AE			(1 << 2)
->  #define RCAR_DMAOR_DME			(1 << 0)
-> -#define RCAR_DMACHCLR			0x0080
-> +#define RCAR_DMACHCLR			0x0080	/* Not on R-Car V3U */
->  #define RCAR_DMADPSEC			0x00a0
->  
->  #define RCAR_DMASAR			0x0000
-> @@ -297,6 +299,9 @@ struct rcar_dmac_of_data {
->  #define RCAR_DMAFIXDAR			0x0014
->  #define RCAR_DMAFIXDPBASE		0x0060
->  
-> +/* For R-Car V3U */
-> +#define RCAR_V3U_DMACHCLR		0x0100
-> +
->  /* Hardcode the MEMCPY transfer size to 4 bytes. */
->  #define RCAR_DMAC_MEMCPY_XFER_SIZE	4
->  
-> @@ -307,17 +312,17 @@ struct rcar_dmac_of_data {
->  static void rcar_dmac_write(struct rcar_dmac *dmac, u32 reg, u32 data)
->  {
->  	if (reg == RCAR_DMAOR)
-> -		writew(data, dmac->iomem + reg);
-> +		writew(data, dmac->dmac_base + reg);
->  	else
-> -		writel(data, dmac->iomem + reg);
-> +		writel(data, dmac->dmac_base + reg);
->  }
->  
->  static u32 rcar_dmac_read(struct rcar_dmac *dmac, u32 reg)
->  {
->  	if (reg == RCAR_DMAOR)
-> -		return readw(dmac->iomem + reg);
-> +		return readw(dmac->dmac_base + reg);
->  	else
-> -		return readl(dmac->iomem + reg);
-> +		return readl(dmac->dmac_base + reg);
->  }
->  
->  static u32 rcar_dmac_chan_read(struct rcar_dmac_chan *chan, u32 reg)
-> @@ -339,12 +344,23 @@ static void rcar_dmac_chan_write(struct rcar_dmac_chan *chan, u32 reg, u32 data)
->  static void rcar_dmac_chan_clear(struct rcar_dmac *dmac,
->  				 struct rcar_dmac_chan *chan)
->  {
-> -	rcar_dmac_write(dmac, RCAR_DMACHCLR, BIT(chan->index));
-> +	if (dmac->chan_base)
+> All the connections are HW fixed, SW can NOT adjust it.
+> 
+> Comparing with the preview SoC, this patchset mainly adds two new functions:
+> a) add iova 34 bits support.
+> b) add multi domains support since several HW has the special iova
+> region requirement.
 
-Using dmac->chan_base to check if the device is a V3U seems a bit of a
-hack (especially given that the field is otherwise unused). I'd prefer
-adding a model field to struct rcar_dmac_of_data and struct rcar_dmac.
+This is looking good and I'd really like to see it merged, especially as it
+has changes to the io-pgtable code. Please could you post a new version ASAP
+to address the comments on patches 6 and 7?
 
-> +		rcar_dmac_chan_write(chan, RCAR_V3U_DMACHCLR, 1);
-> +	else
-> +		rcar_dmac_write(dmac, RCAR_DMACHCLR, BIT(chan->index));
->  }
->  
->  static void rcar_dmac_chan_clear_all(struct rcar_dmac *dmac)
->  {
-> -	rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
-> +	struct rcar_dmac_chan *chan;
-> +	unsigned int i;
-> +
-> +	if (dmac->chan_base) {
-> +		for_each_rcar_dmac_chan(i, chan, dmac)
-> +			rcar_dmac_chan_write(chan, RCAR_V3U_DMACHCLR, 1);
-> +	} else {
-> +		rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
-> +	}
->  }
->  
->  /* -----------------------------------------------------------------------------
-> @@ -1744,7 +1760,6 @@ static const struct dev_pm_ops rcar_dmac_pm = {
->  
->  static int rcar_dmac_chan_probe(struct rcar_dmac *dmac,
->  				struct rcar_dmac_chan *rchan,
-> -				const struct rcar_dmac_of_data *data,
->  				unsigned int index)
->  {
->  	struct platform_device *pdev = to_platform_device(dmac->dev);
-> @@ -1753,9 +1768,6 @@ static int rcar_dmac_chan_probe(struct rcar_dmac *dmac,
->  	char *irqname;
->  	int ret;
->  
-> -	rchan->index = index;
-> -	rchan->iomem = dmac->iomem + data->chan_offset_base +
-> -		       data->chan_offset_stride * index;
->  	rchan->mid_rid = -EINVAL;
->  
->  	spin_lock_init(&rchan->lock);
-> @@ -1842,6 +1854,7 @@ static int rcar_dmac_probe(struct platform_device *pdev)
->  	const struct rcar_dmac_of_data *data;
->  	struct rcar_dmac_chan *chan;
->  	struct dma_device *engine;
-> +	void __iomem *chan_base;
->  	struct rcar_dmac *dmac;
->  	unsigned int i;
->  	int ret;
-> @@ -1880,9 +1893,24 @@ static int rcar_dmac_probe(struct platform_device *pdev)
->  		return -ENOMEM;
->  
->  	/* Request resources. */
-> -	dmac->iomem = devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(dmac->iomem))
-> -		return PTR_ERR(dmac->iomem);
-> +	dmac->dmac_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(dmac->dmac_base))
-> +		return PTR_ERR(dmac->dmac_base);
-> +
-> +	if (!data->chan_offset_base) {
-> +		dmac->chan_base = devm_platform_ioremap_resource(pdev, 1);
-> +		if (IS_ERR(dmac->chan_base))
-> +			return PTR_ERR(dmac->chan_base);
-> +
-> +		chan_base = dmac->chan_base;
-> +	} else {
-> +		chan_base = dmac->dmac_base + data->chan_offset_base;
-> +	}
-> +
-> +	for_each_rcar_dmac_chan(i, chan, dmac) {
-> +		chan->index = i;
-
-Now that chan->indew is set before calling rcar_dmac_chan_probe(), you
-don't have to pass the index to rcar_dmac_chan_probe() anymore.
-
-> +		chan->iomem = chan_base + i * data->chan_offset_stride;
-> +	}
->  
->  	/* Enable runtime PM and initialize the device. */
->  	pm_runtime_enable(&pdev->dev);
-> @@ -1929,7 +1957,7 @@ static int rcar_dmac_probe(struct platform_device *pdev)
->  	INIT_LIST_HEAD(&engine->channels);
->  
->  	for_each_rcar_dmac_chan(i, chan, dmac) {
-> -		ret = rcar_dmac_chan_probe(dmac, chan, data, i);
-> +		ret = rcar_dmac_chan_probe(dmac, chan, i);
->  		if (ret < 0)
->  			goto error;
->  	}
-> @@ -1977,14 +2005,22 @@ static void rcar_dmac_shutdown(struct platform_device *pdev)
->  }
->  
->  static const struct rcar_dmac_of_data rcar_dmac_data = {
-> -	.chan_offset_base = 0x8000,
-> -	.chan_offset_stride = 0x80,
-> +	.chan_offset_base	= 0x8000,
-> +	.chan_offset_stride	= 0x80,
-> +};
-> +
-> +static const struct rcar_dmac_of_data rcar_v3u_dmac_data = {
-> +	.chan_offset_base	= 0x0,
-> +	.chan_offset_stride	= 0x1000,
->  };
->  
->  static const struct of_device_id rcar_dmac_of_ids[] = {
->  	{
->  		.compatible = "renesas,rcar-dmac",
->  		.data = &rcar_dmac_data,
-> +	}, {
-> +		.compatible = "renesas,dmac-r8a779a0",
-> +		.data = &rcar_v3u_dmac_data,
->  	},
->  	{ /* Sentinel */ }
->  };
-
--- 
-Regards,
-
-Laurent Pinchart
+Will
