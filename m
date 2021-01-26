@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16B8A304143
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 16:01:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC46F30414F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jan 2021 16:03:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405996AbhAZPBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 10:01:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52176 "EHLO
+        id S2391695AbhAZPBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 10:01:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390748AbhAZPAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 10:00:38 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D98CC061D7F
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:59:58 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id m22so23105695lfg.5
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 06:59:58 -0800 (PST)
+        with ESMTP id S2406009AbhAZPBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 10:01:22 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 644D6C0698C2
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 07:00:21 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id m22so23107507lfg.5
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 07:00:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=5PPoqIyCpJtL/ek+tU9+EyocWfpZVKR5Q6N/JZNTSoc=;
-        b=CJW5k+g5rrW0iG7J1Vqjf7EeICvtVMaqQr4Mrssy80eRmciKqXrKNu2x10XtIpUMjd
-         2Q9fD9jJF+Yiw/QHFgpLarnnoC9HGqb7+JqNxEgSc6ULWHrPbJmfwNrJC6HhunyJagtg
-         X99euSfrluWSS5ypVzSO5NDMQXTO+CUmJuikTOK8ZdbxbZzpn8/jxBjqRW7InmA6noQy
-         kVpakp5prj7msQgdbf5j7iuW6hQhykXGedscqJrv+7qvBclJSxgfLk7uWbofhgk5yXoC
-         HYVsH6NmMWQ2xYCfoGIVnVCnWAy7NrLg+zu14JIFrJsRVJ3PouFzyRQeh8veAj9pmYVy
-         LVrQ==
+        bh=oou4JBBLNg89AoflcEwukaUQeMGozONrAI+ykd68abc=;
+        b=CMa6kBvpR7r2i7zpxtIhNACZ2ViuaRO16BBxLI8B05cp9KOHqdEStU7xvCXZWY74SX
+         9lqFxZaRm4aqr+c9UZoLdzO0SOMIUuiYyxAeIJJGdPM/fiZR4aDiStE89i/QvkPTJ04r
+         UajsbqVlBJyRziIRZGuKOojtOnzJ5Q4KD2yRDbzkXpaQtXrh1M9quvjUl/9uy5spVVb5
+         GO92t8QxJaHe3M7H82gYGbZA9hX7M29967sScvq3sc6d0cfSQmE9sZiJQiLeevmZHPqx
+         RurYYDJ0RzvHiUwdCy41fLjd6IqcaiDE2XMbg2avVyrkBgog0Qghh8I/VRVS9XJ7SVPY
+         wkdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=5PPoqIyCpJtL/ek+tU9+EyocWfpZVKR5Q6N/JZNTSoc=;
-        b=YNQUpufoI9C18/b2W0wQGFTY5cOy4bkLjrk4z3BY/ybex9i02RK9wq91+w+IzVis7v
-         6pdEh1O6wlkAzrTx4GJOCrhFwUmB0S6o39lknnKVkANbS0QSUSS+QqKvzv8/q9ryQhgZ
-         gmgivhCmAltNbFLNp7lvFtR4mS4eSDz5rvAB8ocj0x2oKBUxM54Tpz5DnmQyX5pIe4di
-         g0uR6a4eFQhgvPwycf0ajtOoRRpJNGhefyWhSXg0Mdx9tsvXb2hXq+5SUOPRx3A8RQVR
-         X3EGuchdVg7fHGgq2zWM92Og5vUQNgUhJeQjKT1MlopwQvV/ZT2EFdyPZKRE6JhZwDKS
-         4fyQ==
-X-Gm-Message-State: AOAM533N7nIKydGL8bbAj06k0i08ZVmKhSII451Ij/DjDomXv86nQ9/+
-        8I6ZwpQAv21nJotAhRePSphCcLjb+hlsszUNAtgFOw==
-X-Google-Smtp-Source: ABdhPJw+UEQhd8vKQIGL6NeYSPSicxlz7dsriKTU3lH8LHsu7n43H+WLi/pKgx8+e/k/qqhhJKe1LW7Bfg9MZUXVmL8=
-X-Received: by 2002:a19:495d:: with SMTP id l29mr2785470lfj.465.1611673197037;
- Tue, 26 Jan 2021 06:59:57 -0800 (PST)
+        bh=oou4JBBLNg89AoflcEwukaUQeMGozONrAI+ykd68abc=;
+        b=X+6bLZcWtAkjFCxUZef0zARGktyIrbowrDwfK0OICX/x1khZYaXdiaiUuxGjNybr2n
+         DdnR2ApBO3fnI43uv+H27TACYtjla6W/F/vEF2NqaV1OFnBRgJDK/0Ti3+WKY7H6BBx/
+         vIovkL7eRadi7OLF8OZuAHogvYX37uEqj7WpL7guNkBjsOGOlQuNjyoebkiVGm81y76I
+         yv0MJokYGPkgA4vmXu8yuF/hAApDwjFJx5J1sgXWQsNK7SzulW+4bDQUzZeMEfXFf5pR
+         H7wIRbH3+xXS9Xit+JV8zJx0pW9ZOQhbP85zEe4YDUeb0fLQYPHilwOROhScOFCGwgwU
+         8fmg==
+X-Gm-Message-State: AOAM531SP0SIzbsOjO3J33K55P8avd57BnWDUCaNC70UuHDO1EXqIdfn
+        EnmaoLFNZ1jESmazBDL8bL1y74sG/0CFGTinrTrv1w==
+X-Google-Smtp-Source: ABdhPJzrV9fkzjpZBwQ0mQ9Fy53MLqpTRDv/TPUMKddMWfeRpgkK8NEwID8Bpzlme642rYr1YhFm4FNjevHCdUpgQwY=
+X-Received: by 2002:ac2:4285:: with SMTP id m5mr2664496lfh.649.1611673219946;
+ Tue, 26 Jan 2021 07:00:19 -0800 (PST)
 MIME-Version: 1.0
-References: <20210126132531.2084711-1-robert.foss@linaro.org>
-In-Reply-To: <20210126132531.2084711-1-robert.foss@linaro.org>
+References: <20210126132531.2084711-1-robert.foss@linaro.org> <20210126132531.2084711-2-robert.foss@linaro.org>
+In-Reply-To: <20210126132531.2084711-2-robert.foss@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 26 Jan 2021 15:59:46 +0100
-Message-ID: <CACRpkdYPY3HxpWHMp08477z62PBYEjCKWpw3Uf0SQ7VHVB3jdw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: pinctrl: pinctrl-microchip-sgpio: Fix
+Date:   Tue, 26 Jan 2021 16:00:09 +0100
+Message-ID: <CACRpkda4pChqJoR-RH_QGMq0NBgyWFsyhzQHthFWPZkm62qC8A@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] dt-bindings: mediatek: mt8192: Fix
  dt_binding_check warning
 To:     Robert Foss <robert.foss@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -85,7 +85,7 @@ On Tue, Jan 26, 2021 at 2:26 PM Robert Foss <robert.foss@linaro.org> wrote:
 >
 > Signed-off-by: Robert Foss <robert.foss@linaro.org>
 
-I already have a fix for this in my tree, thanks anyway!
+Patch applied!
 
 Yours,
 Linus Walleij
