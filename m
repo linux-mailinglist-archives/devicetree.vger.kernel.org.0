@@ -2,489 +2,600 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00BCA305C7F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:08:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C62F305C94
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:11:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237737AbhA0NHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 08:07:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55834 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238066AbhA0NGJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 08:06:09 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S238277AbhA0NKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 08:10:38 -0500
+Received: from a1.mail.mailgun.net ([198.61.254.60]:16628 "EHLO
+        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238180AbhA0NIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 08:08:21 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1611752871; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=7cWTLuH5ERj6GxbgJIPmvVwUQxWQw1SM2QluezgaKTI=;
+ b=DZ0uDwONNnMGQuaN3SLznJqkCtc4DajXxA5hs0wcCdreYVibSoHbRQONR5ES5E9vRtQECWpJ
+ jR3B03Kwiq5vaG7ct9Qkfbe1Svev3noDdGth1+bRRZ8FteMpwiG1Z22vVOMoOy3GeoVr4wt0
+ 4iOFUMuCu0wsYCKftzhKtD+cPoY=
+X-Mailgun-Sending-Ip: 198.61.254.60
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 601165892c36b2106dad35b7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 27 Jan 2021 13:07:21
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id AF929C43462; Wed, 27 Jan 2021 13:07:20 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=ham autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A304C2079A;
-        Wed, 27 Jan 2021 13:05:24 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1l4kVe-00ANT7-Kt; Wed, 27 Jan 2021 13:05:22 +0000
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9EC18C433ED;
+        Wed, 27 Jan 2021 13:07:19 +0000 (UTC)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Wed, 27 Jan 2021 13:05:22 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com, drinkcat@chromium.org,
-        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-Subject: Re: [v7,5/7] PCI: mediatek-gen3: Add MSI support
-In-Reply-To: <1611750706.14672.54.camel@mhfsdcap03>
-References: <20210113114001.5804-1-jianjun.wang@mediatek.com>
- <20210113114001.5804-6-jianjun.wang@mediatek.com>
- <661df220100e0d4e69f5cde90c083f4a@kernel.org>
- <1611750706.14672.54.camel@mhfsdcap03>
-User-Agent: Roundcube Webmail/1.4.10
-Message-ID: <210ce8009aedbea1660e1c5e1f8ebce9@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: jianjun.wang@mediatek.com, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com, p.zabel@pengutronix.de, matthias.bgg@gmail.com, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com, youlin.pei@mediatek.com, chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com, sin_jieyang@mediatek.com, drinkcat@chromium.org, Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Date:   Wed, 27 Jan 2021 18:37:19 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: Add basic devicetree support for
+ SM8350 SoC
+In-Reply-To: <20210127123054.263231-6-vkoul@kernel.org>
+References: <20210127123054.263231-1-vkoul@kernel.org>
+ <20210127123054.263231-6-vkoul@kernel.org>
+Message-ID: <194d2ebe26a9420f842c97738adb0443@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-27 12:31, Jianjun Wang wrote:
-> On Tue, 2021-01-26 at 13:57 +0000, Marc Zyngier wrote:
->> On 2021-01-13 11:39, Jianjun Wang wrote:
->> > Add MSI support for MediaTek Gen3 PCIe controller.
->> >
->> > This PCIe controller supports up to 256 MSI vectors, the MSI hardware
->> > block diagram is as follows:
->> >
->> >                   +-----+
->> >                   | GIC |
->> >                   +-----+
->> >                      ^
->> >                      |
->> >                  port->irq
->> >                      |
->> >              +-+-+-+-+-+-+-+-+
->> >              |0|1|2|3|4|5|6|7| (PCIe intc)
->> >              +-+-+-+-+-+-+-+-+
->> >               ^ ^           ^
->> >               | |    ...    |
->> >       +-------+ +------+    +-----------+
->> >       |                |                |
->> > +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
->> > |0|1|...|30|31|  |0|1|...|30|31|  |0|1|...|30|31| (MSI sets)
->> > +-+-+---+--+--+  +-+-+---+--+--+  +-+-+---+--+--+
->> >  ^ ^      ^  ^    ^ ^      ^  ^    ^ ^      ^  ^
->> >  | |      |  |    | |      |  |    | |      |  |  (MSI vectors)
->> >  | |      |  |    | |      |  |    | |      |  |
->> >
->> >   (MSI SET0)       (MSI SET1)  ...   (MSI SET7)
->> >
->> > With 256 MSI vectors supported, the MSI vectors are composed of 8 sets,
->> > each set has its own address for MSI message, and supports 32 MSI
->> > vectors
->> > to generate interrupt.
->> >
->> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
->> > Acked-by: Ryder Lee <ryder.lee@mediatek.com>
->> > ---
->> >  drivers/pci/controller/pcie-mediatek-gen3.c | 261 ++++++++++++++++++++
->> >  1 file changed, 261 insertions(+)
->> >
->> > diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c
->> > b/drivers/pci/controller/pcie-mediatek-gen3.c
->> > index 7979a2856c35..471d97cd1ef9 100644
->> > --- a/drivers/pci/controller/pcie-mediatek-gen3.c
->> > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
->> > @@ -14,6 +14,7 @@
->> >  #include <linux/irqdomain.h>
->> >  #include <linux/kernel.h>
->> >  #include <linux/module.h>
->> > +#include <linux/msi.h>
->> >  #include <linux/of_address.h>
->> >  #include <linux/of_clk.h>
->> >  #include <linux/of_pci.h>
->> > @@ -52,11 +53,28 @@
->> >  #define PCIE_LINK_STATUS_REG		0x154
->> >  #define PCIE_PORT_LINKUP		BIT(8)
->> >
->> > +#define PCIE_MSI_SET_NUM		8
->> > +#define PCIE_MSI_IRQS_PER_SET		32
->> > +#define PCIE_MSI_IRQS_NUM \
->> > +	(PCIE_MSI_IRQS_PER_SET * (PCIE_MSI_SET_NUM))
->> 
->> Spurious inner bracketing.
->> 
->> > +
->> >  #define PCIE_INT_ENABLE_REG		0x180
->> > +#define PCIE_MSI_ENABLE			GENMASK(PCIE_MSI_SET_NUM + 8 - 1, 8)
->> > +#define PCIE_MSI_SHIFT			8
->> >  #define PCIE_INTX_SHIFT			24
->> >  #define PCIE_INTX_MASK			GENMASK(27, 24)
->> >
->> >  #define PCIE_INT_STATUS_REG		0x184
->> > +#define PCIE_MSI_SET_ENABLE_REG		0x190
->> > +#define PCIE_MSI_SET_ENABLE		GENMASK(PCIE_MSI_SET_NUM - 1, 0)
->> > +
->> > +#define PCIE_MSI_SET_BASE_REG		0xc00
->> > +#define PCIE_MSI_SET_OFFSET		0x10
->> > +#define PCIE_MSI_SET_STATUS_OFFSET	0x04
->> > +#define PCIE_MSI_SET_ENABLE_OFFSET	0x08
->> > +
->> > +#define PCIE_MSI_SET_ADDR_HI_BASE	0xc80
->> > +#define PCIE_MSI_SET_ADDR_HI_OFFSET	0x04
->> >
->> >  #define PCIE_TRANS_TABLE_BASE_REG	0x800
->> >  #define PCIE_ATR_SRC_ADDR_MSB_OFFSET	0x4
->> > @@ -76,6 +94,18 @@
->> >  #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
->> >  #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
->> >
->> > +/**
->> > + * struct mtk_pcie_msi - MSI information for each set
->> > + * @dev: pointer to PCIe device
->> > + * @base: IO mapped register base
->> > + * @msg_addr: MSI message address
->> > + */
->> > +struct mtk_msi_set {
->> > +	struct device *dev;
->> > +	void __iomem *base;
->> > +	phys_addr_t msg_addr;
->> > +};
->> > +
->> >  /**
->> >   * struct mtk_pcie_port - PCIe port information
->> >   * @dev: pointer to PCIe device
->> > @@ -88,6 +118,11 @@
->> >   * @num_clks: PCIe clocks count for this port
->> >   * @irq: PCIe controller interrupt number
->> >   * @intx_domain: legacy INTx IRQ domain
->> > + * @msi_domain: MSI IRQ domain
->> > + * @msi_bottom_domain: MSI IRQ bottom domain
->> > + * @msi_sets: MSI sets information
->> > + * @lock: lock protecting IRQ bit map
->> > + * @msi_irq_in_use: bit map for assigned MSI IRQ
->> >   */
->> >  struct mtk_pcie_port {
->> >  	struct device *dev;
->> > @@ -101,6 +136,11 @@ struct mtk_pcie_port {
->> >
->> >  	int irq;
->> >  	struct irq_domain *intx_domain;
->> > +	struct irq_domain *msi_domain;
->> > +	struct irq_domain *msi_bottom_domain;
->> > +	struct mtk_msi_set msi_sets[PCIE_MSI_SET_NUM];
->> > +	struct mutex lock;
->> > +	DECLARE_BITMAP(msi_irq_in_use, PCIE_MSI_IRQS_NUM);
->> >  };
->> >
->> >  /**
->> > @@ -243,6 +283,15 @@ static int mtk_pcie_startup_port(struct
->> > mtk_pcie_port *port)
->> >  		return err;
->> >  	}
->> >
->> > +	/* Enable MSI */
->> > +	val = readl_relaxed(port->base + PCIE_MSI_SET_ENABLE_REG);
->> > +	val |= PCIE_MSI_SET_ENABLE;
->> > +	writel_relaxed(val, port->base + PCIE_MSI_SET_ENABLE_REG);
->> > +
->> > +	val = readl_relaxed(port->base + PCIE_INT_ENABLE_REG);
->> > +	val |= PCIE_MSI_ENABLE;
->> > +	writel_relaxed(val, port->base + PCIE_INT_ENABLE_REG);
->> > +
->> >  	/* Set PCIe translation windows */
->> >  	resource_list_for_each_entry(entry, &host->windows) {
->> >  		struct resource *res = entry->res;
->> > @@ -286,6 +335,129 @@ static int mtk_pcie_set_affinity(struct irq_data
->> > *data,
->> >  	return -EINVAL;
->> >  }
->> >
->> > +static struct irq_chip mtk_msi_irq_chip = {
->> > +	.name = "MSI",
->> > +	.irq_ack = irq_chip_ack_parent,
->> > +};
->> > +
->> > +static struct msi_domain_info mtk_msi_domain_info = {
->> > +	.flags		= (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_PCI_MSIX |
->> > +			   MSI_FLAG_USE_DEF_CHIP_OPS | MSI_FLAG_MULTI_PCI_MSI),
->> > +	.chip		= &mtk_msi_irq_chip,
->> > +};
->> > +
->> > +static void mtk_compose_msi_msg(struct irq_data *data, struct msi_msg
->> > *msg)
->> > +{
->> > +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
->> > +	unsigned long hwirq;
->> > +
->> > +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
->> > +
->> > +	msg->address_hi = upper_32_bits(msi_set->msg_addr);
->> > +	msg->address_lo = lower_32_bits(msi_set->msg_addr);
->> > +	msg->data = hwirq;
->> > +	dev_dbg(msi_set->dev, "msi#%#lx address_hi %#x address_lo %#x data
->> > %d\n",
->> > +		hwirq, msg->address_hi, msg->address_lo, msg->data);
->> > +}
->> > +
->> > +static void mtk_msi_bottom_irq_ack(struct irq_data *data)
->> > +{
->> > +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
->> > +	unsigned long hwirq;
->> > +
->> > +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
->> > +
->> > +	writel_relaxed(BIT(hwirq), msi_set->base +
->> > PCIE_MSI_SET_STATUS_OFFSET);
->> > +}
->> > +
->> > +static struct irq_chip mtk_msi_bottom_irq_chip = {
->> > +	.irq_ack		= mtk_msi_bottom_irq_ack,
->> > +	.irq_compose_msi_msg	= mtk_compose_msi_msg,
->> > +	.irq_set_affinity	= mtk_pcie_set_affinity,
->> > +	.name			= "PCIe",
->> 
->> nit: "MSI", rather than "PCIe".
->> 
->> > +};
->> > +
->> > +static int mtk_msi_bottom_domain_alloc(struct irq_domain *domain,
->> > +				       unsigned int virq, unsigned int nr_irqs,
->> > +				       void *arg)
->> > +{
->> > +	struct mtk_pcie_port *port = domain->host_data;
->> > +	struct mtk_msi_set *msi_set;
->> > +	int i, hwirq, set_idx;
->> > +
->> > +	mutex_lock(&port->lock);
->> > +
->> > +	hwirq = bitmap_find_free_region(port->msi_irq_in_use,
->> > PCIE_MSI_IRQS_NUM,
->> > +					order_base_2(nr_irqs));
->> > +
->> > +	mutex_unlock(&port->lock);
->> > +
->> > +	if (hwirq < 0)
->> > +		return -ENOSPC;
->> > +
->> > +	set_idx = hwirq / PCIE_MSI_IRQS_PER_SET;
->> > +	msi_set = &port->msi_sets[set_idx];
->> > +
->> > +	for (i = 0; i < nr_irqs; i++)
->> > +		irq_domain_set_info(domain, virq + i, hwirq + i,
->> > +				    &mtk_msi_bottom_irq_chip, msi_set,
->> > +				    handle_edge_irq, NULL, NULL);
->> > +
->> > +	return 0;
->> > +}
->> > +
->> > +static void mtk_msi_bottom_domain_free(struct irq_domain *domain,
->> > +				       unsigned int virq, unsigned int nr_irqs)
->> > +{
->> > +	struct mtk_pcie_port *port = domain->host_data;
->> > +	struct irq_data *data = irq_domain_get_irq_data(domain, virq);
->> > +
->> > +	mutex_lock(&port->lock);
->> > +
->> > +	bitmap_clear(port->msi_irq_in_use, data->hwirq, nr_irqs);
->> > +
->> > +	mutex_unlock(&port->lock);
->> > +
->> > +	irq_domain_free_irqs_common(domain, virq, nr_irqs);
->> > +}
->> > +
->> > +static int mtk_msi_bottom_domain_activate(struct irq_domain *domain,
->> > +					  struct irq_data *data, bool reserve)
->> > +{
->> > +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
->> > +	unsigned long hwirq;
->> > +	u32 val;
->> > +
->> > +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
->> > +
->> > +	val = readl_relaxed(msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
->> > +	val |= BIT(hwirq);
->> > +	writel_relaxed(val, msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
->> 
->> This isn't an activate. This is an unmask, which suffers from the same
->> issue as its INTx sibling.
->> 
->> > +
->> > +	return 0;
->> > +}
->> > +
->> > +static void mtk_msi_bottom_domain_deactivate(struct irq_domain
->> > *domain,
->> > +					     struct irq_data *data)
->> > +{
->> > +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
->> > +	unsigned long hwirq;
->> > +	u32 val;
->> > +
->> > +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
->> > +
->> > +	val = readl_relaxed(msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
->> > +	val &= ~BIT(hwirq);
->> > +	writel_relaxed(val, msi_set->base + PCIE_MSI_SET_ENABLE_OFFSET);
->> > +}
->> 
->> Same thing, this is a mask. I don't think this block requires any
->> activate/deactivate callbacks for its lower irqdomain.
->> 
->> As it stands, you can't mask a MSI at the low-level, which is
->> pretty bad (you need to mask them at the PCI source, which can
->> end-up disabling all vectors in the case of Multi-MSI).
-> 
-> Hi Marc,
-> 
-> Thanks for your review.
-> 
-> This mtk_msi_bottom_domain is the parent domain of pci_msi_domain, but
-> the mask/unmask callback of pci_msi_domain does not call the callback 
-> of
-> its parent. Therefore if these functions are put in the mask/unmask
-> callbacks, they will not have a chance to be called.
+Hi Vinod,
 
-It is for you to wire the callbacks in the mtk_msi_irq_chip irqchip
-so that the request can be forwarded to the parent, without relying
-on the default callbacks:
-
-static void mtk_mask_msi_irq(struct irq_data *d)
-{
-	pci_msi_mask_irq(d);
-	irq_chip_mask_parent(d);
-}
-
-static void mtk_unmask_msi_irq(struct irq_data *d)
-{
-	pci_msi_unmask_irq(d);
-	irq_chip_unmask_parent(d);
-}
-
-static struct irq_chip mtk_msi_irq_chip = {
-        .name = "MSI",
-        .irq_mask = mtk_mask_msi_irq,
-        .irq_unmask = mtk_unmask_msi_irq,
-        .irq_ack = irq_chip_ack_parent,
-};
-
-and turn your activate/deactivate into unmask/mask.
-
->> 
->> > +
->> > +static const struct irq_domain_ops mtk_msi_bottom_domain_ops = {
->> > +	.alloc = mtk_msi_bottom_domain_alloc,
->> > +	.free = mtk_msi_bottom_domain_free,
->> > +	.activate = mtk_msi_bottom_domain_activate,
->> > +	.deactivate = mtk_msi_bottom_domain_deactivate,
->> > +};
->> > +
->> >  static void mtk_intx_mask(struct irq_data *data)
->> >  {
->> >  	struct mtk_pcie_port *port = irq_data_get_irq_chip_data(data);
->> > @@ -350,6 +522,9 @@ static int mtk_pcie_init_irq_domains(struct
->> > mtk_pcie_port *port,
->> >  {
->> >  	struct device *dev = port->dev;
->> >  	struct device_node *intc_node;
->> > +	struct fwnode_handle *fwnode = of_node_to_fwnode(node);
->> > +	struct msi_domain_info *info;
->> > +	int i, ret;
->> >
->> >  	/* Setup INTx */
->> >  	intc_node = of_get_child_by_name(node, "interrupt-controller");
->> > @@ -365,7 +540,57 @@ static int mtk_pcie_init_irq_domains(struct
->> > mtk_pcie_port *port,
->> >  		return -ENODEV;
->> >  	}
->> >
->> > +	/* Setup MSI */
->> > +	mutex_init(&port->lock);
->> > +
->> > +	port->msi_bottom_domain = irq_domain_add_linear(node,
->> > PCIE_MSI_IRQS_NUM,
->> > +				  &mtk_msi_bottom_domain_ops, port);
->> > +	if (!port->msi_bottom_domain) {
->> > +		dev_info(dev, "failed to create MSI bottom domain\n");
->> > +		ret = -ENODEV;
->> > +		goto err_msi_bottom_domain;
->> > +	}
->> > +
->> > +	info = devm_kzalloc(dev, sizeof(*info), GFP_KERNEL);
->> > +	if (!info) {
->> > +		ret = -ENOMEM;
->> > +		goto err_msi_bottom_domain;
->> > +	}
->> > +
->> > +	memcpy(info, &mtk_msi_domain_info, sizeof(*info));
->> 
->> Why the memcpy()? There is nothing in mtk_msi_domain_info that is
->> per-domain, and you should be able to use this structure for all
->> ports, shouldn't you?
+On 2021-01-27 18:00, Vinod Koul wrote:
+> Add basic devicetree support for Qualcomm Technologies, Inc SM8350 SoC.
+> This adds gcc, pinctrl, reserved memory, uart, cpu nodes for this SoC.
 > 
-> Yes, it used to update the info->chip_data for each port, but since the
-> msi_set has been used for msi_bottom_domain ,it has no effect anymore, 
-> I
-> will drop it in the next version, thanks.
->> 
->> > +	info->chip_data = port;
->> > +
->> > +	port->msi_domain = pci_msi_create_irq_domain(fwnode, info,
->> > +						     port->msi_bottom_domain);
->> > +	if (!port->msi_domain) {
->> > +		dev_info(dev, "failed to create MSI domain\n");
->> > +		ret = -ENODEV;
->> > +		goto err_msi_domain;
->> > +	}
->> > +
->> > +	for (i = 0; i < PCIE_MSI_SET_NUM; i++) {
->> > +		struct mtk_msi_set *msi_set = &port->msi_sets[i];
->> > +
->> > +		msi_set->dev = port->dev;
->> 
->> Given that this is only used in a debug message, and that the 
->> addresses
->> are already non-ambiguous, you can probably remove this field.
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 499 +++++++++++++++++++++++++++
+>  1 file changed, 499 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm8350.dtsi
 > 
-> OK, I will remove it in the next version.
-> 
->> 
->> > +		msi_set->base = port->base + PCIE_MSI_SET_BASE_REG +
->> > +				i * PCIE_MSI_SET_OFFSET;
->> > +		msi_set->msg_addr = port->reg_base + PCIE_MSI_SET_BASE_REG +
->> > +				    i * PCIE_MSI_SET_OFFSET;
->> > +
->> > +		writel_relaxed(lower_32_bits(msi_set->msg_addr), msi_set->base);
->> > +		writel_relaxed(upper_32_bits(msi_set->msg_addr),
->> > +			       port->base + PCIE_MSI_SET_ADDR_HI_BASE +
->> > +			       i * PCIE_MSI_SET_ADDR_HI_OFFSET);
->> 
->> Please a comment on what this is doing...
-> 
-> This codes are used to configure the capture address of each MSI set,
-> the lower 32 bits of MSI address should be written to msi_set->base, 
-> but
-> the strange thing is that the address where need to write the higher 32
-> bits are not near each set, they are start from
-> PCIE_MSI_SET_ADDR_HI_BASE, and have PCIE_MSI_SET_ADDR_HI_OFFSET apart.
-> 
-> That's why it looks so weired...
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> new file mode 100644
+> index 000000000000..29af0b931690
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -0,0 +1,499 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2020, Linaro Limaited
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/clock/qcom,rpmh.h>
+> +#include <dt-bindings/mailbox/qcom-ipcc.h>
+> +#include <dt-bindings/power/qcom-aoss-qmp.h>
+> +#include <dt-bindings/power/qcom-rpmpd.h>
+> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> +
+> +/ {
+> +	interrupt-parent = <&intc>;
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	chosen { };
+> +
+> +	clocks {
+> +		xo_board: xo-board {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <38400000>;
+> +			clock-output-names = "xo_board";
+> +		};
+> +
+> +		sleep_clk: sleep-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <32000>;
+> +			#clock-cells = <0>;
+> +		};
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		CPU0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo685";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_0>;
+> +			L2_0: l2-cache {
+> +			      compatible = "cache";
+> +			      next-level-cache = <&L3_0>;
+> +				L3_0: l3-cache {
+> +				      compatible = "cache";
+> +				};
+> +			};
+> +		};
+> +
+> +		CPU1: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo685";
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_100>;
+> +			L2_100: l2-cache {
+> +			      compatible = "cache";
+> +			      next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU2: cpu@200 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo685";
+> +			reg = <0x0 0x200>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_200>;
+> +			L2_200: l2-cache {
+> +			      compatible = "cache";
+> +			      next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU3: cpu@300 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo685";
+> +			reg = <0x0 0x300>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_300>;
+> +			L2_300: l2-cache {
+> +			      compatible = "cache";
+> +			      next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU4: cpu@400 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo685";
+> +			reg = <0x0 0x400>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_400>;
+> +			L2_400: l2-cache {
+> +			      compatible = "cache";
+> +			      next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU5: cpu@500 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo685";
+> +			reg = <0x0 0x500>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_500>;
+> +			L2_500: l2-cache {
+> +			      compatible = "cache";
+> +			      next-level-cache = <&L3_0>;
+> +			};
+> +
+> +		};
+> +
+> +		CPU6: cpu@600 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo685";
+> +			reg = <0x0 0x600>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_600>;
+> +			L2_600: l2-cache {
+> +			      compatible = "cache";
+> +			      next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU7: cpu@700 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo685";
+> +			reg = <0x0 0x700>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_700>;
+> +			L2_700: l2-cache {
+> +			      compatible = "cache";
+> +			      next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +	};
+> +
+> +	firmware {
+> +		scm: scm {
+> +			compatible = "qcom,scm-sm8350", "qcom,scm";
+> +			#reset-cells = <1>;
+> +		};
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		/* We expect the bootloader to fill in the size */
+> +		reg = <0x0 0x80000000 0x0 0x0>;
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	reserved_memory: reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		hyp_mem: memory@80000000 {
+> +			reg = <0x0 0x80000000 0x0 0x600000>;
+> +			no-map;
+> +		};
+> +
+> +		xbl_aop_mem: memory@80700000 {
+> +			no-map;
+> +			reg = <0x0 0x80700000 0x0 0x160000>;
+> +		};
+> +
+> +		cmd_db: memory@80860000 {
+> +			compatible = "qcom,cmd-db";
+> +			reg = <0x0 0x80860000 0x0 0x20000>;
+> +			no-map;
+> +		};
+> +
+> +		reserved_xbl_uefi_log: memory@80880000 {
+> +			reg = <0x0 0x80880000 0x0 0x14000>;
+> +			no-map;
+> +		};
+> +
+> +		smem_mem: memory@80900000 {
+> +			reg = <0x0 0x80900000 0x0 0x200000>;
+> +			no-map;
+> +		};
+> +
+> +		cpucp_fw_mem: memory@80b00000 {
+> +			reg = <0x0 0x80b00000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		cdsp_secure_heap: memory@80c00000 {
+> +			reg = <0x0 0x80c00000 0x0 0x4600000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_camera_mem: mmeory@85200000 {
+> +			reg = <0x0 0x85200000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_video_mem: memory@85700000 {
+> +			reg = <0x0 0x85700000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_cvp_mem: memory@85c00000 {
+> +			reg = <0x0 0x85c00000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_adsp_mem: memory@86100000 {
+> +			reg = <0x0 0x86100000 0x0 0x2100000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_slpi_mem: memory@88200000 {
+> +			reg = <0x0 0x88200000 0x0 0x1500000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_cdsp_mem: memory@89700000 {
+> +			reg = <0x0 0x89700000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_ipa_fw_mem: memory@8b500000 {
+> +			reg = <0x0 0x8b500000 0x0 0x10000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_ipa_gsi_mem: memory@8b510000 {
+> +			reg = <0x0 0x8b510000 0x0 0xa000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_gpu_mem: memory@8b51a000 {
+> +			reg = <0x0 0x8b51a000 0x0 0x2000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_spss_mem: memory@8b600000 {
+> +			reg = <0x0 0x8b600000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_modem_mem: memory@8b800000 {
+> +			reg = <0x0 0x8b800000 0x0 0x10000000>;
+> +			no-map;
+> +		};
+> +
+> +		hyp_reserved_mem: memory@d0000000 {
+> +			reg = <0x0 0xd0000000 0x0 0x800000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_trustedvm_mem: memory@d0800000 {
+> +			reg = <0x0 0xd0800000 0x0 0x76f7000>;
+> +			no-map;
+> +		};
+> +
+> +		qrtr_shbuf: memory@d7ef7000 {
+> +			reg = <0x0 0xd7ef7000 0x0 0x9000>;
+> +			no-map;
+> +		};
+> +
+> +		chan0_shbuf: memory@d7f00000 {
+> +			reg = <0x0 0xd7f00000 0x0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		chan1_shbuf: memory@d7f80000 {
+> +			reg = <0x0 0xd7f80000 0x0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		removed_mem: memory@d8800000 {
+> +			reg = <0x0 0xd8800000 0x0 0x6800000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	smem: qcom,smem {
+> +		compatible = "qcom,smem";
+> +		memory-region = <&smem_mem>;
+> +		hwlocks = <&tcsr_mutex 3>;
+> +	};
+> +
+> +	soc: soc@0 {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0 0 0 0 0x10 0>;
+> +		dma-ranges = <0 0 0 0 0x10 0>;
+> +		compatible = "simple-bus";
+> +
+> +		gcc: clock-controller@100000 {
+> +			compatible = "qcom,gcc-sm8350";
+> +			reg = <0x0 0x00100000 0x0 0x1f0000>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +			clock-names = "bi_tcxo", "sleep_clk";
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&sleep_clk>;
+> +		};
+> +
+> +		ipcc: mailbox@408000 {
+> +			compatible = "qcom,sm8350-ipcc", "qcom,ipcc";
+> +			reg = <0 0x00408000 0 0x1000>;
+> +			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +			#mbox-cells = <2>;
+> +		};
+> +
+> +		qupv3_id_1: geniqup@9c0000 {
+> +			compatible = "qcom,geni-se-qup";
+> +			reg = <0x0 0x009c0000 0x0 0x6000>;
+> +			clock-names = "m-ahb", "s-ahb";
+> +			clocks = <&gcc 121>,
+> +				 <&gcc 122>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			status = "disabled";
+> +
+> +			uart2: serial@98c000 {
+> +				compatible = "qcom,geni-debug-uart";
+> +				reg = <0 0x0098c000 0 0x4000>;
+> +				clock-names = "se";
+> +				clocks = <&gcc 83>;
+> +				pinctrl-names = "default";
+> +				pinctrl-0 = <&qup_uart3_default_state>;
+> +				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		tcsr_mutex: hwlock@1f40000 {
+> +			compatible = "qcom,tcsr-mutex";
+> +			reg = <0x0 0x01f40000 0x0 0x40000>;
+> +			#hwlock-cells = <1>;
+> +		};
+> +
+> +		pdc: interrupt-controller@b220000 {
+> +			compatible = "qcom,sm8350-pdc", "qcom,pdc";
+> +			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x60>;
+> +			qcom,pdc-ranges = <0 480 40>, <40 140 14>, <54 263 1>,   <55 306 
+> 4>,
+> +					  <59 312 3>, <62 374 2>,  <64 434 2>,   <66 438 3>,
+> +					  <69 86 1>,  <70 520 54>, <124 609 31>, <155 63 1>,
+> +					  <156 716 12>;
+> +			#interrupt-cells = <2>;
+> +			interrupt-parent = <&intc>;
+> +			interrupt-controller;
+> +		};
+> +
+> +		aoss_qmp: qmp@c300000 {
+> +			compatible = "qcom,sm8350-aoss-qmp";
+> +			reg = <0 0x0c300000 0 0x100000>;
+> +			interrupts-extended = <&ipcc IPCC_CLIENT_AOP 
+> IPCC_MPROC_SIGNAL_GLINK_QMP
+> +						     IRQ_TYPE_EDGE_RISING>;
+> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +			#clock-cells = <0>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+> +		tlmm: pinctrl@f100000 {
+> +			compatible = "qcom,sm8350-tlmm";
+> +			reg = <0 0x0f100000 0 0x300000>;
+> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +			gpio-ranges = <&tlmm 0 0 203>;
+> +
+> +			qup_uart3_default_state: qup-uart3-default-state {
+> +				rx {
+> +					pins = "gpio18";
+> +					function = "qup3";
+> +				};
+> +				tx {
+> +					pins = "gpio19";
+> +					function = "qup3";
+> +				};
+> +			};
+> +		};
+> +
+> +		intc: interrupt-controller@17a00000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			reg = <0x0 0x17a00000 0x0 0x10000>,     /* GICD */
+> +			      <0x0 0x17a60000 0x0 0x100000>;    /* GICR * 8 */
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		timer@17c20000 {
+> +			compatible = "arm,armv7-timer-mem";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			reg = <0x0 0x17c20000 0x0 0x1000>;
+> +			clock-frequency = <19200000>;
+> +
+> +			frame@17c21000 {
+> +				frame-number = <0>;
+> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x0 0x17c21000 0x0 0x1000>,
+> +				      <0x0 0x17c22000 0x0 0x1000>;
+> +			};
+> +
+> +			frame@17c23000 {
+> +				frame-number = <1>;
+> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x0 0x17c23000 0x0 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@17c25000 {
+> +				frame-number = <2>;
+> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x0 0x17c25000 0x0 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@17c27000 {
+> +				frame-number = <3>;
+> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x0 0x17c27000 0x0 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@17c29000 {
+> +				frame-number = <4>;
+> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x0 0x17c29000 0x0 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@17c2b000 {
+> +				frame-number = <5>;
+> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x0 0x17c2b000 0x0 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@17c2d000 {
+> +				frame-number = <6>;
+> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x0 0x17c2d000 0x0 0x1000>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		apps_rsc: rsc@18200000 {
+> +			label = "apps_rsc";
+> +			compatible = "qcom,rpmh-rsc";
+> +			reg = <0x0 0x18200000 0x0 0x10000>,
+> +				<0x0 0x18210000 0x0 0x10000>,
+> +				<0x0 0x18220000 0x0 0x10000>;
+> +			reg-names = "drv-0", "drv-1", "drv-2";
+> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> +			qcom,tcs-offset = <0xd00>;
+> +			qcom,drv-id = <2>;
+> +			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   3>,
+> +					  <WAKE_TCS    3>, <CONTROL_TCS 1>;
+> +
+> +			rpmhcc: clock-controller {
+> +				compatible = "qcom,sm8350-rpmh-clk";
+> +				#clock-cells = <1>;
+> +				clock-names = "xo";
+> +				clocks = <&xo_board>;
+> +			};
+> +
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | 
+> IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 
-OK. Just add a comment saying that this programs the MSI capture 
-address.
+The last interrupt should be hypervisor physical interrupt(10) not 
+12(hyp virtual).
+It works currently with android bootloaders because the host linux 
+kernel will run
+at EL1 and will use EL1 physical timer interrupt(14), but if we ever 
+have the host
+kernel run in EL2(for example, chrome) then we will not receive any 
+timer interrupts.
 
 Thanks,
+Sai
 
-         M.
 -- 
-Jazz is not dead. It just smells funny...
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
