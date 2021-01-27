@@ -2,164 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2BB83056CF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 10:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9141C305720
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 10:41:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234708AbhA0JYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 04:24:16 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:22578 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231338AbhA0JWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 04:22:11 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 10R9DEtg008341;
-        Wed, 27 Jan 2021 10:21:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=kcZRKLt0/T1SGV05doeMSST8p3+eAg9tjvXn0Coubak=;
- b=Py/9+O8rdNXbySkZf49e4BEO59Ooqc88cVQAbpr9OUaHm4hgHOnuujKDvOQD+3T5/KXz
- qEpenW2VswS4JUANnXi/yzQ+LJV17GMvp9X0dYrYccJGaolsVyXfLmZjD4VQCorn21GW
- sLtpI6zYaoai+xScbBNPVMRF4H5i6PVruVehS0iSBzzlB/KU4+IOzMdf24+LBdcrkBzX
- JHUwF3bZfbuE9EJSzcC8/vAI1JDnxWa+nFAJtUWGMkh5RRji7GsFE9p5mCc5ucgsnQ+0
- EOA5XShx6gBbGLisRACPjpeIpD4ML16pY+wgWWVfH1u+KdRz5Mw4igrN/+eym2TOoVQn XA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 368a56px60-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 27 Jan 2021 10:21:25 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2124110002A;
-        Wed, 27 Jan 2021 10:21:25 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0BFB02296FA;
-        Wed, 27 Jan 2021 10:21:25 +0100 (CET)
-Received: from lmecxl0889.lme.st.com (10.75.127.47) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 27 Jan
- 2021 10:21:24 +0100
-Subject: Re: [PATCH v4 00/17] remoteproc: Add support for detaching a rproc
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
-From:   Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Message-ID: <64b559dc-9e89-c351-ddee-f9cebd155ed7@st.com>
-Date:   Wed, 27 Jan 2021 10:21:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S234443AbhA0Jjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 04:39:47 -0500
+Received: from mail-vi1eur05on2075.outbound.protection.outlook.com ([40.107.21.75]:21856
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233593AbhA0JDL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 04:03:11 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WmuDS6E589Lcyh4wA296pmgYdbKrZUdq/NyFX7L/elUG/Og0YxDH1jqpPPJRwGrCEGClbGFyansXAEIgFPNMXcXsKmpeYr3K6Utpl+lmeS2otx2BmW1+eJi8Z2v9NHAc3xQaksuo00LFQtfEEaVe+9VYcQ1qoCd+04hfMEIAadpul1DYo0h7lzHwcgAnaFrthE8nxQSmL4SjoNt48aPx3EoQcbwSDod0LCdBvQj/PfJxetl4dA9L3/dZtn4mkgabI3vd6Z1rJYTQjrFOMfSmYfrTpyXMoFq1ShlGap827T2ZHJ8FCaUCMVo/J13Z/Y69UFMUlh5vniiPoxjMIfpRDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/oO3TjI55cSnmiAjpu2YKIX1yPPUt67vQMRYd5hoaRQ=;
+ b=ZrB/ffotegXW9Uy1bqTUr9rTRoQfhYy5Va9EuK5v6ZNtNwm0m/j2jRWEcL9r3OcUXD71ZEQIeCAhBsOuXmgRlPAzRV4q4IjdwGisjUSqTSYqslHzNASS9uNHcvtmn1vbt1qg6Qf2D7cX3z8ZWa6DHxNgDl0e0ShkpJfjp15d1l1UPTVkF9qEFlTo6H3e333khUaDTIQ6Qy1UFoBJR1mufmd7J8tS0aQvkV8Ov0SL82CPL9Qcb2/n0nAlD8B3TI9s39w2QZKRCdUAoKGWON0yywSNwxR6++TtABDN35VRE3zqIwZ3lOLJfrSny9hHEwY5hXelhqEYibxMBuV8+jATPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/oO3TjI55cSnmiAjpu2YKIX1yPPUt67vQMRYd5hoaRQ=;
+ b=DrO9oJVfviSc6BQKvhbmP8HC+wZwwLiei8/lq8Kk2WgyLCpvlU9r03NX8cIVQ51glcaVVZ26frCO8M5xJn4yB6w+BboD3VKpb6QoFZRh/Ao5gEf+6dcP2+DQiPIGoqbRzrhCNJalLAt7TL1bsiZhmeS2A8ZRdjpL9922nSqq/Ao=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=none action=none
+ header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR04MB2975.eurprd04.prod.outlook.com (2603:10a6:802:9::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Wed, 27 Jan
+ 2021 09:02:17 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::2564:cacc:2da5:52d0%5]) with mapi id 15.20.3805.016; Wed, 27 Jan 2021
+ 09:02:17 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
+        a.hajda@samsung.com, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, kishon@ti.com, vkoul@kernel.org
+Subject: [PATCH v3 00/14] Add some DRM bridge drivers support for i.MX8qm/qxp SoCs
+Date:   Wed, 27 Jan 2021 16:51:14 +0800
+Message-Id: <1611737488-2791-1-git-send-email-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR02CA0049.apcprd02.prod.outlook.com
+ (2603:1096:4:54::13) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-In-Reply-To: <20201218173228.2277032-1-mathieu.poirier@linaro.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE1.st.com
- (10.75.127.7)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
- definitions=2021-01-27_04:2021-01-26,2021-01-27 signatures=0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0049.apcprd02.prod.outlook.com (2603:1096:4:54::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3805.16 via Frontend Transport; Wed, 27 Jan 2021 09:02:11 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 89e17932-44cf-42a5-c7e2-08d8c2a23efa
+X-MS-TrafficTypeDiagnostic: VI1PR04MB2975:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB29759EA67B88C1AF524B5DDB98BB0@VI1PR04MB2975.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 71oNpwt7R4rlZ1kU4fUj6zniem+dpVNXf7z4OfSFMcWJtLCTwvBua59gzfWxCw+oqd2XGjmXIH/uigK0nm25ThbbxwLOKjycQJjGeIviMPe2yBZ+hfc5dkTV/RS1a2XpYznB87GTKlLJBMtAq25jO5pQTeQhm0CyoePxIsUr2tghZqFOx0l7aIrk6Td3juOjAMGi16lb1innaV0QCngmirjCAPT6gv05kKFUPz1ZA2Rg9UB7tZ7lrcWy6RNB5hhON4Uu1EqDafwerqUfuMLCmHpqn/K6BhjaB748RgFaWPWGwQu2RilCeIEQjizsKZnCGAsXfW6LLwlqoDFio6Ya+EX12IzmmSqYT5MjSaZO/vQ9A+RJCc6MpmoZw54awwkH8q+QGy8y6CCavzsziHyBMKu5qX6tTPkZT6cUlXrqukpx8LX6DtTsjImaEhVyczqr3UrT6o5YGZeGnBBLB7ymy0wwiNv/VKS8Te29gNt2x6wJm3wus7O0FcNawA2CarzwOSVd/7KyDqw9hZdCKYCi1e3qabl5DfRuvuLFi0jWHWBYlB1LiQ6jOl6yZx1pOD3m52u2Oz8SzRxfbX7ZlXdZHjhJfLoILomGimZggW6gJLWC37+/HMc1anV16lzgvmjy3plZhnrnKXkSnEuKfl00kmVxgitLa8ZoZQcV+S3hZwg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(376002)(366004)(346002)(39860400002)(136003)(396003)(8936002)(2616005)(6486002)(66946007)(186003)(956004)(7416002)(4326008)(36756003)(69590400011)(6506007)(8676002)(316002)(5660300002)(16526019)(86362001)(478600001)(6512007)(2906002)(52116002)(83380400001)(66556008)(966005)(26005)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?qkkqqMkCw4umTUHAj5ltBVDML0K+q8HuUfOxZ5YgBrxzc7OlYrbMxqnJkrMR?=
+ =?us-ascii?Q?DMwqd0M+BOzFLBaCoX48Q+cpSgBHy+fqBdwhPcb/D7Ij2pjX5EPKwp1KHGEn?=
+ =?us-ascii?Q?0fBAOi8p4QLUX2mAyR5aNY8OZOGfvpc327/rU3Lz08+hiomLyEVX2lWJbrjC?=
+ =?us-ascii?Q?QkbNpG21ssXfWTUXiZOZJPAnMfHOe3v9sxXN+R6pzLtf28DYh+hIEHhcd7c3?=
+ =?us-ascii?Q?x5WjKU6udAbHh8KJ8qryZgMukBUYFr1VMgcFXWWWtKzRVqCFANf/6X6HdEZ+?=
+ =?us-ascii?Q?f2GwL7QK6iCfGjlh8Z/ltipqzGat+O6WdKlbJK/+VAIf9K2tChz/8hKRxIQj?=
+ =?us-ascii?Q?suVMTRcfrBU1DZxEDn+Pffk2SGEeCtwTl/3V66Q14XeTjGn9WoBrzXA79E+1?=
+ =?us-ascii?Q?tEbzGsyKq0AxEGjtP5SZIFmJFSVteuFDrVkD9RVqVeNPz5MQXV2yM9CH8tTH?=
+ =?us-ascii?Q?sLbzgwoCtspF+KEl93CT3UXJ6Vbq3Q5qteV/wxT/n6Qv+JiNT54Y6NBnkcSx?=
+ =?us-ascii?Q?F1eEc8aC9tLuacclNFLaLLsdDiqOZiNrYVKhx1E3DZ+Kuewk/nz36Ivjd66/?=
+ =?us-ascii?Q?ktQ61gbtraAaCq+Nzmq+WjNqCmRib/A1O53gSO+iGpAYUEyMWt24T62RPzgk?=
+ =?us-ascii?Q?Z9yz0lrbFJ7rFBTlZIG5pAiWGTXH3IbOy+wy0jnXiLnlzjCOI/Sqq+qJT3sM?=
+ =?us-ascii?Q?xPrdhBb/tASqJUiHZrKowR+VH4cdDtmySkUEJ0BI+rV992wclaYO3R4V60S8?=
+ =?us-ascii?Q?Ig0DUjqulE5Es2+zWTPIvYwjmvgXmxo3nNp4LCt/8gUhBwA3T8KLv3dQVfQ+?=
+ =?us-ascii?Q?uvYov+LE3ffxfTZoQgB5SjnthpfcFG5aoKfoE3UUzfx/YELlQYgKJYy/8Nyi?=
+ =?us-ascii?Q?Zx1USSzFk/b04CCZxMOXwYlclSSLhwhfy+F0e41Lg8USOp0ICnbKMFDlxDNn?=
+ =?us-ascii?Q?KtWWNNMx9RF70RaN2PgbjOJVD4NCmehxqxJFNBviJX0gryWpvSxN1RPmlA2X?=
+ =?us-ascii?Q?9bJBctJL0TfPgIW9pLSdRUPyLFOAqenswwOzdqgHq2LDn9qx+Z8BEZGKBVnA?=
+ =?us-ascii?Q?YskBn/CP?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89e17932-44cf-42a5-c7e2-08d8c2a23efa
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2021 09:02:17.5615
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bD6sBD8Vut48U0pN6vctDumLFkPFM86VzJxdM6DoE+zoJpafjt7RfuNJvQ/gRhowZyZsfOEjmLMgRYSC/3bM/Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB2975
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mathieu
+Hi,
 
-On 12/18/20 6:32 PM, Mathieu Poirier wrote:
-> Following the work done here [1], this set provides support for the
-> remoteproc core to release resources associated with a remote processor
-> without having to switch it off. That way a platform driver can be removed
-> or the application processor power cycled while the remote processor is
-> still operating.
-> 
-> Of special interest in this series are patches 5 and 6 where getting the
-> address of the resource table installed by an eternal entity if moved to
-> the core.  This is to support scenarios where a remote process has been
-> booted by the core but is being detached.  To re-attach the remote
-> processor, the address of the resource table needs to be known at a later
-> time than the platform driver's probe() function.
-> 
-> Applies cleanly on v5.10
-> 
-> Thanks,
-> Mathieu
-> 
-> [1]. https://lkml.org/lkml/2020/7/14/1600
-> 
-> ----
-> New for v4:
-> - Made binding description OS agnostic (Rob)
-> - Added functionality to set the external resource table in the core
-> - Fixed a crash when detaching (Arnaud)
-> - Fixed error code propagation in rproc_cdev_relase() and rproc_del() (Arnaud)
-> - Added RB tags
+This is the v3 series to add some DRM bridge drivers support
+for i.MX8qm/qxp SoCs.
+
+The bridges may chain one by one to form display pipes to support
+LVDS displays.  The relevant display controller is DPU embedded in
+i.MX8qm/qxp SoCs.
+
+The DPU KMS driver can be found at:
+https://www.spinics.net/lists/arm-kernel/msg871357.html
+
+This series supports the following display pipes:
+1) i.MX8qxp:
+prefetch eng -> DPU -> pixel combiner -> pixel link ->
+pixel link to DPI(PXL2DPI) -> LVDS display bridge(LDB)
+
+2) i.MX8qm:
+prefetch eng -> DPU -> pixel combiner -> pixel link -> LVDS display bridge(LDB)
 
 
-I tested you series, attach and  detach is working well.
+Patch 1/14 adds LVDS PHY configuration options, which has already been sent
+with the following series to add Mixel combo PHY found in i.MX8qxp:
+https://www.spinics.net/lists/arm-kernel/msg862560.html
 
-Then I faced issue when tried to re-attach after a detach.
+Patch 2/14 and 3/14 add bus formats used by PXL2DPI.
 
-But I don't know if this feature has to be supported in this step.
+Patch 4/14 ~ 13/14 add drm bridge drivers and dt-bindings support for the bridges.
 
-The 2 issues I found are:
-
-1) memory carveouts are released on detach so need to be reinitialized.
-The use of prepare/unprepare for the attach and detach would solve the issue but
-probably need to add parameter to differentiate a start/stop from a attach/detach.
-
-2) The vrings in the loaded resource table (so no cached) has to be properly
-reinitialized. In rproc_free_vring  the vring da is set to 0 that is then
-considered as a fixed address.
-
-Here is a fix which works on the stm32 platform
-
-@@ -425,7 +425,7 @@ void rproc_free_vring(struct rproc_vring *rvring)
- 	 */
- 	if (rproc->table_ptr) {
- 		rsc = (void *)rproc->table_ptr + rvring->rvdev->rsc_offset;
--		rsc->vring[idx].da = 0;
-+		rsc->vring[idx].da = FW_RSC_ADDR_ANY;
- 		rsc->vring[idx].notifyid = -1;
- 	}
- }
-
-Here, perhaps a better alternative would be to make a cached copy on attach
-before updating it. On the next attach, the cached copy would be copied as it is
-done in rproc_start.
-
-Thanks,
-Arnaud
+Patch 14/14 updates MAINTAINERS.
 
 
-> 
-> Mathieu Poirier (17):
->   dt-bindings: remoteproc: Add bindind to support autonomous processors
->   remoteproc: Re-check state in rproc_shutdown()
->   remoteproc: Remove useless check in rproc_del()
->   remoteproc: Rename function rproc_actuate()
->   remoteproc: Add new get_loaded_rsc_table() remoteproc operation
->   remoteproc: stm32: Move resource table setup to rproc_ops
->   remoteproc: Add new RPROC_ATTACHED state
->   remoteproc: Properly represent the attached state
->   remoteproc: Properly deal with a kernel panic when attached
->   remoteproc: Add new detach() remoteproc operation
->   remoteproc: Introduce function __rproc_detach()
->   remoteproc: Introduce function rproc_detach()
->   remoteproc: Add return value to function rproc_shutdown()
->   remoteproc: Properly deal with a stop request when attached
->   remoteproc: Properly deal with a start request when attached
->   remoteproc: Properly deal with detach request
->   remoteproc: Refactor rproc delete and cdev release path
-> 
->  .../bindings/remoteproc/remoteproc-core.yaml  |  27 +++
->  drivers/remoteproc/remoteproc_cdev.c          |  32 ++-
->  drivers/remoteproc/remoteproc_core.c          | 211 +++++++++++++++---
->  drivers/remoteproc/remoteproc_internal.h      |   8 +
->  drivers/remoteproc/remoteproc_sysfs.c         |  20 +-
->  drivers/remoteproc/stm32_rproc.c              | 147 ++++++------
->  include/linux/remoteproc.h                    |  24 +-
->  7 files changed, 344 insertions(+), 125 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
-> 
+I've tested this series with a koe,tx26d202vm0bwa dual link LVDS panel and
+a LVDS to HDMI bridge(with a downstream drm bridge driver).
+
+
+Welcome comments, thanks.
+
+v2->v3:
+* Drop 'fsl,syscon' DT properties from fsl,imx8qxp-ldb.yaml and
+  fsl,imx8qxp-pxl2dpi.yaml. (Rob)
+* Mention the CSR module controls LDB and PXL2DPI in fsl,imx8qxp-ldb.yaml and
+  fsl,imx8qxp-pxl2dpi.yaml.
+* Call syscon_node_to_regmap() to get regmaps from LDB bridge helper driver
+  and PXL2DPI bridger driver instead of syscon_regmap_lookup_by_phandle().
+* Drop two macros from pixel link bridge driver which help define functions
+  and define them directly.
+* Properly disable all pixel link controls to POR value by calling
+  imx8qxp_pixel_link_disable_all_controls() from
+  imx8qxp_pixel_link_bridge_probe().
+* Add Rob's R-b tags on patch 4/14 and 6/14.
+
+v1->v2:
+* Rebase the series upon the latest drm-misc-next branch(5.11-rc2 based).
+* Use graph schema in the dt-bindings of the bridges. (Laurent)
+* Require all four pixel link output ports in fsl,imx8qxp-pixel-link.yaml.
+  (Laurent)
+* Side note i.MX8qm/qxp LDB official name 'pixel mapper' in fsl,imx8qxp-ldb.yaml.
+  (Laurent)
+* Mention pixel link is accessed via SCU firmware in fsl,imx8qxp-pixel-link.yaml.
+  (Rob)
+* Use enum instead of oneOf + const for the reg property of pixel combiner
+  channels in fsl,imx8qxp-pixel-combiner.yaml. (Rob)
+* Rewrite the function to find the next bridge in pixel link bridge driver
+  by properly using OF APIs and dropping unnecessary DT validation. (Rob)
+* Drop unnecessary port availability check in i.MX8qxp pixel link to DPI
+  bridge driver.
+* Drop unnecessary DT validation from i.MX8qxp LDB bridge driver.
+* Use of_graph_get_endpoint_by_regs() and of_graph_get_remote_endpoint() to
+  get the input remote endpoint in imx8qxp_ldb_set_di_id() of i.MX8qxp LDB
+  bridge driver.
+* Avoid using companion_port OF node after putting it in
+  imx8qxp_ldb_parse_dt_companion() of i.MX8qxp LDB bridge driver.
+* Drop unnecessary check for maximum available LDB channels from
+  i.MX8qm LDB bridge driver.
+* Mention i.MX8qm/qxp LDB official name 'pixel mapper' in i.MX8qm/qxp LDB
+  bridge drivers and Kconfig help messages.
+
+Liu Ying (14):
+  phy: Add LVDS configuration options
+  media: uapi: Add some RGB bus formats for i.MX8qm/qxp pixel combiner
+  media: docs: Add some RGB bus formats for i.MX8qm/qxp pixel combiner
+  dt-bindings: display: bridge: Add i.MX8qm/qxp pixel combiner binding
+  drm/bridge: imx: Add i.MX8qm/qxp pixel combiner support
+  dt-bindings: display: bridge: Add i.MX8qm/qxp display pixel link
+    binding
+  drm/bridge: imx: Add i.MX8qm/qxp display pixel link support
+  dt-bindings: display: bridge: Add i.MX8qxp pixel link to DPI binding
+  drm/bridge: imx: Add i.MX8qxp pixel link to DPI support
+  drm/bridge: imx: Add LDB driver helper support
+  dt-bindings: display: bridge: Add i.MX8qm/qxp LVDS display bridge
+    binding
+  drm/bridge: imx: Add LDB support for i.MX8qxp
+  drm/bridge: imx: Add LDB support for i.MX8qm
+  MAINTAINERS: add maintainer for DRM bridge drivers for i.MX SoCs
+
+ .../bindings/display/bridge/fsl,imx8qxp-ldb.yaml   | 173 +++++
+ .../display/bridge/fsl,imx8qxp-pixel-combiner.yaml | 144 +++++
+ .../display/bridge/fsl,imx8qxp-pixel-link.yaml     | 106 +++
+ .../display/bridge/fsl,imx8qxp-pxl2dpi.yaml        | 102 +++
+ .../userspace-api/media/v4l/subdev-formats.rst     | 156 +++++
+ MAINTAINERS                                        |  10 +
+ drivers/gpu/drm/bridge/Kconfig                     |   2 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/imx/Kconfig                 |  52 ++
+ drivers/gpu/drm/bridge/imx/Makefile                |   6 +
+ drivers/gpu/drm/bridge/imx/imx-ldb-helper.c        | 248 +++++++
+ drivers/gpu/drm/bridge/imx/imx8qm-ldb.c            | 585 +++++++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c           | 719 +++++++++++++++++++++
+ .../gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c    | 452 +++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c    | 426 ++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c       | 488 ++++++++++++++
+ include/drm/bridge/imx_ldb_helper.h                |  98 +++
+ include/linux/phy/phy-lvds.h                       |  48 ++
+ include/linux/phy/phy.h                            |   4 +
+ include/uapi/linux/media-bus-format.h              |   6 +-
+ 20 files changed, 3825 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/Kconfig
+ create mode 100644 drivers/gpu/drm/bridge/imx/Makefile
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qm-ldb.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
+ create mode 100644 include/drm/bridge/imx_ldb_helper.h
+ create mode 100644 include/linux/phy/phy-lvds.h
+
+-- 
+2.7.4
+
