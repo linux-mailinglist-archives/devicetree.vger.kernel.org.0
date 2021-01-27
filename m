@@ -2,95 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E39330576B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 10:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D866305778
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 10:55:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234877AbhA0Jwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 04:52:43 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:58743 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235585AbhA0Jt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 04:49:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1611740996; x=1643276996;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+3i+bsPM/grhoAZtDpyUhjFVOODZ7Fc6Eq84gg2f818=;
-  b=JAxjt3M5KA3kJapUnVehhhYxkVl+vY9GJXFQ9NG4N6Hm6+DvPb0oTj07
-   qepgs1yPKj3KLfBliWcL7cHYlNdpcxks/FStT30g9GGqFwfrIniHr99l0
-   jwg6c/olmSllOVPKGBJMPOTDIQ6S7e2h3pLZBA6ZVYMYInvL5bo6muTot
-   /KSYVg5i/oWwQsqDLBMgUYtnkEb/flwSQphIpmMl86bZWR7gO4JT+AwcK
-   lCQSpZJVTPqHkH/w+6+C3ZGFexVavO8usPQbkC6i0mKgdfPnMOA4pTnO3
-   Md9Lx6KFlEA+SF+YbgyE2hVZ6RXdexpkrTh5MoHspx+aLq83bRZ+R41+8
-   A==;
-IronPort-SDR: dFPHY0sCCTNNwPne0kBOloW2EeIse7t/zz+h+MNximRmMgEYikXlR4mu5raGqGuDas0NdvqZ5E
- nZXqVJPLK6BBFBpvrLV0DRlsroaJgdUfYVaz+n8PiAi/aSf4CeWOJmTUH45d7J7PEjUdoQB4d0
- r3NQwcGOTDo2SH6N914fukbtpxL+n0NrsecMEZxYJ/i+hqrZcYLoKZ3KJOaW5ZDMtlDaXb0S9L
- zgnUMyZgf+OacryWxzKtNch+aVKhDhv7GdXzIAaz/zQD40YiOzthcFEeHV0zrDTenHkMrsc3Kt
- 2pE=
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; 
-   d="scan'208";a="106951920"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jan 2021 02:48:37 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 27 Jan 2021 02:48:37 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 27 Jan 2021 02:48:37 -0700
-Date:   Wed, 27 Jan 2021 10:48:36 +0100
-From:   Ludovic Desroches <ludovic.desroches@microchip.com>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-CC:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: at91-pio4: add slew-rate
-Message-ID: <20210127094836.xwmhl7dd4oalykzz@sekiro>
-References: <1611569954-23279-1-git-send-email-claudiu.beznea@microchip.com>
- <1611569954-23279-2-git-send-email-claudiu.beznea@microchip.com>
+        id S235125AbhA0JzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 04:55:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41334 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235628AbhA0JwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 04:52:19 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2397C061574
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 01:51:38 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id u14so1039107wmq.4
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 01:51:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=ZsyXSLBpqyoZDJLOwz36YTbFMR5XUsNbF337fUqt2Cg=;
+        b=XM+7AUuC9pRqUpcQ44jgThIg1R06D5+ODzaBzxFVy6O64Bfu3YlokaUj/qZWDDalUp
+         H1tJpg6SXSRIcUkpK8HTmhqT1G6g0LpQNcjyvtx05XkcUMVACa4uGoKORoO9VkYU6F67
+         XfJHrUU6dlCoDYzyHoGyp4Nd+ZobKt/vswc5d+m3eg9Ru/wvjBAKxow2DqBRLn4pD8T/
+         CZCnXmjCH8jTugGpZVNvAV8VELYQhbTLew1vPcjbYx+fP36sZYMuFhhQCB52lR0c0zbo
+         fpVdMahWflCeMErqu01wEo9kvYnyiiG4V7dKhoMB40f6EakwJIJnqz/mr/g3O7bMqNce
+         bbdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ZsyXSLBpqyoZDJLOwz36YTbFMR5XUsNbF337fUqt2Cg=;
+        b=IWmkM+Xa3Ut8e1CZZE6j3OY7xAgvPhHPWsqgtzS7VEnSdEdKVpDwpp+xNbYxsoIEZk
+         07kkuZG7FK2zQhBPhG6nqrmyD1AxZrpzt5wUEzxEIMaDHzI2p9y6QgPGkYaPGftWwXx4
+         076Opxx1lxsRxquyVSA+XjDKS1/AijLOrtaYBOL+mqe25dzAzuFa/sY1ldQY6ojnwzw+
+         nQ8CQbmhgrKWEELs4TWvNRo/cHVXnT0cugJhDBnnBBijqfwtjrO9ZqMxB3j55VhfE0L4
+         IhzaQ3w57JkwlL5zR1WrJyjR0WkechXlP3WXP0NB5+o3HGwna+5bkl1xiZehxAglnxAH
+         1c/A==
+X-Gm-Message-State: AOAM532vngIlQi/9uIeWjBXcNDXxqxvT4nMc+N2t48c2Ljn/LWe1Rmh4
+        3opz3ZpKCwYIXaF/h7OT7tQ37A==
+X-Google-Smtp-Source: ABdhPJz/BXkWanv6XHkXGTic7kAcimSL/5joj2dCuqTeRbrnaMy0dPjNX+1atXk2Dz/Jdmydy0V3FA==
+X-Received: by 2002:a7b:cb8a:: with SMTP id m10mr3359497wmi.127.1611741097661;
+        Wed, 27 Jan 2021 01:51:37 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id o17sm2213535wrm.52.2021.01.27.01.51.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 27 Jan 2021 01:51:36 -0800 (PST)
+Subject: Re: [PATCH] ASoC: qcom: lpass-cpu: Remove bit clock state check
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210127063038.1399-1-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <16199fa8-7a87-6e7f-9db6-1d5cd8493d4c@linaro.org>
+Date:   Wed, 27 Jan 2021 09:51:35 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1611569954-23279-2-git-send-email-claudiu.beznea@microchip.com>
+In-Reply-To: <20210127063038.1399-1-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 12:19:12PM +0200, Claudiu Beznea wrote:
-> Document slew-rate DT binding for SAMA7G5.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
 
-Thanks
+
+On 27/01/2021 06:30, Srinivasa Rao Mandadapu wrote:
+> No need of BCLK state maintenance from driver side as
+> clock_enable and clk_disable API's maintaing state counter.
+> 
+> One of the major issue was spotted when Headset jack inserted
+> while playback continues, due to same PCM device node opens twice
+> for playaback/capture and closes once for capture and playback continues.
+> 
+> It can resolve the errors in such scenarios.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+
+Thanks for the cleanup, yes clk core will take care of this by 
+enable_count check!
+
+You should add
+
+Fixes: b1824968221c ("ASoC: qcom: Fix enabling BCLK and LRCLK in LPAIF 
+invalid state")
+
 
 > ---
->  .../devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt       | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
+>   sound/soc/qcom/lpass-cpu.c       | 22 ++++++++--------------
+>   sound/soc/qcom/lpass-lpaif-reg.h |  3 ---
+>   sound/soc/qcom/lpass.h           |  1 -
+>   3 files changed, 8 insertions(+), 18 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt
-> index 265015bc0603..e2b861ce16d8 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt
-> +++ b/Documentation/devicetree/bindings/pinctrl/atmel,at91-pio4-pinctrl.txt
-> @@ -35,9 +35,11 @@ ioset settings. Use the macros from boot/dts/<soc>-pinfunc.h file to get the
->  right representation of the pin.
->  
->  Optional properties:
-> -- GENERIC_PINCONFIG: generic pinconfig options to use, bias-disable,
-> -bias-pull-down, bias-pull-up, drive-open-drain, input-schmitt-enable,
-> -input-debounce, output-low, output-high.
-> +- GENERIC_PINCONFIG: generic pinconfig options to use:
-> +	- bias-disable, bias-pull-down, bias-pull-up, drive-open-drain,
-> +	  input-schmitt-enable, input-debounce, output-low, output-high.
-> +	- for microchip,sama7g5-pinctrl only:
-> +		- slew-rate: 0 - disabled, 1 - enabled (default)
->  - atmel,drive-strength: 0 or 1 for low drive, 2 for medium drive and 3 for
->  high drive. The default value is low drive.
->  
-> -- 
-> 2.7.4
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index ae8efbc89af2..a669202e0001 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -286,16 +286,12 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+>   			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
+>   				ret);
+>   
+> -		if (drvdata->bit_clk_state[id] == LPAIF_BIT_CLK_DISABLE) {
+> -			ret = clk_enable(drvdata->mi2s_bit_clk[id]);
+> -			if (ret) {
+> -				dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
+> -				clk_disable(drvdata->mi2s_osr_clk[id]);
+> -				return ret;
+> -			}
+> -			drvdata->bit_clk_state[id] = LPAIF_BIT_CLK_ENABLE;
+> +		ret = clk_enable(drvdata->mi2s_bit_clk[id]);
+> +		if (ret) {
+> +			dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
+> +			clk_disable(drvdata->mi2s_osr_clk[id]);
+
+Can you also remove this unnecessary disable here!
+
+
+-srini
+
+> +			return ret;
+>   		}
+> -
+>   		break;
+>   	case SNDRV_PCM_TRIGGER_STOP:
+>   	case SNDRV_PCM_TRIGGER_SUSPEND:
+> @@ -310,10 +306,9 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+>   		if (ret)
+>   			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
+>   				ret);
+> -		if (drvdata->bit_clk_state[id] == LPAIF_BIT_CLK_ENABLE) {
+> -			clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
+> -			drvdata->bit_clk_state[id] = LPAIF_BIT_CLK_DISABLE;
+> -		}
+> +
+> +		clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
+> +
+>   		break;
+>   	}
+>   
+> @@ -861,7 +856,6 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
+>   				PTR_ERR(drvdata->mi2s_bit_clk[dai_id]));
+>   			return PTR_ERR(drvdata->mi2s_bit_clk[dai_id]);
+>   		}
+> -		drvdata->bit_clk_state[dai_id] = LPAIF_BIT_CLK_DISABLE;
+>   	}
+>   
+>   	/* Allocation for i2sctl regmap fields */
+> diff --git a/sound/soc/qcom/lpass-lpaif-reg.h b/sound/soc/qcom/lpass-lpaif-reg.h
+> index 405542832e99..c8e1d75340b2 100644
+> --- a/sound/soc/qcom/lpass-lpaif-reg.h
+> +++ b/sound/soc/qcom/lpass-lpaif-reg.h
+> @@ -60,9 +60,6 @@
+>   #define LPAIF_I2SCTL_BITWIDTH_24	1
+>   #define LPAIF_I2SCTL_BITWIDTH_32	2
+>   
+> -#define LPAIF_BIT_CLK_DISABLE		0
+> -#define LPAIF_BIT_CLK_ENABLE		1
+> -
+>   #define LPAIF_I2SCTL_RESET_STATE	0x003C0004
+>   #define LPAIF_DMACTL_RESET_STATE	0x00200000
+>   
+> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+> index 2d68af0da34d..83b2e08ade06 100644
+> --- a/sound/soc/qcom/lpass.h
+> +++ b/sound/soc/qcom/lpass.h
+> @@ -68,7 +68,6 @@ struct lpass_data {
+>   	unsigned int mi2s_playback_sd_mode[LPASS_MAX_MI2S_PORTS];
+>   	unsigned int mi2s_capture_sd_mode[LPASS_MAX_MI2S_PORTS];
+>   	int hdmi_port_enable;
+> -	int bit_clk_state[LPASS_MAX_MI2S_PORTS];
+>   
+>   	/* low-power audio interface (LPAIF) registers */
+>   	void __iomem *lpaif;
 > 
