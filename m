@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 402DB305F66
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:21:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB917305F59
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:20:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234346AbhA0PTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 10:19:02 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53670 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235491AbhA0POs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:14:48 -0500
+        id S235682AbhA0PTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 10:19:09 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:45542 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343746AbhA0PQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:16:11 -0500
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RFCuh1053913;
-        Wed, 27 Jan 2021 09:12:56 -0600
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RFEVCG058568;
+        Wed, 27 Jan 2021 09:14:31 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611760376;
-        bh=bypYKIW/QcBaXurae0qgKgxzwZFIrfQz9a7cz6+CsTo=;
+        s=ti-com-17Q1; t=1611760471;
+        bh=4NQBA4dCnOaDfbMECaOrJvmo/NRM4KAaRb+m2hEf9hc=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=VqysvBLRXCrAh6Z6HAztWnjXrKUxHQRlOVZLk1TNhuMIB3BVScJapLNVHIx9i4jPx
-         2hNvcMJmN7EgfD/fgSC9yJp2MWh3rJDmkOkveCIDkK4hYE9ISp8WossG32bc7Jied1
-         UApMwgZOo4PDHM8fFAiijRyV9lScVXt4hfKGaPL0=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RFCuO3075853
+        b=Wz9Ku7VryzljpzemnYEFqMC3Dtk/2IbrVchF2rXdF05OoeRrMddUnwoR5puTy4s0y
+         0At5KYZpE3dlVMwhfM8uWvN0SgZpP2DNwWS6gyWIdxYY+UQU5Yge3Y3dWvocbn2crd
+         EsVThcd7KzqJOwdIFCA9kLpJ1TrF+X+1fefQkzso=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RFEVBV079130
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Jan 2021 09:12:56 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 27 Jan 2021 09:14:31 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
- Jan 2021 09:12:56 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2021 09:14:31 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 27 Jan 2021 09:12:56 -0600
+ Frontend Transport; Wed, 27 Jan 2021 09:14:31 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RFCusX050134;
-        Wed, 27 Jan 2021 09:12:56 -0600
-Date:   Wed, 27 Jan 2021 09:12:56 -0600
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RFEVXH107951;
+        Wed, 27 Jan 2021 09:14:31 -0600
+Date:   Wed, 27 Jan 2021 09:14:31 -0600
 From:   Nishanth Menon <nm@ti.com>
 To:     Aswath Govindraju <a-govindraju@ti.com>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>,
@@ -47,15 +47,15 @@ CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] dts: ti: k3-j7200-main: Add support for zeroth
- instance of GPIO subsystem
-Message-ID: <20210127151256.tgbhpngy6fi43edj@create>
+Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j7200: Add support for higher
+ speed modes in MMCSD subsystems
+Message-ID: <20210127151431.pzqpbtumqzpqiqop@delta>
 References: <20210127150815.16991-1-a-govindraju@ti.com>
- <20210127150815.16991-2-a-govindraju@ti.com>
+ <20210127150815.16991-3-a-govindraju@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210127150815.16991-2-a-govindraju@ti.com>
+In-Reply-To: <20210127150815.16991-3-a-govindraju@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
@@ -63,49 +63,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20:38-20210127, Aswath Govindraju wrote:
-> Add support for the zeroth instance of GPIO subsystem in the main domain.
+> The following speed modes are now supported in J7200 SoC,
+> - HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
+> - UHS-I speed modes in MMCSD1 subsystem [1].
+> 
+> Add support for UHS-I modes by adding voltage regulator device tree nodes
+> and corresponding pinmux details, to power cycle and voltage switch cards.
+> Also set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
+> device tree nodes.
+> 
+> [1] - section 12.3.6.1.1 MMCSD Features, in
+>       https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf
 > 
 > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-
-
-I really dont want to pick up one patch per node instance. It is hard
-to scale and just creates a lot of noise.
-
 > ---
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> index 4cc2e9094d0e..75dffbb26d52 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> @@ -294,6 +294,23 @@
->  		pinctrl-single,function-mask = <0xffffffff>;
->  	};
->  
-> +	main_gpio0: gpio@600000 {
-> +		compatible = "ti,j721e-gpio", "ti,keystone-gpio";
-> +		reg = <0x0 0x00600000 0x0 0x100>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		interrupt-parent = <&main_gpio_intr>;
-> +		interrupts = <145>, <146>, <147>, <148>,
-> +			     <149>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		ti,ngpio = <69>;
-> +		ti,davinci-gpio-unbanked = <0>;
-> +		power-domains = <&k3_pds 105 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 105 0>;
-> +		clock-names = "gpio";
-> +	};
-> +
->  	main_uart0: serial@2800000 {
->  		compatible = "ti,j721e-uart", "ti,am654-uart";
->  		reg = <0x00 0x02800000 0x00 0x100>;
-> -- 
-> 2.17.1
+> performance test logs using EXT4 filesystem for eMMC HS400 speed mode,
+> https://pastebin.ubuntu.com/p/KFphDYXj93/
 > 
+
+5.11.0-rc3-next-20210118-00004 :
+
+a) could you make sure to post patches when you test with latest next?
+b) I see 2 patches in this series, but delta seems to be 4 patches, is
+there a dependency I am not aware of?
 
 -- 
 Regards,
