@@ -2,796 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4D29305B37
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 13:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E72D6305B48
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 13:26:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237862AbhA0MYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 07:24:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45298 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237185AbhA0MW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 07:22:29 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86168C06174A;
-        Wed, 27 Jan 2021 04:21:48 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id f16so1363169wmq.5;
-        Wed, 27 Jan 2021 04:21:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gckU0hjkV6u+WLSZ0Uxc02xkrz2/Y5EjXOLVr1Tnw1E=;
-        b=u3GdDuYLMDV6/Pdo/4WZ/zFMQGlrrDMrG4R/w2sxEnm6opHLA0IENoIS2qDjboWmdz
-         FwP/c5vijE7Qvsm5jzeX7i25pnGUm4Fodj7hHjrhB0mPOMZMb+fFHpoElenOAOvmSY6D
-         OUvVj64dJEF1DhmM1uKW3cTbJbuFCG+XzvhU3Z/VgyM/PL8MvTcI5bfIA3WXFzDuXzuk
-         gD88FKfF653iBkFc2DK9TABVG2U0Wn6TH1oW375HSqNpEZc3444ByEQcryJD/TVQWg6g
-         qAyNTZDVu8CThLNxdj1b6BntkFJyupLUEYlKLQjzwl4gRKCuXfFNPoBDVfkGVJfzPuz/
-         wC6w==
+        id S237680AbhA0M0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 07:26:00 -0500
+Received: from mail-wr1-f44.google.com ([209.85.221.44]:44460 "EHLO
+        mail-wr1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237723AbhA0MYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 07:24:36 -0500
+Received: by mail-wr1-f44.google.com with SMTP id d16so1663987wro.11;
+        Wed, 27 Jan 2021 04:24:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gckU0hjkV6u+WLSZ0Uxc02xkrz2/Y5EjXOLVr1Tnw1E=;
-        b=YUFqeIN5f+4aUdr4oxZDhLO/ToxNbk+jgF8DlM5NbTQqhWsBAtiD9bZ20yE5FsLnza
-         LJL7deKwEyTbXhl0zGns+sV1SKuLsjxQygBIxlbxVZK8W9zwvTIW8eDXTyZk+mnvIjNY
-         hW0pepK33OGbs1l7NrM7ftIk3YYWwqjFwKR53cQv0V7DPY5xDgR0bZ6E2VhMxh+6v4r8
-         Mu/ouSrXjalNfzdDwuRgkKiXvOGOykC0L8YTgb4jaoGvTj03o4eykQj2JS5xQYaEWm4m
-         Ii2xxoe51YvGr2GePmRtsmlhowCTA5hIE2quusS4QcpzFpvQ5JKxy6ug9K/6CWYW4XSN
-         qKmA==
-X-Gm-Message-State: AOAM531AEEmSeGqtUwTJJh5/om+h6yUXfrCbfJM/Z97bDcBdmWiQyMkO
-        MW3VEdP7PjbZJUO4czB/fBAajSsNAGMbVoP9v9yGak4/2pWU7ypc
-X-Google-Smtp-Source: ABdhPJzEAjsgk+EvNIKpuStnVSuk214yNUyZEU6TEKorXzQOZMwZzUMCgqYEL7fTYmGJS0EvmBMPheoC9F+EzIPXMXE=
-X-Received: by 2002:a1c:5456:: with SMTP id p22mr4015377wmi.81.1611750106575;
- Wed, 27 Jan 2021 04:21:46 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ShB3cnXbxrmD9a+bdXYQdwTEtb4JqHT3bdcJ08qiOYM=;
+        b=K4N3DUw1JbX2KkHEBhRTAmorhclvTBMN8JFu0pIWIAu9QQ0aH9qd3Rppn8HCFsFlv9
+         1LvZuYMCsHDsN/5MQ3Vn+ifvIw4O7LJwXVGdNQThM1wa3ZPsjnXnQJJ10auYh/McayEz
+         4Nwdg9lgjmgpVYF/59RfwmcJyl0x2sdhoEv863GXYO237ke252EpMbqWzN/UvGBKBgJi
+         Cus6S4EWge1zbBea1ud/0zUdRg9SVmA3Ze/Eafvx1a5fGGJupLpyFWVPoTZ9xfii2z7E
+         fTX06gxafRWxqPC/NcbtYjZCV7wLsG2eqpnDQ++gm7+qohpqzCm95+EY166NTZIsSSuI
+         gDGg==
+X-Gm-Message-State: AOAM532d6O0XE6bH0ks2pvMhIepiv17PtxL2wEt4cg3MfL4Ew8J3W397
+        bzHIF15JoSlBytt3BUh95Mo=
+X-Google-Smtp-Source: ABdhPJzhDxEpDBEc1vtDjMlmipHrb96zdgWsWtS3oEMrAA/05Zb3TzAV22yLxNp4CFki4xmeOC8Zvg==
+X-Received: by 2002:a5d:66ce:: with SMTP id k14mr10947071wrw.397.1611750234180;
+        Wed, 27 Jan 2021 04:23:54 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id g12sm2325875wmh.14.2021.01.27.04.23.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Jan 2021 04:23:53 -0800 (PST)
+Date:   Wed, 27 Jan 2021 13:23:51 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 1/4] dt-bindings: media: imx258: add bindings for
+ IMX258 sensor
+Message-ID: <20210127122351.nokesldtzq4wchiq@kozik-lap>
+References: <20201118202715.6692-1-krzk@kernel.org>
+ <20210122091822.GB27155@paasikivi.fi.intel.com>
 MIME-Version: 1.0
-References: <20210121112349.421464-1-zhang.lyra@gmail.com> <20210121112349.421464-3-zhang.lyra@gmail.com>
- <a3f6a285-6eb3-3cd9-3571-9bf30034e080@arm.com>
-In-Reply-To: <a3f6a285-6eb3-3cd9-3571-9bf30034e080@arm.com>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Wed, 27 Jan 2021 20:21:09 +0800
-Message-ID: <CAAfSe-su3k+7oJRbC04cYvLUrmSsAD2h=DUE0B-gVAoad0nJgA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] iommu: add Unisoc iommu basic driver
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Sheng Xu <sheng.xu@unisoc.com>,
-        iommu@lists.linux-foundation.org,
-        Kevin Tang <kevin.tang@unisoc.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>, gavin.li@unisoc.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210122091822.GB27155@paasikivi.fi.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Jan 2021 at 05:46, Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2021-01-21 11:23, Chunyan Zhang wrote:
-> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> >
-> > This patch only adds display iommu support, the driver was tested with sprd
-> > dpu and image codec processor.
-> >
-> > The iommu support for others would be added once finished tests with those
-> > devices, such as a few signal processors, including VSP(video),
-> > GSP(graphic), ISP(image), and camera CPP, etc.
-> >
-> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+On Fri, Jan 22, 2021 at 11:18:22AM +0200, Sakari Ailus wrote:
+> Hi Krysztof,
+> 
+> On Wed, Nov 18, 2020 at 09:27:12PM +0100, Krzysztof Kozlowski wrote:
+> > Add bindings for the IMX258 camera sensor.  The bindings, just like the
+> > driver, are quite limited, e.g. do not support regulator supplies.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > 
 > > ---
-> >   drivers/iommu/Kconfig      |  12 +
-> >   drivers/iommu/Makefile     |   1 +
-> >   drivers/iommu/sprd-iommu.c | 566 +++++++++++++++++++++++++++++++++++++
-> >   3 files changed, 579 insertions(+)
-> >   create mode 100644 drivers/iommu/sprd-iommu.c
-> >
-> > diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-> > index 192ef8f61310..79af62c519ae 100644
-> > --- a/drivers/iommu/Kconfig
-> > +++ b/drivers/iommu/Kconfig
-> > @@ -408,4 +408,16 @@ config VIRTIO_IOMMU
-> >
-> >         Say Y here if you intend to run this kernel as a guest.
-> >
-> > +config SPRD_IOMMU
-> > +     tristate "Unisoc IOMMU Support"
-> > +     depends on ARCH_SPRD || COMPILE_TEST
-> > +     select IOMMU_API
-> > +     help
-> > +       Support for IOMMU on Unisoc's SoCs on which multi-media subsystems
-> > +       need IOMMU, such as DPU, Image codec(jpeg) processor, and a few
-> > +       signal processors, including VSP(video), GSP(graphic), ISP(image), and
-> > +       CPP, etc.
-> > +
-> > +       Say Y here if you want multi-media functions.
-> > +
-> >   endif # IOMMU_SUPPORT
-> > diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
-> > index 61bd30cd8369..5925b6af2123 100644
-> > --- a/drivers/iommu/Makefile
-> > +++ b/drivers/iommu/Makefile
-> > @@ -28,3 +28,4 @@ obj-$(CONFIG_S390_IOMMU) += s390-iommu.o
-> >   obj-$(CONFIG_HYPERV_IOMMU) += hyperv-iommu.o
-> >   obj-$(CONFIG_VIRTIO_IOMMU) += virtio-iommu.o
-> >   obj-$(CONFIG_IOMMU_SVA_LIB) += iommu-sva-lib.o
-> > +obj-$(CONFIG_SPRD_IOMMU) += sprd-iommu.o
-> > diff --git a/drivers/iommu/sprd-iommu.c b/drivers/iommu/sprd-iommu.c
+> > 
+> > Changes since v4:
+> > 1. Add clock-lanes,
+> > 2. Add Rob's review,
+> > 3. Add one more example and extend existing one,
+> > 4. Add common clock properties (assigned-*).
+> > 
+> > Changes since v3:
+> > 1. Document also two lane setup.
+> > 
+> > Changes since v2:
+> > 1. Remove clock-frequency, add reset GPIOs, add supplies.
+> > 2. Use additionalProperties.
+> > 
+> > Changes since v1:
+> > 1. None
+> > ---
+> >  .../devicetree/bindings/media/i2c/imx258.yaml | 140 ++++++++++++++++++
+> >  MAINTAINERS                                   |   1 +
+> >  2 files changed, 141 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx258.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/imx258.yaml b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
 > > new file mode 100644
-> > index 000000000000..44cde44017fa
+> > index 000000000000..4a3471fb88a1
 > > --- /dev/null
-> > +++ b/drivers/iommu/sprd-iommu.c
-> > @@ -0,0 +1,566 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Unisoc IOMMU driver
-> > + *
-> > + * Copyright (C) 2020 Unisoc, Inc.
-> > + * Author: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/device.h>
-> > +#include <linux/dma-iommu.h>
->
-> You need <linux/dma-mapping.h> since you're using the DMA API.
->
-> > +#include <linux/errno.h>
-> > +#include <linux/iommu.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/slab.h>
-> > +
-> > +/* SPRD IOMMU page is 4K size alignment */
-> > +#define SPRD_IOMMU_PAGE_SHIFT        12
-> > +#define SPRD_IOMMU_PAGE_SIZE SZ_4K
-> > +
-> > +#define SPRD_EX_CFG          0x0
-> > +#define SPRD_IOMMU_VAOR_BYPASS       BIT(4)
-> > +#define SPRD_IOMMU_GATE_EN   BIT(1)
-> > +#define SPRD_IOMMU_EN                BIT(0)
-> > +#define SPRD_EX_UPDATE               0x4
-> > +#define SPRD_EX_FIRST_VPN    0x8
-> > +#define SPRD_EX_VPN_RANGE    0xc
-> > +#define SPRD_EX_FIRST_PPN    0x10
-> > +#define SPRD_EX_DEFAULT_PPN  0x14
-> > +
-> > +#define SPRD_IOMMU_VERSION   0x0
-> > +#define SPRD_VERSION_MASK    GENMASK(15, 8)
-> > +#define SPRD_VERSION_SHIFT   0x8
-> > +#define SPRD_VAU_CFG         0x4
-> > +#define SPRD_VAU_UPDATE              0x8
-> > +#define SPRD_VAU_AUTH_CFG    0xc
-> > +#define SPRD_VAU_FIRST_PPN   0x10
-> > +#define SPRD_VAU_DEFAULT_PPN_RD      0x14
-> > +#define SPRD_VAU_DEFAULT_PPN_WR      0x18
-> > +#define SPRD_VAU_FIRST_VPN   0x1c
-> > +#define SPRD_VAU_VPN_RANGE   0x20
-> > +
-> > +enum sprd_iommu_version {
-> > +     SPRD_IOMMU_EX,
-> > +     SPRD_IOMMU_VAU,
-> > +};
-> > +
-> > +struct sprd_iommu_match_data {
-> > +     unsigned long reg_offset;
-> > +};
-> > +
-> > +/*
-> > + * struct sprd_iommu_device - high-level sprd iommu device representation,
-> > + * including hardware information and configuration, also driver data, etc
-> > + *
-> > + * @mdata:   hardware configuration and information
-> > + * @ver:     sprd iommu device version
-> > + * @prot_page:       protect page base address, data would be written to here
-> > + *           while translation fault
-> > + * @base:    mapped base address for accessing registers
-> > + * @dev:     pointer to basic device structure
-> > + * @iommu:   IOMMU core representation
-> > + * @group:   IOMMU group
-> > + */
-> > +struct sprd_iommu_device {
-> > +     const struct sprd_iommu_match_data *mdata;
-> > +     enum sprd_iommu_version ver;
-> > +     u32                     *prot_page_va;
-> > +     dma_addr_t              prot_page_pa;
-> > +     void __iomem            *base;
-> > +     struct device           *dev;
-> > +     struct iommu_device     iommu;
-> > +     struct iommu_group      *group;
-> > +};
-> > +
-> > +struct sprd_iommu_domain {
-> > +     spinlock_t              pgtlock; /* lock for page table */
-> > +     struct iommu_domain     domain;
-> > +     u32                     *pgt_va; /* page table virtual address base */
-> > +     dma_addr_t              pgt_pa; /* page table physical address base */
-> > +     struct sprd_iommu_device        *sdev;
-> > +};
-> > +
-> > +static const struct iommu_ops sprd_iommu_ops;
-> > +
-> > +static struct sprd_iommu_domain *to_sprd_domain(struct iommu_domain *dom)
-> > +{
-> > +     return container_of(dom, struct sprd_iommu_domain, domain);
-> > +}
-> > +
-> > +static inline void
-> > +sprd_iommu_writel(struct sprd_iommu_device *sdev, unsigned int reg, u32 val)
-> > +{
-> > +     writel_relaxed(val, sdev->base + sdev->mdata->reg_offset + reg);
-> > +}
-> > +
-> > +static inline u32
-> > +sprd_iommu_readl(struct sprd_iommu_device *sdev, unsigned int reg)
-> > +{
-> > +     return readl_relaxed(sdev->base + sdev->mdata->reg_offset + reg);
-> > +}
-> > +
-> > +static inline void
-> > +sprd_iommu_update_bits(struct sprd_iommu_device *sdev, unsigned int reg,
-> > +               u32 mask, u32 shift, u32 val)
-> > +{
-> > +     u32 t = sprd_iommu_readl(sdev, reg);
-> > +
-> > +     t = (t & (~(mask << shift))) | ((val & mask) << shift);
-> > +     sprd_iommu_writel(sdev, reg, t);
-> > +}
-> > +
-> > +static inline int
-> > +sprd_iommu_get_version(struct sprd_iommu_device *sdev)
-> > +{
-> > +     int ver = (sprd_iommu_readl(sdev, SPRD_IOMMU_VERSION) &
-> > +                SPRD_VERSION_MASK) >> SPRD_VERSION_SHIFT;
-> > +
-> > +     switch (ver) {
-> > +     case SPRD_IOMMU_EX:
-> > +     case SPRD_IOMMU_VAU:
-> > +             return ver;
-> > +     default:
-> > +             return -EINVAL;
-> > +     }
-> > +}
-> > +
-> > +static size_t
-> > +sprd_iommu_pgt_size(struct iommu_domain *domain)
-> > +{
-> > +     return (size_t) (((domain->geometry.aperture_end -
-> > +                        domain->geometry.aperture_start + 1) >>
-> > +                       SPRD_IOMMU_PAGE_SHIFT) * 4);
->
-> Nit: it's *reasonably* obvious, but "sizeof(u32)" might be more
-> foolproof than just "4".
->
-> Also the cast doesn't do anything that the implicit conversion in the
-> return doesn't already.
->
-> > +}
-> > +
-> > +static struct iommu_domain *sprd_iommu_domain_alloc(unsigned int domain_type)
-> > +{
-> > +     struct sprd_iommu_domain *dom;
-> > +
-> > +     if (domain_type != IOMMU_DOMAIN_DMA && domain_type != IOMMU_DOMAIN_UNMANAGED)
-> > +             return NULL;
-> > +
-> > +     dom = kzalloc(sizeof(*dom), GFP_KERNEL);
-> > +     if (!dom)
-> > +             return NULL;
-> > +
-> > +     if (iommu_get_dma_cookie(&dom->domain)) {
-> > +             kfree(dom);
-> > +             return NULL;
-> > +     }
-> > +
-> > +     spin_lock_init(&dom->pgtlock);
-> > +
-> > +     dom->domain.geometry.aperture_start = 0;
-> > +     dom->domain.geometry.aperture_end = SZ_256M - 1;
-> > +
-> > +     return &dom->domain;
-> > +}
-> > +
-> > +static void sprd_iommu_domain_free(struct iommu_domain *domain)
-> > +{
-> > +     struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-> > +
->
-> iommu_put_dma_cookie(domain);
->
-> > +     kfree(dom);
-> > +}
-> > +
-> > +static void sprd_iommu_first_vpn(struct sprd_iommu_domain *dom)
-> > +{
-> > +     struct sprd_iommu_device *sdev = dom->sdev;
-> > +     u32 val;
-> > +     unsigned int reg;
-> > +
-> > +     if (sdev->ver == SPRD_IOMMU_EX)
-> > +             reg = SPRD_EX_FIRST_VPN;
-> > +     else
-> > +             reg = SPRD_VAU_FIRST_VPN;
-> > +
-> > +     val = dom->domain.geometry.aperture_start >> SPRD_IOMMU_PAGE_SHIFT;
-> > +     sprd_iommu_writel(sdev, reg, val);
-> > +}
-> > +
-> > +static void sprd_iommu_vpn_range(struct sprd_iommu_domain *dom)
-> > +{
-> > +     struct sprd_iommu_device *sdev = dom->sdev;
-> > +     u32 val;
-> > +     unsigned int reg;
-> > +
-> > +     if (sdev->ver == SPRD_IOMMU_EX)
-> > +             reg = SPRD_EX_VPN_RANGE;
-> > +     else
-> > +             reg = SPRD_VAU_VPN_RANGE;
-> > +
-> > +     val = (dom->domain.geometry.aperture_end -
-> > +            dom->domain.geometry.aperture_start) >> SPRD_IOMMU_PAGE_SHIFT;
-> > +     sprd_iommu_writel(sdev, reg, val);
-> > +}
-> > +
-> > +static void sprd_iommu_first_ppn(struct sprd_iommu_domain *dom)
-> > +{
-> > +     u32 val = dom->pgt_pa >> SPRD_IOMMU_PAGE_SHIFT;
-> > +     struct sprd_iommu_device *sdev = dom->sdev;
-> > +     unsigned int reg;
-> > +
-> > +     if (sdev->ver == SPRD_IOMMU_EX)
-> > +             reg = SPRD_EX_FIRST_PPN;
-> > +     else
-> > +             reg = SPRD_VAU_FIRST_PPN;
-> > +
-> > +     sprd_iommu_writel(sdev, reg, val);
-> > +}
-> > +
-> > +static void sprd_iommu_default_ppn(struct sprd_iommu_device *sdev)
-> > +{
-> > +     u32 val = sdev->prot_page_pa >> SPRD_IOMMU_PAGE_SHIFT;
-> > +
-> > +     if (sdev->ver == SPRD_IOMMU_EX) {
-> > +             sprd_iommu_writel(sdev, SPRD_EX_DEFAULT_PPN, val);
-> > +     } else if (sdev->ver == SPRD_IOMMU_VAU) {
-> > +             sprd_iommu_writel(sdev, SPRD_VAU_DEFAULT_PPN_RD, val);
-> > +             sprd_iommu_writel(sdev, SPRD_VAU_DEFAULT_PPN_WR, val);
-> > +     }
-> > +}
-> > +
-> > +static void sprd_iommu_hw_en(struct sprd_iommu_device *sdev, bool en)
-> > +{
-> > +     unsigned int reg_cfg;
-> > +     u32 mask, val;
-> > +
-> > +     if (sdev->ver == SPRD_IOMMU_EX)
-> > +             reg_cfg = SPRD_EX_CFG;
-> > +     else
-> > +             reg_cfg = SPRD_VAU_CFG;
-> > +
-> > +     /* enable mmu, clk gate, vaor bypass */
-> > +     mask = SPRD_IOMMU_EN | SPRD_IOMMU_GATE_EN | SPRD_IOMMU_VAOR_BYPASS;
-> > +     val = en ? mask : 0;
-> > +     sprd_iommu_update_bits(sdev, reg_cfg, mask, 0, val);
-> > +}
-> > +
-> > +static int sprd_iommu_attach_device(struct iommu_domain *domain,
-> > +                                 struct device *dev)
-> > +{
-> > +     struct sprd_iommu_device *sdev = dev_iommu_priv_get(dev);
-> > +     struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-> > +     size_t pgt_size = sprd_iommu_pgt_size(domain);
->
-> If you're only supporting a single device per domain you should bail out
-> here if dom->sdev is already set.
->
-> > +     dom->pgt_va = dma_alloc_coherent(sdev->dev, pgt_size, &dom->pgt_pa, GFP_KERNEL);
-> > +     if (!dom->pgt_va)
-> > +             return -ENOMEM;
-> > +
-> > +     dom->sdev = sdev;
-> > +
-> > +     sprd_iommu_first_ppn(dom);
-> > +     sprd_iommu_first_vpn(dom);
-> > +     sprd_iommu_vpn_range(dom);
-> > +     sprd_iommu_default_ppn(sdev);
-> > +     sprd_iommu_hw_en(sdev, true);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void sprd_iommu_detach_device(struct iommu_domain *domain,
-> > +                                          struct device *dev)
-> > +{
-> > +     struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-> > +     struct sprd_iommu_device *sdev = dom->sdev;
-> > +     size_t pgt_size = sprd_iommu_pgt_size(domain);
-> > +
-> > +     dma_free_coherent(sdev->dev, pgt_size, dom->pgt_va, dom->pgt_pa);
->
-> sdev may be NULL here.
->
-> > +     sprd_iommu_hw_en(sdev, false);
-> > +     dom->sdev = NULL;
-> > +}
-> > +
-> > +static int sprd_iommu_map(struct iommu_domain *domain, unsigned long iova,
-> > +                       phys_addr_t paddr, size_t size, int prot, gfp_t gfp)
-> > +{
-> > +     struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-> > +     const struct sprd_iommu_match_data *mdata;
-> > +     unsigned int page_num = size >> SPRD_IOMMU_PAGE_SHIFT;
-> > +     unsigned long flags;
-> > +     unsigned int i;
-> > +     u32 *pgt_base_iova;
-> > +     u32 pabase = (u32)paddr;
-> > +     int map_size = 0;
-> > +     unsigned long start = domain->geometry.aperture_start;
-> > +     unsigned long end = domain->geometry.aperture_end;
-> > +
-> > +     if (!dom->sdev) {
-> > +             pr_err("No sprd_iommu_device attached to the domain\n");
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     mdata = dom->sdev->mdata;
-> > +     if (iova < start || (iova + size) > (end + 1)) {
-> > +             dev_err(dom->sdev->dev, "(iova(0x%lx) + sixe(0x%lx)) are not in the range!\n",
->
-> %zx for printing size_t.
->
-> > +                     iova, size);
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     pgt_base_iova = dom->pgt_va + ((iova - start) >> SPRD_IOMMU_PAGE_SHIFT);
-> > +
-> > +     spin_lock_irqsave(&dom->pgtlock, flags);
-> > +     for (i = 0; i < page_num; i++) {
-> > +             pgt_base_iova[i] = pabase >> SPRD_IOMMU_PAGE_SHIFT;
-> > +             pabase += SPRD_IOMMU_PAGE_SIZE;
-> > +             map_size += SPRD_IOMMU_PAGE_SIZE;
-> > +     }
-> > +     spin_unlock_irqrestore(&dom->pgtlock, flags);
-> > +
-> > +     return map_size == size ? 0 : -EEXIST;
->
-> Clearly this can never fail.
->
-> > +}
-> > +
-> > +static size_t sprd_iommu_unmap(struct iommu_domain *domain, unsigned long iova,
-> > +                     size_t size, struct iommu_iotlb_gather *iotlb_gather)
-> > +{
-> > +     struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-> > +     unsigned long flags;
-> > +     u32 *pgt_base_iova;
-> > +     unsigned int page_num = size >> SPRD_IOMMU_PAGE_SHIFT;
-> > +     unsigned long start = domain->geometry.aperture_start;
-> > +     unsigned long end = domain->geometry.aperture_end;
-> > +
-> > +     if (iova < start || (iova + size) > (end + 1))
-> > +             return -EINVAL;
-> > +
-> > +     pgt_base_iova = dom->pgt_va + ((iova - start) >> SPRD_IOMMU_PAGE_SHIFT);
-> > +
-> > +     spin_lock_irqsave(&dom->pgtlock, flags);
-> > +     memset(pgt_base_iova, 0, page_num * sizeof(u32));
-> > +     spin_unlock_irqrestore(&dom->pgtlock, flags);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void sprd_iommu_sync_map(struct iommu_domain *domain)
-> > +{
-> > +     struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-> > +     unsigned int reg;
-> > +
-> > +     if (dom->sdev->ver == SPRD_IOMMU_EX)
-> > +             reg = SPRD_EX_UPDATE;
-> > +     else
-> > +             reg = SPRD_VAU_UPDATE;
-> > +
-> > +     /* clear iommu TLB buffer after page table updated */
-> > +     sprd_iommu_writel(dom->sdev, reg, 0xffffffff);
-> > +}
-> > +
-> > +static void sprd_iommu_sync(struct iommu_domain *domain,
-> > +                              struct iommu_iotlb_gather *iotlb_gather)
-> > +{
-> > +     sprd_iommu_sync_map(domain);
-> > +}
-> > +
-> > +static phys_addr_t sprd_iommu_iova_to_phys(struct iommu_domain *domain,
-> > +                                        dma_addr_t iova)
-> > +{
-> > +     struct sprd_iommu_domain *dom = to_sprd_domain(domain);
-> > +     unsigned long flags;
-> > +     phys_addr_t pa;
-> > +     unsigned long start = domain->geometry.aperture_start;
-> > +     unsigned long end = domain->geometry.aperture_end;
-> > +
-> > +     if (iova < start || iova > end)
-> > +             pr_err("iova (0x%llx) exceed the vpn range[0x%lx-0x%lx]!\n",
-> > +                    iova, start, end);
-> > +
-> > +     spin_lock_irqsave(&dom->pgtlock, flags);
-> > +     pa = *(dom->pgt_va + ((iova - start) >> SPRD_IOMMU_PAGE_SHIFT));
-> > +     pa = pa << SPRD_IOMMU_PAGE_SHIFT;
-> > +     spin_unlock_irqrestore(&dom->pgtlock, flags);
-> > +
-> > +     return pa;
->
-> Don't forget to add back the offset - the input address isn't
-> necessarily page-aligned (at least you don't have block mappings to
-> worry about as well...)
+> > +++ b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+> > @@ -0,0 +1,140 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/imx258.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Sony IMX258 13 Mpixel CMOS Digital Image Sensor
+> > +
+> > +maintainers:
+> > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > +
+> > +description: |-
+> > +  IMX258 is a diagonal 5.867mm (Type 1/3.06) 13 Mega-pixel CMOS active pixel
+> > +  type stacked image sensor with a square pixel array of size 4208 x 3120. It
+> > +  is programmable through I2C interface.  Image data is sent through MIPI
+> > +  CSI-2.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: sony,imx258
+> > +
+> > +  assigned-clocks: true
+> > +  assigned-clock-parents: true
+> > +  assigned-clock-rates: true
+> > +
+> > +  clocks:
+> > +    description:
+> > +      Clock frequency from 6 to 27 MHz.
+> > +    maxItems: 1
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    description: |-
+> > +      Reference to the GPIO connected to the XCLR pin, if any.
+> > +
+> > +  vana-supply:
+> > +    description:
+> > +      Analog voltage (VANA) supply, 2.7 V
+> > +
+> > +  vdig-supply:
+> > +    description:
+> > +      Digital I/O voltage (VDIG) supply, 1.2 V
+> > +
+> > +  vif-supply:
+> > +    description:
+> > +      Interface voltage (VIF) supply, 1.8 V
+> > +
+> > +  # See ../video-interfaces.txt for more details
+> > +  port:
+> > +    type: object
+> > +    properties:
+> > +      endpoint:
+> > +        type: object
+> > +        properties:
+> > +          clock-lanes:
+> > +            const: 0
+> 
+> This is redundant. Please remove, same for the examples. Can be a separate
+> patch, too.
+> 
+> With this change the set seems good to me.
 
-Ok.
+OK, I'll remove it and send a v7.
 
->
-> > +}
-> > +
-> > +static struct iommu_device *sprd_iommu_probe_device(struct device *dev)
-> > +{
-> > +     struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-> > +     struct sprd_iommu_device *sdev;
-> > +
-> > +     if (!fwspec || fwspec->ops != &sprd_iommu_ops)
-> > +             return ERR_PTR(-ENODEV);
-> > +
-> > +     sdev = dev_iommu_priv_get(dev);
-> > +
-> > +     return &sdev->iommu;
-> > +}
-> > +
-> > +static void sprd_iommu_release_device(struct device *dev)
-> > +{
-> > +     struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-> > +
-> > +     if (!fwspec || fwspec->ops != &sprd_iommu_ops)
-> > +             return;
-> > +
-> > +     iommu_fwspec_free(dev);
-> > +}
-> > +
-> > +static struct iommu_group *sprd_iommu_device_group(struct device *dev)
-> > +{
-> > +     struct sprd_iommu_device *sdev = dev_iommu_priv_get(dev);
-> > +
-> > +     if (!sdev)
-> > +             return ERR_PTR(-ENODEV);
->
-> No need for this check, since iommu_group_get_for_dev() can now only be
-> called after you've already handled ->probe_device.
->
-> > +
-> > +     return iommu_group_ref_get(sdev->group);
-> > +}
-> > +
-> > +static int sprd_iommu_of_xlate(struct device *dev, struct of_phandle_args *args)
-> > +{
-> > +     struct platform_device *pdev;
-> > +
-> > +     if (!dev_iommu_priv_get(dev)) {
-> > +             pdev = of_find_device_by_node(args->np);
-> > +             dev_iommu_priv_set(dev, platform_get_drvdata(pdev));
->
-> You leak a reference on pdev->dev here.
+Best regards,
+Krzysztof
 
-Will fix it in the next version.
-
->
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +
-> > +static const struct iommu_ops sprd_iommu_ops = {
-> > +     .domain_alloc   = sprd_iommu_domain_alloc,
-> > +     .domain_free    = sprd_iommu_domain_free,
-> > +     .attach_dev     = sprd_iommu_attach_device,
-> > +     .detach_dev     = sprd_iommu_detach_device,
-> > +     .map            = sprd_iommu_map,
-> > +     .unmap          = sprd_iommu_unmap,
-> > +     .iotlb_sync_map = sprd_iommu_sync_map,
-> > +     .iotlb_sync     = sprd_iommu_sync,
-> > +     .iova_to_phys   = sprd_iommu_iova_to_phys,
-> > +     .probe_device   = sprd_iommu_probe_device,
-> > +     .release_device = sprd_iommu_release_device,
-> > +     .device_group   = sprd_iommu_device_group,
-> > +     .of_xlate       = sprd_iommu_of_xlate,
-> > +     .pgsize_bitmap  = ~0UL << SPRD_IOMMU_PAGE_SHIFT,
-> > +};
-> > +
-> > +static const struct sprd_iommu_match_data sprd_iommu_disp = {
-> > +     .reg_offset = 0x800,
-> > +};
-> > +
-> > +static const struct sprd_iommu_match_data sprd_iommu_jpg = {
-> > +     .reg_offset = 0x300,
-> > +};
->
-> Shouldn't those just be part of the base address in the DT to begin
-> with? The Rockchip IOMMUs, for example, are all over the place relative
-> to the base of whichever media device they're embedded into, and they
-> don't care.
-
-I'm considering moving the iommu DT node under into the DT node of the
-media device which uses this iommu.
-
->
-> FWIW you can still accommodate your debugging trick without needing an
-> excuse for per-instance compatibles in the DT - you could match known
-> base addresses at probe to assign your desired IOVA ranges, or
-> dynamically assign an IOVA range to each new instance and keep track of
-> who got what in debugfs, or wait until probe_device/attach_device and
-> inspect the client device itself to see who you belong to.
-
-I considered letting the media devices set IOVA and range, I would
-also set a default IOVA start address when allocating the iommu
-domain.
-
->
-> > +
-> > +static const struct of_device_id sprd_iommu_of_match[] = {
-> > +     { .compatible = "sprd,iommu-v1-disp",
-> > +       .data = &sprd_iommu_disp },
-> > +     { .compatible = "sprd,iommu-v1-jpg",
-> > +       .data = &sprd_iommu_jpg },
-> > +     { },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, sprd_iommu_of_match);
-> > +
-> > +static int sprd_iommu_clk_enable(struct device *dev)
-> > +{
-> > +     struct clk *eb;
-> > +
-> > +     eb = of_clk_get(dev->of_node, 0);
-> > +     if (IS_ERR_OR_NULL(eb))
-> > +             return PTR_ERR(eb);
-> > +
-> > +     clk_prepare_enable(eb);
-> > +
-> > +     return 0;
-> > +}
->
-> Unless you plan to add significant complexity to this very soon, I don't
-> think it really needs a separate helper. Also shouldn't you relinquish
-> this clock on probe failure and remove?
-
-I meant to do that since the clock is optional, I added comments in
-probe(), I should add comments here.
-Also I found I should use clk_get_optional() to get the clock reference.
-
->
-> > +static int sprd_iommu_probe(struct platform_device *pdev)
-> > +{
-> > +     struct sprd_iommu_device *sdev;
-> > +     struct device *dev = &pdev->dev;
-> > +     int ret;
-> > +
-> > +     sdev = devm_kzalloc(dev, sizeof(*sdev), GFP_KERNEL);
-> > +     if (!sdev)
-> > +             return -ENOMEM;
-> > +
-> > +     sdev->base = devm_platform_ioremap_resource(pdev, 0);
-> > +     sdev->mdata = device_get_match_data(dev);
-> > +
-> > +     sdev->prot_page_va = dma_alloc_coherent(dev, SPRD_IOMMU_PAGE_SIZE,
-> > +                                             &sdev->prot_page_pa, GFP_KERNEL);
-> > +     if (!sdev->prot_page_va)
-> > +             return -ENOMEM;
-> > +
-> > +     platform_set_drvdata(pdev, sdev);
-> > +     sdev->dev = dev;
-> > +
-> > +     /* All the client devices are in the same iommu-group */
-> > +     sdev->group = iommu_group_alloc();
-> > +     if (IS_ERR(sdev->group)) {
-> > +             ret = PTR_ERR(sdev->group);
-> > +             goto free_page;
-> > +     }
-> > +
-> > +     ret = iommu_device_sysfs_add(&sdev->iommu, dev, NULL, dev_name(dev));
-> > +     if (ret)
-> > +             goto put_group;
-> > +
-> > +     iommu_device_set_ops(&sdev->iommu, &sprd_iommu_ops);
-> > +     iommu_device_set_fwnode(&sdev->iommu, &dev->of_node->fwnode);
-> > +
-> > +     ret = iommu_device_register(&sdev->iommu);
-> > +     if (ret)
-> > +             goto remove_sysfs;
-> > +
-> > +     if (!iommu_present(&platform_bus_type))
-> > +             bus_set_iommu(&platform_bus_type,  &sprd_iommu_ops);
->
-> Nit: extra space after the comma.
->
-> > +
-> > +     /* access to some iommus are controlled by gate clock, others are not */
->
-> The binding doesn't say you can have clocks...
-
-Forgot to add clock property..
-
->
-> > +     sprd_iommu_clk_enable(dev);
-> > +
-> > +     ret = sprd_iommu_get_version(sdev);
-> > +     if (ret < 0) {
-> > +             dev_err(dev, "iommu version(%d) is invalid.\n", ret);
-> > +             goto unregister_iommu;
-> > +     }
-> > +     sdev->ver = ret;
-> > +
-> > +     return 0;
-> > +
-> > +unregister_iommu:
-> > +     iommu_device_unregister(&sdev->iommu);
-> > +remove_sysfs:
-> > +     iommu_device_sysfs_remove(&sdev->iommu);
-> > +put_group:
-> > +     iommu_group_put(sdev->group);
-> > +free_page:
-> > +     dma_free_coherent(sdev->dev, SPRD_IOMMU_PAGE_SIZE, sdev->prot_page_va, sdev->prot_page_pa);
-> > +     return ret;
-> > +}
-> > +
-> > +static int sprd_iommu_remove(struct platform_device *pdev)
-> > +{
-> > +     struct sprd_iommu_device *sdev = platform_get_drvdata(pdev);
-> > +
-> > +     dma_free_coherent(sdev->dev, SPRD_IOMMU_PAGE_SIZE, sdev->prot_page_va, sdev->prot_page_pa);
->
-> Just to confirm, does the sprd_iommu_hw_en(sdev, false) call from
-> sprd_iommu_detach_device() effectively guarantee that no more accesses
-> can be made to prot_page after that?
-
-From what I understand, prot_page is used for the case that if the
-virtual address is in the range of iova addresses, but not mapped to a
-physical address, then prot_page was provided for accessing, that
-would happen only if iommu is enabled.
-
-Back to your question, prot_page wouldn't be accessed any more after
-iommu being disabled by calling sprd_iommu_hw_en(sdev, false).
-
->
-> > +     iommu_group_put(sdev->group);
-> > +     sdev->group = NULL;
-> > +
-> > +     bus_set_iommu(&platform_bus_type, NULL);
-> > +
-> > +     platform_set_drvdata(pdev, NULL);
-> > +     iommu_device_sysfs_remove(&sdev->iommu);
-> > +     iommu_device_unregister(&sdev->iommu);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static struct platform_driver sprd_iommu_driver = {
-> > +     .driver = {
-> > +             .name           = "sprd-iommu",
-> > +             .of_match_table = sprd_iommu_of_match,
->
-> You probably want ".suppress_bind_attrs = true" as well.
-
-Thanks for your comments, I will address them in the next version.
-
-Chunyan
-
->
-> Robin.
->
-> > +
-> > +     },
-> > +     .probe  = sprd_iommu_probe,
-> > +     .remove = sprd_iommu_remove,
-> > +};
-> > +module_platform_driver(sprd_iommu_driver);
-> > +
-> > +MODULE_DESCRIPTION("IOMMU driver for Unisoc SoCs");
-> > +MODULE_ALIAS("platform:sprd-iommu");
-> > +MODULE_LICENSE("GPL v2");
-> >
