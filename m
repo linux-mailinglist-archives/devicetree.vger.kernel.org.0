@@ -2,116 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B83F306753
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 00:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C27030679B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 00:17:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232110AbhA0W4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 17:56:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40678 "EHLO
+        id S234031AbhA0XMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 18:12:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231825AbhA0W4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 17:56:08 -0500
-X-Greylist: delayed 474 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 27 Jan 2021 14:32:47 PST
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [IPv6:2a00:da80:fff0:2::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA43C06174A;
-        Wed, 27 Jan 2021 14:32:47 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 708311C0B8E; Wed, 27 Jan 2021 23:24:08 +0100 (CET)
-Date:   Wed, 27 Jan 2021 23:24:07 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Jonathan Albrieux <jonathan.albrieux@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Add initial support for BQ Aquaris X5
-Message-ID: <20210127222407.GD24799@amd>
-References: <20210124135409.5473-1-jonathan.albrieux@gmail.com>
- <20210124210119.GA27676@amd>
- <YA3rTAx2vfOXPCMq@gerhold.net>
+        with ESMTP id S234936AbhA0XKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 18:10:34 -0500
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [IPv6:2001:67c:2050::465:202])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18DBEC061573
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 15:09:13 -0800 (PST)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4DQznN0N9JzQlSZ;
+        Thu, 28 Jan 2021 00:09:12 +0100 (CET)
+Authentication-Results: spamfilter01.heinlein-hosting.de (amavisd-new);
+        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+        header.d=mailbox.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+        t=1611788949;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=iakjquNK7HYnd1DCscrW5kS7Mx8GAPfD6iE+TUqUVtM=;
+        b=UBLsQ+7b1p/H9RCmdPdYfpf5OjRuh+dxFplCIllzkUeTojVvIxc05FbJlNp+pUhlvbrh+E
+        pU2xPJRKKdsktEv5HZ+3Yn/lmP9DDKT+l7BlFwzqeRGDz1UGApivq8F+sXU1YU7d+ao2R/
+        N1unGUWthhBd6oqqsMd59Yulx5NU+HtajEfQOe3ww70hWL1cMOqdDh+q+o4NyGy1cGUyaD
+        8/1uplyKUk2Amr6a4drrf/eYOqfFDjBpssYCinACzu8s9A01ILSw5SOvjgrDSlQx+ZgZ1K
+        psZlcqTn46h03B6hiZEvwzEnEEG6iHtZKs1oX/grO7GLkeHq5BapYbH9mOoz0w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
+        content-transfer-encoding:mime-version:message-id:date:date
+        :subject:subject:from:from:received; s=mail20150812; t=
+        1611788948; bh=ABkA+fHZ9253J6mSTrSP8NlLDK9jdpdiq3bS1bDGFpU=; b=Q
+        OlPCaew9GZVmXN7g38CfE4/4JyuMr6MyMW6wajUU5yD1ChdiL0MwFCUFBr8dHuKA
+        h7+ohK2eEDEtaa5kfkY83JKf7rn2j9pzbe7V5bFhyekRnYDEkhljjw3OYgA9y/4a
+        onssZic8BfH4veACQe0nqCx93c7lJlzzEPToYMpxFS4mtWISNIlgMJgsc+XYqQSV
+        mviuIAwXummPFx6FjODXo6mK8ubsLXSCxXtl5jE7TAbsnVwbJOSBSp7KgYJjJEPa
+        anm6RafnJlWORdjkZj6DSIhe0ZMaOic0QjKVN5QdVm0WR4hadhYzvH8vGbNxUeNQ
+        92hT+EBXw7Yl4kdhiXU1A==
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp1.mailbox.org ([80.241.60.240])
+        by spamfilter01.heinlein-hosting.de (spamfilter01.heinlein-hosting.de [80.241.56.115]) (amavisd-new, port 10030)
+        with ESMTP id O2P3hU2O_whI; Thu, 28 Jan 2021 00:09:08 +0100 (CET)
+From:   Alexander Stein <alexander.stein@mailbox.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Alexander Stein <alexander.stein@mailbox.org>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/1] arm64: dts: meson: g12b: odroid-n2: Assign a fixed index to mmc devices
+Date:   Thu, 28 Jan 2021 00:08:52 +0100
+Message-Id: <20210127230852.66686-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="BI5RvnYi6R4T2M87"
-Content-Disposition: inline
-In-Reply-To: <YA3rTAx2vfOXPCMq@gerhold.net>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
+X-MBO-SPAM-Probability: **
+X-Rspamd-Score: 2.93 / 15.00 / 15.00
+X-Rspamd-Queue-Id: BFE2D1856
+X-Rspamd-UID: 380767
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Recently introduced async probe on mmc devices can shuffle block IDs.
+Pin them to fixed values to ease booting in environments where UUIDs
+are not practical. Use newly introduced aliases for mmcblk devices from [1].
+[1]
+https://patchwork.kernel.org/patch/11747669/
 
---BI5RvnYi6R4T2M87
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign a fixed index to mmc devices on rk3399 boards.")
 
-Hi!
+Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+---
+I was wondering which order I should use. Depending in your booting
+medium (SD card or eMMC) you 'want' one or the other as mmc0.
+In the end I ordered them according to the names.
 
-> > > Aquaris X5 (Longcheer L8910) is a smartphone released by BQ in 2015.
-> > >=20
-> > > As part of msm8916-mainline project, this series aims to bring initial
-> > > mainline support for it.
-> >=20
-> > Good to see another phone being supported. Can I ask you to cc:
-> > phone-devel@vger.kernel.org with phone stuff?
-> >=20
-> > > Features added:
-> > >  - SDHCI (internal and external storage)
-> > >  - USB Device Mode
-> > >  - UART
-> > >  - Regulators
-> > >  - WiFi/BT
-> > >  - Volume buttons
-> > >  - Vibrator
-> > >  - Touchkeys backlight
-> > >  - Accelerometer and gyroscope sensor
-> > >  - Magnetometer sensor
-> >=20
-> > How close are you to having useful phone calls?
->=20
-> You can do phone calls (with audio) and you can use mobile data, if you
-> have the patches for that. :) I'm trying to find time to finish up the
-> drivers needed for that, but I've been a bit short on time lately.
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-:-).=20
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 050862cd0996..2faa4da917c1 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -13,6 +13,8 @@ / {
+ 	aliases {
+ 		serial0 = &uart_AO;
+ 		ethernet0 = &ethmac;
++		mmc0 = &sd_emmc_b;
++		mmc1 = &sd_emmc_c;
+ 	};
+ 
+ 	dioo2133: audio-amplifier-0 {
+-- 
+2.30.0
 
-> Actually we have come pretty far with MSM8916-based smartphones.
-> Most functionality is (somewhat) working at this point, the primary
-> open task is optimizing suspend/power consumption. Battery/charging
-> and camera is also tricky but works somewhat on some of the devices.
-
-Yes, power consumption is a lot of fun :-(.
-
-> Most of the functionality is packaged in postmarketOS [1] and you can
-> find a list of the devices in the postmarketOS wiki [2]. Especially
-> the ones in the "community" category are quite similar in terms of
-> working functionality.
-
-I know about postmarketOS (I even contributed a bit some time ago),
-and watch it from time to time. Currently I'm using old Nokia 6151 for
-phone calls, but would not mind switching. Work is ongoing in Droid 4
-land -- phone calls are also "almost there". But the almost seems to
-be a lot of work :-(.
-
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
-
---BI5RvnYi6R4T2M87
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAmAR6AcACgkQMOfwapXb+vJIwwCcDASqiP104rhpm8QJgQ160Qda
-GUgAn3bYBt4Yh25JM6rh0GIsEKcoCrH9
-=trfK
------END PGP SIGNATURE-----
-
---BI5RvnYi6R4T2M87--
