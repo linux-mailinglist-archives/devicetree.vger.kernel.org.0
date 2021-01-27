@@ -2,93 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB917305F59
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEBE3305F7B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:24:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235682AbhA0PTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 10:19:09 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45542 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343746AbhA0PQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:16:11 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RFEVCG058568;
-        Wed, 27 Jan 2021 09:14:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611760471;
-        bh=4NQBA4dCnOaDfbMECaOrJvmo/NRM4KAaRb+m2hEf9hc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Wz9Ku7VryzljpzemnYEFqMC3Dtk/2IbrVchF2rXdF05OoeRrMddUnwoR5puTy4s0y
-         0At5KYZpE3dlVMwhfM8uWvN0SgZpP2DNwWS6gyWIdxYY+UQU5Yge3Y3dWvocbn2crd
-         EsVThcd7KzqJOwdIFCA9kLpJ1TrF+X+1fefQkzso=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RFEVBV079130
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Jan 2021 09:14:31 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
- Jan 2021 09:14:31 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 27 Jan 2021 09:14:31 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RFEVXH107951;
-        Wed, 27 Jan 2021 09:14:31 -0600
-Date:   Wed, 27 Jan 2021 09:14:31 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j7200: Add support for higher
- speed modes in MMCSD subsystems
-Message-ID: <20210127151431.pzqpbtumqzpqiqop@delta>
-References: <20210127150815.16991-1-a-govindraju@ti.com>
- <20210127150815.16991-3-a-govindraju@ti.com>
+        id S234783AbhA0PYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 10:24:25 -0500
+Received: from a1.mail.mailgun.net ([198.61.254.60]:60484 "EHLO
+        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343775AbhA0PTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:19:45 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1611760760; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=FiCUTpUrxAWVMK/SZ+r7dBcDFEIkz30ww9kPsaUFmTg=; b=QddceieR+uHvSbPDBrrfFvLpFRZQGKUgIE+IgIMi7I67d57wRx3ozRG1Nau+Z1G229XZI5Ec
+ eRLO19oiiGuTu4QFsgfJj3KKCDwgb64jyt+f9TOVZek7X6RK+/aTjMPlym8l+wy8cb9JcSLM
+ oJzaqPWLTzLj2uhf9ae3JNBO2hI=
+X-Mailgun-Sending-Ip: 198.61.254.60
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 601184512c36b2106d2a904a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 27 Jan 2021 15:18:41
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DBD0BC43463; Wed, 27 Jan 2021 15:18:40 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D6E85C433ED;
+        Wed, 27 Jan 2021 15:18:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D6E85C433ED
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v2] ASoC: qcom: lpass-cpu: Remove bit clock state check
+Date:   Wed, 27 Jan 2021 20:48:24 +0530
+Message-Id: <20210127151824.8929-1-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210127150815.16991-3-a-govindraju@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20:38-20210127, Aswath Govindraju wrote:
-> The following speed modes are now supported in J7200 SoC,
-> - HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
-> - UHS-I speed modes in MMCSD1 subsystem [1].
-> 
-> Add support for UHS-I modes by adding voltage regulator device tree nodes
-> and corresponding pinmux details, to power cycle and voltage switch cards.
-> Also set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
-> device tree nodes.
-> 
-> [1] - section 12.3.6.1.1 MMCSD Features, in
->       https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
-> 
-> performance test logs using EXT4 filesystem for eMMC HS400 speed mode,
-> https://pastebin.ubuntu.com/p/KFphDYXj93/
-> 
+No need of BCLK state maintenance from driver side as
+clock_enable and clk_disable API's maintaing state counter.
 
-5.11.0-rc3-next-20210118-00004 :
+One of the major issue was spotted when Headset jack inserted
+while playback continues, due to same PCM device node opens twice
+for playaback/capture and closes once for capture and playback continues.
 
-a) could you make sure to post patches when you test with latest next?
-b) I see 2 patches in this series, but delta seems to be 4 patches, is
-there a dependency I am not aware of?
+It can resolve the errors in such scenarios.
 
+Fixes: b1824968221c ("ASoC: qcom: Fix enabling BCLK and LRCLK in LPAIF invalid state")
+
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+Changes since v1: 
+   -- Commit message changed
+
+ sound/soc/qcom/lpass-cpu.c       | 22 ++++++++--------------
+ sound/soc/qcom/lpass-lpaif-reg.h |  3 ---
+ sound/soc/qcom/lpass.h           |  1 -
+ 3 files changed, 8 insertions(+), 18 deletions(-)
+
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index ae8efbc89af2..a669202e0001 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -286,16 +286,12 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
+ 				ret);
+ 
+-		if (drvdata->bit_clk_state[id] == LPAIF_BIT_CLK_DISABLE) {
+-			ret = clk_enable(drvdata->mi2s_bit_clk[id]);
+-			if (ret) {
+-				dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
+-				clk_disable(drvdata->mi2s_osr_clk[id]);
+-				return ret;
+-			}
+-			drvdata->bit_clk_state[id] = LPAIF_BIT_CLK_ENABLE;
++		ret = clk_enable(drvdata->mi2s_bit_clk[id]);
++		if (ret) {
++			dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
++			clk_disable(drvdata->mi2s_osr_clk[id]);
++			return ret;
+ 		}
+-
+ 		break;
+ 	case SNDRV_PCM_TRIGGER_STOP:
+ 	case SNDRV_PCM_TRIGGER_SUSPEND:
+@@ -310,10 +306,9 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
+ 		if (ret)
+ 			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
+ 				ret);
+-		if (drvdata->bit_clk_state[id] == LPAIF_BIT_CLK_ENABLE) {
+-			clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
+-			drvdata->bit_clk_state[id] = LPAIF_BIT_CLK_DISABLE;
+-		}
++
++		clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
++
+ 		break;
+ 	}
+ 
+@@ -861,7 +856,6 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
+ 				PTR_ERR(drvdata->mi2s_bit_clk[dai_id]));
+ 			return PTR_ERR(drvdata->mi2s_bit_clk[dai_id]);
+ 		}
+-		drvdata->bit_clk_state[dai_id] = LPAIF_BIT_CLK_DISABLE;
+ 	}
+ 
+ 	/* Allocation for i2sctl regmap fields */
+diff --git a/sound/soc/qcom/lpass-lpaif-reg.h b/sound/soc/qcom/lpass-lpaif-reg.h
+index 405542832e99..c8e1d75340b2 100644
+--- a/sound/soc/qcom/lpass-lpaif-reg.h
++++ b/sound/soc/qcom/lpass-lpaif-reg.h
+@@ -60,9 +60,6 @@
+ #define LPAIF_I2SCTL_BITWIDTH_24	1
+ #define LPAIF_I2SCTL_BITWIDTH_32	2
+ 
+-#define LPAIF_BIT_CLK_DISABLE		0
+-#define LPAIF_BIT_CLK_ENABLE		1
+-
+ #define LPAIF_I2SCTL_RESET_STATE	0x003C0004
+ #define LPAIF_DMACTL_RESET_STATE	0x00200000
+ 
+diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+index 2d68af0da34d..83b2e08ade06 100644
+--- a/sound/soc/qcom/lpass.h
++++ b/sound/soc/qcom/lpass.h
+@@ -68,7 +68,6 @@ struct lpass_data {
+ 	unsigned int mi2s_playback_sd_mode[LPASS_MAX_MI2S_PORTS];
+ 	unsigned int mi2s_capture_sd_mode[LPASS_MAX_MI2S_PORTS];
+ 	int hdmi_port_enable;
+-	int bit_clk_state[LPASS_MAX_MI2S_PORTS];
+ 
+ 	/* low-power audio interface (LPAIF) registers */
+ 	void __iomem *lpaif;
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
