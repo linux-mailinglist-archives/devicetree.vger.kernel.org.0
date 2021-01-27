@@ -2,105 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9FC830609B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 17:09:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30047306081
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 17:05:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235157AbhA0QJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 11:09:00 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55662 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234944AbhA0P4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:56:32 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RFsrok074839;
-        Wed, 27 Jan 2021 09:54:53 -0600
+        id S235478AbhA0QEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 11:04:51 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37314 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236250AbhA0QB6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 11:01:58 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RG10TT072838;
+        Wed, 27 Jan 2021 10:01:00 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611762893;
-        bh=EbyulWgdOzpSbH0R5FwToTnTyBzMsvgaupBpVFToCNY=;
+        s=ti-com-17Q1; t=1611763260;
+        bh=Be5ODq2t5RWXEBx8SdxPZbptUXJc8ygAvzl4Ubl8Ov4=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=aL7N+6IZwQ6dDZX0tRUJk1jjzH4H0kcIiig6OyKTG0+P2QeNFUVzUaUNc8SY5dKCo
-         UzQ8sf7B5R3bh8q7NSInLz6qcSoClJoKJNxGkE0qhjbWRpiXPSPDvBVTpkok2cdhsO
-         5DQTsfl5xvRDbjcJQlq7Yo2GxvTmPcJ0HvdZbSdM=
+        b=O/H63GUXuBFOx4JKTUUgRnfTHC1OQKJEcc2lLuyMorOnskH8MYYOQd+xP2kKmSef+
+         5RsId31EWqQ8EH4HiswaIS46uQQLvTjvS/AwgSIIkMouYHXUOlvP5xHKMTTqJKnMma
+         r7LqwZgMWsJ4O6W5jIdIKKb04SdPXvoMpdbrjutw=
 Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RFsrF0011665
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RG0xbr039369
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Jan 2021 09:54:53 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE107.ent.ti.com
+        Wed, 27 Jan 2021 10:00:59 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
  (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
- Jan 2021 09:54:53 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2021 10:00:59 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 27 Jan 2021 09:54:53 -0600
+ Frontend Transport; Wed, 27 Jan 2021 10:00:59 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RFsqAJ022261;
-        Wed, 27 Jan 2021 09:54:52 -0600
-Date:   Wed, 27 Jan 2021 09:54:52 -0600
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RG0x0Y012859;
+        Wed, 27 Jan 2021 10:00:59 -0600
+Date:   Wed, 27 Jan 2021 10:00:59 -0600
 From:   Nishanth Menon <nm@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+To:     Lokesh Vutla <lokeshvutla@ti.com>, Sekhar Nori <nsekhar@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j7200: Add support for higher
- speed modes in MMCSD subsystems
-Message-ID: <20210127155452.27unsnisenm42nb4@budding>
-References: <20210127150815.16991-1-a-govindraju@ti.com>
- <20210127150815.16991-3-a-govindraju@ti.com>
- <20210127151431.pzqpbtumqzpqiqop@delta>
- <6f9ddf85-e1e9-426a-2436-7f323314959a@ti.com>
+        Andre Przywara <andre.przywara@arm.com>,
+        Rob Herring <robh@kernel.org>
+CC:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4] arm64: dts: ti: k3: squelch warnings regarding no
+ #address-cells for interrupt-controller
+Message-ID: <20210127160059.xob2k57agzzgqaph@always>
+References: <20210121060305.29133-1-lokeshvutla@ti.com>
+ <161131973654.21299.8023411678794984222.b4-ty@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <6f9ddf85-e1e9-426a-2436-7f323314959a@ti.com>
+In-Reply-To: <161131973654.21299.8023411678794984222.b4-ty@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20:50-20210127, Aswath Govindraju wrote:
-> Hi Nishanth,
+On 06:49-20210122, Nishanth Menon wrote:
+> On Thu, 21 Jan 2021 11:33:05 +0530, Lokesh Vutla wrote:
+> > With dtc 1.6.0, building TI device-tree files with W=2 results in warnings
+> > like below for all interrupt controllers.
+> > 
+> > /bus@100000/bus@30000000/interrupt-controller1: Missing #address-cells in interrupt provider
+> > 
+> > Fix these by adding #address-cells = <0>; for all interrupt controllers in
+> > TI device-tree files. Any other #address-cells value is really only needed
+> > if interrupt-map property is being used (which is not the case for existing
+> > TI device-tree files)
 > 
-> On 27/01/21 8:44 pm, Nishanth Menon wrote:
-> > On 20:38-20210127, Aswath Govindraju wrote:
-> >> The following speed modes are now supported in J7200 SoC,
-> >> - HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
-> >> - UHS-I speed modes in MMCSD1 subsystem [1].
-> >>
-> >> Add support for UHS-I modes by adding voltage regulator device tree nodes
-> >> and corresponding pinmux details, to power cycle and voltage switch cards.
-> >> Also set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
-> >> device tree nodes.
-> >>
-> >> [1] - section 12.3.6.1.1 MMCSD Features, in
-> >>       https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf
-> >>
-> >> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> >> ---
-> >>
-> >> performance test logs using EXT4 filesystem for eMMC HS400 speed mode,
-> >> https://pastebin.ubuntu.com/p/KFphDYXj93/
-> >>
-> > 
-> > 5.11.0-rc3-next-20210118-00004 :
-> > 
-> > a) could you make sure to post patches when you test with latest next?
-> > b) I see 2 patches in this series, but delta seems to be 4 patches, is
-> > there a dependency I am not aware of?
-> > 
+> Hi Lokesh Vutla,
 > 
-> There are no dependencies. The other two commits are completely
-> unrelated. From next time I will make sure that I use the latest next
-> and the delta matches.
+> I have applied the following to branch ti-k3-next on [1].
+> Thank you!
+> 
+> [1/1] arm64: dts: ti: k3: squelch warnings regarding no #address-cells for interrupt-controller
+>       commit: 73d0af633c4bed02f8e71658c9e25ac8250b08c4
+> 
+> 
+> All being well this means that it will be integrated into the linux-next
+> tree (usually sometime in the next 24 hours) and sent up the chain during
+> the next merge window (or sooner if it is a relevant bug fix), however if
+> problems are discovered then the patch may be dropped or reverted.
+[...]
 
+Lokesh,
 
-Thanks.
+Based on discussion on [1] - looks like #address-cells = 0 usage
+is still to be resolved and needs some alignment between Andre and
+Rob on where to take this (dtc fixups to handle this Vs explicit
+#address-cells = 0 and increase in dtb size).
+
+I propose we drop this patch rather than having to revert this at a
+later point after I send a PR. Anyone has any objections?
+
+[1] https://lore.kernel.org/linux-arm-kernel/20210126163839.57491132@slackpad.fritz.box/
+
 -- 
 Regards,
 Nishanth Menon
