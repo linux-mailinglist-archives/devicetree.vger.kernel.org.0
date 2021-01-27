@@ -2,100 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E1A305543
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 896F530557A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231545AbhA0IHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 03:07:53 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:41599 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231393AbhA0IFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 03:05:09 -0500
-Received: by mail-oi1-f173.google.com with SMTP id m13so1282630oig.8;
-        Wed, 27 Jan 2021 00:04:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XfyRLzMlIoi5X9bZM312ztK9szh1Uoj2MAF1xDhQS7U=;
-        b=S9sJowijfjfMSXl1D7wws47kLVOOhyXp+82GYqGuXqnR6+oiBefwwqgL841ixa74Vf
-         uByG0snUfWC/cusWFyfMRMhuM21DkKoNbRVVjNzHL9owjmY3gI2+XC1HJCymOIFnDnn1
-         D87IeBm3lsoZTjATr+KXgKtm5eaxBbnIhw1+ioAc1QvNMy5zQrytiqnbO3UQpLhcdgSL
-         DBBFo51WY+UbYb+GquoDQEaLL3Dd/uDWNkEwEorZp83VHuNTnXGX+sLio21sRqz4B5hu
-         g/d39G+5I9j3AqddFLrKZFkqqmWjjdv8qWMzSAk/KE0TQdiiv/8GXAzx4Vc8pVdzXTev
-         zRQw==
-X-Gm-Message-State: AOAM533S7MVM5iIbI/M8WI+VIys4IZcEO1rrzbBupu7lIpYHqphxrBGW
-        SEU3ViRRNQo/6qrpWpMOJR98qOwch/FUdHtyYFAS/Fe7
-X-Google-Smtp-Source: ABdhPJyQk+t/A9YKLA2LqVfKqKypKtLzXPHN3IoCxXpEFRU4g2uVJpYn7UJ6W85zp4YH2b4RCWqBZ10Q9spNLMqH93w=
-X-Received: by 2002:aca:4d8d:: with SMTP id a135mr2327538oib.153.1611734299722;
- Tue, 26 Jan 2021 23:58:19 -0800 (PST)
-MIME-Version: 1.0
-References: <20210125142431.1049668-1-geert+renesas@glider.be>
- <20210125142431.1049668-3-geert+renesas@glider.be> <YBCPoOKGRZYkdfPn@pendragon.ideasonboard.com>
-In-Reply-To: <YBCPoOKGRZYkdfPn@pendragon.ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 27 Jan 2021 08:58:08 +0100
-Message-ID: <CAMuHMdVD_g2HW4PBup4Si8H5kJ12PzUHXnZcHp7O_He-MHvtmg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] dmaengine: rcar-dmac: Add for_each_rcar_dmac_chan()
- helper
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        id S233251AbhA0IS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 03:18:28 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:26987 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S234737AbhA0IQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 03:16:32 -0500
+X-UUID: 52a4e70d5748430381fedbca85d729d3-20210127
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=1rHN6XFoiNjbEZ4gE5YNnM87NBquj4VfEM0/8Mtk/+Q=;
+        b=kg3G0nWN2pDgYhhIpcwKEcQRSaBxO44pO3zvRIOa+Dm2g4NOt1mVXqiblCdF81+f56YCovos8uXJJivkYhDpaTUyQ9TJdKXQNfS0WlyS4n/zT2mZ+qe0orCX8mrEanSDfwCQv1qso7qvPx3dZKkbCX5pgui5qqHQyJwuwdZDpL8=;
+X-UUID: 52a4e70d5748430381fedbca85d729d3-20210127
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1457988215; Wed, 27 Jan 2021 15:59:29 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 27 Jan 2021 15:59:27 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 27 Jan 2021 15:59:27 +0800
+Message-ID: <1611734366.29432.1.camel@mtksdaap41>
+Subject: Re: [PATCH v10 3/9] drm/mediatek: add RDMA fifo size error handle
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Date:   Wed, 27 Jan 2021 15:59:26 +0800
+In-Reply-To: <20210127045422.2418917-4-hsinyi@chromium.org>
+References: <20210127045422.2418917-1-hsinyi@chromium.org>
+         <20210127045422.2418917-4-hsinyi@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: B5DCDF8D63F7A26FDFCD987D2C12B5798BBF49DA80FC41CA24B08212AB3D6CBA2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+SGksIEhzaW4tWWk6DQoNCk9uIFdlZCwgMjAyMS0wMS0yNyBhdCAxMjo1NCArMDgwMCwgSHNpbi1Z
+aSBXYW5nIHdyb3RlOg0KPiBGcm9tOiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlh
+dGVrLmNvbT4NCj4gDQo+IFRoaXMgcGF0Y2ggYWRkIFJETUEgZmlmbyBzaXplIGVycm9yIGhhbmRs
+ZQ0KPiByZG1hIGZpZm8gc2l6ZSB3aWxsIG5vdCBhbHdheXMgYmlnZ2VyIHRoYW4gdGhlIGNhbGN1
+bGF0ZWQgdGhyZXNob2xkDQo+IGlmIHRoYXQgY2FzZSBoYXBwZW5lZCwgd2UgbmVlZCBzZXQgZmlm
+byBzaXplIGFzIHRoZSB0aHJlc2hvbGQNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFlvbmdxaWFuZyBO
+aXUgPHlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBIc2luLVlp
+IFdhbmcgPGhzaW55aUBjaHJvbWl1bS5vcmc+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL21l
+ZGlhdGVrL210a19kaXNwX3JkbWEuYyB8IDQgKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5z
+ZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9t
+dGtfZGlzcF9yZG1hLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfcmRtYS5j
+DQo+IGluZGV4IGI4NDAwNDM5NDk3MGYuLjA0Yjk1NDIwMTBiMDAgMTAwNjQ0DQo+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9yZG1hLmMNCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL21lZGlhdGVrL210a19kaXNwX3JkbWEuYw0KPiBAQCAtMTY4LDYgKzE2OCwxMCBAQCB2
+b2lkIG10a19yZG1hX2NvbmZpZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCB3aWR0
+aCwNCj4gIAkgKiBhY2NvdW50IGZvciBibGFua2luZywgYW5kIHdpdGggYSBwaXhlbCBkZXB0aCBv
+ZiA0IGJ5dGVzOg0KPiAgCSAqLw0KPiAgCXRocmVzaG9sZCA9IHdpZHRoICogaGVpZ2h0ICogdnJl
+ZnJlc2ggKiA0ICogNyAvIDEwMDAwMDA7DQo+ICsNCj4gKwlpZiAodGhyZXNob2xkID4gcmRtYV9m
+aWZvX3NpemUpDQo+ICsJCXRocmVzaG9sZCA9IHJkbWFfZmlmb19zaXplOw0KDQpQbGVhc2Ugc2Vl
+IHRoZSBkaXNjdXNzaW9uIGluIFsxXS4NCg0KWzFdDQpodHRwczovL3BhdGNod29yay5rZXJuZWwu
+b3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvcGF0Y2gvMTYwNzU5MTI2Mi0yMTczNi02LWdpdC1z
+ZW5kLWVtYWlsLXlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tLw0KDQpSZWdhcmRzLA0KQ0sNCg0K
+PiArDQo+ICAJcmVnID0gUkRNQV9GSUZPX1VOREVSRkxPV19FTiB8DQo+ICAJICAgICAgUkRNQV9G
+SUZPX1BTRVVET19TSVpFKHJkbWFfZmlmb19zaXplKSB8DQo+ICAJICAgICAgUkRNQV9PVVRQVVRf
+VkFMSURfRklGT19USFJFU0hPTEQodGhyZXNob2xkKTsNCg0K
 
-On Tue, Jan 26, 2021 at 10:55 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Mon, Jan 25, 2021 at 03:24:29PM +0100, Geert Uytterhoeven wrote:
-> > Add and helper macro for iterating over all DMAC channels, taking into
->
-> s/and helper/a helper/
-
-Oops.
-
-> > account the channel mask.  Use it where appropriate, to simplify code.
-> >
-> > Restore "reverse Christmas tree" order of local variables while adding a
-> > new variable.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> > --- a/drivers/dma/sh/rcar-dmac.c
-> > +++ b/drivers/dma/sh/rcar-dmac.c
-> > @@ -209,6 +209,10 @@ struct rcar_dmac {
-> >
-> >  #define to_rcar_dmac(d)              container_of(d, struct rcar_dmac, engine)
-> >
-> > +#define for_each_rcar_dmac_chan(i, chan, dmac)                                               \
->
-> I would have placed the iterator (chan) after the container being
-> iterated (dmac), but it seems there are some for_each_* macros doing it
-> the other way around (they may be older though).
-
-Makes sense.
-
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
