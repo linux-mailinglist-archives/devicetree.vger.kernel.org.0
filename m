@@ -2,95 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95904306204
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 18:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3EFF306257
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 18:43:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236079AbhA0Ra1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 12:30:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42902 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235778AbhA0R3P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 12:29:15 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 983C760187;
-        Wed, 27 Jan 2021 17:28:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611768514;
-        bh=mYtzn/q1nKLwQRM6vNVlonRfNKC+omR21A7650MMNT0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CKLLrmy0SIBF0Pgq2xxc/DQ6/f4dlPuS9Zy9L9R7QWYWZTZ8MX8KCsTNd/knGvUlb
-         NPIUz0tP9l4ovfbrPTeakcW4TFWFDODq9KQ0JhxQC0ke6rDCAveaiY636aWUWZ99C2
-         bi1254+7GWlcuh7FKK/dIW6lL42n907P2pr1V7DsfSMUtcMIBn6CVpMVkN6M+Pcj6k
-         uC72+qecvtmy9MIOfgEGKbn/OHwY/Iue+XSO05HmanQB9B5jn1qOgyr545WDYtA8mu
-         wQBWlvZDfRctMjgzLgGPpYTxrLFanj61fZXsEM6O/maN/BSLbUe/EBPPVIhyXc5psm
-         I0L/a3xtHNYQw==
-Date:   Wed, 27 Jan 2021 17:27:51 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        Mayulong <mayulong1@huawei.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-arm-msm@vger.kernel.org, YueHaibing <yuehaibing@huawei.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Colin Ian King <colin.king@canonical.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 00/21] Move Hisilicon 6421v600 SPMI driver set out of
- staging
-Message-ID: <20210127172751.GF4387@sirena.org.uk>
-References: <cover.1611212783.git.mchehab+huawei@kernel.org>
- <YBBXcdLbj92yMJhw@kroah.com>
- <20210126175752.GF4839@sirena.org.uk>
- <YBBZP9LjXPi/rzfP@kroah.com>
- <20210126181124.GG4839@sirena.org.uk>
- <YBErBByYD8lNIWAX@kroah.com>
- <20210127120426.GB4387@sirena.org.uk>
- <YBFrc/yk7uvh9HX8@kroah.com>
+        id S236334AbhA0Rmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 12:42:49 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:60956 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344069AbhA0Rlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 12:41:32 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 123291F44AA5
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id E978A4800BC; Wed, 27 Jan 2021 18:40:47 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH 0/2] Add i.MX51/i.MX53 serial number support
+Date:   Wed, 27 Jan 2021 18:40:22 +0100
+Message-Id: <20210127174024.170408-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="bGR76rFJjkSxVeRa"
-Content-Disposition: inline
-In-Reply-To: <YBFrc/yk7uvh9HX8@kroah.com>
-X-Cookie: La-dee-dee, la-dee-dah.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---bGR76rFJjkSxVeRa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This complements support for reading the unique ID / serial
+number on i.MX by adding the feature for i.MX51 and i.MX53.
+This has been tested on i.MX53. I also added support for
+i.MX51 since it uses exactly the same registers according
+to its datasheet.
 
-On Wed, Jan 27, 2021 at 02:32:35PM +0100, Greg Kroah-Hartman wrote:
-> On Wed, Jan 27, 2021 at 12:04:26PM +0000, Mark Brown wrote:
+I did not add support for older i.MX processor. They also have
+an IIM IP-core, but their datasheet does not contain information
+about the unique ID registers and I do not have the hardware for
+testing.
 
-> > The whole reason the driver is in the staging tree is that Mauro has a
-> > requirement to do things in a way that preserves history and so won't
-> > send any non-incremental patches.
+-- Sebastian
 
-> Ok, should we wait until after 5.12-rc1 is out then?
+Sebastian Reichel (2):
+  ARM: dts: imx: Mark IIM as syscon on i.MX51/i.MX53
+  soc: imx: add i.MX51/i.MX53 unique id support
 
-Ah, turns out I actually need up to patch 14 anyway which updates the
-MFD bits so may as well leave things for now and work out what to do
-once that's reviewed.
+ arch/arm/boot/dts/imx51.dtsi |  2 +-
+ arch/arm/boot/dts/imx53.dtsi |  2 +-
+ drivers/soc/imx/soc-imx.c    | 12 ++++++++++++
+ 3 files changed, 14 insertions(+), 2 deletions(-)
 
---bGR76rFJjkSxVeRa
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.29.2
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmARopYACgkQJNaLcl1U
-h9CALQf+LPgVavGx9La4+KJMbPR1EyEKu26jy8GRu6wk+6SwMFiQQUjbCZBZjEEs
-UME4UHzjtdoiXx0RClRXBJVQ7C76CXNcKY4G4OaogtsmftOLxmR07ykhkoCLkIMx
-xozYQjnmNgtQTFnUQjLJ4/RpVpVYAgLjQomEMROJetWtbMwEB4coiaWDuFGux8XZ
-i1nhW51kyznvzezgUJnEfmmA66wToltj+R6Tx7cuwnpMLFll1oGtZNlgnHl9oxiQ
-/Jge6+/XcFze/4N/jFa6YidUftYRM8mnyO89Y9Nzy+t9LnL++/K+od8CMHi7M8nI
-yE+LH+Zv+1KtZa9szMsX0D/zDgOR7Q==
-=qC2N
------END PGP SIGNATURE-----
-
---bGR76rFJjkSxVeRa--
