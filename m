@@ -2,82 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 896F530557A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D725A30555E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:15:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233251AbhA0IS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 03:18:28 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:26987 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234737AbhA0IQc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 03:16:32 -0500
-X-UUID: 52a4e70d5748430381fedbca85d729d3-20210127
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=1rHN6XFoiNjbEZ4gE5YNnM87NBquj4VfEM0/8Mtk/+Q=;
-        b=kg3G0nWN2pDgYhhIpcwKEcQRSaBxO44pO3zvRIOa+Dm2g4NOt1mVXqiblCdF81+f56YCovos8uXJJivkYhDpaTUyQ9TJdKXQNfS0WlyS4n/zT2mZ+qe0orCX8mrEanSDfwCQv1qso7qvPx3dZKkbCX5pgui5qqHQyJwuwdZDpL8=;
-X-UUID: 52a4e70d5748430381fedbca85d729d3-20210127
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1457988215; Wed, 27 Jan 2021 15:59:29 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 27 Jan 2021 15:59:27 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 27 Jan 2021 15:59:27 +0800
-Message-ID: <1611734366.29432.1.camel@mtksdaap41>
-Subject: Re: [PATCH v10 3/9] drm/mediatek: add RDMA fifo size error handle
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-Date:   Wed, 27 Jan 2021 15:59:26 +0800
-In-Reply-To: <20210127045422.2418917-4-hsinyi@chromium.org>
-References: <20210127045422.2418917-1-hsinyi@chromium.org>
-         <20210127045422.2418917-4-hsinyi@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S232743AbhA0IOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 03:14:53 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:40521 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234460AbhA0IMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 03:12:44 -0500
+Received: by mail-ot1-f54.google.com with SMTP id i20so878532otl.7;
+        Wed, 27 Jan 2021 00:11:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f/iQz33kgh6xnvFreqr2JBmntO4WEFL9xyCLy3xIbC0=;
+        b=lQU3TTzCvmXOd5XXe8arsoH7nSZ2eJDyaFxuTqtkBamLgmWGEIClVHJXSzpyV/ejML
+         36+7aL5aNzt+5HufGEixm2cKgHGM17fVV4O4LpYBBODWfges9TiB9A4f/lyeXaoGszHL
+         R16kTUqBYLEGoOubmvtCLrrI7J2SmIYMHMuWMNzwlomB/vSkyVBXd2+yw+s27DsQb5wD
+         h783tc9wyDceAIyaZtJbQq1ST6i/Acdzd5rhBGdOGTUMdt9DKGgAXrUL2pIdQ9TCx5YN
+         nMxzq81DLZl3xENbEdW7qmCw/RfbmbaUDtRUVT/dB2lG9+CeIcXRcsRRbv9fhr71Dzid
+         LOTw==
+X-Gm-Message-State: AOAM530VdHb0sXUlSRZyNGHQe4ddUdnYajwaezpTj6h7O760blryJDfK
+        DH65fEZ7aw8dy+VCTXSc3a/hB5wpHyJF6fW6OXA=
+X-Google-Smtp-Source: ABdhPJwVJ5QU5cyczh35eHMkHRGaSDc7rqd/vvSHWfq2Q98yCiYxVmsxiAo478eNiF+zbFazNblMbwe+/6t4Iz2fDp0=
+X-Received: by 2002:a05:6830:1489:: with SMTP id s9mr6101130otq.250.1611735051520;
+ Wed, 27 Jan 2021 00:10:51 -0800 (PST)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: B5DCDF8D63F7A26FDFCD987D2C12B5798BBF49DA80FC41CA24B08212AB3D6CBA2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20210125142431.1049668-1-geert+renesas@glider.be>
+ <20210125142431.1049668-5-geert+renesas@glider.be> <YBCREUMJ0/LgxDlJ@pendragon.ideasonboard.com>
+In-Reply-To: <YBCREUMJ0/LgxDlJ@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Jan 2021 09:10:40 +0100
+Message-ID: <CAMuHMdUqCTvCQUmL-m7C=W0id+Oh5OqPxySutOs9DEdWnzKYEg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] dmaengine: rcar-dmac: Add support for R-Car V3U
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEhzaW4tWWk6DQoNCk9uIFdlZCwgMjAyMS0wMS0yNyBhdCAxMjo1NCArMDgwMCwgSHNpbi1Z
-aSBXYW5nIHdyb3RlOg0KPiBGcm9tOiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlh
-dGVrLmNvbT4NCj4gDQo+IFRoaXMgcGF0Y2ggYWRkIFJETUEgZmlmbyBzaXplIGVycm9yIGhhbmRs
-ZQ0KPiByZG1hIGZpZm8gc2l6ZSB3aWxsIG5vdCBhbHdheXMgYmlnZ2VyIHRoYW4gdGhlIGNhbGN1
-bGF0ZWQgdGhyZXNob2xkDQo+IGlmIHRoYXQgY2FzZSBoYXBwZW5lZCwgd2UgbmVlZCBzZXQgZmlm
-byBzaXplIGFzIHRoZSB0aHJlc2hvbGQNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFlvbmdxaWFuZyBO
-aXUgPHlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBIc2luLVlp
-IFdhbmcgPGhzaW55aUBjaHJvbWl1bS5vcmc+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL21l
-ZGlhdGVrL210a19kaXNwX3JkbWEuYyB8IDQgKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5z
-ZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9t
-dGtfZGlzcF9yZG1hLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfcmRtYS5j
-DQo+IGluZGV4IGI4NDAwNDM5NDk3MGYuLjA0Yjk1NDIwMTBiMDAgMTAwNjQ0DQo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9yZG1hLmMNCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL21lZGlhdGVrL210a19kaXNwX3JkbWEuYw0KPiBAQCAtMTY4LDYgKzE2OCwxMCBAQCB2
-b2lkIG10a19yZG1hX2NvbmZpZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCB3aWR0
-aCwNCj4gIAkgKiBhY2NvdW50IGZvciBibGFua2luZywgYW5kIHdpdGggYSBwaXhlbCBkZXB0aCBv
-ZiA0IGJ5dGVzOg0KPiAgCSAqLw0KPiAgCXRocmVzaG9sZCA9IHdpZHRoICogaGVpZ2h0ICogdnJl
-ZnJlc2ggKiA0ICogNyAvIDEwMDAwMDA7DQo+ICsNCj4gKwlpZiAodGhyZXNob2xkID4gcmRtYV9m
-aWZvX3NpemUpDQo+ICsJCXRocmVzaG9sZCA9IHJkbWFfZmlmb19zaXplOw0KDQpQbGVhc2Ugc2Vl
-IHRoZSBkaXNjdXNzaW9uIGluIFsxXS4NCg0KWzFdDQpodHRwczovL3BhdGNod29yay5rZXJuZWwu
-b3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvcGF0Y2gvMTYwNzU5MTI2Mi0yMTczNi02LWdpdC1z
-ZW5kLWVtYWlsLXlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tLw0KDQpSZWdhcmRzLA0KQ0sNCg0K
-PiArDQo+ICAJcmVnID0gUkRNQV9GSUZPX1VOREVSRkxPV19FTiB8DQo+ICAJICAgICAgUkRNQV9G
-SUZPX1BTRVVET19TSVpFKHJkbWFfZmlmb19zaXplKSB8DQo+ICAJICAgICAgUkRNQV9PVVRQVVRf
-VkFMSURfRklGT19USFJFU0hPTEQodGhyZXNob2xkKTsNCg0K
+Hi Laurent,
 
+On Tue, Jan 26, 2021 at 11:01 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Mon, Jan 25, 2021 at 03:24:31PM +0100, Geert Uytterhoeven wrote:
+> > The DMACs (both SYS-DMAC and RT-DMAC) on R-Car V3U differ slightly from
+> > the DMACs on R-Car Gen2 and other R-Car Gen3 SoCs:
+> >   1. The per-channel registers are located in a second register block.
+> >      Add support for mapping the second block, using the appropriate
+> >      offsets and stride.
+> >   2. The common Channel Clear Register (DMACHCLR) was replaced by a
+> >      per-channel register.
+> >      Update rcar_dmac_chan_clear{,_all}() to handle this.
+> >      As rcar_dmac_init() needs to clear the status before the individual
+> >      channels are probed, channel index and base address initialization
+> >      are moved forward.
+> >
+> > Inspired by a patch in the BSP by Phong Hoang
+> > <phong.hoang.wz@renesas.com>.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+> > --- a/drivers/dma/sh/rcar-dmac.c
+> > +++ b/drivers/dma/sh/rcar-dmac.c
+> > @@ -189,7 +189,8 @@ struct rcar_dmac_chan {
+> >   * struct rcar_dmac - R-Car Gen2 DMA Controller
+> >   * @engine: base DMA engine object
+> >   * @dev: the hardware device
+> > - * @iomem: remapped I/O memory base
+> > + * @dmac_base: remapped base register block
+> > + * @chan_base: remapped channel register block (optional)
+> >   * @n_channels: number of available channels
+> >   * @channels: array of DMAC channels
+> >   * @channels_mask: bitfield of which DMA channels are managed by this driver
+> > @@ -198,7 +199,8 @@ struct rcar_dmac_chan {
+> >  struct rcar_dmac {
+> >       struct dma_device engine;
+> >       struct device *dev;
+> > -     void __iomem *iomem;
+> > +     void __iomem *dmac_base;
+> > +     void __iomem *chan_base;
+> >
+> >       unsigned int n_channels;
+> >       struct rcar_dmac_chan *channels;
+
+> > @@ -339,12 +344,23 @@ static void rcar_dmac_chan_write(struct rcar_dmac_chan *chan, u32 reg, u32 data)
+> >  static void rcar_dmac_chan_clear(struct rcar_dmac *dmac,
+> >                                struct rcar_dmac_chan *chan)
+> >  {
+> > -     rcar_dmac_write(dmac, RCAR_DMACHCLR, BIT(chan->index));
+> > +     if (dmac->chan_base)
+>
+> Using dmac->chan_base to check if the device is a V3U seems a bit of a
+> hack (especially given that the field is otherwise unused). I'd prefer
+> adding a model field to struct rcar_dmac_of_data and struct rcar_dmac.
+
+The check is not a check for R-Car V3U in particular, but a check for
+the presence of a separate register block for channel registers.
+I expect to see more SoCs having this, so IMHO checking for this feature,
+instead of checking a model field, makes sense.
+
+It's indeed unused otherwise, as beyond probe(), where per-channel bases
+are calculated, no access to this pointer is needed anymore, (you can
+blame devm_*() for not needing the pointer ;-)
+Note that a model field would be "otherwise unused", too ;-)
+
+> > +             rcar_dmac_chan_write(chan, RCAR_V3U_DMACHCLR, 1);
+> > +     else
+> > +             rcar_dmac_write(dmac, RCAR_DMACHCLR, BIT(chan->index));
+> >  }
+> >
+> >  static void rcar_dmac_chan_clear_all(struct rcar_dmac *dmac)
+> >  {
+> > -     rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
+> > +     struct rcar_dmac_chan *chan;
+> > +     unsigned int i;
+> > +
+> > +     if (dmac->chan_base) {
+> > +             for_each_rcar_dmac_chan(i, chan, dmac)
+> > +                     rcar_dmac_chan_write(chan, RCAR_V3U_DMACHCLR, 1);
+> > +     } else {
+> > +             rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
+> > +     }
+> >  }
+> >
+> >  /* -----------------------------------------------------------------------------
+> > @@ -1744,7 +1760,6 @@ static const struct dev_pm_ops rcar_dmac_pm = {
+> >
+> >  static int rcar_dmac_chan_probe(struct rcar_dmac *dmac,
+> >                               struct rcar_dmac_chan *rchan,
+> > -                             const struct rcar_dmac_of_data *data,
+> >                               unsigned int index)
+> >  {
+> >       struct platform_device *pdev = to_platform_device(dmac->dev);
+> > @@ -1753,9 +1768,6 @@ static int rcar_dmac_chan_probe(struct rcar_dmac *dmac,
+> >       char *irqname;
+> >       int ret;
+> >
+> > -     rchan->index = index;
+> > -     rchan->iomem = dmac->iomem + data->chan_offset_base +
+> > -                    data->chan_offset_stride * index;
+> >       rchan->mid_rid = -EINVAL;
+> >
+> >       spin_lock_init(&rchan->lock);
+> > @@ -1842,6 +1854,7 @@ static int rcar_dmac_probe(struct platform_device *pdev)
+> >       const struct rcar_dmac_of_data *data;
+> >       struct rcar_dmac_chan *chan;
+> >       struct dma_device *engine;
+> > +     void __iomem *chan_base;
+> >       struct rcar_dmac *dmac;
+> >       unsigned int i;
+> >       int ret;
+> > @@ -1880,9 +1893,24 @@ static int rcar_dmac_probe(struct platform_device *pdev)
+> >               return -ENOMEM;
+> >
+> >       /* Request resources. */
+> > -     dmac->iomem = devm_platform_ioremap_resource(pdev, 0);
+> > -     if (IS_ERR(dmac->iomem))
+> > -             return PTR_ERR(dmac->iomem);
+> > +     dmac->dmac_base = devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(dmac->dmac_base))
+> > +             return PTR_ERR(dmac->dmac_base);
+> > +
+> > +     if (!data->chan_offset_base) {
+> > +             dmac->chan_base = devm_platform_ioremap_resource(pdev, 1);
+> > +             if (IS_ERR(dmac->chan_base))
+> > +                     return PTR_ERR(dmac->chan_base);
+> > +
+> > +             chan_base = dmac->chan_base;
+> > +     } else {
+> > +             chan_base = dmac->dmac_base + data->chan_offset_base;
+> > +     }
+> > +
+> > +     for_each_rcar_dmac_chan(i, chan, dmac) {
+> > +             chan->index = i;
+>
+> Now that chan->indew is set before calling rcar_dmac_chan_probe(), you
+> don't have to pass the index to rcar_dmac_chan_probe() anymore.
+
+Right, will fix.
+
+> > +             chan->iomem = chan_base + i * data->chan_offset_stride;
+> > +     }
+> >
+> >       /* Enable runtime PM and initialize the device. */
+> >       pm_runtime_enable(&pdev->dev);
+> > @@ -1929,7 +1957,7 @@ static int rcar_dmac_probe(struct platform_device *pdev)
+> >       INIT_LIST_HEAD(&engine->channels);
+> >
+> >       for_each_rcar_dmac_chan(i, chan, dmac) {
+> > -             ret = rcar_dmac_chan_probe(dmac, chan, data, i);
+> > +             ret = rcar_dmac_chan_probe(dmac, chan, i);
+> >               if (ret < 0)
+> >                       goto error;
+> >       }
+
+Thanks for your comments!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
