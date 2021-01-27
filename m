@@ -2,133 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E36305F05
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ED08305F22
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:10:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235438AbhA0PCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 10:02:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51102 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235323AbhA0PAg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:00:36 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1CA3C0698D7
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:51:03 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id gx5so3026621ejb.7
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:51:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UlBA+jrFoLLefklW/JXu8ZcQb+a+i4EuznUW8mxqVQQ=;
-        b=CGMbTvS2lf8nsCaX9+bOJcf6KhPhbUKzlDQEG61YVY7AcLoWfIUfq9Cojl+IKn1C0F
-         Cjnlg2EExpubmuFUTExuGUv3wbQUb97g/TWTGov3zwjwl0aM49TgymuB+f8MUX6EvOHU
-         zRMSOV31PKgM7RzTtLVTz5iWThOjNfBzWlumITfcY60EKnSW3XquKpvyhN2hjRRdA/1H
-         Y+QvUZfsva3jBHUFiPdsEShRkcTuDxQyXbBfT1g02oVAeLHyNJPwNy/qdRsxbia6dtzq
-         9skOLk8kd9JTsGiesZY3PZXRRGwITJnuFPxkq9gRG42eAGJtwC3pzqgdeeg596meSv3s
-         WUhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UlBA+jrFoLLefklW/JXu8ZcQb+a+i4EuznUW8mxqVQQ=;
-        b=PIdqWemhdyTtj1WCA4HAYotWgsFA6cf5JwJFgBHDmmC1eHq6F6yHQKJaEW7+9QptdM
-         brmdMY0fUphT0+/2gSMIwcGMDagy+wX21CKDs97olLXBwND2j+qDeryMm5AvhR9LthwW
-         9lPrew6RkvA71m7Bb8MB6e7y2qVaRP6Mpx+2rnFWOsa77HGg00Uai4nrkV9VQ8XZ6yhW
-         TCuR1/VNgB0U9ee5bUOLrcYYgYAj4go5LjX9B4WclAv2husSJfjV1ul5B2oItStAqwxm
-         Wy76c3CwdFtGm0oMBVhgYVQ/xnTiT+k+ouCl9uGIwIZiUrsRbdjbPzZr19Fp0HuXJ55e
-         WALA==
-X-Gm-Message-State: AOAM532sGgFW0spEX2+EXKv/EO74LrLW3q7YIjsB1fbjpJzcWLqsLKjc
-        BLPEr4io4rD6bwOHaKe8yEPQsA==
-X-Google-Smtp-Source: ABdhPJw1E4YDaad25yfHAwhuZQcLCWcY0d5ypClcjxJQpYr/VHJPUtT5w/pyIaDY5osGm++76eyj4g==
-X-Received: by 2002:a17:906:3792:: with SMTP id n18mr7002048ejc.47.1611759062601;
-        Wed, 27 Jan 2021 06:51:02 -0800 (PST)
-Received: from localhost.localdomain ([2a02:2450:102f:d6a:62e7:589a:1625:7acc])
-        by smtp.gmail.com with ESMTPSA id ah12sm947799ejc.70.2021.01.27.06.51.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 06:51:01 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
-        robh+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, leoyang.li@nxp.com, geert+renesas@glider.be,
-        arnd@arndb.de, Anson.Huang@nxp.com, michael@walle.cc,
-        agx@sigxcpu.org, max.oss.09@gmail.com,
-        angelogioacchino.delregno@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>
-Cc:     Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH v3 22/22] arm64: dts: sdm845-db845c: Enable ov8856 sensor and connect to ISP
-Date:   Wed, 27 Jan 2021 15:49:30 +0100
-Message-Id: <20210127144930.2158242-23-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210127144930.2158242-1-robert.foss@linaro.org>
-References: <20210127144930.2158242-1-robert.foss@linaro.org>
+        id S1343543AbhA0PKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 10:10:25 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44440 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343677AbhA0PJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:09:23 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RF8N32056709;
+        Wed, 27 Jan 2021 09:08:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611760103;
+        bh=5N5q9nhYj+BGX2ORC5A0F5lNAWdEa8rtx39OJBBAdmE=;
+        h=From:To:CC:Subject:Date;
+        b=lCKZXXb6AXuXeg1DkWNnu+BWnSvJjduAqAv5l9Llauk4KVNxi6h8BEC9HPqlg42w4
+         LJZdG6Rx0Hh7Ah9l4MUDvKsjuFC1P3pKQOuZ4LQV92uYwIzh6D5XIFl1MJzdWE9Q5g
+         phlCDPjfpweI7ASh4JnD1eH1ENe1lL7XB3tf8jVg=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RF8NS8007552
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 27 Jan 2021 09:08:23 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
+ Jan 2021 09:08:23 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 27 Jan 2021 09:08:23 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RF8IH8064427;
+        Wed, 27 Jan 2021 09:08:19 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] J7200: Add support for higher speed modes in MMCSD subsystems
+Date:   Wed, 27 Jan 2021 20:38:13 +0530
+Message-ID: <20210127150815.16991-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable camss & ov8856 DT nodes.
+The following series of patches 
+- Add support for the zeroth instance of GPIO subsystem in the main domain
+- Add voltage regulator device tree nodes and their corresponding pinmux 
+  to support power cycle and voltage switch required for UHS-I modes
+- sets respective tags in sdhci0 node to support higher speeds
+- remove no-1-8-v tag from sdhci1 node to support UHS-I modes 
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+Changes since v2:
+- Added main_gpio0 DT node
+- Added voltage regulator device tree nodes required to support UHS-I modes
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 5842ab65789c..d89286f6aacb 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1108,6 +1108,21 @@ &cci {
- 
- &camss {
- 	vdda-supply = <&vreg_l1a_0p875>;
-+
-+	status = "ok";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		port@0 {
-+			reg = <0>;
-+			csiphy0_ep: endpoint {
-+				clock-lanes = <1>;
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&ov8856_ep>;
-+			};
-+		};
-+	};
- };
- 
- &cci_i2c0 {
-@@ -1139,7 +1154,7 @@ camera@10 {
- 		avdd-supply = <&cam0_avdd_2v8>;
- 		dvdd-supply = <&cam0_dvdd_1v2>;
- 
--		status = "disable";
-+		status = "ok";
- 
- 		port {
- 			ov8856_ep: endpoint {
-@@ -1147,7 +1162,7 @@ ov8856_ep: endpoint {
- 				link-frequencies = /bits/ 64
- 					<360000000 180000000>;
- 				data-lanes = <1 2 3 4>;
--//				remote-endpoint = <&csiphy0_ep>;
-+				remote-endpoint = <&csiphy0_ep>;
- 			};
- 		};
- 	};
+Changes since v1:
+- squashed the two patches into one
+- added performance logs for the above mentioned speed modes
+
+Aswath Govindraju (2):
+  dts: ti: k3-j7200-main: Add support for zeroth instance of GPIO subsystem
+  arm64: dts: ti: k3-j7200: Add support for higher speed modes in MMCSD
+    subsystems
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 31 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 20 +++++++++++-
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+
 -- 
-2.27.0
+2.17.1
 
