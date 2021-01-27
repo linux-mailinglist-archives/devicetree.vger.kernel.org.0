@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E72D6305B48
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 13:26:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54655305B5F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 13:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237680AbhA0M0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 07:26:00 -0500
-Received: from mail-wr1-f44.google.com ([209.85.221.44]:44460 "EHLO
-        mail-wr1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237723AbhA0MYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 07:24:36 -0500
-Received: by mail-wr1-f44.google.com with SMTP id d16so1663987wro.11;
-        Wed, 27 Jan 2021 04:24:19 -0800 (PST)
+        id S1343503AbhA0M3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 07:29:39 -0500
+Received: from mail-wm1-f42.google.com ([209.85.128.42]:38912 "EHLO
+        mail-wm1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237782AbhA0M05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 07:26:57 -0500
+Received: by mail-wm1-f42.google.com with SMTP id u14so1473773wmq.4;
+        Wed, 27 Jan 2021 04:26:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ShB3cnXbxrmD9a+bdXYQdwTEtb4JqHT3bdcJ08qiOYM=;
-        b=K4N3DUw1JbX2KkHEBhRTAmorhclvTBMN8JFu0pIWIAu9QQ0aH9qd3Rppn8HCFsFlv9
-         1LvZuYMCsHDsN/5MQ3Vn+ifvIw4O7LJwXVGdNQThM1wa3ZPsjnXnQJJ10auYh/McayEz
-         4Nwdg9lgjmgpVYF/59RfwmcJyl0x2sdhoEv863GXYO237ke252EpMbqWzN/UvGBKBgJi
-         Cus6S4EWge1zbBea1ud/0zUdRg9SVmA3Ze/Eafvx1a5fGGJupLpyFWVPoTZ9xfii2z7E
-         fTX06gxafRWxqPC/NcbtYjZCV7wLsG2eqpnDQ++gm7+qohpqzCm95+EY166NTZIsSSuI
-         gDGg==
-X-Gm-Message-State: AOAM532d6O0XE6bH0ks2pvMhIepiv17PtxL2wEt4cg3MfL4Ew8J3W397
-        bzHIF15JoSlBytt3BUh95Mo=
-X-Google-Smtp-Source: ABdhPJzhDxEpDBEc1vtDjMlmipHrb96zdgWsWtS3oEMrAA/05Zb3TzAV22yLxNp4CFki4xmeOC8Zvg==
-X-Received: by 2002:a5d:66ce:: with SMTP id k14mr10947071wrw.397.1611750234180;
-        Wed, 27 Jan 2021 04:23:54 -0800 (PST)
+        bh=s8STOwDnZktAr5XSsZpxPTgg/wzUn+w2B4TEpUXyMVw=;
+        b=gK9ltotN+40TUVOVJnpropJXwlEKqMQ0w4XIgDvt98x309yykck+2glRB9Tr1kfx2m
+         Tkr6r7kfw6+d9u869d/FLZ7VUXfb9UI73FD2DT9L/sZIXPFjhel4qDvYjAYDZEbs2ldi
+         gOUeRj34j5BTTkkm0U6wvgXovQd4uMVLwp0yNzlNBRGcmyZ8WAjQK7J3hzi+fQJjcUyI
+         5TsRVQ6RG89abzJ7d9nc54BiMlyYHsTEqnRkCQhbfJFoKRLp+NXm325/StqkIOHuekOJ
+         q9ALkg1bi5/9alkkS0bEStmseRbe4Ku9zJ+3AqbyjtMpJ6E8+Vaz/RdBLKB6Fix1Ww3e
+         2B2A==
+X-Gm-Message-State: AOAM532g38VmBibgjApQhrYE82r+kXVMpxBzRsV4P7q4fUWqNSn5rF03
+        +cVbyz+b4nfFrpqSC6gR2/w=
+X-Google-Smtp-Source: ABdhPJwYp1nwQ+73M6r0oTdmT6Kq9O0d6kgAe4eLD2OunE9oChenHrNIqFUUCi/3UgQTRI9Zgykkpw==
+X-Received: by 2002:a7b:cb81:: with SMTP id m1mr4041455wmi.117.1611750374810;
+        Wed, 27 Jan 2021 04:26:14 -0800 (PST)
 Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id g12sm2325875wmh.14.2021.01.27.04.23.52
+        by smtp.googlemail.com with ESMTPSA id d85sm9372902wmd.2.2021.01.27.04.26.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 04:23:53 -0800 (PST)
-Date:   Wed, 27 Jan 2021 13:23:51 +0100
+        Wed, 27 Jan 2021 04:26:13 -0800 (PST)
+Date:   Wed, 27 Jan 2021 13:26:12 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Sakari Ailus <sakari.ailus@linux.intel.com>
 Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -42,7 +42,7 @@ Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
 Subject: Re: [PATCH v6 1/4] dt-bindings: media: imx258: add bindings for
  IMX258 sensor
-Message-ID: <20210127122351.nokesldtzq4wchiq@kozik-lap>
+Message-ID: <20210127122612.evk5sooijid3dmzd@kozik-lap>
 References: <20201118202715.6692-1-krzk@kernel.org>
  <20210122091822.GB27155@paasikivi.fi.intel.com>
 MIME-Version: 1.0
@@ -153,11 +153,9 @@ On Fri, Jan 22, 2021 at 11:18:22AM +0200, Sakari Ailus wrote:
 > 
 > This is redundant. Please remove, same for the examples. Can be a separate
 > patch, too.
-> 
-> With this change the set seems good to me.
 
-OK, I'll remove it and send a v7.
+Before I remove too much - you mean "clock-lanes" is redundant or entire
+set of properties in "port" node?
 
 Best regards,
 Krzysztof
-
