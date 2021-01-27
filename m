@@ -2,85 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 194FB30640C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60510306417
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:33:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231152AbhA0TbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 14:31:10 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:13267 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231573AbhA0TbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 14:31:03 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B6011bf440001>; Wed, 27 Jan 2021 11:30:12 -0800
-Received: from [10.26.73.116] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 27 Jan
- 2021 19:30:10 +0000
-Subject: Re: [PATCH] arm64: tegra: Add support for Jetson Xavier NX with eMMC
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>
-References: <20210127175250.326390-1-jonathanh@nvidia.com>
- <YBGxkd1Ig5/2R0aG@ulmo>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <291061a5-1e69-b35f-a57f-ef54d6424e49@nvidia.com>
-Date:   Wed, 27 Jan 2021 19:30:07 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1344264AbhA0TcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 14:32:16 -0500
+Received: from foss.arm.com ([217.140.110.172]:33826 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344209AbhA0TcH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 14:32:07 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 66C20106F;
+        Wed, 27 Jan 2021 11:31:21 -0800 (PST)
+Received: from [10.57.47.135] (unknown [10.57.47.135])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2B7D03F68F;
+        Wed, 27 Jan 2021 11:31:19 -0800 (PST)
+Subject: Re: [PATCH v2] of/device: Update dma_range_map only when dev has
+ valid dma-ranges
+To:     Rob Herring <robh+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>
+Cc:     devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20210119105203.15530-1-yong.wu@mediatek.com>
+ <CAL_JsqJB=MMeMobznBiAUihJLBt5aeiiL+AtDWh6tajePu=Now@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <9fb4c940-32e9-2da3-6e6a-eff5d1cd73ac@arm.com>
+Date:   Wed, 27 Jan 2021 19:31:17 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <YBGxkd1Ig5/2R0aG@ulmo>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
+In-Reply-To: <CAL_JsqJB=MMeMobznBiAUihJLBt5aeiiL+AtDWh6tajePu=Now@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1611775812; bh=S+nYE7hkUXr+/e29IA/XJ7pOEuSMQW3ynpZxm8hS+fM=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Language:
-         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-        b=oWo9ZsgbIkgTv0mXq+iS0rsyN8lqvMbnX/XoSbRpOASfUzj2zfUV1wOttNLhqcGxs
-         ZxX4AouH3dbhB7HmcM13pwR2rA74vcYTjVS0KzTkOUHUYXsgh/fx91UMA4qIR+L/sC
-         nk7VbrHGdolsLSxrlRravcwvUb5GbNp5l3f4Hlu2+a9cxOYVt0NUtIovxXrVXvbRuW
-         Jn4X1PNPuDUUeWpJUomq3Y1YmDH7NuBNWlcmf4rmodZkLualvC8dX1sm+CBHA0LD0D
-         x02oiJC+yGpfi5S2KrzHLpC2r8afv1hc/8mk+YxJ1a2DdpnOQewBkE9K54KpojGwAd
-         VxHbKitrJpyOA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 27/01/2021 18:31, Thierry Reding wrote:
-> On Wed, Jan 27, 2021 at 05:52:50PM +0000, Jon Hunter wrote:
->> There are two versions of the Jetson Xavier NX system-on-module; one
->> with a micro SD-card slot and one with an eMMC. Currently, only the
->> system-on-module with the micro SD-card slot is supported and so add
->> necessary device-tree changes to add support for the eMMC version.
+On 2021-01-27 19:07, Rob Herring wrote:
+> On Tue, Jan 19, 2021 at 4:52 AM Yong Wu <yong.wu@mediatek.com> wrote:
 >>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->> ---
->>  arch/arm64/boot/dts/nvidia/Makefile           |   1 +
->>  .../nvidia/tegra194-p3509-0000+p3668-0000.dts | 351 +-----------------
->>  .../nvidia/tegra194-p3509-0000+p3668-0001.dts |  10 +
->>  .../boot/dts/nvidia/tegra194-p3509-0000.dtsi  | 351 ++++++++++++++++++
->>  .../boot/dts/nvidia/tegra194-p3668-0000.dtsi  | 282 +-------------
->>  .../boot/dts/nvidia/tegra194-p3668-0001.dtsi  |  19 +
->>  .../arm64/boot/dts/nvidia/tegra194-p3668.dtsi | 284 ++++++++++++++
->>  7 files changed, 669 insertions(+), 629 deletions(-)
->>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dts
->>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
->>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3668-0001.dtsi
->>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi
+>> The commit e0d072782c73 ("dma-mapping: introduce DMA range map,
+>> supplanting dma_pfn_offset") always update dma_range_map even though it was
+>> already set, like in the sunxi_mbus driver. the issue is reported at [1].
+>> This patch avoid this(Updating it only when dev has valid dma-ranges).
 > 
-> This looks good, although I must say this is difficult to review. Maybe
-> it would help if this was split into two patches where first the files
-> are split for tegra194-p3509-0000+p3668-0000 and the second patch adds
-> only the files for the new SKU.
+> only when dev *doesn't* have valid dma-ranges?
 
-Yes, OK I will do that. I must admit the diff is not very clear.
+I believe the intent is to mean when a valid "dma-ranges" property is 
+specified in DT. The implementation allows DT to take precedence even if 
+platform code *has* already installed a dma_range_map, although we 
+shouldn't expect that to ever happen (except perhaps in the wild early 
+days of platform bringup).
 
-Jon
+Robin.
 
--- 
-nvpublic
+>> Meanwhile, dma_range_map contains the devices' dma_ranges information,
+>> This patch moves dma_range_map before of_iommu_configure. The iommu
+>> driver may need to know the dma_address requirements of its iommu
+>> consumer devices.
+>>
+>> [1] https://lore.kernel.org/linux-arm-kernel/5c7946f3-b56e-da00-a750-be097c7ceb32@arm.com/
+>>
+>> CC: Rob Herring <robh+dt@kernel.org>
+>> CC: Frank Rowand <frowand.list@gmail.com>
+>> Fixes: e0d072782c73 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset"),
+>> Suggested-by: Robin Murphy <robin.murphy@arm.com>
+>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   drivers/of/device.c | 10 +++++++---
+>>   1 file changed, 7 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/of/device.c b/drivers/of/device.c
+>> index aedfaaafd3e7..1122daa8e273 100644
+>> --- a/drivers/of/device.c
+>> +++ b/drivers/of/device.c
+>> @@ -162,9 +162,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>>          mask = DMA_BIT_MASK(ilog2(end) + 1);
+>>          dev->coherent_dma_mask &= mask;
+>>          *dev->dma_mask &= mask;
+>> -       /* ...but only set bus limit if we found valid dma-ranges earlier */
+>> -       if (!ret)
+>> +       /* ...but only set bus limit and range map if we found valid dma-ranges earlier */
+>> +       if (!ret) {
+>>                  dev->bus_dma_limit = end;
+>> +               dev->dma_range_map = map;
+>> +       }
+>>
+>>          coherent = of_dma_is_coherent(np);
+>>          dev_dbg(dev, "device is%sdma coherent\n",
+>> @@ -172,6 +174,9 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>>
+>>          iommu = of_iommu_configure(dev, np, id);
+>>          if (PTR_ERR(iommu) == -EPROBE_DEFER) {
+>> +               /* Don't touch range map if it wasn't set from a valid dma-ranges */
+>> +               if (!ret)
+>> +                       dev->dma_range_map = NULL;
+>>                  kfree(map);
+>>                  return -EPROBE_DEFER;
+>>          }
+>> @@ -181,7 +186,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>>
+>>          arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+>>
+>> -       dev->dma_range_map = map;
+>>          return 0;
+>>   }
+>>   EXPORT_SYMBOL_GPL(of_dma_configure_id);
+>> --
+>> 2.18.0
+>>
+> _______________________________________________
+> iommu mailing list
+> iommu@lists.linux-foundation.org
+> https://lists.linuxfoundation.org/mailman/listinfo/iommu
+> 
