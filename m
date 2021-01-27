@@ -2,70 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0777B306120
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 17:39:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E186B306151
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 17:53:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233139AbhA0QiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 11:38:25 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:35764 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235531AbhA0QhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 11:37:00 -0500
-Received: by mail-ot1-f42.google.com with SMTP id 36so2270332otp.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 08:36:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/xlnSphG4Jh4OtN5h5TQN/7/tZEsHHDDokc9jDi1qYM=;
-        b=XZjCgVH4f6UWDmS5jGGtEuTtNfZu77stI0Uiw8oDHsNbYMTG6dFflc2RzDq+vi+kqy
-         km5IlnXZ/AG202dQyx05fXwpZ4GDZt8RZhmmpd1WXSyqexg7wYLBotvGWDoE8Hp1CDpR
-         xcLa/XWjF2q4p1/a+ckig9/BVxyACfJTxCPQGBsWu8N+ZvjcILMN9NvK4G+nVMs1Hx16
-         d93YSqlK2EPcRtN+Cez8mQROw/T9Jk/PtiBUxPywK7kHbjdtcSrwjZ2iwJmYNKomsF4y
-         GaISXChVuWsE8sKHVxTkMH9O5QhVOthE5GIiRCSHB4YmWVPfUVHsp+GJ1K3cK7u4LN3X
-         vY7Q==
-X-Gm-Message-State: AOAM530blUUzjc/+pmqRemu8yEqDO/bTqizajiRBRsIFXBzReTJKYpSL
-        kek2SFzqA1Kr6y24oINl4A==
-X-Google-Smtp-Source: ABdhPJwnNs2RIJEdxoi42Legugs/44rTxrZqkBp3lkoJdwHPm2/jA6lvH5zx5dcElLjgj1wmKZsEBQ==
-X-Received: by 2002:a9d:3b8:: with SMTP id f53mr8016580otf.344.1611765379322;
-        Wed, 27 Jan 2021 08:36:19 -0800 (PST)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w194sm510157oiw.39.2021.01.27.08.36.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 08:36:17 -0800 (PST)
-Received: (nullmailer pid 1742871 invoked by uid 1000);
-        Wed, 27 Jan 2021 16:36:16 -0000
-Date:   Wed, 27 Jan 2021 10:36:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org
-Subject: Re: [PATCH dt-schema 0/2] dt-schema: Add percentage
-Message-ID: <20210127163616.GA1741826@robh.at.kernel.org>
-References: <20210126162756.1932692-1-geert+renesas@glider.be>
+        id S231364AbhA0Qw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 11:52:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34670 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232813AbhA0Qw6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 11:52:58 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4121064D99;
+        Wed, 27 Jan 2021 16:52:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611766337;
+        bh=TPAwVwylMOwu7ugV8ihGQhafwnssH7CpBZ1z8+IAFxY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n7/znJdaXqb5IGKBd/MWJB1ehL8MRYbSdZ7sX3+oqdh1pWrdtxgvq24MUB/zJZu72
+         brlpD1+m24CV3uzGmPoWkkOfvqa5mvlbOv9lwQfRFYuHchVe9E+JDvxNsMx/D0lrNA
+         LdQ6ZNeZZ0YDjI2VSQQUgb8tU+KZZpvWHStkMfMyKT13yEWksRWKe01bh6TFbozCMv
+         yAp3XDc0lu+QLBBVx90w/Lwnnehc9VcfBdEkEuWHl8J4Vk+rxyFZLTcWZrYjip3UF6
+         8nBOV0N8fDx2Jmehpa141jGcrASzYN2l7FliDykcwRcRvpeCH1LvdpXHYE4k5S2ccg
+         EcQB/4Sp7K3LA==
+Date:   Wed, 27 Jan 2021 16:52:08 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
+        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
+        frowand.list@gmail.com, vincenzo.frascino@arm.com,
+        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
+        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v15 09/10] arm64: Call kmalloc() to allocate DTB buffer
+Message-ID: <20210127165208.GA358@willie-the-truck>
+References: <20210115173017.30617-1-nramas@linux.microsoft.com>
+ <20210115173017.30617-10-nramas@linux.microsoft.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210126162756.1932692-1-geert+renesas@glider.be>
+In-Reply-To: <20210115173017.30617-10-nramas@linux.microsoft.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 26, 2021 at 05:27:54PM +0100, Geert Uytterhoeven wrote:
-> 	Hi Rob,
+On Fri, Jan 15, 2021 at 09:30:16AM -0800, Lakshmi Ramasubramanian wrote:
+> create_dtb() function allocates kernel virtual memory for
+> the device tree blob (DTB).  This is not consistent with other
+> architectures, such as powerpc, which calls kmalloc() for allocating
+> memory for the DTB.
 > 
-> This patch series adds percentages to the lists of recognized
-> properties, as requested in[1].
+> Call kmalloc() to allocate memory for the DTB, and kfree() to free
+> the allocated memory.
 > 
-> Thanks!
+> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> ---
+>  arch/arm64/kernel/machine_kexec_file.c | 12 +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
 > 
-> [1] "Re: [PATCH v2] dt-bindings: clk: versaclock5: Miscellaneous fixes
->      and improvements:"
->     https://lore.kernel.org/linux-devicetree/20210125212442.GA1019390@robh.at.kernel.org/
-> 
-> Geert Uytterhoeven (2):
->   schemas: property-units: Add percentage
->   meta-schemas: vendor-props: Add percentage
+> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
+> index 7de9c47dee7c..51c40143d6fa 100644
+> --- a/arch/arm64/kernel/machine_kexec_file.c
+> +++ b/arch/arm64/kernel/machine_kexec_file.c
+> @@ -29,7 +29,7 @@ const struct kexec_file_ops * const kexec_file_loaders[] = {
+>  
+>  int arch_kimage_file_post_load_cleanup(struct kimage *image)
+>  {
+> -	vfree(image->arch.dtb);
+> +	kfree(image->arch.dtb);
+>  	image->arch.dtb = NULL;
+>  
+>  	vfree(image->arch.elf_headers);
+> @@ -59,19 +59,21 @@ static int create_dtb(struct kimage *image,
+>  			+ cmdline_len + DTB_EXTRA_SPACE;
+>  
+>  	for (;;) {
+> -		buf = vmalloc(buf_size);
+> +		buf = kmalloc(buf_size, GFP_KERNEL);
 
-Applied, thanks.
+Is there a functional need for this patch? I build the 'dtbs' target just
+now and sdm845-db845c.dtb is approaching 100K, which feels quite large
+for kmalloc().
 
-Rob
+Will
