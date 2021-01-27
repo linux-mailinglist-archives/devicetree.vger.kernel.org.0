@@ -2,114 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36DAE305505
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 08:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E1A305543
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:09:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234517AbhA0Hvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 02:51:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52312 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234070AbhA0Hte (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 02:49:34 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BF76B2074A;
-        Wed, 27 Jan 2021 07:48:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611733728;
-        bh=Nro3vfQTCFtmv98iajZ/Tld6vSBtHkyWqkV/zj14XFw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SHMBfSfTtkKbBZei+R26dC4Lsa2N+suQiJ9H3LZMp1MaKa5JjGt+4QjAdFsyIyLUT
-         tQmzXXgXxEdLQ2XzmFzAyIzEDH80xOrFrwsQDYWFBcKKnne9TgiIilSEhMFajPzLcb
-         WKlppAIzlGh3Fdk7NfvaI8omlrDmEFva/CSsY1cFN2joSSKZRYRcFT7U90A+CfEknv
-         NgBhXEjQyytURjwbuv1CbEWSI5z02gPfxp9eYDmJnFUBTAyEZEGvdNF+R6c9qOt6Gv
-         k1vZRXX2j4SYiZQErTdX1uQdkl0rrqMB5kZzlCHOYRGKTz5ie1ZeE0UWWrrB+E8xPk
-         07s+G/JFyQ1kw==
-Date:   Wed, 27 Jan 2021 08:48:37 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Jesper Nilsson <jesper.nilsson@axis.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Jonathan Chocron <jonnyc@amazon.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Zhou Wang <wangzhou1@hisilicon.com>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH RFC 1/2] dt: pci: designware-pcie.txt: convert it to
- yaml
-Message-ID: <20210127084837.39d68850@coco.lan>
-In-Reply-To: <b6ab7110-fc87-85d7-d591-dffad32985ec@samsung.com>
-References: <cover.1611645945.git.mchehab+huawei@kernel.org>
-        <CGME20210126074127eucas1p1dd8f2d1704d708d64458922566b934f1@eucas1p1.samsung.com>
-        <55f479324098b66d7dba89c8f9c3e455731df4f7.1611645945.git.mchehab+huawei@kernel.org>
-        <b6ab7110-fc87-85d7-d591-dffad32985ec@samsung.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S231545AbhA0IHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 03:07:53 -0500
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:41599 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231393AbhA0IFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 03:05:09 -0500
+Received: by mail-oi1-f173.google.com with SMTP id m13so1282630oig.8;
+        Wed, 27 Jan 2021 00:04:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XfyRLzMlIoi5X9bZM312ztK9szh1Uoj2MAF1xDhQS7U=;
+        b=S9sJowijfjfMSXl1D7wws47kLVOOhyXp+82GYqGuXqnR6+oiBefwwqgL841ixa74Vf
+         uByG0snUfWC/cusWFyfMRMhuM21DkKoNbRVVjNzHL9owjmY3gI2+XC1HJCymOIFnDnn1
+         D87IeBm3lsoZTjATr+KXgKtm5eaxBbnIhw1+ioAc1QvNMy5zQrytiqnbO3UQpLhcdgSL
+         DBBFo51WY+UbYb+GquoDQEaLL3Dd/uDWNkEwEorZp83VHuNTnXGX+sLio21sRqz4B5hu
+         g/d39G+5I9j3AqddFLrKZFkqqmWjjdv8qWMzSAk/KE0TQdiiv/8GXAzx4Vc8pVdzXTev
+         zRQw==
+X-Gm-Message-State: AOAM533S7MVM5iIbI/M8WI+VIys4IZcEO1rrzbBupu7lIpYHqphxrBGW
+        SEU3ViRRNQo/6qrpWpMOJR98qOwch/FUdHtyYFAS/Fe7
+X-Google-Smtp-Source: ABdhPJyQk+t/A9YKLA2LqVfKqKypKtLzXPHN3IoCxXpEFRU4g2uVJpYn7UJ6W85zp4YH2b4RCWqBZ10Q9spNLMqH93w=
+X-Received: by 2002:aca:4d8d:: with SMTP id a135mr2327538oib.153.1611734299722;
+ Tue, 26 Jan 2021 23:58:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210125142431.1049668-1-geert+renesas@glider.be>
+ <20210125142431.1049668-3-geert+renesas@glider.be> <YBCPoOKGRZYkdfPn@pendragon.ideasonboard.com>
+In-Reply-To: <YBCPoOKGRZYkdfPn@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Jan 2021 08:58:08 +0100
+Message-ID: <CAMuHMdVD_g2HW4PBup4Si8H5kJ12PzUHXnZcHp7O_He-MHvtmg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] dmaengine: rcar-dmac: Add for_each_rcar_dmac_chan()
+ helper
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi Laurent,
 
-Em Tue, 26 Jan 2021 11:13:20 +0100
-Marek Szyprowski <m.szyprowski@samsung.com> escreveu:
+On Tue, Jan 26, 2021 at 10:55 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Mon, Jan 25, 2021 at 03:24:29PM +0100, Geert Uytterhoeven wrote:
+> > Add and helper macro for iterating over all DMAC channels, taking into
+>
+> s/and helper/a helper/
 
-> Hi Mauro,
-> 
-> On 26.01.2021 08:35, Mauro Carvalho Chehab wrote:
-> > Convert the file into a JSON description at the yaml format.
+Oops.
+
+> > account the channel mask.  Use it where appropriate, to simplify code.
 > >
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > ---
-> >   .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
-> >   .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
-> >   .../bindings/pci/designware,pcie.yaml         | 194 ++++++++++++++++++
-> >   .../bindings/pci/designware-pcie.txt          |  77 -------
-> >   .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
-> >   .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
-> >   .../bindings/pci/hisilicon-pcie.txt           |   2 +-
-> >   .../devicetree/bindings/pci/kirin-pcie.txt    |   2 +-
-> >   .../bindings/pci/layerscape-pci.txt           |   2 +-
-> >   .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
-> >   .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
-> >   .../devicetree/bindings/pci/pci-keystone.txt  |  10 +-
-> >   .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
-> >   .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
-> >   .../bindings/pci/samsung,exynos5440-pcie.txt  |   4 +-  
+> > Restore "reverse Christmas tree" order of local variables while adding a
+> > new variable.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> You must have used an old tree for preparing this patchset. The above 
-> file is gone in v5.11-rc1 and there is 
-> Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml instead.
+> > --- a/drivers/dma/sh/rcar-dmac.c
+> > +++ b/drivers/dma/sh/rcar-dmac.c
+> > @@ -209,6 +209,10 @@ struct rcar_dmac {
+> >
+> >  #define to_rcar_dmac(d)              container_of(d, struct rcar_dmac, engine)
+> >
+> > +#define for_each_rcar_dmac_chan(i, chan, dmac)                                               \
+>
+> I would have placed the iterator (chan) after the container being
+> iterated (dmac), but it seems there are some for_each_* macros doing it
+> the other way around (they may be older though).
 
-Yeah, this series was generated against v5.10, as part of my efforts
-to have Hikey 970 properly supported upstream:
+Makes sense.
 
-	https://github.com/mchehab/linux/commits/devel/hikey970
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-For the next version, I'll rebase on the top of linux-next. 
+Thanks!
 
-Thanks,
-Mauro
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
