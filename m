@@ -2,104 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C27030679B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 00:17:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 599BE30679F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 00:17:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234031AbhA0XMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 18:12:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234936AbhA0XKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 18:10:34 -0500
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [IPv6:2001:67c:2050::465:202])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18DBEC061573
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 15:09:13 -0800 (PST)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4DQznN0N9JzQlSZ;
-        Thu, 28 Jan 2021 00:09:12 +0100 (CET)
-Authentication-Results: spamfilter01.heinlein-hosting.de (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mailbox.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1611788949;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=iakjquNK7HYnd1DCscrW5kS7Mx8GAPfD6iE+TUqUVtM=;
-        b=UBLsQ+7b1p/H9RCmdPdYfpf5OjRuh+dxFplCIllzkUeTojVvIxc05FbJlNp+pUhlvbrh+E
-        pU2xPJRKKdsktEv5HZ+3Yn/lmP9DDKT+l7BlFwzqeRGDz1UGApivq8F+sXU1YU7d+ao2R/
-        N1unGUWthhBd6oqqsMd59Yulx5NU+HtajEfQOe3ww70hWL1cMOqdDh+q+o4NyGy1cGUyaD
-        8/1uplyKUk2Amr6a4drrf/eYOqfFDjBpssYCinACzu8s9A01ILSw5SOvjgrDSlQx+ZgZ1K
-        psZlcqTn46h03B6hiZEvwzEnEEG6iHtZKs1oX/grO7GLkeHq5BapYbH9mOoz0w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
-        content-transfer-encoding:mime-version:message-id:date:date
-        :subject:subject:from:from:received; s=mail20150812; t=
-        1611788948; bh=ABkA+fHZ9253J6mSTrSP8NlLDK9jdpdiq3bS1bDGFpU=; b=Q
-        OlPCaew9GZVmXN7g38CfE4/4JyuMr6MyMW6wajUU5yD1ChdiL0MwFCUFBr8dHuKA
-        h7+ohK2eEDEtaa5kfkY83JKf7rn2j9pzbe7V5bFhyekRnYDEkhljjw3OYgA9y/4a
-        onssZic8BfH4veACQe0nqCx93c7lJlzzEPToYMpxFS4mtWISNIlgMJgsc+XYqQSV
-        mviuIAwXummPFx6FjODXo6mK8ubsLXSCxXtl5jE7TAbsnVwbJOSBSp7KgYJjJEPa
-        anm6RafnJlWORdjkZj6DSIhe0ZMaOic0QjKVN5QdVm0WR4hadhYzvH8vGbNxUeNQ
-        92hT+EBXw7Yl4kdhiXU1A==
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-        by spamfilter01.heinlein-hosting.de (spamfilter01.heinlein-hosting.de [80.241.56.115]) (amavisd-new, port 10030)
-        with ESMTP id O2P3hU2O_whI; Thu, 28 Jan 2021 00:09:08 +0100 (CET)
-From:   Alexander Stein <alexander.stein@mailbox.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Alexander Stein <alexander.stein@mailbox.org>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: meson: g12b: odroid-n2: Assign a fixed index to mmc devices
-Date:   Thu, 28 Jan 2021 00:08:52 +0100
-Message-Id: <20210127230852.66686-1-alexander.stein@mailbox.org>
+        id S233314AbhA0XPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 18:15:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42200 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233713AbhA0XO3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 18:14:29 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1951460C3D;
+        Wed, 27 Jan 2021 23:13:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611789225;
+        bh=OG86KZQjlQK/iphbVSEABQExPs4plghOMLe7bxUvZQk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hiXR4SPij5BE91XtvMKGChI7asIK50gRj/Z4Lxm/glG9RzkAxpyJspZLwbwys9nps
+         tI03uwRMyhgEkIxQcuiaPm3ZgMz4bBEtPlvi3IDzC5wDtZcL2A4lAoqMpt1g+UosSA
+         wLTOZ9jePGGUbsufEsqPvQnmsgTqhAr99x2RSYgByv1mkkpm6EkRbk8bv1XdG7HMqN
+         lKxGdoLkSbt4X+NuVD6ceY/nb7J2Ff7mFQj2a1j/FnikHzR6RurcOQhNhtq5tlslBa
+         gfuiakBGS5QnzkiMepjRh+mx4bTXDq7IRbBz/yUbE4efmesD8ZExJtOZR2bk1CpbeT
+         4NEmBQoS+pSdw==
+Date:   Wed, 27 Jan 2021 23:13:35 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Mimi Zohar <zohar@linux.ibm.com>
+Cc:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        bauerman@linux.ibm.com, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
+        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
+        frowand.list@gmail.com, vincenzo.frascino@arm.com,
+        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
+        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v15 10/10] arm64: Add IMA log information in kimage used
+ for kexec
+Message-ID: <20210127231334.GB1016@willie-the-truck>
+References: <20210115173017.30617-1-nramas@linux.microsoft.com>
+ <20210115173017.30617-11-nramas@linux.microsoft.com>
+ <20210127165424.GB358@willie-the-truck>
+ <dec23eb8-0b27-3227-d1ef-f759338a7f9f@linux.microsoft.com>
+ <20210127180230.GA593@willie-the-truck>
+ <8a573f84-732a-3591-8751-f7b08edaa01d@linux.microsoft.com>
+ <6343ab2eec390ab7582beea04f8006af095850c8.camel@linux.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-SPAM-Probability: **
-X-Rspamd-Score: 2.93 / 15.00 / 15.00
-X-Rspamd-Queue-Id: BFE2D1856
-X-Rspamd-UID: 380767
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6343ab2eec390ab7582beea04f8006af095850c8.camel@linux.ibm.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Recently introduced async probe on mmc devices can shuffle block IDs.
-Pin them to fixed values to ease booting in environments where UUIDs
-are not practical. Use newly introduced aliases for mmcblk devices from [1].
-[1]
-https://patchwork.kernel.org/patch/11747669/
+On Wed, Jan 27, 2021 at 01:31:02PM -0500, Mimi Zohar wrote:
+> On Wed, 2021-01-27 at 10:24 -0800, Lakshmi Ramasubramanian wrote:
+> > On 1/27/21 10:02 AM, Will Deacon wrote:
+> > > On Wed, Jan 27, 2021 at 09:56:53AM -0800, Lakshmi Ramasubramanian wrote:
+> > >> On 1/27/21 8:54 AM, Will Deacon wrote:
+> > >>> On Fri, Jan 15, 2021 at 09:30:17AM -0800, Lakshmi Ramasubramanian wrote:
+> > >>>> Address and size of the buffer containing the IMA measurement log need
+> > >>>> to be passed from the current kernel to the next kernel on kexec.
+> > >>>>
+> > >>>> Add address and size fields to "struct kimage_arch" for ARM64 platform
+> > >>>> to hold the address and size of the IMA measurement log buffer.
+> > >>>>
+> > >>>> Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC, if CONFIG_IMA
+> > >>>> is enabled, to indicate that the IMA measurement log information is
+> > >>>> present in the device tree for ARM64.
+> > >>>>
+> > >>>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> > >>>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> > >>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> > >>>> Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+> > >>>> ---
+> > >>>>    arch/arm64/Kconfig             | 1 +
+> > >>>>    arch/arm64/include/asm/kexec.h | 5 +++++
+> > >>>>    2 files changed, 6 insertions(+)
+> > >>>>
+> > >>>> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+> > >>>> index 1d466addb078..ea7f7fe3dccd 100644
+> > >>>> --- a/arch/arm64/Kconfig
+> > >>>> +++ b/arch/arm64/Kconfig
+> > >>>> @@ -1094,6 +1094,7 @@ config KEXEC
+> > >>>>    config KEXEC_FILE
+> > >>>>    	bool "kexec file based system call"
+> > >>>>    	select KEXEC_CORE
+> > >>>> +	select HAVE_IMA_KEXEC if IMA
+> > >>>>    	help
+> > >>>>    	  This is new version of kexec system call. This system call is
+> > >>>>    	  file based and takes file descriptors as system call argument
+> > >>>> diff --git a/arch/arm64/include/asm/kexec.h b/arch/arm64/include/asm/kexec.h
+> > >>>> index d24b527e8c00..2bd19ccb6c43 100644
+> > >>>> --- a/arch/arm64/include/asm/kexec.h
+> > >>>> +++ b/arch/arm64/include/asm/kexec.h
+> > >>>> @@ -100,6 +100,11 @@ struct kimage_arch {
+> > >>>>    	void *elf_headers;
+> > >>>>    	unsigned long elf_headers_mem;
+> > >>>>    	unsigned long elf_headers_sz;
+> > >>>> +
+> > >>>> +#ifdef CONFIG_IMA_KEXEC
+> > >>>> +	phys_addr_t ima_buffer_addr;
+> > >>>> +	size_t ima_buffer_size;
+> > >>>> +#endif
+> > >>>
+> > >>> Why do these need to be in the arch structure instead of 'struct kimage'?
+> > >>>
+> > >>
+> > >> Currently, only powerpc and, with this patch set, arm64 have support for
+> > >> carrying forward IMA measurement list across kexec system call. The above
+> > >> fields are used for tracking IMA measurement list.
+> > >>
+> > >> Do you see a reason to move these fields to "struct kimage"?
+> > > 
+> > > If they're gated on CONFIG_IMA_KEXEC, then it seems harmless for them to
+> > > be added to the shared structure. Or are you saying that there are
+> > > architectures which have CONFIG_IMA_KEXEC but do not want these fields?
+> > > 
+> > 
+> > As far as I know, there are no other architectures that define 
+> > CONFIG_IMA_KEXEC, but do not use these fields.
+> 
+> Yes, CONFIG_IMA_KEXEC enables "carrying the IMA measurement list across
+> a soft boot".   The only arch that currently carries the IMA
+> measurement across kexec is powerpc.
 
-Commit message taken from commit 0011c6d18277 ("arm64: dts: rockchip: Assign a fixed index to mmc devices on rk3399 boards.")
+Ok, in which case this sounds like it should be in the shared structure, no?
 
-Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
----
-I was wondering which order I should use. Depending in your booting
-medium (SD card or eMMC) you 'want' one or the other as mmc0.
-In the end I ordered them according to the names.
-
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 050862cd0996..2faa4da917c1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -13,6 +13,8 @@ / {
- 	aliases {
- 		serial0 = &uart_AO;
- 		ethernet0 = &ethmac;
-+		mmc0 = &sd_emmc_b;
-+		mmc1 = &sd_emmc_c;
- 	};
- 
- 	dioo2133: audio-amplifier-0 {
--- 
-2.30.0
-
+Will
