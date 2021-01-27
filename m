@@ -2,104 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30047306081
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 17:05:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0777B306120
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 17:39:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235478AbhA0QEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 11:04:51 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37314 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236250AbhA0QB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 11:01:58 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RG10TT072838;
-        Wed, 27 Jan 2021 10:01:00 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611763260;
-        bh=Be5ODq2t5RWXEBx8SdxPZbptUXJc8ygAvzl4Ubl8Ov4=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=O/H63GUXuBFOx4JKTUUgRnfTHC1OQKJEcc2lLuyMorOnskH8MYYOQd+xP2kKmSef+
-         5RsId31EWqQ8EH4HiswaIS46uQQLvTjvS/AwgSIIkMouYHXUOlvP5xHKMTTqJKnMma
-         r7LqwZgMWsJ4O6W5jIdIKKb04SdPXvoMpdbrjutw=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RG0xbr039369
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Jan 2021 10:00:59 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
- Jan 2021 10:00:59 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 27 Jan 2021 10:00:59 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RG0x0Y012859;
-        Wed, 27 Jan 2021 10:00:59 -0600
-Date:   Wed, 27 Jan 2021 10:00:59 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Rob Herring <robh@kernel.org>
-CC:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4] arm64: dts: ti: k3: squelch warnings regarding no
- #address-cells for interrupt-controller
-Message-ID: <20210127160059.xob2k57agzzgqaph@always>
-References: <20210121060305.29133-1-lokeshvutla@ti.com>
- <161131973654.21299.8023411678794984222.b4-ty@ti.com>
+        id S233139AbhA0QiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 11:38:25 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:35764 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235531AbhA0QhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 11:37:00 -0500
+Received: by mail-ot1-f42.google.com with SMTP id 36so2270332otp.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 08:36:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/xlnSphG4Jh4OtN5h5TQN/7/tZEsHHDDokc9jDi1qYM=;
+        b=XZjCgVH4f6UWDmS5jGGtEuTtNfZu77stI0Uiw8oDHsNbYMTG6dFflc2RzDq+vi+kqy
+         km5IlnXZ/AG202dQyx05fXwpZ4GDZt8RZhmmpd1WXSyqexg7wYLBotvGWDoE8Hp1CDpR
+         xcLa/XWjF2q4p1/a+ckig9/BVxyACfJTxCPQGBsWu8N+ZvjcILMN9NvK4G+nVMs1Hx16
+         d93YSqlK2EPcRtN+Cez8mQROw/T9Jk/PtiBUxPywK7kHbjdtcSrwjZ2iwJmYNKomsF4y
+         GaISXChVuWsE8sKHVxTkMH9O5QhVOthE5GIiRCSHB4YmWVPfUVHsp+GJ1K3cK7u4LN3X
+         vY7Q==
+X-Gm-Message-State: AOAM530blUUzjc/+pmqRemu8yEqDO/bTqizajiRBRsIFXBzReTJKYpSL
+        kek2SFzqA1Kr6y24oINl4A==
+X-Google-Smtp-Source: ABdhPJwnNs2RIJEdxoi42Legugs/44rTxrZqkBp3lkoJdwHPm2/jA6lvH5zx5dcElLjgj1wmKZsEBQ==
+X-Received: by 2002:a9d:3b8:: with SMTP id f53mr8016580otf.344.1611765379322;
+        Wed, 27 Jan 2021 08:36:19 -0800 (PST)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w194sm510157oiw.39.2021.01.27.08.36.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Jan 2021 08:36:17 -0800 (PST)
+Received: (nullmailer pid 1742871 invoked by uid 1000);
+        Wed, 27 Jan 2021 16:36:16 -0000
+Date:   Wed, 27 Jan 2021 10:36:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     devicetree@vger.kernel.org
+Subject: Re: [PATCH dt-schema 0/2] dt-schema: Add percentage
+Message-ID: <20210127163616.GA1741826@robh.at.kernel.org>
+References: <20210126162756.1932692-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <161131973654.21299.8023411678794984222.b4-ty@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210126162756.1932692-1-geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06:49-20210122, Nishanth Menon wrote:
-> On Thu, 21 Jan 2021 11:33:05 +0530, Lokesh Vutla wrote:
-> > With dtc 1.6.0, building TI device-tree files with W=2 results in warnings
-> > like below for all interrupt controllers.
-> > 
-> > /bus@100000/bus@30000000/interrupt-controller1: Missing #address-cells in interrupt provider
-> > 
-> > Fix these by adding #address-cells = <0>; for all interrupt controllers in
-> > TI device-tree files. Any other #address-cells value is really only needed
-> > if interrupt-map property is being used (which is not the case for existing
-> > TI device-tree files)
+On Tue, Jan 26, 2021 at 05:27:54PM +0100, Geert Uytterhoeven wrote:
+> 	Hi Rob,
 > 
-> Hi Lokesh Vutla,
+> This patch series adds percentages to the lists of recognized
+> properties, as requested in[1].
 > 
-> I have applied the following to branch ti-k3-next on [1].
-> Thank you!
+> Thanks!
 > 
-> [1/1] arm64: dts: ti: k3: squelch warnings regarding no #address-cells for interrupt-controller
->       commit: 73d0af633c4bed02f8e71658c9e25ac8250b08c4
+> [1] "Re: [PATCH v2] dt-bindings: clk: versaclock5: Miscellaneous fixes
+>      and improvements:"
+>     https://lore.kernel.org/linux-devicetree/20210125212442.GA1019390@robh.at.kernel.org/
 > 
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent up the chain during
-> the next merge window (or sooner if it is a relevant bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
-[...]
+> Geert Uytterhoeven (2):
+>   schemas: property-units: Add percentage
+>   meta-schemas: vendor-props: Add percentage
 
-Lokesh,
+Applied, thanks.
 
-Based on discussion on [1] - looks like #address-cells = 0 usage
-is still to be resolved and needs some alignment between Andre and
-Rob on where to take this (dtc fixups to handle this Vs explicit
-#address-cells = 0 and increase in dtb size).
-
-I propose we drop this patch rather than having to revert this at a
-later point after I send a PR. Anyone has any objections?
-
-[1] https://lore.kernel.org/linux-arm-kernel/20210126163839.57491132@slackpad.fritz.box/
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Rob
