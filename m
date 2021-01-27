@@ -2,89 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0537E30632D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 19:25:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6830C306333
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 19:25:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236061AbhA0SYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 13:24:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232813AbhA0SYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 13:24:14 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960EAC0613D6;
-        Wed, 27 Jan 2021 10:23:33 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id i187so4019895lfd.4;
-        Wed, 27 Jan 2021 10:23:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=7/VIyGCkm6WYqKuSW58avCCQFZDvTdRr+WLSSIBWpSM=;
-        b=TBvLEZd6eR8Jg1s6FBNMAsAVrQzkqhI0GamcHJFR7LYDoC9+HWYDPnG4cBG/0AXMmd
-         PTY5bwWHS5+6Ld56/bbGo6ZSKna9l/BctnyrZELbIt3ksQ/xQvEclVg7bwgi1nIkv7na
-         vAvqqVwsh5/Xte+BQIc3jG+MlayezjwET+giP4pp77SBZ7ioZLLwNxiriXNllDHaDvyJ
-         oUMfs7YegcAM4U4RkKOQhNvoGQ32Hzf29gFjCr8Svt+uWT8067EJibxtDGxs04Qxo36O
-         3F+jWvWxsdmKYe5dSmf1+ZuOu2a9beGROlFbyuUm7U9i4hQKtPni4rL8jzCUNVaBThIz
-         UQAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=7/VIyGCkm6WYqKuSW58avCCQFZDvTdRr+WLSSIBWpSM=;
-        b=QQhzE39l4YLvIpvd1P87pF6dyFbEGeHMcDb73fUE7s2+SUenfXZumiv3eyITS5vdWC
-         oLGjCv4b55qZ8uJtLofyDSaOVrW4BLve+wtp13AW0Zf6mab4oc29m7yd5320URGdz0kZ
-         5A7DrUK3Eqe65L0I1f5BY/C6kMrW0SRDq2c56Qx3Z7AAPo/PeCrX8ONEhZOM1rBT1svh
-         jGBaeGX+Wy7H1CpXDZz09Gn+y6YVWcY/eAiJ9xoGIqu6pBNcSb3him5gh3uo0mvdgzI6
-         TCUJMK55rpu3sAc21/IKGkJporRsI52anZ7KpJ7nlRdypizS0cx5yWXCRcgJXHU+AL6y
-         KqsQ==
-X-Gm-Message-State: AOAM530Jezsgay17gQFRz1sKFa5c+RQD/zkJNwha6verFXjcjsMxG6/A
-        JSkO4vqm7lh78lPzGVfw6wo=
-X-Google-Smtp-Source: ABdhPJxuj9qRi3BNtT+pBYV+AmDZUin5XCQxcaFgTFWsE+uJi/i7tX09ihVfB5PlDCiOkSD+r8CdDg==
-X-Received: by 2002:a19:838c:: with SMTP id f134mr5518819lfd.424.1611771811861;
-        Wed, 27 Jan 2021 10:23:31 -0800 (PST)
-Received: from DESKTOP-GSFPEC9.localdomain (broadband-46-242-11-119.ip.moscow.rt.ru. [46.242.11.119])
-        by smtp.gmail.com with ESMTPSA id q26sm667065lfd.17.2021.01.27.10.23.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 10:23:31 -0800 (PST)
-From:   Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     supreeth.venkatesh@amd.com, aladyshev22@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: aspeed: amd-ethanolx: Enable secondary LPC snooping address
-Date:   Wed, 27 Jan 2021 21:23:26 +0300
-Message-Id: <20210127182326.424-1-aladyshev22@gmail.com>
-X-Mailer: git-send-email 2.17.1
-To:     unlisted-recipients:; (no To-header on input)
+        id S235682AbhA0SZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 13:25:05 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:55690 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235184AbhA0SZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 13:25:05 -0500
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 3152F20B7192;
+        Wed, 27 Jan 2021 10:24:23 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 3152F20B7192
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1611771863;
+        bh=yMsCPY9XGQhd0IkZadoqcZI8Fan9kErVPg16P1Bza9c=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=DLR0wWGtBDT3ah9ZQoQ7NylT0X7gOM7UFlzzCZuLcuhEGg2dZBS9OErvr4SUQP8Zy
+         /vNAhU0Nn/Ivm4V7NSPMF8xIVHOUWLplqvbfFVzKaEX18VP/abE6QeL9tVwo5VcJNb
+         Jsl+yLZkqshu27jamrru/rzalisWZnxQ6eoWzTrI=
+Subject: Re: [PATCH v15 10/10] arm64: Add IMA log information in kimage used
+ for kexec
+To:     Will Deacon <will@kernel.org>
+Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com, robh@kernel.org,
+        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
+        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
+        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
+        frowand.list@gmail.com, vincenzo.frascino@arm.com,
+        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
+        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
+        masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
+        hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
+        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+References: <20210115173017.30617-1-nramas@linux.microsoft.com>
+ <20210115173017.30617-11-nramas@linux.microsoft.com>
+ <20210127165424.GB358@willie-the-truck>
+ <dec23eb8-0b27-3227-d1ef-f759338a7f9f@linux.microsoft.com>
+ <20210127180230.GA593@willie-the-truck>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <8a573f84-732a-3591-8751-f7b08edaa01d@linux.microsoft.com>
+Date:   Wed, 27 Jan 2021 10:24:22 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210127180230.GA593@willie-the-truck>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AMD EthanolX CRB uses 2-byte POST codes which are sent to ports 0x80/0x81.
-Currently ASPEED controller snoops only 0x80 port and therefore captures
-only the lower byte of each POST code.
-Enable secondary LPC snooping address to capture the higher byte of POST
-codes.
+On 1/27/21 10:02 AM, Will Deacon wrote:
+> On Wed, Jan 27, 2021 at 09:56:53AM -0800, Lakshmi Ramasubramanian wrote:
+>> On 1/27/21 8:54 AM, Will Deacon wrote:
+>>> On Fri, Jan 15, 2021 at 09:30:17AM -0800, Lakshmi Ramasubramanian wrote:
+>>>> Address and size of the buffer containing the IMA measurement log need
+>>>> to be passed from the current kernel to the next kernel on kexec.
+>>>>
+>>>> Add address and size fields to "struct kimage_arch" for ARM64 platform
+>>>> to hold the address and size of the IMA measurement log buffer.
+>>>>
+>>>> Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC, if CONFIG_IMA
+>>>> is enabled, to indicate that the IMA measurement log information is
+>>>> present in the device tree for ARM64.
+>>>>
+>>>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>>>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>>>> Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+>>>> ---
+>>>>    arch/arm64/Kconfig             | 1 +
+>>>>    arch/arm64/include/asm/kexec.h | 5 +++++
+>>>>    2 files changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+>>>> index 1d466addb078..ea7f7fe3dccd 100644
+>>>> --- a/arch/arm64/Kconfig
+>>>> +++ b/arch/arm64/Kconfig
+>>>> @@ -1094,6 +1094,7 @@ config KEXEC
+>>>>    config KEXEC_FILE
+>>>>    	bool "kexec file based system call"
+>>>>    	select KEXEC_CORE
+>>>> +	select HAVE_IMA_KEXEC if IMA
+>>>>    	help
+>>>>    	  This is new version of kexec system call. This system call is
+>>>>    	  file based and takes file descriptors as system call argument
+>>>> diff --git a/arch/arm64/include/asm/kexec.h b/arch/arm64/include/asm/kexec.h
+>>>> index d24b527e8c00..2bd19ccb6c43 100644
+>>>> --- a/arch/arm64/include/asm/kexec.h
+>>>> +++ b/arch/arm64/include/asm/kexec.h
+>>>> @@ -100,6 +100,11 @@ struct kimage_arch {
+>>>>    	void *elf_headers;
+>>>>    	unsigned long elf_headers_mem;
+>>>>    	unsigned long elf_headers_sz;
+>>>> +
+>>>> +#ifdef CONFIG_IMA_KEXEC
+>>>> +	phys_addr_t ima_buffer_addr;
+>>>> +	size_t ima_buffer_size;
+>>>> +#endif
+>>>
+>>> Why do these need to be in the arch structure instead of 'struct kimage'?
+>>>
+>>
+>> Currently, only powerpc and, with this patch set, arm64 have support for
+>> carrying forward IMA measurement list across kexec system call. The above
+>> fields are used for tracking IMA measurement list.
+>>
+>> Do you see a reason to move these fields to "struct kimage"?
+> 
+> If they're gated on CONFIG_IMA_KEXEC, then it seems harmless for them to
+> be added to the shared structure. Or are you saying that there are
+> architectures which have CONFIG_IMA_KEXEC but do not want these fields?
+> 
 
-Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+As far as I know, there are no other architectures that define 
+CONFIG_IMA_KEXEC, but do not use these fields.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-index 96ff0aea64e5..ac2d04cfaf2f 100644
---- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-@@ -218,7 +218,7 @@
- 
- &lpc_snoop {
- 	status = "okay";
--	snoop-ports = <0x80>;
-+	snoop-ports = <0x80>, <0x81>;
- };
- 
- &lpc_ctrl {
--- 
-2.17.1
+Mimi - please correct me if I am wrong.
+
+thanks,
+  -lakshmi
+
+
+
 
