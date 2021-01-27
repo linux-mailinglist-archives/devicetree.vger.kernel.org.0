@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05FB83055E5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:37:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C15A03055E4
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:37:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231331AbhA0Igp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 03:36:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52764 "EHLO
+        id S229576AbhA0Igo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 03:36:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231286AbhA0IeM (ORCPT
+        with ESMTP id S231331AbhA0IeM (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 03:34:12 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E23C06178A
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 00:32:33 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id d38so1627215ybe.15
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 00:32:33 -0800 (PST)
+Received: from mail-pg1-x54a.google.com (mail-pg1-x54a.google.com [IPv6:2607:f8b0:4864:20::54a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 385B2C06178B
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 00:32:37 -0800 (PST)
+Received: by mail-pg1-x54a.google.com with SMTP id i124so1076880pgd.4
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 00:32:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=SmiMh0LR1+qpBQs71pN3MQ5z1dtkmQlW7LOu3fdZxYc=;
-        b=rrXwZ9bm2rsHie+KDd9fWKXYVFbzbfhsHlMQSz9gFMUP3reWooj6uuA2HmrOYrLwiq
-         kYs86koHVLx0gEw+UWH7PoHcVPLY4AOA0dZnCcgev+X/R/bdnfebMQb7DrovteE/wM1T
-         jV98B5EgPoINEulnzdhCIshFSA/EunLfsVSn21Vn6/RACRPvQmFiNU7hJGXsC8BW8/xP
-         rwRXE5q7jG1MgI3J21y5/kpGDvzlBGYhNnaTGKDG5mTNlrX2TJFMJaAtv3/Z1mLrWeMO
-         6sizgSXNlb/+n/M64KGj3ZPUQ2gJb1DRhbgiYHDPnVciKsjOG3cfs+X2peN5j9PX+X+L
-         g9jQ==
+        bh=LGZTxpAXqFWtECT4mU7eGwfUfjYEwbaGaOmL3s+WPHY=;
+        b=Mk8UO9d9k5Z55wJIilDYOJbDVrADuEvo1RU1iq6uOFWQ2fpZhKzOBeUq40bTXbRUhW
+         H9Nd9XfdYWaApv8HgACBsOSQIMZ9Q/3vTbecNY/Qps4GTc5lhFlAGQWsX9ovK/wsGDh5
+         0UWExHtK6vDsOFjf/kVISrSdNxBzzWdmNJmnZmUd5HnK+Ek75aatKN7s4buu1pQ/uCKo
+         TdxneGiJN2fv9e7ZRAi9kYTlCnRSyFrrcjcJNtBR7kUjRwvWFO3mHbo/bMHOMRnk86tx
+         oMIO8+9hrYWPcva2sgwg+r4M/1tpmOF1ANT3UzZ0ZwtgXaNrcJQ1mn2bTF3FO74hBpHO
+         dGmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=SmiMh0LR1+qpBQs71pN3MQ5z1dtkmQlW7LOu3fdZxYc=;
-        b=uWigRbC3opZjQ2cIoj+ii3qbaxa29WvYPH6zy48YZoDMX40PNUj3ZJgVkrjLQ5K343
-         KO080Au3aiPpKw18iCE0OB/sx5907UWbyuYWjF0ODq27tBM35kwFk2cajorjRILgPhYA
-         tta5vdiWjc/7OVkL03SnsZH/wErm+ovk5+bEl8eF8B8zOUj5JO16OHrLbuq8mE+nKACq
-         Y3EZzvfGdW1RbuHAsdaJ47389PMXtJv/BORcKvg8JO0edPQDzqsHNSdOf/KnsFE1gKDu
-         KQhRNex8FI3c8wyRwhy0gW+Gp1smJ42mzs+gCF0FY19V+Sz4kXBeF5h5mHoyMMqo7ODp
-         TEEw==
-X-Gm-Message-State: AOAM533wd+frIVmX5vuz0BXBYQ1+w8Msmh4pUFYCkfjhLOYd9peTrEmr
-        e0KmcNFQbGIPxdB8tk7Vv75nCa4+Gkj1
-X-Google-Smtp-Source: ABdhPJyoBFYN8c1zqNrS1+bqbnoMM0Q2Xo7B1whfoExZWSybm5Lh61Rr2MDPRz8tvDy5a2u+4L+Gn8Y+NvHI
+        bh=LGZTxpAXqFWtECT4mU7eGwfUfjYEwbaGaOmL3s+WPHY=;
+        b=KWOhYwsesVKOwNctNr/DwOI//XHG5UnyVW3ySRBQIqtcmOprch7PUAdKFBHPz9evRQ
+         6Gkc73wXfoO/q5hdaPcteo0D4NLF76wJjqj8+9dTrZdzlhiLso+jraV7faicxRyddkNp
+         mD4GLTJsOOq5deVkWymEzPoBJsopbnwt8s72BXrlY/xH+ux7AHOn/+v/6sKDidfTgN9E
+         gdWSVRSSuxr/+v1oxvh5brCZvQp+8S5qObkrEV9gugS5RBBeoTjC9bQg3XgKvaLtYImV
+         mUSGlK2fGzWJFS5TxQZ8+QZnY4VbQoiEZ2jp+/9vHz6JaGhAa1ZBuA+KE/NP5PdaIc9u
+         cnVA==
+X-Gm-Message-State: AOAM532cd0Y9z86rHkOMre4YPkhWP1BpdDj0cA3oVyOdvzvrSN9az9NQ
+        hD/YWsj+0EdF1ph8nSDzsYtLMvANLMOh
+X-Google-Smtp-Source: ABdhPJy8uOr6FzvmT069kx+Pz1AfQycAO6RoKVfv9FAjkZesiSjZw9ppOmVHAroDlr7jOix3x2+itbb2+XU4
 Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
 X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:d17d:c7bb:69a2:7e2f])
- (user=tzungbi job=sendgmr) by 2002:a25:b813:: with SMTP id
- v19mr14700220ybj.178.1611736352922; Wed, 27 Jan 2021 00:32:32 -0800 (PST)
-Date:   Wed, 27 Jan 2021 16:31:34 +0800
+ (user=tzungbi job=sendgmr) by 2002:a62:ce8b:0:b029:1bc:39bd:13ad with SMTP id
+ y133-20020a62ce8b0000b02901bc39bd13admr9563175pfg.24.1611736356753; Wed, 27
+ Jan 2021 00:32:36 -0800 (PST)
+Date:   Wed, 27 Jan 2021 16:31:35 +0800
 In-Reply-To: <20210127083136.3745652-1-tzungbi@google.com>
-Message-Id: <20210127083136.3745652-3-tzungbi@google.com>
+Message-Id: <20210127083136.3745652-4-tzungbi@google.com>
 Mime-Version: 1.0
 References: <20210127083136.3745652-1-tzungbi@google.com>
 X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
-Subject: [PATCH v3 2/4] remoteproc/mediatek: enable MPU for all memory regions
- in MT8192 SCP
+Subject: [PATCH v3 3/4] dt-bindings: remoteproc: mediatek: add L1TCM memory region
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
 Cc:     linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
         linux-mediatek@lists.infradead.org, mathieu.poirier@linaro.org,
-        devicetree@vger.kernel.org, tzungbi@google.com
+        devicetree@vger.kernel.org, tzungbi@google.com,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The register MT8192_CORE0_MEM_ATT_PREDEF contains attributes for each
-memory region.  It defines whether a memory region can be managed by MPU
-or not.
+Adds L1TCM memory region.  The reg-name is "l1tcm".
 
-In the past, due to the default settings in the register, MT8192 SCP
-works luckily.  After enabling L1TCM, SCP starts to access memory region
-that is not included in the default settings.  As a result, SCP hangs.
-
-Enables MPU for all memory regions in MT8192 SCP.
-
-Note that the register is read only once when SCP resets.  Thus, it must
-be set from kernel side.
-
+Acked-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 ---
- drivers/remoteproc/mtk_common.h | 1 +
- drivers/remoteproc/mtk_scp.c    | 3 +++
- 2 files changed, 4 insertions(+)
+ Documentation/devicetree/bindings/remoteproc/mtk,scp.txt | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-index bcab38511bf3..204691138677 100644
---- a/drivers/remoteproc/mtk_common.h
-+++ b/drivers/remoteproc/mtk_common.h
-@@ -47,6 +47,7 @@
+diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+index 3ba668bab14b..3f5f78764b60 100644
+--- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
++++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+@@ -6,10 +6,10 @@ Mediatek SoCs.
  
- #define MT8192_CORE0_SW_RSTN_CLR	0x10000
- #define MT8192_CORE0_SW_RSTN_SET	0x10004
-+#define MT8192_CORE0_MEM_ATT_PREDEF	0x10008
- #define MT8192_CORE0_WDT_IRQ		0x10030
- #define MT8192_CORE0_WDT_CFG		0x10034
- 
-diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-index d83e1164f02f..05b157689121 100644
---- a/drivers/remoteproc/mtk_scp.c
-+++ b/drivers/remoteproc/mtk_scp.c
-@@ -371,6 +371,9 @@ static int mt8192_scp_before_load(struct mtk_scp *scp)
- 	mt8192_power_on_sram(scp->reg_base + MT8192_L1TCM_SRAM_PDN);
- 	mt8192_power_on_sram(scp->reg_base + MT8192_CPU0_SRAM_PD);
- 
-+	/* enable MPU for all memory regions */
-+	writel(0xff, scp->reg_base + MT8192_CORE0_MEM_ATT_PREDEF);
-+
- 	return 0;
- }
- 
+ Required properties:
+ - compatible		Should be "mediatek,mt8183-scp"
+-- reg			Should contain the address ranges for the two memory
+-			regions, SRAM and CFG.
+-- reg-names		Contains the corresponding names for the two memory
+-			regions. These should be named "sram" & "cfg".
++- reg			Should contain the address ranges for memory regions:
++			SRAM, CFG, and L1TCM.
++- reg-names		Contains the corresponding names for the memory regions:
++			"sram", "cfg", and "l1tcm".
+ - clocks		Clock for co-processor (See: ../clock/clock-bindings.txt)
+ - clock-names		Contains the corresponding name for the clock. This
+ 			should be named "main".
 -- 
 2.30.0.280.ga3ce27912f-goog
 
