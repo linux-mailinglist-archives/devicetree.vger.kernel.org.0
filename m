@@ -2,72 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 663213055E6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:37:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BBCB3055D9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 09:35:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231219AbhA0Igq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 03:36:46 -0500
-Received: from mx2.suse.de ([195.135.220.15]:56100 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231355AbhA0Ieb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 03:34:31 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-        t=1611734976; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Z+p6bEQorWYXK5ITr6/TxfiZXISXTdaIfax+Bli0jTM=;
-        b=hK9GcC93FfxaYov5kx4K6xzL3B587XMGE9MVaPSbYp8agrdlnsozPRW9vO3XkAckUy22zJ
-        Hq6hlXnW6cmSOsxpY9D1YDxNmrJGuxDyChCOY0QA9VQWGbTHba8ghsZJTv6M094rFbafjA
-        XK4S5ogOg6dqO0a5qm3dlFPBq4PkIVc=
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 1613DB92B;
-        Wed, 27 Jan 2021 08:09:36 +0000 (UTC)
-Date:   Wed, 27 Jan 2021 09:09:34 +0100
-From:   Michal Hocko <mhocko@suse.com>
-To:     Minchan Kim <minchan@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        linux-mm <linux-mm@kvack.org>,
-        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
-        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
-        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
-        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
-        linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v4 4/4] dma-buf: heaps: add chunk heap to dmabuf heaps
-Message-ID: <20210127080934.GZ827@dhcp22.suse.cz>
-References: <20210121175502.274391-1-minchan@kernel.org>
- <20210121175502.274391-5-minchan@kernel.org>
- <20210126074605.GB827@dhcp22.suse.cz>
- <YBBssDOJNQ8qq9w1@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YBBssDOJNQ8qq9w1@google.com>
+        id S231248AbhA0Ifi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 03:35:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52522 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231374AbhA0IdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 03:33:06 -0500
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C929C0613D6
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 00:32:26 -0800 (PST)
+Received: by mail-yb1-xb49.google.com with SMTP id k7so1638082ybm.13
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 00:32:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=aKDeH71Tli9XQuLs5CYh8sW8w8ao2Xs2kCULImvJNK0=;
+        b=t436uXBjJDL+yAOtaCIiKZx7xqFzhPjLrwAyt2lrxpY6ZeOSNRyktTvNjLFl24cMCq
+         KxQCE6AnzrMEWkPgOKB2AB56npuFWUkiWZTJq9Z51GTIHlo2MPHhmx1RXK4r7ImMO95e
+         uc7O7Z3acdjR8VnOtkAXney7xBK4KCd89aTR/S+i4FA689wAo/GF+lqMh7d2rWXuIp4a
+         F2QF2nXOPUYQ0w1/UxIOJU2VhbS4ZYx4Bqzyzhj7DIfVxaHYqFzsL2S1UnNX9RIvBIFX
+         ESecTmgJeJvVeIAgPWooU2VUCWpF78AicfLhkFw7VKz/+7PyrzjLC5NOXVv4xuCWsStX
+         UnNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=aKDeH71Tli9XQuLs5CYh8sW8w8ao2Xs2kCULImvJNK0=;
+        b=rJO3HDxlqRsH3oh9+BSbqQmjdwkDuZOPyYFZ3UQuVjJ6zCbMjmcplh5AyvrnsvYqmI
+         2cfvVS52W0q/0lIeeO1lB/jlSnME55IlBFEKWG/+L0gwJM3f6VntMqIuwg3856uI1s0Q
+         +O0MasV1PGXKYNuUawsgbqAu6ei42DfCAQkfXxNvZLgD9Z6m8UwVHNQairIl+Gyiqy/f
+         KcLElqmHtGOOIhiDFIhe4LxgZwC/QO/OC6Dw4bvyUahE+poV/1w4Qp6+5P2l46HNDn1s
+         yeEG46E5jcCuiJUFebQE7ZScUTFbB8jl/IaVJWOUgCgR2vgXVJKci3awRLgPaW979AkY
+         66Uw==
+X-Gm-Message-State: AOAM532Mu2rA4cXo6JsrQCGhX/nkHzbF614VJN9PsUh6HH0lQ9eJIgF4
+        2SpaWqcHt2ETucaLi0Tg9eJuDdRhj8ES
+X-Google-Smtp-Source: ABdhPJwHk8ASW2v639pnmwmCI7M4JqSqFGoRe11lllt8D4Z21ok2zLpv3pYTVNGlFca6bOW/98GJg4yPQ7fI
+Sender: "tzungbi via sendgmr" <tzungbi@tzungbi-z840.tpe.corp.google.com>
+X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:b:d17d:c7bb:69a2:7e2f])
+ (user=tzungbi job=sendgmr) by 2002:a25:b7d1:: with SMTP id
+ u17mr15271518ybj.227.1611736345240; Wed, 27 Jan 2021 00:32:25 -0800 (PST)
+Date:   Wed, 27 Jan 2021 16:31:32 +0800
+Message-Id: <20210127083136.3745652-1-tzungbi@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
+Subject: [PATCH v3 0/4] remoteproc/mediatek: support L1TCM for MT8192 SCP
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, mathieu.poirier@linaro.org,
+        devicetree@vger.kernel.org, tzungbi@google.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 26-01-21 11:25:36, Minchan Kim wrote:
-> On Tue, Jan 26, 2021 at 08:46:05AM +0100, Michal Hocko wrote:
-> > On Thu 21-01-21 09:55:02, Minchan Kim wrote:
-> > > From: Hyesoo Yu <hyesoo.yu@samsung.com>
-> > > 
-> > > This patch supports chunk heap that allocates the buffers that
-> > > arranged into a list a fixed size chunks taken from CMA.
-> > > 
-> > > The chunk heap driver is bound directly to a reserved_memory
-> > > node by following Rob Herring's suggestion in [1].
-> > > 
-> > > [1] https://lore.kernel.org/lkml/20191025225009.50305-2-john.stultz@linaro.org/T/#m3dc63acd33fea269a584f43bb799a876f0b2b45d
-> > 
-> > Who is using this allocator in the kernel?
-> 
-> Userspace uses the memory via mapping it via dmabuf.
+The series applies after [1].
 
-Ohh, I see. I thought this was an interface to consume in the kernel.
-Thanks for the clarification!
+The series supports L1TCM which is a high performance memory region in
+MT8192 SCP.
+
+The 1st patch replaces platform_get_resource_byname() and
+devm_ioremap_resource() pairs per [2] suggested.
+
+The 2nd patch enables MPU for all memory regions.  The patch was
+independent but merged to this series per [3] suggested.
+
+The 3rd patch adds a new reg-name "l1tcm" for L1TCM.
+
+The 4th patch supports L1TCM in the firmware loader.  Note that MT8192
+SCP is still under development.  The patch breaks early MT8192 SCP
+firmware which should only break our own development environment.
+
+Changes from v2[4]:
+- Rebases the series to [1].
+
+Changes from v1[5]:
+- Adds 2 patches at beginning of the series.
+
+[1]: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=422635
+[2]: https://patchwork.kernel.org/project/linux-remoteproc/patch/20201214050521.845396-3-tzungbi@google.com/#23879113
+[3]: https://patchwork.kernel.org/project/linux-remoteproc/patch/20210107023020.3224002-1-tzungbi@google.com/#23879623
+[4]: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=411065
+[5]: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=401287
+
+Tzung-Bi Shih (4):
+  remoteproc/mediatek: use devm_platform_ioremap_resource_byname
+  remoteproc/mediatek: enable MPU for all memory regions in MT8192 SCP
+  dt-bindings: remoteproc: mediatek: add L1TCM memory region
+  remoteproc/mediatek: support L1TCM
+
+ .../bindings/remoteproc/mtk,scp.txt           |  8 +--
+ drivers/remoteproc/mtk_common.h               |  6 ++
+ drivers/remoteproc/mtk_scp.c                  | 62 +++++++++++++++++--
+ 3 files changed, 68 insertions(+), 8 deletions(-)
 
 -- 
-Michal Hocko
-SUSE Labs
+2.30.0.280.ga3ce27912f-goog
+
