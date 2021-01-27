@@ -2,278 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF32930635F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 19:32:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7BB306364
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 19:33:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232771AbhA0ScV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 13:32:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40490 "EHLO
+        id S236899AbhA0Scm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 13:32:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236844AbhA0ScN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 13:32:13 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B5D8C0613ED
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 10:31:33 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id g69so3175560oib.12
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 10:31:32 -0800 (PST)
+        with ESMTP id S234876AbhA0Sca (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 13:32:30 -0500
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DEDC061574;
+        Wed, 27 Jan 2021 10:31:50 -0800 (PST)
+Received: by mail-qv1-xf34.google.com with SMTP id ew18so1545458qvb.4;
+        Wed, 27 Jan 2021 10:31:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=yVWoKHNM7lw4JJ/3R5+3VSNvZx03Tl0bTWmV8GTC02w=;
-        b=k9MByBKBaEvLqw/1ZnE4FDzS2PWZ2raXIIAQ9pF4FCKjcQxtBWJb8r8gDevS0xsGV1
-         v+F4X2o2BxYadaVpOC03AsibKTRKVzaZdY0XRPBkXHgisS1CDefoNO0HVT+hwjLqn8w1
-         43r28jPTqAKNX1hpKiQ7KcosSddu+Can4yAI90dRswRV+8+1HzDL4mRwKpEhB70kh2+p
-         AGfHlRNFHzPvkAZ1v6lIELstUE1/ygE5nODvZ4U/xKYUIuYE9ABW10bvKfO6sWiBj04u
-         C6o9B8jsjuWmTuRp0kL1tJfb77Xdql0oaqpIo6r9+WJ2zy/YKQsF29RaKelfG5rAo1Fx
-         rOkg==
+         :content-disposition:in-reply-to:user-agent;
+        bh=rXrK6DUFkQoHA6UtFnK+GRp2XFKl2WDl0sNO4FAmRkE=;
+        b=gjFQ/lDKd1hq4aRb6LOw1AGF3t1XuxuPb+u3XwpeTTbXelL/sd1Pq206woT+c/rMFw
+         NVOMpnaYC005wmuRQ6yI3u9CxBjUj9f1mPJYSV4h8n2snk0T3UR1YkiRdXPUqx75T9Qu
+         rKS4MW6TzgtPG7SLHxmt8HGNB8XNXzgYCum2Q+Cr0Kvk6bSgK5kQbxowLnHnNffvPolB
+         suUEy57iH9eZVfKvDD8Lodpp0YA6InvrfSMxY0/4XYAqXRXa4kmF84IQjFjNJ2se5/vZ
+         AVu0Hcic95RMaW/QjWEpiW2Yw65XSGE7G8VEkLrFewPEpkdSnsIHcyKZw3M0eHT+16An
+         0YSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yVWoKHNM7lw4JJ/3R5+3VSNvZx03Tl0bTWmV8GTC02w=;
-        b=TJfceCqoj/0uaSjEJ/Ld9Tab5QkcjpEZN/KL2T0rJr5TjSJOUVyuOl3N1jR2cQFdjQ
-         OlGEDflI+GNuxgUan70aO31ywPLvYS/nsp0fpgw16AwQ0hb3OhfViCmBL1ytvBLzENCC
-         MidtY46lLA9e00zVALy/V0LylUELNjOqdaTwsOVbUDklo2jHGXgmxhxmVAO9/vw5d/Wo
-         InM5pm0scHpabKCH2tkEjhIG/GfnT2+r1oDL8ETJabmnssM1yrr58VOoFYcSASjbQZzN
-         n5bA/Mj0GjgdKlOQp2kXxDraYGmvTjkDBnf4oMwsrIshJD0YUknmH5zJ7UwaUNLVbK8z
-         HaYw==
-X-Gm-Message-State: AOAM531tSDgYGmXJLZxXC7YHcfkvhDv2uHqXqTWalctRpkv/hTj1s0Cx
-        NKIoVpjA7mFh4Zc3r9jyyBQbyQ==
-X-Google-Smtp-Source: ABdhPJy8bR6AFXrBYCqGrBDUYSv2db5BeNn4aUMcSxCBVf20H/6bf6jWR8XN782H2PhavV5aafylxQ==
-X-Received: by 2002:aca:49d0:: with SMTP id w199mr4320762oia.61.1611772292318;
-        Wed, 27 Jan 2021 10:31:32 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m133sm570115oig.44.2021.01.27.10.31.31
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rXrK6DUFkQoHA6UtFnK+GRp2XFKl2WDl0sNO4FAmRkE=;
+        b=YitILkeTDnOqvY1NFyTnxUmDeLwi5LpevJfgEu2kL31w/JL5QCvaJrDaMk30blV9wg
+         RHmBQsR0vhKMqZy2+9urhJkMjPmXnsos+6mx3Z7JsFFN/r0uNq77uBdcZY2lh4hNUNxh
+         /U3hIEY4vqIsRKbkw5bcg9lYFTSjFXK8eWRxHvW6pwsDHkYe4c7iwd9+4MzOoibCn2/T
+         ENUFzkmE9yRXJGMIpxYvM0i1KD6JHY8al5uMQIjf5QNvl6sIkjlcB2XCemBok4EbOrqc
+         VEM42jt6V4RT+NuWbkdR0EF6mdSS/YjU+azG/gU+3fetcF29xIQMsAPfZL5JsdZIImMd
+         u8MA==
+X-Gm-Message-State: AOAM530HYRyo7ENOD+DxN8ATiqXr9LCS6dbv1484CdNT4FhHP3MT9GB6
+        9QVvF2nwhoBYELzUP2MN7og=
+X-Google-Smtp-Source: ABdhPJxUBAt0IS+g71CUq7LIdgrGhLwKazDOEV+d3QGKf+qYqVjYg2wiPhWmmVj+1zigkN9kmweqdg==
+X-Received: by 2002:ad4:55e6:: with SMTP id bu6mr3124005qvb.49.1611772309303;
+        Wed, 27 Jan 2021 10:31:49 -0800 (PST)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id p11sm1810220qtb.62.2021.01.27.10.31.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 10:31:31 -0800 (PST)
-Date:   Wed, 27 Jan 2021 12:31:29 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Amit Kucheria <amitk@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] thermal: qcom: tsens-v0_1: Add support for MDM9607
-Message-ID: <YBGxgSb8TJeYH6mw@builder.lan>
-References: <20210127181400.44642-1-konrad.dybcio@somainline.org>
+        Wed, 27 Jan 2021 10:31:48 -0800 (PST)
+Date:   Wed, 27 Jan 2021 19:31:45 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: Add support for Jetson Xavier NX with eMMC
+Message-ID: <YBGxkd1Ig5/2R0aG@ulmo>
+References: <20210127175250.326390-1-jonathanh@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="9xTh0WmjaG5ht5NQ"
 Content-Disposition: inline
-In-Reply-To: <20210127181400.44642-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210127175250.326390-1-jonathanh@nvidia.com>
+User-Agent: Mutt/2.0.4 (26f41dd1) (2020-12-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 27 Jan 12:14 CST 2021, Konrad Dybcio wrote:
 
-> MDM9607 TSENS IP is very similar to the one of MSM8916, with
-> minor adjustments to various tuning values.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+--9xTh0WmjaG5ht5NQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jan 27, 2021 at 05:52:50PM +0000, Jon Hunter wrote:
+> There are two versions of the Jetson Xavier NX system-on-module; one
+> with a micro SD-card slot and one with an eMMC. Currently, only the
+> system-on-module with the micro SD-card slot is supported and so add
+> necessary device-tree changes to add support for the eMMC version.
+>=20
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  .../bindings/thermal/qcom-tsens.yaml          |   2 +
->  drivers/thermal/qcom/tsens-v0_1.c             | 100 +++++++++++++++++-
->  drivers/thermal/qcom/tsens.c                  |   3 +
->  drivers/thermal/qcom/tsens.h                  |   2 +-
->  4 files changed, 105 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index 95462e071ab4..8ad9dc139c23 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -22,6 +22,7 @@ properties:
->        - description: v0.1 of TSENS
->          items:
->            - enum:
-> +              - qcom,mdm9607-tsens
->                - qcom,msm8916-tsens
->                - qcom,msm8939-tsens
->                - qcom,msm8974-tsens
-> @@ -94,6 +95,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,mdm9607-tsens
->                - qcom,msm8916-tsens
->                - qcom,msm8974-tsens
->                - qcom,msm8976-tsens
-> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-> index 4ffa2e2c0145..8efe925b860f 100644
-> --- a/drivers/thermal/qcom/tsens-v0_1.c
-> +++ b/drivers/thermal/qcom/tsens-v0_1.c
-> @@ -126,6 +126,39 @@
->  #define CAL_SEL_SHIFT		30
->  #define CAL_SEL_SHIFT_2		28
->  
-> +/* eeprom layout data for mdm9607 */
-> +#define MDM9607_BASE0_MASK	0x000000ff
-> +#define MDM9607_BASE1_MASK	0x000ff000
-> +#define MDM9607_BASE0_SHIFT	0
-> +#define MDM9607_BASE1_SHIFT	12
-> +
-> +#define MDM9607_S0_P1_MASK	0x00003f00
-> +#define MDM9607_S1_P1_MASK	0x03f00000
-> +#define MDM9607_S2_P1_MASK	0x0000003f
-> +#define MDM9607_S3_P1_MASK	0x0003f000
-> +#define MDM9607_S4_P1_MASK	0x0000003f
-> +
-> +#define MDM9607_S0_P2_MASK	0x000fc000
-> +#define MDM9607_S1_P2_MASK	0xfc000000
-> +#define MDM9607_S2_P2_MASK	0x00000fc0
-> +#define MDM9607_S3_P2_MASK	0x00fc0000
-> +#define MDM9607_S4_P2_MASK	0x00000fc0
-> +
-> +#define MDM9607_S0_P1_SHIFT	8
-> +#define MDM9607_S1_P1_SHIFT	20
-> +#define MDM9607_S2_P1_SHIFT	0
-> +#define MDM9607_S3_P1_SHIFT	12
-> +#define MDM9607_S4_P1_SHIFT	0
-> +
-> +#define MDM9607_S0_P2_SHIFT	14
-> +#define MDM9607_S1_P2_SHIFT	26
-> +#define MDM9607_S2_P2_SHIFT	6
-> +#define MDM9607_S3_P2_SHIFT	18
-> +#define MDM9607_S4_P2_SHIFT	6
-> +
-> +#define MDM9607_CAL_SEL_MASK	0x00700000
-> +#define MDM9607_CAL_SEL_SHIFT	20
-> +
->  #define S0_P1_SHIFT		8
->  #define S1_P1_SHIFT		14
->  #define S2_P1_SHIFT		20
-> @@ -452,7 +485,57 @@ static int calibrate_8974(struct tsens_priv *priv)
->  	return 0;
->  }
->  
-> -/* v0.1: 8916, 8939, 8974 */
-> +static int calibrate_9607(struct tsens_priv *priv)
-> +{
-> +	int base0 = 0, base1 = 0, i;
+>  arch/arm64/boot/dts/nvidia/Makefile           |   1 +
+>  .../nvidia/tegra194-p3509-0000+p3668-0000.dts | 351 +-----------------
+>  .../nvidia/tegra194-p3509-0000+p3668-0001.dts |  10 +
+>  .../boot/dts/nvidia/tegra194-p3509-0000.dtsi  | 351 ++++++++++++++++++
+>  .../boot/dts/nvidia/tegra194-p3668-0000.dtsi  | 282 +-------------
+>  .../boot/dts/nvidia/tegra194-p3668-0001.dtsi  |  19 +
+>  .../arm64/boot/dts/nvidia/tegra194-p3668.dtsi | 284 ++++++++++++++
+>  7 files changed, 669 insertions(+), 629 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-=
+0001.dts
+>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
+>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3668-0001.dtsi
+>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi
 
-Afaict, there's no need to initialize base0 and base1, they are both
-assigned to before used.
+This looks good, although I must say this is difficult to review. Maybe
+it would help if this was split into two patches where first the files
+are split for tegra194-p3509-0000+p3668-0000 and the second patch adds
+only the files for the new SKU.
 
-Also, they are temporary variables within each case (even with the
-fallthrough), so you should only need a single "base".
+Thierry
 
-> +	u32 p1[5], p2[5];
-> +	int mode = 0;
-> +	u32 *qfprom_cdata, *qfprom_csel;
-> +
-> +	qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
-> +	if (IS_ERR(qfprom_cdata))
-> +		return PTR_ERR(qfprom_cdata);
-> +
-> +	mode = (qfprom_cdata[2] & MDM9607_CAL_SEL_MASK) >> MDM9607_CAL_SEL_SHIFT;
+--9xTh0WmjaG5ht5NQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-How about:
+-----BEGIN PGP SIGNATURE-----
 
-	mode = field_get(MDM9607_CAL_SEL_MASK, qfprom_cdata[2]);
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmARsZEACgkQ3SOs138+
+s6ETDxAAwPQZq83FdgRdSuejDU3XJACOxEzB2bOSC5/O+thJ8vAeHInVkTTc1fGi
+E8qEvB7nRx+KXfK+kJFZiH5ZSksrGhgXHK3bsvODbtpE15V9zbyHiTvHa35P2lOO
+mP2IeYIVtCN3fa1QMyP5oPZ/sxPDKMWeVbTGluHvtosDvzg3ygmkyRq93wK1dxYu
+skMN9FjlzpQUpRiiOdxV08hhx3AfL74exf3Ugny6df9u8o1xgLMXPFp2Tx/ztfV9
+TEQ7mvccnd4fhPk2+URmecH9Z3v3jbWoAUUjowuDLOGRPsea2UWyL/HX/WZ4bAWM
+IlBVzGxfBh5ZIfkk2q4gEYiE4CV5BRnsVt2NKWPDDjVZ7ZV5b4q3vfcDJxbIt6kf
+/x+99TsqpDau85XvcSXYDvZenXf1RF8d6RVzsCgHPxf8pyu9BQZDr5Dc2YBr+AbV
+jN87KS+GjT66Es6IyfMCR3pF85iQyU79VjIcKNFdxEuD8/WzDk7P2ucB0IeUAqSe
+q1SgCEHiRo0DVgbSCopBsOmfC4QLPLHp1ZvvxiwMLm+1AC0F3N9GAMisMxuxP3wk
+QSDCSSFMnOP0E7JxmPNTaHD41S33BJAp7B2xwUMjF+L24AB1opvLe3W1KCQkzITh
+830dOxt2LPFqf9eoF3sFnHOAh2QsThBAPiDsaGxd1VzOY+3Gu0U=
+=ElPI
+-----END PGP SIGNATURE-----
 
-and same below.
-
-(I see that this would break the style of the file, perhaps we can clean
-that up?)
-
-> +	dev_dbg(priv->dev, "calibration mode is %d\n", mode);
-> +
-> +	switch (mode) {
-> +	case TWO_PT_CALIB:
-> +		base1 = (qfprom_cdata[2] & MDM9607_BASE1_MASK) >> MDM9607_BASE1_SHIFT;
-> +		p2[0] = (qfprom_cdata[0] & MDM9607_S0_P2_MASK) >> MDM9607_S0_P2_SHIFT;
-> +		p2[1] = (qfprom_cdata[0] & MDM9607_S1_P2_MASK) >> MDM9607_S1_P2_SHIFT;
-> +		p2[2] = (qfprom_cdata[1] & MDM9607_S2_P2_MASK) >> MDM9607_S2_P2_SHIFT;
-> +		p2[3] = (qfprom_cdata[1] & MDM9607_S3_P2_MASK) >> MDM9607_S3_P2_SHIFT;
-> +		p2[4] = (qfprom_cdata[2] & MDM9607_S4_P2_MASK) >> MDM9607_S4_P2_SHIFT;
-> +		for (i = 0; i < priv->num_sensors; i++)
-> +			p2[i] = ((base1 + p2[i]) << 2);
-> +		fallthrough;
-> +	case ONE_PT_CALIB2:
-> +		base0 = (qfprom_cdata[0] & MDM9607_BASE0_MASK);
-> +		p1[0] = (qfprom_cdata[0] & MDM9607_S0_P1_MASK) >> MDM9607_S0_P1_SHIFT;
-> +		p1[1] = (qfprom_cdata[0] & MDM9607_S1_P1_MASK) >> MDM9607_S1_P1_SHIFT;
-> +		p1[2] = (qfprom_cdata[1] & MDM9607_S2_P1_MASK) >> MDM9607_S2_P1_SHIFT;
-> +		p1[3] = (qfprom_cdata[1] & MDM9607_S3_P1_MASK) >> MDM9607_S3_P1_SHIFT;
-> +		p1[4] = (qfprom_cdata[2] & MDM9607_S4_P1_MASK) >> MDM9607_S4_P1_SHIFT;
-> +		for (i = 0; i < priv->num_sensors; i++)
-> +			p1[i] = (((base0) + p1[i]) << 2);
-> +		break;
-> +	default:
-> +		for (i = 0; i < priv->num_sensors; i++) {
-> +			p1[i] = 500;
-> +			p2[i] = 780;
-> +		}
-> +		break;
-> +	}
-> +
-> +	compute_intercept_slope(priv, p1, p2, mode);
-> +	kfree(qfprom_cdata);
-> +	kfree(qfprom_csel);
-
-qfprom_csel seems unused and uninitialized.
-
-Regards,
-Bjorn
-
-> +
-> +	return 0;
-> +}
-> +
-> +/* v0.1: 8916, 8939, 8974, 9607 */
->  
->  static struct tsens_features tsens_v0_1_feat = {
->  	.ver_major	= VER_0_1,
-> @@ -540,3 +623,18 @@ struct tsens_plat_data data_8974 = {
->  	.feat		= &tsens_v0_1_feat,
->  	.fields	= tsens_v0_1_regfields,
->  };
-> +
-> +static const struct tsens_ops ops_9607 = {
-> +	.init		= init_common,
-> +	.calibrate	= calibrate_9607,
-> +	.get_temp	= get_temp_common,
-> +};
-> +
-> +struct tsens_plat_data data_9607 = {
-> +	.num_sensors	= 5,
-> +	.ops		= &ops_9607,
-> +	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 4 },
-> +
-> +	.feat		= &tsens_v0_1_feat,
-> +	.fields	= tsens_v0_1_regfields,
-> +};
-> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-> index d8ce3a687b80..51c36b9e8e69 100644
-> --- a/drivers/thermal/qcom/tsens.c
-> +++ b/drivers/thermal/qcom/tsens.c
-> @@ -895,6 +895,9 @@ static SIMPLE_DEV_PM_OPS(tsens_pm_ops, tsens_suspend, tsens_resume);
->  
->  static const struct of_device_id tsens_table[] = {
->  	{
-> +		.compatible = "qcom,mdm9607-tsens",
-> +		.data = &data_9607,
-> +	}, {
->  		.compatible = "qcom,msm8916-tsens",
->  		.data = &data_8916,
->  	}, {
-> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
-> index f40b625f897e..cba64c33b4f9 100644
-> --- a/drivers/thermal/qcom/tsens.h
-> +++ b/drivers/thermal/qcom/tsens.h
-> @@ -585,7 +585,7 @@ int get_temp_common(const struct tsens_sensor *s, int *temp);
->  extern struct tsens_plat_data data_8960;
->  
->  /* TSENS v0.1 targets */
-> -extern struct tsens_plat_data data_8916, data_8939, data_8974;
-> +extern struct tsens_plat_data data_8916, data_8939, data_8974, data_9607;
->  
->  /* TSENS v1 targets */
->  extern struct tsens_plat_data data_tsens_v1, data_8976;
-> -- 
-> 2.30.0
-> 
+--9xTh0WmjaG5ht5NQ--
