@@ -2,53 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CB18305C36
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 13:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 526AF305BAE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 13:41:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238014AbhA0M4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 07:56:32 -0500
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:49985 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S313911AbhAZWuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 17:50:14 -0500
-X-Originating-IP: 86.202.109.140
-Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 1CA82FF802;
-        Tue, 26 Jan 2021 22:48:35 +0000 (UTC)
-Date:   Tue, 26 Jan 2021 23:48:35 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rtc: pcf2127: update bindings
-Message-ID: <20210126224835.GE1196852@piout.net>
-References: <20201219013418.3474461-1-alexandre.belloni@bootlin.com>
- <c5290432-a6b0-2b96-585f-3abc2dcc56f6@prevas.dk>
+        id S236879AbhA0Meb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 07:34:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48378 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237971AbhA0Mbm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 07:31:42 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 94D1920739;
+        Wed, 27 Jan 2021 12:30:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611750662;
+        bh=kfPWuMiJgpAL7RluS7ayXnMgIu7E8eRHIeDT+ADuoFE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jzeoAYfuKS7XXmCKfwYw+jb0uFJReYDxA5lHU5PnW2BVvm/Y5e7a3KUBmZ4+bwHPZ
+         wyhaw1+6VuxhfoITL53j1L40IZAq2ElRHk5ziOEqbuAzpbVBFoj3FJJuqm05j5zpk8
+         6OTfK9d1ydEIyxB26PWXFETiifozMHnxs9P6/hj5n9SjcHjgg4bdP6kWReOsAmHrCV
+         PSNzkbnyhGtBP6rxewXhUNLdXbbTgHmjKMW7NMy6R+quuKUEiqpqiKpaC//A9PApo+
+         WpWlfwELW9GaXd6/7oy0i4NBXcNlYOVIlCW6iHgC6XfdaEnSs+4LjxLtg/Xv/Akuca
+         BD9u+FiV6KM5g==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] Add binding and dts for Qualcomm SM8350 SoC
+Date:   Wed, 27 Jan 2021 18:00:48 +0530
+Message-Id: <20210127123054.263231-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c5290432-a6b0-2b96-585f-3abc2dcc56f6@prevas.dk>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2020 22:17:54+0100, Rasmus Villemoes wrote:
-> On 19/12/2020 02.34, Alexandre Belloni wrote:
-> > pcf2127, pcf2129 and pca2129 support start-year and reset-source.
-> > 
-> 
-> No, the 2129 variant doesn't even have a reset output pin. Not sure if
-> there's any way to reflect that, and it probably doesn't matter, since
-> nobody's going to add the reset-source property to a 2129 node. But the
-> commit message is a bit misleading.
-> 
+Hi,
 
-Actually no, the INT pin can be used as a reset, the pcf/pca2129
-can be used as a watchdog and so it may need the reset-source property.
+This series adds the compatible for SM8350 SoC, boardi, cpu, scm and aoss
+compatible.  Then the base DTS for SM8350 SoC which contains clock (gcc,
+rpmh), pinctrl, uart, reserved memory and cpu nodes. The board file for MTP
+enables uart and adds the rpmh regulators
+
+Changes in v2:
+ - Add ack by Rob recieved for v1
+ - Document cpu and scm compatible and use soc specific scm compatible
+ - Fix errors pointed by Rob and make dtbs_check as well as W=1 compilation
+
+Vinod Koul (6):
+  dt-bindings: arm: qcom: Document SM8350 SoC and boards
+  soc: qcom: aoss: Add SM8350 compatible
+  dt-bindings: arm: cpus: Add kryo685 compatible
+  dt-bindings: firmware: scm: Add SM8250 and SM8350 compatible
+  arm64: dts: qcom: Add basic devicetree support for SM8350 SoC
+  arm64: dts: qcom: Add basic devicetree support for SM8350-MTP board
+
+ .../devicetree/bindings/arm/cpus.yaml         |   1 +
+ .../devicetree/bindings/arm/qcom.yaml         |   6 +
+ .../devicetree/bindings/firmware/qcom,scm.txt |   2 +
+ .../bindings/soc/qcom/qcom,aoss-qmp.txt       |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/sm8350-mtp.dts       | 250 +++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 499 ++++++++++++++++++
+ drivers/soc/qcom/qcom_aoss.c                  |   1 +
+ 8 files changed, 761 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8350-mtp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8350.dtsi
 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.26.2
+
