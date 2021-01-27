@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74B8230526A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 06:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC70C305267
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 06:48:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232861AbhA0FsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 00:48:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34328 "EHLO
+        id S232849AbhA0FsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 00:48:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238836AbhA0E6B (ORCPT
+        with ESMTP id S238912AbhA0E6B (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 23:58:01 -0500
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0AACC061794
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 20:54:50 -0800 (PST)
-Received: by mail-pg1-x533.google.com with SMTP id g15so752533pgu.9
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 20:54:50 -0800 (PST)
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5B42C0617A7
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 20:54:53 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id i63so407495pfg.7
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 20:54:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Vrn1EIPDQCV6JxTU+kz1dQgkwQ7HwcD+i4/it9ET80A=;
-        b=GIfmPVWtCArqU58hShfQRtp9JVW9Q5txh3wsHjzy5wEQHXSQ//q4qpWXPtjWa+BJ2q
-         GNQbIHm8s3eJkN7XeMXPnpc3C8F7uAO5XK2tgoynWeNk5YWjYu0XwS35KjLAQOudnDTA
-         7KnJnXS3u10SfGwurLDpej70QUx8340bcwwI8=
+        bh=TylT5ylvrSjXZkyDWey49Aq08z8epZnlbLmRvBO6dZo=;
+        b=Tc+it0gmwJ+uU8imyifVsbbL0tQbg1r0O7axx2m5PQMU9SsOBEtnFIz7NJrws/tPdI
+         sGXJung+g6yOpezvv8bsQ+dzp/YEkvO+r4tRawUuKH7LbV8ps8tSe6A+eNjRiJspo3iG
+         AkLDVUg68g1bYXieR5XnjrNugfmkRY9hL3sbI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Vrn1EIPDQCV6JxTU+kz1dQgkwQ7HwcD+i4/it9ET80A=;
-        b=to/vym2IhfqpIPTpf0jbJxBNvLH8aJjWM5ZPtlC4SF94Ate1V3TdbL9cj1UZn0KQ3Q
-         NbreFT/nrxGKDlyBSC0jkMjZKFhLVcR0PC998ZFHIjZ7rxvQt5DvQz4YBX2b//TuexLf
-         IaHuBqGHurV9p5gw+t9hTFjwxqEgsAGFPBGoyunWvlg7L5FvRyl3FOy9xMwHKjd8RDEc
-         cqQr+IYEjoqJ0Q0kgGcuXeLhYhJzqTtIwy7eTujAhCcqb01J4sMvhjiJKZ5omXPWzic0
-         /WAoQiGOzLn7plqZStPjsMxr9B2Lyq4Vp0Ao72UwsDY69wRctRdWXjwAKFOZ04yQihRE
-         A6gQ==
-X-Gm-Message-State: AOAM533WMLljtyxGr/32Y165ubZ2faTM/d+ULSqSyUOwX1wEB79tbhYj
-        yzw0418WtayGvvMVX4HxCYz/7g==
-X-Google-Smtp-Source: ABdhPJzmAE0XHnp+3O7fjrJHUt/ytzcfhArSJEaMmq1xhk9ptYxmlr6MSoR2+oAnpSFK6O9/qOSm7w==
-X-Received: by 2002:a63:4d59:: with SMTP id n25mr9033962pgl.122.1611723290229;
-        Tue, 26 Jan 2021 20:54:50 -0800 (PST)
+        bh=TylT5ylvrSjXZkyDWey49Aq08z8epZnlbLmRvBO6dZo=;
+        b=ZQOC65r7l25LRX9CqXxtlZaKZjpDeCfQYN+q8zixuo50KHAlGy7wNbY3GNA9kfatXz
+         ze3/DJd/aYQgN1xUJ8xhPR2/PMPZaYrjYaIbLARqyHq2VHyjyi/bOiD8/PjI/p3YQnqJ
+         32zber8YPvMsq74sGQN51G0i7cVFjIgT6ydxyrZHDrttJHFX8yoUba6/qIRs09iy5Qfc
+         zsVIcK6Xtgaq7CBWusall6uNc/VLqqCVF6fVDCe38vYiTTNahkfCSeYvyPHoXGi7E9u+
+         BLq2Pzr0AYtBDUi1b+IkPILqRnU99jSybDrP+WYExU7/+bs5DbOrZ4cmNTmX3BqLjn7N
+         GgBQ==
+X-Gm-Message-State: AOAM532y9WnIsCUoPZi8D2ry+3NyKonpAd/mCdt2+dtjaK1XF13C1Ifg
+        A7GVGxYmhpqnlLbCNGY/x1takw==
+X-Google-Smtp-Source: ABdhPJyy01Q5a/LPZ4E7UcdQg5mKkFvVyYvr6fPjvcMa6xvNPlRFx5WzfjRFbv8mXDBUtrtl/OLw0g==
+X-Received: by 2002:a62:5c43:0:b029:1bb:9418:b59b with SMTP id q64-20020a625c430000b02901bb9418b59bmr8642305pfb.35.1611723293345;
+        Tue, 26 Jan 2021 20:54:53 -0800 (PST)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:e0a5:d2fc:aaad:1e4a])
-        by smtp.gmail.com with ESMTPSA id a141sm684484pfa.189.2021.01.26.20.54.47
+        by smtp.gmail.com with ESMTPSA id a141sm684484pfa.189.2021.01.26.20.54.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jan 2021 20:54:49 -0800 (PST)
+        Tue, 26 Jan 2021 20:54:52 -0800 (PST)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Matthias Brugger <matthias.bgg@gmail.com>
@@ -54,9 +54,9 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         linux-mediatek@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v10 6/9] drm/mediatek: add has_dither private data for gamma
-Date:   Wed, 27 Jan 2021 12:54:19 +0800
-Message-Id: <20210127045422.2418917-7-hsinyi@chromium.org>
+Subject: [PATCH v10 7/9] drm/mediatek: enable dither function
+Date:   Wed, 27 Jan 2021 12:54:20 +0800
+Message-Id: <20210127045422.2418917-8-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
 In-Reply-To: <20210127045422.2418917-1-hsinyi@chromium.org>
 References: <20210127045422.2418917-1-hsinyi@chromium.org>
@@ -68,53 +68,72 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-Not all SoC has dither function in gamma module.
-Add private data to control this function setting.
+for 5 or 6 bpc panel, we need enable dither function
+to improve the display quality
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- drivers/gpu/drm/mediatek/mtk_disp_gamma.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 37 ++++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-index b5a499d7e472c..c98fe284265d0 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_gamma.c
-@@ -25,7 +25,7 @@
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+index 8173f709272be..ee54505412dcd 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+@@ -53,7 +53,9 @@
+ #define DITHER_EN				BIT(0)
+ #define DISP_DITHER_CFG				0x0020
+ #define DITHER_RELAY_MODE			BIT(0)
++#define DITHER_ENGINE_EN			BIT(1)
+ #define DISP_DITHER_SIZE			0x0030
++#define DITHER_REG(idx)				(0x100 + (idx) * 4)
+ 
  #define LUT_10BIT_MASK				0x03ff
  
- struct mtk_disp_gamma_data {
--	u32 reserved;
-+	bool has_dither;
- };
+@@ -313,8 +315,41 @@ static void mtk_dither_config(struct device *dev, unsigned int w,
+ {
+ 	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
  
- /**
-@@ -91,7 +91,8 @@ void mtk_gamma_config(struct device *dev, unsigned int w,
- 
- 	mtk_ddp_write(cmdq_pkt, h << 16 | w, &gamma->cmdq_reg, gamma->regs,
- 		      DISP_GAMMA_SIZE);
--	mtk_dither_set_common(gamma->regs, &gamma->cmdq_reg, bpc, DISP_GAMMA_CFG, cmdq_pkt);
-+	if (gamma->data && gamma->data->has_dither)
-+		mtk_dither_set_common(gamma->regs, &gamma->cmdq_reg, bpc, DISP_GAMMA_CFG, cmdq_pkt);
- }
- 
- void mtk_gamma_start(struct device *dev)
-@@ -171,8 +172,13 @@ static int mtk_disp_gamma_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static const struct mtk_disp_gamma_data mt8173_gamma_driver_data = {
-+	.has_dither = true,
-+};
++	bool enable = true;
 +
- static const struct of_device_id mtk_disp_gamma_driver_dt_match[] = {
--	{ .compatible = "mediatek,mt8173-disp-gamma"},
-+	{ .compatible = "mediatek,mt8173-disp-gamma",
-+	  .data = &mt8173_gamma_driver_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_disp_gamma_driver_dt_match);
++	const u32 dither_setting[] = {
++		0x00000000, /* 5 */
++		0x00003002, /* 6 */
++		0x00000000, /* 7 */
++		0x00000000, /* 8 */
++		0x00000000, /* 9 */
++		0x00000000, /* 10 */
++		0x00000000, /* 11 */
++		0x00000011, /* 12 */
++		0x00000000, /* 13 */
++		0x00000000, /* 14 */
++	};
++
++	if (bpc == 6) {
++		mtk_ddp_write(cmdq_pkt, 0x40400001, &priv->cmdq_reg, priv->regs, DITHER_REG(15));
++		mtk_ddp_write(cmdq_pkt, 0x40404040, &priv->cmdq_reg, priv->regs, DITHER_REG(16));
++	} else if (bpc == 5) {
++		mtk_ddp_write(cmdq_pkt, 0x50500001, &priv->cmdq_reg, priv->regs, DITHER_REG(15));
++		mtk_ddp_write(cmdq_pkt, 0x50504040, &priv->cmdq_reg, priv->regs, DITHER_REG(16));
++	} else {
++		enable = false;
++	}
++
++	if (enable) {
++		u32 idx;
++
++		for (idx = 0; idx < ARRAY_SIZE(dither_setting); idx++)
++			mtk_ddp_write(cmdq_pkt, dither_setting[idx], &priv->cmdq_reg, priv->regs,
++				      DITHER_REG(idx + 5));
++	}
++
+ 	mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs, DISP_DITHER_SIZE);
+-	mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG);
++        mtk_ddp_write(cmdq_pkt, enable ? DITHER_ENGINE_EN : DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs, DISP_DITHER_CFG);
+ }
+ 
+ static void mtk_dither_start(struct device *dev)
 -- 
 2.30.0.280.ga3ce27912f-goog
 
