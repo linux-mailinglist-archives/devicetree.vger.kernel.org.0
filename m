@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3B0305EDF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 15:59:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF3D305EF5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:02:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234240AbhA0O7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 09:59:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49760 "EHLO
+        id S235339AbhA0PB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 10:01:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234964AbhA0O4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 09:56:41 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 862FCC061A30
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:50:37 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id z22so2756614edb.9
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:50:37 -0800 (PST)
+        with ESMTP id S234759AbhA0O7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 09:59:15 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5382FC0698C6
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:50:50 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id ox12so3057129ejb.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:50:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=kvX1fPx3FMQ5uXckxXhS8AVQna5Rb5Ybg4HAxWPNgfE=;
-        b=kX4+vQu5KkA7c6fiC1k7aSk49vpEf2RMy0CIAZDrW3dRpuRRMv3k0/SMy/umi5P4Zg
-         SWEqK8N9N6Xtjh0GQoz97dtOmBX9+qLFmULQZOrZPoqd1GHRbE86fYGlqowmTOCdnctl
-         YiN17EyWk5A7LF+PbwdS/lcC9epJNJ2OM3EKoS4cAkfQzewh/jnNur5XsE5YsWRuEywx
-         ZVeeQYDHn/IrE2e5fQcVHM3B5phgiTDntDi3z0cjLwUTR12csdNM0MAdYnAux8pGMRQA
-         JrOg1dBqfZx6/Q7NGNSDL+n0ZRIkb5jVXkX050Fap/heqHS6OtfohiAk8BBZRC7rQGWv
-         LBwA==
+        bh=fUGwtlmgXSNtLs4jeYoyMy0OUjwWufxEelxvIP0w1pA=;
+        b=alEkX+Sx59Smnl7Z4vBHr+Z+mZQ5I8JZ4f8omrA6hSEADQTY8DfdJd5Y4mTSsNMVtH
+         PxMCMfJ4Hy3KUJrg65l5N4ox2YtBCANRQ+iyXnWrnyXz3vvDv6Fk4qsVWJR6DcjQkeZm
+         n5+5hR5V94cbHQLAw6qzGS4nYnfauqFiV+rfscoJUAOvM58NIZztvlDjfwy2Fxn7WLmu
+         xq4ZTYp3dV7CjhmTXiGUaXwquJGRFwpAMVtMXB5Wr8E12eVcZSOpd63amAQ0pywxvYEc
+         Wk8szUf7PXUH6Qq9XAJKVrQwYozVyjvty+lITAl/NmaDLe88ly6MBYNCkYGBFz8LbOvq
+         g9Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=kvX1fPx3FMQ5uXckxXhS8AVQna5Rb5Ybg4HAxWPNgfE=;
-        b=o4E83OZZFkM43ixwvk0QQj6i8+i2/jXMwj9HkjNY5wjZ/HRMsBaKeHl7w/hDtTZNSt
-         /H+aacEaspxBLbIdyLO2wuLULB9eJmxGCgmi0j9FwMhISAg6WD3JJRel9TxrRFXhFat2
-         5OUurkEhxWkT+gALsG8bHQDz/RhYn7MopVUwqOsNBtS+G3arF8JysqvfXHikOpyQVbbm
-         zLmZeIxHZThgAXtc/9nLnuTh4xJYEZFnORa+HqMichFVTDklal/cjp0NaBJIbozuJA81
-         ngqN3+u+7qz3Y9R4ME14Txg7Bj2TPW/URegT0pEw8Ij1jmEd+2oFGc2c+ad8AZbjRUfB
-         hWMw==
-X-Gm-Message-State: AOAM531M8hsIQXkdbwrTfAkykTNzXMJfma0Tev9D0PEaMMlHsQG9Bgyd
-        IwQIX429Xs/1BD75T6bVpjOU+g==
-X-Google-Smtp-Source: ABdhPJwg82kCSRknpu03BmumlhEqoJfimSXVwrdZOUdJ9b1vQ02woAMebN3rBP1KSFIyqj/u0V5J/w==
-X-Received: by 2002:a50:ee94:: with SMTP id f20mr9536768edr.222.1611759036316;
-        Wed, 27 Jan 2021 06:50:36 -0800 (PST)
+        bh=fUGwtlmgXSNtLs4jeYoyMy0OUjwWufxEelxvIP0w1pA=;
+        b=odNpbCVkyFhWwnodJ9qXhBdraSeR5QQlgSSsiqE2p9ihiEBjm4paJn9m+mh5TvC7gS
+         kgIdGm1p9lWzBpP9YIHkhc0pAjxBhT5xoD716u7tZZqvCm6wQndHGUKbn8JvowUTP3Yl
+         ivET8Rr8L92wNfVnJL/R1KDio2EtAycxLEMNTwJxbOzg0jca14I9He1iJcbHy/WT+EBI
+         j053vikd519EEVC2p15ei1HPfRhgCsDne+6ddeTlqHElbXJzpNb/8BZV3VpQx/zydEEO
+         rohMG7zkXe8jpHofQ7A9w0H87nvczD37priIIAcBAnC+ByPsu/PaUUArq+lFgKbLtVti
+         YnZw==
+X-Gm-Message-State: AOAM532aST1TniazumUFJx8aY2KmFQLTzUTsnajyQTZyTydNLA9BSeb5
+        cuOFdlGjbRpK2NG2QTZBnBECzQ==
+X-Google-Smtp-Source: ABdhPJx2Fy/kcL4edsIwHR57CBimydaxfXDGjLlgfM0U6w+x5xx4Ir9RVagFSvoQbpboPiLDouSZVg==
+X-Received: by 2002:a17:906:2a06:: with SMTP id j6mr6787171eje.164.1611759049120;
+        Wed, 27 Jan 2021 06:50:49 -0800 (PST)
 Received: from localhost.localdomain ([2a02:2450:102f:d6a:62e7:589a:1625:7acc])
-        by smtp.gmail.com with ESMTPSA id ah12sm947799ejc.70.2021.01.27.06.50.33
+        by smtp.gmail.com with ESMTPSA id ah12sm947799ejc.70.2021.01.27.06.50.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 06:50:35 -0800 (PST)
+        Wed, 27 Jan 2021 06:50:48 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
@@ -66,9 +66,9 @@ Cc:     Tomasz Figa <tfiga@chromium.org>,
         Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH v3 12/22] media: camss: Enable SDM845
-Date:   Wed, 27 Jan 2021 15:49:20 +0100
-Message-Id: <20210127144930.2158242-13-robert.foss@linaro.org>
+Subject: [PATCH v3 17/22] MAINTAINERS: Change CAMSS documentation to use dtschema bindings
+Date:   Wed, 27 Jan 2021 15:49:25 +0100
+Message-Id: <20210127144930.2158242-18-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210127144930.2158242-1-robert.foss@linaro.org>
 References: <20210127144930.2158242-1-robert.foss@linaro.org>
@@ -78,94 +78,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable support for SDM845 based Titan 170 ISPs.
+Due to the complexity of describing multiple hardware generations
+in one document, switch to using separate dt-bindings.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- drivers/media/platform/qcom/camss/camss.c | 17 +++++++++++++++++
- drivers/media/platform/qcom/camss/camss.h |  6 ++++--
- 2 files changed, 21 insertions(+), 2 deletions(-)
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-index 22f9d7d7085a..5ce7cae2ab9b 100644
---- a/drivers/media/platform/qcom/camss/camss.c
-+++ b/drivers/media/platform/qcom/camss/camss.c
-@@ -897,6 +897,12 @@ static int camss_init_subdevices(struct camss *camss)
- 		csid_res = csid_res_660;
- 		ispif_res = &ispif_res_660;
- 		vfe_res = vfe_res_660;
-+	}  else if (camss->version == CAMSS_845) {
-+		csiphy_res = csiphy_res_845;
-+		csid_res = csid_res_845;
-+		/* Titan VFEs don't have an ISPIF  */
-+		ispif_res = NULL;
-+		vfe_res = vfe_res_845;
- 	} else {
- 		return -EINVAL;
- 	}
-@@ -1203,6 +1209,8 @@ static int camss_configure_pd(struct camss *camss)
- 	if (camss->version == CAMSS_8x96 ||
- 	    camss->version == CAMSS_660)
- 		nbr_pm_domains = PM_DOMAIN_CAMSS_COUNT;
-+	else if (camss->version == CAMSS_845)
-+		nbr_pm_domains = PM_DOMAIN_TITAN_COUNT;
+diff --git a/MAINTAINERS b/MAINTAINERS
+index cdf1556c6007..7c5a494d9113 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14686,7 +14686,7 @@ M:	Todor Tomov <todor.too@gmail.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ F:	Documentation/admin-guide/media/qcom_camss.rst
+-F:	Documentation/devicetree/bindings/media/qcom,camss.txt
++F:	Documentation/devicetree/bindings/media/*camss*
+ F:	drivers/media/platform/qcom/camss/
  
- 	for (i = 0; i < nbr_pm_domains; i++) {
- 		camss->genpd[i] = dev_pm_domain_attach_by_id(camss->dev, i);
-@@ -1271,6 +1279,12 @@ static int camss_probe(struct platform_device *pdev)
- 		camss->csiphy_num = 3;
- 		camss->csid_num = 4;
- 		camss->vfe_num = 2;
-+	} else if (of_device_is_compatible(dev->of_node,
-+					   "qcom,sdm845-camss")) {
-+		camss->version = CAMSS_845;
-+		camss->csiphy_num = 4;
-+		camss->csid_num = 3;
-+		camss->vfe_num = 3;
- 	} else {
- 		ret = -EINVAL;
- 		goto err_free;
-@@ -1402,6 +1416,8 @@ void camss_delete(struct camss *camss)
- 	if (camss->version == CAMSS_8x96 ||
- 	    camss->version == CAMSS_660)
- 		nbr_pm_domains = PM_DOMAIN_CAMSS_COUNT;
-+	else if (camss->version == CAMSS_845)
-+		nbr_pm_domains = PM_DOMAIN_TITAN_COUNT;
- 
- 	for (i = 0; i < nbr_pm_domains; i++) {
- 		device_link_del(camss->genpd_link[i]);
-@@ -1435,6 +1451,7 @@ static const struct of_device_id camss_dt_match[] = {
- 	{ .compatible = "qcom,msm8916-camss" },
- 	{ .compatible = "qcom,msm8996-camss" },
- 	{ .compatible = "qcom,sdm660-camss" },
-+	{ .compatible = "qcom,sdm845-camss" },
- 	{ }
- };
- 
-diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
-index 7560d85b3352..2f853557ed16 100644
---- a/drivers/media/platform/qcom/camss/camss.h
-+++ b/drivers/media/platform/qcom/camss/camss.h
-@@ -60,6 +60,8 @@ enum pm_domain {
- 	PM_DOMAIN_VFE0 = 0,
- 	PM_DOMAIN_VFE1 = 1,
- 	PM_DOMAIN_CAMSS_COUNT = 2,	/* CAMSS series of ISPs */
-+	PM_DOMAIN_VFELITE = 2,		/* VFELITE / TOP GDSC */
-+	PM_DOMAIN_TITAN_COUNT = 3,	/* Titan series of ISPs */
- };
- 
- enum camss_version {
-@@ -83,8 +85,8 @@ struct camss {
- 	int vfe_num;
- 	struct vfe_device *vfe;
- 	atomic_t ref_count;
--	struct device *genpd[PM_DOMAIN_CAMSS_COUNT];
--	struct device_link *genpd_link[PM_DOMAIN_CAMSS_COUNT];
-+	struct device *genpd[PM_DOMAIN_TITAN_COUNT];
-+	struct device_link *genpd_link[PM_DOMAIN_TITAN_COUNT];
- };
- 
- struct camss_camera_interface {
+ QUALCOMM CORE POWER REDUCTION (CPR) AVS DRIVER
 -- 
 2.27.0
 
