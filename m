@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28190305B96
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 13:38:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FAA0305BCF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 13:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237802AbhA0Mhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 07:37:45 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:33680 "EHLO
+        id S237916AbhA0Mnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 07:43:55 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:29023 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235267AbhA0MfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 07:35:02 -0500
+        with ESMTP id S1343717AbhA0Mlx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 07:41:53 -0500
 X-UUID: bcfd677712ca42beb90c65552fbb7050-20210127
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
         h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=DkkpS463sKMt7rQVu29v7oabEPT49RSNtolILn0Z62M=;
