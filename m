@@ -2,213 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D0F5305CA2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:13:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79DDC305CC2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:16:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238198AbhA0NMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 08:12:13 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:6207 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S238171AbhA0NK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 08:10:28 -0500
-X-UUID: 13a8887540884924ab2328361281353a-20210127
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=nCXf7YML5q/xURh7/6p7ZD1VqZkBgl3bCbstiVDQEXA=;
-        b=j5nXq425QVGUQTU04dEQQouP7aWQqgIq+Y23N/oIpsAjKVJih7oKZu6y+CFmi11IINmBfLCuT6J5XO+o027AsAYbGrBMvNwTswlL9fgbyLO7AiXQBc5ByPbwpx89w4VA9LNVnBW1tr+VbMy8YsWUDPZC9GIbnP5VJZ4UiA1HzR4=;
-X-UUID: 13a8887540884924ab2328361281353a-20210127
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1182248876; Wed, 27 Jan 2021 21:09:25 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 27 Jan
- 2021 21:09:15 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 27 Jan 2021 21:09:14 +0800
-Message-ID: <1611752954.14672.71.camel@mhfsdcap03>
-Subject: Re: [v7,4/7] PCI: mediatek-gen3: Add INTx support
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     <youlin.pei@mediatek.com>, <devicetree@vger.kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        <Rex-BC.Chen@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <chuanjia.liu@mediatek.com>, <linux-pci@vger.kernel.org>,
-        <drinkcat@chromium.org>, Ryder Lee <ryder.lee@mediatek.com>,
-        <anson.chuang@mediatek.com>, <linux-kernel@vger.kernel.org>,
+        id S238108AbhA0NP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 08:15:56 -0500
+Received: from foss.arm.com ([217.140.110.172]:46032 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238049AbhA0NOL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 08:14:11 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D135D1FB;
+        Wed, 27 Jan 2021 05:13:25 -0800 (PST)
+Received: from [10.57.47.135] (unknown [10.57.47.135])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 42E953F68F;
+        Wed, 27 Jan 2021 05:13:23 -0800 (PST)
+Subject: Re: [PATCH v2] of/device: Update dma_range_map only when dev has
+ valid dma-ranges
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        "Sj Huang" <sj.huang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        <sin_jieyang@mediatek.com>, <linux-arm-kernel@lists.infradead.org>
-Date:   Wed, 27 Jan 2021 21:09:14 +0800
-In-Reply-To: <123724a33c29d1f078f2a65795c6e208@kernel.org>
-References: <20210113114001.5804-1-jianjun.wang@mediatek.com>
-         <20210113114001.5804-5-jianjun.wang@mediatek.com>
-         <123724a33c29d1f078f2a65795c6e208@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Yong Wu <yong.wu@mediatek.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+References: <20210119105203.15530-1-yong.wu@mediatek.com>
+ <YBFj9whLvqlV2erm@aptenodytes>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <159d4486-bb7e-249d-2bad-f5bba839041d@arm.com>
+Date:   Wed, 27 Jan 2021 13:13:22 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: AF9B5706A00D243BE0B6F29EF02E078400C437CB2164FE789619A056B278AFB92000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <YBFj9whLvqlV2erm@aptenodytes>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTAxLTI2IGF0IDEyOjI1ICswMDAwLCBNYXJjIFp5bmdpZXIgd3JvdGU6DQo+
-IE9uIDIwMjEtMDEtMTMgMTE6MzksIEppYW5qdW4gV2FuZyB3cm90ZToNCj4gPiBBZGQgSU5UeCBz
-dXBwb3J0IGZvciBNZWRpYVRlayBHZW4zIFBDSWUgY29udHJvbGxlci4NCj4gPiANCj4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBKaWFuanVuIFdhbmcgPGppYW5qdW4ud2FuZ0BtZWRpYXRlay5jb20+DQo+ID4g
-QWNrZWQtYnk6IFJ5ZGVyIExlZSA8cnlkZXIubGVlQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4g
-PiAgZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVrLWdlbjMuYyB8IDE2MyArKysr
-KysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTYzIGluc2VydGlvbnMoKykN
-Cj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlh
-dGVrLWdlbjMuYw0KPiA+IGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVrLWdl
-bjMuYw0KPiA+IGluZGV4IGMwMGVhN2MxNjdkZS4uNzk3OWEyODU2YzM1IDEwMDY0NA0KPiA+IC0t
-LSBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRpYXRlay1nZW4zLmMNCj4gPiArKysg
-Yi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtbWVkaWF0ZWstZ2VuMy5jDQo+ID4gQEAgLTks
-NiArOSw5IEBADQo+ID4gICNpbmNsdWRlIDxsaW51eC9jbGsuaD4NCj4gPiAgI2luY2x1ZGUgPGxp
-bnV4L2RlbGF5Lmg+DQo+ID4gICNpbmNsdWRlIDxsaW51eC9pb3BvbGwuaD4NCj4gPiArI2luY2x1
-ZGUgPGxpbnV4L2lycS5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvaXJxY2hpcC9jaGFpbmVkX2ly
-cS5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvaXJxZG9tYWluLmg+DQo+ID4gICNpbmNsdWRlIDxs
-aW51eC9rZXJuZWwuaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPg0KPiA+ICAjaW5j
-bHVkZSA8bGludXgvb2ZfYWRkcmVzcy5oPg0KPiA+IEBAIC00OSw2ICs1MiwxMiBAQA0KPiA+ICAj
-ZGVmaW5lIFBDSUVfTElOS19TVEFUVVNfUkVHCQkweDE1NA0KPiA+ICAjZGVmaW5lIFBDSUVfUE9S
-VF9MSU5LVVAJCUJJVCg4KQ0KPiA+IA0KPiA+ICsjZGVmaW5lIFBDSUVfSU5UX0VOQUJMRV9SRUcJ
-CTB4MTgwDQo+ID4gKyNkZWZpbmUgUENJRV9JTlRYX1NISUZUCQkJMjQNCj4gPiArI2RlZmluZSBQ
-Q0lFX0lOVFhfTUFTSwkJCUdFTk1BU0soMjcsIDI0KQ0KPiANCj4gSSBndWVzcyB0aGlzICcyNCcg
-aXMgYWN0dWFsbHkgUENJRV9JTlRYX1NISUZUPyBJbiB0aGlzIGNhc2UsDQo+IHBsZWFzZSB3cml0
-ZSBpdCBhcw0KPiANCj4gR0VOTUFTSyhQQ0lFX0lOVFhfU0hJRlQgKyBQQ0lfTlVNX0lOVFggLSAx
-LCBQQ0lFX0lOVFhfU0hJRlQpDQo+IA0KPiB0byBtYWtlIGl0IGNsZWFyIHRoYXQgeW91IGFyZSBk
-ZWFsaW5nIHdpdGggb25lIGJpdCBwZXIgSU5UeC4NCg0KWWVzLCBJIHdpbGwgZml4IGl0IGluIHRo
-ZSBuZXh0IHZlcnNpb24sIHRoYW5rcyBmb3IgeW91ciByZXZpZXcuDQo+IA0KPiA+ICsNCj4gPiAr
-I2RlZmluZSBQQ0lFX0lOVF9TVEFUVVNfUkVHCQkweDE4NA0KPiA+ICsNCj4gPiAgI2RlZmluZSBQ
-Q0lFX1RSQU5TX1RBQkxFX0JBU0VfUkVHCTB4ODAwDQo+ID4gICNkZWZpbmUgUENJRV9BVFJfU1JD
-X0FERFJfTVNCX09GRlNFVAkweDQNCj4gPiAgI2RlZmluZSBQQ0lFX0FUUl9UUlNMX0FERFJfTFNC
-X09GRlNFVAkweDgNCj4gPiBAQCAtNzcsNiArODYsOCBAQA0KPiA+ICAgKiBAcGh5OiBQSFkgY29u
-dHJvbGxlciBibG9jaw0KPiA+ICAgKiBAY2xrczogUENJZSBjbG9ja3MNCj4gPiAgICogQG51bV9j
-bGtzOiBQQ0llIGNsb2NrcyBjb3VudCBmb3IgdGhpcyBwb3J0DQo+ID4gKyAqIEBpcnE6IFBDSWUg
-Y29udHJvbGxlciBpbnRlcnJ1cHQgbnVtYmVyDQo+ID4gKyAqIEBpbnR4X2RvbWFpbjogbGVnYWN5
-IElOVHggSVJRIGRvbWFpbg0KPiA+ICAgKi8NCj4gPiAgc3RydWN0IG10a19wY2llX3BvcnQgew0K
-PiA+ICAJc3RydWN0IGRldmljZSAqZGV2Ow0KPiA+IEBAIC04Nyw2ICs5OCw5IEBAIHN0cnVjdCBt
-dGtfcGNpZV9wb3J0IHsNCj4gPiAgCXN0cnVjdCBwaHkgKnBoeTsNCj4gPiAgCXN0cnVjdCBjbGtf
-YnVsa19kYXRhICpjbGtzOw0KPiA+ICAJaW50IG51bV9jbGtzOw0KPiA+ICsNCj4gPiArCWludCBp
-cnE7DQo+ID4gKwlzdHJ1Y3QgaXJxX2RvbWFpbiAqaW50eF9kb21haW47DQo+ID4gIH07DQo+ID4g
-DQo+ID4gIC8qKg0KPiA+IEBAIC0yNjYsNiArMjgwLDE0OSBAQCBzdGF0aWMgaW50IG10a19wY2ll
-X3N0YXJ0dXBfcG9ydChzdHJ1Y3QNCj4gPiBtdGtfcGNpZV9wb3J0ICpwb3J0KQ0KPiA+ICAJcmV0
-dXJuIDA7DQo+ID4gIH0NCj4gPiANCj4gPiArc3RhdGljIGludCBtdGtfcGNpZV9zZXRfYWZmaW5p
-dHkoc3RydWN0IGlycV9kYXRhICpkYXRhLA0KPiA+ICsJCQkJIGNvbnN0IHN0cnVjdCBjcHVtYXNr
-ICptYXNrLCBib29sIGZvcmNlKQ0KPiA+ICt7DQo+ID4gKwlyZXR1cm4gLUVJTlZBTDsNCj4gPiAr
-fQ0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQgbXRrX2ludHhfbWFzayhzdHJ1Y3QgaXJxX2RhdGEg
-KmRhdGEpDQo+ID4gK3sNCj4gPiArCXN0cnVjdCBtdGtfcGNpZV9wb3J0ICpwb3J0ID0gaXJxX2Rh
-dGFfZ2V0X2lycV9jaGlwX2RhdGEoZGF0YSk7DQo+ID4gKwl1MzIgdmFsOw0KPiA+ICsNCj4gPiAr
-CXZhbCA9IHJlYWRsX3JlbGF4ZWQocG9ydC0+YmFzZSArIFBDSUVfSU5UX0VOQUJMRV9SRUcpOw0K
-PiA+ICsJdmFsICY9IH5CSVQoZGF0YS0+aHdpcnEgKyBQQ0lFX0lOVFhfU0hJRlQpOw0KPiA+ICsJ
-d3JpdGVsX3JlbGF4ZWQodmFsLCBwb3J0LT5iYXNlICsgUENJRV9JTlRfRU5BQkxFX1JFRyk7DQo+
-IA0KPiBUaGlzIGlzIG1pc3Npbmcgc29tZSBsb2NraW5nLiBPdGhlcndpc2UsIHR3byBjb25jdXJy
-ZW50IG1hc2svdW5tYXNrDQo+IGZvciBkaWZmZXJlbnQgaW50ZXJydXB0cyB3aWxsIGNvcnJ1cHQg
-ZWFjaCBvdGhlcidzIHN0YXRlLg0KPiANCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQg
-bXRrX2ludHhfdW5tYXNrKHN0cnVjdCBpcnFfZGF0YSAqZGF0YSkNCj4gPiArew0KPiA+ICsJc3Ry
-dWN0IG10a19wY2llX3BvcnQgKnBvcnQgPSBpcnFfZGF0YV9nZXRfaXJxX2NoaXBfZGF0YShkYXRh
-KTsNCj4gPiArCXUzMiB2YWw7DQo+ID4gKw0KPiA+ICsJdmFsID0gcmVhZGxfcmVsYXhlZChwb3J0
-LT5iYXNlICsgUENJRV9JTlRfRU5BQkxFX1JFRyk7DQo+ID4gKwl2YWwgfD0gQklUKGRhdGEtPmh3
-aXJxICsgUENJRV9JTlRYX1NISUZUKTsNCj4gPiArCXdyaXRlbF9yZWxheGVkKHZhbCwgcG9ydC0+
-YmFzZSArIFBDSUVfSU5UX0VOQUJMRV9SRUcpOw0KPiANCj4gU2FtZSB0aGluZyBoZXJlLg0KPiAN
-Cj4gPiArfQ0KPiA+ICsNCj4gPiArLyoqDQo+ID4gKyAqIG10a19pbnR4X2VvaQ0KPiA+ICsgKiBA
-ZGF0YTogcG9pbnRlciB0byBjaGlwIHNwZWNpZmljIGRhdGENCj4gPiArICoNCj4gPiArICogQXMg
-YW4gZW11bGF0ZWQgbGV2ZWwgSVJRLCBpdHMgaW50ZXJydXB0IHN0YXR1cyB3aWxsIHJlbWFpbg0K
-PiA+ICsgKiB1bnRpbCB0aGUgY29ycmVzcG9uZGluZyBkZS1hc3NlcnQgbWVzc2FnZSBpcyByZWNl
-aXZlZDsgaGVuY2UgdGhhdA0KPiA+ICsgKiB0aGUgc3RhdHVzIGNhbiBvbmx5IGJlIGNsZWFyZWQg
-d2hlbiB0aGUgaW50ZXJydXB0IGhhcyBiZWVuIA0KPiA+IHNlcnZpY2VkLg0KPiA+ICsgKi8NCj4g
-PiArc3RhdGljIHZvaWQgbXRrX2ludHhfZW9pKHN0cnVjdCBpcnFfZGF0YSAqZGF0YSkNCj4gPiAr
-ew0KPiA+ICsJc3RydWN0IG10a19wY2llX3BvcnQgKnBvcnQgPSBpcnFfZGF0YV9nZXRfaXJxX2No
-aXBfZGF0YShkYXRhKTsNCj4gPiArCXVuc2lnbmVkIGxvbmcgaHdpcnE7DQo+ID4gKw0KPiA+ICsJ
-aHdpcnEgPSBkYXRhLT5od2lycSArIFBDSUVfSU5UWF9TSElGVDsNCj4gPiArCXdyaXRlbF9yZWxh
-eGVkKEJJVChod2lycSksIHBvcnQtPmJhc2UgKyBQQ0lFX0lOVF9TVEFUVVNfUkVHKTsNCj4gPiAr
-fQ0KPiA+ICsNCj4gPiArc3RhdGljIHN0cnVjdCBpcnFfY2hpcCBtdGtfaW50eF9pcnFfY2hpcCA9
-IHsNCj4gPiArCS5pcnFfbWFzawkJPSBtdGtfaW50eF9tYXNrLA0KPiA+ICsJLmlycV91bm1hc2sJ
-CT0gbXRrX2ludHhfdW5tYXNrLA0KPiA+ICsJLmlycV9lb2kJCT0gbXRrX2ludHhfZW9pLA0KPiA+
-ICsJLmlycV9zZXRfYWZmaW5pdHkJPSBtdGtfcGNpZV9zZXRfYWZmaW5pdHksDQo+ID4gKwkubmFt
-ZQkJCT0gIlBDSWUiLA0KPiANCj4gbml0OiAiUENJZSIgaXMgbm90IHJlYWxseSBkZXNjcmlwdGl2
-ZS4gIklOVHgiIHdvdWxkIGJlIGEgYml0IGJldHRlci4NCj4gDQo+ID4gK307DQo+ID4gKw0KPiA+
-ICtzdGF0aWMgaW50IG10a19wY2llX2ludHhfbWFwKHN0cnVjdCBpcnFfZG9tYWluICpkb21haW4s
-IHVuc2lnbmVkIGludCANCj4gPiBpcnEsDQo+ID4gKwkJCSAgICAgaXJxX2h3X251bWJlcl90IGh3
-aXJxKQ0KPiA+ICt7DQo+ID4gKwlpcnFfc2V0X2NoaXBfYW5kX2hhbmRsZXJfbmFtZShpcnEsICZt
-dGtfaW50eF9pcnFfY2hpcCwNCj4gPiArCQkJCSAgICAgIGhhbmRsZV9mYXN0ZW9pX2lycSwgIklO
-VHgiKTsNCj4gPiArCWlycV9zZXRfY2hpcF9kYXRhKGlycSwgZG9tYWluLT5ob3N0X2RhdGEpOw0K
-PiANCj4gWW91IHByb2JhYmx5IHdhbnQgdG8gc2V0IHRoZSBjaGlwX2RhdGEgKmJlZm9yZSogd2ly
-aW5nDQo+IHRoZSBoYW5kbGVyLCBhcyBvdGhlcndpc2UgeW91IGNvdWxkIGVuZC11cCB3aXRoIGEg
-TlVMTA0KPiBwb2ludGVyIGluIGFueSBvZiB0aGUgY2FsbGJhY2tzIGlmIHRoZSBpbnRlcnJ1cHQg
-ZmlyZXMNCj4gYmV0d2VlbiB0aGUgdHdvLg0KPiANCj4gPiArDQo+ID4gKwlyZXR1cm4gMDsNCj4g
-PiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBpcnFfZG9tYWluX29wcyBpbnR4
-X2RvbWFpbl9vcHMgPSB7DQo+ID4gKwkubWFwID0gbXRrX3BjaWVfaW50eF9tYXAsDQo+ID4gK307
-DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IG10a19wY2llX2luaXRfaXJxX2RvbWFpbnMoc3RydWN0
-IG10a19wY2llX3BvcnQgKnBvcnQsDQo+ID4gKwkJCQkgICAgIHN0cnVjdCBkZXZpY2Vfbm9kZSAq
-bm9kZSkNCj4gPiArew0KPiA+ICsJc3RydWN0IGRldmljZSAqZGV2ID0gcG9ydC0+ZGV2Ow0KPiA+
-ICsJc3RydWN0IGRldmljZV9ub2RlICppbnRjX25vZGU7DQo+ID4gKw0KPiA+ICsJLyogU2V0dXAg
-SU5UeCAqLw0KPiA+ICsJaW50Y19ub2RlID0gb2ZfZ2V0X2NoaWxkX2J5X25hbWUobm9kZSwgImlu
-dGVycnVwdC1jb250cm9sbGVyIik7DQo+ID4gKwlpZiAoIWludGNfbm9kZSkgew0KPiA+ICsJCWRl
-dl9lcnIoZGV2LCAibWlzc2luZyBQQ0llIEludGMgbm9kZVxuIik7DQo+ID4gKwkJcmV0dXJuIC1F
-Tk9ERVY7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJcG9ydC0+aW50eF9kb21haW4gPSBpcnFfZG9t
-YWluX2FkZF9saW5lYXIoaW50Y19ub2RlLCBQQ0lfTlVNX0lOVFgsDQo+ID4gKwkJCQkJCSAgJmlu
-dHhfZG9tYWluX29wcywgcG9ydCk7DQo+ID4gKwlpZiAoIXBvcnQtPmludHhfZG9tYWluKSB7DQo+
-ID4gKwkJZGV2X2VycihkZXYsICJmYWlsZWQgdG8gZ2V0IElOVHggSVJRIGRvbWFpblxuIik7DQo+
-ID4gKwkJcmV0dXJuIC1FTk9ERVY7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJcmV0dXJuIDA7DQo+
-ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyB2b2lkIG10a19wY2llX2lycV90ZWFyZG93bihzdHJ1
-Y3QgbXRrX3BjaWVfcG9ydCAqcG9ydCkNCj4gPiArew0KPiA+ICsJaXJxX3NldF9jaGFpbmVkX2hh
-bmRsZXJfYW5kX2RhdGEocG9ydC0+aXJxLCBOVUxMLCBOVUxMKTsNCj4gPiArDQo+ID4gKwlpZiAo
-cG9ydC0+aW50eF9kb21haW4pDQo+ID4gKwkJaXJxX2RvbWFpbl9yZW1vdmUocG9ydC0+aW50eF9k
-b21haW4pOw0KPiA+ICsNCj4gPiArCWlycV9kaXNwb3NlX21hcHBpbmcocG9ydC0+aXJxKTsNCj4g
-PiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQgbXRrX3BjaWVfaXJxX2hhbmRsZXIoc3RydWN0
-IGlycV9kZXNjICpkZXNjKQ0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3QgbXRrX3BjaWVfcG9ydCAqcG9y
-dCA9IGlycV9kZXNjX2dldF9oYW5kbGVyX2RhdGEoZGVzYyk7DQo+ID4gKwlzdHJ1Y3QgaXJxX2No
-aXAgKmlycWNoaXAgPSBpcnFfZGVzY19nZXRfY2hpcChkZXNjKTsNCj4gPiArCXVuc2lnbmVkIGxv
-bmcgc3RhdHVzOw0KPiA+ICsJdW5zaWduZWQgaW50IHZpcnE7DQo+ID4gKwlpcnFfaHdfbnVtYmVy
-X3QgaXJxX2JpdCA9IFBDSUVfSU5UWF9TSElGVDsNCj4gPiArDQo+ID4gKwljaGFpbmVkX2lycV9l
-bnRlcihpcnFjaGlwLCBkZXNjKTsNCj4gPiArDQo+ID4gKwlzdGF0dXMgPSByZWFkbF9yZWxheGVk
-KHBvcnQtPmJhc2UgKyBQQ0lFX0lOVF9TVEFUVVNfUkVHKTsNCj4gPiArCWlmIChzdGF0dXMgJiBQ
-Q0lFX0lOVFhfTUFTSykgew0KPiANCj4gVGhpcyAiaWYgKHN0YXR1cyAmIFBDSUVfSU5UWF9NQVNL
-KSIgaXMgYWxyZWFkeSBpbXBsaWNpdCBmcm9tDQo+IHRoZSBmb3JfZWFjaF9zZXRfYml0X2Zyb20o
-KSBpdGVyYXRvciwgYW5kIHlvdSBjYW4gZHJvcCBpdC4NCj4gDQo+ID4gKwkJZm9yX2VhY2hfc2V0
-X2JpdF9mcm9tKGlycV9iaXQsICZzdGF0dXMsIFBDSV9OVU1fSU5UWCArDQo+ID4gKwkJCQkgICAg
-ICBQQ0lFX0lOVFhfU0hJRlQpIHsNCj4gPiArCQkJdmlycSA9IGlycV9maW5kX21hcHBpbmcocG9y
-dC0+aW50eF9kb21haW4sDQo+ID4gKwkJCQkJCWlycV9iaXQgLSBQQ0lFX0lOVFhfU0hJRlQpOw0K
-PiA+ICsJCQlnZW5lcmljX2hhbmRsZV9pcnEodmlycSk7DQo+ID4gKwkJfQ0KPiA+ICsJfQ0KPiA+
-ICsNCj4gPiArCWNoYWluZWRfaXJxX2V4aXQoaXJxY2hpcCwgZGVzYyk7DQo+ID4gK30NCj4gPiAr
-DQo+ID4gK3N0YXRpYyBpbnQgbXRrX3BjaWVfc2V0dXBfaXJxKHN0cnVjdCBtdGtfcGNpZV9wb3J0
-ICpwb3J0LA0KPiA+ICsJCQkgICAgICBzdHJ1Y3QgZGV2aWNlX25vZGUgKm5vZGUpDQo+ID4gK3sN
-Cj4gPiArCXN0cnVjdCBkZXZpY2UgKmRldiA9IHBvcnQtPmRldjsNCj4gPiArCXN0cnVjdCBwbGF0
-Zm9ybV9kZXZpY2UgKnBkZXYgPSB0b19wbGF0Zm9ybV9kZXZpY2UoZGV2KTsNCj4gPiArCWludCBl
-cnI7DQo+ID4gKw0KPiA+ICsJZXJyID0gbXRrX3BjaWVfaW5pdF9pcnFfZG9tYWlucyhwb3J0LCBu
-b2RlKTsNCj4gPiArCWlmIChlcnIpIHsNCj4gPiArCQlkZXZfZXJyKGRldiwgImZhaWxlZCB0byBp
-bml0IFBDSWUgSVJRIGRvbWFpblxuIik7DQo+ID4gKwkJcmV0dXJuIGVycjsNCj4gPiArCX0NCj4g
-PiArDQo+ID4gKwlwb3J0LT5pcnEgPSBwbGF0Zm9ybV9nZXRfaXJxKHBkZXYsIDApOw0KPiA+ICsJ
-aWYgKHBvcnQtPmlycSA8IDApDQo+ID4gKwkJcmV0dXJuIHBvcnQtPmlycTsNCj4gPiArDQo+ID4g
-KwlpcnFfc2V0X2NoYWluZWRfaGFuZGxlcl9hbmRfZGF0YShwb3J0LT5pcnEsIG10a19wY2llX2ly
-cV9oYW5kbGVyLCANCj4gPiBwb3J0KTsNCj4gDQo+IFlvdSBzZWVtIHRvIGJlIG1pc3Npbmcgc29t
-ZXRoaW5nIHRoYXQgd2lsbCBtYXNrIGFsbCBJTlR4IGludGVycnVwdHMNCj4gYXMgYW4gaW5pdGlh
-bCBzdGF0ZS4NCg0KWWVzLCB0aGUgSU5UeCBkZWZhdWx0IHN0YXRlIG9mIHRoaXMgY2hpcCBpcyBk
-aXNhYmxlZCwgYnV0IHRoZXJlIGFyZQ0Kc3RpbGwgcmlza3MgZm9yIGRyaXZlciB1c2UsIEkgd2ls
-bCBhZGQgbWFzayBhbGwgSU5UeCBpbnRlcnJ1cHRzIHRvDQptdGtfcGNpZV9zdGFydHVwX3BvcnQg
-ZnVuY3Rpb24gaW4gdGhlIG5leHQgdmVyc2lvbi4NCg0KVGhhbmtzLg0KPiANCj4gPiArDQo+ID4g
-KwlyZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsNCj4gPiAgc3RhdGljIGludCBtdGtfcGNpZV9jbGtf
-aW5pdChzdHJ1Y3QgbXRrX3BjaWVfcG9ydCAqcG9ydCkNCj4gPiAgew0KPiA+ICAJaW50IHJldDsN
-Cj4gPiBAQCAtMzg4LDYgKzU0NSwxMCBAQCBzdGF0aWMgaW50IG10a19wY2llX3NldHVwKHN0cnVj
-dCBtdGtfcGNpZV9wb3J0IA0KPiA+ICpwb3J0KQ0KPiA+ICAJCWdvdG8gZXJyX3NldHVwOw0KPiA+
-ICAJfQ0KPiA+IA0KPiA+ICsJZXJyID0gbXRrX3BjaWVfc2V0dXBfaXJxKHBvcnQsIGRldi0+b2Zf
-bm9kZSk7DQo+ID4gKwlpZiAoZXJyKQ0KPiA+ICsJCWdvdG8gZXJyX3NldHVwOw0KPiA+ICsNCj4g
-PiAgCWRldl9pbmZvKGRldiwgIlBDSWUgbGluayB1cCBzdWNjZXNzIVxuIik7DQo+ID4gDQo+ID4g
-IAlyZXR1cm4gMDsNCj4gPiBAQCAtNDIzLDYgKzU4NCw3IEBAIHN0YXRpYyBpbnQgbXRrX3BjaWVf
-cHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSANCj4gPiAqcGRldikNCj4gPiANCj4gPiAgCWVy
-ciA9IHBjaV9ob3N0X3Byb2JlKGhvc3QpOw0KPiA+ICAJaWYgKGVycikgew0KPiA+ICsJCW10a19w
-Y2llX2lycV90ZWFyZG93bihwb3J0KTsNCj4gPiAgCQltdGtfcGNpZV9wb3dlcl9kb3duKHBvcnQp
-Ow0KPiA+ICAJCXJldHVybiBlcnI7DQo+ID4gIAl9DQo+ID4gQEAgLTQ0MCw2ICs2MDIsNyBAQCBz
-dGF0aWMgaW50IG10a19wY2llX3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlIA0KPiA+ICpw
-ZGV2KQ0KPiA+ICAJcGNpX3JlbW92ZV9yb290X2J1cyhob3N0LT5idXMpOw0KPiA+ICAJcGNpX3Vu
-bG9ja19yZXNjYW5fcmVtb3ZlKCk7DQo+ID4gDQo+ID4gKwltdGtfcGNpZV9pcnFfdGVhcmRvd24o
-cG9ydCk7DQo+ID4gIAltdGtfcGNpZV9wb3dlcl9kb3duKHBvcnQpOw0KPiA+IA0KPiA+ICAJcmV0
-dXJuIDA7DQo+IA0KPiBUaGFua3MsDQo+IA0KPiAgICAgICAgICBNLg0KDQo=
+[ + Christoph, Marek ]
 
+On 2021-01-27 13:00, Paul Kocialkowski wrote:
+> Hi,
+> 
+> On Tue 19 Jan 21, 18:52, Yong Wu wrote:
+>> The commit e0d072782c73 ("dma-mapping: introduce DMA range map,
+>> supplanting dma_pfn_offset") always update dma_range_map even though it was
+>> already set, like in the sunxi_mbus driver. the issue is reported at [1].
+>> This patch avoid this(Updating it only when dev has valid dma-ranges).
+>>
+>> Meanwhile, dma_range_map contains the devices' dma_ranges information,
+>> This patch moves dma_range_map before of_iommu_configure. The iommu
+>> driver may need to know the dma_address requirements of its iommu
+>> consumer devices.
+> 
+> Just a gentle ping on this issue, it would be nice to have this fix merged
+> ASAP, in the next RC :)
+
+Ack to that - Rob, Frank, do you want to take this through the OF tree, 
+or shall we take it through the DMA-mapping tree like the original culprit?
+
+Thanks,
+Robin.
+
+> 
+> Cheers,
+> 
+> Paul
+> 
+>> [1] https://lore.kernel.org/linux-arm-kernel/5c7946f3-b56e-da00-a750-be097c7ceb32@arm.com/
+>>
+>> CC: Rob Herring <robh+dt@kernel.org>
+>> CC: Frank Rowand <frowand.list@gmail.com>
+>> Fixes: e0d072782c73 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset"),
+>> Suggested-by: Robin Murphy <robin.murphy@arm.com>
+>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   drivers/of/device.c | 10 +++++++---
+>>   1 file changed, 7 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/of/device.c b/drivers/of/device.c
+>> index aedfaaafd3e7..1122daa8e273 100644
+>> --- a/drivers/of/device.c
+>> +++ b/drivers/of/device.c
+>> @@ -162,9 +162,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>>   	mask = DMA_BIT_MASK(ilog2(end) + 1);
+>>   	dev->coherent_dma_mask &= mask;
+>>   	*dev->dma_mask &= mask;
+>> -	/* ...but only set bus limit if we found valid dma-ranges earlier */
+>> -	if (!ret)
+>> +	/* ...but only set bus limit and range map if we found valid dma-ranges earlier */
+>> +	if (!ret) {
+>>   		dev->bus_dma_limit = end;
+>> +		dev->dma_range_map = map;
+>> +	}
+>>   
+>>   	coherent = of_dma_is_coherent(np);
+>>   	dev_dbg(dev, "device is%sdma coherent\n",
+>> @@ -172,6 +174,9 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>>   
+>>   	iommu = of_iommu_configure(dev, np, id);
+>>   	if (PTR_ERR(iommu) == -EPROBE_DEFER) {
+>> +		/* Don't touch range map if it wasn't set from a valid dma-ranges */
+>> +		if (!ret)
+>> +			dev->dma_range_map = NULL;
+>>   		kfree(map);
+>>   		return -EPROBE_DEFER;
+>>   	}
+>> @@ -181,7 +186,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>>   
+>>   	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+>>   
+>> -	dev->dma_range_map = map;
+>>   	return 0;
+>>   }
+>>   EXPORT_SYMBOL_GPL(of_dma_configure_id);
+>> -- 
+>> 2.18.0
+>>
+> 
