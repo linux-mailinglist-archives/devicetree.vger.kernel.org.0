@@ -2,95 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06BB230645E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:46:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 593C830648D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:58:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344487AbhA0Tju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 14:39:50 -0500
-Received: from foss.arm.com ([217.140.110.172]:34058 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344566AbhA0ThV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 14:37:21 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 95AF5106F;
-        Wed, 27 Jan 2021 11:36:34 -0800 (PST)
-Received: from [10.57.47.135] (unknown [10.57.47.135])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C789B3F68F;
-        Wed, 27 Jan 2021 11:36:31 -0800 (PST)
-Subject: Re: [PATCH v2] of/device: Update dma_range_map only when dev has
- valid dma-ranges
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Tomasz Figa <tfiga@google.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-References: <20210119105203.15530-1-yong.wu@mediatek.com>
- <YBFj9whLvqlV2erm@aptenodytes> <159d4486-bb7e-249d-2bad-f5bba839041d@arm.com>
- <CAL_JsqKgGOAe-ZSw9qJ7POVv5nJuX+UoJE-MS3drKrM119pw-w@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <8f742f94-4087-7fb6-4b7c-9058593b67cf@arm.com>
-Date:   Wed, 27 Jan 2021 19:36:30 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S232229AbhA0T62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 14:58:28 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34038 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231946AbhA0T5z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 14:57:55 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RJu31J028751;
+        Wed, 27 Jan 2021 13:56:03 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611777363;
+        bh=qv0+AotchmTZEDjYtGsMUhbEB1NMxoKxiwzceryYbmg=;
+        h=From:To:CC:Subject:Date;
+        b=qvTw9z7Dw+4LuvH6li80VJMdqlhLL+SUfC8m57lMjIXwMIWIUcvvB6xz9cEAqTGvR
+         gaVWZ/afiPUFskKjelG4RDqQHxE9zMguvftKnZx/oN4zwpBtoIMLMyYnXZ7TzAvf+6
+         8zDQfvLDHq/ZUbNBNYfd6LqpB7tdtwgJWQyiwYis=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RJu31D052025
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 27 Jan 2021 13:56:03 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
+ Jan 2021 13:56:02 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 27 Jan 2021 13:56:02 -0600
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RJu2oS107568;
+        Wed, 27 Jan 2021 13:56:02 -0600
+Received: from localhost ([10.250.69.64])
+        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 10RJu2vq082095;
+        Wed, 27 Jan 2021 13:56:02 -0600
+From:   Suman Anna <s-anna@ti.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 0/2] Add Mailbox support for TI K3 AM64x SoCs
+Date:   Wed, 27 Jan 2021 13:55:58 -0600
+Message-ID: <20210127195600.23501-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqKgGOAe-ZSw9qJ7POVv5nJuX+UoJE-MS3drKrM119pw-w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-01-27 19:09, Rob Herring wrote:
-> On Wed, Jan 27, 2021 at 7:13 AM Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> [ + Christoph, Marek ]
->>
->> On 2021-01-27 13:00, Paul Kocialkowski wrote:
->>> Hi,
->>>
->>> On Tue 19 Jan 21, 18:52, Yong Wu wrote:
->>>> The commit e0d072782c73 ("dma-mapping: introduce DMA range map,
->>>> supplanting dma_pfn_offset") always update dma_range_map even though it was
->>>> already set, like in the sunxi_mbus driver. the issue is reported at [1].
->>>> This patch avoid this(Updating it only when dev has valid dma-ranges).
->>>>
->>>> Meanwhile, dma_range_map contains the devices' dma_ranges information,
->>>> This patch moves dma_range_map before of_iommu_configure. The iommu
->>>> driver may need to know the dma_address requirements of its iommu
->>>> consumer devices.
->>>
->>> Just a gentle ping on this issue, it would be nice to have this fix merged
->>> ASAP, in the next RC :)
->>
->> Ack to that - Rob, Frank, do you want to take this through the OF tree,
->> or shall we take it through the DMA-mapping tree like the original culprit?
-> 
-> I've already got some fixes queued up and can take it.
+Hi Jassi,
 
-Brilliant, thanks!
+The following series extends the OMAP Mailbox driver to enable the
+Mailbox IP present on the most recent TI K3 AM64x SoCs [1]. AM64x is
+a 64-bit system, and the Mailbox IP is a cut-down version of the one
+present on previous TI K3 SoCs like AM65x and J721E.
 
-> Suggested-by doesn't mean you are happy with the implementation. So
-> Acked-by or Reviewed-by?
+DT nodes will be posted separately once the binding is acked/merged.
 
-It still feels slightly awkward to give a tag to say "yes, this is 
-exactly what I suggested", but for the avoidance of doubt,
+regards
+Suman
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210120202532.9011-1-d-gerlach@ti.com/
 
-Cheers,
-Robin.
+Suman Anna (2):
+  dt-bindings: mailbox: omap: Update binding for AM64x SoCs
+  mailbox: omap: Add support for K3 AM64x SoCs
+
+ .../bindings/mailbox/omap-mailbox.txt         | 22 +++++++++++++++++++
+ drivers/mailbox/omap-mailbox.c                |  6 ++++-
+ 2 files changed, 27 insertions(+), 1 deletion(-)
+
+-- 
+2.29.2
+
