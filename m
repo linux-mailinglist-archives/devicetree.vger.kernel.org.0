@@ -2,600 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C62F305C94
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:11:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F33305C9A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:12:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238277AbhA0NKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 08:10:38 -0500
-Received: from a1.mail.mailgun.net ([198.61.254.60]:16628 "EHLO
-        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238180AbhA0NIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 08:08:21 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1611752871; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=7cWTLuH5ERj6GxbgJIPmvVwUQxWQw1SM2QluezgaKTI=;
- b=DZ0uDwONNnMGQuaN3SLznJqkCtc4DajXxA5hs0wcCdreYVibSoHbRQONR5ES5E9vRtQECWpJ
- jR3B03Kwiq5vaG7ct9Qkfbe1Svev3noDdGth1+bRRZ8FteMpwiG1Z22vVOMoOy3GeoVr4wt0
- 4iOFUMuCu0wsYCKftzhKtD+cPoY=
-X-Mailgun-Sending-Ip: 198.61.254.60
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 601165892c36b2106dad35b7 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 27 Jan 2021 13:07:21
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id AF929C43462; Wed, 27 Jan 2021 13:07:20 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=ham autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9EC18C433ED;
-        Wed, 27 Jan 2021 13:07:19 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+        id S1343744AbhA0NLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 08:11:25 -0500
+Received: from mail-eopbgr60128.outbound.protection.outlook.com ([40.107.6.128]:27738
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S238223AbhA0NIv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 08:08:51 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cySt3jaRSnpCwweBPlvV/jinA6XzPsqFw4W/xSlXa4/WQHAH+8wq/4a5iEj4F11M4RoOZMc5l0rYyyOOuOJfEIB51XKWECQ8OeykgDoSQkkBTKqI895tl64W1WzBWFxT0JEB4jZlUpYQb8WNvWbcnuD2Zd4xsx3AhNkvbQuIVfTDxQSPsuIowH1gVAFq6nTTp7z2TQMt4e9xD5aFobFzBJ1tHRi5Z95PYcG4FKUI7wLMRJiYy37WquY2qr2GIvvVR3TCRzbGAUvW9VwtOw7KV7bHBOrlIrBBW0H8NjB80gEK7owhyStBkn5v5bpnpYz3QevnUn5JkcFjf6lGBkaiCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cQ+kjd//N3LSS2bTFUgA/B2HyqFLjJagOpoTvBoVJao=;
+ b=AUvGztM02hAw6zkMN7iT1lOBKtS634/l3bv3BhWqFX+VgnkSVHGx6EPrPK8EZpdp4ludlFIimcwxJsEpdqk+he++R1mE2MqtZVXXJrbgCd+6nntfzb67kbQ5RT9HUa9G84rwRbk8q9UA2uoMp4Hu8XaThEM+o16IXrI73KPIjrIUTwjnFk2aQ3FzATu6ijGCSrVe+lCe0aKHswltfNFNCWfuwcYP1Aag1BqR0DuoqD/nKqYVm+df6j9LUDRWjJmJMmn0YLapCZOyVwI+FLqwW8Wqp7fFCYJAa2ILQnSIzER2w06CgmN7zHcd0XUeIE6w7YVcnHr98ic43nGZg9eA/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
+ dkim=pass header.d=prevas.dk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cQ+kjd//N3LSS2bTFUgA/B2HyqFLjJagOpoTvBoVJao=;
+ b=ftAiMAOhqp3KRuCe+RnxQhUBegM2/c4h/+YfFGu7VPc1uRw6KWNTrgIddjY5x3BxWTsrMU0V8mKLXR9zdXnJTAQfIGK4iy5TzOPEr/8V0QLHDh+9xUJd0MeCnt2U5w/sbC7WDJcb+EuPW8yaM4d/otupUV3Ycq4xLUKwAvSWEDM=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=prevas.dk;
+Received: from AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:3f::10)
+ by AM0PR10MB2276.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:dd::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12; Wed, 27 Jan
+ 2021 13:08:01 +0000
+Received: from AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::58b2:6a2a:b8f9:bc1a]) by AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::58b2:6a2a:b8f9:bc1a%3]) with mapi id 15.20.3784.017; Wed, 27 Jan 2021
+ 13:08:01 +0000
+Subject: Re: [PATCH] dt-bindings: rtc: pcf2127: update bindings
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201219013418.3474461-1-alexandre.belloni@bootlin.com>
+ <c5290432-a6b0-2b96-585f-3abc2dcc56f6@prevas.dk>
+ <20210126224835.GE1196852@piout.net>
+From:   Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Message-ID: <0a8fd7f3-58c1-9e20-bcfa-9872b3dc3550@prevas.dk>
+Date:   Wed, 27 Jan 2021 14:07:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20210126224835.GE1196852@piout.net>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Wed, 27 Jan 2021 18:37:19 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: Add basic devicetree support for
- SM8350 SoC
-In-Reply-To: <20210127123054.263231-6-vkoul@kernel.org>
-References: <20210127123054.263231-1-vkoul@kernel.org>
- <20210127123054.263231-6-vkoul@kernel.org>
-Message-ID: <194d2ebe26a9420f842c97738adb0443@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-Originating-IP: [5.186.115.188]
+X-ClientProxiedBy: AM7PR02CA0011.eurprd02.prod.outlook.com
+ (2603:10a6:20b:100::21) To AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:3f::10)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.149] (5.186.115.188) by AM7PR02CA0011.eurprd02.prod.outlook.com (2603:10a6:20b:100::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17 via Frontend Transport; Wed, 27 Jan 2021 13:08:00 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0012e624-fb95-48b5-4f6b-08d8c2c492f5
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2276:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB2276B7AD92D11F03C3F53DAF93BB0@AM0PR10MB2276.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DzuIg4TsZNBXm6tnyZxlXWg7HpR2dGMd2kPhek7tE2pPus78ZXbD3yiUcGorfTk0u4fQBD4agNb3blufJo38mVRN/tNrhOmX0DnXoSQ93hq3AJeBHThb867YgKrZJ25CK60W0SzVSe5GAIkMZ5qmfY8/7LqsLGfJjE4PowjagvTo1jkC7PHcetdIfrNTGIDPBDa3q8m4vVX6aaAxUwolYSOwhWMWuxlapEaQT9bYTO6QNdeTtIkjKLJ6q3+uL0CFmcQLnmjIKzhHaibwtbM2ZRNy+1iW8kPCw2P4yR6PfHLfEMx+Fy+SagWcyHkhMThCvD+WooH+f4aSmScLbIjNzJHYQIULaF8x324WJsbE85OyFFXEqT6s1JpptapsAVA7CKl6nj41vUEH3NkaMaGDF4Ag+bDio37f9C3tb1q8JkXUD0pXym1zgNM/IyyINRdoKPTvek7ur1oWJvsGVqJbfOy2ebip/2Gj8/W0nzqk67E=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(396003)(39850400004)(136003)(366004)(346002)(376002)(4326008)(26005)(16526019)(36756003)(316002)(186003)(16576012)(66556008)(956004)(2616005)(66946007)(8676002)(44832011)(31696002)(86362001)(478600001)(15650500001)(54906003)(83380400001)(66476007)(31686004)(4744005)(2906002)(5660300002)(8976002)(52116002)(8936002)(6486002)(6916009)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?Windows-1252?Q?IHujTTLjNyouOvF9PTtR9XPKgbDL9P5rkCm09chb2hBEM8WLMzfAyRUi?=
+ =?Windows-1252?Q?3KFzihFC1DIadUIQ47JsLuk4j1LIuQslMFMCEoxJ+diB9HwR3Hq2+uP5?=
+ =?Windows-1252?Q?jyeswPHr8qxqMzHg7M3Fum28bClyJUYVd2ATJQuk2S0H9AuMK8xl0Odk?=
+ =?Windows-1252?Q?tZHZZmVnaQiQ880aTGvhG9++91h/sMI/4MaIVz1sZNz8W/PAjvumDnGq?=
+ =?Windows-1252?Q?DINYv1fW9Bs+wQqSShX9PXtbSybg7yPlzrX+B3/Kqg6qbS3t/UNYjdXc?=
+ =?Windows-1252?Q?JbPftDIET6AzQdnTEX4ia37actY0V68tm5Vt7r1sQzDYrQkAbII5UNsW?=
+ =?Windows-1252?Q?obnnCgawgbOzynEpJpQJdM6ebTcgvTNWYgGQvxEzUozbGh6njx/Ugalg?=
+ =?Windows-1252?Q?ArvIvkd6xg7Ssg5GJS1RpuguJfH8iit0IXLNonv3qlRx2R8/ApidaRNJ?=
+ =?Windows-1252?Q?0NP1VDlG29EnI9wN8XQd2FROWOZkwkWnaPYlw1BCTTSEGNwcaWqoyJYO?=
+ =?Windows-1252?Q?6x1MXqHJGFModrzFCmiRKHwMEHMM9QYzpm5HkkV8AfGrRr80y99KRfqb?=
+ =?Windows-1252?Q?DfeabthPEQWQAy8u8On0t2bNmBIIlDOAGMb62lHjHBtR4M87J+m0CiBX?=
+ =?Windows-1252?Q?QiKoZkJ2pXdn6CA0wrD3VkSVEhCi5+kDRvufjUrjGrvCo0UgrWnyUbQz?=
+ =?Windows-1252?Q?+yw86z5Khd8jRE8LoViTtAE+oFkouIZE8uEScM9HWrzlbSpHDoqTP4b1?=
+ =?Windows-1252?Q?Svgx7i8RaZmjx761hR6cLtwJ5FBX/Qjwf7U/MbIn95BYXJfsyi5Het6W?=
+ =?Windows-1252?Q?tUHuhKDLBOx4vQy/gRjnUeGwpmowJQ6wmJUIAoiBH9fa4dZW5G9+m/Ou?=
+ =?Windows-1252?Q?yIp+3uQOX3kJ2YELoVqTDEaoxHZYJHROtbLh2E10P0fcozeh4+ooE/Zl?=
+ =?Windows-1252?Q?SXVI7uCsLcYIxSXU0fpsIRoGQxyPk+HW2efIkXAI56oHgIP3cOzaFBFW?=
+ =?Windows-1252?Q?/p+KlZKu6D7clweJelQ+Q8U2pM0UTMnzdEGunVPR7H63D0D87F8Y47BC?=
+ =?Windows-1252?Q?0exNR29g1LGm7hyZuI+7ZFspvVW9wXq+rhd0BDyLKBFIjR8zN9J4sKuV?=
+ =?Windows-1252?Q?iPak00BHLWAx6Pb0BbLCNJAG?=
+X-OriginatorOrg: prevas.dk
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0012e624-fb95-48b5-4f6b-08d8c2c492f5
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB1874.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2021 13:08:01.1002
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: A9slSqowaqu1wU9f5Vz1dZK/tWHtXlS5XMbyp8Jz7ws8hQtf+8NGY2zB0etNicX++XipgGUqTSz/bvxlQmrW6QYuod7qJn9hKi+Y9h1drM4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2276
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
-
-On 2021-01-27 18:00, Vinod Koul wrote:
-> Add basic devicetree support for Qualcomm Technologies, Inc SM8350 SoC.
-> This adds gcc, pinctrl, reserved memory, uart, cpu nodes for this SoC.
+On 26/01/2021 23.48, Alexandre Belloni wrote:
+> On 21/12/2020 22:17:54+0100, Rasmus Villemoes wrote:
+>> On 19/12/2020 02.34, Alexandre Belloni wrote:
+>>> pcf2127, pcf2129 and pca2129 support start-year and reset-source.
+>>>
+>>
+>> No, the 2129 variant doesn't even have a reset output pin. Not sure if
+>> there's any way to reflect that, and it probably doesn't matter, since
+>> nobody's going to add the reset-source property to a 2129 node. But the
+>> commit message is a bit misleading.
+>>
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8350.dtsi | 499 +++++++++++++++++++++++++++
->  1 file changed, 499 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8350.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> new file mode 100644
-> index 000000000000..29af0b931690
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -0,0 +1,499 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2020, Linaro Limaited
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/mailbox/qcom-ipcc.h>
-> +#include <dt-bindings/power/qcom-aoss-qmp.h>
-> +#include <dt-bindings/power/qcom-rpmpd.h>
-> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +
-> +/ {
-> +	interrupt-parent = <&intc>;
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	chosen { };
-> +
-> +	clocks {
-> +		xo_board: xo-board {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <38400000>;
-> +			clock-output-names = "xo_board";
-> +		};
-> +
-> +		sleep_clk: sleep-clk {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <32000>;
-> +			#clock-cells = <0>;
-> +		};
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		CPU0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo685";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_0>;
-> +			L2_0: l2-cache {
-> +			      compatible = "cache";
-> +			      next-level-cache = <&L3_0>;
-> +				L3_0: l3-cache {
-> +				      compatible = "cache";
-> +				};
-> +			};
-> +		};
-> +
-> +		CPU1: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo685";
-> +			reg = <0x0 0x100>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_100>;
-> +			L2_100: l2-cache {
-> +			      compatible = "cache";
-> +			      next-level-cache = <&L3_0>;
-> +			};
-> +		};
-> +
-> +		CPU2: cpu@200 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo685";
-> +			reg = <0x0 0x200>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_200>;
-> +			L2_200: l2-cache {
-> +			      compatible = "cache";
-> +			      next-level-cache = <&L3_0>;
-> +			};
-> +		};
-> +
-> +		CPU3: cpu@300 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo685";
-> +			reg = <0x0 0x300>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_300>;
-> +			L2_300: l2-cache {
-> +			      compatible = "cache";
-> +			      next-level-cache = <&L3_0>;
-> +			};
-> +		};
-> +
-> +		CPU4: cpu@400 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo685";
-> +			reg = <0x0 0x400>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_400>;
-> +			L2_400: l2-cache {
-> +			      compatible = "cache";
-> +			      next-level-cache = <&L3_0>;
-> +			};
-> +		};
-> +
-> +		CPU5: cpu@500 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo685";
-> +			reg = <0x0 0x500>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_500>;
-> +			L2_500: l2-cache {
-> +			      compatible = "cache";
-> +			      next-level-cache = <&L3_0>;
-> +			};
-> +
-> +		};
-> +
-> +		CPU6: cpu@600 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo685";
-> +			reg = <0x0 0x600>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_600>;
-> +			L2_600: l2-cache {
-> +			      compatible = "cache";
-> +			      next-level-cache = <&L3_0>;
-> +			};
-> +		};
-> +
-> +		CPU7: cpu@700 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo685";
-> +			reg = <0x0 0x700>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_700>;
-> +			L2_700: l2-cache {
-> +			      compatible = "cache";
-> +			      next-level-cache = <&L3_0>;
-> +			};
-> +		};
-> +	};
-> +
-> +	firmware {
-> +		scm: scm {
-> +			compatible = "qcom,scm-sm8350", "qcom,scm";
-> +			#reset-cells = <1>;
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* We expect the bootloader to fill in the size */
-> +		reg = <0x0 0x80000000 0x0 0x0>;
-> +	};
-> +
-> +	pmu {
-> +		compatible = "arm,armv8-pmuv3";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		hyp_mem: memory@80000000 {
-> +			reg = <0x0 0x80000000 0x0 0x600000>;
-> +			no-map;
-> +		};
-> +
-> +		xbl_aop_mem: memory@80700000 {
-> +			no-map;
-> +			reg = <0x0 0x80700000 0x0 0x160000>;
-> +		};
-> +
-> +		cmd_db: memory@80860000 {
-> +			compatible = "qcom,cmd-db";
-> +			reg = <0x0 0x80860000 0x0 0x20000>;
-> +			no-map;
-> +		};
-> +
-> +		reserved_xbl_uefi_log: memory@80880000 {
-> +			reg = <0x0 0x80880000 0x0 0x14000>;
-> +			no-map;
-> +		};
-> +
-> +		smem_mem: memory@80900000 {
-> +			reg = <0x0 0x80900000 0x0 0x200000>;
-> +			no-map;
-> +		};
-> +
-> +		cpucp_fw_mem: memory@80b00000 {
-> +			reg = <0x0 0x80b00000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_secure_heap: memory@80c00000 {
-> +			reg = <0x0 0x80c00000 0x0 0x4600000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_camera_mem: mmeory@85200000 {
-> +			reg = <0x0 0x85200000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_video_mem: memory@85700000 {
-> +			reg = <0x0 0x85700000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_cvp_mem: memory@85c00000 {
-> +			reg = <0x0 0x85c00000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_adsp_mem: memory@86100000 {
-> +			reg = <0x0 0x86100000 0x0 0x2100000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_slpi_mem: memory@88200000 {
-> +			reg = <0x0 0x88200000 0x0 0x1500000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_cdsp_mem: memory@89700000 {
-> +			reg = <0x0 0x89700000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_ipa_fw_mem: memory@8b500000 {
-> +			reg = <0x0 0x8b500000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_ipa_gsi_mem: memory@8b510000 {
-> +			reg = <0x0 0x8b510000 0x0 0xa000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_gpu_mem: memory@8b51a000 {
-> +			reg = <0x0 0x8b51a000 0x0 0x2000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_spss_mem: memory@8b600000 {
-> +			reg = <0x0 0x8b600000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_modem_mem: memory@8b800000 {
-> +			reg = <0x0 0x8b800000 0x0 0x10000000>;
-> +			no-map;
-> +		};
-> +
-> +		hyp_reserved_mem: memory@d0000000 {
-> +			reg = <0x0 0xd0000000 0x0 0x800000>;
-> +			no-map;
-> +		};
-> +
-> +		pil_trustedvm_mem: memory@d0800000 {
-> +			reg = <0x0 0xd0800000 0x0 0x76f7000>;
-> +			no-map;
-> +		};
-> +
-> +		qrtr_shbuf: memory@d7ef7000 {
-> +			reg = <0x0 0xd7ef7000 0x0 0x9000>;
-> +			no-map;
-> +		};
-> +
-> +		chan0_shbuf: memory@d7f00000 {
-> +			reg = <0x0 0xd7f00000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		chan1_shbuf: memory@d7f80000 {
-> +			reg = <0x0 0xd7f80000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		removed_mem: memory@d8800000 {
-> +			reg = <0x0 0xd8800000 0x0 0x6800000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	smem: qcom,smem {
-> +		compatible = "qcom,smem";
-> +		memory-region = <&smem_mem>;
-> +		hwlocks = <&tcsr_mutex 3>;
-> +	};
-> +
-> +	soc: soc@0 {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0 0 0 0 0x10 0>;
-> +		dma-ranges = <0 0 0 0 0x10 0>;
-> +		compatible = "simple-bus";
-> +
-> +		gcc: clock-controller@100000 {
-> +			compatible = "qcom,gcc-sm8350";
-> +			reg = <0x0 0x00100000 0x0 0x1f0000>;
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +			clock-names = "bi_tcxo", "sleep_clk";
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&sleep_clk>;
-> +		};
-> +
-> +		ipcc: mailbox@408000 {
-> +			compatible = "qcom,sm8350-ipcc", "qcom,ipcc";
-> +			reg = <0 0x00408000 0 0x1000>;
-> +			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <3>;
-> +			#mbox-cells = <2>;
-> +		};
-> +
-> +		qupv3_id_1: geniqup@9c0000 {
-> +			compatible = "qcom,geni-se-qup";
-> +			reg = <0x0 0x009c0000 0x0 0x6000>;
-> +			clock-names = "m-ahb", "s-ahb";
-> +			clocks = <&gcc 121>,
-> +				 <&gcc 122>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			status = "disabled";
-> +
-> +			uart2: serial@98c000 {
-> +				compatible = "qcom,geni-debug-uart";
-> +				reg = <0 0x0098c000 0 0x4000>;
-> +				clock-names = "se";
-> +				clocks = <&gcc 83>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&qup_uart3_default_state>;
-> +				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		tcsr_mutex: hwlock@1f40000 {
-> +			compatible = "qcom,tcsr-mutex";
-> +			reg = <0x0 0x01f40000 0x0 0x40000>;
-> +			#hwlock-cells = <1>;
-> +		};
-> +
-> +		pdc: interrupt-controller@b220000 {
-> +			compatible = "qcom,sm8350-pdc", "qcom,pdc";
-> +			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x60>;
-> +			qcom,pdc-ranges = <0 480 40>, <40 140 14>, <54 263 1>,   <55 306 
-> 4>,
-> +					  <59 312 3>, <62 374 2>,  <64 434 2>,   <66 438 3>,
-> +					  <69 86 1>,  <70 520 54>, <124 609 31>, <155 63 1>,
-> +					  <156 716 12>;
-> +			#interrupt-cells = <2>;
-> +			interrupt-parent = <&intc>;
-> +			interrupt-controller;
-> +		};
-> +
-> +		aoss_qmp: qmp@c300000 {
-> +			compatible = "qcom,sm8350-aoss-qmp";
-> +			reg = <0 0x0c300000 0 0x100000>;
-> +			interrupts-extended = <&ipcc IPCC_CLIENT_AOP 
-> IPCC_MPROC_SIGNAL_GLINK_QMP
-> +						     IRQ_TYPE_EDGE_RISING>;
-> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> +
-> +			#clock-cells = <0>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
-> +		tlmm: pinctrl@f100000 {
-> +			compatible = "qcom,sm8350-tlmm";
-> +			reg = <0 0x0f100000 0 0x300000>;
-> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			gpio-ranges = <&tlmm 0 0 203>;
-> +
-> +			qup_uart3_default_state: qup-uart3-default-state {
-> +				rx {
-> +					pins = "gpio18";
-> +					function = "qup3";
-> +				};
-> +				tx {
-> +					pins = "gpio19";
-> +					function = "qup3";
-> +				};
-> +			};
-> +		};
-> +
-> +		intc: interrupt-controller@17a00000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <3>;
-> +			interrupt-controller;
-> +			reg = <0x0 0x17a00000 0x0 0x10000>,     /* GICD */
-> +			      <0x0 0x17a60000 0x0 0x100000>;    /* GICR * 8 */
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		timer@17c20000 {
-> +			compatible = "arm,armv7-timer-mem";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			reg = <0x0 0x17c20000 0x0 0x1000>;
-> +			clock-frequency = <19200000>;
-> +
-> +			frame@17c21000 {
-> +				frame-number = <0>;
-> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0 0x17c21000 0x0 0x1000>,
-> +				      <0x0 0x17c22000 0x0 0x1000>;
-> +			};
-> +
-> +			frame@17c23000 {
-> +				frame-number = <1>;
-> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0 0x17c23000 0x0 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@17c25000 {
-> +				frame-number = <2>;
-> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0 0x17c25000 0x0 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@17c27000 {
-> +				frame-number = <3>;
-> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0 0x17c27000 0x0 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@17c29000 {
-> +				frame-number = <4>;
-> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0 0x17c29000 0x0 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@17c2b000 {
-> +				frame-number = <5>;
-> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0 0x17c2b000 0x0 0x1000>;
-> +				status = "disabled";
-> +			};
-> +
-> +			frame@17c2d000 {
-> +				frame-number = <6>;
-> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x0 0x17c2d000 0x0 0x1000>;
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		apps_rsc: rsc@18200000 {
-> +			label = "apps_rsc";
-> +			compatible = "qcom,rpmh-rsc";
-> +			reg = <0x0 0x18200000 0x0 0x10000>,
-> +				<0x0 0x18210000 0x0 0x10000>,
-> +				<0x0 0x18220000 0x0 0x10000>;
-> +			reg-names = "drv-0", "drv-1", "drv-2";
-> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-> +			qcom,tcs-offset = <0xd00>;
-> +			qcom,drv-id = <2>;
-> +			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   3>,
-> +					  <WAKE_TCS    3>, <CONTROL_TCS 1>;
-> +
-> +			rpmhcc: clock-controller {
-> +				compatible = "qcom,sm8350-rpmh-clk";
-> +				#clock-cells = <1>;
-> +				clock-names = "xo";
-> +				clocks = <&xo_board>;
-> +			};
-> +
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | 
-> IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> Actually no, the INT pin can be used as a reset, the pcf/pca2129
+> can be used as a watchdog and so it may need the reset-source property.
 
-The last interrupt should be hypervisor physical interrupt(10) not 
-12(hyp virtual).
-It works currently with android bootloaders because the host linux 
-kernel will run
-at EL1 and will use EL1 physical timer interrupt(14), but if we ever 
-have the host
-kernel run in EL2(for example, chrome) then we will not receive any 
-timer interrupts.
+Unless I'm missing something, that would require some rather creative
+extra circuitry: The interrupt pin is kept low until the appropriate bit
+in the rtc is cleared, so if that is routed directly to a reset pin on
+the SOC, the SOC would be kept in reset indefinitely.
 
-Thanks,
-Sai
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+Rasmus
