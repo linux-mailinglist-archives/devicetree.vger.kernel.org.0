@@ -2,87 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E1B305D53
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:35:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE0B305D74
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:46:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236976AbhA0Nfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 08:35:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59638 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238502AbhA0NdS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 08:33:18 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C12A5207B1;
-        Wed, 27 Jan 2021 13:32:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1611754357;
-        bh=Hvdj/TnKmUGUDvd5D0ucCsJxgPxWAmML6NC1NFEiusw=;
+        id S231182AbhA0NpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 08:45:12 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:37326 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229832AbhA0NpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 08:45:03 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 069C1240;
+        Wed, 27 Jan 2021 14:44:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1611755052;
+        bh=4oiDLYDjV/1iW5vbdVFhfngF1nGARyrh6yFVi/JDSDw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u15m2WoKpaM2iRwFCDTC0Id9jWPw061bwZFZVpyaROia9HdMUZpooYN6buBoxdlwy
-         6NL+OCZ4TYv3aWLNwta4GI1HP+QQwqWP4lbYbH/HIzFjrmmoE268Uz7/dgLdi9COTS
-         Kz7z8I8j1c9WoCqZbzrhR5Psr3s97OHDrK6ehxlE=
-Date:   Wed, 27 Jan 2021 14:32:35 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        Mayulong <mayulong1@huawei.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-arm-msm@vger.kernel.org, YueHaibing <yuehaibing@huawei.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Colin Ian King <colin.king@canonical.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 00/21] Move Hisilicon 6421v600 SPMI driver set out of
- staging
-Message-ID: <YBFrc/yk7uvh9HX8@kroah.com>
-References: <cover.1611212783.git.mchehab+huawei@kernel.org>
- <YBBXcdLbj92yMJhw@kroah.com>
- <20210126175752.GF4839@sirena.org.uk>
- <YBBZP9LjXPi/rzfP@kroah.com>
- <20210126181124.GG4839@sirena.org.uk>
- <YBErBByYD8lNIWAX@kroah.com>
- <20210127120426.GB4387@sirena.org.uk>
+        b=pm4bcXmupTRF7F9J+jXq9lG/3OsjjCslY5cXy7Dr2D/GYJKmvhGQoQxZR0mq+FpnP
+         UONLHPueyFraKMWezd2lPdP0+IfceFXpRGNpdEuR0+o7fUJ/7dnggE7TtgkQvhTREN
+         JhV8oABIIHlp1qNVHbwP0AXU+9HUMCHySVj0YZ/8=
+Date:   Wed, 27 Jan 2021 15:43:52 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/4] dmaengine: rcar-dmac: Add support for R-Car V3U
+Message-ID: <YBFuGEdTYbcRFg4f@pendragon.ideasonboard.com>
+References: <20210125142431.1049668-1-geert+renesas@glider.be>
+ <20210125142431.1049668-5-geert+renesas@glider.be>
+ <YBCREUMJ0/LgxDlJ@pendragon.ideasonboard.com>
+ <CAMuHMdUqCTvCQUmL-m7C=W0id+Oh5OqPxySutOs9DEdWnzKYEg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210127120426.GB4387@sirena.org.uk>
+In-Reply-To: <CAMuHMdUqCTvCQUmL-m7C=W0id+Oh5OqPxySutOs9DEdWnzKYEg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 12:04:26PM +0000, Mark Brown wrote:
-> On Wed, Jan 27, 2021 at 09:57:40AM +0100, Greg Kroah-Hartman wrote:
-> > On Tue, Jan 26, 2021 at 06:11:24PM +0000, Mark Brown wrote:
-> 
-> > > > Do you need a tag to pull from?
-> 
-> > > It'd be nice but not essential.
-> 
-> > Why do you want/need this?  Having these changes in your tree is good,
-> > but what about other coding style cleanups that I will end up applying
-> > over time before the 5.12-rc1 merge window opens?  Are you wanting to
-> > take the moved driver in your tree, or something else?
-> 
-> I want to apply the regulator driver so I stop being sent this patch
-> series which will help keep my backlog more manageable.
-> 
-> > Traditionally moving drivers out of staging can be done 2 ways:
-> > 	- all happens in the staging tree, I take an ack from the
-> > 	  subsystem maintainer that this is ok to do.
-> > 	- A new driver enters the "real" subsystem tree, and then I
-> > 	  delete the driver in the staging tree.  This doesn't preserve
-> > 	  history as well (not at all), but can be easier for trees that
-> > 	  move quickly (like networking.)
-> 
-> The whole reason the driver is in the staging tree is that Mauro has a
-> requirement to do things in a way that preserves history and so won't
-> send any non-incremental patches.
+Hi Geert,
 
-Ok, should we wait until after 5.12-rc1 is out then?
+On Wed, Jan 27, 2021 at 09:10:40AM +0100, Geert Uytterhoeven wrote:
+> On Tue, Jan 26, 2021 at 11:01 PM Laurent Pinchart wrote:
+> > On Mon, Jan 25, 2021 at 03:24:31PM +0100, Geert Uytterhoeven wrote:
+> > > The DMACs (both SYS-DMAC and RT-DMAC) on R-Car V3U differ slightly from
+> > > the DMACs on R-Car Gen2 and other R-Car Gen3 SoCs:
+> > >   1. The per-channel registers are located in a second register block.
+> > >      Add support for mapping the second block, using the appropriate
+> > >      offsets and stride.
+> > >   2. The common Channel Clear Register (DMACHCLR) was replaced by a
+> > >      per-channel register.
+> > >      Update rcar_dmac_chan_clear{,_all}() to handle this.
+> > >      As rcar_dmac_init() needs to clear the status before the individual
+> > >      channels are probed, channel index and base address initialization
+> > >      are moved forward.
+> > >
+> > > Inspired by a patch in the BSP by Phong Hoang
+> > > <phong.hoang.wz@renesas.com>.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> 
+> > > --- a/drivers/dma/sh/rcar-dmac.c
+> > > +++ b/drivers/dma/sh/rcar-dmac.c
+> > > @@ -189,7 +189,8 @@ struct rcar_dmac_chan {
+> > >   * struct rcar_dmac - R-Car Gen2 DMA Controller
+> > >   * @engine: base DMA engine object
+> > >   * @dev: the hardware device
+> > > - * @iomem: remapped I/O memory base
+> > > + * @dmac_base: remapped base register block
+> > > + * @chan_base: remapped channel register block (optional)
+> > >   * @n_channels: number of available channels
+> > >   * @channels: array of DMAC channels
+> > >   * @channels_mask: bitfield of which DMA channels are managed by this driver
+> > > @@ -198,7 +199,8 @@ struct rcar_dmac_chan {
+> > >  struct rcar_dmac {
+> > >       struct dma_device engine;
+> > >       struct device *dev;
+> > > -     void __iomem *iomem;
+> > > +     void __iomem *dmac_base;
+> > > +     void __iomem *chan_base;
+> > >
+> > >       unsigned int n_channels;
+> > >       struct rcar_dmac_chan *channels;
+> 
+> > > @@ -339,12 +344,23 @@ static void rcar_dmac_chan_write(struct rcar_dmac_chan *chan, u32 reg, u32 data)
+> > >  static void rcar_dmac_chan_clear(struct rcar_dmac *dmac,
+> > >                                struct rcar_dmac_chan *chan)
+> > >  {
+> > > -     rcar_dmac_write(dmac, RCAR_DMACHCLR, BIT(chan->index));
+> > > +     if (dmac->chan_base)
+> >
+> > Using dmac->chan_base to check if the device is a V3U seems a bit of a
+> > hack (especially given that the field is otherwise unused). I'd prefer
+> > adding a model field to struct rcar_dmac_of_data and struct rcar_dmac.
+> 
+> The check is not a check for R-Car V3U in particular, but a check for
+> the presence of a separate register block for channel registers.
+> I expect to see more SoCs having this, so IMHO checking for this feature,
+> instead of checking a model field, makes sense.
+> 
+> It's indeed unused otherwise, as beyond probe(), where per-channel bases
+> are calculated, no access to this pointer is needed anymore, (you can
+> blame devm_*() for not needing the pointer ;-)
+> Note that a model field would be "otherwise unused", too ;-)
 
-thanks,
+I agree that this isn't a V3U check, but a DMAC
+"model/generation/version" check. With V3U as the only SoC we know of
+that uses this new DMAC model, it's a bit difficult to come up with a
+proper name, but conceptually I think a model check would be better than
+checking chan_base.
 
-greg k-h
+> > > +             rcar_dmac_chan_write(chan, RCAR_V3U_DMACHCLR, 1);
+> > > +     else
+> > > +             rcar_dmac_write(dmac, RCAR_DMACHCLR, BIT(chan->index));
+> > >  }
+> > >
+> > >  static void rcar_dmac_chan_clear_all(struct rcar_dmac *dmac)
+> > >  {
+> > > -     rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
+> > > +     struct rcar_dmac_chan *chan;
+> > > +     unsigned int i;
+> > > +
+> > > +     if (dmac->chan_base) {
+> > > +             for_each_rcar_dmac_chan(i, chan, dmac)
+> > > +                     rcar_dmac_chan_write(chan, RCAR_V3U_DMACHCLR, 1);
+> > > +     } else {
+> > > +             rcar_dmac_write(dmac, RCAR_DMACHCLR, dmac->channels_mask);
+> > > +     }
+> > >  }
+> > >
+> > >  /* -----------------------------------------------------------------------------
+> > > @@ -1744,7 +1760,6 @@ static const struct dev_pm_ops rcar_dmac_pm = {
+> > >
+> > >  static int rcar_dmac_chan_probe(struct rcar_dmac *dmac,
+> > >                               struct rcar_dmac_chan *rchan,
+> > > -                             const struct rcar_dmac_of_data *data,
+> > >                               unsigned int index)
+> > >  {
+> > >       struct platform_device *pdev = to_platform_device(dmac->dev);
+> > > @@ -1753,9 +1768,6 @@ static int rcar_dmac_chan_probe(struct rcar_dmac *dmac,
+> > >       char *irqname;
+> > >       int ret;
+> > >
+> > > -     rchan->index = index;
+> > > -     rchan->iomem = dmac->iomem + data->chan_offset_base +
+> > > -                    data->chan_offset_stride * index;
+> > >       rchan->mid_rid = -EINVAL;
+> > >
+> > >       spin_lock_init(&rchan->lock);
+> > > @@ -1842,6 +1854,7 @@ static int rcar_dmac_probe(struct platform_device *pdev)
+> > >       const struct rcar_dmac_of_data *data;
+> > >       struct rcar_dmac_chan *chan;
+> > >       struct dma_device *engine;
+> > > +     void __iomem *chan_base;
+> > >       struct rcar_dmac *dmac;
+> > >       unsigned int i;
+> > >       int ret;
+> > > @@ -1880,9 +1893,24 @@ static int rcar_dmac_probe(struct platform_device *pdev)
+> > >               return -ENOMEM;
+> > >
+> > >       /* Request resources. */
+> > > -     dmac->iomem = devm_platform_ioremap_resource(pdev, 0);
+> > > -     if (IS_ERR(dmac->iomem))
+> > > -             return PTR_ERR(dmac->iomem);
+> > > +     dmac->dmac_base = devm_platform_ioremap_resource(pdev, 0);
+> > > +     if (IS_ERR(dmac->dmac_base))
+> > > +             return PTR_ERR(dmac->dmac_base);
+> > > +
+> > > +     if (!data->chan_offset_base) {
+> > > +             dmac->chan_base = devm_platform_ioremap_resource(pdev, 1);
+> > > +             if (IS_ERR(dmac->chan_base))
+> > > +                     return PTR_ERR(dmac->chan_base);
+> > > +
+> > > +             chan_base = dmac->chan_base;
+> > > +     } else {
+> > > +             chan_base = dmac->dmac_base + data->chan_offset_base;
+> > > +     }
+> > > +
+> > > +     for_each_rcar_dmac_chan(i, chan, dmac) {
+> > > +             chan->index = i;
+> >
+> > Now that chan->indew is set before calling rcar_dmac_chan_probe(), you
+> > don't have to pass the index to rcar_dmac_chan_probe() anymore.
+> 
+> Right, will fix.
+> 
+> > > +             chan->iomem = chan_base + i * data->chan_offset_stride;
+> > > +     }
+> > >
+> > >       /* Enable runtime PM and initialize the device. */
+> > >       pm_runtime_enable(&pdev->dev);
+> > > @@ -1929,7 +1957,7 @@ static int rcar_dmac_probe(struct platform_device *pdev)
+> > >       INIT_LIST_HEAD(&engine->channels);
+> > >
+> > >       for_each_rcar_dmac_chan(i, chan, dmac) {
+> > > -             ret = rcar_dmac_chan_probe(dmac, chan, data, i);
+> > > +             ret = rcar_dmac_chan_probe(dmac, chan, i);
+> > >               if (ret < 0)
+> > >                       goto error;
+> > >       }
+> 
+> Thanks for your comments!
+
+-- 
+Regards,
+
+Laurent Pinchart
