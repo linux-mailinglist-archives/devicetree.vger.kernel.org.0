@@ -2,77 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C37A7306387
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 19:46:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B9E03063B9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:08:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344016AbhA0SpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 13:45:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43220 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344043AbhA0SpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 13:45:15 -0500
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3086C061756
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 10:44:19 -0800 (PST)
-Received: from [192.168.1.101] (abaf219.neoplus.adsl.tpnet.pl [83.6.169.219])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 33EB53F0A3;
-        Wed, 27 Jan 2021 19:44:17 +0100 (CET)
-Subject: Re: [PATCH] thermal: qcom: tsens-v0_1: Add support for MDM9607
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Amit Kucheria <amitk@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210127181400.44642-1-konrad.dybcio@somainline.org>
- <YBGxgSb8TJeYH6mw@builder.lan>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <e08f75be-4520-395d-599b-a2cbd7fbefe8@somainline.org>
-Date:   Wed, 27 Jan 2021 19:44:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S1344098AbhA0TH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 14:07:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33952 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344084AbhA0THz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 14:07:55 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0FB1464D9D;
+        Wed, 27 Jan 2021 19:07:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611774435;
+        bh=+2fq9fqcnJYIGiasm2Y78NeRv8I7YIdMcOI8TxM795s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YhRvfHT6RV1BMZil1zdzFYbHrjCJm7nZH8PN85tJkCvVMFjd6eDbEasUTop/t+LPD
+         +og8JbTEYZzAi04vEHfuIFInmDsmd231LW3n5RVJFYyM6vY3hmYrtWNfd8A82XdX6m
+         DjpPaS8pSa/DuHZYs6mKcfXHpOXTTFE56zyLkjQntGO4C+hsC0Ykvmz47tpeTx/84l
+         zXaW1LY6a8F7/TYczF+XBpza56l2dKK/8HzbEQZeM6w1bYXSP9+Xt5hPZiwG5xTEFf
+         wAw/S9OAFRpNo71WJjOFETco8uFIl0z2ETgQOd81ch+lFz7xSSy2QicZgzOBZ8Zlq9
+         XFs7hqikGgclQ==
+Received: by mail-ej1-f50.google.com with SMTP id a10so4179320ejg.10;
+        Wed, 27 Jan 2021 11:07:14 -0800 (PST)
+X-Gm-Message-State: AOAM532d+vzWmtu6C/Vd27Ep0mHE1prshOu1/I7LVcuMMITDgn7/M9f8
+        KgByfyq7GQmIT6pmTqJtqtmZSVWYJjBzEc6AhA==
+X-Google-Smtp-Source: ABdhPJwZ642wt52ernlRSW6Ok++wbRCAdfK+zZt0YWbSRLkd8I/BHIp2pHEsvorc0aidjP5dLvbM2BPXjvTf/vQ2vrY=
+X-Received: by 2002:a17:906:c9d8:: with SMTP id hk24mr8285418ejb.468.1611774433585;
+ Wed, 27 Jan 2021 11:07:13 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YBGxgSb8TJeYH6mw@builder.lan>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20210119105203.15530-1-yong.wu@mediatek.com>
+In-Reply-To: <20210119105203.15530-1-yong.wu@mediatek.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 27 Jan 2021 13:07:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJB=MMeMobznBiAUihJLBt5aeiiL+AtDWh6tajePu=Now@mail.gmail.com>
+Message-ID: <CAL_JsqJB=MMeMobznBiAUihJLBt5aeiiL+AtDWh6tajePu=Now@mail.gmail.com>
+Subject: Re: [PATCH v2] of/device: Update dma_range_map only when dev has
+ valid dma-ranges
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Tomasz Figa <tfiga@google.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-> Afaict, there's no need to initialize base0 and base1, they are both
-> assigned to before used.
+On Tue, Jan 19, 2021 at 4:52 AM Yong Wu <yong.wu@mediatek.com> wrote:
 >
-> Also, they are temporary variables within each case (even with the
-> fallthrough), so you should only need a single "base".
+> The commit e0d072782c73 ("dma-mapping: introduce DMA range map,
+> supplanting dma_pfn_offset") always update dma_range_map even though it was
+> already set, like in the sunxi_mbus driver. the issue is reported at [1].
+> This patch avoid this(Updating it only when dev has valid dma-ranges).
+
+only when dev *doesn't* have valid dma-ranges?
+
+> Meanwhile, dma_range_map contains the devices' dma_ranges information,
+> This patch moves dma_range_map before of_iommu_configure. The iommu
+> driver may need to know the dma_address requirements of its iommu
+> consumer devices.
 >
-Right. Fixed, will send in a v3 (I sent a v2 shortly after this one because I misplaced the #defines).
-
-
-> How about:
+> [1] https://lore.kernel.org/linux-arm-kernel/5c7946f3-b56e-da00-a750-be097c7ceb32@arm.com/
 >
-> 	mode = field_get(MDM9607_CAL_SEL_MASK, qfprom_cdata[2]);
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Frank Rowand <frowand.list@gmail.com>
+> Fixes: e0d072782c73 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset"),
+> Suggested-by: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  drivers/of/device.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
 >
-> and same below.
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index aedfaaafd3e7..1122daa8e273 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -162,9 +162,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>         mask = DMA_BIT_MASK(ilog2(end) + 1);
+>         dev->coherent_dma_mask &= mask;
+>         *dev->dma_mask &= mask;
+> -       /* ...but only set bus limit if we found valid dma-ranges earlier */
+> -       if (!ret)
+> +       /* ...but only set bus limit and range map if we found valid dma-ranges earlier */
+> +       if (!ret) {
+>                 dev->bus_dma_limit = end;
+> +               dev->dma_range_map = map;
+> +       }
 >
-> (I see that this would break the style of the file, perhaps we can clean
-> that up?)
+>         coherent = of_dma_is_coherent(np);
+>         dev_dbg(dev, "device is%sdma coherent\n",
+> @@ -172,6 +174,9 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
 >
-I'd rather not change that to keep it comparable to the downstream driver, should anything ever break and need investigation..
-
-
-> qfprom_csel seems unused and uninitialized.
-
-Fixed as well.
-
-
-Konrad
-
-
+>         iommu = of_iommu_configure(dev, np, id);
+>         if (PTR_ERR(iommu) == -EPROBE_DEFER) {
+> +               /* Don't touch range map if it wasn't set from a valid dma-ranges */
+> +               if (!ret)
+> +                       dev->dma_range_map = NULL;
+>                 kfree(map);
+>                 return -EPROBE_DEFER;
+>         }
+> @@ -181,7 +186,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>
+>         arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+>
+> -       dev->dma_range_map = map;
+>         return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(of_dma_configure_id);
+> --
+> 2.18.0
+>
