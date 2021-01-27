@@ -2,103 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A7A13050F8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 05:36:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC30A3050F9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 05:36:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231761AbhA0Ecp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 23:32:45 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:35219 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388496AbhAZXXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 18:23:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1611703315;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FFsgQkQMHGcNuO7prFnbNLIMkPeBzSiQZrxd3POXfNg=;
-        b=Kihxvzlqq1MbbO//yqVeXlI28T68f/yMLOkgQLQGqwxAr3EC59yoyeuZIJ9ki1NeL6VLbk
-        Jt72GxB8vjukeVG2vsZFYMp/hZYK+W1K1tKwmbwafkvMCQgb0tR2ZI4vaM8cYi9a2x9fZj
-        ZO4KoaXtLKXLUPD2GTa81ZV4ukjrg8Q=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-478-4FeLg38EN4uJEVDlGGUCcA-1; Tue, 26 Jan 2021 18:21:53 -0500
-X-MC-Unique: 4FeLg38EN4uJEVDlGGUCcA-1
-Received: by mail-qt1-f199.google.com with SMTP id f5so10207981qtf.15
-        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 15:21:53 -0800 (PST)
+        id S234581AbhA0EdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jan 2021 23:33:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57826 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389652AbhA0AGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jan 2021 19:06:46 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43212C061574
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 16:04:40 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id o20so39753pfu.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Jan 2021 16:04:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1vy4fxFjc+ojePEGm9S0MBi0jipTSfFhAgAo+uoqFzI=;
+        b=u/AqHyIpj76efLaeJLaQUIRyHE7+DJYLiusS7rShze9raXz0FM/d2HcGifBojAQhG7
+         Cb7RtDf4B59yOaYi6KGVhTJd3vcW8dxzcB8nqKT4MvsN/GUOr0ekIxo4qvHEmjPMtGgH
+         sff4lRxxRUByV0LhtjZxVOEvzMPqB6ZILutJ80aYjtCG0MDK9ddLYB11TFMZ7511nfwF
+         iHRvIYYxJHrh/ToP9Lu8VRi3rS7pV88CKvR25AyqwT+Tnw9Y4VBAnnM1HypOJk4rCiP9
+         Gw2AYzOZbCLuJWmjy6GoANye5qaHoVmz8dmF5Mgxmt1UNNi0SQJU9mO/dft6hlX//Am4
+         Nb7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=FFsgQkQMHGcNuO7prFnbNLIMkPeBzSiQZrxd3POXfNg=;
-        b=WRARw8bDCIj52OpALbncs3ORahbEe41SsgxXPbLlY+HPuVAmbF+DD1CPA05HUV8bN1
-         qYwKOD2JvI6X9e3dGL/HimHeAUCmvXtVOp6iSLdbnSbQFsauFAgKzLz2tVuP6SpI36wP
-         XicvEtrkjr2glDMmfWXbyhB5M59U062gI9NvqvDHV14G1WuYv84uesyBfPLl1kKjvkFI
-         lGms4xaF23ep5ftW15ciXGj5fGQNFO9sITtVNVJBYCT3AMmBvoUU7hXnESAZibNKZCg/
-         DmT7PlfsS7bhaKvhHKK8Xseho2TiKlPjyOkoYJN08nl1fDozhvy+PhpXnQELZIE7EjLA
-         eFwA==
-X-Gm-Message-State: AOAM530g3RPbdaQDAZ1NYG4/1UQ/RmEyIN2i3QkqnUAPWXLqdpaw5wVB
-        VRl1Qc4TYFokX7k99E4kKfSz+L96/iY5HwpK8gFUJGtBFPM72Kd2xjInaKH583p7bQTr3EHpuIZ
-        L2RgTpYDERbTqgzqRk+I59Q==
-X-Received: by 2002:a0c:c384:: with SMTP id o4mr8011136qvi.21.1611703313446;
-        Tue, 26 Jan 2021 15:21:53 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyQwxGlyfMcY1NOcyyinpE4uDbuVGu0DgI2XyVdUzWX/kxECSPbaveR0jaQIYaDyMXFFNGuVg==
-X-Received: by 2002:a0c:c384:: with SMTP id o4mr8011119qvi.21.1611703313228;
-        Tue, 26 Jan 2021 15:21:53 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id c12sm154500qtq.76.2021.01.26.15.21.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jan 2021 15:21:52 -0800 (PST)
-Subject: Re: [PATCH v2 0/3] clk: clk-axiclgen: add support for ZynqMP
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        lars@metafoo.de, linux-fpga@vger.kernel.org, mdf@kernel.org
-References: <20210126110826.24221-1-alexandru.ardelean@analog.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <eba46db2-b528-0f6f-7e23-f61fa3e265b2@redhat.com>
-Date:   Tue, 26 Jan 2021 15:21:50 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1vy4fxFjc+ojePEGm9S0MBi0jipTSfFhAgAo+uoqFzI=;
+        b=sSvu/UAYVIdvCfjEbxWJThYHMT32xPAUqrGPCuGiCRQzxgEFyIYnn1FzPjwgLIEXmM
+         z4RHKvebpxxex3E0ppPz8FrSi/ZjZ4iBPGvGmnJaJiEkr/l/BJiPPZaAuX2DFwtO3z2w
+         AWKiY49XBkVJzYq8amY+q/cSpe8ahbqM8nrsOHx+FUCpwSxRbl1AocWDJINmRFSlyeIt
+         BhzFMccBQpEj6YEEES8AdmtTsiSGrlie0tZjABPEZw5drmVm4oYuHryGzJhck1QWs6jI
+         PqcDZn2l9Uo/6H9Sdic0UPc5HywQGE6/PEoQoqmuQJhJS0QLTM1GT9kyRq37nR6mRPlg
+         GRiw==
+X-Gm-Message-State: AOAM530SbLAv8bBxVWRlpv2b/PLjo13SMGuTJLpqPqC0SRspZ79oiPoD
+        yH0bz1YArKlENB3ABETYRRyXIg==
+X-Google-Smtp-Source: ABdhPJz7UFVIoVecPqAF2EAVnuw1EjqKtzt7Gh+4EwyTCwPaV7ovulOBqCooWTC9qHPVV6TZZCBp1A==
+X-Received: by 2002:a05:6a00:8d0:b029:1b6:3581:4f41 with SMTP id s16-20020a056a0008d0b02901b635814f41mr7482093pfu.56.1611705879609;
+        Tue, 26 Jan 2021 16:04:39 -0800 (PST)
+Received: from x1.hsd1.or.comcast.net ([2601:1c0:4701:ae70:515f:b0ad:6302:bbc2])
+        by smtp.gmail.com with ESMTPSA id y5sm213536pfq.96.2021.01.26.16.04.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Jan 2021 16:04:38 -0800 (PST)
+From:   Drew Fustini <drew@beagleboard.org>
+To:     bcousson@baylibre.com, Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-gpio@vger.kernel.org
+Cc:     Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH 1/2] ARM: dts: am335x-pocketbeagle: unique gpio-line-names
+Date:   Tue, 26 Jan 2021 16:03:03 -0800
+Message-Id: <20210127000303.436595-1-drew@beagleboard.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210126110826.24221-1-alexandru.ardelean@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Based on linux-gpio discussion [1], it is best practice to make the
+gpio-line-names unique. Generic names like "[ethernet]" are replaced
+with the name of the unique signal on the AM3358 SoC ball corresponding
+to the gpio line. "[NC]" is also renamed to the standard "NC" name to
+represent "not connected".
 
-On 1/26/21 3:08 AM, Alexandru Ardelean wrote:
-> Previous set:
->  https://lore.kernel.org/linux-clk/20201221144224.50814-1-alexandru.ardelean@analog.com/
->
-> Changelog v1 -> v2:
-> * split patch 'clk: axi-clkgen: add support for ZynqMP (UltraScale)'
->   into:
->    - clk: axi-clkgen: remove ARCH dependency in Kconfig
->    - clk: clk-axiclkgen: add ZynqMP PFD and VCO limits
-> * essentially removed the 'adi,zynq-axi-clkgen-2.00.a' compat string
-> * removed architecture dependency on build for driver; the driver should
->   be usable also on PCIe setups
->
-> Alexandru Ardelean (3):
->   clk: axi-clkgen: remove ARCH dependency in Kconfig
->   clk: clk-axiclkgen: add ZynqMP PFD and VCO limits
->   dt-bindings: clock: adi,axi-clkgen: add compatible string for ZynqMP
->     support
->
->  .../devicetree/bindings/clock/adi,axi-clkgen.yaml     |  1 +
->  drivers/clk/Kconfig                                   |  1 -
->  drivers/clk/clk-axi-clkgen.c                          | 11 +++++++++++
->  3 files changed, 12 insertions(+), 1 deletion(-)
+[1] https://lore.kernel.org/linux-gpio/20201216195357.GA2583366@x1/
 
-This whole set looks fine.
+Signed-off-by: Drew Fustini <drew@beagleboard.org>
+---
+ arch/arm/boot/dts/am335x-pocketbeagle.dts | 140 +++++++++++-----------
+ 1 file changed, 70 insertions(+), 70 deletions(-)
 
-Reviewed-by: Tom Rix <trix@redhat.com>
+diff --git a/arch/arm/boot/dts/am335x-pocketbeagle.dts b/arch/arm/boot/dts/am335x-pocketbeagle.dts
+index d526c5941c9b..209cdd17dc1e 100644
+--- a/arch/arm/boot/dts/am335x-pocketbeagle.dts
++++ b/arch/arm/boot/dts/am335x-pocketbeagle.dts
+@@ -61,51 +61,51 @@ vmmcsd_fixed: fixedregulator0 {
+ 
+ &gpio0 {
+ 	gpio-line-names =
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
+ 		"P1.08 [SPI0_CLK]",
+ 		"P1.10 [SPI0_MISO]",
+ 		"P1.12 [SPI0_MOSI]",
+ 		"P1.06 [SPI0_CS]",
+ 		"[MMC0_CD]",
+ 		"P2.29 [SPI1_CLK]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
++		"[SYSBOOT 12]",
++		"[SYSBOOT 13]",
++		"[SYSBOOT 14]",
++		"[SYSBOOT 15]",
+ 		"P1.26 [I2C2_SDA]",
+ 		"P1.28 [I2C2_SCL]",
+ 		"P2.11 [I2C1_SDA]",
+ 		"P2.09 [I2C1_SCL]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
++		"NC",
+ 		"P2.31 [SPI1_CS]",
+ 		"P1.20 [PRU0.16]",
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
+ 		"P2.03",
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
+ 		"P1.34",
+ 		"P2.19",
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
+ 		"P2.05 [UART4_RX]",
+ 		"P2.07 [UART4_TX]";
+ };
+ 
+ &gpio1 {
+ 	gpio-line-names =
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
+ 		"P2.25 [SPI1_MOSI]",
+ 		"P1.32 [UART0_RX]",
+ 		"P1.30 [UART0_TX]",
+@@ -113,10 +113,10 @@ &gpio1 {
+ 		"P2.33",
+ 		"P2.22",
+ 		"P2.18",
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
+ 		"P2.01 [PWM1A]",
+-		"[NC]",
++		"NC",
+ 		"P2.10",
+ 		"[USR LED 0]",
+ 		"[USR LED 1]",
+@@ -126,35 +126,35 @@ &gpio1 {
+ 		"P2.04",
+ 		"P2.02",
+ 		"P2.08",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]";
++		"NC",
++		"NC",
++		"NC";
+ };
+ 
+ &gpio2 {
+ 	gpio-line-names =
+ 		"P2.20",
+ 		"P2.17",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
++		"NC",
+ 		"[EEPROM_WP]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[SYSBOOT]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
++		"[SYSBOOT 0]",
++		"[SYSBOOT 1]",
++		"[SYSBOOT 2]",
++		"[SYSBOOT 3]",
++		"[SYSBOOT 4]",
++		"[SYSBOOT 5]",
++		"[SYSBOOT 6]",
++		"[SYSBOOT 7]",
++		"[SYSBOOT 8]",
++		"[SYSBOOT 9]",
++		"[SYSBOOT 10]",
++		"[SYSBOOT 11]",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
+ 		"P2.35 [AIN5]",
+ 		"P1.02 [AIN6]",
+ 		"P1.35 [PRU1.10]",
+@@ -169,19 +169,19 @@ &gpio2 {
+ 
+ &gpio3 {
+ 	gpio-line-names =
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
+ 		"[I2C0_SDA]",
+ 		"[I2C0_SCL]",
+-		"[JTAG]",
+-		"[JTAG]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
++		"[JTAG EMU0]",
++		"[JTAG EMU1]",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
+ 		"P1.03 [USB1]",
+ 		"P1.36 [PWM0A]",
+ 		"P1.33 [PRU0.1]",
+@@ -191,16 +191,16 @@ &gpio3 {
+ 		"P2.34 [PRU0.5]",
+ 		"P2.28 [PRU0.6]",
+ 		"P1.29 [PRU0.7]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]",
+-		"[NC]";
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC";
+ };
+ 
+ &am33xx_pinmux {
+-- 
+2.25.1
 
