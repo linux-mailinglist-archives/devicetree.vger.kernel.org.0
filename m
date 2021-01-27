@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6503E305F73
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:22:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFEB6305FAA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:33:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235784AbhA0PW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 10:22:28 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47492 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343848AbhA0PVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:21:54 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RFKj67061299;
-        Wed, 27 Jan 2021 09:20:45 -0600
+        id S233445AbhA0PcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 10:32:24 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:57376 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235789AbhA0P1d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:27:33 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RFQcW1059487;
+        Wed, 27 Jan 2021 09:26:38 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611760845;
-        bh=63J470PcJJ9jKO5/EhqKwZZS/3X0l3imNQLx4QdZ30w=;
+        s=ti-com-17Q1; t=1611761198;
+        bh=R1DxFpcPAnVTb0T18okNye5fs9IvqOnBIgZ/7ETCjnQ=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=H+03+aX4pt3gq/v16Qj6RCAi1P/4CJt5+KDlheRO10ztZe8fVcK+uBmoy3wGaLVtj
-         09silYx96SBD5tc43IuBC/ZjV/UbGusmV9EhHH7LmB4YP3SKJNDFotjg8RIiimDKDW
-         SemO6yWXm6c7ksZ+4sbY/H+X8EH6qStHGFyQm/tc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RFKjhj026205
+        b=iyMgJSU1U+WNlZLmUPLe8oLVZHsNiNt8+GcoitvGKyaIF8fKmdC8fr1zysQXX9KFD
+         aKL7lMUKwtLQoPyDLBUyiAieI8Z+WMaIeojdjgwCC8QtEKaoH6kx00qX3Clnkjj10n
+         hLCx0qnlXGkNkzccvbKJCZ+kx06GyQ22ZJtEiTag=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RFQcXA115207
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Jan 2021 09:20:45 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 27 Jan 2021 09:26:38 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
- Jan 2021 09:20:44 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2021 09:26:37 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 27 Jan 2021 09:20:44 -0600
+ Frontend Transport; Wed, 27 Jan 2021 09:26:37 -0600
 Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RFKecd089291;
-        Wed, 27 Jan 2021 09:20:41 -0600
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j7200: Add support for higher
- speed modes in MMCSD subsystems
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RFQXbu129714;
+        Wed, 27 Jan 2021 09:26:34 -0600
+Subject: Re: [PATCH v3 1/2] dts: ti: k3-j7200-main: Add support for zeroth
+ instance of GPIO subsystem
 To:     Nishanth Menon <nm@ti.com>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>,
@@ -48,15 +48,15 @@ CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 References: <20210127150815.16991-1-a-govindraju@ti.com>
- <20210127150815.16991-3-a-govindraju@ti.com>
- <20210127151431.pzqpbtumqzpqiqop@delta>
+ <20210127150815.16991-2-a-govindraju@ti.com>
+ <20210127151256.tgbhpngy6fi43edj@create>
 From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <6f9ddf85-e1e9-426a-2436-7f323314959a@ti.com>
-Date:   Wed, 27 Jan 2021 20:50:39 +0530
+Message-ID: <9308ad5d-48bd-ebd2-2ea3-9775b8c11163@ti.com>
+Date:   Wed, 27 Jan 2021 20:56:32 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210127151431.pzqpbtumqzpqiqop@delta>
+In-Reply-To: <20210127151256.tgbhpngy6fi43edj@create>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -67,37 +67,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Nishanth,
 
-On 27/01/21 8:44 pm, Nishanth Menon wrote:
+On 27/01/21 8:42 pm, Nishanth Menon wrote:
 > On 20:38-20210127, Aswath Govindraju wrote:
->> The following speed modes are now supported in J7200 SoC,
->> - HS200 and HS400 modes at 1.8 V card voltage, in MMCSD0 subsystem [1].
->> - UHS-I speed modes in MMCSD1 subsystem [1].
->>
->> Add support for UHS-I modes by adding voltage regulator device tree nodes
->> and corresponding pinmux details, to power cycle and voltage switch cards.
->> Also set respective tags in sdhci0 and remove no-1-8-v tag from sdhci1
->> device tree nodes.
->>
->> [1] - section 12.3.6.1.1 MMCSD Features, in
->>       https://www.ti.com/lit/ug/spruiu1a/spruiu1a.pdf
+>> Add support for the zeroth instance of GPIO subsystem in the main domain.
 >>
 >> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>
->> performance test logs using EXT4 filesystem for eMMC HS400 speed mode,
->> https://pastebin.ubuntu.com/p/KFphDYXj93/
->>
 > 
-> 5.11.0-rc3-next-20210118-00004 :
 > 
-> a) could you make sure to post patches when you test with latest next?
-> b) I see 2 patches in this series, but delta seems to be 4 patches, is
-> there a dependency I am not aware of?
+> I really dont want to pick up one patch per node instance. It is hard
+> to scale and just creates a lot of noise.
 > 
 
-There are no dependencies. The other two commits are completely
-unrelated. From next time I will make sure that I use the latest next
-and the delta matches.
+As the main goal of the patch series was to add support for higher speed
+modes in MMC, I added only the required ones. If required I will send a
+follow up patch to add the remaining GPIO nodes.
 
 Thanks,
 Aswath
+
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 17 +++++++++++++++++
+>>  1 file changed, 17 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+>> index 4cc2e9094d0e..75dffbb26d52 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+>> @@ -294,6 +294,23 @@
+>>  		pinctrl-single,function-mask = <0xffffffff>;
+>>  	};
+>>  
+>> +	main_gpio0: gpio@600000 {
+>> +		compatible = "ti,j721e-gpio", "ti,keystone-gpio";
+>> +		reg = <0x0 0x00600000 0x0 0x100>;
+>> +		gpio-controller;
+>> +		#gpio-cells = <2>;
+>> +		interrupt-parent = <&main_gpio_intr>;
+>> +		interrupts = <145>, <146>, <147>, <148>,
+>> +			     <149>;
+>> +		interrupt-controller;
+>> +		#interrupt-cells = <2>;
+>> +		ti,ngpio = <69>;
+>> +		ti,davinci-gpio-unbanked = <0>;
+>> +		power-domains = <&k3_pds 105 TI_SCI_PD_EXCLUSIVE>;
+>> +		clocks = <&k3_clks 105 0>;
+>> +		clock-names = "gpio";
+>> +	};
+>> +
+>>  	main_uart0: serial@2800000 {
+>>  		compatible = "ti,j721e-uart", "ti,am654-uart";
+>>  		reg = <0x00 0x02800000 0x00 0x100>;
+>> -- 
+>> 2.17.1
+>>
+> 
+
