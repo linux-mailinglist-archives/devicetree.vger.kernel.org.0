@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CD0D305EF7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E36305F05
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:03:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235146AbhA0PBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 10:01:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50520 "EHLO
+        id S235438AbhA0PCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 10:02:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235291AbhA0O74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 09:59:56 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4720BC0698D3
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:51:01 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id bl23so3037845ejb.5
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:51:01 -0800 (PST)
+        with ESMTP id S235323AbhA0PAg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:00:36 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1CA3C0698D7
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:51:03 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id gx5so3026621ejb.7
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 06:51:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=rtnlfnM1gUAXVxSsCOu/wsiGW/5dkOKL2/2b79ivYgU=;
-        b=RJuEcSI6cCc0QJ49iSKGj0TOr7ltx1HlnR9TU2LU6KHrj3l810ZPZtNH1AQcQZoWhE
-         LzazDEZogfsgn6BHD+RfWEbsLFX2H/O1vt0dACAtGl/nIhJ1LsoPhEnV+9Zzftc04zUh
-         +/AZ9k1DJThvm5fhjNxjpcwAR63yy45bASw8VhtDUsgm27ykNwNoXvQRdQm3pS52msMX
-         GYsNdNi0dEY1m8pN45i1lnTTpwnA2cmeomquB2eUpwz2MzvDDSiRcBdjwaD1w+K/brZS
-         bZlDRCsL3Ob3U6pKRbJ9CqIaVJcLagtATu+yLqrUhgymA399TBlrhLeddcOISzWn7q+W
-         qk3g==
+        bh=UlBA+jrFoLLefklW/JXu8ZcQb+a+i4EuznUW8mxqVQQ=;
+        b=CGMbTvS2lf8nsCaX9+bOJcf6KhPhbUKzlDQEG61YVY7AcLoWfIUfq9Cojl+IKn1C0F
+         Cjnlg2EExpubmuFUTExuGUv3wbQUb97g/TWTGov3zwjwl0aM49TgymuB+f8MUX6EvOHU
+         zRMSOV31PKgM7RzTtLVTz5iWThOjNfBzWlumITfcY60EKnSW3XquKpvyhN2hjRRdA/1H
+         Y+QvUZfsva3jBHUFiPdsEShRkcTuDxQyXbBfT1g02oVAeLHyNJPwNy/qdRsxbia6dtzq
+         9skOLk8kd9JTsGiesZY3PZXRRGwITJnuFPxkq9gRG42eAGJtwC3pzqgdeeg596meSv3s
+         WUhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=rtnlfnM1gUAXVxSsCOu/wsiGW/5dkOKL2/2b79ivYgU=;
-        b=t6bn2XaFYA+wI/IpHmhHe1dRfr//wPysuc8T0aPae4SVx7Zg/CfH10MrDhehhEXLIj
-         2HGogEZWSacWzrgdnnqtzyqiOLMi3lL839GipZ8JNfn69k5xMPi/McmxC9zE6bO+xGRA
-         ldfa9aBEXGi3Qg0ie/OwbFP75AqoQXqHaD6ZvEQ/zyxVW5SdNkU5qbHtFFGXME9OcFPl
-         BK8XnXnWcu0FnqEJcwRQasQu/MzS4HCTC65WJyTpx1usPfsMtSXAP0Uz37R65uhrXm36
-         jptx2tNiEmwAfLIV8Q2pNlrV7oi+0taTMYFnbwbdxQz6PpdwiTlSjx5B/PCAuSFWKUYr
-         khRA==
-X-Gm-Message-State: AOAM530EnTyC1ZU3Z/uxQEG/a6A32u6meR1qbtXrFsnKjZkad/3YdX5i
-        TbdknPU1hNckLZ4xO9Ty7bYFfA==
-X-Google-Smtp-Source: ABdhPJzdtnL5JDv6Pyd7UzxniWmf/ESKWK6se9fQBojXD8gE7/2Lz8FamOwSEnSEUfSW8XRiWz+MxQ==
-X-Received: by 2002:a17:906:a20e:: with SMTP id r14mr7027269ejy.404.1611759060060;
-        Wed, 27 Jan 2021 06:51:00 -0800 (PST)
+        bh=UlBA+jrFoLLefklW/JXu8ZcQb+a+i4EuznUW8mxqVQQ=;
+        b=PIdqWemhdyTtj1WCA4HAYotWgsFA6cf5JwJFgBHDmmC1eHq6F6yHQKJaEW7+9QptdM
+         brmdMY0fUphT0+/2gSMIwcGMDagy+wX21CKDs97olLXBwND2j+qDeryMm5AvhR9LthwW
+         9lPrew6RkvA71m7Bb8MB6e7y2qVaRP6Mpx+2rnFWOsa77HGg00Uai4nrkV9VQ8XZ6yhW
+         TCuR1/VNgB0U9ee5bUOLrcYYgYAj4go5LjX9B4WclAv2husSJfjV1ul5B2oItStAqwxm
+         Wy76c3CwdFtGm0oMBVhgYVQ/xnTiT+k+ouCl9uGIwIZiUrsRbdjbPzZr19Fp0HuXJ55e
+         WALA==
+X-Gm-Message-State: AOAM532sGgFW0spEX2+EXKv/EO74LrLW3q7YIjsB1fbjpJzcWLqsLKjc
+        BLPEr4io4rD6bwOHaKe8yEPQsA==
+X-Google-Smtp-Source: ABdhPJw1E4YDaad25yfHAwhuZQcLCWcY0d5ypClcjxJQpYr/VHJPUtT5w/pyIaDY5osGm++76eyj4g==
+X-Received: by 2002:a17:906:3792:: with SMTP id n18mr7002048ejc.47.1611759062601;
+        Wed, 27 Jan 2021 06:51:02 -0800 (PST)
 Received: from localhost.localdomain ([2a02:2450:102f:d6a:62e7:589a:1625:7acc])
-        by smtp.gmail.com with ESMTPSA id ah12sm947799ejc.70.2021.01.27.06.50.57
+        by smtp.gmail.com with ESMTPSA id ah12sm947799ejc.70.2021.01.27.06.51.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 06:50:59 -0800 (PST)
+        Wed, 27 Jan 2021 06:51:01 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
@@ -66,9 +66,9 @@ Cc:     Tomasz Figa <tfiga@chromium.org>,
         Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH v3 21/22] arm64: dts: sdm845-db845c: Configure regulators for camss node
-Date:   Wed, 27 Jan 2021 15:49:29 +0100
-Message-Id: <20210127144930.2158242-22-robert.foss@linaro.org>
+Subject: [PATCH v3 22/22] arm64: dts: sdm845-db845c: Enable ov8856 sensor and connect to ISP
+Date:   Wed, 27 Jan 2021 15:49:30 +0100
+Message-Id: <20210127144930.2158242-23-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210127144930.2158242-1-robert.foss@linaro.org>
 References: <20210127144930.2158242-1-robert.foss@linaro.org>
@@ -78,28 +78,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add regulator to camss device tree node.
+Enable camss & ov8856 DT nodes.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index a943b3f353ce..5842ab65789c 100644
+index 5842ab65789c..d89286f6aacb 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
 +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1106,6 +1106,10 @@ &cci {
- 	status = "okay";
+@@ -1108,6 +1108,21 @@ &cci {
+ 
+ &camss {
+ 	vdda-supply = <&vreg_l1a_0p875>;
++
++	status = "ok";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			csiphy0_ep: endpoint {
++				clock-lanes = <1>;
++				data-lanes = <1 2 3 4>;
++				remote-endpoint = <&ov8856_ep>;
++			};
++		};
++	};
  };
  
-+&camss {
-+	vdda-supply = <&vreg_l1a_0p875>;
-+};
-+
  &cci_i2c0 {
- 	camera@10 {
- 		compatible = "ovti,ov8856";
+@@ -1139,7 +1154,7 @@ camera@10 {
+ 		avdd-supply = <&cam0_avdd_2v8>;
+ 		dvdd-supply = <&cam0_dvdd_1v2>;
+ 
+-		status = "disable";
++		status = "ok";
+ 
+ 		port {
+ 			ov8856_ep: endpoint {
+@@ -1147,7 +1162,7 @@ ov8856_ep: endpoint {
+ 				link-frequencies = /bits/ 64
+ 					<360000000 180000000>;
+ 				data-lanes = <1 2 3 4>;
+-//				remote-endpoint = <&csiphy0_ep>;
++				remote-endpoint = <&csiphy0_ep>;
+ 			};
+ 		};
+ 	};
 -- 
 2.27.0
 
