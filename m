@@ -2,111 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78C56306556
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 21:45:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4631D3066B2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 22:49:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231239AbhA0Unb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 15:43:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40360 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233256AbhA0Un3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 15:43:29 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D1AC061573;
-        Wed, 27 Jan 2021 12:42:49 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id a20so1991696pjs.1;
-        Wed, 27 Jan 2021 12:42:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=heAqkYphZYwX3mYVMDdP10R2l2TFo2HmDmbz1DiFkNE=;
-        b=K0T81wAKtAFxYGJqnI8tNi9jqePKm9zDwFtaAH9ROlxwFJ3ja4XBrZdQlyTB3YScyf
-         Vs4wulo78erERFxQi1GI3/yzOPf8n2KcHcd6ZaZNx13DndiA8fyqLbb1rUQk4PdQF83O
-         +xVsD8JcOvts1HfSuUZJsVjhIrP+d+n14QYMS5S+cFI/6r9FFVUZY8rsLK3Fh06ERuP4
-         M3634ytlArQvdjfLm0ABdYmDYFPOAxhp65cYAgefIb3U+yukrn/HuaRK7FzQaxVcbjcI
-         5MTN0gqK/4/1MKgl3iyejTRBDCFeT57wU5DZmJG4owiXL9r7dttpDJI9Uh6WClas3X9O
-         TjwA==
+        id S234708AbhA0Vr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 16:47:26 -0500
+Received: from mail-pg1-f182.google.com ([209.85.215.182]:39407 "EHLO
+        mail-pg1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236204AbhA0VpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 16:45:20 -0500
+Received: by mail-pg1-f182.google.com with SMTP id o63so2525486pgo.6;
+        Wed, 27 Jan 2021 13:45:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=heAqkYphZYwX3mYVMDdP10R2l2TFo2HmDmbz1DiFkNE=;
-        b=ajM6cD9VvPywMcGN3S8+p2xWtsG3XzjSIiNEBbt04HNe/w3zzh+3JrWmdqYY0HBIJo
-         JuPG+h0y0b+pCEVGM39nI+xCd6EdAYRuEf/16LN7ijAJTEu3KzhFiQmU8BUYPRjH8Kyj
-         vRThnVFjBhbEI2qqOxMi+FATAcc5lFa3f/naAQH3OMWxOzhaV2rUTZZmB0/Y47TFw8xX
-         MxP78fbOUEJ6hyFMBwXGioV3tRvUN0jBSiuvka8noi3FiHkLJTJh+WESV5bwifqZP5lQ
-         qsF3Tb2oX+M12jwChd4PS92xyV1FfDvnutplXZhyWaq22M/hkpd5SjFcPv9pbdg/rLuv
-         jUkQ==
-X-Gm-Message-State: AOAM532QjvgJ/FU9KiIEmS8QZ7gYwue0VBSAZPKGnqcrKlbUS2RVszZO
-        12P4i8afUWVb4FZ/WwkEEss=
-X-Google-Smtp-Source: ABdhPJyrDUsN/Czs9FxNo3YQSGdUkHSsN4MG+RN/LXd3icOH8HO4d6Aya9e6WjnHk3Ic8QmrVWjzeQ==
-X-Received: by 2002:a17:902:edcd:b029:df:d2b1:ecf0 with SMTP id q13-20020a170902edcdb02900dfd2b1ecf0mr13184394plk.15.1611780169223;
-        Wed, 27 Jan 2021 12:42:49 -0800 (PST)
-Received: from google.com ([2620:15c:211:201:9dd5:b47b:bb84:dede])
-        by smtp.gmail.com with ESMTPSA id a72sm3457344pfa.126.2021.01.27.12.42.47
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sDeIXSgOSJgnWPOCqP8Nrlw9FK+O7v245RBGBzoO0fM=;
+        b=regp5yJ5MwmANSrdy8u5pc5vwci3LyyH1hpNtRc5WKdguWZWIaYCOmlr+BvB3Ms7IQ
+         k10t3pTVVHjPfpYPNi/rr09A6qg5td1z3AKyJ6seCWHxH55ZeoL/M5qMoZH5+ATL/CpN
+         q9smpYfT88fi2Uh0bc4Hn9+cE+usK0eC23APfhVVNZlwleL7oFXd3s9vMMzWGAfyLM6d
+         NTCI+nt0cGGn6MMP3OHRvUAK8h1X1avS6992pJytfr3qhd+eTFwYwyMpVBVat1py1nFt
+         0bCMyUw3tUHV+8XuqOicrPNC7/3+T6FerXfaUF16i/qcWhjdFdpvY4b/reXX/oVUxeCF
+         4sOQ==
+X-Gm-Message-State: AOAM5305Fdimu3c0LfSSKY3C+ako3mNFD6VTy7FR6mC8wV+1ISm4/A3/
+        V/8Sv7UpF23naThOQEv7OEk=
+X-Google-Smtp-Source: ABdhPJzAzr7HT6QMuvbPgDdb7aSVlTEiXldcET/CZ3C8NtvJ+FDQAbpXlqRbiHozJwVNR1nwXjxisA==
+X-Received: by 2002:a62:8f96:0:b029:1b7:75a9:a8b7 with SMTP id n144-20020a628f960000b02901b775a9a8b7mr12984299pfd.28.1611783879399;
+        Wed, 27 Jan 2021 13:44:39 -0800 (PST)
+Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
+        by smtp.gmail.com with ESMTPSA id p128sm451816pfp.210.2021.01.27.13.44.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jan 2021 12:42:47 -0800 (PST)
-Sender: Minchan Kim <minchan.kim@gmail.com>
-Date:   Wed, 27 Jan 2021 12:42:45 -0800
-From:   Minchan Kim <minchan@kernel.org>
-To:     Michal Hocko <mhocko@suse.com>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        linux-mm <linux-mm@kvack.org>,
-        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
-        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
-        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
-        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
-        linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v4 2/4] mm: failfast mode with __GFP_NORETRY in
- alloc_contig_range
-Message-ID: <YBHQRY8kw8/wjFK8@google.com>
-References: <20210121175502.274391-1-minchan@kernel.org>
- <20210121175502.274391-3-minchan@kernel.org>
- <20210125131200.GG827@dhcp22.suse.cz>
- <YA8dEFSrHBb9muFr@google.com>
- <20210126074449.GA827@dhcp22.suse.cz>
+        Wed, 27 Jan 2021 13:44:38 -0800 (PST)
+Date:   Wed, 27 Jan 2021 13:44:37 -0800
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Nava kishore Manne <navam@xilinx.com>,
+        Moritz Fischer <mdf@kernel.org>,
+        "trix@redhat.com" <trix@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>,
+        Appana Durga Kedareswara Rao <appanad@xilinx.com>
+Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
+Message-ID: <YBHexYg/Bw1U7LQm@epycbox.lan>
+References: <20210118024318.9530-1-nava.manne@xilinx.com>
+ <20210118024318.9530-3-nava.manne@xilinx.com>
+ <YAYo1ksLfMMNxPuL@epycbox.lan>
+ <MWHPR02MB26239A3F539DE8E053D512D5C2A09@MWHPR02MB2623.namprd02.prod.outlook.com>
+ <YAyyU9dybSdmOAQL@epycbox.lan>
+ <MWHPR02MB26231DAF3A8E2A65EF25A4C3C2BB9@MWHPR02MB2623.namprd02.prod.outlook.com>
+ <5ae6d181-3258-a877-23c5-6ba81c40b10a@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210126074449.GA827@dhcp22.suse.cz>
+In-Reply-To: <5ae6d181-3258-a877-23c5-6ba81c40b10a@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 26, 2021 at 08:44:49AM +0100, Michal Hocko wrote:
-> On Mon 25-01-21 11:33:36, Minchan Kim wrote:
-> > On Mon, Jan 25, 2021 at 02:12:00PM +0100, Michal Hocko wrote:
-> > > On Thu 21-01-21 09:55:00, Minchan Kim wrote:
-> > > > Contiguous memory allocation can be stalled due to waiting
-> > > > on page writeback and/or page lock which causes unpredictable
-> > > > delay. It's a unavoidable cost for the requestor to get *big*
-> > > > contiguous memory but it's expensive for *small* contiguous
-> > > > memory(e.g., order-4) because caller could retry the request
-> > > > in different range where would have easy migratable pages
-> > > > without stalling.
-> > > > 
-> > > > This patch introduce __GFP_NORETRY as compaction gfp_mask in
-> > > > alloc_contig_range so it will fail fast without blocking
-> > > > when it encounters pages needed waiting.
-> > > 
-> > > I am not against controling how hard this allocator tries with gfp mask
-> > > but this changelog is rather void on any data and any user.
-> > > 
-> > > It is also rather dubious to have retries when then caller says to not
-> > > retry.
-> > 
-> > Since max_tries is 1 with ++tries, it shouldn't retry.
+On Wed, Jan 27, 2021 at 10:16:32AM +0100, Michal Simek wrote:
+> Hi
 > 
-> OK, I have missed that. This is a tricky code. ASYNC mode should be
-> completely orthogonal to the retries count. Those are different things.
-> Page allocator does an explicit bail out based on __GFP_NORETRY. You
-> should be doing the same.
+> On 1/27/21 9:57 AM, Nava kishore Manne wrote:
+> > Hi Moritz,
+> > 
+> > 	Please find my response inline.
+> > 
+> >> -----Original Message-----
+> >> From: Moritz Fischer <mdf@kernel.org>
+> >> Sent: Sunday, January 24, 2021 5:04 AM
+> >> To: Nava kishore Manne <navam@xilinx.com>
+> >> Cc: Moritz Fischer <mdf@kernel.org>; trix@redhat.com;
+> >> robh+dt@kernel.org; Michal Simek <michals@xilinx.com>; linux-
+> >> fpga@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> >> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git
+> >> <git@xilinx.com>; chinnikishore369@gmail.com; Appana Durga Kedareswara
+> >> Rao <appanad@xilinx.com>
+> >> Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager driver
+> >>
+> >> Hi Nava,
+> >>
+> >> On Fri, Jan 22, 2021 at 10:34:15AM +0000, Nava kishore Manne wrote:
+> >>> Hi Moritz,
+> >>>
+> >>> 	Thanks for the review.
+> >>> Please find my response inline.
+> >>>
+> >>>> -----Original Message-----
+> >>>> From: Moritz Fischer <mdf@kernel.org>
+> >>>> Sent: Tuesday, January 19, 2021 6:03 AM
+> >>>> To: Nava kishore Manne <navam@xilinx.com>
+> >>>> Cc: mdf@kernel.org; trix@redhat.com; robh+dt@kernel.org; Michal
+> >>>> Simek <michals@xilinx.com>; linux-fpga@vger.kernel.org;
+> >>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> >>>> linux- kernel@vger.kernel.org; git <git@xilinx.com>;
+> >>>> chinnikishore369@gmail.com; Appana Durga Kedareswara Rao
+> >>>> <appanad@xilinx.com>
+> >>>> Subject: Re: [PATCH 3/3] fpga: versal-fpga: Add versal fpga manager
+> >>>> driver
+> >>>>
+> >>>> Hi Nava,
+> >>>>
+> >>>> On Mon, Jan 18, 2021 at 08:13:18AM +0530, Nava kishore Manne wrote:
+> >>>>> This patch adds driver for versal fpga manager.
+> >>>> Nit: Add support for Xilinx Versal FPGA manager
+> >>>
+> >>> Will fix in v2.
+> >>>
+> >>>>>
+> >>>>> PDI source type can be DDR, OCM, QSPI flash etc..
+> >>>> No idea what PDI is :)
+> >>>
+> >>> Programmable device image (PDI).
+> >>> This file is generated by Xilinx Vivado tool and it contains configuration data
+> >> objects.
+> >>>
+> >>>>> But driver allocates memory always from DDR, Since driver supports
+> >>>>> only DDR source type.
+> >>>>>
+> >>>>> Signed-off-by: Appana Durga Kedareswara rao
+> >>>>> <appana.durga.rao@xilinx.com>
+> >>>>> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> >>>>> ---
+> >>>>>  drivers/fpga/Kconfig       |   8 ++
+> >>>>>  drivers/fpga/Makefile      |   1 +
+> >>>>>  drivers/fpga/versal-fpga.c | 149
+> >>>>> +++++++++++++++++++++++++++++++++++++
+> >>>>>  3 files changed, 158 insertions(+)  create mode 100644
+> >>>>> drivers/fpga/versal-fpga.c
+> >>>>>
+> >>>>> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig index
+> >>>>> 5645226ca3ce..9f779c3a6739 100644
+> >>>>> --- a/drivers/fpga/Kconfig
+> >>>>> +++ b/drivers/fpga/Kconfig
+> >>>>> @@ -216,4 +216,12 @@ config FPGA_MGR_ZYNQMP_FPGA
+> >>>>>  	  to configure the programmable logic(PL) through PS
+> >>>>>  	  on ZynqMP SoC.
+> >>>>>
+> >>>>> +config FPGA_MGR_VERSAL_FPGA
+> >>>>> +        tristate "Xilinx Versal FPGA"
+> >>>>> +        depends on ARCH_ZYNQMP || COMPILE_TEST
+> >>>>> +        help
+> >>>>> +          Select this option to enable FPGA manager driver support for
+> >>>>> +          Xilinx Versal SOC. This driver uses the versal soc firmware
+> >>>>> +          interface to load programmable logic(PL) images
+> >>>>> +          on versal soc.
+> >>>>>  endif # FPGA
+> >>>>> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile index
+> >>>>> d8e21dfc6778..40c9adb6a644 100644
+> >>>>> --- a/drivers/fpga/Makefile
+> >>>>> +++ b/drivers/fpga/Makefile
+> >>>>> @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+=
+> >>>> ts73xx-fpga.o
+> >>>>>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
+> >>>>>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
+> >>>>>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
+> >>>>> +obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      += versal-fpga.o
+> >>>>>  obj-$(CONFIG_ALTERA_PR_IP_CORE)         += altera-pr-ip-core.o
+> >>>>>  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    += altera-pr-ip-core-plat.o
+> >>>>>
+> >>>>> diff --git a/drivers/fpga/versal-fpga.c
+> >>>>> b/drivers/fpga/versal-fpga.c new file mode 100644 index
+> >>>>> 000000000000..2a42aa78b182
+> >>>>> --- /dev/null
+> >>>>> +++ b/drivers/fpga/versal-fpga.c
+> >>>>> @@ -0,0 +1,149 @@
+> >>>>> +// SPDX-License-Identifier: GPL-2.0+
+> >>>>> +/*
+> >>>>> + * Copyright (C) 2021 Xilinx, Inc.
+> >>>>> + */
+> >>>>> +
+> >>>>> +#include <linux/dma-mapping.h>
+> >>>>> +#include <linux/fpga/fpga-mgr.h>
+> >>>>> +#include <linux/io.h>
+> >>>>> +#include <linux/kernel.h>
+> >>>>> +#include <linux/module.h>
+> >>>>> +#include <linux/of_address.h>
+> >>>>> +#include <linux/string.h>
+> >>>>> +#include <linux/firmware/xlnx-zynqmp.h>
+> >>>>> +
+> >>>>> +/* Constant Definitions */
+> >>>>> +#define PDI_SOURCE_TYPE	0xF
+> >>>>> +
+> >>>>> +/**
+> >>>>> + * struct versal_fpga_priv - Private data structure
+> >>>>> + * @dev:	Device data structure
+> >>>>> + * @flags:	flags which is used to identify the PL Image type
+> >>>>> + */
+> >>>>> +struct versal_fpga_priv {
+> >>>>> +	struct device *dev;
+> >>>>> +	u32 flags;
+> >>>> This seems unused ... please introduce them when/if you start using
+> >> them.
+> >>>
+> >>> Will fix in v2.
+> >>>
+> >>>>> +};
+> >>>>> +
+> >>>>> +static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
+> >>>>> +				      struct fpga_image_info *info,
+> >>>>> +				      const char *buf, size_t size) {
+> >>>>> +	struct versal_fpga_priv *priv;
+> >>>>> +
+> >>>>> +	priv = mgr->priv;
+> >>>>> +	priv->flags = info->flags;
+> >>>> ? What uses this ? It seems this function could just be 'return 0' right now.
+> >>>
+> >>> Will fix in v2.
+> >>>
+> >>>>> +
+> >>>>> +	return 0;
+> >>>>> +}
+> >>>>> +
+> >>>>> +static int versal_fpga_ops_write(struct fpga_manager *mgr,
+> >>>>> +				 const char *buf, size_t size) {
+> >>>>> +	struct versal_fpga_priv *priv;
+> >>>>> +	dma_addr_t dma_addr = 0;
+> >>>>> +	char *kbuf;
+> >>>>> +	int ret;
+> >>>>> +
+> >>>>> +	priv = mgr->priv;
+> >>>>> +
+> >>>>> +	kbuf = dma_alloc_coherent(priv->dev, size, &dma_addr,
+> >>>> GFP_KERNEL);
+> >>>>> +	if (!kbuf)
+> >>>>> +		return -ENOMEM;
+> >>>>> +
+> >>>>> +	memcpy(kbuf, buf, size);
+> >>>>> +
+> >>>>> +	wmb(); /* ensure all writes are done before initiate FW call */
+> >>>>> +
+> >>>>> +	ret = zynqmp_pm_load_pdi(PDI_SOURCE_TYPE, dma_addr);
+> >>>>> +
+> >>>>> +	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
+> >>>>> +
+> >>>>> +	return ret;
+> >>>>> +}
+> >>>>> +
+> >>>>> +static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
+> >>>>> +					  struct fpga_image_info *info) {
+> >>>>> +	return 0;
+> >>>>> +}
+> >>>>> +
+> >>>>> +static enum fpga_mgr_states versal_fpga_ops_state(struct
+> >>>>> +fpga_manager
+> >>>>> +*mgr) {
+> >>>>> +	return FPGA_MGR_STATE_OPERATING;
+> >>>> Is that always the case? Shouldn't that be
+> >> FPGA_MGR_STATE_UNKNOWN?
+> >>>
+> >>> For Versal SoC base PDI is always configured prior to Linux boot up. So I
+> >> make the fpga state as OPERATING.
+> >>> Please let know if it is not a proper implementation will think about the
+> >> alternate solution.
+> >>
+> >> So you're saying I can't boot a Versal SoC without a PDI / Bitstream loaded?
+> >> Interesting :)
+> >>>
+> > 
+> > For Versal SoC Vivado generated base PDI is always needed to bring-up the board. 
+> 
+> Look at PDI as ps7_init/psu_init file but in different format. And
+> bitstream is optional part of it (like a one partition).
 
-Before sending next revision, let me check this part again.
+So at that point I could still have no bitstream loaded (optional), and
+my status would be 'unknown' not 'operating' if I cannot tell the two
+cases apart. What am I missing? :)
 
-I want to use __GFP_NORETRY to indicate "opportunistic-easy-to-fail attempt"
-and I want to use ASYNC migrate_mode to help the goal.
-
-Do you see the problem?
+Thanks,
+Moritz
