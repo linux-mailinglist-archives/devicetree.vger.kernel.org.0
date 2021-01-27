@@ -2,43 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1342A3063C5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:09:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77B9E3063D5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:10:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344250AbhA0TJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 14:09:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34228 "EHLO mail.kernel.org"
+        id S1344376AbhA0TKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 14:10:13 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34480 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344228AbhA0TJF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 14:09:05 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5611264D9E;
+        id S1344197AbhA0TJs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 14:09:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 695FD64DBE;
         Wed, 27 Jan 2021 19:08:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
         s=k20201202; t=1611774505;
-        bh=FgdF3/j9kC28DkNxxg3f4OkSr9w5KVWgidBdlNC/9Kw=;
+        bh=zLl/LXT9nD9oiff3TtR2evITRFPN8gyWpZ86jRIchpE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oO6UP2+gfRiSgO5QcjCiqtkMvju40NsgJ57Z+q/8IGLuDdLDYJBV089x7KWcaTUGL
-         0aidPeNpxOoOqjL+sBK3lEDEx4tiqgxshVpnw7SRDB5OYcQLJQ3nC44y/E3G4XqfFS
-         Et1mIF7vDm7zTKqMpeWHI1J1BCFu2DGV9kCAkEkCsmGSrCLMOPBxGXLMDah2AO1GRQ
-         VXMJKuVrnn7Byrb22OxM/L1OJM92buzm4vI0sPAkOWiTcS6NleSZi0c7fjuMGyDKTx
-         fekcOp7X5oHXUmUhSHrZF0Hbi7zjHL+EEOrXfxg7GXmx9uJ5NQoXj0veTeenRbHbgj
-         bBo5rJv36M/Ew==
+        b=gmodApudWseu4wM7VICuoujXZ9DqR624gLOLnBJ6HCfVfEtWKENNEqXXHA91/LMUN
+         ScO6lQqbH1soZRa1YebU5FkSiVTuXGjbWayfPz4nhFW7CjPbVACxeWi4FGXy4LN7YU
+         zAaY2zj1Sn4yrPFDNs5yzVgiQrIfdnE27B1aIXa9usFUccC5OQvRh3pxYax9w1ec/x
+         csAccEs89seatjFQHmS2OREYk3GqV+Dkd356DKtuGb6pxcHKKaSmoxhwsdBaL3XI4t
+         e2/8akIgGiKFoVELmzENkEXCI8x8MdJ8GWLxjz4ZhO8UFofMQhymK7aDh6kQsqzcWz
+         CcqAX3GCvVImA==
 Received: by mail.kernel.org with local (Exim 4.94)
         (envelope-from <mchehab@kernel.org>)
-        id 1l4qAx-003n50-6N; Wed, 27 Jan 2021 20:08:23 +0100
+        id 1l4qAx-003n56-9k; Wed, 27 Jan 2021 20:08:23 +0100
 From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mark Brown <broonie@kernel.org>,
         Lee Jones <lee.jones@linaro.org>
 Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        David Gow <davidgow@google.com>,
-        Mayulong <mayulong1@huawei.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Wang Hai <wanghai38@huawei.com>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v6 5/7] mfd: hi6421-spmi-pmic: move driver from staging
-Date:   Wed, 27 Jan 2021 20:08:20 +0100
-Message-Id: <2b0e6f6cef0aaa914956792088c554c57f5ec644.1611773727.git.mchehab+huawei@kernel.org>
+        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 7/7] dts: hisilicon: add support for the PMIC found on Hikey 970
+Date:   Wed, 27 Jan 2021 20:08:22 +0100
+Message-Id: <5d1448e0e08f5d750da0be3e51e675993bf190e1.1611773727.git.mchehab+huawei@kernel.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <cover.1611773727.git.mchehab+huawei@kernel.org>
 References: <cover.1611773727.git.mchehab+huawei@kernel.org>
@@ -49,121 +47,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver is ready for mainstream. So, move it out of staging.
+Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
+on HiKey970 board.
+
+As we now have support for it, change the fixed regulators
+used by the SD I/O to use the proper LDO supplies.
 
 Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 ---
- .../mfd}/hisilicon,hi6421-spmi-pmic.yaml        |  0
- MAINTAINERS                                     |  7 +++++++
- drivers/mfd/Kconfig                             | 15 +++++++++++++++
- drivers/mfd/Makefile                            |  1 +
- .../hikey9xx => mfd}/hi6421-spmi-pmic.c         |  0
- drivers/staging/hikey9xx/Kconfig                | 17 -----------------
- drivers/staging/hikey9xx/Makefile               |  1 -
- 7 files changed, 23 insertions(+), 18 deletions(-)
- rename {drivers/staging/hikey9xx => Documentation/devicetree/bindings/mfd}/hisilicon,hi6421-spmi-pmic.yaml (100%)
- rename drivers/{staging/hikey9xx => mfd}/hi6421-spmi-pmic.c (100%)
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    | 22 +----
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 87 +++++++++++++++++++
+ 2 files changed, 90 insertions(+), 19 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
 
-diff --git a/drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-similarity index 100%
-rename from drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
-rename to Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 406c2340f221..241f11b7d48a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8085,6 +8085,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
- F:	drivers/spmi/hisi-spmi-controller.c
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+index 7f9f9886c349..5e6d7b329771 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+@@ -12,6 +12,7 @@
  
-+HISILICON SPMI PMIC DRIVER FOR HIKEY 6421v600
-+M:	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+L:	linux-kernel@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-+F:	drivers/mfd/hi6421-spmi-pmic.c
-+
- HISILICON STAGING DRIVERS FOR HIKEY 960/970
- M:	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
- L:	devel@driverdev.osuosl.org
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index bdfce7b15621..d80ccbf50235 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -509,6 +509,21 @@ config MFD_HI6421_PMIC
- 	  menus in order to enable them.
- 	  We communicate with the Hi6421 via memory-mapped I/O.
+ #include "hi3670.dtsi"
+ #include "hikey970-pinctrl.dtsi"
++#include "hikey970-pmic.dtsi"
  
-+config MFD_HI6421_SPMI
-+	tristate "HiSilicon Hi6421v600 SPMI PMU/Codec IC"
-+	depends on OF
-+	depends on SPMI
-+	select MFD_CORE
-+	help
-+	  Add support for HiSilicon Hi6421v600 SPMI PMIC. Hi6421 includes
-+	  multi-functions, such as regulators, RTC, codec, Coulomb counter,
-+	  etc.
-+
-+	  This driver includes core APIs _only_. You have to select
-+	  individual components like voltage regulators under corresponding
-+	  menus in order to enable them.
-+	  We communicate with the Hi6421v600 via a SPMI bus.
-+
- config MFD_HI655X_PMIC
- 	tristate "HiSilicon Hi655X series PMU/Codec IC"
- 	depends on ARCH_HISI || COMPILE_TEST
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index 14fdb188af02..b64e89ade44b 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -234,6 +234,7 @@ obj-$(CONFIG_MFD_IPAQ_MICRO)	+= ipaq-micro.o
- obj-$(CONFIG_MFD_IQS62X)	+= iqs62x.o
- obj-$(CONFIG_MFD_MENF21BMC)	+= menf21bmc.o
- obj-$(CONFIG_MFD_HI6421_PMIC)	+= hi6421-pmic-core.o
-+obj-$(CONFIG_MFD_HI6421_SPMI)	+= hi6421-spmi-pmic.o
- obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
- obj-$(CONFIG_MFD_DLN2)		+= dln2.o
- obj-$(CONFIG_MFD_RT5033)	+= rt5033.o
-diff --git a/drivers/staging/hikey9xx/hi6421-spmi-pmic.c b/drivers/mfd/hi6421-spmi-pmic.c
-similarity index 100%
-rename from drivers/staging/hikey9xx/hi6421-spmi-pmic.c
-rename to drivers/mfd/hi6421-spmi-pmic.c
-diff --git a/drivers/staging/hikey9xx/Kconfig b/drivers/staging/hikey9xx/Kconfig
-index c2b16ebfd52c..1afb8648a2c4 100644
---- a/drivers/staging/hikey9xx/Kconfig
-+++ b/drivers/staging/hikey9xx/Kconfig
-@@ -1,22 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
+ / {
+ 	model = "HiKey970";
+@@ -39,23 +40,6 @@ memory@0 {
+ 		reg = <0x0 0x0 0x0 0x0>;
+ 	};
  
--# to be placed at drivers/mfd
--config MFD_HI6421_SPMI
--	tristate "HiSilicon Hi6421v600 SPMI PMU/Codec IC"
--	depends on HAS_IOMEM
--	depends on OF
--	depends on SPMI
--	select MFD_CORE
--	help
--	  Add support for HiSilicon Hi6421v600 SPMI PMIC. Hi6421 includes
--	  multi-functions, such as regulators, RTC, codec, Coulomb counter,
--	  etc.
+-	sd_1v8: regulator-1v8 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "fixed-1.8V";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-		regulator-always-on;
+-	};
 -
--	  This driver includes core APIs _only_. You have to select
--	  individual components like voltage regulators under corresponding
--	  menus in order to enable them.
--	  We communicate with the Hi6421v600 via a SPMI bus.
+-	sd_3v3: regulator-3v3 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "fixed-3.3V";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		regulator-boot-on;
+-		regulator-always-on;
+-	};
 -
- # to be placed at drivers/regulator
- config REGULATOR_HI6421V600
- 	tristate "HiSilicon Hi6421v600 PMIC voltage regulator support"
-diff --git a/drivers/staging/hikey9xx/Makefile b/drivers/staging/hikey9xx/Makefile
-index 347880fd378f..4d63184e6086 100644
---- a/drivers/staging/hikey9xx/Makefile
-+++ b/drivers/staging/hikey9xx/Makefile
-@@ -1,4 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
+ 	wlan_en: wlan-en-1-8v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "wlan-en-regulator";
+@@ -402,8 +386,8 @@ &dwmmc1 {
+ 	pinctrl-0 = <&sd_pmx_func
+ 		     &sd_clk_cfg_func
+ 		     &sd_cfg_func>;
+-	vmmc-supply = <&sd_3v3>;
+-	vqmmc-supply = <&sd_1v8>;
++	vmmc-supply = <&ldo16>;
++	vqmmc-supply = <&ldo9>;
+ 	status = "okay";
+ };
  
--obj-$(CONFIG_MFD_HI6421_SPMI)		+= hi6421-spmi-pmic.o
- obj-$(CONFIG_REGULATOR_HI6421V600)	+= hi6421v600-regulator.o
+diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+new file mode 100644
+index 000000000000..8cf45b962fea
+--- /dev/null
++++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+@@ -0,0 +1,87 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
++ *
++ * Copyright (C) 2020, Huawei Tech. Co., Ltd.
++ */
++
++#include <dt-bindings/spmi/spmi.h>
++
++/ {
++	spmi: spmi@fff24000 {
++		compatible = "hisilicon,kirin970-spmi-controller";
++		#address-cells = <2>;
++		#size-cells = <0>;
++		status = "okay";
++		reg = <0x0 0xfff24000 0x0 0x1000>;
++		spmi-channel = <2>;
++
++		pmic: pmic@0 {
++			compatible = "hisilicon,hi6421-spmi";
++			reg = <0 SPMI_USID>;
++
++			#interrupt-cells = <2>;
++			interrupt-controller;
++			gpios = <&gpio28 0 0>;
++
++			regulators {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				ldo3: LDO3 {
++					regulator-name = "ldo3";
++					regulator-min-microvolt = <1500000>;
++					regulator-max-microvolt = <2000000>;
++					regulator-boot-on;
++				};
++
++				ldo4: LDO4 { /* 40 PIN */
++					regulator-name = "ldo4";
++					regulator-min-microvolt = <1725000>;
++					regulator-max-microvolt = <1900000>;
++					regulator-boot-on;
++				};
++
++				ldo9: LDO9 { /* SDCARD I/O */
++					regulator-name = "ldo9";
++					regulator-min-microvolt = <1750000>;
++					regulator-max-microvolt = <3300000>;
++					regulator-boot-on;
++				};
++
++				ldo15: LDO15 { /* UFS */
++					regulator-name = "ldo15";
++					regulator-min-microvolt = <1800000>;
++					regulator-max-microvolt = <3000000>;
++					regulator-always-on;
++				};
++
++				ldo16: LDO16 { /* SD */
++					regulator-name = "ldo16";
++					regulator-min-microvolt = <1800000>;
++					regulator-max-microvolt = <3000000>;
++					regulator-boot-on;
++				};
++
++				ldo17: LDO17 {
++					regulator-name = "ldo17";
++					regulator-min-microvolt = <2500000>;
++					regulator-max-microvolt = <3300000>;
++				};
++
++				ldo33: LDO33 { /* PEX8606 */
++					regulator-name = "ldo33";
++					regulator-min-microvolt = <2500000>;
++					regulator-max-microvolt = <3300000>;
++					regulator-boot-on;
++				};
++
++				ldo34: LDO34 { /* GPS AUX IN VDD */
++					regulator-name = "ldo34";
++					regulator-min-microvolt = <2600000>;
++					regulator-max-microvolt = <3300000>;
++				};
++			};
++		};
++	};
++};
 -- 
 2.29.2
 
