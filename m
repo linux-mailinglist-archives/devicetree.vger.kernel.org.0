@@ -2,73 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C212B305656
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 10:00:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56AC3305657
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 10:00:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234243AbhA0JAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 04:00:08 -0500
-Received: from mail.strohwolke.at ([116.203.115.155]:57658 "EHLO
-        mail.strohwolke.at" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233622AbhA0I55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 03:57:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=strohwolke.at;
-        s=mail; t=1611737828; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wdEsu7hTQGuu0Mrz/8QIkT1CtZl6ybGHwKUHQbqT7XU=;
-        b=AvdFS6JXpcqRDcuxS/7y81Z+00YV/Fzeug1qg43MRy3DtxnTbdVzQoR92Pkr0hgNJxvcLE
-        Lb39poyW7xyd9YX8F5UJfU4gRKMPxqey5u2OgZi2d6o5iLoimFTaQsIAZJmI+8c+TaoHjQ
-        jeu4w3pFFE4Zsg9tdGdnzO+h/6brj14=
-Subject: Re: [PATCH] dts: ARM: add kobo glo hd ebook reader
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20210126173130.45427-1-apreiml@strohwolke.at>
- <20210126193419.1e067639@aktux>
-From:   Armin Preiml <apreiml@strohwolke.at>
-Message-ID: <97c3fa7f-f2eb-a59c-9bc0-670deeb90804@strohwolke.at>
-Date:   Wed, 27 Jan 2021 09:57:06 +0100
+        id S233692AbhA0JAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 04:00:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33802 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233746AbhA0I60 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 03:58:26 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BC32120759;
+        Wed, 27 Jan 2021 08:57:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1611737863;
+        bh=CRsnxHURAngp2eekJSNGPVdgsCZ9RsnCKwPFaU4Sd6Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=zRObluJJlLWARaRpMYCN84a10arkVxS14A/oUfJ5UIAc5qjUwDPxyTz0p+S3i6468
+         yO4j8HagADFhCkb5Bk9l0N7MJm/Npg12rxCX0U/rkl0ZxNxWpuHIGwOALhrSmqaNgs
+         Hm/BAwV6hQrGeMdJhC2OPnaeyEP2lg2iCtSMs8HI=
+Date:   Wed, 27 Jan 2021 09:57:40 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        Mayulong <mayulong1@huawei.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-arm-msm@vger.kernel.org, YueHaibing <yuehaibing@huawei.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Colin Ian King <colin.king@canonical.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Dan Carpenter <dan.carpenter@oracle.com>
+Subject: Re: [PATCH v5 00/21] Move Hisilicon 6421v600 SPMI driver set out of
+ staging
+Message-ID: <YBErBByYD8lNIWAX@kroah.com>
+References: <cover.1611212783.git.mchehab+huawei@kernel.org>
+ <YBBXcdLbj92yMJhw@kroah.com>
+ <20210126175752.GF4839@sirena.org.uk>
+ <YBBZP9LjXPi/rzfP@kroah.com>
+ <20210126181124.GG4839@sirena.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <20210126193419.1e067639@aktux>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210126181124.GG4839@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the feedback. I will do the changes.
+On Tue, Jan 26, 2021 at 06:11:24PM +0000, Mark Brown wrote:
+> On Tue, Jan 26, 2021 at 07:02:39PM +0100, Greg Kroah-Hartman wrote:
+> > On Tue, Jan 26, 2021 at 05:57:52PM +0000, Mark Brown wrote:
+> 
+> > > Is there a branch we can pull from?
+> 
+> > Once 0-day passes, you can pull from my staging-testing branch from
+> > staging.git on git.kernel.org if you want.  Give it 24 hours to pass
+> > before it hits that location.
+> 
+> Thanks.
 
-On 1/26/21 7:34 PM, Andreas Kemnade wrote:
-> hmm, pictures (we are talking about FCC ID NOIKBN437, right?) show two
-> uarts, next to each other. Which one is this?
-It's the right one (above the Board Identifier String).
-> That is for emmc? And it is not populated, so probably better not
-> enable that here.
-ok.
->> +&usdhc1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_usdhc1>;
->> +	status = "okay";
->> +};
->> +
-> and also not add this.
+Should be out there now if you want to pull.
 
-ok.
-> If you are really brave, you could add a complete devicetree on top
-> of my branch
-> kobo/drm-merged-5.10 of github.com/akemnade/linux. Besides of backlight,
-> it should give full hardware support (including a drm driver for the
-> display), so we can see what is different and whether we can use
-> a .dtsi file to define common things.
-This sounds great. I'll definitely check out your branch. Yes I've also
-seen in the uboot and kernel sources, that they've stored the board
-details as a group with flags and versions to the sd. There may be some
-similarity between multiple boards.
+> > Do you need a tag to pull from?
+> 
+> It'd be nice but not essential.
 
-Kind Regards
-Armin
+Why do you want/need this?  Having these changes in your tree is good,
+but what about other coding style cleanups that I will end up applying
+over time before the 5.12-rc1 merge window opens?  Are you wanting to
+take the moved driver in your tree, or something else?
+
+Traditionally moving drivers out of staging can be done 2 ways:
+	- all happens in the staging tree, I take an ack from the
+	  subsystem maintainer that this is ok to do.
+	- A new driver enters the "real" subsystem tree, and then I
+	  delete the driver in the staging tree.  This doesn't preserve
+	  history as well (not at all), but can be easier for trees that
+	  move quickly (like networking.)
+
+Which ever works for you is fine with me, but relying on the code to
+stay "not touched" in my tree after you pull it almost never happens due
+to the number of drive-by coding style cleanups that end up in the
+staging tree every week.
+
+thanks,
+
+greg k-h
