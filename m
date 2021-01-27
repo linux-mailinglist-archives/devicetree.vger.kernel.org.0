@@ -2,123 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFEB6305FAA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:33:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36D11306045
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 16:54:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233445AbhA0PcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 10:32:24 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57376 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235789AbhA0P1d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 10:27:33 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10RFQcW1059487;
-        Wed, 27 Jan 2021 09:26:38 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1611761198;
-        bh=R1DxFpcPAnVTb0T18okNye5fs9IvqOnBIgZ/7ETCjnQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=iyMgJSU1U+WNlZLmUPLe8oLVZHsNiNt8+GcoitvGKyaIF8fKmdC8fr1zysQXX9KFD
-         aKL7lMUKwtLQoPyDLBUyiAieI8Z+WMaIeojdjgwCC8QtEKaoH6kx00qX3Clnkjj10n
-         hLCx0qnlXGkNkzccvbKJCZ+kx06GyQ22ZJtEiTag=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10RFQcXA115207
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Jan 2021 09:26:38 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 27
- Jan 2021 09:26:37 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 27 Jan 2021 09:26:37 -0600
-Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10RFQXbu129714;
-        Wed, 27 Jan 2021 09:26:34 -0600
-Subject: Re: [PATCH v3 1/2] dts: ti: k3-j7200-main: Add support for zeroth
- instance of GPIO subsystem
-To:     Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210127150815.16991-1-a-govindraju@ti.com>
- <20210127150815.16991-2-a-govindraju@ti.com>
- <20210127151256.tgbhpngy6fi43edj@create>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <9308ad5d-48bd-ebd2-2ea3-9775b8c11163@ti.com>
-Date:   Wed, 27 Jan 2021 20:56:32 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S235806AbhA0PyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 10:54:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35206 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236133AbhA0Pdw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 10:33:52 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id EAF2D207A2;
+        Wed, 27 Jan 2021 15:33:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1611761591;
+        bh=FoGK8gbWTH8dPnMZm8A+vGjJx3S+xWPZTf4oS3ZKmd8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qqnW0aqKtq14YxUSawR2OGkv8A7e16wgibMSQ6cfBUOmybbqdNtwVB/XbECgULnyE
+         UjlDWILBKW98X567gypj+bDv7FEangv1aVHJA/o5v4VIQhsmzRniQB0rSlfPSjacxv
+         9VP54Pxm0MKPRnpPJsfVNHFz3a6Me1DGts4K4jQXqw3UIwVBa90O1NmSMSZu/JIcA6
+         RPG1W9lWoaPXliarDYQq9tEbbwUiVBSS2fz9DYnS1zqYX9mcLA1tNsKyrflN802xgd
+         76P/6rMz7A0vutNRRd5/YdIdRMoSI5PnttUkJohhpxt9SGxqD8XdU0yVTmkLNJ322D
+         w81FQTv+OhuSA==
+Date:   Wed, 27 Jan 2021 21:03:07 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: Add basic devicetree support
+ for SM8350 SoC
+Message-ID: <20210127153307.GC2771@vkoul-mobl>
+References: <20210127123054.263231-1-vkoul@kernel.org>
+ <20210127123054.263231-6-vkoul@kernel.org>
+ <194d2ebe26a9420f842c97738adb0443@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20210127151256.tgbhpngy6fi43edj@create>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <194d2ebe26a9420f842c97738adb0443@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+Hi Sai,
 
-On 27/01/21 8:42 pm, Nishanth Menon wrote:
-> On 20:38-20210127, Aswath Govindraju wrote:
->> Add support for the zeroth instance of GPIO subsystem in the main domain.
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+On 27-01-21, 18:37, Sai Prakash Ranjan wrote:
+> Hi Vinod,
 > 
+> On 2021-01-27 18:00, Vinod Koul wrote:
+
+> > +	timer {
+> > +		compatible = "arm,armv8-timer";
+> > +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) |
+> > IRQ_TYPE_LEVEL_LOW)>,
+> > +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> > +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> > +			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
 > 
-> I really dont want to pick up one patch per node instance. It is hard
-> to scale and just creates a lot of noise.
-> 
+> The last interrupt should be hypervisor physical interrupt(10) not 12(hyp
+> virtual).
+> It works currently with android bootloaders because the host linux kernel
+> will run
+> at EL1 and will use EL1 physical timer interrupt(14), but if we ever have
+> the host
+> kernel run in EL2(for example, chrome) then we will not receive any timer
+> interrupts.
 
-As the main goal of the patch series was to add support for higher speed
-modes in MMC, I added only the required ones. If required I will send a
-follow up patch to add the remaining GPIO nodes.
+I got these values from downstream and used them as is. I will update
+and also check documentation. Thanks for pointing out
 
-Thanks,
-Aswath
-
->> ---
->>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 17 +++++++++++++++++
->>  1 file changed, 17 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> index 4cc2e9094d0e..75dffbb26d52 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> @@ -294,6 +294,23 @@
->>  		pinctrl-single,function-mask = <0xffffffff>;
->>  	};
->>  
->> +	main_gpio0: gpio@600000 {
->> +		compatible = "ti,j721e-gpio", "ti,keystone-gpio";
->> +		reg = <0x0 0x00600000 0x0 0x100>;
->> +		gpio-controller;
->> +		#gpio-cells = <2>;
->> +		interrupt-parent = <&main_gpio_intr>;
->> +		interrupts = <145>, <146>, <147>, <148>,
->> +			     <149>;
->> +		interrupt-controller;
->> +		#interrupt-cells = <2>;
->> +		ti,ngpio = <69>;
->> +		ti,davinci-gpio-unbanked = <0>;
->> +		power-domains = <&k3_pds 105 TI_SCI_PD_EXCLUSIVE>;
->> +		clocks = <&k3_clks 105 0>;
->> +		clock-names = "gpio";
->> +	};
->> +
->>  	main_uart0: serial@2800000 {
->>  		compatible = "ti,j721e-uart", "ti,am654-uart";
->>  		reg = <0x00 0x02800000 0x00 0x100>;
->> -- 
->> 2.17.1
->>
-> 
-
+-- 
+~Vinod
