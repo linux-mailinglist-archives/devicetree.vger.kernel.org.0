@@ -2,130 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CB41305879
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 11:32:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 972FE3058FA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 11:59:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S314178AbhAZXAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jan 2021 18:00:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47448 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729073AbhAZSV7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Jan 2021 13:21:59 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7E859207BC;
-        Tue, 26 Jan 2021 18:21:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611685277;
-        bh=MXfhwHib5lhIxe0d2EionO+qD1p7JOcTGIR5T//GcjU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Vyv6zeCgPBGRmLOGE+ZvJN/iEJbaZMbXGNiKs6W7mrLLyXtdvyXRRMjhIUG4flGz0
-         SObPNEWXGHHwcJfUJNuiMDGYMFH/8ozn34f5YEANN+7bqYaurnkm8GG9NwrvNlziq/
-         O+icUTumPpIZFw8RhAofdIEpRpC2YkiAovXOWMQqJg9uQPP3e+v84gtclOugTGmOcV
-         ++aSNFIc4sQpch4zq96vzAnzS+3zaa/mBeaevzYjYP5n9QywZGVOgMQYAiyYmOP+pZ
-         Sq1U3Xwms5ZLaHqaPI4yniW31jcyXpj/T+SM9Ctu5ovfB008PliOds9wV4CCoDyhwc
-         GyVUoh4d1+tyA==
-Received: by mail-ed1-f43.google.com with SMTP id c6so20960185ede.0;
-        Tue, 26 Jan 2021 10:21:17 -0800 (PST)
-X-Gm-Message-State: AOAM531+bSa8/wfSUxTkMkqCWoYP6KAcEK0RB3tUKorghTKbVy0gruDu
-        l16YNSHn7Vbd0RkSMdhlUX5JAJttecisG/5fnw==
-X-Google-Smtp-Source: ABdhPJwqon1vbLCOlmss6J+2GsHVOo4w9BY+GyxQEwzER9kIB9CkFOtLUal0HAuyf9bfo2h5vrYSv5GPYVZbdJOig20=
-X-Received: by 2002:a05:6402:1751:: with SMTP id v17mr5717873edx.289.1611685276124;
- Tue, 26 Jan 2021 10:21:16 -0800 (PST)
+        id S236018AbhA0K6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 05:58:12 -0500
+Received: from a1.mail.mailgun.net ([198.61.254.60]:10945 "EHLO
+        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236140AbhA0Kzq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 05:55:46 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1611744923; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=/qNmclXhxwVXmVl4tjdqIraPRX5cu7590EP4VSPq95g=; b=JD6Os8z3/kWMx5vmQ1T2wjS2O04Bp4szqWzcPHrK0O0zaToxC4+tNYv46PUErDGloCrjySnN
+ pXqj1aFUO/If4bG0QHQ0/sayYkmgJIkUftYduLlTrsdeRcLyPX+5zvlAAkOKmqo2U3BkB4mV
+ OwuMZVOQR708C14Dccl13WPS/yI=
+X-Mailgun-Sending-Ip: 198.61.254.60
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 60114674362ca03da6cece10 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 27 Jan 2021 10:54:44
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0D5B0C43461; Wed, 27 Jan 2021 10:54:44 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.2] (unknown [49.37.158.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8EBD2C433ED;
+        Wed, 27 Jan 2021 10:54:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8EBD2C433ED
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+Subject: Re: [PATCH] ASoC: qcom: lpass-cpu: Remove bit clock state check
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210127063038.1399-1-srivasam@codeaurora.org>
+ <16199fa8-7a87-6e7f-9db6-1d5cd8493d4c@linaro.org>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <d33fd359-9dbf-b03c-ccd1-d93c7d207ccf@codeaurora.org>
+Date:   Wed, 27 Jan 2021 16:24:36 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-References: <20210123034428.2841052-1-swboyd@chromium.org>
-In-Reply-To: <20210123034428.2841052-1-swboyd@chromium.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 26 Jan 2021 12:21:04 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+voSRnHEEkUZSasdKGrXiBs3yCmzHp6Ua4WNuAgnh4AQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+voSRnHEEkUZSasdKGrXiBs3yCmzHp6Ua4WNuAgnh4AQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] Stop NULLifying match pointer in of_match_device()
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Jean Delvare <jdelvare@suse.com>, Jiri Slaby <jslaby@suse.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <16199fa8-7a87-6e7f-9db6-1d5cd8493d4c@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 22, 2021 at 9:44 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> (This is a continuation of this series[1] per Rob's request. I've picked
-> up the acks, etc. with b4 and compile tested the patches along with an
-> arm64 allmodconfig build. Presumably Rob will pick these up directly.)
->
-> of_match_device() uses of_match_ptr() to make the match table argument
-> NULL via the pre-processor when CONFIG_OF=n. This makes life harder for
-> compilers who think that match tables are never used and warn about
-> unused variables when CONFIG_OF=n. This series changes various callers
-> to use of_device_get_match_data() instead, which doesn't have this
-> problem, and removes the of_match_ptr() usage from of_match_device() so
-> that the compiler can stop complaining about unused variables. It will
-> do dead code elimination instead and remove the match table if it isn't
-> actually used.
->
-> [1] https://lore.kernel.org/r/20191004214334.149976-1-swboyd@chromium.org
->
-> Cc: Alexandre Torgue <alexandre.torgue@st.com>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Grygorii Strashko <grygorii.strashko@ti.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Jacopo Mondi <jacopo@jmondi.org>
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Jiri Slaby <jslaby@suse.com>
-> Cc: <linux-hwmon@vger.kernel.org>
-> Cc: <linux-kernel@vger.kernel.org>,
-> Cc: <linux-media@vger.kernel.org>
-> Cc: <linux-omap@vger.kernel.org>
-> Cc: <linux-renesas-soc@vger.kernel.org>
-> Cc: <linux-serial@vger.kernel.org>
-> Cc: <linux-usb@vger.kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Richard Leitner <richard.leitner@skidata.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
->
-> Stephen Boyd (6):
->   media: renesas-ceu: Use of_device_get_match_data()
->   drivers: net: davinci_mdio: Use of_device_get_match_data()
->   serial: stm32: Use of_device_get_match_data()
->   usb: usb251xb: Use of_device_get_match_data()
->   hwmon: (lm70) Avoid undefined reference to match table
->   of/device: Don't NULLify match table in of_match_device() with
->     CONFIG_OF=n
->
->  drivers/hwmon/lm70.c                   |  2 +-
->  drivers/media/platform/renesas-ceu.c   |  2 +-
->  drivers/net/ethernet/ti/davinci_mdio.c | 12 ++---
->  drivers/tty/serial/stm32-usart.c       | 71 ++++++++++++--------------
->  drivers/tty/serial/stm32-usart.h       |  2 +-
->  drivers/usb/misc/usb251xb.c            | 12 ++---
->  include/linux/of_device.h              |  4 +-
->  7 files changed, 47 insertions(+), 58 deletions(-)
+Thanks Srinivas For Your time!!!
 
-Series applied.
+On 1/27/2021 3:21 PM, Srinivas Kandagatla wrote:
+>
+>
+> On 27/01/2021 06:30, Srinivasa Rao Mandadapu wrote:
+>> No need of BCLK state maintenance from driver side as
+>> clock_enable and clk_disable API's maintaing state counter.
+>>
+>> One of the major issue was spotted when Headset jack inserted
+>> while playback continues, due to same PCM device node opens twice
+>> for playaback/capture and closes once for capture and playback 
+>> continues.
+>>
+>> It can resolve the errors in such scenarios.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>
+> Thanks for the cleanup, yes clk core will take care of this by 
+> enable_count check!
+>
+> You should add
+>
+> Fixes: b1824968221c ("ASoC: qcom: Fix enabling BCLK and LRCLK in LPAIF 
+> invalid state")
+>
+Okay. I will do in next patch.
+>
+>> ---
+>>   sound/soc/qcom/lpass-cpu.c       | 22 ++++++++--------------
+>>   sound/soc/qcom/lpass-lpaif-reg.h |  3 ---
+>>   sound/soc/qcom/lpass.h           |  1 -
+>>   3 files changed, 8 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+>> index ae8efbc89af2..a669202e0001 100644
+>> --- a/sound/soc/qcom/lpass-cpu.c
+>> +++ b/sound/soc/qcom/lpass-cpu.c
+>> @@ -286,16 +286,12 @@ static int lpass_cpu_daiops_trigger(struct 
+>> snd_pcm_substream *substream,
+>>               dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
+>>                   ret);
+>>   -        if (drvdata->bit_clk_state[id] == LPAIF_BIT_CLK_DISABLE) {
+>> -            ret = clk_enable(drvdata->mi2s_bit_clk[id]);
+>> -            if (ret) {
+>> -                dev_err(dai->dev, "error in enabling mi2s bit clk: 
+>> %d\n", ret);
+>> -                clk_disable(drvdata->mi2s_osr_clk[id]);
+>> -                return ret;
+>> -            }
+>> -            drvdata->bit_clk_state[id] = LPAIF_BIT_CLK_ENABLE;
+>> +        ret = clk_enable(drvdata->mi2s_bit_clk[id]);
+>> +        if (ret) {
+>> +            dev_err(dai->dev, "error in enabling mi2s bit clk: 
+>> %d\n", ret);
+>> +            clk_disable(drvdata->mi2s_osr_clk[id]);
+>
+> Can you also remove this unnecessary disable here!
+>
+>
+Actually this is MI2S OSR clock disable on failure of bit clock enable.
 
+Do You think it's redundant?
 
-Rob
+> -srini
+>
+>> +            return ret;
+>>           }
+>> -
+>>           break;
+>>       case SNDRV_PCM_TRIGGER_STOP:
+>>       case SNDRV_PCM_TRIGGER_SUSPEND:
+>> @@ -310,10 +306,9 @@ static int lpass_cpu_daiops_trigger(struct 
+>> snd_pcm_substream *substream,
+>>           if (ret)
+>>               dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
+>>                   ret);
+>> -        if (drvdata->bit_clk_state[id] == LPAIF_BIT_CLK_ENABLE) {
+>> - clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
+>> -            drvdata->bit_clk_state[id] = LPAIF_BIT_CLK_DISABLE;
+>> -        }
+>> +
+>> + clk_disable(drvdata->mi2s_bit_clk[dai->driver->id]);
+>> +
+>>           break;
+>>       }
+>>   @@ -861,7 +856,6 @@ int asoc_qcom_lpass_cpu_platform_probe(struct 
+>> platform_device *pdev)
+>>                   PTR_ERR(drvdata->mi2s_bit_clk[dai_id]));
+>>               return PTR_ERR(drvdata->mi2s_bit_clk[dai_id]);
+>>           }
+>> -        drvdata->bit_clk_state[dai_id] = LPAIF_BIT_CLK_DISABLE;
+>>       }
+>>         /* Allocation for i2sctl regmap fields */
+>> diff --git a/sound/soc/qcom/lpass-lpaif-reg.h 
+>> b/sound/soc/qcom/lpass-lpaif-reg.h
+>> index 405542832e99..c8e1d75340b2 100644
+>> --- a/sound/soc/qcom/lpass-lpaif-reg.h
+>> +++ b/sound/soc/qcom/lpass-lpaif-reg.h
+>> @@ -60,9 +60,6 @@
+>>   #define LPAIF_I2SCTL_BITWIDTH_24    1
+>>   #define LPAIF_I2SCTL_BITWIDTH_32    2
+>>   -#define LPAIF_BIT_CLK_DISABLE        0
+>> -#define LPAIF_BIT_CLK_ENABLE        1
+>> -
+>>   #define LPAIF_I2SCTL_RESET_STATE    0x003C0004
+>>   #define LPAIF_DMACTL_RESET_STATE    0x00200000
+>>   diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+>> index 2d68af0da34d..83b2e08ade06 100644
+>> --- a/sound/soc/qcom/lpass.h
+>> +++ b/sound/soc/qcom/lpass.h
+>> @@ -68,7 +68,6 @@ struct lpass_data {
+>>       unsigned int mi2s_playback_sd_mode[LPASS_MAX_MI2S_PORTS];
+>>       unsigned int mi2s_capture_sd_mode[LPASS_MAX_MI2S_PORTS];
+>>       int hdmi_port_enable;
+>> -    int bit_clk_state[LPASS_MAX_MI2S_PORTS];
+>>         /* low-power audio interface (LPAIF) registers */
+>>       void __iomem *lpaif;
+>>
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
