@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5876D305792
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 10:58:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BF1F305754
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 10:50:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235332AbhA0J6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 04:58:32 -0500
-Received: from foss.arm.com ([217.140.110.172]:32942 "EHLO foss.arm.com"
+        id S229832AbhA0Js5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 04:48:57 -0500
+Received: from foss.arm.com ([217.140.110.172]:32958 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233880AbhA0I7I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S233386AbhA0I7I (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Wed, 27 Jan 2021 03:59:08 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ED6A41478;
-        Wed, 27 Jan 2021 00:55:42 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1AD601516;
+        Wed, 27 Jan 2021 00:56:04 -0800 (PST)
 Received: from p8cg001049571a15.arm.com (unknown [10.163.91.246])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C58723F66B;
-        Wed, 27 Jan 2021 00:55:39 -0800 (PST)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D70823F66B;
+        Wed, 27 Jan 2021 00:56:00 -0800 (PST)
 From:   Anshuman Khandual <anshuman.khandual@arm.com>
 To:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
 Cc:     mathieu.poirier@linaro.org, suzuki.poulose@arm.com,
         mike.leach@linaro.org, lcherian@marvell.com,
         linux-kernel@vger.kernel.org,
         Anshuman Khandual <anshuman.khandual@arm.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH V3 06/14] dts: bindings: Document device tree bindings for ETE
-Date:   Wed, 27 Jan 2021 14:25:30 +0530
-Message-Id: <1611737738-1493-7-git-send-email-anshuman.khandual@arm.com>
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH V3 12/14] dts: bindings: Document device tree bindings for Arm TRBE
+Date:   Wed, 27 Jan 2021 14:25:36 +0530
+Message-Id: <1611737738-1493-13-git-send-email-anshuman.khandual@arm.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1611737738-1493-1-git-send-email-anshuman.khandual@arm.com>
 References: <1611737738-1493-1-git-send-email-anshuman.khandual@arm.com>
@@ -36,105 +36,78 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Suzuki K Poulose <suzuki.poulose@arm.com>
 
-Document the device tree bindings for Embedded Trace Extensions.
-ETE can be connected to legacy coresight components and thus
-could optionally contain a connection graph as described by
-the CoreSight bindings.
+Document the device tree bindings for Trace Buffer Extension (TRBE).
 
-Cc: devicetree@vger.kernel.org
+Cc: Anshuman Khandual <anshuman.khandual@arm.com>
 Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Mike Leach <mike.leach@linaro.org>
 Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
 Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
 ---
 Changes in V3:
 
+- Added missing description for the TRBE hardware
 - Fixed all DT yaml semantics problems
 
- Documentation/devicetree/bindings/arm/ete.yaml | 74 ++++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
+ Documentation/devicetree/bindings/arm/trbe.yaml | 49 +++++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/trbe.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
+diff --git a/Documentation/devicetree/bindings/arm/trbe.yaml b/Documentation/devicetree/bindings/arm/trbe.yaml
 new file mode 100644
-index 0000000..edc1fe2
+index 0000000..4402d7b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/ete.yaml
-@@ -0,0 +1,74 @@
++++ b/Documentation/devicetree/bindings/arm/trbe.yaml
+@@ -0,0 +1,49 @@
 +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
 +# Copyright 2021, Arm Ltd
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/arm/ete.yaml#"
++$id: "http://devicetree.org/schemas/arm/trbe.yaml#"
 +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: ARM Embedded Trace Extensions
++title: ARM Trace Buffer Extensions
 +
 +maintainers:
-+  - Suzuki K Poulose <suzuki.poulose@arm.com>
-+  - Mathieu Poirier <mathieu.poirier@linaro.org>
++  - Anshuman Khandual <anshuman.khandual@arm.com>
 +
 +description: |
-+  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
-+  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
-+  architecture and has extended support for future architecture changes.
-+  The trace generated by the ETE could be stored via legacy CoreSight
-+  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
-+  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
-+  legacy CoreSight components, a node must be listed per instance, along
-+  with any optional connection graph as per the coresight bindings.
-+  See bindings/arm/coresight.txt.
++  Arm Trace Buffer Extension (TRBE) is a per CPU component
++  for storing trace generated on the CPU to memory. It is
++  accessed via CPU system registers. The software can verify
++  if it is permitted to use the component by checking the
++  TRBIDR register.
 +
 +properties:
 +  $nodename:
-+    pattern: "^ete([0-9a-f]+)$"
++    const: "trbe"
 +  compatible:
 +    items:
-+      - const: arm,embedded-trace-extension
++      - const: arm,trace-buffer-extension
 +
-+  cpu:
++  interrupts:
 +    description: |
-+      Handle to the cpu this ETE is bound to.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  out-ports:
-+    type: object
-+    description: |
-+      Output connections from the ETE to legacy CoreSight trace bus.
-+    properties:
-+      port:
-+        $ref: /schemas/graph.yaml#/properties/port
++       Exactly 1 PPI must be listed. For heterogeneous systems where
++       TRBE is only supported on a subset of the CPUs, please consult
++       the arm,gic-v3 binding for details on describing a PPI partition.
++    maxItems: 1
 +
 +required:
 +  - compatible
-+  - cpu
++  - interrupts
 +
 +additionalProperties: false
 +
 +examples:
 +
-+# An ETE node without legacy CoreSight connections
 +  - |
-+    ete0 {
-+      compatible = "arm,embedded-trace-extension";
-+      cpu = <&cpu_0>;
-+    };
-+# An ETE node with legacy CoreSight connections
-+  - |
-+   ete1 {
-+      compatible = "arm,embedded-trace-extension";
-+      cpu = <&cpu_1>;
++   #include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+      out-ports {        /* legacy coresight connection */
-+         port {
-+             ete1_out_port: endpoint {
-+                remote-endpoint = <&funnel_in_port0>;
-+             };
-+         };
-+      };
++   trbe {
++     compatible = "arm,trace-buffer-extension";
++     interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
 +   };
-+
 +...
 -- 
 2.7.4
