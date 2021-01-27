@@ -2,95 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FF03063D4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 194FB30640C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 20:33:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344208AbhA0TKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 14:10:30 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34812 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344381AbhA0TKT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Jan 2021 14:10:19 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C984A64DCA;
-        Wed, 27 Jan 2021 19:09:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611774579;
-        bh=CxVDcZVJbTgcZjdsMfJhxJ/yjKbh0SkOEhIy1FhN6KI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dMLi9XGhBP7sr8rYS8BJ6RsXQgysILPqv1nJNJw5qZ2DyBAUhNdQHjQzvgV8VDl5V
-         i9ALC6nJBeYrDal6V0wxRS4Oj1rRdlQYA2H+6vx80Ni8//ZnxbR84eJSWfwHwrfZ+m
-         huSnvJCgYsqg1ZdsYmI36XpPssTAyzZXC+4+K+R4HGTQDEa3D+1wQRcxlMx60l4siq
-         AfiYedGDWYh3rdmwOf3EskK8mgLe27CYkM02ik5LmlsDCtLrT6rKv/7dbdltGG8jZf
-         /EYeZUc7HMTHGMwYIun5xzt1qfY9eHYEiUSksWtwoi1uycXl8bbKrxFsjyJ+0QBHbZ
-         W+EkVBD/JX9uw==
-Received: by mail-ed1-f46.google.com with SMTP id f1so3751203edr.12;
-        Wed, 27 Jan 2021 11:09:38 -0800 (PST)
-X-Gm-Message-State: AOAM533ee0bvwVtjxOHRSPUstARXrusgjWfaHvh6j6X6pI80TFi5R4Qg
-        iTnnoL1iHMyfl+PBj8afjaftyZbpImDXpHPFPw==
-X-Google-Smtp-Source: ABdhPJxDhEsE7SeDYEXoCEJP81XWI54Z2K7fxKs16oNcCLHvf630uv8EyH4cluj/eac/SPi55kJ7fCq1wMrnsmcwKMs=
-X-Received: by 2002:a05:6402:1751:: with SMTP id v17mr10650676edx.289.1611774577245;
- Wed, 27 Jan 2021 11:09:37 -0800 (PST)
+        id S231152AbhA0TbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 14:31:10 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:13267 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231573AbhA0TbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 14:31:03 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B6011bf440001>; Wed, 27 Jan 2021 11:30:12 -0800
+Received: from [10.26.73.116] (172.20.145.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 27 Jan
+ 2021 19:30:10 +0000
+Subject: Re: [PATCH] arm64: tegra: Add support for Jetson Xavier NX with eMMC
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>
+References: <20210127175250.326390-1-jonathanh@nvidia.com>
+ <YBGxkd1Ig5/2R0aG@ulmo>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <291061a5-1e69-b35f-a57f-ef54d6424e49@nvidia.com>
+Date:   Wed, 27 Jan 2021 19:30:07 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210119105203.15530-1-yong.wu@mediatek.com> <YBFj9whLvqlV2erm@aptenodytes>
- <159d4486-bb7e-249d-2bad-f5bba839041d@arm.com>
-In-Reply-To: <159d4486-bb7e-249d-2bad-f5bba839041d@arm.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 27 Jan 2021 13:09:25 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKgGOAe-ZSw9qJ7POVv5nJuX+UoJE-MS3drKrM119pw-w@mail.gmail.com>
-Message-ID: <CAL_JsqKgGOAe-ZSw9qJ7POVv5nJuX+UoJE-MS3drKrM119pw-w@mail.gmail.com>
-Subject: Re: [PATCH v2] of/device: Update dma_range_map only when dev has
- valid dma-ranges
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Tomasz Figa <tfiga@google.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YBGxkd1Ig5/2R0aG@ulmo>
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.20.145.6]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1611775812; bh=S+nYE7hkUXr+/e29IA/XJ7pOEuSMQW3ynpZxm8hS+fM=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=oWo9ZsgbIkgTv0mXq+iS0rsyN8lqvMbnX/XoSbRpOASfUzj2zfUV1wOttNLhqcGxs
+         ZxX4AouH3dbhB7HmcM13pwR2rA74vcYTjVS0KzTkOUHUYXsgh/fx91UMA4qIR+L/sC
+         nk7VbrHGdolsLSxrlRravcwvUb5GbNp5l3f4Hlu2+a9cxOYVt0NUtIovxXrVXvbRuW
+         Jn4X1PNPuDUUeWpJUomq3Y1YmDH7NuBNWlcmf4rmodZkLualvC8dX1sm+CBHA0LD0D
+         x02oiJC+yGpfi5S2KrzHLpC2r8afv1hc/8mk+YxJ1a2DdpnOQewBkE9K54KpojGwAd
+         VxHbKitrJpyOA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 7:13 AM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> [ + Christoph, Marek ]
->
-> On 2021-01-27 13:00, Paul Kocialkowski wrote:
-> > Hi,
-> >
-> > On Tue 19 Jan 21, 18:52, Yong Wu wrote:
-> >> The commit e0d072782c73 ("dma-mapping: introduce DMA range map,
-> >> supplanting dma_pfn_offset") always update dma_range_map even though it was
-> >> already set, like in the sunxi_mbus driver. the issue is reported at [1].
-> >> This patch avoid this(Updating it only when dev has valid dma-ranges).
-> >>
-> >> Meanwhile, dma_range_map contains the devices' dma_ranges information,
-> >> This patch moves dma_range_map before of_iommu_configure. The iommu
-> >> driver may need to know the dma_address requirements of its iommu
-> >> consumer devices.
-> >
-> > Just a gentle ping on this issue, it would be nice to have this fix merged
-> > ASAP, in the next RC :)
->
-> Ack to that - Rob, Frank, do you want to take this through the OF tree,
-> or shall we take it through the DMA-mapping tree like the original culprit?
 
-I've already got some fixes queued up and can take it.
+On 27/01/2021 18:31, Thierry Reding wrote:
+> On Wed, Jan 27, 2021 at 05:52:50PM +0000, Jon Hunter wrote:
+>> There are two versions of the Jetson Xavier NX system-on-module; one
+>> with a micro SD-card slot and one with an eMMC. Currently, only the
+>> system-on-module with the micro SD-card slot is supported and so add
+>> necessary device-tree changes to add support for the eMMC version.
+>>
+>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>> ---
+>>  arch/arm64/boot/dts/nvidia/Makefile           |   1 +
+>>  .../nvidia/tegra194-p3509-0000+p3668-0000.dts | 351 +-----------------
+>>  .../nvidia/tegra194-p3509-0000+p3668-0001.dts |  10 +
+>>  .../boot/dts/nvidia/tegra194-p3509-0000.dtsi  | 351 ++++++++++++++++++
+>>  .../boot/dts/nvidia/tegra194-p3668-0000.dtsi  | 282 +-------------
+>>  .../boot/dts/nvidia/tegra194-p3668-0001.dtsi  |  19 +
+>>  .../arm64/boot/dts/nvidia/tegra194-p3668.dtsi | 284 ++++++++++++++
+>>  7 files changed, 669 insertions(+), 629 deletions(-)
+>>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dts
+>>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
+>>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3668-0001.dtsi
+>>  create mode 100644 arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi
+> 
+> This looks good, although I must say this is difficult to review. Maybe
+> it would help if this was split into two patches where first the files
+> are split for tegra194-p3509-0000+p3668-0000 and the second patch adds
+> only the files for the new SKU.
 
-Suggested-by doesn't mean you are happy with the implementation. So
-Acked-by or Reviewed-by?
+Yes, OK I will do that. I must admit the diff is not very clear.
 
-Rob
+Jon
+
+-- 
+nvpublic
