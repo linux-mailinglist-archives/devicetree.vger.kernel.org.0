@@ -2,68 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C07B305CF3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:20:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E1B305D53
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jan 2021 14:35:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238001AbhA0NUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 08:20:35 -0500
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:54043 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233033AbhA0NTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 08:19:18 -0500
-X-Originating-IP: 86.202.109.140
-Received: from localhost (lfbn-lyo-1-13-140.w86-202.abo.wanadoo.fr [86.202.109.140])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 3F273FF802;
-        Wed, 27 Jan 2021 13:18:22 +0000 (UTC)
-Date:   Wed, 27 Jan 2021 14:18:21 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rtc: pcf2127: update bindings
-Message-ID: <20210127131821.GH1196852@piout.net>
-References: <20201219013418.3474461-1-alexandre.belloni@bootlin.com>
- <c5290432-a6b0-2b96-585f-3abc2dcc56f6@prevas.dk>
- <20210126224835.GE1196852@piout.net>
- <0a8fd7f3-58c1-9e20-bcfa-9872b3dc3550@prevas.dk>
+        id S236976AbhA0Nfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 08:35:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59638 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238502AbhA0NdS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 08:33:18 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C12A5207B1;
+        Wed, 27 Jan 2021 13:32:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1611754357;
+        bh=Hvdj/TnKmUGUDvd5D0ucCsJxgPxWAmML6NC1NFEiusw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=u15m2WoKpaM2iRwFCDTC0Id9jWPw061bwZFZVpyaROia9HdMUZpooYN6buBoxdlwy
+         6NL+OCZ4TYv3aWLNwta4GI1HP+QQwqWP4lbYbH/HIzFjrmmoE268Uz7/dgLdi9COTS
+         Kz7z8I8j1c9WoCqZbzrhR5Psr3s97OHDrK6ehxlE=
+Date:   Wed, 27 Jan 2021 14:32:35 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        Mayulong <mayulong1@huawei.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-arm-msm@vger.kernel.org, YueHaibing <yuehaibing@huawei.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Colin Ian King <colin.king@canonical.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 00/21] Move Hisilicon 6421v600 SPMI driver set out of
+ staging
+Message-ID: <YBFrc/yk7uvh9HX8@kroah.com>
+References: <cover.1611212783.git.mchehab+huawei@kernel.org>
+ <YBBXcdLbj92yMJhw@kroah.com>
+ <20210126175752.GF4839@sirena.org.uk>
+ <YBBZP9LjXPi/rzfP@kroah.com>
+ <20210126181124.GG4839@sirena.org.uk>
+ <YBErBByYD8lNIWAX@kroah.com>
+ <20210127120426.GB4387@sirena.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0a8fd7f3-58c1-9e20-bcfa-9872b3dc3550@prevas.dk>
+In-Reply-To: <20210127120426.GB4387@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2021 14:07:59+0100, Rasmus Villemoes wrote:
-> On 26/01/2021 23.48, Alexandre Belloni wrote:
-> > On 21/12/2020 22:17:54+0100, Rasmus Villemoes wrote:
-> >> On 19/12/2020 02.34, Alexandre Belloni wrote:
-> >>> pcf2127, pcf2129 and pca2129 support start-year and reset-source.
-> >>>
-> >>
-> >> No, the 2129 variant doesn't even have a reset output pin. Not sure if
-> >> there's any way to reflect that, and it probably doesn't matter, since
-> >> nobody's going to add the reset-source property to a 2129 node. But the
-> >> commit message is a bit misleading.
-> >>
-> > 
-> > Actually no, the INT pin can be used as a reset, the pcf/pca2129
-> > can be used as a watchdog and so it may need the reset-source property.
+On Wed, Jan 27, 2021 at 12:04:26PM +0000, Mark Brown wrote:
+> On Wed, Jan 27, 2021 at 09:57:40AM +0100, Greg Kroah-Hartman wrote:
+> > On Tue, Jan 26, 2021 at 06:11:24PM +0000, Mark Brown wrote:
 > 
-> Unless I'm missing something, that would require some rather creative
-> extra circuitry: The interrupt pin is kept low until the appropriate bit
-> in the rtc is cleared, so if that is routed directly to a reset pin on
-> the SOC, the SOC would be kept in reset indefinitely.
+> > > > Do you need a tag to pull from?
 > 
+> > > It'd be nice but not essential.
+> 
+> > Why do you want/need this?  Having these changes in your tree is good,
+> > but what about other coding style cleanups that I will end up applying
+> > over time before the 5.12-rc1 merge window opens?  Are you wanting to
+> > take the moved driver in your tree, or something else?
+> 
+> I want to apply the regulator driver so I stop being sent this patch
+> series which will help keep my backlog more manageable.
+> 
+> > Traditionally moving drivers out of staging can be done 2 ways:
+> > 	- all happens in the staging tree, I take an ack from the
+> > 	  subsystem maintainer that this is ok to do.
+> > 	- A new driver enters the "real" subsystem tree, and then I
+> > 	  delete the driver in the staging tree.  This doesn't preserve
+> > 	  history as well (not at all), but can be easier for trees that
+> > 	  move quickly (like networking.)
+> 
+> The whole reason the driver is in the staging tree is that Mauro has a
+> requirement to do things in a way that preserves history and so won't
+> send any non-incremental patches.
 
-You mean inverting the level of INT? I don't think this is creative or
-complicated...
-And anyway, INT# is active low, like RST# so if the SoC has an RST#
-input, this should just work.
+Ok, should we wait until after 5.12-rc1 is out then?
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+thanks,
+
+greg k-h
