@@ -2,524 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3039D307A8B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 17:21:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97EE7307AA1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 17:25:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232112AbhA1QTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 11:19:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231148AbhA1QT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 11:19:28 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE8EFC061573
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 08:18:47 -0800 (PST)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1l5A0M-0006qx-BI; Thu, 28 Jan 2021 17:18:46 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1l5A0L-0003GO-SI; Thu, 28 Jan 2021 17:18:45 +0100
-Date:   Thu, 28 Jan 2021 17:18:45 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
-        krzk@kernel.org, robh+dt@kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 2/3] arm64: dts: imx: Add i.mx8mm nitrogen8mm basic
- dts support
-Message-ID: <20210128161845.lvex3vh6xfa64b3h@pengutronix.de>
-References: <20210118111531.903154-1-adrien.grassein@gmail.com>
- <20210118111531.903154-3-adrien.grassein@gmail.com>
+        id S232550AbhA1QXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 11:23:10 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48954 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232541AbhA1QXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 11:23:05 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10SGLQPf096821;
+        Thu, 28 Jan 2021 10:21:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1611850886;
+        bh=WNPd19A6ZtEmXx99rm146phP+kamA89IVTD2nlMa+3o=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=a6F0mkCyCRv177V5XkYGbbl4T94yEqk903KIxBy0cQX4TVpLdgIeL/cvX96SD+0xb
+         yCXSiucblmvM742ScDIaaKH3Z3CfKGjq1QFcmrt5C5lJT3ee+yKLhRNLd4TXTLxIC1
+         invW25XhtJRPgKvrkdbqK8HLapXlB4E486Yz94yA=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10SGLQRE028573
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 28 Jan 2021 10:21:26 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 28
+ Jan 2021 10:21:26 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 28 Jan 2021 10:21:26 -0600
+Received: from [10.250.232.169] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10SGLL8S064659;
+        Thu, 28 Jan 2021 10:21:22 -0600
+Subject: Re: [PATCH v3 1/2] dts: ti: k3-j7200-main: Add support for zeroth
+ instance of GPIO subsystem
+To:     Nishanth Menon <nm@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210127150815.16991-1-a-govindraju@ti.com>
+ <20210127150815.16991-2-a-govindraju@ti.com>
+ <20210127151256.tgbhpngy6fi43edj@create>
+ <9308ad5d-48bd-ebd2-2ea3-9775b8c11163@ti.com>
+ <20210127155441.e2oho7m4aeovkafw@absinthe>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <9959fc6b-1f3f-53b4-91fd-a8dc46a871b6@ti.com>
+Date:   Thu, 28 Jan 2021 21:51:21 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210118111531.903154-3-adrien.grassein@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 17:09:47 up 57 days,  6:16, 31 users,  load average: 0.08, 0.06,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210127155441.e2oho7m4aeovkafw@absinthe>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrien,
+Hi Nishanth,
 
-thanks for the patch. I've made only a few comments inline.
-
-On 21-01-18 12:15, Adrien Grassein wrote:
-> Tested with a basic Build Root configuration booting from sdcard.
-> 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../dts/freescale/imx8mm-nitrogen8mm_rev2.dts | 395 ++++++++++++++++++
->  2 files changed, 396 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 38559943c15d..398b5cb4f3e2 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -49,6 +49,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r3.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-nitrogen.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-nitrogen8mm_rev2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-phanbell.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-pico-pi.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-thor96.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
-> new file mode 100644
-> index 000000000000..755088387ea5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-nitrogen8mm_rev2.dts
-> @@ -0,0 +1,395 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree file for Boundary Devices i.MX8MMini Nitrogen8MM Rev2 board.
-> + * Adrien Grassein <adrien.grassein@gmail.com.com>
-> + */
-> +/dts-v1/;
-> +#include "imx8mm.dtsi"
-> +
-> +/ {
-> +	model = "Boundary Devices i.MX8MMini Nitrogen8MM Rev2";
-> +	compatible = "boundary,imx8mm-nitrogen8mm", "fsl,imx8mm";
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&reg_sw3>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&reg_sw3>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&reg_sw3>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&reg_sw3>;
-> +};
-> +
-> +&fec1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec1>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy0>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@4 {
-> +			compatible = "ethernet-phy-id004d.d072",
-                                                      ^
-			Do we really need to add the id here?
-> +				"ethernet-phy-ieee802.3-c22";
-> +			reg = <4>;
-> +			interrupts-extended = <&gpio3 16 IRQ_TYPE_LEVEL_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-			    ^
-		Is the i2c errata fixed on the imx8?
-
-> +	pinctrl-names = "default", "gpio";
-				     ^
-			no pinctrl for gpio.
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +
-> +	pmic@8 {
-> +		compatible = "nxp,pf8121a";
-> +		reg = <0x8>;
-> +
-> +		regulators {
-> +		    reg_ldo1: ldo1 {
-			^
-		   alignment
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_ldo2: ldo2 {
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_ldo3: ldo3 {
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_ldo4: ldo4 {
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <5000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_buck1: buck1 {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_buck2: buck2 {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_sw3: buck3 {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_buck4: buck4 {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_buck5: buck5 {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_buck6: buck6 {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_buck7: buck7 {
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_vsnvs: vsnvs {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-
-Do we really need to have all regulators marked	as always-on?
-
-> +		};
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default", "gpio";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	status = "okay";
-> +
-> +	i2cmux@70 {
-> +		compatible = "nxp,pca9540";
-> +		reg = <0x70>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		i2c3 {
-> +			reg = <0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			rtc@68 {
-> +				compatible = "microcrystal,rv4162";
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&pinctrl_i2c3a_rv4162>;
-> +				reg = <0x68>;
-
-reg should be the 2nd property, after the compatible.
-
-> +				interrupts-extended = <&gpio4 22 IRQ_TYPE_LEVEL_LOW>;
-> +				wakeup-source;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +/* console */
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_UART2>;
-> +	assigned-clock-parents = <&clk IMX8MM_CLK_24M>;
-> +	status = "okay";
-> +};
-> +
-> +/* eMMC */
-> +&usdhc1 {
-> +	bus-width = <8>;
-> +	sdhci-caps-mask = <0x80000000 0x0>;
-		^
-This is a SD host controller property according the doc.
-
-> +	non-removable;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-> +	status = "okay";
-> +};
-> +
-> +/* sdcard */
-> +&usdhc2 {
-> +	bus-width = <4>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-> +	vqmmc-supply = <&reg_ldo2>;
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hog>;
-
-It would be nice to avoid such hog's. Instead those gpios should get
-configured by the device(s) using those.
-
-Regards,
-  Marco
-
-> +
-> +	pinctrl_fec1: fec1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC			0x3
-> +			MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO		0x3
-> +			MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
-> +			MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
-> +			MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
-> +			MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
-> +			MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
-> +			MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
-> +			MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
-> +			MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
-> +			MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
-> +			MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
-> +			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-> +			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-> +			MX8MM_IOMUXC_NAND_READY_B_GPIO3_IO16		0x159
-> +		>;
-> +	};
-> +
-> +	pinctrl_hog: hoggrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3 0x09
-> +			MX8MM_IOMUXC_GPIO1_IO08_GPIO1_IO8 0x09
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL 0x400001c3
-> +			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA 0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL 0x400001c3
-> +			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA 0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3a_rv4162: i2c3a-rv4162grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22 0x1c0
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX 0x140
-> +			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX 0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x190
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6	0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7	0x1d0
-> +			MX8MM_IOMUXC_SD1_RESET_B_GPIO2_IO10	0x141
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_100mhz: usdhc1-100mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x194
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6	0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7	0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_200mhz: usdhc1-200mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x196
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6	0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7	0x1d6
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
-> +			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12	0x1c4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d6
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x190
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO00_ANAMIX_REF_CLK_32K	0x03
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x194
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhz-grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x196
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d6
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B 0x140
-> +		>;
-> +	};
-> +};
-> -- 
-> 2.25.1
+On 27/01/21 9:24 pm, Nishanth Menon wrote:
+> On 20:56-20210127, Aswath Govindraju wrote:
+>> Hi Nishanth,
+>>
+>> On 27/01/21 8:42 pm, Nishanth Menon wrote:
+>>> On 20:38-20210127, Aswath Govindraju wrote:
+>>>> Add support for the zeroth instance of GPIO subsystem in the main domain.
+>>>>
+>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>>
+>>>
+>>> I really dont want to pick up one patch per node instance. It is hard
+>>> to scale and just creates a lot of noise.
+>>>
+>>
+>> As the main goal of the patch series was to add support for higher speed
+>> modes in MMC, I added only the required ones. If required I will send a
+>> follow up patch to add the remaining GPIO nodes.
 > 
 > 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> I dont plan on picking this patch up in it's current form. please send a
+> patch with all the gpio nodes added in as it makes no sense to split
+> these out.
 > 
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+I have sent a respin for this patch series(v4) which adds all the GPIO
+nodes in the device tree files.
+
+Thanks,
+Aswath
