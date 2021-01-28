@@ -2,127 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC666307B85
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 17:58:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A704307BE6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 18:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232620AbhA1Q5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 11:57:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46514 "EHLO
+        id S232868AbhA1RMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 12:12:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232747AbhA1Q5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 11:57:36 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 503ECC061574;
-        Thu, 28 Jan 2021 08:56:54 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id t29so4364819pfg.11;
-        Thu, 28 Jan 2021 08:56:54 -0800 (PST)
+        with ESMTP id S232724AbhA1RKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 12:10:18 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E459DC061786;
+        Thu, 28 Jan 2021 09:09:37 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id l12so6182366wry.2;
+        Thu, 28 Jan 2021 09:09:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=r4OzxVPLRoxlIyBDmEaW5Gd8mifxKGEhoqDq5Ke4XvU=;
-        b=cWYHo3RPLvuqgXqLWKeiAeSunxHnmoi2DfEH7VfWjBrdr4Ov0p30EeyqX1jvElHQnw
-         jNSQyGAA9JuqxtS7r/yBIqRGkYh4Hk0K1FCGQWL5zTr3XVGVCI5DeMLaDHok9cGwq6gb
-         Hmc59AwEsHp2Jopg9yMtO1+5UuVPKtxfCJXQjLK8oBtNxlTNdryepE3oWBlp2i6jHA0z
-         UvGIEMfa0JNyEhqkBRVqgjYO+SZ2JRbyym6fdYN3b28c3xihMdvdP2fIHT67esPVS8yZ
-         WIhVye57N6ISKGEKHRRU1WNqiyPw1dKC9l3F/0PqD9uuw0XY9fHuP/juCcbhR8IOChuc
-         0uUg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tEVqKu7FgZ3q3m21a4cGa3XUWQDQS1wP9EjmTKGEaoY=;
+        b=MRqCu5mtJ+wjFomv0GrHbvuU3gJRB8Oa9rBSW5MmrlRHEI6YjzJuTGWjPDTjcpsHND
+         TuNGR37KbLkob2dmJVtnnuU0F/1jBJlrTPnJtmRWjYAyJLHKRysU885nndZuTVf6Vcqo
+         ij4xtisRWqKUMA1lpUCcji+T/PX0S8tNTuPf3aIZvBCb4RiZmQQc2g9lZt1c8COuyaX7
+         0MEGQt945zI9rOjwYn/6lXKJtA7o/LnRTfv0u8Lu8zlATiCyKI6TZslsFY6dM3d7TmNr
+         rSfxIi3c2RixwqbGMEJIa7sVRsuUuAoICvzmbMn6mQtC+GZhTp6ctwG+S1p7BJiNvP24
+         MQ3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=r4OzxVPLRoxlIyBDmEaW5Gd8mifxKGEhoqDq5Ke4XvU=;
-        b=Sv2p2PWTYKWK0s/uBiNW3BStOMPrSXFXEmMd5Aqtr7axb2Ckt/7vxI6Ev95nZX5nDW
-         YzAJkXoAOQd90U6Fc1dga6jHFlcOEgQYY0K4hOKBD+toGfrhO6odJDp5k84G8r685OP2
-         Xj79qVSN5hFyVWrTHVgeaC0MkLXXi4ATh/wawJ3j6yaWxVU+/aP4RGFbS5WaiyMLMz5G
-         4GtoYeiPWoaoejaECDx88wIjqlCMIOoapBuB8LweowUMkeOIIL3Nj93fiZmxljSXg/Ze
-         NOy30cVwGlfqrw2/x+jMm6L/c41yMZG15PrSFW2uaoj51DgTYxiEcvzzZh/1Jja+T3w+
-         B0Gw==
-X-Gm-Message-State: AOAM531fqWA9R/v/A1PIDh3nA9SPxoKKCk1JCEH36FxvNa8gZtolNncl
-        DIaFUSKwyjZTO4vdRphVHs4=
-X-Google-Smtp-Source: ABdhPJz2IVz9uK0AemB8mpqL5wrFV3zUb5iR4XhPWnwF3rqsqF67H6tg2c8B6kXfDP/+ZKAmd6XYxw==
-X-Received: by 2002:a63:ca45:: with SMTP id o5mr459086pgi.48.1611853013879;
-        Thu, 28 Jan 2021 08:56:53 -0800 (PST)
-Received: from google.com ([2620:15c:211:201:885b:c20e:b832:f82])
-        by smtp.gmail.com with ESMTPSA id d133sm6037141pfd.6.2021.01.28.08.56.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jan 2021 08:56:52 -0800 (PST)
-Sender: Minchan Kim <minchan.kim@gmail.com>
-Date:   Thu, 28 Jan 2021 08:56:50 -0800
-From:   Minchan Kim <minchan@kernel.org>
-To:     Michal Hocko <mhocko@suse.com>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        linux-mm <linux-mm@kvack.org>,
-        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
-        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
-        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
-        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
-        linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v4 2/4] mm: failfast mode with __GFP_NORETRY in
- alloc_contig_range
-Message-ID: <YBLs0oJY1PjCqv1q@google.com>
-References: <20210121175502.274391-1-minchan@kernel.org>
- <20210121175502.274391-3-minchan@kernel.org>
- <20210125131200.GG827@dhcp22.suse.cz>
- <YA8dEFSrHBb9muFr@google.com>
- <20210126074449.GA827@dhcp22.suse.cz>
- <YBHQRY8kw8/wjFK8@google.com>
- <YBJtdT5Tf5mRsE9U@dhcp22.suse.cz>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tEVqKu7FgZ3q3m21a4cGa3XUWQDQS1wP9EjmTKGEaoY=;
+        b=AR5BKzweaukKY9s8IbCNXDfj4nE4R3VSRs/+eO6Ir38RvuOBmOWFGaCkij1VW1sfxg
+         FwsXUHDb6g3z2Hubb8ZfDgwfJhlPa6lEtZaG+2OjHwJLbHQYTFhRfjgAr3hNSZf7Nx3r
+         WstUY9F4wYOgeenqwEAH2CgBFh1nrgCD5n6HD8dbE/fpq7pAUnmfn5GWDEYT1zxsw7Ig
+         sUy6uPG0F07T3F/n2g4GIj8KLhgVnsK9FirHEGFOOk8bK2XoPklYOy6lSmCVtQzBph2V
+         99qKC1LDDMQrSl6cv31cj4IgvjCyRhkXI4olUtv692psolZtFqUFe+YOitwvaT4wNcQL
+         bDzw==
+X-Gm-Message-State: AOAM530YF8dF2j+pH5sfLk42dEZKPje8IhwjYlkSBuWhG2j7UukIR3vm
+        UOhp+n/eaxejY5Rd87ZteCs=
+X-Google-Smtp-Source: ABdhPJx3OAVUYMraz4xXNNRgbJXMdMzftTGhMi5Q+H8urVhjLESWRY74Z4FSwt4sUXjWfMNzL+fnMQ==
+X-Received: by 2002:a5d:5708:: with SMTP id a8mr17187188wrv.211.1611853776675;
+        Thu, 28 Jan 2021 09:09:36 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id d2sm8378815wre.39.2021.01.28.09.09.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jan 2021 09:09:35 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: mt8183: Add missing power-domain for pwm0
+ node
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        linux-kernel@vger.kernel.org
+Cc:     drinkcat@chromium.org, hsinyi@chromium.org,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20210113215723.71966-1-enric.balletbo@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <78b5a9be-1d2e-fc99-85a6-296872761f25@gmail.com>
+Date:   Thu, 28 Jan 2021 18:09:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YBJtdT5Tf5mRsE9U@dhcp22.suse.cz>
+In-Reply-To: <20210113215723.71966-1-enric.balletbo@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 28, 2021 at 08:53:25AM +0100, Michal Hocko wrote:
-> On Wed 27-01-21 12:42:45, Minchan Kim wrote:
-> > On Tue, Jan 26, 2021 at 08:44:49AM +0100, Michal Hocko wrote:
-> > > On Mon 25-01-21 11:33:36, Minchan Kim wrote:
-> > > > On Mon, Jan 25, 2021 at 02:12:00PM +0100, Michal Hocko wrote:
-> > > > > On Thu 21-01-21 09:55:00, Minchan Kim wrote:
-> > > > > > Contiguous memory allocation can be stalled due to waiting
-> > > > > > on page writeback and/or page lock which causes unpredictable
-> > > > > > delay. It's a unavoidable cost for the requestor to get *big*
-> > > > > > contiguous memory but it's expensive for *small* contiguous
-> > > > > > memory(e.g., order-4) because caller could retry the request
-> > > > > > in different range where would have easy migratable pages
-> > > > > > without stalling.
-> > > > > > 
-> > > > > > This patch introduce __GFP_NORETRY as compaction gfp_mask in
-> > > > > > alloc_contig_range so it will fail fast without blocking
-> > > > > > when it encounters pages needed waiting.
-> > > > > 
-> > > > > I am not against controling how hard this allocator tries with gfp mask
-> > > > > but this changelog is rather void on any data and any user.
-> > > > > 
-> > > > > It is also rather dubious to have retries when then caller says to not
-> > > > > retry.
-> > > > 
-> > > > Since max_tries is 1 with ++tries, it shouldn't retry.
-> > > 
-> > > OK, I have missed that. This is a tricky code. ASYNC mode should be
-> > > completely orthogonal to the retries count. Those are different things.
-> > > Page allocator does an explicit bail out based on __GFP_NORETRY. You
-> > > should be doing the same.
-> > 
-> > Before sending next revision, let me check this part again.
-> > 
-> > I want to use __GFP_NORETRY to indicate "opportunistic-easy-to-fail attempt"
-> > and I want to use ASYNC migrate_mode to help the goal.
-> > 
-> > Do you see the problem?
+
+
+On 13/01/2021 22:57, Enric Balletbo i Serra wrote:
+> The MT8183 display PWM device will not work until the associated
+> power-domain is enabled. Add the power-domain reference to the node
+> allows the display PWM driver to operate and the backlight turn on.
 > 
-> No, as I've said. This is a normal NORETRY policy. And ASYNC migration
-> is a mere implementation detail you do not have bother your users about.
-> This is the semantic view. From the implementation POV it should be the
-> gfp mask to drive decisions rather than a random (ASYNC) flag to control
-> retries as you did here.
+> Fixes: f15722c0fef0 ("arm64: dts: mt8183: Add pwm and backlight node")
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> ---
 
-Make sense.
+applied to v5.11-next/dts64
 
-Let me cook next revision.
+Thanks!
 
-Thanks for the review, Michal.
+> 
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index bda283fa9245..8471c973dfd5 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -661,6 +661,7 @@ pwm0: pwm@1100e000 {
+>  			compatible = "mediatek,mt8183-disp-pwm";
+>  			reg = <0 0x1100e000 0 0x1000>;
+>  			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+>  			#pwm-cells = <2>;
+>  			clocks = <&topckgen CLK_TOP_MUX_DISP_PWM>,
+>  					<&infracfg CLK_INFRA_DISP_PWM>;
+> 
