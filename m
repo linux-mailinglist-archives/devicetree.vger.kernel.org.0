@@ -2,69 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2025B307497
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 12:19:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC80B3074A5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 12:24:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229831AbhA1LTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 06:19:25 -0500
-Received: from relay2.uni-heidelberg.de ([129.206.119.212]:58996 "EHLO
-        relay2.uni-heidelberg.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbhA1LTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 06:19:24 -0500
-X-IPAS-Result: =?us-ascii?q?A2D1AwCNnBJg/1BqzoFiHAEBAQEBAQcBARIBAQQEAQFAg?=
- =?us-ascii?q?U+DDGtlg3pGriMBAQEBAQEBAQEJLAECBAEBhEqBegIlOBMCAwEBAQMCAwEBA?=
- =?us-ascii?q?QEGAQEBAQEGBIZfhXQGI1YQJQImAgIUKDSGLbUTgTKJIoEtgQ4qixuCSYIbh?=
- =?us-ascii?q?GiEBVYwgkw0giwEgkeBDoEDgh2PKgkXpmGCBgeeXwINIpMdj2eRX4Vlnm6Bb?=
- =?us-ascii?q?YF6Mz6DOFAZDZxrQzA3AgYKAQEDCVkBAYh0gkYBAQ?=
-X-IronPort-Anti-Spam-Filtered: true
-Received: from lemon.iwr.uni-heidelberg.de ([129.206.106.80])
-  by relay2.uni-heidelberg.de with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Jan 2021 12:18:43 +0100
-Received: from hlauer by lemon.iwr.uni-heidelberg.de with local (Exim 4.92)
-        (envelope-from <hlauer@lemon.iwr.uni-heidelberg.de>)
-        id 1l55Jy-00037W-KT; Thu, 28 Jan 2021 12:18:42 +0100
-Date:   Thu, 28 Jan 2021 12:18:42 +0100
-From:   Hermann.Lauer@uni-heidelberg.de
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4] ARM: dts: sun7i: a20: bananapro: Fix ethernet phy-mode
-Message-ID: <20210128111842.GA11919@lemon.iwr.uni-heidelberg.de>
-References: <20210121170836.GA4948@lemon.iwr.uni-heidelberg.de>
- <20210128094040.GD11559@lemon.iwr.uni-heidelberg.de>
+        id S231217AbhA1LYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 06:24:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229953AbhA1LYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 06:24:00 -0500
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832F7C061574
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 03:23:20 -0800 (PST)
+Received: by mail-pg1-x52f.google.com with SMTP id t25so4102368pga.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 03:23:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MitNH2RViQ9M+l824b3X/mBw9Aai/EXP4oM357HcQBQ=;
+        b=ZEqOJcZ0ynUWANxO+EaI+p6TC+ZC7yNGpplc3fOZU8yoDhecz0DxWj2vpouFVQP2me
+         6eFAZ1LV+MBQ0CAGtx3XG1Y86rC1cVIh45O2aEZPo+QI6hkseN7xTo8znpXOcFeYnjW7
+         pHgNTWWCv3dotgE6JZiZ5kP2SJVKarIHfAFro=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MitNH2RViQ9M+l824b3X/mBw9Aai/EXP4oM357HcQBQ=;
+        b=itn5tfZL2je/veLSOk4QwfakkNHzDlnfKar9WX0pp9K70HMXm6v4MLiw4EtGY5fd+F
+         KTu3dIS5FqOWcTvBQKNwknfmvZ5GwCMaoC0j1e0msegeM1P70Vjailq3nRXJlCMZ0GjP
+         JXq6FNYSXvqVgRhxaVPfTVQJWfIk1c2a8YJdzGE2XqWVrHzczLpfJFG6WMuuD5sG8TCq
+         7oAcpGR3x3x8O7w0EGnDeH1pPDHhJrKJDW1GtDj6uvQAkhXw0tf34g0z6L7xNl2e1Jyr
+         t4J/G6vJx/vJvrGE/mTZ/LToocODiiIFyvGmF75LRsQbpCreJFMLYZBWLHiAvmtvrYZV
+         PARA==
+X-Gm-Message-State: AOAM532FvjCaSIM6eddwLC/7jYV/mGj9I0BNMkzbVnGqxjsXUEUjZV2/
+        udesIus8rFfaSrilSXidvUCQaQ==
+X-Google-Smtp-Source: ABdhPJykNoU5MwajtlO/UqGNGOvj8VeKIu1HgqMarpCtFdqrqZXAI1Ruxgro9gUBNXNDwZCSFiFGAA==
+X-Received: by 2002:aa7:87d8:0:b029:1bd:d756:bdc9 with SMTP id i24-20020aa787d80000b02901bdd756bdc9mr15240312pfo.68.1611832999795;
+        Thu, 28 Jan 2021 03:23:19 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:e0a5:d2fc:aaad:1e4a])
+        by smtp.gmail.com with ESMTPSA id j198sm3138315pfd.71.2021.01.28.03.23.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jan 2021 03:23:19 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH v12 0/8] drm/mediatek: add support for mediatek SOC MT8183
+Date:   Thu, 28 Jan 2021 19:23:06 +0800
+Message-Id: <20210128112314.1304160-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210128094040.GD11559@lemon.iwr.uni-heidelberg.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BPi Pro needs TX and RX delay for Gbit to work reliable and avoid high
-packet loss rates. The realtek phy driver overrides the settings of the
-pull ups for the delays, so fix this for BananaPro.
-    
-Fix the phy-mode description to correctly reflect this so that the
-implementation doesn't reconfigure the delays incorrectly. This
-happened with commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e
-rx/tx delay config").
+This series is based on kernel/git/chunkuang.hu/linux.git mediatek-drm-next
+The series is tested on a mt8183 krane device.
 
-Fixes: 10662a33dcd9 ("ARM: dts: sun7i: Add dts file for Bananapro board")
-Signed-off-by: Hermann Lauer <Hermann.Lauer@uni-heidelberg.de>
----
- arch/arm/boot/dts/sun7i-a20-bananapro.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Change since v11
+- fix review comments in v10
+- drop "drm/mediatek: add RDMA fifo size error handle" patch
 
-diff --git a/arch/arm/boot/dts/sun7i-a20-bananapro.dts b/arch/arm/boot/dts/sun7i-a20-bananapro.dts
---- a/arch/arm/boot/dts/sun7i-a20-bananapro.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-bananapro.dts
-@@ -110,7 +110,7 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&gmac_rgmii_pins>;
- 	phy-handle = <&phy1>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-supply = <&reg_gmac_3v3>;
- 	status = "okay";
- };
+Change since v10
+- fix review comments in v9
+
+Change since v9
+- change several function to rebase to mediatek-drm-next
+
+Change since v8
+- fix some review comment in v8
+- separate gamma module for mt8183 has no dither function in gamma
+- enable dither function for 5 or 6 bpc panel display
+- separate ddp mutex patch from the whole Soc patch
+
+Change since v7
+- add dt-binding for mt8183 display
+- base mmsys patch
+https://patchwork.kernel.org/project/linux-mediatek/cover/1607506379-10998-1-git-send-email-yongqiang.niu@mediatek.com/
+- base dts patch
+https://patchwork.kernel.org/project/linux-mediatek/cover/20201127104930.1981497-1-enric.balletbo@collabora.com/
+- add mt8183 function call for setting the routing registers
+- add RDMA fifo size error handle
+
+Change since v6
+- move ddp component define into mtk_mmsys.h
+- add mmsys private data to support different ic path connection
+- add mt8183-mmsys.c to support 8183 path connection
+- fix reviewed issue in v6
+
+Change since v5
+- fix reviewed issue in v5
+base https://patchwork.kernel.org/project/linux-mediatek/list/?series=213219
+
+Change since v4
+- fix reviewed issue in v4
+
+Change since v3
+- fix reviewed issue in v3
+- fix type error in v3
+- fix conflict with iommu patch
+
+Change since v2
+- fix reviewed issue in v2
+- add mutex node into dts file
+
+Changes since v1:
+- fix reviewed issue in v1
+- add dts for mt8183 display nodes
+- adjust display clock control flow in patch 22
+- add vmap support for mediatek drm in patch 23
+- fix page offset issue for mmap function in patch 24
+- enable allow_fb_modifiers for mediatek drm in patch 25
+
+Hsin-Yi Wang (1):
+  drm/mediatek: add mtk_dither_set_common() function
+
+Yongqiang Niu (7):
+  arm64: dts: mt8183: rename rdma fifo size
+  arm64: dts: mt8183: refine gamma compatible name
+  drm/mediatek: separate gamma module
+  drm/mediatek: add has_dither private data for gamma
+  drm/mediatek: enable dither function
+  soc: mediatek: add mtk mutex support for MT8183
+  drm/mediatek: add support for mediatek SOC MT8183
+
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi    |   7 +-
+ drivers/gpu/drm/mediatek/Makefile           |   1 +
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h     |  14 ++
+ drivers/gpu/drm/mediatek/mtk_disp_gamma.c   | 198 ++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c     |  18 ++
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c    |   6 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 111 ++++-------
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c      |  49 ++++-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+ drivers/soc/mediatek/mtk-mutex.c            |  50 +++++
+ 10 files changed, 380 insertions(+), 75 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_gamma.c
+
+-- 
+2.30.0.280.ga3ce27912f-goog
+
