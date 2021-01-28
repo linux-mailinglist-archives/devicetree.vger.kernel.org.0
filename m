@@ -2,172 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34BFB306E03
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47654306F84
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:32:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231299AbhA1HBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 02:01:17 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:45603 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229652AbhA1HBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 02:01:05 -0500
-X-UUID: 53c6337884164a9c8e76455b57b23b75-20210128
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=iLD0cfC7OI5fd6re8bU20Diab017K7ENUU4aiw1sTXE=;
-        b=Cf/lO6wX9eBaBUz9PiqMHChc/toAHxwkQh4DE5aS7NNfYoK4F/lmvQnJN3sFWSTyuNK+YVQ33Tlj5sKhneO+CIIKKyCCsKK+2uVMIGMRorh+iuLpFTv/YAW3qk3hfdAqmZXol22+bz1QqbQ0ECPmpkK8VJ2OhpyfjfPQVGdf2Xw=;
-X-UUID: 53c6337884164a9c8e76455b57b23b75-20210128
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1797207214; Thu, 28 Jan 2021 15:00:14 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 28 Jan 2021 15:00:11 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Jan 2021 15:00:11 +0800
-Message-ID: <1611817211.8417.0.camel@mtksdaap41>
-Subject: Re: [PATCH v10 8/9] drm/mediatek: add DDP support for MT8183
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S231652AbhA1HcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 02:32:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37488 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231803AbhA1H2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 02:28:48 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C85C061573
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 23:28:07 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id s23so2441750pgh.11
+        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 23:28:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RZz3ceioh1U58Fbl8S/hu4ZpgE/t+XyWasxorJvZsE0=;
+        b=fSa3rYF+HYRmksYTnNnBF7iGLrcWblljS8mseahPbcqq8DhIvFNoh7Ydw+gpq01OC2
+         9LKee+XfbDxx9WMW625TsChm2sa7K9XmD4uM8jZBWkKuIDqg20+LvB1GlV5pHIYN9cf7
+         RkIJUUwjHD4uvVywJSaBE0Y0f3uzGWechNtQw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RZz3ceioh1U58Fbl8S/hu4ZpgE/t+XyWasxorJvZsE0=;
+        b=XT3daF7Dkb0K4329LkO/4A34DWnGJEH4+bjyZb6ss10uM7vcNxmLC32DzvGtRRZlkz
+         EYJi+cU8QG67qWASITyghsa3oAFF+xdEK1+TwFNsjwegsotQxIjWti/J38D9eLM5wrnu
+         YUyyKdp1ElGdjbgnty+4v4iZnrIvfqs50YwNBPrvug+vXJwhonHEcl/84M1HJxgj2XSv
+         IaFQBvaYlIcY4RTXQ7dZsjmOl96uiJLQ5RBSApQtJevNzZVEd3fgafQKKMJ2zpGapazF
+         pSWHQBljj1DyrBJkjydVp8FlSAnqBDJU2rf1M8JGC7HD07iezNssducjtHosTVMvI0XC
+         krxA==
+X-Gm-Message-State: AOAM530BS53CRqj1tEIqJ3CYIOikmJnTXFgyi3sBhDQPXqrBkX8rYx3h
+        PRy0qOA9AwEzTHLTkRaenBrOyg==
+X-Google-Smtp-Source: ABdhPJxuD2BvG0tK7AzWVRdSCRGTeJ9On+LJVVlKCLl4Uvo8BSo7+t7v+Wgh1kMaETX/DUQ3YbM6yQ==
+X-Received: by 2002:a63:5c61:: with SMTP id n33mr15533253pgm.153.1611818887431;
+        Wed, 27 Jan 2021 23:28:07 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:e0a5:d2fc:aaad:1e4a])
+        by smtp.gmail.com with ESMTPSA id h2sm4800304pfk.4.2021.01.27.23.28.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Jan 2021 23:28:06 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Date:   Thu, 28 Jan 2021 15:00:11 +0800
-In-Reply-To: <CAJMQK-gHjmm-BaG83EXMOkT6KeCyJJN4ZqRDdT75BcED53bREw@mail.gmail.com>
-References: <20210127045422.2418917-1-hsinyi@chromium.org>
-         <20210127045422.2418917-9-hsinyi@chromium.org>
-         <1611814421.28312.9.camel@mtksdaap41>
-         <CAJMQK-gHjmm-BaG83EXMOkT6KeCyJJN4ZqRDdT75BcED53bREw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+Subject: [PATCH v11 0/9] drm/mediatek: add support for mediatek SOC MT8183
+Date:   Thu, 28 Jan 2021 15:27:53 +0800
+Message-Id: <20210128072802.830971-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 1028BAB7B3EECBBFEEF43CD5A0BE256A2A8A797E056769F2B56E920121122C782000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTAxLTI4IGF0IDE0OjE1ICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+
-IE9uIFRodSwgSmFuIDI4LCAyMDIxIGF0IDI6MTMgUE0gQ0sgSHUgPGNrLmh1QG1lZGlhdGVrLmNv
-bT4gd3JvdGU6DQo+ID4NCj4gPiBIaSwgSHNpbi1ZaToNCj4gPg0KPiA+IE1vZGlmeSB0aGUgdGl0
-bGUncyBwcmVmaXggdG8gJ3NvYzogbWVkaWF0ZWs6Jw0KPiA+DQo+ID4gT24gV2VkLCAyMDIxLTAx
-LTI3IGF0IDEyOjU0ICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+ID4gPiBGcm9tOiBZb25n
-cWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVrLmNvbT4NCj4gPiA+DQo+ID4gPiBBZGQg
-RERQIHN1cHBvcnQgZm9yIE1UODE4MyBTb0MuDQo+ID4gPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTog
-WW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20+DQo+ID4gPiBTaWduZWQt
-b2ZmLWJ5OiBIc2luLVlpIFdhbmcgPGhzaW55aUBjaHJvbWl1bS5vcmc+DQo+ID4gPiAtLS0NCj4g
-PiA+ICBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstbXV0ZXguYyB8IDUwICsrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrDQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDUwIGluc2VydGlvbnMo
-KykNCj4gPiA+DQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLW11
-dGV4LmMgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstbXV0ZXguYw0KPiA+ID4gaW5kZXggZjUz
-MWIxMTlkYTdhOS4uZjY0ZTljMzNlODVhZCAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvc29j
-L21lZGlhdGVrL210ay1tdXRleC5jDQo+ID4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9t
-dGstbXV0ZXguYw0KPiA+ID4gQEAgLTE0LDYgKzE0LDggQEANCj4gPiA+DQo+ID4gPiAgI2RlZmlu
-ZSBNVDI3MDFfTVVURVgwX01PRDAgICAgICAgICAgICAgICAgICAgMHgyYw0KPiA+ID4gICNkZWZp
-bmUgTVQyNzAxX01VVEVYMF9TT0YwICAgICAgICAgICAgICAgICAgIDB4MzANCj4gPiA+ICsjZGVm
-aW5lIE1UODE4M19ESVNQX01VVEVYMF9NT0QwICAgICAgICAgICAgICAgICAgICAgIDB4MzANCj4g
-PiA+ICsjZGVmaW5lIE1UODE4M19ESVNQX01VVEVYMF9TT0YwICAgICAgICAgICAgICAgICAgICAg
-IDB4MmMNCj4gPg0KPiA+IE1vZGlmeSAnRElTUF9NVVRFWCcgdG8gJ01VVEVYJw0KPiA+DQo+ID4g
-Pg0KPiA+ID4gICNkZWZpbmUgRElTUF9SRUdfTVVURVhfRU4obikgICAgICAgICAgICAgICAgICgw
-eDIwICsgMHgyMCAqIChuKSkNCj4gPiA+ICAjZGVmaW5lIERJU1BfUkVHX01VVEVYKG4pICAgICAg
-ICAgICAgICAgICAgICAoMHgyNCArIDB4MjAgKiAobikpDQo+ID4gPiBAQCAtMzcsNiArMzksMTgg
-QEANCj4gPiA+ICAjZGVmaW5lIE1UODE2N19NVVRFWF9NT0RfRElTUF9ESVRIRVIgICAgICAgICAx
-NQ0KPiA+ID4gICNkZWZpbmUgTVQ4MTY3X01VVEVYX01PRF9ESVNQX1VGT0UgICAgICAgICAgIDE2
-DQo+ID4gPg0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX1JETUEwICAgICAg
-ICAgIDANCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9NT0RfRElTUF9SRE1BMSAgICAgICAg
-ICAxDQo+ID4gPiArI2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJU1BfT1ZMMCAgICAgICAgICAg
-OQ0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX09WTDBfMkwgICAgICAgICAg
-ICAgICAgMTANCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9NT0RfRElTUF9PVkwxXzJMICAg
-ICAgICAgICAgICAgIDExDQo+ID4gPiArI2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJU1BfV0RN
-QTAgICAgICAgICAgMTINCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9NT0RfRElTUF9DT0xP
-UjAgICAgICAgICAxMw0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX0NDT1JS
-MCAgICAgICAgIDE0DQo+ID4gPiArI2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJU1BfQUFMMCAg
-ICAgICAgICAgMTUNCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9NT0RfRElTUF9HQU1NQTAg
-ICAgICAgICAxNg0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX0RJVEhFUjAg
-ICAgICAgICAgICAgICAgMTcNCj4gPiA+ICsNCj4gPiA+ICAjZGVmaW5lIE1UODE3M19NVVRFWF9N
-T0RfRElTUF9PVkwwICAgICAgICAgICAxMQ0KPiA+ID4gICNkZWZpbmUgTVQ4MTczX01VVEVYX01P
-RF9ESVNQX09WTDEgICAgICAgICAgIDEyDQo+ID4gPiAgI2RlZmluZSBNVDgxNzNfTVVURVhfTU9E
-X0RJU1BfUkRNQTAgICAgICAgICAgMTMNCj4gPiA+IEBAIC04Nyw2ICsxMDEsMTIgQEANCj4gPiA+
-ICAjZGVmaW5lIE1UMjcxMl9NVVRFWF9TT0ZfRFNJMyAgICAgICAgICAgICAgICAgICAgICAgIDYN
-Cj4gPiA+ICAjZGVmaW5lIE1UODE2N19NVVRFWF9TT0ZfRFBJMCAgICAgICAgICAgICAgICAgICAg
-ICAgIDINCj4gPiA+ICAjZGVmaW5lIE1UODE2N19NVVRFWF9TT0ZfRFBJMSAgICAgICAgICAgICAg
-ICAgICAgICAgIDMNCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9TT0ZfRFNJMCAgICAgICAg
-ICAgICAgICAgICAgICAgIDENCj4gPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9TT0ZfRFBJMCAg
-ICAgICAgICAgICAgICAgICAgICAgIDINCj4gPiA+ICsNCj4gPiA+ICsvKiBBZGQgRU9GIHNldHRp
-bmcgc28gb3ZlcmxheSBoYXJkd2FyZSBjYW4gcmVjZWl2ZSBmcmFtZSBkb25lIGlycSAqLw0KPiA+
-ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX0VPRl9EU0kwICAgICAgICAgICAgICAgICAgICAgICAg
-KE1UODE4M19NVVRFWF9TT0ZfRFNJMCA8PCA2KQ0KPiA+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVY
-X0VPRl9EUEkwICAgICAgICAgICAgICAgICAgICAgICAgKE1UODE4M19NVVRFWF9TT0ZfRFBJMCA8
-PCA2KQ0KPiA+ID4NCj4gDQo+IEhpIENLLCBjb21tZW50IGlzIGFkZGVkIGhlcmUuIEkgY2FuIG1v
-dmUgdG8gbXQ4MTgzX211dGV4X3NvZiBpZiBwcmVmZXJyZWQuDQoNCkkgcHJlZmVyIHRvIG1vdmUg
-Y29tbWVudCB0byBtdDgxODNfbXV0ZXhfc29mLg0KDQo+IA0KPiA+ID4gIHN0cnVjdCBtdGtfbXV0
-ZXggew0KPiA+ID4gICAgICAgaW50IGlkOw0KPiA+ID4gQEAgLTE4MSw2ICsyMDEsMjAgQEAgc3Rh
-dGljIGNvbnN0IHVuc2lnbmVkIGludCBtdDgxNzNfbXV0ZXhfbW9kW0REUF9DT01QT05FTlRfSURf
-TUFYXSA9IHsNCj4gPiA+ICAgICAgIFtERFBfQ09NUE9ORU5UX1dETUExXSA9IE1UODE3M19NVVRF
-WF9NT0RfRElTUF9XRE1BMSwNCj4gPiA+ICB9Ow0KPiA+ID4NCj4gPiA+ICtzdGF0aWMgY29uc3Qg
-dW5zaWduZWQgaW50IG10ODE4M19tdXRleF9tb2RbRERQX0NPTVBPTkVOVF9JRF9NQVhdID0gew0K
-PiA+ID4gKyAgICAgW0REUF9DT01QT05FTlRfQUFMMF0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1Bf
-QUFMMCwNCj4gPiA+ICsgICAgIFtERFBfQ09NUE9ORU5UX0NDT1JSXSA9IE1UODE4M19NVVRFWF9N
-T0RfRElTUF9DQ09SUjAsDQo+ID4gPiArICAgICBbRERQX0NPTVBPTkVOVF9DT0xPUjBdID0gTVQ4
-MTgzX01VVEVYX01PRF9ESVNQX0NPTE9SMCwNCj4gPiA+ICsgICAgIFtERFBfQ09NUE9ORU5UX0RJ
-VEhFUl0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfRElUSEVSMCwNCj4gPiA+ICsgICAgIFtERFBf
-Q09NUE9ORU5UX0dBTU1BXSA9IE1UODE4M19NVVRFWF9NT0RfRElTUF9HQU1NQTAsDQo+ID4gPiAr
-ICAgICBbRERQX0NPTVBPTkVOVF9PVkwwXSA9IE1UODE4M19NVVRFWF9NT0RfRElTUF9PVkwwLA0K
-PiA+ID4gKyAgICAgW0REUF9DT01QT05FTlRfT1ZMXzJMMF0gPSBNVDgxODNfTVVURVhfTU9EX0RJ
-U1BfT1ZMMF8yTCwNCj4gPiA+ICsgICAgIFtERFBfQ09NUE9ORU5UX09WTF8yTDFdID0gTVQ4MTgz
-X01VVEVYX01PRF9ESVNQX09WTDFfMkwsDQo+ID4gPiArICAgICBbRERQX0NPTVBPTkVOVF9SRE1B
-MF0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfUkRNQTAsDQo+ID4gPiArICAgICBbRERQX0NPTVBP
-TkVOVF9SRE1BMV0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfUkRNQTEsDQo+ID4gPiArICAgICBb
-RERQX0NPTVBPTkVOVF9XRE1BMF0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfV0RNQTAsDQo+ID4g
-PiArfTsNCj4gPiA+ICsNCj4gPiA+ICBzdGF0aWMgY29uc3QgdW5zaWduZWQgaW50IG10MjcxMl9t
-dXRleF9zb2ZbTVVURVhfU09GX0RTSTMgKyAxXSA9IHsNCj4gPiA+ICAgICAgIFtNVVRFWF9TT0Zf
-U0lOR0xFX01PREVdID0gTVVURVhfU09GX1NJTkdMRV9NT0RFLA0KPiA+ID4gICAgICAgW01VVEVY
-X1NPRl9EU0kwXSA9IE1VVEVYX1NPRl9EU0kwLA0KPiA+ID4gQEAgLTE5OCw2ICsyMzIsMTIgQEAg
-c3RhdGljIGNvbnN0IHVuc2lnbmVkIGludCBtdDgxNjdfbXV0ZXhfc29mW01VVEVYX1NPRl9EU0kz
-ICsgMV0gPSB7DQo+ID4gPiAgICAgICBbTVVURVhfU09GX0RQSTFdID0gTVQ4MTY3X01VVEVYX1NP
-Rl9EUEkxLA0KPiA+ID4gIH07DQo+ID4gPg0KPiA+ID4gK3N0YXRpYyBjb25zdCB1bnNpZ25lZCBp
-bnQgbXQ4MTgzX211dGV4X3NvZltNVVRFWF9TT0ZfRFNJMyArIDFdID0gew0KPiA+ID4gKyAgICAg
-W01VVEVYX1NPRl9TSU5HTEVfTU9ERV0gPSBNVVRFWF9TT0ZfU0lOR0xFX01PREUsDQo+ID4gPiAr
-ICAgICBbTVVURVhfU09GX0RTSTBdID0gTVVURVhfU09GX0RTSTAgfCBNVDgxODNfTVVURVhfRU9G
-X0RTSTAsDQo+ID4gPiArICAgICBbTVVURVhfU09GX0RQSTBdID0gTVQ4MTgzX01VVEVYX1NPRl9E
-UEkwIHwgTVQ4MTgzX01VVEVYX0VPRl9EUEkwLA0KPiA+DQo+ID4gQWNjb3JkaW5nIHRvIGRpc2N1
-c3Npb24gaW4gWzFdLCBhZGQgY29tbWVudCBmb3IgdGhlIG9kZCBFT0Ygc2V0dGluZy4NCj4gPg0K
-PiA+IFsxXQ0KPiA+IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1t
-ZWRpYXRlay9wYXRjaC8xNTk1NDY5Nzk4LTM4MjQtOC1naXQtc2VuZC1lbWFpbC15b25ncWlhbmcu
-bml1QG1lZGlhdGVrLmNvbS8NCj4gPg0KPiA+IFJlZ2FyZHMsDQo+ID4gQ0suDQo+ID4NCj4gPg0K
-PiA+ID4gK307DQo+ID4gPiArDQo+ID4gPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfbXV0ZXhf
-ZGF0YSBtdDI3MDFfbXV0ZXhfZHJpdmVyX2RhdGEgPSB7DQo+ID4gPiAgICAgICAubXV0ZXhfbW9k
-ID0gbXQyNzAxX211dGV4X21vZCwNCj4gPiA+ICAgICAgIC5tdXRleF9zb2YgPSBtdDI3MTJfbXV0
-ZXhfc29mLA0KPiA+ID4gQEAgLTIyNyw2ICsyNjcsMTQgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBt
-dGtfbXV0ZXhfZGF0YSBtdDgxNzNfbXV0ZXhfZHJpdmVyX2RhdGEgPSB7DQo+ID4gPiAgICAgICAu
-bXV0ZXhfc29mX3JlZyA9IE1UMjcwMV9NVVRFWDBfU09GMCwNCj4gPiA+ICB9Ow0KPiA+ID4NCj4g
-PiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG10a19tdXRleF9kYXRhIG10ODE4M19tdXRleF9kcml2
-ZXJfZGF0YSA9IHsNCj4gPiA+ICsgICAgIC5tdXRleF9tb2QgPSBtdDgxODNfbXV0ZXhfbW9kLA0K
-PiA+ID4gKyAgICAgLm11dGV4X3NvZiA9IG10ODE4M19tdXRleF9zb2YsDQo+ID4gPiArICAgICAu
-bXV0ZXhfbW9kX3JlZyA9IE1UODE4M19ESVNQX01VVEVYMF9NT0QwLA0KPiA+ID4gKyAgICAgLm11
-dGV4X3NvZl9yZWcgPSBNVDgxODNfRElTUF9NVVRFWDBfU09GMCwNCj4gPiA+ICsgICAgIC5ub19j
-bGsgPSB0cnVlLA0KPiA+ID4gK307DQo+ID4gPiArDQo+ID4gPiAgc3RydWN0IG10a19tdXRleCAq
-bXRrX211dGV4X2dldChzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ID4gPiAgew0KPiA+ID4gICAgICAg
-c3RydWN0IG10a19tdXRleF9jdHggKm10eCA9IGRldl9nZXRfZHJ2ZGF0YShkZXYpOw0KPiA+ID4g
-QEAgLTQ1Nyw2ICs1MDUsOCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdXRl
-eF9kcml2ZXJfZHRfbWF0Y2hbXSA9IHsNCj4gPiA+ICAgICAgICAgLmRhdGEgPSAmbXQ4MTY3X211
-dGV4X2RyaXZlcl9kYXRhfSwNCj4gPiA+ICAgICAgIHsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWss
-bXQ4MTczLWRpc3AtbXV0ZXgiLA0KPiA+ID4gICAgICAgICAuZGF0YSA9ICZtdDgxNzNfbXV0ZXhf
-ZHJpdmVyX2RhdGF9LA0KPiA+ID4gKyAgICAgeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgx
-ODMtZGlzcC1tdXRleCIsDQo+ID4gPiArICAgICAgIC5kYXRhID0gJm10ODE4M19tdXRleF9kcml2
-ZXJfZGF0YX0sDQo+ID4gPiAgICAgICB7fSwNCj4gPiA+ICB9Ow0KPiA+ID4gIE1PRFVMRV9ERVZJ
-Q0VfVEFCTEUob2YsIG11dGV4X2RyaXZlcl9kdF9tYXRjaCk7DQo+ID4NCg0K
+This series is based on kernel/git/chunkuang.hu/linux.git mediatek-drm-next
+The series is tested on a mt8183 krane device.
+
+Change since v10
+- fix review comments in v9
+
+Change since v9
+- change several function to rebase to mediatek-drm-next
+
+Change since v8
+- fix some review comment in v8
+- separate gamma module for mt8183 has no dither function in gamma
+- enable dither function for 5 or 6 bpc panel display
+- separate ddp mutex patch from the whole Soc patch
+
+Change since v7
+- add dt-binding for mt8183 display
+- base mmsys patch
+https://patchwork.kernel.org/project/linux-mediatek/cover/1607506379-10998-1-git-send-email-yongqiang.niu@mediatek.com/
+- base dts patch
+https://patchwork.kernel.org/project/linux-mediatek/cover/20201127104930.1981497-1-enric.balletbo@collabora.com/
+- add mt8183 function call for setting the routing registers
+- add RDMA fifo size error handle
+
+Change since v6
+- move ddp component define into mtk_mmsys.h
+- add mmsys private data to support different ic path connection
+- add mt8183-mmsys.c to support 8183 path connection
+- fix reviewed issue in v6
+
+Change since v5
+- fix reviewed issue in v5
+base https://patchwork.kernel.org/project/linux-mediatek/list/?series=213219
+
+Change since v4
+- fix reviewed issue in v4
+
+Change since v3
+- fix reviewed issue in v3
+- fix type error in v3
+- fix conflict with iommu patch
+
+Change since v2
+- fix reviewed issue in v2
+- add mutex node into dts file
+
+Changes since v1:
+- fix reviewed issue in v1
+- add dts for mt8183 display nodes
+- adjust display clock control flow in patch 22
+- add vmap support for mediatek drm in patch 23
+- fix page offset issue for mmap function in patch 24
+- enable allow_fb_modifiers for mediatek drm in patch 25
+
+
+Hsin-Yi Wang (1):
+  drm/mediatek: add mtk_dither_set_common() function
+
+Yongqiang Niu (8):
+  arm64: dts: mt8183: rename rdma fifo size
+  arm64: dts: mt8183: refine gamma compatible name
+  drm/mediatek: add RDMA fifo size error handle
+  drm/mediatek: separate gamma module
+  drm/mediatek: add has_dither private data for gamma
+  drm/mediatek: enable dither function
+  soc: mediatek: add mtk mutex support for MT8183
+  drm/mediatek: add support for mediatek SOC MT8183
+
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi    |   7 +-
+ drivers/gpu/drm/mediatek/Makefile           |   1 +
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h     |  14 ++
+ drivers/gpu/drm/mediatek/mtk_disp_gamma.c   | 196 ++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c     |  18 ++
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c    |  10 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 138 +++++++-------
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c      |  49 ++++-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+ drivers/soc/mediatek/mtk-mutex.c            |  50 +++++
+ 10 files changed, 410 insertions(+), 74 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_gamma.c
+
+-- 
+2.30.0.280.ga3ce27912f-goog
 
