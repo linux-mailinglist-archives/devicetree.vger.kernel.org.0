@@ -2,183 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9568D307192
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65F243071CC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:43:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231768AbhA1Ic7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 03:32:59 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:53804 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231350AbhA1Ic4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 03:32:56 -0500
-X-UUID: fb5a23f0169b43ddbe1bf112a2d12fc9-20210128
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=1Sbm2bZx8k7nPtcDPxuTnvVWvjkL3PfNcHBHr0kDrP4=;
-        b=XgOom+NZuSw6GbO1v+oy48NVP6zKz/qGNZGx9JElnks5YNK7LMOm57zCVGGpM0Hkxvws+VGWjA2XxuxzjEY60hFEZTmZXp2WXh9jM3vv6WgdqO6ct0ZYFrjqmWmdq5I2f4obfazqtTyCbzS/DK5Itf4DrKuh7nXCHwANKWBGrjg=;
-X-UUID: fb5a23f0169b43ddbe1bf112a2d12fc9-20210128
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1102789290; Thu, 28 Jan 2021 16:32:11 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs05n1.mediatek.inc
- (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 28 Jan
- 2021 16:32:10 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Jan 2021 16:32:09 +0800
-Message-ID: <1611822729.1947.14.camel@mhfsdcap03>
-Subject: Re: [PATCH v11 7/9] drm/mediatek: enable dither function
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 28 Jan 2021 16:32:09 +0800
-In-Reply-To: <1611822524.23925.4.camel@mtksdaap41>
-References: <20210128072802.830971-1-hsinyi@chromium.org>
-         <20210128072802.830971-8-hsinyi@chromium.org>
-         <1611819766.16091.4.camel@mtksdaap41> <1611820770.1947.8.camel@mhfsdcap03>
-         <1611821233.18369.4.camel@mtksdaap41> <1611821396.1947.10.camel@mhfsdcap03>
-         <CAJMQK-h1_d1+SpxMC8LGPJK=X9HHoJ_ueFzV2Sq44buCiaXFUA@mail.gmail.com>
-         <1611822524.23925.4.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S231733AbhA1Ik6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 03:40:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52936 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229578AbhA1Ikz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 03:40:55 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C259C06174A
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:40:14 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id o16so3834320pgg.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:40:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cJIAwStqssO4qlrJsU+DZexmUlk16AIgSgJEzjOLeeM=;
+        b=dhqfKN/9w8VsgNPrc1AXQXAmZwOdSjzVEaYFJ8O1aFkPq3+yVdEn2hzOaOmaJWa4AB
+         dykJLKZqrjHP9erkYh5RmFmxjAWrNe9ED1y1n8OH+8/iLZJkzURf4IEbru3xADFMN+2n
+         cq8CbP6KSQSRCAgLl4qZkcOhE0F75C8nHEBXU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cJIAwStqssO4qlrJsU+DZexmUlk16AIgSgJEzjOLeeM=;
+        b=RkscmKQRuVYrGFcME1zHGStm1Qcpntfc/CC+LStVYXQgbCACyaTf9Vn6lnYvUvSajD
+         1ejnS1m/DYw2zLVsyntjDvgDhxD4ck1fsrq45CEMC4lwWyEYCt9swAJENR6zJdiivS6v
+         3b5uYWB4tAR5o0O3TyfbEvAjak7L3X1xQ07oqyiizmWkrhMT9e6rxQ8F5jhnpdbXh52W
+         xTsZfMbX2HT7g7IgH5NcfMbmLKsSWSSCR/GGVEbSRbIyh9AjStmvam3sdJaZQL2KUnOG
+         zEE4LVxDGLcHSsTIuFb9HbGE17vlXDIP1sK0mWgV0oLmVcv7jTuOFV353HMX+iZ0RHOw
+         JkCQ==
+X-Gm-Message-State: AOAM532D8w3uMb1uEqbTl5K/wjWi8T7UC+/9T6Z3GTG08uL26iYh7Zs6
+        LbACZGZ0YCA5yCpQrWAWYTrGsw==
+X-Google-Smtp-Source: ABdhPJwdTxInMeMQs7wJ0rshDGS+Vl3qWenVzQEcjNEcW2sCGquJ2dqyyBLsunFSKhTq0+2R1e+D2w==
+X-Received: by 2002:a63:7051:: with SMTP id a17mr15299011pgn.26.1611823213816;
+        Thu, 28 Jan 2021 00:40:13 -0800 (PST)
+Received: from smtp.gmail.com ([2620:15c:202:201:304c:5453:303a:8268])
+        by smtp.gmail.com with ESMTPSA id y22sm4951757pfr.163.2021.01.28.00.40.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jan 2021 00:40:13 -0800 (PST)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: [PATCHv3 0/3] iio: Add a ChromeOS EC MKBP proximity driver
+Date:   Thu, 28 Jan 2021 00:40:08 -0800
+Message-Id: <20210128084011.3270281-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.30.0.280.ga3ce27912f-goog
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTAxLTI4IGF0IDE2OjI4ICswODAwLCBDSyBIdSB3cm90ZToNCj4gT24gVGh1
-LCAyMDIxLTAxLTI4IGF0IDE2OjE4ICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+ID4gT24g
-VGh1LCBKYW4gMjgsIDIwMjEgYXQgNDoxMCBQTSBZb25ncWlhbmcgTml1DQo+ID4gPHlvbmdxaWFu
-Zy5uaXVAbWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPiA+DQo+ID4gPiBPbiBUaHUsIDIwMjEtMDEt
-MjggYXQgMTY6MDcgKzA4MDAsIENLIEh1IHdyb3RlOg0KPiA+ID4gPiBPbiBUaHUsIDIwMjEtMDEt
-MjggYXQgMTU6NTkgKzA4MDAsIFlvbmdxaWFuZyBOaXUgd3JvdGU6DQo+ID4gPiA+ID4gT24gVGh1
-LCAyMDIxLTAxLTI4IGF0IDE1OjQyICswODAwLCBDSyBIdSB3cm90ZToNCj4gPiA+ID4gPiA+IEhp
-LCBIc2luLVlpOg0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+IE9uIFRodSwgMjAyMS0wMS0yOCBh
-dCAxNToyOCArMDgwMCwgSHNpbi1ZaSBXYW5nIHdyb3RlOg0KPiA+ID4gPiA+ID4gPiBGcm9tOiBZ
-b25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVrLmNvbT4NCj4gPiA+ID4gPiA+ID4N
-Cj4gPiA+ID4gPiA+ID4gZm9yIDUgb3IgNiBicGMgcGFuZWwsIHdlIG5lZWQgZW5hYmxlIGRpdGhl
-ciBmdW5jdGlvbg0KPiA+ID4gPiA+ID4gPiB0byBpbXByb3ZlIHRoZSBkaXNwbGF5IHF1YWxpdHkN
-Cj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogWW9uZ3FpYW5nIE5p
-dSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20+DQo+ID4gPiA+ID4gPiA+IFNpZ25lZC1vZmYt
-Ynk6IEhzaW4tWWkgV2FuZyA8aHNpbnlpQGNocm9taXVtLm9yZz4NCj4gPiA+ID4gPiA+ID4gLS0t
-DQo+ID4gPiA+ID4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29t
-cC5jIHwgNDQgKysrKysrKysrKysrKysrKysrKystDQo+ID4gPiA+ID4gPiA+ICAxIGZpbGUgY2hh
-bmdlZCwgNDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+ID4gPiA+ID4gPg0KPiA+
-ID4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1f
-ZGRwX2NvbXAuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMN
-Cj4gPiA+ID4gPiA+ID4gaW5kZXggODE3M2Y3MDkyNzJiZS4uZTg1NjI1NzA0ZDYxMSAxMDA2NDQN
-Cj4gPiA+ID4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZGRw
-X2NvbXAuYw0KPiA+ID4gPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
-X2RybV9kZHBfY29tcC5jDQo+ID4gPiA+ID4gPiA+IEBAIC01Myw3ICs1Myw5IEBADQo+ID4gPiA+
-ID4gPiA+ICAjZGVmaW5lIERJVEhFUl9FTiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEJJ
-VCgwKQ0KPiA+ID4gPiA+ID4gPiAgI2RlZmluZSBESVNQX0RJVEhFUl9DRkcgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIDB4MDAyMA0KPiA+ID4gPiA+ID4gPiAgI2RlZmluZSBESVRIRVJf
-UkVMQVlfTU9ERSAgICAgICAgICAgICAgICAgICAgICBCSVQoMCkNCj4gPiA+ID4gPiA+ID4gKyNk
-ZWZpbmUgRElUSEVSX0VOR0lORV9FTiAgICAgICAgICAgICAgICAgICAgICAgQklUKDEpDQo+ID4g
-PiA+ID4gPiA+ICAjZGVmaW5lIERJU1BfRElUSEVSX1NJWkUgICAgICAgICAgICAgICAgICAgICAg
-IDB4MDAzMA0KPiA+ID4gPiA+ID4gPiArI2RlZmluZSBESVRIRVJfUkVHKGlkeCkgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICgweDEwMCArIChpZHgpICogNCkNCj4gPiA+ID4gPiA+ID4N
-Cj4gPiA+ID4gPiA+ID4gICNkZWZpbmUgTFVUXzEwQklUX01BU0sgICAgICAgICAgICAgICAgICAg
-ICAgICAgMHgwM2ZmDQo+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+IEBAIC0zMTMsOCArMzE1
-LDQ4IEBAIHN0YXRpYyB2b2lkIG10a19kaXRoZXJfY29uZmlnKHN0cnVjdCBkZXZpY2UgKmRldiwg
-dW5zaWduZWQgaW50IHcsDQo+ID4gPiA+ID4gPiA+ICB7DQo+ID4gPiA+ID4gPiA+ICAgICAgICAg
-c3RydWN0IG10a19kZHBfY29tcF9kZXYgKnByaXYgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsNCj4g
-PiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gKyAgICAgICBib29sIGVuYWJsZSA9IGZhbHNlOw0K
-PiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+ICsgICAgICAgLyogZGVmYXVsdCB2YWx1ZSBm
-b3IgZGl0aGVyIHJlZyA1IHRvIDE0ICovDQo+ID4gPiA+ID4gPiA+ICsgICAgICAgY29uc3QgdTMy
-IGRpdGhlcl9zZXR0aW5nW10gPSB7DQo+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAweDAw
-MDAwMDAwLCAvKiA1ICovDQo+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAweDAwMDAzMDAy
-LCAvKiA2ICovDQo+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAweDAwMDAwMDAwLCAvKiA3
-ICovDQo+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAweDAwMDAwMDAwLCAvKiA4ICovDQo+
-ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAweDAwMDAwMDAwLCAvKiA5ICovDQo+ID4gPiA+
-ID4gPiA+ICsgICAgICAgICAgICAgICAweDAwMDAwMDAwLCAvKiAxMCAqLw0KPiA+ID4gPiA+ID4g
-PiArICAgICAgICAgICAgICAgMHgwMDAwMDAwMCwgLyogMTEgKi8NCj4gPiA+ID4gPiA+ID4gKyAg
-ICAgICAgICAgICAgIDB4MDAwMDAwMTEsIC8qIDEyICovDQo+ID4gPiA+ID4gPiA+ICsgICAgICAg
-ICAgICAgICAweDAwMDAwMDAwLCAvKiAxMyAqLw0KPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAg
-ICAgMHgwMDAwMDAwMCwgLyogMTQgKi8NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBDb3VsZCB5
-b3UgZXhwbGFpbiB3aGF0IGlzIHRoaXM/DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiB0aGlzIGlzIGRp
-dGhlciA1IHRvIGRpdGhlciAxNCBzZXR0aW5nDQo+ID4gPiA+ID4gdGhpcyB3aWxsIGJlIHVzZWxl
-c3MsIHdlIGp1c3QgbmVlZCBzZXQgZGl0aGVyIDUgYW5kIGRpdGhlciA3IGxpa2UNCj4gPiA+ID4g
-PiBtdGtfZGRwX3dyaXRlKGNtZHFfcGt0LCAwLCBjb21wLCBESVNQX0RJVEhFUl81KTsNCj4gPiA+
-ID4gPiBtdGtfZGRwX3dyaXRlKGNtZHFfcGt0LCAwLCBjb21wLCBESVNQX0RJVEhFUl83KTsNCj4g
-PiA+ID4gPiBvdGhlciB2YWx1ZSBpcyBzYW1lIHdpdGggaGFyZHdhcmUgZGVmYXVsdCB2YWx1ZS4N
-Cj4gPiA+ID4gPg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiArICAgICAg
-IH07DQo+ID4gPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiA+ID4gKyAgICAgICBpZiAoYnBjID09IDUg
-fHwgYnBjID09IDYpIHsNCj4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIGVuYWJsZSA9IHRy
-dWU7DQo+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICBtdGtfZGRwX3dyaXRlKGNtZHFfcGt0
-LA0KPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICBESVRIRVJfTFNC
-X0VSUl9TSElGVF9SKE1US19NQVhfQlBDIC0gYnBjKSB8DQo+ID4gPiA+ID4gPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIERJVEhFUl9BRERfTFNISUZUX1IoTVRLX01BWF9CUEMgLSBi
-cGMpIHwNCj4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRElUSEVS
-X05FV19CSVRfTU9ERSwNCj4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgJnByaXYtPmNtZHFfcmVnLCBwcml2LT5yZWdzLCBESVRIRVJfUkVHKDE1KSk7DQo+ID4gPiA+
-ID4gPiA+ICsgICAgICAgICAgICAgICBtdGtfZGRwX3dyaXRlKGNtZHFfcGt0LA0KPiA+ID4gPiA+
-ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICBESVRIRVJfTFNCX0VSUl9TSElGVF9C
-KE1US19NQVhfQlBDIC0gYnBjKSB8DQo+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIERJVEhFUl9BRERfTFNISUZUX0IoTVRLX01BWF9CUEMgLSBicGMpIHwNCj4gPiA+
-ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRElUSEVSX0xTQl9FUlJfU0hJ
-RlRfRyhNVEtfTUFYX0JQQyAtIGJwYykgfA0KPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBESVRIRVJfQUREX0xTSElGVF9HKE1US19NQVhfQlBDIC0gYnBjKSwNCj4g
-PiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBUaGlzIHJlc3VsdCBpbiAweDUwNTA1MDUwLCBidXQgcHJl
-dmlvdXMgdmVyc2lvbiBpcyAweDUwNTA0MDQwLCBzbyB0aGlzDQo+ID4gPiA+ID4gPiB2ZXJzaW9u
-IGlzIGNvcnJlY3QgYW5kIHByZXZpb3VzIHZlcnNpb24gaXMgaW5jb3JyZWN0Pw0KPiA+ID4gPiA+
-DQo+ID4gPiA+ID4gdGhlIG5ldyB2ZXJzaW9uIHNldCByIGcgYiAzIGNoYW5uZWwgc2FtZSwgc2Vh
-bXMgbW9yZSByZWFzb25hYmxlDQo+ID4gPiA+ID4NCj4gPiA+ID4gPg0KPiA+ID4gPg0KPiA+ID4g
-PiBTbyBhbGwgdGhlIHNldHRpbmcgb2YgRElTUF9ESVRIRVJfNSwgRElTUF9ESVRIRVJfNywgRElT
-UF9ESVRIRVJfMTUsDQo+ID4gPiA+IERJU1BfRElUSEVSXzE2IGlzIGlkZW50aWNhbCB0byBtdGtf
-ZGl0aGVyX3NldCgpLCBzbyBjYWxsDQo+ID4gPiA+IG10a19kaXRoZXJfc2V0KCkgaW5zdGVhZCBv
-ZiBkdXBsaWNhdGlvbiBoZXJlLg0KPiA+ID4gPg0KPiA+ID4NCj4gPiA+IGRpdGhlciBlbmFibGUg
-c2V0IGluIG10a19kaXRoZXJfc2V0IGlzDQo+ID4gPiBtdGtfZGRwX3dyaXRlKGNtZHFfcGt0LCBE
-SVNQX0RJVEhFUklORywgY29tcCwgQ0ZHKTsNCj4gPiA+DQo+ID4gPiB0aGF0IGlzIGRpZmZlcmVu
-dCA4MTgzIGFuZCBtdDgxOTIuDQo+ID4gPiBtdDgxNzMgZGl0aGVyIGVuYWJsZSBpbiBnYW1tYSBp
-cyBiaXQyDQo+ID4gPiBtdDgxODMgYW5kIG10ODE5MiBkaXRoZXIgZW5naW5lIGVuYWJsZSBpcyBi
-aXQgMQ0KPiA+ID4NCj4gPiA+DQo+ID4gDQo+ID4gV2UgY2FuIHN0aWxsIGNhbGwgbXRrX2RpdGhl
-cl9zZXQoKSBmb3IgYnBjIGlzIDUgb3IgNiBoZXJlLCB0aG91Z2ggaXQNCj4gPiB3aWxsIGJlIHNl
-dCB0byBiaXQyLA0KPiA+IGJ1dCBsYXRlciBpbiBtdGtfZGRwX3dyaXRlKGNtZHFfcGt0LCBlbmFi
-bGUgPyBESVRIRVJfRU5HSU5FX0VOIDoNCj4gPiBESVRIRVJfUkVMQVlfTU9ERSwgJnByaXYtPmNt
-ZHFfcmVnLCBwcml2LT5yZWdzLCBESVNQX0RJVEhFUl9DRkcpOyBpdA0KPiA+IHdpbGwgYmUgY29y
-cmVjdCBiYWNrIHRvIGJpdCAxLg0KPiA+IA0KPiA+IElzIHRoaXMgcmVhc29uYWJsZT8NCj4gDQo+
-IExvb2tzIHdlaXJkLiBNYXliZSBwYXNzIHNvbWUgaW5mb3JtYXRpb24gaW50byBtdGtfZGl0aGVy
-X3NldCgpIHRvIHNldA0KPiBESVNQX0RJVEhFUklORyBjb3JyZWN0bHkuIA0KPiANCj4gSSBmaW5k
-IG9uZSB0aGluZyBuZWVkIHRvIGJlIGZpeGVkLiBDRkcgc2hvdWxkIGJlIGxvd2VyIGNhc2UuDQoN
-CndlIGNvdWxkIG1vZGlmeSB0aGlzIGxpa2UgdGhpczoNCg0Kdm9pZCBtdGtfZGl0aGVyX3NldChz
-dHJ1Y3QgbXRrX2RkcF9jb21wICpjb21wLCB1bnNpZ25lZCBpbnQgYnBjLA0KCQkgICAgdW5zaWdu
-ZWQgaW50IGNmZywgdTMyIGRpdGhlcl9lbmFibGUsIHN0cnVjdCBjbWRxX3BrdCAqY21kcV9wa3Qp
-DQoNCgkJbXRrX2RkcF93cml0ZShjbWRxX3BrdCwgZGl0aGVyX2VuYWJsZSwgY29tcCwgY2ZnKTsN
-Cg0KDQoNCj4gDQo+IFJlZ2FyZHMsDQo+IENLDQo+IA0KPiA+IA0KPiA+ID4gPiBSZWdhcmRzLA0K
-PiA+ID4gPiBDSw0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+IFJlZ2FyZHMsDQo+ID4gPiA+ID4g
-PiBDSw0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgJnByaXYtPmNtZHFfcmVnLCBwcml2LT5yZWdzLCBESVRIRVJfUkVHKDE2KSk7DQo+ID4g
-PiA+ID4gPiA+ICsgICAgICAgfQ0KPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+ICsNCj4g
-PiA+ID4gPiA+ID4gKyAgICAgICBpZiAoZW5hYmxlKSB7DQo+ID4gPiA+ID4gPiA+ICsgICAgICAg
-ICAgICAgICB1MzIgaWR4Ow0KPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+ICsgICAgICAg
-ICAgICAgICBmb3IgKGlkeCA9IDA7IGlkeCA8IEFSUkFZX1NJWkUoZGl0aGVyX3NldHRpbmcpOyBp
-ZHgrKykNCj4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgbXRrX2RkcF93cml0
-ZShjbWRxX3BrdCwgZGl0aGVyX3NldHRpbmdbaWR4XSwgJnByaXYtPmNtZHFfcmVnLCBwcml2LT5y
-ZWdzLA0KPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IERJVEhFUl9SRUcoaWR4ICsgNSkpOw0KPiA+ID4gPiA+ID4gPiArICAgICAgIH0NCj4gPiA+ID4g
-PiA+ID4gKw0KPiA+ID4gPiA+ID4gPiAgICAgICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIGgg
-PDwgMTYgfCB3LCAmcHJpdi0+Y21kcV9yZWcsIHByaXYtPnJlZ3MsIERJU1BfRElUSEVSX1NJWkUp
-Ow0KPiA+ID4gPiA+ID4gPiAtICAgICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIERJVEhFUl9S
-RUxBWV9NT0RFLCAmcHJpdi0+Y21kcV9yZWcsIHByaXYtPnJlZ3MsIERJU1BfRElUSEVSX0NGRyk7
-DQo+ID4gPiA+ID4gPiA+ICsgICAgICAgIG10a19kZHBfd3JpdGUoY21kcV9wa3QsIGVuYWJsZSA/
-IERJVEhFUl9FTkdJTkVfRU4gOiBESVRIRVJfUkVMQVlfTU9ERSwgJnByaXYtPmNtZHFfcmVnLCBw
-cml2LT5yZWdzLCBESVNQX0RJVEhFUl9DRkcpOw0KPiA+ID4gPiA+ID4gPiAgfQ0KPiA+ID4gPiA+
-ID4gPg0KPiA+ID4gPiA+ID4gPiAgc3RhdGljIHZvaWQgbXRrX2RpdGhlcl9zdGFydChzdHJ1Y3Qg
-ZGV2aWNlICpkZXYpDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPg0KPiA+ID4g
-PiA+DQo+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPg0KPiANCj4gDQoNCg==
+This is a different approach to [1] where I tried to add this proximity
+sensor logic to the input subsystem. Instead, we'll take the approach of
+making a small IIO proximity driver that parses the EC switch bitmap to
+find out if the front proximity sensor is detecting something or not.
+This allows us to treat proximity sensors as IIO devices all the time in
+userspace instead of handling this switch on the EC via the input
+subsystem and then other proximity sensors via IIO.
+
+I propose this is all merged through IIO subsystem. Please ack
+the first patch so it can be merged that way.
+
+Changes from v2:
+ * Check iio clock and use IIO time if not boottime
+
+Changes from v1:
+ * Driver moved location
+ * Put mkbp everywhere
+ * Fixed up DT binding to not fail and make sure is a child of cros-ec
+ * Simplified logic for sending a message
+ * Dropped CONFIG_OF usage
+ * Sorted includes
+
+[1] https://lore.kernel.org/r/20201205004709.3126266-1-swboyd@chromium.org
+
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Benson Leung <bleung@chromium.org>
+Cc: Guenter Roeck <groeck@chromium.org>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Gwendal Grignou <gwendal@chromium.org>
+Cc: <devicetree@vger.kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+
+Stephen Boyd (3):
+  platform/chrome: cros_ec: Add SW_FRONT_PROXIMITY MKBP define
+  dt-bindings: iio: Add cros ec proximity yaml doc
+  iio: proximity: Add a ChromeOS EC MKBP proximity driver
+
+ .../google,cros-ec-mkbp-proximity.yaml        |  38 +++
+ .../bindings/mfd/google,cros-ec.yaml          |   3 +
+ drivers/iio/proximity/Kconfig                 |  11 +
+ drivers/iio/proximity/Makefile                |   1 +
+ .../iio/proximity/cros_ec_mkbp_proximity.c    | 245 ++++++++++++++++++
+ .../linux/platform_data/cros_ec_commands.h    |   1 +
+ 6 files changed, 299 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+ create mode 100644 drivers/iio/proximity/cros_ec_mkbp_proximity.c
+
+
+base-commit: 19c329f6808995b142b3966301f217c831e7cf31
+-- 
+https://chromeos.dev
 
