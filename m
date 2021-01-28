@@ -2,43 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66E06307804
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 15:29:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8104307809
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 15:29:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231433AbhA1O1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 09:27:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45956 "EHLO mail.kernel.org"
+        id S231374AbhA1O27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 09:28:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46444 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231160AbhA1O0s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Jan 2021 09:26:48 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2896964DE1;
-        Thu, 28 Jan 2021 14:26:06 +0000 (UTC)
+        id S231159AbhA1O26 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Jan 2021 09:28:58 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E8A464DDF;
+        Thu, 28 Jan 2021 14:28:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611843966;
-        bh=fyKCFaUjrkKt3tuQEHUgceIKUtLyui94M61Ti9D1ACE=;
+        s=k20201202; t=1611844097;
+        bh=g+svnb872V2gEjrQRAURCdMhmMC6P1ol879JHGB4ztA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=VJUTBovXzS5xEmpNWdGeYGY2XVKZSU6/R0oLKzpgRa36UTLOYxpQuvbi/ZHJibBF3
-         XsRLLNUXallngKgN+Ue3WdIVyh21+FzaicOW8S91XtBzV6Kq3jUaylcWIDxJ3e3jJm
-         GRyZUEOHUwXBYgOW6l2L4gAJyHzAgEStmeSu+laAtJlMetHa8ruhjJDTfneZHVfbrV
-         mG89A8+X7xee03R0G5t2+5PzI1hZ2nmiHeTmwGUUiDXH3/A/fFev9icr7lq7QVgBRc
-         yTFlqX1m3fLYPvSjtgOV42jbgw/Nus2+0nGrQMg8NIqOsKNOFjEhWPNCtrZu9X8ssV
-         53g3ZlB97xKyQ==
-Received: by mail-oi1-f170.google.com with SMTP id k25so6140448oik.13;
-        Thu, 28 Jan 2021 06:26:06 -0800 (PST)
-X-Gm-Message-State: AOAM531BzBYVFLap6fMGHGpeXoCuY4ghXpyxj7ESA2V9HD2SFqhbdGk2
-        Fwdbh80WDc973nAlb2cj4r+zrfcLTj4SvHsDdac=
-X-Google-Smtp-Source: ABdhPJxvnfveUy++Y7kX4uFuQXMK3LtVVeJd/wxkjEd+lOiQntYMmFQd7oPP/QdjcTzZg/QgBmsn0noGTKqsJQg8P50=
-X-Received: by 2002:aca:eb0a:: with SMTP id j10mr6777833oih.4.1611843965368;
- Thu, 28 Jan 2021 06:26:05 -0800 (PST)
+        b=vN44u2RVR6z3VYYZVmETECBL9mFFYHCPI66S1E6Fx7OaPfcP+k8+mIs3ofK9ArU5O
+         Lnrm8zUEWm+iDJadxDTrLMc57zKbhkju+ztz1+sCjI14lonOE8Hb/XmCfftMFffSge
+         TcfoBIlLhORP8UQSuOwM/1e63MOcvkWUfXpnhAjqOjI/S0kUEXWCkCdoBKzRlXCgAa
+         5kwmKuhpyKTgJE11VQOznqRNNDAVViKMHXVk7khF+3/24ZQmrvblJtprHyF/Vr0ECS
+         +T2Fhm67x6nB0ejgBze5G77sgEDPaSLeV1tSTlEXo/59z0AvwgV9xVb8W9wh96u0QZ
+         htnvnRenHajiw==
+Received: by mail-oi1-f179.google.com with SMTP id k25so6148114oik.13;
+        Thu, 28 Jan 2021 06:28:17 -0800 (PST)
+X-Gm-Message-State: AOAM530gDYYX47X8hvX6bSYvBwRdw+s0X1DUrH0hn+8ClTGkMaFuO4Uw
+        NSlgxf2+h0kv52mNBbZU4WfklGsYd9aS8Pych9I=
+X-Google-Smtp-Source: ABdhPJzvR965chipjx26jhgmeWtunUplGEZ9LYudt2xG6T6psgopbevW0CweYJAmTen4xv/AOVDG+rkdGPAwQdSS/Zc=
+X-Received: by 2002:aca:d908:: with SMTP id q8mr137434oig.67.1611844096571;
+ Thu, 28 Jan 2021 06:28:16 -0800 (PST)
 MIME-Version: 1.0
-References: <20210116032740.873-1-thunder.leizhen@huawei.com> <20210116032740.873-4-thunder.leizhen@huawei.com>
-In-Reply-To: <20210116032740.873-4-thunder.leizhen@huawei.com>
+References: <20210116032740.873-1-thunder.leizhen@huawei.com> <20210116032740.873-3-thunder.leizhen@huawei.com>
+In-Reply-To: <20210116032740.873-3-thunder.leizhen@huawei.com>
 From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Thu, 28 Jan 2021 15:25:49 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a30Pbrfr4GTodq829T59kCAZ0GWV2WvRKNBSbvTTNbmsA@mail.gmail.com>
-Message-ID: <CAK8P3a30Pbrfr4GTodq829T59kCAZ0GWV2WvRKNBSbvTTNbmsA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/4] dt-bindings: arm: hisilicon: Add binding for
- Kunpeng L3 cache controller
+Date:   Thu, 28 Jan 2021 15:28:00 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1biznW80EjZLK-LKDVgs0iZ6oiqXOjgU_rctcxRWj1qA@mail.gmail.com>
+Message-ID: <CAK8P3a1biznW80EjZLK-LKDVgs0iZ6oiqXOjgU_rctcxRWj1qA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] ARM: hisi: add support for Kunpeng50x SoC
 To:     Zhen Lei <thunder.leizhen@huawei.com>
 Cc:     Russell King <rmk+kernel@arm.linux.org.uk>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -55,12 +54,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 16, 2021 at 4:34 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
+On Sat, Jan 16, 2021 at 4:32 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
 >
-> Add devicetree binding for Hisilicon Kunpeng L3 cache controller.
+> Enable support for the Hisilicon Kunpeng506 and Kunpeng509 SoC.
 >
 > Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->  .../arm/hisilicon/kunpeng-l3cache.yaml        | 40 +++++++++++++++++++
+>  arch/arm/mach-hisi/Kconfig | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/arch/arm/mach-hisi/Kconfig b/arch/arm/mach-hisi/Kconfig
+> index 2e980f834a6aa1b..c724acc5c642b97 100644
+> --- a/arch/arm/mach-hisi/Kconfig
+> +++ b/arch/arm/mach-hisi/Kconfig
+> @@ -55,6 +55,14 @@ config ARCH_HIX5HD2
+>         help
+>           Support for Hisilicon HIX5HD2 SoC family
+>
+> +config ARCH_KUNPENG50X
+> +       bool "Hisilicon Kunpeng50x family"
+> +       depends on ARCH_MULTI_V7
+> +       select ARCH_FLATMEM_ENABLE
+> +       select ARCH_HAS_HOLES_MEMORYMODEL if SPARSEMEM
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+I think the two 'select' statements are both wrong, though for
+different reasons:
+
+- ARCH_FLATMEM_ENABLE is already selected by ARCH_MULTIPLATFORM,
+  and is something that should not be platform specific
+
+- ARCH_HAS_HOLES_MEMORYMODEL was removed in v5.11,
+  and should also not be selected by a platform.
+
+Otherwise, this seems fine.
+
+         Arnd
