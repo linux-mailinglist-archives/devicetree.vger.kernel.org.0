@@ -2,144 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EBC7306BE3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 05:09:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7947306C1C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 05:19:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231316AbhA1EH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 23:07:28 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:40888 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231328AbhA1EGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 23:06:04 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 7B19F20B7192;
-        Wed, 27 Jan 2021 20:05:22 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 7B19F20B7192
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1611806723;
-        bh=dzl2P44Yb+cNWgQrSsQPdvhI/zPDp51SLN+n5BsmTYw=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=EdovfA0Ie2vSW3q9X330ya4blxqJxmCNR8pb6jyTPfsAtUyZmv/J5Ert8cRTPsnjJ
-         xhJBn/olUclZEvwaYdy3filR9a9BL3xmmmuC47b6RgwFGBYY+1lryf2SdYcSU6o5Tf
-         +7NNRQWMwng/+UYSQ6g3DbAmnqbMMK2XACp6PUgo=
-Subject: Re: [PATCH v15 10/10] arm64: Add IMA log information in kimage used
- for kexec
-To:     Will Deacon <will@kernel.org>, Mimi Zohar <zohar@linux.ibm.com>
-Cc:     bauerman@linux.ibm.com, robh@kernel.org,
-        takahiro.akashi@linaro.org, gregkh@linuxfoundation.org,
-        catalin.marinas@arm.com, mpe@ellerman.id.au, james.morse@arm.com,
-        sashal@kernel.org, benh@kernel.crashing.org, paulus@samba.org,
-        frowand.list@gmail.com, vincenzo.frascino@arm.com,
-        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
-        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
+        id S231332AbhA1EQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 23:16:28 -0500
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:33544 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231400AbhA1EQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Jan 2021 23:16:12 -0500
+Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 10S41sEk194154;
+        Wed, 27 Jan 2021 23:14:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=references : from : to :
+ cc : subject : in-reply-to : date : message-id : mime-version :
+ content-type; s=pp1; bh=rzdWeCeDaDZ75/E3nrAbc0/tPvq1J7TvmXi13WDek9k=;
+ b=ZrfRqqM52DyJ+gPNe88xOWZ5pPCi3RhAnqLFx6ODGpkKfjFMUfHhXa/roKG2/ZVx25f1
+ Ex4Kg3rC2vJyWwl5Yucbkdn8GvCXGv0X3Aesas15EM/79OyGS0fVGV8z1QYkxdWGUEg2
+ lWWszueNUsZYAzdcyPWyI9iydaWXoJ/+hUZWDazKZpmlxWTZOkM3sQaZ/Nm6o3yUeCPS
+ sGeC5OiLGlTfrHoItf6gxuU4STEHSrAwZg3xkUWGC0Qp+ZfLWx8zkJHhlEdHPLjRplz9
+ jA2YxxS5EXpXEK2gaoC1O99JaZzVXoDfbE1Erux0AIIwsbDD0PSvf8tfAkvDyjJioH4s dA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 36becsay0e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 27 Jan 2021 23:14:48 -0500
+Received: from m0098419.ppops.net (m0098419.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 10S42j3X001507;
+        Wed, 27 Jan 2021 23:14:48 -0500
+Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 36becsay07-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 27 Jan 2021 23:14:48 -0500
+Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
+        by ppma01wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 10S3udQb013671;
+        Thu, 28 Jan 2021 04:14:47 GMT
+Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
+        by ppma01wdc.us.ibm.com with ESMTP id 36a8uhfy03-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 28 Jan 2021 04:14:46 +0000
+Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
+        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 10S4EiPM11403618
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 28 Jan 2021 04:14:44 GMT
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 776E47805F;
+        Thu, 28 Jan 2021 04:14:44 +0000 (GMT)
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 9E3B97805C;
+        Thu, 28 Jan 2021 04:14:36 +0000 (GMT)
+Received: from manicouagan.localdomain (unknown [9.85.200.195])
+        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTPS;
+        Thu, 28 Jan 2021 04:14:36 +0000 (GMT)
+References: <20210115173017.30617-1-nramas@linux.microsoft.com>
+ <20210115173017.30617-10-nramas@linux.microsoft.com>
+ <20210127165208.GA358@willie-the-truck>
+ <d3330793-6054-6e59-b727-44bf8e5653cd@linux.microsoft.com>
+ <20210127184319.GA676@willie-the-truck>
+ <871re5soof.fsf@manicouagan.localdomain>
+ <58d3ffbf-4d80-c893-34d6-366ebfac55bd@linux.microsoft.com>
+User-agent: mu4e 1.4.10; emacs 27.1
+From:   Thiago Jung Bauermann <bauerman@linux.ibm.com>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     Will Deacon <will@kernel.org>, zohar@linux.ibm.com,
+        robh@kernel.org, takahiro.akashi@linaro.org,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        mpe@ellerman.id.au, james.morse@arm.com, sashal@kernel.org,
+        benh@kernel.crashing.org, paulus@samba.org, frowand.list@gmail.com,
+        vincenzo.frascino@arm.com, mark.rutland@arm.com,
+        dmitry.kasatkin@gmail.com, jmorris@namei.org, serge@hallyn.com,
+        pasha.tatashin@soleen.com, allison@lohutok.net,
         masahiroy@kernel.org, bhsharma@redhat.com, mbrugger@suse.com,
         hsinyi@chromium.org, tao.li@vivo.com, christophe.leroy@c-s.fr,
         prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
         linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linuxppc-dev@lists.ozlabs.org
-References: <20210115173017.30617-1-nramas@linux.microsoft.com>
- <20210115173017.30617-11-nramas@linux.microsoft.com>
- <20210127165424.GB358@willie-the-truck>
- <dec23eb8-0b27-3227-d1ef-f759338a7f9f@linux.microsoft.com>
- <20210127180230.GA593@willie-the-truck>
- <8a573f84-732a-3591-8751-f7b08edaa01d@linux.microsoft.com>
- <6343ab2eec390ab7582beea04f8006af095850c8.camel@linux.ibm.com>
- <20210127231334.GB1016@willie-the-truck>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <681a4410-8a96-bce1-fcd4-d45d56625b39@linux.microsoft.com>
-Date:   Wed, 27 Jan 2021 20:05:21 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Subject: Re: [PATCH v15 09/10] arm64: Call kmalloc() to allocate DTB buffer
+In-reply-to: <58d3ffbf-4d80-c893-34d6-366ebfac55bd@linux.microsoft.com>
+Date:   Thu, 28 Jan 2021 01:14:34 -0300
+Message-ID: <87y2gdr93p.fsf@manicouagan.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <20210127231334.GB1016@willie-the-truck>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343,18.0.737
+ definitions=2021-01-28_01:2021-01-27,2021-01-28 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 mlxlogscore=999
+ clxscore=1015 impostorscore=0 bulkscore=0 adultscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2101280017
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/27/21 3:13 PM, Will Deacon wrote:
-> On Wed, Jan 27, 2021 at 01:31:02PM -0500, Mimi Zohar wrote:
->> On Wed, 2021-01-27 at 10:24 -0800, Lakshmi Ramasubramanian wrote:
->>> On 1/27/21 10:02 AM, Will Deacon wrote:
->>>> On Wed, Jan 27, 2021 at 09:56:53AM -0800, Lakshmi Ramasubramanian wrote:
->>>>> On 1/27/21 8:54 AM, Will Deacon wrote:
->>>>>> On Fri, Jan 15, 2021 at 09:30:17AM -0800, Lakshmi Ramasubramanian wrote:
->>>>>>> Address and size of the buffer containing the IMA measurement log need
->>>>>>> to be passed from the current kernel to the next kernel on kexec.
->>>>>>>
->>>>>>> Add address and size fields to "struct kimage_arch" for ARM64 platform
->>>>>>> to hold the address and size of the IMA measurement log buffer.
->>>>>>>
->>>>>>> Update CONFIG_KEXEC_FILE to select CONFIG_HAVE_IMA_KEXEC, if CONFIG_IMA
->>>>>>> is enabled, to indicate that the IMA measurement log information is
->>>>>>> present in the device tree for ARM64.
->>>>>>>
->>>>>>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
->>>>>>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
->>>>>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
->>>>>>> Reviewed-by: Thiago Jung Bauermann <bauerman@linux.ibm.com>
->>>>>>> ---
->>>>>>>     arch/arm64/Kconfig             | 1 +
->>>>>>>     arch/arm64/include/asm/kexec.h | 5 +++++
->>>>>>>     2 files changed, 6 insertions(+)
->>>>>>>
->>>>>>> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
->>>>>>> index 1d466addb078..ea7f7fe3dccd 100644
->>>>>>> --- a/arch/arm64/Kconfig
->>>>>>> +++ b/arch/arm64/Kconfig
->>>>>>> @@ -1094,6 +1094,7 @@ config KEXEC
->>>>>>>     config KEXEC_FILE
->>>>>>>     	bool "kexec file based system call"
->>>>>>>     	select KEXEC_CORE
->>>>>>> +	select HAVE_IMA_KEXEC if IMA
->>>>>>>     	help
->>>>>>>     	  This is new version of kexec system call. This system call is
->>>>>>>     	  file based and takes file descriptors as system call argument
->>>>>>> diff --git a/arch/arm64/include/asm/kexec.h b/arch/arm64/include/asm/kexec.h
->>>>>>> index d24b527e8c00..2bd19ccb6c43 100644
->>>>>>> --- a/arch/arm64/include/asm/kexec.h
->>>>>>> +++ b/arch/arm64/include/asm/kexec.h
->>>>>>> @@ -100,6 +100,11 @@ struct kimage_arch {
->>>>>>>     	void *elf_headers;
->>>>>>>     	unsigned long elf_headers_mem;
->>>>>>>     	unsigned long elf_headers_sz;
->>>>>>> +
->>>>>>> +#ifdef CONFIG_IMA_KEXEC
->>>>>>> +	phys_addr_t ima_buffer_addr;
->>>>>>> +	size_t ima_buffer_size;
->>>>>>> +#endif
->>>>>>
->>>>>> Why do these need to be in the arch structure instead of 'struct kimage'?
->>>>>>
->>>>>
->>>>> Currently, only powerpc and, with this patch set, arm64 have support for
->>>>> carrying forward IMA measurement list across kexec system call. The above
->>>>> fields are used for tracking IMA measurement list.
->>>>>
->>>>> Do you see a reason to move these fields to "struct kimage"?
+
+Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+
+> On 1/27/21 7:52 PM, Thiago Jung Bauermann wrote:
+>> Will Deacon <will@kernel.org> writes:
+>> 
+>>> On Wed, Jan 27, 2021 at 09:59:38AM -0800, Lakshmi Ramasubramanian wrote:
+>>>> On 1/27/21 8:52 AM, Will Deacon wrote:
 >>>>
->>>> If they're gated on CONFIG_IMA_KEXEC, then it seems harmless for them to
->>>> be added to the shared structure. Or are you saying that there are
->>>> architectures which have CONFIG_IMA_KEXEC but do not want these fields?
+>>>> Hi Will,
 >>>>
+>>>>> On Fri, Jan 15, 2021 at 09:30:16AM -0800, Lakshmi Ramasubramanian wrote:
+>>>>>> create_dtb() function allocates kernel virtual memory for
+>>>>>> the device tree blob (DTB).  This is not consistent with other
+>>>>>> architectures, such as powerpc, which calls kmalloc() for allocating
+>>>>>> memory for the DTB.
+>>>>>>
+>>>>>> Call kmalloc() to allocate memory for the DTB, and kfree() to free
+>>>>>> the allocated memory.
+>>>>>>
+>>>>>> Co-developed-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>>>>>> Signed-off-by: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>>>>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>>>>>> ---
+>>>>>>    arch/arm64/kernel/machine_kexec_file.c | 12 +++++++-----
+>>>>>>    1 file changed, 7 insertions(+), 5 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
+>>>>>> index 7de9c47dee7c..51c40143d6fa 100644
+>>>>>> --- a/arch/arm64/kernel/machine_kexec_file.c
+>>>>>> +++ b/arch/arm64/kernel/machine_kexec_file.c
+>>>>>> @@ -29,7 +29,7 @@ const struct kexec_file_ops * const kexec_file_loaders[] = {
+>>>>>>    int arch_kimage_file_post_load_cleanup(struct kimage *image)
+>>>>>>    {
+>>>>>> -	vfree(image->arch.dtb);
+>>>>>> +	kfree(image->arch.dtb);
+>>>>>>    	image->arch.dtb = NULL;
+>>>>>>    	vfree(image->arch.elf_headers);
+>>>>>> @@ -59,19 +59,21 @@ static int create_dtb(struct kimage *image,
+>>>>>>    			+ cmdline_len + DTB_EXTRA_SPACE;
+>>>>>>    	for (;;) {
+>>>>>> -		buf = vmalloc(buf_size);
+>>>>>> +		buf = kmalloc(buf_size, GFP_KERNEL);
+>>>>>
+>>>>> Is there a functional need for this patch? I build the 'dtbs' target just
+>>>>> now and sdm845-db845c.dtb is approaching 100K, which feels quite large
+>>>>> for kmalloc().
+>>>>
+>>>> Changing the allocation from vmalloc() to kmalloc() would help us further
+>>>> consolidate the DTB setup code for powerpc and arm64.
 >>>
->>> As far as I know, there are no other architectures that define
->>> CONFIG_IMA_KEXEC, but do not use these fields.
->>
->> Yes, CONFIG_IMA_KEXEC enables "carrying the IMA measurement list across
->> a soft boot".   The only arch that currently carries the IMA
->> measurement across kexec is powerpc.
-> 
-> Ok, in which case this sounds like it should be in the shared structure, no?
-> 
+>>> Ok, but at the risk of allocation failure. Can powerpc use vmalloc()
+>>> instead?
+>> I believe this patch stems from this suggestion by Rob Herring:
+>> 
+>>> This could be taken a step further and do the allocation of the new
+>>> FDT. The difference is arm64 uses vmalloc and powerpc uses kmalloc. The
+>>> arm64 version also retries with a bigger allocation. That seems
+>>> unnecessary.
+>> in
+>> https://lore.kernel.org/linux-integrity/20201211221006.1052453-3-robh@kernel.org/
+>> The problem is that this patch implements only part of the suggestion,
+>> which isn't useful in itself. So the patch series should either drop
+>> this patch or consolidate the FDT allocation between the arches.
+>> I just tested on powernv and pseries platforms and powerpc can use
+>> vmalloc for the FDT buffer.
+>> 
+>
+> Thanks for verifying on powerpc platform Thiago.
+>
+> I'll update the patch to do the following:
+>
+> => Use vmalloc for FDT buffer allocation on powerpc
+> => Keep vmalloc for arm64, but remove the retry on allocation.
+> => Also, there was a memory leak of FDT buffer in the error code path on arm64,
+> which I'll fix as well.
+>
+> Did I miss anything?
 
-Ok - I'll move the IMA kexec buffer fields from "struct kimage_arch" to 
-"struct kimage" for both powerpc and arm64.
+Yes, you missed the second part of Rob's suggestion I was mentioning,
+which is factoring out the code which allocates the new FDT from both
+arm64 and powerpc.
 
-thanks,
-  -lakshmi
-
-
+-- 
+Thiago Jung Bauermann
+IBM Linux Technology Center
