@@ -2,127 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5044F3073AF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 11:27:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 190AF3073DF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 11:39:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232019AbhA1K03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 05:26:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47038 "EHLO
+        id S231264AbhA1Khc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 05:37:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232228AbhA1KZX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 05:25:23 -0500
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5044C061574;
-        Thu, 28 Jan 2021 02:24:41 -0800 (PST)
-Received: by mail-oo1-xc2d.google.com with SMTP id g46so1281528ooi.9;
-        Thu, 28 Jan 2021 02:24:41 -0800 (PST)
+        with ESMTP id S231140AbhA1KhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 05:37:22 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738D0C061573;
+        Thu, 28 Jan 2021 02:36:41 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id w1so6943918ejf.11;
+        Thu, 28 Jan 2021 02:36:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=m1z+Yu2fiQlavDIbv9fPx1NNOziGtX2cOyoTwpCpWQI=;
-        b=MHD1CdFnmK00kxSnxryGxN7EuOz28GXa8gDugIWWKqB4bu29sYsgdBEO20Ik3ibTu6
-         gy+vUfGHbC5IPeFzxq7DYJ8L1D4135+ZURvRtmdhllV/LSUxYO8kh4jZ5frnnFLBLS6z
-         xXWAHil0XKu/RsMmMkRt0t+pRJoBfNe8/AyGWL8gHgBkrVFF4y8Rqkgd/KP9OAnZT1d4
-         0j7oJi4cy74V4OhUvokWxX2xCM8RLtCnwwr3JdEecW//Vk56o3L3qFbRrLT1zAOjSlxY
-         giq687DnX05W3NvZAbdLwIkAEPoClsexV3FsvPdT06rY/N5FU87xDPBL08j1o2G3Yk98
-         A3UA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WliAbs0AXbBON4RTolMaPpk8w9g9sLeQ3AynxGb88hg=;
+        b=DR3polTTyai5gaK3RUCFc9J2VW/iVlkeS1q/SgWa0kUurctF4oLZTBu4tJSj31SSL6
+         Ps8/RfqXjMS6mr5t+MmOyTNvfklzzcxzm0wWgm7g39+YfiRzX0O6wnQZSLHFc8sz/bai
+         n6Vxf5RBdYCQtZGGoq9ulMRPYoUHnu1Q/xEhywNAiGgwkebcTP1XQ4snQUSl/zhhui6p
+         hlW38HlDSTfyx99JUpsf7RThJcrZkVJa0aVkusIxj4pXygK0sWpc6V0YmBsxDA6qR4iO
+         RlbR4iSpdXQlsVh8tAcEDQ0zYOvQHOGJowszBBIDQJzqQ5w4qKsSh41c6Ux0/OL07w6N
+         8uAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=m1z+Yu2fiQlavDIbv9fPx1NNOziGtX2cOyoTwpCpWQI=;
-        b=eFrwof4QaVqMAMzmvWRq3PU4SqaTlSua8pOjtP1qVtcvClYe+Ifeg6AMV6W3meqz+X
-         7qn9cz05KodB3JJh2I+LSw9Va0Ke6L8rZ4j+4qOD9gNSyVSDC+zts3D5Oz03K6bUc952
-         2O8xim0kmVNwtjyJyV/3g1/l1jtAtfQK3fRVa5twKrAjJNUF/4ote+Jt5Un+l6YMrus3
-         z76g8HuMfIHi8AI1BcPoI9xfgc3m5D4+BCaMLPAt9V3tgxo3upLh32AXzKr17G16ae/U
-         gf8pvruS4WdYN156aEbxpX8pe+vNy4gaYFdTuQ1b3PA0xAeMAKxcRWsKaxoLklBZbs0X
-         CE7A==
-X-Gm-Message-State: AOAM531V0ORX5OYIuK2MQ9fyaOZMYKjgKUskRQG8Vry01CKsNXNs3hUs
-        QMAYnEHNvIpYzBbQMjPXO846m2ciz8DKDES37rDVzeolNI9zMHFtRks=
-X-Google-Smtp-Source: ABdhPJwUsgdluUwC0izmBpnoRmX0hPl6NAxZbuWCF3shpvrYsv4fn9VmR+tzaw+Uf6ovgJbADeSOCErOYZJGoRFA9H8=
-X-Received: by 2002:a4a:9c01:: with SMTP id y1mr10870225ooj.15.1611829481208;
- Thu, 28 Jan 2021 02:24:41 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WliAbs0AXbBON4RTolMaPpk8w9g9sLeQ3AynxGb88hg=;
+        b=bULeWzsu+iq1iZFpv0aHtgWYC3O2pm2kmbOYhFG3hIsQgB8Gy9nRkhEn1+FgE0BvO/
+         ttH54K/pRKbjoBHAuWeuhiGYq/YBiUc+JWYAeGFj7toAgBeyyFzyfZREKLTjtLMuF1l2
+         toYzod05Jikyy1hwd/dwFw/WXMFOj0bSmcYORWZwoqs55TvJMirg6rRQ2bwY7KqO+N1w
+         WSz0XYSG07V8RdJ8vbgWpr3u8Phd3y0Bry1cCUV6JpMD2XB6045DDwE4ZNitaT7x3cRg
+         q9PPrPMHZX+hFqTbJHWo40ov3nVphWlH64ANAjUEokiL7yEncB0RrWDGfwjyEGDYl6nQ
+         cfjA==
+X-Gm-Message-State: AOAM530KWdxL3HKdRh5nCiiZE+lg9fiR9EzIzHylVv2BoYZbCssjLN9s
+        KPjubcqcSSBsJ6tnALGS9UU=
+X-Google-Smtp-Source: ABdhPJyCACLmBTxT+XTF4RW7KFXzXOkIiuEyvQv5TH4jGeGI1Pc35lRzfZjGX4HnhMIgnB5+khxOig==
+X-Received: by 2002:a17:906:58d3:: with SMTP id e19mr1556863ejs.373.1611830200260;
+        Thu, 28 Jan 2021 02:36:40 -0800 (PST)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id q2sm2783991edn.91.2021.01.28.02.36.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jan 2021 02:36:39 -0800 (PST)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Samuel Pascua <pascua.samuel.14@gmail.com>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        Brian Masney <masneyb@onstation.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH v4 1/4] ARM: dts: qcom: msm8974: add gpu support
+Date:   Thu, 28 Jan 2021 12:36:28 +0200
+Message-Id: <20210128103632.1723952-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-References: <20210128072802.830971-1-hsinyi@chromium.org> <20210128072802.830971-2-hsinyi@chromium.org>
-In-Reply-To: <20210128072802.830971-2-hsinyi@chromium.org>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Thu, 28 Jan 2021 11:24:29 +0100
-Message-ID: <CAFqH_52xmsSsxqxkBO8d93Jezy4YZFxtpJ0BX9TVrCy6qao02A@mail.gmail.com>
-Subject: Re: [PATCH v11 1/9] arm64: dts: mt8183: rename rdma fifo size
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hsin-Yi,
+From: Brian Masney <masneyb@onstation.org>
 
-Thank you for the patch.
+Add support for the a3xx GPU. opp_table is chosen to include lower
+frequencies common to all different msm8974 variants.
 
-Missatge de Hsin-Yi Wang <hsinyi@chromium.org> del dia dj., 28 de gen.
-2021 a les 8:28:
->
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
->
-> property name must include only lowercase and '-'
->
+Also correctly set gpu compat string on msm8974 and msm8974pro.
 
-This is a leftover while I forward ported the patch, the
-rdma_fifo_size only existed on the downstream kernels, in mainline it
-is with '-', so we should probably add the fixes tag here.
+Signed-off-by: Brian Masney <masneyb@onstation.org>
+[iskren.chernev@gmail.com: change after v1]
+Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+---
+Changes in v4:
+- change adreno compat string to 330.1 in msm8974 and 330.2 in msm8974pro
+- put opp_table node inside gpu node (similar to msm8916)
+- fix tabs-whenever-possible lint warning
 
-Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
+v3: https://lkml.org/lkml/2021/1/25/398
+v2: https://lkml.org/lkml/2021/1/24/142
+v1: https://lkml.org/lkml/2020/12/30/322
 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+ arch/arm/boot/dts/qcom-msm8974.dtsi    | 43 ++++++++++++++++++++++++++
+ arch/arm/boot/dts/qcom-msm8974pro.dtsi |  5 +++
+ 2 files changed, 48 insertions(+)
 
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 51f5f904f9eb9..bae9ea3a3b871 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -1399,6 +1399,49 @@ cnoc: interconnect@fc480000 {
+ 			         <&rpmcc RPM_SMD_CNOC_A_CLK>;
+ 		};
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 5b782a4769e7e..6c84ccb709af6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -1011,7 +1011,7 @@ rdma0: rdma@1400b000 {
->                         clocks = <&mmsys CLK_MM_DISP_RDMA0>;
->                         iommus = <&iommu M4U_PORT_DISP_RDMA0>;
->                         mediatek,larb = <&larb0>;
-> -                       mediatek,rdma_fifo_size = <5120>;
-> +                       mediatek,rdma-fifo-size = <5120>;
->                         mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xb000 0x1000>;
->                 };
->
-> @@ -1023,7 +1023,7 @@ rdma1: rdma@1400c000 {
->                         clocks = <&mmsys CLK_MM_DISP_RDMA1>;
->                         iommus = <&iommu M4U_PORT_DISP_RDMA1>;
->                         mediatek,larb = <&larb0>;
-> -                       mediatek,rdma_fifo_size = <2048>;
-> +                       mediatek,rdma-fifo-size = <2048>;
->                         mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
->                 };
->
-> --
-> 2.30.0.280.ga3ce27912f-goog
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
++		gpu: adreno@fdb00000 {
++			status = "disabled";
++
++			compatible = "qcom,adreno-330.1",
++				     "qcom,adreno";
++			reg = <0xfdb00000 0x10000>;
++			reg-names = "kgsl_3d0_reg_memory";
++			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "kgsl_3d0_irq";
++			clock-names = "core",
++				      "iface",
++				      "mem_iface";
++			clocks = <&mmcc OXILI_GFX3D_CLK>,
++				 <&mmcc OXILICX_AHB_CLK>,
++				 <&mmcc OXILICX_AXI_CLK>;
++			sram = <&gmu_sram>;
++			power-domains = <&mmcc OXILICX_GDSC>;
++			operating-points-v2 = <&gpu_opp_table>;
++
++			interconnects = <&mmssnoc MNOC_MAS_GRAPHICS_3D &bimc BIMC_SLV_EBI_CH0>,
++					<&ocmemnoc OCMEM_VNOC_MAS_GFX3D &ocmemnoc OCMEM_SLV_OCMEM>;
++			interconnect-names = "gfx-mem",
++					     "ocmem";
++
++			// iommus = <&gpu_iommu 0>;
++
++			gpu_opp_table: opp_table {
++				compatible = "operating-points-v2";
++
++				opp-320000000 {
++					opp-hz = /bits/ 64 <320000000>;
++				};
++
++				opp-200000000 {
++					opp-hz = /bits/ 64 <200000000>;
++				};
++
++				opp-27000000 {
++					opp-hz = /bits/ 64 <27000000>;
++				};
++			};
++		};
++
+ 		mdss: mdss@fd900000 {
+ 			status = "disabled";
+
+diff --git a/arch/arm/boot/dts/qcom-msm8974pro.dtsi b/arch/arm/boot/dts/qcom-msm8974pro.dtsi
+index 6740a4cb7da8d..b87de3c3f461a 100644
+--- a/arch/arm/boot/dts/qcom-msm8974pro.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974pro.dtsi
+@@ -14,5 +14,10 @@ sdhci@f9824900 {
+ 		clock-controller@fc400000 {
+ 				compatible = "qcom,gcc-msm8974pro";
+ 		};
++
++		adreno@fdb00000 {
++			compatible = "qcom,adreno-330.2",
++				     "qcom,adreno";
++		};
+ 	};
+ };
+
+base-commit: 226871e2eda4832d94c3239add7e52ad17b81ce5
+--
+2.30.0
+
