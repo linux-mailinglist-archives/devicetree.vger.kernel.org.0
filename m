@@ -2,101 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 173013077B0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 15:10:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2415E3077D5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 15:23:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbhA1OJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 09:09:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43112 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231349AbhA1OJA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Jan 2021 09:09:00 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4579264D92;
-        Thu, 28 Jan 2021 14:08:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1611842899;
-        bh=QSDli4q81ZPENBHiSIxqH32K2P7ZjDli7F2BOv1/r9U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WqWHV57+phzaVBv77u51NcPbqZi/YOFjBMwRd2KxldHHJ7XFNYT5ed5VJkH4PPvAu
-         l9bQ5NNu6pbrc+vgPpVUmfD5xWv3HnprgGCuk4swf/sZCj9BQYsgcFFe7gs/Vv6Ea6
-         jrB2s9UsnUn6uH48aXrsLo5gTlhAaNBDyy7ksKGuNcJ3Z2/TkQ2OP0OHWBrohpozPc
-         zK5VAZcNOuKY+UtFusmh1kn+3fjsJppXYfMmz4zHluuxmlfy9DAKjtLvjloeHWSCeY
-         a5DfcrGiY9VyeNBi1Yei06EntAoq/olgB7Aewv6rj45FWZDqvR9vK1ixP/Jx//xx/F
-         SVHp9W7+JhSmA==
-Received: by mail-oi1-f182.google.com with SMTP id n7so6078635oic.11;
-        Thu, 28 Jan 2021 06:08:19 -0800 (PST)
-X-Gm-Message-State: AOAM53110fbfkeFxRtDUkdWHta/K7VWXxKu3PpsBFFM4AH0+7yWEcVb+
-        3utAZcmhVLJdN94djG/CDRBvAkQ1pg0JOWZjaBA=
-X-Google-Smtp-Source: ABdhPJzwEQxEnGH8Kd9EW4py7Vh8j/97czrumYSoCX4f5UnRR+EOHFO9iBqtwIJx05MPulf7muWpeVXN8Y1iYCWgGHI=
-X-Received: by 2002:aca:d908:: with SMTP id q8mr84273oig.67.1611842898482;
- Thu, 28 Jan 2021 06:08:18 -0800 (PST)
+        id S231439AbhA1OUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 09:20:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40960 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231406AbhA1OUg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 09:20:36 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F933C061756
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 06:19:55 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id 7so5593737wrz.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 06:19:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x0QMpFOalwPklH2KvBPZK8bo2/fUlpNzY2SPfbp4llw=;
+        b=Of6VgqVY59Jivj4WC4gyTCCQ3IptSNXlxtDlSFMJ08D9Dj64wv60fy37px1X9F3TTU
+         Cf0oKu/J19OKCvtwyFfgzEWVycD5BuAfmFXbhoS2enZjEeL/0cfI6cS2scFbcArjOaVJ
+         wwqhx3JIfjCK1TkQFtZum3TbDhfDSVvT/e1zgRqCYgdXnutw9MiHdmZ3WW4z3Q5SFT7A
+         t6K3cwA7+zfop7kE8XO43rq8ZyC7EFCmwJJtfZK/QaP2XvdwC3HG1zkmTtB/9cRPOEXq
+         jS9xPWcC7E3qiImaC+ZRGnvAgE6iBod6k3c4lD8p6NJfq8eeYP3sfR90pUJut12WjBo1
+         klYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x0QMpFOalwPklH2KvBPZK8bo2/fUlpNzY2SPfbp4llw=;
+        b=CUZ/crkYt0Ol1cE4hjHAiaejobxid1vsz7XMhrp3JEr7ldz2tGc0obRnabneYOBloL
+         PqBxCBdz0Z6IAgUGPjotD1uRxLpcSxSxUIyS1cXy7re/uI60rCVCVsgESIdyTNbMSWVG
+         oWYCm7ZXMWu5f1qzbHRU2J3/3UbYsiDLeMBRSQcgX/AZ0+1XRmCy62IPwoChdEvwdL3m
+         FR2Wq7+gVhymfQ1tVQgmsbVUSPyl+C99JWqTclwjv9pJ7sbn8WpQciAoGZ4/VbNXColh
+         nIM8NgfbyggSEGXSTv+Bt6mDeRXabloDdXPmlVPXilYjET+BUz/CFWWuhhXDJamv5g4J
+         qM5g==
+X-Gm-Message-State: AOAM530C/0YgK6wE/44MsreRlcn85TBlmwMRuFsB3yEDdFt+JVn6ODAo
+        OXbIdwIq75jtsf5RH1H+AlpVGQ==
+X-Google-Smtp-Source: ABdhPJyGXoeIBnHZriYgJl2y6msMfQCaVd4EFZ0NkDobRVez/+f0p1PIkYV+rZL9pEjvcmJeqbO9Gg==
+X-Received: by 2002:a5d:65ca:: with SMTP id e10mr16805260wrw.166.1611843594318;
+        Thu, 28 Jan 2021 06:19:54 -0800 (PST)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id d9sm7257096wrq.74.2021.01.28.06.19.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jan 2021 06:19:53 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org
+Cc:     perex@perex.cz, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH 0/7] ASoC: codecs: add support for LPASS Codec TX and RX macros
+Date:   Thu, 28 Jan 2021 14:19:22 +0000
+Message-Id: <20210128141929.26573-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20201208124641.1787-1-thunder.leizhen@huawei.com>
- <20201208124641.1787-3-thunder.leizhen@huawei.com> <CAK8P3a3xie1-rLzKY+Y3Z2VKEJkDqAco6b75Af6FgyhsnzorsA@mail.gmail.com>
- <6010B6DE.4060202@hisilicon.com>
-In-Reply-To: <6010B6DE.4060202@hisilicon.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Thu, 28 Jan 2021 15:08:01 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a31po51NtRhuMsruy2nbqhjguyGP8ZcXwPAwwEiGtLBkg@mail.gmail.com>
-Message-ID: <CAK8P3a31po51NtRhuMsruy2nbqhjguyGP8ZcXwPAwwEiGtLBkg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] arm64: dts: correct vendor prefix hisi to hisilicon
-To:     Wei Xu <xuwei5@hisilicon.com>
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Chen Feng <puck.chen@hisilicon.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 1:42 AM Wei Xu <xuwei5@hisilicon.com> wrote:
-> On 2021/1/27 6:23, Arnd Bergmann wrote:
-> > On Tue, Dec 8, 2020 at 1:46 PM Zhen Lei <thunder.leizhen@huawei.com> wrote:
-> >>
-> >> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
-> >> stated in "vendor-prefixes.yaml".
-> >>
-> >> Fixes: 35ca8168133c ("arm64: dts: Add dts files for Hisilicon Hi3660 SoC")
-> >> Fixes: dd8c7b78c11b ("arm64: dts: Add devicetree for Hisilicon Hi3670 SoC")
-> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> >> Cc: Chen Feng <puck.chen@hisilicon.com>
-> >> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> >
-> > I see this change in the pull request I got, but I'm a bit worried about the
-> > incompatible binding change. Wouldn't the correct path forward be to
-> > list both the correct and the incorrect properties, both in the dts file
-> > and in the driver that interprets the properties?
->
-> Thanks for the comment!
-> The reset driver will look for "hisilicon" firstly and fall back to "hisi".
-> And the DTS is shipped with the driver together.
-> So I think there is no compatible issue here.
-> Please let me know if missed anything. Thanks!
+This patchset adds support for two Codec Macro blocks(TX and RX) available in
+Qualcomm LPASS (Low Power Audio SubSystem).
 
-There are three things that can go wrong here, and this is only addressing
-one of them:
+There are WSA, VA, TX and RX Macros on LPASS IP, each of the Macro block
+has specific connectivity like WSA Macros are intended to connect
+to WSA Smart speaker codecs via SoundWire. VA Macro is intended for DMICs,
+and TX/RX for Analog codecs via SoundWire like other WCD938x Codecs to provide
+headphone/ear/lineout/amic/dmic etc ..
 
-1. Updating the kernel on a machine with a dtb provided by the firmware
-  is a problem if the new driver can not handle the old properties. This
-  is correctly handled by the driver's fallback as soon as both trees
-  are merged.
+Most of the work is derived from downstream Qualcomm kernels.
+Credits to various Qualcomm authors from Patrick Lai's team who have
+contributed to this code.
 
-2. Updating the dtb while running an older kernel is now broken since
-  the driver can no longer read the property. This is less critical, but
-  it does seem easy enough to work around here by leaving both
-  properties in place.
+This patchset has been tested on support to SM8250 MTP Development Board.
+This board has 2 WSA881X smart speakers with onboard DMIC connected to
+internal LPASS codec via WSA  and VA macros respectively and WCD938x
+TX and RX connected via Soundwire via TX and RX Macros reseptively.
 
-3. Bisecting through the git history across an incompatible change
-  means you can run into broken commits. We try hard to avoid that
-  if we are aware of a problem in advance. In this case it could be
-  avoided by only merging the incompatible DT change in a following
-  merge window after the driver change, or (better) by making it
-  a backward-compatible change the same way as addressing 2.
+Thanks,
+srini
 
-         Arnd
+Srinivas Kandagatla (7):
+  ASoC: qcom: dt-bindings: add bindings for lpass rx macro codec
+  ASoC: codec: lpass-rx-macro: add support for lpass rx macro
+  ASoC: codec: lpass-rx-macro: add dapm widgets and route
+  ASoC: codec: lpass-rx-macro: add iir widgets
+  ASoC: qcom: dt-bindings: add bindings for lpass tx macro codec
+  ASoC: codec: lpass-tx-macro: add support for lpass tx macro
+  ASoC: codec: lpass-tx-macro: add dapm widgets and route
+
+ .../bindings/sound/qcom,lpass-rx-macro.yaml   |   62 +
+ .../bindings/sound/qcom,lpass-tx-macro.yaml   |   67 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/lpass-rx-macro.c             | 3623 +++++++++++++++++
+ sound/soc/codecs/lpass-tx-macro.c             | 1881 +++++++++
+ 6 files changed, 5647 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+ create mode 100644 sound/soc/codecs/lpass-rx-macro.c
+ create mode 100644 sound/soc/codecs/lpass-tx-macro.c
+
+-- 
+2.21.0
+
