@@ -2,110 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 584DD307B05
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 17:34:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F79307B62
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 17:54:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbhA1Qd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 11:33:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41428 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbhA1Qdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 11:33:49 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A4E0C061573;
-        Thu, 28 Jan 2021 08:33:09 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id 6so6046113wri.3;
-        Thu, 28 Jan 2021 08:33:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=mS4VbiBmP+TiGI4tqZd3H3wmmFTbUqmfEe4EGj5uZTQ=;
-        b=jALa73k4QK4Uy0+5UktdwYg0c7XpKg8EpVst2mobL07iI/od5OxnP30mSDNFqjQTVY
-         /1l1XT0nI9+XoMnyTyM/fCLDV5QzyqbDq8o0D68xNu4wQRM1O2ELY5U94tZDQf3Zblj/
-         aHYjZjRqjFI6A9KZTBLIhO+viSYci6LYSlOXJbofHlIIO0xfFWu2Bds6P+yR9MPx4CaH
-         VblRiCZYw7f7hpxWVFx+7WsP8N13Aew8R2XYRT2mfTKIAKjJlchp58AJuFEctm841hVR
-         yMMgZiqpdJmagniZ6mhrDbjVbbMDlNqvMgJ4lqkzL2DbMTMrs9etUdAnHI+SyU+zWJqv
-         atgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=mS4VbiBmP+TiGI4tqZd3H3wmmFTbUqmfEe4EGj5uZTQ=;
-        b=kfpvPQf0/RmkLoAYiHEfsibnLrQYB3Gf3rRx9WAsbgiRB5oJ5Xoc6AJIc6mztiMfg2
-         Uq3Jwiqri+lEzlLmHKnMZ3kIruCrBPVDuk1zRrNLImRBYN7aZ+So0VeBwnfp8E4WdMb7
-         Ailcl6iuabC2sXD+W1EzGg/al2AaZKnfwb7rFcWwSl4l4CfZOK78akNbtd0creZ3nZn7
-         WSv5ShPKUGygldyFy8xxQhPhSHqaBuHJ/3bv/WB0X2JbIyOWeA42kVm0wtn1DJ08npC1
-         Op46enWUgxEqbpFIIuil9p954KvcXUCUf7/9gLLxDfNe6JLTUEmh1lb+vuJfrq/qkIMv
-         50Gg==
-X-Gm-Message-State: AOAM531rXMcNyxrz086WeTsOIHmRg3JE4v9iCcfchuZhuZZ4LGf0tzWx
-        OARjhgVxZU0a1YNcfpwZg+0=
-X-Google-Smtp-Source: ABdhPJzXc7RAcUzkhqmVzI5/o/6zMGEWLiJthw7dPGDuM3HIKgO1NIh8wZNNDVCWgLTJkb2rzY4xcg==
-X-Received: by 2002:a5d:4443:: with SMTP id x3mr17870569wrr.409.1611851587974;
-        Thu, 28 Jan 2021 08:33:07 -0800 (PST)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id 62sm6630860wmd.34.2021.01.28.08.33.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jan 2021 08:33:07 -0800 (PST)
-Subject: Re: [PATCH v12 2/8] arm64: dts: mt8183: refine gamma compatible name
-To:     Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S232596AbhA1Qw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 11:52:59 -0500
+Received: from mail.v3.sk ([167.172.186.51]:37166 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231373AbhA1Qw5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Jan 2021 11:52:57 -0500
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 67CD3E0B17;
+        Thu, 28 Jan 2021 16:48:08 +0000 (UTC)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id tb_MY8o7gQd8; Thu, 28 Jan 2021 16:48:07 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 6090EE0B2A;
+        Thu, 28 Jan 2021 16:48:07 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id a2rOAFCqqtQ1; Thu, 28 Jan 2021 16:48:06 +0000 (UTC)
+Received: from localhost (unknown [109.183.109.54])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id C4F67E0B17;
+        Thu, 28 Jan 2021 16:48:06 +0000 (UTC)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-References: <20210128112314.1304160-1-hsinyi@chromium.org>
- <20210128112314.1304160-3-hsinyi@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <a8d5d947-532c-a9f9-d249-e1a0b246c41a@gmail.com>
-Date:   Thu, 28 Jan 2021 17:33:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/2] Add a Himax HX8837 display controller driver
+Date:   Thu, 28 Jan 2021 17:52:07 +0100
+Message-Id: <20210128165209.59903-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210128112314.1304160-3-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+please take a look at the patches chained to this messages and consider
+applying them. They add support for the controller that drives the panel
+on the OLPC XO laptops.
+
+Compared to v7, points risen in review by Laurent Pinchart have been
+addressed. Details in change log of patch 1/2.
+
+Tested on an OLPC XO-1.75 laptop.
+
+Thank you
+Lubo
 
 
-On 28/01/2021 12:23, Hsin-Yi Wang wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> 
-> mt8183 gamma is different with mt8173
-> remove mt8173 compatible name for mt8183 gamma
-> 
-> Fixes: 91f9c963ce79 ("arm64: dts: mt8183: Add display nodes for MT8183")
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-
-Applied to v5.11-next/dts64
-
-Thanks
-
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 6c84ccb709af6..9c0073cfad452 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -1055,8 +1055,7 @@ aal0: aal@14010000 {
->  		};
->  
->  		gamma0: gamma@14011000 {
-> -			compatible = "mediatek,mt8183-disp-gamma",
-> -				     "mediatek,mt8173-disp-gamma";
-> +			compatible = "mediatek,mt8183-disp-gamma";
->  			reg = <0 0x14011000 0 0x1000>;
->  			interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_LOW>;
->  			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
-> 
