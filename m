@@ -2,137 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE8F03070C4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:13:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF83D30710D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 09:17:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231261AbhA1IK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 03:10:59 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:46378 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229652AbhA1IKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 03:10:46 -0500
-X-UUID: c59e218c88054f03b15ebad6fd6f3928-20210128
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=3avhCwfwHncHem81Q76+RbeX5Zom5hg2AKdmxBBvpRI=;
-        b=I7FXhgSs9DXCVcT6lyLI4GxsAlOt/F1GssHQWojcFhi7ngp2wb+8NIrtjq3njP6Q3/P++wePLz+mUOBh6xOi3Tui7SDmpBwvqPaR+Xg1Xy0lgf7ycRsJxVmA9Zl9YdZmndMfe5LaFuaLJSuVMhSWv7zT29vYLx5F3jH+enhdw0I=;
-X-UUID: c59e218c88054f03b15ebad6fd6f3928-20210128
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 783501041; Thu, 28 Jan 2021 16:09:59 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs05n1.mediatek.inc
- (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 28 Jan
- 2021 16:09:58 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Jan 2021 16:09:57 +0800
-Message-ID: <1611821396.1947.10.camel@mhfsdcap03>
-Subject: Re: [PATCH v11 7/9] drm/mediatek: enable dither function
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 28 Jan 2021 16:09:56 +0800
-In-Reply-To: <1611821233.18369.4.camel@mtksdaap41>
-References: <20210128072802.830971-1-hsinyi@chromium.org>
-         <20210128072802.830971-8-hsinyi@chromium.org>
-         <1611819766.16091.4.camel@mtksdaap41> <1611820770.1947.8.camel@mhfsdcap03>
-         <1611821233.18369.4.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S231733AbhA1IRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 03:17:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47854 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231691AbhA1IRR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 03:17:17 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8584C061573
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:16:36 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id s7so1467062wru.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 00:16:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=UeimYJSD/BbdilP/QsnJ5hxblqoSqeJXssbZW1GuA/E=;
+        b=HLDco07WIOI0eRFrC4jndd4L8LCMXW0F+aUl9EIn2JpFOtTztYSUhXSqu9mjB1ioMJ
+         2sMiLjA0fs5EjoOfH+6ae16pwEgx0Vz/GaRY03tRa59UCnqaSJGMERAVLi92/G1LPO7y
+         /2q4IBj6bHwKIii0su+YEfEDRtAVYtJJorqFU7WM40gL3nxqURSOXN6123lu3p03ZkGD
+         1xdATKryVyMbwSBPrLiSxu6FOXvoFfDYg1vCUW4a3wVomTQH4VUx++wSlvHf+O8dcdEG
+         g11wNZZnagd45iHVfLFiJYSbAhNFWtCRwXCez7z7D1ec7q1GsbBf0aEmLgTWmnSf4rwe
+         WvNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=UeimYJSD/BbdilP/QsnJ5hxblqoSqeJXssbZW1GuA/E=;
+        b=il7E5j/S/2ihsB/lXrbWZBZzn2tOb7VUecNqv7mEq00kBY6XAQ74ru0Kfrx3DWI6QX
+         vK+8Y7kzYPNAtjgV++U+Dlg3buj59/47lN4voZDS7CqkfzgMrp/xnvlk8PK4c/Gg8kn0
+         ZZUZHWPxYbp3zlQ0FJl+SfBOm7hubBs82grqeXROAdQ+nq8MUZBEJ1HuLzMNFLZnWtUf
+         PTGrR8c519D6eY1CVWbIB8eheqJQLPaeI+xqv8TuU0tS/Vg+uq9dQYHhKcUTA0IIzlwV
+         807ouqgyYvNyGrt70IXev9kzuNcOi47pjvLlaWhDteiv2dvbXx4Lpyax3OJnMTBBfKNJ
+         /Yjg==
+X-Gm-Message-State: AOAM530PvGuBYwlSFViSbIIKHmDw/pkgljkMN+E0Lb6HR4iOGoM81ibJ
+        uq/m2Y3pOV9V3jJf3lRhdFDDvQ==
+X-Google-Smtp-Source: ABdhPJwk4pcrmzfuCbnjS9kjUUrQd6dcq75GhqojTwB1b/FrDLAyrcZHVKoo6nED2QAu8b6oqCCoLg==
+X-Received: by 2002:adf:b78d:: with SMTP id s13mr15032680wre.344.1611821795387;
+        Thu, 28 Jan 2021 00:16:35 -0800 (PST)
+Received: from dell ([91.110.221.188])
+        by smtp.gmail.com with ESMTPSA id f4sm5952787wrs.34.2021.01.28.00.16.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jan 2021 00:16:34 -0800 (PST)
+Date:   Thu, 28 Jan 2021 08:16:33 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        David Gow <davidgow@google.com>,
+        Mayulong <mayulong1@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wang Hai <wanghai38@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 5/7] mfd: hi6421-spmi-pmic: move driver from staging
+Message-ID: <20210128081633.GB4774@dell>
+References: <cover.1611773727.git.mchehab+huawei@kernel.org>
+ <2b0e6f6cef0aaa914956792088c554c57f5ec644.1611773727.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2b0e6f6cef0aaa914956792088c554c57f5ec644.1611773727.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTAxLTI4IGF0IDE2OjA3ICswODAwLCBDSyBIdSB3cm90ZToNCj4gT24gVGh1
-LCAyMDIxLTAxLTI4IGF0IDE1OjU5ICswODAwLCBZb25ncWlhbmcgTml1IHdyb3RlOg0KPiA+IE9u
-IFRodSwgMjAyMS0wMS0yOCBhdCAxNTo0MiArMDgwMCwgQ0sgSHUgd3JvdGU6DQo+ID4gPiBIaSwg
-SHNpbi1ZaToNCj4gPiA+IA0KPiA+ID4gT24gVGh1LCAyMDIxLTAxLTI4IGF0IDE1OjI4ICswODAw
-LCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+ID4gPiA+IEZyb206IFlvbmdxaWFuZyBOaXUgPHlvbmdx
-aWFuZy5uaXVAbWVkaWF0ZWsuY29tPg0KPiA+ID4gPiANCj4gPiA+ID4gZm9yIDUgb3IgNiBicGMg
-cGFuZWwsIHdlIG5lZWQgZW5hYmxlIGRpdGhlciBmdW5jdGlvbg0KPiA+ID4gPiB0byBpbXByb3Zl
-IHRoZSBkaXNwbGF5IHF1YWxpdHkNCj4gPiA+ID4gDQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFlv
-bmdxaWFuZyBOaXUgPHlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tPg0KPiA+ID4gPiBTaWduZWQt
-b2ZmLWJ5OiBIc2luLVlpIFdhbmcgPGhzaW55aUBjaHJvbWl1bS5vcmc+DQo+ID4gPiA+IC0tLQ0K
-PiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZGRwX2NvbXAuYyB8IDQ0
-ICsrKysrKysrKysrKysrKysrKysrLQ0KPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDQzIGluc2Vy
-dGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gPiA+ID4gDQo+ID4gPiA+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL21lZGlhdGVrL210a19kcm1fZGRwX2NvbXAuYw0KPiA+ID4gPiBpbmRleCA4MTczZjcwOTI3
-MmJlLi5lODU2MjU3MDRkNjExIDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-bWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jDQo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMNCj4gPiA+ID4gQEAgLTUzLDcgKzUzLDkgQEAN
-Cj4gPiA+ID4gICNkZWZpbmUgRElUSEVSX0VOCQkJCUJJVCgwKQ0KPiA+ID4gPiAgI2RlZmluZSBE
-SVNQX0RJVEhFUl9DRkcJCQkJMHgwMDIwDQo+ID4gPiA+ICAjZGVmaW5lIERJVEhFUl9SRUxBWV9N
-T0RFCQkJQklUKDApDQo+ID4gPiA+ICsjZGVmaW5lIERJVEhFUl9FTkdJTkVfRU4JCQlCSVQoMSkN
-Cj4gPiA+ID4gICNkZWZpbmUgRElTUF9ESVRIRVJfU0laRQkJCTB4MDAzMA0KPiA+ID4gPiArI2Rl
-ZmluZSBESVRIRVJfUkVHKGlkeCkJCQkJKDB4MTAwICsgKGlkeCkgKiA0KQ0KPiA+ID4gPiAgDQo+
-ID4gPiA+ICAjZGVmaW5lIExVVF8xMEJJVF9NQVNLCQkJCTB4MDNmZg0KPiA+ID4gPiAgDQo+ID4g
-PiA+IEBAIC0zMTMsOCArMzE1LDQ4IEBAIHN0YXRpYyB2b2lkIG10a19kaXRoZXJfY29uZmlnKHN0
-cnVjdCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHcsDQo+ID4gPiA+ICB7DQo+ID4gPiA+ICAJ
-c3RydWN0IG10a19kZHBfY29tcF9kZXYgKnByaXYgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsNCj4g
-PiA+ID4gIA0KPiA+ID4gPiArCWJvb2wgZW5hYmxlID0gZmFsc2U7DQo+ID4gPiA+ICsNCj4gPiA+
-ID4gKwkvKiBkZWZhdWx0IHZhbHVlIGZvciBkaXRoZXIgcmVnIDUgdG8gMTQgKi8NCj4gPiA+ID4g
-Kwljb25zdCB1MzIgZGl0aGVyX3NldHRpbmdbXSA9IHsNCj4gPiA+ID4gKwkJMHgwMDAwMDAwMCwg
-LyogNSAqLw0KPiA+ID4gPiArCQkweDAwMDAzMDAyLCAvKiA2ICovDQo+ID4gPiA+ICsJCTB4MDAw
-MDAwMDAsIC8qIDcgKi8NCj4gPiA+ID4gKwkJMHgwMDAwMDAwMCwgLyogOCAqLw0KPiA+ID4gPiAr
-CQkweDAwMDAwMDAwLCAvKiA5ICovDQo+ID4gPiA+ICsJCTB4MDAwMDAwMDAsIC8qIDEwICovDQo+
-ID4gPiA+ICsJCTB4MDAwMDAwMDAsIC8qIDExICovDQo+ID4gPiA+ICsJCTB4MDAwMDAwMTEsIC8q
-IDEyICovDQo+ID4gPiA+ICsJCTB4MDAwMDAwMDAsIC8qIDEzICovDQo+ID4gPiA+ICsJCTB4MDAw
-MDAwMDAsIC8qIDE0ICovDQo+ID4gPiANCj4gPiA+IENvdWxkIHlvdSBleHBsYWluIHdoYXQgaXMg
-dGhpcz8NCj4gPiANCj4gPiB0aGlzIGlzIGRpdGhlciA1IHRvIGRpdGhlciAxNCBzZXR0aW5nDQo+
-ID4gdGhpcyB3aWxsIGJlIHVzZWxlc3MsIHdlIGp1c3QgbmVlZCBzZXQgZGl0aGVyIDUgYW5kIGRp
-dGhlciA3IGxpa2UgDQo+ID4gbXRrX2RkcF93cml0ZShjbWRxX3BrdCwgMCwgY29tcCwgRElTUF9E
-SVRIRVJfNSk7DQo+ID4gbXRrX2RkcF93cml0ZShjbWRxX3BrdCwgMCwgY29tcCwgRElTUF9ESVRI
-RVJfNyk7DQo+ID4gb3RoZXIgdmFsdWUgaXMgc2FtZSB3aXRoIGhhcmR3YXJlIGRlZmF1bHQgdmFs
-dWUuDQo+ID4gDQo+ID4gDQo+ID4gPiANCj4gPiA+ID4gKwl9Ow0KPiA+ID4gPiArDQo+ID4gPiA+
-ICsJaWYgKGJwYyA9PSA1IHx8IGJwYyA9PSA2KSB7DQo+ID4gPiA+ICsJCWVuYWJsZSA9IHRydWU7
-DQo+ID4gPiA+ICsJCW10a19kZHBfd3JpdGUoY21kcV9wa3QsDQo+ID4gPiA+ICsJCQkgICAgICBE
-SVRIRVJfTFNCX0VSUl9TSElGVF9SKE1US19NQVhfQlBDIC0gYnBjKSB8DQo+ID4gPiA+ICsJCQkg
-ICAgICBESVRIRVJfQUREX0xTSElGVF9SKE1US19NQVhfQlBDIC0gYnBjKSB8DQo+ID4gPiA+ICsJ
-CQkgICAgICBESVRIRVJfTkVXX0JJVF9NT0RFLA0KPiA+ID4gPiArCQkJICAgICAgJnByaXYtPmNt
-ZHFfcmVnLCBwcml2LT5yZWdzLCBESVRIRVJfUkVHKDE1KSk7DQo+ID4gPiA+ICsJCW10a19kZHBf
-d3JpdGUoY21kcV9wa3QsDQo+ID4gPiA+ICsJCQkgICAgICBESVRIRVJfTFNCX0VSUl9TSElGVF9C
-KE1US19NQVhfQlBDIC0gYnBjKSB8DQo+ID4gPiA+ICsJCQkgICAgICBESVRIRVJfQUREX0xTSElG
-VF9CKE1US19NQVhfQlBDIC0gYnBjKSB8DQo+ID4gPiA+ICsJCQkgICAgICBESVRIRVJfTFNCX0VS
-Ul9TSElGVF9HKE1US19NQVhfQlBDIC0gYnBjKSB8DQo+ID4gPiA+ICsJCQkgICAgICBESVRIRVJf
-QUREX0xTSElGVF9HKE1US19NQVhfQlBDIC0gYnBjKSwNCj4gPiA+IA0KPiA+ID4gVGhpcyByZXN1
-bHQgaW4gMHg1MDUwNTA1MCwgYnV0IHByZXZpb3VzIHZlcnNpb24gaXMgMHg1MDUwNDA0MCwgc28g
-dGhpcw0KPiA+ID4gdmVyc2lvbiBpcyBjb3JyZWN0IGFuZCBwcmV2aW91cyB2ZXJzaW9uIGlzIGlu
-Y29ycmVjdD8NCj4gPiANCj4gPiB0aGUgbmV3IHZlcnNpb24gc2V0IHIgZyBiIDMgY2hhbm5lbCBz
-YW1lLCBzZWFtcyBtb3JlIHJlYXNvbmFibGUNCj4gPiANCj4gPiANCj4gDQo+IFNvIGFsbCB0aGUg
-c2V0dGluZyBvZiBESVNQX0RJVEhFUl81LCBESVNQX0RJVEhFUl83LCBESVNQX0RJVEhFUl8xNSwN
-Cj4gRElTUF9ESVRIRVJfMTYgaXMgaWRlbnRpY2FsIHRvIG10a19kaXRoZXJfc2V0KCksIHNvIGNh
-bGwNCj4gbXRrX2RpdGhlcl9zZXQoKSBpbnN0ZWFkIG9mIGR1cGxpY2F0aW9uIGhlcmUuDQo+IA0K
-DQpkaXRoZXIgZW5hYmxlIHNldCBpbiBtdGtfZGl0aGVyX3NldCBpcw0KbXRrX2RkcF93cml0ZShj
-bWRxX3BrdCwgRElTUF9ESVRIRVJJTkcsIGNvbXAsIENGRyk7DQoNCnRoYXQgaXMgZGlmZmVyZW50
-IDgxODMgYW5kIG10ODE5Mi4NCm10ODE3MyBkaXRoZXIgZW5hYmxlIGluIGdhbW1hIGlzIGJpdDIN
-Cm10ODE4MyBhbmQgbXQ4MTkyIGRpdGhlciBlbmdpbmUgZW5hYmxlIGlzIGJpdCAxDQoNCg0KPiBS
-ZWdhcmRzLA0KPiBDSw0KPiA+ID4gDQo+ID4gPiBSZWdhcmRzLA0KPiA+ID4gQ0sNCj4gPiA+IA0K
-PiA+ID4gPiArCQkJICAgICAgJnByaXYtPmNtZHFfcmVnLCBwcml2LT5yZWdzLCBESVRIRVJfUkVH
-KDE2KSk7DQo+ID4gPiA+ICsJfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsNCj4gPiA+ID4gKwlpZiAo
-ZW5hYmxlKSB7DQo+ID4gPiA+ICsJCXUzMiBpZHg7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwkJZm9y
-IChpZHggPSAwOyBpZHggPCBBUlJBWV9TSVpFKGRpdGhlcl9zZXR0aW5nKTsgaWR4KyspDQo+ID4g
-PiA+ICsJCQltdGtfZGRwX3dyaXRlKGNtZHFfcGt0LCBkaXRoZXJfc2V0dGluZ1tpZHhdLCAmcHJp
-di0+Y21kcV9yZWcsIHByaXYtPnJlZ3MsDQo+ID4gPiA+ICsJCQkJICAgICAgRElUSEVSX1JFRyhp
-ZHggKyA1KSk7DQo+ID4gPiA+ICsJfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICAJbXRrX2RkcF93cml0
-ZShjbWRxX3BrdCwgaCA8PCAxNiB8IHcsICZwcml2LT5jbWRxX3JlZywgcHJpdi0+cmVncywgRElT
-UF9ESVRIRVJfU0laRSk7DQo+ID4gPiA+IC0JbXRrX2RkcF93cml0ZShjbWRxX3BrdCwgRElUSEVS
-X1JFTEFZX01PREUsICZwcml2LT5jbWRxX3JlZywgcHJpdi0+cmVncywgRElTUF9ESVRIRVJfQ0ZH
-KTsNCj4gPiA+ID4gKyAgICAgICAgbXRrX2RkcF93cml0ZShjbWRxX3BrdCwgZW5hYmxlID8gRElU
-SEVSX0VOR0lORV9FTiA6IERJVEhFUl9SRUxBWV9NT0RFLCAmcHJpdi0+Y21kcV9yZWcsIHByaXYt
-PnJlZ3MsIERJU1BfRElUSEVSX0NGRyk7DQo+ID4gPiA+ICB9DQo+ID4gPiA+ICANCj4gPiA+ID4g
-IHN0YXRpYyB2b2lkIG10a19kaXRoZXJfc3RhcnQoc3RydWN0IGRldmljZSAqZGV2KQ0KPiA+ID4g
-DQo+ID4gPiANCj4gPiANCj4gPiANCj4gDQo+IA0KDQo=
+On Wed, 27 Jan 2021, Mauro Carvalho Chehab wrote:
 
+> This driver is ready for mainstream. So, move it out of staging.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../mfd}/hisilicon,hi6421-spmi-pmic.yaml        |  0
+>  MAINTAINERS                                     |  7 +++++++
+>  drivers/mfd/Kconfig                             | 15 +++++++++++++++
+>  drivers/mfd/Makefile                            |  1 +
+>  .../hikey9xx => mfd}/hi6421-spmi-pmic.c         |  0
+>  drivers/staging/hikey9xx/Kconfig                | 17 -----------------
+>  drivers/staging/hikey9xx/Makefile               |  1 -
+>  7 files changed, 23 insertions(+), 18 deletions(-)
+>  rename {drivers/staging/hikey9xx => Documentation/devicetree/bindings/mfd}/hisilicon,hi6421-spmi-pmic.yaml (100%)
+>  rename drivers/{staging/hikey9xx => mfd}/hi6421-spmi-pmic.c (100%)
+
+I've already reviewed this:
+
+  https://lore.kernel.org/driverdev-devel/20210127110537.GI4903@dell/
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
