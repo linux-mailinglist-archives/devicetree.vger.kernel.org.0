@@ -2,81 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419A5307047
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:55:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8202230704D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 08:55:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbhA1Hxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 02:53:41 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:59417 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232117AbhA1Hww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 02:52:52 -0500
-X-UUID: da41bc8928254adc8fa28c9ad673101a-20210128
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=a0Hgwxh0U2dNx+VXIaMoTg0BoqJmUmGXjqMHEveUMYI=;
-        b=k7G1Do1mkH8worFAUJwK9gCf4xthpbVWgKX1XSAMwyTsqXOSp38WvQYa+84dsbDQEH9QRESVFprkwbqZsgcMSXzLlfYlf6cgLetu3a73ps4G92bxneHtuw5NCrqXPUnFRkwOnt/tlKwc9D1EqTy4YMU7tuJcK7mZUTecBhaQq9c=;
-X-UUID: da41bc8928254adc8fa28c9ad673101a-20210128
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 451889016; Thu, 28 Jan 2021 15:50:57 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 28 Jan 2021 15:50:51 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Jan 2021 15:50:51 +0800
-Message-ID: <1611820251.16091.7.camel@mtksdaap41>
-Subject: Re: [PATCH v11 3/9] drm/mediatek: add RDMA fifo size error handle
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-Date:   Thu, 28 Jan 2021 15:50:51 +0800
-In-Reply-To: <20210128072802.830971-4-hsinyi@chromium.org>
-References: <20210128072802.830971-1-hsinyi@chromium.org>
-         <20210128072802.830971-4-hsinyi@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S232196AbhA1Hy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 02:54:29 -0500
+Received: from mx2.suse.de ([195.135.220.15]:49972 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232173AbhA1HyN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Jan 2021 02:54:13 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+        t=1611820406; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=xSK7HTq3+bwPr5/ZmeHgDam4Owbrz6XJGaTagKZ9+Sc=;
+        b=JBFgrFCavxvgBNIvYnVReaCc/L1j5MxrQZNythF4AUSJ25X5TtF5VN1jumotZkagat0tSo
+        pwk7RC9SU5eAz9zppnc8tAmzpbNjvBDAksxhBTmbk1WJs10RbLoc8ga6FwjNo1cFuEFnEU
+        8lDAPhWlIxmT0d8GZB5YZZwLPPAeHoc=
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id AD9F3AC45;
+        Thu, 28 Jan 2021 07:53:26 +0000 (UTC)
+Date:   Thu, 28 Jan 2021 08:53:25 +0100
+From:   Michal Hocko <mhocko@suse.com>
+To:     Minchan Kim <minchan@kernel.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>,
+        LKML <linux-kernel@vger.kernel.org>, hyesoo.yu@samsung.com,
+        david@redhat.com, surenb@google.com, pullip.cho@samsung.com,
+        joaodias@google.com, hridya@google.com, john.stultz@linaro.org,
+        sumit.semwal@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, hch@infradead.org, robh+dt@kernel.org,
+        linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v4 2/4] mm: failfast mode with __GFP_NORETRY in
+ alloc_contig_range
+Message-ID: <YBJtdT5Tf5mRsE9U@dhcp22.suse.cz>
+References: <20210121175502.274391-1-minchan@kernel.org>
+ <20210121175502.274391-3-minchan@kernel.org>
+ <20210125131200.GG827@dhcp22.suse.cz>
+ <YA8dEFSrHBb9muFr@google.com>
+ <20210126074449.GA827@dhcp22.suse.cz>
+ <YBHQRY8kw8/wjFK8@google.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 61BF84BE02DCD629C3988D9D0702E6990B22EBCDA46936C4F590F0B3D1E4579F2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YBHQRY8kw8/wjFK8@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEhzaW4tWWk6DQoNCk9uIFRodSwgMjAyMS0wMS0yOCBhdCAxNToyNyArMDgwMCwgSHNpbi1Z
-aSBXYW5nIHdyb3RlOg0KPiBGcm9tOiBZb25ncWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlh
-dGVrLmNvbT4NCj4gDQo+IFRoaXMgcGF0Y2ggYWRkIFJETUEgZmlmbyBzaXplIGVycm9yIGhhbmRs
-ZQ0KPiByZG1hIGZpZm8gc2l6ZSB3aWxsIG5vdCBhbHdheXMgYmlnZ2VyIHRoYW4gdGhlIGNhbGN1
-bGF0ZWQgdGhyZXNob2xkDQo+IGlmIHRoYXQgY2FzZSBoYXBwZW5lZCwgd2UgbmVlZCBzZXQgZmlm
-byBzaXplIGFzIHRoZSB0aHJlc2hvbGQNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFlvbmdxaWFuZyBO
-aXUgPHlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBIc2luLVlp
-IFdhbmcgPGhzaW55aUBjaHJvbWl1bS5vcmc+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL21l
-ZGlhdGVrL210a19kaXNwX3JkbWEuYyB8IDQgKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5z
-ZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9t
-dGtfZGlzcF9yZG1hLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfcmRtYS5j
-DQo+IGluZGV4IGI4NDAwNDM5NDk3MGYuLjA0Yjk1NDIwMTBiMDAgMTAwNjQ0DQo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9yZG1hLmMNCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL21lZGlhdGVrL210a19kaXNwX3JkbWEuYw0KPiBAQCAtMTY4LDYgKzE2OCwxMCBAQCB2
-b2lkIG10a19yZG1hX2NvbmZpZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCB3aWR0
-aCwNCj4gIAkgKiBhY2NvdW50IGZvciBibGFua2luZywgYW5kIHdpdGggYSBwaXhlbCBkZXB0aCBv
-ZiA0IGJ5dGVzOg0KPiAgCSAqLw0KPiAgCXRocmVzaG9sZCA9IHdpZHRoICogaGVpZ2h0ICogdnJl
-ZnJlc2ggKiA0ICogNyAvIDEwMDAwMDA7DQo+ICsNCj4gKwlpZiAodGhyZXNob2xkID4gcmRtYV9m
-aWZvX3NpemUpDQo+ICsJCXRocmVzaG9sZCA9IHJkbWFfZmlmb19zaXplOw0KPiArDQoNClBsZWFz
-ZSBzZWUgdGhlIGRpc2N1c3Npb24gaW4gWzFdLg0KDQpbMV0NCmh0dHBzOi8vcGF0Y2h3b3JrLmtl
-cm5lbC5vcmcvcHJvamVjdC9saW51eC1tZWRpYXRlay9wYXRjaC8xNjA3NTkxMjYyLTIxNzM2LTYt
-Z2l0LXNlbmQtZW1haWwteW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20vDQoNClJlZ2FyZHMsDQpD
-Sw0KDQo+ICAJcmVnID0gUkRNQV9GSUZPX1VOREVSRkxPV19FTiB8DQo+ICAJICAgICAgUkRNQV9G
-SUZPX1BTRVVET19TSVpFKHJkbWFfZmlmb19zaXplKSB8DQo+ICAJICAgICAgUkRNQV9PVVRQVVRf
-VkFMSURfRklGT19USFJFU0hPTEQodGhyZXNob2xkKTsNCg0K
+On Wed 27-01-21 12:42:45, Minchan Kim wrote:
+> On Tue, Jan 26, 2021 at 08:44:49AM +0100, Michal Hocko wrote:
+> > On Mon 25-01-21 11:33:36, Minchan Kim wrote:
+> > > On Mon, Jan 25, 2021 at 02:12:00PM +0100, Michal Hocko wrote:
+> > > > On Thu 21-01-21 09:55:00, Minchan Kim wrote:
+> > > > > Contiguous memory allocation can be stalled due to waiting
+> > > > > on page writeback and/or page lock which causes unpredictable
+> > > > > delay. It's a unavoidable cost for the requestor to get *big*
+> > > > > contiguous memory but it's expensive for *small* contiguous
+> > > > > memory(e.g., order-4) because caller could retry the request
+> > > > > in different range where would have easy migratable pages
+> > > > > without stalling.
+> > > > > 
+> > > > > This patch introduce __GFP_NORETRY as compaction gfp_mask in
+> > > > > alloc_contig_range so it will fail fast without blocking
+> > > > > when it encounters pages needed waiting.
+> > > > 
+> > > > I am not against controling how hard this allocator tries with gfp mask
+> > > > but this changelog is rather void on any data and any user.
+> > > > 
+> > > > It is also rather dubious to have retries when then caller says to not
+> > > > retry.
+> > > 
+> > > Since max_tries is 1 with ++tries, it shouldn't retry.
+> > 
+> > OK, I have missed that. This is a tricky code. ASYNC mode should be
+> > completely orthogonal to the retries count. Those are different things.
+> > Page allocator does an explicit bail out based on __GFP_NORETRY. You
+> > should be doing the same.
+> 
+> Before sending next revision, let me check this part again.
+> 
+> I want to use __GFP_NORETRY to indicate "opportunistic-easy-to-fail attempt"
+> and I want to use ASYNC migrate_mode to help the goal.
+> 
+> Do you see the problem?
 
+No, as I've said. This is a normal NORETRY policy. And ASYNC migration
+is a mere implementation detail you do not have bother your users about.
+This is the semantic view. From the implementation POV it should be the
+gfp mask to drive decisions rather than a random (ASYNC) flag to control
+retries as you did here.
+
+-- 
+Michal Hocko
+SUSE Labs
