@@ -2,122 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2B130688B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 01:22:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 336483068C8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 01:45:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231132AbhA1AUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jan 2021 19:20:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58620 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231199AbhA1AT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 19:19:56 -0500
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3EC9C061573
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 16:19:09 -0800 (PST)
-Received: by mail-vs1-xe2f.google.com with SMTP id 187so2134211vsg.4
-        for <devicetree@vger.kernel.org>; Wed, 27 Jan 2021 16:19:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=u/NBHzGj6RokVMEH71m80tmfbt8SHqB96rb6JwsurCk=;
-        b=T/WXzvosHH5zwOZyRYu2qakrrk+itFzF4Wls6TyBLH/P5QqLfYaiAfFyjfg3ZEqXff
-         wC9Y5Okq5Jmd29IAWb/tflaOJ9fqF/4lbVUdn1qFLL7jJeTtHqA3PlDi21HgTuquz/yK
-         QF646m1gMkWvYbLO1YB3IF7BDYN7PHx3T16wg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u/NBHzGj6RokVMEH71m80tmfbt8SHqB96rb6JwsurCk=;
-        b=k5yCXhEWXjY4LZf+bLRA/MmVfic52D4Zl9ZMh8+6UE6gfpopsl6+0foa4vIFaWHnTu
-         Ijeo/AeL6Pu++wmItNSI1g+c9DLSV4xQtd35yb0ZBENyXqzi7VLnpGKXvSNjiPG2iAiv
-         zM3ETJ/zM4F6TY8j1RlsVEJTpoqRu+FV+xdXvk40XQpNBLa7M2Bwnk6Ugq4kuJ/BBhJR
-         vAerprPcllA5WFsS7jX4phJpD5YjMyr1aqeQJzRAaMYpvOnAtS7FKFycVS3Teqr0o4Y1
-         OWvGcBR2yVStpcKZqOysyy0T9DY5j/i9qrHKk5hf+zZNpp58mgDpdACSiUOkCufPPVx5
-         cbbA==
-X-Gm-Message-State: AOAM533StcR8Wiw2/kkGkK2/rsGOPmPqgP/GUXZk+OdGqHwYAvs9IZp7
-        uc9hSD/cLviLQY98kyeXUgB7Kli4m+s+wKdRTLApCA==
-X-Google-Smtp-Source: ABdhPJy/H0ngURD41PlYIJ7XMA7FJ+OWK5Oxyz6Jo3NZy9LGRsOIOKdJvEB+XWo1PMjlj+fxLTli5mMGDmUwNPLC5co=
-X-Received: by 2002:a05:6102:34f:: with SMTP id e15mr10058573vsa.21.1611793148398;
- Wed, 27 Jan 2021 16:19:08 -0800 (PST)
-MIME-Version: 1.0
-References: <20210127144930.2158242-1-robert.foss@linaro.org> <20210127144930.2158242-6-robert.foss@linaro.org>
-In-Reply-To: <20210127144930.2158242-6-robert.foss@linaro.org>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Thu, 28 Jan 2021 08:18:57 +0800
-Message-ID: <CANMq1KCUUg3rozY3=snz7YCNwPbbxZtJftCj-a=QPLp2XFSXwA@mail.gmail.com>
-Subject: Re: [PATCH v3 05/22] media: camss: Refactor VFE HW version support
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, shawnguo@kernel.org,
-        leoyang.li@nxp.com, Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>, Anson.Huang@nxp.com,
-        michael@walle.cc, agx@sigxcpu.org, max.oss.09@gmail.com,
-        angelogioacchino.delregno@somainline.org,
-        linux-arm-msm@vger.kernel.org,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Azam Sadiq Pasha Kapatrala Syed <akapatra@quicinc.com>,
-        Sarvesh Sridutt <Sarvesh.Sridutt@smartwirelesscompute.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Steven Rostedt <rostedt@goodmis.org>
+        id S231274AbhA1Aoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jan 2021 19:44:44 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:59264 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231401AbhA1Aod (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jan 2021 19:44:33 -0500
+X-UUID: 2d3e5f84166047e1b8b9b7547dc167c8-20210128
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:Reply-To:From:Subject:Message-ID; bh=Moaf8HVdiYJmhrqmKzTtI0+ZWpCyJb1HWG+7EkTaLdo=;
+        b=HXsg1wxo8L7aaUznhnxvxnOB+9X7Uql7uKcD1DvlllDWtVXvrBd9akVsOAf99b6w/zxAofDCQGf+5w/07H67Tmb/QAgIkx/eJWPUNM+mhB+5x90Jp04X3v1NT/uDBf6aZubV8SpBeYIOcH9VNRRVZkmYYepCNYoHSudS9xnvwKE=;
+X-UUID: 2d3e5f84166047e1b8b9b7547dc167c8-20210128
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 996953265; Thu, 28 Jan 2021 08:43:42 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs05n1.mediatek.inc
+ (172.21.101.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 28 Jan
+ 2021 08:43:41 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 28 Jan 2021 08:43:39 +0800
+Message-ID: <1611794619.1947.0.camel@mhfsdcap03>
+Subject: Re: [PATCH v3, 07/15] drm/mediatek: enable OVL_LAYER_SMI_ID_EN for
+ multi-layer usecase
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+Reply-To: Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 28 Jan 2021 08:43:39 +0800
+In-Reply-To: <CAAOTY_9_LN8nYSmg42gpR5dLqTe+ABt61WzM8S5cp2D6-rWKyw@mail.gmail.com>
+References: <1610351031-21133-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1610351031-21133-8-git-send-email-yongqiang.niu@mediatek.com>
+         <CAAOTY_9_LN8nYSmg42gpR5dLqTe+ABt61WzM8S5cp2D6-rWKyw@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 27, 2021 at 10:56 PM Robert Foss <robert.foss@linaro.org> wrote:
->
-> In order to support Qualcomm ISP hardware architectures that diverge
-> from older architectures, the VFE subdevice driver needs to be refactored
-> to better abstract the different ISP architectures.
->
-> Gen1 represents the CAMSS ISP architecture. The ISP architecture developed
-> after CAMSS, Titan, will be referred to as Gen2.
->
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
-> [snip]
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-4-8.c b/drivers/media/platform/qcom/camss/camss-vfe-4-8.c
-> new file mode 100644
-> index 000000000000..153e0e20664e
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe-4-8.c
-> [snip]
-> +/*
-> + * vfe_isr - VFE module interrupt handler
-> + * @irq: Interrupt line
-> + * @dev: VFE device
-> + *
-> + * Return IRQ_HANDLED on success
-> + */
-> +static irqreturn_t vfe_isr(int irq, void *dev)
-> +{
-> +       struct vfe_device *vfe = dev;
-> +       u32 value0, value1;
-> +       int i, j;
-> +
-> +       vfe->ops->isr_read(vfe, &value0, &value1);
-> +
-> +       trace_printk("VFE: status0 = 0x%08x, status1 = 0x%08x\n",
-> +                    value0, value1);
+T24gVHVlLCAyMDIxLTAxLTEyIGF0IDA3OjU5ICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
+PiBIaSwgWW9uZ3FpYW5nOg0KPiANCj4gWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRp
+YXRlay5jb20+IOaWvCAyMDIx5bm0MeaciDEx5pelIOmAseS4gCDkuIvljYgzOjQ05a+r6YGT77ya
+DQo+ID4NCj4gPiBlbmFibGUgT1ZMX0xBWUVSX1NNSV9JRF9FTiBmb3IgbXVsdGktbGF5ZXIgdXNl
+Y2FzZQ0KPiANCj4gQ291bGQgeW91IGRlc2NyaWJlIG1vcmUgaW5mb3JtYXRpb24/IFdpdGhvdXQg
+dGhpcyBwYXRjaCwgd2hhdCB3b3VsZCBoYXBwZW4/DQo+IA0KDQp3aXRob3V0IHRoaXMgcGF0Y2gs
+IG92bCB3aWxsIGhhbmcgdXAgd2hlbiBtb3JlIHRoYW4gMSBsYXllciBlbmFibGVkDQoNCj4gPg0K
+PiA+IFNpZ25lZC1vZmYtYnk6IFlvbmdxaWFuZyBOaXUgPHlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsu
+Y29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bfb3Zs
+LmMgfCAxMiArKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMo
+KykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rp
+c3Bfb3ZsLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bfb3ZsLmMNCj4gPiBp
+bmRleCBiNDdjMjM4Li40OTM0YmVlIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9t
+ZWRpYXRlay9tdGtfZGlzcF9vdmwuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRl
+ay9tdGtfZGlzcF9vdmwuYw0KPiA+IEBAIC0yMyw2ICsyMyw3IEBADQo+ID4gICNkZWZpbmUgRElT
+UF9SRUdfT1ZMX1JTVCAgICAgICAgICAgICAgICAgICAgICAgMHgwMDE0DQo+ID4gICNkZWZpbmUg
+RElTUF9SRUdfT1ZMX1JPSV9TSVpFICAgICAgICAgICAgICAgICAgMHgwMDIwDQo+ID4gICNkZWZp
+bmUgRElTUF9SRUdfT1ZMX0RBVEFQQVRIX0NPTiAgICAgICAgICAgICAgMHgwMDI0DQo+ID4gKyNk
+ZWZpbmUgT1ZMX0xBWUVSX1NNSV9JRF9FTiAgICAgICAgICAgICAgICAgICAgICAgICAgICBCSVQo
+MCkNCj4gPiAgI2RlZmluZSBPVkxfQkdDTFJfU0VMX0lOICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIEJJVCgyKQ0KPiA+ICAjZGVmaW5lIERJU1BfUkVHX09WTF9ST0lfQkdDTFIgICAgICAg
+ICAgICAgICAgIDB4MDAyOA0KPiA+ICAjZGVmaW5lIERJU1BfUkVHX09WTF9TUkNfQ09OICAgICAg
+ICAgICAgICAgICAgIDB4MDAyYw0KPiA+IEBAIC02MSw2ICs2Miw3IEBAIHN0cnVjdCBtdGtfZGlz
+cF9vdmxfZGF0YSB7DQo+ID4gICAgICAgICB1bnNpZ25lZCBpbnQgZ21jX2JpdHM7DQo+ID4gICAg
+ICAgICB1bnNpZ25lZCBpbnQgbGF5ZXJfbnI7DQo+ID4gICAgICAgICBib29sIGZtdF9yZ2I1NjVf
+aXNfMDsNCj4gPiArICAgICAgIGJvb2wgc21pX2lkX2VuOw0KPiA+ICB9Ow0KPiA+DQo+ID4gIC8q
+Kg0KPiA+IEBAIC0xMTYsNyArMTE4LDE3IEBAIHN0YXRpYyB2b2lkIG10a19vdmxfZGlzYWJsZV92
+Ymxhbmsoc3RydWN0IG10a19kZHBfY29tcCAqY29tcCkNCj4gPg0KPiA+ICBzdGF0aWMgdm9pZCBt
+dGtfb3ZsX3N0YXJ0KHN0cnVjdCBtdGtfZGRwX2NvbXAgKmNvbXApDQo+ID4gIHsNCj4gPiArICAg
+ICAgIHN0cnVjdCBtdGtfZGlzcF9vdmwgKm92bCA9IGNvbXBfdG9fb3ZsKGNvbXApOw0KPiA+ICsN
+Cj4gPiAgICAgICAgIHdyaXRlbF9yZWxheGVkKDB4MSwgY29tcC0+cmVncyArIERJU1BfUkVHX09W
+TF9FTik7DQo+ID4gKw0KPiA+ICsgICAgICAgaWYob3ZsLT5kYXRhLT5zbWlfaWRfZW4pIHsNCj4g
+PiArICAgICAgICAgICAgICAgdW5zaWduZWQgaW50IHJlZzsNCj4gPiArDQo+ID4gKyAgICAgICAg
+ICAgICAgIHJlZyA9IHJlYWRsKGNvbXAtPnJlZ3MgKyBESVNQX1JFR19PVkxfREFUQVBBVEhfQ09O
+KTsNCj4gPiArICAgICAgICAgICAgICAgcmVnID0gcmVnIHwgT1ZMX0xBWUVSX1NNSV9JRF9FTjsN
+Cj4gPiArICAgICAgICAgICAgICAgd3JpdGVsX3JlbGF4ZWQocmVnLCBjb21wLT5yZWdzICsgRElT
+UF9SRUdfT1ZMX0RBVEFQQVRIX0NPTik7DQo+IA0KPiBJIHRoaW5rIHRoaXMgc2V0dGluZyBzaG91
+bGQgYmVmb3JlIHdyaXRlIDEgdG8gRElTUF9SRUdfT1ZMX0VOLg0KPiANCj4gPiArICAgICAgIH0N
+Cj4gPiAgfQ0KPiA+DQo+ID4gIHN0YXRpYyB2b2lkIG10a19vdmxfc3RvcChzdHJ1Y3QgbXRrX2Rk
+cF9jb21wICpjb21wKQ0KPiANCj4gU2hvdWxkIGNsZWFyIERJU1BfUkVHX09WTF9EQVRBUEFUSF9D
+T04gd2hlbiBzdG9wPw0KPiANCj4gUmVnYXJkcywNCj4gQ2h1bi1LdWFuZy4NCj4gDQo+ID4gLS0N
+Cj4gPiAxLjguMS4xLmRpcnR5DQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18NCj4gPiBMaW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gPiBMaW51
+eC1tZWRpYXRla0BsaXN0cy5pbmZyYWRlYWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVh
+ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1tZWRpYXRlaw0KDQo=
 
-Please do not use trace_printk in production code [1,2], it is only
-meant for debug use. Consider using trace events, or dev_dbg.
-
-[1] https://elixir.bootlin.com/linux/v5.8/source/kernel/trace/trace.c#L3158
-[2] https://elixir.bootlin.com/linux/v5.8/source/include/linux/kernel.h#L766
-
-> [snip]
