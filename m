@@ -2,153 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A55306D8D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 07:20:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B68B7306DA0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 07:31:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbhA1GUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 01:20:54 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:57824 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229791AbhA1GUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 01:20:53 -0500
-X-UUID: 71f90608ce97483dad8d04b71034504f-20210128
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=9l/3qxAZieqX345ryvbLhbIWYhgxrPRb06fzhqIsH4I=;
-        b=d7v5tLSxniZ5xBAoXnZJQv8bRx0TJIQBoyfXzNGUDXFsg6J8Jaqv0Avr/h8yiLqMy6XUOuVZG6bE1LVb80xeKxrXsOmS1v6xECZkv+b42I+C5kdJ4lMaFV6mji8NhwuyHyScDjFput8Euf/1dXzIeRik2+8VbJTio6e0eQrCWTw=;
-X-UUID: 71f90608ce97483dad8d04b71034504f-20210128
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1227452633; Thu, 28 Jan 2021 14:19:54 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 28 Jan 2021 14:19:51 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 28 Jan 2021 14:19:52 +0800
-Message-ID: <1611814791.28312.12.camel@mtksdaap41>
-Subject: Re: [PATCH v10 8/9] drm/mediatek: add DDP support for MT8183
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-Date:   Thu, 28 Jan 2021 14:19:51 +0800
-In-Reply-To: <1611814421.28312.9.camel@mtksdaap41>
-References: <20210127045422.2418917-1-hsinyi@chromium.org>
-         <20210127045422.2418917-9-hsinyi@chromium.org>
-         <1611814421.28312.9.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S229695AbhA1Gbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 01:31:34 -0500
+Received: from mga11.intel.com ([192.55.52.93]:30344 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229513AbhA1Gbd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Jan 2021 01:31:33 -0500
+IronPort-SDR: 9/glW3f/fxfRDs4J9Bo1JyGKXd3asTpamti0TfCIr8yRp+oUk+z5xJMNUF2kIE/bc/XlYUzg38
+ CH72QDVqoo0g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="176679077"
+X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; 
+   d="scan'208";a="176679077"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2021 22:29:47 -0800
+IronPort-SDR: 2sHmcAycUWwl+qp8hg4k182E79KDApQRadpEl8N0fhTPpdZ9a70d9vMLTOoCaTPbA7pJElsNyo
+ Tc3bD3LszZNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; 
+   d="scan'208";a="574628257"
+Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.170]) ([10.237.72.170])
+  by fmsmga006.fm.intel.com with ESMTP; 27 Jan 2021 22:29:45 -0800
+Subject: Re: [PATCH 0/4] add xhci hooks for USB offload
+To:     Howard Yen <howardyen@google.com>,
+        Greg KH <gregkh@linuxfoundation.org>
+Cc:     Mathias Nyman <mathias.nyman@intel.com>, robh+dt@kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210119101044.1637023-1-howardyen@google.com>
+ <af91bbf1-6731-3e87-4086-de0dbba22c22@intel.com>
+ <CAJDAHvbTY3Z_bRg+++uLefWSvCWo_nGq+3OOQX3QHJ2w3X1SQw@mail.gmail.com>
+ <ca442ca7-a434-2527-9945-861dafa685cc@linux.intel.com>
+ <YBAk795ccXBPgJWp@kroah.com>
+ <CAJDAHvZ2CCm9tT+C=hNc_U1CaYJg3ZjifsYLik3UqfXwUm++Lg@mail.gmail.com>
+From:   Mathias Nyman <mathias.nyman@linux.intel.com>
+Autocrypt: addr=mathias.nyman@linux.intel.com; prefer-encrypt=mutual; keydata=
+ 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 fiD/
+Message-ID: <f77d1149-7bd1-3914-8841-439cb67397fd@linux.intel.com>
+Date:   Thu, 28 Jan 2021 08:31:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 6B1B6152A535CF41E1E99F1F5C98B01A2969156BDD91B00DC1A7E800C4434FCC2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <CAJDAHvZ2CCm9tT+C=hNc_U1CaYJg3ZjifsYLik3UqfXwUm++Lg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTAxLTI4IGF0IDE0OjEzICswODAwLCBDSyBIdSB3cm90ZToNCj4gSGksIEhz
-aW4tWWk6DQo+IA0KPiBNb2RpZnkgdGhlIHRpdGxlJ3MgcHJlZml4IHRvICdzb2M6IG1lZGlhdGVr
-OicNCg0KTW9kaWZ5IG1vcmUsIHRoZSB0aXRsZSBzaG91bGQgYmUgJ3NvYzogbWVkaWF0ZWs6IGFk
-ZCBtdGsgbXV0ZXggc3VwcG9ydA0KZm9yIE1UODE4MycNCg0KPiANCj4gT24gV2VkLCAyMDIxLTAx
-LTI3IGF0IDEyOjU0ICswODAwLCBIc2luLVlpIFdhbmcgd3JvdGU6DQo+ID4gRnJvbTogWW9uZ3Fp
-YW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20+DQo+ID4gDQo+ID4gQWRkIEREUCBz
-dXBwb3J0IGZvciBNVDgxODMgU29DLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFlvbmdxaWFu
-ZyBOaXUgPHlvbmdxaWFuZy5uaXVAbWVkaWF0ZWsuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEhz
-aW4tWWkgV2FuZyA8aHNpbnlpQGNocm9taXVtLm9yZz4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9z
-b2MvbWVkaWF0ZWsvbXRrLW11dGV4LmMgfCA1MCArKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNTAgaW5zZXJ0aW9ucygrKQ0KPiA+IA0KPiA+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstbXV0ZXguYyBiL2RyaXZlcnMvc29j
-L21lZGlhdGVrL210ay1tdXRleC5jDQo+ID4gaW5kZXggZjUzMWIxMTlkYTdhOS4uZjY0ZTljMzNl
-ODVhZCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstbXV0ZXguYw0K
-PiA+ICsrKyBiL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1tdXRleC5jDQo+ID4gQEAgLTE0LDYg
-KzE0LDggQEANCj4gPiAgDQo+ID4gICNkZWZpbmUgTVQyNzAxX01VVEVYMF9NT0QwCQkJMHgyYw0K
-PiA+ICAjZGVmaW5lIE1UMjcwMV9NVVRFWDBfU09GMAkJCTB4MzANCj4gPiArI2RlZmluZSBNVDgx
-ODNfRElTUF9NVVRFWDBfTU9EMAkJCTB4MzANCj4gPiArI2RlZmluZSBNVDgxODNfRElTUF9NVVRF
-WDBfU09GMAkJCTB4MmMNCj4gDQo+IE1vZGlmeSAnRElTUF9NVVRFWCcgdG8gJ01VVEVYJw0KPiAN
-Cj4gPiAgDQo+ID4gICNkZWZpbmUgRElTUF9SRUdfTVVURVhfRU4obikJCQkoMHgyMCArIDB4MjAg
-KiAobikpDQo+ID4gICNkZWZpbmUgRElTUF9SRUdfTVVURVgobikJCQkoMHgyNCArIDB4MjAgKiAo
-bikpDQo+ID4gQEAgLTM3LDYgKzM5LDE4IEBADQo+ID4gICNkZWZpbmUgTVQ4MTY3X01VVEVYX01P
-RF9ESVNQX0RJVEhFUgkJMTUNCj4gPiAgI2RlZmluZSBNVDgxNjdfTVVURVhfTU9EX0RJU1BfVUZP
-RQkJMTYNCj4gPiAgDQo+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX1JETUEwCQkw
-DQo+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX1JETUExCQkxDQo+ID4gKyNkZWZp
-bmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX09WTDAJCTkNCj4gPiArI2RlZmluZSBNVDgxODNfTVVU
-RVhfTU9EX0RJU1BfT1ZMMF8yTAkJMTANCj4gPiArI2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJ
-U1BfT1ZMMV8yTAkJMTENCj4gPiArI2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJU1BfV0RNQTAJ
-CTEyDQo+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX0NPTE9SMAkJMTMNCj4gPiAr
-I2RlZmluZSBNVDgxODNfTVVURVhfTU9EX0RJU1BfQ0NPUlIwCQkxNA0KPiA+ICsjZGVmaW5lIE1U
-ODE4M19NVVRFWF9NT0RfRElTUF9BQUwwCQkxNQ0KPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9N
-T0RfRElTUF9HQU1NQTAJCTE2DQo+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX01PRF9ESVNQX0RJ
-VEhFUjAJCTE3DQo+ID4gKw0KPiA+ICAjZGVmaW5lIE1UODE3M19NVVRFWF9NT0RfRElTUF9PVkww
-CQkxMQ0KPiA+ICAjZGVmaW5lIE1UODE3M19NVVRFWF9NT0RfRElTUF9PVkwxCQkxMg0KPiA+ICAj
-ZGVmaW5lIE1UODE3M19NVVRFWF9NT0RfRElTUF9SRE1BMAkJMTMNCj4gPiBAQCAtODcsNiArMTAx
-LDEyIEBADQo+ID4gICNkZWZpbmUgTVQyNzEyX01VVEVYX1NPRl9EU0kzCQkJNg0KPiA+ICAjZGVm
-aW5lIE1UODE2N19NVVRFWF9TT0ZfRFBJMAkJCTINCj4gPiAgI2RlZmluZSBNVDgxNjdfTVVURVhf
-U09GX0RQSTEJCQkzDQo+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX1NPRl9EU0kwCQkJMQ0KPiA+
-ICsjZGVmaW5lIE1UODE4M19NVVRFWF9TT0ZfRFBJMAkJCTINCj4gPiArDQo+ID4gKy8qIEFkZCBF
-T0Ygc2V0dGluZyBzbyBvdmVybGF5IGhhcmR3YXJlIGNhbiByZWNlaXZlIGZyYW1lIGRvbmUgaXJx
-ICovDQo+ID4gKyNkZWZpbmUgTVQ4MTgzX01VVEVYX0VPRl9EU0kwCQkJKE1UODE4M19NVVRFWF9T
-T0ZfRFNJMCA8PCA2KQ0KPiA+ICsjZGVmaW5lIE1UODE4M19NVVRFWF9FT0ZfRFBJMAkJCShNVDgx
-ODNfTVVURVhfU09GX0RQSTAgPDwgNikNCj4gPiAgDQo+ID4gIHN0cnVjdCBtdGtfbXV0ZXggew0K
-PiA+ICAJaW50IGlkOw0KPiA+IEBAIC0xODEsNiArMjAxLDIwIEBAIHN0YXRpYyBjb25zdCB1bnNp
-Z25lZCBpbnQgbXQ4MTczX211dGV4X21vZFtERFBfQ09NUE9ORU5UX0lEX01BWF0gPSB7DQo+ID4g
-IAlbRERQX0NPTVBPTkVOVF9XRE1BMV0gPSBNVDgxNzNfTVVURVhfTU9EX0RJU1BfV0RNQTEsDQo+
-ID4gIH07DQo+ID4gIA0KPiA+ICtzdGF0aWMgY29uc3QgdW5zaWduZWQgaW50IG10ODE4M19tdXRl
-eF9tb2RbRERQX0NPTVBPTkVOVF9JRF9NQVhdID0gew0KPiA+ICsJW0REUF9DT01QT05FTlRfQUFM
-MF0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfQUFMMCwNCj4gPiArCVtERFBfQ09NUE9ORU5UX0ND
-T1JSXSA9IE1UODE4M19NVVRFWF9NT0RfRElTUF9DQ09SUjAsDQo+ID4gKwlbRERQX0NPTVBPTkVO
-VF9DT0xPUjBdID0gTVQ4MTgzX01VVEVYX01PRF9ESVNQX0NPTE9SMCwNCj4gPiArCVtERFBfQ09N
-UE9ORU5UX0RJVEhFUl0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfRElUSEVSMCwNCj4gPiArCVtE
-RFBfQ09NUE9ORU5UX0dBTU1BXSA9IE1UODE4M19NVVRFWF9NT0RfRElTUF9HQU1NQTAsDQo+ID4g
-KwlbRERQX0NPTVBPTkVOVF9PVkwwXSA9IE1UODE4M19NVVRFWF9NT0RfRElTUF9PVkwwLA0KPiA+
-ICsJW0REUF9DT01QT05FTlRfT1ZMXzJMMF0gPSBNVDgxODNfTVVURVhfTU9EX0RJU1BfT1ZMMF8y
-TCwNCj4gPiArCVtERFBfQ09NUE9ORU5UX09WTF8yTDFdID0gTVQ4MTgzX01VVEVYX01PRF9ESVNQ
-X09WTDFfMkwsDQo+ID4gKwlbRERQX0NPTVBPTkVOVF9SRE1BMF0gPSBNVDgxODNfTVVURVhfTU9E
-X0RJU1BfUkRNQTAsDQo+ID4gKwlbRERQX0NPTVBPTkVOVF9SRE1BMV0gPSBNVDgxODNfTVVURVhf
-TU9EX0RJU1BfUkRNQTEsDQo+ID4gKwlbRERQX0NPTVBPTkVOVF9XRE1BMF0gPSBNVDgxODNfTVVU
-RVhfTU9EX0RJU1BfV0RNQTAsDQo+ID4gK307DQo+ID4gKw0KPiA+ICBzdGF0aWMgY29uc3QgdW5z
-aWduZWQgaW50IG10MjcxMl9tdXRleF9zb2ZbTVVURVhfU09GX0RTSTMgKyAxXSA9IHsNCj4gPiAg
-CVtNVVRFWF9TT0ZfU0lOR0xFX01PREVdID0gTVVURVhfU09GX1NJTkdMRV9NT0RFLA0KPiA+ICAJ
-W01VVEVYX1NPRl9EU0kwXSA9IE1VVEVYX1NPRl9EU0kwLA0KPiA+IEBAIC0xOTgsNiArMjMyLDEy
-IEBAIHN0YXRpYyBjb25zdCB1bnNpZ25lZCBpbnQgbXQ4MTY3X211dGV4X3NvZltNVVRFWF9TT0Zf
-RFNJMyArIDFdID0gew0KPiA+ICAJW01VVEVYX1NPRl9EUEkxXSA9IE1UODE2N19NVVRFWF9TT0Zf
-RFBJMSwNCj4gPiAgfTsNCj4gPiAgDQo+ID4gK3N0YXRpYyBjb25zdCB1bnNpZ25lZCBpbnQgbXQ4
-MTgzX211dGV4X3NvZltNVVRFWF9TT0ZfRFNJMyArIDFdID0gew0KPiA+ICsJW01VVEVYX1NPRl9T
-SU5HTEVfTU9ERV0gPSBNVVRFWF9TT0ZfU0lOR0xFX01PREUsDQo+ID4gKwlbTVVURVhfU09GX0RT
-STBdID0gTVVURVhfU09GX0RTSTAgfCBNVDgxODNfTVVURVhfRU9GX0RTSTAsDQo+ID4gKwlbTVVU
-RVhfU09GX0RQSTBdID0gTVQ4MTgzX01VVEVYX1NPRl9EUEkwIHwgTVQ4MTgzX01VVEVYX0VPRl9E
-UEkwLA0KPiANCj4gQWNjb3JkaW5nIHRvIGRpc2N1c3Npb24gaW4gWzFdLCBhZGQgY29tbWVudCBm
-b3IgdGhlIG9kZCBFT0Ygc2V0dGluZy4NCj4gDQo+IFsxXQ0KPiBodHRwczovL3BhdGNod29yay5r
-ZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvcGF0Y2gvMTU5NTQ2OTc5OC0zODI0LTgt
-Z2l0LXNlbmQtZW1haWwteW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20vDQo+IA0KPiBSZWdhcmRz
-LA0KPiBDSy4NCj4gDQo+IA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAgc3RhdGljIGNvbnN0IHN0cnVj
-dCBtdGtfbXV0ZXhfZGF0YSBtdDI3MDFfbXV0ZXhfZHJpdmVyX2RhdGEgPSB7DQo+ID4gIAkubXV0
-ZXhfbW9kID0gbXQyNzAxX211dGV4X21vZCwNCj4gPiAgCS5tdXRleF9zb2YgPSBtdDI3MTJfbXV0
-ZXhfc29mLA0KPiA+IEBAIC0yMjcsNiArMjY3LDE0IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbXRr
-X211dGV4X2RhdGEgbXQ4MTczX211dGV4X2RyaXZlcl9kYXRhID0gew0KPiA+ICAJLm11dGV4X3Nv
-Zl9yZWcgPSBNVDI3MDFfTVVURVgwX1NPRjAsDQo+ID4gIH07DQo+ID4gIA0KPiA+ICtzdGF0aWMg
-Y29uc3Qgc3RydWN0IG10a19tdXRleF9kYXRhIG10ODE4M19tdXRleF9kcml2ZXJfZGF0YSA9IHsN
-Cj4gPiArCS5tdXRleF9tb2QgPSBtdDgxODNfbXV0ZXhfbW9kLA0KPiA+ICsJLm11dGV4X3NvZiA9
-IG10ODE4M19tdXRleF9zb2YsDQo+ID4gKwkubXV0ZXhfbW9kX3JlZyA9IE1UODE4M19ESVNQX01V
-VEVYMF9NT0QwLA0KPiA+ICsJLm11dGV4X3NvZl9yZWcgPSBNVDgxODNfRElTUF9NVVRFWDBfU09G
-MCwNCj4gPiArCS5ub19jbGsgPSB0cnVlLA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAgc3RydWN0IG10
-a19tdXRleCAqbXRrX211dGV4X2dldChzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ID4gIHsNCj4gPiAg
-CXN0cnVjdCBtdGtfbXV0ZXhfY3R4ICptdHggPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsNCj4gPiBA
-QCAtNDU3LDYgKzUwNSw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIG11dGV4
-X2RyaXZlcl9kdF9tYXRjaFtdID0gew0KPiA+ICAJICAuZGF0YSA9ICZtdDgxNjdfbXV0ZXhfZHJp
-dmVyX2RhdGF9LA0KPiA+ICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxNzMtZGlzcC1t
-dXRleCIsDQo+ID4gIAkgIC5kYXRhID0gJm10ODE3M19tdXRleF9kcml2ZXJfZGF0YX0sDQo+ID4g
-Kwl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1kaXNwLW11dGV4IiwNCj4gPiArCSAg
-LmRhdGEgPSAmbXQ4MTgzX211dGV4X2RyaXZlcl9kYXRhfSwNCj4gPiAgCXt9LA0KPiA+ICB9Ow0K
-PiA+ICBNT0RVTEVfREVWSUNFX1RBQkxFKG9mLCBtdXRleF9kcml2ZXJfZHRfbWF0Y2gpOw0KPiAN
-Cg0K
+On 28.1.2021 5.38, Howard Yen wrote:
+> On Tue, Jan 26, 2021 at 10:19 PM Greg KH <gregkh@linuxfoundation.org> wrote:
+>>
+>> On Fri, Jan 22, 2021 at 05:32:58PM +0200, Mathias Nyman wrote:
+>>>
+>>> Ok, before adding hooks like this I think we need to see how they are used.
+>>> Do you have the rest of the patches that go on top of this series?
+>>>
+>>> Maybe it could make sense to use overrides for the functions in struct hc_driver
+>>> instead in some cases? There is support for that already.
+>>
+>> What overrides could be done for these changes?  At first glance that
+>> would seem to require a lot of duplicated code in whatever override
+>> happens to be needed.
+>>
+>> thanks,
+>>
+>> greg k-h
+> 
+> This patch series is all the changes for the offload hooks currently.
+> 
+> I thought about this, but if I tried to override the functions in
+> struct hc_driver, that'll need to
+> copy many code to the override function, and it won't follow the
+> latest change in the core
+> xhci driver.
+> 
+> 
+> - Howard
+
+Ok, I see. 
+
+The point I'm trying to make is that there is no way for me to know if
+these hooks are the right solution before I see any code using them.
+
+Is the offloading code ready and public somewhere?
+
+Thanks
+-Mathias 
 
