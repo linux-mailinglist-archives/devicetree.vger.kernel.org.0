@@ -2,142 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75EE53080FB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 23:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A783081B0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jan 2021 00:09:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231321AbhA1WN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 17:13:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231297AbhA1WNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 17:13:41 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B06CC061756;
-        Thu, 28 Jan 2021 14:13:01 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id u14so5457657wml.4;
-        Thu, 28 Jan 2021 14:13:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=n/P5FFcNzsxODKKP+5LfDWtJfLSg3Bh91nzVHSKL8Hk=;
-        b=S159UZzewbvZojYVyWKpOxEj77wOhftlSnoIJvLJGft2Fhdifw8BYGugje58RwCx6a
-         RcGP5+b8pZtz/Ej/uesQJ0vyy8DvDdxPJpXUmNFBCaDFi2xJdRB2L4VNSqWyFZ/Hid7w
-         nLOCNdoKR5gUHcCG3KFV43icWFQCGfXy4jsPl3WU5vhRIuqSTnD6GyqNpRiJHthp8+lZ
-         RVcylz1J4Om7BD4U4qKVDz0qzt9c+l9cZhEXJ/qnqzLy+VJ8SL4gbVvgR3ozopoRFJ+a
-         6g5L8NC+fL4sM+rPPvmS4fK/umzvnAaplvl/8CN7CXb9HhFurpHUbS41e8qly+gPo2gP
-         6H2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=n/P5FFcNzsxODKKP+5LfDWtJfLSg3Bh91nzVHSKL8Hk=;
-        b=ovb/sxXC2b0SFUwW6sSr4BSdLwnWks3FDtKlXUuHz/VEA//BBQPQJZMtS+GoLOLlJc
-         rH2XXrFWqDyLf2/RUnSif0wT1MlfH99q2t+OJllZx6NE2sebcV6BHpv+ZmbTb9zDD8Od
-         9PVvjjzyauFe/0LMtHKqvAz+LAUDraEaUouBAD1zInEUhRdFscp5OXzGPmiketdd3067
-         X4e0kUzsRSgTtUvFyNuSV+5RmgMAdajqAL8+pFe1fE68KEf8cbXuf9VBg6S644cS9K3d
-         fq44TEHV3IIvR9AiruUbGXEdPOcqPMDO72Qauy5OcZ8bmiycfPl+2V0S8m9LlBKqIWUN
-         8/pw==
-X-Gm-Message-State: AOAM532UkAjLcgkVPtdRVcORoxjGHDygQeCK2VcdycKJjx/ODBxnYXYD
-        dmUg/UbkStFvR3J3l8b99UI=
-X-Google-Smtp-Source: ABdhPJyYurIKduQc35t/+KvVQixNBy2wBDo76yhICMq1Tnh7ocxmAFtdddQS8Gr3mm+i8EOrGB2cBw==
-X-Received: by 2002:a05:600c:204d:: with SMTP id p13mr1171088wmg.42.1611871979942;
-        Thu, 28 Jan 2021 14:12:59 -0800 (PST)
-Received: from adgra-XPS-15-9570.home (2a01cb0008bd27002d89afd37b57a164.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:2d89:afd3:7b57:a164])
-        by smtp.gmail.com with ESMTPSA id c9sm5284110wrw.76.2021.01.28.14.12.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jan 2021 14:12:59 -0800 (PST)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, rikard.falkeborn@gmail.com,
-        peter.chen@nxp.com, jun.li@nxp.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH 2/2] phy: fsl-imx8mq-usb: handle resettable hubs
-Date:   Thu, 28 Jan 2021 23:12:55 +0100
-Message-Id: <20210128221255.2673992-2-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210128221255.2673992-1-adrien.grassein@gmail.com>
-References: <20210128221255.2673992-1-adrien.grassein@gmail.com>
+        id S231610AbhA1XJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 18:09:34 -0500
+Received: from a1.mail.mailgun.net ([198.61.254.60]:55600 "EHLO
+        a1.mail.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231513AbhA1XJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 18:09:33 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1611875347; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=O8kFXrZt93Vjk8mo2c8C6NAXhyoA4VuHGdA2XbbyiBY=; b=VjcCUqxTR2ArucaZN3o0MWaGVK3UooNSkiApa+jh8vzTJG3cwspYq08YsXc7sz4ncVPQtpmb
+ oRoVejscORIXZ1cuDIRVV17I/3vVFLaCYNTLuKgSXkRAT3oyHWiVVKb9pp6pmCPNhztwBbbF
+ JeXXlai3EVMDh31rMPlc4HxqgEk=
+X-Mailgun-Sending-Ip: 198.61.254.60
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 601343f8bcde412162da6a37 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 Jan 2021 23:08:40
+ GMT
+Sender: wcheng=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 97D82C43461; Thu, 28 Jan 2021 23:08:39 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [10.110.127.29] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2A11AC433C6;
+        Thu, 28 Jan 2021 23:08:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2A11AC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
+Subject: Re: [PATCH v6 3/4] usb: dwc3: Resize TX FIFOs to meet EP bursting
+ requirements
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, peter.chen@nxp.com,
+        jackp@codeaurora.org
+References: <1611288100-31118-1-git-send-email-wcheng@codeaurora.org>
+ <1611288100-31118-4-git-send-email-wcheng@codeaurora.org>
+ <YAsHbj/mITeiY5Cq@builder.lan>
+ <724cb274-36ce-fb48-a156-4eaf9e686fdf@codeaurora.org>
+ <20210126015543.GB1241218@yoga>
+ <99dd9419-a8fd-9eb2-9582-d24f865ecf70@codeaurora.org>
+ <YA+lVFWlBDvN4MTF@builder.lan>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <dec42f26-6b67-56ec-74a5-feae5e5c5df5@codeaurora.org>
+Date:   Thu, 28 Jan 2021 15:08:37 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <YA+lVFWlBDvN4MTF@builder.lan>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an optional GPIO in the dtb description that will
-be used to reset the connected hub (if any).
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
----
- drivers/phy/freescale/phy-fsl-imx8mq-usb.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
 
-diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-index a29b4a6f7c24..00abf7814fe9 100644
---- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-+++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-@@ -4,6 +4,7 @@
- #include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/of_platform.h>
-@@ -36,6 +37,7 @@ struct imx8mq_usb_phy {
- 	struct clk *clk;
- 	void __iomem *base;
- 	struct regulator *vbus;
-+	struct gpio_desc *reset_gpio;
- };
- 
- static int imx8mq_usb_phy_init(struct phy *phy)
-@@ -111,6 +113,9 @@ static int imx8mq_phy_power_on(struct phy *phy)
- 	if (ret)
- 		return ret;
- 
-+	if (imx_phy->reset_gpio)
-+		gpiod_set_value_cansleep(imx_phy->reset_gpio, 0);
-+
- 	return clk_prepare_enable(imx_phy->clk);
- }
- 
-@@ -120,6 +125,8 @@ static int imx8mq_phy_power_off(struct phy *phy)
- 
- 	clk_disable_unprepare(imx_phy->clk);
- 	regulator_disable(imx_phy->vbus);
-+	if (imx_phy->reset_gpio)
-+		gpiod_set_value_cansleep(imx_phy->reset_gpio, 1);
- 
- 	return 0;
- }
-@@ -153,6 +160,7 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct imx8mq_usb_phy *imx_phy;
- 	const struct phy_ops *phy_ops;
-+	int ret;
- 
- 	imx_phy = devm_kzalloc(dev, sizeof(*imx_phy), GFP_KERNEL);
- 	if (!imx_phy)
-@@ -180,6 +188,15 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
- 	if (IS_ERR(imx_phy->vbus))
- 		return PTR_ERR(imx_phy->vbus);
- 
-+	imx_phy->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(imx_phy->reset_gpio)) {
-+		ret = PTR_ERR(imx_phy->reset_gpio);
-+		if (ret == -ENXIO || ret == -ENODEV)
-+			imx_phy->reset_gpio = NULL;
-+		else
-+			return PTR_ERR(imx_phy->reset_gpio);
-+	}
-+
- 	phy_set_drvdata(imx_phy->phy, imx_phy);
- 
- 	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+On 1/25/2021 9:15 PM, Bjorn Andersson wrote:
+> On Mon 25 Jan 22:32 CST 2021, Wesley Cheng wrote:
+>> On 1/25/2021 5:55 PM, Bjorn Andersson wrote:
+>>> On Mon 25 Jan 19:14 CST 2021, Wesley Cheng wrote:
+>>>
+>>>>
+>>>>
+>>>> On 1/22/2021 9:12 AM, Bjorn Andersson wrote:
+>>>>> On Thu 21 Jan 22:01 CST 2021, Wesley Cheng wrote:
+>>>>>
+>>>>
+>>>> Hi Bjorn,
+>>>>>
+>>>>> Under what circumstances should we specify this? And in particular are
+>>>>> there scenarios (in the Qualcomm platforms) where this must not be set?
+>>>>> The TXFIFO dynamic allocation is actually a feature within the DWC3
+>>>> controller, and isn't specifically for QCOM based platforms.  It won't
+>>>> do any harm functionally if this flag is not set, as this is meant for
+>>>> enhancing performance/bandwidth.
+>>>>
+>>>>> In particular, the composition can be changed in runtime, so should we
+>>>>> set this for all Qualcomm platforms?
+>>>>>
+>>>> Ideally yes, if we want to increase bandwith for situations where SS
+>>>> endpoint bursting is set to a higher value.
+>>>>
+>>>>> And if that's the case, can we not just set it from the qcom driver?
+>>>>>
+>>>> Since this is a common DWC3 core feature, I think it would make more
+>>>> sense to have it in DWC3 core instead of a vendor's DWC3 glue driver.
+>>>>
+>>>
+>>> I don't have any objections to implementing it in the core driver, but
+>>> my question is can we just skip the DT binding and just enable it from
+>>> the vendor driver?
+>>>
+>>> Regards,
+>>> Bjorn
+>>>
+>>
+>> Hi Bjorn,
+>>
+>> I see.  I think there are some designs which don't have a DWC3 glue
+>> driver, so assuming there may be other platforms using this, there may
+>> not always be a vendor driver to set this.
+>>
+> 
+> You mean that there are implementations of dwc3 without an associated
+> glue driver that haven't yet realized that they need this feature?
+> 
+> I would suggest then that we implement the core code necessary, we
+> enable it from the Qualcomm glue layer and when someone realize that
+> they need this without a glue driver it's going to be trivial to add the
+> DT binding.
+>>
+> The alternative is that we're lugging around a requirement to specify
+> this property in all past, present and future Qualcomm dts files - and
+> then we'll need to hard code it for ACPI anyways.
+> 
+Hi Bjorn,
+
+Can we utilize the of_add_property() call to add the "tx-fifo-resize"
+property from the dwc3_qcom_register_core() API?  That way at least the
+above concern would be addressed.
+
+I'm not too familiar with the ACPI design, but I do see that the
+dwc3-qcom does have an array carrying some DWC3 core properties.  Looks
+like we can add the tx-fifo-resize property here too.
+
+static const struct property_entry dwc3_qcom_acpi_properties[] = {
+	PROPERTY_ENTRY_STRING("dr_mode", "host"),
+	{}
+};
+
+
+Thanks
+Wesley Cheng
+
+> Regards,
+> Bjorn
+> 
+
 -- 
-2.25.1
-
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
