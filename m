@@ -2,136 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7606330771E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 14:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15984307747
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 14:41:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231818AbhA1Nbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 08:31:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58670 "EHLO
+        id S229616AbhA1NkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 08:40:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbhA1Nb2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 08:31:28 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E98C061574
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 05:30:48 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 190so4322951wmz.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 05:30:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=boundarydevices.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=94FMt5sdOQuvuur1w1p4IxKcptSx9rGgTLf5Xxc88cE=;
-        b=Tg1GhLVbO1HpM1UYAbNZrOTCbj57bouBNfEz7xkktaLQisi+PU6CVuJq5A6s8XixsY
-         eSZ28Z+P/1dXc7FwrT6Fa1rQDa7f9xyrHRzZlV4fluStCiEOr3Cv2ulVFTIUqgCeLsHH
-         Q9/ou1cTESQTHEpZGKDV1upPCsi+F0SzfpKL4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=94FMt5sdOQuvuur1w1p4IxKcptSx9rGgTLf5Xxc88cE=;
-        b=hsqcdergPSUanC92+Wz7RS+/trfUHswR3ELh1RRvceqOS+3FGNrSiyeazB+aLdp8k+
-         sn/SVlO6GfovGEEDylW0pbicLvdWJUXtfVz2H792cP4A0uUxQ447tFNTlx7RxUsN18wW
-         1jDnd5uA1/0Q7iKVsPivTmXZgV+JNJ63nOvBAhI/gh2gjmrnJtHGTF/1zhEplL+fQBZo
-         TGY9cAAEX0X4B/4M7/6XMe8CoNSYxyogKGf+WddBEjk9aTGTcPqs/Y/MQlt2h0hjlRYK
-         +pHmhkPO6emuNz1CEP3MU//8j/cYQYH9fksLAs9XMF3ZszNwzgANBsLclQhqDTK/XNFw
-         fzhw==
-X-Gm-Message-State: AOAM531Wt8zg6lSQd7c/K2Pcwlkas78xUQfMQETvA76GDFESRxtbZ0rH
-        xtQOywSVyJABbsa/0E2dbw5AUg==
-X-Google-Smtp-Source: ABdhPJx4hoGuJUwRAjCeV2TM+T4nHcjhcKWZYU/NeIX3pdgYLRh3ne2/SpQJEWn2xbHSd+7moJLbdQ==
-X-Received: by 2002:a1c:5412:: with SMTP id i18mr8635150wmb.152.1611840647150;
-        Thu, 28 Jan 2021 05:30:47 -0800 (PST)
-Received: from p1g2 (2a01cb000f9f0e008f0bd0d6ec94dd0e.ipv6.abo.wanadoo.fr. [2a01:cb00:f9f:e00:8f0b:d0d6:ec94:dd0e])
-        by smtp.gmail.com with ESMTPSA id y24sm5817751wmi.47.2021.01.28.05.30.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jan 2021 05:30:46 -0800 (PST)
-Date:   Thu, 28 Jan 2021 14:30:44 +0100
-From:   Gary Bisson <gary.bisson@boundarydevices.com>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     troy.kisky@boundarydevices.com, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mq-nitrogen: add USB support
-Message-ID: <YBK8hAxvjJBuMdl2@p1g2>
-References: <20210126215511.1056600-1-adrien.grassein@gmail.com>
+        with ESMTP id S231509AbhA1NkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 08:40:07 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19494C061573
+        for <devicetree@vger.kernel.org>; Thu, 28 Jan 2021 05:39:27 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l57W7-0004tf-81; Thu, 28 Jan 2021 14:39:23 +0100
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1l57W6-0005Fj-Kg; Thu, 28 Jan 2021 14:39:22 +0100
+Date:   Thu, 28 Jan 2021 14:39:22 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Robin van der Gracht <robin@protonic.nl>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: counter: add pulse-counter binding
+Message-ID: <20210128133922.khkb4zyccoxdnlyp@pengutronix.de>
+References: <20210126131239.8335-1-o.rempel@pengutronix.de>
+ <20210126131239.8335-2-o.rempel@pengutronix.de>
+ <CACRpkdY2XYi2jqYiXaBUfRO1+UEK3QCC8JQ0duENVGoOfYTmBA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210126215511.1056600-1-adrien.grassein@gmail.com>
+In-Reply-To: <CACRpkdY2XYi2jqYiXaBUfRO1+UEK3QCC8JQ0duENVGoOfYTmBA@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 13:43:14 up 57 days,  2:49, 33 users,  load average: 0.00, 0.02,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrien,
-
-Thanks for improving Nitrogen upstream, much appreciated.
-
-On Tue, Jan 26, 2021 at 10:55:11PM +0100, Adrien Grassein wrote:
-> add USB support for imx8mq-nitrogen. It consists
-> in 2 phys: OTG and host.
+On Thu, Jan 28, 2021 at 09:17:23AM +0100, Linus Walleij wrote:
+> Hi Oleksij,
 > 
-> The OTG port uses a dedicated regulator for vbus.
+> thanks for your patch!
 > 
-> Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
-> ---
->  .../boot/dts/freescale/imx8mq-nitrogen.dts    | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
+> On Tue, Jan 26, 2021 at 2:15 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> index 81d269296610..fb8acd83a280 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
-> @@ -34,6 +34,17 @@ power {
->  		};
->  	};
->  
-> +	reg_usb_otg_vbus: regulator-usb-otg-vbus {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usbotg_vbus>;
-> +		regulator-name = "usb_otg_vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&gpio1 12 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
->  	reg_vref_0v9: regulator-vref-0v9 {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vref-0v9";
-> @@ -190,6 +201,25 @@ &uart2 {
->  	status = "okay";
->  };
->  
-> +&usb_dwc3_0 {
-> +	dr_mode = "otg";
-> +	status = "okay";
+> > Add binding for the pulse counter node
+> >
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> (...)
+> 
+> > +properties:
+> > +  compatible:
+> > +    const: virtual,pulse-counter
+> 
+> What is so virtual about this? The device seems very real.
 
-Please add a pinctrl here to mux GPIO1_IO13 as over current pin.
-But I confirm the port is working.
+Currently there are two ways:
+1. use "virtual" or "linux" vendor. Same as "virtual,mdio-gpio"
+2. Extend the list of "not vendor" prefixes in the prefixes list:
+   Documentation/devicetree/bindings/vendor-prefixes.yaml
 
-> +};
-> +
-> +&usb3_phy0 {
-> +	vbus-supply = <&reg_usb_otg_vbus>;
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3_1 {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
+Since both ways seems to be valid, i personally prefer to use existing
+prefix instead of maintaining the vendor-prefixes.yaml
 
-The Host port doesn't work for me. This is because of the missing reset
-signal. Maybe it's time to revive the gpio-reset driver [1]?
+@Rob, what do you prefer?
 
-Anyway, here is how to fix the USB Host ports:
-# gpioset 0 14=1
+> However it is certainly a GPIO counter.
 
-I guess it'd be best to have a proper reset solution before merging the
-host port addition.
+This was my first implementation. @Jonathan you suggest to use GPIO-free
+way, can you and Linus please decide what is the way to go.
+
+I personally can imagine that this driver can be attached to any IRQ
+source, including drivers/iio/trigger/iio-trig-sysfs.c
+
+> I would call it "gpio-counter" simply.
+> 
+> Define:
+>   $nodename:
+>      pattern: "^counter(@.*)?$"
+> 
+> > +    counter-0 {
+> 
+> counter@0 {
+> 
+> > +    counter-1 {
+> 
+> counter@1 {
+
+In this case the dtc compiler will say:
+/counter@0: node has a unit name, but no reg property
 
 Regards,
-Gary
-
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/1374834384-8071-1-git-send-email-p.zabel@pengutronix.de/
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
