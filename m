@@ -2,154 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 735C6307310
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 10:45:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C9C30731A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 10:49:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231463AbhA1JpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 04:45:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37948 "EHLO
+        id S229785AbhA1JsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 04:48:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232524AbhA1JnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 04:43:00 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 660F1C061574;
-        Thu, 28 Jan 2021 01:42:19 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id l9so6787970ejx.3;
-        Thu, 28 Jan 2021 01:42:19 -0800 (PST)
+        with ESMTP id S231562AbhA1JpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 04:45:15 -0500
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C14EC0613D6;
+        Thu, 28 Jan 2021 01:44:35 -0800 (PST)
+Received: by mail-ot1-x32d.google.com with SMTP id s2so4598576otp.5;
+        Thu, 28 Jan 2021 01:44:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VS2BXLiTQG5Ywx+8YI/6vIBJgTmi0BPOFN3mLacxjo4=;
-        b=rlxtghjBfMv4sBljBAWBUtNHU7Amys8VPM6WUQ97fwHB6t2TC77Dzg71iFL+GpzU0v
-         mNXzfIZRMQv+lYOPDgWb1DBPIeGc0M6wNql9PRFg9ptBFb72lx+7T2BXDREJhgee7iwL
-         j/ZyszTs9ktqcwXXxCJ5rnQ5iGTXtmpCTc/7RubSPyHLZaPVuQXMUAqMCe6Q7Z1KK3nC
-         +a9lmbGrrgOjw76O9rPePmHpW59cNJ9rG75PiVQXoFQL2JOV176Xpo405L1DVYgMvjoB
-         wI80jK1WReqzS+ilePNs5t6MiE+P9/WkzamG9pa6I7tbx/pfONBOZBApQCPxuMqza233
-         pvVQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0tdWQ+d8GDL3L7HHmP75TKjsjBa9nxywgYDQpEEPUMI=;
+        b=qF6UUcGv7rR/xG6zbo4KcGYamU0NcafBwayMZozCJfu2pfUZ4uxvA1njh0sSSH2JHC
+         dPCkcMnaJM4DvG3j6NIJ15AZ8tuqwwHIGpWbYxaWmrOIGesMq6oNO7xZ6kjRWLVj/f3p
+         Yy6N/iKTao/9dTy9qnFgOJwMGl55rNVwLXq/uAs76GO0YBF1StaG4OhrawbdwOUAqAxj
+         M+41tv9cIC4/kZUlyKJSH9xvqNk3v79iZcszgaKbWiYjAzizXud3lpC2R5RbD7U8+KM/
+         tmy986U2Oe4xr2CJobnkD/KkFnWf3rMqzv1sT8RRqEmsW+dZ1FVOmrTli+1JclJ4QJHC
+         NwwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VS2BXLiTQG5Ywx+8YI/6vIBJgTmi0BPOFN3mLacxjo4=;
-        b=fgPFED/VmgSVriiccufxD9CpnHPo6Yp++CbZoyYKSCy+nye+XJv7t5wkdtGKc5b3wR
-         gq27IvEyhZSaqOfAocixe/f++cILhsISsBkWcbgKA6u1mo5MsdVubuxIEFxSlh/aJzWC
-         miJkMM3MCco50+mw5xUytGW4S8XNRVjrGfO1U/pJz+lraQM0Gj3DgLRebF7cJbi2onEd
-         vY2cjp7yKs5Oa5ZAqk0yhp792Snt6a8Vk6sGIE8appxMazZduuI8rvwqUiP+Xkgu2dnq
-         cJZTSXI1+5pbnaoCFvFUcKlAYtym2O0mH8sT1w6XZsZ/sWJQ6hLdP4R3EB25sqCGSCgg
-         YeCg==
-X-Gm-Message-State: AOAM532rRihYxaaHfHe1B3kLz27h2AHCTm7QonkM964nF3GXvNEQM5yR
-        UMQI9+5dkCjsDz5oihJrqeg=
-X-Google-Smtp-Source: ABdhPJwwQr9fpLfw/ULp0RvD+T6rOzO4W88QBT5qcyDraLNmTY0zXsKsqA/nLyzQSi69y6wF0zp7HQ==
-X-Received: by 2002:a17:907:7255:: with SMTP id ds21mr10178552ejc.258.1611826937030;
-        Thu, 28 Jan 2021 01:42:17 -0800 (PST)
-Received: from [192.168.74.106] (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
-        by smtp.gmail.com with ESMTPSA id cx6sm2810192edb.53.2021.01.28.01.42.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jan 2021 01:42:16 -0800 (PST)
-Subject: Re: [PATCH 2/2] drm/panel: simple: add samsung,s6e3fa2 panel
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Samuel Pascua <pascua.samuel.14@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20201230151711.3619846-1-iskren.chernev@gmail.com>
- <20201230151711.3619846-2-iskren.chernev@gmail.com>
-Message-ID: <e8701e3c-b0b2-559c-e808-1e6983b85b00@gmail.com>
-Date:   Thu, 28 Jan 2021 11:42:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0tdWQ+d8GDL3L7HHmP75TKjsjBa9nxywgYDQpEEPUMI=;
+        b=XVRJc3gonjy3NIcpfcd/5mTyOwWPMI2ss5xFNPvg+hv/UdAVQRNUyJCGCLy/fqtcVE
+         5/F/+rI5Lqzzd37xwPeaWADFkrOLI2IRkTp/ClEJKxddftOzo9rDawji/P2Kf3Yn2VnZ
+         1Fcjn7mQu3AesvZbbJeTkf32wOFRJ/FiqlURV/ec3yTTGpSoMaxiSHeISNxV3Qf9uin2
+         LYW91Nt1N0zn0OQ5m9O4eMipNIEUzHkMegCf5DYP+nQDJli3GoTal5+IJa5cjt8juo25
+         NMRGouaXt4B+6VFpNie/8LxUyJ//z9eCXdGngcO9Ts1ZrOuZmOMrKQ0Q9xPWN7wqjtdT
+         BX1g==
+X-Gm-Message-State: AOAM5301dW6jpS0IdO1WasNPQ+wHsyS7FmslfkB8kGndKrI5cMqgdIV0
+        QJQ6KNXxoFFG+YZYGv+7jGidTyPq62nwBa07dmw=
+X-Google-Smtp-Source: ABdhPJzIlXfimw/RBDw/9rpGBPce2+wmPz+eAKm2A8hM41qrtVG8skXwOyn+I4zFOVOAhHnX/h3OOWAXdRsYYLrx+YA=
+X-Received: by 2002:a9d:23ca:: with SMTP id t68mr11045706otb.281.1611827074691;
+ Thu, 28 Jan 2021 01:44:34 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201230151711.3619846-2-iskren.chernev@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210128084011.3270281-1-swboyd@chromium.org> <20210128084011.3270281-3-swboyd@chromium.org>
+In-Reply-To: <20210128084011.3270281-3-swboyd@chromium.org>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Thu, 28 Jan 2021 10:44:23 +0100
+Message-ID: <CAFqH_53aRCVfRqHCgPoqUvmydybCiVeQdw5bHOAQ6pZr03irwg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: Add cros ec proximity yaml doc
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Stephen,
 
+Thank you for your patch. Just a minor comment.
 
-On 12/30/20 5:17 PM, Iskren Chernev wrote:
-> From: Samuel Pascua <pascua.samuel.14@gmail.com>
-> 
-> This panel is used on the Samsung Galaxy S5 (klte).
-> 
-> Signed-off-by: Samuel Pascua <pascua.samuel.14@gmail.com>
+Missatge de Stephen Boyd <swboyd@chromium.org> del dia dj., 28 de gen.
+2021 a les 9:45:
+>
+> Some cros ECs support a front proximity MKBP event via
+> 'EC_MKBP_FRONT_PROXIMITY'. Add a DT binding to document this feature via
+> a node that is a child of the main cros_ec device node. Devices that
+> have this ability will describe this in firmware.
+>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Gwendal Grignou <gwendal@chromium.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 > ---
->  drivers/gpu/drm/panel/panel-simple.c | 30 ++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 41bbec72b2dad..5f16826f3ae06 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -4611,6 +4611,33 @@ static const struct panel_desc_dsi osd101t2045_53ts = {
->  	.lanes = 4,
->  };
-> 
-> +static const struct drm_display_mode s6e3fa2_mode = {
-> +	.clock = 149769,
-> +	.hdisplay = 1080,
-> +	.hsync_start = 1080 + 162,
-> +	.hsync_end = 1080 + 162 + 10,
-> +	.htotal = 1080 + 162 + 10 + 36,
-> +	.vdisplay = 1920,
-> +	.vsync_start = 1920 + 13,
-> +	.vsync_end = 1920 + 13 + 2,
-> +	.vtotal = 1920 + 13 + 2 + 3,
-> +};
+>
+> Changes from v2:
+>  * None
+>
+> Changes from v1:
+>  * Added additionalProperties
+>  * Included proximity in cros-ec yaml
+>
+>  .../google,cros-ec-mkbp-proximity.yaml        | 38 +++++++++++++++++++
+>  .../bindings/mfd/google,cros-ec.yaml          |  3 ++
+>  2 files changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+> new file mode 100644
+> index 000000000000..c3141c2be286
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
 > +
-> +static const struct panel_desc_dsi samsung_s6e3fa2 = {
-> +	.desc = {
-> +		.modes = &s6e3fa2_mode,
-> +		.num_modes = 1,
-> +		.bpc = 8,
-> +		.size = {
-> +			.width = 65,
-> +			.height = 115,
-> +		},
-> +	},
-> +	.flags = MIPI_DSI_MODE_VIDEO_BURST,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.lanes = 4,
-> +};
+> +$id: http://devicetree.org/schemas/iio/proximity/google,cros-ec-mkbp-proximity.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  static const struct of_device_id dsi_of_match[] = {
->  	{
->  		.compatible = "auo,b080uan01",
-> @@ -4633,6 +4660,9 @@ static const struct of_device_id dsi_of_match[] = {
->  	}, {
->  		.compatible = "osddisplays,osd101t2045-53ts",
->  		.data = &osd101t2045_53ts
-> +	}, {
-> +		.compatible = "samsung,s6e3fa2",
-> +		.data = &samsung_s6e3fa2
+> +title: ChromeOS EC MKBP Proximity Sensor
+> +
+> +maintainers:
+> +  - Stephen Boyd <swboyd@chromium.org>
+> +  - Benson Leung <bleung@chromium.org>
+> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> +
+> +description: |
+> +  Google's ChromeOS EC sometimes has the ability to detect user proximity.
+> +  This is implemented on the EC as near/far logic and exposed to the OS
+> +  via an MKBP switch bit.
+> +
+> +properties:
+> +  compatible:
+> +    const: google,cros-ec-mkbp-proximity
+> +
+> +  label:
+> +    description: Name for proximity sensor
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
 
-I just want to share some details to avoid issues in the future.
+For this kind of devices it is preferred to see a complete example
+rather than pieces spread around different yaml. This helps proper
+binding parsing.
 
-This setup (with simple panel and bindings), works in the sense that the
-display shows stuff, after being left on by the bootloader on the Samsung
-Galaxy S5 (klte). There is no provisions for turning the screen off and
-back on, backlight, or anything else.
+    spi0 {
+      #address-cells = <1>;
+      #size-cells = <0>;
 
-The display is a rather advanced one, containing many features, but so far
-none of them (including on/off) has been made to work. It is possible that
-in the future some of those features will be figured out, and these might
-very well include additional DT properties.
+      cros_ec: ec@0 {
+        compatible = "google,cros-ec-spi";
+        reg = <0>;
 
-So would it be better to put the bindings in a separate file, ready to
-grow, and for the panel - include a simple custom driver that works no
-better than the simple-panel one now, but can accommodate future expansion?
-
->  	}, {
->  		/* sentinel */
->  	}
+> +    proximity {
+> +        compatible = "google,cros-ec-mkbp-proximity";
+> +        label = "proximity-wifi-lte";
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index 76bf16ee27ec..479a9f15de32 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -94,6 +94,9 @@ properties:
+>    keyboard-controller:
+>      $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
+>
+> +  proximity:
+> +    $ref: "/schemas/iio/proximity/google,cros-ec-mkbp-proximity.yaml#"
+> +
+>    codecs:
+>      type: object
+>      additionalProperties: false
 > --
-> 2.29.2
-> 
+> https://chromeos.dev
+>
