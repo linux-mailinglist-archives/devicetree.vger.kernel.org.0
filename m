@@ -2,70 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21DBC30759C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 13:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB037307683
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jan 2021 13:58:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbhA1MLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jan 2021 07:11:23 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:18451 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbhA1MLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jan 2021 07:11:22 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B6012a9c20000>; Thu, 28 Jan 2021 04:10:42 -0800
-Received: from [10.26.73.116] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 28 Jan
- 2021 12:10:41 +0000
-Subject: Re: [PATCH V2 1/2] arm64: tegra: Prepare for supporintg the Jetson
- Xavier NX with eMMC
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
-References: <20210128120851.361401-1-jonathanh@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <4d91c177-4738-c473-250c-a8daf65701a3@nvidia.com>
-Date:   Thu, 28 Jan 2021 12:10:38 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231782AbhA1MzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jan 2021 07:55:10 -0500
+Received: from mail.ilitek.com ([60.248.80.92]:51268 "EHLO cello.ilitek.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231868AbhA1My4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Jan 2021 07:54:56 -0500
+X-Greylist: delayed 368 seconds by postgrey-1.27 at vger.kernel.org; Thu, 28 Jan 2021 07:54:55 EST
+X-UUID: cc5ddf0934c44583a225f33af7a8f796-20210128
+X-UUID: cc5ddf0934c44583a225f33af7a8f796-20210128
+Received: from ex1.ili.com.tw [(192.168.1.131)] by cello.ilitek.com
+        (envelope-from <joe_hung@ilitek.com>)
+        (Cellopoint E-mail Firewall v4.1.12 Build 0701 with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
+        with ESMTP id 2071504771; Thu, 28 Jan 2021 20:41:28 +0800
+Received: from EX1.ili.com.tw (192.168.1.131) by EX1.ili.com.tw
+ (192.168.1.131) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Thu, 28 Jan
+ 2021 20:41:27 +0800
+Received: from joehung-Ilitek.ili.com.tw (192.168.18.73) by EX1.ili.com.tw
+ (192.168.1.133) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Thu, 28 Jan 2021 20:41:27 +0800
+From:   <joe_hung@ilitek.com>
+To:     <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <linux-input@vger.kernel.org>, <joe_hung@ilitek.com>,
+        <luca_hsu@ilitek.com>
+Subject: [PATCH 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c: Add bindings
+Date:   Thu, 28 Jan 2021 20:41:25 +0800
+Message-ID: <20210128124125.1312232-1-joe_hung@ilitek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210128120851.361401-1-jonathanh@nvidia.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1611835842; bh=zZ/AOeGosaqknVCmoXuZAocRKl2QvA7jc6h5dFJjcp4=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Language:
-         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-        b=ADZZkQpMF2G+JH4vXwd9ft8+9f62YViWddwIWXTvffuhka0pfm2MFzwPZpa5cy/df
-         DW5renIAZl84fGty4zE+cHsCYNZei7kTxUqXGHjI14pzOOROMiSB7C1R0adkUz285U
-         ZHZSh8nHYEHe0akx2QVDA8sIRDiTkzAZ+lenBFlg3xVrA4wXNLpTc0LyL6Uy9AVGcb
-         jEoD07AWEDXiKxjAnAbqH9YbWIkBw+kjYdtJ+wcMtqF9ryMXBF6eYDEuAVdzhWX8ny
-         wGdycjc5ivwKKmOi9eO6wmQ2QonS/HlhfgkzYF62WBEGS5B2gQKpLdje1edoRsX/Q/
-         UVKYZu2D9g+zw==
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Joe Hung <joe_hung@ilitek.com>
 
-On 28/01/2021 12:08, Jon Hunter wrote:
-> There are two versions of the Jetson Xavier NX system-on-module; one
-> with a micro SD-card slot and one with an eMMC. Currently, only the
-> system-on-module with the micro SD-card slot is supported. Before adding
-> support for the eMMC variant, move the common device-tree parts of the
-> existing Jetson Xavier NX system-on-module board (p3668-0000) and
-> reference carrier board (p3509-0000) into include files that can be used
-> by both Jetson Xavier NX variants.
-> 
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+Add binding documentation for ILITEK touch devices.
 
-Ugh, looks like a typo in the $subject. Please let me know if I should
-resend.
+Signed-off-by: Joe Hung <joe_hung@ilitek.com>
+---
+ .../input/touchscreen/ilitek_ts_i2c.txt       | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.txt
 
-Jon
-
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.txt b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.txt
+new file mode 100644
+index 000000000000..2a4b41a1f000
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.txt
+@@ -0,0 +1,23 @@
++Ilitek I2C 23XX/25XX/Lego Series Touch ICs
++
++Required properties:
++- compatible		: Must be equal to one of following:
++			  "ilitek,ili2520"
++			  "ilitek,ili2510"
++- reg			: I2C slave address for touch device.
++- reset-gpios		: GPIO output high to reset pin of touch device.
++- irq-gpios		: GPIO as active low input from touch irq pin.
++
++Example:
++        &i2c1 {
++                /* ... */
++
++                touchscreen@41 {
++			compatible = "ilitek,ili2520";
++                        reg = <0x41>;
++			irq-gpios = <&gpio1 13 0>;
++			reset-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
++                };
++
++                /* ... */
++        };
 -- 
-nvpublic
+2.25.1
+
+
